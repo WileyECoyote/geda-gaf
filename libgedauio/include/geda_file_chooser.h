@@ -27,7 +27,7 @@
 #define __GEDA_FILE_CHOOSER_H__
 
 #define FILE_CHOOSER_CONFIG_GROUP  "file-chooser"
-#define FILE_CHOOSER_CONFIG_FILTER "file-chooser-filter"
+#define FILE_CHOOSER_CONFIG_FILTER "filter"
 
 /*!
  * FileChooserAction:

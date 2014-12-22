@@ -233,19 +233,8 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
 char *x_fileselect_select_image(GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
-  EdaConfig  *cfg;
   char       *cwd;
   char       *filename;
-  const char *group;
-  const char *key;
-  int         chooser_filter;
-
-  cfg   = eda_config_get_user_context ();
-  group = IMAGE_CHOOSER_CONFIG_GROUP;
-  key   = IMAGE_CHOOSER_CONFIG_FILTER;
-
-  /* Attempt to restore the ImageChooser filter users preference */
-  i_var_restore_group_integer(cfg, group, key, &chooser_filter, FILTER_IMAGES);
 
   dialog = geda_image_chooser_new (w_current->main_window,
                                    IMAGE_CHOOSER_ACTION_OPEN);
@@ -257,13 +246,6 @@ char *x_fileselect_select_image(GschemToplevel *w_current)
     geda_image_chooser_set_filename (dialog, w_current->pixbuf_filename);
   }
 
-  /* Set filter to what user last time*/
-  geda_image_chooser_set_filter (dialog, chooser_filter);
-
-  /* Conditionally add the file previewer
-  if(w_current->file_preview == TRUE)
-    x_fileselect_add_preview (GEDA_FILE_CHOOSER (dialog));
- */
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
   geda_image_chooser_set_current_folder (dialog, cwd);
@@ -277,12 +259,6 @@ char *x_fileselect_select_image(GschemToplevel *w_current)
   else {
     filename = NULL;
   }
-
-  /* Retrieve the active filter index from the dialog */
-  chooser_filter = geda_image_chooser_get_filter (dialog);
-
-  /* Preserve the ImageChooser filter users preference */
-  eda_config_set_integer (cfg, group, key, chooser_filter);
 
   gtk_widget_destroy (dialog);
 

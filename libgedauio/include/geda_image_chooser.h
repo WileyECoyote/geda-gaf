@@ -27,8 +27,11 @@
 #define __GEDA_IMAGE_CHOOSER_H__
 
 #define IMAGE_CHOOSER_CONFIG_GROUP   "image-chooser"
-#define IMAGE_CHOOSER_CONFIG_FILTER  "image-chooser-filter"
-#define IMAGE_CHOOSER_CONFIG_PREVIEW "image-chooser-preview"
+#define IMAGE_CHOOSER_CONFIG_FILTER  "image-filter"
+#define IMAGE_CHOOSER_CONFIG_PREVIEW "preview-enable"
+#define IMAGE_CHOOSER_CONFIG_PVSIZE  "preview-size"
+
+#define DEFAULT_CHOOSER_PREVIEW_SIZE 300
 
 G_BEGIN_DECLS
 
@@ -71,10 +74,12 @@ typedef struct _GedaImageChooserClass   GedaImageChooserClass;
 struct _GedaImageChooser {
 
   GtkFileChooserDialog  parent;
+  GtkAdjustment        *adjustment;
   GtkWidget            *preview;
   GtkWidget            *filter_button;
            int          filter_index;
   unsigned int          handler;
+           int          preview_size;
            bool         preview_enabled;
 };
 

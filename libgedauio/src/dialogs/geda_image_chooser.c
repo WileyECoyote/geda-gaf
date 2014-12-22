@@ -100,6 +100,27 @@ geda_image_chooser_setup_filters (GtkFileChooser *filechooser)
   }
 }
 
+static void
+geda_image_chooser_restore_filter (GtkWidget *chooser)
+{
+  GError     *err   = NULL;
+  EdaConfig  *cfg   = eda_config_get_user_context();
+  const char *group = IMAGE_CHOOSER_CONFIG_GROUP;
+  const char *key   = IMAGE_CHOOSER_CONFIG_FILTER;
+
+  int filter_index;
+
+  /* Attempt to restore the ImageChooser filter users preference */
+  filter_index = eda_config_get_integer (cfg, group, key, &err);
+
+  if (err != NULL) {
+    g_clear_error (&err);
+    filter_index = FILTER_IMAGES;
+  }
+
+  geda_image_chooser_set_filter(chooser, filter_index);
+}
+
 /*! \brief Get Current Filter Index of a Geda Image Chooser
  *  \par Function Description
  *  This function return the current filters index of a #GedaImageChooser
@@ -127,9 +148,14 @@ void geda_image_chooser_set_filter (GtkWidget *widget, int index)
 {
   if (GEDA_IS_IMAGE_CHOOSER(widget)) {
     GedaImageChooser *chooser = (GedaImageChooser*)widget;
-    g_signal_handler_block(chooser->filter_button, chooser->handler);
-    gtk_combo_box_set_active(GTK_COMBO_BOX(chooser->filter_button), index);
-    g_signal_handler_unblock(chooser->filter_button, chooser->handler);
+    if(chooser->handler) {
+      g_signal_handler_block(chooser->filter_button, chooser->handler);
+      gtk_combo_box_set_active(GTK_COMBO_BOX(chooser->filter_button), index);
+      g_signal_handler_unblock(chooser->filter_button, chooser->handler);
+    }
+    else {
+      gtk_combo_box_set_active(GTK_COMBO_BOX(chooser->filter_button), index);
+    }
     chooser->filter_index = index;
   }
   else {
@@ -168,6 +194,34 @@ chooser_preview_enabler (GtkToggleButton *checkbox, void *user_data)
   g_object_set (widget, "preview-widget-active", chooser->preview_enabled, NULL);
 }
 
+static void
+chooser_update_size (GtkAdjustment *adjustment, void *user_data)
+{
+  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(user_data);
+  GtkImage         *preview = GTK_IMAGE (chooser->preview);
+  GError           *err     = NULL;
+  GdkPixbuf        *pixbuf;
+
+  char *filename;
+  int   size;
+
+  filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER(chooser));
+
+  if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+
+    size = chooser->preview_size = (int) gtk_adjustment_get_value(adjustment);
+
+    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
+
+    if (err != NULL) {
+      g_clear_error (&err);
+    }
+    else { /* update preview */
+      gtk_image_set_from_pixbuf (preview, pixbuf);
+    }
+  }
+}
+
 /*! \brief Updates the preview widget.
  *  \par Function Description
  *  This function updates the preview: if the preview is active and a
@@ -183,12 +237,14 @@ chooser_update_preview (GtkFileChooser *chooser, void *user_data)
   GError    *err     = NULL;
   GdkPixbuf *pixbuf;
   char      *filename;
+  int        size;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
 
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 
-    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, 300, 300, &err);
+    size   = (GEDA_IMAGE_CHOOSER(chooser))->preview_size;
+    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
 
     if (err != NULL) {
       g_clear_error (&err);
@@ -217,10 +273,13 @@ chooser_update_preview (GtkFileChooser *chooser, void *user_data)
  *
  *  \param [in] chooser The Image chooser to add the preview to.
  */
-static GtkWidget *chooser_add_preview (GtkWidget *chooser, bool state)
+static GtkWidget*
+chooser_add_preview (GtkWidget *chooser, bool state, int size)
 {
-  GtkWidget *alignment, *frame, *preview;
-  GtkWidget *vbox;
+  GtkWidget     *alignment, *frame, *preview;
+  GtkAdjustment *adjustment;
+  GtkWidget     *slider;
+  GtkWidget     *vbox;
 
   /* Add our extra widget to the dialog */
   vbox = gtk_vbox_new(FALSE, 0);
@@ -246,15 +305,40 @@ static GtkWidget *chooser_add_preview (GtkWidget *chooser, bool state)
   gtk_container_add (GTK_CONTAINER (vbox), frame);
   gtk_widget_show_all (frame);
 
+  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
+                                        "right-padding", 2,
+                                        "left-padding", 2,
+                                        "xscale", 1.0,
+                                        "yscale", 0.2,
+                                        "xalign", 0.5,
+                                        "yalign", 0.2,
+                                        NULL));
+
+  slider = gtk_hscale_new_with_range (100.0, 1000.0, 100.0);
+
+  g_object_get(G_OBJECT(slider), "adjustment", &adjustment, NULL);
+  gtk_adjustment_set_value(adjustment, (double)size);
+
+  gtk_container_add (GTK_CONTAINER (alignment), slider);
+  gtk_container_add (GTK_CONTAINER (vbox), alignment);
+  gtk_widget_show_all (alignment);
+
+  (GEDA_IMAGE_CHOOSER(chooser))->adjustment = adjustment;
+
   g_object_set (chooser, "use-preview-label",     FALSE,
                          "preview-widget",        vbox,
                          "preview-widget-active", state,
                                                   NULL);
-
   /* connect callback to update preview image */
   g_signal_connect (chooser, "update-preview",
                     G_CALLBACK (chooser_update_preview),
                     preview);
+
+  /* connect callback to update preview image */
+  g_signal_connect (adjustment, "value-changed",
+                    G_CALLBACK (chooser_update_size),
+                    chooser);
+
   return preview;
 }
 
@@ -311,11 +395,14 @@ geda_image_chooser_constructor (GedaType               type,
 {
   GObject *obj;
   GList   *children, *iter;
+  GedaImageChooser   *chooser;
 
   /* Chain up to the parent constructor */
   obj = G_OBJECT_CLASS (geda_image_chooser_parent_class)->constructor (type, n_properties, properties);
 
   gtk_dialog_set_has_separator (GTK_DIALOG(obj), TRUE);
+
+  chooser = GEDA_IMAGE_CHOOSER(obj);
 
   /* Get all object inside the contents area of the dialog */
   children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (obj)->vbox));
@@ -323,8 +410,8 @@ geda_image_chooser_constructor (GedaType               type,
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
     if (GTK_IS_CONTAINER(iter->data)) {
-      gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, obj);
-      if ( (GEDA_IMAGE_CHOOSER(obj))->filter_button) {
+      gtk_container_forall (GTK_CONTAINER (iter->data), FixGtkCrap, obj);
+      if (chooser->filter_button) {
         break;
       }
     }
@@ -340,14 +427,18 @@ geda_image_chooser_constructor (GedaType               type,
   const char *group;
   const char *key;
   bool        enable;
+  int         size;
 
-  group   = IMAGE_CHOOSER_CONFIG_GROUP;
-  key     = IMAGE_CHOOSER_CONFIG_PREVIEW;
-  cfg     = eda_config_get_user_context();
-  widget  = GTK_WIDGET(obj);
-  enable  = eda_config_get_boolean (cfg, group, key, NULL);
-  preview = chooser_add_preview(widget, enable);
-  hbox    = gtk_hbox_new(FALSE, 0);
+  group    = IMAGE_CHOOSER_CONFIG_GROUP;
+  cfg      = eda_config_get_user_context();
+  widget   = GTK_WIDGET(obj);
+  key      = IMAGE_CHOOSER_CONFIG_PREVIEW;
+  enable   = eda_config_get_boolean (cfg, group, key, NULL);
+  key      = IMAGE_CHOOSER_CONFIG_PVSIZE;
+  size     = eda_config_get_integer (cfg, group, key, NULL);
+  size     = size > 100 ? size : DEFAULT_CHOOSER_PREVIEW_SIZE;
+  preview  = chooser_add_preview(widget, enable, size);
+  hbox     = gtk_hbox_new(FALSE, 0);
 
   chechbox = gtk_check_button_new_with_label (_("Preview"));
   gtk_toggle_button_set_active ((GtkToggleButton*)chechbox, enable);
@@ -362,8 +453,9 @@ geda_image_chooser_constructor (GedaType               type,
 
   geda_image_chooser_set_extra_widget (widget, hbox);
 
-  (GEDA_IMAGE_CHOOSER(obj))->preview = preview;
-  (GEDA_IMAGE_CHOOSER(obj))->preview_enabled = enable;
+  chooser->preview = preview;
+  chooser->preview_size = size;
+  chooser->preview_enabled = enable;
 
   return obj;
 }
@@ -378,9 +470,7 @@ geda_image_chooser_constructor (GedaType               type,
  */
 static void geda_image_chooser_finalize (GObject *object)
 {
-
   chooser_entry = NULL;
-
   (G_OBJECT_CLASS (geda_image_chooser_parent_class))->finalize (object);
 }
 
@@ -532,15 +622,28 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-        bool  enable = (GEDA_IMAGE_CHOOSER(widget))->preview_enabled;
-        char *group  = IMAGE_CHOOSER_CONFIG_GROUP;
-  const char *key    = IMAGE_CHOOSER_CONFIG_PREVIEW;
-  EdaConfig  *cfg    = eda_config_get_user_context();
+  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(widget);
+  EdaConfig        *cfg     = eda_config_get_user_context();
+  char             *group   = IMAGE_CHOOSER_CONFIG_GROUP;
+  const char       *key;
+  int               index;
 
   g_signal_emit (GEDA_IMAGE_CHOOSER (widget),
                  chooser_signals[ GEOMETRY_SAVE ], 0, group);
 
-  eda_config_set_boolean (cfg, group, key, enable);
+  key = IMAGE_CHOOSER_CONFIG_PREVIEW;
+  eda_config_set_boolean (cfg, group, key, chooser->preview_enabled);
+
+  key = IMAGE_CHOOSER_CONFIG_PVSIZE;
+  eda_config_set_integer (cfg, group, key, chooser->preview_size);
+
+  /* Retrieve the active filter index from the dialog */
+  index = geda_image_chooser_get_filter (widget);
+
+  key = IMAGE_CHOOSER_CONFIG_FILTER;
+
+  /* Preserve the ImageChooser filter users preference */
+  eda_config_set_integer (cfg, group, key, index);
 
   /* Let Gtk unmap the window */
   GTK_WIDGET_CLASS (geda_image_chooser_parent_class)->unmap (widget);
@@ -693,8 +796,8 @@ GtkWidget*
 geda_image_chooser_new (GtkWidget *parent,
                         ImageChooserAction chooser_action)
 {
-  GtkWidget       *widget;
-  GtkDialog       *dialog;
+  GtkWidget        *widget;
+  GtkDialog        *dialog;
   GedaImageChooser *chooser;
 
   const char *second_button_text;
@@ -750,6 +853,7 @@ geda_image_chooser_new (GtkWidget *parent,
     }
 
     geda_image_chooser_setup_filters (GTK_FILE_CHOOSER (dialog));
+    geda_image_chooser_restore_filter (widget);
 
     if (chooser->filter_button) {
       chooser->handler = g_signal_connect_after(G_OBJECT(chooser->filter_button),
@@ -770,10 +874,10 @@ geda_image_chooser_new (GtkWidget *parent,
 
 static GtkWidget *
 geda_image_chooser_dialog_new_valist (const char        *title,
-                                     GtkWindow         *parent,
+                                     GtkWindow          *parent,
                                      ImageChooserAction  action,
-                                     const char        *first_button_text,
-                                     va_list            varargs)
+                                     const char         *first_button_text,
+                                     va_list             varargs)
 {
   GtkWidget  *result;
   const char *button_text = first_button_text;

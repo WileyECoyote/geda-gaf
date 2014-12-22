@@ -54,27 +54,27 @@ struct _filter_reg_t {
 
 /*! \def GEDA_FILTER_PNG #PNG_FILE_SUFFIX */
 #define GEDA_FILTER_PNG  \
-  { FILTER_PNG,        "Portable Network Graphics files", (const char* const []) \
+  { FILTER_PNG,        "Portable Network Graphics", (const char* const []) \
   { IMAGE_FILTER_PNG, NULL}, }
 
 /*! \def GEDA_FILTER_JPG #JPG_FILE_SUFFIX */
 #define GEDA_FILTER_JPG  \
-  { FILTER_JPG,       "Joint Photographic Experts Group files", (const char* const []) \
+  { FILTER_JPG,       "Joint Photographic Experts Group", (const char* const []) \
   { IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, NULL}, }
 
 /*! \def GEDA_FILTER_GIF #GIF_FILE_SUFFIX */
 #define GEDA_FILTER_GIF  \
-  { FILTER_GIF,        "Graphics Interchange file Format", (const char* const []) \
+  { FILTER_GIF,        "Graphics Interchange Format", (const char* const []) \
   { IMAGE_FILTER_GIF, NULL}, }
 
 /*! \def GEDA_FILTER_BMP #BMP_FILE_SUFFIX */
 #define GEDA_FILTER_BMP  \
-  { FILTER_BMP,        "Windows raw bitmap files", (const char* const []) \
+  { FILTER_BMP,        "Windows Bitmap", (const char* const []) \
   { IMAGE_FILTER_BMP, NULL}, }
 
 /*! \def GEDA_FILTER_ICO #ICO_FILE_SUFFIX */
 #define GEDA_FILTER_ICO  \
-  { FILTER_ICO,        "Icon image files", (const char* const []) \
+  { FILTER_ICO,        "Icon images", (const char* const []) \
   { IMAGE_FILTER_ICO, NULL}, }
 
 /*! \def GEDA_FILTER_TIF #TIF_FILE_SUFFIX */

@@ -1,5 +1,9 @@
 2014-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/dialogs/geda_image_chooser.c: Add slider for preview size.
+
+2014-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/dialogs/geda_image_chooser.c: Add a preview Widget the dialog
         with a checkbox to enable or disable the preview widget. Visibility
         of the preview widget is retained using the eda_config system in
