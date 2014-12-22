@@ -31,6 +31,7 @@
 #include "gschem.h"
 #include <geda_gui_funcs.h>
 #include <geda_file_chooser.h>
+#include <geda_image_chooser.h>
 #include <geda_debug.h>
 
 /*! \brief Updates the preview when the selection changes.
@@ -82,8 +83,7 @@ x_fileselect_callback_update_size (GtkToggleButton *button,
 
 /*! \brief Adds a preview to a file chooser.
  *  \par Function Description
- *  This function adds a preview section to the stock
- *  <B>GedaFileChooser</B>.
+ *  This function adds a preview section to a <B>GedaFileChooser</B>.
  *
  *  The <B>Preview</B> object is inserted in a frame and alignment
  *  widget for accurate positionning.
@@ -173,10 +173,6 @@ static void x_fileselect_save_filter_index (GtkWidget      *chooser,
  *
  *  \return list of filenames selected by the user, single-linked or
  *          NULL if no files were selected
- *
- *  \sa x_fileselect_list
- *
- *  \remark: is remnant, replaced by x_fileselect_list
  */
 GSList *x_fileselect_list(GschemToplevel *w_current)
 {
@@ -202,7 +198,7 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
 
   gtk_widget_show (dialog);
 
-  /* This ratains filter, even if canceled, could retrieve in if got
+  /* This retains filter, even if canceled, could retrieve in if got
    * filenames but this seems to work just fine, is saved if changed */
   g_signal_connect_after(G_OBJECT(dialog), "filter-changed",
                          G_CALLBACK (x_fileselect_save_filter_index),
@@ -218,86 +214,79 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
   return filenames;
 }
 
-/*! \brief Opens a file chooser for opening one or more schematics.
+/*! \brief Opens a Image Chooser Dialog for selecting one image file.
  *  \par Function Description
- *  This function opens a file chooser dialog, restores the user's
- *  filter preference, and wait for the user to select at least one
- *  file to load as <B>w_current</B>'s new pages. If the user changes
- *  the filter, a callback retains the users preference regardless of
- *  whether the operation is canceled or not. If a document is opened,
- *  the function updates the user interface.
- *
- *  At the end of the function, the w_current->toplevel's current page
- *  is set to the page of the last loaded page.
+ *  This function opens a Image Chooser Dialog, restores the user's
+ *  filter preference, and wait for the user to select at one file to
+ *  load. In the toplevel contains a pixbuf_filename, that file name
+ *  is set in the dialog. The users filter preference is Preserved
+ *  regardless of whether the operation is canceled or not.
  *
  *  \param [in] w_current The GschemToplevel environment.
  *
- *  \note: is remnant, replaced by x_fileselect_list
+ *  \returns pointer to filename string or NULL if the operation was
+ *           cancelled by the user. The returned string must be freed
+ *           by the caller.
  *
  *  \sa x_fileselect_list
  */
-void x_fileselect_open(GschemToplevel *w_current)
+char *x_fileselect_select_image(GschemToplevel *w_current)
 {
-  GtkWidget *dialog;
-  GSList    *filenames;
-  char      *cwd;
+  GtkWidget  *dialog;
+  EdaConfig  *cfg;
+  char       *cwd;
+  char       *filename;
+  const char *group;
+  const char *key;
+  int         chooser_filter;
 
-  dialog = geda_file_chooser_new (w_current->main_window,
-                                  FILE_CHOOSER_ACTION_OPEN);
+  cfg   = eda_config_get_user_context ();
+  group = IMAGE_CHOOSER_CONFIG_GROUP;
+  key   = IMAGE_CHOOSER_CONFIG_FILTER;
+
+  /* Attempt to restore the ImageChooser filter users preference */
+  i_var_restore_group_integer(cfg, group, key, &chooser_filter, FILTER_IMAGES);
+
+  dialog = geda_image_chooser_new (w_current->main_window,
+                                   IMAGE_CHOOSER_ACTION_OPEN);
+
+  g_object_set (dialog, "select-multiple", FALSE, NULL);
+                       /* "local-only", TRUE, */
+
+  if (w_current->pixbuf_filename) {
+    geda_image_chooser_set_filename (dialog, w_current->pixbuf_filename);
+  }
 
   /* Set filter to what user last time*/
-  geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
+  geda_image_chooser_set_filter (dialog, chooser_filter);
 
-  /* 09/09/12 W. E. Hill: Conditionally add the file previewer */
+  /* Conditionally add the file previewer
   if(w_current->file_preview == TRUE)
     x_fileselect_add_preview (GEDA_FILE_CHOOSER (dialog));
-
+ */
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
-  geda_file_chooser_set_current_folder (dialog, cwd);
+  geda_image_chooser_set_current_folder (dialog, cwd);
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
 
-  /* This ratains filter, even if canceled, could retrieve in if got
-   * filenames but his seems to work just fine, is saved if changed */
-  g_signal_connect_after(G_OBJECT(dialog), "filter-changed",
-                         G_CALLBACK (x_fileselect_save_filter_index),
-                         w_current);
-
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    filenames =  geda_file_chooser_get_filenames (dialog);
+    filename = u_string_strdup(geda_image_chooser_get_filename (dialog));
   }
   else {
-    filenames = NULL;
+    filename = NULL;
   }
+
+  /* Retrieve the active filter index from the dialog */
+  chooser_filter = geda_image_chooser_get_filter (dialog);
+
+  /* Preserve the ImageChooser filter users preference */
+  eda_config_set_integer (cfg, group, key, chooser_filter);
+
   gtk_widget_destroy (dialog);
 
-  /* open each file */
-  if (filenames) {
-
-    GSList *iter;
-    Page   *page = NULL;
-
-    for (iter = filenames; iter != NULL; iter = g_slist_next (iter)) {
-
-      if(iter->data != NULL) {
-        page = x_window_open_page (w_current, (char*)iter->data);
-      }
-      else {
-        BUG_MSG("file name should not be NULL");
-      }
-    }
-
-    /* Switch to the last page opened */
-    if ( page != NULL ) {
-      x_window_set_current_page (w_current, page);
-    }
-
-    /* free the list of filenames */
-    g_slist_foreach (filenames, (GFunc)g_free, NULL);
-    g_slist_free (filenames);
-  }
+  return filename;
 }
 
 /*! \brief Opens a file chooser for saving the current page.

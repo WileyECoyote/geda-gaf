@@ -2660,18 +2660,15 @@ COMMAND ( do_add_picture )
   w_current->inside_action = 0;
   i_status_set_state(w_current, SELECT);
 
-  if (w_current->pixbuf_filename) {
-    filename = w_current->pixbuf_filename;
-  }
+  w_current->pixbuf_filename = NULL;
 
-  filename = x_dialog_select_file("Select image file", filename, FSB_LOAD);
+  filename = x_fileselect_select_image(w_current);
 
-  if(filename != NULL) { /* if user did not cancel */
+  if (filename != NULL) { /* if user did not cancel */
 
     pixbuf = gdk_pixbuf_new_from_file (filename, &error);
 
     if (pixbuf) {
-
       w_current->inside_action = 1;
       o_picture_set_pixbuf(w_current, pixbuf, filename);
       Toplevel->page_current->CHANGED=1;

@@ -312,17 +312,17 @@ void       gschem_threads_leave             (void);
 bool       gschem_threads_init              (void);
 
 /* i_vars.c */
-char      *i_var_get_global_config_string   (EdaConfig *cfg, char *str);
-void       i_var_restore_group_color        (EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index);
-bool       i_var_restore_group_boolean      (EdaConfig *cfg, const char *group, char *key, int *var, int def_val);
-bool       i_var_restore_group_integer      (EdaConfig *cfg, const char *group, char *key, int *var, int def_val);
-void       i_var_restore_global_boolean     (EdaConfig *cfg, char *key, int *var, bool def_val);
-void       i_var_restore_global_integer     (EdaConfig *cfg, char *key, int *var, int def_val);
-void       i_var_restore_global_color       (EdaConfig *cfg, char *key, GdkColor *var, int index);
+char      *i_var_get_global_config_string   (EdaConfig *cfg, const char *str);
+void       i_var_restore_group_color        (EdaConfig *cfg, const char *group, const char *key, GdkColor *var, int index);
+bool       i_var_restore_group_boolean      (EdaConfig *cfg, const char *group, const char *key, int *var, int def_val);
+bool       i_var_restore_group_integer      (EdaConfig *cfg, const char *group, const char *key, int *var, int def_val);
+void       i_var_restore_global_boolean     (EdaConfig *cfg, const char *key, int *var, bool def_val);
+void       i_var_restore_global_integer     (EdaConfig *cfg, const char *key, int *var, int def_val);
+void       i_var_restore_global_color       (EdaConfig *cfg, const char *key, GdkColor *var, int index);
 
-void       i_var_restore_window_boolean     (EdaConfig *cfg, char *key, int *var, bool def_val);
-void       i_var_restore_window_integer     (EdaConfig *cfg, char *key, int *var, int def_val);
-void       i_var_restore_window_color       (EdaConfig *cfg, char *key, GdkColor *var, int index);
+void       i_var_restore_window_boolean     (EdaConfig *cfg, const char *key, int *var, bool def_val);
+void       i_var_restore_window_integer     (EdaConfig *cfg, const char *key, int *var, int def_val);
+void       i_var_restore_window_color       (EdaConfig *cfg, const char *key, GdkColor *var, int index);
 
 void       i_vars_set                       (GschemToplevel *w_current);
 void       i_vars_freenames                 (void);
