@@ -24,7 +24,8 @@
 #ifndef __GEDA_DIALOGS_H__
 #define __GEDA_DIALOGS_H__
 
+#include "geda_file_chooser.h"
+#include "geda_image_chooser.h"
 #include "geda_input_dialog.h"
-
 
 #endif /* __GEDA_DIALOGS_H__ */

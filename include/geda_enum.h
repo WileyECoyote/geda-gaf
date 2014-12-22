@@ -101,12 +101,20 @@ typedef enum {
   F_OPEN_RESTORE_CWD  = 4,
 } FOpenFlags;
 
-/*! \enum IDE_FILTER Ued to control filter in GedaFileChooser Dialogs */
+/*! \enum IDE_FILTER Used to control filter in GedaFileChooser Dialogs */
 typedef  enum {
+  FILTER_NONE,
   FILTER_SCHEMATIC,
   FILTER_SYMBOL,
   FILTER_GSCHEM,
-  FILTER_NONE
+  FILTER_PNG,
+  FILTER_JPG,
+  FILTER_GIF,
+  FILTER_BMP,
+  FILTER_ICO,
+  FILTER_TIF,
+  FILTER_XPM,
+  FILTER_IMAGES
 } IDE_FILTER;
 
 /*! \enum GedaStateFlags Used by Libgedauio classes to control widget states

@@ -1,3 +1,20 @@
+2014-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+      * dialogs/geda_image_chooser.c: New source file is implementation for
+        GedaImageChooser; a dialog class derived from GtkFileChooserDialog
+        with filters for gEDA supported image types. The custom class
+        provides direct access to the filter combo button.
+
+      * include/geda_image_chooser.h: Header file to support new GedaImage
+        Chooser dialog.
+
+      * include/geda_file_filter.h: Added macros for image types.
+
+      * include/geda_widgets.h: Remove geda_file_chooser.h, is from dialogs
+        subdirectory.
+
+      * include/geda_dialogs.h: Add geda_file_chooser and geda_image_chooser.h
+
 2014-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
       * geda_input_dialog.?: Added function geda_dialog_get_real, renamed

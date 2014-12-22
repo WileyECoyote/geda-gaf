@@ -52,6 +52,48 @@ struct _filter_reg_t {
   { FILTER_GSCHEM,     "Schematics and symbols", (const char * const []) \
   { SCHEMATIC_FILTER, SYMBOL_FILTER, NULL} }
 
+/*! \def GEDA_FILTER_PNG #PNG_FILE_SUFFIX */
+#define GEDA_FILTER_PNG  \
+  { FILTER_PNG,        "Portable Network Graphics files", (const char* const []) \
+  { IMAGE_FILTER_PNG, NULL}, }
+
+/*! \def GEDA_FILTER_JPG #JPG_FILE_SUFFIX */
+#define GEDA_FILTER_JPG  \
+  { FILTER_JPG,       "Joint Photographic Experts Group files", (const char* const []) \
+  { IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, NULL}, }
+
+/*! \def GEDA_FILTER_GIF #GIF_FILE_SUFFIX */
+#define GEDA_FILTER_GIF  \
+  { FILTER_GIF,        "Graphics Interchange file Format", (const char* const []) \
+  { IMAGE_FILTER_GIF, NULL}, }
+
+/*! \def GEDA_FILTER_BMP #BMP_FILE_SUFFIX */
+#define GEDA_FILTER_BMP  \
+  { FILTER_BMP,        "Windows raw bitmap files", (const char* const []) \
+  { IMAGE_FILTER_BMP, NULL}, }
+
+/*! \def GEDA_FILTER_ICO #ICO_FILE_SUFFIX */
+#define GEDA_FILTER_ICO  \
+  { FILTER_ICO,        "Icon image files", (const char* const []) \
+  { IMAGE_FILTER_ICO, NULL}, }
+
+/*! \def GEDA_FILTER_TIF #TIF_FILE_SUFFIX */
+#define GEDA_FILTER_TIF  \
+  { FILTER_TIF,        "Tagged Image File Format", (const char* const []) \
+  { IMAGE_FILTER_TIF, IMAGE_FILTER_TIFF, NULL}, }
+
+/*! \def GEDA_FILTER_XPM #XPM_FILE_SUFFIX */
+#define GEDA_FILTER_XPM  \
+  { FILTER_ICO,        "X Windows Pixel Map files", (const char* const []) \
+  { IMAGE_FILTER_XPM, NULL}, }
+
+/*! \def GEDA_FILTER_IMAGES #ALL_IMAGE_FILE_SUFFIXES */
+#define GEDA_FILTER_IMAGES  \
+  { FILTER_IMAGES,     "All Graphics Image formats", (const char* const [])  \
+  { IMAGE_FILTER_PNG, IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, IMAGE_FILTER_GIF, \
+    IMAGE_FILTER_BMP, IMAGE_FILTER_ICO, IMAGE_FILTER_TIF, IMAGE_FILTER_TIFF, \
+    IMAGE_FILTER_XPM, NULL}, }
+
 #define GEDA_FILTER_NONE       \
   { FILTER_NONE,      "All files", (const char * const []) \
   { "*", NULL} }

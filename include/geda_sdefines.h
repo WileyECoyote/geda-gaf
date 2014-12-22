@@ -41,10 +41,10 @@
 #endif
 
 /*!
- *  \def SCHEMATIC_FILE_SUFFIX      File extension chanaraters for Schematic
+ *  \def SCHEMATIC_FILE_SUFFIX      File extension characters for Schematic
  *  \def SCHEMATIC_FILE_DOT_SUFFIX  Schematic extension
  *  \def SCHEMATIC_FILTER           Filter string used to filter Schematic
- *  \def SYMBOL_FILE_SUFFIX         File extension chanaraters for Symbols
+ *  \def SYMBOL_FILE_SUFFIX         File extension characters for Symbols
  *  \def SYMBOL_FILE_DOT_SUFFIX     Symbol extension
  *  \def SYMBOL_FILTER              Filter string used to filter Symbols
  */
@@ -55,5 +55,27 @@
 #define SYMBOL_FILE_SUFFIX         "sym"
 #define SYMBOL_FILE_DOT_SUFFIX     ".sym"
 #define SYMBOL_FILTER              "*.sym"
+
+/*!
+ *  \def IMAGE_FILTER_PNG           File extension for Portable Network Graphics files
+ *  \def IMAGE_FILTER_JPG           File extension for Joint Photographic Experts Group files
+ *  \def IMAGE_FILTER_JPEG          File extension for Joint Photographic Experts Group files
+ *  \def IMAGE_FILTER_GIF           File extension for Graphics Interchange File Format
+ *  \def IMAGE_FILTER_BMP           File extension for Windows raw bitmap files
+ *  \def IMAGE_FILTER_ICO           File extension for Icon image files
+ *  \def IMAGE_FILTER_TIF           File extension for Tagged Image File Format
+ *  \def IMAGE_FILTER_TIFF          File extension for Tagged Image File Format
+ *  \def IMAGE_FILTER_XPM           File extension for X Windows Pixel Map files
+ */
+
+#define IMAGE_FILTER_PNG           "*.png"
+#define IMAGE_FILTER_JPG           "*.jpg"
+#define IMAGE_FILTER_JPEG          "*.jpeg"
+#define IMAGE_FILTER_GIF           "*.gif"
+#define IMAGE_FILTER_BMP           "*.bmp"
+#define IMAGE_FILTER_ICO           "*.ico"
+#define IMAGE_FILTER_TIF           "*.tif"
+#define IMAGE_FILTER_TIFF          "*.tiff"
+#define IMAGE_FILTER_XPM           "*.xpm"
 
 /** @} endgroup geda-global-strings */

@@ -1,0 +1,115 @@
+/* gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ *
+ * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * This Library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This Library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ *  Date: December, 20, 2014
+ *  Contributing Author: Wiley Edward Hill
+ */
+
+#ifndef __GEDA_IMAGE_CHOOSER_H__
+#define __GEDA_IMAGE_CHOOSER_H__
+
+G_BEGIN_DECLS
+
+/*!
+ * ImageChooserAction:
+ * #IMAGE_CHOOSER_ACTION_OPEN: Indicates open mode.
+ * The file chooser will only let the user pick an existing file.
+ * #IMAGE_CHOOSER_ACTION_SAVE: Indicates save mode.
+ * The file chooser will let the user pick an existing file, or type in a new
+ * filename.
+ * #IMAGE_CHOOSER_ACTION_SELECT_FOLDER: Indicates select folder mode.
+ * The file chooser will let the user pick an existing folder.
+ * #IMAGE_CHOOSER_ACTION_CREATE_FOLDER: Indicates create folder mode.
+ * The file chooser will let the user name an existing or new folder.
+ *
+ * Describes whether a #GedaFileChooser is being used to open existing files
+ * or to save to a possibly new file.
+ */
+typedef enum
+{
+  IMAGE_CHOOSER_ACTION_OPEN,
+  IMAGE_CHOOSER_ACTION_SAVE,
+  IMAGE_CHOOSER_ACTION_SELECT_FOLDER,
+  IMAGE_CHOOSER_ACTION_CREATE_FOLDER
+} ImageChooserAction;
+
+/* GedaImageChooser is a widget that displays a file chooser
+ * dialog with filters for various image type support by gEDA */
+
+#define GEDA_TYPE_IMAGE_CHOOSER            (geda_image_chooser_get_type ())
+#define GEDA_IMAGE_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooser))
+#define GEDA_IMAGE_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),   GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooserClass))
+#define GEDA_IS_IMAGE_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_IMAGE_CHOOSER))
+#define GEDA_IS_IMAGE_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_IMAGE_CHOOSER))
+#define GEDA_IMAGE_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooserClass))
+
+typedef struct _GedaImageChooser        GedaImageChooser;
+typedef struct _GedaImageChooserClass   GedaImageChooserClass;
+
+struct _GedaImageChooser {
+
+  GtkFileChooserDialog parent;
+  GtkWidget           *filter_button;
+           int         filter_index;
+  unsigned int         handler;
+};
+
+struct _GedaImageChooserClass {
+
+  GtkFileChooserDialogClass  parent_class;
+
+  /* Action signals */
+  void (* filter_changed)   (GedaImageChooser *chooser);
+  void (* geometry_save)    (GedaImageChooser *chooser, char *group);
+  void (* geometry_restore) (GedaImageChooser *chooser, char *group);
+};
+
+GedaType      geda_image_chooser_get_type        (void) G_GNUC_CONST;
+GtkWidget    *geda_image_chooser_new             (GtkWidget         *parent,
+                                                  ImageChooserAction action);
+GtkWidget    *geda_image_chooser_dialog_new_full (const char        *title,
+                                                  GtkWindow         *parent,
+                                                  ImageChooserAction action,
+                                                  const char        *first_button_text,
+                                                  ...);
+
+GtkEntry     *geda_image_chooser_get_entry          (GtkWidget *chooser);
+char         *geda_image_chooser_get_entry_text     (GtkWidget *chooser);
+
+int           geda_image_chooser_get_filter         (GtkWidget *chooser);
+void          geda_image_chooser_set_filter         (GtkWidget *chooser, int value);
+
+char         *geda_image_chooser_get_filename       (GtkWidget *chooser);
+void          geda_image_chooser_set_filename       (GtkWidget *chooser, const char *name);
+
+GSList       *geda_image_chooser_get_filenames      (GtkWidget *chooser);
+
+char         *geda_image_chooser_get_current_folder (GtkWidget *chooser);
+void          geda_image_chooser_set_current_folder (GtkWidget *chooser, const char *folder);
+
+void          geda_image_chooser_set_current_name   (GtkWidget *chooser, const char *folder);
+
+GtkWidget    *geda_image_chooser_get_extra_widget   (GtkWidget *chooser);
+void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
+
+G_END_DECLS
+
+#endif /* __GEDA_IMAGE_CHOOSER_H__ */

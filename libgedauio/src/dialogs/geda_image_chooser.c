@@ -30,18 +30,18 @@
 
 #include <libgeda/libgeda.h>
 
-#include <geda_file_chooser.h>
+#include <geda_image_chooser.h>
 #include <geda_file_filter.h>
 #include <geda_debug.h>
 
 #include "gettext.h"
 
 /**
- * \brief GedaFileChooser - A File Chooser Dialog
+ * \brief GedaImageChooser - A Image File Chooser Dialog
  * \par
- * A GedaFileChooser is a variant of GtkFileChooser.
+ * A GedaImageChooser is a variant of GtkFileChooser.
  *
- * \defgroup GedaFileChooser File Chooser Dialog
+ * \defgroup GedaImageChooser File Chooser Dialog
  * @{
  */
 
@@ -58,26 +58,31 @@ enum {
 
 static unsigned int chooser_signals[LAST_SIGNAL] = { 0 };
 
-static GtkFileChooserDialogClass *geda_file_chooser_parent_class = NULL;
+static GtkFileChooserDialogClass *geda_image_chooser_parent_class = NULL;
 
 static GtkEntry *chooser_entry;
 
 static GedaFileFilterDataDef filter_data[] = {
-    GEDA_FILTER_SCHEMATIC,
-    GEDA_FILTER_SYMBOL,
-    GEDA_FILTER_GSCHEM,
+    GEDA_FILTER_PNG,
+    GEDA_FILTER_JPG,
+    GEDA_FILTER_GIF,
+    GEDA_FILTER_BMP,
+    GEDA_FILTER_ICO,
+    GEDA_FILTER_TIF,
+    GEDA_FILTER_XPM,
+    GEDA_FILTER_IMAGES,
     GEDA_FILTER_NONE,
     GEDA_NO_MORE_FILTERS
 };
 
-/*! \brief Creates filter for Geda File Chooser.
+/*! \brief Creates filter for Geda Image Chooser.
  *  \par Function Description
  *  This function adds file filters to <B>filechooser</B>.
  *
- *  \param [in] filechooser The file chooser to apply filter to.
+ *  \param [in] filechooser The image chooser to apply filter to.
  */
 static void
-geda_file_chooser_setup_filters (GtkFileChooser *filechooser)
+geda_image_chooser_setup_filters (GtkFileChooser *filechooser)
 {
   GtkFileFilter         *filter;
   GedaFileFilterDataDef *data;
@@ -95,50 +100,50 @@ geda_file_chooser_setup_filters (GtkFileChooser *filechooser)
   }
 }
 
-/*! \brief Get Current Filter Index of a Geda File Chooser
+/*! \brief Get Current Filter Index of a Geda Image Chooser
  *  \par Function Description
- *  This function return the current filters index of a #GedaFileChooser
+ *  This function return the current filters index of a #GedaImageChooser
  *  dialog.
  *
- *  \param [in] widget The file chooser widget.
+ *  \param [in] widget The image chooser widget.
  *
  *  \returns filter index integer value
  */
-int geda_file_chooser_get_filter (GtkWidget *widget)
+int geda_image_chooser_get_filter (GtkWidget *widget)
 {
-  return (GEDA_FILE_CHOOSER(widget)->filter_index);
+  return (GEDA_IMAGE_CHOOSER(widget)->filter_index);
 }
 
-/*! \brief Set the Filter Index of a Geda File Chooser
+/*! \brief Set the Filter Index of a Geda Image Chooser
  *  \par Function Description
- *  This function sets the filters index of a #GedaFileChooser
+ *  This function sets the filters index of a #GedaImageChooser
  *  dialog.
  *
- *  \param [in] widget The file chooser widget.
+ *  \param [in] widget The image chooser widget.
  *  \param [in] index  The new index of the filter.
  *
  */
-void geda_file_chooser_set_filter (GtkWidget *widget, int index)
+void geda_image_chooser_set_filter (GtkWidget *widget, int index)
 {
-  if (GEDA_IS_FILE_CHOOSER(widget)) {
-    GedaFileChooser *chooser = (GedaFileChooser*)widget;
+  if (GEDA_IS_IMAGE_CHOOSER(widget)) {
+    GedaImageChooser *chooser = (GedaImageChooser*)widget;
     g_signal_handler_block(chooser->filter_button, chooser->handler);
     gtk_combo_box_set_active(GTK_COMBO_BOX(chooser->filter_button), index);
     g_signal_handler_unblock(chooser->filter_button, chooser->handler);
     chooser->filter_index = index;
   }
   else {
-    BUG_MSG("chooser is not a GedaFileChooser");
+    BUG_MSG("chooser is not a GedaImageChooser");
   }
 }
 
-static void geda_file_chooser_filter_changed(GedaFileChooser *chooser)
+static void geda_image_chooser_filter_changed(GedaImageChooser *chooser)
 {
     /* Do nothing here */
 }
 
 static void
-chooser_update_filter_index(GtkWidget *button, GedaFileChooser *chooser)
+chooser_update_filter_index(GtkWidget *button, GedaImageChooser *chooser)
 {
   chooser->filter_index = gtk_combo_box_get_active (GTK_COMBO_BOX(button));
   g_signal_emit (chooser, chooser_signals[FILTER_CHANGED], 0);
@@ -151,7 +156,7 @@ chooser_update_filter_index(GtkWidget *button, GedaFileChooser *chooser)
 static void FixGtkCrap(GtkWidget *widget, void *self)
 {
   if (GTK_IS_COMBO_BOX(widget)) {
-    (GEDA_FILE_CHOOSER(self))->filter_button = widget;
+    (GEDA_IMAGE_CHOOSER(self))->filter_button = widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
      gtk_container_forall ( GTK_CONTAINER (widget), FixGtkCrap, self);
@@ -169,7 +174,7 @@ static void look_for_entry(GtkWidget *widget, void *self)
 }
 
 static void
-geda_file_chooser_find_entry (GtkWidget *chooser)
+geda_image_chooser_find_entry (GtkWidget *chooser)
 {
   GList   *children, *iter;
 
@@ -191,7 +196,7 @@ geda_file_chooser_find_entry (GtkWidget *chooser)
 }
 
 static GObject *
-geda_file_chooser_constructor (GedaType               type,
+geda_image_chooser_constructor (GedaType               type,
                                unsigned int           n_properties,
                                GObjectConstructParam *properties)
 {
@@ -200,7 +205,7 @@ geda_file_chooser_constructor (GedaType               type,
 
 
   /* Chain up to the parent constructor */
-  obj = G_OBJECT_CLASS (geda_file_chooser_parent_class)->constructor (type, n_properties, properties);
+  obj = G_OBJECT_CLASS (geda_image_chooser_parent_class)->constructor (type, n_properties, properties);
 
   gtk_dialog_set_has_separator (GTK_DIALOG(obj), TRUE);
 
@@ -211,7 +216,7 @@ geda_file_chooser_constructor (GedaType               type,
   for (iter = children; iter; iter = iter->next) {
     if (GTK_IS_CONTAINER(iter->data)) {
       gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, obj);
-      if ((GEDA_FILE_CHOOSER(obj))->filter_button) {
+      if ((GEDA_IMAGE_CHOOSER(obj))->filter_button) {
         break;
       }
     }
@@ -230,18 +235,18 @@ geda_file_chooser_constructor (GedaType               type,
  *
  *  \param [in] object The GObject being finalized.
  */
-static void geda_file_chooser_finalize (GObject *object)
+static void geda_image_chooser_finalize (GObject *object)
 {
 
   chooser_entry = NULL;
 
-  (G_OBJECT_CLASS (geda_file_chooser_parent_class))->finalize (object);
+  (G_OBJECT_CLASS (geda_image_chooser_parent_class))->finalize (object);
 }
 
-/*! \brief GObject property getter function for a GedaFileChooser Object
+/*! \brief GObject property getter function for a GedaImageChooser Object
  *
  *  \par Function Description
- *  Getter function for GedaFileChooser's GObject properties,
+ *  Getter function for GedaImageChooser's GObject properties,
  *  "settings-name" and "toplevel".
  *
  *  \param [in]  object       The GObject whose properties we are getting
@@ -251,10 +256,10 @@ static void geda_file_chooser_finalize (GObject *object)
  *  \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void
-geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
+geda_image_chooser_get_property (GObject *object, unsigned int  property_id,
                                 GValue  *value,  GParamSpec   *pspec)
 {
-  GedaFileChooser *chooser = GEDA_FILE_CHOOSER(object);
+  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(object);
 
   switch (property_id)
     {
@@ -267,10 +272,10 @@ geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
     }
 }
 
-/*! \brief GObject property setter for a GedaFileChooser Object
+/*! \brief GObject property setter for a GedaImageChooser Object
  *
  *  \par Function Description
- *  Setter function for GedaFileChooser's GObject properties,
+ *  Setter function for GedaImageChooser's GObject properties,
  *  "settings-name" and "toplevel".
  *
  *  \param [in]  object       The GObject whose properties we are setting
@@ -280,15 +285,15 @@ geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
  *  \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
-geda_file_chooser_set_property (GObject *object, unsigned int  property_id,
+geda_image_chooser_set_property (GObject *object, unsigned int  property_id,
                                 const    GValue *value,  GParamSpec   *pspec)
 {
-  GedaFileChooser *chooser = GEDA_FILE_CHOOSER(object);
+  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(object);
 
   switch (property_id) {
 
     case PROP_FILTER_INDEX:
-      geda_file_chooser_set_filter((GtkWidget*)chooser, g_value_get_boolean (value));
+      geda_image_chooser_set_filter((GtkWidget*)chooser, g_value_get_boolean (value));
       break;
 
     default:
@@ -297,15 +302,15 @@ geda_file_chooser_set_property (GObject *object, unsigned int  property_id,
   }
 }
 
-/*! \brief GedaFileChooser "geometry_restore" class method handler
+/*! \brief GedaImageChooser "geometry_restore" class method handler
  *  \par Function Description
  *  Restore dialog's last position and size from the passed GKeyFile
  *
- *  \param [in] chooser    The #GedaFileChooser Dialog to restore geometry.
+ *  \param [in] chooser    The #GedaImageChooser Dialog to restore geometry.
  *  \param [in] group_name The group name in the key file to find the data under.
  */
 static void
-geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
+geda_image_chooser_geometry_restore (GedaImageChooser *chooser, char *group_name)
 {
   EdaConfig *cfg;
   GtkWindow *window;
@@ -327,15 +332,15 @@ geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
   }
 }
 
-/*! \brief GedaFileChooser "geometry_save" class method handler
+/*! \brief GedaImageChooser "geometry_save" class method handler
  *  \par Function Description
  *  Save the dialog's current position and size to the passed GKeyFile
  *
- *  \param [in] chooser    The #GedaFileChooser Dialog to save the geometry.
+ *  \param [in] chooser    The #GedaImageChooser Dialog to save the geometry.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
 static void
-geda_file_chooser_geometry_save (GedaFileChooser *chooser, char *group_name)
+geda_image_chooser_geometry_save (GedaImageChooser *chooser, char *group_name)
 {
   EdaConfig *cfg;
   GtkWindow *window;
@@ -363,17 +368,17 @@ geda_file_chooser_geometry_save (GedaFileChooser *chooser, char *group_name)
  */
 static void show_handler (GtkWidget *widget)
 {
-  char *group = "file-chooser";
+  char *group = "image-chooser";
 
   /* Hack to fix BUG in GtkFileChooserDialog */
   gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
 
   /* Let Gtk show the window */
-  GTK_WIDGET_CLASS (geda_file_chooser_parent_class)->show (widget);
+  GTK_WIDGET_CLASS (geda_image_chooser_parent_class)->show (widget);
 
   gtk_window_set_resizable (GTK_WINDOW(widget), TRUE);
 
-  g_signal_emit (GEDA_FILE_CHOOSER (widget),
+  g_signal_emit (GEDA_IMAGE_CHOOSER (widget),
                  chooser_signals[ GEOMETRY_RESTORE ], 0, group);
 }
 
@@ -387,67 +392,67 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-  char *group = "file-chooser";
+  char *group = "image-chooser";
 
-  g_signal_emit (GEDA_FILE_CHOOSER (widget),
+  g_signal_emit (GEDA_IMAGE_CHOOSER (widget),
                  chooser_signals[ GEOMETRY_SAVE ], 0, group);
 
   /* Let Gtk unmap the window */
-  GTK_WIDGET_CLASS (geda_file_chooser_parent_class)->unmap (widget);
+  GTK_WIDGET_CLASS (geda_image_chooser_parent_class)->unmap (widget);
 }
 
-/*! \brief Type class initialiser for GedaFileChooser
+/*! \brief Type class initialiser for GedaImageChooser
  *
  *  \par Function Description
- *  Type class initialiser for GedaFileChooser. We override our parent
+ *  Type class initialiser for GedaImageChooser. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  class       The GedaFileChooserClass we are initialising
+ *  \param [in]  class       The GedaImageChooserClass we are initialising
  */
 static void
-geda_file_chooser_class_init (GedaFileChooserClass *class)
+geda_image_chooser_class_init (GedaImageChooserClass *class)
 {
   GParamSpec     *params;
 
   GObjectClass   *gobject_class  = (GObjectClass*) class;
   GtkWidgetClass *widget_class   = (GtkWidgetClass*) class;
 
-  gobject_class->get_property    = geda_file_chooser_get_property;
-  gobject_class->set_property    = geda_file_chooser_set_property;
-  gobject_class->constructor     = geda_file_chooser_constructor;
-  gobject_class->finalize        = geda_file_chooser_finalize;
+  gobject_class->get_property    = geda_image_chooser_get_property;
+  gobject_class->set_property    = geda_image_chooser_set_property;
+  gobject_class->constructor     = geda_image_chooser_constructor;
+  gobject_class->finalize        = geda_image_chooser_finalize;
 
-  class->filter_changed          = geda_file_chooser_filter_changed;
-  class->geometry_save           = geda_file_chooser_geometry_save;
-  class->geometry_restore        = geda_file_chooser_geometry_restore;
+  class->filter_changed          = geda_image_chooser_filter_changed;
+  class->geometry_save           = geda_image_chooser_geometry_save;
+  class->geometry_restore        = geda_image_chooser_geometry_restore;
 
   widget_class->show             = show_handler;
   widget_class->unmap            = unmap_handler;
 
-  geda_file_chooser_parent_class = g_type_class_peek_parent (class);
+  geda_image_chooser_parent_class = g_type_class_peek_parent (class);
 
   params = g_param_spec_int ("filter-index",
                            _("Set or retrieve index of the filter combo"), /* nick name */
                            _("IDE_FILTER"),     /* hint / blurb */
-                              FILTER_SCHEMATIC, /* Min value */
-                              FILTER_GSCHEM,    /* Max value */
-                              FILTER_GSCHEM,    /* default_value */
+                              FILTER_PNG,       /* Min value */
+                              FILTER_IMAGES,    /* Max value */
+                              FILTER_IMAGES,    /* default_value */
                               G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_FILTER_INDEX, params);
 
   /**
-   * GedaFileChooser::filter-changed:
+   * GedaImageChooser::filter-changed:
    * Chooser: The chooser on which the signal is emitted
    *
-   * The  GedaFileChooser::filter-changed signal is emitted when the user
+   * The  GedaImageChooser::filter-changed signal is emitted when the user
    * changes the selection of the filter combo text box.
    */
 
   chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed",
-                                                      geda_file_chooser_get_type(),
+                                                      geda_image_chooser_get_type(),
                                                       G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
-                                                      G_STRUCT_OFFSET (GedaFileChooserClass,
+                                                      G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        filter_changed),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
@@ -455,9 +460,9 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       G_TYPE_NONE, 0);
 
   chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore",
-                                                      geda_file_chooser_get_type(),
+                                                      geda_image_chooser_get_type(),
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
-                                                      G_STRUCT_OFFSET (GedaFileChooserClass,
+                                                      G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        geometry_restore ),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
@@ -467,9 +472,9 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       G_TYPE_STRING);
 
   chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save",
-                                                      geda_file_chooser_get_type(),
+                                                      geda_image_chooser_get_type(),
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
-                                                      G_STRUCT_OFFSET (GedaFileChooserClass,
+                                                      G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        geometry_save ),
                                                       NULL, /* accumulator */
                                                       NULL, /* accu_data */
@@ -479,100 +484,100 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       G_TYPE_STRING);
 }
 
-/*! \brief Initialize GedaFileChooser data structure.
+/*! \brief Initialize GedaImageChooser data structure.
  *
  *  \par Function Description
- *  Function tois call after the GedaFileChooserClass is created
+ *  Function tois call after the GedaImageChooserClass is created
  *  to initialize the data structure.
  *
- * \param [in] self A GedaFileChooser object (structure)
+ * \param [in] self A GedaImageChooser object (structure)
  */
-static void geda_file_chooser_init (GedaFileChooser *self)
+static void geda_image_chooser_init (GedaImageChooser *self)
 {
   chooser_entry       = NULL;
   self->filter_button = NULL;
 }
 
-/*! \brief Function to retrieve GedaFileChooser's Type identifier.
+/*! \brief Function to retrieve GedaImageChooser's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaFileChooser's Type identifier. On the first
- *  call, this registers the GedaFileChooser in the GedaType system.
+ *  Function to retrieve GedaImageChooser's Type identifier. On the first
+ *  call, this registers the GedaImageChooser in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the GedaType identifier associated with GedaFileChooser.
+ *  \return the GedaType identifier associated with GedaImageChooser.
  */
-GedaType geda_file_chooser_get_type ()
+GedaType geda_image_chooser_get_type ()
 {
-  static GedaType geda_file_chooser_type = 0;
+  static GedaType geda_image_chooser_type = 0;
 
-  if (!geda_file_chooser_type) {
-    static const GTypeInfo geda_file_chooser_info = {
-      sizeof(GedaFileChooserClass),
+  if (!geda_image_chooser_type) {
+    static const GTypeInfo geda_image_chooser_info = {
+      sizeof(GedaImageChooserClass),
       NULL, /* base_init */
       NULL, /* base_finalize */
-      (GClassInitFunc) geda_file_chooser_class_init,
+      (GClassInitFunc) geda_image_chooser_class_init,
       NULL, /* class_finalize */
       NULL, /* class_data */
-      sizeof(GedaFileChooser),
+      sizeof(GedaImageChooser),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_file_chooser_init, /* instance_init */
+      (GInstanceInitFunc) geda_image_chooser_init, /* instance_init */
     };
 
-    geda_file_chooser_type = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
-                                                     "GedaFileChooser",
-                                                     &geda_file_chooser_info,
+    geda_image_chooser_type = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
+                                                     "GedaImageChooser",
+                                                     &geda_image_chooser_info,
                                                      0);
   }
-  return geda_file_chooser_type;
+  return geda_image_chooser_type;
 }
 
-/*! \brief Instantiate a New Geda File Chooser Dialog
- *  to provide a GedaFileChooser equivelant of the convenience function
+/*! \brief Instantiate a New Geda Image Chooser Dialog
+ *  to provide a GedaImageChooser equivelant of the convenience function
  *  gtk_file_chooser_dialog_new(...)
  *
  *  \par Function Description
- *  Convenience function which creates a GedaFileChooser with buttons and options.
+ *  Convenience function which creates a GedaImageChooser with buttons and options.
  *
  *  \param [in]  parent             The GtkWindow Widget which will parent this dialog
- *  \param [in]  chooser_action     The #FileChooserAction to use when setting up the dialog
+ *  \param [in]  chooser_action     The #ImageChooserAction to use when setting up the dialog
  *
- *  \return  The GedaFileChooser created.
+ *  \return  The GedaImageChooser created.
  */
 GtkWidget*
-geda_file_chooser_new (GtkWidget *parent,
-                       FileChooserAction chooser_action)
+geda_image_chooser_new (GtkWidget *parent,
+                       ImageChooserAction chooser_action)
 {
   GtkWidget       *widget;
   GtkDialog       *dialog;
-  GedaFileChooser *chooser;
+  GedaImageChooser *chooser;
 
   const char *second_button_text;
   const char *title = NULL;
 
-  widget = g_object_new (geda_file_chooser_get_type(),
+  widget = g_object_new (geda_image_chooser_get_type(),
                          "action", chooser_action,
                          "select-multiple",
-                         (chooser_action == FILE_CHOOSER_ACTION_OPEN),
+                         (chooser_action == IMAGE_CHOOSER_ACTION_OPEN),
                          NULL);
 
   if ( G_IS_OBJECT(widget)) {
 
-    chooser = (GedaFileChooser*)widget;
+    chooser = (GedaImageChooser*)widget;
     dialog  = (GtkDialog*)widget;
 
     switch (chooser_action) {
-      case FILE_CHOOSER_ACTION_OPEN:
+      case IMAGE_CHOOSER_ACTION_OPEN:
         second_button_text =  _("_Open");
         title = _("Open...");
         break;
 
-      case FILE_CHOOSER_ACTION_SAVE:
+      case IMAGE_CHOOSER_ACTION_SAVE:
         second_button_text = _("_Save");
         title = _("Save As..");
         break;
 
-      case FILE_CHOOSER_ACTION_SELECT_FOLDER:
+      case IMAGE_CHOOSER_ACTION_SELECT_FOLDER:
         second_button_text = _("_Select Folder...");
         title = _("Select Folder");
         break;
@@ -599,7 +604,7 @@ geda_file_chooser_new (GtkWidget *parent,
       gtk_window_set_transient_for(GTK_WINDOW(dialog), GTK_WINDOW(parent));
     }
 
-    geda_file_chooser_setup_filters (GTK_FILE_CHOOSER (dialog));
+    geda_image_chooser_setup_filters (GTK_FILE_CHOOSER (dialog));
 
     if (chooser->filter_button) {
       chooser->handler = g_signal_connect_after(G_OBJECT(chooser->filter_button),
@@ -619,9 +624,9 @@ geda_file_chooser_new (GtkWidget *parent,
 }
 
 static GtkWidget *
-geda_file_chooser_dialog_new_valist (const char        *title,
+geda_image_chooser_dialog_new_valist (const char        *title,
                                      GtkWindow         *parent,
-                                     FileChooserAction  action,
+                                     ImageChooserAction  action,
                                      const char        *first_button_text,
                                      va_list            varargs)
 {
@@ -629,7 +634,7 @@ geda_file_chooser_dialog_new_valist (const char        *title,
   const char *button_text = first_button_text;
   int         response_id;
 
-  result = g_object_new (geda_file_chooser_get_type(),
+  result = g_object_new (geda_image_chooser_get_type(),
                          "title", title,
                          "action", action,
                          NULL);
@@ -647,10 +652,10 @@ geda_file_chooser_dialog_new_valist (const char        *title,
   return result;
 }
 
-/*! \brief Create a New GedaFileChooser specifying Buttons
+/*! \brief Create a New GedaImageChooser specifying Buttons
  *
  *  \par Function Description
- * Creates a new #GedaFileChooser. This function is analogous to
+ * Creates a new #GedaImageChooser. This function is analogous to
  * gtk_dialog_new_with_buttons().
  *
  * \param [in] title  (allow-none): Title of the dialog, or %NULL
@@ -659,20 +664,20 @@ geda_file_chooser_dialog_new_valist (const char        *title,
  * \param [in] first_button_text (allow-none): stock ID or text to go in the first button, or %NULL
  * \param [in] ... response ID for the first button, then additional (button, id) pairs, ending with %NULL
  *
- * \return a new #GedaFileChooser
+ * \return a new #GedaImageChooser
  *
  */
 GtkWidget *
-geda_file_chooser_dialog_new_full (const char       *title,
+geda_image_chooser_dialog_new_full (const char       *title,
                                    GtkWindow        *parent,
-                                   FileChooserAction action,
+                                   ImageChooserAction action,
                                    const char       *first_button_text, ...)
 {
   GtkWidget *result;
   va_list varargs;
 
   va_start (varargs, first_button_text);
-  result = geda_file_chooser_dialog_new_valist (title, parent, action,
+  result = geda_image_chooser_dialog_new_valist (title, parent, action,
                                                 first_button_text,
                                                 varargs);
   va_end (varargs);
@@ -680,24 +685,24 @@ geda_file_chooser_dialog_new_full (const char       *title,
   return result;
 }
 
-/*! \brief Get Geda File Chooser Entry Widget
+/*! \brief Get Geda Image Chooser Entry Widget
  *  \par Function Description
  *  This function returns a pointer to the internal GtkEntry widget
  *
- *  \param [in] widget The file chooser widget.
+ *  \param [in] widget The image chooser widget.
  *
  *  \returns GtkEntry object
  */
-GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
+GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
 {
   if (chooser_entry == NULL) {
-    geda_file_chooser_find_entry (widget);
+    geda_image_chooser_find_entry (widget);
   }
   return chooser_entry;
 }
 
 char*
-geda_file_chooser_get_entry_text(GtkWidget *despicable)
+geda_image_chooser_get_entry_text(GtkWidget *despicable)
 {
   char       *name;
   GtkEntry   *entry;
@@ -706,7 +711,7 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
 
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
-    entry = geda_file_chooser_get_entry(despicable);
+    entry = geda_image_chooser_get_entry(despicable);
 
     if (GTK_IS_ENTRY(entry)) {
 
@@ -723,7 +728,7 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
 }
 
 char*
-geda_file_chooser_get_filename(GtkWidget *hideous)
+geda_image_chooser_get_filename(GtkWidget *hideous)
 {
   char     *name;
 
@@ -739,7 +744,7 @@ geda_file_chooser_get_filename(GtkWidget *hideous)
 }
 
 void
-geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
+geda_image_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
@@ -750,7 +755,7 @@ geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
 }
 
 GSList*
-geda_file_chooser_get_filenames(GtkWidget *hideous)
+geda_image_chooser_get_filenames(GtkWidget *hideous)
 {
   GSList *list;
 
@@ -765,7 +770,7 @@ geda_file_chooser_get_filenames(GtkWidget *hideous)
 }
 
 char*
-geda_file_chooser_get_current_folder(GtkWidget *hideous)
+geda_image_chooser_get_current_folder(GtkWidget *hideous)
 {
   char *folder;
 
@@ -780,7 +785,7 @@ geda_file_chooser_get_current_folder(GtkWidget *hideous)
 }
 
 void
-geda_file_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
+geda_image_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_current_folder((GtkFileChooser*)hideous, folder);
@@ -791,7 +796,7 @@ geda_file_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
 }
 
 void
-geda_file_chooser_set_current_name (GtkWidget *hideous, const char *folder)
+geda_image_chooser_set_current_name (GtkWidget *hideous, const char *folder)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_current_name((GtkFileChooser*)hideous, folder);
@@ -802,7 +807,7 @@ geda_file_chooser_set_current_name (GtkWidget *hideous, const char *folder)
 }
 
 GtkWidget*
-geda_file_chooser_get_extra_widget(GtkWidget *hideous)
+geda_image_chooser_get_extra_widget(GtkWidget *hideous)
 {
   GtkWidget *extra;
 
@@ -817,7 +822,7 @@ geda_file_chooser_get_extra_widget(GtkWidget *hideous)
 }
 
 void
-geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
+geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_extra_widget((GtkFileChooser*)hideous, extra);
@@ -827,4 +832,4 @@ geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
-/** @} end group GedaFileChooser */
+/** @} end group GedaImageChooser */
