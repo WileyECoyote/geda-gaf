@@ -19,6 +19,7 @@
  */
 
 #include <gschem.h>
+#include <geda_file_chooser.h>  /* Need for group and key defines */
 #include <geda_debug.h>
 
 /* Absolute default used when default_... strings are NULL */
@@ -176,10 +177,10 @@ int     default_undo_panzoom              = RC_NIL;
 int     default_undo_preserve             = RC_NIL;
 int     default_undo_type                 = RC_NIL;
 
-char *i_var_get_global_config_string(EdaConfig *cfg, char *key) {
+char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
 
   GError *err = NULL;
-  char *tmpstr;
+  char   *tmpstr;
   const char *group = IVAR_CONFIG_GROUP;
 
   tmpstr = eda_config_get_string (cfg, group, key, &err);
@@ -192,7 +193,7 @@ char *i_var_get_global_config_string(EdaConfig *cfg, char *key) {
 }
 
 void
-i_var_restore_group_color(EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index)
+i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key, GdkColor *var, int index)
 {
   GError   *err = NULL;
   GdkColor *color;
@@ -220,7 +221,7 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, char *key, GdkColor
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
 bool
-i_var_restore_group_boolean(EdaConfig *cfg, const char *group, char *key, int *var, int def_val)
+i_var_restore_group_boolean(EdaConfig *cfg, const const char *group, const char *key, int *var, int def_val)
 {
   GError *err = NULL;
   bool tmp_bool;
@@ -242,7 +243,7 @@ i_var_restore_group_boolean(EdaConfig *cfg, const char *group, char *key, int *v
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
 bool
-i_var_restore_group_integer(EdaConfig *cfg, const char *group, char *key, int *var, int def_val)
+i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, int *var, int def_val)
 {
   GError *err = NULL;
   int tmp_int;
@@ -262,7 +263,7 @@ i_var_restore_group_integer(EdaConfig *cfg, const char *group, char *key, int *v
 }
 
 void
-i_var_restore_global_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
+i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
   const char *group = IVAR_CONFIG_GROUP;
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
@@ -270,34 +271,34 @@ i_var_restore_global_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
 
 
 void
-i_var_restore_global_integer(EdaConfig *cfg, char *key, int *var, int def_val)
+i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
   const char *group = IVAR_CONFIG_GROUP;
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 void
-i_var_restore_global_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
+i_var_restore_global_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
   i_var_restore_group_color(cfg, IVAR_CONFIG_GROUP, key, var, index);
 }
 
 void
-i_var_restore_window_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
+i_var_restore_window_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
   const char *group = WINDOW_CONFIG_GROUP;
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
 void
-i_var_restore_window_integer(EdaConfig *cfg, char *key, int *var, int def_val)
+i_var_restore_window_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
   const char *group = WINDOW_CONFIG_GROUP;
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 void
-i_var_restore_window_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
+i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
   i_var_restore_group_color(cfg, WINDOW_CONFIG_GROUP, key, var, index);
 }
@@ -313,6 +314,8 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   EdaConfig    *cfg      = eda_config_get_user_context ();
   GedaToplevel *toplevel = w_current->toplevel;
   char         *tmp_str;
+  const char   *group;
+  const char   *key;
 
   v_log_message("Restoring user settings\n");
 
@@ -335,8 +338,11 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
                                      image_height,         DEFAULT_IMAGE_HEIGHT);
 
   /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
-  i_var_restore_window_integer(cfg, "chooser-filter",     &w_current->
-                                     chooser_filter,       FILTER_GSCHEM);
+  group = FILE_CHOOSER_CONFIG_GROUP;
+  key   = FILE_CHOOSER_CONFIG_FILTER;
+
+  i_var_restore_group_integer (cfg,  group, key,           &w_current->
+                                     chooser_filter,        FILTER_GSCHEM);
 
   /* Scrolling Settings - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "scrollbars",          &w_current->

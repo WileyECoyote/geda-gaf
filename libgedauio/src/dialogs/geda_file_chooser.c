@@ -363,7 +363,7 @@ geda_file_chooser_geometry_save (GedaFileChooser *chooser, char *group_name)
  */
 static void show_handler (GtkWidget *widget)
 {
-  char *group = "file-chooser";
+  char *group = FILE_CHOOSER_CONFIG_GROUP;
 
   /* Hack to fix BUG in GtkFileChooserDialog */
   gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
@@ -387,7 +387,7 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-  char *group = "file-chooser";
+  char *group = FILE_CHOOSER_CONFIG_GROUP;
 
   g_signal_emit (GEDA_FILE_CHOOSER (widget),
                  chooser_signals[ GEOMETRY_SAVE ], 0, group);

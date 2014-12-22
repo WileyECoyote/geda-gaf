@@ -1,4 +1,16 @@
-2014-12-20 Wiley E. Hill <wileyhill@gmail.com>
+2014-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_image_chooser.h: Add defines for configuration group
+        and filter key.
+
+      * include/geda_file_chooser.h: Add defines for configuration group
+        and filter key.
+
+      * src/dialogs/geda_file_chooser.c: Implement FILE_CHOOSER_CONFIG_GROUP
+
+      * src/dialogs/geda_image_chooser.c:  Implement IMAGE_CHOOSER_CONFIG_GROUP
+
+2014-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
       * dialogs/geda_image_chooser.c: New source file is implementation for
         GedaImageChooser; a dialog class derived from GtkFileChooserDialog

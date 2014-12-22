@@ -26,6 +26,9 @@
 #ifndef __GEDA_FILE_CHOOSER_H__
 #define __GEDA_FILE_CHOOSER_H__
 
+#define FILE_CHOOSER_CONFIG_GROUP  "file-chooser"
+#define FILE_CHOOSER_CONFIG_FILTER "file-chooser-filter"
+
 /*!
  * FileChooserAction:
  * #FILE_CHOOSER_ACTION_OPEN: Indicates open mode.

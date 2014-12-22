@@ -35,6 +35,7 @@
 #include "x_menus.h"
 #include "x_window.h"
 #include <geda_dialog_controls.h>
+#include <geda_file_chooser.h>  /* Need for group and key defines */
 
 /** \defgroup main-window Main Window Module
  *  @{ \par
@@ -184,8 +185,10 @@ void x_window_save_settings(GschemToplevel *w_current)
 {
   GtkWindow  *window;
   EdaConfig  *cfg;
-  const char *win_group    = WINDOW_CONFIG_GROUP;
-  const char *global_group = IVAR_CONFIG_GROUP;
+  const char *win_group     = WINDOW_CONFIG_GROUP;
+  const char *global_group  = IVAR_CONFIG_GROUP;
+  const char *chooser_group = FILE_CHOOSER_CONFIG_GROUP;
+  const char *chooser_key   = FILE_CHOOSER_CONFIG_FILTER;
 
   int x, y, width, height;
   int array[4];
@@ -204,10 +207,10 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "window-width",      width );
   eda_config_set_integer (cfg, win_group, "window-height",     height);
 
-  /* FileChooser filter users preference */
-  eda_config_set_integer (cfg, win_group, "chooser-filter", w_current->chooser_filter);
-
   /* All settings from here down are restored by i_vars_recall_user_settings */
+
+  /* FileChooser filter users preference */
+  eda_config_set_integer (cfg, chooser_group, chooser_key, w_current->chooser_filter);
 
   /* Grid Setup - mark check */
   eda_config_set_integer (cfg, win_group, "grid-mode",           w_current->grid_mode);
