@@ -1,5 +1,14 @@
 2014-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_vars.c: Add new functions i_var_restore_group_integer
+      and i_var_restore_group_boolean, revise  i_var_restore_global_boolean,
+      i_var_restore_global_integer,i_var_restore_window_boolean, and
+      i_var_restore_window_integer to use the new functions and this allows
+      other modules to retrieve configurations settings with less hassle.
+      Rename i_var_restore_color to i_var_restore_group_color for consistency.
+
+2014-12-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * x/x_fileselect.c: Change argument for x_fileselect_add_preview
       from GtkFileChooser to GedaFileChooser. Update Doxygen comments.
 

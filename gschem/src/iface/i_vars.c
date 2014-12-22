@@ -176,8 +176,23 @@ int     default_undo_panzoom              = RC_NIL;
 int     default_undo_preserve             = RC_NIL;
 int     default_undo_type                 = RC_NIL;
 
+char *i_var_get_global_config_string(EdaConfig *cfg, char *key) {
+
+  GError *err = NULL;
+  char *tmpstr;
+  const char *group = IVAR_CONFIG_GROUP;
+
+  tmpstr = eda_config_get_string (cfg, group, key, &err);
+  if (err != NULL) {
+    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    g_clear_error (&err);
+  }
+
+  return tmpstr;
+}
+
 void
-i_var_restore_color(EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index)
+i_var_restore_group_color(EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index)
 {
   GError   *err = NULL;
   GdkColor *color;
@@ -202,99 +217,89 @@ i_var_restore_color(EdaConfig *cfg, const char *group, char *key, GdkColor *var,
   }
 }
 
-char *i_var_get_global_config_string(EdaConfig *cfg, char *key) {
-
+/* Returns True if the value was restored from configuration or
+ * False if \a def_val was assigned */
+bool
+i_var_restore_group_boolean(EdaConfig *cfg, const char *group, char *key, int *var, int def_val)
+{
   GError *err = NULL;
-  char *tmpstr;
-  const char *group = IVAR_CONFIG_GROUP;
+  bool tmp_bool;
+  bool result;
 
-  tmpstr = eda_config_get_string (cfg, group, key, &err);
+  tmp_bool = eda_config_get_boolean (cfg, group, key, &err);
   if (err != NULL) {
-    g_warning ("Error retrieving user configuration: '%s'", err->message);
     g_clear_error (&err);
+   *var = def_val;
+    result = FALSE;
   }
+  else {
+   *var = tmp_bool;
+    result = TRUE;
+  }
+  return result;
+}
 
-  return tmpstr;
+/* Returns True if the value was restored from configuration or
+ * False if \a def_val was assigned */
+bool
+i_var_restore_group_integer(EdaConfig *cfg, const char *group, char *key, int *var, int def_val)
+{
+  GError *err = NULL;
+  int tmp_int;
+  int result;
+
+  tmp_int = eda_config_get_integer (cfg, group, key, &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+   *var = def_val;
+    result = FALSE;
+  }
+  else {
+   *var = tmp_int;
+    result = TRUE;
+  }
+  return result;
 }
 
 void
 i_var_restore_global_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
 {
-  GError *err = NULL;
-  bool tmp_bool;
   const char *group = IVAR_CONFIG_GROUP;
-
-  tmp_bool = eda_config_get_boolean (cfg, group, key, &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    *var = def_val;
-  }
-  else {
-    *var = tmp_bool;
-  }
+  i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
+
 
 void
 i_var_restore_global_integer(EdaConfig *cfg, char *key, int *var, int def_val)
 {
-  GError *err = NULL;
-  int tmp_int;
   const char *group = IVAR_CONFIG_GROUP;
-
-  tmp_int = eda_config_get_integer (cfg, group, key, &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    *var = def_val;
-  }
-  else {
-    *var = tmp_int;
-  }
+  i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 void
 i_var_restore_global_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
 {
-  i_var_restore_color(cfg, IVAR_CONFIG_GROUP, key, var, index);
+  i_var_restore_group_color(cfg, IVAR_CONFIG_GROUP, key, var, index);
 }
 
 void
 i_var_restore_window_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
 {
-  GError *err = NULL;
-  bool tmp_bool;
   const char *group = WINDOW_CONFIG_GROUP;
-
-  tmp_bool = eda_config_get_boolean (cfg, group, key, &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    *var = def_val;
-  }
-  else {
-    *var = tmp_bool;
-  }
+  i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
 void
 i_var_restore_window_integer(EdaConfig *cfg, char *key, int *var, int def_val)
 {
-  GError *err = NULL;
-  int tmp_int;
   const char *group = WINDOW_CONFIG_GROUP;
-
-  tmp_int = eda_config_get_integer (cfg, group, key, &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    *var = def_val;
-  }
-  else {
-    *var = tmp_int;
-  }
+  i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 void
 i_var_restore_window_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
 {
-  i_var_restore_color(cfg, WINDOW_CONFIG_GROUP, key, var, index);
+  i_var_restore_group_color(cfg, WINDOW_CONFIG_GROUP, key, var, index);
 }
 
 /*! \brief Recall User Settings
