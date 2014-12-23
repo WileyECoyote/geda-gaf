@@ -54,45 +54,57 @@ struct _filter_reg_t {
 
 /*! \def GEDA_FILTER_PNG #PNG_FILE_SUFFIX */
 #define GEDA_FILTER_PNG  \
-  { FILTER_PNG,        "Portable Network Graphics", (const char* const []) \
+  { FILTER_PNG,        IMAGE_FILTER_PNG, (const char* const []) \
   { IMAGE_FILTER_PNG, NULL}, }
 
 /*! \def GEDA_FILTER_JPG #JPG_FILE_SUFFIX */
 #define GEDA_FILTER_JPG  \
-  { FILTER_JPG,       "Joint Photographic Experts Group", (const char* const []) \
+  { FILTER_JPG,       IMAGE_FILTER_JPG, (const char* const []) \
   { IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, NULL}, }
 
 /*! \def GEDA_FILTER_GIF #GIF_FILE_SUFFIX */
 #define GEDA_FILTER_GIF  \
-  { FILTER_GIF,        "Graphics Interchange Format", (const char* const []) \
-  { IMAGE_FILTER_GIF, NULL}, }
+  { FILTER_GIF,        IMAGE_FILTER_GIF, (const char* const []) \
+  { IMAGE_FILTER_GIF,  NULL}, }
 
 /*! \def GEDA_FILTER_BMP #BMP_FILE_SUFFIX */
 #define GEDA_FILTER_BMP  \
-  { FILTER_BMP,        "Windows Bitmap", (const char* const []) \
-  { IMAGE_FILTER_BMP, NULL}, }
+  { FILTER_BMP,        IMAGE_FILTER_BMP, (const char* const []) \
+  { IMAGE_FILTER_BMP,  NULL}, }
 
 /*! \def GEDA_FILTER_ICO #ICO_FILE_SUFFIX */
 #define GEDA_FILTER_ICO  \
-  { FILTER_ICO,        "Icon images", (const char* const []) \
-  { IMAGE_FILTER_ICO, NULL}, }
+  { FILTER_ICO,        IMAGE_FILTER_ICO, (const char* const []) \
+  { IMAGE_FILTER_ICO,  NULL}, }
 
 /*! \def GEDA_FILTER_TIF #TIF_FILE_SUFFIX */
 #define GEDA_FILTER_TIF  \
-  { FILTER_TIF,        "Tagged Image File Format", (const char* const []) \
-  { IMAGE_FILTER_TIF, IMAGE_FILTER_TIFF, NULL}, }
+  { FILTER_TIF,        IMAGE_FILTER_TIFF, (const char* const []) \
+  { IMAGE_FILTER_TIF,  IMAGE_FILTER_TIFF, NULL}, }
 
 /*! \def GEDA_FILTER_XPM #XPM_FILE_SUFFIX */
 #define GEDA_FILTER_XPM  \
-  { FILTER_ICO,        "X Windows Pixel Map files", (const char* const []) \
-  { IMAGE_FILTER_XPM, NULL}, }
+  { FILTER_XPM,        IMAGE_FILTER_XPM, (const char* const []) \
+  { IMAGE_FILTER_XPM,  NULL}, }
+
+/*! \def GEDA_FILTER_PNM #PNM_FILE_SUFFIX */
+#define GEDA_FILTER_PNM \
+  { FILTER_PNM,        IMAGE_FILTER_PNM, (const char* const []) \
+  { IMAGE_FILTER_PNM,  IMAGE_FILTER_PBM, IMAGE_FILTER_PPM,      \
+    IMAGE_FILTER_PGM,  NULL}, }
+
+/*! \def GEDA_FILTER_RAS #RAS_FILE_SUFFIX */
+#define GEDA_FILTER_RAS  \
+  { FILTER_RAS,        IMAGE_FILTER_RAS, (const char* const []) \
+  { IMAGE_FILTER_RAS,  NULL}, }
 
 /*! \def GEDA_FILTER_IMAGES #ALL_IMAGE_FILE_SUFFIXES */
 #define GEDA_FILTER_IMAGES  \
-  { FILTER_IMAGES,     "All Graphics Image formats", (const char* const [])  \
-  { IMAGE_FILTER_PNG, IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, IMAGE_FILTER_GIF, \
-    IMAGE_FILTER_BMP, IMAGE_FILTER_ICO, IMAGE_FILTER_TIF, IMAGE_FILTER_TIFF, \
-    IMAGE_FILTER_XPM, NULL}, }
+  { FILTER_IMAGES,     "All Images", (const char* const [])  \
+  { IMAGE_FILTER_PNG, IMAGE_FILTER_JPG, IMAGE_FILTER_JPEG, IMAGE_FILTER_GIF,  \
+    IMAGE_FILTER_BMP, IMAGE_FILTER_ICO, IMAGE_FILTER_TIF,  IMAGE_FILTER_TIFF, \
+    IMAGE_FILTER_XPM, IMAGE_FILTER_PNM, IMAGE_FILTER_PBM,  IMAGE_FILTER_PPM,  \
+    IMAGE_FILTER_PGM, IMAGE_FILTER_RAS, NULL}, }
 
 #define GEDA_FILTER_NONE       \
   { FILTER_NONE,      "All files", (const char * const []) \

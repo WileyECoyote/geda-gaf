@@ -1,6 +1,11 @@
 2014-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
-      * src/dialogs/geda_image_chooser.c: Add Zoom slider Action, is limited
+      * include/geda_file_filter.h: Add filters for Portables and Raster
+        image formats.
+
+2014-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/dialogs/geda_image_chooser.c: Add Zoom slider action, is limited
         but does provide some level of zoom functionality.
 
 2014-12-22 Wiley E. Hill <wileyhill@gmail.com>

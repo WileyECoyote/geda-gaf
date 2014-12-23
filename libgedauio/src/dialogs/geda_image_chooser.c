@@ -70,6 +70,8 @@ static GedaFileFilterDataDef filter_data[] = {
     GEDA_FILTER_ICO,
     GEDA_FILTER_TIF,
     GEDA_FILTER_XPM,
+    GEDA_FILTER_PNM,
+    GEDA_FILTER_RAS,
     GEDA_FILTER_IMAGES,
     GEDA_FILTER_NONE,
     GEDA_NO_MORE_FILTERS
