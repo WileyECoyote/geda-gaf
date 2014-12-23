@@ -32,6 +32,8 @@
 #define IMAGE_CHOOSER_CONFIG_PVSIZE  "preview-size"
 
 #define DEFAULT_CHOOSER_PREVIEW_SIZE 300
+#define MIN_CHOOSER_PREVIEW_SIZE     100
+#define MAX_CHOOSER_PREVIEW_SIZE     1000
 
 G_BEGIN_DECLS
 
@@ -80,8 +82,15 @@ struct _GedaImageChooser {
   GtkWidget            *filter_button;
            int          filter_index;
   unsigned int          handler;
+           int          default_preview_size;
+           int          max_preview_size;
+           int          min_preview_size;
            int          preview_size;
            bool         preview_enabled;
+           bool         zoom_mode;
+           int          zoom_save;
+           bool         mouse_down;
+
 };
 
 struct _GedaImageChooserClass {

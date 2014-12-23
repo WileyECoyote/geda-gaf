@@ -201,11 +201,9 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
   GtkImage         *preview = GTK_IMAGE (chooser->preview);
   GError           *err     = NULL;
   GdkPixbuf        *pixbuf;
-
-  static int old_size = -1;
-  char *filename;
-
-  int   size;
+  char             *filename;
+  int               size;
+  static int        old_size = -1;
 
   filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER(chooser));
 
@@ -216,22 +214,39 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
     pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
 
     if (err != NULL) {
+      fprintf(stderr, "<%s> file error: %s\n", filename, strerror( errno ));
       g_clear_error (&err);
     }
     else { /* update preview */
-      gtk_image_set_from_pixbuf (preview, pixbuf);
-      if (old_size < 0) old_size = ((GtkWidget*)preview)->allocation.width;
-      if (size < old_size) {
 
-        gtk_range_set_update_policy (GTK_RANGE (chooser->slider),
-                                     GTK_UPDATE_DISCONTINUOUS);
+      if (!chooser->zoom_mode) {
+
+        gtk_image_set_from_pixbuf (preview, pixbuf);
+
+        if (old_size < 0) old_size = ((GtkWidget*)preview)->allocation.width;
+        if (size < old_size) {
+          if (!chooser->mouse_down) {
+            gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
+          }
+          gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_DISCONTINUOUS);
+        }
+        else {
+           gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
+           gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
+        }
+        old_size = size;
       }
-      else {
-        gtk_range_set_update_policy (GTK_RANGE (chooser->slider),
-                                     GTK_UPDATE_CONTINUOUS);
+      else { /* is zoom mode */
+        if (chooser->zoom_mode > 0) {
+          /* the first time the adjustment is change in zoom mode we
+           * fix the preview pane size to the current allocation */
+          int width = ((GtkWidget*)preview)->allocation.width;
+          int height = ((GtkWidget*)preview)->allocation.height;
+          gtk_widget_set_size_request ((GtkWidget*)preview, width, height);
+          chooser->zoom_mode = -1;
+        }
+        gtk_image_set_from_pixbuf (preview, pixbuf);
       }
-      gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
-      old_size = size;
     }
   }
 }
@@ -247,20 +262,22 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
 static void
 chooser_update_preview (GtkFileChooser *chooser, void *user_data)
 {
-  GtkImage  *preview = GTK_IMAGE (user_data);
-  GError    *err     = NULL;
-  GdkPixbuf *pixbuf;
-  char      *filename;
-  int        size;
+  GtkImage   *preview = GTK_IMAGE (user_data);
+  GError     *err     = NULL;
+  GdkPixbuf  *pixbuf;
+  char       *filename;
+  int         size;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
 
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 
     size   = (GEDA_IMAGE_CHOOSER(chooser))->preview_size;
+
     pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
 
     if (err != NULL) {
+      fprintf(stderr, "<%s> file error: %s\n", filename, strerror( errno ));
       g_clear_error (&err);
     }
     else { /* update preview */
@@ -270,6 +287,233 @@ chooser_update_preview (GtkFileChooser *chooser, void *user_data)
   }
 }
 
+static GtkWidget *popup_menu;
+typedef enum  { ZoomMode,
+                SizeMode,
+                MidSize,
+                MinSize,
+                MaxSize,
+                PreviewOff
+
+}  IDS_PV_Popup_items; /* Enumerators to reference the string below: */
+
+static char *popup_items[]={ "Zoom mode",
+                             "Size mode",
+                             "Default size",
+                             "Max size",
+                             "Min size",
+                             "Preview Off",
+};
+static char *popup_tips[]={  "Set silder to zoom mode",
+                             "Set silder to size mode",
+                             "Set image size to the default size",
+                             "Set image size to maximum",
+                             "Set image size to minimum",
+                             "Turn the preview pane off",
+};
+
+/*! \brief Callback Handler for Popup Mouse Context Menu
+ *
+ *  \par Function Description
+ * This function calls the appropriate functions to process request
+ * from the mouse menu. This function receives a pointer to enumerated
+ * integer value for the menu item that was selected.
+ *
+ *  \param [in] widget is button widget
+ *  \param [in] selection pointer to enumerated menu selection
+ */
+static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items* selection)
+{
+    GedaImageChooser *chooser = g_object_get_data (G_OBJECT (widget), "chooser");
+
+    int WhichItem = (int)(long*) selection;
+
+    switch ( WhichItem ) {
+      case ZoomMode:
+        chooser->zoom_save = chooser->preview_size;
+        chooser->zoom_mode = TRUE;
+        gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
+        break;
+      case SizeMode:
+        chooser->preview_size = chooser->zoom_save;
+        chooser->zoom_mode    = FALSE;
+        gtk_adjustment_set_value(chooser->adjustment, chooser->preview_size);
+        gtk_window_set_resizable (GTK_WINDOW(chooser), TRUE);
+        gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_DISCONTINUOUS);
+        break;
+      case MidSize:
+        gtk_adjustment_set_value(chooser->adjustment, chooser->default_preview_size);
+        break;
+      case MinSize:
+        gtk_adjustment_set_value(chooser->adjustment, chooser->min_preview_size);
+        break;
+      case MaxSize:
+        gtk_adjustment_set_value(chooser->adjustment, chooser->max_preview_size);
+        break;
+      case PreviewOff:
+        chooser->preview_enabled = FALSE;
+        g_object_set (chooser, "preview-widget-active", FALSE, NULL);
+        break;
+      default:
+        fprintf(stderr, "menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
+    } /* End Switch WhichItem */
+
+    gtk_widget_destroy(popup_menu);
+    return (TRUE);
+}
+
+/*! \brief Create and Setup Popup Mouse Menu for Preview
+ *
+ *  \par Function Description
+ * This function is called when the user right clicks on a handlebox.
+ * The function sets senitivty on menu choices based on the handlebox
+ * position and the state of the containing toolbar.
+ *
+ *  \param [in] widget is the active widget
+ */
+static GtkWidget *build_menu(GedaImageChooser *chooser)
+{
+  GtkWidget   *menu;
+  GtkWidget   *item;
+  GtkTooltips *tooltips;
+
+  int i;
+
+  tooltips = gtk_tooltips_new ();
+  menu     = gtk_menu_new();
+
+  for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
+  {
+    item = gtk_menu_item_new_with_label(_(popup_items[i]));
+
+    gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
+    g_object_set_data(G_OBJECT(item), "chooser", chooser);
+    g_signal_connect(GTK_OBJECT(item),"activate",
+                    (void *) popup_activated,
+                    (void *) i);
+
+    gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
+    gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+
+    switch (i) {
+      case ZoomMode:
+        if (chooser->zoom_mode) { /* Disable is already active */
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case SizeMode:
+        if (!chooser->zoom_mode) { /* Disable is already active */
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case MidSize:
+        if (chooser->preview_size == chooser->default_preview_size) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case MinSize:
+        if (chooser->preview_size == chooser->min_preview_size) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case MaxSize:
+         if (chooser->preview_size == chooser->max_preview_size) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case PreviewOff:
+        break;
+      }
+      g_object_set (item, "visible", TRUE, NULL);
+      gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+    }
+    return (menu);
+}
+
+/*! \brief Mouse Button Call Back for Preview Event Area
+ *
+ *  \par Function Description
+ * This function check mouse botton press and when the 3rd button
+ * is released the build_menu function is called to create the mouse
+ * menu.
+ *
+ *  \param [in] widget     The event box widget the user "right-clicked" on
+ *  \param [in] event      Mouse event record
+ *  \param [in] user_data  GedaImageChooser object.
+ */
+static int
+On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *user_data)
+{
+  GedaImageChooser *chooser = user_data;
+
+  GdkModifierType mods;
+
+  gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
+
+  if (mods&GDK_BUTTON3_MASK)
+  {
+
+    if (popup_menu)
+    {
+
+      gtk_object_destroy(GTK_OBJECT(popup_menu));
+      popup_menu = NULL;
+    }
+
+    popup_menu = build_menu(chooser);
+    /* Tell GTK to do the menu we just created */
+    gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+                   event->button, event->time);
+  }
+  return (FALSE);
+}
+/*! \brief HandleBar Mouse Button Call Back
+ *
+ *  \par Function Description
+ * This function check mouse botton press and when the 3rd button
+ * is released the build_menu function is called to create the mouse
+ * menu.
+ *
+ *  \param [in] widget     The event box widget the user "right-clicked" on
+ *  \param [in] event      Mouse event record
+ *  \param [in] user_data  GedaImageChooser object.
+ */
+static int
+On_adjust_button_press(GtkWidget *widget, GdkEventButton *event, void *user_data)
+{
+  GedaImageChooser *chooser = user_data;
+
+  if (event->button == 1) {
+    chooser->mouse_down = TRUE;
+  }
+  return (FALSE);
+}
+/*! \brief HandleBar Mouse Button Call Back
+ *
+ *  \par Function Description
+ * This function check mouse botton press and when the 3rd button
+ * is released the build_menu function is called to create the mouse
+ * menu.
+ *
+ *  \param [in] widget     The event box widget the user "right-clicked" on
+ *  \param [in] event      Mouse event record
+ *  \param [in] user_data  GedaImageChooser object.
+ */
+static int
+On_adjust_button_release(GtkWidget *widget, GdkEventButton *event, void *user_data)
+{
+  GedaImageChooser *chooser = user_data;
+
+  if (event->button == 1) {
+    chooser->mouse_down = FALSE;
+  }
+  return (FALSE);
+}
 /*! \brief Adds a Preview to the Image Chooser.
  *  \par Function Description
  *  This function adds a preview section to a <B>GedaFileChooser</B>.
@@ -294,10 +538,14 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   GtkWidget     *alignment, *frame, *preview;
   GtkAdjustment *adjustment;
   GtkWidget     *slider;
-  GtkWidget     *hbox, *vbox;
+  GtkWidget     *hbox,  *vbox;
+  GtkWidget     *ebox;
 
   /* Add our extra widget to the dialog */
   vbox = gtk_vbox_new(FALSE, 0);
+
+  ebox = gtk_event_box_new();
+  g_object_set (ebox, "visible", TRUE, NULL);
 
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
                                     "label", _("Preview"),
@@ -316,8 +564,10 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
 
   gtk_container_add (GTK_CONTAINER (alignment), preview);
   gtk_container_add (GTK_CONTAINER (frame), alignment);
-  gtk_container_add (GTK_CONTAINER (vbox), frame);
+  gtk_container_add (GTK_CONTAINER (ebox), frame);
+  gtk_container_add (GTK_CONTAINER (vbox), ebox);
   gtk_widget_show_all (frame);
+
 
   hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (hbox, "visible", TRUE, NULL);
@@ -338,8 +588,6 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   g_object_get(slider, "adjustment", &adjustment, NULL);
   gtk_adjustment_set_value(adjustment, (double)size);
   gtk_scale_set_value_pos (GTK_SCALE(slider), GTK_POS_BOTTOM);
-  //gtk_range_set_update_policy (GTK_RANGE (slider),
-  //                             GTK_UPDATE_DISCONTINUOUS);
 
   gtk_container_add (GTK_CONTAINER (alignment), slider);
   gtk_container_add (GTK_CONTAINER (hbox), alignment);
@@ -365,6 +613,21 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
                     G_CALLBACK (chooser_adjust_size),
                     chooser);
 
+  gtk_widget_set_events (vbox,
+                         GDK_BUTTON_PRESS_MASK |
+                         GDK_BUTTON_RELEASE_MASK);
+
+  gtk_signal_connect(GTK_OBJECT(ebox), "button_press_event",
+                    (GtkSignalFunc) On_mouse_button_press,
+                     chooser);
+
+  gtk_signal_connect(GTK_OBJECT(slider), "button_press_event",
+                    (GtkSignalFunc) On_adjust_button_press,
+                     chooser);
+
+  gtk_signal_connect(GTK_OBJECT(slider), "button_release_event",
+                    (GtkSignalFunc) On_adjust_button_release,
+                     chooser);
   return preview;
 }
 
@@ -445,6 +708,11 @@ geda_image_chooser_constructor (GedaType               type,
 
   g_list_free (children);
 
+  chooser->default_preview_size = DEFAULT_CHOOSER_PREVIEW_SIZE;
+  chooser->min_preview_size     = MIN_CHOOSER_PREVIEW_SIZE;
+  chooser->max_preview_size     = MAX_CHOOSER_PREVIEW_SIZE;
+  chooser->zoom_mode            = FALSE;
+
   GtkWidget  *widget;
   GtkWidget  *preview;
   GtkWidget  *hbox;
@@ -468,7 +736,7 @@ geda_image_chooser_constructor (GedaType               type,
 
   chechbox = gtk_check_button_new_with_label (_("Preview"));
   gtk_toggle_button_set_active ((GtkToggleButton*)chechbox, enable);
-  gtk_widget_set_tooltip_text(chechbox, _("Enable to the preview"));
+  gtk_widget_set_tooltip_text(chechbox, _("Active to enable the preview pane"));
   g_object_set (chechbox, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX(hbox), chechbox, FALSE, FALSE, 0);
 
