@@ -1,5 +1,9 @@
 2014-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/dialogs/geda_image_chooser.c: Refine Preview slider action.
+
+2014-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/dialogs/geda_image_chooser.c: Add slider for preview size.
 
 2014-12-22 Wiley E. Hill <wileyhill@gmail.com>

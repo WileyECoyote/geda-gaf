@@ -195,14 +195,16 @@ chooser_preview_enabler (GtkToggleButton *checkbox, void *user_data)
 }
 
 static void
-chooser_update_size (GtkAdjustment *adjustment, void *user_data)
+chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
 {
-  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(user_data);
+  GedaImageChooser *chooser = user_data;
   GtkImage         *preview = GTK_IMAGE (chooser->preview);
   GError           *err     = NULL;
   GdkPixbuf        *pixbuf;
 
+  static int old_size = -1;
   char *filename;
+
   int   size;
 
   filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER(chooser));
@@ -218,6 +220,18 @@ chooser_update_size (GtkAdjustment *adjustment, void *user_data)
     }
     else { /* update preview */
       gtk_image_set_from_pixbuf (preview, pixbuf);
+      if (old_size < 0) old_size = ((GtkWidget*)preview)->allocation.width;
+      if (size < old_size) {
+
+        gtk_range_set_update_policy (GTK_RANGE (chooser->slider),
+                                     GTK_UPDATE_DISCONTINUOUS);
+      }
+      else {
+        gtk_range_set_update_policy (GTK_RANGE (chooser->slider),
+                                     GTK_UPDATE_CONTINUOUS);
+      }
+      gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
+      old_size = size;
     }
   }
 }
@@ -251,6 +265,7 @@ chooser_update_preview (GtkFileChooser *chooser, void *user_data)
     }
     else { /* update preview */
       gtk_image_set_from_pixbuf (preview, pixbuf);
+      gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
     }
   }
 }
@@ -279,7 +294,7 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   GtkWidget     *alignment, *frame, *preview;
   GtkAdjustment *adjustment;
   GtkWidget     *slider;
-  GtkWidget     *vbox;
+  GtkWidget     *hbox, *vbox;
 
   /* Add our extra widget to the dialog */
   vbox = gtk_vbox_new(FALSE, 0);
@@ -297,38 +312,49 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
                                         "yalign", 0.5,
                                         NULL));
 
-  preview = GTK_WIDGET (g_object_new (GTK_TYPE_IMAGE,
-                                      NULL));
+  preview = GTK_WIDGET (g_object_new (GTK_TYPE_IMAGE, NULL));
 
   gtk_container_add (GTK_CONTAINER (alignment), preview);
   gtk_container_add (GTK_CONTAINER (frame), alignment);
   gtk_container_add (GTK_CONTAINER (vbox), frame);
   gtk_widget_show_all (frame);
 
+  hbox = gtk_hbox_new(FALSE, 0);
+  g_object_set (hbox, "visible", TRUE, NULL);
+
   alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                        "right-padding", 2,
-                                        "left-padding", 2,
+                                        "right-padding", 5,
+                                        "left-padding", 5,
                                         "xscale", 1.0,
-                                        "yscale", 0.2,
+                                        "yscale", 0.1,
                                         "xalign", 0.5,
-                                        "yalign", 0.2,
+                                        "yalign", 0.1,
                                         NULL));
 
-  slider = gtk_hscale_new_with_range (100.0, 1000.0, 100.0);
+  g_object_set (alignment, "visible", TRUE, NULL);
 
-  g_object_get(G_OBJECT(slider), "adjustment", &adjustment, NULL);
+  slider = gtk_hscale_new_with_range (100.0, 1000.0, 100.0);
+  g_object_set (slider, "visible", TRUE, NULL);
+  g_object_get(slider, "adjustment", &adjustment, NULL);
   gtk_adjustment_set_value(adjustment, (double)size);
+  gtk_scale_set_value_pos (GTK_SCALE(slider), GTK_POS_BOTTOM);
+  //gtk_range_set_update_policy (GTK_RANGE (slider),
+  //                             GTK_UPDATE_DISCONTINUOUS);
 
   gtk_container_add (GTK_CONTAINER (alignment), slider);
-  gtk_container_add (GTK_CONTAINER (vbox), alignment);
-  gtk_widget_show_all (alignment);
+  gtk_container_add (GTK_CONTAINER (hbox), alignment);
+  gtk_box_pack_end (GTK_BOX (vbox), hbox, TRUE, FALSE, 0);
 
+  (GEDA_IMAGE_CHOOSER(chooser))->slider = slider;
   (GEDA_IMAGE_CHOOSER(chooser))->adjustment = adjustment;
 
   g_object_set (chooser, "use-preview-label",     FALSE,
                          "preview-widget",        vbox,
                          "preview-widget-active", state,
                                                   NULL);
+
+  gtk_widget_set_size_request(preview, size, -1);
+
   /* connect callback to update preview image */
   g_signal_connect (chooser, "update-preview",
                     G_CALLBACK (chooser_update_preview),
@@ -336,7 +362,7 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
 
   /* connect callback to update preview image */
   g_signal_connect (adjustment, "value-changed",
-                    G_CALLBACK (chooser_update_size),
+                    G_CALLBACK (chooser_adjust_size),
                     chooser);
 
   return preview;

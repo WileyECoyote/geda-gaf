@@ -75,6 +75,7 @@ struct _GedaImageChooser {
 
   GtkFileChooserDialog  parent;
   GtkAdjustment        *adjustment;
+  GtkWidget            *slider;
   GtkWidget            *preview;
   GtkWidget            *filter_button;
            int          filter_index;
