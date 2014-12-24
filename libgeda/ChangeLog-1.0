@@ -1,6 +1,10 @@
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/utility/u_string.c: A new function u_string_strconcat, clean
+    * /src/file/f_get.c: Add new function f_get_bitmap_filespec
+
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Add new function u_string_strconcat, clean
       up string module. Rename u_stristr to u_string_istr.
 
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>

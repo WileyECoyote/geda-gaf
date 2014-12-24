@@ -101,6 +101,37 @@ char *f_get_basename(const char *path)
   return NULL;
 }
 
+/*! \brief Return pointer to base file name
+ *  \par Function description
+ *  Returns a pointer to the characters after the right most
+ *  seperator or NULL if no sting was passed. The returned
+ *  pointer points to the given string, and not reallocated.
+ *
+ *  \param [in] path The path to search.
+ *  \return offset if found, otherwise NULL.
+ */
+char *f_get_bitmap_filespec (const char *filename)
+{
+  const char *base;
+  const char *seperator;
+  const char *subfolder;
+
+  char *filespec;
+
+  if (filename) {
+    base      = f_path_sys_data();
+    seperator = DIR_SEPARATOR_S;
+    subfolder = "bitmap";
+    filespec  = u_string_concat (base, seperator, subfolder,
+                                       seperator, filename, NULL);
+    /* TODO: Check to see of file is accessible */
+  }
+  else {
+    return NULL;
+  }
+  return filespec;
+}
+
 /*! \brief Get list of file in Given directory
  *  \par Function Description
  *  This function collect the names of files contain in the
@@ -109,7 +140,6 @@ char *f_get_basename(const char *path)
  *
  * \retval Returns GSList of files or NULL if no matching files
 */
-
 GSList *f_get_dir_list_files(char *path, char *filter)
 {
         GSList *files = NULL;

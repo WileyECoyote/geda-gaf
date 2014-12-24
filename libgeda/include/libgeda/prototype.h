@@ -1,12 +1,12 @@
 G_BEGIN_DECLS
 
 /* f_basic.c */
-      void    f_set_backup_loader_query_func(GedaToplevel *toplevel, void *func, ...);
       bool    f_has_active_autosave         (const char *filename, GError **err);
       int     f_open                        (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
       int     f_open_flags                  (GedaToplevel *toplevel, Page *page, const char *filename, const int flags, GError **err);
       void    f_close                       (GedaToplevel *toplevel);
       bool    f_save                        (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
+      void    f_set_backup_loader_query_func(GedaToplevel *toplevel, void *func, ...);
 
 /* f_file.c */
       int     f_file_copy                   (const char *source, const char *target);
@@ -19,6 +19,7 @@ G_BEGIN_DECLS
 /* f_get.c */
       char   *f_get_autosave_filename       (const char *filename);
       char   *f_get_basename                (const char *path);
+      char   *f_get_bitmap_filespec         (const char *filename);
       GSList *f_get_dir_list_files          (char *path, char *filter);
       bool    f_get_file_contents           (const char *filename, char **contents, size_t *length, GError **err);
 const char   *f_get_filename_ext            (const char *filename);
@@ -577,6 +578,7 @@ GedaToplevel *s_toplevel_new                          (void);
       char   *u_log_read               (void);
 
 /* u_string.c */
+      char   *u_string_concat          (const char *string1, ...)  G_GNUC_WARN_UNUSED_RESULT;
 const char   *u_string_istr            (const char *str1, const char *str2);
       char   *u_string_remove_nl       (char *string);
       char   *u_string_remove_last_nl  (char *string);
@@ -584,7 +586,6 @@ const char   *u_string_istr            (const char *str1, const char *str2);
       char   *u_string_scm2c           (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
       void    u_string_sort_array      (char *strings[], size_t strings_size);
       char   *u_string_sprintf         (const char *format, ...)   G_GNUC_WARN_UNUSED_RESULT;
-      char   *u_string_strconcat       (const char *string1, ...)  G_GNUC_WARN_UNUSED_RESULT;
       char   *u_string_strdup          (const char *str)           G_GNUC_WARN_UNUSED_RESULT;
       char   *u_string_strndup         (const char *str, size_t n) G_GNUC_WARN_UNUSED_RESULT;
       int     u_string_stristr         (const char *haystack, const char *needle);

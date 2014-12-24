@@ -31,17 +31,6 @@
 
 #include "libgeda_priv.h"
 
-void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
-{
-  if (toplevel) {
-    va_list argp;
-    va_start (argp, func);
-    toplevel->load_newer_backup_func = func;
-    toplevel->load_newer_backup_data = va_arg(argp, void*);
-    va_end (argp);
-  }
-}
-
 /*! \brief Check if a file has an active autosave file
  *  \par Function Description
  *  Checks whether an autosave file exists for the \a filename passed
@@ -579,4 +568,15 @@ error:
   return NULL;
 #undef ROOT_MARKER_LEN
 #endif
+}
+
+void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
+{
+  if (toplevel) {
+    va_list argp;
+    va_start (argp, func);
+    toplevel->load_newer_backup_func = func;
+    toplevel->load_newer_backup_data = va_arg(argp, void*);
+    va_end (argp);
+  }
 }
