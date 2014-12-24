@@ -426,19 +426,19 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
   /* Add some useful text */
-  not_found_text = g_strdup_printf (_("Component not found:\n %s"), complex->filename);
+  not_found_text = u_string_sprintf (_("Component not found:\n %s"), complex->filename);
 
   new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
                             x + NOT_FOUND_TEXT_X,
                             y + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0,
-                            not_found_text, 8,
+                            not_found_text, 10,
                             VISIBLE, SHOW_NAME_VALUE);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
   GEDA_FREE(not_found_text);
 
   /* figure out where to put the hazard triangle, we could only be here during
-   * a read failure, there is not page so we can not use normal bounds routines
+   * a read failure, there is no page so we can not use normal bounds routines
    * instead we will try ...*/
   geda_toplevel_set_bounds (toplevel, new_prim_obj);
 
