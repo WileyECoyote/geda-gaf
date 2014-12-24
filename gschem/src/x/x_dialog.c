@@ -393,12 +393,11 @@ void about_dialog (GschemToplevel *w_current)
   GError     *error = NULL;
   GtkWidget  *Dialog;
 
-  version_string = g_strdup_printf (_("%s (g%.7s)"),
-                                    PACKAGE_DOTTED_VERSION,
-                                    PACKAGE_GIT_COMMIT);
+  version_string = u_string_sprintf (_("%s (g%.7s)"),
+                                     PACKAGE_DOTTED_VERSION,
+                                     PACKAGE_GIT_COMMIT);
 
-  logo_file = g_strconcat (w_current->toplevel->bitmap_directory,
-                           DIR_SEPARATOR_S, "gschem_about_logo.png", NULL);
+  logo_file =  f_get_bitmap_filespec ("gschem_about_logo.png");
 
   logo = gdk_pixbuf_new_from_file (logo_file, &error);
   GEDA_FREE (logo_file);
@@ -413,7 +412,7 @@ void about_dialog (GschemToplevel *w_current)
 
   gEDA_str  = _("gEDA: GPL Electronic Design Automation\nglibc ");
 
-  comments  = g_strconcat (gEDA_str, gnu_get_libc_version(), NULL);
+  comments  = u_string_concat (gEDA_str, gnu_get_libc_version(), NULL);
 
   copyright = _("Copyright © 1998-2014 Ales Hvezda"
                 " <ahvezda@geda.seul.org>\n"
@@ -3460,7 +3459,7 @@ close_confirmation_dialog_constructor (GedaType type,
         "Save changes before closing?"),
       count_pages (GTK_TREE_MODEL (dialog->store_unsaved_pages)));
   }
-  str = g_strconcat ("<big><b>", tmp, "</b></big>", NULL);
+  str = u_string_concat ("<big><b>", tmp, "</b></big>", NULL);
   GEDA_FREE (tmp);
   label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
                                     /* GtkMisc */
@@ -3996,9 +3995,8 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
     gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
     /* Primary label */
-    tmp = g_strconcat ("<big><b>",
-		     _("Major symbol changes detected."),
-                       "</b></big>", NULL);
+    tmp = u_string_concat ("<big><b>", _("Major symbol changes detected."),
+                           "</b></big>", NULL);
 
     label = g_object_new (GTK_TYPE_LABEL,
                           /* GtkMisc */

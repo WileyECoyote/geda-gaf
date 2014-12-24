@@ -1022,7 +1022,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
   GtkCellRenderer *renderer;
   GdkPixbuf       *pixbuf;
   GError          *error=NULL;
-  char             *path;
+  char            *path;
 
   int i;
 
@@ -1045,12 +1045,11 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
   store = gtk_list_store_new(2, G_TYPE_STRING, GDK_TYPE_PIXBUF);
 
   for (i=0; filenames[i] != NULL; i++) {
-    path=g_build_filename(w_current->toplevel->bitmap_directory,
-                          filenames[i], NULL);
+    path = f_get_bitmap_filespec(filenames[i]);
     pixbuf = gdk_pixbuf_new_from_file(path, &error);
-    GEDA_FREE(path);
     gtk_list_store_append(store, &iter);
     gtk_list_store_set(store, &iter, 0, _(names[i]), 1, pixbuf, -1);
+    GEDA_FREE(path);
   }
 
   gtk_combo_box_set_model(GTK_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));

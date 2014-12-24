@@ -1,5 +1,14 @@
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Use new libgeda function f_get_bitmap_filespec to build the path
+      spec for bitmaps in modules:
+
+        src/x/x_autonumber.c
+        src/x/x_dialog.c
+        src/x/x_icons.c
+
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * bitmap/gschem-warning.png: Remove file, (was renamed and relocated
       to toplevel bitmaps directory.
 
