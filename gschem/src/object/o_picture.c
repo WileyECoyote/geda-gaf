@@ -115,6 +115,7 @@ void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
                           picture_left + picture_width,
                           picture_top - picture_height,
                           0, FALSE, FALSE);
+
   s_page_append_object (toplevel->page_current, new_obj);
 
   /* Run %add-objects-hook */

@@ -20,7 +20,7 @@
  */
 
 /*! \file o_picture.c
- *  \brief functions for the picture object
+ *  \brief Functions for the Picture Objects
  */
 
 #include <config.h>
@@ -33,7 +33,8 @@
 
 #include "libgeda_priv.h"
 
-/*! \brief Create picture Object from character string.
+/*! \brief Create picture Object from character string
+ *
  *  \par Function Description
  *  Parses \a first_line and subsequent lines from \a tb, and returns
  *  a newly-created picture #Object.
@@ -162,7 +163,8 @@ Object *o_picture_read (const char *first_line,
   return new_obj;
 }
 
-/*! \brief Create a character string representation of a picture Object.
+/*! \brief Create a character string representation of a picture Object
+ *
  *  \par Function Description
  *  This function formats a string in the buffer <B>*buff</B> to describe
  *  the picture object <B>*object</B>.
@@ -240,8 +242,8 @@ char *o_picture_save(Object *object)
     return(out);
 }
 
-
 /*! \brief Create a picture object.
+ *
  *  \par Function Description
  *  This function creates a new object representing a picture.
  *
@@ -253,7 +255,7 @@ char *o_picture_save(Object *object)
  *  containing raw image data.  If loading data from \a file_content
  *  is unsuccessful, and \a filename is non-NULL, an image will
  *  attempt to be loaded from \a filename.  Otherwise, the picture
- *  object will be initially empty.
+ *  object will fallback to a warning image.
  *
  *  \param [in]     file_content  Raw data of the image file, or NULL.
  *  \param [in]     file_length   Length of raw data buffer
@@ -265,6 +267,7 @@ char *o_picture_save(Object *object)
  *  \param [in]     angle         Picture rotation angle.
  *  \param [in]     mirrored      Whether the image should be mirrored or not.
  *  \param [in]     embedded      Whether the embedded flag should be set or not.
+ *
  *  \return A pointer to a new picture #Object.
  */
 Object *o_picture_new (const char *file_content, unsigned int file_length,
@@ -354,6 +357,7 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
 }
 
 /*! \brief get the position of the left bottom point
+ *
  *  \par Function Description
  *  This function gets the position of the bottom left point of a picture object.
  *
@@ -370,14 +374,15 @@ bool o_picture_get_position (int *x, int *y, Object *object)
 }
 
 
-/*! \brief Get the width/height ratio of an image.
+/*! \brief Get the width/height ratio of an image
  *
  * \par Function Description
 
  * Returns the width/height ratio of picture \a object, taking the
  * image rotation into account.
  *
- * \param object    Picture #Object to inspect.
+ * \param object    Picture #Object to inspect
+ *
  * \return width/height ratio for \a object.
  */
 float
@@ -402,7 +407,8 @@ o_picture_get_ratio (Object *object)
   return 0;
 }
 
-/*! \brief Modify the description of a picture Object.
+/*! \brief Modify the description of a picture Object
+ *
  *  \par Function Description
  *  This function modifies the coordinates of one of the four corner of
  *  the picture. The new coordinates of the corner identified by
@@ -489,7 +495,8 @@ o_picture_modify(Object *object, int x, int y, int whichone)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Modify a picture object's coordinates.
+/*! \brief Modify a picture object's coordinates
+ *
  * \par Function Description
  * Modifies the coordinates of all four corners of a picture \a
  * object.  The picture is adjusted to fit the rectangle enclosed by
@@ -519,14 +526,11 @@ o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *  \par Function Description
  *  This function rotates the picture described by <B>*object</B> around
  *  the (<B>world_centerx</B>, <B>world_centery</B>) point by <B>angle</B>
- *  degrees.
- *  The center of rotation is in world units.
+ *  degrees. The center of rotation is in world units.
  *
- *  \param [in]      world_centerx  Rotation center x coordinate in
- *                                  WORLD units.
- *  \param [in]      world_centery  Rotation center y coordinate in
- *                                  WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
+ *  \param [in]      world_centerx  Rotation center x coordinate
+ *  \param [in]      world_centery  Rotation center y coordinate
+ *  \param [in]      angle          Rotation angle in degrees (See note below)
  *  \param [in,out]  object         Picture Object to rotate.
  */
 void
@@ -579,13 +583,13 @@ o_picture_rotate_world( int world_centerx, int world_centery, int angle, Object 
 
 }
 
-/*! \brief Mirror a picture using WORLD coordinates.
- *  \par Function Description
- *  This function mirrors the picture from the point
- *  (<B>world_centerx</B>,<B>world_centery</B>) in world unit.
+/*! \brief Mirror a picture using WORLD coordinates
  *
- *  The picture is first translated to the origin, then mirrored and
- *  finally translated back at its previous position.
+ *  \par Function Description
+ *  This function mirrors the picture from the point (<B>world_centerx</B>,
+ *  <B>world_centery</B>) in world unit. The picture is first translated to
+ *  the origin, then mirrored and finally translated back at its previous
+ *  position.
  *
  *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
  *  \param [in]     world_centery  Origin y coordinate in WORLD units.
@@ -638,7 +642,8 @@ void o_picture_mirror_world(int world_centerx, int world_centery,
 
 }
 
-/*! \brief Translate a picture position in WORLD coordinates by a delta.
+/*! \brief Translate a picture position in WORLD coordinates by a delta
+ *
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
@@ -705,11 +710,12 @@ Object *o_picture_copy(Object *o_current)
   return new_obj;
 }
 
-/*! \brief Test whether a picture object is embedded.
- * \par Function Description
- * Returns TRUE if the picture \a object will have its data embedded
- * in a schematic or symbol file; returns FALSE if its data will be
- * obtained from a separate file.
+/*! \brief Test whether a picture object is embedded
+ *
+ *  \par Function Description
+ *  Returns TRUE if the picture \a object will have its data embedded
+ *  in a schematic or symbol file; returns FALSE if its data will be
+ *  obtained from a separate file.
  *
  * \param object    The picture #Object to inspect.
  * \return TRUE if \a object is embedded.
@@ -722,10 +728,11 @@ bool o_picture_is_embedded (Object *object)
   return object->picture->embedded;
 }
 
-/*! \brief Get RGB data from image.
+/*! \brief Get RGB data from image
+ *
  *  \par Function Description
- *  This function returns the RGB data of the given image.
- *  Function taken from the DIA source code (http://www.gnome.org/projects/dia)
+ *  This function returns the RGB data of the given image. Function
+ *  taken from the DIA source code (http://www.gnome.org/projects/dia)
  *  and licensed under the GNU GPL version 2.
  *
  *  \param [in] image  GdkPixbuf image to read RGB data from.
@@ -763,10 +770,11 @@ o_picture_rgb_data(GdkPixbuf *image)
   }
 }
 
-/*! \brief Get mask data from image.
+/*! \brief Get mask data from image
+ *
  *  \par Function Description
- *  This function returns the mask data of the given image.
- *  Function taken from the DIA source code (http://www.gnome.org/projects/dia)
+ *  This function returns the mask data of the given image. Function
+ *  taken from the DIA source code (http://www.gnome.org/projects/dia)
  *  and licensed under the GNU GPL version 2.
  *
  *  \param [in] image  GdkPixbuf image to get mask data from.
@@ -800,7 +808,8 @@ o_picture_mask_data(GdkPixbuf *image)
   return mask;
 }
 
-/*! \brief Print picture to Postscript document.
+/*! \brief Print picture to Postscript document
+ *
  *  \par Function Description
  *  This function prints a picture object. The picture is defined by the
  *  coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and its width
@@ -906,7 +915,6 @@ void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   GEDA_FREE(mask_data);
 }
 
-
 /*! \brief Embed the image file associated with a picture
  *
  * \par Function Description
@@ -937,7 +945,6 @@ void o_picture_embed (Object *object)
   u_log_message (_("Picture [%s] has been embedded\n"), basename);
   GEDA_FREE (basename);
 }
-
 
 /*! \brief Unembed a picture, reloading the image from disk
  * \par Function Description
@@ -974,9 +981,9 @@ void o_picture_unembed (Object *object)
   GEDA_FREE(basename);
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point in the picture.
+/*! \brief Closest distance between point and a picture
  *
+ * \par Function Description
  *  Interrior points within the picture return a distance of zero.
  *
  *  \param [in] object       A picture Object.
@@ -1008,7 +1015,8 @@ double o_picture_shortest_distance (Object *object,
   return sqrt ((dx * dx) + (dy * dy));
 }
 
-/*! \brief Get a pixel buffer for a picture object.
+/*! \brief Get a pixel buffer for a picture object
+ *
  * \par Function Description
  * Returns a GdkPixbuf for the picture object \a object, or NULL if
  * the picture could not be loaded.
@@ -1016,7 +1024,8 @@ double o_picture_shortest_distance (Object *object,
  * The returned value should have its reference count decremented with
  * GEDA_UNREF() when no longer needed.
  *
- * \param object    The picture #Object to inspect.
+ * \param object  The picture #Object to inspect.
+ *
  * \return A GdkPixbuf for the picture.
  */
 GdkPixbuf *
@@ -1111,9 +1120,9 @@ o_picture_set_from_buffer (Object *object,
 
 /*! \brief Set a picture object's contents from a file
  *
- * \par Function Description
- * Sets the contents of the picture \a object by reading image data
- * from a file.
+ *  \par Function Description
+ *  Sets the contents of the picture \a object by reading image data
+ *  from a file.
  *
  * \param object   The picture #Object to modify.
  * \param filename The filename to load image data from.
