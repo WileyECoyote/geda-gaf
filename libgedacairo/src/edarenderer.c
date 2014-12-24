@@ -1187,45 +1187,73 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 static void
 eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
 {
-  int swap_wh;
-  double orig_width, orig_height;
+  double width,  orig_width;
+  double height, orig_height;
+
   GdkPixbuf *pixbuf;
+  static int pixbuf_error = 1;
+
+  g_return_if_fail (GEDA_IS_PICTURE (object));
 
   /* Get a pixbuf, or, failing that, a fallback image. */
-  pixbuf = g_object_ref (object->picture->pixbuf);
-
-  if (pixbuf == NULL) pixbuf = o_picture_get_fallback_pixbuf (NULL /* FIXME */);
-
-  /* If no pixbuf was found, fall back to drawing an outline */
-  if (pixbuf == NULL || EDA_RENDERER_CHECK_FLAG (renderer,
-                                                 FLAG_PICTURE_OUTLINE)) {
-    eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                   0,
-                   object->picture->lower_x, object->picture->lower_y,
-                   object->picture->upper_x, object->picture->upper_y);
-    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                      TYPE_SOLID, END_SQUARE,
-                      EDA_RENDERER_STROKE_WIDTH (renderer, 0),
-                      -1, -1);
-    return;
+  if (object->picture->pixbuf && GDK_IS_PIXBUF(object->picture->pixbuf))
+  {
+    pixbuf = g_object_ref (object->picture->pixbuf);
   }
+  else {
 
-  g_return_if_fail (GDK_IS_PIXBUF (pixbuf));
+    if (pixbuf_error) {
+      BUG_MSG("picture->pixbuf invalid, loader should have detected this");
+      pixbuf_error--;
+    }
+
+    pixbuf = o_picture_get_fallback_pixbuf ();
+
+    if (pixbuf) {
+
+      g_object_ref (pixbuf);
+
+    }
+    else {
+
+      /* If no pixbuf was found, fall back to drawing an outline */
+      if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_PICTURE_OUTLINE)) {
+
+        eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                       0,
+                       object->picture->lower_x, object->picture->lower_y,
+                       object->picture->upper_x, object->picture->upper_y);
+        eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                          TYPE_SOLID, END_SQUARE,
+                          EDA_RENDERER_STROKE_WIDTH (renderer, 0),
+                          -1, -1);
+
+      }
+      return;
+    }
+  }
 
   cairo_save (renderer->priv->cr);
 
-  swap_wh = ((object->picture->angle == 90) || (object->picture->angle == 270));
+  width  = gdk_pixbuf_get_width (pixbuf);
+  height = gdk_pixbuf_get_height (pixbuf);
 
-  orig_width  = swap_wh ? gdk_pixbuf_get_height (object->picture->pixbuf)
-                        : gdk_pixbuf_get_width  (object->picture->pixbuf);
-  orig_height = swap_wh ? gdk_pixbuf_get_width  (object->picture->pixbuf)
-                        : gdk_pixbuf_get_height (object->picture->pixbuf);
+  if ((object->picture->angle == 90) || (object->picture->angle == 270))
+  {
+    orig_width  = height;
+    orig_height = width;
+  }
+  else {
+    orig_width  = width;
+    orig_height = height;
+  }
 
   cairo_translate (renderer->priv->cr,
                    object->picture->upper_x, object->picture->upper_y);
+
   cairo_scale (renderer->priv->cr,
                fabs (object->picture->upper_x - object->picture->lower_x) / orig_width,
-               - fabs (object->picture->upper_y - object->picture->lower_y) / orig_height);
+             - fabs (object->picture->upper_y - object->picture->lower_y) / orig_height);
 
   /* Evil magic translates picture origin to the right position for a given rotation */
   switch (object->picture->angle) {
@@ -1236,16 +1264,15 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   }
 
   cairo_rotate (renderer->priv->cr, -object->picture->angle * M_PI / 180.);
+
   if (object->picture->mirrored) {
-    cairo_translate (renderer->priv->cr, gdk_pixbuf_get_width (pixbuf), 0);
+    cairo_translate (renderer->priv->cr, width, 0);
     cairo_scale (renderer->priv->cr, -1, 1);
   }
 
-  gdk_cairo_set_source_pixbuf (renderer->priv->cr,
-                               object->picture->pixbuf, 0,0);
-  cairo_rectangle (renderer->priv->cr, 0, 0,
-                   gdk_pixbuf_get_width (object->picture->pixbuf),
-                   gdk_pixbuf_get_height (object->picture->pixbuf));
+  gdk_cairo_set_source_pixbuf (renderer->priv->cr, pixbuf, 0,0);
+
+  cairo_rectangle (renderer->priv->cr, 0, 0, width, height);
 
   cairo_clip (renderer->priv->cr);
   cairo_paint (renderer->priv->cr);

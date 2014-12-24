@@ -1,6 +1,10 @@
 2014-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Use eda_renderer_set_font_name to set font name property
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Fixed multiple issues with function eda_renderer_
+      draw_picture.
 
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
