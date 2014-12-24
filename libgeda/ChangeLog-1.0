@@ -1,13 +1,18 @@
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_string.c: A new function u_string_strconcat, clean
+      up string module. Rename u_stristr to u_string_istr.
+
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_picture.c: Return fallback image instead of NULL if
       image file is not loaded.
 
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Use f_path_sys_data() instead of toplevel
-      ->bitmap_directory (like everone else) in function o_picture_get_
-      fallback_pixbuf and eliminate GedaToplevel argument.
+      ->bitmap_directory in function o_picture_get_fallback_pixbuf and
+      eliminate GedaToplevel argument.
 
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 

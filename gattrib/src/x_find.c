@@ -91,7 +91,7 @@ bool x_find_main_search(char* text, char *replacement) {
       if (Search.Case)
         return (strstr ( cell_text, text)) ? (strlen (strstr ( cell_text, text))) : 0;
       else
-        return (u_stristr ( cell_text, text)) ? (strlen (u_stristr ( cell_text, text))) : 0;
+        return (u_string_istr ( cell_text, text)) ? (strlen (u_string_istr ( cell_text, text))) : 0;
   }
   void do_replace_text(int row, int col) {
     char *new;

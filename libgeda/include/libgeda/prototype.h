@@ -577,20 +577,21 @@ GedaToplevel *s_toplevel_new                          (void);
       char   *u_log_read               (void);
 
 /* u_string.c */
+const char   *u_string_istr            (const char *str1, const char *str2);
       char   *u_string_remove_nl       (char *string);
       char   *u_string_remove_last_nl  (char *string);
       char   *u_string_int2str         (int value, char *str, int radix);
-      char   *u_string_sprintf         (const char *format, ...);
-      char   *u_string_strdup          (const char *str);
-      char   *u_string_strndup         (const char *str, size_t n);
-      int     u_string_stristr         (const char *haystack, const char *needle);
       char   *u_string_scm2c           (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
       void    u_string_sort_array      (char *strings[], size_t strings_size);
+      char   *u_string_sprintf         (const char *format, ...)   G_GNUC_WARN_UNUSED_RESULT;
+      char   *u_string_strconcat       (const char *string1, ...)  G_GNUC_WARN_UNUSED_RESULT;
+      char   *u_string_strdup          (const char *str)           G_GNUC_WARN_UNUSED_RESULT;
+      char   *u_string_strndup         (const char *str, size_t n) G_GNUC_WARN_UNUSED_RESULT;
+      int     u_string_stristr         (const char *haystack, const char *needle);
       bool    u_string_strequal        (const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
       char   *u_string_strstr_rep      (char *original,   const char *old_str, const char *new_str);
       int     u_string_stricmp         (const char *str1, const char *str2);
       int     u_string_strncmpi        (const char *str1, const char *str2, int n);
-const char   *u_stristr                (const char *str1, const char *str2);
       char   *u_string_strsubst        (char *source, char *old_str, char *new_str);
       char   *u_string_strisubst       (char *source, char *old_str, char *new_str);
       char   *u_string_split           (char *string, char delimiter, int count);

@@ -114,9 +114,9 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     }
 
     /* Check if this was an "Unbound variable:" message */
-    unbound_msg = u_stristr ((*err)->message, unbound_needle) + 18;
+    unbound_msg = u_string_istr ((*err)->message, unbound_needle) + 18;
     int len =strlen(unbound_msg);
-    if (len > 0) { /* True if u_stristr found "Unbound variable:" */
+    if (len > 0) { /* True if u_string_istr found "Unbound variable:" */
 
       int *iptr = (int*)retry_flag;
       int retry = *iptr;

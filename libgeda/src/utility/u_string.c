@@ -29,6 +29,40 @@
 
 #include <geda_debug.h>
 
+/*! \brief Find substring in string, ignore case.
+ *
+ *  \par Function Description
+ *  This function uses u_string_stricmp or u_string_strncmpi to locate
+ *  a substring in a string. This is not normally found in standard
+ *  libraries but sometimes is. The difference between the u_string_istr
+ *  and u_string_stricmp returns a pointer rather than an integer.
+ *
+ *  \param [in] str1 is the string to be search
+ *  \param [in] str2 is the string to search for
+ *
+ *  \retval char* to the first occurance of str2 in str2 or
+ *  NULL if str2 is not contained in str1.
+ */
+const char *u_string_istr(const char *str1, const char *str2)
+{
+  const char *ptr = NULL;
+
+  /* if 2 is longer than 1, 2 can not be IN 1 */
+  if (strlen(str2) > strlen(str1)) return NULL;
+
+  /* if strings are the same length then can do */
+  if (strlen(str2) == strlen(str1))
+    return (!u_string_stricmp ( str1, str2)) ? str1 : NULL;
+
+  for (ptr = str1; *ptr ; ++ptr) {
+    if (u_string_strncmpi(ptr, str2, strlen(str2)) == 0)
+      return ptr;
+  }
+
+  ptr = "\0";
+  return ptr;
+}
+
 /*! \brief Remove Line Feed and Carriage Return Characters from string
  *  \par Function Description
  *  This function search a string and replace all occurences of 0x0D
@@ -68,14 +102,15 @@ char *u_string_remove_nl(char *string)
 /* used by o_text_read */
 char *u_string_remove_last_nl(char *string)
 {
-  int len;
+  unsigned int length;
 
   if (!string)
     return NULL;
 
-  len = strlen(string);
-  if (string[len-1] == '\n' || string[len-1] == '\r')
-    string[len-1] = '\0';
+  length = strlen(string);
+
+  if (string[length-1] == '\n' || string[length-1] == '\r')
+    string[length-1] = '\0';
 
   return(string);
 }
@@ -146,36 +181,102 @@ char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
 }
 
 void u_string_sort_array( char *strings[], size_t strings_size) {
-    int cstring_cmp(const void *a, const void *b)
-    {
-       const char **ia = (const char **)a;
-       const char **ib = (const char **)b;
-       return strcmp(*ia, *ib);
-        /* strcmp functions works exactly as expected from
-        comparison function */
-   }
-    size_t strings_len = strings_size / sizeof(char *);
 
-   /* sort array using qsort functions */
-    qsort(strings, strings_len, sizeof(char *), cstring_cmp);
+  int cstring_cmp(const void *a, const void *b)
+  {
+    const char **ia = (const char **)a;
+    const char **ib = (const char **)b;
+    return strcmp(*ia, *ib);
+    /* strcmp functions works exactly as expected from
+     *       comparison function */
+  }
+  size_t strings_len = strings_size / sizeof(char *);
+
+  /* sort array using qsort functions */
+  qsort(strings, strings_len, sizeof(char *), cstring_cmp);
 }
 
 char *u_string_sprintf (const char *format, ...)
 {
-  char   *buffer;
-  int     len;
+  char *buffer;
+  unsigned int length;
 
   va_list args;
 
   va_start (args, format);
-  len = vasprintf (&buffer, format, args);
+  length = vasprintf (&buffer, format, args);
   va_end (args);
 
-  if (len < 0) {
+  if (length < 0) {
     buffer = NULL;
   }
 
   return buffer;
+}
+
+char *u_string_strconcat (const char *string1, ...)
+{
+  char *concat;
+  char *ptr;
+  char *str;
+
+  unsigned int length;
+  va_list args;
+
+  if (!string1) {
+    return (NULL);
+  }
+
+  /* Determine memory requirements */
+  length = strlen (string1) + 1;
+
+  va_start (args, string1);
+  str = va_arg (args, char*);
+
+  /* Loop thru each optional argument and accumulate length */
+  while (str) {
+    length += strlen (str);
+    str     = va_arg (args, char*);
+  }
+  va_end (args);
+
+  /* Allocate the memory need for the final string */
+  if ((concat = (char*)malloc(sizeof(char)*length)) == NULL)
+    return (NULL);
+
+  ptr = concat; /* get ptr to start of new allocation */
+
+  /* Copy characters from string 1 */
+  do
+    *ptr++ = *string1;
+  while (*string1++ != '\0');
+
+  ptr--;
+
+  va_start (args, string1);
+  str = va_arg (args, char*);
+
+  /* Loop thru each optional argument again and copy each */
+  while (str) {
+    do
+      *ptr++ = *str;
+    while (*str++ != '\0');
+    ptr--;
+    str = va_arg (args, char*);
+  }
+  va_end (args);
+
+  return concat;
+}
+
+char *u_string_strdup(const char *str)
+{
+  if (!str) return NULL;
+
+  size_t len = 1 + strlen(str);
+  char  *ptr = GEDA_MEM_ALLOC(len);
+
+  return ptr ? memcpy(ptr, str, len) : NULL;
 }
 
 char *u_string_strndup(const char *str, size_t n)
@@ -197,16 +298,6 @@ char *u_string_strndup(const char *str, size_t n)
   }
 
   return ptr;
-}
-
-char *u_string_strdup(const char *str)
-{
-  if (!str) return NULL;
-
-  size_t len = 1 + strlen(str);
-  char  *ptr = GEDA_MEM_ALLOC(len);
-
-  return ptr ? memcpy(ptr, str, len) : NULL;
 }
 
 int u_string_stristr ( const char *haystack, const char *needle)
@@ -232,7 +323,7 @@ int u_string_stristr ( const char *haystack, const char *needle)
 
    return result;
 }
-/* WEH: Maybe should be in <string.h> as inline */
+
 /*! \brief Check for equal strings.
  *
  *  \par Function Description
@@ -265,32 +356,33 @@ char *u_string_strstr_rep(char *original, const char *old, const char *new)
   char *str;
   char *temp;
 
-    void do_replace(char *s_ptr, const char *old, const char *new) {
-      int lenOld = strlen(old);
-      int lenNew = strlen(new);
-      char *ptr;
+  void do_replace(char *s_ptr, const char *old, const char *new) {
 
-      while (*s_ptr)
-      {
-        ptr = strstr(s_ptr, old);
-        if (ptr) {
-            strcpy(temp, ptr + lenOld);
-            *ptr = '\0';
-            strcat(s_ptr, new);
-            strcat(s_ptr, temp);
-            s_ptr = ptr + lenNew;
-        }
-        else
-            break;
+    unsigned int lenOld = strlen(old);
+    unsigned int lenNew = strlen(new);
+    char *ptr;
+
+    while (*s_ptr)
+    {
+      ptr = strstr(s_ptr, old);
+      if (ptr) {
+        strcpy(temp, ptr + lenOld);
+        *ptr = '\0';
+        strcat(s_ptr, new);
+        strcat(s_ptr, temp);
+        s_ptr = ptr + lenNew;
       }
+      else
+        break;
     }
+  }
 
   if ((temp = (char*)malloc(sizeof(char)*(strlen(original)+1))) == NULL)
     return(NULL);
 
   while(strstr(original, old)) {
-     str = original;
-     do_replace(str, old, new);
+    str = original;
+    do_replace(str, old, new);
   }
   free(temp);
   return original;
@@ -334,7 +426,7 @@ int u_string_stricmp(const char *str1, const char *str2)
  */
 int u_string_strncmpi(const char *str1, const char *str2, int n)
 {
-  int i = 0;
+  unsigned int i = 0;
   while (( toupper(*str1) == toupper(*str2)) && i < n)
   {
     str1++;
@@ -354,40 +446,6 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
           return 1;
         else
           return ((*str1 > *str2 ) ? -1 : 1);
-}
-
-/*! \brief Find substring in string, ignore case.
- *
- *  \par Function Description
- *  This function uses u_string_stricmp or u_string_strncmpi to locate
- *  a substring in a string. This is not normally found in standard
- *  libraries but sometimes is. The difference between the u_stristr
- *  and u_string_stricmp returns a pointer rather than an integer.
- *
- *  \param [in] str1 is the string to be search
- *  \param [in] str2 is the string to search for
- *
- *  \retval char* to the first occurance of str2 in str2 or
- *  NULL if str2 is not contained in str1.
- */
-const char *u_stristr(const char *str1, const char *str2)
-{
-  const char *ptr = NULL;
-
-  /* if 2 is longer than 1, 2 can not be IN 1 */
-  if (strlen(str2) > strlen(str1)) return NULL;
-
-  /* if strings are the same length then can do */
-  if (strlen(str2) == strlen(str1))
-    return (!u_string_stricmp ( str1, str2)) ? str1 : NULL;
-
-  for (ptr = str1; *ptr ; ++ptr) {
-    if (u_string_strncmpi(ptr, str2, strlen(str2)) == 0)
-      return ptr;
-  }
-
-  ptr = "\0";
-  return ptr;
 }
 
 /*! \brief Replace substring in string.
@@ -410,38 +468,46 @@ const char *u_stristr(const char *str1, const char *str2)
  */
 char *u_string_strsubst(char *source, char *old_str, char *new_str)
 {
-  unsigned int i, j, k;
+  char *temp   = NULL;
   int position = -1;
-  int length   = strlen(old_str);
-  char *temp = NULL;
-  size_t size;
+  unsigned int length;
+  unsigned int i, j, k;
+  unsigned int size;
 
-  size = strlen (source)- length + strlen (new_str) + 1;
-  temp = malloc(size);
+  if (source && old_str) {
 
-  if (temp) { /* If memory was allocated */
-    memset(temp, 0, size); /* initialize new memory */
-    /* Getting starting position for replacement */
-    for(i=0; source[i] && ( position == -1 ); ++i)
-      for(j=i,k=0; source[j]==old_str[k]; j++,k++)
-        if(!old_str[k+1]) position = i;
+    length   = strlen (old_str);
+    size     = strlen (source)- length + strlen (new_str) + 1;
+    temp     = malloc (size);
+    position = -1;
 
-    /* Start replacing */
-    if(position!=-1) {            /* if we found position */
-      for(j=0; j<position; j++)      /* copy the prefix   */
-        temp[j] = source[j];
-      for(i=0; new_str[i]; i++,j++)      /* add the new string and */
-        temp[j] = new_str[i];
-      for(k=position+length; source[k]; k++,j++) /* remainder of source */
-        temp[j] = source[k];
-      temp[j] = '\0';                      /* then add terminator  */
-      for(i=0; (source[i]=temp[i]); i++);  /* write back to source */
+    if (temp) { /* If memory was allocated */
+
+      memset(temp, 0, size); /* initialize new memory */
+
+      /* Getting starting position for replacement */
+      for(i = 0; source[i] && ( position == -1 ); ++i)
+        for(j = i,k = 0; source[j] == old_str[k]; j++, k++)
+          if(!old_str[k+1]) position = i;
+
+          /* Start replacing */
+          if (position!=-1) {               /* if we found position   */
+            for (j = 0; j < position; j++)      /* copy the prefix        */
+              temp[j] = source[j];
+            for(i = 0; new_str[i]; i++, j++)  /* add the new string and */
+              temp[j] = new_str[i];
+            for(k = position + length; source[k]; k++, j++) /* remainder of source */
+              temp[j] = source[k];
+            temp[j] = '\0';                      /* then add terminator  */
+            for(i = 0; (source[i] = temp[i]); i++);  /* write back to source */
+          }
+          free(temp);
+          return source;
     }
-    free(temp);
-    return source;
+    else {
+      fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
+    }
   }
-  else
-    fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
   return NULL;
 }
 
@@ -450,7 +516,7 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  *  \par Function Description
  *  This function replaces the first occurance of str1 with str2
  *  in the source. This version dynamically allocates tempory storage
- *  and uses pointer returned from the previously defined u_stristr to
+ *  and uses pointer returned from the previously defined u_string_istr to
  *  get the first position of old_str in the source. The Caller is
  *  responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
@@ -466,38 +532,47 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  */
 char *u_string_strisubst(char *source, char *old_str, char *new_str)
 {
-  int length   = strlen(old_str);
-  char *temp = NULL;
+  unsigned int length;
+  unsigned int size;
+  char *temp;
   char *ptr1;
   char *ptr2;
-  size_t size;
 
-  size = strlen (source)- strlen (old_str) + 1;
-  temp = malloc(size);   /* assume all of the old is prefixed */
-  if (temp) { /* If memory was allocated */
-    memset(temp, 0, size); /* initialize new memory */
+  if (source && old_str) {
+
+    length = strlen(old_str);
+
+    size = strlen (source) - length + 1;
+
+    temp = malloc(size);   /* assume all of the old is prefixed */
+
+    if (temp) { /* If memory was allocated */
+
+      memset(temp, 0, size); /* initialize new memory */
 
       /* Get pointer to the old string */
-    if (!(ptr1 = (char*)u_stristr(source, old_str))) return NULL;
+      if (!(ptr1 = (char*)u_string_istr(source, old_str))) return NULL;
 
       /* get pointer to the end of the old string in the source */
-    ptr2 = ptr1 + length; /* pointing to the old last char */
+      ptr2 = ptr1 + length; /* pointing to the old last char */
 
-    if (*ptr2) /* if there are characters after the old string */
-      strcpy(temp, ptr2); /* save them in the temp buffer */
+      if (*ptr2) /* if there are characters after the old string */
+        strcpy(temp, ptr2); /* save them in the temp buffer */
 
-    /* copy the new string to the source starting add the old position*/
-    strcpy(ptr1, new_str); /* This also terminated the string for us */
+        /* copy the new string to the source starting add the old position*/
+        strcpy(ptr1, new_str); /* This also terminated the string for us */
 
-    /* If there was as suffix, then add it */
-    if (strlen (temp))
-      strcat(ptr1, temp);
+        /* If there was as suffix, then add it */
+        if (strlen (temp))
+          strcat(ptr1, temp);
 
-    free(temp);
-    return source;
+        free(temp);
+      return source;
+    }
+    else {
+      fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
+    }
   }
-  else
-    fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
   return NULL;
 }
 
