@@ -50,8 +50,9 @@
 #define MAX_THREADS_IDLE_TIME  1000   /* microseconds */
 #define WAIT_THREADS_IDLE_TIME    5
 #define TASK_WAIT_INTERVAL      100   /* microseconds */
-#define MAX_WAIT_FOR_TASK        10   /* X x TASK_WAIT_INTERVAL */
+#define MAX_WAIT_FOR_TASK        10   /* TASK_WAIT_INTERVAL */
 
+/* These are just to reduce lines lengths */
 #define CairoRenderer w_current->cairo_renderer
 #define Toplevel      w_current->toplevel
 
