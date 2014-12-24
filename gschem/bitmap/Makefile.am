@@ -36,7 +36,7 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_new.xpm gschem_open.xpm gschem_redo.xpm         \
 		  gschem_save.xpm                                        \
 		  gschem_right2left.png gschem_fileorder.png             \
-		  gschem_rotate.xpm gschem_mirror.xpm gschem_warning.png \
+		  gschem_rotate.xpm gschem_mirror.xpm                    \
 		  gschem-select.png                                      \
 		  gschem_select_22x22.png                                \
 		  gschem_select_24x24.png                                \
@@ -68,5 +68,5 @@ EXTRA_DIST = $(bitmapdata_DATA)                                          \
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+DISTCLEANFILES       = *.log *~ core FILE
+MAINTAINERCLEANFILES = *.log *~ core FILE Makefile.in

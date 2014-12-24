@@ -16,97 +16,100 @@ bitmapdata_96dir  = $(GEDA_BITMAPS)/96x96
 bitmapdata_128dir = $(GEDA_BITMAPS)/128x128
 bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
 
-bitmapdata_DATA    = close_box.png                      \
-					 geda-analysis.png                  \
-					 geda-bus.png                       \
-					 geda-arc.png                       \
-					 geda-arc-edit.png                  \
-					 geda-arc-edit2.png                 \
-					 geda-autonum-blue.png              \
-					 geda-autonum-green.png             \
-					 geda-autonum-red.png               \
-					 geda-bed.png                       \
-					 geda-box.png                       \
-					 geda_bulb_24x26_off.png            \
-					 geda_bulb_24x26_on.png             \
-					 geda-calculate.png                 \
-					 geda-check-grn.png                 \
-					 geda-check-org.png                 \
-					 geda-check-red.png                 \
-					 geda-circle.png                    \
-					 geda-circles.png                   \
-					 geda-close-all.png                 \
-					 geda-component.png                 \
-					 geda-copy.png                      \
-					 geda_demote_16x16.png              \
-					 geda_demote_grn_16x16.png          \
-					 geda-design.png                    \
-					 geda-design1.png                   \
-					 geda-design2.png                   \
-					 geda-design3.png                   \
-					 geda-design4.png                   \
-					 geda-display.png                   \
-					 geda-draft.png                     \
-					 geda-grid-dot.png                  \
-					 geda-grid-mesh.png                 \
-					 geda-icprint.png                   \
-					 geda-inbed.png                     \
-					 geda-line.png                      \
-					 geda-line-type.png                 \
-					 geda-lock.png		                \
-					 geda-marker.png                    \
-					 geda-magnet.png                    \
-					 geda-mesh.png                      \
-					 geda-mirror.png                    \
-					 geda-molecule.png                  \
-					 geda-move.png                      \
-					 geda-multi.png                     \
-					 geda-nand.png                      \
-					 geda-nand3.png		                \
-					 geda-net.png		                \
-					 geda-new.png		                \
-					 geda-node.png		                \
-					 geda-npn.png                       \
-					 geda-open-recent.png               \
-					 geda-path.png                      \
-					 geda-pin.png                       \
-					 geda-pin-type.png                  \
-				     geda-plot.png                      \
-				     geda-probe.png                     \
-				     geda-probe2.png                    \
-				     geda-rotate.png                    \
-					 geda-save-image.png                \
-					 geda-schem.png                     \
-					 geda-schem2.png                    \
-					 geda-scope.png                     \
-					 geda-scope2.png                    \
-					 geda-scopehairs.png                \
-					 geda-select.png                    \
-					 geda-slot.png                      \
-					 geda-snap-off.png                  \
-					 geda-snap-on.png                   \
-					 geda-show-nets.png                 \
-					 geda-simulate.png                  \
-					 geda-sinx.png                      \
-					 geda-spectrum.png                  \
-					 geda_switch_48x36_off.png          \
-					 geda_switch_48x36_on.png           \
-					 geda_switch_64x48_off.png          \
-					 geda_switch_64x48_on.png           \
-					 geda-text-editor.png               \
-					 geda-verilog-blue.png              \
-					 geda-verilog-grn.png               \
-					 geda-unlock.png                    \
-					 geda-unselect-all.png              \
-					 geda-wave.png                      \
-					 geda-waves.png                     \
-					 geda-zoom-box.png                  \
-					 geda-zoom-pan.png                  \
-					 geda-zoom-selection.png            \
-					 git-logo.png
+bitmapdata_DATA   = \
+			close_box.png                      \
+			geda-analysis.png                  \
+			geda-bus.png                       \
+			geda-arc.png                       \
+			geda-arc-edit.png                  \
+			geda-arc-edit2.png                 \
+			geda-autonum-blue.png              \
+			geda-autonum-green.png             \
+			geda-autonum-red.png               \
+			geda-bed.png                       \
+			geda-box.png                       \
+			geda_bulb_24x26_off.png            \
+			geda_bulb_24x26_on.png             \
+			geda-calculate.png                 \
+			geda-check-grn.png                 \
+			geda-check-org.png                 \
+			geda-check-red.png                 \
+			geda-circle.png                    \
+			geda-circles.png                   \
+			geda-close-all.png                 \
+			geda-component.png                 \
+			geda-copy.png                      \
+			geda_demote_16x16.png              \
+			geda_demote_grn_16x16.png          \
+			geda-design.png                    \
+			geda-design1.png                   \
+			geda-design2.png                   \
+			geda-design3.png                   \
+			geda-design4.png                   \
+			geda-display.png                   \
+			geda-draft.png                     \
+			geda-grid-dot.png                  \
+			geda-grid-mesh.png                 \
+			geda-icprint.png                   \
+			geda-inbed.png                     \
+			geda-line.png                      \
+			geda-line-type.png                 \
+			geda-lock.png                      \
+			geda-marker.png                    \
+			geda-magnet.png                    \
+			geda-mesh.png                      \
+			geda-mirror.png                    \
+			geda-molecule.png                  \
+			geda-move.png                      \
+			geda-multi.png                     \
+			geda-nand.png                      \
+			geda-nand3.png                     \
+			geda-net.png                       \
+			geda-new.png                       \
+			geda-node.png                      \
+			geda-npn.png                       \
+			geda-open-recent.png               \
+			geda-path.png                      \
+			geda-pin.png                       \
+			geda-pin-type.png                  \
+			geda-plot.png                      \
+			geda-probe.png                     \
+			geda-probe2.png                    \
+			geda-rotate.png                    \
+			geda-save-image.png                \
+			geda-schem.png                     \
+			geda-schem2.png                    \
+			geda-scope.png                     \
+			geda-scope2.png                    \
+			geda-scopehairs.png                \
+			geda-select.png                    \
+			geda-slot.png                      \
+			geda-snap-off.png                  \
+			geda-snap-on.png                   \
+			geda-show-nets.png                 \
+			geda-simulate.png                  \
+			geda-sinx.png                      \
+			geda-spectrum.png                  \
+			geda_switch_48x36_off.png          \
+			geda_switch_48x36_on.png           \
+			geda_switch_64x48_off.png          \
+			geda_switch_64x48_on.png           \
+			geda-text-editor.png               \
+			geda-verilog-blue.png              \
+			geda-verilog-grn.png               \
+			geda-unlock.png                    \
+			geda-unselect-all.png              \
+			geda_warning.png                   \
+			geda-wave.png                      \
+			geda-waves.png                     \
+			geda-zoom-box.png                  \
+			geda-zoom-pan.png                  \
+			geda-zoom-selection.png            \
+			git-logo.png
 
 
-bitmapdata_16_DATA = geda_analysis_16x16.png            \
+bitmapdata_16_DATA = \
+					 geda_analysis_16x16.png            \
 					 geda_calculate_16x16.png           \
 					 geda_design_16x16.png              \
 					 geda_design1_16x16.png             \
@@ -114,32 +117,33 @@ bitmapdata_16_DATA = geda_analysis_16x16.png            \
 					 geda_design3_16x16.png             \
 					 geda_design4_16x16.png             \
 					 geda_draft_16x16.png               \
-					 geda_find_16x16.xpm	  	        \
-					 geda_find_and_replace_16x16.xpm	\
+					 geda_find_16x16.xpm                \
+					 geda_find_and_replace_16x16.xpm    \
 					 geda_icprint_16x16.png             \
 					 geda_marker_16x16.png              \
 					 geda_molecule_16x16.png            \
-					 geda_name_tag_16x16.xpm		    \
+					 geda_name_tag_16x16.xpm            \
 					 geda_nand3_16x16.png               \
 					 geda_nand_16x16.png                \
 					 geda_node_16x16.png                \
 					 geda_npn_16x16.png                 \
 					 geda_plot_16x16.png                \
-					 geda_probe2_16x16.png		        \
+					 geda_probe2_16x16.png              \
 					 geda_probe_16x16.png               \
-					 geda_schem2_16x16.png		        \
+					 geda_schem2_16x16.png              \
 					 geda_schem_16x16.png               \
 					 geda_scope_16x16.png               \
 					 geda_scope2_16x16.png              \
-					 geda_scopehairs_16x16.png		    \
-					 geda_simulate_16x16.png		    \
+					 geda_scopehairs_16x16.png          \
+					 geda_simulate_16x16.png            \
 					 geda_sinx_16x16.png                \
-					 geda_spectrum_16x16.png		    \
+					 geda_spectrum_16x16.png            \
 					 geda_value_16x16.xpm               \
 					 geda_wave_16x16.png                \
 					 geda_waves_16x16.png
 
-bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
+bitmapdata_22_DATA = \
+					 gaf_add_attribute_22x22.png        \
 					 gaf_demote_22x22.png               \
 					 gaf_pdf_22x22.xpm                  \
 					 gaf_promote_22x22.png              \
@@ -166,8 +170,8 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 					 geda_eye_glasses_22x16.png         \
 					 geda_grid_dot_22x22.png            \
 					 geda_grid_mesh_22x22.png           \
-					 geda_find_22x22.xpm		        \
-					 geda_find_and_replace_22x22.xpm	\
+					 geda_find_22x22.xpm                \
+					 geda_find_and_replace_22x22.xpm    \
 					 geda_find_attribute_22x22.png      \
 					 geda_icprint_22x22.png             \
 					 geda_line_22x22.xpm                \
@@ -181,8 +185,8 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 					 geda_molecule_22x22.png            \
 					 geda_move_22x22.png                \
 					 geda_multi_22x22.png               \
-					 geda_name_tag_22x22.xpm		    \
-					 geda_name_value_22x22.xpm		    \
+					 geda_name_tag_22x22.xpm            \
+					 geda_name_value_22x22.xpm          \
 					 geda_nand_22x22.png                \
 					 geda_nand3_22x22.png               \
 					 geda_npn_22x22.png                 \
@@ -214,16 +218,17 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 					 geda_view_redraw_22x22.png         \
 					 geda_wave_22x22.png                \
 					 geda_waves_22x22.png               \
-					 geda_zoom_box_22x22.png	        \
+					 geda_zoom_box_22x22.png            \
 					 geda_zoom_extents_22x22.png        \
 					 geda_zoom_limits_22x22.png         \
 					 geda_zoom_in_22x22.png             \
 					 geda_zoom_out_22x22.png            \
 					 geda_zoom_pan_22x22.png            \
-					 ghost_invisible_22x22.xpm		    \
+					 ghost_invisible_22x22.xpm          \
 					 gschem_project_close_22x22.png
 
-bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
+bitmapdata_24_DATA = \
+					 gaf_add_attribute_24x24.png        \
 					 gaf_demote_24x24.png               \
 					 gaf_pdf_24x24.xpm                  \
 					 gaf_promote_24x24.png              \
@@ -247,15 +252,15 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 					 geda_design4_24x24.png             \
 					 geda_draft_24x24.png               \
 					 geda_film_roll_24x24.xpm           \
-					 geda_find_24x24.xpm		        \
-					 geda_find_and_replace_24x24.xpm	\
+					 geda_find_24x24.xpm                \
+					 geda_find_and_replace_24x24.xpm    \
 					 geda_find_attribute_24x24.png      \
 					 geda_grid_dot_24x24.png            \
 					 geda_grid_mesh_24x24.png           \
 					 geda_icprint_24x24.png             \
 					 geda_line_24x24.xpm                \
 					 geda_line_type_24x24.png           \
-					 geda_locate_reference_24x24.xpm	\
+					 geda_locate_reference_24x24.xpm    \
 					 geda_lock_24x24.png                \
 					 geda_magnet_24x24.png              \
 					 geda_marker_24x24.png              \
@@ -264,8 +269,8 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 					 geda_molecule_24x24.png            \
 					 geda_move_24x24.png                \
 					 geda_multi_24x24.png               \
-					 geda_name_tag_24x24.xpm		    \
-					 geda_name_value_24x24.xpm		    \
+					 geda_name_tag_24x24.xpm            \
+					 geda_name_value_24x24.xpm          \
 					 geda_nand_24x24.png                \
 					 geda_nand3_24x24.png               \
 					 geda_npn_24x24.png                 \
@@ -306,7 +311,8 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 					 ghost_invisible_24x24.xpm          \
 					 gschem_project_close_24x24.png
 
-bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
+bitmapdata_26_DATA = \
+					 gaf_add_attribute_26x26.png        \
 					 gaf_demote_26x26.png               \
 					 geda_deselect_26x26.png            \
 					 gaf_pdf_26x26.xpm                  \
@@ -324,13 +330,13 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 					 geda_display_26x26.png             \
 					 geda_display_color_26x26.xpm       \
 					 geda_film_roll_26x26.xpm           \
-					 geda_find_26x26.xpm		        \
+					 geda_find_26x26.xpm                \
 					 geda_find_attribute_26x26.png      \
 					 geda_grid_dot_26x26.png            \
 					 geda_grid_mesh_26x26.png           \
 					 geda_line_26x26.xpm                \
 					 geda_line_type_26x26.png           \
-					 geda_locate_reference_26x26.xpm	\
+					 geda_locate_reference_26x26.xpm	   \
 					 geda_lock_26x26.png                \
 					 geda_magnet_26x26.png              \
 					 geda_mesh_26x26.png                \
@@ -338,7 +344,7 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 					 geda_move_26x26.png                \
 					 geda_multi_26x26.png               \
 					 geda_name_value_26x26.xpm          \
-					 geda_name_tag_26x26.xpm		    \
+					 geda_name_tag_26x26.xpm            \
 					 geda_number_26x26.png              \
 					 geda_pin_26x26.png                 \
 					 geda_promote_26x26.png             \
@@ -361,7 +367,8 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 					 geda_zoom_pan_26x26.png            \
 					 gschem_project_close_26x26.png
 
-bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
+bitmapdata_28_DATA = \
+					 gaf_add_attribute_28x28.png        \
 					 gaf_demote_28x28.png               \
 					 gaf_pdf_28x28.xpm                  \
 					 gaf_promote_28x28.png              \
@@ -388,14 +395,14 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 					 geda_design4_28x28.png             \
 					 geda_eye_glasses_28x20.png         \
 					 geda_film_roll_28x28.xpm           \
-					 geda_find_28x28.xpm		        \
+					 geda_find_28x28.xpm                \
 					 geda_find_attribute_28x28.png      \
 					 geda_grid_dot_28x28.png            \
 					 geda_grid_mesh_28x28.png           \
 					 geda_icprint_28x28.png             \
 					 geda_line_28x28.xpm                \
 					 geda_line_type_28x28.png           \
-					 geda_locate_reference_28x28.xpm	\
+					 geda_locate_reference_28x28.xpm    \
 					 geda_lock_28x28.png                \
 					 geda_magnet_28x28.png              \
 					 geda_marker_28x28.png              \
@@ -404,8 +411,8 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 					 geda_molecule_28x28.png            \
 					 geda_move_28x28.png                \
 					 geda_multi_28x28.png               \
-					 geda_name_value_28x28.xpm		    \
-					 geda_name_tag_28x28.xpm		    \
+					 geda_name_value_28x28.xpm          \
+					 geda_name_tag_28x28.xpm            \
 					 geda_nand_28x28.png                \
 					 geda_nand3_28x28.png               \
 					 geda_npn_28x28.png                 \
@@ -446,7 +453,8 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 					 ghost_invisible_28x28.xpm          \
 					 gschem_project_close_28x28.png
 
-bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
+bitmapdata_32_DATA = \
+					 gaf_add_attribute_32x32.png        \
 					 gaf_demote_32x32.png               \
 					 gaf_pdf_32x32.xpm                  \
 					 gaf_promote_32x32.png              \
@@ -473,8 +481,8 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 					 geda_draft_32x32.png               \
 					 geda_eye_glasses_32x23.png         \
 					 geda_film_roll_32x32.xpm           \
-					 geda_find_32x32.xpm		        \
-					 geda_find_and_replace_32x32.xpm	\
+					 geda_find_32x32.xpm                \
+					 geda_find_and_replace_32x32.xpm    \
 					 geda_find_attribute_32x32.png      \
 					 geda_grid_dot_32x32.png            \
 					 geda_grid_mesh_32x32.png           \
@@ -482,7 +490,7 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 					 geda_line_32x32.xpm                \
 					 geda_line_type_32x32.png           \
 					 geda_lock_32x32.png                \
-					 geda_locate_reference_32x32.xpm	\
+					 geda_locate_reference_32x32.xpm    \
 					 geda_magnet_32x32.png              \
 					 geda_marker_32x32.png              \
 					 geda_mesh_32x32.png                \
@@ -490,8 +498,8 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 					 geda_molecule_32x32.png            \
 					 geda_move_32x32.png                \
 					 geda_multi_32x32.png               \
-					 geda_name_tag_32x32.xpm		    \
-					 geda_name_value_32x32.xpm		    \
+					 geda_name_tag_32x32.xpm            \
+					 geda_name_value_32x32.xpm          \
 					 geda_nand_32x32.png                \
 					 geda_nand3_32x32.png               \
 					 geda_npn_32x32.png                 \
@@ -529,46 +537,52 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 					 geda_zoom_in_32x32.png             \
 					 geda_zoom_out_32x32.png            \
 					 geda_zoom_pan_32x32.png            \
-					 ghost_invisible_32x32.xpm		    \
+					 ghost_invisible_32x32.xpm          \
 					 gschem_project_close_32x32.png
 
-bitmapdata_36_DATA = gaf_see_notes_36x26.png    \
+bitmapdata_36_DATA = \
+					 gaf_see_notes_36x26.png            \
 					 geda_eye_glasses_36x26.png         \
-					 geda_find_36x36.xpm		        \
-				     geda_find_and_replace_36x36.xpm	\
-				     geda_name_tag_36x36.xpm		    \
-				     geda_name_value_36x36.xpm		    \
+					 geda_find_36x36.xpm                \
+					 geda_find_and_replace_36x36.xpm    \
+					 geda_name_tag_36x36.xpm            \
+					 geda_name_value_36x36.xpm          \
 					 geda_redcross_32x32.xpm            \
-             	     geda_value_36x36.xpm
+					 geda_value_36x36.xpm
 
-bitmapdata_48_DATA = geda_demote_48x48.xpm              \
+bitmapdata_48_DATA = \
+					 geda_demote_48x48.xpm              \
 					 geda_arc_edit_48x48.png            \
-					 geda_find_48x48.xpm		        \
+					 geda_find_48x48.xpm                \
 					 geda_find_and_replace_48x48.xpm    \
 					 geda_redcross_48x48.xpm
 
-bitmapdata_64_DATA = geda_find_64x64.xpm		        \
+bitmapdata_64_DATA = \
+					 geda_find_64x64.xpm                \
 					 geda_find_and_replace_64x64.xpm    \
 					 geda_redcross_64x64.xpm            \
 					 geda_zoom_pan_64x64.png
 
-bitmapdata_96_DATA = geda_find_96x96.xpm		        \
+bitmapdata_96_DATA = \
+					 geda_find_96x96.xpm                \
 					 geda_find_and_replace_96x96.xpm    \
 					 geda_redcross_96x96.xpm
 
-bitmapdata_128_DATA = gaf_pdf_128x128.xpm               \
-					  gaf_tools_128x128.xpm             \
-					  geda_display_color_128x128.xpm    \
-					  geda_film_roll_128x128.xpm        \
-					  geda_find_128x128.xpm		        \
-					  geda_find_and_replace_128x128.xpm \
-					  geda_man_128x128.xpm              \
-					  geda_redcross_128x128.xpm         \
-					  geda_tools_128x128.xpm            \
-					  geda_zoom_selection_128x128.png
+bitmapdata_128_DATA = \
+					 gaf_pdf_128x128.xpm               \
+					 gaf_tools_128x128.xpm             \
+					 geda_display_color_128x128.xpm    \
+					 geda_film_roll_128x128.xpm        \
+					 geda_find_128x128.xpm             \
+					 geda_find_and_replace_128x128.xpm \
+					 geda_man_128x128.xpm              \
+					 geda_redcross_128x128.xpm         \
+					 geda_tools_128x128.xpm            \
+					 geda_zoom_selection_128x128.png
 
-bitmapdata_256_DATA = ghost_invisible_256x256.xpm       \
-                      geda_value_256x256.png
+bitmapdata_256_DATA = \
+					 ghost_invisible_256x256.xpm       \
+					 geda_value_256x256.png
 
 EXTRA_DIST = $(bitmapdata_DATA)     \
              $(bitmapdata_16_DATA)  \

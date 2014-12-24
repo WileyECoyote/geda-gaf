@@ -1,4 +1,10 @@
-2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+      * bitmaps/geda_warning.png: Relocated gschem-warning.png to toplevel
+        bitmaps directory because the file is reference by libgeda and not
+        gschem.
+
+2014-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_dialog_controls.h: Remove scope limiters from macro
         GTK_NEW_COMBO, revise GEDA_NEW_COMBO to use geda_combo_box_new_

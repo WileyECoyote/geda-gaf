@@ -1,6 +1,11 @@
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmap/gschem-warning.png: Remove file, (was renamed and relocated
+      to toplevel bitmaps directory.
+
 2014-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_status.c:
+    * src/iface/i_status.c: temp fix sensitivities for embed/unembed
 
 2014-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
