@@ -29,6 +29,61 @@
 
 #include <geda_debug.h>
 
+char *u_string_concat (const char *string1, ...)
+{
+  char *concat;
+  char *ptr;
+  char *str;
+
+  unsigned int length;
+  va_list args;
+
+  if (!string1) {
+    return (NULL);
+  }
+
+  /* Determine memory requirements */
+  length = strlen (string1) + 1;
+
+  va_start (args, string1);
+  str = va_arg (args, char*);
+
+  /* Loop thru each optional argument and accumulate length */
+  while (str) {
+    length += strlen (str);
+    str     = va_arg (args, char*);
+  }
+  va_end (args);
+
+  /* Allocate the memory need for the final string */
+  if ((concat = (char*)malloc(sizeof(char)*length)) == NULL)
+    return (NULL);
+
+  ptr = concat; /* get ptr to start of new allocation */
+
+  /* Copy characters from string 1 */
+  do
+    *ptr++ = *string1;
+  while (*string1++ != '\0');
+
+  ptr--;
+
+  va_start (args, string1);
+  str = va_arg (args, char*);
+
+  /* Loop thru each optional argument again and copy each */
+  while (str) {
+    do
+      *ptr++ = *str;
+    while (*str++ != '\0');
+    ptr--;
+    str = va_arg (args, char*);
+  }
+  va_end (args);
+
+  return concat;
+}
+
 /*! \brief Find substring in string, ignore case.
  *
  *  \par Function Description
@@ -212,61 +267,6 @@ char *u_string_sprintf (const char *format, ...)
   }
 
   return buffer;
-}
-
-char *u_string_strconcat (const char *string1, ...)
-{
-  char *concat;
-  char *ptr;
-  char *str;
-
-  unsigned int length;
-  va_list args;
-
-  if (!string1) {
-    return (NULL);
-  }
-
-  /* Determine memory requirements */
-  length = strlen (string1) + 1;
-
-  va_start (args, string1);
-  str = va_arg (args, char*);
-
-  /* Loop thru each optional argument and accumulate length */
-  while (str) {
-    length += strlen (str);
-    str     = va_arg (args, char*);
-  }
-  va_end (args);
-
-  /* Allocate the memory need for the final string */
-  if ((concat = (char*)malloc(sizeof(char)*length)) == NULL)
-    return (NULL);
-
-  ptr = concat; /* get ptr to start of new allocation */
-
-  /* Copy characters from string 1 */
-  do
-    *ptr++ = *string1;
-  while (*string1++ != '\0');
-
-  ptr--;
-
-  va_start (args, string1);
-  str = va_arg (args, char*);
-
-  /* Loop thru each optional argument again and copy each */
-  while (str) {
-    do
-      *ptr++ = *str;
-    while (*str++ != '\0');
-    ptr--;
-    str = va_arg (args, char*);
-  }
-  va_end (args);
-
-  return concat;
 }
 
 char *u_string_strdup(const char *str)
