@@ -344,29 +344,32 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
 bool
 geda_toplevel_set_bounds(GedaToplevel *toplevel, Object *o_current)
 {
-  g_return_val_if_fail(GEDA_IS_TOPLEVEL(toplevel), FALSE);
-  g_return_val_if_fail(GEDA_IS_TEXT(o_current), FALSE);
-
-  int left   = 0;
-  int top    = 0;
-  int right  = 0;
-  int bottom = 0;
   int result = 0;
 
-  /* Check if toplevel render func is set */
-  if (toplevel->rendered_text_bounds_func != NULL) {
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
 
-    result = toplevel->rendered_text_bounds_func(toplevel->rendered_text_bounds_data,
-                                                 o_current, &left, &top, &right, &bottom);
+    g_return_val_if_fail(GEDA_IS_TEXT(o_current), FALSE);
+
+    int left   = 0;
+    int top    = 0;
+    int right  = 0;
+    int bottom = 0;
+
+
+    /* Check if toplevel render func is set */
+    if (toplevel->rendered_text_bounds_func != NULL) {
+
+      result = toplevel->rendered_text_bounds_func(toplevel->rendered_text_bounds_data,
+                                                   o_current, &left, &top, &right, &bottom);
+    }
+
+    if (result) {
+      o_current->left   = left;
+      o_current->top    = top;
+      o_current->right  = right;
+      o_current->bottom = bottom;
+    }
   }
-
-  if (result) {
-    o_current->left   = left;
-    o_current->top    = top;
-    o_current->right  = right;
-    o_current->bottom = bottom;
-  }
-
   return result;
 }
 

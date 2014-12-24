@@ -295,7 +295,7 @@ const char   *o_picture_get_filename        (Object *object);
 
 #ifdef GDK_PIXBUF_H
  GdkPixbuf   *o_picture_get_pixbuf          (Object *object) G_GNUC_WARN_UNUSED_RESULT;
- GdkPixbuf   *o_picture_get_fallback_pixbuf (GedaToplevel *toplevel) G_GNUC_WARN_UNUSED_RESULT;
+ GdkPixbuf   *o_picture_get_fallback_pixbuf (void) G_GNUC_WARN_UNUSED_RESULT;
 #endif
 
 /* o_pin_basic.c */

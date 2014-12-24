@@ -112,7 +112,7 @@ Object *o_picture_read (const char *first_line,
 
   /* Handle empty filenames */
   if (strlen (filename) == 0) {
-    u_log_message (_("Found an image with no filename."));
+    u_log_message (_("Image filename is missing."));
     GEDA_FREE (filename);
     filename = NULL;
   }
@@ -267,7 +267,7 @@ char *o_picture_save(Object *object)
  *  \param [in]     embedded      Whether the embedded flag should be set or not.
  *  \return A pointer to a new picture #Object.
  */
-Object *o_picture_new (const char *file_content, gsize file_length,
+Object *o_picture_new (const char *file_content, unsigned int file_length,
                        const char *filename,
                        int x1, int y1, int x2, int y2, int angle,
                        int mirrored, int embedded)
@@ -281,18 +281,18 @@ Object *o_picture_new (const char *file_content, gsize file_length,
   picture = GEDA_PICTURE(new_obj);
 
   /* describe the picture with its upper left and lower right corner */
-  picture->upper_x = (x1 > x2) ? x2 : x1;
-  picture->upper_y = (y1 > y2) ? y1 : y2;
-  picture->lower_x = (x1 > x2) ? x1 : x2;
-  picture->lower_y = (y1 > y2) ? y2 : y1;
+  picture->upper_x      = (x1 > x2) ? x2 : x1;
+  picture->upper_y      = (y1 > y2) ? y1 : y2;
+  picture->lower_x      = (x1 > x2) ? x1 : x2;
+  picture->lower_y      = (y1 > y2) ? y2 : y1;
 
-  picture->pixbuf = NULL;
+  picture->pixbuf       = NULL;
   picture->file_content = NULL;
-  picture->file_length = 0;
+  picture->file_length  = 0;
 
-  picture->angle = angle;
-  picture->mirrored = mirrored;
-  picture->embedded = embedded;
+  picture->angle        = angle;
+  picture->mirrored     = mirrored;
+  picture->embedded     = embedded;
 
   /* Can not divide by zero */
   if ( (y1 - y2) != 0 ) {
@@ -306,7 +306,8 @@ Object *o_picture_new (const char *file_content, gsize file_length,
   if (file_content != NULL) {
     GError *error = NULL;
     if (!o_picture_set_from_buffer (new_obj, filename,
-                                    file_content, file_length, &error)) {
+      file_content, file_length, &error))
+    {
       u_log_message (_("Failed to load buffer image [%s]: %s\n"),
                      filename, error->message);
       g_error_free (error);
@@ -319,13 +320,32 @@ Object *o_picture_new (const char *file_content, gsize file_length,
   }
 
   if (picture->pixbuf == NULL && filename != NULL) {
+
     GError *error = NULL;
+
     if (!o_picture_set_from_file (new_obj, filename, &error)) {
+
+      Object *new_attrib;
+      char   *not_found;
+
       u_log_message (_("Failed to load image from [%s]: %s\n"),
-                     filename, error->message);
+                        filename, error->message);
+
+      picture->pixbuf = o_picture_get_fallback_pixbuf();
+
+      /* Add some useful text */
+      not_found = u_string_sprintf (_("%s:\n %s"), filename, error->message);
+
+      new_attrib = o_text_new(DETACHED_ATTRIBUTE_COLOR,
+                              x1 + NOT_FOUND_TEXT_X,
+                              y1 + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0,
+                              not_found, 10,
+                              VISIBLE, SHOW_NAME_VALUE);
+
+      new_obj->attribs = g_list_append (new_obj->attribs, new_attrib);
+
+      GEDA_FREE(not_found);
       g_error_free (error);
-      s_object_release(new_obj);
-      new_obj = NULL;
     }
   }
 
@@ -821,7 +841,7 @@ void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 
   /* If the image failed to load, try to get hold of the fallback
    * pixbuf. */
-  if (image == NULL) image = o_picture_get_fallback_pixbuf (toplevel);
+  if (image == NULL) image = o_picture_get_fallback_pixbuf ();
   /* If the image failed to load, draw a box in the default color with a
    * cross in it. */
   if (image == NULL) {
@@ -1145,27 +1165,29 @@ o_picture_get_filename (Object *object)
  *
  * \return a GdkPixbuf containing a warning image.
  */
-GdkPixbuf *
-o_picture_get_fallback_pixbuf (GedaToplevel *toplevel)
+GdkPixbuf *o_picture_get_fallback_pixbuf (void)
 {
   static GdkPixbuf *pixbuf = NULL;
-  static bool failed = FALSE;
+  static bool       failed = FALSE;
+
+  const char *filename = "geda_warning.png";
 
   if (pixbuf == NULL && !failed) {
-    char *filename;
+
+    char *pathname;
     GError *error = NULL;
 
-    filename = g_build_filename (toplevel->bitmap_directory,
-                                 "gschem-warning.png", NULL);
-    pixbuf = gdk_pixbuf_new_from_file (filename, &error);
+    pathname = g_build_filename (f_path_sys_data(), "bitmap", filename, NULL);
+
+    pixbuf = gdk_pixbuf_new_from_file (pathname, &error);
 
     if (pixbuf == NULL) {
-      g_warning ( _("Failed to load fallback image %s: %s.\n"),
-                  filename, error->message);
+      g_warning (_("Failed to load fallback image %s: %s.\n"), pathname,
+                                                               error->message);
       g_error_free (error);
       failed = TRUE;
     }
-    GEDA_FREE (filename);
+    GEDA_FREE (pathname);
   }
 
   if (failed) return NULL;

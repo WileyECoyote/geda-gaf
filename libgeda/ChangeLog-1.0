@@ -1,3 +1,9 @@
+2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Use f_path_sys_data() instead of toplevel
+      ->bitmap_directory (like everone else) in function o_picture_get_
+      fallback_pixbuf and eliminate GedaToplevel argument.
+
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Make sure index from beginning of glist in
