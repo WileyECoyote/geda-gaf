@@ -40,18 +40,22 @@ style "gschem"
    #font_name = "DejaVu Sans 12"
    font_name = "Liberation Mono Bold 13"
 
-   GedaBulb::indicator-size    = 26
-   GedaBulb::indicator-spacing = 2
+   GedaBulb::indicator-size     = 26
+   GedaBulb::indicator-spacing  = 2
 
-   GedaComboBox::arrow-size    = 15
-   GedaComboBox::shadow-type   = 0
+   GedaComboBox::arrow-size     = 15
+   GedaComboBox::shadow-type    = 0
+
+   # Comment this line to enble selecting image files on remote
+   # system, only recommended if remote images are to be embeded
+   GedaImageChooser::local-only = 1
 
    GedaMenuButton::default-border         = "GtkBorder"
    GedaMenuButton::default-outside-border = "GtkBorder"
    GedaMenuButton::inner-border           = "GtkBorder"
 
-   GtkScale::slider-length     = 23
-   GtkToolButton::icon-spacing = 4
+   GtkScale::slider-length      = 23
+   GtkToolButton::icon-spacing  = 4
 }
 widget_class "*" style "gschem"
 
