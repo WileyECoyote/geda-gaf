@@ -392,6 +392,26 @@ selected_complex_object(GList *list)
   return FALSE;
 }
 
+/*! \brief Is at least one Picture object selected?
+ *  \par Function Description
+ * update sensitivities helper function to determine
+ * if any selected objects are Picture objects
+ */
+static bool
+selected_at_least_one_pic_object(GList *list)
+{
+  Object *obj;
+
+  while(list != NULL) {
+    obj = (Object *) list->data;
+    if (obj->type == OBJ_PICTURE) {
+      return TRUE;
+    }
+    NEXT(list);
+  }
+  return FALSE;
+}
+
 /*! \brief Is at least one Pin object selected?
  *  \par Function Description
  * update sensitivities helper function to determine
@@ -436,6 +456,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
   bool complex_selected;
   bool mutil_pages;
   bool text_selected;
+  bool pic_selected;
   bool pin_selected;
   bool is_editing_symbol;
 
@@ -451,8 +472,12 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_popup_sensitivity(w_current, "Down Symbol",       state);
     /* x_menus_popup_sensitivity(w_current, "Up", state); */
 
-    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
     x_menus_sensitivity(w_current, "_Tools/Update Component", state);
+  }
+
+  void set_embeded_sensitivities (bool state) {
+    x_menus_sensitivity(w_current, "_Tools/Embed Component/Picture", state);
+    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
   }
 
   void set_sensitivity_for_text (bool state) {
@@ -479,6 +504,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     mutil_pages          = FALSE;
     complex_selected     = FALSE;
     is_editing_symbol    = FALSE;
+    pic_selected         = FALSE;
     pin_selected         = FALSE;
     text_selected        = FALSE;
   }
@@ -489,6 +515,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
     complex_selected     = selected_complex_object(list);
     is_editing_symbol    = s_page_is_symbol_file(Current_Page);
+    pic_selected         = selected_at_least_one_pic_object(list);
     pin_selected         = selected_at_least_one_pin_object(list);
     text_selected        = selected_at_least_one_text_object(list);
   }
@@ -510,6 +537,13 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
     else {
       set_sensitivity_for_complexes (FALSE);
+    }
+
+    if (complex_selected || pic_selected) {
+      set_embeded_sensitivities (TRUE);
+    }
+    else {
+      set_embeded_sensitivities (FALSE);
     }
 
     if (complex_selected  || is_editing_symbol) {
@@ -593,6 +627,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
   else { /* Nothing is selected, grey these out */
 
     set_sensitivity_for_complexes (FALSE);
+    set_embeded_sensitivities (FALSE);
     set_sensitivity_for_text (FALSE);
 
     /* Handle special cases first, then follow menu order */
@@ -678,6 +713,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
   /* This list must be last*/
   x_toolbars_set_sensitivities (w_current, ANY_OBJECT,     any_object);
+
   return FALSE;
 }
 
