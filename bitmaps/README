@@ -12,13 +12,13 @@ Added by wileyhill@gmail.com:
 ghost_invisible_22x22.xpm          kearone@freenet.de, use by permission
 ghost_invisible_24x24.xpm          kearone@freenet.de, use by permission
 ghost_invisible_32x32.xpm          kearone@freenet.de, use by permission
-ghost_invisible_256x256.xpm      kearone@freenet.de, use by permission
+ghost_invisible_256x256.xpm        kearone@freenet.de, use by permission
 
 geda_film_roll_24x24.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_26x26.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_28x28.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_32x32.xpm           richard@hughsie.com,  use by permission (PackageKit)
-geda_film_roll_128x128.xpm       richard@hughsie.com,  use by permission (PackageKit)
+geda_film_roll_128x128.xpm         richard@hughsie.com,  use by permission (PackageKit)
 
 Note: The icons are released under the Gnu General Public License,
        meaning you can use them in free software projects free of
@@ -55,6 +55,7 @@ gaf_tools_26x26.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_28x28.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_32x32.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_128x128.xpm              Created by wileyhill@gmail.com, GPL2
+
 geda_analysis_16x16.png            Created by wileyhill@gmail.com, GPL2
 geda_analysis_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_analysis_24x24.png            Created by wileyhill@gmail.com, GPL2
@@ -75,6 +76,7 @@ geda_arc_edit_48x48.png            Created by wileyhill@gmail.com, GPL2
 geda-autonum-blue.png              Created by wileyhill@gmail.com, GPL2
 geda-autonum-green.png             Created by wileyhill@gmail.com, GPL2
 geda-autonum-red.png               Created by wileyhill@gmail.com, GPL2
+
 geda-bed.png                       Created by wileyhill@gmail.com, GPL2
 geda-box.png                       Created by wileyhill@gmail.com, GPL2
 geda_box_22x22.png                 Created by wileyhill@gmail.com, GPL2
@@ -82,6 +84,7 @@ geda_box_24x24.png                 Created by wileyhill@gmail.com, GPL2
 geda_box_26x26.png                 Created by wileyhill@gmail.com, GPL2
 geda_box_28x28.png                 Created by wileyhill@gmail.com, GPL2
 geda_box_32x32.png                 Created by wileyhill@gmail.com, GPL2
+
 geda_calculate_16x16.png           Created by wileyhill@gmail.com, GPL2
 geda_calculate_22x22.png           Created by wileyhill@gmail.com, GPL2
 geda_calculate_24x24.png           Created by wileyhill@gmail.com, GPL2
@@ -107,6 +110,7 @@ geda_copy_24x24.png                Created by wileyhill@gmail.com, GPL2
 geda_copy_26x26.png                Created by wileyhill@gmail.com, GPL2
 geda_copy_28x28.png                Created by wileyhill@gmail.com, GPL2
 geda_copy_32x32.png                Created by wileyhill@gmail.com, GPL2
+
 geda_demote_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_demote_24x24.png              Created by wileyhill@gmail.com, GPL2
 geda_demote_26x26.png              Created by wileyhill@gmail.com, GPL2
@@ -153,6 +157,7 @@ geda_draft_22x22.png               Created by wileyhill@gmail.com, GPL2
 geda_draft_24x24.png               Created by wileyhill@gmail.com, GPL2
 geda_draft_28x28.png               Created by wileyhill@gmail.com, GPL2
 geda_draft_32x32.png               Created by wileyhill@gmail.com, GPL2
+
 geda_find_16x16.png                Created by wileyhill@gmail.com, GPL2
 geda_find_22x22.png                Created by wileyhill@gmail.com, GPL2
 geda_find_24x24.png                Created by wileyhill@gmail.com, GPL2
@@ -178,6 +183,7 @@ geda_find_attribute_24x24.png      Created by wileyhill@gmail.com, GPL2
 geda_find_attribute_26x26.png      Created by wileyhill@gmail.com, GPL2
 geda_find_attribute_28x28.png      Created by wileyhill@gmail.com, GPL2
 geda_find_attribute_32x32.png      Created by wileyhill@gmail.com, GPL2
+
 geda_grid_dot_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_grid_dot_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_grid_dot_26x26.png            Created by wileyhill@gmail.com, GPL2
@@ -190,81 +196,147 @@ geda_grid_mesh_26x26.png           Created by wileyhill@gmail.com, GPL2
 geda_grid_mesh_28x28.png           Created by wileyhill@gmail.com, GPL2
 geda_grid_mesh_32x32.png           Created by wileyhill@gmail.com, GPL2
 geda-grid-mesh.png                 Created by wileyhill@gmail.com, GPL2
+
 geda_icprint_16x16.png             Created by wileyhill@gmail.com, GPL2
 geda_icprint_22x22.png             Created by wileyhill@gmail.com, GPL2
 geda_icprint_24x24.png             Created by wileyhill@gmail.com, GPL2
 geda_icprint_28x28.png             Created by wileyhill@gmail.com, GPL2
 geda_icprint_32x32.png             Created by wileyhill@gmail.com, GPL2
 geda-inbed.png                     Created by wileyhill@gmail.com, GPL2
+
+geda_line_22x22.xpm                Created by wileyhill@gmail.com, GPL2
+geda_line_24x24.xpm                Created by wileyhill@gmail.com, GPL2
+geda_line_26x26.xpm                Created by wileyhill@gmail.com, GPL2
+geda_line_28x28.xpm                Created by wileyhill@gmail.com, GPL2
+geda_line_32x32.xpm                Created by wileyhill@gmail.com, GPL2
+geda_line_type_22x22.png           Created by wileyhill@gmail.com, GPL2
+geda_line_type_24x24.png           Created by wileyhill@gmail.com, GPL2
+geda_line_type_26x26.png           Created by wileyhill@gmail.com, GPL2
+geda_line_type_28x28.png           Created by wileyhill@gmail.com, GPL2
+geda_line_type_32x32.png           Created by wileyhill@gmail.com, GPL2
 geda_locate_reference_22x22.xpm    Created by wileyhill@gmail.com, GPL2
 geda_locate_reference_24x24.xpm    Created by wileyhill@gmail.com, GPL2
 geda_locate_reference_26x26.xpm    Created by wileyhill@gmail.com, GPL2
 geda_locate_reference_28x28.xpm    Created by wileyhill@gmail.com, GPL2
 geda_locate_reference_32x32.xpm    Created by wileyhill@gmail.com, GPL2
+geda_lock_22x22.xpm                Created by wileyhill@gmail.com, GPL2
+geda_lock_24x24.xpm                Created by wileyhill@gmail.com, GPL2
+geda_lock_26x26.xpm                Created by wileyhill@gmail.com, GPL2
+geda_lock_28x28.xpm                Created by wileyhill@gmail.com, GPL2
+geda_lock_32x32.xpm                Created by wileyhill@gmail.com, GPL2
+
 geda_magnet_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_magnet_24x24.png              Created by wileyhill@gmail.com, GPL2
 geda_magnet_26x26.png              Created by wileyhill@gmail.com, GPL2
 geda_magnet_28x28.png              Created by wileyhill@gmail.com, GPL2
 geda_magnet_32x32.png              Created by wileyhill@gmail.com, GPL2
 geda-magnet.png                    Created by wileyhill@gmail.com, GPL2
+geda_man_22x22.xpm                 Created by wileyhill@gmail.com, GPL2
+geda_man_24x24.xpm                 Created by wileyhill@gmail.com, GPL2
+geda_man_26x26.xpm                 Created by wileyhill@gmail.com, GPL2
+geda_man_28x28.xpm                 Created by wileyhill@gmail.com, GPL2
+geda_man_32x32.xpm                 Created by wileyhill@gmail.com, GPL2
+geda_man_128x128.xpm               Created by wileyhill@gmail.com, GPL2
 geda_marker_16x16.png              Created by wileyhill@gmail.com, GPL2
 geda_marker_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_marker_24x24.png              Created by wileyhill@gmail.com, GPL2
 geda_marker_28x28.png              Created by wileyhill@gmail.com, GPL2
 geda_marker_32x32.png              Created by wileyhill@gmail.com, GPL2
+geda_mesh_22x22.png                Created by wileyhill@gmail.com, GPL2
+geda_mesh_24x24.png                Created by wileyhill@gmail.com, GPL2
+geda_mesh_26x26.png                Created by wileyhill@gmail.com, GPL2
+geda_mesh_28x28.png                Created by wileyhill@gmail.com, GPL2
+geda_mesh_32x32.png                Created by wileyhill@gmail.com, GPL2
+geda_mirror_22x22.png              Created by wileyhill@gmail.com, GPL2
+geda_mirror_24x24.png              Created by wileyhill@gmail.com, GPL2
+geda_mirror_26x26.png              Created by wileyhill@gmail.com, GPL2
+geda_mirror_28x28.png              Created by wileyhill@gmail.com, GPL2
+geda_mirror_32x32.png              Created by wileyhill@gmail.com, GPL2
 geda_molecule_16x16.png            Created by wileyhill@gmail.com, GPL2
 geda_molecule_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_molecule_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_molecule_28x28.png            Created by wileyhill@gmail.com, GPL2
 geda_molecule_32x32.png            Created by wileyhill@gmail.com, GPL2
-geda_name_tag_16x16.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_name_tag_22x22.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_name_tag_24x24.xpm    	   Created by wileyhill@gmail.com, GPL2
+geda_move_22x22.png                Created by wileyhill@gmail.com, GPL2
+geda_move_24x24.png                Created by wileyhill@gmail.com, GPL2
+geda_move_26x26.png                Created by wileyhill@gmail.com, GPL2
+geda_move_28x28.png                Created by wileyhill@gmail.com, GPL2
+geda_move_32x32.png                Created by wileyhill@gmail.com, GPL2
+geda_multi_22x22.png               Created by wileyhill@gmail.com, GPL2
+geda_multi_24x24.png               Created by wileyhill@gmail.com, GPL2
+geda_multi_26x26.png               Created by wileyhill@gmail.com, GPL2
+geda_multi_28x28.png               Created by wileyhill@gmail.com, GPL2
+geda_multi_32x32.png               Created by wileyhill@gmail.com, GPL2
+geda_multi_48x48.png               Created by wileyhill@gmail.com, GPL2
+
+geda_name_tag_16x16.xpm            Created by wileyhill@gmail.com, GPL2
+geda_name_tag_22x22.xpm            Created by wileyhill@gmail.com, GPL2
+geda_name_tag_24x24.xpm            Created by wileyhill@gmail.com, GPL2
 geda_name_tag_26x26.xpm            Created by wileyhill@gmail.com, GPL2
 geda_name_tag_28x28.xpm            Created by wileyhill@gmail.com, GPL2
-geda_name_tag_32x32.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_name_tag_36x36.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_nand_16x16.png    	           Created by wileyhill@gmail.com, GPL2
-geda_nand_22x22.png    	           Created by wileyhill@gmail.com, GPL2
-geda_nand_24x24.png    	           Created by wileyhill@gmail.com, GPL2
-geda_nand_28x28.png    	           Created by wileyhill@gmail.com, GPL2
-geda_nand_32x32.png    	           Created by wileyhill@gmail.com, GPL2
-geda_nand3_16x16.png    	   Created by wileyhill@gmail.com, GPL2
-geda_nand3_22x22.png    	   Created by wileyhill@gmail.com, GPL2
-geda_nand3_24x24.png    	   Created by wileyhill@gmail.com, GPL2
-geda_nand3_28x28.png    	   Created by wileyhill@gmail.com, GPL2
-geda_nand3_32x32.png    	   Created by wileyhill@gmail.com, GPL2
+geda_name_tag_32x32.xpm            Created by wileyhill@gmail.com, GPL2
+geda_name_tag_36x36.xpm            Created by wileyhill@gmail.com, GPL2
+geda_nand_16x16.png                Created by wileyhill@gmail.com, GPL2
+geda_nand_22x22.png                Created by wileyhill@gmail.com, GPL2
+geda_nand_24x24.png                Created by wileyhill@gmail.com, GPL2
+geda_nand_28x28.png                Created by wileyhill@gmail.com, GPL2
+geda_nand_32x32.png                Created by wileyhill@gmail.com, GPL2
+geda_nand3_16x16.png               Created by wileyhill@gmail.com, GPL2
+geda_nand3_22x22.png               Created by wileyhill@gmail.com, GPL2
+geda_nand3_24x24.png               Created by wileyhill@gmail.com, GPL2
+geda_nand3_28x28.png               Created by wileyhill@gmail.com, GPL2
+geda_nand3_32x32.png               Created by wileyhill@gmail.com, GPL2
 geda-net.png                       Created byPeter Clifton, GPL2
-geda_node_16x16.png     	   Created by wileyhill@gmail.com, GPL2
-geda_node_22x22.png     	   Created by wileyhill@gmail.com, GPL2
-geda_node_24x24.png     	   Created by wileyhill@gmail.com, GPL2
-geda_node_28x28.png     	   Created by wileyhill@gmail.com, GPL2
-geda_node_32x32.png     	   Created by wileyhill@gmail.com, GPL2
-geda_npn_16x16.png     	           Created by wileyhill@gmail.com, GPL2
-geda_npn_22x22.png     	           Created by wileyhill@gmail.com, GPL2
-geda_npn_24x24.png     	           Created by wileyhill@gmail.com, GPL2
-geda_npn_28x28.png     	           Created by wileyhill@gmail.com, GPL2
-geda_npn_32x32.png     	           Created by wileyhill@gmail.com, GPL2
+geda_node_16x16.png                Created by wileyhill@gmail.com, GPL2
+geda_node_22x22.png                Created by wileyhill@gmail.com, GPL2
+geda_node_24x24.png                Created by wileyhill@gmail.com, GPL2
+geda_node_28x28.png                Created by wileyhill@gmail.com, GPL2
+geda_node_32x32.png                Created by wileyhill@gmail.com, GPL2
+geda_npn_16x16.png                 Created by wileyhill@gmail.com, GPL2
+geda_npn_22x22.png                 Created by wileyhill@gmail.com, GPL2
+geda_npn_24x24.png                 Created by wileyhill@gmail.com, GPL2
+geda_npn_28x28.png                 Created by wileyhill@gmail.com, GPL2
+geda_npn_32x32.png                 Created by wileyhill@gmail.com, GPL2
 geda_number_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_number_24x24.png              Created by wileyhill@gmail.com, GPL2
 geda_number_26x26.png              Created by wileyhill@gmail.com, GPL2
 geda_number_28x28.png              Created by wileyhill@gmail.com, GPL2
 geda_number_32x32.png              Created by wileyhill@gmail.com, GPL2
+
+geda-path.png                      Created by Peter Clifton, GPL2
+geda-pin.png                       Created by Peter Clifton, GPL2
+geda_pin_22x22.png                 Created by wileyhill@gmail.com, GPL2
+geda_pin_24x24.png                 Created by wileyhill@gmail.com, GPL2
+geda_pin_26x26.png                 Created by wileyhill@gmail.com, GPL2
+geda_pin_28x28.png                 Created by wileyhill@gmail.com, GPL2
+geda_pin_32x32.png                 Created by wileyhill@gmail.com, GPL2
 geda_plot_16x16.png                Created by wileyhill@gmail.com, GPL2
 geda_plot_22x22.png                Created by wileyhill@gmail.com, GPL2
 geda_plot_24x24.png                Created by wileyhill@gmail.com, GPL2
 geda_plot_28x28.png                Created by wileyhill@gmail.com, GPL2
 geda_plot_32x32.png                Created by wileyhill@gmail.com, GPL2
-geda_probe2_16x16.png              Created by wileyhill@gmail.com, GPL2
-geda_probe2_22x22.png              Created by wileyhill@gmail.com, GPL2
-geda_probe2_24x24.png              Created by wileyhill@gmail.com, GPL2
-geda_probe2_28x28.png              Created by wileyhill@gmail.com, GPL2
-geda_probe2_32x32.png              Created by wileyhill@gmail.com, GPL2
 geda_probe_16x16.png               Created by wileyhill@gmail.com, GPL2
 geda_probe_22x22.png               Created by wileyhill@gmail.com, GPL2
 geda_probe_24x24.png               Created by wileyhill@gmail.com, GPL2
 geda_probe_28x28.png               Created by wileyhill@gmail.com, GPL2
 geda_probe_32x32.png               Created by wileyhill@gmail.com, GPL2
+geda_probe2_16x16.png              Created by wileyhill@gmail.com, GPL2
+geda_probe2_22x22.png              Created by wileyhill@gmail.com, GPL2
+geda_probe2_24x24.png              Created by wileyhill@gmail.com, GPL2
+geda_probe2_28x28.png              Created by wileyhill@gmail.com, GPL2
+geda_probe2_32x32.png              Created by wileyhill@gmail.com, GPL2
+geda_promote_22x22.png             Created by wileyhill@gmail.com, GPL2
+geda_promote_24x24.png             Created by wileyhill@gmail.com, GPL2
+geda_promote_26x26.png             Created by wileyhill@gmail.com, GPL2
+geda_promote_28x28.png             Created by wileyhill@gmail.com, GPL2
+geda_promote_32x32.png             Created by wileyhill@gmail.com, GPL2
+
+geda_rotate_22x22.png              Created by wileyhill@gmail.com, GPL2
+geda_rotate_24x24.png              Created by wileyhill@gmail.com, GPL2
+geda_rotate_26x26.png              Created by wileyhill@gmail.com, GPL2
+geda_rotate_28x28.png              Created by wileyhill@gmail.com, GPL2
+geda_rotate_32x32.png              Created by wileyhill@gmail.com, GPL2
+
 geda_schem2_16x16.png              Created by wileyhill@gmail.com, GPL2
 geda_schem2_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_schem2_24x24.png              Created by wileyhill@gmail.com, GPL2
@@ -290,6 +362,11 @@ geda_scopehairs_22x22.png          Created by wileyhill@gmail.com, GPL2
 geda_scopehairs_24x24.png          Created by wileyhill@gmail.com, GPL2
 geda_scopehairs_28x28.png          Created by wileyhill@gmail.com, GPL2
 geda_scopehairs_32x32.png          Created by wileyhill@gmail.com, GPL2
+geda_sheets_22x22.xpm              Created by wileyhill@gmail.com, GPL2
+geda_sheets_24x24.xpm              Created by wileyhill@gmail.com, GPL2
+geda_sheets_26x26.xpm              Created by wileyhill@gmail.com, GPL2
+geda_sheets_28x28.xpm              Created by wileyhill@gmail.com, GPL2
+geda_sheets_32x32.xpm              Created by wileyhill@gmail.com, GPL2
 geda_simulate_16x16.png            Created by wileyhill@gmail.com, GPL2
 geda_simulate_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_simulate_24x24.png            Created by wileyhill@gmail.com, GPL2
@@ -305,90 +382,11 @@ geda_spectrum_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_spectrum_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_spectrum_28x28.png            Created by wileyhill@gmail.com, GPL2
 geda_spectrum_32x32.png            Created by wileyhill@gmail.com, GPL2
-geda_value_16x16.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_value_22x22.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_value_24x24.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_value_32x32.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_value_36x36.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_value_256x256.png    	   Created by wileyhill@gmail.com, GPL2
-geda_wave_16x16.png   	           Created by wileyhill@gmail.com, GPL2
-geda_wave_22x22.png   	           Created by wileyhill@gmail.com, GPL2
-geda_wave_24x24.png   	           Created by wileyhill@gmail.com, GPL2
-geda_wave_28x28.png   	           Created by wileyhill@gmail.com, GPL2
-geda_wave_32x32.png   	           Created by wileyhill@gmail.com, GPL2
-geda_waves_16x16.png 	           Created by wileyhill@gmail.com, GPL2
-geda_waves_22x22.png 	           Created by wileyhill@gmail.com, GPL2
-geda_waves_24x24.png 	           Created by wileyhill@gmail.com, GPL2
-geda_waves_28x28.png 	           Created by wileyhill@gmail.com, GPL2
-geda_waves_32x32.png 	           Created by wileyhill@gmail.com, GPL2
-geda_man_22x22.xpm   	           Created by wileyhill@gmail.com, GPL2
-geda_man_24x24.xpm   	           Created by wileyhill@gmail.com, GPL2
-geda_man_26x26.xpm   	           Created by wileyhill@gmail.com, GPL2
-geda_man_28x28.xpm   	           Created by wileyhill@gmail.com, GPL2
-geda_man_32x32.xpm                 Created by wileyhill@gmail.com, GPL2
-geda_man_128x128.xpm    	   Created by wileyhill@gmail.com, GPL2
-geda_line_22x22.xpm                Created by wileyhill@gmail.com, GPL2
-geda_line_24x24.xpm                Created by wileyhill@gmail.com, GPL2
-geda_line_26x26.xpm                Created by wileyhill@gmail.com, GPL2
-geda_line_28x28.xpm                Created by wileyhill@gmail.com, GPL2
-geda_line_32x32.xpm                Created by wileyhill@gmail.com, GPL2
-geda_line_type_22x22.png           Created by wileyhill@gmail.com, GPL2
-geda_line_type_24x24.png           Created by wileyhill@gmail.com, GPL2
-geda_line_type_26x26.png           Created by wileyhill@gmail.com, GPL2
-geda_line_type_28x28.png           Created by wileyhill@gmail.com, GPL2
-geda_line_type_32x32.png           Created by wileyhill@gmail.com, GPL2
-geda-path.png                      Created by Peter Clifton, GPL2
-geda-pin.png                       Created by Peter Clifton, GPL2
-geda_pin_22x22.png                 Created by wileyhill@gmail.com, GPL2
-geda_pin_24x24.png                 Created by wileyhill@gmail.com, GPL2
-geda_pin_26x26.png                 Created by wileyhill@gmail.com, GPL2
-geda_pin_28x28.png                 Created by wileyhill@gmail.com, GPL2
-geda_pin_32x32.png                 Created by wileyhill@gmail.com, GPL2
-geda_promote_22x22.png             Created by wileyhill@gmail.com, GPL2
-geda_promote_24x24.png             Created by wileyhill@gmail.com, GPL2
-geda_promote_26x26.png             Created by wileyhill@gmail.com, GPL2
-geda_promote_28x28.png             Created by wileyhill@gmail.com, GPL2
-geda_promote_32x32.png             Created by wileyhill@gmail.com, GPL2
-geda_lock_22x22.xpm                Created by wileyhill@gmail.com, GPL2
-geda_lock_24x24.xpm                Created by wileyhill@gmail.com, GPL2
-geda_lock_26x26.xpm                Created by wileyhill@gmail.com, GPL2
-geda_lock_28x28.xpm                Created by wileyhill@gmail.com, GPL2
-geda_lock_32x32.xpm                Created by wileyhill@gmail.com, GPL2
-geda_mesh_22x22.png                Created by wileyhill@gmail.com, GPL2
-geda_mesh_24x24.png                Created by wileyhill@gmail.com, GPL2
-geda_mesh_26x26.png                Created by wileyhill@gmail.com, GPL2
-geda_mesh_28x28.png                Created by wileyhill@gmail.com, GPL2
-geda_mesh_32x32.png                Created by wileyhill@gmail.com, GPL2
-geda_mirror_22x22.png              Created by wileyhill@gmail.com, GPL2
-geda_mirror_24x24.png              Created by wileyhill@gmail.com, GPL2
-geda_mirror_26x26.png              Created by wileyhill@gmail.com, GPL2
-geda_mirror_28x28.png              Created by wileyhill@gmail.com, GPL2
-geda_mirror_32x32.png              Created by wileyhill@gmail.com, GPL2
-geda_move_22x22.png                Created by wileyhill@gmail.com, GPL2
-geda_move_24x24.png                Created by wileyhill@gmail.com, GPL2
-geda_move_26x26.png                Created by wileyhill@gmail.com, GPL2
-geda_move_28x28.png                Created by wileyhill@gmail.com, GPL2
-geda_move_32x32.png                Created by wileyhill@gmail.com, GPL2
-geda_multi_22x22.png               Created by wileyhill@gmail.com, GPL2
-geda_multi_24x24.png               Created by wileyhill@gmail.com, GPL2
-geda_multi_26x26.png               Created by wileyhill@gmail.com, GPL2
-geda_multi_28x28.png               Created by wileyhill@gmail.com, GPL2
-geda_multi_32x32.png               Created by wileyhill@gmail.com, GPL2
-geda_multi_48x48.png               Created by wileyhill@gmail.com, GPL2
-geda_rotate_22x22.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_24x24.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_26x26.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_28x28.png              Created by wileyhill@gmail.com, GPL2
-geda_rotate_32x32.png              Created by wileyhill@gmail.com, GPL2
-geda_sheets_22x22.xpm              Created by wileyhill@gmail.com, GPL2
-geda_sheets_24x24.xpm              Created by wileyhill@gmail.com, GPL2
-geda_sheets_26x26.xpm              Created by wileyhill@gmail.com, GPL2
-geda_sheets_28x28.xpm              Created by wileyhill@gmail.com, GPL2
-geda_sheets_32x32.xpm              Created by wileyhill@gmail.com, GPL2
 geda_switch_48x36_off.png          Created by wileyhill@gmail.com, GPL2
 geda_switch_48x36_on.png           Created by wileyhill@gmail.com, GPL2
 geda_switch_64x48_off.png          Created by wileyhill@gmail.com, GPL2
 geda_switch_64x48_on.png           Created by wileyhill@gmail.com, GPL2
+
 geda_tools_22x22.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
 geda_tools_24x24.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
 geda_tools_26x26.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
@@ -400,11 +398,13 @@ geda_translate_24x24.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_26x26.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_28x28.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_32x32.png           Created by wileyhill@gmail.com, GPL2
+
 geda_unlock_22x22.xpm              Created by wileyhill@gmail.com, GPL2
 geda_unlock_24x24.xpm              Created by wileyhill@gmail.com, GPL2
 geda_unlock_26x26.xpm              Created by wileyhill@gmail.com, GPL2
 geda_unlock_28x28.xpm              Created by wileyhill@gmail.com, GPL2
 geda_unlock_32x32.xpm              Created by wileyhill@gmail.com, GPL2
+
 geda_value_16x16.xpm               Created by wileyhill@gmail.com, GPL2
 geda_value_22x22.xpm               Created by wileyhill@gmail.com, GPL2
 geda_value_24x24.xpm               Created by wileyhill@gmail.com, GPL2
@@ -418,6 +418,19 @@ geda_view_redraw_24x24.png         Added by wileyhill@gmail.com, GPL2
 geda_view_redraw_26x26.png         Added by wileyhill@gmail.com, GPL2
 geda_view_redraw_28x28.png         Added by wileyhill@gmail.com, GPL2
 geda_view_redraw_32x32.png         Added by wileyhill@gmail.com, GPL2
+
+geda_warning.png                   Created by wileyhill@gmail.com, GPL2
+geda_wave_16x16.png                Created by wileyhill@gmail.com, GPL2
+geda_wave_22x22.png                Created by wileyhill@gmail.com, GPL2
+geda_wave_24x24.png                Created by wileyhill@gmail.com, GPL2
+geda_wave_28x28.png                Created by wileyhill@gmail.com, GPL2
+geda_wave_32x32.png                Created by wileyhill@gmail.com, GPL2
+geda_waves_16x16.png               Created by wileyhill@gmail.com, GPL2
+geda_waves_22x22.png               Created by wileyhill@gmail.com, GPL2
+geda_waves_24x24.png               Created by wileyhill@gmail.com, GPL2
+geda_waves_28x28.png               Created by wileyhill@gmail.com, GPL2
+geda_waves_32x32.png               Created by wileyhill@gmail.com, GPL2
+
 geda_zoom_box_22x22.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_box_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_box_26x26.png            Created by wileyhill@gmail.com, GPL2
@@ -448,11 +461,11 @@ geda_zoom_pan_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_26x26.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_28x28.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_32x32.png            Created by wileyhill@gmail.com, GPL2
-git-logo.png                                    Created by wileyhill@gmail.com, GPL2
+
+git-logo.png                       Created by wileyhill@gmail.com, GPL2
 
 gschem_project_close_22x22.png     Created by wileyhill@gmail.com, GPL2
 gschem_project_close_24x24.png     Created by wileyhill@gmail.com, GPL2
 gschem_project_close_26x26.png     Created by wileyhill@gmail.com, GPL2
 gschem_project_close_28x28.png     Created by wileyhill@gmail.com, GPL2
 gschem_project_close_32x32.png     Created by wileyhill@gmail.com, GPL2
-

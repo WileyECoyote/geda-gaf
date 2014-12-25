@@ -9,60 +9,54 @@ README for bitmaps
 This file describes where the various bitmaps came from and their license.
 AVH = Ales V. Hvezda (ahvezda@geda.seul.org)
 
-gschem_bus.xpm 			Created by AVH, GPL
-gschem_comp_24x24.xpm   	Created by AVH, GPL
-gschem_comp_26x26.xpm  	 	Created by AVH, GPL (Resized by wileyhill@gmail.com)
-gschem_copy.xpm 		Created by AVH, GPL
-gschem_delete.xpm		Created by AVH, GPL 
-gschem_edit.xpm			Created by AVH, GPL 
-gschem_invert_22x22.png 	Created by wileyhill@gmail.com, GPL2
-gschem_invert_24x24.png 	Created by wileyhill@gmail.com, GPL2
-gschem_invert_26x26.png 	Created by wileyhill@gmail.com, GPL2
-gschem_invert_28x28.png 	Created by wileyhill@gmail.com, GPL2
-gschem_invert_32x32.png 	Created by wileyhill@gmail.com, GPL2
-gschem-invert.png 	        Created by wileyhill@gmail.com, GPL2
-gschem_mirror.xpm		Created by AVH, GPL 
-gschem_rotate.xpm		Created by AVH, GPL 
-gschem_move.xpm			Created by AVH, GPL 
-gschem_net.xpm			Created by AVH, GPL
-gschem_select_22x22.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_24x24.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_26x26.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_28x28.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_32x32.png 	Created by wileyhill@gmail.com, GPL2
-gschem-select.png 	        Created by wileyhill@gmail.com, GPL2
-gschem_select_all_22x22.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_all_24x24.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_all_26x26.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_all_28x28.png 	Created by wileyhill@gmail.com, GPL2
-gschem_select_all_32x32.png 	Created by wileyhill@gmail.com, GPL2
-gschem-select-all.png           Created by wileyhill@gmail.com, GPL2
+gschem_bus.xpm               Created by AVH, GPL
+gschem_comp_24x24.xpm        Created by AVH, GPL
+gschem_comp_26x26.xpm        Created by AVH, GPL (Resized by wileyhill@gmail.com)
+gschem_copy.xpm              Created by AVH, GPL
+gschem_delete.xpm            Created by AVH, GPL
+gschem_edit.xpm              Created by AVH, GPL
+gschem_invert_22x22.png      Created by wileyhill@gmail.com, GPL2
+gschem_invert_24x24.png      Created by wileyhill@gmail.com, GPL2
+gschem_invert_26x26.png      Created by wileyhill@gmail.com, GPL2
+gschem_invert_28x28.png      Created by wileyhill@gmail.com, GPL2
+gschem_invert_32x32.png      Created by wileyhill@gmail.com, GPL2
+gschem-invert.png            Created by wileyhill@gmail.com, GPL2
+gschem_mirror.xpm            Created by AVH, GPL
+gschem_rotate.xpm            Created by AVH, GPL
+gschem_move.xpm              Created by AVH, GPL
+gschem_net.xpm               Created by AVH, GPL
+gschem_select_22x22.png      Created by wileyhill@gmail.com, GPL2
+gschem_select_24x24.png      Created by wileyhill@gmail.com, GPL2
+gschem_select_26x26.png      Created by wileyhill@gmail.com, GPL2
+gschem_select_28x28.png      Created by wileyhill@gmail.com, GPL2
+gschem_select_32x32.png      Created by wileyhill@gmail.com, GPL2
+gschem-select.png            Created by wileyhill@gmail.com, GPL2
+gschem_select_all_22x22.png  Created by wileyhill@gmail.com, GPL2
+gschem_select_all_24x24.png  Created by wileyhill@gmail.com, GPL2
+gschem_select_all_26x26.png  Created by wileyhill@gmail.com, GPL2
+gschem_select_all_28x28.png  Created by wileyhill@gmail.com, GPL2
+gschem_select_all_32x32.png  Created by wileyhill@gmail.com, GPL2
+gschem-select-all.png        Created by wileyhill@gmail.com, GPL2
 
-gschem_text_24x24.png   	Created by AVH, GPL (converted from xpm to png  wileyhill@gmail.com)
-gschem_text_26x26.png   	Created by AVH, GPL (Resized by wileyhill@gmail.com)
+gschem_text_24x24.png        Created by AVH, GPL (converted from xpm to png  wileyhill@gmail.com)
+gschem_text_26x26.png        Created by AVH, GPL (Resized by wileyhill@gmail.com)
 
-gschem_unselect_22x22.png 	Created by wileyhill@gmail.com, GPL2
-gschem_unselect_24x24.png 	Created by wileyhill@gmail.com, GPL2
-gschem_unselect_26x26.png 	Created by wileyhill@gmail.com, GPL2
-gschem_unselect_28x28.png 	Created by wileyhill@gmail.com, GPL2
-gschem_unselect_32x32.png 	Created by wileyhill@gmail.com, GPL2
-gschem-unselect.png 	        Created by wileyhill@gmail.com, GPL2
+gschem_unselect_22x22.png    Created by wileyhill@gmail.com, GPL2
+gschem_unselect_24x24.png    Created by wileyhill@gmail.com, GPL2
+gschem_unselect_26x26.png    Created by wileyhill@gmail.com, GPL2
+gschem_unselect_28x28.png    Created by wileyhill@gmail.com, GPL2
+gschem_unselect_32x32.png    Created by wileyhill@gmail.com, GPL2
+gschem-unselect.png          Created by wileyhill@gmail.com, GPL2
 
-gschem_bottom2top.png		Created by Tomaz Solc, GPL
-gschem_top2bottom.png		Created by Tomaz Solc, GPL
-gschem_left2right.png		Created by Tomaz Solc, GPL
-gschem_right2left.png		Created by Tomaz Solc, GPL
-gschem_diagonal.png		Created by Tomaz Solc, GPL
-
-This icon come from the GNOME project, and is released under the 
-Gnu General Public License, meaning that you can use them in free
-software projects free of charge.
-
-gschem_warning.png	From the GNOME projec. GPL
+gschem_bottom2top.png        Created by Tomaz Solc, GPL
+gschem_top2bottom.png        Created by Tomaz Solc, GPL
+gschem_left2right.png        Created by Tomaz Solc, GPL
+gschem_right2left.png        Created by Tomaz Solc, GPL
+gschem_diagonal.png          Created by Tomaz Solc, GPL
 
 All of the following XPM's were created by: tigert@gimp.org
 and were called tb_*.xpm.  These XPM's come from the GNOME project.
-The license on these files is (from the webpage: 
+The license on these files is (from the webpage:
 http://tigert.gimp.org/gnome/gnome-stock/):
 
 Note3: The icons are released under the Gnu General Public License,
@@ -71,17 +65,15 @@ Note3: The icons are released under the Gnu General Public License,
        other icons for your project) contact me. Note: it may take a
        while to answer you since I get pretty much email.
 
-gschem_new.xpm 		Created by tigert@gimp.org, GPL
-gschem_open.xpm		Created by tigert@gimp.org, GPL
-gschem_undo.xpm		Created by tigert@gimp.org, GPL
-gschem_redo.xpm		Created by tigert@gimp.org, GPL
-gschem_save.xpm		Created by tigert@gimp.org, GPL
+gschem_new.xpm               Created by tigert@gimp.org, GPL
+gschem_open.xpm              Created by tigert@gimp.org, GPL
+gschem_undo.xpm              Created by tigert@gimp.org, GPL
+gschem_redo.xpm              Created by tigert@gimp.org, GPL
+gschem_save.xpm              Created by tigert@gimp.org, GPL
 
-geda_bulb_24x26_off.png    Created by wileyhill@gmail.com, GPL
-geda_bulb_24x26_on.png     Created by wileyhill@gmail.com, GPL
-geda_switch_64x48_on.png   Created by wileyhill@gmail.com, GPL
-geda_switch_64x48_off.png  Created by wileyhill@gmail.com, GPL
+geda_bulb_24x26_off.png      Created by wileyhill@gmail.com, GPL
+geda_bulb_24x26_on.png       Created by wileyhill@gmail.com, GPL
+geda_switch_64x48_on.png     Created by wileyhill@gmail.com, GPL
+geda_switch_64x48_off.png    Created by wileyhill@gmail.com, GPL
 
-gschem-bus.png         Created by wileyhill@gmail.com, GPL
-
-
+gschem-bus.png               Created by wileyhill@gmail.com, GPL
