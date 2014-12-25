@@ -965,7 +965,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
 /*
   if ( source_name_exist(tmpstr) ) {
-    unique_name = g_strconcat(category, "-", tmpstr, NULL);
+    unique_name = u_string_concat(category, "-", tmpstr, NULL);
     GEDA_FREE (tmpstr);
     tmpstr = unique_name;
   }

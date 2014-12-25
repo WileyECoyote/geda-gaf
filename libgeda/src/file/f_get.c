@@ -73,7 +73,7 @@ char *f_get_autosave_filename (const char *filename)
   else {
     old_basename  = f_get_basename(filename);
     path_spec     = g_path_get_dirname(filename);
-    new_basename  = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
+    new_basename  = u_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
     GEDA_FREE(new_basename);
@@ -114,16 +114,35 @@ char *f_get_bitmap_filespec (const char *filename)
 {
   const char *base;
   const char *seperator;
+  const char *directory;
   const char *subfolder;
 
   char *filespec;
 
   if (filename) {
-    base      = f_path_sys_data();
+
+    /* initialize variables */
+    directory = default_bitmap_directory;
+    filespec  = NULL;
     seperator = DIR_SEPARATOR_S;
-    subfolder = "bitmap";
-    filespec  = u_string_concat (base, seperator, subfolder,
-                                       seperator, filename, NULL);
+
+    if (directory) {
+      /*default_bitmap_directory was checked by g_rc, we double check here
+       * because the directory could have been removed */
+      if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
+        filespec  = u_string_concat (directory, seperator, filename, NULL);
+      }
+      else {
+        fprintf (stderr, "Path invalid[%s], %s\n", directory, strerror(errno));
+      }
+    }
+
+    if (filespec) {
+      base      = f_path_sys_data();
+      subfolder = "bitmap";
+      filespec  = u_string_concat (base, seperator, subfolder,
+                                         seperator, filename, NULL);
+    }
     /* TODO: Check to see of file is accessible */
   }
   else {
@@ -179,7 +198,6 @@ GSList *f_get_dir_list_files(char *path, char *filter)
 
   return g_slist_reverse(files);
 }
-
 
 static bool
 get_contents_stdio (const char *filename, FILE *f, char **contents,
@@ -269,22 +287,22 @@ error:
 #ifndef OS_WIN32_NATIVE
 
 static bool
-get_contents_regfile (const char  *filename,
-                      struct stat *stat_buf,
-                      int          fd,
-                      char       **contents,
-                      size_t      *length,
+get_contents_regfile (const char   *filename,
+                      struct stat  *stat_buf,
+                      int           fd,
+                      char        **contents,
+                      unsigned int *length,
                       GError      **err)
 {
   bool   ret_val = FALSE;
   char  *buf;
   int    save_errno;
 
-  size_t bytes_read;
-  size_t size;
-  size_t alloc_size;
+  unsigned long int bytes_read;
+  unsigned long int alloc_size;
+  unsigned long int size;
 
-  size = stat_buf->st_size;
+  size = (unsigned long int)stat_buf->st_size;
   alloc_size = size + 1;
 
   buf = g_try_malloc (alloc_size);
@@ -293,7 +311,7 @@ get_contents_regfile (const char  *filename,
 
     g_set_error (err, G_FILE_ERROR, ENOMEM,
                _("Could not allocate %ld byte to read file \"%s\""),
-                (unsigned long) alloc_size,
+                (unsigned long int) alloc_size,
                  filename);
   }
   else {
@@ -344,9 +362,10 @@ error:
 }
 
 bool
-f_get_file_contents(const char *filename, char **contents, size_t *length, GError **err)
+f_get_file_contents(const char *filename, char **contents, unsigned int *length, GError **err)
 {
   *contents = NULL;
+
   if (length)
     *length = 0;
 
@@ -360,7 +379,7 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 
-    f = g_fopen (filename, "rb");
+    f = fopen (filename, "rb");
     if (f == NULL) {
 
 #else
@@ -371,8 +390,7 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 
 #endif
       g_set_error (err, G_FILE_ERROR, errno,
-                 _("Failed to open file '%s': %s"),
-                    filename, strerror (errno));
+                 _("Failed to open file '%s': %s"), filename, strerror (errno));
     }
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
@@ -421,7 +439,8 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
  *  \param [in] filename The filename to search.
  *  \return offset if found, otherwise NULL.
  */
-const char *f_get_filename_ext(const char *filename) {
+const char *f_get_filename_ext(const char *filename)
+{
     const char *dot = strrchr(filename, '.');
     if(!dot || dot == filename) return NULL;
     return dot + 1;
@@ -439,7 +458,7 @@ const char *f_get_format_header()
   static char *header = NULL;
 
   if (header == NULL)
-    header = g_strdup_printf("v %s %u\n", PACKAGE_DATE_VERSION,
+    header = u_string_sprintf("v %s %u\n", PACKAGE_DATE_VERSION,
                              FILEFORMAT_VERSION);
 
   return header;

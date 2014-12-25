@@ -104,7 +104,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
     u_log_message (_("ERROR: %s\n"), err_msg_unknown);
 
     /* Dialog message */
-    msg2 = g_strconcat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
+    msg2 = u_string_concat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
   }
   else {
     /* Config files are allowed to be missing or skipped; check for this. */

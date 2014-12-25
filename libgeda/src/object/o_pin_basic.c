@@ -884,9 +884,9 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
   if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
 
   if (label)
-    text = g_strconcat("pinlabel", "=", label, NULL);
+    text = u_string_concat("pinlabel", "=", label, NULL);
   else
-    text = g_strconcat("pinlabel", "=", object->pin->label, NULL);
+    text = u_string_concat("pinlabel", "=", object->pin->label, NULL);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, angle,
                          text, size, VISIBLE, SHOW_VALUE);
@@ -1251,10 +1251,10 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *de
   if ( y_pos < 0 ) y_pos = object->line->y[object->pin->whichend];
 
   if (descr) {
-    text = g_strconcat("pintype", "=", descr, NULL);
+    text = u_string_concat("pintype", "=", descr, NULL);
   }
   else {
-    text = g_strconcat("pintype", "=", object->pin->electrical, NULL);
+    text = u_string_concat("pintype", "=", object->pin->electrical, NULL);
   }
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
@@ -1359,9 +1359,9 @@ o_pin_create_mech_attrib(GedaToplevel *toplevel, Object *object, const char *des
   if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
 
   if (descr)
-    text = g_strconcat("mechtype", "=", descr, NULL);
+    text = u_string_concat("mechtype", "=", descr, NULL);
   else
-    text = g_strconcat("mechtype", "=", object->pin->mechanical, NULL);
+    text = u_string_concat("mechtype", "=", object->pin->mechanical, NULL);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          text, size, INVISIBLE, SHOW_VALUE);

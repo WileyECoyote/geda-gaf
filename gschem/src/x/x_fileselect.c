@@ -343,10 +343,10 @@ x_fileselect_save (GschemToplevel *w_current)
       if (!f_get_filename_ext(filebase)) {
         index = geda_file_chooser_get_filter(dialog);
         if (index == FILTER_SCHEMATIC)
-          tmpname = g_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
+          tmpname = u_string_concat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
         else
           if (index == FILTER_SYMBOL)
-           tmpname = g_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+           tmpname = u_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
         if (tmpname) {
           GEDA_FREE (filename);
           filename = tmpname;
@@ -402,23 +402,26 @@ x_fileselect_save (GschemToplevel *w_current)
  *
  *  \return TRUE if the user wants to load the backup file, FALSE otherwise.
  */
-int x_fileselect_load_backup(GString *message, GschemToplevel *w_current)
+int x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
 {
-  GtkWidget *dialog;
-  GtkWindow *window;
-
+  GtkWidget  *dialog;
+  GtkWindow  *window;
+  char       *string;
+  const char *inquire;
   int result = FALSE;
+
+  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
+  string  = u_string_concat(message, inquire);
 
   window = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
 
-  g_string_append(message, _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n"));
   gschem_threads_enter();
 
   dialog = gtk_message_dialog_new (window,
                                    GTK_DIALOG_MODAL,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_YES_NO,
-                                   "%s", message->str);
+                                   "%s", string);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
@@ -441,5 +444,6 @@ int x_fileselect_load_backup(GString *message, GschemToplevel *w_current)
   }
   gtk_widget_destroy(dialog);
   gschem_threads_leave();
+  GEDA_FREE(string);
   return result;
 }

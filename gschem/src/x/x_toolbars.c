@@ -303,9 +303,7 @@ static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* i
   GdkWindow *window=w_current->main_window->window;
   GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
 
-  char *filename=g_strconcat(w_current->toplevel->bitmap_directory,
-                             DIR_SEPARATOR_S,
-                             TB_ICON_NAME(item->ButtonId), NULL);
+  char *filename= f_get_bitmap_filespec (TB_ICON_NAME(item->ButtonId));
 
   /* 1ST Try custom icon */
   if(access(filename, R_OK) == 0) {

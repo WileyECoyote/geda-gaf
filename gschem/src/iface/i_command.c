@@ -851,7 +851,7 @@ COMMAND ( do_print ) {
   }
 
   /* add ".ps" tp the base filename */
-  ps_filename = g_strconcat (base, ".ps", NULL);
+  ps_filename = u_string_concat (base, ".ps", NULL);
   GEDA_FREE(base);
 
   if (output_filename) {
@@ -1988,7 +1988,7 @@ COMMAND ( do_page_new )
   ext = ext - 4;
 
   if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
-    sym_file = g_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+    sym_file = u_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
   }
   else {
     sym_file = g_strdup(tblock);

@@ -310,7 +310,7 @@ run_gnetlist (char * pins_file, char * net_file, char * pcb_file,
       char *out_file;
       char *backend;
       if (!s2) {
-        out_file = g_strconcat (basename, ".", s, NULL);
+        out_file = u_string_concat (basename, ".", s, NULL);
         backend = u_string_strdup (s);
       } else {
         out_file = u_string_strdup (s2 + 4);
@@ -625,7 +625,7 @@ find_element (char * dir_path, char * element)
   if (verbose > 1)
     printf ("\t  Searching: \"%s\" for \"%s\"\n", dir_path, element);
   while ((name = (char *) g_dir_read_name (dir)) != NULL) {
-    path = g_strconcat (dir_path, "/", name, NULL);
+    path = u_string_concat (dir_path, "/", name, NULL);
     found = NULL;
 
     /* if we got a directory name, then recurse down into it */
@@ -641,7 +641,7 @@ find_element (char * dir_path, char * element)
       }
       else {
         char *tmps;
-        tmps = g_strconcat (element, ".fp", NULL);
+        tmps = u_string_concat (element, ".fp", NULL);
         if (!strcmp (name, tmps)) {
           found = u_string_strdup (path);
         }
@@ -677,7 +677,7 @@ search_element_directories (PcbElement * el)
 
       if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix) {
         str = u_string_strndup (el->description, n1 - n2 - 1);
-        elname = g_strconcat (str, " ", el->pkg_name_fix, NULL);
+        elname = u_string_concat (str, " ", el->pkg_name_fix, NULL);
         GEDA_FREE (str);
       }
     }
@@ -786,7 +786,7 @@ pkg_to_element (FILE * f, char * pkg_line)
   n = 3;
   if (n_extra_args == n_dashes + 1) { /* Assume there was a comma in the value, eg "1K, 1%" */
     s = el->value;
-    el->value = g_strconcat (s, ",", fix_spaces (args[n]), NULL);
+    el->value = u_string_concat (s, ",", fix_spaces (args[n]), NULL);
     GEDA_FREE (s);
     if ((s = strchr (el->value, (int) ')')) != NULL)
       *s = '\0';
@@ -796,7 +796,7 @@ pkg_to_element (FILE * f, char * pkg_line)
     el->pkg_name_fix = u_string_strdup (args[n]);
     for (n += 1; args[n] != NULL; ++n) {
       s = el->pkg_name_fix;
-      el->pkg_name_fix = g_strconcat (s, " ", args[n], NULL);
+      el->pkg_name_fix = u_string_concat (s, " ", args[n], NULL);
       GEDA_FREE (s);
     }
     if ((s = strchr (el->pkg_name_fix, (int) ')')) != NULL)
@@ -848,7 +848,7 @@ add_elements (char * pcb_file)
 
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return 0;
-  tmp_file = g_strconcat (pcb_file, ".tmp", NULL);
+  tmp_file = u_string_concat (pcb_file, ".tmp", NULL);
   if ((f_out = fopen (tmp_file, "wb")) == NULL) {
     fclose (f_in);
     GEDA_FREE (tmp_file);
@@ -964,7 +964,7 @@ update_element_descriptions (char * pcb_file, char * bak)
   }
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
-  tmp = g_strconcat (pcb_file, ".tmp", NULL);
+  tmp = u_string_concat (pcb_file, ".tmp", NULL);
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
     return;
@@ -1029,7 +1029,7 @@ prune_elements (char * pcb_file, char * bak)
     return;
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
-  tmp = g_strconcat (pcb_file, ".tmp", NULL);
+  tmp = u_string_concat (pcb_file, ".tmp", NULL);
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
     return;
@@ -1092,7 +1092,7 @@ add_m4_file (char * arg)
     m4_files = u_string_strdup (arg);
   else {
     s = m4_files;
-    m4_files = g_strconcat (m4_files, " ", arg, NULL);
+    m4_files = u_string_concat (m4_files, " ", arg, NULL);
     GEDA_FREE (s);
   }
 }
@@ -1459,12 +1459,12 @@ main (int argc, char ** argv)
      * likely wrong
      */
 
-    m4_pcbdir = g_strconcat (PCBDATADIR, "/pcb/m4", NULL);
+    m4_pcbdir = u_string_concat (PCBDATADIR, "/pcb/m4", NULL);
 
   }
   else {
     /* If PCBDATA is set, so use the value */
-    m4_pcbdir = g_strconcat (pcbdata_path, "/m4", NULL);
+    m4_pcbdir = u_string_concat (pcbdata_path, "/m4", NULL);
   }
 
   default_m4_pcbdir = u_string_strdup (m4_pcbdir);
@@ -1498,10 +1498,10 @@ main (int argc, char ** argv)
   }
   GEDA_FREE (path);
 
-  pins_file_name = g_strconcat (sch_basename, ".cmd", NULL);
-  net_file_name = g_strconcat (sch_basename, ".net", NULL);
-  pcb_file_name = g_strconcat (sch_basename, ".pcb", NULL);
-  bak_file_name = g_strconcat (sch_basename, ".pcb.bak", NULL);
+  pins_file_name = u_string_concat (sch_basename, ".cmd", NULL);
+  net_file_name = u_string_concat (sch_basename, ".net", NULL);
+  pcb_file_name = u_string_concat (sch_basename, ".pcb", NULL);
+  bak_file_name = u_string_concat (sch_basename, ".pcb.bak", NULL);
   tmp = u_string_strdup (bak_file_name);
 
   for (i = 0; g_file_test (bak_file_name, G_FILE_TEST_EXISTS); ++i) {
@@ -1512,7 +1512,7 @@ main (int argc, char ** argv)
 
   if (g_file_test (pcb_file_name, G_FILE_TEST_EXISTS)) {
     initial_pcb = FALSE;
-    pcb_new_file_name = g_strconcat (sch_basename, ".new.pcb", NULL);
+    pcb_new_file_name = u_string_concat (sch_basename, ".new.pcb", NULL);
     get_pcb_element_list (pcb_file_name);
   } else
     pcb_new_file_name = u_string_strdup (pcb_file_name);

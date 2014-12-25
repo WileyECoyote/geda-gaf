@@ -169,7 +169,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
   value   = GetEntryText(value_entry);
   label   = GetEntryText(name_entry);
-  newtext = g_strconcat (label, "=", value, NULL);
+  newtext = u_string_concat (label, "=", value, NULL);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext))
   {

@@ -1130,7 +1130,7 @@ o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
           if (page) {
             /* Add the refdes to the major_changed_refdes GList */
             /* if a page was found */
-            refdes_copy = g_strconcat (refdes, " (",
+            refdes_copy = u_string_concat (refdes, " (",
                                                   object->complex->filename,
                                                   ")", NULL);
             page->major_changed_refdes =

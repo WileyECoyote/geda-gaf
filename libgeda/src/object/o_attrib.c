@@ -646,7 +646,7 @@ void o_attrib_set_value (Object *attrib, const char *name_ptr, const char *value
 
   GEDA_FREE(attrib->text->string);
 
-  attrib->text->string = g_strconcat(name_ptr, "=", value_ptr, NULL);
+  attrib->text->string = u_string_concat(name_ptr, "=", value_ptr, NULL);
 }
 void o_attrib_set_integer_value (Object *attrib, char *name_ptr, int value)
 {

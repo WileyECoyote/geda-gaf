@@ -456,12 +456,12 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   int result;				/* Our exit code */
 
   /* Build path for user config file */
-  inputfile = g_strconcat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
+  inputfile = u_string_concat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
     /* Copy the template user config file to user's folder */
-    templatefile = g_strconcat (f_path_sys_config (), DIR_SEPARATOR_S,
+    templatefile = u_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
                              "user-", rcname, NULL);
     result = f_file_copy(templatefile, inputfile);
   }
@@ -471,7 +471,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     return -1;
   }
 
-  outputfile = g_strconcat (f_path_user_config (), DIR_SEPARATOR_S,
+  outputfile = u_string_concat (f_path_user_config (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
   if (( input = fopen (inputfile, "r" )) == NULL) {

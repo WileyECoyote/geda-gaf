@@ -90,7 +90,6 @@ struct _GedaImageChooser {
            bool         zoom_mode;
            int          zoom_save;
            bool         mouse_down;
-
 };
 
 struct _GedaImageChooserClass {

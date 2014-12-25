@@ -1,7 +1,7 @@
 G_BEGIN_DECLS
 
 /* f_basic.c */
-      bool    f_has_active_autosave         (const char *filename, GError **err);
+      bool    f_has_active_autosave         (const char   *filename, GError **err);
       int     f_open                        (GedaToplevel *toplevel, Page *page, const char *filename, GError **err);
       int     f_open_flags                  (GedaToplevel *toplevel, Page *page, const char *filename, const int flags, GError **err);
       void    f_close                       (GedaToplevel *toplevel);
@@ -14,14 +14,14 @@ G_BEGIN_DECLS
       char   *f_file_follow_symlinks        (const char *filename, GError **error);
       char   *f_file_normalize_name         (const char *filename, GError **error);
       int     f_file_remove                 (const char *pathname);
-      void    f_file_remove_extension       (char *filename);
+      void    f_file_remove_extension       (      char *filename);
 
 /* f_get.c */
       char   *f_get_autosave_filename       (const char *filename);
       char   *f_get_basename                (const char *path);
       char   *f_get_bitmap_filespec         (const char *filename);
-      GSList *f_get_dir_list_files          (char *path, char *filter);
-      bool    f_get_file_contents           (const char *filename, char **contents, size_t *length, GError **err);
+      GSList *f_get_dir_list_files          (      char *path, char *filter);
+      bool    f_get_file_contents           (const char *filename, char **contents, unsigned int *length, GError **err);
 const char   *f_get_filename_ext            (const char *filename);
 const char   *f_get_format_header           (void);
 
@@ -289,8 +289,8 @@ const char   *o_get_object_attrib_value     (Object *object, const char *name);
       void    o_picture_translate_world     (int dx, int dy, Object *object);
       Object *o_picture_copy                (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
       bool    o_picture_is_embedded         (Object *object);
-const char   *o_picture_get_data            (Object *object, size_t *len);
-      bool    o_picture_set_from_buffer     (Object *object, const char *filename, const char *data, size_t len, GError  **error);
+const char   *o_picture_get_data            (Object *object, size_t *length);
+      bool    o_picture_set_from_buffer     (Object *object, const char *filename, const char *data, unsigned int length, GError **error);
       bool    o_picture_set_from_file       (Object *object, const char *filename, GError **error);
 const char   *o_picture_get_filename        (Object *object);
 

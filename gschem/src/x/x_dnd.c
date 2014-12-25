@@ -185,7 +185,7 @@ x_dnd_send_string_object (GschemToplevel *w_current, Object *object)
       string_1 = "Error:";
       string_2 = "unidentified complex object";
   }
-  return g_strconcat (string_1, string_2, NULL);;
+  return u_string_concat (string_1, string_2, NULL);;
 }
 
 /******************* Shape Catagory Data Helpers *******************/
@@ -709,7 +709,7 @@ bool x_dnd_drag_drop
 
   /* Get a list of target types to choose from */
   targets = context->targets;
-  
+
   /* If the source offers a target */
   if (targets) {
 

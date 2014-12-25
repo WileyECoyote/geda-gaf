@@ -88,7 +88,7 @@ char *s_attrib_get_refdes(Object *object)
     if (numslots != NULL) {
       slot_value = s_slot_search_slot (object, &slot_text_object);
       if (slot_value != 0)
-        temp_uref = g_strconcat(temp_uref, ".", slot_value, NULL);
+        temp_uref = u_string_concat(temp_uref, ".", slot_value, NULL);
     }
   }
   else

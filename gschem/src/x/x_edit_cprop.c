@@ -162,7 +162,7 @@ x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       }
       else {
 
-        char *newtext = g_strconcat(key, "=", new_value, NULL);
+        char *newtext = u_string_concat(key, "=", new_value, NULL);
         o_attrib_add_attrib(w_current, newtext, VISIBLE, SHOW_NAME_VALUE, NULL);
         GEDA_FREE (newtext);
         result = TRUE;
@@ -483,7 +483,7 @@ x_dialog_ep_refdes_update_entry (GtkWidget *widget, GtkWidget *dialog)
 
       if (curr_ref) {
         str_val = GetEntryText ( properties->refdes_entry );
-        new_text = g_strconcat(str_val, curr_ref, NULL);
+        new_text = u_string_concat(str_val, curr_ref, NULL);
         g_signal_handler_block(widget,properties->ref_handler);
         SetEntryText(properties->refdes_entry, new_text);
         g_signal_handler_unblock(widget,properties->ref_handler);

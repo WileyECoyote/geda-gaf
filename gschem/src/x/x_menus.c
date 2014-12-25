@@ -177,7 +177,7 @@ static void g_menu_execute(GtkAction *action, void *user_data)
   }
   else {
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
-      menu_action = g_strconcat ( action_name, "-menu", NULL);
+      menu_action = u_string_concat ( action_name, "-menu", NULL);
       g_action_eval_by_name (w_current, menu_action);
       GEDA_FREE(menu_action);
     }
@@ -454,7 +454,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
             toggler_data->menu_item_name = u_string_strdup(menu_item_name);
-            toggler_data->menu_path      = g_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
+            toggler_data->menu_path      = u_string_concat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
             action = (GedaAction *)
@@ -1248,7 +1248,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   GtkWidget* menubar;
   menubar = get_main_menu(w_current);
 
-  menu_path = g_strconcat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
+  menu_path = u_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
   menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
   if( menu_item != NULL) {
     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_item, state);

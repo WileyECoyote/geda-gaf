@@ -327,7 +327,7 @@ int x_color_load_scheme(char* scheme) {
 
   if (strBuffer) {
     rc_path = u_string_scm2c("geda-rc-path");
-    inputfile = g_strconcat (rc_path, DIR_SEPARATOR_S, scheme, NULL);
+    inputfile = u_string_concat (rc_path, DIR_SEPARATOR_S, scheme, NULL);
     free(rc_path);
     if ((access (inputfile, R_OK)) == 0) {
       x_color_free();

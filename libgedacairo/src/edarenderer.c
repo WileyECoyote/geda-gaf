@@ -1203,16 +1203,14 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   else {
 
     if (pixbuf_error) {
-      BUG_MSG("picture->pixbuf invalid, loader should have detected this");
+      BUG_MSG("picture->pixbuf invalid");
       pixbuf_error--;
     }
 
     pixbuf = o_picture_get_fallback_pixbuf ();
 
     if (pixbuf) {
-
       g_object_ref (pixbuf);
-
     }
     else {
 

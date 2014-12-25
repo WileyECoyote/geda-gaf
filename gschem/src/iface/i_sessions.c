@@ -352,7 +352,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
   Session  record;
 
   /* It's called "pre-reusing" a variable */
-  filename = g_strconcat(name, SESSIONS_FILE_DOT_SUFFIX, NULL);
+  filename = u_string_concat(name, SESSIONS_FILE_DOT_SUFFIX, NULL);
   session_file = g_build_filename(f_path_user_config (),
                                   SESSIONS_DIRECTORY,
                                   filename,
@@ -939,7 +939,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
 
   record = i_session_get_record(old_name);
 
-  filename = g_strconcat(new_name, SESSIONS_FILE_DOT_SUFFIX, NULL);
+  filename = u_string_concat(new_name, SESSIONS_FILE_DOT_SUFFIX, NULL);
 
   new_filename = g_build_filename(f_path_user_config (),
                                   SESSIONS_DIRECTORY,

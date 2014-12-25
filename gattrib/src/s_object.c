@@ -73,7 +73,7 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 
   /* One last sanity check, then add attrib */
   if (strlen(new_attrib_value) != 0) {
-    name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+    name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           visibility,
@@ -131,7 +131,7 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 
   /* One last sanity check */
   if (strlen(new_attrib_value) != 0) {
-    name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+    name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           INVISIBLE,
@@ -183,7 +183,7 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel, Object *o_current,
 
     if (strcmp(old_attrib_name, new_attrib_name) == 0) {
       /* create attrib=value text string & stuff it back into toplevel */
-      new_attrib_text = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+      new_attrib_text = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(a_current->text->string);   /* remove old attrib string */
       a_current->text->string = u_string_strdup(new_attrib_text);   /* insert new attrib string */
       if (visibility != LEAVE_VISIBILITY_ALONE)

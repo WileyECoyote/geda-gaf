@@ -29,7 +29,7 @@ typedef void(*AttribsChangedFunc)(void *, Object *);
 typedef void(*ConnsChangedFunc)(void *, Object *);
 
 /*! \brief Type of callback function for querying loading of backups  */
-typedef bool(*LoadBackupQueryFunc)( GString *, void *);
+typedef bool(*LoadBackupQueryFunc)( char *, void *);
 
 /*! \brief Type of callback function for object damage notification */
 typedef void (*WeakNotifyFunc)(void *, void *);

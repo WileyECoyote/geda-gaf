@@ -1051,8 +1051,7 @@ o_picture_get_pixbuf (Object *object)
  * \param len       Location to store buffer length.
  * \return A read-only buffer of raw image data.
  */
-const char *
-o_picture_get_data (Object *object, size_t *len)
+const char *o_picture_get_data (Object *object, size_t *len)
 {
   g_return_val_if_fail (object != NULL, NULL);
   g_return_val_if_fail (object->picture != NULL, NULL);
@@ -1076,14 +1075,15 @@ o_picture_get_data (Object *object, size_t *len)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-o_picture_set_from_buffer (Object *object,
-                           const char *filename,
-                           const char *data, size_t len,
-                           GError **error)
+o_picture_set_from_buffer (Object        *object,
+                           const char    *filename,
+                           const char    *data,
+                           unsigned int   len,
+                           GError       **error)
 {
-  GdkPixbuf *pixbuf;
+  GdkPixbuf    *pixbuf;
   GInputStream *stream;
-  char *tmp;
+  char         *tmp;
 
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
   g_return_val_if_fail (data != NULL, FALSE);
@@ -1093,6 +1093,7 @@ o_picture_set_from_buffer (Object *object,
   stream = G_INPUT_STREAM (g_memory_input_stream_new_from_data (data, len, NULL));
   pixbuf = gdk_pixbuf_new_from_stream (stream, NULL, error);
   GEDA_UNREF (stream);
+
   if (pixbuf == NULL) return FALSE;
 
   if (object->picture->pixbuf != NULL) {
@@ -1107,13 +1108,13 @@ o_picture_set_from_buffer (Object *object,
   GEDA_FREE (object->picture->filename);
   object->picture->filename = tmp;
 
-  char *buf = g_realloc (object->picture->file_content,
-                          len);
+  char *buf = GEDA_MEM_REALLOC (object->picture->file_content, len);
+
   /* It's possible that these buffers might overlap, because the
    * library user hates us. */
   memmove (buf, data, len);
   object->picture->file_content = buf;
-  object->picture->file_length = len;
+  object->picture->file_length  = len;
 
   return TRUE;
 }
@@ -1133,9 +1134,9 @@ o_picture_set_from_buffer (Object *object,
 bool
 o_picture_set_from_file (Object *object, const char *filename, GError **error)
 {
-  char *buf;
-  size_t len;
-  bool status;
+  char   *buf;
+  size_t  len;
+  bool    status;
 
   g_return_val_if_fail (filename != NULL, FALSE);
 
@@ -1168,9 +1169,9 @@ o_picture_get_filename (Object *object)
 /*! \brief Get fallback pixbuf for displaying pictures
  *
  * \par Function Description
- * Returns a pixbuf containing the fallback image to be used if a
- * picture object fails to load.  The returned pixbuf should be freed
- * with GEDA_UNREF() when no longer needed.
+ *  Returns a pixbuf containing the fallback image to be used if a
+ *  picture object fails to load. The returned pixbuf should be freed
+ *  with GEDA_UNREF() when no longer needed.
  *
  * \return a GdkPixbuf containing a warning image.
  */
@@ -1179,27 +1180,24 @@ GdkPixbuf *o_picture_get_fallback_pixbuf (void)
   static GdkPixbuf *pixbuf = NULL;
   static bool       failed = FALSE;
 
+  const char *err_msg  = _("Failed to load fallback image %s: %s.\n");
   const char *filename = "geda_warning.png";
 
   if (pixbuf == NULL && !failed) {
 
-    char *pathname;
+    char   *pathname;
     GError *error = NULL;
 
-    pathname = g_build_filename (f_path_sys_data(), "bitmap", filename, NULL);
-
-    pixbuf = gdk_pixbuf_new_from_file (pathname, &error);
+    pathname = f_get_bitmap_filespec (filename);
+    pixbuf   = gdk_pixbuf_new_from_file (pathname, &error);
 
     if (pixbuf == NULL) {
-      g_warning (_("Failed to load fallback image %s: %s.\n"), pathname,
-                                                               error->message);
+      fprintf (stderr, err_msg, pathname, error->message);
       g_error_free (error);
       failed = TRUE;
     }
     GEDA_FREE (pathname);
   }
 
-  if (failed) return NULL;
-
-  return g_object_ref (pixbuf);
+  return failed ? NULL : g_object_ref (pixbuf);
 }

@@ -487,11 +487,11 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 
     if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
       new_attrib_value = u_string_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
-      name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+      name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
     else {
-      name_value_pair = g_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
+      name_value_pair = u_string_concat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */
     GEDA_FREE(new_attrib_name);
@@ -803,7 +803,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
   pinnumber = o_attrib_search_object_attribs_by_name (pin, "pinnumber", 0);
 
   if ( (refdes != NULL) && (pinnumber != NULL) ) {
-    row_label = g_strconcat(refdes, ":", pinnumber, NULL);
+    row_label = u_string_concat(refdes, ":", pinnumber, NULL);
   } else {
     fprintf(stderr,
 	    _("In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object missing!\n"));
@@ -829,10 +829,10 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
 
     if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
       new_attrib_value = u_string_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
-      name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+      name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     } else {
-      name_value_pair = g_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
+      name_value_pair = u_string_concat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
 
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */

@@ -164,7 +164,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   prologfile = u_string_strdup(toplevel->postscript_prolog);
   if(access(prologfile, R_OK) != 0) {
     GEDA_FREE(prologfile);
-    prologfile = g_strconcat (f_path_sys_data (), DIR_SEPARATOR_S,
+    prologfile = u_string_concat (f_path_sys_data (), DIR_SEPARATOR_S,
                               toplevel->postscript_prolog, NULL);
     if(access(prologfile, R_OK) != 0) {
       u_log_message(_("f_print_header: Unable to locate prolog file [%s]\n"), prologfile);

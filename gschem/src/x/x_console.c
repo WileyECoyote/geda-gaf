@@ -407,7 +407,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     u_log_message("is scm \"%s\"\n", command_line );
   else {
     command = get_str_token(command_line);
-    command_echo = g_strconcat(command_line, "\n", NULL);
+    command_echo = u_string_concat(command_line, "\n", NULL);
     x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
     GEDA_FREE (command_echo);
 

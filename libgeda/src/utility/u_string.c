@@ -248,12 +248,12 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
   size_t strings_len = strings_size / sizeof(char *);
 
   /* sort array using qsort functions */
-  qsort(strings, strings_len, sizeof(char *), cstring_cmp);
+  qsort(strings, strings_len, sizeof(char*), cstring_cmp);
 }
 
 char *u_string_sprintf (const char *format, ...)
 {
-  char *buffer;
+  char        *buffer;
   unsigned int length;
 
   va_list args;
@@ -269,7 +269,7 @@ char *u_string_sprintf (const char *format, ...)
   return buffer;
 }
 
-char *u_string_strdup(const char *str)
+char *u_string_strdup (const char *str)
 {
   if (!str) return NULL;
 

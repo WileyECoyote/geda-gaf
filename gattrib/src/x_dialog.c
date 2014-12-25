@@ -235,10 +235,10 @@ int x_dialog_file_not_saved()
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = g_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
+  str = u_string_concat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
 
   tmp = _("If you don't save, all your changes will be permanently lost.");
-  str = g_strconcat (str, "\n\n", tmp, NULL);
+  str = u_string_concat (str, "\n\n", tmp, NULL);
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
                                    GTK_DIALOG_MODAL |

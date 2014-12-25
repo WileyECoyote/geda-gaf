@@ -49,7 +49,7 @@
 
 #include "libgeda_priv.h"
 
-/*! /comment: The functions in f_basic.c are (mostly) application
+/*! /comment: The functions in f_basic.c are mostly application
  *  specific so this file was created for basic non-application
  *  specific routines.
  */
@@ -67,39 +67,48 @@
  */
 int f_file_copy(const char *source, const char *target)
 {
-  int input = 0;
-  int output = 0;
+  int input  = -1;
+  int output = -1;
 
-  size_t nread;
+  unsigned long int nread;
 
   char *buffer;
   char *ptr_out;
 
+  const char *err_file = _("File error");
+  const char *log_3SQ2 = "%s: \"%s\", %s\n";
+
+#if defined(_LINUX)
+  const char *err_lock = _("File lock error");
+  const char *err_sys  = _("%s: attempting to lock/unlock file \"%s\"\n");
+#endif
+
   int error_exit( int TheError ) {
-    u_log_message(_("File error: \"%s\", %s\n"), source, strerror(TheError));
-    if (buffer > 0) free(buffer);
-    if (input >= 0) close(input);
+    u_log_message(log_3SQ2, err_file, source, strerror(TheError));
+    if (buffer >  0) free(buffer);
+    if (input  >= 0) close(input);
     if (output >= 0) close(output);
     errno = TheError;
     return -1;
   }
 
+  errno = 0;
   buffer = malloc(DISK_BUFFER_SIZE);
 
   if(!buffer) {
-    u_log_message(_("File error(strerror): Memory Allocation Error!\n"));
+    fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
     return -1;
   }
 
-  /* Check to see if inpit is readable */
+  /* Check to see if input is readable */
   if(access(source, R_OK) != 0) {
-    u_log_message(_("File error(strerror[source]): \"%s\", %s\n"), source, strerror( errno ));
+    u_log_message(log_3SQ2, err_file, source, strerror(errno));
     return -1;
   }
 
   input = open(source, O_RDONLY);
   if (input < 0) {
-    u_log_message(_("File error(strerror)[source]: \"%s\", %s\n"), source, strerror( errno ));
+    u_log_message(log_3SQ2, err_file, source, strerror(errno));
     return -1;
   }
 
@@ -107,11 +116,11 @@ int f_file_copy(const char *source, const char *target)
   if (input > 0)
     if (lockf(input, F_LOCK, 0) == -1) {
       return -1; /* FAILURE */
-      u_log_message(_("File lock error(strerror): \"%s\", %s\n"), source, strerror( errno ));
+      u_log_message(log_3SQ2, err_lock, source, strerror(errno));
     }
     /* else he input is locked */
   else {
-    u_log_message(_("File lock error(strerror): \"%s\", %s\n"), source, strerror( errno ));
+    u_log_message(log_3SQ2, err_lock, source, strerror(errno));
     return -1; /* FAILURE */
   }
 #endif
@@ -132,8 +141,7 @@ int f_file_copy(const char *source, const char *target)
             nread -= nwritten;
             ptr_out += nwritten;
           }
-          else if (errno != EINTR)
-          {
+          else if (errno != EINTR) {
             return error_exit(errno);
           }
     } while (nread > 0);
@@ -152,9 +160,11 @@ int f_file_copy(const char *source, const char *target)
   if (lockf(input, T_LOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
     lockf(input, F_ULOCK, 0);
   }
-  else
-    u_log_message("File system Error: attempting to lock/unlock file[%s]\n",source);
+  else {
+    fprintf(stderr, err_sys, err_file, source);
+  }
 #endif
+
   free(buffer);
   return 0; /* Success! */
 
@@ -183,7 +193,6 @@ int f_file_copy(const char *source, const char *target)
 int f_file_cmp_mod_time (const char *filename, time_t ref_time)
 {
   int    result;
-
   struct stat file_stat;
 
   errno = 0;
@@ -194,7 +203,7 @@ int f_file_cmp_mod_time (const char *filename, time_t ref_time)
       result =  -1;
     }
     else {
-      fprintf (stderr, "%s: %s\n", __func__, strerror (errno));
+      fprintf (stderr, "%s: %s\n", __func__, strerror(errno));
       result = -1;
     }
   }
@@ -288,7 +297,8 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
       GEDA_FREE (dirname);
       GEDA_FREE (linkname);
       followed_filename = tmp;
-    } else {
+    }
+    else {
       GEDA_FREE (followed_filename);
       followed_filename = linkname;
     }

@@ -133,7 +133,7 @@ GtkWidget* create_pixmap (const char *filename)
                                       GTK_ICON_SIZE_INVALID);
   }
 
-  pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
+  pathname = f_get_bitmap_filespec (filename);
 
   if (!pathname) {
 

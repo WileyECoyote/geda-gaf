@@ -68,7 +68,7 @@ typedef struct
 #define GEDA_TOOLBAR_BUTTON_ATK(bar, button, tip, action) \
    { \
      AtkObject *atk_obj = gtk_widget_get_accessible(button); \
-     char *str = g_strconcat("Geda-toolbar-", action, "-button", NULL); \
+     char *str = u_string_concat("Geda-toolbar-", action, "-button", NULL); \
      gtk_widget_set_name (button, str); \
            str = g_strdelimit(str, "-", ' ' ); \
      atk_object_set_name (atk_obj, _(str)); \
@@ -206,7 +206,7 @@ typedef struct
    g_object_set_data ((GObject*) var, "action", (void*)TB_WIDGET(name)); \
    { \
      AtkObject *atk_obj = gtk_widget_get_accessible(var); \
-     char *str = g_strconcat("Geda-toolbar-button-", TB_WIDGET(name), "-mode", NULL); \
+     char *str = u_string_concat("Geda-toolbar-button-", TB_WIDGET(name), "-mode", NULL); \
      gtk_widget_set_name (var, str); \
            str = g_strdelimit(str, "-", ' ' ); \
      atk_object_set_name (atk_obj, _(str)); \

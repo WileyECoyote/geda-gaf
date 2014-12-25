@@ -636,7 +636,7 @@ get_picture_object_data(Object *object)
 
   char *filepath    = object->name;
         pixbuf      = object->picture->pixbuf;
-  int   file_length = object->picture->file_length;
+  int   file_length = object->picture->file_length; /* unsigned int */
   float ratio       = object->picture->ratio;
 
   int   angle       = object->picture->angle;
@@ -811,7 +811,7 @@ static void setup_source_library (void)
   int n;
   int i;
 
-  data_path = g_strconcat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
+  data_path = u_string_concat(f_path_sys_data(), DIR_SEPARATOR_S, "sym", NULL);
 
   n = scandir(data_path, &namelist, NULL, alphasort);
   if (n < 0)
@@ -1366,10 +1366,10 @@ PyGeda_new_page( const char *filename, int over_write)
   if (filename) {
     if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
       if (toplevel->make_backup_files && !over_write) {
-        command = g_strconcat("mv ", filename, " ", filename, ".bak", NULL);
+        command = u_string_concat("mv ", filename, " ", filename, ".bak", NULL);
       }
       else {
-        command = g_strconcat("rm -f ", filename, NULL);
+        command = u_string_concat("rm -f ", filename, NULL);
       }
       if (system(command) != 0)
         perror("system");
@@ -2241,7 +2241,7 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
   int mirr = mirror < 0 ? 0 : mirror;
   int emb  = embed  < 0 ? 0 : embed;
 
-  sym_file = g_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  sym_file = u_string_concat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
   clib = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {

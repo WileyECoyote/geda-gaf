@@ -86,6 +86,7 @@ void f_path_free (void) {
   GEDA_FREE(sys_config_path);
   GEDA_FREE(user_config_path);
 }
+
 /*! \brief Get the directory with the gEDA system data.
  *
  *  \par Function description
@@ -325,8 +326,8 @@ int f_path_create(const char *path, mode_t mode)
     pp = copypath;
     while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0)
     {
-        if (sp != pp)
-        {
+        if (sp != pp) {
+
             /* Neither root nor double slash in path */
             *sp = '\0';
             status = f_create_dir(copypath, mode);

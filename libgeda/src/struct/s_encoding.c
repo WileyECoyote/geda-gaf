@@ -191,9 +191,9 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
 char *s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
 {
 
-  char* dst;
-  unsigned int dstidx, state, ch = 0;
+  char *dst;
   char  res;
+  unsigned int  dstidx, state, ch = 0;
   unsigned char pos;
 
   if (srclen == 0)

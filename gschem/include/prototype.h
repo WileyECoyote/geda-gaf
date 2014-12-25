@@ -740,7 +740,7 @@ void       x_manual_resize              (GschemToplevel *w_current);
 GSL       *x_fileselect_list            (GschemToplevel *w_current);
 void       x_fileselect_save            (GschemToplevel *w_current);
 char      *x_fileselect_select_image    (GschemToplevel *w_current);
-bool       x_fileselect_load_backup     (GString *message, GschemToplevel *w_current);
+bool       x_fileselect_load_backup     (const char *message, GschemToplevel *w_current);
 
 /* x_grid.c */
 void       x_grid_draw_grid_region      (GschemToplevel *w_current, GdkRectangle *rectangle);
@@ -751,7 +751,7 @@ void       x_grid_draw_tiles            (GschemToplevel *w_current);
 
 /* x_icons.c */
 void       x_icons_add_search_path      (const char *path);
-void       x_icons_set_default_icon     (const char* icon_name);
+void       x_icons_set_default_icon     (const char *icon_name);
 void       x_icons_initialize           ( void );
 
 /* x_image.c */

@@ -252,7 +252,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
     if ((table[col][row]).attrib_value != NULL) {
       attrib_name = (table[col][row]).col_name;
       attrib_value = (table[col][row]).attrib_value;
-      name_value_pair = g_strconcat(attrib_name, "=", attrib_value, NULL);
+      name_value_pair = u_string_concat(attrib_name, "=", attrib_value, NULL);
       s_string_list_add_item(attrib_pair_list, &count, name_value_pair);
       GEDA_FREE(name_value_pair);
     }
@@ -571,7 +571,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 	  if (o_lower_current->type == OBJ_PIN) {
 	    /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
 	    pinnumber = o_attrib_search_object_attribs_by_name (o_lower_current, "pinnumber", 0);
-	    row_label = g_strconcat(temp_uref, ":", pinnumber, NULL);
+	    row_label = u_string_concat(temp_uref, ":", pinnumber, NULL);
 
 #if DEBUG
         printf("      In s_table_add_tems_to_pin_table, examining pin %s\n", row_label);

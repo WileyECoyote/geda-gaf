@@ -393,7 +393,7 @@ eda_config_get_system_context (const char *context)
       filename=u_string_strdup(SYSTEM_CONFIG_FILE);
     }
     else {
-      filename = g_strconcat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
+      filename = u_string_concat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
     }
 
 #if defined (_WIN32) || defined (GEDA_USE_XDG)
@@ -503,7 +503,7 @@ eda_config_get_user_context ()
     char *filename = NULL;
     char *tmpname;
 
-    tmpname = g_strconcat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
+    tmpname = u_string_concat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
     filename = g_build_filename(f_path_user_config(), tmpname, NULL);
     GEDA_FREE (tmpname);
 
@@ -540,7 +540,7 @@ find_project_root (const char *path, char *filename)
   }
 
   while (dir && strlen(dir) > 1){
-      char *filespec = g_strconcat(dir, DIR_SEPARATOR_S, filename, NULL);
+      char *filespec = u_string_concat(dir, DIR_SEPARATOR_S, filename, NULL);
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         root_dir = u_string_strdup (dir);
         found = 1;

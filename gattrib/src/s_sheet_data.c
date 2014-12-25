@@ -425,7 +425,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
             temp_pinnumber = o_attrib_search_object_attribs_by_name (o_lower_current, "pinnumber", 0);
 
             if (temp_pinnumber != NULL) {
-              row_label = g_strconcat (temp_uref, ":", temp_pinnumber, NULL);
+              row_label = u_string_concat (temp_uref, ":", temp_pinnumber, NULL);
 #if DEBUG
               printf ("In s_sheet_data_add_master_pin_list_items, about to add to master pin list row_label = %s\n", row_label);
 #endif
