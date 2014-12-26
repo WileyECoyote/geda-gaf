@@ -246,7 +246,26 @@ x_draw_pin (GschemToplevel *w_current)
 static void
 x_draw_picture (GschemToplevel *w_current)
 {
+  Object *o_current = RenderAdaptor->object;
 
+  if (GEDA_IS_PICTURE(o_current)) {
+
+    Picture *o_pic;
+    int sx1, sy1, sx2, sy2;
+    int width, height;
+
+    //x_draw_set_color (w_current);
+
+    o_pic = o_current->picture;
+
+    WORLDtoSCREEN (w_current, o_pic->upper_x,  o_pic->upper_y, &sx1,  &sy1);
+    WORLDtoSCREEN (w_current, o_pic->lower_x,  o_pic->lower_y, &sx2,  &sy2);
+
+    width  = sx2 - sx1;
+    height = sy2 - sy1;
+
+    RenderAdaptor->geda_draw_picture (sx1, sy1, width, height);
+  }
 }
 
 static void

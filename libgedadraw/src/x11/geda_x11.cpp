@@ -48,12 +48,356 @@
 #include <X11/Xft/Xft.h>
 
 #include <cairo-xlib.h>
+#include <cairo-xlib-xrender.h>
+
 #undef Complex
 #undef Picture
 
 #include <libgeda/libgeda.h>
 
 #include <geda_draw.h>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-fpermissive"
+
+EdaRotation EdaX11Render::
+GetRotation(int angle)
+{
+  EdaRotation rotation;
+
+  switch (angle) {
+    case 0:    rotation = EDA_ROTATE_NONE;             /* =   0 */ break;
+    case 90:   rotation = EDA_ROTATE_COUNTERCLOCKWISE; /* =  90 */ break;
+    case 180:  rotation = EDA_ROTATE_UPSIDEDOWN;       /* = 180 */ break;
+    case 270:  rotation = EDA_ROTATE_CLOCKWISE;        /* = 270 */ break;
+    default:   rotation = EDA_ROTATE_NONE;             /* =   0 */ break;
+  }
+  return rotation;
+}
+#pragma GCC diagnostic pop
+
+/* Code for accelerated alpha compositing using the RENDER extension.
+ * It's a bit long because there are lots of possibilities for
+ * what's the fastest depending on the available picture formats,
+ * whether we can used shared pixmaps, etc.
+ */
+
+EdaX11Format EdaX11Render::
+GetImageFormat (XRenderPictFormat **format, XRenderPictFormat **mask)
+{
+  XRenderPictFormat pf;
+
+  /* Look for a 32-bit xRGB and Axxx formats that exactly match the
+   * in memory data format. We can use them as pixmap and mask
+   * to deal with non-premultiplied data.
+   */
+
+  pf.type             = PictTypeDirect;
+  pf.depth            = 32;
+  pf.direct.redMask   = 0xff;
+  pf.direct.greenMask = 0xff;
+  pf.direct.blueMask  = 0xff;
+
+  pf.direct.alphaMask = 0;
+  if (ImageByteOrder (display) == LSBFirst) {
+      /* ABGR */
+      pf.direct.red   = 0;
+      pf.direct.green = 8;
+      pf.direct.blue  = 16;
+  }
+  else {
+      /* RGBA */
+      pf.direct.red   = 24;
+      pf.direct.green = 16;
+      pf.direct.blue  = 8;
+  }
+
+  *format = XRenderFindFormat (display,
+                              (PictFormatType      | PictFormatDepth |
+                               PictFormatRedMask   | PictFormatRed   |
+                               PictFormatGreenMask | PictFormatGreen |
+                               PictFormatBlueMask  | PictFormatBlue  |
+                               PictFormatAlphaMask),
+                               &pf,0);
+
+  pf.direct.alphaMask = 0xff;
+
+  if (ImageByteOrder (display) == LSBFirst) {
+      /* ABGR */
+      pf.direct.alpha = 24;
+  }
+  else {
+      pf.direct.alpha = 0;
+  }
+
+  *mask = XRenderFindFormat (display,
+                            (PictFormatType      | PictFormatDepth |
+                             PictFormatAlphaMask | PictFormatAlpha),
+                             &pf, 0);
+
+  if (*format && *mask)
+    return EDA_X11_FORMAT_EXACT_MASK;
+
+  /* OK, that failed, now look for xRGB and Axxx formats in
+   * RENDER's preferred order
+   */
+  pf.direct.alphaMask = 0;
+  /* ARGB */
+  pf.direct.red       = 16;
+  pf.direct.green     = 8;
+  pf.direct.blue      = 0;
+
+  *format = XRenderFindFormat (display,
+                              (PictFormatType      | PictFormatDepth |
+                               PictFormatRedMask   | PictFormatRed   |
+                               PictFormatGreenMask | PictFormatGreen |
+                               PictFormatBlueMask  | PictFormatBlue  |
+                               PictFormatAlphaMask),
+                               &pf, 0);
+
+  pf.direct.alphaMask = 0xff;
+  pf.direct.alpha     = 24;
+
+  *mask = XRenderFindFormat (display,
+                            (PictFormatType      | PictFormatDepth |
+                             PictFormatAlphaMask | PictFormatAlpha),
+                             &pf, 0);
+
+  if (*format && *mask)
+    return EDA_X11_FORMAT_ARGB_MASK;
+
+  /* Finally, if neither of the above worked, fall back to
+   * looking for combined ARGB -- we'll premultiply ourselves.
+   */
+
+  pf.type             = PictTypeDirect;
+  pf.depth            = 32;
+  pf.direct.red       = 16;
+  pf.direct.green     = 8;
+  pf.direct.blue      = 0;
+  pf.direct.alphaMask = 0xff;
+  pf.direct.alpha     = 24;
+
+  *format = XRenderFindFormat (display,
+                              (PictFormatType      | PictFormatDepth |
+                               PictFormatRedMask   | PictFormatRed   |
+                               PictFormatGreenMask | PictFormatGreen |
+                               PictFormatBlueMask  | PictFormatBlue  |
+                               PictFormatAlphaMask | PictFormatAlpha),
+                               &pf, 0);
+  *mask = NULL;
+
+  if (*format)
+    return EDA_X11_FORMAT_ARGB;
+
+  return EDA_X11_FORMAT_NONE;
+}
+
+XImage *EdaX11Render::
+Pixbuf2Ximage (GdkPixbuf *pixbuf)
+{
+  XRenderPictFormat *dest_format;
+  XRenderPictFormat *mask_format;
+
+  EdaX11Format format_type = GetImageFormat (&dest_format, &mask_format);
+
+  XImage *ximage;
+
+  int depth        = cairo_xlib_surface_get_depth (surface); /* 32 works fine with depth = 24 */
+  int format       = ZPixmap;
+  int width        = gdk_pixbuf_get_width  (pixbuf);
+  int height       = gdk_pixbuf_get_height (pixbuf);
+  int stride       = gdk_pixbuf_get_rowstride (pixbuf);
+  int chan         = gdk_pixbuf_get_n_channels (pixbuf);
+  int has_alpha    = gdk_pixbuf_get_has_alpha (pixbuf);
+
+
+  int bitmap_pad;  /* 32 for 24 and 32 bpp, 16, for 15&16 */
+  int x, y;
+
+  switch (depth) {
+    case 32:
+    case 24: bitmap_pad = 32; break;
+    case 16:
+    case 15: bitmap_pad = 16; break;
+    default: bitmap_pad = 0;  break;
+  }
+
+  ximage = XCreateImage (display, visual, depth, format, 0, 0, width, height, bitmap_pad, 0);
+
+  if (ximage) {
+
+    ximage->data = (char *) malloc(height * ximage->bytes_per_line);
+
+    if (ximage->data) {
+
+      unsigned char *src_buf        = gdk_pixbuf_get_pixels (pixbuf);
+      unsigned char *dest_buf       = (unsigned char*)ximage->data;
+
+      unsigned int   src_rowstride;
+      unsigned int   dest_rowstride;
+
+      if (has_alpha && format_type == EDA_X11_FORMAT_EXACT_MASK) {
+        format_type = EDA_X11_FORMAT_ARGB_MASK;
+      }
+
+      switch (format_type) {
+
+        case EDA_X11_FORMAT_EXACT_MASK:
+
+          for (y = 0; y < height; y++) {
+
+            unsigned char *i = src_buf;
+
+            for (x = 0; x < width; x++) {
+
+              unsigned long rgba = 0;
+
+              switch (chan) {
+                case 1:
+                  rgba = ((0xFF << 24) | (*i << 16) | (*i << 8) | *i);
+                  i++;
+                  break;
+                case 3:
+                  rgba = ((0xFF << 24) | (i[0] << 16) | (i[1] << 8) | i[2]);
+                  i += 3;
+                  break;
+                case 4:
+                  rgba = ((i[3] << 24) | (i[2] << 16) | (i[1] << 8) | i[0]);
+                  i += 4;
+                  break;
+                default:
+                  fprintf (stderr, "%s: channel not supported <%d>\n", __func__, chan);
+                  break;
+              }
+              XPutPixel (ximage, x, y, rgba);
+            }
+            src_buf += stride;
+          }
+          break;
+
+        case EDA_X11_FORMAT_ARGB_MASK:
+
+          src_rowstride  =  dest_rowstride = stride;
+
+          for (y = 0; y < height; y++) {
+
+            unsigned char *row = src_buf + y * src_rowstride;
+
+            if (((unsigned int)row & 3) != 0) {
+
+              unsigned char *p = row;
+              unsigned long *q = (unsigned long *)(dest_buf + y * dest_rowstride);
+              unsigned char *end = p + 4 * width;
+
+              while (p < end) {
+                *q = (p[3] << 24) | (p[0] << 16) | (p[1] << 8) | p[2];
+                p += 4;
+                q++;
+              }
+            }
+            else {
+
+              unsigned long *p = (unsigned long *)row;
+              unsigned long *q = (unsigned long *)(dest_buf + y * dest_rowstride);
+              unsigned long *end = p + width;
+
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+
+              if (ximage->byte_order == GDK_LSB_FIRST) { /* ABGR => ARGB */
+
+                while (p < end) {
+                  *q = ( (*p & 0xff00ff00) | ((*p & 0x000000ff) << 16) | ((*p & 0x00ff0000) >> 16));
+                  q++;
+                  p++;
+                }
+              }
+              else { /* ABGR => BGRA */
+
+                while (p < end) {
+                  *q = (((*p & 0xff000000) >> 24) | ((*p & 0x00ffffff) << 8));
+                  q++;
+                  p++;
+                }
+              }
+#else /* G_BYTE_ORDER == G_BIG_ENDIAN */
+              if (ximage->byte_order == GDK_LSB_FIRST) { /* RGBA => BGRA */
+
+                while (p < end) {
+                  *q = ( (*p & 0x00ff00ff) | ((*p & 0x0000ff00) << 16) |  ((*p & 0xff000000) >> 16));
+                  q++;
+                  p++;
+                }
+              }
+              else { /* RGBA => ARGB */
+
+                while (p < end) {
+                  *q = (((*p & 0xffffff00) >> 8) | ((*p & 0x000000ff) << 24));
+                  q++;
+                  p++;
+                }
+              }
+#endif /* G_BYTE_ORDER*/
+            }
+          }
+          break;
+
+        case EDA_X11_FORMAT_ARGB:
+
+          src_rowstride  =  dest_rowstride = stride;
+
+          for (y = 0; y < height; y++) {
+            unsigned char *p = (src_buf  + y * src_rowstride);
+            unsigned char *q = (dest_buf + y * dest_rowstride);
+            unsigned char *end = p + 4 * width;
+            unsigned int t1,t2,t3;
+
+#define MULT(d,c,a,t) G_STMT_START { t = c * a; d = ((t >> 8) + t) >> 8; } G_STMT_END
+
+            if (ximage->byte_order == GDK_LSB_FIRST) {
+
+              while (p < end) {
+                MULT(q[0], p[2], p[3], t1);
+                MULT(q[1], p[1], p[3], t2);
+                MULT(q[2], p[0], p[3], t3);
+                q[3] = p[3];
+                p += 4;
+                q += 4;
+              }
+            }
+            else {
+
+              while (p < end) {
+
+                q[0] = p[3];
+                MULT(q[1], p[0], p[3], t1);
+                MULT(q[2], p[1], p[3], t2);
+                MULT(q[3], p[2], p[3], t3);
+                p += 4;
+                q += 4;
+              }
+            }
+#undef MULT
+          }
+          break;
+
+        case EDA_X11_FORMAT_NONE:
+        default:
+          g_assert_not_reached ();
+          break;
+      }
+    }
+    else {
+      fprintf (stderr, "%s: out of memory (%d x %d)\n", __func__, width, height);
+      ximage = NULL;
+    }
+  }
+  else {
+    fprintf (stderr, "%s: XCreateImage failed\n", __func__);
+    ximage = NULL;
+  }
+  return ximage;
+}
 
 inline std::string
 EdaX11Render::GetFontString(int size) {
@@ -86,8 +430,6 @@ EdaX11Render::QueryCurrentFont (const char *font_name, int size)
 
   new_size = rint((size / scale) * FONT_SIZE_FACTOR);
 
-  //fprintf(stderr, "scale <%f> size <%d>, new_size <%d>, font_size=<%d>\t", scale, size, new_size, font_size);
-
   if (font_size != new_size || update) {
 
     font_size = new_size;
@@ -103,7 +445,6 @@ EdaX11Render::QueryCurrentFont (const char *font_name, int size)
     }
   }
 
-  //fprintf(stderr, "font string=%s, update=%d\n", font_string.c_str(), update);
   return update;
 }
 /*
@@ -165,8 +506,8 @@ int EdaX11Render::XSetColorRed(void)
  * of the segment length. Could be improved further but is
  * better than what we do with Cairo renderer.
  */
-unsigned int
-EdaX11Render::SetLineAttributes(XGCValues *gcvals, int total)
+unsigned int EdaX11Render::
+SetLineAttributes(XGCValues *gcvals, int total)
 {
   char dash_list[6];
   int  dash_offset;
@@ -263,7 +604,8 @@ EdaX11Render::SetLineAttributes(XGCValues *gcvals, int total)
   return success ? GCCapStyle | GCLineStyle | GCLineWidth : 0;
 }
 
-void EdaX11Render::DrawBezierCurve (XPoint *points)
+void EdaX11Render::
+DrawBezierCurve (XPoint *points)
 {
   double A, B, C, D, E, F, G, H;  /* The Coefficients */
   double time;
@@ -313,8 +655,8 @@ void EdaX11Render::DrawBezierCurve (XPoint *points)
   }
 }
 
-void
-EdaX11Render::TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
+void EdaX11Render::
+TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
 {
   Text       *o_text = object->text;
   const char *string = o_text->disp_string;
@@ -479,7 +821,8 @@ geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
   return;
 }
 
-void EdaX11Render::geda_x11_draw_box (int x, int y, int width, int height)
+void EdaX11Render::
+geda_x11_draw_box (int x, int y, int width, int height)
 {
   XGCValues gcvals;
   unsigned  long bits;
@@ -497,7 +840,8 @@ void EdaX11Render::geda_x11_draw_box (int x, int y, int width, int height)
   return;
 }
 
-void EdaX11Render::geda_x11_draw_circle (int cx, int cy, int radius)
+void EdaX11Render::
+geda_x11_draw_circle (int cx, int cy, int radius)
 {
   XGCValues gcvals;
 
@@ -523,7 +867,8 @@ void EdaX11Render::geda_x11_draw_circle (int cx, int cy, int radius)
   return;
 }
 
-void EdaX11Render::geda_x11_draw_line (int x1, int y1, int x2, int y2)
+void EdaX11Render::
+geda_x11_draw_line (int x1, int y1, int x2, int y2)
 {
   XGCValues gcvals;
   unsigned  long bits;
@@ -541,7 +886,8 @@ void EdaX11Render::geda_x11_draw_line (int x1, int y1, int x2, int y2)
   return;
 }
 
-void EdaX11Render::geda_x11_draw_net (int x1, int y1, int x2, int y2)
+void EdaX11Render::
+geda_x11_draw_net (int x1, int y1, int x2, int y2)
 {
   XGCValues gcvals;
 
@@ -556,7 +902,8 @@ void EdaX11Render::geda_x11_draw_net (int x1, int y1, int x2, int y2)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 
-void EdaX11Render::geda_x11_draw_path (int nsections, PATH_SECTION *sections)
+void EdaX11Render::
+geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 {
   XGCValues gcvals;
   unsigned long bits;
@@ -565,10 +912,7 @@ void EdaX11Render::geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 
   XPoint points[4];
 
-  //int length;
   int i;
-
-  //length = m_line_length(object->line);
 
   bits = SetLineAttributes(&gcvals, 400);
 
@@ -635,7 +979,82 @@ void EdaX11Render::geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 }
 #pragma GCC diagnostic pop
 
-void EdaX11Render::geda_x11_draw_text (int x, int y)
+void EdaX11Render::
+geda_x11_draw_picture (int x, int y, int width, int height)
+{
+  GdkPixbuf *pixbuf;
+  Picture   *o_pic;
+
+  bool  mirror;
+  int   angle;
+
+  if (GEDA_IS_PICTURE(object)) {
+
+    o_pic  = object->picture;
+
+    if (o_pic && GDK_IS_PIXBUF(o_pic->pixbuf)) {
+      pixbuf = o_pic->pixbuf;
+      angle  = o_pic->angle;
+      mirror = o_pic->mirrored;
+    }
+    else {
+      pixbuf = o_picture_get_fallback_pixbuf ();
+      angle  = 0;
+      mirror = False;
+    }
+
+    if (!pixbuf) {
+      Object *save_obj = object;
+      object = o_box_new(JUNCTION_COLOR, 0, 0, 0, 0);
+      geda_x11_draw_box (x, y, width, height);
+      g_object_unref(object);
+      object = save_obj;
+    }
+    else {
+
+      GdkPixbuf *pixbuf1; /* Scaled version of  o_pic->pixbuf     */
+      GdkPixbuf *pixbuf2; /* tmp used when rotating and mirroring */
+      GdkPixbuf *pixbuf3; /* what need to be drawn on the screen  */
+
+      /* The object->picture->pixel is a pointer to the as read-in pixel
+       * buffer and needs to be rescaled to the instance insertion size */
+      if ((o_pic->angle == 90) || (o_pic->angle == 270)) {
+        pixbuf1 = gdk_pixbuf_scale_simple (pixbuf, height, width, GDK_INTERP_BILINEAR);
+      }
+      else {
+        pixbuf1 = gdk_pixbuf_scale_simple (pixbuf, width, height, GDK_INTERP_BILINEAR);
+      }
+
+      /* Adjust for rotation and mirroring */
+
+      if (!angle && !mirror) {                            /* No adjustment required */
+        pixbuf3 = pixbuf1; g_object_ref (pixbuf1);
+      }
+      else if (angle && !mirror) {                        /* Rotation required  */
+        pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf1, GetRotation(angle));
+      }
+      else if (!angle && mirror) {                        /* Mirroring required */
+        pixbuf3 = gdk_pixbuf_flip (pixbuf1, True);
+      }
+      else /* (mirror && angle) note: do flip 1st */ {    /* Mirror and Rotate */
+        pixbuf2 = gdk_pixbuf_flip (pixbuf1, True);
+        pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf2, GetRotation(angle));
+        g_object_unref (pixbuf2);
+      }
+
+      XImage *ximage = Pixbuf2Ximage (pixbuf3);
+
+      XPutImage(display, drawable, gc, ximage, 0, 0, x, y, ximage->width, ximage->height);
+
+      g_object_unref (pixbuf3);
+      g_object_unref (pixbuf1);
+    }
+  }
+  return;
+}
+
+void EdaX11Render::
+geda_x11_draw_text (int x, int y)
 {
   Text         *o_text;
   const char   *string;
@@ -671,8 +1090,8 @@ void EdaX11Render::geda_x11_draw_text (int x, int y)
         xrcolor.blue  = color.blue;
         xrcolor.alpha = 255;
 
-        /* Allocate Color */
-        XftColorAllocValue(display, visual, colormap, &xrcolor, &xftcolor);
+          /* Allocate Color */
+          XftColorAllocValue(display, visual, colormap, &xrcolor, &xftcolor);
       }
 
       TextAlignSetBounds (length, x, y, &x_left, &y_lower);
@@ -685,10 +1104,10 @@ void EdaX11Render::geda_x11_draw_text (int x, int y)
 #else
 
       font = XLoadQueryFont(display, font_string.c_str());
+
     }
 
     if (font) {
-
       XSetFont(display, gc, font->fid);
       TextAlignSetBounds (length, x, y, &x_left, &y_lower);
       XDrawString(display, drawable, gc, x_left, y_lower, string, length);
@@ -776,7 +1195,8 @@ geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
   return result;
 }
 
-int EdaX11Render::geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
+int EdaX11Render::
+geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 {
   int length;
 
@@ -787,7 +1207,8 @@ int EdaX11Render::geda_x11_draw_get_font_name (char *font_name, int size_of_buff
   return length;
 }
 
-void EdaX11Render::geda_x11_draw_set_font_name (const char *font_name)
+void EdaX11Render::
+geda_x11_draw_set_font_name (const char *font_name)
 {
   char* tmp_string;
 
@@ -816,13 +1237,15 @@ void EdaX11Render::geda_x11_draw_set_font_name (const char *font_name)
   GEDA_FREE(tmp_string);
 }
 
-void EdaX11Render::geda_x11_draw_set_font (const char *font_name, int size)
+void EdaX11Render::
+geda_x11_draw_set_font (const char *font_name, int size)
 {
   font_size = size;
   geda_x11_draw_set_font_name(font_name);
 }
 
-bool EdaX11Render::geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
+bool EdaX11Render::
+geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
 {
   bool result;
   int  index;
@@ -880,7 +1303,8 @@ bool EdaX11Render::geda_x11_draw_get_font_list(const char *pattern, GArray *list
   return result;
 }
 
-void EdaX11Render::geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
+void EdaX11Render::
+geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
 {
   if (surface != NULL) {
     cairo_surface_destroy (surface);

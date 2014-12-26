@@ -36,6 +36,13 @@
 #ifndef __GEDA_DRAW_H__
 #define __GEDA_DRAW_H__
 
+#define EdaRotation GdkPixbufRotation
+
+#define EDA_ROTATE_NONE                0
+#define EDA_ROTATE_COUNTERCLOCKWISE   90
+#define EDA_ROTATE_UPSIDEDOWN        180
+#define EDA_ROTATE_CLOCKWISE         270
+
 /* */
 #ifdef HAVE_XFT
 #  define FONT_SIZE_FACTOR     13.6
@@ -45,9 +52,9 @@
 #define EDA_DEFAULT_EOL_SP    4
 #define EDA_DEFAULT_LEADING   4
 
-
 #define BEZIER_STEP 0.0025
 
 #include "geda_x11.hpp"
+
 
 #endif /* __GEDA_DRAW_H__ */

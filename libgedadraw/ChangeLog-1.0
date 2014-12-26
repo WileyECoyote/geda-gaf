@@ -1,3 +1,10 @@
+2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: Continuing development of new renderer, picture images now functional
+        for all supported image formats, though maybe Molasses Renderer, needs
+        more work. All primary objects are now working, secondary objects like
+        markers are absent and no anti-aliasing, so somewhat ugly.
+
 2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
      *: Continuing development of new renderer, add font routines as needed to

@@ -49,13 +49,24 @@
 #define geda_draw_get_font_list   geda_x11_draw_get_font_list
 #define geda_draw_get_text_bounds geda_x11_draw_get_text_bounds
 
-#define geda_draw_arc    geda_x11_draw_arc
-#define geda_draw_box    geda_x11_draw_box
-#define geda_draw_circle geda_x11_draw_circle
-#define geda_draw_line   geda_x11_draw_line
-#define geda_draw_net    geda_x11_draw_net
-#define geda_draw_path   geda_x11_draw_path
-#define geda_draw_text   geda_x11_draw_text
+#define geda_draw_arc        geda_x11_draw_arc
+#define geda_draw_box        geda_x11_draw_box
+#define geda_draw_circle     geda_x11_draw_circle
+#define geda_draw_line       geda_x11_draw_line
+#define geda_draw_net        geda_x11_draw_net
+#define geda_draw_path       geda_x11_draw_path
+#define geda_draw_picture    geda_x11_draw_picture
+#define geda_draw_text       geda_x11_draw_text
+
+/* Drawable implementation for X11 */
+
+typedef enum
+{
+  EDA_X11_FORMAT_NONE,
+  EDA_X11_FORMAT_EXACT_MASK,
+  EDA_X11_FORMAT_ARGB_MASK,
+  EDA_X11_FORMAT_ARGB
+} EdaX11Format;
 
 class EdaX11Render
 {
@@ -94,12 +105,16 @@ protected:
 
   inline std::string GetFontString(int size);
 
-  void         DrawBezierCurve    (XPoint *points);
-  unsigned int SetLineAttributes  (XGCValues *gcvals, int total);
+  EdaRotation  GetRotation        (int angle);
+  EdaX11Format GetImageFormat     (XRenderPictFormat **format, XRenderPictFormat **mask);
+  XImage      *Pixbuf2Ximage      (GdkPixbuf *pixbuf);
 
   bool         IsScalableFont     (char *name);
   bool         QueryCurrentFont   (const char *font_name, int size);
   void         TextAlignSetBounds (int length, int x, int y, int *x_left, int *y_lower);
+
+  void         DrawBezierCurve    (XPoint *points);
+  unsigned int SetLineAttributes  (XGCValues *gcvals, int total);
 
 public:
 
@@ -131,5 +146,6 @@ public:
   void geda_x11_draw_line         (int x1, int y1, int x2, int y2);
   void geda_x11_draw_net          (int x1, int y1, int x2, int y2);
   void geda_x11_draw_path         (int num_sections, PATH_SECTION *sections);
+  void geda_x11_draw_picture      (int x, int y, int width, int height);
   void geda_x11_draw_text         (int x, int y);
 };
