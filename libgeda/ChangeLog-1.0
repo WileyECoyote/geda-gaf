@@ -1,3 +1,16 @@
+2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/prototype.h: Rearrange indentation
+
+    * include/prototype_priv.h: Relocate o_picture_print declaration
+      to public, seems reasonable that a client application may want
+      to call this function, also ...
+
+    * src/object/o_picture.c: Rearange module (in more alpha-logical)
+      order, Add functions o_picture_get_rgb_data and o_picture_get_
+      mask_data as object oriented accessor to o_picture_rgb_data and
+      o_picture_mask_data respectively.
+
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * /src/file/f_get.c: Add new function f_get_bitmap_filespec

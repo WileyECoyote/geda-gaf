@@ -219,11 +219,10 @@ bool     o_path_get_position           (int *x, int *y, Object *object);
 Object  *o_picture_read                (const char *first_line, TextBuffer *tb,
                                         unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char    *o_picture_save                (Object *object);
-void     o_picture_print               (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
 double   o_picture_shortest_distance   (Object *object, int x, int y, int force_soild);
-bool     o_picture_get_position        (int *x, int *y, Object *object);
 void     o_picture_embed               (Object *object);
 void     o_picture_unembed             (Object *object);
+bool     o_picture_get_position        (int *x, int *y, Object *object);
 
 /* o_pin_basic.c */
 bool     o_pin_get_position            (int *x, int *y, Object *object);

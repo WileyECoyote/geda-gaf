@@ -199,7 +199,7 @@ char *o_picture_save(Object *object)
   #endif
 
   /* Encode the picture if it's embedded */
-  if (o_picture_is_embedded (object)) {
+  if (object->picture->embedded (object)) {
     encoded_picture =
     s_encoding_base64_encode( (char *)object->picture->file_content,
                               object->picture->file_length,
@@ -214,9 +214,9 @@ char *o_picture_save(Object *object)
   filename = o_picture_get_filename (object);
   if (filename == NULL) filename = "";
 
-  if (o_picture_is_embedded (object) &&
+  if (object->picture->embedded (object) &&
     encoded_picture != NULL) {
-    out = g_strdup_printf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
+    out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
                           object->type,
                           x1, y1, width, height,
                           object->picture->angle,
@@ -228,7 +228,7 @@ char *o_picture_save(Object *object)
                           ".");
     }
     else {
-      out = g_strdup_printf("%c %d %d %d %d %d %c %c\n%s",
+      out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
       object->type,
       x1, y1, width, height,
       object->picture->angle,
@@ -318,7 +318,7 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
       /* Force the data into the object anyway, so as to prevent data
        * loss of embedded images. */
       picture->file_content = g_memdup (file_content, file_length);
-      picture->file_length = file_length;
+      picture->file_length  = file_length;
     }
   }
 
@@ -356,55 +356,126 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
 
 }
 
-/*! \brief get the position of the left bottom point
+/*! \brief Create a copy of a picture
  *
  *  \par Function Description
- *  This function gets the position of the bottom left point of a picture object.
+ *  This function creates a verbatim copy of the object pointed by
+ *  <B>\a o_current</B> describing a picture.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ *  \param [in]  o_current     Picture Object to copy.
+ *  \return The new Object
  */
-bool o_picture_get_position (int *x, int *y, Object *object)
+Object *o_picture_copy(Object *o_current)
 {
-  *x = min(object->picture->lower_x, object->picture->upper_x);
-  *y = min(object->picture->lower_y, object->picture->upper_y);
-  return TRUE;
+  Object  *new_obj;
+  Picture *new_picture;
+  Picture *old_picture = GEDA_PICTURE(o_current);
+
+  /* create the picture object */
+  new_obj = geda_picture_new();
+  new_picture = GEDA_PICTURE(new_obj);
+
+  /* describe the picture with its upper left and lower right corner */
+  new_picture->upper_x = old_picture->upper_x;
+  new_picture->upper_y = old_picture->upper_y;
+  new_picture->lower_x = old_picture->lower_x;
+  new_picture->lower_y = old_picture->lower_y;
+
+  if (old_picture->file_content != NULL) {
+    new_picture->file_content = g_memdup (old_picture->file_content,
+                                          old_picture->file_length);
+  } else {
+    new_picture->file_content = NULL;
+  }
+
+  new_picture->file_length = old_picture->file_length;
+  new_picture->filename    = u_string_strdup (old_picture->filename);
+  new_picture->ratio       = old_picture->ratio;
+  new_picture->angle       = old_picture->angle;
+  new_picture->mirrored    = old_picture->mirrored;
+  new_picture->embedded    = old_picture->embedded;
+
+  /* Get the picture data */
+  new_picture->pixbuf = o_picture_get_pixbuf (o_current);
+
+  return new_obj;
 }
 
-
-/*! \brief Get the width/height ratio of an image
+/*! \brief Test whether a picture object is embedded
  *
- * \par Function Description
-
- * Returns the width/height ratio of picture \a object, taking the
- * image rotation into account.
+ *  \par Function Description
+ *  Returns TRUE if the picture \a object will have its data embedded
+ *  in a schematic or symbol file; returns FALSE if its data will be
+ *  obtained from a separate file.
  *
- * \param object    Picture #Object to inspect
- *
- * \return width/height ratio for \a object.
+ * \param object    The picture #Object to inspect.
+ * \return TRUE if \a object is embedded.
  */
-float
-o_picture_get_ratio (Object *object)
+bool o_picture_is_embedded (Object *object)
 {
+  g_return_val_if_fail (object != NULL, FALSE);
+  g_return_val_if_fail (object->picture != NULL, FALSE);
 
-  g_return_val_if_fail (GEDA_IS_PICTURE(object), 1);
+  return object->picture->embedded;
+}
 
-  /* The effective ratio varies depending on the rotation of the
-   * image. */
+/*! \brief Mirror a picture using WORLD coordinates
+ *
+ *  \par Function Description
+ *  This function mirrors the picture from the point (<B>world_centerx</B>,
+ *  <B>world_centery</B>) in world unit. The picture is first translated to
+ *  the origin, then mirrored and finally translated back at its previous
+ *  position.
+ *
+ *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
+ *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in,out] object         Picture Object to mirror.
+ */
+void o_picture_mirror_world(int world_centerx, int world_centery,
+                            Object *object)
+{
+  int newx1, newy1;
+  int newx2, newy2;
+
+  /* Set info in object. Sometimes it's necessary to change the
+   * rotation angle as well as the mirror flag. */
+  object->picture->mirrored = !object->picture->mirrored;
   switch (object->picture->angle) {
-  case 0:
-  case 180:
-    return object->picture->ratio;
   case 90:
+    object->picture->angle = 270;
+    break;
   case 270:
-    return 1.0 / object->picture->ratio;
-  default:
-    g_critical (_("Picture %p has invalid angle %i\n"), object,
-                object->picture->angle);
+    object->picture->angle = 90;
+    break;
   }
-  return 0;
+
+  /* translate object to origin */
+  object->picture->upper_x -= world_centerx;
+  object->picture->upper_y -= world_centery;
+  object->picture->lower_x -= world_centerx;
+  object->picture->lower_y -= world_centery;
+
+  /* mirror the corners */
+  newx1 = -object->picture->upper_x;
+  newy1 = object->picture->upper_y;
+  newx2 = -object->picture->lower_x;
+  newy2 = object->picture->lower_y;
+
+  /* reorder the corners */
+  object->picture->upper_x = min(newx1,newx2);
+  object->picture->upper_y = max(newy1,newy2);
+  object->picture->lower_x = max(newx1,newx2);
+  object->picture->lower_y = min(newy1,newy2);
+
+  /* translate back in position */
+  object->picture->upper_x += world_centerx;
+  object->picture->upper_y += world_centery;
+  object->picture->lower_x += world_centerx;
+  object->picture->lower_y += world_centery;
+
+  /* recalc boundings and screen coords */
+  object->w_bounds_valid_for = NULL;
+
 }
 
 /*! \brief Modify the description of a picture Object
@@ -583,65 +654,6 @@ o_picture_rotate_world( int world_centerx, int world_centery, int angle, Object 
 
 }
 
-/*! \brief Mirror a picture using WORLD coordinates
- *
- *  \par Function Description
- *  This function mirrors the picture from the point (<B>world_centerx</B>,
- *  <B>world_centery</B>) in world unit. The picture is first translated to
- *  the origin, then mirrored and finally translated back at its previous
- *  position.
- *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Picture Object to mirror.
- */
-void o_picture_mirror_world(int world_centerx, int world_centery,
-                            Object *object)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /* Set info in object. Sometimes it's necessary to change the
-   * rotation angle as well as the mirror flag. */
-  object->picture->mirrored = !object->picture->mirrored;
-  switch (object->picture->angle) {
-  case 90:
-    object->picture->angle = 270;
-    break;
-  case 270:
-    object->picture->angle = 90;
-    break;
-  }
-
-  /* translate object to origin */
-  object->picture->upper_x -= world_centerx;
-  object->picture->upper_y -= world_centery;
-  object->picture->lower_x -= world_centerx;
-  object->picture->lower_y -= world_centery;
-
-  /* mirror the corners */
-  newx1 = -object->picture->upper_x;
-  newy1 = object->picture->upper_y;
-  newx2 = -object->picture->lower_x;
-  newy2 = object->picture->lower_y;
-
-  /* reorder the corners */
-  object->picture->upper_x = min(newx1,newx2);
-  object->picture->upper_y = max(newy1,newy2);
-  object->picture->lower_x = max(newx1,newx2);
-  object->picture->lower_y = min(newy1,newy2);
-
-  /* translate back in position */
-  object->picture->upper_x += world_centerx;
-  object->picture->upper_y += world_centery;
-  object->picture->lower_x += world_centerx;
-  object->picture->lower_y += world_centery;
-
-  /* recalc boundings and screen coords */
-  object->w_bounds_valid_for = NULL;
-
-}
-
 /*! \brief Translate a picture position in WORLD coordinates by a delta
  *
  *  \par Function Description
@@ -665,67 +677,40 @@ o_picture_translate_world(int dx, int dy, Object *object)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Create a copy of a picture
+/*! \brief Get mask data from image
  *
  *  \par Function Description
- *  This function creates a verbatim copy of the object pointed by
- *  <B>\a o_current</B> describing a picture.
+ *  This function returns the mask data of the given image. Function
+ *  taken from the DIA source code (http://www.gnome.org/projects/dia)
+ *  and licensed under the GNU GPL version 2.
  *
- *  \param [in]  o_current     Picture Object to copy.
- *  \return The new Object
+ *  \param [in] image  GdkPixbuf image to get mask data from.
+ *  \return Array of mask data from image.
+ *
+ *  \note
+ *  Caller must GEDA_FREE returned uint8 array.
  */
-Object *o_picture_copy(Object *o_current)
+static uint8 *o_picture_mask_data(GdkPixbuf *image)
 {
-  Object  *new_obj;
-  Picture *new_picture;
-  Picture *old_picture = GEDA_PICTURE(o_current);
+  uint8 *pixels;
+  uint8 *mask;
+  int i, size;
 
-  /* create the picture object */
-  new_obj = geda_picture_new();
-  new_picture = GEDA_PICTURE(new_obj);
-
-  /* describe the picture with its upper left and lower right corner */
-  new_picture->upper_x = old_picture->upper_x;
-  new_picture->upper_y = old_picture->upper_y;
-  new_picture->lower_x = old_picture->lower_x;
-  new_picture->lower_y = old_picture->lower_y;
-
-  if (old_picture->file_content != NULL) {
-    new_picture->file_content = g_memdup (old_picture->file_content,
-                                          old_picture->file_length);
-  } else {
-    new_picture->file_content = NULL;
+  if (!gdk_pixbuf_get_has_alpha(image)) {
+    return NULL;
   }
 
-  new_picture->file_length = old_picture->file_length;
-  new_picture->filename    = u_string_strdup (old_picture->filename);
-  new_picture->ratio       = old_picture->ratio;
-  new_picture->angle       = old_picture->angle;
-  new_picture->mirrored    = old_picture->mirrored;
-  new_picture->embedded    = old_picture->embedded;
+  pixels = gdk_pixbuf_get_pixels(image);
 
-  /* Get the picture data */
-  new_picture->pixbuf = o_picture_get_pixbuf (o_current);
+  size = gdk_pixbuf_get_width(image) * gdk_pixbuf_get_height(image);
 
-  return new_obj;
-}
+  mask = GEDA_MEM_ALLOC(size);
 
-/*! \brief Test whether a picture object is embedded
- *
- *  \par Function Description
- *  Returns TRUE if the picture \a object will have its data embedded
- *  in a schematic or symbol file; returns FALSE if its data will be
- *  obtained from a separate file.
- *
- * \param object    The picture #Object to inspect.
- * \return TRUE if \a object is embedded.
- */
-bool o_picture_is_embedded (Object *object)
-{
-  g_return_val_if_fail (object != NULL, FALSE);
-  g_return_val_if_fail (object->picture != NULL, FALSE);
+  /* Pick every fourth byte (the alpha channel) into mask */
+  for (i = 0; i < size; i++)
+    mask[i] = pixels[i*4+3];
 
-  return object->picture->embedded;
+  return mask;
 }
 
 /*! \brief Get RGB data from image
@@ -736,18 +721,18 @@ bool o_picture_is_embedded (Object *object)
  *  and licensed under the GNU GPL version 2.
  *
  *  \param [in] image  GdkPixbuf image to read RGB data from.
+ *
  *  \return Array of rgb data from image.
  *
  *  \note
  *  Caller must GEDA_FREE returned uint8 array.
  */
-static unsigned char*
-o_picture_rgb_data(GdkPixbuf *image)
+static unsigned char *o_picture_rgb_data (GdkPixbuf *image)
 {
-  int width = gdk_pixbuf_get_width(image);
-  int height = gdk_pixbuf_get_height(image);
-  int rowstride = gdk_pixbuf_get_rowstride(image);
-  int size = height*rowstride;
+  int width         = gdk_pixbuf_get_width(image);
+  int height        = gdk_pixbuf_get_height(image);
+  int rowstride     = gdk_pixbuf_get_rowstride(image);
+  int size          = height*rowstride;
   uint8 *rgb_pixels = GEDA_MEM_ALLOC(size);
 
   if (gdk_pixbuf_get_has_alpha(image)) {
@@ -764,155 +749,9 @@ o_picture_rgb_data(GdkPixbuf *image)
   }
   else {
     uint8 *pixels = gdk_pixbuf_get_pixels(image);
-
     g_memmove(rgb_pixels, pixels, height*rowstride);
     return rgb_pixels;
   }
-}
-
-/*! \brief Get mask data from image
- *
- *  \par Function Description
- *  This function returns the mask data of the given image. Function
- *  taken from the DIA source code (http://www.gnome.org/projects/dia)
- *  and licensed under the GNU GPL version 2.
- *
- *  \param [in] image  GdkPixbuf image to get mask data from.
- *  \return Array of mask data from image.
- *
- *  \note
- *  Caller must GEDA_FREE returned uint8 array.
- */
-static uint8 *
-o_picture_mask_data(GdkPixbuf *image)
-{
-  uint8 *pixels;
-  uint8 *mask;
-  int i, size;
-
-  if (!gdk_pixbuf_get_has_alpha(image)) {
-    return NULL;
-  }
-
-  pixels = gdk_pixbuf_get_pixels(image);
-
-  size = gdk_pixbuf_get_width(image)*
-    gdk_pixbuf_get_height(image);
-
-  mask = GEDA_MEM_ALLOC(size);
-
-  /* Pick every fourth byte (the alpha channel) into mask */
-  for (i = 0; i < size; i++)
-    mask[i] = pixels[i*4+3];
-
-  return mask;
-}
-
-/*! \brief Print picture to Postscript document
- *
- *  \par Function Description
- *  This function prints a picture object. The picture is defined by the
- *  coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and its width
- *  and height given by the <B>width</B> and <B>height</B> parameters.
- *
- *  If the picture object was unable to be loaded, prints a crossed
- *  box of the same dimensions.
- *
- *  The Postscript document is defined by the file pointer <B>fp</B>.
- *  Function based on the DIA source code (http://www.gnome.org/projects/dia)
- *  and licensed under the GNU GPL version 2.
- *
- *  All dimensions are in mils.
- *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Picture Object to write to document.
- *  \param [in] origin_x   Page x coordinate to place picture Object.
- *  \param [in] origin_y   Page y coordinate to place picture Object.
- */
-void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
-                      int origin_x, int origin_y)
-{
-  int x1, y1, x, y;
-  int height, width;
-  GdkPixbuf* image = o_picture_get_pixbuf (o_current);
-  int img_width, img_height, img_rowstride;
-  uint8 *rgb_data;
-  uint8 *mask_data;
-
-  /* calculate the width and height of the box */
-  width  = abs(o_current->picture->lower_x - o_current->picture->upper_x);
-  height = abs(o_current->picture->upper_y - o_current->picture->lower_y);
-
-  /* calculate the origin of the box */
-  x1 = o_current->picture->upper_x;
-  y1 = o_current->picture->upper_y;
-
-  /* If the image failed to load, try to get hold of the fallback
-   * pixbuf. */
-  if (image == NULL) image = o_picture_get_fallback_pixbuf ();
-  /* If the image failed to load, draw a box in the default color with a
-   * cross in it. */
-  if (image == NULL) {
-    int line_width = o_style_get_line_width(toplevel);
-    //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
-    o_box_print_solid (toplevel, fp, x1, y1, width, height,
-                       DEFAULT_COLOR_INDEX, line_width, SQUARE_CAP, -1, -1, -1, -1);
-    o_line_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
-                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
-    o_line_print_solid (toplevel, fp, x1+width, y1, x1, y1-height,
-                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
-    return;
-  }
-
-  img_width = gdk_pixbuf_get_width(image);
-  img_rowstride = gdk_pixbuf_get_rowstride(image);
-  img_height = gdk_pixbuf_get_height(image);
-
-  rgb_data = o_picture_rgb_data(image);
-  mask_data = o_picture_mask_data(image);
-
-  fprintf(fp, "gsave\n");
-
-  /* color output only */
-  fprintf(fp, "/pix %i string def\n", img_width * 3);
-  fprintf(fp, "%i %i 8\n", img_width, img_height);
-  fprintf(fp, "%i %i translate\n", x1, y1);
-  fprintf(fp, "%i %i scale\n", width, height);
-  fprintf(fp, "[%i 0 0 -%i 0 0]\n", img_width, img_height);
-
-  fprintf(fp, "{currentfile pix readhexstring pop}\n");
-  fprintf(fp, "false 3 colorimage\n");
-  fprintf(fp, "\n");
-
-  if (mask_data) {
-    for (y = 0; y < img_height; y++) {
-      for (x = 0; x < img_width; x++) {
-        int i = y*img_rowstride+x*3;
-        int m = y*img_width+x;
-        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i])/255));
-        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i+1])/255));
-        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i+2])/255));
-      }
-      fprintf(fp, "\n");
-    }
-  } else {
-    for (y = 0; y < img_height; y++) {
-      for (x = 0; x < img_width; x++) {
-        int i = y*img_rowstride+x*3;
-        fprintf(fp, "%02x", (int)(rgb_data[i]));
-        fprintf(fp, "%02x", (int)(rgb_data[i+1]));
-        fprintf(fp, "%02x", (int)(rgb_data[i+2]));
-      }
-      fprintf(fp, "\n");
-    }
-  }
-  fprintf(fp, "grestore\n");
-  fprintf(fp, "\n");
-
-  GEDA_UNREF (image);
-  GEDA_FREE(rgb_data);
-  GEDA_FREE(mask_data);
 }
 
 /*! \brief Embed the image file associated with a picture
@@ -1015,32 +854,6 @@ double o_picture_shortest_distance (Object *object,
   return sqrt ((dx * dx) + (dy * dy));
 }
 
-/*! \brief Get a pixel buffer for a picture object
- *
- * \par Function Description
- * Returns a GdkPixbuf for the picture object \a object, or NULL if
- * the picture could not be loaded.
- *
- * The returned value should have its reference count decremented with
- * GEDA_UNREF() when no longer needed.
- *
- * \param object  The picture #Object to inspect.
- *
- * \return A GdkPixbuf for the picture.
- */
-GdkPixbuf *
-o_picture_get_pixbuf (Object *object)
-{
-  g_return_val_if_fail (object != NULL, NULL);
-  g_return_val_if_fail (object->picture != NULL, NULL);
-
-  if (object->picture->pixbuf != NULL) {
-    return g_object_ref (object->picture->pixbuf);
-  } else {
-    return NULL;
-  }
-}
-
 /*! \brief Get the raw image data from a picture object
  *
  * \par Function Description
@@ -1058,6 +871,181 @@ const char *o_picture_get_data (Object *object, size_t *len)
 
   *len = object->picture->file_length;
   return object->picture->file_content;
+}
+
+/*! \brief Get the file name Associated with a Picture Object
+ *
+ * \par Function Description
+ * Returns the filename associated with the picture \a object.
+ *
+ * \param object   The picture #Object to inspect
+ *
+ * \return the filename associated with \a object
+ */
+const char *
+o_picture_get_filename (Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE(object), NULL);
+
+  return object->picture->filename;
+}
+
+/*! \brief Get Picture position of the left bottom point
+ *
+ *  \par Function Description
+ *  This function gets the position of the bottom left point of a picture object.
+ *
+ *  \param [out] x       pointer to the x-position
+ *  \param [out] y       pointer to the y-position
+ *  \param [in] object   The object to get the position.
+ *  \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool o_picture_get_position (int *x, int *y, Object *object)
+{
+  *x = min(object->picture->lower_x, object->picture->upper_x);
+  *y = min(object->picture->lower_y, object->picture->upper_y);
+  return TRUE;
+}
+
+/*! \brief Get the width/height ratio of an image
+ *
+ * \par Function Description
+
+ * Returns the width/height ratio of picture \a object, taking the
+ * image rotation into account.
+ *
+ * \param object    Picture #Object to inspect
+ *
+ * \return width/height ratio for \a object.
+ */
+float
+o_picture_get_ratio (Object *object)
+{
+
+  g_return_val_if_fail (GEDA_IS_PICTURE(object), 1);
+
+  /* The effective ratio varies depending on the rotation of the
+   * image. */
+  switch (object->picture->angle) {
+  case 0:
+  case 180:
+    return object->picture->ratio;
+  case 90:
+  case 270:
+    return 1.0 / object->picture->ratio;
+  default:
+    g_critical (_("Picture %p has invalid angle %i\n"), object,
+                object->picture->angle);
+  }
+  return 0;
+}
+
+/*! \brief Print picture to Postscript document
+ *
+ *  \par Function Description
+ *  This function prints a picture object. The picture is defined by the
+ *  coordinates of its upper left corner in (<B>x</B>,<B>y</B>) and its width
+ *  and height given by the <B>width</B> and <B>height</B> parameters.
+ *
+ *  If the picture object was unable to be loaded, prints a crossed
+ *  box of the same dimensions.
+ *
+ *  The Postscript document is defined by the file pointer <B>fp</B>.
+ *  Function based on the DIA source code (http://www.gnome.org/projects/dia)
+ *  and licensed under the GNU GPL version 2.
+ *
+ *  All dimensions are in mils.
+ *
+ *  \param [in] toplevel   The GedaToplevel object.
+ *  \param [in] fp         FILE pointer to Postscript document.
+ *  \param [in] o_current  Picture Object to write to document.
+ *  \param [in] origin_x   Page x coordinate to place picture Object.
+ *  \param [in] origin_y   Page y coordinate to place picture Object.
+ */
+void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+                      int origin_x, int origin_y)
+{
+  int x1, y1, x, y;
+  int height, width;
+  GdkPixbuf* image = o_picture_get_pixbuf (o_current);
+  int img_width, img_height, img_rowstride;
+  uint8 *rgb_data;
+  uint8 *mask_data;
+
+  /* calculate the width and height of the box */
+  width  = abs(o_current->picture->lower_x - o_current->picture->upper_x);
+  height = abs(o_current->picture->upper_y - o_current->picture->lower_y);
+
+  /* calculate the origin of the box */
+  x1 = o_current->picture->upper_x;
+  y1 = o_current->picture->upper_y;
+
+  /* If the image failed to load, try to get hold of the fallback
+   * pixbuf. */
+  if (image == NULL) image = o_picture_get_fallback_pixbuf ();
+  /* If the image failed to load, draw a box in the default color with a
+   * cross in it. */
+  if (image == NULL) {
+    int line_width = o_style_get_line_width(toplevel);
+    //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
+    o_box_print_solid (toplevel, fp, x1, y1, width, height,
+                       DEFAULT_COLOR_INDEX, line_width, SQUARE_CAP, -1, -1, -1, -1);
+    o_line_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,
+                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
+    o_line_print_solid (toplevel, fp, x1+width, y1, x1, y1-height,
+                        DEFAULT_COLOR_INDEX, line_width, ROUND_CAP, -1, -1, -1, -1);
+    return;
+  }
+
+  img_width     = gdk_pixbuf_get_width(image);
+  img_rowstride = gdk_pixbuf_get_rowstride(image);
+  img_height    = gdk_pixbuf_get_height(image);
+
+  rgb_data      = o_picture_rgb_data(image);
+  mask_data     = o_picture_mask_data(image);
+
+  fprintf(fp, "gsave\n");
+
+  /* color output only */
+  fprintf(fp, "/pix %i string def\n", img_width * 3);
+  fprintf(fp, "%i %i 8\n", img_width, img_height);
+  fprintf(fp, "%i %i translate\n", x1, y1);
+  fprintf(fp, "%i %i scale\n", width, height);
+  fprintf(fp, "[%i 0 0 -%i 0 0]\n", img_width, img_height);
+
+  fprintf(fp, "{currentfile pix readhexstring pop}\n");
+  fprintf(fp, "false 3 colorimage\n");
+  fprintf(fp, "\n");
+
+  if (mask_data) {
+    for (y = 0; y < img_height; y++) {
+      for (x = 0; x < img_width; x++) {
+        int i = y*img_rowstride+x*3;
+        int m = y*img_width+x;
+        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i])/255));
+        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i+1])/255));
+        fprintf(fp, "%02x", 255-(mask_data[m]*(255-rgb_data[i+2])/255));
+      }
+      fprintf(fp, "\n");
+    }
+  }
+  else {
+    for (y = 0; y < img_height; y++) {
+      for (x = 0; x < img_width; x++) {
+        int i = y*img_rowstride+x*3;
+        fprintf(fp, "%02x", (int)(rgb_data[i]));
+        fprintf(fp, "%02x", (int)(rgb_data[i+1]));
+        fprintf(fp, "%02x", (int)(rgb_data[i+2]));
+      }
+      fprintf(fp, "\n");
+    }
+  }
+  fprintf(fp, "grestore\n");
+  fprintf(fp, "\n");
+
+  GEDA_UNREF (image);
+  GEDA_FREE(rgb_data);
+  GEDA_FREE(mask_data);
 }
 
 /*! \brief Set a picture object's contents from a buffer
@@ -1149,23 +1137,6 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
   return status;
 }
 
-/*! \brief Get the file name Associated with a Picture Object
- *
- * \par Function Description
- * Returns the filename associated with the picture \a object.
- *
- * \param object   The picture #Object to inspect
- *
- * \return the filename associated with \a object
- */
-const char *
-o_picture_get_filename (Object *object)
-{
-  g_return_val_if_fail (GEDA_IS_PICTURE(object), NULL);
-
-  return object->picture->filename;
-}
-
 /*! \brief Get fallback pixbuf for displaying pictures
  *
  * \par Function Description
@@ -1200,4 +1171,80 @@ GdkPixbuf *o_picture_get_fallback_pixbuf (void)
   }
 
   return failed ? NULL : g_object_ref (pixbuf);
+}
+
+/*! \brief Get a pixel buffer for a picture object
+ *
+ * \par Function Description
+ * Returns a GdkPixbuf for the picture object \a object, or NULL if
+ * the picture could not be loaded.
+ *
+ * The returned value should have its reference count decremented with
+ * GEDA_UNREF() when no longer needed.
+ *
+ * \param object  The picture #Object to inspect.
+ *
+ * \return A GdkPixbuf for the picture.
+ */
+GdkPixbuf *
+o_picture_get_pixbuf (Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
+
+  if (object->picture->pixbuf != NULL) {
+    return g_object_ref (object->picture->pixbuf);
+  }
+  else {
+    return NULL;
+  }
+}
+
+/*! \brief Get RGB data from a Picture object
+ *
+ *  \par Function Description
+ *  This function returns the RGB data of the given object..
+ *
+ *  \param [in] image  GdkPixbuf image to read RGB data from.
+ *
+ *  \return Array of rgb data from image.
+ *
+ *  \note Caller must GEDA_FREE returned data.
+ *
+ *  \sa o_picture_rgb_data o_picture_get_mask_data
+ */
+unsigned char *o_picture_get_rgb_data (Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
+
+  if (object->picture->pixbuf != NULL) {
+    return o_picture_rgb_data(object->picture->pixbuf);
+  }
+  else {
+    return NULL;
+  }
+}
+
+/*! \brief Get mask data from a Picture object
+ *
+ *  \par Function Description
+ *  This function returns the mask data of the given object.
+ *
+ *  \param [in] image  GdkPixbuf image to get mask data from
+ *
+ *  \return Array of mask data from image
+ *
+ *  \note Caller must GEDA_FREE returned uint8 array.
+ *
+ *  \sa o_picture_mask_data o_picture_get_rgb_data
+ */
+uint8 *o_picture_get_mask_data(Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
+
+  if (object->picture->pixbuf == NULL) {
+    return o_picture_mask_data(object->picture->pixbuf);
+  }
+  else {
+    return NULL;
+  }
 }
