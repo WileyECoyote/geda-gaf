@@ -37,7 +37,7 @@
  *
  *  \par Function Description
  *  Parses \a first_line and subsequent lines from \a tb, and returns
- *  a newly-created picture #Object.
+ *  a newly-created picture#Object.
  *
  *  \param [in]  first_line      Character string with picture description.
  *  \param [in]  tb              Text buffer to load embedded data from.
@@ -48,11 +48,12 @@
  *
  *  \return A pointer to the new picture object, or NULL on error.
  */
-Object *o_picture_read (const char *first_line,
-                        TextBuffer *tb,
-                        unsigned int release_ver,
-                        unsigned int fileformat_ver,
-                        GError **err)
+Object *
+o_picture_read (const char  *first_line,
+                TextBuffer  *tb,
+                unsigned int release_ver,
+                unsigned int fileformat_ver,
+                GError **err)
 {
   Object *new_obj;
   int x1, y1;
@@ -119,6 +120,7 @@ Object *o_picture_read (const char *first_line,
   }
 
   if (embedded == 1) {
+
     GString *encoded_picture=g_string_new("");
     char finished = 0;
 
@@ -194,12 +196,12 @@ char *o_picture_save(Object *object)
   x1 = object->picture->upper_x;
   y1 = object->picture->upper_y - height; /* move the origin to 0, 0*/
 
-  #if DEBUG
+#if DEBUG
   printf("picture: %d %d %d %d\n", x1, y1, width, height);
-  #endif
+#endif
 
   /* Encode the picture if it's embedded */
-  if (TRUE == object->picture->embedded) {
+  if (o_picture_is_embedded(object)) {
     encoded_picture =
     s_encoding_base64_encode( (char *)object->picture->file_content,
                               object->picture->file_length,
@@ -214,7 +216,7 @@ char *o_picture_save(Object *object)
   filename = o_picture_get_filename (object);
   if (filename == NULL) filename = "";
 
-  if ((object->picture->embedded == TRUE) && encoded_picture != NULL) {
+  if (o_picture_is_embedded(object) && encoded_picture != NULL) {
     out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
                            object->type,
                            x1, y1, width, height,
@@ -249,7 +251,7 @@ char *o_picture_save(Object *object)
  *
  *  The picture is described by its upper left corner (\a x1, \a y1)
  *  and its lower right corner (\a x2, \a y2).  The \a type parameter
- *  must be equal to #OBJ_PICTURE.
+ *  must be equal to#OBJ_PICTURE.
  *
  *  If \a file_content is non-NULL, it must be a pointer to a buffer
  *  containing raw image data.  If loading data from \a file_content
@@ -268,12 +270,13 @@ char *o_picture_save(Object *object)
  *  \param [in]     mirrored      Whether the image should be mirrored or not.
  *  \param [in]     embedded      Whether the embedded flag should be set or not.
  *
- *  \return A pointer to a new picture #Object.
+ *  \return A pointer to a new picture#Object.
  */
-Object *o_picture_new (const char *file_content, unsigned int file_length,
-                       const char *filename,
-                       int x1, int y1, int x2, int y2, int angle,
-                       int mirrored, int embedded)
+Object*
+o_picture_new (const char *file_content, unsigned int file_length,
+               const char *filename,
+               int x1, int y1, int x2, int y2, int angle,
+               int mirrored, int embedded)
 {
   Object  *new_obj;
   Picture *picture;
@@ -295,7 +298,7 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
 
   picture->angle        = angle;
   picture->mirrored     = mirrored;
-  picture->embedded     = embedded;
+  picture->is_embedded  = embedded;
 
   /* Can not divide by zero */
   if ( (y1 - y2) != 0 ) {
@@ -308,8 +311,8 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
 
   if (file_content != NULL) {
     GError *error = NULL;
-    if (!o_picture_set_from_buffer (new_obj, filename,
-      file_content, file_length, &error))
+    if (!o_picture_set_from_buffer (new_obj, filename, file_content,
+                                             file_length, &error))
     {
       u_log_message (_("Failed to load buffer image [%s]: %s\n"),
                      filename, error->message);
@@ -365,7 +368,8 @@ Object *o_picture_new (const char *file_content, unsigned int file_length,
  *  \param [in]  o_current     Picture Object to copy.
  *  \return The new Object
  */
-Object *o_picture_copy(Object *o_current)
+Object*
+o_picture_copy(Object *o_current)
 {
   Object  *new_obj;
   Picture *new_picture;
@@ -393,7 +397,7 @@ Object *o_picture_copy(Object *o_current)
   new_picture->ratio       = old_picture->ratio;
   new_picture->angle       = old_picture->angle;
   new_picture->mirrored    = old_picture->mirrored;
-  new_picture->embedded    = old_picture->embedded;
+  new_picture->is_embedded = old_picture->is_embedded;
 
   /* Get the picture data */
   new_picture->pixbuf = o_picture_get_pixbuf (o_current);
@@ -408,15 +412,14 @@ Object *o_picture_copy(Object *o_current)
  *  in a schematic or symbol file; returns FALSE if its data will be
  *  obtained from a separate file.
  *
- * \param object    The picture #Object to inspect.
+ * \param object    The picture#Object to inspect.
  * \return TRUE if \a object is embedded.
  */
-bool o_picture_is_embedded (Object *object)
+bool
+o_picture_is_embedded (Object *object)
 {
-  g_return_val_if_fail (object != NULL, FALSE);
-  g_return_val_if_fail (object->picture != NULL, FALSE);
-
-  return object->picture->embedded;
+  g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
+  return (object->picture->is_embedded == TRUE);
 }
 
 /*! \brief Mirror a picture using WORLD coordinates
@@ -574,7 +577,7 @@ o_picture_modify(Object *object, int x, int y, int whichone)
  * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
  * as possible to still fit within that rectangle.
  *
- * \param [in,out] object   picture #Object to be modified.
+ * \param [in,out] object   picture#Object to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
  * \param [in]     y1       y coordinate of first corner of box.
  * \param [in]     x2       x coordinate of second corner of box.
@@ -616,7 +619,7 @@ o_picture_rotate_world( int world_centerx, int world_centery, int angle, Object 
   /* angle must be a 90 multiple or no rotation performed */
   if((angle % 90) != 0) return;
 
-  object->picture->angle = ( object->picture->angle + angle ) % 360;
+  object->picture->angle = (object->picture->angle + angle) % 360;
 
   /* The center of rotation (<B>world_centerx</B>, <B>world_centery</B>) is
    * translated to the origin. The rotation of the upper left and lower
@@ -690,7 +693,8 @@ o_picture_translate_world(int dx, int dy, Object *object)
  *  \note
  *  Caller must GEDA_FREE returned uint8 array.
  */
-static uint8 *o_picture_mask_data(GdkPixbuf *image)
+static uint8*
+o_picture_mask_data(GdkPixbuf *image)
 {
   uint8 *pixels;
   uint8 *mask;
@@ -727,7 +731,8 @@ static uint8 *o_picture_mask_data(GdkPixbuf *image)
  *  \note
  *  Caller must GEDA_FREE returned uint8 array.
  */
-static unsigned char *o_picture_rgb_data (GdkPixbuf *image)
+static unsigned char *
+o_picture_rgb_data (GdkPixbuf *image)
 {
   int width         = gdk_pixbuf_get_width(image);
   int height        = gdk_pixbuf_get_height(image);
@@ -761,28 +766,41 @@ static unsigned char *o_picture_rgb_data (GdkPixbuf *image)
  * mark it to be embedded.
  *
  *  \param [in]     object       The picture Object to embed
+ *
+ *  \return True on success, or False on failure
  */
-void o_picture_embed (Object *object)
+bool
+o_picture_embed (Object *object)
 {
   const char *filename;
   char       *basename;
+  bool        result;
 
-  if (o_picture_is_embedded (object)) return;
+  if (!o_picture_is_embedded (object)) {
 
-  filename = object->picture->filename;
+    filename = object->picture->filename;
 
-  if (object->picture->file_content == NULL) {
-    u_log_message (_("Picture [%s] has no image data.\n"), filename);
-    u_log_message (_("Falling back to file loading. Picture is still unembedded.\n"));
-    object->picture->embedded = 0;
-    return;
+    if (object->picture->file_content == NULL) {
+
+      u_log_message (_("Picture [%s] has no image data.\n"), filename);
+      u_log_message (_("Falling back to file loading. Picture is still unembedded.\n"));
+      object->picture->is_embedded = 0;
+      result = FALSE;
+
+    }
+    else {
+
+      object->picture->is_embedded = 1;
+      basename = f_get_basename (filename);
+      u_log_message (_("Picture [%s] has been embedded\n"), basename);
+      result = TRUE;
+
+    }
   }
-
-  object->picture->embedded = 1;
-
-  basename = g_path_get_basename (filename);
-  u_log_message (_("Picture [%s] has been embedded\n"), basename);
-  GEDA_FREE (basename);
+  else {
+    result = FALSE;
+  }
+  return result;
 }
 
 /*! \brief Unembed a picture, reloading the image from disk
@@ -790,34 +808,51 @@ void o_picture_embed (Object *object)
  * Verify that the file associated with \a object exists on disk and
  * is usable, and if so, reload the picture and mark it as unembedded.
  *
- *  \param [in]     object       The picture Object to unembed
+ *  \param [in] object  The picture Object to unembed
+ *
+ *  \return True on success, or False on failure
  */
-void o_picture_unembed (Object *object)
+bool
+o_picture_unembed (Object *object)
 {
-
-  GError *err = NULL;
+  GError     *err      = NULL;
   const char *filename = o_picture_get_filename(object);
-  char *basename;
+  char       *basename;
+  bool        result;
 
-  g_return_if_fail(GEDA_IS_PICTURE(object));
+  if (GEDA_IS_PICTURE(object)) {
 
-  if (!o_picture_is_embedded (object)) return;
+    if (!o_picture_is_embedded (object)) {
 
-  o_picture_set_from_file (object, filename, &err);
+      o_picture_set_from_file (object, filename, &err);
 
-  if (err != NULL) {
-    u_log_message (_("Failed to load image from file [%s]: %s\n"),
-                   filename, err->message);
-    u_log_message (_("Picture is still embedded.\n"));
-    g_error_free (err);
-    return;
+      if (err != NULL) {
+
+        u_log_message (_("Failed to load image from file [%s]: %s\n"),
+                       filename, err->message);
+        u_log_message (_("Picture is still embedded.\n"));
+        g_error_free (err);
+        result = FALSE;
+
+      }
+      else {
+
+        object->picture->is_embedded = 0;
+        basename = f_get_basename(filename);
+        u_log_message (_("Picture [%s] has been unembedded\n"), basename);
+        result = TRUE;
+
+      }
+    }
+    else {
+      result = FALSE;
+    }
   }
-
-  object->picture->embedded = 0;
-
-  basename = g_path_get_basename(filename);
-  u_log_message (_("Picture [%s] has been unembedded\n"), basename);
-  GEDA_FREE(basename);
+  else {
+    BUG_MSG("object is not a Picture");
+    result = FALSE;
+  }
+  return result;
 }
 
 /*! \brief Closest distance between point and a picture
@@ -832,8 +867,8 @@ void o_picture_unembed (Object *object)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_picture_shortest_distance (Object *object,
-                                    int x, int y, int force_solid)
+double
+o_picture_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   double dx, dy;
   double x1, y1, x2, y2;
@@ -860,11 +895,12 @@ double o_picture_shortest_distance (Object *object,
  * Returns the raw image file data underlying the picture \a object,
  * or NULL if the picture could not be loaded.
  *
- * \param object    The picture #Object to inspect.
+ * \param object    The picture#Object to inspect.
  * \param len       Location to store buffer length.
  * \return A read-only buffer of raw image data.
  */
-const char *o_picture_get_data (Object *object, size_t *len)
+const char*
+o_picture_get_data (Object *object, size_t *len)
 {
   g_return_val_if_fail (object != NULL, NULL);
   g_return_val_if_fail (object->picture != NULL, NULL);
@@ -878,7 +914,7 @@ const char *o_picture_get_data (Object *object, size_t *len)
  * \par Function Description
  * Returns the filename associated with the picture \a object.
  *
- * \param object   The picture #Object to inspect
+ * \param object   The picture#Object to inspect
  *
  * \return the filename associated with \a object
  */
@@ -900,7 +936,8 @@ o_picture_get_filename (Object *object)
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool o_picture_get_position (int *x, int *y, Object *object)
+bool
+o_picture_get_position (int *x, int *y, Object *object)
 {
   *x = min(object->picture->lower_x, object->picture->upper_x);
   *y = min(object->picture->lower_y, object->picture->upper_y);
@@ -914,7 +951,7 @@ bool o_picture_get_position (int *x, int *y, Object *object)
  * Returns the width/height ratio of picture \a object, taking the
  * image rotation into account.
  *
- * \param object    Picture #Object to inspect
+ * \param object    Picture#Object to inspect
  *
  * \return width/height ratio for \a object.
  */
@@ -935,7 +972,7 @@ o_picture_get_ratio (Object *object)
     return 1.0 / object->picture->ratio;
   default:
     g_critical (_("Picture %p has invalid angle %i\n"), object,
-                object->picture->angle);
+                   object->picture->angle);
   }
   return 0;
 }
@@ -962,8 +999,9 @@ o_picture_get_ratio (Object *object)
  *  \param [in] origin_x   Page x coordinate to place picture Object.
  *  \param [in] origin_y   Page y coordinate to place picture Object.
  */
-void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
-                      int origin_x, int origin_y)
+void
+o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+                                        int origin_x, int origin_y)
 {
   int x1, y1, x, y;
   int height, width;
@@ -1054,7 +1092,7 @@ void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  * Sets the contents of the picture \a object by reading image data
  * from a buffer.  The buffer should be in on-disk format.
  *
- * \param object   The picture #Object to modify.
+ * \param object   The picture#Object to modify.
  * \param filename The new filename for the picture.
  * \param data     The new image data buffer.
  * \param len      The size of the data buffer.
@@ -1113,7 +1151,7 @@ o_picture_set_from_buffer (Object        *object,
  *  Sets the contents of the picture \a object by reading image data
  *  from a file.
  *
- * \param object   The picture #Object to modify.
+ * \param object   The picture#Object to modify.
  * \param filename The filename to load image data from.
  * \param error    Location to return error information.
  *
@@ -1146,7 +1184,8 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
  *
  * \return a GdkPixbuf containing a warning image.
  */
-GdkPixbuf *o_picture_get_fallback_pixbuf (void)
+GdkPixbuf*
+o_picture_get_fallback_pixbuf (void)
 {
   static GdkPixbuf *pixbuf = NULL;
   static bool       failed = FALSE;
@@ -1182,7 +1221,7 @@ GdkPixbuf *o_picture_get_fallback_pixbuf (void)
  * The returned value should have its reference count decremented with
  * GEDA_UNREF() when no longer needed.
  *
- * \param object  The picture #Object to inspect.
+ * \param object  The picture#Object to inspect.
  *
  * \return A GdkPixbuf for the picture.
  */
@@ -1212,7 +1251,8 @@ o_picture_get_pixbuf (Object *object)
  *
  *  \sa o_picture_rgb_data o_picture_get_mask_data
  */
-unsigned char *o_picture_get_rgb_data (Object *object)
+unsigned char*
+o_picture_get_rgb_data (Object *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
@@ -1237,7 +1277,8 @@ unsigned char *o_picture_get_rgb_data (Object *object)
  *
  *  \sa o_picture_mask_data o_picture_get_rgb_data
  */
-uint8 *o_picture_get_mask_data(Object *object)
+uint8*
+o_picture_get_mask_data(Object *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 

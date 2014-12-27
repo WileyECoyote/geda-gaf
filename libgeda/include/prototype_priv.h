@@ -221,8 +221,8 @@ Object  *o_picture_read                (const char *first_line, TextBuffer *tb,
                                         unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char    *o_picture_save                (Object *object);
 double   o_picture_shortest_distance   (Object *object, int x, int y, int force_soild);
-void     o_picture_embed               (Object *object);
-void     o_picture_unembed             (Object *object);
+bool     o_picture_embed               (Object *object);
+bool     o_picture_unembed             (Object *object);
 bool     o_picture_get_position        (int *x, int *y, Object *object);
 
 /* o_pin_basic.c */

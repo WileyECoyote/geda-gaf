@@ -68,7 +68,7 @@ struct _GedaPicture {
   char  *filename;
   int    angle;
   char   mirrored;
-  char   embedded;
+  char   is_embedded;             /* is picture component? */;
 
   /* upper is considered the origin, world units */
   int    upper_x;

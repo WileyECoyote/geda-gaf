@@ -1,3 +1,10 @@
+2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Revise functions o_picture_embed and
+      o_picture_unembed to return boolean, true on success and use
+      f_get_basename instead of g_path_get_basename so the string
+      does not need to be allocated and freed.
+
 2014-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/ *.h: Revise header of headers.
