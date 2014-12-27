@@ -1,6 +1,13 @@
+2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Revised function eda_renderer_draw_picture (forgot to
+      log?). Changed to single call for gdk_pixbuf_get_xxx, maybe is less
+      confusing. also, improve handling of missing pixel buffer.
+
 2014-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Use eda_renderer_set_font_name to set font name property
+
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Fixed multiple issues with function eda_renderer_
@@ -146,7 +153,3 @@
         Makefile.am: Revised "includes" again to better organize the files,
         The _CPPFLAGS  was not passed to C with some installations. Used
         AM_CFLAGS instead.
-
-
-
-

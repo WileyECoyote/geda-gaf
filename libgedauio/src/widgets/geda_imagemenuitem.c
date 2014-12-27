@@ -25,6 +25,7 @@
  * file for a list of people on the GTK+ Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ *
  */
 
 #ifdef HAVE_CONFIG_H

@@ -6,7 +6,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * Code based on GTK 2.14.5 gtk/gtkaccellabel.h (LGPL)
  *

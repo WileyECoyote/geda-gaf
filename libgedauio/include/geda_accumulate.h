@@ -8,9 +8,6 @@
  *
  * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
- * Date: August 17, 2014
- * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
- *
  * This Library is free software; you can redistribute it and or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; version 3 of the
@@ -25,6 +22,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
+ *
+ * Date: August 17, 2014
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 #ifndef __GEDA_ACCUMULATE_H__
 #define __GEDA_ACCUMULATE_H__

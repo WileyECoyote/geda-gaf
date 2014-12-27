@@ -641,7 +641,7 @@ get_picture_object_data(Object *object)
 
   int   angle       = object->picture->angle;
   bool  mirrored    = object->picture->mirrored;
-  bool  embedded    = object->picture->embedded;
+  bool  embedded    = object->picture->is_embedded;
 
   py_pixbuf = Py_BuildValue("B", pixbuf);
 

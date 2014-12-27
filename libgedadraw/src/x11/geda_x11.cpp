@@ -988,6 +988,9 @@ geda_x11_draw_picture (int x, int y, int width, int height)
   bool  mirror;
   int   angle;
 
+  if (width < 0)   width  = abs(width);
+  if (height < 0)  height = abs(height);
+
   if (GEDA_IS_PICTURE(object)) {
 
     o_pic  = object->picture;
