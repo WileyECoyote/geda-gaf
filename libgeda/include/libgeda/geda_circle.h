@@ -1,13 +1,13 @@
-/* C header                                           -*- geda_circle.h -*-
- * file: geda_circle.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_circle.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,12 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
+ */
+/*! \class Circle geda_circle.h "libgeda/geda_circle.h"
+ *  \brief GedaType for GedaCircle Objects.
+ *
+ *  GedaCircle is a derivative of the GedaObject class specialized
+ *  for representation and manipulation of Circle object data.
  */
 #ifndef __GEDA_CIRCLE_H__
 #define __GEDA_CIRCLE_H__
@@ -46,9 +52,10 @@ struct _GedaCircleClass {
 };
 
 struct _GedaCircle {
+
   Object parent_instance;
 
-  unsigned int head_marker;            /* structure type signature */
+  unsigned int head_marker;       /* structure type signature */
 
   int center_x;
   int center_y;
@@ -59,7 +66,7 @@ struct _GedaCircle {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType   geda_circle_get_type     (void);
+GedaType geda_circle_get_type     (void);
 bool     is_a_geda_circle_object  (Circle *object);
 Object  *geda_circle_new          (void);
 

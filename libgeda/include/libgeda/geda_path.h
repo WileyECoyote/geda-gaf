@@ -1,13 +1,12 @@
-/* C header                                           -*- geda_path.h -*-
- * file: geda_path.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_path.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +25,13 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
+ */
+/*! \class Path geda_path.h "libgeda/geda_path.h"
+ *  \brief GedaType for GedaPath Objects.
+ *
+ *  GedaPath is a derivative of the GedaObject class specialized
+ *  for representation and manipulation of SVG Path data, which
+ *  can include Bézier curves.
  */
 #ifndef __GEDA_PATH_H__
 #define __GEDA_PATH_H__

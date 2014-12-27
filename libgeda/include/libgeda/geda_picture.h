@@ -1,12 +1,12 @@
-/* C header                                           -*- geda_picture.h -*-
- * file: geda_picture.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_picture.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,12 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
+ */
+/*! \class Picture geda_picture.h "libgeda/geda_picture.h"
+ *  \brief GedaType for GedaPicture Objects.
+ *
+ *  GedaPicture is a derivative of the GedaObject class specialized
+ *  for representation and manipulation of image data.
  */
 #ifndef __GEDA_PICTURE_H__
 #define __GEDA_PICTURE_H__

@@ -73,6 +73,7 @@ void           geda_toplevel_unref                 (GedaToplevel *toplevel);
 
 /* m_bounds.c */
 void   m_bounds_init                   (BOUNDS *bounds);
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 
 /* m_transform.c */
 void m_transform_combine       (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );

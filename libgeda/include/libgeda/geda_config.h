@@ -1,6 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_config.h
+ *
+ * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 2011-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2011-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +34,8 @@
  * files). If Appilcations are to write configuration data it should
  * be to other files within this same sub-directory.
  */
+
+/* These are used for testing without re-configuring */
 //#define GEDA_USE_XDG 1
 //#define GEDA_USE_HOME_ETC 1
 //#define GEDA_USE_DOT_GEDA 1
@@ -81,8 +88,6 @@
   #define USER_CONFIG_DIR         USER_CONFIG_DIRS, GEDA_CONFIG_DIR
 #endif
 
-G_BEGIN_DECLS
-
 /* ---------------------------------------------------------------- */
 
 /*! \class EdaConfig geda_config.h "libgeda/geda_config.h"
@@ -105,6 +110,8 @@ G_BEGIN_DECLS
  * context can be obtained that is associated with a path using the function
  * eda_config_get_context_for_path().
  */
+
+G_BEGIN_DECLS
 
 /*! Domain for errors relating to EdaConfig operations. */
 #define EDA_CONFIG_ERROR eda_config_error_quark ()

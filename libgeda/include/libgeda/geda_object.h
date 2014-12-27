@@ -1,12 +1,12 @@
-/* C header                                           -*- geda_object.h -*-
- * file: geda_object.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_object.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,12 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
+ */
+/*! \class Object geda_object.h "libgeda/geda_object.h"
+ *  \brief GedaType for Geda Objects.
+ *
+ *  GedaObject is a derivative of the GObject class. GedaObject
+ *  is the base class from which all other Geda objects are derived.
  */
 #ifndef __GEDA_OBJECT_H__
 #define __GEDA_OBJECT_H__

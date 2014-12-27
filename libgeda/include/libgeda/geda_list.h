@@ -1,7 +1,13 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_list.h
+ *
+ * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 2007-2014 Peter Clifton
+ *
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 2007-2015 Peter Clifton
+ * Copyright (C) 2014-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,13 +23,20 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
+ *
+ *  Contributing Author: Peter Clifton
  */
 
+/*! \class GedaList geda_list.h "libgeda/geda_list.h"
+ *  \brief GedaType for GedaList Objects.
+ *
+ *  GedaList is a List object wrapper for GLists. The GedaListclass
+ *  provides advanced methods for manipulation of GLists, including
+ *  Gobject signals.
+ */
 
 #ifndef __GEDA_LIST_H__
 #define __GEDA_LIST_H__
-
-G_BEGIN_DECLS
 
 #define GEDA_TYPE_LIST            (geda_list_get_type())
 #define GEDA_LIST(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_LIST, GedaList))
@@ -32,6 +45,7 @@ G_BEGIN_DECLS
 #define GEDA_IS_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LIST))
 #define GEDA_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LIST, GedaListClass))
 
+G_BEGIN_DECLS
 
 typedef struct _GedaList      GedaList;
 typedef struct _GedaListClass GedaListClass;

@@ -1,13 +1,12 @@
-/* C header                                           -*- geda_arc.h -*-
- * file: geda_arc.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_arc.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +26,13 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \class Arc geda_arc.h "libgeda/geda_arc.h"
+ *  \brief GedaType for GedaArc Objects.
+ *
+ *  GedaArc is a derivative of the GedaObject class specialized
+ *  for representation and manipulation of Arc object data.
+ */
+
 #ifndef __GEDA_ARC_H__
 #define __GEDA_ARC_H__
 
@@ -48,7 +54,7 @@ struct _GedaArcClass {
 struct _GedaArc {
   Object parent_instance;
 
-  unsigned int head_marker;            /* structure type signature */
+  unsigned int head_marker;       /* structure type signature */
 
   int       x;
   int       y;
@@ -62,7 +68,7 @@ struct _GedaArc {
   FILL_OPTIONS  fill_options;
   LINE_OPTIONS  line_options;
 
-  unsigned int tail_marker; /* structure type signature */
+  unsigned int tail_marker;       /* structure type signature */
 };
 
 unsigned int   geda_arc_get_type        (void);

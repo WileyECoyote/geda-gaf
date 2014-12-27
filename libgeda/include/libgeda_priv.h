@@ -1,4 +1,7 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+
 /* System headers which libgeda headers rely on */
+
 #include <glib.h>
 #include <glib-object.h>
 #include <libguile.h>

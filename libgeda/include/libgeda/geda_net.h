@@ -1,12 +1,12 @@
-/* C header                                           -*- geda_net.h -*-
- * file: geda_net.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_net.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,12 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
+ */
+/*! \class Net geda_net.h "libgeda/geda_net.h"
+ *  \brief GedaType for GedaNet Objects.
+ *
+ *  GedaNet is a derivative of the GedaLine class specialized
+ *  for representation and manipulation of connectivity data.
  */
 #ifndef __GEDA_NET_H__
 #define __GEDA_NET_H__

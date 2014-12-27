@@ -1,13 +1,13 @@
-/* C header                                           -*- geda_bus.h -*-
- * file: geda_bus.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_bus.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,12 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
+ */
+/*! \class Bus geda_bus.h "libgeda/geda_bus.h"
+ *  \brief GedaType for GedaBus Objects.
+ *
+ *  GedaBus is a derivative of the GedaLine class specialized
+ *  for representation and manipulation of Arc object data.
  */
 #ifndef __GEDA_BUS_H__
 #define __GEDA_BUS_H__
@@ -48,7 +54,7 @@ struct _GedaBusClass {
 struct _GedaBus {
   Line parent_instance;
 
-  unsigned int head_marker;            /* structure type signature */
+  unsigned int head_marker;       /* structure type signature */
 
   int  *line_width;
 
@@ -61,7 +67,7 @@ struct _GedaBus {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType   geda_bus_get_type        (void);
+GedaType geda_bus_get_type        (void);
 bool     is_a_geda_bus_object     (Bus *object);
 
 Object  *geda_bus_new             (void);

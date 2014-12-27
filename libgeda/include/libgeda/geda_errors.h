@@ -1,6 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_errors.h
+ *
+ * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 2013-2014  gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2013-2015  gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

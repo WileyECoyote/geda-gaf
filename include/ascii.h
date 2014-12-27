@@ -1,9 +1,10 @@
-/* C header                                           -*- ascii.h -*-
- * file: ascii.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: ascii.h
  *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2012-2014 Wiley Edward Hill
+ * Copyright (C) 2012-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

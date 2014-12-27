@@ -1,6 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: edascmhookproxy.h
+ *
+ * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
- * Copyright (C) 2013-2014 Peter Brett <peter@peter-b.co.uk>
+ *
+ * Copyright (C) 2013-2015 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +25,11 @@
 #ifndef __EDASCM_HOOK_PROXY_H__
 #define __EDASCM_HOOK_PROXY_H__
 
-G_BEGIN_DECLS
-
 /* ---------------------------------------------------------------- */
 
 /*! \class EdascmHookProxy edascmhookproxy.h "libgeda/edascmhookproxy.h"
- * \ingroup guile_c_iface
- * \brief Object that connects a Guile Scheme level hook to GObject signals.
+ *  \ingroup guile_c_iface
+ *  \brief Object that connects a Guile Scheme level hook to GObject signals.
  *
  * Sometimes, it is useful to be able to manipulate GObjects (for
  * example, GTK+ UI elements) when a Guile Scheme-level hook is run.
@@ -60,6 +63,8 @@ G_BEGIN_DECLS
 #define EDASCM_HOOK_PROXY_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxyClass))
 #define EDASCM_IS_HOOK_PROXY(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EDASCM_TYPE_HOOK_PROXY))
 #define EDASCM_HOOK_PROXY_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxy))
+
+G_BEGIN_DECLS
 
 typedef struct _EdascmHookProxyClass EdascmHookProxyClass;
 typedef struct _EdascmHookProxy EdascmHookProxy;

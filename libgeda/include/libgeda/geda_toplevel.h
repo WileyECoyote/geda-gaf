@@ -1,13 +1,13 @@
-/* C header                                           -*- geda_toplevel.h -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
  * File: geda_toplevel.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,15 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
+ */
+/*! \class GedaToplevel geda_toplevel.h "libgeda/geda_toplevel.h"
+ *  \brief GedaType for GedaToplevel Objects.
+ *
+ *  GedaToplevel is a derivative of the GObject class. A Toplevel
+ *  object is normally created by each client application after
+ *  initializing LibGeda. The GedaToplevel object hold frequently
+ *  accessed configuration data and other information such as
+ *  Page Objects and directory locations.
  */
 
 #ifndef _LIBGEDA_TOPLEVEL_H

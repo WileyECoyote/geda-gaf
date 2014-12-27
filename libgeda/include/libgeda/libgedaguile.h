@@ -1,6 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: libgedaguile.h
+ *
+ * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
- * Copyright (C) 2010 Peter Brett <peter@peter-b.co.uk>
+ *
+ * Copyright (C) 2010-2015 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +27,10 @@
 
 /*!
  * \file libgedaguile.h
- * Scheme API public declarations and definitions.
- * \warning Don't include from libgeda.h: should only be included
- * by source files that need to use the Scheme API.
+ *  Scheme API public declarations and definitions.
+ *
+ * \warning Do not include from libgeda.h: This file should only be
+ *          included by source files that need to use the Scheme API.
  */
 
 /* Initialise the Scheme API. */

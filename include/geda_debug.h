@@ -1,9 +1,10 @@
-/* C header                                           -*- geda_debug.h -*-
- * file: geda_debug.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_debug.h
  *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2014 Wiley Edward Hill
+ * Copyright (C) 2014-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

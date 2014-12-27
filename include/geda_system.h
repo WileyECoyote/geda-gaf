@@ -2,7 +2,7 @@
  *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2014 Wiley Edward Hill
+ * Copyright (C) 2014-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

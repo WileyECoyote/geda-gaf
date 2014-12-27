@@ -1,12 +1,12 @@
-/* C header                                           -*- geda_page.h -*-
- * file: geda_page.h
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_page.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,16 @@
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
+ */
+/*! \class Page geda_page.h "libgeda/geda_page.h"
+ *  \brief GedaType for GedaPage Objects.
+ *
+ * GedaPage is a derivative of the GObject class.  When schematic or
+ * symbol files are loaded, mosts of the objects described in the file
+ * are associated with a GedaPage object, those that are not attached
+ * to a GedaPage are called floating objects. Floating objects are
+ * GedaText "attribute" object associated with Complexes.
+ *
  */
 #ifndef __GEDA_PAGE_H__
 #define __GEDA_PAGE_H__

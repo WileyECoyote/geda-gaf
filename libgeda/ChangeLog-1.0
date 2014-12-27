@@ -1,3 +1,7 @@
+2014-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/ *.h: Revise header of headers.
+
 2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Rearrange indentation
