@@ -1,5 +1,10 @@
 2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Add new function o_get_is_embedded, works
+      for Complex or Picture objects.
+
+2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_embed.c: Revise o_embed to return boolean and
       only set the page-changed flag of was (maybe) modified
 

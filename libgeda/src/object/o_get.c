@@ -153,6 +153,26 @@ o_get_is_bus_related (Object *object)
           && object->pin->node_type == PIN_BUS_NODE));
 }
 
+/*! \brief Checks if an object is embedded
+ *
+ *  \par Function Description
+ *  Checks if an object is embedded or not. If object is
+ *  a Complex or Picture then object->embedded is returned
+ *  otherwise FALSE is returned,
+ *
+ *  \param object  The Object to test
+ *
+ *  \return TRUE if the object is embedded
+ */
+bool
+o_get_is_embedded (Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_OBJECT (object), FALSE);
+
+  return ((GEDA_IS_COMPLEX(object) && (object->complex->is_embedded)) ||
+          (GEDA_IS_PICTURE(object) && (object->picture->is_embedded)));
+}
+
 /*! \brief Query if object is selectable
  *
  *  \par Function Description

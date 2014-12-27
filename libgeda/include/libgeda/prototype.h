@@ -212,7 +212,7 @@ G_BEGIN_DECLS
           int    o_color_get_object_default      (char type);
 
 /* o_embed.c */
-         void    o_embed                         (GedaToplevel *toplevel, Object *object);
+         bool    o_embed                         (GedaToplevel *toplevel, Object *object);
          void    o_unembed                       (GedaToplevel *toplevel, Object *object);
 
 /* o_get.c */
@@ -221,6 +221,7 @@ G_BEGIN_DECLS
           int    o_get_attached_parent_id        (Object *object);
          bool    o_get_is_attached               (Object *object);
          bool    o_get_is_bus_related            (Object *object);
+         bool    o_get_is_embedded               (Object *object);
          bool    o_get_is_selectable             (Object *object);
          bool    o_get_is_selected               (Object *object);
          bool    o_get_is_visible                (Object *object);
