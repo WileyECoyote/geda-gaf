@@ -87,7 +87,7 @@ static void geda_picture_init(Picture *picture)
   picture->filename     = NULL;
   picture->angle        = 0;
   picture->mirrored     = 0;
-  picture->embedded     = 0;
+  picture->is_embedded  = 0;
 
   /* upper is considered the origin, world units */
   picture->upper_x      = 0;

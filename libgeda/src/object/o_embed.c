@@ -38,34 +38,33 @@
  *  \param toplevel  The GedaToplevel object
  *  \param o_current The Object to embed
  */
-void o_embed(GedaToplevel *toplevel, Object *o_current)
+bool
+o_embed(GedaToplevel *toplevel, Object *o_current)
 {
-  Page *page = geda_object_get_page (o_current);
+  Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;
 
   /* check o_current is a complex and is not already embedded */
   if (GEDA_IS_COMPLEX(o_current) && !o_complex_is_embedded (o_current))
   {
     /* set the embedded flag */
-    o_current->complex->is_embedded = TRUE;
+    o_current->complex->is_embedded = 1;
 
     u_log_message (_("Component [%s] has been embedded\n"),
-                   o_current->complex->filename);
+                     o_current->complex->filename);
     page_modified = 1;
   }
 
-  /* If it's a picture and it's not embedded */
-  if ( (o_current->type == OBJ_PICTURE) &&
-       !o_picture_is_embedded (o_current) ) {
-    o_picture_embed (o_current);
-
-    page_modified = 1;
+  /* If o_current is a picture and is not already embedded */
+  if (GEDA_IS_PICTURE(o_current) && !o_picture_is_embedded (o_current) )
+  {
+    page_modified = o_picture_embed (o_current);
   }
 
-  if (page_modified && page != NULL) {
-    /* page content has been modified */
+  if (page_modified && (GEDA_IS_PAGE(page))) {
     page->CHANGED = 1;
   }
+  return (page_modified);
 }
 
 /*! \brief unembed an object from a schematic
