@@ -199,7 +199,7 @@ char *o_picture_save(Object *object)
   #endif
 
   /* Encode the picture if it's embedded */
-  if (object->picture->embedded (object)) {
+  if (TRUE == object->picture->embedded) {
     encoded_picture =
     s_encoding_base64_encode( (char *)object->picture->file_content,
                               object->picture->file_length,
@@ -214,32 +214,32 @@ char *o_picture_save(Object *object)
   filename = o_picture_get_filename (object);
   if (filename == NULL) filename = "";
 
-  if (object->picture->embedded (object) &&
-    encoded_picture != NULL) {
+  if ((object->picture->embedded == TRUE) && encoded_picture != NULL) {
     out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s\n%s\n%s",
-                          object->type,
-                          x1, y1, width, height,
-                          object->picture->angle,
-                          /* Convert the (0,1) chars to ASCII */
-                          (object->picture->mirrored)+0x30,
-                          '1',
-                          filename,
-                          encoded_picture,
-                          ".");
-    }
-    else {
-      out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
-      object->type,
-      x1, y1, width, height,
-      object->picture->angle,
-      /* Convert the (0,1) chars to ASCII */
-      (object->picture->mirrored)+0x30,
-      '0',
-      filename);
-    }
-    GEDA_FREE(encoded_picture);
+                           object->type,
+                           x1, y1, width, height,
+                           object->picture->angle,
+                           /* Convert the (0,1) chars to ASCII */
+                           (object->picture->mirrored)+0x30,
+                           '1',
+                           filename,
+                           encoded_picture,
+                           ".");
+  }
+  else {
+    out = u_string_sprintf("%c %d %d %d %d %d %c %c\n%s",
+                           object->type,
+                           x1, y1, width, height,
+                           object->picture->angle,
+                           /* Convert the (0,1) chars to ASCII */
+                           (object->picture->mirrored)+0x30,
+                           '0',
+                           filename);
+  }
 
-    return(out);
+  GEDA_FREE(encoded_picture);
+
+  return(out);
 }
 
 /*! \brief Create a picture object.

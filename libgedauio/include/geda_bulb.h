@@ -1,13 +1,19 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
+/* vi: set et ts=4 sw=2 sts=2: */
+/*
+ * File: geda_bulb.h
  *
- * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * gEDA - GPL Electronic Design Automation
+ * libgedauio - gEDA's library for User Interface Objects
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * Copyright (C) 2014-2015 Wiley Edward Hill
  *
- * This program is distributed in the hope that it will be useful,
+ * This Library is free software; you can redistribute it and or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; version 3 of the
+ * License.
+ *
+ * This Library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -15,7 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * 02110-1301 USA <http://www.gnu.org/licenses/>.
  *
  * Date: September 22, 2014
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
@@ -23,8 +29,6 @@
 
 #ifndef __GEDA_BULB_H__
 #define __GEDA_BULB_H__
-
-G_BEGIN_DECLS
 
 #include <gtk/gtkcheckbutton.h>
 
@@ -41,7 +45,6 @@ G_BEGIN_DECLS
 #define GEDA_IS_BULB(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_BULB))
 #define GEDA_IS_BULB_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_BULB))
 #define GEDA_BULB_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_BULB, GedaBulbClass))
-
 
 typedef struct _GedaBulb       GedaBulb;
 typedef struct _GedaBulbClass  GedaBulbClass;
@@ -66,6 +69,7 @@ struct _GedaBulbClass
   void (*group_changed) (GedaBulb *bulb);
 };
 
+G_BEGIN_DECLS
 
 unsigned
 int        geda_bulb_get_type                         (void) G_GNUC_CONST;

@@ -1,3 +1,12 @@
+2014-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+      * Revised headers of source file to include would-be shebang lines.
+        Changed licenses with GNU Lesser General Public License to GNU
+        General Public License.The justification for this is that the
+        license clause in each of these file "included version 2 of the
+        License, or (at your option) any later version". Based on this
+        the license were upgraded to GPL version 3.
+
 2014-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_file_filter.h: Add filters for Portables and Raster

@@ -1,24 +1,28 @@
-/* gEDA - GPL Electronic Design Automation
- * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2014 Ales V. Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
+/* vi: set et ts=4 sw=2 sts=2: */
+/*
+ * File: geda_action.h
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * gEDA - GPL Electronic Design Automation
+ * libgedauio - gEDA's library for User Interface Objects
  *
- * This library is distributed in the hope that it will be useful,
+ * Copyright (C) 1998-2015 Ales V. Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ *
+ * This Library is free software; you can redistribute it and or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This Library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
-
 
 #ifndef __GEDA_ACTION_H__
 #define __GEDA_ACTION_H__
