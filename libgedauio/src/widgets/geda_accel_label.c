@@ -15,7 +15,7 @@
  * files for a list of changes.  These files are distributed with
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
  *
- *  Adapted for gEDA by Peter Clifton <pcjc2@cam.ac.uk>
+ *  Adapted for gEDA by Peter Clifton <peter@clifton-electronics.co.uk>
  *
  *  THIS FILE IS LGPL LICENSED, gEDA AS A WHOLE IS GPL LICENSED
  *

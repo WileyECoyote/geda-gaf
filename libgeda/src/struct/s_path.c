@@ -10,7 +10,7 @@
  *     rsvg-bpath-util.c: Data structure and convenience functions for
  *                        creating bezier paths.
  *
- *  Adapted for gEDA by Peter Clifton <pcjc2@cam.ac.uk>
+ *  Adapted for gEDA by Peter Clifton <peter@clifton-electronics.co.uk>
  *
  *  THIS FILE IS LGPL LICENSED, gEDA AS A WHOLE IS GPL LICENSED
  *

@@ -24,7 +24,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
  *
- *  Contributing Author: Peter Clifton
+ *  Contributing Author: Peter Clifton <peter@clifton-electronics.co.uk>
  */
 
 /*! \class GedaList geda_list.h "libgeda/geda_list.h"
