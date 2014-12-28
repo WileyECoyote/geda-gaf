@@ -177,7 +177,8 @@ char *o_net_save(Object *object)
   x2 = object->line->x[1];
   y2 = object->line->y[1];
 
-  buf = g_strdup_printf("%c %d %d %d %d %d", object->type, x1, y1, x2, y2, object->color);
+  buf = u_string_sprintf("%c %d %d %d %d %d",
+                         object->type, x1, y1, x2, y2, object->color);
   return (buf);
 }
 

@@ -409,12 +409,12 @@ char *o_box_save(Object *object)
   angle2     = object->fill_options->fill_angle2;
   pitch2     = object->fill_options->fill_pitch2;
 
-  buf = g_strdup_printf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
-                        object->type,
-                        x1, y1, width, height, object->color,
-                        box_width, box_end, box_type, box_length, box_space,
-                        box_fill,
-                        fill_width, angle1, pitch1, angle2, pitch2);
+  buf = u_string_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+                         object->type,
+                         x1, y1, width, height, object->color,
+                         box_width, box_end, box_type, box_length, box_space,
+                         box_fill,
+                         fill_width, angle1, pitch1, angle2, pitch2);
 
   return(buf);
 }

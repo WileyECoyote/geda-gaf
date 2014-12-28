@@ -289,11 +289,11 @@ char *o_path_save (Object *object)
   path_string = s_path_string_from_path (object->path);
 
   num_lines = o_text_num_lines (path_string);
-  buf = g_strdup_printf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
-                         object->type, object->color, line_width, line_end,
-                         line_type, line_length, line_space, fill_type,
-                         fill_width, angle1, pitch1, angle2, pitch2,
-                         num_lines, path_string);
+  buf = u_string_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
+                           object->type, object->color, line_width, line_end,
+                           line_type, line_length, line_space, fill_type,
+                           fill_width, angle1, pitch1, angle2, pitch2,
+                           num_lines, path_string);
   GEDA_FREE (path_string);
 
   return buf;

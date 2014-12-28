@@ -146,8 +146,8 @@ value_lcopy_scm (const GValue *value,
   glong *long_p = collect_values[0].v_pointer;
 
   if (!long_p)
-    return g_strdup_printf ("value location for `%s' passed as NULL",
-                            G_VALUE_TYPE_NAME (value));
+    return u_string_sprintf ("value location for `%s' passed as NULL",
+                              G_VALUE_TYPE_NAME (value));
 
   if (val == SCM_UNDEFINED) {
     /* No value */

@@ -199,7 +199,7 @@ geda_object_set_property (GObject *gobject, unsigned int property_id,
       break;
     case OBJECT_NAME:
       name = g_value_get_string (value); //
-      object->name = g_strdup_printf("%s.%d", name, object->sid);
+      object->name = u_string_sprintf("%s.%d", name, object->sid);
       break;
     case OBJECT_PARENT:
       object->parent_object = g_value_get_pointer  (value);

@@ -419,10 +419,10 @@ char *o_text_save(Object *object)
   /* Don't save invisible == 2 as visible */
   visibility = (object->visibility == VISIBLE) ? VISIBLE : INVISIBLE;
 
-  buf = g_strdup_printf ("%c %d %d %d %d %d %d %d %d %d\n%s", object->type,
-                         x, y, object->color, size, visibility,
-                         object->show_name_value, object->text->angle,
-                         object->text->alignment, num_lines, string);
+  buf = u_string_sprintf ("%c %d %d %d %d %d %d %d %d %d\n%s", object->type,
+                           x, y, object->color, size, visibility,
+                           object->show_name_value, object->text->angle,
+                           object->text->alignment, num_lines, string);
 
   return(buf);
 }

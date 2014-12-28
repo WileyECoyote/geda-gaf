@@ -248,7 +248,7 @@ bool g_rc_parse_system (const char *rcname, GError **err)
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
 
-  sysname = g_strdup_printf ("system-%s", rcname);
+  sysname = u_string_sprintf ("system-%s", rcname);
 
   rcfile = g_build_filename (f_path_sys_config (), sysname, NULL);
 

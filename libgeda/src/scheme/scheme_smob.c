@@ -217,7 +217,7 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
 
   if (SCM_SMOB_DATA (smob) != 0) {
     scm_dynwind_begin (0);
-    hexstring = g_strdup_printf (" %p", (void *) SCM_SMOB_DATA (smob));
+    hexstring = u_string_sprintf (" %p", (void *) SCM_SMOB_DATA (smob));
     scm_dynwind_unwind_handler (g_free, hexstring, SCM_F_WIND_EXPLICITLY);
     scm_puts (hexstring, port);
     scm_dynwind_end ();

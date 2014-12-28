@@ -347,7 +347,7 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
 
   /* first create text item */
   if ( name && value) {
-    text = g_strdup_printf("%s=%s", name, value);
+    text = u_string_sprintf("%s=%s", name, value);
   }
   else if (name) {
     text = u_string_strdup(name);
@@ -651,7 +651,7 @@ void o_attrib_set_value (Object *attrib, const char *name_ptr, const char *value
 void o_attrib_set_integer_value (Object *attrib, char *name_ptr, int value)
 {
   GEDA_FREE(attrib->text->string);
-  attrib->text->string = g_strdup_printf("%s=%d", name_ptr, value);
+  attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value);
 }
 
 /*! \brief Find all floating attributes in the given object list.

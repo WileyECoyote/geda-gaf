@@ -147,9 +147,9 @@ void u_log_init (const char *prefix)
   nowtm = gmtime (&nowt);
 
   /* create "real" prefix -- this has the form "<prefix>-<date>-" */
-  full_prefix = g_strdup_printf ("%s-%04i%02i%02i-", prefix,
-                                 nowtm->tm_year + 1900, nowtm->tm_mon + 1,
-                                 nowtm->tm_mday);
+  full_prefix = u_string_sprintf ("%s-%04i%02i%02i-", prefix,
+                                  nowtm->tm_year + 1900, nowtm->tm_mon + 1,
+                                  nowtm->tm_mday);
   full_prefix_len = strlen (full_prefix);
 
   /* Find/create the directory where we are going to put the logs.
@@ -192,7 +192,7 @@ void u_log_init (const char *prefix)
     /* Now try and create a new file. When we fail, increment the number. */
     i = 0;
     while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > i++)) {
-      filename = g_strdup_printf ("%s%s%s%i.log", dir_path,
+      filename = u_string_sprintf ("%s%s%s%i.log", dir_path,
                                   DIR_SEPARATOR_S, full_prefix,
       ++last_exist_logn);
       logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);

@@ -88,7 +88,7 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
   char *slotdef;
   char *search_for;
 
-  search_for = g_strdup_printf ("%d:", slotnumber);
+  search_for = u_string_sprintf ("%d:", slotnumber);
 
   while (1) {
     slotdef = o_attrib_search_object_attribs_by_name (object, "slotdef",
@@ -194,7 +194,7 @@ void s_slot_update_object (Object *object)
   current_pin = strtok (cptr, DELIMITERS);
   while (current_pin != NULL) {
     /* get pin on this component with pinseq == pin_counter */
-    pinseq = g_strdup_printf ("%d", pin_counter);
+    pinseq = u_string_sprintf ("%d", pin_counter);
     o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinseq);
     GEDA_FREE (pinseq);
 
@@ -206,7 +206,7 @@ void s_slot_update_object (Object *object)
       g_list_free (attributes);
 
       if (o_pinnum_attrib != NULL) {
-        char *tmp_str = g_strdup_printf ("pinnumber=%s", current_pin);
+        char *tmp_str = u_string_sprintf ("pinnumber=%s", current_pin);
         o_text_set_string (o_pinnum_attrib, tmp_str);
         GEDA_FREE(tmp_str);
       }

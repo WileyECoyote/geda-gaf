@@ -720,16 +720,16 @@ char *o_complex_save(Object *object)
 
   complex = GEDA_COMPLEX(object);
 
-  basename = g_strdup_printf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
+  basename = u_string_sprintf ("%s%s", complex->is_embedded ? "EMBEDDED" : "", complex->filename);
 
   selectable = (object->selectable) ? 1 : 0;
 
   /* We force the object type to be output as OBJ_COMPLEX for both
    * these object types. */
-  buf = g_strdup_printf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
-                        complex->x, complex->y,
-                        selectable, complex->angle,
-                        complex->mirror, basename);
+  buf = u_string_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
+                         complex->x, complex->y,
+                         selectable, complex->angle,
+                         complex->mirror, basename);
   GEDA_FREE (basename);
 
   return(buf);

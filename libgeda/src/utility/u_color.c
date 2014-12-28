@@ -172,10 +172,10 @@ bool u_color_rgba_decode (const char *rgba,
 char *u_color_rgba_encode (uint8 r, uint8 g, uint8 b, uint8 a)
 {
   if (a < 0xff)
-    return g_strdup_printf("#%02x%02x%02x%02x",
+    return u_string_sprintf("#%02x%02x%02x%02x",
                            (int) r, (int) g, (int) b, (int) a);
   else
-    return g_strdup_printf("#%02x%02x%02x",
+    return u_string_sprintf("#%02x%02x%02x",
                            (int) r, (int) g, (int) b);
 }
 
@@ -198,7 +198,7 @@ char *u_color_ps_string(int color)
   if ((c.a == 0) || !c.enabled) {
     return NULL;
   } else {
-    return g_strdup_printf ("%.3f %.3f %.3f",
+    return u_string_sprintf ("%.3f %.3f %.3f",
                             (double) c.r/255.0,
                             (double) c.g/255.0,
                             (double) c.b/255.0);
