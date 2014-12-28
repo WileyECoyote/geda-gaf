@@ -1,3 +1,7 @@
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/defines.h: Add matching GEDA_REF macro
+
 2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/ Replace all remaining g_strdup_printf with u_string_sprintf

@@ -78,6 +78,7 @@
 #define GEDA_MEM_ALLOC0(amount) g_malloc0(amount);
 #define GEDA_MEM_REALLOC(ptr, amount) g_realloc ((ptr), amount)
 
+#define GEDA_REF(obj) if (G_IS_OBJECT(obj)) g_object_ref (obj);
 #define GEDA_UNREF(obj) if (G_IS_OBJECT(obj)) g_object_unref (obj);
 
 #define DISK_BUFFER_SIZE        4096
