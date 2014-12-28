@@ -285,6 +285,8 @@ G_BEGIN_DECLS
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
                                                   int embedded)      G_GNUC_WARN_UNUSED_RESULT;
        Object   *o_picture_copy                  (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+         bool    o_picture_export_object         (Object *o_current, const char *filename, const char *type, ...);
+         bool    o_picture_export_orginal        (Object *o_current, const char *filename, const char *type, ...);
          bool    o_picture_is_embedded           (Object *object);
          void    o_picture_mirror_world          (int world_centerx, int world_centery, Object *object);
          void    o_picture_modify                (Object *object, int x, int y, int whichone);
@@ -299,8 +301,10 @@ G_BEGIN_DECLS
          bool    o_picture_set_from_file         (Object *object, const char *filename, GError **error);
 
 #ifdef GDK_PIXBUF_H
+         bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
     GdkPixbuf   *o_picture_get_fallback_pixbuf   (void)           G_GNUC_WARN_UNUSED_RESULT;
     GdkPixbuf   *o_picture_get_pixbuf            (Object *object) G_GNUC_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_pixbuf_fit        (Object *object, int interpolate) G_GNUC_WARN_UNUSED_RESULT;
 unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UNUSED_RESULT;
         uint8   *o_picture_get_mask_data         (Object *object) G_GNUC_WARN_UNUSED_RESULT;
 #endif

@@ -1,3 +1,10 @@
+2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Add more support for Pixbufs: new
+      functions; o_picture_export_pixbuf, o_picture_real_export_pixbuf
+      o_picture_get_pixbuf_fit, o_picture_export_orginal , and
+      o_picture_export_object.
+
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Add matching GEDA_REF macro

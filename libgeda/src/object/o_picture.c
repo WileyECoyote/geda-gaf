@@ -178,7 +178,8 @@ o_picture_read (const char  *first_line,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *o_picture_save(Object *object)
+char *
+o_picture_save(Object *object)
 {
   int           width, height, x1, y1;
   char         *encoded_picture=NULL;
@@ -405,6 +406,332 @@ o_picture_copy(Object *o_current)
   return new_obj;
 }
 
+static void
+add_if_writable (GdkPixbufFormat *data, GSList **list)
+{
+  if (gdk_pixbuf_format_is_writable (data)) {
+    *list = g_slist_prepend (*list, data);
+  }
+}
+
+/*! \brief Real Export GdkPixbuf Buffer to a given file
+ *
+ *  \par Function Description
+ *  This function creates an image file of the given type using \a pixbuf.
+ *  Supported format \a type is system dependent and is determined at run
+ *  time. The filename argument is not checked, the caller is responsible
+ *  for ensuring the user has write-access to any path and file. Existing
+ *  files are over-written.
+ *
+ *  \param [in]  o_current Picture Object to export.
+ *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  type      type of image to generate
+ *
+ *  \return True on success, otherwise FALSE
+ *
+ *  \note 1.) The image produced is based on the object setting for
+ *            width, height, angle AND mirror, basically what is
+ *            shown on the screen.
+ *
+ *        2.) The file extension is intentionally ignored.
+ *
+ *  Optional parameters can be passed to the back-ends, see the documentation
+ *  for gdk_pixbuf_save. Options usually occur as key/value pairs of pointers
+ *  but some are single pointer, these can combined by ensuring solo pointers
+ *  are last on the stack or two singles can be paired. The point is, stack
+ *  searching stops when a NULL is encountered and a NULL must present at the
+ *  end of the data.
+ *  \par
+ *  Below is a summary of some of the advertised options:
+ *  \par
+ *  <DL>
+ *    <DT>"type       key          value          min     max</DT>
+ *    <DT>"jpeg"   "quality",      "int"           0      100</DT>
+ *    <DT>"png"    "compression",  "int"           0        9</DT>
+ *    <DT>"png"    "tEXt::Str",     NULL          N/A     N/A</DT>
+ *    <DT>"tiff"   "compression",  "int"           1        8</DT>
+ *    <DT>"ico"    "depth",        "int"          16   24  32</DT>
+ *    <DT>"ico"    "x_hot",        "int"          unk     unk</DT>
+ *    <DT>"ico"    "y_hot",        "int"          unk     unk</DT>
+ *  </DL>
+ *  \par
+ *  jpeg, png, and tiff can also have embedded ICC color profiles,
+ *  the value should be a pointer to the complete contents of the
+ *  ICC base64 encoded file.
+ *  <DL>
+ *    <DT>"jpeg"   "icc-profile",  (char*data64)  N/A     N/A</DT>
+ *    <DT>"png"    "icc-profile",  (char*data64)  N/A     N/A</DT>
+ *    <DT>"tiff"   "icc-profile",  (char*data64)  N/A     N/A</DT>
+ *  </DL>
+ *
+ * Examples: See o_picture_export and o_picture_export_pixbuf
+ *
+ * \remarks
+ *  During testing, the follow observation were made:
+ * \par
+ *  1.) While there was a difference in file size when using "png"
+ *      "compression", the difference between 0 and 9 was not
+ *      significant, suggesting gdk_pixbuf_save compression may not
+ *      work properly for png types. The reduction was minimal, but
+ *      present and all levels were readable by viewers.
+ *
+ *  2.) When testing the UTF-8 "tEXt::Str", using "tEXt::The quick
+ *      brown fox", the argument was accepted by gdk_pixbuf_save
+ *      but the text could not be found in the data (using Okteta).
+ * \par
+ *  3.) "tiff" "compression" codecs include 1 None, 2 Huffman, 5 LZW,
+ *      7 JPEG and 8 Deflate. Using other values did not generate an
+ *      error. Huffman (2) requires 4 channel data. The image file
+ *      was actually larger using the LZW (5) option than with None,
+ *      suggesting gdk_pixbuf_save tiff compression may not work
+ *      properly. Only JPEG (7) had any significant reduction in size,
+ *      (for all supported types) and this was dramatic, suggesting
+ *      this is the ONLY compression back-end that does work properly,
+ *      although jpeg file sizes were smaller when "quality" was
+ *      reduced.
+ * \par
+ *  4.) If the "x_hot", and "y_hot" parameters are used with type
+ *      "ico", the generated file is actually "cur" type.
+ */
+static bool
+o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
+                              const char *filename,
+                              const char *type,
+                              va_list varargs)
+{
+  GSList     *formats;
+  GSList     *iter;
+  GSList     *writable;
+
+  const char *argv;
+  const char *real_type;
+
+  char **keys;
+  char **Vals;
+
+  int  argc;
+  int  ecode;
+  int  is_writable;
+  int  i;
+
+  bool result;
+
+  ecode = 0;
+
+  if (!filename && !type) {
+    result = FALSE;
+  }
+  else {
+
+    if (!pixbuf) {
+      result = FALSE;
+    }
+    else {
+
+      /* Find out how many options were passed */
+      argc = 0;
+      va_list varcnt;
+      va_copy(varcnt, varargs);
+      argv = va_arg (varcnt, char*);
+      while (argv) {
+        argc++;
+        argv = va_arg (varcnt, const char *);
+        /* could check if non null argv is something of interest */
+      }
+      va_end(varcnt);
+
+      argc = argc / 2;  /* variable arguments must be pairs */
+      if (argc > 0) {   /* allocate storage collect pairs */
+
+        /* allocate memory for both arrays */
+        keys = (char**)malloc(sizeof(char*) * argc + 1);
+        Vals = (char**)malloc(sizeof(char*) * argc + 1);
+
+        /* Save pointers on the stack to arrays */
+        for ( i = 0; i < argc; i++) {
+          keys[i] = va_arg (varargs, char *);
+          Vals[i] = va_arg (varargs, char *);
+          printf ("found (%d) keys=%s, Vals=%s\n", i, keys[i], Vals[i]);
+        }
+
+        /* Add sentinels to the two arrays */
+        keys[i] = NULL;
+        Vals[i] = NULL;
+      }
+
+      /* "jpg" will fail gdk_pixbuf_format_is_writable so we
+       * substitue jpeg, even though we write to .jpg, not .jpeg */
+      if (strcmp(type,"jpg") == 0) {
+        real_type = "jpeg";
+      } /*gdk_pixbuf_format_is_writable does like "tif" either */
+      else if (strcmp(type,"tif") == 0) {
+        real_type = "tiff";
+      }
+      else {
+        real_type = type;
+      }
+
+      /* Get list of all support formats */
+      formats = gdk_pixbuf_get_formats ();
+
+      /* Reduce list to only writable formats */
+      writable = NULL;
+      g_slist_foreach(formats, (GFunc)add_if_writable, &writable);
+
+      is_writable = 0;
+
+      for (iter = writable; iter; iter = iter->next) {
+
+        char **pattern;
+
+        GdkPixbufFormat *format = (GdkPixbufFormat*) iter->data;
+
+        pattern = gdk_pixbuf_format_get_extensions (format);
+
+        for (i = 0; pattern[i] != NULL; i++) {
+
+          if (strcmp(real_type, pattern[i])==0) {
+            is_writable = 1;
+            break;
+          }
+        }
+        g_strfreev (pattern);
+
+        if (is_writable) {
+          /* No need to continue, we got the answer */
+          break;
+        }
+      }
+
+      if (!is_writable) {
+        u_log_message (_("Can not export to type %s\n"), real_type);
+        result = FALSE;
+      }
+      else {
+        GError *err = NULL;
+        if (argc > 0) {
+          gdk_pixbuf_savev (pixbuf, filename, real_type, keys, Vals, &err);
+        }
+        else {
+          gdk_pixbuf_save (pixbuf, filename, real_type, &err, NULL);
+        }
+        if (err != NULL) {
+          u_log_message (_("Failed to export [%s]: %s\n"), filename, err->message);
+          ecode = errno;
+          g_error_free(err);
+        }
+        else {
+          result = TRUE;
+        }
+      }
+
+      g_slist_free (formats);
+      if (argc > 0) {
+        free(keys);
+        free(Vals);
+      }
+      GEDA_UNREF(pixbuf);
+    }
+  }
+  errno = ecode;
+  return result;
+}
+
+/*! \brief Export Picture Object to a given File and Type
+ *
+ *  \par Function Description
+ *  This function creates an image file of the given type from the
+ *  pixel buffer associated with \a o_current. Supported formats \a type
+ *  is system dependent and is determined at run time. The filename
+ *  argument is not checked, the caller is responsible for ensuring
+ *  the user has write-access to the file and any path is valid.
+ *
+ *  \param [in]  o_current Picture Object to export.
+ *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  type      type of image to generate
+ *
+ *  \return True on success, otherwise FALSE
+ *
+ *  \note The image produced is based on the object's width, height, angle
+ *         AND mirror properties, basically what is shown on the screen.
+ *
+ * examples:
+ *
+ *  1.) o_picture_export (object, name, "jpg", NULL); // simplest
+ *  2.) o_picture_export (object, name, "tif", "compression", "7", NULL);
+ *
+ */
+bool
+o_picture_export_object(Object *o_current, const char *filename, const char *type, ...)
+{
+  GdkPixbuf *pixbuf;
+  bool       result;
+  va_list    varargs;
+
+  /* This added a reference to pixbuf */
+  pixbuf = o_picture_get_pixbuf_fit (o_current, GDK_INTERP_BILINEAR);
+
+  if (pixbuf) {
+
+    va_start (varargs, type);
+    result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
+    va_end (varargs);
+    GEDA_UNREF(pixbuf);
+  }
+  else {
+    result = FALSE;
+  }
+  return result;
+}
+
+/*! \brief Export Picture Object Original Image to a given File and Type
+ *
+ *  \par Function Description
+ *  This function creates an image file of the given type using \a pixbuf.
+ *  Supported format \a type is system dependent and is determined at run
+ *  time. The filename argument is not checked, the caller is responsible
+ *  for ensuring the user has write-access to any path and file. Existing
+ *  files are over-written.
+ *
+ *  \param [in]  o_current Picture Object to export.
+ *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  type      type of image to generate
+ *
+ *  \return True on success, otherwise FALSE
+ *
+ *  \note The image produced is based on the original image's width,
+ *        height properties, basically what was originally read in
+ *        with no intentional adjustments.
+ *
+ * examples:
+ *
+ *  1.) o_picture_export (object, name, "png", "tEXt::The quick brown fox", NULL);
+ *  2.) o_picture_export (object, name, type, "compression", "7", NULL); //type = "png" || "tif" || "tiff"
+ *  3.) o_picture_export (object, name, type, "x_hot", "50", "y_hot", "60", NULL);
+ *
+ *  \sa o_picture_export_object o_picture_export_full
+ */
+bool
+o_picture_export_orginal (Object *o_current, const char *filename, const char *type, ...)
+{
+  GdkPixbuf *pixbuf;
+  bool       result;
+  va_list    varargs;
+
+  pixbuf = o_picture_get_pixbuf(o_current); /* This added a reference to pixbuf */
+
+  if (pixbuf) {
+    va_start (varargs, type);
+    result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
+    va_end (varargs);
+    GEDA_UNREF(pixbuf);
+  }
+  else {
+    result = FALSE;
+  }
+  return result;
+}
+
 /*! \brief Test whether a picture object is embedded
  *
  *  \par Function Description
@@ -419,7 +746,7 @@ bool
 o_picture_is_embedded (Object *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
-  return (object->picture->is_embedded == TRUE);
+  return (object->picture->is_embedded == 1);
 }
 
 /*! \brief Mirror a picture using WORLD coordinates
@@ -434,8 +761,8 @@ o_picture_is_embedded (Object *object)
  *  \param [in]     world_centery  Origin y coordinate in WORLD units.
  *  \param [in,out] object         Picture Object to mirror.
  */
-void o_picture_mirror_world(int world_centerx, int world_centery,
-                            Object *object)
+void
+o_picture_mirror_world(int world_centerx, int world_centery, Object *object)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -1175,6 +1502,52 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
   return status;
 }
 
+/*! \brief Export Picture Object Original Image to a given File and Type
+ *
+ *  \par Function Description
+ *  This function creates an image file of the given type using \a pixbuf.
+ *  Supported format \a type is system dependent and is determined at run
+ *  time. The filename argument is not checked, the caller is responsible
+ *  for ensuring the user has write-access to any path and file. Existing
+ *  files are over-written.
+ *
+ *  \param [in]  o_current Picture Object to export.
+ *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  type      type of image to generate
+ *
+ *  \return True on success, otherwise FALSE
+ *
+ *  \note The image produced is based on the original image's width,
+ *        height properties, basically what was originally read in
+ *        with no intentional adjustments.
+ *
+ * examples:
+ *
+ *  1.) o_picture_export (pixbuf, name, "png", "tEXt::The quick brown fox", NULL);
+ *  2.) o_picture_export (pixbuf, name, type, "compression", "7", NULL); //type = "png" || "tif" || "tiff"
+ *  3.) o_picture_export (pixbuf, name, type, "x_hot", "50", "y_hot", "60", NULL);
+ *
+ *  \sa o_picture_export_object o_picture_export_full
+ */
+bool
+o_picture_export_pixbuf (GdkPixbuf *pixbuf, const char *filename, const char *type, ...)
+{
+  bool    result;
+  va_list varargs;
+
+  if (pixbuf) {
+    GEDA_REF(pixbuf); /* Make sure the buffer exist until were done */
+    va_start (varargs, type);
+    result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
+    va_end (varargs);
+    GEDA_UNREF(pixbuf);
+  }
+  else {
+    result = FALSE;
+  }
+  return result;
+}
+
 /*! \brief Get fallback pixbuf for displaying pictures
  *
  * \par Function Description
@@ -1236,6 +1609,57 @@ o_picture_get_pixbuf (Object *object)
   else {
     return NULL;
   }
+}
+
+GdkPixbuf *
+o_picture_get_pixbuf_fit (Object *object, int interp)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
+
+  GdkPixbuf *pixbuf1;
+  GdkPixbuf *pixbuf2;
+  GdkPixbuf *pixbuf3;
+
+  Picture *o_pic = object->picture;
+
+  if (o_pic->pixbuf != NULL) {
+
+    /* upper is considered the origin, world units */
+    int width  = o_pic->upper_x - o_pic->lower_x;
+    int height = o_pic->upper_y - o_pic->lower_y;
+    int angle  = o_pic->angle;
+    int mirror = o_pic->mirrored;
+
+    /* The object->picture->pixel is a pointer to the as read-in pixel
+     * buffer and needs to be rescaled to the instance insertion size */
+    if ((angle == 90) || (angle == 270)) {
+      pixbuf1 = gdk_pixbuf_scale_simple (o_pic->pixbuf, height, width, interp);
+    }
+    else
+    {
+      pixbuf1 = gdk_pixbuf_scale_simple (o_pic->pixbuf, width, height, interp);
+    }
+
+    /* Adjust for rotation and mirroring */
+
+    if (!angle && !mirror) {                            /* No adjustment required */
+      pixbuf3 = g_object_ref (pixbuf1);
+    }
+    else if (angle && !mirror) {                        /* Rotation required  */
+      pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf1, angle);
+    }
+    else if (!angle && mirror) {                        /* Mirroring required */
+      pixbuf3 = gdk_pixbuf_flip (pixbuf1, TRUE);
+    }
+    else /* (mirror && angle) note: do flip 1st */ {    /* Mirror and Rotate */
+      pixbuf2 = gdk_pixbuf_flip (pixbuf1, TRUE);
+      pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf2, angle);
+      g_object_unref (pixbuf2);
+    }
+    g_object_unref (pixbuf1);
+    return g_object_ref(pixbuf3);
+  }
+  return NULL;
 }
 
 /*! \brief Get RGB data from a Picture object
