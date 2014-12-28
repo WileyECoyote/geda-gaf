@@ -1,3 +1,21 @@
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Move Cut/Copy/Paste buffer menu items to
+      under the _Select Menu.
+
+    * include/x_menus.h: Add member buffer_menu_name to MenuData struc.
+
+    * src/x/x_menus.c: While setting up the main menu, look for buffer
+      menu action string to see which Main Menu items the buffers are
+      under, only looks for one; "buffer-copy1", and save the name of
+      the parent string to MenuData->buffer_menu_name. Add new getter
+      function x_menu_get_buffer_menu to retrieve the string.
+
+    * src/iface/i_status.c: Revise i_status_idle_update_sensitivities
+      to dynamically adjust menu strings for the Cut/Copy/Paste buffer
+      menu items (so that users can edit system-gschemrc.scm and put
+      these items where desired. Is a small step for Mankind.
+
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * Use new libgeda function f_get_bitmap_filespec to build the path

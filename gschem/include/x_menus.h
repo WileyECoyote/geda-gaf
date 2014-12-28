@@ -85,6 +85,7 @@ typedef struct st_menu_radio_data       RadioMenuData;
 typedef struct st_popup_menu_entry      PopupEntry;
 
 struct st_menu_data {
+  char       *buffer_menu_name;
   GtkWidget  *menu_bar;
   GtkWidget  *popup_menu;
   GSList     *menu_items;    /* Single Linked list of all non-toggle menu items */

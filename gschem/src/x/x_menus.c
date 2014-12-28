@@ -299,6 +299,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   unsigned long handler;
   int i, j;
+  bool buffer_menu;
   bool menus_broken;
   bool is_a_toggle;
   ToggleMenuData *toggler_data;
@@ -339,8 +340,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   show_pop_icons  = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
   show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
 
+  buffer_menu  = FALSE;
   menus_broken = FALSE;
   toggler_data = NULL;
+
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
@@ -349,9 +352,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items = i_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
-      g_warning(_("Oops.. got a NULL menu name in get_main_menu()\n"));
+      g_warning(_("Oops.. got a NULL menu name in %s()\n"), __func__);
       return NULL;
     }
+
+    menu_name = (char *) gettext(*raw_menu_name);
+
     /* Glib-2.40 generates console noise from gtk-lib */
     menu = gtk_menu_new();
 
@@ -412,6 +418,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         menu_item_stock = scm_is_false (scm_item_stock) ? NULL : scm_to_utf8_string (scm_item_stock);
 
         if(scm_is_false (scm_item_func)) {
+
           if (menu_item_stock) {
 
             menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
@@ -439,8 +446,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         else {
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
-
           action_keys = g_find_key(action_name);
+
+          if (!buffer_menu && strcmp(action_name, "buffer-copy1") == 0) {
+            /* Set flag to indicate we found */
+            buffer_menu = TRUE;
+            /*Save a copy of the string for x_menu_get_buffer_menu*/
+            menu_data->buffer_menu_name = menu_name; //u_string_strdup(menu_name);
+          }
 
           if ( !action_keys ) {
             menu_item_keys = NULL;
@@ -448,6 +461,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           else {
             menu_item_keys = action_keys;
           }
+
           is_a_toggle = FALSE;
           if (strncmp (menu_item_name, "Toggle", 6) == 0 ) {
             is_a_toggle = TRUE;
@@ -516,14 +530,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       /* add a handle to the menu_bar object to get access to widget objects */
       /* This string should NOT be internationalized */
-      buf = g_strdup_printf("%s/%s", *raw_menu_name, raw_menu_item_name);
+      buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
       gtk_object_set_data(GTK_OBJECT(MENU_BAR), buf, menu_item);
       GEDA_FREE(buf);
 
       scm_dynwind_end();
     }
 
-    menu_name = (char *) gettext(*raw_menu_name);
+    //menu_name = (char *) gettext(*raw_menu_name);
     root_menu = gtk_menu_item_new_with_mnemonic (menu_name);
 
     /* do not free *raw_menu_name */
@@ -1049,6 +1063,14 @@ void x_menu_save_state(GschemToplevel *w_current) {
   }
 }
 
+const char*
+x_menu_get_buffer_menu (GschemToplevel *w_current)
+{
+  MenuData *menu_data;
+
+  menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+  return menu_data->buffer_menu_name;
+}
 /*! \brief Set Menu Icon Visibility
  *  \par Function Description
  *   This function turns menu icons on or off for a given list of menu items

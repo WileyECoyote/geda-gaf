@@ -1811,30 +1811,46 @@
         (,(N_ "Deselect All")       edit-deselect-all      "geda-unselect-all"   ,(N_ "Unselect everything"))
         (,(N_ "_Invert Selection")  edit-select-invert     "gschem-invert"       ,(N_ "Invert the current selection set"))
         ("SEPARATOR"               #f                     #f)
+
+        (,(N_ "Copy into 1")        buffer-copy1           "gtk-copy"            ,(N_ "Copy selection to first auxiliary buffer"))
+        (,(N_ "Copy into 2")        buffer-copy2           "gtk-copy"            ,(N_ "Copy selection to second auxiliary buffer"))
+        (,(N_ "Copy into 3")        buffer-copy3           "gtk-copy"            ,(N_ "Copy selection to third auxiliary buffer"))
+        (,(N_ "Copy into 4")        buffer-copy4           "gtk-copy"            ,(N_ "Copy selection to forth auxiliary buffer"))
+        (,(N_ "Copy into 5")        buffer-copy5           "gtk-copy"            ,(N_ "Copy selection to fifth auxiliary buffer"))
+        (,(N_ "Cut into 1")         buffer-cut1            "gtk-cut"             ,(N_ "Cut selection to first auxiliary buffer"))
+        (,(N_ "Cut into 2")         buffer-cut2            "gtk-cut"             ,(N_ "Cut selection to second auxiliary buffer"))
+        (,(N_ "Cut into 3")         buffer-cut3            "gtk-cut"             ,(N_ "Cut selection to third auxiliary buffer"))
+        (,(N_ "Cut into 4")         buffer-cut4            "gtk-cut"             ,(N_ "Cut selection to forth auxiliary buffer"))
+        (,(N_ "Cut into 5")         buffer-cut5            "gtk-cut"             ,(N_ "Cut selection to fifth auxiliary buffer"))
+        (,(N_ "Paste from 1")       buffer-paste1          "gtk-paste"           ,(N_ "Insert contents of the first auxiliary buffer"))
+        (,(N_ "Paste from 2")       buffer-paste2          "gtk-paste"           ,(N_ "Insert contents of the second auxiliary buffer"))
+        (,(N_ "Paste from 3")       buffer-paste3          "gtk-paste"           ,(N_ "Insert contents of the third auxiliary buffer"))
+        (,(N_ "Paste from 4")       buffer-paste4          "gtk-paste"           ,(N_ "Insert contents of the forth auxiliary buffer"))
+        (,(N_ "Paste from 5")       buffer-paste5          "gtk-paste"           ,(N_ "Insert contents of the fifth auxiliary buffer"))
       )
 )
 
-(define buffer-menu-items
-;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
-;;
-     `( (,(N_ "Copy into 1")    buffer-copy1            "gtk-copy"  ,(N_ "Copy selection to first auxiliary buffer"))
-        (,(N_ "Copy into 2")    buffer-copy2            "gtk-copy"  ,(N_ "Copy selection to second auxiliary buffer"))
-        (,(N_ "Copy into 3")    buffer-copy3            "gtk-copy"  ,(N_ "Copy selection to third auxiliary buffer"))
-        (,(N_ "Copy into 4")    buffer-copy4            "gtk-copy"  ,(N_ "Copy selection to forth auxiliary buffer"))
-        (,(N_ "Copy into 5")    buffer-copy5            "gtk-copy"  ,(N_ "Copy selection to fifth auxiliary buffer"))
-        (,(N_ "Cut into 1")     buffer-cut1             "gtk-cut"   ,(N_ "Cut selection to first auxiliary buffer"))
-        (,(N_ "Cut into 2")     buffer-cut2             "gtk-cut"   ,(N_ "Cut selection to second auxiliary buffer"))
-        (,(N_ "Cut into 3")     buffer-cut3             "gtk-cut"   ,(N_ "Cut selection to third auxiliary buffer"))
-        (,(N_ "Cut into 4")     buffer-cut4             "gtk-cut"   ,(N_ "Cut selection to forth auxiliary buffer"))
-        (,(N_ "Cut into 5")     buffer-cut5             "gtk-cut"   ,(N_ "Cut selection to fifth auxiliary buffer"))
-        (,(N_ "Paste from 1")   buffer-paste1           "gtk-paste" ,(N_ "Insert contents of the first auxiliary buffer"))
-        (,(N_ "Paste from 2")   buffer-paste2           "gtk-paste" ,(N_ "Insert contents of the second auxiliary buffer"))
-        (,(N_ "Paste from 3")   buffer-paste3           "gtk-paste" ,(N_ "Insert contents of the third auxiliary buffer"))
-        (,(N_ "Paste from 4")   buffer-paste4           "gtk-paste" ,(N_ "Insert contents of the forth auxiliary buffer"))
-        (,(N_ "Paste from 5")   buffer-paste5           "gtk-paste" ,(N_ "Insert contents of the fifth auxiliary buffer"))
-      )
-)
+;(define buffer-menu-items
+;
+;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;
+;     `( (,(N_ "Copy into 1")    buffer-copy1            "gtk-copy"  ,(N_ "Copy selection to first auxiliary buffer"))
+;        (,(N_ "Copy into 2")    buffer-copy2            "gtk-copy"  ,(N_ "Copy selection to second auxiliary buffer"))
+;        (,(N_ "Copy into 3")    buffer-copy3            "gtk-copy"  ,(N_ "Copy selection to third auxiliary buffer"))
+;        (,(N_ "Copy into 4")    buffer-copy4            "gtk-copy"  ,(N_ "Copy selection to forth auxiliary buffer"))
+;        (,(N_ "Copy into 5")    buffer-copy5            "gtk-copy"  ,(N_ "Copy selection to fifth auxiliary buffer"))
+;        (,(N_ "Cut into 1")     buffer-cut1             "gtk-cut"   ,(N_ "Cut selection to first auxiliary buffer"))
+;        (,(N_ "Cut into 2")     buffer-cut2             "gtk-cut"   ,(N_ "Cut selection to second auxiliary buffer"))
+;        (,(N_ "Cut into 3")     buffer-cut3             "gtk-cut"   ,(N_ "Cut selection to third auxiliary buffer"))
+;        (,(N_ "Cut into 4")     buffer-cut4             "gtk-cut"   ,(N_ "Cut selection to forth auxiliary buffer"))
+;        (,(N_ "Cut into 5")     buffer-cut5             "gtk-cut"   ,(N_ "Cut selection to fifth auxiliary buffer"))
+;        (,(N_ "Paste from 1")   buffer-paste1           "gtk-paste" ,(N_ "Insert contents of the first auxiliary buffer"))
+;        (,(N_ "Paste from 2")   buffer-paste2           "gtk-paste" ,(N_ "Insert contents of the second auxiliary buffer"))
+;        (,(N_ "Paste from 3")   buffer-paste3           "gtk-paste" ,(N_ "Insert contents of the third auxiliary buffer"))
+;        (,(N_ "Paste from 4")   buffer-paste4           "gtk-paste" ,(N_ "Insert contents of the forth auxiliary buffer"))
+;        (,(N_ "Paste from 5")   buffer-paste5           "gtk-paste" ,(N_ "Insert contents of the fifth auxiliary buffer"))
+;      )
+;)
 
 (define view-menu-items
 ;;
@@ -2009,7 +2025,7 @@
 (add-menu (N_ "_File")       file-menu-items)
 (add-menu (N_ "_Edit")       edit-menu-items)
 (add-menu (N_ "_Select")     select-menu-items)
-(add-menu (N_ "_Buffer")     buffer-menu-items)
+;(add-menu (N_ "_Buffer")     buffer-menu-items)
 (add-menu (N_ "_View")       view-menu-items)
 (add-menu (N_ "_Page")       page-menu-items)
 (add-menu (N_ "_Add")        add-menu-items)

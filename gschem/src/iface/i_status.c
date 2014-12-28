@@ -487,11 +487,77 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", state);
   }
 
+  void set_sensitivity_for_buffers (bool state) {
+
+    static bool  last_state = TRUE;
+    const  char *buffer_menu;
+
+    char *buffer;
+    char  menu_string[48];
+    int   index, length;
+
+    for (index = 0; index < 48; index++)
+       menu_string[index] = '0';
+
+    buffer_menu = x_menu_get_buffer_menu (w_current);
+    buffer      = strcpy(&menu_string[0], buffer_menu);
+
+    length = strlen(buffer);
+    menu_string[length++] = '/';
+    menu_string[length]   = '\0';
+
+    buffer = strcat(buffer, "Paste from 1");
+    x_menus_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
+    index = length + 11;         /* set index to where the number is */
+    menu_string[index] = '2';
+    x_menus_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
+    menu_string[index] = '3';
+    x_menus_sensitivity(w_current, buffer, (object_buffer[3] != NULL));
+    menu_string[index] = '4';
+    x_menus_sensitivity(w_current, buffer, (object_buffer[4] != NULL));
+    menu_string[index] = '5';
+    x_menus_sensitivity(w_current, buffer, (object_buffer[5] != NULL));
+
+    if (state != last_state) {
+
+      while(menu_string[length] != '/')length--;
+
+      menu_string[++length]   = '\0';
+      buffer = strcat(buffer, "Copy into 1");
+      x_menus_sensitivity(w_current, buffer, state);
+      index  = length + 10;       /* set index to where the number is */
+      menu_string[index] = '2';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '3';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '4';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '5';
+      x_menus_sensitivity(w_current, buffer, state);
+
+      /* Incrementing to the leave "C" */
+      menu_string[++length]   = '\0';
+      buffer = strcat(buffer, "ut into 1");
+      x_menus_sensitivity(w_current, buffer, state);
+      index  = length + 8;
+      menu_string[index] = '2';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '3';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '4';
+      x_menus_sensitivity(w_current, buffer, state);
+      menu_string[index] = '5';
+      x_menus_sensitivity(w_current, buffer, state);
+
+      last_state = state;
+    }
+  }
+
   GedaToplevel *toplevel = w_current->toplevel;
   GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
 
 
-  /* This is improve but still fairly simplistic.  What gets enabled/disabled
+  /* This is improved but still fairly simplistic.  What gets enabled/disabled
    * could be more selective based based on what is in the selection list, WEH
    */
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
@@ -599,16 +665,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
       x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
     }
 
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 1", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 2", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 3", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 4", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 5", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 1",  TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 2",  TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 3",  TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 4",  TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 5",  TRUE);
+    set_sensitivity_for_buffers(TRUE);
 
     x_menus_popup_sensitivity(w_current, "Edit",          TRUE);
     x_menus_popup_sensitivity(w_current, "Object...",     TRUE);
@@ -629,6 +686,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     set_sensitivity_for_complexes (FALSE);
     set_embeded_sensitivities (FALSE);
     set_sensitivity_for_text (FALSE);
+    set_sensitivity_for_buffers(FALSE);
 
     /* Handle special cases first, then follow menu order */
 
@@ -656,17 +714,6 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
 
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 1", FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 2", FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 3", FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 4", FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Copy into 5", FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 1",  FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 2",  FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 3",  FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 4",  FALSE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 5",  FALSE);
-
     x_menus_popup_sensitivity(w_current, "Edit",          FALSE);
     //x_menus_popup_sensitivity(w_current, "Object...",     FALSE);
     //x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
@@ -682,12 +729,6 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_popup_sensitivity(w_current, "Cut to Clipboard",  FALSE);
     x_menus_popup_sensitivity(w_current, "Copy to Clipboard", FALSE);
   }
-
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[1] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 2", (object_buffer[2] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 3", (object_buffer[3] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 4", (object_buffer[4] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[5] != NULL));
 
   if (complex_selected && text_selected) {
     x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);

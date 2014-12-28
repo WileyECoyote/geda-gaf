@@ -773,22 +773,22 @@ bool x_show_uri                   (const char *str);
 /* x_menus.c */
 void       x_menu_free_all(void);
 
-GtkWidget *get_main_menu          (GschemToplevel *w_current);
-GtkWidget *x_menu_setup_ui        (GschemToplevel *w_current);
-
-int        x_menu_setup_popup           (GschemToplevel *w_current);
-int        x_menu_display_popup         (GschemToplevel *w_current, GdkEventButton *event);
-void       x_menus_sensitivity          (GschemToplevel *w_current, const char *buf, int flag);
-void       x_menus_popup_sensitivity    (GschemToplevel *w_current, const char *name, int flag);
-void       x_menu_save_state            (GschemToplevel *w_current);
-void       x_menu_set_icon_visibility   (GschemToplevel *w_current, bool state);
-void       x_menu_set_toggle            (GschemToplevel *w_current, int toggle_id, bool state);
-void       x_menu_set_toolbar_toggle              (GschemToplevel *w_current, int toggle_id, bool state);
-void       x_menu_attach_recent_files_submenu     (GschemToplevel *w_current);
-void       recent_files_load                      (void);
-void       recent_files_save            (void       *user_data);
-void       recent_files_add             (const char *filename);
-const char *recent_files_last     (void);
+GtkWidget  *get_main_menu               (GschemToplevel *w_current);
+GtkWidget  *x_menu_setup_ui             (GschemToplevel *w_current);
+int         x_menu_setup_popup          (GschemToplevel *w_current);
+int         x_menu_display_popup        (GschemToplevel *w_current, GdkEventButton *event);
+void        x_menus_sensitivity         (GschemToplevel *w_current, const char *buf, int flag);
+void        x_menus_popup_sensitivity   (GschemToplevel *w_current, const char *name, int flag);
+void        x_menu_save_state           (GschemToplevel *w_current);
+const char *x_menu_get_buffer_menu      (GschemToplevel *w_current);
+void        x_menu_set_icon_visibility  (GschemToplevel *w_current, bool state);
+void        x_menu_set_toggle           (GschemToplevel *w_current, int toggle_id, bool state);
+void        x_menu_set_toolbar_toggle              (GschemToplevel *w_current, int toggle_id, bool state);
+void        x_menu_attach_recent_files_submenu     (GschemToplevel *w_current);
+void        recent_files_load                     (void);
+void        recent_files_save           (void       *user_data);
+void        recent_files_add            (const char *filename);
+const char *recent_files_last           (void);
 
 /* x_multiattrib.c */
 void       x_multiattrib_open           (GschemToplevel *w_current);
