@@ -1,3 +1,15 @@
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_image_chooser.h: Add GtkWidget member *extra
+
+      * src/dialogs/geda_image_chooser.c: Set spacing hbox containing the
+        preview.enable check-box to 5, save pointer to hbox as chooser->
+        extra. Redo function geda_image_chooser_get_extra_widget to return
+        chooser->extra. Add new function geda_image_chooser_append_extra
+        to add extra widgets to the same hbox. The set extra widget function
+        still calls gtk_file_chooser_set_extra_widget so clients can get
+        the get and modify or replace.
+
 2014-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
       * Revised headers of source file to include would-be shebang lines.

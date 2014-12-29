@@ -548,7 +548,7 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   GtkWidget     *hbox,  *vbox;
   GtkWidget     *ebox;
 
-  /* Add our extra widget to the dialog */
+  /* Add our preview widget to the dialog */
   vbox = gtk_vbox_new(FALSE, 0);
 
   ebox = gtk_event_box_new();
@@ -739,7 +739,7 @@ geda_image_chooser_constructor (GedaType               type,
   size     = eda_config_get_integer (cfg, group, key, NULL);
   size     = size > 100 ? size : DEFAULT_CHOOSER_PREVIEW_SIZE;
   preview  = chooser_add_preview(widget, enable, size);
-  hbox     = gtk_hbox_new(FALSE, 0);
+  hbox     = gtk_hbox_new(FALSE, 5);
 
   chechbox = gtk_check_button_new_with_label (_("Preview"));
   gtk_toggle_button_set_active ((GtkToggleButton*)chechbox, enable);
@@ -751,9 +751,10 @@ geda_image_chooser_constructor (GedaType               type,
   g_signal_connect (chechbox, "toggled",
                     G_CALLBACK (chooser_preview_enabler),
                     widget);
-
+ /* Add our extra widget to the dialog */
   geda_image_chooser_set_extra_widget (widget, hbox);
 
+  chooser->extra = hbox;
   chooser->preview = preview;
   chooser->preview_size = size;
   chooser->preview_enabled = enable;
@@ -1356,16 +1357,29 @@ geda_image_chooser_set_current_name (GtkWidget *hideous, const char *folder)
   }
 }
 
+void
+geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
+{
+  if (GEDA_IMAGE_CHOOSER(dialog)) {
+    GedaImageChooser* chooser = (GedaImageChooser*)dialog;
+    gtk_container_add (GTK_CONTAINER (chooser->extra), child);
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaImageChooser");
+  }
+}
+
+/* The extra widget is the hbox containing the enable preview check button */
 GtkWidget*
-geda_image_chooser_get_extra_widget(GtkWidget *hideous)
+geda_image_chooser_get_extra_widget(GtkWidget *chooser)
 {
   GtkWidget *extra;
 
-  if (GTK_IS_FILE_CHOOSER(hideous)) {
-    extra = gtk_file_chooser_get_extra_widget((GtkFileChooser*)hideous);
+  if (GEDA_IMAGE_CHOOSER(chooser)) {
+    extra = ((GedaImageChooser*)chooser)->extra;
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
     extra = NULL;
   }
   return extra;
