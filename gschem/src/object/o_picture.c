@@ -27,13 +27,16 @@
  * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
 #include <gschem.h>
+#include <geda_image_chooser.h>
 #include <geda_debug.h>
 
-/* This works, but using one macro inside of other doesn't */
+/* This works, but using one macro inside of other doesn't  */
 #define GET_PICTURE_WIDTH(w) abs((w)->second_wx - (w)->first_wx)
 #define GET_PICTURE_HEIGHT(w) \
   (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
+
 #define GET_PICTURE_LEFT(w) min((w)->first_wx, (w)->second_wx)
+
 #define GET_PICTURE_TOP(w) (w)->first_wy > (w)->second_wy ? (w)->first_wy  :  \
                            (w)->first_wy+abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
 
@@ -56,7 +59,8 @@
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
+void
+o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   /* init first_w[x|y], second_w[x|y] to describe box */
   w_current->first_wx = w_current->second_wx = w_x;
@@ -82,7 +86,8 @@ void o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
+void
+o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
@@ -141,7 +146,8 @@ void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
+void
+o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 #if DEBUG
   printf("o_picture_rubberbox called\n");
@@ -176,14 +182,15 @@ void o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
  *
  *  \note used in button cancel code in x_events.c
  */
-void o_picture_invalidate_rubber (GschemToplevel *w_current)
+void
+o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
 
   WORLDtoSCREEN (w_current,
                  GET_PICTURE_LEFT(w_current), GET_PICTURE_TOP(w_current),
                  &left, &top);
-  width = SCREENabs (w_current, GET_PICTURE_WIDTH (w_current));
+  width  = SCREENabs (w_current, GET_PICTURE_WIDTH (w_current));
   height = SCREENabs (w_current, GET_PICTURE_HEIGHT(w_current));
 
   o_invalidate_rectangle (w_current, left, top, left + width, top);
@@ -203,19 +210,27 @@ void o_picture_invalidate_rubber (GschemToplevel *w_current)
  *
  *  \param [in] w_current  The GschemToplevel object.
  */
-void o_picture_draw_rubber (GschemToplevel *w_current)
+void
+o_picture_draw_rubber (GschemToplevel *w_current)
 {
+  GArray  *color_map;
+  cairo_t *cr;
+
+  int flags;
   int left, top, width, height;
-  double wwidth = 0;
-  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
-  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
+
+  double
+  wwidth     = 0;
+
+  cr         = eda_renderer_get_cairo_context (CairoRenderer);
+  color_map  = eda_renderer_get_color_map     (CairoRenderer);
+  flags      = eda_renderer_get_cairo_flags   (CairoRenderer);
 
   /* get the width/height and the upper left corner of the picture */
-  left =   GET_PICTURE_LEFT (w_current);
-  top =    GET_PICTURE_TOP (w_current);
-  width =  GET_PICTURE_WIDTH (w_current);
-  height = GET_PICTURE_HEIGHT (w_current);
+  left       = GET_PICTURE_LEFT   (w_current);
+  top        = GET_PICTURE_TOP    (w_current);
+  width      = GET_PICTURE_WIDTH  (w_current);
+  height     = GET_PICTURE_HEIGHT (w_current);
 
   eda_cairo_box (cr, flags, wwidth, left, top - height, left + width, top);
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
@@ -229,38 +244,65 @@ void o_picture_draw_rubber (GschemToplevel *w_current)
  *
  * \param [in] w_current  The GschemToplevel object
  * \param [in] filename   The filename of the new picture
+ * \param [in] o_current  The picture to update or NULL to use selection
  * \param [out] error     The location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-bool o_picture_exchange (GschemToplevel *w_current,
-                    const gchar *filename, GError **error)
+bool
+o_picture_exchange (GschemToplevel *w_current,
+                    const char     *filename,
+                    Object         *o_current,
+                    GError        **error)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *iter;
 
-  for (iter = geda_list_get_glist (Top_Selection); iter != NULL; NEXT(iter))
-  {
-    Object *object = (Object *) iter->data;
-    if (object == NULL) {
-      u_log_message("Internal Error Detected: <o_picture_exchange> object = NULL\n");
-      return FALSE;
-    }
+  bool result = TRUE;
 
-    if (object->type == OBJ_PICTURE) {
+  if (o_current) {
 
-      bool status;
+    if (o_current->type == OBJ_PICTURE) {
 
-      /* Erase previous picture */
-      o_invalidate_object (w_current, object);
+      /* Erase previous picture, WEH: Really? How? */
+      o_invalidate_object (w_current, o_current);
 
-      status = o_picture_set_from_file (object, filename, error);
-      if (!status) return FALSE;
+      if (o_picture_set_from_file (o_current, filename, error)) {
+        o_invalidate_object (w_current, o_current); /* Draw new picture */
+      }
+      else {
+        result = FALSE;
+      }
 
-      /* Draw new picture */
-      o_invalidate_object (w_current, object);
     }
   }
-  return TRUE;
+  else {
+
+    GList *iter;
+
+    for (iter = geda_list_get_glist (Top_Selection); iter != NULL; NEXT(iter))
+    {
+      Object *object = (Object *) iter->data;
+
+      if (!object) {
+        BUG_MSG("Found NULL in Selection list\n");
+        return FALSE;
+      }
+
+      if (object->type == OBJ_PICTURE) {
+
+        /* Erase previous picture, WEH: Really? How? */
+        o_invalidate_object (w_current, object);
+
+        if (o_picture_set_from_file (object, filename, error)) {
+          o_invalidate_object (w_current, object); /* Draw new picture */
+        }
+        else {
+          result = FALSE;
+          break;
+        }
+      }
+    }
+  }
+  return result;
 }
 
 /*! \brief Create dialog to exchange picture objects
@@ -271,51 +313,100 @@ bool o_picture_exchange (GschemToplevel *w_current,
  *
  *  \todo Maybe merge this dialog function with picture_selection_dialog()
  */
-void o_picture_change_filename_dialog (GschemToplevel *w_current)
+void
+o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  GError       *err      = NULL;
-  GtkWidget    *dialog;
+  GedaToplevel *toplevel  = w_current->toplevel;
+  GError       *err       = NULL;
+  GList        *iter;
+  const char   *oldfilename;
+  static bool   update_all = FALSE;
 
-  char  *cwd;
-  char  *filename;
-  bool   result;
+  char *filename;
 
+  int   count;
+  bool  result;
 
-  dialog = gtk_file_chooser_dialog_new (_("Select a picture file..."),
-                                        GTK_WINDOW(w_current->main_window),
-                                        0,
-                                        GTK_STOCK_CANCEL,
-                                        GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,
-                                        GTK_RESPONSE_ACCEPT,
-                                        NULL);
-
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_CANCEL,
-                                          -1);
-
-  if (w_current->pixbuf_filename) {
-    gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
-                                  w_current->pixbuf_filename);
+  if (o_current && o_current->type == OBJ_PICTURE) {
+    oldfilename = o_picture_get_filename(o_current);
   }
-  else { /* no filename then get current working dir */
-    cwd = getcwd(0,0);
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
-    free (cwd);
+  else {
+    oldfilename = NULL;
   }
 
-  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+  /* Get count of picture objects in selection set */
+  count = 0;
+  iter  = geda_list_get_glist (Top_Selection);
+  while(iter != NULL) {
+    Object *obj = (Object *) iter->data;
+    if (obj->type == OBJ_PICTURE) {
+      count++;
+    }
+    NEXT(iter);
+  }
 
-    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    gtk_widget_destroy(dialog);
-    dialog=NULL;
+  if (count == 1) {
+    filename = x_fileselect_select_image(w_current, oldfilename);
+  }
+  else { /* Use a custom image chooser */
+
+    GtkWidget  *dialog;
+    GtkWidget  *cb_all;
+
+    dialog = geda_image_chooser_new (w_current->main_window,
+                                     IMAGE_CHOOSER_ACTION_OPEN);
+
+    g_object_set (dialog, "select-multiple", FALSE, NULL);
+    /* "local-only", TRUE, */
+
+    /* If a file name was provided then use the path from the file
+     * name if exist then use this directory as the starting point
+     * and fill in the name if there is only one picture selected */
+    if (oldfilename) {
+      char *filepath = g_path_get_dirname (oldfilename);
+      if (filepath) {
+        geda_image_chooser_set_current_folder(dialog, filepath);
+        GEDA_FREE(filepath);
+      }
+      if (count == 1) {
+        geda_image_chooser_set_filename (dialog, oldfilename);
+      }
+    }
+    else { /* start in current working directory, NOT in 'Recently Used' */
+      char *cwd = g_get_current_dir ();
+      geda_image_chooser_set_current_folder (dialog, cwd);
+      GEDA_FREE (cwd);
+    }
+
+    cb_all = gtk_check_button_new_with_label (_("Update All"));
+    gtk_widget_show (cb_all);
+    gtk_widget_set_tooltip_text(cb_all, _("Update all selected Picture images"));
+    gtk_toggle_button_set_active ((GtkToggleButton*)cb_all, update_all);
+    geda_image_chooser_append_extra (dialog, cb_all);
+
+    gtk_widget_show (dialog);
+
+    if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+      filename = u_string_strdup(geda_image_chooser_get_filename (dialog));
+    }
+    else {
+      filename = NULL;
+    }
+
+    /* Save the check-box state even if the user canceled the dialog */
+    update_all = gtk_toggle_button_get_active ((GtkToggleButton*)cb_all);
+
+    gtk_widget_destroy (dialog);
+
+    if (update_all) {
+      o_current = NULL; /* Erase pointer to force using selection set */
+    }
+  }
+
+  if (filename) {
 
     /* Actually update the pictures */
-    result = o_picture_exchange (w_current, filename, &err);
+    result = o_picture_exchange (w_current, filename, o_current, &err);
 
     if (!result) {
 
@@ -333,11 +424,6 @@ void o_picture_change_filename_dialog (GschemToplevel *w_current)
     }
     GEDA_FREE (filename);
   }
-
-  if (dialog) {
-    gtk_widget_destroy(dialog);
-    dialog=NULL;
-  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -348,8 +434,10 @@ void o_picture_change_filename_dialog (GschemToplevel *w_current)
  *  \param [in] pixbuf
  *  \param [in] filename
  */
-void o_picture_set_pixbuf(GschemToplevel *w_current,
-                          GdkPixbuf *pixbuf, char *filename)
+void
+o_picture_set_pixbuf(GschemToplevel *w_current,
+                     GdkPixbuf *pixbuf,
+                     char *filename)
 {
 
   /* need to put an error messages here */

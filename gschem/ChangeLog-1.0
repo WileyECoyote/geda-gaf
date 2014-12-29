@@ -1,5 +1,14 @@
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_picture.c: Use more systematic approach for multi
+      image updates; Redo functions o_picture_change_filename_dialog
+      and o_picture_exchange. For the former, add Object o_current
+      argument, use GedaImageChooser dialog, with custom version if
+      selection include multiable picture object and be selective
+      when setting initial path and filename in the chooser dialog.
+
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/system-gschemrc.scm: Move Cut/Copy/Paste buffer menu items to
       under the _Select Menu.
 

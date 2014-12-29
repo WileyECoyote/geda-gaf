@@ -86,7 +86,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
       x_attrib_add_dialog(w_current, o_current);
       break;
     case(OBJ_PICTURE):
-      o_picture_change_filename_dialog(w_current);
+      o_picture_change_filename_dialog(w_current, o_current);
       break;
     case(OBJ_PIN):
       if(isSymbol) {

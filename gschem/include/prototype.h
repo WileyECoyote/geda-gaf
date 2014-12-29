@@ -519,8 +519,8 @@ void       o_picture_end                     (GschemToplevel *w_current, int x, 
 void       o_picture_motion                  (GschemToplevel *w_current, int x, int y);
 void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void       o_picture_draw_rubber             (GschemToplevel *w_current);
-bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, GError **error);
-void       o_picture_change_filename_dialog  (GschemToplevel *w_current);
+bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, Object *o_current, GError **error);
+void       o_picture_change_filename_dialog  (GschemToplevel *w_current, Object *o_current);
 void       o_picture_set_pixbuf              (GschemToplevel *w_current, GdkPixbuf *pixbuf, char *filename);
 
 /* o_pin.c */
@@ -739,7 +739,7 @@ void       x_manual_resize              (GschemToplevel *w_current);
 /* x_fileselect.c */
 GSL       *x_fileselect_list            (GschemToplevel *w_current);
 void       x_fileselect_save            (GschemToplevel *w_current);
-char      *x_fileselect_select_image    (GschemToplevel *w_current);
+char      *x_fileselect_select_image    (GschemToplevel *w_current, const char *filename);
 bool       x_fileselect_load_backup     (const char *message, GschemToplevel *w_current);
 
 /* x_grid.c */
@@ -758,9 +758,9 @@ void       x_icons_initialize           ( void );
 void       x_image_init                 (void);
 
 void       x_image_lowlevel             (GschemToplevel *w_current, const char* filename,
-                                   int desired_width, int desired_height, char *filetype,
-                                   ImageExtent extent,
-                                   bool use_print_map, bool invert_color_bw );
+                                         int desired_width, int desired_height, char *filetype,
+                                         ImageExtent extent,
+                                         bool use_print_map, bool invert_color_bw );
 
 void       x_image_setup          (GschemToplevel *w_current, IMAGE_TYPES default_type);
 /* GdkPixbuf *x_image_get_pixbuf  (GschemToplevel *w_current, ImageExtent extent); */

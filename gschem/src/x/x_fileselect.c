@@ -222,7 +222,8 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
  *  is set in the dialog. The users filter preference is Preserved
  *  regardless of whether the operation is canceled or not.
  *
- *  \param [in] w_current The GschemToplevel environment.
+ *  \param [in] w_current The GschemToplevel environment
+ *  \param [in] filename  Optional file name to fill in the chooser.
  *
  *  \returns pointer to filename string or NULL if the operation was
  *           cancelled by the user. The returned string must be freed
@@ -230,11 +231,12 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
  *
  *  \sa x_fileselect_list
  */
-char *x_fileselect_select_image(GschemToplevel *w_current)
+char *
+x_fileselect_select_image(GschemToplevel *w_current, const char *infile)
 {
   GtkWidget  *dialog;
   char       *cwd;
-  char       *filename;
+  char       *outfile;
 
   dialog = geda_image_chooser_new (w_current->main_window,
                                    IMAGE_CHOOSER_ACTION_OPEN);
@@ -242,8 +244,10 @@ char *x_fileselect_select_image(GschemToplevel *w_current)
   g_object_set (dialog, "select-multiple", FALSE, NULL);
                        /* "local-only", TRUE, */
 
-  if (w_current->pixbuf_filename) {
-    geda_image_chooser_set_filename (dialog, w_current->pixbuf_filename);
+  /*TODO: If a file name was provided the path of which exist then
+   *      use this directory as the starting point */
+  if (infile) {
+    geda_image_chooser_set_filename (dialog, infile);
   }
 
   /* force start in current working directory, NOT in 'Recently Used' */
@@ -254,15 +258,15 @@ char *x_fileselect_select_image(GschemToplevel *w_current)
   gtk_widget_show (dialog);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    filename = u_string_strdup(geda_image_chooser_get_filename (dialog));
+    outfile = u_string_strdup(geda_image_chooser_get_filename (dialog));
   }
   else {
-    filename = NULL;
+    outfile = NULL;
   }
 
   gtk_widget_destroy (dialog);
 
-  return filename;
+  return outfile;
 }
 
 /*! \brief Opens a file chooser for saving the current page.

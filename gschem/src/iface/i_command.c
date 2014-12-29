@@ -2663,7 +2663,7 @@ COMMAND ( do_add_picture )
 
   w_current->pixbuf_filename = NULL;
 
-  filename = x_fileselect_select_image(w_current);
+  filename = x_fileselect_select_image(w_current, NULL);
 
   if (filename != NULL) { /* if user did not cancel */
 
