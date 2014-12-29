@@ -232,28 +232,33 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
  *  \sa x_fileselect_list
  */
 char *
-x_fileselect_select_image(GschemToplevel *w_current, const char *infile)
+x_fileselect_select_image(GschemToplevel *w_current, const char *fname)
 {
   GtkWidget  *dialog;
-  char       *cwd;
   char       *outfile;
 
   dialog = geda_image_chooser_new (w_current->main_window,
                                    IMAGE_CHOOSER_ACTION_OPEN);
 
   g_object_set (dialog, "select-multiple", FALSE, NULL);
-                       /* "local-only", TRUE, */
+  /* "local-only", TRUE, */
 
-  /*TODO: If a file name was provided the path of which exist then
-   *      use this directory as the starting point */
-  if (infile) {
-    geda_image_chooser_set_filename (dialog, infile);
+  /* If a file name was provided then use the path from the file
+   * name then as the starting point if the path exist */
+  if (fname) {
+    char *filepath = g_path_get_dirname (fname);
+    if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
+    {
+      geda_image_chooser_set_current_folder(dialog, filepath);
+      GEDA_FREE(filepath);
+    }
+    geda_image_chooser_set_filename (dialog, f_get_basename(fname));
   }
-
-  /* force start in current working directory, NOT in 'Recently Used' */
-  cwd = g_get_current_dir ();
-  geda_image_chooser_set_current_folder (dialog, cwd);
-  GEDA_FREE (cwd);
+  else { /* start in current working directory, NOT in 'Recently Used' */
+    char *cwd = g_get_current_dir ();
+    geda_image_chooser_set_current_folder (dialog, cwd);
+    GEDA_FREE (cwd);
+  }
 
   gtk_widget_show (dialog);
 
