@@ -507,7 +507,7 @@ COMMAND (do_debug)
       average = total / 10;
       count   = g_list_length((GList*)s_page_get_objects(Current_Page));
       per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
-      results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
+      results = u_string_sprintf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
       printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
       msg = complete;
       g_free(results);
@@ -533,7 +533,7 @@ COMMAND (do_debug)
         count   = g_list_length(s_page_get_objects(Current_Page));
         per_obj = ((average / count) * 1000) / NUMBER_UNDO_TEST;
         printf ("file=%s, has %d objects after testing\n", Current_Page->filename, count);
-        results = g_strdup_printf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
+        results = u_string_sprintf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
         printf ("%s\n", results);
         msg = complete;
         g_free(results);
@@ -2193,7 +2193,7 @@ COMMAND ( do_down_schematic )
         u_log_message(_("Failed to descend into '%s': %s\n"),
                          current_filename, msg);
 
-        char *secondary = g_strdup_printf (
+        char *secondary = u_string_sprintf (
                          _("Failed to descend hierarchy into '%s': %s"),
                             current_filename, msg);
 
@@ -2672,17 +2672,16 @@ COMMAND ( do_add_picture )
     if (pixbuf) {
       w_current->inside_action = 1;
       o_picture_set_pixbuf(w_current, pixbuf, filename);
-      Toplevel->page_current->CHANGED=1;
       i_status_set_state(w_current, DRAWPICTURE);
     }
     else {
       char *errmsg;
       if (error) {
-        errmsg = g_strdup_printf ( _("Error: %s."), error->message);
+        errmsg = u_string_sprintf ( _("Error: %s."), error->message);
         g_error_free(error);
       }
       else {
-        errmsg = g_strdup_printf ( _("Error: %s\n%s."), filename, "An unknown error occurred");
+        errmsg = u_string_sprintf ( _("Error: %s\n%s."), filename, "An unknown error occurred");
       }
       titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg, _("Load failed") );
       GEDA_FREE(errmsg);

@@ -1,5 +1,11 @@
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Remove set page changed flag in function
+      i_cmd_do_add_picture, this is already done in o_picture_end.
+      Replaced function g_strdup_printf with u_string_sprintf.
+
+2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_picture.c: Eliminate superfluous code in function
       o_picture_set_pixbuf, and revise doxygen documentation.
 
