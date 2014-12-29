@@ -30,7 +30,7 @@
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
 
-/* This works, but using one macro inside of other doesn't  */
+/* This works, but using one macro inside of other doesn't */
 #define GET_PICTURE_WIDTH(w) abs((w)->second_wx - (w)->first_wx)
 #define GET_PICTURE_HEIGHT(w) \
   (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
@@ -71,7 +71,7 @@ o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = 1;
 }
 
-/*! \brief End the input of a circle.
+/*! \brief End the input of a new Picture.
  *
  *  \par Function Description
  *  This function ends the input of the second corner of a picture.
@@ -95,7 +95,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   int picture_left, picture_top;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_picture_end> Not inside action\n");
+    BUG_MSG("Not inside action\n");
     return;
   }
 
@@ -114,7 +114,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
     return;
   }
 
-  /* create the object */
+  /* create the new picture object */
   new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
                           picture_left, picture_top,
                           picture_left + picture_width,
@@ -130,13 +130,13 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \brief Draw temporary picture while dragging edge
+/*! \brief Draw temporary picture out-line while sizing pictures
  *
  *  \par Function Description
- *  This function is used to draw the box while dragging one of its edge or
- *  angle. It erases the previous temporary box drawn before, and draws
- *  a new updated one. <B>w_x</B> and <B>w_y</B> are the new position of the mobile
- *  point, ie the mouse.
+ *  This function is used to draw a box while dragging a picture grip point.
+ *  The previous temporary out-line box is erased before drawing an updated box.
+ *  <B>w_x</B> and <B>w_y</B> are the new position of the "mobile" point, i.e.
+ *  the pointer position.
  *
  *  The old values are inside the <B>w_current</B> pointed structure. Old
  *  width, height and left and top values are recomputed by the corresponding
@@ -150,30 +150,28 @@ void
 o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 #if DEBUG
-  printf("o_picture_rubberbox called\n");
+  printf("%s: w_x=%d, w_y=%d\n", __func__, w_x, w_y);
 #endif
-  if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_picture_motion> Not inside action\n");
-    return;
-  }
 
-  /* erase the previous temporary box */
-  if (w_current->rubber_visible)
+  if (w_current && w_current->inside_action) {
+
+    /* erase the previous temporary box */
+    if (w_current->rubber_visible)
+      o_picture_invalidate_rubber (w_current);
+
+    /* New values are fixed according to the <B>w_x</B> and <B>w_y</B>
+     * parameters. These are saved in <B>w_current</B> pointed structure
+     * as new temporary values. The new box is then drawn.
+     */
+
+    /* update the coords of the corner */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+
+    /* draw the new temporary box */
     o_picture_invalidate_rubber (w_current);
-
-  /*
-   * New values are fixed according to the <B>w_x</B> and <B>w_y</B> parameters.
-   * These are saved in <B>w_current</B> pointed structure as new temporary values.
-   * The new box is then drawn.
-   */
-
-  /* update the coords of the corner */
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  /* draw the new temporary box */
-  o_picture_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \brief Invalidate the Rubber for Picture Objects
@@ -187,9 +185,8 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
 
-  WORLDtoSCREEN (w_current,
-                 GET_PICTURE_LEFT(w_current), GET_PICTURE_TOP(w_current),
-                 &left, &top);
+  WORLDtoSCREEN (w_current, GET_PICTURE_LEFT(w_current), GET_PICTURE_TOP(w_current), &left, &top);
+
   width  = SCREENabs (w_current, GET_PICTURE_WIDTH (w_current));
   height = SCREENabs (w_current, GET_PICTURE_HEIGHT(w_current));
 
@@ -237,15 +234,18 @@ o_picture_draw_rubber (GschemToplevel *w_current)
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
 }
 
-/*! \brief Replace all selected pictures with a new picture
+/*! \brief Replace pictures with a new picture
  *
  * \par Function Description
- * Replaces all pictures in the current selection with a new image.
+ *  This function updates \a o_current picture object or all picture objects
+ *  in the current selection if \a o_current is NULL, with the image specified
+ *  by \a filename.
  *
  * \param [in] w_current  The GschemToplevel object
  * \param [in] filename   The filename of the new picture
  * \param [in] o_current  The picture to update or NULL to use selection
  * \param [out] error     The location to return error information.
+ *
  * \return TRUE on success, FALSE on failure.
  */
 bool
@@ -304,20 +304,25 @@ o_picture_exchange (GschemToplevel *w_current,
   }
 
   if (result) {
-    toplevel->page_current->CHANGED=1;
+    toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
 
   return result;
 }
 
-/*! \brief Create dialog to exchange picture objects
+/*! \brief Display an Image Chooser Dialog to exchange picture image
  *
  *  \par Function Description
- *  This function opens a file chooser and replaces all pictures of the selections
- *  with the new picture.
+ *  This function opens a file chooser to allow users to select an image file.
+ *  A check-button (box) is added to the dialog allowing users to specify if
+ *  all selected Pictures should be updated. If a file name is returned from
+ *  the chooser dialog, the filename is passed to o_picture_exchange, with
+ *  the object if the check-box is NOT checked. If the check-box is checked
+ *  \a o_current is not passed to o_picture_exchange.
  *
- *  \todo Maybe merge this dialog function with picture_selection_dialog()
+ * \param [in] w_current  Pointer to GschemToplevel structure
+ * \param [in] o_current  Picture Object to update or NULL to use selection
  */
 void
 o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
@@ -429,9 +434,12 @@ o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set active pixbuf top-level parameterd
  *  \par Function Description
+ *  The function is used when inserting new picture objects in
+ *  order to temporily store picture object properties, until
+ *  o_picture_end actually creates a GedaPicture Object to hold
+ *  this data.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] pixbuf
@@ -439,31 +447,20 @@ o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
  */
 void
 o_picture_set_pixbuf(GschemToplevel *w_current,
-                     GdkPixbuf *pixbuf,
-                     char *filename)
+                     GdkPixbuf      *pixbuf,
+                     char           *filename)
 {
-
-  /* need to put an error messages here */
-  if (pixbuf == NULL)  {
-    fprintf(stderr, "error! picture in set pixbuf was NULL\n");
-    return;
-  }
-
   if (w_current->current_pixbuf != NULL) {
     GEDA_UNREF(w_current->current_pixbuf);
-    w_current->current_pixbuf=NULL;
   }
 
-  if (w_current->pixbuf_filename != NULL) {
-    GEDA_FREE(w_current->pixbuf_filename);
-    w_current->pixbuf_filename=NULL;
-  }
+  GEDA_FREE(w_current->pixbuf_filename);
 
   w_current->current_pixbuf = pixbuf;
   w_current->pixbuf_filename = (char *) u_string_strdup(filename);
 
   w_current->pixbuf_wh_ratio = gdk_pixbuf_get_width(pixbuf) /
-                                        gdk_pixbuf_get_height(pixbuf);
+                               gdk_pixbuf_get_height(pixbuf);
 
   /* be sure to free this pixbuf somewhere */
 }
