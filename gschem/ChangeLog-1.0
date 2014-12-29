@@ -1,6 +1,10 @@
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_picture.c: Use more systematic approach for multi
+   ** src/object/o_picture.c: Call o_undo_savestate if images exchanged.
+
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+   ** src/object/o_picture.c: Use more systematic approach for multi
       image updates; Redo functions o_picture_change_filename_dialog
       and o_picture_exchange. For the former, add Object o_current
       argument, use GedaImageChooser dialog, with custom version if

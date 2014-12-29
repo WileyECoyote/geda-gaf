@@ -302,6 +302,12 @@ o_picture_exchange (GschemToplevel *w_current,
       }
     }
   }
+
+  if (result) {
+    toplevel->page_current->CHANGED=1;
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
+
   return result;
 }
 
@@ -364,13 +370,12 @@ o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
      * and fill in the name if there is only one picture selected */
     if (oldfilename) {
       char *filepath = g_path_get_dirname (oldfilename);
-      if (filepath) {
+      if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
+      {
         geda_image_chooser_set_current_folder(dialog, filepath);
         GEDA_FREE(filepath);
       }
-      if (count == 1) {
-        geda_image_chooser_set_filename (dialog, oldfilename);
-      }
+      geda_image_chooser_set_filename (dialog, f_get_basename(oldfilename));
     }
     else { /* start in current working directory, NOT in 'Recently Used' */
       char *cwd = g_get_current_dir ();
@@ -419,9 +424,7 @@ o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
       /* clear error */
       g_error_free(err);
     }
-    else {
-      toplevel->page_current->CHANGED=1;
-    }
+
     GEDA_FREE (filename);
   }
 }
