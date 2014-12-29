@@ -441,7 +441,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   int   find_prev_data=FALSE;
   int   restored;
 
-  /* The following varible are initialse to suppress errently gcc warning */
+  /* The following varible are initialized to suppress errent gcc warnings */
   int left    = left;
   int right   = right;
   int top     = top;
@@ -532,7 +532,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     int  old_flags       = toplevel->open_flags;
 
     logging              = FALSE;   /* temporarily disable logging */
-    toplevel->open_flags = 0;
+    toplevel->open_flags = F_OPEN_RESTORE_CWD;
 
     if (f_open(toplevel, Current_Page, u_current->filename, &err)) {
       restored = TRUE;

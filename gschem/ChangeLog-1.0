@@ -1,5 +1,10 @@
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_undo.c: Set F_OPEN_RESTORE_CWD flag in function
+      o_undo_callback before calling f_open().
+
+2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
    ** src/object/o_picture.c: Call o_undo_savestate if images exchanged.
 
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
