@@ -1,5 +1,11 @@
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revise do_add_picture to only set state
+      to SELECT if dialog was canceled, or if there was error loading
+      the picture.
+
+2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_box.c: Cleanup macros and revise doxygen comments.
 
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>

@@ -2659,7 +2659,6 @@ COMMAND ( do_add_picture )
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
-  i_status_set_state(w_current, SELECT);
 
   w_current->pixbuf_filename = NULL;
 
@@ -2685,8 +2684,12 @@ COMMAND ( do_add_picture )
       }
       titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg, _("Load failed") );
       GEDA_FREE(errmsg);
+      i_status_set_state(w_current, SELECT);
     }
     GEDA_FREE(filename);
+  }
+  else {
+    i_status_set_state(w_current, SELECT);
   }
   EXIT_COMMAND(do_add_picture);
 }
