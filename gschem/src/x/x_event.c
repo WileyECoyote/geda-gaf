@@ -322,7 +322,6 @@ int x_event_button_pressed(GtkWidget      *widget,
     }
     else if (event->button == 2) {
 
-      /* try this out and see how it behaves */
       if (w_current->inside_action) {
         if (!(w_current->event_state == ENDCOMP  ||
           w_current->event_state     == ENDTEXT  ||
@@ -332,61 +331,64 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->event_state     == ENDPASTE )) {
           i_callback_cancel(w_current, 0, NULL);
           }
-          goto end_button_pressed;
+        //goto end_button_pressed;
       }
+      else {
 
-      switch(w_current->middle_button) {
+        switch(w_current->middle_button) {
 
-        case(MOUSE_MIDDLE_ACTION):
-          /* determine here if copy or move for now do move only
-           *          make sure the list is not empty */
-          if (!o_select_is_selection(w_current)) {
-            o_select_unselect_all(w_current);
+          case(MOUSE_MIDDLE_ACTION):
+            /* determine here if copy or move for now do move only
+             *          make sure the list is not empty */
+            if (!o_select_is_selection(w_current)) {
+              o_select_unselect_all(w_current);
 
-          }
-          /* don't want to search if shift key is depresed */
-          if (!w_current->SHIFTKEY) {
-            o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
-          }
+            }
+            /* don't want to search if shift key is depresed */
+            if (!w_current->SHIFTKEY) {
+              o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
+            }
 
-          if (!o_select_is_selection(w_current)) {
-            /* this means the above find did not find anything */
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, SELECT);
-            goto end_button_pressed;
-          }
+            if (!o_select_is_selection(w_current)) {
+              /* this means the above find did not find anything */
+              w_current->inside_action = FALSE;
+              i_status_set_state(w_current, SELECT);
+              //goto end_button_pressed;
+            }
+            else {
+              if (w_current->ALTKEY) {
+                o_copy_start(w_current, w_x, w_y);
+                w_current->inside_action = TRUE;
+                i_status_set_state(w_current, COPY);
+              } else {
+                o_move_start(w_current, w_x, w_y);
+                w_current->inside_action = TRUE;
+                i_status_set_state(w_current, MOVE);
+              }
+            }
+            break;
 
-          if (w_current->ALTKEY) {
-            o_copy_start(w_current, w_x, w_y);
+          case(MOUSE_MIDDLE_REPEAT):
+            w_current->pointer_sx = event->x;
+            w_current->pointer_sy = event->y;
+            i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
+            break;
+
+            #ifdef HAVE_LIBSTROKE
+          case(MOUSE_MIDDLE_STROKE):
+            DOING_STROKE=TRUE;
+            break;
+            #endif /* HAVE_LIBSTROKE */
+
+          case(MOUSE_MIDDLE_PAN):
+            w_current->event_state   = MOUSEPAN; /* start */
             w_current->inside_action = TRUE;
-            i_status_set_state(w_current, COPY);
-          } else {
-            o_move_start(w_current, w_x, w_y);
-            w_current->inside_action = TRUE;
-            i_status_set_state(w_current, MOVE);
-          }
-          break;
-
-        case(MOUSE_MIDDLE_REPEAT):
-          w_current->pointer_sx = event->x;
-          w_current->pointer_sy = event->y;
-          i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
-          break;
-
-#ifdef HAVE_LIBSTROKE
-        case(MOUSE_MIDDLE_STROKE):
-          DOING_STROKE=TRUE;
-          break;
-#endif /* HAVE_LIBSTROKE */
-
-        case(MOUSE_MIDDLE_PAN):
-          w_current->event_state = MOUSEPAN; /* start */
-          w_current->inside_action = TRUE;
-          w_current->doing_pan = TRUE;
-          start_pan_x = (int) event->x;
-          start_pan_y = (int) event->y;
-          throttle = 0;
-          break;
+            w_current->doing_pan     = TRUE;
+            start_pan_x              = (int) event->x;
+            start_pan_y              = (int) event->y;
+            throttle                 = 0;
+            break;
+        }
       }
     }
     else if (event->button == 3) {
@@ -482,7 +484,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       }
     }
 
-end_button_pressed:
+//end_button_pressed:
 
     return(0);
 }
@@ -710,6 +712,7 @@ bool x_event_button_released (GtkWidget      *widget,
     }
   }
   else if (event->button == 3) {
+
     if (w_current->doing_pan) { /* just for ending a mouse pan */
       w_current->doing_pan=FALSE;
       o_invalidate_all (w_current);

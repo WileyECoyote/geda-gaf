@@ -1,5 +1,10 @@
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Revise x_event_button_pressed, eliminate goto`s
+      and end_button_pressed labels, if just else clause
+
+2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_toolbars.c: Make Picture toolbar button a radial type
 
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
