@@ -60,7 +60,7 @@ int x_event_button_pressed(GtkWidget      *widget,
   int  w_x, w_y;
   int  unsnapped_wx, unsnapped_wy;
 
-  g_return_val_if_fail ((w_current != NULL), 0);
+  //g_return_val_if_fail ((w_current != NULL), 0);
 
 #if DEBUG_EVENTS
   printf("pressed button %d\n", event->button);
@@ -322,6 +322,17 @@ int x_event_button_pressed(GtkWidget      *widget,
     }
     else if (event->button == 2) {
 
+      if (w_current->event_state == DRAWPICTURE) {
+
+        if (w_current->current_pixbuf != NULL) {
+          GEDA_UNREF(w_current->current_pixbuf);
+          w_current->current_pixbuf = NULL;
+        }
+
+        GEDA_FREE(w_current->pixbuf_filename);
+      }
+
+      /* try this out and see how it behaves */
       if (w_current->inside_action) {
         if (!(w_current->event_state == ENDCOMP  ||
           w_current->event_state     == ENDTEXT  ||
@@ -506,7 +517,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
   Object *object;
 
-  g_return_val_if_fail ((w_current != NULL), 0);
+  //g_return_val_if_fail ((w_current != NULL), 0);
 
 #if DEBUG_EVENTS
   printf("%s: entry! %d \n", __func__, w_current->event_state);
@@ -636,13 +647,13 @@ bool x_event_button_released (GtkWidget      *widget,
   else if (event->button == 2) {
 
     if (w_current->inside_action) {
-      if (w_current->event_state == ENDCOMP ||
-          w_current->event_state == ENDTEXT ||
-          w_current->event_state == ENDMOVE ||
-          w_current->event_state == ENDCOPY ||
+      if (w_current->event_state == ENDCOMP  ||
+          w_current->event_state == ENDTEXT  ||
+          w_current->event_state == ENDMOVE  ||
+          w_current->event_state == ENDCOPY  ||
           w_current->event_state == ENDMCOPY ||
-          w_current->event_state == ENDPASTE ) {
-
+          w_current->event_state == ENDPASTE )
+      {
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
         }
@@ -666,7 +677,7 @@ bool x_event_button_released (GtkWidget      *widget,
         }
         w_current->rubber_visible = TRUE;
         goto end_button_released;
-        }
+      }
     }
 
     switch(w_current->middle_button) {
@@ -734,7 +745,6 @@ bool x_event_button_released (GtkWidget      *widget,
 
   return(FALSE);
 }
-
 
 /*! \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
  *  \par Function Description
@@ -827,8 +837,8 @@ bool x_event_configure (GtkWidget         *widget,
     p_current = (Page *)iter->data;
 
     /* doing this the aspectratio is kept when changing (hw)*/
-    cx = ((gdouble)(p_current->left + p_current->right))  / 2;
-    cy = ((gdouble)(p_current->top  + p_current->bottom)) / 2;
+    cx = ((double)(p_current->left + p_current->right))  / 2;
+    cy = ((double)(p_current->top  + p_current->bottom)) / 2;
     s_page_goto (toplevel, p_current);
     i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
 
@@ -862,6 +872,7 @@ void x_event_governor(GschemToplevel *w_current)
   if (w_current->raise_dialog_boxes > 0)
   g_timeout_add (w_current->raise_dialog_boxes, x_event_raise_dialogs, w_current);
 }
+
 /*! \brief On event Expose
  *  \par Function Description
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
@@ -871,8 +882,9 @@ void x_event_governor(GschemToplevel *w_current)
  *  drawing. The temporary drawable is destroyed and the original
  *  restored.
  */
-int
-x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_current)
+int x_event_expose (GtkWidget      *widget,
+                    GdkEventExpose *event,
+                    GschemToplevel *w_current)
 {
 
 #if DEBUG_EVENTS
@@ -911,7 +923,6 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
   return FALSE;
 }
 
-
 /*! \brief Get a snapped pointer position in world coordinates
  *
  *  \par Function Description
@@ -922,7 +933,8 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
  * \param [out] wx         Return location for the snapped X coordinate.
  * \param [out] wy         Return location for the snapped Y coordiante.
  */
-static void get_snapped_pointer (GschemToplevel *w_current, int *wx, int *wy)
+static inline
+void x_event_get_snapped_pointer (GschemToplevel *w_current, int *wx, int *wy)
 {
   int sx, sy;
   int unsnapped_wx, unsnapped_wy;
@@ -991,33 +1003,33 @@ bool x_event_key (GtkWidget      *widget,
   switch (w_current->event_state) {
     case ENDLINE:
       if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_line_motion (w_current, wx, wy);
       }
       break;
     case STARTDRAWNET:
       if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_net_start_magnetic(w_current, wx, wy);
       }
       break;
     case DRAWNET:
     case NETCONT:
       if (shift_key || control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_net_motion (w_current, wx, wy);
       }
       break;
     case DRAWBUS:
     case BUSCONT:
       if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_bus_motion (w_current, wx, wy);
       }
       break;
     case ENDMOVE:
       if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_move_motion (w_current, wx, wy);
       }
       break;
@@ -1027,7 +1039,7 @@ bool x_event_key (GtkWidget      *widget,
     case ENDCOPY:
     case ENDMCOPY:
       if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
+        x_event_get_snapped_pointer (w_current, &wx, &wy);
         o_place_motion (w_current, wx, wy);
       }
       break;
@@ -1462,8 +1474,7 @@ bool x_event_get_pointer_position (GschemToplevel *w_current,
  *  \param [in] wy     integer ordinate in World units
  *
  */
-void
-x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
+void x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
 {
   int sx, sy;
 

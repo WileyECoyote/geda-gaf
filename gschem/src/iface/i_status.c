@@ -51,6 +51,18 @@ void i_status_set_state_msg(GschemToplevel *w_current,
                             enum            x_states newstate,
                             const char     *message)
 {
+  /* The add picture mode is unquie */
+  if ((w_current->event_state == DRAWPICTURE) ||
+      (w_current->event_state == ENDPICTURE))
+  {
+
+    if (w_current->current_pixbuf != NULL) {
+      GEDA_UNREF(w_current->current_pixbuf);
+      w_current->current_pixbuf = NULL;
+    }
+
+    GEDA_FREE(w_current->pixbuf_filename);
+  }
   w_current->event_state = newstate;
   x_toolbars_update (w_current);
   i_status_show_state (w_current, message);
@@ -67,6 +79,7 @@ void i_status_set_state_msg(GschemToplevel *w_current,
  */
 void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 {
+
   i_status_set_state_msg (w_current, newstate, NULL);
 }
 

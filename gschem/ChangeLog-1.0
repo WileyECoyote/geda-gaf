@@ -1,3 +1,13 @@
+2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Release w_current->current_pixbuf and
+      filename before changing from DRAWPICTURE or ENDPICTURE state.
+
+    * src/x/x_event.c: Revise x_event_button_pressed w_current->
+      current_pixbuf and filename when the middle button is pressed
+      with state DRAWPICTURE, when not in an action, before changing
+      to state.
+
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_macros.h: New header file for gschem. The file
