@@ -295,6 +295,8 @@ G_BEGIN_DECLS
          void    o_picture_translate_world       (int dx, int dy, Object *object);
    const char   *o_picture_get_data              (Object *object, size_t *length);
    const char   *o_picture_get_filename          (Object *object);
+          int    o_picture_get_height            (Object *object);
+          int    o_picture_get_width             (Object *object);
         float    o_picture_get_ratio             (Object *object);
          void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
          bool    o_picture_set_from_buffer       (Object *object, const char *filename, const char *data, unsigned int length, GError **error);

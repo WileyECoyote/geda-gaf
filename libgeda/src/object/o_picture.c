@@ -892,7 +892,7 @@ o_picture_modify(Object *object, int x, int y, int whichone)
     object->picture->lower_y = tmp;
   }
 
-  /* recalculate the screen coords and the boundings */
+  /* recalculate the screen coords and the boundary */
   object->w_bounds_valid_for = NULL;
 }
 
@@ -1262,6 +1262,8 @@ o_picture_get_filename (Object *object)
  *  \param [out] y       pointer to the y-position
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
+ *
+ *  TODO Why are these parameter backwards from all the othe functions?
  */
 bool
 o_picture_get_position (int *x, int *y, Object *object)
@@ -1271,7 +1273,33 @@ o_picture_get_position (int *x, int *y, Object *object)
   return TRUE;
 }
 
-/*! \brief Get the width/height ratio of an image
+/*! \brief Get Height of a Picture
+ *
+ *  \par Function Description
+ *  This function returns current height if picture \a object
+ *  in world units. No checking is performed.
+ *
+ *  \param [in] object   The object to get the position.
+ */
+int o_picture_get_height (Object *object)
+{
+  return object->picture->upper_x - object->picture->lower_x;
+}
+
+/*! \brief Get Width of a Picture
+ *
+ *  \par Function Description
+ *  This function returns current height if picture \a object
+ *  in world units. No checking is performed.
+ *
+ *  \param [in] object   The object to get the position.
+ */
+int o_picture_get_width             (Object *object)
+{
+  return object->picture->upper_y - object->picture->lower_y;
+}
+
+/*! \brief Get the Effective width/height ratio of an image
  *
  * \par Function Description
 

@@ -1,3 +1,8 @@
+2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Add new functions o_picture_get_height
+      and o_picture_get_width
+
 2014-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Add more support for Pixbufs: new
@@ -47,6 +52,15 @@
       order, Add functions o_picture_get_rgb_data and o_picture_get_
       mask_data as object oriented accessor to o_picture_rgb_data and
       o_picture_mask_data respectively.
+
+2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/prototype.h: Be more explicit in declarations.
+
+2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Revise function o_picture_get_fallback_pixbuf
+      to use f_get_bitmap_filespec() - is still broke: adds attribute.
 
 2014-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
