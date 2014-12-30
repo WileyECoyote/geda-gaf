@@ -54,7 +54,7 @@ smob_free (SCM smob)
 static int
 smob_print (SCM smob, SCM port, scm_print_state *pstate)
 {
-  gchar *hexstring;
+  char *hexstring;
 
   scm_puts ("#<gschem-window", port);
 

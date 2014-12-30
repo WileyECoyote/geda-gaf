@@ -3,7 +3,7 @@
  * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
  *
  * GtkItemEntry widget by Adrian E. Feiguin
- * Based on GtkEntry widget 
+ * Based on GtkEntry widget
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -22,11 +22,9 @@
 #ifndef __GTK_ITEM_ENTRY_H__
 #define __GTK_ITEM_ENTRY_H__
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
 
 #define GTK_TYPE_ITEM_ENTRY            (gtk_item_entry_get_type ())
 #define GTK_ITEM_ENTRY(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_ITEM_ENTRY, GtkItemEntry))
@@ -43,7 +41,7 @@ struct _GtkItemEntry
 {
   GtkEntry parent;
 
-  gint text_max_size;
+  int text_max_size;
 
   GtkJustification justification;
 };
@@ -53,22 +51,20 @@ struct _GtkItemEntryClass
   GtkEntryClass parent_class;
 };
 
-unsigned int gtk_item_entry_get_type       (void);
-GtkWidget* gtk_item_entry_new            (void);
-GtkWidget* gtk_item_entry_new_with_max_length (gint   max);
-void       gtk_item_entry_set_text            (GtkItemEntry *entry, 
-                                               const gchar *text,
-                                               GtkJustification justification);
+unsigned int gtk_item_entry_get_type            (void);
+GtkWidget*   gtk_item_entry_new                 (void);
+GtkWidget*   gtk_item_entry_new_with_max_length (int   max);
+void         gtk_item_entry_set_text            (GtkItemEntry     *entry,
+                                                 const char      *text,
+                                                 GtkJustification justification);
 
-GtkJustification gtk_item_entry_get_justification (GtkItemEntry *entry);
-void       gtk_item_entry_set_justification(GtkItemEntry        *entry,
-                                            GtkJustification   just);
+GtkJustification gtk_item_entry_get_justification (GtkItemEntry     *entry);
+void       gtk_item_entry_set_justification       (GtkItemEntry     *entry,
+                                                   GtkJustification  just);
 
-void       gtk_item_entry_set_cursor_visible 	(GtkItemEntry *entry,
-					 	 gboolean visible);
-gboolean   gtk_item_entry_get_cursor_visible 	(GtkItemEntry *entry);
-
-
+void       gtk_item_entry_set_cursor_visible      (GtkItemEntry     *entry,
+                                                   int               visible);
+int        gtk_item_entry_get_cursor_visible      (GtkItemEntry     *entry);
 
 #ifdef __cplusplus
 }

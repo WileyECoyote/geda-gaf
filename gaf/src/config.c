@@ -180,7 +180,7 @@ cmd_config (int argc, char **argv)
   /* If no value was specified, output the parameter value. */
   if (argc == optind) {
     GError *err = NULL;
-    gchar *value = eda_config_get_string (cfg, group, key, &err);
+    char *value = eda_config_get_string (cfg, group, key, &err);
     if (value == NULL) {
       fprintf (stderr, _("ERROR: %s.\n"), err->message);
       exit (1);
@@ -193,7 +193,7 @@ cmd_config (int argc, char **argv)
    * configuration. */
   if (argc - optind > 0) {
     GError *err = NULL;
-    const gchar *value = argv[optind++];
+    const char *value = argv[optind++];
     eda_config_set_string (cfg, group, key, value);
     if (!eda_config_save (cfg, &err)) {
       fprintf (stderr, _("ERROR: %s.\n"), err->message);

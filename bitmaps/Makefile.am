@@ -48,6 +48,7 @@ bitmapdata_DATA   = \
 			geda-design4.png                   \
 			geda-display.png                   \
 			geda-draft.png                     \
+			geda-film-roll.png                 \
 			geda-grid-dot.png                  \
 			geda-grid-mesh.png                 \
 			geda-icprint.png                   \

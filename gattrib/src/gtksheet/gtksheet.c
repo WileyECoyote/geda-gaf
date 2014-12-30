@@ -22,16 +22,16 @@
 #include "gtksheet/gtksheet-version.h"
 #include <gobject/gvaluecollector.h>
 
-const guint gtksheet_major_version = GTKSHEET_MAJOR_VERSION;
-const guint gtksheet_minor_version = GTKSHEET_MINOR_VERSION;
-const guint gtksheet_micro_version = GTKSHEET_MICRO_VERSION;
-const guint gtksheet_binary_age = GTKSHEET_BINARY_AGE;
-const guint gtksheet_interface_age = GTKSHEET_INTERFACE_AGE;
+const unsigned int gtksheet_major_version = GTKSHEET_MAJOR_VERSION;
+const unsigned int gtksheet_minor_version = GTKSHEET_MINOR_VERSION;
+const unsigned int gtksheet_micro_version = GTKSHEET_MICRO_VERSION;
+const unsigned int gtksheet_binary_age = GTKSHEET_BINARY_AGE;
+const unsigned int gtksheet_interface_age = GTKSHEET_INTERFACE_AGE;
 
-const gchar * 
-gtksheet_check_version (guint required_major,
-                        guint required_minor,
-                        guint required_micro)
+const char *
+gtksheet_check_version (unsigned int required_major,
+                        unsigned int required_minor,
+                        unsigned int required_micro)
 {
   if (required_major > GTKSHEET_MAJOR_VERSION)
     return "GtkSheet version too old (major mismatch)";
@@ -49,14 +49,14 @@ gtksheet_check_version (guint required_major,
 }
 
 void
-_gtksheet_signal_emit(GtkObject *object, guint signal_id, ...)
+_gtksheet_signal_emit(GtkObject *object, unsigned int signal_id, ...)
 {
   gboolean *result;
   GValue ret = { 0, };
   GValue instance_and_params [10] = { {0, }, };
   va_list var_args;
   GSignalQuery query;
-  gchar *error;
+  char *error;
   int i;
 
   va_start (var_args, signal_id);
@@ -87,15 +87,15 @@ _gtksheet_signal_emit(GtkObject *object, guint signal_id, ...)
           va_end (var_args);
           return;
         }
-  
+
 
     }
 
   g_value_init(&ret, query.return_type);
   result = va_arg(var_args,gboolean *);
-  g_value_set_boolean(&ret, *result);    
+  g_value_set_boolean(&ret, *result);
   g_signal_emitv(instance_and_params, signal_id, 0, &ret);
-  *result = g_value_get_boolean(&ret);    
+  *result = g_value_get_boolean(&ret);
   g_value_unset (&ret);
 
   for (i = 0; i < query.n_params; i++)

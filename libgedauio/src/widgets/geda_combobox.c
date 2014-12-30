@@ -630,14 +630,14 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    * Here's an example signal handler which fetches data from the model and
    * displays it in the entry.
    * |[
-   * static gchar*
+   * static char*
    * format_entry_text_callback (GtkComboBox *combo,
    *                             const char  *path,
    *                             void        *user_data)
    * {
-   *   GtkTreeIter iter;
+   *   GtkTreeIter  iter;
    *   GtkTreeModel model;
-   *   gdouble      value;
+   *   double       value;
    *
    *   model = geda_combo_box_get_model (combo);
    *
@@ -4137,7 +4137,7 @@ geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int y)
 {
   GtkWidget *tree_view = combo_box->priv->tree_view;
   GtkAdjustment *adj;
-  gdouble value;
+  double value;
 
   adj = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (combo_box->priv->scrolled_window));
 

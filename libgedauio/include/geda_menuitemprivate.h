@@ -35,50 +35,54 @@
 
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 struct _GtkMenuItemPrivate
 {
   GtkWidget *submenu;
   GdkWindow *event_window;
 
-  guint16 toggle_size;
-  guint16 accelerator_width;
+  unsigned int16 toggle_size;
+  unsigned int16 accelerator_width;
 
-  guint timer;
+  unsigned int timer;
 
-  gchar  *accel_path;
+  char  *accel_path;
 
   GtkAction *action;
   GtkActionHelper *action_helper;
 
-  guint show_submenu_indicator : 1;
-  guint submenu_placement      : 1;
-  guint submenu_direction      : 1;
-  guint right_justify          : 1;
-  guint timer_from_keypress    : 1;
-  guint from_menubar           : 1;
-  guint use_action_appearance  : 1;
-  guint reserve_indicator      : 1;
+  unsigned int show_submenu_indicator : 1;
+  unsigned int submenu_placement      : 1;
+  unsigned int submenu_direction      : 1;
+  unsigned int right_justify          : 1;
+  unsigned int timer_from_keypress    : 1;
+  unsigned int from_menubar           : 1;
+  unsigned int use_action_appearance  : 1;
+  unsigned int reserve_indicator      : 1;
 };
 
 void     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
-                                              const gchar   *prefix,
+                                              const char    *prefix,
                                               GtkAccelGroup *accel_group,
-                                              gboolean       group_changed);
-gboolean _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
+                                              int            group_changed);
+int      _gtk_menu_item_is_selectable        (GtkWidget     *menu_item);
 void     _gtk_menu_item_popup_submenu        (GtkWidget     *menu_item,
-                                              gboolean       with_delay);
+                                              int            with_delay);
 void     _gtk_menu_item_popdown_submenu      (GtkWidget     *menu_item);
-void	  _gtk_menu_item_refresh_accel_path  (GtkMenuItem   *menu_item,
-					      const gchar   *prefix,
-					      GtkAccelGroup *accel_group,
-					      gboolean	     group_changed);
-gboolean  _gtk_menu_item_is_selectable       (GtkWidget     *menu_item);
+void	     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
+                                              const char    *prefix,
+                                              GtkAccelGroup *accel_group,
+                                              int      	   group_changed);
+int       _gtk_menu_item_is_selectable       (GtkWidget     *menu_item);
 void      _gtk_menu_item_popup_submenu       (GtkWidget     *menu_item,
-					      gboolean       with_delay);
+                                              int            with_delay);
 void      _gtk_menu_item_popdown_submenu     (GtkWidget     *menu_item);
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_MENU_ITEM_PRIVATE_H__ */

@@ -81,7 +81,7 @@ typedef struct {
 #define PyGParamSpec_Check(v) (PyObject_TypeCheck(v, &PyGParamSpec_Type))
 
 typedef int (*PyGClassInitFunc) (void *gclass, PyTypeObject *pyclass);
-typedef PyTypeObject * (*PyGTypeRegistrationFunction) (const gchar *name,
+typedef PyTypeObject * (*PyGTypeRegistrationFunction) (const char *name,
 						       void *data);
 
 struct _PyGObject_Functions {
@@ -89,7 +89,7 @@ struct _PyGObject_Functions {
      * All field names in here are considered private,
      * use the macros below instead, which provides stability
      */
-    void (* register_class)(PyObject *dict, const gchar *class_name,
+    void (* register_class)(PyObject *dict, const char *class_name,
 			    GedaType gtype, PyTypeObject *type, PyObject *bases);
     void (* register_wrapper)(PyObject *self);
     void (* register_sinkfunc)(GedaType type,
@@ -113,27 +113,27 @@ struct _PyGObject_Functions {
     int (* value_from_pyobject)(GValue *value, PyObject *obj);
     PyObject *(* value_as_pyobject)(const GValue *value, gboolean copy_boxed);
 
-    void (* register_interface)(PyObject *dict, const gchar *class_name,
+    void (* register_interface)(PyObject *dict, const char *class_name,
 				GedaType gtype, PyTypeObject *type);
 
     PyTypeObject *boxed_type;
-    void (* register_boxed)(PyObject *dict, const gchar *class_name,
+    void (* register_boxed)(PyObject *dict, const char *class_name,
 			    GedaType boxed_type, PyTypeObject *type);
     PyObject *(* boxed_new)(GedaType boxed_type, void *boxed,
 			    gboolean copy_boxed, gboolean own_ref);
 
     PyTypeObject *pointer_type;
-    void (* register_pointer)(PyObject *dict, const gchar *class_name,
+    void (* register_pointer)(PyObject *dict, const char *class_name,
 			      GedaType pointer_type, PyTypeObject *type);
     PyObject *(* pointer_new)(GedaType boxed_type, void *pointer);
 
     void (* enum_add_constants)(PyObject *module, GedaType enum_type,
-				const gchar *strip_prefix);
+				const char *strip_prefix);
     void (* flags_add_constants)(PyObject *module, GedaType flags_type,
-				 const gchar *strip_prefix);
+				 const char *strip_prefix);
 
-    const gchar *(* constant_strip_prefix)(const gchar *name,
-				     const gchar *strip_prefix);
+    const char *(* constant_strip_prefix)(const char *name,
+				     const char *strip_prefix);
 
     gboolean (* error_check)(GError **error);
 
@@ -193,7 +193,7 @@ struct _PyGObject_Functions {
     void      (*add_warning_redirection) (const char *domain,
                                           PyObject   *warning);
     void      (*disable_warning_redirections) (void);
-    void      (*type_register_custom)(const gchar *type_name,
+    void      (*type_register_custom)(const char *type_name,
 				      PyGTypeRegistrationFunction callback,
 				      void *data);
     gboolean  (*gerror_exception_check) (GError **error);

@@ -379,8 +379,8 @@ eda_is_pango_attr_overbar (PangoAttribute *attr)
 }
 
 bool
-eda_pango_parse_overbars (const gchar *overbar_text, int length,
-                          PangoAttrList **attr_list, gchar **text)
+eda_pango_parse_overbars (const char *overbar_text, int length,
+                          PangoAttrList **attr_list, char **text)
 {
   const char *in_ptr = NULL;
   char *out_ptr;
@@ -402,7 +402,9 @@ eda_pango_parse_overbars (const gchar *overbar_text, int length,
   if (length == -1) {
     length = strlen (overbar_text);
   }
+
   *text = g_malloc0 (length + 1);
+
   out_ptr = *text;
 
   for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++){

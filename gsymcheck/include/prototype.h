@@ -32,7 +32,7 @@ void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_curr
 void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_current);
 void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
 /* s_log.c */
-void s_log_update (const gchar *log_domain, GLogLevelFlags log_level, const gchar *buf);
+void s_log_update (const char *log_domain, GLogLevelFlags log_level, const char *buf);
 /* s_symstruct.c */
 SYMCHECK *s_symstruct_init(void);
 void s_symstruct_print(SYMCHECK *s_current);

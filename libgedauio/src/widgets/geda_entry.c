@@ -1218,9 +1218,7 @@ geda_entry_modify_color_component (GtkWidget      *widget,
         rc_style->base[state] = *color;
         break;
       default:
-        g_critical ("Internal Error: <%s><geda_entry_modify_color_component>"
-                    "unhandled case=%d, line %d.\n",
-                     __FILE__, component, __LINE__);
+        BUG_IMSG ("unhandled case=%d", component);
     }
 
     rc_style->color_flags[state] |= component;

@@ -7,6 +7,7 @@
 #REF: (geda-python.m4).PYTHON_CFLAGS  = -Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC
 #REF: (geda-python.m4).PYTHON_LDFLAGS = -shared -Bsymbolic-functions
 #REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 
 #DEBUGGING               = --debug --verbose
 
@@ -16,7 +17,9 @@ INC_GEDA                 = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                = -I$(srcdir)/../include
 INC_LIBGEDA              = -I$(top_srcdir)/libgeda/include
 
-GEDA_INCLUDES            = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+LOG_DOMAIN               = -DG_LOG_DOMAIN=\"libgedathon\"
+
+GEDA_INCLUDES            = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 PY_INCLUDES              = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 

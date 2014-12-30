@@ -387,7 +387,7 @@ GArray* g_keys_dump_keymap (void)
   SCM scm_ret;
   GArray *ret = NULL;
   struct keyseq_action_t {
-    gchar *keyseq, *action;
+    char *keyseq, *action;
   };
 
   dump_proc = scm_variable_ref (dump_proc);

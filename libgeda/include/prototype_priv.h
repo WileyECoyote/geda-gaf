@@ -266,7 +266,7 @@ int      s_path_to_polygon             (Path *path, GArray *points);
 double   s_path_shortest_distance      (Path *path, int x, int y, int solid);
 
 /* s_textbuffer.c */
-TextBuffer   *s_textbuffer_new         (const gchar *data, const int size);
+TextBuffer   *s_textbuffer_new         (const char *data, const int size);
 TextBuffer   *s_textbuffer_free        (TextBuffer *tb);
 const char   *s_textbuffer_next        (TextBuffer *tb, const gssize count);
 const char   *s_textbuffer_next_line   (TextBuffer *tb);

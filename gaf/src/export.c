@@ -351,7 +351,7 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
    * from the paper size (if a paper size is being used) or just use a
    * sensible default. */
   if (settings.margins[0] >= 0) {
-    memcpy (m, settings.margins, 4*sizeof(gdouble));
+    memcpy (m, settings.margins, 4*sizeof(double));
   } else if (settings.paper != NULL) {
     m[0] = gtk_paper_size_get_default_top_margin (settings.paper, GTK_UNIT_POINTS);
     m[1] = gtk_paper_size_get_default_left_margin (settings.paper, GTK_UNIT_POINTS);

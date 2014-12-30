@@ -226,8 +226,8 @@ gtksheet_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED_DOUBLE_DOUBLE) (gpointer     data1,
                                                                  gpointer     arg_1,
-                                                                 gdouble      arg_2,
-                                                                 gdouble      arg_3,
+                                                                 double      arg_2,
+                                                                 double      arg_3,
                                                                  gpointer     data2);
   register GMarshalFunc_BOOLEAN__BOXED_DOUBLE_DOUBLE callback;
   register GCClosure *cc = (GCClosure*) closure;
@@ -779,10 +779,10 @@ gtksheet_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
                                             gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE) (gpointer     data1,
-                                                                  gdouble      arg_1,
-                                                                  gdouble      arg_2,
-                                                                  gdouble      arg_3,
-                                                                  gdouble      arg_4,
+                                                                  double      arg_1,
+                                                                  double      arg_2,
+                                                                  double      arg_3,
+                                                                  double      arg_4,
                                                                   gpointer     data2);
   register GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE callback;
   register GCClosure *cc = (GCClosure*) closure;

@@ -40,14 +40,14 @@ extern "C" {
      GTKSHEET_MICRO_VERSION >= (micro)))
 
 
-extern const guint gtksheet_major_version;
-extern const guint gtksheet_minor_version;
-extern const guint gtksheet_micro_version;
-extern const guint gtksheet_binary_age;
-extern const guint gtksheet_interface_age;
-const gchar* gtksheet_check_version (guint required_major,
-                               guint required_minor,
-                               guint required_micro);
+extern const unsigned int gtksheet_major_version;
+extern const unsigned int gtksheet_minor_version;
+extern const unsigned int gtksheet_micro_version;
+extern const unsigned int gtksheet_binary_age;
+extern const unsigned int gtksheet_interface_age;
+const  char* gtksheet_check_version (unsigned int required_major,
+                                     unsigned int required_minor,
+                                     unsigned int required_micro);
 
 #ifdef __cplusplus
 }

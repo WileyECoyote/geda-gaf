@@ -74,9 +74,9 @@ struct _EdascmParamSpecSCM
   GParamSpec parent_instance;
 };
 
-GParamSpec *edascm_param_spec_scm (const gchar *name,
-                                   const gchar *nick,
-                                   const gchar *blurb,
+GParamSpec *edascm_param_spec_scm (const char *name,
+                                   const char *nick,
+                                   const char *blurb,
                                    GParamFlags flags) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS

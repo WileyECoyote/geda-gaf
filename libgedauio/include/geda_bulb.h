@@ -69,7 +69,9 @@ struct _GedaBulbClass
   void (*group_changed) (GedaBulb *bulb);
 };
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 unsigned
 int        geda_bulb_get_type                         (void) G_GNUC_CONST;
@@ -110,6 +112,8 @@ void       geda_bulb_set_show_button                  (GtkWidget     *bulb,
 void       geda_bulb_set_group_sensitive              (GSList        *group,
                                                        bool           sensitive);
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_BULB_H__ */

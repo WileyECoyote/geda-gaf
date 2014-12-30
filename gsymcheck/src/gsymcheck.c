@@ -73,7 +73,7 @@ main_prog(void *closure, int argc, char *argv[])
   i = argv_index;
   while (argv[i] != NULL) {
 
-    gchar *filename;
+    char *filename;
     GError *err = NULL;
 
     if (g_path_is_absolute(argv[i]))

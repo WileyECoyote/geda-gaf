@@ -105,11 +105,11 @@ value_copy_scm (const GValue *src, GValue *dest) {
  *
  * Yay, wall of text.
  */
-static gchar *
+static char *
 value_collect_scm (GValue *value,
-                   guint n_collect_values,
+                   unsigned int n_collect_values,
                    GTypeCValue *collect_values,
-                   guint collect_flags)
+                   unsigned int collect_flags)
 {
   SCM val = SCM_PACK (collect_values[0].v_long);
 
@@ -136,11 +136,11 @@ value_collect_scm (GValue *value,
  *   function may prematurely abort by returning a newly allocated
  *   string describing an error condition."
  */
-static gchar *
+static char *
 value_lcopy_scm (const GValue *value,
-                 guint n_collect_values,
+                 unsigned int n_collect_values,
                  GTypeCValue *collect_values,
-                 guint collect_flags)
+                 unsigned int collect_flags)
 {
   SCM val = SCM_PACK (value->data[0].v_long);
   glong *long_p = collect_values[0].v_pointer;
@@ -261,7 +261,7 @@ edascm_value_get_scm (const GValue *value)
 /* ---------------------------------------------------------------- */
 /* Internal functions used by GParamSpec. */
 
-static gint
+static int
 param_scm_values_cmp (GParamSpec *pspec,
                       const GValue *value1,
                       const GValue *value2)
@@ -313,9 +313,9 @@ edascm_param_spec_scm_get_type (void)
  * \return a newly created parameter specification.
  * \since 1.10.
  */
-GParamSpec *edascm_param_spec_scm (const gchar *name,
-                                   const gchar *nick,
-                                   const gchar *blurb,
+GParamSpec *edascm_param_spec_scm (const char *name,
+                                   const char *nick,
+                                   const char *blurb,
                                    GParamFlags flags)
 {
   EdascmParamSpecSCM *sspec;

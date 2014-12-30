@@ -85,7 +85,7 @@ static bool show_uri__win32 (const char *uri, GError **error)
                    (LPTSTR) &buf,
                    0,
                    NULL);
-    msg = u_string_strdup ((gchar *) buf);
+    msg = u_string_strdup ((char *) buf);
     LocalFree (buf);
   }
   /* \bug We should specify a domain and error code. */
