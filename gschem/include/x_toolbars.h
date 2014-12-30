@@ -73,6 +73,7 @@ typedef struct {
   GtkWidget *toolbar_line;
   GtkWidget *toolbar_net;
   GtkWidget *toolbar_path;
+  GtkWidget *toolbar_pic;
   GtkWidget *toolbar_pin;
   GtkWidget *toolbar_select;
   GtkWidget *toolbar_deselect;

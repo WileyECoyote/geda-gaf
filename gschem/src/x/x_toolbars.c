@@ -166,7 +166,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ADD_ARC),            "Arc",        TBTS_ADD_ARC,            "geda-arc"},
   { ACTION(ADD_PATH),           "Path",       TBTS_ADD_PATH,           "geda-path"},
   { ACTION(ADD_PIN),            "Pin",        TBTS_ADD_PIN,            "geda-pin"},
-  { ACTION(ADD_PICTURE),        "Picture",    TBTS_ADD_PICTURE,        "Private"},
+  { ACTION(ADD_PICTURE),        "Picture",    TBTS_ADD_PICTURE,        "geda-film-roll"},
 
   /* Page Toolbar */
   { ACTION(PAGE_PREV),          "Prev",       TBTS_PAGE_PREV,          "Private"},
@@ -1110,14 +1110,15 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   /* not part of any radio button group */
   TOOLBAR_GEDA_BUTTON( Add, etb_add_attribute, LOCAL_PIX, GAF_MAP(ADD_ATTRIBUTE), x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Add, etb_insert_pic,    LOCAL_PIX, GEDA_FILM_ROLL_BITMAP,  x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON( Add, etb_insert_pic,    LOCAL_PIX, GEDA_FILM_ROLL_BITMAP,  x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Add, etb_add_text,      LOCAL_PIX, GSCHEM_TEXT_BITMAP,     x_toolbars_execute,  w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 
   /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
   /*                    bar, var,              grp,              name,            data */
-  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(line),   NULL,             etb_add_line,    w_current);
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(pic),    NULL,             etb_insert_pic,  w_current);
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(line),   BarRadio(pic),    etb_add_line,    w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(path),   BarRadio(line),   etb_add_path,    w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(arc),    BarRadio(path),   etb_add_arc,     w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(box),    BarRadio(arc),    etb_add_box,     w_current);
@@ -1137,6 +1138,7 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   /* Append all Toolbar "Mode" radio widgets to a GSlist, add a record in the struct
    * ToolBarWidgets, see function x_toolbars_update */
+  TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(pic));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(line));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(path));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(arc));
@@ -1635,7 +1637,7 @@ void x_toolbars_set_grid_radio ( GschemToplevel *w_current) {
 
 #define HideFromDoxygen x_toolbars_execute_radio
 
-/*! \brief Update the Toolbars based on the current state
+/*! \brief Update Toolbar Radio Buttons based on the current state
  *  This function sets the state of the "mode" radio buttons on the Add
  *  tool-bar. This is done to synchronize the tool-bars with the rest of
  *  the interface since the "mode" can be set by other means. For example
@@ -1644,7 +1646,10 @@ void x_toolbars_set_grid_radio ( GschemToplevel *w_current) {
  *  menu option is selected then the invisible "none" mode button should
  *  be "activated". And so forth.
  *
- *  \note This does not set the sensitivities of regular buttons, that is
+ *  \note
+ *    1.  Pointer to the Radio widgets are members of ToolBarWidgets
+ *
+ *    2.  This does not set the sensitivities of regular buttons, that is
  *        done by x_toolbars_set_sensitivities.
  *
  *  \param [in] w_current GschemToplevel structure
@@ -1687,6 +1692,7 @@ void x_toolbars_update(GschemToplevel *w_current)
       target = (GtkToggleButton*) bar_widgets->toolbar_path;
       break;
     case(DRAWPICTURE): /* \Launches Dialog */
+      target = (GtkToggleButton*) bar_widgets->toolbar_pic;
       break;
     case(DRAWPIN):
       target = (GtkToggleButton*) bar_widgets->toolbar_pin;
