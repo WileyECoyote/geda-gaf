@@ -319,11 +319,11 @@ void i_command_process(GschemToplevel *w_current, const char* command,
       }
 
       /* Check and set pointer coordinates if task bit 3 is set */
-      if ( command_struc[i].aflag & XY_ActionMask ) {
+      if ( command_struc[i].aflag & XY_ActionMask) {
 
         int wx, wy, check_magnet = FALSE;
 
-        if ( who != ID_ORIGIN_MOUSE ) {
+        if ( who != ID_ORIGIN_MOUSE) {
 
           /*  If not mouse, then likely is keyboard, this is intended to
            *  handle all except the mouse */
@@ -369,7 +369,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
           printRusage("", &usage);
         }
         else
-          fprintf(stderr, "getrusage returned error: %s\n", strerror( errno ));
+          fprintf(stderr, "getrusage returned error: %s\n", strerror(errno));
       }
 #endif
 
@@ -412,7 +412,7 @@ static inline void BlockThread (int index)
 static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
-  if (command_struc[index].sarg != NULL ) {
+  if (command_struc[index].sarg != NULL) {
     arg  = u_string_strdup((char *)command_struc[index].sarg);
     GEDA_FREE(command_struc[index].sarg);
     arg  = u_string_strstr_rep(arg, "  ", " ");
@@ -485,7 +485,7 @@ COMMAND (do_debug)
 
   old_page_state = Current_Page->CHANGED;
 
-  switch ( test ) {
+  switch (test) {
 
     case CLOSE_PERFORMANCE:
       msg = normal;
@@ -522,7 +522,7 @@ COMMAND (do_debug)
         printf ("file=%s, has %d objects before testing\n", Current_Page->filename, count);
         printf ("undo system type: %s, ", (w_current->undo_type == UNDO_DISK) ? "DISK" : "MEMORY");
         printf ("undo capacity (levels): %d, undo pan-zoom setting: %d\n", w_current->undo_levels,
-                                                                           w_current->undo_panzoom );
+                                                                           w_current->undo_panzoom);
         printf ("Running Undo tests, 10 cycles x %d Undo per cycle\n", NUMBER_UNDO_TEST);
         for (cycle = 0; cycle < 10; cycle++) {
           test_undo_randomly_delete (w_current, NUMBER_UNDO_TEST);
@@ -731,7 +731,7 @@ open_command_idle_notify (void *data)
  *  As a bonus, our multi-document load performance increased
  *  dramatically, compared to the old sequential loading.
  */
-COMMAND ( do_open ) {
+COMMAND (do_open) {
   BEGIN_W_COMMAND(do_open);
 
   GSList       *files;
@@ -776,7 +776,7 @@ COMMAND ( do_open ) {
  *        Some twisted people might name their files like
  *        untitled_name. :-)
  */
-COMMAND ( do_save ) {
+COMMAND (do_save) {
   BEGIN_NO_ARGUMENT(do_save);
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -805,7 +805,7 @@ COMMAND ( do_save ) {
  *  The function calls i_command to process the action.
  */
 /** @brief i_cmd_do_save_as in i_command_File_Actions */
-COMMAND ( do_save_as ) {
+COMMAND (do_save_as) {
   BEGIN_W_COMMAND(do_save_as);
   x_fileselect_save (w_current);
   i_status_update_title (w_current);
@@ -813,7 +813,7 @@ COMMAND ( do_save_as ) {
 }
 
 /** @brief i_cmd_do_save_all in i_command_File_Actions */
-COMMAND ( do_save_all ) {
+COMMAND (do_save_all) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   BEGIN_NO_ARGUMENT(do_save_all);
@@ -829,7 +829,7 @@ COMMAND ( do_save_all ) {
 }
 
 /** @brief i_cmd_do_print in i_command_File_Actions */
-COMMAND ( do_print ) {
+COMMAND (do_print) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   NOT_NULL(w_current->toplevel->page_current);
@@ -865,7 +865,7 @@ COMMAND ( do_print ) {
 }
 
 /** @brief i_cmd_do_write_image in i_command_File_Actions */
-COMMAND ( do_write_image ) {
+COMMAND (do_write_image) {
   BEGIN_W_COMMAND(do_write_image);
     w_current->inside_action = 0;
     o_redraw_cleanstates (w_current);
@@ -881,7 +881,7 @@ COMMAND ( do_write_image ) {
  *  \par Function Description
  *  This is handles the write-pdf action
  */
-COMMAND ( do_write_pdf ) {
+COMMAND (do_write_pdf) {
   BEGIN_W_COMMAND(do_write_pdf);
     w_current->inside_action = 0;
     o_redraw_cleanstates (w_current);
@@ -893,11 +893,11 @@ COMMAND ( do_write_pdf ) {
 }
 
 /** @brief i_cmd_do_run_script in i_command_File_Actions */
-COMMAND ( do_run_script ) {
+COMMAND (do_run_script) {
   BEGIN_W_COMMAND(do_run_script);
   char* filename = NULL;
   gschem_threads_enter();
-  filename = x_dialog_select_file("Execute Script...", filename, FSB_LOAD );
+  filename = x_dialog_select_file("Execute Script...", filename, FSB_LOAD);
   if(filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
@@ -908,12 +908,12 @@ COMMAND ( do_run_script ) {
 
 
 /** @brief i_cmd_do_close in i_command_File_Actions */
-COMMAND ( do_close ) {
+COMMAND (do_close) {
   BEGIN_W_COMMAND(do_close);
   bool can_close;
   can_close = TRUE;
 
-  if (Current_Page->CHANGED ) {
+  if (Current_Page->CHANGED) {
     can_close = x_dialog_close_changed_page (w_current, Current_Page);
   }
 
@@ -926,7 +926,7 @@ COMMAND ( do_close ) {
 }
 
 /** @brief i_cmd_do_close_all in i_command_File_Actions */
-COMMAND ( do_close_all ) {
+COMMAND (do_close_all) {
   BEGIN_W_COMMAND(do_close_all);
   GList *iter;
   GList *pages;
@@ -991,7 +991,7 @@ COMMAND ( do_close_all ) {
 }
 
 /** @brief i_cmd_do_quit in i_command_File_Actions */
-COMMAND ( do_quit ) {
+COMMAND (do_quit) {
   BEGIN_NO_ARGUMENT(do_file_new_window);
   v_log_message(_("gschem: starting shut-down\n"));
   x_window_close_all(w_current);
@@ -1001,7 +1001,7 @@ COMMAND ( do_quit ) {
 
 /* ------------------ Edit ---------------- */
 
-COMMAND ( do_edit )
+COMMAND (do_edit)
 {
   BEGIN_COMMAND(do_edit);
   //u_log_message("do edit command handler");
@@ -1014,7 +1014,7 @@ COMMAND ( do_edit )
 /** \defgroup i_command_Edit_Actions Actions under the Edit Menu
  * @{*/
 
-COMMAND ( do_undo )
+COMMAND (do_undo)
 {
   BEGIN_W_COMMAND(do_undo);
   /* If we're cancelling from a move action, re-wind the
@@ -1037,7 +1037,7 @@ COMMAND ( do_undo )
   }
   EXIT_COMMAND(do_undo);
 }
-COMMAND ( do_redo )
+COMMAND (do_redo)
 {
   NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_redo);
@@ -1045,13 +1045,13 @@ COMMAND ( do_redo )
   EXIT_COMMAND(do_redo);
 }
 
-COMMAND ( do_cut_clip )
+COMMAND (do_cut_clip)
 {
   BEGIN_W_COMMAND(do_cut_clip);
 
   if (o_select_is_selection (w_current)){
 
-    if ((narg < 0 ) || (arg == NULL )) {
+    if ((narg < 0) || (arg == NULL)) {
       /* if no arguments then use buffer 0 */
       narg = 0;
     }
@@ -1065,13 +1065,13 @@ COMMAND ( do_cut_clip )
   EXIT_COMMAND(do_cut_clip);
 }
 
-COMMAND ( do_copy_clip )
+COMMAND (do_copy_clip)
 {
   BEGIN_W_COMMAND(do_copy_clip);
 
   if (o_select_is_selection (w_current)) {
 
-    if (narg < 0 || arg == NULL ) {
+    if (narg < 0 || arg == NULL) {
       /* if no arguments then use buffer 0 */
       narg = 0;
     }
@@ -1092,14 +1092,14 @@ COMMAND ( do_copy_clip )
  *  This function initiates the pasting of the contents of a clip-
  *  board into the drawing.
  */
-COMMAND ( do_paste_clip )
+COMMAND (do_paste_clip)
 {
   BEGIN_W_COMMAND(do_paste_clip);
 
   GList *object_list = NULL;
   int state;
 
-  if ((narg < 0 ) || (arg == NULL )) {
+  if ((narg < 0) || (arg == NULL)) {
     /* if no arguments then use buffer 0 */
     narg = 0;
     object_list = x_clipboard_get (w_current);
@@ -1129,7 +1129,7 @@ COMMAND ( do_paste_clip )
   EXIT_COMMAND(do_paste_clip);
 }
 
-COMMAND ( do_delete )
+COMMAND (do_delete)
 {
   BEGIN_W_COMMAND(do_delete);
 
@@ -1151,7 +1151,7 @@ COMMAND ( do_delete )
  *  \par Function Description
  *   Initiate Copy mode for selected objects
  */
-COMMAND ( do_copy )
+COMMAND (do_copy)
 {
   BEGIN_W_COMMAND(do_copy);
   int state;
@@ -1159,8 +1159,8 @@ COMMAND ( do_copy )
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_copy) {
-      i_status_set_state(w_current, COPY);;
-      o_copy_start(w_current,  CMD_X(do_copy),  CMD_Y(do_copy));
+      i_status_set_state (w_current, COPY);;
+      o_copy_start (w_current,  CMD_X(do_copy),  CMD_Y(do_copy));
       state = ENDCOPY;
       w_current->inside_action = 1;
     }
@@ -1182,7 +1182,7 @@ COMMAND ( do_copy )
  *  \par Function Description
  *   Initiates Multi-Copy mode for selected objects
  */
-COMMAND ( do_mcopy )
+COMMAND (do_mcopy)
 {
   BEGIN_W_COMMAND(do_mcopy);
   int state;
@@ -1191,7 +1191,7 @@ COMMAND ( do_mcopy )
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_mcopy) {
       i_status_set_state(w_current, MCOPY);
-      o_copy_start(w_current,  CMD_X(do_mcopy),  CMD_Y(do_mcopy));
+      o_copy_start (w_current, CMD_X(do_mcopy), CMD_Y(do_mcopy));
       state = ENDMCOPY;
       w_current->inside_action = 1;
     }
@@ -1212,7 +1212,7 @@ COMMAND ( do_mcopy )
  *  \par Function Description
  *   Initiate Move mode for selected objects
  */
-COMMAND ( do_move )
+COMMAND (do_move)
 {
   BEGIN_W_COMMAND(do_move);
   int state;
@@ -1221,7 +1221,7 @@ COMMAND ( do_move )
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_move) {
       i_status_set_state(w_current, MCOPY);
-      o_move_start(w_current,  CMD_X(do_move),  CMD_Y(do_move));
+      o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move));
       state = ENDMOVE;
       w_current->inside_action = 1;
     }
@@ -1246,17 +1246,17 @@ COMMAND ( do_move )
  *  This function rotate all objects in the selection list by 90 degrees.
  *
  */
-COMMAND ( do_rotate )
+COMMAND (do_rotate)
 {
   BEGIN_W_COMMAND(do_rotate);
 
   /* If inside an appropriate action, send a button 2 released,
    * so rotating will be handled by x_event.c */
   if (w_current->inside_action &&
-     (w_current->event_state == ENDCOMP ||
-      w_current->event_state == ENDTEXT ||
-      w_current->event_state == ENDMOVE ||
-      w_current->event_state == ENDCOPY ||
+     (w_current->event_state == ENDCOMP  ||
+      w_current->event_state == ENDTEXT  ||
+      w_current->event_state == ENDMOVE  ||
+      w_current->event_state == ENDCOPY  ||
       w_current->event_state == ENDMCOPY ||
       w_current->event_state == ENDPASTE ))
   {
@@ -1279,7 +1279,7 @@ COMMAND ( do_rotate )
 
       GList *object_list;
 
-      object_list = geda_list_get_glist( Current_Selection );
+      object_list = geda_list_get_glist (Current_Selection);
 
       if (object_list) {
         /* Allow o_edit_rotate_world to redraw the objects */
@@ -1308,7 +1308,7 @@ COMMAND ( do_rotate )
  *  Initiate Mirror mode for selected object.
  *
  */
-COMMAND ( do_mirror )
+COMMAND (do_mirror)
 {
   BEGIN_W_COMMAND(do_mirror);
   int state;
@@ -1318,8 +1318,8 @@ COMMAND ( do_mirror )
 
     GList *object_list;
 
-    object_list = geda_list_get_glist( w_current->toplevel->
-                                       page_current->selection_list );
+    object_list = geda_list_get_glist (w_current->toplevel->
+                                       page_current->selection_list);
 
     if (object_list) {
       o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
@@ -1345,17 +1345,17 @@ COMMAND ( do_mirror )
  *   selected object
  *
  */
-COMMAND ( do_edit_butes )
+COMMAND (do_edit_butes)
 {
   BEGIN_W_COMMAND(do_edit_butes);
 
-  o_edit_objects (w_current, geda_list_get_glist( Current_Selection ),
+  o_edit_objects (w_current, geda_list_get_glist (Current_Selection),
                   CMD_WHO(do_edit_butes));
 
   EXIT_COMMAND(do_edit_butes);
 }
 
-COMMAND ( do_edit_ponent )
+COMMAND (do_edit_ponent)
 {
   BEGIN_W_COMMAND(do_edit_butes);
   Object *o_current;
@@ -1370,7 +1370,7 @@ COMMAND ( do_edit_ponent )
 }
 
 /*! \brief Edit Text in i_command_Edit_Actions */
-COMMAND ( do_edit_text )
+COMMAND (do_edit_text)
 {
   BEGIN_W_COMMAND(do_edit_text);
   Object *o_current;
@@ -1383,7 +1383,7 @@ COMMAND ( do_edit_text )
 }
 
 /*! \brief Edit Slot in i_command_Edit_Actions */
-COMMAND ( do_edit_slot )
+COMMAND (do_edit_slot)
 {
   BEGIN_W_COMMAND(do_edit_slot);
   Object *o_current;
@@ -1397,7 +1397,7 @@ COMMAND ( do_edit_slot )
 }
 
 /*! \brief Edit Color in i_command_Edit_Actions */
-COMMAND ( do_edit_color )
+COMMAND (do_edit_color)
 {
   BEGIN_W_COMMAND(do_edit_color);
   x_dialog_edit_color (w_current);
@@ -1405,19 +1405,19 @@ COMMAND ( do_edit_color )
 }
 
 /*! \brief Edit Arc in i_command_Edit_Actions */
-COMMAND ( do_edit_arc )
+COMMAND (do_edit_arc)
 {
   BEGIN_W_COMMAND(do_edit_arc);
   Object *o_current;
   o_current = o_select_return_first_object(w_current);
-  if ( o_current && o_current->type == OBJ_ARC ) {
+  if ( o_current && o_current->type == OBJ_ARC) {
     x_dialog_edit_arc_angle(w_current, o_current);
   }
   EXIT_COMMAND(do_edit_arc);
 }
 
 /*! \brief Edit Pin-Type in i_command_Edit_Actions */
-COMMAND ( do_pintype )
+COMMAND (do_pintype)
 {
   BEGIN_W_COMMAND(do_pintype);
   x_dialog_edit_pin_type (w_current);
@@ -1425,7 +1425,7 @@ COMMAND ( do_pintype )
 }
 
 /*! \brief Edit Line-Type in i_command_Edit_Actions */
-COMMAND ( do_linetype )
+COMMAND (do_linetype)
 {
   BEGIN_W_COMMAND(do_linetype);
   x_dialog_edit_line_type(w_current);
@@ -1433,7 +1433,7 @@ COMMAND ( do_linetype )
 }
 
 /*! \brief Edit Fill-Type in i_command_Edit_Actions */
-COMMAND ( do_filltype )
+COMMAND (do_filltype)
 {
   BEGIN_W_COMMAND(do_filltype);
   x_dialog_edit_fill_type(w_current);
@@ -1445,7 +1445,7 @@ COMMAND ( do_filltype )
  *  This function calls o_edit_lock to locks all objects in selection list.
  *
  */
-COMMAND ( do_lock )
+COMMAND (do_lock)
 {
   BEGIN_W_COMMAND(do_lock);
 
@@ -1463,7 +1463,7 @@ COMMAND ( do_lock )
  *  This function calls o_edit_unlock to unlocks all objects in selection.
  *
  */
-COMMAND ( do_unlock )
+COMMAND (do_unlock)
 {
   BEGIN_W_COMMAND(do_unlock);
   if (o_select_return_first_object(w_current)) {
@@ -1478,7 +1478,7 @@ COMMAND ( do_unlock )
 
 /** \defgroup i_command_Select_Actions Actions under the Select Menu
  * @{*/
-COMMAND ( do_select )
+COMMAND (do_select)
 {
   BEGIN_W_COMMAND(do_select);
   if (!o_invalidate_rubber (w_current)) {
@@ -1492,7 +1492,7 @@ COMMAND ( do_select )
   EXIT_COMMAND(do_select);
 }
 
-COMMAND ( do_select_all )
+COMMAND (do_select_all)
 {
   BEGIN_W_COMMAND(do_select_all);
   o_redraw_cleanstates (w_current);
@@ -1509,13 +1509,13 @@ COMMAND ( do_select_all )
  * Sets all objects on page as deselected if the objected is selected and
  * selected if the object was not select.
  */
-COMMAND ( do_select_invert )
+COMMAND (do_select_invert)
 {
   BEGIN_W_COMMAND(do_select_invert);
   GedaToplevel *toplevel = w_current->toplevel;
   SELECTION *selection = toplevel->page_current->selection_list;
 
-  GList *list = g_list_copy(geda_list_get_glist( selection ));
+  GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
   while(list != NULL) {
     o_selection_remove (selection, (Object*) list->data);
@@ -1533,7 +1533,7 @@ COMMAND ( do_select_invert )
  *  \par Function Description
  * Sets all objects on page as deselected.
  */
-COMMAND ( do_deselect )
+COMMAND (do_deselect)
 {
   BEGIN_W_COMMAND(do_deselect);
 
@@ -1555,7 +1555,7 @@ COMMAND ( do_deselect )
  *  \par Function Description
  * Sets all objects on page as deselected.
  */
-COMMAND ( do_deselect_all )
+COMMAND (do_deselect_all)
 {
   BEGIN_W_COMMAND(do_deselect_all);
   o_redraw_cleanstates (w_current);
@@ -1571,7 +1571,7 @@ COMMAND ( do_deselect_all )
 
 /* ------------------ View ---------------- */
 
-COMMAND ( do_view )
+COMMAND (do_view)
 {
   BEGIN_COMMAND(do_view);
   u_log_message("do_view command handler");
@@ -1581,14 +1581,14 @@ COMMAND ( do_view )
 /** \defgroup i_command_View_Actions Actions under the View Menu
  * @{*/
 
-COMMAND ( do_redraw )
+COMMAND (do_redraw)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_redraw);
   o_invalidate_all (w_current);
 }
 
-COMMAND ( do_pan )
+COMMAND (do_pan)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_pan);
@@ -1601,7 +1601,7 @@ COMMAND ( do_pan )
  *  \par Function Description
  *  This is a callback function for the Zoom Box action.
  */
-COMMAND ( do_zoom_box )
+COMMAND (do_zoom_box)
 {
   BEGIN_W_COMMAND(do_zoom_box);
   int state;
@@ -1610,7 +1610,7 @@ COMMAND ( do_zoom_box )
   o_redraw_cleanstates(w_current);
 
   if HOT_ACTION (do_zoom_box) {
-    i_zoom_world_box_start( w_current, CMD_X(do_zoom_box), CMD_Y(do_zoom_box) );
+    i_zoom_world_box_start (w_current, CMD_X(do_zoom_box), CMD_Y(do_zoom_box));
     w_current->inside_action = 1;
     state = ZOOMBOXEND;
   }
@@ -1626,7 +1626,7 @@ COMMAND ( do_zoom_box )
  *  \par Function Description
  *  This is a callback function for the Zoom Extents action.
  */
-COMMAND ( do_zoom_selected )
+COMMAND (do_zoom_selected)
 {
   BEGIN_W_COMMAND(do_zoom_selected);
   /* scroll bar stuff */
@@ -1643,7 +1643,7 @@ COMMAND ( do_zoom_selected )
  *  \par Function Description
  *  This is a callback function for the view-zoom-extents action.
  */
-COMMAND ( do_zoom_extents )
+COMMAND (do_zoom_extents)
 {
   BEGIN_W_COMMAND(do_zoom_extents);
   /* scroll bar stuff */
@@ -1657,7 +1657,7 @@ COMMAND ( do_zoom_extents )
  *  \par Function Description
  *  This is a callback function for the view-zoom-in action.
  */
-COMMAND ( do_zoom_in )
+COMMAND (do_zoom_in)
 {
   BEGIN_W_COMMAND(do_zoom_in);
 
@@ -1673,7 +1673,7 @@ COMMAND ( do_zoom_in )
  *  \par Function Description
  *  This is a callback function for the view-zoom-out action.
  */
-COMMAND ( do_zoom_out )
+COMMAND (do_zoom_out)
 {
   BEGIN_W_COMMAND(do_zoom_out);
 
@@ -1689,7 +1689,7 @@ COMMAND ( do_zoom_out )
  *  \par Function Description
  *  This is a callback function for the view-zoom-all action.
  */
-COMMAND ( do_zoom_all)
+COMMAND (do_zoom_all)
 {
   BEGIN_W_COMMAND(do_zoom_all);
 
@@ -1707,7 +1707,7 @@ COMMAND ( do_zoom_all)
  *  \note Magnification in this context is the reciprocal of the scale
  *        factor, i.e. to_screen_y_constant and to_screen_x_constant.
  */
-COMMAND ( do_zoom_to_mag)
+COMMAND (do_zoom_to_mag)
 {
   BEGIN_W_COMMAND(do_zoom_to_mag);
 
@@ -1731,7 +1731,7 @@ COMMAND ( do_zoom_to_mag)
  *  \par Function Description
  *  This is a callback function for the view-documentation action.
  */
-COMMAND ( do_documentation)
+COMMAND (do_documentation)
 {
   BEGIN_W_COMMAND(do_documentation);
 
@@ -1766,7 +1766,7 @@ COMMAND ( do_documentation)
 
   EXIT_COMMAND(do_documentation);
 }
-COMMAND ( do_show_hidden )
+COMMAND (do_show_hidden)
 {
   BEGIN_W_COMMAND(do_show_hidden);
   GList *object_list = NULL;
@@ -1786,7 +1786,7 @@ COMMAND ( do_show_hidden )
   EXIT_COMMAND(do_show_hidden);
 }
 
-COMMAND ( do_show_inherited )
+COMMAND (do_show_inherited)
 {
   BEGIN_W_COMMAND(do_show_inherited);
   GList *object_list = NULL;
@@ -1808,7 +1808,7 @@ COMMAND ( do_show_inherited )
   EXIT_COMMAND(do_show_inherited);
 }
 
-COMMAND ( do_show_nets )
+COMMAND (do_show_nets)
 {
   BEGIN_COMMAND(do_show_nets);
   GList *object_list = NULL;
@@ -1832,7 +1832,7 @@ COMMAND ( do_show_nets )
  *       This function loads the Dark color map scheme
  *       based on user input from the keyboard or menu.
  */
-COMMAND ( do_dark_colors )
+COMMAND (do_dark_colors)
 {
   BEGIN_W_COMMAND(do_dark_colors);
   /* Change the scheme here */
@@ -1845,7 +1845,7 @@ COMMAND ( do_dark_colors )
  *       This function loads the Light color map scheme
  *       based on user input from the keyboard or menu.
  */
-COMMAND ( do_light_colors )
+COMMAND (do_light_colors)
 {
   BEGIN_W_COMMAND(do_light_colors);
   /* Change the scheme here */
@@ -1858,7 +1858,7 @@ COMMAND ( do_light_colors )
  *       This function loads the BW color map scheme
  *       based on user input from the keyboard or menu.
  */
-COMMAND ( do_bw_colors )
+COMMAND (do_bw_colors)
 {
   BEGIN_W_COMMAND(do_bw_colors);
   /* Change the scheme here */
@@ -1871,7 +1871,7 @@ COMMAND ( do_bw_colors )
 
 /* ------------------ Page ---------------- */
 
-COMMAND ( do_page )
+COMMAND (do_page)
 {
   BEGIN_COMMAND(do_page);
   u_log_message("do_page command handler");
@@ -1882,7 +1882,7 @@ COMMAND ( do_page )
  * @{*/
 
 /** @brief i_cmd_do_page_manager in i_command_Command_Functions */
-COMMAND ( do_page_manager )
+COMMAND (do_page_manager)
 {
   BEGIN_W_COMMAND(do_page_manager);
   x_pagesel_open (w_current);
@@ -1890,7 +1890,7 @@ COMMAND ( do_page_manager )
 }
 
 /** @brief i_cmd_do_page_prev in i_command_Command_Functions */
-COMMAND ( do_page_prev )
+COMMAND (do_page_prev)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -1903,10 +1903,10 @@ COMMAND ( do_page_prev )
   Page *p_new;
   GList *iter;
 
-  iter = g_list_find( geda_list_get_glist( toplevel->pages ), Current_Page);
-  iter = g_list_previous( iter );
+  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+  iter = g_list_previous( iter);
 
-  if ( iter != NULL  ) {
+  if ( iter != NULL) {
 
     p_new = (Page *)iter->data;
 
@@ -1924,7 +1924,7 @@ COMMAND ( do_page_prev )
 }
 
 /** @brief i_cmd_do_page_next in i_command_Command_Functions */
-COMMAND ( do_page_next )
+COMMAND (do_page_next)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -1937,7 +1937,7 @@ COMMAND ( do_page_next )
   Page *p_new;
   GList *iter;
 
-  iter = g_list_find( geda_list_get_glist( toplevel->pages ), Current_Page);
+  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
   NEXT(iter);
 
   if (iter != NULL) {
@@ -1957,7 +1957,7 @@ COMMAND ( do_page_next )
 
 /** @brief i_cmd_do_page_new in i_command_Command_Functions */
 /* This is simular to file new accept we add new page hook*/
-COMMAND ( do_page_new )
+COMMAND (do_page_new)
 {
   BEGIN_W_COMMAND(do_page_new);
 
@@ -2013,7 +2013,7 @@ COMMAND ( do_page_new )
 }
 
 /** @brief i_cmd_do_page_print in i_command_Command_Functions */
-COMMAND ( do_page_print ) {
+COMMAND (do_page_print) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   BEGIN_COMMAND(do_page_print);
@@ -2022,7 +2022,7 @@ COMMAND ( do_page_print ) {
 }
 
 /** @brief i_cmd_do_revert in i_command_Command_Functions */
-COMMAND ( do_page_revert ) {
+COMMAND (do_page_revert) {
 
   BEGIN_W_COMMAND(do_page_revert);
 
@@ -2034,7 +2034,7 @@ COMMAND ( do_page_revert ) {
 
   answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
 
-  if (answer == GTK_RESPONSE_YES ) {
+  if (answer == GTK_RESPONSE_YES) {
 
     /* save this for later */
     filename = u_string_strdup (Current_Page->filename);
@@ -2058,7 +2058,7 @@ COMMAND ( do_page_revert ) {
 }
 
 /** @brief i_cmd_do_page_close in i_command_Command_Functions */
-COMMAND ( do_page_close )
+COMMAND (do_page_close)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2070,7 +2070,7 @@ COMMAND ( do_page_close )
 
   can_close = TRUE;
 
-  if (Current_Page->CHANGED ) {
+  if (Current_Page->CHANGED) {
     can_close = x_dialog_close_changed_page (w_current, Current_Page);
   }
 
@@ -2082,7 +2082,7 @@ COMMAND ( do_page_close )
 }
 
 /** @brief i_cmd_do_page_discard in i_command_Command_Functions */
-COMMAND ( do_page_discard )
+COMMAND (do_page_discard)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2101,7 +2101,7 @@ COMMAND ( do_page_discard )
  * TODO: Need hierarchy command
  */
 
-COMMAND ( do_down_schematic )
+COMMAND (do_down_schematic)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2227,7 +2227,7 @@ COMMAND ( do_down_schematic )
 
     /* okay we were looking outside and didn't find anything,
      * so now we need to look inside the symbol */
-    if (!looking_inside && attrib == NULL && !loaded_flag ) {
+    if (!looking_inside && attrib == NULL && !loaded_flag) {
       looking_inside = TRUE;
 #if DEBUG
       printf("switching to go to look inside\n");
@@ -2248,7 +2248,7 @@ COMMAND ( do_down_schematic )
 }
 
 /*! \bug may cause problems with non-directory symbols */
-COMMAND ( do_down_symbol )
+COMMAND (do_down_symbol)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2302,7 +2302,7 @@ COMMAND ( do_down_symbol )
   }
 }
 
-COMMAND ( do_hierarchy_up )
+COMMAND (do_hierarchy_up)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2339,7 +2339,7 @@ COMMAND ( do_hierarchy_up )
 
 /* ------------------ Add ---------------- */
 
-COMMAND ( do_add )
+COMMAND (do_add)
 {
   BEGIN_COMMAND(do_add_component);
   u_log_message("do_add command handler");
@@ -2354,7 +2354,7 @@ COMMAND ( do_add )
  *  \par Function Description
  *  This is a callback function for the #ADD_COMPONENT action.
  */
-COMMAND ( do_add_component )
+COMMAND (do_add_component)
 {
   BEGIN_W_COMMAND(do_add_component);
 
@@ -2369,7 +2369,7 @@ COMMAND ( do_add_component )
  *  \par Function Description
  *  This is a callback function for the #ADD_NET action.
  */
-COMMAND ( do_add_net )
+COMMAND (do_add_net)
 {
   BEGIN_W_COMMAND(do_add_net);
 
@@ -2382,7 +2382,7 @@ COMMAND ( do_add_net )
   if HOT_ACTION (do_add_net) {
     /* need to click */
     i_status_set_state(w_current, STARTDRAWNET);
-    o_net_start( w_current, CMD_X(do_add_net), CMD_Y(do_add_net) );
+    o_net_start (w_current, CMD_X(do_add_net), CMD_Y(do_add_net));
     w_current->inside_action = 1;
     state = DRAWNET;
   }
@@ -2400,7 +2400,7 @@ COMMAND ( do_add_net )
  *  \par Function Description
  *  This is a callback function for the #ADD_BUS action.
  */
-COMMAND ( do_add_bus )
+COMMAND (do_add_bus)
 {
   BEGIN_W_COMMAND(do_add_bus);
 
@@ -2413,7 +2413,7 @@ COMMAND ( do_add_bus )
 
     /* need to click */
     i_status_set_state(w_current, STARTDRAWBUS);
-    o_bus_start( w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus) );
+    o_bus_start (w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus));
     w_current->inside_action = 1;
     state = DRAWBUS;
   }
@@ -2434,7 +2434,7 @@ COMMAND ( do_add_bus )
  *  Attribute Editor with the SAE_ADD_MODE flag.
  *
  */
-COMMAND ( do_add_attribute )
+COMMAND (do_add_attribute)
 {
   BEGIN_W_COMMAND( do_add_attribute);
 
@@ -2454,7 +2454,7 @@ COMMAND ( do_add_attribute )
  *  \par Function Description
  *  This is the action handler function for #ADD_TEXT.
  */
-COMMAND ( do_add_text )
+COMMAND (do_add_text)
 {
   BEGIN_W_COMMAND(do_add_text);
 
@@ -2485,7 +2485,7 @@ COMMAND (do_add_line)
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_line) {
-    o_line_start( w_current, CMD_X(do_add_line), CMD_Y(do_add_line) );
+    o_line_start (w_current, CMD_X(do_add_line), CMD_Y(do_add_line));
     w_current->inside_action = 1;
     state = ENDLINE;
   }
@@ -2502,7 +2502,7 @@ COMMAND (do_add_line)
  *  \par Function Description
  *  This is the command function for the #ADD_PIN hotkey action.
  */
-COMMAND ( do_add_pin )
+COMMAND (do_add_pin)
 {
   BEGIN_W_COMMAND(do_add_pin);
 
@@ -2512,7 +2512,7 @@ COMMAND ( do_add_pin )
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_pin) {
-    o_pin_start( w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
+    o_pin_start (w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
     w_current->inside_action = 1;
     state = ENDPIN;
   }
@@ -2533,7 +2533,7 @@ COMMAND ( do_add_pin )
  *  This is the command function for the #ADD_BOX action.
  *
  */
-COMMAND ( do_add_box )
+COMMAND (do_add_box)
 {
   BEGIN_W_COMMAND(do_add_box);
 
@@ -2543,7 +2543,7 @@ COMMAND ( do_add_box )
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_box) {
-    o_box_start( w_current, CMD_X(do_add_box), CMD_Y(do_add_box) );
+    o_box_start (w_current, CMD_X(do_add_box), CMD_Y(do_add_box));
     w_current->inside_action = 1;
     state = ENDBOX;
   }
@@ -2560,7 +2560,7 @@ COMMAND ( do_add_box )
  *  \par Function Description
  *  This is the command function for the #ADD_CIRCLE action.
  */
-COMMAND ( do_add_circle )
+COMMAND (do_add_circle)
 {
   BEGIN_W_COMMAND(do_add_circle);
 
@@ -2570,7 +2570,7 @@ COMMAND ( do_add_circle )
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_circle) {
-    o_circle_start( w_current, CMD_X(do_add_circle), CMD_Y(do_add_circle));
+    o_circle_start (w_current, CMD_X(do_add_circle), CMD_Y(do_add_circle));
     w_current->inside_action = 1;
     state = ENDCIRCLE;
   }
@@ -2593,7 +2593,7 @@ COMMAND ( do_add_circle )
  *  if needed.
  *
  */
-COMMAND ( do_add_arc )
+COMMAND (do_add_arc)
 {
   BEGIN_W_COMMAND(do_add_arc);
 
@@ -2603,7 +2603,7 @@ COMMAND ( do_add_arc )
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_arc) {
-    o_arc_start( w_current, CMD_X(do_add_arc), CMD_Y(do_add_arc));
+    o_arc_start (w_current, CMD_X(do_add_arc), CMD_Y(do_add_arc));
     w_current->inside_action = 1;
     state = ENDARC;
   }
@@ -2620,7 +2620,7 @@ COMMAND ( do_add_arc )
  *  \par Function Description
  *  This is the command function for the #ADD_PATH action.
  */
-COMMAND ( do_add_path )
+COMMAND (do_add_path)
 {
   BEGIN_W_COMMAND(do_add_path);
 
@@ -2630,7 +2630,7 @@ COMMAND ( do_add_path )
   o_invalidate_rubber (w_current);
 
   if HOT_ACTION (do_add_path) {
-    o_path_start( w_current, CMD_X(do_add_path), CMD_Y(do_add_path) );
+    o_path_start (w_current, CMD_X(do_add_path), CMD_Y(do_add_path));
     w_current->inside_action = 1;
     state = ENDPATH;
   }
@@ -2647,43 +2647,26 @@ COMMAND ( do_add_path )
  *  \par Function Description
  *  This is the command function for the #ADD_PICTURE action.
  */
-COMMAND ( do_add_picture )
+COMMAND (do_add_picture)
 {
   BEGIN_W_COMMAND(do_add_picture);
 
-  char      *filename = NULL;
-  GError    *error = NULL;
-  GdkPixbuf *pixbuf;
+  char *filename = NULL;
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
 
-  w_current->pixbuf_filename = NULL;
-
   filename = x_fileselect_select_image(w_current, NULL);
 
   if (filename != NULL) { /* if user did not cancel */
 
-    pixbuf = gdk_pixbuf_new_from_file (filename, &error);
-
-    if (pixbuf) {
+    if (o_picture_set_pixbuf(w_current, filename)) {
       w_current->inside_action = 1;
-      o_picture_set_pixbuf(w_current, pixbuf, filename);
       i_status_set_state(w_current, DRAWPICTURE);
     }
     else {
-      char *errmsg;
-      if (error) {
-        errmsg = u_string_sprintf ( _("Error: %s."), error->message);
-        g_error_free(error);
-      }
-      else {
-        errmsg = u_string_sprintf ( _("Error: %s\n%s."), filename, "An unknown error occurred");
-      }
-      titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg, _("Load failed") );
-      GEDA_FREE(errmsg);
       i_status_set_state(w_current, SELECT);
     }
     GEDA_FREE(filename);
@@ -2705,7 +2688,7 @@ COMMAND ( do_add_picture )
  *  \par Function Description
  *  This is the action handler function for #SESSION_NEW.
  */
-COMMAND ( do_session_new )
+COMMAND (do_session_new)
 {
   BEGIN_W_COMMAND(do_session_new);
 
@@ -2725,7 +2708,7 @@ COMMAND ( do_session_new )
  *  \par Function Description
  *  This is the action handler function for #SESSION_OPEN.
  */
-COMMAND ( do_session_open )
+COMMAND (do_session_open)
 {
   BEGIN_W_COMMAND(do_session_open);
 
@@ -2747,7 +2730,7 @@ COMMAND ( do_session_open )
  * \note If the there is not current session then this option
  *       becomes a session-save-as
  */
-COMMAND ( do_session_save )
+COMMAND (do_session_save)
 {
   BEGIN_W_COMMAND(do_session_save);
 
@@ -2771,7 +2754,7 @@ COMMAND ( do_session_save )
  *  \par Function Description
  *  This is the action handler function for #SESSION_SAVE_AS.
  */
-COMMAND ( do_session_save_as )
+COMMAND (do_session_save_as)
 {
   BEGIN_W_COMMAND(do_session_save_as);
 
@@ -2795,7 +2778,7 @@ COMMAND ( do_session_save_as )
  *  \par Function Description
  *  This is the action handler function for #SESSION_MANAGE.
  */
-COMMAND ( do_session_manage )
+COMMAND (do_session_manage)
 {
   BEGIN_W_COMMAND(do_session_manage);
 
@@ -2825,7 +2808,7 @@ COMMAND ( do_session_manage )
  *
  */
 /** @brief i_cmd_do_attach in i_command_Attribute_Actions */
-COMMAND ( do_attach )
+COMMAND (do_attach)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2841,13 +2824,16 @@ COMMAND ( do_attach )
   if (!w_current->inside_action) {
 
   /* skip over head */
-    s_current = geda_list_get_glist( Current_Selection );
+    s_current = geda_list_get_glist(Current_Selection);
 
     if (s_current) {
 
       first_object = (Object *) s_current->data;
+
       if (first_object) {
-        NEXT(s_current); /* skipping over first object */
+
+        s_current = s_current->next; /* skipping over first object */
+
         while (s_current != NULL) {
           Object *object = s_current->data;
           if (object != NULL && object->attached_to == NULL) {
@@ -2855,7 +2841,7 @@ COMMAND ( do_attach )
             attached_objects = g_list_prepend (attached_objects, object);
             Current_Page->CHANGED=1;
           }
-          NEXT(s_current);
+          s_current = s_current->next;
         }
 
         if (attached_objects != NULL) {
@@ -2881,7 +2867,7 @@ COMMAND ( do_attach )
  *
  */
 /** @brief i_cmd_do_detach in i_command_Attribute_Actions */
-COMMAND ( do_detach )
+COMMAND (do_detach)
 {
   BEGIN_W_COMMAND(do_detach);
 
@@ -2892,7 +2878,7 @@ COMMAND ( do_detach )
   /* Do Not detach while inside an action */
   if (!w_current->inside_action) {
 
-    s_current = geda_list_get_glist( Current_Selection );
+    s_current = geda_list_get_glist(Current_Selection);
     while (s_current != NULL) {
       o_current = (Object *) s_current->data;
       if (o_current) {
@@ -2934,7 +2920,7 @@ COMMAND ( do_detach )
  *
  */
 /** @brief do_home_attributes in i_command_Attribute_Actions */
-COMMAND ( do_home_attributes )
+COMMAND (do_home_attributes)
 {
   BEGIN_W_COMMAND(do_home_attributes);
 
@@ -2989,7 +2975,7 @@ COMMAND ( do_home_attributes )
  *
  */
 /** @brief i_cmd_do_show_value in i_command_Attribute_Actions */
-COMMAND ( do_show_value )
+COMMAND (do_show_value)
 {
   BEGIN_W_COMMAND(do_show_value);
 
@@ -3025,7 +3011,7 @@ COMMAND ( do_show_value )
  *
  */
 /** @brief i_cmd_do_show_name in i_command_Attribute_Actions */
-COMMAND ( do_show_name )
+COMMAND (do_show_name)
 {
   BEGIN_W_COMMAND(do_show_name);
 
@@ -3061,7 +3047,7 @@ COMMAND ( do_show_name )
  *
  */
 /** @brief i_cmd_do_show_both in i_command_Attribute_Actions */
-COMMAND ( do_show_both )
+COMMAND (do_show_both)
 {
   BEGIN_W_COMMAND(do_show_both);
 
@@ -3091,7 +3077,7 @@ COMMAND ( do_show_both )
 }
 
 /*! @brief Toggle Visibility of ALL Attribute Text */
-COMMAND ( do_toggle_visibility )
+COMMAND (do_toggle_visibility)
 {
   BEGIN_W_COMMAND(do_toggle_visibility);
 
@@ -3122,7 +3108,7 @@ COMMAND ( do_toggle_visibility )
 }
 
 /*! @brief Launch the Find Attribute Text Dialog */
-COMMAND ( do_find_text )
+COMMAND (do_find_text)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_find_text);
@@ -3134,7 +3120,7 @@ COMMAND ( do_find_text )
 }
 
 /*! @brief Launch the Hide Attribute Text Dialog */
-COMMAND ( do_hide_text )
+COMMAND (do_hide_text)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_hide_text);
@@ -3145,7 +3131,7 @@ COMMAND ( do_hide_text )
 }
 
 /*! @brief Launch the Show Attribute Text Dialog */
-COMMAND ( do_show_text )
+COMMAND (do_show_text)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_show_text);
@@ -3156,7 +3142,7 @@ COMMAND ( do_show_text )
 }
 
 /*! @brief Launch the Multi-Attributes Dialog */
-COMMAND ( do_attributes )
+COMMAND (do_attributes)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_attributes);
@@ -3170,7 +3156,7 @@ COMMAND ( do_attributes )
 /* ------------------- Tools ----------------- */
 
 /*! @brief Launch the Auto Number Dialog */
-COMMAND ( do_autonumber )
+COMMAND (do_autonumber)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_autonumber);
@@ -3188,7 +3174,7 @@ COMMAND ( do_autonumber )
  *  This is a callback function to launch the Console Dialog.
  *
  */
-COMMAND ( do_show_console )
+COMMAND (do_show_console)
 {
   BEGIN_COMMAND(do_show_console);
   x_console_open (w_current);
@@ -3204,7 +3190,7 @@ COMMAND ( do_show_console )
  *
  *  TODO: Slated to be relocated in 2.09
  */
-COMMAND ( do_show_coordinates )
+COMMAND (do_show_coordinates)
 {
   BEGIN_COMMAND(do_show_coordinates);
   x_dialog_coord_dialog (w_current, 0, 0);
@@ -3220,7 +3206,7 @@ COMMAND ( do_show_coordinates )
  *  to the entry object member.
  *
  */
-COMMAND ( do_macro )
+COMMAND (do_macro)
 {
   BEGIN_W_COMMAND(do_macro);
   GtkWidget *widget = w_current->macro_widget;
@@ -3235,7 +3221,7 @@ COMMAND ( do_macro )
 }
 
 /*! \brief Edit Translate in i_command_Edit_Actions */
-COMMAND ( do_translate )
+COMMAND (do_translate)
 {
   BEGIN_W_COMMAND(do_translate);
 
@@ -3259,7 +3245,7 @@ COMMAND ( do_translate )
   EXIT_COMMAND(do_translate);
 }
 
-COMMAND ( do_embed )
+COMMAND (do_embed)
 {
   BEGIN_W_COMMAND(do_embed);
   Object *o_current;
@@ -3267,7 +3253,7 @@ COMMAND ( do_embed )
   /* anything selected ? */
   if (o_select_is_selection(w_current)) {
     /* yes, embed each selected component */
-    GList *s_current = geda_list_get_glist( Current_Selection );
+    GList *s_current = geda_list_get_glist(Current_Selection);
 
     while (s_current != NULL) {
       o_current = (Object *) s_current->data;
@@ -3290,7 +3276,7 @@ COMMAND ( do_embed )
 }
 
 /** @brief i_cmd_unembed in i_command_Edit_Actions */
-COMMAND ( do_unembed )
+COMMAND (do_unembed)
 {
   BEGIN_W_COMMAND(do_unembed);
   Object *o_current;
@@ -3299,13 +3285,13 @@ COMMAND ( do_unembed )
   if (o_select_is_selection(w_current)) {
     /* yes, unembed each selected component */
     GList *s_current =
-      geda_list_get_glist( Current_Selection );
+      geda_list_get_glist(Current_Selection);
 
     while (s_current != NULL) {
       o_current = (Object *) s_current->data;
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
-             (o_current->type == OBJ_PICTURE) ) {
+             (o_current->type == OBJ_PICTURE)) {
           o_unembed (w_current->toplevel, o_current);
         }
       }
@@ -3370,7 +3356,7 @@ COMMAND (do_update)
  */
 
 /*! @brief Set the Grid Display to Dots Mode */
-COMMAND ( do_grid_dots )
+COMMAND (do_grid_dots)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_dots);
@@ -3380,7 +3366,7 @@ COMMAND ( do_grid_dots )
   o_invalidate_all (w_current);
 }
 /*! @brief Set the Grid Display to Mesh Mode */
-COMMAND ( do_grid_mesh )
+COMMAND (do_grid_mesh)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_mesh);
@@ -3390,7 +3376,7 @@ COMMAND ( do_grid_mesh )
   o_invalidate_all (w_current);
 }
 /*! @brief Turn the Grid Display Off in i_command_Option_Actions */
-COMMAND ( do_grid_off )
+COMMAND (do_grid_off)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_off);
@@ -3400,7 +3386,7 @@ COMMAND ( do_grid_off )
 }
 
 /*! @brief Cycle the Grid Mode in i_command_Option_Actions */
-COMMAND ( do_cycle_grid )
+COMMAND (do_cycle_grid)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_cycle_grid);
@@ -3423,7 +3409,7 @@ COMMAND ( do_cycle_grid )
 }
 
 /*! @brief Increase the Snap Scale in i_command_Option_Actions */
-COMMAND ( do_snap_up )
+COMMAND (do_snap_up)
 {
   NOT_NULL(w_current);
   BEGIN_COMMAND(do_snap_up);
@@ -3435,7 +3421,7 @@ COMMAND ( do_snap_up )
 }
 
 /*! @brief Decrease the Snap Scale in i_command_Option_Actions */
-COMMAND ( do_snap_down )
+COMMAND (do_snap_down)
 {
   NOT_NULL(w_current);
   BEGIN_COMMAND(do_snap_down);
@@ -3448,14 +3434,14 @@ COMMAND ( do_snap_down )
 }
 
 /*! @brief Launch the Snap Settings Dialog */
-COMMAND ( do_show_snap )
+COMMAND (do_show_snap)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_show_snap);
   snap_size_dialog(w_current);
 }
 
-COMMAND ( do_snap_off )
+COMMAND (do_snap_off)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_snap_off);
@@ -3468,7 +3454,7 @@ COMMAND ( do_snap_off )
 
 }
 /*! @brief Turn-On Snap Mode in i_command_Option_Actions */
-COMMAND ( do_snap_on )
+COMMAND (do_snap_on)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_snap_on);
@@ -3484,7 +3470,7 @@ COMMAND ( do_snap_on )
 }
 
 /*! @brief Cycle the Snap Mode in i_command_Option_Actions */
-COMMAND ( do_cycle_snap )
+COMMAND (do_cycle_snap)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_cycle_snap);
@@ -3512,7 +3498,7 @@ COMMAND ( do_cycle_snap )
 }
 
 /*! @brief Toggle Action Feedback Mode in i_command_Option_Actions */
-COMMAND ( do_toggle_feedback )
+COMMAND (do_toggle_feedback)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_feedback);
@@ -3541,7 +3527,7 @@ COMMAND ( do_toggle_feedback )
  *  Chris Ellec - January 2001:Added on/off option from the pull down menu
  *  Wiley E. Hill- December 2012:Changed to Menu Toggle Button
  */
-COMMAND ( do_toggle_rubberband )
+COMMAND (do_toggle_rubberband)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_rubberband);
@@ -3556,7 +3542,7 @@ COMMAND ( do_toggle_rubberband )
 }
 
 /*! @brief Toggle Magnetic Nets Mode in i_command_Option_Actions */
-COMMAND ( do_toggle_magneticnet )
+COMMAND (do_toggle_magneticnet)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_magneticnet);
@@ -3575,7 +3561,7 @@ COMMAND ( do_toggle_magneticnet )
  *  This is a callback function for the Toggle draw-can-move action API.
  *
  */
-COMMAND ( do_toggle_drawcanmove )
+COMMAND (do_toggle_drawcanmove)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_drawcanmove);
@@ -3593,7 +3579,7 @@ COMMAND ( do_toggle_drawcanmove )
 
 
 /*! @brief Launch the Show Text Dialog */
-COMMAND ( do_show_text_size )
+COMMAND (do_show_text_size)
 {
   NOT_NULL(w_current);
 
@@ -3612,7 +3598,7 @@ COMMAND ( do_show_text_size )
  *  Author: Wiley E. Hill
  *  Date:   Aug 5th, 2012
  */
-COMMAND ( do_show_settings )
+COMMAND (do_show_settings)
 {
   NOT_NULL(w_current);
   BEGIN_COMMAND(do_show_settings);
@@ -3629,7 +3615,7 @@ COMMAND ( do_show_settings )
  */
 
 /*! @brief Spawn the Help Guide in Browser */
-COMMAND ( do_show_manual )
+COMMAND (do_show_manual)
 {
   BEGIN_COMMAND(do_show_manual);
   bool result;
@@ -3648,7 +3634,7 @@ COMMAND ( do_show_manual )
   EXIT_COMMAND(do_show_manual);
 }
 /*! @brief Launch the Help Hotkeys Dialog */
-COMMAND ( do_show_hotkeys )
+COMMAND (do_show_hotkeys)
 {
   BEGIN_COMMAND(do_show_hotkeys);
   x_dialog_hotkeys(w_current);
@@ -3656,7 +3642,7 @@ COMMAND ( do_show_hotkeys )
 }
 
 /*! @brief Spawn the Help FAQ in Browser */
-COMMAND ( do_show_faq )
+COMMAND (do_show_faq)
 {
   BEGIN_COMMAND(do_show_faq);
   bool result;
@@ -3673,7 +3659,7 @@ COMMAND ( do_show_faq )
 }
 
 /*! @brief Spawn the Help Geda in Browser */
-COMMAND ( do_show_geda )
+COMMAND (do_show_geda)
 {
   BEGIN_COMMAND(do_show_geda);
   bool result;
@@ -3690,7 +3676,7 @@ COMMAND ( do_show_geda )
 }
 
 /*! @brief Spawn the Help Wiki in Browser */
-COMMAND ( do_show_wiki )
+COMMAND (do_show_wiki)
 {
   BEGIN_COMMAND(do_show_wiki);
   bool result;
@@ -3707,7 +3693,7 @@ COMMAND ( do_show_wiki )
 }
 
 /*! @brief Launch the Help About Dialog */
-COMMAND ( do_show_about )
+COMMAND (do_show_about)
 {
   BEGIN_NO_ARGUMENT(do_show_about);
   about_dialog(w_current);
@@ -3721,7 +3707,7 @@ COMMAND ( do_show_about )
  *  @{
  *  TODO: Currently i_command_Variable_Handlers only display the
  *        value of varible, should also be able to set the variables
- *        (maybe optional command sequence "Set Varible" )
+ *        (maybe optional command sequence "Set Varible")
  */
 
 /** @brief i_cmd_draw_grips in i_command_Variable_Handlers */
@@ -3929,7 +3915,7 @@ COMMAND (sort_component_library) {
 }
 
 /** @brief i_cmd_untitled_name in i_command_Variable_Handlers */
-COMMAND(untitled_name) {
+COMMAND (untitled_name) {
 
   u_log_message("<%s>", w_current->toplevel->untitled_name);
 }
@@ -3965,79 +3951,79 @@ COMMAND (net_selection_mode) {
 }
 
 /** @brief i_cmd_bus_style in i_command_Variable_Handlers */
-COMMAND ( bus_style ) {
+COMMAND (bus_style) {
 
   SHOW_VARIABLE(bus_style, T)
 }
 /** @brief i_cmd_net_style in i_command_Variable_Handlers */
-COMMAND ( net_style ) {
+COMMAND (net_style) {
 
   SHOW_VARIABLE(net_style, T)
 }
 /** @brief i_cmd_pin_style in i_command_Variable_Handlers */
-COMMAND ( pin_style ) {
+COMMAND (pin_style) {
 
   SHOW_VARIABLE(pin_style, T)
 }
 /** @brief i_cmd_line_style in i_command_Variable_Handlers */
-COMMAND ( line_style ) {
+COMMAND (line_style) {
 
   SHOW_VARIABLE(line_style, T)
 }
 /** @brief i_cmd_thick_bus_width in i_command_Variable_Handlers */
-COMMAND ( thick_bus_width ) {
+COMMAND (thick_bus_width) {
 
   SHOW_VARIABLE(thick_bus_width, T)
 }
 /** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
-COMMAND ( thick_line_width ) {
+COMMAND (thick_line_width) {
 
   SHOW_VARIABLE(thick_line_width, T)
 }
 /** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
-COMMAND ( thick_net_width ) {
+COMMAND (thick_net_width) {
 
   SHOW_VARIABLE(thick_net_width, T)
 }
 /** @brief i_cmd_thick_pin_width in i_command_Variable_Handlers */
-COMMAND ( thick_pin_width ) {
+COMMAND (thick_pin_width) {
 
   SHOW_VARIABLE(thick_pin_width, T)
 }
 /** @brief i_cmd_thick_line_width in i_command_Variable_Handlers */
-COMMAND ( thin_bus_width ) {
+COMMAND (thin_bus_width) {
 
   SHOW_VARIABLE(thin_bus_width, T)
 }
 /** @brief i_cmd_thin_line_width in i_command_Variable_Handlers */
-COMMAND ( thin_line_width ) {
+COMMAND (thin_line_width) {
 
   SHOW_VARIABLE(thin_line_width, T)
 }
 /** @brief i_cmd_thin_net_width in i_command_Variable_Handlers */
-COMMAND ( thin_net_width ) {
+COMMAND (thin_net_width) {
 
   SHOW_VARIABLE(thin_net_width, T)
 }
 /** @brief i_cmd_thin_pin_width in i_command_Variable_Handlers */
-COMMAND ( thin_pin_width ) {
+COMMAND (thin_pin_width) {
 
   SHOW_VARIABLE(thin_pin_width, T)
 }
 
 /** @brief i_cmd_bus_ripper_rotation in i_command_Variable_Handlers */
-COMMAND ( bus_ripper_rotation ) {
+COMMAND (bus_ripper_rotation) {
 
   SHOW_VARIABLE(bus_ripper_rotation, W)
 }
 
 /** @brief i_cmd_bus_ripper_size in i_command_Variable_Handlers */
-COMMAND ( bus_ripper_size ) {
+COMMAND (bus_ripper_size) {
 
   SHOW_VARIABLE(bus_ripper_size, W)
 }
 /** @brief i_cmd_bus_ripper_type in i_command_Variable_Handlers */
-COMMAND ( bus_ripper_type ) {
+COMMAND (bus_ripper_type) {
 
   SHOW_VARIABLE(bus_ripper_type, W)
 }
@@ -4048,37 +4034,37 @@ COMMAND(bus_ripper_symname) {
 }
 
 /** @brief i_cmd_fast_mousepan in i_command_Variable_Handlers */
-COMMAND ( fast_mousepan ) {
+COMMAND (fast_mousepan) {
 
   SHOW_VARIABLE(fast_mousepan, W)
 }
 
 /** @brief i_cmd_drag_can_move in i_command_Variable_Handlers */
-COMMAND ( drag_can_move ) {
+COMMAND (drag_can_move) {
 
   SHOW_VARIABLE(drag_can_move, W)
 }
 
 /** @brief i_cmd_middle_button in i_command_Variable_Handlers */
-COMMAND ( middle_button ) {
+COMMAND (middle_button) {
 
   SHOW_VARIABLE(middle_button, W)
 }
 
 /** @brief i_cmd_third_button in i_command_Variable_Handlers */
-COMMAND ( third_button ) {
+COMMAND (third_button) {
 
   SHOW_VARIABLE(third_button, W)
 }
 
 /** @brief i_cmd_mousepan_gain in i_command_Variable_Handlers */
-COMMAND ( mousepan_gain ) {
+COMMAND (mousepan_gain) {
 
   SHOW_VARIABLE(mousepan_gain, W)
 }
 
 /** @brief i_cmd_scroll_wheel in i_command_Variable_Handlers */
-COMMAND ( scroll_wheel ) {
+COMMAND (scroll_wheel) {
 
   SHOW_VARIABLE(scroll_wheel, W)
 }
@@ -4094,65 +4080,65 @@ COMMAND (invert_images) {
   SHOW_VARIABLE(invert_images, T)
 }
 /** @brief i_cmd_text_case in i_command_Variable_Handlers */
-COMMAND ( text_case ) {
+COMMAND (text_case) {
 
   SHOW_VARIABLE(text_case, W)
 }
 
 /** @brief i_cmd_text_display_zoomfactor in i_command_Variable_Handlers */
-COMMAND ( text_display_zoomfactor ) {
+COMMAND (text_display_zoomfactor) {
 
   SHOW_VARIABLE(text_display_zoomfactor, W)
 }
 
 /** @brief i_cmd_text_feedback in i_command_Variable_Handlers */
-COMMAND ( text_feedback ) {
+COMMAND (text_feedback) {
 
   SHOW_VARIABLE(text_feedback, W)
 }
 
 /** @brief i_cmd_text_origin_marker in i_command_Variable_Handlers */
-COMMAND ( text_origin_marker ) {
+COMMAND (text_origin_marker) {
 
   SHOW_VARIABLE(text_origin_marker, R)
 }
 /** @brief i_cmd_text_marker_size in i_command_Variable_Handlers */
-COMMAND ( text_marker_size ) {
+COMMAND (text_marker_size) {
 
   SHOW_VARIABLE(text_marker_size, R)
 }
 /** @brief i_cmd_text_size in i_command_Variable_Handlers */
-COMMAND ( text_size ) {
+COMMAND (text_size) {
 
   SHOW_VARIABLE(text_size, W)
 }
 
 /** @brief i_cmd_undo_control in i_command_Variable_Handlers */
-COMMAND ( undo_control ) {
+COMMAND (undo_control) {
 
   SHOW_VARIABLE(undo_control, W)
 }
 
 /** @brief i_cmd_undo_levels in i_command_Variable_Handlers */
-COMMAND ( undo_levels ) {
+COMMAND (undo_levels) {
 
   SHOW_VARIABLE(undo_levels, W)
 }
 
 /** @brief i_cmd_undo_panzoom in i_command_Variable_Handlers */
-COMMAND ( undo_panzoom ) {
+COMMAND (undo_panzoom) {
 
   SHOW_VARIABLE(undo_panzoom, W)
 }
 
 /** @brief i_cmd_undo_preserve in i_command_Variable_Handlers */
-COMMAND ( undo_preserve ) {
+COMMAND (undo_preserve) {
 
   SHOW_VARIABLE(undo_preserve, W)
 }
 
 /** @brief i_cmd_undo_type in i_command_Variable_Handlers */
-COMMAND ( undo_type ) {
+COMMAND (undo_type) {
 
   SHOW_VARIABLE(undo_type, W)
 }

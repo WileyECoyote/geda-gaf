@@ -1,5 +1,17 @@
 2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Off-load code for loading pixbuf to
+      o_picture, some general cleaning through-out module.
+
+    * src/object/o_picture.c: Revise function o_picture_set_pixbuf,
+      eliminating pixbuf argument, add code relocated from _i_command
+      add_picture. Rename function o_picture_exchange_filename_dialog
+      to o_picture_exchange_file.
+
+    * src/object/o_edit.c: Update function name
+
+2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_status.c: Release w_current->current_pixbuf and
       filename before changing from DRAWPICTURE or ENDPICTURE state.
 

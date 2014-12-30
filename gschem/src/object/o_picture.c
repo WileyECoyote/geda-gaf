@@ -317,7 +317,7 @@ o_picture_exchange (GschemToplevel *w_current,
  * \param [in] o_current  Picture Object to update or NULL to use selection
  */
 void
-o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
+o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   GError       *err       = NULL;
@@ -427,24 +427,27 @@ o_picture_change_filename_dialog (GschemToplevel *w_current, Object *o_current)
 }
 
 /*! \brief Set active pixbuf top-level parameterd
+ *
  *  \par Function Description
- *  The function is used when inserting new picture objects in
- *  order to temporily store picture object properties, until
- *  o_picture_end actually creates a GedaPicture Object to hold
- *  this data.
+ *  The function is used when inserting new picture objects in order
+ *  to temporily store picture object properties, until o_picture_end
+ *  actually creates a GedaPicture Object to hold this data.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] pixbuf
  *  \param [in] filename
  */
-void
-o_picture_set_pixbuf(GschemToplevel *w_current,
-                     GdkPixbuf      *pixbuf,
-                     char           *filename)
+bool
+o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
 {
+  GError    *error = NULL;
+  GdkPixbuf *pixbuf;
+
   int height;
   int width;
+  int result;
 
+  /* Make sure any old pixbuf info is release */
   if (w_current->current_pixbuf != NULL) {
     GEDA_UNREF(w_current->current_pixbuf);
     w_current->current_pixbuf = NULL;
@@ -453,13 +456,44 @@ o_picture_set_pixbuf(GschemToplevel *w_current,
 
   GEDA_FREE(w_current->pixbuf_filename);
 
-  /* This is unreference by  o_picture_end */
-  w_current->current_pixbuf = pixbuf;
-  w_current->pixbuf_filename = (char *) u_string_strdup(filename);
+  /*  w_current_pixbuf is unreferenced in 3 places:
+   *
+   *    1. i_status_set_state_msg  This would be the NORMAL method
+   *    2. x_event_button_pressed  if user pushed the middle mouse
+   *    3. Above in this function  Should not happen
+   */
 
-  width = gdk_pixbuf_get_width (pixbuf);
-  height = gdk_pixbuf_get_height (pixbuf);
+  pixbuf = gdk_pixbuf_new_from_file (filename, &error);
 
-  w_current->pixbuf_wh_ratio = (double) width / height;
+  if (pixbuf) {
 
+    w_current->current_pixbuf  = pixbuf;
+    w_current->pixbuf_filename = (char *) u_string_strdup(filename);
+
+    width  = gdk_pixbuf_get_width (pixbuf);
+    height = gdk_pixbuf_get_height (pixbuf);
+
+    w_current->pixbuf_wh_ratio = (double) width / height;
+
+    result = TRUE;
+  }
+  else {
+
+    char *errmsg;
+
+    if (error) {
+      errmsg = u_string_sprintf ( _("Error: %s."), error->message);
+      g_error_free(error);
+    }
+    else {
+      errmsg = u_string_sprintf ( _("Error: %s\n%s."), filename,
+                                  _("An unknown error occurred"));
+    }
+
+    titled_pango_error_dialog ( _("<b>Failed to load picture</b>"), errmsg,
+                                _("Load failed"));
+    GEDA_FREE(errmsg);
+    result = FALSE;
+  }
+  return result;
 }

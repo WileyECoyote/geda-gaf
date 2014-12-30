@@ -520,8 +520,8 @@ void       o_picture_motion                  (GschemToplevel *w_current, int x, 
 void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void       o_picture_draw_rubber             (GschemToplevel *w_current);
 bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, Object *o_current, GError **error);
-void       o_picture_change_filename_dialog  (GschemToplevel *w_current, Object *o_current);
-void       o_picture_set_pixbuf              (GschemToplevel *w_current, GdkPixbuf *pixbuf, char *filename);
+void       o_picture_exchange_file           (GschemToplevel *w_current, Object *o_current);
+bool       o_picture_set_pixbuf              (GschemToplevel *w_current, char *filename);
 
 /* o_pin.c */
 void       o_pin_start                       (GschemToplevel *w_current, int x, int y);
