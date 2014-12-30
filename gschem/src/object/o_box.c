@@ -27,12 +27,9 @@
  */
 
 #include <gschem.h>
+#include <gschem_macros.h>
 #include <geda_debug.h>
 
-#define GET_BOX_WIDTH(w)  abs((w)->second_wx - (w)->first_wx)
-#define GET_BOX_HEIGHT(w) abs((w)->second_wy - (w)->first_wy)
-#define GET_BOX_LEFT(w)   min((w)->first_wx, (w)->second_wx)
-#define GET_BOX_TOP(w)    max((w)->first_wy, (w)->second_wy)
 
 /*! \brief Invalidate Temporary drawing artifacts for Box objects
  *  \par Function Description

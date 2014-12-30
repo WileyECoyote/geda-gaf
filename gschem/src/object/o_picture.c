@@ -27,18 +27,9 @@
  * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
 #include <gschem.h>
+#include <gschem_macros.h>
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
-
-/* This works, but using one macro inside of other doesn't */
-#define GET_PICTURE_WIDTH(w) abs((w)->second_wx - (w)->first_wx)
-#define GET_PICTURE_HEIGHT(w) \
-  (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
-
-#define GET_PICTURE_LEFT(w) min((w)->first_wx, (w)->second_wx)
-
-#define GET_PICTURE_TOP(w) (w)->first_wy > (w)->second_wy ? (w)->first_wy  :  \
-                           (w)->first_wy+abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
 
 /*! \brief Start process to input a new picture.
  *  \par Function Description
@@ -194,6 +185,7 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, left, top, left, top + height);
   o_invalidate_rectangle (w_current, left + width, top, left + width, top + height);
   o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
+
 }
 
 /*! \brief Draw picture from GschemToplevel object
@@ -450,17 +442,24 @@ o_picture_set_pixbuf(GschemToplevel *w_current,
                      GdkPixbuf      *pixbuf,
                      char           *filename)
 {
+  int height;
+  int width;
+
   if (w_current->current_pixbuf != NULL) {
     GEDA_UNREF(w_current->current_pixbuf);
+    w_current->current_pixbuf = NULL;
+    BUG_MSG("w_current->current_pixbuf was not NULL")
   }
 
   GEDA_FREE(w_current->pixbuf_filename);
 
+  /* This is unreference by  o_picture_end */
   w_current->current_pixbuf = pixbuf;
   w_current->pixbuf_filename = (char *) u_string_strdup(filename);
 
-  w_current->pixbuf_wh_ratio = gdk_pixbuf_get_width(pixbuf) /
-                               gdk_pixbuf_get_height(pixbuf);
+  width = gdk_pixbuf_get_width (pixbuf);
+  height = gdk_pixbuf_get_height (pixbuf);
 
-  /* be sure to free this pixbuf somewhere */
+  w_current->pixbuf_wh_ratio = (double) width / height;
+
 }

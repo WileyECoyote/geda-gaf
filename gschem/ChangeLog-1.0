@@ -1,5 +1,16 @@
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_macros.h: New header file for gschem. The file
+      contains variations of macros previously included in the source
+      files; o_box.c, o_grips.c and o_picture.c. The macros were
+      consolidated here because 1. it is less confusing, 2. the macros
+      were modified and I did not want to keep track of the same macros
+      in three different files, and 3. To implement non-constrained
+      pictures size, two of the "sets" of macros were needed both
+      o_grips.c and o_picture.c
+
+2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_event.c: Revise x_event_button_pressed, eliminate goto`s
       and end_button_pressed labels, if just else clause
 

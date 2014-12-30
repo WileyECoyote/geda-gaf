@@ -25,23 +25,237 @@
  * \file o_grips.c
  * \brief Low-level module for Grip operations
  */
-#include <gschem.h>
 #include <math.h>
+
+#include <gschem.h>
+#include <gschem_macros.h>
 #include <geda_debug.h>
 
-#define GET_BOX_WIDTH(w)  abs((w)->second_wx - (w)->first_wx)
-#define GET_BOX_HEIGHT(w) abs((w)->second_wy - (w)->first_wy)
+/*! \brief Cancel process of modifying object with grip.
+ *
+ *  \par Function Description
+ *  This function cancels the process of modifying a parameter
+ *  of an object with a grip. It's main utility is to reset the
+ *  dont_redraw flag on the object which was being modified.
+ *
+ *  \param [in,out] w_current  The GschemToplevel object.
+ */
+void
+o_grips_cancel(GschemToplevel *w_current)
+{
+  Object *object = w_current->which_object;
 
-#define GET_PICTURE_WIDTH(w)			\
-  abs((w)->second_wx - (w)->first_wx)
-#define GET_PICTURE_HEIGHT(w)						\
-  (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
-#define GET_PICTURE_LEFT(w)			\
-  min((w)->first_wx, (w)->second_wx)
-#define GET_PICTURE_TOP(w)						\
-  (w)->first_wy > (w)->second_wy ? (w)->first_wy  :			\
-  (w)->first_wy+abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
+  /* reset global variables */
+  w_current->which_grip     = -1;
+  w_current->which_object   = NULL;
+  w_current->rubber_visible = 0;
 
+  /* Switch drawing of the object back on */
+  g_return_if_fail (object != NULL);
+  object->dont_redraw = FALSE;
+}
+
+/*! \brief Draw objects being grip maniuplated from GschemToplevel object.
+ *
+ *  \par Function Description
+ *  This function draws the objects being grip manipulated.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ */
+void
+o_grips_draw_rubber (GschemToplevel *w_current)
+{
+  g_return_if_fail (w_current->which_object != NULL);
+
+  switch(w_current->which_object->type) {
+    case OBJ_ARC:
+      o_arc_draw_rubber (w_current);
+      break;
+
+    case OBJ_BOX:
+      o_box_draw_rubber (w_current);
+      break;
+
+    case OBJ_PATH:
+      o_path_draw_rubber_grips (w_current);
+      break;
+
+    case OBJ_PICTURE:
+      o_picture_draw_rubber (w_current);
+      break;
+
+    case OBJ_CIRCLE:
+      o_circle_draw_rubber (w_current);
+      break;
+
+    case OBJ_LINE:
+    case OBJ_NET:
+    case OBJ_PIN:
+    case OBJ_BUS:
+      o_line_draw_rubber (w_current);
+    break;
+
+    default:
+    return; /* error condition */
+  }
+}
+
+/*! \brief Get half the width and height of grip in screen units.
+ *  \par Function Description
+ *  This function returns a value half the size of the grip size
+ *  in screen units, based on the objects width and the zoom factor.
+ *  Between the threashold and 0, grippable object with non-zero
+ *  width, the size returned is the greater of width - factor and
+ *  <b>GRIP_SIZE_ZOOM1</b>. The value returned for "grippables" with
+ *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
+ *  #MAX_GRIP_SIZE is returned.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] object     Object associated with operation.
+ *
+ *  \return Half grip size in screen units.
+ */
+int
+o_grips_half_size(GschemToplevel *w_current,  Object *object)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  int factor;
+  int ret_size;
+  int abs_size;
+
+  if ( object == NULL)
+  {
+    ret_size = w_current->grip_size / 2;//MAX_GRIP_SIZE / 2;
+  }
+  else
+  {
+    /* if is a grip-able object */
+    if (object->type == OBJ_NET    ||
+        object->type == OBJ_BUS    ||
+        object->type == OBJ_LINE   ||
+        object->type == OBJ_ARC    ||
+        object->type == OBJ_BOX    ||
+        object->type == OBJ_CIRCLE ||
+        object->type == OBJ_PATH)
+    {
+      factor = (int) toplevel->page_current->to_world_x_constant;
+      if (factor < GRIP_ZOOM_THREASHOLD_1) {
+        abs_size = SCREENabs (w_current, GRIP_SIZE_ZOOM1);
+        if (object->line_options->line_width > 0)
+        {
+          if (( object->line_options->line_width > w_current->grip_size) && (factor > 0)) {
+            ret_size = max( abs_size, (object->line_options->line_width - factor) / 2) ;
+          }
+          else
+          {
+            ret_size = abs_size;
+          }
+        }
+        else
+        {
+           ret_size = abs_size;
+        }
+      }
+      else {
+        ret_size = w_current->grip_size / 2;
+      }
+    }
+    else {
+      ret_size = w_current->grip_size / 2;
+    }
+  }
+  return min(ret_size, MAX_GRIP_SIZE/2);
+}
+
+/*! \brief Check if pointer is inside the grip region.
+ *
+ *  \par Function Description
+ *  This function checks if the point (<b>x</b>,<b>y</b>) is
+ *  inside the grip centered at (<b>grip_x</b>,<b>grip_y</b>).
+ *
+ *  \param [in]  x          Current x coordinate of pointer in world units.
+ *  \param [in]  y          Current y coordinate of pointer in world units.
+ *  \param [in]  grip_x     Current x coordinate of grip center in world units.
+ *  \param [in]  grip_y     Current y coordinate of grip center in world units.
+ *  \param [in]  size       Half the width of the grip square in world units.
+ *  \return True / False whether the mouse pointer is inside the grip.
+ */
+static bool
+o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
+{
+  int xmin, ymin, xmax, ymax;
+
+  xmin = grip_x - size;
+  ymin = grip_y - size;
+  xmax = xmin + 2 * size;
+  ymax = ymin + 2 * size;
+
+  return inside_region(xmin, ymin, xmax, ymax, x, y);
+}
+
+/*! \brief Modify previously selected object according to mouse position.
+ *  \par Function Description
+ *  This function modify the previously selected
+ *  object according to the mouse position in <b>w_x</b> and <b>w_y</b>.
+ *  The grip under modification is updated and the temporary object displayed.
+ *
+ *  The object under modification is <b>w_current->which_object</b> and
+ *  the grip concerned is <b>w_current->which_grip</b>.
+ *
+ *  Depending on the object type, a specific function is used.
+ *  It erases the temporary object, updates its internal representation,
+ *  and draws it again.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void
+o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
+{
+  int grip = w_current->which_grip;
+
+  if (w_current->inside_action == 0) {
+    BUG_MSG("Not inside action");
+    return;
+  }
+  if (w_current->which_object == NULL) {
+    BUG_MSG("which_object == NULL");
+    return;
+  }
+
+  switch(w_current->which_object->type) {
+    case OBJ_ARC:
+      o_arc_motion (w_current, w_x, w_y, grip);
+      break;
+
+    case OBJ_BOX:
+      o_box_motion (w_current, w_x, w_y);
+      break;
+
+    case OBJ_PATH:
+      o_path_motion_grips (w_current, w_x, w_y);
+      break;
+
+    case OBJ_PICTURE:
+      o_picture_motion (w_current, w_x, w_y);
+      break;
+
+    case OBJ_CIRCLE:
+      o_circle_motion (w_current, w_x, w_y);
+      break;
+
+    case OBJ_LINE:
+    case OBJ_NET:
+    case OBJ_PIN:
+    case OBJ_BUS:
+      o_line_motion (w_current, w_x, w_y);
+      break;
+
+    default:
+    return; /* error condition */
+  }
+}
 
 /*! \brief Check if point is inside grip.
  *  \par Function Description
@@ -65,7 +279,8 @@
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
+Object*
+o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object   *object=NULL;
@@ -147,32 +362,6 @@ Object *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *which
   return(NULL);
 }
 
-
-/*! \brief Check if pointer is inside the grip region.
- *
- *  \par Function Description
- *  This function checks if the point (<b>x</b>,<b>y</b>) is
- *  inside the grip centered at (<b>grip_x</b>,<b>grip_y</b>).
- *
- *  \param [in]  x          Current x coordinate of pointer in world units.
- *  \param [in]  y          Current y coordinate of pointer in world units.
- *  \param [in]  grip_x     Current x coordinate of grip center in world units.
- *  \param [in]  grip_y     Current y coordinate of grip center in world units.
- *  \param [in]  size       Half the width of the grip square in world units.
- *  \return True / False whether the mouse pointer is inside the grip.
- */
-static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
-{
-  int xmin, ymin, xmax, ymax;
-
-  xmin = grip_x - size;
-  ymin = grip_y - size;
-  xmax = xmin + 2 * size;
-  ymax = ymin + 2 * size;
-
-  return inside_region(xmin, ymin, xmax, ymax, x, y);
-}
-
 /*! \brief Check if pointer is inside arc grip.
  *  \par Function Description
  *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
@@ -208,8 +397,9 @@ static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
-                                 int x, int y, int size, int *whichone)
+Object*
+o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
+                                int x, int y, int size, int *whichone)
 {
   int centerx, centery, radius, start_angle, arc_sweep;
   double tmp;
@@ -221,14 +411,14 @@ Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
   arc_sweep   = o_current->arc->arc_sweep;
 
   /* check the grip on the center of the arc */
-  if (inside_grip(x, y, centerx, centery, size)) {
+  if (o_grips_inside_grip(x, y, centerx, centery, size)) {
     *whichone = ARC_RADIUS;
     return(o_current);
   }
 
   /* check the grip at the end angle of the arc */
   tmp = ((double) start_angle + arc_sweep) * M_PI / 180;
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   centerx + radius * cos(tmp),
                   centery + radius * sin(tmp), size)) {
     *whichone = ARC_END_ANGLE;
@@ -237,7 +427,7 @@ Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
 
   /* check the grip at the start angle of the arc */
   tmp = ((double) start_angle) * M_PI / 180;
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   centerx + radius * cos(tmp),
                   centery + radius * sin(tmp), size)) {
     *whichone = ARC_START_ANGLE;
@@ -273,11 +463,12 @@ Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
-                                 int x, int y, int size, int *whichone)
+Object*
+o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
+                                int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->box->upper_x,
                   o_current->box->upper_y, size)) {
     *whichone = BOX_UPPER_LEFT;
@@ -285,7 +476,7 @@ Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
   }
 
   /* inside lower right grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->box->lower_x,
                   o_current->box->lower_y, size)) {
     *whichone = BOX_LOWER_RIGHT;
@@ -293,7 +484,7 @@ Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
   }
 
   /* inside upper right grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->box->lower_x,
                   o_current->box->upper_y, size)) {
     *whichone = BOX_UPPER_RIGHT;
@@ -301,7 +492,7 @@ Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
   }
 
   /* inside lower left grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->box->upper_x,
                   o_current->box->lower_y, size)) {
     *whichone = BOX_LOWER_LEFT;
@@ -339,8 +530,9 @@ Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
  *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
-                                     int x, int y, int size, int *whichone)
+Object*
+o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
+                                 int x, int y, int size, int *whichone)
 {
   PATH_SECTION *section;
   int i;
@@ -352,13 +544,13 @@ Object *o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
     switch (section->code) {
     case PATH_CURVETO:
       /* inside first control grip ? */
-      if (inside_grip(x, y, section->x1, section->y1, size)) {
+      if (o_grips_inside_grip(x, y, section->x1, section->y1, size)) {
         *whichone = grip_no;
         return o_current;
       }
       grip_no ++;
       /* inside second control grip ? */
-      if (inside_grip(x, y, section->x2, section->y2, size)) {
+      if (o_grips_inside_grip(x, y, section->x2, section->y2, size)) {
         *whichone = grip_no;
         return o_current;
       }
@@ -368,7 +560,7 @@ Object *o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
       /* inside destination control grip ? */
-      if (inside_grip(x, y, section->x3, section->y3, size)) {
+      if (o_grips_inside_grip(x, y, section->x3, section->y3, size)) {
         *whichone = grip_no;
         return o_current;
       }
@@ -409,11 +601,12 @@ Object *o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_current,
-                                     int x, int y, int size, int *whichone)
+Object *
+o_grips_search_picture_world(GschemToplevel *w_current, Object *o_current,
+                                    int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->picture->upper_x,
                   o_current->picture->upper_y, size)) {
     *whichone = PICTURE_UPPER_LEFT;
@@ -421,7 +614,7 @@ Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_curren
   }
 
   /* inside lower right grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->picture->lower_x,
                   o_current->picture->lower_y, size)) {
     *whichone = PICTURE_LOWER_RIGHT;
@@ -429,7 +622,7 @@ Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_curren
   }
 
   /* inside upper right grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->picture->lower_x,
                   o_current->picture->upper_y, size)) {
     *whichone = PICTURE_UPPER_RIGHT;
@@ -437,7 +630,7 @@ Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_curren
   }
 
   /* inside lower left grip ? */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->picture->upper_x,
                   o_current->picture->lower_y, size)) {
     *whichone = PICTURE_LOWER_LEFT;
@@ -472,11 +665,12 @@ Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_curren
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current,
-                                    int x, int y, int size, int *whichone)
+Object *
+o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current,
+                                   int x, int y, int size, int *whichone)
 {
   /* check the grip for radius */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->circle->center_x + o_current->circle->radius,
                   o_current->circle->center_y - o_current->circle->radius,
                   size)) {
@@ -508,11 +702,12 @@ Object *o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current
  *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
-Object *o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
-                                  int x, int y, int size, int *whichone)
+Object *
+o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
+                                 int x, int y, int size, int *whichone)
 {
   /* check the grip on the end of line 1 */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->line->x[LINE_END1],
                   o_current->line->y[LINE_END1], size)) {
     *whichone = LINE_END1;
@@ -520,7 +715,7 @@ Object *o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
   }
 
   /* check the grip on the end of line 2 */
-  if (inside_grip(x, y,
+  if (o_grips_inside_grip(x, y,
                   o_current->line->x[LINE_END2],
                   o_current->line->y[LINE_END2], size)) {
     *whichone = LINE_END2;
@@ -555,8 +750,9 @@ Object *o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   (unused)
  */
-static void o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
-                              int x, int y, int whichone)
+static void
+o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
+                                  int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -596,8 +792,9 @@ static void o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_box(GschemToplevel *w_current, Object *o_current,
-                              int x, int y, int whichone)
+static void
+o_grips_start_box(GschemToplevel *w_current, Object *o_current,
+                                  int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -659,8 +856,9 @@ static void o_grips_start_box(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_path(GschemToplevel *w_current, Object *o_current,
-                               int x, int y, int whichone)
+static void
+o_grips_start_path(GschemToplevel *w_current, Object *o_current,
+                                   int x, int y, int whichone)
 {
   PATH_SECTION *section;
   int i;
@@ -730,15 +928,16 @@ static void o_grips_start_path(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
-                                  int x, int y, int whichone)
+static void
+o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
+                                      int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
-
   w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
   w_current->pixbuf_filename = u_string_strdup (o_picture_get_filename (o_current));
-  w_current->pixbuf_wh_ratio = o_picture_get_ratio (o_current);
-
+  w_current->pixbuf_wh_ratio = (double) o_picture_get_width(o_current) /
+                                        o_picture_get_height(o_current);
+fprintf(stderr, "pixbuf_wh_ratio=%f\n", w_current->pixbuf_wh_ratio);
   /* (second_wx,second_wy) is the selected corner */
   /* (first_wx, first_wy) is the opposite corner */
   switch(whichone) {
@@ -796,8 +995,9 @@ static void o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
-                                 int x, int y, int whichone)
+static void
+o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
+                                     int x, int y, int whichone)
 {
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -829,8 +1029,9 @@ static void o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_line(GschemToplevel *w_current, Object *o_current,
-                               int x, int y, int whichone)
+static void
+o_grips_start_line(GschemToplevel *w_current, Object *o_current,
+                                   int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -865,7 +1066,8 @@ static void o_grips_start_line(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  w_y        Current y coordinate of pointer in world units.
  *  \return FALSE if an error occurred or no grip was found, TRUE otherwise.
  */
-int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
+int
+o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   Object *object;
   int whichone;
@@ -931,94 +1133,6 @@ int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
   return(FALSE);
 }
 
-/*! \brief Modify previously selected object according to mouse position.
- *  \par Function Description
- *  This function modify the previously selected
- *  object according to the mouse position in <b>w_x</b> and <b>w_y</b>.
- *  The grip under modification is updated and the temporary object displayed.
- *
- *  The object under modification is <b>w_current->which_object</b> and
- *  the grip concerned is <b>w_current->which_grip</b>.
- *
- *  Depending on the object type, a specific function is used.
- *  It erases the temporary object, updates its internal representation,
- *  and draws it again.
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
- */
-void o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
-{
-  int grip = w_current->which_grip;
-
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action");
-    return;
-  }
-  if (w_current->which_object == NULL) {
-    BUG_MSG("which_object == NULL");
-    return;
-  }
-
-  switch(w_current->which_object->type) {
-    case OBJ_ARC:
-      o_arc_motion (w_current, w_x, w_y, grip);
-      break;
-
-    case OBJ_BOX:
-      o_box_motion (w_current, w_x, w_y);
-      break;
-
-    case OBJ_PATH:
-      o_path_motion_grips (w_current, w_x, w_y);
-      break;
-
-    case OBJ_PICTURE:
-      o_picture_motion (w_current, w_x, w_y);
-      break;
-
-    case OBJ_CIRCLE:
-      o_circle_motion (w_current, w_x, w_y);
-      break;
-
-    case OBJ_LINE:
-    case OBJ_NET:
-    case OBJ_PIN:
-    case OBJ_BUS:
-      o_line_motion (w_current, w_x, w_y);
-      break;
-
-    default:
-    return; /* error condition */
-  }
-}
-
-
-/*! \brief Cancel process of modifying object with grip.
- *
- *  \par Function Description
- *  This function cancels the process of modifying a parameter
- *  of an object with a grip. It's main utility is to reset the
- *  dont_redraw flag on the object which was being modified.
- *
- *  \param [in,out] w_current  The GschemToplevel object.
- */
-void o_grips_cancel(GschemToplevel *w_current)
-{
-  Object *object = w_current->which_object;
-
-  /* reset global variables */
-  w_current->which_grip     = -1;
-  w_current->which_object   = NULL;
-  w_current->rubber_visible = 0;
-
-  /* Switch drawing of the object back on */
-  g_return_if_fail (object != NULL);
-  object->dont_redraw = FALSE;
-}
-
-
 /*! \brief End process of modifying arc object with grip.
  *  \par Function Description
  *  This function ends the grips process specific to an arc object. It erases
@@ -1039,8 +1153,9 @@ void o_grips_cancel(GschemToplevel *w_current)
  *  \param [in] o_current  Arc Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
-                            int whichone)
+static void
+o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
+                                int whichone)
 {
   int arg1, arg2;
 
@@ -1086,8 +1201,8 @@ static void o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Box Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_box(GschemToplevel *w_current, Object *o_current,
-                            int whichone)
+static void
+o_grips_end_box(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   int box_width, box_height;
 
@@ -1114,8 +1229,8 @@ static void o_grips_end_box(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Picture Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_path(GschemToplevel *w_current, Object *o_current,
-                             int whichone)
+static void
+o_grips_end_path(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   o_path_modify (o_current, w_current->second_wx, w_current->second_wy, whichone);
 }
@@ -1128,11 +1243,10 @@ static void o_grips_end_path(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Picture Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
-                                int whichone)
+static void
+o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
 {
-  /* don't allow zero width/height picturees
-   * this ends the picture drawing behavior
+  /* don't allow zero width/height pictures this ends the picture drawing behavior
    * we want this? hack */
   if ((GET_PICTURE_WIDTH(w_current) == 0) || (GET_PICTURE_HEIGHT(w_current) == 0)) {
     o_picture_invalidate_rubber (w_current);
@@ -1140,12 +1254,15 @@ static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
     return;
   }
 
-  o_picture_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
+  if (w_current->CONTROLKEY)
+    o_picture_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
+  else
+    o_picture_modify_all (o_current, w_current->first_wx,  w_current->first_wy,
+                                     w_current->second_wx, w_current->second_wy);
 
   GEDA_UNREF (w_current->current_pixbuf);
   w_current->current_pixbuf = NULL;
   GEDA_FREE (w_current->pixbuf_filename);
-  w_current->pixbuf_filename = NULL;
   w_current->pixbuf_wh_ratio = 0;
 }
 
@@ -1164,8 +1281,8 @@ static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Circle Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_circle(GschemToplevel *w_current, Object *o_current,
-                               int whichone)
+static void
+o_grips_end_circle(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   /* don't allow zero radius circles
    * this ends the circle drawing behavior
@@ -1196,8 +1313,8 @@ static void o_grips_end_circle(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Line Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_line(GschemToplevel *w_current, Object *o_current,
-                             int whichone)
+static void
+o_grips_end_line(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   /* don't allow zero length nets / lines / pins
    * this ends the net drawing behavior
@@ -1230,8 +1347,8 @@ static void o_grips_end_line(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Net Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_net(GschemToplevel *w_current, Object *o_current,
-                            int whichone)
+static void
+o_grips_end_net(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   GList *connected_objects;
 
@@ -1270,8 +1387,8 @@ static void o_grips_end_net(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  Net Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_pin(GschemToplevel *w_current, Object *o_current,
-                            int whichone)
+static void
+o_grips_end_pin(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   /* don't allow zero length pin
    * this ends the pin changing behavior
@@ -1304,8 +1421,8 @@ static void o_grips_end_pin(GschemToplevel *w_current, Object *o_current,
  *  \param [in] o_current  bus Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_bus(GschemToplevel *w_current, Object *o_current,
-                            int whichone)
+static void
+o_grips_end_bus(GschemToplevel *w_current, Object *o_current, int whichone)
 {
   /* don't allow zero length bus
    * this ends the bus changing behavior
@@ -1321,7 +1438,6 @@ static void o_grips_end_bus(GschemToplevel *w_current, Object *o_current,
                 w_current->second_wy, w_current->which_grip);
   s_conn_update_object (o_current);
 }
-
 
 /*! \brief End process of modifying object with grip.
  *  \par Function Description
@@ -1339,7 +1455,8 @@ static void o_grips_end_bus(GschemToplevel *w_current, Object *o_current,
  *
  *  \param [in,out] w_current  The GschemToplevel object.
  */
-void o_grips_end(GschemToplevel *w_current)
+void
+o_grips_end(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object *object;
@@ -1418,114 +1535,4 @@ void o_grips_end(GschemToplevel *w_current)
 
   toplevel->page_current->CHANGED=1;
   o_undo_savestate(w_current, UNDO_ALL);
-}
-
-/*! \brief Get half the width and height of grip in screen units.
- *  \par Function Description
- *  This function returns a value half the size of the grip size
- *  in screen units, based on the objects width and the zoom factor.
- *  Between the threashold and 0, grippable object with non-zero
- *  width, the size returned is the greater of width - factor and
- *  <b>GRIP_SIZE_ZOOM1</b>. The value returned for "grippables" with
- *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
- *  #MAX_GRIP_SIZE is returned.
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     Object associated with operation.
- *
- *  \return Half grip size in screen units.
- */
-int o_grips_half_size(GschemToplevel *w_current,  Object *object)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  int factor;
-  int ret_size;
-  int abs_size;
-
-  if ( object == NULL)
-  {
-    ret_size = w_current->grip_size / 2;//MAX_GRIP_SIZE / 2;
-  }
-  else
-  {
-    /* if is a grip-able object */
-    if (object->type == OBJ_NET    ||
-        object->type == OBJ_BUS    ||
-        object->type == OBJ_LINE   ||
-        object->type == OBJ_ARC    ||
-        object->type == OBJ_BOX    ||
-        object->type == OBJ_CIRCLE ||
-        object->type == OBJ_PATH)
-    {
-      factor = (int) toplevel->page_current->to_world_x_constant;
-      if (factor < GRIP_ZOOM_THREASHOLD_1) {
-        abs_size = SCREENabs (w_current, GRIP_SIZE_ZOOM1);
-        if (object->line_options->line_width > 0)
-        {
-          if (( object->line_options->line_width > w_current->grip_size) && (factor > 0)) {
-            ret_size = max( abs_size, (object->line_options->line_width - factor) / 2) ;
-          }
-          else
-          {
-            ret_size = abs_size;
-          }
-        }
-        else
-        {
-           ret_size = abs_size;
-        }
-      }
-      else {
-        ret_size = w_current->grip_size / 2;
-      }
-    }
-    else {
-      ret_size = w_current->grip_size / 2;
-    }
-  }
-  return min(ret_size, MAX_GRIP_SIZE/2);
-}
-
-/*! \brief Draw objects being grip maniuplated from GschemToplevel object.
- *
- *  \par Function Description
- *  This function draws the objects being grip manipulated.
- *
- *  \param [in] w_current  The GschemToplevel object.
- */
-void o_grips_draw_rubber (GschemToplevel *w_current)
-{
-  g_return_if_fail (w_current->which_object != NULL);
-
-  switch(w_current->which_object->type) {
-    case OBJ_ARC:
-      o_arc_draw_rubber (w_current);
-      break;
-
-    case OBJ_BOX:
-      o_box_draw_rubber (w_current);
-      break;
-
-    case OBJ_PATH:
-      o_path_draw_rubber_grips (w_current);
-      break;
-
-    case OBJ_PICTURE:
-      o_picture_draw_rubber (w_current);
-      break;
-
-    case OBJ_CIRCLE:
-      o_circle_draw_rubber (w_current);
-      break;
-
-    case OBJ_LINE:
-    case OBJ_NET:
-    case OBJ_PIN:
-    case OBJ_BUS:
-      o_line_draw_rubber (w_current);
-    break;
-
-    default:
-    return; /* error condition */
-  }
 }
