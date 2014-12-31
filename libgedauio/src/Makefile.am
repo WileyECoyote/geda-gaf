@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 #
 
@@ -9,13 +10,15 @@ INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include
 INC_LIBGEDA                  = -I$(top_srcdir)/libgeda/include
 
-GEDA_INCLUDES                = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedauio\"
+
+GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
 	             	       $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS                   = -version-info $(LIBGEDAUIO_SHLIB_VERSION) $(GLIB_LIBS)     $(GTK_LIBS) \
-					     $(WINDOWS_LIBTOOL_FLAGS)    $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+					    $(WINDOWS_LIBTOOL_FLAGS)    $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedauio.la
 

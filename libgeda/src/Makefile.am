@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
@@ -6,7 +7,7 @@ INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include/libgeda
 
-GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 lib_LTLIBRARIES = libgeda.la
 
@@ -73,28 +74,28 @@ endif
 
 CLEAN_DIRS = file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ scheme/*~ struct/*~ utility/*~
 
-MOSTLYCLEANFILES     = *.log core FILE *~ 
+MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~ $(CLEAN_DIRS) $(BUILT_SOURCES)
 DISTCLEANFILES       = *.log core FILE *~ $(CLEAN_DIRS)
 MAINTAINERCLEANFILES = *.log core FILE *~ $(CLEAN_DIRS) Makefile.in
 
-file/clean: 
+file/clean:
 			@rm -rf file/*~
-geda/clean: 
+geda/clean:
 			@rm -rf geda/*~
-guile/clean: 
+guile/clean:
 			@rm -rf guile/*~
-iface/clean: 
+iface/clean:
 			@rm -rf iface/*~
-math/clean: 
+math/clean:
 			@rm -rf math/*~
-object/clean: 
+object/clean:
 			@rm -rf object/*~
-scheme/clean: 
+scheme/clean:
 			@rm -rf scheme/*~
-struct/clean: 
+struct/clean:
 			@rm -rf struct/*~
-utility/clean: 
+utility/clean:
 			@rm -rf utility/*~
 
 # Unfortunately, in order to test libtool thoroughly, we need access

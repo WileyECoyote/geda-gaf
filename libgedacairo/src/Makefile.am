@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
@@ -6,7 +7,9 @@ INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
-GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+LOG_DOMAIN      = -DG_LOG_DOMAIN=\"libgedacairo\"
+
+GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 lib_LTLIBRARIES = libgedacairo.la
 
@@ -14,7 +17,7 @@ libgedacairo_la_SOURCES = edacairo.c \
 			  edapangorenderer.c \
 			  edarenderer.c
 
-AM_CPPFLAGS     = $(GEDA_INCLUDES) -I$(includedir)
+AM_CPPFLAGS = $(GEDA_INCLUDES) -I$(includedir)
 
 AM_CFLAGS  = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
 	     $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
