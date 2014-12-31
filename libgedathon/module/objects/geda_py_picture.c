@@ -103,7 +103,7 @@ Picture_init(PictureObject *self, PyObject *args, PyObject *kwds)
                            "angle", "mirror", "embedded", "pixel_buffer",
                            NULL};
 
-  if (! PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiSlfiiiiiiiO:geda.Picture.__init__",
+  if (! PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiSldiiiiiiiO:geda.Picture.__init__",
                                     kwlist, &py_name, &type, &pid, &sid, &locked,
                                     &py_filename, &self->file_length, &self->ratio,
                                     &self->upper_x, &self->upper_y,

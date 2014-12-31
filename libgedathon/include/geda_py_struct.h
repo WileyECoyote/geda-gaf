@@ -309,7 +309,7 @@ struct st_py_picture {
     PyObject    *filename;
     PyObject    *pixel_buffer;
     unsigned int file_length;
-    float        ratio;
+    double       ratio;
     int          angle;
     bool         mirror;
     bool         embedded;

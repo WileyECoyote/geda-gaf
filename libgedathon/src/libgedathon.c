@@ -628,27 +628,27 @@ get_picture_object_data(Object *object)
   PyObject  *py_pixbuf;
   GdkPixbuf *pixbuf;
 
-  char *name        = object->name;
-  int   type        = object->type;
-  int   pid         = GEDA_IS_PAGE(object->page) ? object->page->pid : -1;
-  int   sid         = object->sid;
-  int   lock        = !object->selectable;
+  char  *name        = object->name;
+  int    type        = object->type;
+  int    pid         = GEDA_IS_PAGE(object->page) ? object->page->pid : -1;
+  int    sid         = object->sid;
+  int    lock        = !object->selectable;
 
-  char *filepath    = object->name;
-        pixbuf      = object->picture->pixbuf;
-  int   file_length = object->picture->file_length; /* unsigned int */
-  float ratio       = object->picture->ratio;
+  char  *filepath    = object->name;
+         pixbuf      = object->picture->pixbuf;
+  int    file_length = object->picture->file_length; /* unsigned int */
+  double ratio       = object->picture->ratio;
 
-  int   angle       = object->picture->angle;
-  bool  mirrored    = object->picture->mirrored;
-  bool  embedded    = object->picture->is_embedded;
+  int    angle       = object->picture->angle;
+  bool   mirrored    = object->picture->mirrored;
+  bool   embedded    = object->picture->is_embedded;
 
   py_pixbuf = Py_BuildValue("B", pixbuf);
 
-  int   upper_x    = object->picture->upper_x;
-  int   upper_y    = object->picture->upper_y;
-  int   lower_x    = object->picture->lower_x;
-  int   lower_y    = object->picture->lower_y;
+  int    upper_x    = object->picture->upper_x;
+  int    upper_y    = object->picture->upper_y;
+  int    lower_x    = object->picture->lower_x;
+  int    lower_y    = object->picture->lower_y;
 
   data = Py_BuildValue("siiiisifiiiiiiiO", name, type, pid, sid, lock,
                         filepath, file_length, ratio,
