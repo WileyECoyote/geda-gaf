@@ -935,11 +935,12 @@ o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
   w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
   w_current->pixbuf_filename = u_string_strdup (o_picture_get_filename (o_current));
-  w_current->pixbuf_wh_ratio = (double) o_picture_get_width(o_current) /
-                                        o_picture_get_height(o_current);
-fprintf(stderr, "pixbuf_wh_ratio=%f\n", w_current->pixbuf_wh_ratio);
+
+  w_current->pixbuf_wh_ratio = o_picture_get_effective_ratio (o_current);
+
   /* (second_wx,second_wy) is the selected corner */
   /* (first_wx, first_wy) is the opposite corner */
+
   switch(whichone) {
     case PICTURE_UPPER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
@@ -970,7 +971,7 @@ fprintf(stderr, "pixbuf_wh_ratio=%f\n", w_current->pixbuf_wh_ratio);
   }
 
   /* draw the first temporary picture */
-  /* o_picture_invalidate_rubber (w_current); */
+  o_picture_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
 }
 
@@ -1254,11 +1255,13 @@ o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
     return;
   }
 
-  if (w_current->CONTROLKEY)
+  if (w_current->CONTROLKEY) {
     o_picture_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
-  else
+  }
+  else {
     o_picture_modify_all (o_current, w_current->first_wx,  w_current->first_wy,
                                      w_current->second_wx, w_current->second_wy);
+  }
 
   GEDA_UNREF (w_current->current_pixbuf);
   w_current->current_pixbuf = NULL;

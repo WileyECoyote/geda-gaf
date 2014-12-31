@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,22 @@
 /*!
  * file o_picture.c
  * \brief Low-level module for manipulating Picture objects
+ *
+ * This module contains routines to add or replace picture objects, and to
+ * draw and remove out-line boxes, referred to as "rubber", during placement
+ * and editing. Users are free to change the aspect ratio of the image when
+ * placing or re-sizing. Users can also press the control key to constrain
+ * the ratio to the original value. For new pictures, this will be the same
+ * as the file version. The original aspect ratio when re-sizing is the ratio
+ * before re-sizing and thus the resulting ratio depends on whether the image
+ * had been previously distorted.
+ *
+ * \todo There is currently no direct means to restore the orginal aspect
+ *       ratio, which is save in the picture object.
+ *
  * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
+
 #include <gschem.h>
 #include <gschem_macros.h>
 #include <geda_image_chooser.h>
@@ -57,68 +71,75 @@ o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
 
+  w_current->second_wx++;
+  w_current->second_wy++;
+
   /* start to draw the box */
-  o_picture_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
 }
 
 /*! \brief End the input of a new Picture.
  *
  *  \par Function Description
- *  This function ends the input of the second corner of a picture.
- *  The picture is defined by (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>
+ *  This function completes the input of the second corner of a picture. The
+ *  picture is defined by (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>
  *  and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>.
  *
- *  The temporary picture frame is erased ; a new picture object is allocated,
- *  initialized and linked to the object list ; The object is finally
- *  drawn on the current sheet.
+ *  The temporary picture frame is erased, a new picture object is allocated,
+ *  initialized and linked to the object list. The object is finally drawn on
+ *  the current sheet.
  *
  *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        (unused)
- *  \param [in] w_y        (unused)
+ *  \param [in] w_x        (not used)
+ *  \param [in] w_y        (not used)
  */
 void
 o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
+  Object       *new_obj;
+
+  int picture_left,  picture_top;
   int picture_width, picture_height;
-  int picture_left, picture_top;
 
   if (w_current->inside_action == 0) {
     BUG_MSG("Not inside action\n");
-    return;
   }
+  else {
 
-  /* erase the temporary picture */
-  /* o_picture_draw_rubber(w_current); */
-  w_current->rubber_visible = 0;
+    /* erase the temporary picture */
+    /* o_picture_draw_rubber(w_current); */
+    w_current->rubber_visible = 0;
 
-  picture_width  = GET_PICTURE_WIDTH (w_current);
-  picture_height = GET_PICTURE_HEIGHT(w_current);
-  picture_left   = GET_PICTURE_LEFT  (w_current);
-  picture_top    = GET_PICTURE_TOP   (w_current);
+    picture_left   = GET_PICTURE_LEFT  (w_current);
+    picture_width  = GET_PICTURE_WIDTH (w_current);
+    picture_height = GET_PICTURE_HEIGHT(w_current);
+    picture_top    = GET_PICTURE_TOP   (w_current);
 
-  /* pictures with null width and height are not allowed */
-  if ((picture_width == 0) && (picture_height == 0)) {
-    /* cancel the object creation */
-    return;
+    /* pictures with null width and height are not allowed */
+    if ((picture_width == 0) && (picture_height == 0)) {
+      /* cancel the object creation */
+      return;
+    }
+
+    /* create the new picture object */
+    new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
+                            picture_left, picture_top,
+                            picture_left + picture_width,
+                            picture_top - picture_height,
+                            0, FALSE, FALSE);
+
+  picture_width  = SCREENabs (w_current, w_current->rubber_x);
+  picture_height = SCREENabs (w_current, w_current->rubber_y);
+
+    s_page_append_object (toplevel->page_current, new_obj);
+
+    /* Run %add-objects-hook */
+    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+    toplevel->page_current->CHANGED = 1;
+    o_undo_savestate(w_current, UNDO_ALL);
   }
-
-  /* create the new picture object */
-  new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
-                          picture_left, picture_top,
-                          picture_left + picture_width,
-                          picture_top - picture_height,
-                          0, FALSE, FALSE);
-
-  s_page_append_object (toplevel->page_current, new_obj);
-
-  /* Run %add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  toplevel->page_current->CHANGED = 1;
-  o_undo_savestate(w_current, UNDO_ALL);
 }
 
 /*! \brief Draw temporary picture out-line while sizing pictures
@@ -130,7 +151,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
  *  the pointer position.
  *
  *  The old values are inside the <B>w_current</B> pointed structure. Old
- *  width, height and left and top values are recomputed by the corresponding
+ *  width, height and left and top values are recomputed by corresponding
  *  macros.
  *
  *  \param [in] w_current  The GschemToplevel object.
@@ -141,26 +162,27 @@ void
 o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 #if DEBUG
-  printf("%s: w_x=%d, w_y=%d\n", __func__, w_x, w_y);
+  printf("%s: CONTROLKEY <%d> rvisible %d w_x=%d, w_y=%d\n", __func__,
+         w_current->CONTROLKEY, w_current->rubber_visible, w_x, w_y);
 #endif
 
   if (w_current && w_current->inside_action) {
 
     /* erase the previous temporary box */
-    if (w_current->rubber_visible)
+    if (w_current->rubber_visible) {
       o_picture_invalidate_rubber (w_current);
+    }
 
     /* New values are fixed according to the <B>w_x</B> and <B>w_y</B>
      * parameters. These are saved in <B>w_current</B> pointed structure
      * as new temporary values. The new box is then drawn.
      */
 
-    /* update the coords of the corner */
+    /* update the coordinates of the corner */
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
 
-    /* draw the new temporary box */
-    o_picture_invalidate_rubber (w_current);
+    /* set flag to draw the new temporary box */
     w_current->rubber_visible = 1;
   }
 }
@@ -168,24 +190,33 @@ o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Invalidate the Rubber for Picture Objects
  *
  *  \par Function Description
- *
- *  \note used in button cancel code in x_events.c
+ *  This function invalidates the regions where the temporary box
+ *  was drawn when sizing or re-sizing picture objects. The width
+ *  and height are calculated based on what was drawn, rather than
+ *  using macros GET_PICTURE_WIDTH and GET_PICTURE_HEIGHT because
+ *  the state of CONTROLKEY state may have changed during motion
+ *  and we need to invalidate the rubber that what actually drawn.
  */
 void
 o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
 
-  WORLDtoSCREEN (w_current, GET_PICTURE_LEFT(w_current), GET_PICTURE_TOP(w_current), &left, &top);
+  WORLDtoSCREEN (w_current, GET_PICTURE_LEFT(w_current),
+                            GET_PICTURE_TOP(w_current), &left, &top);
 
-  width  = SCREENabs (w_current, GET_PICTURE_WIDTH (w_current));
-  height = SCREENabs (w_current, GET_PICTURE_HEIGHT(w_current));
+  width  = SCREENabs (w_current, w_current->rubber_x);
+  height = SCREENabs (w_current, w_current->rubber_y);
 
   o_invalidate_rectangle (w_current, left, top, left + width, top);
   o_invalidate_rectangle (w_current, left, top, left, top + height);
   o_invalidate_rectangle (w_current, left + width, top, left + width, top + height);
   o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
 
+#if DEBUG
+  fprintf(stderr, "%s \tleft  %d, top %d, width %d, height %d\n", __func__,
+                        left,     top,    width,    height);
+#endif
 }
 
 /*! \brief Draw picture from GschemToplevel object
@@ -221,6 +252,10 @@ o_picture_draw_rubber (GschemToplevel *w_current)
   width      = GET_PICTURE_WIDTH  (w_current);
   height     = GET_PICTURE_HEIGHT (w_current);
 
+  /* Save h & w in case CONTROLKEY changes */
+  w_current->rubber_x = width;
+  w_current->rubber_y = height;
+
   eda_cairo_box (cr, flags, wwidth, left, top - height, left + width, top);
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
@@ -233,10 +268,10 @@ o_picture_draw_rubber (GschemToplevel *w_current)
  *  in the current selection if \a o_current is NULL, with the image specified
  *  by \a filename.
  *
- * \param [in] w_current  The GschemToplevel object
- * \param [in] filename   The filename of the new picture
- * \param [in] o_current  The picture to update or NULL to use selection
- * \param [out] error     The location to return error information.
+ * \param [in]  w_current  The GschemToplevel object
+ * \param [in]  filename   The filename of the new picture
+ * \param [in]  o_current  The picture to update or NULL to use selection
+ * \param [out] error      The location to return error information.
  *
  * \return TRUE on success, FALSE on failure.
  */
@@ -366,7 +401,9 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
      * name if exist then use this directory as the starting point
      * and fill in the name if there is only one picture selected */
     if (oldfilename) {
+
       char *filepath = g_path_get_dirname (oldfilename);
+
       if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
       {
         geda_image_chooser_set_current_folder(dialog, filepath);
@@ -375,7 +412,9 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
       geda_image_chooser_set_filename (dialog, f_get_basename(oldfilename));
     }
     else { /* start in current working directory, NOT in 'Recently Used' */
+
       char *cwd = g_get_current_dir ();
+
       geda_image_chooser_set_current_folder (dialog, cwd);
       GEDA_FREE (cwd);
     }
