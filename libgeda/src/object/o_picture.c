@@ -302,8 +302,13 @@ o_picture_new (const char *file_content, unsigned int file_length,
   picture->is_embedded  = embedded;
 
   /* Can not divide by zero */
-  if ( (y1 - y2) != 0 ) {
-    picture->ratio = abs ((x1 - x2) / (y1 - y2));
+  if ((picture->lower_y - picture->upper_y) != 0) {
+    picture->ratio = (double) (picture->upper_x - picture->lower_x) /
+                              (picture->lower_y - picture->upper_y);
+  }
+  else {
+    g_critical (_("Invalid picture has no height, set aspect to 1.0\n"));
+    picture->ratio = 1.0;
   }
 
   if ( filename ) {
@@ -407,7 +412,7 @@ o_picture_copy(Object *o_current)
 }
 
 static void
-add_if_writable (GdkPixbufFormat *data, GSList **list)
+o_picture_add_if_writable (GdkPixbufFormat *data, GSList **list)
 {
   if (gdk_pixbuf_format_is_writable (data)) {
     *list = g_slist_prepend (*list, data);
@@ -576,7 +581,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
 
       /* Reduce list to only writable formats */
       writable = NULL;
-      g_slist_foreach(formats, (GFunc)add_if_writable, &writable);
+      g_slist_foreach(formats, (GFunc)o_picture_add_if_writable, &writable);
 
       is_writable = 0;
 
@@ -835,7 +840,7 @@ void
 o_picture_modify(Object *object, int x, int y, int whichone)
 {
   int tmp;
-  float ratio = o_picture_get_ratio (object);
+  double ratio = o_picture_get_effective_ratio (object);
 
   /* change the position of the selected corner */
   switch(whichone) {
@@ -1281,9 +1286,10 @@ o_picture_get_position (int *x, int *y, Object *object)
  *
  *  \param [in] object   The object to get the position.
  */
-int o_picture_get_height (Object *object)
+int
+ o_picture_get_width(Object *object)
 {
-  return object->picture->upper_x - object->picture->lower_x;
+  return object->picture->lower_x - object->picture->upper_x;
 }
 
 /*! \brief Get Width of a Picture
@@ -1294,12 +1300,58 @@ int o_picture_get_height (Object *object)
  *
  *  \param [in] object   The object to get the position.
  */
-int o_picture_get_width             (Object *object)
+int
+o_picture_get_height (Object *object)
 {
   return object->picture->upper_y - object->picture->lower_y;
 }
 
-/*! \brief Get the Effective width/height ratio of an image
+/*! \brief Get Width/Height Ratio of an Image
+ *
+ * \par Function Description
+
+ * Returns the width/height ratio of picture \a object.
+ *
+ * \param object    Picture#Object to inspect
+ *
+ * \return width/height ratio for \a object.
+ */
+double
+o_picture_get_ratio (Object *object)
+{
+  double anwser;
+
+  if (GEDA_IS_PICTURE(object)) {
+
+    int angle  = object->picture->angle;
+    int height = o_picture_get_height(object);
+    int width  = o_picture_get_width (object);
+
+    /* The effective ratio varies depending on the rotation of the
+     * image. */
+    switch (angle) {
+      default:
+        BUG_IMSG ("Invalid picture angle %i, set to 0 degrees\n", angle);
+        object->picture->angle = 0;
+        /* fall-through*/
+      case 0:
+      case 180:
+        anwser = (double) width / height;
+        break;
+      case 90:
+      case 270:
+        anwser = (double) height / width;
+        break;
+    }
+  }
+  else {
+    BUG_MSG ("Invald type of Object, expecting Picture\n");
+    anwser = 1.0;
+  }
+  return anwser;
+}
+
+/*! \brief Get Effective Width/Height Ratio of an Image
  *
  * \par Function Description
 
@@ -1310,26 +1362,24 @@ int o_picture_get_width             (Object *object)
  *
  * \return width/height ratio for \a object.
  */
-float
-o_picture_get_ratio (Object *object)
+double
+o_picture_get_effective_ratio (Object *object)
 {
+  double anwser;
 
-  g_return_val_if_fail (GEDA_IS_PICTURE(object), 1);
+  if (GEDA_IS_PICTURE(object)) {
 
-  /* The effective ratio varies depending on the rotation of the
-   * image. */
-  switch (object->picture->angle) {
-  case 0:
-  case 180:
-    return object->picture->ratio;
-  case 90:
-  case 270:
-    return 1.0 / object->picture->ratio;
-  default:
-    g_critical (_("Picture %p has invalid angle %i\n"), object,
-                   object->picture->angle);
+    int width  = o_picture_get_width (object);
+    int height = o_picture_get_height(object);
+
+        anwser = (double) width / height;
+
   }
-  return 0;
+  else {
+    BUG_MSG ("Invald type of Object, expecting Picture\n");
+    anwser = 1.0;
+  }
+  return anwser;
 }
 
 /*! \brief Print picture to Postscript document
@@ -1445,7 +1495,10 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  * \par Function Description
  * Sets the contents of the picture \a object by reading image data
- * from a buffer.  The buffer should be in on-disk format.
+ * from a buffer. The buffer should be in on-disk format.
+ *
+ * \note object->picture->ratio is set to the ratio of the buffer
+ *       image and not the ratio of the as drawn image.
  *
  * \param object   The picture#Object to modify.
  * \param filename The new filename for the picture.
@@ -1464,7 +1517,10 @@ o_picture_set_from_buffer (Object        *object,
 {
   GdkPixbuf    *pixbuf;
   GInputStream *stream;
-  char         *tmp;
+  char         *tmp_name;
+
+  int height;
+  int width;
 
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
   g_return_val_if_fail (data != NULL, FALSE);
@@ -1482,12 +1538,17 @@ o_picture_set_from_buffer (Object        *object,
   }
   object->picture->pixbuf = pixbuf;
 
-  object->picture->ratio = (gdk_pixbuf_get_width(pixbuf) /
-                            gdk_pixbuf_get_height(pixbuf));
+  width  = gdk_pixbuf_get_width(pixbuf);
+  height = gdk_pixbuf_get_height(pixbuf);
 
-  tmp = u_string_strdup (filename);
+  /* CAUTION! Do NOT put parenthesis around width / height
+   * or GCC will generate code to perform integer division,
+   * in effect, rounding the ratio to a whole number */
+  object->picture->ratio = (double) width / height;
+
+  tmp_name = u_string_strdup (filename);
   GEDA_FREE (object->picture->filename);
-  object->picture->filename = tmp;
+  object->picture->filename = tmp_name;
 
   char *buf = GEDA_MEM_REALLOC (object->picture->file_content, len);
 
@@ -1654,7 +1715,7 @@ o_picture_get_pixbuf_fit (Object *object, int interp)
 
     /* upper is considered the origin, world units */
     int width  = o_pic->upper_x - o_pic->lower_x;
-    int height = o_pic->upper_y - o_pic->lower_y;
+    int height = o_pic->lower_y - o_pic->upper_y;
     int angle  = o_pic->angle;
     int mirror = o_pic->mirrored;
 
