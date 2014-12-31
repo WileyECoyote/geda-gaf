@@ -64,7 +64,7 @@ struct _GedaPicture {
   char        *file_content;
   unsigned int file_length;
 
-  float  ratio;
+  double ratio;
   char  *filename;
   int    angle;
   char   mirrored;
