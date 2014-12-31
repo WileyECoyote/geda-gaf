@@ -87,7 +87,7 @@ static bool eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
 static void
 eda_pango_renderer_class_init (EdaPangoRendererClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GObjectClass *object_class       = G_OBJECT_CLASS (klass);
   PangoRendererClass *parent_class = PANGO_RENDERER_CLASS (klass);
 
   g_type_class_add_private (object_class, sizeof (EdaPangoRendererPrivate));
@@ -202,20 +202,24 @@ eda_pango_renderer_draw_glyphs (PangoRenderer *renderer,
   cairo_t *cr = eda_renderer->priv->cr;
 
   if (eda_renderer->priv->overbar) {
+
     PangoFontMetrics *metrics;
+    PangoRectangle    glyphs_extents;
+
     double rx, ry;
     double rwidth;
     double rheight;
-    PangoRectangle glyphs_extents;
 
     pango_glyph_string_extents (glyphs, font, NULL, &glyphs_extents);
-    rx = x / PANGO_SCALE;
-    ry = (y - glyphs_extents.height * MAGIC_OVERBAR_POS_CONSTANT) / PANGO_SCALE;
-    rwidth = glyphs_extents.width / PANGO_SCALE;
+
+    rx      = x / PANGO_SCALE;
+    ry      = (y - glyphs_extents.height * MAGIC_OVERBAR_POS_CONSTANT) / PANGO_SCALE;
+    rwidth  = glyphs_extents.width / PANGO_SCALE;
 
     /* Make the thickness the same as for the font's underline */
     metrics = pango_font_get_metrics (font, NULL);
     rheight = pango_font_metrics_get_underline_thickness (metrics) / PANGO_SCALE;
+
     pango_font_metrics_unref (metrics);
 
     /* Allow the overbar to fade out as it becomes < 1px high */
@@ -322,13 +326,11 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
   int height;
 
   pango_layout_get_size (pl, &width, &height);
-  width = width / PANGO_SCALE;
+  width  = width / PANGO_SCALE;
   height = height / PANGO_SCALE;
 
-  pango_renderer_draw_layout (PANGO_RENDERER (renderer),
-                              pl, width, height);
+  pango_renderer_draw_layout (PANGO_RENDERER (renderer), pl, width, height);
 }
-
 
 /* ---------------------------------------- */
 
@@ -379,14 +381,14 @@ eda_is_pango_attr_overbar (PangoAttribute *attr)
 }
 
 bool
-eda_pango_parse_overbars (const char *overbar_text, int length,
+eda_pango_parse_overbars (const char *overbar_text,  int    length,
                           PangoAttrList **attr_list, char **text)
 {
-  const char *in_ptr = NULL;
-  char *out_ptr;
-  char *overbar_start = NULL;
-  char *overbar_end = NULL;
-  const char *escape_start = NULL;
+  char       *out_ptr;
+  char       *overbar_start = NULL;
+  char       *overbar_end   = NULL;
+  const char *escape_start  = NULL;
+  const char *in_ptr        = NULL;
 
   g_return_val_if_fail ((overbar_text != NULL), FALSE);
   g_return_val_if_fail ((attr_list != NULL), FALSE);
@@ -407,7 +409,8 @@ eda_pango_parse_overbars (const char *overbar_text, int length,
 
   out_ptr = *text;
 
-  for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++){
+  for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++)
+  {
 
     /* If we find an escape character and we are not already in an
      * escaped state, enter escaped state and don't add the current
@@ -419,28 +422,34 @@ eda_pango_parse_overbars (const char *overbar_text, int length,
 
     /* If the escaped character is '_', this is an overbar delimiter.
      * Enter or exit overbar state if appropriate. Otherwise, simply
-     * append the character (which may have been escaped) to the
-     * output. */
+     * append the character (which may have been escaped) to the output.
+     */
     if ((*in_ptr == '_') && escape_start) {
+
       if (overbar_start) {
         overbar_end = out_ptr;
       } else {
         overbar_start = out_ptr;
       }
-    } else {
+    }
+    else {
       *out_ptr++ = *in_ptr;
     }
+
     escape_start = NULL;
 
     /* If we've previously found an overbar delimiter, and either we
      * find a null byte or another overbar delimiter, create an
      * overbar attribute for the intervening run of characters. */
     if (overbar_start && (overbar_end || (*in_ptr == '\0'))) {
+
       /* Create overbar attribute and add to attribute list */
       PangoAttribute *attr = eda_pango_attr_overbar_new (TRUE);
-      attr->start_index = overbar_start - *text;
-      attr->end_index = overbar_end - *text;
+      attr->start_index    = overbar_start - *text;
+      attr->end_index      = overbar_end - *text;
+
       pango_attr_list_insert (*attr_list, attr);
+
       /* Clear overbar start & end pointers */
       overbar_start = overbar_end = NULL;
     }
@@ -452,4 +461,3 @@ eda_pango_parse_overbars (const char *overbar_text, int length,
 
   return TRUE;
 }
-

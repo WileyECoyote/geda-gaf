@@ -960,7 +960,9 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
   }
 
   /* Otherwise, actually draw the text */
+
   cairo_save (renderer->priv->cr);
+
   if (eda_renderer_prepare_text (renderer, object)) {
     eda_pango_renderer_show_layout (renderer->priv->pr, renderer->priv->pl);
     cairo_restore (renderer->priv->cr);
