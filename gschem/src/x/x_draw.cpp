@@ -43,7 +43,8 @@
 
 static EdaX11Render *RenderAdaptor;
 
-static void x_draw_set_color(GschemToplevel *w_current)
+static void
+x_draw_set_color(GschemToplevel *w_current)
 {
   GdkColor *color;
   Object   *o_current = RenderAdaptor->object;

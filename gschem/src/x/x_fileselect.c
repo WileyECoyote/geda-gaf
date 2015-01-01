@@ -153,8 +153,9 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
                     preview);
 }
 
-static void x_fileselect_save_filter_index (GtkWidget      *chooser,
-                                            GschemToplevel *w_current)
+static void
+x_fileselect_save_filter_index (GtkWidget      *chooser,
+                                GschemToplevel *w_current)
 {
   w_current->chooser_filter = geda_file_chooser_get_filter(chooser);
   default_chooser_filter    = w_current->chooser_filter;
@@ -174,7 +175,8 @@ static void x_fileselect_save_filter_index (GtkWidget      *chooser,
  *  \return list of filenames selected by the user, single-linked or
  *          NULL if no files were selected
  */
-GSList *x_fileselect_list(GschemToplevel *w_current)
+GSList *
+x_fileselect_list(GschemToplevel *w_current)
 {
   GtkWidget *dialog;
   GSList    *filenames;
@@ -411,7 +413,8 @@ x_fileselect_save (GschemToplevel *w_current)
  *
  *  \return TRUE if the user wants to load the backup file, FALSE otherwise.
  */
-int x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
+int
+x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   GtkWindow  *window;
