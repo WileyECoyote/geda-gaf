@@ -40,8 +40,9 @@
  * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
 
+#include <math.h>
+
 #include <gschem.h>
-#include <gschem_macros.h>
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
 
@@ -66,16 +67,15 @@
  */
 void
 o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
-{
+ {
   /* init first_w[x|y], second_w[x|y] to describe box */
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
 
-  w_current->second_wx++;
-  w_current->second_wy++;
-
   /* start to draw the box */
   w_current->rubber_visible = 1;
+
+  o_box_invalidate_rubber (w_current);
 }
 
 /*! \brief End the input of a new Picture.
@@ -108,51 +108,40 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   else {
 
     /* erase the temporary picture */
-    /* o_picture_draw_rubber(w_current); */
     w_current->rubber_visible = 0;
 
-    picture_left   = GET_PICTURE_LEFT  (w_current);
-    picture_width  = GET_PICTURE_WIDTH (w_current);
-    picture_height = GET_PICTURE_HEIGHT(w_current);
-    picture_top    = GET_PICTURE_TOP   (w_current);
+    picture_left   = w_current->rubber_x1;
+    picture_top    = w_current->rubber_y1;
+    picture_width  = w_current->rubber_x2;
+    picture_height = w_current->rubber_y2;
 
     /* pictures with null width and height are not allowed */
-    if ((picture_width == 0) && (picture_height == 0)) {
-      /* cancel the object creation */
-      return;
+    if ((picture_width != 0) && (picture_height != 0)) {
+
+      /* create the new picture object */
+      new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
+                                       picture_left, picture_top,
+                                       picture_left + picture_width,
+                                       picture_top - picture_height,
+                                    0, FALSE, FALSE);
+
+      s_page_append_object (toplevel->page_current, new_obj);
+
+      /* Run %add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+      toplevel->page_current->CHANGED = 1;
+      o_undo_savestate(w_current, UNDO_ALL);
     }
-
-    /* create the new picture object */
-    new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
-                            picture_left, picture_top,
-                            picture_left + picture_width,
-                            picture_top - picture_height,
-                            0, FALSE, FALSE);
-
-  picture_width  = SCREENabs (w_current, w_current->rubber_x);
-  picture_height = SCREENabs (w_current, w_current->rubber_y);
-
-    s_page_append_object (toplevel->page_current, new_obj);
-
-    /* Run %add-objects-hook */
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-    toplevel->page_current->CHANGED = 1;
-    o_undo_savestate(w_current, UNDO_ALL);
-  }
+  } /* else cancel creation of object */
 }
 
 /*! \brief Draw temporary picture out-line while sizing pictures
  *
  *  \par Function Description
- *  This function is used to draw a box while dragging a picture grip point.
- *  The previous temporary out-line box is erased before drawing an updated box.
- *  <B>w_x</B> and <B>w_y</B> are the new position of the "mobile" point, i.e.
- *  the pointer position.
- *
- *  The old values are inside the <B>w_current</B> pointed structure. Old
- *  width, height and left and top values are recomputed by corresponding
- *  macros.
+ *  This function is called to update the coordinates of the pointer
+ *  position. New world coordinates second_wx, and second_wy  are set
+ *  according to the <B>w_x</B> and <B>w_y</B> parameters.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
@@ -162,8 +151,8 @@ void
 o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 #if DEBUG
-  printf("%s: CONTROLKEY <%d> rvisible %d w_x=%d, w_y=%d\n", __func__,
-         w_current->CONTROLKEY, w_current->rubber_visible, w_x, w_y);
+  printf("%s: CONTROLKEY <%d> rvisible %d inside_action %d w_x=%d, w_y=%d\n", __func__,
+         w_current->CONTROLKEY, w_current->rubber_visible, w_current->inside_action, w_x, w_y);
 #endif
 
   if (w_current && w_current->inside_action) {
@@ -173,12 +162,7 @@ o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
       o_picture_invalidate_rubber (w_current);
     }
 
-    /* New values are fixed according to the <B>w_x</B> and <B>w_y</B>
-     * parameters. These are saved in <B>w_current</B> pointed structure
-     * as new temporary values. The new box is then drawn.
-     */
-
-    /* update the coordinates of the corner */
+    /* update the points with pointer/mouse coordinates */
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
 
@@ -192,7 +176,7 @@ o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  \par Function Description
  *  This function invalidates the regions where the temporary box
  *  was drawn when sizing or re-sizing picture objects. The width
- *  and height are calculated based on what was drawn, rather than
+ *  and height are determined based on what was drawn, rather than
  *  using macros GET_PICTURE_WIDTH and GET_PICTURE_HEIGHT because
  *  the state of CONTROLKEY state may have changed during motion
  *  and we need to invalidate the rubber that what actually drawn.
@@ -202,11 +186,11 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
 
-  WORLDtoSCREEN (w_current, GET_PICTURE_LEFT(w_current),
-                            GET_PICTURE_TOP(w_current), &left, &top);
+  WORLDtoSCREEN (w_current, w_current->rubber_x1,
+                            w_current->rubber_y1, &left, &top);
 
-  width  = SCREENabs (w_current, w_current->rubber_x);
-  height = SCREENabs (w_current, w_current->rubber_y);
+  width  = SCREENabs (w_current, w_current->rubber_x2);
+  height = SCREENabs (w_current, w_current->rubber_y2);
 
   o_invalidate_rectangle (w_current, left, top, left + width, top);
   o_invalidate_rectangle (w_current, left, top, left, top + height);
@@ -219,6 +203,10 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
 #endif
 }
 
+/* These are just used to shorten lines, no magic */
+#define QUAD_14_ASPECT(w) ((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
+#define QUAD_23_ASPECT(w) ((w)->first_wx - (w)->second_wx)/(w)->pixbuf_wh_ratio
+
 /*! \brief Draw picture from GschemToplevel object
  *
  *  \par Function Description
@@ -227,7 +215,7 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
  *  One corner of the box is at (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and the second corner is at
  *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>.
- *
+ *Save h & w in case CONTROLKEY changes
  *  \param [in] w_current  The GschemToplevel object.
  */
 void
@@ -237,7 +225,7 @@ o_picture_draw_rubber (GschemToplevel *w_current)
   cairo_t *cr;
 
   int flags;
-  int left, top, width, height;
+  int left, right, top, bottom;
 
   double
   wwidth     = 0;
@@ -246,20 +234,68 @@ o_picture_draw_rubber (GschemToplevel *w_current)
   color_map  = eda_renderer_get_color_map     (CairoRenderer);
   flags      = eda_renderer_get_cairo_flags   (CairoRenderer);
 
-  /* get the width/height and the upper left corner of the picture */
-  left       = GET_PICTURE_LEFT   (w_current);
-  top        = GET_PICTURE_TOP    (w_current);
-  width      = GET_PICTURE_WIDTH  (w_current);
-  height     = GET_PICTURE_HEIGHT (w_current);
+  if (w_current->second_wy > w_current->first_wy) {    /* Quad 1 & 2 Box upper */
+    if (w_current->second_wx > w_current->first_wx) {  /* Quad 1 Box upper to right */
+      left    = w_current->first_wx;
+      bottom  = w_current->first_wy;
+      right   = w_current->second_wx;
+      if (!w_current->CONTROLKEY) {
+        top   = w_current->second_wy;
+      }
+      else {
+        top   = bottom + QUAD_14_ASPECT (w_current);
+      }
+    }
+    else {                                             /* Quad 2 Box upper to left */
+      bottom  = w_current->first_wy;
+      right   = w_current->first_wx;
+      left    = w_current->second_wx;
+      if (!w_current->CONTROLKEY) {
+        top   = w_current->second_wy;
+      }
+      else {
+        top   = bottom + QUAD_23_ASPECT (w_current);
+      }
+    }
+  }
+  else {                                               /* Quad 3 & 4 Box below */
+    if (w_current->first_wx > w_current->second_wx) {  /* Quad 3 Box below to left */
+      right     = w_current->first_wx;
+      top       = w_current->first_wy;
+      left      = w_current->second_wx;
+      if (!w_current->CONTROLKEY) {
+        bottom  = w_current->second_wy;
+      }
+      else {
+        bottom  = top - QUAD_23_ASPECT (w_current);
+      }
+    }
+    else {                                             /* Quad 4 Box below to right */
+      left      = w_current->first_wx;
+      top       = w_current->first_wy;
+      right     = w_current->second_wx;
+      if (!w_current->CONTROLKEY) {
+        bottom  = w_current->second_wy;
+      }
+      else {
+        bottom  = top - QUAD_14_ASPECT(w_current);
+      }
+    }
+  }
 
-  /* Save h & w in case CONTROLKEY changes */
-  w_current->rubber_x = width;
-  w_current->rubber_y = height;
+  /* Save where we drew the rubber */
+  w_current->rubber_x1 = left;
+  w_current->rubber_y1 = top;
+  w_current->rubber_x2 = right - left;   /* save the width */
+  w_current->rubber_y2 = top - bottom;   /* and the height */
 
-  eda_cairo_box (cr, flags, wwidth, left, top - height, left + width, top);
+  eda_cairo_box (cr, flags, wwidth, left, bottom, right, top);
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
 }
+
+#undef QUAD_14_ASPECT
+#undef QUAD_23_ASPECT
 
 /*! \brief Replace pictures with a new picture
  *
@@ -290,7 +326,7 @@ o_picture_exchange (GschemToplevel *w_current,
     if (o_current->type == OBJ_PICTURE) {
 
       /* Erase previous picture, WEH: Really? How? */
-      o_invalidate_object (w_current, o_current);
+      //o_invalidate_object (w_current, o_current);
 
       if (o_picture_set_from_file (o_current, filename, error)) {
         o_invalidate_object (w_current, o_current); /* Draw new picture */
@@ -316,8 +352,8 @@ o_picture_exchange (GschemToplevel *w_current,
 
       if (object->type == OBJ_PICTURE) {
 
-        /* Erase previous picture, WEH: Really? How? */
-        o_invalidate_object (w_current, object);
+        /* Erase previous picture, WEH: Really? Why? */
+        //o_invalidate_object (w_current, object);
 
         if (o_picture_set_from_file (object, filename, error)) {
           o_invalidate_object (w_current, object); /* Draw new picture */

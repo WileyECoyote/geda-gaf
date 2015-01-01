@@ -5,9 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2014 Ales Hvezda
- * Copyright (C) 2014 Wiley Edward Hill
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2014-2015 Wiley Edward Hill
+ * Copyright (C) 2014-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and or
  * modify it under the terms of the GNU General Public License as
@@ -31,8 +30,8 @@
  *  \brief Pre-Processor Marcos for gschem
  *  The file contains macros used by gschem.
  *
- *  \note Presently, this header is only included by o_box.c,
- *        o_grips.c and o_picture.c.
+ *  \note Presently, this header is only included by o_box.c and
+ *        o_grips.c.
  */
 
 /* Macro for inserting and (grip) editing Box Objects. */
@@ -46,23 +45,9 @@
 #define GET_BOX_TOP(w)    (w)->first_wy  > (w)->second_wy ? (w)->first_wy  : (w)->second_wy
 
 /* Macro for inserting and (grip) editing Picture Objects. */
-#define GET_PICTURE_LEFT  GET_BOX_LEFT
 #define GET_PICTURE_WIDTH GET_BOX_WIDTH
-#define GET_PICTURE_TOP   GET_BOX_TOP
 
 #define GET_CONFINED_HEIGHT(w) abs((w)->second_wx - (w)->first_wx) / (w)->pixbuf_wh_ratio
 
-#define GET_CONFINED_TOP(w) (w)->first_wy+abs((w)->second_wx - (w)->first_wx) / (w)->pixbuf_wh_ratio
-
 #define GET_PICTURE_HEIGHT(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
                                    GET_CONFINED_HEIGHT(w) : GET_BOX_HEIGHT(w)
-
-#define GET_PICTURE_GRIP_TOP(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
-                                     GET_CONFINED_TOP(w) : GET_BOX_TOP(w)
-
-#define GET_PICTURE_BOTTOM(w) (w)->first_wy > (w)->second_wy ? (w)->second_wy : (w)->first_wy
-
-
-
-
-
