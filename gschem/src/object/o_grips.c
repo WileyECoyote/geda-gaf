@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -213,8 +213,6 @@ o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
 void
 o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
 {
-  int grip = w_current->which_grip;
-
   if (w_current->inside_action == 0) {
     BUG_MSG("Not inside action");
     return;
@@ -226,7 +224,7 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
 
   switch(w_current->which_object->type) {
     case OBJ_ARC:
-      o_arc_motion (w_current, w_x, w_y, grip);
+      o_arc_motion (w_current, w_x, w_y);
       break;
 
     case OBJ_BOX:
@@ -1151,11 +1149,9 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Arc Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
-                                int whichone)
+o_grips_end_arc(GschemToplevel *w_current, Object *o_current)
 {
   int arg1, arg2;
 
@@ -1163,7 +1159,7 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
   /* o_arc_invalidate_rubber (w_current); */
 
   /* determination of the parameters to give to o_arc_modify() */
-  switch (whichone) {
+  switch (w_current->which_grip) {
     case ARC_RADIUS:
       /* get the radius from w_current */
       arg1 = w_current->distance;
@@ -1190,7 +1186,7 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
   }
 
   /* modify the arc with the parameters determined above */
-  o_arc_modify(o_current, arg1, arg2, whichone);
+  o_arc_modify(o_current, arg1, arg2, w_current->which_grip);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1199,10 +1195,9 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Box Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_box(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_box(GschemToplevel *w_current, Object *o_current)
 {
   int box_width, box_height;
 
@@ -1218,7 +1213,7 @@ o_grips_end_box(GschemToplevel *w_current, Object *o_current, int whichone)
     return;
   }
 
-  o_box_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
+  o_box_modify(o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1227,12 +1222,11 @@ o_grips_end_box(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_path(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_path(GschemToplevel *w_current, Object *o_current)
 {
-  o_path_modify (o_current, w_current->second_wx, w_current->second_wy, whichone);
+  o_path_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1241,10 +1235,9 @@ o_grips_end_path(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static bool
-o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_picture(GschemToplevel *w_current, Object *o_current)
 {
   int  width   = GET_PICTURE_WIDTH(w_current);
   int  height  = GET_PICTURE_HEIGHT(w_current);
@@ -1284,7 +1277,7 @@ fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_
       if (w_current->CONTROLKEY) {
         o_picture_invalidate_rubber (w_current);
         o_picture_modify (o_current, w_current->second_wx,
-                          w_current->second_wy, whichone);
+                          w_current->second_wy, w_current->which_grip);
       }
       else {
         o_picture_modify_all (o_current, w_current->first_wx,
@@ -1320,10 +1313,9 @@ fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Circle Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_circle(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_circle(GschemToplevel *w_current, Object *o_current)
 {
   /* don't allow zero radius circles
    * this ends the circle drawing behavior
@@ -1352,10 +1344,9 @@ o_grips_end_circle(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Line Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_line(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_line(GschemToplevel *w_current, Object *o_current)
 {
   /* don't allow zero length nets / lines / pins
    * this ends the net drawing behavior
@@ -1367,8 +1358,8 @@ o_grips_end_line(GschemToplevel *w_current, Object *o_current, int whichone)
     return;
   }
 
-  /* modify the right line end according to whichone */
-  o_line_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
+  /* modify the right line end according to w_current->which_grip */
+  o_line_modify(o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
 
@@ -1386,10 +1377,9 @@ o_grips_end_line(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Net Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_net(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_net(GschemToplevel *w_current, Object *o_current)
 {
   GList *connected_objects;
 
@@ -1426,10 +1416,9 @@ o_grips_end_net(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Net Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_pin(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_pin(GschemToplevel *w_current, Object *o_current)
 {
   /* don't allow zero length pin
    * this ends the pin changing behavior
@@ -1460,10 +1449,9 @@ o_grips_end_pin(GschemToplevel *w_current, Object *o_current, int whichone)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  bus Object to end modification on.
- *  \param [in] whichone   Which grip is pointed to.
  */
 static void
-o_grips_end_bus(GschemToplevel *w_current, Object *o_current, int whichone)
+o_grips_end_bus(GschemToplevel *w_current, Object *o_current)
 {
   /* don't allow zero length bus
    * this ends the bus changing behavior
@@ -1502,11 +1490,9 @@ o_grips_end(GschemToplevel *w_current)
   GedaToplevel *toplevel = w_current->toplevel;
   Object       *object;
 
-  int grip;
   int modified;
 
   object = w_current->which_object;
-  grip   = w_current->which_grip;
 
   if (!object) {
     /* actually this is an error condition hack */
@@ -1521,47 +1507,47 @@ o_grips_end(GschemToplevel *w_current)
 
     case(OBJ_ARC):
     /* modify an arc object */
-    o_grips_end_arc(w_current, object, grip);
+    o_grips_end_arc(w_current, object);
     break;
 
     case(OBJ_BOX):
     /* modify a box object */
-    o_grips_end_box(w_current, object, grip);
+    o_grips_end_box(w_current, object);
     break;
 
     case(OBJ_PATH):
     /* modify a path object */
-    o_grips_end_path(w_current, object, grip);
+    o_grips_end_path(w_current, object);
     break;
 
     case(OBJ_PICTURE):
     /* modify a picture object */
-    modified = o_grips_end_picture(w_current, object, grip);
+    modified = o_grips_end_picture(w_current, object);
     break;
 
     case(OBJ_CIRCLE):
     /* modify a circle object */
-    o_grips_end_circle(w_current, object, grip);
+    o_grips_end_circle(w_current, object);
     break;
 
     case(OBJ_LINE):
     /* modify a line object */
-    o_grips_end_line(w_current, object, grip);
+    o_grips_end_line(w_current, object);
     break;
 
     case(OBJ_NET):
       /* modify a net object */
-      o_grips_end_net(w_current, object, grip);
+      o_grips_end_net(w_current, object);
       break;
 
     case(OBJ_PIN):
       /* modify a pin object */
-      o_grips_end_pin(w_current, object, grip);
+      o_grips_end_pin(w_current, object);
       break;
 
     case(OBJ_BUS):
       /* modify a bus object */
-      o_grips_end_bus(w_current, object, grip);
+      o_grips_end_bus(w_current, object);
       break;
 
     default:

@@ -1210,8 +1210,10 @@ bool x_event_motion (GtkWidget      *widget,
         break;
 
       case(ENDARC):
-        if (w_current->inside_action)
-          o_arc_motion (w_current, w_x, w_y, ARC_RADIUS);
+        if (w_current->inside_action) {
+          w_current->which_grip = ARC_RADIUS;
+          o_arc_motion (w_current, w_x, w_y);
+        }
         break;
 
       case(STARTDRAWNET):

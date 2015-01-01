@@ -192,15 +192,16 @@ void o_arc_end4(GschemToplevel *w_current, int radius,
  *        ending angle of the arc.
  *  </DL>
  */
-void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y, int whichone)
+void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
+  int grip = w_current->which_grip;
   int diff_x, diff_y, angle_deg;
 
   /* erase the previous temporary arc */
   if (w_current->rubber_visible)
     o_arc_invalidate_rubber (w_current);
 
-  if(whichone == ARC_RADIUS) {
+  if(grip == ARC_RADIUS) {
     /*
      * The radius is taken as the biggest distance on the x and y
      * axis between the center of the arc and the mouse position.
@@ -209,14 +210,14 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y, int whichone)
     diff_y = abs(w_current->first_wy - snap_grid (w_current, w_y));
     w_current->distance = max(diff_x, diff_y);
   }
-  else if((whichone == ARC_START_ANGLE) || (whichone == ARC_END_ANGLE)) {
+  else if((grip == ARC_START_ANGLE) || (grip == ARC_END_ANGLE)) {
     /* compute the angle */
     diff_x = w_x - w_current->first_wx;
     diff_y = w_y - w_current->first_wy;
     angle_deg = atan2 (diff_y, diff_x) * 180 / M_PI;
 
     /* set the start or end angle with this angle */
-    switch(whichone) {
+    switch(grip) {
     case ARC_START_ANGLE:
       w_current->second_wx = (angle_deg + 360) % 360;
       break;
