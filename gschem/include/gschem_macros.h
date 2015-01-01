@@ -36,38 +36,31 @@
  */
 
 /* Macro for inserting and (grip) editing Box Objects. */
-#define GET_BOX_WIDTH(w)  abs((w)->second_wx - (w)->first_wx)
-#define GET_BOX_HEIGHT(w) abs((w)->second_wy - (w)->first_wy)
-#define GET_BOX_LEFT(w)   ((w)->first_wx > (w)->second_wx) ? (w)->second_wx : (w)->first_wx
-#define GET_BOX_TOP(w)    ((w)->first_wy > (w)->second_wy) ? (w)->first_wy  : (w)->second_wy
+#define GET_BOX_WIDTH(w)  (w)->second_wx - (w)->first_wx > 0 ? \
+                          (w)->second_wx - (w)->first_wx : \
+                          (w)->first_wx  - (w)->second_wx
+#define GET_BOX_HEIGHT(w) (w)->second_wy - (w)->first_wy > 0 ? \
+                          (w)->second_wy - (w)->first_wy : \
+                          (w)->first_wy  - (w)->second_wy
+#define GET_BOX_LEFT(w)   (w)->first_wx  > (w)->second_wx ? (w)->second_wx : (w)->first_wx
+#define GET_BOX_TOP(w)    (w)->first_wy  > (w)->second_wy ? (w)->first_wy  : (w)->second_wy
 
 /* Macro for inserting and (grip) editing Picture Objects. */
 #define GET_PICTURE_LEFT  GET_BOX_LEFT
 #define GET_PICTURE_WIDTH GET_BOX_WIDTH
+#define GET_PICTURE_TOP   GET_BOX_TOP
 
+#define GET_CONFINED_HEIGHT(w) abs((w)->second_wx - (w)->first_wx) / (w)->pixbuf_wh_ratio
+
+#define GET_CONFINED_TOP(w) (w)->first_wy+abs((w)->second_wx - (w)->first_wx) / (w)->pixbuf_wh_ratio
 
 #define GET_PICTURE_HEIGHT(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
-                              (abs((w)->second_wx - (w)->first_wx))/(w)->pixbuf_wh_ratio : \
-                              GET_BOX_HEIGHT(w)
+                                   GET_CONFINED_HEIGHT(w) : GET_BOX_HEIGHT(w)
 
-#define GET_CONFINED_TOP(w) (w)->first_wy > (w)->second_wy ? (w)->first_wy  :  \
-                            ((w)->first_wy+abs((w)->second_wx - (w)->first_wx))/(w)->pixbuf_wh_ratio
+#define GET_PICTURE_GRIP_TOP(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
+                                     GET_CONFINED_TOP(w) : GET_BOX_TOP(w)
 
-#define GET_PICTURE_TOP(w) (w)->CONTROLKEY && (w)->pixbuf_wh_ratio != 0 ? \
-                            GET_CONFINED_TOP(w) : GET_BOX_TOP(w)
-/*
-#define GET_PICTURE_HEIGHT(w) (w)->pixbuf_wh_ratio != 0 ? \
-                              abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio : \
-                              GET_BOX_HEIGHT(w)
-
-#define GET_PICTURE_TOP(w) (w)->first_wy > (w)->second_wy ? (w)->first_wy  :  \
-                           (w)->first_wy+abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
-
-*/
-
-
-
-
+#define GET_PICTURE_BOTTOM(w) (w)->first_wy > (w)->second_wy ? (w)->second_wy : (w)->first_wy
 
 
 
