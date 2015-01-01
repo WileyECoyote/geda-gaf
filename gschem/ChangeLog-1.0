@@ -1,5 +1,10 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_grips.c: Do not set page change if click on grip
+      did not move the objects associated data point.
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_picture.c: Revamp o_picture_draw_rubber to eliminate
       use of funtion styled macros, is more concise, both for readability
       and code generation. Redo associated glue functions according.

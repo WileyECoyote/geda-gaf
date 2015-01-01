@@ -1163,7 +1163,7 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current,
   /* o_arc_invalidate_rubber (w_current); */
 
   /* determination of the parameters to give to o_arc_modify() */
-  switch(whichone) {
+  switch (whichone) {
     case ARC_RADIUS:
       /* get the radius from w_current */
       arg1 = w_current->distance;
@@ -1243,31 +1243,60 @@ o_grips_end_path(GschemToplevel *w_current, Object *o_current, int whichone)
  *  \param [in] o_current  Picture Object to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void
+static bool
 o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
 {
-  int width  = GET_PICTURE_WIDTH(w_current);
-  int height = GET_PICTURE_HEIGHT(w_current);
+  int  width   = GET_PICTURE_WIDTH(w_current);
+  int  height  = GET_PICTURE_HEIGHT(w_current);
+  bool modified;
 
   /* don't allow zero width/height pictures this ends the picture drawing */
   if ((!width) || (!height)) {
     o_picture_invalidate_rubber (w_current);
     o_invalidate_object (w_current, o_current);
+    modified = FALSE;
   }
   else {
 
-    if (w_current->CONTROLKEY) {
-      o_picture_invalidate_rubber (w_current);
-      o_picture_modify (o_current, w_current->second_wx,
-                                   w_current->second_wy, whichone);
+    int new_upper_x = min(w_current->first_wx, w_current->second_wx);
+    int new_upper_y = o_current->picture->upper_y;
+    int new_lower_x = max(w_current->first_wx, w_current->second_wx);
+    int new_lower_y = o_current->picture->lower_y;
+
+    int old_upper_x = o_current->picture->upper_x;
+    int old_upper_y = o_current->picture->upper_y;
+    int old_lower_x = o_current->picture->lower_x;
+    int old_lower_y = o_current->picture->lower_y;
+
+#if DEBUG
+
+fprintf(stderr, "Before: old_upper_x %d old_upper_y %d old_lower_x %d old_lower_y %d\n",
+                         old_upper_x,   old_upper_y,   old_lower_x,   old_lower_y);
+fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_y %d\n",
+                         new_upper_x,   new_upper_y,   new_lower_x,   new_lower_y);
+#endif
+
+    if ((new_upper_x - old_upper_x) +
+        (new_upper_y - old_upper_y) +
+        (new_lower_x - old_lower_x) +
+        (new_lower_y - old_lower_y)) {
+
+      if (w_current->CONTROLKEY) {
+        o_picture_invalidate_rubber (w_current);
+        o_picture_modify (o_current, w_current->second_wx,
+                          w_current->second_wy, whichone);
+      }
+      else {
+        o_picture_modify_all (o_current, w_current->first_wx,
+                              w_current->first_wy,
+                              w_current->second_wx,
+                              w_current->second_wy);
+      }
+      modified = TRUE;
     }
     else {
-    o_picture_modify_all (o_current, w_current->first_wx,
-                                     w_current->first_wy,
-                                     w_current->second_wx,
-                                     w_current->second_wy);
+      modified = FALSE;
     }
-
   }
 
   GEDA_UNREF (w_current->current_pixbuf);
@@ -1275,6 +1304,7 @@ o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
   GEDA_FREE (w_current->pixbuf_filename);
   w_current->pixbuf_wh_ratio = 0;
 
+  return modified;
 }
 
 /*! \brief End process of modifying circle object with grip.
@@ -1470,11 +1500,13 @@ void
 o_grips_end(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *object;
+  Object       *object;
+
   int grip;
+  int modified;
 
   object = w_current->which_object;
-  grip = w_current->which_grip;
+  grip   = w_current->which_grip;
 
   if (!object) {
     /* actually this is an error condition hack */
@@ -1482,6 +1514,8 @@ o_grips_end(GschemToplevel *w_current)
     i_status_set_state(w_current, SELECT);
     return;
   }
+
+  modified = TRUE;
 
   switch(object->type) {
 
@@ -1502,7 +1536,7 @@ o_grips_end(GschemToplevel *w_current)
 
     case(OBJ_PICTURE):
     /* modify a picture object */
-    o_grips_end_picture(w_current, object, grip);
+    modified = o_grips_end_picture(w_current, object, grip);
     break;
 
     case(OBJ_CIRCLE):
@@ -1539,11 +1573,12 @@ o_grips_end(GschemToplevel *w_current)
   o_invalidate_object (w_current, object);
 
   /* reset global variables */
-  w_current->which_grip = -1;
-  w_current->which_object = NULL;
-
+  w_current->which_grip     = -1;
+  w_current->which_object   = NULL;
   w_current->rubber_visible = 0;
 
-  toplevel->page_current->CHANGED=1;
-  o_undo_savestate(w_current, UNDO_ALL);
+  if (modified) {
+    toplevel->page_current->CHANGED = 1;
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
 }
