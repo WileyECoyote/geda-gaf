@@ -1,5 +1,10 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Remove extra parentheses from
+      G_DISABLE_ASSERT blocks
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_grips.c: Eliminate passing of "whichone" because
       the value is already stored in w_current and some function
       were not even using, others were just passing on to another

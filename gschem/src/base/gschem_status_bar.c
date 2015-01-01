@@ -765,7 +765,7 @@ void
 gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
 {
 #if defined (G_DISABLE_ASSERT)
-  (GSCHEM_STATUS_BAR(widget)))->grid_mode = mode;
+  (GSCHEM_STATUS_BAR(widget))->grid_mode = mode;
 #else
 
   if (widget == NULL) {
@@ -793,7 +793,7 @@ void
 gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
 {
 #if defined (G_DISABLE_ASSERT)
-  (GSCHEM_STATUS_BAR(widget)))->grid_size = size;
+  (GSCHEM_STATUS_BAR(widget))->grid_size = size;
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -955,7 +955,7 @@ void
 gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
 {
 #if defined (G_DISABLE_ASSERT)
-  (GSCHEM_STATUS_BAR(widget)))->snap_mode = mode;
+  (GSCHEM_STATUS_BAR(widget))->snap_mode = mode;
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -981,7 +981,7 @@ void
 gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
 {
 #if defined (G_DISABLE_ASSERT)
-  (GSCHEM_STATUS_BAR(widget)))->snap_size = size;
+  (GSCHEM_STATUS_BAR(widget))->snap_size = size;
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
