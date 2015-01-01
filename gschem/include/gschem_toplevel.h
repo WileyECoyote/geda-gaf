@@ -154,8 +154,10 @@ struct _GschemToplevel {
   int distance;
   int inside_action;                    /* Are we doing an action? */
   int rubber_visible;                   /* Are there any rubber lines on the screen? */
-  int rubber_x;                         /* Used to invalidate rubber drawn based on */
-  int rubber_y;                         /* key states */
+  int rubber_x1;                        /* Used to invalidate rubber drawn based on */
+  int rubber_y1;                        /* key states */
+  int rubber_x2;                        /* Used to invalidate rubber drawn based on */
+  int rubber_y2;
 
   int net_direction;                    /* bit field to guess the best net direction */
   int which_grip;                       /* Which grip is being manipulated.
