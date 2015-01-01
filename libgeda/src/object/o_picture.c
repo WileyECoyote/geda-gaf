@@ -56,14 +56,16 @@ o_picture_read (const char  *first_line,
                 GError **err)
 {
   Object *new_obj;
-  int x1, y1;
-  int width, height, angle;
-  int mirrored, embedded;
-  int num_conv;
-  char type;
-  const char *line = NULL;
-  char *filename;
-  char *file_content = NULL;
+  int     angle, height, width;
+  int     embedded, mirrored;
+  int     x1, y1;
+  int     num_conv;
+
+  const char *line         = NULL;
+        char *file_content = NULL;
+        char *filename;
+        char  type;
+
   unsigned int file_length = 0;
 
   num_conv = sscanf(first_line, "%c %d %d %d %d %d %d %d\n",

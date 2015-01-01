@@ -1,3 +1,9 @@
+2014-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_picture.h: Change mirrored and is_embedded
+      to type bool, works now. Previously with bool is_embedded, pics
+      were not drawn. Was some type of overflow? works now.
+
 2014-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Add new functions o_picture_get_height

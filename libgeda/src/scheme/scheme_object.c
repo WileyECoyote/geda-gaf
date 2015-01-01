@@ -2051,8 +2051,7 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!",
 
   o_notify_emit_pre_change (obj);
 
-  status = o_picture_set_from_buffer (obj, filename,
-                                      buf, len, &error);
+  status = o_picture_set_from_buffer (obj, filename, buf, len, &error);
 
   if (!status) {
     scm_dynwind_unwind_handler ((void (*)(void *)) g_error_free, error,

@@ -184,11 +184,13 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
  *  \param [in]  src      Source buffer.
  *  \param [in]  srclen   Length of the source buffer.
  *  \param [out] dstlenp  Pointer to length of the destination buffer
+ *
  *  \return Caller-owned buffer with binary representation.
  *          The integer pointed to by <B>dstlenp</B> is set to the length
  *          of that buffer.
  */
-char *s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
+char *
+s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
 {
 
   char *dst;

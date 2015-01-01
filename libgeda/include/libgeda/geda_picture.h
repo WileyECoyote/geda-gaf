@@ -60,15 +60,15 @@ struct _GedaPicture {
 
   unsigned int head_marker;       /* structure type signature */
 
-  GdkPixbuf   *pixbuf;
-  char        *file_content;
-  unsigned int file_length;
+  GdkPixbuf     *pixbuf;
+  char          *file_content;
+  unsigned int   file_length;
 
   double ratio;
   char  *filename;
   int    angle;
-  char   mirrored;
-  char   is_embedded;             /* is picture component? */;
+  bool   mirrored;
+  bool   is_embedded;             /* is picture component? */;
 
   /* upper is considered the origin, world units */
   int    upper_x;
