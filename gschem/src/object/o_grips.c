@@ -1252,9 +1252,9 @@ o_grips_end_picture(GschemToplevel *w_current, Object *o_current)
   else {
 
     int new_upper_x = min(w_current->first_wx, w_current->second_wx);
-    int new_upper_y = o_current->picture->upper_y;
+    int new_upper_y = max(w_current->first_wy, w_current->second_wy);
     int new_lower_x = max(w_current->first_wx, w_current->second_wx);
-    int new_lower_y = o_current->picture->lower_y;
+    int new_lower_y = min(w_current->first_wy, w_current->second_wy);
 
     int old_upper_x = o_current->picture->upper_x;
     int old_upper_y = o_current->picture->upper_y;
@@ -1277,17 +1277,20 @@ fprintf(stderr, "After:  new_upper_x %d new_upper_y %d new_lower_x %d new_lower_
       if (w_current->CONTROLKEY) {
         o_picture_invalidate_rubber (w_current);
         o_picture_modify (o_current, w_current->second_wx,
-                          w_current->second_wy, w_current->which_grip);
+                                     w_current->second_wy, w_current->which_grip);
       }
       else {
         o_picture_modify_all (o_current, w_current->first_wx,
-                              w_current->first_wy,
-                              w_current->second_wx,
-                              w_current->second_wy);
+                                         w_current->first_wy,
+                                         w_current->second_wx,
+                                         w_current->second_wy);
       }
       modified = TRUE;
     }
     else {
+#if DEBUG
+fprintf(stderr, "Picture Not modified\n");
+#endif
       modified = FALSE;
     }
   }

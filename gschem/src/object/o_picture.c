@@ -46,6 +46,10 @@
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
 
+/* These are just used to shorten lines, no magic */
+#define QUAD_14_ASPECT(w) ((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
+#define QUAD_23_ASPECT(w) ((w)->first_wx - (w)->second_wx)/(w)->pixbuf_wh_ratio
+
 /*! \brief Start process to input a new picture.
  *  \par Function Description
  *  This function starts the process to input a new picture. Parameters
@@ -202,10 +206,6 @@ o_picture_invalidate_rubber (GschemToplevel *w_current)
                         left,     top,    width,    height);
 #endif
 }
-
-/* These are just used to shorten lines, no magic */
-#define QUAD_14_ASPECT(w) ((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
-#define QUAD_23_ASPECT(w) ((w)->first_wx - (w)->second_wx)/(w)->pixbuf_wh_ratio
 
 /*! \brief Draw picture from GschemToplevel object
  *
