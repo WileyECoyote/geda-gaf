@@ -748,11 +748,9 @@ o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  o_current  Arc Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   (unused)
  */
 static void
-o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
-                                  int x, int y, int whichone)
+o_grips_start_arc(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -790,17 +788,15 @@ o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  o_current  Box Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   Which coordinate to check.
  */
 static void
-o_grips_start_box(GschemToplevel *w_current, Object *o_current,
-                                  int x, int y, int whichone)
+o_grips_start_box(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
   /* (second_wx, second_wy) is the selected corner */
   /* (first_wx, first_wy) is the opposite corner */
-  switch(whichone) {
+  switch(w_current->which_grip) {
     case BOX_UPPER_LEFT:
       w_current->second_wx = o_current->box->upper_x;
       w_current->second_wy = o_current->box->upper_y;
@@ -857,14 +853,14 @@ o_grips_start_box(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which coordinate to check.
  */
 static void
-o_grips_start_path(GschemToplevel *w_current, Object *o_current,
-                                   int x, int y, int whichone)
+o_grips_start_path(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
   PATH_SECTION *section;
   int i;
-  int grip_no = 0;
-  int gx = -1;
-  int gy = -1;
+  int grip_no  = 0;
+  int gx       = -1;
+  int gy       = -1;
+  int whichone = w_current->which_grip;
 
   w_current->last_drawb_mode = -1;
 
@@ -929,8 +925,7 @@ o_grips_start_path(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which coordinate to check.
  */
 static void
-o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
-                                      int x, int y, int whichone)
+o_grips_start_picture(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
   w_current->current_pixbuf  = o_picture_get_pixbuf (o_current);
@@ -941,7 +936,7 @@ o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
   /* (second_wx,second_wy) is the selected corner */
   /* (first_wx, first_wy) is the opposite corner */
 
-  switch(whichone) {
+  switch (w_current->which_grip) {
     case PICTURE_UPPER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
       w_current->second_wy = o_current->picture->upper_y;
@@ -970,6 +965,11 @@ o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
       return; /* error */
   }
 
+#if DEBUG
+fprintf(stderr, "\tfirst_wx  %d, first_wy  %d ", w_current->first_wx,  w_current->first_wy);
+fprintf(stderr, "second_wx %d, second_wy %d\n", w_current->second_wx,  w_current->second_wy);
+#endif
+
   /* draw the first temporary picture */
   o_picture_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
@@ -994,11 +994,9 @@ o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
  *  \param [in]  o_current  Circle Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   Which coordinate to check.
  */
 static void
-o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
-                                     int x, int y, int whichone)
+o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -1031,9 +1029,10 @@ o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
  *  \param [out] whichone   Which coordinate to check.
  */
 static void
-o_grips_start_line(GschemToplevel *w_current, Object *o_current,
-                                   int x, int y, int whichone)
+o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
+  int whichone = w_current->which_grip;
+
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
   /* describe the line with GschemToplevel variables */
@@ -1095,27 +1094,27 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
   switch(object->type) {
     case(OBJ_ARC):
       /* start the modification of a grip on an arc */
-      o_grips_start_arc(w_current, object, w_x, w_y, whichone);
+      o_grips_start_arc(w_current, object, w_x, w_y);
       return(TRUE);
 
     case(OBJ_BOX):
       /* start the modification of a grip on a box */
-      o_grips_start_box(w_current, object, w_x, w_y, whichone);
+      o_grips_start_box(w_current, object, w_x, w_y);
       return(TRUE);
 
     case(OBJ_PATH):
       /* start the modification of a grip on a path */
-      o_grips_start_path(w_current, object, w_x, w_y, whichone);
+      o_grips_start_path(w_current, object, w_x, w_y);
       return(TRUE);
 
     case(OBJ_PICTURE):
       /* start the modification of a grip on a picture */
-      o_grips_start_picture(w_current, object, w_x, w_y, whichone);
+      o_grips_start_picture(w_current, object, w_x, w_y);
       return(TRUE);
 
     case(OBJ_CIRCLE):
       /* start the modification of a grip on a circle */
-      o_grips_start_circle(w_current, object, w_x, w_y, whichone);
+      o_grips_start_circle(w_current, object, w_x, w_y);
       return(TRUE);
 
     case(OBJ_LINE):
@@ -1124,7 +1123,7 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
     case(OBJ_BUS):
       /* identical for line/net/pin/bus */
       /* start the modification of a grip on a line */
-      o_grips_start_line(w_current, object, w_x, w_y, whichone);
+      o_grips_start_line(w_current, object, w_x, w_y);
       return(TRUE);
 
     default:
@@ -1247,26 +1246,35 @@ o_grips_end_path(GschemToplevel *w_current, Object *o_current, int whichone)
 static void
 o_grips_end_picture(GschemToplevel *w_current, Object *o_current, int whichone)
 {
-  /* don't allow zero width/height pictures this ends the picture drawing behavior
-   * we want this? hack */
-  if ((GET_PICTURE_WIDTH(w_current) == 0) || (GET_PICTURE_HEIGHT(w_current) == 0)) {
+  int width  = GET_PICTURE_WIDTH(w_current);
+  int height = GET_PICTURE_HEIGHT(w_current);
+
+  /* don't allow zero width/height pictures this ends the picture drawing */
+  if ((!width) || (!height)) {
     o_picture_invalidate_rubber (w_current);
     o_invalidate_object (w_current, o_current);
-    return;
-  }
-
-  if (w_current->CONTROLKEY) {
-    o_picture_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
   }
   else {
-    o_picture_modify_all (o_current, w_current->first_wx,  w_current->first_wy,
-                                     w_current->second_wx, w_current->second_wy);
+
+    if (w_current->CONTROLKEY) {
+      o_picture_invalidate_rubber (w_current);
+      o_picture_modify (o_current, w_current->second_wx,
+                                   w_current->second_wy, whichone);
+    }
+    else {
+    o_picture_modify_all (o_current, w_current->first_wx,
+                                     w_current->first_wy,
+                                     w_current->second_wx,
+                                     w_current->second_wy);
+    }
+
   }
 
   GEDA_UNREF (w_current->current_pixbuf);
   w_current->current_pixbuf = NULL;
   GEDA_FREE (w_current->pixbuf_filename);
   w_current->pixbuf_wh_ratio = 0;
+
 }
 
 /*! \brief End process of modifying circle object with grip.
