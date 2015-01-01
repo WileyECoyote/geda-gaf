@@ -35,7 +35,8 @@
  *  \par Function Description
  *
  */
-int o_invalidate_rubber (GschemToplevel *w_current)
+int
+o_invalidate_rubber (GschemToplevel *w_current)
 {
   /* return FALSE if it did not erase anything */
 
@@ -130,13 +131,18 @@ int o_invalidate_rubber (GschemToplevel *w_current)
  *  \param [in] x2         X coord for corner 2 (SCREEN units)
  *  \param [in] y2         Y coord for corner 2 (SCREEN units)
  */
-void o_invalidate_rectangle (GschemToplevel *w_current,
+void
+o_invalidate_rectangle (GschemToplevel *w_current,
                         int x1, int y1, int x2, int y2)
 {
   GdkRectangle rect;
   int grip_half_size;
   int cue_half_size;
   int bloat;
+
+#if DEBUG
+  fprintf(stderr, "%s x1 %d, y1 %d, x2 %d, y2 %d\n", __func__, x1, y1, x2, y2);
+#endif
 
   /* Ensure we only invalidate GdkWindows - probably wasting time here */
   if (GDK_IS_WINDOW( w_current->window )) {
@@ -167,7 +173,8 @@ void o_invalidate_rectangle (GschemToplevel *w_current,
  *
  *  \param [in] w_current  The GschemToplevel object.
  */
-void o_invalidate_all (GschemToplevel *w_current)
+void
+o_invalidate_all (GschemToplevel *w_current)
 {
   if (w_current && GDK_IS_WINDOW(w_current->window)) {
     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
@@ -187,7 +194,8 @@ void o_invalidate_all (GschemToplevel *w_current)
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     The Object invalidated on screen.
  */
-void o_invalidate_object (GschemToplevel *w_current, Object *object)
+void
+o_invalidate_object (GschemToplevel *w_current, Object *object)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
@@ -232,7 +240,8 @@ o_invalidate_force(GschemToplevel *w_current, Object *object)
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] list       The glist objects invalidated on screen.
  */
-void o_invalidate_glist (GschemToplevel *w_current, GList *list)
+void
+o_invalidate_glist (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;

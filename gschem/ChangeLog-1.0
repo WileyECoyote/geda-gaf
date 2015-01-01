@@ -1,5 +1,10 @@
 2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_invalidate.c: Add a DEBUG in o_invalidate_rectangle,
+      reformat declarations.
+
+2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Off-load code for loading pixbuf to
       o_picture, some general cleaning through-out module.
 
