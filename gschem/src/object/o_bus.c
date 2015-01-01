@@ -61,18 +61,20 @@ void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
  */
 int o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-  int color;
-  GList *prev_conn_objects = NULL;
+  GedaToplevel *toplevel          = w_current->toplevel;
+  GList        *prev_conn_objects = NULL;
+  Object       *new_obj;
+  int           color;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_bus_end> Not inside action\n");
+    BUG_MSG("Not inside an action\n");
     return FALSE;
   }
+
   if (w_current->override_bus_color == -1) {
     color = BUS_COLOR;
-  } else {
+  }
+  else {
     color = w_current->override_bus_color;
   }
 

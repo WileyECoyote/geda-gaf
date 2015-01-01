@@ -1,5 +1,14 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_buffer.c: Replace g_warning with BUG_IMSG, redo
+      NULL checks and messages, use Current_PlaceList to shorten
+      w_current->toplevel->page_current->place_list eliminating
+      GedaToplevel *toplevel;
+
+    * src/object/o_bus.c: Change u_log_message to
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_status_bar.c: Remove extra parentheses from
       G_DISABLE_ASSERT blocks
 

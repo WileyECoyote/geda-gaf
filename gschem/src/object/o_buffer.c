@@ -44,7 +44,7 @@ static void
 selection_to_buffer(GschemToplevel *w_current, int buf_num)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *s_current = NULL;
+  GList *s_current       = NULL;
 
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
 
@@ -74,7 +74,7 @@ o_buffer_copy(GschemToplevel *w_current, int buf_num)
   GList *iter;
 
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
-    g_warning (_("o_buffer_copy: Invalid buffer %i\n"), buf_num);
+    BUG_IMSG ("o_buffer_copy: Invalid buffer %i\n", buf_num);
   }
   else
     selection_to_buffer (w_current, buf_num);
@@ -109,7 +109,7 @@ void
 o_buffer_cut(GschemToplevel *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
-    g_warning (_("o_buffer_cut: Invalid buffer %i\n"), buf_num);
+    BUG_IMSG ("o_buffer_cut: Invalid buffer %i\n", buf_num);
   }
   else {
     selection_to_buffer (w_current, buf_num);
@@ -129,65 +129,76 @@ o_buffer_cut(GschemToplevel *w_current, int buf_num)
 bool
 o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y, int buf_num)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   int rleft, rtop, rbottom, rright;
   int x, y;
+  int result;
 
   if (w_current == NULL) {
-    BUG_MSG ("w_current = NULL");
-    return FALSE;
+    BUG_MSG ("w_current");
+    result = FALSE;
   }
-
-  if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
+  else if (w_current->toplevel == NULL) {
+    BUG_MSG ("w_current->toplevel is NULL");
+    result = FALSE;
+  }
+  else if (Current_Page == NULL) {
+    BUG_MSG ("Current_Page is NULL");
+    result = FALSE;
+  }
+  else if (Current_PlaceList == NULL) {
+    BUG_MSG ("Current_PlaceList is NULL");
+    result = FALSE;
+  }
+  else if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     BUG_MSG ("invalid buffer_number");
-    return FALSE;
+    result = FALSE;
   }
+  else {
 
-  w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
+    w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  /* remove the old place list if it exists */
-  s_object_release_objects(toplevel->page_current->place_list);
-  toplevel->page_current->place_list = NULL;
+    /* remove the old place list if it exists */
+    s_object_release_objects(Current_Page->place_list);
+    Current_Page->place_list = NULL;
 
-  toplevel->page_current->place_list =
-    o_glist_copy_all (object_buffer[buf_num],
-                      toplevel->page_current->place_list);
-
+    Current_PlaceList = o_glist_copy_all (object_buffer[buf_num],
+                                          Current_PlaceList);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
     int dint;
     dint = g_list_length(toplevel->page_current->place_list);
-    printf("o_buffer_paste_start: buffers has %d objects\n", dint);
+    printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-  if (!world_get_object_glist_bounds (toplevel->page_current->place_list,
-                                     &rleft, &rtop, &rright, &rbottom)) {
-    /* If the place buffer doesn't have any objects to define its any
-     * bounds, we drop out here */
-    return FALSE;
-  }
+    if (world_get_object_glist_bounds (Current_PlaceList,
+                                      &rleft, &rtop, &rright, &rbottom))
+    {
 
-  /* Place the objects into the buffer at the mouse origin, (w_x, w_y). */
+      /* Place objects into the buffer at the mouse origin, (w_x, w_y) */
+      w_current->first_wx = w_x;
+      w_current->first_wy = w_y;
 
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
+      /* snap x and y to the grid, pointed out by Martin Benes */
+      x = snap_grid (w_current, rleft);
+      y = snap_grid (w_current, rtop);
 
-  /* snap x and y to the grid, pointed out by Martin Benes */
-  x = snap_grid (w_current, rleft);
-  y = snap_grid (w_current, rtop);
+      o_glist_translate_world (w_x - x, w_y - y, Current_PlaceList);
 
-  o_glist_translate_world (w_x - x, w_y - y, toplevel->page_current->place_list);
-
-  w_current->inside_action = 1;
-  i_status_set_state(w_current, ENDPASTE);
+      w_current->inside_action = 1;
+      i_status_set_state(w_current, ENDPASTE);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
-printf("o_buffer_paste_start: calling o_place_start with %d objects\n", dint);
+      printf("%s: calling o_place_start with %d objects\n", __func__, dint);
 #endif
 
-  o_place_start (w_current, w_x, w_y);
-
-  return TRUE;
+      o_place_start (w_current, w_x, w_y);
+      result = TRUE;
+    }
+    else { /* Buffer does not have objects to define its any bounds */
+      return FALSE;
+    }
+  }
+  return result;
 }
 
 /*! \brief Initialize the Buffers
