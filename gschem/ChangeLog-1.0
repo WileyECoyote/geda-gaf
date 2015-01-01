@@ -1,5 +1,10 @@
 2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/globals.h: Replace g_strdup_printf with u_string_sprintf
+      in Macros for message dialogs
+
+2014-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_invalidate.c: Add a DEBUG in o_invalidate_rectangle,
       reformat declarations.
 
