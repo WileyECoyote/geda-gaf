@@ -2,43 +2,43 @@
 #define __X_SETTINGS_DIALOG_H__
 
 /* C header
-;  File: x_settings_dialog.h
-;;
-;;; gEDA - GPL Electronic Design Automation
-;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2014 Ales Hvezda
-;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
-;;
-;;; This program is free software; you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation; either version 2 of the License, or
-;;; (at your option) any later version.
-;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;; GNU General Public License for more details.
-;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-;;; MA 02111-1301 USA
-;;
-;;; Date: Aug, 22, 2012
-;;; Contributing Author: Wiley Edward Hill
-;;
+ * File: x_settings_dialog.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
+ *
+ * Date: Aug, 22, 2012
+ * Contributing Author: Wiley Edward Hill
+ *
 */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
-;; ------------------------------------------------------------------
-;; WEH | 09/17/12 |  Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 12/04/12 |  Added switch for EnableColorImaging
-;; ------------------------------------------------------------------
-;; WEH | 12/30/12 |  Changed "Log" to "Console"
-;; ------------------------------------------------------------------
-;; WEH | 01/06/13 |  Added strings for new ripper controls, (new)
-;; ------------------------------------------------------------------
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/17/12 |  Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 12/04/12 |  Added switch for EnableColorImaging
+ * ------------------------------------------------------------------
+ * WEH | 12/30/12 |  Changed "Log" to "Console"
+ * ------------------------------------------------------------------
+ * WEH | 01/06/13 |  Added strings for new ripper controls, (new)
+ * ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
 /*

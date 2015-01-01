@@ -1,49 +1,49 @@
 /* C header
-;  File: x_settings.h
-;;
-;;; gEDA - GPL Electronic Design Automation
-;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2014 Ales Hvezda
-;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
-;;;
-;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
-;;
-;;; This program is free software; you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation; either version 2 of the License, or
-;;; (at your option) any later version.
-;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;; GNU General Public License for more details.
-;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-;;; MA 02111-1301 USA
-;;
-;;; Date: Aug, 17, 2012
-;;; Contributing Author: Wiley Edward Hill
-;;
-*/
+ * File: x_settings.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
+ *
+ * Date: Aug, 17, 2012
+ * Contributing Author: Wiley Edward Hill
+ *
+ */
 /************************ REVISION HISTORY *************************
-;; Who |   When   | What (Why)
-;; ------------------------------------------------------------------
-;; WEH | 09/17/12 | Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 12/04/12 | Added function x_settings_set_scm_int, revised
-;; ------------------------------------------------------------------
-;; WEH | 01/06/13 | Added RC_RIPPER_xxx_STRINGS (new). Revise  gschem_
-;;                | structure for Ripper name string.
-;; ------------------------------------------------------------------
-;; WEH | 09/20/13 | Added PointerCursor Combo (to extend functionality)
-;; ------------------------------------------------------------------
-;; WEH | 09/25/13 | Added GripStrokeColor, GripFillColor,TextMarkerColor,
-;;                | TextOriginMarker, TextMarkerSize, JunctionColor,
-;;                | TextMarkerSize and JunctionSize, NetEndpointColor,
-;;                | ScrollBarsVisible
-;; ------------------------------------------------------------------
+ * Who |   When   | What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/17/12 | Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 12/04/12 | Added function x_settings_set_scm_int, revised
+ * ------------------------------------------------------------------
+ * WEH | 01/06/13 | Added RC_RIPPER_xxx_STRINGS (new). Revise  gschem_
+ *                | structure for Ripper name string.
+ * ------------------------------------------------------------------
+ * WEH | 09/20/13 | Added PointerCursor Combo (to extend functionality)
+ * ------------------------------------------------------------------
+ * WEH | 09/25/13 | Added GripStrokeColor, GripFillColor,TextMarkerColor,
+ *                | TextOriginMarker, TextMarkerSize, JunctionColor,
+ *                | TextMarkerSize and JunctionSize, NetEndpointColor,
+ *                | ScrollBarsVisible
+ * ------------------------------------------------------------------
 //
 */
 #ifndef __X_SETTINGS_H__
