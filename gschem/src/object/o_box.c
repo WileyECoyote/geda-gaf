@@ -101,55 +101,56 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
   int box_left, box_top;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_box_end> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
+  else {
 
-  /* get the last coords of the pointer */
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+    /* get the last coords of the pointer */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
 
-  /* erase the temporary box */
-  /* o_box_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
+    /* erase the temporary box */
+    /* o_box_invalidate_rubber (w_current); */
+    w_current->rubber_visible = 0;
 
-  box_width  = GET_BOX_WIDTH (w_current);
-  box_height = GET_BOX_HEIGHT(w_current);
-  box_left   = GET_BOX_LEFT  (w_current);
-  box_top    = GET_BOX_TOP   (w_current);
+    box_width  = GET_BOX_WIDTH (w_current);
+    box_height = GET_BOX_HEIGHT(w_current);
+    box_left   = GET_BOX_LEFT  (w_current);
+    box_top    = GET_BOX_TOP   (w_current);
 
-  /* boxes with null width or height are not allowed */
-  if ((box_width == 0) || (box_height == 0)) {
-    /* cancel the object creation */
-    w_current->first_wx = (-1);
-    w_current->first_wy = (-1);
-    w_current->second_wx  = (-1);
-    w_current->second_wy  = (-1);
-    return;
-  }
+    /* boxes with null width or height are not allowed */
+    if ((box_width == 0) || (box_height == 0)) {
+      /* cancel the object creation */
+      w_current->first_wx = (-1);
+      w_current->first_wy = (-1);
+      w_current->second_wx  = (-1);
+      w_current->second_wy  = (-1);
+      return;
+    }
 
-  /* create the object */
-  new_obj = o_box_new (GRAPHIC_COLOR,
-                       box_left, box_top,
-                       box_left + box_width, box_top - box_height);
-  new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-  s_page_append_object (toplevel->page_current, new_obj);
+    /* create the object */
+    new_obj = o_box_new (GRAPHIC_COLOR,
+                         box_left, box_top,
+                         box_left + box_width, box_top - box_height);
+    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+    s_page_append_object (toplevel->page_current, new_obj);
 
 #if DEBUG
   printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);
 #endif
 
-  w_current->first_wx = (-1);
-  w_current->first_wy = (-1);
-  w_current->second_wx  = (-1);
-  w_current->second_wy  = (-1);
+    w_current->first_wx = (-1);
+    w_current->first_wy = (-1);
+    w_current->second_wx  = (-1);
+    w_current->second_wy  = (-1);
 
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+    /* Call add-objects-hook */
+    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
 
-  toplevel->page_current->CHANGED = 1;
+    toplevel->page_current->CHANGED = 1;
 
-  o_undo_savestate(w_current, UNDO_ALL);
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
 }
 
 /*! \brief Draw temporary box while dragging edge.
@@ -170,27 +171,28 @@ void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_box_motion> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
+  else {
 
-  /* erase the previous temporary box if it is visible */
-  if (w_current->rubber_visible)
+    /* erase the previous temporary box if it is visible */
+    if (w_current->rubber_visible)
+      o_box_invalidate_rubber (w_current);
+
+    /*
+     * New values are fixed according to the <B>w_x</B> and <B>w_y</B>
+     * parameters. These are saved in <B>w_current</B> pointed structure
+     * as new temporary values. The new box is then drawn.
+     */
+
+    /* update the coords of the corner */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+
+    /* draw the new temporary box */
     o_box_invalidate_rubber (w_current);
-
-  /*
-   * New values are fixed according to the <B>w_x</B> and <B>w_y</B> parameters.
-   * These are saved in <B>w_current</B> pointed structure as new temporary
-   * values. The new box is then drawn.
-   */
-
-  /* update the coords of the corner */
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  /* draw the new temporary box */
-  o_box_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \brief Draw box from GschemToplevel object.

@@ -920,7 +920,7 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
   menu = POPUP_MENU;
 
   if (menu == NULL) {
-    g_warning( "Internal Error, <do_popup> got null popup menu\n");
+    BUG_MSG( "popup menu is NULL");
   }
   else {
     w_current->pointer_sx = event->x;

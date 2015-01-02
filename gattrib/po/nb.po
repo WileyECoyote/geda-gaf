@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-11-27 00:20-0600\n"
+"POT-Creation-Date: 2015-01-02 06:17-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
@@ -158,17 +158,17 @@ msgstr ""
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:120
+#: gattrib/src/s_string_list.c:119
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:181
+#: gattrib/src/s_string_list.c:180
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:245
+#: gattrib/src/s_string_list.c:244
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""

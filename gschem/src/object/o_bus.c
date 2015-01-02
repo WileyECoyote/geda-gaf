@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -131,30 +131,31 @@ void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
   int diff_x, diff_y;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_bus_motion> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
+  else {
 
-  if (w_current->rubber_visible)
-    o_bus_invalidate_rubber (w_current);
+    if (w_current->rubber_visible)
+      o_bus_invalidate_rubber (w_current);
 
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
 
-  /* If you press the control key then you can draw non-ortho bus */
-  if (!w_current->CONTROLKEY) {
-    diff_x = abs(w_current->second_wx - w_current->first_wx);
-    diff_y = abs(w_current->second_wy - w_current->first_wy);
+    /* If you press the control key then you can draw non-ortho bus */
+    if (!w_current->CONTROLKEY) {
+      diff_x = abs(w_current->second_wx - w_current->first_wx);
+      diff_y = abs(w_current->second_wy - w_current->first_wy);
 
-    if (diff_x >= diff_y) {
-      w_current->second_wy = w_current->first_wy;
-    } else {
-      w_current->second_wx = w_current->first_wx;
+      if (diff_x >= diff_y) {
+        w_current->second_wy = w_current->first_wy;
+      } else {
+        w_current->second_wx = w_current->first_wx;
+      }
     }
-  }
 
-  o_bus_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+    o_bus_invalidate_rubber (w_current);
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \todo Finish function documentation!!!

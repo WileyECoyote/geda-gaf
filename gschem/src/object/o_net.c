@@ -110,7 +110,7 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
           current_rules = (int*) bus_rules;
           break;
         default:
-          g_critical("Internal Error: <o_net_guess_direction> unhandled case=%d\n", o_current->type);
+          BUG_IMSG("unhandled case <%d>", o_current->type);
           return;
       }
 
@@ -469,9 +469,10 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
   GList *added_objects = NULL;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_net_end> Not inside action\n");
+    BUG_MSG("Not inside action");
     return FALSE;
   }
+
   o_net_invalidate_rubber (w_current);
 
   if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1)
@@ -586,65 +587,71 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
   int ortho, horizontal, quadrant;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_net_motion> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
-
-  /* Orthognal mode enabled when Control Key is NOT pressed or
-     if we are using magnetic mode */
-  ortho = !w_current->CONTROLKEY || w_current->magnetic_net_mode;
-
-  if (w_current->rubber_visible)
-    o_net_invalidate_rubber (w_current);
-
-  if (w_current->magnetic_net_mode) {
-    if (w_current->CONTROLKEY) {
-      /* set the magnetic marker position to current xy if the
-     controlkey is pressed. Thus the net will not connect to
-     the closest net if we finish the net drawing */
-      w_current->magnetic_wx = w_x;
-      w_current->magnetic_wy = w_y;
-    }
-    else {
-      o_net_find_magnetic(w_current, w_x, w_y);
-    }
-  }
-
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  /* In orthogonal mode secondary line is the same as the first */
-  if (!ortho) {
-      w_current->third_wx = w_current->second_wx;
-      w_current->third_wy = w_current->second_wy;
-  }
-  /* If you press the control key then you can draw non-ortho nets */
   else {
-    if (w_current->second_wy > w_current->first_wy)
-      quadrant = w_current->second_wx > w_current->first_wx ? QUADRANT1: QUADRANT2;
-    else
-      quadrant = w_current->second_wx > w_current->first_wx ? QUADRANT4: QUADRANT3;
 
-    horizontal = w_current->net_direction & quadrant;
+    /* Orthognal mode enabled when Control Key is NOT pressed or
+     *    if we are using magnetic mode */
+    ortho = !w_current->CONTROLKEY || w_current->magnetic_net_mode;
 
-    if (!w_current->SHIFTKEY)
-      horizontal = !horizontal;
+    if (w_current->rubber_visible)
+      o_net_invalidate_rubber (w_current);
 
-    /* calculate the co-ordinates necessary to draw the lines*/
-    /* Pressing the shift key will cause the vertical and horizontal lines to switch places */
-    if ( horizontal ) {
-      w_current->second_wy = w_current->first_wy;
+    if (w_current->magnetic_net_mode) {
+      if (w_current->CONTROLKEY) {
+        /* set the magnetic marker position to current xy if the
+         *    controlkey is pressed. Thus the net will not connect to
+         *    the closest net if we finish the net drawing */
+        w_current->magnetic_wx = w_x;
+        w_current->magnetic_wy = w_y;
+      }
+      else {
+        o_net_find_magnetic(w_current, w_x, w_y);
+      }
+    }
+
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+
+    /* In orthogonal mode secondary line is the same as the first */
+    if (!ortho) {
       w_current->third_wx = w_current->second_wx;
-      w_current->third_wy = w_y;
-    } else {
-      w_current->second_wx = w_current->first_wx;
-      w_current->third_wx = w_x;
       w_current->third_wy = w_current->second_wy;
     }
-  }
+    /* If you press the control key then you can draw non-ortho nets */
+    else {
 
-  o_net_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+      if (w_current->second_wy > w_current->first_wy) {
+        quadrant = w_current->second_wx > w_current->first_wx ? QUADRANT1 :
+                                                                QUADRANT2;
+      }
+      else {
+        quadrant = w_current->second_wx > w_current->first_wx ? QUADRANT4 :
+                                                                QUADRANT3;
+      }
+
+      horizontal = w_current->net_direction & quadrant;
+
+      if (!w_current->SHIFTKEY)
+        horizontal = !horizontal;
+
+      /* calculate the co-ordinates necessary to draw the lines*/
+      /* Pressing the shift key will cause the vertical and horizontal lines to switch places */
+      if ( horizontal ) {
+        w_current->second_wy = w_current->first_wy;
+        w_current->third_wx = w_current->second_wx;
+        w_current->third_wy = w_y;
+      } else {
+        w_current->second_wx = w_current->first_wx;
+        w_current->third_wx = w_x;
+        w_current->third_wy = w_current->second_wy;
+      }
+    }
+
+    o_net_invalidate_rubber (w_current);
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \brief draw rubbernet lines to the gc

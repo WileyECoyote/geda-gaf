@@ -1212,9 +1212,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
   if (page != NULL) {
 
     if (page->pid == -1) {
-      u_log_message ("Internal Error: <%s><x_window_close_page>"
-      "invalid page ID=<%d>, line %d.\n",
-      __FILE__, page->pid, __LINE__);
+      BUG_IMSG ("invalid page ID=<%d>", page->pid);
     }
     else {
 

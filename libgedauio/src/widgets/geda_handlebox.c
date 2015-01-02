@@ -992,9 +992,7 @@ geda_handle_box_paint (GtkWidget      *widget, GdkEventExpose *event, GdkRectang
           handle_orientation = GTK_ORIENTATION_HORIZONTAL;
           break;
         default:
-          fprintf (stderr, "Internal Error: <%s><__func__>"
-                           "unhandler case for <%d>, line %d.\n",
-                           __FILE__, handle_position, __LINE__);
+          BUG_IMSG ("unhandler case <%d>", handle_position);
           break;
       }
 

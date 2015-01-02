@@ -1,5 +1,13 @@
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: In function o_get_fill_options; remove
+      extraneous return.
+
+    * src/geda/geda_config.c: In function eda_config_save; add close
+      in error clause, mainly to appease lint.
+
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_list.c: Update Doxygen comments.
 
     * src/object/o_attrib.c: Replace variable name "a_current" with

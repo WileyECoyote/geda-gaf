@@ -1,7 +1,8 @@
 /*
  * gEDA - GPL Electronic Design Automation
  * libgedacairo - Rendering gEDA schematics with Cairo
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,10 +75,7 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
     return;
   }
   if ( (color < 0) || (color > map->len - 1)) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s>, line <%d>, <eda_cairo_set_source_color>"
-                     "map->len %d > color index = %d.\n",
-                      __FILE__, __LINE__,  map->len, color);
+    BUG_IMSG("Invalid color index <%d>", color);
     return;
   }
 

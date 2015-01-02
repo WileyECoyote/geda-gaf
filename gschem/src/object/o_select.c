@@ -65,11 +65,11 @@ o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hoo
       break;
 
     default:
-      g_critical("Internal Error Detected: <o_select_run_hooks> unhandled case\n");
+      BUG_IMSG("unhandled case", which_hook);
   }
 
 #if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
-  fprintf(stderr, "o_select_run_hooks: exit\n");
+  fprintf(stderr, "%s: exit\n", __func__);
 #endif
 }
 

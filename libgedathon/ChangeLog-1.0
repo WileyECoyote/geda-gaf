@@ -1,3 +1,13 @@
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Fix syntax error in function PyGeda_get_object,
+      GEDA_IS_OBJECT(object) was missing outer parentheses, but gcc was
+      accepting.
+
+    * src/update_objects.c: Same thing! Add parentheses in function
+      PyGeda_update_complex_butes, most likely copy and paste, again
+      gcc was accepting.
+
 2014-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_net.c, geda_py_picture.c, geda_py_pin.c, and

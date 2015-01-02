@@ -937,6 +937,9 @@ eda_config_save (EdaConfig *cfg, GError **error)
         cfg->priv->changed = FALSE;
       }
       else {
+        if (fp) {
+          fclose(fp);
+        }
         if(error != NULL) {
           g_set_error(error, G_FILE_ERROR,
                       g_file_error_from_errno (errno),

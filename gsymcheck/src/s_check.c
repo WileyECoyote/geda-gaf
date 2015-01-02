@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -1010,22 +1010,18 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
         /* skip over = char */
         ptr++;
 
-        while (ptr && *ptr > '0' && *ptr < '9')
-        {
+        while (ptr && *ptr > '0' && *ptr < '9') {
           ptr++;
         }
 
-        if (*ptr == '\0')
-        {
+        if (*ptr == '\0') {
           found_old++;
         }
 
         /* 2 matches -> number found after pin and only numbers after = sign */
-        if (found_old == 2)
-        {
-          message = u_string_sprintf (
-            _("Found old pin#=# attribute: %s\n"),
-              o_current->text->string);
+        if (found_old == 2) {
+          message = u_string_sprintf (_("Found old pin#=# attribute: %s\n"),
+                                         o_current->text->string);
             ADD_ERROR_MESSAGE(message);
             s_current->found_oldpin_attrib += found_old;
         }

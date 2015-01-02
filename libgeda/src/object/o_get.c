@@ -72,7 +72,7 @@ int o_get_capstyle (LINE_END end)
  *
  */
 bool o_get_fill_options(Object *object,
-                        OBJECT_FILLING *type, int *width,
+                        OBJECT_FILLING   *type, int *width,
                         int *pitch1, int *angle1,
                         int *pitch2, int *angle2)
 {
@@ -89,7 +89,7 @@ bool o_get_fill_options(Object *object,
     *pitch2 = object->fill_options->fill_pitch2;
     *angle2 = object->fill_options->fill_angle2;
 
-    return answer = TRUE;
+    answer = TRUE;
   }
   else {
     answer = FALSE;

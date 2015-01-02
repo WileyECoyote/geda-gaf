@@ -1,3 +1,11 @@
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Add check for NULL pointer in s_traverse_component,
+      mainly to appease lint.
+
+    * src/g_netlist.c: Add check for NULL in debug print to appease lint,
+      before exiting g_get_attribute_by_pinseq().
+
 2014-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-gsch2pcb.scm.in: gnetlist: Missed one,

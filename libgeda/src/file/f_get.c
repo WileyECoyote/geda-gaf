@@ -365,6 +365,7 @@ error:
 
   return ret_val;
 }
+#endif
 
 bool
 f_get_file_contents(const char *filename, char **contents, unsigned int *length, GError **err)
@@ -398,9 +399,8 @@ f_get_file_contents(const char *filename, char **contents, unsigned int *length,
                  _("Failed to open file '%s': %s"), filename, strerror (errno));
     }
 
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-    else {
-#endif
+#if defined OS_LINUX || defined __MINGW32__
+
     else if (fstat (fd, &stat_buf) < 0) {
 
       save_errno = errno;
@@ -429,7 +429,6 @@ f_get_file_contents(const char *filename, char **contents, unsigned int *length,
                       filename, strerror (errno));
       }
 #endif
-
       retval = get_contents_stdio (filename, f, contents, length, err);
     }
   }

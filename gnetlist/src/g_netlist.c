@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -583,7 +583,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 
 #if DEBUG
   printf("gnetlist:g_netlist.c:g_get_attribute_by_pinseq -- ");
-  printf("return_value: %s\n", return_value);
+  printf("return_value: %s\n", return_value ? return_value : "NULL");
 #endif
 
   return (scm_return_value);

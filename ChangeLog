@@ -1,3 +1,11 @@
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+      * configure.ac: Bumped version = 2.0.9.4. General cleaning through-
+        out source tree. Replace fprintf, g_critical, and g_warnings with
+        BUG_xMSGs. See indiviual change logs. Also bump library versions
+        for libgeda = 50.9, libgedadraw = 0.2, libgedacairo = 1.4, and
+        libgedathon, libgedauio = 0.4.
+
 2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
       * bitmaps/geda_warning.png: Replaced with new file generated from

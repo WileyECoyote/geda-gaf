@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,24 +97,26 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
   if ( w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_arc_end1> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
-  /* erases the previous temporary radius segment */
-  /* o_arc_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
+  else {
 
-  /* ack! zero length radius */
-  if (w_current->distance == 0) {
-    return;
-  }
+    /* erases the previous temporary radius segment */
+    /* o_arc_invalidate_rubber (w_current); */
+    w_current->rubber_visible = 0;
+
+    /* ack! zero length radius */
+    if (w_current->distance == 0) {
+      return;
+    }
 
 #if DEBUG
-  printf("DIST: %d\n", w_current->distance);
+    printf("DIST: %d\n", w_current->distance);
 #endif
 
-  /* Open dialog to input the start and end angle */
-  x_dialog_edit_arc_angle(w_current, NULL);
+    /* Open dialog to input the start and end angle */
+    x_dialog_edit_arc_angle(w_current, NULL);
+  }
 }
 
 /*! \brief Ends the process of arc input.

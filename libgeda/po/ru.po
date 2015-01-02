@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-11-23 03:18-0600\n"
+"POT-Creation-Date: 2015-01-02 06:18-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -59,27 +59,17 @@ msgstr "Принципиальная схема gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Символ схемы gEDA"
 
-#: libgeda/src/file/f_basic.c:84 libgeda/src/file/f_basic.c:97
+#: libgeda/src/file/f_basic.c:73 libgeda/src/file/f_basic.c:86
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Ошибка чтения статуса «%s»: %s"
 
-#: libgeda/src/file/f_basic.c:157
-#, c-format
-msgid "Cannot find file %s: %s"
-msgstr "Файл «%s» не найден: %s"
-
-#: libgeda/src/file/f_basic.c:174
-#, c-format
-msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:210
-#, c-format
+#: libgeda/src/file/f_basic.c:143
+#, fuzzy, c-format
 msgid ""
 "\n"
 "WARNING: Found an autosave backup file:\n"
-"  %s.\n"
+" \"%s\".\n"
 "\n"
 msgstr ""
 "\n"
@@ -87,13 +77,13 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:212
+#: libgeda/src/file/f_basic.c:144
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "Не удалось определить новее ли он, решите это сами.\n"
 
-#: libgeda/src/file/f_basic.c:214
+#: libgeda/src/file/f_basic.c:145
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -101,7 +91,7 @@ msgstr ""
 "Резервная копия новее схемы, поэтому, видимо, следует загрузить её вместо "
 "оригинального файла.\n"
 
-#: libgeda/src/file/f_basic.c:216
+#: libgeda/src/file/f_basic.c:146
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -110,7 +100,7 @@ msgstr ""
 "Обычно gschem автоматически создаёт резервные копии, и такая ситуация может "
 "быть результатом крушения или внезапного завершения программы.\n"
 
-#: libgeda/src/file/f_basic.c:219
+#: libgeda/src/file/f_basic.c:147
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -118,110 +108,115 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:270
+#: libgeda/src/file/f_basic.c:161
+#, c-format
+msgid "Cannot find file %s: %s"
+msgstr "Файл «%s» не найден: %s"
+
+#: libgeda/src/file/f_basic.c:178
+#, c-format
+msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
+msgstr ""
+
+#: libgeda/src/file/f_basic.c:233 libgeda/src/file/f_file.c:100
+#, c-format
+msgid "%s: Memory Allocation Error!\n"
+msgstr ""
+
+#: libgeda/src/file/f_basic.c:293
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_basic.c:321
+#: libgeda/src/file/f_basic.c:343
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_basic.c:331
+#: libgeda/src/file/f_basic.c:344
+#, c-format
+msgid "Could NOT save file: %s"
+msgstr "Не удалось сохранить файл: %s"
+
+#: libgeda/src/file/f_basic.c:345
 #, c-format
 msgid "File %s is read-only"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_basic.c:365
+#: libgeda/src/file/f_basic.c:347
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
 "копии «%s»\n"
 
-#: libgeda/src/file/f_basic.c:373
+#: libgeda/src/file/f_basic.c:348
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Не удалось сохранить файл резервной копии: %s."
 
-#: libgeda/src/file/f_basic.c:419
-#, c-format
-msgid "Could NOT save file: %s"
-msgstr "Не удалось сохранить файл: %s"
+#: libgeda/src/file/f_file.c:79
+#, fuzzy
+msgid "File error"
+msgstr "Ошибка обработки: ~s"
 
-#: libgeda/src/file/f_file.c:78
-#, c-format
-msgid "File error: \"%s\", %s\n"
+#: libgeda/src/file/f_file.c:83
+msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:89
-msgid "File error(strerror): Memory Allocation Error!\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:95
+#: libgeda/src/file/f_file.c:84
 #, c-format
-msgid "File error(strerror[source]): \"%s\", %s\n"
+msgid "%s: attempting to lock/unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:101
-#, c-format
-msgid "File error(strerror)[source]: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:109 libgeda/src/file/f_file.c:113
-#, c-format
-msgid "File lock error(strerror): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:298
+#: libgeda/src/file/f_file.c:326
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/file/f_get.c:147
+#: libgeda/src/file/f_get.c:201
 #, c-format
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:186
+#: libgeda/src/file/f_get.c:239
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:197
+#: libgeda/src/file/f_get.c:250
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/file/f_get.c:208
+#: libgeda/src/file/f_get.c:261
 #, fuzzy, c-format
 msgid "File \"%s\" is too large"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_get.c:265
+#: libgeda/src/file/f_get.c:318
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:285
+#: libgeda/src/file/f_get.c:338
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/file/f_get.c:344
+#: libgeda/src/file/f_get.c:399
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Не удалось открыть каталог «%s»: %s\n"
 
-#: libgeda/src/file/f_get.c:358
+#: libgeda/src/file/f_get.c:411
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:375
+#: libgeda/src/file/f_get.c:428
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
@@ -277,40 +272,40 @@ msgstr ""
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:101
+#: libgeda/src/geda/geda_config.c:100
 #, fuzzy
 msgid "Configuration file"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:102
+#: libgeda/src/geda/geda_config.c:101
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:770 libgeda/src/geda/geda_config.c:883
+#: libgeda/src/geda/geda_config.c:780 libgeda/src/geda/geda_config.c:895
 msgid "Undefined configuration filename"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:904
+#: libgeda/src/geda/geda_config.c:916
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:943
+#: libgeda/src/geda/geda_config.c:958
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/geda/geda_config.c:1235
+#: libgeda/src/geda/geda_config.c:1257
 #, fuzzy, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1299
+#: libgeda/src/geda/geda_config.c:1321
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1313
+#: libgeda/src/geda/geda_config.c:1335
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr "В настройках не обнаружено ключа «%s»"
@@ -371,75 +366,75 @@ msgstr ""
 msgid "Which end of the pin gets connected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:379
+#: libgeda/src/geda/geda_object.c:380
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:380
+#: libgeda/src/geda/geda_object.c:381
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:389
+#: libgeda/src/geda/geda_object.c:390
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:390
+#: libgeda/src/geda/geda_object.c:391
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:397
+#: libgeda/src/geda/geda_object.c:398
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:398
+#: libgeda/src/geda/geda_object.c:399
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:404
+#: libgeda/src/geda/geda_object.c:405
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:405
+#: libgeda/src/geda/geda_object.c:406
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:410
+#: libgeda/src/geda/geda_object.c:411
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:411
+#: libgeda/src/geda/geda_object.c:412
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:417
+#: libgeda/src/geda/geda_object.c:418
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:418
+#: libgeda/src/geda/geda_object.c:419
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:424
+#: libgeda/src/geda/geda_object.c:425
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:425
+#: libgeda/src/geda/geda_object.c:426
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:432
+#: libgeda/src/geda/geda_object.c:433
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:433
+#: libgeda/src/geda/geda_object.c:434
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:441
+#: libgeda/src/geda/geda_object.c:442
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:442
+#: libgeda/src/geda/geda_object.c:443
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -651,12 +646,12 @@ msgstr "Попытка прикрепить не текстовый элемен
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Попытка прикрепить атрибут «%s» к более чем одному объекту\n"
 
-#: libgeda/src/object/o_attrib.c:508
+#: libgeda/src/object/o_attrib.c:549
 #, fuzzy
 msgid "Tried to attach a non-text object as an attribute"
 msgstr "Попытка прикрепить не текстовый элемент как атрибут!"
 
-#: libgeda/src/object/o_attrib.c:515
+#: libgeda/src/object/o_attrib.c:556
 msgid "Unexpected end-of-file in attribute list"
 msgstr "Неожиданный конец файла при обработке списка атрибутов"
 
@@ -803,7 +798,7 @@ msgstr ""
 "Недопустимое значение угла поворота в определении компонента «%c %d %d %d %d "
 "%d %s»\n"
 
-#: libgeda/src/object/o_complex_basic.c:659 libgeda/src/object/o_picture.c:104
+#: libgeda/src/object/o_complex_basic.c:659 libgeda/src/object/o_picture.c:109
 msgid "Setting angle to 0\n"
 msgstr "Установка угла поворота в 0\n"
 
@@ -819,23 +814,23 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr "Установка «mirror» в 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:1000
+#: libgeda/src/object/o_complex_basic.c:1001
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1001
+#: libgeda/src/object/o_complex_basic.c:1002
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1002
+#: libgeda/src/object/o_complex_basic.c:1003
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1003
+#: libgeda/src/object/o_complex_basic.c:1004
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1004
+#: libgeda/src/object/o_complex_basic.c:1005
 #, fuzzy
 msgid "parse error"
 msgstr "Ошибка обработки: ~s"
@@ -889,12 +884,12 @@ msgstr ""
 "\tК экземпляру символа прикреплён атрибут «symversion=%s», но в файле "
 "символа «symversion» отсутствует\n"
 
-#: libgeda/src/object/o_embed.c:52
+#: libgeda/src/object/o_embed.c:53
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "Компонент «%s» внедрён\n"
 
-#: libgeda/src/object/o_embed.c:95
+#: libgeda/src/object/o_embed.c:94
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -903,7 +898,7 @@ msgstr ""
 "Не удалось найти библиотечный символ для исключаемого компонента «%s». "
 "Компонент останется внедрённым\n"
 
-#: libgeda/src/object/o_embed.c:103
+#: libgeda/src/object/o_embed.c:102
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"
@@ -934,105 +929,121 @@ msgstr "Ошибка в определении контура"
 msgid "Unexpected end-of-file when reading path"
 msgstr "Неожиданный конец файла при обработке контура"
 
-#: libgeda/src/object/o_picture.c:71
+#: libgeda/src/object/o_picture.c:76
 msgid "Failed to parse picture definition"
 msgstr "Ошибка в определении изображения"
 
-#: libgeda/src/object/o_picture.c:76
+#: libgeda/src/object/o_picture.c:81
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr "Изображение нулевой ширины или высоты «%c %d %d %d %d»\n"
 
-#: libgeda/src/object/o_picture.c:81
+#: libgeda/src/object/o_picture.c:86
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr "Недопустимое значение поля «mirrored» в определении изображения: %d.\n"
 
-#: libgeda/src/object/o_picture.c:83
+#: libgeda/src/object/o_picture.c:88
 msgid "Setting mirrored to 0\n"
 msgstr "Установка «mirrored» в 0\n"
 
-#: libgeda/src/object/o_picture.c:88
+#: libgeda/src/object/o_picture.c:93
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr "Недопустимое значение поля «embedded» в определении изображения: %d.\n"
 
-#: libgeda/src/object/o_picture.c:90
+#: libgeda/src/object/o_picture.c:95
 msgid "Setting embedded to 0\n"
 msgstr "Установка «embedded» в 0\n"
 
-#: libgeda/src/object/o_picture.c:103
+#: libgeda/src/object/o_picture.c:108
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr "Неподдерживаемое значение угла поворота изображения «%d»\n"
 
-#: libgeda/src/object/o_picture.c:115
-msgid "Found an image with no filename."
-msgstr "Обнаружено изображение без имени файла"
+#: libgeda/src/object/o_picture.c:120
+msgid "Image filename is missing."
+msgstr ""
 
-#: libgeda/src/object/o_picture.c:146
+#: libgeda/src/object/o_picture.c:152
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из внедрённых данных «%s»: %s\n"
 
-#: libgeda/src/object/o_picture.c:147
+#: libgeda/src/object/o_picture.c:153
 msgid "Base64 decoding failed."
 msgstr "Ошибка расшифровки данных в формате base64."
 
-#: libgeda/src/object/o_picture.c:148
+#: libgeda/src/object/o_picture.c:154
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Возврат к загрузке из файла. Изображение исключено.\n"
 
-#: libgeda/src/object/o_picture.c:207
+#: libgeda/src/object/o_picture.c:215
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "ОШИБКА: o_picture_save: невозможно закодировать изображение.\n"
 
+#: libgeda/src/object/o_picture.c:313
+msgid "Invalid picture has no height, set aspect to 1.0\n"
+msgstr ""
+
 # Ошибка, если данные изображения уже есть во внутреннем буфере
-#: libgeda/src/object/o_picture.c:310
+#: libgeda/src/object/o_picture.c:326
 #, c-format
 msgid "Failed to load buffer image [%s]: %s\n"
 msgstr "Не удалось загрузить изображение «%s» из буфера: %s\n"
 
-#: libgeda/src/object/o_picture.c:324
+#: libgeda/src/object/o_picture.c:346
 #, c-format
 msgid "Failed to load image from [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/object/o_picture.c:379
+#: libgeda/src/object/o_picture.c:352
 #, c-format
-msgid "Picture %p has invalid angle %i\n"
-msgstr "Недопустимое значение угла поворота изображения «%p»: %i\n"
+msgid ""
+"%s:\n"
+" %s"
+msgstr ""
+
+#: libgeda/src/object/o_picture.c:624
+#, c-format
+msgid "Can not export to type %s\n"
+msgstr ""
+
+#: libgeda/src/object/o_picture.c:636
+#, fuzzy, c-format
+msgid "Failed to export [%s]: %s\n"
+msgstr "Не удалось открыть каталог «%s»: %s\n"
 
 # Указатель на данные возвращает NULL
-#: libgeda/src/object/o_picture.c:908
+#: libgeda/src/object/o_picture.c:1130
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr "Файл «%s» не содержит данных изображения.\n"
 
-#: libgeda/src/object/o_picture.c:909
+#: libgeda/src/object/o_picture.c:1131
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr "Возврат к загрузке из файла. Изображение всё ещё исключено.\n"
 
-#: libgeda/src/object/o_picture.c:917
+#: libgeda/src/object/o_picture.c:1140
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "Изображение «%s» внедрено\n"
 
-#: libgeda/src/object/o_picture.c:943
+#: libgeda/src/object/o_picture.c:1176
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/object/o_picture.c:945
+#: libgeda/src/object/o_picture.c:1178
 msgid "Picture is still embedded.\n"
 msgstr "Изображение всё ещё внедрено.\n"
 
-#: libgeda/src/object/o_picture.c:953
+#: libgeda/src/object/o_picture.c:1187
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Изображение «%s» исключено\n"
 
-#: libgeda/src/object/o_picture.c:1163
+#: libgeda/src/object/o_picture.c:1668
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr "Не удалось загрузить копию изображения для отката «%s»: %s\n"
@@ -1091,7 +1102,7 @@ msgstr "Не удалось сохранить файл: %s"
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: объект %p неизвестного типа «%c»\n"
 
-#: libgeda/src/object/o_save.c:339
+#: libgeda/src/object/o_save.c:338
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""
@@ -1481,6 +1492,12 @@ msgstr ""
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Объект ~A не является частью схемы"
+
+#~ msgid "Found an image with no filename."
+#~ msgstr "Обнаружено изображение без имени файла"
+
+#~ msgid "Picture %p has invalid angle %i\n"
+#~ msgstr "Недопустимое значение угла поворота изображения «%p»: %i\n"
 
 #~ msgid ""
 #~ "WARNING: Symbol version parse error on refdes %s:\n"

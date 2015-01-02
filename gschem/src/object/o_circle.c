@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,31 +98,33 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
   Object *new_obj;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_circle_end> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
-  /* erase the temporary circle */
-  /* o_circle_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
+  else {
 
-  /* circle with null radius are not allowed */
-  if (w_current->distance == 0) {
-    /* cancel the object creation */
-    return;
+    /* erase the temporary circle */
+    /* o_circle_invalidate_rubber (w_current); */
+    w_current->rubber_visible = 0;
+
+    /* circle with null radius are not allowed */
+    if (w_current->distance == 0) {
+      /* cancel the object creation */
+      return;
+    }
+
+    /* create the object */
+    new_obj = o_circle_new (GRAPHIC_COLOR,
+                            w_current->first_wx, w_current->first_wy,
+                            w_current->distance);
+    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+    s_page_append_object (toplevel->page_current, new_obj);
+
+    /* Call add-objects-hook */
+    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+    toplevel->page_current->CHANGED = 1;
+    o_undo_savestate(w_current, UNDO_ALL);
   }
-
-  /* create the object */
-  new_obj = o_circle_new (GRAPHIC_COLOR,
-                          w_current->first_wx, w_current->first_wy,
-                          w_current->distance);
-  new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-  s_page_append_object (toplevel->page_current, new_obj);
-
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  toplevel->page_current->CHANGED = 1;
-  o_undo_savestate(w_current, UNDO_ALL);
 }
 
 /*! \brief Draw temporary circle while dragging edge.
@@ -152,25 +154,26 @@ void o_circle_motion (GschemToplevel *w_current, int w_x, int w_y)
   int diff_x, diff_y;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_circle_motion> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
+  else {
 
-  /* erase the previous temporary circle if it is visible */
-  if (w_current->rubber_visible)
+    /* erase the previous temporary circle if it is visible */
+    if (w_current->rubber_visible)
+      o_circle_invalidate_rubber (w_current);
+
+    /*
+     * The radius is taken as the largest distance on the x and y
+     * axis between the center of the circle and the mouse position.
+     */
+    diff_x = abs(w_current->first_wx - w_x);
+    diff_y = abs(w_current->first_wy - w_y);
+    w_current->distance = max(diff_x, diff_y);
+
+    /* draw the new temporary circle */
     o_circle_invalidate_rubber (w_current);
-
-  /*
-   * The radius is taken as the biggest distance on the x and y axis between
-   * the center of the circle and the mouse position.
-   */
-  diff_x = abs(w_current->first_wx - w_x);
-  diff_y = abs(w_current->first_wy - w_y);
-  w_current->distance = max(diff_x, diff_y);
-
-  /* draw the new temporary circle */
-  o_circle_invalidate_rubber (w_current);
-  w_current->rubber_visible =1;
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \brief Draw circle from GschemToplevel object.

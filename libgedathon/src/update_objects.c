@@ -413,7 +413,7 @@ PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
     for (i = 0; i < count ; i++)
     {
       GedaCapsule *capsule  = (GedaCapsule*)PyList_GET_ITEM(py_object->attributes, i);
-      if GEDA_IS_TEXT(capsule->object) {
+      if (GEDA_IS_TEXT(capsule->object)) {
         Object *attrib = capsule->object;
         butes  = g_list_append(butes, attrib);
         fprintf(stderr, "PyGeda_update_complex_butes: adding %s\n", attrib->text->string);

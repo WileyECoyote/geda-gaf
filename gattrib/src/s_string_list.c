@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2014 Stuart D. Brorson.
+ * Copyright (C) 2003-2015 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,22 +99,21 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
   return new_string_list;
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Add an item to a STRING_LIST
  *
- * Adds the item into a STRING_LIST.
- * It first passes through the
- * list to make sure that there are no duplications.
- * \param list pointer to STRING_LIST to be added to.
- * \param count FIXME Don't know what this does - input or output? both?
- * \param item pointer to string to be added
+ * This function adds \a item into a STRING_LIST, after iterating
+ * through the list to make sure that there are no duplications.
+ *
+ * \param [in,out] list  pointer to STRING_LIST to be added to.
+ * \param [in,out] count total count on input, is updated if \a item added
+ * \param [in]     item  pointer to string to be added
  */
 void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
 
-  char *trial_item = NULL;
   STRING_LIST *prev;
   STRING_LIST *local_list;
+  char        *trial_item = NULL;
 
   if (list == NULL) {
     fprintf(stderr, _("In s_string_list_add_item, tried to add to a NULL list.\n"));
@@ -126,9 +125,9 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   if (list->data == NULL) {
     list->data = u_string_strdup(item);
     list->next = NULL;
-    list->prev = NULL;  /* this may have already been initialized. . . . */
-    list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
-    (*count)++;         /* increment count to 1 */
+    list->prev = NULL;   /* this may have already been initialized. . . . */
+    list->pos  = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
+    (*count)++;          /* increment count to 1 */
     return;
   }
 
@@ -171,10 +170,10 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
  */
 void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 
-  char *trial_item = NULL;
   STRING_LIST *list_item;
   STRING_LIST *next_item = NULL;
   STRING_LIST *prev_item = NULL;
+  char        *trial_item = NULL;
 
   /* First check to see if list is empty.  If empty, spew error and return */
   if ( (*list)->data == NULL) {
@@ -367,28 +366,32 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
  */
 void s_string_list_sort_master_comp_list() {
   int i = 0;
-  STRING_LIST *local_list, *p;
+  STRING_LIST *local_list, *iter;
 
   /* Here's where we do the sort.  The sort is done using a fcn found on the web. */
   local_list = sheet_head->master_comp_list_head;
-  for (p=local_list; p; p=p->next)
-    p->pos = 0;
+
+  for (iter = local_list; iter; iter = iter->next) {
+    iter->pos = 0;
+  }
+
   local_list = listsort(local_list, 0, 1);
 
-  /* Do this after sorting is done.  This resets the order of the individual items
+  /* Do this after sorting is done to reset the order of the individual items
    * in the list.  */
   while (local_list != NULL) {  /* make sure item is not null */
     local_list->pos = i;
     if (local_list->next != NULL) {
       i++;
       local_list = local_list->next;
-    } else {
+    }
+    else {
       break;                    /* leave loop *before* iterating to NULL EOL marker */
     }
   }
 
   /* Now go to first item in local list and reassign list head to new first element */
-  while (local_list->prev != NULL) {
+  while (local_list->prev) {
     local_list = local_list->prev;
   }
 
@@ -427,7 +430,7 @@ static struct {
  */
 void s_string_list_sort_master_comp_attrib_list() {
   int i = 0;
-  STRING_LIST *local_list, *p;
+  STRING_LIST *local_list, *iter;
 
   /* Here's where we do the sort */
   local_list = sheet_head->master_comp_attrib_list_head;
@@ -436,14 +439,14 @@ void s_string_list_sort_master_comp_attrib_list() {
 * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
 * certain attribs to go first.
 */
-  for (p=local_list; p; p=p->next) {
+  for (iter=local_list; iter; iter=iter->next) {
     int i;
-    p->pos = DEFAULT_ATTRIB_POS;
+    iter->pos = DEFAULT_ATTRIB_POS;
     for (i=0; i<NUM_CERTAINS; i++) {
-      if (p->data != NULL) {
-        if (strcmp (certain_attribs[i].attrib, p->data) == 0)
+      if (iter->data != NULL) {
+        if (strcmp (certain_attribs[i].attrib, iter->data) == 0)
         {
-          p->pos = certain_attribs[i].pos;
+          iter->pos = certain_attribs[i].pos;
           break;
         }
       }
@@ -455,7 +458,7 @@ void s_string_list_sort_master_comp_attrib_list() {
 
   /* Do this after sorting is done. This resets the order of the individual items
 * in the list. */
-  while (local_list != NULL) {
+  while (local_list) {
     local_list->pos = i;
     i++;
     local_list = local_list->next;
@@ -531,12 +534,12 @@ void s_string_list_sort_master_net_attrib_list() {
 /*------------------------------------------------------------------*/
 void s_string_list_sort_master_pin_list() {
   int i = 0;
-  STRING_LIST *local_list, *p;
+  STRING_LIST *local_list, *iter;
 
   /* Here's where we do the sort.  The sort is done using a fcn found on the web. */
   local_list = sheet_head->master_pin_list_head;
-  for (p=local_list; p; p=p->next)
-    p->pos = 0;
+  for (iter = local_list; iter; iter=iter->next)
+    iter->pos = 0;
   local_list = listsort(local_list, 0, 1);
 
   /* Do this after sorting is done.  This resets the order of the individual items
@@ -552,7 +555,7 @@ void s_string_list_sort_master_pin_list() {
   }
 
   /* Now go to first item in local list and reassign list head to new first element */
-  while (local_list->prev != NULL) {
+  while (local_list->prev) {
     local_list = local_list->prev;
   }
 

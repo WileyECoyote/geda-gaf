@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-11-27 00:20-0600\n"
+"POT-Creation-Date: 2015-01-02 06:17-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -203,19 +203,19 @@ msgstr ""
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Приступаем к созданию основного списка атрибутов выводов.\n"
 
-#: gattrib/src/s_string_list.c:120
+#: gattrib/src/s_string_list.c:119
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 "s_string_list_add_item: попытка добавления к списку со значением NULL.\n"
 
-#: gattrib/src/s_string_list.c:181
+#: gattrib/src/s_string_list.c:180
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 "s_string_list_delete_item: попытка удаления элемента из пустого списка\n"
 
-#: gattrib/src/s_string_list.c:245
+#: gattrib/src/s_string_list.c:244
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr "s_string_list_delete_item: не удалось удалить элемент %s\n"

@@ -465,16 +465,12 @@ geda_label_update_layout_width (GedaLabel *label)
   priv   = label->priv;
 
   if (priv == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s><geda_label_update_layout_width>"
-                     "priv = NULL, line %d.\n", __FILE__, __LINE__);
+    BUG_MSG ("NULL pointer");
     return;
   }
 
   if (label->layout == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s><geda_label_update_layout_width>"
-                     "layout = NULL, line %d.\n", __FILE__, __LINE__);
+    BUG_MSG ("NULL pointer for layout");
     return;
   }
 
@@ -3537,34 +3533,35 @@ static PangoDirection get_cursor_direction (GedaLabel *label)
 {
   GedaLabelSelectionInfo *select_info;
   GSList *l;
+  int result;
 
   select_info = label->priv->select_info;
 
   if (select_info == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s><get_cursor_direction>"
-                     "select_info == NULL, line %d.\n", __FILE__, __LINE__);
-    return 0;
+    BUG_MSG ("select_info = NULL");
+    result = 0;
   }
+  else {
 
-  geda_label_ensure_layout (label);
+    geda_label_ensure_layout (label);
 
-  for (l = pango_layout_get_lines_readonly (label->layout); l; l = l->next)
-  {
-    PangoLayoutLine *line = l->data;
+    for (l = pango_layout_get_lines_readonly (label->layout); l; l = l->next)
+    {
+      PangoLayoutLine *line = l->data;
 
-    /* If priv->select_info->selection_end is at the very end of
-     * the line, we don't know if the cursor is on this line or
-     * the next without looking ahead at the next line. (End
-     * of paragraph is different from line break.) But it's
-     * definitely in this paragraph, which is good enough
-     * to figure out the resolved direction.
-     */
-    if (line->start_index + line->length >= select_info->selection_end)
-      return line->resolved_dir;
+      /* If priv->select_info->selection_end is at the very end of
+       * the line, we don't know if the cursor is on this line or
+       * the next without looking ahead at the next line. (End
+       * of paragraph is different from line break.) But it's
+       * definitely in this paragraph, which is good enough
+       * to figure out the resolved direction.
+       */
+      if (line->start_index + line->length >= select_info->selection_end)
+        return line->resolved_dir;
+    }
+    result = PANGO_DIRECTION_LTR;
   }
-
-  return PANGO_DIRECTION_LTR;
+  return result;
 }
 static void
 draw_insertion_cursor (GedaLabel      *label,
@@ -4697,46 +4694,45 @@ geda_label_create_window (GedaLabel *label)
   priv   = label->priv;
 
   if (priv->select_info == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s><geda_label_create_window>"
-                     "select_info = NULL, line %d.\n", __FILE__, __LINE__);
-    return;
+    BUG_MSG ("select_info = NULL");
   }
+  else {
 
-  if (priv->select_info->window)
-    return;
+    if (priv->select_info->window)
+      return;
 
-  widget = GTK_WIDGET (label);
+    widget = GTK_WIDGET (label);
 
-  gtk_widget_get_allocation (widget, &allocation);
+    gtk_widget_get_allocation (widget, &allocation);
 
-  attributes.x                 = allocation.x;
-  attributes.y                 = allocation.y;
-  attributes.width             = allocation.width;
-  attributes.height            = allocation.height;
-  attributes.window_type       = GDK_WINDOW_CHILD;
-  attributes.wclass            = GDK_INPUT_ONLY;
-  attributes.override_redirect = TRUE;
-  attributes.event_mask        = gtk_widget_get_events (widget) |
-                                   GDK_BUTTON_PRESS_MASK        |
-                                   GDK_BUTTON_RELEASE_MASK      |
-                                   GDK_LEAVE_NOTIFY_MASK        |
-                                   GDK_BUTTON_MOTION_MASK       |
-                                   GDK_POINTER_MOTION_MASK      |
-                                   GDK_POINTER_MOTION_HINT_MASK;
+    attributes.x                 = allocation.x;
+    attributes.y                 = allocation.y;
+    attributes.width             = allocation.width;
+    attributes.height            = allocation.height;
+    attributes.window_type       = GDK_WINDOW_CHILD;
+    attributes.wclass            = GDK_INPUT_ONLY;
+    attributes.override_redirect = TRUE;
+    attributes.event_mask        = gtk_widget_get_events (widget) |
+    GDK_BUTTON_PRESS_MASK        |
+    GDK_BUTTON_RELEASE_MASK      |
+    GDK_LEAVE_NOTIFY_MASK        |
+    GDK_BUTTON_MOTION_MASK       |
+    GDK_POINTER_MOTION_MASK      |
+    GDK_POINTER_MOTION_HINT_MASK;
 
-  attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
+    attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
 
-  if (gtk_widget_is_sensitive (widget)) {
+    if (gtk_widget_is_sensitive (widget)) {
 
-    attributes.cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_XTERM);
-    attributes_mask  |= GDK_WA_CURSOR;
+      attributes.cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_XTERM);
+      attributes_mask  |= GDK_WA_CURSOR;
+    }
+
+    priv->select_info->window =
+    gdk_window_new (gtk_widget_get_window (widget), &attributes, attributes_mask);
+
+    gdk_window_set_user_data (priv->select_info->window, widget);
   }
-
-  priv->select_info->window = gdk_window_new (gtk_widget_get_window (widget), &attributes, attributes_mask);
-
-  gdk_window_set_user_data (priv->select_info->window, widget);
-
 }
 
 static void
@@ -4745,20 +4741,18 @@ geda_label_destroy_window (GedaLabel *label)
   GedaLabelSelectionInfo *info;
 
   if (label->priv->select_info == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s><geda_label_destroy_window>"
-                     "select_info = NULL, line %d.\n", __FILE__, __LINE__);
-    return;
+    BUG_MSG ("select_info = NULL");
   }
+  else {
+    info = label->priv->select_info;
 
-  info = label->priv->select_info;
+    if (info->window == NULL)
+      return;
 
-  if (info->window == NULL)
-    return;
-
-  gdk_window_set_user_data (info->window, NULL);
-  gdk_window_destroy (info->window);
-  info->window = NULL;
+    gdk_window_set_user_data (info->window, NULL);
+    gdk_window_destroy (info->window);
+    info->window = NULL;
+  }
 }
 
 static bool

@@ -1552,7 +1552,7 @@ PyGeda_get_object(PyObject *py_capsule)
 
   object = GedaCapsule_GetPointer(py_capsule);
 
-  if GEDA_IS_OBJECT(object) {
+  if (GEDA_IS_OBJECT(object)) {
 
     switch (object->type) {
       case OBJ_PLACEHOLDER:
@@ -2337,15 +2337,17 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
-  else
+  else {
     object->net->net_name  = u_string_strdup(object->name);
+  }
 
   object->net->nid = object->sid;
 
   floating_objects = g_list_append(floating_objects, object);
 
 #if DEBUG
-  fprintf(stderr, "PyGeda_new_net: name=%s, netname=%s\n", object->name, netname);
+    fprintf(stderr, "PyGeda_new_net: name=%s, netname=%s\n", object->name,
+                                              netname ? netname : "NULL");
 #endif
   return get_net_object_data(object);
 }

@@ -97,27 +97,28 @@ void o_pin_end(GschemToplevel *w_current, int x, int y)
 void o_pin_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_pin_motion> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action");
   }
+  else {
 
-  /* erase the rubberpin if it is visible */
-  if (w_current->rubber_visible)
-    o_pin_invalidate_rubber (w_current);
+    /* erase the rubberpin if it is visible */
+    if (w_current->rubber_visible)
+      o_pin_invalidate_rubber (w_current);
 
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
 
-  /* decide whether to draw the pin vertical or horizontal */
-  if (abs(w_current->second_wx - w_current->first_wx)
+    /* decide whether to draw the pin vertical or horizontal */
+    if (abs(w_current->second_wx - w_current->first_wx)
       >= abs(w_current->second_wy - w_current->first_wy)) {
-    w_current->second_wy = w_current->first_wy;
-  } else {
-    w_current->second_wx = w_current->first_wx;
-  }
+      w_current->second_wy = w_current->first_wy;
+      } else {
+        w_current->second_wx = w_current->first_wx;
+      }
 
-  o_pin_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+      o_pin_invalidate_rubber (w_current);
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \todo Finish function documentation!!!

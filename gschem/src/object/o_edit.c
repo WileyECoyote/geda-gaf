@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -638,7 +638,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
           i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
 
           if (!world_get_single_object_bounds (o_current, &x1, &y1, &x2, &y2)) {
-            u_log_message("Internal Error Detected: <o_edit_find_text> world object bounds returned FALSE\n");
+            BUG_MSG("world object bounds returned FALSE");
             return 0;
           }
 
@@ -829,8 +829,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
     char *new_value;
 
     if (attr_new->type != OBJ_TEXT) {
-      u_log_message("Internal Error: <o_edit_update_component> "
-                    "detected attr_new->type != OBJ_TEXT\n");
+      BUG_MSG("type is not OBJ_TEXT");
     }
     else {
 

@@ -52,8 +52,7 @@ is_visited(Object *obj)
 }
 
 /*! Increment the current visit count for a particular Object. */
-static inline int
-visit(Object *obj)
+static inline int visit(Object *obj)
 {
   void * val = GINT_TO_POINTER(is_visited (obj) + 1);
   g_hash_table_replace (visit_table, obj, val);
@@ -267,17 +266,21 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
   verbose_done();
 }
 
-CPINLIST *s_traverse_component(GedaToplevel * pr_current, Object * component,
-                               char *hierarchy_tag)
+CPINLIST *s_traverse_component(GedaToplevel *pr_current,
+                               Object       *component,
+                               char         *hierarchy_tag)
 {
   CPINLIST *cpinlist_head = NULL;
-  CPINLIST *cpins = NULL;
-  NET      *nets_head = NULL;
-  NET      *nets = NULL;
+  CPINLIST *cpins         = NULL;
+  NET      *nets_head     = NULL;
+  NET      *nets          = NULL;
   GList    *iter;
 
   cpinlist_head = cpins = s_cpinlist_add(NULL);
-  cpins->plid = -1;
+
+  if (cpins) {
+    cpins->plid = -1;
+  }
 
   for (iter = component->complex->prim_objs; iter != NULL;
        iter = g_list_next (iter))
@@ -292,8 +295,8 @@ CPINLIST *s_traverse_component(GedaToplevel * pr_current, Object * component,
       continue;
 
     /* add cpin node */
-    cpins = s_cpinlist_add(cpins);
-    cpins->plid = o_current->sid;
+    cpins            = s_cpinlist_add(cpins);
+    cpins->plid      = o_current->sid;
     cpins->node_type = o_current->pin->node_type;
 
     cpins->pin_number =

@@ -20,13 +20,15 @@ libgedauio_HEADERS = \
 			geda_font_button.h       \
 			geda_font_dialog.h       \
 			geda_handlebox.h         \
+			geda_image_chooser.h     \
 			geda_imagemenuitem.h     \
 			geda_input_dialog.h      \
-			geda_keysyms.h		 \
+			geda_keysyms.h           \
 			geda_label.h             \
-			geda_marshal.h		 \
+			geda_marshal.h           \
 			geda_menu_button.h       \
 			geda_swatch_renderer.h   \
+			geda_threads.h           \
 			geda_toggle_action.h     \
 			geda_tree_view.h         \
 			geda_dialogs.h           \

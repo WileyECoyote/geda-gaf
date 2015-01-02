@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-11-23 03:18-0600\n"
+"POT-Creation-Date: 2015-01-02 06:18-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -42,27 +42,17 @@ msgstr "مخطط دارة gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "رمز مخطّط gEDA"
 
-#: libgeda/src/file/f_basic.c:84 libgeda/src/file/f_basic.c:97
+#: libgeda/src/file/f_basic.c:73 libgeda/src/file/f_basic.c:86
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "فشل إلى الحالة  [%s]: %s"
 
-#: libgeda/src/file/f_basic.c:157
-#, c-format
-msgid "Cannot find file %s: %s"
-msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
-
-#: libgeda/src/file/f_basic.c:174
-#, c-format
-msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:210
-#, c-format
+#: libgeda/src/file/f_basic.c:143
+#, fuzzy, c-format
 msgid ""
 "\n"
 "WARNING: Found an autosave backup file:\n"
-"  %s.\n"
+" \"%s\".\n"
 "\n"
 msgstr ""
 "\n"
@@ -71,13 +61,13 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:212
+#: libgeda/src/file/f_basic.c:144
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "لم أستطع تخمين ما إذا كان أحدث، لذلك عليك أن تفعل ذلك يدويا.\n"
 
-#: libgeda/src/file/f_basic.c:214
+#: libgeda/src/file/f_basic.c:145
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -85,7 +75,7 @@ msgstr ""
 "النسخة الاحتياطية أحدث من المخطّط، لذلك على ما يبدو يجب عليك تحميله بدلا من "
 "الملف الأصلي.\n"
 
-#: libgeda/src/file/f_basic.c:216
+#: libgeda/src/file/f_basic.c:146
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -94,7 +84,7 @@ msgstr ""
 "عادة ما يعمل gschem نسخا احتياطية تلقائيا، وهذا الوضع يحدث عندما يتحطم أو "
 "يجبر على الخروج بشكل مفاجئ.\n"
 
-#: libgeda/src/file/f_basic.c:219
+#: libgeda/src/file/f_basic.c:147
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -102,106 +92,110 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:270
+#: libgeda/src/file/f_basic.c:161
+#, c-format
+msgid "Cannot find file %s: %s"
+msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
+
+#: libgeda/src/file/f_basic.c:178
+#, c-format
+msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
+msgstr ""
+
+#: libgeda/src/file/f_basic.c:233 libgeda/src/file/f_file.c:100
+#, c-format
+msgid "%s: Memory Allocation Error!\n"
+msgstr ""
+
+#: libgeda/src/file/f_basic.c:293
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:321
+#: libgeda/src/file/f_basic.c:343
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:331
-#, c-format
-msgid "File %s is read-only"
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:365
-#, fuzzy, c-format
-msgid "Could not set previous backup file [%s] read-write:%s\n"
-msgstr "تعذّر وضع الملف الاحتياطي السابق [‎%s‬] للقراءة والكتابة\n"
-
-#: libgeda/src/file/f_basic.c:373
-#, fuzzy, c-format
-msgid "Can not create backup file: %s: %s\n"
-msgstr "يتعذّر حفظ الملف الاحتياطي: %s."
-
-#: libgeda/src/file/f_basic.c:419
+#: libgeda/src/file/f_basic.c:344
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:78
+#: libgeda/src/file/f_basic.c:345
 #, c-format
-msgid "File error: \"%s\", %s\n"
+msgid "File %s is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:89
-msgid "File error(strerror): Memory Allocation Error!\n"
+#: libgeda/src/file/f_basic.c:347
+#, fuzzy, c-format
+msgid "Could not set previous backup file [%s] read-write:%s\n"
+msgstr "تعذّر وضع الملف الاحتياطي السابق [‎%s‬] للقراءة والكتابة\n"
+
+#: libgeda/src/file/f_basic.c:348
+#, fuzzy, c-format
+msgid "Can not create backup file: %s: %s\n"
+msgstr "يتعذّر حفظ الملف الاحتياطي: %s."
+
+#: libgeda/src/file/f_file.c:79
+msgid "File error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:95
+#: libgeda/src/file/f_file.c:83
+msgid "File lock error"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:84
 #, c-format
-msgid "File error(strerror[source]): \"%s\", %s\n"
+msgid "%s: attempting to lock/unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:101
-#, c-format
-msgid "File error(strerror)[source]: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:109 libgeda/src/file/f_file.c:113
-#, c-format
-msgid "File lock error(strerror): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_file.c:298
+#: libgeda/src/file/f_file.c:326
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/file/f_get.c:147
+#: libgeda/src/file/f_get.c:201
 #, c-format
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:186
+#: libgeda/src/file/f_get.c:239
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:197
+#: libgeda/src/file/f_get.c:250
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
 
-#: libgeda/src/file/f_get.c:208
+#: libgeda/src/file/f_get.c:261
 #, c-format
 msgid "File \"%s\" is too large"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:265
+#: libgeda/src/file/f_get.c:318
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:285
+#: libgeda/src/file/f_get.c:338
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "‏تعذر تحميل الصورة من الملف ‬‪[%s]‬:‪ %s‮\n"
 
-#: libgeda/src/file/f_get.c:344
+#: libgeda/src/file/f_get.c:399
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "فشل في فتح الدليل [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:358
+#: libgeda/src/file/f_get.c:411
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:375
+#: libgeda/src/file/f_get.c:428
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "‏تعذر تحميل الصورة من الملف ‬‪[%s]‬:‪ %s‮\n"
@@ -257,39 +251,39 @@ msgstr "﻿تعذر تنفيذ الأمر [‪%s‬] للطباعة\n"
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "رموز UTF-8 كثيرة جدا، تتعذر الطباعة\n"
 
-#: libgeda/src/geda/geda_config.c:101
+#: libgeda/src/geda/geda_config.c:100
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:102
+#: libgeda/src/geda/geda_config.c:101
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:770 libgeda/src/geda/geda_config.c:883
+#: libgeda/src/geda/geda_config.c:780 libgeda/src/geda/geda_config.c:895
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:904
+#: libgeda/src/geda/geda_config.c:916
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:943
+#: libgeda/src/geda/geda_config.c:958
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "يتعذّر العثور على الملف ‪%s‬: %s"
 
-#: libgeda/src/geda/geda_config.c:1235
+#: libgeda/src/geda/geda_config.c:1257
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1299
+#: libgeda/src/geda/geda_config.c:1321
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1313
+#: libgeda/src/geda/geda_config.c:1335
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -350,75 +344,75 @@ msgstr ""
 msgid "Which end of the pin gets connected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:379
+#: libgeda/src/geda/geda_object.c:380
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:380
+#: libgeda/src/geda/geda_object.c:381
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:389
+#: libgeda/src/geda/geda_object.c:390
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:390
+#: libgeda/src/geda/geda_object.c:391
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:397
+#: libgeda/src/geda/geda_object.c:398
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:398
+#: libgeda/src/geda/geda_object.c:399
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:404
+#: libgeda/src/geda/geda_object.c:405
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:405
+#: libgeda/src/geda/geda_object.c:406
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:410
+#: libgeda/src/geda/geda_object.c:411
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:411
+#: libgeda/src/geda/geda_object.c:412
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:417
+#: libgeda/src/geda/geda_object.c:418
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:418
+#: libgeda/src/geda/geda_object.c:419
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:424
+#: libgeda/src/geda/geda_object.c:425
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:425
+#: libgeda/src/geda/geda_object.c:426
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:432
+#: libgeda/src/geda/geda_object.c:433
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:433
+#: libgeda/src/geda/geda_object.c:434
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:441
+#: libgeda/src/geda/geda_object.c:442
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:442
+#: libgeda/src/geda/geda_object.c:443
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -628,12 +622,12 @@ msgstr "محاولة إرفاق عنصر غير نصي كسمة!\n"
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "محاولة إرفاق السمة [%s] لأكثر من كائن واحد\n"
 
-#: libgeda/src/object/o_attrib.c:508
+#: libgeda/src/object/o_attrib.c:549
 #, fuzzy
 msgid "Tried to attach a non-text object as an attribute"
 msgstr "محاولة إرفاق عنصر غير نصي كسمة!\n"
 
-#: libgeda/src/object/o_attrib.c:515
+#: libgeda/src/object/o_attrib.c:556
 msgid "Unexpected end-of-file in attribute list"
 msgstr ""
 
@@ -776,7 +770,7 @@ msgstr ""
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr "عثر على مكون باستدارة غير صالحة [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:659 libgeda/src/object/o_picture.c:104
+#: libgeda/src/object/o_complex_basic.c:659 libgeda/src/object/o_picture.c:109
 msgid "Setting angle to 0\n"
 msgstr "تعيين 'زاوية' إلى 0\n"
 
@@ -790,23 +784,23 @@ msgstr "عثر على مكون بعلامة مرآة غير صالحة [ %c %d %
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1000
+#: libgeda/src/object/o_complex_basic.c:1001
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1001
+#: libgeda/src/object/o_complex_basic.c:1002
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1002
+#: libgeda/src/object/o_complex_basic.c:1003
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1003
+#: libgeda/src/object/o_complex_basic.c:1004
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1004
+#: libgeda/src/object/o_complex_basic.c:1005
 msgid "parse error"
 msgstr ""
 
@@ -852,12 +846,12 @@ msgstr ""
 "‏تحذير:  غرابة إصدار الرمز في refdes %s:\n"
 "‏\t‏symversion=%s مرفق إلى رمز مماثل، و لكن لا symversion= ضمن ملف الرمز\n"
 
-#: libgeda/src/object/o_embed.c:52
+#: libgeda/src/object/o_embed.c:53
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "تم تضمين المكون [‪%s‬]\n"
 
-#: libgeda/src/object/o_embed.c:95
+#: libgeda/src/object/o_embed.c:94
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -865,7 +859,7 @@ msgid ""
 msgstr ""
 "﻿تعذر العثور على المكون [%s]، عند محاولة إلغاء التضمين. لا يزال المكون مضمنا\n"
 
-#: libgeda/src/object/o_embed.c:103
+#: libgeda/src/object/o_embed.c:102
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "ألغي تضمين المكون [%s] بنجاح\n"
@@ -896,103 +890,119 @@ msgstr ""
 msgid "Unexpected end-of-file when reading path"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:71
+#: libgeda/src/object/o_picture.c:76
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:76
+#: libgeda/src/object/o_picture.c:81
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr "﻿عثر على صورة صفر العرض/الارتفاع [ %c %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_picture.c:81
+#: libgeda/src/object/o_picture.c:86
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:83
+#: libgeda/src/object/o_picture.c:88
 msgid "Setting mirrored to 0\n"
 msgstr "تعيين 'معكوس' إلى 0\n"
 
-#: libgeda/src/object/o_picture.c:88
+#: libgeda/src/object/o_picture.c:93
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:90
+#: libgeda/src/object/o_picture.c:95
 msgid "Setting embedded to 0\n"
 msgstr "تعيين 'مضمّن' إلى 0\n"
 
-#: libgeda/src/object/o_picture.c:103
+#: libgeda/src/object/o_picture.c:108
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr "عثر على زاوية صورة غير مدعومة [ %d ]\n"
 
-#: libgeda/src/object/o_picture.c:115
-msgid "Found an image with no filename."
+#: libgeda/src/object/o_picture.c:120
+msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:146
+#: libgeda/src/object/o_picture.c:152
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "‏تعذر تحميل الصورة من البيانات المضمنّة ‬‪[%s]‬:‪ %s‮\n"
 
-#: libgeda/src/object/o_picture.c:147
+#: libgeda/src/object/o_picture.c:153
 msgid "Base64 decoding failed."
 msgstr "فشل ترميز Base64."
 
-#: libgeda/src/object/o_picture.c:148
+#: libgeda/src/object/o_picture.c:154
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "التراجع لتحميل الملف. ألغي تضمين الصورة.\n"
 
-#: libgeda/src/object/o_picture.c:207
+#: libgeda/src/object/o_picture.c:215
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "﻿خطأ: o_picture_save: غير قادر على ترميز الصورة.\n"
 
-#: libgeda/src/object/o_picture.c:310
+#: libgeda/src/object/o_picture.c:313
+msgid "Invalid picture has no height, set aspect to 1.0\n"
+msgstr ""
+
+#: libgeda/src/object/o_picture.c:326
 #, c-format
 msgid "Failed to load buffer image [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:324
+#: libgeda/src/object/o_picture.c:346
 #, c-format
 msgid "Failed to load image from [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:379
+#: libgeda/src/object/o_picture.c:352
 #, c-format
-msgid "Picture %p has invalid angle %i\n"
+msgid ""
+"%s:\n"
+" %s"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:908
+#: libgeda/src/object/o_picture.c:624
+#, c-format
+msgid "Can not export to type %s\n"
+msgstr ""
+
+#: libgeda/src/object/o_picture.c:636
+#, fuzzy, c-format
+msgid "Failed to export [%s]: %s\n"
+msgstr "فشل في فتح الدليل [%s]: %s\n"
+
+#: libgeda/src/object/o_picture.c:1130
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:909
+#: libgeda/src/object/o_picture.c:1131
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:917
+#: libgeda/src/object/o_picture.c:1140
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "تم تضمين الصورة [‪%s‬]\n"
 
-#: libgeda/src/object/o_picture.c:943
+#: libgeda/src/object/o_picture.c:1176
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "‏تعذر تحميل الصورة من الملف ‬‪[%s]‬:‪ %s‮\n"
 
-#: libgeda/src/object/o_picture.c:945
+#: libgeda/src/object/o_picture.c:1178
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:953
+#: libgeda/src/object/o_picture.c:1187
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "تم إلغاء تضمين الصورة [‪%s‬]\n"
 
-#: libgeda/src/object/o_picture.c:1163
+#: libgeda/src/object/o_picture.c:1668
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
@@ -1046,7 +1056,7 @@ msgstr "تعذّر وضع الملف الاحتياطي [‎%s‬] للقراء�
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "﻿‏o_save_objects: يملك الكائن %p نوعا مجهولا '%c'\n"
 
-#: libgeda/src/object/o_save.c:339
+#: libgeda/src/object/o_save.c:338
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

@@ -132,8 +132,7 @@ x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
         }
         break;
       default:
-        g_critical ("Internal Error: <%s> <x_pagesel_callback_response>"
-                    "unhandled case for <%d>, line %d.\n", __FILE__, arg1, __LINE__);
+        BUG_IMSG("unhandled case <%d>", arg1);
   }
 }
 

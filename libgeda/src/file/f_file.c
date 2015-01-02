@@ -69,6 +69,7 @@ int f_file_copy(const char *source, const char *target)
 {
   int input  = -1;
   int output = -1;
+  int status;
 
   unsigned long int nread;
 
@@ -92,49 +93,57 @@ int f_file_copy(const char *source, const char *target)
     return -1;
   }
 
-  errno = 0;
+  status = errno = 0;
   buffer = malloc(DISK_BUFFER_SIZE);
 
   if(!buffer) {
     fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
-    return -1;
+    status = -1;
   }
-
-  /* Check to see if input is readable */
-  if(access(source, R_OK) != 0) {
+  else if(access(source, R_OK) != 0) { /* Check to see if input is readable */
     u_log_message(log_3SQ2, err_file, source, strerror(errno));
-    return -1;
+    free(buffer);
+    status = -1;
   }
+  else {
 
-  input = open(source, O_RDONLY);
-  if (input < 0) {
-    u_log_message(log_3SQ2, err_file, source, strerror(errno));
-    return -1;
-  }
+    input = open(source, O_RDONLY);
+    if (input < 0) {
+      u_log_message(log_3SQ2, err_file, source, strerror(errno));
+      status = -1;
+    }
+    else {
 
 #if defined(_LINUX)
-  if (input > 0)
-    if (lockf(input, F_LOCK, 0) == -1) {
-      return -1; /* FAILURE */
-      u_log_message(log_3SQ2, err_lock, source, strerror(errno));
-    }
-    /* else he input is locked */
-  else {
-    u_log_message(log_3SQ2, err_lock, source, strerror(errno));
-    return -1; /* FAILURE */
-  }
+      if (input > 0) {
+        if (lockf(input, F_LOCK, 0) == -1) {
+          free(buffer);
+          return -1; /* FAILURE */
+          u_log_message(log_3SQ2, err_lock, source, strerror(errno));
+        }
+        else { /* else the input is locked */
+          u_log_message(log_3SQ2, err_lock, source, strerror(errno));
+          free(buffer);
+          return -1; /* FAILURE */
+        }
+      }
 #endif
 
-  output = open(target, O_WRONLY | O_CREAT | O_EXCL, 0666);
+      output = open(target, O_WRONLY | O_CREAT | O_EXCL, 0666);
 
-  if (output < 0) return error_exit(errno);
+      if (output < 0) {
+        status  = errno;
+        close(input);
+        free(buffer);
+        return error_exit(status);
+      };
 
-  while (nread = read(input, buffer, DISK_BUFFER_SIZE), nread > 0)
-  {
-    ptr_out = buffer;
-    size_t nwritten;
+      while (nread = read(input, buffer, DISK_BUFFER_SIZE), nread > 0)
+      {
+        ptr_out = buffer;
+        size_t nwritten;
 
-    do {
+        do {
           nwritten = write(output, ptr_out, nread);
 
           if (nwritten >= 0) {
@@ -142,31 +151,39 @@ int f_file_copy(const char *source, const char *target)
             ptr_out += nwritten;
           }
           else if (errno != EINTR) {
-            return error_exit(errno);
+            status = errno;
+            close(input);
+            close(output);
+            free(buffer);
+            return error_exit(status);
           }
-    } while (nread > 0);
-  }
+        } while (nread > 0);
+      }
 
-  if (nread == 0) {
-    if (close(output) < 0) {
-      output = -1;
-      return error_exit(errno);
-    }
-    close(input);
-  }
+      if (nread == 0) {
+        if (close(output) < 0) {
+          status = errno;
+          close(input);
+          output = -1;
+          free(buffer);
+          return error_exit(status);
+        }
+        close(input);
+      }
 
 #if defined(_LINUX)
-  /* Sanity-Check for Lock */
-  if (lockf(input, T_LOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
-    lockf(input, F_ULOCK, 0);
-  }
-  else {
-    fprintf(stderr, err_sys, err_file, source);
-  }
+    /* Sanity-Check for Lock */
+      if (lockf(input, T_LOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
+        lockf(input, F_ULOCK, 0);
+      }
+      else {
+        fprintf(stderr, err_sys, err_file, source);
+      }
 #endif
-
-  free(buffer);
-  return 0; /* Success! */
+    }
+    free(buffer);
+  }
+  return status; /* Success! */
 
 }
 
