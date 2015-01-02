@@ -1,5 +1,10 @@
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_picture.c: Release memory for file_content in
+      geda_picture_finalize.
+
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_config.c: Revise function find_project_root to
       fix memory leaks, rename function eda_config_find_project_root
       and make public, reformat declarations and Update Doxygen comments.

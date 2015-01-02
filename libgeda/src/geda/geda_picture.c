@@ -122,7 +122,12 @@ geda_picture_dispose(GObject *object)
  */
 static void geda_picture_finalize(GObject *object)
 {
-  //Object *obj = GEDA_OBJECT(object);
+  Picture *pic = GEDA_PICTURE(object);
+  if (pic->file_content) {
+    GEDA_FREE(pic->file_content);
+    pic->file_content = NULL;
+  }
+
   GEDA_OBJECT_CLASS( geda_picture_parent_class )->finalize(object);
 
 }
