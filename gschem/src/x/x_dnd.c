@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,9 +105,9 @@ struct _GschemDndDataDef
   GschemDndRecvFunc  receive_data_func;
 };
 
-static bool x_dnd_source_leave    (GtkWidget *widget,
+static bool x_dnd_source_leave    (GtkWidget        *widget,
                                    GdkEventCrossing *event,
-                                   GschemToplevel *w_current);
+                                   GschemToplevel   *w_current);
 
 const char *x_dnd_send_string     (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
@@ -487,7 +487,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
     }
   }
   else {
-    fprintf(stderr, "<%s>: TODO insert string [%s]\n", __func__, buffer);
+    fprintf(stderr, "<%s>: Buffer is NULL\n", __func__);
   }
 
   return result;
@@ -550,10 +550,11 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
  * the "data-delete" signal if told to.
 */
 void
-x_dnd_drag_receive
-(GtkWidget *widget, GdkDragContext *context, int x, int y,
-        GtkSelectionData *selection_data, guint target_type, guint time,
-        GschemToplevel *w_current)
+x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
+                                      GtkSelectionData *selection_data,
+                                      unsigned int      target_type,
+                                      unsigned int      time,
+                                      GschemToplevel   *w_current)
 {
   const GschemDndDataDef  *datadef;
   const unsigned char     *buffer;
@@ -564,14 +565,13 @@ x_dnd_drag_receive
 
 #if DEBUG  || DEBUG_DND_EVENTS
   const char  *name = gtk_widget_get_name (widget);
-  g_print ("<%s> %s:", __func__, name);
+  printf ("<%s> %s:", __func__, name);
 #endif
 
   /* Deal with what we are given from source */
   if ((selection_data != NULL) &&
     (gtk_selection_data_get_length(selection_data) >= 0))
   {
-    //if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
     if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
@@ -585,8 +585,7 @@ x_dnd_drag_receive
 #else
     buffer = selection_data->data;
 #endif
-
-    string = (char*)buffer;
+    string = (const char*)buffer;
 
     /* Check that we got the format we can use */
     switch (target_type) {
@@ -599,7 +598,7 @@ x_dnd_drag_receive
         dnd_success = (datadef->receive_data_func)(w_current, x, y, string, DROPPED_ON_CANVAS);
 
 #if DEBUG  || DEBUG_DND_EVENTS
-        g_print (" string handler returned %d\n", dnd_success);
+        printf (" string handler returned %d\n", dnd_success);
 #endif
         break;
 
@@ -608,7 +607,7 @@ x_dnd_drag_receive
         dnd_success = (datadef->receive_data_func)(w_current, x, y, string, DROPPED_ON_CANVAS);
 
 #if DEBUG  || DEBUG_DND_EVENTS
-          g_print (" object handler returned %d\n", dnd_success);
+        printf (" object handler returned %d\n", dnd_success);
 #endif
         if (dnd_success) {
           o_redraw_cleanstates (w_current);
@@ -624,7 +623,7 @@ x_dnd_drag_receive
         break;
 
       default:
-        g_print ("<%s> nothing good.\n", __func__);
+        printf ("<%s> nothing good.\n", __func__);
     }
   }
 
@@ -701,7 +700,7 @@ bool x_dnd_drag_drop
 
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  g_print ("\n<%s> %s: entry\n", __func__, name);
+  printf ("\n<%s> %s: entry\n", __func__, name);
 #endif
 
   /* Check to see if (x,y) is a valid drop site within widget */
@@ -737,7 +736,7 @@ bool x_dnd_drag_drop
                         time );          /* time stamp */
 
 #if DEBUG  || DEBUG_DND_EVENTS
-    g_print ("<%s> Site is Valid target\n", __func__);
+    printf ("<%s> Site is Valid target\n", __func__);
 #endif
   }
 
@@ -746,7 +745,7 @@ bool x_dnd_drag_drop
     is_valid_drop_site = FALSE;
 
 #if DEBUG  || DEBUG_DND_EVENTS
-    g_print ("<%s> Target site is Invalid\n", __func__);
+    printf ("<%s> Target site is Invalid\n", __func__);
 #endif
 
   }
@@ -789,7 +788,7 @@ void x_dnd_drag_data_get
 
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  g_print ("<%s> %s:", __func__, name);
+  printf ("<%s> %s:", __func__, name);
 #endif
 
   g_assert (selection_data != NULL);
@@ -806,7 +805,7 @@ void x_dnd_drag_data_get
                                    string_data,
                                    strlen (string_data));
 #if DEBUG  || DEBUG_DND_EVENTS
-      g_print (" Sending string \"%s\".\n", string_data);
+      printf (" Sending string \"%s\".\n", string_data);
 #endif
       g_free((void*)string_data);
       break;
@@ -814,7 +813,7 @@ void x_dnd_drag_data_get
     case DND_TARGET_OBJECTS:
       o_buffer_copy(w_current, DND_BUFFER);
 #if DEBUG  || DEBUG_DND_EVENTS
-      g_print (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
+      printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
       char *buf = o_save_buffer (object_buffer[DND_BUFFER]);
       gtk_selection_data_set (selection_data,
@@ -832,7 +831,7 @@ void x_dnd_drag_data_get
                                    err_string_data,
                                    strlen (err_string_data));
 #if DEBUG  || DEBUG_DND_EVENTS
-      g_print (" Sending string \"%s\".\n", err_string_data);
+      printf (" Sending string \"%s\".\n", err_string_data);
 #endif
       break;
   }
@@ -845,7 +844,7 @@ void x_dnd_drag_delete
 {
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  g_print ("<%s> %s\n", __func__, name);
+  printf ("<%s> %s\n", __func__, name);
 #endif
   return;
 }
@@ -857,7 +856,7 @@ x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
   fflush(stdout);
-  g_print ("<%s> %s: ia=%d, state=%d, dnd_save_state=%d\n", __func__, name, w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
+  printf ("<%s> %s: ia=%d, state=%d, dnd_save_state=%d\n", __func__, name, w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
 #endif
 
   w_current->dnd_state = SELECT;
@@ -880,7 +879,7 @@ void x_dnd_drag_end
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *name;
   name = gtk_widget_get_name (widget);
-  g_print ("\n<%s> %s: on entry: w_current->event_state =%d\n",  __func__, name, w_current->event_state);
+  printf ("\n<%s> %s: on entry: w_current->event_state =%d\n",  __func__, name, w_current->event_state);
 #endif
 
   if (w_current->drag_event) {
@@ -910,7 +909,7 @@ void x_dnd_drag_end
   o_invalidate_all (w_current);
 
 #if DEBUG  || DEBUG_DND_EVENTS
-  g_print (" on exit: %s w_current->event_state =%d\n", name, w_current->event_state);
+  printf (" on exit: %s w_current->event_state =%d\n", name, w_current->event_state);
 #endif
 }
 /** @} end-subgroup Drag-N-Drop-Source  */
@@ -952,7 +951,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
     w_current->dnd_save_state = 0;
 
 #if DEBUG  || DEBUG_DND_EVENTS
-    g_print ("<%s> %s: ia=%d, state=%d\n", __func__, gtk_widget_get_name (widget), w_current->inside_action, w_current->event_state);
+    printf ("<%s> %s: ia=%d, state=%d\n", __func__, gtk_widget_get_name (widget), w_current->inside_action, w_current->event_state);
 #endif
 
     switch (w_current->event_state) {
@@ -988,7 +987,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
   }
 
 #if DEBUG  || DEBUG_DND_EVENTS
-  g_print ("<%s> on exit: w_current->event_state =%d\n", __func__, w_current->event_state);
+  printf ("<%s> on exit: w_current->event_state =%d\n", __func__, w_current->event_state);
 #endif
 
   return FALSE;

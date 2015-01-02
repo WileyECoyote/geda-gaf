@@ -154,12 +154,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 void
 o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-#if DEBUG
-  printf("%s: CONTROLKEY <%d> rvisible %d inside_action %d w_x=%d, w_y=%d\n", __func__,
-         w_current->CONTROLKEY, w_current->rubber_visible, w_current->inside_action, w_x, w_y);
-#endif
-
-  if (w_current && w_current->inside_action) {
+  if (w_current->inside_action) {
 
     /* erase the previous temporary box */
     if (w_current->rubber_visible) {

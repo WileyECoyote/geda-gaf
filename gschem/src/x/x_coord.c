@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -243,7 +243,7 @@ bool x_dialog_coord_drag_drop
 
   /* Check to see if (x,y) is a valid drop site within widget */
   is_valid_drop_site = TRUE;
-  
+
   /* Get a list of target types to choose from */
   //targets = gdk_drag_context_list_targets(context);
   targets = context->targets;

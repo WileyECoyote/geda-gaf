@@ -213,7 +213,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
       /* Check and do Auto Load if file recordered */
       if ((load_last) && (recent_files_last() != NULL)) {
-        q_log_message("Auto loading . . .%s\n", recent_files_last()); /* maybe Log what we're doing */
+        q_log_message("Auto Load: . . .%s\n", recent_files_last()); /* maybe Log what we are doing */
         x_window_open_page(w_current, recent_files_last());
       }
       else {

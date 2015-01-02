@@ -747,7 +747,7 @@ void x_window_close(GschemToplevel *w_current)
     u_log_close ();
 
     /* free the buffers */
-    o_buffer_free (w_current);
+    o_buffer_free (w_current); /* w_current not used */
   }
 
   x_toolbars_free_window(w_current);

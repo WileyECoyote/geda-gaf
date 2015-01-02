@@ -221,7 +221,7 @@ void x_console_open (GschemToplevel *w_current)
     if (IS_CONSOLE (console_dialog))
       gtk_window_present ((GtkWindow*)console_dialog);
     else
-      u_log_message("Internal Error: <x_console_open> object is not a console\n");
+      BUG_MSG("Object is not a console\n");
   }
 
 }

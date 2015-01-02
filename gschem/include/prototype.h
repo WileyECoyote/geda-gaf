@@ -684,6 +684,9 @@ char         *x_dialog_select_file          (const char *, const char *, int);
 void          x_dialog_show_message         (const char *, gEDA_MessageType context, const char *title);
 void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
                                              gEDA_MessageType context, const char *title);
+/* x_dnd.c */
+bool        x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
+void        x_dnd_setup_event_handlers   (GschemToplevel *w_current);
 
 /* o_draw.c */
 void          x_draw_object                 (GschemToplevel *w_current, Object *object);
@@ -714,10 +717,6 @@ void        x_dialog_edit_properties     (GschemToplevel *w_current, Object *o_c
 
 /* x_edit_text.c */
 void        x_dialog_edit_text           (GschemToplevel *w_current, Object *o_current);
-
-/* x_dnd.c */
-bool        x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
-void        x_dnd_setup_event_handlers   (GschemToplevel *w_current);
 
 /* x_event.c */
 bool       x_event_button_pressed       (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);
