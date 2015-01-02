@@ -57,7 +57,14 @@
 
 #include <geda_draw.h>
 
+#ifndef GCC_VERSION
+#define GCC_VERSION (__GNUC__ * 1000 + __GNUC_MINOR__)
+#endif /* GCC_VERSION */
+
+#if GCC_VERSION > 40600        /* check for GCC > 4.6 */
 #pragma GCC diagnostic push
+#endif
+
 #pragma GCC diagnostic ignored "-fpermissive"
 
 EdaRotation EdaX11Render::
@@ -74,7 +81,10 @@ GetRotation(int angle)
   }
   return rotation;
 }
+
+#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
 #pragma GCC diagnostic pop
+#endif
 
 /* Code for accelerated alpha compositing using the RENDER extension.
  * It's a bit long because there are lots of possibilities for
@@ -899,7 +909,10 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
   return;
 }
 
+#if GCC_VERSION > 40600      // check for GCC > 4.6
 #pragma GCC diagnostic push
+#endif
+
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 
 void EdaX11Render::
@@ -977,7 +990,10 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
   }
   return;
 }
+
+#if GCC_VERSION > 40600      // check for GCC > 4.6
 #pragma GCC diagnostic pop
+#endif
 
 void EdaX11Render::
 geda_x11_draw_picture (int x, int y, int width, int height)

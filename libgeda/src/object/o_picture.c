@@ -25,9 +25,9 @@
 
 #include <config.h>
 
-#include <stdio.h>
-
+#include <errno.h>
 #include <math.h>
+#include <stdio.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -543,6 +543,9 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
     }
     else {
 
+      keys = NULL;
+      Vals = NULL;
+
       /* Find out how many options were passed */
       argc = 0;
       va_list varcnt;
@@ -634,6 +637,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
           u_log_message (_("Failed to export [%s]: %s\n"), filename, err->message);
           ecode = errno;
           g_error_free(err);
+          result = FALSE;
         }
         else {
           result = TRUE;
