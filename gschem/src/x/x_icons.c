@@ -183,6 +183,7 @@ static void x_icons_setup_factory()
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
           gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+          GEDA_UNREF(pixbuf);
         }
         else {
           u_log_message("Warning, Error reading image file: %s\n", err->message);
@@ -212,6 +213,7 @@ static void x_icons_setup_factory()
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
           gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+          GEDA_UNREF(pixbuf);
         }
         else {
           u_log_message("Warning, Error reading image file: %s\n", err->message);
@@ -225,7 +227,7 @@ static void x_icons_setup_factory()
       GEDA_FREE(pathname);
     }
   }
-
+/*
   for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
 
     icon_name = IDS_THEME_ICONS_22[index];
@@ -241,6 +243,7 @@ static void x_icons_setup_factory()
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
           gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+          GEDA_UNREF(pixbuf);
         }
         else {
           u_log_message("Warning, Error reading image file: %s\n", err->message);
@@ -248,14 +251,62 @@ static void x_icons_setup_factory()
           err = NULL;
         }
       }
-      else { /* file non existence or not accessible */
+      else { // file non existence or not accessible
         u_log_message("Warning, Error accessing image file: %s\n", pathname);
       }
       GEDA_FREE(pathname);
     }
   }
+  */
 }
 
+static
+void
+x_icons_remove_icons_from_factory(void)
+{
+  GtkIconSet *icon_set;
+  int index;
+
+  for ( index = 0; IDS_GEDA_ICONS[index] != NULL; index++ ) {
+    icon_set =  gtk_icon_factory_lookup_default (IDS_GEDA_ICONS[index]);
+    if (icon_set) {
+      gtk_icon_set_unref (icon_set);
+    }
+  }
+
+  for ( index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++ ) {
+    icon_set =  gtk_icon_factory_lookup_default (IDS_GSCHEM_ICONS[index]);
+    if (icon_set) {
+      gtk_icon_set_unref (icon_set);
+    }
+  }
+/*
+  for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
+    icon_set =  gtk_icon_factory_lookup_default (IDS_THEME_ICONS_22[index]);
+    if (icon_set) {
+      gtk_icon_set_unref (icon_set);
+    }
+  }
+*/
+}
+
+static
+void x_icons_shutdown_factory(void * user_data)
+{
+  if (gschem_factory) {
+
+    /* This will go to the console, because the log system is already down */
+    v_log_message(_("gschem: shutting down icon factory\n"));
+
+    GEDA_REF(gschem_factory);
+
+    x_icons_remove_icons_from_factory();
+
+    gtk_icon_factory_remove_default(gschem_factory);
+
+    GEDA_UNREF(gschem_factory);
+  }
+}
 
 /*! \brief Setup icon search paths.
  * \par Function Description
@@ -264,11 +315,15 @@ static void x_icons_setup_factory()
  */
 void x_icons_initialize (void)
 {
+  v_log_message(_("gschem: initializing icon factory\n"));
+
   x_icons_add_search_path ("icons");
 
   x_icons_set_default_icon(GSCHEM_THEME_ICON_NAME);
 
   x_icons_setup_factory();
+
+  geda_atexit(x_icons_shutdown_factory, NULL);
 
 }
 /** @} endgroup Gschem-Icons */

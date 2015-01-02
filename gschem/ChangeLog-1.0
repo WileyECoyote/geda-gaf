@@ -1,5 +1,14 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_icons.c: Deference pixel buffers after providing to
+      gtk_icon_set_new_from_pixbuf. Add logging in x_icons_initialize
+      verbose only, and new atexit function x_icons_shutdown_factory,
+      which calls gtk_icon_factory_remove_default
+
+    * src/object/o_picture.c: Remove DEBUG from motion routine
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_buffer.c: Replace g_warning with BUG_IMSG, redo
       NULL checks and messages, use Current_PlaceList to shorten
       w_current->toplevel->page_current->place_list eliminating
