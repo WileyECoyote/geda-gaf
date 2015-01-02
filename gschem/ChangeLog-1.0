@@ -1,5 +1,9 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/it.po: Update Italian translation from master branch.
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_draw.cpp: Free font_string in x_draw_initialize.
 
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
