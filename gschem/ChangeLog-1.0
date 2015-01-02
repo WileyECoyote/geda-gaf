@@ -1,5 +1,9 @@
 2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_draw.cpp: Free font_string in x_draw_initialize.
+
+2015-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_icons.c: Deference pixel buffers after providing to
       gtk_icon_set_new_from_pixbuf. Add logging in x_icons_initialize
       verbose only, and new atexit function x_icons_shutdown_factory,

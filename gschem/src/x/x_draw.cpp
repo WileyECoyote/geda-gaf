@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -459,20 +459,22 @@ extern "C" void x_draw_initialize(GschemToplevel *w_current)
 {
   EdaConfig  *cfg      = eda_config_get_user_context();
   const char *group    = IVAR_CONFIG_GROUP;
-  const char *font_string;
+        char *font_string;
         char *font_name;
 
   v_log_message(_("Initializing: Graphics Renderer Adaptor...."));
 
-  font_string = eda_config_get_string (cfg, group, "default-font-name", NULL);
+  font_string   = eda_config_get_string (cfg, group, "default-font-name", NULL);
 
-  font_name = x_draw_strip_font_provider(font_string);
+  font_name     = x_draw_strip_font_provider(font_string);
 
   RenderAdaptor = new EdaX11Render(font_name);
 
   RenderAdaptor->geda_draw_set_surface(w_current->cr, 5.5);
 
   GEDA_FREE(font_name);
+
+  GEDA_FREE(font_string);
 
   geda_atexit(x_draw_shutdown, NULL);
 
