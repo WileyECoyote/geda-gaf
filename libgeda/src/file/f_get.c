@@ -1,7 +1,7 @@
 /* -*- C header file: f_get.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -102,13 +102,17 @@ char *f_get_basename(const char *path)
 }
 
 /*! \brief Return pointer to base file name
- *  \par Function description
- *  Returns a pointer to the characters after the right most
- *  seperator or NULL if no sting was passed. The returned
- *  pointer points to the given string, and not reallocated.
  *
- *  \param [in] path The path to search.
- *  \return offset if found, otherwise NULL.
+ *  \par Function description
+ *  Prepends the path to the bitmaps directory to \a filename.
+ *  User path specified paths using the bitmap-directory keyword
+ *  are given precedence, otherwise the path is the default path,
+ *  which is the path returned by f_path_sys_data suffix suffixed
+ *  with "bitmaps".
+ *
+ *  \param [in] filename The file name to perpend the path to.
+ *
+ *  \return string with file name and path for the specified file.
  */
 char *f_get_bitmap_filespec (const char *filename)
 {
@@ -130,19 +134,20 @@ char *f_get_bitmap_filespec (const char *filename)
       /*default_bitmap_directory was checked by g_rc, we double check here
        * because the directory could have been removed */
       if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
-        filespec  = u_string_concat (directory, seperator, filename, NULL);
+        filespec = u_string_concat (directory, seperator, filename, NULL);
       }
       else {
         fprintf (stderr, "Path invalid[%s], %s\n", directory, strerror(errno));
       }
     }
 
-    if (filespec) {
+    if (!filespec) {
       base      = f_path_sys_data();
       subfolder = "bitmap";
       filespec  = u_string_concat (base, seperator, subfolder,
                                          seperator, filename, NULL);
     }
+
     /* TODO: Check to see of file is accessible */
   }
   else {
