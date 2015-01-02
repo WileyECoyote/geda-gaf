@@ -163,6 +163,8 @@ GedaType eda_config_get_type (void) G_GNUC_CONST;
 
 /* ---------------------------------------------------------------- */
 
+char      *eda_config_find_project_root     (const char *path, const char *filename) G_GNUC_WARN_UNUSED_RESULT;
+
 EdaConfig *eda_config_get_context_for_file  (const char *file) G_GNUC_WARN_UNUSED_RESULT;
 EdaConfig *eda_config_get_context_for_path  (const char *path) G_GNUC_WARN_UNUSED_RESULT;
 

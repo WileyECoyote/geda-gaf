@@ -1,5 +1,11 @@
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_config.c: Revise function find_project_root to
+      fix memory leaks, rename function eda_config_find_project_root
+      and make public, reformat declarations and Update Doxygen comments.
+
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_get.c: Fix memory leak in f_get_bitmap_filespec, was
       suppose to be if NOT. Update Doxygen comments.
 
