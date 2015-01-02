@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -625,6 +625,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
     Object *o_attrib = (Object *)iter->data;
 
     if (o_get_is_visible (o_attrib)) {
+
       /* If the attribute we're promoting is visible, don't clone its location */
       o_attrib_add_attrib (w_current,
                            o_text_get_string (o_attrib),
@@ -639,7 +640,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
         s_page_append_object (toplevel->page_current, o_new);
 
         /* add the attribute its parent */
-        o_attrib_attach (o_new, o_attrib->attached_to, TRUE);
+        o_attrib_attach (o_new, o_attrib->parent_object, TRUE);
 
         /* Call add-objects-hook */
         g_run_hook_object (w_current, "%add-objects-hook", o_new);
