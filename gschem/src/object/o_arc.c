@@ -130,8 +130,8 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] start_angle  Start of angle in degrees.
  *  \param [in] arc_sweep    End of angle in degrees.
  */
-void o_arc_end4(GschemToplevel *w_current, int radius,
-        int start_angle, int arc_sweep)
+void
+o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_sweep)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
@@ -177,7 +177,6 @@ void o_arc_end4(GschemToplevel *w_current, int radius,
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
- *  \param [in] whichone   Which angle to change.
  *
  *  <B>whichone</B> can have one of the following values:
  *  <DL>

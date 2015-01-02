@@ -1,5 +1,18 @@
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_list.c: Update Doxygen comments.
+
+    * src/object/o_attrib.c: Replace variable name "a_current" with
+      "attribute", Update Doxygen comments.
+
+    * src/object/o_complex_basic.c: Revise Doxygen comments.
+
+    * src/object/o_picture.c: Revise Doxygen comments, cleaning.
+
+    * src/utility/u_string.c: Make G++ stop yelping;
+
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_picture.c: Release memory for file_content in
       geda_picture_finalize.
 

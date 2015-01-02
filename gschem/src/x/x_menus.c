@@ -63,7 +63,7 @@ const char* IDS_Popup_Actions[] = {
   NULL
 };
 
-/*! \struct Popup-Menu-Structure x_menus.h
+/*! \struct <PopupMenuStructure> x_menus.h PopupEntry
  *
  *  Record Format: x_menus.h::st_popup_menu_entry
  *

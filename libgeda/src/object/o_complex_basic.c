@@ -957,8 +957,8 @@ Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wante
   return NULL;
 }
 
-
 /*! \brief check the symversion of a complex object
+ *
  *  \par Function Description
  *  This function compares the symversion of a symbol with it's
  *  earlier saved symversion in a schematic.
@@ -966,7 +966,8 @@ Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wante
  *  (toplevel->major_changed_refdes), minor changes are reported
  *  to the messaging system.
  *
- *  \param object    The complex Object
+ *  \param [in] toplevel  Optional pointer to GedaToplevel toplevel
+ *  \param [in] object    The complex Object
  */
 void
 o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
@@ -1002,7 +1003,6 @@ o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
   oddity    = _("oddity");
   older     = _("older");
   parse     = _("parse error");
-
 
   clash_msg = _("\tInstantiated symbol <%s> is %s than the version in library\n");
   major_msg = _("\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n");

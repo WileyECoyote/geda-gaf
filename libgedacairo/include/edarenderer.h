@@ -20,9 +20,11 @@
 #ifndef __EDA_RENDERER_H__
 #define __EDA_RENDERER_H__
 
-G_BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
-/*! \def MIN_MARKER_DISTENCE
+/*! \def EDAR_MARKER_DIST_THREASHOLD
   The minimum text marker size, "x" smaller then this value are not drawn
 */
 #define EDAR_MARKER_DIST_THREASHOLD        2.3
@@ -205,6 +207,8 @@ void      eda_renderer_set_text_marker_color  (EdaRenderer *renderer,
 int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
 void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
                                                int new_size);
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !__EDA_RENDERER_H__ */

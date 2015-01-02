@@ -274,9 +274,9 @@ char *u_string_strdup (const char *str)
   if (!str) return NULL;
 
   size_t len = 1 + strlen(str);
-  char  *ptr = GEDA_MEM_ALLOC(len);
+  char  *ptr = (char*)GEDA_MEM_ALLOC(len);
 
-  return ptr ? memcpy(ptr, str, len) : NULL;
+  return ptr ? (char*)memcpy(ptr, str, len) : NULL;
 }
 
 char *u_string_strndup(const char *str, size_t n)

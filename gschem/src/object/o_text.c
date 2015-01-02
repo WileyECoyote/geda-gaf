@@ -106,9 +106,10 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
 }
 
 /*! \brief Prepare for Placement of New Text Object
+ *
  *  \par Function Description
- *  Creates a new text object and adds the Text object to #place_list
- *  after ensuring the place list is empty.
+ *  Creates a new text object and adds the Text object to
+ *  #Current_PlaceList after ensuring the place list is empty.
  */
 void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {

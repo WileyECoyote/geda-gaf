@@ -223,7 +223,7 @@ void geda_list_add_unique ( GedaList *list, void *item )
  *  in the data associated with the list.
  *
  *  \param [in] list Pointer to the GedaList
- *  \param [in] item item to add to the GedaList.
+ *  \param [in] text string to add to the GedaList
  *
  *  \returns TRUE if the string pointer was added
  */

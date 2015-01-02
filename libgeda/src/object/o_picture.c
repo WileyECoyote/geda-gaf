@@ -33,6 +33,8 @@
 
 #include "libgeda_priv.h"
 
+extern int errno;
+
 /*! \brief Create picture Object from character string
  *
  *  \par Function Description
@@ -430,9 +432,10 @@ o_picture_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  o_current Picture Object to export.
- *  \param [in]  filebase  Picture Object to export.
- *  \param [in]  type      type of image to generate
+ *  \param [in]  pixbuf    GdkPixbuf to export
+ *  \param [in]  filename  The name of the file to export
+ *  \param [in]  type      The type of image to generate, see note 3
+ *  \param [in]  varargs   Optional parameters as described below
  *
  *  \return True on success, otherwise FALSE
  *
@@ -441,6 +444,11 @@ o_picture_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *            shown on the screen.
  *
  *        2.) The file extension is intentionally ignored.
+ *
+ *        3.) Image type are specified by using the string characters normally
+ *            associated with the file extension, see gdk_pixbuf_get_formats.
+ *            Additionally "jpg" and "tif" types are automatically associated
+ *            with "jpeg" and "tiff", respectively.
  *
  *  Optional parameters can be passed to the back-ends, see the documentation
  *  for gdk_pixbuf_save. Options usually occur as key/value pairs of pointers
@@ -504,7 +512,7 @@ static bool
 o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
                               const char *filename,
                               const char *type,
-                              va_list varargs)
+                              va_list     varargs)
 {
   GSList     *formats;
   GSList     *iter;
@@ -653,8 +661,8 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
  *  argument is not checked, the caller is responsible for ensuring
  *  the user has write-access to the file and any path is valid.
  *
- *  \param [in]  o_current Picture Object to export.
- *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  o_current Picture Object to export
+ *  \param [in]  filename  The name of the file to export
  *  \param [in]  type      type of image to generate
  *
  *  \return True on success, otherwise FALSE
@@ -691,7 +699,7 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
   return result;
 }
 
-/*! \brief Export Picture Object Original Image to a given File and Type
+/*! \brief Export Original Picture Object Image to a given File and Type
  *
  *  \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
@@ -700,8 +708,8 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  o_current Picture Object to export.
- *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  o_current Picture Object to export
+ *  \param [in]  filename  The name of the file to export
  *  \param [in]  type      type of image to generate
  *
  *  \return True on success, otherwise FALSE
@@ -1593,7 +1601,7 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
   return status;
 }
 
-/*! \brief Export Picture Object Original Image to a given File and Type
+/*! \brief Export Picture Object Image to a given File and Type
  *
  *  \par Function Description
  *  This function creates an image file of the given type using \a pixbuf.
@@ -1602,8 +1610,8 @@ o_picture_set_from_file (Object *object, const char *filename, GError **error)
  *  for ensuring the user has write-access to any path and file. Existing
  *  files are over-written.
  *
- *  \param [in]  o_current Picture Object to export.
- *  \param [in]  filebase  Picture Object to export.
+ *  \param [in]  pixbuf    The GdkPixbuf object to export
+ *  \param [in]  filename  The name of the file to export
  *  \param [in]  type      type of image to generate
  *
  *  \return True on success, otherwise FALSE
@@ -1758,7 +1766,7 @@ o_picture_get_pixbuf_fit (Object *object, int interp)
  *  \par Function Description
  *  This function returns the RGB data of the given object..
  *
- *  \param [in] image  GdkPixbuf image to read RGB data from.
+ *  \param [in] object  Picture object to get RGB data from.
  *
  *  \return Array of rgb data from image.
  *
@@ -1784,7 +1792,7 @@ o_picture_get_rgb_data (Object *object)
  *  \par Function Description
  *  This function returns the mask data of the given object.
  *
- *  \param [in] image  GdkPixbuf image to get mask data from
+ *  \param [in] object Picture object to get mask data from
  *
  *  \return Array of mask data from image
  *

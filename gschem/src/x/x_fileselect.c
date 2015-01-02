@@ -234,7 +234,7 @@ x_fileselect_list(GschemToplevel *w_current)
  *  \sa x_fileselect_list
  */
 char *
-x_fileselect_select_image(GschemToplevel *w_current, const char *fname)
+x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 {
   GtkWidget  *dialog;
   char       *outfile;
@@ -247,14 +247,14 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *fname)
 
   /* If a file name was provided then use the path from the file
    * name then as the starting point if the path exist */
-  if (fname) {
-    char *filepath = g_path_get_dirname (fname);
+  if (filename) {
+    char *filepath = g_path_get_dirname (filename);
     if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
     {
       geda_image_chooser_set_current_folder(dialog, filepath);
       GEDA_FREE(filepath);
     }
-    geda_image_chooser_set_filename (dialog, f_get_basename(fname));
+    geda_image_chooser_set_filename (dialog, f_get_basename(filename));
   }
   else { /* start in current working directory, NOT in 'Recently Used' */
     char *cwd = g_get_current_dir ();

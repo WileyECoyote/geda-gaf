@@ -159,26 +159,26 @@ o_attrib_attach_list (GList *attr_list, Object *object, int set_color)
 /*! \brief Detach an attribute from parent
  *
  *  \par Function Description
- *  Detaches an attributes from the parent object.
+ *  Detaches \a attribute from the parent object.
  *  Currently in gschem, this would only apply to floating
  *  attributes because a non-floating can not be selected
  *  individually.
  *
- *  \param [in,out] object The Attribute to be detached.
+ *  \param [in,out] attribute The Attribute to be detached.
  */
-void o_attrib_detach(Object *a_current)
+void o_attrib_detach(Object *attribute)
 {
   Page   *page;
   Object *parent;
 
-  if(a_current->attached_to != NULL) {
+  if(attribute->attached_to != NULL) {
 
-    parent = a_current->attached_to;
-    a_current->attached_to = NULL;
-    o_set_color (a_current, DETACHED_ATTRIBUTE_COLOR);
-    o_attrib_emit_attribs_changed (a_current);
+    parent = attribute->attached_to;
+    attribute->attached_to = NULL;
+    o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
+    o_attrib_emit_attribs_changed (attribute);
 
-    parent->attribs = g_list_remove (parent->attribs, a_current);
+    parent->attribs = g_list_remove (parent->attribs, attribute);
 
     page = geda_object_get_page(parent);
 
@@ -197,7 +197,7 @@ void o_attrib_detach(Object *a_current)
  */
 void o_attrib_detach_all(Object *object)
 {
-  Object *a_current;
+  Object *attribute;
   GList  *a_iter;
   Page   *page;
 
@@ -206,9 +206,9 @@ void o_attrib_detach_all(Object *object)
     o_attrib_freeze_hooks (object);
 
     for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
-      a_current = a_iter->data;
-      a_current->attached_to = NULL;
-      o_set_color (a_current, DETACHED_ATTRIBUTE_COLOR);
+      attribute = a_iter->data;
+      attribute->attached_to = NULL;
+      o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
       o_attrib_emit_attribs_changed (object);
     }
 
@@ -388,16 +388,16 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
  */
 void o_attrib_print(GList *attributes)
 {
-  Object *a_current;
+  Object *attribute;
   GList  *a_iter;
 
   a_iter = attributes;
 
   while (a_iter != NULL) {
-    a_current = a_iter->data;
-    printf("Attribute points to: %s\n", a_current->name);
-    if (a_current->text) {
-      printf("\tText is: %s\n", a_current->text->string);
+    attribute = a_iter->data;
+    printf("Attribute points to: %s\n", attribute->name);
+    if (attribute->text) {
+      printf("\tText is: %s\n", attribute->text->string);
     }
 
     a_iter = g_list_next (a_iter);
@@ -702,24 +702,24 @@ GList *o_attrib_find_floating_attribs (const GList *list)
  */
 Object *o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
 {
-  Object *a_current;
+  Object *attribute;
   const GList *iter;
   char *found_name;
   int internal_counter = 0;
 
   for (iter = list; iter != NULL; iter = g_list_next (iter)) {
 
-    a_current = iter->data;
+    attribute = iter->data;
 
-    g_return_val_if_fail (a_current->type == OBJ_TEXT, NULL);
+    g_return_val_if_fail (attribute->type == OBJ_TEXT, NULL);
 
-    if (!o_attrib_get_name_value (a_current, &found_name, NULL))
+    if (!o_attrib_get_name_value (attribute, &found_name, NULL))
       continue;
 
     if (strcmp (name, found_name) == 0) {
       if (internal_counter == count) {
         GEDA_FREE (found_name);
-        return a_current;
+        return attribute;
       }
       internal_counter++;
     }
@@ -893,7 +893,7 @@ char *o_attrib_search_object_attribs_by_name (Object *object,
  */
 GList * o_attrib_return_attribs (Object *object)
 {
-  Object *a_current;
+  Object *attribute;
   GList  *attribs = NULL;
   GList  *inherited_attribs;
   GList  *a_iter;
@@ -904,15 +904,15 @@ GList * o_attrib_return_attribs (Object *object)
   for (a_iter = object->attribs; a_iter != NULL;
        a_iter = g_list_next (a_iter))
   {
-     if ((a_current = a_iter->data) != NULL) {
-      if (a_current->type != OBJ_TEXT)
+     if ((attribute = a_iter->data) != NULL) {
+      if (attribute->type != OBJ_TEXT)
         continue;
 
       /* Don't add invalid attributes to the list */
-      if (!o_attrib_get_name_value (a_current, NULL, NULL))
+      if (!o_attrib_get_name_value (attribute, NULL, NULL))
         continue;
 
-      attribs = g_list_prepend (attribs, a_current);
+      attribs = g_list_prepend (attribs, attribute);
     }
   }
 

@@ -848,7 +848,6 @@ o_grips_start_box(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  o_current  Picture Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   Which coordinate to check.
  */
 static void
 o_grips_start_path(GschemToplevel *w_current, Object *o_current, int x, int y)
@@ -920,7 +919,6 @@ o_grips_start_path(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  o_current  Picture Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   Which coordinate to check.
  */
 static void
 o_grips_start_picture(GschemToplevel *w_current, Object *o_current, int x, int y)
@@ -1010,8 +1008,8 @@ o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
 }
 
 /*! \brief Initialize grip motion process for a line.
- *  This function starts the move of one of the two grips of the line
- *  object <b>\a o_current</b>.
+ *  This function starts the move of one of the two grips of the
+ *  line object <b>\a o_current</b>.
  *
  *  During the move of the grip, the line is described by
  *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>) and
@@ -1024,7 +1022,6 @@ o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
  *  \param [in]  o_current  Line Object to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
- *  \param [out] whichone   Which coordinate to check.
  */
 static void
 o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)

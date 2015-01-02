@@ -3078,7 +3078,7 @@ get_cue_locations(PyObject *py_objects, int flag)
  *  data of where junctions occur, normally where nets cross or meet.
  *  Junctions are used for illustion purposes.
  *
- *  \param [in] PyList Must contain only GedaObjects to analyzed
+ *  \param [in] py_objects The object whose juctions are to be returned
  *
  *  \return [out] PyList of order integer pairs representing points
  *                where a junction occurs or an empty list if none
@@ -3103,7 +3103,7 @@ PyGeda_get_junctions (PyObject *py_objects)
  *  This function provides an API to libgeda to obtain X-Y coordinates
  *  data of unconnected object, normally pins and nets.
  *
- *  \param [in] PyList Must contain only GedaObjects to analyzed
+ *  \param [in] py_objects Must contain only GedaObjects to analyzed
  *
  *  \return [out] PyList of order integer pairs representing points
  *                where objects are disconnected or an empty list if

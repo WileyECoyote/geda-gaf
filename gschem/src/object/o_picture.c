@@ -504,7 +504,6 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
  *  actually creates a GedaPicture Object to hold this data.
  *
  *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] pixbuf
  *  \param [in] filename
  */
 bool

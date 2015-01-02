@@ -264,7 +264,8 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
  *  filename has been given, it opens the file and displays
  *  the contents. Otherwise the display will be a blank page.
  *
- *  \param [in] preview The preview widget.
+ *  \param [in] chooser   The ImageChooser dialog widget
+ *  \param [in] user_data ImageChooser preview, aka GtkImage, widget
  */
 static void
 chooser_update_preview (GtkFileChooser *chooser, void *user_data)
@@ -326,7 +327,7 @@ static char *popup_tips[]={  "Set silder to zoom mode",
  * from the mouse menu. This function receives a pointer to enumerated
  * integer value for the menu item that was selected.
  *
- *  \param [in] widget is button widget
+ *  \param [in] widget    is button widget
  *  \param [in] selection pointer to enumerated menu selection
  */
 static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items* selection)
@@ -376,7 +377,7 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items* selection)
  * The function sets senitivty on menu choices based on the handlebox
  * position and the state of the containing toolbar.
  *
- *  \param [in] widget is the active widget
+ *  \param [in] chooser The ImageChooser dialog widget
  */
 static GtkWidget *build_menu(GedaImageChooser *chooser)
 {
@@ -538,6 +539,8 @@ On_adjust_button_release(GtkWidget *widget, GdkEventButton *event, void *user_da
  *  selected.
  *
  *  \param [in] chooser The Image chooser to add the preview to.
+ *  \param [in] state   boolean preview-widget-active property setting
+ *  \param [in] size    Widget pixel size to request, i.e. the current setting
  */
 static GtkWidget*
 chooser_add_preview (GtkWidget *chooser, bool state, int size)

@@ -202,8 +202,8 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
  *  \par Function Description
  *  There really is no "Magnification" in gschem, this function causes scale
  *  factors to_screen_y_constant and to_screen_x_constant to be set to the
- *  reciprocal of #zoom_new, is not exact but pretty close. The view of the
- *  world will be pan to the given XY if #specified_from ID is the keyboard
+ *  reciprocal of \a zoom_new, is not exact but pretty close. The view of the
+ *  world will be pan to the given XY if \a specified_from ID is the keyboard
  *  or mouse.
  *
  */
