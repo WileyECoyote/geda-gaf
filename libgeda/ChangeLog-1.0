@@ -1,5 +1,16 @@
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_get.c: Add new function f_get_dirname, is similar
+      to g_path_get_dirname except that the function does not return
+      the parent directory if a directory was was passed in as the
+      filename.
+
+    * src/geda/geda_config.c: Implement new function f_get_dirname
+      as replacement for g_path_get_dirname, in function eda_config
+      _find_project_root, for alpha testing.
+
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_config.c: Fixed g_path_get_dirname stripping
       directory name in eda_config_find_project_root.
 
