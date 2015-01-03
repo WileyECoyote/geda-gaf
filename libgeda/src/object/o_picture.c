@@ -1099,7 +1099,7 @@ o_picture_rgb_data (GdkPixbuf *image)
   }
   else {
     uint8 *pixels = gdk_pixbuf_get_pixels(image);
-    g_memmove(rgb_pixels, pixels, height*rowstride);
+    memmove(rgb_pixels, pixels, height*rowstride);
     return rgb_pixels;
   }
 }

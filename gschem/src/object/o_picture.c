@@ -429,15 +429,20 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
     /* "local-only", TRUE, */
 
     /* If a file name was provided then use the path from the file
-     * name if exist then use this directory as the starting point
-     * and fill in the name if there is only one picture selected */
+     * name and the user has read-access to the directory, then use
+     * this directory as the starting point, and fill in the name if
+     * there is only one picture selected */
     if (oldfilename) {
 
-      char *filepath = g_path_get_dirname (oldfilename);
+      char *filepath = f_get_dirname (oldfilename);
 
       if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
       {
-        geda_image_chooser_set_current_folder(dialog, filepath);
+        errno = 0;
+        access(filepath, R_OK);
+        if (!errno) {
+          geda_image_chooser_set_current_folder(dialog, filepath);
+        }
         GEDA_FREE(filepath);
       }
       geda_image_chooser_set_filename (dialog, f_get_basename(oldfilename));

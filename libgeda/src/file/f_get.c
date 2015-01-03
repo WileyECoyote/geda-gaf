@@ -72,7 +72,7 @@ char *f_get_autosave_filename (const char *filename)
   }
   else {
     old_basename  = f_get_basename(filename);
-    path_spec     = g_path_get_dirname(filename);
+    path_spec     = f_get_dirname(filename);
     new_basename  = u_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 

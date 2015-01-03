@@ -317,7 +317,7 @@ bool g_read_scheme_file (const char *filename, GError **err)
     data.err = NULL;
 
     /* Before we load the file, first cd into file's directory. */
-    file_directory = g_path_get_dirname (filename);
+    file_directory = f_get_dirname (filename);
 
     if (file_directory == NULL) {
       result = FALSE;

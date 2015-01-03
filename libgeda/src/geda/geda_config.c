@@ -344,7 +344,7 @@ static void propagate_key_file_error (GError *src, GError **dest)
 char *
 eda_config_find_project_root (const char *path, const char *filename)
 {
-  char *root_path = g_path_get_dirname (path);
+  char *root_path = f_get_dirname (path);
   char *proj_root = root_path;
   char *dir       = root_path;
 

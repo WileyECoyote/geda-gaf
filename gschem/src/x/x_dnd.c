@@ -381,7 +381,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
   Object     *object;
 
   page = Current_Page;
-  path = g_path_get_dirname(filename);
+  path = f_get_dirname(filename);
 
   if (s_clib_source_path_exist(path)) {
 

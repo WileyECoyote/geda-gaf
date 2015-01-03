@@ -1,3 +1,15 @@
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Replace g_path_get_dirname with f_get
+      _dirname and check if directory is accessible to user before
+      loading in custom image chooser dialog, update comments.
+
+    * src/x/x_fileselect.c: Same as o_picture.c.
+
+    * src/x/x_window.c: Update comment regarding xxx_get_dirname
+
+    * src/x/x_dnd.c: Replace g_path_get_dirname with f_get_dirname
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/it.po: Update Italian translation from master branch.

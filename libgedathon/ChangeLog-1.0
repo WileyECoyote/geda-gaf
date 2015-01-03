@@ -1,5 +1,9 @@
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgedathon.c: Replace g_path_get_dirname with f_get_dirname.
+
+2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgedathon.c: Fix syntax error in function PyGeda_get_object,
       GEDA_IS_OBJECT(object) was missing outer parentheses, but gcc was
       accepting.

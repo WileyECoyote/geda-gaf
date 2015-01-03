@@ -246,12 +246,18 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
   /* "local-only", TRUE, */
 
   /* If a file name was provided then use the path from the file
-   * name then as the starting point if the path exist */
+   * name then as the starting point if the path exist, and is
+   * readable by the current user */
   if (filename) {
-    char *filepath = g_path_get_dirname (filename);
+
+    char *filepath = f_get_dirname (filename);
     if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
     {
-      geda_image_chooser_set_current_folder(dialog, filepath);
+      errno = 0;
+      access(filepath, R_OK);
+      if (!errno) {
+        geda_image_chooser_set_current_folder(dialog, filepath);;
+      }
       GEDA_FREE(filepath);
     }
     geda_image_chooser_set_filename (dialog, f_get_basename(filename));

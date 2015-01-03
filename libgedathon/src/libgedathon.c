@@ -1235,7 +1235,7 @@ PyGeda_open_page( const char *filename )
       access (filename,  W_OK && F_OK);
       file_err = errno;                        /* save file error */
       path = strcpy (&strbuff[0], filename);
-      path = dirname(path);                    /* g_path_get_dirname() */
+      path = dirname(path);                    /* f_get_dirname makes a copy */
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
         /* Filespec may not exist but user has authority to create */

@@ -1,5 +1,17 @@
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file*: Implemenent f_get_dirname in:
+
+              * src/object/o_save.c
+              * src/object/o_picture.c
+              * src/guile/g_evaluate.c
+              * src/geda/geda_config.c
+              * src/file/f_get.c
+              * src/file/f_file.c
+              * src/file/f_basic.c
+
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_get.c: Add new function f_get_dirname, is similar
       to g_path_get_dirname except that the function does not return
       the parent directory if a directory was was passed in as the

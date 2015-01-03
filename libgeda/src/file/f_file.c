@@ -307,7 +307,7 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
       char *dirname = NULL;
       char *tmp = NULL;
 
-      dirname = g_path_get_dirname(followed_filename);
+      dirname = f_get_dirname(followed_filename);
 
       tmp = g_build_filename (dirname, linkname, NULL);
       GEDA_FREE (followed_filename);
