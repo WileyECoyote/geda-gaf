@@ -1,3 +1,10 @@
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: Continuing development of new renderer; added functions CreateFontHash,
+        HashSetFont (major performance improvement), CreateXftFont (no significant
+        increase in performance but opens door for freetype with angles), geda_
+        x11_draw_get_font_slant and geda_x11_draw_get_font_weight.
+
 2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
      *: Continuing development of new renderer, picture images now functional

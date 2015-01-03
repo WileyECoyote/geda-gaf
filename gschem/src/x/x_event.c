@@ -640,6 +640,7 @@ bool x_event_button_released (GtkWidget      *widget,
         }
         break;
     }
+
     if (w_current->render_adaptor == X11_ADAPTOR) {
       o_invalidate_all (w_current);
     }

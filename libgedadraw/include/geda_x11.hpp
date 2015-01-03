@@ -87,13 +87,18 @@ protected:
   XftDraw      *xftdraw;
   XRenderColor  xrcolor;
 
+  XftFont      *CreateXftFont     (void);
+
 #else
   XFontStruct  *font;
 #endif
 
   double        scale;
 
+  GHashTable   *font_cache;
   int           font_size;
+  int           font_weight;
+  int           font_slant;
 
   std::string   font_family;
   std::string   font_format;
@@ -104,6 +109,9 @@ protected:
   }
 
   inline std::string GetFontString(int size);
+
+  void         CreateFontHash     (void);
+  void         HashSetFont        (void);
 
   EdaRotation  GetRotation        (int angle);
   EdaX11Format GetImageFormat     (XRenderPictFormat **format, XRenderPictFormat **mask);
@@ -128,7 +136,7 @@ public:
   XColor        color;
   Colormap      colormap;
 
-  EdaX11Render(const char *font_name);
+  EdaX11Render(const char *font_name, int size);
  ~EdaX11Render();
 
   void geda_x11_draw_set_surface     (cairo_t *cr, double scale_factor);
@@ -138,6 +146,8 @@ public:
   bool geda_x11_draw_get_font_list   (const char *pattern, GArray *listing);
   void geda_x11_draw_set_font_name   (const char *font_name);
   int  geda_x11_draw_get_font_name   (char *font_name, int size_of_buffer);
+  int  geda_x11_draw_get_font_slant  (const char *font_descr);
+  int  geda_x11_draw_get_font_weight (const char *font_descr);
   int  geda_x11_draw_get_text_bounds (int *left,  int *top, int *right, int *bottom);
 
   void geda_x11_draw_arc          (int cx, int cy, int radius, int start_angle, int end_angle);

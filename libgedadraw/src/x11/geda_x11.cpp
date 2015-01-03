@@ -409,8 +409,127 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
   return ximage;
 }
 
-inline std::string
-EdaX11Render::GetFontString(int size) {
+void
+FontHashDestroyer (void *data)
+{
+
+#ifdef HAVE_XFT
+
+  //XftFont *font = data;
+#else
+
+  XFontStruct *font = data;
+
+  if (font) {
+    XFreeFont(display, font);
+  }
+
+#endif
+}
+
+XftFont *EdaX11Render::
+CreateXftFont(void)
+{
+   XftFont   *xftfont;
+   FcPattern *pattern;
+   FcPattern *match;
+
+    //double sina, cosa;
+    int fs;
+
+    //const char *family = "ubuntu";
+    const char *family  = font_family.c_str();
+
+    fs = font_size > 0 ? font_size : 10;
+
+//fprintf (stderr, "Matching = %s with weight %d and size %d\n", family, font_weight, fs);
+
+    pattern = FcPatternCreate();
+    FcPatternAddString  (pattern, FC_FAMILY, (FcChar8*)family);
+    FcPatternAddInteger (pattern, FC_PIXEL_SIZE, fs);
+    FcPatternAddInteger (pattern, FC_WEIGHT, font_weight);
+    FcPatternAddBool(pattern, FC_MINSPACE, 1);
+
+    if (font_slant != EDA_SLANT_NONE) {
+      FcPatternAddInteger (pattern, FC_SLANT, font_slant);
+    }
+
+    /*
+    if(angle) {
+        FcMatrix mx;
+        Draw::SinCos(angle, sina, cosa);
+        mx.xx = cosa;
+        mx.xy = -sina;
+        mx.yx = sina;
+        mx.yy = cosa;
+        FcPatternAddMatrix(pattern, FC_MATRIX, &mx);
+    }*/
+
+    FcResult result;
+
+    match = XftFontMatch(display, screen, pattern, &result);
+/*
+    if(font.IsNonAntiAliased()) {
+        FcPatternDel(m, FC_ANTIALIAS);
+        FcPatternAddBool(m, FC_ANTIALIAS,
+                         font.IsNonAntiAliased() ? FcFalse : gtk_antialias ? FcTrue : FcFalse);
+    }
+    if(gtk_hinting >= 0) {
+        FcPatternDel(m, FC_HINTING);
+        FcPatternAddBool(m, FC_HINTING, gtk_hinting);
+    }
+    const char *hs[] = { "hintnone", "hintslight", "hintmedium", "hintfull" };
+    for(int i = 0; i < 4; i++)
+        if(gtk_hintstyle == hs[i]) {
+            FcPatternDel(m, FC_HINT_STYLE);
+            FcPatternAddInteger(m, FC_HINT_STYLE, i);
+        }
+    */
+    xftfont = XftFontOpenPattern(display, match);
+    FcPatternDestroy(pattern);
+    return xftfont;
+}
+
+void EdaX11Render::
+CreateFontHash (void)
+{
+  font_cache = g_hash_table_new_full (/* GHashFunc */ g_str_hash,
+                                      /* GEqualFunc */ g_str_equal,
+                                      /* GDestroyNotify */ g_free,
+                                      /* GDestroyNotify */ FontHashDestroyer);
+}
+
+void EdaX11Render::
+HashSetFont (void)
+{
+  font = g_hash_table_lookup (font_cache, font_string.c_str());
+
+  if (!font) {
+
+    char *tmp_string = u_string_strdup(font_string.c_str());
+
+#ifdef HAVE_XFT
+
+    //font = XftFontOpenName (display, screen, font_string.c_str());
+    font = CreateXftFont();
+
+#else
+
+    font = XLoadQueryFont(display, font_string.c_str());
+
+#endif
+
+    if (font) {
+      g_hash_table_insert (font_cache, tmp_string, font);
+    }
+    else {
+      GEDA_FREE(tmp_string);
+    }
+  }
+}
+
+inline std::string EdaX11Render::
+GetFontString(int size) {
 
   char *tmp_string = u_string_sprintf(font_format.c_str(), size);
 
@@ -423,8 +542,8 @@ EdaX11Render::GetFontString(int size) {
 
 /* Used run-time by the text renderer funtion to determine if the
  * current font needs to be updated */
-bool
-EdaX11Render::QueryCurrentFont (const char *font_name, int size)
+bool EdaX11Render::
+QueryCurrentFont (const char *font_name, int size)
 {
   int   new_size;
   bool  update;
@@ -462,7 +581,8 @@ EdaX11Render::QueryCurrentFont (const char *font_name, int size)
  * XLFD styled font name with a pixel size, point size, and average
  * width (fields 7,8, and 12) are "0".
  */
-bool EdaX11Render::IsScalableFont(char *name)
+bool EdaX11Render::
+IsScalableFont(char *name)
 {
   int i, field;
   bool anwser;
@@ -496,7 +616,8 @@ bool EdaX11Render::IsScalableFont(char *name)
 }
 
 #if DEBUG
-int EdaX11Render::XSetColorRed(void)
+int EdaX11Render::
+XSetColorRed(void)
 {
   int status;
   XColor red;
@@ -698,7 +819,14 @@ TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
   s_descent = font->descent;
   width     = extents.width;
   eol_sp    = EDA_DEFAULT_EOL_SP;
-
+/*
+  static int five = 5;
+  if (five) {
+    fprintf(stderr, "%s, max_advance_width %d\t", font_string.c_str(), font->max_advance_width);
+    fprintf(stderr, "extents.width %d, length %d: %s\n", width, length, string);
+    five--;
+  }
+  */
 #else
 
   s_ascent  = font->max_bounds.ascent;
@@ -1090,13 +1218,10 @@ geda_x11_draw_text (int x, int y)
 
     /* set up font */
     if (QueryCurrentFont (NULL, o_text->size)) {
-
-#ifdef HAVE_XFT
-
-      font = XftFontOpenName (display, screen, font_string.c_str());
-
+        HashSetFont();
     }
 
+#ifdef HAVE_XFT
     if (font) {
 
       /* Set up the color */
@@ -1121,10 +1246,6 @@ geda_x11_draw_text (int x, int y)
     }
 
 #else
-
-      font = XLoadQueryFont(display, font_string.c_str());
-
-    }
 
     if (font) {
       XSetFont(display, gc, font->fid);
@@ -1160,6 +1281,92 @@ geda_x11_draw_set_color (unsigned short red, unsigned short green, unsigned shor
 }
 
 int EdaX11Render::
+geda_x11_draw_get_font_slant (const char *font_descr)
+{
+  int slant;
+
+  if (!u_string_stristr (font_descr, "ital")) {          /* Italic */
+    slant = FC_SLANT_ITALIC;
+  }
+  else if (!u_string_stristr (font_descr, "obli")) {     /* Oblique */
+    slant = FC_SLANT_OBLIQUE;
+  }
+  else if (!u_string_stristr (font_descr, "roma")) {     /* Roman */
+    slant = FC_SLANT_ROMAN;
+  }
+  else {
+    slant = EDA_SLANT_NONE;
+  }
+
+  return slant;
+}
+
+int EdaX11Render::
+geda_x11_draw_get_font_weight (const char *font_descr)
+{
+  int weight;
+
+  // integer: Light, medium, demibold, bold or black, etc
+  if (!u_string_stristr (font_descr, "regu")) {        /* Regular */
+    weight = FC_WEIGHT_REGULAR;
+  }
+  else if (!u_string_stristr (font_descr, "medi")) {   /* Medium */
+    weight = FC_WEIGHT_MEDIUM;
+  }
+  else if (!u_string_stristr (font_descr, "old"))  {   /* Bold, which one? */
+
+    if (!u_string_stristr (font_descr, "demi")) {      /* bad choice of characters */
+      weight = FC_WEIGHT_DEMIBOLD;
+    }
+    else if (!u_string_stristr (font_descr, "semi")) { /* Another wizard */
+      /* FC_WEIGHT_DEMIBOLD == FC_WEIGHT_SEMIBOLD */
+      weight = FC_WEIGHT_DEMIBOLD;
+    }
+    else {
+      weight = FC_WEIGHT_BOLD;
+    }
+  }
+  else if (!u_string_stristr (font_descr, "ight")) {    /* light */
+
+    if (!u_string_stristr (font_descr, "extr")) {       /* Extra Light */
+      weight = FC_WEIGHT_EXTRALIGHT;
+    }
+    else if (!u_string_stristr (font_descr, "ultr")) {  /* Ultra Light */
+      weight = FC_WEIGHT_ULTRALIGHT;
+    }
+    else {
+      weight = FC_WEIGHT_LIGHT;
+    }
+  }
+  else if (!u_string_stristr (font_descr, "boo")) {     /* Book */
+    weight = FC_WEIGHT_BOOK;
+  }
+  else if (!u_string_stristr (font_descr, "heav")) {    /* Heavy */
+    /* FC_WEIGHT_HEAVY == FC_WEIGHT_BLACK */
+    weight = FC_WEIGHT_BLACK;
+  }
+  else if (!u_string_stristr (font_descr, "blac")) {    /* Black, which one?  */
+
+    if (!u_string_stristr (font_descr, "extr")) {       /* Extra Black */
+      weight = FC_WEIGHT_EXTRABLACK;
+    }
+    else if (!u_string_stristr (font_descr, "ultr")) {  /* Ultra Black */
+    /* FC_WEIGHT_ULTRABLACK == FC_WEIGHT_EXTRABLACK */
+      weight = FC_WEIGHT_EXTRABLACK;
+    }
+    else {
+      weight = FC_WEIGHT_BLACK;
+    }
+
+  }
+  else {
+    weight = FC_WEIGHT_NORMAL;
+  }
+
+  return weight;
+}
+
+int EdaX11Render::
 geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
 {
   Text       *o_text;
@@ -1181,17 +1388,25 @@ geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
     sx       = rint (o_text->x / scale);
     sy       = rint (o_text->y / scale);
 
-    QueryCurrentFont (NULL, o_text->size);
+    if (QueryCurrentFont (NULL, o_text->size)) {
+
+      if (display && (screen > 0)) {
+        HashSetFont();
+      }
+      else {
 
 #ifdef HAVE_XFT
 
-    font     = XftFontOpenName (display, screen, font_string.c_str());
+      font   = XftFontOpenName (display, screen, font_string.c_str());
 
 #else
 
-    font     = XLoadQueryFont(display, font_string.c_str());
+      font   = XLoadQueryFont(display, font_string.c_str());
 
 #endif
+
+      }
+    }
 
     if (font) {
 
@@ -1235,23 +1450,57 @@ geda_x11_draw_set_font_name (const char *font_name)
     font_name  = DEFAULT_FONT_NAME;
   }
 
-  font_family  = font_name;
-
 #if HAVE_XFT
-  tmp_string   = u_string_sprintf("%s,", font_name);
+
+  int   index;
+  char  strBuffer[64];
+
+  memset(&strBuffer[0], 0, sizeof(strBuffer));
+
+  index = 0;
+  while (font_name[index]) {
+    if (font_name[index] == ASCII_MINUS) {
+      strBuffer[index] = '\0';
+      index++;
+      tmp_string = &font_name[index];
+      break;
+    }
+    strBuffer[index] = font_name[index];
+    index++;
+  }
+
+  font_family = &strBuffer[0];
+
+  if (tmp_string) {
+
+    font_weight = geda_x11_draw_get_font_weight(tmp_string);
+    font_slant  = geda_x11_draw_get_font_slant(tmp_string);
+
+  }
+  else {
+
+    font_weight = FC_WEIGHT_NORMAL;
+    font_slant  = EDA_SLANT_NONE;
+  }
+
+  tmp_string    = u_string_sprintf("%s,", font_name);
+
 #else
-  tmp_string   = u_string_sprintf("-*-%s", font_name);
+
+  font_family   = font_name;
+  tmp_string    = u_string_sprintf("-*-%s", font_name);
+
 #endif
 
-  font_format  = tmp_string;
+  font_format   = tmp_string;
 
 #if HAVE_XFT
-  font_format  = font_format + "%d";
+  font_format   = font_format + "%d";
 #else
-  font_format  = font_format + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
+  font_format   = font_format + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
 #endif
 
-  font_string  = GetFontString(font_size);
+  font_string   = GetFontString(font_size);
 
   GEDA_FREE(tmp_string);
 }
@@ -1371,17 +1620,21 @@ EdaX11Render::~EdaX11Render () {
     XftDrawDestroy(xftdraw);
   }
   xftdraw = NULL;
-
+/*
 #else
   if (font) {
     XFreeFont(display, font);
   }
-
+*/
 #endif
+
+  g_hash_table_destroy (font_cache);
+  font_cache = NULL;
 
   if (surface != NULL) {
     cairo_surface_destroy (surface);
   }
+
   surface = NULL;
 
   XFreeGC(display, gc);
@@ -1395,12 +1648,12 @@ EdaX11Render::~EdaX11Render () {
  * the a PID file is created and the signal handle is setup.
  *
  */
-EdaX11Render::EdaX11Render (const char *font_name) {
+EdaX11Render::EdaX11Render (const char *font_name, int size) {
 
-
-  font_size =  -1;
   scale     = 1.0;
+  screen    =  -1;
   colormap  =   0;
+  font_size =  -1;
   font      = NULL;
   object    = NULL;
   surface   = NULL;
@@ -1412,7 +1665,9 @@ EdaX11Render::EdaX11Render (const char *font_name) {
 
 #endif
 
-  geda_x11_draw_set_font_name(font_name);
+  CreateFontHash();
+
+  geda_x11_draw_set_font (font_name, size);
 
   return;
 }

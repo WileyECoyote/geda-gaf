@@ -41,6 +41,8 @@
 
 #include <geda_debug.h>
 
+#include <valgrind/callgrind.h>
+
 static EdaX11Render *RenderAdaptor;
 
 static void
@@ -318,6 +320,7 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
     eda_renderer_draw (CairoRenderer, o_current);
   }
   else {
+
     switch (o_current->type) {
       case OBJ_LINE:        draw_func = x_draw_line;    break;
       case OBJ_NET:         draw_func = x_draw_net;     break;
@@ -339,11 +342,16 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
 
     RenderAdaptor->object = o_current;
 
+    CALLGRIND_START_INSTRUMENTATION;
+
     draw_func (w_current);
+
+    CALLGRIND_STOP_INSTRUMENTATION;
   }
 }
 
-extern "C" void x_draw_set_surface(GschemToplevel *w_current)
+extern "C" void
+x_draw_set_surface(GschemToplevel *w_current)
 {
   if (Current_Page) {
     RenderAdaptor->geda_draw_set_surface(w_current->cr,
@@ -354,14 +362,16 @@ extern "C" void x_draw_set_surface(GschemToplevel *w_current)
   }
 }
 
-extern "C" char *x_draw_get_font(void)
+extern "C" char*
+x_draw_get_font(void)
 {
   char strBuffer[128];
   RenderAdaptor->geda_draw_set_font(&strBuffer[0], sizeof(strBuffer));
   return u_string_strdup(&strBuffer[0]);
 }
 
-extern "C" void x_draw_set_font(const char *font_string, int size)
+extern "C" void
+x_draw_set_font(const char *font_string, int size)
 {
   if (font_string) {
 
@@ -388,7 +398,8 @@ extern "C" void x_draw_set_font(const char *font_string, int size)
  *
  *  \note the returned color-map MUST be freed using g_array_free.
  */
-extern "C" GArray *x_draw_get_font_list(const char *pattern)
+extern "C" GArray*
+x_draw_get_font_list(const char *pattern)
 {
 #if HAVE_XFT
   const char *default_pattern = "*";
@@ -418,7 +429,8 @@ extern "C" GArray *x_draw_get_font_list(const char *pattern)
   return font_list;
 }
 
-extern "C" char *x_draw_strip_font_provider(const char *font_string)
+extern "C" char*
+x_draw_strip_font_provider(const char *font_string)
 {
   char  strBuffer[128];
   char *font_name;
@@ -442,7 +454,8 @@ extern "C" char *x_draw_strip_font_provider(const char *font_string)
   return u_string_strdup(font_name);
 }
 
-extern "C" int x_draw_set_text_bounds(Object *object)
+extern "C" int
+x_draw_set_text_bounds(Object *object)
 {
   int result;
 
@@ -455,7 +468,8 @@ extern "C" int x_draw_set_text_bounds(Object *object)
   return result;
 }
 
-extern "C" void x_draw_initialize(GschemToplevel *w_current)
+extern "C" void
+x_draw_initialize(GschemToplevel *w_current)
 {
   EdaConfig  *cfg      = eda_config_get_user_context();
   const char *group    = IVAR_CONFIG_GROUP;
@@ -468,7 +482,7 @@ extern "C" void x_draw_initialize(GschemToplevel *w_current)
 
   font_name     = x_draw_strip_font_provider(font_string);
 
-  RenderAdaptor = new EdaX11Render(font_name);
+  RenderAdaptor = new EdaX11Render(font_name, w_current->text_size);
 
   RenderAdaptor->geda_draw_set_surface(w_current->cr, 5.5);
 
@@ -481,7 +495,8 @@ extern "C" void x_draw_initialize(GschemToplevel *w_current)
   v_log_message(_("done\n"));
 }
 
-extern "C" void x_draw_shutdown(void *user_data)
+extern "C" void
+x_draw_shutdown(void *user_data)
 {
   v_log_message(_("Shutting down: Graphics RenderAdaptorer..."));
   delete RenderAdaptor;

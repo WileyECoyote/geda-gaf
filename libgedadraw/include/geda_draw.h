@@ -49,8 +49,10 @@
 #else
 #  define FONT_SIZE_FACTOR     19
 #endif
-#define EDA_DEFAULT_EOL_SP    4
-#define EDA_DEFAULT_LEADING   4
+#define EDA_DEFAULT_EOL_SP     4
+#define EDA_DEFAULT_LEADING    4
+
+#define EDA_SLANT_NONE        -1  /* Some Einstein decided Roman = 0 */
 
 #define BEZIER_STEP 0.0025
 
