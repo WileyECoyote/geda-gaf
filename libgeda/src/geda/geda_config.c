@@ -371,9 +371,14 @@ eda_config_find_project_root (const char *path, const char *filename)
   }
   else {
     free(root_path); /* This version was modified by dirname() */
-    proj_root = g_path_get_dirname (path);
+    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+      /* g_path_get_dirname trims last dir */
+      proj_root = u_string_strdup (path);
+    }
+    else {
+      proj_root = g_path_get_dirname (path);
+    }
   }
-
   return proj_root;
 }
 

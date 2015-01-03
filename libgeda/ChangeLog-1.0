@@ -1,3 +1,8 @@
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Fixed g_path_get_dirname stripping
+      directory name in eda_config_find_project_root.
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: In function o_get_fill_options; remove
