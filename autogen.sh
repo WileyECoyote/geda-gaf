@@ -135,15 +135,17 @@ autopoint_fix() {
 
 fix_asneeded() {
 
-  needed="ltmain-asneeded.patch"
+  needed_24="ltmain-asneeded.patch"
   clunker="ltmain.sh"
 
   if test -d $tooldir; then
     cd $tooldir
     if test -f $clunker ; then
       if test -f $needed ; then
-        if patch -s -t -p0 --dry-run < $needed; then
-          patch -t -p0 < $needed    
+        patch -tp0 -N --dry-run --silent <$needed_24 > /dev/null 2>&1;
+        if [ $? -eq 0 ]; then
+          echo "patching $clunker, 2 of 2 patches applied"
+          patch -stp0 < $needed_24 > /dev/null 2>&1 &
         fi
       else
         echo "File needed to fix libtool as-needed, \"$needed\", seems to be missing"

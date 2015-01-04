@@ -1,3 +1,10 @@
+2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-x11.m4: Can not stop autoconf from making assumptions about X11, redo Xft
+          flags
+
+        * autogen.sh: Stop patch from making noise
+
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * m4/geda-std-checks.m4: Add check header float.h in AX_GEDA_MATH, add checks
