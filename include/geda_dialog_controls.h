@@ -111,6 +111,8 @@ typedef struct
 #define NOT_BELOW_ZERO(padding) padding < 0 ? 0 : padding
 
 /* Set Widget Values, see also geda_gui_funcs.h */
+#define SetGedaCombo( name, var)  geda_combo_box_set_active (GEDA_COMBO_BOX(name##Combo), var);
+
 //const char *depth = gtk_entry_get_text( GTK_ENTRY(GTK_COMBO(textureDepthCombo)->entry) );
 #define SetCombo( name, var)  gtk_combo_box_set_active (GTK_COMBO_BOX(name##Combo), var);
 #define SetSwitch( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Switch), var);
@@ -507,6 +509,16 @@ typedef struct
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
         name##Combo = geda_combo_box_text_new_with_entry(); \
+        g_object_set (name##Combo, "visible", TRUE, NULL); \
+        PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
+        SET_WIDGET_SIZE ( name##Combo, width, 34) \
+        HOOKUP_GEDA_OBJECT(name, Combo)
+
+#define GEDA_NEW_LIST_ENTRY_COMBO(parent, name, width, hpad)    \
+        GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
+        GtkWidget *name##Label=NULL;         /* declare Label */             \
+        GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
+        name##Combo = geda_combo_box_text_list_new(); \
         g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, 34) \
