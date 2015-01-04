@@ -1,3 +1,7 @@
+2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lightning_detector/lightning.sch: Fix upper connection to R4
+
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/gTAG-jtagio.sch: Add nc-left-2.sym on pin 8.
