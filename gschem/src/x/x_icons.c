@@ -227,7 +227,7 @@ static void x_icons_setup_factory()
       GEDA_FREE(pathname);
     }
   }
-/*
+
   for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
 
     icon_name = IDS_THEME_ICONS_22[index];
@@ -257,7 +257,6 @@ static void x_icons_setup_factory()
       GEDA_FREE(pathname);
     }
   }
-  */
 }
 
 static
@@ -280,14 +279,13 @@ x_icons_remove_icons_from_factory(void)
       gtk_icon_set_unref (icon_set);
     }
   }
-/*
+
   for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
     icon_set =  gtk_icon_factory_lookup_default (IDS_THEME_ICONS_22[index]);
     if (icon_set) {
       gtk_icon_set_unref (icon_set);
     }
   }
-*/
 }
 
 static

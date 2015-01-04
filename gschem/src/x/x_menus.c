@@ -227,8 +227,9 @@ static void free_toggler (void *data_record, void *user_data)
  *  This function is called by gschem_quit to free each ToggleMenuData
  *  structure that was allocated for toggle menu items.
  */
-void x_menu_free_all() {
-
+void
+x_menu_free_all()
+{
   lambda (MenuData *menu_data){
     g_slist_free (MENU_ITEMS_LIST);
     g_slist_free (POPUP_ITEMS_LIST);
@@ -754,7 +755,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
 /** \defgroup Main-Context-Menu Mouse Menu Functions */
 
-static bool strhashcmp (const void *a, const void *b) {
+static bool strhashcmp (const void *a, const void *b)
+{
   int answer = 0;
   if (((char*)a != '\0') && ((char*)b != '\0')) {
      answer = strcmp ((const char*) a, (const char*) b) == 0;
@@ -1224,7 +1226,8 @@ static void menu_set_toggle(ToggleMenuData *toggler_data, bool state)
  *
  * \sa x_menu_set_toolbar_toggle
  */
-void x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
+void
+x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
 {
 
   int  number_of_togglers;
@@ -1611,7 +1614,8 @@ void recent_files_load()
  *
  *  \return  const char pointer to the filename string
  */
-const char *recent_files_last(void) {
+const char *recent_files_last(void)
+{
 
    return (g_list_nth_data(recent_files, 0));
 
