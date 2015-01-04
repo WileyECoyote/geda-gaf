@@ -765,7 +765,7 @@ gtk_entry_real_insert_text (GtkEditable * editable,
 
   index = g_utf8_offset_to_pointer (entry->text, *position) - entry->text;
 
-  g_memmove (entry->text + index + new_text_length, entry->text + index, entry->n_bytes - index);
+  memmove (entry->text + index + new_text_length, entry->text + index, entry->n_bytes - index);
   memcpy (entry->text + index, new_text, new_text_length);
 
   entry->n_bytes += new_text_length;
@@ -818,7 +818,7 @@ gtk_entry_real_delete_text (GtkEditable * editable,
       int start_index = g_utf8_offset_to_pointer (entry->text, start_pos) - entry->text;
       int end_index = g_utf8_offset_to_pointer (entry->text, end_pos) - entry->text;
 
-      g_memmove (entry->text + start_index, entry->text + end_index, entry->n_bytes + 1 - end_index);
+      memmove (entry->text + start_index, entry->text + end_index, entry->n_bytes + 1 - end_index);
       entry->text_length -= (end_pos - start_pos);
       entry->n_bytes -= (end_index - start_index);
 
