@@ -412,13 +412,9 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
 void
 FontHashDestroyer (void *key, void *data, void *display)
 {
-
   g_free(key);
 
-#ifdef HAVE_XFT
-
-  //XftFont *font = value;
-#else
+#ifndef HAVE_XFT
 
   XFontStruct *font = data;
 
@@ -427,6 +423,7 @@ FontHashDestroyer (void *key, void *data, void *display)
   }
 
 #endif
+
 }
 
 #ifdef HAVE_XFT
@@ -525,6 +522,7 @@ HashSetFont (void)
       g_hash_table_insert (font_cache, tmp_string, font);
     }
     else {
+      fprintf(stderr, "%s did not get a font for %s\n", __func__, font_string.c_str());
       GEDA_FREE(tmp_string);
     }
   }
@@ -1622,18 +1620,12 @@ EdaX11Render::~EdaX11Render () {
     XftDrawDestroy(xftdraw);
   }
   xftdraw = NULL;
-/*
-#else
-  if (font) {
-    XFreeFont(display, font);
-  }
-*/
-#endif
-  g_hash_table_foreach (font_cache,
-                        FontHashDestroyer,
-                        display);
 
+#endif
+
+  g_hash_table_foreach (font_cache, FontHashDestroyer, display);
   g_hash_table_destroy (font_cache);
+
   font_cache = NULL;
 
   if (surface != NULL) {

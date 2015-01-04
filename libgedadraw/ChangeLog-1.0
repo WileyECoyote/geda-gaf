@@ -1,6 +1,15 @@
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: Continuing development of new renderer: Fix font hash cache for core fonts.
+        Performance with core fonts is 4 times faster than Xft fonts and more than
+        a magnitude of order better than cairo, testing using geda_fonts.sch, though
+        testing has been limited to static zoom levels. Also tested with inverter.sch
+        with first test comming in 50 percent faster then any previous tests using
+        this file. Quality needs improvement, there is no anti-aliasing.
+
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
-     *: Continuing development of new renderer; added functions CreateFontHash,
+     *: Continuing development of new renderer: added functions CreateFontHash,
         HashSetFont (major performance improvement), CreateXftFont (no significant
         increase in performance but opens door for freetype with angles), geda_
         x11_draw_get_font_slant and geda_x11_draw_get_font_weight.
