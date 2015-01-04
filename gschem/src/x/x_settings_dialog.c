@@ -127,6 +127,7 @@
 #include <geda_stat.h>
 
 #include <sys/types.h>
+#include <ctype.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -629,7 +630,7 @@ st_tree_row_activated (GtkTreeView       *tree_view,
 
 /*! \brief function connect_list_view
  *  \par Function Description
- *  This sets up the the callbacks for the attribute views.
+ *  This sets up the callbacks for the attribute views.
  *
  *  @param[in]  Dialog       is really w_current.
  *  @param[in]  TreeTextView A Treeview widge.
@@ -1325,7 +1326,7 @@ void combo_responder(GtkWidget *widget, void * data)
  */
 
   switch ( WhichComboBox ) {
-  case TitleBlock:
+  case TitleBlock:              /*GEDA_COMBO_BOX*/
     break;
   case ColorMapScheme:
     break;
@@ -1354,13 +1355,15 @@ void combo_responder(GtkWidget *widget, void * data)
  return;
 }
 
-#ifndef DEBUG
+#ifndef DEBUG /* When debugging the combo is loaded with static data */
+
 /*! \brief setup_titleblock_combo loads combo box with list of title-blocks
+ *
  *  \par Function Description: This function allocates and arrays and calls
- *       get_titleblock_list to get a list of the sym files in the title-block
- *       folder, the name of files are appended to the combo-box without the
- *       .sym extension, after adding a "None" options. If the current title
-         block is found then the combo is activated to this entry.
+ *   get_titleblock_list to get a list of the sym files in the title-block
+ *   folder, the name of files are appended to the combo-box without the
+ *   .sym extension, after adding a "None" options. If the current title
+     block is found then the combo is activated to this entry.
  *
  *  @param[in] titleblock  ptr to name of current default titleblock.
  */
@@ -1374,7 +1377,7 @@ int setup_titleblock_combo( char *titleblock ){
   char **strBuffer;
 
   /* Add option to disable automatic addition of a title-block */
-  GTK_LOAD_COMBO (TitleBlock, "None");
+  LOAD_GEDA_TEXT_COMBO (TitleBlock, "None");
 
   number_of_buffers = get_titleblock_cnt(); /* get count of files */
 
@@ -1394,11 +1397,11 @@ int setup_titleblock_combo( char *titleblock ){
      i = 0;
      while (i < number_of_buffers){
         if (u_string_strequal(titleblock, strBuffer[i])) pos = i;
-        LOAD_STD_COMBO (TitleBlock, strBuffer[i++]);
+        LOAD_GEDA_TEXT_COMBO (TitleBlock, strBuffer[i++]);
      }
      if (pos >= 0) {
        pos++;               /* add 1 extra because we added "None"*/
-       SetCombo (TitleBlock, pos); /* set the entry field */
+       SetGedaCombo (TitleBlock, pos); /* set the entry field */
      }
 
      for (i=0; i<number_of_buffers; i++) {
@@ -1414,6 +1417,18 @@ int setup_titleblock_combo( char *titleblock ){
 }
 #endif
 
+/*
+static void
+on_font_combo_popdown (GtkWidget *button,
+                       void      *user_data)
+{
+  //GtkComboBox *combo = user_data;
+
+fprintf(stderr, "WTF, somebody clicked on me\n");
+
+}
+*/
+
 static int
 cmp_families (const void *a, const void *b)
 {
@@ -1422,7 +1437,7 @@ cmp_families (const void *a, const void *b)
 
   return g_utf8_collate (a_name, b_name);
 }
-#include <ctype.h>
+
 /*! \brief Loads Font Name Combo Box and Set Active
  *  \par Function Description:
  *   This function up-loads font name strings into the FontName combobox
@@ -1608,9 +1623,19 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
     }
   }
 
-  geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
   geda_list_free_full (font_list);
 
+  geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
+
+/* Switched combo to appear as list, aka a treeview instead of a menu
+ * and maybe we don not need to connect to button anymore.
+ *
+  GedaComboBoxText *text_combo = (GedaComboBoxText*)FontNameCombo;
+  g_signal_connect (text_combo->button,
+                    "clicked",
+                    G_CALLBACK (on_font_combo_popdown),
+                    FontNameCombo);
+ */
 }
 
 /* TODO: This should be moved to the Combo responder once the GTK Combo
@@ -2071,8 +2096,8 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetCombo ( MiddleButton,      w_current->middle_button);
 
 #ifdef DEBUG
-  LOAD_COMBO_STR( TitleBlock, DefaultTitleBlockList );
-  SetCombo (TitleBlock, 1);
+  LOAD_GEDA_TEXT_COMBO( TitleBlock, DefaultTitleBlockList );
+  SetGedaCombo (TitleBlock, 1);
 #else
   /* make C variable on stack */
   tmpstr = eda_config_get_string (cfg, group, "default-titleblock", NULL);
@@ -2292,13 +2317,13 @@ create_settings_dialog (GschemToplevel *w_current)
      VPSECTION (GeneralPrefTab_vbox, GeneralOptions, 0)  /* GT Grp 2 General Options */
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
            GTK_SWITCH(GeneralOptionsRow1_hbox, FilePreview, 18, TRUE);
-           GTK_NEW_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 49);
+           GEDA_NEW_TEXT_ENTRY_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 49);
      HXYP_SEPERATOR (GeneralPrefTab_vbox, Grp3, 10);
      CSECTION_OPTIONS(GeneralPrefTab_vbox, Logging, -1, 10, H); /* GT Grp 3 Log Related */
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
          GTK_SWITCH(LogOptions_vbox, EnableLog, 5, TRUE);
          GTK_SWITCH(LogOptions_vbox, InitConsoleWindow, 0, FALSE);
-         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 150, 5);
+         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 160, 5);
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
          GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 10, Window, TTY, Both, Window);
@@ -2712,7 +2737,7 @@ void GatherSettings(GschemToplevel *w_current) {
     }
   } /* else do nothing because the map did not change */
 
-  tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (TitleBlockCombo));
+  tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (TitleBlockCombo));
   eda_config_set_string (cfg, group, "default-titleblock", tmpstr);
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));

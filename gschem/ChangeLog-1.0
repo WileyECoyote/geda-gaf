@@ -1,5 +1,21 @@
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_settings_dialog.c: Switch FontNameCombo from type
+      GEDA_NEW_TEXT_ENTRY_COMBO to GEDA_NEW_LIST_ENTRY_COMBO so
+      that this widget will default to a tree-view (So happens
+      my best font is "Ubuntu" and the GtkMenuBox thing wasn`t
+      working out, either had to oust 60 or so fonts or fix the
+      widget, the little scroll gaget took toooooo long to get
+      down to the U`s.) Also switched the TitleBlock combo from
+      GTK_COMBO_BOX to GEDA_NEW_TEXT_ENTRY_COMBO (which does not
+      default to a tree-view, but...
+
+    * etc/gschem-gtkrc: Added GedaComboBox::appear-as-list = 1 so
+      all GedaComboBoxes, including GedaComboBoxText will appear
+      with tree-view widgets unless the user changes the rc file.
+
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/xxx-gschemrc.scm: Fix incorrect keywords for dots-grid-m??or
       -color. Change default dots-grid-m??or-color set. Blue green looks
       good but maybe a little to blue, set major gray, minor green, with

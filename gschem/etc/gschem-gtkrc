@@ -45,6 +45,7 @@ style "gschem"
 
    GedaComboBox::arrow-size     = 15
    GedaComboBox::shadow-type    = 0
+   GedaComboBox::appear-as-list = 1       # Make GedaCombo's show Treeview by default
 
    # Comment this line to enble selecting image files on remote
    # system, only recommended if remote images are to be embeded
@@ -68,7 +69,7 @@ style "range"
   GtkRange::stepper-size 	 	    = 19
   #GtkRange::stepper-spacing 	 	= 2
   GtkRange::trough-border 	 	    = 0
-  GtkRange::trough-under-steppers   = 1
+  GtkRange::trough-under-steppers    = 1
 
   bg[NORMAL]   =  shade (1.12,@bg_color)#shade (1.085,@bg_color)
   bg[ACTIVE]   =  @bg_color
