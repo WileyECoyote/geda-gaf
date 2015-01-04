@@ -1,3 +1,11 @@
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/xxx-gschemrc.scm: Fix incorrect keywords for dots-grid-m??or
+      -color. Change default dots-grid-m??or-color set. Blue green looks
+      good but maybe a little to blue, set major gray, minor green, with
+      alpha 30/45 seems to provide good contrast but does not obscure the
+      drawings.
+
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Replace g_path_get_dirname with f_get

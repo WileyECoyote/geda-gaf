@@ -133,20 +133,20 @@
 ;
 ;  RED GREEN BLUE
 ;
-;(mesh-grid-minor-color 48830 48830 48830)
-;(mesh-grid-minor-color 5781 56202 17928)
-(mesh-grid-minor-color 42747 41944 3217)
+;(dots-grid-minor-color 48830 48830 48830)
+;(dots-grid-minor-color 5781 56202 17928)
+(dots-grid-minor-color 42747 41944 3217)
 
 ; dots-grid-major-color 3 integers
 ;
-; The dots-grid-minor-color specifies the color to use for the major dots grid,
+; The dots-grid-major-color specifies the color to use for the major dots grid,
 ; The color is specified as three integers for red, green, and blue, respectively.
 ;
 ;  RED GREEN BLUE
 ;
-;(mesh-grid-major-color 48830 48830 48830)
-;(mesh-grid-major-color 22084 3125 63070)
-(mesh-grid-major-color 46956 4943 42960)
+;(dots-grid-major-color 48830 48830 48830)
+;(dots-grid-major-color 22084 3125 63070)
+(dots-grid-major-color 46956 4943 42960)
 
 ; dots-grid-dot-size integer
 ;
