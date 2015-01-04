@@ -943,7 +943,8 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
  *  \par Function Description
  *  This function is called from i_basic to set the senitivity of menu items!
  */
-void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
+void
+x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
   GtkWidget *item=NULL;
   GtkWidget *menubar;
@@ -986,7 +987,8 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
  *  popup.
  *
  */
-void x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
+void
+x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
 {
   GtkWidget *menu_item;
   MenuData  *menu_data;
@@ -1016,7 +1018,9 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int
  *  menu items (like rubber-mode) to the user's configuration file popup.
  *
  */
-void x_menu_save_state(GschemToplevel *w_current) {
+void
+x_menu_save_state(GschemToplevel *w_current)
+{
 
   GtkWidget        *menubar;
   EdaConfig        *cfg;
@@ -1173,7 +1177,8 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
  *  \par Function Description
  *
  */
-static void menu_set_toggle(ToggleMenuData *toggler_data, bool state) {
+static void menu_set_toggle(ToggleMenuData *toggler_data, bool state)
+{
 
   char* menu_path;
   GschemToplevel *w_current;
@@ -1219,7 +1224,8 @@ static void menu_set_toggle(ToggleMenuData *toggler_data, bool state) {
  *
  * \sa x_menu_set_toolbar_toggle
  */
-void x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state){
+void x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
+{
 
   int  number_of_togglers;
   ToggleMenuData *toggler_data;
@@ -1260,7 +1266,9 @@ void x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state){
  *
  * \sa x_menu_set_toggle
  */
-void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state){
+void
+x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
+{
 
   char  menu_name[36] = "_View/_Toolbars/";
   char *menu_path;
@@ -1348,7 +1356,8 @@ static void clear_recent_file_list(void *data)
 }
 
 static void
-recent_file_free_menu_data (void *data, GClosure *closure) {
+recent_file_free_menu_data (void *data, GClosure *closure)
+{
   GEDA_FREE (data);
 }
 
@@ -1569,7 +1578,7 @@ void recent_files_load()
          return;
    }
 
-   gsize len;
+   unsigned int len;
    char **list = g_key_file_get_string_list(kf, "Recent files",
          "Files", &len, NULL);
 

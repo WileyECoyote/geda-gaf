@@ -83,6 +83,7 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
       *max_y = max (t, b);
     }
     else {
+
       result =  x_draw_set_text_bounds(o_current);
       if (result) {
         *min_x = o_current->left;
@@ -98,8 +99,8 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
 
 #if DEBUG
   if (result)
-     fprintf(stderr, " o_text_get_bounds <type %d> left<%d>, right<%d>, top<%d>, bottom<%d>\n",
-             w_current->render_adaptor, *min_x , *max_x, *max_y, *min_y);
+     fprintf(stderr, " %s <type %d> left<%d>, right<%d>, top<%d>, bottom<%d>\n",
+             __func__, w_current->render_adaptor, *min_x , *max_x, *max_y, *min_y);
 #endif
 
   return result;

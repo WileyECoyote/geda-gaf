@@ -1463,10 +1463,10 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
     for (index = 0; index < n_families; index++) {
       pfont = pango_font_family_get_name (families[index]);
 
-      #if DEBUG
+#if DEBUG
       bool is_mono =  pango_font_family_is_monospace (families[index]);
       fprintf(stderr, "font <%s> monospace <%d>\n", pfont, is_mono);
-      #endif
+#endif
 
       geda_list_add_unique_string (font_list, u_string_strdup(pfont));
     }
