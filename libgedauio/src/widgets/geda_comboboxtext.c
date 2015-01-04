@@ -407,16 +407,24 @@ GtkWidget *geda_combo_box_text_new_with_entry ()
  *  \par Function Description
  *
  * Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
- * strings. The combo box created by this function has an entry.
+ * strings. The combo box created by this function has an entry. The parent
+ * GedaComboBox rebuilt the widget when the "list-view" property was set,
+ * see geda_combo_box_check_appearance. So we have to find the widget again!
  *
  * \return new #GedaComboBoxText
  *
  */
 GtkWidget *geda_combo_box_text_list_new()
 {
-  return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE,
-                                                 "appear-as-list", TRUE,
-                       NULL);
+  GtkWidget *widget;
+
+  widget = g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE,
+                                                   "list-view", TRUE,
+                         NULL);
+
+  gtk_container_forall (GTK_CONTAINER (widget), FixGtkCrap, widget);
+
+  return widget;
 }
 
 static void
@@ -555,22 +563,27 @@ geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
   combo_box->count = 0;
 }
 
-void geda_combo_box_text_list_append (GedaComboBoxText   *combo_box,
-                                      const char         *text,
-                                      const char         *text2)
+void
+geda_combo_box_text_list_append (GedaComboBoxText   *combo_box,
+                                 const char         *text,
+                                 const char         *text2)
 {
   geda_combo_box_text_real_insert (combo_box, -1, text, text2);
 }
-void geda_combo_box_text_list_insert (GedaComboBoxText   *combo_box,
-                                      int                 position,
-                                      const char         *text,
-                                      const char         *text2)
+
+void
+geda_combo_box_text_list_insert (GedaComboBoxText   *combo_box,
+                                 int                 position,
+                                 const char         *text,
+                                 const char         *text2)
 {
   geda_combo_box_text_real_insert (combo_box, position, text, text2);
 }
-void geda_combo_box_text_list_prepend (GedaComboBoxText   *combo_box,
-                                       const char         *text,
-                                       const char         *text2)
+
+void
+geda_combo_box_text_list_prepend (GedaComboBoxText   *combo_box,
+                                  const char         *text,
+                                  const char         *text2)
 {
   geda_combo_box_text_real_insert (combo_box, 0, text, text2);
 }

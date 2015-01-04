@@ -1,3 +1,24 @@
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_combobox.c: Changed g_object property "appear-as
+        -list" to "list-view", add gtk-style property "appear-as-list".
+        Added code in geda_combo_box_check_appearance to set or clear the
+        as_list bit based on the style setting. This allows clients apps
+        to specify the tree-view as the default, or not, and users must
+        then over-ride the client. This is different than the stock Gtk
+        GtkComboBox, which defaults to drop-down menus and provides no
+        means for apps to set to the treeview other than the same way
+        user would have -- through a cryptic RC file hidden in some
+        obscure location and owned by root.
+
+      * src/widgets/geda_comboboxtext.c: Revised function geda_combo_box
+        _text_list_new to reset widget->button pointer after the object
+        was created with "appear-as-list", now "list-view". Just because
+        it kind of sucked that button signal could be connected to if a
+        menu was going to appear but not if a treeview. (Maybe we do not
+        need to connect to the button if is a treeview because treeviews
+        have scrollbars, menu do not. Ho well, is done now. Changed
+
 2014-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_image_chooser.h: Add GtkWidget member *extra

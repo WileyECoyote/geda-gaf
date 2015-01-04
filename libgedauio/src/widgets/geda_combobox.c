@@ -912,11 +912,11 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
  g_object_class_install_property (object_class, PROP_HAS_ENTRY, params);
 
  /**
-  * GedaComboBox:has-entry:
+  * GedaComboBox:list-view:
   *
   * Whether the combo box has an entry.
   */
- params = g_param_spec_boolean ("appear-as-list",
+ params = g_param_spec_boolean ("list-view",
                               _("Appear as list"),
                               _("Whether popup should look like lists rather than menus"),
                                  FALSE,
@@ -960,6 +960,18 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
 
  gtk_widget_class_install_style_property (widget_class, params);
 
+  /**
+  * GedaComboBox:appear-as-list:
+  *
+  * Sets whether the widget should appears a menu list or treeview.
+  */
+ params = g_param_spec_boolean ("appear-as-list",
+                              _("List View"),
+                              _("When true, the drop-down appears as a list view, otherwise an ugly menus"),
+                                FALSE,
+                                G_PARAM_READABLE);
+
+ gtk_widget_class_install_style_property (widget_class, params);
 
  /**
   * GedaComboBox:shadow-type:
@@ -1260,6 +1272,19 @@ geda_combo_box_check_appearance (GedaComboBox *combo_box)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
 
+  unsigned int as_list;
+
+  gtk_widget_style_get (GTK_WIDGET (combo_box),
+                        "appear-as-list", &as_list,
+                        NULL);
+
+  if (!priv->as_list && as_list) {
+    priv->as_list |= 1 ;
+  }
+  else if (priv->as_list && !as_list) {
+    priv->as_list &= ~1;
+  }
+
   if (priv->as_list) {
 
     /* Destroy all the menu mode widgets, if they exist. */
@@ -1291,8 +1316,7 @@ geda_combo_box_check_appearance (GedaComboBox *combo_box)
 }
 
 static void
-geda_combo_box_style_set (GtkWidget *widget,
-                         GtkStyle  *previous)
+geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
   GedaComboBoxPrivate *priv = combo_box->priv;
@@ -1310,8 +1334,7 @@ geda_combo_box_style_set (GtkWidget *widget,
 }
 
 static void
-geda_combo_box_button_toggled (GtkWidget *widget,
-                              void *   data)
+geda_combo_box_button_toggled (GtkWidget *widget, void *data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (data);
 
@@ -1325,16 +1348,15 @@ geda_combo_box_button_toggled (GtkWidget *widget,
 }
 
 static void
-geda_combo_box_add (GtkContainer *container,
-                   GtkWidget    *widget)
+geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
   GedaComboBoxPrivate *priv = combo_box->priv;
 
-  if (priv->has_entry && !GTK_IS_ENTRY (widget))
-    {
+  if (priv->has_entry && !GTK_IS_ENTRY (widget)) {
+
       g_warning ("Attempting to add a widget with type %s to a GedaComboBox that needs an entry "
-		 "(need an instance of GtkEntry or of a subclass)",
+		 "(need an instance of GedaEntry or of a subclass)",
                  G_OBJECT_TYPE_NAME (widget));
       return;
     }
@@ -1372,10 +1394,9 @@ geda_combo_box_add (GtkContainer *container,
         }
     }
 
-  if (priv->has_entry)
-    {
-      /* this flag is a hack to tell the entry to fill its allocation.
-       */
+  if (priv->has_entry) {
+
+      /* this flag is a hack to tell the entry to fill its allocation. */
       GTK_ENTRY (widget)->is_cell_renderer = TRUE;
 /*
       g_signal_connect (widget, "changed",
@@ -1387,12 +1408,12 @@ geda_combo_box_add (GtkContainer *container,
 }
 
 static void
-geda_combo_box_remove (GtkContainer *container,
-                       GtkWidget    *widget)
+geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
-  GedaComboBoxPrivate *priv = combo_box->priv;
-  GtkTreePath *path;
+  GedaComboBox        *combo_box = GEDA_COMBO_BOX (container);
+  GedaComboBoxPrivate *priv      = combo_box->priv;
+  GtkTreePath         *path;
+
   bool appears_as_list;
 
   if (priv->has_entry) {
@@ -1480,8 +1501,7 @@ geda_combo_box_get_cell_info (GedaComboBox     *combo_box,
 }
 
 static void
-geda_combo_box_menu_show (GtkWidget *menu,
-                         void    *user_data)
+geda_combo_box_menu_show (GtkWidget *menu, void *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
   GedaComboBoxPrivate *priv = combo_box->priv;
@@ -1495,8 +1515,7 @@ geda_combo_box_menu_show (GtkWidget *menu,
 }
 
 static void
-geda_combo_box_menu_hide (GtkWidget *menu,
-                         void    *user_data)
+geda_combo_box_menu_hide (GtkWidget *menu, void *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
 
@@ -1507,27 +1526,25 @@ geda_combo_box_menu_hide (GtkWidget *menu,
 }
 
 static void
-geda_combo_box_detacher (GtkWidget *widget,
-			GtkMenu	  *menu)
+geda_combo_box_detacher (GtkWidget *widget, GtkMenu *menu)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxPrivate *priv = combo_box->priv;
+  GedaComboBox        *combo_box = GEDA_COMBO_BOX (widget);
+  GedaComboBoxPrivate *priv      = combo_box->priv;
 
   g_return_if_fail (priv->popup_widget == (GtkWidget *) menu);
 
   g_signal_handlers_disconnect_by_func (menu->toplevel,
-					geda_combo_box_menu_show,
-					combo_box);
+                                        geda_combo_box_menu_show,
+                                        combo_box);
   g_signal_handlers_disconnect_by_func (menu->toplevel,
-					geda_combo_box_menu_hide,
-					combo_box);
+                                        geda_combo_box_menu_hide,
+                                        combo_box);
 
   priv->popup_widget = NULL;
 }
 
 static void
-geda_combo_box_set_popup_widget (GedaComboBox *combo_box,
-                                GtkWidget   *popup)
+geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget *popup)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
 
@@ -1543,8 +1560,8 @@ geda_combo_box_set_popup_widget (GedaComboBox *combo_box,
   }
 
   if (GTK_IS_MENU (popup))  {
-    if (priv->popup_window)
-    {
+
+    if (priv->popup_window) {
       gtk_widget_destroy (priv->popup_window);
       priv->popup_window = NULL;
     }
