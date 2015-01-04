@@ -410,22 +410,26 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
 }
 
 void
-FontHashDestroyer (void *data)
+FontHashDestroyer (void *key, void *data, void *display)
 {
+
+  g_free(key);
 
 #ifdef HAVE_XFT
 
-  //XftFont *font = data;
+  //XftFont *font = value;
 #else
 
   XFontStruct *font = data;
 
   if (font) {
-    XFreeFont(display, font);
+    XFreeFont((Display*)display, font);
   }
 
 #endif
 }
+
+#ifdef HAVE_XFT
 
 XftFont *EdaX11Render::
 CreateXftFont(void)
@@ -489,14 +493,12 @@ CreateXftFont(void)
     FcPatternDestroy(pattern);
     return xftfont;
 }
+#endif
 
 void EdaX11Render::
 CreateFontHash (void)
 {
-  font_cache = g_hash_table_new_full (/* GHashFunc */ g_str_hash,
-                                      /* GEqualFunc */ g_str_equal,
-                                      /* GDestroyNotify */ g_free,
-                                      /* GDestroyNotify */ FontHashDestroyer);
+  font_cache = g_hash_table_new ( g_str_hash, g_str_equal);
 }
 
 void EdaX11Render::
@@ -1627,6 +1629,9 @@ EdaX11Render::~EdaX11Render () {
   }
 */
 #endif
+  g_hash_table_foreach (font_cache,
+                        FontHashDestroyer,
+                        display);
 
   g_hash_table_destroy (font_cache);
   font_cache = NULL;
