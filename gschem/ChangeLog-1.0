@@ -1,5 +1,9 @@
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Revise x_menu_setup_ui to allow a nested menus item
+
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Clean up module, add "x_menus_" prefix to all
       functions names, add subfunction get_menu_item_from_scheme in
       function x_menu_setup_ui.

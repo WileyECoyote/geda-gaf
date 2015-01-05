@@ -343,6 +343,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     GtkWidget *menu_item;
 
+    scm_dynwind_begin(0);
+
     scm_index      = scm_from_int (index);
     scm_item       = scm_list_ref (scm_items, scm_index);
     scm_item_len   = scm_ilength  (scm_item);
@@ -384,7 +386,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       raw_menu_item_name = scm_to_utf8_string(scm_item_name);
 
-      scm_dynwind_begin(0);
       scm_dynwind_free(raw_menu_item_name);
 
       menu_item_name = gettext(raw_menu_item_name);
@@ -506,6 +507,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       }
     }
 
+    /* add a handle to the menu_bar object to get access to widget
+     * objects. This string should NOT be internationalized */
+    buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
+    gtk_object_set_data(GTK_OBJECT(MENU_BAR), buf, menu_item);
+    GEDA_FREE(buf);
+
     scm_dynwind_end();
 
     return menu_item;
@@ -551,26 +558,25 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);
     for (j = 0 ; j < scm_items_len; j++) {
-
       menu_item = get_menu_item_from_scheme(scm_items, j);
-      gtk_container_add (GTK_CONTAINER (menu), menu_item);
+      gtk_container_add (GTK_CONTAINER(menu), menu_item);
       g_object_set (menu_item, "visible", TRUE, NULL);
-
-      /* add a handle to the menu_bar object to get access to widget
-       * objects. This string should NOT be internationalized */
-      buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), buf, menu_item);
-      GEDA_FREE(buf);
     }
 
-    root_menu = gtk_menu_item_new_with_mnemonic (menu_name);
+    root_menu = NULL;
 
-    /* do not free *raw_menu_name */
-    /* no longer right justify the help menu since that has gone out of style */
-    g_object_set (root_menu, "visible", TRUE, NULL);
+    if (strstr(menu_name, "/")) {
+      root_menu = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), menu_name);
+    }
+
+    if (root_menu == NULL) {
+      root_menu = gtk_menu_item_new_with_mnemonic (menu_name);
+      gtk_container_add (GTK_CONTAINER (MENU_BAR), root_menu);
+    }
 
     gtk_menu_item_set_submenu (GTK_MENU_ITEM (root_menu), menu);
-    gtk_container_add (GTK_CONTAINER (MENU_BAR), root_menu);
+    g_object_set (root_menu, "visible", TRUE, NULL);
+    /* Do not free *raw_menu_name */
   }
   scm_dynwind_end ();
 
@@ -929,8 +935,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   return GTK_IS_WIDGET(POPUP_MENU);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Show the Popup Menu
  *  \par Function Description
  *
  *  \note
@@ -1419,7 +1424,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    unsigned long id;
    GtkWidget *tmp;
    GtkWidget *recent_menu_item, *recent_submenu;
-   MenuData *menu_data;
+   MenuData  *menu_data;
    GtkWidget *label;
 
    menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
