@@ -259,9 +259,7 @@ static void x_icons_setup_factory()
   }
 }
 
-static
-void
-x_icons_remove_icons_from_factory(void)
+static void x_icons_remove_icons_from_factory(void)
 {
   GtkIconSet *icon_set;
   int index;
@@ -288,8 +286,7 @@ x_icons_remove_icons_from_factory(void)
   }
 }
 
-static
-void x_icons_shutdown_factory(void * user_data)
+static void x_icons_shutdown_factory(void * user_data)
 {
   if (gschem_factory) {
 

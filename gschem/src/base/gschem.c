@@ -212,9 +212,9 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
       load_last = auto_load_last && !override_autoload;
 
       /* Check and do Auto Load if file recordered */
-      if ((load_last) && (recent_files_last() != NULL)) {
-        q_log_message("Auto Load: . . .%s\n", recent_files_last()); /* maybe Log what we are doing */
-        x_window_open_page(w_current, recent_files_last());
+      if ((load_last) && (x_menu_recent_files_last() != NULL)) {
+        q_log_message("Auto Load: . . .%s\n", x_menu_recent_files_last()); /* maybe Log what we are doing */
+        x_window_open_page(w_current, x_menu_recent_files_last());
       }
       else {
 
@@ -354,8 +354,8 @@ void gschem( int argc, char *argv[])
   o_undo_init(w_current);
 
   /* Load recent files list before calling x_window_setup.*/
-  recent_files_load();
-  geda_atexit(recent_files_save, NULL);
+  x_menu_recent_files_load();
+  geda_atexit(x_menu_recent_files_save, NULL);
 
   /* At end, complete set up of window. */
   x_color_allocate();

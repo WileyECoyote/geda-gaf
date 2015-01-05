@@ -33,7 +33,7 @@
 #include <geda_dialogs.h>
 #include <geda_debug.h>
 
-//#define PERFORMANCE
+#define PERFORMANCE
 #ifdef PERFORMANCE
 
 # include <sys/time.h>
@@ -3480,14 +3480,14 @@ COMMAND (do_cycle_snap)
   switch (w_current->snap) {
   case SNAP_OFF:
     q_log_message(_("Snap OFF (CAUTION!)\n"));
-    x_menu_set_toggle(w_current, SNAP_TOGGLE, FALSE);
+    x_menu_set_togglable(w_current, SNAP_TOGGLE, FALSE);
     break;
   case SNAP_GRID:
-    x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
+    x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
     q_log_message(_("Snap ON\n"));
     break;
   case SNAP_RESNAP:
-    x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
+    x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
     q_log_message(_("Snap back to the grid (CAUTION!)\n"));
     break;
   default:
@@ -3515,7 +3515,7 @@ COMMAND (do_toggle_feedback)
     o_place_invalidate_rubber (w_current, FALSE);
   }
 
-  x_menu_set_toggle(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
+  x_menu_set_togglable(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
 }
 
 /*! \brief Toggle Rubberband Mode in i_command_Option_Actions
@@ -3538,7 +3538,7 @@ COMMAND (do_toggle_rubberband)
     w_current->netconn_rubberband = 1;
     q_log_message(_("Rubber band ON\n"));
   }
-  x_menu_set_toggle(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
+  x_menu_set_togglable(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
 
 /*! @brief Toggle Magnetic Nets Mode in i_command_Option_Actions */
@@ -3552,7 +3552,7 @@ COMMAND (do_toggle_magneticnet)
   else {
     q_log_message(_("magnetic net mode: OFF\n"));
   }
-  x_menu_set_toggle(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
+  x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_status_show_state(w_current, NULL);
 }
 
@@ -3574,7 +3574,7 @@ COMMAND (do_toggle_drawcanmove)
     OnOff =_("On");
   }
   q_log_message(_("Drag-Can-Move is now %s\n"), OnOff);
-  x_menu_set_toggle(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
+  x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
 }
 
 

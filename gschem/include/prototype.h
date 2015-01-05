@@ -685,8 +685,8 @@ void          x_dialog_show_message         (const char *, gEDA_MessageType cont
 void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
                                              gEDA_MessageType context, const char *title);
 /* x_dnd.c */
-bool        x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
-void        x_dnd_setup_event_handlers   (GschemToplevel *w_current);
+bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, int y, const char *string, int where);
+void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);
 
 /* o_draw.c */
 void          x_draw_object                 (GschemToplevel *w_current, Object *object);
@@ -707,132 +707,132 @@ void          x_attrib_add_dialog           (GschemToplevel *w_current, Object *
 void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *object);
 
 /* x_edit_color.c */
-void        x_dialog_edit_color          (GschemToplevel *w_current);
+void        x_dialog_edit_color             (GschemToplevel *w_current);
 
 /* x_edit_pin.c */
-void        x_dialog_edit_pin_type       (GschemToplevel *w_current);
+void        x_dialog_edit_pin_type          (GschemToplevel *w_current);
 
 /* x_edit_property.c */
-void        x_dialog_edit_properties     (GschemToplevel *w_current, Object *o_current);
+void        x_dialog_edit_properties        (GschemToplevel *w_current, Object *o_current);
 
 /* x_edit_text.c */
-void        x_dialog_edit_text           (GschemToplevel *w_current, Object *o_current);
+void        x_dialog_edit_text              (GschemToplevel *w_current, Object *o_current);
 
 /* x_event.c */
-bool       x_event_button_pressed       (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);
-bool       x_event_button_released      (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);
-bool       x_event_configure            (GtkWidget     *widget, GdkEventConfigure *event, GschemToplevel *w_current);
-void       x_event_governor             (GschemToplevel *w_current);
-bool       x_event_expose               (GtkWidget     *widget, GdkEventExpose    *event, GschemToplevel *w_current);
-bool       x_event_key                  (GtkWidget     *widget, GdkEventKey       *event, GschemToplevel *w_current);
-bool       x_event_motion               (GtkWidget     *widget, GdkEventMotion    *event, GschemToplevel *w_current);
-bool       x_event_scroll               (GtkWidget     *widget, GdkEventScroll    *event, GschemToplevel *w_current);
+bool       x_event_button_pressed           (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);
+bool       x_event_button_released          (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);
+bool       x_event_configure                (GtkWidget     *widget, GdkEventConfigure *event, GschemToplevel *w_current);
+void       x_event_governor                 (GschemToplevel *w_current);
+bool       x_event_expose                   (GtkWidget     *widget, GdkEventExpose    *event, GschemToplevel *w_current);
+bool       x_event_key                      (GtkWidget     *widget, GdkEventKey       *event, GschemToplevel *w_current);
+bool       x_event_motion                   (GtkWidget     *widget, GdkEventMotion    *event, GschemToplevel *w_current);
+bool       x_event_scroll                   (GtkWidget     *widget, GdkEventScroll    *event, GschemToplevel *w_current);
 
-void       x_event_hschanged            (GtkAdjustment *adjust, GschemToplevel    *w_current);
-void       x_event_vschanged            (GtkAdjustment *adjust, GschemToplevel    *w_current);
+void       x_event_hschanged                (GtkAdjustment *adjust, GschemToplevel    *w_current);
+void       x_event_vschanged                (GtkAdjustment *adjust, GschemToplevel    *w_current);
 
-bool       x_event_get_pointer_position (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
-void       x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy);
-void       x_manual_resize              (GschemToplevel *w_current);
+bool       x_event_get_pointer_position     (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
+void       x_event_set_pointer_position     (GschemToplevel *w_current, int wx, int wy);
+void       x_manual_resize                  (GschemToplevel *w_current);
 
 /* x_fileselect.c */
-GSL       *x_fileselect_list            (GschemToplevel *w_current);
-void       x_fileselect_save            (GschemToplevel *w_current);
-char      *x_fileselect_select_image    (GschemToplevel *w_current, const char *filename);
-bool       x_fileselect_load_backup     (const char *message, GschemToplevel *w_current);
+GSL       *x_fileselect_list                (GschemToplevel *w_current);
+void       x_fileselect_save                (GschemToplevel *w_current);
+char      *x_fileselect_select_image        (GschemToplevel *w_current, const char *filename);
+bool       x_fileselect_load_backup         (const char *message, GschemToplevel *w_current);
 
 /* x_grid.c */
-void       x_grid_draw_grid_region      (GschemToplevel *w_current, GdkRectangle *rectangle);
-void       x_grid_configure_variables   (GschemToplevel *w_current);
-int        x_grid_query_drawn_spacing   (GschemToplevel *w_current);
-void       x_grid_repaint_background    (GschemToplevel *w_current, GdkRectangle *rectangle);
-void       x_grid_draw_tiles            (GschemToplevel *w_current);
+void       x_grid_draw_grid_region          (GschemToplevel *w_current, GdkRectangle *rectangle);
+void       x_grid_configure_variables       (GschemToplevel *w_current);
+int        x_grid_query_drawn_spacing       (GschemToplevel *w_current);
+void       x_grid_repaint_background        (GschemToplevel *w_current, GdkRectangle *rectangle);
+void       x_grid_draw_tiles                (GschemToplevel *w_current);
 
 /* x_icons.c */
-void       x_icons_add_search_path      (const char *path);
-void       x_icons_set_default_icon     (const char *icon_name);
-void       x_icons_initialize           ( void );
+void       x_icons_add_search_path          (const char *path);
+void       x_icons_set_default_icon         (const char *icon_name);
+void       x_icons_initialize               (void);
 
 /* x_image.c */
-void       x_image_init                 (void);
+void       x_image_init                     (void);
 
-void       x_image_lowlevel             (GschemToplevel *w_current, const char* filename,
-                                         int desired_width, int desired_height, char *filetype,
-                                         ImageExtent extent,
-                                         bool use_print_map, bool invert_color_bw );
+void       x_image_lowlevel                 (GschemToplevel *w_current, const char* filename,
+                                             int desired_width, int desired_height, char *filetype,
+                                             ImageExtent extent,
+                                             bool use_print_map, bool invert_color_bw );
 
-void       x_image_setup          (GschemToplevel *w_current, IMAGE_TYPES default_type);
-/* GdkPixbuf *x_image_get_pixbuf  (GschemToplevel *w_current, ImageExtent extent); */
-GdkPixbuf *x_image_get_pixbuf     (GschemToplevel *w_current, ImageExtent extent,
-                                   bool use_print_map, bool invert_color_bw);
+void       x_image_setup                    (GschemToplevel *w_current, IMAGE_TYPES default_type);
+/* GdkPixbuf *x_image_get_pixbuf            (GschemToplevel *w_current, ImageExtent extent); */
+GdkPixbuf *x_image_get_pixbuf               (GschemToplevel *w_current, ImageExtent extent,
+                                             bool use_print_map, bool invert_color_bw);
 
 /* x_misc.c */
-bool x_show_uri                   (const char *str);
+bool       x_show_uri                       (const char *str);
 
 /* x_menus.c */
 void       x_menu_free_all(void);
 
-GtkWidget  *get_main_menu               (GschemToplevel *w_current);
-GtkWidget  *x_menu_setup_ui             (GschemToplevel *w_current);
-int         x_menu_setup_popup          (GschemToplevel *w_current);
-int         x_menu_display_popup        (GschemToplevel *w_current, GdkEventButton *event);
-void        x_menus_sensitivity         (GschemToplevel *w_current, const char *buf, int flag);
-void        x_menus_popup_sensitivity   (GschemToplevel *w_current, const char *name, int flag);
-void        x_menu_save_state           (GschemToplevel *w_current);
-const char *x_menu_get_buffer_menu      (GschemToplevel *w_current);
-void        x_menu_set_icon_visibility  (GschemToplevel *w_current, bool state);
-void        x_menu_set_toggle           (GschemToplevel *w_current, int toggle_id, bool state);
-void        x_menu_set_toolbar_toggle              (GschemToplevel *w_current, int toggle_id, bool state);
-void        x_menu_attach_recent_files_submenu     (GschemToplevel *w_current);
-void        recent_files_load                     (void);
-void        recent_files_save           (void       *user_data);
-void        recent_files_add            (const char *filename);
-const char *recent_files_last           (void);
+GtkWidget  *x_menu_get_main_menu            (GschemToplevel *w_current);
+GtkWidget  *x_menu_setup_ui                 (GschemToplevel *w_current);
+int         x_menu_setup_popup              (GschemToplevel *w_current);
+int         x_menu_display_popup            (GschemToplevel *w_current, GdkEventButton *event);
+void        x_menus_sensitivity             (GschemToplevel *w_current, const char *buf, int flag);
+void        x_menus_popup_sensitivity       (GschemToplevel *w_current, const char *name, int flag);
+void        x_menu_save_state               (GschemToplevel *w_current);
+const char *x_menu_get_buffer_menu          (GschemToplevel *w_current);
+void        x_menu_set_icon_visibility      (GschemToplevel *w_current, bool state);
+void        x_menu_set_togglable            (GschemToplevel *w_current, int toggle_id, bool state);
+void        x_menu_set_toolbar_toggle       (GschemToplevel *w_current, int toggle_id, bool state);
+void        x_menu_attach_recent_submenu    (GschemToplevel *w_current);
+void        x_menu_recent_files_load        (void);
+void        x_menu_recent_files_save        (void       *user_data);
+void        x_menu_recent_files_add         (const char *filename);
+const char *x_menu_recent_files_last        (void);
 
 /* x_multiattrib.c */
-void       x_multiattrib_open           (GschemToplevel *w_current);
-void       x_multiattrib_close          (GschemToplevel *w_current);
-void       x_multiattrib_update         (GschemToplevel *w_current);
+void       x_multiattrib_open               (GschemToplevel *w_current);
+void       x_multiattrib_close              (GschemToplevel *w_current);
+void       x_multiattrib_update             (GschemToplevel *w_current);
 
 /* x_multimulti.c */
 
 /* x_pagesel.c */
-void       x_pagesel_open               (GschemToplevel *w_current);
-void       x_pagesel_close              (GschemToplevel *w_current);
-void       x_pagesel_update             (GschemToplevel *w_current);
+void       x_pagesel_open                   (GschemToplevel *w_current);
+void       x_pagesel_close                  (GschemToplevel *w_current);
+void       x_pagesel_update                 (GschemToplevel *w_current);
 
 /* x_preview.c */
 
 /* x_print.c */
-void       x_print_setup                (GschemToplevel *w_current, char *filename);
-bool       x_print_export_pdf_page      (GschemToplevel *w_current, const char *filename);
-bool       x_print_export_pdf           (GschemToplevel *w_current, const char *filename);
-void       x_print                      (GschemToplevel *w_current);
+void       x_print_setup                    (GschemToplevel *w_current, char *filename);
+bool       x_print_export_pdf_page          (GschemToplevel *w_current, const char *filename);
+bool       x_print_export_pdf               (GschemToplevel *w_current, const char *filename);
+void       x_print                          (GschemToplevel *w_current);
 
 /* x_rc.c */
-void       x_rc_parse_gschem                 (GschemToplevel *w_current, const char *rcfile);
+void       x_rc_parse_gschem                (GschemToplevel *w_current, const char *rcfile);
 
 /* x_scroll.c */
-void       x_hscrollbar_set_ranges           (GschemToplevel *w_current);
-void       x_hscrollbar_update               (GschemToplevel *w_current);
-void       x_vscrollbar_set_ranges           (GschemToplevel *w_current);
-void       x_vscrollbar_update               (GschemToplevel *w_current);
-void       x_scrollbars_update               (GschemToplevel *w_current);
+void       x_hscrollbar_set_ranges          (GschemToplevel *w_current);
+void       x_hscrollbar_update              (GschemToplevel *w_current);
+void       x_vscrollbar_set_ranges          (GschemToplevel *w_current);
+void       x_vscrollbar_update              (GschemToplevel *w_current);
+void       x_scrollbars_update              (GschemToplevel *w_current);
 
 /* x_sessions.c */
-void       x_sessions_manage_dialog          (GschemToplevel *w_current);
-void       x_sessions_open_dialog            (GschemToplevel *w_current);
-void       x_sessions_new_dialog             (GschemToplevel *w_current);
-void       x_sessions_save_as_dialog         (GschemToplevel *w_current);
-void       x_sessions_save_settings          (GschemToplevel *w_current);
+void       x_sessions_manage_dialog         (GschemToplevel *w_current);
+void       x_sessions_open_dialog           (GschemToplevel *w_current);
+void       x_sessions_new_dialog            (GschemToplevel *w_current);
+void       x_sessions_save_as_dialog        (GschemToplevel *w_current);
+void       x_sessions_save_settings         (GschemToplevel *w_current);
 
 /* x_settings.c */
-void       x_configure_settings              (GschemToplevel *w_current);
-void       x_settings_save_settings          (GschemToplevel *w_current);
-bool       x_settings_set_scm_int            (char *symbol_name, int value );
+void       x_configure_settings             (GschemToplevel *w_current);
+void       x_settings_save_settings         (GschemToplevel *w_current);
+bool       x_settings_set_scm_int           (char *symbol_name, int value );
 
 /* x_settings_dialog.c */
-int        x_settings_lookup_cursor          (int offset);
+int        x_settings_lookup_cursor         (int offset);
 
 /* x_status_bar.c */
 void       x_status_bar_update_grid_label   (GschemToplevel *w_current);
@@ -840,51 +840,52 @@ void       x_status_bar_middle_mouse        (GschemToplevel *w_current, const ch
 GtkWidget *x_status_bar_create              (GschemToplevel *w_current);
 
 /* x_stroke.c */
-void       x_stroke_init                     (void);
-void       x_stroke_free                     (void);
-void       x_stroke_record                   (GschemToplevel *w_current, int x, int y);
-int        x_stroke_translate_and_execute    (GschemToplevel *w_current);
+void       x_stroke_init                    (void);
+void       x_stroke_free                    (void);
+void       x_stroke_record                  (GschemToplevel *w_current, int x, int y);
+int        x_stroke_translate_and_execute   (GschemToplevel *w_current);
 
 /* x_toolbars.c */
-void       x_toolbars_save_state             (GschemToplevel *w_current);
-void       x_toolbars_restore_state          (GschemToplevel *w_current);
-void       x_toolbars_finialize              (GschemToplevel *w_current);
-void       x_toolbars_free_window            (GschemToplevel *w_current);
-void       x_toolbars_init_window            (GschemToplevel *w_current);
-void       x_toolbars_init_top               (GschemToplevel *w_current, GtkWidget *parent_container);
-void       x_toolbars_init_left              (GschemToplevel *w_current, GtkWidget *parent_container);
-void       x_toolbars_init_bottom            (GschemToplevel *w_current, GtkWidget *parent_container);
-void       x_toolbars_set_sensitivities      (GschemToplevel *w_current, EID_SENITIVITY_MODE mode, bool state);
-void       x_toolbar_icons_only              (GtkWidget *widget, GschemToplevel *w_current);
-void       x_toolbar_text_only               (GtkWidget *widget, GschemToplevel *w_current);
-void       x_toolbar_display_both            (GtkWidget *widget, GschemToplevel *w_current);
-void       x_toolbar_display_horiz           (GtkWidget *widget, GschemToplevel *w_current);
-void       x_toolbars_turn_off_all_radios    (GschemToplevel *w_current);
-void       x_toolbars_activate_select        (GschemToplevel *w_current);
-void       x_toolbars_set_grid_radio         (GschemToplevel *w_current);
-void       x_toolbars_update                 (GschemToplevel *w_current);
+void       x_toolbars_save_state            (GschemToplevel *w_current);
+void       x_toolbars_restore_state         (GschemToplevel *w_current);
+void       x_toolbars_finialize             (GschemToplevel *w_current);
+void       x_toolbars_free_window           (GschemToplevel *w_current);
+void       x_toolbars_init_window           (GschemToplevel *w_current);
+void       x_toolbars_init_top              (GschemToplevel *w_current, GtkWidget *parent_container);
+void       x_toolbars_init_left             (GschemToplevel *w_current, GtkWidget *parent_container);
+void       x_toolbars_init_bottom           (GschemToplevel *w_current, GtkWidget *parent_container);
+void       x_toolbars_set_sensitivities     (GschemToplevel *w_current, EID_SENITIVITY_MODE mode, bool state);
+void       x_toolbar_icons_only             (GtkWidget *widget, GschemToplevel *w_current);
+void       x_toolbar_text_only              (GtkWidget *widget, GschemToplevel *w_current);
+void       x_toolbar_display_both           (GtkWidget *widget, GschemToplevel *w_current);
+void       x_toolbar_display_horiz          (GtkWidget *widget, GschemToplevel *w_current);
+void       x_toolbars_turn_off_all_radios   (GschemToplevel *w_current);
+void       x_toolbars_activate_select       (GschemToplevel *w_current);
+void       x_toolbars_set_grid_radio        (GschemToplevel *w_current);
+void       x_toolbars_update                (GschemToplevel *w_current);
 
 /* x_window.c */
-void       x_window_setup                    (GschemToplevel *w_current);
-bool       x_window_setup_gc                 (GschemToplevel *w_current);
-void       x_window_free_gc                  (GschemToplevel *w_current);
-/*         x_window_create_drawing           (GtkWidget *drawbox, GschemToplevel *w_current);*/
-void       x_window_restore_settings         (GschemToplevel *w_current);
-void       x_window_save_settings            (GschemToplevel *w_current);
-/*void       x_window_setup_draw_events      (GschemToplevel *w_current);*/
-void       x_window_create_main              (GschemToplevel *w_current);
-void       x_window_close_edit_dialogs       (GschemToplevel *w_current);
-void       x_window_close_all_dialogs        (GschemToplevel *w_current);
-void       x_window_close                    (GschemToplevel *w_current);
-void       x_window_close_all                (GschemToplevel *w_current);
+void       x_window_setup                   (GschemToplevel *w_current);
+bool       x_window_setup_gc                (GschemToplevel *w_current);
+void       x_window_free_gc                 (GschemToplevel *w_current);
+/*         x_window_create_drawing          (GtkWidget *drawbox, GschemToplevel *w_current);*/
+void       x_window_restore_settings        (GschemToplevel *w_current);
+void       x_window_save_settings           (GschemToplevel *w_current);
+/*void       x_window_setup_draw_events     (GschemToplevel *w_current);*/
+void       x_window_create_main             (GschemToplevel *w_current);
+void       x_window_close_edit_dialogs      (GschemToplevel *w_current);
+void       x_window_close_all_dialogs       (GschemToplevel *w_current);
+void       x_window_close                   (GschemToplevel *w_current);
+void       x_window_close_all               (GschemToplevel *w_current);
 Page      *x_window_open_page               (GschemToplevel *w_current, const char *filename);
-void       x_window_set_current_page         (GschemToplevel *w_current, Page *page);
-void       x_window_setup_page               (GschemToplevel *w_current, Page *page, int xmin, int xmax, int ymin, int ymax);
-int        x_window_save_page                (GschemToplevel *w_current, Page *page, const char *filename);
-void       x_window_close_page               (GschemToplevel *w_current, Page *page);
-void       x_window_set_cursor               (GschemToplevel *w_current, int cursor_id);
-void       x_window_set_grid_type            (GschemToplevel *w_current);
-void       x_window_update_title             (GschemToplevel *w_current);
+void       x_window_set_current_page        (GschemToplevel *w_current, Page *page);
+void       x_window_setup_page              (GschemToplevel *w_current, Page *page, int xmin, int xmax, int ymin, int ymax);
+int        x_window_save_page               (GschemToplevel *w_current, Page *page, const char *filename);
+void       x_window_close_page              (GschemToplevel *w_current, Page *page);
+void       x_window_set_cursor              (GschemToplevel *w_current, int cursor_id);
+void       x_window_set_grid_type           (GschemToplevel *w_current);
+void       x_window_update_title            (GschemToplevel *w_current);
+
 void       x_window_add_toolbar_toggle       (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_attribute_toolbar_toggle (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_gridsnap_toolbar_toggle  (GtkWidget *widget, GschemToplevel *w_current);

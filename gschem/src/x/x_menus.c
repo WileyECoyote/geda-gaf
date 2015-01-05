@@ -1,10 +1,12 @@
-/* -*- C x_menus.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: x_menus.c
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * MA 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
 /*!
  * \file x_menus.c
@@ -46,8 +48,7 @@
 #define TOGGLERS_LIST    menu_data->menu_togglers
 #define POPUP_HASH_TABLE menu_data->popup_hash
 
-static void
-x_menu_popup_execute(GtkObject *widget,int action_id);
+static void x_menu_popup_execute(GtkObject *widget,int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in our header */
 const char* IDS_Popup_Actions[] = {
@@ -156,16 +157,18 @@ static void x_menu_toggle_tips(GtkWidget  *widget, GSList* list);
 
 /*! \brief Execute Main Menu Selection
  *  \par Function Description
- *  This is a modified version of the "old" routine that retrieve
- * the action from the menu items and evaluates with guile. The
- * might still do this but first checks of the string is a valid
- * command and if so, then the string is passed to i_command_process
- * process instead, this eliminates the c=>scheme=>c. This improves
- * efficiency and provides better stability.
+ *  This retrieves the action from the menu items a checks if the
+ * action string is a valid command and if so, the action string
+ * is passed to i_command_process, otherwise the string is passed
+ * to g_action_eval_by_name for evaluation with guile.
+ *
+ * \remarks The process evaluated all of the action string with
+ *  guile, resulting in c=>scheme=>c. This in efficiency and
+ *  proved to be unstable.
  */
-static void g_menu_execute(GtkAction *action, void *user_data)
+static void x_menu_execute(GtkAction *action, void *user_data)
 {
-  GschemToplevel *w_current    = (GschemToplevel *) user_data;
+  GschemToplevel *w_current    = (GschemToplevel*) user_data;
   const char     *action_name  = gtk_action_get_name (action);
   char           *menu_action  = NULL;
 
@@ -177,7 +180,7 @@ static void g_menu_execute(GtkAction *action, void *user_data)
   }
   else {
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
-      menu_action = u_string_concat ( action_name, "-menu", NULL);
+      menu_action = u_string_concat (action_name, "-menu", NULL);
       g_action_eval_by_name (w_current, menu_action);
       GEDA_FREE(menu_action);
     }
@@ -198,8 +201,7 @@ static void g_menu_execute(GtkAction *action, void *user_data)
  * action string referenced in the static string structure IDS_Popup_
  * Actions using the enumerated integer from pop_MenuItem.
  */
-static void
-x_menu_popup_execute(GtkObject *widget, int action_id)
+static void x_menu_popup_execute(GtkObject *widget, int action_id)
 {
   GschemToplevel *w_current;
   const char     *action;
@@ -212,7 +214,7 @@ x_menu_popup_execute(GtkObject *widget, int action_id)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_MOUSE);
 }
 
-static void free_toggler (void *data_record, void *user_data)
+static void x_menu_free_toggler (void *data_record, void *user_data)
 {
   ToggleMenuData *toggler_data = data_record;
 
@@ -227,13 +229,12 @@ static void free_toggler (void *data_record, void *user_data)
  *  This function is called by gschem_quit to free each ToggleMenuData
  *  structure that was allocated for toggle menu items.
  */
-void
-x_menu_free_all()
+void x_menu_free_all()
 {
   lambda (MenuData *menu_data){
     g_slist_free (MENU_ITEMS_LIST);
     g_slist_free (POPUP_ITEMS_LIST);
-    g_slist_foreach(TOGGLERS_LIST, free_toggler, NULL);
+    g_slist_foreach(TOGGLERS_LIST, x_menu_free_toggler, NULL);
     g_slist_free (TOGGLERS_LIST);
     g_hash_table_unref (POPUP_HASH_TABLE);
     g_free(menu_data);
@@ -249,7 +250,8 @@ x_menu_free_all()
  *
  * \retval GtkMenu pointer disguised as a GtkWidget
  */
-GtkWidget *get_main_menu(GschemToplevel *w_current) {
+GtkWidget *x_menu_get_main_menu(GschemToplevel *w_current)
+{
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
   return MENU_BAR;
 }
@@ -261,7 +263,7 @@ GtkWidget *get_main_menu(GschemToplevel *w_current) {
  * orginal intend was to allow for menu customization and this is possible.
  * A side-effects is that if there is a single error in the rc/scheme file,
  * the menu data does not get defined!
- * TODO: May should create a Pre-create menu function that checks for
+ * TODO: May should create a Pre-defined menu function that checks for
  * existence of menu data and substitutes a "fall-back" menu if needed, WEH.
  */
 GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
@@ -303,94 +305,67 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   bool buffer_menu;
   bool menus_broken;
   bool is_a_toggle;
-  ToggleMenuData *toggler_data;
-
-  /* Glib-2.40 generates console noise from gtk-lib */
-  MenuData *menu_data = GEDA_MEM_ALLOC0 (sizeof(MenuData));
-  MENU_BAR = gtk_menu_bar_new ();
-  MENU_ITEMS_LIST = NULL;
-
-  void setup_radio(GtkCheckMenuItem *radio_button, void *func) {
-    RadioMenuData *radio_data;
-
-    radio_data            = GEDA_MEM_ALLOC0 (sizeof(RadioMenuData));
-    radio_data->w_current = w_current;
-    radio_data->widget    = (GtkCheckMenuItem *)radio_button;
-
-    radio_data->handler = g_signal_connect (G_OBJECT(radio_button), "toggled",
-                                            G_CALLBACK(func),
-                                            w_current);
-
-    w_current->toolbar_mode_grp = g_slist_append ( w_current->toolbar_mode_grp, radio_data);
-  }
-
-  void
-  menu_register_toggler (ToggleMenuData *toggler_data) {
-    TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
-  }
-
-  cfg = eda_config_get_user_context ();
 
   bool show_menu_icons;
   bool show_menu_tips;
   bool show_pop_icons;
   bool show_pop_tips;
 
-  show_menu_icons = eda_config_get_boolean (cfg, group, "show-menu-icons",  NULL);
-  show_menu_tips  = eda_config_get_boolean (cfg, group, "show-menu-tips",   NULL);
-  show_pop_icons  = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
-  show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
+  ToggleMenuData *toggler_data;
 
-  buffer_menu  = FALSE;
-  menus_broken = FALSE;
-  toggler_data = NULL;
+  /* Glib-2.40 generates console noise from gtk-lib */
+  MenuData *menu_data = GEDA_MEM_ALLOC0 (sizeof(MenuData));
+  MENU_BAR            = gtk_menu_bar_new ();
+  MENU_ITEMS_LIST     = NULL;
 
-  scm_dynwind_begin (0);
-  g_dynwind_window (w_current);
+  void setup_radio(GtkCheckMenuItem *radio_button, void *func) {
+    RadioMenuData *radio_data;
 
-  for (i = 0 ; i < i_menu_return_num(); i++) {
+    radio_data            = GEDA_MEM_ALLOC0 (sizeof(RadioMenuData));
+    radio_data->w_current = w_current;
+    radio_data->widget    = (GtkCheckMenuItem*) radio_button;
 
-    scm_items = i_menu_return_entry(i, raw_menu_name);
+    radio_data->handler   = g_signal_connect(G_OBJECT(radio_button), "toggled",
+                                             G_CALLBACK(func),
+                                             w_current);
 
-    if (*raw_menu_name == NULL) {
-      g_warning(_("Oops.. got a NULL menu name in %s()\n"), __func__);
-      return NULL;
+    w_current->toolbar_mode_grp = g_slist_append (w_current->toolbar_mode_grp,
+                                                  radio_data);
+  }
+
+  void menu_register_toggler (ToggleMenuData *toggler_data) {
+    TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
+  }
+
+  /* Subfunction to extract menu item properties from scheme using
+   * data at given index and create a menu item widget */
+  GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
+
+    GtkWidget *menu_item;
+
+    scm_index      = scm_from_int (index);
+    scm_item       = scm_list_ref (scm_items, scm_index);
+    scm_item_len   = scm_ilength  (scm_item);
+    scm_item_name  = SCM_CAR      (scm_item);
+    scm_item_func  = SCM_CADR     (scm_item);
+    scm_item_stock = scm_is_pair  (SCM_CDDR (scm_item)) ? SCM_CADDR (scm_item) : SCM_BOOL_F;
+
+    /* Check the first member */
+    if (!scm_is_string(scm_item_name)) {
+      if (!menus_broken) /* Issue message only for first occurence */
+        g_warning (_("Error reading menu item <%d>, Bad string\n"), i);
+      else
+        u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
+      menus_broken = TRUE;
+      menu_item    = NULL;
     }
-
-    menu_name = (char *) gettext(*raw_menu_name);
-
-    /* Glib-2.40 generates console noise from gtk-lib */
-    menu = gtk_menu_new();
-
-    menu_item = gtk_tearoff_menu_item_new ();
-    gtk_container_add (GTK_CONTAINER (menu), menu_item);
-    g_object_set (menu_item, "visible", TRUE, NULL);
-
-    scm_items_len = (int) scm_ilength (scm_items);
-    for (j = 0 ; j < scm_items_len; j++) {
-
-      scm_index      = scm_from_int (j);
-      scm_item       = scm_list_ref (scm_items, scm_index);
-      scm_item_len   = scm_ilength (scm_item);
-      scm_item_name  = SCM_CAR (scm_item);
-      scm_item_func  = SCM_CADR (scm_item);
-      scm_item_stock = scm_is_pair (SCM_CDDR (scm_item)) ? SCM_CADDR (scm_item) : SCM_BOOL_F;
-
-      /* Check the first member */
-      if ( !scm_is_string(scm_item_name)) {
-        if ( !menus_broken ) /* Issue message only for first occurence */
-          g_warning (_("Error reading menu item <%d>, Bad string\n"), i);
-        else
-          u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
-        menus_broken = TRUE;
-        continue;
-      }
+    else {
 
       SCM_ASSERT(scm_is_symbol (scm_item_func) || scm_is_false (scm_item_func),
-                 scm_item_func, SCM_ARGn, "get_main_menu item_func");
+                 scm_item_func, SCM_ARGn, "x_menu_get_main_menu item_func");
 
       SCM_ASSERT(scm_is_string (scm_item_stock) || scm_is_false (scm_item_stock),
-                 scm_item_stock, SCM_ARGn, "get_main_menu stock");
+                 scm_item_stock, SCM_ARGn, "x_menu_get_main_menu stock");
 
       /* check for a 4th parameter = tooltip string */
       if(scm_item_len == 4) {
@@ -399,10 +374,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         if (scm_is_string(scm_item_tip)) {                   /* Validate that it really is a string */
           menu_item_tip = scm_to_utf8_string (scm_item_tip); /* if valid, convert to c string */
         }
-        else { menu_item_tip = NULL; }
+        else {
+          menu_item_tip = NULL;
+        }
       }
-      else { menu_item_tip = NULL; }
-      /* End tool-tip retrieval */
+      else {
+        menu_item_tip = NULL;
+      } /* End tool-tip retrieval */
 
       raw_menu_item_name = scm_to_utf8_string(scm_item_name);
 
@@ -430,7 +408,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             //image =  GTK_WIDGET(gtk_image_new_from_stock(menu_item_stock, GTK_ICON_SIZE_MENU));
 
             g_object_set (image,
-                          "no-show-all",       TRUE,
+                          "no-show-all", TRUE,
                           "visible", show_menu_icons,
                           NULL);
 
@@ -453,10 +431,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             /* Set flag to indicate we found */
             buffer_menu = TRUE;
             /*Save a copy of the string for x_menu_get_buffer_menu*/
-            menu_data->buffer_menu_name = menu_name; //u_string_strdup(menu_name);
+            menu_data->buffer_menu_name = menu_name; /* Not a copy */;
           }
 
-          if ( !action_keys ) {
+          if (!action_keys) {
             menu_item_keys = NULL;
           }
           else {
@@ -464,7 +442,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
 
           is_a_toggle = FALSE;
+
           if (strncmp (menu_item_name, "Toggle", 6) == 0 ) {
+
             is_a_toggle = TRUE;
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
@@ -472,7 +452,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             toggler_data->menu_path      = u_string_concat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
-            action = (GedaAction *)
+            action = (GedaAction*)
             geda_toggle_action_new (action_name,     /* Action name */
                                     menu_item_name,  /* Text */
                                     menu_item_tip ? menu_item_tip : menu_item_name,
@@ -502,7 +482,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           }
 
           handler = g_signal_connect (G_OBJECT(action), "activate",
-                                      G_CALLBACK(g_menu_execute),
+                                      G_CALLBACK(x_menu_execute),
                                       w_current);
 
           if(is_a_toggle) {
@@ -515,7 +495,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             /* Kind of set the visibilty of the icon image */
             g_object_set (menu_item, "show-image", show_menu_icons, NULL);
           }
-
         }
 
         if (menu_item_tip) { /* If tip not NULL then attach tip to menu widget */
@@ -525,20 +504,65 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         }
         free(menu_item_stock);
       }
+    }
 
+    scm_dynwind_end();
+
+    return menu_item;
+  }
+
+  /* -------------------------------------------------------------- */
+
+  /* private */
+
+  cfg = eda_config_get_user_context ();
+
+  show_menu_icons = eda_config_get_boolean (cfg, group, "show-menu-icons",  NULL);
+  show_menu_tips  = eda_config_get_boolean (cfg, group, "show-menu-tips",   NULL);
+  show_pop_icons  = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
+  show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
+
+  buffer_menu  = FALSE;
+  menus_broken = FALSE;
+  toggler_data = NULL;
+
+  scm_dynwind_begin (0);
+  g_dynwind_window (w_current);
+
+  /* Loop through all top-level menu container */
+  for (i = 0 ; i < i_menu_return_num(); i++) {
+
+    scm_items = i_menu_return_entry(i, raw_menu_name);
+
+    if (*raw_menu_name == NULL) {
+      g_warning(_("Oops.. got a NULL menu name in %s()\n"), __func__);
+      return NULL;
+    }
+
+    menu_name = (char*) gettext(*raw_menu_name);
+
+    /* Glib-2.40 generates console noise from gtk-lib */
+    menu = gtk_menu_new();
+
+    menu_item = gtk_tearoff_menu_item_new ();
+    gtk_container_add (GTK_CONTAINER (menu), menu_item);
+    g_object_set (menu_item, "visible", TRUE, NULL);
+
+    /* Loop through all items subordinate to this top-level menu container */
+    scm_items_len = (int) scm_ilength (scm_items);
+    for (j = 0 ; j < scm_items_len; j++) {
+
+      menu_item = get_menu_item_from_scheme(scm_items, j);
       gtk_container_add (GTK_CONTAINER (menu), menu_item);
       g_object_set (menu_item, "visible", TRUE, NULL);
 
-      /* add a handle to the menu_bar object to get access to widget objects */
-      /* This string should NOT be internationalized */
+      /* add a handle to the menu_bar object to get access to widget
+       * objects. This string should NOT be internationalized */
       buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
       gtk_object_set_data(GTK_OBJECT(MENU_BAR), buf, menu_item);
       GEDA_FREE(buf);
-
-      scm_dynwind_end();
     }
 
-    //menu_name = (char *) gettext(*raw_menu_name);
     root_menu = gtk_menu_item_new_with_mnemonic (menu_name);
 
     /* do not free *raw_menu_name */
@@ -550,38 +574,38 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   }
   scm_dynwind_end ();
 
-  menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
-  if( menu_item != NULL) {
+  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
+  if (menu_item != NULL) {
 
     GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (menu_item));
     GtkWidget    *toggle_menu;
 
-    if( w_current->toolbars == TRUE ) {
+    if (w_current->toolbars == TRUE) {
 
       /* Toolbar Options*/
       menu_item   = gtk_menu_item_new_with_mnemonic("_Toolbars");
       toggle_menu = gtk_menu_new();
 
-      gtk_menu_item_set_submenu ( GTK_MENU_ITEM( menu_item ) , toggle_menu ) ;
+      gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , toggle_menu);
       gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Toolbars", menu_item);
 
-      GtkWidget *stdbar_toggle   = gtk_check_menu_item_new_with_mnemonic ( "_Standard" );
-      GtkWidget *selbar_toggle   = gtk_check_menu_item_new_with_mnemonic ( "Se_lect" );
-      GtkWidget *pagebar_toggle  = gtk_check_menu_item_new_with_mnemonic ( "_Page" );
-      GtkWidget *addbar_toggle   = gtk_check_menu_item_new_with_mnemonic ( "_Add" );
-      GtkWidget *zoombar_toggle  = gtk_check_menu_item_new_with_mnemonic ( "_Zoom" );
-      GtkWidget *editbar_toggle  = gtk_check_menu_item_new_with_mnemonic ( "_Edit" );
-      GtkWidget *attribar_toggle = gtk_check_menu_item_new_with_mnemonic ( "Attrib_ute" );
-      GtkWidget *gridbar_toggle  = gtk_check_menu_item_new_with_mnemonic ( "_Grid Snap" );
+      GtkWidget *stdbar_toggle   = gtk_check_menu_item_new_with_mnemonic ("_Standard");
+      GtkWidget *selbar_toggle   = gtk_check_menu_item_new_with_mnemonic ("Se_lect");
+      GtkWidget *pagebar_toggle  = gtk_check_menu_item_new_with_mnemonic ("_Page");
+      GtkWidget *addbar_toggle   = gtk_check_menu_item_new_with_mnemonic ("_Add");
+      GtkWidget *zoombar_toggle  = gtk_check_menu_item_new_with_mnemonic ("_Zoom");
+      GtkWidget *editbar_toggle  = gtk_check_menu_item_new_with_mnemonic ("_Edit");
+      GtkWidget *attribar_toggle = gtk_check_menu_item_new_with_mnemonic ("Attrib_ute");
+      GtkWidget *gridbar_toggle  = gtk_check_menu_item_new_with_mnemonic ("_Grid Snap");
 
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)stdbar_toggle,   TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)selbar_toggle,   TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)pagebar_toggle,  TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)addbar_toggle,   TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)zoombar_toggle,  TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)editbar_toggle,  TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)attribar_toggle, TRUE);
-      gtk_check_menu_item_set_active((GtkCheckMenuItem *)gridbar_toggle,  TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)stdbar_toggle,   TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)selbar_toggle,   TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)pagebar_toggle,  TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)addbar_toggle,   TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)zoombar_toggle,  TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)editbar_toggle,  TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)attribar_toggle, TRUE);
+      gtk_check_menu_item_set_active((GtkCheckMenuItem*)gridbar_toggle,  TRUE);
 
       /* Normally the ui manager would do this for us but we don't have one so...*/
       gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_STDBAR_MENU_PATH,  stdbar_toggle);
@@ -615,10 +639,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_container_add (GTK_CONTAINER (toggle_menu), tb_separator_1);
 
       /* Start Toolbar Mode Radios */
-      GtkWidget *tb_icons_bulb = gtk_check_menu_item_new_with_mnemonic ( "_Icons" );
-      GtkWidget *tb_text_bulb  = gtk_check_menu_item_new_with_mnemonic (  "_Text" );
-      GtkWidget *tb_vert_bulb  = gtk_check_menu_item_new_with_mnemonic ( "Both _Vertical" );
-      GtkWidget *tb_hori_bulb  = gtk_check_menu_item_new_with_mnemonic ( "Both _Horizontal" );
+      GtkWidget *tb_icons_bulb = gtk_check_menu_item_new_with_mnemonic ("_Icons");
+      GtkWidget *tb_text_bulb  = gtk_check_menu_item_new_with_mnemonic ("_Text");
+      GtkWidget *tb_vert_bulb  = gtk_check_menu_item_new_with_mnemonic ("Both _Vertical");
+      GtkWidget *tb_hori_bulb  = gtk_check_menu_item_new_with_mnemonic ("Both _Horizontal");
 
       g_object_set (G_OBJECT(tb_icons_bulb), "draw-as-radio", TRUE,  NULL);
       g_object_set (G_OBJECT(tb_text_bulb),  "draw-as-radio", TRUE, NULL);
@@ -666,7 +690,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             gtk_widget_set_tooltip_text(tb_vert_bulb,  _("Display Icons and Text vertically on the toolbar"));
             gtk_widget_set_tooltip_text(tb_hori_bulb,  _("Display Icons and Text horizontally on the toolbar"));
 
-            gtk_menu_shell_prepend((GtkMenuShell *)menu, menu_item);
+            gtk_menu_shell_prepend((GtkMenuShell*)menu, menu_item);
 
             g_signal_connect (G_OBJECT(stdbar_toggle), "toggled",
                                        G_CALLBACK(x_window_standard_toolbar_toggle),
@@ -700,23 +724,23 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item   = gtk_menu_item_new_with_mnemonic("_Menu");
     toggle_menu = gtk_menu_new();
 
-    gtk_menu_item_set_submenu ( GTK_MENU_ITEM( menu_item ) , toggle_menu ) ;
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , toggle_menu);
     gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Menu", menu_item);
 
-    GtkWidget *menu_icons_toggle   = gtk_check_menu_item_new_with_mnemonic ( "_Icons" );
-    GtkWidget *menu_tips_toggle    = gtk_check_menu_item_new_with_mnemonic ( "_ToolTips" );
-    GtkWidget *menu_popcons_toggle = gtk_check_menu_item_new_with_mnemonic ( "_Context Icons" );
-    GtkWidget *menu_poptips_toggle = gtk_check_menu_item_new_with_mnemonic ( "Context Tip_s" );
+    GtkWidget *menu_icons_toggle   = gtk_check_menu_item_new_with_mnemonic ("_Icons");
+    GtkWidget *menu_tips_toggle    = gtk_check_menu_item_new_with_mnemonic ("_ToolTips");
+    GtkWidget *menu_popcons_toggle = gtk_check_menu_item_new_with_mnemonic ("_Context Icons");
+    GtkWidget *menu_poptips_toggle = gtk_check_menu_item_new_with_mnemonic ("Context Tip_s");
 
     g_object_set (G_OBJECT(menu_icons_toggle),   "draw-as-radio", TRUE, NULL);
     g_object_set (G_OBJECT(menu_tips_toggle),    "draw-as-radio", TRUE, NULL);
     g_object_set (G_OBJECT(menu_popcons_toggle), "draw-as-radio", TRUE, NULL);
     g_object_set (G_OBJECT(menu_poptips_toggle), "draw-as-radio", TRUE, NULL);
 
-    gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_icons_toggle,   show_menu_icons);
-    gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_tips_toggle,    show_menu_tips);
-    gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_popcons_toggle, show_pop_icons);
-    gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_poptips_toggle, show_pop_tips);
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_icons_toggle,   show_menu_icons);
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_tips_toggle,    show_menu_tips);
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_popcons_toggle, show_pop_icons);
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_poptips_toggle, show_pop_tips);
 
     gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_ICON_MENU_PATH,    menu_icons_toggle);
     gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_TIPS_MENU_PATH,    menu_tips_toggle);
@@ -733,7 +757,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_set_tooltip_text(menu_popcons_toggle, _("Toggle visibility of main context menu icons"));
     gtk_widget_set_tooltip_text(menu_poptips_toggle, _("Toggle main context menu tooltips"));
 
-    gtk_menu_shell_prepend((GtkMenuShell *)menu, menu_item);
+    gtk_menu_shell_prepend((GtkMenuShell*)menu, menu_item);
 
     g_signal_connect (G_OBJECT(menu_icons_toggle), "toggled",
                       G_CALLBACK(x_menu_toggle_icons),
@@ -850,7 +874,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
       gtk_widget_set_tooltip_text (menu_item, _(item.tip));
       g_object_set (menu_item, "has-tooltip", show_pop_tips, NULL);
 
-      if ( item.use_stock ) {
+      if (item.use_stock) {
         image = gtk_image_new_from_stock(item.icon, GTK_ICON_SIZE_MENU);
       } else {
         image = create_pixmap (item.icon);
@@ -861,11 +885,11 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
       /* Connect things up so that the actions get run */
       g_signal_connect (G_OBJECT (menu_item), "activate",
-                        (void *) item.func,
-                        (void *) item.action_id);
+                        (void*) item.func,
+                        (void*) item.action_id);
 
-      g_object_set_data( G_OBJECT(menu_item), "top-level", w_current);
-      POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, menu_item);
+      g_object_set_data (G_OBJECT(menu_item), "top-level", w_current);
+      POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);
       g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, menu_item);
     }
 
@@ -922,7 +946,7 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
   menu = POPUP_MENU;
 
   if (menu == NULL) {
-    BUG_MSG( "popup menu is NULL");
+    BUG_MSG ("popup menu is NULL");
   }
   else {
     w_current->pointer_sx = event->x;
@@ -945,8 +969,7 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
  *  \par Function Description
  *  This function is called from i_basic to set the senitivity of menu items!
  */
-void
-x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
+void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
   GtkWidget *item=NULL;
   GtkWidget *menubar;
@@ -956,11 +979,11 @@ x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
     return;
   }
 
-  menubar = get_main_menu(w_current);
+  menubar = x_menu_get_main_menu(w_current);
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
-    item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar), buf);
+    item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), buf);
 
     if (item && GTK_IS_MENU_ITEM(item)) {
       gtk_widget_set_sensitive(GTK_WIDGET(item), flag);
@@ -989,8 +1012,8 @@ x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
  *  popup.
  *
  */
-void
-x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
+void x_menus_popup_sensitivity (GschemToplevel *w_current,
+                                const char *name, int flag)
 {
   GtkWidget *menu_item;
   MenuData  *menu_data;
@@ -1020,8 +1043,7 @@ x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag
  *  menu items (like rubber-mode) to the user's configuration file popup.
  *
  */
-void
-x_menu_save_state(GschemToplevel *w_current)
+void x_menu_save_state(GschemToplevel *w_current)
 {
 
   GtkWidget        *menubar;
@@ -1038,20 +1060,20 @@ x_menu_save_state(GschemToplevel *w_current)
   void save_menu_toggler_state(const char* key, const char* path) {
     GtkCheckMenuItem *toggler =
    (GtkCheckMenuItem*) gtk_object_get_data(GTK_OBJECT(menubar), path);
-    if (GTK_IS_CHECK_MENU_ITEM(toggler)) {
-      state = gtk_check_menu_item_get_active (toggler);
-      eda_config_set_boolean (cfg, MENU_CONFIG_GROUP, key, state);
+    if (GTK_IS_CHECK_MENU_ITEM (toggler)) {
+      state = gtk_check_menu_item_get_active(toggler);
+      eda_config_set_boolean(cfg, MENU_CONFIG_GROUP, key, state);
     }
     else {
       errors++;
     }
   }
 
-  menubar = get_main_menu(w_current);
+  menubar = x_menu_get_main_menu(w_current);
 
   if (menubar != NULL && GTK_IS_MENU_BAR(menubar)) {
 
-     v_log_message( _("Saving menu toolbar options..."));
+     v_log_message (_("Saving menu toolbar options..."));
 
      cfg = eda_config_get_user_context ();
 
@@ -1061,16 +1083,16 @@ x_menu_save_state(GschemToplevel *w_current)
      save_menu_toggler_state("show-popup-tips",  poptips_path);
 
      if (errors == 0) {
-       v_log_message( _(" done\n"));
+       v_log_message (_(" done\n"));
      }
      else {
-       v_log_message( _(" there were %d errors\n"), errors);
+       v_log_message (_(" there were %d errors\n"), errors);
      }
   }
 }
 
-const char*
-x_menu_get_buffer_menu (GschemToplevel *w_current)
+const
+char *x_menu_get_buffer_menu (GschemToplevel *w_current)
 {
   MenuData *menu_data;
 
@@ -1084,13 +1106,12 @@ x_menu_get_buffer_menu (GschemToplevel *w_current)
  * all pop-menu items. This function is the only function that actually changes
  * the visiblity of non-toggle type menu items.
  */
-static void
-x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
+static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
 {
   lambda (GObject* menu_item) {
 
-    if ( GEDA_IS_IMAGE_MENU_ITEM(menu_item)) {
-      g_object_set (menu_item, "show-image", state, NULL);
+    if (GEDA_IS_IMAGE_MENU_ITEM(menu_item)) {
+      g_object_set(menu_item, "show-image", state, NULL);
     }
     else {
       g_warning(_("<x_menu_toggle_icons> Ignoring invalid object, maybe a seperator\n"));
@@ -1106,6 +1127,7 @@ x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
     q_log_message(_("gschem: Disabling menu icons\n"));
   }
 }
+
 /*! \brief Set Menu Icon Visibility
  *  \par Function Description
  *   This function exist so the menu icons can turn off after the main menu
@@ -1119,6 +1141,7 @@ void x_menu_set_icon_visibility(GschemToplevel *w_current, bool state)
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
   x_menu_lowlevel_set_icon_visibility(MENU_ITEMS_LIST, state);
 }
+
 /*! \brief Toggle Menu Icon Visibility
  *  \par Function Description
  *   Callback function calls x_menu_lowlevel_set_icon_visibility to turn
@@ -1179,44 +1202,48 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
  *  \par Function Description
  *
  */
-static void menu_set_toggle(ToggleMenuData *toggler_data, bool state)
+static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 {
-
-  char* menu_path;
   GschemToplevel *w_current;
-  GtkWidget* menubar;
-  GtkWidget *menu_item;
+
   GtkAction *action;
+  GtkWidget *menubar;
+  GtkWidget *menu_item;
+  char      *menu_path;
 
   menu_path  = toggler_data->menu_path;
   w_current  = toggler_data->w_current;
-  menubar    = get_main_menu(w_current);
+  menubar    = x_menu_get_main_menu(w_current);
 
   if (menubar != NULL) {
-     menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
-     if( menu_item != NULL) {
+
+    menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
+
+     if (menu_item != NULL) {
+
        /* Get action for this item so we can block the signal */
        action = gtk_widget_get_action(menu_item);
-       if( action != NULL) {
-         g_signal_handler_block( action, toggler_data->handler);
-         gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_item, state);
-         /*re-enable the signal */
-         g_signal_handler_unblock( action, toggler_data->handler);
+
+       if (action != NULL) {
+         g_signal_handler_block(action, toggler_data->handler);
+           gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_item, state);
+         g_signal_handler_unblock(action, toggler_data->handler);
        }
        else
-         u_log_message(_("Error, x_menu_set_toggle: Action not found, \"%s\" \n"), menu_path);
+         u_log_message(_("%s: Action not found, \"%s\" \n"), __func__, menu_path);
      }
      else
-       u_log_message(_("Error, x_menu_set_toggle: Menu path not found, \"%s\" \n"), menu_path);
+       u_log_message(_("%s: Menu path not found, \"%s\" \n"), __func__, menu_path);
   }
   else
-    u_log_message(_("Error, x_menu_set_toggle: invalid pointer [menubar]\n"));
+    u_log_message(_("%s: invalid pointer [menubar]\n"),  __func__);
   return;
 }
 
-/*! \brief Set State of Menu Toggle Items .
+/*! \brief Set State of Menu Toggle Items
+ *
  * \par Function Description
- *  This is a menu support function to "uncheck" menu toggle items. The function
+ * This is a menu support function to "uncheck" menu toggle items. The function
  * can be used when the menu option was changed by some other means, for example
  * when options are turned off with "Hot-Keys".
  *
@@ -1226,18 +1253,16 @@ static void menu_set_toggle(ToggleMenuData *toggler_data, bool state)
  *
  * \sa x_menu_set_toolbar_toggle
  */
-void
-x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
+void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
 {
-
-  int  number_of_togglers;
+  int number_of_togglers;
   ToggleMenuData *toggler_data;
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   void set_toggler(int index, bool value) {
     toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, index);
     if(toggler_data)
-      menu_set_toggle(toggler_data, value);
+      x_menu_set_toggler(toggler_data, value);
   }
 
   number_of_togglers = g_slist_length(TOGGLERS_LIST);
@@ -1252,7 +1277,7 @@ x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
   else {
    if(toggle_id < number_of_togglers)
      toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, toggle_id);
-     menu_set_toggle(toggler_data, state);
+     x_menu_set_toggler(toggler_data, state);
   }
   return;
 }
@@ -1267,24 +1292,22 @@ x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state)
  * \param toggle_id is int index of the IDS_Menu_Toggles item to set
  * \param state     is int value to set, either TRUE (check) or FALSE (uncheck).
  *
- * \sa x_menu_set_toggle
+ * \sa x_menu_set_togglable
  */
-void
-x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
+void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
 {
-
   char  menu_name[36] = "_View/_Toolbars/";
   char *menu_path;
 
   GtkWidget *menu_item;
 
   GtkWidget* menubar;
-  menubar = get_main_menu(w_current);
+  menubar = x_menu_get_main_menu(w_current);
 
   menu_path = u_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
-  menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
-  if( menu_item != NULL) {
-    gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_item, state);
+  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
+  if (menu_item != NULL) {
+    gtk_check_menu_item_set_active((GtkCheckMenuItem*) menu_item, state);
   }
   else
     u_log_message(_("Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"), menu_path);
@@ -1298,7 +1321,7 @@ x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
 
 /** \defgroup recent-file-menu Recent Files Menu Support Functions
  *
- *  @{ \remark This is the old method, as appose to the GTK Recent
+ *  @{ \remark This is the old method, as oppose to the GTK Recent
  *  Chooser Manger version. This method seems to work better on Debian
  *  machines and derivatives (which is likely to be the majority) due to
  *  default security policies, which results in ALL the links to recent
@@ -1314,7 +1337,7 @@ x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool state)
  *  \par Function Description
  *   Make all toplevels reflect changes to the recent files list.
  */
-static void update_recent_files_menus(void)
+static void x_menu_update_recent_files(void)
 {
    GschemToplevel *w_current;
    GtkWidget *submenu, *recent_menu_item;
@@ -1323,27 +1346,27 @@ static void update_recent_files_menus(void)
 
    for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
 
-      w_current = (GschemToplevel *)iter->data;
+      w_current = (GschemToplevel*) iter->data;
       menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
       if (MENU_BAR == NULL)
         continue;
 
       recent_menu_item =
-        (GtkWidget *) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+        (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
                                           "_File/Open Recen_t");
       if(recent_menu_item == NULL)
          return;
 
       submenu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(recent_menu_item));
       gtk_widget_destroy(submenu);
-      x_menu_attach_recent_files_submenu(w_current);
+      x_menu_attach_recent_submenu(w_current);
    }
 }
 
 /*! \brief Remove all entries from the recent files
  *         list and update all toplevels.
  */
-static void clear_recent_file_list(void *data)
+static void x_menu_clear_recent_file_list(void *data)
 {
    GList *p;
 
@@ -1355,35 +1378,34 @@ static void clear_recent_file_list(void *data)
    g_list_free(recent_files);
    recent_files = NULL;
 
-   update_recent_files_menus();
+   x_menu_update_recent_files();
 }
 
-static void
-recent_file_free_menu_data (void *data, GClosure *closure)
+static void x_menu_free_recent_file_data (void *data, GClosure *closure)
 {
   GEDA_FREE (data);
 }
 
-static void recent_file_clicked(GtkMenuItem *menuitem, void *user_data)
+static void x_menu_recent_file_clicked (GtkMenuItem *menuitem, void *user_data)
 {
    FILE *fp;
    Page *page;
-   RecentMenuData *data = (RecentMenuData *) user_data;
+   RecentMenuData *data = (RecentMenuData*) user_data;
    GschemToplevel *w_current = data->w_current;
    char *filename = data->filename;
 
    /* Check if the file exists */
-   fp = fopen((char *) filename, "r");
+   fp = fopen((char*) filename, "r");
    if(fp == NULL) {
       /* Remove this entry from all menus */
-      u_log_message(_("Could not open file %s\n"), (char *) filename);
+      u_log_message(_("Could not open file %s\n"), (char*) filename);
       recent_files = g_list_remove(recent_files, filename);
-      update_recent_files_menus();
+      x_menu_update_recent_files();
       return;
    }
    fclose(fp);
 
-   page = x_window_open_page(w_current, (char *)filename);
+   page = x_window_open_page(w_current, (char*) filename);
    x_window_set_current_page(w_current, page);
 }
 
@@ -1392,7 +1414,7 @@ static void recent_file_clicked(GtkMenuItem *menuitem, void *user_data)
  *
  *  Called from x_window_setup().
  */
-void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
+void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 {
    unsigned long id;
    GtkWidget *tmp;
@@ -1401,7 +1423,7 @@ void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
    GtkWidget *label;
 
    menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
-   recent_menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+   recent_menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
                                                         "_File/Open Recen_t");
    if(recent_menu_item == NULL)
       return;
@@ -1419,13 +1441,12 @@ void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
    GList *p = recent_files;
    while(p) {
      RecentMenuData *menu_data = g_new0 (RecentMenuData, 1);
-     menu_data->filename = p->data;
+     menu_data->filename  = p->data;
      menu_data->w_current = w_current;
-     tmp = gtk_menu_item_new_with_label((char *)p->data);
+     tmp = gtk_menu_item_new_with_label((char*) p->data);
      g_signal_connect_data (GTK_OBJECT(tmp), "activate",
-                            (GCallback) recent_file_clicked,
-                            menu_data,
-                            (GClosureNotify) recent_file_free_menu_data,
+                           (GCallback) x_menu_recent_file_clicked, menu_data,
+                           (GClosureNotify) x_menu_free_recent_file_data,
                             0);
      gtk_menu_append(GTK_MENU(recent_submenu), tmp);
      p = g_list_next(p);
@@ -1443,7 +1464,7 @@ void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
       gtk_container_add(GTK_CONTAINER(tmp), alignment);
 
       gtk_signal_connect_object(GTK_OBJECT(tmp), "activate",
-            GTK_SIGNAL_FUNC (clear_recent_file_list), NULL);
+            GTK_SIGNAL_FUNC(x_menu_clear_recent_file_list), NULL);
 
       gtk_menu_append(GTK_MENU(recent_submenu), gtk_separator_menu_item_new());
       gtk_menu_append(GTK_MENU(recent_submenu), tmp);
@@ -1459,7 +1480,7 @@ void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
  *  If filename is already in the list, moves it to the head of the
  *  list.
  */
-void recent_files_add(const char *filename)
+void x_menu_recent_files_add(const char *filename)
 {
    char *basename;
    char *save_fn;
@@ -1483,7 +1504,7 @@ void recent_files_add(const char *filename)
 
    /* Check if the file is already in the list.  */
    while (p != NULL) {
-     if (strcmp (save_fn, (char *) p->data) == 0) {
+     if (strcmp (save_fn, (char*) p->data) == 0) {
        break;
      }
      p = g_list_next (p);
@@ -1493,7 +1514,7 @@ void recent_files_add(const char *filename)
      /* Since we found the filename already in the list, move it to
       * the head of the list. */
      GEDA_FREE (save_fn);
-     save_fn = (char *) p->data;
+     save_fn = (char*) p->data;
      recent_files = g_list_delete_link (recent_files, p);
      recent_files = g_list_prepend (recent_files, save_fn);
    } else {
@@ -1502,17 +1523,19 @@ void recent_files_add(const char *filename)
      recent_files = g_list_prepend (recent_files, save_fn);
    }
 
-   update_recent_files_menus();
+   x_menu_update_recent_files();
 }
 
 /*! \brief Make RECENT_FILES_STORE contain an empty file list.
+ *  Create a new empty key, nothing is written to the file.
  */
-static void recent_files_create_empty()
+static void x_menu_recent_files_create_empty(void)
 {
    char *c;
    const char * const tmp[] = { NULL };
    GKeyFile *kf = g_key_file_new();
-   char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
+   char *file   = g_build_filename(f_path_user_config (),
+                                   RECENT_FILES_STORE, NULL);
 
    g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
    c = g_key_file_to_data(kf, NULL, NULL);
@@ -1527,21 +1550,21 @@ static void recent_files_create_empty()
  *
  *  \param [in] user_data unused
  */
-void recent_files_save(void *user_data)
+void x_menu_recent_files_save(void *user_data)
 {
    char *files[MAX_RECENT_FILES];
    int num = 0;
    char *c;
-   char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
+   char *file = g_build_filename(f_path_user_config(), RECENT_FILES_STORE, NULL);
 
    GList *p = recent_files;
    if(p == NULL) {
-      recent_files_create_empty();
+      x_menu_recent_files_create_empty();
       return;
    }
 
    while((p != NULL) && (num < MAX_RECENT_FILES)) {
-     files[num++] = (char *)p->data;
+     files[num++] = (char*) p->data;
      p = g_list_next(p);
    }
 
@@ -1563,7 +1586,7 @@ void recent_files_save(void *user_data)
  *  Must be called before any other recent-files-related
  *  functions.
  */
-void recent_files_load()
+void x_menu_recent_files_load()
 {
    GKeyFile *kf = g_key_file_new();
    char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
@@ -1571,12 +1594,12 @@ void recent_files_load()
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
      f_path_create(f_path_user_config (), S_IRWXU | S_IRWXG);
 
-      recent_files_create_empty();
+      x_menu_recent_files_create_empty();
    }
 
    if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL)) {
       /* error opening key file, create an empty one and try again */
-      recent_files_create_empty();
+      x_menu_recent_files_create_empty();
       if(!g_key_file_load_from_file(kf, file, G_KEY_FILE_NONE, NULL))
          return;
    }
@@ -1588,7 +1611,7 @@ void recent_files_load()
    if(list == NULL) {
       /* error reading key file, don't bother to correct;
        * just overwrite it with an empty one */
-      recent_files_create_empty();
+      x_menu_recent_files_create_empty();
       return;
    }
 
@@ -1604,7 +1627,7 @@ void recent_files_load()
 
 /* Date: Sept 05, 2012
  * Who:  Wiley E. Hill
- * What  Function: recent_files_last
+ * What  Function: x_menu_recent_files_last
  * Why:  This Function was added to support the auto_load_last mechanism.
 */
 /*! \brief Get the Most Recent Filename
@@ -1614,7 +1637,8 @@ void recent_files_load()
  *
  *  \return  const char pointer to the filename string
  */
-const char *recent_files_last(void)
+const
+char *x_menu_recent_files_last(void)
 {
 
    return (g_list_nth_data(recent_files, 0));

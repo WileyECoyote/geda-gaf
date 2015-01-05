@@ -523,7 +523,7 @@ i_sessions_attach_submenu(GschemToplevel *w_current)
   int        index;
   unsigned long id;
 
-  menubar = get_main_menu(w_current);
+  menubar = x_menu_get_main_menu(w_current);
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
@@ -565,7 +565,8 @@ i_sessions_attach_submenu(GschemToplevel *w_current)
 
       gtk_widget_show_all(sessions_submenu);
 
-      gtk_menu_item_set_submenu(GTK_MENU_ITEM(sessions_menu_item), sessions_submenu);
+      gtk_menu_item_set_submenu(GTK_MENU_ITEM(sessions_menu_item),
+                                sessions_submenu);
     }
   }
 }
@@ -589,7 +590,7 @@ static void update_sessions_menus(GschemToplevel *w_current)
    for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
 
       w_current = (GschemToplevel *)iter->data;
-      menubar = get_main_menu(w_current);
+      menubar = x_menu_get_main_menu(w_current);
       if (menubar == NULL)
         continue;
 

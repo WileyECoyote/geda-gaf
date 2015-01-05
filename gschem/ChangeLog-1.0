@@ -1,5 +1,11 @@
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Clean up module, add "x_menus_" prefix to all
+      functions names, add subfunction get_menu_item_from_scheme in
+      function x_menu_setup_ui.
+
+2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_settings_dialog.c: Switch FontNameCombo from type
       GEDA_NEW_TEXT_ENTRY_COMBO to GEDA_NEW_LIST_ENTRY_COMBO so
       that this widget will default to a tree-view (So happens

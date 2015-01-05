@@ -83,7 +83,7 @@ void x_window_setup (GschemToplevel *w_current)
 
   x_draw_initialize(w_current);
 
-  x_menu_attach_recent_files_submenu (w_current);
+  x_menu_attach_recent_submenu (w_current);
 
   /* Initialize the clipboard callback */
   x_clipboard_init (w_current);
@@ -500,7 +500,7 @@ void x_window_create_main(GschemToplevel *w_current)
     g_object_set (menubar, "visible", TRUE, NULL);
   }
 
-  x_menu_set_toggle(w_current, RESET_TOGGLERS, 0);
+  x_menu_set_togglable(w_current, RESET_TOGGLERS, 0);
 
   gtk_widget_realize (MainWindow);
   /* End Main Menu */
@@ -798,7 +798,7 @@ static bool
 x_window_idle_thread_post_load_file (void *filename)
 {
   q_log_message (_("Loading \"%s\"\n"), filename);
-  recent_files_add (filename);
+  x_menu_recent_files_add (filename);
   return FALSE;
 }
 
@@ -1175,7 +1175,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
     /* reset page CHANGED flag */
     page->CHANGED = FALSE;
     /* add to recent file list */
-    recent_files_add(filename);
+    x_menu_recent_files_add(filename);
   }
 
   /* log status of operation */

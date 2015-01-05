@@ -85,13 +85,13 @@ typedef struct st_menu_radio_data       RadioMenuData;
 typedef struct st_popup_menu_entry      PopupEntry;
 
 struct st_menu_data {
-  char       *buffer_menu_name;
-  GtkWidget  *menu_bar;
-  GtkWidget  *popup_menu;
-  GSList     *menu_items;    /* Single Linked list of all non-toggle menu items */
-  GSList     *popup_items;   /* Single Linked list of all non-toggle popup-menu items */
-  GSList     *menu_togglers;
-  GHashTable *popup_hash;
+  char       *buffer_menu_name;   /* Pointer name of menu above Cut/Copy/paste buffers */
+  GtkWidget  *menu_bar;           /* The Main menu widget, unique to the Window, aka ui_index */
+  GtkWidget  *popup_menu;         /* The "on-canvas" Popup menu widget */
+  GSList     *menu_items;         /* Single Linked list of all non-toggle menu items */
+  GSList     *popup_items;        /* Single Linked list of all non-toggle popup-menu items */
+  GSList     *menu_togglers;      /* Single Linked list of all togglable Main menu items */
+  GHashTable *popup_hash;         /* String table of Popup menu item names, used for sensitivity */
 };
 
 struct st_recent_file_menu_data {
@@ -100,18 +100,18 @@ struct st_recent_file_menu_data {
 };
 
 struct st_toggle_menu_data {
-  GschemToplevel *w_current;
-  int   toggle_id;
-  char *toggle_name;
-  char *menu_item_name;
-  char *menu_path;
-  unsigned long handler;
+  GschemToplevel *w_current;      /* We can do this because the menu is unique to the window */
+  int   toggle_id;                /* Index in st_menu_data.menu_togglers list */
+  char *toggle_name;              /* Menu string DOES NOT APPEAR TO BE SET */
+  char *menu_item_name;           /* String for the label in the menu */
+  char *menu_path;                /* String path used to locate widget programmatically setting */
+  unsigned long handler;          /* Callback signal handler ID, used to suspend emissions */
 };
 
 struct st_menu_radio_data {
   GschemToplevel   *w_current;
   GtkCheckMenuItem *widget;
-  unsigned long handler;
+  unsigned long     handler;
 };
 
 struct st_popup_menu_entry {

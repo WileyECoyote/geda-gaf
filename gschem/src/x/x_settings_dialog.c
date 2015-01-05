@@ -59,7 +59,7 @@
  * WEH | 07/20/14 | Make-over for Doxygen Documentation/Comments in order
  *                | to improve source documentation.
  * ---------------|--------------------------------------------------
- * WEH | 11/14/14 | Add call x_menu_set_toggle if drag_can_move changed
+ * WEH | 11/14/14 | Add call x_menu_set_togglable if drag_can_move changed
  *                | in GatherSettings.
  * ---------------|--------------------------------------------------
  * WEH | 11/18/14 | Add "FreeMono" to IDS_FONT_NAMES
@@ -2770,7 +2770,7 @@ void GatherSettings(GschemToplevel *w_current) {
              tmp_int                    = GET_SWITCH_STATE (DragMoveSwitch);
   if (tmp_int != w_current->drag_can_move) {
     w_current->drag_can_move = tmp_int;
-    x_menu_set_toggle(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
+    x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
   }
 
   CairoRenderer->draw_grips             = GET_SWITCH_STATE (DrawGripsSwitch);
