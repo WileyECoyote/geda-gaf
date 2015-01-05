@@ -1,28 +1,30 @@
 ## -*- Makefile -*-
 
 scmdatadir = $(GEDADATADIR)/scheme
+
 nobase_dist_scmdata_DATA = \
-	auto-uref.scm \
-	generate_netlist.scm \
-	gschem.scm \
-	list-keys.scm \
-	print-NB-attribs.scm \
-	auto-place-attribs.scm \
-	auto-place-netname.scm \
-	pcb.scm \
-	gschem-tools-menu.scm \
-	default-attrib-positions.scm \
-	gschem/action.scm \
-	gschem/attrib.scm \
-	gschem/builtins.scm \
-	gschem/deprecated.scm \
-	gschem/gschemdoc.scm \
-	gschem/hook.scm \
-	gschem/keymap.scm \
-	gschem/selection.scm \
-	gschem/util.scm \
-	gschem/window.scm \
-	gschem/core/gettext.scm
+			auto-uref.scm \
+			generate_netlist.scm \
+			gschem.scm \
+			list-keys.scm \
+			print-NB-attribs.scm \
+			auto-place-attribs.scm \
+			auto-place-netname.scm \
+			pcb.scm \
+			default-attrib-positions.scm \
+			gschem/action.scm \
+			gschem/attrib.scm \
+			gschem/builtins.scm \
+			gschem/deprecated.scm \
+			gschem/gschemdoc.scm \
+			gschem/hook.scm \
+			gschem/keymap.scm \
+			gschem/selection.scm \
+			gschem/util.scm \
+			gschem/window.scm \
+			gschem/gschem-export-menu.scm \
+			gschem/gschem-tools-menu.scm \
+			gschem/core/gettext.scm
 
 MOSTLYCLEANFILES     = *.log *~ gschem/*~
 CLEANFILES           = *.log *~ gschem/*~

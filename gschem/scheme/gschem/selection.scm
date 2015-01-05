@@ -1,6 +1,7 @@
 ;; gEDA - GPL Electronic Design Automation
 ;; gschem - gEDA Schematic Capture - Scheme API
-;; Copyright (C) 2010 Peter Brett <peter@peter-b.co.uk>
+;;
+;; Copyright (C) 2010-2015 Peter Brett <peter@peter-b.co.uk>
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,16 +15,16 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; if not, write to the Free Software
-;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
-;;
+;; Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+;; <http://www.gnu.org/licenses/>
 
 (define-module (gschem selection)
 
   ;; Import C procedures
   #:use-module (gschem core selection))
 
-(define-public page-selection %page-selection)
-
-(define-public select-object! %select-object!)
+(define-public select-object!   %select-object!)
 (define-public deselect-object! %deselect-object!)
 (define-public object-selected? %object-selected?)
+(define-public page-selection   %page-selection)
+

@@ -4,13 +4,13 @@
 ;;
 ;; =================================================================
 ;;
-;; File:  gsch-tools-menu.scm  by Paul Tan
+;; File:  gschem-tools-menu.scm  by Paul Tan
 ;;
 ;; (1) Put this file in /usr/share/gEDA/scheme/ directory.
 ;; (2) Add the following line (without the semi-colon) at the end of
 ;;     system-gschemrc file, normally under /usr/share/gEDA/ folder:
 ;;
-;     (load-from-path "gschem-tools-menu.scm")
+;     (load-from-path "gschem/gschem-tools-menu.scm")
 ;;
 
 

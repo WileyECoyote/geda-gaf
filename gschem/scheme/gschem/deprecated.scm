@@ -1,6 +1,7 @@
 ;; gEDA - GPL Electronic Design Automation
 ;; gschem - gEDA Schematic Capture - Scheme API
-;; Copyright (C) 2010-2011 Peter Brett
+;;
+;; Copyright (C) 2010-2015 Peter Brett
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,7 +15,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; if not, write to the Free Software
-;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
+;; Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+;; <http://www.gnu.org/licenses/>
 ;;
 
 ;; This file contains deprecated Scheme API features, which should not
@@ -24,15 +26,14 @@
 
   #:use-module (gschem core gettext)
 
-  #:use-module (geda page)
-  #:use-module (geda object)
-  #:use-module (geda attrib)
+  #:use-module (geda   attrib)
+  #:use-module (geda   deprecated)
+  #:use-module (geda   object)
+  #:use-module (geda   page)
   #:use-module (gschem window)
   #:use-module (gschem hook)
   #:use-module (gschem selection)
   #:use-module (gschem attrib)
-
-  #:use-module (geda deprecated)
 
   #:use-module (srfi srfi-1))
 
