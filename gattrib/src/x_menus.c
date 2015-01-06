@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,8 +68,8 @@ void x_menu_file_save_as()
   }
   else
     fprintf(stderr, "gattrib file_save_as: Memory allocation error\n");
-     //u_log_message("gattrib file_save_as: Memory allocation error\n");
 }
+
 /*!
  * \brief File Open menu
  *
