@@ -107,6 +107,10 @@ typedef  enum {
   FILTER_SCHEMATIC,
   FILTER_SYMBOL,
   FILTER_GSCHEM,
+} IDE_FILTER;
+
+typedef  enum {
+  FILTER_IMAGE_NONE,
   FILTER_PNG,
   FILTER_JPG,
   FILTER_GIF,
@@ -117,7 +121,7 @@ typedef  enum {
   FILTER_PNM,
   FILTER_RAS,
   FILTER_IMAGES
-} IDE_FILTER;
+} IDE_IMAGE_FILTER;
 
 /*! \enum GedaStateFlags Used by Libgedauio classes to control widget states
  *  \brief Describes a widget state.
