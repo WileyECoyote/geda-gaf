@@ -1,3 +1,7 @@
+2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * object/o_complex.c: Add function o_complex_export
+
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Revise x_menu_setup_ui to allow a nested menus item

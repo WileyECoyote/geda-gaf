@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,45 @@
  */
 
 #include <gschem.h>
+#include <geda_file_chooser.h>
 #include <geda_debug.h>
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void o_complex_export(GschemToplevel *w_current, Object *o_current)
+{
+  GtkWidget *dialog;
+
+  dialog = geda_file_chooser_new (w_current->main_window,
+                                  FILE_CHOOSER_ACTION_SAVE);
+
+  geda_file_chooser_set_filter (dialog, FILTER_SYMBOL);
+  geda_file_chooser_set_filename (dialog, o_current->complex->filename);
+
+  gtk_widget_show (dialog);
+
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+
+    char   *filename;
+    GError *err;
+    GList  *list;
+
+    list     = g_list_append(NULL, o_current);
+    filename = geda_file_chooser_get_filename (dialog);
+
+    if (!o_save (list, filename, &err)) {
+
+      pango_error_dialog("Failed to export symbol", err->message);
+      g_clear_error (&err);
+
+    }
+    GEDA_FREE (filename);
+  }
+  gtk_widget_destroy (dialog);
+}
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -37,11 +75,11 @@
 void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *temp_list;
-  Object *o_current;
-  char *buffer;
-  const char *sym_name = s_clib_symbol_get_name (sym);
-  GError *err = NULL;
+  GList        *temp_list;
+  Object       *o_current;
+  char         *buffer;
+  const char   *sym_name = s_clib_symbol_get_name (sym);
+  GError       *err = NULL;
 
   /* remove the old place list if it exists */
   s_place_free_place_list(toplevel);
