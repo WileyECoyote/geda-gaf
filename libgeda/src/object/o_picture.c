@@ -648,7 +648,6 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
         free(keys);
         free(Vals);
       }
-      GEDA_UNREF(pixbuf);
     }
   }
   errno = ecode;
@@ -694,6 +693,7 @@ o_picture_export_object(Object *o_current, const char *filename, const char *typ
     va_start (varargs, type);
     result = o_picture_real_export_pixbuf (pixbuf, filename, type, varargs);
     va_end (varargs);
+    GEDA_UNREF(pixbuf);
     GEDA_UNREF(pixbuf);
   }
   else {
@@ -1718,19 +1718,23 @@ o_picture_get_pixbuf_fit (Object *object, int interp)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 
+  Page    *page  = geda_object_get_page (object);
+  Picture *o_pic = object->picture;
+
   GdkPixbuf *pixbuf1;
   GdkPixbuf *pixbuf2;
   GdkPixbuf *pixbuf3;
 
-  Picture *o_pic = object->picture;
-
-  if (o_pic->pixbuf != NULL) {
+  if (page && o_pic->pixbuf != NULL) {
 
     /* upper is considered the origin, world units */
-    int width  = o_pic->upper_x - o_pic->lower_x;
-    int height = o_pic->lower_y - o_pic->upper_y;
+    int width  = o_picture_get_width (object);  /* o_pic->lower_x - o_pic->upper_x */
+    int height = o_picture_get_height (object); /* o_pic->upper_y - o_pic->lower_y */
     int angle  = o_pic->angle;
     int mirror = o_pic->mirrored;
+
+    width  = width  * page->to_screen_x_constant;
+    height = height * page->to_screen_y_constant;
 
     /* The object->picture->pixel is a pointer to the as read-in pixel
      * buffer and needs to be rescaled to the instance insertion size */
@@ -1742,24 +1746,26 @@ o_picture_get_pixbuf_fit (Object *object, int interp)
       pixbuf1 = gdk_pixbuf_scale_simple (o_pic->pixbuf, width, height, interp);
     }
 
-    /* Adjust for rotation and mirroring */
+    if (pixbuf1) {
+      /* Adjust for rotation and mirroring */
 
-    if (!angle && !mirror) {                            /* No adjustment required */
-      pixbuf3 = g_object_ref (pixbuf1);
+      if (!angle && !mirror) {                            /* No adjustment required */
+        pixbuf3 = g_object_ref (pixbuf1);
+      }
+      else if (angle && !mirror) {                        /* Rotation required  */
+        pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf1, angle);
+      }
+      else if (!angle && mirror) {                        /* Mirroring required */
+        pixbuf3 = gdk_pixbuf_flip (pixbuf1, TRUE);
+      }
+      else /* (mirror && angle) note: do flip 1st */ {    /* Mirror and Rotate */
+        pixbuf2 = gdk_pixbuf_flip (pixbuf1, TRUE);
+        pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf2, angle);
+        g_object_unref (pixbuf2);
+      }
+      g_object_unref (pixbuf1);
+      return g_object_ref(pixbuf3);
     }
-    else if (angle && !mirror) {                        /* Rotation required  */
-      pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf1, angle);
-    }
-    else if (!angle && mirror) {                        /* Mirroring required */
-      pixbuf3 = gdk_pixbuf_flip (pixbuf1, TRUE);
-    }
-    else /* (mirror && angle) note: do flip 1st */ {    /* Mirror and Rotate */
-      pixbuf2 = gdk_pixbuf_flip (pixbuf1, TRUE);
-      pixbuf3 = gdk_pixbuf_rotate_simple (pixbuf2, angle);
-      g_object_unref (pixbuf2);
-    }
-    g_object_unref (pixbuf1);
-    return g_object_ref(pixbuf3);
   }
   return NULL;
 }
