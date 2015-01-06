@@ -68,12 +68,58 @@ static GtkFileChooserDialogClass *geda_file_chooser_parent_class = NULL;
 static GtkEntry *chooser_entry;
 
 static GedaFileFilterDataDef filter_data[] = {
+    GEDA_FILTER_NONE,
     GEDA_FILTER_SCHEMATIC,
     GEDA_FILTER_SYMBOL,
     GEDA_FILTER_GSCHEM,
-    GEDA_FILTER_NONE,
     GEDA_NO_MORE_FILTERS
 };
+
+static void geda_file_chooser_filter_changed(GedaFileChooser *chooser)
+{
+    /* Do nothing here */
+}
+
+static void
+chooser_update_filter_index(GtkWidget *button, GedaFileChooser *chooser)
+{
+  chooser->filter_index = gtk_combo_box_get_active (GTK_COMBO_BOX(button));
+  g_signal_emit (chooser, chooser_signals[FILTER_CHANGED], 0);
+}
+
+/* GtkFileChooserDialog does not expose the combo button used for filter
+ * selection, we should make our own chooser dialog, but until then, we
+ * search all widgets looking for a combobox, the one used for the filter
+ * is the only combobox used in the dialog */
+static void FixGtkCrap(GtkWidget *widget, void *self)
+{
+  if (GTK_IS_COMBO_BOX(widget)) {
+    (GEDA_FILE_CHOOSER(self))->filter_button = widget;
+  }
+  else if (GTK_IS_CONTAINER(widget)) {
+     gtk_container_forall ( GTK_CONTAINER (widget), FixGtkCrap, self);
+  }
+}
+
+static void get_filter_button(GedaFileChooser *chooser)
+{
+  GList   *children, *iter;
+
+  /* Get all object inside the contents area of the dialog */
+  children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (chooser)->vbox));
+
+  /* For each container in the contents area to call look for combo box */
+  for (iter = children; iter; iter = iter->next) {
+    if (GTK_IS_CONTAINER(iter->data)) {
+      gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, chooser);
+      if (chooser->filter_button) {
+        break;
+      }
+    }
+  }
+
+  g_list_free (children);
+}
 
 /*! \brief Creates filter for Geda File Chooser.
  *  \par Function Description
@@ -137,32 +183,6 @@ void geda_file_chooser_set_filter (GtkWidget *widget, int index)
   }
 }
 
-static void geda_file_chooser_filter_changed(GedaFileChooser *chooser)
-{
-    /* Do nothing here */
-}
-
-static void
-chooser_update_filter_index(GtkWidget *button, GedaFileChooser *chooser)
-{
-  chooser->filter_index = gtk_combo_box_get_active (GTK_COMBO_BOX(button));
-  g_signal_emit (chooser, chooser_signals[FILTER_CHANGED], 0);
-}
-
-/* GtkFileChooserDialog does not expose the combo button used for filter
- * selection, we should make our own chooser dialog, but until then, we
- * search all widgets looking for a combobox, the one used for the filter
- * is the only combobox used in the dialog */
-static void FixGtkCrap(GtkWidget *widget, void *self)
-{
-  if (GTK_IS_COMBO_BOX(widget)) {
-    (GEDA_FILE_CHOOSER(self))->filter_button = widget;
-  }
-  else if (GTK_IS_CONTAINER(widget)) {
-     gtk_container_forall ( GTK_CONTAINER (widget), FixGtkCrap, self);
-  }
-}
-
 static void look_for_entry(GtkWidget *widget, void *self)
 {
   if (GTK_IS_ENTRY(widget)) {
@@ -201,28 +221,13 @@ geda_file_chooser_constructor (GedaType               type,
                                GObjectConstructParam *properties)
 {
   GObject *obj;
-  GList   *children, *iter;
-
 
   /* Chain up to the parent constructor */
   obj = G_OBJECT_CLASS (geda_file_chooser_parent_class)->constructor (type, n_properties, properties);
 
   gtk_dialog_set_has_separator (GTK_DIALOG(obj), TRUE);
 
-  /* Get all object inside the contents area of the dialog */
-  children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (obj)->vbox));
-
-  /* For each container in the contents area to call look for combo box */
-  for (iter = children; iter; iter = iter->next) {
-    if (GTK_IS_CONTAINER(iter->data)) {
-      gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, obj);
-      if ((GEDA_FILE_CHOOSER(obj))->filter_button) {
-        break;
-      }
-    }
-  }
-
-  g_list_free (children);
+  get_filter_button((GedaFileChooser*)obj);
 
   return obj;
 }
@@ -264,7 +269,7 @@ geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
   switch (property_id)
     {
     case PROP_FILTER_INDEX:
-      g_value_set_boolean (value, chooser->filter_index);
+      g_value_set_int (value, chooser->filter_index);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -293,7 +298,7 @@ geda_file_chooser_set_property (GObject *object, unsigned int  property_id,
   switch (property_id) {
 
     case PROP_FILTER_INDEX:
-      geda_file_chooser_set_filter((GtkWidget*)chooser, g_value_get_boolean (value));
+      geda_file_chooser_set_filter((GtkWidget*)chooser, g_value_get_int (value));
       break;
 
     default:

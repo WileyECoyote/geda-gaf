@@ -1,3 +1,8 @@
+2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/dialogs/geda_file_chooser.c: Update filter_data to match
+        enumeration that was updated for image chooser.
+
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Changed g_object property "appear-as
