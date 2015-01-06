@@ -406,6 +406,7 @@ void       o_circle_motion              (GschemToplevel *w_current, int x, int y
 void       o_circle_draw_rubber         (GschemToplevel *w_current);
 
 /* o_complex.c */
+void       o_complex_export                  (GschemToplevel *w_current, Object *o_current);
 void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset);
@@ -521,6 +522,7 @@ void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void       o_picture_draw_rubber             (GschemToplevel *w_current);
 bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, Object *o_current, GError **error);
 void       o_picture_exchange_file           (GschemToplevel *w_current, Object *o_current);
+void       o_picture_export                  (GschemToplevel *w_current, Object *o_current);
 bool       o_picture_set_pixbuf              (GschemToplevel *w_current, char *filename);
 
 /* o_pin.c */

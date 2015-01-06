@@ -501,6 +501,64 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   }
 }
 
+void
+o_picture_export (GschemToplevel *w_current, Object *o_current)
+{
+  GtkWidget   *dialog;
+  GtkWidget   *cb_aspect;
+  bool         old_preview_enabled;
+  static bool  orgin_size = FALSE;
+
+  dialog = geda_image_chooser_new (w_current->main_window,
+                                   IMAGE_CHOOSER_ACTION_SAVE);
+
+  old_preview_enabled = geda_chooser_get_preview_widget_active(dialog);
+
+  geda_chooser_set_preview_widget_active(dialog, FALSE);
+
+  cb_aspect = gtk_check_button_new_with_label (_("Orginal size"));
+  gtk_widget_show (cb_aspect);
+  gtk_widget_set_tooltip_text(cb_aspect, _("When checked the image size will be exported"));
+  gtk_toggle_button_set_active ((GtkToggleButton*)cb_aspect, orgin_size);
+  geda_image_chooser_append_extra (dialog, cb_aspect);
+
+  geda_chooser_set_do_overwrite_confirmation(dialog, TRUE);
+  geda_image_chooser_set_filter (dialog, FILTER_IMAGES);
+  geda_image_chooser_set_filename (dialog, o_current->picture->filename);
+
+  gtk_widget_show (dialog);
+
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+
+    const char *file_ext;
+    char       *filename;
+    int         result;
+
+    filename = geda_image_chooser_get_filename (dialog);
+    file_ext = f_get_filename_ext(filename);
+
+    orgin_size = gtk_toggle_button_get_active ((GtkToggleButton*)cb_aspect);
+
+    if (orgin_size) {
+      result = o_picture_export_orginal(o_current, filename, file_ext, NULL);
+    }
+    else {
+      result = o_picture_export_object(o_current, filename, file_ext, NULL);
+    }
+
+    if (!result) {
+      pango_error_dialog("Failed to export symbol:", strerror (errno));
+    }
+
+    GEDA_FREE (filename);
+  }
+
+  /* Restore the enable preview setting */
+  GEDA_IMAGE_CHOOSER(dialog)->preview_enabled = old_preview_enabled;
+
+  gtk_widget_destroy (dialog);
+}
+
 /*! \brief Set active pixbuf top-level parameterd
  *
  *  \par Function Description

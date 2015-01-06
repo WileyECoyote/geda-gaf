@@ -1,3 +1,7 @@
+2015-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * object/o_picture.c: Add function o_picture_export
+
 2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * object/o_complex.c: Add function o_complex_export
