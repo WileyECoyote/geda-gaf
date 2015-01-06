@@ -99,6 +99,7 @@ GtkWidget    *geda_file_chooser_dialog_new_full  (const char       *title,
 
 GtkEntry     *geda_file_chooser_get_entry          (GtkWidget *chooser);
 char         *geda_file_chooser_get_entry_text     (GtkWidget *chooser);
+void          geda_file_chooser_set_entry_text     (GtkWidget *chooser, const char *text);
 
 int           geda_file_chooser_get_filter         (GtkWidget *chooser);
 void          geda_file_chooser_set_filter         (GtkWidget *chooser, int value);

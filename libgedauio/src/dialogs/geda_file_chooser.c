@@ -709,8 +709,8 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
 char*
 geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {
-  char       *name;
-  GtkEntry   *entry;
+  char     *name;
+  GtkEntry *entry;
 
   name = NULL;
 
@@ -732,10 +732,34 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
   return name;
 }
 
+void
+geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
+{
+  GtkEntry *entry;
+
+  if (GTK_IS_FILE_CHOOSER(despicable)) {
+
+    entry = geda_file_chooser_get_entry(despicable);
+
+    if (GTK_IS_ENTRY(entry)) {
+
+      if (text) {
+         gtk_entry_set_text(entry, text);
+      }
+      else {
+         gtk_entry_set_text(entry, "");
+      }
+    }
+  }
+  else {
+    BUG_MSG ("Operative is not a GtkFileChooser");
+  }
+}
+
 char*
 geda_file_chooser_get_filename(GtkWidget *hideous)
 {
-  char     *name;
+  char *name;
 
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     name = gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
@@ -753,6 +777,7 @@ geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
+    geda_file_chooser_set_entry_text(hideous, name);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
