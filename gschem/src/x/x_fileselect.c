@@ -298,8 +298,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 void
 x_fileselect_save (GschemToplevel *w_current)
 {
-  GedaToplevel      *toplevel = w_current->toplevel;
-
+  GedaToplevel  *toplevel = w_current->toplevel;
   GtkWidget     *dialog;
   GtkWidget     *hbox;
   GtkWidget     *cb_add_ext;
@@ -346,16 +345,19 @@ x_fileselect_save (GschemToplevel *w_current)
   geda_file_chooser_set_extra_widget (dialog, hbox);
 
   gtk_widget_show (dialog);
+
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    char          *filename;
-    char          *filebase;
-    char          *tmpname;
-    int            index;
+
+    char *filename;
+    char *filebase;
+    char *tmpname;
+    int   index;
 
     filename = geda_file_chooser_get_filename (dialog);
     filebase = basename(filename);
     auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
     tmpname  = NULL;
+
     if (auto_ext && (filebase != NULL)) {
       if (!f_get_filename_ext(filebase)) {
         index = geda_file_chooser_get_filter(dialog);
@@ -401,7 +403,6 @@ x_fileselect_save (GschemToplevel *w_current)
     eda_config_set_boolean (cfg, "gschem", "auto-file-suffix", auto_ext);
   }
   gtk_widget_destroy (dialog);
-
 }
 
 /*! \brief Load/Backup selection dialog.

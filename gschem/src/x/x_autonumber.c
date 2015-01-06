@@ -791,7 +791,8 @@ autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
  *
  *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
  */
-static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
+static void
+autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 {
   GschemToplevel *w_current;
 
@@ -1015,7 +1016,8 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
  *
  *  \param w_current Pointer to GschemToplevel data structure
  */
-static void autonumber_sortorder_create(GschemToplevel *w_current)
+static void
+autonumber_sortorder_create(GschemToplevel *w_current)
 {
   GtkListStore    *store;
   GtkTreeIter      iter;
