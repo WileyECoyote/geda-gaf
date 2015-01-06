@@ -997,6 +997,54 @@ COMMAND (do_quit) {
   x_window_close_all(w_current);
 }
 
+/** @brief i_cmd_do_export_symbol in i_command_File_Actions */
+COMMAND (do_export_symbol) {
+  BEGIN_W_COMMAND(do_export_symbol);
+
+  Object *o_current;
+
+  o_current = o_select_return_first_object(w_current);
+
+  if (o_current && (o_current->type == OBJ_COMPLEX)) {
+    if (!o_get_is_embedded(o_current)) {
+      const char *question = _("Symbol is not embeded, export anyway?");
+      int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
+      if (response == GTK_RESPONSE_YES) {
+        o_complex_export(w_current, o_current);
+      }
+    }
+    else {
+      o_complex_export(w_current, o_current);
+    }
+  }
+
+  EXIT_COMMAND(do_export_symbol);
+}
+
+/** @brief i_cmd_do_export_symbol in i_command_File_Actions */
+COMMAND (do_export_picture) {
+  BEGIN_W_COMMAND(do_export_picture);
+
+ Object *o_current;
+
+  o_current = o_select_return_first_object(w_current);
+
+  if (o_current && (o_current->type == OBJ_PICTURE)) {
+    if (!o_get_is_embedded(o_current)) {
+      const char *question = _("Picture is not embeded, export anyway?");
+      int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
+      if (response == GTK_RESPONSE_YES) {
+        o_picture_export(w_current, o_current);
+      }
+    }
+    else {
+      o_picture_export(w_current, o_current);
+    }
+  }
+
+  EXIT_COMMAND(do_export_picture);
+}
+
 /** @} endgroup i_command_File_Actions */
 
 /* ------------------ Edit ---------------- */

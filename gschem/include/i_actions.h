@@ -69,6 +69,9 @@
 #define FILE_CLOSE_ALL   file-close-all
 #define FILE_QUIT        file-quit
 
+#define EXPORT_SYMBOL    export-symbol
+#define EXPORT_PICTURE   export-picture
+
 #define EDIT_UNDO        edit-undo
 #define EDIT_REDO        edit-redo
 #define EDIT_CB_CUT      clipboard-cut

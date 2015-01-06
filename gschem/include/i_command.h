@@ -94,6 +94,10 @@ enum ActionFlag
         COMMAND ( do_close_all )
         COMMAND ( do_quit )
 
+/* File/Export */
+        COMMAND ( do_export_symbol )
+        COMMAND ( do_export_picture )
+
 /* Edit */
         COMMAND ( do_edit )
         COMMAND ( do_undo )
@@ -385,8 +389,10 @@ enum {
      COMMAND ( FILE_RUN_SCRIPT,     "run_script",       USE_MAIN_LOOP,          do_run_script)
      COMMAND ( FILE_CLOSE,          "close",            USE_WORKER_THREAD,      do_close)
      COMMAND ( FILE_CLOSE_ALL,      "close all",        USE_WORKER_THREAD,      do_close_all)
-
      COMMAND ( FILE_QUIT,           NULL,               USE_WORKER_THREAD,      do_quit)
+
+     COMMAND ( EXPORT_SYMBOL,       "export symbol",    USE_WORKER_THREAD,      do_export_symbol)
+     COMMAND ( EXPORT_PICTURE,      "export picture",   USE_WORKER_THREAD,      do_export_picture)
 
      COMMAND ( edit,                NULL,               USE_WORKER_THREAD,      do_edit)
      COMMAND ( EDIT_UNDO,           "undo",             USE_MAIN_LOOP,          do_undo)
