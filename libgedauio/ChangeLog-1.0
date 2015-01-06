@@ -1,3 +1,13 @@
+2014-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/dialogs/geda_image_chooser.c: Add function gtk_image_chooser_
+        set_preview_active. Re-order filter table to match enumeration.
+
+      * include/geda_file_chooser.h: Add variable chooser->preview_chechbox
+
+      * include/geda_uio_macros.h: Add macro geda_chooser_set_preview_
+        widget_active macro and geda_chooser_set_preview_widget_active.
+
 2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_uio_macros.h: New file for libgedauio related macros.

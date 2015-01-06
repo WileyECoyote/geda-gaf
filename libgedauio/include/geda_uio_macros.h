@@ -33,4 +33,15 @@
 #define  geda_chooser_set_do_overwrite_confirmation(c, v) \
          gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER(c), v)
 
+#define  geda_chooser_get_preview_widget_active(c) \
+         gtk_file_chooser_get_preview_widget_active (GTK_FILE_CHOOSER(c))
+
+/* Note must include geda_image_chooser.h for this to work, but not the other way
+ * around, GedaFileChooser can also just use  GtkFileChooser version */
+#define  geda_chooser_set_preview_widget_active(c, v) \
+         if (GEDA_IS_IMAGE_CHOOSER(c)) \
+           gtk_image_chooser_set_preview_active (GTK_WIDGET(c), v); \
+         else \
+           gtk_file_chooser_set_preview_widget_active (GTK_FILE_CHOOSER(c), v);
+
 #endif /* __GEDA_UIO_MACROS_H__ */

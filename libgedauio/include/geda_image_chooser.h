@@ -87,6 +87,7 @@ struct _GedaImageChooser {
   GtkWidget            *extra;
   GtkWidget            *slider;
   GtkWidget            *preview;
+  GtkWidget            *preview_chechbox;
   GtkWidget            *filter_button;
            int          filter_index;
   unsigned int          handler;
@@ -138,6 +139,8 @@ void          geda_image_chooser_set_current_name   (GtkWidget *chooser, const c
 void          geda_image_chooser_append_extra       (GtkWidget *chooser, GtkWidget *widget);
 GtkWidget    *geda_image_chooser_get_extra_widget   (GtkWidget *chooser);
 void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
+
+void          gtk_image_chooser_set_preview_active  (GtkWidget *chooser, bool state);
 
 G_END_DECLS
 

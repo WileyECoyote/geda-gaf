@@ -68,6 +68,7 @@ static GtkFileChooserDialogClass *geda_image_chooser_parent_class = NULL;
 static GtkEntry *chooser_entry;
 
 static GedaFileFilterDataDef filter_data[] = {
+    GEDA_FILTER_NONE,
     GEDA_FILTER_PNG,
     GEDA_FILTER_JPG,
     GEDA_FILTER_GIF,
@@ -78,7 +79,6 @@ static GedaFileFilterDataDef filter_data[] = {
     GEDA_FILTER_PNM,
     GEDA_FILTER_RAS,
     GEDA_FILTER_IMAGES,
-    GEDA_FILTER_NONE,
     GEDA_NO_MORE_FILTERS
 };
 
@@ -184,7 +184,7 @@ chooser_update_filter_index(GtkWidget *button, GedaImageChooser *chooser)
 
 /*! \brief Updates the visibility of the preview widget.
  *  \par Function Description
- *  This function updates the visibility based on teh state of the
+ *  This function updates the visibility based on the state of the
  *  checkbox toggle button object.
  *
  *  \param [in] checkbox  The GtkToggleButton widget
@@ -197,7 +197,6 @@ chooser_preview_enabler (GtkToggleButton *checkbox, void *user_data)
   GedaImageChooser *chooser = user_data;
 
   chooser->preview_enabled = gtk_toggle_button_get_active (checkbox);
-
   g_object_set (widget, "preview-widget-active", chooser->preview_enabled, NULL);
 }
 
@@ -761,6 +760,7 @@ geda_image_chooser_constructor (GedaType               type,
   chooser->preview = preview;
   chooser->preview_size = size;
   chooser->preview_enabled = enable;
+  chooser->preview_chechbox = chechbox;
 
   return obj;
 }
@@ -822,7 +822,7 @@ geda_image_chooser_get_property (GObject *object, unsigned int  property_id,
  */
 static void
 geda_image_chooser_set_property (GObject *object, unsigned int  property_id,
-                                const    GValue *value,  GParamSpec   *pspec)
+                                 const    GValue *value,  GParamSpec   *pspec)
 {
   GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(object);
 
@@ -1399,4 +1399,14 @@ geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
+void gtk_image_chooser_set_preview_active (GtkWidget *widget, bool state)
+{
+  if (GEDA_IS_IMAGE_CHOOSER(widget)) {
+    GedaImageChooser *chooser = (GedaImageChooser*)widget;
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(chooser->preview_chechbox), state);
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaImageChooser");
+  }
+}
 /** @} end group GedaImageChooser */
