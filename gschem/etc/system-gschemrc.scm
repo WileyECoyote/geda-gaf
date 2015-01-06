@@ -1757,6 +1757,7 @@
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
+        (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
 
         ("SEPARATOR"               #f                   #f            #f)
@@ -2034,8 +2035,10 @@
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 (add-menu (N_ "_Tools")      tools-menu-items)
 
+(load-from-path "gschem/gschem-export-menu.scm")
+
 ;; Add Paul Tan's tools utility menu
-(load-from-path "gschem-tools-menu.scm")
+(load-from-path "gschem/gschem-tools-menu.scm")
 
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)
