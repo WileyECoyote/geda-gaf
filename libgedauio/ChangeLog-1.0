@@ -1,5 +1,9 @@
 2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
+      * include/geda_uio_macros.h: New file for libgedauio related macros.
+
+2015-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/dialogs/geda_file_chooser.c: Add function geda_file_chooser
         _set_entry_text. Revise function geda_file_chooser_set_filename
         to set the entry text with geda_file_chooser_set_entry_text,

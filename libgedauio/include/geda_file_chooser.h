@@ -30,6 +30,8 @@
 #ifndef __GEDA_FILE_CHOOSER_H__
 #define __GEDA_FILE_CHOOSER_H__
 
+#include <geda_uio_macros.h>  /* For convenience of includer, not geda_file_chooser.c */
+
 #define FILE_CHOOSER_CONFIG_GROUP  "file-chooser"
 #define FILE_CHOOSER_CONFIG_FILTER "filter"
 

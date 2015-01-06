@@ -31,6 +31,8 @@
 #ifndef __GEDA_IMAGE_CHOOSER_H__
 #define __GEDA_IMAGE_CHOOSER_H__
 
+#include <geda_uio_macros.h> /* For convenience of includer, not geda_image_chooser.c */
+
 #define IMAGE_CHOOSER_CONFIG_GROUP   "image-chooser"
 #define IMAGE_CHOOSER_CONFIG_FILTER  "image-filter"
 #define IMAGE_CHOOSER_CONFIG_PREVIEW "preview-enable"
