@@ -33,7 +33,7 @@ libgedauio_HEADERS = \
 			geda_tree_view.h         \
 			geda_dialogs.h           \
 			geda_uio_functions.h     \
-			geda_uio_macros          \
+			geda_uio_macros.h        \
 			geda_widgets.h
 
 EXTRA_DIST = geda_bulb.xpm
