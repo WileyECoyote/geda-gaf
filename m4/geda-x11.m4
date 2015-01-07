@@ -34,7 +34,7 @@ AC_DEFUN([AX_CHECK_X11],
 
   AH_TEMPLATE([HAVE_XFT], [Whether FreeType is installed])
   if test x"$enable_Xft" = xyes -a x"$with_x" = xno; then
-      AC_MSG_ERROR([Xft support explicitly requested but X11 is not enabled, pkg-config --modversion x11])
+      AC_MSG_ERROR([Xft support explicitly requested but X11 is not enabled, pkg-config --modversion x11, or try --with-x --enable-Xft=yes])
   else
     if test "x$enable_Xft" = xyes; then
       if test "$OS_LINUX"  = yes; then
