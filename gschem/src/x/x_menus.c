@@ -55,7 +55,7 @@ const char* IDS_Popup_Actions[] = {
   ACTION(EDIT_SELECT),    ACTION(ADD_NET),       ACTION(ADD_ATTRIB),
   ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),       ACTION(ADD_TEXT),
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT), ACTION(VIEW_BOX),
-  ACTION(VIEW_EXTENTS),   ACTION(EDIT_ATTRIB),
+  ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG), ACTION(EDIT_ATTRIB),
   ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),      ACTION(EDIT_DELETE),
   ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),    ACTION(EDIT_MOVE),
   ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
@@ -101,6 +101,7 @@ static PopupEntry popup_items[] = {
   { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL},
   { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL},
   { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL},
+  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "gschem-zoom-mag", NULL},
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
@@ -355,7 +356,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* Check the first member */
     if (!scm_is_string(scm_item_name)) {
       if (!menus_broken) /* Issue message only for first occurence */
-        g_warning (_("Error reading menu item <%d>, Bad string\n"), i);
+        fprintf(stderr, _("Error reading menu item <%d>, Bad string\n"), i);
       else
         u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
       menus_broken = TRUE;
@@ -542,7 +543,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items = i_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
-      g_warning(_("Oops.. got a NULL menu name in %s()\n"), __func__);
+      fprintf(stderr, _("Oops.. got a NULL menu name in %s()\n"), __func__);
       return NULL;
     }
 
@@ -776,7 +777,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_show_all(menu_item);
   }
   else
-    g_warning("No Menu!");
+    fprintf(stderr, "No Menu!");
 
   ui_list = g_slist_append(ui_list, menu_data);
   w_current->ui_index = g_slist_length(ui_list) -1;
@@ -1026,7 +1027,7 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   if (!POPUP_MENU) {
-    g_warning(_("Popup menu widget doesn't exist!\n"));
+    fprintf(stderr, _("Popup menu widget doesn't exist!\n"));
   }
   else {
 
@@ -1119,7 +1120,7 @@ static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
       g_object_set(menu_item, "show-image", state, NULL);
     }
     else {
-      g_warning(_("<x_menu_toggle_icons> Ignoring invalid object, maybe a seperator\n"));
+      fprintf(stderr, _("<x_menu_toggle_icons> Ignoring invalid object, maybe a seperator\n"));
     }
     return FALSE;
   }
