@@ -337,7 +337,8 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
       break;
 
       default:
-        g_return_if_reached ();
+        BUG_IMSG("unhandled case <%d>", o_current->type);
+        return;
     }
 
     RenderAdaptor->object = o_current;
@@ -498,7 +499,7 @@ x_draw_initialize(GschemToplevel *w_current)
 extern "C" void
 x_draw_shutdown(void *user_data)
 {
-  v_log_message(_("Shutting down: Graphics RenderAdaptorer..."));
+  v_log_message(_("Shutting down: Graphics Renderer Adaptor..."));
   delete RenderAdaptor;
   v_log_message(_("done\n"));
 }

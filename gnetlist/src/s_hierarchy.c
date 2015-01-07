@@ -90,14 +90,13 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
                                         &err);
 
       if (child_page == NULL) {
-        g_warning (_("Failed to load subcircuit '%s': %s\n"),
-                   current_filename, err->message);
         fprintf(stderr, _("ERROR: Failed to load subcircuit '%s': %s\n"),
                 current_filename, err->message);
         g_error_free (err);
         exit (2);
 
-      } else {
+      }
+      else {
         page_control = child_page->page_control;
         s_page_goto (pr_current, child_page);
 

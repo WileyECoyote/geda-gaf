@@ -80,10 +80,11 @@ main_prog(void *closure, int argc, char *argv[])
                  pr_current->page_current->filename, &err)) {
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;
-      g_warning ("%s\n", err->message);
+      fprintf(stderr, "%s\n", err->message);
       g_error_free (err);
       exit(2);
-    } else {
+    }
+    else {
       g_message ("Loaded file [%s]\n", filename);
     }
 

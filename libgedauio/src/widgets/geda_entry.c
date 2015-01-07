@@ -769,6 +769,7 @@ static void geda_entry_init (GedaEntry *entry)
       entry->history_index = 0;
     }
   }
+
   g_signal_connect       (G_OBJECT (entry), "populate-popup",  G_CALLBACK (geda_entry_populate_popup), NULL);
 
   g_signal_connect       (G_OBJECT (entry), "insert_text",     G_CALLBACK (geda_entry_validate_input), NULL);
@@ -1120,7 +1121,7 @@ static bool geda_entry_tab_complete (GtkEntry *entry)
  * This functions add the text strings to the popup menu.
  */
 static void
-geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void    *data)
+geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 {
   GtkWidget *item;
   GtkWidget *submenu;

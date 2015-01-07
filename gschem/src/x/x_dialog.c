@@ -2781,7 +2781,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                               tab_array);
     }
     else {
-      g_warning ("%s: Impossible to set tab width.\n", __func__);
+      fprintf(stderr, "%s: Impossible to set tab width.\n", __func__);
     }
     pango_tab_array_free (tab_array);
     gtk_container_add(GTK_CONTAINER(scrolled_window), tientry);
@@ -3634,7 +3634,7 @@ static bool get_selected_pages (GtkTreeModel *model,
       *(GList**)data = g_list_append (*(GList**)data, page);
     }
     else {
-      g_warning("CloseConfirmationDialog found NULL value for page\n");
+      fprintf(stderr, "CloseConfirmationDialog: page value is NULL\n");
     }
   }
 

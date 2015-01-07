@@ -1,8 +1,14 @@
+2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+      * Replaced g_warning with fprintf and g_return_if_reached BUG_IMSG
+        and return or not, throughout the source tree, was just too painful,
+        I couldn't bare it any longer.
+
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_dialog_controls.h: Add macros SetGedaCombo and
         GEDA_NEW_LIST_ENTRY_COMBO in order to phase-in GedaComboBox
-        and GedaComboBoxText as replacements for GtkComboBox`s.
+        and GedaComboBoxText as replacements for GtkComboBox's.
 
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 

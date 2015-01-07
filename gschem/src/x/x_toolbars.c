@@ -438,7 +438,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     key_file = g_key_file_new();
 
     if (access(filename, W_OK) != 0) {
-      v_log_message("Creating new Toolbar configuration\n");
+      v_log_message(_("Creating new Toolbar configuration\n"));
       f_path_create (f_path_user_config (), S_IRWXU | S_IRWXG);
       g_file_set_contents (filename, "", -1, NULL);
     }
@@ -447,7 +447,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     return results;
   }
 
-  v_log_message("Saving Toolbar configuration...");
+  v_log_message(_("Saving Toolbar configuration..."));
   filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
 
@@ -464,8 +464,9 @@ x_toolbars_save_state(GschemToplevel *w_current)
     v_log_message("data saved to %s\n", filename);
     g_key_file_free(key_file);
   }
-  else
-    g_warning("Warning, could not save Toolbar configuration to %s\n", filename);
+  else {
+    u_log_message(_("Could not save Toolbar configuration to %s\n"), filename);
+  }
 
   GEDA_FREE(filename);
 }

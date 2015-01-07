@@ -250,7 +250,7 @@ item_start_element (GMarkupParseContext *context,
       else if (strcmp (names[i], "id") == 0)
         data->id = g_strdup (values[i]);
       else
-        g_warning ("Unknown custom combo box item attribute: %s", names[i]);
+        fprintf(stderr, "Unknown custom combo box attribute: %s", names[i]);
     }
   }
 }

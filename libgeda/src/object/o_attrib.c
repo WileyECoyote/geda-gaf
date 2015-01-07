@@ -117,17 +117,17 @@ o_attrib_attach (Object *attrib, Object *object, int set_color)
 
   /* is the object already part of the list ? */
   if (g_list_find (object->attribs, attrib)) {
-    g_warning (_("Attribute [%s] already attached\n"), attrib->text->string);
+    fprintf(stderr, _("Attribute [%s] already attached\n"), attrib->text->string);
     return;
   }
 
   if (attrib->type != OBJ_TEXT) {
-    g_warning (_("Attempt to attach non text object as an attribute!\n"));
+    fprintf(stderr, _("Attempt to attach non text object as an attribute!\n"));
     return;
   }
 
   if (attrib->attached_to != NULL && attrib->attached_to != object) {
-    g_warning (_("Attempt to attach attribute [%s] to more than one object\n"),
+   fprintf(stderr, _("Attempt to attach attribute [%s] to more than one object\n"),
                 attrib->text->string);
     return;
   }

@@ -463,36 +463,40 @@ main (int   argc,
   int   i;
   char *longp = NULL;
 
-  if (argc < 3)
-  {
-    g_warning ("Usage: %s filename prefix1 [prefix2 ...]\n", argv[0]);
+  if (argc < 3) {
+    fprintf(stderr, "Usage: %s filename prefix1 [prefix2 ...]\n", argv[0]);
     return 1;
   }
 
   file = fopen (argv[1], "r");
-  if (!file)
-  {
-    g_warning ("Cannot open %s\n", argv[1]);
+
+  if (!file) {
+
+    fprintf(stderr, "Cannot open %s\n", argv[1]);
     return 1;
+
   }
 
   cmp = geda_completion_new (NULL);
   list = g_list_alloc ();
-  while (fgets (buf, 1024, file))
-  {
+
+  while (fgets (buf, 1024, file)) {
+
     list->data = g_strdup (buf);
     geda_completion_add_items (cmp, list);
+
   }
   fclose (file);
 
-  for (i = 2; i < argc; ++i)
-  {
+  for (i = 2; i < argc; ++i) {
+
     printf ("COMPLETING: %s\n", argv[i]);
     result = geda_completion_complete (cmp, argv[i], &longp);
     g_list_foreach (result, (GFunc) printf, NULL);
     printf ("LONG MATCH: %s\n", longp);
     g_free (longp);
     longp = NULL;
+
   }
 
   g_list_foreach (cmp->items, (GFunc) g_free, NULL);

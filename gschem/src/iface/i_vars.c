@@ -185,7 +185,7 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
 
   tmpstr = eda_config_get_string (cfg, group, key, &err);
   if (err != NULL) {
-    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    fprintf(stderr, "Error retrieving user configuration: '%s'", err->message);
     g_clear_error (&err);
   }
 
@@ -193,7 +193,8 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
 }
 
 void
-i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key, GdkColor *var, int index)
+i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
+                          GdkColor  *var, int index)
 {
   GError   *err = NULL;
   GdkColor *color;
@@ -685,9 +686,9 @@ i_vars_atexit_save_user_config (void * user_data)
 
   eda_config_save (cfg, &err);
   if (err != NULL) {
-    g_warning (_("Failed to save user configuration to '%s': %s."),
-                  eda_config_get_filename (cfg),
-                  err->message);
+    fprintf (stderr, _("Failed to save user configuration to '%s': %s."),
+                        eda_config_get_filename (cfg),
+                        err->message);
     g_clear_error (&err);
   }
 }

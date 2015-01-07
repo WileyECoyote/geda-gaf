@@ -1354,10 +1354,9 @@ geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
   GedaComboBoxPrivate *priv = combo_box->priv;
 
   if (priv->has_entry && !GTK_IS_ENTRY (widget)) {
-
-      g_warning ("Attempting to add a widget with type %s to a GedaComboBox that needs an entry "
-		 "(need an instance of GedaEntry or of a subclass)",
-                 G_OBJECT_TYPE_NAME (widget));
+      fprintf(stderr, "Attempting to add a %s widget", G_OBJECT_TYPE_NAME (widget));
+      fprintf(stderr, " to a GedaComboBox that does not have an instance of");
+      fprintf(stderr, " GedaEntry or derivative subclass");
       return;
     }
 

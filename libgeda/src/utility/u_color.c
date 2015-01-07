@@ -184,12 +184,12 @@ char *u_color_rgba_encode (uint8 r, uint8 g, uint8 b, uint8 a)
  *  \par Function Description
  *
  */
-char *u_color_ps_string(int color)
+char *u_color_postscript_string(int color)
 {
   COLOR c;
 
   if (color >= MAX_COLORS) {
-    g_warning (_("Color index out of range"));
+    fprintf(stderr,_("Color index out of range"));
     return NULL;
   }
 

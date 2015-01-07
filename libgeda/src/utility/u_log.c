@@ -163,8 +163,8 @@ void u_log_init (const char *prefix)
   if (f_path_create (dir_path, 0777 /*octal*/ ) != 0) {
     /* It is okay to use the logging functions from here, because
      * there is already a default handler. */
-    g_warning ("Could not create log directory %s: %s\n",
-               dir_path, strerror (errno));
+    fprintf(stderr, _("Could not create log directory %s: %s\n"), dir_path,
+            strerror (errno));
   }
   else {
 
@@ -213,11 +213,12 @@ void u_log_init (const char *prefix)
       /* It's okay to use the logging functions from here, because
        * there's already a default handler. */
       if (errno == EEXIST) {
-        g_warning ("Could not create unique log filename in %s\n", dir_path);
+        fprintf(stderr, "Could not create unique log filename in %s\n",
+                dir_path);
       }
       else {
-        g_warning ("Could not create log file in %s: %s\n",
-        dir_path, strerror (errno));
+        fprintf(stderr, "Could not create log file in %s: %s\n", dir_path,
+                strerror (errno));
       }
     }
 

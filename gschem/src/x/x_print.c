@@ -1016,6 +1016,7 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
 
   double width, height;
   bool   is_color;
+  bool   result;
 
   page = w_current->toplevel->page_current;
 
@@ -1045,14 +1046,17 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
 
   status = cairo_surface_status (surface);
   if (status != CAIRO_STATUS_SUCCESS) {
-    g_warning (_("Failed to write PDF to '%s': %s\n"), filename,
-               cairo_status_to_string (status));
-    return FALSE;
+    const char *err_str = cairo_status_to_string (status);
+    fprintf(stderr, _("Failed to write PDF to '%s': %s\n"), filename, err_str);
+    result = FALSE;
+  }
+  else {
+    result = TRUE;
   }
 
   GEDA_UNREF (setup);
   cairo_surface_destroy (surface);
-  return TRUE;
+  return result;
 }
 
 /*! \brief Export a figure-style PDF file of the current page.
@@ -1066,13 +1070,14 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
  *
  * \returns TRUE if the operation was successful.
  */
-bool x_print_export_pdf (GschemToplevel *w_current,
-                         const char *filename)
+bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
 {
   cairo_surface_t *surface;
-  cairo_status_t cr_status;
-  cairo_t *cr;
-  int status, wx_min, wy_min, wx_max, wy_max;
+  cairo_status_t   cr_status;
+  cairo_t         *cr;
+
+  int    wx_min, wy_min, wx_max, wy_max;
+  int    result, status;
   double width, height;
 
   /* First, calculate a transformation matrix for the cairo
@@ -1103,14 +1108,16 @@ bool x_print_export_pdf (GschemToplevel *w_current,
 
   cr_status = cairo_surface_status (surface);
   if (cr_status != CAIRO_STATUS_SUCCESS) {
-    g_warning (_("Failed to write PDF to '%s': %s\n"),
-               filename,
-               cairo_status_to_string (cr_status));
-    return FALSE;
+    const char *err_str = cairo_status_to_string (cr_status);
+    fprintf(stderr, _("Failed to write PDF to '%s': %s\n"), filename, err_str);
+    result = FALSE;
+  }
+  else {
+    result = TRUE;
   }
 
   cairo_surface_destroy (surface);
-  return TRUE;
+  return result;
 }
 
 /*! \brief Show a print dialog and print current page if requested.

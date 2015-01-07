@@ -1218,7 +1218,6 @@ PyGeda_open_page( const char *filename )
         s_page_goto (toplevel, page);
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
-          g_warning ("%s\n", err->message);
           fprintf(stderr, "Error loading file:%s\n", err->message);
           g_error_free (err);
           s_page_delete (toplevel, page);

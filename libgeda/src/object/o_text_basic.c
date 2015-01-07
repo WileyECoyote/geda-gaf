@@ -604,7 +604,8 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
       case(SHOW_NAME):
         if (name[0] != '\0') {
           output_string = u_string_strdup(name);
-        } else {
+        }
+        else {
           fprintf(stderr,"Got an improper attribute: %s\n",
                   o_current->text->string);
           output_string = u_string_strdup("invalid");
@@ -624,10 +625,11 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
         break;
 
     default:
-      g_return_if_reached ();
+      BUG_IMSG("unhandled case <%d>", o_current->show_name_value);
 
     }
-  } else {
+  }
+  else {
     output_string = u_string_strdup(o_current->text->string);
   }
 

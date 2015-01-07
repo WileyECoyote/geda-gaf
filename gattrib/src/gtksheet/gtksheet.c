@@ -66,40 +66,40 @@ _gtksheet_signal_emit(GtkObject *object, unsigned int signal_id, ...)
 
   g_signal_query(signal_id, &query);
 
-  for (i = 0; i < query.n_params; i++)
-    {
-      gboolean static_scope = query.param_types[i]&~G_SIGNAL_TYPE_STATIC_SCOPE;
-      g_value_init(instance_and_params + i + 1, query.param_types[i]);
+  for (i = 0; i < query.n_params; i++) {
+
+    int static_scope = query.param_types[i]&~G_SIGNAL_TYPE_STATIC_SCOPE;
+    g_value_init(instance_and_params + i + 1, query.param_types[i]);
 
 
-      G_VALUE_COLLECT (instance_and_params + i + 1,
-                       var_args,
-                       static_scope ? G_VALUE_NOCOPY_CONTENTS : 0,
-                       &error);
+    G_VALUE_COLLECT (instance_and_params + i + 1,
+                     var_args,
+                     static_scope ? G_VALUE_NOCOPY_CONTENTS : 0,
+                     &error);
 
-      if (error)
-        {
-          g_warning ("%s: %s", G_STRLOC, error);
-          g_free (error);
-          while (i-- > 0)
-            g_value_unset (instance_and_params + i);
+    if (error) {
 
-          va_end (var_args);
-          return;
-        }
+      fprintf(stderr, "%s: %s", G_STRLOC, error);
+      g_free (error);
+      while (i-- > 0)
+        g_value_unset (instance_and_params + i);
 
-
+      va_end (var_args);
+      return;
     }
+  }
 
   g_value_init(&ret, query.return_type);
-  result = va_arg(var_args,gboolean *);
+  result = va_arg(var_args, int *);
   g_value_set_boolean(&ret, *result);
   g_signal_emitv(instance_and_params, signal_id, 0, &ret);
   *result = g_value_get_boolean(&ret);
   g_value_unset (&ret);
 
-  for (i = 0; i < query.n_params; i++)
+  for (i = 0; i < query.n_params; i++) {
     g_value_unset (instance_and_params + 1 + i);
+  }
+
   g_value_unset (instance_and_params + 0);
 
   va_end (var_args);

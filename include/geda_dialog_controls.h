@@ -110,8 +110,9 @@ typedef struct
 
 #define NOT_BELOW_ZERO(padding) padding < 0 ? 0 : padding
 
-/* Set Widget Values, see also geda_gui_funcs.h */
-#define SetGedaCombo( name, var)  geda_combo_box_set_active (GEDA_COMBO_BOX(name##Combo), var);
+/* Set Widget Values, see also geda_gui_macros.h */
+#define GetGedaCombo( name) geda_combo_box_get_active (GEDA_COMBO_BOX(name##Combo));
+#define SetGedaCombo( name, var) geda_combo_box_set_active (GEDA_COMBO_BOX(name##Combo), var);
 
 //const char *depth = gtk_entry_get_text( GTK_ENTRY(GTK_COMBO(textureDepthCombo)->entry) );
 #define SetCombo( name, var)  gtk_combo_box_set_active (GTK_COMBO_BOX(name##Combo), var);
@@ -482,6 +483,8 @@ typedef struct
         SET_WIDGET_SIZE ( name##Combo, width, 32) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name) \
+
+/* These macros use GedaComboBox and GedaComboBoxText, NOT derived from Gtk */
 
 #define GEDA_NEW_COMBO(parent, name, width, hpad)    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \

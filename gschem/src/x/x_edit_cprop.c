@@ -94,11 +94,10 @@ static WidgetStringData DialogStrings[] = {
  *
  *  \return boolean TRUE is a change was made, otherwise FALSE
  */
-static bool
-x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
-                                  Object         *object,
-                                  const char     *key,
-                                  const char     *new_value)
+static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
+                                              Object         *object,
+                                              const char     *key,
+                                              const char     *new_value)
 {
   bool result = FALSE;
 
@@ -189,10 +188,9 @@ x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
  *
  *  \sa x_dialog_ep_revise_symbol_attribs
  */
-static bool
-x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
-                                 property_data  *properties,
-                                 Object         *object)
+static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
+                                             property_data  *properties,
+                                             Object         *object)
 {
   const char *str_val;
   bool        result = 0;
@@ -246,9 +244,8 @@ x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
  *
  *  \sa x_dialog_ep_revise_elect_attribs
  */
-static bool
-x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
-                                   property_data  *properties)
+static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
+                                               property_data  *properties)
 {
   bool result = FALSE;
   const char *str_val;
@@ -296,8 +293,8 @@ x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
  *  \param [in] properties Pointer to a Component Dialog data structure
  *
  */
-static void
-x_dialog_edit_properties_type_ok(GtkWidget *dialog, property_data *properties)
+static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
+                                        property_data *properties)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(dialog)->w_current;
   bool changed              = FALSE;
@@ -433,10 +430,9 @@ x_dialog_edit_properties_type_ok(GtkWidget *dialog, property_data *properties)
  *  Either the is called to retrieve and process data in the dialog or
  *  the dialog session is terminated.
  */
-static void
-x_dialog_edit_properties_response(GtkWidget     *Dialog,
-                                  int            response,
-                                  property_data *properties)
+static void x_dialog_edit_properties_response(GtkWidget     *Dialog,
+                                              int            response,
+                                              property_data *properties)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
@@ -448,7 +444,7 @@ x_dialog_edit_properties_response(GtkWidget     *Dialog,
     GEDA_FREE (properties);
     break;
   case GTK_RESPONSE_ACCEPT:
-    x_dialog_edit_properties_type_ok(Dialog, properties);
+    x_dialog_edit_properties_ok(Dialog, properties);
     break;
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
@@ -458,8 +454,8 @@ x_dialog_edit_properties_response(GtkWidget     *Dialog,
 
 }
 
-static void
-x_dialog_ep_refdes_update_entry (GtkWidget *widget, GtkWidget *dialog)
+static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
+                                             GtkWidget *dialog)
 {
   property_data *properties;
 
@@ -523,10 +519,9 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
  *  \param properties pointer to property_data structure
  */
 
-static void
-x_dialog_edit_properties_component_change(GschemToplevel *w_current,
-                                          Object         *object,
-                                          property_data  *properties)
+static void x_dialog_ep_component_change(GschemToplevel *w_current,
+                                         Object         *object,
+                                         property_data  *properties)
 {
   GList     *attribs;
   GList     *all_butes;
@@ -696,14 +691,13 @@ x_dialog_edit_properties_component_change(GschemToplevel *w_current,
 /*! \brief Handle selection change event for x_dialog_edit_properties
  *  \par Function Description
  *  Called when the selection changes. The functions call
- *  x_dialog_edit_properties_component_change to update the data fields
+ *  x_dialog_ep_component_change to update the data fields
  *
  *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected Object.
  */
-static void
-x_dialog_edit_properties_update_selection (GschemToplevel *w_current,
-                                           Object         *object)
+static void x_dialog_ep_update_selection (GschemToplevel *w_current,
+                                          Object         *object)
 {
   GtkWidget     *dialog;
   property_data *properties;
@@ -714,12 +708,12 @@ x_dialog_edit_properties_update_selection (GschemToplevel *w_current,
   properties = g_object_get_data (G_OBJECT (dialog), IDS_PROP_EDIT);
 
   if (object != NULL && object->type == OBJ_COMPLEX) {
-    x_dialog_edit_properties_component_change(w_current, object, properties);
+    x_dialog_ep_component_change(w_current, object, properties);
     g_object_set_data(G_OBJECT(dialog), "object", object);
     gtk_widget_grab_focus(properties->symbol_entry);
   }
   else if (s_page_is_symbol_file(Current_Page)) {
-    x_dialog_edit_properties_component_change(w_current, NULL, properties);
+    x_dialog_ep_component_change(w_current, NULL, properties);
     g_object_set_data(G_OBJECT(dialog), "object", NULL);
     gtk_widget_grab_focus(properties->author_entry);
   }
@@ -733,8 +727,7 @@ x_dialog_edit_properties_update_selection (GschemToplevel *w_current,
  *  \param widget  pointer to GschemToplevel context
  *  \param type    integer type is the set of desginator to be loaded.
  */
-static void
-x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
+static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
 {
   GedaComboBoxText *combo = (GedaComboBoxText*) widget;
   const GedaRefDes *designators;
@@ -774,8 +767,7 @@ x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
  *       controls created with create_geda_switch to the opposite
  *       state, i.e. if ON use OFF image and if OFF use ON image.
  */
-static void
-radio_responder(GtkWidget *widget,  int control)
+static void radio_responder(GtkWidget *widget,  int control)
 {
   bool state = GET_SWITCH_STATE (widget);
 
@@ -800,27 +792,26 @@ radio_responder(GtkWidget *widget,  int control)
 
   return;
 }
-static void
-x_dialog_edit_properties_load_std_des(GtkWidget *widget, void *user_data)
+static void x_dialog_edit_properties_load_std_des(GtkWidget *widget,
+                                                  void *user_data)
 {
   property_data *properties = user_data;
   x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesStd);
 }
 
-static void
-x_dialog_edit_properties_load_spice_des(GtkWidget *widget, void *user_data)
+static void x_dialog_edit_properties_load_spice_des(GtkWidget *widget,
+                                                    void *user_data)
 {
   property_data *properties = user_data;
   x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesSpice);
 }
 
-static void
-x_dialog_edit_properties_load_ieee_des(GtkWidget *widget, void *user_data)
+static void x_dialog_edit_properties_load_ieee_des(GtkWidget *widget,
+                                                   void *user_data)
 {
   property_data *properties = user_data;
   x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesIeee);
 }
-
 
 /*! \brief Emit GTK_RESPONSE_CLOSE signal.
  *  \par Function Description
@@ -848,9 +839,8 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-static void
-x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
-                                      property_data *properties)
+static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
+                                                  property_data *properties)
 {
   GtkWidget *action_area;
   GtkWidget *alignment;
@@ -947,8 +937,8 @@ x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
  *
  *  \return GtkDialog pointer to a new Componenent Properties Dialog
  */
-static GtkWidget*
-x_dialog_edit_properties_constructor (GschemToplevel *w_current)
+static
+GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 {
   AtkObject *atk_obj;
   GtkWidget *Dialog;
@@ -1019,7 +1009,7 @@ x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   widget = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(widget), TRUE);
   gtk_table_attach_defaults(GTK_TABLE(table), widget, 1,2,0,1);
-  /* Tooltip not set here, see x_dialog_edit_properties_component_change */
+  /* Tooltip not set here, see x_dialog_ep_component_change */
   properties->symbol_entry = widget;
 
   /* Row 1 Col 4 */
@@ -1387,7 +1377,7 @@ x_dialog_edit_properties_constructor (GschemToplevel *w_current)
                     properties);
 
   g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
-                x_dialog_edit_properties_update_selection,
+                x_dialog_ep_update_selection,
                 NULL);
 
   g_object_set_data(G_OBJECT(Dialog), IDS_PROP_EDIT, properties);
@@ -1421,7 +1411,7 @@ void x_dialog_edit_properties(GschemToplevel *w_current, Object *o_current)
     gtk_window_present(GTK_WINDOW(Dialog));
   }
 
-  x_dialog_edit_properties_update_selection (w_current, o_current);
+  x_dialog_ep_update_selection (w_current, o_current);
 }
 
 /*************** End of Component Properties dialog box *****************/

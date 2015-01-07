@@ -76,31 +76,31 @@ main_prog(void *closure, int argc, char *argv[])
     char *filename;
     GError *err = NULL;
 
-    if (g_path_is_absolute(argv[i]))
-    {
+    if (g_path_is_absolute(argv[i])) {
       /* Path is already absolute so no need to do any concat of cwd */
       filename = u_string_strdup (argv[i]);
-    } else {
+    }
+    else {
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
     s_page_goto (pr_current,
                  s_page_new (pr_current, filename));
 
-    if (!f_open (pr_current,
-      pr_current->page_current,
-      pr_current->page_current->filename,
-      &err)) {
+    if (!f_open (pr_current, pr_current->page_current,
+                             pr_current->page_current->filename, &err))
+    {
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;
-    g_warning ("%s\n", err->message);
-    g_error_free (err);
-    exit(2);
-      } else {
-        g_message (_("Loaded file [%s]\n"), filename);
-      }
-      i++;
-      GEDA_FREE (filename);
+      fprintf(stderr, "%s\n", err->message);
+      g_error_free (err);
+      exit(2);
+    }
+    else {
+      g_message (_("Loaded file [%s]\n"), filename);
+    }
+    i++;
+    GEDA_FREE (filename);
   }
 
   if (argv[argv_index] == NULL) {
@@ -116,7 +116,9 @@ main_prog(void *closure, int argc, char *argv[])
   s_page_print_all(pr_current);
 #endif
 
-  if (!quiet_mode) u_log_message("\n");
+  if (!quiet_mode) {
+    u_log_message("\n");
+  }
 
   exit_status = s_check_all(pr_current);
 

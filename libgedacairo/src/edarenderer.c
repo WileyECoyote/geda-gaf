@@ -674,7 +674,8 @@ eda_renderer_default_draw (EdaRenderer *renderer, Object *object)
       case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
 
       default:
-        g_return_if_reached ();
+        BUG_IMSG("unhandled case <%d>", object->type);
+        return;
     }
 
     eda_renderer_set_color (renderer, object->color);

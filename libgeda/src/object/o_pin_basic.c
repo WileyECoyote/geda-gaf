@@ -585,8 +585,7 @@ void o_pin_set_node_type (Object *o_current, PIN_NODE node_type)
       o_current->pin->node_type = PIN_BUS_NODE;
       break;
     default:
-      g_warning ("%s: invalid pin node type! %i\n",__func__,
-                 node_type);
+      BUG_IMSG ("invalid pin node type! %i\n", node_type);
       o_current->pin->node_type = PIN_NET_NODE;
   }
 }
@@ -614,14 +613,13 @@ o_pin_get_attributes(Object *object,  const char **label, const char **number, i
   GList      *a_iter;
   Object     *a_current;
   const char *str;
-  int         length;
   char       *ptr;
-
   char       *pinnumber_str = NULL;
   char       *pinseq_str    = NULL;
   const char *pinlabel_str  = NULL;
   char       *pintype_str   = NULL;
   char       *mechtype_str  = NULL;
+  int         length;
 
   result = (object->type == OBJ_PIN) ? TRUE : FALSE;
 

@@ -319,7 +319,8 @@ static void propagate_key_file_error (GError *src, GError **dest)
             break;
           case G_KEY_FILE_ERROR_NOT_FOUND:
           default:
-            g_return_if_reached ();
+            BUG_IMSG("unhandled case <%d>", (*dest)->code);
+            return;
         }
 
         (*dest)->domain = EDA_CONFIG_ERROR;

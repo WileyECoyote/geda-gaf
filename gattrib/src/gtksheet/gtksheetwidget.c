@@ -753,7 +753,7 @@ gtk_sheet_set_child_property (GtkContainer    *container,
           sheet_child->row = row;
       else {
           /* Warn about invalid property value */
-          g_warning("Invalid row number.");
+          fprintf(stderr, "Invalid row number.");
           return;
       }
       break;
@@ -763,7 +763,7 @@ gtk_sheet_set_child_property (GtkContainer    *container,
           sheet_child->col = column;
       else {
           /* Warn about invalid property value */
-          g_warning("Invalid column number.");
+          fprintf(stderr, "Invalid column number.");
           return;
       }
       break;
@@ -7817,67 +7817,68 @@ gtk_sheet_entry_set_max_size(GtkSheet *sheet)
 static void
 create_sheet_entry(GtkSheet *sheet)
 {
-    GtkWidget *widget;
-    GtkWidget *parent;
-    GtkWidget *entry;
-    GtkStyle *style;
-    int found_entry = FALSE;
+  GtkWidget *widget;
+  GtkWidget *parent;
+  GtkWidget *entry;
+  GtkStyle *style;
+  int found_entry = FALSE;
 
-    widget = GTK_WIDGET(sheet);
+  widget = GTK_WIDGET(sheet);
 
-    style = gtk_style_copy(GTK_WIDGET(sheet)->style);
+  style = gtk_style_copy(GTK_WIDGET(sheet)->style);
 
-    if(sheet->sheet_entry){
-        /* avoids warnings */
-        g_object_ref(G_OBJECT(sheet->sheet_entry));
-        gtk_widget_unparent(sheet->sheet_entry);
-        gtk_widget_destroy(sheet->sheet_entry);
-    }
+  if(sheet->sheet_entry){
+    /* avoids warnings */
+    g_object_ref(G_OBJECT(sheet->sheet_entry));
+    gtk_widget_unparent(sheet->sheet_entry);
+    gtk_widget_destroy(sheet->sheet_entry);
+  }
 
-    if (sheet->entry_type) {
+  if (sheet->entry_type) {
 
-        if (!g_type_is_a (sheet->entry_type, GTK_TYPE_ENTRY)) {
-            parent = GTK_WIDGET(g_object_new(sheet->entry_type, NULL));
+    if (!g_type_is_a (sheet->entry_type, GTK_TYPE_ENTRY)) {
+      parent = GTK_WIDGET(g_object_new(sheet->entry_type, NULL));
 
-            sheet->sheet_entry = parent;
+      sheet->sheet_entry = parent;
 
-            entry = gtk_sheet_get_entry (sheet);
-            if(GTK_IS_ENTRY(entry)) found_entry = TRUE;
-
-        } else {
-            /*parent = GTK_WIDGET(gtk_type_new(sheet->entry_type));*/
-            parent = GTK_WIDGET(g_object_new(sheet->entry_type, NULL));
-            entry = parent;
-            found_entry = TRUE;
-        }
-
-        if (!found_entry) {
-            g_warning ("Entry type must be GtkEntry subclass, using default");
-            entry = gtk_item_entry_new();
-            sheet->sheet_entry = entry;
-        } else {
-            sheet->sheet_entry = parent;
-        }
+      entry = gtk_sheet_get_entry (sheet);
+      if(GTK_IS_ENTRY(entry)) found_entry = TRUE;
 
     } else {
-        entry = gtk_item_entry_new();
-        sheet->sheet_entry = entry;
+      /*parent = GTK_WIDGET(gtk_type_new(sheet->entry_type));*/
+      parent = GTK_WIDGET(g_object_new(sheet->entry_type, NULL));
+      entry = parent;
+      found_entry = TRUE;
     }
 
-    gtk_widget_size_request(sheet->sheet_entry, NULL);
-
-    if(GTK_WIDGET_REALIZED(sheet))
-    {
-        gtk_widget_set_parent_window (sheet->sheet_entry, sheet->sheet_window);
-        gtk_widget_set_parent(sheet->sheet_entry, GTK_WIDGET(sheet));
-        gtk_widget_realize(sheet->sheet_entry);
+    if (!found_entry) {
+      fprintf(stderr, "Entry type must be GtkEntry subclass, using default");
+      entry = gtk_item_entry_new();
+      sheet->sheet_entry = entry;
+    } else {
+      sheet->sheet_entry = parent;
     }
 
-    g_signal_connect_swapped(G_OBJECT(entry),"key_press_event",
+  }
+  else {
+    entry = gtk_item_entry_new();
+    sheet->sheet_entry = entry;
+  }
+
+  gtk_widget_size_request(sheet->sheet_entry, NULL);
+
+  if(GTK_WIDGET_REALIZED(sheet))
+  {
+    gtk_widget_set_parent_window (sheet->sheet_entry, sheet->sheet_window);
+    gtk_widget_set_parent(sheet->sheet_entry, GTK_WIDGET(sheet));
+    gtk_widget_realize(sheet->sheet_entry);
+  }
+
+  g_signal_connect_swapped(G_OBJECT(entry),"key_press_event",
                            (GCallback) gtk_sheet_entry_key_press,
                            G_OBJECT(sheet));
 
-    gtk_widget_show (sheet->sheet_entry);
+  gtk_widget_show (sheet->sheet_entry);
 }
 
 
@@ -10398,23 +10399,24 @@ gtk_sheet_move_child(GtkSheet *sheet, GtkWidget *widget, int x, int y)
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
   children = sheet->children;
-  while(children)
-    {
-       child = children->data;
 
-       if(child->widget == widget){
-         child->x = x;
-         child->y = y;
-         child->row = ROW_FROM_YPIXEL(sheet, y);
-         child->col = COLUMN_FROM_XPIXEL(sheet, x);
-         gtk_sheet_position_child(sheet, child);
-         return;
-       }
+  while(children) {
 
-       children = children->next;
+    child = children->data;
+
+    if(child->widget == widget){
+      child->x = x;
+      child->y = y;
+      child->row = ROW_FROM_YPIXEL(sheet, y);
+      child->col = COLUMN_FROM_XPIXEL(sheet, x);
+      gtk_sheet_position_child(sheet, child);
+      return;
     }
 
-  g_warning("Widget must be a GtkSheet child");
+    children = children->next;
+  }
+
+  fprintf(stderr, "Widget must be a GtkSheet child");
 
 }
 

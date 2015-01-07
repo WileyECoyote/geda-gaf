@@ -247,7 +247,7 @@ void     s_clib_init                   (void);
 
 /* s_color.c */
 void     u_color_init                  (void);
-char    *u_color_ps_string             (int color);
+char    *u_color_postscript_string     (int color);
 
 /* s_conn.c */
 CONN    *s_conn_return_new             (Object *other_object, int type, int x, int y, int whichone, int other_whichone);

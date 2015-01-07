@@ -1668,7 +1668,7 @@ pango_start_element (GMarkupParseContext *context,
   else if (strcmp (element_name, "attributes") == 0)
     ;
   else
-    g_warning ("Unsupported tag for GedaLabel: <%s>\n", element_name);
+    fprintf(stderr, "Unsupported tag for GedaLabel: <%s>\n", element_name);
 }
 
 static const GMarkupParser pango_parser =
@@ -1869,7 +1869,7 @@ geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
   }
 
   /* barf if there was nothing to activate */
-  g_warning ("Could not find a target for a mnemonic activation.");
+  fprintf(stderr, "Could not find a target for a mnemonic activation.");
   gtk_widget_error_bell (widget);
 
   return FALSE;
@@ -2666,8 +2666,8 @@ geda_label_set_markup_internal (GedaLabel    *label,
   char             *new_str;
 
   if (!parse_uri_markup (label, str, &new_str, &links, &error)) {
-    g_warning ("Failed to set text from markup due to error parsing markup: %s",
-               error->message);
+    fprintf(stderr, "Failed to set text from markup due to error");
+    fprintf(stderr, " parsing markup: %s\n", error->message);
     g_error_free (error);
     return;
   }
@@ -2709,8 +2709,8 @@ geda_label_set_markup_internal (GedaLabel    *label,
   if (!pango_parse_markup (new_str, -1, with_uline ? '_' : 0, &attrs,
                           &text, with_uline ? &accel : NULL, &error))
   {
-    g_warning ("Failed to set text from markup due to error parsing markup: %s",
-               error->message);
+    fprintf(stderr, "Failed to set text from markup due to error");
+    fprintf(stderr, "parsing markup: %s", error->message);
     g_free (new_str);
     g_error_free (error);
     return;
@@ -3844,7 +3844,7 @@ separate_uline_pattern (const char  *str, unsigned int *accel_key,
 
     c = g_utf8_get_char (src);
     if (c == (gunichar)-1) {
-      g_warning ("Invalid input string");
+      fprintf(stderr, "Invalid input string");
       g_free (*new_str);
       g_free (*pattern);
 
@@ -5928,7 +5928,7 @@ geda_label_activate_link (GedaLabel    *label,
   if (!gtk_show_uri (gtk_widget_get_screen (widget),
                      uri, gtk_get_current_event_time (), &error))
     {
-      g_warning ("Unable to show '%s': %s", uri, error->message);
+      fprintf(stderr, "Unable to show '%s': %s", uri, error->message);
       g_error_free (error);
     }
 

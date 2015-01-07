@@ -319,7 +319,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
   if (err != NULL) {
-    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    fprintf(stderr, "Error retrieving user configuration: '%s'", err->message);
     g_clear_error (&err);
     xy_error = TRUE;
   }
@@ -933,7 +933,6 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
         /* Try to load the file */
 
         if (!f_open (toplevel, page, (char *) filename, &err)) {
-          g_warning ("%s\n", err->message);
           fprintf(stderr, "Error loading file:%s\n", err->message);
           u_log_message( "Failed to load file:%s\n", err->message);
           g_error_free (err);

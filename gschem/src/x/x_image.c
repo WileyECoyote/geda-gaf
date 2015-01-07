@@ -534,7 +534,7 @@ static void x_image_enable_color (GtkWidget *widget,
       gtk_widget_set_has_tooltip (button, state);
     }
     else {
-      g_warning("<x_image_enable_color> Ignoring invalid object\n");
+      fprintf(stderr, "<x_image_enable_color> Ignoring invalid object\n");
     }
     return FALSE;
   }

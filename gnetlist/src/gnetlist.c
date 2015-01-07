@@ -229,9 +229,7 @@ void main_prog(void *closure, int argc, char *argv[])
     s_page_goto (pr_current, s_page_new (pr_current, filename));
 
     if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
-      g_warning ("%s\n", err->message);
-      fprintf (stderr, _("ERROR: Failed to load [%s]: %s\n"), filename,
-               err->message);
+      fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);
       exit(2);

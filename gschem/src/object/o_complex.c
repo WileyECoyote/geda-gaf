@@ -58,7 +58,7 @@ void o_complex_export(GschemToplevel *w_current, Object *o_current)
 
     if (!o_save (list, filename, &err)) {
 
-      pango_error_dialog("Failed to export symbol", err->message);
+      pango_error_dialog("Failed to export symbol:", err->message);
       g_clear_error (&err);
 
     }

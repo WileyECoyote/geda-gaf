@@ -74,7 +74,7 @@ int f_print_set_color(GedaToplevel *toplevel, FILE *fp, int color)
 
   if (!toplevel->print_color || (last_ps_color == color)) return 1;
 
-  string = u_color_ps_string(color);
+  string = u_color_postscript_string(color);
 
   if (string) {
     fprintf(fp, "%s setrgbcolor\n", string);
@@ -356,7 +356,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       default:
-        g_return_if_reached ();
+        BUG_IMSG("unhandled case <%d>", o_current->type);
         break;
     }
     iter = g_list_next (iter);
