@@ -111,8 +111,8 @@ void x_pagesel_update (GschemToplevel *w_current)
  *  \param [in] arg1       Response argument of page manager dialog.
  *  \param [in] user_data  Pointer to relevant GschemToplevel structure.
  */
-static void
-x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
+static
+void x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
 {
   GschemToplevel *w_current;
 
@@ -158,13 +158,13 @@ static void pagesel_popup_menu (Pagesel *pagesel,
  */
 static void
 pagesel_callback_selection_changed (GtkTreeSelection *selection,
-                                    void *user_data)
+                                    void             *user_data)
 {
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  Pagesel *pagesel = (Pagesel*)user_data;
+  GtkTreeModel   *model;
+  GtkTreeIter     iter;
+  Pagesel        *pagesel = (Pagesel*)user_data;
   GschemToplevel *w_current;
-  Page *page;
+  Page           *page;
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
     return;
@@ -188,19 +188,22 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
  *  over a treeview row. If the event was a "right-click" then a
  *  a the pagesel_popup_menu () function is called to present a menu.
  */
-static bool pagesel_callback_button_pressed (GtkWidget *widget,
+static bool pagesel_callback_button_pressed (GtkWidget      *widget,
                                              GdkEventButton *event,
-                                             void *user_data)
+                                             void           *user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
-  bool ret = FALSE;
+  bool ret_val;
 
   if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3) {
     pagesel_popup_menu (pagesel, event);
-    ret = TRUE;
+    ret_val = TRUE;
+  }
+  else {
+    ret_val = FALSE;
   }
 
-  return ret;
+  return ret_val;
 }
 
 /*! \todo Finish function documentation!!!
@@ -243,18 +246,20 @@ DEFINE_POPUP_CALLBACK (discard_page, page_discard)
  *  \param [in] pagesel  The Pagesel object.
  *  \param [in] event    Mouse click event info.
  */
-static void pagesel_popup_menu (Pagesel *pagesel,
-				GdkEventButton *event)
+static void pagesel_popup_menu (Pagesel        *pagesel,
+                                GdkEventButton *event)
 {
   GtkTreePath *path;
-  GtkWidget *menu;
+  GtkWidget   *menu;
+
   struct menuitem_t {
     char *label;
     GCallback callback;
   };
+
   struct menuitem_t menuitems[] = {
     { N_("New Page"),     G_CALLBACK (pagesel_callback_popup_new_page)     },
-    { N_("Open Page..."), G_CALLBACK (pagesel_callback_popup_open_page)    },
+    { N_("Goto Page..."), G_CALLBACK (pagesel_callback_popup_open_page)    },
     { "-",                NULL                                             },
     { N_("Save Page"),    G_CALLBACK (pagesel_callback_popup_save_page)    },
     { N_("Close Page"),   G_CALLBACK (pagesel_callback_popup_close_page)   },
@@ -297,7 +302,6 @@ static void pagesel_popup_menu (Pagesel *pagesel,
 
 }
 
-
 /*! \brief Handler for the notify::gschem-toplevel signal of GschemDialog
  *
  *  \par Function Description
@@ -317,7 +321,6 @@ static void notify_gschem_toplevel_cb (GObject    *gobject,
 
   pagesel_update( pagesel );
 }
-
 
 /*! \brief Function to retrieve pagesel's Type identifier.
  *
@@ -412,10 +415,11 @@ static void pagesel_init (Pagesel *pagesel)
                                        "model",      store,
                                        "rules-hint", TRUE,
                                        NULL));
-  g_signal_connect (treeview,
-                    "button-press-event",
+
+  g_signal_connect (treeview, "button-press-event",
                     G_CALLBACK (pagesel_callback_button_pressed),
                     pagesel);
+
   g_signal_connect (treeview,
                     "popup-menu",
                     G_CALLBACK (pagesel_callback_popup_menu),
@@ -512,7 +516,7 @@ static void pagesel_init (Pagesel *pagesel)
  *  \param [in] page    The Page object to update tree model from.
  */
 static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
-                      PageList *pages, Page *page)
+                      PageList     *pages, Page        *page)
 {
   GtkTreeIter iter;
   Page *p_current;
