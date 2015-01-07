@@ -1338,6 +1338,10 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
  *       The section should assign an icon.
  */
 
+/** \defgroup recent-file-internal Recent Files Internal Functions
+ *  @{ \par This Group contains core Routine for Sessions.
+*/
+
 /*! \brief Update Recent Files Menus
  *  \par Function Description
  *   Make all toplevels reflect changes to the recent files list.
@@ -1386,18 +1390,19 @@ static void x_menu_clear_recent_file_list(void *data)
    x_menu_update_recent_files();
 }
 
-static void x_menu_free_recent_file_data (void *data, GClosure *closure)
+static void x_menu_free_recent_file_data (void *data)
 {
   GEDA_FREE (data);
 }
 
+/* Note that menu item could NULL if called from popup */
 static void x_menu_recent_file_clicked (GtkMenuItem *menuitem, void *user_data)
 {
    FILE *fp;
    Page *page;
-   RecentMenuData *data = (RecentMenuData*) user_data;
+   RecentMenuData *data      = (RecentMenuData*) user_data;
    GschemToplevel *w_current = data->w_current;
-   char *filename = data->filename;
+   char *filename            = data->filename;
 
    /* Check if the file exists */
    fp = fopen((char*) filename, "r");
@@ -1414,6 +1419,118 @@ static void x_menu_recent_file_clicked (GtkMenuItem *menuitem, void *user_data)
    x_window_set_current_page(w_current, page);
 }
 
+/*! \brief Make RECENT_FILES_STORE contain an empty file list.
+ *  Create a new empty key, nothing is written to the file.
+ */
+static void x_menu_recent_files_create_empty(void)
+{
+   char *c;
+   const char * const tmp[] = { NULL };
+   GKeyFile *kf = g_key_file_new();
+   char *file   = g_build_filename(f_path_user_config (),
+                                   RECENT_FILES_STORE, NULL);
+
+   g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
+   c = g_key_file_to_data(kf, NULL, NULL);
+   g_key_file_free(kf);
+
+   g_file_set_contents(file, c, -1, NULL);
+   GEDA_FREE(c);
+   GEDA_FREE(file);
+}
+
+/** \defgroup recent-Popup-Menu Recent Files Popup Menu
+ *  @{
+ */
+
+/*! \brief Recent Files Menu Internal Populate Popup
+ *
+ *  \par Function Description
+ *  This functions call when the remove option is selected from
+ *  the Recent File Menu popup menu to remove the file whose
+ *  name is in the RecentMenuData record from recent history.
+ */
+static void x_menu_recent_file_remove (GtkMenuItem *menuitem, void *user_data)
+{
+  RecentMenuData *menu_data = user_data;
+  char *filename            = menu_data->filename;
+
+  /* Remove this entry from all menus */
+  recent_files = g_list_remove(recent_files, filename);
+  x_menu_update_recent_files();
+}
+
+/*! \brief Recent Files Menu Internal Show Popup
+ *
+ *  \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the recent files menu. The open option is provided for the
+ *  sake of completeness, the real objective here is to allow
+ *  users to remove individual recent menu items.
+ */
+static void x_recent_show_popup (GtkMenuItem    *menu_widget,
+                                 GdkEventButton *event,
+                                 void           *user_data)
+{
+  GtkWidget *menu;
+  GtkWidget *popup_item;
+
+  /* create the context menu */
+  menu = gtk_menu_new();
+
+  popup_item = gtk_menu_item_new_with_label (_("Open"));
+
+  g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
+                        (GCallback) x_menu_recent_file_clicked, user_data,
+                        (GClosureNotify) x_menu_free_recent_file_data,
+                         0);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  popup_item = gtk_menu_item_new_with_label (_("Remove"));
+
+  g_signal_connect_data (GTK_OBJECT(popup_item), "activate",
+                        (GCallback) x_menu_recent_file_remove, user_data,
+                        (GClosureNotify) x_menu_free_recent_file_data,
+                         0);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  gtk_widget_show_all (menu);
+
+  /* make menu a popup menu */
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                  (event != NULL) ? event->button : 0,
+                  gdk_event_get_time ((GdkEvent*)event));
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief Popup Callback for recent files menu item
+ *  \par Function Description
+ *
+ */
+static bool x_recent_menu_button_released (GtkMenuItem    *menu_item,
+                                           GdkEventButton *event,
+                                           void           *user_data)
+{
+  bool ret_val;
+
+  if (event->button == 3) {
+
+    x_recent_show_popup(menu_item, event, user_data);
+
+    ret_val = TRUE;
+  }
+  else {
+    ret_val = FALSE;
+  }
+
+  return ret_val;
+}
+
+/** @} endgroup recent-Popup-Menu*/
+/** @} endgroup recent-file-internal*/
+
 /*! \brief Attach a submenu with filenames to the 'Open Recent'
  *         menu item.
  *
@@ -1422,12 +1539,13 @@ static void x_menu_recent_file_clicked (GtkMenuItem *menuitem, void *user_data)
 void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 {
    unsigned long id;
-   GtkWidget *tmp;
+   GtkWidget *item;
    GtkWidget *recent_menu_item, *recent_submenu;
-   MenuData  *menu_data;
    GtkWidget *label;
+   GList     *iter;
+   MenuData  *menu_data;
 
-   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+   menu_data        = g_slist_nth_data (ui_list, w_current->ui_index);
    recent_menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
                                                         "_File/Open Recen_t");
    if(recent_menu_item == NULL)
@@ -1443,36 +1561,46 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    }
 
    recent_submenu = gtk_menu_new();
-   GList *p = recent_files;
-   while(p) {
-     RecentMenuData *menu_data = g_new0 (RecentMenuData, 1);
-     menu_data->filename  = p->data;
-     menu_data->w_current = w_current;
-     tmp = gtk_menu_item_new_with_label((char*) p->data);
-     g_signal_connect_data (GTK_OBJECT(tmp), "activate",
+   iter = recent_files;
+
+   while(iter) {
+
+     RecentMenuData *menu_data = GEDA_MEM_ALLOC0 (sizeof(RecentMenuData));
+     menu_data->filename       = iter->data;
+     menu_data->w_current      = w_current;
+
+     item = gtk_menu_item_new_with_label((char*) iter->data);
+
+     g_signal_connect_data (GTK_OBJECT(item), "activate",
                            (GCallback) x_menu_recent_file_clicked, menu_data,
                            (GClosureNotify) x_menu_free_recent_file_data,
                             0);
-     gtk_menu_append(GTK_MENU(recent_submenu), tmp);
-     p = g_list_next(p);
+
+     g_signal_connect (item, "button-release-event",
+                       G_CALLBACK (x_recent_menu_button_released),
+                       menu_data);
+
+     gtk_menu_append(GTK_MENU(recent_submenu), item);
+     iter = g_list_next(iter);
    }
 
    if(recent_files != NULL) {
       /* Append the 'Clear' menu item to the submenu */
       GtkWidget *alignment = gtk_alignment_new(0.5, 0, 0, 0);
 
-      tmp = gtk_menu_item_new();
+      item = gtk_menu_item_new();
 
       label = geda_label_new(_("Clear"));
       gtk_container_add(GTK_CONTAINER(alignment), label);
 
-      gtk_container_add(GTK_CONTAINER(tmp), alignment);
+      gtk_container_add(GTK_CONTAINER(item), alignment);
 
-      gtk_signal_connect_object(GTK_OBJECT(tmp), "activate",
+      gtk_signal_connect_object(GTK_OBJECT(item), "activate",
             GTK_SIGNAL_FUNC(x_menu_clear_recent_file_list), NULL);
 
+
       gtk_menu_append(GTK_MENU(recent_submenu), gtk_separator_menu_item_new());
-      gtk_menu_append(GTK_MENU(recent_submenu), tmp);
+      gtk_menu_append(GTK_MENU(recent_submenu), item);
    }
 
    gtk_widget_show_all(recent_submenu);
@@ -1529,26 +1657,6 @@ void x_menu_recent_files_add(const char *filename)
    }
 
    x_menu_update_recent_files();
-}
-
-/*! \brief Make RECENT_FILES_STORE contain an empty file list.
- *  Create a new empty key, nothing is written to the file.
- */
-static void x_menu_recent_files_create_empty(void)
-{
-   char *c;
-   const char * const tmp[] = { NULL };
-   GKeyFile *kf = g_key_file_new();
-   char *file   = g_build_filename(f_path_user_config (),
-                                   RECENT_FILES_STORE, NULL);
-
-   g_key_file_set_string_list(kf, "Recent files", "Files", tmp, 0);
-   c = g_key_file_to_data(kf, NULL, NULL);
-   g_key_file_free(kf);
-
-   g_file_set_contents(file, c, -1, NULL);
-   GEDA_FREE(c);
-   GEDA_FREE(file);
 }
 
 /*! \brief Save the list of recent files to RECENT_FILES_STORE.
@@ -1642,8 +1750,7 @@ void x_menu_recent_files_load()
  *
  *  \return  const char pointer to the filename string
  */
-const
-char *x_menu_recent_files_last(void)
+const char *x_menu_recent_files_last(void)
 {
 
    return (g_list_nth_data(recent_files, 0));

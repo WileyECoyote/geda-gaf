@@ -1,3 +1,12 @@
+2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Add popup menu routines for the recent files sub
+      mennu to allow user to remove indiviual recent files, some of these
+      can sometimes have long path names and this results in the recent
+      menu "fly-out" over too much of the interface. This atleast provides
+      user with a means to remove the culprit without having to clear all
+      of the recent files history.
+
 2015-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * object/o_picture.c: Add function o_picture_export
