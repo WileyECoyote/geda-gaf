@@ -197,7 +197,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([51:0:0])
+AX_LIBGEDA([50:10:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:2:0])
