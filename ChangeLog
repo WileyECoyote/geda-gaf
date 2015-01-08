@@ -1,5 +1,9 @@
 2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
+      * configure.ac: Bumped libgeda version 51.0
+
+2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
       * Replaced g_warning with fprintf and g_return_if_reached BUG_IMSG
         and return or not, throughout the source tree, was just too painful,
         I couldn't bare it any longer.
