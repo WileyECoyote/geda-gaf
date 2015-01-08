@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,12 +34,12 @@
  *  objects are unselected before they are copied and then reselected
  *  this is necessary to preserve the color info
  *
- *  \param [in] src_list       The GList to copy from.
- *  \param [in] dest_list      The GList to copy to.
- *  \return the dest_list GList with objects appended to it.
+ *  \param [in] src_list       The GList to copy from
+ *  \param [in] dest_list      The GList to copy to
+ *
+ *  \return dest_list GList with objects appended
  */
-GList*
-o_glist_copy_all (const GList *src_list, GList *dest_list)
+GList* o_glist_copy_all (const GList *src_list, GList *dest_list)
 {
   const GList *src;
   GList *dest;
@@ -127,17 +127,16 @@ o_glist_copy_all (const GList *src_list, GList *dest_list)
   return(dest);
 }
 
-
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Translates a glist of Objects
  *  \par Function Description
+ *  Calls o_translate_world for each glist data member
  */
 void o_glist_translate_world(int dx, int dy, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
 
-  while ( iter != NULL ) {
+  while (iter != NULL) {
     o_current = (Object *)iter->data;
     o_translate_world(dx, dy, o_current);
     iter = g_list_next (iter);
@@ -145,33 +144,32 @@ void o_glist_translate_world(int dx, int dy, const GList *list)
 }
 
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Rotate a glist of Objects
  *  \par Function Description
+ *  Calls o_rotate_world for each glist data member
  */
 void o_glist_rotate_world (int x, int y, int angle, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
 
-  while ( iter != NULL ) {
+  while (iter != NULL) {
     o_current = (Object *)iter->data;
     o_rotate_world (x, y, angle, o_current);
     iter = g_list_next (iter);
   }
 }
 
-
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Mirror a glist of Objects
  *  \par Function Description
+ *  Calls o_mirror_world for each glist data member
  */
 void o_glist_mirror_world (int x, int y, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
 
-  while ( iter != NULL ) {
+  while (iter != NULL) {
     o_current = (Object *)iter->data;
     o_mirror_world (x, y, o_current);
     iter = g_list_next (iter);
@@ -179,7 +177,6 @@ void o_glist_mirror_world (int x, int y, const GList *list)
 }
 
 /*! \brief Change the color of a list of objects
- *
  *  \par Function Description
  *  This function changes the the new color of a list of objects
  *

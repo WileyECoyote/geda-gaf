@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -357,17 +357,17 @@ o_circle_translate_world(int dx, int dy, Object *object)
  *
  *  \par Function Description
  *  The function #o_circle_rotate_world() rotate the circle described by
- *  <B>*object</B> around the (<B>world_centerx</B>,<B>world_centery</B>) point by
+ *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>) point by
  *  angle <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in]      world_centerx  Rotation center x coordinate in WORLD units.
- *  \param [in]      world_centery  Rotation center y coordinate in WORLD units.
+ *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
  *  \param [in]      angle          Rotation angle in degrees (See note below).
  *  \param [in,out]  object         Circle Object to rotate.
  */
 void
-o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx, newy;
   int x, y;
@@ -379,15 +379,15 @@ o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *o
   if((angle % 90) != 0) return;
 
   /*
-   * The center of rotation (<B>world_centerx</B>,<B>world_centery</B>) is
+   * The center of rotation (<B>center_wx</B>,<B>center_wy</B>) is
    * translated to the origin. The rotation of the center around the origin
    * is then performed. Finally, the rotated circle is translated back to
    * its previous location.
    */
 
   /* translate object to origin */
-  object->circle->center_x -= world_centerx;
-  object->circle->center_y -= world_centery;
+  object->circle->center_x -= center_wx;
+  object->circle->center_y -= center_wy;
 
   /* rotate the center of the circle around the origin */
   x = object->circle->center_x;
@@ -397,8 +397,8 @@ o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *o
   object->circle->center_y = newy;
 
   /* translate back in position */
-  object->circle->center_x += world_centerx;
-  object->circle->center_y += world_centery;
+  object->circle->center_x += center_wx;
+  object->circle->center_y += center_wy;
 
   object->w_bounds_valid_for = NULL;
 
@@ -413,24 +413,24 @@ o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *o
  *  The circle coordinates and its bounding are recalculated as well as the
  *  Object specific (line width, filling ...).
  *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
  *  \param [in,out] object         Circle Object to mirror.
  */
 void
-o_circle_mirror_world(int world_centerx, int world_centery, Object *object)
+o_circle_mirror_world(int center_wx, int center_wy, Object *object)
 {
   /* translate object to origin */
-  object->circle->center_x -= world_centerx;
-  object->circle->center_y -= world_centery;
+  object->circle->center_x -= center_wx;
+  object->circle->center_y -= center_wy;
 
   /* mirror the center of the circle */
   object->circle->center_x = -object->circle->center_x;
   object->circle->center_y =  object->circle->center_y;
 
   /* translate back in position */
-  object->circle->center_x += world_centerx;
-  object->circle->center_y += world_centery;
+  object->circle->center_x += center_wx;
+  object->circle->center_y += center_wy;
 
   /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;

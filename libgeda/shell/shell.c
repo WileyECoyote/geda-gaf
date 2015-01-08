@@ -63,7 +63,7 @@ version ()
 {
   printf(
     "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2014 gEDA developers\n"
+    "Copyright (C) 1998-2015 gEDA developers\n"
     "This is free software, and you are welcome to redistribute it under\n"
     "certain conditions. For details, see the file `COPYING', which is\n"
     "included in the gEDA distribution.\n"
@@ -175,7 +175,7 @@ shell_main (void *data, int argc, char **argv)
 
       printf (
         "gEDA " PACKAGE_GIT_VERSION "\n"
-        "Copyright (C) 1998-2014 gEDA developers\n"
+        "Copyright (C) 1998-2015 gEDA developers\n"
         "This is free software, and you are welcome to redistribute it under\n"
         "certain conditions. For details, see the file `COPYING', which is\n"
         "included in the gEDA distribution.\n"

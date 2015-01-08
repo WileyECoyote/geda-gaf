@@ -50,9 +50,10 @@
  * way:
  * -# It creates an object -- "attrib_graphic" -- and fills it in.
  * -# It gets the position info from o_current's refdes attrib and
- *    calls o_text_new() to add position info and name=value string
- *    to attrib_graphic.
- * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute Object )
+ *    calls s_object_attrib_add_attrib_in_object() to add position
+ *    info and name=value string to attrib_graphic.
+ * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute
+ *    Object )
  * \param toplevel GedaToplevel structure
  * \param o_current pointer to object to add attribute to
  * \param new_attrib_name name of the attribute to add
@@ -73,7 +74,8 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 
   /* One last sanity check, then add attrib */
   if (strlen(new_attrib_value) != 0) {
-    name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+    name_value_pair = u_string_concat(new_attrib_name, "=",
+                                      new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           visibility,
@@ -110,8 +112,8 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
  *
  * -# creates an object -- "attrib_graphic" -- and fills it in.
  * -# gets the position info from o_current's refdes attrib and
- *    calls o_text_new() to add position info and name=value string to
- *    attrib_graphic.
+ *    calls s_object_attrib_add_attrib_in_object() to add position
+ *    info and name=value string to attrib_graphic.
  * -# calls o_attrib_add() to wrap attrib_graphic with (attribute Object )
  *
  * \param toplevel         GedaToplevel structure
@@ -131,7 +133,8 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 
   /* One last sanity check */
   if (strlen(new_attrib_value) != 0) {
-    name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+    name_value_pair = u_string_concat(new_attrib_name, "=",
+                                      new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           INVISIBLE,
@@ -350,8 +353,9 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   new_obj = o_text_new (color, world_x, world_y,
                         LOWER_LEFT, 0, /* zero is angle */
-                        text_string, DEFAULT_TEXT_SIZE,
-                        visibility, show_name_value);
+                        DEFAULT_TEXT_SIZE,
+                        visibility, show_name_value,text_string);
+
   s_page_append_object(toplevel->page_current, new_obj);
 
   /* now toplevel->page_current->object_tail contains new text item */

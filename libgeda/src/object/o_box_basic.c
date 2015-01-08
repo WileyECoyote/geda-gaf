@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,8 +53,7 @@
  *
  *  \return The new Object
  */
-Object *
-o_box_new(int color, int x1, int y1, int x2, int y2)
+Object *o_box_new(int color, int x1, int y1, int x2, int y2)
 {
   Box    *box;
   Object *new_obj;
@@ -130,8 +129,7 @@ Object *o_box_copy(Object *o_current)
  * \param [in]     x2       x coordinate of second corner of box.
  * \param [in]     y2       y coordinate of second corner of box,
  */
-void
-o_box_modify_all (Object *object, int x1, int y1, int x2, int y2)
+void o_box_modify_all (Object *object, int x1, int y1, int x2, int y2)
 {
   object->box->lower_x = (x1 > x2) ? x1 : x2;
   object->box->lower_y = (y1 > y2) ? y2 : y1;
@@ -168,8 +166,7 @@ o_box_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *    <DT>*</DT><DD>BOX_LOWER_RIGHT
  *  </DL>
  */
-void
-o_box_modify(Object *object, int x, int y, int whichone)
+void o_box_modify(Object *object, int x, int y, int whichone)
 {
   int tmp;
 
@@ -236,8 +233,8 @@ o_box_modify(Object *object, int x, int y, int whichone)
  *
  *  \return The Box Object that was created, or NULL on error.
  */
-Object*
-o_box_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+Object* o_box_read (const char buf[], unsigned int release_ver,
+                    unsigned int fileformat_ver, GError **err)
 {
   Object *new_obj;
   char type;
@@ -443,17 +440,17 @@ void o_box_translate_world(int dx, int dy, Object *object)
 /*! \brief Rotate Box Object using WORLD coordinates.
  *  \par Function Description
  *  The function #o_box_rotate_world() rotate the box described by
- *  <B>*object</B> around the (<B>world_centerx</B>, <B>world_centery</B>) point by
+ *  <B>*object</B> around the (<B>center_wx</B>, <B>center_wy</B>) point by
  *  <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in]      world_centerx  Rotation center x coordinate in WORLD units.
- *  \param [in]      world_centery  Rotation center y coordinate in WORLD units.
+ *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
  *  \param [in]      angle          Rotation angle in degrees (See note below).
  *  \param [in,out]  object         Box Object to rotate.
  *
  */
-void o_box_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+void o_box_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -468,16 +465,16 @@ void o_box_rotate_world(int world_centerx, int world_centery, int angle, Object 
   if((angle % 90) != 0) return;
 
   /*! \note
-   *  The center of rotation (<B>world_centerx</B>, <B>world_centery</B>) is
+   *  The center of rotation (<B>center_wx</B>, <B>center_wy</B>) is
    *  translated to the origin. The rotation of the upper left and lower right
    *  corner are then performed. Finally, the rotated box is translated back
    *  to its previous location.
    */
   /* translate object to origin */
-  object->box->upper_x -= world_centerx;
-  object->box->upper_y -= world_centery;
-  object->box->lower_x -= world_centerx;
-  object->box->lower_y -= world_centery;
+  object->box->upper_x -= center_wx;
+  object->box->upper_y -= center_wy;
+  object->box->lower_x -= center_wx;
+  object->box->lower_y -= center_wy;
 
   /* rotate the upper left corner of the box */
   m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
@@ -494,10 +491,10 @@ void o_box_rotate_world(int world_centerx, int world_centery, int angle, Object 
   object->box->lower_y = min(newy1,newy2);
 
   /* translate object back to normal position */
-  object->box->upper_x += world_centerx;
-  object->box->upper_y += world_centery;
-  object->box->lower_x += world_centerx;
-  object->box->lower_y += world_centery;
+  object->box->upper_x += center_wx;
+  object->box->upper_y += center_wy;
+  object->box->lower_x += center_wx;
+  object->box->lower_y += center_wy;
 
   /* recalc boundings and world coords */
   object->w_bounds_valid_for = NULL;
@@ -507,26 +504,25 @@ void o_box_rotate_world(int world_centerx, int world_centery, int angle, Object 
  *
  *  \par Function Description
  *  This function mirrors the box from the point
- *  (<B>world_centerx</B>,<B>world_centery</B>) in world unit.
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
  *
  *  The box is first translated to the origin, then mirrored and finally
  *  translated back at its previous position.
  *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
  *  \param [in,out] object         Box Object to mirror.
  */
-void
-o_box_mirror_world(int world_centerx, int world_centery, Object *object)
+void o_box_mirror_world(int center_wx, int center_wy, Object *object)
 {
   int newx1, newy1;
   int newx2, newy2;
 
   /* translate object to origin */
-  object->box->upper_x -= world_centerx;
-  object->box->upper_y -= world_centery;
-  object->box->lower_x -= world_centerx;
-  object->box->lower_y -= world_centery;
+  object->box->upper_x -= center_wx;
+  object->box->upper_y -= center_wy;
+  object->box->lower_x -= center_wx;
+  object->box->lower_y -= center_wy;
 
   /* mirror the corners */
   newx1 = -object->box->upper_x;
@@ -541,10 +537,10 @@ o_box_mirror_world(int world_centerx, int world_centery, Object *object)
   object->box->lower_y = min(newy1,newy2);
 
   /* translate back in position */
-  object->box->upper_x += world_centerx;
-  object->box->upper_y += world_centery;
-  object->box->lower_x += world_centerx;
-  object->box->lower_y += world_centery;
+  object->box->upper_x += center_wx;
+  object->box->upper_y += center_wy;
+  object->box->lower_x += center_wx;
+  object->box->lower_y += center_wy;
 
   /* recalc boundings and world coords */
   object->w_bounds_valid_for = NULL;
@@ -559,8 +555,7 @@ o_box_mirror_world(int world_centerx, int world_centery, Object *object)
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-o_box_get_position (int *x, int *y, Object *object)
+bool o_box_get_position (int *x, int *y, Object *object)
 {
   *x = min(object->box->lower_x, object->box->upper_x);
   *y = min(object->box->lower_y, object->box->upper_y);
@@ -779,13 +774,12 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *  \param [in] origin_x    Page x coordinate to place Box Object.
  *  \param [in] origin_y    Page y coordinate to place Box Object.
  */
-void
-o_box_print_solid(GedaToplevel *toplevel, FILE *fp,
-                  int x, int y,
-                  int width, int height,
-                  int color,
-                  int line_width, int capstyle, int length, int space,
-                  int origin_x, int origin_y)
+void o_box_print_solid(GedaToplevel *toplevel, FILE *fp,
+                       int x, int y,
+                       int width, int height,
+                       int color,
+                       int line_width, int capstyle, int length, int space,
+                       int origin_x, int origin_y)
 {
   int x1, y1;
 
@@ -1261,8 +1255,7 @@ void o_box_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double
-o_box_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_box_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   int solid;
 

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -359,9 +359,9 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
     text = u_string_strdup("unknown=empty");
   }
   new_obj = o_text_new(color, world_x, world_y,
-                       align, angle, text, /* zero is angle */
-                       DEFAULT_ATTRIBUTE_SIZE,    /* default text size */
-                       visibility, show_name_value);
+                       align, angle,               /* zero is angle */
+                       DEFAULT_ATTRIBUTE_SIZE,     /* default text size */
+                       visibility, show_name_value, text);
 
   /* attach the attribute to the object (if parent is not NULL) */
   if (parent) {

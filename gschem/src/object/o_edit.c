@@ -100,7 +100,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
       str = o_text_get_string (o_current);
       if (o_attrib_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
-        o_text_num_lines (str) == 1) {
+        o_get_num_text_lines (str) == 1) {
         x_attrib_edit_dialog(w_current, o_current);
       }
       else {

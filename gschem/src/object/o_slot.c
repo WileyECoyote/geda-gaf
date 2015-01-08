@@ -133,7 +133,8 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
     new_obj = o_text_new (ATTRIBUTE_COLOR,
                           object->complex->x, object->complex->y,
                           LOWER_LEFT, 0, /* zero is angle */
-                          string, 10, INVISIBLE, SHOW_NAME_VALUE);
+                          10, INVISIBLE, SHOW_NAME_VALUE, string);
+
     s_page_append_object (toplevel->page_current, new_obj);
 
     /* manually attach attribute */

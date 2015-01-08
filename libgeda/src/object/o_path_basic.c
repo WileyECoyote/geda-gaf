@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -288,7 +288,7 @@ char *o_path_save (Object *object)
 
   path_string = s_path_string_from_path (object->path);
 
-  num_lines = o_text_num_lines (path_string);
+  num_lines = o_get_num_text_lines (path_string);
   buf = u_string_sprintf ("%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n%s",
                            object->type, object->color, line_width, line_end,
                            line_type, line_length, line_space, fill_type,
@@ -395,17 +395,17 @@ void o_path_translate_world (int dx, int dy, Object *object)
 /*! \brief Rotate Line Object using WORLD coordinates.
  *  \par Function Description
  *  This function rotates the path described by
- *  <B>*object</B> around the (<B>world_centerx</B>,<B>world_centery</B>)
+ *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in]      world_centerx  Rotation center x coordinate in WORLD units.
- *  \param [in]      world_centery  Rotation center y coordinate in WORLD units.
+ *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
  *  \param [in]      angle          Rotation angle in degrees (See note below).
  *  \param [in,out]  object         Line Object to rotate.
  */
 void
-o_path_rotate_world (int world_centerx, int world_centery, int angle, Object *object)
+o_path_rotate_world (int center_wx, int center_wy, int angle, Object *object)
 {
   PATH_SECTION *section;
   int i;
@@ -416,20 +416,20 @@ o_path_rotate_world (int world_centerx, int world_centery, int angle, Object *ob
     switch (section->code) {
     case PATH_CURVETO:
       /* Two control point grips */
-      section->x1 -= world_centerx; section->y1 -= world_centery;
-      section->x2 -= world_centerx; section->y2 -= world_centery;
+      section->x1 -= center_wx; section->y1 -= center_wy;
+      section->x2 -= center_wx; section->y2 -= center_wy;
       m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
       m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
-      section->x1 += world_centerx; section->y1 += world_centery;
-      section->x2 += world_centerx; section->y2 += world_centery;
+      section->x1 += center_wx; section->y1 += center_wy;
+      section->x2 += center_wx; section->y2 += center_wy;
       /* Fall through */
     case PATH_MOVETO:
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
       /* Destination point grip */
-      section->x3 -= world_centerx; section->y3 -= world_centery;
+      section->x3 -= center_wx; section->y3 -= center_wy;
       m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
-      section->x3 += world_centerx; section->y3 += world_centery;
+      section->x3 += center_wx; section->y3 += center_wy;
       break;
     case PATH_END:
       break;
@@ -442,14 +442,14 @@ o_path_rotate_world (int world_centerx, int world_centery, int angle, Object *ob
 /*! \brief Mirror a path using WORLD coordinates.
  *  \par Function Description
  *  This function mirrors the path from the point
- *  (<B>world_centerx</B>,<B>world_centery</B>) in world unit.
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
  *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
  *  \param [in,out] object         Line Object to mirror.
  */
 void
-o_path_mirror_world (int world_centerx, int world_centery, Object *object)
+o_path_mirror_world (int center_wx, int center_wy, Object *object)
 {
   PATH_SECTION *section;
   int i;
@@ -460,14 +460,14 @@ o_path_mirror_world (int world_centerx, int world_centery, Object *object)
     switch (section->code) {
     case PATH_CURVETO:
       /* Two control point grips */
-      section->x1 = 2 * world_centerx - section->x1;
-      section->x2 = 2 * world_centerx - section->x2;
+      section->x1 = 2 * center_wx - section->x1;
+      section->x2 = 2 * center_wx - section->x2;
       /* Fall through */
     case PATH_MOVETO:
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
       /* Destination point grip */
-      section->x3 = 2 * world_centerx - section->x3;
+      section->x3 = 2 * center_wx - section->x3;
       break;
     case PATH_END:
       break;

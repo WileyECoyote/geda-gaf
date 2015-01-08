@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -288,6 +288,42 @@ bool o_get_line_options(Object *object,
     result = FALSE;
   }
   return result;
+}
+
+/*! \brief count the lines of a text string
+ *
+ *  \par Function Description
+ *  This function just counts the number of lines that are
+ *  in the \a string.
+
+ *  \param [in] string  text string to count the lines
+ *
+ *  \return the number of lines
+ */
+int o_get_num_text_lines(const char *string)
+{
+  int line_count = 0;
+  const char *aux;
+  uint32_t current_char;
+
+  if (string == NULL) {
+    return 0;
+  }
+
+  /* if it's not null, then we have at least one line */
+  line_count++;
+
+  /* Count how many \n are in the string */
+  aux = string;
+
+  while (aux && ((uint32_t) (*aux) != 0) ) {
+    current_char = g_utf8_get_char_validated(aux, -1);
+    if (current_char == '\n')
+      line_count++;
+    aux = g_utf8_find_next_char(aux, NULL);
+  }
+
+  return (line_count);
 }
 
 /*! \brief Get pointer to an Object's Attribute Value given the name

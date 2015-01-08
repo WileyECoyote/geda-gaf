@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,6 +75,7 @@
  *
  *  The following factor was empirically determined to approximately match the
  *  cap-height between the legacy gschem font, and fonts rendered using pango.
+ *  TODO Should this be dynamically determined based upon DPI of host
  */
 #define GEDA_FONT_FACTOR 1.3
 
@@ -159,41 +160,6 @@ bool o_text_get_position (int *x, int *y, Object *object)
   return TRUE;
 }
 
-/*! \brief count the lines of a text string
- *
- *  \par Function Description
- *  This function just counts the number of lines that are
- *  in the \a string.
-
- *  \param [in] string  text string to count the lines
- *
- *  \return the number of lines
- */
-int o_text_num_lines(const char *string)
-{
-  int line_count = 0;
-  const char *aux;
-  gunichar current_char;
-
-  if (string == NULL) {
-    return 0;
-  }
-
-  /* if it's not null, then we have at least one line */
-  line_count++;
-  /* Count how many \n are in the string */
-  aux = string;
-  while (aux && ((gunichar) (*aux) != 0) ) {
-    current_char = g_utf8_get_char_validated(aux, -1);
-    if (current_char == '\n')
-      line_count++;
-    aux = g_utf8_find_next_char(aux, NULL);
-  }
-
-  return (line_count);
-}
-
-
 /*! \brief Creates a text Object and the graphical objects representing it
  *  \par Function Description
  *  Create an Object of type OBJ_TEXT.
@@ -212,9 +178,9 @@ int o_text_num_lines(const char *string)
  *  \note
  *  Caller is responsible for string; this function allocates its own copy.
  */
-Object*
-o_text_new(int color, int x, int y, int alignment, int angle, const char *string,
-           int size, int visibility, int show_name_value)
+Object* o_text_new(int color, int x,    int y,          int alignment,
+                   int angle, int size, int visibility, int show_name_value,
+                   const char *string)
 {
   Object *new_obj=NULL;
   Text   *text;
@@ -381,9 +347,8 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
     }
   }
 
-  new_obj = o_text_new(color, x, y,
-                       alignment, angle, string,
-                       size, visibility, show_name_value);
+  new_obj = o_text_new(color, x, y,  alignment, angle, size,
+                       visibility, show_name_value, string);
   GEDA_FREE(string);
 
   return new_obj;
@@ -414,7 +379,7 @@ char *o_text_save(Object *object)
   size = object->text->size;
 
   /* string can have multiple lines (seperated by \n's) */
-  num_lines = o_text_num_lines(string);
+  num_lines = o_get_num_text_lines(string);
 
   /* Don't save invisible == 2 as visible */
   visibility = (object->visibility == VISIBLE) ? VISIBLE : INVISIBLE;
@@ -488,10 +453,10 @@ Object *o_text_copy(Object *o_current)
                         o_current->text->x, o_current->text->y,
                         o_current->text->alignment,
                         o_current->text->angle,
-                        o_current->text->string,
                         o_current->text->size,
                         o_get_is_visible (o_current) ? VISIBLE : INVISIBLE,
-                        o_current->show_name_value);
+                        o_current->show_name_value,
+                        o_current->text->string);
 
   text_obj = GEDA_TEXT(o_current);
 
@@ -730,16 +695,15 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  *  \par Function Description
  *  This function rotates a text \a object around the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the rotation center
- *  \param [in] world_centery y-coord of the rotation center
+ *  \param [in] center_wx x-coord of the rotation center
+ *  \param [in] center_wy y-coord of the rotation center
  *  \param [in] angle         The angle to rotate the text object
  *  \param [in] object        The text object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void
-o_text_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+void o_text_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int x, y;
   int newx, newy;
@@ -748,13 +712,13 @@ o_text_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
 
     object->text->angle = ( object->text->angle + angle ) % 360;
 
-    x = object->text->x + (-world_centerx);
-    y = object->text->y + (-world_centery);
+    x = object->text->x + (-center_wx);
+    y = object->text->y + (-center_wy);
 
     m_rotate_point_90(x, y, angle, &newx, &newy);
 
-    x = newx + (world_centerx);
-    y = newy + (world_centery);
+    x = newx + (center_wx);
+    y = newy + (center_wy);
 
     o_text_translate_world(x-object->text->x, y-object->text->y, object);
 
@@ -769,14 +733,13 @@ o_text_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
  *
  *  \par Function Description
  *  This function mirrors a text \a object horizontaly at the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the mirror position
- *  \param [in] world_centery y-coord of the mirror position
+ *  \param [in] center_wx x-coord of the mirror position
+ *  \param [in] center_wy y-coord of the mirror position
  *  \param [in] object        The text object
  */
-void
-o_text_mirror_world(int world_centerx, int world_centery, Object *object)
+void o_text_mirror_world(int center_wx, int center_wy, Object *object)
 {
   int origx, origy;
   int x, y;
@@ -784,8 +747,8 @@ o_text_mirror_world(int world_centerx, int world_centery, Object *object)
   origx = object->text->x;
   origy = object->text->y;
 
-  x = origx + (-world_centerx);
-  y = origy + (-world_centery);
+  x = origx + (-center_wx);
+  y = origy + (-center_wy);
 
   if ((object->text->angle%180)==0) {
     switch(object->text->alignment) {
@@ -848,8 +811,8 @@ o_text_mirror_world(int world_centerx, int world_centery, Object *object)
     }
   }
 
-  object->text->x = -x + (world_centerx);
-  object->text->y =  y + (world_centery);
+  object->text->x = -x + (center_wx);
+  object->text->y =  y + (center_wy);
 
   o_text_recreate(object);
 }
@@ -951,8 +914,7 @@ void o_text_set_rendered_bounds_func (Object *object,
  *  \param [in]  object      The text object.
  *  \param [in]  new_string  The new value.
  */
-void
-o_text_set_string (Object *object, const char *new_string)
+void o_text_set_string (Object *object, const char *new_string)
 {
   g_return_if_fail(GEDA_IS_TEXT(object));
   g_return_if_fail (new_string != NULL);

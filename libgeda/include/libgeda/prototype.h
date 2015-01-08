@@ -227,6 +227,7 @@ G_BEGIN_DECLS
          bool    o_get_is_visible                (Object *object);
      LINE_END    o_get_line_end                  (int capstyle);
          bool    o_get_line_options              (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+          int    o_get_num_text_lines            (const char *string);
    const char   *o_get_object_attrib_value       (Object *object, const char *name);
         GList   *o_get_objects_by_type           (GList *object_list, int type);
          Page   *o_get_page                      (Object *obj);
@@ -368,9 +369,8 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
          void    o_style_set_object              (GedaToplevel *toplevel, Object *o_current);
 
 /* o_text_basic.c */
-          int    o_text_num_lines                (const char *string);
        Object   *o_text_new                      (int color, int x, int y, int alignment, int angle,
-                                                  const char *string, int size, int visibility, int show_name_value);
+                                                  int size, int visibility, int show_name_value, const char *string);
          void    o_text_recreate                 (Object *o_current);
          void    o_text_translate_world          (int dx, int dy, Object *o_current);
        Object   *o_text_copy                     (Object *o_current);

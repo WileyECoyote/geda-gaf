@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,8 +42,7 @@ static void o_bus_consolidate_lowlevel (Object *object,  Object *del_object, int
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-o_bus_get_position (int *x, int *y, Object *object)
+bool o_bus_get_position(int *x, int *y, Object *object)
 {
   g_return_val_if_fail(GEDA_IS_BUS(object), FALSE);
 
@@ -67,8 +66,7 @@ o_bus_get_position (int *x, int *y, Object *object)
  *
  *  \return A new bus Object
  */
-Object *
-o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
+Object *o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
 {
   Object *new_obj;
   Bus    *bus;
@@ -104,8 +102,8 @@ o_bus_new(int color, int x1, int y1, int x2, int y2, int bus_ripper_direction)
  *
  *  \return The object list, or NULL on error.
  */
-Object *
-o_bus_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+Object *o_bus_read(const char buf[], unsigned int release_ver,
+                                     unsigned int fileformat_ver, GError **err)
 {
   Object *new_obj;
   char type;
@@ -245,8 +243,8 @@ void o_bus_translate_world(int dx, int dy, Object *object)
  *  \param [in] origin_x     x-coord of the postscript origin
  *  \param [in] origin_y     y-coord of the postscript origin
  */
-void
-o_bus_print(GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y)
+void o_bus_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+                 int origin_x, int origin_y)
 {
   int bus_width;
   int x1, y1;
@@ -278,15 +276,15 @@ o_bus_print(GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, i
  *
  *  \par Function Description
  *  This function rotates a bus \a object around the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the rotation center
- *  \param [in] world_centery y-coord of the rotation center
+ *  \param [in] center_wx x-coord of the rotation center
+ *  \param [in] center_wy y-coord of the rotation center
  *  \param [in] angle         The angle to rotate the bus object
  *  \param [in] object        The bus object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_bus_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+void o_bus_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx, newy;
 
@@ -294,7 +292,7 @@ void o_bus_rotate_world(int world_centerx, int world_centery, int angle, Object 
   return;
 
   /* translate object to origin */
-  o_bus_translate_world(-world_centerx, -world_centery, object);
+  o_bus_translate_world(-center_wx, -center_wy, object);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle,
                   &newx, &newy);
@@ -308,30 +306,29 @@ void o_bus_rotate_world(int world_centerx, int world_centery, int angle, Object 
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_bus_translate_world(world_centerx, world_centery, object);
+  o_bus_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief mirror a bus object horizontaly at a centerpoint
  *
  *  \par Function Description
  *  This function mirrors a bus \a object horizontaly at the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the mirror position
- *  \param [in] world_centery y-coord of the mirror position
+ *  \param [in] center_wx x-coord of the mirror position
+ *  \param [in] center_wy y-coord of the mirror position
  *  \param [in] object        The bus object
  */
-void
-o_bus_mirror_world(int world_centerx, int world_centery, Object *object)
+void o_bus_mirror_world(int center_wx, int center_wy, Object *object)
 {
   /* translate object to origin */
-  o_bus_translate_world(-world_centerx, -world_centery, object);
+  o_bus_translate_world(-center_wx, -center_wy, object);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_bus_translate_world(world_centerx, world_centery, object);
+  o_bus_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief calculate the orientation of a bus object
@@ -342,8 +339,7 @@ o_bus_mirror_world(int world_centerx, int world_centery, Object *object)
  *  \param [in] object   The bus object
  *  \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
-int
-o_bus_orientation(Object *object)
+int o_bus_orientation(Object *object)
 {
   if (object->line->y[0] == object->line->y[1]) {
     return(HORIZONTAL);
@@ -357,8 +353,7 @@ o_bus_orientation(Object *object)
 }
   /* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
 
-int
-o_bus_get_direction(Object *object)
+int o_bus_get_direction(Object *object)
 {
   int direction = 0;
 
@@ -495,8 +490,7 @@ void o_bus_consolidate( void)
  *  \param [in] y          new y-coord of the bus point
  *  \param [in] whichone   bus point to modify
  */
-void
-o_bus_modify(Object *object, int x, int y, int whichone)
+void o_bus_modify(Object *object, int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;

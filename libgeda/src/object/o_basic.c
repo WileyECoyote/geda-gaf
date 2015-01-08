@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -557,7 +557,7 @@ void o_translate_world (int dx, int dy, Object *object)
 /*! \brief Rotates an object in world coordinates
  *  \par Function Description
  *  This function rotates the object <B>object</B> about the coordinates
- *  <B>world_centerx</B> and <B>world_centery</B>, by <B>angle</B>degrees.
+ *  <B>center_wx</B> and <B>center_wy</B>, by <B>angle</B>degrees.
  *
  *  \param [in] w_centerx  X coordinate of rotation center (world coords)
  *  \param [in] w_centery  Y coordinate of rotation center (world coords)
@@ -598,13 +598,13 @@ void o_rotate_world (int w_centerx, int w_centery, int angle, Object *object)
 /*! \brief Mirrors an object in world coordinates
  *  \par Function Description
  *  This function mirrors an object about the point
- *  (<B>world_centerx</B>,<B>world_centery</B>) in world units.
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world units.
  *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
  *  \param [in,out] object         The Object to mirror.
  */
-void o_mirror_world (int world_centerx, int world_centery, Object *object)
+void o_mirror_world (int center_wx, int center_wy, Object *object)
 {
   void (*topless) (int, int, Object*) = NULL;
 
@@ -624,7 +624,7 @@ void o_mirror_world (int world_centerx, int world_centery, Object *object)
   }
 
   if (topless != NULL) {
-    (*topless) (world_centerx, world_centery, object);
+    (*topless) (center_wx, center_wy, object);
   }
   else
     g_critical ("o_mirror_world: object %p has bad type '%c'\n",

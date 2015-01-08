@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * Code originally from librsvg 2.22.2 (LGPL) Copyright (C) 2000 Eazel, Inc.
  *

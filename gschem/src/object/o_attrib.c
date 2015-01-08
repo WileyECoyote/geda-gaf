@@ -326,7 +326,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
     color = DETACHED_ATTRIBUTE_COLOR;
 
     o_get_world_bounds_list (s_page_get_objects (Current_Page),
-                                   &left, &top, &right, &bottom);
+                             &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
     world_x = left;
@@ -338,9 +338,10 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
   /* first create text item */
   new_obj = o_text_new(color, world_x, world_y,
-                       align, angle, text_string, /* zero is angle */
-                       w_current->text_size, /* current text size */
-                       visibility, show_name_value);
+                       align, angle,            /* zero is angle */
+                       w_current->text_size,    /* current text size */
+                       visibility,              /* we did not check */
+                       show_name_value, text_string);
 
   /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */

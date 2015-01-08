@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -336,17 +336,16 @@ void o_line_translate_world(int dx, int dy, Object *object)
  *
  *  \par Function Description
  *  This function rotates the line described by
- *  <B>*object</B> around the (<B>world_centerx</B>,<B>world_centery</B>)
+ *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in]      world_centerx  Rotation center x coordinate in WORLD units.
- *  \param [in]      world_centery  Rotation center y coordinate in WORLD units.
+ *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
  *  \param [in]      angle          Rotation angle in degrees (See note below).
  *  \param [in,out]  object         Line Object to rotate.
  */
-void
-o_line_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+void o_line_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx, newy;
   Line *line;
@@ -363,13 +362,13 @@ o_line_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
   if((angle % 90) != 0) return;
 
   /*
-   * The center of rotation (<B>world_centerx</B>,<B>world_centery</B>)
+   * The center of rotation (<B>center_wx</B>,<B>center_wy</B>)
    * is translated to the origin. The rotation of the two ends of
    * the line is performed. FInally, the rotated line is translated
    * back to its previous location.
    */
   /* translate object to origin */
-  o_line_translate_world(-world_centerx, -world_centery, object);
+  o_line_translate_world(-center_wx, -center_wy, object);
 
   /* rotate line end 1 */
   m_rotate_point_90(line->x[0], line->y[0], angle,
@@ -385,7 +384,7 @@ o_line_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
   line->y[1] = newy;
 
   /* translate object back to normal position */
-  o_line_translate_world(world_centerx, world_centery, object);
+  o_line_translate_world(center_wx, center_wy, object);
 
 }
 
@@ -393,29 +392,29 @@ o_line_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
  *
  *  \par Function Description
  *  This function mirrors the line from the point
- *  (<B>world_centerx</B>,<B>world_centery</B>) in world unit.
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
  *
  *  The line if first translated to the origin, then mirrored
  *  and finally translated back at its previous position.
  *
- *  \param [in]     world_centerx  Origin x coordinate in WORLD units.
- *  \param [in]     world_centery  Origin y coordinate in WORLD units.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
  *  \param [in,out] object         Line Object to mirror.
  */
-void o_line_mirror_world( int world_centerx,
-                         int world_centery, Object *object)
+void o_line_mirror_world( int center_wx,
+                         int center_wy, Object *object)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
   /* translate object to origin */
-  o_line_translate_world(-world_centerx, -world_centery, object);
+  o_line_translate_world(-center_wx, -center_wy, object);
 
   /* mirror the line ends */
   object->line->x[0] = -object->line->x[0];
   object->line->x[1] = -object->line->x[1];
 
   /* translate back in position */
-  o_line_translate_world(world_centerx, world_centery, object);
+  o_line_translate_world(center_wx, center_wy, object);
 
 }
 
@@ -1055,15 +1054,14 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
 
-/*! \brief
+/*! \brief Scale a Line object
  *  \par Function Description
  *
  *  \param [in] x_scale
  *  \param [in] y_scale
  *  \param [in] object
  */
-void
-o_line_scale_world(int x_scale, int y_scale, Object *object)
+void o_line_scale_world(int x_scale, int y_scale, Object *object)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -1117,8 +1115,7 @@ double o_line_length(Object *object)
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double
-o_line_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_line_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   return m_line_shortest_distance (object->line, x, y);
 }

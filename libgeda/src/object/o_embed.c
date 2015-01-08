@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,8 +38,7 @@
  *  \param toplevel  The GedaToplevel object
  *  \param o_current The Object to embed
  */
-bool
-o_embed(GedaToplevel *toplevel, Object *o_current)
+bool o_embed(GedaToplevel *toplevel, Object *o_current)
 {
   Page *page        = geda_object_get_page (o_current);
   int page_modified = 0;

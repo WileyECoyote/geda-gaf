@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -352,7 +352,7 @@ o_arc_translate_world(int dx, int dy, Object *object)
  *  \par Function Description
  *  This function rotates the world coordinates of an arc of an angle
  *  specified by <B>angle</B>. The center of the rotation is given by
- *  (<B>world_centerx</B>,<B>world_centery</B>).
+ *  (<B>center_wx</B>,<B>center_wy</B>).
  *
  *  The arc is translated in order to put the center of the rotation
  *  on the origin. The center of the arc is then rotated of the angle
@@ -360,21 +360,21 @@ o_arc_translate_world(int dx, int dy, Object *object)
  *
  *  The arc is finally back translated to its previous location on the page.
  *
- *  <B>world_centerx</B> and <B>world_centery</B> are in world units, <B>angle</B> is in degrees.
+ *  <B>center_wx</B> and <B>center_wy</B> are in world units, <B>angle</B> is in degrees.
  *
- *  \param [in] world_centerx
- *  \param [in] world_centery
+ *  \param [in] center_wx
+ *  \param [in] center_wy
  *  \param [in] angle
  *  \param [in] object
  */
 void
-o_arc_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+o_arc_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int x, y, newx, newy;
 
   /* translate object to origin */
-  object->arc->x -= world_centerx;
-  object->arc->y -= world_centery;
+  object->arc->x -= center_wx;
+  object->arc->y -= center_wy;
 
   /* get center, and rotate center */
   x = object->arc->x;
@@ -394,8 +394,8 @@ o_arc_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
   /* object->arc->arc_sweep = (object->arc->arc_sweep); */
 
   /* translate object to its previous place */
-  object->arc->x += world_centerx;
-  object->arc->y += world_centery;
+  object->arc->x += center_wx;
+  object->arc->y += center_wy;
 
   /* update the screen coords and the bounding box */
   object->w_bounds_valid_for = NULL;
@@ -405,24 +405,24 @@ o_arc_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
 /*! \brief Mirror the WORLD coordinates of an ARC.
  *  \par Function Description
  *  This function mirrors the world coordinates of an arc.
- *  The symetry axis is given by the vertical line going through the point (<B>world_centerx</B>,<B>world_centery</B>).
+ *  The symetry axis is given by the vertical line going through the point (<B>center_wx</B>,<B>center_wy</B>).
  *
- *  The arc is translated in order to put the point (<B>world_centerx</B>,<B>world_centery</B>)
+ *  The arc is translated in order to put the point (<B>center_wx</B>,<B>center_wy</B>)
  *  on the origin. The center of the arc is then mirrored. The start angle of the arc
  *  and the sweep of the arc are also mirrored.
  *
  *  The arc is finally back translated to its previous location on the page.
  *
- *  \param [in] world_centerx
- *  \param [in] world_centery
+ *  \param [in] center_wx
+ *  \param [in] center_wy
  *  \param [in] object
  */
 void
-o_arc_mirror_world(int world_centerx, int world_centery, Object *object)
+o_arc_mirror_world(int center_wx, int center_wy, Object *object)
 {
   /* translate object to origin */
-  object->arc->x -= world_centerx;
-  object->arc->y -= world_centery;
+  object->arc->x -= center_wx;
+  object->arc->y -= center_wy;
 
   /* get center, and mirror it (vertical mirror) */
   object->arc->x = -object->arc->x;
@@ -435,8 +435,8 @@ o_arc_mirror_world(int world_centerx, int world_centery, Object *object)
   object->arc->arc_sweep = -object->arc->arc_sweep;
 
   /* translate object back to its previous position */
-  object->arc->x += world_centerx;
-  object->arc->y += world_centery;
+  object->arc->x += center_wx;
+  object->arc->y += center_wy;
 
   /* update the screen coords and bounding box */
   object->w_bounds_valid_for = NULL;

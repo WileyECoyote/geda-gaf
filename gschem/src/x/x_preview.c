@@ -247,7 +247,8 @@ preview_update (Preview *preview)
       /* open up file in current page */
       if (!f_open(preview_toplevel, preview_toplevel->page_current, preview->filename, &err))
       {
-        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, err->message, 10, VISIBLE, SHOW_NAME_VALUE);
+        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
+                          SHOW_NAME_VALUE, err->message);
         s_page_append_object (preview_toplevel->page_current, text);
         g_error_free(err);
       }
@@ -262,7 +263,8 @@ preview_update (Preview *preview)
         s_page_append_list (preview_toplevel->page_current, object_list);
       }
       else {
-        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, err->message, 10, VISIBLE, SHOW_NAME_VALUE);
+        text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
+                          SHOW_NAME_VALUE, err->message);
         s_page_append_object (preview_toplevel->page_current, text);
         g_error_free(err);
       }

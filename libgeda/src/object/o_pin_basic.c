@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -276,16 +276,16 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 /*! \brief rotate a pin object around a centerpoint
  *  \par Function Description
  *  This function rotates a pin \a object around the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the rotation center
- *  \param [in] world_centery y-coord of the rotation center
+ *  \param [in] center_wx x-coord of the rotation center
+ *  \param [in] center_wy y-coord of the rotation center
  *  \param [in] angle         The angle to rotate the pin object
  *  \param [in] object        The pin object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
 void
-o_pin_rotate_world(int world_centerx, int world_centery, int angle, Object *object)
+o_pin_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx, newy;
 
@@ -293,7 +293,7 @@ o_pin_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
     return;
 
   /* translate object to origin */
-  o_pin_translate_world(-world_centerx, -world_centery, object);
+  o_pin_translate_world(-center_wx, -center_wy, object);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -305,28 +305,28 @@ o_pin_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_pin_translate_world(world_centerx, world_centery, object);
+  o_pin_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief mirror a pin object horizontaly at a centerpoint
  *  \par Function Description
  *  This function mirrors a pin \a object horizontaly at the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the mirror position
- *  \param [in] world_centery y-coord of the mirror position
+ *  \param [in] center_wx x-coord of the mirror position
+ *  \param [in] center_wy y-coord of the mirror position
  *  \param [in] object        The pin object
  */
-void o_pin_mirror_world(int world_centerx, int world_centery, Object *object)
+void o_pin_mirror_world(int center_wx, int center_wy, Object *object)
 {
   /* translate object to origin */
-  o_pin_translate_world(-world_centerx, -world_centery, object);
+  o_pin_translate_world(-center_wx, -center_wy, object);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_pin_translate_world(world_centerx, world_centery, object);
+  o_pin_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief modify one point of a pin object
@@ -887,7 +887,7 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
     text = u_string_concat("pinlabel", "=", object->pin->label, NULL);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, angle,
-                         text, size, VISIBLE, SHOW_VALUE);
+                         size, VISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
     o_text_set_rendered_bounds_func (new_bute,
@@ -1024,7 +1024,7 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *n
   text = u_string_sprintf("pinnumber=%s", str_num);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         text, size, VISIBLE, SHOW_VALUE);
+                         size, VISIBLE, SHOW_VALUE, text);
 
   o_attrib_add(object, new_bute);
 
@@ -1154,7 +1154,7 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
   text = u_string_sprintf("pinseq=%d", value);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         text, size, INVISIBLE, SHOW_NAME_VALUE);
+                         size, INVISIBLE, SHOW_NAME_VALUE, text);
 
   o_attrib_add(object, new_bute);
 
@@ -1256,7 +1256,7 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *de
   }
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         text, size, INVISIBLE, SHOW_VALUE);
+                         size, INVISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
     o_text_set_rendered_bounds_func (new_bute,
@@ -1362,7 +1362,7 @@ o_pin_create_mech_attrib(GedaToplevel *toplevel, Object *object, const char *des
     text = u_string_concat("mechtype", "=", object->pin->mechanical, NULL);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         text, size, INVISIBLE, SHOW_VALUE);
+                         size, INVISIBLE, SHOW_VALUE, text);
 
   if (toplevel) {
     o_text_set_rendered_bounds_func (new_bute,

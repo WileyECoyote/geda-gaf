@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -247,17 +247,17 @@ void o_net_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  *  \par Function Description
  *  This function rotates a net \a object around the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the rotation center
- *  \param [in] world_centery y-coord of the rotation center
+ *  \param [in] center_wx x-coord of the rotation center
+ *  \param [in] center_wy y-coord of the rotation center
  *  \param [in] angle         The angle to rotate the net object
  *  \param [in] object        The net object
  *
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_net_rotate_world(int world_centerx,
-                        int world_centery, int angle, Object *object)
+void o_net_rotate_world(int center_wx,
+                        int center_wy, int angle, Object *object)
 {
   int newx, newy;
 
@@ -267,7 +267,7 @@ void o_net_rotate_world(int world_centerx,
     return;
 
   /* translate object to origin */
-  o_net_translate_world(-world_centerx, -world_centery, object);
+  o_net_translate_world(-center_wx, -center_wy, object);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -279,31 +279,31 @@ void o_net_rotate_world(int world_centerx,
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_net_translate_world(world_centerx, world_centery, object);
+  o_net_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief mirror a net object horizontaly at a centerpoint
  *  \par Function Description
  *  This function mirrors a net \a object horizontaly at the point
- *  (\a world_centerx, \a world_centery).
+ *  (\a center_wx, \a center_wy).
  *
- *  \param [in] world_centerx x-coord of the mirror position
- *  \param [in] world_centery y-coord of the mirror position
+ *  \param [in] center_wx x-coord of the mirror position
+ *  \param [in] center_wy y-coord of the mirror position
  *  \param [in] object        The net object
  */
 void
-o_net_mirror_world(int world_centerx, int world_centery, Object *object)
+o_net_mirror_world(int center_wx, int center_wy, Object *object)
 {
   g_return_if_fail(GEDA_IS_NET(object));
 
   /* translate object to origin */
-  o_net_translate_world(-world_centerx, -world_centery, object);
+  o_net_translate_world(-center_wx, -center_wy, object);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_net_translate_world(world_centerx, world_centery, object);
+  o_net_translate_world(center_wx, center_wy, object);
 }
 
 /*! \brief calculate orientation of a net object

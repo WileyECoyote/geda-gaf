@@ -1290,7 +1290,7 @@ SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
             (), "Create a new text object.")
 {
   Object *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
-                            "", 10, VISIBLE, SHOW_NAME_VALUE);
+                            10, VISIBLE, SHOW_NAME_VALUE, "");
 
   SCM result = edascm_from_object (obj);
 

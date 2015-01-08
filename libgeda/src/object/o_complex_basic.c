@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -336,8 +336,8 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
   new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
                             x + NOT_FOUND_TEXT_X,
                             y + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0,
-                            not_found_text, 10,
-                            VISIBLE, SHOW_NAME_VALUE);
+                            10, VISIBLE, SHOW_NAME_VALUE,
+                            not_found_text);
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
   GEDA_FREE(not_found_text);
@@ -384,8 +384,9 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
   new_prim_obj = o_text_new(DETACHED_ATTRIBUTE_COLOR,
                             x + NOT_FOUND_TEXT_X + x_offset + 270,
                             y + NOT_FOUND_TEXT_Y + y_offset + 90,
-                            LOWER_LEFT, 0, "!", 18,
-                            VISIBLE, SHOW_NAME_VALUE);
+                            LOWER_LEFT, 0, 18,
+                            VISIBLE, SHOW_NAME_VALUE,
+                            "!");
 
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
 
@@ -399,10 +400,9 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
  *  \par Function Description
  *
  */
-Object *
-o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
-              int mirror, const CLibSymbol *clib, const char *basename,
-              int selectable)
+Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
+                      int mirror, const CLibSymbol *clib, const char *basename,
+                      int selectable)
 {
   Object  *new_obj;
   Complex *complex;
@@ -648,8 +648,7 @@ char *o_complex_save(Object *object)
  *  \param [in] dy           The y-distance to move the object
  *  \param [in] object       The complex Object to be moved
  */
-void
-o_complex_translate_world(int dx, int dy, Object *object)
+void o_complex_translate_world(int dx, int dy, Object *object)
 {
   g_return_if_fail (GEDA_IS_COMPLEX(object));
 
@@ -759,8 +758,7 @@ void o_complex_reset_refdes(Object *object)
  * \param [in,out] object Complex object to rotate.
  *
  */
-void
-o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
+void o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
 {
   int x, y;
   int newx, newy;
@@ -788,21 +786,19 @@ o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
   object->complex->angle = (object->complex->angle + angle ) % 360;
 }
 
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-void
-o_complex_mirror_world(int world_centerx, int world_centery, Object *object)
+void o_complex_mirror_world(int center_wx, int center_wy, Object *object)
 {
   int x, y;
 
   g_return_if_fail( object != NULL );
   g_return_if_fail( GEDA_IS_COMPLEX(object) );
 
-  x = 2 * world_centerx - object->complex->x;
+  x = 2 * center_wx - object->complex->x;
   y = object->complex->y;
 
   o_complex_translate_world(-object->complex->x, -object->complex->y, object);
@@ -874,8 +870,7 @@ Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wante
  *  \param [in] toplevel  Optional pointer to GedaToplevel toplevel
  *  \param [in] object    The complex Object
  */
-void
-o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
+void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 {
   char *inside         = NULL;
   char *outside        = NULL;
@@ -1082,8 +1077,7 @@ done:
  *  number (G_MAXDOUBLE).  With an invalid parameter, this function returns
  *  G_MAXDOUBLE.
  */
-double
-o_complex_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_complex_shortest_distance(Object *object, int x, int y, int force_solid)
 {
   double shortest_distance = G_MAXDOUBLE;
   double distance;

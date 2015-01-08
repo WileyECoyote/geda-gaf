@@ -126,11 +126,10 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
   object = o_text_new (TEXT_COLOR,
                        0, 0, LOWER_LEFT, 0, /* zero is angle */
-                       text,
                        w_current->text_size,
                        /* has to be visible so you can place it */
                        /* visibility is set when you create the object */
-                       VISIBLE, SHOW_NAME_VALUE);
+                       VISIBLE, SHOW_NAME_VALUE, text);
 
   o_text_set_rendered_bounds_func (object,
                                    o_text_get_rendered_bounds,
