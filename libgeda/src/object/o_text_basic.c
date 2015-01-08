@@ -878,7 +878,7 @@ double o_text_shortest_distance (Object *object,
 
   g_return_val_if_fail (object->text != NULL, G_MAXDOUBLE);
 
-  if (!world_get_single_object_bounds(object, &left, &top, &right, &bottom))
+  if (!o_get_world_bounds(object, &left, &top, &right, &bottom))
     return G_MAXDOUBLE;
 
   dx = min (x - left, right - x);

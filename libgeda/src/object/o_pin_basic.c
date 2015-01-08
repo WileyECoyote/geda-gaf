@@ -400,7 +400,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
 
   if (object_list && num_pins) {
     if (num_pins == 1) {
-      world_get_object_glist_bounds (object_list, &left, &top, &right, &bottom);
+      o_get_world_bounds_list (object_list, &left, &top, &right, &bottom);
     }
     else {
       found = 0;
@@ -410,7 +410,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
       while (iter != NULL) {
         o_current = (Object *)iter->data;
         if (o_current->type == OBJ_PIN) {
-          world_get_single_object_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
+          o_get_world_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
 
           if ( found ) {
             left = min( left, rleft );

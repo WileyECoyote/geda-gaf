@@ -277,12 +277,12 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
     if (page == NULL) {
 
-      success = world_get_object_glist_bounds (obj_list,
+      success = o_get_world_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
     }
     else if (page->show_hidden_text) {
 
-      success = world_get_object_glist_bounds (obj_list,
+      success = o_get_world_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
     }
     else {
@@ -295,7 +295,7 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
         o_current->w_bounds_valid_for = NULL;
       }
 
-      success = world_get_object_glist_bounds (obj_list,
+      success = o_get_world_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
 
       page->show_hidden_text = FALSE;

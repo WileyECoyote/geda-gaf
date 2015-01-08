@@ -320,7 +320,7 @@ void o_select_box_search(GschemToplevel *w_current)
     if (o_get_is_visible (o_current)) {
       int cleft, ctop, cright, cbottom;
 
-      if ( world_get_single_object_bounds(o_current,
+      if ( o_get_world_bounds(o_current,
         &cleft, &ctop, &cright, &cbottom) &&
         cleft >= left &&
         cright <= right &&

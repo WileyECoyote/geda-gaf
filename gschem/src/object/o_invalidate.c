@@ -200,7 +200,7 @@ o_invalidate_object (GschemToplevel *w_current, Object *object)
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
 
-  if (world_get_single_object_bounds(object, &left,  &top, &right, &bottom)) {
+  if (o_get_world_bounds(object, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left, top, &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
@@ -245,7 +245,7 @@ o_invalidate_glist (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
-  if (world_get_object_glist_bounds (list, &left,  &top, &right, &bottom)) {
+  if (o_get_world_bounds_list (list, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left,  top,    &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);

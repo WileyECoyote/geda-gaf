@@ -56,7 +56,6 @@ Path *s_path_new (void)
   return path;
 }
 
-
 Path *s_path_new_from (PATH_SECTION *sections)
 {
   Path *path;
@@ -78,7 +77,6 @@ Path *s_path_new_from (PATH_SECTION *sections)
   return path;
 }
 
-
 void s_path_free(Path * path)
 {
   g_return_if_fail (GEDA_IS_PATH(path));
@@ -86,7 +84,6 @@ void s_path_free(Path * path)
   GEDA_FREE (path->sections);
   GEDA_UNREF (path);
 }
-
 
 void s_path_moveto (Path *path, double x, double y)
 {
@@ -117,7 +114,6 @@ void s_path_moveto (Path *path, double x, double y)
   sections[num_sections].y3 = y;
 }
 
-
 void s_path_lineto (Path *path, double x, double y)
 {
   PATH_SECTION *sections;
@@ -135,7 +131,6 @@ void s_path_lineto (Path *path, double x, double y)
   sections[num_sections].x3 = x;
   sections[num_sections].y3 = y;
 }
-
 
 void s_path_curveto (Path *path, double x1, double y1,
                      double x2, double y2, double x3, double y3)
@@ -159,7 +154,6 @@ void s_path_curveto (Path *path, double x1, double y1,
   sections[num_sections].y3 = y3;
 }
 
-
 void s_path_art_finish (Path * path)
 {
   int num_sections;
@@ -173,6 +167,64 @@ void s_path_art_finish (Path * path)
   path->sections[num_sections].code = PATH_END;
 }
 
+Path *path_copy_modify (Path *path, int dx, int dy,
+                        int new_x, int new_y, int whichone)
+{
+  Path *new_path;
+  char *path_string;
+  Object *object;
+
+  int x1, y1, x2, y2, x3, y3;
+  int i;
+  int grip_no = 0;
+
+  g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
+  object = GEDA_OBJECT(path);
+
+  path_string = s_path_string_from_path (path);
+  new_path = (Path*)o_path_new (object->color, path_string);
+
+  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
+  new_path->num_sections = path->num_sections;
+  new_path->num_sections_max = path->num_sections;
+
+  for (i = 0; i <  path->num_sections; i++) {
+    PATH_SECTION *section     = &path->sections[i];
+    PATH_SECTION *new_section = &new_path->sections[i];
+
+    x1 = section->x1 + dx; y1 = section->y1 + dy;
+    x2 = section->x2 + dx; y2 = section->y2 + dy;
+    x3 = section->x3 + dx; y3 = section->y3 + dy;
+
+    switch (section->code) {
+      case PATH_CURVETO:
+        /* Two control point grips */
+        if (whichone == grip_no++) {
+          x1 = new_x; y1 = new_y;
+        }
+        if (whichone == grip_no++) {
+          x2 = new_x; y2 = new_y;
+        }
+        /* Fall through */
+      case PATH_MOVETO:
+      case PATH_MOVETO_OPEN:
+      case PATH_LINETO:
+        /* Destination point grip */
+        if (whichone == grip_no++) {
+          x3 = new_x; y3 = new_y;
+        }
+      /* Fall through */
+      case PATH_END:
+        break;
+    }
+
+    new_section->code = section->code;
+    new_section->x1 = x1;  new_section->y1 = y1;
+    new_section->x2 = x2;  new_section->y2 = y2;
+    new_section->x3 = x3;  new_section->y3 = y3;
+  }
+  return new_path;
+}
 
 /* This module parses an SVG style path element into a Path.
 
@@ -186,16 +238,15 @@ void s_path_art_finish (Path * path)
 typedef struct _RSVGParsePathCtx RSVGParsePathCtx;
 
 struct _RSVGParsePathCtx {
-  Path *path;
+  Path  *path;
   double cpx, cpy;    /* current point */
   double rpx, rpy;    /* reflection point (for 's' and 't' commands) */
   double mpx, mpy;    /* Last moved to point (for path closures) */
-  char cmd;           /* current command (lowercase) */
-  int param;          /* parameter number */
-  bool rel;       /* true if relative coords */
+  char   cmd;         /* current command (lowercase) */
+  int    param;       /* parameter number */
+  bool   rel;         /* true if relative coords */
   double params[7];   /* parameters that have been parsed */
 };
-
 
 static void s_path_arc_segment (RSVGParsePathCtx * ctx,
                                 double xc, double yc, double th0, double th1,
@@ -228,7 +279,6 @@ static void s_path_arc_segment (RSVGParsePathCtx * ctx,
               a00 * x2 + a01 * y2, a10 * x2 + a11 * y2,
               a00 * x3 + a01 * y3, a10 * x3 + a11 * y3);
 }
-
 
 /*
  * s_path_arc: Add an arc to the path context.
@@ -308,7 +358,6 @@ static void s_path_arc (RSVGParsePathCtx * ctx,
   ctx->cpy = y;
 }
 
-
 /* supply defaults for missing parameters, assuming relative coordinates
    are to be interpreted as x,y */
 static void s_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
@@ -331,7 +380,6 @@ static void s_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
       ctx->params[i] = 0.0;
   }
 }
-
 
 static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
 {
@@ -490,7 +538,6 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
     ctx->param = 0;
   }
 }
-
 
 static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 {
@@ -655,7 +702,6 @@ Path *s_path_parse (const char *path_str)
   return ctx.path;
 }
 
-
 char *s_path_string_from_path (const Path *path)
 {
   PATH_SECTION *section;
@@ -753,7 +799,6 @@ int s_path_to_polygon (Path *path, GArray *points)
   return closed;
 }
 
-
 /*! \brief Calculates the distance between the given point and the closest
  *  point on the given path segment.
  *
@@ -789,63 +834,4 @@ double s_path_shortest_distance (Path *path, int x, int y, int solid)
   g_array_free (points, TRUE);
 
   return shortest_distance;
-}
-
-Path *path_copy_modify (Path *path, int dx, int dy,
-                        int new_x, int new_y, int whichone)
-{
-  Path *new_path;
-  char *path_string;
-  Object *object;
-
-  int x1, y1, x2, y2, x3, y3;
-  int i;
-  int grip_no = 0;
-
-  g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
-  object = GEDA_OBJECT(path);
-
-  path_string = s_path_string_from_path (path);
-  new_path = (Path*)o_path_new (object->color, path_string);
-
-  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
-  new_path->num_sections = path->num_sections;
-  new_path->num_sections_max = path->num_sections;
-
-  for (i = 0; i <  path->num_sections; i++) {
-    PATH_SECTION *section     = &path->sections[i];
-    PATH_SECTION *new_section = &new_path->sections[i];
-
-    x1 = section->x1 + dx; y1 = section->y1 + dy;
-    x2 = section->x2 + dx; y2 = section->y2 + dy;
-    x3 = section->x3 + dx; y3 = section->y3 + dy;
-
-    switch (section->code) {
-      case PATH_CURVETO:
-        /* Two control point grips */
-        if (whichone == grip_no++) {
-          x1 = new_x; y1 = new_y;
-        }
-        if (whichone == grip_no++) {
-          x2 = new_x; y2 = new_y;
-        }
-        /* Fall through */
-      case PATH_MOVETO:
-      case PATH_MOVETO_OPEN:
-      case PATH_LINETO:
-        /* Destination point grip */
-        if (whichone == grip_no++) {
-          x3 = new_x; y3 = new_y;
-        }
-      /* Fall through */
-      case PATH_END:
-        break;
-    }
-
-    new_section->code = section->code;
-    new_section->x1 = x1;  new_section->y1 = y1;
-    new_section->x2 = x2;  new_section->y2 = y2;
-    new_section->x3 = x3;  new_section->y3 = y3;
-  }
-  return new_path;
 }

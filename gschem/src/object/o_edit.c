@@ -637,7 +637,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
           i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
 
-          if (!world_get_single_object_bounds (o_current, &x1, &y1, &x2, &y2)) {
+          if (!o_get_world_bounds (o_current, &x1, &y1, &x2, &y2)) {
             BUG_MSG("world object bounds returned FALSE");
             return 0;
           }

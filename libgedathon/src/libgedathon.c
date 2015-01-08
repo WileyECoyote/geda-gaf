@@ -1502,7 +1502,7 @@ PyGeda_get_bounds( int pid, int sid )
 
   if( sid < 0) {
     list = s_page_get_objects(page);
-    if (world_get_object_glist_bounds (list, &left, &top, &right, &bottom)) {
+    if (o_get_world_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
     else {
@@ -1518,7 +1518,7 @@ PyGeda_get_bounds( int pid, int sid )
     }
 
     if (object) {
-      if (world_get_single_object_bounds (object, &left, &top, &right, &bottom)) {
+      if (o_get_world_bounds (object, &left, &top, &right, &bottom)) {
         py_list = Py_BuildValue("iiii",  left, top, right, bottom);
       }
       else {

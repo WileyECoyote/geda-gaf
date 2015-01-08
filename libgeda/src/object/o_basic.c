@@ -48,7 +48,6 @@
 #include "ascii.h"
 #include "libgeda_priv.h"
 
-
 /*! \brief Read a memory buffer
  *  \par Function Description
  *  This function reads data in libgeda format from a memory buffer.
@@ -68,10 +67,9 @@
  *
  *  \return GList of objects if successful read, or NULL on error.
  */
-GList *
-o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
-                 const char *buffer,   const int size,
-                 const char *name,     GError  **err)
+GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
+                       const char   *buffer,   const int size,
+                       const char   *name,     GError  **err)
 {
   const char *line             = NULL;
   TextBuffer *tb               = NULL;
@@ -434,44 +432,6 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
   return result;
 }
 
-/*! \brief Mark an Object's cached bounds as invalid
- *
- *  \par Function Description
- *  Recursively marks the cached bounds of the given Object and its
- *  parents as having been invalidated and in need of an update. They
- *  will be recalculated next time the Object's bounds are requested
- *  (e.g. via world_get_single_object_bounds() ).
- *
- *  \param [in] obj
- *
- *  \todo Turn this into a macro?
- */
-void o_bounds_invalidate(Object *obj)
-{
-  do {
-    obj->w_bounds_valid_for = NULL;
-  } while ((obj = obj->parent_object) != NULL);
-}
-
-/*! \brief Check if point is inside a region
- *  \par Function Description
- *  This function takes a rectangular region and a point.  It will check
- *  if the point is located in the region or not.
- *
- *  \param [in] xmin    Smaller x coordinate of the region.
- *  \param [in] ymin    Smaller y coordinate of the region.
- *  \param [in] xmax    Larger x coordinate of the region.
- *  \param [in] ymax    Larger y coordinate of the region.
- *  \param [in] x       x coordinate of the point to check.
- *  \param [in] y       y coordinate of the point to check.
- *  \return 1 if the point is inside the region, 0 otherwise.
- */
-int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
-{
-  return ((x >= xmin && x <= xmax && y >= ymin && y <= ymax) ? 1 : 0);
-}
-
-
 /*! \todo Finish documentation!!!!
  *  \brief
  *  \par Function Description
@@ -599,13 +559,12 @@ void o_translate_world (int dx, int dy, Object *object)
  *  This function rotates the object <B>object</B> about the coordinates
  *  <B>world_centerx</B> and <B>world_centery</B>, by <B>angle</B>degrees.
  *
- *  \param [in] world_centerx  X coordinate of rotation center (world coords)
- *  \param [in] world_centery  Y coordinate of rotation center (world coords)
+ *  \param [in] w_centerx  X coordinate of rotation center (world coords)
+ *  \param [in] w_centery  Y coordinate of rotation center (world coords)
  *  \param [in] angle          Angle of rotation (degrees)
  *  \param [in] object         The object to rotate.
  */
-void
-o_rotate_world (int world_centerx, int world_centery, int angle, Object *object)
+void o_rotate_world (int w_centerx, int w_centery, int angle, Object *object)
 {
   void (*topless) (int, int, int, Object*) = NULL;
 
@@ -628,7 +587,7 @@ o_rotate_world (int world_centerx, int world_centery, int angle, Object *object)
   }
 
   if (topless != NULL) {
-    (*topless) (world_centerx, world_centery, angle, object);
+    (*topless) (w_centerx, w_centery, angle, object);
   }
   else
     g_critical ("o_rotate_world: object %p has bad type '%c'\n",

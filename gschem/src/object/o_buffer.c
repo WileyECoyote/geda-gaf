@@ -170,7 +170,7 @@ o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y, int buf_num)
     printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-    if (world_get_object_glist_bounds (Current_PlaceList,
+    if (o_get_world_bounds_list (Current_PlaceList,
                                       &rleft, &rtop, &rright, &rbottom))
     {
 

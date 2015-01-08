@@ -203,7 +203,7 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   i_zoom_world_extents (w_current, s_page_get_objects (toplevel->page_current), I_PAN_DONT_REDRAW);
   o_invalidate_all (w_current);
 
-  world_get_object_glist_bounds (s_page_get_objects (toplevel->page_current),
+  o_get_world_bounds_list (s_page_get_objects (toplevel->page_current),
                                  &w_rleft,  &w_rtop,
                                  &w_rright, &w_rbottom);
 

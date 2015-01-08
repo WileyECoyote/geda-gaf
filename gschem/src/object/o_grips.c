@@ -190,7 +190,7 @@ o_grips_inside_grip( int x, int y, int grip_x, int grip_y, int size )
   xmax = xmin + 2 * size;
   ymax = ymin + 2 * size;
 
-  return inside_region(xmin, ymin, xmax, ymax, x, y);
+  return o_get_is_inside_region(xmin, ymin, xmax, ymax, x, y);
 }
 
 /*! \brief Modify previously selected object according to mouse position.

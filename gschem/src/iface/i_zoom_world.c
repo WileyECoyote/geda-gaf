@@ -161,7 +161,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
     return;
   }
 
-  if (!world_get_object_glist_bounds (list,&lleft, &ltop,
+  if (!o_get_world_bounds_list (list,&lleft, &ltop,
                                       &lright, &lbottom)) {
     return;
   }

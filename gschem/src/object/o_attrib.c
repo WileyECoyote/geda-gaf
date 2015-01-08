@@ -325,7 +325,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
     color = DETACHED_ATTRIBUTE_COLOR;
 
-    world_get_object_glist_bounds (s_page_get_objects (Current_Page),
+    o_get_world_bounds_list (s_page_get_objects (Current_Page),
                                    &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */

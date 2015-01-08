@@ -1,3 +1,8 @@
+2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Clean and reorganize modules, renaming and relocate functions as
+      to maintain needed to conform to modular convention.
+
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file*: Implemenent f_get_dirname in:

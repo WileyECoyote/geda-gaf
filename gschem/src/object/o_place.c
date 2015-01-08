@@ -209,7 +209,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
 
     /* Find the bounds of the drawing to be done */
-    if (world_get_object_glist_bounds (toplevel->page_current->place_list,
+    if (o_get_world_bounds_list (toplevel->page_current->place_list,
       &left, &top, &right, &bottom))
     {
 
@@ -303,7 +303,7 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
     int left, top, bottom, right;
 
     /* Find the bounds of the drawing to be done */
-    world_get_object_glist_bounds (toplevel->page_current->place_list,
+    o_get_world_bounds_list (toplevel->page_current->place_list,
                                    &left, &top, &right, &bottom);
 
     /* Draw box outline */

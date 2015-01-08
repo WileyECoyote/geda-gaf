@@ -463,7 +463,7 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
-  world_get_object_glist_bounds (s_page_get_objects (page),
+  o_get_world_bounds_list (s_page_get_objects (page),
                                  &origin_x, &origin_y,
                                  &right, &bottom);
 

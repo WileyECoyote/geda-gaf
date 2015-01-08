@@ -30,101 +30,6 @@
 
 #include "libgeda_priv.h"
 
-/*! \brief Return the bounds of the given object
- *
- *  \par Given an object, calculate the bounds coordinates.
- *
- *  \param [in] o_current The object to look the bounds for.
- *  \param [out] rleft   pointer to the left coordinate of the object.
- *  \param [out] rtop    pointer to the top coordinate of the object.
- *  \param [out] rright  pointer to the right coordinate of the object.
- *  \param [out] rbottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the object
- *  \retval 0 No bound was found
- *  \retval 1 Bound was found
- */
-int world_get_single_object_bounds(Object *o_current, int *rleft, int *rtop,
-                                   int *rright, int *rbottom)
-{
-  int result = 0;
-
-  if (GEDA_IS_OBJECT(o_current)) {
-
-    result = geda_object_bounds(o_current);
-
-    if (result) {
-
-      *rleft   = o_current->left;
-      *rtop    = o_current->top;
-      *rright  = o_current->right;
-      *rbottom = o_current->bottom;
-    }
-  }
-  else {
-    BUG_MSG("Invalid argument, is not a GedaObject");
-  }
-  return result;
-}
-
-/*! \brief Return the bounds of the given GList of objects.
- *
- *  \par Given a list of objects, calculates the bounds coordinates.
- *
- *  \param [in]  list   The list of objects to look the bounds for.
- *  \param [out] left   pointer to the left coordinate of the object.
- *  \param [out] top    pointer to the top coordinate of the object.
- *  \param [out] right  pointer to the right coordinate of the object.
- *  \param [out] bottom pointer to the bottom coordinate of the object.
- *  \return If any bounds were found for the list of objects
- *  \retval 0 No bounds were found
- *  \retval 1 Bound was found
- */
-int world_get_object_glist_bounds(const GList *list, int *left, int *top, int *right, int *bottom)
-{
-  const GList *s_current;
-  Object      *o_current;
-
-  int rleft   = 0;
-  int rtop    = 0;
-  int rright  = 0;
-  int rbottom = 0;
-  int found   = 0;
-
-  s_current = g_list_first((GList *)list);
-
-  /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
-  while ( s_current != NULL ) {
-
-    o_current = GEDA_OBJECT(s_current->data);
-
-    if (GEDA_IS_OBJECT(o_current)) {
-      if (world_get_single_object_bounds(o_current, &rleft, &rtop, &rright, &rbottom))
-      {
-        if ( found ) {
-          *left   = min( *left, rleft );
-          *top    = min( *top, rtop );
-          *right  = max( *right, rright );
-          *bottom = max( *bottom, rbottom );
-        }
-        else {
-          *left   = rleft;
-          *top    = rtop;
-          *right  = rright;
-          *bottom = rbottom;
-          found   = 1;
-        }
-      }
-    }
-    else {
-      BUG_MSG("oops, world_get_object_glist_bounds found bad object");
-      break;
-    }
-    NEXT(s_current);
-  }
-
-  return found;
-}
-
 /*! \brief Queries the bounds of a complex object
  *
  *  \par Function Description
@@ -134,10 +39,10 @@ int world_get_object_glist_bounds(const GList *list, int *left, int *top, int *r
  *  \param [in]  object   The complex object.
  */
 int
-world_get_complex_bounds(Object *object)
+o_complex_get_world_bounds(Object *object)
 {
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
-  return world_get_object_glist_bounds (object->complex->prim_objs,
+  return o_get_world_bounds_list (object->complex->prim_objs,
                                        &object->left, &object->top,
                                        &object->right, &object->bottom);
 
@@ -343,7 +248,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
     promoted = promotable;
     /* Invalidate the object's bounds since we may have
      * stolen objects from inside it. */
-    o_bounds_invalidate (object);
+    o_set_bounds_invalid (object);
   }
 
   /* Attach promoted attributes to the original complex object */
@@ -391,7 +296,7 @@ static void o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object 
     }
   }
 
-  o_bounds_invalidate (object);
+  o_set_bounds_invalid (object);
   g_list_free (promotable);
 }
 
@@ -1195,7 +1100,7 @@ o_complex_shortest_distance (Object *object, int x, int y, int force_solid)
 
     /* Collect the bounds of any lines and arcs in the symbol */
     if ((obj->type == OBJ_LINE || obj->type == OBJ_ARC) &&
-         world_get_single_object_bounds(obj, &left, &top, &right, &bottom))
+         o_get_world_bounds(obj, &left, &top, &right, &bottom))
     {
       if (found_line_bounds) {
         line_bounds.lower_x = min (line_bounds.lower_x, left);

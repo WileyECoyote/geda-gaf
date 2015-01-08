@@ -365,7 +365,7 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
   }
 
   /* Now calculate extents of objects within page */
-  world_get_object_glist_bounds (s_page_get_objects (page),
+  o_get_world_bounds_list (s_page_get_objects (page),
                                  &wx_min, &wy_min, &wx_max, &wy_max);
   w_width = wx_max - wx_min;
   w_height = wy_max - wy_min;

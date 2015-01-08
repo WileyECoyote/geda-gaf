@@ -103,15 +103,11 @@ void     o_arc_print_phantom      (GedaToplevel *toplevel, FILE *fp, int x, int 
                                    int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 double   o_arc_shortest_distance  (Object *object, int x, int y, int force_soild);
 bool     o_arc_within_sweep       (Arc *arc, int x, int y);
-void     world_get_arc_bounds     (Object *object, int *left, int *top, int *right, int *bottom);
 bool     o_arc_get_position       (int *x, int *y, Object *object);
 
 /* o_attrib.c */
 GList   *o_read_attribs           (GedaToplevel *toplevel, Object *receiving_object, TextBuffer *tb,
                                    unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
-
-/* o_basic.c */
-void     o_bounds_invalidate      (Object *object);
 
 /* o_box_basic.c */
 Object  *o_box_read              (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
@@ -171,7 +167,7 @@ Object  *o_complex_read                (GedaToplevel *toplevel, const char buf[]
                                         unsigned int fileformat_ver, GError **err);
 char    *o_complex_save                (Object *object);
 double   o_complex_shortest_distance   (Object *object, int x, int y, int force_soild);
-int      world_get_complex_bounds      (Object *complex);
+int      o_complex_get_world_bounds    (Object *complex);
 bool     o_complex_get_position        (int *x, int *y, Object *object);
 GList   *o_complex_get_promotable      (GedaToplevel *toplevel, Object *object, int detach);
 

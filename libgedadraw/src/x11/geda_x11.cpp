@@ -988,7 +988,7 @@ geda_x11_draw_circle (int cx, int cy, int radius)
   int axe;
   unsigned long bits;
 
-  circum = m_circumference(radius);
+  circum = m_circle_circumference(radius);
   bits   = SetLineAttributes(&gcvals, circum);
 
   if (bits) {

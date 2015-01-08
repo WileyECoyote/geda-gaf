@@ -28,6 +28,29 @@
 
 #include <geda_debug.h>
 
+/*! \brief Free a Glist completely
+ *  \par Function Description
+ *  This function will free all of the data in a glist.
+ *
+ */
+GList* u_glist_clear(GList* list){
+
+  if (list != NULL ) {
+
+    g_list_foreach(list, (GFunc)g_free, NULL);
+    lambda (const char* data)
+    {
+      list = g_list_remove( list, data);
+      return FALSE;
+    }
+    foreach (list);
+
+    g_list_free(list);
+    list = NULL;
+  }
+  return list;
+}
+
 /*! \brief Detect item in double linked list
  *
  * Look for item in the list.
@@ -95,24 +118,24 @@ void u_glist_free_strings(void *data)
   g_list_free (glst);
 }
 
-/*! \brief Free a Glist completely
+/*! \brief Free a GSlist completely
  *  \par Function Description
- *  This function will free all of the data in a glist.
+ *  This function will free all of the data in a gslist.
  *
  */
-GList* u_glist_clear(GList* list){
+GSList* u_gslist_clear(GSList* list){
 
   if (list != NULL ) {
 
-    g_list_foreach(list, (GFunc)g_free, NULL);
+    g_slist_foreach(list, (GFunc)g_free, NULL);
     lambda (const char* data)
     {
-      list = g_list_remove( list, data);
+      list = g_slist_remove( list, data);
       return FALSE;
     }
-    foreach (list);
+    mapcar (list);
 
-    g_list_free(list);
+    g_slist_free(list);
     list = NULL;
   }
   return list;
@@ -183,27 +206,4 @@ void u_gslist_free_strings(void *data)
     GEDA_FREE (iter->data);
   }
   g_slist_free (data);
-}
-
-/*! \brief Free a GSlist completely
- *  \par Function Description
- *  This function will free all of the data in a gslist.
- *
- */
-GSList* u_gslist_clear(GSList* list){
-
-  if (list != NULL ) {
-
-    g_slist_foreach(list, (GFunc)g_free, NULL);
-    lambda (const char* data)
-    {
-      list = g_slist_remove( list, data);
-      return FALSE;
-    }
-    mapcar (list);
-
-    g_slist_free(list);
-    list = NULL;
-  }
-  return list;
 }

@@ -269,7 +269,7 @@ preview_update (Preview *preview)
     }
 
     object_list = (GList*)s_page_get_objects (preview_toplevel->page_current);
-    if (world_get_object_glist_bounds (object_list, &left, &top, &right, &bottom)) {
+    if (o_get_world_bounds_list (object_list, &left, &top, &right, &bottom)) {
       /* Clamp the canvas size to the extents of the page being previewed */
       width  = right - left;
       height = bottom - top;
