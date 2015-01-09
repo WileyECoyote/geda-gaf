@@ -69,6 +69,7 @@ struct _GedaPicture {
   int    angle;
   bool   mirrored;
   bool   is_embedded;             /* is picture component? */;
+  bool   missing;                 /* flag to indicate missing file */
 
   /* upper is considered the origin, world units */
   int    upper_x;

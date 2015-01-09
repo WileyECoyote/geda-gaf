@@ -31,8 +31,277 @@
 #include <stdio.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
-
 #include "libgeda_priv.h"
+
+/*! \brief Create a picture object.
+ *
+ *  \par Function Description
+ *  This function creates a new object representing a picture.
+ *
+ *  The picture is described by its upper left corner (\a x1, \a y1)
+ *  and its lower right corner (\a x2, \a y2).  The \a type parameter
+ *  must be equal to #OBJ_PICTURE.
+ *
+ *  If \a file_content is non-NULL, it must be a pointer to a buffer
+ *  containing raw image data.  If loading data from \a file_content
+ *  is unsuccessful, and \a filename is non-NULL, an image will
+ *  attempt to be loaded from \a filename.  Otherwise, the picture
+ *  object will fallback to a warning image.
+ *
+ *  \param [in]     file_content  Raw data of the image file, or NULL.
+ *  \param [in]     file_length   Length of raw data buffer
+ *  \param [in]     filename      File name backing this picture, or NULL.
+ *  \param [in]     x1            Upper x coordinate.
+ *  \param [in]     y1            Upper y coordinate.
+ *  \param [in]     x2            Lower x coordinate.
+ *  \param [in]     y2            Lower y coordinate.
+ *  \param [in]     angle         Picture rotation angle.
+ *  \param [in]     mirrored      Whether the image should be mirrored or not.
+ *  \param [in]     embedded      Whether the embedded flag should be set or not.
+ *
+ *  \return A pointer to a new picture#Object.
+ */
+Object*
+o_picture_new (const char *file_content, unsigned int file_length,
+               const char *filename, int x1, int y1, int x2, int y2,
+               int angle, int mirrored, int embedded)
+{
+  Object  *new_obj;
+  Picture *picture;
+
+  /* create the object */
+  new_obj = geda_picture_new();
+
+  picture = GEDA_PICTURE(new_obj);
+
+  /* describe the picture with its upper left and lower right corner */
+  picture->upper_x      = (x1 > x2) ? x2 : x1;
+  picture->upper_y      = (y1 > y2) ? y1 : y2;
+  picture->lower_x      = (x1 > x2) ? x1 : x2;
+  picture->lower_y      = (y1 > y2) ? y2 : y1;
+
+  picture->pixbuf       = NULL;
+  picture->file_content = NULL;
+  picture->file_length  = 0;
+
+  picture->angle        = angle;
+  picture->mirrored     = mirrored;
+  picture->is_embedded  = embedded;
+
+  /* Can not divide by zero */
+  if ((picture->lower_y - picture->upper_y) != 0) {
+    picture->ratio = (double) (picture->upper_x - picture->lower_x) /
+                              (picture->lower_y - picture->upper_y);
+  }
+  else {
+    u_log_message(_("Invalid picture has no height, set aspect to 1.0\n"));
+    picture->ratio = 1.0;
+  }
+
+  if (filename) {
+    picture->filename = u_string_strdup (filename);
+  }
+
+  if (file_content != NULL) {
+
+    GError *error = NULL;
+
+    if (!o_picture_set_from_buffer (new_obj, filename, file_content,
+                                             file_length, &error))
+    {
+      u_log_message (_("Failed to load buffer image [%s]: %s\n"),
+                     filename, error->message);
+      g_error_free (error);
+
+      /* Force the data into the object anyway, so as to prevent data
+       * loss of embedded images. */
+      picture->file_content = g_memdup (file_content, file_length);
+      picture->file_length  = file_length;
+    }
+  }
+
+  if (picture->pixbuf == NULL && filename != NULL) {
+
+    GError *error = NULL;
+
+    if (!o_picture_set_from_file (new_obj, filename, &error)) {
+
+      u_log_message (_("Failed to load image from [%s]: %s\n"),
+                        filename, error->message);
+
+      picture->pixbuf  = o_picture_get_fallback_pixbuf();
+      picture->missing = TRUE;
+      g_error_free (error);
+    }
+  }
+  else {
+    picture->missing = FALSE;
+  }
+
+  return new_obj;
+}
+
+/*! \brief Create a copy of a picture
+ *
+ *  \par Function Description
+ *  This function creates a verbatim copy of the object pointed by
+ *  <B>\a o_current</B> describing a picture.
+ *
+ *  \param [in]  o_current     Picture Object to copy.
+ *  \return The new Object
+ */
+Object*
+o_picture_copy(Object *o_current)
+{
+  Object  *new_obj;
+  Picture *new_picture;
+  Picture *old_picture = GEDA_PICTURE(o_current);
+
+  /* create the picture object */
+  new_obj = geda_picture_new();
+  new_picture = GEDA_PICTURE(new_obj);
+
+  /* describe the picture with its upper left and lower right corner */
+  new_picture->upper_x = old_picture->upper_x;
+  new_picture->upper_y = old_picture->upper_y;
+  new_picture->lower_x = old_picture->lower_x;
+  new_picture->lower_y = old_picture->lower_y;
+
+  if (old_picture->file_content != NULL) {
+    new_picture->file_content = g_memdup (old_picture->file_content,
+                                          old_picture->file_length);
+  } else {
+    new_picture->file_content = NULL;
+  }
+
+  new_picture->file_length = old_picture->file_length;
+  new_picture->filename    = u_string_strdup (old_picture->filename);
+  new_picture->ratio       = old_picture->ratio;
+  new_picture->angle       = old_picture->angle;
+  new_picture->mirrored    = old_picture->mirrored;
+  new_picture->is_embedded = old_picture->is_embedded;
+
+  /* Get the picture data */
+  new_picture->pixbuf = o_picture_get_pixbuf (o_current);
+
+  return new_obj;
+}
+
+/*! \brief Modify the description of a picture Object
+ *
+ *  \par Function Description
+ *  This function modifies the coordinates of one of the four corner of
+ *  the picture. The new coordinates of the corner identified by
+ *  <B>whichone</B> are given by <B>x</B> and <B>y</B> in world unit.
+ *
+ *  The coordinates of the corner is modified in the world coordinate system.
+ *  Screen coordinates and boundings are then updated.
+ *
+ *  \param [in,out] object     Picture Object to modify.
+ *  \param [in]     x          New x coordinate.
+ *  \param [in]     y          New y coordinate.
+ *  \param [in]     whichone   Which picture parameter to modify.
+ *
+ *  <B>whichone</B> can have the following values:
+ *  <DL>
+ *    <DT>*</DT><DD>PICTURE_UPPER_LEFT
+ *    <DT>*</DT><DD>PICTURE_LOWER_LEFT
+ *    <DT>*</DT><DD>PICTURE_UPPER_RIGHT
+ *    <DT>*</DT><DD>PICTURE_LOWER_RIGHT
+ *  </DL>
+ */
+void
+o_picture_modify(Object *object, int x, int y, int whichone)
+{
+  int tmp;
+  double ratio = o_picture_get_effective_ratio (object);
+
+  /* change the position of the selected corner */
+  switch(whichone) {
+    case PICTURE_UPPER_LEFT:
+      object->picture->upper_x = x;
+      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
+      if (y < object->picture->lower_y) {
+        tmp = -tmp;
+      }
+      object->picture->upper_y = object->picture->lower_y + tmp;
+      break;
+
+    case PICTURE_LOWER_LEFT:
+      object->picture->upper_x = x;
+      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
+      if (y > object->picture->upper_y) {
+        tmp = -tmp;
+      }
+      object->picture->lower_y = object->picture->upper_y - tmp;
+      break;
+
+    case PICTURE_UPPER_RIGHT:
+      object->picture->lower_x = x;
+      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
+      if (y < object->picture->lower_y) {
+        tmp = -tmp;
+      }
+      object->picture->upper_y = object->picture->lower_y + tmp;
+      break;
+
+    case PICTURE_LOWER_RIGHT:
+      object->picture->lower_x = x;
+      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
+      if (y > object->picture->upper_y) {
+        tmp = -tmp;
+      }
+      object->picture->lower_y = object->picture->upper_y - tmp;
+      break;
+
+    default:
+      return;
+  }
+
+  /* need to update the upper left and lower right corners */
+  if(object->picture->upper_x > object->picture->lower_x) {
+    tmp                      = object->picture->upper_x;
+    object->picture->upper_x = object->picture->lower_x;
+    object->picture->lower_x = tmp;
+  }
+
+  if(object->picture->upper_y < object->picture->lower_y) {
+    tmp                      = object->picture->upper_y;
+    object->picture->upper_y = object->picture->lower_y;
+    object->picture->lower_y = tmp;
+  }
+
+  /* recalculate the screen coords and the boundary */
+  object->w_bounds_valid_for = NULL;
+}
+
+/*! \brief Modify a picture object's coordinates
+ *
+ * \par Function Description
+ * Modifies the coordinates of all four corners of a picture \a
+ * object.  The picture is adjusted to fit the rectangle enclosed by
+ * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
+ * as possible to still fit within that rectangle.
+ *
+ * \param [in,out] object   picture#Object to be modified.
+ * \param [in]     x1       x coordinate of first corner of box.
+ * \param [in]     y1       y coordinate of first corner of box.
+ * \param [in]     x2       x coordinate of second corner of box.
+ * \param [in]     y2       y coordinate of second corner of box.
+ */
+void
+o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
+{
+  /* Normalise the requested rectangle. */
+  object->picture->lower_x = (x1 > x2) ? x1 : x2;
+  object->picture->lower_y = (y1 > y2) ? y2 : y1;
+  object->picture->upper_x = (x1 > x2) ? x2 : x1;
+  object->picture->upper_y = (y1 > y2) ? y1 : y2;
+
+  /* recalculate the world coords and bounds */
+  object->w_bounds_valid_for = NULL;
+}
+
 
 /*! \brief Create picture Object from character string
  *
@@ -54,7 +323,7 @@ o_picture_read (const char  *first_line,
                 TextBuffer  *tb,
                 unsigned int release_ver,
                 unsigned int fileformat_ver,
-                GError **err)
+                GError     **err)
 {
   Object *new_obj;
   int     angle, height, width;
@@ -135,7 +404,8 @@ o_picture_read (const char  *first_line,
 
       if (g_ascii_strcasecmp(line, ".\n") != 0) {
         encoded_picture = g_string_append (encoded_picture, line);
-      } else {
+      }
+      else {
         finished = 1;
       }
     } while (finished == 0);
@@ -181,7 +451,7 @@ o_picture_read (const char  *first_line,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *
+char*
 o_picture_save(Object *object)
 {
   int           width, height, x1, y1;
@@ -248,170 +518,147 @@ o_picture_save(Object *object)
   return(out);
 }
 
-/*! \brief Create a picture object.
+/*! \brief Mirror a picture using WORLD coordinates
  *
  *  \par Function Description
- *  This function creates a new object representing a picture.
+ *  This function mirrors the picture from the point (<B>center_wx</B>,
+ *  <B>center_wy</B>) in world unit. The picture is first translated to
+ *  the origin, then mirrored and finally translated back at its previous
+ *  position.
  *
- *  The picture is described by its upper left corner (\a x1, \a y1)
- *  and its lower right corner (\a x2, \a y2).  The \a type parameter
- *  must be equal to#OBJ_PICTURE.
- *
- *  If \a file_content is non-NULL, it must be a pointer to a buffer
- *  containing raw image data.  If loading data from \a file_content
- *  is unsuccessful, and \a filename is non-NULL, an image will
- *  attempt to be loaded from \a filename.  Otherwise, the picture
- *  object will fallback to a warning image.
- *
- *  \param [in]     file_content  Raw data of the image file, or NULL.
- *  \param [in]     file_length   Length of raw data buffer
- *  \param [in]     filename      File name backing this picture, or NULL.
- *  \param [in]     x1            Upper x coordinate.
- *  \param [in]     y1            Upper y coordinate.
- *  \param [in]     x2            Lower x coordinate.
- *  \param [in]     y2            Lower y coordinate.
- *  \param [in]     angle         Picture rotation angle.
- *  \param [in]     mirrored      Whether the image should be mirrored or not.
- *  \param [in]     embedded      Whether the embedded flag should be set or not.
- *
- *  \return A pointer to a new picture#Object.
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
+ *  \param [in,out] object         Picture Object to mirror.
  */
-Object*
-o_picture_new (const char *file_content, unsigned int file_length,
-               const char *filename,
-               int x1, int y1, int x2, int y2, int angle,
-               int mirrored, int embedded)
+void
+o_picture_mirror_world(int center_wx, int center_wy, Object *object)
 {
-  Object  *new_obj;
-  Picture *picture;
+  int newx1, newy1;
+  int newx2, newy2;
 
-  /* create the object */
-  new_obj = geda_picture_new();
-
-  picture = GEDA_PICTURE(new_obj);
-
-  /* describe the picture with its upper left and lower right corner */
-  picture->upper_x      = (x1 > x2) ? x2 : x1;
-  picture->upper_y      = (y1 > y2) ? y1 : y2;
-  picture->lower_x      = (x1 > x2) ? x1 : x2;
-  picture->lower_y      = (y1 > y2) ? y2 : y1;
-
-  picture->pixbuf       = NULL;
-  picture->file_content = NULL;
-  picture->file_length  = 0;
-
-  picture->angle        = angle;
-  picture->mirrored     = mirrored;
-  picture->is_embedded  = embedded;
-
-  /* Can not divide by zero */
-  if ((picture->lower_y - picture->upper_y) != 0) {
-    picture->ratio = (double) (picture->upper_x - picture->lower_x) /
-                              (picture->lower_y - picture->upper_y);
-  }
-  else {
-    g_critical (_("Invalid picture has no height, set aspect to 1.0\n"));
-    picture->ratio = 1.0;
+  /* Set info in object. Sometimes it's necessary to change the
+   * rotation angle as well as the mirror flag. */
+  object->picture->mirrored = !object->picture->mirrored;
+  switch (object->picture->angle) {
+  case 90:
+    object->picture->angle = 270;
+    break;
+  case 270:
+    object->picture->angle = 90;
+    break;
   }
 
-  if ( filename ) {
-    picture->filename = u_string_strdup (filename);
-  }
+  /* translate object to origin */
+  object->picture->upper_x -= center_wx;
+  object->picture->upper_y -= center_wy;
+  object->picture->lower_x -= center_wx;
+  object->picture->lower_y -= center_wy;
 
-  if (file_content != NULL) {
-    GError *error = NULL;
-    if (!o_picture_set_from_buffer (new_obj, filename, file_content,
-                                             file_length, &error))
-    {
-      u_log_message (_("Failed to load buffer image [%s]: %s\n"),
-                     filename, error->message);
-      g_error_free (error);
+  /* mirror the corners */
+  newx1 = -object->picture->upper_x;
+  newy1 = object->picture->upper_y;
+  newx2 = -object->picture->lower_x;
+  newy2 = object->picture->lower_y;
 
-      /* Force the data into the object anyway, so as to prevent data
-       * loss of embedded images. */
-      picture->file_content = g_memdup (file_content, file_length);
-      picture->file_length  = file_length;
-    }
-  }
+  /* reorder the corners */
+  object->picture->upper_x = min(newx1,newx2);
+  object->picture->upper_y = max(newy1,newy2);
+  object->picture->lower_x = max(newx1,newx2);
+  object->picture->lower_y = min(newy1,newy2);
 
-  if (picture->pixbuf == NULL && filename != NULL) {
+  /* translate back in position */
+  object->picture->upper_x += center_wx;
+  object->picture->upper_y += center_wy;
+  object->picture->lower_x += center_wx;
+  object->picture->lower_y += center_wy;
 
-    GError *error = NULL;
-
-    if (!o_picture_set_from_file (new_obj, filename, &error)) {
-
-      Object *new_attrib;
-      char   *not_found;
-
-      u_log_message (_("Failed to load image from [%s]: %s\n"),
-                        filename, error->message);
-
-      picture->pixbuf = o_picture_get_fallback_pixbuf();
-
-      /* Add some useful text */
-      not_found = u_string_sprintf (_("%s:\n %s"), filename, error->message);
-
-      new_attrib = o_text_new(DETACHED_ATTRIBUTE_COLOR,
-                              x1 + NOT_FOUND_TEXT_X,
-                              y1 + NOT_FOUND_TEXT_Y, LOWER_LEFT, 0, 10,
-                              VISIBLE, SHOW_NAME_VALUE,
-                              not_found);
-
-      new_obj->attribs = g_list_append (new_obj->attribs, new_attrib);
-
-      GEDA_FREE(not_found);
-      g_error_free (error);
-    }
-  }
-
-  return new_obj;
+  /* recalc boundings and screen coords */
+  object->w_bounds_valid_for = NULL;
 
 }
 
-/*! \brief Create a copy of a picture
+/*! \brief Rotate picture Object using WORLD coordinates.
+ *  \par Function Description
+ *  This function rotates the picture described by <B>*object</B> around
+ *  the (<B>center_wx</B>, <B>center_wy</B>) point by <B>angle</B>
+ *  degrees. The center of rotation is in world units.
+ *
+ *  \param [in]      center_wx  Rotation center x coordinate
+ *  \param [in]      center_wy  Rotation center y coordinate
+ *  \param [in]      angle      Rotation angle in degrees (See note below)
+ *  \param [in,out]  object     Picture Object to rotate.
+ */
+void
+o_picture_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+{
+  int newx1, newy1;
+  int newx2, newy2;
+
+  /* Only 90 degree multiple and positive angles are allowed. */
+  /* angle must be positive */
+  if(angle < 0) angle = -angle;
+  /* angle must be a 90 multiple or no rotation performed */
+  if((angle % 90) != 0) return;
+
+  object->picture->angle = (object->picture->angle + angle) % 360;
+
+  /* The center of rotation (<B>center_wx</B>, <B>center_wy</B>) is
+   * translated to the origin. The rotation of the upper left and lower
+   * right corner are then performed. Finally, the rotated picture is
+   * translated back to its previous location.
+   */
+  /* translate object to origin */
+  object->picture->upper_x -= center_wx;
+  object->picture->upper_y -= center_wy;
+  object->picture->lower_x -= center_wx;
+  object->picture->lower_y -= center_wy;
+
+  /* rotate the upper left corner of the picture */
+  m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
+                  &newx1, &newy1);
+
+  /* rotate the lower left corner of the picture */
+  m_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
+                  &newx2, &newy2);
+
+  /* reorder the corners after rotation */
+  object->picture->upper_x = min(newx1,newx2);
+  object->picture->upper_y = max(newy1,newy2);
+  object->picture->lower_x = max(newx1,newx2);
+  object->picture->lower_y = min(newy1,newy2);
+
+  /* translate object back to normal position */
+  object->picture->upper_x += center_wx;
+  object->picture->upper_y += center_wy;
+  object->picture->lower_x += center_wx;
+  object->picture->lower_y += center_wy;
+
+  /* recalc boundings and screen coords */
+  object->w_bounds_valid_for = NULL;
+
+}
+
+/*! \brief Translate a picture position in WORLD coordinates by a delta
  *
  *  \par Function Description
- *  This function creates a verbatim copy of the object pointed by
- *  <B>\a o_current</B> describing a picture.
+ *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
+ *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
  *
- *  \param [in]  o_current     Picture Object to copy.
- *  \return The new Object
+ *  \param [in]     dx         x distance to move.
+ *  \param [in]     dy         y distance to move.
+ *  \param [in,out] object     Picture Object to translate.
  */
-Object*
-o_picture_copy(Object *o_current)
+void
+o_picture_translate_world(int dx, int dy, Object *object)
 {
-  Object  *new_obj;
-  Picture *new_picture;
-  Picture *old_picture = GEDA_PICTURE(o_current);
+  /* Do world coords */
+  object->picture->upper_x = object->picture->upper_x + dx;
+  object->picture->upper_y = object->picture->upper_y + dy;
+  object->picture->lower_x = object->picture->lower_x + dx;
+  object->picture->lower_y = object->picture->lower_y + dy;
 
-  /* create the picture object */
-  new_obj = geda_picture_new();
-  new_picture = GEDA_PICTURE(new_obj);
-
-  /* describe the picture with its upper left and lower right corner */
-  new_picture->upper_x = old_picture->upper_x;
-  new_picture->upper_y = old_picture->upper_y;
-  new_picture->lower_x = old_picture->lower_x;
-  new_picture->lower_y = old_picture->lower_y;
-
-  if (old_picture->file_content != NULL) {
-    new_picture->file_content = g_memdup (old_picture->file_content,
-                                          old_picture->file_length);
-  } else {
-    new_picture->file_content = NULL;
-  }
-
-  new_picture->file_length = old_picture->file_length;
-  new_picture->filename    = u_string_strdup (old_picture->filename);
-  new_picture->ratio       = old_picture->ratio;
-  new_picture->angle       = old_picture->angle;
-  new_picture->mirrored    = old_picture->mirrored;
-  new_picture->is_embedded = old_picture->is_embedded;
-
-  /* Get the picture data */
-  new_picture->pixbuf = o_picture_get_pixbuf (o_current);
-
-  return new_obj;
+  /* recalc the screen coords and the bounding picture */
+  object->w_bounds_valid_for = NULL;
 }
 
 static void
@@ -765,264 +1012,6 @@ o_picture_is_embedded (Object *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), FALSE);
   return (object->picture->is_embedded == 1);
-}
-
-/*! \brief Mirror a picture using WORLD coordinates
- *
- *  \par Function Description
- *  This function mirrors the picture from the point (<B>center_wx</B>,
- *  <B>center_wy</B>) in world unit. The picture is first translated to
- *  the origin, then mirrored and finally translated back at its previous
- *  position.
- *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Picture Object to mirror.
- */
-void
-o_picture_mirror_world(int center_wx, int center_wy, Object *object)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /* Set info in object. Sometimes it's necessary to change the
-   * rotation angle as well as the mirror flag. */
-  object->picture->mirrored = !object->picture->mirrored;
-  switch (object->picture->angle) {
-  case 90:
-    object->picture->angle = 270;
-    break;
-  case 270:
-    object->picture->angle = 90;
-    break;
-  }
-
-  /* translate object to origin */
-  object->picture->upper_x -= center_wx;
-  object->picture->upper_y -= center_wy;
-  object->picture->lower_x -= center_wx;
-  object->picture->lower_y -= center_wy;
-
-  /* mirror the corners */
-  newx1 = -object->picture->upper_x;
-  newy1 = object->picture->upper_y;
-  newx2 = -object->picture->lower_x;
-  newy2 = object->picture->lower_y;
-
-  /* reorder the corners */
-  object->picture->upper_x = min(newx1,newx2);
-  object->picture->upper_y = max(newy1,newy2);
-  object->picture->lower_x = max(newx1,newx2);
-  object->picture->lower_y = min(newy1,newy2);
-
-  /* translate back in position */
-  object->picture->upper_x += center_wx;
-  object->picture->upper_y += center_wy;
-  object->picture->lower_x += center_wx;
-  object->picture->lower_y += center_wy;
-
-  /* recalc boundings and screen coords */
-  object->w_bounds_valid_for = NULL;
-
-}
-
-/*! \brief Modify the description of a picture Object
- *
- *  \par Function Description
- *  This function modifies the coordinates of one of the four corner of
- *  the picture. The new coordinates of the corner identified by
- *  <B>whichone</B> are given by <B>x</B> and <B>y</B> in world unit.
- *
- *  The coordinates of the corner is modified in the world coordinate system.
- *  Screen coordinates and boundings are then updated.
- *
- *  \param [in,out] object     Picture Object to modify.
- *  \param [in]     x          New x coordinate.
- *  \param [in]     y          New y coordinate.
- *  \param [in]     whichone   Which picture parameter to modify.
- *
- *  <B>whichone</B> can have the following values:
- *  <DL>
- *    <DT>*</DT><DD>PICTURE_UPPER_LEFT
- *    <DT>*</DT><DD>PICTURE_LOWER_LEFT
- *    <DT>*</DT><DD>PICTURE_UPPER_RIGHT
- *    <DT>*</DT><DD>PICTURE_LOWER_RIGHT
- *  </DL>
- */
-void
-o_picture_modify(Object *object, int x, int y, int whichone)
-{
-  int tmp;
-  double ratio = o_picture_get_effective_ratio (object);
-
-  /* change the position of the selected corner */
-  switch(whichone) {
-    case PICTURE_UPPER_LEFT:
-      object->picture->upper_x = x;
-      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
-      if (y < object->picture->lower_y) {
-        tmp = -tmp;
-      }
-      object->picture->upper_y = object->picture->lower_y + tmp;
-      break;
-
-    case PICTURE_LOWER_LEFT:
-      object->picture->upper_x = x;
-      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
-      if (y > object->picture->upper_y) {
-        tmp = -tmp;
-      }
-      object->picture->lower_y = object->picture->upper_y - tmp;
-      break;
-
-    case PICTURE_UPPER_RIGHT:
-      object->picture->lower_x = x;
-      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
-      if (y < object->picture->lower_y) {
-        tmp = -tmp;
-      }
-      object->picture->upper_y = object->picture->lower_y + tmp;
-      break;
-
-    case PICTURE_LOWER_RIGHT:
-      object->picture->lower_x = x;
-      tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
-      if (y > object->picture->upper_y) {
-        tmp = -tmp;
-      }
-      object->picture->lower_y = object->picture->upper_y - tmp;
-      break;
-
-    default:
-      return;
-  }
-
-  /* need to update the upper left and lower right corners */
-  if(object->picture->upper_x > object->picture->lower_x) {
-    tmp                      = object->picture->upper_x;
-    object->picture->upper_x = object->picture->lower_x;
-    object->picture->lower_x = tmp;
-  }
-
-  if(object->picture->upper_y < object->picture->lower_y) {
-    tmp                      = object->picture->upper_y;
-    object->picture->upper_y = object->picture->lower_y;
-    object->picture->lower_y = tmp;
-  }
-
-  /* recalculate the screen coords and the boundary */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Modify a picture object's coordinates
- *
- * \par Function Description
- * Modifies the coordinates of all four corners of a picture \a
- * object.  The picture is adjusted to fit the rectangle enclosed by
- * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
- * as possible to still fit within that rectangle.
- *
- * \param [in,out] object   picture#Object to be modified.
- * \param [in]     x1       x coordinate of first corner of box.
- * \param [in]     y1       y coordinate of first corner of box.
- * \param [in]     x2       x coordinate of second corner of box.
- * \param [in]     y2       y coordinate of second corner of box.
- */
-void
-o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
-{
-  /* Normalise the requested rectangle. */
-  object->picture->lower_x = (x1 > x2) ? x1 : x2;
-  object->picture->lower_y = (y1 > y2) ? y2 : y1;
-  object->picture->upper_x = (x1 > x2) ? x2 : x1;
-  object->picture->upper_y = (y1 > y2) ? y1 : y2;
-
-  /* recalculate the world coords and bounds */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Rotate picture Object using WORLD coordinates.
- *  \par Function Description
- *  This function rotates the picture described by <B>*object</B> around
- *  the (<B>center_wx</B>, <B>center_wy</B>) point by <B>angle</B>
- *  degrees. The center of rotation is in world units.
- *
- *  \param [in]      center_wx  Rotation center x coordinate
- *  \param [in]      center_wy  Rotation center y coordinate
- *  \param [in]      angle          Rotation angle in degrees (See note below)
- *  \param [in,out]  object         Picture Object to rotate.
- */
-void
-o_picture_rotate_world( int center_wx, int center_wy, int angle, Object *object)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /* Only 90 degree multiple and positive angles are allowed. */
-  /* angle must be positive */
-  if(angle < 0) angle = -angle;
-  /* angle must be a 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
-
-  object->picture->angle = (object->picture->angle + angle) % 360;
-
-  /* The center of rotation (<B>center_wx</B>, <B>center_wy</B>) is
-   * translated to the origin. The rotation of the upper left and lower
-   * right corner are then performed. Finally, the rotated picture is
-   * translated back to its previous location.
-   */
-  /* translate object to origin */
-  object->picture->upper_x -= center_wx;
-  object->picture->upper_y -= center_wy;
-  object->picture->lower_x -= center_wx;
-  object->picture->lower_y -= center_wy;
-
-  /* rotate the upper left corner of the picture */
-  m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
-                  &newx1, &newy1);
-
-  /* rotate the lower left corner of the picture */
-  m_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
-                  &newx2, &newy2);
-
-  /* reorder the corners after rotation */
-  object->picture->upper_x = min(newx1,newx2);
-  object->picture->upper_y = max(newy1,newy2);
-  object->picture->lower_x = max(newx1,newx2);
-  object->picture->lower_y = min(newy1,newy2);
-
-  /* translate object back to normal position */
-  object->picture->upper_x += center_wx;
-  object->picture->upper_y += center_wy;
-  object->picture->lower_x += center_wx;
-  object->picture->lower_y += center_wy;
-
-  /* recalc boundings and screen coords */
-  object->w_bounds_valid_for = NULL;
-
-}
-
-/*! \brief Translate a picture position in WORLD coordinates by a delta
- *
- *  \par Function Description
- *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
- *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
- *
- *  \param [in]     dx         x distance to move.
- *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Picture Object to translate.
- */
-void
-o_picture_translate_world(int dx, int dy, Object *object)
-{
-  /* Do world coords */
-  object->picture->upper_x = object->picture->upper_x + dx;
-  object->picture->upper_y = object->picture->upper_y + dy;
-  object->picture->lower_x = object->picture->lower_x + dx;
-  object->picture->lower_y = object->picture->lower_y + dy;
-
-  /* recalc the screen coords and the bounding picture */
-  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Get mask data from image

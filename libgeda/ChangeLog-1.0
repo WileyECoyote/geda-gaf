@@ -1,3 +1,10 @@
+2015-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_picture.h: Add boolean flag "missing"
+
+    * src/object/o_picture.c: Set flag missing if the fallback image
+      is used when creating new picture objects.
+
 2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * Clean and reorganize modules, renaming and relocate functions as
