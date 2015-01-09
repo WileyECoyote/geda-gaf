@@ -450,8 +450,7 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
  *
  *  \note *number is not modified unless the returned value is AUTONUMBER_RESPECT
  */
-static int
-autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
+static int autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
 {
   int len, isnumbered=1;
   const char *str = NULL;
@@ -515,8 +514,7 @@ autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
  *  \param [in] w_current Pointer to GschemToplevel data structure
  *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> data structure
  */
-static void
-autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
+static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
 {
   int number, numslots, slotnr, i;
   Object *o_current, *o_parent;
@@ -616,11 +614,10 @@ autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
  *
  *  \returns designation and slot number
  */
-static void
-autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
-                           Object          *o_current,
-                           int             *number,
-                           int             *slot)
+static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
+                                       Object          *o_current,
+                                       int             *number,
+                                       int             *slot)
 {
   AUTONUMBER_SLOT *freeslot;
 
@@ -711,8 +708,7 @@ autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
  *  \param [in] o_current Pointer to the object from which to remove the number
  *
  */
-static void
-autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
+static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
 {
   Object *o_parent, *o_slot;
   char *str;
@@ -760,11 +756,10 @@ autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
  *       added conditional so that slot=0 is not passed to o_slot_end function
  *       even though slot=0 is valid, it just means the component has none.
  */
-static void
-autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
-                          Object          *o_current,
-                          int              number,
-                          int              slot)
+static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
+                                      Object          *o_current,
+                                      int              number,
+                                      int              slot)
 {
   char string[32]="slot=";  /* char buffer to hold set=refdes=xx*/
   char s_val[5];            /* char buffer for integer conversion to string */
@@ -791,8 +786,7 @@ autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
  *
  *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
  */
-static void
-autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
+static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 {
   GschemToplevel *w_current;
 
@@ -1016,8 +1010,7 @@ autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
  *
  *  \param w_current Pointer to GschemToplevel data structure
  */
-static void
-autonumber_sortorder_create(GschemToplevel *w_current)
+static void autonumber_sortorder_create(GschemToplevel *w_current)
 {
   GtkListStore    *store;
   GtkTreeIter      iter;
@@ -1047,14 +1040,14 @@ autonumber_sortorder_create(GschemToplevel *w_current)
   store = gtk_list_store_new(2, G_TYPE_STRING, GDK_TYPE_PIXBUF);
 
   for (i=0; filenames[i] != NULL; i++) {
-    path = f_get_bitmap_filespec(filenames[i]);
+    path   = f_get_bitmap_filespec(filenames[i]);
     pixbuf = gdk_pixbuf_new_from_file(path, &error);
     gtk_list_store_append(store, &iter);
     gtk_list_store_set(store, &iter, 0, _(names[i]), 1, pixbuf, -1);
     GEDA_FREE(path);
   }
 
-  gtk_combo_box_set_model(GTK_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
+  geda_combo_box_set_model(GEDA_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
   renderer = gtk_cell_renderer_text_new ();
 
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, TRUE);
@@ -1089,8 +1082,7 @@ autonumber_sortorder_create(GschemToplevel *w_current)
  *  \param [in] history GList to be prepended with \a text
  *  \param [in] text    The text string to be prepended to the list
  */
-static GList *
-autonumber_add_history(GList *history, char *text)
+static GList * autonumber_add_history(GList *history, char *text)
 {
   /* Search for this text in history and delete it (so we don't have
    * duplicate entries) */
@@ -1140,8 +1132,7 @@ autonumber_add_history(GList *history, char *text)
  *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
  *  \param [in] data   Is a pointer to data structure
  */
-static void
-set_scope_filter_text_history (GtkWidget *button, void *data)
+static void set_scope_filter_text_history (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
   GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
@@ -1179,8 +1170,7 @@ set_scope_filter_text_history (GtkWidget *button, void *data)
  *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
  *  \param [in] data   Is a pointer to data structure
  */
-static void
-set_scope_filter_text_question (GtkWidget *button, void *data)
+static void set_scope_filter_text_question (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
   GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
@@ -1211,8 +1201,7 @@ set_scope_filter_text_question (GtkWidget *button, void *data)
  *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
  *  \param [in] data   Is a pointer to data structure
  */
-static void
-set_scope_filter_text_wild (GtkWidget *button, void *data)
+static void set_scope_filter_text_wild (GtkWidget *button, void *data)
 {
   AUTONUMBER_TEXT  *autotext = data;
   GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
@@ -1332,7 +1321,7 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   /* Options */
   SetSpin (StartNumber, autotext->startnum);
 
-  SetCombo (SortOrder, autotext->order);
+  SetGedaCombo (SortOrder, autotext->order);
 
   SetSwitch (DoRemoveNumber, autotext->removenum);
 
@@ -1381,13 +1370,12 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
       autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 
       /* Sort order */
-      autotext->order = gtk_combo_box_get_active(GTK_COMBO_BOX(SortOrderCombo));
+      autotext->order = geda_combo_box_get_active(GEDA_COMBO_BOX(SortOrderCombo));
 
       /* Options */
       autotext->startnum  = GET_SPIN_IVALUE (StartNumberSpin);
       autotext->removenum = GET_SWITCH_STATE (DoRemoveNumberSwitch);
       autotext->slotting  = GET_SWITCH_STATE (DoSlottingSwitch);
-
 }
 
 /* ***** CALLBACKS (functions that get called from GTK) ******* */
@@ -1442,8 +1430,7 @@ static void autonumber_text_response(GtkWidget       *widget,
  *  \param [in] widget    Pointer to the GedaSwitch object.
  *  \param [in] Control   Pointer to integer Switch identifier
  */
-static void
-switch_responder(GtkWidget *widget, ControlID *Control)
+static void switch_responder(GtkWidget *widget, ControlID *Control)
 {
   bool state = GET_SWITCH_STATE (widget);
   GtkWidget* SwitchImage = get_geda_switch_image( state);
@@ -1474,10 +1461,10 @@ switch_responder(GtkWidget *widget, ControlID *Control)
  *  \param [in] autotext  Pointer to AUTONUMBER_TEXT data structure
  *  \param [in] container Pointer to container for the bulb widgets
  */
-static inline void
-autonumber_create_filter_options (GtkWidget *Dialog,
-                                  AUTONUMBER_TEXT *autotext,
-                                  GtkWidget *container)
+static inline
+void autonumber_create_filter_options (GtkWidget       *Dialog,
+                                       AUTONUMBER_TEXT *autotext,
+                                       GtkWidget       *container)
 {
   GtkWidget *widget;
 
@@ -1512,8 +1499,8 @@ autonumber_create_filter_options (GtkWidget *Dialog,
  *  \par Function Description
  *  This function creates a GtkMenu with different scope options.
  */
-static inline GtkWidget*
-autonumber_create_scope_menu (GschemToplevel *w_current)
+static inline
+GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
 {
   GtkWidget *menu;
   GSList *group;
@@ -1554,8 +1541,9 @@ autonumber_create_scope_menu (GschemToplevel *w_current)
  *
  *  \returns Pointer to the dialog window.
  */
-static GtkWidget*
-autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
+static
+GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
+                                    AUTONUMBER_TEXT *autotext)
 {
   GtkWidget *ThisDialog;
   GtkWidget *main_vbox;
@@ -1699,7 +1687,7 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
-  SortOrderCombo = gtk_combo_box_new();
+  SortOrderCombo = geda_combo_box_new();
   gtk_widget_show (SortOrderCombo);
   gtk_table_attach (GTK_TABLE (lower_table), SortOrderCombo, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),

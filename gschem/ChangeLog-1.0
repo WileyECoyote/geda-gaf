@@ -1,5 +1,9 @@
 2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Replace GtkComboBox with GedaComboBox
+
+2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Add pop_zoom_to_mag to the main context popup, this
       feature seems more cognate to the mouse, and allows the user to right
       click on any point and zoom to that point at a specified magnification.
