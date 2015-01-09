@@ -222,7 +222,9 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
 bool
-i_var_restore_group_boolean(EdaConfig *cfg, const const char *group, const char *key, int *var, int def_val)
+i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
+                                            const char *key,
+                                            int *var, int def_val)
 {
   GError *err = NULL;
   bool tmp_bool;
@@ -638,8 +640,7 @@ void i_vars_freenames()
  * Populate the default configuration context with compiled-in
  * defaults.
  */
-void
-i_vars_init(GschemToplevel *w_current)
+void i_vars_init(GschemToplevel *w_current)
 {
 
   EdaConfig *cfg = eda_config_get_default_context ();
@@ -678,8 +679,7 @@ i_vars_init(GschemToplevel *w_current)
  * \par Function Dcoarseescription
  * When gschem exits, try to save the user configuration to disk.
  */
-void
-i_vars_atexit_save_user_config (void * user_data)
+void i_vars_atexit_save_user_config (void * user_data)
 {
   EdaConfig *cfg = eda_config_get_user_context ();
   GError    *err = NULL;

@@ -92,8 +92,8 @@ void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] string The new string to be shown in the status bar
  */
-static void
-i_status_update_status(GschemToplevel *w_current, const char *string)
+static void i_status_update_status(GschemToplevel *w_current,
+                                   const char *string)
 {
   if (!StatusBar->status_label)
     return;
@@ -325,8 +325,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
  * update sensitivities helper function to determine
  * if any selected objects can be hatched or filled
  */
-static bool
-hatchable_object_selected(GList *list)
+static bool hatchable_object_selected(GList *list)
 {
   Object *obj;
 
@@ -347,8 +346,7 @@ hatchable_object_selected(GList *list)
  * update sensitivities helper function to determine
  * if any selected objects have line-type properties
  */
-static bool
-linetype_object_selected(GList *list)
+static bool linetype_object_selected(GList *list)
 {
   Object *obj;
 
@@ -370,8 +368,7 @@ linetype_object_selected(GList *list)
  * update sensitivities helper function to determine
  * if any selected objects are Text objects
  */
-static bool
-selected_at_least_one_text_object(GList *list)
+static bool selected_at_least_one_text_object(GList *list)
 {
   Object *obj;
 
@@ -390,8 +387,7 @@ selected_at_least_one_text_object(GList *list)
  * update sensitivities helper function to determine
  * if any selected objects are Complex objects
  */
-static bool
-selected_complex_object(GList *list)
+static bool selected_complex_object(GList *list)
 {
   Object *obj;
 
@@ -410,8 +406,7 @@ selected_complex_object(GList *list)
  * update sensitivities helper function to determine
  * if any selected objects are Picture objects
  */
-static bool
-selected_at_least_one_pic_object(GList *list)
+static bool selected_at_least_one_pic_object(GList *list)
 {
   Object *obj;
 
@@ -430,8 +425,7 @@ selected_at_least_one_pic_object(GList *list)
  * update sensitivities helper function to determine
  * if any selected objects are Pin objects
  */
-static bool
-selected_at_least_one_pin_object(GList *list)
+static bool selected_at_least_one_pin_object(GList *list)
 {
   Object *obj;
 
@@ -460,8 +454,7 @@ selected_at_least_one_pin_object(GList *list)
  *
  * TODO: Fix this ludicrousness
  */
-static bool
-i_status_idle_update_sensitivities(GschemToplevel *w_current)
+static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 {
   bool any_object;
   bool can_hatch;

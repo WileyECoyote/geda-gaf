@@ -277,8 +277,7 @@ static GSList *i_sessions_get_file_list(Session *record)
  *
  * TODO: See cmd_do_open in i_command.c
  */
-static int
-i_session_load_session(GschemToplevel *w_current, Session *record)
+static inti_session_load_session(GschemToplevel *w_current, Session *record)
 {
   GSList *iter;
   Page   *blank;
@@ -415,8 +414,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
  *
  *  \return count of document files saved for the session
  */
-static int
-i_sessions_save(GschemToplevel *w_current, GError *err)
+static int i_sessions_save(GschemToplevel *w_current, GError *err)
 {
   FILE    *fp;
   GList   *iter;
@@ -513,8 +511,7 @@ static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
  *
  *  \param w_current Pointer to #GschemToplevel Object
  */
-static void
-i_sessions_attach_submenu(GschemToplevel *w_current)
+static void i_sessions_attach_submenu(GschemToplevel *w_current)
 {
   GtkWidget *tmp;
   GtkWidget *sessions_menu_item;
