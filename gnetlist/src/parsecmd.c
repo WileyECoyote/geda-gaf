@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ version ()
 {
   printf(
     "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2014 gEDA developers\n"
+    "Copyright (C) 1998-2015 gEDA developers\n"
     "This is free software, and you are welcome to redistribute it under\n"
     "certain conditions. For details, see the file `COPYING', which is\n"
     "included in the gEDA distribution.\n"

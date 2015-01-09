@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * Date: December 26, 2012
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>

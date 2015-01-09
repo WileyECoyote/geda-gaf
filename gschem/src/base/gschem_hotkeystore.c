@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013-2014 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2013-2015 Peter Brett <peter@peter-b.co.uk>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
