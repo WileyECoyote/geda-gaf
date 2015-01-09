@@ -43,6 +43,9 @@
  * for that */
 #include "gschem_dialog.h"
 
+/* Include widgets in libgedauio */
+#include "geda_widgets.h"
+
 #include "x_console.h"
 #include "x_multiattrib.h"
 #include "x_pagesel.h"

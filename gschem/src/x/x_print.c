@@ -32,7 +32,6 @@
 
 #include "gschem.h"
 #include "x_dialog.h"
-#include "geda_widgets.h"
 
 #include <cairo-pdf.h>
 
@@ -62,14 +61,14 @@ static void print_dialog_set_property            (GObject      *object,
                                             const GValue       *value,
                                                   GParamSpec   *pspec);
 static void print_dialog_set_property_comboboxes (PrintDialog  *dialog,
-                                                  GtkComboBox  *cbox,
+                                                  GedaComboBox *cbox,
                                             const GValue       *value);
 static void print_dialog_get_property            (GObject      *object,
                                                   unsigned int  property_id,
                                                   GValue       *value,
                                                   GParamSpec   *pspec);
 static void print_dialog_get_property_comboboxes (PrintDialog  *dialog,
-                                                  GtkComboBox  *cbox,
+                                                  GedaComboBox *cbox,
                                                   GValue       *value);
 
 static void print_dialog_class_init (PrintDialogClass *class);
@@ -135,24 +134,23 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
  */
 static void print_dialog_init_paper_combobox (PrintDialog * d)
 {
-  GtkComboBox *combobox;
+  GedaComboBox *combobox;
 
   char *string;
   int   i;
 
-  combobox = GTK_COMBO_BOX (gtk_combo_box_new_text ());
-  gtk_combo_box_set_active (combobox, -1);
+  combobox = GEDA_COMBO_BOX (geda_combo_box_new_text ());
+  geda_combo_box_set_active (combobox, -1);
 
   /* Populate combo box with available paper sizes */
   i = 0;
   string = (char *) s_papersizes_get (i);
-  while (string != NULL)
-    {
-      gtk_combo_box_insert_text (GTK_COMBO_BOX (combobox), i, string);
+  while (string != NULL) {
+    geda_combo_box_insert_text (GEDA_COMBO_BOX (combobox), i, string);
 
-      i++;
-      string = (char *) s_papersizes_get (i);
-    }
+    i++;
+    string = (char *) s_papersizes_get (i);
+  }
 
   d->papercbox = combobox;
 }
@@ -186,7 +184,7 @@ static void print_dialog_init_type_combobox (PrintDialog * d)
   gtk_list_store_set (model, &iter, 0, _("Current Window"),
                       1, WINDOW, -1);
 
-  combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (model));
+  combobox = geda_combo_box_new_with_model (GTK_TREE_MODEL (model));
 
   renderer = gtk_cell_renderer_text_new ();
 
@@ -195,7 +193,7 @@ static void print_dialog_init_type_combobox (PrintDialog * d)
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combobox),
                                  renderer, "text", 0);
 
-  d->typecbox = GTK_COMBO_BOX (combobox);
+  d->typecbox = GEDA_COMBO_BOX (combobox);
 }
 
 /*!
@@ -227,7 +225,7 @@ print_dialog_init_orient_combobox (PrintDialog * d)
                       1, PORTRAIT,
                      -1);
 
-  combobox = gtk_combo_box_new_with_model (GTK_TREE_MODEL (model));
+  combobox = geda_combo_box_new_with_model (GTK_TREE_MODEL (model));
 
   renderer = gtk_cell_renderer_text_new ();
 
@@ -236,7 +234,7 @@ print_dialog_init_orient_combobox (PrintDialog * d)
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combobox),
                                  renderer, "text", 0);
 
-  d->orientcbox = GTK_COMBO_BOX (combobox);
+  d->orientcbox = GEDA_COMBO_BOX (combobox);
 }
 
 /*!
@@ -432,7 +430,7 @@ print_dialog_set_property (GObject * object,
       return;
 
     case PROP_PAPERSIZE:
-      gtk_combo_box_set_active (dialog->papercbox,
+      geda_combo_box_set_active (dialog->papercbox,
                                 g_value_get_int (value));
       return;
 
@@ -467,13 +465,13 @@ print_dialog_set_property (GObject * object,
  *
  */
 static void print_dialog_set_property_comboboxes (PrintDialog * dialog,
-                                                  GtkComboBox * cbox,
+                                                  GedaComboBox * cbox,
                                                   const GValue * value)
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
 
-  model = gtk_combo_box_get_model (cbox);
+  model = geda_combo_box_get_model (cbox);
   gtk_tree_model_get_iter_first (model, &iter);
 
   do {
@@ -482,13 +480,13 @@ static void print_dialog_set_property_comboboxes (PrintDialog * dialog,
 
     if (g_value_get_int (&temp_value) == g_value_get_int (value))
     {
-      gtk_combo_box_set_active_iter (cbox, &iter);
+      geda_combo_box_set_active_iter (cbox, &iter);
       return;
     }
 
   } while (gtk_tree_model_iter_next (model, &iter));
 
-  gtk_combo_box_set_active (cbox, 0);
+  geda_combo_box_set_active (cbox, 0);
 }
 
 /*! \todo Finish function documentation
@@ -546,16 +544,16 @@ static void print_dialog_get_property (GObject * object,
  *
  */
 static void print_dialog_get_property_comboboxes (PrintDialog * dialog,
-                                                  GtkComboBox * cbox,
+                                                  GedaComboBox * cbox,
                                                   GValue * value)
 {
   GValue        temp_value = {0, };
   GtkTreeModel *model;
   GtkTreeIter   iter;
 
-  model = gtk_combo_box_get_model (cbox);
+  model = geda_combo_box_get_model (cbox);
 
-  gtk_combo_box_get_active_iter (cbox, &iter);
+  geda_combo_box_get_active_iter (cbox, &iter);
   gtk_tree_model_get_value (model, &iter, 1, &temp_value);
   g_value_copy (&temp_value, value);
   g_value_unset (&temp_value);

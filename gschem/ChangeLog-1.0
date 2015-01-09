@@ -1,4 +1,11 @@
-2015-01-07 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_dialog.h: Add to include header "gschem_dialog.h"
+      then remove inclusion in x_autonumber.c.
+
+    * src/x/x_print.c: Replace GtkComboBox with GedaComboBox
+
+2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Replace GtkComboBox with GedaComboBox
 

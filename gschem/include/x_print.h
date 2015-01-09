@@ -18,7 +18,6 @@
  * MA 02111-1301 USA
  */
 
-
 #ifndef __X_PRINT_H__
 #define __X_PRINT_H__
 
@@ -28,7 +27,7 @@
 
 #define TYPE_PRINT_DIALOG         (print_dialog_get_type())
 #define PRINT_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PRINT_DIALOG, PrintDialog))
-#define PRINT_DIALOG_CLASS(class) (G_TYPE_CHECK_CLASS_CAST ((class), TYPE_PRINT_DIALOG))
+#define PRINT_DIALOG_CLASS(class) (G_TYPE_CHECK_CLASS_CAST ((class),  TYPE_PRINT_DIALOG))
 #define IS_PRINT_DIALOG(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PRINT_DIALOG))
 
 typedef struct _PrintDialogClass PrintDialogClass;
@@ -43,10 +42,10 @@ struct _PrintDialog
 {
   GschemDialog parent_instance;
 
-  GtkEntry *fnfield, *cmdfield;
+  GtkEntry       *fnfield,   *cmdfield;
   GtkRadioButton *fileradio, *cmdradio;
-  GtkButton *saveasbutton;
-  GtkComboBox *orientcbox, *typecbox, *papercbox;
+  GtkButton      *saveasbutton;
+  GedaComboBox   *orientcbox, *typecbox, *papercbox;
 };
 
 unsigned int print_dialog_get_type ();
