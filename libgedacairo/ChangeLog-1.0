@@ -1,3 +1,8 @@
+2015-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Check for missing picture flag and add overlay
+      message in function eda_renderer_draw_picture.
+
 2014-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Revised function eda_renderer_draw_picture (forgot to

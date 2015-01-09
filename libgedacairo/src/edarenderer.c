@@ -1195,13 +1195,15 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
 
   GdkPixbuf *pixbuf;
   static int pixbuf_error = 1;
+  bool missing;
 
   g_return_if_fail (GEDA_IS_PICTURE (object));
 
   /* Get a pixbuf, or, failing that, a fallback image. */
   if (object->picture->pixbuf && GDK_IS_PIXBUF(object->picture->pixbuf))
   {
-    pixbuf = g_object_ref (object->picture->pixbuf);
+    pixbuf  = g_object_ref (object->picture->pixbuf);
+    missing = object->picture->missing;
   }
   else {
 
@@ -1210,7 +1212,8 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
       pixbuf_error--;
     }
 
-    pixbuf = o_picture_get_fallback_pixbuf ();
+    pixbuf  = o_picture_get_fallback_pixbuf ();
+    missing = TRUE;
 
     if (pixbuf) {
       g_object_ref (pixbuf);
@@ -1278,13 +1281,30 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   cairo_clip (renderer->priv->cr);
   cairo_paint (renderer->priv->cr);
 
+  if (missing) { /* Add some useful text */
+
+    char *filename;
+    char *err_msg;
+
+    filename  = object->picture->filename;
+    err_msg = u_string_sprintf (_("Error loading: %s"), filename);
+    cairo_set_font_size(renderer->priv->cr, 6);
+
+    /* add the text */
+    cairo_move_to( renderer->priv->cr, 3, height * 0.95);
+    cairo_set_source_rgba(renderer->priv->cr, 0,0,0,1);
+    cairo_show_text(renderer->priv->cr, err_msg);
+    GEDA_FREE(err_msg);
+  }
+
   cairo_restore (renderer->priv->cr);
   GEDA_UNREF (pixbuf);
 }
 
 /* ================================================================
  * GRIP DRAWING
- * ================================================================ */
+ * ================================================================
+ */
 
 void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects)
 {
