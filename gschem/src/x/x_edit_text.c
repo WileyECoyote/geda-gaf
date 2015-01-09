@@ -117,29 +117,29 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     text_angle  = object->text->angle;
 
     GList *iter  = NULL;
-    iter         = geda_list_get_glist( Current_Selection );
+    iter         = geda_list_get_glist(Current_Selection);
     num_selected = g_list_length(iter);
 
     if (num_selected > 1) {
 
-      for ( ;  iter != NULL; iter = g_list_next (iter)) {
+      for ( ;  iter != NULL; iter = g_list_next(iter)) {
 
         Object *o_current = iter->data;
 
-        if ( o_current->type == OBJ_TEXT ) {
-          if ( strcmp(o_current->text->string, string) != 0)
+        if (o_current->type == OBJ_TEXT) {
+          if (strcmp(o_current->text->string, string) != 0)
             match_string = FALSE;
 
-          if ( o_current->text->alignment != text_align)
+          if (o_current->text->alignment != text_align)
             match_align = FALSE;
 
-          if ( o_current->color != text_color)
+          if (o_current->color != text_color)
             match_color = FALSE;
 
-          if ( o_current->text->size != text_size)
+          if (o_current->text->size != text_size)
             match_size = FALSE;
 
-          if ( o_current->text->angle != text_angle)
+          if (o_current->text->angle != text_angle)
             match_angle = FALSE;
         }
       }
@@ -148,7 +148,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     /* Grey non matching values */
     {
       widget = g_object_get_data (G_OBJECT (ThisDialog), IDS_TEXT_EDIT);
-      if ( GTK_IS_TEXT_VIEW (widget) ) {
+      if (GTK_IS_TEXT_VIEW (widget)) {
         textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
 
         if (match_string)
@@ -165,7 +165,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     { /* Text Font Size */
       widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextFont));
-      if ( GEDA_IS_FONT_BUTTON(widget)) {
+      if (GEDA_IS_FONT_BUTTON(widget)) {
         if (match_size) {
           gtk_widget_set_can_default (widget, TRUE);
           geda_font_button_set_size ((GedaFontButton*)widget, text_size);
@@ -179,7 +179,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     { /* Text Color */
       widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
       if (match_color) {
-        gtk_combo_box_set_active (GTK_COMBO_BOX(widget), text_color);
+        geda_combo_widget_set_active (widget, text_color);
       }
       else {
         gtk_widget_modify_fg (widget, GTK_STATE_NORMAL, &gray);
@@ -189,8 +189,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     { /* Text Alignment */
       widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
       if (match_align) {
-        gtk_combo_box_set_active (GTK_COMBO_BOX(widget),
-                                  alignment_lookup[text_align]);
+        geda_combo_widget_set_active(widget, alignment_lookup[text_align]);
       }
       else {
         gtk_widget_modify_fg (widget, GTK_STATE_NORMAL, &gray);
@@ -204,7 +203,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
         gtk_widget_set_can_default (widget, TRUE);
       }
       else {
-        SetEntryText( widget, "" );
+        SetEntryText( widget, "");
         gtk_widget_set_can_default (widget, FALSE);
         gtk_entry_set_activates_default(GTK_ENTRY(widget), FALSE);
       }
@@ -306,7 +305,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   { /* Text Size */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextFont));
     has_value = gtk_widget_get_can_default (widget);
-    if ( has_value ) {
+    if (has_value) {
       fontname = geda_font_button_get_font_name(GEDA_FONT_BUTTON (widget));
       text_size = geda_font_button_get_size ((GedaFontButton*)widget);
     }
@@ -316,8 +315,8 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   { /* Text Color */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(widget), &iter)) {
-      gtk_tree_model_get_value (gtk_combo_box_get_model((GtkComboBox*) widget),
+    if (geda_combo_widget_get_active_iter(widget, &iter)) {
+      gtk_tree_model_get_value (geda_combo_box_get_model((GedaComboBox*) widget),
                                &iter, 1, &value);
       text_color = g_value_get_int (&value);
     }
@@ -326,8 +325,8 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   { /* Text Alignment */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
 
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(widget), &iter)) {
-      model = gtk_combo_box_get_model((GtkComboBox*) widget);
+    if (geda_combo_widget_get_active_iter(widget, &iter)) {
+      model = geda_combo_box_get_model((GedaComboBox*) widget);
       gtk_tree_model_get(model, &iter, 1, &text_align, -1);
     }
   }
@@ -335,7 +334,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   { /* Text Rotation */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(Rotation));
     has_value = gtk_widget_get_can_default (widget);
-    if ( has_value )
+    if (has_value)
       text_angle = GET_SPIN_IVALUE(widget);
     else
       text_angle = -1;
@@ -502,8 +501,8 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     gtk_table_attach(GTK_TABLE(table), align_label, 0,1,0,1, GTK_FILL,0,0,0);
 
     align_menu_model = create_menu_alignment(w_current);
-    combobox = gtk_combo_box_new_with_model(GTK_TREE_MODEL(align_menu_model));
-    gtk_combo_box_set_wrap_width(GTK_COMBO_BOX(combobox), 3);
+    combobox = geda_combo_box_new_with_model(GTK_TREE_MODEL(align_menu_model));
+    geda_combo_widget_set_wrap_width(combobox, 3);
     cell = gtk_cell_renderer_text_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combobox), cell, TRUE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combobox),
@@ -572,25 +571,25 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     atk_font_obj   = atk_widget_linked_label_new (font_label, font_button);
     atk_rotate_obj = atk_widget_linked_label_new (rotate_label, RotationSpin);
 
-    if ( atk_text_obj ) {
+    if (atk_text_obj) {
       atk_object_set_name        (atk_text_obj,    _("Atrribute Name List"));
-      atk_object_set_description (atk_text_obj,       text_entry_tip );
+      atk_object_set_description (atk_text_obj,       text_entry_tip);
     }
-    if ( atk_align_obj ) {
+    if (atk_align_obj) {
       atk_object_set_name        (atk_align_obj,   _("Text Alignment Attribute"));
-      atk_object_set_description (atk_align_obj,      text_align_tip );
+      atk_object_set_description (atk_align_obj,      text_align_tip);
     }
-    if ( atk_color_obj ) {
+    if (atk_color_obj) {
       atk_object_set_name        (atk_color_obj,   _("Attribute Value Entry"));
-      atk_object_set_description (atk_color_obj,      color_menu_tip );
+      atk_object_set_description (atk_color_obj,      color_menu_tip);
     }
-    if ( atk_font_obj ) {
+    if (atk_font_obj) {
       atk_object_set_name        (atk_font_obj,    _("Atrribute Name List"));
-      atk_object_set_description (atk_font_obj,       font_button_tip );
+      atk_object_set_description (atk_font_obj,       font_button_tip);
     }
-    if ( atk_rotate_obj ) {
+    if (atk_rotate_obj) {
       atk_object_set_name        (atk_rotate_obj,  _("Text Rotation Angle Spinner Entry"));
-      atk_object_set_description (atk_rotate_obj,     rotation_tip );
+      atk_object_set_description (atk_rotate_obj,     rotation_tip);
     }
 
     /* Set the OKAY button to be the default widget */

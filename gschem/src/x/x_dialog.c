@@ -1002,8 +1002,8 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
  */
 GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 {
+  GedaComboBox    *cbox;
   GtkListStore    *store;
-  GtkComboBox     *cbox;
   GtkCellLayout   *layout;
   GtkCellRenderer *text_cell;
   GtkCellRenderer *color_cell;
@@ -1014,8 +1014,8 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   GtkTreeIter iter;
 
   /* The columns are: name of color, index of color. */
-  store = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
-  cbox = GTK_COMBO_BOX (gtk_combo_box_new_with_model (GTK_TREE_MODEL (store)));
+  store  = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
+  cbox   = GEDA_COMBO_BOX (geda_combo_box_new_with_model (GTK_TREE_MODEL (store)));
   layout = GTK_CELL_LAYOUT (cbox); /* For convenience */
 
   /* Renders the color swatch. Since this won't contain text, set a
@@ -1042,7 +1042,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
     if (i == color_index)
-      gtk_combo_box_set_active_iter (cbox, &iter);
+      geda_combo_box_set_active_iter(cbox, &iter);
   }
 
   return GTK_WIDGET (cbox);

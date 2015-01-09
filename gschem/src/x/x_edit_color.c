@@ -52,14 +52,14 @@
 static void
 x_dialog_color_update_selection (GschemToplevel *w_current, Object *object)
 {
-  GtkComboBox *ColorCombo;
+  GedaComboBox *ColorCombo;
   int index;
 
   if (object != NULL) {
     index = object->color;
 
     ColorCombo = g_object_get_data (G_OBJECT (w_current->clwindow), IDS_COLOR_EDIT);
-    gtk_combo_box_set_active((GtkComboBox *)ColorCombo, index);
+    geda_combo_box_set_active(ColorCombo, index);
   }
 }
 
@@ -71,12 +71,12 @@ static void
 x_dialog_edit_color_apply(GtkWidget *dialog, GschemToplevel *w_current)
 {
   GList  *s_current = NULL;
-  Object *object = NULL;
+  Object *object    = NULL;
   int     color_index;
 
-  GtkComboBox *ColorCombo;
-  GtkTreeIter  iter;
-  GValue       value = {0, };
+  GedaComboBox *ColorCombo;
+  GtkTreeIter   iter;
+  GValue        value = {0, };
 
   s_current = geda_list_get_glist( Current_Selection );
 
@@ -86,8 +86,8 @@ x_dialog_edit_color_apply(GtkWidget *dialog, GschemToplevel *w_current)
     ColorCombo = g_object_get_data (G_OBJECT (dialog), IDS_COLOR_EDIT);
 
     /* Retrieve the current index from the tree model in the widget */
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(ColorCombo), &iter)) {
-      gtk_tree_model_get_value ( gtk_combo_box_get_model (ColorCombo), &iter, 1, &value);
+    if (geda_combo_box_get_active_iter(ColorCombo, &iter)) {
+      gtk_tree_model_get_value(geda_combo_box_get_model(ColorCombo), &iter, 1, &value);
       color_index = g_value_get_int (&value);
 
       while(s_current != NULL) {

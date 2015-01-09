@@ -1,5 +1,9 @@
 2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_text.c:
+
+2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_dialog.h: Add to include header "gschem_dialog.h"
       then remove inclusion in x_autonumber.c.
 
