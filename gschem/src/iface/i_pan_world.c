@@ -1,5 +1,10 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: i_pan_world.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
@@ -15,12 +20,44 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
+ */
+/*!
+ * \file i_pan_world.c
+ * \brief This module provides Panning functions and zoom
+ *  warping the cursor
  */
 
 #include <gschem.h>
 #include <math.h>
 #include <geda_debug.h>
+
+/*! \brief Set Cursor/Pointer Position
+ *  \par Function Description
+ *   This function sets the pointer position to relative
+ *  screen coordinates of the given widget.
+ *
+ *  \param [in] widget to which the coordinates will be relative
+ *  \param [in] x      integer abscissa in screen units
+ *  \param [in] y      integer ordinate in screen units
+ *
+ * \note WEH: For setting the cursor relative to the drawing area
+ *       using world coordinates see x_event_set_pointer_position.
+ */
+void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
+{
+  GdkScreen *screen;
+  GdkDisplay *display;
+  int window_x, window_y;
+
+  gdk_window_get_origin (widget->window, &window_x, &window_y);
+
+  screen = gtk_widget_get_screen (widget);
+  display = gdk_screen_get_display (screen);
+
+  gdk_display_warp_pointer (display, screen, window_x + x, window_y + y);
+}
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -175,7 +212,7 @@ void i_pan_world(GschemToplevel *w_current, int w_x, int w_y)
    * Not ready for prime time, maybe there is another way to trigger the
    * motion event without changing the cursor position (Werner)
    */
-  /* x_basic_warp_cursor(w_current->drawing_area, x, y); */
+  /* i_pan_warp_cursor(w_current->drawing_area, x, y); */
 }
 
 /*! \todo Finish function documentation!!!

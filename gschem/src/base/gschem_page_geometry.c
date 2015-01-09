@@ -747,7 +747,7 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
    *  removed!, it has side effects in the preview of the part dialog
    *  need to find another way to trigger x_event_motion() (Werner)
    */
-  /* x_basic_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
+  /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
 }
 
 

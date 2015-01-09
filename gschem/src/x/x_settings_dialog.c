@@ -210,10 +210,11 @@ void gtk_radio_group_set_active(GSList *RadioGroupList, int value)
 /*! \brief function load_combo_str
  *  \par Function Description
  *  Loads GTK Combobox with strings from char array.
- *  @param[in]  combo  ptr to ComboBox to load, is not checked.
- *  @param[in]  list   ptr to array of strings
+ *
+ *  \param[in]  combo  ptr to ComboBox to load, is not checked.
+ *  \param[in]  list   ptr to array of strings
 */
-void load_combo_str( GtkComboBox *combo, const char *list[])
+inline void load_combo_str( GtkComboBox *combo, const char *list[])
 {
   int i=0;
   while (list[i]) { gtk_combo_box_append_text (combo, _(list[i++]));}
@@ -572,8 +573,8 @@ static void st_callback_selection_changed_view(GtkTreeSelection *selection,
  *  when an attribute is selected/single clicked.
  *
  *
- *  @param[in]  selection GtkTreeSelection set.
- *  @param[in]  Dialog    is really w_current.
+ *  \param[in]  selection GtkTreeSelection set.
+ *  \param[in]  Dialog    is really w_current.
  *
  * \remark
  *  This is disabled in the connect_list_view function, what to do?
@@ -598,10 +599,10 @@ st_callback_selection_changed_view(GtkTreeSelection *selection,
  *  This is a callback handler for attribute views and is called
  *  when an attribute is double clicked.
  *
- *  @param[in]  tree_view GtkTreeView (could be either one).
- *  @param[in]  path      Tree limb.
- *  @param[in]  column    There is only 1 text data column.
- *  @param[in]  Dialog    is really w_current.
+ *  \param[in]  tree_view GtkTreeView (could be either one).
+ *  \param[in]  path      Tree limb.
+ *  \param[in]  column    There is only 1 text data column.
+ *  \param[in]  Dialog    is really w_current.
  *
  * \remarks
  *  This function does not do anything yet, could add/remove
@@ -632,8 +633,8 @@ st_tree_row_activated (GtkTreeView       *tree_view,
  *  \par Function Description
  *  This sets up the callbacks for the attribute views.
  *
- *  @param[in]  Dialog       is really w_current.
- *  @param[in]  TreeTextView A Treeview widge.
+ *  \param[in]  Dialog       is really w_current.
+ *  \param[in]  TreeTextView A Treeview widge.
  *
  * \remark
  *  Neither handler does anything useful, yet.
@@ -901,8 +902,8 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
  *       used to check is a given attribute is already in the filter
  *       Treeview.
  *
- *  @param[in]  list  The Treeview list to look in
- *  @param[in]  str   String to look for
+ *  \param[in]  list  The Treeview list to look in
+ *  \param[in]  str   String to look for
  */
 static bool is_not_in_list(GtkTreeView *list, const char *str)
 {
@@ -1365,7 +1366,7 @@ void combo_responder(GtkWidget *widget, void * data)
  *   .sym extension, after adding a "None" options. If the current title
      block is found then the combo is activated to this entry.
  *
- *  @param[in] titleblock  ptr to name of current default titleblock.
+ *  \param[in] titleblock  ptr to name of current default titleblock.
  */
 static
 int setup_titleblock_combo( char *titleblock ){

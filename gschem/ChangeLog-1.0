@@ -1,6 +1,11 @@
 2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_edit_text.c:
+    * src/x/x_basic.c: Eliminate file, relocated x_basic_warp_cursor
+      to i_pan_warp_cursor.
+
+2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Replace GtkComboBox with GedaComboBox
 
 2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -141,7 +141,7 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
   if (w_current->warp_cursor) {
      WORLDtoSCREEN (w_current, world_pan_center_x, world_pan_center_y,
                     &start_x, &start_y);
-     x_basic_warp_cursor (w_current->drawing_area, start_x, start_y);
+     i_pan_warp_cursor (w_current->drawing_area, start_x, start_y);
   }
 }
 
@@ -194,7 +194,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
    *  removed!, it has side effects in the preview of the part dialog
    *  need to find another way to trigger x_event_motion() (Werner)
    */
-  /* x_basic_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
+  /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
 
 }
 

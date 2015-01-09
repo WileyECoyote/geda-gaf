@@ -278,6 +278,7 @@ void       i_command_process                (GschemToplevel *w_current, const ch
                                              int narg, char *arg, EID_ACTION_ORIGIN who);
 
 /* i_pan_world.c */
+void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);
 void       i_pan_world_general              (GschemToplevel *w_current, double world_cx, double world_cy,
                                              double relativ_zoom_factor, int flags);
 void       i_pan_world                      (GschemToplevel *w_current, int x, int y);
@@ -586,9 +587,6 @@ int         gschem_parse_commandline        (int argc, char *argv[]);
 
 /* x_autonumber.c */
 void        autonumber_text_dialog          (GschemToplevel *w_current);
-
-/* x_basic.c */
-void        x_basic_warp_cursor              (GtkWidget *widget, int x, int y);
 
 /*TODO: Move these libgedauio functions
 int  tree_view_row_get_visibility      (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);

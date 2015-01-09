@@ -1486,7 +1486,7 @@ void x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
   WORLDtoSCREEN (w_current,  wx, wy, &sx, &sy);
 
   /* set cursor position */
-  x_basic_warp_cursor (w_current->drawing_area, sx, sy);
+  i_pan_warp_cursor (w_current->drawing_area, sx, sy);
 
   return;
 }
