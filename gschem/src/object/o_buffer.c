@@ -40,8 +40,7 @@
  *   \param w_current A pointer to a GSCHEM top level object
  *   \param buf_num   integer value of the buffer to use.
  */
-static void
-selection_to_buffer(GschemToplevel *w_current, int buf_num)
+static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GList *s_current       = NULL;
@@ -68,8 +67,7 @@ selection_to_buffer(GschemToplevel *w_current, int buf_num)
  *  \param w_current A pointer to a GSCHEM top level object
  *  \param buf_num   integer value of the buffer to use.
  */
-void
-o_buffer_copy(GschemToplevel *w_current, int buf_num)
+void o_buffer_copy(GschemToplevel *w_current, int buf_num)
 {
   GList *iter;
 
@@ -105,8 +103,7 @@ o_buffer_copy(GschemToplevel *w_current, int buf_num)
  *  \param w_current A pointer to a GSCHEM top level object
  *  \param buf_num   integer value of the buffer to use.
  */
-void
-o_buffer_cut(GschemToplevel *w_current, int buf_num)
+void o_buffer_cut(GschemToplevel *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     BUG_IMSG ("o_buffer_cut: Invalid buffer %i\n", buf_num);
@@ -126,8 +123,9 @@ o_buffer_cut(GschemToplevel *w_current, int buf_num)
  *  contents and updates the global state variable so the user can
  *  position/place the any objects that were in the buffer.
  */
-bool
-o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y, int buf_num)
+bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
+                                                     int w_y,
+                                                     int buf_num)
 {
   int rleft, rtop, rbottom, rright;
   int x, y;
@@ -208,8 +206,7 @@ o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y, int buf_num)
  *  This function just set each member of our global array of buffer
  *  pointers to NULL.
  */
-void
-o_buffer_init(void)
+void o_buffer_init(void)
 {
   int i;
 
@@ -225,8 +222,7 @@ o_buffer_init(void)
  *  This function iterates over each buffer and deletes any
  *  found by calling s_object_release_objects.
  */
-void
-o_buffer_free(GschemToplevel *w_current)
+void o_buffer_free(GschemToplevel *w_current)
 {
   int i;
 

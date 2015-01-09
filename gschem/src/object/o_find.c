@@ -43,9 +43,8 @@
  *
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  */
-static bool
-is_object_hit (GschemToplevel *w_current, Object *object,
-               int w_x, int w_y, int w_slack)
+static bool is_object_hit (GschemToplevel *w_current, Object *object,
+                           int w_x, int w_y, int w_slack)
 {
   int left, top, right, bottom;
 
@@ -187,8 +186,7 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
  *  \par Function Description
  *
  */
-Object *
-o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
+Object *o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   int w_slack = WORLDabs (w_current, w_current->select_slack_pixels);

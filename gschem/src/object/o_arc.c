@@ -132,8 +132,7 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] start_angle  Start of angle in degrees.
  *  \param [in] arc_sweep    End of angle in degrees.
  */
-void
-o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_sweep)
+void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_sweep)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
