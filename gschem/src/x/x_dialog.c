@@ -3,8 +3,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -412,9 +412,9 @@ void about_dialog (GschemToplevel *w_current)
 
   comments  = u_string_concat (gEDA_str, gnu_get_libc_version(), NULL);
 
-  copyright = _("Copyright © 1998-2014 Ales Hvezda"
+  copyright = _("Copyright © 1998-2015 Ales Hvezda"
                 " <ahvezda@geda.seul.org>\n"
-                "Copyright © 1998-2014 gEDA Contributors"
+                "Copyright © 1998-2015 gEDA Contributors"
                 " (see ChangeLog for details)");
 
   Dialog = gtk_about_dialog_new ();

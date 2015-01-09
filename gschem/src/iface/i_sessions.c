@@ -277,7 +277,7 @@ static GSList *i_sessions_get_file_list(Session *record)
  *
  * TODO: See cmd_do_open in i_command.c
  */
-static inti_session_load_session(GschemToplevel *w_current, Session *record)
+static int i_session_load_session(GschemToplevel *w_current, Session *record)
 {
   GSList *iter;
   Page   *blank;
