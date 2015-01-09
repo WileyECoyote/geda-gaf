@@ -122,7 +122,7 @@ struct _GedaObject {
 };
 
 unsigned int  geda_gobject_get_type          (void) G_GNUC_CONST;
-bool          is_a_geda_object               (void *object);
+bool          is_a_geda_object               (const void *object);
 
 Object       *geda_object_new                (int type, char const *name );
 void          geda_object_weakref_notify     (Object *object);

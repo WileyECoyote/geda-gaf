@@ -57,8 +57,7 @@
  *  \param [in]     y2           Lower y coordinate.
  *  \return A pointer to the new end of the object list.
  */
-Object*
-o_line_new( int color, int x1, int y1, int x2, int y2)
+Object *o_line_new( int color, int x1, int y1, int x2, int y2)
 {
   Object *new_obj;
   Line   *line;
@@ -128,8 +127,7 @@ Object *o_line_copy(Object *o_current)
  *    <DT>*</DT><DD>#LINE_END2
  *  </DL>
  */
-void
-o_line_modify(Object *object, int x, int y, int whichone)
+void o_line_modify(Object *object, int x, int y, int whichone)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -177,9 +175,9 @@ o_line_modify(Object *object, int x, int y, int whichone)
  *
  *  \return A pointer to the new line object, or NULL on error.
  */
-Object*
-o_line_read (const char buf[], unsigned int release_ver,
-                               unsigned int fileformat_ver, GError ** err)
+Object* o_line_read (const char buf[], unsigned int release_ver,
+                                       unsigned int fileformat_ver,
+                                       GError ** err)
 {
   Object *new_obj;
   char type;
@@ -272,8 +270,7 @@ o_line_read (const char buf[], unsigned int release_ver,
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char *
-o_line_save(Object *object)
+char *o_line_save(Object *object)
 {
   int x1, x2, y1, y2;
   int line_width, line_space, line_length;
@@ -427,8 +424,7 @@ void o_line_mirror_world( int center_wx,
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-o_line_get_position (int *x, int *y, Object *object)
+bool o_line_get_position (int *x, int *y, Object *object)
 {
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 

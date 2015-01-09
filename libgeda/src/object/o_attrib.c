@@ -57,13 +57,13 @@
  *
  *  \param [in]  object     The Object that item is being added to.
  *  \param [in]  item       The item you want to add as an attribute.
- *  \return nothing.
  */
-void o_attrib_add(Object *object, Object *item)
+void
+o_attrib_add(Object *object, Object *item)
 {
   /* Add link from item to attrib listing */
   item->attached_to = object;
-  object->attribs = g_list_append (object->attribs, item);
+  object->attribs   = g_list_append (object->attribs, item);
   o_attrib_emit_attribs_changed (object);
 }
 
@@ -75,7 +75,8 @@ void o_attrib_add(Object *object, Object *item)
  *
  *  \return List of attached attributes.
  */
-GList *o_attrib_get_attached_attribs (Object *object)
+GList*
+o_attrib_get_attached_attribs (const Object *object)
 {
   return object->attribs;
 }
@@ -89,7 +90,8 @@ GList *o_attrib_get_attached_attribs (Object *object)
  *  \param [in]  object     The object where you want to add item as an attribute.
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
-bool o_attrib_is_attached_to (Object *attrib, Object *object)
+bool
+o_attrib_is_attached_to (const Object *attrib, const Object *object)
 {
   if (attrib == NULL || object == NULL)
     return FALSE;
@@ -145,12 +147,12 @@ o_attrib_attach (Object *attrib, Object *object, int set_color)
  *
  *  \param [in]  attr_list  The list of attributes to be added.
  *  \param [out] object     The object where you want to add item as an attribute.
- *  \param [in]  set_color    Whether or not we should set the new attribute's color.
+ *  \param [in]  set_color  Whether or not we should set the new attribute's color.
  */
 void
-o_attrib_attach_list (GList *attr_list, Object *object, int set_color)
+o_attrib_attach_list (const GList *attr_list, Object *object, int set_color)
 {
-  GList *iter;
+  const GList *iter;
 
   for (iter = attr_list; iter != NULL; iter = g_list_next (iter))
     o_attrib_attach (iter->data, object, set_color);
@@ -166,7 +168,8 @@ o_attrib_attach_list (GList *attr_list, Object *object, int set_color)
  *
  *  \param [in,out] attribute The Attribute to be detached.
  */
-void o_attrib_detach(Object *attribute)
+void
+o_attrib_detach(Object *attribute)
 {
   Page   *page;
   Object *parent;
@@ -195,7 +198,8 @@ void o_attrib_detach(Object *attribute)
  *
  *  \param [in,out] object    The object whos attributes to detach.
  */
-void o_attrib_detach_all(Object *object)
+void
+o_attrib_detach_all(Object *object)
 {
   Object *attribute;
   GList  *a_iter;
@@ -379,6 +383,7 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
   GEDA_FREE(text);
   return new_obj;
 }
+
 /*! \brief Print all attributes to a Postscript document
  *
  *  \par Function Description
@@ -386,10 +391,11 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
  *
  *  \param [in] attributes  List of attributes to print.
  */
-void o_attrib_print(GList *attributes)
+void
+o_attrib_print(const GList *attributes)
 {
-  Object *attribute;
-  GList  *a_iter;
+  const Object *attribute;
+  const GList  *a_iter;
 
   a_iter = attributes;
 
@@ -413,7 +419,8 @@ void o_attrib_print(GList *attributes)
  *  \param [in] list      The attribute list to remove attribute from.
  *  \param [in] remove    The Object to remove from list.
  */
-void o_attrib_remove(GList **list, Object *remove)
+void
+o_attrib_remove(GList **list, Object *remove)
 {
   Object *attached_to;
 
@@ -444,10 +451,12 @@ void o_attrib_remove(GList **list, Object *remove)
  *
  *  \return GList of attributes read, or NULL on error.
  */
-GList *o_read_attribs (GedaToplevel *toplevel,
-                       Object *object_to_get_attribs,
-                       TextBuffer *tb,
-                       unsigned int release_ver, unsigned int fileformat_ver, GError ** err)
+GList*
+o_read_attribs (GedaToplevel *toplevel,
+                Object       *object_to_get_attribs,
+                TextBuffer   *tb,
+                unsigned int  release_ver, unsigned int fileformat_ver,
+                GError ** err)
 {
   GList      *object_list = NULL;
   Object     *new_obj;
@@ -585,7 +594,7 @@ error:
  */
 bool
 o_attrib_string_get_name_value (const char *string,
-                                char **name_ptr, char **value_ptr)
+                                      char **name_ptr, char **value_ptr)
 {
   char *ptr, *prev_char, *next_char;
 
@@ -633,7 +642,7 @@ o_attrib_string_get_name_value (const char *string,
  *  \sa o_attrib_string_get_name_value()
  */
 bool
-o_attrib_get_name_value (Object *attrib, char **name_ptr, char **value_ptr)
+o_attrib_get_name_value (const Object *attrib, char **name_ptr, char **value_ptr)
 {
   g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
 
@@ -641,14 +650,17 @@ o_attrib_get_name_value (Object *attrib, char **name_ptr, char **value_ptr)
                                          name_ptr, value_ptr);
 }
 
-void o_attrib_set_value (Object *attrib, const char *name_ptr, const char *value_ptr)
+void
+o_attrib_set_value (const Object *attrib, const char *name_ptr, const char *value_ptr)
 {
 
   GEDA_FREE(attrib->text->string);
 
   attrib->text->string = u_string_concat(name_ptr, "=", value_ptr, NULL);
 }
-void o_attrib_set_integer_value (Object *attrib, char *name_ptr, int value)
+
+void
+o_attrib_set_integer_value (const Object *attrib, const char *name_ptr, int value)
 {
   GEDA_FREE(attrib->text->string);
   attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value);
@@ -664,7 +676,8 @@ void o_attrib_set_integer_value (Object *attrib, char *name_ptr, int value)
  *  \warning
  *  Caller must g_list_free returned list.
  */
-GList *o_attrib_find_floating_attribs (const GList *list)
+GList*
+o_attrib_find_floating_attribs (const GList *list)
 {
   GList *floating_attributes = NULL;
   const GList *iter;
@@ -700,7 +713,8 @@ GList *o_attrib_find_floating_attribs (const GList *list)
  *  \param [in] count    Which occurance to return.
  *  \return The n'th attribute object in the given list with the given name.
  */
-Object *o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
+Object*
+o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
 {
   Object *attribute;
   const GList *iter;
@@ -738,7 +752,8 @@ Object *o_attrib_find_attrib_by_name (const GList *list, const char *name, int c
  *  \param [in] name     Character string with attribute name to search for.
  *  \return The n'th attribute object in the given list with the given name.
  */
-Object *o_attrib_first_attrib_by_name (Object *object, char *name)
+Object*
+o_attrib_first_attrib_by_name (const Object *object, char *name)
 {
   if (GEDA_IS_OBJECT(object)) {
     return o_attrib_find_attrib_by_name (object->attribs, name, 0);
@@ -758,8 +773,10 @@ Object *o_attrib_first_attrib_by_name (Object *object, char *name)
  *  \param [in] counter  Which occurance to return.
  *  \return Character string with attribute value, NULL otherwise.
  */
-static char *o_attrib_search_attrib_list_by_name (const GList *list,
-                                                  const char *name, int counter)
+static char*
+o_attrib_search_attrib_list_by_name (const GList *list,
+                                     const char  *name,
+                                           int    counter)
 {
   Object *attrib;
   char *value = NULL;
@@ -788,8 +805,10 @@ static char *o_attrib_search_attrib_list_by_name (const GList *list,
  *  \warning
  *  Caller must release the returned character string.
  */
-char *o_attrib_search_floating_attribs_by_name (const GList *list,
-                                                const char *name, int counter)
+char*
+o_attrib_search_floating_attribs_by_name (const GList *list,
+                                          const char  *name,
+                                                int    counter)
 {
   char *result;
   GList *attributes;
@@ -800,7 +819,6 @@ char *o_attrib_search_floating_attribs_by_name (const GList *list,
 
   return result;
 }
-
 
 /*! \brief Search attached attributes by name.
  *  \par Function Description
@@ -817,8 +835,10 @@ char *o_attrib_search_floating_attribs_by_name (const GList *list,
  *  \warning
  *  Caller must release the returned character string.
  */
-char *o_attrib_search_attached_attribs_by_name (Object *object,
-                                                const char *name, int counter)
+char*
+o_attrib_search_attached_attribs_by_name (const Object *object,
+                                          const char   *name,
+                                                int     counter)
 {
   return o_attrib_search_attrib_list_by_name (object->attribs, name, counter);
 }
@@ -839,12 +859,16 @@ char *o_attrib_search_attached_attribs_by_name (Object *object,
  *  \warning
  *  Caller must release the returned character string.
  */
-char *o_attrib_search_inherited_attribs_by_name (Object *object,const char *name, int counter)
+char*
+o_attrib_search_inherited_attribs_by_name (const Object *object,
+                                           const char   *name,
+                                                 int     counter)
 {
   g_return_val_if_fail (object->type == OBJ_COMPLEX ||
                         object->type == OBJ_PLACEHOLDER, NULL);
 
-  return o_attrib_search_floating_attribs_by_name (object->complex->prim_objs, name, counter);
+  return o_attrib_search_floating_attribs_by_name (object->complex->prim_objs,
+                                                   name, counter);
 }
 
 
@@ -863,14 +887,15 @@ char *o_attrib_search_inherited_attribs_by_name (Object *object,const char *name
  *  \warning
  *  Caller must GEDA_FREE returned character string.
  */
-char *o_attrib_search_object_attribs_by_name (Object *object,
-                                              const char *name, int counter)
+char *o_attrib_search_object_attribs_by_name (const Object *object,
+                                              const char   *name,
+                                                    int     counter)
 {
   char *result;
   GList *attributes;
 
   attributes = o_attrib_return_attribs (object);
-  result = o_attrib_search_attrib_list_by_name (attributes, name, counter);
+  result     = o_attrib_search_attrib_list_by_name (attributes, name, counter);
   g_list_free (attributes);
 
   return result;
@@ -891,7 +916,7 @@ char *o_attrib_search_object_attribs_by_name (Object *object,
  *  \param [in] object       Object whos attributes to return.
  *  \return A GList of attributes belinging to the passed object.
  */
-GList * o_attrib_return_attribs (Object *object)
+GList * o_attrib_return_attribs (const Object *object)
 {
   Object *attribute;
   GList  *attribs = NULL;
@@ -931,7 +956,6 @@ GList * o_attrib_return_attribs (Object *object)
   return attribs;
 }
 
-
 /*! \brief Query whether a given attribute Object is "inherited"
  *  \par Function Description
  *  This function returns TRUE if the given attribute Object is a
@@ -940,17 +964,16 @@ GList * o_attrib_return_attribs (Object *object)
  *  \param [in] attrib       Object who's status to query.
  *  \return TRUE if the given attribute is inside a symbol
  */
-int o_attrib_is_inherited (Object *attrib)
+int
+o_attrib_is_inherited (const Object *attrib)
 {
   return (attrib->attached_to == NULL && attrib->parent_object != NULL);
 }
-
 
 typedef struct {
   AttribsChangedFunc func;
   void *data;
 } AttribsChangedHook;
-
 
 void
 o_attrib_append_attribs_changed_hook (Page *page,
@@ -959,14 +982,13 @@ o_attrib_append_attribs_changed_hook (Page *page,
 {
   AttribsChangedHook *new_hook;
 
-  new_hook = g_new0 (AttribsChangedHook, 1);
+  new_hook = GEDA_MEM_ALLOC0(sizeof(AttribsChangedHook));
   new_hook->func = func;
   new_hook->data = data;
 
   page->attribs_changed_hooks =
     g_list_append (page->attribs_changed_hooks, new_hook);
 }
-
 
 static void call_attribs_changed_hook (void *data, void *user_data)
 {
@@ -976,7 +998,8 @@ static void call_attribs_changed_hook (void *data, void *user_data)
   hook->func (hook->data, object);
 }
 
-void o_attrib_emit_attribs_changed (Object *object)
+void
+o_attrib_emit_attribs_changed (Object *object)
 {
   if (object->attrib_notify_freeze_count > 0) {
     object->attrib_notify_pending = 1;
@@ -996,7 +1019,7 @@ void o_attrib_freeze_hooks (Object *object)
   object->attrib_notify_freeze_count ++;
 }
 
-void o_attrib_thaw_hooks ( Object *object)
+void o_attrib_thaw_hooks (Object *object)
 {
   g_return_if_fail (object->attrib_notify_freeze_count > 0);
 

@@ -47,9 +47,10 @@
  *
  * TODO: WEH: Does not check for uniquness!
  */
-void o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
-                                      ChangeNotifyFunc change_func,
-                                      void *user_data)
+void
+o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
+                                 ChangeNotifyFunc change_func,
+                                 void *user_data)
 {
   change_notify *entry;
   entry = GEDA_MEM_ALLOC0( sizeof(change_notify));
@@ -122,7 +123,8 @@ o_notify_change_remove_all (Page *page)
  *
  * \param object   #Object structure to emit notifications for.
  */
-void o_notify_emit_pre_change (Object *object)
+void
+o_notify_emit_pre_change (Object *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 

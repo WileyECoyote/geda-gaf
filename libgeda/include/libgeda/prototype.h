@@ -127,28 +127,28 @@ G_BEGIN_DECLS
 
 /* o_attrib.c */
          void    o_attrib_add                              (Object *object, Object *item);
-        GList   *o_attrib_get_attached_attribs             (Object *object);
-         bool    o_attrib_is_attached_to                   (Object *attrib, Object *object);
+        GList   *o_attrib_get_attached_attribs             (const Object *object);
+         bool    o_attrib_is_attached_to                   (const Object *attrib, const Object *object);
          void    o_attrib_attach                           (Object *attrib, Object *object, int set_color);
-         void    o_attrib_attach_list                      (GList  *attr_list, Object *object, int set_color);
+         void    o_attrib_attach_list                      (const GList  *attr_list, Object *object, int set_color);
          void    o_attrib_detach                           (Object *object);
          void    o_attrib_detach_all                       (Object *object);
        Object   *o_attrib_new_attached                     (Object *object, const char *name, const char *value, int visibility, int show_name_value);
-         void    o_attrib_print                            (GList  *attributes);
+         void    o_attrib_print                            (const GList  *attributes);
          void    o_attrib_remove                           (GList **list, Object *remove);
-         bool    o_attrib_string_get_name_value            (const char *string, char **name_ptr, char **value_ptr);
-         bool    o_attrib_get_name_value                   (Object *attrib, char **name_ptr,  char **value_ptr);
-         void    o_attrib_set_value                        (Object *attrib, const char  *name_ptr, const char *value_ptr);
-         void    o_attrib_set_integer_value                (Object *attrib, char  *name_ptr,  int   value);
-        GList   *o_attrib_find_floating_attribs            (const GList *list);
-       Object   *o_attrib_find_attrib_by_name              (const GList *list, const char *name, int count);
-       Object   *o_attrib_first_attrib_by_name             (Object *object,    char *name);
-         char   *o_attrib_search_floating_attribs_by_name  (const GList *list, const char *name, int counter);
-         char   *o_attrib_search_attached_attribs_by_name  (Object *object, const char *name, int counter);
-         char   *o_attrib_search_inherited_attribs_by_name (Object *object, const char *name, int counter);
-         char   *o_attrib_search_object_attribs_by_name    (Object *object, const char *name, int counter);
-        GList   *o_attrib_return_attribs                   (Object *object);
-          int    o_attrib_is_inherited                     (Object *attrib);
+         bool    o_attrib_string_get_name_value            (const char   *string, char **name_ptr,  char **value_ptr);
+         bool    o_attrib_get_name_value                   (const Object *attrib, char **name_ptr,  char **value_ptr);
+         void    o_attrib_set_value                        (const Object *attrib, const char *name_ptr, const char *value_ptr);
+         void    o_attrib_set_integer_value                (const Object *attrib, const char *name_ptr, int value);
+        GList   *o_attrib_find_floating_attribs            (const GList  *list);
+       Object   *o_attrib_find_attrib_by_name              (const GList  *list,   const char *name, int count);
+       Object   *o_attrib_first_attrib_by_name             (const Object *object,       char *name);
+         char   *o_attrib_search_floating_attribs_by_name  (const GList  *list,   const char *name, int counter);
+         char   *o_attrib_search_attached_attribs_by_name  (const Object *object, const char *name, int counter);
+         char   *o_attrib_search_inherited_attribs_by_name (const Object *object, const char *name, int counter);
+         char   *o_attrib_search_object_attribs_by_name    (const Object *object, const char *name, int counter);
+        GList   *o_attrib_return_attribs                   (const Object *object);
+          int    o_attrib_is_inherited                     (const Object *attrib);
          void    o_attrib_append_attribs_changed_hook      (Page *page, AttribsChangedFunc func, void *data);
          void    o_attrib_emit_attribs_changed             (Object *object);
          void    o_attrib_freeze_hooks                     (Object *object);
@@ -242,9 +242,9 @@ G_BEGIN_DECLS
        Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2);
        Object   *o_line_copy                     (Object *object);
          void    o_line_modify                   (Object *object, int x, int y, int whichone);
-         void    o_line_translate_world          (int dx, int dy, Object *object);
-         void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
          void    o_line_mirror_world             (int center_wx, int center_wy, Object *object);
+         void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
+         void    o_line_translate_world          (int dx, int dy, Object *object);
          void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
        double    o_line_length                   (Object *object);
 
@@ -288,14 +288,15 @@ G_BEGIN_DECLS
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
                                                   int embedded)      G_GNUC_WARN_UNUSED_RESULT;
        Object   *o_picture_copy                  (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
-         bool    o_picture_export_object         (Object *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_export_orginal        (Object *o_current, const char *filename, const char *type, ...);
-         bool    o_picture_is_embedded           (Object *object);
          void    o_picture_mirror_world          (int center_wx, int center_wy, Object *object);
          void    o_picture_modify                (Object *object, int x, int y, int whichone);
          void    o_picture_modify_all            (Object *object, int x1, int y1, int x2, int y2);
          void    o_picture_rotate_world          (int center_wx, int center_wy, int angle,Object *object);
          void    o_picture_translate_world       (int dx, int dy, Object *object);
+
+         bool    o_picture_export_object         (Object *o_current, const char *filename, const char *type, ...);
+         bool    o_picture_export_orginal        (Object *o_current, const char *filename, const char *type, ...);
+         bool    o_picture_is_embedded           (Object *object);
    const char   *o_picture_get_data              (Object *object, size_t *length);
    const char   *o_picture_get_filename          (Object *object);
           int    o_picture_get_height            (Object *object);
