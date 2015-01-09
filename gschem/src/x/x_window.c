@@ -418,8 +418,8 @@ static void x_window_setup_event_handlers(GschemToplevel *w_current)
  *  \par Function Description
  *
  */
-static void
-x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_current)
+static void x_window_invoke_macro (GtkWidget      *widget, int response,
+                                   GschemToplevel *w_current)
 {
   if (response == GTK_RESPONSE_OK) {
     const char *macro = gschem_macro_widget_get_macro_string (widget);
@@ -794,8 +794,7 @@ void x_window_close_all(GschemToplevel *w_current)
 }
 
 /* Threaded from x_window_open_page after successful open */
-static bool
-x_window_idle_thread_post_load_file (void *filename)
+static bool x_window_idle_thread_post_load_file (void *filename)
 {
   q_log_message (_("Loading \"%s\"\n"), filename);
   x_menu_recent_files_add (filename);
@@ -826,8 +825,7 @@ x_window_idle_thread_post_load_file (void *filename)
  *  When we don't want to deal with freeing we our local buffer and glibc.
  *
  */
-Page*
-x_window_open_page (GschemToplevel *w_current, const char *filename)
+Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page     *old_current, *page;
@@ -1031,8 +1029,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to become current page.
  */
-void
-x_window_set_current_page (GschemToplevel *w_current, Page *page)
+void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -1123,8 +1120,7 @@ void x_window_setup_page(GschemToplevel *w_current, Page *page,
  *  \param [in] filename  The name of the file in which to save page.
  *  \returns 1 on success, 0 otherwise.
  */
-int
-x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
+int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page         *old_current;
@@ -1199,8 +1195,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to close.
  */
-void
-x_window_close_page (GschemToplevel *w_current, Page *page)
+void x_window_close_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page *new_current = NULL;
