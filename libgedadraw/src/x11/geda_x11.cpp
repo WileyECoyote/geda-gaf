@@ -221,7 +221,6 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
   int chan         = gdk_pixbuf_get_n_channels (pixbuf);
   int has_alpha    = gdk_pixbuf_get_has_alpha (pixbuf);
 
-
   int bitmap_pad;  /* 32 for 24 and 32 bpp, 16, for 15&16 */
   int x, y;
 
