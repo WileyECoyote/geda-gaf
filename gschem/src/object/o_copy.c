@@ -29,10 +29,11 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Start a Copy operation
  *  \par Function Description
- *
+ *  This function is called at the beginning of a copy operation
+ *  to save the x and y coordinates for the event and if there is
+ *  a selection, add the current selection to the place list.
  */
 void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -58,8 +59,7 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Can cancel a copy operation
  *  \par Function Description
  *
  */
@@ -71,24 +71,24 @@ void o_copy_cancel(GschemToplevel *w_current)
   i_status_set_state (w_current, SELECT);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Finalize Copy operation of a single object
  *  \par Function Description
- *
+ *  This function is called to complete a Copy operation for a single
+ *  object, this is the normal copy operation not envolving the system
+ *  clip board.
  */
 void o_copy_end(GschemToplevel *w_current)
 {
   GList *iter;
   for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
     Object *o_current = iter->data;
-    o_current->page = NULL;
+    o_current->page   = NULL;
   }
   o_place_end (w_current, w_current->second_wx, w_current->second_wy, FALSE,
                NULL, "%paste-objects-hook");
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief  Finalize Copy operation of a multible objects
  *  \par Function Description
  *
  */
