@@ -1,5 +1,8 @@
-/* -*- C g_util.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-*/
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: g_util.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2011-2015 Peter Brett <peter@peter-b.co.uk>
@@ -17,7 +20,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
 
 /*! \file g_util.c
