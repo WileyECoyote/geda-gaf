@@ -412,18 +412,18 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
         if (o_current->type == OBJ_PIN) {
           o_get_world_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
 
-          if ( found ) {
-            left = min( left, rleft );
-            top = min( top, rtop );
-            right = max( right, rright );
-            bottom = max( bottom, rbottom );
+          if (found) {
+            left   = min (left, rleft);
+            top    = min (top, rtop);
+            right  = max (right, rright);
+            bottom = max (bottom, rbottom);
           }
           else {
-            left = rleft;
-            top = rtop;
-            right = rright;
+            left   = rleft;
+            top    = rtop;
+            right  = rright;
             bottom = rbottom;
-            found = 1;
+            found  = 1;
           }
         }
         iter = g_list_next (iter);
@@ -532,7 +532,7 @@ bool o_pin_set_elect_type (Object *o_current, PIN_ELECT e_type)
     o_current->pin->elect_type = e_type;
     geda_pin_set_electrical(o_current->pin, e_str);
   }
-  return ( e_str ? TRUE : FALSE );
+  return (e_str ? TRUE : FALSE);
 }
 
 /*! \brief Sets the Mechanical type of a Pin
@@ -564,7 +564,7 @@ bool o_pin_set_mech_type (Object *o_current, PIN_MECH m_type)
     geda_pin_set_mechanical(o_current->pin, m_str);
   }
 
-  return ( m_str ? TRUE : FALSE );
+  return (m_str ? TRUE : FALSE);
 }
 
 /*! \brief Sets the node type, and corresponding width of a pin
@@ -605,9 +605,12 @@ void o_pin_set_node_type (Object *o_current, PIN_NODE node_type)
  *
  *  \return TRUE on succes, FALSE otherwise
  */
-bool
-o_pin_get_attributes(Object *object,  const char **label, const char **number, int *sequence,
-                     PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *n_type)
+bool o_pin_get_attributes(Object *object, const char **label,
+                                          const char **number,
+                                          int         *sequence,
+                                          PIN_ELECT   *e_type,
+                                          PIN_MECH    *m_type,
+                                          PIN_NODE    *n_type)
 {
   bool        result;
   GList      *a_iter;
@@ -689,11 +692,12 @@ o_pin_get_attributes(Object *object,  const char **label, const char **number, i
   return result;
 }
 
-void o_pin_set_attributes(Object     *object,
-                          const char *label_str,
-                          const char *number,
-                          int         sequence,
-                          PIN_ELECT   e_type, PIN_MECH m_type, PIN_NODE n_type)
+void o_pin_set_attributes(Object *object, const char *label_str,
+                                          const char *number,
+                                                int   sequence,
+                                          PIN_ELECT   e_type,
+                                          PIN_MECH    m_type,
+                                          PIN_NODE    n_type)
 {
 
   if (object != NULL && object->type == OBJ_PIN) {
@@ -783,6 +787,116 @@ void o_pin_set_attributes(Object     *object,
   }
 }
 
+/*! \brief Create a New Pin Electrical Type Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for the pintype. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text will be
+ *  positioned at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. If descr string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] descr    Normally a member of #e_strings
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new pintype attribute or NULL if label was NULL
+ *
+ *  example: o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
+ *
+ *  \sa o_pin_create_mech_attrib
+ */
+Object *o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object,
+                                                    const char   *descr,
+                                                          int     x,
+                                                          int     y)
+{
+  Object *new_bute;
+  char   *text;
+  int     align = -1;
+  int     offset;
+  int     size;
+  int     x_pos, y_pos;
+
+  if (descr == NULL && object->pin->electrical == NULL) {
+    return NULL;
+  }
+
+  if (toplevel) { /* if was passed a toplevel configuration */
+    offset = toplevel->attribute_offset;
+    size   = toplevel->attribute_font_size;
+  }
+  else { /* fallback to compiled-in value */
+    offset = DEFAULT_ATTRIBUTE_OFFSET;
+    size   = DEFAULT_ATTRIBUTE_SIZE;
+  }
+
+  o_pin_normalize(object);
+
+  if ( x < 0 && y < 0 ){
+
+    /* locate description relative to the connected end */
+    x_pos = object->line->x[object->pin->whichend];
+    y_pos = object->line->y[object->pin->whichend];
+
+    /* Pin is horizontal*/
+    if (object->line->y[0] == object->line->y[1]) {
+
+        y_pos = y_pos - offset;
+
+      /* left to right */
+      if (object->line->x[1] > object->line->x[0]) {
+        align = UPPER_LEFT;
+      }
+      /* right to left */
+      else if (object->line->x[0] > object->line->x[1]) {
+        align = UPPER_RIGHT;
+      }
+    }
+    /* Pin is vertical */
+    else if (object->line->x[0] == object->line->x[1]) {
+
+      x_pos = x_pos + offset;
+      align = UPPER_LEFT;
+    }
+  }
+  else {
+     x_pos = x;
+     y_pos = y;
+  }
+
+  if ( align < 0 ) align = MIDDLE_MIDDLE;
+  if ( x_pos < 0 ) x_pos = object->line->x[object->pin->whichend];
+  if ( y_pos < 0 ) y_pos = object->line->y[object->pin->whichend];
+
+  if (descr) {
+    text = u_string_concat("pintype", "=", descr, NULL);
+  }
+  else {
+    text = u_string_concat("pintype", "=", object->pin->electrical, NULL);
+  }
+
+  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+                         size, INVISIBLE, SHOW_VALUE, text);
+
+  if (toplevel) {
+    o_text_set_rendered_bounds_func (new_bute,
+                                    toplevel->rendered_text_bounds_func,
+                                    toplevel->rendered_text_bounds_data);
+  }
+
+  o_attrib_add(object, new_bute);
+
+  GEDA_FREE(text);
+
+  return new_bute;
+}
+
 /*! \brief Create a New Pin Label Attribute for Object
  *
  *  \par Function Description
@@ -806,8 +920,10 @@ void o_pin_set_attributes(Object     *object,
  *
  *  \sa o_pin_create_number_attrib o_pin_create_seq_attrib
  */
-Object*
-o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *label, int x, int y)
+Object *o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object,
+                                                    const char   *label,
+                                                          int     x,
+                                                          int     y)
 {
   Object *new_bute;
   char   *text;
@@ -902,6 +1018,113 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
   return new_bute;
 }
 
+/*! \brief Create a New Pin Mechanical Type Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for the mechtype. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text will be
+ *  positioned at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. If descr string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] descr    Normally a member of #m_strings
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new mechtype attribute or NULL if label was NULL
+ *
+ *  example: o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
+ *
+ *  \sa o_pin_create_elect_attrib
+ */
+Object *o_pin_create_mech_attrib(GedaToplevel *toplevel, Object *object,
+                                                   const char   *descr,
+                                                         int     x,
+                                                         int     y)
+{
+  Object *new_bute;
+  char   *text;
+  int     align = -1;
+  int     offset;
+  int     size;
+  int     x_pos, y_pos;
+
+  if (descr == NULL && object->pin->mechanical == NULL) {
+    return NULL;
+  }
+
+  if (toplevel) { /* if was passed a toplevel configuration */
+    offset = toplevel->attribute_offset;
+    size   = toplevel->attribute_font_size;
+  }
+  else { /* fallback to compiled-in value */
+    offset = DEFAULT_ATTRIBUTE_OFFSET;
+    size   = DEFAULT_ATTRIBUTE_SIZE;
+  }
+
+  o_pin_normalize(object);
+
+  if ( x < 0 && y < 0 ){
+
+    /* locate description relative to the non-connected end */
+    x_pos = object->line->x[!object->pin->whichend];
+    y_pos = object->line->y[!object->pin->whichend];
+
+    /* Pin is horizontal*/
+    if (object->line->y[0] == object->line->y[1]) {
+
+        y_pos = y_pos - offset;
+
+      /* left to right */
+      if (object->line->x[1] > object->line->x[0]) {
+        align = UPPER_LEFT;
+      }
+      /* right to left */
+      else if (object->line->x[0] > object->line->x[1]) {
+        align = UPPER_RIGHT;
+      }
+    }
+    /* Pin is vertical */
+    else if (object->line->x[0] == object->line->x[1]) {
+
+      x_pos = x_pos + offset;
+      align = UPPER_LEFT;
+    }
+  }
+  else {
+     x_pos = x;
+     y_pos = y;
+  }
+
+  if ( align < 0 ) align = MIDDLE_MIDDLE;
+  if ( x_pos < 0 ) x_pos = object->line->x[!object->pin->whichend];
+  if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
+
+  if (descr)
+    text = u_string_concat("mechtype", "=", descr, NULL);
+  else
+    text = u_string_concat("mechtype", "=", object->pin->mechanical, NULL);
+
+  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
+                         size, INVISIBLE, SHOW_VALUE, text);
+
+  if (toplevel) {
+    o_text_set_rendered_bounds_func (new_bute,
+                                    toplevel->rendered_text_bounds_func,
+                                    toplevel->rendered_text_bounds_data);
+  }
+
+  o_attrib_add(object, new_bute);
+
+  GEDA_FREE(text);
+  return new_bute;
+}
+
 /*! \brief Create a New Pin Number Attribute for Object
  *
  *  \par Function Description
@@ -927,8 +1150,10 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
  *
  *  \sa o_pin_create_label_attrib o_pin_create_seq_attrib
  */
-Object*
-o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *number, int x, int y)
+Object* o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object,
+                                                     const char   *number,
+                                                           int     x,
+                                                           int     y)
 {
   Object     *new_bute;
   const char *str_num;
@@ -1057,8 +1282,10 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *n
  *
  *  \sa o_pin_create_label_attrib o_pin_create_number_attrib
  */
-Object*
-o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, int x, int y)
+Object *o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object,
+                                                        int     sequence,
+                                                        int     x,
+                                                        int     y)
 {
   Object *new_bute;
   char   *text;
@@ -1163,219 +1390,6 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
   return new_bute;
 }
 
-/*! \brief Create a New Pin Electrical Type Attribute for Object
- *
- *  \par Function Description
- *  This function creates a new text attribute for the pintype. If the
- *  optional top-level object is present, the attribute offset will be
- *  set based on global top-level settings, otherwise the text will be
- *  positioned at a fixed default offset relative to the X and Y arguments,
- *  if X and Y are both not less than zero, otherwise the offset will be
- *  relative to the active end of the given pin object. If descr string
- *  is NULL then NULL is returned. The text angle and justification will
- *  be set based on the orientation of the pin.
- *
- *  \param [in] toplevel The GedaToplevel object, can be NULL
- *  \param [in] object   The pin object for which the attribute was being added.
- *  \param [in] descr    Normally a member of #e_strings
- *  \param [in] x        Desired X location for the label
- *  \param [in] y        Desired Y location for the label
- *
- *  \returns Pointer to new pintype attribute or NULL if label was NULL
- *
- *  example: o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
- *
- *  \sa o_pin_create_mech_attrib
- */
-Object*
-o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *descr, int x, int y)
-{
-  Object *new_bute;
-  char   *text;
-  int     align = -1;
-  int     offset;
-  int     size;
-  int     x_pos, y_pos;
-
-  if (descr == NULL && object->pin->electrical == NULL) {
-    return NULL;
-  }
-
-  if (toplevel) { /* if was passed a toplevel configuration */
-    offset = toplevel->attribute_offset;
-    size   = toplevel->attribute_font_size;
-  }
-  else { /* fallback to compiled-in value */
-    offset = DEFAULT_ATTRIBUTE_OFFSET;
-    size   = DEFAULT_ATTRIBUTE_SIZE;
-  }
-
-  o_pin_normalize(object);
-
-  if ( x < 0 && y < 0 ){
-
-    /* locate description relative to the connected end */
-    x_pos = object->line->x[object->pin->whichend];
-    y_pos = object->line->y[object->pin->whichend];
-
-    /* Pin is horizontal*/
-    if (object->line->y[0] == object->line->y[1]) {
-
-        y_pos = y_pos - offset;
-
-      /* left to right */
-      if (object->line->x[1] > object->line->x[0]) {
-        align = UPPER_LEFT;
-      }
-      /* right to left */
-      else if (object->line->x[0] > object->line->x[1]) {
-        align = UPPER_RIGHT;
-      }
-    }
-    /* Pin is vertical */
-    else if (object->line->x[0] == object->line->x[1]) {
-
-      x_pos = x_pos + offset;
-      align = UPPER_LEFT;
-    }
-  }
-  else {
-     x_pos = x;
-     y_pos = y;
-  }
-
-  if ( align < 0 ) align = MIDDLE_MIDDLE;
-  if ( x_pos < 0 ) x_pos = object->line->x[object->pin->whichend];
-  if ( y_pos < 0 ) y_pos = object->line->y[object->pin->whichend];
-
-  if (descr) {
-    text = u_string_concat("pintype", "=", descr, NULL);
-  }
-  else {
-    text = u_string_concat("pintype", "=", object->pin->electrical, NULL);
-  }
-
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         size, INVISIBLE, SHOW_VALUE, text);
-
-  if (toplevel) {
-    o_text_set_rendered_bounds_func (new_bute,
-                                    toplevel->rendered_text_bounds_func,
-                                    toplevel->rendered_text_bounds_data);
-  }
-
-  o_attrib_add(object, new_bute);
-
-  GEDA_FREE(text);
-
-  return new_bute;
-}
-
-/*! \brief Create a New Pin Mechanical Type Attribute for Object
- *
- *  \par Function Description
- *  This function creates a new text attribute for the mechtype. If the
- *  optional top-level object is present, the attribute offset will be
- *  set based on global top-level settings, otherwise the text will be
- *  positioned at a fixed default offset relative to the X and Y arguments,
- *  if X and Y are both not less than zero, otherwise the offset will be
- *  relative to the active end of the given pin object. If descr string
- *  is NULL then NULL is returned. The text angle and justification will
- *  be set based on the orientation of the pin.
- *
- *  \param [in] toplevel The GedaToplevel object, can be NULL
- *  \param [in] object   The pin object for which the attribute was being added.
- *  \param [in] descr    Normally a member of #m_strings
- *  \param [in] x        Desired X location for the label
- *  \param [in] y        Desired Y location for the label
- *
- *  \returns Pointer to new mechtype attribute or NULL if label was NULL
- *
- *  example: o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
- *
- *  \sa o_pin_create_elect_attrib
- */
-Object*
-o_pin_create_mech_attrib(GedaToplevel *toplevel, Object *object, const char *descr, int x, int y)
-{
-  Object *new_bute;
-  char   *text;
-  int     align = -1;
-  int     offset;
-  int     size;
-  int     x_pos, y_pos;
-
-  if (descr == NULL && object->pin->mechanical == NULL) {
-    return NULL;
-  }
-
-  if (toplevel) { /* if was passed a toplevel configuration */
-    offset = toplevel->attribute_offset;
-    size   = toplevel->attribute_font_size;
-  }
-  else { /* fallback to compiled-in value */
-    offset = DEFAULT_ATTRIBUTE_OFFSET;
-    size   = DEFAULT_ATTRIBUTE_SIZE;
-  }
-
-  o_pin_normalize(object);
-
-  if ( x < 0 && y < 0 ){
-
-    /* locate description relative to the non-connected end */
-    x_pos = object->line->x[!object->pin->whichend];
-    y_pos = object->line->y[!object->pin->whichend];
-
-    /* Pin is horizontal*/
-    if (object->line->y[0] == object->line->y[1]) {
-
-        y_pos = y_pos - offset;
-
-      /* left to right */
-      if (object->line->x[1] > object->line->x[0]) {
-        align = UPPER_LEFT;
-      }
-      /* right to left */
-      else if (object->line->x[0] > object->line->x[1]) {
-        align = UPPER_RIGHT;
-      }
-    }
-    /* Pin is vertical */
-    else if (object->line->x[0] == object->line->x[1]) {
-
-      x_pos = x_pos + offset;
-      align = UPPER_LEFT;
-    }
-  }
-  else {
-     x_pos = x;
-     y_pos = y;
-  }
-
-  if ( align < 0 ) align = MIDDLE_MIDDLE;
-  if ( x_pos < 0 ) x_pos = object->line->x[!object->pin->whichend];
-  if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
-
-  if (descr)
-    text = u_string_concat("mechtype", "=", descr, NULL);
-  else
-    text = u_string_concat("mechtype", "=", object->pin->mechanical, NULL);
-
-  new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
-                         size, INVISIBLE, SHOW_VALUE, text);
-
-  if (toplevel) {
-    o_text_set_rendered_bounds_func (new_bute,
-                                    toplevel->rendered_text_bounds_func,
-                                    toplevel->rendered_text_bounds_data);
-  }
-
-  o_attrib_add(object, new_bute);
-
-  GEDA_FREE(text);
-  return new_bute;
-}
-
 GList *o_pin_realize_attributes(GedaToplevel *toplevel, Object *object)
 {
   Object   *attrib;
@@ -1470,20 +1484,19 @@ void o_pin_update_read_property(Object *o_pin, Object *o_text)
   }
 }
 
-const char*
-o_pin_get_electrical(Object *object)
+const char* o_pin_get_electrical(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->electrical;
 }
-const char*
-o_pin_get_label(Object *object)
+
+const char* o_pin_get_label(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->label;
 }
-const char*
-o_pin_get_mechanical(Object *object)
+
+const char* o_pin_get_mechanical(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->mechanical;
