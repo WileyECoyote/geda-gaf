@@ -1072,6 +1072,25 @@ void o_line_scale_world(int x_scale, int y_scale, Object *object)
 
 }
 
+bool o_line_get_slope (Object *object, double *anwser)
+{
+  bool status;
+
+  g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
+
+  if ((object->line->x[1] - object->line->x[0]) != 0) {
+    double numerator   = object->line->y[1] - object->line->y[0];
+    double denominator = object->line->x[1] - object->line->x[0];
+    *anwser = numerator / denominator;
+    status  = TRUE;
+  }
+  else {
+    status = FALSE;
+  }
+  return status;
+}
+
+
 /*! \brief calculate the length of a line object
  *  \par Function Description
  *  This function calculates the length of a line object
@@ -1115,4 +1134,3 @@ double o_line_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   return m_line_shortest_distance (object->line, x, y);
 }
-

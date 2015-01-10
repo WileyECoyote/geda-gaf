@@ -35,6 +35,24 @@
 #include "libgeda_priv.h"
 #include "geda_text.h"
 
+bool o_get_has_slope (Object *object)
+{
+  bool answer;
+
+  if (GEDA_IS_LINE(object)) {
+    if (object->line->x[0] != object->line->x[1]) {
+      answer = TRUE;
+    }
+    else {
+      answer = FALSE;
+    }
+  }
+  else {
+    answer = FALSE;
+  }
+  return answer;
+}
+
 /*! \brief Get the Parent index an object is attached to
  *
  * \par Function Description

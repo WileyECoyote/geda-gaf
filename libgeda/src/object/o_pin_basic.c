@@ -131,8 +131,9 @@ bool o_pin_get_position (int *x, int *y, Object *object)
  *
  *  \return The object list, or NULL on error.
  */
-Object*
-o_pin_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err)
+Object *o_pin_read (const char buf[], unsigned int release_ver,
+                                      unsigned int fileformat_ver,
+                                      GError **err)
 {
   Object *new_obj;
   char   type;

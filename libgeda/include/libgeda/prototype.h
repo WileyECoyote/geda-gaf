@@ -218,6 +218,7 @@ G_BEGIN_DECLS
           int    o_get_attached_parent_id        (Object *object);
          bool    o_get_fill_options              (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
                                                   int *angle1, int *pitch2, int *angle2);
+         bool    o_get_has_slope                 (Object *object);
          bool    o_get_is_attached               (Object *object);
          bool    o_get_is_bus_related            (Object *object);
          bool    o_get_is_embedded               (Object *object);
@@ -246,6 +247,7 @@ G_BEGIN_DECLS
          void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
          void    o_line_translate_world          (int dx, int dy, Object *object);
          void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
+         bool    o_line_get_slope                (Object *object, double *anwser);
        double    o_line_length                   (Object *object);
 
 /* o_list.c */
