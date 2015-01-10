@@ -273,7 +273,7 @@ void       i_command_engage                 (GschemToplevel *w_current);
 void       i_command_disengage              (bool immediate, bool wait_return);
 void       i_command_get_action_list        (GList** list);
 void       i_command_get_command_list       (GList** list);
-bool          i_command_is_valid            (const char *command);
+bool       i_command_is_valid               (const char *command);
 void       i_command_process                (GschemToplevel *w_current, const char* command,
                                              int narg, char *arg, EID_ACTION_ORIGIN who);
 

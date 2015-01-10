@@ -68,7 +68,6 @@ static bool is_object_hit (GschemToplevel *w_current, Object *object,
   return (o_get_shortest_distance (object, w_x, w_y) < w_slack);
 }
 
-
 /*! \brief Tests a if a given Object was hit at a given set of coordinates
  *  \par Function Description
  *  Tests a if a given Object was hit at a given set of coordinates. If so,
