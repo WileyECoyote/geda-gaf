@@ -1,5 +1,10 @@
 2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_util.c: Relocated functions g_tree_copy_tree_iter
+      and g_tree_model_iter_previous to libgedauio.
+
+2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_basic.c: Eliminate file, relocated x_basic_warp_cursor
       to i_pan_warp_cursor.
 

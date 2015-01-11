@@ -213,8 +213,6 @@ void  g_init_select      (void);
 
 /* g_util.c */
 void  g_init_util ();
-void  g_copy_tree_iter            (GtkTreeIter *iter1, GtkTreeIter *iter2);
-bool  g_tree_model_iter_previous  (GtkTreeModel *tree_model, GtkTreeIter *iter);
 
 /* g_window.c */
 GschemToplevel *g_current_window  (void);
@@ -540,6 +538,12 @@ void       o_place_motion                    (GschemToplevel *w_current, int x, 
 void       o_place_invalidate_rubber         (GschemToplevel *w_current, int drawing);
 void       o_place_draw_rubber               (GschemToplevel *w_current, int drawing);
 void       o_place_rotate                    (GschemToplevel *w_current);
+
+/* o_project.c */
+bool       o_project_start                   (GschemToplevel *w_current, int w_x, int w_y);
+int        o_project_end                     (GschemToplevel *w_current, int x, int y);
+void       o_project_hot                     (GschemToplevel *w_current, GList *object_list, int x, int y);
+void       o_project_selection               (GschemToplevel *w_current, int count);
 
 /* o_redraw.c */
 int        o_redraw_cleanstates              (GschemToplevel *w_current);

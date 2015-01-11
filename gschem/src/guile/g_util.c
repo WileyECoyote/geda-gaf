@@ -47,7 +47,7 @@
 
 #include "gschem.h"
 
-/*! \brief Launch default application for a URI.
+/*! \brief SCM API Launch default application for a URI.
  * \par Function Description
  * Launches the default application associated with \a uri_s on the
  * host platform.  Raises an error on failure.
@@ -75,7 +75,7 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
   return SCM_UNDEFINED;
 }
 
-/*! \brief Create the (gschem core util) Scheme module.
+/*! \brief SCM API Create the (gschem core util) Scheme module
  * \par Function Description
  * Defines procedures in the (gschem core util) module. The module can
  * be accessed using (use-modules (gschem core util)).
@@ -88,8 +88,8 @@ static void init_module_gschem_core_util ()
   /* Add them to the module's public definitions. */
   scm_c_export (s_show_uri, NULL);
 }
-/*!
- * \brief Initialise miscellaneous gschem utility procedures.
+
+/*! \brief SCM API Initialise miscellaneous gschem utility procedures.
  * \par Function Description
  * Registers some Scheme utility procedures for e.g. accessing
  * miscellaneous system services.  Should only be called by
@@ -102,33 +102,3 @@ void g_init_util ()
                        init_module_gschem_core_util,
                        NULL);
 }
-
-/*! \brief Copy a Tree Iter
- *  \par Function Description
- *  This function will set all pointers target to the values in source.
- *
- */
-void g_copy_tree_iter(GtkTreeIter *source, GtkTreeIter *target)
-{
-  target->stamp       = source->stamp;
-  target->user_data   = source->user_data;
-  target->user_data2  = source->user_data2;
-  target->user_data3  = source->user_data3;
-  return;
-}
-
-/* Why was this not already included in <gtktreemodel.c> ? */
-bool g_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
-{
-    GtkTreePath *path;
-    gboolean ret;
-
-    path = gtk_tree_model_get_path (tree_model, iter);
-    ret = gtk_tree_path_prev (path);
-    if (ret != FALSE)
-      gtk_tree_model_get_iter (tree_model, iter, path);
-
-    gtk_tree_path_free (path);
-    return ret;
-}
-

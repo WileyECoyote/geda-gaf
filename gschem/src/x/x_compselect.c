@@ -1371,7 +1371,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
       }
       else {
         gtk_tree_store_append (store, &tree_iter, NULL);
-        g_copy_tree_iter(&tree_iter, &parent);
+        geda_copy_tree_iter(&tree_iter, &parent);
       }
     }
     else { /* Not Nesting a Group */
@@ -1589,7 +1589,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
        path = gtk_tree_model_get_path ( model, &iter);
        was_expanded = gtk_tree_view_row_expanded (tree_view, path);
        gtk_tree_path_free(path);
-       g_copy_tree_iter(&iter, &parent);
+       geda_copy_tree_iter(&iter, &parent);
     }
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
     src_name = u_string_strdup(source->name);

@@ -944,7 +944,7 @@ static void increment_selected_attribute( void ){
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(PotentialAttributesView));
   if (gtk_tree_selection_get_selected( selection, &model, &iter1)) {
     iter2 = gtk_tree_iter_copy (&iter1);
-    if (g_tree_model_iter_previous (model, iter2))
+    if (geda_tree_model_iter_previous (model, iter2))
     gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
   }
 }
