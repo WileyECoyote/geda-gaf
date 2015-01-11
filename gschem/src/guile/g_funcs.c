@@ -27,7 +27,7 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief SCM API Confirmation Dialog
+/*! \brief SCM API Yes No Confirmation Dialog
  *  \par Function Description
  *   Launches a confirmation dialog with the given \a scm_msg
  *   and returns True or False based on the users response.
@@ -49,10 +49,11 @@ SCM g_funcs_confirm(SCM scm_msg)
     return SCM_BOOL_F;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Yes No Cancel Confirmation Dialog
  *  \par Function Description
- *
+ *   Launches a confirmation dialog with the given \a scm_msg
+ *   and returns True or False based on the users response.
+ *   If the user chooses to cancel, then -1 is returned.
  */
 SCM g_funcs_confirm_cancel(SCM scm_msg)
 {
