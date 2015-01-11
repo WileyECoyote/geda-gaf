@@ -27,10 +27,10 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Confirmation Dialog
  *  \par Function Description
- *
+ *   Launches a confirmation dialog with the given \a scm_msg
+ *   and returns True or False based on the users response.
  */
 SCM g_funcs_confirm(SCM scm_msg)
 {
