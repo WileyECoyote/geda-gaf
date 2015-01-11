@@ -133,8 +133,7 @@ Object *o_circle_copy(Object *o_current)
  *    <DT>*</DT><DD>CIRCLE_RADIUS
  *  </DL>
  */
-void
-o_circle_modify(Object *object, int x, int y, int whichone)
+void o_circle_modify(Object *object, int x, int y, int whichone)
 {
   switch(whichone) {
     case CIRCLE_CENTER:
@@ -179,8 +178,9 @@ o_circle_modify(Object *object, int x, int y, int whichone)
  *
  *  \return A pointer to the new circle object, or NULL on error.
  */
-Object*
-o_circle_read (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError ** err)
+Object *o_circle_read (const char buf[], unsigned int release_ver,
+                                         unsigned int fileformat_ver,
+                                         GError **err)
 {
   Object *new_obj;
   char type;
@@ -289,8 +289,7 @@ o_circle_read (const char buf[], unsigned int release_ver, unsigned int fileform
  *  Caller must GEDA_FREE returned character string.
  *
  */
-char*
-o_circle_save(Object *object)
+char *o_circle_save(Object *object)
 {
   int x,y;
   int radius;
@@ -331,24 +330,34 @@ o_circle_save(Object *object)
   return(buf);
 }
 
-/*! \brief Translate a circle position in WORLD coordinates by a delta
+/*! \brief Mirror circle using WORLD coordinates.
  *
  *  \par Function Description
- *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle
- *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
+ *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
+ *  circle object from its world coords.
  *
- *  \param [in]     dx         x distance to move.
- *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Circle Object to translate.
+ *  The circle coordinates and its bounding are recalculated as well as the
+ *  Object specific (line width, filling ...).
+ *
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
+ *  \param [in,out] object         Circle Object to mirror.
  */
-void
-o_circle_translate_world(int dx, int dy, Object *object)
+void o_circle_mirror_world(int center_wx, int center_wy, Object *object)
 {
-  /* Do world coords */
-  object->circle->center_x = object->circle->center_x + dx;
-  object->circle->center_y = object->circle->center_y + dy;
+  /* translate object to origin */
+  object->circle->center_x -= center_wx;
+  object->circle->center_y -= center_wy;
 
-  /* recalc the screen coords and the bounding box */
+  /* mirror the center of the circle */
+  object->circle->center_x = -object->circle->center_x;
+  object->circle->center_y =  object->circle->center_y;
+
+  /* translate back in position */
+  object->circle->center_x += center_wx;
+  object->circle->center_y += center_wy;
+
+  /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;
 
 }
@@ -366,8 +375,7 @@ o_circle_translate_world(int dx, int dy, Object *object)
  *  \param [in]      angle          Rotation angle in degrees (See note below).
  *  \param [in,out]  object         Circle Object to rotate.
  */
-void
-o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 {
   int newx, newy;
   int x, y;
@@ -404,35 +412,23 @@ o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 
 }
 
-/*! \brief Mirror circle using WORLD coordinates.
+/*! \brief Translate a circle position in WORLD coordinates by a delta
  *
  *  \par Function Description
- *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
- *  circle object from its world coords.
+ *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the circle
+ *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  The circle coordinates and its bounding are recalculated as well as the
- *  Object specific (line width, filling ...).
- *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Circle Object to mirror.
+ *  \param [in]     dx         x distance to move.
+ *  \param [in]     dy         y distance to move.
+ *  \param [in,out] object     Circle Object to translate.
  */
-void
-o_circle_mirror_world(int center_wx, int center_wy, Object *object)
+void o_circle_translate_world(int dx, int dy, Object *object)
 {
-  /* translate object to origin */
-  object->circle->center_x -= center_wx;
-  object->circle->center_y -= center_wy;
+  /* Do world coords */
+  object->circle->center_x = object->circle->center_x + dx;
+  object->circle->center_y = object->circle->center_y + dy;
 
-  /* mirror the center of the circle */
-  object->circle->center_x = -object->circle->center_x;
-  object->circle->center_y =  object->circle->center_y;
-
-  /* translate back in position */
-  object->circle->center_x += center_wx;
-  object->circle->center_y += center_wy;
-
-  /* recalc boundings and screen coords */
+  /* recalc the screen coords and the bounding box */
   object->w_bounds_valid_for = NULL;
 
 }
@@ -478,9 +474,8 @@ bool o_circle_get_position (int *x, int *y, Object *object)
  *  \param [in] origin_x   Page x coordinate to place circle Object.
  *  \param [in] origin_y   Page y coordinate to place circle Object.
  */
-void
-o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
-               int origin_x, int origin_y)
+void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
+                    int origin_x, int origin_y)
 {
   int x, y, radius;
   int color;
@@ -1022,8 +1017,7 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
  *  \return The shortest distance from the object to the point.  With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double
-o_circle_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_circle_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   int solid;
 

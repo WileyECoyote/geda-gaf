@@ -189,9 +189,9 @@ G_BEGIN_DECLS
        Object   *o_circle_new                    (int color, int x, int y, int radius);
        Object   *o_circle_copy                   (Object *o_current);
          void    o_circle_modify                 (Object *object, int x, int y, int whichone);
-         void    o_circle_translate_world        (int dx, int dy, Object *object);
-         void    o_circle_rotate_world           (int center_wx, int center_wy, int angle, Object *object);
          void    o_circle_mirror_world           (int center_wx, int center_wy, Object *object);
+         void    o_circle_rotate_world           (int center_wx, int center_wy, int angle, Object *object);
+         void    o_circle_translate_world        (int dx, int dy, Object *object);
 
 /* o_complex_basic.c */
           int    o_complex_is_embedded           (Object *o_current);
@@ -260,12 +260,13 @@ G_BEGIN_DECLS
 /* o_net_basic.c */
        Object   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
        Object   *o_net_copy                      (Object *o_current);
-         void    o_net_translate_world           (int dx, int dy, Object *object);
-         void    o_net_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
+         void    o_net_modify                    (Object *object, int x, int y, int whichone);
          void    o_net_mirror_world              (int center_wx, int center_wy, Object *object);
+         void    o_net_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
+         void    o_net_translate_world           (int dx, int dy, Object *object);
           int    o_net_orientation               (Object *object);
          void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
-         void    o_net_modify                    (Object *object, int x, int y, int whichone);
+
          void    o_net_refresh_conn_cache        (Object *object);
          bool    o_net_is_fully_connected        (Object *object);
 
@@ -280,19 +281,19 @@ G_BEGIN_DECLS
        Object   *o_path_new                      (int color, const char *path_string);
        Object   *o_path_new_take_path            (int color, Path *path_data);
        Object   *o_path_copy                     (Object *o_current);
-         void    o_path_mirror_world             (int center_wx, int center_wy, Object *object);
          void    o_path_modify                   (Object *object, int x, int y, int whichone);
-         void    o_path_translate_world          (int x, int y, Object *object);
+         void    o_path_mirror_world             (int center_wx, int center_wy, Object *object);
          void    o_path_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
+         void    o_path_translate_world          (int x, int y, Object *object);
 
 /* o_picture.c */
        Object   *o_picture_new                   (const char *file_content, unsigned int file_length,
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
                                                   int embedded)      G_GNUC_WARN_UNUSED_RESULT;
        Object   *o_picture_copy                  (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
-         void    o_picture_mirror_world          (int center_wx, int center_wy, Object *object);
          void    o_picture_modify                (Object *object, int x, int y, int whichone);
          void    o_picture_modify_all            (Object *object, int x1, int y1, int x2, int y2);
+         void    o_picture_mirror_world          (int center_wx, int center_wy, Object *object);
          void    o_picture_rotate_world          (int center_wx, int center_wy, int angle,Object *object);
          void    o_picture_translate_world       (int dx, int dy, Object *object);
 

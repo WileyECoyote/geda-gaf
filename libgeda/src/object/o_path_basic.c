@@ -353,6 +353,88 @@ void o_path_modify (Object *object,
   object->w_bounds_valid_for = NULL;
 }
 
+/*! \brief Mirror a path using WORLD coordinates.
+ *  \par Function Description
+ *  This function mirrors the path from the point
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
+ *
+ *  \param [in]     center_wx  Origin x coordinate in WORLD units.
+ *  \param [in]     center_wy  Origin y coordinate in WORLD units.
+ *  \param [in,out] object         Line Object to mirror.
+ */
+void o_path_mirror_world (int center_wx, int center_wy, Object *object)
+{
+  PATH_SECTION *section;
+  int i;
+
+  for (i = 0; i < object->path->num_sections; i++) {
+    section = &object->path->sections[i];
+
+    switch (section->code) {
+    case PATH_CURVETO:
+      /* Two control point grips */
+      section->x1 = 2 * center_wx - section->x1;
+      section->x2 = 2 * center_wx - section->x2;
+      /* Fall through */
+    case PATH_MOVETO:
+    case PATH_MOVETO_OPEN:
+    case PATH_LINETO:
+      /* Destination point grip */
+      section->x3 = 2 * center_wx - section->x3;
+      break;
+    case PATH_END:
+      break;
+    }
+  }
+
+  object->w_bounds_valid_for = NULL;
+}
+
+/*! \brief Rotate Line Object using WORLD coordinates.
+ *  \par Function Description
+ *  This function rotates the path described by
+ *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
+ *  point by <B>angle</B> degrees.
+ *  The center of rotation is in world units.
+ *
+ *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
+ *  \param [in]      angle          Rotation angle in degrees (See note below).
+ *  \param [in,out]  object         Line Object to rotate.
+ */
+void o_path_rotate_world (int center_wx, int center_wy, int angle, Object *object)
+{
+  PATH_SECTION *section;
+  int i;
+
+  for (i = 0; i < object->path->num_sections; i++) {
+    section = &object->path->sections[i];
+
+    switch (section->code) {
+    case PATH_CURVETO:
+      /* Two control point grips */
+      section->x1 -= center_wx; section->y1 -= center_wy;
+      section->x2 -= center_wx; section->y2 -= center_wy;
+      m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
+      m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
+      section->x1 += center_wx; section->y1 += center_wy;
+      section->x2 += center_wx; section->y2 += center_wy;
+      /* Fall through */
+    case PATH_MOVETO:
+    case PATH_MOVETO_OPEN:
+    case PATH_LINETO:
+      /* Destination point grip */
+      section->x3 -= center_wx; section->y3 -= center_wy;
+      m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
+      section->x3 += center_wx; section->y3 += center_wy;
+      break;
+    case PATH_END:
+      break;
+    }
+  }
+  object->w_bounds_valid_for = NULL;
+}
+
 /*! \brief Translate a path position in WORLD coordinates by a delta.
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
@@ -389,91 +471,6 @@ void o_path_translate_world (int dx, int dy, Object *object)
   }
 
   /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Rotate Line Object using WORLD coordinates.
- *  \par Function Description
- *  This function rotates the path described by
- *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
- *  point by <B>angle</B> degrees.
- *  The center of rotation is in world units.
- *
- *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
- *  \param [in,out]  object         Line Object to rotate.
- */
-void
-o_path_rotate_world (int center_wx, int center_wy, int angle, Object *object)
-{
-  PATH_SECTION *section;
-  int i;
-
-  for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
-
-    switch (section->code) {
-    case PATH_CURVETO:
-      /* Two control point grips */
-      section->x1 -= center_wx; section->y1 -= center_wy;
-      section->x2 -= center_wx; section->y2 -= center_wy;
-      m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
-      m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
-      section->x1 += center_wx; section->y1 += center_wy;
-      section->x2 += center_wx; section->y2 += center_wy;
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      /* Destination point grip */
-      section->x3 -= center_wx; section->y3 -= center_wy;
-      m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
-      section->x3 += center_wx; section->y3 += center_wy;
-      break;
-    case PATH_END:
-      break;
-    }
-  }
-  object->w_bounds_valid_for = NULL;
-}
-
-
-/*! \brief Mirror a path using WORLD coordinates.
- *  \par Function Description
- *  This function mirrors the path from the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
- *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Line Object to mirror.
- */
-void
-o_path_mirror_world (int center_wx, int center_wy, Object *object)
-{
-  PATH_SECTION *section;
-  int i;
-
-  for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
-
-    switch (section->code) {
-    case PATH_CURVETO:
-      /* Two control point grips */
-      section->x1 = 2 * center_wx - section->x1;
-      section->x2 = 2 * center_wx - section->x2;
-      /* Fall through */
-    case PATH_MOVETO:
-    case PATH_MOVETO_OPEN:
-    case PATH_LINETO:
-      /* Destination point grip */
-      section->x3 = 2 * center_wx - section->x3;
-      break;
-    case PATH_END:
-      break;
-    }
-  }
-
   object->w_bounds_valid_for = NULL;
 }
 
@@ -963,8 +960,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *  \return The shortest distance from the object to the point.  With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double
-o_path_shortest_distance (Object *object, int x, int y, int force_solid)
+double o_path_shortest_distance (Object *object, int x, int y, int force_solid)
 {
   int solid;
 
