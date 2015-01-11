@@ -319,7 +319,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   MENU_BAR            = gtk_menu_bar_new ();
   MENU_ITEMS_LIST     = NULL;
 
-  void setup_radio(GtkCheckMenuItem *radio_button, void *func) {
+  void menu_register_toggler (ToggleMenuData *toggler_data) {
+    TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
+  }
+
+  inline void setup_radio(GtkCheckMenuItem *radio_button, void *func) {
     RadioMenuData *radio_data;
 
     radio_data            = GEDA_MEM_ALLOC0 (sizeof(RadioMenuData));
@@ -334,13 +338,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                                   radio_data);
   }
 
-  void menu_register_toggler (ToggleMenuData *toggler_data) {
-    TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
-  }
-
   /* Subfunction to extract menu item properties from scheme using
    * data at given index and create a menu item widget */
-  GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
+  inline GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
 
     GtkWidget *menu_item;
 

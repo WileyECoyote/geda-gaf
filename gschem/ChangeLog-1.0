@@ -1,4 +1,9 @@
-2015-01-09 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Make function get_menu_item_from_scheme inline,
+      was suppose to be.
+
+2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_util.c: Relocated functions g_tree_copy_tree_iter
       and g_tree_model_iter_previous to libgedauio.
