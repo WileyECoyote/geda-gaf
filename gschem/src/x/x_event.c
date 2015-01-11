@@ -78,8 +78,8 @@ int x_event_button_pressed(GtkWidget      *widget,
   w_y = snap_grid (w_current, unsnapped_wy);
 
   if (event->type == GDK_2BUTTON_PRESS &&
-    (w_current->event_state == STARTSELECT ||
-    w_current->event_state == SELECT))
+     (w_current->event_state == STARTSELECT ||
+      w_current->event_state == SELECT))
   {
     if (o_select_is_selection (w_current)) {
       o_edit_objects (w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
@@ -159,6 +159,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->inside_action = FALSE;
           w_current->event_state   = DRAWLINE;
           break;
+
         case DRAWPATH:
           o_path_start (w_current, w_x, w_y);
           w_current->event_state   = ENDPATH;
@@ -170,6 +171,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->event_state   = ENDPATH;
           w_current->inside_action = TRUE;
           break;
+
         case(DRAWBOX):
           o_box_start(w_current, w_x, w_y);
           w_current->event_state   = ENDBOX;
@@ -286,7 +288,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case(ENDROTATEP):
           o_edit_rotate_world(w_current, w_x, w_y, 90,
-                                geda_list_get_glist(Current_Selection));
+                              geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
           i_status_set_state(w_current, SELECT);
@@ -294,7 +296,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case(ENDMIRROR):
           o_edit_mirror_world(w_current, w_x, w_y,
-                                geda_list_get_glist(Current_Selection));
+                              geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
           i_status_set_state(w_current, SELECT);

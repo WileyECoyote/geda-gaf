@@ -591,7 +591,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 
   int WhichOne = (int)(long*) Control;
 
-  switch ( WhichOne ) {
+  switch (WhichOne) {
   case Extents:
   case EnableColor: /* Has it's own callback, should not get here! */
   case InvertImage: /* Has it's own callback, should not get here! */
@@ -814,8 +814,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
     image_type_descr =
     geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(type_combo));
-    last_image_type = geda_combo_box_get_active(GEDA_COMBO_BOX(type_combo));
-    image_type = x_image_get_type_from_description(image_type_descr);
+    last_image_type  = geda_combo_box_get_active(GEDA_COMBO_BOX(type_combo));
+    image_type       = x_image_get_type_from_description(image_type_descr);
 
     GEDA_FREE(image_type_descr);
 
@@ -925,54 +925,46 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 
   n_channels = gdk_pixbuf_get_n_channels (pixbuf);
 
-  if (n_channels != 3)
+  if ((n_channels == 3) &&
+      (gdk_pixbuf_get_colorspace(pixbuf) == GDK_COLORSPACE_RGB) &&
+      (gdk_pixbuf_get_bits_per_sample(pixbuf) == 8))
   {
-    return;
-  }
 
-  if (gdk_pixbuf_get_colorspace (pixbuf) != GDK_COLORSPACE_RGB)
-  {
-    return;
-  }
+    width  = gdk_pixbuf_get_width (pixbuf);
+    height = gdk_pixbuf_get_height (pixbuf);
 
-  if (gdk_pixbuf_get_bits_per_sample (pixbuf) != 8)
-  {
-    return;
-  }
+    rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+    pixels    = gdk_pixbuf_get_pixels (pixbuf);
 
-  width  = gdk_pixbuf_get_width (pixbuf);
-  height = gdk_pixbuf_get_height (pixbuf);
-
-  rowstride = gdk_pixbuf_get_rowstride (pixbuf);
-  pixels    = gdk_pixbuf_get_pixels (pixbuf);
-
-  for (j = 0; j < height; j++)
-  {
-    for (i = 0; i < width; i++)
+    for (j = 0; j < height; j++)
     {
-      p = pixels + j * rowstride + i * n_channels;
+      for (i = 0; i < width; i++)
+      {
+        p = pixels + j * rowstride + i * n_channels;
 
-      if (bw_only) {
-        if (p[0] + p[1] + p[2] < 4) {             /* if near black */
-          p[0] = 255;                             /* make white    */
-          p[1] = 255;
-          p[2] = 255;
+        if (bw_only) {
+          if (p[0] + p[1] + p[2] < 4) {             /* if near black */
+            p[0] = 255;                             /* make white    */
+            p[1] = 255;
+            p[2] = 255;
+          }
+          else if (p[0] + p[1] + p[2] > 0x251 ) {  /* if near white */
+            p[0] = 0;                              /* make black    */
+            p[1] = 0;
+            p[2] = 0;
+          }
         }
-        else if (p[0] + p[1] + p[2] > 0x251 ) {  /* if near white */
-          p[0] = 0;                              /* make black    */
-          p[1] = 0;
-          p[2] = 0;
+        /* This reverses polarity of the image, in this case color */
+        else {                                     /* invert color */
+          p[0] = 255 - p[0];
+          p[1] = 255 - p[1];
+          p[2] = 255 - p[2];
         }
-      }
-      /* This reverses polarity of the image, in this case color */
-      else {                                     /* invert color */
-        p[0] = 255 - p[0];
-        p[1] = 255 - p[1];
-        p[2] = 255 - p[2];
       }
     }
   }
 }
+
 /*! \brief Retreive Pixel Buffer for Imaging
  *  \par Function Description
  *  The entire top-level is copied, including

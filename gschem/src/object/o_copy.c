@@ -47,15 +47,15 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wx = w_x;
   w_current->first_wy = w_y;
 
-  if (o_select_is_selection (w_current)) {
+  if (o_select_is_selection(w_current)) {
 
-    s_current = geda_list_get_glist( Top_Selection );
+    s_current = geda_list_get_glist(Top_Selection);
 
-    s_place_set_place_list(toplevel, s_current );
+    s_place_set_place_list(toplevel, s_current);
 
     w_current->inside_action = 1;
     i_status_set_state(w_current, COPY);
-    o_place_start (w_current, w_x, w_y);
+    o_place_start(w_current, w_x, w_y);
   }
 }
 
@@ -68,7 +68,7 @@ void o_copy_cancel(GschemToplevel *w_current)
   s_place_free_place_list(w_current->toplevel);
 
   w_current->inside_action = 0;
-  i_status_set_state (w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 }
 
 /*! \brief Finalize Copy operation of a single object
