@@ -31,6 +31,7 @@ libgedauio_HEADERS = \
 			geda_threads.h           \
 			geda_toggle_action.h     \
 			geda_tree_view.h         \
+			geda_trees.h             \
 			geda_dialogs.h           \
 			geda_uio_functions.h     \
 			geda_uio_macros.h        \

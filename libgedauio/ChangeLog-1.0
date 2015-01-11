@@ -1,7 +1,14 @@
+2014-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/functions/geda_trees.c: New file (with functions relocated
+        from gschem).
+
+      * include/geda_trees.h: New file.
+
 2014-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
-      *src/widgets/geda_combobox.c: Provide widget version for most all
-       geda_combo_box_xxx functions.
+      * src/widgets/geda_combobox.c: Provide widget version for most all
+        geda_combo_box_xxx functions.
 
       * include/geda_combobox.h: Add function proto-types for widget new
         versions.

@@ -33,6 +33,8 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
 
+#include "geda_trees.h"
+
 G_BEGIN_DECLS
 
 #define GEDA_TYPE_TREE_VIEW            (geda_tree_view_get_type ())
@@ -63,8 +65,6 @@ GtkWidget    *geda_tree_view_new_with_model      (GtkTreeModel *model);
 
 int           geda_tree_view_row_get_visibility  (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
 int           geda_tree_view_row_make_visible    (GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
-
-
 
 G_END_DECLS
 
