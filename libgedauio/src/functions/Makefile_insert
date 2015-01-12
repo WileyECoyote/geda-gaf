@@ -4,6 +4,6 @@ libgedauio_la_SOURCES += \
 				functions/geda_accumulate.c    \
 				functions/geda_marshal.c       \
 				functions/geda_threads.c       \
-				functions/geda_trees.c
+				functions/geda_tree.c
 
 

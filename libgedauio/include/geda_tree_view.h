@@ -33,7 +33,7 @@
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
 
-#include "geda_trees.h"
+#include <geda_tree.h>
 
 G_BEGIN_DECLS
 

@@ -33,6 +33,6 @@
 #include "geda_marshal.h"
 
 #include "geda_threads.h"
-#include "geda_trees.h"
+#include "geda_tree.h"
 
 #endif /* __GEDA_FUNCTIONS_H__ */

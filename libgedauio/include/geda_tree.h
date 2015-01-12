@@ -26,14 +26,14 @@
  * Date: January 10, 2015
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
-#ifndef __GEDA_TREES_H__
-#define __GEDA_TREES_H__
+#ifndef __GEDA_TREE_H__
+#define __GEDA_TREE_H__
 
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
 
 /* Utility functions */
-void          geda_tree_copy_tree_iter           (GtkTreeIter *iter1, GtkTreeIter *iter2);
+void          geda_tree_copy_iter                (GtkTreeIter *iter1, GtkTreeIter *iter2);
 bool          geda_tree_model_iter_previous      (GtkTreeModel *tree_model, GtkTreeIter *iter);
 
-#endif /* __GEDA_TREES_H__ */
+#endif /* __GEDA_TREE_H__ */

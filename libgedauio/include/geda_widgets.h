@@ -29,19 +29,20 @@
 #ifndef __GEDA_WIDGETS_H__
 #define __GEDA_WIDGETS_H__
 
-#include "geda_bulb.h"
-#include "geda_combobox.h"
-#include "geda_comboboxtext.h"
-#include "geda_entry.h"
-#include "geda_font_dialog.h"
-#include "geda_handlebox.h"
-#include "geda_imagemenuitem.h"
-#include "geda_label.h"
-#include "geda_menu_button.h"
-#include "geda_accel_label.h"
-#include "geda_action.h"
-#include "geda_font_button.h"
-#include "geda_toggle_action.h"
-#include "geda_tree_view.h"
+#include <geda_bulb.h>
+#include <geda_combobox.h>
+#include <geda_comboboxtext.h>
+#include <geda_entry.h>
+#include <geda_font_dialog.h>
+#include <geda_handlebox.h>
+#include <geda_imagemenuitem.h>
+#include <geda_label.h>
+#include <geda_menu_button.h>
+#include <geda_accel_label.h>
+#include <geda_action.h>
+#include <geda_font_button.h>
+#include <geda_toggle_action.h>
+#include <geda_tree_view.h>
+#include <geda_tree.h>
 
 #endif /* __GEDA_WIDGETS_H__ */

@@ -31,14 +31,14 @@
 #endif
 #include <geda.h>
 
-#include <geda_trees.h>
+#include <geda_tree.h>
 
 /*! \brief Copy a Tree Iter
  *  \par Function Description
  *  This function will set all pointers target to the values in source.
  *
  */
-void geda_copy_tree_iter(GtkTreeIter *source, GtkTreeIter *target)
+void geda_tree_copy_iter(GtkTreeIter *source, GtkTreeIter *target)
 {
   target->stamp       = source->stamp;
   target->user_data   = source->user_data;
