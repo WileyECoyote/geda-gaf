@@ -987,6 +987,21 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
   g_object_set (cell, "background-gdk", color, NULL);
 }
 
+void x_dialog_color_menu_view_changed (GedaComboBox *cbox,
+                                       unsigned int  view,
+                                       void         *data)
+{
+  //GschemToplevel *w_current = data;
+
+  EdaConfig  *cfg = eda_config_get_user_context ();
+  int value       = view;
+  const char *grp = WIDGET_CONFIG_GROUP;
+  const char *key = "color-menu-view";
+
+  /* Save user choice of view style - either List or Menu */
+  eda_config_set_integer (cfg, grp, key, value);
+}
+
 /*! \brief Create a ComboBox with the gschem colors.
  *  \par Function Description
  *  Creates a GtkComboBox with the color list and swatches showing
@@ -1002,6 +1017,7 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
  */
 GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 {
+  EdaConfig       *cfg;
   GedaComboBox    *cbox;
   GtkListStore    *store;
   GtkCellLayout   *layout;
@@ -1009,16 +1025,24 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   GtkCellRenderer *color_cell;
 
   int i;
+  int list_view;
+
+  const char *grp;
   const char *str;
 
   GtkTreeIter iter;
+
+  cfg = eda_config_get_user_context();
+  grp = WIDGET_CONFIG_GROUP;
+  str = "color-menu-view";             /* It's called "pre-reusing" a variable */
+  i_var_restore_group_integer(cfg, grp, str, &list_view, GEDA_VIEW_MENU);
 
   /* The columns are: name of color, index of color. */
   store  = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
   cbox   = GEDA_COMBO_BOX (geda_combo_box_new_with_model (GTK_TREE_MODEL (store)));
   layout = GTK_CELL_LAYOUT (cbox); /* For convenience */
 
-  g_object_set (cbox, "list-view", GEDA_VIEW_MENU, NULL);
+  g_object_set (cbox, "list-view", list_view, NULL);
 
   /* Renders the color swatch. Since this won't contain text, set a
    * minimum width. */
@@ -1046,6 +1070,10 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
     if (i == color_index)
       geda_combo_box_set_active_iter(cbox, &iter);
   }
+
+  g_signal_connect (G_OBJECT (cbox), "view-changed",
+                    G_CALLBACK (x_dialog_color_menu_view_changed),
+                    w_current);
 
   return GTK_WIDGET (cbox);
 }

@@ -1,3 +1,9 @@
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Retrieve configuration for color menu view
+      and set GedaComboBox setting in create_color_menu, setup call
+      back for "view-changed" to save the style.
+
 2015-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Set Color Menu Combo to use GEDA_VIEW_MENU.
