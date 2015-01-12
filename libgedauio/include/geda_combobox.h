@@ -32,6 +32,13 @@
 
 #define GEDA_COMBO_DEFAULT_WRAP 2
 
+typedef enum
+{
+  GEDA_VIEW_AUTO,
+  GEDA_VIEW_TREE,
+  GEDA_VIEW_MENU,
+} IDE_COMBO_VIEW_STYLE;
+
 G_BEGIN_DECLS
 
 #define GEDA_TYPE_COMBO_BOX             (geda_combo_box_get_type ())

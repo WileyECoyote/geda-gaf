@@ -1,3 +1,7 @@
+2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_combobox.h: Add IDE_COMBO_VIEW_STYLE enumeration.
+
 2014-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/functions/geda_trees.c: New file (with functions relocated
