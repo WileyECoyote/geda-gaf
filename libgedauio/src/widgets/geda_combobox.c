@@ -3030,10 +3030,11 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 
       priv->button = gtk_toggle_button_new ();
       gtk_button_set_focus_on_click (GTK_BUTTON (priv->button),
-				     priv->focus_on_click);
+                                     priv->focus_on_click);
 
       g_signal_connect (priv->button, "toggled",
                         G_CALLBACK (geda_combo_box_button_toggled), combo_box);
+
       gtk_widget_set_parent (priv->button,
                              GTK_BIN (combo_box)->child->parent);
 
@@ -3052,10 +3053,11 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 
       priv->button = gtk_toggle_button_new ();
       gtk_button_set_focus_on_click (GTK_BUTTON (priv->button),
-				     priv->focus_on_click);
+                                     priv->focus_on_click);
 
       g_signal_connect (priv->button, "toggled",
                         G_CALLBACK (geda_combo_box_button_toggled), combo_box);
+
       gtk_widget_set_parent (priv->button,
                              GTK_BIN (combo_box)->child->parent);
 
@@ -3067,9 +3069,10 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
   g_signal_connect (priv->button, "button-press-event",
                     G_CALLBACK (geda_combo_box_menu_button_press),
                     combo_box);
+
   g_signal_connect (priv->button, "state-changed",
-		    G_CALLBACK (geda_combo_box_button_state_changed),
-		    combo_box);
+                    G_CALLBACK (geda_combo_box_button_state_changed),
+                    combo_box);
 
   /* create our funky menu */
   menu = gtk_menu_new ();
@@ -3381,18 +3384,122 @@ geda_combo_box_relayout (GedaComboBox *combo_box)
   g_list_free (list);
 }
 
+/*! \brief Popup View Menu Clicked
+ *
+ *  \par Function Description
+ *  This functions call when the user selects View Menu on the popup
+ *  menu.
+ */
+static void geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_data)
+{
+  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxPrivate *priv      = combo_box->priv;
+  unsigned int as_list;
+
+  priv->list_view = GEDA_VIEW_MENU;
+
+  as_list = FALSE;
+
+  if (!priv->as_list && as_list) {
+    priv->as_list |= 1 ;
+  }
+  else if (priv->as_list && !as_list) {
+    priv->as_list &= ~1;
+  }
+
+  geda_combo_box_check_appearance (combo_box);
+}
+
+/*! \brief Popup View List Clicked
+ *
+ *  \par Function Description
+ *  This functions call when the user select View list from the
+ *  popup menu.
+ */
+static void geda_combo_clicked_view_list (GtkMenuItem *menuitem, void *user_data)
+{
+  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxPrivate *priv      = combo_box->priv;
+  unsigned int as_list;
+
+  priv->list_view = GEDA_VIEW_TREE;
+
+  as_list = TRUE;
+
+  if (!priv->as_list && as_list) {
+    priv->as_list |= 1 ;
+  }
+  else if (priv->as_list && !as_list) {
+    priv->as_list &= ~1;
+  }
+
+  geda_combo_box_check_appearance (combo_box);
+}
+
+/*! \brief GedaCombo Right Mouse Show Popup
+ *
+ *  \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the combo button when the right mouse button is pressed on
+ *  both the menu and list views.
+ */
+static void geda_combo_box_show_popup (GtkWidget      *button,
+                                       GdkEventButton *event,
+                                       void           *user_data)
+{
+  GtkWidget *menu;
+  GtkWidget *popup_item;
+
+  /* create the context menu */
+  menu = gtk_menu_new();
+
+  popup_item = gtk_menu_item_new_with_label (_("Menu view"));
+
+  g_signal_connect (GTK_OBJECT(popup_item), "activate",
+                   (GCallback) geda_combo_box_clicked_view_menu, user_data);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  popup_item = gtk_menu_item_new_with_label (_("List View"));
+
+  g_signal_connect (GTK_OBJECT(popup_item), "activate",
+                   (GCallback)geda_combo_clicked_view_list, user_data);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  gtk_widget_show_all (menu);
+
+  /* make menu a popup menu */
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                  (event != NULL) ? event->button : 0,
+                  gdk_event_get_time ((GdkEvent*)event));
+}
+
 /* callbacks */
-static bool
-geda_combo_box_menu_button_press (GtkWidget      *widget,
-                                 GdkEventButton  *event,
-                                 void            *user_data)
+
+/*! \brief GedaCombo Button Pressed on Button Callback
+ *  \par Function Description
+ *   If the button was the left button the drop-down menu is displayed,
+ *   if the button was the right button then a popup options menu is
+ *   is displayed.
+ *
+ *   \sa geda_combo_box_list_button_pressed geda_combo_box_show_popup
+ */
+static bool geda_combo_box_menu_button_press (GtkWidget      *widget,
+                                              GdkEventButton *event,
+                                              void           *user_data)
 {
   GedaComboBox *combo_box   = GEDA_COMBO_BOX (user_data);
   GedaComboBoxPrivate *priv = combo_box->priv;
-  bool result;
+  bool ret_val;
 
-  if (GTK_IS_MENU (priv->popup_widget) &&
-    event->type == GDK_BUTTON_PRESS && event->button == 1)
+  if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
+
+    geda_combo_box_show_popup(widget, event, user_data);
+    ret_val = TRUE;
+  }
+  else if (GTK_IS_MENU (priv->popup_widget) &&
+           event->type == GDK_BUTTON_PRESS && event->button == 1)
   {
     if (priv->focus_on_click && !gtk_widget_has_focus (priv->button)) {
       gtk_widget_grab_focus (priv->button);
@@ -3400,13 +3507,13 @@ geda_combo_box_menu_button_press (GtkWidget      *widget,
 
     geda_combo_box_menu_popup (combo_box, event->button, event->time);
 
-    result = TRUE;
+    ret_val = TRUE;
   }
   else {
-    result = FALSE;
+    ret_val = FALSE;
   }
 
-  return result;
+  return ret_val;
 }
 
 static void
@@ -3854,6 +3961,7 @@ geda_combo_box_list_setup (GedaComboBox *combo_box)
 
   g_signal_connect (priv->button, "button-press-event",
                     G_CALLBACK (geda_combo_box_list_button_pressed), combo_box);
+
   g_signal_connect (priv->button, "toggled",
                     G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
@@ -4042,43 +4150,52 @@ geda_combo_box_list_destroy (GedaComboBox *combo_box)
   }
 }
 
-/* callbacks */
-
 static bool
 geda_combo_box_list_button_pressed (GtkWidget      *widget,
-                                   GdkEventButton *event,
-                                   void *        data)
+                                    GdkEventButton *event,
+                                    void           *data)
 {
   GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
   GedaComboBoxPrivate *priv = combo_box->priv;
+  bool ret_val;
 
-  GtkWidget *ewidget = gtk_get_event_widget ((GdkEvent *)event);
+  GtkWidget *ewidget = gtk_get_event_widget((GdkEvent *)event);
 
-  if (ewidget == priv->popup_window)
-    return TRUE;
-
-  if ((ewidget != priv->button && ewidget != priv->box) ||
-    gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
-    return FALSE;
-
-  if (priv->focus_on_click && !gtk_widget_has_focus (priv->button)) {
-    gtk_widget_grab_focus (priv->button);
+  if (ewidget == priv->popup_window) {
+    ret_val = TRUE;
   }
+  else if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
 
-  geda_combo_box_popup (combo_box);
-
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
-
-  priv->auto_scroll = FALSE;
-  if (priv->scroll_timer == 0) {
-    priv->scroll_timer = gdk_threads_add_timeout (SCROLL_TIME,
-                                                 (GSourceFunc) geda_combo_box_list_scroll_timeout,
-                                                  combo_box);
+    geda_combo_box_show_popup(widget, event, data);
+    ret_val = TRUE;
   }
+  else {
 
-  priv->popup_in_progress = TRUE;
 
-  return TRUE;
+
+    if ((ewidget != priv->button && ewidget != priv->box) ||
+      gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
+      return FALSE;
+
+    if (priv->focus_on_click && !gtk_widget_has_focus (priv->button)) {
+      gtk_widget_grab_focus (priv->button);
+    }
+
+    geda_combo_box_popup (combo_box);
+
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
+
+    priv->auto_scroll = FALSE;
+    if (priv->scroll_timer == 0) {
+      priv->scroll_timer = gdk_threads_add_timeout (SCROLL_TIME,
+                                                    (GSourceFunc) geda_combo_box_list_scroll_timeout,
+                                                    combo_box);
+    }
+
+    priv->popup_in_progress = TRUE;
+    ret_val = TRUE;
+  }
+  return ret_val;
 }
 
 static bool

@@ -1,5 +1,15 @@
 2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/widgets/geda_combobox.c: Add functions geda_combo_box_clicked
+        _view_menu, geda_combo_clicked_view_list and geda_combo_box_show_
+        popup, revise functions geda_combo_box_menu_button_press geda_combo
+        _box_list_button_pressed, geda_combo_box_list_setup and geda_combo_
+        box_menu_setup to add a small popup context menu to the button
+        widgets. The meu allows user to switch between List and Menu views
+        "on-the-fly".
+
+2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/widgets/geda_combobox.c: Change "as-list" property from
         g_param_spec_boolean to g_param_spec_int and use enumerators
         IDE_COMBO_VIEW_STYLE. Rename property PROP_AS_LIST to PROP_
