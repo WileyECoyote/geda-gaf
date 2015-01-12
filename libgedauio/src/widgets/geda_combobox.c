@@ -139,6 +139,8 @@ struct _GedaComboBoxPrivate
 
   GSList *cells;
 
+  unsigned int list_view;
+
   unsigned int as_list : 1;
   unsigned int popup_in_progress : 1;
   unsigned int popup_shown : 1;
@@ -197,7 +199,7 @@ enum {
   PROP_BUTTON_SENSITIVITY,
   PROP_EDITING_CANCELED,
   PROP_HAS_ENTRY,
-  PROP_AS_LIST,
+  PROP_LIST_VIEW,
   PROP_ENTRY_TEXT_COLUMN
 };
 
@@ -960,14 +962,21 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
   * GedaComboBox:list-view:
   *
   * Whether the combo box has an entry.
-  */
+
  params = g_param_spec_boolean ("list-view",
                               _("Appear as list"),
                               _("Whether popup should look like lists rather than menus"),
                                  FALSE,
-                                 G_PARAM_READWRITE);
+                                 G_PARAM_READWRITE);  */
+  params = g_param_spec_int  ("list-view",
+                            _("Appear as list"),
+                            _("Whether popup should look like lists rather than menus"),
+                              GEDA_VIEW_AUTO,  /* Min */
+                              GEDA_VIEW_MENU,  /* Max */
+                              GEDA_VIEW_AUTO,  /* Default */
+                              G_PARAM_READWRITE);
 
- g_object_class_install_property (object_class, PROP_AS_LIST, params );
+ g_object_class_install_property (object_class, PROP_LIST_VIEW, params );
 
  /**
   * GedaComboBox:entry-text-column:
@@ -1075,31 +1084,32 @@ geda_combo_box_init (GedaComboBox *combo_box)
   GTK_BIN (combo_box)->child = priv->cell_view;
   gtk_widget_show (priv->cell_view);
 
-  priv->width = 0;
-  priv->height = 0;
-  priv->wrap_width = 0;
+  priv->width              = 0;
+  priv->height             = 0;
+  priv->wrap_width         = 0;
 
-  priv->active = -1;
-  priv->active_row = NULL;
-  priv->col_column = -1;
-  priv->row_column = -1;
+  priv->active             = -1;
+  priv->active_row         = NULL;
+  priv->col_column         = -1;
+  priv->row_column         = -1;
 
-  priv->popup_shown = FALSE;
-  priv->add_tearoffs = FALSE;
-  priv->has_frame = TRUE;
-  priv->is_cell_renderer = FALSE;
-  priv->editing_canceled = FALSE;
-  priv->auto_scroll = FALSE;
-  priv->focus_on_click = TRUE;
+  priv->add_tearoffs       = FALSE;
+  priv->auto_scroll        = FALSE;
   priv->button_sensitivity = GTK_SENSITIVITY_AUTO;
-  priv->has_entry = FALSE;
+  priv->editing_canceled   = FALSE;
+  priv->focus_on_click     = TRUE;
+  priv->has_entry          = FALSE;
+  priv->has_frame          = TRUE;
+  priv->is_cell_renderer   = FALSE;
+  priv->list_view          = GEDA_VIEW_AUTO;
+  priv->popup_shown        = FALSE;
 
-  priv->text_column = -1;
-  priv->text_renderer = NULL;
+  priv->text_column        = -1;
+  priv->text_renderer      = NULL;
 
   combo_box->priv = priv;
 
-  geda_combo_box_check_appearance (combo_box);
+//  geda_combo_box_check_appearance (combo_box);
 }
 
 static void
@@ -1180,8 +1190,8 @@ geda_combo_box_set_property (GObject      *object,
       combo_box->priv->has_entry = g_value_get_boolean (value);
       break;
 
-    case PROP_AS_LIST:
-      combo_box->priv->as_list = g_value_get_boolean (value);
+    case PROP_LIST_VIEW:
+      combo_box->priv->list_view = g_value_get_int (value);
       break;
 
     case PROP_ENTRY_TEXT_COLUMN:
@@ -1257,8 +1267,8 @@ geda_combo_box_get_property (GObject     *object,
         g_value_set_boolean (value, priv->has_entry);
         break;
 
-      case PROP_AS_LIST:
-        g_value_set_boolean (value, priv->as_list);
+      case PROP_LIST_VIEW:
+        g_value_set_boolean (value, priv->list_view);
         break;
 
       case PROP_ENTRY_TEXT_COLUMN:
@@ -1317,17 +1327,20 @@ geda_combo_box_check_appearance (GedaComboBox *combo_box)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
 
-  unsigned int as_list;
+  if (!priv->list_view) {
+    /* Retrieve widget style property */
+    unsigned int as_list;
+    gtk_widget_style_get (GTK_WIDGET (combo_box),
+                          "appear-as-list", &as_list,
+                          NULL);
 
-  gtk_widget_style_get (GTK_WIDGET (combo_box),
-                        "appear-as-list", &as_list,
-                        NULL);
 
-  if (!priv->as_list && as_list) {
-    priv->as_list |= 1 ;
-  }
-  else if (priv->as_list && !as_list) {
-    priv->as_list &= ~1;
+    if (!priv->as_list && as_list) {
+      priv->as_list |= 1 ;
+    }
+    else if (priv->as_list && !as_list) {
+      priv->as_list &= ~1;
+    }
   }
 
   if (priv->as_list) {
@@ -1370,12 +1383,12 @@ geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 
   if (priv->tree_view && priv->cell_view)
     gtk_cell_view_set_background_color (GTK_CELL_VIEW (priv->cell_view),
-					&widget->style->base[gtk_widget_get_state (widget)]);
+                                        &widget->style->base[gtk_widget_get_state (widget)]);
 
-  if (GTK_IS_ENTRY (GTK_BIN (combo_box)->child))
-    g_object_set (GTK_BIN (combo_box)->child, "shadow-type",
-                  GTK_SHADOW_NONE == priv->shadow_type ?
-                  GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
+    if (GTK_IS_ENTRY (GTK_BIN (combo_box)->child))
+      g_object_set (GTK_BIN (combo_box)->child, "shadow-type",
+                    GTK_SHADOW_NONE == priv->shadow_type ?
+                    GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
 }
 
 static void

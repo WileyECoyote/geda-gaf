@@ -1,5 +1,13 @@
 2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/widgets/geda_combobox.c: Change "as-list" property from
+        g_param_spec_boolean to g_param_spec_int and use enumerators
+        IDE_COMBO_VIEW_STYLE. Rename property PROP_AS_LIST to PROP_
+        LIST_VIEW. Add priv int list_view to over-ride priv->as_list
+        in function geda_combo_box_check_appearance.
+
+2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
       * include/geda_combobox.h: Add IDE_COMBO_VIEW_STYLE enumeration.
 
 2014-01-10 Wiley E. Hill <wileyhill@gmail.com>
