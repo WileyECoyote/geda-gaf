@@ -181,6 +181,7 @@ enum {
   POPUP,
   POPDOWN,
   FORMAT_ENTRY_TEXT,
+  VIEW_CHANGED,
   LAST_SIGNAL
 };
 
@@ -600,7 +601,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    * GedaComboBox::changed:
    *
    * The changed signal is emitted when the active
-   * item is changed. The can be due to the user selecting
+   * item is changed. This can be due to the user selecting
    * a different item from the list, or due to a
    * call to geda_combo_box_set_active_iter().
    * It will NOT be emitted while typing into a GedaComboBoxEntry.
@@ -708,6 +709,15 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
                   geda_single_string_accumulator, NULL,
                   geda_marshal_STRING__STRING,
                   G_TYPE_STRING, 1, G_TYPE_STRING);
+
+  combo_box_signals[VIEW_CHANGED] =
+    g_signal_new (_("view-changed"),
+                  G_OBJECT_CLASS_TYPE (class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GedaComboBoxClass, view_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__UINT,
+                  G_TYPE_NONE, 1, G_TYPE_UINT);
 
   /* key bindings */
   binding_set = gtk_binding_set_by_class (widget_class);
@@ -3398,16 +3408,20 @@ static void geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_
 
   priv->list_view = GEDA_VIEW_MENU;
 
-  as_list = FALSE;
+  if (priv->as_list) {
+    as_list = FALSE;
 
-  if (!priv->as_list && as_list) {
-    priv->as_list |= 1 ;
-  }
-  else if (priv->as_list && !as_list) {
-    priv->as_list &= ~1;
-  }
+    if (!priv->as_list && as_list) {
+      priv->as_list |= 1 ;
+    }
+    else if (priv->as_list && !as_list) {
+      priv->as_list &= ~1;
+    }
 
-  geda_combo_box_check_appearance (combo_box);
+    geda_combo_box_check_appearance (combo_box);
+
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, as_list);
+  }
 }
 
 /*! \brief Popup View List Clicked
@@ -3424,16 +3438,21 @@ static void geda_combo_clicked_view_list (GtkMenuItem *menuitem, void *user_data
 
   priv->list_view = GEDA_VIEW_TREE;
 
-  as_list = TRUE;
+  if (!priv->as_list) {
 
-  if (!priv->as_list && as_list) {
-    priv->as_list |= 1 ;
-  }
-  else if (priv->as_list && !as_list) {
-    priv->as_list &= ~1;
-  }
+    as_list = TRUE;
 
-  geda_combo_box_check_appearance (combo_box);
+    if (!priv->as_list && as_list) {
+      priv->as_list |= 1 ;
+    }
+    else if (priv->as_list && !as_list) {
+      priv->as_list &= ~1;
+    }
+
+    geda_combo_box_check_appearance (combo_box);
+
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, as_list);
+  }
 }
 
 /*! \brief GedaCombo Right Mouse Show Popup

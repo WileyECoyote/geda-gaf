@@ -68,6 +68,7 @@ struct _GedaComboBoxClass
 
   /* signals */
   void     (* changed)           (GedaComboBox *combo_box);
+  void     (* view_changed)      (GedaComboBox *combo_box, unsigned int mode);
   char  *  (* format_entry_text) (GedaComboBox *combo_box, const char *path);
 
   /* vfuncs */

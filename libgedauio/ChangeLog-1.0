@@ -1,4 +1,11 @@
-2014-01-11 Wiley E. Hill <wileyhill@gmail.com>
+2014-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_combobox.c: Add new signal, "view-changed", enum
+        VIEW_CHANGED with virtual class over-ride. The "view-changed" is
+        emitted when the user change the view between menu and list type
+        using the right "context" popup menu.
+
+2014-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Add functions geda_combo_box_clicked
         _view_menu, geda_combo_clicked_view_list and geda_combo_box_show_
