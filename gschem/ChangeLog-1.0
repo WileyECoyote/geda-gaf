@@ -1,5 +1,10 @@
 2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Rename x_recent_menu_ function to x_menu_recent_
+      what was I thinking...
+
+2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Make function get_menu_item_from_scheme inline,
       was suppose to be.
 

@@ -1469,9 +1469,9 @@ static void x_menu_recent_file_remove (GtkMenuItem *menuitem, void *user_data)
  *  sake of completeness, the real objective here is to allow
  *  users to remove individual recent menu items.
  */
-static void x_recent_show_popup (GtkMenuItem    *menu_widget,
-                                 GdkEventButton *event,
-                                 void           *user_data)
+static void x_menu_recent_show_popup (GtkMenuItem    *menu_widget,
+                                      GdkEventButton *event,
+                                      void           *user_data)
 {
   GtkWidget *menu;
   GtkWidget *popup_item;
@@ -1510,7 +1510,7 @@ static void x_recent_show_popup (GtkMenuItem    *menu_widget,
  *  \par Function Description
  *
  */
-static bool x_recent_menu_button_released (GtkMenuItem    *menu_item,
+static bool x_menu_recent_button_released (GtkMenuItem    *menu_item,
                                            GdkEventButton *event,
                                            void           *user_data)
 {
@@ -1518,7 +1518,7 @@ static bool x_recent_menu_button_released (GtkMenuItem    *menu_item,
 
   if (event->button == 3) {
 
-    x_recent_show_popup(menu_item, event, user_data);
+    x_menu_recent_show_popup(menu_item, event, user_data);
 
     ret_val = TRUE;
   }
@@ -1578,7 +1578,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
                             0);
 
      g_signal_connect (item, "button-release-event",
-                       G_CALLBACK (x_recent_menu_button_released),
+                       G_CALLBACK (x_menu_recent_button_released),
                        menu_data);
 
      gtk_menu_append(GTK_MENU(recent_submenu), item);
