@@ -1,4 +1,13 @@
-2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Set Color Menu Combo to use GEDA_VIEW_MENU.
+
+2015-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Update function name: geda_copy_tree_iter->
+      geda_tree_copy_iter
+
+2015-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Rename x_recent_menu_ function to x_menu_recent_
       what was I thinking...

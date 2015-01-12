@@ -1018,6 +1018,8 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   cbox   = GEDA_COMBO_BOX (geda_combo_box_new_with_model (GTK_TREE_MODEL (store)));
   layout = GTK_CELL_LAYOUT (cbox); /* For convenience */
 
+  g_object_set (cbox, "list-view", GEDA_VIEW_MENU, NULL);
+
   /* Renders the color swatch. Since this won't contain text, set a
    * minimum width. */
   color_cell = GTK_CELL_RENDERER (gtk_cell_renderer_text_new());
