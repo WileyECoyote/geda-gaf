@@ -76,6 +76,7 @@
 #define MENU_CONFIG_GROUP          "menu"
 #define WINDOW_CONFIG_GROUP        "window"
 #define SESSIONS_CONFIG_GROUP      "Sessions"
+#define WIDGET_CONFIG_GROUP        "widgets"
 
 #define GEDA_TYPE_OBJECTS          "application/x-geda-objects"
 #define MIME_TYPE_SCHEMATIC        "application/x-geda-schematic"

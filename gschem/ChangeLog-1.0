@@ -1,5 +1,10 @@
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_sdefines.h: Add seperate define to group widget
+      configuration data.
+
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dialog.c: Retrieve configuration for color menu view
       and set GedaComboBox setting in create_color_menu, setup call
       back for "view-changed" to save the style.
