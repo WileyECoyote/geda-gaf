@@ -1111,7 +1111,6 @@ geda_combo_box_init (GedaComboBox *combo_box)
   priv->has_entry          = FALSE;
   priv->has_frame          = TRUE;
   priv->is_cell_renderer   = FALSE;
-  priv->list_view          = GEDA_VIEW_AUTO;
   priv->popup_shown        = FALSE;
 
   priv->text_column        = -1;
@@ -1119,7 +1118,7 @@ geda_combo_box_init (GedaComboBox *combo_box)
 
   combo_box->priv = priv;
 
-//  geda_combo_box_check_appearance (combo_box);
+  geda_combo_box_check_appearance (combo_box);
 }
 
 static void
@@ -1337,14 +1336,24 @@ geda_combo_box_check_appearance (GedaComboBox *combo_box)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
 
-  if (!priv->list_view) {
+  unsigned int as_list;
+
+  if (priv->list_view == GEDA_VIEW_AUTO) {
+
     /* Retrieve widget style property */
-    unsigned int as_list;
+
     gtk_widget_style_get (GTK_WIDGET (combo_box),
                           "appear-as-list", &as_list,
                           NULL);
+  }
+  else if (priv->list_view == GEDA_VIEW_TREE) {
+    as_list = TRUE;
+  }
+  else {
+    as_list = FALSE;
+  }
 
-
+  if (priv->as_list != as_list) {
     if (!priv->as_list && as_list) {
       priv->as_list |= 1 ;
     }
@@ -3394,22 +3403,58 @@ geda_combo_box_relayout (GedaComboBox *combo_box)
   g_list_free (list);
 }
 
-/*! \brief Popup View Menu Clicked
+/*! \brief Popup Menu Callback; User Clicked View Auto
  *
  *  \par Function Description
- *  This functions call when the user selects View Menu on the popup
+ *  This functions call when the user selects View Auto option on
+ *  the popup menu. The current system style setting is used for
+ *  auto mode.
+ */
+static void geda_combo_box_clicked_view_auto (GtkMenuItem *menuitem, void *user_data)
+{
+  GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
+  GedaComboBoxPrivate *priv      = combo_box->priv;
+
+  if (priv->as_list) {
+
+    priv->list_view = GEDA_VIEW_AUTO;
+
+    unsigned int as_list;
+
+    /* Retrieve widget style property */
+    gtk_widget_style_get (GTK_WIDGET (combo_box),
+                          "appear-as-list", &as_list,
+                          NULL);
+
+    if (!priv->as_list && as_list) {
+      priv->as_list |= 1 ;
+    }
+    else if (priv->as_list && !as_list) {
+      priv->as_list &= ~1;
+    }
+
+    geda_combo_box_check_appearance (combo_box);
+
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, priv->list_view);
+  }
+}
+
+/*! \brief Popup Menu Callback; User Clicked View Menu
+ *
+ *  \par Function Description
+ *  This functions is call when the user selects View as Menu on the popup
  *  menu.
  */
 static void geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_data)
 {
   GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
   GedaComboBoxPrivate *priv      = combo_box->priv;
-  unsigned int as_list;
-
-  priv->list_view = GEDA_VIEW_MENU;
 
   if (priv->as_list) {
-    as_list = FALSE;
+
+    priv->list_view = GEDA_VIEW_MENU;
+
+    unsigned int as_list = FALSE;
 
     if (!priv->as_list && as_list) {
       priv->as_list |= 1 ;
@@ -3420,27 +3465,26 @@ static void geda_combo_box_clicked_view_menu (GtkMenuItem *menuitem, void *user_
 
     geda_combo_box_check_appearance (combo_box);
 
-    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, as_list);
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, priv->list_view);
   }
 }
 
-/*! \brief Popup View List Clicked
+/*! \brief Popup Menu Callback; User Clicked View List
  *
  *  \par Function Description
- *  This functions call when the user select View list from the
+ *  This functions call when the user select View as list from the
  *  popup menu.
  */
 static void geda_combo_clicked_view_list (GtkMenuItem *menuitem, void *user_data)
 {
   GedaComboBox        *combo_box = GEDA_COMBO_BOX (user_data);
   GedaComboBoxPrivate *priv      = combo_box->priv;
-  unsigned int as_list;
-
-  priv->list_view = GEDA_VIEW_TREE;
 
   if (!priv->as_list) {
 
-    as_list = TRUE;
+    priv->list_view = GEDA_VIEW_TREE;
+
+    unsigned int as_list = TRUE;
 
     if (!priv->as_list && as_list) {
       priv->as_list |= 1 ;
@@ -3451,7 +3495,7 @@ static void geda_combo_clicked_view_list (GtkMenuItem *menuitem, void *user_data
 
     geda_combo_box_check_appearance (combo_box);
 
-    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, as_list);
+    g_signal_emit (combo_box, combo_box_signals[VIEW_CHANGED], 0, priv->list_view);
   }
 }
 
@@ -3472,14 +3516,21 @@ static void geda_combo_box_show_popup (GtkWidget      *button,
   /* create the context menu */
   menu = gtk_menu_new();
 
-  popup_item = gtk_menu_item_new_with_label (_("Menu view"));
+  popup_item = gtk_menu_item_new_with_label (_("Auto view"));
+
+  g_signal_connect (GTK_OBJECT(popup_item), "activate",
+                   (GCallback) geda_combo_box_clicked_view_auto, user_data);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  popup_item = gtk_menu_item_new_with_label (_("view as Menu"));
 
   g_signal_connect (GTK_OBJECT(popup_item), "activate",
                    (GCallback) geda_combo_box_clicked_view_menu, user_data);
 
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
 
-  popup_item = gtk_menu_item_new_with_label (_("List View"));
+  popup_item = gtk_menu_item_new_with_label (_("view as List"));
 
   g_signal_connect (GTK_OBJECT(popup_item), "activate",
                    (GCallback)geda_combo_clicked_view_list, user_data);

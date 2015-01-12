@@ -1,5 +1,9 @@
 2014-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/widgets/geda_combobox.c: Add "Auto" option to popup menu.
+
+2014-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/widgets/geda_combobox.c: Add new signal, "view-changed", enum
         VIEW_CHANGED with virtual class over-ride. The "view-changed" is
         emitted when the user change the view between menu and list type
