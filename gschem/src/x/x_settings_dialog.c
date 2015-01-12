@@ -1627,16 +1627,6 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
   geda_list_free_full (font_list);
 
   geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
-
-/* Switched combo to appear as list, aka a treeview instead of a menu
- * and maybe we don not need to connect to button anymore.
- *
-  GedaComboBoxText *text_combo = (GedaComboBoxText*)FontNameCombo;
-  g_signal_connect (text_combo->button,
-                    "clicked",
-                    G_CALLBACK (on_font_combo_popdown),
-                    FontNameCombo);
- */
 }
 
 /* TODO: This should be moved to the Combo responder once the GTK Combo
