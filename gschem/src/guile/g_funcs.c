@@ -95,8 +95,7 @@ SCM g_funcs_exit(void)
   exit(0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief  SCM API File Select Dialog
  *  \par Function Description
  *
  */
