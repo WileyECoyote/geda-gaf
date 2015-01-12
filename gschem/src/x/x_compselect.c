@@ -32,12 +32,10 @@
 #include "gschem.h"
 
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
-#include "gschem_dialog.h"
+#include "gschem_dialog.h"              /* Definition the base Dialog Class */
 
-#include "geda_dialog_controls.h"       /* Macros for Dialogs */
-#include "geda_widgets.h"
-
-#include <geda_menu_button.h>
+#include <geda_dialog_controls.h>       /* Macros for Dialogs */
+#include <geda_widgets.h>               /* Switches use geda_labels */
 
 #include "x_preview.h"
 #include "x_compselect.h"
@@ -1371,7 +1369,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
       }
       else {
         gtk_tree_store_append (store, &tree_iter, NULL);
-        geda_copy_tree_iter(&tree_iter, &parent);
+        geda_tree_copy_iter(&tree_iter, &parent);
       }
     }
     else { /* Not Nesting a Group */
@@ -1589,7 +1587,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
        path = gtk_tree_model_get_path ( model, &iter);
        was_expanded = gtk_tree_view_row_expanded (tree_view, path);
        gtk_tree_path_free(path);
-       geda_copy_tree_iter(&iter, &parent);
+       geda_tree_copy_iter(&iter, &parent);
     }
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
     src_name = u_string_strdup(source->name);
