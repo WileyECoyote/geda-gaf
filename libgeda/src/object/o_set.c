@@ -67,7 +67,7 @@ void o_set_color (Object *object, int color)
     object->color = color;
 
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
-      o_glist_set_color (object->complex->prim_objs, color);
+      o_list_set_color (object->complex->prim_objs, color);
   }
   else {
     BUG_MSG ("object is not a GedaObject");

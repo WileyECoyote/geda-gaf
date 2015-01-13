@@ -1867,7 +1867,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   }
   if (dest_list) {
     if ( dx != -1 && dy != -1) {
-      o_glist_translate_world(dx, dy, dest_list);
+      o_list_translate_world(dx, dy, dest_list);
     }
 
     py_capsule = GedaCapsule_New(new_object);

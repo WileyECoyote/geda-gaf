@@ -1,5 +1,10 @@
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_list.c: Rename functions to match module, i.e.
+      remove g from glist in function names.
+
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_line_basic.c: Add new function o_line_get_midpoint.
 
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>

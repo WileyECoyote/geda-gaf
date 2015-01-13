@@ -52,7 +52,7 @@ static void selection_to_buffer(GschemToplevel *w_current, int buf_num)
     object_buffer[buf_num] = NULL;
   }
 
-  object_buffer[buf_num] = o_glist_copy_all(s_current, object_buffer[buf_num]);
+  object_buffer[buf_num] = o_list_copy_all(s_current, object_buffer[buf_num]);
 }
 
 /*! \brief Copy Selection to Buffer
@@ -159,7 +159,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     s_object_release_objects(Current_Page->place_list);
     Current_Page->place_list = NULL;
 
-    Current_PlaceList = o_glist_copy_all (object_buffer[buf_num],
+    Current_PlaceList = o_list_copy_all (object_buffer[buf_num],
                                           Current_PlaceList);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
@@ -180,7 +180,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
       x = snap_grid (w_current, rleft);
       y = snap_grid (w_current, rtop);
 
-      o_glist_translate_world (w_x - x, w_y - y, Current_PlaceList);
+      o_list_translate_world (w_x - x, w_y - y, Current_PlaceList);
 
       w_current->inside_action = 1;
       i_status_set_state(w_current, ENDPASTE);

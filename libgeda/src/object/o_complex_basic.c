@@ -453,10 +453,10 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
 
       if (mirror) {
 
-        o_glist_mirror_world (0, 0, complex->prim_objs);
+        o_list_mirror_world (0, 0, complex->prim_objs);
       }
-      o_glist_rotate_world (0, 0, angle, complex->prim_objs);
-      o_glist_translate_world (x, y, complex->prim_objs);
+      o_list_rotate_world (0, 0, angle, complex->prim_objs);
+      o_list_translate_world (x, y, complex->prim_objs);
     }
 
     GEDA_FREE (buffer);
@@ -655,7 +655,7 @@ void o_complex_translate_world(int dx, int dy, Object *object)
   object->complex->x = object->complex->x + dx;
   object->complex->y = object->complex->y + dy;
 
-  o_glist_translate_world (dx, dy, object->complex->prim_objs);
+  o_list_translate_world (dx, dy, object->complex->prim_objs);
 
   object->w_bounds_valid_for = NULL;
 }
@@ -690,7 +690,7 @@ Object *o_complex_copy(Object *o_current)
   new_complex->mirror      = old_complex->mirror;
 
   /* Copy contents and set the parent pointers on the copied objects. */
-  new_complex->prim_objs = o_glist_copy_all (old_complex->prim_objs, NULL);
+  new_complex->prim_objs = o_list_copy_all (old_complex->prim_objs, NULL);
 
   for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
     Object *child = (Object*) iter->data;
@@ -776,7 +776,7 @@ void o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
 
   o_complex_translate_world(-object->complex->x, -object->complex->y, object);
 
-  o_glist_rotate_world (0, 0, angle, object->complex->prim_objs);
+  o_list_rotate_world (0, 0, angle, object->complex->prim_objs);
 
   object->complex->x = 0;
   object->complex->y = 0;
@@ -803,7 +803,7 @@ void o_complex_mirror_world(int center_wx, int center_wy, Object *object)
 
   o_complex_translate_world(-object->complex->x, -object->complex->y, object);
 
-  o_glist_mirror_world (0, 0, object->complex->prim_objs);
+  o_list_mirror_world (0, 0, object->complex->prim_objs);
 
   switch(object->complex->angle) {
     case(90):

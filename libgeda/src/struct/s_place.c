@@ -75,7 +75,7 @@ void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list )
 
     if (new_place_list) {
       toplevel->page_current->place_list =
-      o_glist_copy_all (new_place_list,
+      o_list_copy_all (new_place_list,
                         toplevel->page_current->place_list);
     }
 

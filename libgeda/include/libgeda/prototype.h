@@ -252,11 +252,11 @@ G_BEGIN_DECLS
        double    o_line_length                   (Object *object);
 
 /* o_list.c */
-        GList   *o_glist_copy_all                (const GList *src_list, GList *dest_list);
-         void    o_glist_translate_world         (int dx, int dy, const GList *list);
-         void    o_glist_rotate_world            (int x, int y, int angle, const GList *list);
-         void    o_glist_mirror_world            (int x, int y, const GList *list);
-         void    o_glist_set_color               (const GList *list, int color);
+        GList   *o_list_copy_all                 (const GList *src_list, GList *dest_list);
+         void    o_list_translate_world          (int dx, int dy, const GList *list);
+         void    o_list_rotate_world             (int x, int y, int angle, const GList *list);
+         void    o_list_mirror_world             (int x, int y, const GList *list);
+         void    o_list_set_color                (const GList *list, int color);
 
 /* o_net_basic.c */
        Object   *o_net_new                       (int color, int x1, int y1, int x2, int y2);

@@ -39,7 +39,7 @@
  *
  *  \return dest_list GList with objects appended
  */
-GList* o_glist_copy_all (const GList *src_list, GList *dest_list)
+GList* o_list_copy_all (const GList *src_list, GList *dest_list)
 {
   const GList *src;
   GList *dest;
@@ -131,7 +131,7 @@ GList* o_glist_copy_all (const GList *src_list, GList *dest_list)
  *  \par Function Description
  *  Calls o_translate_world for each glist data member
  */
-void o_glist_translate_world(int dx, int dy, const GList *list)
+void o_list_translate_world(int dx, int dy, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
@@ -148,7 +148,7 @@ void o_glist_translate_world(int dx, int dy, const GList *list)
  *  \par Function Description
  *  Calls o_rotate_world for each glist data member
  */
-void o_glist_rotate_world (int x, int y, int angle, const GList *list)
+void o_list_rotate_world (int x, int y, int angle, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
@@ -164,7 +164,7 @@ void o_glist_rotate_world (int x, int y, int angle, const GList *list)
  *  \par Function Description
  *  Calls o_mirror_world for each glist data member
  */
-void o_glist_mirror_world (int x, int y, const GList *list)
+void o_list_mirror_world (int x, int y, const GList *list)
 {
   const GList *iter = list;
   Object *o_current;
@@ -183,7 +183,7 @@ void o_glist_mirror_world (int x, int y, const GList *list)
  *  \param [in] list      The list of Objects to change color.
  *  \param [in] color     The new color.
  */
-void o_glist_set_color (const GList *list, int color)
+void o_list_set_color (const GList *list, int color)
 {
   const GList *iter;
 

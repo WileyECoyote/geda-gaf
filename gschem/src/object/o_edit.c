@@ -219,7 +219,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
     s_conn_remove_object (o_current);
   }
 
-  o_glist_rotate_world(centerx, centery, angle, list );
+  o_list_rotate_world(centerx, centery, angle, list );
 
   /* Find connected objects, adding each object in turn back to the
    * connection list. We only _really_ want those objects connected
@@ -272,7 +272,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
     s_conn_remove_object (o_current);
   }
 
-  o_glist_mirror_world(centerx, centery, list );
+  o_list_mirror_world(centerx, centery, list );
 
   /* Find connected objects, adding each object in turn back to the
    * connection list. We only _really_ want those objects connected

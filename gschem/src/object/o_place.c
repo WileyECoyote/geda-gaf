@@ -73,7 +73,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
   if (continue_placing) {
     /* Make a copy of the place list if we want to keep it afterwards */
-    temp_dest_list = o_glist_copy_all (toplevel->page_current->place_list,
+    temp_dest_list = o_list_copy_all (toplevel->page_current->place_list,
                                        temp_dest_list);
   }
   else {
@@ -86,7 +86,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
     *ret_new_objects = g_list_copy (temp_dest_list);
   }
 
-  o_glist_translate_world(w_diff_x, w_diff_y, temp_dest_list);
+  o_list_translate_world(w_diff_x, w_diff_y, temp_dest_list);
 
   /* Attach each item back onto the page's object list. Update object
    * connectivity and add the new objects to the selection list.*/
@@ -332,8 +332,8 @@ void o_place_rotate (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  o_glist_rotate_world (w_current->first_wx, w_current->first_wy, 90,
-                        toplevel->page_current->place_list);
+  o_list_rotate_world (w_current->first_wx, w_current->first_wy, 90,
+                       toplevel->page_current->place_list);
 
 
   /* Run rotate-objects-hook */
