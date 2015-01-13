@@ -250,8 +250,8 @@ void f_print_footer(FILE *fp)
  *  \return void
  */
 void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
-		     int start_x, int start_y, float scale,
-		     int unicode_count, gunichar *unicode_table)
+                      int start_x, int start_y, float scale,
+                      int unicode_count, gunichar *unicode_table)
 {
   Object *o_current=NULL;
   int origin_x, origin_y;

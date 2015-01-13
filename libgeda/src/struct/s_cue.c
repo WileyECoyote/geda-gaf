@@ -49,8 +49,8 @@
  *  example 2: s_cue_get_locations (list, junctions, NULL);
  *
  */
-void
-s_cue_get_locations(const GList *objects, GArray *junctions, GArray *unconnected)
+void s_cue_get_locations(const GList *objects, GArray *junctions,
+                                               GArray *unconnected)
 {
   const GList *iter = objects;
   Object *object;
@@ -153,20 +153,19 @@ s_cue_get_locations(const GList *objects, GArray *junctions, GArray *unconnected
  *  \par Function Description
  *
  */
-void s_cue_postscript_fillbox(GedaToplevel * toplevel, FILE * fp, int x,
-                  int y)
+static void s_cue_postscript_fillbox(GedaToplevel *toplevel, FILE *fp,
+                                     int x, int y)
 {
   int offset;
   int offset2;
 
   /* hard coded values */
   offset = CUE_BOX_SIZE;
-  offset2 = offset*2;
+  offset2 = offset * 2;
 
   f_print_set_color(toplevel, fp, NET_ENDPOINT_COLOR);
 
-  fprintf(fp, "%d %d %d %d fbox\n",
-       offset2, offset2, x-offset, y-offset);
+  fprintf(fp, "%d %d %d %d fbox\n", offset2, offset2, x-offset, y-offset);
 }
 
 /*! \todo Finish function documentation!!!
@@ -174,8 +173,8 @@ void s_cue_postscript_fillbox(GedaToplevel * toplevel, FILE * fp, int x,
  *  \par Function Description
  *
  */
-void s_cue_postscript_junction (GedaToplevel * toplevel, FILE * fp,
-                                int x, int y, int bus_involved)
+static void s_cue_postscript_junction (GedaToplevel *toplevel, FILE *fp,
+                                       int x, int y, int bus_involved)
 {
   int offset2;
 
@@ -196,9 +195,8 @@ void s_cue_postscript_junction (GedaToplevel * toplevel, FILE * fp,
 
 /*! \brief Draw an arrow at the end of a net.
  */
-void
-s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
-                        int x, int y, int dx, int dy)
+static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
+                                    int x, int y, int dx, int dy)
 {
   int offset = CUE_BOX_SIZE;
 
@@ -227,51 +225,25 @@ s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
                "grestore\n");
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void
-s_cue_output_all (GedaToplevel * toplevel, const GList *obj_list, FILE * fp, int type)
-{
-  Object *o_current;
-  const GList *iter;
-
-  iter = obj_list;
-  while (iter != NULL) {
-    o_current = (Object *)iter->data;
-    switch (o_current->type) {
-      case (OBJ_NET):
-      case (OBJ_BUS):
-      case (OBJ_PIN):
-        s_cue_output_single(toplevel, o_current, fp, type);
-        break;
-
-      case (OBJ_COMPLEX):
-      case (OBJ_PLACEHOLDER):
-        s_cue_output_all(toplevel, o_current->complex->prim_objs, fp, type);
-        break;
-
-    }
-    iter = g_list_next (iter);
-  }
-}
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-void
-s_cue_output_lowlevel(GedaToplevel * toplevel, Object * object, int whichone,
-                      FILE * fp, int output_type)
+static void s_cue_output_lowlevel(GedaToplevel *toplevel,
+                                  Object       *object,
+                                  int           whichone,
+                                  FILE         *fp,
+                                  int           output_type)
 {
-  int x, y;
   GList *cl_current;
-  CONN *conn;
-  int type, count = 0;
-  int done = FALSE;
+  CONN  *conn;
+
+  int x, y;
+  int type;
+  int count        = 0;
+  int done         = FALSE;
   int bus_involved = FALSE;
 
   x = object->line->x[whichone];
@@ -349,12 +321,14 @@ s_cue_output_lowlevel(GedaToplevel * toplevel, Object * object, int whichone,
  *  \par Function Description
  *
  */
-void s_cue_output_lowlevel_midpoints(GedaToplevel * toplevel, Object * object,
-                     FILE * fp, int output_type)
+static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
+                                            Object       *object,
+                                            FILE         *fp,
+                                            int           output_type)
 {
-  int x, y;
   GList *cl_current;
-  CONN *conn;
+  CONN  *conn;
+  int x, y;
   int bus_involved = FALSE;
 
   if (object->type == OBJ_BUS)
@@ -397,8 +371,10 @@ void s_cue_output_lowlevel_midpoints(GedaToplevel * toplevel, Object * object,
  *  \param [in] fp         The file handle to output to
  *  \param [in] type       The type of output being produced
  */
-void
-s_cue_output_single(GedaToplevel * toplevel, Object * object, FILE * fp, int type)
+void s_cue_output_single(GedaToplevel *toplevel,
+                         Object       *object,
+                         FILE         *fp,
+                         int           type)
 {
   g_return_if_fail (object != NULL);
 
@@ -420,3 +396,33 @@ s_cue_output_single(GedaToplevel * toplevel, Object * object, FILE * fp, int typ
   s_cue_output_lowlevel_midpoints(toplevel, object, fp, type);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void
+s_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
+{
+  Object      *o_current;
+  const GList *iter;
+
+  iter = obj_list;
+  while (iter != NULL) {
+    o_current = (Object *)iter->data;
+    switch (o_current->type) {
+      case (OBJ_NET):
+      case (OBJ_BUS):
+      case (OBJ_PIN):
+        s_cue_output_single(toplevel, o_current, fp, type);
+        break;
+
+      case (OBJ_COMPLEX):
+      case (OBJ_PLACEHOLDER):
+        s_cue_output_all(toplevel, o_current->complex->prim_objs, fp, type);
+        break;
+
+    }
+    iter = g_list_next (iter);
+  }
+}

@@ -1,4 +1,11 @@
-2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_cue.c: Make functions s_cue_postscript_fillbox,
+      s_cue_postscript_junction, s_cue_postscript_arrow, s_cue_output
+      _lowlevel, and s_cue_output_lowlevel_midpoints static. Remove
+      extra spaces.
+
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Change m_distance return type to double, oops.
 
