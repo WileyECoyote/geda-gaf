@@ -1,5 +1,9 @@
 2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_basic.c: Change m_distance return type to double, oops.
+
+2015-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_get.c: Add function o_get_has_slope.
 
     * src/object/o_line_basic.c: Add function o_line_get_slope;
