@@ -247,6 +247,7 @@ G_BEGIN_DECLS
          void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
          void    o_line_translate_world          (int dx, int dy, Object *object);
          void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
+         bool    o_line_get_midpoint             (Object *object, POINT *point);
          bool    o_line_get_slope                (Object *object, double *anwser);
        double    o_line_length                   (Object *object);
 
@@ -439,11 +440,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_cue.c */
          void    s_cue_get_locations             (const GList *objects, GArray *junctions, GArray *unconnected);
-//       void    s_cue_postscript_fillbox        (GedaToplevel *toplevel, FILE *fp, int x, int y);
-//       void    s_cue_postscript_junction       (GedaToplevel *toplevel, FILE *fp, int x, int y, int bus_involved);
          void    s_cue_output_all                (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type);
-//       void    s_cue_output_lowlevel           (GedaToplevel *toplevel, Object *object, int whichone, FILE *fp, int output_type);
-//       void    s_cue_output_lowlevel_midpoints (GedaToplevel *toplevel, Object *object, FILE *fp, int output_type);
          void    s_cue_output_single             (GedaToplevel *toplevel, Object *object, FILE *fp, int type);
 
 /* s_hierarchy.c */

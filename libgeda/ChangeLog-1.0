@@ -1,5 +1,9 @@
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_line_basic.c: Add new function o_line_get_midpoint.
+
+2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_cue.c: Make functions s_cue_postscript_fillbox,
       s_cue_postscript_junction, s_cue_postscript_arrow, s_cue_output
       _lowlevel, and s_cue_output_lowlevel_midpoints static. Remove

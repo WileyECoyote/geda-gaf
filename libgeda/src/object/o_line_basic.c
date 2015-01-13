@@ -1072,6 +1072,31 @@ void o_line_scale_world(int x_scale, int y_scale, Object *object)
 
 }
 
+/*! \brief Calculate the Midpoint of a linear Object
+ *
+ *  \par Function Description
+ *  This function calculates the midpoint of a linear object.
+ *
+ *  \param [in]  object Linear object whose midpoint is to be determined
+ *  \param [out] point  The midpoint if \a object was linear
+ *
+ *  \return TRUE if \a object is linear
+ */
+bool o_line_get_midpoint(Object *object, POINT *point)
+{
+  bool status;
+
+  if (GEDA_IS_LINE(object)) {
+    point->x = (object->line->x[0] + object->line->x[1]) / 2;
+    point->y = (object->line->y[0] + object->line->y[1]) / 2;
+    status = TRUE;
+  }
+  else {
+    status = FALSE;
+  }
+  return status;
+}
+
 bool o_line_get_slope (Object *object, double *anwser)
 {
   bool status;
