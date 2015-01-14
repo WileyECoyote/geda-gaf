@@ -55,6 +55,12 @@ enum
 };
 
 enum {
+  SET_MIDDLE_ACTION,
+#ifdef HAVE_LIBSTROKE
+  SET_MIDDLE_STROKE,
+#endif
+  SET_MIDDLE_REPEAT,
+  SET_MIDDLE_MOUSEPAN,
   UPDATE_GRID_LABEL,
   LAST_SIGNAL
 };
@@ -92,6 +98,103 @@ static void
 update_grid_label (GschemStatusBar *widget);
 
 static GObjectClass *gschem_status_bar_parent_class = NULL;
+
+struct st_popup_menu_entry {
+  const char *text;
+  const int   signal;
+};
+
+typedef struct st_popup_menu_entry StatusPopupEntry;
+
+static StatusPopupEntry middle_popup_items[] = {
+
+  { N_( RC_STR_MID_ACTION ),   SET_MIDDLE_ACTION },
+#ifdef HAVE_LIBSTROKE
+  { N_( RC_STR_MID_STROKE ),   SET_MIDDLE_STROKE },
+#endif
+  { N_( RC_STR_MID_REPEAT ),   SET_MIDDLE_REPEAT},
+  { N_( RC_STR_MID_MOUSEPAN ), SET_MIDDLE_MOUSEPAN},
+  {NULL} /* sentinel */
+};
+
+static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
+{
+  GtkWidget *widget;
+  unsigned   signal = (unsigned)(long*) user_data;
+
+  widget = g_object_get_data (G_OBJECT(menuitem), "status-bar");
+
+  g_signal_emit (widget, signals[signal], 0);
+
+}
+
+/*! \brief GschemStatusBar Show Middle Mouse Options Popup
+ *
+ *  \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the middle-button status widget when the right mouse button
+ *  is released on the widget.
+ */
+static void middle_button_options_popup (GtkWidget      *event_box,
+                                         GdkEventButton *event,
+                                         void           *user_data)
+{
+  GtkWidget *menu;
+  GtkWidget *popup_item;
+  int i;
+
+  /* create the context menu */
+  menu = gtk_menu_new();
+
+  for (i = 0; middle_popup_items[i].text != NULL; i++) {
+
+    StatusPopupEntry entry = middle_popup_items[i];
+
+    popup_item = gtk_menu_item_new_with_label (entry.text);
+
+    g_signal_connect (GTK_OBJECT(popup_item), "activate",
+                     (GCallback)status_options_popup_clicked,
+                      GUINT_TO_POINTER(entry.signal));
+
+    g_object_set_data (G_OBJECT(popup_item), "status-bar", user_data);
+
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+  }
+
+  gtk_widget_show_all (menu);
+
+  /* make menu a popup menu */
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                  (event != NULL) ? event->button : 0,
+                  gdk_event_get_time ((GdkEvent*)event));
+}
+
+/*! \brief Middle Button Status Indicator Button Released callback
+ *  \par Function Description
+ *  Called when a mouse button is release with the cursor over
+ *  the middle button status indicator. If the 3rd button was
+ *  released, a small popup menu is displayed.
+ *
+ *  \sa middle_button_options_popup
+ */
+static bool middle_button_released (GtkWidget      *label,
+                                    GdkEventButton *event,
+                                    void           *user_data)
+{
+  bool ret_val;
+
+  if (event->button == 3) {
+
+    middle_button_options_popup(label, event, user_data);
+
+    ret_val = TRUE;
+  }
+  else {
+    ret_val = FALSE;
+  }
+
+  return ret_val;
+}
 
 /*! \brief Dispose of the object
  */
@@ -270,6 +373,44 @@ gschem_status_bar_class_init (GschemStatusBarClass *klass)
                                                         "Status Text",
                                                         "none",
                                                         G_PARAM_READWRITE));
+
+  signals[SET_MIDDLE_ACTION] = g_signal_new ("set-middle-action",
+                                              gschem_status_bar_get_type(),
+                                              G_SIGNAL_RUN_FIRST,
+                                              G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                               middle_action),
+                                              NULL, NULL,
+                                              g_cclosure_marshal_VOID__VOID,
+                                              G_TYPE_NONE, 0);
+
+  signals[SET_MIDDLE_MOUSEPAN] = g_signal_new ("set-middle-pan",
+                                               gschem_status_bar_get_type(),
+                                               G_SIGNAL_RUN_LAST,
+                                               G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                                middle_pan),
+                                               NULL, NULL,
+                                               g_cclosure_marshal_VOID__VOID,
+                                               G_TYPE_NONE, 0);
+
+  signals[SET_MIDDLE_REPEAT] = g_signal_new ("set-middle-repeat",
+                                             gschem_status_bar_get_type(),
+                                             G_SIGNAL_RUN_LAST,
+                                             G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                              middle_repeat),
+                                             NULL, NULL,
+                                             g_cclosure_marshal_VOID__VOID,
+                                             G_TYPE_NONE, 0);
+#ifdef HAVE_LIBSTROKE
+
+  signals[SET_MIDDLE_STROKE] = g_signal_new ("set-middle-stroke",
+                                             gschem_status_bar_get_type(),
+                                             G_SIGNAL_RUN_LAST,
+                                             G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                               middle_stroke),
+                                             NULL, NULL,
+                                             g_cclosure_marshal_VOID__VOID,
+                                             G_TYPE_NONE, 0);
+#endif
 }
 
 
@@ -652,6 +793,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 static void
 gschem_status_bar_init (GschemStatusBar *widget)
 {
+  GtkWidget  *middle_event;
   GtkWidget  *separator;
 
   const char *left_label_tip;
@@ -683,9 +825,13 @@ gschem_status_bar_init (GschemStatusBar *widget)
   g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
+  middle_event = gtk_event_box_new();
+  g_object_set (middle_event, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (widget), middle_event, FALSE, FALSE, 0);
+
   widget->middle_label = geda_visible_label_new (NULL);
   gtk_misc_set_padding (GTK_MISC (widget->middle_label), STATUS_XPAD, STATUS_YPAD);
-  gtk_box_pack_start (GTK_BOX (widget), widget->middle_label, FALSE, FALSE, 0);
+  gtk_container_add(GTK_CONTAINER(middle_event), widget->middle_label);
   gtk_widget_set_tooltip_text (GTK_WIDGET(widget->middle_label), middle_label_tip);
 
   separator = gtk_vseparator_new ();
@@ -744,15 +890,21 @@ gschem_status_bar_init (GschemStatusBar *widget)
                     "notify::snap-size",
                     G_CALLBACK (update_grid_label),
                     NULL);
+                    widget->middle_label
 */
+
   signals[UPDATE_GRID_LABEL] =
-  g_signal_new_class_handler ("update-grid-label",
+    g_signal_new_class_handler ("update-grid-label",
                               gschem_status_bar_get_type (),
                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                               G_CALLBACK (update_grid_label),
                               NULL, NULL,
                               gtk_marshal_VOID__VOID,
                               G_TYPE_NONE, 0);
+
+  g_signal_connect (middle_event, "button-release-event",
+                    G_CALLBACK (middle_button_released),
+                    widget);
 }
 
 
@@ -1144,4 +1296,3 @@ GtkWidget *gschem_status_bar_new (void)
 {
   return GTK_WIDGET (g_object_new (GSCHEM_TYPE_STATUS_BAR, NULL));
 }
-

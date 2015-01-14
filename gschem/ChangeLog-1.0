@@ -1,5 +1,12 @@
 2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Adding new signal and setup callback
+      for new pop-up menu to change the middle mouse button setting by
+      right clicking on the status bar middle mouse status widget (had
+      to put label inside an event box.)
+
+2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/gschem_status_bar.h: Add virtual proto-types for middle
       mouse options.
 
