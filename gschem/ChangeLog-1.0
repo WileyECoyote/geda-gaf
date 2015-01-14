@@ -1,3 +1,8 @@
+2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_status_bar.h: Add virtual proto-types for middle
+      mouse options.
+
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_sdefines.h: Add seperate define to group widget
