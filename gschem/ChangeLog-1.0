@@ -1,5 +1,12 @@
 2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Adding new signal and setup callback
+      for new pop-up menu to change the third mouse button setting by
+      right clicking on the status bar third mouse status widget, put
+      label inside an event box as was done for the middle label.
+
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_status_bar.c: Fix Bug incorrect display of right mouse
       function in status bar: Use w_current->third_button instead of
       default_third_button, default_third_button only get set if the

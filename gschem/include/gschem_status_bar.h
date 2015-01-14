@@ -51,7 +51,8 @@ struct _GschemStatusBarClass
 #ifdef HAVE_LIBSTROKE
   void     (* middle_stroke)        (GschemStatusBar *widget);
 #endif
-
+  void     (* third_popup)          (GschemStatusBar *widget);
+  void     (* third_pan)            (GschemStatusBar *widget);
 };
 
 struct _GschemStatusBar
