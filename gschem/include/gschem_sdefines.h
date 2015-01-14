@@ -145,65 +145,65 @@
 #define RC_STR_NONE            "none"
 
 /* Renderer Options */
-#define RC_RENDERER_OPTION_CAIRO   "Cario"
-#define RC_RENDERER_OPTION_X11     "X11"
+#define RC_RENDERER_OPTION_CAIRO  "Cario"
+#define RC_RENDERER_OPTION_X11    "X11"
 
 /* Strings for Anti-Aliasing RC mode */
-#define RC_STR_ANTIALIAS_DEFAULT   "default"
-#define RC_STR_ANTIALIAS_NONE       RC_STR_NONE
-#define RC_STR_ANTIALIAS_GRAY      "gray"
-#define RC_STR_ANTIALIAS_SUBPIXEL  "subpixel"
-#define RC_STR_ANTIALIAS_FAST      "fast"
-#define RC_STR_ANTIALIAS_GOOD      "good"
-#define RC_STR_ANTIALIAS_BEST      "best"
+#define RC_STR_ANTIALIAS_DEFAULT  "default"
+#define RC_STR_ANTIALIAS_NONE     RC_STR_NONE
+#define RC_STR_ANTIALIAS_GRAY     "gray"
+#define RC_STR_ANTIALIAS_SUBPIXEL "subpixel"
+#define RC_STR_ANTIALIAS_FAST     "fast"
+#define RC_STR_ANTIALIAS_GOOD     "good"
+#define RC_STR_ANTIALIAS_BEST     "best"
 
 /* Generic Boolean Strings for RC code */
-#define RC_STR_ENABLED         "enabled"
-#define RC_STR_DISABLED        "disabled"
+#define RC_STR_ENABLED            "enabled"
+#define RC_STR_DISABLED           "disabled"
 
 /* Grid Mode Strings for RC code */
-#define RC_STR_DOTS            "dots"
-#define RC_STR_MESH            "mesh"
+#define RC_STR_DOTS               "dots"
+#define RC_STR_MESH               "mesh"
 
 /* Dots Grid Mode Strings for RC code */
-#define RC_STR_DOTS_MODE_VARIABLE  "variable"
-#define RC_STR_DOTS_MODE_FIXED     "fixed"
+#define RC_STR_DOTS_MODE_VARIABLE "variable"
+#define RC_STR_DOTS_MODE_FIXED    "fixed"
 
 /* ScrollBar Update Strings for RC code */
-#define RC_STR_BARS_CONTINUOUS "continuous"
-#define RC_STR_BARS_DELAYED    "delayed"
+#define RC_STR_BARS_CONTINUOUS    "continuous"
+#define RC_STR_BARS_DELAYED       "delayed"
 
 /* WindowSize Strings for RC code */
-#define RC_STR_WINDOW_W650H487   "window-size 650 487)  ; Good size for 800x600"
-#define RC_STR_WINDOW_W900H650   "window-size 900 650)  ; Good size for 1024x768"
-#define RC_STR_WINDOW_W950H712   "window-size 950 712)  ; Good size for 1152x864"
-#define RC_STR_WINDOW_W1100H825  "window-size 1100 825) ; Good size for 1280x1024"
+#define RC_STR_WINDOW_W650H487    "window-size 650 487)  ; Good size for 800x600"
+#define RC_STR_WINDOW_W900H650    "window-size 900 650)  ; Good size for 1024x768"
+#define RC_STR_WINDOW_W950H712    "window-size 950 712)  ; Good size for 1152x864"
+#define RC_STR_WINDOW_W1100H825   "window-size 1100 825) ; Good size for 1280x1024"
 
 /* WorldSize Strings for RC code */
-#define RC_STR_WORLD_SMALL     "60.0 45.0 1.0"
-#define RC_STR_WORLD_MEDIUM    "120.0 90.0 1.0"
-#define RC_STR_WORLD_LARGE     "180.0 135.0 1.0"
+#define RC_STR_WORLD_SMALL        "60.0 45.0 1.0"
+#define RC_STR_WORLD_MEDIUM       "120.0 90.0 1.0"
+#define RC_STR_WORLD_LARGE        "180.0 135.0 1.0"
 
 /* Log Destiny Strings for RC code */
-#define RC_STR_DESTINY_WINDOW  "console_window"
-#define RC_STR_DESTINY_TTY     "tty"
-#define RC_STR_DESTINY_BOTH    "both"
+#define RC_STR_DESTINY_WINDOW     "console_window"
+#define RC_STR_DESTINY_TTY        "tty"
+#define RC_STR_DESTINY_BOTH       "both"
 
 /* Console Window Type Strings for RC code */
-#define RC_STR_CONWIN_DECORATED  "decorated"
-#define RC_STR_CONWIN_TRANSIENT  "transient"
+#define RC_STR_CONWIN_DECORATED   "decorated"
+#define RC_STR_CONWIN_TRANSIENT   "transient"
 
 /* Action Feedback Mode Strings for RC code */
-#define RC_STR_FEEDBACK_OUTLINE  "outline"
-#define RC_STR_FEEDBACK_BOUNDBOX "boundingbox"
+#define RC_STR_FEEDBACK_OUTLINE   "outline"
+#define RC_STR_FEEDBACK_BOUNDBOX  "boundingbox"
 
 /* Net POINT MODE Strings for RC code */
-#define RC_STR_NET_NONE        RC_STR_NONE
-#define RC_STR_FILLED_BOX      "filledbox"
-#define RC_STR_EMPTY_BOX       "empty"
+#define RC_STR_NET_NONE           RC_STR_NONE
+#define RC_STR_FILLED_BOX         "filledbox"
+#define RC_STR_EMPTY_BOX          "empty"
 
-#define RC_STR_NET_NET         "net"
-#define RC_STR_NET_ALL         "all"
+#define RC_STR_NET_NET            "net"
+#define RC_STR_NET_ALL            "all"
 
 /* Bus Ripper Strings for RC code */
 /* Ripper Rotation */

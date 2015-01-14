@@ -211,8 +211,8 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_CURSOR_INDEX    0
 
 /* for third-mouse */
-#define POPUP_ENABLED		0
-#define MOUSEPAN_ENABLED	1
+#define POPUP_ENABLED           0
+#define MOUSEPAN_ENABLED        1
 
 /* for middle-mouse */
 #define MOUSE_MIDDLE_STROKE     0
