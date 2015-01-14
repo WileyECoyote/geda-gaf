@@ -1,5 +1,9 @@
 2015-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/ *.c: Update address for Free Software Foundation
+
+2015-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/edarenderer.c: Check for missing picture flag and add overlay
       message in function eda_renderer_draw_picture.
 
