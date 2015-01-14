@@ -1,4 +1,11 @@
-2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_status_bar.c: Fix Bug incorrect display of right mouse
+      function in status bar: Use w_current->third_button instead of
+      default_third_button, default_third_button only get set if the
+      value is assigned/uncommented in rc file.
+
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_status_bar.c: Add Doxygen comment block for new callback
       handlers.

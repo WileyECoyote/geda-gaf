@@ -286,7 +286,7 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
       middle_mouse_text = _("none");
   }
 
-  if (default_third_button == POPUP_ENABLED) {
+  if (w_current->third_button == POPUP_ENABLED) {
     right_mouse_text = "Menu/Cancel";
   }
   else {
