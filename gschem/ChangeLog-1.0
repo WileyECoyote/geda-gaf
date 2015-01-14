@@ -1,5 +1,11 @@
 2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_status_bar.c: Connect signals to changes to middle mouse
+      options from right mouse popup on the GedaStatusBar widget, add
+      callback handlers for each option.
+
+2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_status_bar.c: Adding new signal and setup callback
       for new pop-up menu to change the middle mouse button setting by
       right clicking on the status bar middle mouse status widget (had

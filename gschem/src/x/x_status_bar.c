@@ -38,6 +38,56 @@
  *    \ingroup (main-window)
 */
 
+static void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->middle_button = MOUSE_MIDDLE_ACTION;
+    x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
+static void x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->middle_button = MOUSE_MIDDLE_PAN;
+    x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
+static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->middle_button = MOUSE_MIDDLE_REPEAT;
+    x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
+#ifdef HAVE_LIBSTROKE
+static void x_status_bar_set_middle_stroke(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->middle_button = MOUSE_MIDDLE_STROKE;
+    x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+#endif
+
 /*! \brief Update the grid and snap settings for the gschem status bar
  *
  *  \par Function Description
@@ -47,8 +97,7 @@
  *
  *  \param [in] w_current GschemToplevel structure
  */
-void
-x_status_bar_update_grid_label (GschemToplevel *w_current)
+void x_status_bar_update_grid_label (GschemToplevel *w_current)
 {
   if ( GSCHEM_IS_STATUS_BAR(StatusBar) ) {
 
@@ -86,8 +135,7 @@ x_status_bar_update_grid_label (GschemToplevel *w_current)
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] repeat    pointer to label (what will be repeated)
  */
-void
-x_status_bar_middle_mouse(GschemToplevel *w_current, const char *repeat)
+void x_status_bar_middle_mouse(GschemToplevel *w_current, const char *repeat)
 {
 
   char *string;
@@ -200,6 +248,24 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
                                         "snap-size",   w_current->snap_size,
                                         "status-text", _("Select Mode"),
                                         NULL));
+
+
+
+  g_signal_connect (status_bar, "set-middle-action",
+                    G_CALLBACK (x_status_bar_set_middle_action),
+                    w_current);
+  g_signal_connect (status_bar, "set-middle-pan",
+                    G_CALLBACK (x_status_bar_set_middle_pan),
+                    w_current);
+  g_signal_connect (status_bar, "set-middle-repeat",
+                    G_CALLBACK (x_status_bar_set_middle_repeat),
+                    w_current);
+
+#ifdef HAVE_LIBSTROKE
+  g_signal_connect (status_bar, "set-middle-stroke",
+                    G_CALLBACK (x_status_bar_set_middle_stroke),
+                    w_current);
+#endif
 
   return status_bar;
 }
