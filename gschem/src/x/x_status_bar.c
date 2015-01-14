@@ -38,7 +38,18 @@
  *    \ingroup (main-window)
 */
 
-static void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
+/*! \brief Action clicked on Middle Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-middle-action" being emitted from the
+ *   status bar widget. Sets middle mouse button preference variable
+ *   to MOUSE_MIDDLE_ACTION and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static
+void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
@@ -50,7 +61,18 @@ static void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
   }
 }
 
-static void x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
+/*! \brief Pan clicked on Middle Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-middle-pan" being emitted from the
+ *   status bar widget. Sets middle mouse button preference variable
+ *   to MOUSE_MIDDLE_PAN and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static void
+x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
@@ -62,6 +84,16 @@ static void x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
   }
 }
 
+/*! \brief Repeat clicked on Middle Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-middle-repeat" being emitted from the
+ *   status bar widget. Sets middle mouse button preference variable
+ *   to MOUSE_MIDDLE_REPEAT and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
 static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
@@ -75,7 +107,19 @@ static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
 }
 
 #ifdef HAVE_LIBSTROKE
-static void x_status_bar_set_middle_stroke(GtkWidget *status_bar, void *data)
+
+/*! \brief Stroke clicked on Middle Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-middle-stroke" being emitted from the
+ *   status bar widget. Sets middle mouse button preference variable
+ *   to MOUSE_MIDDLE_STROKE and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
+                                           void      *data)
 {
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
@@ -88,8 +132,8 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar, void *data)
 }
 #endif
 
-/*! \brief Update the grid and snap settings for the gschem status bar
- *
+/*! \public
+ *  \brief Update the grid and snap settings for the gschem status bar
  *  \par Function Description
  *  This functions compares the active settings to the current status
  *  settings and updates the status settings if the status settings
@@ -135,7 +179,8 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] repeat    pointer to label (what will be repeated)
  */
-void x_status_bar_middle_mouse(GschemToplevel *w_current, const char *repeat)
+void x_status_bar_middle_mouse(GschemToplevel *w_current,
+                               const char     *repeat)
 {
 
   char *string;
@@ -194,6 +239,16 @@ void x_status_bar_middle_mouse(GschemToplevel *w_current, const char *repeat)
   }
 }
 
+/*! \public
+ *  \brief Create GschemStatusBar
+ *  \par Function Description
+ *  This functions creates a new instance of the a GschemStatusBar
+ *  widget and connects in callback signal handlers.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *
+ *  \returns The newly created status bar widget
+ */
 GtkWidget *x_status_bar_create(GschemToplevel *w_current)
 {
   GtkWidget *status_bar;

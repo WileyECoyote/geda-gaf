@@ -1,5 +1,10 @@
 2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_status_bar.c: Add Doxygen comment block for new callback
+      handlers.
+
+2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_status_bar.c: Connect signals to changes to middle mouse
       options from right mouse popup on the GedaStatusBar widget, add
       callback handlers for each option.
