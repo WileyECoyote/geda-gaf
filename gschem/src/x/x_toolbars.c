@@ -824,7 +824,7 @@ On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *
 
     gdk_window_get_pointer (gtk_widget_get_window(handlebox), NULL, NULL, &mods);
 
-    if (mods&GDK_BUTTON3_MASK)
+    if (mods & GDK_BUTTON3_MASK)
     {
         if (popup_menu)
         {
