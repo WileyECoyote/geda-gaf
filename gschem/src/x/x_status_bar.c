@@ -38,6 +38,8 @@
  *    \ingroup (main-window)
 */
 
+/* ------------------ Callbacks for Mouse Button Options  ------------------ */
+
 /*! \brief Action clicked on Middle Mouse Options Popup Callback
  *
  *  \par Function Description
@@ -131,6 +133,52 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
   }
 }
 #endif
+
+/*! \brief Popup (Menu) clicked on Third Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-third-popup" being emitted from the
+ *   status bar widget. Sets third mouse button preference variable
+ *   to POPUP_ENABLED and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->third_button = POPUP_ENABLED;
+    //x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
+/*! \brief Pan clicked on Third Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-third-pan" being emitted from the
+ *   status bar widget. Sets third mouse button preference variable
+ *   to MOUSEPAN_ENABLED and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->third_button = MOUSEPAN_ENABLED;
+    //x_status_bar_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
+/* ---------------- End Callbacks for Mouse Button Options  ---------------- */
 
 /*! \public
  *  \brief Update the grid and snap settings for the gschem status bar
@@ -322,6 +370,12 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
                     w_current);
 #endif
 
+  g_signal_connect (status_bar, "set-third-popup",
+                    G_CALLBACK (x_status_bar_set_third_popup),
+                    w_current);
+  g_signal_connect (status_bar, "set-third-pan",
+                    G_CALLBACK (x_status_bar_set_third_pan),
+                    w_current);
   return status_bar;
 }
 
