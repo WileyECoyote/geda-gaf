@@ -35,8 +35,8 @@
 /*! \class Line geda_line.h "include/libgeda/geda_line.h"
  *  \implements geda-object
  *  \brief This is an implementaion class for GEDA Line Objects.
- *  A Geda Line Object is a graphical object that does not involve electrical
- *  interconnections. Lines have line-type properties.
+ *  A Geda Line Object is a graphical object that does not involve
+ *  electrical interconnections. Lines have line-type properties.
  */
 
 #include <config.h>
@@ -45,7 +45,7 @@
 
 G_DEFINE_TYPE (Line, geda_line, GEDA_TYPE_OBJECT);
 
-/*! \brief calculate and return the boundaries of a Line object
+/*! \brief Calculate and return the boundaries of a Line object
  *
  *  \par Function Description
  *  This function calculates the object boudaries of a Line \a object.
@@ -73,7 +73,7 @@ geda_line_bounds(Object *object)
 /*! \brief GedaType instance initialiser for Line
  *
  *  \par Function Description
- *  GedaType instance initialiser for Line, initializes a new empty
+ *  GedaType instance initializer for Line, initializes a new empty
  *  Line object by setting pointers to NULL and numbers to zero,
  *  the line PID variable is set to the next line index.
  *
@@ -109,10 +109,9 @@ geda_line_dispose(GObject *object)
 
 /*! \brief Geda Line Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Line
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function releases all internal references and releases
+ *   the memory allocated to the given Line data structure and
+ *   then chains up to the parent's finalize handler.
  */
 static void geda_line_finalize(GObject *object)
 {
