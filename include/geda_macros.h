@@ -39,6 +39,15 @@
 #error lambda already defined!
 #endif
 
+/* Guard C code in headers, while including them from C++ */
+#ifdef  __cplusplus
+# define BEGIN_DECLS  extern "C" {
+# define END_DECLS    }
+#else
+# define BEGIN_DECLS
+# define END_DECLS
+#endif
+
 #define GLIST_PREVIOUS(lst) ((lst) ? (((GList *)(lst))->prev) : NULL)
 #define GLIST_NEXT(lst) ((lst) ? (((GList *)(lst))->next) : NULL)
 
