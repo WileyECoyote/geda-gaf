@@ -43,8 +43,6 @@
 #define GEDA_IS_ARC_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_ARC))
 #define GEDA_ARC_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_ARC, ArcClass))
 
-G_BEGIN_DECLS
-
 typedef struct _GedaArcClass ArcClass;
 
 struct _GedaArcClass {
@@ -71,11 +69,13 @@ struct _GedaArc {
   unsigned int tail_marker;       /* structure type signature */
 };
 
+BEGIN_DECLS
+
 unsigned int   geda_arc_get_type        (void);
 bool           is_a_geda_arc_object     (Arc *object);
 
 Object        *geda_arc_new             (void);
 
+END_DECLS
 
-G_END_DECLS
 #endif /* __GEDA_ARC_H__ */
