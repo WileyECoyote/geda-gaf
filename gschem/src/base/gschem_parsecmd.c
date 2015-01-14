@@ -96,7 +96,7 @@ usage(char *cmd)
     "  -p                       Automatically place the window.\n"
     "  -q, --quiet              Quiet mode.\n"
     "  -r, --run FILE           Scheme script to run at startup.\n"
-    "  -s, --start name         Startup using the given session name.\n"
+    "  -s, --start <name>       Startup using the given session name.\n"
     "  -t, --tmp-dir DIR        Specify tmp directory for Undo files.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
