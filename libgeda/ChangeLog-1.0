@@ -1,3 +1,9 @@
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Use strlen instead of sizeof in f_open,
+      modify the conditional for flags & F_OPEN_RC, the close brace
+      was in the wrong place, nest strcats.
+
 2015-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Rename functions to match module, i.e.

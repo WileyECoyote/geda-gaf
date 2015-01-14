@@ -173,35 +173,36 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   file_directory = f_get_dirname (full_filename);
 
   if (file_directory) {
+
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
       fprintf(stderr, _("ERROR, <libgeda>: Could not changed current directory to %s:%s"),
               file_directory, strerror (errno));
       return 0;
     }
-  }
 
-  /* Now open RC and process file */
-  if (flags & F_OPEN_RC) {
+    /* Now open RC and process file */
+    if (flags & F_OPEN_RC) {
 
-    g_rc_parse_local ("gafrc", file_directory, &tmp_err);
+      g_rc_parse_local ("gafrc", file_directory, &tmp_err);
 
-    if (tmp_err != NULL) {
-      /* RC files are allowed to be missing or skipped; check for this. */
-      if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
+      if (tmp_err != NULL) {
+        /* RC files are allowed to be missing or skipped; check for this. */
+        if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
           !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE)) {
-        u_log_message ("%s\n", tmp_err->message);
+          u_log_message ("%s\n", tmp_err->message);
+          }
+          g_error_free (tmp_err);
+        tmp_err = NULL;
       }
-      g_error_free (tmp_err);
-      tmp_err = NULL;
     }
-  }
 
-  GEDA_FREE (file_directory);
+    GEDA_FREE (file_directory);
+  }
 
   if (flags & F_OPEN_CHECK_BACKUP) {
 
-    char *message;
+    char       *message;
     const char *str;
 
     /* Check for a newer autosave backup file */
@@ -214,38 +215,39 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     if (active_backup) {
 
-      mem_needed = sizeof(log_auto_back) + strlen(backup_filename);
+      mem_needed = strlen(log_auto_back) + strlen(backup_filename);
 
       if (tmp_err != NULL) {
         str = log_undetemine;
-        mem_needed = mem_needed + sizeof(log_undetemine);
+        mem_needed = mem_needed + strlen(log_undetemine);
       }
       else {
         str = log_back_newer;
-        mem_needed = mem_needed + sizeof(log_back_newer);
+        mem_needed = mem_needed + strlen(log_back_newer);
       }
 
-      mem_needed = mem_needed + sizeof(log_situation);
+      mem_needed = mem_needed + strlen(log_situation);
 
-      message = malloc(mem_needed) + 1;
+      message = malloc(mem_needed + 2);
 
       if(!message) {
         fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
       }
       else {
 
-        sprintf (message, log_auto_back, backup_filename);
-        strcat  (message, str);
-        strcat  (message, log_situation);
+        sprintf(message, log_auto_back, backup_filename);
+        strcat(strcat(message, str), log_situation);
 
         if (toplevel->load_newer_backup_func == NULL) {
           fprintf (stderr, "%s%s", message, err_corrective);
         }
         else {
+
           /* Ask the user which file should be loaded */
           load_backup_file = toplevel->load_newer_backup_func(message,
                              toplevel->load_newer_backup_data);
         }
+
         free (message);
       }
     }
