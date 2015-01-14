@@ -56,7 +56,7 @@ void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_ACTION;
-    x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_middle_mouse(w_current, NULL);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -79,7 +79,7 @@ x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_PAN;
-    x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_middle_mouse(w_current, NULL);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -101,7 +101,7 @@ static void x_status_bar_set_middle_repeat(GtkWidget *status_bar, void *data)
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_REPEAT;
-    x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_middle_mouse(w_current, NULL);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -126,7 +126,7 @@ static void x_status_bar_set_middle_stroke(GtkWidget *status_bar,
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_STROKE;
-    x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_middle_mouse(w_current, NULL);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -149,7 +149,7 @@ static void x_status_bar_set_third_popup(GtkWidget *status_bar, void *data)
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->third_button = POPUP_ENABLED;
-    //x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_third_mouse(w_current);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -171,7 +171,7 @@ static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
   GschemToplevel *w_current = data;
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->third_button = MOUSEPAN_ENABLED;
-    //x_status_bar_middle_mouse(w_current, NULL);
+    x_status_bar_update_third_mouse(w_current);
   }
   else {
     BUG_MSG("Invalid pointer to top-level structure");
@@ -201,9 +201,9 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
 
     /* If sum of differences is non-zero then update */
     do_update = (StatusBar->grid_mode - grid_mode) +
-    (StatusBar->grid_size - grid_size) +
-    (StatusBar->snap_mode - snap_mode) +
-    (StatusBar->snap_size - snap_size);
+                (StatusBar->grid_size - grid_size) +
+                (StatusBar->snap_mode - snap_mode) +
+                (StatusBar->snap_size - snap_size);
 
     if ( do_update ) {
       StatusBar->grid_mode = grid_mode;
@@ -227,10 +227,9 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] repeat    pointer to label (what will be repeated)
  */
-void x_status_bar_middle_mouse(GschemToplevel *w_current,
-                               const char     *repeat)
+void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
+                                      const char     *repeat)
 {
-
   char *string;
   static int previous_setting = -1;
 
@@ -284,6 +283,32 @@ void x_status_bar_middle_mouse(GschemToplevel *w_current,
     }
     geda_label_widget_set_text(StatusBar->middle_label, string );
     previous_setting = MOUSE_MIDDLE_REPEAT;
+  }
+}
+
+/*! \brief Update the Third Button settings for the gschem status bar
+ *  \par Function Description
+ *  This functions reloads the string for the third-mouse button
+ *  label on the status-bar based on the current setting.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void x_status_bar_update_third_mouse (GschemToplevel *w_current)
+{
+  static int previous_setting = -1;
+
+  if (StatusBar->right_label) {
+
+    if ( w_current->third_button != previous_setting ) {
+
+      if (w_current->third_button == POPUP_ENABLED) {
+        geda_label_widget_set_text(StatusBar->right_label, _("Menu/Cancel"));
+      }
+      else {
+        geda_label_widget_set_text(StatusBar->right_label, _("Pan/Cancel"));
+      }
+      previous_setting = w_current->third_button;
+    }
   }
 }
 

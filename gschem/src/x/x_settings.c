@@ -50,8 +50,8 @@
  * ------------------------------------------------------------------
  * WEH | 09/25/13 |  Add function x_settings_save_settings
  * ------------------------------------------------------------------
- * WEH | 03/10/14 |  Add call to function x_status_bar_middle_mouse in
- *     |          |  function configure_dialog_response (to update the
+ * WEH | 03/10/14 |  Add call to function x_status_bar_update_middle_mouse
+ *     |          |  in unction configure_dialog_response (to update the
  *     |          |  status-bar when the dialog closes)
  * ------------------------------------------------------------------
 */
@@ -173,8 +173,8 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
    * may not need updating, is not worth tracking here. If the middle mouse
    * was not "changed" to "repeat and the current setting is not "repeat,
    * then the string being passed will be ignored */
-  x_status_bar_middle_mouse(w_current, "Preferences");
-
+  x_status_bar_update_middle_mouse(w_current, "Preferences");
+  x_status_bar_update_third_mouse(w_current);
 }
 
 /* ----------------- Start Attribute TAB Support Functions ------------------ */

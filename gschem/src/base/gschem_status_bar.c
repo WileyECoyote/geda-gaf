@@ -771,7 +771,6 @@ gschem_status_bar_get_snap_size (GtkWidget *widget)
 #endif
 }
 
-
 /*! \brief Get the status text
  *
  *  \param [in] widget This GschemStatusBar

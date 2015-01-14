@@ -1,5 +1,13 @@
 2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_status_bar.c: Fix Bug; right button label was not getting
+      updated, add function x_status_bar_update_third_mouse and call in
+      new callbacks x_status_bar_set_third_popup and x_status_bar_set_
+      third_pan. Rename function x_status_bar_middle_mouse to x_status_
+      bar_update_middle_mouse, a little long but fits.
+
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_status_bar.c: Connect to signal and had handlers for
       third mouse button options, there is only two; menu and pan.
 
