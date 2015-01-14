@@ -51,9 +51,12 @@
  * WEH | 09/25/13 |  Add function x_settings_save_settings
  * ------------------------------------------------------------------
  * WEH | 03/10/14 |  Add call to function x_status_bar_update_middle_mouse
- *     |          |  in unction configure_dialog_response (to update the
+ *     |          |  in function configure_dialog_response (to update the
  *     |          |  status-bar when the dialog closes)
  * ------------------------------------------------------------------
+ * WEH | 01/14/15 |  Add call to function i_status_update_grid_info in
+ *     |          |  function configure_dialog_response (to update the
+ *     |          |  status-bar when the dialog closes)
 */
 /*!
  * \file x_settings.c
@@ -168,6 +171,8 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
     eda_config_set_integer (cfg, group, "pref-tab", note_tab);
   }
   gtk_widget_destroy(w_current->cpwindow);
+
+  i_status_update_grid_info(w_current);
 
   /* Call to update the middle-mouse label on the status bar, which may or
    * may not need updating, is not worth tracking here. If the middle mouse
@@ -439,21 +444,21 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
 
 int generate_rc(GschemToplevel *w_current, const char *rcname)
 {
-  char *inputfile;			/* Name of the input file */
+  char *inputfile;           /* Name of the input file */
   char *templatefile;                   /* Name of the Template file */
-  char *outputfile;			/* Name of the output file */
+  char *outputfile;          /* Name of the output file */
 
-  FILE* input;				/* Input file handle */
-  FILE* output;				/* Output file handle */
+  FILE* input;               /* Input file handle */
+  FILE* output;              /* Output file handle */
 
-  char keyword[MAX_KEYWORD];		/* Buffer containing potential keyword */
+  char keyword[MAX_KEYWORD]; /* Buffer containing potential keyword */
   char strbuffer[RC_INPUT_BUFFER_SIZE];	/* Read Buffer */
 
-  int lc;				/* Line counter */
-  int j;				/* Index for enumerated keywords */
-  int khandle;				/* Index of handler for found keyword */
-  int last=0;				/* Index of the handler called previously */
-  int result;				/* Our exit code */
+  int lc;                    /* Line counter */
+  int j;                     /* Index for enumerated keywords */
+  int khandle;               /* Index of handler for found keyword */
+  int last=0;                /* Index of the handler called previously */
+  int result;                /* Our exit code */
 
   /* Build path for user config file */
   inputfile = u_string_concat (f_path_user_config (), DIR_SEPARATOR_S, rcname, NULL);
