@@ -45,12 +45,12 @@
 
 G_DEFINE_TYPE (Line, geda_line, GEDA_TYPE_OBJECT);
 
-/*! \brief calculate and return the boundaries of a pin object
+/*! \brief calculate and return the boundaries of a Line object
  *
  *  \par Function Description
- *  This function calculates the object boudaries of a pin \a object.
+ *  This function calculates the object boudaries of a Line \a object.
  *
- *  \param [in]  object    a pin object
+ *  \param [in]  object Pointer to Line object
  */
 int
 geda_line_bounds(Object *object)
@@ -63,8 +63,8 @@ geda_line_bounds(Object *object)
 
   /* This isn't strictly correct, but a 1st order approximation */
   object->left   = min( object->line->x[0], object->line->x[1] ) - halfwidth;
-  object->top    = min( object->line->y[0], object->line->y[1] ) - halfwidth;
   object->right  = max( object->line->x[0], object->line->x[1] ) + halfwidth;
+  object->top    = min( object->line->y[0], object->line->y[1] ) - halfwidth;
   object->bottom = max( object->line->y[0], object->line->y[1] ) + halfwidth;
 
   return TRUE;
