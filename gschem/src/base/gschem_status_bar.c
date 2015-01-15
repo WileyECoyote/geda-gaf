@@ -43,6 +43,7 @@
 enum
 {
   PROP_0,
+  PROP_COORDINATES_MODE,
   PROP_GRID_MODE,
   PROP_GRID_SIZE,
   PROP_HEIGHT,
@@ -67,12 +68,25 @@ enum {
   LAST_SIGNAL
 };
 
+enum
+{
+  COORD_FORMAT_OFF,
+  COORD_FORMAT_XY,
+  COORD_FORMAT_COORD,
+  COORD_FORMAT_COMMA,
+  COORD_FORMAT_X,
+  COORD_FORMAT_Y,
+  COORD_FORMAT_XONLY,
+  COORD_FORMAT_YONLY
+};
+
 struct _GschemStatusBarBuffers
 {
   char status_left_text_buffer   [STATUS_LEFT_TEXT_BUFFER_SIZE];
   char status_middle_text_buffer [STATUS_MIDDLE_TEXT_BUFFER_SIZE];
   char status_right_text_buffer  [STATUS_RIGHT_LEFT_TEXT_BUFFER_SIZE];
   char status_grid_text_buffer   [STATUS_GRID_TEXT_BUFFER_SIZE];
+  char status_coord_text_buffer  [STATUS_COORD_TEXT_BUFFER_SIZE];
   char status_label_text_buffer  [STATUS_STATUS_TEXT_BUFFER_SIZE];
 };
 
@@ -106,23 +120,50 @@ typedef struct st_popup_menu_entry {
   const int   signal;
 } StatusPopupEntry;
 
+static StatusPopupEntry coord_popup_items[] = {
+
+  { N_( COORD_DISPLAY_OFF ),    COORD_FORMAT_OFF   },
+  { N_( COORD_DISPLAY_XY ),     COORD_FORMAT_XY    },
+  { N_( COORD_DISPLAY_COORD ),  COORD_FORMAT_COORD },
+  { N_( COORD_DISPLAY_COMMA ),  COORD_FORMAT_COMMA },
+  { N_( COORD_DISPLAY_X ),      COORD_FORMAT_X     },
+  { N_( COORD_DISPLAY_Y ),      COORD_FORMAT_Y     },
+  { N_( COORD_DISPLAY_XONLY ),  COORD_FORMAT_XONLY },
+  { N_( COORD_DISPLAY_YONLY ),  COORD_FORMAT_YONLY },
+  {NULL} /* sentinel */
+};
+
 static StatusPopupEntry middle_popup_items[] = {
 
-  { N_( RC_STR_MID_ACTION ),   SET_MIDDLE_ACTION },
+  { N_( RC_STR_MID_ACTION ),   SET_MIDDLE_ACTION   },
 #ifdef HAVE_LIBSTROKE
-  { N_( RC_STR_MID_STROKE ),   SET_MIDDLE_STROKE },
+  { N_( RC_STR_MID_STROKE ),   SET_MIDDLE_STROKE   },
 #endif
-  { N_( RC_STR_MID_REPEAT ),   SET_MIDDLE_REPEAT },
+  { N_( RC_STR_MID_REPEAT ),   SET_MIDDLE_REPEAT   },
   { N_( RC_STR_MID_MOUSEPAN ), SET_MIDDLE_MOUSEPAN },
   {NULL} /* sentinel */
 };
 
 static StatusPopupEntry third_popup_items[] = {
 
-  { N_( RC_STR_3RD_POPUP ),    SET_THIRD_POPUP },
+  { N_( RC_STR_3RD_POPUP ),    SET_THIRD_POPUP    },
   { N_( RC_STR_3RD_PAN ),      SET_THIRD_MOUSEPAN },
   {NULL} /* sentinel */
 };
+
+static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
+{
+  GschemStatusBar *status_bar;
+  GtkWidget       *widget;
+
+  unsigned   mode = (unsigned)(long*) user_data;
+
+  status_bar = g_object_get_data (G_OBJECT(menuitem), "status-bar");
+  widget     = (GtkWidget*)status_bar;
+
+  gschem_status_bar_set_coord_mode (widget, mode);
+  gschem_status_bar_set_coordinates (widget, status_bar->x1, status_bar->y1);
+}
 
 static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
 {
@@ -133,6 +174,76 @@ static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data
 
   g_signal_emit (widget, signals[signal], 0);
 
+}
+
+/* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
+
+/*! \brief GschemStatusBar Show Coordinate Display Options Popup
+ *
+ *  \par Function Description
+ *  This functions creates and displays a small pop-up menu on
+ *  the coordinates display widget when the right mouse button
+ *  is released on the widget.
+ */
+static void coord_display_options_popup (GtkWidget      *event_box,
+                                         GdkEventButton *event,
+                                         void           *user_data)
+{
+  GtkWidget *menu;
+  GtkWidget *popup_item;
+  int i;
+
+  /* create the context menu */
+  menu = gtk_menu_new();
+
+  for (i = 0; coord_popup_items[i].text != NULL; i++) {
+
+    StatusPopupEntry entry = coord_popup_items[i];
+
+    popup_item = gtk_menu_item_new_with_label (entry.text);
+
+    g_signal_connect (GTK_OBJECT(popup_item), "activate",
+                     (GCallback)coord_options_popup_clicked,
+                      GUINT_TO_POINTER(entry.signal));
+
+    g_object_set_data (G_OBJECT(popup_item), "status-bar", user_data);
+
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+  }
+
+  gtk_widget_show_all (menu);
+
+  /* make menu a popup menu */
+  gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
+                  (event != NULL) ? event->button : 0,
+                  gdk_event_get_time ((GdkEvent*)event));
+}
+
+/*! \brief coordinate Display Indicator Button Released callback
+ *  \par Function Description
+ *  Called when a mouse button is release with the cursor over
+ *  the coordinate display indicator. If the 3rd button was
+ *  released, a small popup menu is displayed.
+ *
+ *  \sa middle_button_options_popup
+ */
+static bool coord_display_released (GtkWidget      *label,
+                                    GdkEventButton *event,
+                                    void           *user_data)
+{
+  bool ret_val;
+
+  if (event->button == 3) {
+
+    coord_display_options_popup(label, event, user_data);
+
+    ret_val = TRUE;
+  }
+  else {
+    ret_val = FALSE;
+  }
+
+  return ret_val;
 }
 
 /* -------------- Popup Menu for Mouse Middle Button Options  -------------- */
@@ -277,6 +388,11 @@ static bool third_button_released (GtkWidget      *label,
 
 /* ------------------------ End Popup Menu Callbacks  ---------------------- */
 
+static void gschem_status_bar_reformat_coordinates (GschemStatusBar *gsb)
+{
+  gschem_status_bar_set_coordinates (GTK_WIDGET(gsb), gsb->x1, gsb->y1);
+}
+
 /*! \brief Dispose of the object
  */
 static void
@@ -314,6 +430,10 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
   const char *string;
 
   switch (param_id) {
+    case PROP_COORDINATES_MODE:
+      g_value_set_int (value, gschem_status_bar_get_coord_mode(status_bar));
+      break;
+
     case PROP_GRID_MODE:
       g_value_set_int (value, gschem_status_bar_get_grid_mode (status_bar));
       break;
@@ -366,94 +486,108 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 static void
 gschem_status_bar_class_init (GschemStatusBarClass *klass)
 {
-  gschem_status_bar_parent_class = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
+  GObjectClass *gobject_class     = G_OBJECT_CLASS (klass);
+  GParamSpec   *pspec;
 
-  G_OBJECT_CLASS (klass)->dispose  = dispose;
-  G_OBJECT_CLASS (klass)->finalize = finalize;
+  gschem_status_bar_parent_class  = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
 
-  G_OBJECT_CLASS (klass)->get_property = get_property;
-  G_OBJECT_CLASS (klass)->set_property = set_property;
+  klass->reformat_coordinates     = gschem_status_bar_reformat_coordinates;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_GRID_MODE,
-                                   g_param_spec_int ("grid-mode",
-                                                     "Grid Mode",
-                                                     "Grid Mode",
-                                                     G_MININT,
-                                                     G_MAXINT,
-                                                     GRID_NONE,
-                                                     G_PARAM_READWRITE));
+  gobject_class->dispose          = dispose;
+  gobject_class->finalize         = finalize;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_GRID_SIZE,
-                                   g_param_spec_int ("grid-size",
-                                                     "Grid Size",
-                                                     "Grid Size",
-                                                     G_MININT,
-                                                     G_MAXINT,
-                                                     0,
-                                                     G_PARAM_READWRITE));
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_HEIGHT,
-                                   g_param_spec_int ("height",
-                                                     "height",
-                                                     "height",
-                                                     0,
-                                                     25,
-                                                     2,
-                                                     G_PARAM_READWRITE));
+  gobject_class->get_property     = get_property;
+  gobject_class->set_property     = set_property;
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_LEFT_BUTTON_TEXT,
-                                   g_param_spec_string ("left-text",
-                                                        "Left Button Text",
-                                                        "Left Button Text",
-                                                        "none",
-                                                        G_PARAM_READWRITE));
+  /* Register properties */
+  pspec = g_param_spec_int ("coord-mode",
+                          _("Coordinates Mode"),
+                          _("Sets the Format Mode used to display coordinates on the status bar"),
+                              COORD_FORMAT_OFF,
+                              COORD_FORMAT_YONLY,
+                              COORD_FORMAT_XY,
+                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_MIDDLE_BUTTON_TEXT,
-                                   g_param_spec_string ("middle-text",
-                                                        "Middle Button Text",
-                                                        "Middle Button Text",
-                                                        "none",
-                                                        G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class, PROP_COORDINATES_MODE, pspec);
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_RIGHT_BUTTON_TEXT,
-                                   g_param_spec_string ("right-text",
-                                                        "Right Button Text",
-                                                        "Right Button Text",
-                                                        "none",
-                                                        G_PARAM_READWRITE));
+  pspec = g_param_spec_int ("grid-mode",
+                          _("Grid Mode"),
+                          _("Sets the Gride Mode to display on the status bar"),
+                              G_MININT,
+                              G_MAXINT,
+                              GRID_NONE,
+                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_SNAP_MODE,
-                                   g_param_spec_int ("snap-mode",
-                                                     "Snap Mode",
-                                                     "Snap Mode",
-                                                     G_MININT,
-                                                     G_MAXINT,
-                                                     0,
-                                                     G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class, PROP_GRID_MODE, pspec);
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_SNAP_SIZE,
-                                   g_param_spec_int ("snap-size",
-                                                     "Snap Size",
-                                                     "Snap Size",
-                                                     G_MININT,
-                                                     G_MAXINT,
-                                                     0,
-                                                     G_PARAM_READWRITE));
+  pspec = g_param_spec_int ("grid-size",
+                          _("Grid Size"),
+                          _("Sets the Grid Size to display on the status bar"),
+                              G_MININT,
+                              G_MAXINT,
+                              0,
+                             (G_PARAM_READWRITE));
 
-  g_object_class_install_property (G_OBJECT_CLASS (klass),
-                                   PROP_STATUS_TEXT,
-                                   g_param_spec_string ("status-text",
-                                                        "Status Text",
-                                                        "Status Text",
-                                                        "none",
-                                                        G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class, PROP_GRID_SIZE, pspec);
+
+  pspec = g_param_spec_int ("height",
+                          _("height"),
+                          _("Sets the height of the status bar"),
+                              0,
+                              25,
+                              2,
+                             (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_HEIGHT, pspec);
+
+  pspec = g_param_spec_string ("left-text",
+                             _("Left Button Text"),
+                             _("Set the string for the Left Button Text"),
+                               "none", (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_LEFT_BUTTON_TEXT, pspec);
+
+  pspec = g_param_spec_string ("middle-text",
+                             _("Middle Button Text"),
+                             _("Set the string for the Middle Button Text"),
+                               "none", (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_MIDDLE_BUTTON_TEXT, pspec);
+
+  pspec = g_param_spec_string ("right-text",
+                             _("Right Button Text"),
+                             _("Set the string for the Right Button Text"),
+                               "none", (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_RIGHT_BUTTON_TEXT, pspec);
+
+  pspec = g_param_spec_int ("snap-mode",
+                          _("Snap Mode"),
+                          _("Sets the Snap Mode to display on the status bar"),
+                             G_MININT,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_SNAP_MODE, pspec);
+
+  pspec = g_param_spec_int ("snap-size",
+                          _("Snap Size"),
+                          _("Sets the Size Mode to display on the status bar"),
+                             G_MININT,
+                             G_MAXINT,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_SNAP_SIZE, pspec);
+
+  pspec = g_param_spec_string ("status-text",
+                             _("Status Text"),
+                             _("Set the string for the text on the Status Bar"),
+                               "none", (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_STATUS_TEXT, pspec);
+
 
   signals[SET_MIDDLE_ACTION]   = g_signal_new ("set-middle-action",
                                                 gschem_status_bar_get_type(),
@@ -513,7 +647,7 @@ gschem_status_bar_class_init (GschemStatusBarClass *klass)
 }
 
 
-/*! \brief Get the grid mode
+/*! \brief Get the Status Bar grid mode
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -544,7 +678,7 @@ gschem_status_bar_get_grid_mode (GtkWidget *widget)
 }
 
 
-/*! \brief Get the grid size
+/*! \brief Get the Status Bar grid size
  *
  *  \param [in] widget This GschemStatusBar
  *  \return The grid size
@@ -603,7 +737,7 @@ gschem_status_bar_get_height (GtkWidget *widget)
   return ypad;
 }
 
-/*! \brief Get the left button text
+/*! \brief Get the Status Bar left button text
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -621,7 +755,7 @@ gschem_status_bar_get_left_button_text (GtkWidget *widget)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->left_label)) {
         ret_val = geda_label_widget_get_text (gsb->left_label);
@@ -638,7 +772,7 @@ gschem_status_bar_get_left_button_text (GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the middle button text
+/*! \brief Get the Status Bar middle button text
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -656,7 +790,7 @@ gschem_status_bar_get_middle_button_text (GtkWidget *widget)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->middle_label)) {
         ret_val = geda_label_widget_get_text(gsb->middle_label);
@@ -674,7 +808,7 @@ gschem_status_bar_get_middle_button_text (GtkWidget *widget)
 }
 
 
-/*! \brief Get the right button text
+/*! \brief Get the Status Bar right button text
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -692,7 +826,7 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->right_label)) {
         ret_val = geda_label_widget_get_text (gsb->right_label);
@@ -709,8 +843,26 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
 #endif
 }
 
+/*! \brief Get the Status Bar Coordinates Mode
+ *   This function returns the coordinates display mode
+ *   used by the #GschemStatusBar. If \a widget is not
+ *   GschemStatusBar, aka w_cuurent->status_bar is NULL
+ *   the function return 0 without squealing.
+ *
+ *  \param [in] widget This GschemStatusBar
+ *
+ *  \return The snap mode
+ */
+int
+gschem_status_bar_get_coord_mode (GtkWidget *widget)
+{
+  if (widget && GSCHEM_IS_STATUS_BAR(widget)) {
+    return ((GschemStatusBar*)widget)->coord_mode;
+  }
+  return 0;
+}
 
-/*! \brief Get the snap mode
+/*! \brief Get the Status Bar  snap mode
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -741,7 +893,7 @@ gschem_status_bar_get_snap_mode (GtkWidget *widget)
 }
 
 
-/*! \brief Get the snap size
+/*! \brief Get the Status Bar snap size
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -771,7 +923,7 @@ gschem_status_bar_get_snap_size (GtkWidget *widget)
 #endif
 }
 
-/*! \brief Get the status text
+/*! \brief Get the Status Bar status text
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -789,7 +941,7 @@ gschem_status_bar_get_status_text (GtkWidget *widget)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->status_label)) {
         ret_val = geda_label_widget_get_text (gsb->status_label);
@@ -877,6 +1029,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
    *TheTarget(middle_label_text) = (long int)&(buffers->status_middle_text_buffer[0]);
    *TheTarget(right_label_text)  = (long int)&(buffers->status_right_text_buffer[0]);
    *TheTarget(grid_label_text)   = (long int)&(buffers->status_grid_text_buffer[0]);
+   *TheTarget(coord_label_text)  = (long int)&(buffers->status_coord_text_buffer[0]);
    *TheTarget(status_label_text) = (long int)&(buffers->status_label_text_buffer[0]);
 
   }
@@ -891,10 +1044,14 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 static void
 gschem_status_bar_init (GschemStatusBar *widget)
 {
+  EdaConfig  *cfg = eda_config_get_user_context ();
+
+  GtkWidget  *coord_event;
   GtkWidget  *middle_event;
   GtkWidget  *third_event;
   GtkWidget  *separator;
 
+  const char *coord_label_tip;
   const char *left_label_tip;
   const char *middle_label_tip;
   const char *right_label_tip;
@@ -902,14 +1059,23 @@ gschem_status_bar_init (GschemStatusBar *widget)
   const char *status_label_tip;
   const char *status_bar_tip;
 
+  coord_label_tip  = _("Coordinate display, right click for format options");
   left_label_tip   = _("Left pointer button assignment");
-  middle_label_tip = _("Middle pointer button assignment");
-  right_label_tip  = _("Right pointer button assignment");
-  grid_label_tip   = _("Indicates the current grid and snap units or states");
+  middle_label_tip = _("Middle pointer button assignment, right click for options");
+  right_label_tip  = _("Right pointer button assignment, right click for options");
+  grid_label_tip   = _("Indicates the current snap,grid units or states");
   status_label_tip = _("Indicates the current command state");
   status_bar_tip   = _("Gschem status bar");
 
   g_return_if_fail (widget != NULL);
+
+  const char *grp;
+  const char *key;
+
+  cfg = eda_config_get_user_context();
+  grp = WIDGET_CONFIG_GROUP;
+  key = "status-coord-mode";
+  i_var_restore_group_integer(cfg, grp, key, &widget->coord_mode, COORD_FORMAT_XY);
 
   widget->buffers = gschem_status_bar_setup_buffers (widget);
 
@@ -957,6 +1123,19 @@ gschem_status_bar_init (GschemStatusBar *widget)
 
   separator = gtk_vseparator_new ();
   g_object_set (separator, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 1);
+
+  coord_event = gtk_event_box_new();
+  g_object_set (coord_event, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (widget), coord_event, FALSE, FALSE, 0);
+
+  widget->coord_label = geda_visible_label_new (_(COORD_DISPLAY_OFF));
+  gtk_misc_set_padding (GTK_MISC (widget->coord_label), STATUS_XPAD, STATUS_YPAD);
+  gtk_container_add(GTK_CONTAINER(coord_event), widget->coord_label);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(widget->coord_label), coord_label_tip);
+
+  separator = gtk_vseparator_new ();
+  g_object_set (separator, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (widget), separator, FALSE, FALSE, 0);
 
   widget->status_label = geda_visible_label_new (NULL);
@@ -996,14 +1175,25 @@ gschem_status_bar_init (GschemStatusBar *widget)
                     widget->middle_label
 */
 
+  g_signal_connect (G_OBJECT (widget),
+                    "notify::coord-mode",
+                    G_CALLBACK
+                    (G_STRUCT_OFFSET (GschemStatusBarClass,
+                                      reformat_coordinates)),
+                    NULL);
+
   signals[UPDATE_GRID_LABEL] =
     g_signal_new_class_handler ("update-grid-label",
-                              gschem_status_bar_get_type (),
-                              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                              G_CALLBACK (update_grid_label),
-                              NULL, NULL,
-                              gtk_marshal_VOID__VOID,
-                              G_TYPE_NONE, 0);
+                                 gschem_status_bar_get_type (),
+                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                 G_CALLBACK (update_grid_label),
+                                 NULL, NULL,
+                                 gtk_marshal_VOID__VOID,
+                                 G_TYPE_NONE, 0);
+
+  g_signal_connect (coord_event, "button-release-event",
+                    G_CALLBACK (coord_display_released),
+                    widget);
 
   g_signal_connect (middle_event, "button-release-event",
                     G_CALLBACK (middle_button_released),
@@ -1014,8 +1204,42 @@ gschem_status_bar_init (GschemStatusBar *widget)
                     widget);
 }
 
+/*! \brief Set the mode used to display coordinates on the status bar
+ *
+ *  \param [in] widget This GschemStatusBar
+ *  \param [in] mode   The coordinate mode
+ */
+void
+gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
+{
+  EdaConfig  *cfg = eda_config_get_user_context ();
+  const char *grp = WIDGET_CONFIG_GROUP;
 
-/*! \brief Set the grid mode
+#if defined (G_DISABLE_ASSERT)
+  (GSCHEM_STATUS_BAR(widget))->coord_mode = mode;
+  if (mode < COORD_FORMAT_X) {
+    eda_config_set_integer (cfg, grp, "status-coord-mode", mode);
+  }
+#else
+
+  if (widget == NULL) {
+    BUG_MSG("widget is NULL");
+  }
+  else {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
+      ((GschemStatusBar*)widget)->coord_mode = mode;
+      if (mode < COORD_FORMAT_X) {
+        eda_config_set_integer (cfg, grp, "status-coord-mode", mode);
+      }
+    }
+    else {
+      BUG_MSG("widget is not a GschemStatusBar");
+    }
+  }
+#endif
+}
+
+/*! \brief Set the grid mode displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] mode   The grid mode
@@ -1031,7 +1255,7 @@ gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->grid_mode = mode;
       //g_object_notify (G_OBJECT (widget), "grid-mode");
     }
@@ -1042,8 +1266,7 @@ gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
 #endif
 }
 
-
-/*! \brief Set the grid size
+/*! \brief Set the grid size displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] size   The grid size
@@ -1058,7 +1281,7 @@ gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->grid_size = size;
       //g_object_notify (G_OBJECT (widget), "grid-size");
     }
@@ -1091,7 +1314,7 @@ fprintf(stderr, "gschem_status_bar_set_height: value=%d\n", height);
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       status_bar = (GschemStatusBar*)widget;
       gtk_misc_set_padding (GTK_MISC (status_bar->left_label), STATUS_XPAD, height);
       gtk_misc_set_padding (GTK_MISC (status_bar->middle_label), STATUS_XPAD, height);
@@ -1106,7 +1329,7 @@ fprintf(stderr, "gschem_status_bar_set_height: value=%d\n", height);
 #endif
 }
 
-/*! \brief Set the left button text
+/*! \brief Set the left button text displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] text   The text
@@ -1121,7 +1344,7 @@ gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->left_label)) {
         geda_label_widget_set_text (gsb->left_label, text);
@@ -1139,7 +1362,7 @@ gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
 }
 
 
-/*! \brief Set the middle button text
+/*! \brief Set the middle button text displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] text   The text
@@ -1154,11 +1377,10 @@ gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->middle_label)) {
         geda_label_widget_set_text (gsb->middle_label, text);
-        //g_object_notify (G_OBJECT (widget), "middle-text");
       }
       else {
         BUG_MSG("middle_label is not a GedaLabel");
@@ -1172,7 +1394,7 @@ gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
 }
 
 
-/*! \brief Set the right button text
+/*! \brief Set the right button text displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] text   The text
@@ -1187,11 +1409,10 @@ gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->right_label)) {
         geda_label_widget_set_text ( gsb->right_label, text);
-        //g_object_notify (G_OBJECT (widget), "right-text");
       }
       else {
         BUG_MSG("right_label is not a GedaLabel");
@@ -1204,8 +1425,7 @@ gschem_status_bar_set_right_button_text (GtkWidget *widget, const char *text)
 #endif
 }
 
-
-/*! \brief Set the snap mode
+/*! \brief Set the snap mode displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] mode   The snap mode
@@ -1220,7 +1440,7 @@ gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->snap_mode = mode;
     }
     else {
@@ -1230,8 +1450,7 @@ gschem_status_bar_set_snap_mode (GtkWidget *widget, int mode)
 #endif
 }
 
-
-/*! \brief Set the snap size
+/*! \brief Set the snap size displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] size   The snap size
@@ -1246,7 +1465,7 @@ gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->snap_size = size;
     }
     else {
@@ -1256,7 +1475,97 @@ gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
 #endif
 }
 
-/*! \brief Set the status text
+/*! \brief Set the Coordinate text displayed on the status bar
+ *
+ *  \param [in] widget This GschemStatusBar
+ *  \param [in] x      The status text
+ *  \param [in] y      The status text
+ *
+ *  \sa gschem_status_bar_get_coord_mode gschem_status_bar_set_coord_mode
+ */
+void
+gschem_status_bar_set_coordinates (GtkWidget *widget, int x, int y)
+{
+  char *text;
+
+  char *get_coordinates_text(GschemStatusBar *status_bar) {
+
+    char *string;
+    int   mode;
+
+    mode = status_bar->coord_mode;
+
+    switch (mode) {
+      case COORD_FORMAT_OFF:
+        string = u_string_strdup(_(COORD_DISPLAY_OFF));
+        break;
+
+      case COORD_FORMAT_XY:
+        string = u_string_sprintf("X=%d, Y=%d", x, y);
+        break;
+
+      case COORD_FORMAT_COORD:
+        string = u_string_sprintf("(%d, %d)", x, y);
+        break;
+
+      case COORD_FORMAT_COMMA:
+        string = u_string_sprintf("%d, %d", x, y);
+        break;
+
+      case COORD_FORMAT_X:
+        string = u_string_sprintf("X=%d", x);
+        break;
+
+      case COORD_FORMAT_Y:
+        string = u_string_sprintf("Y=%d", y);
+        break;
+
+      case COORD_FORMAT_XONLY:
+        string = u_string_sprintf("%d", x);
+        break;
+
+      case COORD_FORMAT_YONLY:
+        string = u_string_sprintf("%d", y);
+        break;
+
+      default:
+        string = u_string_sprintf("%d, %d", x, y);
+    }
+    status_bar->x1 = x;
+    status_bar->y1 = y;
+    return string;
+  }
+
+#if defined (G_DISABLE_ASSERT)
+  text = get_coordinates_text(GSCHEM_STATUS_BAR(widget));
+  geda_label_set_text ((GedaLabel*)status_bar->coord_label, text);
+#else
+  if (widget == NULL) {
+    BUG_MSG("widget is NULL");
+    text = NULL;
+  }
+  else {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
+      GschemStatusBar *gsb = (GschemStatusBar*)widget;
+      if (GEDA_IS_LABEL(gsb->coord_label)) {
+        text = get_coordinates_text(gsb);
+        geda_label_widget_set_text (gsb->coord_label, text);
+      }
+      else {
+        BUG_MSG("coord_label is not a GedaLabel");
+        text = NULL;
+      }
+    }
+    else {
+      BUG_MSG("widget is not a GschemStatusBar");
+      text = NULL;
+    }
+  }
+#endif
+  GEDA_FREE(text);
+}
+
+/*! \brief Set the status text displayed on the status bar
  *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] text   The status text
@@ -1271,7 +1580,7 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
     BUG_MSG("widget is NULL");
   }
   else {
-    if (GSCHEM_STATUS_BAR(widget)) {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->status_label)) {
         geda_label_widget_set_text (gsb->status_label, text);
@@ -1288,7 +1597,6 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
 #endif
 }
 
-
 /*! \brief Set a gobject property
  */
 static void
@@ -1297,6 +1605,11 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
   GtkWidget *status_bar = (GtkWidget*)GSCHEM_STATUS_BAR (object);
 
   switch (param_id) {
+
+    case PROP_COORDINATES_MODE:
+      gschem_status_bar_set_coord_mode(status_bar, g_value_get_int (value));
+      break;
+
     case PROP_GRID_MODE:
       gschem_status_bar_set_grid_mode (status_bar, g_value_get_int (value));
       break;
@@ -1352,7 +1665,6 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
 static void
 update_grid_label (GschemStatusBar *widget)
 {
-
   if (widget->grid_label != NULL) {
 
     char scratch[6]; /* tmp char used to convert large integers */

@@ -59,7 +59,7 @@
 #define u_log_message g_message
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
-#define    msgbox(...)x_dialog_show_message(u_string_sprintf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
+#define msgbox(...)x_dialog_show_message(u_string_sprintf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 
@@ -109,6 +109,15 @@
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 
 #define MSG_SELECT_Object_1ST      "Select object first"
+
+#define COORD_DISPLAY_OFF          "OFF"
+#define COORD_DISPLAY_XY           "X=, Y="
+#define COORD_DISPLAY_COORD        "(X,Y)"
+#define COORD_DISPLAY_COMMA        "X,Y"
+#define COORD_DISPLAY_X            "X="
+#define COORD_DISPLAY_Y            "Y="
+#define COORD_DISPLAY_XONLY        "X only"
+#define COORD_DISPLAY_YONLY        "Y only"
 
 /* -----------------  Strings for Dialogs Boxes  ---------------- */
 

@@ -1,5 +1,11 @@
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_status_bar.c: Major revisions, add coordinates display with
+      popup menu to select format. Coordinate format is retained in eda_
+      config using new key "status-coord-mode" in the widget group.
+
+2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
    ** src/x/x_coord.c: Do not snap coordinates display if snap is off.
 
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>

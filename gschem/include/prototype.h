@@ -301,6 +301,7 @@ void       i_sessions_init                  (GschemToplevel *w_current);
 void       i_status_set_state_msg           (GschemToplevel *w_current, enum x_states newstate, const char *message);
 void       i_status_set_state               (GschemToplevel *w_current, enum x_states newstate);
 void       i_status_show_state              (GschemToplevel *w_current, const char *message);
+void       i_status_update_coordinates      (GschemToplevel *w_current, int x, int y);
 void       i_status_update_grid_info        (GschemToplevel *w_current);
 void       i_status_update_sensitivities    (GschemToplevel *w_current);
 void       i_status_update_title            (GschemToplevel *w_current);
@@ -840,7 +841,8 @@ int        x_settings_lookup_cursor         (int offset);
 
 /* x_status_bar.c */
 void       x_status_bar_update_grid_label   (GschemToplevel *w_current);
-void       x_status_bar_middle_mouse        (GschemToplevel *w_current, const char *string);
+void       x_status_bar_update_middle_mouse (GschemToplevel *w_current, const char *string);
+void       x_status_bar_update_third_mouse  (GschemToplevel *w_current);
 GtkWidget *x_status_bar_create              (GschemToplevel *w_current);
 
 /* x_stroke.c */

@@ -30,6 +30,7 @@
 #define GSCHEM_IS_STATUS_BAR(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_STATUS_BAR))
 #define GSCHEM_STATUS_BAR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),  GSCHEM_TYPE_STATUS_BAR, GschemStatusBarClass))
 
+#define STATUS_COORD_TEXT_BUFFER_SIZE      24  /* X=1234567, Y=1234567 || (1234567,1234567) */
 #define STATUS_GRID_TEXT_BUFFER_SIZE       24
 #define STATUS_LEFT_TEXT_BUFFER_SIZE       24
 #define STATUS_MIDDLE_TEXT_BUFFER_SIZE     36
@@ -43,6 +44,8 @@ typedef struct _GschemStatusBarBuffers GschemStatusBarBuffers;
 struct _GschemStatusBarClass
 {
   GtkHBoxClass parent_class;
+
+  void     (* reformat_coordinates) (GschemStatusBar *widget);
 
     /* signals */
   void     (* middle_action)        (GschemStatusBar *widget);
@@ -61,23 +64,28 @@ struct _GschemStatusBar
 
   GschemStatusBarBuffers *buffers;
 
+  char *  const coord_label_text;
   char *  const left_label_text;
   char *  const middle_label_text;
   char *  const right_label_text;
   char *  const grid_label_text;
   char *  const status_label_text;
 
+  GtkWidget *coord_label;
   GtkWidget *grid_label;
   GtkWidget *left_label;
   GtkWidget *middle_label;
   GtkWidget *right_label;
   GtkWidget *status_label;
 
+  int        coord_mode;
   int        grid_mode;
   int        grid_size;
   int        snap_mode;
   int        snap_size;
 
+  int        x1;
+  int        y1;
 };
 
 unsigned int  gschem_status_bar_get_type               (void);
@@ -95,15 +103,21 @@ const char*   gschem_status_bar_get_middle_button_text (GtkWidget *widget);
 
 const char*   gschem_status_bar_get_right_button_text  (GtkWidget *widget);
 
+int           gschem_status_bar_get_coord_mode         (GtkWidget *widget);
+
 int           gschem_status_bar_get_snap_mode          (GtkWidget *widget);
 
 int           gschem_status_bar_get_snap_size          (GtkWidget *widget);
 
 const char*   gschem_status_bar_get_status_text        (GtkWidget *widget);
 
+void          gschem_status_bar_set_coord_mode         (GtkWidget *widget, int mode);
+
 void          gschem_status_bar_set_grid_mode          (GtkWidget *widget, int mode);
 
 void          gschem_status_bar_set_grid_size          (GtkWidget *widget, int size);
+
+void          gschem_status_bar_set_coordinates        (GtkWidget *widget, int x, int y);
 
 void          gschem_status_bar_set_height             (GtkWidget *widget, int height);
 
