@@ -210,7 +210,6 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
       StatusBar->grid_size = grid_size;
       StatusBar->snap_mode = snap_mode;
       StatusBar->snap_size = snap_size;
-
       g_signal_emit_by_name(w_current->status_bar, "update-grid-label");
     }
   }
@@ -368,7 +367,7 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
 
   status_bar = GTK_WIDGET (g_object_new (GSCHEM_TYPE_STATUS_BAR,
                                         "grid-mode",   w_current->grid_mode,
-                                        "grid-size",   100,
+                                        "grid-size",   -1,
                                         "left-text",  _("Pick"),
                                         "middle-text", middle_mouse_text,
                                         "right-text",  right_mouse_text,
