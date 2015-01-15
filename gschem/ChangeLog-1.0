@@ -1,5 +1,9 @@
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
+   ** src/x/x_coord.c: Do not snap coordinates display if snap is off.
+
+2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_status_bar.c: In function x_status_bar_create, do not create
       the status bar widget with the current grid settings or the status bar
       does not initially update the grid label. Used grid-size = -1 to force

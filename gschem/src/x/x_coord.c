@@ -334,8 +334,11 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   GEDA_FREE(string);
 
   SCREENtoWORLD (w_current, x, y, &world_x, &world_y);
-  world_x = snap_grid (w_current, world_x);
-  world_y = snap_grid (w_current, world_y);
+
+  if (w_current->snap != SNAP_OFF) {
+    world_x = snap_grid (w_current, world_x);
+    world_y = snap_grid (w_current, world_y);
+  }
 
   string = u_string_sprintf("(%d, %d)", world_x, world_y);
   SetEntryText(world_entry, string );
