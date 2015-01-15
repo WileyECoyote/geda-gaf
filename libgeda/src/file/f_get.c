@@ -566,6 +566,7 @@ f_get_file_contents(const char *filename, char **contents, unsigned int *length,
       retval = get_contents_stdio (filename, f, contents, length, err);
     }
   }
+
   return retval;
 }
 

@@ -413,16 +413,16 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
                GError **err)
 {
-  char *buffer = NULL;
-  size_t size  = 0;
+  char  *buffer = (NULL);
+  size_t size   = 0;
   GList *result;
 
   /* Return NULL if error reporting is enabled and the return location
    * for an error isn't NULL. */
-  g_return_val_if_fail (err == NULL || *err == NULL, NULL);
+  g_return_val_if_fail (err == (NULL) || *err == NULL, (NULL));
 
   if (!f_get_file_contents (filename, &buffer, &size, err)){
-    return NULL;
+    return (NULL);
   }
 
   /* Parse file contents */

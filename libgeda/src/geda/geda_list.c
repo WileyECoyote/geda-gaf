@@ -54,7 +54,7 @@ static GObjectClass *geda_list_parent_class = NULL;
  *  \param [in]  instance       The GedaList we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
  */
-static void geda_list_instance_init( GTypeInstance *instance, void *g_class )
+static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaList *list = (GedaList *)instance;
 
@@ -71,12 +71,12 @@ static void geda_list_instance_init( GTypeInstance *instance, void *g_class )
  *
  *  \param [in] object  The GObject being finalized.
  */
-static void geda_list_finalize( GObject *object )
+static void geda_list_finalize(GObject *object)
 {
-  GedaList *list = GEDA_LIST( object );
-  g_list_free( list->glist );
+  GedaList *list = GEDA_LIST(object);
+  g_list_free(list->glist);
 
-  G_OBJECT_CLASS( geda_list_parent_class )->finalize( object );
+  G_OBJECT_CLASS(geda_list_parent_class)->finalize(object);
 }
 
 
@@ -89,17 +89,17 @@ static void geda_list_finalize( GObject *object )
  *  \param [in]  g_class       The GedaList we are initialising
  *  \param [in]  g_class_data  (unused)
  */
-static void geda_list_class_init(void *g_class, void *g_class_data )
+static void geda_list_class_init(void *g_class, void *g_class_data)
 {
-  GedaListClass *klass        = GEDA_LIST_CLASS( g_class );
-  GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
-  geda_list_parent_class      = g_type_class_peek_parent( klass );
+  GedaListClass *klass        = GEDA_LIST_CLASS(g_class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+  geda_list_parent_class      = g_type_class_peek_parent(klass);
 
   gobject_class->finalize     = geda_list_finalize;
 
   geda_list_signals[ CHANGED ] =
     g_signal_new ("changed",
-                  G_OBJECT_CLASS_TYPE( gobject_class ),
+                  G_OBJECT_CLASS_TYPE(gobject_class),
                   0     /*signal_flags */,
                   0     /*class_offset */,
                   NULL, /* accumulator */
@@ -107,7 +107,7 @@ static void geda_list_class_init(void *g_class, void *g_class_data )
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0     /* n_params */
-                 );
+                );
 }
 
 
@@ -148,8 +148,8 @@ GedaType geda_list_get_type(void)
  *
  *  \return pointer to the new GedaList object.
  */
-GedaList *geda_list_new( void ) {
-  return g_object_new( GEDA_TYPE_LIST, NULL );
+GedaList *geda_list_new(void) {
+  return g_object_new(GEDA_TYPE_LIST, NULL);
 }
 
 
@@ -161,10 +161,10 @@ GedaList *geda_list_new( void ) {
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item item to add to the GedaList.
  */
-void geda_list_add( GedaList *list, void *item )
+void geda_list_add(GedaList *list, void *item)
 {
-  list->glist = g_list_append(list->glist, item );
-  g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+  list->glist = g_list_append(list->glist, item);
+  g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
 
@@ -177,20 +177,20 @@ void geda_list_add( GedaList *list, void *item )
  *  \param [in] list Pointer to the GedaList
  *  \param [in] items GList of items to add to the GedaList.
  */
-void geda_list_add_glist( GedaList *list, GList *items )
+void geda_list_add_glist(GedaList *list, GList *items)
 {
-  GList *glist_copy = g_list_copy( items );
-  list->glist = g_list_concat(list->glist, glist_copy );
-  g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+  GList *glist_copy = g_list_copy(items);
+  list->glist = g_list_concat(list->glist, glist_copy);
+  g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
-void geda_list_add_glist_unique ( GedaList *list, GList *items )
+void geda_list_add_glist_unique (GedaList *list, GList *items)
 {
   GList *one_list = NULL;
   GList *iter;
 
   for (iter = items; iter; iter = iter->next) {
-    if (!geda_list_is_in_list( list, iter->data)) {
+    if (!geda_list_is_in_list(list, iter->data)) {
       if (!g_list_find(one_list, iter->data)) {
         one_list = g_list_append(one_list, iter->data);
       }
@@ -209,7 +209,7 @@ void geda_list_add_glist_unique ( GedaList *list, GList *items )
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item item to add to the GedaList.
  */
-void geda_list_add_unique ( GedaList *list, void *item )
+void geda_list_add_unique (GedaList *list, void *item)
 {
   if (!geda_list_is_in_list(list, item)) {
     geda_list_add(list, item);
@@ -262,7 +262,7 @@ bool geda_list_add_unique_string (GedaList *list, char  *text)
  *
  *  \retval pointer to copy of a Glist  the GedaList.
  */
-GList *geda_list_copy_glist( GedaList *list )
+GList *geda_list_copy_glist(GedaList *list)
 {
   return g_list_copy(list->glist);
 }
@@ -277,13 +277,13 @@ GList *geda_list_copy_glist( GedaList *list )
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item to find for in the GedaList.
  */
-void *geda_list_find( GedaList *list, void *item )
+void *geda_list_find(GedaList *list, void *item)
 {
   return g_list_find(list->glist, item);
 }
 
 
-int geda_glist_is_homogeneous_objects ( GList *list)
+int geda_glist_is_homogeneous_objects (GList *list)
 {
   GList  *o_iter;
   Object *object;
@@ -321,7 +321,7 @@ int geda_glist_is_homogeneous_objects ( GList *list)
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item to find for in the GedaList.
  */
-bool geda_list_is_in_list( GedaList *list, void *item )
+bool geda_list_is_in_list(GedaList *list, void *item)
 {
   return g_list_find(list->glist, item) ? 1 : 0;
 }
@@ -337,12 +337,12 @@ bool geda_list_is_in_list( GedaList *list, void *item )
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item to remove from the GedaList.
  */
-void geda_list_remove( GedaList *list, void *item )
+void geda_list_remove(GedaList *list, void *item)
 {
   if (g_list_find(list->glist, item)) {
 
   list->glist = g_list_remove(list->glist, item);
-    g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+    g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
   }
 }
 
@@ -353,10 +353,10 @@ void geda_list_remove( GedaList *list, void *item )
  *
  *  \param [in] list Pointer to the GedaList
  */
-void geda_list_remove_all( GedaList *list )
+void geda_list_remove_all(GedaList *list)
 {
   g_list_free(list->glist);
   list->glist = NULL;
-  g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+  g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 /** @} endgroup geda-list-object */
