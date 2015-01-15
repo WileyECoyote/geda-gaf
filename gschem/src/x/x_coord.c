@@ -146,7 +146,7 @@ x_dialog_coord_dnd_drag_receive
 
         /* Check for errors */
         if (err) {
-          char *errmsg = g_strdup_printf ( _("An error occurred while receiving dropped data: %s."), err->message);
+          char *errmsg = u_string_sprintf ( _("An error occurred while receiving dropped data: %s."), err->message);
           titled_pango_error_dialog ( _("<b>Data error.</b>"), errmsg, _("Drag&Drop failed") );
           GEDA_FREE(errmsg);
           g_error_free(err);
@@ -329,7 +329,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   screen_entry = gtk_object_get_data(GTK_OBJECT(Dialog), "screen");
   world_entry  = gtk_object_get_data(GTK_OBJECT(Dialog), "world");
 
-  string = g_strdup_printf("(%d, %d)", x, y);
+  string = u_string_sprintf("(%d, %d)", x, y);
   SetEntryText(screen_entry, string );
   GEDA_FREE(string);
 
@@ -337,7 +337,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   world_x = snap_grid (w_current, world_x);
   world_y = snap_grid (w_current, world_y);
 
-  string = g_strdup_printf("(%d, %d)", world_x, world_y);
+  string = u_string_sprintf("(%d, %d)", world_x, world_y);
   SetEntryText(world_entry, string );
   GEDA_FREE(string);
 }

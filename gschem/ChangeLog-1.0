@@ -1,3 +1,7 @@
+2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_coord.c: Replace g_strdup_printf with u_string_sprintf
+
 2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings.c: Add call to i_status_update_grid_info after
