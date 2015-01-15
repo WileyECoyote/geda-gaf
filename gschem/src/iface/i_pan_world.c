@@ -78,9 +78,9 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
   int diff;
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
-  #if DEBUG
+#if DEBUG
   printf("i_pan_world_general(): world_cx=%f, world_cy=%f\n",world_cx, world_cy);
-  #endif
+#endif
 
   /* calc minimum zoomfactors and choose the smaller one. They are equal
    *    if the aspectratio of the world is the same as the screen ratio */
@@ -88,9 +88,9 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
   zy = (double) w_current->screen_height / (w_current->world_bottom - w_current->world_top);
   zoom_min = zx < zy ? zx : zy;
 
-  #if DEBUG
+#if DEBUG
   printf("  zx_min=%f, zy_min=%f , flags=%d\n ",zx, zy, flags);
-  #endif
+#endif
 
   /* to_screen_x_constant and to_screen_y_constant are almost the same.
    *    lets use to_screen_y_constant */
@@ -165,7 +165,7 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
   }
 
-  #if DEBUG
+#if DEBUG
   printf("zoom_old: %f, zoom_new: %f \n ",zoom_old, zoom_new);
   printf("left: %d, right: %d, top: %d, bottom: %d\n",
          toplevel->page_current->left, toplevel->page_current->right,
@@ -175,7 +175,7 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
          - toplevel->page_current->left) /
          (float) fabs(toplevel->page_current->bottom
          - toplevel->page_current->top ));
-  #endif
+#endif
 
   /* x_window_setup_page */
   x_window_setup_page(w_current, toplevel->page_current,
@@ -185,7 +185,7 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
              toplevel->page_current->bottom);
 
   /* update the status bar if the zoom changed */
-  if( zoom_new  != zoom_old && w_current->status_bar) {
+  if (zoom_new != zoom_old && w_current->status_bar) {
     i_status_update_grid_info (w_current);
   }
 
