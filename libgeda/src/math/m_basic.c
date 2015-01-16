@@ -25,12 +25,11 @@
 
 #include "libgeda_priv.h"
 
-/*! \brief calculate the distance between two points
+/*! \brief Calculate the distance between two points
  *
  *  \par Function Description
- *  This function calculates the distance between two points.
- *  The two points are defined by the (\a x1, \a y1) and (\a x2, \a y2)
- *  parameters.
+ *  This function calculates the distance between two points defined
+ *  by the (\a x1, \a y1) and (\a x2, \a y2) parameters.
  *
  *  \param [in]  x1  x-value of the first point
  *  \param [in]  y1  y-value of the first point

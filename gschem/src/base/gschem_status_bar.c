@@ -1561,11 +1561,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
 
       /* Get magnitude and snap if snap mode active */
 
-#ifdef HAS_RINT
-      length = rint(m_line_length (x0, y0, x1, y1));
-#else
-      length = (int)m_line_length (x0, y0, x1, y1) + 0.5;
-#endif
+      length = m_line_length(x0, y0, x1, y1);
 
       if (status_bar->snap_mode != SNAP_OFF) {
         length = snap_length (length);

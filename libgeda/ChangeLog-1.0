@@ -1,5 +1,12 @@
 2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_basic.c: Minor revision to Doxygen comments.
+
+    * src/math/m_line.c: Revise to "really" return an integer, add
+      Doxygen comments.
+
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_basic.c: Use strlen instead of sizeof in f_open,
       modify the conditional for flags & F_OPEN_RC, the close brace
       was in the wrong place, nest strcats.

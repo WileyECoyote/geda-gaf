@@ -114,6 +114,7 @@
 #define COORD_DISPLAY_XY           "X=, Y="
 #define COORD_DISPLAY_COORD        "(X,Y)"
 #define COORD_DISPLAY_COMMA        "X,Y"
+#define COORD_DISPLAY_VECTOR       "Vector"
 #define COORD_DISPLAY_X            "X="
 #define COORD_DISPLAY_Y            "Y="
 #define COORD_DISPLAY_XONLY        "X only"

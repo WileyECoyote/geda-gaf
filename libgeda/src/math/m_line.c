@@ -32,9 +32,21 @@
 
 #include <geda_debug.h>
 
+/*! \brief Returns integer distance between two points
+ *
+ *  \sa m_distance
+ */
 int m_line_length (int x1, int y1, int x2, int y2)
 {
-  return m_distance (x1, y1, x2, y2);
+  int length;
+
+#ifdef HAS_RINT
+      length = rint(m_distance (x1, y1, x2, y2));
+#else
+      length = (int)m_distance (x1, y1, x2, y2) + 0.5;
+#endif
+
+  return length;
 };
 
 /*! \brief Calculates the distance between the given point and the closest
