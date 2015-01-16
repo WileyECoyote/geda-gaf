@@ -37,17 +37,20 @@
 #define STATUS_RIGHT_LEFT_TEXT_BUFFER_SIZE 24
 #define STATUS_STATUS_TEXT_BUFFER_SIZE     96
 
+#define COORD_FORMAT_VECTOR 3
+
 typedef enum
 {
   COORD_FORMAT_OFF     =   0,
-  COORD_FORMAT_VECTOR  =   1,
-  COORD_FORMAT_XY      =   2,
-  COORD_FORMAT_COORD   =   4,
-  COORD_FORMAT_COMMA   =   8,
-  COORD_FORMAT_X       =  16,
-  COORD_FORMAT_Y       =  32,
+  COORD_FORMAT_V180    =   1,
+  COORD_FORMAT_V360    =   2,
+  COORD_FORMAT_XY      =   4,
+  COORD_FORMAT_COORD   =   8,
+  COORD_FORMAT_COMMA   =  16,
+  COORD_FORMAT_X       =  32,
+  COORD_FORMAT_Y       =  64,
   COORD_FORMAT_XONLY   =  64,
-  COORD_FORMAT_YONLY   = 128
+  COORD_FORMAT_YONLY   = 256
 } IDE_COORD_FORMATS;
 
 typedef struct _GschemStatusBar GschemStatusBar;

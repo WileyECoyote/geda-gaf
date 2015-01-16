@@ -270,17 +270,16 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
  *  Spawn thread to update the Grid and Snap Display
  *
  *  \param [in] w_current GschemToplevel structure
+ *  \param [in] w_x       Current x coordinate of pointer in world units.
+ *  \param [in] w_y       Current y coordinate of pointer in world units.
+ *
  */
-void i_status_update_coordinates(GschemToplevel *w_current, int x, int y)
+void i_status_update_coordinates(GschemToplevel *w_current, int w_x, int w_y)
 {
-  /* If visible update the Coord Dialog */
-  if (w_current->cowindow) {
-    x_dialog_coord_update_display(w_current, x, y);
-  }
   /* If coordinate display is OFF we do not need to do */
   if (gschem_status_bar_get_coord_mode(w_current->status_bar)) {
 
-    int x1, y1, x2, y2;
+    int x1, y1;
 
     if (w_current->inside_action) {
       x1 = w_current->first_wx;
@@ -291,13 +290,7 @@ void i_status_update_coordinates(GschemToplevel *w_current, int x, int y)
       y1 = -0;
     }
 
-    SCREENtoWORLD (w_current, x, y, &x2, &y2);
-    if (w_current->snap != SNAP_OFF) {
-      x2 = snap_grid (w_current, x2);
-      y2 = snap_grid (w_current, y2);
-    }
-
-    gschem_status_bar_set_coordinates(w_current->status_bar, x1, y1, x2, y2);
+    gschem_status_bar_set_coordinates(w_current->status_bar, x1, y1, w_x, w_y);
   }
 }
 

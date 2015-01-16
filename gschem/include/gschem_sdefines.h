@@ -111,10 +111,11 @@
 #define MSG_SELECT_Object_1ST      "Select object first"
 
 #define COORD_DISPLAY_OFF          "OFF"
+#define COORD_DISPLAY_VEC180       "Vector 180"
+#define COORD_DISPLAY_VEC360       "Vector 360"
 #define COORD_DISPLAY_XY           "X=, Y="
 #define COORD_DISPLAY_COORD        "(X,Y)"
 #define COORD_DISPLAY_COMMA        "X,Y"
-#define COORD_DISPLAY_VECTOR       "Vector"
 #define COORD_DISPLAY_X            "X="
 #define COORD_DISPLAY_Y            "Y="
 #define COORD_DISPLAY_XONLY        "X only"

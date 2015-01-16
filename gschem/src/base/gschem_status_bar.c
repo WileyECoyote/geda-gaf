@@ -110,7 +110,8 @@ typedef struct st_popup_menu_entry {
 static StatusPopupEntry coord_popup_items[] = {
 
   { N_( COORD_DISPLAY_OFF ),    COORD_FORMAT_OFF   },
-  { N_( COORD_DISPLAY_VECTOR ), COORD_FORMAT_VECTOR},
+  { N_( COORD_DISPLAY_VEC180 ), COORD_FORMAT_V180  },
+  { N_( COORD_DISPLAY_VEC360 ), COORD_FORMAT_V360  },
   { N_( COORD_DISPLAY_XY ),     COORD_FORMAT_XY    },
   { N_( COORD_DISPLAY_COORD ),  COORD_FORMAT_COORD },
   { N_( COORD_DISPLAY_COMMA ),  COORD_FORMAT_COMMA },
@@ -1214,8 +1215,10 @@ gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
   const char *grp = WIDGET_CONFIG_GROUP;
   const char *key = "status-coord-mode";
 
-  inline int get_coord_mode(int new_mode) {
-    return (new_mode == COORD_FORMAT_VECTOR) ? gsb->coord_mode |= 1 : new_mode;
+  inline unsigned get_coord_mode(int new_mode) {
+    gsb->coord_mode &= ~COORD_FORMAT_VECTOR; /* Clear off any old vector bits */
+    return ((new_mode & COORD_FORMAT_V180) || (new_mode & COORD_FORMAT_V360))
+            ? gsb->coord_mode |= new_mode : new_mode;
   }
 
 #if defined (G_DISABLE_ASSERT)
@@ -1512,7 +1515,8 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     const char *text;
   } coordinate_formats[] = {
     {_(COORD_DISPLAY_OFF)},
-    {"%d<%d"},                /* COORD_FORMAT_VECTOR */
+    {"%d<%d"},                /* COORD_FORMAT_V180 */
+    {"%d<<%d"},               /* COORD_FORMAT_V360 */
     {"X=%d, Y=%d"},           /* COORD_FORMAT_XY */
     {"(%d, %d)"},             /* COORD_FORMAT_COORD */
     {"%d, %d"},               /* COORD_FORMAT_COMMA */
@@ -1530,21 +1534,6 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     status_bar->y1 = y1;
   }
 
-  /* Called if vectorizing and the snap mode is not off */
-  inline int snap_length(int value) {
-
-    int p, m, n;
-
-    register int snap_grid = status_bar->snap_size;
-
-    p = value / snap_grid;
-    m = value % snap_grid;
-    n = p * snap_grid;
-    if (m > snap_grid / 2)
-      n += snap_grid;
-    return(n);
-  }
-
   /* Returns string to display on the status bar */
   inline char *get_coordinates_text(unsigned mode) {
 
@@ -1557,34 +1546,34 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     index = 0;
 
     /* Check if vector format and valid first abscissa */
-    if (mode & COORD_FORMAT_VECTOR && x0 != -0) {
+    if ((mode & COORD_FORMAT_V180  ||
+         mode & COORD_FORMAT_V360) && x0 != -0) {
 
-      /* Get magnitude and snap if snap mode active */
-
+      /* Get the magnitude*/
       length = m_line_length(x0, y0, x1, y1);
 
-      if (status_bar->snap_mode != SNAP_OFF) {
-        length = snap_length (length);
-      }
-
       /* Get the angle */
-      if (x1 - x0) {
-        radians = atan2((y1 - y0), (x1 - x0));
-        degrees = radians * 180.0 / M_PI;
+      radians = atan2((y1 - y0), (x1 - x0));
+      degrees = radians * 180.0 / M_PI;
+
+      if (mode & COORD_FORMAT_V360) {
+        if (degrees < 0) {
+          degrees = degrees + 360;
+        }
+        index = COORD_FORMAT_V360;
       }
       else {
-        degrees = 0;
+        index = COORD_FORMAT_V180;
       }
 
-      /* We know which one to use */
-      string = u_string_sprintf(coordinate_formats[1].text, length, degrees);
+      string = u_string_sprintf(coordinate_formats[index].text, length, degrees);
     }
     else {
 
-      /* Clear the vector bit, for case not inside_action */
+      /* Clear the vector bits, for case not inside_action */
       mode &= ~COORD_FORMAT_VECTOR;
 
-      /* Look for next bit, the shift count is the index to the string */
+      /* Look for next bit, the shift count is index to the string */
       while(mode) {
         index++;
         mode = mode>>1;
