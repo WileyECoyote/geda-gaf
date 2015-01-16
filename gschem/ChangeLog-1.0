@@ -1,5 +1,16 @@
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_status_bar.c: More revisions; add "Vector" display to
+      coordinate display formats. Remove HAVE_MATH_H, turns out, have
+      math.h but not HAVE_MATH_H. Get rid of switch case in function
+      gschem_status_bar_set_coordinates, use string table for formats
+      instead. I Like.
+
+    * gschem_status_bar.h: Relocate IDE_COORD_FORMATS enumerator from the
+      source file and made bitwise for efficiency.
+
+2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_status_bar.c: Major revisions, add coordinates display with
       popup menu to select format. Coordinate format is retained in eda_
       config using new key "status-coord-mode" in the widget group.

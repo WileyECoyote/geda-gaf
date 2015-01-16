@@ -51,7 +51,9 @@ void i_status_set_state_msg(GschemToplevel *w_current,
                             enum            x_states newstate,
                             const char     *message)
 {
-  /* The add picture mode is unquie */
+  /* The add picture mode is unique because this mode is the only
+   * "adder" requiring resources to be freed when transitioning to
+   *  any other state */
   if ((w_current->event_state == DRAWPICTURE) ||
       (w_current->event_state == ENDPICTURE))
   {
@@ -260,6 +262,43 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 
   i_status_update_status(w_current, what_to_say);
   GEDA_FREE(what_to_say);
+}
+
+/*! \brief Update Coordinate Display
+ *
+ *  \par Function Description
+ *  Spawn thread to update the Grid and Snap Display
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void i_status_update_coordinates(GschemToplevel *w_current, int x, int y)
+{
+  /* If visible update the Coord Dialog */
+  if (w_current->cowindow) {
+    x_dialog_coord_update_display(w_current, x, y);
+  }
+  /* If coordinate display is OFF we do not need to do */
+  if (gschem_status_bar_get_coord_mode(w_current->status_bar)) {
+
+    int x1, y1, x2, y2;
+
+    if (w_current->inside_action) {
+      x1 = w_current->first_wx;
+      y1 = w_current->first_wy;
+    }
+    else {
+      x1 = -0;
+      y1 = -0;
+    }
+
+    SCREENtoWORLD (w_current, x, y, &x2, &y2);
+    if (w_current->snap != SNAP_OFF) {
+      x2 = snap_grid (w_current, x2);
+      y2 = snap_grid (w_current, y2);
+    }
+
+    gschem_status_bar_set_coordinates(w_current->status_bar, x1, y1, x2, y2);
+  }
 }
 
 /*! \brief Idle Update the Grid and Snap Display on the gschem Status-Bar

@@ -37,6 +37,19 @@
 #define STATUS_RIGHT_LEFT_TEXT_BUFFER_SIZE 24
 #define STATUS_STATUS_TEXT_BUFFER_SIZE     96
 
+typedef enum
+{
+  COORD_FORMAT_OFF     =   0,
+  COORD_FORMAT_VECTOR  =   1,
+  COORD_FORMAT_XY      =   2,
+  COORD_FORMAT_COORD   =   4,
+  COORD_FORMAT_COMMA   =   8,
+  COORD_FORMAT_X       =  16,
+  COORD_FORMAT_Y       =  32,
+  COORD_FORMAT_XONLY   =  64,
+  COORD_FORMAT_YONLY   = 128
+} IDE_COORD_FORMATS;
+
 typedef struct _GschemStatusBar GschemStatusBar;
 typedef struct _GschemStatusBarClass GschemStatusBarClass;
 typedef struct _GschemStatusBarBuffers GschemStatusBarBuffers;
@@ -84,6 +97,15 @@ struct _GschemStatusBar
   int        snap_mode;
   int        snap_size;
 
+  /* Unfortunately, we have to keep a copy of the last coordinates used.
+   * The values are only used when the user changes coordinates formats
+   * using the pop-up menu, in which case the coordinates display needs
+   * to be updated but we would not get new coordinates until the mouse
+   * is moved, we could temporarily turn off but it looks better if the
+   * new format instantly appears with the previous values.
+   **/
+  int        x0;
+  int        y0;
   int        x1;
   int        y1;
 };
@@ -117,7 +139,7 @@ void          gschem_status_bar_set_grid_mode          (GtkWidget *widget, int m
 
 void          gschem_status_bar_set_grid_size          (GtkWidget *widget, int size);
 
-void          gschem_status_bar_set_coordinates        (GtkWidget *widget, int x, int y);
+void          gschem_status_bar_set_coordinates        (GtkWidget *widget, int x0, int y0, int x1, int y1);
 
 void          gschem_status_bar_set_height             (GtkWidget *widget, int height);
 

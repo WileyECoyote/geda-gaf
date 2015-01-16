@@ -33,9 +33,8 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#ifdef HAVE_MATH_H
+
 #include <math.h>
-#endif
 
 #include "gschem.h"
 #include "geda_widgets.h"
@@ -66,18 +65,6 @@ enum {
   SET_THIRD_MOUSEPAN,
   UPDATE_GRID_LABEL,
   LAST_SIGNAL
-};
-
-enum
-{
-  COORD_FORMAT_OFF,
-  COORD_FORMAT_XY,
-  COORD_FORMAT_COORD,
-  COORD_FORMAT_COMMA,
-  COORD_FORMAT_X,
-  COORD_FORMAT_Y,
-  COORD_FORMAT_XONLY,
-  COORD_FORMAT_YONLY
 };
 
 struct _GschemStatusBarBuffers
@@ -123,6 +110,7 @@ typedef struct st_popup_menu_entry {
 static StatusPopupEntry coord_popup_items[] = {
 
   { N_( COORD_DISPLAY_OFF ),    COORD_FORMAT_OFF   },
+  { N_( COORD_DISPLAY_VECTOR ), COORD_FORMAT_VECTOR},
   { N_( COORD_DISPLAY_XY ),     COORD_FORMAT_XY    },
   { N_( COORD_DISPLAY_COORD ),  COORD_FORMAT_COORD },
   { N_( COORD_DISPLAY_COMMA ),  COORD_FORMAT_COMMA },
@@ -153,16 +141,16 @@ static StatusPopupEntry third_popup_items[] = {
 
 static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
 {
-  GschemStatusBar *status_bar;
+  GschemStatusBar *bar;
   GtkWidget       *widget;
 
   unsigned   mode = (unsigned)(long*) user_data;
 
-  status_bar = g_object_get_data (G_OBJECT(menuitem), "status-bar");
-  widget     = (GtkWidget*)status_bar;
+  bar    = g_object_get_data (G_OBJECT(menuitem), "status-bar");
+  widget = (GtkWidget*)bar;
 
   gschem_status_bar_set_coord_mode (widget, mode);
-  gschem_status_bar_set_coordinates (widget, status_bar->x1, status_bar->y1);
+  gschem_status_bar_set_coordinates (widget, bar->x0, bar->y0, bar->x1, bar->y1);
 }
 
 static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
@@ -390,7 +378,7 @@ static bool third_button_released (GtkWidget      *label,
 
 static void gschem_status_bar_reformat_coordinates (GschemStatusBar *gsb)
 {
-  gschem_status_bar_set_coordinates (GTK_WIDGET(gsb), gsb->x1, gsb->y1);
+  gschem_status_bar_set_coordinates (GTK_WIDGET(gsb), gsb->x0, gsb->y0, gsb->x1, gsb->y1);
 }
 
 /*! \brief Dispose of the object
@@ -844,10 +832,12 @@ gschem_status_bar_get_right_button_text( GtkWidget *widget)
 }
 
 /*! \brief Get the Status Bar Coordinates Mode
- *   This function returns the coordinates display mode
- *   used by the #GschemStatusBar. If \a widget is not
- *   GschemStatusBar, aka w_cuurent->status_bar is NULL
- *   the function return 0 without squealing.
+ *
+ *  \par Function Description
+ *   This function returns the coordinates display mode used by
+ *   the #GschemStatusBar. If \a widget is not GschemStatusBar,
+ *   aka w_current->status_bar is NULL the function returns 0
+ *   without squealing.
  *
  *  \param [in] widget This GschemStatusBar
  *
@@ -1206,19 +1196,33 @@ gschem_status_bar_init (GschemStatusBar *widget)
 
 /*! \brief Set the mode used to display coordinates on the status bar
  *
+ *  \par Function Description
+ *  This routine sets the coordinate display mode on the status bar,
+ *  and, if the value is not a "solo" format, save the value to the
+ *  key file. The "solo" formats are not saved because it is assumed
+ *  users would not want to retain this state between sessions.
+ *
  *  \param [in] widget This GschemStatusBar
  *  \param [in] mode   The coordinate mode
  */
 void
 gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
 {
+  GschemStatusBar *gsb;
+
   EdaConfig  *cfg = eda_config_get_user_context ();
   const char *grp = WIDGET_CONFIG_GROUP;
+  const char *key = "status-coord-mode";
+
+  inline int get_coord_mode(int new_mode) {
+    return (new_mode == COORD_FORMAT_VECTOR) ? gsb->coord_mode |= 1 : new_mode;
+  }
 
 #if defined (G_DISABLE_ASSERT)
-  (GSCHEM_STATUS_BAR(widget))->coord_mode = mode;
-  if (mode < COORD_FORMAT_X) {
-    eda_config_set_integer (cfg, grp, "status-coord-mode", mode);
+  gsb = GSCHEM_STATUS_BAR(widget)
+  gsb->coord_mode = get_coord_mode(mode);
+  if (coord_mode < COORD_FORMAT_X) {
+    eda_config_set_integer (cfg, grp, key, gsb->coord_mode);
   }
 #else
 
@@ -1227,9 +1231,10 @@ gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
   }
   else {
     if (GSCHEM_IS_STATUS_BAR(widget)) {
-      ((GschemStatusBar*)widget)->coord_mode = mode;
+      gsb = (GschemStatusBar*)widget;
+      gsb->coord_mode = get_coord_mode(mode);
       if (mode < COORD_FORMAT_X) {
-        eda_config_set_integer (cfg, grp, "status-coord-mode", mode);
+        eda_config_set_integer (cfg, grp, key, gsb->coord_mode);
       }
     }
     else {
@@ -1477,79 +1482,144 @@ gschem_status_bar_set_snap_size (GtkWidget *widget, int size)
 
 /*! \brief Set the Coordinate text displayed on the status bar
  *
- *  \param [in] widget This GschemStatusBar
- *  \param [in] x      The status text
- *  \param [in] y      The status text
+ *  \par Function Description
+ *   This routine sets the coordinate string displayed on the status bar.
+ *   The x0 and y0 arguments are only used in vector mode, otherwise both
+ *   are ignored. In vector mode, if the x0 argument is equal to negative
+ *   zero, yes -0, the format specified prior to changing to vector mode
+ *   is used. In our scheme, vector mode is bit 1 of mode, the other bits
+ *   are used for the "other" formats. For the other formats we calculate
+ *   the index to the format string by counting bit shifts after clearing
+ *   bit 1, which may be set but gschem is not inside an action.
+ *
+ *  \param [in] widget  This GschemStatusBar
+ *  \param [in] x0      First abscissa or -0 in not inside an action
+ *  \param [in] y0      First ordinate, used if in vectored mode and x0
+ *  \param [in] x1      Second abscissa, is X value of the cursor position
+ *  \param [in] y1      Second ordinate, is Y value of the cursor position
+ *
+ *  \note All coordinates must be world (since this module has no w_current).
  *
  *  \sa gschem_status_bar_get_coord_mode gschem_status_bar_set_coord_mode
  */
 void
-gschem_status_bar_set_coordinates (GtkWidget *widget, int x, int y)
+gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, int y1)
 {
-  char *text;
+  GschemStatusBar *status_bar;
+  char  *text;
 
-  char *get_coordinates_text(GschemStatusBar *status_bar) {
+  struct st_coordinate_formats {
+    const char *text;
+  } coordinate_formats[] = {
+    {_(COORD_DISPLAY_OFF)},
+    {"%d<%d"},                /* COORD_FORMAT_VECTOR */
+    {"X=%d, Y=%d"},           /* COORD_FORMAT_XY */
+    {"(%d, %d)"},             /* COORD_FORMAT_COORD */
+    {"%d, %d"},               /* COORD_FORMAT_COMMA */
+    {"X=%d"},                 /* COORD_FORMAT_X */
+    {"y=%d"},                 /* COORD_FORMAT_Y */
+    {"X=%d"},                 /* COORD_FORMAT_XONLY */
+    {"y=%d"},                 /* COORD_FORMAT_YONLY */
+  };
 
-    char *string;
-    int   mode;
+  /* Save coodinates in GschemStatusBar, see gschem_status_bar.h */
+  inline void save_coordinates(void) {
+    status_bar->x0 = x0;
+    status_bar->y0 = x0;
+    status_bar->x1 = x1;
+    status_bar->y1 = y1;
+  }
 
-    mode = status_bar->coord_mode;
+  /* Called if vectorizing and the snap mode is not off */
+  inline int snap_length(int value) {
 
-    switch (mode) {
-      case COORD_FORMAT_OFF:
-        string = u_string_strdup(_(COORD_DISPLAY_OFF));
-        break;
+    int p, m, n;
 
-      case COORD_FORMAT_XY:
-        string = u_string_sprintf("X=%d, Y=%d", x, y);
-        break;
+    register int snap_grid = status_bar->snap_size;
 
-      case COORD_FORMAT_COORD:
-        string = u_string_sprintf("(%d, %d)", x, y);
-        break;
+    p = value / snap_grid;
+    m = value % snap_grid;
+    n = p * snap_grid;
+    if (m > snap_grid / 2)
+      n += snap_grid;
+    return(n);
+  }
 
-      case COORD_FORMAT_COMMA:
-        string = u_string_sprintf("%d, %d", x, y);
-        break;
+  /* Returns string to display on the status bar */
+  inline char *get_coordinates_text(unsigned mode) {
 
-      case COORD_FORMAT_X:
-        string = u_string_sprintf("X=%d", x);
-        break;
+    char  *string;
+    int    degrees;
+    int    index;
+    int    length;
+    double radians;
 
-      case COORD_FORMAT_Y:
-        string = u_string_sprintf("Y=%d", y);
-        break;
+    index = 0;
 
-      case COORD_FORMAT_XONLY:
-        string = u_string_sprintf("%d", x);
-        break;
+    /* Check if vector format and valid first abscissa */
+    if (mode & COORD_FORMAT_VECTOR && x0 != -0) {
 
-      case COORD_FORMAT_YONLY:
-        string = u_string_sprintf("%d", y);
-        break;
+      /* Get magnitude and snap if snap mode active */
 
-      default:
-        string = u_string_sprintf("%d, %d", x, y);
+#ifdef HAS_RINT
+      length = rint(m_line_length (x0, y0, x1, y1));
+#else
+      length = (int)m_line_length (x0, y0, x1, y1) + 0.5;
+#endif
+
+      if (status_bar->snap_mode != SNAP_OFF) {
+        length = snap_length (length);
+      }
+
+      /* Get the angle */
+      if (x1 - x0) {
+        radians = atan2((y1 - y0), (x1 - x0));
+        degrees = radians * 180.0 / M_PI;
+      }
+      else {
+        degrees = 0;
+      }
+
+      /* We know which one to use */
+      string = u_string_sprintf(coordinate_formats[1].text, length, degrees);
     }
-    status_bar->x1 = x;
-    status_bar->y1 = y;
+    else {
+
+      /* Clear the vector bit, for case not inside_action */
+      mode &= ~COORD_FORMAT_VECTOR;
+
+      /* Look for next bit, the shift count is the index to the string */
+      while(mode) {
+        index++;
+        mode = mode>>1;
+      }
+
+      string = u_string_sprintf(coordinate_formats[index].text, x1, y1);
+    }
+
     return string;
   }
 
 #if defined (G_DISABLE_ASSERT)
-  text = get_coordinates_text(GSCHEM_STATUS_BAR(widget));
+
+  status_bar = GSCHEM_STATUS_BAR(widget);
+  text       = get_coordinates_text(status_bar->coord_mode);
   geda_label_set_text ((GedaLabel*)status_bar->coord_label, text);
+  save_coordinates();
+
 #else
+
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
     text = NULL;
   }
   else {
     if (GSCHEM_IS_STATUS_BAR(widget)) {
-      GschemStatusBar *gsb = (GschemStatusBar*)widget;
-      if (GEDA_IS_LABEL(gsb->coord_label)) {
-        text = get_coordinates_text(gsb);
-        geda_label_widget_set_text (gsb->coord_label, text);
+      status_bar = (GschemStatusBar*)widget;
+      if (GEDA_IS_LABEL(status_bar->coord_label)) {
+        text = get_coordinates_text(status_bar->coord_mode);
+        geda_label_widget_set_text (status_bar->coord_label, text);
+        save_coordinates();
       }
       else {
         BUG_MSG("coord_label is not a GedaLabel");
@@ -1561,7 +1631,9 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x, int y)
       text = NULL;
     }
   }
+
 #endif
+
   GEDA_FREE(text);
 }
 
