@@ -223,46 +223,62 @@ void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
   *y = mil_y (w_current, my);
 }
 
-/*! \brief Find the closest grid coordinate.
+/*! \brief Find the closest grid coordinate
  *  \par Function Description
  *  This function snaps the current input coordinate to the
  *  closest grid coordinate.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] input      The coordinate to snap.
+ *
  *  \return The closest grid coordinate to the input.
+ *
+ *  WEH: Tweeked to eliminate conditional and library call to abs
  */
 int snap_grid(GschemToplevel *w_current, int input)
 {
   int p, m, n;
-  int sign, value, snap_grid;
+  //int sign;
 
-  if (w_current->snap == SNAP_OFF ||
-      w_current->snap_size <= 0) {
+  if (w_current->snap == SNAP_OFF || w_current->snap_size <= 0) {
     return(input);
   }
 
-  snap_grid = w_current->snap_size;
-
   /* this code was inspired from killustrator, it's much simpler than mine */
-  sign = ( input < 0 ? -1 : 1 );
-  value = abs(input);
+  //sign = input < 0 ? -1 : 1;
+  //value = abs(input);
+
+  /* WEH: This is equivalent to register signed value = abs(input) but gets
+   *      a sign mask instead of getting the sign using a conditional */
+  register int value = input;
+  register int sign  = value >> 31;     /* make a mask of the sign bit */
+
+  value ^= sign;                        /* toggle the bits if value is negative */
+  value -= sign;                        /* add one if value was negative */
+
+  register int snap_grid = w_current->snap_size;
 
   p = value / snap_grid;
   m = value % snap_grid;
   n = p * snap_grid;
-  if (m > snap_grid / 2)
-  n += snap_grid;
+  if (m > snap_grid / 2) {
+     n += snap_grid;
+  }
 
 #if DEBUG
   printf("p: %d\n", p);
   printf("m: %d\n", m);
   printf("m > snap_grid / 2: %d\n", (m > snap_grid / 2));
   printf("n: %d\n", n);
-  printf("n*s: %d\n", n*sign);
+  printf("n*s: %d\n", n*sign); /* This won't work */
 #endif
 
-  return(sign*n);
+  /* Now put the sign back to what ever it was using the mask */
+  n ^= sign;
+  n -= sign;                        /* add one if value was negative */
+
+  //return(sign*n);
+  return n;
 }
 
 /*! \brief Get absolute SCREEN coordinate.

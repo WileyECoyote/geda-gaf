@@ -1,3 +1,13 @@
+2015-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_basic.c: Revised function snap_grid() to be a little
+      snappier. Basically; eliminated conditional and get sign bit by
+      bit shifting, use mask to make positive by toggling bits using
+      exclusive OR with the mask, and tell compiler to do all this in
+      registers. Then before returning, use the mask to make negative
+      if the input was negative. Also eliminates final multiplication,
+      Gotta be faster? Seems to work, dunno, need testing.
+
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_status_bar.c: Yet more revisions; Add separate vector modes
