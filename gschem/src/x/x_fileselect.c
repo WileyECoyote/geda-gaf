@@ -429,10 +429,11 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   const char *inquire;
   int result = FALSE;
 
-  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
-  string  = u_string_concat(message, inquire);
+  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n";)
 
-  window = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
+  string  = u_string_concat(message, inquire, NULL);
+
+  window  = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
 
   gschem_threads_enter();
 
@@ -461,8 +462,10 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
     default:
      result = 0; /* Aka No */
   }
+
   gtk_widget_destroy(dialog);
   gschem_threads_leave();
   GEDA_FREE(string);
+
   return result;
 }
