@@ -89,8 +89,8 @@ static void eda_config_class_init (EdaConfigClass *klass)
   g_type_class_add_private (gobject_class, sizeof (EdaConfigPrivate));
 
   /* Register functions with base class */
-  gobject_class->dispose = eda_config_dispose;
-  gobject_class->finalize = eda_config_finalize;
+  gobject_class->dispose      = eda_config_dispose;
+  gobject_class->finalize     = eda_config_finalize;
   gobject_class->set_property = eda_config_set_property;
   gobject_class->get_property = eda_config_get_property;
 
