@@ -552,6 +552,7 @@ void       o_redraw_rectangle                (GschemToplevel *w_current, GdkRect
 
 /* o_select.c */
 void       o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);
+void       o_select_add_list                 (GschemToplevel *w_current, GList *list);
 int        o_select_box_start                (GschemToplevel *w_current, int x, int y);
 void       o_select_box_end                  (GschemToplevel *w_current, int x, int y);
 void       o_select_box_motion               (GschemToplevel *w_current, int x, int y);

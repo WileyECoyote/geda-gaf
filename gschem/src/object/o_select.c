@@ -214,6 +214,30 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
   }
 }
 
+/*! \brief Add to Selection from List
+ *  \par Function Description
+ *  Adds items in the list to the current selection list.
+ *
+ *  \sa o_select_move_to_place_list
+ *
+ *  \note see comment for o_select_visible_unlocked regarding
+ *        o_selection_add
+ */
+void
+o_select_add_list(GschemToplevel *w_current, GList *list)
+{
+  GedaToplevel *toplevel  = w_current->toplevel;
+  SELECTION    *selection = Top_Selection;
+  GList        *iter      = list;
+
+  while (iter) {
+    Object *object = iter->data;
+    o_selection_add (selection, object);
+    o_select_run_hooks(w_current, object, SELECT_HOOK);
+    iter = iter->next;
+  }
+}
+
 /*! \brief Start Windowed/Box Selection
  *  \par Function Description
  *  Similar to other "event" start routines, this function is used to
@@ -586,11 +610,10 @@ o_select_visible_unlocked (GschemToplevel *w_current)
     if (!obj->selectable) continue;
 
       /* Add object to selection. */
-      /*! \bug We can't call o_select_object() because it
-       * behaves differently depending on the state of
-       * w_current->SHIFTKEY and w_current->CONTROLKEY, which may well
-       * be set if this function is called via a keystroke
-       * (e.g. Ctrl-A). */
+      /*! \bug We can't call o_select_object() because it behaves
+       *  differently depending on the state of w_current->SHIFTKEY
+       *  and w_current->CONTROLKEY, which may well be set if this
+       *  function is called via a keystroke (e.g. Ctrl-A). */
        o_selection_add (selection, obj);
 
     /* Add any attributes of object to selection as well. */
@@ -609,6 +632,8 @@ o_select_visible_unlocked (GschemToplevel *w_current)
  *  \par Function Description
  *  Releases any object current in the place list and copies
  *  the current selection list to the place list
+ *
+ *  \sa o_select_get_from_place_list
  */
 void
 o_select_move_to_place_list(GschemToplevel *w_current)
