@@ -1,5 +1,11 @@
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * object/o_place.c: Remove page_current->CHANGED = 1 from function
+      o_place_end, this is done by libgeda when s_page_append_object is
+      called.
+
+2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_status_bar.c: Add Doxygen group Gschem-Status-Bar
 
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>

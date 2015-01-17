@@ -111,7 +111,6 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   g_list_free (connected_objects);
   connected_objects = NULL;
 
-  toplevel->page_current->CHANGED = 1;
   o_invalidate_glist (w_current, temp_dest_list); /* only redraw new objects */
   g_list_free (temp_dest_list);
 
