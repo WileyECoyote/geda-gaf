@@ -1505,10 +1505,13 @@ static void x_menu_recent_show_popup (GtkMenuItem    *menu_widget,
                   gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Popup Callback for recent files menu item
+/*! \brief Popup Callback for recent files menu item
  *  \par Function Description
+ *  Called when a mouse button is release with the cursor over
+ *  a menu items. If the 3rd button was released, a small popup
+ *  menu is displays
  *
+ *  \sa x_menu_recent_show_popup
  */
 static bool x_menu_recent_button_released (GtkMenuItem    *menu_item,
                                            GdkEventButton *event,
