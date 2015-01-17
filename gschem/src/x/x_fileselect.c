@@ -429,7 +429,7 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   const char *inquire;
   int result = FALSE;
 
-  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n";)
+  inquire = _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
 
   string  = u_string_concat(message, inquire, NULL);
 
