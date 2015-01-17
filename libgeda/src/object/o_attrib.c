@@ -663,7 +663,7 @@ void
 o_attrib_set_integer_value (const Object *attrib, const char *name_ptr, int value)
 {
   GEDA_FREE(attrib->text->string);
-  attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value);
+  attrib->text->string = u_string_sprintf("%s=%d", name_ptr, value, NULL);
 }
 
 /*! \brief Find all floating attributes in the given object list.
