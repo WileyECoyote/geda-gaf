@@ -41,13 +41,15 @@
 
 typedef enum { DESELECT_HOOK, SELECT_HOOK} HOOKS;
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Run Hook Selection Changed
  *  \par Function Description
+ *   Passes \a o_current to g_run_hook_object for deselection or selection
+ *   depending on \a which_hook.
  */
 static void
 o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hook)
 {
+
 #if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
   fprintf(stderr, "o_select_run_hooks: begin\n");
 #endif
@@ -75,16 +77,16 @@ o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hoo
 
 /*! \brief Select or Unselect an Object
  *  \par Function Description
- *     This function adds or removes an object from the current selection
+ *   Adds or removes an object from the current selection
  *
- *  \param [in] w_current  A pointer to a GschemToplevel object.
- *  \param [in] o_current  The Object of interest.
- *  \param [in] type       Is more of a mode flag.
+ *  \param [in] w_current  A pointer to a GschemToplevel object,
+ *  \param [in] o_current  The Object of interest,
+ *  \param [in] type       Is more of a mode flag,
  *  \param [in] count      Number of objects.
  *
- *  \note
- *  type can be either SINGLE meaning selection is a single mouse click
- *      or it can be MULTIPLE meaning selection is a selection box
+ *  \note type can be either SINGLE meaning selection is a single mouse
+ *        click or it can be MULTIPLE meaning selection is a selection
+ *        box.
  */
 void
 o_select_object(GschemToplevel *w_current, Object *o_current,
@@ -112,13 +114,13 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
 
   switch(o_current->selected) {
 
-    case(FALSE):          /* object not selected */
+    case(FALSE):               /* object not selected */
 
-      switch(SHIFTKEY) {  /* shift key pressed? */
+      switch(SHIFTKEY) {       /* shift key pressed? */
 
-        case(TRUE):          /* shift key pressed  */
+        case(TRUE):            /* shift key pressed  */
           /* just fall through  */
-          break; /* Or not? */
+          break;               /* WEH: Or not? */
 
         case(FALSE):
 
@@ -131,16 +133,16 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
           }
           break;
 
-      } /* End Switch shift key */
+      }                        /* End Switch shift key */
 
       /* object not selected, so add it to the selection list */
       o_select_run_hooks (w_current, o_current, SELECT_HOOK);
       o_selection_add    (selection, o_current);
       break;
 
-    case(TRUE):  /* object was already selected */
+    case(TRUE):                /* object was already selected */
 
-      if (SHIFTKEY) { /* shift key pressed ? */
+      if (SHIFTKEY) {          /* shift key pressed ? */
 
           /* condition: not doing multi-selection  */
           /*     then : remove object from selection */
@@ -151,7 +153,7 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
           }
 
       }
-      else { /* shift key not pressed */
+      else {                   /* shift key not pressed */
 
           /* condition: doing multiple */
           /* condition: first object being added */
@@ -182,7 +184,7 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
 
       }
       break;
-  } /* End Switch object selected */
+  }                            /* End Switch object selected */
 
   /* do the attributes */
   if ( TRUE == removing_obj) {
@@ -212,10 +214,13 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Start Windowed/Box Selection
  *  \par Function Description
+ *  Similar to other "event" start routines, this function is used to
+ *  capture the cursor position at the on-set of a boxed selection
+ *  operation.
  *
+ *  \todo Reeks box-selection-threashold
  */
 int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -235,12 +240,12 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   return TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief End Window/Box Selection Callback
  *  \par Function Description
- *
+ *   Invalidates the drawn temporary selection box and invokes selection
+ *   search routines.
  */
-void o_select_box_end(GschemToplevel *w_current, int w_x, int w_y)
+void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
 {
   o_select_box_invalidate_rubber (w_current);
   w_current->rubber_visible = FALSE;
@@ -248,26 +253,28 @@ void o_select_box_end(GschemToplevel *w_current, int w_x, int w_y)
   o_select_box_search(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Window/Box Selection Pointer Motion Callback
  *  \par Function Description
- *
+ *   Invalidates the old temporary selection box, aka rubber, and causes
+ *   new rubber to be drawn. This has the effect of drawing a temporary
+ *   box while dragging the edge.
  */
-void o_select_box_motion (GschemToplevel *w_current, int w_x, int w_y)
+void o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
 {
-  if (w_current->rubber_visible)
+  if (w_current->rubber_visible) {
     o_select_box_invalidate_rubber (w_current);
+  }
 
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+  w_current->second_wx = us_wx;
+  w_current->second_wy = us_wy;
 
   o_select_box_invalidate_rubber (w_current);
   w_current->rubber_visible = TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Box Selection
  *  \par Function Description
+ *   Note the similarity to o_box_invalidate_rubber()
  */
 void o_select_box_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -282,66 +289,74 @@ void o_select_box_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Draw Temporary Box for Windowed Selection Operation
  *  \par Function Description
- *
+ *  Since the functionality is the same as drawing rubber for a box
+ *  object, this function calls the box object functions to draw the
+ *  temporary box used during the windowing selection operation.
  */
 void o_select_box_draw_rubber (GschemToplevel *w_current)
 {
   o_box_draw_rubber (w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Search Windowed Region for Object Selection
  *  \par Function Description
+ *  Calls o_select_object for objects bounded by the windowed/box
+ *  region
  *
+ *  \todo primitive
  */
 void o_select_box_search(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object *o_current=NULL;
-  int count = 0; /* object count */
-  int SHIFTKEY = w_current->SHIFTKEY;
+  GedaToplevel *toplevel  = w_current->toplevel;
+  Object       *o_current = NULL;
+
+  int count      = 0; /* object count */
+  int SHIFTKEY   = w_current->SHIFTKEY;
   int CONTROLKEY = w_current->CONTROLKEY;
+
   int left, right, top, bottom;
   const GList *iter;
 
-  left = min(w_current->first_wx, w_current->second_wx);
-  right = max(w_current->first_wx, w_current->second_wx);
-  top = min(w_current->first_wy, w_current->second_wy);
+  left   = min(w_current->first_wx, w_current->second_wx);
+  right  = max(w_current->first_wx, w_current->second_wx);
+  top    = min(w_current->first_wy, w_current->second_wy);
   bottom = max(w_current->first_wy, w_current->second_wy);
 
-  iter = s_page_get_objects (toplevel->page_current);
+  iter   = s_page_get_objects (toplevel->page_current);
+
   while (iter != NULL) {
+
     o_current = iter->data;
+
     /* only select visible objects */
     //if (o_get_is_visible (o_current) || toplevel->page_current->show_hidden_text) {
-    if (o_get_is_visible (o_current)) {
-      int cleft, ctop, cright, cbottom;
+      if (o_get_is_visible (o_current)) {
 
-      if ( o_get_world_bounds(o_current,
-        &cleft, &ctop, &cright, &cbottom) &&
-        cleft >= left &&
-        cright <= right &&
-        ctop >= top &&
-        cbottom <= bottom ) {
+        int cleft, ctop, cright, cbottom;
 
-        o_select_object(w_current, o_current, MULTIPLE, count);
-      count++;
+        if (o_get_world_bounds(o_current, &cleft, &ctop, &cright, &cbottom) &&
+            cleft   >= left  &&
+            cright  <= right &&
+            ctop    >= top   &&
+            cbottom <= bottom)
+        {
+          o_select_object(w_current, o_current, MULTIPLE, count);
+          count++;
         }
-    }
-    iter = g_list_next (iter);
+      }
+    iter = iter->next;
   }
 
   /* if there were no objects to be found in select box, count will be */
-  /* zero, and you need to deselect anything remaining (except when the */
+  /* zero, and we need to deselect anything remaining (except when the */
   /* shift or control keys are pressed) */
   if (count == 0 && !SHIFTKEY && !CONTROLKEY) {
     o_select_unselect_all (w_current);
   }
-  i_status_update_sensitivities(w_current);
 
+  i_status_update_sensitivities(w_current);
 }
 
 /*! \brief Select all nets connected to the current net
@@ -349,18 +364,21 @@ void o_select_box_search(GschemToplevel *w_current)
  *   and the net_selection_state of the current net this function will either
  *   select the single net, all directly connected nets or all nets connected
  *   with netname labels.
+ *
  *  \param [in] w_current  Pointer to GschemToplevel struct.
  *  \param [in] o_net      Pointer to a single net object
  */
 void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+
   Object *o_current;
-  const   GList *o_iter;
-          GList *iter1;
   GList  *netstack     = NULL;
   GList  *netnamestack = NULL;
   GList  *netnameiter;
+  const   GList *all_objects;
+  const   GList *o_iter;
+          GList *iter1;
   char   *netname;
   int     count;
 
@@ -378,10 +396,12 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
 
   count = 0;
   while (1) {
+
     netnameiter = g_list_last(netnamestack);
+
     for (iter1  = g_list_last(netstack);
          iter1 != NULL;
-         iter1  = g_list_previous(iter1), count++) {
+         iter1  = iter1->prev, count++) {
       o_current = iter1->data;
       if (o_current->type == OBJ_NET &&
         (!o_current->selected || count == 0)) {
@@ -413,17 +433,20 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
     if (netnameiter == g_list_last(netnamestack))
       break; /* no new netnames in the stack --> finished */
 
-      /* get all the nets of the stacked netnames */
-    for (o_iter  = s_page_get_objects (toplevel->page_current);
-         o_iter != NULL;
-         o_iter  = g_list_next (o_iter)) {
+    /* get all the nets of the stacked netnames */
+    all_objects = s_page_get_objects (toplevel->page_current);
+
+    for (o_iter = all_objects; o_iter != NULL; o_iter = o_iter->next) {
+
       o_current  = o_iter->data;
-      if (o_current->type == OBJ_TEXT
-        && o_current->attached_to != NULL) {
+
+      if (o_current->type == OBJ_TEXT && o_current->attached_to != NULL) {
+
         if (o_current->attached_to->type == OBJ_NET) {
-          netname =
-          o_attrib_search_object_attribs_by_name (o_current->attached_to,
-                                                  "netname", 0);
+
+          netname = o_attrib_search_object_attribs_by_name (o_current->
+                                                            attached_to,
+                                                           "netname", 0);
           if (netname != NULL) {
             if (g_list_find_custom (netnamestack,
               netname, (GCompareFunc) strcmp) != NULL) {
@@ -437,11 +460,14 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
   }
 
   w_current->net_selection_state += 1;
-  if (w_current->net_selection_state > w_current->net_selection_mode)
-    w_current->net_selection_state = 1;
 
-  for (iter1 = netnamestack; iter1 != NULL; iter1 = g_list_next(iter1))
+  if (w_current->net_selection_state > w_current->net_selection_mode) {
+    w_current->net_selection_state = 1;
+  }
+
+  for (iter1 = netnamestack; iter1 != NULL; iter1 = iter1->next) {
     GEDA_FREE(iter1->data);
+  }
   g_list_free(netnamestack);
 }
 
@@ -452,7 +478,7 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
  *   were added, nor does this function varify that the object
  *   or objects still exist.
  *
- * \returns count of the selection list..
+ *  \returns count of the selection list..
  */
 int o_select_get_count(GschemToplevel *w_current)
 {
@@ -462,22 +488,23 @@ int o_select_get_count(GschemToplevel *w_current)
 /*! \brief Check if any Currently Select Objects
  *  \par Function Description
  *
- * \returns TRUE if the selection list is not empty,
- *          FALSE if the selection list is empty,
+ *  \returns TRUE if the selection list is not empty,
+ *           FALSE if the selection list is empty,
  */
 bool o_select_is_selection(GschemToplevel *w_current)
 {
   return (w_current->Top_Selection->glist != FALSE);
 }
+
 /*! \brief UnSelect All Objects
  *  \par Function Description
  *   Removes all members from the toplevel selection list
- *  and calls the run hook function, after the object(s)
- *  have been removed, pass a list of the object that were
- *  removed.
+ *   and calls the run hook function, after the object(s)
+ *   have been removed, pass a list of the object that were
+ *   removed.
  *
- * \remarks WEH: Could it help to have a freeze/thaw wrapper
- *          around the do loop if count was many?
+ *  \remarks WEH: Could it help to have a freeze/thaw wrapper
+ *           around the do loop if count was many?
  */
 void o_select_unselect_all(GschemToplevel *w_current)
 {
@@ -503,9 +530,7 @@ void o_select_unselect_all(GschemToplevel *w_current)
         object = iter->data;
 
         if (o_selection_remove(selection, object) == 1) {
-
           removed = g_list_prepend(removed, object);
-
         }
       }
 
@@ -516,42 +541,41 @@ void o_select_unselect_all(GschemToplevel *w_current)
       object = geda_list_get_glist (selection)->data;
 
       if (o_selection_remove(selection, object) == 1) {
-
         o_selection_remove(selection, object);
-
         g_run_hook_object(w_current, "%deselect-objects-hook", object);
       }
     }
 
     if (removed) {
-
       g_run_hook_object_list (w_current, "%deselect-objects-hook", removed);
-
       g_list_free(removed);
     }
   }
 }
 
-/*! \brief Selects all visible objects on the current page.
+/*! \brief Selects all visible objects on the current page
  * \par Function Description
  * Clears any existing selection, then selects everything visible and
  * unlocked on the current page, and any attached attributes whether
  * visible or invisible..
  *
- * \param w_current  Pointer to a GschemToplevel structure.
+ * \param [in] w_current  Pointer to a GschemToplevel structure
  */
 void
 o_select_visible_unlocked (GschemToplevel *w_current)
 {
   GedaToplevel  *toplevel  = w_current->toplevel;
-  SELECTION *selection = Top_Selection;
-  const GList *iter;
-  GList *added;
+  SELECTION     *selection = Top_Selection;
+  const GList   *all_objects;
+  const GList   *iter;
+        GList   *added;
 
   o_select_unselect_all (w_current);
-  for (iter = s_page_get_objects (toplevel->page_current);
-       iter != NULL;
-       iter = g_list_next (iter)) {
+
+  all_objects = s_page_get_objects (toplevel->page_current);
+
+  for (iter = all_objects; iter != NULL; iter = iter->next) {
+
     Object *obj = (Object *) iter->data;
 
     /* Skip invisible objects. */
@@ -575,20 +599,22 @@ o_select_visible_unlocked (GschemToplevel *w_current)
 
   /* Run hooks for all items selected */
   added = geda_list_get_glist (selection);
+
   if (added != NULL) {
     g_run_hook_object_list (w_current, "%select-objects-hook", added);
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Move Selection to Place List
  *  \par Function Description
- *
+ *  Releases any object current in the place list and copies
+ *  the current selection list to the place list
  */
 void
 o_select_move_to_place_list(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+
   GList *selection;
   GList *selection_copy;
 
@@ -596,12 +622,14 @@ o_select_move_to_place_list(GschemToplevel *w_current)
   s_object_release_objects(toplevel->page_current->place_list);
   toplevel->page_current->place_list = NULL;
 
-  selection = geda_list_get_glist( Top_Selection );
+  /* get selection list and copy to the place list */
+  selection      = geda_list_get_glist( Top_Selection );
   selection_copy = g_list_copy( selection );
+
   toplevel->page_current->place_list = selection_copy;
 }
 
-/*! \brief Create a list of selected object of the given type
+/*! \brief Create list of selected objects of the given type
  *  \par Function Description
  *  This is a general utility function that is like get selection except
  *  this function returns a list containing only objects of the specified
@@ -618,23 +646,29 @@ o_select_move_to_place_list(GschemToplevel *w_current)
 GList*
 o_select_get_list_selected(GschemToplevel *w_current, char otype)
 {
-  GList  *selection, *iter, *list = NULL;
+  GList  *iter;
+  GList  *list;
+  GList  *selection;     /* WEH: Don't worry, will be obtimized out */
   Object *object;
+
+  list = NULL;
 
   /* Get the current selection list, alias Current_Selection->glist */
   selection = geda_list_get_glist(Current_Selection);
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
-      object = (Object *) iter->data;
-      if ( object->type == otype)
-        list = g_list_append (list, object);
+
+  for (iter = selection; iter != NULL; iter = iter->next) {
+    object = (Object *) iter->data;
+    if ( object->type == otype) {
+      list = g_list_append (list, object);
+    }
   }
   return list;
 }
 
 /*! \brief Return the First Selected Object
  *  \par Function Description
- * This is a wrapper for o_selection_return_first_object.
- * This function always looks at the current page selection list
+ *  This is a wrapper for o_selection_return_first_object.
+ *  This function always looks at the current page selection list
  *
  *  \param w_current Pointer to a Gschem Toplevel object
  */

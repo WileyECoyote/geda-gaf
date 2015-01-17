@@ -1,6 +1,11 @@
+2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_select.c: General cleaning and enhancements, add
+      Doxygen comments.
+
 2015-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/math/m_basic.c: Revised function snap_grid() to be a little
+   ** src/math/m_basic.c: Revised function snap_grid() to be a little
       snappier. Basically; eliminated conditional and get sign bit by
       bit shifting, use mask to make positive by toggling bits using
       exclusive OR with the mask, and tell compiler to do all this in
