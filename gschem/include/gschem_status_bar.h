@@ -23,6 +23,13 @@
  *
  * \brief A widget for the "status bar" at the bottom of the window
  */
+/*! \class GschemStatusBar gschem_status_bar.h "gschem_status_bar.h"
+ *  \brief A Status Bar widget
+ *  \par
+ *  A GschemStatusBar the widget at the bottom of the main window if
+ *  enabled. The status widget provide various feedback to the user,
+ *  such as current grid & snap setting and mouse button assignments.
+ */
 
 #define GSCHEM_TYPE_STATUS_BAR           (gschem_status_bar_get_type())
 #define GSCHEM_STATUS_BAR(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_STATUS_BAR, GschemStatusBar))

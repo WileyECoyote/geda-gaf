@@ -22,6 +22,10 @@
  * \file gschem_status_bar.c
  *
  * \brief A widget for the "status bar" at the bottom of the window
+ *
+ * \todo This module provides for height adjusment of the widget but is
+ *       not implemented, maybe gtk_widget_class_install_style_property
+ *       and gtk_widget_style_get.
  */
 
 #include <config.h>
@@ -38,6 +42,10 @@
 
 #include "gschem.h"
 #include "geda_widgets.h"
+
+/** \defgroup Gschem-Status-Bar Gschem Status Bar
+ *  @{ \brief This module defines the #GschemStatusBar class
+*/
 
 enum
 {
@@ -1775,3 +1783,5 @@ GtkWidget *gschem_status_bar_new (void)
 {
   return GTK_WIDGET (g_object_new (GSCHEM_TYPE_STATUS_BAR, NULL));
 }
+
+/** @} endgroup Gschem-Status-Bar */

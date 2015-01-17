@@ -1,5 +1,9 @@
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Add Doxygen group Gschem-Status-Bar
+
+2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_select.c: General cleaning and enhancements, add
       Doxygen comments.
 
