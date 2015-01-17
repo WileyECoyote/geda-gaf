@@ -563,7 +563,7 @@ static void print_dialog_get_property_comboboxes (PrintDialog * dialog,
  *  \brief
  *  \par Function Description
  *  \bug Hardcoded 'magic' numbers in this function
- *
+ *  \todo Update parameter spec strings!
  */
 static void
 print_dialog_class_init (PrintDialogClass * class)

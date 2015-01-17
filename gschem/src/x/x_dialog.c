@@ -3108,6 +3108,8 @@ GList *close_confirmation_dialog_get_selected_pages (CloseConfirmationDialog *di
  *  system. Subsequently it returns the saved value from its first execution.
  *
  *  \return GedaType identifier associated with CloseConfirmationDialog.
+ *
+ *  TODO: Update parameter spec strings!
  */
 GedaType close_confirmation_dialog_get_type ()
 {
