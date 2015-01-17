@@ -75,17 +75,35 @@ void o_copy_cancel(GschemToplevel *w_current)
  *  \par Function Description
  *  This function is called to complete a Copy operation for a single
  *  object, this is the normal copy operation not envolving the system
- *  clip board.
+ *  clip board. If the SHIFTKEY is set then SELECTION is replaced with
+ *  the new objects, otherwise SELECTION is not altered.
  */
 void o_copy_end(GschemToplevel *w_current)
 {
   GList *iter;
+  GList *list;
+
   for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
     Object *o_current = iter->data;
     o_current->page   = NULL;
   }
-  o_place_end (w_current, w_current->second_wx, w_current->second_wy, FALSE,
-               NULL, "%paste-objects-hook");
+
+  if (!w_current->SHIFTKEY) {
+    o_place_end (w_current, w_current->second_wx, w_current->second_wy,
+                 FALSE, NULL, "%paste-objects-hook");
+  }
+  else {
+
+    list = NULL;
+
+    o_place_end (w_current, w_current->second_wx, w_current->second_wy,
+                 FALSE, &list, "%paste-objects-hook");
+
+    o_select_unselect_all(w_current);
+    o_select_add_list(w_current, list);
+    g_list_free(list);
+
+  }
 }
 
 /*! \brief  Finalize Copy operation of a multible objects

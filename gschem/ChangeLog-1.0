@@ -1,5 +1,11 @@
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_copy.c: Revise function o_copy_end to iimplement new
+      functionality/feature. When coping single objects if the shift is
+      down then change the selection from the old object to new objects.
+
+2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_select.c: Add function o_select_add_list.
 
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
