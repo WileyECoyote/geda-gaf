@@ -43,8 +43,6 @@
 #define GEDA_IS_CIRCLE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_CIRCLE))
 #define GEDA_CIRCLE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_CIRCLE, CircleClass))
 
-G_BEGIN_DECLS
-
 typedef struct _GedaCircleClass CircleClass;
 
 struct _GedaCircleClass {
@@ -66,10 +64,12 @@ struct _GedaCircle {
   unsigned int tail_marker;       /* structure type signature */
 };
 
+BEGIN_DECLS
+
 GedaType geda_circle_get_type     (void);
 bool     is_a_geda_circle_object  (Circle *object);
 Object  *geda_circle_new          (void);
 
+END_DECLS
 
-G_END_DECLS
 #endif /* __GEDA_CIRCLE_H__ */
