@@ -1,5 +1,10 @@
 2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_basic.c: Redo m_distance, just multiple, eliminate
+      use of library pow function.
+
+2015-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/math/m_basic.c: Minor revision to Doxygen comments.
 
     * src/math/m_line.c: Revise to "really" return an integer, add
