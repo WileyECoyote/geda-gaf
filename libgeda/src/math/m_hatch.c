@@ -152,11 +152,12 @@ void m_hatch_box(Box *box, int angle, int pitch, GArray *lines)
  *  times with a different angle or pitch while passing the same lines GArray.
  *
  *  \param circle [in] The circle shape to hatch.
- *  \param angle [in] The angle of the hatch lines with respect to the x axis.
- *  \param pitch [in] The distance between hatch lines
- *  \param lines [inout] A GArray of Line to contain the new hatch line
- *  segments.  This function appends new line segments to the GArray and leaves
- *  existing GArray contents unchanged.
+ *  \param angle  [in] The angle of the hatch lines with respect to the x axis.
+ *  \param pitch  [in] The distance between hatch lines
+ *
+ *  \param lines  [out] A GArray of Line to contain the new hatch line segments.
+ *                      This function appends new line segments to the GArray and
+ *                      leaves existing GArray contents unchanged.
  */
 void m_hatch_circle(Circle *circle, int angle, int pitch, GArray *lines)
 {
@@ -179,7 +180,7 @@ void m_hatch_circle(Circle *circle, int angle, int pitch, GArray *lines)
 
     LINE line;
 
-    int x = round(sqrt(pow(radius,2) - pow(sweep_y,2)));
+    int x = round(sqrt((radius * radius) - (sweep_y * sweep_y)));
 
     line.x[0] = -x;
     line.y[0] = sweep_y;
@@ -200,12 +201,12 @@ void m_hatch_circle(Circle *circle, int angle, int pitch, GArray *lines)
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
  *
- *  \param path  [in] The path shape to hatch.
- *  \param angle [in] The angle of the hatch lines with respect to the x axis.
- *  \param pitch [in] The distance between hatch lines
- *  \param lines [inout] A GArray of Line to contain the new hatch line
- *  segments.  This function appends new line segments to the GArray and leaves
- *  existing GArray contents unchanged.
+ *  \param path  [in]  The path shape to hatch.
+ *  \param angle [in]  The angle of the hatch lines with respect to the x axis.
+ *  \param pitch [in]  The distance between hatch lines
+ *  \param lines [out] A GArray of Line to contain the new hatch line segments.
+ *                     This function appends new line segments to the GArray
+ *                     and leaves existing GArray contents unchanged.
  */
 void m_hatch_path (Path *path, int angle, int pitch, GArray *lines)
 {
