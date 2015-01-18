@@ -35,9 +35,11 @@ void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
   if (segments > 1) {
     int i;
 
+    int segments_squared = segments * segments;
+
     double a = 3 / (double) segments;
-    double b = 6 / pow (segments, 2);
-    double c = 6 / pow (segments, 3);
+    double b = 6 / segments_squared;
+    double c = 6 / segments_squared * segments;  /* is 6 / segments cubed */
 
     double x = bezier->x[0];
     double xd = a * (bezier->x[1] - bezier->x[0]);

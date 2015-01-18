@@ -1,6 +1,12 @@
+2015-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_polygon.c: Eliminate pow function in function
+      m_polygon_append_bezier.
+
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/math/m_hatch.c: Eliminate pow function in m_hatch_circle.
+    * src/math/m_hatch.c: Eliminate pow function in function
+      m_hatch_circle.
 
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 

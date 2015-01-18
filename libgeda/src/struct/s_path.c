@@ -541,13 +541,12 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
 
 static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 {
-
-  double val = 0;
-  char c = 0;
   bool in_num        = FALSE;
   bool in_frac       = FALSE;
   bool in_exp        = FALSE;
   bool exp_wait_sign = FALSE;
+
+  char c       = 0;
 
   int sign     = 0;
   int exp      = 0;
