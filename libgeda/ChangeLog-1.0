@@ -1,5 +1,9 @@
 2015-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_line.c: Add new function m_line_get_intersection
+
+2015-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_line_basic.c: Add new function o_line_get_intersection
 
 2015-01-18 Wiley E. Hill <wileyhill@gmail.com>

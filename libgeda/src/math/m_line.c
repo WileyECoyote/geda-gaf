@@ -49,6 +49,114 @@ int m_line_length (int x1, int y1, int x2, int y2)
   return length;
 };
 
+/*! \brief Determine the Intersection of two lines
+ *
+ *  \par Function Description
+ *  This function determines if two lines intersect. If lines intersect
+ *  the function returns true and the value of points is set to that of
+ *  the intersection. Otherwise the function returns false.
+ *
+ *  \param [in]  line1 First Line
+ *  \param [in]  line1 Second Line
+ *  \param [out] point Intersection if lines intersect
+ *
+ *  \return TRUE if lines intersect
+ */
+bool m_line_get_intersection(LINE *line1, LINE *line2, POINT *point)
+{
+  bool   has_slope1;
+  bool   has_slope2;
+  bool   intersect;
+
+  double dy,dx;
+  double slope1;
+  double slope2;
+
+  has_slope1 = line1->x[0] == line1->x[1] ? FALSE : TRUE;
+  has_slope2 = line2->x[0] == line2->x[1] ? FALSE : TRUE;
+
+  if (has_slope1 && has_slope2) { /* Both are lines and are on an angle */
+
+    dy     = line1->y[1] - line1->y[0];
+    dx     = line1->x[1] - line1->x[0];
+    slope1 = dy / dx;
+
+    dy     = line2->y[1] - line2->y[0];
+    dx     = line2->x[1] - line2->x[0];
+    slope2 = dy / dx;
+
+    if (slope1 != slope2) {
+
+      /* y-intercept = ordinate - slope x abscissa */
+      int b11 = line1->y[0] - (slope1 * line1->x[0]);
+      int b21 = line2->y[0] - (slope2 * line2->x[0]);
+
+      /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
+      point->x = (b21 - b11) / (slope1 - slope2);
+      point->y = (slope1 * line1->x[0]) + b11; /* pick 1 */
+
+      intersect = TRUE; /* Not arbitrary */
+    }
+    else { /* lines are parallel and do not intersect */
+      intersect = FALSE;
+    }
+  }
+  else if (has_slope1) {               /* Line 2 is vertical */
+
+    /* Get where line 1 intersects */
+    point->x = line2->x[0];            /* arbitrary, x's are equal */
+
+    dy       = line1->y[1] - line1->y[0];
+    dx       = line1->x[1] - line1->x[0];
+    slope1   = dy / dx;
+
+    if (slope1 == 0) {                 /* if line 1 is horizontal */
+      point->y = line1->y[0];          /* arbitrary, y's are equal */
+    }
+    else {                             /* get y-intercept for line 1 */
+
+      /* intercept = y - mx */
+      int b11 = line1->y[0] - (slope1 * line1->x[0]);
+
+      /* solve for y1(1) at x */
+      point->y = slope1 * point->x + b11;  /* y = mx + b */
+    }
+
+    intersect = TRUE;
+
+  }
+  else if (has_slope2) {               /* line 1 maybe vertical */
+
+    /* Get where line 2 intersects */
+    point->x = line1->x[0];            /* arbitrary, x's are equal */
+
+    dy       = line2->y[1] - line2->y[0];
+    dx       = line2->x[1] - line2->x[0];
+    slope2   = dy / dx;
+
+
+    if (slope2 == 0) {                 /* if line 2 is horizontal */
+      point->y = line2->y[0];          /* arbitrary, y's are equal */
+    }
+    else {                            /* get y-intercept for line2 */
+
+      /* intercept = y - mx */
+      int b21 = line2->y[0] - (slope2 * line2->x[0]);
+
+      /* solve for y2(1) at x */
+      point->y = slope2 * point->x + b21;   /* y = mx + b */
+    }
+
+    intersect = TRUE;
+
+  }
+  else {  /* both are vertical and do not intersect even if conincide */
+    intersect = FALSE;
+  }
+
+  return intersect;
+}
+
 /*! \brief Calculates the distance between the given point and the closest
  *  point on the given line segment.
  *
