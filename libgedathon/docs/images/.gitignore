@@ -4,3 +4,5 @@ Makefile.in
 *.txt
 *.bak
 TAGS
+*.pdf
+*.png
