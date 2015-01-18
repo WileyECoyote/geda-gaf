@@ -247,6 +247,7 @@ G_BEGIN_DECLS
          void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
          void    o_line_translate_world          (int dx, int dy, Object *object);
          void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
+         bool    o_line_get_intersection         (Object *object1, Object *object2, POINT *point);
          bool    o_line_get_midpoint             (Object *object, POINT *point);
          bool    o_line_get_slope                (Object *object, double *anwser);
        double    o_line_length                   (Object *object);

@@ -53,11 +53,11 @@ int m_line_length (int x1, int y1, int x2, int y2)
  *  point on the given line segment.
  *
  *  If the closest point on the line resides beyond the line segment's
- *  end point, this function returns the distance from the given point to the
- *  closest end point.
+ *  end point, this function returns the distance from the given point
+ *  to the closest end point.
  *
- *  If the line represents a single point (the endpoints are the same), this
- *  function calculates the distance to that point.
+ *  If the line represents a single point (the endpoints are the same),
+ *  this function calculates the distance to that point.
  *
  *  \param [in] line  The Line object.
  *  \param [in] x     The x coordinate of the given point.
@@ -86,7 +86,9 @@ double m_line_shortest_distance (Line *line, int x, int y)
     dx = x - lx0;
     dy = y - ly0;
 
-  } else {
+  }
+  else {
+
     /* calculate parametric value of perpendicular intersection */
     dx0 = ldx * (x - lx0);
     dy0 = ldy * (y - ly0);

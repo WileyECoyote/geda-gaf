@@ -1072,6 +1072,106 @@ void o_line_scale_world(int x_scale, int y_scale, Object *object)
 
 }
 
+/*! \brief Determine the Intersection of a linear Object
+ *
+ *  \par Function Description
+ *  This function determines if two linear objects intersect. If both
+ *  are derived from Line and intersect the function returns true and
+ *  the value of points is set to that of the intersection. Otherwise
+ *  the function returns false.
+ *
+ *  \param [in]  object1 First Linear object
+ *  \param [in]  object2 Second Linear object
+ *  \param [out] point   Intersection if both are lines and intersect
+ *
+ *  \return TRUE if both are lines and intersect
+ */
+bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
+{
+  bool   has_slope1;
+  bool   has_slope2;
+  bool   intersect;
+
+  double slope1;
+  double slope2;
+
+  has_slope1 = o_get_has_slope(object1);
+  has_slope2 = o_get_has_slope(object2);
+
+  if (has_slope1 && has_slope2) { /* Both are lines and are on an angle */
+
+    o_line_get_slope(object1, &slope1);
+    o_line_get_slope(object2, &slope2);
+
+    if (slope1 != slope2) {
+
+      /* y-intercept = ordinate - slope x abscissa */
+      int b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+      int b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+
+      /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
+      point->x = (b21 - b11) / (slope1 - slope2);
+      point->y = (slope1 * object1->line->x[0]) + b11; /* pick 1 */
+
+      intersect = TRUE; /* Not arbitrary */
+    }
+    else { /* linears are parallel and do not intersect */
+      intersect = FALSE;
+    }
+  }
+  else if (has_slope1) { /* Linear 2 is vertical */
+
+    if (GEDA_IS_LINE(object2)) {
+
+      /* Get where linear 1 intersects */
+      point->x = object2->line->x[0];  /* arbitrary, x's are equal */
+
+      o_line_get_slope(object1, &slope1);
+
+      if (slope1 == 0) {                 /* if linear is horizontal */
+        point->y = object1->line->y[0];  /* arbitrary, y's are equal */
+      }
+      else { /* get y-intercept for object1 */
+        int b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+        point->y = slope1 * point->x + b11; /* solve for y1(1) at x */
+      }
+
+      intersect = TRUE;
+    }
+    else { /* Object 2 is not a derived from a line */
+      intersect = FALSE;
+    }
+  }
+  else if (has_slope2) { /* object 1 maybe vertical */
+
+    if (GEDA_IS_LINE(object1)) {
+
+      /* Get where linear 2 intersects */
+      point->x = object1->line->x[0];  /* arbitrary, x's are equal */
+
+      o_line_get_slope(object2, &slope2);
+
+      if (slope2 == 0) { /* if linear is horizontal */
+        point->y = object2->line->y[0];  /* arbitrary, y's are equal */
+      }
+      else { /* get y-intercept for object2 */
+        int b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+        point->y = slope2 * point->x + b21; /* solve for y2(1) at x */
+      }
+
+      intersect = TRUE;
+    }
+    else { /* Object 1 is not a derived from a line */
+      intersect = FALSE;
+    }
+  }
+  else {  /* both are vertical and do not intersect even if conincide */
+    intersect = FALSE;
+  }
+
+  return intersect;
+}
+
 /*! \brief Calculate the Midpoint of a linear Object
  *
  *  \par Function Description
