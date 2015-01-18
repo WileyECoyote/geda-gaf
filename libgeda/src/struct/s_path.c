@@ -181,11 +181,10 @@ Path *path_copy_modify (Path *path, int dx, int dy,
   g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
   object = GEDA_OBJECT(path);
 
-  path_string = s_path_string_from_path (path);
-  new_path = (Path*)o_path_new (object->color, path_string);
-
-  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
-  new_path->num_sections = path->num_sections;
+  path_string                = s_path_string_from_path (path);
+  new_path                   = (Path*)o_path_new (object->color, path_string);
+  new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
+  new_path->num_sections     = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 
   for (i = 0; i <  path->num_sections; i++) {
@@ -260,6 +259,7 @@ static void s_path_arc_segment (RSVGParsePathCtx * ctx,
 
   sin_th = sin (x_axis_rotation * (M_PI / 180.0));
   cos_th = cos (x_axis_rotation * (M_PI / 180.0));
+
   /* inverse transform compared with s_path_arc */
   a00 = cos_th * rx;
   a01 = -sin_th * ry;
@@ -541,19 +541,22 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
 
 static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 {
-  int i = 0;
+
   double val = 0;
   char c = 0;
-  bool in_num = FALSE;
-  bool in_frac = FALSE;
-  bool in_exp = FALSE;
+  bool in_num        = FALSE;
+  bool in_frac       = FALSE;
+  bool in_exp        = FALSE;
   bool exp_wait_sign = FALSE;
-  int sign = 0;
-  int exp = 0;
-  int exp_sign = 0;
-  double frac = 0.0;
 
-  in_num = FALSE;
+  int sign     = 0;
+  int exp      = 0;
+  int exp_sign = 0;
+
+  double frac  = 0.0;
+  double val   = 0.0;
+  int i;
+
   for (i = 0;; i++) {
     c = data[i];
     if (c >= '0' && c <= '9') {
@@ -562,82 +565,97 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
         if (in_exp) {
           exp = (exp * 10) + c - '0';
           exp_wait_sign = FALSE;
-        } else if (in_frac)
+        }
+        else if (in_frac) {
           val += (frac *= 0.1) * (c - '0');
-        else
+        }
+        else {
           val = (val * 10) + c - '0';
-      } else {
-        in_num = TRUE;
-        in_frac = FALSE;
-        in_exp = FALSE;
-        exp = 0;
-        exp_sign = 1;
-        exp_wait_sign = FALSE;
-        val = c - '0';
-        sign = 1;
+        }
       }
-    } else if (c == '.') {
+      else {
+        in_num        = TRUE;
+        in_frac       = FALSE;
+        in_exp        = FALSE;
+        exp           = 0;
+        exp_sign      = 1;
+        exp_wait_sign = FALSE;
+        val           = c - '0';
+        sign          = 1;
+      }
+    }
+    else if (c == '.') {
       if (!in_num) {
         in_num = TRUE;
-        val = 0;
+        val    = 0;
       }
       in_frac = TRUE;
-      frac = 1;
-    } else if ((c == 'E' || c == 'e') && in_num) {
-      in_exp = TRUE;
+      frac    = 1;
+    }
+    else if ((c == 'E' || c == 'e') && in_num) {
+      in_exp        = TRUE;
       exp_wait_sign = TRUE;
-      exp = 0;
-      exp_sign = 1;
-    } else if ((c == '+' || c == '-') && in_exp) {
+      exp           = 0;
+      exp_sign      = 1;
+    }
+    else if ((c == '+' || c == '-') && in_exp) {
       exp_sign = c == '+' ? 1 : -1;
-    } else if (in_num) {
+    }
+    else if (in_num) {
+
       /* end of number */
 
       val *= sign * pow (10, exp_sign * exp);
+
       if (ctx->rel) {
-        /* Handle relative coordinates. This switch statement attempts
-           to determine _what_ the coords are relative to. This is
-           underspecified in the 12 Apr working draft. */
+        /* Handle relative coordinates. The following switch statement attempts
+         * to determine _what_ the coords are relative to. This is under
+         * specified in the 12 Apr working draft. */
         switch (ctx->cmd) {
-        case 'l':
-        case 'm':
-        case 'c':
-        case 's':
-        case 'q':
-        case 't':
+          case 'l':
+          case 'm':
+          case 'c':
+          case 's':
+          case 'q':
+          case 't':
+
 #ifndef RSVGV_RELATIVE
-          /* rule: even-numbered params are x-relative, odd-numbered
-             are y-relative */
-          if ((ctx->param & 1) == 0)
-            val += ctx->cpx;
-          else if ((ctx->param & 1) == 1)
-            val += ctx->cpy;
-          break;
+            /* rule: even-numbered params are x-relative, odd-numbered
+             *            are y-relative */
+            if ((ctx->param & 1) == 0)
+              val += ctx->cpx;
+            else if ((ctx->param & 1) == 1)
+              val += ctx->cpy;
+            break;
+
 #else
-          /* rule: even-numbered params are x-relative, odd-numbered
-             are y-relative */
-          if (ctx->param == 0 || (ctx->param % 2 == 0))
-            val += ctx->cpx;
-          else
-            val += ctx->cpy;
-          break;
+            /* rule: even-numbered params are x-relative, odd-numbered
+             *            are y-relative */
+            if (ctx->param == 0 || (ctx->param % 2 == 0))
+              val += ctx->cpx;
+            else
+              val += ctx->cpy;
+            break;
 #endif
-        case 'a':
-          /* rule: sixth and seventh are x and y, rest are not
-             relative */
-          if (ctx->param == 5)
+
+          case 'a':
+            /* rule: sixth and seventh are x and y, rest are not
+             *            relative */
+            if (ctx->param == 5)
+              val += ctx->cpx;
+            else if (ctx->param == 6)
+              val += ctx->cpy;
+            break;
+
+          case 'h':
+            /* rule: x-relative */
             val += ctx->cpx;
-          else if (ctx->param == 6)
+            break;
+
+          case 'v':
+            /* rule: y-relative */
             val += ctx->cpy;
-          break;
-        case 'h':
-          /* rule: x-relative */
-          val += ctx->cpx;
-          break;
-        case 'v':
-          /* rule: y-relative */
-          val += ctx->cpy;
-          break;
+            break;
         }
       }
       ctx->params[ctx->param++] = val;
@@ -646,34 +664,44 @@ static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
       in_num = FALSE;
     }
 
-    if (c == '\0')
+    if (c == '\0') {
       break;
+    }
     else if ((c == '+' || c == '-') && !exp_wait_sign) {
-      sign = c == '+' ? 1 : -1;
-      val = 0;
-      in_num = TRUE;
-      in_frac = FALSE;
-      in_exp = FALSE;
-      exp = 0;
-      exp_sign = 1;
+      sign          = c == '+' ? 1 : -1;
+      val           = 0;
+      in_num        = TRUE;
+      in_frac       = FALSE;
+      in_exp        = FALSE;
+      exp           = 0;
+      exp_sign      = 1;
       exp_wait_sign = FALSE;
-    } else if (c == 'z' || c == 'Z') {
+    }
+    else if (c == 'z' || c == 'Z') {
+
       if (ctx->param)
         s_path_parse_do_cmd (ctx, TRUE);
+
       /* s_path_closepath (ctx->path); */
       /* s_path_lineto (ctx->path, ctx->mpx, ctx->mpy); */
       s_path_art_finish (ctx->path);
 
       ctx->cpx = ctx->rpx = ctx->path->sections[ctx->path->num_sections - 1].x3;
       ctx->cpy = ctx->rpy = ctx->path->sections[ctx->path->num_sections - 1].y3;
-    } else if (c >= 'A' && c <= 'Z' && c != 'E') {
+    }
+    else if (c >= 'A' && c <= 'Z' && c != 'E') {
+
       if (ctx->param)
         s_path_parse_do_cmd (ctx, TRUE);
+
       ctx->cmd = c + 'a' - 'A';
       ctx->rel = FALSE;
-    } else if (c >= 'a' && c <= 'z' && c != 'e') {
+    }
+    else if (c >= 'a' && c <= 'z' && c != 'e') {
+
       if (ctx->param)
         s_path_parse_do_cmd (ctx, TRUE);
+
       ctx->cmd = c;
       ctx->rel = TRUE;
     }
@@ -686,12 +714,12 @@ Path *s_path_parse (const char *path_str)
 {
   RSVGParsePathCtx ctx;
 
-  ctx.path = s_path_new ();
-  ctx.cpx = 0.0;
-  ctx.cpy = 0.0;
-  ctx.mpx = 0.0;
-  ctx.mpy = 0.0;
-  ctx.cmd = 0;
+  ctx.path  = s_path_new ();
+  ctx.cpx   = 0.0;
+  ctx.cpy   = 0.0;
+  ctx.mpx   = 0.0;
+  ctx.mpy   = 0.0;
+  ctx.cmd   = 0;
   ctx.param = 0;
 
   s_path_parse_data (&ctx, path_str);
@@ -705,7 +733,7 @@ Path *s_path_parse (const char *path_str)
 char *s_path_string_from_path (const Path *path)
 {
   PATH_SECTION *section;
-  GString *path_string;
+  GString      *path_string;
   int i;
 
   path_string = g_string_new ("");
@@ -721,20 +749,24 @@ char *s_path_string_from_path (const Path *path)
         g_string_append_printf (path_string, "M %i,%i",
                                 section->x3, section->y3);
         break;
+
       case PATH_MOVETO_OPEN:
         g_string_append_printf (path_string, "M %i,%i",
                                 section->x3, section->y3);
         break;
+
       case PATH_CURVETO:
         g_string_append_printf (path_string, "C %i,%i %i,%i %i,%i",
                                 section->x1, section->y1,
                                 section->x2, section->y2,
                                 section->x3, section->y3);
         break;
+
       case PATH_LINETO:
         g_string_append_printf (path_string, "L %i,%i",
                                 section->x3, section->y3);
         break;
+
       case PATH_END:
         g_string_append_printf (path_string, "z");
         break;
@@ -763,7 +795,7 @@ int s_path_to_polygon (Path *path, GArray *points)
   }
 
   for (i = 0; i < path->num_sections; i++) {
-    BEZIER bezier;
+    BEZIER        bezier;
     PATH_SECTION *section = &path->sections[i];
 
     switch (section->code) {
@@ -774,8 +806,8 @@ int s_path_to_polygon (Path *path, GArray *points)
         bezier.y[1] = section->y1;
         bezier.x[2] = section->x2;
         bezier.y[2] = section->y2;
-        point.x = bezier.x[3] = section->x3;
-        point.y = bezier.y[3] = section->y3;
+        point.x     = bezier.x[3] = section->x3;
+        point.y     = bezier.y[3] = section->y3;
         m_polygon_append_bezier (points, &bezier, NUM_BEZIER_SEGMENTS);
         break;
 
@@ -806,10 +838,11 @@ int s_path_to_polygon (Path *path, GArray *points)
  *  \param [in] x       The x coordinate of the given point.
  *  \param [in] y       The y coordinate of the given point.
  *  \param [in] solid   TRUE if the path should be treated as solid, FALSE if
- *  the path should be treated as hollow.
- *  \return The shortest distance from the path to the point.  With a solid
- *  shape, this function returns a distance of zero for interior points.  With
- *  an invalid parameter, this function returns G_MAXDOUBLE.
+ *                      the path should be treated as hollow.
+ *  \return The shortest distance from the path to the point. With a solid
+ *          shape, this function returns a distance of zero for interior
+ *          points. With an invalid parameter, this function returns
+ *          G_MAXDOUBLE.
  */
 double s_path_shortest_distance (Path *path, int x, int y, int solid)
 {
@@ -818,7 +851,6 @@ double s_path_shortest_distance (Path *path, int x, int y, int solid)
   GArray *points;
 
   points = g_array_new (FALSE, FALSE, sizeof (POINT));
-
   closed = s_path_to_polygon (path, points);
 
   if (!solid) {
