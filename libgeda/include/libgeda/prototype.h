@@ -109,6 +109,7 @@ G_BEGIN_DECLS
 
 /* m_line.c */
           int    m_line_length                   (int x1, int y1, int x2, int y2);
+         bool    m_line_intersection             (Line *line1, Line *line2, POINT *point);
        double    m_line_shortest_distance        (Line *line, int x, int y);
 
 /* m_polygon.c */

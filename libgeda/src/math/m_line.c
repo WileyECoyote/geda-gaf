@@ -62,7 +62,7 @@ int m_line_length (int x1, int y1, int x2, int y2)
  *
  *  \return TRUE if lines intersect
  */
-bool m_line_get_intersection(LINE *line1, LINE *line2, POINT *point)
+bool m_line_intersection(Line *line1, Line *line2, POINT *point)
 {
   bool   has_slope1;
   bool   has_slope2;
