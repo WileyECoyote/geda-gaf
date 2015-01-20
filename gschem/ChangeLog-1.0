@@ -1,5 +1,9 @@
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_diagnostics.c: Add Copyright header
+
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_event.c: General cleaning
 
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>

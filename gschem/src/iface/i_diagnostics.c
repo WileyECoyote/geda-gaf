@@ -1,3 +1,31 @@
+/* C
+ * File: i_diagnostics.c
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ *
+ * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
+ *
+ * Date: July, 13, 2014
+ * Contributing Author: Wiley Edward Hill
+ *
+ */
+
 #include "x_dialog.h"
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
@@ -12,7 +40,6 @@ print_page_info(GtkWidget *button, GschemToplevel *w_current)
 static int
 o_diagnostics_notifier_one(void *wc, Object *object)
 {
-  //GschemToplevel *w_current = wc;
   if (object)
     printf( "%s object <%s>\n", __func__, object->name);
   else
