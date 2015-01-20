@@ -1,5 +1,9 @@
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_callbacks.c: Revise/update Doxygen comments
+
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_diagnostics.c: Add Copyright header
 
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
