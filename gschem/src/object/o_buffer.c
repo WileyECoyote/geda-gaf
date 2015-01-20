@@ -143,10 +143,6 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     BUG_MSG ("Current_Page is NULL");
     result = FALSE;
   }
-  else if (Current_PlaceList == NULL) {
-    BUG_MSG ("Current_PlaceList is NULL");
-    result = FALSE;
-  }
   else if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     BUG_MSG ("invalid buffer_number");
     result = FALSE;
@@ -160,7 +156,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     Current_Page->place_list = NULL;
 
     Current_PlaceList = o_list_copy_all (object_buffer[buf_num],
-                                          Current_PlaceList);
+                                         Current_PlaceList);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
     int dint;
@@ -169,7 +165,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
 #endif
 
     if (o_get_world_bounds_list (Current_PlaceList,
-                                      &rleft, &rtop, &rright, &rbottom))
+                                 &rleft, &rtop, &rright, &rbottom))
     {
 
       /* Place objects into the buffer at the mouse origin, (w_x, w_y) */
