@@ -160,7 +160,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
     int dint;
-    dint = g_list_length(toplevel->page_current->place_list);
+    dint = g_list_length(Current_Page->place_list);
     printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 

@@ -35,11 +35,34 @@
  */
 void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
 
-  o_place_invalidate_rubber (w_current, TRUE);
-  w_current->rubber_visible = 1;
+  if (Current_Page->place_list) {
+
+    int count = g_list_length(Current_Page->place_list);
+
+    if (count > 0) {
+
+#if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE || DEBUG_PLACE
+    printf("%s: place_list has %d objects\n", __func__, count);
+#endif
+
+      w_current->second_wx = w_x;
+      w_current->second_wy = w_y;
+
+      o_place_invalidate_rubber (w_current, TRUE);
+      w_current->rubber_visible = 1;
+    }
+    else {
+      u_log_message (_("Buffer is empty, nothing to place\n"));
+      w_current->inside_action = FALSE;
+      i_status_set_state(w_current, SELECT);
+    }
+  }
+  else {
+    BUG_ITRACE("page_current->place_list is NULL %d", w_current->debug);
+    w_current->inside_action = FALSE;
+    i_status_set_state(w_current, SELECT);
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -222,7 +245,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
   }
   else {
-    BUG_TRACE("page_current->place_list is NULL");
+    BUG_ITRACE("page_current->place_list is NULL %d", w_current->debug);
   }
 }
 
