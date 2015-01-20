@@ -1,4 +1,12 @@
-2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/motor/MCP8026MP-1.sym: Add new symbol for 3-phase motor Gate
+      driver, SAE J2602.
+
+    * microchip/motor/MCP8026PT-1.sym: Add new symbol for 3-phase motor Gate
+      driver, SAE J2602.
+
+2015-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/motor/MCP8024MP-1.sym: Relocate attribute text to upper
       left. Delete text with device part number, just device= attribute
