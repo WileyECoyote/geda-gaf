@@ -1,5 +1,15 @@
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/motor/MCP8024MP-1.sym: Relocate attribute text to upper
+      left. Delete text with device part number, just device= attribute
+      so users can move the text.
+
+    * microchip/motor/MCP8024PT-1.sym: Relocate attribute text to upper
+      left. Delete text with device part number, just device= attribute
+      so users can move the text.
+
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/regulators/LP2980-1.sym: Add symbol LP2980
 
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>

@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150101 2
 P 100 3700 400 3700 1 0 0
 {
 T 300 3750 5 8 1 1 0 6 1
@@ -94,7 +94,7 @@ pinnumber=9
 T 300 1250 5 8 0 1 0 8 1
 pinseq=9
 T 450 1300 9 8 1 1 0 0 1
-pinlabel=ISENSEP
+pinlabel=ISENSE3P
 T 450 1300 5 8 0 1 0 2 1
 pintype=in
 }
@@ -451,23 +451,21 @@ T 4500 450 5 8 0 1 90 2 1
 pintype=pwr
 }
 B 400 400 4800 3900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 5200 4400 8 10 1 1 0 6 1
+T 2800 2500 8 10 1 1 0 3 1
 refdes=U?
-T 2300 2350 9 10 1 0 0 0 1
-MCP8024MP
-T 2600 2550 5 10 0 0 0 0 1
+T 2300 2250 5 10 1 1 0 0 1
 device=MCP8024MP
-T 2600 2750 5 10 0 0 0 0 1
+T 200 4750 5 10 0 0 0 0 1
 footprint=QFN-20-5
-T 2600 2950 5 10 0 0 0 0 1
+T 200 4950 5 10 0 0 0 0 1
 author=AutoTron
-T 2600 3150 5 10 0 0 0 0 1
+T 200 5150 5 10 0 0 0 0 1
 documentation=http://www.microchip.com/MCP8024
-T 2600 3350 5 10 0 0 0 0 1
+T 200 5350 5 10 0 0 0 0 1
 description=Motor Gate Driver with Power Module
-T 2600 3550 5 10 0 0 0 0 1
+T 200 5550 5 10 0 0 0 0 1
 numslots=0
-T 2600 3750 5 10 0 0 0 0 1
+T 200 5750 5 10 0 0 0 0 1
 dist-license=GPL3
-T 2600 3950 5 10 0 0 0 0 1
+T 200 5950 5 10 0 0 0 0 1
 use-license=unlimited
