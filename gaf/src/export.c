@@ -1004,11 +1004,11 @@ export_usage (void)
 
 /* Helper function for checking that a command-line option value can
  * be successfully converted to UTF-8. */
-static inline char *
+static inline char*
 export_command_line__utf8_check (char *str, char *arg)
 {
   GError *err = NULL;
-  char *result;
+  char   *result;
 
   g_assert (str != NULL);
   g_assert (arg != NULL);
@@ -1024,7 +1024,7 @@ export_command_line__utf8_check (char *str, char *arg)
 static void
 export_command_line (int argc, char * const *argv)
 {
-  int c;
+  int   c;
   char *str;
 
   /* Parse command-line arguments */
