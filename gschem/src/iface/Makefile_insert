@@ -10,4 +10,5 @@ gschem_SOURCES += \
 				iface/i_status.c \
 				iface/i_threads.c \
 				iface/i_vars.c \
+				iface/i_window.c \
 				iface/i_zoom_world.c

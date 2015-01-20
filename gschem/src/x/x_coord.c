@@ -323,7 +323,7 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   GtkEntry  *world_entry;
 
   char *string;
-  int world_x, world_y;
+  int   world_x, world_y;
 
   Dialog = w_current->cowindow;
   screen_entry = gtk_object_get_data(GTK_OBJECT(Dialog), "screen");
@@ -408,7 +408,7 @@ g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_sa
 #endif
       /* If we were not in an action the just set the pointer to X,Y location */
       if (!w_current->inside_action) {
-        x_event_set_pointer_position (w_current, x, y);
+        i_window_set_pointer_position (w_current, x, y);
       } /* is there something in the Drag&Drop buffer? */
       else if (object_buffer[DND_BUFFER] != NULL) {
 

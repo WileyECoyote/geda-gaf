@@ -329,6 +329,11 @@ void       i_vars_freenames                 (void);
 void       i_vars_init                      (GschemToplevel *w_current);
 void       i_vars_atexit_save_user_config   (void * user_data);
 
+/* i_window.c */
+bool       i_window_get_pointer_position    (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
+void       i_window_set_pointer_position    (GschemToplevel *w_current, int wx, int wy);
+void       i_window_set_viewport_size       (GschemToplevel *w_current);
+
 /* i_zoom_world.c */
 void       i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
                                                                          EID_ACTION_ORIGIN  selected_from,
@@ -736,10 +741,6 @@ bool       x_event_scroll                   (GtkWidget     *widget, GdkEventScro
 
 void       x_event_hschanged                (GtkAdjustment *adjust, GschemToplevel    *w_current);
 void       x_event_vschanged                (GtkAdjustment *adjust, GschemToplevel    *w_current);
-
-bool       x_event_get_pointer_position     (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
-void       x_event_set_pointer_position     (GschemToplevel *w_current, int wx, int wy);
-void       x_manual_resize                  (GschemToplevel *w_current);
 
 /* x_fileselect.c */
 GSL       *x_fileselect_list                (GschemToplevel *w_current);

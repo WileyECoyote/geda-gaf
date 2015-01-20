@@ -254,7 +254,7 @@ SCM_DEFINE (pointer_position, "%pointer-position", 0, 0, 0,
 
   GschemToplevel *w_current;
   w_current = g_current_window ();
-  if (x_event_get_pointer_position (w_current, FALSE, &x, &y)) {
+  if (i_window_get_pointer_position (w_current, FALSE, &x, &y)) {
     return scm_cons (scm_from_int (x), scm_from_int (y));
   }
   return SCM_BOOL_F;

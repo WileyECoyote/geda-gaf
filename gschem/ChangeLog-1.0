@@ -1,5 +1,12 @@
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_window.c: Create new module, relocating and renaming
+      x_event_get_pointer_position, x_event_set_pointer_position, and
+      x_manual_resize to i_window_get_pointer_position, i_window_set_
+      pointer_position, and i_window_set_viewport_size respectively.
+
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_callbacks.c: Revise/update Doxygen comments
 
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>

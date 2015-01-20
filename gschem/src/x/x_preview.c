@@ -201,7 +201,7 @@ preview_callback_button_press (GtkWidget      *widget,
       preview_invalidate (preview_window);
       break;
     case 2: /* middle mouse button: pan */
-      if (!x_event_get_pointer_position(preview_window, FALSE, &wx, &wy))
+      if (!i_window_get_pointer_position(preview_window, FALSE, &wx, &wy))
         return FALSE;
       i_pan_world (preview_window, wx, wy);
       break;

@@ -56,7 +56,7 @@ DEFINE_I_CALLBACK(view_pan_hotkey)
 
     int wx, wy;
 
-    if (!x_event_get_pointer_position(w_current, FALSE, &wx, &wy))
+    if (!i_window_get_pointer_position(w_current, FALSE, &wx, &wy))
       return;
 
     i_pan_world(w_current, wx, wy);

@@ -82,7 +82,7 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
      ((selected_from == ID_ORIGIN_KEYBOARD) ||
        (selected_from == ID_ORIGIN_MOUSE)))
   {
-    if (!x_event_get_pointer_position(w_current, FALSE, &start_x, &start_y)) {
+    if (!i_window_get_pointer_position(w_current, FALSE, &start_x, &start_y)) {
       return;
     }
     if ( w_current->warp_cursor ) {

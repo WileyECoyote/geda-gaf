@@ -43,7 +43,7 @@
  *  \param [in] y      integer ordinate in screen units
  *
  * \note WEH: For setting the cursor relative to the drawing area
- *       using world coordinates see x_event_set_pointer_position.
+ *       using world coordinates see i_window_set_pointer_position.
  */
 void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
 {

@@ -1047,7 +1047,7 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
     x_pagesel_update (w_current);
     x_multiattrib_update (w_current);
 
-    x_manual_resize (w_current);
+    i_window_set_viewport_size (w_current);
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);
     o_invalidate_all (w_current);

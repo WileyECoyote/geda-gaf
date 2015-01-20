@@ -308,7 +308,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
       if (command_struc[i].repeat != NULL) {
         set_last_command(i); /* save last index for recall by repeat-last */
-        x_status_bar_middle_mouse(w_current, command_struc[i].repeat);
+        x_status_bar_update_middle_mouse(w_current, command_struc[i].repeat);
       }
 
       /* Check the repeat last command action */
@@ -327,7 +327,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
           /*  If not mouse, then likely is keyboard, this is intended to
            *  handle all except the mouse */
-          if (x_event_get_pointer_position (w_current, TRUE, &wx, &wy)) {
+          if (i_window_get_pointer_position (w_current, TRUE, &wx, &wy)) {
             command_struc[i].point.x = wx;
             command_struc[i].point.y = wy;
             check_magnet = TRUE;
@@ -1286,6 +1286,41 @@ COMMAND (do_move)
   EXIT_COMMAND(do_move);
 }
 
+/*! \brief Mirror selected objects on page
+ *
+ *  @brief i_cmd_do_mirror in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  Initiate Mirror mode for selected object.
+ *
+ */
+COMMAND (do_mirror)
+{
+  BEGIN_W_COMMAND(do_mirror);
+  int state;
+
+  o_redraw_cleanstates(w_current);
+  if HOT_ACTION (do_mirror) {
+
+    GList *object_list;
+
+    object_list = geda_list_get_glist (Current_Selection);
+
+    if (object_list) {
+      o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
+    }
+
+    state = SELECT;
+  }
+  else {
+    state = ENDMIRROR;
+  }
+
+  w_current->inside_action = 0;
+  i_status_set_state(w_current, state);
+  EXIT_COMMAND(do_mirror);
+}
+
 /*! \brief Action Rotate  in i_command_Edit_Actions
  *
  *  @brief i_cmd_do_rotate
@@ -1346,42 +1381,6 @@ COMMAND (do_rotate)
   }
 
   EXIT_COMMAND(do_rotate);
-}
-
-/*! \brief Mirror selected objects on page
- *
- *  @brief i_cmd_do_mirror in i_command_Edit_Actions
- *
- *  \par Function Description
- *  Initiate Mirror mode for selected object.
- *
- */
-COMMAND (do_mirror)
-{
-  BEGIN_W_COMMAND(do_mirror);
-  int state;
-
-  o_redraw_cleanstates(w_current);
-  if HOT_ACTION (do_mirror) {
-
-    GList *object_list;
-
-    object_list = geda_list_get_glist (w_current->toplevel->
-                                       page_current->selection_list);
-
-    if (object_list) {
-      o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
-    }
-
-    state = SELECT;
-  }
-  else {
-    state = ENDMIRROR;
-  }
-
-  w_current->inside_action = 0;
-  i_status_set_state(w_current, state);
-  EXIT_COMMAND(do_mirror);
 }
 
 /*! \brief Edit Attributes for selected object
@@ -1765,8 +1764,7 @@ COMMAND (do_zoom_to_mag)
   x = CMD_X(do_zoom_to_mag);
   y = CMD_Y(do_zoom_to_mag);
 
-  mag = geda_dialog_get_real(_("Zoom Mag"),
-                             _("Specify new zoom:"));
+  mag = geda_dialog_get_real(_("Zoom Mag"), _("Specify new zoom:"));
 
   i_zoom_world_specify(w_current, mag, x, y, CMD_WHO(do_zoom_to_mag));
 
