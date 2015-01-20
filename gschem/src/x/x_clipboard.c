@@ -40,11 +40,9 @@ struct query_usable {
 
 /*! \brief Callback System Clipboard Change Ownership.
  *  \par Function Description
- *
  */
 static void
-clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
-                          void * user_data)
+clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event, void *user_data)
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
 
@@ -52,8 +50,9 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
 }
 
 static void
-clip_get (GtkClipboard *cb,  GtkSelectionData *selection_data,
-          unsigned int info, void * user_data_or_owner)
+clip_get (GtkClipboard *cb, GtkSelectionData *selection_data,
+                            unsigned int      info,
+                            void             *user_data_or_owner)
 {
   GschemToplevel *w_current;
   GdkAtom         type;
@@ -87,10 +86,9 @@ clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 
 /*! \brief Initialises system clipboard support
  *
- *  \par Function Description
- *
- * Registers a signal handler to detect if the clipboard has changed
- * and update the menu item sensitivity if necessary.
+ * \par Function Description
+ *  Registers a signal handler to detect if the clipboard has changed
+ *  and update the menu item sensitivity if necessary.
  */
 void
 x_clipboard_init (GschemToplevel *w_current)
@@ -106,11 +104,11 @@ x_clipboard_init (GschemToplevel *w_current)
   got_answer = TRUE;
 }
 
-/*! \brief Initialises system clipboard support
- *  \par Function Description
+/*! \brief Finalize clipboard system
  *
- * Registers a signal handler to detect if the clipboard has changed
- * and update the menu item sensitivity if necessary.
+ * \par Function Description
+ *  Unregisters clipboard callback handler and release ownership of
+ *  contents to system.
  */
 void
 x_clipboard_finish (GschemToplevel *w_current)
@@ -125,8 +123,8 @@ x_clipboard_finish (GschemToplevel *w_current)
 }
 
 /*! \brief Callback for determining if any clipboard targets are pastable
- *  \par Function Description
  *
+ * \par Function Description
  * Checks if the clipboard targets match any format we recognise, then
  * calls back into a supplied callback function which is interested in
  * the TRUE / FALSE answer to whether we can paste from the clipboard.
@@ -160,20 +158,19 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
     G_UNLOCK(got_answer);
 }
 
-
 /*! \brief Checks if the system clipboard contains schematic data.
- *  \par Function Description
  *
- * Checks whether the current owner of the system clipboard is
- * advertising gEDA schematic data.
+ * \par Function Description
+ *  Checks whether the current owner of the system clipboard is
+ *  advertising gEDA schematic data.
  *
- * The check is performed asynchronously. When a response is
- * recieved, the provided callback is called with a TRUE / FALSE
- * result.
+ *  The check is performed asynchronously. When a response is
+ *  recieved, the provided callback is called with a TRUE / FALSE
+ *  result.
  *
- * \param [in] w_current   The current GschemToplevel.
- * \param [in] callback    The callback to recieve the response.
- * \param [in] userdata    Arbitrary data to pass the callback.
+ * \param [in] w_current  The current GschemToplevel.
+ * \param [in] callback   The callback to recieve the response.
+ * \param [in] userdata   Arbitrary data to pass the callback.
  */
 /*
  * Note WEH (01/22/13): We do not want to reallocate another structure
@@ -217,10 +214,10 @@ x_clipboard_query_usable (GschemToplevel *w_current,
 }
 
 /*! \brief Set the contents of the system clipboard
- *  \par Function Description
  *
- * Sets the system clipboard to contain the gschem objects listed in \a
- * object_list.
+ * \par Function Description
+ *  Sets the system clipboard to contain the gschem objects listed in
+ *  \a object_list.
  *
  * \param [in,out] w_current   The current GschemToplevel.
  * \param [in]     object_list The objects to put in the clipboard.
@@ -257,19 +254,19 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
 }
 
 /*! \brief Get the contents of the system clipboard
- *  \par Function Description
  *
- * If the system clipboard contains schematic data, retrieve it.
+ * \par Function Description
+ *  Retrieves schematic data from the system clipboard.
  *
- * \param [in,out] w_current   The current GschemToplevel.
+ * \param [in,out] w_current The current GschemToplevel.
  *
- * \returns Any Objects retrieved from the system clipboard, or NULL
+ * \returns Objects retrieved from the system clipboard, or NULL
  *          if none were available.
  */
 GList *
 x_clipboard_get (GschemToplevel *w_current)
 {
-  GedaToplevel            *toplevel;
+  GedaToplevel        *toplevel;
   GtkClipboard        *cb;
   GdkAtom              type;
   GtkSelectionData    *selection_data;
@@ -290,19 +287,20 @@ x_clipboard_get (GschemToplevel *w_current)
   if (selection_data == NULL) return FALSE;
 
   /* Convert the data buffer to Objects */
-  #if GTK_CHECK_VERSION(2,14,0)
+#if GTK_CHECK_VERSION(2,14,0)
   buf = gtk_selection_data_get_data (selection_data);
-  #else
+#else
   buf = selection_data->data;
-  #endif
+#endif
 
   object_list = o_read_buffer (toplevel, object_list,
                                (char *) buf, -1, "Clipboard", &err);
 
   if (err) {
-    u_log_message(_("x_clipboard_get: Invalid schematic on clipboard. %s\n"), err->message);
-    char *errmsg = g_strdup_printf ( _("An error occurred while inserting clipboard data: %s."), err->message);
-    titled_pango_error_dialog ( _("<b>Invalid schematic on clipboard.</b>"), errmsg, _("Clipboard Insertion Failed") );
+    char *errmsg;
+    u_log_message(_("%s: Invalid schematic on clipboard. %s\n"),__func__, err->message);
+    errmsg = g_strdup_printf (_("An error occurred while inserting clipboard data: %s."), err->message);
+    titled_pango_error_dialog (_("<b>Invalid schematic on clipboard.</b>"), errmsg, _("Clipboard Insertion Failed"));
     GEDA_FREE(errmsg);
     g_error_free(err);
   }
