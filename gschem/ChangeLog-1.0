@@ -1,5 +1,12 @@
 2015-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_clipboard.c: General cleaning, Update/Revise Doxygen
+      comments. Get rid of G_LOCK_DEFINE_STATIC (Ubuntu does not like),
+      eliminate G_LOCK and G_UNLOCK, use new accessors set_got_answer
+      and got_an_answer instead.
+
+2015-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_place.c: Add debug code and error handling in
       function o_place_start.
 
@@ -11,12 +18,6 @@
     * src/object/o_buffer.c: Remove check for place list, does not
       matter if the something in the place list or not in function
       o_buffer_paste_start.
-
-2015-01-20 Wiley E. Hill <wileyhill@gmail.com>
-
-    * src/x/x_clipboard.c: General cleaning, Update/Revise Doxygen
-      comments. Get rid of G_LOCK_DEFINE_STATIC (Ubuntu does not like),
-      eliminate G_LOCK and G_UNLOCK, use new accessor instead.
 
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 

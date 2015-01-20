@@ -30,8 +30,29 @@
 
 #define CLIP_TYPE_SCHEMATIC 1
 
-G_LOCK_DEFINE_STATIC(got_answer);
+/* Anonymous Static Mutex */
+static union
+{
+  void *p;
+  unsigned int i[2];
+} clip_got_answer_lock;
+
 static bool got_answer;
+
+static void set_got_answer(int value)
+{
+  g_mutex_lock((GMutex*)&clip_got_answer_lock);
+    got_answer = value;
+  g_mutex_unlock((GMutex*)&clip_got_answer_lock);
+}
+static bool got_an_answer()
+{
+  bool ret_val;
+  g_mutex_lock((GMutex*)&clip_got_answer_lock);
+    ret_val = got_answer;
+  g_mutex_unlock((GMutex*)&clip_got_answer_lock);
+  return ret_val;
+}
 
 struct query_usable {
   void (*callback) (int, void *);
@@ -153,9 +174,7 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
 
     callback_info->callback (is_usable, callback_info->userdata);
     GEDA_FREE (callback_info);
-    G_LOCK(got_answer);
-    got_answer = TRUE; /* unblock submission of new request */
-    G_UNLOCK(got_answer);
+    set_got_answer(TRUE);           /* Set flag */
 }
 
 /*! \brief Checks if the system clipboard contains schematic data.
@@ -184,7 +203,8 @@ x_clipboard_query_usable (GschemToplevel *w_current,
 {
   static int watch_dog;
 
-  if (got_answer == TRUE) {
+  if (got_an_answer()) {
+
     GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
     /* Create a new instance of our callback structure */
@@ -202,9 +222,8 @@ x_clipboard_query_usable (GschemToplevel *w_current,
   }
   else {
     if (watch_dog == 2) { /* Should never get here */
-      G_LOCK(got_answer);
-        got_answer = TRUE; /* Is hack, should somehow tell gtk to forget it */
-      G_UNLOCK(got_answer);
+      /* telling gtk to cancel does not work well, so... */
+      set_got_answer(TRUE);
       watch_dog = 0;
     }
     else {
