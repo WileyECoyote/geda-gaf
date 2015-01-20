@@ -1340,7 +1340,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
  */
 
 /** \defgroup recent-file-internal Recent Files Internal Functions
- *  @{ \par This Group contains core Routine for Sessions.
+ *  @{ \par This Group contains core Routine for Menus.
 */
 
 /*! \brief Update Recent Files Menus
