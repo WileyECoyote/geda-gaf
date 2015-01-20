@@ -1,4 +1,7 @@
-/* -*- i_command.c -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: i_command.c
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *

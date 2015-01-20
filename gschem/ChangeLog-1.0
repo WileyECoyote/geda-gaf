@@ -1,5 +1,9 @@
 2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_*.c: Add tag line
+
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_window.c: Create new module, relocating and renaming
       x_event_get_pointer_position, x_event_set_pointer_position, and
       x_manual_resize to i_window_get_pointer_position, i_window_set_

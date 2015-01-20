@@ -1,4 +1,5 @@
-/* C
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
  * File: i_sessions.c
  *
  * gEDA - GPL Electronic Design Automation
