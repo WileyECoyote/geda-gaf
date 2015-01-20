@@ -1,3 +1,7 @@
+2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: General cleaning
+
 2015-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_copy.c: Revise function o_copy_end to iimplement new

@@ -60,8 +60,6 @@ int x_event_button_pressed(GtkWidget      *widget,
   int  w_x, w_y;
   int  unsnapped_wx, unsnapped_wy;
 
-  //g_return_val_if_fail ((w_current != NULL), 0);
-
 #if DEBUG_EVENTS
   printf("pressed button %d\n", event->button);
   printf("event state: %d\n", event->state);
@@ -319,7 +317,6 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->inside_action = TRUE;
           i_status_set_state(w_current, ZOOMBOXEND);
           break;
-
       }
     }
     else if (event->button == 2) {
@@ -343,8 +340,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->event_state     == ENDMCOPY ||
           w_current->event_state     == ENDPASTE )) {
           i_callback_cancel(w_current, 0, NULL);
-          }
-        //goto end_button_pressed;
+        }
       }
       else {
 
@@ -366,7 +362,6 @@ int x_event_button_pressed(GtkWidget      *widget,
               /* this means the above find did not find anything */
               w_current->inside_action = FALSE;
               i_status_set_state(w_current, SELECT);
-              //goto end_button_pressed;
             }
             else {
               if (w_current->ALTKEY) {
@@ -497,8 +492,6 @@ int x_event_button_pressed(GtkWidget      *widget,
       }
     }
 
-//end_button_pressed:
-
     return(0);
 }
 
@@ -518,8 +511,6 @@ bool x_event_button_released (GtkWidget      *widget,
   int w_x, w_y;
 
   Object *object;
-
-  //g_return_val_if_fail ((w_current != NULL), 0);
 
 #if DEBUG_EVENTS
   printf("%s: entry! %d \n", __func__, w_current->event_state);
@@ -613,7 +604,8 @@ bool x_event_button_released (GtkWidget      *widget,
 
         /* first look for grips */
         if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-          /* now look for objects to select, TRUE = add to page selection */
+
+          /* look for objects to select, TRUE = add to page selection */
           o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           w_current->event_state   = SELECT;
           w_current->inside_action = FALSE;
@@ -717,7 +709,7 @@ bool x_event_button_released (GtkWidget      *widget,
        }
        /* this needs to be REDONE because if you mouse pan, you will
         * be thrown out of the current mode. not good */
-        w_current->inside_action = FALSE;
+       w_current->inside_action = FALSE;
        i_status_set_state(w_current, SELECT);
        break;
 
@@ -774,8 +766,11 @@ bool x_event_configure (GtkWidget         *widget,
   GedaToplevel *toplevel = w_current->toplevel;
 
   GList *iter;
+  GList *pages;
   Page  *old_page_current, *p_current;
-  int    old_screen_width,     old_screen_height, new_screen_width, new_screen_height;
+  int    old_screen_width,  old_screen_height;
+  int    new_screen_width,  new_screen_height;
+
   double relative_zoom_factor = 1.0;
 
   if (toplevel == NULL) {
@@ -783,77 +778,75 @@ bool x_event_configure (GtkWidget         *widget,
     return FALSE;
   }
 
-  if (toplevel->page_current == NULL) {
-    /* don't want to call this if the current page isn't setup yet */
-    return FALSE;
-  }
+  /* if the current page has been setup */
+  if (toplevel->page_current != NULL) {
 
-  old_screen_width  = w_current->screen_width;
-  old_screen_height = w_current->screen_height;
-  new_screen_width  = event->width;
-  new_screen_height = event->height;
+    old_screen_width  = w_current->screen_width;
+    old_screen_height = w_current->screen_height;
+    new_screen_width  = event->width;
+    new_screen_height = event->height;
 
-  if (old_screen_width  == new_screen_width &&
-      old_screen_height == new_screen_height) {
-    /* the size of the drawing area has not changed */
-    /* nothing to do here */
-    return FALSE;
-  }
-
-  w_current->drawable = w_current->window;
-
-  /* update the GschemToplevel with new size of drawing area */
-  w_current->screen_width  = new_screen_width;
-  w_current->screen_height = new_screen_height;
-
-
-  /* in the case the user has maximised the window (hence the */
-  /* configure event) fit the view by playing with zoom level */
-  if (gdk_window_get_state (
-        (gtk_widget_get_toplevel (
-          widget))->window) & GDK_WINDOW_STATE_MAXIMIZED)
-  {
-    double width_ratio, height_ratio;
-
-    /* tweak relative_zoom to better fit page in maximized window */
-    width_ratio  = ((double)new_screen_width)  / ((double)old_screen_width);
-    height_ratio = ((double)new_screen_height) / ((double)old_screen_height);
-
-    /* keep smallest ratio as relative zoom factor when panning */
-    if (width_ratio < height_ratio) {
-      relative_zoom_factor = width_ratio;
+    if (old_screen_width  == new_screen_width &&
+        old_screen_height == new_screen_height)
+    {
+      /* the size of the drawing area has not changed */
+      /* nothing to do here */
+      return FALSE;
     }
-    else {
-      relative_zoom_factor = height_ratio;
+
+    w_current->drawable = w_current->window;
+
+    /* update the GschemToplevel with new size of drawing area */
+    w_current->screen_width  = new_screen_width;
+    w_current->screen_height = new_screen_height;
+
+    /* in the case the user has maximised the window (hence the */
+    /* configure event) fit the view by playing with zoom level */
+    if (gdk_window_get_state (
+       (gtk_widget_get_toplevel (
+        widget))->window) & GDK_WINDOW_STATE_MAXIMIZED)
+    {
+      double width_ratio, height_ratio;
+
+      /* tweak relative_zoom to better fit page in maximized window */
+      width_ratio  = ((double)new_screen_width)  / ((double)old_screen_width);
+      height_ratio = ((double)new_screen_height) / ((double)old_screen_height);
+
+      /* keep smallest ratio as relative zoom factor when panning */
+      if (width_ratio < height_ratio) {
+        relative_zoom_factor = width_ratio;
+      }
+      else {
+        relative_zoom_factor = height_ratio;
+      }
     }
+
+    /* save current page */
+    old_page_current = toplevel->page_current;
+
+    pages = geda_list_get_glist(toplevel->pages);
+
+    /* re-pan each page of the GedaToplevel */
+    for (iter = pages; iter != NULL; iter  = iter->next) {
+
+      double cx, cy;
+      p_current = (Page*)iter->data;
+
+      /* doing this the aspect ratio is kept when changing (hw)*/
+      cx = ((double)(p_current->left + p_current->right))  / 2;
+      cy = ((double)(p_current->top  + p_current->bottom)) / 2;
+      s_page_goto (toplevel, p_current);
+      i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
+
+    }
+
+    /* restore current page to saved value */
+    s_page_goto (toplevel, old_page_current);
+
+    /* redraw the current page and update UI */
+    o_invalidate_all (w_current);
+    x_scrollbars_update (w_current);
   }
-
-  /* save current page */
-  old_page_current = toplevel->page_current;
-
-  /* re-pan each page of the GedaToplevel */
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
-    double cx, cy;
-    p_current = (Page *)iter->data;
-
-    /* doing this the aspectratio is kept when changing (hw)*/
-    cx = ((double)(p_current->left + p_current->right))  / 2;
-    cy = ((double)(p_current->top  + p_current->bottom)) / 2;
-    s_page_goto (toplevel, p_current);
-    i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
-
-  }
-
-  /* restore current page to saved value */
-  s_page_goto (toplevel, old_page_current);
-
-  /* redraw the current page and update UI */
-  o_invalidate_all (w_current);
-  x_scrollbars_update (w_current);
-
   return FALSE;
 }
 
@@ -1102,14 +1095,18 @@ bool x_event_motion (GtkWidget      *widget,
   }
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
-                 &unsnapped_wx, &unsnapped_wy);
+                                  &unsnapped_wx, &unsnapped_wy);
+
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
-  /* If exist update the Coord Dialog */
+  /* If visible update the Coord Dialog */
   if (w_current->cowindow) {
     x_dialog_coord_update_display(w_current, (int) event->x, (int) event->y);
   }
+
+  /* Update coordinates display on the status bar*/
+  i_status_update_coordinates(w_current, w_x, w_y);
 
   if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
     if((w_current->event_state == MOUSEPAN) && w_current->inside_action) {
@@ -1493,7 +1490,6 @@ void x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
   return;
 }
 
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -1516,7 +1512,7 @@ void x_manual_resize(GschemToplevel *w_current)
   w_current->screen_width  = w_current->screen_width;
   w_current->screen_height = w_current->screen_height;
 
-  /* need to do this every time you change width / height */
+  /* need to do this every time the width / height change */
   x_window_setup_page(w_current, toplevel->page_current,
                       toplevel->page_current->left,
                       toplevel->page_current->right,
@@ -1524,10 +1520,8 @@ void x_manual_resize(GschemToplevel *w_current)
                       toplevel->page_current->bottom);
 
 #if DEBUG_EVENTS
-  printf("Window aspect: %f\n",
-         (float) w_current->screen_width / (float) w_current->screen_height);
-  /* No longer used?
-     printf("w: %d h: %d\n", width, height); */
-  printf("aw: %d ah: %d\n", w_current->screen_width, w_current->screen_height);
+  float width  = (float) w_current->screen_width;
+  float height = (float) w_current->screen_height);
+  printf("Window aspect: %f\n", width / height);
 #endif
 }
