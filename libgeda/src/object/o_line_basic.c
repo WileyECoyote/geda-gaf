@@ -1111,7 +1111,7 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
       point->x = (b21 - b11) / (slope1 - slope2);
-      point->y = (slope1 * object1->line->x[0]) + b11; /* pick 1 */
+      point->y = (slope1 * point->x) + b11; /* pick 1 */
 
       intersect = TRUE; /* Not arbitrary */
     }
