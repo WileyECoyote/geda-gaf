@@ -93,7 +93,7 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
       point->x = (b21 - b11) / (slope1 - slope2);
-      point->y = (slope1 * line1->x[0]) + b11; /* pick 1 */
+      point->y = (slope1 * point->x) + b11; /* pick 1 */
 
       intersect = TRUE; /* Not arbitrary */
     }
