@@ -1204,10 +1204,13 @@ bool o_line_get_slope (Object *object, double *anwser)
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
   if ((object->line->x[1] - object->line->x[0]) != 0) {
-    double numerator   = object->line->y[1] - object->line->y[0];
-    double denominator = object->line->x[1] - object->line->x[0];
-    *anwser = numerator / denominator;
-    status  = TRUE;
+
+    double dx, dy;
+
+    dy     = object->line->y[1] - object->line->y[0];
+    dx     = object->line->x[1] - object->line->x[0];
+   *anwser = dy / dx;
+    status = TRUE;
   }
   else {
     status = FALSE;
