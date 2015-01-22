@@ -1,5 +1,10 @@
 2015-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/motor/MCP8025MP-[1,2].sym: Add new symbol for 3-phase motor Gate
+      driver, SAE J2602.
+
+2015-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-[345].sym: Add alternate pin layouts for Vin supplying Vs
       and gnd orientation.
 
