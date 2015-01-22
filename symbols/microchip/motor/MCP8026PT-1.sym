@@ -549,7 +549,7 @@ T 150 5650 5 10 0 0 0 0 1
 author=AutoTron
 T 150 5850 5 10 0 0 0 0 1
 documentation=http://www.microchip.com/MCP8026
-T 150 6050 5 10 1 0 0 0 1
+T 150 6050 5 10 0 0 0 0 1
 description=Motor Gate Driver, 3-phase, SAE J2602
 T 150 6250 5 10 0 0 0 0 1
 numslots=0
