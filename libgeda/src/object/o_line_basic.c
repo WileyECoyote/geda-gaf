@@ -1197,6 +1197,15 @@ bool o_line_get_midpoint(Object *object, POINT *point)
   return status;
 }
 
+/*! \brief calculate the slope of a line object
+ *  \par Function Description
+ *  This function calculates the slope of a line object
+ *
+ *  \param [in] object  a line Object
+ *
+ *  \return True if the slope exist and was set, otherwise
+ *          false.
+ */
 bool o_line_get_slope (Object *object, double *anwser)
 {
   bool status;
