@@ -1106,8 +1106,8 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
     if (slope1 != slope2) {
 
       /* y-intercept = ordinate - slope x abscissa */
-      int b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
-      int b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+      float b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
+      float b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
       point->x = (b21 - b11) / (slope1 - slope2);
@@ -1197,34 +1197,33 @@ bool o_line_get_midpoint(Object *object, POINT *point)
   return status;
 }
 
-/*! \brief calculate the slope of a line object
+/*! \brief Calculates the Slope of a Line Object
  *  \par Function Description
  *  This function calculates the slope of a line object
  *
- *  \param [in] object  a line Object
+ *  \param [in]  object  a line Object
+ *  \param [out] anwser  The slope if not infinite
  *
- *  \return True if the slope exist and was set, otherwise
- *          false.
+ *  \return True if the slope was set, otherwise false
  */
-bool o_line_get_slope (Object *object, double *anwser)
+bool o_line_get_slope (Object *object, double *slope)
 {
-  bool status;
+  bool has_slope;
 
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
-  if ((object->line->x[1] - object->line->x[0]) != 0) {
+  has_slope = object->line->x[0] == object->line->x[1] ? FALSE : TRUE;
+
+  if (has_slope) {
 
     double dx, dy;
 
-    dy     = object->line->y[1] - object->line->y[0];
-    dx     = object->line->x[1] - object->line->x[0];
-   *anwser = dy / dx;
-    status = TRUE;
+    dy    = object->line->y[1] - object->line->y[0];
+    dx    = object->line->x[1] - object->line->x[0];
+   *slope = dy / dx;
   }
-  else {
-    status = FALSE;
-  }
-  return status;
+
+  return has_slope;
 }
 
 
