@@ -1106,12 +1106,12 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
     if (slope1 != slope2) {
 
       /* y-intercept = ordinate - slope x abscissa */
-      float b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
-      float b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
+      int b11 = rint(object1->line->y[0] - (slope1 * object1->line->x[0]));
+      int b21 = rint(object2->line->y[0] - (slope2 * object2->line->x[0]));
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
-      point->x = (b21 - b11) / (slope1 - slope2);
-      point->y = (slope1 * point->x) + b11; /* pick 1 */
+      point->x = rint((b21 - b11) / (slope1 - slope2));
+      point->y = rint((slope1 * point->x) + b11); /* pick 1 */
 
       intersect = TRUE; /* Not arbitrary */
     }
@@ -1132,8 +1132,8 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
         point->y = object1->line->y[0];  /* arbitrary, y's are equal */
       }
       else { /* get y-intercept for object1 */
-        int b11 = object1->line->y[0] - (slope1 * object1->line->x[0]);
-        point->y = slope1 * point->x + b11; /* solve for y1(1) at x */
+        int b11  = rint(object1->line->y[0] - (slope1 * object1->line->x[0]));
+        point->y = rint(slope1 * point->x + b11); /* solve for y1(1) at x */
       }
 
       intersect = TRUE;
@@ -1155,8 +1155,8 @@ bool o_line_get_intersection(Object *object1, Object *object2, POINT *point)
         point->y = object2->line->y[0];  /* arbitrary, y's are equal */
       }
       else { /* get y-intercept for object2 */
-        int b21 = object2->line->y[0] - (slope2 * object2->line->x[0]);
-        point->y = slope2 * point->x + b21; /* solve for y2(1) at x */
+        int b21  = rint(object2->line->y[0] - (slope2 * object2->line->x[0]));
+        point->y = rint(slope2 * point->x + b21); /* solve for y2(1) at x */
       }
 
       intersect = TRUE;

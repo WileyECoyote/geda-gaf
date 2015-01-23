@@ -1007,15 +1007,18 @@ void o_circle_print_hatch(GedaToplevel *toplevel, FILE *fp,
   g_array_free(lines, TRUE);
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- *  point on the perimeter of the circle.
+/*! \brief Calculates shortest distance to a Circle
+ *  \par Function Description
+ *   Calculates the distance between the given point and the closest
+ *   point on the perimeter of the circle.
  *
  *  \param [in] object       A circle Object.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
- *  \return The shortest distance from the object to the point.  With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ *
+ *  \return The shortest distance from point to \a object to the point or
+ *          G_MAXDOUBLE if the parameters are invalid parameter.
  */
 double o_circle_shortest_distance (Object *object, int x, int y, int force_solid)
 {

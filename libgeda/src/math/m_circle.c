@@ -39,10 +39,11 @@
  *  \param [in] x       The x coordinate of the given point.
  *  \param [in] y       The y coordinate of the given point.
  *  \param [in] solid   TRUE if the circle should be treated as solid, FALSE if
- *  the circle should be treated as hollow.
- *  \return The shortest distance from the circle to the point.  With a solid
- *  shape, this function returns a distance of zero for interior points.  With
- *  an invalid parameter, this function returns G_MAXDOUBLE.
+ *                      the circle should be treated as hollow.
+ *
+ *  \return The shortest distance from the circle to the point. With a solid
+ *          shape, this function returns a distance of zero for interior points,
+ *          or G_MAXDOUBLE if the parameters are invalid parameter.
  */
 double m_circle_shortest_distance (Circle *circle, int x, int y, int solid)
 {
@@ -59,7 +60,8 @@ double m_circle_shortest_distance (Circle *circle, int x, int y, int solid)
 
   if (solid) {
     shortest_distance = max (distance_to_center - circle->radius, 0);
-  } else {
+  }
+  else {
     shortest_distance = fabs (distance_to_center - circle->radius);
   }
 
