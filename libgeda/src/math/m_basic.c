@@ -25,6 +25,21 @@
 
 #include "libgeda_priv.h"
 
+/*! \brief Convert Degrees to Radian
+ *  \par Function Description
+ *  This function converts angular \a degrees into radian measure.
+ *
+ *  \param [in] degrees degrees to convert
+ *
+ *  \returns radians conversion as a double
+ *
+ *  \sa m_radians_to_degrees
+ */
+double m_degrees_to_radians(double degrees)
+{
+  return (double)degrees * M_PI / 180.0;
+}
+
 /*! \brief Calculate the distance between two points
  *
  *  \par Function Description
@@ -85,6 +100,21 @@ void m_papersize_to_world(int width, int height, int border, int *right, int *bo
   printf("%f\n", aspect);
 #endif
 
+}
+
+/*! \brief Convert Radians to Degrees
+ *  \par Function Description
+ *  This function converts radian measure into angular \a degrees.
+ *
+ *  \param [in] radian measure to convert
+ *
+ *  \returns degrees conversion as a double
+ *
+ *  \sa m_degrees_to_radians
+ */
+double m_radians_to_degrees(double radians)
+{
+  return (double)radians * 180.0 / M_PI;
 }
 
 /*! \brief Return a randon Number between given limits.

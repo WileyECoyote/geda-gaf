@@ -1,7 +1,12 @@
-2015-01-19 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_basic.c: Add functions m_degrees_to_radians and
+      m_radians_to_degrees.
+
+2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_line.c: Change arguments for m_line_get_intersection
-      to Line * instead of LINE, is more useful.
+      to Line * instead of LINE, because this is more useful.
 
 2015-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
