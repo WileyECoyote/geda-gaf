@@ -1,5 +1,9 @@
 2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * memory/CY7C138.sym: Add new symbol for 4k x 8 dual-port SRAM.
+
+2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/power/HL02RYC.sym: Add new symbol for DC-DC converter.
 
 2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
