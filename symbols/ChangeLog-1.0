@@ -1,5 +1,9 @@
 2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/power/HL02RYC.sym: Add new symbol for DC-DC converter.
+
+2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * symbols/allegro/A4447-1.sym: Add new symbol for Allegro DC-DC Step Down
       converter.
 
