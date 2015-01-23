@@ -27,6 +27,13 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+/*!
+ * \file g_funcs.c
+ * \brief Scheme General API functions
+ *  This module contains routines for general Scheme API functions
+ *  to dialogs and options under the file menu.
+ */
+
 /*! \brief SCM API Yes No Confirmation Dialog
  *  \par Function Description
  *   Launches a confirmation dialog with the given \a scm_msg
@@ -84,10 +91,9 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
   return scm_response;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API terminated program
  *  \par Function Description
- *
+ *  Scheme
  */
 SCM g_funcs_exit(void)
 {
@@ -95,9 +101,11 @@ SCM g_funcs_exit(void)
   exit(0);
 }
 
-/*! \brief  SCM API File Select Dialog
+/*! \brief SCM API File Select Dialog
  *  \par Function Description
- *
+ *  This function launches a file select dialog and returns the
+ *  selected filename to the calling Scheme procedure. If the
+ *  user cancels the filename is NULL.
  */
 SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
 {
