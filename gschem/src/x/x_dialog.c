@@ -120,6 +120,8 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
  *  This is an internally used function to create pixmaps. The
  *  default bitmap directory is prefixed to the filename and if
  *  is valid then the image widget is created and returned.
+ *
+ *  \param [in] filename File name of file containing image data
  */
 
 GtkWidget* create_pixmap (const char *filename)
@@ -378,7 +380,9 @@ static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data
 #include <gnu/libc-version.h>
 /*! \brief Create the about dialog and show it
  *  \par Function Description
- *  This function creates the about dialog.
+ *  This function creates and presents the about dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void about_dialog (GschemToplevel *w_current)
 {
@@ -489,6 +493,8 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 /*! \brief Create the snap size dialog
  *  \par Function Description
  *  This function creates the snap size dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void snap_size_dialog (GschemToplevel *w_current)
 {
@@ -596,6 +602,8 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 /*! \brief Create the text size dialog
  *  \par Function Description
  *  This function creates the text size dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void text_size_dialog (GschemToplevel *w_current)
 {
@@ -1087,6 +1095,8 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 /*! \brief Create a menu with fill types for the line type dialog
  *  \par Function Description
  *  This function creates a GtkMenu with the different fill types.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 {
@@ -1492,6 +1502,7 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
     }
   }
 }
+
 GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
@@ -1610,6 +1621,8 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 /*! \brief Creates the fill type dialog
  *  \par Function Description
  *  This function creates the fill type dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_edit_fill_type(GschemToplevel *w_current)
 {
@@ -1643,6 +1656,8 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
 /*! \brief Create a line type menu for the line type dialog
  *  \par Function Description
  *  This function creates a GtkMenu with the different linetypes.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
 {
@@ -2106,6 +2121,8 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
  *  \par Function Description
  *  This function creates and sets up a dialog for manipulating
  *  properties of line objects.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_edit_line_type (GschemToplevel *w_current)
 {
@@ -2225,6 +2242,9 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
 /*! \brief Create the slot entry dialog
  *  \par Function Description
  *  This function creates the slot edit dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
+ *  \param [in] string    Optional Pointer to slot string
  */
 void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 {
@@ -2267,7 +2287,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 
     /* always set the current text and select the number of the slot */
     if (string != NULL) {
-      SetEntryText( textentry, string );
+      SetEntryText(textentry, string);
       gtk_editable_select_region (GTK_EDITABLE(textentry), 0, -1);
     }
 
@@ -2370,6 +2390,8 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 /*! \brief Create the text find dialog
  *  \par Function Description
  *  This function creates the text find dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  *
  *  \note remember_page is also used as a flag to indicate the search
  *  should start from the beginning, as opose to continue searching.
@@ -2497,6 +2519,8 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
 /*! \brief Creates the hide text dialog
  *  \par Function Description
  *  This function creates the hide text dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_hide_text(GschemToplevel * w_current)
 {
@@ -2603,6 +2627,8 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
 /*! \brief Create the show text dialog.
  *  \par Function Description
  *  This function creates the show text dialog.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_show_text(GschemToplevel * w_current)
 {
@@ -2740,6 +2766,8 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
 /*! \brief create or present the text entry dialog
  *  \par Function Description
  *  This function creates or raises the modeless text entry dialog
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_text_input (GschemToplevel *w_current)
 {
@@ -2965,8 +2993,10 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
 
 /*! \brief Creates the hotkeys dialog
  *  \par Function Description
- *  This function creates the hotkey dialog and puts the list of hotkeys
- *  into it.
+ *  This function creates the hotkey dialog and displays the list of
+ *  hotkeys in a list tree-view.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_hotkeys (GschemToplevel *w_current)
 {
@@ -4098,6 +4128,8 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  *  symbol definition, to creates a message dialog notifying the user of
  *  such. This function only setups the basic dialog, see the preceding
  *  function xd_add_changed_symbol_list.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_symbol_changed(GschemToplevel* w_current)
 {
@@ -4274,8 +4306,7 @@ int x_dialog_confirm_with_cancel (const char *msg, gEDA_MessageType context, boo
  *  @{ \memberof Gschem-General-Dialogs
 */
 
-/*! \todo Finish function documentation!!!
- *  \brief  Multi-Purpose File Dialog
+/*! \brief  Multi-Purpose File Dialog
  *  \par Function Description
  *  The function creates a generic file open or save files.
  *
@@ -4308,7 +4339,8 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     /* Since this is a load dialog box, the file must exist! */
     flags = flags | FSB_MUST_EXIST;
 
-  } else {
+  }
+  else {
     title = g_strdup_printf("%s: Save", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
@@ -4355,13 +4387,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK) {
     result = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
-    /*! \bug FIXME
-    if (folder && path) {
-      dup_string (path, folder);
-      GEDA_FREE (folder);
-    }
-    */
+    //folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
   }
   gtk_widget_destroy (dialog);
 
