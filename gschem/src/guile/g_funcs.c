@@ -164,10 +164,9 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   return v;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Export image
  *  \par Function Description
- *
+ *   Allows Scheme routines to export images
  */
 SCM g_funcs_image(SCM scm_filename)
 {
