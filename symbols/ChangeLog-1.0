@@ -1,5 +1,9 @@
 2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * cirrus/CS4270-1.sym: Add new symbol for 24 bit CODEC
+
+2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * memory/CY7C138.sym: Add new symbol for 4k x 8 dual-port SRAM.
 
 2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
