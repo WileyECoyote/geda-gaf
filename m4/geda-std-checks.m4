@@ -41,7 +41,7 @@ m4_define([AX_GEDA_TYPES],
   AC_TYPE_UINT32_T
 
   AC_TYPE_SIZE_T
-  AC_TYPE_SSIZE_T     dnl scheme_object.c
+  AC_TYPE_SSIZE_T       dnl scheme_object.c
   AC_TYPE_MODE_T      dnl Used in gschem/src/o_misc.c
 
   AC_CHECK_TYPES([ptrdiff_t])
@@ -61,13 +61,16 @@ m4_define([AX_GEDA_MATH],
 
   AC_CHECK_LIB([m], [lrint],
      AC_DEFINE([HAVE_LRINT], 1,
-               [If your math library has lrint in it, define this]))
+               [If local math library has lrint, define this]))
+
+  AC_CHECK_LIB([m], [rint],
+     AC_DEFINE([HAVE_RINT], 1,
+               [If local math library has rint, define this]))
 
   AC_CHECK_LIB([m], [atan2])
 
   AC_CHECK_HEADERS([float.h])
 
-  AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
   AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
   AC_CHECK_FUNCS([floor])              dnl used by pango
   AC_CHECK_FUNCS([sqrt])

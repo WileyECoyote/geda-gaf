@@ -1,3 +1,7 @@
+2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-std-checks.m4: Use check lib for rint instead of check function
+
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * m4/geda-x11.m4: Can not stop autoconf from making assumptions about X11, redo Xft
@@ -22,7 +26,7 @@
 
         * m4/geda-debug.m4: New file with content NOT relocated from existing file. The
           name should be self explanatory.
- 
+
 2014-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * m4/geda-libgeda.m4: Moved out-of-place general checks to geda-std-checks.m4
