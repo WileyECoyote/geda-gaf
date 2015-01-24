@@ -1,3 +1,7 @@
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_arc.c: Add function m_arc_includes_point
+
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_line.c: Revert arguments for m_line_intersection
