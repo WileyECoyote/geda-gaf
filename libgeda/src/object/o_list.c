@@ -23,19 +23,18 @@
 
 #include "libgeda_priv.h"
 
-/*! \todo Finish function description!!!
- *  \brief
+/*!
+ *  \brief Copy GList to GList
  *  \par Function Description
- *  you need to pass in a head_node for dest_list_head
- *  flag is either NORMAL_FLAG or SELECTION_FLAG
- *  this function copies the objects in the src GList src_list
- *  to the destination GList dest_list
- *  this routine assumes that objects in src_list are selected
- *  objects are unselected before they are copied and then reselected
- *  this is necessary to preserve the color info
+ *  you need to pass in a head_node for dest_list_head flag is either
+ *  NORMAL_FLAG or SELECTION_FLAG this function copies the objects in
+ *  the src GList, \a src_list, to the destination GList, \a dest_list
+ *  this routine assumes that objects in src_list are selected objects
+ *  are unselected before they are copied and then reselected this is
+ *  necessary to preserve the color info.
  *
- *  \param [in] src_list       The GList to copy from
- *  \param [in] dest_list      The GList to copy to
+ *  \param [in] src_list   The GList to copy from
+ *  \param [in] dest_list  The GList to copy to
  *
  *  \return dest_list GList with objects appended
  */
