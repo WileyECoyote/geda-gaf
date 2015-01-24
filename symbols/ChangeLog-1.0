@@ -1,5 +1,9 @@
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/DS1135-8.sym: Add new symbol for Maxim 3-in-1 8ns delay line
+
+2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/DS1135-6.sym: Add new symbol for Maxim 3-in-1 6ns delay line
 
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
