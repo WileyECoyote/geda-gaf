@@ -32,6 +32,28 @@
 
 #include <geda_debug.h>
 
+/*! \brief Determine the Intersection of two lines
+ *
+ *  \par Function Description
+ *  This function determines if two lines intersect. If lines intersect
+ *  the function returns true and the value of points is set to that of
+ *  the intersection. Otherwise the function returns false.
+ *
+ *  \param [in]  line1 First Line
+ *  \param [in]  line1 Second Line
+ *  \param [out] point Intersection if lines intersect
+ *
+ *  \return TRUE if lines intersect
+ *
+ *  \sa m_line_get_intersection
+ */
+bool m_line_get_intersection(Line *line1, Line *line2, POINT *point)
+{
+  LINE *L1 = (LINE*) &line1->x[0];
+  LINE *L2 = (LINE*) &line2->x[0];
+
+  return m_line_intersection(L1, L2, point);
+}
 
 /*! \brief Returns True if Line contains point
  */
@@ -56,7 +78,7 @@ bool m_line_includes_point (Line *line, POINT *point)
   return included;
 }
 
-/*! \brief Determine the Intersection of two lines
+/*! \brief Determine the Intersection of two lines with structures
  *
  *  \par Function Description
  *  This function determines if two lines intersect. If lines intersect
@@ -68,8 +90,10 @@ bool m_line_includes_point (Line *line, POINT *point)
  *  \param [out] point Intersection if lines intersect
  *
  *  \return TRUE if lines intersect
+ *
+ *  \sa m_line_get_intersection
  */
-bool m_line_intersection(Line *line1, Line *line2, POINT *point)
+bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
 {
   bool   has_slope1;
   bool   has_slope2;
@@ -103,7 +127,6 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
       int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
       int b21 = (int) (line2->y[0] - (slope2 * line2->x[0])) + 0.5;
 #endif
-
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
       point->x = (b21 - b11) / (slope1 - slope2);
