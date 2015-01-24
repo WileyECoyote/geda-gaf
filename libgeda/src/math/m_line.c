@@ -118,10 +118,10 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
 
     if (slope1 != slope2) {
 
-#ifdef HAVE_RINT
+#ifdef HAVE_LRINT
       /* y-intercept = ordinate - slope x abscissa */
-      int b11 = rint(line1->y[0] - (slope1 * line1->x[0]));
-      int b21 = rint(line2->y[0] - (slope2 * line2->x[0]));
+      int b11 = lrint(line1->y[0] - (slope1 * line1->x[0]));
+      int b21 = lrint(line2->y[0] - (slope2 * line2->x[0]));
 #else
       /* y-intercept = ordinate - slope x abscissa */
       int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
@@ -152,13 +152,13 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
     }
     else {                             /* get y-intercept for line 1 */
 
-#ifdef HAVE_RINT
+#ifdef HAVE_LRINT
 
       /* intercept = y - mx */
-      int b11 = rint(line1->y[0] - (slope1 * line1->x[0]));
+      int b11 = lrint(line1->y[0] - (slope1 * line1->x[0]));
 
       /* solve for y1(1) at x */
-      point->y = rint(slope1 * point->x + b11);  /* y = mx + b */
+      point->y = lrint(slope1 * point->x + b11);  /* y = mx + b */
 
 #else
 
@@ -190,13 +190,13 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
     }
     else {                            /* get y-intercept for line2 */
 
-#ifdef HAVE_RINT
+#ifdef HAVE_LRINT
 
       /* intercept = y - mx */
-      int b21  = rint(line2->y[0] - (slope2 * line2->x[0]));
+      int b21  = lrint(line2->y[0] - (slope2 * line2->x[0]));
 
       /* solve for y2(1) at x */
-      point->y = rint(slope2 * point->x + b21);   /* y = mx + b */
+      point->y = lrint(slope2 * point->x + b21);   /* y = mx + b */
 
 #else
 
@@ -228,8 +228,8 @@ int m_line_length (int x1, int y1, int x2, int y2)
 {
   int length;
 
-#ifdef HAVE_RINT
-      length = rint(m_distance (x1, y1, x2, y2));
+#ifdef HAVE_lRINT
+      length = lrint(m_distance (x1, y1, x2, y2));
 #else
       length = (int)m_distance (x1, y1, x2, y2) + 0.5;
 #endif

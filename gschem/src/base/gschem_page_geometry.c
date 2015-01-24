@@ -23,6 +23,9 @@
  * \brief
  */
 
+#include <config.h>
+#include <math.h>
+
 #include <gschem.h>
 #include <geda_debug.h>
 
