@@ -1,5 +1,11 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/BAS16-1.sym: Rename file, use capital letters.
+
+    * diode/BAT85-1.sym: Rename file, use capital letters.
+
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/BAR74-1.sym: Rename file, use capital, add dash, and
       clean-up attributes.
 
