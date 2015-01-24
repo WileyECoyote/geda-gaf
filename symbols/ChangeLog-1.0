@@ -1,5 +1,13 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    *diode/: Add three new symbols, Small GP Diodes 120/200/250 volt;
+
+        BAS19-1.sym
+        BAS20-1.sym
+        BAS21-1.sym
+
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/BAS16-1.sym: Rename file, use capital letters.
 
     * diode/BAT85-1.sym: Rename file, use capital letters.

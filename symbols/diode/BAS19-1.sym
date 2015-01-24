@@ -1,0 +1,47 @@
+v 20150101 2
+L 400 500 400 100 3 10 0 0 -1 -1
+L 400 500 700 300 3 10 0 0 -1 -1
+L 400 100 700 300 3 10 0 0 -1 -1
+L 700 500 700 100 3 25 0 0 -1 -1
+P 100 300 400 300 1 0 0
+{
+T 150 150 5 8 0 1 0 0 1
+pintype=pas
+T 300 400 9 8 0 1 0 6 1
+pinlabel=1
+T 300 400 9 8 0 1 0 6 1
+pinnumber=1
+T 300 400 9 8 0 1 0 6 1
+pinseq=1
+}
+P 1000 300 700 300 1 0 0
+{
+T 800 150 5 8 0 1 0 0 1
+pintype=pas
+T 900 400 9 8 0 1 0 6 1
+pinlabel=3
+T 900 400 9 8 0 1 0 6 1
+pinnumber=3
+T 900 400 9 8 0 1 0 6 1
+pinseq=3
+}
+T 200 700 9 10 0 1 0 0 1
+footprint=SOT23
+T 1050 600 8 10 1 1 0 4 1
+refdes=D?
+T 200 1500 9 10 0 0 0 0 1
+device=DIODE
+T 200 1300 9 10 0 0 0 0 1
+numslots=0
+T 200 900 9 10 0 0 0 0 1
+description=Pin 1 = Anode, Pin 2 = NC, Pin 3 = Cathode
+T 1400 150 5 10 1 1 0 4 1
+value=BAS19
+T 200 2100 9 10 0 0 0 0 1
+author=Purdea Andrei <andrei -at- purdea -dot- ro>
+T 200 1900 9 10 0 0 0 0 1
+dist-license=GPL3
+T 200 1700 9 10 0 0 0 0 1
+use-license=unrestricted
+T 200 1100 9 10 0 0 0 0 1
+comment=General purpose, small signal, 120V, 50ns
