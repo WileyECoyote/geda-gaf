@@ -1,4 +1,8 @@
-2015-01-22 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/DS1135-6.sym: Add new symbol for Maxim 3-in-1 6ns delay line
+
+2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * cirrus/CS4270-1.sym: Add new symbol for 24 bit CODEC
 
