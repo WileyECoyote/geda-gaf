@@ -1,5 +1,10 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/BAR74-1.sym: Rename file, use capital, add dash, and
+      clean-up attributes.
+
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * serial/FT2232D-1.sym: Add new symbol Dual USB to serial UART or
       FIFO interface
 
