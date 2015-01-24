@@ -1,3 +1,8 @@
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/FT2232D-1.sym: Add new symbol Dual USB to serial UART or
+      FIFO interface
+
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/DS1135-8.sym: Add new symbol for Maxim 3-in-1 8ns delay line

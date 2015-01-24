@@ -1,0 +1,548 @@
+v 20141031 2
+T 1600 5400 5 10 1 1 0 0 1
+device=FT2232D
+T 400 11300 5 10 0 0 0 0 1
+description=USB to Dual Serial Bridge Controller
+T 400 11500 5 10 0 0 0 0 1
+documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT2232D.pdf
+T 400 12300 5 10 0 0 0 0 1
+author=Sam Fladung
+T 400 11700 5 10 0 0 0 0 1
+numslots=0
+T 4300 10700 8 10 1 1 0 0 1
+refdes=U?
+B 400 300 3700 10100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 900 0 900 300 1 0 0
+{
+T 900 0 5 8 0 1 180 0 1
+pintype=pwr
+T 1045 500 9 10 1 1 180 0 1
+pinlabel=AGND
+T 850 50 5 8 1 1 0 6 1
+pinnumber=45
+T 900 0 5 8 0 1 180 0 1
+pinseq=1
+}
+P 3500 10700 3500 10400 1 0 0
+{
+T 3600 10700 5 8 0 1 0 0 1
+pintype=pwr
+T 3355 10350 9 10 1 1 180 6 1
+pinlabel=Avcc
+T 3805 10650 5 8 1 1 180 0 1
+pinnumber=46
+T 3600 10850 5 8 0 1 0 0 1
+pinseq=2
+}
+P 2400 10700 2400 10400 1 0 0
+{
+T 2500 10700 5 8 0 1 0 0 1
+pintype=pwr
+T 2255 10350 9 10 1 1 180 6 1
+pinlabel=Vcc
+T 2605 10650 5 8 1 1 180 0 1
+pinnumber=3
+T 2500 10850 5 8 0 1 0 0 1
+pinseq=3
+}
+P 2800 10700 2800 10400 1 0 0
+{
+T 2900 10700 5 8 0 1 0 0 1
+pintype=pwr
+T 2655 10350 9 10 1 1 180 6 1
+pinlabel=Vcc
+T 3105 10650 5 8 1 1 180 0 1
+pinnumber=42
+T 2900 10850 5 8 0 1 0 0 1
+pinseq=4
+}
+P 1100 10700 1100 10400 1 0 0
+{
+T 1200 10700 5 8 0 1 0 0 1
+pintype=pwr
+T 755 10350 9 10 1 1 180 6 1
+pinlabel=VccIoa
+T 1405 10650 5 8 1 1 180 0 1
+pinnumber=14
+T 1200 10850 5 8 0 1 0 0 1
+pinseq=5
+}
+P 1400 0 1400 300 1 0 0
+{
+T 1400 0 5 8 0 1 180 0 1
+pintype=pwr
+T 1545 500 9 10 1 1 180 0 1
+pinlabel=GND
+T 1350 50 5 8 1 1 0 6 1
+pinnumber=9
+T 1400 0 5 8 0 1 180 0 1
+pinseq=6
+}
+P 1800 0 1800 300 1 0 0
+{
+T 1800 0 5 8 0 1 180 0 1
+pintype=pwr
+T 2050 500 9 10 1 1 180 0 1
+pinlabel=GND
+T 1750 50 5 8 1 1 0 6 1
+pinnumber=18
+T 1800 0 5 8 0 1 180 0 1
+pinseq=7
+}
+P 4400 9500 4100 9500 1 0 0
+{
+T 4600 9500 5 8 0 1 0 0 1
+pintype=out
+T 4050 9495 9 10 1 1 0 6 1
+pinlabel=TxD(ADBUS0)
+T 4200 9545 5 8 1 1 0 0 1
+pinnumber=24
+T 4400 9500 5 8 0 1 0 0 1
+pinseq=8
+}
+P 4400 8600 4100 8600 1 0 0
+{
+T 4600 8600 5 8 0 1 0 0 1
+pintype=in
+T 4050 8595 9 10 1 1 0 6 1
+pinlabel=RxD(ADBUS1)
+T 4200 8645 5 8 1 1 0 0 1
+pinnumber=23
+T 4400 8600 5 8 0 1 0 0 1
+pinseq=9
+}
+P 4400 9200 4100 9200 1 0 0
+{
+T 4600 9200 5 8 0 1 0 0 1
+pintype=out
+T 4050 9195 9 10 1 1 0 6 1
+pinlabel=DTR#(ADBUS4)
+T 4200 9245 5 8 1 1 0 0 1
+pinnumber=20
+T 4400 9200 5 8 0 1 0 0 1
+pinseq=10
+}
+P 4400 8300 4100 8300 1 0 0
+{
+T 4600 8300 5 8 0 1 0 0 1
+pintype=in
+T 4050 8295 9 10 1 1 0 6 1
+pinlabel=DSR#(ADBUS5)
+T 4200 8345 5 8 1 1 0 0 1
+pinnumber=19
+T 4400 8300 5 8 0 1 0 0 1
+pinseq=11
+}
+P 4400 8900 4100 8900 1 0 0
+{
+T 4600 8900 5 8 0 1 0 0 1
+pintype=out
+T 4050 8895 9 10 1 1 0 6 1
+pinlabel=RTS#(ADBUS2)
+T 4200 8945 5 8 1 1 0 0 1
+pinnumber=22
+T 4400 8900 5 8 0 1 0 0 1
+pinseq=12
+}
+P 4400 8000 4100 8000 1 0 0
+{
+T 4600 8000 5 8 0 1 0 0 1
+pintype=in
+T 4050 7995 9 10 1 1 0 6 1
+pinlabel=CTS#(ADBUS3)
+T 4200 8045 5 8 1 1 0 0 1
+pinnumber=21
+T 4400 8000 5 8 0 1 0 0 1
+pinseq=13
+}
+P 4400 7700 4100 7700 1 0 0
+{
+T 4600 7700 5 8 0 1 0 0 1
+pintype=in
+T 4050 7700 9 10 1 1 0 6 1
+pinlabel=DCD#(ADBUS6)
+T 4200 7750 5 8 1 1 0 0 1
+pinnumber=17
+T 4400 7700 5 8 0 1 0 0 1
+pinseq=14
+}
+P 4400 7400 4100 7400 1 0 0
+{
+T 4400 7400 5 8 0 1 0 0 1
+pintype=in
+T 4050 7400 9 10 1 1 0 6 1
+pinlabel=RI#(ADBUS7)
+T 4200 7450 5 8 1 1 0 0 1
+pinnumber=16
+T 4600 7400 5 8 0 1 0 0 1
+pinseq=15
+}
+P 100 8700 400 8700 1 0 0
+{
+T 100 8550 5 8 0 1 0 6 1
+pintype=io
+T 450 8700 9 10 1 1 0 0 1
+pinlabel=USBDP
+T 300 8750 5 8 1 1 0 6 1
+pinnumber=7
+T 100 8700 5 8 0 1 0 6 1
+pinseq=16
+}
+P 100 8100 400 8100 1 0 0
+{
+T 100 7950 5 8 0 1 0 6 1
+pintype=io
+T 450 8100 9 10 1 1 0 0 1
+pinlabel=USBDM
+T 300 8145 5 8 1 1 0 6 1
+pinnumber=8
+T 100 8100 5 8 0 1 0 6 1
+pinseq=17
+}
+P 4400 6800 4100 6800 1 0 0
+{
+T 4600 6800 5 8 0 1 0 0 1
+pintype=out
+T 4050 6800 9 10 1 1 0 6 1
+pinlabel=SLEEP#(ACBUS1)
+T 4200 6850 5 8 1 1 0 0 1
+pinnumber=13
+T 4400 6800 5 8 0 1 0 0 1
+pinseq=18
+}
+P 100 3600 400 3600 1 0 0
+{
+T 100 3450 5 8 0 1 0 6 1
+pintype=out
+T 450 3600 9 10 1 1 0 0 1
+pinlabel=EESK
+T 300 3650 5 8 1 1 0 6 1
+pinnumber=1
+T 100 3600 5 8 0 1 0 6 1
+pinseq=19
+}
+P 100 3300 400 3300 1 0 0
+{
+T 100 3150 5 8 0 1 0 6 1
+pintype=io
+T 450 3300 9 10 1 1 0 0 1
+pinlabel=EEDATA
+T 300 3350 5 8 1 1 0 6 1
+pinnumber=2
+T 100 3300 5 8 0 1 0 6 1
+pinseq=20
+}
+P 100 1300 400 1300 1 0 0
+{
+T 100 1150 5 8 0 1 0 6 1
+pintype=in
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=TEST
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=47
+T 100 1300 5 8 0 1 0 6 1
+pinseq=21
+}
+P 100 2400 400 2400 1 0 0
+{
+T 100 2250 5 8 0 1 0 6 1
+pintype=io
+T 450 2400 9 10 1 1 0 0 1
+pinlabel=XTin
+T 300 2450 5 8 1 1 0 6 1
+pinnumber=43
+T 100 2400 5 8 0 1 0 6 1
+pinseq=22
+}
+P 100 1700 400 1700 1 0 0
+{
+T 100 1550 5 8 0 1 0 6 1
+pintype=io
+T 450 1700 9 10 1 1 0 0 1
+pinlabel=XTout
+T 300 1750 5 8 1 1 0 6 1
+pinnumber=44
+T 100 1700 5 8 0 1 0 6 1
+pinseq=23
+}
+P 4400 9800 4100 9800 1 0 0
+{
+T 4600 9800 5 8 0 1 0 0 1
+pintype=in
+T 4050 9800 9 10 1 1 0 6 1
+pinlabel=RESET#
+T 4200 9850 5 8 1 1 0 0 1
+pinnumber=4
+T 4400 9800 5 8 0 1 0 0 1
+pinseq=24
+}
+P 100 7300 400 7300 1 0 0
+{
+T 100 7150 5 8 0 1 0 6 1
+pintype=io
+T 450 7300 9 10 1 1 0 0 1
+pinlabel=RXLED#(ACBUS2)
+T 300 7345 5 8 1 1 0 6 1
+pinnumber=12
+T 100 7300 5 8 0 1 0 6 1
+pinseq=25
+}
+P 100 7000 400 7000 1 0 0
+{
+T 100 6850 5 8 0 1 0 6 1
+pintype=io
+T 450 7000 9 10 1 1 0 0 1
+pinlabel=TXLED#(ACBUS3)
+T 300 7045 5 8 1 1 0 6 1
+pinnumber=11
+T 100 7000 5 8 0 1 0 6 1
+pinseq=26
+}
+P 4400 5800 4100 5800 1 0 0
+{
+T 4600 5800 5 8 0 1 0 0 1
+pintype=io
+T 4050 5800 9 10 1 1 0 6 1
+pinlabel=SI/WUA
+T 4200 5850 5 8 1 1 0 0 1
+pinnumber=10
+T 4400 5800 5 8 0 1 0 0 1
+pinseq=27
+}
+P 100 6400 400 6400 1 0 0
+{
+T 100 6250 5 8 0 1 0 6 1
+pintype=io
+T 450 6400 9 10 1 1 0 0 1
+pinlabel=RXLED#(BCBUS2)
+T 300 6450 5 8 1 1 0 6 1
+pinnumber=28
+T 100 6400 5 8 0 1 0 6 1
+pinseq=28
+}
+P 100 6100 400 6100 1 0 0
+{
+T 100 5950 5 8 0 1 0 6 1
+pintype=io
+T 450 6100 9 10 1 1 0 0 1
+pinlabel=TXLED(BCBUS3)
+T 300 6150 5 8 1 1 0 6 1
+pinnumber=27
+T 100 6100 5 8 0 1 0 6 1
+pinseq=29
+}
+P 4400 5500 4100 5500 1 0 0
+{
+T 4600 5500 5 8 0 1 0 0 1
+pintype=io
+T 4050 5500 9 10 1 1 0 6 1
+pinlabel=SI/WUB
+T 4200 5550 5 8 1 1 0 0 1
+pinnumber=26
+T 4400 5500 5 8 0 1 0 0 1
+pinseq=30
+}
+P 100 9900 400 9900 1 0 0
+{
+T 100 9750 5 8 0 1 0 6 1
+pintype=pwr
+T 450 9900 9 10 1 1 0 0 1
+pinlabel=3V3OUT
+T 300 9950 5 8 1 1 0 6 1
+pinnumber=6
+T 100 9900 5 8 0 1 0 6 1
+pinseq=31
+}
+P 1700 10700 1700 10400 1 0 0
+{
+T 1800 10700 5 8 0 1 0 0 1
+pintype=pwr
+T 1355 10350 9 10 1 1 180 6 1
+pinlabel=VccIob
+T 2005 10650 5 8 1 1 180 0 1
+pinnumber=31
+T 1800 10850 5 8 0 1 0 0 1
+pinseq=32
+}
+P 4400 3200 4100 3200 1 0 0
+{
+T 4600 3200 5 8 0 1 0 0 1
+pintype=out
+T 4050 3200 9 10 1 1 0 6 1
+pinlabel=TxD(BDBUS0)
+T 4200 3250 5 8 1 1 0 0 1
+pinnumber=40
+T 4400 3200 5 8 0 1 0 0 1
+pinseq=33
+}
+P 4400 2300 4100 2300 1 0 0
+{
+T 4600 2300 5 8 0 1 0 0 1
+pintype=in
+T 4050 2295 9 10 1 1 0 6 1
+pinlabel=RxD(BDBUS1)
+T 4200 2345 5 8 1 1 0 0 1
+pinnumber=39
+T 4400 2300 5 8 0 1 0 0 1
+pinseq=34
+}
+P 4400 2900 4100 2900 1 0 0
+{
+T 4600 2900 5 8 0 1 0 0 1
+pintype=out
+T 4050 2900 9 10 1 1 0 6 1
+pinlabel=DTR#(BDBUS4)
+T 4200 2950 5 8 1 1 0 0 1
+pinnumber=36
+T 4400 2900 5 8 0 1 0 0 1
+pinseq=35
+}
+P 4400 2000 4100 2000 1 0 0
+{
+T 4600 2000 5 8 0 1 0 0 1
+pintype=in
+T 4050 2000 9 10 1 1 0 6 1
+pinlabel=DSR#(BDBUS5)
+T 4200 2050 5 8 1 1 0 0 1
+pinnumber=35
+T 4400 2000 5 8 0 1 0 0 1
+pinseq=36
+}
+P 4400 2600 4100 2600 1 0 0
+{
+T 4600 2600 5 8 0 1 0 0 1
+pintype=out
+T 4050 2600 9 10 1 1 0 6 1
+pinlabel=RTS#(BDBUS2)
+T 4200 2650 5 8 1 1 0 0 1
+pinnumber=38
+T 4400 2600 5 8 0 1 0 0 1
+pinseq=37
+}
+P 4400 1700 4100 1700 1 0 0
+{
+T 4600 1700 5 8 0 1 0 0 1
+pintype=in
+T 4050 1700 9 10 1 1 0 6 1
+pinlabel=CTS#(BDBUS3)
+T 4200 1750 5 8 1 1 0 0 1
+pinnumber=37
+T 4400 1700 5 8 0 1 0 0 1
+pinseq=38
+}
+P 4400 1400 4100 1400 1 0 0
+{
+T 4600 1400 5 8 0 1 0 0 1
+pintype=in
+T 4050 1400 9 10 1 1 0 6 1
+pinlabel=DCD#(BDBUS6)
+T 4200 1450 5 8 1 1 0 0 1
+pinnumber=33
+T 4400 1400 5 8 0 1 0 0 1
+pinseq=39
+}
+P 4400 1100 4100 1100 1 0 0
+{
+T 4600 1100 5 8 0 1 0 0 1
+pintype=in
+T 4050 1100 9 10 1 1 0 6 1
+pinlabel=RI#(BDBUS7)
+T 4200 1150 5 8 1 1 0 0 1
+pinnumber=32
+T 4400 1100 5 8 0 1 0 0 1
+pinseq=40
+}
+P 4400 800 4100 800 1 0 0
+{
+T 4600 800 5 8 0 1 0 0 1
+pintype=out
+T 4050 800 9 10 1 1 0 6 1
+pinlabel=SLEEP#(BCBUS1)
+T 4200 850 5 8 1 1 0 0 1
+pinnumber=29
+T 4400 800 5 8 0 1 0 0 1
+pinseq=41
+}
+P 100 3900 400 3900 1 0 0
+{
+T 100 3750 5 8 0 1 0 6 1
+pintype=out
+T 450 3900 9 10 1 1 0 0 1
+pinlabel=EECS
+T 300 3950 5 8 1 1 0 6 1
+pinnumber=48
+T 100 3900 5 8 0 1 0 6 1
+pinseq=42
+}
+P 100 9600 400 9600 1 0 0
+{
+T 100 9450 5 8 0 1 0 6 1
+pintype=in
+T 450 9600 9 10 1 1 0 0 1
+pinlabel=RSTOUT#
+T 300 9650 5 8 1 1 0 6 1
+pinnumber=5
+T 100 9600 5 8 0 1 0 6 1
+pinseq=43
+}
+P 2300 0 2300 300 1 0 0
+{
+T 2300 0 5 8 0 1 180 0 1
+pintype=pwr
+T 2545 500 9 10 1 1 180 0 1
+pinlabel=GND
+T 2250 50 5 8 1 1 0 6 1
+pinnumber=25
+T 2300 0 5 8 0 1 180 0 1
+pinseq=44
+}
+P 2800 0 2800 300 1 0 0
+{
+T 2800 0 5 8 0 1 180 0 1
+pintype=pwr
+T 3050 500 9 10 1 1 180 0 1
+pinlabel=GND
+T 2750 50 5 8 1 1 0 6 1
+pinnumber=34
+T 2800 0 5 8 0 1 180 0 1
+pinseq=45
+}
+P 4400 3500 4100 3500 1 0 0
+{
+T 4600 3500 5 8 0 1 0 0 1
+pintype=in
+T 4050 3500 9 10 1 1 0 6 1
+pinlabel=TXDEN(BCBUS0)
+T 4200 3550 5 8 1 1 0 0 1
+pinnumber=30
+T 4400 3500 5 8 0 1 0 0 1
+pinseq=46
+}
+P 4400 7100 4100 7100 1 0 0
+{
+T 4600 7100 5 8 0 1 0 0 1
+pintype=in
+T 4050 7100 9 10 1 1 0 6 1
+pinlabel=TXDEN(ACBUS0)
+T 4200 7150 5 8 1 1 0 0 1
+pinnumber=15
+T 4400 7100 5 8 0 1 0 0 1
+pinseq=47
+}
+P 100 4900 400 4900 1 0 0
+{
+T 100 4750 5 8 0 1 0 6 1
+pintype=io
+T 450 4900 9 10 1 1 0 0 1
+pinlabel=PWREN#
+T 300 4950 5 8 1 1 0 6 1
+pinnumber=41
+T 100 4900 5 8 0 1 0 6 1
+pinseq=48
+}
+T 400 11900 5 10 0 0 0 0 1
+dist-license=GPL V3
+T 400 12100 5 10 0 0 0 0 1
+use-license=unlimited
+T 4300 10500 5 10 1 1 0 0 1
+footprint=LQFP-48-7
