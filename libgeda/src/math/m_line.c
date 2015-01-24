@@ -32,22 +32,29 @@
 
 #include <geda_debug.h>
 
-/*! \brief Returns integer distance between two points
- *
- *  \sa m_distance
+
+/*! \brief Returns True if Line contains point
  */
-int m_line_length (int x1, int y1, int x2, int y2)
+bool m_line_includes_point (Line *line, POINT *point)
 {
-  int length;
+  bool included;
 
-#ifdef HAS_RINT
-      length = rint(m_distance (x1, y1, x2, y2));
-#else
-      length = (int)m_distance (x1, y1, x2, y2) + 0.5;
-#endif
+  int x11 = min(line->x[0], line->x[1]);
+  int x21 = max(line->x[0], line->x[1]);
 
-  return length;
-};
+  int y11 = min(line->y[0], line->y[1]);
+  int y21 = max(line->y[0], line->y[1]);
+
+  if ((x11 <= point->x && point->x <= x21) &&
+      (y11 <= point->y && point->y <= y21))
+  {
+    included = TRUE;
+  }
+  else {
+    included = FALSE;
+  }
+  return included;
+}
 
 /*! \brief Determine the Intersection of two lines
  *
@@ -87,9 +94,16 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
 
     if (slope1 != slope2) {
 
+#ifdef HAVE_RINT
       /* y-intercept = ordinate - slope x abscissa */
       int b11 = rint(line1->y[0] - (slope1 * line1->x[0]));
       int b21 = rint(line2->y[0] - (slope2 * line2->x[0]));
+#else
+      /* y-intercept = ordinate - slope x abscissa */
+      int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
+      int b21 = (int) (line2->y[0] - (slope2 * line2->x[0])) + 0.5;
+#endif
+
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
       point->x = (b21 - b11) / (slope1 - slope2);
@@ -115,11 +129,24 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
     }
     else {                             /* get y-intercept for line 1 */
 
+#ifdef HAVE_RINT
+
       /* intercept = y - mx */
       int b11 = rint(line1->y[0] - (slope1 * line1->x[0]));
 
       /* solve for y1(1) at x */
       point->y = rint(slope1 * point->x + b11);  /* y = mx + b */
+
+#else
+
+      /* intercept = y - mx */
+      int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
+
+      /* solve for y1(1) at x */
+      point->y = (int) (slope1 * point->x + b11) + 0.5;  /* y = mx + b */
+
+#endif
+
     }
 
     intersect = TRUE;
@@ -140,11 +167,24 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
     }
     else {                            /* get y-intercept for line2 */
 
+#ifdef HAVE_RINT
+
       /* intercept = y - mx */
       int b21  = rint(line2->y[0] - (slope2 * line2->x[0]));
 
       /* solve for y2(1) at x */
       point->y = rint(slope2 * point->x + b21);   /* y = mx + b */
+
+#else
+
+      /* intercept = y - mx */
+      int b21  = (int) (line2->y[0] - (slope2 * line2->x[0])) + 0.5;
+
+      /* solve for y2(1) at x */
+      point->y = (int) (slope2 * point->x + b21) + 0.5;   /* y = mx + b */
+
+#endif
+
     }
 
     intersect = TRUE;
@@ -156,6 +196,23 @@ bool m_line_intersection(Line *line1, Line *line2, POINT *point)
 
   return intersect;
 }
+
+/*! \brief Returns integer distance between two points
+ *
+ *  \sa m_distance
+ */
+int m_line_length (int x1, int y1, int x2, int y2)
+{
+  int length;
+
+#ifdef HAVE_RINT
+      length = rint(m_distance (x1, y1, x2, y2));
+#else
+      length = (int)m_distance (x1, y1, x2, y2) + 0.5;
+#endif
+
+  return length;
+};
 
 /*! \brief Calculates the distance between the given point and the closest
  *  point on the given line segment.

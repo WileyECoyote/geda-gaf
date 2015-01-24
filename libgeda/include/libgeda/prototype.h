@@ -80,8 +80,10 @@ G_BEGIN_DECLS
          void    libgeda_release                 (void);
 
 /* m_basic.c */
+       double    m_degrees_to_radians            (double degrees);
        double    m_distance                      (int x1, int y1, int x2, int y2);
          void    m_papersize_to_world            (int width, int height, int border, int *right, int *bottom);
+
           int    m_random_number                 (int min_num, int max_num);
          void    m_rotate_point                  (int x, int y, int angle, int *newx, int *newy);
          void    m_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
@@ -95,6 +97,7 @@ G_BEGIN_DECLS
 
 /* m_arc.c */
        double    m_arc_length                    (int radius, int sweep);
+       bool      m_arc_includes_point            (Arc *arc, POINT *point);
 
 /* m_circle.c */
        double    m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
@@ -108,8 +111,9 @@ G_BEGIN_DECLS
        GArray   *m_hatch_object                  (Object *object);
 
 /* m_line.c */
-          int    m_line_length                   (int x1, int y1, int x2, int y2);
+         bool    m_line_includes_point           (Line *line, POINT *point);
          bool    m_line_intersection             (Line *line1, Line *line2, POINT *point);
+          int    m_line_length                   (int x1, int y1, int x2, int y2);
        double    m_line_shortest_distance        (Line *line, int x, int y);
 
 /* m_polygon.c */
