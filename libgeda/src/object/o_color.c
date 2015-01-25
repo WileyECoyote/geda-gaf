@@ -6,7 +6,7 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * Copyright (C) 2011-2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2011-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

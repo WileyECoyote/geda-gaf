@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2014 Wiley Edward Hill
+ * Copyright (C) 2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ bool m_arc_includes_point (Arc *arc, POINT *point)
   delta = m_distance(arc->x, arc->y, point->x, point->y) - (arc->width / 2);
 
 #if DEBUG
+
   int  dist;
   int  radius;
 
