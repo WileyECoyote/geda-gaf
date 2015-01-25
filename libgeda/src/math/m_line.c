@@ -118,19 +118,25 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
 
     if (slope1 != slope2) {
 
-#ifdef HAVE_LRINT
+
       /* y-intercept = ordinate - slope x abscissa */
-      int b11 = lrint(line1->y[0] - (slope1 * line1->x[0]));
-      int b21 = lrint(line2->y[0] - (slope2 * line2->x[0]));
-#else
-      /* y-intercept = ordinate - slope x abscissa */
-      int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
-      int b21 = (int) (line2->y[0] - (slope2 * line2->x[0])) + 0.5;
-#endif
+      double b11 = line1->y[0] - (slope1 * line1->x[0]);
+      double b21 = line2->y[0] - (slope2 * line2->x[0]);
 
       /* abscissa = y-intercept2 - y-intercept1 / slope1 - slope2 */
-      point->x = (b21 - b11) / (slope1 - slope2);
-      point->y = (slope1 * point->x) + b11; /* pick 1 */
+      double x = (b21 - b11) / (slope1 - slope2);
+
+#ifdef HAVE_LRINT
+
+      point->x = lrint(x);
+      point->y = lrint(slope1 * x + b11); /* pick 1 */
+
+#else
+
+      point->x = x + 0.5;
+      point->y = slope1 * x + b11 + 0.5; /* pick 1 */
+
+#endif
 
       intersect = TRUE; /* Not arbitrary */
     }
@@ -152,18 +158,15 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
     }
     else {                             /* get y-intercept for line 1 */
 
-#ifdef HAVE_LRINT
-
       /* intercept = y - mx */
-      int b11 = lrint(line1->y[0] - (slope1 * line1->x[0]));
+      double b11 = line1->y[0] - (slope1 * line1->x[0]);
+
+#ifdef HAVE_LRINT
 
       /* solve for y1(1) at x */
       point->y = lrint(slope1 * point->x + b11);  /* y = mx + b */
 
 #else
-
-      /* intercept = y - mx */
-      int b11 = (int) (line1->y[0] - (slope1 * line1->x[0])) + 0.5;
 
       /* solve for y1(1) at x */
       point->y = (int) (slope1 * point->x + b11) + 0.5;  /* y = mx + b */
@@ -190,18 +193,15 @@ bool m_line_intersection(LINE *line1, LINE *line2, POINT *point)
     }
     else {                            /* get y-intercept for line2 */
 
-#ifdef HAVE_LRINT
-
       /* intercept = y - mx */
-      int b21  = lrint(line2->y[0] - (slope2 * line2->x[0]));
+      double b21  = line2->y[0] - (slope2 * line2->x[0]);
+
+#ifdef HAVE_LRINT
 
       /* solve for y2(1) at x */
       point->y = lrint(slope2 * point->x + b21);   /* y = mx + b */
 
 #else
-
-      /* intercept = y - mx */
-      int b21  = (int) (line2->y[0] - (slope2 * line2->x[0])) + 0.5;
 
       /* solve for y2(1) at x */
       point->y = (int) (slope2 * point->x + b21) + 0.5;   /* y = mx + b */

@@ -1,3 +1,9 @@
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_basic.c: Use lrint instead of rint.
+
+    * src/base/gschem_page_geometry.c: Use lrint instead of rint.
+
 2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Add Zoom to selection to the popup context menu.

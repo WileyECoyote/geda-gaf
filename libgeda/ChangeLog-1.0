@@ -1,3 +1,7 @@
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_arc.c: Use lrint instead of rint.
+
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_basic.c: Add alternate error exit in function

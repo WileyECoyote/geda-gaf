@@ -46,8 +46,8 @@ int mil_x (GschemToplevel *w_current, int val)
 
     fval = val;
 
-#ifdef HAVE_RINT
-    j = rint(fval * x_constant + left);
+#ifdef HAVE_LRINT
+    j = lrint(fval * x_constant + left);
 #else
     j = (fval * x_constant + left) + 0.5;
 #endif
@@ -85,8 +85,8 @@ int mil_y(GschemToplevel *w_current, int val)
 
     fval = height - val;
 
-#ifdef HAVE_RINT
-    j = rint(fval * y_constant + top);
+#ifdef HAVE_LRINT
+    j = lrint(fval * y_constant + top);
 #else
     j = (fval * y_constant + top) + 0.5;
 #endif
@@ -119,8 +119,8 @@ int pix_x (GschemToplevel *w_current, int val)
 
     int   left = w_current->toplevel->page_current->left;
 
-#ifdef HAVE_RINT
-    j = rint(x_constant * (double)(val - left));
+#ifdef HAVE_LRINT
+    j = lrint(x_constant * (double)(val - left));
 #else
     j = x_constant * (double)(val - left) + 0.5;
 #endif
@@ -163,8 +163,8 @@ int pix_y(GschemToplevel *w_current, int val)
     int   top = w_current->toplevel->page_current->top;
     int   height = w_current->screen_height;
 
-#ifdef HAVE_RINT
-    j = rint(height - (y_constant * (double)(val - top)));
+#ifdef HAVE_LRINT
+    j = lrint(height - (y_constant * (double)(val - top)));
 #else
     j = (height - (y_constant * (double)(val - top))) + 0.5;
 #endif
@@ -305,8 +305,8 @@ int SCREENabs(GschemToplevel *w_current, int val)
   f1 = w_current->toplevel->page_current->right;
   f  = w_current->screen_width / (f1 - f0);
 
-#ifdef HAVE_RINT
-  j = rint(f * (double)(val));
+#ifdef HAVE_LRINT
+  j = lrint(f * (double)(val));
 #else
   j = (f * (double)(val)) + 0.5;
 #endif
@@ -333,8 +333,8 @@ int WORLDabs(GschemToplevel *w_current, int val)
   fw  = w_current->screen_width;
   fval = val;
 
-#ifdef HAVE_RINT
-  j = rint(fval * (fw1 - fw0) / fw);
+#ifdef HAVE_LRINT
+  j = lrint(fval * (fw1 - fw0) / fw);
 #else
   j = (fval * (fw1 - fw0) / fw) + 0.5;
 #endif

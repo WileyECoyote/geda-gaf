@@ -277,8 +277,8 @@ gschem_page_geometry_mil_x (GschemPageGeometry *geometry, int value)
   fval = value;
   i = fval * geometry->to_world_x_constant + geometry->viewport_left;
 
-#ifdef HAVE_RINT
-  j = rint(i);
+#ifdef HAVE_LRINT
+  j = lrint(i);
 #else
   j = i;
 #endif
@@ -307,8 +307,8 @@ gschem_page_geometry_mil_y(GschemPageGeometry *geometry, int value)
   fval = geometry->screen_height - value;
   i = fval * geometry->to_world_y_constant + geometry->viewport_top;
 
-#ifdef HAVE_RINT
-  j = rint(i);
+#ifdef HAVE_LRINT
+  j = lrint(i);
 #else
   j = i;
 #endif
@@ -489,8 +489,8 @@ gschem_page_geometry_pix_x (GschemPageGeometry *geometry, int value)
 
   i = geometry->to_screen_x_constant * (double)(value - geometry->viewport_left);
 
-#ifdef HAVE_RINT
-  j = rint(i);
+#ifdef HAVE_LRINT
+  j = lrint(i);
 #else
   j = i;
 #endif
@@ -526,8 +526,8 @@ gschem_page_geometry_pix_y (GschemPageGeometry *geometry, int value)
 
   i = geometry->screen_height - (geometry->to_screen_y_constant * (double)(value - geometry->viewport_top));
 
-#ifdef HAVE_RINT
-  j = rint(i);
+#ifdef HAVE_LRINT
+  j = lrint(i);
 #else
   j = i;
 #endif
