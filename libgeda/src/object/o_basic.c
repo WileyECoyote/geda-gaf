@@ -217,15 +217,15 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         if (new_obj != NULL) {
           o_attrib_freeze_hooks (new_obj);
           new_attrs_list = o_read_attribs (toplevel, new_obj, tb, release_ver, fileformat_ver, err);
-          if (new_attrs_list == NULL)
+          if (new_attrs_list == NULL) {
             goto error;
+          }
           new_object_list = g_list_concat (new_attrs_list, new_object_list);
           o_attrib_thaw_hooks (new_obj);
 
           /* by now we have finished reading all the attributes */
           /* did we just finish attaching to a complex object? */
-          if (last_complex)
-          {
+          if (last_complex) {
             /* yes */
             /* verify symbol version (not file format but rather contents) */
             o_complex_check_symversion(toplevel, last_complex);
@@ -244,7 +244,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected attach "
                                                           "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
                        line_count, name, line);
-          goto error;
+          goto error2;
         }
         break;
 
@@ -276,7 +276,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                        _("Read unexpected embedded "
                          "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
                           line_count, name, line);
-          goto error;
+          goto error2;
         }
         break;
 
@@ -303,11 +303,12 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           new_obj->w_bounds_valid_for = NULL;
 
           embedded_level--;
-        } else {
+        }
+        else {
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected embedded "
                                                           "symbol end marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
                        line_count, name, line);
-          goto error;
+          goto error2;
         }
         break;
 
@@ -325,10 +326,11 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         /* do nothing */
         break;
       case(VERSION_CHAR):
+
         itemsread = sscanf(line, "v %u %u\n", &release_ver, &fileformat_ver);
 
         if (itemsread == 0) {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, "Failed to parse version from buffer.");
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, "failed to parse version from buffer.");
           goto error;
         }
 
@@ -366,7 +368,7 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                        _("Read garbage line <%d> in [%s]"),
                        line_count, name);
         new_obj = NULL;
-        goto error;
+        goto error2;
     }
   }
 
@@ -393,6 +395,9 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   return(object_list);
 
  error:
+   g_prefix_error(err, _(" On or about line %d, "), line_count);
+
+ error2:
 
   s_object_release_objects(new_object_list);
 

@@ -1,5 +1,12 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_basic.c: Add alternate error exit in function
+      o_read_buffer and add line count to error message if count
+      was not already included in the message.
+      See entry 2013-07-20.
+
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/math/m_arc.c: Add function m_arc_includes_point
 
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
