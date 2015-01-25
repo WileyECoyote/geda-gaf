@@ -52,15 +52,15 @@ static void x_menu_popup_execute(GtkObject *widget,int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in our header */
 const char* IDS_Popup_Actions[] = {
-  ACTION(EDIT_SELECT),    ACTION(ADD_NET),       ACTION(ADD_ATTRIB),
-  ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),       ACTION(ADD_TEXT),
-  ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT), ACTION(VIEW_BOX),
-  ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG), ACTION(EDIT_ATTRIB),
-  ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),      ACTION(EDIT_DELETE),
-  ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),    ACTION(EDIT_MOVE),
-  ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
-  ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),   ACTION(HIERARCHY_UP),
-  ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),  ACTION(EDIT_CB_PASTE),
+  ACTION(EDIT_SELECT),    ACTION(ADD_NET),        ACTION(ADD_ATTRIB),
+  ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),        ACTION(ADD_TEXT),
+  ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),
+  ACTION(VIEW_EXTENTS),   ACTION(VIEW_ZOOM_MAG),  ACTION(VIEW_SELECTED),
+  ACTION(EDIT_ATTRIB),    ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),
+  ACTION(EDIT_DELETE),    ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),
+  ACTION(EDIT_MOVE),      ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
+  ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),    ACTION(HIERARCHY_UP),
+  ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),   ACTION(EDIT_CB_PASTE),
   NULL
 };
 
@@ -83,32 +83,33 @@ const char* IDS_Popup_Actions[] = {
 
 static PopupEntry popup_items[] = {
 
-  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  NULL},
+  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  NULL },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
   { N_("Add"),               NULL,                 1,                  0,  NULL,            NULL },
-  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     NULL},
+  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     NULL },
   { N_("Attribute..."),      x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), NULL},
-  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", NULL},
-  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     NULL},
-  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       NULL},
+  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", NULL },
+  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     NULL },
+  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       NULL },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
   { N_("Zoom"),              NULL,                 1,                  0,  NULL,            NULL },
-  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    NULL},
-  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL},
-  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL},
-  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL},
+  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    NULL },
+  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL },
+  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL },
+  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL },
   { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "gschem-zoom-mag", NULL},
+  { N_("Selection"),         x_menu_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", NULL},
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Edit"),              NULL,                 1,                  0,  NULL,            NULL},
-  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL},
-  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL},
-  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
+  { N_("Edit"),              NULL,                 1,                  0,  NULL,            NULL },
+  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL },
+  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL },
+  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
@@ -123,7 +124,7 @@ static PopupEntry popup_items[] = {
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
 
-  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL },
+  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL},
   { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
   { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
   { N_("Up"),                x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       NULL},
