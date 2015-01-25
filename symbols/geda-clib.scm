@@ -81,6 +81,7 @@
                      ("passive/protection"      "Standard/Protection")
                      ("passive/thermistor"      "Standard/Thermistors")
                      ("passive/varistor"        "Standard/Varistor")
+                     ("passive/magnetic"        "Standard/Magnetic")
 
                   ("connector" "Standard/Connectors")
                      ("connector/barrel"        "Standard/Cylindrical Barrel")

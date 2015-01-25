@@ -1,5 +1,15 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    *symbols/geda-clib.scm: Add sub-group passive/magnetic.
+
+    *passive/magnetic/HMC1051Z.sym: Add new symbol magnetic sensor
+
+    *passive/magnetic/HMC1052.sym: Add new symbol magnetic sensor
+
+    *passive/magnetic/HMC1052L.sym: Add new symbol magnetic sensor
+
+2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
     *diode/: Add three new symbols, Small GP Diodes 120/200/250 volt;
 
         BAS19-1.sym
