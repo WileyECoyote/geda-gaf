@@ -776,11 +776,11 @@ char *s_path_string_from_path (const Path *path)
 }
 
 /*! \brief Converts a path to a polygon
+ *   Parameters \a path and \a points must not be NULL.
  *
- *  \param path [in] The path to convert to a polygon.  This parameter must not
- *  be NULL.
- *  \param points [out] An array of the polygon's vertices.  This parameter
- *  must not be NULL.
+ *  \param [in]  path   The path to convert to a polygon
+ *  \param [out] points An array of the polygon's vertices
+ *
  *  \return TRUE if the path is closed, FALSE if it is open.
  */
 int s_path_to_polygon (Path *path, GArray *points)
@@ -831,13 +831,14 @@ int s_path_to_polygon (Path *path, GArray *points)
 }
 
 /*! \brief Calculates the distance between the given point and the closest
- *  point on the given path segment.
+ *   point on the given path segment.
  *
  *  \param [in] path    The path.
  *  \param [in] x       The x coordinate of the given point.
  *  \param [in] y       The y coordinate of the given point.
  *  \param [in] solid   TRUE if the path should be treated as solid, FALSE if
  *                      the path should be treated as hollow.
+ *
  *  \return The shortest distance from the path to the point. With a solid
  *          shape, this function returns a distance of zero for interior
  *          points. With an invalid parameter, this function returns

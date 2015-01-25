@@ -257,10 +257,6 @@ void     s_conn_init                   (void);
 char    *s_encoding_base64_encode      (char* src, unsigned int srclen, unsigned int* dstlenp, bool strict);
 char    *s_encoding_base64_decode      (char* src, unsigned int srclen, unsigned int* dstlenp);
 
-/* s_path.c */
-int      s_path_to_polygon             (Path *path, GArray *points);
-double   s_path_shortest_distance      (Path *path, int x, int y, int solid);
-
 /* s_textbuffer.c */
 TextBuffer   *s_textbuffer_new         (const char *data, const int size);
 TextBuffer   *s_textbuffer_free        (TextBuffer *tb);

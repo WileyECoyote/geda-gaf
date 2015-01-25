@@ -516,6 +516,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          Path   *s_path_copy_modify              (Path *path, int dx, int dy, int new_x, int new_y, int whichone);
          Path   *s_path_parse                    (const char *path_str);
          char   *s_path_string_from_path         (const Path *path);
+          int    s_path_to_polygon               (Path *path, GArray *points);
+       double    s_path_shortest_distance        (Path *path, int x, int y, int solid);
 
 /* s_place.c */
          void    s_place_free_place_list         (GedaToplevel *toplevel);
