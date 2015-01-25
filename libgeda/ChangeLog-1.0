@@ -1,5 +1,14 @@
 2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Update error messages in function
+      o_read_attribs, in like to line count being prefixed in
+      o_read_buffer.
+
+    * src/geda/geda_pin.c: Revise function geda_pin_set_label for
+      better clarity, maybe.
+
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/prototype_priv.h: Remove functions s_path_to_polygon
       and s_path_shortest_distance.
 

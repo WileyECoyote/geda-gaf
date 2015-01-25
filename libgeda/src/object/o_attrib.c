@@ -450,13 +450,15 @@ o_attrib_remove(GList **list, Object *remove)
  *  \param [out] err                    A GError object
  *
  *  \return GList of attributes read, or NULL on error.
+ *
+ *  \todo Bad Error recovery
  */
 GList*
 o_read_attribs (GedaToplevel *toplevel,
                 Object       *object_to_get_attribs,
                 TextBuffer   *tb,
                 unsigned int  release_ver, unsigned int fileformat_ver,
-                GError ** err)
+                GError       ** err)
 {
   GList      *object_list = NULL;
   Object     *new_obj;
@@ -554,15 +556,16 @@ o_read_attribs (GedaToplevel *toplevel,
     if (ATTACH) {
       o_attrib_attach (new_obj, object_to_get_attribs, FALSE);
       ATTACH=FALSE;
-    } else {
-      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Tried to attach a non-text object as an attribute"));
+    }
+    else {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("tried to attach a non-text object as an attribute"));
       goto error;
     }
   }
 
   /* The attribute list wasn't terminated, so it's a parse error! */
   g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
-               _("Unexpected end-of-file in attribute list"));
+               _("unexpected end-of-file in attribute list"));
 
 error:
   s_object_release_objects(object_list);

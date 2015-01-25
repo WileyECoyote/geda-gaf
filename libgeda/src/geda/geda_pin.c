@@ -423,13 +423,16 @@ bool geda_pin_set_label(Pin *pin, const char *label)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
-  bool changed = FALSE;
+  bool changed;
 
-  if ( label != NULL ) {
+  if (label != NULL) {
     if (pin->label) {
       if (strcmp(pin->label, label) != 0) {
-        changed = TRUE;
         GEDA_FREE(pin->label);
+        changed = TRUE;
+      }
+      else {
+        changed = FALSE;
       }
     }
     else {
@@ -439,6 +442,9 @@ bool geda_pin_set_label(Pin *pin, const char *label)
     if (changed) {
       pin->label = u_string_strdup(label);
     }
+  }
+  else {
+   changed = FALSE;
   }
 
   return changed;
