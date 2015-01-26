@@ -443,6 +443,7 @@ void       o_edit_show_specific_text    (GschemToplevel *w_current, const GList 
 OBJ       *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_find.c */
+Object    *o_find_get_hit               (GschemToplevel *w_current, int w_x, int w_y);
 bool       o_find_object                (GschemToplevel *w_current, int x, int y, bool deselect_afterwards);
 OBJ       *o_find_selected_object       (GschemToplevel *w_current, int x, int y);
 
@@ -547,10 +548,11 @@ void       o_place_draw_rubber               (GschemToplevel *w_current, int dra
 void       o_place_rotate                    (GschemToplevel *w_current);
 
 /* o_project.c */
-bool       o_project_start                   (GschemToplevel *w_current, int w_x, int w_y);
+int        o_project_start                   (GschemToplevel *w_current, int w_x, int w_y);
 int        o_project_end                     (GschemToplevel *w_current, int x, int y);
 void       o_project_hot                     (GschemToplevel *w_current, GList *object_list, int x, int y);
 void       o_project_selection               (GschemToplevel *w_current, int count);
+int        o_project_interrogate             (GschemToplevel *w_current, GList *object_list);
 
 /* o_redraw.c */
 int        o_redraw_cleanstates              (GschemToplevel *w_current);
@@ -558,6 +560,7 @@ void       o_redraw_rectangle                (GschemToplevel *w_current, GdkRect
 
 /* o_select.c */
 void       o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);
+void       o_select_add_object               (GschemToplevel *w_current, Object *object);
 void       o_select_add_list                 (GschemToplevel *w_current, GList *list);
 int        o_select_box_start                (GschemToplevel *w_current, int x, int y);
 void       o_select_box_end                  (GschemToplevel *w_current, int x, int y);

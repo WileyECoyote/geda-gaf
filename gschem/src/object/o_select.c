@@ -214,9 +214,9 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
   }
 }
 
-/*! \brief Add to Selection from List
+/*! \brief Add Objects in List to Selection
  *  \par Function Description
- *  Adds items in the list to the current selection list.
+ *  Adds items in the list to the current selection set.
  *
  *  \sa o_select_move_to_place_list
  *
@@ -235,6 +235,30 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
     o_selection_add (selection, object);
     o_select_run_hooks(w_current, object, SELECT_HOOK);
     iter = iter->next;
+  }
+}
+
+/*! \brief Add Object to Selection without BS
+ *  \par Function Description
+ *  Adds object to the current selection list.
+ *
+ *  \sa o_select_move_to_place_list
+ *
+ *  \note see comment for o_select_visible_unlocked regarding
+ *        o_selection_add
+ */
+void
+o_select_add_object(GschemToplevel *w_current, Object *object)
+{
+  GedaToplevel *toplevel  = w_current->toplevel;
+  SELECTION    *selection = Top_Selection;
+
+  if (GEDA_IS_OBJECT(object)) {
+    o_selection_add (selection, object);
+    o_select_run_hooks(w_current, object, SELECT_HOOK);
+  }
+  else {
+    BUG_MSG("Invalid object");
   }
 }
 
@@ -632,8 +656,6 @@ o_select_visible_unlocked (GschemToplevel *w_current)
  *  \par Function Description
  *  Releases any object current in the place list and copies
  *  the current selection list to the place list
- *
- *  \sa o_select_get_from_place_list
  */
 void
 o_select_move_to_place_list(GschemToplevel *w_current)
