@@ -316,8 +316,6 @@ gschem_page_geometry_mil_y(GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-
-
 /*! \brief Get page geometry for this view with way to many parameters
  *
  *  \param [in] screen_width

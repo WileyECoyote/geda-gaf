@@ -75,7 +75,7 @@ void x_pagesel_open (GschemToplevel *w_current)
 void x_pagesel_close (GschemToplevel *w_current)
 {
   if (w_current->pswindow) {
-    if (IS_PageSEL (w_current->pswindow)) {
+    if (IS_PAGESEL (w_current->pswindow)) {
       gtk_widget_destroy (w_current->pswindow);
     }
     else {
@@ -94,7 +94,7 @@ void x_pagesel_close (GschemToplevel *w_current)
 void x_pagesel_update (GschemToplevel *w_current)
 {
   if (w_current->pswindow) {
-    if (IS_PageSEL (w_current->pswindow)) {
+    if (IS_PAGESEL (w_current->pswindow)) {
       pagesel_update (PageSEL (w_current->pswindow));
     }
     else {
@@ -124,7 +124,7 @@ void x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
         break;
       case GTK_RESPONSE_DELETE_EVENT:
       case PageSEL_RESPONSE_CLOSE:
-        if (IS_PageSEL (w_current->pswindow)) {
+        if (IS_PAGESEL (w_current->pswindow)) {
           gtk_widget_destroy (GTK_WIDGET (dialog));
         }
         else {
@@ -592,12 +592,12 @@ void pagesel_update (Pagesel *pagesel)
   Page           *p_current;
   GtkTreeModel   *model;
   GList          *iter;
-
-  if (!IS_PageSEL (pagesel)) {
+/*
+  if (!IS_PAGESEL (pagesel)) {
     BUG_MSG ("pagesel is wrong object");
     return;
   }
-
+*/
   w_current = GSCHEM_DIALOG (pagesel)->w_current;
   toplevel  = w_current->toplevel;
 

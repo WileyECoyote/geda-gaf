@@ -1,5 +1,17 @@
 2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_find.c: General revisions, cleanup, use NEXT
+      instead of g_list_next and Current_Selection macro.
+
+    * src/x/x_multiattrib.c: General revisions, fix PROP_Object_LIST
+      ->PROP_OBJECT_LIST
+
+    * src/x/x_pagesel.c: Fix IS_PageSEL, should be IS_PAGESEL
+
+    * src/x/x_image.c: Minor revision: use __func__ macro
+
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/gschem_dialog.h: Change DIALOG_DATA_SELECTION to
       DIALOG_SELECTION_TRACKER, add DIALOG_SELECTION_DATA.
       Rename variable GschemDialog::func GschemDialog::tracker.

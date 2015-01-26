@@ -146,7 +146,7 @@ x_multiattrib_update (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
     g_object_set (G_OBJECT (w_current->mawindow), "object_list",
-                  w_current->toplevel->page_current->selection_list, NULL);
+                  Current_Selection, NULL);
   }
 }
 
@@ -461,8 +461,7 @@ GedaType cellrenderermultilinetext_get_type()
   return cellrenderermultilinetext_type;
 }
 
-/*! \todo Finish function documentation
- *  \brief
+/*! \brief Initialize Cell Renderer Multi-line Text Class Instance
  *  \par Function Description
  *
  */
@@ -477,7 +476,7 @@ cellrenderermultilinetext_class_init(CellRendererMultiLineTextClass *class)
 }
 
 enum {
-  PROP_Object_LIST = 1
+  PROP_OBJECT_LIST = 1
 };
 
 enum {
@@ -1823,7 +1822,8 @@ connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
                         ThisDialog);
     /* Synthesise a object_list changed update to refresh the view */
     object_list_changed_cb (ThisDialog->object_list, ThisDialog);
-  } else {
+  }
+  else {
     /* Call an update to set the sensitivities */
     multiattrib_update (ThisDialog);
   }
@@ -1900,7 +1900,7 @@ static void multiattrib_class_init(MultiattribClass *class)
 
   multiattrib_parent_class = g_type_class_peek_parent (class);
 
-  g_object_class_install_property ( gobject_class, PROP_Object_LIST,
+  g_object_class_install_property ( gobject_class, PROP_OBJECT_LIST,
                                     g_param_spec_pointer ("object_list",
                                                           "",
                                                           "",
@@ -2272,7 +2272,7 @@ static void multiattrib_set_property (GObject      *object,
 
   switch(property_id)
   {
-    case PROP_Object_LIST:
+    case PROP_OBJECT_LIST:
       disconnect_object_list (ThisDialog);
       connect_object_list (ThisDialog, g_value_get_pointer (value));
       break;
@@ -2301,7 +2301,7 @@ static void multiattrib_get_property (GObject     *object,
 
   switch(property_id)
   {
-    case PROP_Object_LIST:
+    case PROP_OBJECT_LIST:
       g_value_set_pointer (value, (void *)ThisDialog->object_list);
       break;
     default:

@@ -27,7 +27,7 @@ typedef enum {
 #define TYPE_PageSEL         (pagesel_get_type())
 #define PageSEL(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PageSEL, Pagesel))
 #define PageSEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PageSEL, PageselClass))
-#define IS_PageSEL(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PageSEL))
+#define IS_PAGESEL(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PageSEL))
 
 
 typedef struct _PageselClass PageselClass;

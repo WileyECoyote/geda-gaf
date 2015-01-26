@@ -395,7 +395,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
   GedaToplevel *toplevel = w_current->toplevel;
 
 #if DEBUG_IMAGING
-  fprintf(stderr, "x_image_lowlevel: begin\n");
+  fprintf(stderr, "%s: begin\n", __func__);
 #endif
 
   float prop;
@@ -503,7 +503,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
   o_invalidate_all (w_current);
 
 #if DEBUG_IMAGING
-  fprintf(stderr, "x_image_lowlevel: exit\n");
+  fprintf(stderr, "%s: exit\n", __func__);
 #endif
 }
 

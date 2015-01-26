@@ -1,4 +1,6 @@
-/* -*- C o_find.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: o_find.c
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -18,12 +20,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
 /*!
  * \file o_find.c
- * \brief Low-level module for finding strings in Text objects
+ * \brief Low-level module for finding Objects on the Curent Page
  */
 #include <gschem.h>
 #include <geda_debug.h>
@@ -70,24 +72,22 @@ static bool is_object_hit (GschemToplevel *w_current, Object *object,
 
 /*! \brief Tests a if a given Object was hit at a given set of coordinates
  *  \par Function Description
- *  Tests a if a given Object was hit at a given set of coordinates. If so,
- *  processes selection changes as appropriate for the object and passed
- *  flag. Saves a pointer to the found object so future find operations
- *  resume after this object.
+ *  This function is called by o_find_object function to tests a if a given
+ *  Object was hit at a given set of coordinates. If so, processes selection
+ *  changes as appropriate for the object and passed flag. Saves a pointer
+ *  to the found object so future find operations resume after this object.
  *
- *  \param [in] w_current         The GschemToplevel object.
- *  \param [in] object            The Object being hit-tested.
- *  \param [in] w_x               The X coordinate to test (in world coords).
- *  \param [in] w_y               The Y coordinate to test (in world coords).
- *  \param [in] w_slack           The slack applied to the hit-test.
- *  \param [in] change_selection  Whether to select the found object or not.
+ *  \param [in] w_current         The GschemToplevel object
+ *  \param [in] object            The Object being hit-tested
+ *  \param [in] w_x               The X coordinate to test (in world coords)
+ *  \param [in] w_y               The Y coordinate to test (in world coords)
+ *  \param [in] w_slack           The slack applied to the hit-test
+ *  \param [in] change_selection  Whether to select the found object or not
+ *
  *  \returns TRUE if the Object was hit, otherwise FALSE.
- *
- *  \remark WEH 07/23/13: This function is ONLY called by the o_find_object
- *  function below.
  */
 static bool
-find_single_object (GschemToplevel *w_current, Object *object,
+o_find_check_found (GschemToplevel *w_current, Object *object,
                     int w_x, int w_y, int w_slack,
                     int change_selection)
 {
@@ -116,19 +116,19 @@ find_single_object (GschemToplevel *w_current, Object *object,
  *  found, so multiple find operations at the same point will cycle
  *  through any objects on top of each other at this location.
  *
- *  \param [in] w_current         The GschemToplevel object.
- *  \param [in] w_x               The X coordinate to test (in world coords).
- *  \param [in] w_y               The Y coordinate to test (in world coords).
- *  \param [in] change_selection  Whether to select the found object or not.
+ *  \param [in] w_current         The GschemToplevel object
+ *  \param [in] w_x               The X coordinate to test (in world coords)
+ *  \param [in] w_y               The Y coordinate to test (in world coords)
+ *  \param [in] change_selection  Whether to select the found object or not
+ *
  *  \returns TRUE if the object was hit at the given coordinates,
  *           otherwise FALSE.
  */
 bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
-                        bool change_selection)
+                    bool change_selection)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  int w_slack;
   const GList *iter = NULL;
+  int w_slack;
 
   w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
 
@@ -137,41 +137,42 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
      (w_x/w_y) position, this will select the next object below the
      position point. You can change the selected object by clicking
      at the same place multiple times. */
-  if (toplevel->page_current->object_lastplace != NULL) {
-    /* NB: g_list_find doesn't declare its input const, so we cast */
-    iter = g_list_find ((GList *)s_page_get_objects (toplevel->page_current),
-                        toplevel->page_current->object_lastplace);
-    iter = g_list_next (iter);
+  if (Current_Page->object_lastplace != NULL) {
+    GList *list = s_page_get_objects (Current_Page);
+    iter = g_list_find (list, Current_Page->object_lastplace);
+    NEXT(iter);
   }
 
   /* do first search (if we found any objects after the last found object) */
   while (iter != NULL) {
     Object *o_current = iter->data;
-    if (find_single_object (w_current, o_current,
+    if (o_find_check_found (w_current, o_current,
                             w_x, w_y, w_slack, change_selection)) {
       return TRUE;
     }
-    iter = g_list_next (iter);
+    NEXT(iter);
   }
 
-  /* now search from the beginning up until the object_lastplace */
-  for (iter = s_page_get_objects (toplevel->page_current);
-       iter != NULL; iter = g_list_next (iter)) {
+  /* Search from the beginning up until the object_lastplace */
+  for (iter = s_page_get_objects (Current_Page); iter; NEXT(iter)) {
+
     Object *o_current = iter->data;
-    if (find_single_object (w_current, o_current,
-                            w_x, w_y, w_slack, change_selection)) {
+    if (o_find_check_found (w_current, o_current,
+                            w_x, w_y, w_slack, change_selection))
+    {
       return TRUE;
     }
-    /* break once we've inspected up to where we started the first loop */
-    if (o_current == toplevel->page_current->object_lastplace)
+    /* Break once we have inspected up to where we started the first loop */
+    if (o_current == Current_Page->object_lastplace) {
       break;
+    }
   }
 
-  /* didn't find anything.... reset lastplace */
-  toplevel->page_current->object_lastplace = NULL;
+  /* We did not find anything so reset lastplace */
+  Current_Page->object_lastplace = NULL;
 
-  /* Deselect everything if change_selection flag is True AND
-   * the shift key or the control isn't pressed */
+  /* Deselect everything if change_selection flag is True AND the shift key
+   * or the control is not pressed */
   if (change_selection && ( !(w_current->SHIFTKEY || w_current->CONTROLKEY))) {
     o_select_unselect_all (w_current);
   }
@@ -180,23 +181,23 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Find Selected Object at a given set of coordinates
  *  \par Function Description
- *
+ *  Return first object in the current selection that can be hit at the
+ *  given coordinates or NULL if no such object is found.
  */
 Object *o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   int w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
-  GList *s_current;
+  GList *iter;
 
-  for (s_current = geda_list_get_glist (toplevel->page_current->selection_list);
-       s_current != NULL; s_current = g_list_next (s_current)) {
-    Object *o_current = s_current->data;
+  for (iter = geda_list_get_glist (Current_Selection); iter; NEXT(iter)) {
 
-    if (is_object_hit (w_current, o_current, w_x, w_y, w_slack))
+    Object *o_current = iter->data;
+
+    if (is_object_hit (w_current, o_current, w_x, w_y, w_slack)) {
       return o_current;
+    }
   }
 
   return NULL;
