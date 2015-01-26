@@ -1041,13 +1041,9 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 
     s_page_goto (toplevel, page);
     //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
-    i_status_update_sensitivities (w_current);
 
-    i_status_update_title (w_current);
-    x_pagesel_update (w_current);
-    x_multiattrib_update (w_current);
+    i_window_on_page_changed(w_current);
 
-    i_window_set_viewport_size (w_current);
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);
     o_invalidate_all (w_current);

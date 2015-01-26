@@ -24,9 +24,80 @@
  */
 
 #include <gschem.h>
+#include <gschem_dialog.h>
 #include "x_window.h"
 
 #include <geda_debug.h>
+
+/*! \brief Idle Update Editing Dialogs Page Selection change
+ *  \par Function Description
+ *   Checks for eack of the editing dialog with selection trackers and
+ *   updates the selection if the dialog is active.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ *
+ */
+static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
+{
+  if (w_current->aawindow != NULL) { /* Arc Attrib Tracks */
+    g_object_set (G_OBJECT (w_current->aawindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->clwindow != NULL) { /* Color Edit Tracks */
+    g_object_set (G_OBJECT (w_current->clwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->hpwindow != NULL) { /* Hatch Pattern Tracks */
+    g_object_set (G_OBJECT (w_current->hpwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->ltwindow != NULL) { /* Line Type Tracks */
+    g_object_set (G_OBJECT (w_current->ltwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->prwindow != NULL) { /* Prop edit Tracks */
+    g_object_set (G_OBJECT (w_current->prwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->ptwindow != NULL) { /* Pin Type Tracks */
+    g_object_set (G_OBJECT (w_current->ltwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->sewindow != NULL) { /* Slot Edit Tracks */
+    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->tewindow != NULL) { /* Text Edit Tracks */
+    g_object_set (G_OBJECT (w_current->tewindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+  if (w_current->aewindow != NULL) { /* Attribute Edit Tracks */
+    g_object_set (G_OBJECT (w_current->aewindow), DIALOG_SELECTION_DATA,
+                                                  Current_Selection, NULL);
+  }
+
+  x_multiattrib_update (w_current);
+  x_pagesel_update (w_current);
+
+  return FALSE;
+}
+
+/*! \brief Do updates when the Current Page is Changed
+ *  \par Function Description
+ *  This function calls various functions in order to update the main
+ *  window interface and dialogs that are linked to the page selection.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ */
+void i_window_on_page_changed (GschemToplevel *w_current)
+{
+  i_status_update_sensitivities (w_current);
+  i_status_update_title (w_current);
+
+  g_idle_add ((GSourceFunc)i_window_idle_notify_dialogs, w_current);
+
+  i_window_set_viewport_size (w_current);
+}
 
 /*! \brief get the pointer position of a given GschemToplevel
  *  \par Function Description
