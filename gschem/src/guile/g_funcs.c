@@ -166,15 +166,15 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
 
 /*! \brief SCM API Export PNG image
  *  \par Function Description
- *   Allows Scheme routines to export images
+ *   Scheme API to export the current document as a PNG image.
  */
-SCM g_funcs_image(SCM scm_filename)
+SCM g_funcs_png_image(SCM scm_filename)
 {
   char *filename;
   GschemToplevel *w_current;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
-              SCM_ARG1, "gschem-image");
+              SCM_ARG1, "gschem-png-image");
 
   w_current = g_current_window ();
 
@@ -201,10 +201,9 @@ SCM g_funcs_image(SCM scm_filename)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Write to log
  *  \par Function Description
- *
+ *  \todo Should this be in libgeda?
  */
 SCM g_funcs_log(SCM scm_msg)
 {
@@ -219,10 +218,10 @@ SCM g_funcs_log(SCM scm_msg)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief  SCM API Show message dialog
  *  \par Function Description
- *
+ *   Allows Scheme routines to present a dialog to display
+ *   a text message.
  */
 SCM g_funcs_msg(SCM scm_msg)
 {
@@ -238,10 +237,9 @@ SCM g_funcs_msg(SCM scm_msg)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Export PDF Document
  *  \par Function Description
- *
+ *   Scheme API to export the current document as a PDF document.
  */
 SCM g_funcs_pdf (SCM scm_filename)
 {
@@ -264,10 +262,10 @@ SCM g_funcs_pdf (SCM scm_filename)
   return (status ? SCM_BOOL_T : SCM_BOOL_F);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Export Postscript image
  *  \par Function Description
- *
+ *   Allows Scheme routines to export the current document
+ *   as a Postscript image.
  */
 SCM g_funcs_postscript(SCM scm_filename)
 {
@@ -296,10 +294,9 @@ SCM g_funcs_postscript(SCM scm_filename)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API Print Current Document
  *  \par Function Description
- *
+ *   Scheme API to print the current document.
  */
 SCM g_funcs_print(SCM scm_filename)
 {

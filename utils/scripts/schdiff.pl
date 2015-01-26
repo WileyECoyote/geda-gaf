@@ -32,9 +32,9 @@ EOF
 for PROG in gschem composite display
 do
   if which $PROG > /dev/null
-  then 
+  then
     true
-  else 
+  else
     echo "$PROG is not found.  Either it is not installed, or not in your PATH"
     exit 1
   fi
@@ -61,8 +61,8 @@ LEFTPNG=`mktemp --tmpdir schdiff.XXXXXXXXXX`
 RIGHTPNG=`mktemp --tmpdir schdiff.XXXXXXXXXX`
 DIFFPNG=`mktemp --tmpdir schdiff.XXXXXXXXXX`
 
-gschem -p -o $LEFTPNG -q -c '(image-size 1344 1008) (image-color "disabled") (gschem-use-rc-values) (gschem-image "dummyfilename") (gschem-exit)' $LEFTFILE && \
-gschem -p -o $RIGHTPNG -q -c '(image-size 1344 1008) (image-color "disabled") (gschem-use-rc-values) (gschem-image "dummyfilename") (gschem-exit)' $RIGHTFILE && \
+gschem -p -o $LEFTPNG -q -c '(image-size 1344 1008) (image-color "disabled") (gschem-use-rc-values) (gschem-png-image "dummyfilename") (gschem-exit)' $LEFTFILE && \
+gschem -p -o $RIGHTPNG -q -c '(image-size 1344 1008) (image-color "disabled") (gschem-use-rc-values) (gschem-png-image "dummyfilename") (gschem-exit)' $RIGHTFILE && \
 composite -stereo 0 $LEFTPNG $RIGHTPNG $DIFFPNG && \
 display $DIFFPNG
 rm $LEFTPNG

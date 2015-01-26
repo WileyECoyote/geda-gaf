@@ -1,5 +1,21 @@
 2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_funcs.c: Rename function g_funcs_image to
+      g_funcs_png_image, update Doxygen comments.
+
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_window.c: Add functions i_window_on_page_changed
+      and i_window_idle_notify_dialogs to update dialog selections
+      when the current page is changed using idle thread.
+
+    * src/x/x_window.c: Add call to i_window_on_page_changed in
+      function x_window_set_current_page and move interface related
+      call to the new function, most of these are use an idle thread
+      rather than running in the main thread.
+
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_find.c: General revisions, cleanup, use NEXT
       instead of g_list_next and Current_Selection macro.
 

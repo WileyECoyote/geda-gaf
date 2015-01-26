@@ -16,7 +16,7 @@
 (gschem-use-rc-values)
 
 ; filename is specified on the command line
-(gschem-image "dummyfilename")
+(gschem-png-image "dummyfilename")
 
 (format (current-error-port)
 "WARNING: Exporting images with 'image.scm' is deprecated.
