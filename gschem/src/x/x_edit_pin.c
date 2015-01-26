@@ -158,8 +158,8 @@ static GtkWidget *create_menu_pin_type ( void )
 
 /*! \brief Set the Values in the Pin Properties Editor dialog
  *  \par Function Description
- *  Set all widgets in the pin type dialog. Variables marked with the
- *  invalid value -1 are disabled.
+ *  Set all widgets in the pin type dialog. Widgets with variables
+ *  having a value -1 are disabled.
  *
  *  \param [in]   pin_data   dialog structure
  *  \param [in]   label      pin name
@@ -299,7 +299,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   pin_objects  = o_select_get_list_selected(w_current, OBJ_PIN);
   num_selected = g_list_length( pin_objects);
 
-  if (num_selected == 1) {
+  if (num_selected == 1) { /* Only 1 pin selected */
 
     object = (Object*) g_list_nth_data(pin_objects, 0);
 
@@ -588,7 +588,7 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
  *  \param object    Pointer to a selected Object
  */
 static void
-x_dialog_pin_type_update_selection (GschemToplevel *w_current, Object *object)
+xd_pin_type_update_selection (GschemToplevel *w_current, Object *object)
 {
   GschemDialog *Dialog;
 
@@ -958,7 +958,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                     pin_data);
 
   g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
-                x_dialog_pin_type_update_selection,
+                xd_pin_type_update_selection,
                 NULL);
 
   return ThisDialog;
@@ -993,7 +993,7 @@ void x_dialog_edit_pin_type (GschemToplevel *w_current)
   }
 
   object = o_select_return_first_object(w_current);
-  x_dialog_pin_type_update_selection (w_current, object);
+  xd_pin_type_update_selection (w_current, object);
 }
 
 /****************** End of pin type edit dialog box *********************/

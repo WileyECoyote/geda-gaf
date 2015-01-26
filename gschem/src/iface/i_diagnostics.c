@@ -31,7 +31,6 @@
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
-
 static void
 print_page_info(GtkWidget *button, GschemToplevel *w_current)
 {
