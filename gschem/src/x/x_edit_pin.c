@@ -957,7 +957,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                     G_CALLBACK (x_dialog_edit_pin_type_response),
                     pin_data);
 
-  g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
+  g_object_set (G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
                 xd_pin_type_update_selection,
                 NULL);
 

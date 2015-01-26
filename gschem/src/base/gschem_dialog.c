@@ -160,11 +160,11 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
       }
       else
         if (object_count == 1) {
-          Dialog->func (w_current, object);
+          Dialog->tracker (w_current, object);
         }
         else {
           object = o_select_return_first_object (w_current);
-          Dialog->func (w_current, object);
+          Dialog->tracker (w_current, object);
         }
     }
     else {
@@ -180,7 +180,7 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
  *         is destroyed
  *  \par Function Description
  *  This handler is called when the g_object_weak_ref() on the
- *  SELECTION object we're watching expires. We reset the
+ *  SELECTION object we are watching expires. We reset the
  *  Dialog->selection pointer to NULL to avoid attempting to
  *  access the destroyed object.
  *
@@ -198,7 +198,7 @@ static void gd_callback_selection_finalized (void *data, GObject *where_the_obje
   if (GSCHEM_IS_DIALOG(data)) {
     Dialog = (GschemDialog*)data;
     Dialog->selection = NULL;
-    g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+    g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, NULL);
   }
   else {
     BUG_MSG("Bad pointer to Dialog\n");
@@ -230,7 +230,7 @@ static void gd_connect_selection (void *maybe)
     else {
       Dialog->selection = NULL;
     }
-    g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, Dialog->selection);
+    g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, Dialog->selection);
   }
   else {
     BUG_MSG("Bad pointer to Dialog\n");
@@ -262,7 +262,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   }
 
   /* get selection watched from dialog data */
-  selection = (SELECTION*)g_object_get_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION);
+  selection = (SELECTION*)g_object_get_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER);
 
   if (selection && G_IS_OBJECT(selection)) {
 
@@ -272,7 +272,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   }
 
   /* reset Dialog data */
-  g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+  g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, NULL);
 }
 
 /*! \brief GtkWidget show signal handler
@@ -335,7 +335,7 @@ static void unmap_handler (GtkWidget *widget)
   }
 
   /* Disconnect the update selection handler function*/
-  if (dialog->func != NULL) {
+  if (dialog->tracker != NULL) {
     gd_disconnect_selection (dialog);
   }
 
@@ -348,7 +348,10 @@ static void unmap_handler (GtkWidget *widget)
  *  This function automatically sets the toplevel entry for a
  *  GschemDialog to NULL when the dialog is destroyed. Note
  *  that if the dialog code set the toplevel entry to NULL
- *  this function has not effect.
+ *  this function has no effect.
+ *
+ *  \note This is an on-instance bases so only one of the if's
+ *        can be true for a given child instance.
  */
 void set_gschem_dialog_null(void *dialog)
 {
@@ -372,10 +375,10 @@ void set_gschem_dialog_null(void *dialog)
     else if (dialog == w_current->ltwindow) { /* Line Type */
         w_current->ltwindow = NULL;
     }
-    else if (dialog == w_current->prwindow) { /* Line Type */
+    else if (dialog == w_current->prwindow) { /* Prop edit */
         w_current->prwindow = NULL;
     }
-    else if (dialog == w_current->ptwindow) { /* Prop edit */
+    else if (dialog == w_current->ptwindow) { /* Pin Type */
         w_current->ptwindow = NULL;
     }
     else if (dialog == w_current->sewindow) { /* Slot Edit */
@@ -467,16 +470,26 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
       GEDA_FREE (Dialog->settings_name);
       Dialog->settings_name = g_value_dup_string (value);
       break;
+
     case PROP_GSCHEM_TOPLEVEL:
       Dialog->w_current = (GschemToplevel*)g_value_get_pointer (value);
       break;
+
     case PROP_PARENT_WINDOW:
       gschem_dialog_set_parent(Dialog, (GtkWindow*) g_value_get_pointer (value));
       break;
+
+    case PROP_SELECTION_LIST:
+      gd_disconnect_selection (Dialog);
+      Dialog->selection = g_value_get_pointer(value);
+      gd_connect_selection (Dialog);
+      g_signal_emit_by_name (Dialog->selection, "changed", Dialog);
+      break;
+
     case PROP_SELECTION_TRACKER:
       /* disconnect Dialog from any previous selection */
       gd_disconnect_selection (Dialog);
-      Dialog->func = g_value_get_pointer(value);
+      Dialog->tracker = g_value_get_pointer(value);
       /* connect the Dialog to the selection of the current page */
       gd_connect_selection (Dialog);
       break;
@@ -484,6 +497,7 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
     case PROP_TITLE:
       gtk_window_set_title (GTK_WINDOW (object), g_value_get_string (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -509,15 +523,19 @@ static void gschem_dialog_get_property (GObject *object, guint property_id, GVal
       case PROP_SETTINGS_NAME:
         g_value_set_string (value, Dialog->settings_name);
         break;
+
       case PROP_GSCHEM_TOPLEVEL:
         g_value_set_pointer (value, (void *)Dialog->w_current);
         break;
+
       case PROP_PARENT_WINDOW:
         g_value_set_pointer (value, Dialog->parent_window);
         break;
+
       case PROP_TITLE:
         g_value_set_string (value, gtk_window_get_title(GTK_WINDOW(object)));
        break;
+
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -600,8 +618,15 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                           G_PARAM_READWRITE));
 
   g_object_class_install_property (
+    gobject_class, PROP_SELECTION_LIST,
+    g_param_spec_pointer (DIALOG_SELECTION_DATA,
+                          "",
+                          "",
+                          G_PARAM_WRITABLE));
+
+  g_object_class_install_property (
     gobject_class, PROP_SELECTION_TRACKER,
-    g_param_spec_pointer (DIALOG_DATA_SELECTION,
+    g_param_spec_pointer (DIALOG_SELECTION_TRACKER,
                           "",
                           "",
                           G_PARAM_WRITABLE));
@@ -613,8 +638,10 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                        _("Dialog window title"),
                          NULL,
                          G_PARAM_READWRITE));
+
 }
-/*! \brief GedaType instance initialiser for a GschemDialog object
+
+/*! \brief GedaType instance initializer for a GschemDialog object
  *
  *  \par Function Description
  *  GedaType instance initialiser for an Object, initializes a new empty
@@ -632,6 +659,7 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
   gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), DIALOG_V_SPACING);
 }
+
 /*! \brief Function to retrieve GschemDialog's Type identifier.
  *
  *  \par Function Description

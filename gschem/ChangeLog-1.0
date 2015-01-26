@@ -1,3 +1,11 @@
+2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_dialog.h: Change DIALOG_DATA_SELECTION to
+      DIALOG_SELECTION_TRACKER, add DIALOG_SELECTION_DATA.
+      Rename variable GschemDialog::func GschemDialog::tracker.
+
+    * src/base/gschem_dialog.c: Add property DIALOG_SELECTION_DATA
+
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Use lrint instead of rint.

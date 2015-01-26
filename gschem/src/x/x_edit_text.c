@@ -601,7 +601,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
                       text_object);
 
     g_object_set (G_OBJECT (ThisDialog),
-                  DIALOG_DATA_SELECTION,
+                  DIALOG_SELECTION_TRACKER,
                   x_dialog_text_edit_update_selection, NULL);
 
     gtk_widget_show_all(ThisDialog);

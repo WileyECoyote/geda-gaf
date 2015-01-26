@@ -933,7 +933,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
                       G_CALLBACK ( x_dialog_edit_arc_angle_response),
                       NULL);
 
-    g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
+    g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
                   x_dialog_edit_arc_angle_selection, NULL);
 
     gtk_widget_show_all (Dialog);
@@ -1609,7 +1609,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
                     G_CALLBACK (x_dialog_edit_fill_type_response),
                     fill_data);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
+  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
                 x_dialog_fill_type_update_selection,
                 NULL);
 
@@ -2109,7 +2109,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
                     G_CALLBACK (x_dialog_edit_line_type_response),
                     line_data);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
+  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
                 x_dialog_line_type_update_selection,
                 NULL);
 
@@ -2299,7 +2299,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
                       G_CALLBACK (x_dialog_edit_slot_response),
                       w_current);
 
-    g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
+    g_object_set (G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
                  x_dialog_slot_edit_update_selection,
                  NULL);
 

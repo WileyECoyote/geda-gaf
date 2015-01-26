@@ -41,7 +41,8 @@
                                   flags, identifier, ptrWindowWidget);
 
 /* String for storing Selection data in Mode-less Editing Dialogs */
-#define DIALOG_DATA_SELECTION "current-selection"
+#define DIALOG_SELECTION_TRACKER "selection-tracker"
+#define DIALOG_SELECTION_DATA    "current-selection"
 
 #define GSCHEM_TYPE_DIALOG           (gschem_dialog_get_type())
 #define GSCHEM_DIALOG(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_DIALOG, GschemDialog))
@@ -63,6 +64,7 @@ enum {
   PROP_SETTINGS_NAME = 1,
   PROP_GSCHEM_TOPLEVEL,
   PROP_PARENT_WINDOW,
+  PROP_SELECTION_LIST,
   PROP_SELECTION_TRACKER,
   PROP_TITLE,
 };
@@ -97,7 +99,7 @@ struct _GschemDialog {
   GtkWindow       *parent_window;
   GschemToplevel  *w_current;
   SELECTION       *selection;
-  void (*func) (GschemToplevel *w_current, Object *object);
+  void (*tracker) (GschemToplevel *w_current, Object *object);
 
   unsigned int tail_marker;       /* structure type signature */
 };
@@ -106,11 +108,11 @@ struct _GschemDialog {
 GedaType     gschem_dialog_get_type       (void);
 bool         is_a_gschem_dialog           (void *dialog);
 
-GtkWidget* gschem_dialog_new_empty (const char           *title,
-                                          GtkWindow      *parent,
-                                          GtkDialogFlags  flags,
-                                          const char     *settings_name,
-                                          GschemToplevel *w_current);
+GtkWidget* gschem_dialog_new_empty        (const char           *title,
+                                           GtkWindow      *parent,
+                                           GtkDialogFlags  flags,
+                                           const char     *settings_name,
+                                           GschemToplevel *w_current);
 
 GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
                                            const char *settings_name, GschemToplevel *w_current,

@@ -194,7 +194,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
                       G_CALLBACK (x_dialog_edit_color_response),
                       w_current);
 
-    g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
+    g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
                   x_dialog_color_update_selection, NULL);
 
     gtk_widget_show_all(Dialog);

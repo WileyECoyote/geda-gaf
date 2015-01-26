@@ -549,7 +549,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
 
     /* Tell our inherited on-selection change callback handler which
      * function to use */
-    g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
+    g_object_set (G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
                   x_dialog_attrib_edit_update_selection, NULL);
 
     if (!object) {
