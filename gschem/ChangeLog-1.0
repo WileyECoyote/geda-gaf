@@ -1,9 +1,15 @@
-2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_diagnostics.h: Add performance utility header to
+      be included on an as need basis for profiling and optimize code
+      sections and procedures.
+
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_select.c: Add function o_select_add_object to add
       object to selection list without all the BS in o_select_object.
 
-2015-01-25 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c: Rename function g_funcs_image to
       g_funcs_png_image, update Doxygen comments.
