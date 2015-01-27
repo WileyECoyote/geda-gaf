@@ -1,0 +1,73 @@
+v 20150101 2
+P 1900 1600 1600 1600 1 0 0
+{
+T 2000 1475 5 8 0 1 0 6 1
+pintype=pas
+T 1550 1600 5 10 1 1 0 7 1
+pinlabel=SW
+T 1700 1650 5 8 0 1 0 6 1
+pinseq=1
+T 1700 1650 5 8 1 1 0 6 1
+pinnumber=1
+}
+B 700 500 900 1300 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 700 2025 8 10 1 1 0 0 1
+refdes=U?
+T 675 1875 5 10 1 1 180 8 1
+device=LMR64010XMF
+T 350 3000 9 10 0 0 0 2 1
+dist-license=GPL
+T 350 3200 9 10 0 0 0 2 1
+author=Sergey Alyoshin
+T 350 2800 9 10 0 0 0 2 1
+use-license=unlimited
+T 1375 300 5 10 0 1 0 0 1
+footprint=SOT23-5
+P 1900 700 1600 700 1 0 0
+{
+T 2050 550 5 8 0 1 0 6 1
+pintype=pas
+T 1550 700 5 10 1 1 0 7 1
+pinlabel=Gnd
+T 1700 750 5 8 0 1 0 6 1
+pinseq=2
+T 1700 750 5 8 1 1 0 6 1
+pinnumber=2
+}
+P 1900 1300 1600 1300 1 0 0
+{
+T 2000 1150 5 8 0 1 0 6 1
+pintype=pas
+T 1550 1300 5 10 1 1 0 7 1
+pinlabel=FB
+T 1700 1350 5 8 0 1 0 6 1
+pinseq=3
+T 1700 1350 5 8 1 1 0 6 1
+pinnumber=3
+}
+P 400 1600 700 1600 1 0 0
+{
+T 600 1350 5 8 0 1 0 6 1
+pintype=pas
+T 750 1600 5 10 1 1 0 1 1
+pinlabel=Vin
+T 600 1450 5 8 0 1 0 6 1
+pinseq=4
+T 600 1650 5 8 1 1 0 6 1
+pinnumber=5
+}
+P 400 1000 700 1000 1 0 0
+{
+T 600 750 5 8 0 1 0 6 1
+pintype=pas
+T 750 1000 5 10 1 1 0 1 1
+pinlabel=nSHDN
+T 600 850 5 8 0 1 0 6 1
+pinseq=5
+T 600 1050 5 8 1 1 0 6 1
+pinnumber=4
+}
+T 350 2450 9 10 0 0 0 0 1
+description=Voltage regulator, 40V out, 1A step-up
+T 350 2250 9 10 0 0 0 0 1
+numslots=0
