@@ -1,5 +1,10 @@
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/power/LM2623mm-1.sym: Add new symbol general purpose,
+      gated oscillator based, DC/DC boost converter.
+
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/power/LMR64010xmf-1.sym: Add new symbol switching
       regulator.
 
