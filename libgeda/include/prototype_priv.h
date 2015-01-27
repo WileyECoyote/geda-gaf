@@ -173,7 +173,6 @@ GList   *o_complex_get_promotable      (GedaToplevel *toplevel, Object *object, 
 
 /* o_get.c */
 int      o_get_capstyle                (LINE_END end);
-double   o_get_shortest_distance_full  (Object *object, int x, int y, int force_solid);
 
 /* o_line_basic.c */
 Object  *o_line_read                   (const const char buf[], unsigned int release_ver,

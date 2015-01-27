@@ -242,6 +242,7 @@ G_BEGIN_DECLS
           int    o_get_parent_id                 (Object *object);
          bool    o_get_position                  (int *x, int *y, Object *object);
        double    o_get_shortest_distance         (Object *object, int x, int y);
+       double    o_get_shortest_distance_full    (Object *object, int x, int y, int force_solid);
           int    o_get_world_bounds              (Object *o_current, int *left, int *top, int *right, int *bottom);
           int    o_get_world_bounds_list         (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
