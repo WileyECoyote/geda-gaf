@@ -117,8 +117,7 @@ typedef struct {
  *
  * \return TRUE if the key combination is valid for keybinding.
  */
-static bool
-g_key_is_valid ( unsigned int keyval, GdkModifierType modifiers)
+static bool g_key_is_valid ( unsigned int keyval, GdkModifierType modifiers)
 {
   static const unsigned int invalid_keyvals[] = {
     GDK_Shift_L, GDK_Shift_R, GDK_Shift_Lock, GDK_Caps_Lock, GDK_ISO_Lock,
@@ -159,8 +158,7 @@ g_key_is_valid ( unsigned int keyval, GdkModifierType modifiers)
  *
  * \return a new bindable key object, or SCM_BOOL_F.
  */
-static SCM
-g_make_key (unsigned int keyval, GdkModifierType modifiers)
+static SCM g_make_key (unsigned int keyval, GdkModifierType modifiers)
 {
   SCM result = SCM_BOOL_F;
   if (g_key_is_valid (keyval, modifiers)) {
@@ -280,8 +278,7 @@ SCM_DEFINE (g_key_to_display_string, "%key->display-string", 1, 0, 0,
  *
  * Used internally to Guile.
  */
-static int
-g_key_print (SCM smob, SCM port, scm_print_state *pstate)
+static int g_key_print (SCM smob, SCM port, scm_print_state *pstate)
 {
   scm_puts ("#<gschem-key ", port);
   scm_write (g_key_to_display_string (smob), port);
@@ -298,8 +295,7 @@ g_key_print (SCM smob, SCM port, scm_print_state *pstate)
  *
  * Used internally to Guile.
  */
-static SCM
-g_key_equalp (SCM a, SCM b)
+static SCM g_key_equalp (SCM a, SCM b)
 {
   GschemKey *akey = (GschemKey *) SCM_SMOB_DATA (a);
   GschemKey *bkey = (GschemKey *) SCM_SMOB_DATA (b);
@@ -314,8 +310,7 @@ g_key_equalp (SCM a, SCM b)
  *
  * Used internally to Guile.
  */
-static size_t
-g_key_free (SCM key) {
+static size_t g_key_free (SCM key) {
   GschemKey *k = (GschemKey *) SCM_SMOB_DATA (key);
   GEDA_FREE (k->str);
   GEDA_FREE (k->disp_str);
@@ -360,8 +355,7 @@ static bool clear_keyaccel_string(void * data)
  *
  * \param w_current  The active #GschemToplevel context.
  */
-void
-g_keys_reset (GschemToplevel *w_current)
+void g_keys_reset (GschemToplevel *w_current)
 {
   SCM s_expr = scm_list_1 (reset_keys_sym);
 
@@ -595,8 +589,7 @@ char *g_find_key (char *func_name) {
  *
  *  \return A GtkListStore containing keymap data.
  */
-GtkListStore *
-g_keys_to_list_store (void)
+GtkListStore *g_keys_to_list_store (void)
 {
   SCM s_expr;
   SCM s_lst;
@@ -645,8 +638,7 @@ g_keys_to_list_store (void)
  * Defines procedures in the (gschem core keymap) module.  The module
  * can be accessed using (use-modules (gschem core keymap)).
  */
-static void
-init_module_gschem_core_keymap ()
+static void init_module_gschem_core_keymap ()
 {
   /* Register the functions */
   #include "g_keys.x"
@@ -661,8 +653,7 @@ init_module_gschem_core_keymap ()
  * Registers some Scheme procedures for working with key combinations.
  * Should only be called by main_prog().
  */
-void
-g_init_keys ()
+void g_init_keys ()
 {
   /* Register key smob type */
   g_key_smob_tag = scm_make_smob_type ("gschem-key", 0);

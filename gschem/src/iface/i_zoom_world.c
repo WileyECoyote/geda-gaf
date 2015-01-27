@@ -166,8 +166,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
     return;
   }
 
-  if (!o_get_world_bounds_list (list,&lleft, &ltop,
-                                      &lright, &lbottom)) {
+  if (!o_get_world_bounds_list (list,&lleft, &ltop, &lright, &lbottom)) {
     return;
   }
 
@@ -176,7 +175,7 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
          __func_, lleft, lright, ltop, lbottom);
 #endif
 
-  /* Calc the necessary zoomfactor to show everything
+  /* Calculate the necessary zoomfactor to show everything
    * Start with the windows width and height (minus a small padding in pixels),
    * then scale back to world coordinates with the to_screen_y_constant as the
    * initial page data may not have the correct aspect ratio. */
