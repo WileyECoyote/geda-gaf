@@ -613,7 +613,7 @@ int o_get_world_bounds(Object *o_current, int *rleft, int *rtop,
     }
   }
   else {
-    BUG_MSG("Invalid argument, is not a GedaObject");
+    BUG_MSG("Oops, Not a GedaObject");
   }
   return result;
 }
@@ -634,7 +634,6 @@ int o_get_world_bounds(Object *o_current, int *rleft, int *rtop,
 int o_get_world_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
 {
   const GList *s_current;
-  Object      *o_current;
 
   int rleft   = 0;
   int rtop    = 0;
@@ -647,30 +646,23 @@ int o_get_world_bounds_list(const GList *list, int *left, int *top, int *right, 
   /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
   while ( s_current != NULL ) {
 
-    o_current = GEDA_OBJECT(s_current->data);
-
-    if (GEDA_IS_OBJECT(o_current)) {
-      if (o_get_world_bounds(o_current, &rleft, &rtop, &rright, &rbottom))
-      {
-        if ( found ) {
-          *left   = min( *left, rleft );
-          *top    = min( *top, rtop );
-          *right  = max( *right, rright );
-          *bottom = max( *bottom, rbottom );
-        }
-        else {
-          *left   = rleft;
-          *top    = rtop;
-          *right  = rright;
-          *bottom = rbottom;
-          found   = 1;
-        }
+    if (o_get_world_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
+    {
+      if ( found ) {
+        *left   = min( *left, rleft );
+        *top    = min( *top, rtop );
+        *right  = max( *right, rright );
+        *bottom = max( *bottom, rbottom );
+      }
+      else {
+        *left   = rleft;
+        *top    = rtop;
+        *right  = rright;
+        *bottom = rbottom;
+        found   = 1;
       }
     }
-    else {
-      BUG_MSG("oops, o_get_world_bounds_list found bad object");
-      break;
-    }
+
     NEXT(s_current);
   }
 

@@ -1,5 +1,11 @@
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Eliminate redundent check for GEDA_OBJECT
+      in o_get_world_bounds_list, is . Eliminate variable o_current.
+      Revise BUG_MSG in o_get_world_bounds.
+
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/prototype.h: Relocate declaration for
       o_get_shortest_distance_full
 

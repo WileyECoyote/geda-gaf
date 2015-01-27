@@ -1101,7 +1101,8 @@ double o_complex_shortest_distance(Object *object, int x, int y, int force_solid
         line_bounds.lower_y = min (line_bounds.lower_y, top);
         line_bounds.upper_x = max (line_bounds.upper_x, right);
         line_bounds.upper_y = max (line_bounds.upper_y, bottom);
-      } else {
+      }
+      else {
         line_bounds.lower_x = left;
         line_bounds.lower_y = top;
         line_bounds.upper_x = right;
