@@ -1,5 +1,18 @@
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/globals.h: EFL_SELECTION_MODE Enumeration, flags for
+      use as argument to routines in o_find module.
+
+    * src/object/o_find.c: Major revisions; rename private function
+      is_object_hit o_find_is_object_hit. Move checks for selectabilty
+      and visibility to callers to avoid two calls to get answer is
+      FALSE. Use double nested while loop in function o_find_object.
+      Rename private function o_find_check_found o_find_disposition_
+      object and revamp function. Call o_find_is_object_hit directly
+      from o_find_object and disposition if found.
+
+2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/gschem_diagnostics.h: Add performance utility header to
       be included on an as need basis for profiling and optimize code
       sections and procedures.

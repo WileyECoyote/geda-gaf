@@ -97,6 +97,16 @@ typedef enum  { CAIRO_ADAPTOR, X11_ADAPTOR } RenderSystem;
 
 typedef enum  { Image_Display, Image_All } ImageExtent;
 
+/*! \brief Enumerated Selection Mode - EFL_SELECTION_MODE
+ *  \par Description
+ *  Used as argument to routines in o_find module to indicate
+ *  how found object should be handled.
+ */
+typedef enum  { EFL_SELECTION_NOACTION,
+                EFL_SELECTION_REPLACE,
+                EFL_SELECTION_ADD
+} EFL_SELECTION_MODE;
+
 /*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
  *  \par Description
  *  The ToolBar module maintains lists of GtkToolBarItems groups. These

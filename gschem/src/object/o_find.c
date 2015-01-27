@@ -25,7 +25,7 @@
  */
 /*!
  * \file o_find.c
- * \brief Low-level module for finding Objects on the Curent Page
+ * \brief Low-level module for finding Objects on the Current Page
  */
 #include <gschem.h>
 #include <geda_debug.h>
@@ -33,30 +33,21 @@
 /*! \brief Tests a if a given Object was hit at a given set of coordinates
  *
  *  \par Function Description
- *  Tests a if a given Object was hit at a given set of coordinates. If an
- *  object is not selectable (e.g. it is locked), or it is invisible and
- *  not being rendered, this function will return FALSE.
+ *  Tests a if a given Object was hit at a given set of coordinates.
  *
- *  \param [in] w_current         The GschemToplevel object.
- *  \param [in] object            The Object being hit-tested.
- *  \param [in] w_x               The X coordinate to test (in world coords).
- *  \param [in] w_y               The Y coordinate to test (in world coords).
- *  \param [in] w_slack           The slack applied to the hit-test.
+ *  \param [in] w_current    The GschemToplevel object
+ *  \param [in] object       The Object being hit-tested
+ *  \param [in] wx           The X coordinate to test (in world coords)
+ *  \param [in] wy           The Y coordinate to test (in world coords)
+ *  \param [in] w_slack      The slack applied to the hit-test
  *
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  */
-static bool is_object_hit (GschemToplevel *w_current, Object *object,
-                           int w_x, int w_y, int w_slack)
+inline static bool o_find_is_object_hit (GschemToplevel *w_current,
+                                         Object *object,
+                                         int wx, int wy, int w_slack)
 {
   int left, top, right, bottom;
-
-  if (!object->selectable)
-    return FALSE;
-
-  /* We can't hit invisible text objects unless show_hidden_text is active. */
-  //if (!o_get_is_visible (object) && !Current_Page->show_hidden_text)
-  if (!o_get_is_visible (object))
-    return FALSE;
 
   /* Do a coarse test first to avoid computing distances for objects ouside
    * of the hit range.
@@ -64,121 +55,191 @@ static bool is_object_hit (GschemToplevel *w_current, Object *object,
   if (!o_get_world_bounds(object, &left, &top, &right, &bottom) ||
       !o_get_is_inside_region(left  - w_slack, top    - w_slack,
                               right + w_slack, bottom + w_slack,
-                              w_x, w_y))
+                              wx, wy))
     return FALSE;
-
-  return (o_get_shortest_distance (object, w_x, w_y) < w_slack);
+  return (o_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
 }
 
-/*! \brief Tests a if a given Object was hit at a given set of coordinates
+/*! \brief Disposition objects found by o_find_object
  *  \par Function Description
- *  This function is called by o_find_object function to tests a if a given
- *  Object was hit at a given set of coordinates. If so, processes selection
- *  changes as appropriate for the object and passed flag. Saves a pointer
- *  to the found object so future find operations resume after this object.
+ *  Handler dispositing of any found objects in o_find_object. The object
+ *  is added to or replaces the current selection depending on the mode
+ *  flag, if \a mode is add or replace the object is not selected. If
+ *  the selection is modified sensitivities are updated.
  *
- *  \param [in] w_current         The GschemToplevel object
- *  \param [in] object            The Object being hit-tested
- *  \param [in] w_x               The X coordinate to test (in world coords)
- *  \param [in] w_y               The Y coordinate to test (in world coords)
- *  \param [in] w_slack           The slack applied to the hit-test
- *  \param [in] change_selection  Whether to select the found object or not
+ *  \param [in] w_current    The GschemToplevel object
+ *  \param [in] object       The Object being hit-tested
+ *  \param [in] mode         Whether to select the found object or not
  *
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  */
-static bool
-o_find_check_found (GschemToplevel *w_current, Object *object,
-                    int w_x, int w_y, int w_slack,
-                    int change_selection)
+static void o_find_disposition_object (GschemToplevel *w_current,
+                                       Object *object,
+                                       int mode)
 {
-  if (!is_object_hit (w_current, object, w_x, w_y, w_slack))
-    return FALSE;
+  if (mode == EFL_SELECTION_REPLACE) {
 
-  if (change_selection) {
-    if (object->type == OBJ_NET && w_current->net_selection_mode)
+    if (object->type == OBJ_NET && w_current->net_selection_mode) {
       o_select_connected_nets (w_current, object);
-    else
+    }
+    else {
       o_select_object (w_current, object, SINGLE, 0); /* 0 is count */
+    }
+    i_status_update_sensitivities(w_current);
+  }
+  else if (mode == EFL_SELECTION_ADD) {
+    o_select_add_object(w_current, object);
+    i_status_update_sensitivities(w_current);
   }
 
-  w_current->toplevel->page_current->object_lastplace = object;
-  i_status_update_sensitivities (w_current);
-  return TRUE;
+  Current_Page->object_lastplace = object;
+
+}
+
+/*! \brief Find an Object at a given set of coordinates
+ *  \par Function Description
+ *  Tests for ObjectS hit at a given set of coordinates. Objects that
+ *  are not selectable (e.g. it is locked), or are invisible are not
+ *  tested. The object is neither added nor appended to the current
+ *  selection and sensitivities are not updated.
+ *
+ *  \param [in] w_current    The GschemToplevel object
+ *  \param [in] wx           The X coordinate to test (in world coords)
+ *  \param [in] wy           The Y coordinate to test (in world coords)
+ *
+ *  \returns TRUE if the Object was hit, otherwise FALSE.
+ *
+ *  \sa o_find_object
+ */
+Object *o_find_get_hit (GschemToplevel *w_current, int x, int y)
+{
+  GList  *iter;
+  Object *object  = NULL;
+  int     w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
+
+  for (iter = s_page_get_objects (Current_Page); iter; NEXT(iter)) {
+
+    Object *o_current = iter->data;
+
+    if (o_current->selectable && o_current->visibility > 0) {
+
+      if (o_find_is_object_hit (w_current, o_current, x, y, w_slack)) {
+        Current_Page->object_lastplace = o_current;
+        object = o_current;
+        break;
+      }
+    }
+  }
+  return object;
 }
 
 /*! \brief Find an Object at a given set of coordinates
  *
  *  \par Function Description
- *  Tests for ObjectS hit at a given set of coordinates. If
- *  change_selection is TRUE, it updates the page's selection.
+ *  Tests for ObjectS hit at a given set of coordinates. Objects that
+ *  are not selectable (e.g. it is locked), or are invisible are not
+ *  tested. The Find operations resume searching after the last object
+ *  which was found, so multiple find operations at the same point will
+ *  cycle through any objects on top of each other near a given location.
  *
- *  Find operations resume searching after the last object which was
- *  found, so multiple find operations at the same point will cycle
- *  through any objects on top of each other at this location.
- *
- *  \param [in] w_current         The GschemToplevel object
- *  \param [in] w_x               The X coordinate to test (in world coords)
- *  \param [in] w_y               The Y coordinate to test (in world coords)
- *  \param [in] change_selection  Whether to select the found object or not
+ *  \param [in] w_current    The GschemToplevel object
+ *  \param [in] wx           The X coordinate to test (in world coords)
+ *  \param [in] wy           The Y coordinate to test (in world coords)
+ *  \param [in] mode         Whether to select the found object or not
  *
  *  \returns TRUE if the object was hit at the given coordinates,
  *           otherwise FALSE.
+ *
+ *  \sa o_find_disposition_object
  */
-bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
-                    bool change_selection)
+bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 {
   const GList *iter = NULL;
-  int w_slack;
+  const GList *list;
 
+  bool  found;
+  int   w_slack;
+
+  found   = FALSE;
+  list    = s_page_get_objects (Current_Page);
   w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
 
   /* Decide whether to iterate over all object or start at the last
-     found object. If there is more than one object below the
-     (w_x/w_y) position, this will select the next object below the
-     position point. You can change the selected object by clicking
-     at the same place multiple times. */
+     found object. If there is more than one object below the (wx,wy)
+     this will select the next object below the position point, users
+     can change the selected object by clicking at the same place
+     multiple times. */
   if (Current_Page->object_lastplace != NULL) {
-    GList *list = s_page_get_objects (Current_Page);
-    iter = g_list_find (list, Current_Page->object_lastplace);
-    NEXT(iter);
-  }
 
-  /* do first search (if we found any objects after the last found object) */
-  while (iter != NULL) {
-    Object *o_current = iter->data;
-    if (o_find_check_found (w_current, o_current,
-                            w_x, w_y, w_slack, change_selection)) {
-      return TRUE;
+    iter = list;
+
+    while (iter) {
+
+      if (iter->data == Current_Page->object_lastplace) {
+
+        iter = iter->next;     /* Skip over this object, is last */
+
+        /* Start searching from remainder of list */
+        while (iter) {
+
+          Object *object = iter->data;
+
+          if (object->selectable && object->visibility > 0) {
+
+            found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
+
+            if (found) {
+              o_find_disposition_object (w_current, object, mode);
+              break;           /* Break-out from inner while loop */
+            }
+          }
+          iter = iter->next;
+        }
+        break;                 /* Break-out from outer while loop */
+      }
+      iter = iter->next;
     }
-    NEXT(iter);
   }
 
-  /* Search from the beginning up until the object_lastplace */
-  for (iter = s_page_get_objects (Current_Page); iter; NEXT(iter)) {
+  /* If not found start Search from the beginning until the object_lastplace */
+  if (!found) {
 
-    Object *o_current = iter->data;
-    if (o_find_check_found (w_current, o_current,
-                            w_x, w_y, w_slack, change_selection))
-    {
-      return TRUE;
+    for (iter = list; iter; iter = iter->next) {
+
+      Object *object = iter->data;
+
+      if (object->selectable && object->visibility > 0) {
+
+        found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
+
+        if (found) {
+          o_find_disposition_object (w_current, object, mode);
+          break;           /* Break-out from for loop found == TRUE */
+        }
+      }
+
+      /* Break once we have inspected up to where we started the first loop */
+      if (object == Current_Page->object_lastplace) {
+        break;                /* Break-out from for loop found == FALSE */
+      }
     }
-    /* Break once we have inspected up to where we started the first loop */
-    if (o_current == Current_Page->object_lastplace) {
-      break;
+  }
+
+  if (!found) {
+
+    /* We did not find anything so reset lastplace */
+    Current_Page->object_lastplace = NULL;
+
+    /* Deselect everything if selection mode flag is EFL_SELECTION_REPLACE
+     * AND the shift key or the control is not pressed */
+    if (mode == EFL_SELECTION_REPLACE) {
+      if (!(w_current->SHIFTKEY || w_current->CONTROLKEY)) {
+        o_select_unselect_all (w_current);
+        i_status_update_sensitivities(w_current);
+      }
     }
   }
-
-  /* We did not find anything so reset lastplace */
-  Current_Page->object_lastplace = NULL;
-
-  /* Deselect everything if change_selection flag is True AND the shift key
-   * or the control is not pressed */
-  if (change_selection && ( !(w_current->SHIFTKEY || w_current->CONTROLKEY))) {
-    o_select_unselect_all (w_current);
-  }
-
-  i_status_update_sensitivities(w_current);
-  return FALSE;
+  return found;
 }
 
 /*! \brief Find Selected Object at a given set of coordinates
@@ -186,7 +247,7 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
  *  Return first object in the current selection that can be hit at the
  *  given coordinates or NULL if no such object is found.
  */
-Object *o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
+Object *o_find_selected_object (GschemToplevel *w_current, int wx, int wy)
 {
   int w_slack = WORLDabs (w_current, w_current->select_slack_pixels);
   GList *iter;
@@ -195,7 +256,7 @@ Object *o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
 
     Object *o_current = iter->data;
 
-    if (is_object_hit (w_current, o_current, w_x, w_y, w_slack)) {
+    if (o_find_is_object_hit (w_current, o_current, wx, wy, w_slack)) {
       return o_current;
     }
   }
