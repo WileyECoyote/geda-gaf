@@ -33,7 +33,7 @@
 #include <geda_debug.h>
 
 /*! \brief Calculates the length of an Arc sector
- * point on the perimeter or interior of the circle.
+ *  Returns length of the Arc sector.
  *
  *  \param [in] radius  The radius of the arc.
  *  \param [in] sweep   The included angle.
@@ -45,9 +45,9 @@ double  m_arc_length (int radius, int sweep)
   return 2 * M_PI * radius * (sweep / 360);
 }
 
-/*! \brief Determine if Arc Sector includes Point
+/*! \brief Determine if Arc Sector includes a Point
  *  Compares distance from point to the center of the Arc to the radius
- *  of the Arc, if there is no difference compare the angle of the ray
+ *  of the Arc, if there is no difference, compares the angle of the ray
  *  from the center to the point to the starting and ending angles of
  *  \a arc. Returns True if the ray is within the Arc's included angle
  *  otherwise false.
@@ -60,7 +60,7 @@ double  m_arc_length (int radius, int sweep)
 bool m_arc_includes_point (Arc *arc, POINT *point)
 {
   bool answer;
-  int  delta;
+  int  delta;  /* Will be difference between point to center and radius */
 
   /* Rounding here provides a fuzz distance effect */
   delta = m_distance(arc->x, arc->y, point->x, point->y) - (arc->width / 2);
