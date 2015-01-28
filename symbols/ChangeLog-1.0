@@ -1,5 +1,10 @@
 2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/power/LM2574-5-14-1.sym: Add new symbol for 5.0 Volt Bucking
+      Voltage Regulator, SOIC14.
+
+2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/power/LM2574-5-8-1.sym: Add new symbol for 5.0 Volt Bucking
       Voltage Regulator, 8 pin DIP.
 
