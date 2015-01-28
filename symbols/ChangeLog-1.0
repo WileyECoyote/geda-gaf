@@ -1,3 +1,7 @@
+2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/power/TL7702A-1.sym: Add new symbol, 2 Volt Supply Supervisor
+
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/power/LM2623mm-1.sym: Add new symbol general purpose,
