@@ -1,5 +1,9 @@
 2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/power/LM2574-3-8-1.sym: 3.3 Volt Bucking Voltage Regulator
+
+2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/DS1135-10.sym: Add new symbol for Maxim 3-in-1 10ns delay line
 
 2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
