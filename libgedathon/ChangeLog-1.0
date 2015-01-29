@@ -1,3 +1,10 @@
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Replace g_strdup_printf with u_string_sprintf.
+
+    * module/functions.c Include libgeda.h instead of glib.h, Replace
+      g_strdup_printf with u_string_sprintf.
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Replace g_path_get_dirname with f_get_dirname.

@@ -2599,7 +2599,7 @@ PyGeda_new_attrib( const char *name, const char *value, int x, int y,
 
   int color = translate_color(py_color, ATTRIBUTE_COLOR);
 
-  text = g_strdup_printf("%s=%s", name, value);
+  text = u_string_sprintf("%s=%s", name, value);
 
   object = o_text_new(color, x, y, alg, ang, size, vis, shw, text);
 
