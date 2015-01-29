@@ -30,9 +30,6 @@
 #include "gschem.h"
 #include <math.h>
 
-//#include <gschem_diagnostics.h>
-//#include <valgrind/callgrind.h>
-
 typedef struct st_hit_record  hit_record;
 typedef struct st_path_record path_record;
 
@@ -383,6 +380,12 @@ static int o_extend_get_which_end(Object *object, int x, int y)
 
 /* Discriminating Resolvers, must be passed a point for Determination */
 
+#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#pragma GCC diagnostic push
+#endif
+
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+
 /*! \brief Determine if an Arc boundary can bound a given Projectile
  *  \par Function Description
  *  Determines if \a projectile can intersect an Arc, \a point is set
@@ -612,6 +615,10 @@ static bool o_extend_can_arc_bound(Object  *boundary,
 
   return answer;
 }
+
+#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#pragma GCC diagnostic pop
+#endif
 
 /*! \brief Determine if a Box boundary can bound a given Projectile
  *  \par Function Description
