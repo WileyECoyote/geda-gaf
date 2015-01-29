@@ -1,4 +1,16 @@
-2015-01-27 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/: Reorganize linear subdirectory, add directories mosdrive
+      and switchreg, rename regulators to regulate and power to powmon.
+
+    * allegro/A3901.sym: Relocated symbol from linear/speacial
+
+    * ti/BQ2004-1.sym: Relocated symbol from linear/regulators and rename
+      using capital letters.
+
+    * geda-clib.scm: Update subdirectories.
+
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/power/LM2574-12-14-1.sym: Add new symbol for 12 Volt Bucking
       Voltage Regulator, SOIC14.
