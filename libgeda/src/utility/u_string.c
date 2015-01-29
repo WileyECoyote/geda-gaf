@@ -29,6 +29,8 @@
 
 #include <geda_debug.h>
 
+#define USS_BUFFER_SIZE 256
+
 char *u_string_concat (const char *string1, ...)
 {
   char *concat;
@@ -253,17 +255,39 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
 
 char *u_string_sprintf (const char *format, ...)
 {
-  char        *buffer;
-  unsigned int length;
+  char    local_buffer[USS_BUFFER_SIZE];
+  char   *buffer;
+
+  unsigned int  size;
 
   va_list args;
 
+  if (!format) {
+    return (NULL);
+  }
+
   va_start (args, format);
-  length = vasprintf (&buffer, format, args);
+  size = vsnprintf (0, 0, format, args);
   va_end (args);
 
-  if (length < 0) {
-    buffer = NULL;
+  if (size < 0) {
+    return NULL;
+  }
+
+  size++;
+
+  if (size < USS_BUFFER_SIZE) {
+    vsprintf (&local_buffer[0], format, args);
+    buffer = (char*)GEDA_MEM_ALLOC(size);
+    if (buffer) {
+      buffer = memcpy(buffer, &local_buffer[0], size);
+    }
+  }
+  else {
+    buffer = (char*)GEDA_MEM_ALLOC(size);
+    if (buffer) {
+      vsprintf (buffer, format, args);
+    }
   }
 
   return buffer;
@@ -645,3 +669,4 @@ int u_string_word_count(char* str) {
     return count;
 
 }
+#undef USS_BUFFER_SIZE

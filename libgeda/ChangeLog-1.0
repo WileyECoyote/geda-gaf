@@ -1,3 +1,13 @@
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Redo u_string_sprintf, eliminating vasprintf,
+      use local array for strings less than 256, defined with USS_BUFFER_SIZE.
+      Use vsnprintf with null buffer and 0 length to determine final formated
+      size. Use vsprintf with dynamic allocations size larger than the local
+      buffer,and vsprintf to local with buffer for size less than 256 bytes.
+      Performence gain is minimal but reduces memory fragmentation and adds
+      check for NULL format.
+
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Eliminate redundent check for GEDA_OBJECT
