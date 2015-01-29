@@ -694,7 +694,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    *                       THE_DOUBLE_VALUE_COLUMN, &value,
    *                       -1);
    *
-   *   return g_strdup_printf ("&percnt;g", value);
+   *   return u_string_sprintf ("&percnt;g", value);
    * }
    * ]|
    *

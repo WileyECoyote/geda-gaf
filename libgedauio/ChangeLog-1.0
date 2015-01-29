@@ -1,3 +1,10 @@
+2014-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_combobox.c: Replace g_strdup_printf with u_string_sprintf
+
+      * src/widgets/geda_font_dialog.c: include libgeda.h instead of geda.h,
+        replace g_strdup_printf with u_string_sprintf.
+
 2014-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Add "Auto" option to popup menu.
