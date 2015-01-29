@@ -207,30 +207,30 @@ const char *x_dnd_string_data_name(char* name)
 char *x_dnd_string_data_arc_properties(Arc *arc)
 {
   return
-  g_strdup_printf("center=(%d,%d), radius=%d, angle=%d",
+  u_string_sprintf("center=(%d,%d), radius=%d, angle=%d",
              arc->x, arc->y, arc->width, arc->start_angle);
 }
 char *x_dnd_string_data_circle_properties(Circle *circle)
 {
   return
-  g_strdup_printf("center=(%d,%d), radius=%d", circle->center_x,
+  u_string_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
 char *x_dnd_string_data_line_properties(Line *line)
 {
   return
-  g_strdup_printf("start (%d,%d), end (%d,%d)",
+  u_string_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
 char *x_dnd_string_data_path_properties(Path *path)
 {
   return
-  g_strdup_printf("sections=%d",path->num_sections);
+  u_string_sprintf("sections=%d",path->num_sections);
 }
 char *x_dnd_string_data_box_properties(Box *box)
 {
   return
-  g_strdup_printf("upper point (%d,%d), lower point (%d,%d)",
+  u_string_sprintf("upper point (%d,%d), lower point (%d,%d)",
                   box->upper_x, box->upper_y, box->lower_x, box->lower_y);
 }
 
@@ -242,7 +242,7 @@ const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
         char *properties;
 
   name   = x_dnd_string_data_name(object->name);
-  common = g_strdup_printf("line width=%d, dash=%d",
+  common = u_string_sprintf("line width=%d, dash=%d",
                            object->line_options->line_width,
                            object->line_options->line_space);
 
@@ -263,10 +263,10 @@ const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
         properties = x_dnd_string_data_box_properties(object->box);
         break;
       default:
-        properties = g_strdup_printf("%s", " object data error");
+        properties = u_string_sprintf("%s", " object data error");
   }
 
-  string = g_strdup_printf ("%s, sequence id=%d, %s, %s, color=%d",
+  string = u_string_sprintf ("%s, sequence id=%d, %s, %s, color=%d",
                              name, object->sid, common, properties,
                              object->color);
 
@@ -287,9 +287,9 @@ x_dnd_send_string_signal (GschemToplevel *w_current, Object *object)
   netname = o_attrib_search_object_attribs_by_name(object, "netname", 0);
 
   if (netname == NULL)
-      netname = g_strdup_printf("%s","NONE,");
+      netname = u_string_sprintf("%s","NONE,");
 
-  string = g_strdup_printf ("%s, sequence id=%d, netname=%s color=%d",
+  string = u_string_sprintf ("%s, sequence id=%d, netname=%s color=%d",
                              name, object->sid, netname,
                              object->color);
 
@@ -302,7 +302,7 @@ x_dnd_send_string_text (GschemToplevel *w_current, Object *object)
   const char *string;
   const char *name;
   name   = x_dnd_string_data_name(object->name);
-  string = g_strdup_printf ("%s:%s, sequence id=%d, color=%d", name,
+  string = u_string_sprintf ("%s:%s, sequence id=%d, color=%d", name,
                              object->text->string, object->sid,
                              object->color);
   return string;
@@ -516,7 +516,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
                                                buffer,
                                                -1, "Drag&Drop", &err);
     if (err) {
-      char *errmsg = g_strdup_printf ( _("An error occurred while dropping data: %s."), err->message);
+      char *errmsg = u_string_sprintf ( _("An error occurred while dropping data: %s."), err->message);
       titled_pango_error_dialog ( _("<b>Invalid Data.</b>"), errmsg, _("Drag&Drop failed") );
       GEDA_FREE(errmsg);
       g_error_free(err);

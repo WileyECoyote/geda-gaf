@@ -458,7 +458,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
         if (!gdk_pixbuf_save(pixbuf, filename, filetype, &err, NULL)) {
           /* Log the error */
           u_log_message(_("Unable to write %s file %s. %s\n"), filetype, filename, err->message);
-          char *errmsg = g_strdup_printf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
+          char *errmsg = u_string_sprintf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
                                             filetype, filename, err->message);
           /* Warn the user */
           titled_pango_error_dialog ( _("<b>Error Writing Imaging.</b>"), errmsg, _("Write Image") );

@@ -547,7 +547,7 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
   GList          *iter;
   char           *newtext;
 
-  newtext = g_strdup_printf ("%s=%s", name, value);
+  newtext = u_string_sprintf ("%s=%s", name, value);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
     GEDA_FREE(newtext);
@@ -900,7 +900,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
                       COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                       -1);
 
-  newtext = g_strdup_printf ("%s=%s", new_name, value);
+  newtext = u_string_sprintf ("%s=%s", new_name, value);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
     GEDA_FREE (value);
@@ -968,7 +968,7 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
     /* If the edit didn't change anything, don't adjust any attributes */
     if (strcmp (old_value, new_value) != 0) {
 
-      newtext = g_strdup_printf ("%s=%s", name, new_value);
+      newtext = u_string_sprintf ("%s=%s", name, new_value);
 
       if (x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
 

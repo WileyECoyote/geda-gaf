@@ -1219,7 +1219,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (width == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", width);
+    text = u_string_sprintf ("%d", width);
 
   SetEntryText   ( fill_data->width_entry, text );
   EntrySelectAll ( fill_data->width_entry );
@@ -1228,7 +1228,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (pitch1 == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", pitch1);
+    text = u_string_sprintf ("%d", pitch1);
 
   SetEntryText   ( fill_data->pitch1_entry, text );
   EntrySelectAll ( fill_data->pitch1_entry );
@@ -1237,7 +1237,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (angle1 == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", angle1);
+    text = u_string_sprintf ("%d", angle1);
 
   SetEntryText   ( fill_data->angle1_entry, text );
   EntrySelectAll ( fill_data->angle1_entry );
@@ -1246,7 +1246,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (pitch2 == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", pitch2);
+    text = u_string_sprintf ("%d", pitch2);
 
   SetEntryText   ( fill_data->pitch2_entry, text );
   EntrySelectAll ( fill_data->pitch2_entry );
@@ -1255,7 +1255,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   if (angle2 == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", angle2);
+    text = u_string_sprintf ("%d", angle2);
 
   SetEntryText   ( fill_data->angle2_entry, text );
   EntrySelectAll ( fill_data->angle2_entry );
@@ -1772,7 +1772,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (width == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", width);
+    text = u_string_sprintf ("%d", width);
 
   SetEntryText   ( line_data->width_entry, text );
   EntrySelectAll ( line_data->width_entry );
@@ -1781,7 +1781,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (length == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", length);
+    text = u_string_sprintf ("%d", length);
 
   SetEntryText   ( line_data->length_entry, text );
   EntrySelectAll ( line_data->length_entry );
@@ -1791,7 +1791,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   if (space == LEAVE_ALONE)
     text = u_string_strdup(_("*unchanged*"));
   else
-    text = g_strdup_printf ("%d", space);
+    text = u_string_sprintf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
   EntrySelectAll ( line_data->space_entry );
   GEDA_FREE(text);
@@ -2180,7 +2180,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
 
       object = o_select_return_first_object (w_current);
       if (object != NULL) {
-        slot_string = g_strdup_printf ("slot=%s", string);
+        slot_string = u_string_sprintf ("slot=%s", string);
         o_slot_end (w_current, object, slot_string);
         GEDA_FREE (slot_string);
         o_invalidate_object (w_current, object);
@@ -3507,14 +3507,14 @@ close_confirmation_dialog_constructor (GedaType type,
     char *page_name;
 
     page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages), NULL);
-    tmp = g_strdup_printf (
+    tmp = u_string_sprintf (
       _("Save the changes to schematic \"%s\" before closing?"), page_name);
 
     GEDA_FREE (page_name);
   }
   else {
     /* multi page */
-    tmp = g_strdup_printf (
+    tmp = u_string_sprintf (
       _("There are %d schematics with unsaved changes. "
         "Save changes before closing?"),
       count_pages (GTK_TREE_MODEL (dialog->store_unsaved_pages)));
@@ -4329,7 +4329,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
   }
 
   if (flags & FSB_LOAD) {
-    title = g_strdup_printf("%s: Open", msg);
+    title = u_string_sprintf("%s: Open", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_OPEN,
@@ -4341,7 +4341,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 
   }
   else {
-    title = g_strdup_printf("%s: Save", msg);
+    title = u_string_sprintf("%s: Save", msg);
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_SAVE,

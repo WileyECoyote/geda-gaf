@@ -1,3 +1,7 @@
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/ *.c: Replace g_strdup_printf with u_string_sprintf
+
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/globals.h: EFL_SELECTION_MODE Enumeration, flags for

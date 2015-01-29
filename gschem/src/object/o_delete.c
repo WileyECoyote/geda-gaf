@@ -83,7 +83,7 @@ void o_delete_selected (GschemToplevel *w_current)
       char *msg;
       int resp;
 
-      msg = g_strdup_printf(ngettext ("Delete locked object?", "Delete %u locked objects?", locked_num), locked_num);
+      msg = u_string_sprintf(ngettext ("Delete locked object?", "Delete %u locked objects?", locked_num), locked_num);
       resp =  x_dialog_confirmation(msg, GTK_MESSAGE_QUESTION, TRUE);
       switch (resp) {
         case GTK_RESPONSE_YES: /* Remove all */
