@@ -190,8 +190,7 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
                       toplevel->page_current->bottom);
 
 #if DEBUG_EVENTS
-  float width  = (float) w_current->screen_width;
-  float height = (float) w_current->screen_height);
-  printf("Window aspect: %f\n", width / height);
+  float aspect = (float) w_current->screen_width / w_current->screen_height;
+  printf("Window aspect: %f\n", aspect);
 #endif
 }

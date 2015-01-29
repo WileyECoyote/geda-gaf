@@ -59,6 +59,7 @@ const char* IDS_Popup_Actions[] = {
   ACTION(EDIT_ATTRIB),    ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),
   ACTION(EDIT_DELETE),    ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),
   ACTION(EDIT_MOVE),      ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
+  ACTION(EDIT_EXTEND),
   ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),    ACTION(HIERARCHY_UP),
   ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),   ACTION(EDIT_CB_PASTE),
   NULL
@@ -119,6 +120,7 @@ static PopupEntry popup_items[] = {
   { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      NULL },
   { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    NULL },
   { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    NULL },
+  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "gschem-extend",  NULL },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 

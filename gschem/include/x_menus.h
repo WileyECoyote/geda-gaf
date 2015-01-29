@@ -68,6 +68,7 @@ typedef enum {
   pop_edit_move,
   pop_edit_mirror,
   pop_edit_rotate,
+  pop_edit_extend,
   pop_down_schemat,
   pop_down_symbol,
   pop_hierarchy_up,

@@ -1,5 +1,11 @@
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_menus.h: Add pop_edit_extend to pop_MenuItem.
+
+    * src/x/x_menus.c: Add action exit-extend to right mouse menu.
+
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_states.h Add new event states; STARTEXTEND, EXTEND,
       ENDEXTEND.
 
