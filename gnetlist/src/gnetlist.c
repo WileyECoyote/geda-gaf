@@ -270,7 +270,7 @@ void main_prog(void *closure, int argc, char *argv[])
     SCM s_backend_path;
 
     /* Search for backend scm file in load path */
-    str = g_strdup_printf("gnet-%s.scm", guile_proc);
+    str = u_string_sprintf("gnet-%s.scm", guile_proc);
     s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
     GEDA_FREE (str);
 
@@ -310,7 +310,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   if (guile_proc) {
     /* check size here hack */
-    str = g_strdup_printf ("(%s \"%s\")", guile_proc, output_filename);
+    str = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
     scm_c_eval_string (str);
     GEDA_FREE (str);
     /* gh_eval_str_with_stack_saving_handler (input_str); */

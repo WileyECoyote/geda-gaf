@@ -154,7 +154,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   GEDA_FREE(temp_uref);
 
   if (uref && pinnum) {
-    string = g_strdup_printf("%s %s", uref, pinnum);
+    string = u_string_sprintf("%s %s", uref, pinnum);
   }
   else {
     if (pinnum) {
@@ -165,7 +165,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
     else {
       if (hierarchy_tag) {
         misc = s_hierarchy_create_uref(pr_current, "U?", hierarchy_tag);
-        string = g_strdup_printf("%s ?", misc);
+        string = u_string_sprintf("%s ?", misc);
         GEDA_FREE(misc);
       }
       else {
@@ -397,7 +397,7 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
     net_head->prev == NULL &&
     net_head->next == NULL)
   {
-    string = g_strdup_printf("unconnected_pin-%d", unnamed_pin_counter++);
+    string = u_string_sprintf("unconnected_pin-%d", unnamed_pin_counter++);
 
     return (string);
 
@@ -421,10 +421,10 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
   if (*unnamed_counter < MAX_UNNAMED_NETS) {
 
     if (netlist_mode == SPICE) {
-      string = g_strdup_printf("%d", (*unnamed_counter)++);
+      string = u_string_sprintf("%d", (*unnamed_counter)++);
     }
     else {
-      temp = g_strdup_printf ("%s%d", unnamed_string, (*unnamed_counter)++);
+      temp = u_string_sprintf ("%s%d", unnamed_string, (*unnamed_counter)++);
       if (hierarchy_tag) {
         string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
         GEDA_FREE (temp);

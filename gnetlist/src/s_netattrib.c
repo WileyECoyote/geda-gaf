@@ -32,7 +32,7 @@
 
 char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
 {
-  return g_strdup_printf (PIN_NET_PREFIX "%s", pinnum);
+  return u_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
 const char *s_netattrib_connected_string_get_pinnum (const char *str)
@@ -136,7 +136,7 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
         s_hierarchy_create_netattrib(pr_current, net_name,
                                      hierarchy_tag);
         old_cpin->nets->net_name_has_priority = TRUE;
-        connected_to = g_strdup_printf("%s %s",
+        connected_to = u_string_sprintf("%s %s",
                                        netlist->component_uref,
                                        current_pin);
         old_cpin->nets->connected_to = u_string_strdup(connected_to);
@@ -159,7 +159,7 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
         s_hierarchy_create_netattrib(pr_current, net_name,
                                      hierarchy_tag);
 
-        connected_to = g_strdup_printf("%s %s",
+        connected_to = u_string_sprintf("%s %s",
                                        netlist->component_uref,
                                        current_pin);
         new_cpin->nets->connected_to = u_string_strdup(connected_to);

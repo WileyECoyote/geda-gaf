@@ -1,3 +1,7 @@
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gnetlist.c: Replace g_strdup_printf with u_string_sprintf
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Add check for NULL pointer in s_traverse_component,
