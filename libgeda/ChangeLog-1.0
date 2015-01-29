@@ -1,3 +1,7 @@
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_line_basic.c: Add function o_line_is_endpoint.
+
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Redo u_string_sprintf, eliminating vasprintf,

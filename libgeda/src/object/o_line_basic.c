@@ -1072,6 +1072,36 @@ void o_line_scale_world(int x_scale, int y_scale, Object *object)
 
 }
 
+/*! \brief Is point an End Point of the given Line
+ *
+ *  \par Function Description
+ *  This function check if \a point is an end-point of \a object
+ *
+ *  \param [in] object Line object
+ *  \param [in] point  Point
+ *
+ *  \return TRUE if point is an end-point of the line
+ */
+bool o_line_is_endpoint (Object *object, POINT *point)
+{
+  bool anwser;
+
+  if (GEDA_IS_LINE(object)) {
+    if ((point->x == object->line->x[0] && point->y == object->line->y[0]) ||
+        (point->x == object->line->x[1] && point->y == object->line->y[1]))
+    {
+      anwser = TRUE;
+    }
+    else {
+      anwser = FALSE;
+    }
+  }
+  else {
+    anwser = FALSE;
+  }
+  return anwser;
+}
+
 /*! \brief Determine the Intersection of a linear Object
  *
  *  \par Function Description
