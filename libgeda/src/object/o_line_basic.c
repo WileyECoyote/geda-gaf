@@ -1102,6 +1102,29 @@ bool o_line_is_endpoint (Object *object, POINT *point)
   return anwser;
 }
 
+/*! \brief Get which end of Line is closest to a Point
+ *  \par Function Description
+ *  Determines which end-point of \a object is closest to the
+ *  given point.
+ *
+ *  \returns 0 or 1 or -1 if object is not a line
+ */
+int o_line_get_closest_endpoint(Object *object, int x, int y)
+{
+  int anwser;
+
+  if (GEDA_IS_LINE(object)) {
+    double first  = m_distance (object->line->x[0], object->line->y[0], x, y);
+    double second = m_distance (object->line->x[1], object->line->y[1], x, y);
+    anwser = first < second ? 0 : 1;
+  }
+  else {
+    BUG_MSG("Object is not derived from GedaLine");
+    anwser = -1;
+  }
+  return anwser;
+}
+
 /*! \brief Determine the Intersection of a linear Object
  *
  *  \par Function Description

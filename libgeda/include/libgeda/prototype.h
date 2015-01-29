@@ -255,6 +255,7 @@ G_BEGIN_DECLS
          void    o_line_translate_world          (int dx, int dy, Object *object);
          void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
          bool    o_line_is_endpoint              (Object *object, POINT *point);
+         int     o_line_get_closest_endpoint     (Object *object, int x, int y);
          bool    o_line_get_intersection         (Object *object1, Object *object2, POINT *point);
          bool    o_line_get_midpoint             (Object *object, POINT *point);
          bool    o_line_get_slope                (Object *object, double *anwser);

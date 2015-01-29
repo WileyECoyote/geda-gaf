@@ -1,5 +1,9 @@
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_line_basic.c: Add function o_line_get_closest_endpoint.
+
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_line_basic.c: Add function o_line_is_endpoint.
 
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
