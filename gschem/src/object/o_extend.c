@@ -362,20 +362,6 @@ static int o_extend_get_closest_end(Object *projectile, Object *boundary)
   return dist1 < dist2 ? 0 : 1;
 }
 
-/*! \brief Get which end of projectile is cloest to a Point
- *  \par Function Description
- *  Determines which end point of \a projectile is closest to the
- *  given point.
- *
- *  \returns 0 or 1
- */
-static int o_extend_get_which_end(Object *object, int x, int y)
-{
-  double first  = m_distance (object->line->x[0], object->line->y[0], x, y);
-  double second = m_distance (object->line->x[1], object->line->y[1], x, y);
-  return first < second ? 0 : 1;
-}
-
 /* -------------------------- Discriminators -------------------------- */
 
 /* Discriminating Resolvers, must be passed a point for Determination */
@@ -1956,7 +1942,7 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
     x = w_current->second_wx;
     y = w_current->second_wy;
 
-    which_end = o_extend_get_which_end(projectile, x, y);
+    which_end = o_line_get_closest_endpoint(projectile, x, y);
 
     direction = o_extend_get_direction(projectile, which_end);
     iter      = s_page_get_objects(Current_Page);

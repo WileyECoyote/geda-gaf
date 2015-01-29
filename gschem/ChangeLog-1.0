@@ -1,3 +1,9 @@
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Relocate function o_extend_get_which_end
+      to libgeda, renaming to o_line_get_closest_endpoint, seems like
+      this should have already existed.
+
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Add pop_edit_extend to pop_MenuItem.
