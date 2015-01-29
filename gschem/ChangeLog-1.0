@@ -1,5 +1,35 @@
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_states.h Add new event states; STARTEXTEND, EXTEND,
+      ENDEXTEND.
+
+    * include/i_actions.h: Add new action edit-extend.
+
+    * src/iface/i_command.c: Remove diagnostic related stuff that was
+      relocated to gschem_diagnostics.h. Add handler, do_extend, for
+      new action edit-extend.
+
+    * src/iface/i_status.c: Replace g_strdup_printf with u_string_sprintf
+      Add strings for STARTEXTEND, EXTEND, ENDEXTEND. Updated strings for
+      menu items.
+
+    * src/object/o_extend.c: New module for action edit-extend, is unique
+      in that the action/command operates on preselected objects like other
+      actions and also as verb-nouns, extending objects not selected before
+      the command/action was initiated. Either boundaries or projectile type
+      objects can be preselected, or both can be preselected. In the later
+      case, the routines act on all selected objects and terminates the
+      command/action. The action can also be initiated with the keyboard
+      with preselected project, which are then extended/projected based
+      on the current cursor position.
+
+    * src/x/x_event.c: Add cases for STARTEXTEND, EXTEND, ENDEXTEND.
+
+    * src/x/x_icons.c: Rename gschem-move icon gschem-extend, cleanup
+      code.
+
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/ *.c: Replace g_strdup_printf with u_string_sprintf
 
 2015-01-26 Wiley E. Hill <wileyhill@gmail.com>

@@ -34,15 +34,10 @@
 #include "x_menus.h"
 
 #include <geda_dialogs.h>
-#include <geda_debug.h>
 
 #define PERFORMANCE
-#ifdef PERFORMANCE
-
-# include <sys/time.h>
-# include <sys/resource.h>
-# include "rusage/tlpi_hdr.h"
-#endif
+#include <gschem_diagnostics.h>
+#include <geda_debug.h>
 
 #define NUMBER_REDRAW_TEST      100
 #define NUMBER_UNDO_TEST         15
@@ -76,34 +71,7 @@ typedef enum { CLOSE_PERFORMANCE, /* = 0, means not compiled in */
 } EID_PERFORMANCE;
 
 #ifdef PERFORMANCE
-
 static bool performance_diagnostics = FALSE;
-
-void printRusage(const char *leader, const struct rusage *ru)
-{
-    const char *ldr;
-
-    ldr = (leader == NULL) ? "" : leader;
-
-    printf("%sCPU time (secs):         user=%.3f; system=%.3f\n", ldr,
-            ru->ru_utime.tv_sec + ru->ru_utime.tv_usec / 1000000.0,
-            ru->ru_stime.tv_sec + ru->ru_stime.tv_usec / 1000000.0);
-    printf("%sMax resident set size:   %ld\n", ldr, ru->ru_maxrss);
-    printf("%sIntegral shared memory:  %ld\n", ldr, ru->ru_ixrss);
-    printf("%sIntegral unshared data:  %ld\n", ldr, ru->ru_idrss);
-    printf("%sIntegral unshared stack: %ld\n", ldr, ru->ru_isrss);
-    printf("%sPage reclaims:           %ld\n", ldr, ru->ru_minflt);
-    printf("%sPage faults:             %ld\n", ldr, ru->ru_majflt);
-    printf("%sSwaps:                   %ld\n", ldr, ru->ru_nswap);
-    printf("%sBlock I/Os:              input=%ld; output=%ld\n",
-            ldr, ru->ru_inblock, ru->ru_oublock);
-    printf("%sSignals received:        %ld\n", ldr, ru->ru_nsignals);
-    printf("%sIPC messages:            sent=%ld; received=%ld\n",
-            ldr, ru->ru_msgsnd, ru->ru_msgrcv);
-    printf("%sContext switches:        voluntary=%ld; "
-            "involuntary=%ld\n", ldr, ru->ru_nvcsw, ru->ru_nivcsw);
-    printf("------------- End Report-------------\n\n");
-}
 #endif /*PERFORMANCE */
 
 typedef struct {
@@ -156,7 +124,7 @@ static struct {
 #define SHOW_VARIABLE(name, type) GET_##type(name) \
   u_log_message("current value of <%s> is <%d>\n", #name, CMD_INTEGER(name));
 
-/* Anonymous Static GMutex */
+/* Anonymous Static Mutex */
 static union
 {
   void* p;
@@ -1158,7 +1126,7 @@ COMMAND (do_paste_clip)
     object_buffer[0] = object_list;
   }
 
-  if ( object_buffer[narg] != NULL) {
+  if (object_buffer[narg] != NULL) {
     if HOT_ACTION (do_paste_clip) {
 
       o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
@@ -1322,6 +1290,41 @@ COMMAND (do_mirror)
   w_current->inside_action = 0;
   i_status_set_state(w_current, state);
   EXIT_COMMAND(do_mirror);
+}
+
+/*! \brief Project Editing Mode
+ *
+ *  @brief i_cmd_do_extend in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  Initiate Projection mode, possibly handling if there
+ *  object are already selected.
+ *
+ */
+COMMAND (do_extend)
+{
+  BEGIN_W_COMMAND(do_extend);
+
+  GList *object_list;
+
+  o_redraw_cleanstates(w_current);
+  w_current->inside_action = 0;
+
+  object_list = geda_list_get_glist (Current_Selection);
+
+  if HOT_ACTION (do_extend) {
+    if (object_list) {
+      o_extend_hot(w_current, object_list, CMD_X(do_extend), CMD_Y(do_extend));
+    }
+  }
+  else {
+
+    int status = o_extend_interrogate (w_current, object_list);
+
+    i_status_set_state(w_current, status);
+
+  }
+  EXIT_COMMAND(do_extend);
 }
 
 /*! \brief Action Rotate  in i_command_Edit_Actions

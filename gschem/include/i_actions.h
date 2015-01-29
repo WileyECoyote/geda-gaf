@@ -84,8 +84,9 @@
 #define EDIT_COPY        edit-copy
 #define EDIT_MCOPY       edit-mcopy
 #define EDIT_MOVE        edit-move
-#define EDIT_ROTATE      edit-rotate
 #define EDIT_MIRROR      edit-mirror
+#define EDIT_EXTEND      edit-extend
+#define EDIT_ROTATE      edit-rotate
 #define EDIT_ARC         edit-arc
 #define EDIT_ATTRIB      edit-attributes
 #define EDIT_TEXT        edit-text
@@ -98,9 +99,9 @@
 #define EDIT_LOCK        edit-lock
 #define EDIT_UNLOCK      edit-unlock
 
-#define EDIT_SELECT      edit-select
-#define EDIT_SELECT_ALL  edit-select-all
-#define EDIT_INVERT      edit-select-invert
+#define EDIT_SELECT       edit-select
+#define EDIT_SELECT_ALL   edit-select-all
+#define EDIT_INVERT       edit-select-invert
 #define EDIT_DESELECT     edit-deselect
 #define EDIT_DESELECT_ALL edit-deselect-all
 

@@ -2,15 +2,8 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1052.3622"
    height="744.09448"
    id="svg2"
@@ -9930,6 +9923,34 @@
        y1="12.472493"
        x2="52.5"
        y2="-4.6213989" />
+    <marker
+       inkscape:stockid="TriangleInS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInS-7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8372-4"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(-0.2,-0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutS-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6385-0"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(0.2,0.2)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -9938,9 +9959,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.5396138"
-     inkscape:cx="548.44527"
-     inkscape:cy="327.06418"
+     inkscape:zoom="21.897805"
+     inkscape:cx="370.81586"
+     inkscape:cy="398.30814"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -12247,7 +12268,7 @@
          y="656.26257"
          x="235.0918"
          id="tspan12112"
-         sodipodi:role="line">move</tspan></text>
+         sodipodi:role="line">extend</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans"
@@ -14134,38 +14155,38 @@
            sodipodi:role="line">T</tspan></text>
     </g>
     <g
-       id="gschem-move-22"
-       inkscape:export-filename="gschem-move-22.png"
+       id="gschem-extend-22"
+       inkscape:label="gschem-extend-22"
+       inkscape:export-filename="gschem-extend-22.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"
-       inkscape:label="gschem-move-22">
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4925"
          d="m 378.70125,653.70292 17.94208,0"
-         style="fill:none;stroke:#000000;stroke-width:1.58633375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
+         style="fill:none;stroke:#000000;stroke-width:1.618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
       <path
          inkscape:connector-curvature="0"
          id="path4925-2"
          d="m 387.65251,644.73177 0,17.94231"
-         style="fill:none;stroke:#000000;stroke-width:1.58630025px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS)" />
+         style="fill:none;stroke:#000000;stroke-width:1.618;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS);stroke-miterlimit:4;stroke-dasharray:none" />
     </g>
     <g
-       transform="matrix(0.72728045,0,0,0.72725599,67.925577,179.27357)"
-       id="g8661-2"
-       inkscape:export-filename="gschem-move-16.png"
+       id="gschem-extend-16"
+       inkscape:label="gschem-extend-16"
+       inkscape:export-filename="gschem-extend-16.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4925-4"
-         d="m 378.70125,653.70292 17.94208,0"
-         style="fill:none;stroke:#000000;stroke-width:1.58633375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
+         d="m 343.34759,654.68293 13.04893,0"
+         style="fill:none;stroke:#000000;stroke-width:1.1536901;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
       <path
          inkscape:connector-curvature="0"
          id="path4925-2-6"
-         d="m 387.65251,644.73177 0,17.94231"
-         style="fill:none;stroke:#000000;stroke-width:1.58630025px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS)" />
+         d="m 349.85767,648.15861 0,13.04865"
+         style="fill:none;stroke:#000000;stroke-width:1.15366578px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS)" />
     </g>
     <g
        id="gschem-zoom-mag-16"
@@ -15525,23 +15546,24 @@
       <g
          transform="scale(0.86229721,1.159693)"
          style="font-size:8.87132359px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#2e3436;fill-opacity:1;stroke:none;font-family:DejaVu Sans"
-         id="text5326-1">
+         id="text5326-1"><path
+   d="m 155.39886,659.96964 1.24176,0 1.56807,2.95711 0,-2.95711 1.05405,0 0,4.31149 -1.24175,0 -1.56808,-2.95711 0,2.95711 -1.05405,0 0,-4.31149"
+   style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
+   id="path5344-1"
+   inkscape:connector-curvature="0" />
+
+2
         <path
-           d="m 155.39886,659.96964 1.24176,0 1.56807,2.95711 0,-2.95711 1.05405,0 0,4.31149 -1.24175,0 -1.56808,-2.95711 0,2.95711 -1.05405,0 0,-4.31149"
-           style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
-           id="path5344-1"
-           inkscape:connector-curvature="0" />2
-        <path
-           d="m 160.65371,662.0176 3.47908,0 0,0.6751 -3.47908,0 0,-0.6751 m 0,1.30712 3.47908,0 0,0.68085 -3.47908,0 0,-0.68085"
-           style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
-           id="path5346-0"
-           inkscape:connector-curvature="0" />
-        <path
-           d="m 164.79577,659.96964 1.11758,0 1.14356,3.18236 1.14069,-3.18236 1.11757,0 -1.59695,4.31149 -1.3255,0 -1.59695,-4.31149"
-           style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
-           id="path5348-8"
-           inkscape:connector-curvature="0" />
-      </g>
+   d="m 160.65371,662.0176 3.47908,0 0,0.6751 -3.47908,0 0,-0.6751 m 0,1.30712 3.47908,0 0,0.68085 -3.47908,0 0,-0.68085"
+   style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
+   id="path5346-0"
+   inkscape:connector-curvature="0" />
+<path
+   d="m 164.79577,659.96964 1.11758,0 1.14356,3.18236 1.14069,-3.18236 1.11757,0 -1.59695,4.31149 -1.3255,0 -1.59695,-4.31149"
+   style="font-size:5.91421556px;font-weight:bold;fill:#2e3436;-inkscape-font-specification:DejaVu Sans Bold"
+   id="path5348-8"
+   inkscape:connector-curvature="0" />
+</g>
     </g>
     <text
        sodipodi:linespacing="125%"

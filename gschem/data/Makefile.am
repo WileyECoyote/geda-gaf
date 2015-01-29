@@ -13,6 +13,7 @@ action_icons = \
 	gschem-clone \
 	gschem-datasheet \
 	gschem-deselect \
+	gschem-extend \
 	gschem-insert-attribute \
 	gschem-insert-arc \
 	gschem-insert-circle \
@@ -25,7 +26,6 @@ action_icons = \
 	gschem-insert-symbol \
 	gschem-insert-text \
 	gschem-insert-net \
-	gschem-move \
 	gschem-multi-clone \
 	gschem-select \
 	gschem-show-both \

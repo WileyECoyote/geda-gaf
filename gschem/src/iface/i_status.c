@@ -164,7 +164,7 @@ static const char *i_status_string(GschemToplevel *w_current)
     case STARTPASTE:
     case ENDPASTE:
       GEDA_FREE(buf);
-      buf = g_strdup_printf(_("Paste %d Mode"), w_current->buffer_number+1);
+      buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
       return buf;
     case STARTDRAWNET:
     case DRAWNET:
@@ -187,6 +187,12 @@ static const char *i_status_string(GschemToplevel *w_current)
     case DRAWBOX:
     case ENDBOX:
       return _("Box Mode");
+    case STARTEXTEND:
+      return _("Project Mode");
+    case EXTEND:
+      return _("Select Projectiles");
+    case ENDEXTEND:
+      return _("Select Boundary");
     case DRAWPICTURE:
     case ENDPICTURE:
       return _("Picture Mode");
@@ -260,7 +266,7 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 
      char *ptr = what_to_say;
 
-     what_to_say = g_strdup_printf("%s \t\t %s", w_current->keyaccel_string,
+     what_to_say = u_string_sprintf("%s \t\t %s", w_current->keyaccel_string,
                                                  what_to_say);
      GEDA_FREE(ptr);
   }
@@ -352,7 +358,7 @@ void i_status_update_grid_info(GschemToplevel *w_current)
 static void clipboard_usable_cb (int usable, void *userdata)
 {
   GschemToplevel *w_current = userdata;
-  x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
+  x_menus_sensitivity (w_current, "_Edit/_Paste clipboard", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
   x_menus_popup_sensitivity (w_current, "Paste Clipboard", usable);
 }
@@ -680,14 +686,14 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       set_sensitivity_for_text (FALSE);
     }
 
-    x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Copy Mode", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Multiple Copy Mode", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Move Mode", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate 90 Mode", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Mirror Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Copy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Multiple Copy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Move", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Rotate 90", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Mirror", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
@@ -739,14 +745,14 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
-    x_menus_sensitivity(w_current, "_Edit/Cu_t", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/_Copy", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Copy Mode", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Multiple Copy Mode", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Move Mode", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate 90 Mode", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Mirror Mode", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Copy", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Multiple Copy", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Move", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Rotate 90", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Mirror", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", FALSE);
 

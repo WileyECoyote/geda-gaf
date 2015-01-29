@@ -13,6 +13,7 @@ gschem_SOURCES += \
 		object/o_copy.c \
 		object/o_delete.c \
 		object/o_edit.c \
+		object/o_extend.c \
 		object/o_find.c \
 		object/o_grips.c \
 		object/o_invalidate.c \

@@ -106,7 +106,7 @@ const char* IDS_THEME_ICONS_22[] = {
   "gschem-insert-attribute", "gschem-insert-box",        "gschem-insert-bus",
   "gschem-insert-circle",    "gschem-insert-line",       "gschem-insert-net",
   "gschem-insert-path",      "gschem-insert-pin",        "gschem-insert-symbol",
-  "gschem-insert-text",      "gschem-move",              "gschem-multi-clone",
+  "gschem-insert-text",      "gschem-extend",            "gschem-multi-clone",
   "gschem-show-both",        "gschem-show-value",        "gschem-show-name",
   "gschem-insert-text",      "gschem-unselect-all",      "gschem-zoom-extents",
   "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
@@ -117,22 +117,22 @@ const char* IDS_THEME_ICONS_22[] = {
 /*! \brief Setup default icon for GTK windows
  *
  *  \par Function Description
- *  Sets the default window icon by name, to be found in the current icon
- *  theme path.
+ *  Sets the default window icon by name, to be found in the current
+ *  icon theme path.
  *
- *  \note The default icon name is \#defined in sdefines.h as
+ *  \note The default icon name is defined in sdefines.h as
  *        GSCHEM_THEME_ICON_NAME.
  */
 void x_icons_set_default_icon (const char* icon_name)
 {
-  gtk_window_set_default_icon_name( icon_name );
+  gtk_window_set_default_icon_name(icon_name);
 }
 
 /*! \brief Setup icon search paths.
  * \par Function Description
  * Add the icons installed by gschem to the search path for the
  * default icon theme, so that they can be automatically found
- * by GTK (even though Gtk will look for them).
+ * by GTK (even though Gtk will not look for them).
  */
 void x_icons_add_search_path (const char *path)
 {
@@ -140,8 +140,8 @@ void x_icons_add_search_path (const char *path)
 
   g_return_if_fail (f_path_sys_data () != NULL);
 
-  icon_path = g_build_filename (f_path_sys_data (), path, NULL);
-  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
+  icon_path = g_build_filename (f_path_sys_data(), path, NULL);
+  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(),
                                      icon_path);
 
   GEDA_FREE (icon_path);
@@ -169,16 +169,17 @@ static void x_icons_setup_factory()
   gschem_factory = gtk_icon_factory_new ();
   gtk_icon_factory_add_default (gschem_factory);
 
-  for ( index = 0; IDS_GEDA_ICONS[index] != NULL; index++ ) {
+  for (index = 0; IDS_GEDA_ICONS[index] != NULL; index++) {
 
     icon_name = IDS_GEDA_ICONS[index];
 
     filename = u_string_concat (icon_name, ".png", NULL);
     pathname = f_get_bitmap_filespec (filename);
     GEDA_FREE(filename);
-    if(pathname) {
-      if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
-        ( access(pathname, R_OK) == 0)) {
+    if (pathname) {
+      if (g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+         (access(pathname, R_OK) == 0))
+      {
         pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
@@ -191,14 +192,16 @@ static void x_icons_setup_factory()
           err = NULL;
         }
       }
-      else { /* file non existence or not accessible */
+      else
+      {
+        /* file non existence or not accessible */
         u_log_message("Warning, Error accessing image file: %s\n", pathname);
       }
       GEDA_FREE(pathname);
     }
   }
 
-  for ( index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++ ) {
+  for (index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++) {
 
     icon_name = IDS_GSCHEM_ICONS[index];
 
@@ -207,8 +210,9 @@ static void x_icons_setup_factory()
     GEDA_FREE(filename);
 
     if(pathname) {
-      if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
-        ( access(pathname, R_OK) == 0)) {
+      if (g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+         (access(pathname, R_OK) == 0))
+      {
         pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
@@ -221,7 +225,9 @@ static void x_icons_setup_factory()
           err = NULL;
         }
       }
-      else { /* file non existence or not accessible */
+      else
+      {
+        /* file non existence or not accessible */
         u_log_message("Warning, Error accessing image file: %s\n", pathname);
       }
       GEDA_FREE(pathname);
@@ -237,8 +243,9 @@ static void x_icons_setup_factory()
     GEDA_FREE(filename);
 
     if (pathname) {
-      if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
-        ( access(pathname, R_OK) == 0)) {
+      if (g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+         (access(pathname, R_OK) == 0))
+      {
         pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
         if(!err) {
           icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
@@ -251,7 +258,9 @@ static void x_icons_setup_factory()
           err = NULL;
         }
       }
-      else { // file non existence or not accessible
+      else
+      {
+        /* file non existence or not accessible */
         u_log_message("Warning, Error accessing image file: %s\n", pathname);
       }
       GEDA_FREE(pathname);
@@ -264,21 +273,21 @@ static void x_icons_remove_icons_from_factory(void)
   GtkIconSet *icon_set;
   int index;
 
-  for ( index = 0; IDS_GEDA_ICONS[index] != NULL; index++ ) {
+  for (index = 0; IDS_GEDA_ICONS[index] != NULL; index++) {
     icon_set =  gtk_icon_factory_lookup_default (IDS_GEDA_ICONS[index]);
     if (icon_set) {
       gtk_icon_set_unref (icon_set);
     }
   }
 
-  for ( index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++ ) {
+  for (index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++) {
     icon_set =  gtk_icon_factory_lookup_default (IDS_GSCHEM_ICONS[index]);
     if (icon_set) {
       gtk_icon_set_unref (icon_set);
     }
   }
 
-  for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
+  for (index = 0; IDS_THEME_ICONS_22[index] != NULL; index++) {
     icon_set =  gtk_icon_factory_lookup_default (IDS_THEME_ICONS_22[index]);
     if (icon_set) {
       gtk_icon_set_unref (icon_set);

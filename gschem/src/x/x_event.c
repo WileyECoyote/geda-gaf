@@ -90,9 +90,7 @@ int x_event_button_pressed(GtkWidget      *widget,
     w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
     w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-    /* Huge switch statement to evaluate state transitions. Jump to
-     * end_button_pressed label to escape the state evaluation rather than
-     * returning from the function directly. */
+    /* Huge switch statement to evaluate state transitions */
 
     if (event->button == GDK_BUTTON_PRIMARY) {
 
@@ -109,7 +107,8 @@ int x_event_button_pressed(GtkWidget      *widget,
             w_current->event_state = STARTSELECT;
             w_current->first_wx = w_current->second_wx = unsnapped_wx;
             w_current->first_wy = w_current->second_wy = unsnapped_wy;
-          } else {
+          }
+          else {
             /* a grip was found */
             w_current->event_state   = GRIPS;
             w_current->inside_action = TRUE;
@@ -317,6 +316,17 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->inside_action = TRUE;
           i_status_set_state(w_current, ZOOMBOXEND);
           break;
+
+        case(STARTEXTEND):
+          i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
+          break;
+
+        case EXTEND:
+        case(ENDEXTEND):
+          if(!o_extend_end (w_current, w_x, w_y)) {
+            i_status_set_state(w_current, SELECT);
+          }
+          break;
       }
     }
     else if (event->button == 2) {
@@ -382,11 +392,11 @@ int x_event_button_pressed(GtkWidget      *widget,
             i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
             break;
 
-            #ifdef HAVE_LIBSTROKE
+#ifdef HAVE_LIBSTROKE
           case(MOUSE_MIDDLE_STROKE):
             DOING_STROKE=TRUE;
             break;
-            #endif /* HAVE_LIBSTROKE */
+#endif /* HAVE_LIBSTROKE */
 
           case(MOUSE_MIDDLE_PAN):
             w_current->event_state   = MOUSEPAN; /* start */
@@ -1148,14 +1158,17 @@ bool x_event_motion (GtkWidget      *widget,
         break;
       }
       else {
-        /* If the shift or control keys are pressed, that means the user definately wants to drag out a
-         * selection box.  Otherwise, if there is not a selected object under the cursor, look for one
+        /* If the shift or control keys are pressed, that means the user
+         * definitely wants to drag out a selection box.  Otherwise, if
+         * there is not a selected object under the cursor, look for one
          * that could be selected and start moving it.
          */
-        if (w_current->SHIFTKEY || w_current->CONTROLKEY ||
-          (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
-          && (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE)
-          || !o_select_is_selection(w_current))))
+        if (w_current->SHIFTKEY ||
+            w_current->CONTROLKEY ||
+           (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy) &&
+           (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE) ||
+            !o_select_is_selection(w_current)))
+           )
         {
           if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
             w_current->event_state = SBOX;

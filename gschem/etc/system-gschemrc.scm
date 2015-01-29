@@ -390,8 +390,8 @@
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show console Window)
 ;
-;(console-window "enabled")
-(console-window "disabled")
+(console-window "enabled")
+;(console-window "disabled")
 
 ; console-window-type string
 ;
@@ -1573,20 +1573,21 @@
 (map-keys "E <Shift>R" "edit-redo")
 (map-keys "E S"        "edit-select")
 (map-keys "E C"        "edit-copy")
-(map-keys "E A"        "edit-attributes")
+(map-keys "E <Shift>A" "edit-attributes")
 (map-keys "E Y"        "edit-mcopy")
 (map-keys "E X"        "edit-text")
 (map-keys "E M"        "edit-move")
 (map-keys "E D"        "edit-delete")
+(map-keys "E P"        "edit-extend")
 (map-keys "E R"        "edit-rotate")
 (map-keys "E I"        "edit-mirror")
-(map-keys "E O"        "edit-color")
+(map-keys "E <Shift>C" "edit-color")
 (map-keys "E L"        "edit-lock")
-(map-keys "E <Shift>L" "edit-unlock")
-(map-keys "E N"        "edit-pintype")
-(map-keys "E W"        "edit-linetype")
-(map-keys "E F"        "edit-filltype")
-(map-keys "E P"        "edit-component")
+(map-keys "E U"        "edit-unlock")
+(map-keys "E <Shift>P" "edit-pintype")
+(map-keys "E <Shift>L" "edit-linetype")
+(map-keys "E <Shift>F" "edit-filltype")
+(map-keys "E <Shift>N" "edit-component")
 (map-keys "E <Shift>S" "edit-slot")
 
 (map-keys "F N"        "file-new")
@@ -1778,17 +1779,20 @@
         (,(N_ "_Redo")              edit-redo              "gtk-redo"         ,(N_ "redo the last un-done action"))
 
         ("SEPARATOR"               #f                     #f                 #f)
-        (,(N_ "Cu_t")               clipboard-cut          "gtk-cut"          ,(N_ "Cut the current selection to the system clipboard"))
-        (,(N_ "_Copy")              clipboard-copy         "gtk-copy"         ,(N_ "Copy the current selection to the system clipboard"))
-        (,(N_ "_Paste")             clipboard-paste        "gtk-paste"        ,(N_ "Paste the contents of the system clipboard"))
+        (,(N_ "Cu_t clipboard")     clipboard-cut          "gtk-cut"          ,(N_ "Cut the current selection to the system clipboard"))
+        (,(N_ "_Copy clipboard")    clipboard-copy         "gtk-copy"         ,(N_ "Copy the current selection to the system clipboard"))
+        (,(N_ "_Paste clipboard")   clipboard-paste        "gtk-paste"        ,(N_ "Paste the contents of the system clipboard"))
         (,(N_ "_Delete")            edit-delete            "gtk-delete"       ,(N_ "Delete the current selection" ))
 
         ("SEPARATOR"               #f                     #f)
-        (,(N_ "Copy Mode")          edit-copy              "geda-copy"        ,(N_ "Copy selection"))
-        (,(N_ "Multiple Copy Mode") edit-mcopy             "geda-multi"       ,(N_ "Make Multible Copies of selection"))
-        (,(N_ "Move Mode")          edit-move              "geda-move"        ,(N_ "Move Objects"))
-        (,(N_ "Rotate 90 Mode")     edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
-        (,(N_ "Mirror Mode")        edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
+        (,(N_ "Copy")               edit-copy              "geda-copy"        ,(N_ "Copy selection"))
+        (,(N_ "Multiple Copy")      edit-mcopy             "geda-multi"       ,(N_ "Make Multible Copies of selection"))
+        (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move Objects"))
+        (,(N_ "Rotate 90")          edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
+        (,(N_ "Mirror")             edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
+
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Extend")             edit-extend            "gschem-extend"    ,(N_ "Project Linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Edit...")            edit-attributes        "gtk-indent"       ,(N_ "Edit Properties"))
@@ -1860,13 +1864,14 @@
 ;;
      `( (,(N_ "_Redraw")             view-redraw             "gtk-refresh"          ,(N_ "redraw the current window"))
         (,(N_ "_Pan")                view-pan                "geda-zoom-pan"        ,(N_ "Activate Panning"))
+
+        (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen"       ,(N_ "Zoom to the limits of the drawing area"))
         (,(N_ "Zoom _Box")           view-zoom-box           "geda-zoom-box"        ,(N_ "Zoom to a Windowed region"))
-        (,(N_ "Zoom _Selection")     view-zoom-selected      "geda-zoom-selection"  ,(N_ "Zoom to selected objects"))
         (,(N_ "Zoom _Extents")       view-zoom-extents       "gschem-zoom-extents"  ,(N_ "Zoom to the extents of the drawing"))
         (,(N_ "Zoom _In")            view-zoom-in            "gschem-zoom-in"       ,(N_ "Increase the Zoom magnification"))
         (,(N_ "Zoom _Out")           view-zoom-out           "gschem-zoom-out"      ,(N_ "Decrease the Zoom magnification"))
-        (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen"       ,(N_ "Zoom to the limits of the drawing area"))
         (,(N_ "Zoom _Mag")           view-zoom-to-mag        "gschem-zoom-mag"      ,(N_ "Zoom to a specified level"))
+        (,(N_ "Zoom _Selection")     view-zoom-selected      "geda-zoom-selection"  ,(N_ "Zoom to selected objects"))
 
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
