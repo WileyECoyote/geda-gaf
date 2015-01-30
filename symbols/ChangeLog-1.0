@@ -1,4 +1,8 @@
-2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamp/model: Add models for operational amplifiers
+
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2574-ADJ-8-1.sym: Add new symbol for Adjustable
       Bucking Voltage Regulator, SOIC8.
