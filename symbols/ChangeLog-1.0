@@ -1,3 +1,11 @@
+2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/LM2574-ADJ-8-1.sym: Add new symbol for Adjustable
+      Bucking Voltage Regulator, SOIC8.
+
+    * linear/switchreg/LM2574-ADJ-14-1.sym: Add new symbol for Adjustable
+      Bucking Voltage Regulator, SOIC14.
+
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamp/NE5532*.sym: New symbols for NE5532 dual operational
