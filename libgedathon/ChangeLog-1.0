@@ -1,3 +1,8 @@
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/functions.c: Revert back to g_strdup_printf; not linked
+      correctly.
+
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Replace g_strdup_printf with u_string_sprintf.

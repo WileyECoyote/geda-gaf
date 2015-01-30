@@ -84,7 +84,7 @@ static char *GetNextCapRef(int number)
     value = C_REF;
   }
   C_REF++;
-  return u_string_sprintf ("C%d", value);
+  return g_strdup_printf ("C%d", value);
 }
 
 static char *GetNextInductorRef(int number)
@@ -98,7 +98,7 @@ static char *GetNextInductorRef(int number)
     value = L_REF;
   }
   L_REF++;
-  return u_string_sprintf ("L%d", value);
+  return g_strdup_printf ("L%d", value);
 }
 
 static char *GetNextResistorRef(int number)
@@ -112,7 +112,7 @@ static char *GetNextResistorRef(int number)
     value = R_REF;
   }
   R_REF++;
-  return u_string_sprintf ("R%d", value);
+  return g_strdup_printf ("R%d", value);
 }
 
 static char *GetNextURef(int number)
@@ -126,7 +126,7 @@ static char *GetNextURef(int number)
     value = U_REF;
   }
   U_REF++;
-  return u_string_sprintf ("U%d", value);
+  return g_strdup_printf ("U%d", value);
 }
 
 static char *AutoDesignate(AutoDesignator GetNextRef, PyObject *py_refdes)
