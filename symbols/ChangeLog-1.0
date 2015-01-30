@@ -1,3 +1,8 @@
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/amplifiers/LM3886TF-1.sym: Add new symbol, audio power
+      amplifier, mono, 68W.
+
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers: Cleanup symbols
