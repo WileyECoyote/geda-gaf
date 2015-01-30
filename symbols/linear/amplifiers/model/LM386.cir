@@ -1,8 +1,8 @@
 * lm386 subcircuit model follows:
 
 ************************************original* IC pins:     2   3   7   1   8   5   6   4
-* IC pins:     1   2   3   4   5   6   7   8
-*              |   |   |   |   |   |   |   |
+* IC pins:           1     2   3    4     5    6   7     8
+*                         |      |    |     |      |     |    |      |
 .subckt lm386 g1  inn inp gnd out  vs byp g8
 ************************************original*.subckt lm386 inn inp byp  g1  g8 out  vs gnd
 

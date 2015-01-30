@@ -1,5 +1,9 @@
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/amplifiers: Cleanup symbols
+
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/mosdrive/MIC5014-1.sym: Cleanup symbol.
 
     * linear/mosdrive/MIC5015-1.sym: Cleanup symbol.
