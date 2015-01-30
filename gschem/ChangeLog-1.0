@@ -1,5 +1,12 @@
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    *src/iface/i_vars.c: Add (save) toplevel variable auto_save_interval
+     to new configuration system.
+
+    * src/x/x_settings.c: Add restore toplevel variable auto_save_interval.
+
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_extend.c: Relocate function o_extend_get_which_end
       to libgeda, renaming to o_line_get_closest_endpoint, seems like
       this should have already existed.

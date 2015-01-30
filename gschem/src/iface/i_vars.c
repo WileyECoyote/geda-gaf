@@ -105,7 +105,7 @@ int     default_console_window_type       = DECORATED;
 int     default_action_feedback_mode      = OUTLINE;
 int     default_add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
 int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
-int     default_auto_save_interval        = DEFAULT_SAVE_INTERVAL;
+int     default_auto_save_interval        = RC_NIL;
 int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
 int     default_chooser_filter            = RC_NIL;
 GList  *default_component_select_attrlist = NULL;
@@ -333,6 +333,7 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
     GEDA_FREE (tmp_str);
   }
 
+  /* Image Related */
   i_var_restore_global_boolean(cfg, "image-color",        &toplevel->
                                      image_color,          TRUE);
 
@@ -344,6 +345,10 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 
   i_var_restore_global_integer(cfg, "image-height",       &w_current->
                                      image_height,         DEFAULT_IMAGE_HEIGHT);
+
+  /* Miscellaneous - in  alphabetical order */
+  i_var_restore_global_integer(cfg, "auto-save-interval", &toplevel->
+                                     auto_save_interval,   DEFAULT_SAVE_INTERVAL);
 
   /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
   group = FILE_CHOOSER_CONFIG_GROUP;
@@ -546,7 +551,9 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->action_feedback_mode      = default_action_feedback_mode;
   w_current->add_attribute_offset      = default_add_attribute_offset;
   toplevel->attribute_offset           = default_add_attribute_offset;
-  toplevel->auto_save_interval         = default_auto_save_interval;
+
+  i_set_rc (&toplevel->auto_save_interval, default_auto_save_interval);
+
   w_current->attribute_placement_grid  = default_attribute_placement_grid;
 
   i_set_rc (&w_current->chooser_filter,  default_chooser_filter);

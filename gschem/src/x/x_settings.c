@@ -214,10 +214,14 @@ void x_settings_save_settings(GschemToplevel *w_current)
   const char   *group_name = IVAR_CONFIG_GROUP;
   int           array[4];
 
+  /* Image Related */
   eda_config_set_boolean (cfg, group_name, "image-color",    toplevel->image_color);
   eda_config_set_boolean (cfg, group_name, "invert-images",  toplevel->invert_images);
   eda_config_set_integer (cfg, group_name, "image-width",    w_current->image_width);
   eda_config_set_integer (cfg, group_name, "image-height",   w_current->image_height);
+
+  /* Miscellaneous - in  alphabetical order */
+  eda_config_set_integer (cfg, group_name, "auto-save-interval", toplevel->auto_save_interval);
 
   /* Save text related stuff  - Restored by i_vars_recall_user_settings */
   eda_config_set_integer (cfg, group_name, "text-case",       w_current->text_case);
