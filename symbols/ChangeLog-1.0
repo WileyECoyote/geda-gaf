@@ -1,5 +1,15 @@
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/opamp/NE5532*.sym: New symbols for NE5532 dual operational
+      amplifiers:
+
+            * linear/opamp/NE5532-1.sym (DIP8)
+            * linear/opamp/NE5532-2.sym (SOIC8)
+            * linear/opamp/NE5532A-1.sym (DIP8)
+            * linear/opamp/NE5532A-2.sym (SOIC8)
+
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/amplifiers/LM3886TF-1.sym: Add new symbol, audio power
       amplifier, mono, 68W.
 
