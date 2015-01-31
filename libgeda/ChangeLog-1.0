@@ -1,5 +1,10 @@
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_pin_basic.c: Revised o_pin_set_attributes to skip label
+      string if not passed. Add debug print.
+
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_basic.c: Relocate code to remove backup file to new
       function f_remove_backup_file.
 

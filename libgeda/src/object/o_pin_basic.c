@@ -746,8 +746,12 @@ void o_pin_set_attributes(Object *object, const char *label_str,
     }
     GEDA_FREE(str_seq);
 
+#if DEBUG
+    fprintf(stderr, "%s: pinlabel=<%s>\n", __func__, label_str);
+#endif
+
     /* pin label */
-    if (geda_pin_set_label(pin, label_str)) {
+    if (label_str && geda_pin_set_label(pin, label_str)) {
       bute = o_attrib_first_attrib_by_name (object, "pinlabel");
       if(bute !=NULL && bute->type == OBJ_TEXT) {
         o_attrib_set_value(bute, "pinlabel", (char*)label_str);
