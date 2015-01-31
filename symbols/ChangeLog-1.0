@@ -1,5 +1,13 @@
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * /analogdevices: Add Wide band operational amplifiers
+
+            * analogdevices/opamp/AD811-1.sym
+            * analogdevices/opamp/AD9617-1.sym
+            * analogdevices/opamp/AD9618-1.sym
+
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * national/model: Add models for National Semiconductor
 
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
