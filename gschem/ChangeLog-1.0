@@ -1,5 +1,11 @@
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
+  ** src/iface/i_command.c: Add call to f_remove_backup_file if the
+     file name is changed when doing save as to backup files are not
+     stranded, very annoying.
+
+2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
     *src/iface/i_vars.c: Add (save) toplevel variable auto_save_interval
      to new configuration system.
 
