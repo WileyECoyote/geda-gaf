@@ -43,7 +43,7 @@ pintype=out
 P 500 600 500 800 1 0 1
 {
 T 550 725 5 8 1 1 0 0 1
-pinnumber=8
+pinnumber=7
 T 625 725 5 8 0 1 0 0 1
 pinseq=3
 T 550 600 9 8 0 1 0 0 1
