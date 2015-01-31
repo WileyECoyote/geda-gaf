@@ -2,7 +2,7 @@ v 20150101 2
 L 300 1100 300 300 3 0 0 0 -1 -1
 L 300 1100 1000 700 3 0 0 0 -1 -1
 T 1000 1075 5 10 1 1 0 0 1
-device=HA5221
+device=HA2842
 L 1000 700 300 300 3 0 0 0 -1 -1
 L 400 950 400 850 3 0 0 0 -1 -1
 L 350 900 450 900 3 0 0 0 -1 -1
@@ -87,7 +87,7 @@ pintype=pas
 T 1000 1250 8 10 1 1 0 0 1
 refdes=U?
 T 100 1600 5 10 0 0 0 0 1
-description=Operational Amplifier, 100MHz, Low Noise, Precision
+description=Operational Amplifier, 80MHz, High Slew Rate
 T 100 1400 5 10 0 0 0 0 1
 numslots=0
 T 100 1800 5 10 0 0 0 0 1

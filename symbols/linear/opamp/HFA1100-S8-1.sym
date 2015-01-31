@@ -2,7 +2,7 @@ v 20150101 2
 L 300 1100 300 300 3 0 0 0 -1 -1
 L 300 1100 1000 700 3 0 0 0 -1 -1
 T 1000 1075 5 10 1 1 0 0 1
-device=HA5221
+device=HFA1100
 L 1000 700 300 300 3 0 0 0 -1 -1
 L 400 950 400 850 3 0 0 0 -1 -1
 L 350 900 450 900 3 0 0 0 -1 -1
@@ -51,43 +51,21 @@ pinlabel=V+
 T 650 1000 5 6 0 1 90 0 1
 pintype=pwr
 }
-P 500 400 500 200 1 0 1
-{
-T 350 175 5 8 1 1 0 0 1
-pinnumber=4
-T 275 175 5 8 0 1 0 0 1
-pinseq=4
-T 375 400 9 6 0 1 0 0 1
-pinlabel=V-
-T 600 275 5 6 0 1 90 6 1
-pintype=pwr
-}
 P 700 500 700 300 1 0 1
 {
-T 575 325 5 8 1 1 0 0 1
-pinnumber=1
-T 750 150 5 8 0 1 0 0 1
-pinseq=6
-T 575 525 9 6 0 1 0 0 1
-pinlabel=N-
-T 800 400 5 6 0 1 90 6 1
-pintype=pas
-}
-P 900 600 900 400 1 0 1
-{
-T 775 450 5 8 1 1 0 0 1
-pinnumber=8
-T 950 200 5 8 0 1 0 0 1
-pinseq=7
-T 750 625 9 6 0 1 0 0 1
-pinlabel=N+
-T 1000 450 5 6 0 1 90 6 1
-pintype=pas
+T 550 275 5 8 1 1 0 0 1
+pinnumber=4
+T 475 275 5 8 0 1 0 0 1
+pinseq=4
+T 575 500 9 6 0 1 0 0 1
+pinlabel=V-
+T 800 375 5 6 0 1 90 6 1
+pintype=pwr
 }
 T 1000 1250 8 10 1 1 0 0 1
 refdes=U?
 T 100 1600 5 10 0 0 0 0 1
-description=Operational Amplifier, 100MHz, Low Noise, Precision
+description=OpAmp, 850MHz, High Slew Rate, Low Distortion
 T 100 1400 5 10 0 0 0 0 1
 numslots=0
 T 100 1800 5 10 0 0 0 0 1
@@ -99,4 +77,4 @@ dist-license=GPLv3
 T 100 2395 5 10 0 0 0 0 1
 author=AutoTron
 T 1000 900 9 10 1 1 0 0 1
-footprint=DIP8
+footprint=SOIC8
