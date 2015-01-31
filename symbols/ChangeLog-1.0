@@ -1,5 +1,9 @@
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/AD842-1.sym: Add new symbol operational amplifier
+
+2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/opamp: Redo many opamp symbols, still need to redo
       LF's, LM's and TL's.
 
