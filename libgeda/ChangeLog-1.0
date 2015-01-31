@@ -1,3 +1,11 @@
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Relocate code to remove backup file to new
+      function f_remove_backup_file.
+
+    * src/struct/s_page.c: Remove relocated code use f_remove_backup_file
+      to remove the backup file when in function s_page_delete.
+
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_basic.c: Add function o_line_get_closest_endpoint.

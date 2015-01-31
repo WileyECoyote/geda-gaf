@@ -9,6 +9,7 @@ G_BEGIN_DECLS
          void    f_close                         (GedaToplevel *toplevel);
          bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
          void    f_set_backup_loader_query_func  (GedaToplevel *toplevel, void *func, ...);
+         void    f_remove_backup_file            (const char *filename);
 
 /* f_file.c */
           int    f_file_copy                     (const char *source, const char *target);
@@ -83,7 +84,6 @@ G_BEGIN_DECLS
        double    m_degrees_to_radians            (double degrees);
        double    m_distance                      (int x1, int y1, int x2, int y2);
          void    m_papersize_to_world            (int width, int height, int border, int *right, int *bottom);
-
           int    m_random_number                 (int min_num, int max_num);
          void    m_rotate_point                  (int x, int y, int angle, int *newx, int *newy);
          void    m_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);

@@ -62,6 +62,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
     if (p_current->do_autosave_backup == 0) {
       continue;
     }
+
     if (p_current->ops_since_last_backup != 0) {
       /* make p_current the current page of toplevel */
       s_page_goto (toplevel, p_current);

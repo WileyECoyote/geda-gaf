@@ -349,8 +349,6 @@ void s_page_clear_changed (PageList *list)
 void s_page_delete (GedaToplevel *toplevel, Page *page)
 {
   Page *tmp;
-  char *backup_filename;
-  char *real_filename;
 
 #if DEBUG
   printf("s_page_delete: Freeing page: %s\n", page->filename);
@@ -373,30 +371,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
     s_page_goto (toplevel, page);
   }
 
-  /* Get the real filename and file permissions */
-  real_filename = f_file_follow_symlinks (page->filename, NULL);
-
-  if (real_filename == NULL) {
-    u_log_message (_("s_page_delete: Can't get the real filename of %s."),
-                   page->filename);
-  }
-  else {
-    backup_filename = f_get_autosave_filename (real_filename);
-
-    /* Delete the backup file */
-    if ( (g_file_test (backup_filename, G_FILE_TEST_EXISTS)) &&
-      (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)) )
-    {
-      if (unlink(backup_filename) != 0) {
-        u_log_message(_("s_page_delete: Unable to delete backup file %s."),
-                      backup_filename);
-      }
-    }
-
-    GEDA_FREE (backup_filename);
-  }
-
-  GEDA_FREE(real_filename);
+  f_remove_backup_file(page->filename);
 
   /* Free the selection object */
   GEDA_UNREF( page->selection_list );

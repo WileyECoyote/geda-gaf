@@ -630,3 +630,35 @@ void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
     va_end (argp);
   }
 }
+
+void f_remove_backup_file (const char *filename)
+{
+  char *backup_filename;
+  char *real_filename;
+
+  /* Get the real filename and file permissions */
+  real_filename = f_file_follow_symlinks (filename, NULL);
+
+  if (real_filename == NULL) {
+    u_log_message (_("%s: Can not get the real filename of %s."),
+                      __func__, filename);
+  }
+  else {
+
+    backup_filename = f_get_autosave_filename (real_filename);
+
+    /* Delete the backup file */
+    if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
+       (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
+    {
+      if (unlink(backup_filename) != 0) {
+        u_log_message(_("s_page_delete: Unable to delete backup file %s."),
+                      backup_filename);
+      }
+    }
+
+    GEDA_FREE (backup_filename);
+  }
+
+  GEDA_FREE(real_filename);
+}
