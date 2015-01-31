@@ -335,7 +335,10 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         onumber_str = number_str;
       }
       else if (onumber_str != NULL && number_str != NULL ) {
-        if (strcmp(number_str, onumber_str) != 0) {
+        if (strcmp(number_str, onumber_str) == 0) {
+          onumber_str = NULL;
+        }
+        else {
           changed_something = TRUE;
           onumber_str = number_str;
         }
@@ -346,7 +349,10 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         olabel_str = label_str;
       }
       else if (olabel_str != NULL && label_str != NULL ) {
-        if (strcmp(label_str, olabel_str) != 0) {
+        if (strcmp(label_str, olabel_str) == 0) {
+          olabel_str = NULL;
+        }
+        else {
           changed_something = TRUE;
           olabel_str = label_str;
         }

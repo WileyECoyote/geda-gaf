@@ -1,4 +1,11 @@
-2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    *src/x/x_edit_pin.c: Revised function x_dialog_edit_pin_type_ok
+     to set string label NULL if not changing the label. Also duplicated
+     this logic for the number string but the label string seems to be
+     more problematic, dunno.
+
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
   ** src/iface/i_command.c: Add call to f_remove_backup_file if the
      file name is changed when doing save as to backup files are not

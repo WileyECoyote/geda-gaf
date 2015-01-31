@@ -712,7 +712,7 @@ void o_pin_set_attributes(Object *object, const char *label_str,
     pin->node_type = n_type;
 
     /* pin number */
-    if (geda_pin_set_number(pin, number)) {
+    if (number && geda_pin_set_number(pin, number)) {
       bute = o_attrib_first_attrib_by_name (object, "pinnumber");
       if(bute != NULL) {
 
