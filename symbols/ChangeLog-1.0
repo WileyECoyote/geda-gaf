@@ -1,5 +1,14 @@
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/opamp/: Add Norton amplifiers:
+
+            * LM359-1.sym
+            * LM359-2.sym
+            * LM3900-1.sym
+            * LM3900-2.sym
+
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/comparators: Add generic comparator symbols.
 
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
