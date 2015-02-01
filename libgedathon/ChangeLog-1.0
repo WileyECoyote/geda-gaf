@@ -1,3 +1,8 @@
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gsym-set-font-size.py: Remove superfluous verbage in help
+      text.
+
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/functions.c: Revert back to g_strdup_printf; not linked
