@@ -1,5 +1,12 @@
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/comparators: Cleanup comparator symbols, add common
+      types.
+
+    * linear/opamp: Minor revisions and corrections to opamp symbols
+
+2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/opamp: Completed cleanup of opamp symbols.
 
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>

@@ -35,7 +35,7 @@ T 900 450 5 8 1 1 0 0 1
 pinnumber=5
 T 900 450 5 8 0 1 0 0 1
 pinseq=5
-T 1100 250 9 8 0 1 0 6 1
+T 800 250 9 8 0 1 0 0 1
 pinlabel=OUT
 T 750 450 5 6 0 1 0 0 1
 pintype=out
@@ -81,7 +81,7 @@ slotdef=3:10,9,4,11,8
 T 0 1800 5 10 0 1 0 0 1
 slotdef=4:12,13,4,11,14
 T 0 2400 5 10 0 0 0 0 1
-comment=DigiKey P/N: NJM064D-ND
+documentation=DigiKey P/N: NJM064D-ND
 T 0 3000 5 10 0 0 0 0 1
 use-license=GPLv3
 T 0 2800 5 10 0 0 0 0 1

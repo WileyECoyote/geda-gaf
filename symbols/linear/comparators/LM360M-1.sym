@@ -3,7 +3,7 @@ T 610 2310 5 10 0 0 0 0 1
 author=AutoTron
 L 300 1200 1300 700 3 15 0 0 -1 -1
 T 1200 1100 9 10 1 1 0 0 1
-footprint=TO-99
+footprint=SOIC8
 L 1300 700 300 200 3 15 0 0 -1 -1
 L 300 1200 300 200 3 15 0 0 -1 -1
 V 1008 500 49 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -89,7 +89,7 @@ description=Voltage Comparator
 T 1200 1500 8 10 1 1 0 0 1
 refdes=U?
 T 1200 1300 5 10 1 1 0 0 1
-device=MAC160
+device=LM360M
 T 600 1700 5 10 0 0 0 0 1
 numslots=0
 T 610 2160 5 10 0 0 0 0 1

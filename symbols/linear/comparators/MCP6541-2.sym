@@ -2,7 +2,7 @@ v 20150101 2
 L 200 800 200 0 3 0 0 0 -1 -1
 L 200 800 800 400 3 0 0 0 -1 -1
 T 800 775 5 10 1 1 0 0 1
-device=OPAMP
+device=MCP6541
 L 800 400 200 0 3 0 0 0 -1 -1
 L 300 650 300 550 3 0 0 0 -1 -1
 L 250 600 350 600 3 0 0 0 -1 -1
@@ -37,8 +37,8 @@ T 900 450 5 8 0 1 0 0 1
 pinseq=5
 T 775 275 9 8 0 1 0 0 1
 pinlabel=out
-T 775 275 9 8 0 1 0 0 1
-pintype=out
+T 975 450 9 8 0 1 0 0 1
+pintype=oc
 }
 P 500 600 500 800 1 0 1
 {
@@ -67,9 +67,9 @@ refdes=U?
 T 0 1100 5 10 0 0 0 0 1
 numslots=0
 T 0 1250 5 10 0 0 0 0 1
-description=operational amplifier
+description=Push-Pull Output Sub-Microamp Comparator
 T 0 1400 5 10 0 0 0 0 1
-documentation=operational amplifier
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/21696g.p
 T 0 1550 5 10 0 0 0 0 1
 symversion=0.2
 T 0 1700 5 10 0 0 0 0 1
@@ -81,4 +81,7 @@ author=AutoTron
 T 800 600 9 10 1 1 0 0 1
 footprint=SOIC8
 N 0 200 0 600 4
-
+L 630 460 490 460 3 0 0 0 -1 -1
+L 470 300 550 460 3 0 0 0 -1 -1
+L 410 300 490 460 3 0 0 0 -1 -1
+L 470 300 330 300 3 0 0 0 -1 -1

@@ -3,7 +3,7 @@ T 610 2310 5 10 0 0 0 0 1
 author=AutoTron
 L 300 1200 1300 700 3 15 0 0 -1 -1
 T 1200 1100 9 10 1 1 0 0 1
-footprint=TO-99
+footprint=SOIC8
 L 1300 700 300 200 3 15 0 0 -1 -1
 L 300 1200 300 200 3 15 0 0 -1 -1
 V 1008 500 49 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -24,7 +24,7 @@ T 1065 950 5 8 1 1 0 0 1
 pinnumber=7
 T 1165 950 5 8 0 1 0 0 1
 pinseq=5
-T 890 950 5 8 0 1 0 0 1
+T 840 950 5 8 0 1 0 0 1
 pintype=oc
 T 665 775 9 8 0 1 0 0 1
 pinlabel=out1
@@ -35,7 +35,7 @@ T 1165 350 5 8 1 1 0 0 1
 pinnumber=6
 T 1240 350 5 8 0 1 0 0 1
 pinseq=6
-T 990 350 5 8 0 1 0 0 1
+T 940 350 5 8 0 1 0 0 1
 pintype=oc
 T 815 625 9 8 0 1 0 0 1
 pinlabel=out2
@@ -89,7 +89,7 @@ description=Voltage Comparator
 T 1200 1500 8 10 1 1 0 0 1
 refdes=U?
 T 1200 1300 5 10 1 1 0 0 1
-device=MAC160
+device=LM160M
 T 600 1700 5 10 0 0 0 0 1
 numslots=0
 T 610 2160 5 10 0 0 0 0 1
