@@ -1,4 +1,13 @@
-2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/lineartech/model: Remove ignore on models directory,
+      you never know, somebody may need these. The models are zipped
+      text and do not take up too much space. If we could only embed
+      and unembed models in symbols similar to symbols and pictures
+      in schematics. I guess if there is a will, there's a way, but
+      too little time.
+
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/comparators/models: Add models for:
 
