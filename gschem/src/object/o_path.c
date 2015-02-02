@@ -528,13 +528,13 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     /* Add the New Path object to the page */
     s_page_append_object (toplevel->page_current, new_obj);
     g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-    toplevel->page_current->CHANGED = TRUE;
     o_undo_savestate (w_current, UNDO_ALL);
 
     w_current->rubber_visible = FALSE;
 
     return FALSE;
-  } else {
+  }
+  else {
     /* Leave state as it is and continue path drawing... */
     /* Save the control point coordinates for the next section */
     w_current->third_wx = x2;

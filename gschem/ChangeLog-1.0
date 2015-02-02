@@ -1,3 +1,9 @@
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    *src/object/o_path.c: Remove toplevel->page_current->CHANGED in,
+     is redundant because this done in libgeda when the object is added
+     to the page with s_page_append_object.
+
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     *src/x/x_edit_pin.c: Revised function x_dialog_edit_pin_type_ok
