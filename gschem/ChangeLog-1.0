@@ -1,5 +1,12 @@
 015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_extend.c: Minor revision to function o_extend_object;
+      add call to s_tile_update_object and s_conn_update_object if a Net
+      or Bus was modified. Seem to work without but I think this is the
+      right thing to do.
+
+015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Fix bug: do not zoom to -0 mag if the user
       canceled the dialog, oops.
 

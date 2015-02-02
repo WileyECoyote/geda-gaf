@@ -1886,6 +1886,11 @@ bool o_extend_object (Object *projectile, Object *bounder)
   {
     projectile->line->x[which_end] = point.x;
     projectile->line->y[which_end] = point.y;
+
+    if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
+      s_tile_update_object (projectile);
+      s_conn_update_object (projectile);
+    }
     result = TRUE;
   }
   else {
@@ -1983,6 +1988,12 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
       {
         projectile->line->x[which_end] = point.x;
         projectile->line->y[which_end] = point.y;
+
+        if (projectile->type == OBJ_NET || projectile->type == OBJ_BUS) {
+          s_tile_update_object (projectile);
+          s_conn_update_object (projectile);
+        }
+
         o_invalidate_object(w_current, projectile);
         ret_val = 3;
       }
