@@ -97,17 +97,20 @@ void s_path_moveto (Path *path, double x, double y)
   sections = path->sections;
   num_sections = path->num_sections;
 
-  if (num_sections > 0)
+  if (num_sections > 0) {
     if (sections[num_sections - 1].code == PATH_MOVETO_OPEN) {
       sections[num_sections - 1].x3 = x;
       sections[num_sections - 1].y3 = y;
       return;
     }
+  }
 
   num_sections = path->num_sections++;
 
-  if (num_sections == path->num_sections_max)
+  if (num_sections == path->num_sections_max) {
     path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+  }
+
   sections = path->sections;
   sections[num_sections].code = PATH_MOVETO_OPEN;
   sections[num_sections].x3 = x;
@@ -123,8 +126,9 @@ void s_path_lineto (Path *path, double x, double y)
 
   num_sections = path->num_sections++;
 
-  if (num_sections == path->num_sections_max)
+  if (num_sections == path->num_sections_max) {
     path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+  }
 
   sections = path->sections;
   sections[num_sections].code = PATH_LINETO;

@@ -290,6 +290,7 @@ G_BEGIN_DECLS
 
 /* o_path_basic.c */
        Object   *o_path_new                      (int color, const char *path_string);
+       Object   *o_path_new_from_polygon         (GArray *points,  int color);
        Object   *o_path_new_take_path            (int color, Path *path_data);
        Object   *o_path_copy                     (Object *o_current);
          void    o_path_modify                   (Object *object, int x, int y, int whichone);

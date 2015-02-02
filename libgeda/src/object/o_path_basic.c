@@ -1,5 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
@@ -73,16 +74,73 @@ o_path_new (int color, const char *path_string)
   return new_obj;
 }
 
+/*! \brief Create a New Path Object from an Array of Points
+ *  \par Function Description
+ *  This function creates a new path object using the vertices
+ *  given in the array \a points and sets the color property
+ *  of the object to \a color. This function essentially does
+ *  the oposite of the function s_path_to_polygon.
+ *
+ *  \param [in] points A GArray containing points
+ *  \param [in] color  Color index the path should be set to
+ *
+ *  \return A pointer to the new Path object.
+ */
+Object *o_path_new_from_polygon (GArray *points, int color)
+{
+  Object *new_obj;
+  POINT   first;
+  POINT   point;
+  Path   *path;
+  int     i;
+
+  /* create the object */
+  new_obj = geda_path_new ();
+  path    = GEDA_PATH(new_obj);
+
+  new_obj->color = color;
+
+  path->num_sections     = points->len;
+  path->num_sections_max = path->num_sections + 1;
+
+  path->sections = g_new (PATH_SECTION, path->num_sections);
+
+  point = g_array_index (points, POINT, 0);
+
+  path->sections->code   = PATH_MOVETO;
+  path->sections->x3     = first.x = point.x;
+  path->sections->y3     = first.y = point.y;
+
+  for (i = 1; i < points->len; i++) {
+
+    point = g_array_index (points, POINT, i);
+    PATH_SECTION *section = &path->sections[i];
+
+    section->code   = PATH_LINETO;
+    section->x3     = point.x;
+    section->y3     = point.y;
+  }
+
+  if ((path->sections[i - 1].x3 == first.x) &&
+       path->sections[i - 1].y3 == first.y)
+  {
+    path->sections[i].code = PATH_END;
+  }
+
+  return new_obj;
+}
+
 /*! \brief Create a new path object.
  *  \par Function Description
- *  This function creates and returns a new Object representing a path
- *  using the path shape data stored in \a path_data.  The \a
- *  path_data is subsequently owned by the returned Object.
+ *  This function creates and returns a new Object representing
+ *  a path using the path shape data stored in \a path_data. The
+ *  \a path_data is subsequently owned by the returned Object.
  *
- *  \see o_path_new().
+ *  \sa o_path_new
  *
- *  \param [in]     color        The path color.
- *  \param [in]     path_data    The #Path data structure to use.
+ *  \param [in]     color        The path color
+ *  \param [in]     path_data    The #Path data structure to use
+ *
  *  \return A pointer to the new end of the object list.
  */
 Object*
@@ -313,8 +371,7 @@ char *o_path_save (Object *object)
  *  \param [in]     y         New y coordinate for the control point
  *  \param [in]     whichone  Which control point is being modified
  */
-void o_path_modify (Object *object,
-                    int x, int y, int whichone)
+void o_path_modify (Object *object, int x, int y, int whichone)
 {
   int i;
   int grip_no = 0;
@@ -399,8 +456,8 @@ void o_path_mirror_world (int center_wx, int center_wy, Object *object)
  *
  *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
  *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
- *  \param [in,out]  object         Line Object to rotate.
+ *  \param [in]      angle      Rotation angle in degrees (See note below).
+ *  \param [in,out]  object     Line Object to rotate.
  */
 void o_path_rotate_world (int center_wx, int center_wy, int angle, Object *object)
 {
@@ -474,13 +531,14 @@ void o_path_translate_world (int dx, int dy, Object *object)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief get the position of the first path point
+/*! \brief Get position of the first path point
  *  \par Function Description
  *  This function gets the position of the first point of an path object.
  *
  *  \param [out] x       pointer to the x-position
  *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+ *  \param [in] object   The path object whose position is to be returned
+ *
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_path_get_position (int *x, int *y, Object *object)
@@ -501,14 +559,14 @@ bool o_path_get_position (int *x, int *y, Object *object)
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel   The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
+ *  \param [in] toplevel    The GedaToplevel object
+ *  \param [in] fp          FILE pointer to Postscript document
  *  \param [in] path        The PATH object ot print
- *  \param [in] line_width  PATH Line width.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place PATH Object.
- *  \param [in] origin_y    Page y coordinate to place PATH Object.
+ *  \param [in] line_width  PATH Line width
+ *  \param [in] length      Dashed line length
+ *  \param [in] space       Amount of space between dashes
+ *  \param [in] origin_x    Page x coordinate to place PATH Object
+ *  \param [in] origin_y    Page y coordinate to place PATH Object
  */
 static void o_path_print_solid (GedaToplevel *toplevel, FILE *fp, Path *path,
                                 int line_width, int length, int space,
@@ -583,14 +641,14 @@ static void o_path_print_dotted (GedaToplevel *toplevel, FILE *fp, Path *path,
  *
  *  All dimensions are in mils.
  *
- *  \param [in] toplevel    The GedaToplevel object.
- *  \param [in] fp          FILE pointer to Postscript document.
- *  \param [in] path        The Path object to print.
- *  \param [in] line_width  Path Line width.
- *  \param [in] length      Dashed line length.
- *  \param [in] space       Amount of space between dashes.
- *  \param [in] origin_x    Page x coordinate to place Path Object.
- *  \param [in] origin_y    Page y coordinate to place Path Object.
+ *  \param [in] toplevel    The GedaToplevel object
+ *  \param [in] fp          FILE pointer to Postscript document
+ *  \param [in] path        The Path object to print
+ *  \param [in] line_width  Path Line width
+ *  \param [in] length      Dashed line length
+ *  \param [in] space       Amount of space between dashes
+ *  \param [in] origin_x    Page x coordinate to place Path Object
+ *  \param [in] origin_y    Page y coordinate to place Path Object
  */
 static void o_path_print_dashed (GedaToplevel *toplevel, FILE *fp, Path *path,
                                  int line_width, int length, int space,
@@ -806,11 +864,11 @@ static void o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, Path *path,
  *  parameter to a Postscript document.
  *  The Postscript document is descibed by the file pointer <B>fp</B>.
  *
- *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to Postscript document.
- *  \param [in] o_current  Path Object to write to document.
- *  \param [in] origin_x   Page x coordinate to place Path Object.
- *  \param [in] origin_y   Page y coordinate to place Path Object.
+ *  \param [in] toplevel   GedaToplevel object
+ *  \param [in] fp         FILE pointer to Postscript document
+ *  \param [in] o_current  Path Object to write to document
+ *  \param [in] origin_x   Page x coordinate to place Path Object
+ *  \param [in] origin_y   Page y coordinate to place Path Object
  */
 void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
                   int origin_x, int origin_y)
@@ -821,6 +879,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   FILL_FUNC fill_func = NULL;
 
   g_return_if_fail(GEDA_IS_PATH(o_current));
+
   /*! \note
    *  Depending on the type of the line for this particular path, the
    *  appropriate function is chosen among #o_path_print_solid(),
@@ -897,8 +956,8 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    *  avoided as it leads to an endless loop in most of the called functions.
-   *  In such a case, the path is printed filled. Unused parameters for each of
-   *  these functions are set to -1 or any passive value.
+   *  In such a case, the path is printed filled. Unused parameters for each
+   *  of these functions are set to -1 or any passive value.
    */
   if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
     fill_width = o_current->fill_options->fill_width;
@@ -951,14 +1010,15 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 }
 
 /*! \brief Calculates the distance between the given point and the closest
- *  point on the given path segment.
+ *         point on the given path segment.
  *
- *  \param [in] object       The path Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
- *  \param [in] force_solid  If true, force treating the object as solid.
- *  \return The shortest distance from the object to the point.  With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ *  \param [in] object       The path Object
+ *  \param [in] x            The x coordinate of the given point
+ *  \param [in] y            The y coordinate of the given point
+ *  \param [in] force_solid  If true, force treating the object as solid
+ *
+ *  \return The shortest distance from the object to the point. With an
+ *          invalid parameter, this function returns G_MAXDOUBLE.
  */
 double o_path_shortest_distance (Object *object, int x, int y, int force_solid)
 {

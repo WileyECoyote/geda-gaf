@@ -1,3 +1,7 @@
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path_basic.c: Add new function o_path_new_from_polygon
+
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin_basic.c: Revised o_pin_set_attributes to skip label
