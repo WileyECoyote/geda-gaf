@@ -1,15 +1,20 @@
+015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Fix bug: do not zoom to -0 mag if the user
+      canceled the dialog, oops.
+
 2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    *src/object/o_path.c: Remove toplevel->page_current->CHANGED in,
-     is redundant because this done in libgeda when the object is added
-     to the page with s_page_append_object.
+    * src/object/o_path.c: Remove toplevel->page_current->CHANGED in,
+      is redundant because this done in libgeda when the object is added
+      to the page with s_page_append_object.
 
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    *src/x/x_edit_pin.c: Revised function x_dialog_edit_pin_type_ok
-     to set string label NULL if not changing the label. Also duplicated
-     this logic for the number string but the label string seems to be
-     more problematic, dunno.
+    * src/x/x_edit_pin.c: Revised function x_dialog_edit_pin_type_ok
+      to set string label NULL if not changing the label. Also duplicated
+      this logic for the number string but the label string seems to be
+      more problematic, dunno.
 
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -19,8 +24,8 @@
 
 2015-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    *src/iface/i_vars.c: Add (save) toplevel variable auto_save_interval
-     to new configuration system.
+    * src/iface/i_vars.c: Add (save) toplevel variable auto_save_interval
+      to new configuration system.
 
     * src/x/x_settings.c: Add restore toplevel variable auto_save_interval.
 

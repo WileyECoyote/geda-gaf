@@ -1778,10 +1778,14 @@ COMMAND (do_zoom_to_mag)
 
   mag = geda_dialog_get_real(_("Zoom Mag"), _("Specify new zoom:"));
 
-  i_zoom_world_specify(w_current, mag, x, y, CMD_WHO(do_zoom_to_mag));
+  if (mag != -0) { /* If user did not cancel */
 
-  if (w_current->undo_panzoom)
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+    i_zoom_world_specify(w_current, mag, x, y, CMD_WHO(do_zoom_to_mag));
+
+    if (w_current->undo_panzoom) {
+      o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+    }
+  }
   EXIT_COMMAND(do_zoom_to_mag);
 }
 
