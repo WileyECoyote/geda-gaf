@@ -1,5 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
@@ -95,11 +96,12 @@ pre_object_removed (Page *page, Object *object)
     o_notify_emit_pre_change (object);
 
     /* Clear object parent pointer */
-    #ifdef DEBUG
+#ifdef DEBUG
     if (object->page == NULL) {
       g_critical ("Object %p has NULL parent page!\n", object);
     }
-    #endif
+#endif
+
     object->page = NULL;
 
     /* Clear page's object_lastplace pointer if set */
@@ -113,8 +115,9 @@ pre_object_removed (Page *page, Object *object)
     /* Remove object from tile system */
     s_tile_remove_object (object);
   }
-  else
+  else {
     BUG_MSG("Object is not a GedaObject");
+  }
 }
 
 static Page *
