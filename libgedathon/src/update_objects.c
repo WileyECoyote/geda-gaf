@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedathon - gEDA's Python API Extension library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -167,7 +167,6 @@ PyGeda_update_path(Object *object, GedaObject *py_object )
 
   if (py_path->dirty_string) {
     str = PyString_AsString(py_path->path_string);
-   fprintf(stderr, "yelp the string <%s> is dirty", str);
   }
 
   object->fill_options->fill_type   = py_path->fill_type;
