@@ -1,11 +1,18 @@
-015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Use geda_combo_box_get_active instead of the
+      model iterator in x_dialog_edit_text_ok() to retrieve the alignment,
+      so we get a value of -1 unless the user selected an item from the
+      drop-down menu to over-ride multi-select with different alignments.
+
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_extend.c: Minor revision to function o_extend_object;
       add call to s_tile_update_object and s_conn_update_object if a Net
       or Bus was modified. Seem to work without but I think this is the
       right thing to do.
 
-015-02-01 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Fix bug: do not zoom to -0 mag if the user
       canceled the dialog, oops.

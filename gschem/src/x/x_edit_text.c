@@ -80,7 +80,7 @@ static WidgetStringData DialogStrings[] = {
  *
  */
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
-                                                 Object *object)
+                                                 Object         *object)
 {
   GtkWidget     *ThisDialog;
   GtkWidget     *widget;
@@ -270,7 +270,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
   GtkTreeIter    iter;
-  GtkTreeModel  *model;
+//GtkTreeModel  *model;
   GtkWidget     *widget;
   GValue         value = {0};
 
@@ -285,6 +285,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   int            text_angle;
 
   ThisDialog = w_current->tewindow;
+
   /* Retrieve values from the object that was passed */
   string         = object->text->string;
   text_align     = object->text->alignment;
@@ -324,11 +325,13 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   { /* Text Alignment */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
-
+/*
     if (geda_combo_widget_get_active_iter(widget, &iter)) {
       model = geda_combo_box_get_model((GedaComboBox*) widget);
       gtk_tree_model_get(model, &iter, 1, &text_align, -1);
     }
+*/
+    text_align = geda_combo_box_get_active((GedaComboBox*)widget);
   }
 
   { /* Text Rotation */
