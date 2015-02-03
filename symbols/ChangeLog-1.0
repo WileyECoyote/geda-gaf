@@ -1,5 +1,9 @@
 2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/B230LA-1.sym: Add new diode symbol, 30V 2A Schottky.
+
+2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/1N4006-1.sym: Add new symbol, might was well have the whole set.
 
 2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
