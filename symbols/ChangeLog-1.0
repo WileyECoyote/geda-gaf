@@ -1,3 +1,7 @@
+2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/1N4007-1.sym: Update symbol with correct footprint; DO-41
+
 2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/lineartech/model: Remove ignore on models directory,
