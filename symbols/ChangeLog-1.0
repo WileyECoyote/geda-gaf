@@ -1,5 +1,10 @@
 2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/1N400x-1.sym: Update with correct footprint; DO-41, add voltage
+      set attribute colors, alignment, positions, basically a revamp.
+
+2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/1N4148-1.sym: Update symbol with correct footprint; DO-35
 
     * diode/1N914-1.sym Update symbol with correct footprint; DO-35
