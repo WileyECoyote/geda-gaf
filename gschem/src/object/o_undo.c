@@ -29,7 +29,8 @@
  *  data. A pre-operative system scheduled for 2.0.11 has been pulled-in
  *  and is now scheduled for the 2.0.10 release.
  *
- *  \remarks Just band-aid until new system implemented
+ *  \remarks Just band-aid until new system implemented. WEH band-aid seems
+ *           to work well, maybe push new system back out to 2.0.11
  */
 
 #include <gschem.h>
@@ -147,11 +148,10 @@ void o_undo_finalize(void)
  *  \par Function Description
  *   This is a multipurpose function with two main purposes:
  *
- *   1. o_undo_savestate is part of the automatic backup system
- *      In this role, calls o_save_auto_backup to perform any
- *      required backups. This is done first. Note that o_auto
- *      save_backups could perform backups on any number of
- *      files before returning.
+ *   1. o_undo_savestate is part of the automatic backup system. In this
+ *      role, calls o_save_auto_backup to perform any required backups.
+ *      This is done first. Note that o_auto_save_backups could perform
+ *      backups on any number of files before returning.
  *
  *      \note WEH: o_save_auto_backup uses o_save, same as us.
  *
@@ -160,12 +160,12 @@ void o_undo_finalize(void)
  *      o_save_auto_backup, nor should they check. o_undo_savestate
  *      blindly calls o_save_auto_backup, which backs up all files flaged
  *      by timer s_page_autosave with do_autosave_backup AND marked here
- *      with ops_since_last_backup if interval is none zero, but only after
+ *      with ops_since_last_backup if interval is non zero, but only after
  *      the call to o_save_auto_backup.
- *      Sounds hokey huh? The scheme works because the change was just made
+ *      Sounds hokey huh? The scheme works because a change was just made
  *      or we wouldn't be here, the file will be flaged the next time the
  *      timer counts down, and backed-up the next time a change is made,
- *      i mean o_undo_savestate is called. Any files flaged before the
+ *      that is, o_undo_savestate is called. Any files flaged before the
  *      auto_save_interval setting is changed still get backed-up. So is
  *      not all bad but what if Wiley makes an important change and then
  *      goes for donuts and coffee and forgets to save and comes back to
