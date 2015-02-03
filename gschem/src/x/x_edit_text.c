@@ -270,10 +270,9 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   GtkWidget     *ThisDialog;
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
-//  GtkTreeIter    iter;
-//GtkTreeModel  *model;
+  GtkTreeIter    iter;
+  GtkTreeModel  *model;
   GtkWidget     *widget;
-//GValue         value = {0};
 
   bool           has_value;
 
@@ -318,24 +317,23 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   { /* Text Color */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
     text_color = geda_combo_box_get_active((GedaComboBox*)widget);
-/*
-    if (geda_combo_widget_get_active_iter(widget, &iter)) {
-      gtk_tree_model_get_value (geda_combo_box_get_model((GedaComboBox*) widget),
-                               &iter, 1, &value);
-      text_color = g_value_get_int (&value);
+    if (text_color > 0) {
+      if (geda_combo_widget_get_active_iter(widget, &iter)) {
+        model = geda_combo_box_get_model((GedaComboBox*) widget);
+        gtk_tree_model_get(model, &iter, 1, &text_color, -1);
+      }
     }
-*/
   }
 
   { /* Text Alignment */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
-/*
-    if (geda_combo_widget_get_active_iter(widget, &iter)) {
-      model = geda_combo_box_get_model((GedaComboBox*) widget);
-      gtk_tree_model_get(model, &iter, 1, &text_align, -1);
-    }
-*/
     text_align = geda_combo_box_get_active((GedaComboBox*)widget);
+    if (text_align > 0) {
+      if (geda_combo_widget_get_active_iter(widget, &iter)) {
+        model = geda_combo_box_get_model((GedaComboBox*) widget);
+        gtk_tree_model_get(model, &iter, 1, &text_align, -1);
+      }
+    }
   }
 
   { /* Text Rotation */

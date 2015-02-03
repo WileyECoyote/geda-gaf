@@ -1,3 +1,9 @@
+2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Redo both text_color and text_align; retrieve
+      with geda_combo_box_get_active and if was set then get the model
+      and tree iter. Eliminate g_value_get_int.
+
 2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_text.c: Use geda_combo_widget_set_active to and
