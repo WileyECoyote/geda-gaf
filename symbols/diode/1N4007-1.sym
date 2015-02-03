@@ -35,7 +35,7 @@ T 300 1200 5 10 0 0 0 0 1
 numslots=0
 T 300 1000 5 10 0 0 0 0 1
 description=Diode, 1000 Volt
-T 200 0 5 10 1 1 0 0 1
+T 700 50 5 10 1 1 0 0 1
 value=1N4007
 T 300 2000 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
