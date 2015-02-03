@@ -43,5 +43,5 @@ T 200 1900 9 10 0 0 0 0 1
 dist-license=GPL3
 T 200 1700 9 10 0 0 0 0 1
 use-license=unrestricted
-T 200 1100 9 10 1 0 0 0 1
+T 200 1100 9 10 0 0 0 0 1
 comment=General purpose, small signal, 250V, 50ns
