@@ -182,6 +182,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
         geda_combo_widget_set_active (widget, text_color);
       }
       else {
+        geda_combo_widget_set_active (widget, -1);
         gtk_widget_modify_fg (widget, GTK_STATE_NORMAL, &gray);
       }
     }
@@ -269,10 +270,10 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   GtkWidget     *ThisDialog;
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
-  GtkTreeIter    iter;
+//  GtkTreeIter    iter;
 //GtkTreeModel  *model;
   GtkWidget     *widget;
-  GValue         value = {0};
+//GValue         value = {0};
 
   bool           has_value;
 
@@ -316,11 +317,14 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   { /* Text Color */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
+    text_color = geda_combo_box_get_active((GedaComboBox*)widget);
+/*
     if (geda_combo_widget_get_active_iter(widget, &iter)) {
       gtk_tree_model_get_value (geda_combo_box_get_model((GedaComboBox*) widget),
                                &iter, 1, &value);
       text_color = g_value_get_int (&value);
     }
+*/
   }
 
   { /* Text Alignment */

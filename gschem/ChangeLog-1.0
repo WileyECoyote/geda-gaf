@@ -1,3 +1,8 @@
+2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Use geda_combo_widget_set_active to and
+      geda_combo_box_get_active to set and retrieve text_color.
+
 2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_text.c: Use geda_combo_box_get_active instead of the
