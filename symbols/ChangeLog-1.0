@@ -1,4 +1,8 @@
-2015-02-02 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/1N4006-1.sym: Add new symbol, might was well have the whole set.
+
+2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/1N400x-1.sym: Update with correct footprint; DO-41, add voltage
       set attribute colors, alignment, positions, basically a revamp.
