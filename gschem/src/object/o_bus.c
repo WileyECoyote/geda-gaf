@@ -158,10 +158,12 @@ void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Bus objects
  *  \par Function Description
+ *   Get coordinates from top-level and invalidate the bounding
+ *   region of a Bus object.
  *
+ *  \param [in] w_current  The GschemToplevel object
  */
 void o_bus_invalidate_rubber (GschemToplevel *w_current)
 {
