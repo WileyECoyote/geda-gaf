@@ -28,10 +28,10 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Circle objects
  *  \par Function Description
- *
+ *   Retrieves coordinates from top-level and invalidate the bounding
+ *   region of a Circle object.
  */
 void o_circle_invalidate_rubber (GschemToplevel *w_current)
 {
