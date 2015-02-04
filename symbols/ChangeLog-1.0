@@ -1,5 +1,9 @@
 2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/BQ24030-1.sym: Add new symbol for single-cell integrated charger
+
+2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/B240A-1.sym: Add new diode symbol, 40V 2A Schottky
 
 2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
