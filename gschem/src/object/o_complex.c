@@ -30,9 +30,11 @@
 #include <geda_file_chooser.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Export Complex to symbol file
  *  \par Function Description
+ *  This function is provided to allow user to export embeded complexes
+ *  but is not restricted to embeded an object, though it may not make
+ *  sense to export a symbol that already exist as a file.
  *
  */
 void o_complex_export(GschemToplevel *w_current, Object *o_current)
@@ -67,10 +69,11 @@ void o_complex_export(GschemToplevel *w_current, Object *o_current)
   gtk_widget_destroy (dialog);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Prepare for Placement of New Complex Object
  *
+ *  \par Function Description
+ *  Creates a new Complex object and adds the object to #Current_PlaceList
+ *  after ensuring the place list is empty.
  */
 void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
@@ -101,11 +104,10 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
     GEDA_FREE (buffer);
 
     if (err) {
-      /* If an error occurs here, we can assume that the preview also has failed to load,
-         and the error message is displayed there. We therefore ignore this error, but
-         end the component insertion.
-         */
-
+      /* If an error occurs here, we can assume that the preview also has
+       * failed to load and the error message is displayed there. Therefore,
+       * we ignore this error, but end the component insertion.
+       */
       g_error_free(err);
       i_status_set_state (w_current, SELECT);
       return;
