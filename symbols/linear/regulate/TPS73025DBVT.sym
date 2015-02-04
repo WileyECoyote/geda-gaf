@@ -1,10 +1,10 @@
-v 20130414 2
+v 20150101 2
 B 300 300 900 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 900 300 900 1 0 0
 {
 T 0 900 5 10 0 1 0 2 1
 pintype=pas
-T 400 900 5 10 1 1 0 0 1
+T 400 900 9 10 1 1 0 0 1
 pinlabel=IN
 T 200 950 5 10 1 1 0 6 1
 pinnumber=1
@@ -15,7 +15,7 @@ P 800 0 800 300 1 0 0
 {
 T 800 0 5 10 0 1 0 6 1
 pintype=pas
-T 800 350 5 10 1 1 0 3 1
+T 800 350 9 10 1 1 0 3 1
 pinlabel=GND
 T 900 200 5 8 1 1 0 2 1
 pinnumber=2
@@ -26,7 +26,7 @@ P 0 500 300 500 1 0 0
 {
 T 0 500 5 10 0 1 0 2 1
 pintype=pas
-T 400 500 5 10 1 1 0 0 1
+T 400 500 9 10 1 1 0 0 1
 pinlabel=EN
 T 200 550 5 10 1 1 0 6 1
 pinnumber=3
@@ -37,7 +37,7 @@ P 1500 500 1200 500 1 0 0
 {
 T 1500 500 5 8 0 1 0 0 1
 pintype=pas
-T 1150 500 5 10 1 1 0 6 1
+T 1150 500 9 10 1 1 0 6 1
 pinlabel=NR
 T 1300 550 5 8 1 1 0 0 1
 pinnumber=4
@@ -48,20 +48,20 @@ P 1500 900 1200 900 1 0 0
 {
 T 1500 900 5 8 0 1 0 0 1
 pintype=pas
-T 1150 900 5 10 1 1 0 6 1
+T 1150 900 9 10 1 1 0 6 1
 pinlabel=OUT
 T 1300 950 5 8 1 1 0 0 1
 pinnumber=5
 T 1300 950 5 8 0 1 0 0 1
 pinseq=5
 }
-T 1500 1250 8 10 1 1 180 0 1
+T 300 1600 8 10 1 1 0 0 1
 refdes=U?
-T 200 1450 8 10 0 0 0 0 1
+T 300 1200 9 10 1 1 0 0 1
 footprint=SOT25-2
-T 200 1650 8 10 0 0 0 0 1
+T 300 1400 5 10 1 1 0 0 1
 device=TPS73025DBVT
-T 200 1250 8 10 0 0 0 0 1
-description=low-dropout low-power linear voltage regulator 
-T 200 1800 9 10 0 0 0 0 1
+T 100 1800 8 10 0 0 0 0 1
+description=Low-power LDO Voltage Regulator 
+T 100 2000 9 10 0 0 0 0 1
 numslots=0
