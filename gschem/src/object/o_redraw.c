@@ -31,15 +31,10 @@
 
 #define INVALIDATE_MARGIN 1
 
-/*! \todo Lots of Gross code... needs lots of cleanup - mainly
- *        readability issues
- */
-
-
 /*! \brief Function Clean State - if drawing action in-progress
  *  \par Function Description
  *  This function is necessary to make jumps between event_states.
- *  If we are inside an drawing action that created something on the dc,
+ *  If inside a drawing action that created something on the screen,
  *  e.g. if we are drawing a box and then jump to line drawing without
  *  leaving the box drawing mode, there will remain some rubberbands on
  *  the screen. Usually a intermediate select state would clean (redraw)
@@ -146,13 +141,19 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Redraw a rectangular region of the drawing area
  *  \par Function Description
+ *  Main drawing routine for gschem. This procedure is not normally used
+ *  to draw the temporary "rubber" object during event motions. Objects
+ *  are passed to the Renderer in 3 passes; First for non selected objects,
+ *  secondly, for cues and markers and finally selected object and this has
+ *  the effect of having the selected object in the foreground while
+ *  minimizing obstruction of cues and markers. Any "rubber" object that
+ *  need to be draw are handled afterwards by calling the corresponding
+ *  "draw_rubber" handler.
  *
  */
-void
-o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
+void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
