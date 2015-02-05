@@ -197,10 +197,10 @@ void o_edit_rotate_world(GschemToplevel *w_current,
                            int centerx, int centery, int angle, GList *list)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object   *o_current;
-  GList    *o_iter;
+  Object       *o_current;
+  GList        *o_iter;
 
-  /* this is okay if you just hit rotate and have nothing selected */
+  /* Is okay if user just hits rotate and has nothing selected */
   if (list == NULL) {
     w_current->inside_action = 0;
     i_status_set_state(w_current, SELECT);
@@ -215,7 +215,6 @@ void o_edit_rotate_world(GschemToplevel *w_current,
    */
   for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
     o_current = o_iter->data;
-
     s_conn_remove_object (o_current);
   }
 
@@ -227,7 +226,6 @@ void o_edit_rotate_world(GschemToplevel *w_current,
    */
   for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
     o_current = o_iter->data;
-
     s_conn_update_object (o_current);
   }
 
