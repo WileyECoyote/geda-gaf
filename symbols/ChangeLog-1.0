@@ -1,5 +1,9 @@
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/inductor/coil-1.sym: Fix typo incuctor
+
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/: Minor revisions, change RESET pin type open collector:
 
             * LM3724-1.sym

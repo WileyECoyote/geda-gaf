@@ -29,7 +29,7 @@ device=COIL
 T 200 200 8 10 1 1 0 0 1
 refdes=L?
 T 200 1000 5 10 0 0 0 0 1
-description=incuctor
+description=inductor
 T 200 800 5 10 0 0 0 0 1
 numslots=0
 T 200 600 5 10 0 0 0 0 1
