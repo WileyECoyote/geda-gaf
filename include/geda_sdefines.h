@@ -30,15 +30,7 @@
  *   \ingroup (geda-globals)
  */
 
-#ifdef _WIN32
-#  define DEFAULT_FONT_NAME          "Arial"
-#else
-#  if HAVE_XFT
-#    define DEFAULT_FONT_NAME        "Ubuntu-Bold"
-#  else
-#    define  DEFAULT_FONT_NAME       "Bitstream Charter"
-#  endif
-#endif
+#define DEFAULT_FONT_NAME          "Arial"
 
 /*!
  *  \def SCHEMATIC_FILE_SUFFIX      File extension characters for Schematic
