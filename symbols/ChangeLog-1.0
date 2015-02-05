@@ -1,4 +1,8 @@
-2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * network/TS6121C.sym: Clean up symbol
+
+2015-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/BQ24030-1.sym: Add new symbol for single-cell integrated charger
 
