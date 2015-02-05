@@ -1,6 +1,13 @@
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/: Add symbols:
+    * ti/: Add symbols for active LOW reset:
+
+            * LM3722-1.sym
+            * LM3722-2.sym
+
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add symbols for active high reset:
 
             * LM3723-1.sym
             * LM3723-2.sym
