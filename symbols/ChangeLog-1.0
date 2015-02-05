@@ -1,5 +1,12 @@
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/: Minor revisions, change RESET pin type open collector:
+
+            * LM3724-1.sym
+            * LM3724-2.sym
+
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/: Add symbols for active LOW reset:
 
             * LM3722-1.sym
