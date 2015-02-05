@@ -1,3 +1,10 @@
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add symbols:
+
+            * LM3723-1.sym
+            * LM3723-2.sym
+
 2015-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/TS6121C.sym: Clean up symbol
