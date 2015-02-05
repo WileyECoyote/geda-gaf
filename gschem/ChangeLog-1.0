@@ -1,3 +1,8 @@
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/objet/o_line.c : Update Doxygen comments, there are no more todo
+      tags in this file.
+
 2015-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_text.c: Redo both text_color and text_align; retrieve

@@ -28,9 +28,12 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Line objects
  *  \par Function Description
+ *   Get coordinates from top-level and invalidate the bounding
+ *   region of a Line object.
+ *
+ *  \param [in] w_current  The GschemToplevel object
  */
 void o_line_invalidate_rubber (GschemToplevel *w_current)
 {
