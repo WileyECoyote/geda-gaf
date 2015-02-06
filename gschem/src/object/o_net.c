@@ -49,7 +49,6 @@
 #define QUADRANT3  0x04
 #define QUADRANT4  0x08
 
-
 /*! \brief Reset all variables used for net drawing
  *  \par Function Description
  *  This function resets all variables in GschemToplevel that are used
@@ -230,7 +229,7 @@ void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
       int left, top, right, bottom;
       o_current = (Object*) iter2->data;
 
-      if (!o_get_world_bounds(o_current, &left, &top, &right, &bottom) ||
+      if (!o_get_bounds(o_current, &left, &top, &right, &bottom) ||
         !visible (w_current, left, top, right, bottom))
       {
         continue; /* skip invisible objects */
@@ -580,7 +579,7 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
 /*! \brief erase and redraw the rubber lines when drawing a net
  *  \par Function Description
- *  This function draws the rubbernet lines when drawing a net.
+ *  This function draws the rubber net lines when drawing a net.
  */
 void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -693,11 +692,11 @@ void o_net_draw_rubber(GschemToplevel *w_current )
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, size, -1, -1);
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Net objects
  *  \par Function Description
- *
+ *   Get coordinates from top-level and invalidate the bounding
+ *   region of a Net object. The bounding region is compensated
+ *   for line width and grips.
  */
 void o_net_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -717,8 +716,8 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy,
                  &second_x, &second_y);
 
-  size = o_style_get_net_width(toplevel);
-  size = max (size, 0);
+  size  = o_style_get_net_width(toplevel);
+  size  = max (size, 0);
   bloat = size / 2;
 
   if (w_current->magnetic_net_mode) {
@@ -749,7 +748,7 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
 
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Add Buss Ripper
  *  \par Function Description
  *
  */
