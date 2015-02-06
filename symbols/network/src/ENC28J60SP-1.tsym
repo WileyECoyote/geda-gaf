@@ -1,0 +1,86 @@
+# This is the template file for creating symbols with tragesym
+# every line starting with '#' is a comment line.
+# save it as text file with tab separated cells and start tragesym
+
+[options]
+# wordswap swaps labels if the pin is on the right side an looks like this:
+#   ""PB1 (CLK)"". That's useful for micro controller port labels"
+# rotate_labels rotates the pintext of top and bottom pins
+#   this is useful for large symbols like FPGAs with more than 100 pins
+# sort_labels will sort the pins by it's labels
+#   useful for address ports	 busses	 ...
+wordswap	yes
+rotate_labels	yes
+sort_labels	no
+generate_pinseq	yes
+sym_width	3400
+pinwidthvertical	400
+pinwidthhorizontal	400
+
+[geda_attr]
+# name will be printed in the top of the symbol
+# if you have a device with slots	 you'll have to use slot= and slotdef=
+# use comment= if there are special information you want to add
+version	20060113 1
+name	ENC28J60
+device	ENC28J60
+refdes	U?
+footprint	TSSOP28
+description  Ethernet controller
+documentation
+author
+numslots	0
+dist-license
+use-license
+#slot	1
+#slotdef	1:
+#slotdef	2:
+#slotdef	3:
+#slotdef	4:
+#comment
+#comment
+#comment
+
+[pins]
+# tabseparated list of pin descriptions
+#
+# pinnr is the physical number of the pin
+# seq is the pinseq= attribute	 leave it blank if it doesn't matter
+# type can be (in	 out	 io	 oc	 oe	 pas	 tp	 tri	 clk	 pwr)
+# style can be (line	dot	clk	dotclk	none). none if only want to add a net
+# posit. can be (l	r	t	b) or empty for nets
+# net specifies the name of the net. Vcc or GND for example.
+# label represents the pinlabel.
+#	"negation lines can be added with ""\_"" example: \_enable\_ "
+#	"if you want to write a ""\"" use ""\\"" as escape sequence"
+#
+#pinnr	seq	type	style	posit.	net	label
+1		pwr	line	t		VCAP
+2		pwr	line	b		VSS
+3		out	line	l		CLKOUT
+4		out	line	l		\_INT\_
+5		out	line	l		\_WOL\_
+6		out	line	l		SO
+7		in	line	l		SI
+8		in	line	l		SCK
+9		in	line	l		\_CS\_
+10		in	line	l		\_RESET\_
+11		pwr	line	b		VSSRX
+
+28		pwr	line	t		VDD
+27		out	line	r		LEDA
+26		out	line	r		LEDB
+25		pwr	line	t		VDDOSC
+24		out	line	r		OSC2
+23		in	line	r		OSC1
+22		pwr	line	b		VSSOSC
+21		pwr	line	b		VSSPLL
+20		pwr	line	t		VDDPLL
+19		pwr	line	t		VDDRX
+18		pwr	line	b		VSSTX
+17		pwr	line	r		TPOUT+
+16		pwr	line	r		TPOUT-
+12		in	line	r		TPIN-
+13		in	line	r		TPIN+
+14		in	line	r		RBIAS
+15		pwr	line	t		VDDTX
