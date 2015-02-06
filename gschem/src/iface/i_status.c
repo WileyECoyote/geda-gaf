@@ -192,7 +192,7 @@ static const char *i_status_string(GschemToplevel *w_current)
     case EXTEND:
       return _("Select Projectiles");
     case ENDEXTEND:
-      return _("Select Boundary");
+      return _("Select Object");
     case DRAWPICTURE:
     case ENDPICTURE:
       return _("Picture Mode");

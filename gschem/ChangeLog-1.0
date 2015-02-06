@@ -1,5 +1,10 @@
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_extend.c: In function o_extend_hot, if nothing done
+      then call o_extend_interrogate to decide what to do next.
+
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/objet/o_line.c : Update Doxygen comments, there are no more todo
       tags in this file.
 

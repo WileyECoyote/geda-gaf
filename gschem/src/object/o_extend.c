@@ -2126,7 +2126,6 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
     w_current->second_wx     = x;
     w_current->second_wy     = y;
-    w_current->inside_action = TRUE;
 
     if (count == 1) {
 
@@ -2185,7 +2184,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
     Current_Page->CHANGED = 1;
     o_undo_savestate (w_current, UNDO_ALL);
   }
-  w_current->inside_action = FALSE;
+  w_current->inside_action = TRUE;
 
   return (status & 2);
 }
@@ -2218,8 +2217,6 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
   bounder     = o_extend_get_bounder(object_list, NULL);
 
   if (bounder) {
-
-    w_current->inside_action = FALSE;
 
     if (count == 2) {
 
@@ -2283,14 +2280,20 @@ void o_extend_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
   if (projectiles) {
     w_current->second_wx     = x;
     w_current->second_wy     = y;
-    w_current->inside_action = TRUE;
     status = o_extend_blind_list(w_current, projectiles);
-    w_current->inside_action = FALSE;
     g_list_free(projectiles);
     if (status) {
       Current_Page->CHANGED = 1;
       o_undo_savestate (w_current, UNDO_ALL);
     }
+  }
+  else {
+    status = 0;
+  }
+
+  if (!status) {
+    status = o_extend_interrogate (w_current, object_list);
+    i_status_set_state(w_current, status);
   }
 }
 
