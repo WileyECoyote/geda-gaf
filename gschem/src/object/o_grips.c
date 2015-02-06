@@ -1186,12 +1186,12 @@ o_grips_end_arc(GschemToplevel *w_current, Object *o_current)
   o_arc_modify(o_current, arg1, arg2, w_current->which_grip);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief End process of modifying box object with grip.
+/*! \brief End process of modifying box object with grip
  *  \par Function Description
+ *   Validates dimensions of the box before modifications are made.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] o_current  Box Object to end modification on.
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] o_current  Box Object to end modification on
  */
 static void
 o_grips_end_box(GschemToplevel *w_current, Object *o_current)
@@ -1201,9 +1201,7 @@ o_grips_end_box(GschemToplevel *w_current, Object *o_current)
   box_width  = GET_BOX_WIDTH (w_current);
   box_height = GET_BOX_HEIGHT(w_current);
 
-  /* don't allow zero width/height boxes
-   * this ends the box drawing behavior
-   * we want this? hack */
+  /* Check for invalid input: zero width/height boxes are not allowed */
   if ((box_width == 0) || (box_height == 0)) {
     o_box_invalidate_rubber (w_current);
     o_invalidate_object (w_current, o_current);
@@ -1213,9 +1211,10 @@ o_grips_end_box(GschemToplevel *w_current, Object *o_current)
   o_box_modify(o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief End process of modifying path object with grip.
+/*! \brief End process of modifying path object with a grip point
  *  \par Function Description
+ *   This function just call the cooresponding handler in the o_path
+ *   module.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture Object to end modification on.
@@ -1226,9 +1225,10 @@ o_grips_end_path(GschemToplevel *w_current, Object *o_current)
   o_path_modify (o_current, w_current->second_wx, w_current->second_wy, w_current->which_grip);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief End process of modifying picture object with grip.
+/*! \brief End process of modifying picture object with grip.
  *  \par Function Description
+ *   Validates dimensions of a picture object before invalidating the
+ *   new rectangle region occupied by the picture object.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture Object to end modification on.
@@ -1240,7 +1240,7 @@ o_grips_end_picture(GschemToplevel *w_current, Object *o_current)
   int  height  = GET_PICTURE_HEIGHT(w_current);
   bool modified;
 
-  /* don't allow zero width/height pictures this ends the picture drawing */
+  /* Check for invalid input: zero width/height pictures are not allowed */
   if ((!width) || (!height)) {
     o_picture_invalidate_rubber (w_current);
     o_invalidate_object (w_current, o_current);
