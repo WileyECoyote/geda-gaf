@@ -125,11 +125,11 @@ G_BEGIN_DECLS
 
 /* o_arc_basic.c */
        Object   *o_arc_new                       (int color, int x, int y, int radius, int start_angle, int arc_sweep);
-       Object   *o_arc_copy                      (Object *o_current);
+       Object   *o_arc_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+         void    o_arc_mirror                    (Object *object, int center_x, int center_y);
          void    o_arc_modify                    (Object *object, int x, int y, int whichone);
-         void    o_arc_translate_world           (int dx, int dy, Object *object);
-         void    o_arc_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
-         void    o_arc_mirror_world              (int center_wx, int center_wy, Object *object);
+         void    o_arc_rotate                    (Object *object, int center_x, int center_y, int angle);
+         void    o_arc_translate                 (Object *object, int dx, int dy);
 
 /* o_attrib.c */
          void    o_attrib_add                              (Object *object, Object *item);
@@ -165,51 +165,52 @@ G_BEGIN_DECLS
                                                   const int size, const char *name, GError **err);
         GList   *o_read                          (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
          void    o_scale                         (GList *list, int x_scale, int y_scale);
-
-       Object   *o_object_copy                   (Object *selected);
-         void    o_translate_world               (int dx, int dy, Object *object);
-         void    o_rotate_world                  (int center_wx, int center_wy, int angle, Object *object);
-         void    o_mirror_world                  (int center_wx, int center_wy, Object *object);
+       Object   *o_copy_object                   (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+         void    o_mirror_object                 (Object *object, int center_x, int center_y);
+         void    o_rotate_object                 (Object *object, int center_x, int center_y, int angle);
+         void    o_translate_object              (Object *object, int dx, int dy);
 
 /* o_box_basic.c */
        Object   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
-       Object   *o_box_copy                      (Object *o_current);
+       Object   *o_box_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
          void    o_box_modify_all                (Object *object, int x1, int y1, int x2, int y2);
          void    o_box_modify                    (Object *object, int x, int y, int whichone);
-         void    o_box_translate_world           (int dx, int dy, Object *object);
-         void    o_box_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
-         void    o_box_mirror_world              (int center_wx, int center_wy, Object *object);
+         void    o_box_mirror                    (Object *object, int center_x, int center_y);
+         void    o_box_rotate                    (Object *object, int center_x, int center_y, int angle);
+         void    o_box_translate                 (Object *object, int dx, int dy);
 
 /* o_bus_basic.c */
        Object   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
-       Object   *o_bus_copy                      (Object *o_current);
-         void    o_bus_translate_world           (int dx, int dy, Object *object);
-         void    o_bus_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
-         void    o_bus_mirror_world              (int center_wx, int center_wy, Object *object);
+       Object   *o_bus_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+         void    o_bus_modify                    (Object *object, int x, int y, int whichone);
+         void    o_bus_mirror                    (Object *object, int center_x, int center_y);
+         void    o_bus_rotate                    (Object *object, int center_x, int center_y, int angle);
+         void    o_bus_translate                 (Object *object, int dx, int dy);
           int    o_bus_orientation               (Object *object);
           int    o_bus_get_direction             (Object *object);
          void    o_bus_consolidate               (void);
-         void    o_bus_modify                    (Object *object, int x, int y, int whichone);
 
 /* o_circle_basic.c */
        Object   *o_circle_new                    (int color, int x, int y, int radius);
        Object   *o_circle_copy                   (Object *o_current);
          void    o_circle_modify                 (Object *object, int x, int y, int whichone);
-         void    o_circle_mirror_world           (int center_wx, int center_wy, Object *object);
-         void    o_circle_rotate_world           (int center_wx, int center_wy, int angle, Object *object);
-         void    o_circle_translate_world        (int dx, int dy, Object *object);
+         void    o_circle_mirror                 (Object *object, int center_x, int center_y);
+         void    o_circle_rotate                 (Object *object, int center_x, int center_y, int angle);
+         void    o_circle_translate              (Object *object, int dx, int dy);
 
 /* o_complex_basic.c */
-          int    o_complex_is_embedded           (Object *o_current);
-        GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, Object *object);
+
+
        Object   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
                                                   const CLibSymbol *clib_sym, const char *basename, int selectable);
        Object   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
-         void    o_complex_translate_world       (int dx, int dy, Object *object);
        Object   *o_complex_copy                  (Object *o_current);
+         void    o_complex_mirror                (Object *object, int center_x, int center_y);
+        GList   *o_complex_promote_attribs       (GedaToplevel *toplevel, Object *object);
          void    o_complex_reset_refdes          (Object *object);
-         void    o_complex_rotate_world          (int center_wx, int center_wy, int angle, Object *object);
-         void    o_complex_mirror_world          (int center_wx, int center_wy, Object *object);
+         void    o_complex_rotate                (Object *object, int center_x, int center_y, int angle);
+         void    o_complex_translate             (Object *object, int dx, int dy);
+          int    o_complex_is_embedded           (Object *o_current);
        Object   *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value);
          void    o_complex_check_symversion      (GedaToplevel *toplevel, Object *object);
 
@@ -243,17 +244,17 @@ G_BEGIN_DECLS
          bool    o_get_position                  (int *x, int *y, Object *object);
        double    o_get_shortest_distance         (Object *object, int x, int y);
        double    o_get_shortest_distance_full    (Object *object, int x, int y, int force_solid);
-          int    o_get_world_bounds              (Object *o_current, int *left, int *top, int *right, int *bottom);
-          int    o_get_world_bounds_list         (const GList *o_list, int *left, int *top, int *right, int *bottom);
+          int    o_get_bounds                    (Object *o_current, int *left, int *top, int *right, int *bottom);
+          int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
 /* o_line_basic.c */
-       Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2);
-       Object   *o_line_copy                     (Object *object);
+       Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_line_copy                     (Object *object) G_GNUC_WARN_UNUSED_RESULT;
          void    o_line_modify                   (Object *object, int x, int y, int whichone);
-         void    o_line_mirror_world             (int center_wx, int center_wy, Object *object);
-         void    o_line_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
-         void    o_line_translate_world          (int dx, int dy, Object *object);
-         void    o_line_scale_world              (int x_scale, int y_scale, Object *object);
+         void    o_line_mirror                   (Object *object, int center_x, int center_y);
+         void    o_line_rotate                   (Object *object, int center_x, int center_y, int angle);
+         void    o_line_translate                (Object *object, int dx, int dy);
+         void    o_line_scale                    (Object *object, int x_scale, int y_scale);
          bool    o_line_is_endpoint              (Object *object, POINT *point);
          int     o_line_get_closest_endpoint     (Object *object, int x, int y);
          bool    o_line_get_intersection         (Object *object1, Object *object2, POINT *point);
@@ -263,21 +264,20 @@ G_BEGIN_DECLS
 
 /* o_list.c */
         GList   *o_list_copy_all                 (const GList *src_list, GList *dest_list);
-         void    o_list_translate_world          (int dx, int dy, const GList *list);
-         void    o_list_rotate_world             (int x, int y, int angle, const GList *list);
-         void    o_list_mirror_world             (int x, int y, const GList *list);
+         void    o_list_mirror                   (const GList *list, int x, int y);
+         void    o_list_rotate                   (const GList *list, int x, int y, int angle);
+         void    o_list_translate                (const GList *list, int dx, int dy);
          void    o_list_set_color                (const GList *list, int color);
 
 /* o_net_basic.c */
        Object   *o_net_new                       (int color, int x1, int y1, int x2, int y2);
        Object   *o_net_copy                      (Object *o_current);
          void    o_net_modify                    (Object *object, int x, int y, int whichone);
-         void    o_net_mirror_world              (int center_wx, int center_wy, Object *object);
-         void    o_net_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
-         void    o_net_translate_world           (int dx, int dy, Object *object);
+         void    o_net_mirror                    (Object *object, int center_x, int center_y);
+         void    o_net_rotate                    (Object *object, int center_x, int center_y, int angle);
+         void    o_net_translate                 (Object *object, int dx, int dy);
           int    o_net_orientation               (Object *object);
          void    o_net_consolidate               (GedaToplevel *toplevel, Page *page);
-
          void    o_net_refresh_conn_cache        (Object *object);
          bool    o_net_is_fully_connected        (Object *object);
 
@@ -294,9 +294,9 @@ G_BEGIN_DECLS
        Object   *o_path_new_take_path            (int color, Path *path_data);
        Object   *o_path_copy                     (Object *o_current);
          void    o_path_modify                   (Object *object, int x, int y, int whichone);
-         void    o_path_mirror_world             (int center_wx, int center_wy, Object *object);
-         void    o_path_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
-         void    o_path_translate_world          (int x, int y, Object *object);
+         void    o_path_mirror                   (Object *object, int center_x, int center_y);
+         void    o_path_rotate                   (Object *object, int center_x, int center_y, int angle);
+         void    o_path_translate                (Object *object, int x, int y);
 
 /* o_picture.c */
        Object   *o_picture_new                   (const char *file_content, unsigned int file_length,
@@ -305,9 +305,9 @@ G_BEGIN_DECLS
        Object   *o_picture_copy                  (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
          void    o_picture_modify                (Object *object, int x, int y, int whichone);
          void    o_picture_modify_all            (Object *object, int x1, int y1, int x2, int y2);
-         void    o_picture_mirror_world          (int center_wx, int center_wy, Object *object);
-         void    o_picture_rotate_world          (int center_wx, int center_wy, int angle,Object *object);
-         void    o_picture_translate_world       (int dx, int dy, Object *object);
+         void    o_picture_mirror                (Object *object, int center_x, int center_y);
+         void    o_picture_rotate                (Object *object, int center_x, int center_y, int angle);
+         void    o_picture_translate             (Object *object, int dx, int dy);
 
          bool    o_picture_export_object         (Object *o_current, const char *filename, const char *type, ...);
          bool    o_picture_export_orginal        (Object *o_current, const char *filename, const char *type, ...);
@@ -332,12 +332,12 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
 
 /* o_pin_basic.c */
        Object   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
-       Object   *o_pin_copy                      (Object *o_current);
-         void    o_pin_translate_world           (int dx, int dy, Object *object);
-         void    o_pin_rotate_world              (int center_wx, int center_wy, int angle, Object *object);
-         void    o_pin_mirror_world              (int center_wx, int center_wy, Object *object);
+       Object   *o_pin_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+         void    o_pin_mirror                    (Object *object, int center_x, int center_y);
          void    o_pin_modify                    (Object *object, int x, int y, int whichone);
          void    o_pin_normalize                 (Object *object);
+         void    o_pin_rotate                    (Object *object, int center_x, int center_y, int angle);
+         void    o_pin_translate                 (Object *object, int dx, int dy);
          void    o_pin_update_whichend           (GList *object_list, int num_pins);
          bool    o_pin_set_elect_type            (Object *o_current, PIN_ELECT e_type);
          bool    o_pin_set_mech_type             (Object *o_current, PIN_MECH m_type);
@@ -388,15 +388,15 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
        Object   *o_text_new                      (int color, int x, int y, int alignment, int angle,
                                                   int size, int visibility, int show_name_value, const char *string);
          void    o_text_recreate                 (Object *o_current);
-         void    o_text_translate_world          (int dx, int dy, Object *o_current);
-       Object   *o_text_copy                     (Object *o_current);
-         void    o_text_rotate_world             (int center_wx, int center_wy, int angle, Object *object);
-         void    o_text_mirror_world             (int center_wx, int center_wy, Object *object);
+         void    o_text_mirror                   (Object *object, int center_x, int center_y);
+       Object   *o_text_copy                     (Object *object) G_GNUC_WARN_UNUSED_RESULT;
+         void    o_text_translate                (Object *object, int dx, int dy);
+         void    o_text_rotate                   (Object *object, int center_x, int center_y, int angle);
 
        double    o_text_get_font_size_in_points  (Object *object);
-   const char   *o_text_get_string               (Object *obj);
+   const char   *o_text_get_string               (Object *object);
          void    o_text_set_rendered_bounds_func (Object *object, RenderedBoundsFunc func, void *user_data);
-         void    o_text_set_string               (Object *obj, const char *new_string);
+         void    o_text_set_string               (Object *object, const char *new_string);
 
 /* s_attrib.c */
           int    s_attrib_add_entry              (char *new_attrib);

@@ -39,10 +39,10 @@
  *  \param [in]  object   The complex object.
  */
 int
-o_complex_get_world_bounds(Object *object)
+o_complex_get_bounds(Object *object)
 {
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
-  return o_get_world_bounds_list (object->complex->prim_objs,
+  return o_get_bounds_list (object->complex->prim_objs,
                                        &object->left, &object->top,
                                        &object->right, &object->bottom);
 
@@ -231,7 +231,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   if (toplevel->keep_invisible) {
     for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
       Object *o_kept = (Object *) iter->data;
-      Object *o_copy = o_object_copy (o_kept);
+      Object *o_copy = o_copy_object (o_kept);
       o_set_visibility (o_kept, INVISIBLE);
       o_copy->parent_object = NULL;
       promoted = g_list_prepend (promoted, o_copy);
@@ -452,11 +452,10 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
     else {
 
       if (mirror) {
-
-        o_list_mirror_world (0, 0, complex->prim_objs);
+        o_list_mirror (complex->prim_objs, 0, 0);
       }
-      o_list_rotate_world (0, 0, angle, complex->prim_objs);
-      o_list_translate_world (x, y, complex->prim_objs);
+      o_list_rotate (complex->prim_objs, 0, 0, angle);
+      o_list_translate (complex->prim_objs, x, y);
     }
 
     GEDA_FREE (buffer);
@@ -586,14 +585,8 @@ Object *o_complex_read (GedaToplevel *toplevel,
   else {
 
     const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
-   /* GList  *symlist = NULL;
-
-    symlist = s_clib_search (basename, CLIB_EXACT);
-    clib    = (CLibSymbol *) symlist->data;*/
 
     new_obj = o_complex_new(toplevel, x1, y1, angle, mirror, clib, basename, selectable);
-
-    //g_list_free (symlist);
 
     /* Delete or hide attributes eligible for promotion inside the complex */
     if (new_obj) {
@@ -629,7 +622,7 @@ char *o_complex_save(Object *object)
 
   selectable = (object->selectable) ? 1 : 0;
 
-  /* We force the object type to be output as OBJ_COMPLEX for both
+  /* Force the object type to be output as OBJ_COMPLEX for both
    * these object types. */
   buf = u_string_sprintf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
                          complex->x, complex->y,
@@ -638,26 +631,6 @@ char *o_complex_save(Object *object)
   GEDA_FREE (basename);
 
   return(buf);
-}
-
-/*! \brief move a complex object
- *  \par Function Description
- *  This function changes the position of a complex \a object.
- *
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object
- *  \param [in] object       The complex Object to be moved
- */
-void o_complex_translate_world(int dx, int dy, Object *object)
-{
-  g_return_if_fail (GEDA_IS_COMPLEX(object));
-
-  object->complex->x = object->complex->x + dx;
-  object->complex->y = object->complex->y + dy;
-
-  o_list_translate_world (dx, dy, object->complex->prim_objs);
-
-  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Create a copy of a COMPLEX object
@@ -669,7 +642,7 @@ void o_complex_translate_world(int dx, int dy, Object *object)
  */
 Object *o_complex_copy(Object *o_current)
 {
-  Object *o_new;
+  Object  *o_new;
   Complex *new_complex;
   Complex *old_complex;
 
@@ -709,16 +682,7 @@ Object *o_complex_copy(Object *o_current)
   /* Recalculate bounds */
   o_new->w_bounds_valid_for = NULL;
 
-  /* Delete or hide attributes eligible for promotion inside the complex */
-  //o_complex_remove_promotable_attribs (toplevel, o_new);
-
   s_slot_update_object (o_new);
-
-  /* deal with stuff that has changed */
-
-  /* here you need to create a list of attributes which need to be
-   * connected to the new list, probably make an attribute list and
-   * fill it with sid's of the attributes */
 
   return o_new;
 }
@@ -745,65 +709,24 @@ void o_complex_reset_refdes(Object *object)
   }
 }
 
-/*! \brief Rotates a complex object in world coordinates
- * \par Function Description
- * This function rotates a complex \a object around the
- * (\a centerx,\a centery) point by \a angle degrees.
- * The center of rotation is in world units.
- *
- * \param [in] centerx  X coordinate of rotation center (world coords).
- * \param [in] centery  Y coordinate of rotation center (world coords).
- * \param [in] angle    Rotation angle in degrees.
- *
- * \param [in,out] object Complex object to rotate.
- *
- */
-void o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
-{
-  int x, y;
-  int newx, newy;
-
-  g_return_if_fail (object!=NULL);
-  g_return_if_fail (GEDA_IS_COMPLEX(object));
-
-  x = object->complex->x + (-centerx);
-  y = object->complex->y + (-centery);
-
-  m_rotate_point_90(x, y, angle, &newx, &newy);
-
-  x = newx + (centerx);
-  y = newy + (centery);
-
-  o_complex_translate_world(-object->complex->x, -object->complex->y, object);
-
-  o_list_rotate_world (0, 0, angle, object->complex->prim_objs);
-
-  object->complex->x = 0;
-  object->complex->y = 0;
-
-  o_complex_translate_world(x, y, object);
-
-  object->complex->angle = (object->complex->angle + angle ) % 360;
-}
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-void o_complex_mirror_world(int center_wx, int center_wy, Object *object)
+void o_complex_mirror(Object *object, int center_x, int center_y)
 {
   int x, y;
 
   g_return_if_fail( object != NULL );
   g_return_if_fail( GEDA_IS_COMPLEX(object) );
 
-  x = 2 * center_wx - object->complex->x;
+  x = 2 * center_x - object->complex->x;
   y = object->complex->y;
 
-  o_complex_translate_world(-object->complex->x, -object->complex->y, object);
+  o_complex_translate(object, -object->complex->x, -object->complex->y);
 
-  o_list_mirror_world (0, 0, object->complex->prim_objs);
+  o_list_mirror (object->complex->prim_objs, 0, 0);
 
   switch(object->complex->angle) {
     case(90):
@@ -817,9 +740,68 @@ void o_complex_mirror_world(int center_wx, int center_wy, Object *object)
 
   object->complex->mirror = !object->complex->mirror;
 
-  o_complex_translate_world(x, y, object);
+  o_complex_translate(object, x, y);
 }
 
+/*! \brief Rotates a complex object in world coordinates
+ * \par Function Description
+ * This function rotates a complex \a object around the
+ * (\a center_x,\a center_y) point by \a angle degrees.
+ * The center of rotation is in world units.
+ *
+ * \param [in,out] object   Complex object to rotate
+ * \param [in]     center_x  X coordinate of rotation center (world coords)
+ * \param [in]     center_y  Y coordinate of rotation center (world coords)
+ * \param [in]     angle    Rotation angle in degrees
+ *
+ */
+void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
+{
+  int x, y;
+  int newx, newy;
+
+  g_return_if_fail (object!=NULL);
+  g_return_if_fail (GEDA_IS_COMPLEX(object));
+
+  x = object->complex->x + (-center_x);
+  y = object->complex->y + (-center_y);
+
+  m_rotate_point_90(x, y, angle, &newx, &newy);
+
+  x = newx + (center_x);
+  y = newy + (center_y);
+
+  o_complex_translate(object, -object->complex->x, -object->complex->y);
+
+  o_list_rotate (object->complex->prim_objs, 0, 0, angle);
+
+  object->complex->x = 0;
+  object->complex->y = 0;
+
+  o_complex_translate(object, x, y);
+
+  object->complex->angle = (object->complex->angle + angle ) % 360;
+}
+
+/*! \brief Translate a complex object
+ *  \par Function Description
+ *  This function changes the position of a complex \a object.
+ *
+ *  \param [in,out] object  The complex Object to be translated
+ *  \param [in]     dx      The x-distance to move the object
+ *  \param [in]     dy      The y-distance to move the object
+ */
+void o_complex_translate(Object *object, int dx, int dy)
+{
+  g_return_if_fail (GEDA_IS_COMPLEX(object));
+
+  object->complex->x = object->complex->x + dx;
+  object->complex->y = object->complex->y + dy;
+
+  o_list_translate (object->complex->prim_objs, dx, dy);
+
+  object->w_bounds_valid_for = NULL;
+}
 
 /*! \brief Find a pin with a particular attribute.
  *  \par Function Description
@@ -833,9 +815,9 @@ void o_complex_mirror_world(int center_wx, int center_wy, Object *object)
  */
 Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value)
 {
-  GList *iter;
   Object *o_current;
-  char *value;
+  GList  *iter;
+  char   *value;
   int found;
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), NULL);
@@ -1094,7 +1076,7 @@ double o_complex_shortest_distance(Object *object, int x, int y, int force_solid
 
     /* Collect the bounds of any lines and arcs in the symbol */
     if ((obj->type == OBJ_LINE || obj->type == OBJ_ARC) &&
-         o_get_world_bounds(obj, &left, &top, &right, &bottom))
+         o_get_bounds(obj, &left, &top, &right, &bottom))
     {
       if (found_line_bounds) {
         line_bounds.lower_x = min (line_bounds.lower_x, left);

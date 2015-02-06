@@ -335,7 +335,7 @@ static void
 export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 {
   cairo_rectangle_t drawable;
-  int wx_min, wy_min, wx_max, wy_max, w_width, w_height;
+  int x_min, y_min, x_max, y_max, w_width, w_height;
   bool landscape = FALSE;
   double m[4]; /* Calculated margins */
   double s; /* Calculated scale */
@@ -365,10 +365,9 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
   }
 
   /* Now calculate extents of objects within page */
-  o_get_world_bounds_list (s_page_get_objects (page),
-                                 &wx_min, &wy_min, &wx_max, &wy_max);
-  w_width = wx_max - wx_min;
-  w_height = wy_max - wy_min;
+  o_get_bounds_list (s_page_get_objects (page), &x_min, &y_min, &x_max, &y_max);
+  w_width = x_max - x_min;
+  w_height = y_max - y_min;
 
   /* If a size was specified, use it.  Otherwise, use paper size, if
    * provided.  Fall back to just using the size of the drawing. */
@@ -436,8 +435,8 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 
   /* Finally, create and set a cairo transformation matrix that
    * centres the drawing into the drawable area. */
-  cairo_matrix_init (mtx, s, 0, 0, -s, - wx_min * s + drawable.x + slack[0],
-                    (wy_min + w_height) * s + drawable.y + slack[1]);
+  cairo_matrix_init (mtx, s, 0, 0, -s, - x_min * s + drawable.x + slack[0],
+                    (y_min + w_height) * s + drawable.y + slack[1]);
 }
 
 /* Actually draws a page.  If page is NULL, uses the first open page. */

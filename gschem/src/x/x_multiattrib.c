@@ -635,7 +635,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
     else {
 
         /* make a copy of the attribute object */
-        o_new = o_object_copy (o_attrib);
+        o_new = o_copy_object (o_attrib);
         s_page_append_object (toplevel->page_current, o_new);
 
         /* add the attribute its parent */

@@ -39,7 +39,7 @@
  *  Recursively marks the cached bounds of the given Object and its
  *  parents as having been invalidated and in need of an update. They
  *  will be recalculated next time the Object's bounds are requested
- *  (e.g. via o_get_world_bounds() ).
+ *  (e.g. via o_get_bounds() ).
  *
  *  \param [in] obj
  *

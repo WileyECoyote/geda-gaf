@@ -212,11 +212,11 @@ char *o_bus_save(Object *object)
  *  \par Function Description
  *  This function changes the position of a bus \a object.
  *
+ *  \param [in] object       The bus Object to be moved
  *  \param [in] dx           The x-distance to move the object
  *  \param [in] dy           The y-distance to move the object
- *  \param [in] object       The bus Object to be moved
  */
-void o_bus_translate_world(int dx, int dy, Object *object)
+void o_bus_translate(Object *object, int dx, int dy)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -276,15 +276,16 @@ void o_bus_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  *  \par Function Description
  *  This function rotates a bus \a object around the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the rotation center
- *  \param [in] center_wy y-coord of the rotation center
- *  \param [in] angle         The angle to rotate the bus object
- *  \param [in] object        The bus object
+ *  \param [in] object    The bus object
+ *  \param [in] center_x  x-coord of the rotation center
+ *  \param [in] center_y  y-coord of the rotation center
+ *  \param [in] angle     The angle to rotate the bus object
+
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_bus_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_bus_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -292,7 +293,7 @@ void o_bus_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   return;
 
   /* translate object to origin */
-  o_bus_translate_world(-center_wx, -center_wy, object);
+  o_bus_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle,
                   &newx, &newy);
@@ -306,29 +307,30 @@ void o_bus_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_bus_translate_world(center_wx, center_wy, object);
+  o_bus_translate(object, center_x, center_y);
 }
 
 /*! \brief mirror a bus object horizontaly at a centerpoint
  *
  *  \par Function Description
  *  This function mirrors a bus \a object horizontaly at the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the mirror position
- *  \param [in] center_wy y-coord of the mirror position
- *  \param [in] object        The bus object
+ *  \param [in,out] object    The bus object
+ *  \param [in]     center_x  x-coord of the mirror position
+ *  \param [in]     center_y  y-coord of the mirror position
+
  */
-void o_bus_mirror_world(int center_wx, int center_wy, Object *object)
+void o_bus_mirror(Object *object, int center_x, int center_y)
 {
   /* translate object to origin */
-  o_bus_translate_world(-center_wx, -center_wy, object);
+  o_bus_translate(object, -center_x, -center_y);
 
   object->line->x[0] = -object->line->x[0];
 
   object->line->x[1] = -object->line->x[1];
 
-  o_bus_translate_world(center_wx, center_wy, object);
+  o_bus_translate(object, center_x, center_y);
 }
 
 /*! \brief calculate the orientation of a bus object

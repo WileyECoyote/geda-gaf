@@ -210,15 +210,37 @@ char *o_pin_save(Object *object)
   return(buf);
 }
 
-/*! \brief move a pin object
+/*! \brief mirror a pin object horizontaly at a centerpoint
+ *  \par Function Description
+ *  This function mirrors a pin \a object horizontaly at the point
+ *  (\a center_x, \a center_y).
+ *
+ *  \param [in,out] object    The pin object
+ *  \param [in]     center_x  x-coord of the mirror position
+ *  \param [in]     center_y  y-coord of the mirror position
+
+ */
+void o_pin_mirror(Object *object, int center_x, int center_y)
+{
+  /* translate object to origin */
+  o_pin_translate(object, -center_x, -center_y);
+
+  object->line->x[0] = -object->line->x[0];
+
+  object->line->x[1] = -object->line->x[1];
+
+  o_pin_translate(object, center_x, center_y);
+}
+
+/*! \brief Translate a pin object
  *  \par Function Description
  *  This function changes the position of a pin \a object.
  *
+ *  \param [in] object       The pin Object to be moved
  *  \param [in] dx           The x-distance to move the object
  *  \param [in] dy           The y-distance to move the object
- *  \param [in] object       The pin Object to be moved
  */
-void o_pin_translate_world(int dx, int dy, Object *object)
+void o_pin_translate(Object *object, int dx, int dy)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -277,16 +299,17 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 /*! \brief rotate a pin object around a centerpoint
  *  \par Function Description
  *  This function rotates a pin \a object around the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the rotation center
- *  \param [in] center_wy y-coord of the rotation center
- *  \param [in] angle         The angle to rotate the pin object
- *  \param [in] object        The pin object
+ *  \param [in,out] object    The pin object
+ *  \param [in]     center_x  x-coord of the rotation center
+ *  \param [in]     center_y  y-coord of the rotation center
+ *  \param [in]     angle     The angle to rotate the pin object
+
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
 void
-o_pin_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+o_pin_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -294,7 +317,7 @@ o_pin_rotate_world(int center_wx, int center_wy, int angle, Object *object)
     return;
 
   /* translate object to origin */
-  o_pin_translate_world(-center_wx, -center_wy, object);
+  o_pin_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -306,28 +329,7 @@ o_pin_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_pin_translate_world(center_wx, center_wy, object);
-}
-
-/*! \brief mirror a pin object horizontaly at a centerpoint
- *  \par Function Description
- *  This function mirrors a pin \a object horizontaly at the point
- *  (\a center_wx, \a center_wy).
- *
- *  \param [in] center_wx x-coord of the mirror position
- *  \param [in] center_wy y-coord of the mirror position
- *  \param [in] object        The pin object
- */
-void o_pin_mirror_world(int center_wx, int center_wy, Object *object)
-{
-  /* translate object to origin */
-  o_pin_translate_world(-center_wx, -center_wy, object);
-
-  object->line->x[0] = -object->line->x[0];
-
-  object->line->x[1] = -object->line->x[1];
-
-  o_pin_translate_world(center_wx, center_wy, object);
+  o_pin_translate(object, center_x, center_y);
 }
 
 /*! \brief modify one point of a pin object
@@ -401,7 +403,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
 
   if (object_list && num_pins) {
     if (num_pins == 1) {
-      o_get_world_bounds_list (object_list, &left, &top, &right, &bottom);
+      o_get_bounds_list (object_list, &left, &top, &right, &bottom);
     }
     else {
       found = 0;
@@ -411,7 +413,7 @@ void o_pin_update_whichend (GList *object_list, int num_pins)
       while (iter != NULL) {
         o_current = (Object *)iter->data;
         if (o_current->type == OBJ_PIN) {
-          o_get_world_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
+          o_get_bounds(o_current, &rleft, &rtop, &rright, &rbottom);
 
           if (found) {
             left   = min (left, rleft);

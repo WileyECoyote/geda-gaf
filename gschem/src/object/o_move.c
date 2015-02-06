@@ -201,12 +201,12 @@ void o_move_end_lowlevel (GschemToplevel *w_current,
     case (OBJ_BUS):
     case (OBJ_PIN):
       s_conn_remove_object (object);
-      o_translate_world    (diff_x, diff_y, object);
+      o_translate_object (object, diff_x, diff_y);
       s_conn_update_linear_object(object);
       break;
 
     default:
-      o_translate_world (diff_x, diff_y, object);
+      o_translate_object (object, diff_x, diff_y);
       break;
   }
 }

@@ -749,7 +749,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
     list = s_page_get_objects(page);
 
     /* Now calculate extents of objects within page */
-    o_get_world_bounds_list (list, &wx_min, &wy_min, &wx_max, &wy_max);
+    o_get_bounds_list (list, &wx_min, &wy_min, &wx_max, &wy_max);
 
     rectangle.x = wx_min;
     rectangle.y = wy_min;

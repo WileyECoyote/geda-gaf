@@ -185,7 +185,7 @@ SCM_DEFINE (copy_object, "%copy-object", 1, 0, 0,
 
   Object *obj = edascm_to_object (obj_s);
 
-  result = edascm_from_object (o_object_copy (obj));
+  result = edascm_from_object (o_copy_object (obj));
 
   /* At the moment, the only pointer to the object is owned by the
    * smob. */
@@ -277,12 +277,12 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
     if (page == NULL) {
 
-      success = o_get_world_bounds_list (obj_list,
+      success = o_get_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
     }
     else if (page->show_hidden_text) {
 
-      success = o_get_world_bounds_list (obj_list,
+      success = o_get_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
     }
     else {
@@ -295,7 +295,7 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
         o_current->w_bounds_valid_for = NULL;
       }
 
-      success = o_get_world_bounds_list (obj_list,
+      success = o_get_bounds_list (obj_list,
                                                &left, &top, &right, &bottom);
 
       page->show_hidden_text = FALSE;
@@ -2100,7 +2100,7 @@ SCM_DEFINE (translate_object_x, "%translate-object!", 3, 0, 0,
   int dy = scm_to_int (dy_s);
 
   o_notify_emit_pre_change (obj);
-  o_translate_world (dx, dy, obj);
+  o_translate_object (obj, dx, dy);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -2152,7 +2152,7 @@ SCM_DEFINE (rotate_object_x, "%rotate-object!", 4, 0, 0,
               SCM_ARG4, s_rotate_object_x);
 
   o_notify_emit_pre_change (obj);
-  o_rotate_world (x, y, angle, obj);
+  o_rotate_object (obj, x, y, angle);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -2186,7 +2186,7 @@ SCM_DEFINE (mirror_object_x, "%mirror-object!", 2, 0, 0,
   int x = scm_to_int (x_s);
 
   o_notify_emit_pre_change (obj);
-  o_mirror_world (x, 0, obj);
+  o_mirror_object (obj, x, 0);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);

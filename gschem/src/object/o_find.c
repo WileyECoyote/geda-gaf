@@ -52,7 +52,7 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
   /* Do a coarse test first to avoid computing distances for objects ouside
    * of the hit range.
    */
-  if (!o_get_world_bounds(object, &left, &top, &right, &bottom) ||
+  if (!o_get_bounds(object, &left, &top, &right, &bottom) ||
       !o_get_is_inside_region(left  - w_slack, top    - w_slack,
                               right + w_slack, bottom + w_slack,
                               wx, wy))

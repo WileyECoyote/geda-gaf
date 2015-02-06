@@ -330,7 +330,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
     }
   }
   else {    /* This must be a floating attrib, but what is that !?!?!?!?!  */
-    o_get_world_bounds_list (s_page_get_objects (toplevel->page_current),
+    o_get_bounds_list (s_page_get_objects (toplevel->page_current),
                                    &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */

@@ -1,3 +1,9 @@
+2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_xxx.c: Rename functions without "world", and reversed
+      arguments for most of these, even though the object is both input
+      and output. There is no "world" in libgeda, this exist in gschem.
+
 2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_path_basic.c: Add new function o_path_new_from_polygon

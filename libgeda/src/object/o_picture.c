@@ -521,17 +521,18 @@ o_picture_save(Object *object)
 /*! \brief Mirror a picture using WORLD coordinates
  *
  *  \par Function Description
- *  This function mirrors the picture from the point (<B>center_wx</B>,
- *  <B>center_wy</B>) in world unit. The picture is first translated to
+ *  This function mirrors the picture from the point (<B>center_x</B>,
+ *  <B>center_y</B>) in world unit. The picture is first translated to
  *  the origin, then mirrored and finally translated back at its previous
  *  position.
  *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Picture Object to mirror.
+ *  \param [in,out] object    Picture Object to mirror.
+ *  \param [in]     center_x  Origin x coordinate in WORLD units.
+ *  \param [in]     center_y  Origin y coordinate in WORLD units.
+
  */
 void
-o_picture_mirror_world(int center_wx, int center_wy, Object *object)
+o_picture_mirror(Object *object, int center_x, int center_y)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -549,10 +550,10 @@ o_picture_mirror_world(int center_wx, int center_wy, Object *object)
   }
 
   /* translate object to origin */
-  object->picture->upper_x -= center_wx;
-  object->picture->upper_y -= center_wy;
-  object->picture->lower_x -= center_wx;
-  object->picture->lower_y -= center_wy;
+  object->picture->upper_x -= center_x;
+  object->picture->upper_y -= center_y;
+  object->picture->lower_x -= center_x;
+  object->picture->lower_y -= center_y;
 
   /* mirror the corners */
   newx1 = -object->picture->upper_x;
@@ -567,10 +568,10 @@ o_picture_mirror_world(int center_wx, int center_wy, Object *object)
   object->picture->lower_y = min(newy1,newy2);
 
   /* translate back in position */
-  object->picture->upper_x += center_wx;
-  object->picture->upper_y += center_wy;
-  object->picture->lower_x += center_wx;
-  object->picture->lower_y += center_wy;
+  object->picture->upper_x += center_x;
+  object->picture->upper_y += center_y;
+  object->picture->lower_x += center_x;
+  object->picture->lower_y += center_y;
 
   /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;
@@ -580,16 +581,17 @@ o_picture_mirror_world(int center_wx, int center_wy, Object *object)
 /*! \brief Rotate picture Object using WORLD coordinates.
  *  \par Function Description
  *  This function rotates the picture described by <B>*object</B> around
- *  the (<B>center_wx</B>, <B>center_wy</B>) point by <B>angle</B>
+ *  the (<B>center_x</B>, <B>center_y</B>) point by <B>angle</B>
  *  degrees. The center of rotation is in world units.
  *
- *  \param [in]      center_wx  Rotation center x coordinate
- *  \param [in]      center_wy  Rotation center y coordinate
- *  \param [in]      angle      Rotation angle in degrees (See note below)
- *  \param [in,out]  object     Picture Object to rotate.
+ *  \param [in,out]  object     Picture Object to rotate
+ *  \param [in]      center_x  Rotation center x coordinate
+ *  \param [in]      center_y  Rotation center y coordinate
+ *  \param [in]      angle      Rotation angle in degrees (See note below).
+
  */
 void
-o_picture_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+o_picture_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -602,16 +604,16 @@ o_picture_rotate_world(int center_wx, int center_wy, int angle, Object *object)
 
   object->picture->angle = (object->picture->angle + angle) % 360;
 
-  /* The center of rotation (<B>center_wx</B>, <B>center_wy</B>) is
+  /* The center of rotation (<B>center_x</B>, <B>center_y</B>) is
    * translated to the origin. The rotation of the upper left and lower
    * right corner are then performed. Finally, the rotated picture is
    * translated back to its previous location.
    */
   /* translate object to origin */
-  object->picture->upper_x -= center_wx;
-  object->picture->upper_y -= center_wy;
-  object->picture->lower_x -= center_wx;
-  object->picture->lower_y -= center_wy;
+  object->picture->upper_x -= center_x;
+  object->picture->upper_y -= center_y;
+  object->picture->lower_x -= center_x;
+  object->picture->lower_y -= center_y;
 
   /* rotate the upper left corner of the picture */
   m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
@@ -628,10 +630,10 @@ o_picture_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   object->picture->lower_y = min(newy1,newy2);
 
   /* translate object back to normal position */
-  object->picture->upper_x += center_wx;
-  object->picture->upper_y += center_wy;
-  object->picture->lower_x += center_wx;
-  object->picture->lower_y += center_wy;
+  object->picture->upper_x += center_x;
+  object->picture->upper_y += center_y;
+  object->picture->lower_x += center_x;
+  object->picture->lower_y += center_y;
 
   /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;
@@ -644,12 +646,13 @@ o_picture_rotate_world(int center_wx, int center_wy, int angle, Object *object)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the picture
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world units.
  *
- *  \param [in]     dx         x distance to move.
+ *  \param [in,out] object     Picture Object to translate
+ *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Picture Object to translate.
+
  */
 void
-o_picture_translate_world(int dx, int dy, Object *object)
+o_picture_translate(Object *object, int dx, int dy)
 {
   /* Do world coords */
   object->picture->upper_x = object->picture->upper_x + dx;

@@ -339,23 +339,24 @@ char *o_circle_save(Object *object)
  *  The circle coordinates and its bounding are recalculated as well as the
  *  Object specific (line width, filling ...).
  *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Circle Object to mirror.
+ *  \param [in,out] object    Circle Object to mirror.
+ *  \param [in]     center_x  Origin x coordinate in WORLD units.
+ *  \param [in]     center_y  Origin y coordinate in WORLD units.
+
  */
-void o_circle_mirror_world(int center_wx, int center_wy, Object *object)
+void o_circle_mirror(Object *object, int center_x, int center_y)
 {
   /* translate object to origin */
-  object->circle->center_x -= center_wx;
-  object->circle->center_y -= center_wy;
+  object->circle->center_x -= center_x;
+  object->circle->center_y -= center_y;
 
   /* mirror the center of the circle */
   object->circle->center_x = -object->circle->center_x;
   object->circle->center_y =  object->circle->center_y;
 
   /* translate back in position */
-  object->circle->center_x += center_wx;
-  object->circle->center_y += center_wy;
+  object->circle->center_x += center_x;
+  object->circle->center_y += center_y;
 
   /* recalc boundings and screen coords */
   object->w_bounds_valid_for = NULL;
@@ -365,17 +366,18 @@ void o_circle_mirror_world(int center_wx, int center_wy, Object *object)
 /*! \brief Rotate Circle Object using WORLD coordinates
  *
  *  \par Function Description
- *  The function #o_circle_rotate_world() rotate the circle described by
- *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>) point by
+ *  The function #o_circle_rotate() rotate the circle described by
+ *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point by
  *  angle <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
- *  \param [in,out]  object         Circle Object to rotate.
+ *  \param [in,out]  object    Circle Object to rotate.
+ *  \param [in]      center_x  Rotation center x coordinate in WORLD units.
+ *  \param [in]      center_y  Rotation center y coordinate in WORLD units.
+ *  \param [in]      angle     Rotation angle in degrees (See note below).
+
  */
-void o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_circle_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   int x, y;
@@ -387,15 +389,15 @@ void o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *obje
   if((angle % 90) != 0) return;
 
   /*
-   * The center of rotation (<B>center_wx</B>,<B>center_wy</B>) is
+   * The center of rotation (<B>center_x</B>,<B>center_y</B>) is
    * translated to the origin. The rotation of the center around the origin
    * is then performed. Finally, the rotated circle is translated back to
    * its previous location.
    */
 
   /* translate object to origin */
-  object->circle->center_x -= center_wx;
-  object->circle->center_y -= center_wy;
+  object->circle->center_x -= center_x;
+  object->circle->center_y -= center_y;
 
   /* rotate the center of the circle around the origin */
   x = object->circle->center_x;
@@ -405,8 +407,8 @@ void o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *obje
   object->circle->center_y = newy;
 
   /* translate back in position */
-  object->circle->center_x += center_wx;
-  object->circle->center_y += center_wy;
+  object->circle->center_x += center_x;
+  object->circle->center_y += center_y;
 
   object->w_bounds_valid_for = NULL;
 
@@ -422,7 +424,7 @@ void o_circle_rotate_world(int center_wx, int center_wy, int angle, Object *obje
  *  \param [in]     dy         y distance to move.
  *  \param [in,out] object     Circle Object to translate.
  */
-void o_circle_translate_world(int dx, int dy, Object *object)
+void o_circle_translate(Object *object, int dx, int dy)
 {
   /* Do world coords */
   object->circle->center_x = object->circle->center_x + dx;
@@ -438,9 +440,10 @@ void o_circle_translate_world(int dx, int dy, Object *object)
  *  \par Function Description
  *  This function gets the position of the center point of a circle object.
  *
+ *  \param [in] object   The object to get the position.
  *  \param [out] x       pointer to the x-position
  *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
 bool o_circle_get_position (int *x, int *y, Object *object)

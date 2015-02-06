@@ -863,7 +863,7 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
     for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
       Object *object = iter->data;
       int left, top, right, bottom;
-      if (o_get_world_bounds (object, &left, &top, &right, &bottom))
+      if (o_get_bounds (object, &left, &top, &right, &bottom))
       {
         for (i = 0; i < n_rects; i++) {
           if (right  >= rects[i].lower_x &&

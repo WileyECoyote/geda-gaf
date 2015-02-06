@@ -167,6 +167,7 @@ PyGeda_update_path(Object *object, GedaObject *py_object )
 
   if (py_path->dirty_string) {
     str = PyString_AsString(py_path->path_string);
+    fprintf(stderr, "yelp: the string <%s> is dirty", str);
   }
 
   object->fill_options->fill_type   = py_path->fill_type;

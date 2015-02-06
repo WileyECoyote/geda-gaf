@@ -310,11 +310,12 @@ char *o_line_save(Object *object)
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the line
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in]     dx         x distance to move.
+ *  \param [in,out] object     Line Object to translate
+ *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Line Object to translate.
+
  */
-void o_line_translate_world(int dx, int dy, Object *object)
+void o_line_translate( Object *object, int dx, int dy)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
   Line *line = GEDA_LINE(object);
@@ -333,16 +334,17 @@ void o_line_translate_world(int dx, int dy, Object *object)
  *
  *  \par Function Description
  *  This function rotates the line described by
- *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
+ *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>)
  *  point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
- *  \param [in,out]  object         Line Object to rotate.
+ *  \param [in,out]  object     Line Object to rotate
+ *  \param [in]      center_x  Rotation center x coordinate in WORLD units
+ *  \param [in]      center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]      angle      Rotation angle in degrees (See note below).
+
  */
-void o_line_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_line_rotate( Object *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
   Line *line;
@@ -359,17 +361,16 @@ void o_line_rotate_world(int center_wx, int center_wy, int angle, Object *object
   if((angle % 90) != 0) return;
 
   /*
-   * The center of rotation (<B>center_wx</B>,<B>center_wy</B>)
+   * The center of rotation (<B>center_x</B>,<B>center_y</B>)
    * is translated to the origin. The rotation of the two ends of
    * the line is performed. FInally, the rotated line is translated
    * back to its previous location.
    */
   /* translate object to origin */
-  o_line_translate_world(-center_wx, -center_wy, object);
+  o_line_translate(object, -center_x, -center_y);
 
   /* rotate line end 1 */
-  m_rotate_point_90(line->x[0], line->y[0], angle,
-                  &newx, &newy);
+  m_rotate_point_90(line->x[0], line->y[0], angle, &newx, &newy);
 
   line->x[0] = newx;
   line->y[0] = newy;
@@ -381,7 +382,7 @@ void o_line_rotate_world(int center_wx, int center_wy, int angle, Object *object
   line->y[1] = newy;
 
   /* translate object back to normal position */
-  o_line_translate_world(center_wx, center_wy, object);
+  o_line_translate(object, center_x, center_y);
 
 }
 
@@ -389,30 +390,29 @@ void o_line_rotate_world(int center_wx, int center_wy, int angle, Object *object
  *
  *  \par Function Description
  *  This function mirrors the line from the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
+ *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
  *  The line if first translated to the origin, then mirrored
  *  and finally translated back at its previous position.
  *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Line Object to mirror.
+ *  \param [in,out] object    Line Object to mirror
+ *  \param [in]     center_x  Origin x coordinate in WORLD units
+ *  \param [in]     center_y  Origin y coordinate in WORLD units.
+
  */
-void o_line_mirror_world( int center_wx,
-                         int center_wy, Object *object)
+void o_line_mirror(Object *object, int center_x, int center_y)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
   /* translate object to origin */
-  o_line_translate_world(-center_wx, -center_wy, object);
+  o_line_translate(object, -center_x, -center_y);
 
   /* mirror the line ends */
   object->line->x[0] = -object->line->x[0];
   object->line->x[1] = -object->line->x[1];
 
   /* translate back in position */
-  o_line_translate_world(center_wx, center_wy, object);
-
+  o_line_translate(object, center_x, center_y);
 }
 
 /*! \brief get the position of the first line point
@@ -1053,11 +1053,11 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
 /*! \brief Scale a Line object
  *  \par Function Description
  *
+ *  \param [in] object
  *  \param [in] x_scale
  *  \param [in] y_scale
- *  \param [in] object
  */
-void o_line_scale_world(int x_scale, int y_scale, Object *object)
+void o_line_scale(Object *object, int x_scale, int y_scale)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
 
@@ -1069,7 +1069,6 @@ void o_line_scale_world(int x_scale, int y_scale, Object *object)
 
   /* update boundingbox */
   object->w_bounds_valid_for = NULL;
-
 }
 
 /*! \brief Is point an End Point of the given Line

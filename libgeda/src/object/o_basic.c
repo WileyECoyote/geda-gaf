@@ -284,8 +284,8 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         if (embedded_level>0) {
           /* don't do this since objects are already
            * stored/read translated
-           * o_complex_translate_world (toplevel, new_object_list->x,
-           *                            new_object_list->y, new_object_list->complex);
+           * o_complex_translate(new_object_list->x,
+           *                     new_object_list->y, new_object_list->complex);
            */
           new_object_list = g_list_reverse (new_object_list);
 
@@ -447,7 +447,7 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
  *  \param [in]  selected
  *  \return Object pointer.
  */
-Object *o_object_copy (Object *selected)
+Object *o_copy_object (Object *selected)
 {
   Object *new_obj;
 
@@ -521,42 +521,40 @@ Object *o_object_copy (Object *selected)
   return new_obj;
 }
 
-/*! \brief Translates an object in world coordinates
+/*! \brief Mirrors an object in world coordinates
  *  \par Function Description
- *  This function translates the object <B>object</B> by
- *  <B>dx</B> and <B>dy</B>.
+ *  This function mirrors an object about the point
+ *  (<B>center_wx</B>,<B>center_wy</B>) in world units.
  *
- *  \param [in] dx       Amount to horizontally translate object
- *  \param [in] dy       Amount to vertically translate object
- *  \param [in] object   The object to translate.
+ *  \param [in]     center_x  Origin x coordinate in WORLD units.
+ *  \param [in]     center_y  Origin y coordinate in WORLD units.
+ *  \param [in,out] object    The Object to mirror.
  */
-void o_translate_world (int dx, int dy, Object *object)
+void o_mirror_object (Object *object, int center_x, int center_y)
 {
-  void (*topless) (int, int, Object*) = NULL;
+  void (*topless) (Object*, int, int) = NULL;
 
   switch (object->type) {
-      case OBJ_LINE:    topless = o_line_translate_world;    break;
-      case OBJ_NET:     topless = o_net_translate_world;     break;
-      case OBJ_BUS:     topless = o_bus_translate_world;     break;
-      case OBJ_BOX:     topless = o_box_translate_world;     break;
-      case OBJ_PICTURE: topless = o_picture_translate_world; break;
-      case OBJ_CIRCLE:  topless = o_circle_translate_world;  break;
+      case OBJ_LINE:    topless = o_line_mirror;       break;
+      case OBJ_NET:     topless = o_net_mirror;        break;
+      case OBJ_BUS:     topless = o_bus_mirror;        break;
+      case OBJ_BOX:     topless = o_box_mirror;        break;
+      case OBJ_PICTURE: topless = o_picture_mirror;    break;
+      case OBJ_CIRCLE:  topless = o_circle_mirror;     break;
       case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: topless = o_complex_translate_world; break;
-      case OBJ_TEXT:    topless = o_text_translate_world;    break;
-      case OBJ_PATH:    topless = o_path_translate_world;    break;
-      case OBJ_PIN:     topless = o_pin_translate_world;     break;
-      case OBJ_ARC:     topless = o_arc_translate_world;     break;
-      default:
-        break;
+      case OBJ_COMPLEX: topless = o_complex_mirror;    break;
+      case OBJ_TEXT:    topless = o_text_mirror;       break;
+      case OBJ_PATH:    topless = o_path_mirror;       break;
+      case OBJ_PIN:     topless = o_pin_mirror;        break;
+      case OBJ_ARC:     topless = o_arc_mirror;        break;
   }
 
   if (topless != NULL) {
-    (*topless) (dx, dy, object);
+    (*topless) (object, center_x, center_y);
   }
   else
-    g_critical ("o_translate_world: object %p has bad type '%c'\n",
-                  object, object->type);
+    g_critical ("o_mirror_object: object %p has bad type '%c'\n",
+                 object, object->type);
 }
 
 /*! \brief Rotates an object in world coordinates
@@ -564,75 +562,75 @@ void o_translate_world (int dx, int dy, Object *object)
  *  This function rotates the object <B>object</B> about the coordinates
  *  <B>center_wx</B> and <B>center_wy</B>, by <B>angle</B>degrees.
  *
- *  \param [in] w_centerx  X coordinate of rotation center (world coords)
- *  \param [in] w_centery  Y coordinate of rotation center (world coords)
- *  \param [in] angle          Angle of rotation (degrees)
- *  \param [in] object         The object to rotate.
+ *  \param [in] object    The object to rotate.
+ *  \param [in] center_x  X coordinate of rotation center (world coords)
+ *  \param [in] center_y  Y coordinate of rotation center (world coords)
+ *  \param [in] angle     Angle of rotation (degrees)
  */
-void o_rotate_world (int w_centerx, int w_centery, int angle, Object *object)
+void o_rotate_object (Object *object, int center_x, int center_y, int angle)
 {
-  void (*topless) (int, int, int, Object*) = NULL;
+  void (*topless) (Object *, int, int, int) = NULL;
 
   switch (object->type)
   {
-    case OBJ_LINE:    topless = o_line_rotate_world;       break;
-    case OBJ_NET:     topless = o_net_rotate_world;        break;
-    case OBJ_BUS:     topless = o_bus_rotate_world;        break;
-    case OBJ_BOX:     topless = o_box_rotate_world;        break;
-    case OBJ_PICTURE: topless = o_picture_rotate_world;    break;
-    case OBJ_CIRCLE:  topless = o_circle_rotate_world;     break;
+    case OBJ_LINE:    topless = o_line_rotate;       break;
+    case OBJ_NET:     topless = o_net_rotate;        break;
+    case OBJ_BUS:     topless = o_bus_rotate;        break;
+    case OBJ_BOX:     topless = o_box_rotate;        break;
+    case OBJ_PICTURE: topless = o_picture_rotate;    break;
+    case OBJ_CIRCLE:  topless = o_circle_rotate;     break;
     case OBJ_PLACEHOLDER:
-    case OBJ_COMPLEX: topless = o_complex_rotate_world;    break;
-    case OBJ_TEXT:    topless = o_text_rotate_world;       break;
-    case OBJ_PATH:    topless = o_path_rotate_world;       break;
-    case OBJ_PIN:     topless = o_pin_rotate_world;        break;
-    case OBJ_ARC:     topless = o_arc_rotate_world;        break;
+    case OBJ_COMPLEX: topless = o_complex_rotate;    break;
+    case OBJ_TEXT:    topless = o_text_rotate;       break;
+    case OBJ_PATH:    topless = o_path_rotate;       break;
+    case OBJ_PIN:     topless = o_pin_rotate;        break;
+    case OBJ_ARC:     topless = o_arc_rotate;        break;
     default:
       break;
   }
 
   if (topless != NULL) {
-    (*topless) (w_centerx, w_centery, angle, object);
+    (*topless) (object, center_x, center_y, angle);
   }
   else
-    g_critical ("o_rotate_world: object %p has bad type '%c'\n",
+    g_critical ("o_rotate_object: object %p has bad type '%c'\n",
                  object, object->type);
 }
-
-
-/*! \brief Mirrors an object in world coordinates
+/*! \brief Translates an object in world coordinates
  *  \par Function Description
- *  This function mirrors an object about the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world units.
+ *  This function translates the object <B>object</B> by
+ *  <B>dx</B> and <B>dy</B>.
  *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         The Object to mirror.
+ *  \param [in] object   The object to translate
+ *  \param [in] dx       Amount to horizontally translate object
+ *  \param [in] dy       Amount to vertically translate object
  */
-void o_mirror_world (int center_wx, int center_wy, Object *object)
+void o_translate_object (Object *object, int dx, int dy)
 {
-  void (*topless) (int, int, Object*) = NULL;
+  void (*topless) (Object *, int, int) = NULL;
 
   switch (object->type) {
-      case OBJ_LINE:    topless = o_line_mirror_world;       break;
-      case OBJ_NET:     topless = o_net_mirror_world;        break;
-      case OBJ_BUS:     topless = o_bus_mirror_world;        break;
-      case OBJ_BOX:     topless = o_box_mirror_world;        break;
-      case OBJ_PICTURE: topless = o_picture_mirror_world;    break;
-      case OBJ_CIRCLE:  topless = o_circle_mirror_world;     break;
+      case OBJ_LINE:    topless = o_line_translate;    break;
+      case OBJ_NET:     topless = o_net_translate;     break;
+      case OBJ_BUS:     topless = o_bus_translate;     break;
+      case OBJ_BOX:     topless = o_box_translate;     break;
+      case OBJ_PICTURE: topless = o_picture_translate; break;
+      case OBJ_CIRCLE:  topless = o_circle_translate;  break;
       case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: topless = o_complex_mirror_world;    break;
-      case OBJ_TEXT:    topless = o_text_mirror_world;       break;
-      case OBJ_PATH:    topless = o_path_mirror_world;       break;
-      case OBJ_PIN:     topless = o_pin_mirror_world;        break;
-      case OBJ_ARC:     topless = o_arc_mirror_world;        break;
+      case OBJ_COMPLEX: topless = o_complex_translate; break;
+      case OBJ_TEXT:    topless = o_text_translate;    break;
+      case OBJ_PATH:    topless = o_path_translate;    break;
+      case OBJ_PIN:     topless = o_pin_translate;     break;
+      case OBJ_ARC:     topless = o_arc_translate;     break;
+      default:
+        break;
   }
 
   if (topless != NULL) {
-    (*topless) (center_wx, center_wy, object);
+    (*topless) (object, dx, dy);
   }
   else
-    g_critical ("o_mirror_world: object %p has bad type '%c'\n",
+    g_critical ("o_translate_object: object %p has bad type '%c'\n",
                  object, object->type);
 }
 
@@ -661,7 +659,7 @@ void o_scale (GList *list, int x_scale, int y_scale)
     o_current = (Object *)iter->data;
     switch(o_current->type) {
       case(OBJ_LINE):
-        o_line_scale_world(x_scale, y_scale, o_current);
+        o_line_scale(o_current, x_scale, y_scale);
         break;
     }
     iter = g_list_next (iter);

@@ -218,7 +218,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
     s_conn_remove_object (o_current);
   }
 
-  o_list_rotate_world(centerx, centery, angle, list );
+  o_list_rotate(list, centerx, centery, angle);
 
   /* Find connected objects, adding each object in turn back to the
    * connection list. We only _really_ want those objects connected
@@ -270,7 +270,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
     s_conn_remove_object (o_current);
   }
 
-  o_list_mirror_world(centerx, centery, list );
+  o_list_mirror(list, centerx, centery);
 
   /* Find connected objects, adding each object in turn back to the
    * connection list. We only _really_ want those objects connected
@@ -635,7 +635,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
           i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
 
-          if (!o_get_world_bounds (o_current, &x1, &y1, &x2, &y2)) {
+          if (!o_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
             BUG_MSG("world object bounds returned FALSE");
             return 0;
           }

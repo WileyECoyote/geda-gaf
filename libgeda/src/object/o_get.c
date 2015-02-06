@@ -595,8 +595,8 @@ double o_get_shortest_distance (Object *object, int x, int y)
  *  \retval 0 No bound was found
  *  \retval 1 Bound was found
  */
-int o_get_world_bounds(Object *o_current, int *rleft, int *rtop,
-                                   int *rright, int *rbottom)
+int o_get_bounds(Object *o_current, int *rleft,  int *rtop,
+                                    int *rright, int *rbottom)
 {
   int result = 0;
 
@@ -631,7 +631,7 @@ int o_get_world_bounds(Object *o_current, int *rleft, int *rtop,
  *  \retval 0 No bounds were found
  *  \retval 1 Bound was found
  */
-int o_get_world_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
+int o_get_bounds_list(const GList *list, int *left, int *top, int *right, int *bottom)
 {
   const GList *s_current;
 
@@ -646,7 +646,7 @@ int o_get_world_bounds_list(const GList *list, int *left, int *top, int *right, 
   /* Find the first object with bounds, and set the bounds variables, then expand as necessary */
   while ( s_current != NULL ) {
 
-    if (o_get_world_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
+    if (o_get_bounds(s_current->data, &rleft, &rtop, &rright, &rbottom))
     {
       if ( found ) {
         *left   = min( *left, rleft );

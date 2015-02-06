@@ -413,13 +413,14 @@ void o_path_modify (Object *object, int x, int y, int whichone)
 /*! \brief Mirror a path using WORLD coordinates.
  *  \par Function Description
  *  This function mirrors the path from the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
+ *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Line Object to mirror.
+ *  \param [in,out] object    Line Object to mirror.
+ *  \param [in]     center_x  Origin x coordinate in WORLD units.
+ *  \param [in]     center_y  Origin y coordinate in WORLD units.
+
  */
-void o_path_mirror_world (int center_wx, int center_wy, Object *object)
+void o_path_mirror (Object *object, int center_x, int center_y)
 {
   PATH_SECTION *section;
   int i;
@@ -430,14 +431,14 @@ void o_path_mirror_world (int center_wx, int center_wy, Object *object)
     switch (section->code) {
     case PATH_CURVETO:
       /* Two control point grips */
-      section->x1 = 2 * center_wx - section->x1;
-      section->x2 = 2 * center_wx - section->x2;
+      section->x1 = 2 * center_x - section->x1;
+      section->x2 = 2 * center_x - section->x2;
       /* Fall through */
     case PATH_MOVETO:
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
       /* Destination point grip */
-      section->x3 = 2 * center_wx - section->x3;
+      section->x3 = 2 * center_x - section->x3;
       break;
     case PATH_END:
       break;
@@ -449,17 +450,16 @@ void o_path_mirror_world (int center_wx, int center_wy, Object *object)
 
 /*! \brief Rotate Line Object using WORLD coordinates.
  *  \par Function Description
- *  This function rotates the path described by
- *  <B>*object</B> around the (<B>center_wx</B>,<B>center_wy</B>)
- *  point by <B>angle</B> degrees.
+ *  This function rotates the path described by  <B>*object</B> around
+ *  the (<B>center_x</B>,<B>center_y</B>) point by <B>angle</B> degrees.
  *  The center of rotation is in world units.
  *
- *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle      Rotation angle in degrees (See note below).
- *  \param [in,out]  object     Line Object to rotate.
+ *  \param [in,out] object    Line Object to rotate
+ *  \param [in]     center_x  Rotation center x coordinate in WORLD units
+ *  \param [in]     center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]     angle     Rotation angle in degrees (See note below).
  */
-void o_path_rotate_world (int center_wx, int center_wy, int angle, Object *object)
+void o_path_rotate (Object *object, int center_x, int center_y, int angle)
 {
   PATH_SECTION *section;
   int i;
@@ -470,20 +470,20 @@ void o_path_rotate_world (int center_wx, int center_wy, int angle, Object *objec
     switch (section->code) {
     case PATH_CURVETO:
       /* Two control point grips */
-      section->x1 -= center_wx; section->y1 -= center_wy;
-      section->x2 -= center_wx; section->y2 -= center_wy;
+      section->x1 -= center_x; section->y1 -= center_y;
+      section->x2 -= center_x; section->y2 -= center_y;
       m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
       m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
-      section->x1 += center_wx; section->y1 += center_wy;
-      section->x2 += center_wx; section->y2 += center_wy;
+      section->x1 += center_x; section->y1 += center_y;
+      section->x2 += center_x; section->y2 += center_y;
       /* Fall through */
     case PATH_MOVETO:
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
       /* Destination point grip */
-      section->x3 -= center_wx; section->y3 -= center_wy;
+      section->x3 -= center_x; section->y3 -= center_y;
       m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
-      section->x3 += center_wx; section->y3 += center_wy;
+      section->x3 += center_x; section->y3 += center_y;
       break;
     case PATH_END:
       break;
@@ -497,11 +497,11 @@ void o_path_rotate_world (int center_wx, int center_wy, int angle, Object *objec
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in]     dx         x distance to move.
+ *  \param [in,out] object     Line Object to translate
+ *  \param [in]     dx         x distance to move
  *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Line Object to translate.
  */
-void o_path_translate_world (int dx, int dy, Object *object)
+void o_path_translate (Object *object, int dx, int dy)
 {
   PATH_SECTION *section;
   int i;

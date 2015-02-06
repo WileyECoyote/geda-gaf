@@ -1502,7 +1502,7 @@ PyGeda_get_bounds( int pid, int sid )
 
   if( sid < 0) {
     list = s_page_get_objects(page);
-    if (o_get_world_bounds_list (list, &left, &top, &right, &bottom)) {
+    if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
     else {
@@ -1518,7 +1518,7 @@ PyGeda_get_bounds( int pid, int sid )
     }
 
     if (object) {
-      if (o_get_world_bounds (object, &left, &top, &right, &bottom)) {
+      if (o_get_bounds (object, &left, &top, &right, &bottom)) {
         py_list = Py_BuildValue("iiii",  left, top, right, bottom);
       }
       else {
@@ -1834,12 +1834,12 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   if (page && (GEDA_IS_PAGE(page))) {
     src_object = s_page_get_object(page, sid);
     if (src_object) {
-      new_object = o_object_copy(src_object);
+      new_object = o_copy_object(src_object);
       s_page_append_object(page, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           Object *a_current = iter->data;
-          Object *a_new = o_object_copy(a_current);
+          Object *a_new = o_copy_object(a_current);
           s_page_append_object (page, a_new);
           dest_list = g_list_append(dest_list, a_new);
           o_attrib_add(new_object, a_new);
@@ -1851,12 +1851,12 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   else {
     src_object = get_floating_object(sid);
     if (GEDA_IS_OBJECT(src_object)) {
-      new_object = o_object_copy(src_object);
+      new_object = o_copy_object(src_object);
       floating_objects = g_list_append(floating_objects, new_object);
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
           Object *a_current = iter->data;
-          Object *a_new = o_object_copy(a_current);
+          Object *a_new = o_copy_object(a_current);
           dest_list = g_list_append(dest_list, a_new);
           floating_objects = g_list_append(floating_objects, a_new);
           o_attrib_add(new_object, a_new);
@@ -1867,7 +1867,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   }
   if (dest_list) {
     if ( dx != -1 && dy != -1) {
-      o_list_translate_world(dx, dy, dest_list);
+      o_list_translate(dest_list, dx, dy);
     }
 
     py_capsule = GedaCapsule_New(new_object);

@@ -463,9 +463,8 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
-  o_get_world_bounds_list (s_page_get_objects (page),
-                                 &origin_x, &origin_y,
-                                 &right, &bottom);
+  o_get_bounds_list (s_page_get_objects (page), &origin_x, &origin_y,
+                                                &right,    &bottom);
 
   /* Calculate scale factor that will make the image fit on the page */
 

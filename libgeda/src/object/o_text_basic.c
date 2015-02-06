@@ -164,15 +164,15 @@ bool o_text_get_position (int *x, int *y, Object *object)
  *  \par Function Description
  *  Create an Object of type OBJ_TEXT.
  *
- *  \param [in]  color                  The color of the text.
- *  \param [in]  x                      World x coord of text.
- *  \param [in]  y                      World y coord of text.
- *  \param [in]  alignment              How text bounding box aligns on (x, y).
- *  \param [in]  angle                  Angle at which text will appear.
- *  \param [in]  string                 The text (TODO: can be char const *)!
- *  \param [in]  size                   Text size.
- *  \param [in]  visibility             VISIBLE or INVISIBLE.
- *  \param [in]  show_name_value        SHOW_NAME_VALUE or friends.
+ *  \param [in]  color                  The color of the text
+ *  \param [in]  x                      x coord of text
+ *  \param [in]  y                      y coord of text
+ *  \param [in]  alignment              How text bounding box aligns on (x, y)
+ *  \param [in]  angle                  Angle at which text will appear
+ *  \param [in]  size                   Text size
+ *  \param [in]  visibility             VISIBLE or INVISIBLE
+ *  \param [in]  show_name_value        SHOW_NAME_VALUE
+ *  \param [in]  string                 The text
  *  \return Pointer to text Object.
  *
  *  \note
@@ -419,25 +419,7 @@ void o_text_recreate(Object *o_current)
 
 }
 
-/*! \brief move a text object
- *
- *  \par Function Description
- *  This function changes the position of a text object \a o_current.
- *
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object
- *  \param [in] o_current    The text Object to be moved
- */
-void o_text_translate_world(int dx, int dy, Object *o_current)
-{
-  o_current->text->x = o_current->text->x + dx;
-  o_current->text->y = o_current->text->y + dy;
-
-  /* Update bounding box */
-  o_current->w_bounds_valid_for = NULL;
-}
-
-/*! \brief create a copy of a text object
+/*! \brief Create a copy of a text object
  *  \par Function Description
  *  This function creates a copy of the text object \a o_current.
  *
@@ -466,6 +448,25 @@ Object *o_text_copy(Object *o_current)
                                      text_obj->rendered_text_bounds_data);
   }
   return new_obj;
+}
+
+/*! \brief Translate a text object
+ *
+ *  \par Function Description
+ *  This function changes the position of a text object \a object.
+ *
+ *  \param [in] object    The text Object to be moved
+ *  \param [in] dx           The x-distance to move the object
+ *  \param [in] dy           The y-distance to move the object
+
+ */
+void o_text_translate(Object *object, int dx, int dy)
+{
+  object->text->x = object->text->x + dx;
+  object->text->y = object->text->y + dy;
+
+  /* Update bounding box */
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief write a text string to a postscript file
@@ -690,20 +691,20 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   GEDA_FREE(value);
 }
 
-
 /*! \brief rotate a text object around a centerpoint
  *
  *  \par Function Description
  *  This function rotates a text \a object around the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the rotation center
- *  \param [in] center_wy y-coord of the rotation center
- *  \param [in] angle         The angle to rotate the text object
- *  \param [in] object        The text object
+ *  \param [in,out] object    The text object
+ *  \param [in]     center_x  x-coord of the rotation center
+ *  \param [in]     center_y  y-coord of the rotation center
+ *  \param [in]     angle     The angle to rotate the text object
+
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_text_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_text_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int x, y;
   int newx, newy;
@@ -712,15 +713,15 @@ void o_text_rotate_world(int center_wx, int center_wy, int angle, Object *object
 
     object->text->angle = ( object->text->angle + angle ) % 360;
 
-    x = object->text->x + (-center_wx);
-    y = object->text->y + (-center_wy);
+    x = object->text->x + (-center_x);
+    y = object->text->y + (-center_y);
 
     m_rotate_point_90(x, y, angle, &newx, &newy);
 
-    x = newx + (center_wx);
-    y = newy + (center_wy);
+    x = newx + (center_x);
+    y = newy + (center_y);
 
-    o_text_translate_world(x-object->text->x, y-object->text->y, object);
+    o_text_translate(object, x-object->text->x, y-object->text->y);
 
     o_text_recreate(object);
   }
@@ -733,13 +734,13 @@ void o_text_rotate_world(int center_wx, int center_wy, int angle, Object *object
  *
  *  \par Function Description
  *  This function mirrors a text \a object horizontaly at the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the mirror position
- *  \param [in] center_wy y-coord of the mirror position
- *  \param [in] object        The text object
+ *  \param [in,out] object    The text object
+ *  \param [in]     center_x  x-coord of the mirror position
+ *  \param [in]     center_y  y-coord of the mirror position
  */
-void o_text_mirror_world(int center_wx, int center_wy, Object *object)
+void o_text_mirror(Object *object, int center_x, int center_y)
 {
   int origx, origy;
   int x, y;
@@ -747,8 +748,8 @@ void o_text_mirror_world(int center_wx, int center_wy, Object *object)
   origx = object->text->x;
   origy = object->text->y;
 
-  x = origx + (-center_wx);
-  y = origy + (-center_wy);
+  x = origx + (-center_x);
+  y = origy + (-center_y);
 
   if ((object->text->angle%180)==0) {
     switch(object->text->alignment) {
@@ -811,8 +812,8 @@ void o_text_mirror_world(int center_wx, int center_wy, Object *object)
     }
   }
 
-  object->text->x = -x + (center_wx);
-  object->text->y =  y + (center_wy);
+  object->text->x = -x + (center_x);
+  object->text->y =  y + (center_y);
 
   o_text_recreate(object);
 }
@@ -841,7 +842,7 @@ double o_text_shortest_distance (Object *object,
 
   g_return_val_if_fail (object->text != NULL, G_MAXDOUBLE);
 
-  if (!o_get_world_bounds(object, &left, &top, &right, &bottom))
+  if (!o_get_bounds(object, &left, &top, &right, &bottom))
     return G_MAXDOUBLE;
 
   dx = min (x - left, right - x);

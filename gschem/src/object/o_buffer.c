@@ -164,7 +164,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-    if (o_get_world_bounds_list (Current_PlaceList,
+    if (o_get_bounds_list (Current_PlaceList,
                                  &rleft, &rtop, &rright, &rbottom))
     {
 
@@ -176,7 +176,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
       x = snap_grid (w_current, rleft);
       y = snap_grid (w_current, rtop);
 
-      o_list_translate_world (w_x - x, w_y - y, Current_PlaceList);
+      o_list_translate (Current_PlaceList, w_x - x, w_y - y);
 
       w_current->inside_action = 1;
       i_status_set_state(w_current, ENDPASTE);

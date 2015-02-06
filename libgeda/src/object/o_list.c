@@ -65,7 +65,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
         o_selection_unselect (src_object);
 
       if (src_object->type != OBJ_TEXT) {
-        dst_object = o_object_copy (src_object);
+        dst_object = o_copy_object (src_object);
         dest = g_list_prepend (dest, dst_object);
       }
 
@@ -92,7 +92,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
         o_selection_unselect (src_object);
 
       if (src_object->type == OBJ_TEXT) {
-        dst_object = o_object_copy (src_object);
+        dst_object = o_copy_object (src_object);
         dest = g_list_prepend (dest, dst_object);
 
         if (src_object->attached_to != NULL &&
@@ -128,49 +128,48 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
 
 /*! \brief Translates a glist of Objects
  *  \par Function Description
- *  Calls o_translate_world for each glist data member
+ *  Calls o_translate_object for each glist data member
  */
-void o_list_translate_world(int dx, int dy, const GList *list)
+void o_list_translate(const GList *list, int dx, int dy)
 {
   const GList *iter = list;
   Object *o_current;
 
   while (iter != NULL) {
     o_current = (Object *)iter->data;
-    o_translate_world(dx, dy, o_current);
+    o_translate_object(o_current, dx, dy);
     iter = g_list_next (iter);
   }
 }
 
-
 /*! \brief Rotate a glist of Objects
  *  \par Function Description
- *  Calls o_rotate_world for each glist data member
+ *  Calls o_rotate_object for each glist data member
  */
-void o_list_rotate_world (int x, int y, int angle, const GList *list)
+void o_list_rotate (const GList *list, int x, int y, int angle)
 {
   const GList *iter = list;
   Object *o_current;
 
   while (iter != NULL) {
     o_current = (Object *)iter->data;
-    o_rotate_world (x, y, angle, o_current);
+    o_rotate_object (o_current, x, y, angle);
     iter = g_list_next (iter);
   }
 }
 
 /*! \brief Mirror a glist of Objects
  *  \par Function Description
- *  Calls o_mirror_world for each glist data member
+ *  Calls o_mirror_object for each glist data member
  */
-void o_list_mirror_world (int x, int y, const GList *list)
+void o_list_mirror (const GList *list, int x, int y)
 {
-  const GList *iter = list;
-  Object *o_current;
+  const GList  *iter = list;
+        Object *o_current;
 
   while (iter != NULL) {
     o_current = (Object *)iter->data;
-    o_mirror_world (x, y, o_current);
+    o_mirror_object (o_current, x, y);
     iter = g_list_next (iter);
   }
 }

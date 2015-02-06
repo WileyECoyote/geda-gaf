@@ -205,7 +205,7 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   i_zoom_world_extents (w_current, s_page_get_objects (toplevel->page_current), I_PAN_DONT_REDRAW);
   o_invalidate_all (w_current);
 
-  o_get_world_bounds_list (s_page_get_objects (toplevel->page_current),
+  o_get_bounds_list (s_page_get_objects (toplevel->page_current),
                                  &w_rleft,  &w_rtop,
                                  &w_rright, &w_rbottom);
 
@@ -225,12 +225,11 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
 
   if (offset == 0) {
     u_log_message(_("Translating schematic [%d %d]\n"), -x, -y);
-    o_list_translate_world (-x, -y, s_page_get_objects (toplevel->page_current));
+    o_list_translate (s_page_get_objects(toplevel->page_current), -x, -y);
   }
   else {
-    u_log_message(_("Translating schematic [%d %d]\n"),
-                  offset, offset);
-    o_list_translate_world (offset, offset, s_page_get_objects (toplevel->page_current));
+    u_log_message(_("Translating schematic [%d %d]\n"), offset, offset);
+    o_list_translate (s_page_get_objects (toplevel->page_current), offset, offset);
   }
 
   for (iter = s_page_get_objects (toplevel->page_current);

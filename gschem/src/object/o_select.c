@@ -384,7 +384,7 @@ void o_select_box_search(GschemToplevel *w_current)
 
         int cleft, ctop, cright, cbottom;
 
-        if (o_get_world_bounds(o_current, &cleft, &ctop, &cright, &cbottom) &&
+        if (o_get_bounds(o_current, &cleft, &ctop, &cright, &cbottom) &&
             cleft   >= left  &&
             cright  <= right &&
             ctop    >= top   &&

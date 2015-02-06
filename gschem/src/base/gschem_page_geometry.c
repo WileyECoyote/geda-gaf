@@ -712,8 +712,7 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
     return;
   }
 
-  if (!o_get_world_bounds_list (list, &lleft, &ltop,
-                                      &lright, &lbottom)) {
+  if (!o_get_bounds_list (list, &lleft, &ltop, &lright, &lbottom)) {
     return;
   }
 

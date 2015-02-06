@@ -182,28 +182,27 @@ char *o_net_save(Object *object)
   return (buf);
 }
 
-/*! \brief move a net object
+/*! \brief mirror a net object horizontaly at a centerpoint
  *  \par Function Description
- *  This function changes the position of a net \a object.
+ *  This function mirrors a net \a object horizontaly at the point
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] dx           The x-distance to move the object
- *  \param [in] dy           The y-distance to move the object
- *  \param [in] object       The net Object to be moved
- *
+ *  \param [in,out] object    The net object
+ *  \param [in]     center_x  x-coord of the mirror position
+ *  \param [in]     center_y  y-coord of the mirror position.
  */
-void
-o_net_translate_world(int dx, int dy, Object *object)
+void o_net_mirror(Object *object, int center_x, int center_y)
 {
-  /* Update world coords */
-  object->line->x[0] = object->line->x[0] + dx;
-  object->line->y[0] = object->line->y[0] + dy;
-  object->line->x[1] = object->line->x[1] + dx;
-  object->line->y[1] = object->line->y[1] + dy;
+  g_return_if_fail(GEDA_IS_NET(object));
 
-  /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+  /* translate object to origin */
+  o_net_translate(object, -center_x, -center_y);
 
-  s_tile_update_object(object);
+  object->line->x[0] = -object->line->x[0];
+
+  object->line->x[1] = -object->line->x[1];
+
+  o_net_translate(object, center_x, center_y);
 }
 
 /*! \brief postscript print command for a net object
@@ -242,22 +241,21 @@ void o_net_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   fprintf(fp, "%d %d %d %d %d %d line\n", x1,y1,x2,y2,net_width,toplevel->print_output_capstyle);
 }
 
-
 /*! \brief rotate a net object around a centerpoint
  *
  *  \par Function Description
  *  This function rotates a net \a object around the point
- *  (\a center_wx, \a center_wy).
+ *  (\a center_x, \a center_y).
  *
- *  \param [in] center_wx x-coord of the rotation center
- *  \param [in] center_wy y-coord of the rotation center
- *  \param [in] angle         The angle to rotate the net object
- *  \param [in] object        The net object
+ *  \param [in,out] object    The net object
+ *  \param [in]     center_x  x-coord of the rotation center
+ *  \param [in]     center_y  y-coord of the rotation center
+ *  \param [in]     angle     The angle to rotate the net object
+
  *
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_net_rotate_world(int center_wx,
-                        int center_wy, int angle, Object *object)
+void o_net_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx, newy;
 
@@ -267,7 +265,7 @@ void o_net_rotate_world(int center_wx,
     return;
 
   /* translate object to origin */
-  o_net_translate_world(-center_wx, -center_wy, object);
+  o_net_translate(object, -center_x, -center_y);
 
   m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
@@ -279,31 +277,30 @@ void o_net_rotate_world(int center_wx,
   object->line->x[1] = newx;
   object->line->y[1] = newy;
 
-  o_net_translate_world(center_wx, center_wy, object);
+  o_net_translate(object, center_x, center_y);
 }
 
-/*! \brief mirror a net object horizontaly at a centerpoint
+/*! \brief move a net object
  *  \par Function Description
- *  This function mirrors a net \a object horizontaly at the point
- *  (\a center_wx, \a center_wy).
+ *  This function changes the position of a net \a object.
  *
- *  \param [in] center_wx x-coord of the mirror position
- *  \param [in] center_wy y-coord of the mirror position
- *  \param [in] object        The net object
+ *  \param [in] object       The net Object to be moved
+ *  \param [in] dx           The x-distance to move the object
+ *  \param [in] dy           The y-distance to move the object.
  */
 void
-o_net_mirror_world(int center_wx, int center_wy, Object *object)
+o_net_translate(Object *object, int dx, int dy)
 {
-  g_return_if_fail(GEDA_IS_NET(object));
+  /* Update world coords */
+  object->line->x[0] = object->line->x[0] + dx;
+  object->line->y[0] = object->line->y[0] + dy;
+  object->line->x[1] = object->line->x[1] + dx;
+  object->line->y[1] = object->line->y[1] + dy;
 
-  /* translate object to origin */
-  o_net_translate_world(-center_wx, -center_wy, object);
+  /* Update bounding box */
+  object->w_bounds_valid_for = NULL;
 
-  object->line->x[0] = -object->line->x[0];
-
-  object->line->x[1] = -object->line->x[1];
-
-  o_net_translate_world(center_wx, center_wy, object);
+  s_tile_update_object(object);
 }
 
 /*! \brief calculate orientation of a net object

@@ -818,7 +818,7 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
   } else if (orientation == NULL
              || g_strcmp0 (orientation, "auto") == 0) {
     /* Automatically choose the orientation that fits best */
-    status = o_get_world_bounds_list (s_page_get_objects (page),
+    status = o_get_bounds_list (s_page_get_objects (page),
                                             &wx_min, &wy_min, &wx_max, &wy_max);
     if (!status || (wx_max - wx_min) > (wy_max - wy_min)) {
       /* Default to landscape */
@@ -866,7 +866,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   /* First, calculate a transformation matrix for the cairo
    * context. We want to center the extents of the page in the
    * available page area. */
-  status = o_get_world_bounds_list (s_page_get_objects (page),
+  status = o_get_bounds_list (s_page_get_objects (page),
                                           &wx_min, &wy_min, &wx_max, &wy_max);
   /* If there are no printable objects, draw nothing. */
   if (!status) return;
@@ -1081,7 +1081,7 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
   /* First, calculate a transformation matrix for the cairo
    * context. We want to center the extents of the page in the
    * available page area. */
-  status = o_get_world_bounds_list (
+  status = o_get_bounds_list (
            s_page_get_objects (w_current->toplevel->page_current),
            &wx_min, &wy_min, &wx_max, &wy_max);
 

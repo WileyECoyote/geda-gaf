@@ -416,16 +416,62 @@ char *o_box_save(Object *object)
   return(buf);
 }
 
+/*! \brief Mirror Box using WORLD coordinates.
+ *
+ *  \par Function Description
+ *  This function mirrors the box from the point
+ *  (<B>center_x</B>,<B>center_y</B>) in world unit.
+ *
+ *  The box is first translated to the origin, then mirrored and finally
+ *  translated back at its previous position.
+ *
+ *  \param [in,out] object    Box Object to mirror
+ *  \param [in]     center_x  Origin x coordinate in WORLD units
+ *  \param [in]     center_y  Origin y coordinate in WORLD units
+ */
+void o_box_mirror(Object *object, int center_x, int center_y)
+{
+  int newx1, newy1;
+  int newx2, newy2;
+
+  /* translate object to origin */
+  object->box->upper_x -= center_x;
+  object->box->upper_y -= center_y;
+  object->box->lower_x -= center_x;
+  object->box->lower_y -= center_y;
+
+  /* mirror the corners */
+  newx1 = -object->box->upper_x;
+  newy1 =  object->box->upper_y;
+  newx2 = -object->box->lower_x;
+  newy2 =  object->box->lower_y;
+
+  /* reorder the corners */
+  object->box->upper_x = min(newx1,newx2);
+  object->box->upper_y = max(newy1,newy2);
+  object->box->lower_x = max(newx1,newx2);
+  object->box->lower_y = min(newy1,newy2);
+
+  /* translate back in position */
+  object->box->upper_x += center_x;
+  object->box->upper_y += center_y;
+  object->box->lower_x += center_x;
+  object->box->lower_y += center_y;
+
+  /* recalc boundings and world coords */
+  object->w_bounds_valid_for = NULL;
+}
+
 /*! \brief Translate a Box position in WORLD coordinates by a delta.
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the box
  *  described by <B>*object</B>. <B>x1</B> and <B>y1</B> are in world unit.
  *
- *  \param [in]     dx         x distance to move.
- *  \param [in]     dy         y distance to move.
- *  \param [in,out] object     Box Object to translate.
+ *  \param [in,out] object     Box Object to translate
+ *  \param [in]     dx         x distance to move
+ *  \param [in]     dy         y distance to move
  */
-void o_box_translate_world(int dx, int dy, Object *object)
+void o_box_translate(Object *object, int dx, int dy)
 {
   /* Do world coords */
   object->box->upper_x = object->box->upper_x + dx;
@@ -439,18 +485,19 @@ void o_box_translate_world(int dx, int dy, Object *object)
 
 /*! \brief Rotate Box Object using WORLD coordinates.
  *  \par Function Description
- *  The function #o_box_rotate_world() rotate the box described by
- *  <B>*object</B> around the (<B>center_wx</B>, <B>center_wy</B>) point by
+ *  The function #o_box_rotate() rotate the box described by
+ *  <B>*object</B> around the (<B>center_x</B>, <B>center_y</B>) point by
  *  <B>angle</B> degrees.
  *  The center of rotation is in world unit.
  *
- *  \param [in]      center_wx  Rotation center x coordinate in WORLD units.
- *  \param [in]      center_wy  Rotation center y coordinate in WORLD units.
- *  \param [in]      angle          Rotation angle in degrees (See note below).
- *  \param [in,out]  object         Box Object to rotate.
+ *  \param [in,out]  object    Box Object to rotate
+ *  \param [in]      center_x  Rotation center x coordinate in WORLD units
+ *  \param [in]      center_y  Rotation center y coordinate in WORLD units
+ *  \param [in]      angle     Rotation angle in degrees (See note below)
+
  *
  */
-void o_box_rotate_world(int center_wx, int center_wy, int angle, Object *object)
+void o_box_rotate(Object *object, int center_x, int center_y, int angle)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -465,16 +512,16 @@ void o_box_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   if((angle % 90) != 0) return;
 
   /*! \note
-   *  The center of rotation (<B>center_wx</B>, <B>center_wy</B>) is
+   *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
    *  translated to the origin. The rotation of the upper left and lower right
    *  corner are then performed. Finally, the rotated box is translated back
    *  to its previous location.
    */
   /* translate object to origin */
-  object->box->upper_x -= center_wx;
-  object->box->upper_y -= center_wy;
-  object->box->lower_x -= center_wx;
-  object->box->lower_y -= center_wy;
+  object->box->upper_x -= center_x;
+  object->box->upper_y -= center_y;
+  object->box->lower_x -= center_x;
+  object->box->lower_y -= center_y;
 
   /* rotate the upper left corner of the box */
   m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
@@ -491,56 +538,10 @@ void o_box_rotate_world(int center_wx, int center_wy, int angle, Object *object)
   object->box->lower_y = min(newy1,newy2);
 
   /* translate object back to normal position */
-  object->box->upper_x += center_wx;
-  object->box->upper_y += center_wy;
-  object->box->lower_x += center_wx;
-  object->box->lower_y += center_wy;
-
-  /* recalc boundings and world coords */
-  object->w_bounds_valid_for = NULL;
-}
-
-/*! \brief Mirror Box using WORLD coordinates.
- *
- *  \par Function Description
- *  This function mirrors the box from the point
- *  (<B>center_wx</B>,<B>center_wy</B>) in world unit.
- *
- *  The box is first translated to the origin, then mirrored and finally
- *  translated back at its previous position.
- *
- *  \param [in]     center_wx  Origin x coordinate in WORLD units.
- *  \param [in]     center_wy  Origin y coordinate in WORLD units.
- *  \param [in,out] object         Box Object to mirror.
- */
-void o_box_mirror_world(int center_wx, int center_wy, Object *object)
-{
-  int newx1, newy1;
-  int newx2, newy2;
-
-  /* translate object to origin */
-  object->box->upper_x -= center_wx;
-  object->box->upper_y -= center_wy;
-  object->box->lower_x -= center_wx;
-  object->box->lower_y -= center_wy;
-
-  /* mirror the corners */
-  newx1 = -object->box->upper_x;
-  newy1 =  object->box->upper_y;
-  newx2 = -object->box->lower_x;
-  newy2 =  object->box->lower_y;
-
-  /* reorder the corners */
-  object->box->upper_x = min(newx1,newx2);
-  object->box->upper_y = max(newy1,newy2);
-  object->box->lower_x = max(newx1,newx2);
-  object->box->lower_y = min(newy1,newy2);
-
-  /* translate back in position */
-  object->box->upper_x += center_wx;
-  object->box->upper_y += center_wy;
-  object->box->lower_x += center_wx;
-  object->box->lower_y += center_wy;
+  object->box->upper_x += center_x;
+  object->box->upper_y += center_y;
+  object->box->lower_x += center_x;
+  object->box->lower_y += center_y;
 
   /* recalc boundings and world coords */
   object->w_bounds_valid_for = NULL;
