@@ -1,5 +1,12 @@
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/: Add new symbols; Single-Channel, Adjustable Supervisory
+
+            * ti/TPS3895-1.sym Push-pull output
+            * ti/TPS3897-1.sym Open drain output
+
+2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/inductor/coil-1.sym: Fix typo incuctor
 
 2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
