@@ -28,10 +28,16 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Start process to place objects
  *  \par Function Description
+ *  This function starts the process of interactively placing objects.
+ *  The objects may be objects being copied or objects recieved from
+ *  the clibboard or from drag-and-drop. Temporary outline maybe used
+ *  during the process.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -65,10 +71,11 @@ void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Finalize objects being Placed
  *
+ *  \par Function Description
+ *   Handles x_event_button_pressed for ENDCOMP, ENDPASTE ENDTEXT events,
+ *   and o_copy_end, o_copy_multiple_end and x_dnd_receive_string_sym.
  */
 void
 o_place_end (GschemToplevel *w_current, int w_x, int w_y,
@@ -109,7 +116,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
     *ret_new_objects = g_list_copy (temp_dest_list);
   }
 
-  o_list_translate_world(w_diff_x, w_diff_y, temp_dest_list);
+  o_list_translate(temp_dest_list, w_diff_x, w_diff_y);
 
   /* Attach each item back onto the page's object list. Update object
    * connectivity and add the new objects to the selection list.*/
@@ -141,10 +148,11 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   i_status_update_sensitivities (w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Handle Erasing and Redrawing of rubber outlines for objects
  *
+ *  \par Function Description
+ *  This function handles motion events for rubber outlines when placing
+ *  objects.
  */
 void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -192,8 +200,9 @@ void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+
   int diff_x, diff_y;
-  int left, top, bottom, right;
+  int left,     top,   bottom,   right;
   int s_left, s_top, s_bottom, s_right;
 
   if (toplevel->page_current->place_list != NULL) {
@@ -230,12 +239,11 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
       }
     }
 
-    /* Find the bounds of the drawing to be done */
-    if (o_get_world_bounds_list (toplevel->page_current->place_list,
-      &left, &top, &right, &bottom))
+    /* Get bounds of the drawing to be done */
+    if (o_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom))
     {
 
-      WORLDtoSCREEN (w_current, left + diff_x, top + diff_y, &s_left, &s_top);
+      WORLDtoSCREEN (w_current, left  + diff_x, top    + diff_y, &s_left, &s_top);
       WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
 
       o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
@@ -308,7 +316,8 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
     if (abs(diff_x) >= abs(diff_y)) {
       w_current->second_wy = w_current->first_wy;
       diff_y = 0;
-    } else {
+    }
+    else {
       w_current->second_wx = w_current->first_wx;
       diff_x = 0;
     }
@@ -320,13 +329,14 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
 
   /* Draw with the appropriate mode */
   if (w_current->last_drawb_mode == BOUNDINGBOX) {
+
     GArray *map = eda_renderer_get_color_map (CairoRenderer);
-    int flags = eda_renderer_get_cairo_flags (CairoRenderer);
+    int flags   = eda_renderer_get_cairo_flags (CairoRenderer);
+
     int left, top, bottom, right;
 
     /* Find the bounds of the drawing to be done */
-    o_get_world_bounds_list (toplevel->page_current->place_list,
-                                   &left, &top, &right, &bottom);
+    o_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom);
 
     /* Draw box outline */
     eda_cairo_box (cr, flags, 0, left, top, right, bottom);
@@ -344,21 +354,25 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
   cairo_restore (cr);
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Rotate objects being placed
  *
+ *  \par Function Description
+ *   Passes list of objects being placed to o_list_rotate
+ *   with and angle of 90.
  */
 void o_place_rotate (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+  GList *list;
+  int wx;
+  int wy;
 
-  o_list_rotate_world (w_current->first_wx, w_current->first_wy, 90,
-                       toplevel->page_current->place_list);
+  list = toplevel->page_current->place_list;
+  wx   = w_current->first_wx;
+  wy   = w_current->first_wy;
 
+  o_list_rotate (list, wx, wy, 90);
 
   /* Run rotate-objects-hook */
-  g_run_hook_object_list (w_current, "%rotate-objects-hook",
-                          toplevel->page_current->place_list);
+  g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
 }
