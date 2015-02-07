@@ -1,5 +1,11 @@
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TRS3232E-1.sym: Add symbol Multi Channel RS-232 Line Driver/Receiver
+
+    * ti/TRSF3232E-1.sym: High Speed Multi Channel RS-232 Line Driver/Receiver
+
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX3232-1.sym: Rename file with dash, revise symbol, pin name=C1+
 
 2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
