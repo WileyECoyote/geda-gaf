@@ -101,8 +101,8 @@ bool m_arc_includes_point (Arc *arc, POINT *point)
     double radians = atan2((point->y - arc->y), (point->x - arc->x));
 
     /* If negative, make the angle positive */
-    if (radians < 0) {
-      radians = radians + 2 * M_PI;
+    while (radians < 0) {
+      radians += 2 * M_PI;
     }
 
     if (radians < min_angle || radians > max_angle) {

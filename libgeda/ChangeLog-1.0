@@ -1,5 +1,11 @@
 2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_arc.c: Replace G_PI with M_PI.
+
+    * src/math/m_transform.c: Replace G_PI with M_PI.
+
+2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_basic.c: Replace g_critical with BUG_IMSG.
 
 2015-02-06 Wiley E. Hill <wileyhill@gmail.com>

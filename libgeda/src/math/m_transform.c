@@ -161,7 +161,7 @@ void m_transform_points(TRANSFORM *transform, GArray *points)
  */
 void m_transform_rotate(TRANSFORM *transform, double angle)
 {
-  double r = G_PI*angle/180.0;
+  double r = M_PI * angle/180.0;
   double c = cos(r);
   double s = sin(r);
   TRANSFORM temp;
