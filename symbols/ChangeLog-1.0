@@ -1,4 +1,8 @@
-2015-02-05 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TPS2115A-1.sym: Add new symbol; Auto Switching Power Multiplexer
+
+2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPS2115-1.sym: Add new symbol; Auto Switching Power Multiplexer
 
