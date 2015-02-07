@@ -501,8 +501,7 @@ Object *o_copy_object (Object *selected)
       break;
 
     default:
-      g_critical ("o_list_copy_to: object %p has bad type '%c'\n",
-                  selected, selected->type);
+      BUG_IMSG("Bad object type '%c'", object->type);
       return NULL;
   }
 
@@ -552,9 +551,9 @@ void o_mirror_object (Object *object, int center_x, int center_y)
   if (topless != NULL) {
     (*topless) (object, center_x, center_y);
   }
-  else
-    g_critical ("o_mirror_object: object %p has bad type '%c'\n",
-                 object, object->type);
+  else {
+    BUG_IMSG("Bad object type '%c'", object->type);
+  }
 }
 
 /*! \brief Rotates an object in world coordinates
@@ -592,10 +591,11 @@ void o_rotate_object (Object *object, int center_x, int center_y, int angle)
   if (topless != NULL) {
     (*topless) (object, center_x, center_y, angle);
   }
-  else
-    g_critical ("o_rotate_object: object %p has bad type '%c'\n",
-                 object, object->type);
+  else {
+    BUG_IMSG("Bad object type '%c'", object->type);
+  }
 }
+
 /*! \brief Translates an object in world coordinates
  *  \par Function Description
  *  This function translates the object <B>object</B> by
@@ -629,9 +629,9 @@ void o_translate_object (Object *object, int dx, int dy)
   if (topless != NULL) {
     (*topless) (object, dx, dy);
   }
-  else
-    g_critical ("o_translate_object: object %p has bad type '%c'\n",
-                 object, object->type);
+  else {
+    BUG_IMSG("Bad object type '%c'", object->type);
+  }
 }
 
 /*! \brief Scale a set of lines.
