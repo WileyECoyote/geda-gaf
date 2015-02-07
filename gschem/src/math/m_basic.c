@@ -218,9 +218,6 @@ void WORLDtoSCREEN (GschemToplevel *w_current, int x, int y, int *px, int *py)
  *  \param [out] x          The x coordinate in WORLD units
  *  \param [out] y          The y coordinate in WORLD units
  *
- *  \todo Question: why are we returning in x and y if this is SCREEN
- *                  to WORLD shouldn't WORLD coordinates be returned
- *                  in mx and my? WEH Why pass two extra parameters?
  */
 void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
 {
@@ -230,13 +227,13 @@ void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
 
 /*! \brief Find the closest grid coordinate
  *  \par Function Description
- *  This function snaps the current input coordinate to the
- *  closest grid coordinate.
+ *   This function snaps the current input coordinate to the
+ *   closest grid coordinate.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] input      The coordinate to snap.
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] input      The coordinate to snap
  *
- *  \return The closest grid coordinate to the input.
+ *  \return The closest grid coordinate to the input,
  *
  *  WEH: Tweeked to eliminate conditional, library call to abs
  *       and final multiplication instruction.
