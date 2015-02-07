@@ -1,3 +1,7 @@
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX3232-1.sym: Rename file with dash, revise symbol, pin name=C1+
+
 2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPS2115A-1.sym: Add new symbol; Auto Switching Power Multiplexer
