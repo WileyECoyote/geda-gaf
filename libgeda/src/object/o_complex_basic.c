@@ -744,15 +744,15 @@ void o_complex_mirror(Object *object, int center_x, int center_y)
 }
 
 /*! \brief Rotates a complex object in world coordinates
- * \par Function Description
- * This function rotates a complex \a object around the
- * (\a center_x,\a center_y) point by \a angle degrees.
- * The center of rotation is in world units.
+ *  \par Function Description
+ *   This function rotates a complex \a object around the
+ *   (\a center_x,\a center_y) point by \a angle degrees.
+ *   The center of rotation is in world units.
  *
- * \param [in,out] object   Complex object to rotate
- * \param [in]     center_x  X coordinate of rotation center (world coords)
- * \param [in]     center_y  Y coordinate of rotation center (world coords)
- * \param [in]     angle    Rotation angle in degrees
+ *  \param [in,out] object    Complex object to rotate
+ *  \param [in]     center_x  X coordinate of rotation center (world coords)
+ *  \param [in]     center_y  Y coordinate of rotation center (world coords)
+ *  \param [in]     angle     Rotation angle in degrees
  *
  */
 void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
@@ -760,7 +760,6 @@ void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
   int x, y;
   int newx, newy;
 
-  g_return_if_fail (object!=NULL);
   g_return_if_fail (GEDA_IS_COMPLEX(object));
 
   x = object->complex->x + (-center_x);
