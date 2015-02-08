@@ -1,5 +1,12 @@
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex_basic.c: Revise functions o_complex_promote_
+      attribs and o_complex_remove_promotable_attribs: adding variable
+      GList *from_list. This will be optimized out by the compiler so
+      is only for readability -- eliminates breaking assignment line.
+
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_complex_basic.c: Add Doxygen comments for function
       o_complex_new, rename variable buf to buffer.
 

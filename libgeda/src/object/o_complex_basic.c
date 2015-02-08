@@ -240,10 +240,12 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   }
   else {
     for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
+
+      GList  *from_list = object->complex->prim_objs;
       Object *o_removed = (Object *) iter->data;
+
       o_removed->parent_object = NULL;
-      object->complex->prim_objs =
-        g_list_remove (object->complex->prim_objs, o_removed);
+      object->complex->prim_objs = g_list_remove (from_list, o_removed);
     }
     promoted = promotable;
     /* Invalidate the object's bounds since we may have
@@ -259,23 +261,23 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   return promoted;
 }
 
-
 /*! \brief Delete or hide promotable from the passed Object
  *
  *  \par Function Description
- *  Deletes or hides promotable attributes from the passed Object.
- *  This is used when loading symbols while loading a schematic from
- *  disk. The schematic will already contain local copies of symbol's
- *  promotable objects, so we delete or hide the symbol's copies.
+ *  Deletes or hides promotable attributes from \a Object. This is used
+ *  when loading symbols while loading a schematic from disk. The schematic
+ *  will already contain local copies of symbol's promotable objects, so we
+ *  delete or hide the symbol's copies.
  *
  *  Deletion / hiding is dependant on the setting of
  *  toplevel->keep_invisible. If true, attributes eligible for
  *  promotion are kept in memory but flagged as invisible.
  *
- *  \param [in]  toplevel The toplevel environment.
- *  \param [in]  object   The complex object being altered.
+ *  \param [in] toplevel The toplevel environment,
+ *  \param [in] object   The complex object being altered.
  */
-static void o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object *object)
+static void
+o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object *object)
 {
   GList *promotable, *iter;
 
@@ -285,13 +287,15 @@ static void o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object 
     return;
 
   for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
+
     Object *a_object = iter->data;
+
     if (toplevel->keep_invisible == TRUE) {   /* Hide promotable attributes */
       o_set_visibility (a_object, INVISIBLE);
     }
-    else {                                /* Delete promotable attributes */
-      object->complex->prim_objs =
-        g_list_remove (object->complex->prim_objs, a_object);
+    else {                                    /* Delete promotable attributes */
+      GList *from_list = object->complex->prim_objs;
+      object->complex->prim_objs = g_list_remove (from_list, a_object);
       s_object_release (a_object);
     }
   }
