@@ -709,16 +709,19 @@ void o_complex_reset_refdes(Object *object)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Mirror a Complex Object
  *  \par Function Description
+ *  This function mirrors a complex from the point
+ *  (<B>center_x</B>,<B>center_y</B>) in world unit.
  *
+ *  \param [in,out] object    Complex Object to mirror
+ *  \param [in]     center_x  Origin x coordinate in WORLD units
+ *  \param [in]     center_y  Origin y coordinate in WORLD units
  */
 void o_complex_mirror(Object *object, int center_x, int center_y)
 {
   int x, y;
 
-  g_return_if_fail( object != NULL );
   g_return_if_fail( GEDA_IS_COMPLEX(object) );
 
   x = 2 * center_x - object->complex->x;
