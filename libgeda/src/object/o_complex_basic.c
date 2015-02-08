@@ -395,10 +395,9 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
   return (Object*)complex;
 }
 
-/* Done */
-/*! \brief
+/*! \brief Create a New Complex Object
  *  \par Function Description
- *
+ *  Creates and initialize a new complex object.
  */
 Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
                       int mirror, const CLibSymbol *clib, const char *basename,
@@ -408,8 +407,9 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   Complex *complex;
 
   GList *iter;
-  char *buffer = NULL;
+  char *buffer;
 
+  buffer  = NULL;
   new_obj = geda_complex_new();
   complex =  GEDA_COMPLEX(new_obj);
 
@@ -430,6 +430,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
     return create_placeholder(toplevel, complex, x, y, angle, mirror);
   }
   else {
+
     GError * err = NULL;
 
     new_obj->selectable = selectable;
@@ -463,10 +464,14 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   }
 
   complex->pin_objs = NULL;
+
   /* set the parent field now and check for pins */
   for (iter = complex->prim_objs; iter != NULL; iter = g_list_next (iter)) {
+
     Object *sub_object = iter->data;
+
     sub_object->parent_object = new_obj;
+
     if (sub_object->type == OBJ_PIN) {
       complex->pin_objs = g_list_append(complex->pin_objs, sub_object);
     }
@@ -521,10 +526,10 @@ Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
  *  If the complex object was read successfully, a new object is
  *  allocated and appended to the \a object_list.
  *
- *  \param [in] toplevel     The GedaToplevel object
- *  \param [in] buf          a text buffer (usually a line of a schematic file)
- *  \param [in] release_ver  The release number gEDA
- *  \param [in] fileformat_ver a integer value of the file format
+ *  \param [in] toplevel       The GedaToplevel object
+ *  \param [in] buf            Text buffer (usually a line of a schematic file)
+ *  \param [in] release_ver    The release number gEDA
+ *  \param [in] fileformat_ver An integer value of the file format
  *
  *  \param [out] err           A GError object
  *
@@ -666,11 +671,14 @@ Object *o_complex_copy(Object *o_current)
   new_complex->prim_objs = o_list_copy_all (old_complex->prim_objs, NULL);
 
   for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
+
     Object *child = (Object*) iter->data;
+
     if (GEDA_IS_OBJECT(child)) {
       child->parent_object = o_new;
-      if(GEDA_IS_PIN(child))
+      if(GEDA_IS_PIN(child)) {
         pins = g_list_append(pins, child);
+      }
     }
     else {
       BUG_MSG("Invalid pointer attached to complex");

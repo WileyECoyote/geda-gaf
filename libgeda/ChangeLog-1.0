@@ -1,5 +1,10 @@
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex_basic.c: Add Doxygen comments for function
+      o_complex_new, rename variable buf to buffer.
+
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_complex_basic.c: Revise function o_complex_mirror
       Eliminate superfluous g_return_if_fail for NULL pointer to object.
       Add Doxygen comments.
