@@ -43,19 +43,21 @@ o_complex_get_bounds(Object *object)
 {
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
   return o_get_bounds_list (object->complex->prim_objs,
-                                       &object->left, &object->top,
-                                       &object->right, &object->bottom);
+                            &object->left, &object->top,
+                            &object->right, &object->bottom);
 
 }
 
-/*! \brief get the position of the complex base point
+/*! \brief Get the position of complex base point
+ *
  *  \par Function Description
  *  This function gets the position of the base point of a complex object.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
- *  \return TRUE if successfully determined the position, FALSE otherwise
+ *  \param [out] x       Pointer to the x-position,
+ *  \param [out] y       Pointer to the y-position,
+ *  \param [in]  object  The object to get the position.
+ *
+ *  \return TRUE if successfully determined the position, FALSE otherwise.
  */
 bool
 o_complex_get_position (int *x, int *y, Object *object)
@@ -67,14 +69,16 @@ o_complex_get_position (int *x, int *y, Object *object)
 }
 
 /*! \brief check whether an object is a attributes
+ *
  *  \par Function Description
  *  This function checks if an object should be promoted.
  *  An attribute object is promotable if it is promoted by default, or the user
  *  has configered it to promote an attribute.
  *
- *  \param [in] toplevel  The GedaToplevel object
- *  \param [in] object    The attribute object to check
- *  \return TRUE if the object is a eligible attribute, FALSE otherwise
+ *  \param [in] toplevel  The GedaToplevel object,
+ *  \param [in] object    The attribute object to check.
+ *
+ *  \return TRUE if the object is a eligible attribute, FALSE otherwise.
  */
 static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *object)
 {
@@ -138,11 +142,12 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *obje
   return answer;
 }
 
-/*! \brief get the embedded state of an complex object
+/*! \brief Get the embedded state of a Complex object
  *  \par Function Description
- *  Checks and returns the status of the complex object.
+ *  Returns the status of the complex object.
  *
  *  \param object  The object to check
+ *
  *  \return 1 if embedded, 0 otherwise
  */
 int o_complex_is_embedded(Object *object)
@@ -154,7 +159,6 @@ int o_complex_is_embedded(Object *object)
 
 }
 
-
 /*! \brief Get attributes eligible for promotion from inside a complex
  *
  *  \par Function Description
@@ -165,10 +169,11 @@ int o_complex_is_embedded(Object *object)
  *  from the prim_objs of the complex.  If detach is FALSE, the
  *  Objects are left in place.
  *
- *  \param [in]  toplevel The toplevel environment.
- *  \param [in]  object   The complex object being modified.
- *  \param [in]  detach   Should the attributes be detached?
- *  \returns              A linked list of Objects to promote.
+ *  \param [in] toplevel The toplevel environment,
+ *  \param [in] object   The complex object being modified,
+ *  \param [in] detach   Should the attributes be detached?
+ *
+ *  \returns Linked list of Objects to promote.
  */
 GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int detach)
 {
@@ -208,20 +213,21 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int det
 }
 
 /*! \brief Promote attributes from a complex Object
+ *
  *  \par Function Description
  *  Selects promotable attributes from \a object, and returns a new
- *  GList containing them (suitable for appending to a#Page).
+ *  GList containing them (suitable for appending to a #Page).
  *
- *  \param [in]  toplevel The#GedaToplevel environment.
- *  \param [in]  object   The complex#Object to promote from.
+ *  \param [in] toplevel The #GedaToplevel environment,
+ *  \param [in] object   The complex#Object to promote from.
  *
  *  \return A GList of promoted attributes.
  */
 GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
 {
-  GList *promoted = NULL;
+  GList *promoted   = NULL;
   GList *promotable = NULL;
-  GList *iter = NULL;
+  GList *iter       = NULL;
 
   promotable = o_complex_get_promotable (toplevel, object, FALSE);
 
@@ -402,8 +408,11 @@ create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int a
 }
 
 /*! \brief Create a New Complex Object
+ *
  *  \par Function Description
  *  Creates and initialize a new complex object.
+ *
+ *  \return a new complex object
  */
 Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
                       int mirror, const CLibSymbol *clib, const char *basename,
@@ -486,7 +495,8 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   return new_obj;
 }
 
-/*! \brief create a new embedded object
+/*! \brief Create a new embedded object
+ *
  *  \par Function Description
  *  This function creates a new embedded object.
  *
@@ -496,6 +506,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
  *  \param [in]  mirror    The mirror status
  *  \param [in]  basename  The basic name the embedded was created of
  *  \param [in]  selectable whether the object can be selected with the mouse
+ *
  *  \return a new complex object
  */
 Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
@@ -526,11 +537,12 @@ Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
   return new_obj;
 }
 
-/*! \brief read a complex object from a char buffer
+/*! \brief Read Complex object from a char buffer
+ *
  *  \par Function Description
- *  This function reads a complex object from the buffer \a buf.
- *  If the complex object was read successfully, a new object is
- *  allocated and appended to the \a object_list.
+ *   This function reads a complex object from the buffer \a buf.
+ *   If the complex object was read successfully, a new object is
+ *   allocated and appended to the \a object_list.
  *
  *  \param [in] toplevel       The GedaToplevel object
  *  \param [in] buf            Text buffer (usually a line of a schematic file)
@@ -611,11 +623,13 @@ Object *o_complex_read (GedaToplevel *toplevel,
 }
 
 /*! \brief Create a string representation of the complex object
+ *
  *  \par Function Description
  *  This function takes a complex \a object and return a string
  *  according to the file format definition.
  *
  *  \param [in] object  a complex Object
+ *
  *  \return the string representation of the complex Object
  */
 char *o_complex_save(Object *object)
@@ -645,10 +659,12 @@ char *o_complex_save(Object *object)
 }
 
 /*! \brief Create a copy of a COMPLEX object
+ *
  *  \par Function Description
  *  This function creates a copy of the complex object \a o_current.
  *
  *  \param [in] o_current    The object that is copied
+ *
  *  \return a new COMPLEX object
  */
 Object *o_complex_copy(Object *o_current)
@@ -724,6 +740,7 @@ void o_complex_reset_refdes(Object *object)
 }
 
 /*! \brief Mirror a Complex Object
+ *
  *  \par Function Description
  *  This function mirrors a complex from the point
  *  (<B>center_x</B>,<B>center_y</B>) in world unit.
@@ -761,6 +778,7 @@ void o_complex_mirror(Object *object, int center_x, int center_y)
 }
 
 /*! \brief Rotates a complex object in world coordinates
+ *
  *  \par Function Description
  *   This function rotates a complex \a object around the
  *   (\a center_x,\a center_y) point by \a angle degrees.
@@ -770,7 +788,6 @@ void o_complex_mirror(Object *object, int center_x, int center_y)
  *  \param [in]     center_x  X coordinate of rotation center (world coords)
  *  \param [in]     center_y  Y coordinate of rotation center (world coords)
  *  \param [in]     angle     Rotation angle in degrees
- *
  */
 void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
 {
@@ -800,6 +817,7 @@ void o_complex_rotate(Object *object, int center_x, int center_y, int angle)
 }
 
 /*! \brief Translate a complex object
+ *
  *  \par Function Description
  *  This function changes the position of a complex \a object.
  *
@@ -820,6 +838,7 @@ void o_complex_translate(Object *object, int dx, int dy)
 }
 
 /*! \brief Find a pin with a particular attribute
+ *
  *  \par Function Description
  *  Search for a pin inside the given complex which has an attribute
  *  matching those passed.
@@ -953,11 +972,12 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 
     outside_value = strtod(outside, &err_check);
 
-    if (outside_value == 0 && outside == err_check)
-    {
+    if (outside_value == 0 && outside == err_check) {
+
       u_log_message(warn_msg, parse, refdes);
       u_log_message(_("\tCould not parse attached symversion=%s\n"), outside);
       goto done;
+
     }
     outside_present = TRUE;
   }
@@ -971,17 +991,18 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 #endif
 
   /* if neither symbol nor library have version then skip */
-  if (inside_present || outside_present)
-  {
+  if (inside_present || outside_present) {
 
     /* No symversion inside, but a version is outside, is a weird case */
-    if (!inside_present && outside_present)
-    {
+    if (!inside_present && outside_present) {
+
       u_log_message(warn_msg, oddity, refdes);
       u_log_message(_("\tsymversion=%s attached to instantiated symbol,"
       " but version not found inside symbol file\n"), outside);
+
     }
     else {
+
       /* inside & not outside is a valid case, means symbol in library is */
       /* newer also if inside_value is greater than outside_value, than the */
       /* symbol in library is newer */
@@ -996,11 +1017,11 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
         inside_major = floor(inside_value);
         inside_minor = inside_value - inside_major;
 
-        if (outside_present)
-        {
+        if (outside_present) {
           outside_major = floor(outside_value);
           outside_minor = outside_value - outside_major;
-        } else {
+        }
+        else {
           /* symversion was not attached to the symbol, set all to zero */
           outside_major = 0.0;
           outside_minor = 0.0;
@@ -1012,8 +1033,8 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
         printf("o: %f %f %f\n", outside_value, outside_major, outside_minor);
 #endif
 
-        if (inside_major > outside_major)
-        {
+        if (inside_major > outside_major) {
+
           Page *page;
           char *refdes_copy;
 
@@ -1062,8 +1083,11 @@ done:
   GEDA_FREE(outside);
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- * point on an object within the complex object.
+/*! \brief Get Shortest distance from Complex to point
+ *
+ *  \par Function Description
+ *   Calculates the distance between the given point and the closest
+ *   point on an object within the complex object.
  *
  *  \note When querying the distance to our child objects, we always
  *        force treating them as solid filled.
@@ -1075,17 +1099,17 @@ done:
  *  \param [in] force_solid  If true, force treating the object as solid.
  *
  *  \return The shortest distance from the object to the point. If the
- *  distance cannot be calculated, this function returns a really large
- *  number (G_MAXDOUBLE).  With an invalid parameter, this function returns
- *  G_MAXDOUBLE.
+ *          distance cannot be calculated, this function returns a really
+ *          large number (G_MAXDOUBLE).  With an invalid parameter, this
+ *          function returns G_MAXDOUBLE.
  */
 double o_complex_shortest_distance(Object *object, int x, int y, int force_solid)
 {
-  double shortest_distance = G_MAXDOUBLE;
-  double distance;
-  int found_line_bounds = 0;
-  Box line_bounds;
+  Box    line_bounds;
   GList *iter;
+  double distance;
+  double shortest_distance = G_MAXDOUBLE;
+  int    found_line_bounds = 0;
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), G_MAXDOUBLE);
 
