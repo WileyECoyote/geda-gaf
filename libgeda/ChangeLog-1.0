@@ -1,3 +1,9 @@
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex_basic.c: Revise function o_complex_find_pin
+      _by_attribute, put Object* declaration in loop, add list variable
+      (outside loop). Revise Doxygen comments.
+
 2015-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_arc.c: Replace G_PI with M_PI.

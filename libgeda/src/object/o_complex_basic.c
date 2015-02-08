@@ -803,34 +803,38 @@ void o_complex_translate(Object *object, int dx, int dy)
   object->w_bounds_valid_for = NULL;
 }
 
-/*! \brief Find a pin with a particular attribute.
+/*! \brief Find a pin with a particular attribute
  *  \par Function Description
  *  Search for a pin inside the given complex which has an attribute
  *  matching those passed.
  *
- *  \param [in] object        complex Object whos pins to search.
- *  \param [in] name          the attribute name to search for.
- *  \param [in] wanted_value  the attribute value to search for.
+ *  \param [in] object  Complex Object to search
+ *  \param [in] name    The attribute name to search for
+ *  \param [in] wanted  The attribute value to search for
+ *
  *  \return The pin Object with the given attribute, NULL otherwise.
  */
-Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value)
+Object*
+o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
 {
-  Object *o_current;
-  GList  *iter;
-  char   *value;
-  int found;
+  GList *list;
+  GList *iter;
+  char  *value;
+  int    found;
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), NULL);
 
-  for (iter = object->complex->prim_objs; iter != NULL;
-       iter = g_list_next (iter)) {
-    o_current = iter->data;
+  list = object->complex->prim_objs;
+
+  for (iter = list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
 
     if (o_current->type != OBJ_PIN)
       continue;
 
     value = o_attrib_search_object_attribs_by_name (o_current, name, 0);
-    found = (value != NULL && strcmp (value, wanted_value) == 0);
+    found = (value != NULL && strcmp (value, wanted) == 0);
     GEDA_FREE (value);
 
     if (found)
