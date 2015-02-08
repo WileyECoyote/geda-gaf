@@ -185,7 +185,7 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int det
 
   attribs = o_attrib_find_floating_attribs (object->complex->prim_objs);
 
-  for (iter = attribs; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = attribs; iter != NULL; iter = iter->next) {
 
     ptr = iter->data;
 
@@ -229,7 +229,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
    * which case we copy them and make them invisible) or if we want to
    * remove them. */
   if (toplevel->keep_invisible) {
-    for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
+    for (iter = promotable; iter != NULL; iter = iter->next) {
       Object *o_kept = (Object *) iter->data;
       Object *o_copy = o_copy_object (o_kept);
       o_set_visibility (o_kept, INVISIBLE);
@@ -239,7 +239,8 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
     promoted = g_list_reverse (promoted);
   }
   else {
-    for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
+
+    for (iter = promotable; iter != NULL; iter = iter->next) {
 
       GList  *from_list = object->complex->prim_objs;
       Object *o_removed = (Object *) iter->data;
@@ -247,6 +248,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
       o_removed->parent_object = NULL;
       object->complex->prim_objs = g_list_remove (from_list, o_removed);
     }
+
     promoted = promotable;
     /* Invalidate the object's bounds since we may have
      * stolen objects from inside it. */
@@ -286,7 +288,7 @@ o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object *object)
   if (promotable == NULL)
     return;
 
-  for (iter = promotable; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = promotable; iter != NULL; iter = iter->next) {
 
     Object *a_object = iter->data;
 
@@ -470,7 +472,7 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   complex->pin_objs = NULL;
 
   /* set the parent field now and check for pins */
-  for (iter = complex->prim_objs; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
 
     Object *sub_object = iter->data;
 
@@ -717,7 +719,7 @@ void o_complex_reset_refdes(Object *object)
       u_refdes_reset(attrib);
     }
 
-    iter = g_list_next (iter);
+    iter = iter->next;
   }
 }
 

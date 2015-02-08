@@ -1,5 +1,12 @@
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex_basic.c: Revise function o_complex_promote_
+      attribs to elinminate macro g_list_next, this adds superfluous
+      check (conditional) for NULL to For loop.
+
+
+2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_complex_basic.c: Revise functions o_complex_promote_
       attribs and o_complex_remove_promotable_attribs: adding variable
       GList *from_list. This will be optimized out by the compiler so
