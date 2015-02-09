@@ -95,7 +95,7 @@ MC34063
 T 400 1900 5 10 0 0 0 0 1
 device=MC34063
 T 400 2100 5 10 0 0 0 0 1
-footprint=SOIC-8
+footprint=SOIC8
 T 400 2300 5 10 0 0 0 0 1
 author=AutoTron
 T 400 2500 5 10 0 0 0 0 1
