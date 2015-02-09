@@ -1,5 +1,9 @@
 2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TL7709A-1.sym: Add symbol microprocessor reset controllers, 9 Volt
+
+2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/TL7705A-1.sym: Add symbol microprocessor reset controllers, 5 Volt
 
 2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
