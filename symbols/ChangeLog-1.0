@@ -1,3 +1,13 @@
+2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/LM2574-xx-8-2.sym: Add alternate symbol for Adjustable
+      Bucking Voltage Regulator, SOIC8.
+
+            * linear/switchreg/LM2574-5-8-2.sym
+            * linear/switchreg/LM2574-12-8-2.sym
+            * linear/switchreg/LM2574-15-8-2.sym
+            * linear/switchreg/LM2574-ADJ-8-2.sym
+
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TRS3232E-1.sym: Add symbol Multi Channel RS-232 Line Driver/Receiver
