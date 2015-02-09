@@ -73,7 +73,7 @@ struct _GedaBox {
 
 BEGIN_DECLS
 
-GedaType   geda_box_get_type        (void);
+GedaType geda_box_get_type        (void);
 bool     is_a_geda_box_object     (Box *object);
 Object  *geda_box_new             (void);
 
