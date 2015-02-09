@@ -455,7 +455,7 @@
 ; Note that the backup copy is made when you make some change to the schematic,
 ; and there were more than "interval" seconds from the last autosave.
 ; Autosaving will not be allowed if setting it to zero.
-(auto-save-interval 180)
+;(auto-save-interval 180)
 
 ; Attribute autoplacement grid
 (define autoplace-attributes-grid 50)
