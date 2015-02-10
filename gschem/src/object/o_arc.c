@@ -29,21 +29,23 @@
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate Temporary drawing artifacts for Arc objects
  *  \par Function Description
- *
+ *   Retrieves coordinates from top-level and invalidate the bounding
+ *   region of a Arc object.
  */
 void o_arc_invalidate_rubber (GschemToplevel *w_current)
 {
-  int cx, cy, radius;
+  int wx, wy, cx, cy, radius;
 
-  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &cx, &cy);
+  wx = w_current->first_wx;
+  wy = w_current->first_wy;
+
+  WORLDtoSCREEN (w_current, wx, wy, &cx, &cy);
   radius = SCREENabs (w_current, w_current->distance);
 
-  /* FIXME: This isn't a tight bounding box */
   o_invalidate_rectangle (w_current, cx - radius, cy - radius,
-                                cx + radius, cy + radius);
+                                     cx + radius, cy + radius);
 }
 
 /*! \brief Start process to input a new arc.
