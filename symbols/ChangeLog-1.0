@@ -1,5 +1,9 @@
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * opamp/LM101-?.sym: A two symbols for common Operational Amplifiers
+
+2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/TL7712A-1.sym: Add symbol microprocessor reset controllers, 12 Volt
 
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
