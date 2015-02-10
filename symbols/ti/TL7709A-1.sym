@@ -10,7 +10,7 @@ T 200 850 5 8 1 1 0 6 1
 pinnumber=7
 T 200 850 5 8 0 1 0 6 1
 pinseq=7
-T 350 800 9 10 1 1 0 0 1
+T 350 800 9 10 1 1 0 1 1
 pinlabel=SENSE
 T 100 750 5 8 0 1 0 2 1
 pintype=in
@@ -21,7 +21,7 @@ T 2000 1350 5 8 1 1 0 6 1
 pinnumber=5
 T 2000 1350 5 8 0 1 0 6 1
 pinseq=5
-T 1750 1250 9 10 1 1 0 6 1
+T 1750 1300 9 10 1 1 0 7 1
 pinlabel=\_RESET\_
 T 2075 1250 5 8 0 1 0 8 1
 pintype=out
@@ -32,7 +32,7 @@ T 2000 850 5 8 1 1 0 6 1
 pinnumber=6
 T 2000 850 5 8 0 1 0 6 1
 pinseq=6
-T 1750 750 9 10 1 1 0 6 1
+T 1750 800 9 10 1 1 0 7 1
 pinlabel=RESET
 T 2075 750 5 8 0 1 0 8 1
 pintype=out
@@ -43,7 +43,7 @@ T 850 100 5 8 1 1 0 0 1
 pinnumber=4
 T 850 100 5 8 0 1 0 0 1
 pinseq=4
-T 800 350 9 10 1 1 90 1 1
+T 600 350 9 10 1 1 0 0 1
 pinlabel=GND
 T 750 150 5 8 0 1 90 3 1
 pintype=pwr
@@ -65,7 +65,7 @@ T 1350 100 5 8 1 1 0 0 1
 pinnumber=1
 T 1350 100 5 8 0 1 0 0 1
 pinseq=1
-T 1300 350 9 10 1 1 90 1 1
+T 1150 350 9 10 1 1 0 0 1
 pinlabel=REF
 T 1225 75 5 8 0 1 0 3 1
 pintype=in
@@ -76,7 +76,7 @@ T 200 1350 5 8 1 1 0 6 1
 pinnumber=3
 T 200 1350 5 8 0 1 0 6 1
 pinseq=3
-T 350 1300 9 10 1 1 0 0 1
+T 350 1300 9 10 1 1 0 1 1
 pinlabel=CT
 T 100 1250 5 8 0 1 0 2 1
 pintype=in
@@ -87,7 +87,7 @@ T 200 1850 5 8 1 1 0 6 1
 pinnumber=2
 T 200 1850 5 8 0 1 0 6 1
 pinseq=2
-T 350 1800 9 10 1 1 0 0 1
+T 350 1800 9 10 1 1 0 1 1
 pinlabel=\_RESIN\_
 T 100 1750 5 8 0 1 0 2 1
 pintype=in
