@@ -253,7 +253,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
   }
   else {
-    BUG_ITRACE("page_current->place_list is NULL %d", w_current->debug);
+    fprintf(stderr, "page_current->place_list is NULL %d", w_current->debug);
   }
 }
 
