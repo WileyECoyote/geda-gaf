@@ -1,5 +1,9 @@
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * switchreg/L5970D-1.sym: Add symbol 1A step down switching regulator
+
+2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * microchip/HT0440-2.sym: Add symbol alternative pin layout
 
 2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
