@@ -1,5 +1,9 @@
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/DS1135-12.sym: Add new symbol for Maxim 3-in-1 12ns delay line
+
+2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * switchreg/L5970D-1.sym: Add symbol 1A step down switching regulator
 
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
