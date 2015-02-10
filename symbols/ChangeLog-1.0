@@ -1,5 +1,9 @@
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TL7712A-1.sym: Add symbol microprocessor reset controllers, 12 Volt
+
+2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/DS1135-12.sym: Add new symbol for Maxim 3-in-1 12ns delay line
 
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
