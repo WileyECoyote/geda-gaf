@@ -1,0 +1,108 @@
+v 20150101 2
+P 0 1200 300 1200 1 0 0
+{
+T 100 1250 5 8 1 1 0 6 1
+pinnumber=1
+T 100 1250 5 8 0 1 0 6 1
+pinseq=1
+T 350 1200 9 10 1 1 0 0 1
+pinlabel=A
+T 275 1075 5 8 0 1 0 6 1
+pintype=in
+}
+P 0 900 300 900 1 0 0
+{
+T 100 950 5 8 1 1 0 6 1
+pinnumber=8
+T 100 950 5 8 0 1 0 6 1
+pinseq=8
+T 350 900 9 10 1 1 0 0 1
+pinlabel=B
+T 300 800 5 8 0 1 0 6 1
+pintype=in
+}
+P 1900 1200 1600 1200 1 0 0
+{
+T 1800 1250 5 8 1 1 0 0 1
+pinnumber=3
+T 1800 1250 5 8 0 1 0 0 1
+pinseq=3
+T 1550 1200 9 10 1 1 0 6 1
+pinlabel=NVOA
+T 1625 1075 5 8 0 1 0 0 1
+pintype=out
+}
+P 1900 900 1600 900 1 0 0
+{
+T 1800 950 5 8 1 1 0 0 1
+pinnumber=4
+T 1800 950 5 8 0 1 0 0 1
+pinseq=4
+T 1550 900 9 10 1 1 0 6 1
+pinlabel=PVOA
+T 1625 775 5 8 0 1 0 0 1
+pintype=out
+}
+P 0 600 300 600 1 0 0
+{
+T 100 650 5 8 1 1 0 6 1
+pinnumber=2
+T 125 650 5 8 0 1 0 6 1
+pinseq=2
+T 350 600 9 10 1 1 0 0 1
+pinlabel=CLK
+T 275 475 5 8 0 1 0 6 1
+pintype=pas
+}
+P 0 300 300 300 1 0 0
+{
+T 100 350 5 8 1 1 0 6 1
+pinnumber=7
+T 125 350 5 8 0 1 0 6 1
+pinseq=7
+T 350 300 9 10 1 1 0 0 1
+pinlabel=GND
+T 275 200 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 1900 300 1600 300 1 0 0
+{
+T 1800 375 5 8 1 1 0 0 1
+pinnumber=6
+T 1775 350 5 8 0 1 0 0 1
+pinseq=6
+T 1550 300 9 10 1 1 0 6 1
+pinlabel=NVOB
+T 1625 175 5 8 0 1 0 0 1
+pintype=out
+}
+P 1900 600 1600 600 1 0 0
+{
+T 1800 675 5 8 1 1 0 0 1
+pinnumber=5
+T 1775 650 5 8 0 1 0 0 1
+pinseq=5
+T 1550 600 9 10 1 1 0 6 1
+pinlabel=PVOB
+T 1625 475 5 8 0 1 0 0 1
+pintype=out
+}
+B 300 100 1300 1300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1600 1900 8 10 1 1 0 6 1
+refdes=U?
+T 1600 1700 5 10 1 1 0 6 1
+device=HT0440
+T 1600 1500 9 10 1 1 0 6 1
+footprint=SOIC8
+T 100 3300 5 10 0 0 0 0 1
+author=AutoTron
+T 100 2300 5 10 0 0 0 0 1
+documentation=http://www.microchip.com/wwwproducts/Devices.aspx?product=HT0440
+T 100 2500 5 10 0 0 0 0 1
+description=Dual, High Voltage, Isolated MOSFET Driver
+T 100 2700 5 10 0 0 0 0 1
+numslots=0
+T 100 2900 5 10 0 0 0 0 1
+dist-license=GPL3
+T 100 3100 5 10 0 0 0 0 1
+use-license=unlimited

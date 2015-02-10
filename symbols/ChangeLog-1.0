@@ -1,3 +1,7 @@
+2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/HT0440-2.sym: Add symbol alternative pin layout
+
 2015-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/MC34063_SOIC8-1.sym: Remove dash from footprint for SOIC8
