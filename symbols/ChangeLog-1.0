@@ -1,3 +1,7 @@
+2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/DS1135-15.sym: Add new symbol for Maxim 3-in-1 15ns delay line
+
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * opamp/LM101-?.sym: A two symbols for common Operational Amplifiers
