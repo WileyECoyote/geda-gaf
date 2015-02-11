@@ -1,5 +1,9 @@
 2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/DS1135-30.sym: Add new symbol for Maxim 3-in-1 30ns delay line
+
+2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/DS1135-20.sym: Add new symbol for Maxim 3-in-1 20ns delay line
 
 2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
