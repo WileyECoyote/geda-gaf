@@ -1,4 +1,10 @@
-2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Revise function x_dnd_receive_string to search strings
+      for multible filenames and save to list and then open all file in the
+      list. DND now supports multi-file drops!
+
+2015-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Check session requested was successfully load and
       start with empty page if unsuccessful.

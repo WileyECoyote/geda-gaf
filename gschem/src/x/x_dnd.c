@@ -424,49 +424,86 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
 
 /*! \brief Process String Data Received from a Drag & Drop Source */
 bool
-x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer, int where)
+x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string, int where)
 {
-  Page *page;
+  GList *files;
+  Page  *page;
 
   bool  load_as_page;   /* Could be either .sch or .sym */
   bool  result;
 
   const char *leader   = DND_FILE_LEADER;
-  const char  bad_tail = '\x13';
   char       *filename;
+  char       *buffer;
 
-  int   head;
   int   tail;
+  int   index, count;
   int   len;
 
   result = FALSE;
 
-  if (buffer) {
+  if (string) {
 
     load_as_page   = FALSE;
     result         = TRUE;
+    files          = NULL;
 
-    /* g_str_has_prefix worked for a couple weeks, and then it stop working
-     * has to do with gcc escaping //, even strncmp didn't work, crap. */
-    for(head = 0; head < 8; head++) {
-      if (buffer[head] != leader[head]) {break;}
+    len = strlen(string);
+
+    buffer = u_string_strdup (string);
+
+    /* Replace line feeds and carriage returns with nulls */
+    for(tail = 0; tail < len; tail++) {
+      if (buffer[tail] == '\n')
+        buffer[tail] = '\0';
+      if (buffer[tail] == '\r')
+        buffer[tail] = '\0';
     }
 
-    /* TODO: If there is not a file:// prefix then we should still load but
-     * don't have a means to test, someone is always adding the prefix */
-    if (head == 7) {
+    /* Index through full string and put filename in list */
+    for(index = 0; index < len; index++) {
 
-      len = strlen(buffer);
+      int head;
 
-      len = len - 7;                               /* substrate out the prefix */
-      for(tail = head; tail < len; tail++) {
-        if (buffer[tail] == '\0' || buffer[tail] == bad_tail ) break;
+      /* Skip passed URL crap, i.e. "file://" */
+      for (head = 0; head < 8; head++) {
+        if (buffer[head + index] != leader[head]) {break;}
       }
 
-      --tail;  /* backup from what ever we found */
-      --tail;  /* + 1 more, is base zero      */
+      index = head + index;
 
-      filename = g_strndup (buffer + 7, tail );  /* copy just the file spec */
+      if (index < len) {
+        if (buffer + index) {
+          filename = u_string_strdup (buffer + index);  /* copy file spec */
+          if (filename) {
+            files = g_list_append(files, filename);
+          }
+        }
+      }
+
+      /* Advance to the next null */
+      while (buffer[index]) index++;
+
+      /* And the next null, for LF and CR pairs */
+      if (len - index > 1) {
+        if (buffer[index] == '\0') {
+          index++;
+        }
+      }
+    }
+
+    count = g_list_length(files);
+
+    if (count > 1) {
+      for(index = 0; index < count; index++) {
+        filename = g_list_nth_data(files, index);
+        page = x_window_open_page(w_current, filename);
+        GEDA_FREE(filename);
+      }
+    }
+    else {
+
+      filename = files->data;  /* just one file in list */
 
       /* now that we have stripped the bad stuff, glib will work for us again */
       if ( g_str_has_suffix(filename, SCHEMATIC_FILE_DOT_SUFFIX)) {
@@ -476,7 +513,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
         load_as_page = x_dnd_receive_string_sym(w_current, x, y, filename, where);
       }
 
-      if ( load_as_page ) {
+      if (load_as_page) {
         page = x_window_open_page(w_current, filename);
         if (page)
           x_window_set_current_page (w_current, page);
@@ -485,6 +522,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
       }
       GEDA_FREE(filename);
     }
+    g_list_free(files);
   }
   else {
     fprintf(stderr, "<%s>: Buffer is NULL\n", __func__);
