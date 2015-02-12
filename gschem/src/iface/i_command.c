@@ -3573,7 +3573,6 @@ COMMAND (do_toggle_feedback)
   }
 
   if (w_current->inside_action && Current_Page->place_list != NULL) {
-    w_current->debug = I_COMMAND_3485;
     o_place_invalidate_rubber (w_current, FALSE);
   }
 

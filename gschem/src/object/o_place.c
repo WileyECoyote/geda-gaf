@@ -65,7 +65,6 @@ void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
     }
   }
   else {
-    BUG_ITRACE("page_current->place_list is NULL %d", w_current->debug);
     w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
   }
@@ -253,7 +252,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
   }
   else {
-    fprintf(stderr, "page_current->place_list is NULL %d", w_current->debug);
+    BUG_MSG("page_current->place_list is NULL");
   }
 }
 

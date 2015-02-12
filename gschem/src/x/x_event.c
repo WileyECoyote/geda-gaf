@@ -663,7 +663,6 @@ bool x_event_button_released (GtkWidget      *widget,
           o_move_invalidate_rubber (w_current, FALSE);
         }
         else {
-          w_current->debug = X_EVENT_638;
           o_place_invalidate_rubber (w_current, FALSE);
         }
         w_current->rubber_visible = FALSE;
@@ -676,8 +675,8 @@ bool x_event_button_released (GtkWidget      *widget,
 
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, TRUE);
-        } else {
-          w_current->debug = X_EVENT_652;
+        }
+        else {
           o_place_invalidate_rubber (w_current, TRUE);
         }
         w_current->rubber_visible = TRUE;

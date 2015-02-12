@@ -1,5 +1,12 @@
 2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * src/object/o_buffer.c: WEH: Applied patch by Vladimir to cancel
+      the current action when pasting while placing. Did not seg fault
+      but I believe this is the cause of the elusive console noise,
+      removed debugging code from toplevel.
+
+2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * src/math/m_basic.c: WEH: Corrected comment per changes made by
       Vladimir to the master branch.
 
