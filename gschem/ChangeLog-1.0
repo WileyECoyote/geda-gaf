@@ -1,3 +1,8 @@
+2015-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Check session requested was successfully load and
+      start with empty page if unsuccessful.
+
 2015-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Update Doxygen comments, there are no more todo

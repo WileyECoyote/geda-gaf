@@ -195,7 +195,10 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
     /*! \brief Sessions */
     if (start_session) { /* If session specified on command line */
-      i_sessions_open_session(w_current, start_session);
+      if (!i_sessions_open_session(w_current, start_session)) {
+        q_log_message("Requested session %s, does not exist\n", start_session);
+        x_window_open_page( w_current, NULL );
+      }
       GEDA_FREE(start_session);
     }
     else if (i_sessions_present_at_startup()) {
