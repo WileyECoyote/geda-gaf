@@ -1,5 +1,10 @@
-/* gEDA - GPL Electronic Design Automation
- * gnetlist - gEDA Schematic Capture
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * file: i_vars.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gnetlist - gEDA Netlister
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,7 +19,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
 extern int default_net_naming_priority;

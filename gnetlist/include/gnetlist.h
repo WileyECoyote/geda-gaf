@@ -1,7 +1,9 @@
-/* C header                                           -*- gnetlist.h -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
  * file: gnetlist.h
  *
  * gEDA - GPL Electronic Design Automation
+ * gnetlist - gEDA Netlister
  *
  * Copyright (C) 2014 Wiley Edward Hill
  * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
@@ -19,7 +21,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: July, 25, 2014

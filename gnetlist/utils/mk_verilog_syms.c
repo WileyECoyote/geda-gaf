@@ -1,9 +1,9 @@
-/*  mk_verilog_syms.c:
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/*
+ * File: mk_verilog_syms.c
  *
- *  Create a set of n-input gate symbols for the geda verilog netlister.
- *
- *  symbols created:  and[2-9], nand[2-9], nor[2-9], or[2-9], nor[2-9],
- *  xor[2-9], xnor[2-9].
+ * gEDA - GPL Electronic Design Automation
+ * gnetlist - gEDA Netlister
  *
  * Copyright (C) 1999-2015 Mike Jarabek
  *
@@ -19,8 +19,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ */
+/*! \file mk_verilog_syms.c
+ *  \brief
+ *  Create a set of n-input gate symbols for the geda verilog netlister.
+ *
+ *  symbols created:  and[2-9], nand[2-9], nor[2-9], or[2-9], nor[2-9],
+ *  xor[2-9], xnor[2-9].
  */
 
 #include <config.h>

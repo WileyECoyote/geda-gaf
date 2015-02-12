@@ -1,3 +1,8 @@
+2015-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Updated files headers throughout; adding GNU email address, magic tags
+      and updating copyright dates.
+
 2015-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Replace g_strdup_printf with u_string_sprintf

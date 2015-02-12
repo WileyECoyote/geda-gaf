@@ -35,7 +35,7 @@ do_scream()
    fi
 }
 
-do_show_help() 
+do_show_help()
 {
    case $1 in
          "1") # Quick help
@@ -45,8 +45,8 @@ do_show_help()
               echo Usage:   `basename $0` '[-options] [[-l] Library]'
               echo
               cecho ;;
- 
-         "2") # Basic help 
+
+         "2") # Basic help
               echo
               cecho "A script to generate HTML files for PCB footprint Libraries" $GREEN
               echo
@@ -107,7 +107,7 @@ if test $rc -ne 0 ; then
 
 $0: ERROR -- Failed to create $tmpdir with 0700 permissions.  mkdir returned $rc.
 
-Make sure that $tmpdir does not already exist and that you have permissions to 
+Make sure that $tmpdir does not already exist and that you have permissions to
 create it.
 
 EOF

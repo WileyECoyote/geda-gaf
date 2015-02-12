@@ -20,7 +20,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#+ MA 02111-1301, USA
+#+ MA 02111-1301, USA, <http://www.gnu.org/licenses/>.
 
 #  This is a Bash Wrapper encapsulating a utility command function. The
 #  Wrapper provides system level interface for command-line options,
@@ -538,7 +538,7 @@ function do_buffer_input () {
 }
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-> MAIN <-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
- 
+
 if [[ -t 0 ]] ; then          # Is we data from the terminal?
   if [ ! $# = 0 ] ; then      # Are there any command-line arguments?
     ParseCommandLine $*

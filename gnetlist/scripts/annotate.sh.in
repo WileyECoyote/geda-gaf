@@ -19,8 +19,8 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#+ MA 02111-1301, USA
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+#+ 02110-1301 USA, <http://www.gnu.org/licenses/>.
 
 #  This is a Bash Wrapper encapsulating a utility command function. The
 #  Wrapper provides system level interfacing for command-line options,
@@ -305,13 +305,13 @@ function do_CommandFunction () {
   if [ -z "$list" ]; then
     do_scream "No new devices found in $1!"
     return 0
-  fi	
+  fi
 
-  # Replace the ? by a number 
+  # Replace the ? by a number
   sc=${tmpd}/sc.awk
 
-  for f in  $list; do 
-    # ---- creation du script gawk 1 
+  for f in  $list; do
+    # ---- creation du script gawk 1
     echo "BEGIN {R=0}" >${sc}
     echo "/^refdes=$f[0-9]+/ {B=\$1" >>${sc}
     echo "gsub(/refdes=[A-Z]+/,\"\",B)" >>${sc}
@@ -323,7 +323,7 @@ function do_CommandFunction () {
     IMAX=`@AWK@ -f ${sc} $1`
     vecho "Numbering of $f will start at $IMAX"
 
-    # ---- creation du script gawk 2 
+    # ---- creation du script gawk 2
     echo "BEGIN {R=MAX} ">${sc}
     echo "{if (match(\$1,/^refdes=$f\?/)!=0) {" >>${sc}
     echo "R=R+1" >>${sc}
@@ -609,7 +609,7 @@ function do_buffer_input () {
 }
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-> MAIN <-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
- 
+
 if [[ -t 0 ]] ; then          # Is we data from the terminal?
   if [ ! $# = 0 ] ; then      # Are there any command-line arguments?
     ParseCommandLine $*
