@@ -300,11 +300,3 @@
     (component-library-search "/usr/local/gEDA/sym" "Local/Local")
     ;;(component-library "/usr/local/gEDA/sym" "local")
 ) )
-
-
-
-
-
-
-
-
