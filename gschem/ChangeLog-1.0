@@ -1,3 +1,11 @@
+2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * etc/system-gschemrc.scm: Fix typos, spelling, and grammer, WEH:
+      applied updates from master branch made by Vladimir.
+
+    * etc/user-gschemrc.scm: Where applicable applied the same update as
+      was made to system-gschemrc.scm.
+
 2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Revise function x_dnd_receive_string to search strings
