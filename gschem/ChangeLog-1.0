@@ -1,5 +1,10 @@
 2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * src/math/m_basic.c: WEH: Corrected comment per changes made by
+      Vladimir to the master branch.
+
+2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * etc/system-gschemrc.scm: Fix typos, spelling, and grammer, WEH:
       applied updates from master branch made by Vladimir.
 

@@ -207,7 +207,7 @@ void WORLDtoSCREEN (GschemToplevel *w_current, int x, int y, int *px, int *py)
   *py = pix_y (w_current, y);
 }
 
-/*! \brief Transform WORLD coordinates to WORLD coordinates
+/*! \brief Transform SCREEN coordinates to WORLD coordinates
  *  \par Function Description
  *   This function takes in SCREEN x/y coordinates and
  *   transforms them to WORLD x/y coordinates.
