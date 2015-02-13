@@ -1,5 +1,9 @@
 2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Defer calculation of grid snap until ENDPATH.
+
+2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_event.c: Eliminate goto end_button_released in function
       x_event_button_released, in unnecessary.
 

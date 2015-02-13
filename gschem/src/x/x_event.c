@@ -525,10 +525,9 @@ bool x_event_button_released (GtkWidget      *widget,
                               GdkEventButton *event,
                               GschemToplevel *w_current)
 {
-  int unsnapped_wx, unsnapped_wy;
-  int w_x, w_y;
-
   Object *object;
+  int w_x, w_y;
+  int unsnapped_wx, unsnapped_wy;
 
 #if DEBUG_EVENTS
   printf("%s: entry! %d \n", __func__, w_current->event_state);
@@ -541,9 +540,6 @@ bool x_event_button_released (GtkWidget      *widget,
   /* Capture where in the World this event occurred */
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                              &unsnapped_wx, &unsnapped_wy);
-
-  w_x = snap_grid (w_current, unsnapped_wx);
-  w_y = snap_grid (w_current, unsnapped_wy);
 
   if (event->button == 1) {
 
@@ -635,6 +631,8 @@ bool x_event_button_released (GtkWidget      *widget,
         break;
 
       case ENDPATH:
+        w_x = snap_grid (w_current, unsnapped_wx);
+        w_y = snap_grid (w_current, unsnapped_wy);
         if (o_path_end (w_current, w_x, w_y)) {
           w_current->event_state   = PATHCONT;
           w_current->inside_action = TRUE;
