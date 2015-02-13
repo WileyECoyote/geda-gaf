@@ -1,5 +1,9 @@
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex.c: Cleanup some of the ugliness.
+
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Relocate code for i_cmd_do_show_hidden
       and i_cmd_do_show_inherited to i_window_show_attributes.
 

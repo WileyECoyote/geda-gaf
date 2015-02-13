@@ -33,7 +33,7 @@
 /*! \brief Export Complex to symbol file
  *  \par Function Description
  *  This function is provided to allow user to export embeded complexes
- *  but is not restricted to embeded an object, though it may not make
+ *  but is not restricted to an embeded object, though it may not make
  *  sense to export a symbol that already exist as a file.
  *
  */
@@ -82,7 +82,8 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
   Object       *o_current;
   char         *buffer;
   const char   *sym_name = s_clib_symbol_get_name (sym);
-  GError       *err = NULL;
+  GError       *err      = NULL;
+  bool          success  = FALSE;
 
   /* remove the old place list if it exists */
   s_place_free_place_list(toplevel);
@@ -110,138 +111,135 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
        */
       g_error_free(err);
       i_status_set_state (w_current, SELECT);
-      return;
     }
-
-    /* Take the added objects */
-    s_place_set_place_list(toplevel, temp_list);
-
+    else {
+      /* Take the added objects */
+      s_place_set_place_list(toplevel, temp_list);
+      success = TRUE;
+    }
   }
   else { /* if (w_current->include_complex) {..} else { */
+
     Object *new_object;
 
     new_object = o_complex_new (toplevel, 0, 0, 0, 0, sym, sym_name, 1);
 
     if (new_object->type == OBJ_PLACEHOLDER) {
-      /* If created object is a placeholder, the loading failed and we end the insert action */
 
+      /* If new object is a placeholder, load failed sort end action */
       s_object_release(new_object);
       i_status_set_state (w_current, SELECT);
-      return;
     }
     else {
 
-      toplevel->page_current->place_list =
-          g_list_concat (toplevel->page_current->place_list,
-                         o_complex_promote_attribs (toplevel, new_object));
-      toplevel->page_current->place_list =
-          g_list_append (toplevel->page_current->place_list, new_object);
+      GList *promoted   = o_complex_promote_attribs (toplevel, new_object);
+
+      Current_PlaceList = g_list_concat (Current_PlaceList, promoted);
+
+      Current_PlaceList = g_list_append (Current_PlaceList, new_object);
 
       /* Flag the symbol as embedded if necessary */
-      o_current = (g_list_last (toplevel->page_current->place_list))->data;
+      o_current = (g_list_last (Current_PlaceList))->data;
+
       if (w_current->embed_components) {
         o_current->complex->is_embedded = TRUE;
       }
+      success = TRUE;
     }
   }
 
-  /* Run the complex place list changed hook without redrawing */
-  /* since the place list is going to be redrawn afterwards */
-  o_complex_place_changed_run_hook (w_current);
+  if (success) {
 
-  w_current->inside_action = 1;
-  i_status_set_state (w_current, ENDCOMP);
+    /* Run the complex place list changed hook without redrawing */
+    /* since the place list is going to be redrawn afterwards */
+    o_complex_place_changed_run_hook (w_current);
+
+    w_current->inside_action = 1;
+    i_status_set_state (w_current, ENDCOMP);
+  }
 }
 
-
-/*! \brief Run the complex place list changed hook.
+/*! \brief Run the complex place list changed hook
  *  \par Function Description
  *  The complex place list is usually used when placing new components
  *  in the schematic. This function should be called whenever that list
  *  is modified.
- *  \param [in] w_current GschemToplevel structure.
  *
+ *  \param [in] w_current GschemToplevel structure.
  */
 void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
+
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *ptr = NULL;
 
-  /* Run the complex place list changed hook */
-  if (scm_is_false (scm_hook_empty_p (complex_place_list_changed_hook)) &&
-      toplevel->page_current->place_list != NULL) {
-    ptr = toplevel->page_current->place_list;
+  if (toplevel->page_current->place_list != NULL) {
 
-    scm_dynwind_begin (0);
-    g_dynwind_window (w_current);
-    while (ptr) {
-      SCM expr = scm_list_3 (scm_from_utf8_symbol ("run-hook"),
-                             complex_place_list_changed_hook,
-                             edascm_from_object ((Object *) ptr->data));
+    /* Run the complex place list changed hook */
+    if (scm_is_false(scm_hook_empty_p(complex_place_list_changed_hook))) {
 
-      g_scm_eval_protected (expr, scm_interaction_environment ());
-      ptr = g_list_next(ptr);
+      GList *iter = toplevel->page_current->place_list;
+
+      scm_dynwind_begin (0);
+      g_dynwind_window (w_current);
+      while (iter) {
+        SCM expr = scm_list_3 (scm_from_utf8_symbol ("run-hook"),
+                               complex_place_list_changed_hook,
+                               edascm_from_object ((Object *) iter->data));
+
+        g_scm_eval_protected (expr, scm_interaction_environment ());
+        iter = iter->next;
+      }
+      scm_dynwind_end ();
     }
-    scm_dynwind_end ();
   }
 }
-
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
- *  \note
- *  don't know if this belongs yet
  */
 void o_complex_translate_all(GschemToplevel *w_current, int offset)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  int w_rleft, w_rtop, w_rright, w_rbottom;
-  Object *o_current;
-  const GList *iter;
+  Object       *o_current;
+  const GList  *object_list;
+  const GList  *iter;
+  int left, top, right, bottom;
   int x, y;
 
+  object_list = s_page_get_objects (toplevel->page_current);
+
   /* first zoom extents */
-  i_zoom_world_extents (w_current, s_page_get_objects (toplevel->page_current), I_PAN_DONT_REDRAW);
+  i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
   o_invalidate_all (w_current);
 
-  o_get_bounds_list (s_page_get_objects (toplevel->page_current),
-                                 &w_rleft,  &w_rtop,
-                                 &w_rright, &w_rbottom);
+  o_get_bounds_list (object_list, &left,  &top, &right, &bottom);
 
   /*! \todo do we want snap grid here? */
-  x = snap_grid (w_current, w_rleft);
-  /* WARNING: w_rtop isn't the top of the bounds, it is the smaller
-   * y_coordinate, which represents in the bottom in world coords.
-   * These variables are as named from when screen-coords (which had
-   * the correct sense) were in use . */
-  y = snap_grid (w_current, w_rtop);
+  x = snap_grid (w_current, left);
+  y = snap_grid (w_current, top);
 
-  for (iter = s_page_get_objects (toplevel->page_current);
-       iter != NULL; iter = g_list_next (iter)) {
+  for (iter = object_list; iter != NULL; iter = iter->next) {
     o_current = iter->data;
     s_conn_remove_object (o_current);
   }
 
   if (offset == 0) {
     u_log_message(_("Translating schematic [%d %d]\n"), -x, -y);
-    o_list_translate (s_page_get_objects(toplevel->page_current), -x, -y);
+    o_list_translate (object_list, -x, -y);
   }
   else {
     u_log_message(_("Translating schematic [%d %d]\n"), offset, offset);
-    o_list_translate (s_page_get_objects (toplevel->page_current), offset, offset);
+    o_list_translate (object_list, offset, offset);
   }
 
-  for (iter = s_page_get_objects (toplevel->page_current);
-       iter != NULL;  iter = g_list_next (iter)) {
+  for (iter = object_list; iter != NULL; iter = iter->next) {
     o_current = iter->data;
     s_conn_update_object (o_current);
   }
 
-  /* this is an experimental mod, to be able to translate to all
-   * places */
-  i_zoom_world_extents (w_current, s_page_get_objects (toplevel->page_current),
-                 I_PAN_DONT_REDRAW);
+  /* Experimental mod, to be able to translate to all places */
+  i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
   if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
   o_invalidate_all (w_current);
   toplevel->page_current->CHANGED=1;
@@ -264,15 +262,15 @@ bool o_complex_reset_attrib_positions (GschemToplevel *w_current, Object *o_curr
   GList *attributes = o_attrib_return_attribs (o_current);
   GList *a_iter;
 
-  for (a_iter = attributes; a_iter != NULL; a_iter = a_iter->next)
-  {
-     Object *a_current = a_iter->data;
+  for (a_iter = attributes; a_iter != NULL; a_iter = a_iter->next) {
 
-     if (!o_attrib_is_inherited(a_current)) {
-       if (o_attrib_reset_position(w_current, o_current, a_current)) {
-            modified = TRUE;
-          }
-     }
+    Object *a_current = a_iter->data;
+
+    if (!o_attrib_is_inherited(a_current)) {
+      if (o_attrib_reset_position(w_current, o_current, a_current)) {
+        modified = TRUE;
+      }
+    }
   }
   g_list_free (attributes);
   return modified;
