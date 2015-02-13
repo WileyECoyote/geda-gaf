@@ -1,5 +1,13 @@
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/AD1294-1.sym: Power Monitor with PMBus Interface,
+      TSSOP14.
+
+    * analogdevices/AD1294-2.sym: Power Monitor with PMBus Interface,
+      LFCSP.
+
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * analogdevices/AD1293-1.sym: Power Monitor with PMBus Interface,
       TSSOP14.
 
