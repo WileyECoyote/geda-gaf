@@ -1,0 +1,102 @@
+v 20150101 2
+P 100 1600 400 1600 1 0 0
+{
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1650 5 8 0 1 0 6 1
+pinseq=1
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=EN
+T 100 1550 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1200 400 1200 1 0 0
+{
+T 300 1250 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1250 5 8 0 1 0 6 1
+pinseq=2
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=ISNS
+T 100 1150 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 800 400 800 1 0 0
+{
+T 300 850 5 8 1 1 0 6 1
+pinnumber=3
+T 300 850 5 8 0 1 0 6 1
+pinseq=3
+T 450 800 9 10 1 1 0 0 1
+pinlabel=GND
+T 100 750 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 400 400 400 1 0 0
+{
+T 300 450 5 8 1 1 0 6 1
+pinnumber=4
+T 300 450 5 8 0 1 0 6 1
+pinseq=4
+T 450 400 9 10 1 1 0 0 1
+pinlabel=GDRV
+T 100 350 5 8 0 1 0 2 1
+pintype=io
+}
+P 2100 1600 1800 1600 1 0 0
+{
+T 1900 1650 5 8 1 1 0 0 1
+pinnumber=5
+T 1900 1650 5 8 0 1 0 0 1
+pinseq=5
+T 1750 1600 9 10 1 1 0 6 1
+pinlabel=VFB
+T 2050 1550 5 8 0 1 0 8 1
+pintype=io
+}
+P 2100 1200 1800 1200 1 0 0
+{
+T 1900 1250 5 8 1 1 0 0 1
+pinnumber=6
+T 1900 1250 5 8 0 1 0 0 1
+pinseq=6
+T 1750 1200 9 10 1 1 0 6 1
+pinlabel=VC
+T 2050 1150 5 8 0 1 0 8 1
+pintype=io
+}
+P 2100 800 1800 800 1 0 0
+{
+T 1900 850 5 8 1 1 0 0 1
+pinnumber=7
+T 1900 850 5 8 0 1 0 0 1
+pinseq=7
+T 1750 800 9 10 1 1 0 6 1
+pinlabel=VIN
+T 2050 750 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2100 400 1800 400 1 0 0
+{
+T 1900 450 5 8 1 1 0 0 1
+pinnumber=8
+T 1900 450 5 8 0 1 0 0 1
+pinseq=8
+T 1750 400 9 10 1 1 0 6 1
+pinlabel=VDRV
+T 2050 350 5 8 0 1 0 8 1
+pintype=io
+}
+B 400 100 1400 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1800 2500 8 10 1 1 0 6 1
+refdes=U?
+T 1800 2300 5 10 1 1 0 6 1
+device=NCV898031
+T 1800 2100 9 10 1 1 0 6 1
+footprint=SO8
+T 100 3100 5 10 0 0 0 0 1
+description=SEPIC/Boost Controller, 2MHz
+T 100 2700 5 10 0 0 0 0 1
+numslots=0
+T 100 2900 5 10 0 0 0 0 1
+documentation=www.onsemi.com/pub/Collateral/NCV898031-D.PDF

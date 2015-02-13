@@ -1,5 +1,12 @@
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * onsemi/NCV898031-1.sym: 2MHz SEPIC/Boost Controller
+
+    * onsemi/NCV898031-2.sym: 2MHz SEPIC/Boost Controller with alternate
+      pin layout
+
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * analogdevices/AD1294-1.sym: Power Monitor with PMBus Interface,
       TSSOP14.
 
