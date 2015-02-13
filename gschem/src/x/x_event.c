@@ -357,19 +357,14 @@ int x_event_button_pressed(GtkWidget      *widget,
       switch(w_current->middle_button) {
 
         case(MOUSE_MIDDLE_ACTION):
-          /* determine here if copy or move for now do move only
-           *          make sure the list is not empty */
-          if (!o_select_is_selection(w_current)) {
-            o_select_unselect_all(w_current);
-
-          }
-          /* don't want to search if shift key is depresed */
+          /* Only Copy and Move are supported */
+          /* Do not search if shift key is depresed */
           if (!w_current->SHIFTKEY) {
             o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           }
 
           if (!o_select_is_selection(w_current)) {
-            /* this means the above find did not find anything */
+            /* This means the above find did not find anything */
             w_current->inside_action = FALSE;
             i_status_set_state(w_current, SELECT);
           }
