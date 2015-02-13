@@ -334,6 +334,7 @@ void       i_window_on_page_changed         (GschemToplevel *w_current);
 bool       i_window_get_pointer_position    (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
 void       i_window_set_pointer_position    (GschemToplevel *w_current, int wx, int wy);
 void       i_window_set_viewport_size       (GschemToplevel *w_current);
+void       i_window_show_attributes         (GschemToplevel *w_current, int scope);
 
 /* i_zoom_world.c */
 void       i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
@@ -435,7 +436,7 @@ void       o_edit_unlock                (GschemToplevel *w_current);
 void       o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
 void       o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
 //void       o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
-void       o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
+bool       o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
 void       o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
 int        o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
 void       o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);

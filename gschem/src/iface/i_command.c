@@ -1831,42 +1831,18 @@ COMMAND (do_documentation)
 COMMAND (do_show_hidden)
 {
   BEGIN_W_COMMAND(do_show_hidden);
-  GList *object_list = NULL;
 
-  /* Don't execute this inside an action - retest this */
-  if (!w_current->inside_action) {
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      object_list =  geda_list_get_glist (selection);
-    }
-    else {
-      object_list =  s_page_get_objects (Current_Page);
-    }
-    o_undo_savestate (w_current, UNDO_ALL);
-    o_edit_show_hidden (w_current, object_list, FALSE);
-  }
+  i_window_show_attributes(w_current, FALSE);
+
   EXIT_COMMAND(do_show_hidden);
 }
 
 COMMAND (do_show_inherited)
 {
   BEGIN_W_COMMAND(do_show_inherited);
-  GList *object_list = NULL;
 
-  /* Don't execute this inside an action - retest this */
-  if (!w_current->inside_action) {
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      object_list =  geda_list_get_glist (selection);
-    }
-    else {
-      object_list =  s_page_get_objects (Current_Page);
-    }
+  i_window_show_attributes(w_current, TRUE);
 
-    /* Should we really do this? */
-    o_undo_savestate (w_current, UNDO_ALL);
-    o_edit_show_hidden (w_current, object_list, TRUE);
-  }
   EXIT_COMMAND(do_show_inherited);
 }
 

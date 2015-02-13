@@ -142,11 +142,11 @@ bool i_window_get_pointer_position (GschemToplevel *w_current,
 /*! \brief Set Pointer Position Relative to the Drawing Area
  *  \par Function Description
  *   This function sets the pointer position to relative
- *  screen coordinates off the given widget.
+ *   screen coordinates off the given widget.
  *
- *  \param [in] w_current   The GschemToplevel object
- *  \param [in] wx     integer abscissa in World units
- *  \param [in] wy     integer ordinate in World units
+ *  \param [in] w_current The GschemToplevel object
+ *  \param [in] wx        Integer is abscissa in World units
+ *  \param [in] wy        Integer is ordinate in World units
  *
  */
 void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
@@ -166,6 +166,8 @@ void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
+ *
+ *  \param [in] w_current   The GschemToplevel object
  *
  *  \note
  *  this is used during an open command to setup the correct sizes
@@ -193,4 +195,44 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
   float aspect = (float) w_current->screen_width / w_current->screen_height;
   printf("Window aspect: %f\n", aspect);
 #endif
+}
+
+/*! \brief Interface for Toggling Visibility of Attributes
+ *  \par Function Description
+ *   Called by i_cmd_do_show_hidden and i_cmd_do_show_inherited to
+ *   toggle visibility of attributes.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] scope      Boolean flag, TRUE for inherited
+ */
+void i_window_show_attributes(GschemToplevel *w_current, int scope)
+{
+  GList *object_list;
+  bool   show_status;
+
+  if (!w_current->inside_action) {
+    object_list = NULL;
+    if (o_select_is_selection (w_current)) {
+      SELECTION *selection = Current_Selection;
+      object_list =  geda_list_get_glist (selection);
+      show_status = FALSE;
+    }
+    else {
+      object_list =  s_page_get_objects (Current_Page);
+      show_status = TRUE;
+    }
+    if (object_list) {
+      if(o_edit_show_hidden (w_current, object_list, scope)) {
+        o_undo_savestate (w_current, UNDO_ALL);
+        if (show_status) {
+          i_status_show_state(w_current, NULL); /* update screen status */
+        }
+      }
+    }
+  }
+  else if (o_select_is_selection (w_current)) {
+    if (Current_PlaceList) {
+      o_edit_show_hidden (w_current, Current_PlaceList, scope);
+    }
+  }
 }

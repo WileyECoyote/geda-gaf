@@ -1,3 +1,16 @@
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Relocate code for i_cmd_do_show_hidden
+      and i_cmd_do_show_inherited to i_window_show_attributes.
+
+    * src/iface/i_window.c: Add function i_window_show_attributes,
+      revise relocated code to handle inside_action, and conditionaly
+      call o_undo_savestate and i_status_show_state.
+
+    * src/object/o_edit.c: Revise o_edit_show_hidden to return flag
+      if modification were maded, eliminate call to o_undo_savestate
+      and i_status_show_state.
+
 2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Defer calculation of grid snap until ENDPATH.

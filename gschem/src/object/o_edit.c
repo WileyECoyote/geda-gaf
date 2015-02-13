@@ -450,11 +450,14 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
  *  The function causes the object visibility property of all
  *  attribute text objects in the given list to be modified,
  *  based on the current visibility and the inherited flag.
+ *  This a wrapper for o_edit_show_hidden_attrib.
  *
  *  \sa o_edit_show_hidden_attrib
  */
-void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inherited)
+bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inherited)
 {
+  bool result = FALSE;
+
   if (o_list != NULL) {
     GList *modified;
 
@@ -467,12 +470,12 @@ void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
        o_invalidate_glist(w_current, modified);
        g_list_free(modified);
     }
+
+    o_invalidate_glist(w_current, (GList*)o_list);
+    result = TRUE;
   }
 
-  o_invalidate_glist(w_current, (GList*)o_list);
-
   Current_Page->show_hidden_text = ! Current_Page->show_hidden_text;
-  i_status_show_state(w_current, NULL); /* update screen status */
 
   if (Current_Page->show_hidden_text) {
     q_log_message(_("Hidden text is now visible\n"));
@@ -480,6 +483,7 @@ void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
   else {
     q_log_message(_("Hidden text is now invisible\n"));
   }
+  return result;
 }
 
 /*! \brief Toggle Visibility of Hidden Netname Attribute
