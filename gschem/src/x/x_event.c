@@ -86,430 +86,431 @@ int x_event_button_pressed(GtkWidget      *widget,
     }
   }
 
-    w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
-    w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
+  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
+  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-    /* Huge switch statement to evaluate state transitions */
+  /* Huge switch statement to evaluate state transitions */
 
-    if (event->button == GDK_BUTTON_PRIMARY) {
+  if (event->button == GDK_BUTTON_PRIMARY) {
 
-      switch(w_current->event_state) {
-        case(DESELECT):
-          w_current->event_state = STARTDESELECT;
-          break;
-        case(SELECT):
+    switch(w_current->event_state) {
+      case(DESELECT):
+        w_current->event_state = STARTDESELECT;
+        break;
+      case(SELECT):
 
-          /* look for grips or fall through if not enabled */
-          if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
+        /* look for grips or fall through if not enabled */
+        if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
 
-            /* now go into normal SELECT */
-            w_current->event_state = STARTSELECT;
-            w_current->first_wx = w_current->second_wx = unsnapped_wx;
-            w_current->first_wy = w_current->second_wy = unsnapped_wy;
-          }
-          else {
-            /* a grip was found */
-            w_current->event_state   = GRIPS;
-            w_current->inside_action = TRUE;
-          }
-          break;
-
-        case(STARTCOPY):
-          if (o_select_is_selection(w_current)) {
-            o_copy_start(w_current, w_x, w_y);
-            w_current->event_state   = COPY;
-            w_current->inside_action = TRUE;
-          }
-          break;
-
-        case(STARTMCOPY):
-          if (o_select_is_selection(w_current)) {
-            o_copy_start(w_current, w_x, w_y);
-            w_current->event_state   = MCOPY;
-            w_current->inside_action = TRUE;
-          }
-          break;
-
-        case(STARTMOVE):
-          if (o_select_is_selection(w_current)) {
-            o_move_start(w_current, w_x, w_y);
-            w_current->event_state   = MOVE;
-            w_current->inside_action = TRUE;
-          }
-          break;
-
-        case(STARTPASTE):
-          o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
-          w_current->event_state   = ENDPASTE;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(DRAWLINE):
-          o_line_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDLINE;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDLINE):
-          o_line_end(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWLINE;
-          break;
-
-        case DRAWPATH:
-          o_path_start (w_current, w_x, w_y);
-          w_current->event_state   = ENDPATH;
-          w_current->inside_action = TRUE;
-          break;
-
-        case PATHCONT:
-          o_path_continue (w_current, w_x, w_y);
-          w_current->event_state   = ENDPATH;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(DRAWBOX):
-          o_box_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDBOX;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDBOX):
-          o_box_end(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWBOX;
-          break;
-
-        case(DRAWPICTURE):
-          o_picture_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDPICTURE;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDPICTURE):
-          o_picture_end(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWPICTURE;
-          break;
-
-        case(DRAWCIRCLE):
-          o_circle_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDCIRCLE;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDCIRCLE):
-          o_circle_end(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWCIRCLE;
-          break;
-
-        case(DRAWARC):
-          o_arc_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDARC;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDARC):
-          o_arc_end1(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWARC;
-          break;
-
-        case(DRAWPIN):
-          o_pin_start(w_current, w_x, w_y);
-          w_current->event_state   = ENDPIN;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(ENDPIN):
-          o_pin_end(w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
-          w_current->event_state   = DRAWPIN;
-          break;
-
-        case(STARTDRAWNET):  /*! \todo change state name? */
-          o_net_start(w_current, w_x, w_y);
-          w_current->event_state   = DRAWNET;
-          w_current->inside_action = TRUE;
-          break;
-
-        case(STARTDRAWBUS):
-          o_bus_start(w_current, w_x, w_y);
-          w_current->inside_action = TRUE;
-          w_current->event_state   = DRAWBUS;
-          break;
-
-        case(DRAWNET):
-        case(NETCONT):
-          /* Only continue the net if net end worked */
-          if (o_net_end(w_current, w_x, w_y)) {
-            o_net_start(w_current, w_current->first_wx, w_current->first_wy);
-            w_current->event_state = NETCONT;
-          }
-          else { /* cleanup and start a new net */
-            o_net_invalidate_rubber (w_current);
-            o_net_reset(w_current);
-            i_status_set_state(w_current, STARTDRAWNET);
-            w_current->inside_action = FALSE;
-          }
-          break;
-
-        case(DRAWBUS):
-        case(BUSCONT):
-          /* Only continue the net if net end worked */
-          if (o_bus_end(w_current, w_x, w_y)) {
-            o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
-            w_current->event_state=BUSCONT;
-          }
-          else {
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, STARTDRAWBUS);
-          }
-          break;
-        case(ENDCOMP):
-          o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
-                      NULL, "%add-objects-hook");
-          if (!w_current->continue_component_place) {
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, SELECT);
-          }
-          break;
-
-        case(ENDPASTE):
-          o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        case(ENDROTATEP):
-          o_edit_rotate_world(w_current, w_x, w_y, 90,
-                              geda_list_get_glist(Current_Selection));
-
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        case(ENDMIRROR):
-          o_edit_mirror_world(w_current, w_x, w_y,
-                              geda_list_get_glist(Current_Selection));
-
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        case(ENDTEXT):
-          o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        case(STARTPAN):
-          i_pan_world(w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        case(ZOOMBOXSTART):
-          o_redraw_cleanstates(w_current);
-          i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
-          w_current->inside_action = TRUE;
-          i_status_set_state(w_current, ZOOMBOXEND);
-          break;
-
-        case(STARTEXTEND):
-          i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
-          break;
-
-        case EXTEND:
-        case(ENDEXTEND):
-          if(!o_extend_end (w_current, w_x, w_y)) {
-            i_status_set_state(w_current, SELECT);
-          }
-          break;
-      }
-    }
-    else if (event->button == 2) {
-
-      if (w_current->event_state == DRAWPICTURE) {
-
-        if (w_current->current_pixbuf != NULL) {
-          GEDA_UNREF(w_current->current_pixbuf);
-          w_current->current_pixbuf = NULL;
-        }
-
-        GEDA_FREE(w_current->pixbuf_filename);
-      }
-
-      /* try this out and see how it behaves */
-      if (w_current->inside_action) {
-        if (!(w_current->event_state == ENDCOMP  ||
-          w_current->event_state     == ENDTEXT  ||
-          w_current->event_state     == ENDMOVE  ||
-          w_current->event_state     == ENDCOPY  ||
-          w_current->event_state     == ENDMCOPY ||
-          w_current->event_state     == ENDPASTE )) {
-          i_callback_cancel(w_current, 0, NULL);
-        }
-      }
-      else {
-
-        switch(w_current->middle_button) {
-
-          case(MOUSE_MIDDLE_ACTION):
-            /* determine here if copy or move for now do move only
-             *          make sure the list is not empty */
-            if (!o_select_is_selection(w_current)) {
-              o_select_unselect_all(w_current);
-
-            }
-            /* don't want to search if shift key is depresed */
-            if (!w_current->SHIFTKEY) {
-              o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
-            }
-
-            if (!o_select_is_selection(w_current)) {
-              /* this means the above find did not find anything */
-              w_current->inside_action = FALSE;
-              i_status_set_state(w_current, SELECT);
-            }
-            else {
-              if (w_current->ALTKEY) {
-                o_copy_start(w_current, w_x, w_y);
-                w_current->inside_action = TRUE;
-                i_status_set_state(w_current, COPY);
-              } else {
-                o_move_start(w_current, w_x, w_y);
-                w_current->inside_action = TRUE;
-                i_status_set_state(w_current, MOVE);
-              }
-            }
-            break;
-
-          case(MOUSE_MIDDLE_REPEAT):
-            w_current->pointer_sx = event->x;
-            w_current->pointer_sy = event->y;
-            i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
-            break;
-
-#ifdef HAVE_LIBSTROKE
-          case(MOUSE_MIDDLE_STROKE):
-            DOING_STROKE=TRUE;
-            break;
-#endif /* HAVE_LIBSTROKE */
-
-          case(MOUSE_MIDDLE_PAN):
-            //w_current->event_state   = MOUSEPAN; /* start */
-            //w_current->inside_action = TRUE;
-            w_current->doing_pan     = TRUE;
-            start_pan_x              = (int) event->x;
-            start_pan_y              = (int) event->y;
-            throttle                 = 0;
-            break;
-        }
-      }
-    }
-    else if (event->button == 3) {
-
-      if (!w_current->inside_action) {
-        if (w_current->third_button == POPUP_ENABLED) {
-          i_status_update_sensitivities(w_current);  /* update menus before popup  */
-          x_menu_display_popup(w_current, event);
+          /* now go into normal SELECT */
+          w_current->event_state = STARTSELECT;
+          w_current->first_wx = w_current->second_wx = unsnapped_wx;
+          w_current->first_wy = w_current->second_wy = unsnapped_wy;
         }
         else {
+          /* a grip was found */
+          w_current->event_state   = GRIPS;
+          w_current->inside_action = TRUE;
+        }
+        break;
+
+      case(STARTCOPY):
+        if (o_select_is_selection(w_current)) {
+          o_copy_start(w_current, w_x, w_y);
+          w_current->event_state   = COPY;
+          w_current->inside_action = TRUE;
+        }
+        break;
+
+      case(STARTMCOPY):
+        if (o_select_is_selection(w_current)) {
+          o_copy_start(w_current, w_x, w_y);
+          w_current->event_state   = MCOPY;
+          w_current->inside_action = TRUE;
+        }
+        break;
+
+      case(STARTMOVE):
+        if (o_select_is_selection(w_current)) {
+          o_move_start(w_current, w_x, w_y);
+          w_current->event_state   = MOVE;
+          w_current->inside_action = TRUE;
+        }
+        break;
+
+      case(STARTPASTE):
+        o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
+        w_current->event_state   = ENDPASTE;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(DRAWLINE):
+        o_line_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDLINE;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDLINE):
+        o_line_end(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWLINE;
+        break;
+
+      case DRAWPATH:
+        o_path_start (w_current, w_x, w_y);
+        w_current->event_state   = ENDPATH;
+        w_current->inside_action = TRUE;
+        break;
+
+      case PATHCONT:
+        o_path_continue (w_current, w_x, w_y);
+        w_current->event_state   = ENDPATH;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(DRAWBOX):
+        o_box_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDBOX;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDBOX):
+        o_box_end(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWBOX;
+        break;
+
+      case(DRAWPICTURE):
+        o_picture_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDPICTURE;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDPICTURE):
+        o_picture_end(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWPICTURE;
+        break;
+
+      case(DRAWCIRCLE):
+        o_circle_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDCIRCLE;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDCIRCLE):
+        o_circle_end(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWCIRCLE;
+        break;
+
+      case(DRAWARC):
+        o_arc_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDARC;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDARC):
+        o_arc_end1(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWARC;
+        break;
+
+      case(DRAWPIN):
+        o_pin_start(w_current, w_x, w_y);
+        w_current->event_state   = ENDPIN;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(ENDPIN):
+        o_pin_end(w_current, w_x, w_y);
+        w_current->inside_action = FALSE;
+        w_current->event_state   = DRAWPIN;
+        break;
+
+      case(STARTDRAWNET):  /*! \todo change state name? */
+        o_net_start(w_current, w_x, w_y);
+        w_current->event_state   = DRAWNET;
+        w_current->inside_action = TRUE;
+        break;
+
+      case(STARTDRAWBUS):
+        o_bus_start(w_current, w_x, w_y);
+        w_current->inside_action = TRUE;
+        w_current->event_state   = DRAWBUS;
+        break;
+
+      case(DRAWNET):
+      case(NETCONT):
+        /* Only continue the net if net end worked */
+        if (o_net_end(w_current, w_x, w_y)) {
+          o_net_start(w_current, w_current->first_wx, w_current->first_wy);
+          w_current->event_state = NETCONT;
+        }
+        else { /* cleanup and start a new net */
+          o_net_invalidate_rubber (w_current);
+          o_net_reset(w_current);
+          i_status_set_state(w_current, STARTDRAWNET);
+          w_current->inside_action = FALSE;
+        }
+        break;
+
+      case(DRAWBUS):
+      case(BUSCONT):
+        /* Only continue the net if net end worked */
+        if (o_bus_end(w_current, w_x, w_y)) {
+          o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
+          w_current->event_state=BUSCONT;
+        }
+        else {
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, STARTDRAWBUS);
+        }
+        break;
+      case(ENDCOMP):
+        o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
+                    NULL, "%add-objects-hook");
+        if (!w_current->continue_component_place) {
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, SELECT);
+        }
+        break;
+
+      case(ENDPASTE):
+        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
+        w_current->inside_action = FALSE;
+        i_status_set_state(w_current, SELECT);
+        break;
+
+      case(ENDROTATEP):
+        o_edit_rotate_world(w_current, w_x, w_y, 90,
+                            geda_list_get_glist(Current_Selection));
+
+        w_current->inside_action = FALSE;
+        i_status_set_state(w_current, SELECT);
+        break;
+
+      case(ENDMIRROR):
+        o_edit_mirror_world(w_current, w_x, w_y,
+                            geda_list_get_glist(Current_Selection));
+
+        w_current->inside_action = FALSE;
+        i_status_set_state(w_current, SELECT);
+        break;
+
+      case(ENDTEXT):
+        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+        w_current->inside_action = FALSE;
+        i_status_set_state(w_current, SELECT);
+        break;
+
+      case(STARTPAN):
+        i_pan_world(w_current, w_x, w_y);
+        i_status_set_state(w_current, SELECT);
+        break;
+
+      case(ZOOMBOXSTART):
+        o_redraw_cleanstates(w_current);
+        i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
+        w_current->inside_action = TRUE;
+        i_status_set_state(w_current, ZOOMBOXEND);
+        break;
+
+      case(STARTEXTEND):
+        i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
+        break;
+
+      case EXTEND:
+      case(ENDEXTEND):
+        if(!o_extend_end (w_current, w_x, w_y)) {
+          i_status_set_state(w_current, SELECT);
+        }
+        break;
+    }
+  }
+  else if (event->button == 2) {
+
+    if (w_current->event_state == DRAWPICTURE) {
+
+      if (w_current->current_pixbuf != NULL) {
+        GEDA_UNREF(w_current->current_pixbuf);
+        w_current->current_pixbuf = NULL;
+      }
+
+      GEDA_FREE(w_current->pixbuf_filename);
+    }
+
+    /* try this out and see how it behaves */
+    if (w_current->inside_action) {
+      if (!(w_current->event_state == ENDCOMP  ||
+        w_current->event_state     == ENDTEXT  ||
+        w_current->event_state     == ENDMOVE  ||
+        w_current->event_state     == ENDCOPY  ||
+        w_current->event_state     == ENDMCOPY ||
+        w_current->event_state     == ENDPASTE )) {
+        i_callback_cancel(w_current, 0, NULL);
+        }
+    }
+    else {
+
+      switch(w_current->middle_button) {
+
+        case(MOUSE_MIDDLE_ACTION):
+          /* determine here if copy or move for now do move only
+           *          make sure the list is not empty */
+          if (!o_select_is_selection(w_current)) {
+            o_select_unselect_all(w_current);
+
+          }
+          /* don't want to search if shift key is depresed */
+          if (!w_current->SHIFTKEY) {
+            o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
+          }
+
+          if (!o_select_is_selection(w_current)) {
+            /* this means the above find did not find anything */
+            w_current->inside_action = FALSE;
+            i_status_set_state(w_current, SELECT);
+          }
+          else {
+            if (w_current->ALTKEY) {
+              o_copy_start(w_current, w_x, w_y);
+              w_current->inside_action = TRUE;
+              i_status_set_state(w_current, COPY);
+            }
+            else {
+              o_move_start(w_current, w_x, w_y);
+              w_current->inside_action = TRUE;
+              i_status_set_state(w_current, MOVE);
+            }
+          }
+          break;
+
+        case(MOUSE_MIDDLE_REPEAT):
+          w_current->pointer_sx = event->x;
+          w_current->pointer_sy = event->y;
+          i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
+          break;
+
+#ifdef HAVE_LIBSTROKE
+        case(MOUSE_MIDDLE_STROKE):
+          DOING_STROKE=TRUE;
+          break;
+#endif /* HAVE_LIBSTROKE */
+
+        case(MOUSE_MIDDLE_PAN):
           //w_current->event_state   = MOUSEPAN; /* start */
           //w_current->inside_action = TRUE;
           w_current->doing_pan     = TRUE;
           start_pan_x              = (int) event->x;
           start_pan_y              = (int) event->y;
           throttle                 = 0;
-        }
-      }
-      else if (w_current->third_button == MOUSEPAN_ENABLED) {
-          w_current->doing_pan     = TRUE;
-          start_pan_x              = (int) event->x;
-          start_pan_y              = (int) event->y;
-          throttle                 = 0;
-      }
-      else {
-
-        switch (w_current->event_state) {
-          case(NETCONT):
-
-          case(STARTDRAWNET):
-          case(DRAWNET):
-            w_current->inside_action = FALSE;
-            i_status_set_state (w_current, STARTDRAWNET);
-            o_net_invalidate_rubber (w_current);
-            o_net_reset (w_current);
-            break;
-
-          case(STARTDRAWBUS):
-          case(DRAWBUS):
-          case(BUSCONT):
-            w_current->inside_action = FALSE;
-            i_status_set_state (w_current, STARTDRAWBUS);
-            o_bus_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWPIN):
-          case(ENDPIN):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWPIN);
-            o_pin_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWLINE):
-          case(ENDLINE):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWLINE);
-            o_line_invalidate_rubber (w_current);
-            break;
-
-          case DRAWPATH:
-          case PATHCONT:
-          case ENDPATH:
-            w_current->inside_action = FALSE;
-            i_status_set_state (w_current, DRAWPATH);
-            o_path_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWBOX):
-          case(ENDBOX):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWBOX);
-            o_box_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWPICTURE):
-          case(ENDPICTURE):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWPICTURE);
-            o_picture_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWCIRCLE):
-          case(ENDCIRCLE):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWCIRCLE);
-            o_circle_invalidate_rubber (w_current);
-            break;
-
-          case(DRAWARC):
-          case(ENDARC):
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, DRAWARC);
-            o_arc_invalidate_rubber (w_current);
-            break;
-
-          default:
-            i_callback_cancel(w_current, 0, NULL);
-            break;
-        }
+          break;
       }
     }
+  }
+  else if (event->button == 3) {
 
-    return(0);
+    if (!w_current->inside_action) {
+      if (w_current->third_button == POPUP_ENABLED) {
+        i_status_update_sensitivities(w_current);  /* update menus before popup  */
+        x_menu_display_popup(w_current, event);
+      }
+      else {
+        //w_current->event_state   = MOUSEPAN; /* start */
+        //w_current->inside_action = TRUE;
+        w_current->doing_pan   = TRUE;
+        start_pan_x            = (int) event->x;
+        start_pan_y            = (int) event->y;
+        throttle               = 0;
+      }
+    }
+    else if (w_current->inside_action && w_current->third_button == MOUSEPAN_ENABLED){
+      w_current->doing_pan     = TRUE;
+      start_pan_x              = (int) event->x;
+      start_pan_y              = (int) event->y;
+      throttle                 = 0;
+    }
+    else {
+
+      switch (w_current->event_state) {
+        case(NETCONT):
+
+        case(STARTDRAWNET):
+        case(DRAWNET):
+          w_current->inside_action = FALSE;
+          i_status_set_state (w_current, STARTDRAWNET);
+          o_net_invalidate_rubber (w_current);
+          o_net_reset (w_current);
+          break;
+
+        case(STARTDRAWBUS):
+        case(DRAWBUS):
+        case(BUSCONT):
+          w_current->inside_action = FALSE;
+          i_status_set_state (w_current, STARTDRAWBUS);
+          o_bus_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWPIN):
+        case(ENDPIN):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWPIN);
+          o_pin_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWLINE):
+        case(ENDLINE):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWLINE);
+          o_line_invalidate_rubber (w_current);
+          break;
+
+        case DRAWPATH:
+        case PATHCONT:
+        case ENDPATH:
+          w_current->inside_action = FALSE;
+          i_status_set_state (w_current, DRAWPATH);
+          o_path_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWBOX):
+        case(ENDBOX):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWBOX);
+          o_box_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWPICTURE):
+        case(ENDPICTURE):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWPICTURE);
+          o_picture_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWCIRCLE):
+        case(ENDCIRCLE):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWCIRCLE);
+          o_circle_invalidate_rubber (w_current);
+          break;
+
+        case(DRAWARC):
+        case(ENDARC):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, DRAWARC);
+          o_arc_invalidate_rubber (w_current);
+          break;
+
+        default:
+          i_callback_cancel(w_current, 0, NULL);
+          break;
+      }
+    }
+  }
+
+  return(0);
 }
 
 /*! \brief Button Release Event Handler
@@ -697,9 +698,9 @@ bool x_event_button_released (GtkWidget      *widget,
           o_place_invalidate_rubber (w_current, TRUE);
         }
         w_current->rubber_visible = TRUE;
-        goto end_button_released;
       }
     }
+    else {
 
       switch(w_current->middle_button) {
 
@@ -735,17 +736,17 @@ bool x_event_button_released (GtkWidget      *widget,
             if (w_current->undo_panzoom) {
               o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
             }
-                /* this needs to be REDONE because if you mouse pan, you will
-                 * be thrown out of the current mode. not good */
-                //w_current->inside_action = FALSE;
-                //i_status_set_state(w_current, SELECT);
+            /* this needs to be REDONE because if you mouse pan, you will
+             * be thrown out of the current mode. not good */
+            //w_current->inside_action = FALSE;
+            //i_status_set_state(w_current, SELECT);
           }
           break;
 
         default:
           break;
       }
-
+    }
   }
   else if (event->button == 3) {
 
@@ -767,13 +768,12 @@ bool x_event_button_released (GtkWidget      *widget,
     }
   }
 
-  end_button_released:
 #if DEBUG_EVENTS
-  printf("x_event_button_released: exit! %d \n", w_current->event_state);
+  printf("%s: exit! %d \n", __func__, w_current->event_state);
 #endif
 
   return(FALSE);
-}
+} /* End Function x_event_button_released*/
 
 /*! \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
  *  \par Function Description
