@@ -399,8 +399,8 @@ int x_event_button_pressed(GtkWidget      *widget,
 #endif /* HAVE_LIBSTROKE */
 
           case(MOUSE_MIDDLE_PAN):
-            w_current->event_state   = MOUSEPAN; /* start */
-            w_current->inside_action = TRUE;
+            //w_current->event_state   = MOUSEPAN; /* start */
+            //w_current->inside_action = TRUE;
             w_current->doing_pan     = TRUE;
             start_pan_x              = (int) event->x;
             start_pan_y              = (int) event->y;
@@ -417,15 +417,22 @@ int x_event_button_pressed(GtkWidget      *widget,
           x_menu_display_popup(w_current, event);
         }
         else {
-          w_current->event_state   = MOUSEPAN; /* start */
-          w_current->inside_action = TRUE;
+          //w_current->event_state   = MOUSEPAN; /* start */
+          //w_current->inside_action = TRUE;
           w_current->doing_pan     = TRUE;
           start_pan_x              = (int) event->x;
           start_pan_y              = (int) event->y;
           throttle                 = 0;
         }
       }
-      else { /* this is the default cancel */
+      else if (w_current->third_button == MOUSEPAN_ENABLED) {
+          w_current->doing_pan     = TRUE;
+          start_pan_x              = (int) event->x;
+          start_pan_y              = (int) event->y;
+          throttle                 = 0;
+      }
+      else {
+
         switch (w_current->event_state) {
           case(NETCONT):
 
@@ -650,14 +657,24 @@ bool x_event_button_released (GtkWidget      *widget,
     }
   }
   else if (event->button == 2) {
-
-    if (w_current->inside_action) {
+    if (w_current->doing_pan) {
+      w_current->doing_pan=FALSE;
+      o_invalidate_all (w_current);
+      if (w_current->undo_panzoom) {
+        o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+      }
+      /* this needs to be REDONE because if you mouse pan, you will
+       * be thrown out of the current mode. not good */
+      //w_current->inside_action = FALSE;
+      //i_status_set_state(w_current, SELECT);
+    }
+    else if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP  ||
-          w_current->event_state == ENDTEXT  ||
-          w_current->event_state == ENDMOVE  ||
-          w_current->event_state == ENDCOPY  ||
-          w_current->event_state == ENDMCOPY ||
-          w_current->event_state == ENDPASTE )
+        w_current->event_state == ENDTEXT  ||
+        w_current->event_state == ENDMOVE  ||
+        w_current->event_state == ENDCOPY  ||
+        w_current->event_state == ENDMCOPY ||
+        w_current->event_state == ENDPASTE )
       {
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
@@ -684,47 +701,51 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
 
-    switch(w_current->middle_button) {
+      switch(w_current->middle_button) {
 
-      case(MOUSE_MIDDLE_ACTION):
+        case(MOUSE_MIDDLE_ACTION):
 
-        switch(w_current->event_state) {
-          case(MOVE):
-            o_move_end(w_current);
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, SELECT);
-            break;
+          switch(w_current->event_state) {
 
-          case(COPY):
-            o_copy_end(w_current);
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, SELECT);
-            break;
-        }
-        break;
+            case(MOVE):
+              o_move_end(w_current);
+              w_current->inside_action = FALSE;
+              i_status_set_state(w_current, SELECT);
+              break;
+
+            case(COPY):
+              o_copy_end(w_current);
+              w_current->inside_action = FALSE;
+              i_status_set_state(w_current, SELECT);
+              break;
+          }
+          break;
 
 #ifdef HAVE_LIBSTROKE
-     case(MOUSE_MIDDLE_STROKE):
-       DOING_STROKE = FALSE;
-       x_stroke_translate_and_execute (w_current);
-       break;
+        case(MOUSE_MIDDLE_STROKE):
+            DOING_STROKE = FALSE;
+            x_stroke_translate_and_execute (w_current);
+            break;
 #endif /* HAVE_LIBSTROKE */
 
-     case(MOUSE_MIDDLE_PAN):
-       w_current->doing_pan=FALSE;
-       o_invalidate_all (w_current);
-       if (w_current->undo_panzoom) {
-          o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
-       }
-       /* this needs to be REDONE because if you mouse pan, you will
-        * be thrown out of the current mode. not good */
-       w_current->inside_action = FALSE;
-       i_status_set_state(w_current, SELECT);
-       break;
+        case(MOUSE_MIDDLE_PAN):
+          if (w_current->doing_pan) {
+            w_current->doing_pan=FALSE;
+            o_invalidate_all (w_current);
+            if (w_current->undo_panzoom) {
+              o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+            }
+                /* this needs to be REDONE because if you mouse pan, you will
+                 * be thrown out of the current mode. not good */
+                //w_current->inside_action = FALSE;
+                //i_status_set_state(w_current, SELECT);
+          }
+          break;
 
-     default:
-       break;
-    }
+        default:
+          break;
+      }
+
   }
   else if (event->button == 3) {
 
@@ -737,6 +758,10 @@ bool x_event_button_released (GtkWidget      *widget,
       }
       /* This needs to be REDONE, if user mouse pans, the user will be
        * thrown out of the current mode. Not good */
+      //w_current->inside_action = FALSE;
+      //i_status_set_state(w_current, SELECT);
+    }
+    else {
       w_current->inside_action = FALSE;
       i_status_set_state(w_current, SELECT);
     }
@@ -1066,7 +1091,6 @@ bool x_event_motion (GtkWidget      *widget,
                      GschemToplevel *w_current)
 {
   int skip_event = 0;
-  int pdiff_x, pdiff_y;
   int unsnapped_wx, unsnapped_wy;
   int w_x, w_y;
 
@@ -1117,14 +1141,15 @@ bool x_event_motion (GtkWidget      *widget,
   /* Update coordinates display on the status bar*/
   i_status_update_coordinates(w_current, w_x, w_y);
 
-  if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
-    if((w_current->event_state == MOUSEPAN) && w_current->inside_action) {
-      pdiff_x = (int) event->x - start_pan_x;
-      pdiff_y = (int) event->y - start_pan_y;
+  //if (w_current->third_button == MOUSEPAN_ENABLED ||      w_current->middle_button == MOUSE_MIDDLE_PAN) {
+    //if((w_current->event_state == MOUSEPAN) && w_current->inside_action) {
+    if(w_current->doing_pan) {
+
+     int pdiff_x = (event->x - start_pan_x) * w_current->mousepan_gain;
+     int pdiff_y = (event->y - start_pan_y) * w_current->mousepan_gain;
 
       if (!(throttle % 5)) {
-        i_pan_world_mouse(w_current, pdiff_x*w_current->mousepan_gain,
-                    pdiff_y*w_current->mousepan_gain);
+        i_pan_world_mouse(w_current, pdiff_x, pdiff_y);
 
         start_pan_x = (int) event->x;
         start_pan_y = (int) event->y;
@@ -1132,7 +1157,7 @@ bool x_event_motion (GtkWidget      *widget,
       throttle++;
       return(0);
     }
-  }
+  //}
 
   /* Huge switch statement to evaluate state transitions. Jump to end_motion
    * label to escape the state evaluation rather than returning from the
@@ -1146,6 +1171,7 @@ bool x_event_motion (GtkWidget      *widget,
     case(GRIPS):
       o_grips_motion(w_current, w_x, w_y);
       break;
+
     case(STARTSELECT):
       if ( (!w_current->drag_can_move) || (w_current->drag_can_move &&
          (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy))))

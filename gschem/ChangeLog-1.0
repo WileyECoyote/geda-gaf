@@ -1,3 +1,8 @@
+2015-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Enabled panning using the right mouse button
+      during placing or drawing.
+
 2015-02-12 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/object/o_buffer.c: WEH: Applied patch by Vladimir to cancel
