@@ -1,3 +1,10 @@
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Add shift-key for (new) panning while inside
+      an action so as to not interfer with DRAWNET and ENDCOMP but
+      still allow user to pan while placing or moving objects. Can
+      not use the ALT key because window manage resize the window.
+
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_states.h: Remove , ENDROUTENET, and STARTROUTENET,

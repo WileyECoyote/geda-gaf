@@ -418,7 +418,10 @@ int x_event_button_pressed(GtkWidget      *widget,
         throttle               = 0;
       }
     }
-    else if (w_current->inside_action && w_current->third_button == MOUSEPAN_ENABLED){
+    else if (w_current->SHIFTKEY &&
+             w_current->inside_action &&
+             w_current->third_button == MOUSEPAN_ENABLED)
+    {
       w_current->doing_pan     = TRUE;
       start_pan_x              = (int) event->x;
       start_pan_y              = (int) event->y;
@@ -427,10 +430,10 @@ int x_event_button_pressed(GtkWidget      *widget,
     else {
 
       switch (w_current->event_state) {
-        case(NETCONT):
 
         case(STARTDRAWNET):
         case(DRAWNET):
+        case(NETCONT):
           w_current->inside_action = FALSE;
           i_status_set_state (w_current, STARTDRAWNET);
           o_net_invalidate_rubber (w_current);
