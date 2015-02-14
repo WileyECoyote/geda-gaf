@@ -164,6 +164,7 @@ Object *o_bus_read(const char buf[], unsigned int release_ver,
 Object *o_bus_copy(Object *o_current)
 {
   Object *new_obj;
+
   g_return_val_if_fail(GEDA_IS_BUS(o_current), NULL);
 
   /* make sure you fix this in pin and bus as well */

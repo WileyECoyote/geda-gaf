@@ -1,5 +1,19 @@
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_arc_basic.c: Add check for g_object type in o_arc_copy.
+
+    * src/object/o_line_basic.c: Add check for g_object type in o_line_copy.
+
+    * src/object/o_net_basic.c: Add check for g_object type in o_net_copy.
+
+    * src/object/o_picture.c: Add check for g_object type in o_picture_copy.
+
+    * src/object/o_pin_basic.c: Add check for g_object type in o_pin_copy.
+
+    * src/object/o_text_basic.c: Add check for g_object type in o_arc_copy.
+
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/math/m_circle.c: Add function m_circle_includes_point
 
 2015-02-07 Wiley E. Hill <wileyhill@gmail.com>

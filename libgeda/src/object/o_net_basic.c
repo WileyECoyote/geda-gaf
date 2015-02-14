@@ -93,6 +93,8 @@ Object *o_net_copy( Object *o_current)
 {
   Object *new_obj;
 
+  g_return_val_if_fail(GEDA_IS_NET(o_current), NULL);
+
   /* make sure you fix this in pin and bus as well */
   /* still doesn't work... you need to pass in the new values */
   /* or don't update and update later */

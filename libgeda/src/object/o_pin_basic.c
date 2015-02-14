@@ -77,6 +77,8 @@ Object *o_pin_copy(Object *o_current)
   Object *new_obj;
   Pin    *new_pin;
 
+  g_return_val_if_fail(GEDA_IS_PIN(o_current), NULL);
+
   new_obj = o_pin_new (o_current->color,
                        o_current->line->x[0], o_current->line->y[0],
                        o_current->line->x[1], o_current->line->y[1],
