@@ -90,61 +90,67 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
   int w_diff_x, w_diff_y;
 
-  /* erase old image */
-  w_current->rubber_visible = 0;
+  if (w_current->inside_action) {
 
-  /* Calc final object positions */
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+    /* erase old image */
+    w_current->rubber_visible = 0;
 
-  w_diff_x = w_current->second_wx - w_current->first_wx;
-  w_diff_y = w_current->second_wy - w_current->first_wy;
+    /* Calc final object positions */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
 
-  if (continue_placing) {
-    /* Make a copy of the place list if we want to keep it afterwards */
-    temp_dest_list = o_list_copy_all (toplevel->page_current->place_list,
-                                       temp_dest_list);
+    w_diff_x = w_current->second_wx - w_current->first_wx;
+    w_diff_y = w_current->second_wy - w_current->first_wy;
+
+    if (continue_placing) {
+      /* Make a copy of the place list if we want to keep it afterwards */
+      temp_dest_list = o_list_copy_all (toplevel->page_current->place_list,
+                                        temp_dest_list);
+    }
+    else {
+      /* Otherwise just take it */
+      temp_dest_list = toplevel->page_current->place_list;
+      toplevel->page_current->place_list = NULL;
+    }
+
+    if (ret_new_objects != NULL) {
+      *ret_new_objects = g_list_copy (temp_dest_list);
+    }
+
+    o_list_translate(temp_dest_list, w_diff_x, w_diff_y);
+
+    /* Attach each item back onto the page's object list. Update object
+     * connectivity and add the new objects to the selection list.*/
+    p_current = toplevel->page_current;
+
+    for (iter = temp_dest_list; iter != NULL; NEXT(iter)) {
+
+      o_current = iter->data;
+
+      s_page_append_object (p_current, o_current);
+
+      /* Update object connectivity */
+      s_conn_update_object (o_current);
+      connected_objects = s_conn_return_others (connected_objects, o_current);
+    }
+
+    if (hook_name != NULL) {
+      g_run_hook_object_list (w_current, hook_name, temp_dest_list);
+    }
+
+    o_invalidate_glist (w_current, connected_objects);
+    g_list_free (connected_objects);
+    connected_objects = NULL;
+
+    o_invalidate_glist (w_current, temp_dest_list); /* only redraw new objects */
+    g_list_free (temp_dest_list);
+
+    o_undo_savestate (w_current, UNDO_ALL);
+    i_status_update_sensitivities (w_current);
   }
   else {
-    /* Otherwise just take it */
-    temp_dest_list = toplevel->page_current->place_list;
-    toplevel->page_current->place_list = NULL;
+    BUG_TRACE("Not inside an action!");
   }
-
-  if (ret_new_objects != NULL) {
-    *ret_new_objects = g_list_copy (temp_dest_list);
-  }
-
-  o_list_translate(temp_dest_list, w_diff_x, w_diff_y);
-
-  /* Attach each item back onto the page's object list. Update object
-   * connectivity and add the new objects to the selection list.*/
-  p_current = toplevel->page_current;
-
-  for (iter = temp_dest_list; iter != NULL; NEXT(iter)) {
-
-    o_current = iter->data;
-
-    s_page_append_object (p_current, o_current);
-
-    /* Update object connectivity */
-    s_conn_update_object (o_current);
-    connected_objects = s_conn_return_others (connected_objects, o_current);
-  }
-
-  if (hook_name != NULL) {
-    g_run_hook_object_list (w_current, hook_name, temp_dest_list);
-  }
-
-  o_invalidate_glist (w_current, connected_objects);
-  g_list_free (connected_objects);
-  connected_objects = NULL;
-
-  o_invalidate_glist (w_current, temp_dest_list); /* only redraw new objects */
-  g_list_free (temp_dest_list);
-
-  o_undo_savestate (w_current, UNDO_ALL);
-  i_status_update_sensitivities (w_current);
 }
 
 /*! \brief Handle Erasing and Redrawing of rubber outlines for objects
@@ -155,13 +161,15 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
  */
 void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  if (w_current->rubber_visible) {
-    o_place_invalidate_rubber (w_current, FALSE);
+  if (w_current->inside_action) {
+    if (w_current->rubber_visible) {
+      o_place_invalidate_rubber (w_current, FALSE);
+    }
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+    o_place_invalidate_rubber (w_current, TRUE);
+    w_current->rubber_visible = 1;
   }
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-  o_place_invalidate_rubber (w_current, TRUE);
-  w_current->rubber_visible = 1;
 }
 
 /*! \brief Invalidate bounding box or outline for Object placement
@@ -370,8 +378,10 @@ void o_place_rotate (GschemToplevel *w_current)
   wx   = w_current->first_wx;
   wy   = w_current->first_wy;
 
+  o_place_invalidate_rubber (w_current, FALSE);
   o_list_rotate (list, wx, wy, 90);
 
   /* Run rotate-objects-hook */
   g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
+  o_place_invalidate_rubber (w_current, TRUE);
 }

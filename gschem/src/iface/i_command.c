@@ -1380,23 +1380,9 @@ COMMAND (do_rotate)
 {
   BEGIN_W_COMMAND(do_rotate);
 
-  /* If inside an appropriate action, send a button 2 released,
-   * so rotating will be handled by x_event.c */
-  if (w_current->inside_action &&
-     (w_current->event_state == ENDCOMP  ||
-      w_current->event_state == ENDTEXT  ||
-      w_current->event_state == ENDMOVE  ||
-      w_current->event_state == ENDCOPY  ||
-      w_current->event_state == ENDMCOPY ||
-      w_current->event_state == ENDPASTE ))
-  {
+  if (w_current->inside_action && Current_PlaceList != NULL) {
 
-    GdkEvent* event;
-
-    event = gdk_event_new(GDK_BUTTON_RELEASE);
-    ((GdkEventButton*) event)->button = 2;
-    x_event_button_released (NULL, (GdkEventButton *) event, w_current);
-    gdk_event_free(event);
+    o_place_rotate (w_current);
 
   }
   else {

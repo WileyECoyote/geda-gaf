@@ -1,3 +1,16 @@
+2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/iface/i_command.c: WEH Applied patch by Vladimir to avoid errors
+      if the user uses "e r" to rotate the selection while placing, see
+      commit 90f007f3f3ecd796b8d0426647f1503a067f24d6.
+
+    * src/object/o_place.c: WEH Applied patch by Vladimir to fix redrawing
+      after rotation while placing,
+      see commit 69f9445a7ec9a59e631ff84a00c3e44ed027751d
+
+    * src/object/o_place.c: Add conditional to check if inside and action in
+      function o_place_end.
+
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Add new module to implement new editing
