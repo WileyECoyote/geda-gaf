@@ -152,11 +152,79 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *obje
  */
 int o_complex_is_embedded(Object *object)
 {
-
   g_return_val_if_fail(GEDA_IS_COMPLEX(object), 0);
-
   return object->complex->is_embedded;
+}
 
+/*! \brief Get Point on a Complex Nearest a Given Point
+ *  \par Function Description
+ *  Recursively calls o_get_nearest_point on the closest sub-object of
+ *  the complex and returns the results of the function corresponding
+ *  to the appropriate type of object for the selected sub-object.
+ *
+ *  \param [in] object   Pointer to a Box object
+ *  \param [in] x        Integer pointer
+ *  \param [in] y        Integer pointer
+ *  \param [out] nx      Integer pointer
+ *  \param [out] ny      Integer pointer
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a Complex.
+ */
+bool o_complex_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  bool    result;
+  Object *closest = NULL;
+
+  if (GEDA_IS_COMPLEX(object)) {
+
+    GList *iter;
+    double shortest = G_MAXDOUBLE;
+
+    for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter)) {
+
+      Object *obj = iter->data;
+
+      bool do_check;
+
+      do_check = obj->type == OBJ_LINE ||
+                 obj->type == OBJ_ARC  ||
+                 obj->type == OBJ_CIRCLE;
+
+      if (do_check) {
+
+        double distance;
+
+        distance = o_get_shortest_distance_full (obj, x, y, TRUE);
+
+        if (distance < shortest) {
+          shortest = distance;
+          closest  = obj;
+        }
+      }
+
+      if (shortest == 0.0) {
+       *nx      = x;
+       *ny      = y;
+        result  = TRUE;
+        closest = NULL;
+        break;
+      }
+    }
+  }
+
+  if (closest) {
+    result = o_get_nearest_point(closest, x, y, nx, ny);
+  }
+  else { /* was not an Complex */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+
+  return result;
 }
 
 /*! \brief Get attributes eligible for promotion from inside a complex
@@ -1113,8 +1181,8 @@ double o_complex_shortest_distance(Object *object, int x, int y, int force_solid
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), G_MAXDOUBLE);
 
-  for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter))
-  {
+  for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter)) {
+
     Object *obj = iter->data;
     int left, top, right, bottom;
 
@@ -1135,7 +1203,8 @@ double o_complex_shortest_distance(Object *object, int x, int y, int force_solid
         line_bounds.upper_y = bottom;
         found_line_bounds = 1;
       }
-    } else {
+    }
+    else {
       distance = o_get_shortest_distance_full (obj, x, y, TRUE);
       shortest_distance = min (shortest_distance, distance);
     }

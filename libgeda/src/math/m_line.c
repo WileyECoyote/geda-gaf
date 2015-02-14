@@ -40,7 +40,7 @@
  *  the intersection. Otherwise the function returns false.
  *
  *  \param [in]  line1 First Line
- *  \param [in]  line1 Second Line
+ *  \param [in]  line2 Second Line
  *  \param [out] point Intersection if lines intersect
  *
  *  \return TRUE if lines intersect
@@ -86,7 +86,7 @@ bool m_line_includes_point (Line *line, POINT *point)
  *  the intersection. Otherwise the function returns false.
  *
  *  \param [in]  line1 First Line
- *  \param [in]  line1 Second Line
+ *  \param [in]  line2 Second Line
  *  \param [out] point Intersection if lines intersect
  *
  *  \return TRUE if lines intersect

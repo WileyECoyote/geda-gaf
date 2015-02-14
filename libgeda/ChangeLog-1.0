@@ -1,5 +1,42 @@
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/defines.h: Define NEAR_DISTANCE as 5 units, this is
+      used by get_nearest routine to return endpoints instead of points
+      in the vicinity of endpoints.
+
+    * src/math/m_basic.c: Corrected argument for Doxygen comment, missing "s"
+
+    * src/math/m_line.c: Corrected arguments for Doxygen comments, second argument
+      should have been labeled "Line2" for functions m_line_get_intersection and
+      m_line_intersection.
+
+    * src/object/o_arc_basic.c: Add function o_arc_get_nearest_point, edit
+      Doxygen comments, general cleaning.
+
+    * src/object/o_box_basic.c: Add function o_box_get_nearest_point, re-
+      sequence function o_box_translate.
+
+    * src/object/o_circle_basic.c: Add function o_circle_get_nearest_point,
+      fixed missing space before pound sign in Doxygen comments
+
+    * src/object/o_complex_basic.c: Add function o_complex_get_nearest_point,
+      minor cleaning.
+
+    * src/object/o_get.c: Add function o_get_nearest_point as wrapper to the
+      o_xxx_get_nearest_point functions. Add note to fix backwards argument
+      for function o_get_position.
+
+    * src/object/o_line_basic.c: Add function o_line_get_nearest_point,
+
+    * src/object/o_path_basic.c: Add function o_path_get_nearest_point,
+
+    * src/object/o_picture.c: Add function o_picture_get_nearest_point,
+
+    * src/object/o_text_basic.c: Add function o_text_get_nearest_point for
+      the sake of completeness.
+
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_arc_basic.c: Add check for g_object type in o_arc_copy.
 
     * src/object/o_line_basic.c: Add check for g_object type in o_line_copy.

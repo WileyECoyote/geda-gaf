@@ -85,6 +85,7 @@ G_BEGIN_DECLS
        double    m_distance                      (int x1, int y1, int x2, int y2);
          void    m_papersize_to_world            (int width, int height, int border, int *right, int *bottom);
           int    m_random_number                 (int min_num, int max_num);
+       double    m_radians_to_degrees            (double radians);
          void    m_rotate_point                  (int x, int y, int angle, int *newx, int *newy);
          void    m_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
 
@@ -100,8 +101,9 @@ G_BEGIN_DECLS
        bool      m_arc_includes_point            (Arc *arc, POINT *point);
 
 /* m_circle.c */
-       double    m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
        double    m_circle_circumference          (int radius);
+       bool      m_circle_includes_point         (Circle *circle, POINT *point);
+       double    m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
 
 /* m_hatch.c */
          void    m_hatch_box                     (Box    *box,    int angle, int pitch, GArray *lines);
@@ -130,6 +132,7 @@ G_BEGIN_DECLS
          void    o_arc_modify                    (Object *object, int x, int y, int whichone);
          void    o_arc_rotate                    (Object *object, int center_x, int center_y, int angle);
          void    o_arc_translate                 (Object *object, int dx, int dy);
+         bool    o_arc_get_nearest_point         (Object *object, int x, int y, int *nx, int *ny);
 
 /* o_attrib.c */
          void    o_attrib_add                              (Object *object, Object *item);
@@ -178,6 +181,7 @@ G_BEGIN_DECLS
          void    o_box_mirror                    (Object *object, int center_x, int center_y);
          void    o_box_rotate                    (Object *object, int center_x, int center_y, int angle);
          void    o_box_translate                 (Object *object, int dx, int dy);
+         bool    o_box_get_nearest_point         (Object *object, int x, int y, int *nx, int *ny);
 
 /* o_bus_basic.c */
        Object   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
@@ -197,10 +201,9 @@ G_BEGIN_DECLS
          void    o_circle_mirror                 (Object *object, int center_x, int center_y);
          void    o_circle_rotate                 (Object *object, int center_x, int center_y, int angle);
          void    o_circle_translate              (Object *object, int dx, int dy);
+         bool    o_circle_get_nearest_point      (Object *object, int x, int y, int *nx, int *ny);
 
 /* o_complex_basic.c */
-
-
        Object   *o_complex_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
                                                   const CLibSymbol *clib_sym, const char *basename, int selectable);
        Object   *o_complex_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);
@@ -211,6 +214,7 @@ G_BEGIN_DECLS
          void    o_complex_rotate                (Object *object, int center_x, int center_y, int angle);
          void    o_complex_translate             (Object *object, int dx, int dy);
           int    o_complex_is_embedded           (Object *o_current);
+         bool    o_complex_get_nearest_point     (Object *object, int x, int y, int *nx, int *ny);
        Object   *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value);
          void    o_complex_check_symversion      (GedaToplevel *toplevel, Object *object);
 
@@ -235,6 +239,7 @@ G_BEGIN_DECLS
          bool    o_get_is_visible                (Object *object);
      LINE_END    o_get_line_end                  (int capstyle);
          bool    o_get_line_options              (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+         bool    o_get_nearest_point             (Object *object, int x, int y, int *nx, int *ny);
           int    o_get_num_text_lines            (const char *string);
    const char   *o_get_object_attrib_value       (Object *object, const char *name);
         GList   *o_get_objects_by_type           (GList *object_list, int type);
@@ -259,6 +264,7 @@ G_BEGIN_DECLS
          int     o_line_get_closest_endpoint     (Object *object, int x, int y);
          bool    o_line_get_intersection         (Object *object1, Object *object2, POINT *point);
          bool    o_line_get_midpoint             (Object *object, POINT *point);
+         bool    o_line_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
          bool    o_line_get_slope                (Object *object, double *anwser);
        double    o_line_length                   (Object *object);
 
@@ -297,6 +303,7 @@ G_BEGIN_DECLS
          void    o_path_mirror                   (Object *object, int center_x, int center_y);
          void    o_path_rotate                   (Object *object, int center_x, int center_y, int angle);
          void    o_path_translate                (Object *object, int x, int y);
+         bool    o_path_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
 
 /* o_picture.c */
        Object   *o_picture_new                   (const char *file_content, unsigned int file_length,
@@ -317,6 +324,7 @@ G_BEGIN_DECLS
           int    o_picture_get_height            (Object *object);
           int    o_picture_get_width             (Object *object);
        double    o_picture_get_effective_ratio   (Object *object);
+         bool    o_picture_get_nearest_point     (Object *object, int x, int y, int *nx, int *ny);
          void    o_picture_print                 (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
          bool    o_picture_set_from_buffer       (Object *object, const char *filename, const char *data, unsigned int length, GError **error);
          bool    o_picture_set_from_file         (Object *object, const char *filename, GError **error);
@@ -394,6 +402,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
          void    o_text_rotate                   (Object *object, int center_x, int center_y, int angle);
 
        double    o_text_get_font_size_in_points  (Object *object);
+         bool    o_text_get_nearest_point        (Object *object, int x, int y, int *nx, int *ny);
    const char   *o_text_get_string               (Object *object);
          void    o_text_set_rendered_bounds_func (Object *object, RenderedBoundsFunc func, void *user_data);
          void    o_text_set_string               (Object *object, const char *new_string);

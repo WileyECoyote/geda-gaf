@@ -431,6 +431,8 @@ Object *o_text_copy(Object *o_current)
   Object *new_obj;
   Text   *text_obj;
 
+  g_return_val_if_fail(GEDA_IS_TEXT(o_current), NULL);
+
   new_obj = o_text_new (o_current->color,
                         o_current->text->x, o_current->text->y,
                         o_current->text->alignment,
@@ -869,6 +871,60 @@ double o_text_get_font_size_in_points (Object *object)
   g_return_val_if_fail (object->type == OBJ_TEXT, 0.);
 
   return object->text->size * GEDA_FONT_FACTOR;
+}
+
+/*! \brief Get Point on the bounds of a Text object Nearest a Given Point
+ *  \par Function Description
+ *  This function locate a point on the boundary of the Text object given
+ *  a point \a x, \a y, that is on or about the vicinity of \a object. If
+ *  True is returned, <B>nx</B> and <B>ny</B> are set to a point on the boundary
+ *  that is the closest point on the boundary to the point given by
+ *  \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to a Text object
+ *  \param [in]  x       Integer x of point near or on the text
+ *  \param [in]  y       Integer y of point near or on the text
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a Text,
+ *           of if the bounds is not set on the Text.
+ */
+bool o
+bool o_text_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  bool result;
+
+  if (GEDA_IS_TEXT(object)) {
+
+    int left, top, right, bottom;
+
+    if (o_get_bounds(object, &left, &top, &right, &bottom)) {
+
+      Object *tmp = geda_box_new();
+
+      tmp->box->upper_x = left;
+      tmp->box->upper_y = top;
+      tmp->box->lower_x = right;
+      tmp->box->lower_y = bottom;
+
+      result = o_box_get_nearest_point (tmp, x, y, nx, ny);
+
+      g_object_unref(tmp);
+    }
+    else { /* Could not get text bounds */
+      *nx = x;
+      *ny = y;
+      result = FALSE;
+    }
+  }
+  else { /* was not an Box */
+   *nx = x;
+   *ny = y;
+    result = FALSE;
+  }
+
+  return result;
 }
 
 /*! \brief Get the string displayed by a text object

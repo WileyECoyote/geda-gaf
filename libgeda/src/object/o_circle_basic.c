@@ -36,13 +36,13 @@
  *  <B>radius</B>.
  *  The <B>color</B> corresponds to the color the box will be drawn with.
  *
- *  The <B>Object</B> structure is allocated with the #geda_object_new()
+ *  The <B>Object</B> structure is allocated with the#geda_object_new()
  *  function. The structure describing the circle is allocated and initialized
  *  with the parameters given to the function.
  *
  *  Both the line type and the filling type are set to default values : solid
  *  line type with a width of 0, and no filling. It can be changed after
- *  with #o_set_line_options() and #o_set_fill_options().
+ *  with#o_set_line_options() and#o_set_fill_options().
  *
  *  \param [in]     color        Circle line color.
  *  \param [in]     x            Center x coordinate.
@@ -72,7 +72,7 @@ o_circle_new(int color, int x, int y, int radius)
 /*! \brief Create a copy of a circle.
  *
  *  \par Function Description
- *  The function #o_circle_copy() creates a verbatim copy of the object
+ *  The function#o_circle_copy() creates a verbatim copy of the object
  *  pointed by <B>\a o_current</B> describing a circle.
  *
  *  \param [in]  o_current  Circle Object to copy.
@@ -87,7 +87,7 @@ Object *o_circle_copy(Object *o_current)
 
   old_circle = GEDA_CIRCLE(o_current);
 
-  /* A new circle object is created with #o_circle_new().
+  /* A new circle object is created with#o_circle_new().
    * Values for its fields are default and need to be modified. */
   new_obj = o_circle_new (o_current->color, 0, 0, 0);
 
@@ -160,7 +160,7 @@ void o_circle_modify(Object *object, int x, int y, int whichone)
 /*! \brief Create circle Object from character string.
  *
  *  \par Function Description
- *  The #o_circle_read() function gets from the character string <B>*buff</B> the
+ *  The#o_circle_read() function gets from the character string <B>*buff</B> the
  *  description of a circle.
  *
  *  Depending on <B>*version</B>, the right file format is considered.
@@ -366,7 +366,7 @@ void o_circle_mirror(Object *object, int center_x, int center_y)
 /*! \brief Rotate Circle Object using WORLD coordinates
  *
  *  \par Function Description
- *  The function #o_circle_rotate() rotate the circle described by
+ *  The function#o_circle_rotate() rotate the circle described by
  *  <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point by
  *  angle <B>angle</B> degrees.
  *  The center of rotation is in world unit.
@@ -435,6 +435,164 @@ void o_circle_translate(Object *object, int dx, int dy)
 
 }
 
+/*! \brief Get Point on a Circle Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on an Circle object given
+ *  a point \a x, \a y, that is on or about the vicinity of the \a object.
+ *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
+ *  point on the circle that is the closest point on \a object to the point
+ *  given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to an Circle object
+ *  \param [in]  x       Integer x of point near or on the circle
+ *  \param [in]  y       Integer y of point near or on the circle
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not an
+ *           Circle object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of
+ *           the circle.
+ */
+bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  bool    result;
+  int     x1, y1, x2, y2;
+  int     cx, cy, r;
+  double  dx, dy;
+  double  A, B, C, D;
+  double  b = b;
+  double  m = m;
+
+  if (GEDA_IS_CIRCLE(object)) {
+
+    cx = object->circle->center_x;
+    cy = object->circle->center_y;
+
+    /* If the point is the center, every point on the circle is equal
+     * distance to the point, so answer is false */
+    if ((y == cy) && (x == cx)) {
+      result = FALSE;
+    }
+    else {
+
+      r  = object->circle->radius;
+
+      x1 = x;
+      y1 = y;
+      x2 = cx;
+      y2 = cy;
+
+      dx = x2 - x1;
+      dy = y2 - y1;
+
+      /* Get coefficients of quadratic */
+      if (dx == 0) {                   /* In terms of Y, because X1 = X2 */
+
+        /* Special vertical case: (x-cx)^2 + (y-cy)^2 = r^2, solve for y */
+
+        A = 1;
+        B = -2 * cy;
+        C = (x1 * x1) - (2 * cx * x1) + (cx * cx) + (cy * cy) - (r * r);
+      }
+      else {                           /* In terms of X */
+
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
+
+        m  = dy / dx;
+        b  = (-1 * m * x2) + y2;
+
+        A = m * m + 1;
+        B = 2 * ((m * b) - (m * cy) - cx);
+        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+      }
+
+      D = B * B - 4 * A * C;           /* The discriminant */
+
+      /* The discriminant can not be negative */
+
+#ifdef HAVE_LRINT
+
+      if (dx == 0) {      /* Vertical = special, find y first*/
+
+       *nx = x1;          /* Line vertical so x is known */
+
+        if (x > cx) {
+         *ny = lrint((-1 * B + sqrt(D)) / (2 * A));
+        }
+        else {
+         *ny = lrint((-1 * B - sqrt(D)) / (2 * A));
+        }
+      }
+      else {              /* For all non-vertical line */
+
+        double tmp_x;
+
+        if (x > cx) {     /* Use positive root */
+
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+
+        }
+        else {            /* Use negative root */
+
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+
+        }
+
+       *nx = lrint(tmp_x);
+       *ny = lrint(m * tmp_x + b); /* Must use non rounded x here */
+      }
+
+#else
+
+      if (dx == 0) {      /* Vertical special, find y first*/
+
+        *nx = x1;         /* Line vertical so x is known */
+
+        if (x > cx) {     /* Use positive root */
+
+          *ny = ((-1 * B + sqrt(D)) / (2 * A)) + 0.5;
+
+        }
+        else {
+
+          *ny = ((-1 * B - sqrt(D)) / (2 * A)) + 0.5;
+
+        }
+      }
+      else {             /* For all non-vertical line */
+
+        double x;
+
+        if (x > cx) {     /* Use positive root */
+
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+
+        }
+        else {
+
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+
+        }
+        *nx = tmp_x + 0.5;
+        *ny = (m * tmp_x + b) + 0.5;  /* Must use non rounded x here */
+      }
+
+#endif
+
+      result = TRUE;
+    }
+  }
+  else { /* was not an Circle */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
+}
+
 /*! \brief get the position of the center point
  *
  *  \par Function Description
@@ -499,8 +657,8 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   /*
    * Depending on the type of the line for this particular circle, the
    * appropriate function is chosen among #o_circle_print_solid(),
-   * #o_circle_print_dotted(), #o_circle_print_dashed(),
-   * #o_circle_print_center() and #o_circle_print_phantom().
+   * #o_circle_print_dotted(),#o_circle_print_dashed(),
+   * #o_circle_print_center() and#o_circle_print_phantom().
    *
    * The needed parameters for each of these type is extracted from the
    * <B>\a o_current</B> object. Depending on the type, unused parameters are
@@ -566,7 +724,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 
   /*
    * If the filling type of the circle is not <B>HOLLOW</B>, the appropriate
-   * function is chosen among #o_circle_print_filled(), #o_circle_print_mesh()
+   * function is chosen among #o_circle_print_filled(),# o_circle_print_mesh()
    * and #o_circle_print_hatch(). The corresponding parameters are extracted
    * from the <B>\a o_current</B> object and corrected afterward.
    *

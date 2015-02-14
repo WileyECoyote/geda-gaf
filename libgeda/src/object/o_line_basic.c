@@ -91,7 +91,11 @@ Object *o_line_new( int color, int x1, int y1, int x2, int y2)
 Object *o_line_copy(Object *o_current)
 {
   Object *new_obj;
-  Line   *old_line = GEDA_LINE(o_current);
+  Line   *old_line;
+
+  g_return_val_if_fail(GEDA_IS_LINE(o_current), NULL);
+
+  old_line = GEDA_LINE(o_current);
 
   /* A new line object is created with #o_line_new().
    * Values for its fields are default and need to be modified. */
@@ -1249,12 +1253,120 @@ bool o_line_get_midpoint(Object *object, POINT *point)
   return status;
 }
 
+/*! \brief Get Point on a Line that is Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on a Line object given
+ *  a point \a x, \a y, that is on or about the vicinity of \a object. If
+ *  True is returned, <B>nx</B> and <B>ny</B> are set to the point on the
+ *  line that is the closest point on the line to the point given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to a Line object
+ *  \param [in]  x       Integer x of point near or on the line
+ *  \param [in]  y       Integer y of point near or on the line
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a Line.
+ */
+bool o_line_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  Line *line;
+  bool  result;
+
+  if (GEDA_IS_LINE(object)) {
+
+    line = object->line;
+
+    if (line->x[0] == line->x[1]) {  /* The Line is vertical */
+
+      int ymin = line->y[0] > line->y[1] ? line->y[1] : line->y[0];
+      int ymax = line->y[0] > line->y[1] ? line->y[0] : line->y[1];
+
+      *nx = line->x[0];
+
+      if (y >= ymax) {
+        *ny = ymax;
+      }
+      else if (y <= ymin) {
+        *ny = ymin;
+      }
+      else {
+        *ny = y;
+      }
+    }
+    else if (line->y[0] == line->y[1]) {  /* The Line is horizontal */
+
+      int xmin = line->x[0] > line->x[1] ? line->x[1] : line->x[0];
+      int xmax = line->x[0] > line->x[1] ? line->x[0] : line->x[1];
+
+      *ny = line->y[0];
+
+      if (x >= xmax) {
+        *nx = xmax;
+      }
+      else if (x <= xmin) {
+        *nx = xmin;
+      }
+      else {
+        *nx = x;
+      }
+    }
+    else { /* The line is on non-zero angle*/
+
+      double dx, dy, ix, iy;
+      double m1, m2, b1, b2;
+      POINT  point;
+
+      dx = line->x[1] - line->x[0];
+      dy = line->y[1] - line->y[0];
+
+      m1 = dy / dx;
+      b1 = line->y[0] - m1 * line->x[0];
+      m2 = -1 / m1;
+      b2 = y - m2 * x;
+
+      ix = (b2 - b1) / (m1 - m2);
+      iy = m2 * ix + b2;;
+
+#ifdef HAVE_LRINT
+
+      point.x = lrint(ix);
+      point.y = lrint(iy);
+
+#else
+
+      point.x = ix + 0.5;
+      point.y = iy + 0.5;
+
+#endif
+      if (m_line_includes_point(line, &point)) {
+       *nx = point.x;
+       *ny = point.y;
+      }
+      else {
+        int index = o_line_get_closest_endpoint(object, x, y);
+       *nx = line->x[index];
+       *ny = line->y[index];
+      }
+    }
+  }
+  else { /* was not an Line */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
+}
+
 /*! \brief Calculates the Slope of a Line Object
  *  \par Function Description
  *  This function calculates the slope of a line object
  *
- *  \param [in]  object  a line Object
- *  \param [out] anwser  The slope if not infinite
+ *  \param [in]  object  A line Object
+ *  \param [out] slope   The slope if not infinite
  *
  *  \return True if the slope was set, otherwise false
  */

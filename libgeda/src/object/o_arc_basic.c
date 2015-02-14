@@ -94,12 +94,11 @@ Object *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_
 
 /*! \brief
  *  \par Function Description
- *  This function creates a new object representing an arc.
- *
- *  The values of the <B>\a o_current</B> pointed Object are then copied to the new object.
- *
- *  The arc, the line options are initialized whereas the fill options are
- *  initialized to passive values - as an arc can not be filled.
+ *  This function creates a new object representing an arc. The
+ *  values of the <B>\a o_current</B> pointed Object are then copied
+ *  to the new object. Line options are initialized whereas the
+ *  fill options are initialized to passive values - as an arc
+ *  can not be filled.
  *
  *  \param [in] o_current
  *
@@ -108,6 +107,8 @@ Object *o_arc_new(int color, int x, int y, int radius, int start_angle, int arc_
 Object *o_arc_copy(Object *o_current)
 {
   Object *new_obj;
+
+  g_return_val_if_fail(GEDA_IS_ARC(o_current), NULL);
 
   new_obj = o_arc_new (o_current->color,
                        o_current->arc->x, o_current->arc->y,
@@ -127,19 +128,18 @@ Object *o_arc_copy(Object *o_current)
  *  This function modifies the internal values of the arc object
  *  object according to the whichone parameter.
  *
- *  The new values are given by <B>x</B> and/or <B>y</B>. Their meaning depends on the value of whichone.
+ *  The new values are given by <B>x</B> and/or <B>y</B>. Their meaning depends
+ *  on the value of whichone. If <B>whichone</B> is equal to #ARC_CENTER, the (<B>x</B>,<B>y</B>)
+ *  point is taken as the new center of the arc in world unit.
  *
- *  If <B>whichone</B> is equal to #ARC_CENTER, the (<B>x</B>,<B>y</B>) point is taken as the new center
- *  of the arc in world unit.
+ *  If <B>whichone</B> is equal to #ARC_RADIUS, the <B>x</B> parameter is taken to
+ *  be the radius of the arc in world unit. The <B>y</B> parameter is ignored.
  *
- *  If <B>whichone</B> is equal to #ARC_RADIUS, the <B>x</B> parameter is taken to be the radius
- *  of the arc in world unit. The <B>y</B> parameter is ignored.
+ *  If <B>whichone</B> is equal to #ARC_START_ANGLE, the <B>x</B> parameter is the
+ *  starting angle of the arc. <B>x</B> is in degrees. <B>y</B> is ignored.
  *
- *  If <B>whichone</B> is equal to #ARC_START_ANGLE, the <B>x</B> parameter is the starting angle of the arc.
- *  <B>x</B> is in degrees. <B>y</B> is ignored.
- *
- *  If <B>whichone</B> is equal to #ARC_END_ANGLE, the <B>x</B> parameter is the ending angle of the arc.
- *  <B>x</B> is in degrees. <B>y</B> is ignored.
+ *  If <B>whichone</B> is equal to #ARC_END_ANGLE, the <B>x</B> parameter is the
+ *  ending angle of the arc. <B>x</B> is in degrees. <B>y</B> is ignored.
  *
  *  \param [in,out] object
  *  \param [in]     x
@@ -193,8 +193,9 @@ o_arc_modify(Object *object, int x, int y, int whichone)
  *  To get information on the various file formats have a
  *  look to the fileformats.html document.
  *
- *  The object is initialized with the functions #o_set_line_options() and #o_set_fill_options().
- *  The second one is only used to put initialize unused values for an arc as an arc can not be filled.
+ *  The object is initialized with the functions #o_set_line_options() and
+ *  #o_set_fill_options(). The second one is only used to put initialize
+ *  unused values for an arc as an arc can not be filled.
  *
  *  The arc is allocated initialized with the function #o_arc_new().
  *
@@ -204,7 +205,7 @@ o_arc_modify(Object *object, int x, int y, int whichone)
  *  \param [in] release_ver
  *  \param [in] fileformat_ver
  *
- *  \param [out] err            A GError object
+ *  \param [out] err           A GError object
  *
  *  \return The ARC Object that was created, or NULL on error.
  */
@@ -323,28 +324,43 @@ o_arc_save(Object *object)
   return(buf);
 }
 
-/*! \brief
+/*! \brief Mirror the WORLD coordinates of an ARC.
  *  \par Function Description
- *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
- *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
+ *  This function mirrors the world coordinates of an arc.
+ *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
+ *
+ *  The arc is translated in order to put the point (<B>center_x</B>,<B>center_y</B>)
+ *  on the origin. The center of the arc is then mirrored. The start angle of the arc
+ *  and the sweep of the arc are also mirrored.
+ *
+ *  The arc is finally back translated to its previous location on the page.
  *
  *  \param [in] object
- *  \param [in] dx
- *  \param [in] dy
+ *  \param [in] center_x
+ *  \param [in] center_y
  */
 void
-o_arc_translate(Object *object, int dx, int dy)
+o_arc_mirror(Object *object, int center_x, int center_y)
 {
-  if (object == NULL) {
-    return;
-  }
+  /* translate object to origin */
+  object->arc->x -= center_x;
+  object->arc->y -= center_y;
 
-  /* Do world coords */
-  object->arc->x = object->arc->x + dx;
-  object->arc->y = object->arc->y + dy;
+  /* get center, and mirror it (vertical mirror) */
+  object->arc->x = -object->arc->x;
+  object->arc->y =  object->arc->y;
 
+  /* apply mirror to angles (vertical mirror) */
+  object->arc->start_angle = (180 - object->arc->start_angle) % 360;
+  /* start_angle *MUST* be positive */
+  if(object->arc->start_angle < 0) object->arc->start_angle += 360;
+  object->arc->arc_sweep = -object->arc->arc_sweep;
 
-  /* Recalculate screen coords from new world coords */
+  /* translate object back to its previous position */
+  object->arc->x += center_x;
+  object->arc->y += center_y;
+
+  /* update the screen coords and bounding box */
   object->w_bounds_valid_for = NULL;
 }
 
@@ -402,44 +418,173 @@ o_arc_rotate(Object *object, int center_x, int center_y, int angle)
 
 }
 
-/*! \brief Mirror the WORLD coordinates of an ARC.
+/*! \brief Apply Translation to an Arc Object
  *  \par Function Description
- *  This function mirrors the world coordinates of an arc.
- *  The symetry axis is given by the vertical line going through the point (<B>center_x</B>,<B>center_y</B>).
- *
- *  The arc is translated in order to put the point (<B>center_x</B>,<B>center_y</B>)
- *  on the origin. The center of the arc is then mirrored. The start angle of the arc
- *  and the sweep of the arc are also mirrored.
- *
- *  The arc is finally back translated to its previous location on the page.
+ *  This function applies a translation of (<B>dx</B>,<B>dy</B>)
+ *  to the arc described in <B>*object</B>. <B>dx</B> and <B>dy</B> are in world unit.
  *
  *  \param [in] object
- *  \param [in] center_x
- *  \param [in] center_y
+ *  \param [in] dx
+ *  \param [in] dy
  */
 void
-o_arc_mirror(Object *object, int center_x, int center_y)
+o_arc_translate(Object *object, int dx, int dy)
 {
-  /* translate object to origin */
-  object->arc->x -= center_x;
-  object->arc->y -= center_y;
+  if (object == NULL) {
+    return;
+  }
 
-  /* get center, and mirror it (vertical mirror) */
-  object->arc->x = -object->arc->x;
-  object->arc->y =  object->arc->y;
+  /* Do world coords */
+  object->arc->x = object->arc->x + dx;
+  object->arc->y = object->arc->y + dy;
 
-  /* apply mirror to angles (vertical mirror) */
-  object->arc->start_angle = (180 - object->arc->start_angle) % 360;
-  /* start_angle *MUST* be positive */
-  if(object->arc->start_angle < 0) object->arc->start_angle += 360;
-  object->arc->arc_sweep = -object->arc->arc_sweep;
 
-  /* translate object back to its previous position */
-  object->arc->x += center_x;
-  object->arc->y += center_y;
-
-  /* update the screen coords and bounding box */
+  /* Recalculate screen coords from new world coords */
   object->w_bounds_valid_for = NULL;
+}
+
+/*! \brief Get Point on an Arc Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on an Arc object given
+ *  a point \a x, \a y, that is on or about the vicinity of the \a object.
+ *  If True is returned, <B>nx</B> and <B>ny</B> are set world unit to a
+ *  point on the arc that is the closest point on the arc to the point
+ *  given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to an Arc object
+ *  \param [in]  x       Integer x of point near or on the arc
+ *  \param [in]  y       Integer y of point near or on the arc
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not an
+ *           Arc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
+ */
+bool
+o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  Arc *arc;
+  bool result;
+
+  if (GEDA_IS_ARC(object)) {
+
+    arc = object->arc;
+
+    /* If the point is the center, every point on the arc is equal
+     * distance to the point, so answer is false */
+    if ((y == arc->y) && (x == arc->x)) {
+      result = FALSE;
+    }
+    else {
+
+      int    cx, cy, r;
+      double dx, dy;
+
+      cx = arc->x;
+      cy = arc->y;
+      r  = arc->width / 2;
+
+      int    arc_angle   = arc->start_angle + arc->arc_sweep;
+      double start_angle = m_degrees_to_radians(arc->start_angle);
+      double end_angle   = m_degrees_to_radians(arc_angle);
+
+      /* Get angle of ray from point to center */
+      double radians = atan2((y - cy), (x - cx));
+
+      /* If negative, make the angle positive */
+      if (radians < 0) {
+        radians += 2 * M_PI;
+      }
+
+      if (radians < end_angle || radians > start_angle) {
+
+        int x1, y1, x2, y2;
+        double A, B, C, D;
+        double b = b;
+        double m = m;
+        double tmp_x, tmp_y;
+
+        x1 = cx;
+        y1 = cy;
+        x2 = x;
+        y2 = y;
+
+        dx = x2 - x1;
+        dy = y2 - y1;
+
+        /* Conventional: (x - cx)^2 + (mx + b - cy)^2 = r^2, solve for x */
+        m  = dy / dx;
+        b  = (-1 * m * x2) + y2;
+
+        A = m * m + 1;
+        B = 2 * ((m * b) - (m * cy) - cx);
+        C = (cy * cy) + (cx * cx) - (r * r) - (2 * (b * cy)) + (b * b);
+
+        D = B * B - 4 * A * C;                   /* The discriminant */
+
+        if (x1 > x2) {                           /* Easterly */
+          tmp_x = (-1 * B - sqrt(D)) / (2 * A);
+        }
+        else {                                   /* Westward */
+          tmp_x = (-1 * B + sqrt(D)) / (2 * A);
+        }
+        tmp_y = m * tmp_x + b;
+
+#ifdef HAVE_LRINT
+
+        *nx = lrint(tmp_x);
+        *ny = lrint(tmp_y);
+
+#else
+
+        *nx = tmp_x + 0.5;
+        *ny = tmp_y + 0.5;
+
+#endif
+      }
+      else {
+
+        double distance_to_end0;
+        double distance_to_end1;
+        double sx, sy, ex, ey;
+
+        sx = cx + r * cos (start_angle);
+        sy = cy + r * sin (start_angle);
+
+        dx = sx - x;
+        dy = sy - y;
+
+        distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
+
+        ex = arc->x + r * cos (end_angle);
+        ey = arc->y + r * sin (end_angle);
+
+        dx = ex - x;
+        dy = ey - y;
+
+        distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
+
+        if (distance_to_end0 < distance_to_end1) {
+          *nx = sx;
+          *ny = sy;
+        }
+        else {
+          *nx = ex;
+          *ny = ey;
+        }
+      }
+      result = TRUE;
+    }
+  }
+  else { /* was not an Arc */
+    result = FALSE;
+  }
+
+  if (!result) {
+    *nx = x;
+    *ny = y;
+  }
+  return result;
 }
 
 /*! \brief get the position of the center point
@@ -1084,12 +1229,13 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the arc.
  *
- *  \param [in] object       An arc Object.
- *  \param [in] x            The x coordinate of the given point.
- *  \param [in] y            The y coordinate of the given point.
+ *  \param [in] object       An arc Object
+ *  \param [in] x            The x coordinate of the given point
+ *  \param [in] y            The y coordinate of the given point
  *  \param [in] force_solid  If true, force treating the object as solid.
+ *
  *  \return The shortest distance from the object to the point. With an
- *  invalid parameter, this function returns G_MAXDOUBLE.
+ *          invalid parameter, this function returns G_MAXDOUBLE.
  */
 double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
 {
@@ -1112,20 +1258,21 @@ double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
 
     shortest_distance = fabs (distance_to_center - radius);
 
-  } else {
+  }
+  else {
     double angle;
     double distance_to_end0;
     double distance_to_end1;
     double dx, dy;
 
-    angle = G_PI * ((double)object->arc->start_angle) / 180;
+    angle = M_PI * ((double)object->arc->start_angle) / 180;
 
     dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
     dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
 
     distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
 
-    angle += G_PI * ((double)object->arc->arc_sweep) / 180;
+    angle += M_PI * ((double)object->arc->arc_sweep) / 180;
 
     dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
     dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
@@ -1141,11 +1288,12 @@ double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
 /*! \brief Determines if a point lies within the sweep of the arc.
  *
  *  \param [in] arc The arc of object
- *  \param [in] x The x coordinate of the given point.
- *  \param [in] y The y coordinate of the given point.
+ *  \param [in] x   The x coordinate of the given point
+ *  \param [in] y   The y coordinate of the given point
+ *
  *  \return TRUE if the point lies within the sweep of the arc.
- *  FALSE if the point lies outside the sweep of the arc. With an
- *  invalid parameter, this function returns FALSE.
+ *          FALSE if the point lies outside the sweep of the arc.
+ *          With an invalid parameter, this function returns FALSE.
  */
 bool
 o_arc_within_sweep(Arc *arc, int x, int y)
@@ -1161,18 +1309,19 @@ o_arc_within_sweep(Arc *arc, int x, int y)
   dx = ((double) x) - ((double) arc->x);
   dy = ((double) y) - ((double) arc->y);
 
-  angle = 180 * atan2(dy, dx) / G_PI;
+  angle = 180 * atan2(dy, dx) / M_PI;
 
   if (arc->arc_sweep > 0) {
     a0 = arc->start_angle;
     a1 = arc->start_angle + arc->arc_sweep;
-  } else {
+  }
+  else {
     a0 = arc->start_angle + arc->arc_sweep + 360;
     a1 = arc->start_angle + 360;
   }
 
   while (angle < a0) {
-    angle+=360;
+    angle += 360;
   }
 
   return (angle < a1);

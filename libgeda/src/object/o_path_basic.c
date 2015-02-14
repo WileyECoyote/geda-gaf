@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <stdio.h>
+#include <math.h>
 #include "libgeda_priv.h"
 
 #include <geda_debug.h>
@@ -418,7 +419,6 @@ void o_path_modify (Object *object, int x, int y, int whichone)
  *  \param [in,out] object    Line Object to mirror.
  *  \param [in]     center_x  Origin x coordinate in WORLD units.
  *  \param [in]     center_y  Origin y coordinate in WORLD units.
-
  */
 void o_path_mirror (Object *object, int center_x, int center_y)
 {
@@ -529,6 +529,255 @@ void o_path_translate (Object *object, int dx, int dy)
 
   /* Update bounding box */
   object->w_bounds_valid_for = NULL;
+}
+
+/*! \brief Get Point on a Path Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on a Path object given
+ *  a point \a x, \a y, that is on or about the vicinity of \a object. If
+ *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
+ *  on the Path that is the closest point on the path to the point given by
+ *  \a x, \a y. If the found point is within #NEAR_DISTANCE distance to a
+ *  vertex of the path, the vertex is return as the result.
+ *
+ *  \param [in]  object  Pointer to a Path object
+ *  \param [in]  x       Integer x of point near or on the path
+ *  \param [in]  y       Integer y of point near or on the path
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a Path.
+ */
+bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
+{
+  GArray *points;
+  POINT   target;
+  bool    result;
+  int     closed;
+
+#if DEBUG
+  fprintf(stderr, "%s begin: x=%d, y=%d\n", __func__, x, y);
+#endif
+
+  /* Internal function to check if a point is near an endpoint and move
+   * the point if the point is within a reasonably short distance */
+  void check_endpoints(int *pt, int end1, int end2) {
+    int delta;
+    delta = abs(*pt - end1);
+    if (delta < NEAR_DISTANCE) { /* If near 1st endpoint*/
+      *pt = end1;
+       return;
+    }
+    delta = abs(*pt - end2);
+    if (delta < NEAR_DISTANCE) { /* If near 2nd endpoint*/
+      *pt = end2;
+    }
+  }
+
+  if (GEDA_IS_PATH(object)) {
+
+    Line  segment;
+
+    points = g_array_new (FALSE, FALSE, sizeof (POINT));
+    closed = s_path_to_polygon (object->path, points);
+    result = FALSE;
+
+    if (closed) {
+      target = g_array_index (points, POINT, points->len - 1);
+      points = g_array_prepend_val (points, target);
+    }
+
+    if (points->len > 0) {
+
+      double shortest = G_MAXDOUBLE;
+      int i = 1;
+      POINT vertex;
+
+      vertex = g_array_index (points, POINT, 0);
+
+      while (i < points->len) {
+
+        double distance;
+        Line   line;
+
+        line.x[0] = vertex.x;
+        line.y[0] = vertex.y;
+
+        vertex = g_array_index (points, POINT, i++);
+
+        line.x[1] = vertex.x;
+        line.y[1] = vertex.y;
+
+        distance = m_line_shortest_distance (&line, x, y);
+
+        if (distance == 0.0) { /* Point is on a segment */
+          target.x = x;
+          target.y = y;
+          check_endpoints(&target.x, line.x[0], line.x[1]);
+          check_endpoints(&target.y, line.y[0], line.y[1]);
+          result   = TRUE;      /* Set flag to not check within segment */
+          break;
+        }
+
+        if (distance < shortest) {
+          segment.x[0] = line.x[0];
+          segment.y[0] = line.y[0];
+          segment.x[1] = line.x[1];
+          segment.y[1] = line.y[1];
+          shortest   = distance;
+        }
+      }
+    }
+    g_array_free (points, TRUE);
+
+    if (!result) {
+
+      if (segment.x[0] == segment.x[1]) {  /* Segment is vertical */
+
+        int ymin = segment.y[0] > segment.y[1] ? segment.y[1] : segment.y[0];
+        int ymax = segment.y[0] > segment.y[1] ? segment.y[0] : segment.y[1];
+
+        target.x = segment.x[0];
+
+        if (y >= ymax) {
+          target.y = ymax;
+        }
+        else if (y <= ymin) {
+          target.y = ymin;
+        }
+        else {
+          target.y = y;
+          check_endpoints(&target.y, segment.y[0], segment.y[1]);
+        }
+      }
+      else if (segment.y[0] == segment.y[1]) {  /* Segment is horizontal */
+
+        int xmin = segment.x[0] > segment.x[1] ? segment.x[1] : segment.x[0];
+        int xmax = segment.x[0] > segment.x[1] ? segment.x[0] : segment.x[1];
+
+        target.y = segment.y[0];
+
+        if (x >= xmax) {
+          target.x = xmax;
+        }
+        else if (x <= xmin) {
+          target.x = xmin;
+        }
+        else {
+          target.x = x;
+          check_endpoints(&target.x, segment.x[0], segment.x[1]);
+        }
+      }
+      else { /* Segment is on non-zero angle*/
+
+        double dx, dy, ix, iy;
+        double m1, m2, b1, b2;
+        double off;
+
+        POINT  point;
+
+        dx  = segment.x[1] - segment.x[0];
+        dy  = segment.y[1] - segment.y[0];
+
+        m1  = dy / dx;
+        b1  = segment.y[0] - m1 * segment.x[0];
+
+        off = abs(m1 * x + b1 - y);
+
+        if (off) {
+
+          m2  = -1 / m1;
+          b2  = y - (m2 * x);
+          ix  = (b2 - b1) / (m1 - m2);
+          iy  = m2 * ix + b2;
+
+          point.x = ix;
+          point.y = iy;
+
+        }
+        else {
+          point.x = x;
+          point.y = y;
+        }
+
+        /* The calculated point could still be off the line for two
+         * reasons; the exact point can not be expressed using just
+         * integers and rounding errors. The next section checks and
+         * eliminates any such error but starting x - 1 and sweeping
+         * y over a range looking for the first point on the line
+         * that is an exact hit (with integers)
+         */
+
+        /* Get the error offset from the orginal line segment */
+        off = m1 * point.x + b1 - point.y;
+
+        if (off) {
+
+          int index = -5;
+
+          do {
+            int sweep_x = point.x + index;
+            int sweep_y, start_y;
+
+            start_y = point.y -2 + index++;
+
+            for (sweep_y = start_y; sweep_y < start_y + 5; sweep_y++) {
+              off = abs(m1 * sweep_x + b1 - sweep_y);
+              if (!off)
+                break;
+            }
+            if (!off) {
+              point.x = sweep_x;
+              point.y = sweep_y;
+            }
+            if (index == 15) {
+              off = 0.0;          /* Just give up */
+            }
+          } while (off);
+        }
+
+        check_endpoints(&point.x, segment.x[0], segment.x[1]);
+        check_endpoints(&point.y, segment.y[0], segment.y[1]);
+
+        /* Check if the segment include the point */
+        if (m_line_includes_point(&segment, &point)) {
+
+#if DEBUG
+  fprintf(stderr, "%s calculated includes: x=%d, y=%d\n", __func__, point.x, point.y);
+#endif
+          target.x = point.x;
+          target.y = point.y;
+        }
+        else {
+
+          double first  = m_distance (segment.x[0], segment.y[0], x, y);
+          double second = m_distance (segment.x[1], segment.y[1], x, y);
+          int    index  = first < second ? 0 : 1;
+
+          target.x = segment.x[index];
+          target.y = segment.y[index];
+        }
+      }
+      result = TRUE;
+    }
+  }
+  else {
+    result = FALSE;
+  }
+
+  if (result) {
+    *nx = target.x;
+    *ny = target.y;
+  }
+  else {
+    *nx = x;
+    *ny = y;
+  }
+
+#if DEBUG
+  fprintf(stderr, "%s exit: x=%d, y=%d\n", __func__, target.x, target.y);
+#endif
+  return result;
 }
 
 /*! \brief Get position of the first path point
@@ -1030,4 +1279,3 @@ double o_path_shortest_distance (Object *object, int x, int y, int force_solid)
 
   return s_path_shortest_distance (object->path, x, y, solid);
 }
-

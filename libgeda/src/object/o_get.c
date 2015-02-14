@@ -308,6 +308,44 @@ bool o_get_line_options(Object *object,
   return result;
 }
 
+/*! \brief Get the Point on an Object Nearest a given Point
+ *  \par Function Description
+ *  This function ia a wrapper for the 0_xxx_get_nearest functions.
+ *
+ *  \param [in]  object  Pointer to the object of interest
+ *  \param [in]  x       Integer x of point near or on the object
+ *  \param [in]  y       Integer y of point near or on the object
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ */
+bool o_get_nearest_point(Object *object, int x, int y, int *nx, int *ny)
+{
+  bool (*getter) (Object *, int, int, int *, int *) = NULL;
+
+  switch (object->type)
+  {
+    case OBJ_NET:
+    case OBJ_BUS:
+    case OBJ_PIN:
+    case OBJ_LINE:    getter = o_line_get_nearest_point;      break;
+    case OBJ_BOX:     getter = o_box_get_nearest_point;       break;
+    case OBJ_PICTURE: getter = o_picture_get_nearest_point;   break;
+    case OBJ_CIRCLE:  getter = o_circle_get_nearest_point;    break;
+    case OBJ_PLACEHOLDER:
+    case OBJ_COMPLEX: getter = o_complex_get_nearest_point;   break;
+    case OBJ_TEXT:    getter = o_text_get_nearest_point;      break;
+    case OBJ_PATH:    getter = o_path_get_nearest_point;      break;
+    case OBJ_ARC:     getter = o_arc_get_nearest_point;       break;
+    default:
+      break;
+  }
+
+  if (getter != NULL) {
+    return (*getter) (object, x, y, nx, ny);
+  }
+  return FALSE;
+}
+
 /*! \brief count the lines of a text string
  *
  *  \par Function Description
@@ -487,6 +525,8 @@ int o_get_parent_id (Object *object)
  *  \param [in] object   The object to get the position.
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
+ *
+ * TODO: Fix backward arguments
  */
 bool o_get_position (int *x, int *y, Object *object)
 {

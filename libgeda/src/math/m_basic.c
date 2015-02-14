@@ -106,7 +106,7 @@ void m_papersize_to_world(int width, int height, int border, int *right, int *bo
  *  \par Function Description
  *  This function converts radian measure into angular \a degrees.
  *
- *  \param [in] radian measure to convert
+ *  \param [in] radians measure to convert
  *
  *  \returns degrees conversion as a double
  *

@@ -89,8 +89,11 @@
 /* for color mechanism used in gschem */
 #define MAX_COLORS 25
 
+/*! \def NEAR_DISTANCE Used in get nearest routine to snap endpoints */
+#define NEAR_DISTANCE           5
+
 /* X's obsession with *64 */
-#define FULL_CIRCLE 360*64
+#define FULL_CIRCLE             360*64
 
 /* for show_name_value in st_objects */
 #define SHOW_NAME_VALUE         0

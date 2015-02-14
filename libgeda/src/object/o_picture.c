@@ -155,10 +155,12 @@ o_picture_copy(Object *o_current)
 {
   Object  *new_obj;
   Picture *new_picture;
-  Picture *old_picture = GEDA_PICTURE(o_current);
+  Picture *old_picture;
 
-  /* create the picture object */
-  new_obj = geda_picture_new();
+  g_return_val_if_fail(GEDA_IS_PICTURE(o_current), NULL);
+
+  old_picture = GEDA_PICTURE(o_current);
+  new_obj     = geda_picture_new();      /* create new picture object */
   new_picture = GEDA_PICTURE(new_obj);
 
   /* describe the picture with its upper left and lower right corner */
@@ -1385,6 +1387,51 @@ o_picture_get_effective_ratio (Object *object)
     anwser = 1.0;
   }
   return anwser;
+}
+
+/*! \brief Get Point on a Picture Nearest a Given Point
+ *  \par Function Description
+ *  This function is intended to locate a point on a Picture object given
+ *  a point \a x, \a y, that is on or about the vicinity of \a object. If
+ *  True is returned, <B>nx</B> and <B>ny</B> are set in world unit to a point
+ *  on the picture that is the closest point on the picture to the point
+ *  given by \a x, \a y.
+ *
+ *  \param [in]  object  Pointer to a Picture object
+ *  \param [in]  x       Integer x of point near or on the picture
+ *  \param [in]  y       Integer y of point near or on the picture
+ *  \param [out] nx      Integer pointer to resulting x value
+ *  \param [out] ny      Integer pointer to resulting y value
+ *
+ *  \returns TRUE is the results are valid, FALSE if \a object was not a Picture.
+ */
+bool o_picture_get_nearest_point(Object *object, int x, int y, int *nx, int *ny)
+{
+  Picture *picture;
+  bool result;
+
+  if (GEDA_IS_PICTURE(object)) {
+
+    Object *tmp = geda_box_new();
+
+    picture = object->picture;
+
+    tmp->box->upper_x = picture->upper_x;
+    tmp->box->upper_y = picture->upper_y;
+    tmp->box->lower_x = picture->lower_x;
+    tmp->box->lower_y = picture->lower_y;
+
+    result = o_box_get_nearest_point (tmp, x, y, nx, ny);
+
+    g_object_unref(tmp);
+  }
+  else { /* was not an Box */
+   *nx = x;
+   *ny = y;
+    result = FALSE;
+  }
+
+  return result;
 }
 
 /*! \brief Print picture to Postscript document
