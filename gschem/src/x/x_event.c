@@ -306,7 +306,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(STARTPAN):
+      case(PAN):
         i_pan_world(w_current, w_x, w_y);
         i_status_set_state(w_current, SELECT);
         break;

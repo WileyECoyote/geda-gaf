@@ -1,3 +1,8 @@
+2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * include/x_states.h: WEH Applied patch by Vladimir to remove pan
+      state; STARTPAN
+
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Add shift-key for (new) panning while inside
@@ -7,7 +12,7 @@
 
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/x_states.h: Remove , ENDROUTENET, and STARTROUTENET,
+    * include/x_states.h: Remove MOUSEPAN, ENDROUTENET, and STARTROUTENET,
       rename ENDROTATEP -> ENDROTATE, resequenced remainder.
 
 2015-02-13 Vladimir Zhbanov <vzhbanov@gmail.com>

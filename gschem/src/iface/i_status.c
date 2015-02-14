@@ -153,7 +153,6 @@ static const char *i_status_string(GschemToplevel *w_current)
     case ZOOMBOXEND:
     case ZOOMBOXSTART:
       return _("Zoom Box");
-    case STARTPAN:
     case PAN:
       return _("Pan Mode");
     case STARTPASTE:

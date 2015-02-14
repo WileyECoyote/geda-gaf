@@ -1653,7 +1653,7 @@ COMMAND (do_pan)
   BEGIN_NO_ARGUMENT(do_pan);
   o_redraw_cleanstates(w_current);
   w_current->inside_action = 0;
-  i_status_set_state(w_current, STARTPAN);
+  i_status_set_state(w_current, PAN);
 }
 
 /*! \brief Zoom Box Action Function in i_command_View_Actions

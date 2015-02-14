@@ -128,7 +128,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( STARTDRAWBUS ):
     case ( STARTDRAWNET ):
     case ( STARTMOVE ):
-    case ( STARTPAN ):
     case ( STARTPASTE ):
     case ( STARTDESELECT ):
     case ( STARTSELECT ):
