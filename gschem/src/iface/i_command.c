@@ -1298,6 +1298,41 @@ COMMAND (do_mirror)
   EXIT_COMMAND(do_mirror);
 }
 
+/*! \brief Break Editing Mode
+ *
+ *  @brief i_cmd_do_break in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  Initiate Break mode, possibly handling if there
+ *  object are already selected.
+ *
+ */
+COMMAND (do_break)
+{
+  BEGIN_W_COMMAND(do_break);
+
+  GList *object_list;
+
+  o_redraw_cleanstates(w_current);
+  w_current->inside_action = 0;
+
+  object_list = geda_list_get_glist (Current_Selection);
+
+  if HOT_ACTION (do_break) {
+    if (object_list) {
+      o_break_hot(w_current, object_list, CMD_X(do_break), CMD_Y(do_break));
+    }
+  }
+  else {
+
+    int status = o_break_interrogate (w_current, object_list);
+
+    i_status_set_state(w_current, status);
+
+  }
+  EXIT_COMMAND(do_break);
+}
+
 /*! \brief Project Editing Mode
  *
  *  @brief i_cmd_do_extend in i_command_Edit_Actions

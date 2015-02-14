@@ -318,6 +318,16 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_status_set_state(w_current, ZOOMBOXEND);
         break;
 
+      case(STARTBREAK):
+        i_status_set_state(w_current, o_break_start(w_current, unsnapped_wx, unsnapped_wy));
+        break;
+
+      case(ENDBREAK):
+        if(!o_break_end (w_current, unsnapped_wx, unsnapped_wy)) {
+          i_status_set_state(w_current, SELECT);
+        }
+        break;
+
       case(STARTEXTEND):
         i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
         break;

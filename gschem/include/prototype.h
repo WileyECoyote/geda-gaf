@@ -391,6 +391,12 @@ void       o_box_end                    (GschemToplevel *w_current, int x, int y
 void       o_box_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_box_draw_rubber            (GschemToplevel *w_current);
 
+/* o_break.c */
+int        o_break_start                (GschemToplevel *w_current, int w_x, int w_y);
+int        o_break_end                  (GschemToplevel *w_current, int x, int y);
+void       o_break_hot                  (GschemToplevel *w_current, GList *object_list, int x, int y);
+int        o_break_interrogate          (GschemToplevel *w_current, GList *object_list);
+
 /* o_buffer.c */
 void       o_buffer_copy                (GschemToplevel *w_current, int buf_num);
 void       o_buffer_cut                 (GschemToplevel *w_current, int buf_num);

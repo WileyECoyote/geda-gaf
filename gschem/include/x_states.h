@@ -73,14 +73,16 @@ enum x_states {
   STARTEXTEND,      /* 45 */
   EXTEND,           /* 46 */
   ENDEXTEND,        /* 47 */
-  MCOPY,            /* 48 */
-  STARTMCOPY,       /* 49 */
-  ENDMCOPY,         /* 50 */
-  DRAWPATH,         /* 51 */
-  PATHCONT,         /* 52 */
-  ENDPATH,          /* 53 */
-  DRAWPICTURE,      /* 54 */
-  ENDPICTURE,       /* 55 */
+  STARTBREAK,       /* 48 */
+  ENDBREAK,         /* 49 */
+  MCOPY,            /* 50 */
+  STARTMCOPY,       /* 51 */
+  ENDMCOPY,         /* 52 */
+  DRAWPATH,         /* 53 */
+  PATHCONT,         /* 54 */
+  ENDPATH,          /* 55 */
+  DRAWPICTURE,      /* 56 */
+  ENDPICTURE,       /* 57 */
 };
 
 #endif

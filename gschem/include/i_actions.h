@@ -3,7 +3,6 @@
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2013-2015 Wiley Edward Hill
- *
  * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -85,8 +84,9 @@
 #define EDIT_MCOPY       edit-mcopy
 #define EDIT_MOVE        edit-move
 #define EDIT_MIRROR      edit-mirror
-#define EDIT_EXTEND      edit-extend
 #define EDIT_ROTATE      edit-rotate
+#define EDIT_BREAK       edit-break
+#define EDIT_EXTEND      edit-extend
 #define EDIT_ARC         edit-arc
 #define EDIT_ATTRIB      edit-attributes
 #define EDIT_TEXT        edit-text

@@ -1572,6 +1572,7 @@
 (map-keys "E <Shift>U" "edit-undo")
 (map-keys "E <Shift>R" "edit-redo")
 (map-keys "E S"        "edit-select")
+(map-keys "E B"        "edit-break")
 (map-keys "E C"        "edit-copy")
 (map-keys "E <Shift>A" "edit-attributes")
 (map-keys "E Y"        "edit-mcopy")
@@ -1793,6 +1794,7 @@
 
         ("SEPARATOR"               #f                     #f                       #f)
 
+        (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break Linear object into seperate objects"))
         (,(N_ "Extend")             edit-extend            "gschem-extend"    ,(N_ "Project Linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)

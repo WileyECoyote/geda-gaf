@@ -69,6 +69,7 @@ void i_status_set_state_msg(GschemToplevel *w_current,
 
     GEDA_FREE(w_current->pixbuf_filename);
   }
+
   w_current->event_state = newstate;
   x_toolbars_update (w_current);
   i_status_show_state (w_current, message);
@@ -181,6 +182,10 @@ static const char *i_status_string(GschemToplevel *w_current)
     case DRAWBOX:
     case ENDBOX:
       return _("Box Mode");
+    case STARTBREAK:
+      return _("First point?");
+    case ENDBREAK:
+      return _("Second point?");
     case STARTEXTEND:
       return _("Project Mode");
     case EXTEND:

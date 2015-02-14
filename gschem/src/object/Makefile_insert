@@ -6,6 +6,7 @@ gschem_SOURCES += \
 		object/o_arc.c \
 		object/o_attrib.c \
 		object/o_box.c \
+		object/o_break.c \
 		object/o_buffer.c \
 		object/o_bus.c \
 		object/o_circle.c \

@@ -1,3 +1,24 @@
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_break.c: Add new module to implement new editing
+      feature to "break" objects; Arcs, Boxes, Path (both closed and
+      opened), Lines, Nets, Buses, and Circles are supported.
+
+    * etc/system-gschemrc.scm: Map edit-break action to "E B" key sequence
+      and add Break to main menu.
+
+    * include/i_actions.h: Define new action "edit-break" as EDIT_BREAK.
+
+    * include/i_command.h: Add do_break for action "edit-break".
+
+    * include/x_states.h: Add enumeration STARTBREAK and ENDBREAK.
+
+    * src/iface/i_command.c: Implement i_cmd_do_break for action "edit-break".
+
+    * src/iface/i_status.c: Add case for STARTBREAK and ENDBREAK.
+
+    * src/x/x_event.c: Add case for STARTBREAK and ENDBREAK.
+
 2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * include/x_states.h: WEH Applied patch by Vladimir to remove pan
