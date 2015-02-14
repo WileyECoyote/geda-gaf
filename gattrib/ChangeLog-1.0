@@ -1,3 +1,7 @@
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_states.h: Remove file.
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_string_list.c: Change variable "p" to "iter" in functions;
