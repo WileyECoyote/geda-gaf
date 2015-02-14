@@ -381,6 +381,7 @@ int o_bus_get_direction(Object *object)
   }
   return direction;
 }
+
 /* \brief
  * \par Function Description
  * This function does the actual work of making one bus segment out of two

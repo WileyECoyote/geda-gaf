@@ -335,7 +335,6 @@ struct _GschemToplevel {
 
   SCM smob;               /* The Scheme representation of this window */
 
-  int debug;
 };
 
 unsigned int    gschem_toplevel_get_type (void);

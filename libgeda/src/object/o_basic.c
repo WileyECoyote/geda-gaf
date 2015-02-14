@@ -501,7 +501,7 @@ Object *o_copy_object (Object *selected)
       break;
 
     default:
-      BUG_IMSG("Bad object type '%c'", object->type);
+      BUG_IMSG("Bad object type '%c'", selected->type);
       return NULL;
   }
 

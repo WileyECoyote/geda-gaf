@@ -49,7 +49,7 @@ void o_box_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
-/*! \brief Start process to input a new box.
+/*! \brief Start process to input a new box
  *  \par Function Description
  *  This function starts the process to input a new box. Parameters for this
  *  box are put into/extracted from the <B>w_current</B> toplevel structure.
@@ -63,9 +63,9 @@ void o_box_invalidate_rubber (GschemToplevel *w_current)
  *  The other corner will be saved in (<B>w_current->second_wx</B>,
  *  <B>w_current->second_wy</B>).
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world.
- *  \param [in] w_y        Current y coordinate of pointer in world.
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] w_x        Current x coordinate of pointer in world
+ *  \param [in] w_y        Current y coordinate of pointer in world
  */
 void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -89,9 +89,9 @@ void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
  *  and linked to the object list ; The object is finally drawn on the
  *  current sheet.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] w_x        Current x coordinate of pointer in world units
+ *  \param [in] w_y        Current y coordinate of pointer in world units
  */
 void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -195,7 +195,7 @@ void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Draw box from GschemToplevel object.
+/*! \brief Draw temporary box
  *  \par Function Description
  *  This function draws the box from the variables in the GschemToplevel
  *  structure <B>*w_current</B>.

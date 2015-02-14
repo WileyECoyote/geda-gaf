@@ -53,7 +53,7 @@ void i_pan_warp_cursor (GtkWidget* widget, int x, int y)
 
   gdk_window_get_origin (widget->window, &window_x, &window_y);
 
-  screen = gtk_widget_get_screen (widget);
+  screen  = gtk_widget_get_screen (widget);
   display = gdk_screen_get_display (screen);
 
   gdk_display_warp_pointer (display, screen, window_x + x, window_y + y);
@@ -215,10 +215,9 @@ void i_pan_world(GschemToplevel *w_current, int w_x, int w_y)
   /* i_pan_warp_cursor(w_current->drawing_area, x, y); */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Pan to Mouse
  *  \par Function Description
- *
+ *  Calculates coordinate to pan the view by the given amount.
  */
 void i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y)
 {

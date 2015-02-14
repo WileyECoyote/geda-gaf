@@ -1541,7 +1541,6 @@ static bool o_extend_can_hit_target(Object *projectile,
                                     int     which_end,
                                     char    direction,
                                     double *distance)
-
 {
   bool   answer;
   Line  *line;
