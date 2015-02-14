@@ -1677,9 +1677,12 @@ void
 x_toolbars_update(GschemToplevel *w_current)
 {
   if (!w_current->toolbars) return; /* if toolbars are disabled exit */
-  ToolBarWidgets *bar_widgets;
+
+  ToolBarWidgets  *bar_widgets;
+  GtkToggleButton *target;
+
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
-  GtkToggleButton *target = NULL;
+  target      = NULL;
 
   switch(w_current->event_state) {
     case(NONE):
@@ -1740,13 +1743,10 @@ x_toolbars_update(GschemToplevel *w_current)
     case(ENDPIN):
     case(ENDCOMP):
     case(ENDTEXT):
-    case(ENDROTATEP):
+    case(ENDROTATE):
     case(ENDMIRROR):
     case(ZOOMBOXSTART):
     case(ZOOMBOXEND):
-    case(STARTROUTENET):
-    case(ENDROUTENET):
-    case(MOUSEPAN):
     case(STARTPASTE):
     case(ENDPASTE):
     case(GRIPS):

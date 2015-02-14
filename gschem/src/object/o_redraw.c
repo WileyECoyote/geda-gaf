@@ -121,9 +121,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( DRAWPIN ):
     case ( ENDMIRROR ):
     case ( ENDPICTURE ):
-    case ( ENDROTATEP ):
-    case ( ENDROUTENET ):
-    case ( MOUSEPAN ):
+    case ( ENDROTATE ):
     case ( SBOX ):
     case ( STARTCOPY ):
     case ( STARTMCOPY ):
@@ -132,7 +130,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( STARTMOVE ):
     case ( STARTPAN ):
     case ( STARTPASTE ):
-    case ( STARTROUTENET ):
     case ( STARTDESELECT ):
     case ( STARTSELECT ):
     case ( ZOOMBOXSTART ):

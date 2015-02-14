@@ -1,3 +1,8 @@
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_states.h: Remove , ENDROUTENET, and STARTROUTENET,
+      rename ENDROTATEP -> ENDROTATE, resequenced remainder.
+
 2015-02-13 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/x/x_event.c: WEH: Applied patch by Vladimir to remove

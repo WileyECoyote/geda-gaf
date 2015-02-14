@@ -1385,7 +1385,7 @@ COMMAND (do_rotate)
       state = SELECT;
     }
     else {
-      state = ENDROTATEP;
+      state = ENDROTATE;
 
     }
     w_current->inside_action = 0;
@@ -2379,9 +2379,9 @@ COMMAND (do_hierarchy_up)
 
 COMMAND (do_add)
 {
-  BEGIN_COMMAND(do_add_component);
+  BEGIN_COMMAND(do_add);
   u_log_message("do_add command handler");
-  EXIT_COMMAND(do_add_component);
+  EXIT_COMMAND(do_add);
 }
 
 /** \defgroup i_command_Add_Actions Actions under the Add Menu

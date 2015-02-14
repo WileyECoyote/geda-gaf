@@ -62,7 +62,6 @@ void i_status_set_state_msg(GschemToplevel *w_current,
   if ((w_current->event_state == DRAWPICTURE) ||
       (w_current->event_state == ENDPICTURE))
   {
-
     if (w_current->current_pixbuf != NULL) {
       GEDA_UNREF(w_current->current_pixbuf);
       w_current->current_pixbuf = NULL;
@@ -78,7 +77,8 @@ void i_status_set_state_msg(GschemToplevel *w_current,
 /*! \brief Set new state, then show state field
  *
  *  \par Function Description
- *  Set new state, then show state field.
+ *  Wrapper for i_status_set_state_msg, set new state without specifing
+ *  and message string.
  *
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] newstate The new state
@@ -86,7 +86,6 @@ void i_status_set_state_msg(GschemToplevel *w_current,
  */
 void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 {
-
   i_status_set_state_msg (w_current, newstate, NULL);
 }
 
@@ -128,9 +127,6 @@ static const char *i_status_string(GschemToplevel *w_current)
 
   switch ( w_current->event_state ) {
     case NONE:
-    case STARTROUTENET: /*! \todo */
-    case ENDROUTENET: /*! \todo */
-      return "";
     case STARTDESELECT:
     case DESELECT:
       return _("Deselect Mode");
@@ -149,7 +145,7 @@ static const char *i_status_string(GschemToplevel *w_current)
     case STARTMOVE:
     case ENDMOVE:
       return _("Move Mode");
-    case ENDROTATEP:
+    case ENDROTATE:
       return _("Rotate Mode");
     case ENDMIRROR:
       return _("Mirror Mode");
@@ -159,7 +155,6 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Zoom Box");
     case STARTPAN:
     case PAN:
-    case MOUSEPAN:
       return _("Pan Mode");
     case STARTPASTE:
     case ENDPASTE:
@@ -237,23 +232,23 @@ static const char *i_status_string(GschemToplevel *w_current)
 void i_status_show_state(GschemToplevel *w_current, const char *message)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  char         *what_to_say;
   const char   *array[5] = { NULL };
+  char         *what_to_say;
 
   int i = 3; /* array[4] must be NULL */
 
   /* Fill in the string array */
   array[i--] = i_status_string(w_current);
 
-  if(toplevel->page_current->show_hidden_text)
+  if (toplevel->page_current->show_hidden_text)
     array[i--] = _("Show Hidden");
 
-  if(w_current->snap == SNAP_OFF)
+  if (w_current->snap == SNAP_OFF)
     array[i--] = _("Snap Off");
   else if (w_current->snap == SNAP_RESNAP)
     array[i--] = _("Resnap Active");
 
-  if(message && message[0])
+  if (message && message[0])
     array[i] = message;
 
   /* Skip over NULLs */
@@ -266,7 +261,7 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 
      char *ptr = what_to_say;
 
-     what_to_say = u_string_sprintf("%s \t\t %s", w_current->keyaccel_string,
+     what_to_say = u_string_sprintf("%s\t\t %s", w_current->keyaccel_string,
                                                  what_to_say);
      GEDA_FREE(ptr);
   }

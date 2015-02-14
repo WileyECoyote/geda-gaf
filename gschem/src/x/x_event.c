@@ -95,11 +95,8 @@ int x_event_button_pressed(GtkWidget      *widget,
   if (event->button == GDK_BUTTON_PRIMARY) {
 
     switch(w_current->event_state) {
-      case(DESELECT):
-        w_current->event_state = STARTDESELECT;
-        break;
-      case(SELECT):
 
+      case(SELECT):
         /* look for grips or fall through if not enabled */
         if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
 
@@ -113,6 +110,10 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->event_state   = GRIPS;
           w_current->inside_action = TRUE;
         }
+        break;
+
+      case(DESELECT):
+        w_current->event_state = STARTDESELECT;
         break;
 
       case(STARTCOPY):
@@ -283,7 +284,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(ENDROTATEP):
+      case(ENDROTATE):
         o_edit_rotate_world(w_current, w_x, w_y, 90,
                             geda_list_get_glist(Current_Selection));
 
@@ -395,8 +396,6 @@ int x_event_button_pressed(GtkWidget      *widget,
 #endif /* HAVE_LIBSTROKE */
 
         case(MOUSE_MIDDLE_PAN):
-          //w_current->event_state   = MOUSEPAN; /* start */
-          //w_current->inside_action = TRUE;
           w_current->doing_pan     = TRUE;
           start_pan_x              = (int) event->x;
           start_pan_y              = (int) event->y;
@@ -413,8 +412,6 @@ int x_event_button_pressed(GtkWidget      *widget,
         x_menu_display_popup(w_current, event);
       }
       else {
-        //w_current->event_state   = MOUSEPAN; /* start */
-        //w_current->inside_action = TRUE;
         w_current->doing_pan   = TRUE;
         start_pan_x            = (int) event->x;
         start_pan_y            = (int) event->y;
@@ -1134,23 +1131,20 @@ bool x_event_motion (GtkWidget      *widget,
   /* Update coordinates display on the status bar*/
   i_status_update_coordinates(w_current, w_x, w_y);
 
-  //if (w_current->third_button == MOUSEPAN_ENABLED ||      w_current->middle_button == MOUSE_MIDDLE_PAN) {
-    //if((w_current->event_state == MOUSEPAN) && w_current->inside_action) {
-    if(w_current->doing_pan) {
+  if(w_current->doing_pan) {
 
-     int pdiff_x = (event->x - start_pan_x) * w_current->mousepan_gain;
-     int pdiff_y = (event->y - start_pan_y) * w_current->mousepan_gain;
+    int pdiff_x = (event->x - start_pan_x) * w_current->mousepan_gain;
+    int pdiff_y = (event->y - start_pan_y) * w_current->mousepan_gain;
 
-      if (!(throttle % 5)) {
-        i_pan_world_mouse(w_current, pdiff_x, pdiff_y);
+    if (!(throttle % 5)) {
+      i_pan_world_mouse(w_current, pdiff_x, pdiff_y);
 
-        start_pan_x = (int) event->x;
-        start_pan_y = (int) event->y;
-      }
-      throttle++;
-      return(0);
+      start_pan_x = (int) event->x;
+      start_pan_y = (int) event->y;
     }
-  //}
+    throttle++;
+    return(0);
+  }
 
   /* Huge switch statement to evaluate state transitions. Jump to end_motion
    * label to escape the state evaluation rather than returning from the
