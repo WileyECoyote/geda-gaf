@@ -32,6 +32,35 @@
 
 #include <geda_debug.h>
 
+double  m_circle_circumference (int radius)
+{
+  return 2 * M_PI * radius;
+}
+
+/*! \brief Determine if a Circle includes a Point
+ *  Compares distance from point to the center of the Circle to the radius
+ *  of the Circle returns True if there is no difference.
+ *
+ *  \param [in] circle The circle object.
+ *  \param [in] point  Point to test for inclusion.
+ *
+ *  \return True if \a circle includes \a point.
+ */
+bool m_circle_includes_point (Circle *circle, POINT *point)
+{
+  int  delta;  /* Will be difference between point to center and radius */
+  int  cx;
+  int  cy;
+
+  cx = circle->center_x;
+  cy = circle->center_y;
+
+  /* Rounding here provides a fuzz distance effect */
+  delta = m_distance(cx, cy, point->x, point->y) - circle->radius;
+
+  return delta ? FALSE : TRUE;
+}
+
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter or interior of the circle.
  *
@@ -66,9 +95,4 @@ double m_circle_shortest_distance (Circle *circle, int x, int y, int solid)
   }
 
   return shortest_distance;
-}
-
-double  m_circle_circumference (int radius)
-{
-  return 2 * M_PI * radius;
 }
