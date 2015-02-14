@@ -1,0 +1,125 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+#   "PB1 (CLK)". That's useful for micro controller port labels						
+# rotate_labels rotates the pintext of top and bottom pins						
+#   this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+#   useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	yes					
+sym_width	8400					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20150204 1					
+name	TMS320F27075PZP					
+device	TMS320F27075PZP					
+refdes	U?					
+footprint	TQFP-100					
+description	Piccolo Microcontroller					
+documentation	http://www.ti.com/product/TMS320F27075/					
+author	AutoTron					
+numslots	0					
+dist-license	GPL3					
+use-license	unlimited					
+#slot	1					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	negation lines can be added with "\_" example: \_enable\_ 					
+#	if you want to write a "\" use "\\" as escape sequence					
+#						
+#pinnr	seq	type	style	posit.	net	label
+7	7	io	line	l		GPIO16/SPISIMOA/CANTXB
+8	8	io	line	l		GPIO17/SPISOMIA/CANRXB
+9	9	io	line	l		GPIO18/SPICLKA/SCITXDB
+11	11	io	line	l		GPIO19/\_SPISTEA\_/SCIRXDB
+12	12	io	line	l		GPIO20/EQEP1A/MDXA
+13	13	io	line	l		GPIO21/EQEP1B/MDRA
+14	14	io	line	l		GPIO11
+			spacer	l		
+25	25	in	line	l		ADCINA0
+24	24	in	line	l		ADCINA1
+23	23	in	line	l		ADCINA2
+22	22	in	line	l		ADCINA3
+21	21	in	line	l		ADCINA4
+20	20	in	line	l		ADCINA5
+			spacer	l		
+26	26	in	line	l		ADCIN14
+27	27	in	line	l		ADCIN15
+			spacer	l		
+28	28	in	line	l		ADCINB0
+29	29	in	line	l		ADCINB1
+30	30	in	line	l		ADCINB2
+31	31	in	line	l		ADCINB3
+32	32	in	line	l		ADCINB4
+33	33	in	line	l		ADCINB5
+			spacer	l		
+42	42	pas	line	l		FLT1
+43	43	pas	line	l		FLT2
+			spacer	l		
+51	51	io	line	l		GPOI41
+73	73	io	line	l		GPIO42
+74	74	io	line	l		GPIO43
+100	100	out	line	r		GPIO10/SCITXDB
+			spacer	r		
+1	1	io	line	r		GPIO11/EPWM6B/SCIRXDB
+3	3	io	line	r		GPIO12/EPWM7A/CANTXB
+4	4	io	line	r		GPIO13/EPWM7B/CANRXB
+5	5	io	line	r		GPIO14/EPWM8A/SCITXDB
+6	6	io	line	r		GPIO15/EPWM8B/SCIRXDB
+			spacer	r		
+91	91	out	line	r		GPIO2/EPWM2A
+92	92	out	line	r		GPIO3/EPWM2B
+93	93	out	line	r		GPIO4/EPWM3A
+			spacer	r		
+52	52	io	line	r		GPIO58/MCLKRA
+53	53	io	line	r		GPIO59/MFSRA
+54	54	io	line	r		GPIO60/MCLKRB
+56	56	io	line	r		GPIO61/MFSRB
+57	57	io	line	r		GPIO62/SCIRXDC
+58	58	io	line	r		GPIO63/SCITXDC
+59	59	io	line	r		GPIO64
+60	60	io	line	r		GPIO65
+61	61	io	line	r		GPIO66
+			spacer	r		
+75	75	io	line	r		GPIO69
+76	76	io	line	r		GPIO70/SCITXDB
+77	77	io	line	r		GPIO71/SCIRXDB
+80	80	io	line	r		GPIO72/SCITXDC
+81	81	io	line	r		GPIO73/SCIRXDC
+82	82	io	line	r		GPIO78
+			spacer	r		
+85	85	io	line	r		GPIO84/SCITXDA/MDXB
+86	86	io	line	r		GPIO85/SCIRXDA/MDRB
+87	87	io	line	r		GPIO86/SCITXDB/MCLKXB
+88	88	io	line	r		GPIO87/SCIRXDB/MFSXB
+96	96	out	line	r		GPIO89/SCITXDC
+97	97	io	line	r		GPIO90/SCIRXDC
+98	98	io	line	r		GPIO91/SDAA
+99	99	io	line	r		GPIO92/SCLA

@@ -1,5 +1,12 @@
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TMS320F28075PZP-1a.sym: Add symbol C2000 F28075 Piccolo
+      Microcontroller in TQFP-100 package, part 1.
+
+    * ti/TMS320F28075PZP-1b.sym: Part 2, GPIO pins.
+
+2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * onsemi/NCV898031-1.sym: 2MHz SEPIC/Boost Controller
 
     * onsemi/NCV898031-2.sym: 2MHz SEPIC/Boost Controller with alternate
