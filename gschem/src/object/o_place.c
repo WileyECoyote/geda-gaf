@@ -84,9 +84,9 @@ void
 o_place_end (GschemToplevel *w_current, int w_x, int w_y,
              int continue_placing, GList **ret_new_objects, const char* hook_name)
 {
-  GedaToplevel *toplevel          = w_current->toplevel;
-  GList        *temp_dest_list    = NULL;
-  GList        *connected_objects = NULL;
+  GedaToplevel *toplevel       = w_current->toplevel;
+  GList        *object_list    = NULL;
+  GList        *connected_list = NULL;
   GList        *iter;
   Object       *o_current;
   Page         *p_current;
@@ -95,8 +95,8 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
   if (w_current->inside_action) {
 
-    /* erase old image */
-    w_current->rubber_visible = 0;
+    /* Turn off flag */
+    w_current->rubber_visible = FALSE;
 
     /* Calc final object positions */
     w_current->second_wx = w_x;
@@ -107,53 +107,54 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
     if (continue_placing) {
       /* Make a copy of the place list if we want to keep it afterwards */
-      temp_dest_list = o_list_copy_all (toplevel->page_current->place_list,
-                                        temp_dest_list);
+      object_list = o_list_copy_all (Current_PlaceList, object_list);
     }
     else {
       /* Otherwise just take it */
-      temp_dest_list = toplevel->page_current->place_list;
-      toplevel->page_current->place_list = NULL;
+      object_list = Current_PlaceList;
+      Current_PlaceList = NULL;
     }
 
     if (ret_new_objects != NULL) {
-      *ret_new_objects = g_list_copy (temp_dest_list);
+      *ret_new_objects = g_list_copy (object_list);
     }
 
-    o_list_translate(temp_dest_list, w_diff_x, w_diff_y);
+    o_list_translate(object_list, w_diff_x, w_diff_y);
 
-    /* Attach each item back onto the page's object list. Update object
+    /* Attach each item onto the page's object list. Update object
      * connectivity and add the new objects to the selection list.*/
     p_current = toplevel->page_current;
 
-    for (iter = temp_dest_list; iter != NULL; NEXT(iter)) {
+    for (iter = object_list; iter != NULL; NEXT(iter)) {
 
-      o_current = iter->data;
+      o_current = iter->data;                      /* Get pointer to object */
 
-      s_page_append_object (p_current, o_current);
+      o_current->page = NULL;                      /* Remove old references */
 
-      /* Update object connectivity */
-      s_conn_update_object (o_current);
-      connected_objects = s_conn_return_others (connected_objects, o_current);
+      s_page_append_object (p_current, o_current); /* Append to current page */
+
+      s_conn_update_object (o_current);            /* Update connectivity */
+
+      connected_list = s_conn_return_others (connected_list, o_current);
     }
 
     if (hook_name != NULL) {
-      g_run_hook_object_list (w_current, hook_name, temp_dest_list);
+      g_run_hook_object_list (w_current, hook_name, object_list);
     }
 
-    o_invalidate_glist (w_current, connected_objects);
-    g_list_free (connected_objects);
-    connected_objects = NULL;
+    o_invalidate_glist (w_current, connected_list);
+    g_list_free (connected_list);
+    connected_list = NULL;
 
-    o_invalidate_glist (w_current, temp_dest_list); /* only redraw new objects */
-    g_list_free (temp_dest_list);
+    o_invalidate_glist (w_current, object_list);  /* only redraw new objects */
+    g_list_free (object_list);
 
     o_undo_savestate (w_current, UNDO_ALL);
     i_status_update_sensitivities (w_current);
-    w_current->inside_action = FALSE;
+    w_current->inside_action = continue_placing;
   }
   else {
-    BUG_TRACE("Not inside an action!");
+    BUG_MSG("Not inside an action!");
   }
 }
 

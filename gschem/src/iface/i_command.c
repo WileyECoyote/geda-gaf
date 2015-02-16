@@ -1121,11 +1121,9 @@ COMMAND (do_paste_clip)
 {
   BEGIN_W_COMMAND(do_paste_clip);
 
-  GList *object_list = NULL;
-  int state;
+  if ((narg < 0) || (arg == NULL)) { /* if no arguments then use buffer 0 */
 
-  if ((narg < 0) || (arg == NULL)) {
-    /* if no arguments then use buffer 0 */
+    GList *object_list = NULL;
     narg = 0;
     object_list = x_clipboard_get (w_current);
     s_object_release_objects (object_buffer[narg]);
@@ -1135,18 +1133,18 @@ COMMAND (do_paste_clip)
   if (object_buffer[narg] != NULL) {
     if HOT_ACTION (do_paste_clip) {
 
-      o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
-                                       CMD_Y(do_paste_clip), narg);
-      w_current->inside_action = 1;
-      state = ENDPASTE;
+      if (!o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
+                                            CMD_Y(do_paste_clip), narg))
+      {
+        i_status_set_state (w_current, SELECT);
+      }
     }
     else {
       o_redraw_cleanstates (w_current);
       w_current->buffer_number = narg;
-      w_current->inside_action = 0;
-      state = STARTPASTE;
+      w_current->inside_action = FALSE;
+      i_status_set_state (w_current, STARTPASTE);
     }
-    i_status_set_state (w_current, state);
   }
   else {
     i_status_set_state_msg (w_current, SELECT, _("Empty buffer"));
@@ -1163,7 +1161,7 @@ COMMAND (do_delete)
     o_redraw_cleanstates(w_current);
     o_delete_selected(w_current);
     /* After deletion go into select mode */
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
     i_status_update_sensitivities(w_current);
 
@@ -1179,21 +1177,20 @@ COMMAND (do_delete)
 COMMAND (do_copy)
 {
   BEGIN_W_COMMAND(do_copy);
-  int state;
 
-  if (o_select_return_first_object(w_current)) {
+  if (o_select_is_selection(w_current)) {
+
     o_redraw_cleanstates(w_current);
+
     if HOT_ACTION (do_copy) {
       i_status_set_state (w_current, COPY);;
-      o_copy_start (w_current,  CMD_X(do_copy),  CMD_Y(do_copy));
-      state = ENDCOPY;
-      w_current->inside_action = 1;
+      if (o_copy_start (w_current,  CMD_X(do_copy),  CMD_Y(do_copy))) {
+        i_status_set_state(w_current, ENDCOPY);
+      }
     }
     else {
-      state = STARTCOPY;
-      w_current->inside_action = 0;
+      i_status_set_state(w_current, STARTCOPY);
     }
-    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
@@ -1212,17 +1209,17 @@ COMMAND (do_mcopy)
   BEGIN_W_COMMAND(do_mcopy);
   int state;
 
-  if (o_select_return_first_object(w_current)) {
+  if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_mcopy) {
       i_status_set_state(w_current, MCOPY);
       o_copy_start (w_current, CMD_X(do_mcopy), CMD_Y(do_mcopy));
       state = ENDMCOPY;
-      w_current->inside_action = 1;
+      w_current->inside_action = TRUE;
     }
     else {
       state = STARTMCOPY;
-      w_current->inside_action = 0;
+      w_current->inside_action = FALSE;
     }
     i_status_set_state(w_current, state);
   }
@@ -1240,21 +1237,17 @@ COMMAND (do_mcopy)
 COMMAND (do_move)
 {
   BEGIN_W_COMMAND(do_move);
-  int state;
 
-  if (o_select_return_first_object(w_current)) {
+  if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_move) {
-      i_status_set_state(w_current, MCOPY);
-      o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move));
-      state = ENDMOVE;
-      w_current->inside_action = 1;
+      if (o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move))) {
+        i_status_set_state(w_current, ENDMOVE);
+      }
     }
     else {
-      state = STARTMOVE;
-      w_current->inside_action = 0;
+      i_status_set_state(w_current, STARTMOVE);
     }
-    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);

@@ -144,12 +144,13 @@ void o_move_stretch_destroy_all (GList *list)
  *  \par Function Description
  *
  */
-void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
+bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+  int status = FALSE;
   GList *s_iter;
 
-  g_return_if_fail (w_current->stretch_list == NULL);
+  g_return_val_if_fail (w_current->stretch_list == NULL, FALSE);
 
   if (o_select_is_selection (w_current)) {
 
@@ -158,7 +159,7 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     o_undo_savestate(w_current, UNDO_ALL);
 
     w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
-    w_current->event_state = MOVE;
+    //w_current->event_state = MOVE;
 
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
@@ -166,6 +167,7 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
 
     if (w_current->netconn_rubberband) {
+
       o_move_prep_rubberband(w_current);
 
       /* Set the do not_redraw flag on rubberbanded objects and invalidate
@@ -181,8 +183,9 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 
     o_select_move_to_place_list(w_current);
     o_move_invalidate_rubber (w_current, TRUE);
-    w_current->inside_action = TRUE;
+    status = TRUE;
   }
+  return w_current->inside_action = status;
 }
 
 /*! \todo Finish function documentation!!!

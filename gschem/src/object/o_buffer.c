@@ -127,8 +127,6 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
                                                      int w_y,
                                                      int buf_num)
 {
-  int rleft, rtop, rbottom, rright;
-  int x, y;
   int result;
 
   if (w_current == NULL) {
@@ -148,6 +146,8 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     result = FALSE;
   }
   else {
+
+    int left, top, bottom, right;
 
     /* Cancel current place or draw action if it is being done */
     if (w_current->inside_action) {
@@ -169,17 +169,17 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
     printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
-    if (o_get_bounds_list (Current_PlaceList,
-                                 &rleft, &rtop, &rright, &rbottom))
-    {
+    if (o_get_bounds_list(Current_PlaceList, &left, &top, &right, &bottom)) {
+
+      int x, y;
 
       /* Place objects into the buffer at the mouse origin, (w_x, w_y) */
       w_current->first_wx = w_x;
       w_current->first_wy = w_y;
 
       /* snap x and y to the grid, pointed out by Martin Benes */
-      x = snap_grid (w_current, rleft);
-      y = snap_grid (w_current, rtop);
+      x = snap_grid (w_current, left);
+      y = snap_grid (w_current, top);
 
       o_list_translate (Current_PlaceList, w_x - x, w_y - y);
 

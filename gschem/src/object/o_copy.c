@@ -35,11 +35,11 @@
  *  to save the x and y coordinates for the event and if there is
  *  a selection, add the current selection to the place list.
  */
-void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
+bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  GList *s_current;
+  int status = FALSE;
 
   /* Copy the objects into the buffer at their current position,
    * with future motion relative to the mouse origin, (w_x, w_y). */
@@ -49,11 +49,13 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (o_select_is_selection(w_current)) {
 
-    s_current = geda_list_get_glist(Top_Selection);
+    GList *s_current = geda_list_get_glist(Top_Selection);
     s_place_set_place_list(toplevel, s_current);
-    i_status_set_state(w_current, COPY);
-    o_place_start(w_current, w_x, w_y);
+
+    status = o_place_start(w_current, w_x, w_y);
+
   }
+  return w_current->inside_action = status;
 }
 
 /*! \brief Can cancel a copy operation
@@ -77,31 +79,26 @@ void o_copy_cancel(GschemToplevel *w_current)
  */
 void o_copy_end(GschemToplevel *w_current)
 {
-  GList *iter;
-  GList *list;
-
-  for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
-    Object *o_current = iter->data;
-    o_current->page   = NULL;
-  }
-
   if (!w_current->SHIFTKEY) {
-    o_place_end (w_current, w_current->second_wx, w_current->second_wy,
-                 FALSE, NULL, "%copy-objects-hook");
+
+    int wx = w_current->second_wx;
+    int wy = w_current->second_wy;
+
+    o_place_end (w_current, wx, wy, FALSE, NULL, "%copy-objects-hook");
   }
   else {
 
-    list = NULL;
+    GList *list = NULL;
+    int    wx   = w_current->second_wx;
+    int    wy   = w_current->second_wy;
 
-    o_place_end (w_current, w_current->second_wx, w_current->second_wy,
-                 FALSE, &list, "%copy-objects-hook");
+    o_place_end (w_current, wx, wy, FALSE, &list, "%copy-objects-hook");
 
     o_select_unselect_all(w_current);
     o_select_add_list(w_current, list);
     g_list_free(list);
 
   }
-  w_current->inside_action = FALSE;
 }
 
 /*! \brief  Finalize Copy operation of a multible objects
@@ -110,13 +107,10 @@ void o_copy_end(GschemToplevel *w_current)
  */
 void o_copy_multiple_end(GschemToplevel *w_current)
 {
-  GList *iter;
-  for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
-    Object *o_current = iter->data;
-    o_current->page = NULL;
-  }
-  o_place_end (w_current, w_current->second_wx, w_current->second_wy, TRUE,
-               NULL, "%paste-objects-hook");
+  int wx = w_current->second_wx;
+  int wy = w_current->second_wy;
+
+  o_place_end (w_current, wx, wy, TRUE, NULL, "%paste-objects-hook");
 
   /* Stay on ENDMCOPY mode */
   w_current->inside_action = TRUE;

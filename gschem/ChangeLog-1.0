@@ -1,5 +1,39 @@
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Revised function x_event_button_pressed as follows:
+      removed GedaToplevel toplevel variable, add GList list variable, removed
+      setting inside_action FALSE after o_place_end.
+
+    * src/object/o_place.c: Revised function o_place_end to set inside_action
+      to the value of continue_placing that was passed in and set the page
+      pointer of current objects to NULL before appending to the current page.
+      Rename temp_dest_list to object_list for consistency with other modules,
+      and connected_objects to connected_list.
+
+    * src/object/o_copy.c: Revise function o_copy_end to not set inside_action
+      since the desired value is passed to o_place_end. Add local integers to
+      eliminate line breakage in o_place_end and o_copy_multiple_end.
+      Eliminated setting of page pointer to NULL in o_place_end and o_copy_
+      multiple_end since this also is performed in o_place_end.
+
+    * src/object/o_buffer.c: Relocate variables declaration to local scope and
+      rename rside to side, these are no longer floating.
+
+    * src/x/x_dnd.c: Revise function x_dnd_drag_receive to not set inside_action
+      or set the state after calling o_buffer_paste_start.
+
+    * src/iface/i_command.c: Revise function i_cmd_do_paste_clip to not set
+      inside_action for HOT condition, and set state to SELECT if o_buffer_
+      paste_start returns false. Revise do_copy only set ENDCOPY mode if
+      o_copy_start resturns true. Revise do_mcopy only set ENDMCOPY mode if
+      o_copy_start resturns true. Revise do_move only set ENDMOVE mode if
+      o_move_start resturns true. Use o_select_is_selection instead of
+      o_select_return_first_object in do_copy, do_mcopy and do_move.
+
+    * src/object/o_delete.c: Remove General revisions.
+
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_copy.c: Revise o_copy_end to call "%copy-objects-hook"
       instead of %paste-objects-hook".
 

@@ -55,7 +55,7 @@ int x_event_button_pressed(GtkWidget      *widget,
                            GdkEventButton *event,
                            GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GList *list;
 
   int  w_x, w_y;
   int  unsnapped_wx, unsnapped_wy;
@@ -66,7 +66,7 @@ int x_event_button_pressed(GtkWidget      *widget,
   printf("event type: %d\n", event->type);
   printf("w_current state: %d\n", w_current->event_state);
   printf("Selection is:\n");
-  o_selection_print_all((Top_Selection));
+  o_selection_print_all(Current_Selection);
   printf("\n");
 #endif
 
@@ -80,7 +80,8 @@ int x_event_button_pressed(GtkWidget      *widget,
       w_current->event_state == SELECT))
   {
     if (o_select_is_selection (w_current)) {
-      o_edit_objects (w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
+      list = geda_list_get_glist(Current_Selection);
+      o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
       i_status_set_state(w_current, SELECT);
       return(0);
     }
@@ -115,23 +116,20 @@ int x_event_button_pressed(GtkWidget      *widget,
         break;
 
       case(STARTCOPY):
-        if (o_select_is_selection(w_current)) {
-          o_copy_start(w_current, w_x, w_y);
-          w_current->event_state   = COPY;
+        if (o_copy_start(w_current, w_x, w_y)) {
+          w_current->event_state = COPY;
         }
         break;
 
       case(STARTMCOPY):
-        if (o_select_is_selection(w_current)) {
-          o_copy_start(w_current, w_x, w_y);
-          w_current->event_state   = MCOPY;
+        if (o_copy_start(w_current, w_x, w_y)) {
+          w_current->event_state = MCOPY;
         }
         break;
 
       case(STARTMOVE):
-        if (o_select_is_selection(w_current)) {
-          o_move_start(w_current, w_x, w_y);
-          w_current->event_state   = MOVE;
+        if (o_move_start(w_current, w_x, w_y)) {
+          w_current->event_state = MOVE;
         }
         break;
 
@@ -250,7 +248,6 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
                     NULL, "%add-objects-hook");
         if (!w_current->continue_component_place) {
-          w_current->inside_action = FALSE;
           i_status_set_state(w_current, SELECT);
         }
         break;
@@ -261,14 +258,14 @@ int x_event_button_pressed(GtkWidget      *widget,
         break;
 
       case(ENDROTATE):
-        o_edit_rotate_world(w_current, w_x, w_y, 90,
-                            geda_list_get_glist(Current_Selection));
+        list = geda_list_get_glist(Current_Selection);
+        o_edit_rotate_world(w_current, w_x, w_y, 90, list);
         i_status_set_state(w_current, SELECT);
         break;
 
       case(ENDMIRROR):
-        o_edit_mirror_world(w_current, w_x, w_y,
-                            geda_list_get_glist(Current_Selection));
+        list = geda_list_get_glist(Current_Selection);
+        o_edit_mirror_world(w_current, w_x, w_y, list);
         i_status_set_state(w_current, SELECT);
         break;
 
@@ -339,7 +336,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case(MOUSE_MIDDLE_ACTION):
           /* Only Copy and Move are supported */
-          /* Do not search if shift key is depresed */
+          /* Do not search if shift key is depressed */
           if (!w_current->SHIFTKEY) {
             o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           }
@@ -351,8 +348,9 @@ int x_event_button_pressed(GtkWidget      *widget,
           }
           else {
             if (w_current->ALTKEY) {
-              o_copy_start(w_current, w_x, w_y);
-              i_status_set_state(w_current, COPY);
+              if (o_copy_start(w_current, w_x, w_y)) {
+                i_status_set_state(w_current, COPY);
+              }
             }
             else {
               o_move_start(w_current, w_x, w_y);
@@ -708,9 +706,9 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
     else {
+      w_current->inside_action = FALSE;
       i_status_set_state(w_current, SELECT);
     }
-    w_current->inside_action = FALSE;
   }
 
 #if DEBUG_EVENTS
@@ -1144,8 +1142,9 @@ bool x_event_motion (GtkWidget      *widget,
         else
         {
           /* Start moving the selected object(s) */
-          o_move_start(w_current, w_x, w_y);
-          w_current->event_state = ENDMOVE;
+          if (o_move_start(w_current, w_x, w_y)) {
+            w_current->event_state = ENDMOVE;
+          }
           if (w_current->drag_event) {
             gdk_event_free(w_current->drag_event);
           }

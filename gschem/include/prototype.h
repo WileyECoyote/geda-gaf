@@ -426,7 +426,7 @@ void       o_complex_translate_all           (GschemToplevel *w_current, int off
 bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object *complex);
 
 /* o_copy.c */
-void       o_copy_start                 (GschemToplevel *w_current, int x, int y);
+bool       o_copy_start                 (GschemToplevel *w_current, int x, int y);
 void       o_copy_cancel                (GschemToplevel *w_current);
 void       o_copy_end                   (GschemToplevel *w_current);
 void       o_copy_multiple_end          (GschemToplevel *w_current);
@@ -497,7 +497,7 @@ GLT       *o_move_stretch_remove        (GList *list, Object *object);
 void       o_move_stretch_print_all     (GList *list);
 void       o_move_stretch_destroy_all   (GList *list);
 
-void       o_move_start                 (GschemToplevel *w_current, int x, int y);
+bool       o_move_start                 (GschemToplevel *w_current, int x, int y);
 void       o_move_end_lowlevel          (GschemToplevel *w_current, Object *object, int diff_x, int diff_y);
 void       o_move_end                   (GschemToplevel *w_current);
 void       o_move_cancel                (GschemToplevel *w_current);
