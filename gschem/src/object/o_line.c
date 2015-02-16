@@ -69,7 +69,8 @@ void o_line_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wy = w_current->second_wy = w_y;
 
   o_line_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+  w_current->inside_action  = TRUE;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief End the input of a line.
@@ -91,34 +92,36 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
 
-  if( w_current->inside_action != 0 ) {
+  if (w_current->inside_action) {
 
     /* Don't bother.. the real object is invalidated, its in the same place */
     /* o_line_invalidate_rubber (w_current); */
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     /* don't allow zero length lines */
-    if ( (w_current->first_wx == w_current->second_wx) &&
-       (w_current->first_wy == w_current->second_wy) ) {
-      return;
+    if ((w_current->first_wx != w_current->second_wx) &&
+        (w_current->first_wy != w_current->second_wy))
+    {
+
+      /* create the line object and draw it */
+      new_obj = o_line_new (GRAPHIC_COLOR,
+                            w_current->first_wx, w_current->first_wy,
+                            w_current->second_wx, w_current->second_wy);
+      new_obj->line_options->line_width = o_style_get_line_width(toplevel);
+
+      s_page_append_object (toplevel->page_current, new_obj);
+
+      /* Call add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+      o_undo_savestate(w_current, UNDO_ALL);
+
     }
-
-    /* create the line object and draw it */
-    new_obj = o_line_new (GRAPHIC_COLOR,
-                          w_current->first_wx, w_current->first_wy,
-                          w_current->second_wx, w_current->second_wy);
-    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-
-    s_page_append_object (toplevel->page_current, new_obj);
-
-    /* Call add-objects-hook */
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-    toplevel->page_current->CHANGED=1;
-    o_undo_savestate(w_current, UNDO_ALL);
+    w_current->inside_action = FALSE;
   }
-  else
-    fprintf(stderr, "o_line_end, internal error: inside_action should not be zero\n");
+  else {
+    BUG_MSG("Not inside action");
+  }
 }
 
 /*! \brief Draw temporary line while dragging end.

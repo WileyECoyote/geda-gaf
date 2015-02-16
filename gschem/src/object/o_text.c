@@ -143,7 +143,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   toplevel->page_current->place_list =
     g_list_append(toplevel->page_current->place_list,object);
 
-  w_current->inside_action = 1;
+  w_current->inside_action = TRUE;
   i_status_set_state (w_current, ENDTEXT);
 }
 

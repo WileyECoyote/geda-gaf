@@ -43,6 +43,7 @@ void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
+  w_current->inside_action = TRUE;
 }
 
 /*! \brief finish a bus drawing action
@@ -64,51 +65,56 @@ int o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
   GedaToplevel *toplevel          = w_current->toplevel;
   GList        *prev_conn_objects = NULL;
   Object       *new_obj;
+  bool          result;
   int           color;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside an action\n");
-    return FALSE;
-  }
+  if (w_current->inside_action) {
 
-  if (w_current->override_bus_color == -1) {
-    color = BUS_COLOR;
+    if (w_current->override_bus_color == -1) {
+      color = BUS_COLOR;
+    }
+    else {
+      color = w_current->override_bus_color;
+    }
+
+    /* set flag erase the rubberbus */
+    w_current->rubber_visible = 0;
+
+    /* don't allow zero length bus */
+    /* this ends the bus drawing behavior we want this? hack */
+    if ((w_current->first_wx == w_current->second_wx) &&
+        (w_current->first_wy == w_current->second_wy))
+    {
+      result = FALSE;
+    }
+    else
+    {
+      new_obj = o_bus_new(color,
+                          w_current->first_wx, w_current->first_wy,
+                          w_current->second_wx, w_current->second_wy, 0);
+
+      new_obj->line_options->line_width = o_style_get_bus_width(toplevel);
+      s_page_append_object (toplevel->page_current, new_obj);
+
+      /* connect the new bus to the other busses */
+      prev_conn_objects = s_conn_return_others (prev_conn_objects, new_obj);
+      o_invalidate_glist (w_current, prev_conn_objects);
+      g_list_free (prev_conn_objects);
+
+      /* Call add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+      w_current->first_wx = w_current->second_wx;
+      w_current->first_wy = w_current->second_wy;
+      o_undo_savestate(w_current, UNDO_ALL);
+      result = TRUE;
+    }
   }
   else {
-    color = w_current->override_bus_color;
+    BUG_MSG("Not inside an action\n");
+    result = FALSE;
   }
-
-  /* erase the rubberbus */
-  /* o_bus_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
-
-  /* don't allow zero length bus */
-  /* this ends the bus drawing behavior we want this? hack */
-  if ( (w_current->first_wx == w_current->second_wx) &&
-       (w_current->first_wy == w_current->second_wy) ) {
-    return FALSE;
-  }
-
-  new_obj = o_bus_new(color,
-                      w_current->first_wx, w_current->first_wy,
-                      w_current->second_wx, w_current->second_wy, 0);
-
-  new_obj->line_options->line_width = o_style_get_bus_width(toplevel);
-  s_page_append_object (toplevel->page_current, new_obj);
-
-  /* connect the new bus to the other busses */
-  prev_conn_objects = s_conn_return_others (prev_conn_objects, new_obj);
-  o_invalidate_glist (w_current, prev_conn_objects);
-  g_list_free (prev_conn_objects);
-
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  toplevel->page_current->CHANGED=1;
-  w_current->first_wx = w_current->second_wx;
-  w_current->first_wy = w_current->second_wy;
-  o_undo_savestate(w_current, UNDO_ALL);
-  return TRUE;
+  return w_current->inside_action = result;
 }
 
 /*! \brief draw the bus rubber when creating a bus

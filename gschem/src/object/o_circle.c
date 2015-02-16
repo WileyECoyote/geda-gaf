@@ -70,7 +70,8 @@ void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* first temporary circle */
   o_circle_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+  w_current->inside_action  = TRUE;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief End the input of a circle.
@@ -97,33 +98,30 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action");
-  }
-  else {
+  if (w_current->inside_action) {
 
-    /* erase the temporary circle */
-    /* o_circle_invalidate_rubber (w_current); */
+    /* Set flag erase the temporary circle */
     w_current->rubber_visible = 0;
 
     /* circle with null radius are not allowed */
-    if (w_current->distance == 0) {
-      /* cancel the object creation */
-      return;
+    if (w_current->distance != 0) { /* cancel the object creation */
+
+      /* create the object */
+      new_obj = o_circle_new (GRAPHIC_COLOR,
+                              w_current->first_wx, w_current->first_wy,
+                              w_current->distance);
+      new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+      s_page_append_object (toplevel->page_current, new_obj);
+
+      /* Call add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+      o_undo_savestate(w_current, UNDO_ALL);
     }
-
-    /* create the object */
-    new_obj = o_circle_new (GRAPHIC_COLOR,
-                            w_current->first_wx, w_current->first_wy,
-                            w_current->distance);
-    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-    s_page_append_object (toplevel->page_current, new_obj);
-
-    /* Call add-objects-hook */
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-    toplevel->page_current->CHANGED = 1;
-    o_undo_savestate(w_current, UNDO_ALL);
+    w_current->inside_action = FALSE;
+  }
+  else {
+      BUG_MSG("Not inside action");
   }
 }
 

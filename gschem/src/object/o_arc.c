@@ -76,7 +76,8 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* start the rubberbanding process of the radius */
   o_arc_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+  w_current->inside_action  = TRUE;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief End the input of an arc.
@@ -98,26 +99,22 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
-  if ( w_current->inside_action == 0) {
-    BUG_MSG("Not inside action");
-  }
-  else {
+  if (w_current->inside_action) {
 
-    /* erases the previous temporary radius segment */
-    /* o_arc_invalidate_rubber (w_current); */
+    /* Set flag erases the previous temporary radius segment */
     w_current->rubber_visible = 0;
 
     /* ack! zero length radius */
-    if (w_current->distance == 0) {
-      return;
+    if (w_current->distance != 0) {
+
+      /* Open dialog to input the start and end angle */
+      x_dialog_edit_arc_angle(w_current, NULL);
+
     }
-
-#if DEBUG
-    printf("DIST: %d\n", w_current->distance);
-#endif
-
-    /* Open dialog to input the start and end angle */
-    x_dialog_edit_arc_angle(w_current, NULL);
+    w_current->inside_action = FALSE;
+  }
+  else {
+    BUG_MSG("Not inside action");
   }
 }
 

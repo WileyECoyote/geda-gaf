@@ -183,21 +183,19 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
 
       o_list_translate (Current_PlaceList, w_x - x, w_y - y);
 
-      w_current->inside_action = 1;
       i_status_set_state(w_current, ENDPASTE);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
-      printf("%s: calling o_place_start with %d objects\n", __func__, dint);
+  printf("%s: calling o_place_start with %d objects\n", __func__, dint);
 #endif
 
-      o_place_start (w_current, w_x, w_y);
-      result = TRUE;
+      result = o_place_start (w_current, w_x, w_y);
     }
     else { /* Buffer does not have objects to define its any bounds */
-      return FALSE;
+      result = FALSE;
     }
   }
-  return result;
+  return w_current->inside_action = result;
 }
 
 /*! \brief Initialize the Buffers

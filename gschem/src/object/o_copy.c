@@ -50,10 +50,7 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
   if (o_select_is_selection(w_current)) {
 
     s_current = geda_list_get_glist(Top_Selection);
-
     s_place_set_place_list(toplevel, s_current);
-
-    w_current->inside_action = 1;
     i_status_set_state(w_current, COPY);
     o_place_start(w_current, w_x, w_y);
   }
@@ -104,6 +101,7 @@ void o_copy_end(GschemToplevel *w_current)
     g_list_free(list);
 
   }
+  w_current->inside_action = FALSE;
 }
 
 /*! \brief  Finalize Copy operation of a multible objects
@@ -119,4 +117,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   }
   o_place_end (w_current, w_current->second_wx, w_current->second_wy, TRUE,
                NULL, "%paste-objects-hook");
+
+  /* Stay on ENDMCOPY mode */
+  w_current->inside_action = TRUE;
 }

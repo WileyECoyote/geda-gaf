@@ -39,8 +39,9 @@
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
+bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
+  bool result;
 
   if (Current_Page->place_list) {
 
@@ -56,18 +57,21 @@ void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
       w_current->second_wy = w_y;
 
       o_place_invalidate_rubber (w_current, TRUE);
-      w_current->rubber_visible = 1;
+      w_current->rubber_visible = TRUE;
+      result = TRUE;
     }
     else {
       u_log_message (_("Buffer is empty, nothing to place\n"));
       w_current->inside_action = FALSE;
       i_status_set_state(w_current, SELECT);
+      result = FALSE;
     }
   }
   else {
-    w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
+    result = FALSE;
   }
+  return w_current->inside_action = result;
 }
 
 /*! \brief Finalize objects being Placed
@@ -80,13 +84,12 @@ void
 o_place_end (GschemToplevel *w_current, int w_x, int w_y,
              int continue_placing, GList **ret_new_objects, const char* hook_name)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
-  Object *o_current;
-  Page   *p_current;
-  GList  *temp_dest_list = NULL;
-  GList  *connected_objects = NULL;
-  GList  *iter;
+  GedaToplevel *toplevel          = w_current->toplevel;
+  GList        *temp_dest_list    = NULL;
+  GList        *connected_objects = NULL;
+  GList        *iter;
+  Object       *o_current;
+  Page         *p_current;
 
   int w_diff_x, w_diff_y;
 
@@ -147,6 +150,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
     o_undo_savestate (w_current, UNDO_ALL);
     i_status_update_sensitivities (w_current);
+    w_current->inside_action = FALSE;
   }
   else {
     BUG_TRACE("Not inside an action!");
@@ -369,19 +373,20 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
  */
 void o_place_rotate (GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   GList *list;
-  int wx;
-  int wy;
 
-  list = toplevel->page_current->place_list;
-  wx   = w_current->first_wx;
-  wy   = w_current->first_wy;
+  if ((list = Current_PlaceList)) {
 
-  o_place_invalidate_rubber (w_current, FALSE);
-  o_list_rotate (list, wx, wy, 90);
+    int wx = w_current->first_wx;
+    int wy = w_current->first_wy;
 
-  /* Run rotate-objects-hook */
-  g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
-  o_place_invalidate_rubber (w_current, TRUE);
+    o_place_invalidate_rubber (w_current, FALSE);
+    o_list_rotate (list, wx, wy, 90);
+
+    /* Run rotate-objects-hook */
+    g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
+
+    o_place_invalidate_rubber (w_current, TRUE);
+
+  }
 }

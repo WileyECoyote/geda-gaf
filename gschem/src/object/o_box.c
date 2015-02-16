@@ -75,6 +75,7 @@ void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* start to draw the box */
   o_box_invalidate_rubber (w_current);
+  w_current->inside_action = TRUE;
 }
 
 /*! \brief End the input of a box.
@@ -96,22 +97,19 @@ void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
 void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-  int box_width, box_height;
-  int box_left, box_top;
+  Object       *new_obj;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action");
-  }
-  else {
+  int  box_width, box_height;
+  int  box_left, box_top;
+
+  if (w_current->inside_action) {
 
     /* get the last coords of the pointer */
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
 
-    /* erase the temporary box */
-    /* o_box_invalidate_rubber (w_current); */
-    w_current->rubber_visible = 0;
+    /* Turn off flag to erase the temporary box */
+    w_current->rubber_visible = FALSE;
 
     box_width  = GET_BOX_WIDTH (w_current);
     box_height = GET_BOX_HEIGHT(w_current);
@@ -119,37 +117,41 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
     box_top    = GET_BOX_TOP   (w_current);
 
     /* boxes with null width or height are not allowed */
-    if ((box_width == 0) || (box_height == 0)) {
+    if ((box_width == 0) || (box_height == 0))
+    {
       /* cancel the object creation */
-      w_current->first_wx = (-1);
-      w_current->first_wy = (-1);
-      w_current->second_wx  = (-1);
-      w_current->second_wy  = (-1);
-      return;
+      w_current->first_wx  = (-1);
+      w_current->first_wy  = (-1);
+      w_current->second_wx = (-1);
+      w_current->second_wy = (-1);
     }
+    else {
 
-    /* create the object */
-    new_obj = o_box_new (GRAPHIC_COLOR,
-                         box_left, box_top,
-                         box_left + box_width, box_top - box_height);
-    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-    s_page_append_object (toplevel->page_current, new_obj);
+      /* create the object */
+      new_obj = o_box_new (GRAPHIC_COLOR,
+                           box_left, box_top,
+                           box_left + box_width, box_top - box_height);
+      new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+      s_page_append_object (toplevel->page_current, new_obj);
 
 #if DEBUG
   printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);
 #endif
 
-    w_current->first_wx = (-1);
-    w_current->first_wy = (-1);
-    w_current->second_wx  = (-1);
-    w_current->second_wy  = (-1);
+      w_current->first_wx  = (-1);
+      w_current->first_wy  = (-1);
+      w_current->second_wx = (-1);
+      w_current->second_wy = (-1);
 
-    /* Call add-objects-hook */
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+      /* Call add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
 
-    toplevel->page_current->CHANGED = 1;
-
-    o_undo_savestate(w_current, UNDO_ALL);
+      o_undo_savestate(w_current, UNDO_ALL);
+    }
+    w_current->inside_action = FALSE;
+  }
+  else {
+    BUG_MSG("Not inside action");
   }
 }
 

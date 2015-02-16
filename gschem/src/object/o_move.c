@@ -180,9 +180,8 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     }
 
     o_select_move_to_place_list(w_current);
-    w_current->inside_action = 1;
-
     o_move_invalidate_rubber (w_current, TRUE);
+    w_current->inside_action = TRUE;
   }
 }
 
@@ -231,40 +230,38 @@ void o_move_end(GschemToplevel *w_current)
 
   if (!object) {
     /* actually this is an error condition hack */
-    w_current->inside_action = 0;
     i_status_set_state(w_current, SELECT);
-    return;
   }
+  else {
+    diff_x = w_current->second_wx - w_current->first_wx;
+    diff_y = w_current->second_wy - w_current->first_wy;
 
-  diff_x = w_current->second_wx - w_current->first_wx;
-  diff_y = w_current->second_wy - w_current->first_wy;
+    o_move_invalidate_rubber (w_current, FALSE);
+    w_current->rubber_visible = FALSE;
 
-  o_move_invalidate_rubber (w_current, FALSE);
-  w_current->rubber_visible = 0;
-
-  if (w_current->netconn_rubberband) {
-    o_move_end_rubberband (w_current, diff_x, diff_y, &rubbernet_objects);
-  }
-
-  /* Unset the dont_redraw flag on rubberbanded objects.
-   * We set this above, in o_move_start(). */
-  for (iter = w_current->stretch_list; iter != NULL; NEXT(iter)) {
-    STRETCH *stretch = iter->data;
-    stretch->object->dont_redraw = FALSE;
-  }
-
-  selection_list = Current_Selection->glist;
-
-  while (selection_list != NULL) {
-
-    object = (Object *) selection_list->data;
-
-    if (object == NULL) {
-      BUG_MSG("NULL object in o_move_end!");
-      return;
+    if (w_current->netconn_rubberband) {
+      o_move_end_rubberband (w_current, diff_x, diff_y, &rubbernet_objects);
     }
 
-    if (GEDA_IS_COMPLEX(object)) {
+    /* Unset the dont_redraw flag on rubberbanded objects.
+     * We set this above, in o_move_start(). */
+    for (iter = w_current->stretch_list; iter != NULL; NEXT(iter)) {
+      STRETCH *stretch = iter->data;
+      stretch->object->dont_redraw = FALSE;
+    }
+
+    selection_list = Current_Selection->glist;
+
+    while (selection_list != NULL) {
+
+      object = (Object *) selection_list->data;
+
+      if (object == NULL) {
+        BUG_MSG("NULL object in o_move_end!");
+        return;
+      }
+
+      if (GEDA_IS_COMPLEX(object)) {
 
         /* this next block of code is from */
         /* o_complex_world_translate_world */
@@ -280,37 +277,38 @@ void o_move_end(GschemToplevel *w_current)
 
         object->w_bounds_valid_for = NULL;
 
+      }
+      else{
+        o_move_end_lowlevel (w_current, object, diff_x, diff_y);
+      }
+      NEXT(selection_list);
     }
-    else{
-      o_move_end_lowlevel (w_current, object, diff_x, diff_y);
-    }
-    NEXT(selection_list);
+
+    /* Remove the undo saved in o_move_start */
+    o_undo_remove_last_undo(w_current);
+
+    /* Draw the objects that were moved */
+    o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
+
+    /* Draw the connected nets/buses that were also changed */
+    o_invalidate_glist (w_current, rubbernet_objects);
+
+    /* Call move-objects-hook for moved objects and changed connected
+     * nets/buses */
+    GList *moved_list = g_list_concat (Place_List,
+                                       rubbernet_objects);
+    Place_List = NULL;
+    rubbernet_objects = NULL;
+    g_run_hook_object_list (w_current, "%move-objects-hook", moved_list);
+    g_list_free (moved_list);
+
+    toplevel->page_current->CHANGED = 1;
+    o_undo_savestate(w_current, UNDO_ALL);
+
+    o_move_stretch_destroy_all (w_current->stretch_list);
+    w_current->stretch_list = NULL;
   }
-
-  /* Remove the undo saved in o_move_start */
-  o_undo_remove_last_undo(w_current);
-
-  /* Draw the objects that were moved */
-  o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
-
-  /* Draw the connected nets/buses that were also changed */
-  o_invalidate_glist (w_current, rubbernet_objects);
-
-  /* Call move-objects-hook for moved objects and changed connected
-   * nets/buses */
-  GList *moved_list = g_list_concat (Place_List,
-                                     rubbernet_objects);
-  Place_List = NULL;
-  rubbernet_objects = NULL;
-  g_run_hook_object_list (w_current, "%move-objects-hook", moved_list);
-  g_list_free (moved_list);
-
-  toplevel->page_current->CHANGED = 1;
-  o_undo_savestate(w_current, UNDO_ALL);
-
-  o_move_stretch_destroy_all (w_current->stretch_list);
-  w_current->stretch_list = NULL;
-
+  w_current->inside_action = FALSE;
 }
 
 
@@ -354,12 +352,13 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
   int x1, y1, x2, y2;
 
   o_place_invalidate_rubber (w_current, drawing);
+
   if (w_current->netconn_rubberband) {
 
     for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
     {
       STRETCH *s_current = s_iter->data;
-      Object *object = s_current->object;
+      Object  *object    = s_current->object;
 
       switch (object->type) {
         case (OBJ_NET):
@@ -368,7 +367,8 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
             dx1 = w_current->second_wx - w_current->first_wx;
             dy1 = w_current->second_wy - w_current->first_wy;
             dx2 = dy2 = 0;
-          } else {
+          }
+          else {
             dx1 = dy1 = 0;
             dx2 = w_current->second_wx - w_current->first_wx;
             dy2 = w_current->second_wy - w_current->first_wy;

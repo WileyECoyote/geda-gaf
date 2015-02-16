@@ -1,3 +1,65 @@
+2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc.c: Set inside_action to TRUE in o_arc_start, and
+      FALSE in o_arc_end1. Eliminate early return in o_arc_end1.
+
+    * src/object/o_box.c: Set inside_action to TRUE in o_box_start, and
+      FALSE in o_box_end. Remove setting page_current->CHANGED in o_box_end.
+
+    * src/object/o_buffer.c: Revise function o_buffer_paste_start to capture
+      return from o_place_start and set inside_action to the result.
+
+    * src/object/o_bus.c: Set inside_action to TRUE in o_bus_start, and
+      FALSE in o_bus_end. Eliminate early return in o_bus_end. Remove
+      setting page_current->CHANGED in o_bus_end.
+
+    * src/object/o_circle.c: Set inside_action to TRUE in o_circle_start,
+      and FALSE in o_circle_end. Eliminate early return in o_circle_end.
+      Remove setting page_current->CHANGED in o_circle_end.
+
+    * src/object/o_copy.c:Set inside_action to TRUE in o_copy_start, and
+      o_copy_multiple_end, set inside_action FALSE in o_copy_end.
+
+    * src/object/o_grips.c: Set inside_action to TRUE in o_grips_start_line.
+      Revise o_grips_start to return the result of setting inside_action.
+      Eliminate early return in o_grips_start and o_grips_end.
+
+    * src/object/o_line.c: Set inside_action to TRUE in o_line_start, and
+      FALSE in o_line_end. Eliminate early return in o_line_end. Remove
+      setting page_current->CHANGED in o_line_end.
+
+    * src/object/o_move.c: Set inside_action to TRUE in o_move_start, and
+      FALSE in o_move_end. Eliminate early return in o_move_end. Remove
+      setting page_current->CHANGED in o_move_end.
+
+    * src/object/o_net.c: Set inside_action to TRUE in o_net_start and
+      o_net_start_magnetic, set FALSE in o_net_end. Remove setting
+      page_current->CHANGED in o_net_end.
+
+    * src/object/o_path.c: Set inside_action to TRUE in o_path_start and
+      o_path_continue. Eliminate check for NULL pointer w_current in
+      o_path_continue. Revise o_path_end to return the result of setting
+      inside_action. Eliminate early return in o_path_end.
+
+    * src/object/o_picture.c: Set inside_action to TRUE in o_picture_start, and
+      FALSE in o_picture_end.
+
+    * src/object/o_pin.c: Set inside_action to TRUE in o_pin_start, and
+      FALSE in o_pin_end Eliminate early return in o_pin_end.
+
+    * src/object/o_place.c: Revise o_place_start to return boolean result of
+      setting w_current->inside_action. Revise o_place_rotate to check for
+      existence of placelist.
+
+    * src/object/o_select.c: Revise o_select_box_start to return boolean
+      result of setting w_current->inside_action. Set inside_action to FALSE
+      in o_select_box_end.
+
+    * src/object/o_text.c: Set inside_action to TRUE in o_text_prepare_place.
+
+    * src/x/x_event.c: Revise to eliminate setting inside_action where inside
+      _action is set in the handler.
+
 2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/iface/i_command.c: WEH Applied patch by Vladimir to avoid errors

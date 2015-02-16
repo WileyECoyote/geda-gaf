@@ -77,8 +77,8 @@ o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wy = w_current->second_wy = w_y;
 
   /* start to draw the box */
-  w_current->rubber_visible = 1;
-
+  w_current->rubber_visible = TRUE;
+  w_current->inside_action  = TRUE;
   o_box_invalidate_rubber (w_current);
 }
 
@@ -97,8 +97,7 @@ o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (not used)
  *  \param [in] w_y        (not used)
  */
-void
-o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
+void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object       *new_obj;
@@ -106,13 +105,10 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   int picture_left,  picture_top;
   int picture_width, picture_height;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action\n");
-  }
-  else {
+  if (w_current->inside_action) {
 
     /* erase the temporary picture */
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     picture_left   = w_current->rubber_x1;
     picture_top    = w_current->rubber_y1;
@@ -134,10 +130,14 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
       /* Run %add-objects-hook */
       g_run_hook_object (w_current, "%add-objects-hook", new_obj);
 
-      toplevel->page_current->CHANGED = 1;
       o_undo_savestate(w_current, UNDO_ALL);
-    }
-  } /* else cancel creation of object */
+
+    }  /* else cancel creation of object */
+    w_current->inside_action = FALSE;
+  }
+  else {
+     BUG_MSG("Not inside action\n");
+  }
 }
 
 /*! \brief Draw temporary picture out-line while sizing pictures

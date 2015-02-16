@@ -1037,8 +1037,8 @@ o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)
   w_current->first_wy  = o_current->line->y[!whichone];
 
   /* draw the first temporary line */
-  /* o_line_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 1;
+  w_current->rubber_visible = TRUE;
+  w_current->inside_action  = TRUE;
 }
 
 /*! \brief Start process of modifiying one grip.
@@ -1065,67 +1065,82 @@ int
 o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   Object *object;
+  bool    result;
+
   int whichone;
 
   if (CairoRenderer->draw_grips == FALSE) {
-    return(FALSE);
+    result = FALSE;
+  }
+  else {
+
+    /* search if there is a grip on a selected object at (w_x,w_y) */
+    object = o_grips_search_world(w_current, w_x, w_y, &whichone);
+
+    if (object == NULL) {
+      result = FALSE;
+    }
+    else {
+
+      w_current->which_grip   = whichone;
+      w_current->which_object = object;
+
+      /* Switch off drawing for the object being modified */
+      object->dont_redraw = TRUE;
+      o_invalidate_object (w_current, object);
+
+      /* there is one */
+      /* depending on its type, start the modification process */
+      switch(object->type) {
+        case(OBJ_ARC):
+          /* start the modification of a grip on an arc */
+          o_grips_start_arc(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        case(OBJ_BOX):
+          /* start the modification of a grip on a box */
+          o_grips_start_box(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        case(OBJ_PATH):
+          /* start the modification of a grip on a path */
+          o_grips_start_path(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        case(OBJ_PICTURE):
+          /* start the modification of a grip on a picture */
+          o_grips_start_picture(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        case(OBJ_CIRCLE):
+          /* start the modification of a grip on a circle */
+          o_grips_start_circle(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        case(OBJ_LINE):
+        case(OBJ_NET):
+        case(OBJ_PIN):
+        case(OBJ_BUS):
+          /* identical for line/net/pin/bus */
+          /* start the modification of a grip on a line */
+          o_grips_start_line(w_current, object, w_x, w_y);
+          result = TRUE;
+          break;
+
+        default:
+          /* object type unknown : error condition */
+          result = FALSE;
+          break;
+      }
+    }
   }
 
-  /* search if there is a grip on a selected object at (w_x,w_y) */
-  object = o_grips_search_world(w_current, w_x, w_y, &whichone);
-
-  if (object == NULL)
-    return FALSE;
-
-  w_current->which_grip   = whichone;
-  w_current->which_object = object;
-
-  /* Switch off drawing for the object being modified */
-  object->dont_redraw = TRUE;
-  o_invalidate_object (w_current, object);
-
-  /* there is one */
-  /* depending on its type, start the modification process */
-  switch(object->type) {
-    case(OBJ_ARC):
-      /* start the modification of a grip on an arc */
-      o_grips_start_arc(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    case(OBJ_BOX):
-      /* start the modification of a grip on a box */
-      o_grips_start_box(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    case(OBJ_PATH):
-      /* start the modification of a grip on a path */
-      o_grips_start_path(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    case(OBJ_PICTURE):
-      /* start the modification of a grip on a picture */
-      o_grips_start_picture(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    case(OBJ_CIRCLE):
-      /* start the modification of a grip on a circle */
-      o_grips_start_circle(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    case(OBJ_LINE):
-    case(OBJ_NET):
-    case(OBJ_PIN):
-    case(OBJ_BUS):
-      /* identical for line/net/pin/bus */
-      /* start the modification of a grip on a line */
-      o_grips_start_line(w_current, object, w_x, w_y);
-      return(TRUE);
-
-    default:
-      /* object type unknown : error condition */
-      break;
-  }
-  return(FALSE);
+  return w_current->inside_action = result;
 }
 
 /*! \brief End process of modifying arc object with grip.
@@ -1496,75 +1511,75 @@ o_grips_end(GschemToplevel *w_current)
 
   if (!object) {
     /* actually this is an error condition hack */
-    w_current->inside_action = 0;
     i_status_set_state(w_current, SELECT);
-    return;
   }
+  else {
+    modified = TRUE;
 
-  modified = TRUE;
+    switch(object->type) {
 
-  switch(object->type) {
+      case(OBJ_ARC):
+        /* modify an arc object */
+        o_grips_end_arc(w_current, object);
+        break;
 
-    case(OBJ_ARC):
-    /* modify an arc object */
-    o_grips_end_arc(w_current, object);
-    break;
+      case(OBJ_BOX):
+        /* modify a box object */
+        o_grips_end_box(w_current, object);
+        break;
 
-    case(OBJ_BOX):
-    /* modify a box object */
-    o_grips_end_box(w_current, object);
-    break;
+      case(OBJ_PATH):
+        /* modify a path object */
+        o_grips_end_path(w_current, object);
+        break;
 
-    case(OBJ_PATH):
-    /* modify a path object */
-    o_grips_end_path(w_current, object);
-    break;
+      case(OBJ_PICTURE):
+        /* modify a picture object */
+        modified = o_grips_end_picture(w_current, object);
+        break;
 
-    case(OBJ_PICTURE):
-    /* modify a picture object */
-    modified = o_grips_end_picture(w_current, object);
-    break;
+      case(OBJ_CIRCLE):
+        /* modify a circle object */
+        o_grips_end_circle(w_current, object);
+        break;
 
-    case(OBJ_CIRCLE):
-    /* modify a circle object */
-    o_grips_end_circle(w_current, object);
-    break;
+      case(OBJ_LINE):
+        /* modify a line object */
+        o_grips_end_line(w_current, object);
+        break;
 
-    case(OBJ_LINE):
-    /* modify a line object */
-    o_grips_end_line(w_current, object);
-    break;
+      case(OBJ_NET):
+        /* modify a net object */
+        o_grips_end_net(w_current, object);
+        break;
 
-    case(OBJ_NET):
-      /* modify a net object */
-      o_grips_end_net(w_current, object);
-      break;
+      case(OBJ_PIN):
+        /* modify a pin object */
+        o_grips_end_pin(w_current, object);
+        break;
 
-    case(OBJ_PIN):
-      /* modify a pin object */
-      o_grips_end_pin(w_current, object);
-      break;
+      case(OBJ_BUS):
+        /* modify a bus object */
+        o_grips_end_bus(w_current, object);
+        break;
 
-    case(OBJ_BUS):
-      /* modify a bus object */
-      o_grips_end_bus(w_current, object);
-      break;
+      default:
+        return;
+    }
 
-    default:
-    return;
+    /* Switch drawing of the object back on */
+    object->dont_redraw = FALSE;
+    o_invalidate_object (w_current, object);
+
+    /* reset global variables */
+    w_current->which_grip     = -1;
+    w_current->which_object   = NULL;
+    w_current->rubber_visible = FALSE;
+
+    if (modified) {
+      toplevel->page_current->CHANGED = 1;
+      o_undo_savestate(w_current, UNDO_ALL);
+    }
   }
-
-  /* Switch drawing of the object back on */
-  object->dont_redraw = FALSE;
-  o_invalidate_object (w_current, object);
-
-  /* reset global variables */
-  w_current->which_grip     = -1;
-  w_current->which_object   = NULL;
-  w_current->rubber_visible = 0;
-
-  if (modified) {
-    toplevel->page_current->CHANGED = 1;
-    o_undo_savestate(w_current, UNDO_ALL);
-  }
+  w_current->inside_action = FALSE;
 }

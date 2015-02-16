@@ -410,8 +410,8 @@ void o_net_start_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   }
 
   o_net_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
-  //w_current->inside_action = 1;
+  w_current->rubber_visible = TRUE;
+  w_current->inside_action  = TRUE;
 }
 
 /*! \brief set the start point of a new net
@@ -440,6 +440,8 @@ void o_net_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->net_direction_mode)
     o_net_guess_direction(w_current, w_current->first_wx, w_current->first_wy);
+
+  w_current->inside_action  = TRUE;
 }
 
 /*! \brief finish a net drawing action
@@ -467,7 +469,7 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
   /* Save a list of added objects to run the %add-objects-hook later */
   GList *added_objects = NULL;
 
-  if (w_current->inside_action == 0) {
+  if (w_current->inside_action == FALSE) {
     BUG_MSG("Not inside action");
     return FALSE;
   }
@@ -498,7 +500,8 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->override_net_color == -1) {
     color = NET_COLOR;
-  } else {
+  }
+  else {
     color = w_current->override_net_color;
   }
 
@@ -507,7 +510,8 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
       u_log_message(_("Warning: Ending net at off grid coordinate\n"));
 
   if (!primary_zero_length ) {
-  /* create primary net */
+
+      /* create primary net */
       new_net = o_net_new(color,
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
@@ -530,14 +534,13 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
       /* Go off and search for valid connection on this newly created net */
       found_primary_connection = s_conn_net_search(new_net, 1,
                                                    new_net->conn_list);
-      if (found_primary_connection)
-      {
+      if (found_primary_connection) {
+
         /* if a net connection is found, reset start point of next net */
-    save_wx = w_current->second_wx;
-    save_wy = w_current->second_wy;
+        save_wx = w_current->second_wx;
+        save_wy = w_current->second_wy;
       }
   }
-
 
   /* If the second net is not zero length, add it as well */
   /* Also, a valid net connection from the primary net was not found */
@@ -569,12 +572,11 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
     g_list_free (added_objects);
   }
 
-  toplevel->page_current->CHANGED = 1;
   w_current->first_wx = save_wx;
   w_current->first_wy = save_wy;
   o_undo_savestate(w_current, UNDO_ALL);
 
-  return (TRUE);
+  return TRUE;
 }
 
 /*! \brief erase and redraw the rubber lines when drawing a net

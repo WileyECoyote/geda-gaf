@@ -41,6 +41,7 @@ void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
+  w_current->inside_action = TRUE;
 }
 
 /*! \brief End the input of a Pin.
@@ -52,20 +53,18 @@ void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
  *  The temporary rubber is erased ; a new pin object is created and added
  *  initialized current sheet, which causes the final object to be drawn.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world units
- *  \param [in] w_y        Current y coordinate of pointer in world units
+ *  \param [in] w_current The GschemToplevel object
+ *  \param [in] x         Current x coordinate of pointer in world units
+ *  \param [in] y         Current y coordinate of pointer in world units
  */
 void o_pin_end(GschemToplevel *w_current, int x, int y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object       *new_obj;
-  int           color;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action\n");
-  }
-  else {
+  if (w_current->inside_action) {
+
+    Object *new_obj;
+    int     color;
 
     if (w_current->override_pin_color == -1) {
       color = PIN_COLOR;
@@ -75,29 +74,30 @@ void o_pin_end(GschemToplevel *w_current, int x, int y)
     }
 
     /* undraw rubber line */
-    /* o_pin_invalidate_rubber (w_current); */
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     /* don't allow zero length pins */
-    if ((w_current->first_wx == w_current->second_wx) &&
-        (w_current->first_wy == w_current->second_wy))
+    if ((w_current->first_wx != w_current->second_wx) &&
+        (w_current->first_wy != w_current->second_wy))
     {
-      return;
+      new_obj = o_pin_new(color,
+                          w_current->first_wx, w_current->first_wy,
+                          w_current->second_wx, w_current->second_wy,
+                          PIN_NET_NODE, 0);
+
+      new_obj->line_options->line_width = o_style_get_pin_width(toplevel, PIN_NET_NODE);
+
+      s_page_append_object (toplevel->page_current, new_obj);
+
+      /* Call add-objects-hook */
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+      o_undo_savestate(w_current, UNDO_ALL);
     }
-
-    new_obj = o_pin_new(color,
-                        w_current->first_wx, w_current->first_wy,
-                        w_current->second_wx, w_current->second_wy,
-                        PIN_NET_NODE, 0);
-
-    new_obj->line_options->line_width = o_style_get_pin_width(toplevel, PIN_NET_NODE);
-
-    s_page_append_object (toplevel->page_current, new_obj);
-
-    /* Call add-objects-hook */
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-    o_undo_savestate(w_current, UNDO_ALL);
+    w_current->inside_action = FALSE;
+  }
+  else {
+    BUG_MSG("Not inside action\n");
   }
 }
 

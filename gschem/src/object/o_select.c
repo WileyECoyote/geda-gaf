@@ -272,6 +272,7 @@ o_select_add_object(GschemToplevel *w_current, Object *object)
  */
 int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  int status;
   int diff_x, diff_y;
 
   diff_x = abs(w_current->first_wx - w_x);
@@ -280,12 +281,14 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   /* if we are still close to the button press location,
    *     then don't enter the selection box mode */
   if (SCREENabs (w_current, max(diff_x, diff_y)) < 10) {
-    return FALSE;
+    status = FALSE;
   }
-
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-  return TRUE;
+  else {
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+    status = TRUE;
+  }
+  return w_current->inside_action = status;
 }
 
 /*! \brief End Window/Box Selection Callback
@@ -299,6 +302,7 @@ void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
   w_current->rubber_visible = FALSE;
 
   o_select_box_search(w_current);
+  w_current->inside_action = FALSE;
 }
 
 /*! \brief Window/Box Selection Pointer Motion Callback

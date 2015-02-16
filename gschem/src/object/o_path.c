@@ -386,6 +386,7 @@ void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* Enable preview drawing */
   w_current->rubber_visible = TRUE;
+  w_current->inside_action  = TRUE;
 }
 
 /* \brief Begin inputting a new path node.
@@ -396,11 +397,6 @@ void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 void
 o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
 {
-  if (w_current == NULL) {
-    BUG_MSG ("w_current = NULL");
-    return;
-  }
-
   o_path_invalidate_rubber (w_current);
 
   w_current->first_wx  = w_x;
@@ -409,6 +405,7 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
   w_current->second_wy = w_y;
 
   o_path_invalidate_rubber (w_current);
+  w_current->inside_action = TRUE;
 }
 
 /* \brief Give feedback on path creation during mouse movement.
@@ -463,6 +460,7 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
   bool          close_path;
   bool          end_path;
   bool          start_path;
+  bool          result;
   GedaToplevel *toplevel;
   PATH_SECTION *section;
   PATH_SECTION *prev_section;
@@ -471,77 +469,83 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current == NULL || w_current->toplevel == NULL) {
     BUG_MSG ("invalid pointer to top level");
-
-    return FALSE;
+    result = FALSE;
   }
-  if (w_current->temp_path == NULL || w_current->temp_path->sections == NULL) {
-    BUG_MSG ("invalid temp_path or section");
-    return FALSE;
+  else if (w_current->temp_path == NULL) {
+    BUG_MSG ("invalid section");
+    result = FALSE;
   }
-
-  o_path_invalidate_rubber (w_current);
-
-  toplevel = w_current->toplevel;
-
-  x1    = w_current->first_wx;
-  y1    = w_current->first_wy;
-  x2    = w_current->second_wx;
-  y2    = w_current->second_wy;
-  path  = w_current->temp_path;
-
-  /* Check whether the section that is being added is the initial
-   * MOVETO.  This is detected if the path is currently empty. */
-  start_path   = (path->num_sections == 0);
-
-  prev_section = start_path ? NULL : &path->sections[path->num_sections - 1];
-
-  /* Check whether the section that is being added closes the path.
-   * This is detected if the location of the node is the same as the
-   * location of the starting node, and there is at least one section
-   * in the path in addition to the initial MOVETO section. */
-  section = &path->sections[0];
-  close_path = (!start_path && x1 == section->x3 && y1 == section->y3);
-
-  /* Check whether the section that is being added ends the path. This
-   * is detected if the location of the node is the same as the
-   * location of the previous node. */
-  end_path =(!start_path && x1 == prev_section->x3 && y1 == prev_section->y3);
-
-  /* Add predicted next sections */
-  path_next_sections (w_current);
-
-  if (end_path || close_path) {
-
-    /* Create a copy of the tmp path object */
-    Object *new_obj = o_path_copy(GEDA_OBJECT(path));
-
-    /* Release tmp path and and clean up path drawing state */
-    GEDA_UNREF (path);
-    w_current->temp_path = NULL;
-    w_current->first_wx  = -1;
-    w_current->first_wy  = -1;
-    w_current->second_wx = -1;
-    w_current->second_wy = -1;
-    w_current->third_wx  = -1;
-    w_current->third_wy  = -1;
-
-    /* Add the New Path object to the page */
-    s_page_append_object (toplevel->page_current, new_obj);
-    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-    o_undo_savestate (w_current, UNDO_ALL);
-
-    w_current->rubber_visible = FALSE;
-
-    return FALSE;
+  else if (w_current->temp_path->sections == NULL) {
+    BUG_MSG ("invalid section");
+    result = FALSE;
   }
   else {
-    /* Leave state as it is and continue path drawing... */
-    /* Save the control point coordinates for the next section */
-    w_current->third_wx = x2;
-    w_current->third_wy = y2;
 
-    return TRUE;
+    o_path_invalidate_rubber (w_current);
+
+    toplevel = w_current->toplevel;
+
+    x1    = w_current->first_wx;
+    y1    = w_current->first_wy;
+    x2    = w_current->second_wx;
+    y2    = w_current->second_wy;
+    path  = w_current->temp_path;
+
+    /* Check whether the section that is being added is the initial
+     * MOVETO.  This is detected if the path is currently empty. */
+    start_path   = (path->num_sections == 0);
+    prev_section = start_path ? NULL : &path->sections[path->num_sections - 1];
+
+    /* Check whether the section that is being added closes the path.
+     * This is detected if the location of the node is the same as the
+     * location of the starting node, and there is at least one section
+     * in the path in addition to the initial MOVETO section. */
+    section    = &path->sections[0];
+    close_path = (!start_path && x1 == section->x3 && y1 == section->y3);
+
+    /* Check whether the section that is being added ends the path. This
+     * is detected if the location of the node is the same as the
+     * location of the previous node. */
+    end_path =(!start_path && x1 == prev_section->x3 && y1 == prev_section->y3);
+
+    /* Add predicted next sections */
+    path_next_sections (w_current);
+
+    if (end_path || close_path) {
+
+      /* Create a copy of the tmp path object */
+      Object *new_obj = o_path_copy(GEDA_OBJECT(path));
+
+      /* Release tmp path and and clean up path drawing state */
+      GEDA_UNREF (path);
+      w_current->temp_path = NULL;
+      w_current->first_wx  = -1;
+      w_current->first_wy  = -1;
+      w_current->second_wx = -1;
+      w_current->second_wy = -1;
+      w_current->third_wx  = -1;
+      w_current->third_wy  = -1;
+
+      /* Add the New Path object to the page */
+      s_page_append_object (toplevel->page_current, new_obj);
+      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+      o_undo_savestate (w_current, UNDO_ALL);
+
+      w_current->rubber_visible = FALSE;
+
+      result = FALSE;
+    }
+    else {
+      /* Leave state as it is and continue path drawing... */
+      /* Save the control point coordinates for the next section */
+      w_current->third_wx = x2;
+      w_current->third_wy = y2;
+
+      result = TRUE;
+    }
   }
+
+  return w_current->inside_action = result;
 }
 
 /*! \brief Draw path creation preview.
