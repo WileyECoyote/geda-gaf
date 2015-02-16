@@ -177,6 +177,55 @@ void o_edit_unlock(GschemToplevel *w_current)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  Object   *o_current;
+  GList    *o_iter;
+
+  if (list == NULL) {
+    i_status_set_state(w_current, SELECT);
+  }
+  else {
+
+    o_invalidate_glist (w_current, list);
+
+    /* Find connected objects, removing each object in turn from the
+     * connection list. We only _really_ want those objects connected
+     * to the selection, not those within in it.
+     */
+    for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
+      o_current = o_iter->data;
+      s_conn_remove_object (o_current);
+    }
+
+    o_list_mirror(list, centerx, centery);
+
+    /* Find connected objects, adding each object in turn back to the
+     * connection list. We only _really_ want those objects connected
+     * to the selection, not those within in it.
+     */
+    for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
+      o_current = o_iter->data;
+      s_conn_update_object (o_current);
+    }
+
+    o_invalidate_glist (w_current, list);
+
+    /* Run mirror-objects-hook */
+    g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
+
+    toplevel->page_current->CHANGED=1;
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
+  w_current->inside_action = FALSE;
+}
+
 /*! \brief Rotate all objects in list.
  *  \par Function Description
  *  Given an object <B>list</B>, and the center of rotation
@@ -240,54 +289,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   if (!w_current->inside_action) {
     o_undo_savestate(w_current, UNDO_ALL);
   }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object   *o_current;
-  GList    *o_iter;
-
-  if (list == NULL) {
-    w_current->inside_action = 0;
-    i_status_set_state(w_current, SELECT);
-    return;
-  }
-
-  o_invalidate_glist (w_current, list);
-
-  /* Find connected objects, removing each object in turn from the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-    o_current = o_iter->data;
-    s_conn_remove_object (o_current);
-  }
-
-  o_list_mirror(list, centerx, centery);
-
-  /* Find connected objects, adding each object in turn back to the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-    o_current = o_iter->data;
-    s_conn_update_object (o_current);
-  }
-
-  o_invalidate_glist (w_current, list);
-
-  /* Run mirror-objects-hook */
-  g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
-
-  toplevel->page_current->CHANGED=1;
-  o_undo_savestate(w_current, UNDO_ALL);
+  w_current->inside_action = FALSE;
 }
 
 /* This is a utility function to report the number of objects whose
@@ -820,10 +822,9 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
 
   /* Cull any attributes from new COMPLEX that are already attached to
    * old COMPLEX. Note that the new_attribs list is kept consistent by
-   * setting GList data pointers to NULL if their Objects are
-   * culled. At the end, the new_attribs list is updated by removing
-   * all list items with NULL data. This is slightly magic, but
-   * works. */
+   * setting GList data pointers to NULL if their Objects are culled.
+   * At the end, the new_attribs list is updated by removing all list
+   * items with NULL data. This is slightly magic, but works. */
   for (iter = new_attribs; iter != NULL; NEXT(iter)) {
     Object *attr_new = iter->data;
     char *name;
@@ -843,7 +844,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-            fprintf(stderr, "\tkeeping %s\n", keepers[index]);
+/* fprintf(stderr, "\tkeeping %s\n", keepers[index]); */
             attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
             o_attrib_set_value (attr_old, name,  new_value);
             break;

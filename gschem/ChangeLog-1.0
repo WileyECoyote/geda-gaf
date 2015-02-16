@@ -1,5 +1,16 @@
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
+      Already made these changes 2/15, missed in log.
+
+    * src/object/o_edit.c: Resequence function o_edit_mirror_world and add
+      w_current->inside_action = FALSE;
+
+    * src/iface/i_zoom_world.c Set inside_action to TRUE in i_zoom_world_box_start,
+      and FALSE in i_zoom_world_box_end.
+
+
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_place.c: Add function o_place_mirror.
 
     * src/iface/i_command.c: Call o_place_mirror from i_cmd_do_mirror if
