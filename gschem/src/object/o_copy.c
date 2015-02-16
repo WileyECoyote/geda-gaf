@@ -87,14 +87,14 @@ void o_copy_end(GschemToplevel *w_current)
 
   if (!w_current->SHIFTKEY) {
     o_place_end (w_current, w_current->second_wx, w_current->second_wy,
-                 FALSE, NULL, "%paste-objects-hook");
+                 FALSE, NULL, "%copy-objects-hook");
   }
   else {
 
     list = NULL;
 
     o_place_end (w_current, w_current->second_wx, w_current->second_wy,
-                 FALSE, &list, "%paste-objects-hook");
+                 FALSE, &list, "%copy-objects-hook");
 
     o_select_unselect_all(w_current);
     o_select_add_list(w_current, list);
