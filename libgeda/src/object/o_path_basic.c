@@ -703,7 +703,7 @@ bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         /* The calculated point could still be off the line for two
          * reasons; the exact point can not be expressed using just
          * integers and rounding errors. The next section checks and
-         * eliminates any such error but starting x - 1 and sweeping
+         * eliminates any such error but starting at x - 5 and sweeping
          * y over a range looking for the first point on the line
          * that is an exact hit (with integers)
          */
