@@ -365,6 +365,36 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
   cairo_restore (cr);
 }
 
+/*! \brief Mirror the objects being placed
+ *
+ *  \par Function Description
+ *  This function erases the objects in the place list, mirrors
+ *  them, runs %mirror-objects-hook, and redraws the objects after
+ *  mirroring.
+ *
+ *  \param [in] w_current   The GschemToplevel object.
+ */
+void o_place_mirror (GschemToplevel *w_current)
+{
+  GList *list;
+
+  if ((list = Current_PlaceList)) {
+
+    int wx = w_current->first_wx;
+    int wy = w_current->first_wy;
+
+    o_place_invalidate_rubber (w_current, FALSE);
+
+    o_list_mirror(list, wx, wy);
+
+    /* Run mirror-objects-hook */
+    g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
+
+    o_place_invalidate_rubber (w_current, TRUE);
+
+  }
+}
+
 /*! \brief Rotate objects being placed
  *
  *  \par Function Description

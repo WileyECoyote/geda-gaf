@@ -1274,27 +1274,33 @@ COMMAND (do_move)
 COMMAND (do_mirror)
 {
   BEGIN_W_COMMAND(do_mirror);
-  int state;
 
-  o_redraw_cleanstates(w_current);
-  if HOT_ACTION (do_mirror) {
-
-    GList *object_list;
-
-    object_list = geda_list_get_glist (Current_Selection);
-
-    if (object_list) {
-      o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
-    }
-
-    state = SELECT;
+  if (w_current->inside_action) {
+    o_place_mirror (w_current);
   }
   else {
-    state = ENDMIRROR;
+
+    int state;
+
+    o_redraw_cleanstates(w_current);
+
+    if HOT_ACTION (do_mirror) {
+
+      GList *object_list = geda_list_get_glist (Current_Selection);
+
+      if (object_list) {
+        o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
+      }
+
+      state = SELECT;
+    }
+    else {
+      state = ENDMIRROR;
+    }
+
+    i_status_set_state(w_current, state);
   }
 
-  w_current->inside_action = 0;
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_mirror);
 }
 
@@ -1380,7 +1386,7 @@ COMMAND (do_rotate)
 {
   BEGIN_W_COMMAND(do_rotate);
 
-  if (w_current->inside_action && Current_PlaceList != NULL) {
+  if (w_current->inside_action) {
 
     o_place_rotate (w_current);
 
@@ -1409,7 +1415,7 @@ COMMAND (do_rotate)
       state = ENDROTATE;
 
     }
-    w_current->inside_action = 0;
+
     i_status_set_state(w_current, state);
   }
 
@@ -2473,7 +2479,6 @@ COMMAND (do_add_bus)
     /* need to click */
     i_status_set_state(w_current, STARTDRAWBUS);
     o_bus_start (w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus));
-    w_current->inside_action = 1;
     state = DRAWBUS;
   }
   else {
@@ -2572,7 +2577,6 @@ COMMAND (do_add_pin)
 
   if HOT_ACTION (do_add_pin) {
     o_pin_start (w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
-    w_current->inside_action = 1;
     state = ENDPIN;
   }
   else {
@@ -2603,7 +2607,6 @@ COMMAND (do_add_box)
 
   if HOT_ACTION (do_add_box) {
     o_box_start (w_current, CMD_X(do_add_box), CMD_Y(do_add_box));
-    w_current->inside_action = 1;
     state = ENDBOX;
   }
   else {
@@ -2630,7 +2633,6 @@ COMMAND (do_add_circle)
 
   if HOT_ACTION (do_add_circle) {
     o_circle_start (w_current, CMD_X(do_add_circle), CMD_Y(do_add_circle));
-    w_current->inside_action = 1;
     state = ENDCIRCLE;
   }
   else {
@@ -2663,7 +2665,6 @@ COMMAND (do_add_arc)
 
   if HOT_ACTION (do_add_arc) {
     o_arc_start (w_current, CMD_X(do_add_arc), CMD_Y(do_add_arc));
-    w_current->inside_action = 1;
     state = ENDARC;
   }
   else {
@@ -2690,7 +2691,6 @@ COMMAND (do_add_path)
 
   if HOT_ACTION (do_add_path) {
     o_path_start (w_current, CMD_X(do_add_path), CMD_Y(do_add_path));
-    w_current->inside_action = 1;
     state = ENDPATH;
   }
   else {
@@ -2722,7 +2722,7 @@ COMMAND (do_add_picture)
   if (filename != NULL) { /* if user did not cancel */
 
     if (o_picture_set_pixbuf(w_current, filename)) {
-      w_current->inside_action = 1;
+      w_current->inside_action = TRUE;
       i_status_set_state(w_current, DRAWPICTURE);
     }
     else {

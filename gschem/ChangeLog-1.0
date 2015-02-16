@@ -1,4 +1,17 @@
-2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_place.c: Add function o_place_mirror.
+
+    * src/iface/i_command.c: Call o_place_mirror from i_cmd_do_mirror if
+      inside action and this allows users to mirror objects being placed.
+      see master branch commit  5ecc9343ced73cc228d58d7c6e788f33c0341b4c.
+
+      Eliminate setting inside_action in functions; do_mirror, do_add_bus,
+      do_add_arc, do_add_box, do_add_circle, do_add_path, do_add_picture,
+      do_add_pin, and do_rotate. Remove redundent check for place list in
+      do_rotate.
+
+2015-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Set inside_action to TRUE in o_arc_start, and
       FALSE in o_arc_end1. Eliminate early return in o_arc_end1.
