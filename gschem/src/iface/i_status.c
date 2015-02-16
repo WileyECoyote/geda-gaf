@@ -70,9 +70,11 @@ void i_status_set_state_msg(GschemToplevel *w_current,
     GEDA_FREE(w_current->pixbuf_filename);
   }
 
-  w_current->event_state = newstate;
-  x_toolbars_update (w_current);
-  i_status_show_state (w_current, message);
+  if ((newstate != w_current->event_state) || (message != NULL)) {
+    w_current->event_state = newstate;
+    x_toolbars_update (w_current);
+    i_status_show_state (w_current, message);
+  }
 }
 
 /*! \brief Set new state, then show state field

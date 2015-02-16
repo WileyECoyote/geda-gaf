@@ -1,5 +1,11 @@
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_status.c: Made changes similar to master branch commit
+      a5981b852b19d1efa48741b92cd95176dc1fae11, but also put
+      i_status_show_state inside the conditional.
+
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
       Already made these changes 2/15, missed in log.
 
     * src/object/o_edit.c: Resequence function o_edit_mirror_world and add
