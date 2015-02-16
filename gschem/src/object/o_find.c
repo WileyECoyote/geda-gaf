@@ -103,9 +103,9 @@ static void o_find_disposition_object (GschemToplevel *w_current,
  *  tested. The object is neither added nor appended to the current
  *  selection and sensitivities are not updated.
  *
- *  \param [in] w_current    The GschemToplevel object
- *  \param [in] wx           The X coordinate to test (in world coords)
- *  \param [in] wy           The Y coordinate to test (in world coords)
+ *  \param [in] w_current   The GschemToplevel object
+ *  \param [in] x           The X coordinate to test (in world coords)
+ *  \param [in] y           The Y coordinate to test (in world coords)
  *
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  *

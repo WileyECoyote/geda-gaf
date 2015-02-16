@@ -46,7 +46,8 @@ static char* tmp_path = NULL;
 
 #define UNDO_FILE_PATTERN "%s%cgschem.save%d_%d.sch"
 
-/*! \def UNDO_PADDING is additional number of levels (or history) at which
+/*! \def UNDO_PADDING
+ *   UNDO_PADDING is the additional number of levels or history at which
  *   point the undo stack will be trimmed, and is used as safety to prevent
  *   running out of entries to free */
 #define UNDO_PADDING  5

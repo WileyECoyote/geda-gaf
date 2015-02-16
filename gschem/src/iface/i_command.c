@@ -1114,8 +1114,8 @@ COMMAND (do_copy_clip)
 
 /*! \brief Action Paste Clipboard Contents
  *  \par Function Description
- *  This function initiates the pasting of the contents of a clip-
- *  board into the drawing.
+ *  This function initiates the pasting of the clipboard contents
+ *  into the drawing.
  */
 COMMAND (do_paste_clip)
 {

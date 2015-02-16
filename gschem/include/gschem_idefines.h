@@ -154,7 +154,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* This is an additional mode for last_drawb_mode, to indicate there was no
  * last bounding box drawn. last_drawb_mode also takes actionfeedback_mode
  * constants, so be sure not to clash with those */
-#define LAST_DRAWB_MODE_NONE   -1
+#define LAST_DRAWB_MODE_NONE     -1
 
 /* For auto_load_last */
 #define DEFAULT_AUTO_LOAD_LAST    1
@@ -163,9 +163,9 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_SAVE_INTERVAL   120
 
 /* For autoplace_attributes_grid */
-#define MIN_AUTOPLACE_GRID        0
-#define MAX_AUTOPLACE_GRID      500
-#define DEFAULT_ATTRIB_PLACE_GRID 50
+#define MIN_AUTOPLACE_GRID          0
+#define MAX_AUTOPLACE_GRID        500
+#define DEFAULT_ATTRIB_PLACE_GRID  50
 
 /* select_slack_pixels */
 #define DEFAULT_SLACK_PIXELS      4
@@ -173,7 +173,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* For keyboardpan_gain */
 #define MIN_KEYBOARD_GAIN         1
 #define MAX_KEYBOARD_GAIN       999
-#define DEFAULT_KEYBOARD_GAIN    20
+#define DEFAULT_KEYBOARD_GAIN   20
 
 /* For snap-size */
 #define DEFAULT_SNAP_SIZE       100
@@ -185,13 +185,13 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_NET_ENDPOINT_COLOR NET_ENDPOINT_COLOR
 
 /* These modes are for net_endpoint_mode and net_midpoint_mode*/
-#define NET_NONE        0
-#define EMPTY_BOX       1
-#define FILLED_BOX      2
+#define NET_NONE                0
+#define EMPTY_BOX               1
+#define FILLED_BOX              2
 
 /* These modes are for net_selection_mode */
-#define NET_SELECT_NET  2
-#define NET_SELECT_ALL  3
+#define NET_SELECT_NET          2
+#define NET_SELECT_ALL          3
 
 /* for bus_ripper_size */
 #define DEFAULT_RIPPER_SIZE     200
@@ -200,8 +200,8 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define NON_SYMMETRIC           0
 #define SYMMETRIC               1
 
-#define FREE        1
-#define CONSTRAINED 2
+#define FREE                    1
+#define CONSTRAINED             2
 
 /* for bus_ripper_type */
 #define NET_BUS_RIPPER          0
@@ -229,7 +229,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define SCROLL_WHEEL_CLASSIC    1
 
 /* for selected_from */
-#define DONTCARE		0
+#define DONTCARE                0
 
 /* selection types */
 /* used in o_select_object */
@@ -246,9 +246,9 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* text cap style was here, relocated to include/geda_idefines.h 01/02/13 */
 
 /* for text_display_zoomfactor */
-#define DEFAULT_TEXT_ZOOM      30
-#define MIN_TEXT_ZOOM           1
-#define MAX_TEXT_ZOOM          99
+#define DEFAULT_TEXT_ZOOM       30
+#define MIN_TEXT_ZOOM            1
+#define MAX_TEXT_ZOOM           99
 
 /* modes for text-feedback */
 #define ONLY_WHEN_READABLE       0
@@ -264,7 +264,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #ifndef DEFAULT_TEXT_SIZE
   #define DEFAULT_TEXT_SIZE     10
 #endif
-#define MIN_TEXT_SIZE           1
+#define MIN_TEXT_SIZE            1
 #define MAX_TEXT_SIZE           99
 
 /* toolbars_mode */

@@ -52,4 +52,3 @@
 
 (define-public select-objects-hook   %select-objects-hook)
 
-

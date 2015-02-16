@@ -214,12 +214,17 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
   toplevel->page_current->CHANGED = 1;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Create and Add and Attribute Text Object
  *  \par Function Description
+ *   Creates a new text attribute using the supplied values and properties.
+ *   If \a parent is not NULL, the new attribute will be added the parent
+ *   and to the page associated with the parent. the position of the new
+ *   attribute is adjusted based on the parent object type. If parent is
+ *   NULL the new object is added as a floating attribute to the current
+ *   page.
  *
- * \note This function no longer returns NULL, instead the new object,
- * aka text item, is always return */
+ *  \note This function no longer returns NULL, instead the new object,
+ *        aka text item, is always return */
 Object *o_attrib_add_attrib(GschemToplevel *w_current,
                             const char     *text_string,
                             int             visibility,
@@ -325,7 +330,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
     color = DETACHED_ATTRIBUTE_COLOR;
 
-    o_get_world_bounds_list (s_page_get_objects (Current_Page),
+    o_get_bounds_list (s_page_get_objects (Current_Page),
                              &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
