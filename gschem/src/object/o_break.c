@@ -23,7 +23,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA <http://www.gnu.org/licenses/>.
  *
- *  Date: January, 10, 2015
+ *  Date: February, 14, 2015
  *  Contributing Author: Wiley Edward Hill
  */
 
@@ -570,7 +570,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
 
     for(i = 1; i < points->len; i++) {
 
-      POINT tmp;  /* Point to check, is point possibly adjusted for snapped */
+      POINT tmp;  /* Point to check, is point possibly adjusted for snap */
 
       line->x[0] = vertex.x;
       line->y[0] = vertex.y;
@@ -580,7 +580,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
       line->x[1] = vertex.x;
       line->y[1] = vertex.y;
 
-      /* Set flag to snap of horizontal or vertical segment */
+      /* Set flag to snap if horizontal or vertical segment */
       do_snap = line->x[0] == line->x[1] || line->y[0] == line->y[1];
 
       if (do_snap) {
@@ -642,9 +642,9 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
       /* Determine the starting and ending points, normally we would start on
        * the second point and keep vertices until we reach the first point,
        * but if both points are on the same segment then it should be obvious
-       * the user wants to "break" the path between the points, regardless
-       * of which was first. The following chain of conditionals tests for
-       * this situation */
+       * the user wants to "break" the path between the points, regardless of
+       * which was first. The following conditional checks for this situation
+       */
       if (segment1 == segment2) { /* If both points are on the segment */
 
         POINT  previous;
@@ -684,7 +684,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
         }
       }
 
-      /* Update the index flags */
+      /* Update the index flags if points were swapped */
       if (swap) {
         int tmp_seg  = segment1;
         int tmp_node = vertex1;
@@ -769,7 +769,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
       /* Add the new path to the page */
       s_page_append_object (Current_Page, new_path);
 
-      if (!closed) {
+      if (!closed) { /* Add path for vertices 0 thru (*end) point */
 
         g_array_free (vertices, TRUE);
 
