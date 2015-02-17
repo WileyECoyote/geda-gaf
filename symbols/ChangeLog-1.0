@@ -1,3 +1,7 @@
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TL7715A-1.sym: Add symbol microprocessor reset controllers, 15 Volt
+
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TMS320F28075PZP-1a.sym: Add symbol C2000 F28075 Piccolo
