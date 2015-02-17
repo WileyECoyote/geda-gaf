@@ -1,3 +1,8 @@
+2015-02-16 Onno Kortmann <onno@gmx.net>
+
+    * atmel/ATMega16L-1.sym: WEH: Apply update per Onno, from master branch
+      see commit a16137f21785751e3430e7db295acc61b3af1844.
+
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulate/LP2985-1.sym: New symbol; Low Drop-out Regulator
