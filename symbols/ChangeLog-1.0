@@ -1,5 +1,9 @@
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/regulate/LP2985-1.sym: New symbol; Low Drop-out Regulator
+
+2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/TL7715A-1.sym: Add symbol microprocessor reset controllers, 15 Volt
 
 2015-02-13 Wiley E. Hill <wileyhill@gmail.com>
