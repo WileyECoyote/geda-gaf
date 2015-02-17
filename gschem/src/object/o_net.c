@@ -411,7 +411,6 @@ void o_net_start_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 
   o_net_invalidate_rubber (w_current);
   w_current->rubber_visible = TRUE;
-  w_current->inside_action  = TRUE;
 }
 
 /*! \brief set the start point of a new net
@@ -455,7 +454,7 @@ void o_net_start(GschemToplevel *w_current, int w_x, int w_y)
  *
  * The function returns TRUE if it has drawn a net, FALSE otherwise.
  */
-int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
+void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   int color;
@@ -471,7 +470,7 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->inside_action == FALSE) {
     BUG_MSG("Not inside action");
-    return FALSE;
+    return;
   }
 
   o_net_invalidate_rubber (w_current);
@@ -479,20 +478,19 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
   if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1)
     o_net_finish_magnetic(w_current);
 
-  w_current->rubber_visible = 0;
+  w_current->rubber_visible = FALSE;
 
   /* See if either of the nets are zero length.  We'll only add */
   /* the non-zero ones */
   primary_zero_length = (w_current->first_wx == w_current->second_wx) &&
-    (w_current->first_wy == w_current->second_wy);
+                        (w_current->first_wy == w_current->second_wy);
 
   secondary_zero_length = (w_current->second_wx == w_current->third_wx) &&
-      (w_current->second_wy == w_current->third_wy);
+                          (w_current->second_wy == w_current->third_wy);
 
-  /* If both nets are zero length... */
-  /* this ends the net drawing behavior */
+  /* If both nets are zero length abort the net drawing mode */
   if ( primary_zero_length && secondary_zero_length ) {
-    return FALSE;
+    return;
   }
 
   save_wx = w_current->third_wx;
@@ -505,8 +503,8 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
     color = w_current->override_net_color;
   }
 
-  if (w_current->third_wx != snap_grid (w_current, w_current->third_wx)
-      || w_current->third_wy != snap_grid (w_current, w_current->third_wy))
+  if (w_current->third_wx != snap_grid (w_current, w_current->third_wx) ||
+      w_current->third_wy != snap_grid (w_current, w_current->third_wy))
       u_log_message(_("Warning: Ending net at off grid coordinate\n"));
 
   if (!primary_zero_length ) {
@@ -515,7 +513,8 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
       new_net = o_net_new(color,
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
-      new_net->line_options->line_width =  o_style_get_net_width(toplevel);
+
+      new_net->line_options->line_width = o_style_get_net_width(toplevel);
       s_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -576,7 +575,8 @@ int o_net_end(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wy = save_wy;
   o_undo_savestate(w_current, UNDO_ALL);
 
-  return TRUE;
+  /* Continue net drawing */
+  o_net_start(w_current, w_current->first_wx, w_current->first_wy);
 }
 
 /*! \brief erase and redraw the rubber lines when drawing a net
@@ -587,10 +587,7 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   int ortho, horizontal, quadrant;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG("Not inside action");
-  }
-  else {
+  if (w_current->inside_action) {
 
     /* Orthognal mode enabled when Control Key is NOT pressed or
      *    if we are using magnetic mode */
@@ -651,7 +648,10 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
     }
 
     o_net_invalidate_rubber (w_current);
-    w_current->rubber_visible = 1;
+    w_current->rubber_visible = TRUE;
+  }
+  else {
+    BUG_MSG("Not inside action");
   }
 }
 

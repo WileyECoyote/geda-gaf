@@ -45,60 +45,48 @@ o_invalidate_rubber (GschemToplevel *w_current)
 
   switch(w_current->event_state) {
 
-    case ( STARTDRAWBUS ):
-    case ( DRAWBUS ):
-    case ( BUSCONT ):
-      o_bus_invalidate_rubber (w_current);
-      break;
-
-    case ( STARTDRAWNET ):
-    case ( DRAWNET ):
-    case ( NETCONT ):
+    case ( NETMODE ):
       o_net_invalidate_rubber (w_current);
       break;
 
-    case ( DRAWPIN ):
-    case ( ENDPIN ):
+    case ( PINMODE ):
       o_pin_invalidate_rubber (w_current);
       break;
 
-    case ( DRAWLINE ):
-    case ( ENDLINE ):
+    case ( LINEMODE):
       o_line_invalidate_rubber (w_current);
       break;
 
-    case ( DRAWPATH ):
-    case ( PATHCONT ):
-    case ( ENDPATH ):
-      o_path_invalidate_rubber (w_current);
-      break;
-
-    case ( DRAWBOX ):
-    case ( ENDBOX ):
+    case ( BOXMODE ):
       o_box_invalidate_rubber (w_current);
       break;
 
-    case ( DRAWPICTURE ):
-    case ( ENDPICTURE ):
-      o_picture_invalidate_rubber (w_current);
-      break;
-
-    case ( DRAWCIRCLE ):
-    case ( ENDCIRCLE ):
+    case ( CIRCLEMODE ):
       o_circle_invalidate_rubber (w_current);
       break;
 
-    case ( DRAWARC ):
-    case ( ENDARC ):
+    case ( ARCMODE ):
       o_arc_invalidate_rubber (w_current);
       break;
 
+    case ( PATHMODE ):
+      o_path_invalidate_rubber (w_current);
+      break;
+
+    case ( PICTUREMODE ):
+      o_picture_invalidate_rubber (w_current);
+      break;
+
+    case ( BUSMODE ):
+      o_bus_invalidate_rubber (w_current);
+      break;
+
     default:
-      return(FALSE);
+      return (FALSE);
       break;
   }
 
-  return(TRUE);
+  return (TRUE);
 }
 
 /*! \brief Invalidates a rectangular region of the on screen drawing area

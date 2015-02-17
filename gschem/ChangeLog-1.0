@@ -1,3 +1,14 @@
+2015-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src: Applied updates similar to revisions to Master branch by Vladimir
+      Zhbanov, see commits 21de1374a2b07e87b6cdb5c45068514a7ef7e56c through
+      6e840360d6ec5ca1083c910f614807e2bdccf3c7 with the main differences being:
+      did not add w_current->pathcontrol, handle NETMODE seperately in
+      o_redraw_rectangle so as to draw magnetic markers when not in action,
+      allow control ket to constrain paths, and event processing is slightly
+      different, such that canceling leaves objected selected the same as the
+      "old" gschem.
+
 2015-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Revised function x_event_button_pressed as follows:

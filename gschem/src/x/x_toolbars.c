@@ -1694,36 +1694,31 @@ x_toolbars_update(GschemToplevel *w_current)
     case(STARTDESELECT):
       target = (GtkToggleButton*) bar_widgets->toolbar_deselect;
       break;
-    case(DRAWNET):
-    case(STARTDRAWNET):
-    case(NETCONT):
+    case(NETMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_net;
       break;
-    case(DRAWBUS):
-    case(STARTDRAWBUS):
-    case(BUSCONT):
+    case(BUSMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_bus;
       break;
-    case(DRAWLINE):
+    case(LINEMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_line;
       break;
-    case(DRAWBOX):
+    case(BOXMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_box;
       break;
-    case(DRAWPATH):
-    case(PATHCONT):
+    case(PATHMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_path;
       break;
-    case(DRAWPICTURE): /* \Launches Dialog */
+    case(PICTUREMODE): /* \Launches Dialog */
       target = (GtkToggleButton*) bar_widgets->toolbar_pic;
       break;
-    case(DRAWPIN):
+    case(PINMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_pin;
       break;
-    case(DRAWCIRCLE):
+    case(CIRCLEMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_circle;
       break;
-    case(DRAWARC):
+    case(ARCMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_arc;
       break;
     case(MOVE):
@@ -1734,12 +1729,6 @@ x_toolbars_update(GschemToplevel *w_current)
     case(STARTMOVE):
     case(ENDCOPY):
     case(ENDMOVE):
-    case(ENDLINE):
-    case(ENDBOX):
-    case(ENDPICTURE):
-    case(ENDCIRCLE):
-    case(ENDARC):
-    case(ENDPIN):
     case(ENDCOMP):
     case(ENDTEXT):
     case(ENDROTATE):

@@ -77,8 +77,8 @@ void o_pin_end(GschemToplevel *w_current, int x, int y)
     w_current->rubber_visible = FALSE;
 
     /* don't allow zero length pins */
-    if ((w_current->first_wx != w_current->second_wx) &&
-        (w_current->first_wy != w_current->second_wy))
+    if ((w_current->first_wx - w_current->second_wx) ||
+        (w_current->first_wy - w_current->second_wy))
     {
       new_obj = o_pin_new(color,
                           w_current->first_wx, w_current->first_wy,
@@ -122,14 +122,16 @@ void o_pin_motion (GschemToplevel *w_current, int w_x, int w_y)
 
     /* decide whether to draw the pin vertical or horizontal */
     if (abs(w_current->second_wx - w_current->first_wx)
-      >= abs(w_current->second_wy - w_current->first_wy)) {
+      >= abs(w_current->second_wy - w_current->first_wy))
+    {
       w_current->second_wy = w_current->first_wy;
-      } else {
-        w_current->second_wx = w_current->first_wx;
-      }
+    }
+    else {
+      w_current->second_wx = w_current->first_wx;
+    }
 
-      o_pin_invalidate_rubber (w_current);
-    w_current->rubber_visible = 1;
+    o_pin_invalidate_rubber (w_current);
+    w_current->rubber_visible = TRUE;
   }
 }
 

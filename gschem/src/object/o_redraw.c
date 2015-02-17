@@ -58,25 +58,26 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
 
       /* Fall through */
     case ( COPY ):
-    case ( MCOPY ):
-    case ( DRAWBUS ):
-    case ( DRAWNET ):
-    case ( ENDARC ):
-    case ( ENDBOX ):
-    case ( ENDCIRCLE ):
     case ( ENDCOPY ):
+    case ( MCOPY ):
     case ( ENDMCOPY ):
-    case ( ENDLINE ):
-    case ( PATHCONT ):
-    case ( ENDPATH ):
-    case ( ENDMOVE ):
-    case ( ENDPASTE ):
-    case ( ENDPIN ):
-    case ( ENDTEXT ):
-    case ( GRIPS ):
     case ( MOVE ):
-    case ( NETCONT ):
+    case ( ENDMOVE ):
+    case ( ENDTEXT ):
+    case ( ENDPASTE ):
+    case ( GRIPS ):
     case ( ZOOMBOXEND ):
+
+    case ( NETMODE ):
+    case ( PINMODE ):
+    case ( LINEMODE ):
+    case ( BOXMODE ):
+    case ( CIRCLEMODE ):
+    case ( ARCMODE ):
+    case ( PATHMODE ):
+    case ( PICTUREMODE ):
+    case ( BUSMODE ):
+
       /* it is possible to cancel in the middle of a place,
        * so lets be sure to clean up the place_list structure */
 
@@ -110,23 +111,13 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     /* all remaining states without dc changes */
     case ( NONE ):
     case ( SELECT ):
-    case ( DRAWLINE ):
-    case ( DRAWBOX ):
-    case ( DRAWCIRCLE ):
     case ( ZOOM ):
     case ( PAN ):
-    case ( BUSCONT ):
-    case ( DRAWARC ):
-    case ( DRAWPICTURE ):
-    case ( DRAWPIN ):
     case ( ENDMIRROR ):
-    case ( ENDPICTURE ):
     case ( ENDROTATE ):
     case ( SBOX ):
     case ( STARTCOPY ):
     case ( STARTMCOPY ):
-    case ( STARTDRAWBUS ):
-    case ( STARTDRAWNET ):
     case ( STARTMOVE ):
     case ( STARTPASTE ):
     case ( STARTDESELECT ):
@@ -314,116 +305,108 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     g_object_set (G_OBJECT (renderer), "override-color", -1, NULL);
   }
 
-  /* Redraw the rubberband objects if previously visible */
-  if (w_current->rubber_visible) {
-
-    switch (w_current->event_state) {
-      case MOVE:
-      case ENDMOVE:
-
-    if (w_current->last_drawb_mode != -1) {
-
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
-          o_move_draw_rubber (w_current, draw_selected);
-          eda_renderer_set_color_map (renderer, render_color_map);
-        }
-        break;
-
-      case ENDCOPY:
-      case ENDMCOPY:
-      case ENDCOMP:
-      case ENDTEXT:
-      case ENDPASTE:
-
-        cairo_set_matrix (w_current->cr, &render_mtx);
-        eda_renderer_set_color_map (renderer, render_outline_color_map);
-
-        o_place_draw_rubber (w_current, draw_selected);
-
-        eda_renderer_set_color_map (renderer, render_color_map);
-
-        break;
-
-      case STARTDRAWNET:
-      case DRAWNET:
-      case NETCONT:
-
-        cairo_set_matrix (w_current->cr, &render_mtx);
-        eda_renderer_set_color_map (renderer, render_outline_color_map);
-
-        o_net_draw_rubber (w_current);
-
-        eda_renderer_set_color_map (renderer, render_color_map);
-
-        break;
-
-      case STARTDRAWBUS:
-      case DRAWBUS:
-      case BUSCONT:
-
-        cairo_set_matrix (w_current->cr, &render_mtx);
-        eda_renderer_set_color_map (renderer, render_outline_color_map);
-
-        o_bus_draw_rubber(w_current);
-
-        eda_renderer_set_color_map (renderer, render_color_map);
-
-        break;
-
-      case GRIPS:
-        o_grips_draw_rubber (w_current);
-        break;
-
-      case SBOX:
-        o_select_box_draw_rubber (w_current);
-        break;
-
-      case ZOOMBOXEND:
-        i_zoom_world_box_draw_rubber (w_current);
-        break;
-
-      case ENDLINE:
-        o_line_draw_rubber (w_current);
-        break;
-      case PATHCONT:
-      case ENDPATH:
-        o_path_draw_rubber (w_current);
-        break;
-
-      case ENDBOX:
-        o_box_draw_rubber (w_current);
-        break;
-
-      case ENDPICTURE:
-        o_picture_draw_rubber (w_current);
-        break;
-
-      case ENDCIRCLE:
-        o_circle_draw_rubber (w_current);
-        break;
-
-      case ENDARC:
-        o_arc_draw_rubber (w_current);
-        break;
-
-      case ENDPIN:
-        o_pin_draw_rubber (w_current);
-        break;
-    }
-  }
-  else if (w_current->event_state == ENDMOVE || w_current->event_state == MOVE)
-  {
-
-    if (w_current->last_drawb_mode != -1) {
+  if (w_current->event_state == NETMODE) {
 
       cairo_set_matrix (w_current->cr, &render_mtx);
       eda_renderer_set_color_map (renderer, render_outline_color_map);
 
-      o_move_draw_rubber (w_current, draw_selected);
+      o_net_draw_rubber (w_current);
 
       eda_renderer_set_color_map (renderer, render_color_map);
+  }
+  else if (w_current->inside_action) {
 
+    /* Redraw the rubberband objects if previously visible */
+    if (w_current->rubber_visible) {
+
+      switch (w_current->event_state) {
+        case MOVE:
+        case ENDMOVE:
+
+          if (w_current->last_drawb_mode != -1) {
+
+            cairo_set_matrix (w_current->cr, &render_mtx);
+            eda_renderer_set_color_map (renderer, render_outline_color_map);
+            o_move_draw_rubber (w_current, draw_selected);
+            eda_renderer_set_color_map (renderer, render_color_map);
+          }
+          break;
+
+        case ENDCOPY:
+        case ENDMCOPY:
+        case ENDCOMP:
+        case ENDTEXT:
+        case ENDPASTE:
+
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+          o_place_draw_rubber (w_current, draw_selected);
+
+          eda_renderer_set_color_map (renderer, render_color_map);
+
+          break;
+
+        case GRIPS:
+          o_grips_draw_rubber (w_current);
+          break;
+
+        case SBOX:
+          o_select_box_draw_rubber (w_current);
+          break;
+
+        case ZOOMBOXEND:
+          i_zoom_world_box_draw_rubber (w_current);
+          break;
+
+        case PINMODE:
+          o_pin_draw_rubber (w_current);
+          break;
+
+        case LINEMODE:
+          o_line_draw_rubber (w_current);
+          break;
+
+        case BOXMODE:
+          o_box_draw_rubber (w_current);
+          break;
+
+        case CIRCLEMODE:
+          o_circle_draw_rubber (w_current);
+          break;
+
+        case ARCMODE:
+          o_arc_draw_rubber (w_current);
+          break;
+
+        case PATHMODE:
+          o_path_draw_rubber (w_current);
+          break;
+
+        case PICTUREMODE:
+          o_picture_draw_rubber (w_current);
+          break;
+
+        case BUSMODE:
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+          o_bus_draw_rubber(w_current);
+          eda_renderer_set_color_map (renderer, render_color_map);
+          break;
+      }
+    }
+    else if (w_current->event_state == ENDMOVE || w_current->event_state == MOVE)
+    {
+
+      if (w_current->last_drawb_mode != -1) {
+
+        cairo_set_matrix (w_current->cr, &render_mtx);
+        eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+        o_move_draw_rubber (w_current, draw_selected);
+
+        eda_renderer_set_color_map (renderer, render_color_map);
+      }
     }
   }
 

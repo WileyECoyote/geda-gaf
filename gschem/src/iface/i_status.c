@@ -59,9 +59,7 @@ void i_status_set_state_msg(GschemToplevel *w_current,
   /* The add picture mode is unique because this mode is the only
    * "adder" requiring resources to be freed when transitioning to
    *  any other state */
-  if ((w_current->event_state == DRAWPICTURE) ||
-      (w_current->event_state == ENDPICTURE))
-  {
+  if (w_current->event_state == PICTUREMODE) {
     if (w_current->current_pixbuf != NULL) {
       GEDA_UNREF(w_current->current_pixbuf);
       w_current->current_pixbuf = NULL;
@@ -158,32 +156,20 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Zoom Box");
     case PAN:
       return _("Pan Mode");
+    case COPY:
+      return _("Copy");
+    case MOVE:
+      return _("Move");
+    case MCOPY:
+      return _("Multiple Copy");
+    case STARTMCOPY:
+    case ENDMCOPY:
+      return _("Multiple Copy Mode");
     case STARTPASTE:
     case ENDPASTE:
       GEDA_FREE(buf);
       buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
       return buf;
-    case STARTDRAWNET:
-    case DRAWNET:
-    case NETCONT:
-      if (w_current->magnetic_net_mode)
-        return _("Magnetic Net Mode");
-      else
-        return _("Net Mode");
-    case STARTDRAWBUS:
-    case DRAWBUS:
-    case BUSCONT:
-      return _("Bus Mode");
-    case DRAWLINE:
-    case ENDLINE:
-      return _("Line Mode");
-    case DRAWPATH:
-    case PATHCONT:
-    case ENDPATH:
-      return _("Path Mode");
-    case DRAWBOX:
-    case ENDBOX:
-      return _("Box Mode");
     case STARTBREAK:
       return _("First point?");
     case ENDBREAK:
@@ -194,27 +180,27 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Select Projectiles");
     case ENDEXTEND:
       return _("Select Object");
-    case DRAWPICTURE:
-    case ENDPICTURE:
-      return _("Picture Mode");
-    case DRAWCIRCLE:
-    case ENDCIRCLE:
-      return _("Circle Mode");
-    case DRAWARC:
-    case ENDARC:
-      return _("Arc Mode");
-    case DRAWPIN:
-    case ENDPIN:
+    case NETMODE:
+      if (w_current->magnetic_net_mode)
+        return _("Magnetic Net Mode");
+      else
+        return _("Net Mode");
+    case PINMODE:
       return _("Pin Mode");
-    case COPY:
-      return _("Copy");
-    case MOVE:
-      return _("Move");
-    case MCOPY:
-      return _("Multiple Copy");
-    case STARTMCOPY:
-    case ENDMCOPY:
-      return _("Multiple Copy Mode");
+    case LINEMODE:
+      return _("Line Mode");
+    case BOXMODE:
+      return _("Box Mode");
+    case CIRCLEMODE:
+      return _("Circle Mode");
+    case ARCMODE:
+      return _("Arc Mode");
+    case PATHMODE:
+      return _("Path Mode");
+    case PICTUREMODE:
+      return _("Picture Mode");
+    case BUSMODE:
+      return _("Bus Mode");
   }
 
 #if DEBUG_STATUS

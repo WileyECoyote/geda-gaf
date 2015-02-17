@@ -407,7 +407,7 @@ void       o_buffer_free                (GschemToplevel *w_current);
 /* o_bus.c */
 void       o_bus_invalidate_rubber      (GschemToplevel *w_current);
 void       o_bus_start                  (GschemToplevel *w_current, int x, int y);
-int        o_bus_end                    (GschemToplevel *w_current, int x, int y);
+void       o_bus_end                    (GschemToplevel *w_current, int x, int y);
 void       o_bus_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_bus_draw_rubber            (GschemToplevel *w_current);
 
@@ -517,7 +517,7 @@ void       o_net_find_magnetic          (GschemToplevel *w_current, int event_x,
 void       o_net_finish_magnetic        (GschemToplevel *w_current);
 void       o_net_start_magnetic         (GschemToplevel *w_current, int x, int y);
 void       o_net_start                  (GschemToplevel *w_current, int x, int y);
-int        o_net_end                    (GschemToplevel *w_current, int x, int y);
+void       o_net_end                    (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_net_draw_rubber            (GschemToplevel *w_current);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);
@@ -527,7 +527,7 @@ int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_
 void       o_path_start                      (GschemToplevel *w_current, int x, int y);
 void       o_path_continue                   (GschemToplevel *w_current, int w_x, int w_y);
 void       o_path_motion                     (GschemToplevel *w_current, int w_x, int w_y);
-bool       o_path_end                        (GschemToplevel *w_current, int x, int y);
+void       o_path_end                        (GschemToplevel *w_current, int x, int y);
 void       o_path_invalidate_rubber          (GschemToplevel *w_current);
 void       o_path_draw_rubber                (GschemToplevel *w_current);
 void       o_path_invalidate_rubber_grips    (GschemToplevel *w_current);

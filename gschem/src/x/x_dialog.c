@@ -769,7 +769,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   int        start_angle;
   int        sweep_angle;
 
-  if (w_current->event_state == DRAWARC) {
+  if (w_current->event_state == ARCMODE) {
     s_current   = NULL;
   }
   else {

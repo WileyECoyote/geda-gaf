@@ -95,6 +95,36 @@ int x_event_button_pressed(GtkWidget      *widget,
 
   if (event->button == GDK_BUTTON_PRIMARY) {
 
+    if (w_current->inside_action) {
+      /* End action */
+      switch (w_current->event_state) {
+        case (NETMODE)    : o_net_end       (w_current, w_x, w_y); break;
+        case (PINMODE)    : o_pin_end       (w_current, w_x, w_y); break;
+        case (LINEMODE)   : o_line_end      (w_current, w_x, w_y); break;
+        case (BOXMODE)    : o_box_end       (w_current, w_x, w_y); break;
+        case (CIRCLEMODE) : o_circle_end    (w_current, w_x, w_y); break;
+        case (ARCMODE)    : o_arc_end1      (w_current, w_x, w_y); break;
+        case (PATHMODE)   : o_path_continue (w_current, w_x, w_y); break;
+        case (PICTUREMODE): o_picture_end   (w_current, w_x, w_y); break;
+        case (BUSMODE)    : o_bus_end       (w_current, w_x, w_y); break;
+        default: break;
+      }
+    } else {
+      /* Start action */
+      switch (w_current->event_state) {
+        case (NETMODE)    : o_net_start     (w_current, w_x, w_y); break;
+        case (PINMODE)    : o_pin_start     (w_current, w_x, w_y); break;
+        case (LINEMODE)   : o_line_start    (w_current, w_x, w_y); break;
+        case (BOXMODE)    : o_box_start     (w_current, w_x, w_y); break;
+        case (CIRCLEMODE) : o_circle_start  (w_current, w_x, w_y); break;
+        case (ARCMODE)    : o_arc_start     (w_current, w_x, w_y); break;
+        case (PATHMODE)   : o_path_start    (w_current, w_x, w_y); break;
+        case (PICTUREMODE): o_picture_start (w_current, w_x, w_y); break;
+        case (BUSMODE)    : o_bus_start     (w_current, w_x, w_y); break;
+        default: break;
+      }
+    }
+
     switch(w_current->event_state) {
 
       case(SELECT):
@@ -138,112 +168,6 @@ int x_event_button_pressed(GtkWidget      *widget,
         w_current->event_state   = ENDPASTE;
         break;
 
-      case(DRAWLINE):
-        o_line_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDLINE;
-        break;
-
-      case(ENDLINE):
-        o_line_end(w_current, w_x, w_y);
-        w_current->event_state   = DRAWLINE;
-        break;
-
-      case DRAWPATH:
-        o_path_start (w_current, w_x, w_y);
-        w_current->event_state   = ENDPATH;
-        break;
-
-      case PATHCONT:
-        o_path_continue (w_current, w_x, w_y);
-        w_current->event_state   = ENDPATH;
-        break;
-
-      case(DRAWBOX):
-        o_box_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDBOX;
-        break;
-
-      case(ENDBOX):
-        o_box_end(w_current, w_x, w_y);
-        w_current->event_state   = DRAWBOX;
-        break;
-
-      case(DRAWPICTURE):
-        o_picture_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDPICTURE;
-        break;
-
-      case(ENDPICTURE):
-        o_picture_end(w_current, w_x, w_y);
-        w_current->event_state   = DRAWPICTURE;
-        break;
-
-      case(DRAWCIRCLE):
-        o_circle_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDCIRCLE;
-        break;
-
-      case(ENDCIRCLE):
-        o_circle_end(w_current, w_x, w_y);
-        w_current->event_state   = DRAWCIRCLE;
-        break;
-
-      case(DRAWARC):
-        o_arc_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDARC;
-        break;
-
-      case(ENDARC):
-        o_arc_end1(w_current, w_x, w_y);
-        w_current->event_state   = DRAWARC;
-        break;
-
-      case(DRAWPIN):
-        o_pin_start(w_current, w_x, w_y);
-        w_current->event_state   = ENDPIN;
-        break;
-
-      case(ENDPIN):
-        o_pin_end(w_current, w_x, w_y);
-        w_current->event_state   = DRAWPIN;
-        break;
-
-      case(STARTDRAWNET):  /*! \todo change state name? */
-        o_net_start(w_current, w_x, w_y);
-        w_current->event_state   = DRAWNET;
-        break;
-
-      case(STARTDRAWBUS):
-        o_bus_start(w_current, w_x, w_y);
-        w_current->event_state   = DRAWBUS;
-        break;
-
-      case(DRAWNET):
-      case(NETCONT):
-        /* Only continue the net if net end worked */
-        if (o_net_end(w_current, w_x, w_y)) {
-          o_net_start(w_current, w_current->first_wx, w_current->first_wy);
-          w_current->event_state = NETCONT;
-        }
-        else { /* cleanup and start a new net */
-          o_net_invalidate_rubber (w_current);
-          o_net_reset(w_current);
-          i_status_set_state(w_current, STARTDRAWNET);
-          w_current->inside_action = FALSE;
-        }
-        break;
-
-      case(DRAWBUS):
-      case(BUSCONT):
-        /* Only continue the net if net end worked */
-        if (o_bus_end(w_current, w_x, w_y)) {
-          o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
-          w_current->event_state = BUSCONT;
-        }
-        else {
-          i_status_set_state(w_current, STARTDRAWBUS);
-        }
-        break;
       case(ENDCOMP):
         o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
                     NULL, "%add-objects-hook");
@@ -309,7 +233,7 @@ int x_event_button_pressed(GtkWidget      *widget,
   }
   else if (event->button == 2) {
 
-    if (w_current->event_state == DRAWPICTURE) {
+    if (w_current->event_state == PICTUREMODE) {
 
       if (w_current->current_pixbuf != NULL) {
         GEDA_UNREF(w_current->current_pixbuf);
@@ -382,7 +306,13 @@ int x_event_button_pressed(GtkWidget      *widget,
   }
   else if (event->button == 3) {
 
+    if (w_current->rubber_visible) {
+        w_current->rubber_visible = FALSE;
+        o_invalidate_rubber (w_current);
+    }
+
     if (!w_current->inside_action) {
+
       if (w_current->third_button == POPUP_ENABLED) {
         i_status_update_sensitivities(w_current);  /* update menus before popup  */
         x_menu_display_popup(w_current, event);
@@ -407,71 +337,18 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       switch (w_current->event_state) {
 
-        case(STARTDRAWNET):
-        case(DRAWNET):
-        case(NETCONT):
-          w_current->inside_action = FALSE;
-          i_status_set_state (w_current, STARTDRAWNET);
-          o_net_invalidate_rubber (w_current);
+        case(NETMODE):
           o_net_reset (w_current);
-          break;
 
-        case(STARTDRAWBUS):
-        case(DRAWBUS):
-        case(BUSCONT):
+        case(PINMODE):
+        case(LINEMODE):
+        case(BOXMODE):
+        case(CIRCLEMODE):
+        case(ARCMODE):
+        case(BUSMODE):
+        case(PATHMODE):
+        case(PICTUREMODE):
           w_current->inside_action = FALSE;
-          i_status_set_state (w_current, STARTDRAWBUS);
-          o_bus_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWPIN):
-        case(ENDPIN):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWPIN);
-          o_pin_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWLINE):
-        case(ENDLINE):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWLINE);
-          o_line_invalidate_rubber (w_current);
-          break;
-
-        case DRAWPATH:
-        case PATHCONT:
-        case ENDPATH:
-          w_current->inside_action = FALSE;
-          i_status_set_state (w_current, DRAWPATH);
-          o_path_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWBOX):
-        case(ENDBOX):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWBOX);
-          o_box_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWPICTURE):
-        case(ENDPICTURE):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWPICTURE);
-          o_picture_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWCIRCLE):
-        case(ENDCIRCLE):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWCIRCLE);
-          o_circle_invalidate_rubber (w_current);
-          break;
-
-        case(DRAWARC):
-        case(ENDARC):
-          w_current->inside_action = FALSE;
-          i_status_set_state(w_current, DRAWARC);
-          o_arc_invalidate_rubber (w_current);
           break;
 
         default:
@@ -497,7 +374,6 @@ bool x_event_button_released (GtkWidget      *widget,
                               GschemToplevel *w_current)
 {
   Object *object;
-  int w_x, w_y;
   int unsnapped_wx, unsnapped_wy;
 
 #if DEBUG_EVENTS
@@ -538,6 +414,7 @@ bool x_event_button_released (GtkWidget      *widget,
         o_grips_end(w_current);
         i_status_set_state(w_current, SELECT);
         break;
+
       case(ENDMOVE):
         if (w_current->drag_event) {
           gdk_event_free(w_current->drag_event);
@@ -591,17 +468,6 @@ bool x_event_button_released (GtkWidget      *widget,
         }
         break;
 
-      case ENDPATH:
-        w_x = snap_grid (w_current, unsnapped_wx);
-        w_y = snap_grid (w_current, unsnapped_wy);
-        if (o_path_end (w_current, w_x, w_y)) {
-          w_current->event_state   = PATHCONT;
-        }
-        else {
-          w_current->event_state   = DRAWPATH;
-        }
-        break;
-
       case STARTDND:
         w_current->dnd_state = NONE;
         if (w_current->drag_event) {
@@ -611,13 +477,28 @@ bool x_event_button_released (GtkWidget      *widget,
         break;
     }
 
+    if (w_current->inside_action) {
+
+      int w_x, w_y;
+
+      switch(w_current->event_state) {
+        case(PATHMODE):
+          w_x = snap_grid (w_current, unsnapped_wx);
+          w_y = snap_grid (w_current, unsnapped_wy);
+          o_path_end (w_current, w_x, w_y);
+
+        default:
+          break;
+      }
+    }
+
     if (w_current->render_adaptor == X11_ADAPTOR) {
       o_invalidate_all (w_current);
     }
   }
   else if (event->button == 2) {
     if (w_current->doing_pan) {
-      w_current->doing_pan=FALSE;
+      w_current->doing_pan = FALSE;
       o_invalidate_all (w_current);
       if (w_current->undo_panzoom) {
         o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
@@ -625,11 +506,11 @@ bool x_event_button_released (GtkWidget      *widget,
     }
     else if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP  ||
-        w_current->event_state == ENDTEXT  ||
-        w_current->event_state == ENDMOVE  ||
-        w_current->event_state == ENDCOPY  ||
-        w_current->event_state == ENDMCOPY ||
-        w_current->event_state == ENDPASTE )
+          w_current->event_state == ENDTEXT  ||
+          w_current->event_state == ENDMOVE  ||
+          w_current->event_state == ENDCOPY  ||
+          w_current->event_state == ENDMCOPY ||
+          w_current->event_state == ENDPASTE )
       {
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
@@ -699,7 +580,7 @@ bool x_event_button_released (GtkWidget      *widget,
   else if (event->button == 3) {
 
     if (w_current->doing_pan) { /* just for ending a mouse pan */
-      w_current->doing_pan=FALSE;
+      w_current->doing_pan = FALSE;
       o_invalidate_all (w_current);
       if (w_current->undo_panzoom) {
         o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
@@ -935,7 +816,7 @@ bool x_event_key (GtkWidget      *widget,
 {
   bool retval      = FALSE;
   int  control_key = 0;
-  int  shift_key   = 0;
+  //int  shift_key   = 0;
   int  pressed;
   int  wx, wy;
 
@@ -958,7 +839,7 @@ bool x_event_key (GtkWidget      *widget,
 
     case GDK_Shift_L:
     case GDK_Shift_R:
-      shift_key = 1;
+      //shift_key = 1;
       w_current->SHIFTKEY = pressed;
       break;
 
@@ -973,49 +854,55 @@ bool x_event_key (GtkWidget      *widget,
    * end_key label to escape the state evaluation rather
    * than returning from the function directly. */
 
-  switch (w_current->event_state) {
-    case ENDLINE:
-      if (control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_line_motion (w_current, wx, wy);
-      }
-      break;
-    case STARTDRAWNET:
-      if (control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_net_start_magnetic(w_current, wx, wy);
-      }
-      break;
-    case DRAWNET:
-    case NETCONT:
-      if (shift_key || control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_net_motion (w_current, wx, wy);
-      }
-      break;
-    case DRAWBUS:
-    case BUSCONT:
-      if (control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_bus_motion (w_current, wx, wy);
-      }
-      break;
-    case ENDMOVE:
-      if (control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_move_motion (w_current, wx, wy);
-      }
-      break;
-    case ENDCOMP:   /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDPASTE:  /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDTEXT:   /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDCOPY:
-    case ENDMCOPY:
-      if (control_key) {
-        x_event_get_snapped_pointer (w_current, &wx, &wy);
-        o_place_motion (w_current, wx, wy);
-      }
-      break;
+  if (w_current->inside_action) {
+
+    switch (w_current->event_state) {
+
+      case LINEMODE:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_line_motion (w_current, wx, wy);
+        }
+        break;
+
+      case NETMODE:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_net_motion (w_current, wx, wy);
+        }
+        break;
+
+      case PATHMODE:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_path_motion (w_current, wx, wy);
+        }
+        break;
+
+      case BUSMODE:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_bus_motion (w_current, wx, wy);
+        }
+        break;
+
+      case ENDMOVE:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_move_motion (w_current, wx, wy);
+        }
+        break;
+
+      case ENDCOPY:
+      case ENDMCOPY:
+        if (control_key) {
+          x_event_get_snapped_pointer (w_current, &wx, &wy);
+          o_place_motion (w_current, wx, wy);
+        }
+
+      default:
+        break;
+    }
   }
 
   if (pressed)
@@ -1099,9 +986,27 @@ bool x_event_motion (GtkWidget      *widget,
     return(0);
   }
 
-  /* Huge switch statement to evaluate state transitions. Jump to end_motion
-   * label to escape the state evaluation rather than returning from the
-   * function directly. */
+  if (w_current->inside_action) {
+    switch(w_current->event_state) {
+      case(NETMODE)    :   o_net_motion     (w_current, w_x, w_y); break;
+      case(PINMODE)    :   o_pin_motion     (w_current, w_x, w_y); break;
+      case(LINEMODE)   :   o_line_motion    (w_current, w_x, w_y); break;
+      case(BOXMODE)    :   o_box_motion     (w_current, w_x, w_y); break;
+      case(CIRCLEMODE) :   o_circle_motion  (w_current, w_x, w_y); break;
+      case(ARCMODE)    :   o_arc_motion     (w_current, w_x, w_y); break;
+      case(PATHMODE)   :   o_path_motion    (w_current, w_x, w_y); break;
+      case(PICTUREMODE):   o_picture_motion (w_current, w_x, w_y); break;
+      case(BUSMODE)    :   o_bus_motion     (w_current, w_x, w_y); break;
+      default: break;
+    }
+  }
+  else {
+    switch(w_current->event_state) {
+      case(NETMODE)    :   o_net_start_magnetic(w_current, w_x, w_y); break;
+      default: break;
+    }
+  }
+
   switch(w_current->event_state) {
 
     case(SELECT):
@@ -1158,61 +1063,6 @@ bool x_event_motion (GtkWidget      *widget,
         if (w_current->inside_action) {
           o_move_motion (w_current, w_x, w_y);
         }
-        break;
-
-      case(ENDLINE):
-        if (w_current->inside_action)
-          o_line_motion (w_current, w_x, w_y);
-        break;
-
-      case PATHCONT:
-      case ENDPATH:
-        if (w_current->inside_action)
-          o_path_motion (w_current, w_x, w_y);
-        break;
-      case(ENDBOX):
-        if (w_current->inside_action)
-          o_box_motion ( w_current, w_x, w_y);
-        break;
-
-      case(ENDPICTURE):
-        if (w_current->inside_action)
-          o_picture_motion ( w_current, w_x, w_y);
-        break;
-
-      case(ENDCIRCLE):
-        if (w_current->inside_action)
-          o_circle_motion (w_current, w_x, w_y);
-        break;
-
-      case(ENDARC):
-        if (w_current->inside_action) {
-          w_current->which_grip = ARC_RADIUS;
-          o_arc_motion (w_current, w_x, w_y);
-        }
-        break;
-
-      case(STARTDRAWNET):
-        if (w_current->magnetic_net_mode == 1) {
-          o_net_start_magnetic(w_current, w_x, w_y);
-        }
-        break;
-
-      case(DRAWNET):
-      case(NETCONT):
-        if (w_current->inside_action)
-          o_net_motion (w_current, w_x, w_y);
-        break;
-
-      case(DRAWBUS):
-      case(BUSCONT):
-        if (w_current->inside_action)
-          o_bus_motion (w_current, w_x, w_y);
-        break;
-
-      case(ENDPIN):
-        if (w_current->inside_action)
-          o_pin_motion (w_current, w_x, w_y);
         break;
 
       case(COPY):

@@ -60,12 +60,11 @@ void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-int o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
+void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel          = w_current->toplevel;
   GList        *prev_conn_objects = NULL;
   Object       *new_obj;
-  bool          result;
   int           color;
 
   if (w_current->inside_action) {
@@ -78,14 +77,14 @@ int o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     }
 
     /* set flag erase the rubberbus */
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     /* don't allow zero length bus */
     /* this ends the bus drawing behavior we want this? hack */
     if ((w_current->first_wx == w_current->second_wx) &&
         (w_current->first_wy == w_current->second_wy))
     {
-      result = FALSE;
+      w_current->inside_action = FALSE;
     }
     else
     {
@@ -107,14 +106,12 @@ int o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
       w_current->first_wx = w_current->second_wx;
       w_current->first_wy = w_current->second_wy;
       o_undo_savestate(w_current, UNDO_ALL);
-      result = TRUE;
     }
   }
   else {
     BUG_MSG("Not inside an action\n");
-    result = FALSE;
+    w_current->inside_action = FALSE;
   }
-  return w_current->inside_action = result;
 }
 
 /*! \brief draw the bus rubber when creating a bus

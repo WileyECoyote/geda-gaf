@@ -272,7 +272,8 @@ path_next_sections (GschemToplevel *w_current)
     section->x3 = x1;
     section->y3 = y1;
 
-  } else if (!end_path) {
+  }
+  else if (!end_path) {
     path_expand (w_current);
     section = &p->sections[p->num_sections++];
 
@@ -359,11 +360,6 @@ o_path_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  if (w_current == NULL) {
-    BUG_MSG ("w_current = NULL");
-    return;
-  }
-
   /* Reset path creation state */
   if (w_current->temp_path != NULL) {
     w_current->temp_path->num_sections = 0;
@@ -399,8 +395,8 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
 {
   o_path_invalidate_rubber (w_current);
 
-  w_current->first_wx  = w_x;
-  w_current->first_wy  = w_y;
+  w_current->first_wx  = w_current->second_wx;
+  w_current->first_wy  = w_current->second_wy;
   w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
@@ -418,23 +414,23 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  if (w_current == NULL) {
-    BUG_MSG ("w_current = NULL");
-    return;
-  }
-
   o_path_invalidate_rubber (w_current);
 
-  switch (w_current->event_state) {
-  case PATHCONT:
-    w_current->first_wx = w_x;
-    w_current->first_wy = w_y;
-  case ENDPATH:
-    w_current->second_wx = w_x;
-    w_current->second_wy = w_y;
-    break;
-  default:
-    g_warn_if_reached ();
+  w_current->second_wx = w_x;
+  w_current->second_wy = w_y;
+
+  /* if the control key was pressed then draw ortho lines */
+  if (w_current->CONTROLKEY) {
+
+    int diff_x = abs(w_current->second_wx - w_current->first_wx);
+    int diff_y = abs(w_current->second_wy - w_current->first_wy);
+
+    if (diff_x >= diff_y) {
+      w_current->second_wy = w_current->first_wy;
+    }
+    else {
+      w_current->second_wx = w_current->first_wx;
+    }
   }
 
   o_path_invalidate_rubber (w_current);
@@ -454,8 +450,7 @@ void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-bool
-o_path_end(GschemToplevel *w_current, int w_x, int w_y)
+void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   bool          close_path;
   bool          end_path;
@@ -545,7 +540,7 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     }
   }
 
-  return w_current->inside_action = result;
+  w_current->inside_action = result;
 }
 
 /*! \brief Draw path creation preview.

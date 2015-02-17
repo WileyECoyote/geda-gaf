@@ -99,10 +99,9 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
     w_current->rubber_visible = FALSE;
 
     /* don't allow zero length lines */
-    if ((w_current->first_wx != w_current->second_wx) &&
-        (w_current->first_wy != w_current->second_wy))
+    if ((w_current->first_wx - w_current->second_wx) ||
+        (w_current->first_wy - w_current->second_wy))
     {
-
       /* create the line object and draw it */
       new_obj = o_line_new (GRAPHIC_COLOR,
                             w_current->first_wx, w_current->first_wy,
@@ -141,36 +140,40 @@ void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
-  if (w_current->inside_action == 0) {
-    BUG_MSG ("Not inside action");
-    return;
-  }
+  if (w_current->inside_action) {
 
-  if (w_current->rubber_visible)
-    o_line_invalidate_rubber (w_current);
+    if (w_current->rubber_visible)
 
-  /*
-   * The coordinates of the moving end of the line are updated. Its new
-   * coordinates are in <B>w_x</B> and <B>w_y</B> parameters and saved to
-   * <B>w_current->second_wx</B> and <B>w_current->second_wy</B> respectively.
-   */
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
+      o_line_invalidate_rubber (w_current);
 
-  /* if the control key was pressed then draw ortho lines */
-  if (w_current->CONTROLKEY) {
-    diff_x = abs(w_current->second_wx - w_current->first_wx);
-    diff_y = abs(w_current->second_wy - w_current->first_wy);
+    /*
+     * The coordinates of the moving end of the line are updated. Its new
+     * coordinates are in <B>w_x</B> and <B>w_y</B> parameters and saved to
+     * <B>w_current->second_wx</B> and <B>w_current->second_wy</B> respectively.
+     */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
 
-    if (diff_x >= diff_y) {
-      w_current->second_wy = w_current->first_wy;
-    } else {
-      w_current->second_wx = w_current->first_wx;
+    /* if the control key was pressed then draw ortho lines */
+    if (w_current->CONTROLKEY) {
+
+      diff_x = abs(w_current->second_wx - w_current->first_wx);
+      diff_y = abs(w_current->second_wy - w_current->first_wy);
+
+      if (diff_x >= diff_y) {
+        w_current->second_wy = w_current->first_wy;
+      }
+      else {
+        w_current->second_wx = w_current->first_wx;
+      }
     }
-  }
 
-  o_line_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+    o_line_invalidate_rubber (w_current);
+    w_current->rubber_visible = TRUE;
+  }
+  else {
+    BUG_MSG ("Not inside action");
+  }
 }
 
 /*! \brief Draw line from GschemToplevel object.

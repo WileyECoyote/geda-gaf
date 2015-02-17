@@ -844,7 +844,7 @@ COMMAND (do_print) {
 /** @brief i_cmd_do_write_image in i_command_File_Actions */
 COMMAND (do_write_image) {
   BEGIN_W_COMMAND(do_write_image);
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     o_redraw_cleanstates (w_current);
     i_status_set_state_msg(w_current, SELECT, _("Write Image"));
     i_status_set_state(w_current, SELECT);
@@ -860,7 +860,7 @@ COMMAND (do_write_image) {
  */
 COMMAND (do_write_pdf) {
   BEGIN_W_COMMAND(do_write_pdf);
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     o_redraw_cleanstates (w_current);
     i_status_set_state_msg(w_current, SELECT, _("Write PDF"));
     i_status_set_state(w_current, SELECT);
@@ -1313,7 +1313,7 @@ COMMAND (do_break)
   GList *object_list;
 
   o_redraw_cleanstates(w_current);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
 
   object_list = geda_list_get_glist (Current_Selection);
 
@@ -1348,7 +1348,7 @@ COMMAND (do_extend)
   GList *object_list;
 
   o_redraw_cleanstates(w_current);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
 
   object_list = geda_list_get_glist (Current_Selection);
 
@@ -1566,7 +1566,7 @@ COMMAND (do_select)
 
   o_redraw_cleanstates(w_current);
   i_status_set_state(w_current, SELECT);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
 
   EXIT_COMMAND(do_select);
 }
@@ -1578,7 +1578,7 @@ COMMAND (do_select_all)
   o_select_visible_unlocked (w_current);
 
   i_status_set_state (w_current, SELECT);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_select_all);
 }
@@ -1603,7 +1603,7 @@ COMMAND (do_select_invert)
   g_list_free (list);
   o_redraw_cleanstates(w_current);
   i_status_set_state (w_current, SELECT);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   EXIT_COMMAND(do_select_invert);
 }
 
@@ -1624,7 +1624,7 @@ COMMAND (do_deselect)
     msg_need_select_1st(w_current);
     //i_status_set_state (w_current, SELECT);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect);
 }
@@ -1641,7 +1641,7 @@ COMMAND (do_deselect_all)
   o_select_unselect_all (w_current);
 
   i_status_set_state (w_current, SELECT);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect_all);
 }
@@ -1672,7 +1672,7 @@ COMMAND (do_pan)
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_pan);
   o_redraw_cleanstates(w_current);
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, PAN);
 }
 
@@ -1690,11 +1690,11 @@ COMMAND (do_zoom_box)
 
   if HOT_ACTION (do_zoom_box) {
     i_zoom_world_box_start (w_current, CMD_X(do_zoom_box), CMD_Y(do_zoom_box));
-    w_current->inside_action = 1;
+    w_current->inside_action = TRUE;
     state = ZOOMBOXEND;
   }
   else {
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     state = ZOOMBOXSTART;
   }
 
@@ -2431,25 +2431,18 @@ COMMAND (do_add_net)
 {
   BEGIN_W_COMMAND(do_add_net);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
   o_net_reset(w_current);
 
+  i_status_set_state(w_current, NETMODE);
+
   if HOT_ACTION (do_add_net) {
-    /* need to click */
-    i_status_set_state(w_current, STARTDRAWNET);
     o_net_start (w_current, CMD_X(do_add_net), CMD_Y(do_add_net));
-    w_current->inside_action = 1;
-    state = DRAWNET;
   }
   else {
-    state = STARTDRAWNET;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
-
-  i_status_set_state(w_current, state);
 
   EXIT_COMMAND(do_add_net);
 }
@@ -2462,24 +2455,17 @@ COMMAND (do_add_bus)
 {
   BEGIN_W_COMMAND(do_add_bus);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  if HOT_ACTION (do_add_bus) {
+  i_status_set_state(w_current, BUSMODE);
 
-    /* need to click */
-    i_status_set_state(w_current, STARTDRAWBUS);
+  if HOT_ACTION (do_add_bus) {
     o_bus_start (w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus));
-    state = DRAWBUS;
   }
   else {
-    state = STARTDRAWBUS;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
-
-  i_status_set_state(w_current, state);
 
   EXIT_COMMAND(do_add_bus);
 }
@@ -2520,7 +2506,7 @@ COMMAND (do_add_text)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   x_dialog_text_input(w_current);
@@ -2536,22 +2522,18 @@ COMMAND (do_add_line)
 {
   BEGIN_W_COMMAND(do_add_line);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, LINEMODE);
+
   if HOT_ACTION (do_add_line) {
     o_line_start (w_current, CMD_X(do_add_line), CMD_Y(do_add_line));
-    w_current->inside_action = 1;
-    state = ENDLINE;
   }
   else {
-    state = DRAWLINE;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_line);
 }
 
@@ -2563,21 +2545,18 @@ COMMAND (do_add_pin)
 {
   BEGIN_W_COMMAND(do_add_pin);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, PINMODE);
+
   if HOT_ACTION (do_add_pin) {
     o_pin_start (w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
-    state = ENDPIN;
   }
   else {
-    state = DRAWPIN;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_pin);
 }
 
@@ -2593,21 +2572,18 @@ COMMAND (do_add_box)
 {
   BEGIN_W_COMMAND(do_add_box);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, BOXMODE);
+
   if HOT_ACTION (do_add_box) {
     o_box_start (w_current, CMD_X(do_add_box), CMD_Y(do_add_box));
-    state = ENDBOX;
   }
   else {
-    state = DRAWBOX;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_box);
 }
 
@@ -2619,21 +2595,18 @@ COMMAND (do_add_circle)
 {
   BEGIN_W_COMMAND(do_add_circle);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, CIRCLEMODE);
+
   if HOT_ACTION (do_add_circle) {
     o_circle_start (w_current, CMD_X(do_add_circle), CMD_Y(do_add_circle));
-    state = ENDCIRCLE;
   }
   else {
-    state = DRAWCIRCLE;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_circle);
 }
 
@@ -2651,21 +2624,18 @@ COMMAND (do_add_arc)
 {
   BEGIN_W_COMMAND(do_add_arc);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, ARCMODE);
+
   if HOT_ACTION (do_add_arc) {
     o_arc_start (w_current, CMD_X(do_add_arc), CMD_Y(do_add_arc));
-    state = ENDARC;
   }
   else {
-    state = DRAWARC;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_arc);
 }
 
@@ -2677,21 +2647,18 @@ COMMAND (do_add_path)
 {
   BEGIN_W_COMMAND(do_add_path);
 
-  int state;
-
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
+  i_status_set_state(w_current, PATHMODE);
+
   if HOT_ACTION (do_add_path) {
     o_path_start (w_current, CMD_X(do_add_path), CMD_Y(do_add_path));
-    state = ENDPATH;
   }
   else {
-    state = DRAWPATH;
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_path);
 }
 
@@ -2708,15 +2675,14 @@ COMMAND (do_add_picture)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
 
   filename = x_fileselect_select_image(w_current, NULL);
 
   if (filename != NULL) { /* if user did not cancel */
 
     if (o_picture_set_pixbuf(w_current, filename)) {
-      w_current->inside_action = TRUE;
-      i_status_set_state(w_current, DRAWPICTURE);
+      i_status_set_state(w_current, PICTUREMODE);
     }
     else {
       i_status_set_state(w_current, SELECT);
@@ -2749,7 +2715,7 @@ COMMAND (do_session_new)
 
   x_sessions_new_dialog (w_current);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_new);
@@ -2769,7 +2735,7 @@ COMMAND (do_session_open)
 
   x_sessions_open_dialog (w_current);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_open);
@@ -2796,7 +2762,7 @@ COMMAND (do_session_save)
     i_sessions_save_session (w_current, NULL);
   }
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_save);
@@ -2820,7 +2786,7 @@ COMMAND (do_session_save_as)
     x_sessions_save_as_dialog (w_current);
   }
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_save_as);
@@ -2839,7 +2805,7 @@ COMMAND (do_session_manage)
 
   x_sessions_manage_dialog (w_current);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_manage);
@@ -3321,7 +3287,7 @@ COMMAND (do_embed)
   } else {
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
   }
   EXIT_COMMAND(do_embed);
@@ -3353,7 +3319,7 @@ COMMAND (do_unembed)
   } else {
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
   }
   EXIT_COMMAND(do_unembed);
@@ -3394,7 +3360,7 @@ COMMAND (do_update)
     /* nothing selected, go back to select state */
     u_log_message("Nothing selected\n");
     o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
+    w_current->inside_action = FALSE;
     i_status_set_state(w_current, SELECT);
   }
 

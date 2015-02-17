@@ -76,6 +76,7 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* start the rubberbanding process of the radius */
   o_arc_invalidate_rubber (w_current);
+
   w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
 }
@@ -200,7 +201,7 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
   if (w_current->rubber_visible)
     o_arc_invalidate_rubber (w_current);
 
-  if(grip == ARC_RADIUS) {
+  if (grip == ARC_RADIUS) {
     /*
      * The radius is taken as the biggest distance on the x and y
      * axis between the center of the arc and the mouse position.
@@ -209,7 +210,7 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
     diff_y = abs(w_current->first_wy - snap_grid (w_current, w_y));
     w_current->distance = max(diff_x, diff_y);
   }
-  else if((grip == ARC_START_ANGLE) || (grip == ARC_END_ANGLE)) {
+  else if ((grip == ARC_START_ANGLE) || (grip == ARC_END_ANGLE)) {
     /* compute the angle */
     diff_x = w_x - w_current->first_wx;
     diff_y = w_y - w_current->first_wy;
