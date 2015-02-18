@@ -303,13 +303,14 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
      * is /foo/bar/eek.txt.
      */
 
-    if (!g_path_is_absolute(linkname)) {
+    if (!f_get_is_path_absolute(linkname)) {
+
       char *dirname = NULL;
-      char *tmp = NULL;
+      char *tmp     = NULL;
 
       dirname = f_get_dirname(followed_filename);
+      tmp     = g_build_filename (dirname, linkname, NULL);
 
-      tmp = g_build_filename (dirname, linkname, NULL);
       GEDA_FREE (followed_filename);
       GEDA_FREE (dirname);
       GEDA_FREE (linkname);

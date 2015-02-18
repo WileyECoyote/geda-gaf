@@ -136,7 +136,7 @@ SCM g_rc_component_library(SCM path, SCM name)
   else {
 
     /* Check if path is absolute */
-    if (g_path_is_absolute (directory)) {
+    if (f_get_is_path_absolute (directory)) {
       s_clib_add_directory (directory, namestr);
     }
     else {
@@ -296,7 +296,7 @@ SCM g_rc_source_library(SCM path)
     return SCM_BOOL_F;
   }
 
-  if (g_path_is_absolute (string)) {
+  if (f_get_is_path_absolute (string)) {
     s_slib_add_entry (string);
   }
   else {
@@ -364,13 +364,16 @@ SCM g_rc_source_library_search(SCM path)
 
       if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
         if (s_slib_uniq (fullpath)) {
-          if (g_path_is_absolute (fullpath)) {
+          if (f_get_is_path_absolute (fullpath)) {
             s_slib_add_entry (fullpath);
-          } else {
-            char *cwd = g_get_current_dir ();
-            char *temp;
-            temp = g_build_filename (cwd, fullpath, NULL);
+          }
+          else {
+
+            char *cwd  = g_get_current_dir ();
+            char *temp = g_build_filename (cwd, fullpath, NULL);
+
             s_slib_add_entry (temp);
+
             GEDA_FREE(temp);
             GEDA_FREE(cwd);
           }

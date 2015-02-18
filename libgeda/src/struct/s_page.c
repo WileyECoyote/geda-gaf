@@ -159,7 +159,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   page = geda_page_new();
 
   if (filename != NULL) {
-    if (g_path_is_absolute (filename)) {
+    if (f_get_is_path_absolute (filename)) {
       page->filename = u_string_strdup (filename);
     }
     else {
@@ -196,7 +196,7 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   page = geda_page_new_with_notify();
 
   if (filename != NULL) {
-    if (g_path_is_absolute (filename)) {
+    if (f_get_is_path_absolute (filename)) {
       page->filename = u_string_strdup (filename);
     }
     else {

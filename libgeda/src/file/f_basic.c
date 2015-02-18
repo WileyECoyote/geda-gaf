@@ -549,14 +549,18 @@ char *f_file_normalize_name (const char *name, GError **error)
   rpath = g_string_sized_new (strlen (name));
 
   /* if relative path, prepend current dir */
-  if (!g_path_is_absolute (name)) {
+  if (!f_get_is_path_absolute (name)) {
+
     char *cwd = g_get_current_dir ();
+
     g_string_append (rpath, cwd);
     GEDA_FREE (cwd);
+
     if (!G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1])) {
       g_string_append_c (rpath, DIR_SEPARATOR);
     }
-  } else {
+  }
+  else {
     g_string_append_len (rpath, name, ROOT_MARKER_LEN);
     /* move to first path separator */
     name += ROOT_MARKER_LEN - 1;

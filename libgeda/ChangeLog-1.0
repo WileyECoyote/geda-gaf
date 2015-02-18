@@ -1,5 +1,20 @@
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_basic.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function f_file_normalize_name.
+
+    * src/file/f_file.c:Replace g_path_is_absolute with f_get_is_path_absolute
+      in function f_file_follow_symlinks.
+
+    * src/guile/g_rc.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function g_rc_component_library, g_rc_source_library and g_rc_source_
+      library_search.
+
+    * src/struct/s_page.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function s_page_new and s_page_new_with_notify.
+
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_get.c: Add function f_get_is_path_absolute
 
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
