@@ -1,5 +1,14 @@
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    *  logic/SN: Add some symbols for SN54 and SN74 types
+
+        * logic/SN/SN54AC05-1.sym
+        * logic/SN/SN54AC08-1.sym
+        * logic/SN/SN74AC08-1.sym
+        * logic/SN/SN74AC245-1.sym
+
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
     *  logic/74A: Add some AC and ACT type logic symbols
 
         * logic/74A/74AC00-1.sym:
