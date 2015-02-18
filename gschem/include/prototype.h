@@ -223,7 +223,7 @@ void  g_init_window               (void);
 /* gschem.c */
 typedef void (*geda_atexit_func)(void * data);
 void geda_atexit   (geda_atexit_func func, void * data);
-void main_prog     (void *closure, int argc, char *argv[]);
+//void main_prog     (void *closure, int argc, char *argv[]);
 int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
 

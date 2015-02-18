@@ -88,7 +88,7 @@ void geda_atexit(geda_atexit_func func, void* data)
  *  This function cleans up all memory objects allocated during the
  *  gSchem runtime.
  */
-void gschem_quit(void)
+static void gschem_quit(void)
 {
   GList *list;
   geda_atexit_struct *p;
@@ -123,6 +123,7 @@ void gschem_quit(void)
 
 }
 
+static
 void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
   int   i;
@@ -233,7 +234,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
 }
 
-void gschem( int argc, char *argv[])
+static void gschem( int argc, char *argv[])
 {
   int   argv_index;
   char *input_str     = NULL;
@@ -372,7 +373,7 @@ void gschem( int argc, char *argv[])
   x_stroke_init ();
 #endif /* HAVE_LIBSTROKE */
 
-  /*! \internal Initialize Sessions */
+  /*! \internal Initialize Sessions system */
   i_sessions_init(w_current);
 
   load_documents(w_current, argv_index, argc, argv);
@@ -391,13 +392,14 @@ void gschem( int argc, char *argv[])
   x_dialog_symbol_changed(w_current);
 
 }
+
 /*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description
  *  This function is the main program called from scm_boot_guile.
  *  It handles initializing all libraries and gSchem variables
  *  and passes control to the gtk main loop.
  */
-void main_prog(void *closure, int argc, char *argv[])
+static void main_prog(void *closure, int argc, char *argv[])
 {
   XInitThreads();
 
@@ -454,8 +456,8 @@ void main_prog(void *closure, int argc, char *argv[])
     /* create a main loop */
     main_loop  = g_main_loop_new (NULL, TRUE);
 
-    if (g_main_loop_is_running (main_loop))
-    {
+    if (g_main_loop_is_running (main_loop)) {
+
       gschem_threads_leave();  /* I know, seems backwards */
       /* enter main loop */
       g_main_loop_run(main_loop);
@@ -470,9 +472,9 @@ void main_prog(void *closure, int argc, char *argv[])
 
 /*! \brief Main executable entrance point.
  *  \par Function Description
- *  This is the main function for gSchem. It sets up the Scheme(GUILE)
- *  environment and passes control to via scm_boot_guile to
- *  the#main_prog function.
+ *  This is the main function for gschem. The function sets up the Scheme
+ *  (GUILE) environment and passes control to via scm_boot_guile to the
+ *  #main_prog function.
  */
 int main (int argc, char *argv[])
 {
