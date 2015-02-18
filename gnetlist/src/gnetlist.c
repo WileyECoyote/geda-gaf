@@ -185,9 +185,9 @@ void main_prog(void *closure, int argc, char *argv[])
   u_log_message
   (_("conditions; please see the COPYING file for more details.\n\n"));
 
-  #if defined(__MINGW32__) && defined(DEBUG)
+#if defined(__MINGW32__) && defined(DEBUG)
   printf( "This is the MINGW32 port.\n\n");
-  #endif
+#endif
 
   /* register guile (scheme) functions */
   g_register_funcs();
@@ -220,10 +220,11 @@ void main_prog(void *closure, int argc, char *argv[])
   while (argv[i] != NULL) {
     GError *err = NULL;
 
-    if (g_path_is_absolute(argv[i])) {
+    if (f_get_is_path_absolute(argv[i])) {
       /* Path is already absolute so no need to do any concat of cwd */
       filename = u_string_strdup (argv[i]);
-    } else {
+    }
+    else {
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
@@ -265,9 +266,9 @@ void main_prog(void *closure, int argc, char *argv[])
     exit (1);
   }
 
-  #if DEBUG
+#if DEBUG
   s_page_print_all(pr_current);
-  #endif
+#endif
 
   /* Load basic gnetlist functions */
   scm_primitive_load_path (scm_from_utf8_string ("gnetlist.scm"));
