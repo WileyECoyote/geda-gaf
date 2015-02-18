@@ -260,7 +260,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case(MOUSE_MIDDLE_ACTION):
           /* Only Copy and Move are supported */
-          /* Do not search if shift key is depressed */
+          /* Do not search if shift key is pressed */
           if (!w_current->SHIFTKEY) {
             o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           }
