@@ -138,8 +138,8 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
   /* Load any file listed on command-line */
   for (i = argv_index; i < argc; i++) {
 
-    if (g_path_is_absolute(argv[i]))
-    {
+    if (f_get_is_path_absolute(argv[i])) {
+
       /* Path is already absolute so no need to do any concat of cwd */
       filename = u_string_strdup (argv[i]);
     }
@@ -153,9 +153,12 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
       /* See if user left off our file suffixes */
       const char *ext = f_get_filename_ext(filename);
       if (!ext) {
+
         memset(tmpfilename, 0, sizeof(tmpfilename));
+
         /* Check if file name is valid if ".sch" is added */
         strcpy(tmpfilename, filename);
+
         if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
           filename = tmpfilename;
           if(verbose_mode) {
@@ -165,6 +168,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
         else {
           /* Check if file name is valid if ".sym" is added */
           strcpy(tmpfilename, filename);
+
           if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
             if(verbose_mode) {

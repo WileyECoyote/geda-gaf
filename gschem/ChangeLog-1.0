@@ -1,3 +1,8 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function load_documents.
+
 2015-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_dialog.c: Remove function gschem_marshal_VOID__POINTER_
