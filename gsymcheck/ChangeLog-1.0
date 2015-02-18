@@ -1,3 +1,8 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function main_prog.
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Replace g_strdup_printf with u_string_sprintf, 49
