@@ -25,8 +25,6 @@
 #ifndef __EDA_PANGO_RENDERER_H__
 #define __EDA_PANGO_RENDERER_H__
 
-G_BEGIN_DECLS
-
 #define EDA_TYPE_PANGO_RENDERER (eda_pango_renderer_get_type ())
 #define EDA_PANGO_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDA_TYPE_PANGO_RENDERER, EdaPangoRenderer))
 #define EDA_IS_PANGO_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EDA_TYPE_PANGO_RENDERER))
@@ -50,6 +48,10 @@ struct _EdaPangoRenderer
   /* Private members */
   EdaPangoRendererPrivate *priv;
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 GedaType eda_pango_renderer_get_type   (void) G_GNUC_CONST;
 PangoRenderer *eda_pango_renderer_new  (cairo_t *cr) WARN_UNUSED;
@@ -77,6 +79,8 @@ bool            eda_pango_parse_overbars         (const char *overbar_text,
                                                   PangoAttrList **attr_list,
                                                   char **text);
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !__EDA_PANGO_RENDERER_H__ */

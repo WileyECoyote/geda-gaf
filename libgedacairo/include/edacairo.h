@@ -22,11 +22,13 @@
 #ifndef __EDA_CAIRO_H__
 #define __EDA_CAIRO_H__
 
-G_BEGIN_DECLS
-
 typedef enum {
   EDA_CAIRO_ENABLE_HINTS = 1,
 } EdaCairoFlags;
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 void eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map);
 
@@ -53,5 +55,8 @@ void eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
 void eda_cairo_path (cairo_t *cr, int flags, double line_width, int nsections,
                      PATH_SECTION *sections);
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
 #endif /* !__EDA_CAIRO_H__ */
