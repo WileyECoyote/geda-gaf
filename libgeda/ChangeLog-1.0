@@ -1,3 +1,7 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Add function f_get_is_path_absolute
+
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Define NEAR_DISTANCE as 5 units, this is

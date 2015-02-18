@@ -589,7 +589,7 @@ const char *f_get_filename_ext(const char *filename)
 /*! \brief Get the file header string.
  *  \par Function Description
  *  This function returns the PACKAGE_DATE_VERSION and
- *#FILEFORMAT_VERSION formatted as a gEDA file header.
+ *  #FILEFORMAT_VERSION formatted as a gEDA file header.
  *
  *  \remarks <em>Do not</em> free the returned string.
  */
@@ -602,4 +602,42 @@ const char *f_get_format_header()
                              FILEFORMAT_VERSION);
 
   return header;
+}
+
+/*! \brief Get is Path absolute
+ *  \par Function description
+ *  Determines if the path of the given file name is absolute or relative.
+ *
+ *  \param [in] filename The filename to interrogate.
+ *
+ *  \returns TRUE if \a filename is absolute
+ */
+bool f_get_is_path_absolute (const char *filename)
+{
+  bool result;
+
+  if (filename == NULL) {
+    result = FALSE;
+  }
+  else {
+
+    if (G_IS_DIR_SEPARATOR (filename[0])) {
+      result = TRUE;
+    }
+    else {
+      result = FALSE;
+    }
+
+#ifdef OS_WIN32
+    /* Recognize drive letter on native Windows */
+    if (isalpha (filename[0]) && filename[1] == ':') {
+      if (G_IS_DIR_SEPARATOR (filename[2])) {
+        result = TRUE;
+      }
+    }
+#endif
+
+  }
+
+  return result;
 }

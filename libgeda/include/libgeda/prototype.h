@@ -28,6 +28,7 @@ G_BEGIN_DECLS
          bool    f_get_file_contents             (const char *filename, char **contents, unsigned int *length, GError **err);
    const char   *f_get_filename_ext              (const char *filename);
    const char   *f_get_format_header             (void);
+         bool    f_get_is_path_absolute          (const char *filename);
 
 /* f_path.c */
          void    f_path_free                     (void);
