@@ -1,3 +1,19 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  logic/74A: Add some AC and ACT type logic symbols
+
+        * logic/74A/74AC00-1.sym:
+        * logic/74A/74AC04-1.sym:
+        * logic/74A/74AC05-1.sym:
+        * logic/74A/74AC08-1.sym:
+        * logic/74A/74AC14-1.sym:
+        * logic/74A/74AC86-1.sym:
+        * logic/74A/74AC244-1.sym:
+        * logic/74A/74AC245-1.sym:
+        * logic/74A/74AC541-1.sym:
+        * logic/74A/74AC573-1.sym:
+        * logic/74A/74ACT05-1.sym:
+
 2015-02-16 Onno Kortmann <onno@gmx.net>
 
     * atmel/ATMega16L-1.sym: WEH: Apply update per Onno, from master branch
