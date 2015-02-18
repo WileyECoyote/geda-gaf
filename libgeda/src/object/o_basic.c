@@ -437,8 +437,7 @@ GList *o_read (GedaToplevel *toplevel, GList *object_list, char *filename,
   return result;
 }
 
-/*! \todo Finish documentation!!!!
- *  \brief
+/*! \brief Make a Copy a GedaObject
  *  \par Function Description
  *  returns head !!!!!!!!!!!!!!!!!!!
  *  look at above.. this returns what was passed in!!!!
@@ -504,7 +503,6 @@ Object *o_copy_object (Object *selected)
       BUG_IMSG("Bad object type '%c'", selected->type);
       return NULL;
   }
-
 
   new_obj->color             = selected->color;
   new_obj->dont_redraw       = selected->dont_redraw;
