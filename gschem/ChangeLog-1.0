@@ -1,5 +1,10 @@
 2015-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_dialog.c: Remove function gschem_marshal_VOID__POINTER_
+      STRING, use geda_marshal_VOID__POINTER_STRING library function instead.
+
+2015-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem.c: Make functions main_prog, gschem_quit and load_documents
       static, minor revisions to comments.
 

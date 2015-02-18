@@ -21,44 +21,8 @@
 #include <gschem.h>
 #include <gschem_dialog.h>
 #include <gschem_xdefines.h>
+#include <geda_marshal.h>
 #include <geda_debug.h>
-
-/* Signal marshaller based on generated code from glib-genmarshal */
-static void
-gschem_marshal_VOID__POINTER_STRING (GClosure     *closure,
-                                     GValue       *return_value,
-                                     unsigned int  n_param_values,
-                                     const GValue *param_values,
-                                     void         *invocation_hint,
-                                     void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *data1,
-                                                     void *arg_1,
-                                                     void *arg_2,
-                                                     void *data2);
-  register GMarshalFunc_VOID__POINTER_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  } else {
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_value_get_pointer (param_values + 1),
-            (char*)g_value_get_string (param_values + 2),
-            data2);
-}
-/* End section based on generated code from glib-genmashal */
-
 
 enum {
   GEOMETRY_SAVE,
@@ -66,7 +30,7 @@ enum {
   LAST_SIGNAL
 };
 
-static unsigned int gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
+static unsigned int  gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *gschem_dialog_parent_class = NULL;
 
 /*! \brief GschemDialog "geometry_save" class method handler
@@ -88,7 +52,6 @@ static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_nam
   eda_config_set_integer (cfg, group_name, "width", width);
   eda_config_set_integer (cfg, group_name, "height", height);
 }
-
 
 /*! \brief GschemDialog "geometry_restore" class method handler
  *  \par Function Description
@@ -116,6 +79,7 @@ geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
   }
 }
 
+/*! \brief Return True if dialog is derived from GschemDialog Class */
 bool is_a_gschem_dialog (void *dialog)
 {
   GschemDialog *ptr = (GschemDialog*)dialog;
@@ -353,7 +317,7 @@ static void unmap_handler (GtkWidget *widget)
  *  \note This is an on-instance bases so only one of the if's
  *        can be true for a given child instance.
  */
-void set_gschem_dialog_null(void *dialog)
+static void set_gschem_dialog_null(void *dialog)
 {
     GschemToplevel *w_current = ((GschemDialog*)dialog)->w_current;
 
@@ -574,7 +538,7 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                   G_STRUCT_OFFSET( GschemDialogClass, geometry_save ),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
-                  gschem_marshal_VOID__POINTER_STRING,
+                  geda_marshal_VOID__POINTER_STRING,
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
@@ -588,7 +552,7 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                   G_STRUCT_OFFSET( GschemDialogClass, geometry_restore ),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
-                  gschem_marshal_VOID__POINTER_STRING,
+                  geda_marshal_VOID__POINTER_STRING,
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
@@ -693,7 +657,6 @@ GedaType gschem_dialog_get_type ()
 
   return gschem_dialog_type;
 }
-
 
 /*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to support gschem_dialog_new_with_buttons(...)
