@@ -890,7 +890,6 @@ double o_text_get_font_size_in_points (Object *object)
  *  \returns TRUE is the results are valid, FALSE if \a object was not a Text,
  *           of if the bounds is not set on the Text.
  */
-bool o
 bool o_text_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 {
   bool result;
