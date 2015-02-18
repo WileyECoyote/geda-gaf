@@ -1,3 +1,7 @@
+2014-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/functions/geda_marshal.c: Add marshal VOID:POINTER,STRING
+
 2014-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Replace g_strdup_printf with u_string_sprintf
