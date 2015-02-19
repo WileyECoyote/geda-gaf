@@ -1,5 +1,12 @@
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * onsemi/NUP4201MR6-3.sym: Add dash 3 version (from dash 2), swaping pin
+      locations for pin 4 & 5 so both VP and VN are on the bottom of symbol.
+
+    * onsemi/NUP4201MR6-?.sym: General revisions, update pin types.
+
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
     *  logic/SN: Add some symbols for SN54 and SN74 types
 
         * logic/SN/SN54AC05-1.sym

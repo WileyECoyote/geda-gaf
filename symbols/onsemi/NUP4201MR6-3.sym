@@ -1,30 +1,30 @@
 v 20150101 2
 B 300 100 1700 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 1350 5 10 1 1 0 0 1
+T 300 1500 5 10 1 1 0 0 1
 device=NUP4201MR6
-T 1000 600 8 10 1 1 0 0 1
+T 300 1650 8 10 1 1 0 0 1
 refdes=U?
-T 300 1750 5 10 0 0 0 0 1
+T 300 1850 5 10 0 0 0 0 1
 description=Protection Diodes
-T 300 1950 5 10 0 0 0 0 1
+T 300 2050 5 10 0 0 0 0 1
 documentation=http://www.onsemi.com/pub_link/Collateral/NUP4201DR2-D.PDF
-T 300 1550 5 10 1 1 0 0 1
+T 300 1350 5 10 1 1 0 0 1
 footprint=TSOP6
 T 650 150 9 10 0 0 0 0 1
 numslots=0
-T 300 2150 5 10 0 0 0 0 1
+T 300 2250 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 2350 5 10 0 0 0 0 1
+T 300 2450 5 10 0 0 0 0 1
 use-license=unlimited
-T 300 2550 5 10 0 0 0 0 1
+T 300 2650 5 10 0 0 0 0 1
 author=AutoTron
 P 0 1000 300 1000 1 0 0
 {
 T 350 1000 9 14 1 1 0 1 1
 pinlabel=IO1
-T 100 1050 5 8 1 1 0 6 1
+T 150 1050 5 8 1 1 0 6 1
 pinnumber=1
-T 100 1050 5 8 0 1 0 6 1
+T 150 1050 5 8 0 1 0 6 1
 pinseq=1
 T 275 875 5 8 0 1 0 6 1
 pintype=pas
@@ -33,9 +33,9 @@ P 0 400 300 400 1 0 0
 {
 T 350 400 9 14 1 1 0 1 1
 pinlabel=VN
-T 100 450 5 8 1 1 0 6 1
+T 150 450 5 8 1 1 0 6 1
 pinnumber=2
-T 100 450 5 8 0 1 0 6 1
+T 150 450 5 8 0 1 0 6 1
 pinseq=2
 T 275 275 5 8 0 1 0 6 1
 pintype=pwr
@@ -44,33 +44,33 @@ P 0 700 300 700 1 0 0
 {
 T 350 700 9 14 1 1 0 1 1
 pinlabel=IO3
-T 100 750 5 8 1 1 0 6 1
+T 150 750 5 8 1 1 0 6 1
 pinnumber=3
-T 100 750 5 8 0 1 0 6 1
+T 150 750 5 8 0 1 0 6 1
 pinseq=3
 T 275 575 5 8 0 1 0 6 1
-pintype=pas
-}
-P 2300 400 2000 400 1 0 0
-{
-T 1950 400 9 14 1 1 0 7 1
-pinlabel=IO2
-T 2200 450 5 8 1 1 0 0 1
-pinnumber=4
-T 2200 450 5 8 0 1 0 0 1
-pinseq=4
-T 2025 275 5 8 0 1 0 0 1
 pintype=pas
 }
 P 2300 700 2000 700 1 0 0
 {
 T 1950 700 9 14 1 1 0 7 1
-pinlabel=VP
+pinlabel=IO2
 T 2200 750 5 8 1 1 0 0 1
-pinnumber=5
+pinnumber=4
 T 2200 750 5 8 0 1 0 0 1
-pinseq=5
+pinseq=4
 T 2025 575 5 8 0 1 0 0 1
+pintype=pas
+}
+P 2300 400 2000 400 1 0 0
+{
+T 1950 400 9 14 1 1 0 7 1
+pinlabel=VP
+T 2200 450 5 8 1 1 0 0 1
+pinnumber=5
+T 2200 450 5 8 0 1 0 0 1
+pinseq=5
+T 2025 275 5 8 0 1 0 0 1
 pintype=pwr
 }
 P 2300 1000 2000 1000 1 0 0
