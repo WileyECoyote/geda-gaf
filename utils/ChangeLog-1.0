@@ -1,3 +1,8 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschlas/gschlas.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function main_prog.
+
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * gsch2pdf/junction.c: Eliminate toplevel "current" variable for junction_locate
