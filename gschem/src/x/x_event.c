@@ -456,6 +456,7 @@ bool x_event_button_released (GtkWidget      *widget,
           w_x = snap_grid (w_current, unsnapped_wx);
           w_y = snap_grid (w_current, unsnapped_wy);
           o_path_end (w_current, w_x, w_y);
+          break;
 
         case(ZOOMBOX):
           i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
