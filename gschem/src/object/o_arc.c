@@ -74,11 +74,9 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
   /* set the start and end angles */
   w_current->second_wx = w_current->second_wy = 0;
 
-  /* start the rubberbanding process of the radius */
-  o_arc_invalidate_rubber (w_current);
-
   w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
+  w_current->which_grip     = ARC_RADIUS;
 }
 
 /*! \brief End the input of an arc.
@@ -102,8 +100,8 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action) {
 
-    /* Set flag erases the previous temporary radius segment */
-    w_current->rubber_visible = 0;
+    w_current->inside_action  = FALSE;
+    w_current->rubber_visible = FALSE;
 
     /* ack! zero length radius */
     if (w_current->distance != 0) {
@@ -112,7 +110,6 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
       x_dialog_edit_arc_angle(w_current, NULL);
 
     }
-    w_current->inside_action = FALSE;
   }
   else {
     BUG_MSG("Not inside action");
@@ -144,14 +141,12 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
   s_page_append_object (toplevel->page_current, new_obj);
 
-  w_current->first_wx  = -1;
-  w_current->first_wy  = -1;
+  w_current->first_wx = -1;
+  w_current->first_wy = -1;
   w_current->distance = 0;
 
   /* Call add-objects-hook */
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  toplevel->page_current->CHANGED = 1;
 
   o_undo_savestate(w_current, UNDO_ALL);
 }
@@ -203,14 +198,16 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
 
   if (grip == ARC_RADIUS) {
     /*
-     * The radius is taken as the biggest distance on the x and y
+     * The radius is taken as the largest distance on the x and y
      * axis between the center of the arc and the mouse position.
      */
     diff_x = abs(w_current->first_wx - snap_grid (w_current, w_x));
     diff_y = abs(w_current->first_wy - snap_grid (w_current, w_y));
+
     w_current->distance = max(diff_x, diff_y);
   }
   else if ((grip == ARC_START_ANGLE) || (grip == ARC_END_ANGLE)) {
+
     /* compute the angle */
     diff_x = w_x - w_current->first_wx;
     diff_y = w_y - w_current->first_wy;
@@ -234,7 +231,7 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
 
   /* draw the new temporary arc */
   o_arc_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief Draw arc from GschemToplevel object.
@@ -254,25 +251,25 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
   int rdx, rdy;
   double wwidth = 0;
 
+  int x1 = w_current->first_wx;
+  int y1 = w_current->first_wy;
+  int x2 = w_current->second_wx;
+  int y2 = w_current->second_wy;
+
   cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
   int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
 
-  eda_cairo_arc (cr, flags, wwidth,
-                 w_current->first_wx, w_current->first_wy,
-                 w_current->distance,
-                 w_current->second_wx, w_current->second_wy);
+  eda_cairo_arc (cr, flags, wwidth, x1, y1, w_current->distance, x2, y2);
 
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
 
   /* draw the radius line */
-  rad_angle = ((double) w_current->second_wx) * M_PI / 180;
+  rad_angle = ((double) x2) * M_PI / 180;
   rdx = (double) w_current->distance * cos (rad_angle);
   rdy = (double) w_current->distance * sin (rad_angle);
 
-  eda_cairo_line (cr, flags, END_NONE, wwidth,
-                  w_current->first_wx, w_current->first_wy,
-                  w_current->first_wx + rdx, w_current->first_wy + rdy);
+  eda_cairo_line (cr, flags, END_NONE, wwidth, x1, y1, x1 + rdx, y1 + rdy);
 
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
 }
