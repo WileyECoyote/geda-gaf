@@ -128,19 +128,8 @@ int x_event_button_pressed(GtkWidget      *widget,
     }
 
     switch(w_current->event_state) {
-
-      case(SELECT):
-        /* look for grips or fall through if not enabled */
-        if (o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-          /* a grip was found */
-          w_current->event_state   = GRIPS;
-        }
-        else {
-          /* now go into normal SELECT */
-          w_current->event_state = STARTSELECT;
-          w_current->first_wx = w_current->second_wx = unsnapped_wx;
-          w_current->first_wy = w_current->second_wy = unsnapped_wy;
-        }
+      case (SELECT):
+        o_select_start(w_current, unsnapped_wx, unsnapped_wy);
         break;
 
       case(DESELECT):
@@ -204,13 +193,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_pan_world(w_current, w_x, w_y);
         i_status_set_state(w_current, SELECT);
         break;
-/*
-      case(ZOOMBOXSTART):
-        o_redraw_cleanstates(w_current);
-        i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
-        i_status_set_state(w_current, ZOOMBOXEND);
-        break;
-*/
+
       case(STARTBREAK):
         i_status_set_state(w_current, o_break_start(w_current, unsnapped_wx, unsnapped_wy));
         break;
@@ -452,17 +435,7 @@ bool x_event_button_released (GtkWidget      *widget,
         break;
 
       case(STARTSELECT):
-
-        /* first look for grips */
-        if (o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-          /* a grip was found */
-          w_current->event_state   = GRIPS;
-        }
-        else {
-          /* look for objects to select, TRUE = add to page selection */
-          o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
-          w_current->event_state   = SELECT;
-        }
+        o_select_end(w_current, unsnapped_wx, unsnapped_wy);
         break;
 
       case STARTDND:
@@ -1022,45 +995,22 @@ bool x_event_motion (GtkWidget      *widget,
       break;
 
     case(STARTSELECT):
-      if ( (!w_current->drag_can_move) || (w_current->drag_can_move &&
-         (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy))))
-      {
-        if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
-          w_current->event_state = SBOX;
+
+      if (o_select_motion (w_current, unsnapped_wx, unsnapped_wy)) {
+
+        /* Start moving the selected object(s) */
+        if (o_move_start(w_current, w_x, w_y)) {
+          w_current->event_state = ENDMOVE;
         }
-        break;
+        if (w_current->drag_event) {
+          gdk_event_free(w_current->drag_event);
+        }
+        w_current->drag_event = gdk_event_copy( (GdkEvent*)event);
       }
       else {
-        /* If the shift or control keys are pressed, that means the user
-         * definitely wants to drag out a selection box.  Otherwise, if
-         * there is not a selected object under the cursor, look for one
-         * that could be selected and start moving it.
-         */
-        if (w_current->SHIFTKEY ||
-            w_current->CONTROLKEY ||
-           (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy) &&
-           (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE) ||
-            !o_select_is_selection(w_current)))
-           )
-        {
-          if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
-            w_current->event_state = SBOX;
-          }
-          break;
-        }
-        else
-        {
-          /* Start moving the selected object(s) */
-          if (o_move_start(w_current, w_x, w_y)) {
-            w_current->event_state = ENDMOVE;
-          }
-          if (w_current->drag_event) {
-            gdk_event_free(w_current->drag_event);
-          }
-          w_current->drag_event = gdk_event_copy( (GdkEvent*)event);
-          /* Fall through bottom of case to finish the move */
-        }
+        break;
       }
+
       /* Fall through to handle move */
       case(ENDMOVE):
       case(MOVE):

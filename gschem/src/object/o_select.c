@@ -262,6 +262,127 @@ o_select_add_object(GschemToplevel *w_current, Object *object)
   }
 }
 
+/*! \brief Start the process of selection
+ *  \par Function Description
+ *  Chooses the way of how to start the selection process. If no
+ *  grip was found at the given coordinates the function toggles
+ *  the current state into the STARTSELECT mode in order to define
+ *  what to do farther. Otherwise, it switches on the GRIPS mode
+ *  for working with the grip found.
+ *
+ *  The function is intended to be called by pressing the left
+ *  mouse button.
+ *
+ *  \param [in] w_current The GschemToplevel structure.
+ *  \param [in] wx        The unsnapped X coordinate.
+ *  \param [in] wy        The unsnapped Y coordinate.
+ */
+void o_select_start (GschemToplevel *w_current, int wx, int wy)
+{
+  if (!o_grips_start(w_current, wx, wy)) {
+    /* now go into normal SELECT */
+    w_current->first_wx = w_current->second_wx = wx;
+    w_current->first_wy = w_current->second_wy = wy;
+    i_status_set_state (w_current, w_current->event_state = STARTSELECT);
+  }
+}
+
+/*! \brief End the process of selection
+ *  \par Function Description
+ *  Finishes the process of selection if the \a o_select_start()
+ *  or \a o_select_motion() functions haven't defined other
+ *  functions to finish it. If no grip was found at the given
+ *  coordinates the function tries to find an object under the
+ *  mouse pointer and select it.  Otherwise, it switches on the
+ *  GRIPS mode for working with the grip found.
+ *
+ *  The function is intended to be called by releasing the left
+ *  mouse button.
+ *
+ *  \param [in] w_current The GschemToplevel structure.
+ *  \param [in] wx        The world X coordinate.
+ *  \param [in] wy        The world Y coordinate.
+ */
+void o_select_end (GschemToplevel *w_current, int wx, int wy)
+{
+  int state;
+
+  /* first look for grips */
+  if (!o_grips_start(w_current, wx, wy)) {
+    /* look for objects to select */
+    o_find_object(w_current, wx, wy, TRUE);
+    state = SELECT;
+  }
+  else { /* an grip was found */
+
+    w_current->inside_action = TRUE;
+    state = GRIPS;
+  }
+
+  i_status_set_state (w_current, w_current->event_state = state);
+}
+
+/*! \brief Determine whether objects have to be selected or moved
+ *  \par Function Description
+ *  Checks if the shift or control keys are pressed, (that means
+ *  the user definitely wants to drag out a selection box), or
+ *  there are no selected objects under the cursor. In that case
+ *  the function starts drawing the selection box. Otherwise, it
+ *  looks for the objects that have been or could be selected and
+ *  starts moving them.
+ *
+ *  The function is intended to be called by motion of the mouse
+ *  while the left mouse button is pressed.
+ *
+ *  \param [in] w_current The GschemToplevel structure.
+ *  \param [in] wx        The world X coordinate.
+ *  \param [in] wy        The world Y coordinate.
+ */
+bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
+{
+  Object *selected;
+
+  bool result;
+
+  int x1 = w_current->first_wx;
+  int y1 = w_current->first_wy;
+
+  selected = o_find_selected_object(w_current, x1, y1);
+
+  if ((!w_current->drag_can_move) ||
+      (w_current->drag_can_move && (!selected)))
+  {
+    if (o_select_box_start(w_current, wx, wy)) {
+      w_current->event_state = SBOX;
+    }
+    result = FALSE;
+  }
+  else {
+    /* If the shift or control keys are pressed, that means the user
+     * definitely wants to drag out a selection box.  Otherwise, if
+     * there is not a selected object under the cursor, look for one
+     * that could be selected and start moving it.
+     */
+    if (w_current->SHIFTKEY   ||
+        w_current->CONTROLKEY ||
+       (!selected &&
+       (!o_find_object(w_current, x1, y1, TRUE) ||
+        !o_select_is_selection(w_current))))
+    {
+      if (o_select_box_start(w_current, wx, wy)) {
+        w_current->event_state = SBOX;
+      }
+      result = FALSE;
+    }
+    else
+    {
+      result = TRUE;
+    }
+  }
+
+  return result;
+}
+
 /*! \brief Start Windowed/Box Selection
  *  \par Function Description
  *  Similar to other "event" start routines, this function is used to
@@ -273,14 +394,14 @@ o_select_add_object(GschemToplevel *w_current, Object *object)
 int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int status;
-  int diff_x, diff_y;
+  int dx, dy;
 
-  diff_x = abs(w_current->first_wx - w_x);
-  diff_y = abs(w_current->first_wy - w_y);
+  dx = abs(w_current->first_wx - w_x);
+  dy = abs(w_current->first_wy - w_y);
 
   /* if we are still close to the button press location,
    *     then don't enter the selection box mode */
-  if (SCREENabs (w_current, max(diff_x, diff_y)) < 10) {
+  if (SCREENabs (w_current, max(dx, dy)) < 10) {
     status = FALSE;
   }
   else {

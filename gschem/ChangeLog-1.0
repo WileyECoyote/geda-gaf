@@ -1,10 +1,25 @@
-2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Revised similar to modifications to the Master branch
+      by Vladimir Zhbanov, see commit fcc3fe82dcd10de37857291fbff8fc7614b7cfab
+      The basic concept is to relocate code from case handlers in event loops
+      to the o_select module in order to improve readability of code in the
+      x_event module, (and potentially linearize handlers). The Rampage version
+      of gschem handles selection slightly differently than the Master branch;
+      drag moving can be disabled with drag_can_move (because sometimes things
+      get moved unintentionally), and the Rampage version supports drag-and-drop
+      events.
+
+    * src/object/o_select.c: Add functions o_select_start, o_select_end, and
+      o_select_motion.
+
+2015-02-19 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/x/x_event.c: WEH modified per commit
       b2f81084e8c8009afa2d4cb4541838385bd2bc7a by Vladimir Zhbanov. (Basically
       move case for ZOOMBOX to existing conditional for inside action.
 
-2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+2015-02-19 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * WEH Applied patch by Vladimir eliminate superflorous ZOOM states, similar
       to what was done to the "adder" event states. See commit by Vladimir in;
