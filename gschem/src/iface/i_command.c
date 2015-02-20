@@ -1683,22 +1683,19 @@ COMMAND (do_pan)
 COMMAND (do_zoom_box)
 {
   BEGIN_W_COMMAND(do_zoom_box);
-  int state;
 
   o_select_unselect_all (w_current);
   o_redraw_cleanstates(w_current);
 
+  i_status_set_state(w_current, ZOOMBOX);
+
   if HOT_ACTION (do_zoom_box) {
     i_zoom_world_box_start (w_current, CMD_X(do_zoom_box), CMD_Y(do_zoom_box));
-    w_current->inside_action = TRUE;
-    state = ZOOMBOXEND;
   }
   else {
     w_current->inside_action = FALSE;
-    state = ZOOMBOXSTART;
   }
 
-  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_zoom_box);
 }
 /*! \brief Zoom Extents Action Function in i_command_View_Actions
@@ -1710,7 +1707,7 @@ COMMAND (do_zoom_selected)
   BEGIN_W_COMMAND(do_zoom_selected);
   /* scroll bar stuff */
   const GList *selection;
-  //    SELECTION *
+
   selection = Current_Selection->glist;
   i_zoom_world_extents (w_current, selection, 0);
   if (w_current->undo_panzoom)

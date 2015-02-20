@@ -66,7 +66,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ENDTEXT ):
     case ( ENDPASTE ):
     case ( GRIPS ):
-    case ( ZOOMBOXEND ):
 
     case ( NETMODE ):
     case ( PINMODE ):
@@ -111,7 +110,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     /* all remaining states without dc changes */
     case ( NONE ):
     case ( SELECT ):
-    case ( ZOOM ):
     case ( PAN ):
     case ( ENDMIRROR ):
     case ( ENDROTATE ):
@@ -122,7 +120,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( STARTPASTE ):
     case ( STARTDESELECT ):
     case ( STARTSELECT ):
-    case ( ZOOMBOXSTART ):
+    case ( ZOOMBOX ):
       return FALSE;
   }
   return FALSE;
@@ -355,7 +353,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           o_select_box_draw_rubber (w_current);
           break;
 
-        case ZOOMBOXEND:
+        case ZOOMBOX:
           i_zoom_world_box_draw_rubber (w_current);
           break;
 

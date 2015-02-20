@@ -150,9 +150,9 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Rotate Mode");
     case ENDMIRROR:
       return _("Mirror Mode");
-    case ZOOM:
-    case ZOOMBOXEND:
-    case ZOOMBOXSTART:
+    case ZOOMBOX:
+//   case ZOOMBOXEND:
+//   case ZOOMBOXSTART:
       return _("Zoom Box");
     case PAN:
       return _("Pan Mode");

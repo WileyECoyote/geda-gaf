@@ -121,6 +121,8 @@ int x_event_button_pressed(GtkWidget      *widget,
         case (PATHMODE)   : o_path_start    (w_current, w_x, w_y); break;
         case (PICTUREMODE): o_picture_start (w_current, w_x, w_y); break;
         case (BUSMODE)    : o_bus_start     (w_current, w_x, w_y); break;
+        case (ZOOMBOX):
+         i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy); break;
         default: break;
       }
     }
@@ -202,13 +204,13 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_pan_world(w_current, w_x, w_y);
         i_status_set_state(w_current, SELECT);
         break;
-
+/*
       case(ZOOMBOXSTART):
         o_redraw_cleanstates(w_current);
         i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, ZOOMBOXEND);
         break;
-
+*/
       case(STARTBREAK):
         i_status_set_state(w_current, o_break_start(w_current, unsnapped_wx, unsnapped_wy));
         break;
@@ -440,7 +442,7 @@ bool x_event_button_released (GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(ZOOMBOXEND):
+      case(ZOOMBOX):
         i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, SELECT);
         break;
@@ -997,6 +999,8 @@ bool x_event_motion (GtkWidget      *widget,
       case(PATHMODE)   :   o_path_motion    (w_current, w_x, w_y); break;
       case(PICTUREMODE):   o_picture_motion (w_current, w_x, w_y); break;
       case(BUSMODE)    :   o_bus_motion     (w_current, w_x, w_y); break;
+      case(ZOOMBOX):
+          i_zoom_world_box_motion (w_current, unsnapped_wx, unsnapped_wy);
       default: break;
     }
   }
@@ -1078,11 +1082,6 @@ bool x_event_motion (GtkWidget      *widget,
       case(SBOX):
         if (w_current->inside_action)
           o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy);
-        break;
-
-      case(ZOOMBOXEND):
-        if (w_current->inside_action)
-          i_zoom_world_box_motion (w_current, unsnapped_wx, unsnapped_wy);
         break;
   }
 

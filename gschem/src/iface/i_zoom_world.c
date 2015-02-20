@@ -302,7 +302,7 @@ void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
   if (w_current->inside_action) {
 
     i_zoom_world_box_invalidate_rubber (w_current);
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     i_zoom_world_box(w_current, 0);
 

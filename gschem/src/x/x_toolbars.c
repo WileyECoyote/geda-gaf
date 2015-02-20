@@ -1723,7 +1723,6 @@ x_toolbars_update(GschemToplevel *w_current)
       break;
     case(MOVE):
     case(COPY):
-    case(ZOOM):
     case(PAN):
     case(STARTCOPY):
     case(STARTMOVE):
@@ -1733,8 +1732,7 @@ x_toolbars_update(GschemToplevel *w_current)
     case(ENDTEXT):
     case(ENDROTATE):
     case(ENDMIRROR):
-    case(ZOOMBOXSTART):
-    case(ZOOMBOXEND):
+    case(ZOOMBOX):
     case(STARTPASTE):
     case(ENDPASTE):
     case(GRIPS):

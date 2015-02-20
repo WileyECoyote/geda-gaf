@@ -1,3 +1,9 @@
+2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/iface/i_command.c: WEH Applied patch by Vladimir eliminate superflorous
+      ZOOM states, similar to what was done to the "adder" event states. See commit
+      by Vladimir; 5c17c036b2976d75628c7687e853d1a7720f4f60;
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Replace g_path_is_absolute with f_get_is_path_absolute
