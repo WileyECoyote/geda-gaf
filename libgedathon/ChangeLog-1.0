@@ -1,3 +1,8 @@
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/src/libgedathon.c: Replace g_path_is_absolute with f_get_is_path_absolute
+      in function PyGeda_append_symbol_path.
+
 2015-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gsym-set-font-size.py: Remove superfluous verbage in help
