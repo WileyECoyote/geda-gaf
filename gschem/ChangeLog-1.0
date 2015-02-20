@@ -1,5 +1,9 @@
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dnd.c: Add missing break in x_dnd_drag_end for case ENDCOPY
+
+2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_event.c: Revised similar to modifications to the Master branch
       by Vladimir Zhbanov, see commit fcc3fe82dcd10de37857291fbff8fc7614b7cfab
       The basic concept is to relocate code from case handlers in event loops

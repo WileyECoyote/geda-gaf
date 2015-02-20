@@ -926,20 +926,22 @@ void x_dnd_drag_end
   switch (w_current->dnd_save_state) {
     case ENDCOPY:
       o_copy_cancel (w_current);
+      break;
+
     case ENDMOVE:
       if (w_current->event_state != ENDDND_MOVE_OBJ) {
-
         o_move_cancel (w_current);
       }
-        break;
+      break;
+
     case ENDCOMP:
     default:
       break;
   }
 
   if (w_current->dnd_state) {
-    w_current->event_state = w_current->dnd_state;
-    w_current->inside_action = 1;
+    w_current->event_state   = w_current->dnd_state;
+    w_current->inside_action = TRUE;
   }
 
   o_invalidate_all (w_current);
