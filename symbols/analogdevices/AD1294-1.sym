@@ -154,9 +154,9 @@ pinnumber=14
 T 1350 50 5 8 0 1 0 0 1
 pinseq=14
 }
-T 2000 2700 5 10 1 1 0 6 1
-device=AD1293
-T 100 3300 5 10 0 0 0 0 1
+T 2000 2700 9 10 1 1 0 6 1
+AD1293
+T 100 3500 5 10 0 0 0 0 1
 dist-license=GPL-3
 T 100 2900 5 10 0 0 0 0 1
 numslots=0
@@ -164,9 +164,11 @@ T 2000 2900 8 10 1 1 0 6 1
 refdes=U?
 T 100 3100 5 10 0 0 0 0 1
 description=Power Monitor with PMBus Interface
-T 100 3700 5 10 0 0 0 0 1
+T 100 3900 5 10 0 0 0 0 1
 author=AutoTron
 T 2000 2500 9 10 1 1 0 6 1
 footprint=TSSOP14
-T 100 3500 5 10 0 0 0 0 1
+T 100 3700 5 10 0 0 0 0 1
 use-license=unlimited
+T 100 3300 5 10 0 0 0 0 1
+device=AD1293

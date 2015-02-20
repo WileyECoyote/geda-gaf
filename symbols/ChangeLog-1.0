@@ -1,3 +1,17 @@
+2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD1294-1.sym: Revert back to not using device
+      attribute for the device label.
+
+    * analogdevices/AD1294-2.sym: Revert back to not using device
+      attribute for the device label.
+
+    * analogdevices/AD1293-1.sym: Revert back to not using device
+      attribute for the device label.
+
+    * analogdevices/AD1293-2.sym: Revert back to not using device
+      attribute for the device label.
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/NUP4201MR6-3.sym: Add dash 3 version (from dash 2), swaping pin

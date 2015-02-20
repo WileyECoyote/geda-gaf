@@ -176,9 +176,9 @@ pinnumber=16
 T 800 2975 5 8 0 1 0 0 1
 pinseq=16
 }
-T 2025 1575 5 10 1 1 0 6 1
-device=AD1293
-T 100 3600 5 10 0 0 0 0 1
+T 2025 1575 9 10 1 1 0 6 1
+AD1293
+T 100 3800 5 10 0 0 0 0 1
 dist-license=GPL-3
 T 100 3200 5 10 0 0 0 0 1
 numslots=0
@@ -186,9 +186,11 @@ T 1775 1775 8 10 1 1 0 6 1
 refdes=U?
 T 100 3400 5 10 0 0 0 0 1
 description=Power Monitor with PMBus Interface
-T 100 4000 5 10 0 0 0 0 1
+T 100 4200 5 10 0 0 0 0 1
 author=AutoTron
 T 1950 1350 9 10 1 1 0 6 1
 footprint=LFCSP
-T 100 3800 5 10 0 0 0 0 1
+T 100 4000 5 10 0 0 0 0 1
 use-license=unlimited
+T 100 3600 5 10 0 0 0 0 1
+device=AD1293
