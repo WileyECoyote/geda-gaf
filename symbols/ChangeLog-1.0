@@ -1,5 +1,9 @@
 2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/filter/NFE31P-1.sym: Fix incorrect designator prefix
+
+2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * analogdevices/AD1294-1.sym: Revert back to not using device
       attribute for the device label.
 
