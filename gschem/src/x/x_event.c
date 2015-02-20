@@ -442,11 +442,6 @@ bool x_event_button_released (GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(ZOOMBOX):
-        i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
-        i_status_set_state(w_current, SELECT);
-        break;
-
       case(STARTDESELECT):
         object = o_find_selected_object(w_current, unsnapped_wx, unsnapped_wy);
         if (object) {
@@ -488,6 +483,11 @@ bool x_event_button_released (GtkWidget      *widget,
           w_x = snap_grid (w_current, unsnapped_wx);
           w_y = snap_grid (w_current, unsnapped_wy);
           o_path_end (w_current, w_x, w_y);
+
+        case(ZOOMBOX):
+          i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
+          i_status_set_state(w_current, SELECT);
+          break;
 
         default:
           break;

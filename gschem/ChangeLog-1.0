@@ -1,8 +1,14 @@
 2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * src/iface/i_command.c: WEH Applied patch by Vladimir eliminate superflorous
-      ZOOM states, similar to what was done to the "adder" event states. See commit
-      by Vladimir; 5c17c036b2976d75628c7687e853d1a7720f4f60;
+    * src/x/x_event.c: WEH modified per commit
+      b2f81084e8c8009afa2d4cb4541838385bd2bc7a by Vladimir Zhbanov. (Basically
+      move case for ZOOMBOX to existing conditional for inside action.
+
+2015-02-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * WEH Applied patch by Vladimir eliminate superflorous ZOOM states, similar
+      to what was done to the "adder" event states. See commit by Vladimir in;
+      master branch 5c17c036b2976d75628c7687e853d1a7720f4f60;
 
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
