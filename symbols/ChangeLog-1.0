@@ -1,5 +1,10 @@
 2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM2574HV-x-x-x.sym: Add High Voltage version of
+      LM2574 Switching regulator.
+
+2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/filter/NFE31P-1.sym: Fix incorrect designator prefix
 
 2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
