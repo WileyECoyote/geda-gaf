@@ -468,7 +468,7 @@ OBJ       *o_grips_search_path_world    (GschemToplevel *w_current, Object *o_cu
 OBJ       *o_grips_search_picture_world (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_circle_world  (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
 OBJ       *o_grips_search_line_world    (GschemToplevel *w_current, Object *o_current, int x, int y, int size, int *whichone);
-int        o_grips_start                (GschemToplevel *w_current, int x, int y);
+bool       o_grips_start                (GschemToplevel *w_current, int x, int y);
 void       o_grips_motion               (GschemToplevel *w_current, int x, int y);
 void       o_grips_end                  (GschemToplevel *w_current);
 void       o_grips_cancel               (GschemToplevel *w_current);
@@ -569,6 +569,9 @@ void       o_redraw_rectangle                (GschemToplevel *w_current, GdkRect
 void       o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);
 void       o_select_add_object               (GschemToplevel *w_current, Object *object);
 void       o_select_add_list                 (GschemToplevel *w_current, GList *list);
+void       o_select_start                    (GschemToplevel *w_current, int wx, int wy);
+void       o_select_end                      (GschemToplevel *w_current, int wx, int wy);
+bool       o_select_motion                   (GschemToplevel *w_current, int wx, int wy);
 int        o_select_box_start                (GschemToplevel *w_current, int x, int y);
 void       o_select_box_end                  (GschemToplevel *w_current, int x, int y);
 void       o_select_box_motion               (GschemToplevel *w_current, int x, int y);

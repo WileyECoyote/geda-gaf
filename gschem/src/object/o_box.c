@@ -74,8 +74,8 @@ void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->first_wy = w_current->second_wy = w_y;
 
   /* start to draw the box */
-  o_box_invalidate_rubber (w_current);
-  w_current->inside_action = TRUE;
+  w_current->inside_action  = TRUE;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief End the input of a box.
@@ -104,12 +104,12 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->inside_action) {
 
+    w_current->inside_action  = FALSE;
+    w_current->rubber_visible = FALSE;
+
     /* get the last coords of the pointer */
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
-
-    /* Turn off flag to erase the temporary box */
-    w_current->rubber_visible = FALSE;
 
     box_width  = GET_BOX_WIDTH (w_current);
     box_height = GET_BOX_HEIGHT(w_current);
@@ -117,8 +117,7 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
     box_top    = GET_BOX_TOP   (w_current);
 
     /* boxes with null width or height are not allowed */
-    if ((box_width == 0) || (box_height == 0))
-    {
+    if ((box_width == 0) || (box_height == 0)) {
       /* cancel the object creation */
       w_current->first_wx  = (-1);
       w_current->first_wy  = (-1);
@@ -148,7 +147,6 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 
       o_undo_savestate(w_current, UNDO_ALL);
     }
-    w_current->inside_action = FALSE;
   }
   else {
     BUG_MSG("Not inside action");

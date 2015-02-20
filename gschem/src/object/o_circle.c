@@ -68,8 +68,6 @@ void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
   /* radius */
   w_current->distance = 0;
 
-  /* first temporary circle */
-  o_circle_invalidate_rubber (w_current);
   w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
 }
@@ -100,8 +98,8 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->inside_action) {
 
-    /* Set flag erase the temporary circle */
-    w_current->rubber_visible = 0;
+    w_current->inside_action  = FALSE;
+    w_current->rubber_visible = FALSE;
 
     /* circle with null radius are not allowed */
     if (w_current->distance != 0) { /* cancel the object creation */
@@ -118,7 +116,6 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
 
       o_undo_savestate(w_current, UNDO_ALL);
     }
-    w_current->inside_action = FALSE;
   }
   else {
       BUG_MSG("Not inside action");

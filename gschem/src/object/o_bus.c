@@ -43,7 +43,8 @@ void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
-  w_current->inside_action = TRUE;
+  w_current->inside_action  = TRUE;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \brief finish a bus drawing action
