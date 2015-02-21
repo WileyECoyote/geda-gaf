@@ -1,3 +1,11 @@
+2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/switchreg/LM2852Y-1.sym: Clean symbol. Rename with capital
+      letter Y.
+
+    * linear/switchreg/ *.sym: Rename with capital letters and add missing
+      dashes.
+
 2015-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2574HV-x-x-x.sym: Add High Voltage version of
