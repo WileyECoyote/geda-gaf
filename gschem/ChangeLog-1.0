@@ -1,5 +1,11 @@
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_grips.c: Eliminate early returns in o_grips_motion.
+
+    * src/object/o_place.c: Use TRUE instead of 1 in o_place_motion.
+
+2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_arc.c: Remove o_arc_invalidate_rubber in function o_arc_start,
       since the process of creating an Arc is just beginning, there is nothing
       to invalidate. Remove page_current->CHANGED from o_arc_end4, thought I had

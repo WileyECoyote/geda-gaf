@@ -173,7 +173,7 @@ void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
     o_place_invalidate_rubber (w_current, TRUE);
-    w_current->rubber_visible = 1;
+    w_current->rubber_visible = TRUE;
   }
 }
 

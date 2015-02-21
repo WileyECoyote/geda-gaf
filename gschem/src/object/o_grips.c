@@ -215,43 +215,42 @@ o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action == 0) {
     BUG_MSG("Not inside action");
-    return;
   }
-  if (w_current->which_object == NULL) {
+  else if (w_current->which_object == NULL) {
     BUG_MSG("which_object == NULL");
-    return;
   }
+  else {
+    switch(w_current->which_object->type) {
+      case OBJ_ARC:
+        o_arc_motion (w_current, w_x, w_y);
+        break;
 
-  switch(w_current->which_object->type) {
-    case OBJ_ARC:
-      o_arc_motion (w_current, w_x, w_y);
-      break;
+      case OBJ_BOX:
+        o_box_motion (w_current, w_x, w_y);
+        break;
 
-    case OBJ_BOX:
-      o_box_motion (w_current, w_x, w_y);
-      break;
+      case OBJ_PATH:
+        o_path_motion_grips (w_current, w_x, w_y);
+        break;
 
-    case OBJ_PATH:
-      o_path_motion_grips (w_current, w_x, w_y);
-      break;
+      case OBJ_PICTURE:
+        o_picture_motion (w_current, w_x, w_y);
+        break;
 
-    case OBJ_PICTURE:
-      o_picture_motion (w_current, w_x, w_y);
-      break;
+      case OBJ_CIRCLE:
+        o_circle_motion (w_current, w_x, w_y);
+        break;
 
-    case OBJ_CIRCLE:
-      o_circle_motion (w_current, w_x, w_y);
-      break;
+      case OBJ_LINE:
+      case OBJ_NET:
+      case OBJ_PIN:
+      case OBJ_BUS:
+        o_line_motion (w_current, w_x, w_y);
+        break;
 
-    case OBJ_LINE:
-    case OBJ_NET:
-    case OBJ_PIN:
-    case OBJ_BUS:
-      o_line_motion (w_current, w_x, w_y);
-      break;
-
-    default:
-    return; /* error condition */
+      default:
+        break; /* error condition */
+    }
   }
 }
 
