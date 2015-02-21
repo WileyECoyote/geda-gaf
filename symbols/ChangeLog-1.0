@@ -1,5 +1,9 @@
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX3120-1.sym: Cleanup symbol
+
+2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX1811-1.sym: New symbol, single cell LI charger
 
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
