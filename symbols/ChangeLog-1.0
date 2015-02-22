@@ -1,5 +1,14 @@
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/: Add symbols for Low-Dropout Linear Fixed Voltage, 120mA
+      Regulators:
+
+        * maxim/MAX8863R-1.sym (2.80Volt)
+        * maxim/MAX8863S-1.sym (2.84Volt)
+        * maxim/MAX8863T-1.sym (3.15Volt)
+
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX1555-1.sym: Add symbol; Single-cell Li Battery Charger, Dual
       Input, USB.
 
