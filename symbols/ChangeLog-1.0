@@ -1,5 +1,13 @@
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/ldo/TLV713xxx-1.sym: Add 20 symbols, low drop-out TLV713
+      series of 150mA linear voltage regulators in SOT23-5 package.
+
+/home/wiley/Projects/geda-gaf/symbols/ti/ldo/TLV71310DB-1.sym
+
+
+2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/ldo/TLV70012DC-1.sym: Add 28 symbols, low drop-out TLV700
       series of 200mA linear voltage regulators in SC70-5 and SOT23-5
       packages.
