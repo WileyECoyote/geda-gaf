@@ -1,6 +1,12 @@
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/ldo/TLV1117-15IDCY-1.sym: Add 30 symbols, low drop-out TLV1117
+    * ti/ldo/TLV70012DC-1.sym: Add 28 symbols, low drop-out TLV700
+      series of 200mA linear voltage regulators in SC70-5 and SOT23-5
+      packages.
+
+2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TLV1117-1xxxx-1.sym: Add 30 symbols, low drop-out TLV1117
       series linear voltage regulators in SOT223, TO-252 and PWSON-N8
       packages.
 
