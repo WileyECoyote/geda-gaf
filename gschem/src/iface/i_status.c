@@ -151,8 +151,6 @@ static const char *i_status_string(GschemToplevel *w_current)
     case ENDMIRROR:
       return _("Mirror Mode");
     case ZOOMBOX:
-//   case ZOOMBOXEND:
-//   case ZOOMBOXSTART:
       return _("Zoom Box");
     case PAN:
       return _("Pan Mode");
