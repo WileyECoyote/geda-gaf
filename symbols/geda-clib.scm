@@ -40,7 +40,7 @@
 
 ;;; can be toggled between the "Standard" category and the group folder.
 ;;; Sub-groups not containing a least one file, ie a file with the .sym
-;;; extension are not displayed.
+;;; extension, are not displayed.
 ;;;
 ;;; If the list entry has a number then that source will only be loaded if
 ;;; the number matches:
@@ -231,6 +231,7 @@
                   ("philips"         "Manufacturers/Philips Electronics")
                   ("st"              "Manufacturers/ST Microelectronics")
                   ("ti"              "Manufacturers/Texas Instruments")
+                     ("ti/ldo"       "Manufacturers/Low-Dropout Regulators")
                   ("toshiba" "Manufacturers/Toshiba")
                      ("toshiba/converter"      "Manufacturers/DC-DC Converters")
                      ("toshiba/npn-power-1"    "Manufacturers/NPN Bipolar Power" 1)
