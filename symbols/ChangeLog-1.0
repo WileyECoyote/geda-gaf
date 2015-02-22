@@ -1,3 +1,7 @@
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX3121-1.sym: Add symbol; RS-232 transceiver.
+
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX3120-1.sym: Cleanup symbol
