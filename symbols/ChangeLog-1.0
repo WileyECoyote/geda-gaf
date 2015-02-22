@@ -1,5 +1,9 @@
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX3245E-1.sym: Add symbol; 3.0-5.5V RS-232 3-driver/5-receiver.
+
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX3121-1.sym: Add symbol; RS-232 transceiver.
 
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
