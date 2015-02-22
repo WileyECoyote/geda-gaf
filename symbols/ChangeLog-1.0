@@ -1,5 +1,10 @@
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX1551-1.sym: Add symbol; Dual Input Single-cell Li Battery
+      Charger, SOT-23.
+
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/: Add symbols for Low-Dropout Linear Fixed Voltage, 120mA
       Regulators:
 
