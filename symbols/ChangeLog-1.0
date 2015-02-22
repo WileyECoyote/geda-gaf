@@ -1,5 +1,10 @@
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX1555-1.sym: Add symbol; Single-cell Li Battery Charger, Dual
+      Input, USB.
+
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX3245E-1.sym: Add symbol; 3.0-5.5V RS-232 3-driver/5-receiver.
 
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
