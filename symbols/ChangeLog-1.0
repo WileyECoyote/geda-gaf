@@ -1,5 +1,13 @@
 2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/: Add symbols for RS-485 Half-Duplex Transceivers, 3.3Volt,
+      40MBPS with ESD-protection:
+
+        * maxim/MAX14840E-1.sym (Symmetrical Fail-safe)
+        * maxim/MAX14841E-1.sym (True Fail-safe)
+
+2015-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX1551-1.sym: Add symbol; Dual Input Single-cell Li Battery
       Charger, SOT-23.
 
