@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150101 2
 P 100 5800 400 5800 1 0 0
 {
 T 300 5850 5 8 1 1 0 6 1
@@ -68,46 +68,46 @@ pintype=in
 P 100 4000 400 4000 1 0 0
 {
 T 300 4050 5 8 1 1 0 6 1
-pinnumber=7
+pinnumber=8
 T 300 3950 5 8 0 1 0 8 1
 pinseq=7
 T 450 4000 9 8 1 1 0 0 1
-pinlabel=VSS
+pinlabel=REG33
 T 450 4000 5 8 0 1 0 2 1
 pintype=pwr
 }
 P 100 3700 400 3700 1 0 0
 {
 T 300 3750 5 8 1 1 0 6 1
-pinnumber=8
+pinnumber=10
 T 300 3650 5 8 0 1 0 8 1
 pinseq=8
 T 450 3700 9 8 1 1 0 0 1
-pinlabel=REG33
+pinlabel=VCELL+
 T 450 3700 5 8 0 1 0 2 1
-pintype=pwr
+pintype=out
 }
 P 100 3400 400 3400 1 0 0
 {
 T 300 3450 5 8 1 1 0 6 1
-pinnumber=9
+pinnumber=7
 T 300 3350 5 8 0 1 0 8 1
 pinseq=9
 T 450 3400 9 8 1 1 0 0 1
-pinlabel=TOUT
+pinlabel=VSS
 T 450 3400 5 8 0 1 0 2 1
 pintype=pwr
 }
 P 100 3100 400 3100 1 0 0
 {
 T 300 3150 5 8 1 1 0 6 1
-pinnumber=10
+pinnumber=9
 T 300 3050 5 8 0 1 0 8 1
 pinseq=10
 T 450 3100 9 8 1 1 0 0 1
-pinlabel=VCELL+
+pinlabel=TOUT
 T 450 3100 5 8 0 1 0 2 1
-pintype=out
+pintype=pwr
 }
 P 100 2800 400 2800 1 0 0
 {
@@ -310,24 +310,24 @@ pintype=in
 P 3700 3100 3400 3100 1 0 0
 {
 T 3500 3150 5 8 1 1 0 0 1
-pinnumber=29
+pinnumber=23
 T 3500 3050 5 8 0 1 0 2 1
 pinseq=29
 T 3350 3100 9 8 1 1 0 6 1
-pinlabel=\_RESET\_
+pinlabel=GSRN
 T 3350 3100 5 8 0 1 0 8 1
-pintype=out
+pintype=in
 }
 P 3700 2800 3400 2800 1 0 0
 {
 T 3500 2850 5 8 1 1 0 0 1
-pinnumber=28
+pinnumber=22
 T 3500 2750 5 8 0 1 0 2 1
 pinseq=30
 T 3350 2800 9 8 1 1 0 6 1
-pinlabel=VSS
+pinlabel=GSRP
 T 3350 2800 5 8 0 1 0 8 1
-pintype=pwr
+pintype=in
 }
 P 3700 2500 3400 2500 1 0 0
 {
@@ -354,13 +354,13 @@ pintype=pwr
 P 3700 1900 3400 1900 1 0 0
 {
 T 3500 1950 5 8 1 1 0 0 1
-pinnumber=25
+pinnumber=29
 T 3500 1850 5 8 0 1 0 2 1
 pinseq=33
 T 3350 1900 9 8 1 1 0 6 1
-pinlabel=VSS
+pinlabel=\_RESET\_
 T 3350 1900 5 8 0 1 0 8 1
-pintype=pwr
+pintype=out
 }
 P 3700 1600 3400 1600 1 0 0
 {
@@ -376,24 +376,24 @@ pintype=in
 P 3700 1300 3400 1300 1 0 0
 {
 T 3500 1350 5 8 1 1 0 0 1
-pinnumber=23
+pinnumber=28
 T 3500 1250 5 8 0 1 0 2 1
 pinseq=35
 T 3350 1300 9 8 1 1 0 6 1
-pinlabel=GSRN
+pinlabel=VSS
 T 3350 1300 5 8 0 1 0 8 1
-pintype=in
+pintype=pwr
 }
 P 3700 1000 3400 1000 1 0 0
 {
 T 3500 1050 5 8 1 1 0 0 1
-pinnumber=22
+pinnumber=25
 T 3500 950 5 8 0 1 0 2 1
 pinseq=36
 T 3350 1000 9 8 1 1 0 6 1
-pinlabel=GSRP
+pinlabel=VSS
 T 3350 1000 5 8 0 1 0 8 1
-pintype=in
+pintype=pwr
 }
 P 3700 700 3400 700 1 0 0
 {
@@ -423,16 +423,16 @@ refdes=U?
 T 400 6200 5 10 1 1 0 0 1
 device=BQ20z45-R1
 T 400 6400 5 10 0 0 0 0 1
-footprint=TSSOP-38
-T 400 6600 5 10 0 0 0 0 1
-author=AutoTron
-T 400 6800 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/bq20z45-r1
-T 400 7000 5 10 0 0 0 0 1
-description=Battery Level Gauge and Protection Enabled With Impedance Track
-T 400 7200 5 10 0 0 0 0 1
-numslots=0
-T 400 7400 5 10 0 0 0 0 1
-dist-license=GPL3
+footprint=TSSOP38
 T 400 7600 5 10 0 0 0 0 1
+author=AutoTron
+T 400 6600 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/bq20z45-r1
+T 400 6800 5 10 0 0 0 0 1
+description=Battery Level Gauge and Protection Enabled With Impedance Track
+T 400 7000 5 10 0 0 0 0 1
+numslots=0
+T 400 7200 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 7400 5 10 0 0 0 0 1
 use-license=unlimited

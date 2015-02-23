@@ -4,7 +4,7 @@ device=BQ24210
 T 2675 3600 8 10 1 1 0 0 1
 refdes=U?
 T 2675 3425 5 10 0 1 0 0 1
-footprint=SON-10
+footprint=PWSON-N10
 T 200 4800 5 10 0 0 0 0 1
 author=AutoTron
 T 200 4000 5 10 0 0 0 0 1

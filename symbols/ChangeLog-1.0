@@ -1,10 +1,20 @@
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Add ti/motor as "Manufacturers/Motor Control" and
+      rename Microchip amd linear to match (so these groups will be
+      lumped when the Component dialog assorts them. Also add ti/micro
+      and ti/battery subdirectories with gitignore files.
+
+    * ti/Relocate symbols to new subdirectories appropriately, cleaning
+      many of them and replacing other as the orginal symbols weren't
+      worth the time to clean. Since the symbols were relocated Git
+      shows them as delete/add and this does reflect the amount of effort
+      put into re-working these symbols.
+
+2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/ldo/TLV713xxx-1.sym: Add 20 symbols, low drop-out TLV713
       series of 150mA linear voltage regulators in SOT23-5 package.
-
-/home/wiley/Projects/geda-gaf/symbols/ti/ldo/TLV71310DB-1.sym
-
 
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
