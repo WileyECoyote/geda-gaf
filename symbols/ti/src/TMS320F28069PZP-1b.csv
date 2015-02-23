@@ -1,0 +1,137 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+# "PB1 (CLK)". That's useful for micro controller port labels						
+# rotate_labels rotates the pintext of top and bottom pins						
+# this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+# useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	yes					
+sym_width	8400					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20150204 1					
+name	TMS320F28069PZP					
+device	TMS320F28069PZP					
+refdes	U?					
+footprint	TQFP-100					
+description	Piccolo Microcontroller, 90MHz					
+documentation	http://www.ti.com/product/TMS320F28075/					
+author	AutoTron					
+numslots	0					
+dist-license	GPL3					
+use-license	unlimited					
+#slot	1					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	negation lines can be added with "\_" example: \_enable\_ 					
+#	if you want to write a "\" use "\\" as escape sequence					
+#						
+#pinnr	seq	type	style	posit.	net	label
+			spacer	l		
+39	39	io	line	l		GPIO25/ECAP2/EQEP2B/SPISOMIB
+78	78	io	line	l		GPIO26/ECAP3/EQEP2I/SPICLKB/USB0DP
+77	77	io	line	l		GPIO27/HRCAP2/EQEP2S/\_SPISTEB\_/SDAA/USB0DM
+			spacer	l		
+50	50	io	line	l		GPIO28/SCIRXDA/SDAA/\_TZ2\_
+43	43	io	line	l		GPIO29/SCITXDA/SCLA/\_TZ3\_
+88	88	io	line	l		GPIO15/ECAP2/SCIRXDB/\_SPISTEB\_
+94	94	io	line	l		GPIO58/MCLKRA/SCITXDB/EPWM7A
+			spacer	l		
+41	41	io	line	l		GPIO30/EPWM7A/CANRXA/CANRXA
+40	40	io	line	l		GPIO31/EPWM8A/CANTXA/EQEP2S
+			spacer	l		
+24	24	in	line	l		VREFHI
+			spacer	l		
+16	16	in	line	l		ADCINA7
+17	17	io	line	l		ADCINA6/COMP3A/AIO6
+18	18	in	line	l		ADCINA5
+19	19	io	line	l		ADCINA4/COMP2A/AIO4
+20	20	in	line	l		ADCINA3
+21	21	io	line	l		ADCINA2/COMP1A/AIO2
+22	22	in	line	l		ADCINA1
+23	23	in	line	l		ADCINA0
+			spacer	l		
+35	35	in	line	l		ADCINB7
+34	34	io	line	l		ADCINB6/COMP3B/AIO14
+33	33	in	line	l		ADCINB5
+32	32	io	line	l		ADCINB4/COMP2B/AIO12
+31	31	in	line	l		ADCINB3
+30	30	io	line	l		ADCINB2/COMP1B/AIO10
+29	29	in	line	l		ADCINB1
+28	28	in	line	l		ADCINB0
+			spacer	l		
+27	27	in	line	l		VREFLO
+			spacer	l		
+89	89	io	line	l		GPIO57/\_SPISTEA\_/EQEP2S/HRCAP4
+69	69	io	line	l		GPIO54/SPISIMOA/EQEP2A/HRCAP1
+75	75	io	line	l		GPIO55/SPISOMIA/EQEP2B/HRCAP2
+85	85	io	line	l		GPIO56/SPICLKA/EQEP2I/HRCAP3
+44	44	io	line	r		GPIO12/\_TZ1\_/SCITXDA/SPISIMOB
+95	95	io	line	r		GPIO13/\_TZ2\_/SPISOMIB
+96	96	io	line	r		GPIO14/\_TZ3\_/SCITXDB/SPICLKB
+			spacer	r		
+6	6	io	line	r		GPIO20/EQEP1A/MDXA/COMP1OUT
+7	7	io	line	r		GPIO21/EQEP1B/MDRA/COMP2OUT
+2	2	io	line	r		GPIO23/EQEP1I/MFSXA/SCIRXDB
+98	98	io	line	r		GPIO22/EQEP1S/MCLKXA/SCITXDB
+			spacer	r		
+55	55	io	line	r		GPIO16/SPISIMOA/\_TZ2\_
+52	52	io	line	r		GPIO17/SPISOMIA/\_TZ3\_
+			spacer	r		
+99	99	io	line	r		GPIO32/SDAA/EPWMSYNCI/\_ADCSOCBO\_
+100	100	io	line	r		GPIO33/SCLA/EPWMSYNCO/\_ADCSOCBO\_
+68	68	io	line	r		GPIO34/COMP2OUT/COMP3OUT
+			spacer	r		
+66	66	io	line	r		GPIO39
+			spacer	r		
+56	56	io	line	r		GPIO44/MFSRA/SCIRXDB/EPWM7B
+42	42	io	line	r		GPIO50/EQEP1A/MDXA/\_TZ1\_
+48	48	io	line	r		GPIO51/EQEP1B/MDRA/\_TZ2\_
+53	53	io	line	r		GPIO52/EQEP1S/MCLKXA/\_TZ3\_
+65	65	io	line	r		GPIO53/EQEP1I/MFSXA
+97	97	io	line	r		GPIO24/ECAP1/EQEP2A/SPISIMOB
+			spacer	r		
+87	87	io	line	r		GPIO0/EPWM1A
+86	86	io	line	r		GPIO1/COMP1OUT/EPWM1B
+84	84	io	line	r		GPIO2/EPWM2A
+83	83	io	line	r		GPIO3/SPISOMIA/COMP2OUT/EPWM2B
+9	9	io	line	r		GPIO4/EPWM3A
+10	10	io	line	r		GPIO5/SPISOMOA/ECAP1/EPWM3B
+58	58	io	line	r		GPIO6/EPWMSYNCI/EPWMSYNCO/EPWM4A
+57	57	io	line	r		GPIO7/SCIRXDA/ECAP2/EPWM4B
+54	54	io	line	r		GPIO8/\_ADCSOCAO\_/EPWM5A
+49	49	io	line	r		GPIO9/SCITXDB/ECAP3/EPWM5B
+74	74	io	line	r		GPIO10/\_ADCSOCBO\_/EPWM6A
+73	73	io	line	r		GPIO11/SCIRXDB/ECAP1/EPWM6B
+82	82	io	line	r		GPIO40/EPWM7A/SCITXDB
+76	76	io	line	r		GPIO41/EPWM7B/EPWM7B
+1	1	io	line	r		GPIO42/EPWM8A/\_TZ1\_/COMP1OUT
+8	8	io	line	r		GPIO43/EPWM8B/\_TZ2\_/COMP2OUT

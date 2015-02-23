@@ -1,0 +1,748 @@
+v 20150204 1
+P 100 12100 400 12100 1 0 0
+{
+T 300 12150 5 8 1 1 0 6 1
+pinnumber=39
+T 300 12050 5 8 0 1 0 8 1
+pinseq=1
+T 450 12100 9 8 1 1 0 0 1
+pinlabel=GPIO25/ECAP2/EQEP2B/SPISOMIB
+T 450 12100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 11800 400 11800 1 0 0
+{
+T 300 11850 5 8 1 1 0 6 1
+pinnumber=78
+T 300 11750 5 8 0 1 0 8 1
+pinseq=2
+T 450 11800 9 8 1 1 0 0 1
+pinlabel=GPIO26/ECAP3/EQEP2I/SPICLKB/USB0DP
+T 450 11800 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 11500 400 11500 1 0 0
+{
+T 300 11550 5 8 1 1 0 6 1
+pinnumber=77
+T 300 11450 5 8 0 1 0 8 1
+pinseq=3
+T 450 11500 9 8 1 1 0 0 1
+pinlabel=GPIO27/HRCAP2/EQEP2S/\_SPISTEB\_/SDAA/USB0DM
+T 450 11500 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10900 400 10900 1 0 0
+{
+T 300 10950 5 8 1 1 0 6 1
+pinnumber=50
+T 300 10850 5 8 0 1 0 8 1
+pinseq=4
+T 450 10900 9 8 1 1 0 0 1
+pinlabel=GPIO28/SCIRXDA/SDAA/\_TZ2\_
+T 450 10900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10600 400 10600 1 0 0
+{
+T 300 10650 5 8 1 1 0 6 1
+pinnumber=43
+T 300 10550 5 8 0 1 0 8 1
+pinseq=5
+T 450 10600 9 8 1 1 0 0 1
+pinlabel=GPIO29/SCITXDA/SCLA/\_TZ3\_
+T 450 10600 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10300 400 10300 1 0 0
+{
+T 300 10350 5 8 1 1 0 6 1
+pinnumber=88
+T 300 10250 5 8 0 1 0 8 1
+pinseq=6
+T 450 10300 9 8 1 1 0 0 1
+pinlabel=GPIO15/ECAP2/SCIRXDB/\_SPISTEB\_
+T 450 10300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10000 400 10000 1 0 0
+{
+T 300 10050 5 8 1 1 0 6 1
+pinnumber=94
+T 300 9950 5 8 0 1 0 8 1
+pinseq=7
+T 450 10000 9 8 1 1 0 0 1
+pinlabel=GPIO58/MCLKRA/SCITXDB/EPWM7A
+T 450 10000 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 9400 400 9400 1 0 0
+{
+T 300 9450 5 8 1 1 0 6 1
+pinnumber=41
+T 300 9350 5 8 0 1 0 8 1
+pinseq=8
+T 450 9400 9 8 1 1 0 0 1
+pinlabel=GPIO30/EPWM7A/CANRXA/CANRXA
+T 450 9400 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 9100 400 9100 1 0 0
+{
+T 300 9150 5 8 1 1 0 6 1
+pinnumber=40
+T 300 9050 5 8 0 1 0 8 1
+pinseq=9
+T 450 9100 9 8 1 1 0 0 1
+pinlabel=GPIO31/EPWM8A/CANTXA/EQEP2S
+T 450 9100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 8500 400 8500 1 0 0
+{
+T 300 8550 5 8 1 1 0 6 1
+pinnumber=24
+T 300 8450 5 8 0 1 0 8 1
+pinseq=10
+T 450 8500 9 8 1 1 0 0 1
+pinlabel=VREFHI
+T 450 8500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 7900 400 7900 1 0 0
+{
+T 300 7950 5 8 1 1 0 6 1
+pinnumber=16
+T 300 7850 5 8 0 1 0 8 1
+pinseq=11
+T 450 7900 9 8 1 1 0 0 1
+pinlabel=ADCINA7
+T 450 7900 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 7600 400 7600 1 0 0
+{
+T 300 7650 5 8 1 1 0 6 1
+pinnumber=17
+T 300 7550 5 8 0 1 0 8 1
+pinseq=12
+T 450 7600 9 8 1 1 0 0 1
+pinlabel=ADCINA6/COMP3A/AIO6
+T 450 7600 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 7300 400 7300 1 0 0
+{
+T 300 7350 5 8 1 1 0 6 1
+pinnumber=18
+T 300 7250 5 8 0 1 0 8 1
+pinseq=13
+T 450 7300 9 8 1 1 0 0 1
+pinlabel=ADCINA5
+T 450 7300 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 7000 400 7000 1 0 0
+{
+T 300 7050 5 8 1 1 0 6 1
+pinnumber=19
+T 300 6950 5 8 0 1 0 8 1
+pinseq=14
+T 450 7000 9 8 1 1 0 0 1
+pinlabel=ADCINA4/COMP2A/AIO4
+T 450 7000 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 6700 400 6700 1 0 0
+{
+T 300 6750 5 8 1 1 0 6 1
+pinnumber=20
+T 300 6650 5 8 0 1 0 8 1
+pinseq=15
+T 450 6700 9 8 1 1 0 0 1
+pinlabel=ADCINA3
+T 450 6700 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 6400 400 6400 1 0 0
+{
+T 300 6450 5 8 1 1 0 6 1
+pinnumber=21
+T 300 6350 5 8 0 1 0 8 1
+pinseq=16
+T 450 6400 9 8 1 1 0 0 1
+pinlabel=ADCINA2/COMP1A/AIO2
+T 450 6400 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 6100 400 6100 1 0 0
+{
+T 300 6150 5 8 1 1 0 6 1
+pinnumber=22
+T 300 6050 5 8 0 1 0 8 1
+pinseq=17
+T 450 6100 9 8 1 1 0 0 1
+pinlabel=ADCINA1
+T 450 6100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 5800 400 5800 1 0 0
+{
+T 300 5850 5 8 1 1 0 6 1
+pinnumber=23
+T 300 5750 5 8 0 1 0 8 1
+pinseq=18
+T 450 5800 9 8 1 1 0 0 1
+pinlabel=ADCINA0
+T 450 5800 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 5200 400 5200 1 0 0
+{
+T 300 5250 5 8 1 1 0 6 1
+pinnumber=35
+T 300 5150 5 8 0 1 0 8 1
+pinseq=19
+T 450 5200 9 8 1 1 0 0 1
+pinlabel=ADCINB7
+T 450 5200 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4900 400 4900 1 0 0
+{
+T 300 4950 5 8 1 1 0 6 1
+pinnumber=34
+T 300 4850 5 8 0 1 0 8 1
+pinseq=20
+T 450 4900 9 8 1 1 0 0 1
+pinlabel=ADCINB6/COMP3B/AIO14
+T 450 4900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 4600 400 4600 1 0 0
+{
+T 300 4650 5 8 1 1 0 6 1
+pinnumber=33
+T 300 4550 5 8 0 1 0 8 1
+pinseq=21
+T 450 4600 9 8 1 1 0 0 1
+pinlabel=ADCINB5
+T 450 4600 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4300 400 4300 1 0 0
+{
+T 300 4350 5 8 1 1 0 6 1
+pinnumber=32
+T 300 4250 5 8 0 1 0 8 1
+pinseq=22
+T 450 4300 9 8 1 1 0 0 1
+pinlabel=ADCINB4/COMP2B/AIO12
+T 450 4300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 4000 400 4000 1 0 0
+{
+T 300 4050 5 8 1 1 0 6 1
+pinnumber=31
+T 300 3950 5 8 0 1 0 8 1
+pinseq=23
+T 450 4000 9 8 1 1 0 0 1
+pinlabel=ADCINB3
+T 450 4000 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3700 400 3700 1 0 0
+{
+T 300 3750 5 8 1 1 0 6 1
+pinnumber=30
+T 300 3650 5 8 0 1 0 8 1
+pinseq=24
+T 450 3700 9 8 1 1 0 0 1
+pinlabel=ADCINB2/COMP1B/AIO10
+T 450 3700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 3400 400 3400 1 0 0
+{
+T 300 3450 5 8 1 1 0 6 1
+pinnumber=29
+T 300 3350 5 8 0 1 0 8 1
+pinseq=25
+T 450 3400 9 8 1 1 0 0 1
+pinlabel=ADCINB1
+T 450 3400 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3100 400 3100 1 0 0
+{
+T 300 3150 5 8 1 1 0 6 1
+pinnumber=28
+T 300 3050 5 8 0 1 0 8 1
+pinseq=26
+T 450 3100 9 8 1 1 0 0 1
+pinlabel=ADCINB0
+T 450 3100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 2500 400 2500 1 0 0
+{
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=27
+T 300 2450 5 8 0 1 0 8 1
+pinseq=27
+T 450 2500 9 8 1 1 0 0 1
+pinlabel=VREFLO
+T 450 2500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1900 400 1900 1 0 0
+{
+T 300 1950 5 8 1 1 0 6 1
+pinnumber=89
+T 300 1850 5 8 0 1 0 8 1
+pinseq=28
+T 450 1900 9 8 1 1 0 0 1
+pinlabel=GPIO57/\_SPISTEA\_/EQEP2S/HRCAP4
+T 450 1900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1600 400 1600 1 0 0
+{
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=69
+T 300 1550 5 8 0 1 0 8 1
+pinseq=29
+T 450 1600 9 8 1 1 0 0 1
+pinlabel=GPIO54/SPISIMOA/EQEP2A/HRCAP1
+T 450 1600 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=75
+T 300 1250 5 8 0 1 0 8 1
+pinseq=30
+T 450 1300 9 8 1 1 0 0 1
+pinlabel=GPIO55/SPISOMIA/EQEP2B/HRCAP2
+T 450 1300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=85
+T 300 950 5 8 0 1 0 8 1
+pinseq=31
+T 450 1000 9 8 1 1 0 0 1
+pinlabel=GPIO56/SPICLKA/EQEP2I/HRCAP3
+T 450 1000 5 8 0 1 0 2 1
+pintype=io
+}
+P 9100 12400 8800 12400 1 0 0
+{
+T 8900 12450 5 8 1 1 0 0 1
+pinnumber=44
+T 8900 12350 5 8 0 1 0 2 1
+pinseq=32
+T 8750 12400 9 8 1 1 0 6 1
+pinlabel=GPIO12/\_TZ1\_/SCITXDA/SPISIMOB
+T 8750 12400 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 12100 8800 12100 1 0 0
+{
+T 8900 12150 5 8 1 1 0 0 1
+pinnumber=95
+T 8900 12050 5 8 0 1 0 2 1
+pinseq=33
+T 8750 12100 9 8 1 1 0 6 1
+pinlabel=GPIO13/\_TZ2\_/SPISOMIB
+T 8750 12100 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 11800 8800 11800 1 0 0
+{
+T 8900 11850 5 8 1 1 0 0 1
+pinnumber=96
+T 8900 11750 5 8 0 1 0 2 1
+pinseq=34
+T 8750 11800 9 8 1 1 0 6 1
+pinlabel=GPIO14/\_TZ3\_/SCITXDB/SPICLKB
+T 8750 11800 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 11200 8800 11200 1 0 0
+{
+T 8900 11250 5 8 1 1 0 0 1
+pinnumber=6
+T 8900 11150 5 8 0 1 0 2 1
+pinseq=35
+T 8750 11200 9 8 1 1 0 6 1
+pinlabel=GPIO20/EQEP1A/MDXA/COMP1OUT
+T 8750 11200 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 10900 8800 10900 1 0 0
+{
+T 8900 10950 5 8 1 1 0 0 1
+pinnumber=7
+T 8900 10850 5 8 0 1 0 2 1
+pinseq=36
+T 8750 10900 9 8 1 1 0 6 1
+pinlabel=GPIO21/EQEP1B/MDRA/COMP2OUT
+T 8750 10900 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 10600 8800 10600 1 0 0
+{
+T 8900 10650 5 8 1 1 0 0 1
+pinnumber=2
+T 8900 10550 5 8 0 1 0 2 1
+pinseq=37
+T 8750 10600 9 8 1 1 0 6 1
+pinlabel=GPIO23/EQEP1I/MFSXA/SCIRXDB
+T 8750 10600 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 10300 8800 10300 1 0 0
+{
+T 8900 10350 5 8 1 1 0 0 1
+pinnumber=98
+T 8900 10250 5 8 0 1 0 2 1
+pinseq=38
+T 8750 10300 9 8 1 1 0 6 1
+pinlabel=GPIO22/EQEP1S/MCLKXA/SCITXDB
+T 8750 10300 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 9700 8800 9700 1 0 0
+{
+T 8900 9750 5 8 1 1 0 0 1
+pinnumber=55
+T 8900 9650 5 8 0 1 0 2 1
+pinseq=39
+T 8750 9700 9 8 1 1 0 6 1
+pinlabel=GPIO16/SPISIMOA/\_TZ2\_
+T 8750 9700 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 9400 8800 9400 1 0 0
+{
+T 8900 9450 5 8 1 1 0 0 1
+pinnumber=52
+T 8900 9350 5 8 0 1 0 2 1
+pinseq=40
+T 8750 9400 9 8 1 1 0 6 1
+pinlabel=GPIO17/SPISOMIA/\_TZ3\_
+T 8750 9400 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 8800 8800 8800 1 0 0
+{
+T 8900 8850 5 8 1 1 0 0 1
+pinnumber=99
+T 8900 8750 5 8 0 1 0 2 1
+pinseq=41
+T 8750 8800 9 8 1 1 0 6 1
+pinlabel=GPIO32/SDAA/EPWMSYNCI/\_ADCSOCBO\_
+T 8750 8800 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 8500 8800 8500 1 0 0
+{
+T 8900 8550 5 8 1 1 0 0 1
+pinnumber=100
+T 8900 8450 5 8 0 1 0 2 1
+pinseq=42
+T 8750 8500 9 8 1 1 0 6 1
+pinlabel=GPIO33/SCLA/EPWMSYNCO/\_ADCSOCBO\_
+T 8750 8500 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 8200 8800 8200 1 0 0
+{
+T 8900 8250 5 8 1 1 0 0 1
+pinnumber=68
+T 8900 8150 5 8 0 1 0 2 1
+pinseq=43
+T 8750 8200 9 8 1 1 0 6 1
+pinlabel=GPIO34/COMP2OUT/COMP3OUT
+T 8750 8200 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 7600 8800 7600 1 0 0
+{
+T 8900 7650 5 8 1 1 0 0 1
+pinnumber=66
+T 8900 7550 5 8 0 1 0 2 1
+pinseq=44
+T 8750 7600 9 8 1 1 0 6 1
+pinlabel=GPIO39
+T 8750 7600 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 7000 8800 7000 1 0 0
+{
+T 8900 7050 5 8 1 1 0 0 1
+pinnumber=56
+T 8900 6950 5 8 0 1 0 2 1
+pinseq=45
+T 8750 7000 9 8 1 1 0 6 1
+pinlabel=GPIO44/MFSRA/SCIRXDB/EPWM7B
+T 8750 7000 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 6700 8800 6700 1 0 0
+{
+T 8900 6750 5 8 1 1 0 0 1
+pinnumber=42
+T 8900 6650 5 8 0 1 0 2 1
+pinseq=46
+T 8750 6700 9 8 1 1 0 6 1
+pinlabel=GPIO50/EQEP1A/MDXA/\_TZ1\_
+T 8750 6700 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 6400 8800 6400 1 0 0
+{
+T 8900 6450 5 8 1 1 0 0 1
+pinnumber=48
+T 8900 6350 5 8 0 1 0 2 1
+pinseq=47
+T 8750 6400 9 8 1 1 0 6 1
+pinlabel=GPIO51/EQEP1B/MDRA/\_TZ2\_
+T 8750 6400 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 6100 8800 6100 1 0 0
+{
+T 8900 6150 5 8 1 1 0 0 1
+pinnumber=53
+T 8900 6050 5 8 0 1 0 2 1
+pinseq=48
+T 8750 6100 9 8 1 1 0 6 1
+pinlabel=GPIO52/EQEP1S/MCLKXA/\_TZ3\_
+T 8750 6100 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 5800 8800 5800 1 0 0
+{
+T 8900 5850 5 8 1 1 0 0 1
+pinnumber=65
+T 8900 5750 5 8 0 1 0 2 1
+pinseq=49
+T 8750 5800 9 8 1 1 0 6 1
+pinlabel=GPIO53/EQEP1I/MFSXA
+T 8750 5800 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 5500 8800 5500 1 0 0
+{
+T 8900 5550 5 8 1 1 0 0 1
+pinnumber=97
+T 8900 5450 5 8 0 1 0 2 1
+pinseq=50
+T 8750 5500 9 8 1 1 0 6 1
+pinlabel=GPIO24/ECAP1/EQEP2A/SPISIMOB
+T 8750 5500 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 4900 8800 4900 1 0 0
+{
+T 8900 4950 5 8 1 1 0 0 1
+pinnumber=87
+T 8900 4850 5 8 0 1 0 2 1
+pinseq=51
+T 8750 4900 9 8 1 1 0 6 1
+pinlabel=GPIO0/EPWM1A
+T 8750 4900 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 4600 8800 4600 1 0 0
+{
+T 8900 4650 5 8 1 1 0 0 1
+pinnumber=86
+T 8900 4550 5 8 0 1 0 2 1
+pinseq=52
+T 8750 4600 9 8 1 1 0 6 1
+pinlabel=GPIO1/COMP1OUT/EPWM1B
+T 8750 4600 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 4300 8800 4300 1 0 0
+{
+T 8900 4350 5 8 1 1 0 0 1
+pinnumber=84
+T 8900 4250 5 8 0 1 0 2 1
+pinseq=53
+T 8750 4300 9 8 1 1 0 6 1
+pinlabel=GPIO2/EPWM2A
+T 8750 4300 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 4000 8800 4000 1 0 0
+{
+T 8900 4050 5 8 1 1 0 0 1
+pinnumber=83
+T 8900 3950 5 8 0 1 0 2 1
+pinseq=54
+T 8750 4000 9 8 1 1 0 6 1
+pinlabel=GPIO3/SPISOMIA/COMP2OUT/EPWM2B
+T 8750 4000 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 3700 8800 3700 1 0 0
+{
+T 8900 3750 5 8 1 1 0 0 1
+pinnumber=9
+T 8900 3650 5 8 0 1 0 2 1
+pinseq=55
+T 8750 3700 9 8 1 1 0 6 1
+pinlabel=GPIO4/EPWM3A
+T 8750 3700 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 3400 8800 3400 1 0 0
+{
+T 8900 3450 5 8 1 1 0 0 1
+pinnumber=10
+T 8900 3350 5 8 0 1 0 2 1
+pinseq=56
+T 8750 3400 9 8 1 1 0 6 1
+pinlabel=GPIO5/SPISOMOA/ECAP1/EPWM3B
+T 8750 3400 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 3100 8800 3100 1 0 0
+{
+T 8900 3150 5 8 1 1 0 0 1
+pinnumber=58
+T 8900 3050 5 8 0 1 0 2 1
+pinseq=57
+T 8750 3100 9 8 1 1 0 6 1
+pinlabel=GPIO6/EPWMSYNCI/EPWMSYNCO/EPWM4A
+T 8750 3100 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 2800 8800 2800 1 0 0
+{
+T 8900 2850 5 8 1 1 0 0 1
+pinnumber=57
+T 8900 2750 5 8 0 1 0 2 1
+pinseq=58
+T 8750 2800 9 8 1 1 0 6 1
+pinlabel=GPIO7/SCIRXDA/ECAP2/EPWM4B
+T 8750 2800 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 2500 8800 2500 1 0 0
+{
+T 8900 2550 5 8 1 1 0 0 1
+pinnumber=54
+T 8900 2450 5 8 0 1 0 2 1
+pinseq=59
+T 8750 2500 9 8 1 1 0 6 1
+pinlabel=GPIO8/\_ADCSOCAO\_/EPWM5A
+T 8750 2500 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 2200 8800 2200 1 0 0
+{
+T 8900 2250 5 8 1 1 0 0 1
+pinnumber=49
+T 8900 2150 5 8 0 1 0 2 1
+pinseq=60
+T 8750 2200 9 8 1 1 0 6 1
+pinlabel=GPIO9/SCITXDB/ECAP3/EPWM5B
+T 8750 2200 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 1900 8800 1900 1 0 0
+{
+T 8900 1950 5 8 1 1 0 0 1
+pinnumber=74
+T 8900 1850 5 8 0 1 0 2 1
+pinseq=61
+T 8750 1900 9 8 1 1 0 6 1
+pinlabel=GPIO10/\_ADCSOCBO\_/EPWM6A
+T 8750 1900 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 1600 8800 1600 1 0 0
+{
+T 8900 1650 5 8 1 1 0 0 1
+pinnumber=73
+T 8900 1550 5 8 0 1 0 2 1
+pinseq=62
+T 8750 1600 9 8 1 1 0 6 1
+pinlabel=GPIO11/SCIRXDB/ECAP1/EPWM6B
+T 8750 1600 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 1300 8800 1300 1 0 0
+{
+T 8900 1350 5 8 1 1 0 0 1
+pinnumber=82
+T 8900 1250 5 8 0 1 0 2 1
+pinseq=63
+T 8750 1300 9 8 1 1 0 6 1
+pinlabel=GPIO40/EPWM7A/SCITXDB
+T 8750 1300 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 1000 8800 1000 1 0 0
+{
+T 8900 1050 5 8 1 1 0 0 1
+pinnumber=76
+T 8900 950 5 8 0 1 0 2 1
+pinseq=64
+T 8750 1000 9 8 1 1 0 6 1
+pinlabel=GPIO41/EPWM7B/EPWM7B
+T 8750 1000 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 700 8800 700 1 0 0
+{
+T 8900 750 5 8 1 1 0 0 1
+pinnumber=1
+T 8900 650 5 8 0 1 0 2 1
+pinseq=65
+T 8750 700 9 8 1 1 0 6 1
+pinlabel=GPIO42/EPWM8A/\_TZ1\_/COMP1OUT
+T 8750 700 5 8 0 1 0 8 1
+pintype=io
+}
+P 9100 400 8800 400 1 0 0
+{
+T 8900 450 5 8 1 1 0 0 1
+pinnumber=8
+T 8900 350 5 8 0 1 0 2 1
+pinseq=66
+T 8750 400 9 8 1 1 0 6 1
+pinlabel=GPIO43/EPWM8B/\_TZ2\_/COMP2OUT
+T 8750 400 5 8 0 1 0 8 1
+pintype=io
+}
+B 400 100 8400 12600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 8800 12800 8 10 1 1 0 6 1
+refdes=U?
+T 400 12800 9 10 1 0 0 0 1
+TMS320F28069PZP
+T 400 13000 5 10 0 0 0 0 1
+device=TMS320F28069PZP
+T 400 13200 5 10 0 0 0 0 1
+footprint=TQFP-100
+T 400 13400 5 10 0 0 0 0 1
+author=AutoTron
+T 400 13600 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/TMS320F28075/
+T 400 13800 5 10 0 0 0 0 1
+description=Piccolo Microcontroller, 90MHz
+T 400 14000 5 10 0 0 0 0 1
+numslots=0
+T 400 14200 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 14400 5 10 0 0 0 0 1
+use-license=unlimited

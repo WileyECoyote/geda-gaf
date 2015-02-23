@@ -1,0 +1,109 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+# "PB1 (CLK)". That's useful for micro controller port labels						
+# rotate_labels rotates the pintext of top and bottom pins						
+# this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+# useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	yes					
+sym_width	4800					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20150204 1					
+name	TMS320F28069PZP					
+device	TMS320F28069PZP					
+refdes	U?					
+footprint	TQFP-100					
+description	Piccolo Microcontroller, 90MHz					
+documentation	http://www.ti.com/product/TMS320F28075/					
+author	AutoTron					
+numslots	0					
+dist-license	GPL3					
+use-license	unlimited					
+#slot	1					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	negation lines can be added with "\_" example: \_enable\_ 					
+#	if you want to write a "\" use "\\" as escape sequence					
+#						
+#pin number	seq	type	style	posit.	net	label
+			spacer	l		
+46	46	pwr	line	l		VDD3VFL
+			spacer	l		
+12	12	in	line	l		\_TRST\_
+67	67	io	line	l		TCLK
+70	70	io	line	l		TDO
+71	71	io	line	l		TDI
+72	72	io	line	l		TMS
+			spacer	l		
+			spacer	l		
+51	51	io	line	l		XCLKOUT
+64	64	io	line	l		XCLKIN
+			spacer	l		
+			spacer	l		
+59	59	out	line	l		X2
+			spacer	l		
+			spacer	l		
+			spacer	l		
+			spacer	l		
+60	60	in	line	l		X1
+			spacer	l		
+			spacer	l		
+45	45	io	line	l		TEST2
+			spacer	l		
+11	11	oc	line	l		\_XRS\_
+			spacer	l		
+			spacer	r		
+25	25	pwr	line	r		VDDA
+			spacer	r		
+3	3	pwr	line	r		VDD
+14	14	pwr	line	r		VDD
+37	37	pwr	line	r		VDD
+63	63	pwr	line	r		VDD
+81	81	pwr	line	r		VDD
+91	91	pwr	line	r		VDD
+			spacer	r		
+5	5	pwr	line	r		VDDIO
+13	13	pwr	line	r		VDDIO
+38	38	pwr	line	r		VDDIO
+61	61	pwr	line	r		VDDIO
+79	79	pwr	line	r		VDDIO
+93	93	pwr	line	r		VDDIO
+			spacer	r		
+90	90	in	line	r		\_VREGENZ\_
+			spacer	r		
+36	36	pwr	line	r		VSS
+47	47	pwr	line	r		VSS
+62	62	pwr	line	r		VSS
+80	80	pwr	line	r		VSS
+92	92	pwr	line	r		VSS
+			spacer	l		
+26	26	pwr	line	r		VSSA

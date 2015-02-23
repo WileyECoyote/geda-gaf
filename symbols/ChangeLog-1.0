@@ -1,3 +1,65 @@
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/TMS320F28069PZP-1a.sym: Add new symbol for Piccolo Micro-
+      controller, part A, this is non-GPIO, ADC sections.
+
+    * ti/micro/TMS320F28069PZP-1b.sym: Piccolo Micro-controller, part B
+      this is the GPIO and ADC sections.
+
+2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ *.sym: General cleaning and revisions:
+
+    * ti/CSD18533QA-1.sym: Change footprint to Q5A and move all Source
+      lables to the same X-y.
+
+    * ti/INA193A-?.sym: Correct footprint SO23-5 -> SOT23-5.
+
+    * ti/LM5050-4.sym: Fixed pin-label alignment; pins 3 & 4.
+
+    * ti/LM5050-5.sym: Fixed pin-label alignment; pins 3 & 4.
+
+    * ti/LMC6081-1.sym: Replace symbol, use opamp-1 as template.
+
+    * ti/LMC6081-2.sym: Replace symbol, use opamp-2 as template.
+
+    * ti/LMP2021-1.sym: Replace symbol, use opamp-1 as template.
+
+    * ti/LMP2021-2.sym: Replace symbol, use opamp-2 as template.
+
+    * ti/LMP2022-1.sym: Replace symbol, use dual-opamp-1 as template.
+
+    * ti/LMP2022-2.sym: Replace symbol, use dual-opamp-2 as template.
+
+    * ti/PCM2706.sym: Fixed color of pin labels.
+
+    * ti/PCM2707.sym: Revamp.
+
+    * ti/TL5001ACD-1.sym: Rename file using upper case modifiers, Fixed
+      color of pin labels.
+
+    * ti/TLC3702-1.sym: Remove "comparator" from the file name (and who
+      knows what else - git shows as new file and I am too tired to run
+      a diff).
+
+    * ti/TLC556-x.sym: Major cleaning.
+
+    * ti/TS3704-1.sym: Remove "comparator" from the file name.
+
+    * ti/TPS2115A-1.sym: Change footprint to TSSOP8.
+
+    * ti/TPIC6B595-1.sym: Major cleaning.
+
+    * ti/TPIC6C596-1.sym: Major cleaning.
+
+    * ti/TPS2041-1.sym: Major cleaning.
+
+    * ti/TPS2044-1.sym: Major cleaning.
+
+    * ti/BeagleBoard-Exp.sym: Change footprint to "none".
+
+    * ti/BeagleBoard-LCD.sym: Change footprint to "none".
+
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/battery/BQ29470x-?.sym: Add remaining BQ294700 (1-7) series
