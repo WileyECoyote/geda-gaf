@@ -1,5 +1,19 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM5050-1.sym: Rename LM5050-1A, to avoid confusion with newer
+      version; LM5050-2. TI uses a dash 1 and dash 2 for LM5050.
+
+    * ti/LM5050-2.sym: Rename LM5050-1B, to avoid confusion with newer
+      version; LM5050-2. TI uses a dash 1 and dash 2 for LM5050..
+
+    * ti/LM5050-3.sym:  Rename LM5050-1C, to avoid confusion with newer
+      version; LM5050-2. TI uses a dash 1 and dash 2 for LM5050.
+
+    * ti/LM5050-4.sym: Rename LM5050-1D, to avoid confusion with newer
+      version; LM5050-2. TI uses a dash 1 and dash 2 for LM5050.
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/micro/TMS320F28069PZP-1a.sym: Add new symbol for Piccolo Micro-
       controller, part A, this is non-GPIO, ADC sections.
 
