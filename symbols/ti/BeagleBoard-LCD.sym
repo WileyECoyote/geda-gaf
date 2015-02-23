@@ -440,4 +440,4 @@ T 2700 3500 5 10 0 0 0 0 1
 pinseq=36
 }
 T 400 10000 5 10 0 0 0 0 1
-footprint=BeagleBoard
+footprint=none
