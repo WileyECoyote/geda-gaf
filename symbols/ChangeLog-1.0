@@ -1,5 +1,11 @@
 2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/battery/BQ29470x-?.sym: Add remaining BQ294700 (1-7) series
+      Lithium ion Cell Over-Voltage Protection 3.85 Volts to 4.6 Volts
+      BQ294700-7 is odd-ball NCH Open Drain, others use active high out.
+
+2015-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * geda-clib.scm: Add ti/motor as "Manufacturers/Motor Control" and
       rename Microchip amd linear to match (so these groups will be
       lumped when the Component dialog assorts them. Also add ti/micro
