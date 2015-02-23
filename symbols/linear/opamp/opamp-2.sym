@@ -80,5 +80,3 @@ T 0 2000 5 10 0 0 0 0 1
 author=AutoTron
 T 800 600 9 10 1 1 0 0 1
 footprint=SOIC8
-N 0 200 0 600 4
-
