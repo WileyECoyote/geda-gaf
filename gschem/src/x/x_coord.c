@@ -365,7 +365,6 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
   str    = NULL;
   str    = GetEntryText(entry);
 
-
   if (str) {
     /* extract entry text and determine world X & Y integers */
     strcpy(&buffer[0], str);

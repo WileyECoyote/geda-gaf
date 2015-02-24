@@ -47,7 +47,7 @@ void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 
 /*! \brief End the input of a Pin.
  *  \par Function Description
- *  This function ends the input of the second point of a Pin. The (<B>x</B>,<B>y</B>)
+ *  Finalizes the input of the second point of a Pin. The (<B>x</B>,<B>y</B>)
  *  point is set to be the "other" end of the pin as the first point is the
  *  "connected" end.
  *

@@ -399,8 +399,8 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   dx = abs(w_current->first_wx - w_x);
   dy = abs(w_current->first_wy - w_y);
 
-  /* if we are still close to the button press location,
-   *     then don't enter the selection box mode */
+  /* if the pointer is still close to the button press location,
+   * then don't enter the selection box mode */
   if (SCREENabs (w_current, max(dx, dy)) < 10) {
     status = FALSE;
   }
@@ -504,7 +504,6 @@ void o_select_box_search(GschemToplevel *w_current)
     o_current = iter->data;
 
     /* only select visible objects */
-    //if (o_get_is_visible (o_current) || toplevel->page_current->show_hidden_text) {
       if (o_get_is_visible (o_current)) {
 
         int cleft, ctop, cright, cbottom;
@@ -646,10 +645,9 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
 
 /*! \brief Get the Number of Currently Selected Objects
  *  \par Function Description
- *   Returns the selection set count. Does not check validity
- *   of objects, this should have been done when the objects
- *   were added, nor does this function varify that the object
- *   or objects still exist.
+ *   Returns the selection set count. Does not check validity of objects,
+ *   this should have been done when the objects were added, nor does this
+ *   function varify that the object or objects still exist.
  *
  *  \returns count of the selection list..
  */
@@ -671,10 +669,9 @@ bool o_select_is_selection(GschemToplevel *w_current)
 
 /*! \brief UnSelect All Objects
  *  \par Function Description
- *   Removes all members from the toplevel selection list
- *   and calls the run hook function, after the object(s)
- *   have been removed, pass a list of the object that were
- *   removed.
+ *   Removes all members from the toplevel selection list and calls
+ *   the run hook function, after the object(s) have been removed,
+ *   pass a list of the object that were removed.
  *
  *  \remarks WEH: Could it help to have a freeze/thaw wrapper
  *           around the do loop if count was many?

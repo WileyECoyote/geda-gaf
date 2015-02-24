@@ -64,10 +64,15 @@ void o_slot_start (GschemToplevel *w_current, Object *object)
 
 /*! \brief Add a Slot Attribute
  *  \par Function Description
- *  This is function could be called x_dialog_edit_slot_response_ok
- *  but it is also called from o_attrib, x_autonumber and o_text.
- *  The function creates a new type "slots" attribute to the drawing
- *  and attaches it to the object
+ *  The function creates a new type "slots" attribute to the drawing and
+ *  and attaches it to the object. This is function is called from:
+ *  \par
+ *  <DL>
+ *    <DT>o_attrib</DT>
+ *    <DT>o_text</DT>
+ *    <DT>x_autonumber</DT>
+ *    <DT>x_dialog_edit_slot_response_ok</DT>
+ *  </DL>
  *
  *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to Object to receive slot attribute.

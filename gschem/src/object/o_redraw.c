@@ -183,7 +183,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   render_flags = EDA_RENDERER_FLAG_HINTING;
 
-  //fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
   /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
@@ -236,8 +235,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   cairo_save (w_current->cr);
 
-  /* We need to transform the cairo context to world coordinates while
-   * we're drawing using the renderer. */
+  /* Transform the cairo context to world coordinates */
   cairo_matrix_init (&render_mtx,
                     (double) Current_Page->to_screen_x_constant, 0, 0,
                    -(double) Current_Page->to_screen_y_constant,
