@@ -1,3 +1,8 @@
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Revise function x_dialog_edit_text_ok, was not
+      setting upper left alignment (=0).
+
 2015-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_grips.c: Eliminate early returns in o_grips_motion.

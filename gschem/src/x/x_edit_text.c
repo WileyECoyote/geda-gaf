@@ -288,7 +288,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   /* Retrieve values from the object that was passed */
   string         = object->text->string;
-  text_align     = object->text->alignment;
+  text_align     = -1;
   text_color     = object->color;
   text_size      = object->text->size;
   text_angle     = object->text->angle;
@@ -316,7 +316,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   { /* Text Color */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
-    text_color = geda_combo_box_get_active((GedaComboBox*)widget);
+    text_color = geda_combo_widget_get_active(widget);
     if (text_color > 0) {
       if (geda_combo_widget_get_active_iter(widget, &iter)) {
         model = geda_combo_box_get_model((GedaComboBox*) widget);
@@ -327,8 +327,8 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   { /* Text Alignment */
     widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
-    text_align = geda_combo_box_get_active((GedaComboBox*)widget);
-    if (text_align > 0) {
+    has_value = geda_combo_widget_get_active(widget);
+    if (has_value >= 0) {
       if (geda_combo_widget_get_active_iter(widget, &iter)) {
         model = geda_combo_box_get_model((GedaComboBox*) widget);
         gtk_tree_model_get(model, &iter, 1, &text_align, -1);
