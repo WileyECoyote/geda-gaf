@@ -1,5 +1,15 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM5050-2x.sym: Add symbols for LM5050-2 Ideal Diode, the dash is
+      part of the part number, is similar to LM5050-1 but provides a FET
+      test for controller (at a cost of not being able to bias off the
+      output side since the FGD pin replaces the old Vs pin that was used
+      to supply the internal bias.)
+
+    * ti/LM5050-5.sym: Eliminated this version of the LM5050-1 symbol.
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LMP2021-1.sym: Turn off pin labels (darn quality checker makes
       pin labels visible by default and I did not turn off).
 
