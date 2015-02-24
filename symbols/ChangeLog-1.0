@@ -1,5 +1,9 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * moto/MC12093.sym: Add symbol, divider.
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-1.sym: Rename LM5050-1A, to avoid confusion with newer
       version; LM5050-2. TI uses a dash 1 and dash 2 for LM5050.
 

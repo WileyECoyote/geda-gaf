@@ -1,0 +1,106 @@
+v 20150101 2
+T 100 2200 5 10 0 0 0 0 1
+description=divide by 2,4,8, model MC12093 by ON-Semi
+T 100 2400 5 8 0 0 0 0 1
+documentation=http://www.onsemi.com/pub/Collateral/MC12093-D.PDF
+T 100 2800 5 8 0 0 0 0 1
+dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+T 100 2600 5 8 0 0 0 0 1
+use-license=free, no restrictions
+T 100 3000 5 10 0 0 0 0 1
+author=Kai-Martin Knaak
+T 400 2000 8 10 1 1 0 0 1
+refdes=U?
+T 400 1850 5 10 1 1 0 0 1
+device=MC12093
+T 400 1650 9 10 1 1 0 0 1
+footprint=SO8
+B 400 100 1300 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1300 100 1300 1 0 1
+{
+T 250 1350 5 8 1 1 0 6 1
+pinnumber=1
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=in
+T 375 1250 5 8 0 1 0 8 1
+pintype=in
+T 250 1350 5 8 0 1 0 6 1
+pinseq=1
+}
+P 400 1000 100 1000 1 0 1
+{
+T 250 1050 5 8 1 1 0 6 1
+pinnumber=2
+T 450 1000 9 10 1 1 0 0 1
+pinlabel=Vcc
+T 375 950 5 8 0 1 0 8 1
+pintype=pwr
+T 250 1050 5 8 0 1 0 6 1
+pinseq=2
+}
+P 400 700 100 700 1 0 1
+{
+T 250 750 5 8 1 1 0 6 1
+pinnumber=3
+T 450 700 9 10 1 1 0 0 1
+pinlabel=SW2
+T 375 650 5 8 0 1 0 8 1
+pintype=pas
+T 250 750 5 8 0 1 0 6 1
+pinseq=3
+}
+P 400 400 100 400 1 0 1
+{
+T 250 450 5 8 1 1 0 6 1
+pinnumber=4
+T 450 400 9 10 1 1 0 0 1
+pinlabel=out
+T 375 350 5 8 0 1 0 8 1
+pintype=out
+T 250 450 5 8 0 1 0 6 1
+pinseq=4
+}
+P 1700 400 2000 400 1 0 1
+{
+T 1850 450 5 8 1 1 0 0 1
+pinnumber=5
+T 1650 400 9 10 1 1 0 6 1
+pinlabel=GND
+T 1725 375 5 8 0 1 0 2 1
+pintype=pwr
+T 1850 450 5 8 0 1 0 0 1
+pinseq=5
+}
+P 1700 700 2000 700 1 0 1
+{
+T 1850 750 5 8 1 1 0 0 1
+pinnumber=6
+T 1650 700 9 10 1 1 0 6 1
+pinlabel=SW1
+T 1725 675 5 8 0 1 0 2 1
+pintype=pas
+T 1850 750 5 8 0 1 0 0 1
+pinseq=6
+}
+P 1700 1000 2000 1000 1 0 1
+{
+T 1850 1050 5 8 1 1 0 0 1
+pinnumber=7
+T 1650 1000 9 10 1 1 0 6 1
+pinlabel=SB
+T 1725 975 5 8 0 1 0 2 1
+pintype=pas
+T 1850 1050 5 8 0 1 0 0 1
+pinseq=7
+}
+P 1700 1300 2000 1300 1 0 1
+{
+T 1850 1350 5 8 1 1 0 0 1
+pinnumber=8
+T 1650 1300 9 10 1 1 0 6 1
+pinlabel=\_in\_
+T 1725 1275 5 8 0 1 0 2 1
+pintype=in
+T 1850 1350 5 8 0 1 0 0 1
+pinseq=8
+}
