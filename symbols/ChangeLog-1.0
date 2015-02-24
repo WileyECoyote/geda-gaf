@@ -1,5 +1,16 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * moto/ Add two sets of symbols for 68302, not sure why:
+
+            * moto/MC68302_PGA-1.sym
+            * moto/MC68302_PGA-2.sym
+            * moto/MC68302_PGA-3.sym
+            * moto/MC68302_PQFP-1.sym
+            * moto/MC68302_PQFP-2.sym
+            * moto/MC68302_PQFP-3.sym
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
         * ti/src/TMS320F28069PZP.ods: Revision pin layout, the revisions
           are reflected in:
 
