@@ -56,14 +56,11 @@ use-license	unlimited
 #						
 #pin number	seq	type	style	posit.	net	label
 			spacer	l		
-46	46	pwr	line	l		VDD3VFL
-			spacer	l		
 12	12	in	line	l		\_TRST\_
 67	67	io	line	l		TCLK
 70	70	io	line	l		TDO
 71	71	io	line	l		TDI
 72	72	io	line	l		TMS
-			spacer	l		
 			spacer	l		
 51	51	io	line	l		XCLKOUT
 64	64	io	line	l		XCLKIN
@@ -79,17 +76,27 @@ use-license	unlimited
 			spacer	l		
 45	45	io	line	l		TEST2
 			spacer	l		
-11	11	oc	line	l		\_XRS\_
+90	90	in	line	l		\_VREGENZ\_
 			spacer	l		
+36	36	pwr	line	l		VSS
+47	47	pwr	line	l		VSS
+62	62	pwr	line	l		VSS
+80	80	pwr	line	l		VSS
+92	92	pwr	line	l		VSS
+			spacer	l		
+26	26	pwr	line	l		VSSA
+			spacer	r		
+46	46	pwr	line	r		VDD3VFL
+			spacer	r		
+			spacer	r		
+			spacer	r		
+			spacer	r		
+			spacer	r		
 			spacer	r		
 25	25	pwr	line	r		VDDA
 			spacer	r		
-3	3	pwr	line	r		VDD
-14	14	pwr	line	r		VDD
-37	37	pwr	line	r		VDD
-63	63	pwr	line	r		VDD
-81	81	pwr	line	r		VDD
-91	91	pwr	line	r		VDD
+			spacer	r		
+			spacer	r		
 			spacer	r		
 5	5	pwr	line	r		VDDIO
 13	13	pwr	line	r		VDDIO
@@ -98,12 +105,15 @@ use-license	unlimited
 79	79	pwr	line	r		VDDIO
 93	93	pwr	line	r		VDDIO
 			spacer	r		
-90	90	in	line	r		\_VREGENZ\_
 			spacer	r		
-36	36	pwr	line	r		VSS
-47	47	pwr	line	r		VSS
-62	62	pwr	line	r		VSS
-80	80	pwr	line	r		VSS
-92	92	pwr	line	r		VSS
-			spacer	l		
-26	26	pwr	line	r		VSSA
+			spacer	r		
+11	11	oc	line	r		\_XRS\_
+			spacer	r		
+			spacer	r		
+3	3	pwr	line	r		VDD
+14	14	pwr	line	r		VDD
+37	37	pwr	line	r		VDD
+63	63	pwr	line	r		VDD
+81	81	pwr	line	r		VDD
+91	91	pwr	line	r		VDD
+			spacer	r		

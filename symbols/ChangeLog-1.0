@@ -1,5 +1,15 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+        * ti/src/TMS320F28069PZP.ods: Revision pin layout, the revisions
+          are reflected in:
+
+            * ti/src/TMS320F28069PZP-1a.csv
+            * ti/src/TMS320F28069PZP-1b.csv
+            * ti/micro/TMS320F28069PZP-1a.sym
+            * ti/micro/TMS320F28069PZP-1b.sym
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-2x.sym: Add symbols for LM5050-2 Ideal Diode, the dash is
       part of the part number, is similar to LM5050-1 but provides a FET
       test for controller (at a cost of not being able to bias off the
