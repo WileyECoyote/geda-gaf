@@ -1,5 +1,11 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * fairchild/BAT54S-1.sym: Clean symbol, fix grid errors.
+
+    * fairchild/BAT54S-2.sym: Clean symbol, fix grid errors.
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * moto/ Add two sets of symbols for 68302, not sure why:
 
             * moto/MC68302_PGA-1.sym
