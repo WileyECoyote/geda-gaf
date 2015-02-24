@@ -1,5 +1,14 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LMP2021-1.sym: Turn off pin labels (darn quality checker makes
+      pin labels visible by default and I did not turn off).
+
+    * ti/LMP2021-2.sym: Turn off pin labels.
+    * ti/LMP2022-1.sym: Turn off pin labels.
+    * ti/LMP2022-2.sym: Turn off pin labels.
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * moto/MC12093.sym: Add symbol, divider.
 
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>

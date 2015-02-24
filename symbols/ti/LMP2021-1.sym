@@ -13,7 +13,7 @@ T 25 650 5 8 1 1 0 0 1
 pinnumber=3
 T 100 650 5 8 0 1 0 0 1
 pinseq=1
-T 225 450 9 10 1 1 0 0 1
+T 225 450 9 10 0 1 0 0 1
 pinlabel=in+
 T 225 450 5 8 0 1 0 0 1
 pintype=in
@@ -24,7 +24,7 @@ T 25 250 5 8 1 1 0 0 1
 pinnumber=2
 T 100 250 5 8 0 1 0 0 1
 pinseq=2
-T 225 275 9 10 1 1 0 0 1
+T 225 275 9 10 0 1 0 0 1
 pinlabel=in-
 T 225 275 5 8 0 1 0 0 1
 pintype=in
@@ -35,7 +35,7 @@ T 825 450 5 8 1 1 0 0 1
 pinnumber=6
 T 900 450 5 8 0 1 0 0 1
 pinseq=5
-T 775 275 9 10 1 1 0 0 1
+T 775 275 9 10 0 1 0 0 1
 pinlabel=out
 T 775 275 9 8 0 1 0 0 1
 pintype=out
@@ -46,7 +46,7 @@ T 550 725 5 8 1 1 0 0 1
 pinnumber=7
 T 625 725 5 8 0 1 0 0 1
 pinseq=3
-T 550 600 9 10 1 1 0 0 1
+T 550 600 9 10 0 1 0 0 1
 pinlabel=V+
 T 450 700 5 8 0 1 90 0 1
 pintype=pwr
@@ -57,7 +57,7 @@ T 550 0 5 8 1 1 0 0 1
 pinnumber=4
 T 625 0 5 8 0 1 0 0 1
 pinseq=4
-T 575 125 9 10 1 1 0 0 1
+T 575 125 9 10 0 1 0 0 1
 pinlabel=V-
 T 450 125 5 8 0 1 90 6 1
 pintype=pwr
