@@ -1729,7 +1729,7 @@ x_toolbars_update(GschemToplevel *w_current)
     case(ENDCOPY):
     case(ENDMOVE):
     case(ENDCOMP):
-    case(ENDTEXT):
+    case(TEXTMODE):
     case(ENDROTATE):
     case(ENDMIRROR):
     case(ZOOMBOX):

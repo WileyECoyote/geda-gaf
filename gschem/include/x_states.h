@@ -43,32 +43,31 @@ enum x_states {
   LINEMODE,         /* 15 */
   BOXMODE,          /* 16 */
   CIRCLEMODE,       /* 17 */
-  ARCMODE,          /* 18 */
-  PATHMODE,         /* 19 */
-  PICTUREMODE,      /* 20 */
-  BUSMODE,          /* 21 */
-  ENDCOMP,          /* 22 */
-  ENDCOPY,          /* 23 */
-  ENDMOVE,          /* 24 */
-  ENDDNDSTR,        /* 25 */
-  ENDDND_MOVE_OBJ,  /* 26 */
-  ENDDND_COPY_OBJ,  /* 27 */
-  DRAWTEXT,         /* 28 */
-  ENDTEXT,          /* 29 */
-  ENDROTATE,        /* 30 */
-  ENDMIRROR,        /* 31 */
-  ZOOMBOX,          /* 32 */
-  STARTPASTE,       /* 33 */
-  ENDPASTE,         /* 34 */
-  GRIPS,            /* 35 */
-  STARTEXTEND,      /* 36 */
-  EXTEND,           /* 37 */
-  ENDEXTEND,        /* 38 */
-  STARTBREAK,       /* 39 */
-  ENDBREAK,         /* 40 */
-  MCOPY,            /* 41 */
-  STARTMCOPY,       /* 42 */
-  ENDMCOPY,         /* 43 */
+  TEXTMODE,         /* 18 */
+  ARCMODE,          /* 19 */
+  PATHMODE,         /* 20 */
+  PICTUREMODE,      /* 21 */
+  BUSMODE,          /* 22 */
+  ENDCOMP,          /* 23 */
+  ENDCOPY,          /* 24 */
+  ENDMOVE,          /* 25 */
+  ENDDNDSTR,        /* 26 */
+  ENDDND_MOVE_OBJ,  /* 27 */
+  ENDDND_COPY_OBJ,  /* 28 */
+  ENDROTATE,        /* 29 */
+  ENDMIRROR,        /* 30 */
+  ZOOMBOX,          /* 31 */
+  STARTPASTE,       /* 32 */
+  ENDPASTE,         /* 33 */
+  GRIPS,            /* 34 */
+  STARTEXTEND,      /* 35 */
+  EXTEND,           /* 36 */
+  ENDEXTEND,        /* 37 */
+  STARTBREAK,       /* 38 */
+  ENDBREAK,         /* 39 */
+  MCOPY,            /* 40 */
+  STARTMCOPY,       /* 41 */
+  ENDMCOPY,         /* 42 */
 };
 
 #endif

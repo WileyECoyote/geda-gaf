@@ -97,19 +97,30 @@ int x_event_button_pressed(GtkWidget      *widget,
 
     if (w_current->inside_action) {
       /* End action */
-      switch (w_current->event_state) {
-        case (NETMODE)    : o_net_end       (w_current, w_x, w_y); break;
-        case (PINMODE)    : o_pin_end       (w_current, w_x, w_y); break;
-        case (LINEMODE)   : o_line_end      (w_current, w_x, w_y); break;
-        case (BOXMODE)    : o_box_end       (w_current, w_x, w_y); break;
-        case (CIRCLEMODE) : o_circle_end    (w_current, w_x, w_y); break;
-        case (ARCMODE)    : o_arc_end1      (w_current, w_x, w_y); break;
-        case (PATHMODE)   : o_path_continue (w_current, w_x, w_y); break;
-        case (PICTUREMODE): o_picture_end   (w_current, w_x, w_y); break;
-        case (BUSMODE)    : o_bus_end       (w_current, w_x, w_y); break;
-        default: break;
+
+      if (Current_PlaceList != NULL) {
+        switch(w_current->event_state) {
+          case (TEXTMODE):
+            o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+          default: break;
+        }
       }
-    } else {
+      else {
+        switch (w_current->event_state) {
+          case (NETMODE)    : o_net_end       (w_current, w_x, w_y); break;
+          case (PINMODE)    : o_pin_end       (w_current, w_x, w_y); break;
+          case (LINEMODE)   : o_line_end      (w_current, w_x, w_y); break;
+          case (BOXMODE)    : o_box_end       (w_current, w_x, w_y); break;
+          case (CIRCLEMODE) : o_circle_end    (w_current, w_x, w_y); break;
+          case (ARCMODE)    : o_arc_end1      (w_current, w_x, w_y); break;
+          case (PATHMODE)   : o_path_continue (w_current, w_x, w_y); break;
+          case (PICTUREMODE): o_picture_end   (w_current, w_x, w_y); break;
+          case (BUSMODE)    : o_bus_end       (w_current, w_x, w_y); break;
+          default: break;
+        }
+      }
+    }
+    else {
       /* Start action */
       switch (w_current->event_state) {
         case (NETMODE)    : o_net_start     (w_current, w_x, w_y); break;
@@ -183,12 +194,12 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_edit_mirror_world(w_current, w_x, w_y, list);
         i_status_set_state(w_current, SELECT);
         break;
-
-      case(ENDTEXT):
+/*
+      case(TEXTMODE):
         o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
         i_status_set_state(w_current, SELECT);
         break;
-
+*/
       case(PAN):
         i_pan_world(w_current, w_x, w_y);
         i_status_set_state(w_current, SELECT);
@@ -231,7 +242,6 @@ int x_event_button_pressed(GtkWidget      *widget,
     /* try this out and see how it behaves */
     if (w_current->inside_action) {
       if (!(w_current->event_state == ENDCOMP  ||
-        w_current->event_state     == ENDTEXT  ||
         w_current->event_state     == ENDMOVE  ||
         w_current->event_state     == ENDCOPY  ||
         w_current->event_state     == ENDMCOPY ||
@@ -384,6 +394,7 @@ bool x_event_button_released (GtkWidget      *widget,
       case(SELECT):
         /* do nothing - is almost same as not having a case */
         break;
+
       case(MOVE):
         w_current->event_state = ENDMOVE;
         break;
@@ -395,6 +406,7 @@ bool x_event_button_released (GtkWidget      *widget,
       case(MCOPY):
         w_current->event_state = ENDMCOPY;
         break;
+
       case(GRIPS):
         o_grips_end(w_current);
         i_status_set_state(w_current, SELECT);
@@ -482,7 +494,6 @@ bool x_event_button_released (GtkWidget      *widget,
     }
     else if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP  ||
-          w_current->event_state == ENDTEXT  ||
           w_current->event_state == ENDMOVE  ||
           w_current->event_state == ENDCOPY  ||
           w_current->event_state == ENDMCOPY ||
@@ -963,19 +974,27 @@ bool x_event_motion (GtkWidget      *widget,
   }
 
   if (w_current->inside_action) {
-    switch(w_current->event_state) {
-      case(NETMODE)    :   o_net_motion     (w_current, w_x, w_y); break;
-      case(PINMODE)    :   o_pin_motion     (w_current, w_x, w_y); break;
-      case(LINEMODE)   :   o_line_motion    (w_current, w_x, w_y); break;
-      case(BOXMODE)    :   o_box_motion     (w_current, w_x, w_y); break;
-      case(CIRCLEMODE) :   o_circle_motion  (w_current, w_x, w_y); break;
-      case(ARCMODE)    :   o_arc_motion     (w_current, w_x, w_y); break;
-      case(PATHMODE)   :   o_path_motion    (w_current, w_x, w_y); break;
-      case(PICTUREMODE):   o_picture_motion (w_current, w_x, w_y); break;
-      case(BUSMODE)    :   o_bus_motion     (w_current, w_x, w_y); break;
-      case(ZOOMBOX):
+    if (Current_PlaceList != NULL) {
+      switch(w_current->event_state) {
+        case (TEXTMODE)  : o_place_motion (w_current, w_x, w_y); break;
+        default: break;
+      }
+    }
+    else {
+      switch(w_current->event_state) {
+        case(NETMODE)    :  o_net_motion     (w_current, w_x, w_y); break;
+        case(PINMODE)    :  o_pin_motion     (w_current, w_x, w_y); break;
+        case(LINEMODE)   :  o_line_motion    (w_current, w_x, w_y); break;
+        case(BOXMODE)    :  o_box_motion     (w_current, w_x, w_y); break;
+        case(CIRCLEMODE) :  o_circle_motion  (w_current, w_x, w_y); break;
+        case(ARCMODE)    :  o_arc_motion     (w_current, w_x, w_y); break;
+        case(PATHMODE)   :  o_path_motion    (w_current, w_x, w_y); break;
+        case(PICTUREMODE):  o_picture_motion (w_current, w_x, w_y); break;
+        case(BUSMODE)    :  o_bus_motion     (w_current, w_x, w_y); break;
+        case(ZOOMBOX):
           i_zoom_world_box_motion (w_current, unsnapped_wx, unsnapped_wy);
-      default: break;
+        default: break;
+      }
     }
   }
   else {
@@ -1026,7 +1045,6 @@ bool x_event_motion (GtkWidget      *widget,
       case(ENDMCOPY):
       case(ENDCOMP):
       case(ENDPASTE):
-      case(ENDTEXT):
         o_place_motion (w_current, w_x, w_y);
         break;
 

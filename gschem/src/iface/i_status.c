@@ -138,8 +138,6 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Select Mode");
     case ENDCOMP:
       return _("Component Mode"); /*EK* new */
-    case ENDTEXT:
-      return _("Text Mode"); /*EK* new */
     case STARTCOPY:
     case ENDCOPY:
       return _("Copy Mode");
@@ -191,6 +189,8 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Box Mode");
     case CIRCLEMODE:
       return _("Circle Mode");
+    case TEXTMODE:
+      return _("Text Mode");
     case ARCMODE:
       return _("Arc Mode");
     case PATHMODE:

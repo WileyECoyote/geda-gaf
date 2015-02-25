@@ -63,7 +63,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ENDMCOPY ):
     case ( MOVE ):
     case ( ENDMOVE ):
-    case ( ENDTEXT ):
     case ( ENDPASTE ):
     case ( GRIPS ):
 
@@ -72,6 +71,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( LINEMODE ):
     case ( BOXMODE ):
     case ( CIRCLEMODE ):
+    case ( TEXTMODE ):
     case ( ARCMODE ):
     case ( PATHMODE ):
     case ( PICTUREMODE ):
@@ -331,7 +331,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
         case ENDCOPY:
         case ENDMCOPY:
         case ENDCOMP:
-        case ENDTEXT:
+        case TEXTMODE:
         case ENDPASTE:
 
           cairo_set_matrix (w_current->cr, &render_mtx);
@@ -371,7 +371,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           o_circle_draw_rubber (w_current);
           break;
 
-        case ARCMODE:
+         case ARCMODE:
           o_arc_draw_rubber (w_current);
           break;
 

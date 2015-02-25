@@ -1,3 +1,9 @@
+2015-02-24 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * : WEH: Modified per commit to Master branch by Vladimir See commit
+      12253ad4f2d5f1c16fa3aae8fdbcdb2c3c5dc47d in order to use TEXTMODE
+      instead of DRAWTEXT and ENDTEXT as state flags.
+
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_text.c: Revise function x_dialog_edit_text_ok, was not
