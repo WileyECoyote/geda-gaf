@@ -100,6 +100,14 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       if (Current_PlaceList != NULL) {
         switch(w_current->event_state) {
+          case (COMPMODE):
+            o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
+                        NULL, "%add-objects-hook");
+            if (!w_current->continue_component_place) {
+              i_status_set_state(w_current, SELECT);
+            }
+            break;
+
           case (TEXTMODE):
             o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
           default: break;
@@ -169,7 +177,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
         w_current->event_state   = ENDPASTE;
         break;
-
+/*
       case(ENDCOMP):
         o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
                     NULL, "%add-objects-hook");
@@ -177,7 +185,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           i_status_set_state(w_current, SELECT);
         }
         break;
-
+*/
       case(ENDPASTE):
         o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
         i_status_set_state(w_current, SELECT);
@@ -241,10 +249,10 @@ int x_event_button_pressed(GtkWidget      *widget,
 
     /* try this out and see how it behaves */
     if (w_current->inside_action) {
-      if (!(w_current->event_state == ENDCOMP  ||
-        w_current->event_state     == ENDMOVE  ||
-        w_current->event_state     == ENDCOPY  ||
-        w_current->event_state     == ENDMCOPY ||
+      if (!(w_current->event_state == COMPMODE  ||
+        w_current->event_state     == ENDMOVE   ||
+        w_current->event_state     == ENDCOPY   ||
+        w_current->event_state     == ENDMCOPY  ||
         w_current->event_state     == ENDPASTE )) {
         i_callback_cancel(w_current, 0, NULL);
         }
@@ -493,10 +501,10 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
     else if (w_current->inside_action) {
-      if (w_current->event_state == ENDCOMP  ||
-          w_current->event_state == ENDMOVE  ||
-          w_current->event_state == ENDCOPY  ||
-          w_current->event_state == ENDMCOPY ||
+      if (w_current->event_state == COMPMODE  ||
+          w_current->event_state == ENDMOVE   ||
+          w_current->event_state == ENDCOPY   ||
+          w_current->event_state == ENDMCOPY  ||
           w_current->event_state == ENDPASTE )
       {
         if (w_current->event_state == ENDMOVE) {
@@ -509,7 +517,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
         o_place_rotate(w_current);
 
-        if (w_current->event_state == ENDCOMP) {
+        if (w_current->event_state == COMPMODE) {
           o_complex_place_changed_run_hook (w_current);
         }
 
@@ -976,6 +984,7 @@ bool x_event_motion (GtkWidget      *widget,
   if (w_current->inside_action) {
     if (Current_PlaceList != NULL) {
       switch(w_current->event_state) {
+        case (COMPMODE)  :
         case (TEXTMODE)  : o_place_motion (w_current, w_x, w_y); break;
         default: break;
       }
@@ -1043,7 +1052,6 @@ bool x_event_motion (GtkWidget      *widget,
       case(MCOPY):
       case(ENDCOPY):
       case(ENDMCOPY):
-      case(ENDCOMP):
       case(ENDPASTE):
         o_place_motion (w_current, w_x, w_y);
         break;

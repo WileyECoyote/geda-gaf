@@ -51,7 +51,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
 
   switch (w_current->event_state) {
     /* all states with something on the dc */
-    case ( ENDCOMP ):
+    case ( COMPMODE ):
 
       /* De-select the lists in the component selector */
       x_compselect_deselect (w_current);
@@ -315,6 +315,22 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     /* Redraw the rubberband objects if previously visible */
     if (w_current->rubber_visible) {
 
+      if (Current_PlaceList != NULL) {
+        switch (w_current->event_state) {
+          case COMPMODE:
+          case TEXTMODE:
+            cairo_set_matrix (w_current->cr, &render_mtx);
+            eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+            o_place_draw_rubber (w_current, draw_selected);
+
+            eda_renderer_set_color_map (renderer, render_color_map);
+
+            break;
+          default: break;
+        }
+      }
+
       switch (w_current->event_state) {
         case MOVE:
         case ENDMOVE:
@@ -330,8 +346,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
         case ENDCOPY:
         case ENDMCOPY:
-        case ENDCOMP:
-        case TEXTMODE:
         case ENDPASTE:
 
           cairo_set_matrix (w_current->cr, &render_mtx);
@@ -371,7 +385,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           o_circle_draw_rubber (w_current);
           break;
 
-         case ARCMODE:
+        case ARCMODE:
           o_arc_draw_rubber (w_current);
           break;
 

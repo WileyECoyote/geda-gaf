@@ -163,7 +163,7 @@ x_dialog_coord_dnd_drag_receive
                break;
              case STARTCOPY:
              case ENDCOPY:
-             case ENDCOMP:
+             case COMPMODE:
 
                i_status_set_state (w_current, ENDDND_COPY_OBJ);
              default:

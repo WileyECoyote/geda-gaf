@@ -934,7 +934,7 @@ void x_dnd_drag_end
       }
       break;
 
-    case ENDCOMP:
+    case COMPMODE:
     default:
       break;
   }

@@ -184,7 +184,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
                 w_current->include_complex = 1;
             }
 
-            if (w_current->event_state == ENDCOMP) {
+            if (w_current->event_state == COMPMODE) {
                 if (toplevel->page_current->place_list != NULL) {
                     /* Delete the component which was being placed */
                     if (w_current->rubber_visible) {
@@ -234,7 +234,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
                     gtk_widget_destroy (GTK_WIDGET (dialog));
                 }
             }
-            if (w_current->event_state == ENDCOMP) {
+            if (w_current->event_state == COMPMODE) {
                 /* Can not wait for base class todo this*/
                 w_current->cswindow = NULL;
                 /* Cancel the place operation currently in progress */

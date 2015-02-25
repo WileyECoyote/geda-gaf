@@ -148,14 +148,11 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
     }
   }
 
-  if (success) {
+  if ((w_current->inside_action = success)) {
 
     /* Run the complex place list changed hook without redrawing */
     /* since the place list is going to be redrawn afterwards */
     o_complex_place_changed_run_hook (w_current);
-
-    w_current->inside_action = TRUE;
-    i_status_set_state (w_current, ENDCOMP);
   }
 }
 

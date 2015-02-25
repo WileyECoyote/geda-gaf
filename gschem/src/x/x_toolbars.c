@@ -1728,7 +1728,7 @@ x_toolbars_update(GschemToplevel *w_current)
     case(STARTMOVE):
     case(ENDCOPY):
     case(ENDMOVE):
-    case(ENDCOMP):
+    case(COMPMODE):
     case(TEXTMODE):
     case(ENDROTATE):
     case(ENDMIRROR):

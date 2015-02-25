@@ -183,7 +183,7 @@ DEFINE_I_CALLBACK(cancel)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  if (w_current->event_state == ENDCOMP && w_current->cswindow) {
+  if (w_current->event_state == COMPMODE && w_current->cswindow) {
 
     /* user hit escape key when placing components */
 
@@ -197,8 +197,7 @@ DEFINE_I_CALLBACK(cancel)
     /* Present the component selector again */
     g_object_set (G_OBJECT(w_current->cswindow), "hidden", FALSE, NULL);
   }
-
-  if (w_current->inside_action) {
+  else if (w_current->inside_action) {
     /* If we're cancelling from a move action, re-wind the
      * page contents back to their state before we started */
     if (w_current->event_state == MOVE ||
@@ -214,16 +213,20 @@ DEFINE_I_CALLBACK(cancel)
     /* Was not in an action so clear the selection */
     o_select_unselect_all(w_current);
   }
+  else {
+
+  /* leave this on for now... but it might have to change */
+  /* this is problematic since we don't know what the right mode */
+  /* should be (when you cancel inside an action) */
+
+    i_status_set_state(w_current, SELECT);
+  }
+
   /* Free the place list and its contents. If we were in a move
    * action, the list (refering to objects on the page) would
    * already have been cleared in o_move_cancel(), so this is OK. */
   s_object_release_objects(toplevel->page_current->place_list);
   toplevel->page_current->place_list = NULL;
-
-  /* leave this on for now... but it might have to change */
-  /* this is problematic since we don't know what the right mode */
-  /* should be (when you cancel inside an action) */
-  i_status_set_state(w_current, SELECT);
 
   /* clear the key guile command-sequence */
   g_keys_reset (w_current);

@@ -1,6 +1,12 @@
 2015-02-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * : WEH: Modified per commit to Master branch by Vladimir See commit
+      07e8a6080654abe80ebfb6151a4ed938a1e9a3d9 in order to use COMPMODE
+      instead of DRAWCOMP and ENDCOMP as state flags.
+
+2015-02-24 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * : WEH: Modified per commit to Master branch by Vladimir See commit
       12253ad4f2d5f1c16fa3aae8fdbcdb2c3c5dc47d in order to use TEXTMODE
       instead of DRAWTEXT and ENDTEXT as state flags.
 

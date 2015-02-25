@@ -2414,9 +2414,11 @@ COMMAND (do_add_component)
   BEGIN_W_COMMAND(do_add_component);
 
   o_redraw_cleanstates (w_current);
+
+  i_status_set_state(w_current, COMPMODE);
+
   x_compselect_open (w_current);
 
-  i_status_set_state(w_current, SELECT);
   EXIT_COMMAND(do_add_component);
 }
 

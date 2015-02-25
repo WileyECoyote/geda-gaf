@@ -136,8 +136,6 @@ static const char *i_status_string(GschemToplevel *w_current)
     case SBOX:
     case GRIPS:
       return _("Select Mode");
-    case ENDCOMP:
-      return _("Component Mode"); /*EK* new */
     case STARTCOPY:
     case ENDCOPY:
       return _("Copy Mode");
@@ -176,6 +174,8 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Select Projectiles");
     case ENDEXTEND:
       return _("Select Object");
+    case COMPMODE:
+      return _("Component Mode");
     case NETMODE:
       if (w_current->magnetic_net_mode)
         return _("Magnetic Net Mode");
