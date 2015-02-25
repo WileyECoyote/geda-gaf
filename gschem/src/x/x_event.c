@@ -578,7 +578,9 @@ bool x_event_button_released (GtkWidget      *widget,
     }
     else {
       w_current->inside_action = FALSE;
-      i_status_set_state(w_current, SELECT);
+      if (w_current->event_state != COMPMODE) {
+        i_status_set_state(w_current, SELECT);
+      }
     }
   }
 

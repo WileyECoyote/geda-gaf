@@ -206,6 +206,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
             else {
                 /* Otherwise set the new symbol to place */
                 o_complex_prepare_place (w_current, symbol);
+                i_status_show_msg(w_current, "Place Component");
             }
             break;
         }
@@ -265,7 +266,8 @@ void x_compselect_open (GschemToplevel *w_current)
   Compselect  *ActiveDialog;
 
   ThisDialog = w_current->cswindow;
-  if ( ThisDialog == NULL) {
+
+  if (ThisDialog == NULL) {
 
     ThisDialog = g_object_new (TYPE_COMPSELECT, /* GschemDialog */
                                "parent", w_current->main_window,

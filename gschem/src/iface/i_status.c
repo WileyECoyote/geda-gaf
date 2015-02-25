@@ -176,7 +176,7 @@ static const char *i_status_string(GschemToplevel *w_current)
     case ENDEXTEND:
       return _("Select Object");
     case COMPMODE:
-      return _("Component Mode");
+      return _("Choose component");
     case NETMODE:
       if (w_current->magnetic_net_mode)
         return _("Magnetic Net Mode");

@@ -1,4 +1,16 @@
-2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Change string for "COMPMODE" to something
+      less ambivalent.
+
+    * src/x/x_compselect.c: Set status message to "Place Component"
+      in x_compselect_callback_response for response "RESPONSE_PLACE",
+      after calling o_complex_prepare_place.
+
+    * src/x/x_event.c: Revised x_event_button_released for third button
+      to not set the state if "canceling" from COMPMODE.
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Add function i_status_show_msg to allow a
       message string to be displayed without altering the string or
