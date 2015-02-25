@@ -1,5 +1,9 @@
 2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * audio/PGA2311.sym: Add symbol; Digital volume Control
+
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * fairchild/BAT54S-1.sym: Clean symbol, fix grid errors.
 
     * fairchild/BAT54S-2.sym: Clean symbol, fix grid errors.
