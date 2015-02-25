@@ -1,4 +1,8 @@
-2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/INA213-1.sym: Add Symbol: High side current sense amplifier
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/INA202-1.sym: Add Symbol; high-side current-shunt monitor
 

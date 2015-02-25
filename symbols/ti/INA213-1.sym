@@ -1,0 +1,81 @@
+v 20150101 2
+P 300 1000 0 1000 1 0 1
+{
+T 125 1050 5 8 1 1 0 6 1
+pinnumber=4
+T 50 875 5 8 0 1 0 0 1
+pinseq=1
+T 350 1000 9 10 1 1 0 1 1
+pinlabel=IN+
+T 300 875 5 8 0 1 0 6 1
+pintype=io
+}
+P 300 700 0 700 1 0 1
+{
+T 125 750 5 8 1 1 0 6 1
+pinnumber=5
+T 50 575 5 8 0 1 0 0 1
+pinseq=2
+T 350 700 9 10 1 1 0 1 1
+pinlabel=IN-
+T 300 575 5 8 0 1 0 6 1
+pintype=io
+}
+P 1300 500 1600 500 1 0 1
+{
+T 1500 550 5 8 1 1 0 0 1
+pinnumber=1
+T 1500 375 5 8 0 1 0 0 1
+pinseq=3
+T 1250 500 9 10 1 1 0 7 1
+pinlabel=REF
+T 1325 375 5 8 0 1 0 0 1
+pintype=io
+}
+P 1300 200 1600 200 1 0 1
+{
+T 1500 75 5 8 1 1 0 0 1
+pinnumber=6
+T 1500 250 5 8 0 1 0 0 1
+pinseq=4
+T 1250 200 9 10 1 1 0 7 1
+pinlabel=OUT
+T 1325 75 5 8 0 1 0 0 1
+pintype=io
+}
+B 300 0 1000 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 1250 5 10 0 0 0 0 1
+INA213
+T 100 1700 5 10 0 0 0 0 1
+device=INA213
+T 1300 1250 8 10 1 1 0 6 1
+refdes=U?
+P 300 200 0 200 1 0 1
+{
+T 125 250 5 8 1 1 0 6 1
+pinnumber=2
+T 50 75 5 8 0 1 0 0 1
+pinseq=5
+T 350 200 9 10 1 1 0 1 1
+pinlabel=GND
+T 300 75 5 8 0 1 0 6 1
+pintype=io
+}
+P 1300 1000 1600 1000 1 0 1
+{
+T 1500 1050 5 8 1 1 0 0 1
+pinnumber=3
+T 1500 875 5 8 0 1 0 0 1
+pinseq=6
+T 1250 1000 9 10 1 1 0 7 1
+pinlabel=V+
+T 1325 875 5 8 0 1 0 0 1
+pintype=io
+}
+T 100 1500 5 10 0 0 0 0 1
+description=High side current sense amplifier
+T 100 2100 9 10 0 0 0 0 1
+numslots=0
+T 100 1900 9 10 0 0 0 0 1
+footprint=SC70-6
+
