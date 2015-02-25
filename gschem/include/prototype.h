@@ -300,6 +300,7 @@ void       i_sessions_init                  (GschemToplevel *w_current);
 /* i_status.c */
 void       i_status_set_state_msg           (GschemToplevel *w_current, enum x_states newstate, const char *message);
 void       i_status_set_state               (GschemToplevel *w_current, enum x_states newstate);
+void       i_status_show_msg                (GschemToplevel *w_current, const char *message);
 void       i_status_show_state              (GschemToplevel *w_current, const char *message);
 void       i_status_update_coordinates      (GschemToplevel *w_current, int x, int y);
 void       i_status_update_grid_info        (GschemToplevel *w_current);

@@ -68,11 +68,13 @@ void i_status_set_state_msg(GschemToplevel *w_current,
     GEDA_FREE(w_current->pixbuf_filename);
   }
 
-  if ((newstate != w_current->event_state) || (message != NULL)) {
+  if (newstate != w_current->event_state) {
     w_current->event_state = newstate;
     x_toolbars_update (w_current);
-    i_status_show_state (w_current, message);
   }
+
+  i_status_show_state(w_current, message);
+
 }
 
 /*! \brief Set new state, then show state field
@@ -90,7 +92,6 @@ void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
   i_status_set_state_msg (w_current, newstate, NULL);
 }
 
-
 /*! \brief Update status bar string
  *
  *  \par Function Description
@@ -100,7 +101,7 @@ void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
  *  \param [in] string The new string to be shown in the status bar
  */
 static void i_status_update_status(GschemToplevel *w_current,
-                                   const char *string)
+                                   const char     *string)
 {
   if (!StatusBar->status_label)
     return;
@@ -208,6 +209,22 @@ static const char *i_status_string(GschemToplevel *w_current)
 #endif
 
   return ""; /* should not happen */
+}
+
+/*! \brief Display a Message in the Status Bar
+ *
+ *  \par Function Description
+ *  This function allows a message to be displayed in the status bar widget
+ *  without alterations to the string.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] string The message string to be shown in the status bar
+ */
+void i_status_show_msg(GschemToplevel *w_current, const char *string)
+{
+  if (StatusBar->status_label) {
+    i_status_update_status(w_current, string);
+  }
 }
 
 /*! \brief Show state field

@@ -1,3 +1,9 @@
+2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Add function i_status_show_msg to allow a
+      message string to be displayed without altering the string or
+      changing state. Simplify i_status_set_state_msg.
+
 2015-02-24 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * : WEH: Modified per commit to Master branch by Vladimir See commit
