@@ -202,12 +202,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_edit_mirror_world(w_current, w_x, w_y, list);
         i_status_set_state(w_current, SELECT);
         break;
-/*
-      case(TEXTMODE):
-        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
-        i_status_set_state(w_current, SELECT);
-        break;
-*/
+
       case(PAN):
         i_pan_world(w_current, w_x, w_y);
         i_status_set_state(w_current, SELECT);
