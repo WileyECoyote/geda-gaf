@@ -1,5 +1,10 @@
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TPS2115-1.sym: Revised symbol; justify device and footprint
+      attributes lower left instead of low right.
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/INA213-1.sym: Add Symbol: High side current sense amplifier
 
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
