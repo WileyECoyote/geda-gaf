@@ -1,4 +1,8 @@
-2015-02-23 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/HMC439QS16G-1.sym:Add symbol; low noise phase detector
+
+2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * audio/PGA2311.sym: Add symbol; Digital volume Control
 
