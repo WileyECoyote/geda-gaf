@@ -1,5 +1,9 @@
 2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/INA201-1.sym: Add Symbol; high-side current-shunt monitor
+
+2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/INA200-1.sym: Add Symbol; Current Sensor
 
 2015-02-24 Wiley E. Hill <wileyhill@gmail.com>
