@@ -1721,24 +1721,6 @@ x_toolbars_update(GschemToplevel *w_current)
     case(ARCMODE):
       target = (GtkToggleButton*) bar_widgets->toolbar_arc;
       break;
-    case(MOVE):
-    case(COPY):
-    case(PAN):
-    case(STARTCOPY):
-    case(STARTMOVE):
-    case(ENDCOPY):
-    case(ENDMOVE):
-    case(COMPMODE):
-    case(TEXTMODE):
-    case(ENDROTATE):
-    case(ENDMIRROR):
-    case(ZOOMBOX):
-    case(STARTPASTE):
-    case(ENDPASTE):
-    case(GRIPS):
-    case(MCOPY):
-    case(STARTMCOPY):
-    case(ENDMCOPY):
     default:
       target = (GtkToggleButton*) bar_widgets->toolbar_none;
       break;

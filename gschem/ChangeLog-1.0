@@ -1,5 +1,12 @@
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_toolbars.c: Eliminate extraneous cases for event states in
+      function x_toolbars_update, only those cases for which there are
+      modal buttons are of interest. Remaining cases can handled by the
+      default case.
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * object/o_copy.c: Add function o_copy_multiple_start, set o_copy_end
       inside_action to FALSE in function o_copy_end.
 
