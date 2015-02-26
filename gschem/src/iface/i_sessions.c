@@ -174,7 +174,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
     close_all = x_dialog_close_window (w_current);
     if (!close_all) {       /* user cancelled the close */
-      v_log_message(_("Close all canceled"));
+      v_log_message(_("Close all canceled\n"));
     }
   }
   else {
@@ -254,7 +254,7 @@ static GSList *i_sessions_get_file_list(Session *record)
 
     while (bad) {
       fname = bad->data;
-      u_log_message("file: <%s> is not accessible\n", fname);
+      u_log_message(_("file: <%s> is not accessible\n"), fname);
       bad = g_slist_remove(bad, fname);
       free(fname);
     }
@@ -846,7 +846,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
   if (!err) {
 
-    u_log_message( _("session %s created with %d documents."), name, count);
+    u_log_message( _("session %s created with %d documents.\n"), name, count);
 
     update_sessions_menus(w_current);
 
@@ -1017,18 +1017,18 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = i_sessions_save(w_current, err);
 
     if (!err) {
-      msg = u_string_sprintf (_("Saved %d documents to session %s\n"), count, w_current->session_name);
+      msg = u_string_sprintf(_("Saved %d documents to session %s\n"), count, w_current->session_name);
     }
   }
 
   if (err) {
 
-    msg = u_string_sprintf (_("An error occurred attemting to save session %s: %s."), name, err->message);
+    msg = u_string_sprintf(_("An error occurred attemting to save session %s: %s."), name, err->message);
 
-    u_log_message( "%s", msg); /* Log the error */
+    u_log_message ("%s", msg); /* Log the error */
 
     /* inform the user */
-    titled_pango_error_dialog ( _("<b>Session Error</b>"), msg, _("Save session failed") );
+    titled_pango_error_dialog( _("<b>Session Error</b>"), msg, _("Save session failed") );
 
     g_error_free(err);
     count = -1;

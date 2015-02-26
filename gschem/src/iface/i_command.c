@@ -275,7 +275,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
   for (i = 1; i < COMMAND_COUNT; i++) {
     if (u_string_strequal(command_struc[i].name, command)) {
 
-      v_log_message("Processing Action Command <%s>, at index %d\n", command_struc[i].name, i);
+      v_log_message(_("Processing Action Command <%s>, at index %d\n"), command_struc[i].name, i);
 
       if (command_struc[i].repeat != NULL) {
         set_last_command(i); /* save last index for recall by repeat-last */
@@ -895,7 +895,7 @@ COMMAND (do_close) {
   }
 
   if (can_close) {
-    q_log_message(_("Closing Window\n"));
+    q_log_message(_("Closing Page\n"));
     x_window_close_page (w_current, Current_Page);
   }
   i_status_set_state(w_current, SELECT);
@@ -935,10 +935,9 @@ COMMAND (do_close_all) {
   }
 
   if (!can_close) {         /* Ask to save unsaved pages */
-
     close_all = x_dialog_close_window (w_current);
     if (!close_all) {       /* user cancelled the close */
-      v_log_message("Close all canceled");
+      v_log_message(_("Close all canceled\n"));
     }
   }
   else {
@@ -1842,7 +1841,7 @@ COMMAND (do_documentation)
     }
   }
   else {
-    q_log_message(_("No component selected"));
+    q_log_message(_("No component selected\n"));
   }
 
   EXIT_COMMAND(do_documentation);
@@ -3644,7 +3643,7 @@ COMMAND (do_show_manual)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message("Check: pathname=%s\n", pathname);
+      u_log_message(_("Check: pathname=%s\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -3669,7 +3668,7 @@ COMMAND (do_show_faq)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message("Check: pathname=%s\n", pathname);
+      u_log_message(_("Check: pathname=%s\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -3686,7 +3685,7 @@ COMMAND (do_show_geda)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message("Check: pathname=%s\n", pathname);
+      u_log_message(_("Check: pathname=%s\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -3703,7 +3702,7 @@ COMMAND (do_show_wiki)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message("Check: pathname=%s\n", pathname);
+      u_log_message(_("Check: pathname=%s\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -3796,7 +3795,7 @@ COMMAND (world_size) {
 
   int width  = w_current->world_right;
   int height = w_current->world_bottom;
-  u_log_message("(read only width=%d, height=%d\n)", width, height);
+  u_log_message(_("(read only width=%d, height=%d\n)"), width, height);
 }
 
 /** @brief i_cmd_zoom_gain in i_command_Variable_Handlers */
