@@ -159,7 +159,6 @@ bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     o_undo_savestate(w_current, UNDO_ALL);
 
     w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
-    //w_current->event_state = MOVE;
 
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
@@ -223,19 +222,20 @@ void o_move_end(GschemToplevel *w_current)
 
   Object *object;
   Object *sub_object;
+  GList  *iter;
   GList  *selection_list = NULL;
   GList  *rubbernet_objects = NULL;
-  GList  *iter;
 
   int diff_x, diff_y;
 
   object = o_select_return_first_object(w_current);
 
   if (!object) {
-    /* actually this is an error condition hack */
+    /* This is an error condition hack */
     i_status_set_state(w_current, SELECT);
   }
   else {
+
     diff_x = w_current->second_wx - w_current->first_wx;
     diff_y = w_current->second_wy - w_current->first_wy;
 
@@ -300,8 +300,9 @@ void o_move_end(GschemToplevel *w_current)
      * nets/buses */
     GList *moved_list = g_list_concat (Place_List,
                                        rubbernet_objects);
-    Place_List = NULL;
+    Place_List        = NULL;
     rubbernet_objects = NULL;
+
     g_run_hook_object_list (w_current, "%move-objects-hook", moved_list);
     g_list_free (moved_list);
 
@@ -313,7 +314,6 @@ void o_move_end(GschemToplevel *w_current)
   }
   w_current->inside_action = FALSE;
 }
-
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -332,14 +332,9 @@ void o_move_cancel (GschemToplevel *w_current)
     stretch->object->dont_redraw = FALSE;
   }
 
-  //s_place_free_place_list(w_current->toplevel);
-
   o_move_stretch_destroy_all (w_current->stretch_list);
   w_current->stretch_list = NULL;
-
-  w_current->inside_action = 0;
-  i_status_set_state (w_current, SELECT);
-
+  w_current->inside_action = FALSE;
   o_undo_callback(w_current, UNDO_ACTION);
 }
 
@@ -396,15 +391,16 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
 void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *selection, *s_current;
-  Object *object;
-  int object_x, object_y;
-  bool resnap = FALSE;
-
-  selection = geda_list_get_glist( Top_Selection );
+  GList *selection = geda_list_get_glist(Top_Selection);
 
   /* realign the object if we are in resnap mode */
   if (selection != NULL && w_current->snap == SNAP_RESNAP) {
+
+    GList  *s_current;
+    Object *object;
+
+    int object_x, object_y;
+    bool resnap = FALSE;
 
     if (g_list_length(selection) > 1) {
       /* find an object that is not attached to any other object */

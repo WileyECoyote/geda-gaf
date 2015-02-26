@@ -148,7 +148,8 @@ static bool i_session_close_all (GschemToplevel *w_current)
   bool   close_all;
 
   if (w_current->inside_action &&
-    (w_current->event_state == MOVE || w_current->event_state == ENDMOVE))
+     (w_current->event_state == MOVEMODE ||
+      w_current->event_state == DRAGMOVE))
   {
     o_move_cancel (w_current);
   }

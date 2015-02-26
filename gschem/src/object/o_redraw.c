@@ -57,11 +57,12 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       x_compselect_deselect (w_current);
 
       /* Fall through */
-    case ( MOVE ):
-    case ( ENDMOVE ):
-    case ( ENDPASTE ):
+    case ( DRAGMOVE ):
+    case ( MOVEMODE ):
+      o_move_cancel (w_current);
     case ( GRIPS ):
     case ( COPYMODE ):
+    case ( ENDPASTE ):
     case ( NETMODE ):
     case ( PINMODE ):
     case ( LINEMODE ):
@@ -77,17 +78,11 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       /* it is possible to cancel in the middle of a place,
        * so lets be sure to clean up the place_list structure */
 
-      /* If we're cancelling from a move action, re-wind the
-       * page contents back to their state before we started. */
-      if ((w_current->event_state == MOVE) ||
-          (w_current->event_state == ENDMOVE)) {
-        o_move_cancel (w_current);
-      }
-
       /* If we're cancelling from a grip action, call the specific cancel
        * routine to reset the visibility of the object being modified */
-      if (w_current->event_state == GRIPS)
+      if (w_current->event_state == GRIPS) {
         o_grips_cancel (w_current);
+      }
 
       /* Free the place list and its contents. If we were in a move
        * action, the list (refering to objects on the page) would
@@ -111,7 +106,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ENDMIRROR ):
     case ( ENDROTATE ):
     case ( SBOX ):
-    case ( STARTMOVE ):
     case ( STARTPASTE ):
     case ( STARTDESELECT ):
     case ( STARTSELECT ):
@@ -243,8 +237,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   x_draw_set_surface (w_current);
 
   /* Determine whether we should draw the selection at all */
-  draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
-                                                 (w_current->event_state == ENDMOVE)));
+  draw_selected = !(w_current->inside_action && (w_current->event_state == MOVEMODE ||
+                                                 w_current->event_state == DRAGMOVE));
 
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
@@ -326,23 +320,24 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
             eda_renderer_set_color_map (renderer, render_color_map);
 
+          case DRAGMOVE:
+          case MOVEMODE:
+
+            if (w_current->last_drawb_mode != -1) {
+
+              cairo_set_matrix (w_current->cr, &render_mtx);
+              eda_renderer_set_color_map (renderer, render_outline_color_map);
+              o_move_draw_rubber (w_current, draw_selected);
+              eda_renderer_set_color_map (renderer, render_color_map);
+            }
+            break;
+
           default:
             break;
         }
       }
 
       switch (w_current->event_state) {
-        case MOVE:
-        case ENDMOVE:
-
-          if (w_current->last_drawb_mode != -1) {
-
-            cairo_set_matrix (w_current->cr, &render_mtx);
-            eda_renderer_set_color_map (renderer, render_outline_color_map);
-            o_move_draw_rubber (w_current, draw_selected);
-            eda_renderer_set_color_map (renderer, render_color_map);
-          }
-          break;
 
         case ENDPASTE:
 
@@ -403,7 +398,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           break;
       }
     }
-    else if (w_current->event_state == ENDMOVE || w_current->event_state == MOVE)
+    else if (w_current->event_state == MOVEMODE ||
+             w_current->event_state == DRAGMOVE)
     {
 
       if (w_current->last_drawb_mode != -1) {

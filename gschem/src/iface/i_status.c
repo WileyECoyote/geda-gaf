@@ -137,37 +137,17 @@ static const char *i_status_string(GschemToplevel *w_current)
     case SBOX:
     case GRIPS:
       return _("Select Mode");
+    case ZOOMBOX:
+      return _("Zoom Box");
     case COPYMODE:
     case MCOPYMODE:
       return _("Copy to point");
-    case STARTMOVE:
-    case ENDMOVE:
-      return _("Move Mode");
     case ENDROTATE:
       return _("Rotate Mode");
     case ENDMIRROR:
       return _("Mirror Mode");
-    case ZOOMBOX:
-      return _("Zoom Box");
     case PAN:
       return _("Pan Mode");
-    case MOVE:
-      return _("Move");
-    case STARTPASTE:
-    case ENDPASTE:
-      GEDA_FREE(buf);
-      buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
-      return buf;
-    case STARTBREAK:
-      return _("First point?");
-    case ENDBREAK:
-      return _("Second point?");
-    case STARTEXTEND:
-      return _("Project Mode");
-    case EXTEND:
-      return _("Select Projectiles");
-    case ENDEXTEND:
-      return _("Select Object");
     case COMPMODE:
       return _("Choose component");
     case NETMODE:
@@ -193,6 +173,23 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Picture Mode");
     case BUSMODE:
       return _("Bus Mode");
+    case MOVEMODE:
+      return _("Move Mode");
+    case STARTPASTE:
+    case ENDPASTE:
+      GEDA_FREE(buf);
+      buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
+      return buf;
+    case STARTBREAK:
+      return _("First point?");
+    case ENDBREAK:
+      return _("Second point?");
+    case STARTEXTEND:
+      return _("Project Mode");
+    case EXTEND:
+      return _("Select Projectiles");
+    case ENDEXTEND:
+      return _("Select Object");
   }
 
 #if DEBUG_STATUS

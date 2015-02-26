@@ -930,7 +930,8 @@ void x_dnd_drag_end
       o_copy_cancel (w_current);
       break;
 
-    case ENDMOVE:
+    case DRAGMOVE:
+    case MOVEMODE:
       if (w_current->event_state != ENDDND_MOVE_OBJ) {
         o_move_cancel (w_current);
       }
@@ -965,10 +966,10 @@ void x_dnd_drag_end
  *  We could easily check for a boundary condition but all of our dialogs
  *  are allowed to be either inside OR outside of the main window boundary
  *  so that won't work too well. Instead, if we are not inside an action or if
- *  we are and the event-state is not one we are interested in, i.e. ENDMOVE
- *  or ENDCOPY, then we do nothing. Else, we initiate a D&D. And this allows
- *  Gschem to function as it otherwise would, i.e. implicit Move actions or
- *  drawing selection boxes.
+ *  we are and the event-state is not one we are interested in, i.e. DRAGMOVE,
+ *  MOVEMODE, or ENDCOPY, then we do nothing. Else, we initiate a D&D. And this
+ *  allows Gschem to function as it otherwise would, i.e. implicit Move actions
+ *  or drawing selection boxes.
  *  [This fixes an annoyance with Gschem, which drops what ever is being
  *  moved, some where, if the pointer is not returned to the Drawing Area
  *  before releasing the mouse button. Usually is near the edge of window
@@ -995,7 +996,8 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
 #endif
 
     switch (w_current->event_state) {
-      case ENDMOVE:
+      case DRAGMOVE:
+      case MOVEMODE:
       case COPYMODE:
         /*  case ENDCOMP: We're not quite there yet */
         w_current->dnd_save_state = w_current->event_state; /* save state */

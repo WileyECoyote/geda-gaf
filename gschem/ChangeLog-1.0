@@ -1,5 +1,46 @@
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/: Revised similar to modifications to the Master branch by
+      Vladimir Zhbanov, see commit d05cdff849010233a7bfb6af36e9ac303bf6f9e7
+      Replaces state enumeration MOVE, STARTMOVE, and ENDMOVE with MOVEMODE,
+      but the MOVEMODE state is handled differently so as to allow user to
+      move objects without having to hold the 1st button down the entire time
+      of the move operation. Add new state flag DRAGMOVE to distinguish moves
+      initiated by dragging from the command action "edit-move". Dragging is
+      terminated when the user releases the button.
+
+    * include/x_states.h: Revise state enumerators and resequence.
+
+    * src/iface/i_command.c: Revise do_move and to use new enumeration state,
+      "manually" set the event states, toolbar updates and status messages
+      for non-hot actions.
+
+    * src/iface/i_sessions.c:Update state enumerators for MOVEMODE and add new
+      state DRAGMOVE.
+
+    * iface/i_status.c: Update state enumerators for MOVEMODE and add new state
+      DRAGMOVE.
+
+    * src/object/o_redraw.c: Revise functions o_redraw_cleanstates and o_redraw
+      _rectangle to use new enumeration state for MOVEMODE and DRAGMOVE. Revise
+      o_redraw_cleanstates to eliminate extraneous conditional to cancel a move
+      operations.
+
+    * src/x/x_coord.c: Revise functions x_dnd_drag_end and x_dnd_source_leave to
+      use new enumeration state for DRAGMOVE and MOVEMODE. Update comments.
+
+    * src/x/x_dnd.c: Revise function x_dnd_receive_string_sym to "manually" set
+      the event states and status messages. Update functions x_dnd_drag_end and
+      x_dnd_source_leave with COPYMODE enumerator.
+
+    * src/x/x_event.c: Revise module to use new enumeration state for DRAGMOVE
+      and MOVEMODE. DRAGMOVE is ONLY initiated by x_event_motion and terminates
+      when the button is release by x_event_button_released. MOVEMODE is allowed
+      to persist until the second button down, with the first capturing the move
+      from point.
+
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Wrap x_dialog_close_changed_page with gschem_
       threads_enter and gschem_threads_leave in function i_cmd_do_page_close.
       This thread is ran in main loop, rather than as a worker because Guile

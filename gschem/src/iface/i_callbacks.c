@@ -174,10 +174,8 @@ DEFINE_I_CALLBACK(page_discard)
 /*! \brief Cancel Everthing
  *  \par Function Description
  *
- *  \note
- *  HACK: be sure that you don't use the widget parameter in this one,
- *  since it is being called with a null, I suppose we should call it
- *  with the right param.
+ *  \note Do NOT use the widget parameter in this one since it is being
+ *        called with a null.
  */
 DEFINE_I_CALLBACK(cancel)
 {
@@ -189,7 +187,7 @@ DEFINE_I_CALLBACK(cancel)
 
     /* Undraw any outline of the place list */
     o_place_invalidate_rubber (w_current, FALSE);
-    w_current->rubber_visible = 0;
+    w_current->rubber_visible = FALSE;
 
     /* De-select the lists in the component selector */
     x_compselect_deselect (w_current);
@@ -198,10 +196,12 @@ DEFINE_I_CALLBACK(cancel)
     g_object_set (G_OBJECT(w_current->cswindow), "hidden", FALSE, NULL);
   }
   else if (w_current->inside_action) {
-    /* If we're cancelling from a move action, re-wind the
-     * page contents back to their state before we started */
-    if (w_current->event_state == MOVE ||
-        w_current->event_state == ENDMOVE)
+
+    /* If we're cancelling while inside a move action, re-wind the page
+     * contents back to the state before the action started and destroy
+     * the stretch_list*/
+    if (w_current->event_state == MOVEMODE ||
+        w_current->event_state == DRAGMOVE)
       o_move_cancel (w_current);
 
     /* If we're cancelling from a grip action, call the specific cancel
@@ -215,10 +215,9 @@ DEFINE_I_CALLBACK(cancel)
   }
   else {
 
-  /* leave this on for now... but it might have to change */
-  /* this is problematic since we don't know what the right mode */
-  /* should be (when you cancel inside an action) */
-
+    /* leave this on for now... but it might have to change */
+    /* this is problematic since we don't know what the right mode */
+    /* should be (when you cancel inside an action) */
     i_status_set_state(w_current, SELECT);
   }
 
@@ -234,7 +233,7 @@ DEFINE_I_CALLBACK(cancel)
   if (w_current->inside_action) {
      o_invalidate_all (w_current);
   }
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
 }
 
 /** \defgroup help-menu Help Menu Callback Functions

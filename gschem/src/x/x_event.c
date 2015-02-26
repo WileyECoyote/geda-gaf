@@ -100,12 +100,14 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       if (Current_PlaceList != NULL) {
         switch(w_current->event_state) {
-
+          case (MOVEMODE):
+            o_move_end(w_current);
+            i_status_set_state(w_current, SELECT);
+            break;
           case (COPYMODE)   : o_copy_end(w_current); break;
           case (MCOPYMODE)  : o_copy_multiple_end(w_current); break;
           case (COMPMODE):
-            o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
-                        NULL, "%add-objects-hook");
+            o_place_end(w_current, w_x, w_y, w_current->continue_component_place, NULL, "%add-objects-hook");
             if (!w_current->continue_component_place) {
               i_status_set_state(w_current, SELECT);
             }
@@ -145,6 +147,11 @@ int x_event_button_pressed(GtkWidget      *widget,
         case (BUSMODE)    : o_bus_start     (w_current, w_x, w_y); break;
         case (ZOOMBOX):
           i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy); break;
+        case (MOVEMODE):
+          if (o_move_start(w_current, w_x, w_y)) {
+            i_status_set_state(w_current, MOVEMODE);
+          }
+          break;
         case (COPYMODE)   : o_copy_start          (w_current, w_x, w_y); break;
         case (MCOPYMODE)  : o_copy_multiple_start (w_current, w_x, w_y); break;
         default: break;
@@ -158,24 +165,6 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       case(DESELECT):
         w_current->event_state = STARTDESELECT;
-        break;
-/*
-      case(STARTCOPY):
-        if (o_copy_start(w_current, w_x, w_y)) {
-          w_current->event_state = COPY;
-        }
-        break;
-
-      case(STARTMCOPY):
-        if (o_copy_start(w_current, w_x, w_y)) {
-          w_current->event_state = MCOPY;
-        }
-        break;
-*/
-      case(STARTMOVE):
-        if (o_move_start(w_current, w_x, w_y)) {
-          w_current->event_state = MOVE;
-        }
         break;
 
       case(STARTPASTE):
@@ -241,8 +230,9 @@ int x_event_button_pressed(GtkWidget      *widget,
 
     /* try this out and see how it behaves */
     if (w_current->inside_action) {
-      if (!(w_current->event_state == COMPMODE  ||
-            w_current->event_state == ENDMOVE   ||
+      if (!(w_current->event_state == DRAGMOVE  ||
+            w_current->event_state == COMPMODE  ||
+            w_current->event_state == MOVEMODE  ||
             w_current->event_state == COPYMODE  ||
             w_current->event_state == MCOPYMODE ||
             w_current->event_state == ENDPASTE)) {
@@ -254,7 +244,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       switch(w_current->middle_button) {
 
         case(MOUSE_MIDDLE_ACTION):
-          /* Only Copy and Move are supported */
+
           /* Do not search if shift key is pressed */
           if (!w_current->SHIFTKEY) {
             o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
@@ -265,7 +255,7 @@ int x_event_button_pressed(GtkWidget      *widget,
             w_current->inside_action = FALSE;
             i_status_set_state(w_current, SELECT);
           }
-          else {
+          else { /* Only Copy and Move are supported */
             if (w_current->ALTKEY) {
               if (o_copy_start(w_current, w_x, w_y)) {
                 i_status_set_state(w_current, COPYMODE);
@@ -273,7 +263,7 @@ int x_event_button_pressed(GtkWidget      *widget,
             }
             else {
               o_move_start(w_current, w_x, w_y);
-              i_status_set_state(w_current, MOVE);
+              i_status_set_state(w_current, DRAGMOVE);
             }
           }
           break;
@@ -395,43 +385,19 @@ bool x_event_button_released (GtkWidget      *widget,
         /* do nothing - is almost same as not having a case */
         break;
 
-      case(MOVE):
-        w_current->event_state = ENDMOVE;
-        break;
-/*
-      case(COPY):
-        w_current->event_state = ENDCOPY;
-        break;
-
-      case(MCOPY):
-        w_current->event_state = ENDMCOPY;
-        break;
-*/
       case(GRIPS):
         o_grips_end(w_current);
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(ENDMOVE):
+      case(DRAGMOVE):
+      case(MOVEMODE):
         if (w_current->drag_event) {
           gdk_event_free(w_current->drag_event);
           w_current->drag_event = NULL;
         }
-        o_move_end(w_current);
-        i_status_set_state(w_current, SELECT);
-        break;
-/*
-      case(COPYMODE):
-        o_copy_end(w_current);
-        i_status_set_state(w_current, SELECT);
         break;
 
-      case(MCOPYMODE):
-        o_copy_multiple_end(w_current);
-        / * Keep the state and the inside_action, as the copy has not finished. * /
-        //i_status_set_state(w_current, MCOPYMODE);
-        break;
-*/
       case(SBOX):
         o_select_box_end(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, SELECT);
@@ -461,22 +427,37 @@ bool x_event_button_released (GtkWidget      *widget,
 
     if (w_current->inside_action) {
 
-      int w_x, w_y;
+      if (Current_PlaceList != NULL) {
+        switch(w_current->event_state) {
+          //case (COPYMODE)  :
+          //case (MCOPYMODE) : o_copy_end(w_current); break;
+          case (DRAGMOVE):
+            o_move_end(w_current);
+            i_status_set_state(w_current, SELECT);
+            break;
+          default: break;
+        }
+      }
+      else {
 
-      switch(w_current->event_state) {
-        case(PATHMODE):
-          w_x = snap_grid (w_current, unsnapped_wx);
-          w_y = snap_grid (w_current, unsnapped_wy);
-          o_path_end (w_current, w_x, w_y);
-          break;
+        int w_x, w_y;
 
-        case(ZOOMBOX):
-          i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
-          i_status_set_state(w_current, SELECT);
-          break;
+        switch(w_current->event_state) {
+          //case (GRIPS)     : o_grips_end(w_current); break;
+          case(PATHMODE):
+            w_x = snap_grid (w_current, unsnapped_wx);
+            w_y = snap_grid (w_current, unsnapped_wy);
+            o_path_end (w_current, w_x, w_y);
+            break;
+            //case (SBOX)      : o_select_box_end(w_current, unsnapped_wx, unsnapped_wy); break;
+            //case (SELECT)    : o_select_end(w_current, unsnapped_wx, unsnapped_wy); break;
+          case(ZOOMBOX):
+            i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
+            i_status_set_state(w_current, SELECT);
 
-        default:
-          break;
+          default:
+            break;
+        }
       }
     }
     else {
@@ -503,13 +484,16 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
     else if (w_current->inside_action) {
-      if (w_current->event_state == COMPMODE  ||
-          w_current->event_state == ENDMOVE   ||
+      if (w_current->event_state == DRAGMOVE  ||
+          w_current->event_state == COMPMODE  ||
+          w_current->event_state == MOVEMODE  ||
           w_current->event_state == COPYMODE  ||
           w_current->event_state == MCOPYMODE ||
           w_current->event_state == ENDPASTE )
       {
-        if (w_current->event_state == ENDMOVE) {
+        if (w_current->event_state == MOVEMODE ||
+            w_current->event_state == DRAGMOVE)
+        {
           o_move_invalidate_rubber (w_current, FALSE);
         }
         else {
@@ -523,7 +507,9 @@ bool x_event_button_released (GtkWidget      *widget,
           o_complex_place_changed_run_hook (w_current);
         }
 
-        if (w_current->event_state == ENDMOVE) {
+        if (w_current->event_state == MOVEMODE ||
+            w_current->event_state == DRAGMOVE)
+        {
           o_move_invalidate_rubber (w_current, TRUE);
         }
         else {
@@ -538,19 +524,19 @@ bool x_event_button_released (GtkWidget      *widget,
 
         case(MOUSE_MIDDLE_ACTION):
 
-          switch(w_current->event_state) {
+          if (w_current->inside_action && Current_PlaceList) {
+            switch(w_current->event_state) {
+              case(DRAGMOVE):
+                o_move_end(w_current);
+                i_status_set_state(w_current, SELECT);
+                break;
 
-            case(MOVE):
-              o_move_end(w_current);
-              i_status_set_state(w_current, SELECT);
-              break;
-
-            case(COPYMODE):
-              o_copy_end(w_current);
-              i_status_set_state(w_current, SELECT);
-              break;
+              case(COPYMODE):
+                o_copy_end(w_current);
+                i_status_set_state(w_current, SELECT);
+                break;
+            }
           }
-          break;
 
 #ifdef HAVE_LIBSTROKE
         case(MOUSE_MIDDLE_STROKE):
@@ -885,7 +871,8 @@ bool x_event_key (GtkWidget      *widget,
         }
         break;
 
-      case ENDMOVE:
+      case DRAGMOVE:
+      case MOVEMODE:
         if (control_key) {
           x_event_get_snapped_pointer (w_current, &wx, &wy);
           o_move_motion (w_current, wx, wy);
@@ -1035,7 +1022,7 @@ bool x_event_motion (GtkWidget      *widget,
 
         /* Start moving the selected object(s) */
         if (o_move_start(w_current, w_x, w_y)) {
-          w_current->event_state = ENDMOVE;
+          w_current->event_state = DRAGMOVE;
         }
         if (w_current->drag_event) {
           gdk_event_free(w_current->drag_event);
@@ -1047,22 +1034,20 @@ bool x_event_motion (GtkWidget      *widget,
       }
 
       /* Fall through to handle move */
-      case(ENDMOVE):
-      case(MOVE):
+    case(DRAGMOVE):
+    case(MOVEMODE):
         if (w_current->inside_action) {
           o_move_motion (w_current, w_x, w_y);
         }
         break;
 
-      //case(COPY):
-      //case(MCOPY):
-      case(COPYMODE):
-      case(MCOPYMODE):
-      case(ENDPASTE):
+      //case(COPYMODE):
+      //case(MCOPYMODE):
+    case(ENDPASTE):
         o_place_motion (w_current, w_x, w_y);
         break;
 
-      case(SBOX):
+    case(SBOX):
         if (w_current->inside_action)
           o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy);
         break;

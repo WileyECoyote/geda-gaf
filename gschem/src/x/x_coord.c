@@ -157,8 +157,8 @@ x_dialog_coord_dnd_drag_receive
           if (w_current->inside_action ) {
 //g_print (" Received TARGET_OBJECTS data while inside_action. save_state=%d\n", w_current->dnd_save_state);
              switch (w_current->dnd_save_state) {
-             case ENDMOVE:  /* Dragged-Moved something to the coord entry */
-
+             case DRAGMOVE:  /* Dragged-Moved something to the coord entry */
+             case MOVEMODE:  /* Move Mode Moved something to the coord entry */
                i_status_set_state (w_current, ENDDND_MOVE_OBJ);
                break;
              case COPYMODE:
@@ -431,7 +431,9 @@ g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_sa
             /* fall through */
 
             case ENDDND_MOVE_OBJ:
-              if (w_current->dnd_save_state == ENDMOVE) {
+              if (w_current->dnd_save_state == MOVEMODE ||
+                  w_current->dnd_save_state == DRAGMOVE)
+              {
                 w_current->second_wx = x;
                 w_current->second_wy = y;
                 o_move_end(w_current);

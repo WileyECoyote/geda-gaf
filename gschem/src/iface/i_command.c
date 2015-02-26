@@ -912,8 +912,8 @@ COMMAND (do_close_all) {
   bool   close_all;
 
   if (w_current->inside_action &&
-    (w_current->event_state == MOVE || w_current->event_state == ENDMOVE))
-  {
+     (w_current->event_state == MOVEMODE ||
+      w_current->event_state == DRAGMOVE)) {
     o_move_cancel (w_current);
   }
 
@@ -922,8 +922,8 @@ COMMAND (do_close_all) {
   pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
 
   /* Loop through all the pages looking for unsaved pages */
-  for ( iter = pages; iter != NULL; NEXT(iter))
-  {
+  for ( iter = pages; iter != NULL; NEXT(iter)) {
+
     /* get ptr to a page */
     p_current = (Page*)iter->data;
 
@@ -949,8 +949,8 @@ COMMAND (do_close_all) {
     q_log_message(_("Closing all documents\n"));
 
     /* Loop through all the pages */
-    for ( iter = pages; iter != NULL; NEXT(iter))
-    {
+    for ( iter = pages; iter != NULL; NEXT(iter)) {
+
       /* get ptr to a page */
       p_current = (Page*)iter->data;
       if (p_current->filename) {
@@ -1041,22 +1041,12 @@ COMMAND (do_edit)
 COMMAND (do_undo)
 {
   BEGIN_W_COMMAND(do_undo);
-  /* If we're cancelling from a move action, re-wind the
-   * page contents back to the state before we started.
-   *
-   * It "might" be nice to sub-undo rotates / zoom changes
-   * made whilst moving components, but when the undo code
-   * hits s_page_delete(), the place list objects are free'd.
-   * Since they are also contained in the schematic page, a
-   * crash occurs when the page objects are free'd.
-   * */
-  if (w_current->inside_action &&
-      (w_current->event_state == MOVE ||
-       w_current->event_state == ENDMOVE)) {
+
+  if (w_current->inside_action) {
     i_callback_cancel (w_current, 0, NULL);
   }
   else {
-    /* can loop here with arg */
+    /* TODO: loop here with arg */
     o_undo_callback(w_current, UNDO_ACTION);
   }
   EXIT_COMMAND(do_undo);
@@ -1243,11 +1233,14 @@ COMMAND (do_move)
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_move) {
       if (o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move))) {
-        i_status_set_state(w_current, ENDMOVE);
+        i_status_set_state(w_current, MOVEMODE);
       }
     }
     else {
-      i_status_set_state(w_current, STARTMOVE);
+      w_current->event_state   = MOVEMODE;
+      w_current->inside_action = FALSE;
+      x_toolbars_update (w_current);
+      i_status_show_msg(w_current, "Move from point");
     }
   }
   else {
