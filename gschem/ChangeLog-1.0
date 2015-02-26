@@ -1,5 +1,35 @@
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Revised similar to modifications to the Master branch
+      by Vladimir Zhbanov, see commit 7a8dae2d6efc8ab82bf68f4a96ba0ab4a01187e1
+      Replaces state enumeration COPY, STARTCOPY, ENDCOPY with COPYMODE, and
+      MCOPY, STARTMCOPY, ENDMCOPY with MCOPYMODE:
+
+    * include/x_states.h: Revise state enumerators and resequence.
+
+    * src/iface/i_command.c: Revise do_copy and do_mcopy to use new enumeration
+      state, "manually" set the event states, toolbar updates and status messages
+      for non-hot actions.
+
+    * iface/i_status.c: Update state enumerators for COPYMODE and MCOPYMODE.
+
+    * src/object/o_redraw.c: Revise functions o_redraw_cleanstates and o_redraw
+      _rectangle to use new enumeration state for COPYMODE and MCOPYMODE.
+
+    * src/x/x_coord.c: Revise functions x_dialog_coord_dnd_drag_receive to
+      use new enumeration state for COPYMODE and MCOPYMODE. and comment out
+      g_print used for testing.
+
+    * src/x/x_dnd.c: Revise function x_dnd_receive_string_sym to "manually" set
+      the event states and status messages. Update functions x_dnd_drag_end and
+      x_dnd_source_leave with COPYMODE enumerator.
+
+    * src/x/x_event.c: Revise module to use new enumeration state for COPYMODE
+      and MCOPYMODE along with new function o_copy_multiple_start, which allows
+      to event handlers to process using inside action in the normal sense.
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_toolbars.c: Eliminate extraneous cases for event states in
       function x_toolbars_update, only those cases for which there are
       modal buttons are of interest. Remaining cases can handled by the

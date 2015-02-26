@@ -57,15 +57,11 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       x_compselect_deselect (w_current);
 
       /* Fall through */
-    case ( COPY ):
-    case ( ENDCOPY ):
-    case ( MCOPY ):
-    case ( ENDMCOPY ):
     case ( MOVE ):
     case ( ENDMOVE ):
     case ( ENDPASTE ):
     case ( GRIPS ):
-
+    case ( COPYMODE ):
     case ( NETMODE ):
     case ( PINMODE ):
     case ( LINEMODE ):
@@ -76,6 +72,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( PATHMODE ):
     case ( PICTUREMODE ):
     case ( BUSMODE ):
+    case ( MCOPYMODE ):
 
       /* it is possible to cancel in the middle of a place,
        * so lets be sure to clean up the place_list structure */
@@ -114,8 +111,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ENDMIRROR ):
     case ( ENDROTATE ):
     case ( SBOX ):
-    case ( STARTCOPY ):
-    case ( STARTMCOPY ):
     case ( STARTMOVE ):
     case ( STARTPASTE ):
     case ( STARTDESELECT ):
@@ -316,9 +311,14 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     if (w_current->rubber_visible) {
 
       if (Current_PlaceList != NULL) {
+
         switch (w_current->event_state) {
+
+          case COPYMODE:
           case COMPMODE:
           case TEXTMODE:
+          case MCOPYMODE:
+
             cairo_set_matrix (w_current->cr, &render_mtx);
             eda_renderer_set_color_map (renderer, render_outline_color_map);
 
@@ -326,8 +326,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
             eda_renderer_set_color_map (renderer, render_color_map);
 
+          default:
             break;
-          default: break;
         }
       }
 
@@ -344,8 +344,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           }
           break;
 
-        case ENDCOPY:
-        case ENDMCOPY:
         case ENDPASTE:
 
           cairo_set_matrix (w_current->cr, &render_mtx);

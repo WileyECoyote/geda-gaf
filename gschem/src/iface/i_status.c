@@ -137,9 +137,9 @@ static const char *i_status_string(GschemToplevel *w_current)
     case SBOX:
     case GRIPS:
       return _("Select Mode");
-    case STARTCOPY:
-    case ENDCOPY:
-      return _("Copy Mode");
+    case COPYMODE:
+    case MCOPYMODE:
+      return _("Copy to point");
     case STARTMOVE:
     case ENDMOVE:
       return _("Move Mode");
@@ -151,15 +151,8 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Zoom Box");
     case PAN:
       return _("Pan Mode");
-    case COPY:
-      return _("Copy");
     case MOVE:
       return _("Move");
-    case MCOPY:
-      return _("Multiple Copy");
-    case STARTMCOPY:
-    case ENDMCOPY:
-      return _("Multiple Copy Mode");
     case STARTPASTE:
     case ENDPASTE:
       GEDA_FREE(buf);

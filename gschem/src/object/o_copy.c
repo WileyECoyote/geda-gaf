@@ -53,6 +53,9 @@ bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
     s_place_set_place_list(toplevel, s_current);
 
     status = o_place_start(w_current, w_x, w_y);
+    if (status) {
+      i_status_set_state(w_current, COPYMODE);
+    }
   }
   return w_current->inside_action = status;
 }
@@ -62,12 +65,12 @@ bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
  *  This function is called at the beginning of a copy multiple operation.
  *  The function uses the normal o_copy_start function to save the x and y
  *  coordinates for the event and if o_copy_start is successful the event
- *  state is set to ENDMCOPY.
+ *  state is set to MCOPYMODE.
  */
 void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_copy_start(w_current, w_x, w_y)) {
-    w_current->event_state = ENDMCOPY;
+    w_current->event_state = MCOPYMODE;
   }
 }
 

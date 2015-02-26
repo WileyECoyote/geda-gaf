@@ -403,6 +403,8 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
         if (!s_page_is_symbol_file(page)) {
           o_redraw_cleanstates    (w_current);
           o_complex_prepare_place (w_current, symbol);
+          w_current->event_state = COPYMODE;
+          i_status_show_msg(w_current, "Place object");
         }
         else {
           result = TRUE;
@@ -924,7 +926,7 @@ void x_dnd_drag_end
   }
 
   switch (w_current->dnd_save_state) {
-    case ENDCOPY:
+    case COPYMODE:
       o_copy_cancel (w_current);
       break;
 
@@ -994,7 +996,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
 
     switch (w_current->event_state) {
       case ENDMOVE:
-      case ENDCOPY:
+      case COPYMODE:
         /*  case ENDCOMP: We're not quite there yet */
         w_current->dnd_save_state = w_current->event_state; /* save state */
         w_current->event_state = STARTDND;

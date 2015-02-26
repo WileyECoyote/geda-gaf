@@ -100,6 +100,9 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       if (Current_PlaceList != NULL) {
         switch(w_current->event_state) {
+
+          case (COPYMODE)   : o_copy_end(w_current); break;
+          case (MCOPYMODE)  : o_copy_multiple_end(w_current); break;
           case (COMPMODE):
             o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
                         NULL, "%add-objects-hook");
@@ -141,7 +144,9 @@ int x_event_button_pressed(GtkWidget      *widget,
         case (PICTUREMODE): o_picture_start (w_current, w_x, w_y); break;
         case (BUSMODE)    : o_bus_start     (w_current, w_x, w_y); break;
         case (ZOOMBOX):
-         i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy); break;
+          i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy); break;
+        case (COPYMODE)   : o_copy_start          (w_current, w_x, w_y); break;
+        case (MCOPYMODE)  : o_copy_multiple_start (w_current, w_x, w_y); break;
         default: break;
       }
     }
@@ -154,7 +159,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       case(DESELECT):
         w_current->event_state = STARTDESELECT;
         break;
-
+/*
       case(STARTCOPY):
         if (o_copy_start(w_current, w_x, w_y)) {
           w_current->event_state = COPY;
@@ -166,7 +171,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           w_current->event_state = MCOPY;
         }
         break;
-
+*/
       case(STARTMOVE):
         if (o_move_start(w_current, w_x, w_y)) {
           w_current->event_state = MOVE;
@@ -177,15 +182,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
         w_current->event_state   = ENDPASTE;
         break;
-/*
-      case(ENDCOMP):
-        o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
-                    NULL, "%add-objects-hook");
-        if (!w_current->continue_component_place) {
-          i_status_set_state(w_current, SELECT);
-        }
-        break;
-*/
+
       case(ENDPASTE):
         o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
         i_status_set_state(w_current, SELECT);
@@ -245,12 +242,12 @@ int x_event_button_pressed(GtkWidget      *widget,
     /* try this out and see how it behaves */
     if (w_current->inside_action) {
       if (!(w_current->event_state == COMPMODE  ||
-        w_current->event_state     == ENDMOVE   ||
-        w_current->event_state     == ENDCOPY   ||
-        w_current->event_state     == ENDMCOPY  ||
-        w_current->event_state     == ENDPASTE )) {
+            w_current->event_state == ENDMOVE   ||
+            w_current->event_state == COPYMODE  ||
+            w_current->event_state == MCOPYMODE ||
+            w_current->event_state == ENDPASTE)) {
         i_callback_cancel(w_current, 0, NULL);
-        }
+      }
     }
     else {
 
@@ -271,7 +268,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           else {
             if (w_current->ALTKEY) {
               if (o_copy_start(w_current, w_x, w_y)) {
-                i_status_set_state(w_current, COPY);
+                i_status_set_state(w_current, COPYMODE);
               }
             }
             else {
@@ -401,7 +398,7 @@ bool x_event_button_released (GtkWidget      *widget,
       case(MOVE):
         w_current->event_state = ENDMOVE;
         break;
-
+/*
       case(COPY):
         w_current->event_state = ENDCOPY;
         break;
@@ -409,7 +406,7 @@ bool x_event_button_released (GtkWidget      *widget,
       case(MCOPY):
         w_current->event_state = ENDMCOPY;
         break;
-
+*/
       case(GRIPS):
         o_grips_end(w_current);
         i_status_set_state(w_current, SELECT);
@@ -423,18 +420,18 @@ bool x_event_button_released (GtkWidget      *widget,
         o_move_end(w_current);
         i_status_set_state(w_current, SELECT);
         break;
-
-      case(ENDCOPY):
+/*
+      case(COPYMODE):
         o_copy_end(w_current);
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(ENDMCOPY):
+      case(MCOPYMODE):
         o_copy_multiple_end(w_current);
-        /* Keep the state and the inside_action, as the copy has not finished. */
-        i_status_set_state(w_current, ENDMCOPY);
+        / * Keep the state and the inside_action, as the copy has not finished. * /
+        //i_status_set_state(w_current, MCOPYMODE);
         break;
-
+*/
       case(SBOX):
         o_select_box_end(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, SELECT);
@@ -482,6 +479,16 @@ bool x_event_button_released (GtkWidget      *widget,
           break;
       }
     }
+    else {
+      switch(w_current->event_state) {
+        case(COPYMODE):
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        default:
+          break;
+      }
+    }
 
     if (w_current->render_adaptor == X11_ADAPTOR) {
       o_invalidate_all (w_current);
@@ -498,8 +505,8 @@ bool x_event_button_released (GtkWidget      *widget,
     else if (w_current->inside_action) {
       if (w_current->event_state == COMPMODE  ||
           w_current->event_state == ENDMOVE   ||
-          w_current->event_state == ENDCOPY   ||
-          w_current->event_state == ENDMCOPY  ||
+          w_current->event_state == COPYMODE  ||
+          w_current->event_state == MCOPYMODE ||
           w_current->event_state == ENDPASTE )
       {
         if (w_current->event_state == ENDMOVE) {
@@ -538,7 +545,7 @@ bool x_event_button_released (GtkWidget      *widget,
               i_status_set_state(w_current, SELECT);
               break;
 
-            case(COPY):
+            case(COPYMODE):
               o_copy_end(w_current);
               i_status_set_state(w_current, SELECT);
               break;
@@ -885,8 +892,8 @@ bool x_event_key (GtkWidget      *widget,
         }
         break;
 
-      case ENDCOPY:
-      case ENDMCOPY:
+      case COPYMODE:
+      case MCOPYMODE:
         if (control_key) {
           x_event_get_snapped_pointer (w_current, &wx, &wy);
           o_place_motion (w_current, wx, wy);
@@ -982,6 +989,8 @@ bool x_event_motion (GtkWidget      *widget,
     if (Current_PlaceList != NULL) {
       switch(w_current->event_state) {
         case (COMPMODE)  :
+        case (COPYMODE)  :
+        case (MCOPYMODE) :
         case (TEXTMODE)  : o_place_motion (w_current, w_x, w_y); break;
         default: break;
       }
@@ -1045,10 +1054,10 @@ bool x_event_motion (GtkWidget      *widget,
         }
         break;
 
-      case(COPY):
-      case(MCOPY):
-      case(ENDCOPY):
-      case(ENDMCOPY):
+      //case(COPY):
+      //case(MCOPY):
+      case(COPYMODE):
+      case(MCOPYMODE):
       case(ENDPASTE):
         o_place_motion (w_current, w_x, w_y);
         break;

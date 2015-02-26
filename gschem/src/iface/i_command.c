@@ -1183,13 +1183,15 @@ COMMAND (do_copy)
     o_redraw_cleanstates(w_current);
 
     if HOT_ACTION (do_copy) {
-      i_status_set_state (w_current, COPY);;
       if (o_copy_start (w_current,  CMD_X(do_copy),  CMD_Y(do_copy))) {
-        i_status_set_state(w_current, ENDCOPY);
+        i_status_set_state(w_current, COPYMODE);
       }
     }
     else {
-      i_status_set_state(w_current, STARTCOPY);
+      w_current->event_state   = COPYMODE;
+      w_current->inside_action = FALSE;
+      x_toolbars_update (w_current);
+      i_status_show_msg(w_current, "Copy from point");
     }
   }
   else {
@@ -1207,21 +1209,21 @@ COMMAND (do_copy)
 COMMAND (do_mcopy)
 {
   BEGIN_W_COMMAND(do_mcopy);
-  int state;
 
   if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_mcopy) {
-      i_status_set_state(w_current, MCOPY);
       o_copy_start (w_current, CMD_X(do_mcopy), CMD_Y(do_mcopy));
-      state = ENDMCOPY;
-      w_current->inside_action = TRUE;
+      if(w_current->inside_action) {
+        i_status_set_state(w_current, MCOPYMODE);
+      }
     }
     else {
-      state = STARTMCOPY;
+      w_current->event_state   = MCOPYMODE;
       w_current->inside_action = FALSE;
+      x_toolbars_update (w_current);
+      i_status_show_msg(w_current, "Copy from point");
     }
-    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
