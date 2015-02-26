@@ -1,5 +1,16 @@
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * network: Clean symbols, revise attribute alignments and locations:
+
+        * network/ENC28J60-1.sym
+        * network/ENC28J60-2.sym
+        * network/ENC28J60SP-1.sym
+        * network/ENC29J60SP-1.sym  (widen box)
+        * network/RN131C-1.sym
+        * network/TS6121C.sym
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/TPS2115-1.sym: Revised symbol; justify device and footprint
       attributes lower left instead of low right.
 
