@@ -1,3 +1,10 @@
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Wrap x_dialog_close_changed_page with gschem_
+      threads_enter and gschem_threads_leave in function i_cmd_do_page_close.
+      This thread is ran in main loop, rather than as a worker because Guile
+      code is also executed the code chain.
+
 2015-02-26 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/x/x_window.c: WEH: Modified per commit to Master branch by Vladimir

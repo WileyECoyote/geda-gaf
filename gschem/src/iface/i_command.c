@@ -2127,7 +2127,9 @@ COMMAND (do_page_close)
   can_close = TRUE;
 
   if (Current_Page->CHANGED) {
+    gschem_threads_enter();
     can_close = x_dialog_close_changed_page (w_current, Current_Page);
+    gschem_threads_leave();
   }
 
   if (can_close) {
