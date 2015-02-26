@@ -1,3 +1,7 @@
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Remove "F E" key sequence for action "page-close".
+
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Revised similar to modifications to the Master branch
