@@ -1,5 +1,10 @@
 2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * object/o_copy.c: Add function o_copy_multiple_start, set o_copy_end
+      inside_action to FALSE in function o_copy_end.
+
+2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_status.c: Change string for "COMPMODE" to something
       less ambivalent.
 

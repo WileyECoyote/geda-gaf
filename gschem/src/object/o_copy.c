@@ -53,9 +53,22 @@ bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
     s_place_set_place_list(toplevel, s_current);
 
     status = o_place_start(w_current, w_x, w_y);
-
   }
   return w_current->inside_action = status;
+}
+
+/*! \brief Start Multiple Copy Mode
+ *  \par Function Description
+ *  This function is called at the beginning of a copy multiple operation.
+ *  The function uses the normal o_copy_start function to save the x and y
+ *  coordinates for the event and if o_copy_start is successful the event
+ *  state is set to ENDMCOPY.
+ */
+void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (o_copy_start(w_current, w_x, w_y)) {
+    w_current->event_state = ENDMCOPY;
+  }
 }
 
 /*! \brief Can cancel a copy operation
@@ -99,6 +112,7 @@ void o_copy_end(GschemToplevel *w_current)
     g_list_free(list);
 
   }
+  w_current->inside_action = FALSE;
 }
 
 /*! \brief  Finalize Copy operation of a multible objects

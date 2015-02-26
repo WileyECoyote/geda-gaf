@@ -428,6 +428,7 @@ bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object 
 
 /* o_copy.c */
 bool       o_copy_start                 (GschemToplevel *w_current, int x, int y);
+void       o_copy_multiple_start        (GschemToplevel *w_current, int x, int y);
 void       o_copy_cancel                (GschemToplevel *w_current);
 void       o_copy_end                   (GschemToplevel *w_current);
 void       o_copy_multiple_end          (GschemToplevel *w_current);
