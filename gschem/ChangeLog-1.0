@@ -1,3 +1,14 @@
+2015-02-26 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/x/x_window.c: WEH: Modified per commit to Master branch by Vladimir
+      See commit 4fcca298f7c140ff79dcc2593fed251927b937e3 in order prevent seg
+      faults if the page is closed while performing actions other than moving.
+      This was reproducible in the Rampage version and is now fixed thanks to
+      Vladimir.
+
+      Also added verbose log messages to indicate the actions described above
+      are being aborted.
+
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * iface/i_command.c: Add missing get_text calls and carriage returns for log

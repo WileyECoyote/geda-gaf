@@ -714,17 +714,16 @@ void x_window_close(GschemToplevel *w_current)
 {
   bool last_window = FALSE;
 
-  /* If we're closing whilst inside a move action, re-wind the
+  /* If we're closing whilst inside an action, re-wind the
    * page contents back to their state before we started */
-  if (w_current->inside_action &&
-      (w_current->event_state == MOVE ||
-       w_current->event_state == ENDMOVE)) {
-    o_move_cancel (w_current);
+  if (w_current->inside_action) {
+    v_log_message("Aborting action\n");
+    i_callback_cancel (w_current, 0, NULL);
   }
 
   /* last chance to save possible unsaved pages */
   if (!x_dialog_close_window (w_current)) {
-    v_log_message("Close Window canceled");
+    v_log_message("Close Window canceled\n");
     /* user cancelled the close */
     return;
   }
@@ -1206,13 +1205,11 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
     }
     else {
 
-      /* If we're closing whilst inside a move action, re-wind the
+      /* If we're closing whilst inside an action, re-wind the
        * page contents back to their state before we started */
-      if (w_current->inside_action &&
-        (w_current->event_state == MOVE ||
-        w_current->event_state == ENDMOVE))
-      {
-        o_move_cancel (w_current);
+      if (w_current->inside_action) {
+        v_log_message("Aborting action\n");
+        i_callback_cancel (w_current, 0, NULL);
       }
 
       if (page == toplevel->page_current) {
