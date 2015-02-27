@@ -1063,18 +1063,23 @@ COMMAND (do_cut_clip)
 {
   BEGIN_W_COMMAND(do_cut_clip);
 
-  if (o_select_is_selection (w_current)){
+  if (!w_current->inside_action) {
+    if (o_select_is_selection (w_current)){
 
-    if ((narg < 0) || (arg == NULL)) {
-      /* if no arguments then use buffer 0 */
-      narg = 0;
+      if ((narg < 0) || (arg == NULL)) {
+        /* if no arguments then use buffer 0 */
+        narg = 0;
+      }
+
+      o_buffer_cut (w_current, narg);
+      if ( narg == 0)
+        x_clipboard_set (w_current, object_buffer[narg]);
+      else
+        i_status_update_sensitivities(w_current);
     }
-
-    o_buffer_cut (w_current, narg);
-    if ( narg == 0)
-      x_clipboard_set (w_current, object_buffer[narg]);
-    else
-      i_status_update_sensitivities(w_current);
+  }
+  else {
+        v_log_message(_("Cannot Cut while inside an action!\n"));
   }
   EXIT_COMMAND(do_cut_clip);
 }

@@ -1,5 +1,10 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revised i_cmd_do_cut_clip: do not allow
+      objects to be "cut" to the clipboard while inside an action.
+
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_grips.c: Revise function o_grips_cancel to eliminate
       "funky" coding.
 
