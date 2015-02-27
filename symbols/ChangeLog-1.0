@@ -1,4 +1,11 @@
-2015-02-25 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/geda-clib.scm: Add category "battery" for MicroChip.
+
+    * microchip/battery/MCP73811.sym: Add symbol; MicroChip Single-Cell, Li-ion
+      and Li-polymer battery charge management controller.
+
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory: Rename symbol files with upper case letters, and add dash for
       package type in file name:

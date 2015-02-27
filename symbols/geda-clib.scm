@@ -210,6 +210,7 @@
                   ("lineartech"      "Manufacturers/Linear Technology")
                   ("maxim"           "Manufacturers/Maxim")
                   ("microchip"       "Manufacturers/Microchip")
+                     ("microchip/battery"     "Manufacturers/Battery")
                      ("microchip/memory"      "Manufacturers/Memory devices")
                      ("microchip/motor"       "Manufacturers/Motor Control")
                      ("microchip/regulators"  "Manufacturers/Regulators")
