@@ -175,8 +175,7 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Bus Mode");
     case MOVEMODE:
       return _("Move Mode");
-    case STARTPASTE:
-    case ENDPASTE:
+    case PASTEMODE:
       GEDA_FREE(buf);
       buf = u_string_sprintf(_("Paste %d Mode"), w_current->buffer_number+1);
       return buf;

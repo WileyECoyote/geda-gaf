@@ -112,9 +112,9 @@ int x_event_button_pressed(GtkWidget      *widget,
               i_status_set_state(w_current, SELECT);
             }
             break;
-
-          case (TEXTMODE):
-            o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+          case (TEXTMODE)   : o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook"); break;
+          case(PASTEMODE)   : o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
+            i_status_set_state(w_current, SELECT);
           default: break;
         }
       }
@@ -136,6 +136,9 @@ int x_event_button_pressed(GtkWidget      *widget,
     else {
       /* Start action */
       switch (w_current->event_state) {
+        case (SELECT):
+          o_select_start(w_current, unsnapped_wx, unsnapped_wy);
+          break;
         case (NETMODE)    : o_net_start     (w_current, w_x, w_y); break;
         case (PINMODE)    : o_pin_start     (w_current, w_x, w_y); break;
         case (LINEMODE)   : o_line_start    (w_current, w_x, w_y); break;
@@ -154,27 +157,15 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
         case (COPYMODE)   : o_copy_start          (w_current, w_x, w_y); break;
         case (MCOPYMODE)  : o_copy_multiple_start (w_current, w_x, w_y); break;
+        case (PASTEMODE)  : o_buffer_paste_start  (w_current, w_x, w_y, w_current->buffer_number);
         default: break;
       }
     }
 
     switch(w_current->event_state) {
-      case (SELECT):
-        o_select_start(w_current, unsnapped_wx, unsnapped_wy);
-        break;
 
       case(DESELECT):
         w_current->event_state = STARTDESELECT;
-        break;
-
-      case(STARTPASTE):
-        o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
-        w_current->event_state   = ENDPASTE;
-        break;
-
-      case(ENDPASTE):
-        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
-        i_status_set_state(w_current, SELECT);
         break;
 
       case(ENDROTATE):
@@ -235,7 +226,7 @@ int x_event_button_pressed(GtkWidget      *widget,
             w_current->event_state == MOVEMODE  ||
             w_current->event_state == COPYMODE  ||
             w_current->event_state == MCOPYMODE ||
-            w_current->event_state == ENDPASTE)) {
+            w_current->event_state == PASTEMODE)) {
         i_callback_cancel(w_current, 0, NULL);
       }
     }
@@ -375,9 +366,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
   if (event->button == 1) {
 
-    /* Huge switch statement to evaluate state transitions. Jump to
-     * end_button_released label to escape the state evaluation rather
-     * than returning from the function directly. */
+    /* Switch statement to evaluate state transitions */
 
     switch(w_current->event_state) {
       case(DESELECT):
@@ -489,7 +478,7 @@ bool x_event_button_released (GtkWidget      *widget,
           w_current->event_state == MOVEMODE  ||
           w_current->event_state == COPYMODE  ||
           w_current->event_state == MCOPYMODE ||
-          w_current->event_state == ENDPASTE )
+          w_current->event_state == PASTEMODE )
       {
         if (w_current->event_state == MOVEMODE ||
             w_current->event_state == DRAGMOVE)
@@ -978,12 +967,14 @@ bool x_event_motion (GtkWidget      *widget,
         case (COMPMODE)  :
         case (COPYMODE)  :
         case (MCOPYMODE) :
+        case (PASTEMODE) :
         case (TEXTMODE)  : o_place_motion (w_current, w_x, w_y); break;
         default: break;
       }
     }
     else {
       switch(w_current->event_state) {
+
         case(NETMODE)    :  o_net_motion     (w_current, w_x, w_y); break;
         case(PINMODE)    :  o_pin_motion     (w_current, w_x, w_y); break;
         case(LINEMODE)   :  o_line_motion    (w_current, w_x, w_y); break;
@@ -993,8 +984,9 @@ bool x_event_motion (GtkWidget      *widget,
         case(PATHMODE)   :  o_path_motion    (w_current, w_x, w_y); break;
         case(PICTUREMODE):  o_picture_motion (w_current, w_x, w_y); break;
         case(BUSMODE)    :  o_bus_motion     (w_current, w_x, w_y); break;
-        case(ZOOMBOX):
-          i_zoom_world_box_motion (w_current, unsnapped_wx, unsnapped_wy);
+        case(GRIPS)      :  o_grips_motion   (w_current, w_x, w_y); break;
+        case(SBOX)       :  o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy); break;
+        case(ZOOMBOX)    :  i_zoom_world_box_motion (w_current, unsnapped_wx, unsnapped_wy);
         default: break;
       }
     }
@@ -1008,14 +1000,6 @@ bool x_event_motion (GtkWidget      *widget,
 
   switch(w_current->event_state) {
 
-    case(SELECT):
-      /* do nothing */
-      break;
-
-    case(GRIPS):
-      o_grips_motion(w_current, w_x, w_y);
-      break;
-
     case(STARTSELECT):
 
       if (o_select_motion (w_current, unsnapped_wx, unsnapped_wy)) {
@@ -1027,7 +1011,7 @@ bool x_event_motion (GtkWidget      *widget,
         if (w_current->drag_event) {
           gdk_event_free(w_current->drag_event);
         }
-        w_current->drag_event = gdk_event_copy( (GdkEvent*)event);
+        w_current->drag_event = gdk_event_copy((GdkEvent*)event);
       }
       else {
         break;
@@ -1043,14 +1027,6 @@ bool x_event_motion (GtkWidget      *widget,
 
       //case(COPYMODE):
       //case(MCOPYMODE):
-    case(ENDPASTE):
-        o_place_motion (w_current, w_x, w_y);
-        break;
-
-    case(SBOX):
-        if (w_current->inside_action)
-          o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy);
-        break;
   }
 
   return(0);

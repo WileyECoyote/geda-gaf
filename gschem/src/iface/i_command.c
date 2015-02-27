@@ -1137,7 +1137,7 @@ COMMAND (do_paste_clip)
       o_redraw_cleanstates (w_current);
       w_current->buffer_number = narg;
       w_current->inside_action = FALSE;
-      i_status_set_state (w_current, STARTPASTE);
+      i_status_set_state (w_current, PASTEMODE);
     }
   }
   else {

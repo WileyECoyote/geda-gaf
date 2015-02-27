@@ -54,8 +54,7 @@ enum x_states {
   ENDROTATE,        /* 26 */
   ENDMIRROR,        /* 27 */
   STARTDND,         /* 28 */
-  STARTPASTE,       /* 29 */
-  ENDPASTE,         /* 00 */
+  PASTEMODE,        /* 29 */
   GRIPS,            /* 30 */
   STARTEXTEND,      /* 31 */
   EXTEND,           /* 32 */

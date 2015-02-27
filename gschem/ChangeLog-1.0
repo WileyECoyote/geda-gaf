@@ -1,5 +1,24 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/: WEH: Modified per commit to Master branch by Vladimir Zhbanov,
+      see commit c44138dc6ad0409036c85af29d1035a1b9997173. Replaces state
+      enumeration STARTPASTE, ENDPASTE with PASTEMODE:
+
+    * include/x_states.h: Revise state enumerators and resequence.
+
+    * src/iface/i_command.c: Revise do_paste_clip to use new enumeration PASTEMODE.
+      state, "manually" set the event states, toolbar updates and status messages
+      for non-hot actions.
+
+    * iface/i_status.c: Update state enumerators for PASTEMODE.
+
+    * src/object/o_redraw.c: Revise functions o_redraw_cleanstates and o_redraw
+      _rectangle to use new enumeration state for PASTEMODE.
+
+    * src/x/x_event.c: Revise module to use new enumeration state for PASTEMODE.
+
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Revised i_cmd_do_cut_clip: do not allow
       objects to be "cut" to the clipboard while inside an action.
 

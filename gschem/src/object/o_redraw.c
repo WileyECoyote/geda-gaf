@@ -62,7 +62,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       o_move_cancel (w_current);
     case ( GRIPS ):
     case ( COPYMODE ):
-    case ( ENDPASTE ):
     case ( NETMODE ):
     case ( PINMODE ):
     case ( LINEMODE ):
@@ -71,6 +70,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( TEXTMODE ):
     case ( ARCMODE ):
     case ( PATHMODE ):
+    case ( PASTEMODE ):
     case ( PICTUREMODE ):
     case ( BUSMODE ):
     case ( MCOPYMODE ):
@@ -106,7 +106,6 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
     case ( ENDMIRROR ):
     case ( ENDROTATE ):
     case ( SBOX ):
-    case ( STARTPASTE ):
     case ( STARTDESELECT ):
     case ( STARTSELECT ):
     case ( ZOOMBOX ):
@@ -312,6 +311,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
           case COMPMODE:
           case TEXTMODE:
           case MCOPYMODE:
+          case PASTEMODE:
 
             cairo_set_matrix (w_current->cr, &render_mtx);
             eda_renderer_set_color_map (renderer, render_outline_color_map);
@@ -339,18 +339,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
       switch (w_current->event_state) {
 
-        case ENDPASTE:
-
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
-
-          o_place_draw_rubber (w_current, draw_selected);
-
-          eda_renderer_set_color_map (renderer, render_color_map);
-
-          break;
-
-        case GRIPS:
+         case GRIPS:
           o_grips_draw_rubber (w_current);
           break;
 

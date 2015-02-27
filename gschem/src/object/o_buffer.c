@@ -183,7 +183,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
 
       o_list_translate (Current_PlaceList, w_x - x, w_y - y);
 
-      i_status_set_state(w_current, ENDPASTE);
+      i_status_set_state(w_current, PASTEMODE);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
   printf("%s: calling o_place_start with %d objects\n", __func__, dint);
