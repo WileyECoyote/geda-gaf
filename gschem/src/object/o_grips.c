@@ -34,25 +34,27 @@
 /*! \brief Cancel process of modifying object with grip.
  *
  *  \par Function Description
- *  This function cancels the process of modifying a parameter
- *  of an object with a grip. It's main utility is to reset the
- *  dont_redraw flag on the object which was being modified.
+ *  Helper function when canceling the process of modifying an object using
+ *  a grip, which could occur if the user hits the ESC key before releasing
+ *  the grip. This function resets the dont_redraw flag on the object which
+ *  was being modified and invalidates the reference to the object and top-
+ *  level which_grip variable.
  *
  *  \param [in,out] w_current  The GschemToplevel object.
  */
-void
-o_grips_cancel(GschemToplevel *w_current)
+void o_grips_cancel(GschemToplevel *w_current)
 {
-  Object *object = w_current->which_object;
+  /* If object set then switch drawing of the object back on */
+  if (w_current->which_object != NULL) {
+    if (GEDA_IS_OBJECT(w_current->which_object)) {
+      w_current->which_object->dont_redraw = FALSE;
+    }
+    w_current->which_object = NULL;
+  }
 
   /* reset global variables */
   w_current->which_grip     = -1;
-  w_current->which_object   = NULL;
-  w_current->rubber_visible = 0;
-
-  /* Switch drawing of the object back on */
-  g_return_if_fail (object != NULL);
-  object->dont_redraw = FALSE;
+  w_current->rubber_visible = FALSE;
 }
 
 /*! \brief Draw objects being grip maniuplated from GschemToplevel object.

@@ -251,7 +251,7 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
 
   bool result;
 
-  cb       = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  cb = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
   /* Clear the clipboard buffer */
   if (w_current->clipboard_buffer)
@@ -265,7 +265,7 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
   result = gtk_clipboard_set_with_data (cb, &target, 1,
                                         clip_get, clip_clear, w_current);
 
-  /* Hint that the data can be stored to be accessed after the program
+  /* Notify Gtk the data can be stored to be accessed after the program
    * has quit. */
   gtk_clipboard_set_can_store (cb, NULL, 0);
 

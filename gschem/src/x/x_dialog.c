@@ -3812,11 +3812,12 @@ bool
 x_dialog_close_window (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *iter;
-  GtkWidget *dialog;
-  Page *p_current;
-  Page *keep_page;
-  GList *unsaved_pages, *p_unsaved;
+  GList        *iter;
+  GtkWidget    *dialog;
+  Page         *p_current;
+  Page         *keep_page;
+  GList        *unsaved_pages, *p_unsaved;
+
   bool return_value = FALSE;
 
   keep_page = toplevel->page_current;
@@ -3824,7 +3825,7 @@ x_dialog_close_window (GschemToplevel *w_current)
   unsaved_pages = NULL;
 
   /* Loop through all the pages */
-  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
   {
     /* get ptr to a page */
     p_current = (Page*)iter->data;
@@ -3844,10 +3845,6 @@ x_dialog_close_window (GschemToplevel *w_current)
                                      "unsaved-pages", unsaved_pages,
                                      NULL));
 
-/*
-  gtk_window_set_transient_for (GTK_WINDOW (dialog),
-                                GTK_WINDOW (w_current->main_window));
-*/
   g_list_free (unsaved_pages);
 
   switch ( gtk_dialog_run (GTK_DIALOG (dialog)) ) {

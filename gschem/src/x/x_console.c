@@ -91,6 +91,7 @@ void q_log_message(const char *format, ...)
     if (buffer) free(buffer);
   }
 }
+
 void v_log_message(const char *format, ...)
 {
   if(verbose_mode) {

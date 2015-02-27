@@ -82,7 +82,7 @@ void o_copy_cancel(GschemToplevel *w_current)
 {
   s_place_free_place_list(w_current->toplevel);
 
-  w_current->inside_action = 0;
+  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
 }
 

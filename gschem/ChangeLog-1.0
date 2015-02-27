@@ -1,5 +1,10 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_grips.c: Revise function o_grips_cancel to eliminate
+      "funky" coding.
+
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_threads.c: Add Doxygen comments gschem_threads_enter and
       gschem_threads_leave. Fix typo in file comment; not manupulation.
 
