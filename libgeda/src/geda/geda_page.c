@@ -3,10 +3,10 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -281,7 +281,11 @@ static void geda_page_finalize(GObject *object)
   if (page->filename)
     GEDA_FREE(page->filename);
 
-  G_OBJECT_CLASS( geda_page_parent_class )->finalize(object);
+  /* The object is no longer a GedaPage object */
+  page->head_marker = 1;
+  page->tail_marker = 0;
+
+  G_OBJECT_CLASS(geda_page_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Page

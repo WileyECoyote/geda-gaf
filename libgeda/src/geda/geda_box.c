@@ -103,22 +103,25 @@ static void geda_box_init(Box *box)
 static void
 geda_box_dispose(GObject *object)
 {
-
   G_OBJECT_CLASS(geda_box_parent_class)->dispose(object);
-
 }
 
 /*! \brief Geda Box Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Box
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function invalidates the Box's markers and then chains up to
+ *   the parent's finalize handler. Once invalidated, GEDA_IS_BOX will
+ *   fail.
  */
 static void geda_box_finalize(GObject *object)
 {
-  /*Object *obj = GEDA_OBJECT(object);*/
-  GEDA_OBJECT_CLASS( geda_box_parent_class )->finalize(object);
+  Box *box = GEDA_BOX(object);
+
+  /* The object is no longer a GedaBox */
+  box->head_marker = 1;
+  box->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_box_parent_class)->finalize(object);
 }
 
 /*! \brief Type class initialiser for Box

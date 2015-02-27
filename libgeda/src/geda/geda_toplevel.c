@@ -264,6 +264,10 @@ static void geda_toplevel_finalize(GObject *object)
   }
   toplevel->weak_refs = NULL;
 
+  /* The object is no longer a GedaToplevel object */
+  toplevel->head_marker = 1;
+  toplevel->tail_marker = 0;
+
   G_OBJECT_CLASS( geda_toplevel_parent_class )->finalize( object );
 }
 

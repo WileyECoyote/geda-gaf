@@ -315,9 +315,8 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 /*! \brief Geda Object Finalization Function
  *  \par Function Description
  *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Object
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   and releases the memory allocated to the given Object data
+ *   structure and then chain up to the parent's finalize handler.
  */
 static void geda_object_finalize(GObject *gobject)
 {
@@ -347,7 +346,13 @@ static void geda_object_finalize(GObject *gobject)
   }
   object->weak_refs = NULL;
 
-  G_OBJECT_CLASS( geda_object_parent_class )->finalize(gobject);
+  /* The object is no longer a GedaObject */
+  object->head_marker = 0;
+  object->tail_marker = 0;
+
+  G_OBJECT_CLASS(geda_object_parent_class)->finalize(gobject);
+
+  /* Return to the child's finalizer */
 }
 
 /*! \brief GedaType class initialiser for Object

@@ -1,3 +1,30 @@
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_xx.c: Revise finalize function for the following
+      objects:
+
+        * src/geda/geda_arc.c
+        * src/geda/geda_box.c
+        * src/geda/geda_bus.c
+        * src/geda/geda_circle.c
+        * src/geda/geda_complex.c
+        * src/geda/geda_line.c
+        * src/geda/geda_net.c
+        * src/geda/geda_object.c
+        * src/geda/geda_page.c
+        * src/geda/geda_path.c
+        * src/geda/geda_picture.c
+        * src/geda/geda_pin.c
+        * src/geda/geda_text.c
+        * src/geda/geda_toplevel.c
+
+      In each finalizer, the markers are set to non-equal invalid values so that
+      the corresponding instance check will fail even if glib has not destroyed
+      the object. This has not be a problem recently, but in the past, G_IS_OBJECT
+      returned True after the last unreferencing, presumably a race that was lost.
+      This remedy will should provide a solution for GEDA_IS_xxx but probably not
+      for G_IS_OBJECT.
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Replace g_path_is_absolute with f_get_is_path_absolute

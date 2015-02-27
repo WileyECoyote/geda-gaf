@@ -109,14 +109,20 @@ geda_line_dispose(GObject *object)
 
 /*! \brief Geda Line Object Finalization Function
  *  \par Function Description
- *   This function releases all internal references and releases
- *   the memory allocated to the given Line data structure and
- *   then chains up to the parent's finalize handler.
+ *   Invalidates the Line's markers and then chains up to the parent's
+ *   finalize handler. Once invalidated, GEDA_IS_LINE will fail.
  */
 static void geda_line_finalize(GObject *object)
 {
-  /*Object *obj = GEDA_OBJECT(object);*/
-  GEDA_OBJECT_CLASS( geda_line_parent_class )->finalize(object);
+  Line *line = GEDA_LINE(object);
+
+  /* The object is no longer a GedaLine */
+  line->head_marker = 1;
+  line->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_line_parent_class)->finalize(object);
+  /* Possible return to bus, net, or pin finalizer */
 }
 
 /*! \brief GedaType class initialiser for Line

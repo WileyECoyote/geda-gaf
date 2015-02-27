@@ -3,10 +3,10 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -170,21 +170,25 @@ static void geda_arc_init(Arc *arc)
 static void
 geda_arc_dispose(GObject *object)
 {
-
   G_OBJECT_CLASS(geda_arc_parent_class)->dispose(object);
-
 }
 
 /*! \brief Geda Arc Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Arc
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function invalidates the Arc's markers and then chains up to
+ *   the parent's finalize handler. Once invalidated, GEDA_IS_ARC will
+ *   fail.
  */
 static void geda_arc_finalize(GObject *object)
 {
-  GEDA_OBJECT_CLASS( geda_arc_parent_class )->finalize(object);
+  Arc *arc = GEDA_ARC(object);
+
+  /* The object is no longer a GedaArc */
+  arc->head_marker = 1;
+  arc->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_arc_parent_class)->finalize(object);
 }
 
 /*! \brief Type class initialiser for Arc

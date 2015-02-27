@@ -90,10 +90,10 @@ geda_net_dispose(GObject *object)
 
 /*! \brief Geda Net Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Net
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function removes or releases all internal references and
+ *   releases the memory allocated to the given Net data structure,
+ *   invalidates the Net's markers, then chain up to the parent's
+ *   finalize handler after.
  */
 static void geda_net_finalize(GObject *object)
 {
@@ -108,7 +108,12 @@ static void geda_net_finalize(GObject *object)
   if(net->connected_to)
     g_free(net->connected_to);
 
-  GEDA_LINE_CLASS( geda_net_parent_class )->finalize(object);
+  /* The object is no longer a GedaNet */
+  net->head_marker = 1;
+  net->tail_marker = 0;
+
+  /* Finialize the parent GedaLine Class */
+  GEDA_LINE_CLASS(geda_net_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Net

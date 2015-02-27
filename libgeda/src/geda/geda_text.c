@@ -164,14 +164,20 @@ geda_text_dispose(GObject *object)
 
 /*! \brief Geda Text Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Text
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function invalidates the Text's markers and then chains up to
+ *   the parent's finalize handler. Once invalidated, GEDA_IS_TEXT will
+ *   fail.
  */
 static void geda_text_finalize(GObject *object)
 {
-  GEDA_OBJECT_CLASS( geda_text_parent_class )->finalize(object);
+  Text *text = GEDA_TEXT(object);
+
+  /* The object is no longer a GedaText */
+  text->head_marker = 1;
+  text->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_text_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Text

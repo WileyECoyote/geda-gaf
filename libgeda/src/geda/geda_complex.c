@@ -158,10 +158,9 @@ geda_complex_dispose(GObject *object)
 
 /*! \brief Geda Complex Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Complex
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   Releases all internal references and releases the memory allocated to
+ *   the given Complex data structure and then chain's up to the parent's
+ *   finalizer after invalidating the Complex's markers.
  */
 static void geda_complex_finalize(GObject *object)
 {
@@ -180,7 +179,12 @@ static void geda_complex_finalize(GObject *object)
   }
   complex->prim_objs = NULL;
 
-  GEDA_OBJECT_CLASS( geda_complex_parent_class )->finalize(object);
+  /* The object is no longer a GedaComplex */
+  complex->head_marker = 1;
+  complex->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_complex_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Complex

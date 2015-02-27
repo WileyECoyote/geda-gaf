@@ -115,10 +115,10 @@ geda_picture_dispose(GObject *object)
 
 /*! \brief Geda Picture Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Picture
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function removes or releases all internal references and
+ *   releases the memory allocated to the given Picture structure,
+ *   invalidates the Picture's markers, then chain up to the parent's
+ *   finalizer.
  */
 static void geda_picture_finalize(GObject *object)
 {
@@ -128,8 +128,12 @@ static void geda_picture_finalize(GObject *object)
     pic->file_content = NULL;
   }
 
-  GEDA_OBJECT_CLASS( geda_picture_parent_class )->finalize(object);
+  /* The object is no longer a GedaPicture */
+  pic->head_marker = 1;
+  pic->tail_marker = 0;
 
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_picture_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Picture

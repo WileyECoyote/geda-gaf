@@ -152,25 +152,27 @@ static void geda_path_init(Path *path)
 static void
 geda_path_dispose(GObject *object)
 {
- /* Object *obj = GEDA_OBJECT(object); */
-
   G_OBJECT_CLASS(geda_path_parent_class)->dispose(object);
-
 }
 
 /*! \brief Geda Path Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Path
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function invalidates the Path's markers and then chains up to
+ *   the parent's finalize handler. Once invalidated, GEDA_IS_PATH will
+ *   fail.
  */
 static void geda_path_finalize(GObject *object)
 {
   Path *path = GEDA_PATH(object);
+
   if (path->sections)
     GEDA_FREE(path->sections);
 
+  /* The object is no longer a GedaPath */
+  path->head_marker = 1;
+  path->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS( geda_path_parent_class )->finalize(object);
 }
 

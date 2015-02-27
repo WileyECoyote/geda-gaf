@@ -114,22 +114,24 @@ static void geda_circle_init(Circle *circle)
 static void
 geda_circle_dispose(GObject *object)
 {
-
   G_OBJECT_CLASS(geda_circle_parent_class)->dispose(object);
-
 }
 
 /*! \brief Geda Circle Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Circle
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   Invalidates the Circle's markers and then chains up to the parent's
+ *   finalize handler. Once invalidated, GEDA_IS_CIRCLE will fail.
  */
 static void geda_circle_finalize(GObject *object)
 {
+  Circle *circle = GEDA_CIRCLE(object);
 
-  GEDA_OBJECT_CLASS( geda_circle_parent_class )->finalize(object);
+  /* The object is no longer a GedaCircle */
+  circle->head_marker = 1;
+  circle->tail_marker = 0;
+
+  /* Finialize the parent GedaObject Class */
+  GEDA_OBJECT_CLASS(geda_circle_parent_class)->finalize(object);
 }
 
 /*! \brief Type class initialiser for Circle

@@ -3,9 +3,9 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -246,14 +246,15 @@ geda_pin_dispose(GObject *object)
 
 /*! \brief Geda Pin Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Pin
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function removes or releases all internal references and
+ *   releases the memory allocated to the given Pin data structure,
+ *   invalidates the Pin's markers, then chain up to the parent's
+ *   finalize handler after.
  */
 static void geda_pin_finalize(GObject *object)
 {
   Pin *pin = GEDA_PIN(object);
+
   if (pin->electrical) {
     GEDA_FREE(pin->electrical);
     pin->electrical = NULL;
@@ -266,7 +267,12 @@ static void geda_pin_finalize(GObject *object)
   GEDA_FREE(pin->label);
   GEDA_FREE(pin->number);
 
-  GEDA_LINE_CLASS( geda_pin_parent_class )->finalize(object);
+  /* The object is no longer a GedaPin */
+  pin->head_marker = 1;
+  pin->tail_marker = 0;
+
+  /* Finialize the parent GedaLine Class */
+  GEDA_LINE_CLASS(geda_pin_parent_class)->finalize(object);
 }
 
 /*! \brief GedaType class initialiser for Pin

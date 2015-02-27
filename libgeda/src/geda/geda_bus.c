@@ -3,10 +3,10 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
- * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2015 Ales Hvezda
+ * Copyright (C) 2013-2015 Wiley Edward Hill
  *
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,10 +80,10 @@ geda_bus_dispose(GObject *object)
 
 /*! \brief Geda Bus Object Finalization Function
  *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Bus
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *   This function removes or releases all internal references and
+ *   releases the memory allocated to the given Bus data structure,
+ *   invalidates the Bus's markers, then chain up to the parent's
+ *   finalize handler after.
  */
 static void geda_bus_finalize(GObject *object)
 {
@@ -92,7 +92,12 @@ static void geda_bus_finalize(GObject *object)
   if (bus->bus_name)
     GEDA_FREE(bus->bus_name);
 
-  GEDA_LINE_CLASS( geda_bus_parent_class )->finalize(object);
+  /* The object is no longer a GedaBus */
+  bus->head_marker = 1;
+  bus->tail_marker = 0;
+
+  /* Finialize the parent GedaLine Class */
+  GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
 }
 
 /*! \brief Type class initialiser for Bus
