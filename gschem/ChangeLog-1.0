@@ -1,5 +1,10 @@
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_buffer.c: Eliminate setting page changed in o_buffer_cut,
+      this is done by libgeda if o_delete_selected calls s_page_remove_object.
+
+2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * gschem/: Revised similar to modifications to the Master branch by
       Vladimir Zhbanov, see commit d05cdff849010233a7bfb6af36e9ac303bf6f9e7
       Replaces state enumeration MOVE, STARTMOVE, and ENDMOVE with MOVEMODE,
