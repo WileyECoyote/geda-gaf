@@ -1,3 +1,8 @@
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_threads.c: Add Doxygen comments gschem_threads_enter and
+      gschem_threads_leave. Fix typo in file comment; not manupulation.
+
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_buffer.c: Eliminate setting page changed in o_buffer_cut,

@@ -31,7 +31,7 @@
  *
  *  1.) glib Idles, Timeouts and IO callbacks are executed outside of the
  *      main GTK+ lock, but not signal handlers. To call GTK+ routines that
- *      involve X11 manupulation of the display, inside of such a callback,
+ *      involve X11 manipulation of the display, inside of such a callback,
  *      wrap the call with gschem_threads_enter and gschem_threads_leave.
  *
  *  2.) Since gschem_threads_init calls gdk_threads_set_lock_functions, all
@@ -59,28 +59,24 @@ static union
 static void (*gschem_threads_lock)(void) = NULL;
 static void (*gschem_threads_unlock)(void) = NULL;
 
-/**
- * gschem_threads_enter:
- *
- * This function marks the beginning of a critical section in which
- * GDK and GTK+ functions can be called safely and without causing race
- * conditions. Only one thread at a time can be in such a critial
- * section.
+/*! \brief Enter Thread
+ *  \par Function Description
+ *  This function marks the beginning of a critical section in which
+ *  GDK and GTK+ functions can be called safely and without causing
+ *  race conditions. Only one thread at a time can be in such a
+ *  critial section.
  */
-void
-gschem_threads_enter (void)
+void gschem_threads_enter (void)
 {
   if (gschem_threads_lock)
     (*gschem_threads_lock) ();
 }
 
-/*!
- * gschem_threads_leave:
- *
- * Leaves a critical region begun with gschem_threads_enter().
+/*! \brief Leave Thread
+ *  \par Function Description
+ *  Leaves a critical region begun with gschem_threads_enter().
  */
-void
-gschem_threads_leave (void)
+void gschem_threads_leave (void)
 {
   if (gschem_threads_unlock) {
     gdk_flush ();
@@ -100,16 +96,14 @@ gschem_threads_impl_unlock (void)
   g_mutex_unlock((GMutex*)&gschem_threads_mutex);
 }
 
-/*!
- * gschem_threads_init:
+/*! \brief Initialize Thread Support
+ *  \par Function Description
+ *   Initializes Gschem so multiple threads can call Gdk library functions
+ *   in conjunction with gschem_threads_enter() and gschem_threads_leave().
  *
- * Initializes Gschem so multiple threads can call Gdk library functions
- * in conjunction with gschem_threads_enter() and gschem_threads_leave().
- *
- * This function call must be made before the Gtk main loop begins, duh.
+ *  \note This function call must be made before the Gtk main loop begins.
  */
-bool
-gschem_threads_init (void)
+bool gschem_threads_init (void)
 {
   bool result;
 
@@ -138,4 +132,5 @@ gschem_threads_init (void)
   }
   return result;
 }
+
 /** @} endgroup Gschem-Thread-System */
