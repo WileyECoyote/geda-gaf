@@ -1,0 +1,103 @@
+.TH gsym-set-visibility 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gsym-set-visibility \- A gEDA-gaf Symbol File Utility
+
+.SH SYNOPSIS
+.B gsym-set-visibility
+.RI  [ INFORMATION ] | [ OPTIONS ] [ DIRECTIVES ] [INPUT] [OUTPUT]
+
+.SH DESCRIPTION
+.B gsym-set-visibility
+Set the Visibility of Text attributes in a symbol file to default values unless otherwise specified
+
+.SH QUICK
+.B usage: [-h] | [Options] -i <inputfile> [[-o] <outputfile> ]
+
+ex. 1) Set visibility of all attributes in two symbols to default values:
+
+    gsym-set-visibility.py -v MyOpamp.sym MyMicroController.sym
+
+ex. 2) Set the visibility of all attributes except the pin labels to default values in all symbol files in the current directory and in all subdirectories:
+
+    gsym-set-visibility.py -R -p
+
+.SH INFORMATION
+Use of the following options displays information related to gsym-set-visibility
+but does not inspect or alter any symbol files:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-V, --version"
+Displays software version information.
+
+.SH OPTIONS
+The following options can be used to modify the default behavior of gsym-set-visibility.py
+.TP
+The following list of attribute flags correspond to attributes turned ON by default, if these options are used the corresponding attributes will not be modified:
+
+.IP "-d, --device    (ON + SHOW-VALUE)"
+.IP "-r, --refdes    (ON + SHOW-VALUE)"
+.IP "-i, --pinnumber (ON + SHOW-VALUE)"
+.IP "-p, --pinlabel  (ON + SHOW-VALUE)"
+
+.TP
+The following list of attribute flags correspond to attributes turned OFF by default, if these options are used the corresponding attributes will not be modified:
+
+.IP "-a, --author"
+.IP "-n, --numslots"
+.IP "-e, --description"
+.IP "-o, --documentation"
+.IP "-s, --symversion"
+.IP "-l, --dist-license"
+.IP "-u, --use-license"
+.IP "-t, --pintype"
+
+.TP
+The following list of attribute flags correspond to attributes turned OFF by default if the SHOW-VALUE only is NOT set. If these options are used the corresponding attributes will not be modified:
+
+.IP "-C, --comment"
+.IP "-F, --footprint"
+.IP "-N, --net"
+.IP "-E, --netname"
+.IP "-V, --value"
+.IP "-M, --model-name"
+
+.TP
+The following list of attributes are ALWAYS turned OFF, and no option is provided to change this behavior:
+
+  "file", "footprints", "graphical", "pins", "slot", "slotdef", "spice-type",
+  "pinseq", "electtype", "mechtype"
+
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Verbose mode.  Used in both archive and extract mode. Spews lots of info about what the prog is doing.
+.IP "-R, --Recursive"
+Process all symbol files in the current and all subordinated directories.
+.IP "-i, --input <input file>"
+Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.
+.IP "-o, --output <output file>"
+Specifies the name of the output sym file. When the output file name is not specified the input file will be over written
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of gsym-set-visibility:
+https://bugs.launchpad.net/geda/gsym-set-visibility/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR gsym-attribute (1) gsym-set-font-size (1) gsym-snap-grid (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2015 Wiley Edward Hill.  License GPLv3+: GNU GPL
+version 3.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

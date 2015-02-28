@@ -12,11 +12,16 @@ LOCAL_HTML  = guide-libgedathon.html include-libgedathon.html \
 LOCAL_TEX   = what-is-libgedathon.tex include-libgedathon.tex \
 	      guide-libgedathon.tex reference-libgedathon.tex
 
-EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX) \
+	      gsym-attribute.1.in gsym-set-font-size.1.in \
+	      gsym-set-visibility.1.in gsym-snap-grid.1.in
+
+dist_man_MANS = gsym-attribute.1 gsym-set-font-size.1 \
+	        gsym-set-visibility.1 gsym-snap-grid.1
 
 SUFFIXES    = .html .tex .pdf
 
-all: 
+all:
 	@echo 'Type: make doxygen  to create doxygen documentation for libgedathon'
 
 doxygen:
@@ -41,6 +46,28 @@ if ENABLE_DOXYGEN
 else
 	@echo 'configure was not run with the --enable-doxygen switch.'
 	@echo 'The documentation cannot be built from the sources.'
+endif
+
+.1.in.1:
+	d=`LANG=C date -d $(DATE_VERSION) "+%B %-d, %Y"` ; \
+	v="$(DOTTED_VERSION).$(DATE_VERSION)" ; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+
+# Rules for converting man->html
+html_man_files = $(dist_man_MANS:%.1=%.html)
+SUFFIXES = .1.in .1 .html
+
+docsmandir=$(docdir)/man
+dist_docsman_DATA=$(html_man_files)
+if ENABLE_GROFF_HTML
+.1.html:
+	rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
+	mv -f $@.tmp $@
+else
+.1.html:
+	@echo "No working groff available: cannot create $@"
+	@! :
 endif
 
 MOSTLYCLEANFILES     = *.log *~ *.bak

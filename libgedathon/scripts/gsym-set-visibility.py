@@ -15,11 +15,11 @@ VerboseMode=False
 #  This is the help string.
 Usage =\
 """
-gsym-set-visible.py --  -- A gEDA-gaf Symbol File Utility
+gsym-set-visibility.py --  -- A gEDA-gaf Symbol File Utility
                      set the Visibility of Text attributes in a symbol file
                      to default values unless otherwise specified
 
-Usage: gsym-set-visible.py [Options] -i <inputfile> [[-o] <outputfile> ]
+Usage: gsym-set-visibility.py [Options] -i <inputfile> [[-o] <outputfile> ]
 """
 
 Help =\
@@ -30,17 +30,17 @@ Options:
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
                      Spews lots of info about what the prog is doing.
 
-  The following options can be used to modify the default behavior of gsym-set-visible.py
-  The following list of attributes are turned ON by default, if these options are used
-  the corresponding attributes will not be modified:
+  The following options can be used to modify the default behavior of gsym-set-visibility.py
+  The following list of attribute flags correspond to attributes turned ON by default,
+  if these options are used the corresponding attributes will not be modified:
 
   -d, --device    ON + SHOW-VALUE
   -r, --refdes    ON + SHOW-VALUE
   -i, --pinnumber ON + SHOW-VALUE
   -p, --pinlabel  ON + SHOW-VALUE
 
-  The following list of attributes are turned OFF by default, if these options are used
-  the corresponding attributes will not be modified:
+  The following list of attribute flags correspond to attributes turned OFF by default,
+  if these options are used the corresponding attributes will not be modified:
 
   -a, --author
   -n, --numslots
@@ -51,8 +51,9 @@ Options:
   -u, --use-license
   -t, --pintype
 
-   The following list of attributes are turned OFF by default if the SHOW-VALUE only is
-   NOT set. If these options are used the corresponding attributes will not be modified:
+   The following list of attribute flags correspond to attributes turned OFF by default
+   if the SHOW-VALUE only is NOT set. If these options are used the corresponding attributes
+   will not be modified:
 
   -C, --comment
   -F, --footprint
@@ -69,12 +70,12 @@ Options:
 
 Example: Set visibility of all attributes in two symbols to default values:
 
-    gsym-set-visible.py -v MyOpamp.sym MyMicroController.sym
+    gsym-set-visibility.py -v MyOpamp.sym MyMicroController.sym
 
 Example: Set the visibility of all attributes except the pin labels to default values
          in all symbol files in the current directory and in all subdirectories:
 
-    gsym-set-visible.py -R -p
+    gsym-set-visibility.py -R -p
 
 Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
 

@@ -31,8 +31,8 @@ Options:
                      Spews lots of info about what the program is doing.
 
   The following options can be used to modify the default behavior of gsym-set-font-size
-  The following list of attributes are set to 10 points by default, if these options are
-  used the corresponding attributes will not be modified:
+  The following list of attribute flags correspond to attributes set to 10 points by default,
+  if these options are used the corresponding attributes will not be modified:
 
   -D, --device
   -r, --refdes
@@ -45,8 +45,8 @@ Options:
   -V, --value
   -P, --pinlabel
 
-  The following list of attributes are set to 8 points by default, if these options are
-  used the corresponding attributes will not be modified:
+  The following list of attribute flags correspond to attributes set to 8 points by default,
+  if these options are used the corresponding attributes will not be modified:
 
   -q, --pinseq
   -i, --pinnumber

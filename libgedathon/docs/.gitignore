@@ -1,7 +1,13 @@
 Makefile
 Makefile.in
 *~
+*.1
 *.bak
 *.bak
 *.txt
 TAGS
+gsym-attribute.html
+gsym-set-font-size.html
+gsym-set-visibility.html
+gsym-snap-grid.html
+

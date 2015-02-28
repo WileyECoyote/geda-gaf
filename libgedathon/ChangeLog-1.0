@@ -1,4 +1,20 @@
-2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gsym-attribute.1.in: Add man page for Python utility script.
+
+    * docs/gsym-set-font-size.1.in: Add man page for Python utility script.
+
+    * docs/gsym-set-visibility.1.in: Add man page for Python utility script.
+
+    * docs/gsym-snap-grid.1.in: Add man page for Python utility script.
+
+    * scripts/gsym-set-font-size.py: Revised help text, attempted to use
+      english instead of giberish.
+
+    * scripts/gsym-set-visibility.py: Revised help text, attempted to use
+      english instead of giberish.
+
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gsym-snap-grid.py: New utility script rounds attribute X-Y location
       to align with a grid, default to multiples of 25 but can be specified as a

@@ -1,0 +1,90 @@
+.TH gsym-set-font-size 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gsym-set-font-size \- gEDA-gaf Symbol File Utility
+
+.SH SYNOPSIS
+.B gsym-set-font-size
+.RI  [ INFORMATION ] | [ OPTIONS ] [ DIRECTIVES ] [INPUT] [OUTPUT]
+
+.SH DESCRIPTION
+.B gsym-set-font-size
+Sets the font size of Text attributes in a symbol file to default values unless otherwise specified
+
+.SH QUICK
+.B usage: [-h] | [Options] -i <inputfile> [[-o] <outputfile> ]
+
+Example: Set the font size of all attributes to default values in all symbol files in the current directory and in all subdirectories:
+
+          gsym-set-font-size.py -R
+
+.SH INFORMATION
+Use of the following options displays information related to gsym-set-font-size
+but does not inspect or alter any symbol files:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-V, --version"
+Displays software version information.
+
+.SH OPTIONS
+The following options can be used to modify the default behavior of gsym-set-font-size
+.TP
+The following list of attribute flags correspond to attributes set to 10 points by default, if these options are used the corresponding attributes will not be modified:
+
+.IP "-D, --device"
+.IP "-r, --refdes"
+.IP "-A, --author"
+.IP "-U, --numslots"
+.IP "-E, --description"
+.IP "-C, --comment"
+.IP "-N, --net"
+.IP "-M, --netname"
+.IP "-V, --value"
+.IP "-P, --pinlabel"
+
+.TP
+The following list of attribute flags correspond to attributes set to 8 points by default, if these options are used the corresponding attributes will not be modified:
+
+.IP "-q, --pinseq"
+.IP "-i, --pinnumber"
+.IP "-t, --pintype"
+
+.TP
+The following list of attributes are set to 10 points, and no option is provided to change this behavior:
+
+"documentation", "symversion", "dist-license", "use-license", "file", "footprint", "footprints",
+"graphical", "pins", "slot", "slotdef", "spice-type", "electtype", "mechtype", "model-name"
+
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Verbose mode.  Used in both archive and extract mode. Spews lots of info about what the prog is doing.
+.IP "-R, --Recursive"
+Process all symbol files in the current and all subordinated directories.
+.IP "-i, --input <input file>"
+Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.
+.IP "-o, --output <output file>"
+Specifies the name of the output sym file. When the output file name is not specified the input file will be over written
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of gsym-set-font-size:
+https://bugs.launchpad.net/geda/gsym-set-font-size/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR gsym-attribute (1) gsym-set-visibility (1) gsym-snap-grid (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2015 Wiley Edward Hill.  License GPLv3+: GNU GPL
+version 3.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.
