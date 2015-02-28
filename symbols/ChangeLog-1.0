@@ -1,5 +1,39 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * serial/16C450N-1.sym:: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/AN82527.sym: Re-vamp symbol.
+
+    * serial/CP2110-GM1_SILABS-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/FT232BM-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/FT232BM-2.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/FT232RL-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/FT232RQ-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/FT2232D-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/MMUSB245.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/SC28L198.sym: Re-vamp symbol.
+
+    * serial/SI9200-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/SP3223.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/TL16C554AFN-1.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/TUSB2046.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/TUSB3410.sym: Rename using upper-case letters, re-vamp symbol.
+
+    * serial/USBN9604-1.sym: Re-vamp symbol.
+
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * symbols/geda-clib.scm: Add category "battery" for MicroChip.
 
     * microchip/battery/MCP73811.sym: Add symbol; MicroChip Single-Cell, Li-ion
