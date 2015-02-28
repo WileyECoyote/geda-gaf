@@ -1,7 +1,13 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scripts/gsym-attribute.py: Add version variable and command-line option, minor
+      revisions to help string.
+
+    * scripts/gsym-set-visibility.py: Add version variable and command-line option,
+      minor revisions to help string.
+
     * scripts/gsym-set-font-size.py: Fix incorrect script name in help text, minor
-      reformatting help text.
+      reformatting help text, add version variable and command-line option
 
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 

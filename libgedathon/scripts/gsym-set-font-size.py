@@ -7,9 +7,11 @@ from geda import geda
 from geda.constants import *
 
 #---------------------------------------------------------------------------
+Version="0.2.0"
+#---------------------------------------------------------------------------
 VerboseMode=False
 #---------------------------------------------------------------------------
-#---------------------------------------------------------------------------
+
 #  This is the help string.
 Usage =\
 """
@@ -24,8 +26,7 @@ Help =\
 """
 Options:
 
-  -R, --Recursive -- Verbose mode.  Used in both archive and extract mode.
-                     Spews lots of info about what the program is doing.
+  -R, --Recursive -- Process all symbol files in the current and all subordinated directories.
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
                      Spews lots of info about what the program is doing.
 
@@ -61,9 +62,9 @@ Options:
 Example: Set the font size of all attributes to default values in all symbol files
          in the current directory and in all subdirectories:
 
-  gsym-set-font-size.py -R
+         gsym-set-font-size.py -R
 
-Copyright (C) 2014 by Wiley Edward Hill.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
 
 """
 
@@ -75,6 +76,9 @@ class ProgramParameters:
     and fills out the public vars.  The public vars are:
     """
     def __init__(self):
+
+        global Version
+
         """
         Constructor: parse through cmd line args and fill out vars. The values
         here are the defaults
@@ -101,6 +105,9 @@ class ProgramParameters:
 
         if len(sys.argv) > 1:
             for arg in sys.argv[1:]:       # Skip OurSelf
+                if arg in ('-V', '--version'):
+                    print Version
+                    sys.exit(0)
                 if arg in ('-h', '--help'):
                     print Usage
                     print Help

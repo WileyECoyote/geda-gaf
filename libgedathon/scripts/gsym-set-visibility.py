@@ -7,9 +7,11 @@ from geda import geda
 from geda.constants import *
 
 #---------------------------------------------------------------------------
+Version="0.2.0"
+#---------------------------------------------------------------------------
 VerboseMode=False
 #---------------------------------------------------------------------------
-#---------------------------------------------------------------------------
+
 #  This is the help string.
 Usage =\
 """
@@ -24,8 +26,7 @@ Help =\
 """
 Options:
 
-  -R, --Recursive -- Verbose mode.  Used in both archive and extract mode.
-                     Spews lots of info about what the prog is doing.
+  -R, --Recursive -- Process all symbol files in the current and all subordinated directories.
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
                      Spews lots of info about what the prog is doing.
 
@@ -68,14 +69,14 @@ Options:
 
 Example: Set visibility of all attributes in two symbols to default values:
 
-  gsym-set-visible.py -v MyOpamp.sym MyMicroController.sym
+    gsym-set-visible.py -v MyOpamp.sym MyMicroController.sym
 
 Example: Set the visibility of all attributes except the pin labels to default values
          in all symbol files in the current directory and in all subdirectories:
 
-  gsym-set-visible.py -R -p
+    gsym-set-visible.py -R -p
 
-Copyright (C) 2014 by Wiley Edward Hill.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
 
 """
 
@@ -87,6 +88,9 @@ class ProgramParameters:
     and fills out the public vars.  The public vars are:
     """
     def __init__(self):
+
+        global Version
+
         """
         Constructor: parse through cmd line args and fill out vars. The values
         here are the defaults
@@ -119,6 +123,9 @@ class ProgramParameters:
 
         if len(sys.argv) > 1:
             for arg in sys.argv[1:]:       # Skip OurSelf
+                if arg in ('-V', '--version'):
+                    print Version
+                    sys.exit(0)
                 if arg in ('-h', '--help'):
                     print Usage
                     print Help

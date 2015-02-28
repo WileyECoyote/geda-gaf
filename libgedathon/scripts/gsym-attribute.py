@@ -7,9 +7,11 @@ from geda import geda
 from geda.constants import *
 
 #---------------------------------------------------------------------------
+Version="0.2.0"
+#---------------------------------------------------------------------------
 VerboseMode=False
 #---------------------------------------------------------------------------
-#---------------------------------------------------------------------------
+
 #  This is the help string.
 Usage =\
 """
@@ -32,8 +34,8 @@ Options:
   -s, --size     -- Optional font size.
   -v, --verbose  -- Verbose mode.  Used in both archive and extract mode.
                     Spews lots of info about what the prog is doing.
-  -o <outfile>   -- Specifies the name of the output sym file. When the file is
-                    specified, if not specified the input file will be over written.
+  -o <outfile>   -- Specifies the name of the output sym file. When the output file
+                    name is not specified the input file will be over written.
 
 Example: Set the footprint in all symbol files in the current directory to SO8:
 
@@ -47,7 +49,7 @@ Example: Get the value of slotdef in the file dual-opamp-3.sym
 
 	        gsym-attribute.py slotdef dual-opamp-3
 
-Copyright (C) 2014 by WEH.  Released under GPL Version 3.
+Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 3.
 
 """
 #------------------------ Functions used by Classes ------------------------
@@ -81,7 +83,7 @@ class ProgramParameters:
     and fills out the public vars.  The public vars are:
     """
     def __init__(self):
-
+        global Version
         valid_attributes =[ "device", "footprint", "numslots", "refdes",
                             "author", "dist-license", "use-license",
                             "description", "documentation", "symversion",
@@ -128,8 +130,9 @@ class ProgramParameters:
                         "output",
                         "size",
                         "value",
-                        "verbose" ]
-            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:i:u:o:s:u:v', long_opt)
+                        "verbose",
+                        "version"]
+            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:i:u:o:s:u:vV', long_opt)
         except getopt.error:
             print Usage                # print out usage string if
                                        # user uses invalid flag.
@@ -137,6 +140,9 @@ class ProgramParameters:
 
         # First pass through args.  Get switch settings & set program modes.
         for Option, Value in OptList:
+            if Option in ('-V', '--version'):
+                print Version
+                sys.exit(0)
 
             if Option in ('-f', '--force'):
                 self.ForceMode = True
