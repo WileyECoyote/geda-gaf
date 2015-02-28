@@ -236,6 +236,7 @@
                      ("ti/ldo"       "Manufacturers/Low-Dropout Regulators")
                      ("ti/micro"     "Manufacturers/Microcontrollers")
                      ("ti/motor"     "Manufacturers/Motor Control")
+                     ("ti/opamps"    "Manufacturers/Operational Amplifiers")
                   ("toshiba" "Manufacturers/Toshiba")
                      ("toshiba/converter"      "Manufacturers/DC-DC Converters")
                      ("toshiba/npn-power-1"    "Manufacturers/NPN Bipolar Power" 1)

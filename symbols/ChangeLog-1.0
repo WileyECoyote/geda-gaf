@@ -1,3 +1,34 @@
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/opamps: Create subdirectory for Texas Instruments operational
+      amplifiers and relocated TL0 series opamps from linear/opamps to ti/
+      opamps. Add (copied) those with only letter modifiers to a non lettered,
+      version. For example TL082AD-1.sym -> TL084-1.sym. Tried to use SOIC8 for
+      the non-designated version.
+
+    * ti/opamps: Renamed folder with "s", opamp->opamps, is revert, also known
+      as momentary lapse of reason, possibly preliminary signs of dementia.
+      Mean time, did the same plain version with modifiers, the LF353N actually
+      triggered all of this, there is no LF353 that I can find, even though I've
+      had LF353 stuck in my head for 31 years it seems there is only LF353N and
+      other variants. None the less, added a LF353-1.sym as well as others with
+      out the letter because other people could be in the same boat with me, but
+      hopefully not the dementia part.
+
+    * Relocated the folowing opamps from the ti directory to the ti/opamps sub
+      directory:
+
+        * ti/opamps/LMC6081-1.sym
+        * ti/opamps/LMC6081-2.sym
+        * ti/opamps/LMP2021-1.sym
+        * ti/opamps/LMP2021-2.sym
+        * ti/opamps/LMP2022-1.sym
+        * ti/opamps/LMP2022-2.sym
+
+    * ti/LMC6772-1.sym: Clean symbol
+    * ti/LMC6772-2.sym: Clean symbol
+    * ti/TLC3702-1.sym: Clean symbol
+
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/16C450N-1.sym:: Rename using upper-case letters, re-vamp symbol.
