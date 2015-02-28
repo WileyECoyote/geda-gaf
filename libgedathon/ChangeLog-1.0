@@ -1,5 +1,15 @@
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scripts/gsym-snap-grid.py: New utility script rounds attribute X-Y location
+      to align with a grid, default to multiples of 25 but can be specified as a
+      command-line argument. Using libgeda for this might be little over-kill but
+      script could potentially be expanded with additional features like setting
+      alignments and this would be easier using library. (I should have created
+      this along time ago, many hours lost cleaning symbol files and even those
+      will need to be re-screened with the new utility.
+
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * scripts/gsym-attribute.py: Add version variable and command-line option, minor
       revisions to help string.
 
