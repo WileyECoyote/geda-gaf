@@ -25,13 +25,13 @@ Help =\
 Options:
 
   -R, --Recursive -- Verbose mode.  Used in both archive and extract mode.
-                     Spews lots of info about what the prog is doing.
+                     Spews lots of info about what the program is doing.
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
-                     Spews lots of info about what the prog is doing.
+                     Spews lots of info about what the program is doing.
 
   The following options can be used to modify the default behavior of gsym-set-font-size
-  The following list of attributes are set to 10 points by default, if these options are used
-  the corresponding attributes will not be modified:
+  The following list of attributes are set to 10 points by default, if these options are
+  used the corresponding attributes will not be modified:
 
   -D, --device
   -r, --refdes
@@ -44,8 +44,8 @@ Options:
   -V, --value
   -P, --pinlabel
 
-  The following list of attributes are set to 8 points by default, if these options are used
-  the corresponding attributes will not be modified:
+  The following list of attributes are set to 8 points by default, if these options are
+  used the corresponding attributes will not be modified:
 
   -q, --pinseq
   -i, --pinnumber
@@ -61,7 +61,7 @@ Options:
 Example: Set the font size of all attributes to default values in all symbol files
          in the current directory and in all subdirectories:
 
-  gsym-set-visible.py -R
+  gsym-set-font-size.py -R
 
 Copyright (C) 2014 by Wiley Edward Hill.  Released under GPL Version 3.
 
