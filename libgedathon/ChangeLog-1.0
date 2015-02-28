@@ -1,3 +1,7 @@
+2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Add missing carriage return in error message.
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/src/libgedathon.c: Replace g_path_is_absolute with f_get_is_path_absolute

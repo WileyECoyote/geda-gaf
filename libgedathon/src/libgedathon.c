@@ -815,7 +815,7 @@ static void setup_source_library (void)
 
   n = scandir(data_path, &namelist, NULL, alphasort);
   if (n < 0)
-    fprintf(stderr, "libgedathon <setup_source_library> bad f_path_sys_data, %s",strerror (errno));
+    fprintf(stderr, "libgedathon <setup_source_library> bad f_path_sys_data, %s\n",strerror (errno));
   else {
     while (n--) {
       if ((g_ascii_strcasecmp (namelist[n]->d_name, ".")  != 0) &&
