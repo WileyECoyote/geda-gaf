@@ -64,10 +64,18 @@ void o_set_color (Object *object, int color)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    object->color = color;
-
-    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
+    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
       o_list_set_color (object->complex->prim_objs, color);
+    }
+
+    if (object->color != color) {
+
+      object->color = color;
+
+      if (object->page) {
+        object->page->CHANGED = 1;
+      }
+    }
   }
   else {
     BUG_MSG ("object is not a GedaObject");
@@ -86,17 +94,40 @@ void o_set_color (Object *object, int color)
 void
 o_set_fill_options(Object *object, FILL_OPTIONS *fill_options)
 {
-  g_return_if_fail( GEDA_IS_BOX    (object) ||
-                    GEDA_IS_CIRCLE (object) ||
-                    GEDA_IS_ARC    (object) ||
-                    GEDA_IS_PATH   (object) );
+  g_return_if_fail(GEDA_IS_BOX    (object) ||
+                   GEDA_IS_CIRCLE (object) ||
+                   GEDA_IS_ARC    (object) ||
+                   GEDA_IS_PATH   (object) );
 
-  object->fill_options->fill_type   = fill_options->fill_type;
-  object->fill_options->fill_width  = fill_options->fill_width;
-  object->fill_options->fill_pitch1 = fill_options->fill_pitch1;
-  object->fill_options->fill_angle1 = fill_options->fill_angle1;
-  object->fill_options->fill_pitch2 = fill_options->fill_pitch2;
-  object->fill_options->fill_angle2 = fill_options->fill_angle2;
+  bool modified = FALSE;
+  FILL_OPTIONS *o_property = object->fill_options;
+
+  if (object->page) {
+
+    if (o_property->fill_type != fill_options->fill_type)
+      modified = TRUE;
+    else if (o_property->fill_width != fill_options->fill_width)
+      modified = TRUE;
+    else if (o_property->fill_pitch1 != fill_options->fill_pitch1)
+      modified = TRUE;
+    else if (o_property->fill_angle1 != fill_options->fill_angle1)
+      modified = TRUE;
+    else if (o_property->fill_pitch2 != fill_options->fill_pitch2)
+      modified = TRUE;
+    else if (o_property->fill_angle2 != fill_options->fill_angle2)
+      modified = TRUE;
+  }
+
+  o_property->fill_type   = fill_options->fill_type;
+  o_property->fill_width  = fill_options->fill_width;
+  o_property->fill_pitch1 = fill_options->fill_pitch1;
+  o_property->fill_angle1 = fill_options->fill_angle1;
+  o_property->fill_pitch2 = fill_options->fill_pitch2;
+  o_property->fill_angle2 = fill_options->fill_angle2;
+
+  if (modified) {
+    object->page->CHANGED = 1;
+  }
 }
 
 /*! \brief Set an #Object's line options.
@@ -114,13 +145,16 @@ o_set_fill_options(Object *object, FILL_OPTIONS *fill_options)
 void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
 {
   g_return_if_fail( GEDA_IS_LINE(object)   ||
-  GEDA_IS_CIRCLE(object) ||
-  GEDA_IS_ARC(object)    ||
-  GEDA_IS_BOX(object)    ||
-  GEDA_IS_PATH(object));
+                    GEDA_IS_CIRCLE(object) ||
+                    GEDA_IS_ARC(object)    ||
+                    GEDA_IS_BOX(object)    ||
+                    GEDA_IS_PATH(object));
 
-  int line_length = line_options->line_length;
-  int line_space  = line_options->line_space;
+  LINE_OPTIONS *o_property = object->line_options;
+
+  int  line_length = line_options->line_length;
+  int  line_space  = line_options->line_space;
+  bool modified    = FALSE;
 
   /* do some error checking / correcting */
   switch(line_options->line_type) {
@@ -130,12 +164,12 @@ void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
     case(TYPE_PHANTOM):
 
       if (line_length < 1) {
-        if (object->line_options->line_length < 1) {
+        if (o_property->line_length < 1) {
           line_length = default_line_length;
           u_log_message(_("Setting line length to default=%d\n"), line_length);
         }
         else { /* Use current value */
-          line_length = object->line_options->line_length;
+          line_length = o_property->line_length;
         }
       }
 
@@ -143,12 +177,12 @@ void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
 
       if (line_space < 1) {
 
-        if (object->line_options->line_space < 1) {
+        if (o_property->line_space < 1) {
           line_space = default_line_space;
           u_log_message(_("Setting line space to default=%d\n"), line_space);
         }
         else { /* Use current value */
-          line_space = object->line_options->line_space;
+          line_space = o_property->line_space;
         }
 
       }
@@ -159,11 +193,29 @@ void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
       break;
   }
 
-  object->line_options->line_width  = line_options->line_width;
-  object->line_options->line_end    = line_options->line_end;
-  object->line_options->line_type   = line_options->line_type;
-  object->line_options->line_length = line_length;
-  object->line_options->line_space  = line_space;
+  if (object->page) {
+
+    if (o_property->line_width != line_options->line_width)
+      modified = TRUE;
+    else if (o_property->line_end != line_options->line_end)
+      modified = TRUE;
+    else if (o_property->line_type != line_options->line_type)
+      modified = TRUE;
+    else if (o_property->line_length != line_options->line_length)
+      modified = TRUE;
+    else if (o_property->line_space != line_options->line_space)
+      modified = TRUE;
+  }
+
+  o_property->line_width  = line_options->line_width;
+  o_property->line_end    = line_options->line_end;
+  o_property->line_type   = line_options->line_type;
+  o_property->line_length = line_length;
+  o_property->line_space  = line_space;
+
+  if (modified) {
+    object->page->CHANGED = 1;
+  }
 }
 
 /*! \brief Set visibility of the object.

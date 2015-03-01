@@ -1,7 +1,13 @@
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    *src/struct/s_tile.c: Revise function s_tile_add_linear_object, eliminate
-     passing extra arguments, was getting incorrect values.
+    * src/object/o_set.c: Revised functions o_set_color, o_set_fill_options and
+      o_set_line_options to set the page changed flag if the object is on a page
+      when modifications are made.
+
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_tile.c: Revise function s_tile_add_linear_object, eliminate
+      passing extra arguments, was getting incorrect values.
 
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
