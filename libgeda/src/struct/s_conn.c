@@ -376,6 +376,7 @@ void s_conn_update_linear_object (Object *object)
       for (object_list = t_current->objects; object_list != NULL; NEXT(object_list))
       {
         other_object = object_list->data;
+
         /* Don't connect object to itself */
         if (object == other_object)
           continue;
@@ -389,12 +390,12 @@ void s_conn_update_linear_object (Object *object)
         /* 1. Both objects are inside a symbol */
         if (complex && other_complex) {
           /* If inside different symbols, both must be pins to connect. */
-          if (complex != other_complex
-            && (object->type != OBJ_PIN || other_object->type != OBJ_PIN)) {
+          if (complex != other_complex &&
+             (object->type != OBJ_PIN || other_object->type != OBJ_PIN)) {
             continue;
-            }
+          }
 
-            /* 2. Updating object is inside a symbol, but other object is not. */
+          /* 2. Updating object is inside a symbol, but other object is not. */
         }
         else if (complex && !other_complex) {
           if (object->type != OBJ_PIN) continue;
@@ -405,6 +406,8 @@ void s_conn_update_linear_object (Object *object)
         }
 
         s_conn_freeze_hooks (other_object);
+
+        /* TODO: One would think there is a less loopy way to check endpoints */
 
         /* Check both end points of the other object */
         for (k = 0; k < 2; k++) {
@@ -423,21 +426,21 @@ void s_conn_update_linear_object (Object *object)
             /* Check for coincidence and compatibility between
              *            the objects being tested. */
             if (object->line->x[j] == other_object->line->x[k] &&
-              object->line->y[j] == other_object->line->y[k] &&
-              check_direct_compat (object, other_object)) {
-
+                object->line->y[j] == other_object->line->y[k] &&
+                check_direct_compat (object, other_object))
+            {
               o_notify_emit_pre_change (other_object);
 
-            add_connection (object, other_object, CONN_ENDPOINT,
-                            other_object->line->x[k],
-                            other_object->line->y[k], j, k);
+              add_connection (object, other_object, CONN_ENDPOINT,
+                              other_object->line->x[k],
+                              other_object->line->y[k], j, k);
 
-            add_connection (other_object, object, CONN_ENDPOINT,
-                            object->line->x[j],
-                            object->line->y[j], k, j);
+              add_connection (other_object, object, CONN_ENDPOINT,
+                              object->line->x[j],
+                              object->line->y[j], k, j);
 
-            o_notify_emit_change (other_object);
-              }
+              o_notify_emit_change (other_object);
+            }
           }
         }
 

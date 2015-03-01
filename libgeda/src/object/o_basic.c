@@ -547,7 +547,19 @@ void o_mirror_object (Object *object, int center_x, int center_y)
   }
 
   if (topless != NULL) {
+
+    o_notify_emit_pre_change (object);
+
     (*topless) (object, center_x, center_y);
+
+    /* Update object to tile system. */
+    s_tile_update_object(object);
+
+    o_notify_emit_change(object);
+
+    if (object->page) {
+       object->page->CHANGED = 1;
+    }
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);
@@ -587,7 +599,19 @@ void o_rotate_object (Object *object, int center_x, int center_y, int angle)
   }
 
   if (topless != NULL) {
+
+    o_notify_emit_pre_change (object);
+
     (*topless) (object, center_x, center_y, angle);
+
+    /* Update object to tile system. */
+    s_tile_update_object(object);
+
+    o_notify_emit_change(object);
+
+    if (object->page) {
+       object->page->CHANGED = 1;
+    }
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);
@@ -625,7 +649,19 @@ void o_translate_object (Object *object, int dx, int dy)
   }
 
   if (topless != NULL) {
+
+    o_notify_emit_pre_change (object);
+
     (*topless) (object, dx, dy);
+
+    /* Update object to tile system. */
+    s_tile_update_object(object);
+
+    o_notify_emit_change(object);
+
+    if (object->page) {
+       object->page->CHANGED = 1;
+    }
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);

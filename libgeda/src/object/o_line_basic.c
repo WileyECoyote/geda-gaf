@@ -198,11 +198,11 @@ Object* o_line_read (const char buf[], unsigned int release_ver,
      * not handle the line type and the filling - here filling is irrelevant.
      * They are set to default.
      */
-    if (sscanf (buf, "%c %d %d %d %d %d\n", &type,
-      &x1, &y1, &x2, &y2, &color) != 6) {
+    if (sscanf (buf, "%c %d %d %d %d %d\n", &type, &x1, &y1, &x2, &y2, &color) != 6)
+    {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
-    return NULL;
-      }
+      return NULL;
+    }
 
       line_width = 0;
       line_end   = END_NONE;
@@ -217,11 +217,12 @@ Object* o_line_read (const char buf[], unsigned int release_ver,
      * The meaning of each item is described in the file format documentation.
      */
     if (sscanf (buf, "%c %d %d %d %d %d %d %d %d %d %d\n", &type,
-      &x1, &y1, &x2, &y2, &color,
-      &line_width, &line_end, &line_type, &line_length, &line_space) != 11) {
+        &x1, &y1, &x2, &y2, &color,
+        &line_width, &line_end, &line_type, &line_length, &line_space) != 11)
+    {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
-    return NULL;
-      }
+      return NULL;
+    }
   }
 
   /*

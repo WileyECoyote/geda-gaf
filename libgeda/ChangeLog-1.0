@@ -1,3 +1,14 @@
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_basic.c: Revise functions; o_mirror_object, o_rotate_object,
+      and o_translate_object to call o_notify_emit_pre_change, s_tile_update_object
+      and o_notify_emit_change, and set the page changed flag. Technically, should
+      also call s_conn_update_object but is really libgschem.
+
+    * src/struct/s_conn.c: Change indentation, add comment, no changes to code.
+
+    * src/object/o_line_basic.c: Change indentation, no changes to code.
+
 2015-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_xx.c: Revise finalize function for the following
