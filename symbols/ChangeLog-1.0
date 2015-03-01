@@ -1,5 +1,9 @@
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * allegro/: Clean symbols.
+
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/opamps: Create subdirectory for Texas Instruments operational
       amplifiers and relocated TL0 series opamps from linear/opamps to ti/
       opamps. Add (copied) those with only letter modifiers to a non lettered,
