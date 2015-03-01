@@ -1,3 +1,12 @@
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Verilog's day? Okay, I just made that up. Gotta
+      make ends meet, literally. Tweak verilog symbols so the arc's close
+      better to the parallel body lines, (change arc radius to 398, start
+      311, sweep 98 instead of radius 400, with start 312, sweep 97), and
+      use round ends. Add lines for "not" inputs so there is not a big gap
+      between the pins and the rest of the symbol.
+
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps: Renamed the single amps with -3 and -4 to -1 and -2
