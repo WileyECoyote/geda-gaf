@@ -1,3 +1,8 @@
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    *src/struct/s_tile.c: Revise function s_tile_add_linear_object, eliminate
+     passing extra arguments, was getting incorrect values.
+
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_basic.c: Revise functions; o_mirror_object, o_rotate_object,

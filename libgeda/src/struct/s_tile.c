@@ -111,14 +111,9 @@ void s_tile_init(Page * p_current)
  *  are touched by the object to the objects tile list.
  *
  *  \param object   The line Object to add
- *  \param x_1      x of the first point
- *  \param y_1      y of the first point
- *  \param x_2      x of the second point
- *  \param y_2      y of the second point
- *
  */
 static void
-s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
+s_tile_add_linear_object (Object *object)
 {
   TILE *tile_current;
   Page *p_current;
@@ -147,10 +142,10 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
   x_size = (double) p_current->width / (double) MAX_TILES_X;
   y_size = (double) p_current->height / (double) MAX_TILES_Y;
 
-  x1 = x_1 / x_size;
-  y1 = y_1 / y_size;
-  x2 = x_2 / x_size;
-  y2 = y_2 / y_size;
+  x1 = (int) (object->line->x[0] / x_size);
+  x2 = (int) (object->line->x[1] / x_size);
+  y1 = (int) (object->line->y[0] / y_size);
+  y2 = (int) (object->line->y[1] / y_size);
 
   bottom = x2 - x1;
 
@@ -159,12 +154,14 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
     m = (double) (y2 - y1) / bottom;
     b = y1 - m * x1;
 
-    start = min((int) x1, (int) x2);
-    end = max((int) x1, (int) x2);
+    start = /* min */ x2 > x1 ? x1 : x2;
+    end   = /* max */ x1 > x2 ? x1 : x2;
 
     for (i = start; i <= end; i++) {
+
       x = i;
       y = m * x + b;
+
       if (floor(y) != ceil(y)) {
 
         v = (int) x;
@@ -173,7 +170,7 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
           return;
         }
-        /* g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0); */
+
         tile_current = &p_current->world_tiles[v][w];
         found = g_list_find(tile_current->objects, object);
 
@@ -185,6 +182,7 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
 
         v = (int) x;
         w = (int) ceil(y);
+
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
           return;
         }
@@ -197,9 +195,9 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
           tile_current->objects = g_list_append(tile_current->objects, object);
           object->tiles = g_list_append(object->tiles, tile_current);
         }
-
       }
       else {
+
         v = (int) x;
         w = (int) floor(y);
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
@@ -312,7 +310,7 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
  *  \par Function Description
  *
  *  This is a dispatch function that passes the object to the
- *  object to the correct function, depending on its type.
+ *  correct handler function, depending on its type.
  *
  *  \param object   The line Object to add
  */
@@ -324,15 +322,13 @@ void s_tile_add_object (Object *object)
     case OBJ_NET:
     case OBJ_PIN:
     case OBJ_BUS:
-      s_tile_add_linear_object (object,
-                                object->line->x[0], object->line->y[0],
-                                object->line->x[1], object->line->y[1]);
+      s_tile_add_linear_object(object);
       break;
   case OBJ_COMPLEX:
   case OBJ_PLACEHOLDER:
     for (iter = object->complex->prim_objs;
          iter != NULL;
-         iter = g_list_next (iter)) {
+         iter = g_list_next(iter)) {
       s_tile_add_object (iter->data);
     }
   }
