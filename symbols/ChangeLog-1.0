@@ -1,5 +1,15 @@
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/opamps: Renamed the single amps with -3 and -4 to -1 and -2
+      respectively. Although all of these were derived from the opamp-3
+      and opamp-4 templates because they have bypass or offset pins, having
+      -3's and -4's with no -1 or -2's was confusing (to me, not mention
+      the schematic I mangled).
+
+    * ti/opamps: Same as in linear, renamed 3's and 4's to 1's and 2's.
+
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * altera/: Clean symbols.
 
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
@@ -14,8 +24,8 @@
       version. For example TL082AD-1.sym -> TL084-1.sym. Tried to use SOIC8 for
       the non-designated version.
 
-    * ti/opamps: Renamed folder with "s", opamp->opamps, is revert, also known
-      as momentary lapse of reason, possibly preliminary signs of dementia.
+    * linear/opamps: Renamed folder with "s", opamp->opamps, is revert, also
+      known as momentary lapse of reason, possibly preliminary signs of dementia.
       Mean time, did the same plain version with modifiers, the LF353N actually
       triggered all of this, there is no LF353 that I can find, even though I've
       had LF353 stuck in my head for 31 years it seems there is only LF353N and
