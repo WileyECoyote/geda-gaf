@@ -158,6 +158,25 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   }
 }
 
+void o_place_component_end (GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_place_end(w_current, w_x, w_y, w_current->continue_component_place, NULL, "%add-objects-hook");
+  if (!w_current->continue_component_place) {
+    i_status_set_state(w_current, SELECT);
+  }
+}
+
+void o_place_text_end (GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+}
+
+void o_place_paste_end (GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
+  i_status_set_state(w_current, SELECT);
+}
+
 /*! \brief Handle Erasing and Redrawing of rubber outlines for objects
  *
  *  \par Function Description

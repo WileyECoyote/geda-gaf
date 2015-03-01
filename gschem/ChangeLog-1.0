@@ -1,5 +1,11 @@
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_place.c: Add utility/helper functions o_place_component_end,
+      o_place_text_end, and o_place_paste_end in order to cleanup code in x_events,
+      will profile these later and then re-access this situation.
+
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * gschem/src/x/x_dnd.c: Added i_status_set_state to SELECT after calling
       o_move_cancel in x_dnd_drag_end, due to recent changes in events, what
       a drag.

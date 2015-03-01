@@ -106,15 +106,9 @@ int x_event_button_pressed(GtkWidget      *widget,
             break;
           case (COPYMODE)   : o_copy_end(w_current); break;
           case (MCOPYMODE)  : o_copy_multiple_end(w_current); break;
-          case (COMPMODE):
-            o_place_end(w_current, w_x, w_y, w_current->continue_component_place, NULL, "%add-objects-hook");
-            if (!w_current->continue_component_place) {
-              i_status_set_state(w_current, SELECT);
-            }
-            break;
-          case (TEXTMODE)   : o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook"); break;
-          case(PASTEMODE)   : o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
-            i_status_set_state(w_current, SELECT);
+          case (COMPMODE)   : o_place_component_end(w_current, w_x, w_y); break;
+          case (TEXTMODE)   : o_place_text_end(w_current, w_x, w_y); break;
+          case(PASTEMODE)   : o_place_paste_end(w_current, w_x, w_y);  break;
           default: break;
         }
       }
