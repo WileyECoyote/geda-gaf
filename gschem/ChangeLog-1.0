@@ -1,3 +1,9 @@
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_callbacks.c: Remove conditional from o_invalidate_all in
+      cancel function. See commit 0e7591379474814da54f43253b90c4919b09acea
+      in Master branch, by Vladimir Zhbanov.
+
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_place.c: Add utility/helper functions o_place_component_end,
