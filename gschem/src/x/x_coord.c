@@ -73,18 +73,18 @@ static GtkTargetEntry dnd_target_list[] = {
  * function gtk_drag_finish, which will emit the "data-delete" signal if
  * told to.
 */
-void
-x_dialog_coord_dnd_drag_receive
-(GtkWidget *widget, GdkDragContext *context, int x, int y,
-        GtkSelectionData *selection_data, guint target_type, guint time,
-        GschemToplevel *w_current)
+void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
+                                     GdkDragContext   *context, int x, int y,
+                                     GtkSelectionData *selection_data,
+                                     unsigned int      target_type,
+                                     unsigned int      time,
+                                     GschemToplevel   *w_current)
 {
-  GedaToplevel   *toplevel;
-  GtkWidget  *Dialog;
-  GtkWidget  *world_entry;
-  GError     *err;
-  char       *buffer;
-
+  GedaToplevel *toplevel;
+  GtkWidget    *Dialog;
+  GtkWidget    *world_entry;
+  GError       *err;
+  char         *buffer;
 
   bool dnd_success           = FALSE;
   bool delete_selection_data = FALSE;
@@ -101,7 +101,6 @@ x_dialog_coord_dnd_drag_receive
   /* Deal with what we are given from source */
   if((selection_data != NULL) && (gtk_selection_data_get_length(selection_data) >= 0))
   {
-    //if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
     if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
@@ -155,7 +154,6 @@ x_dialog_coord_dnd_drag_receive
         else {
 
           if (w_current->inside_action ) {
-//g_print (" Received TARGET_OBJECTS data while inside_action. save_state=%d\n", w_current->dnd_save_state);
              switch (w_current->dnd_save_state) {
              case DRAGMOVE:  /* Dragged-Moved something to the coord entry */
              case MOVEMODE:  /* Move Mode Moved something to the coord entry */
@@ -163,7 +161,6 @@ x_dialog_coord_dnd_drag_receive
                break;
              case COPYMODE:
              case COMPMODE:
-
                i_status_set_state (w_current, ENDDND_COPY_OBJ);
              default:
                break;
@@ -171,7 +168,7 @@ x_dialog_coord_dnd_drag_receive
              w_current->dnd_state = w_current->event_state;
           }
           else {
-            w_current->inside_action = 1;
+            w_current->inside_action = TRUE;
             i_status_set_state (w_current, ENDDND_COPY_OBJ);
           }
           dnd_success = TRUE;
@@ -204,15 +201,14 @@ x_dialog_coord_dnd_drag_receive
  * \return FALSE if the operation should continue
  */
 /* Emitted  */
-bool x_dialog_coord_drag_motion
-(GtkWidget *widget, GdkDragContext *context, int x, int y, guint t, GschemToplevel *w_current)
+bool x_dialog_coord_drag_motion (GtkWidget      *widget,
+                                 GdkDragContext *context, int x, int y,
+                                 unsigned int    time,
+                                 GschemToplevel *w_current)
 {
   // Fancy stuff here. This signal spams the console something horrible.
-  //const char *name = gtk_widget_get_name (widget);
-  //g_print ("%s: drag_motion_handl\n", name);
   return  FALSE;
 }
-
 
 /*! \brief When Drag gets Dropped om the Drawing Area
  *
@@ -224,8 +220,11 @@ bool x_dialog_coord_drag_motion
  *
  * \return TRUE if the operation should continue, other FALSE
  */
-bool x_dialog_coord_drag_drop
-(GtkWidget *widget, GdkDragContext *context, int x, int y, guint time, GschemToplevel *w_current)
+bool x_dialog_coord_drag_drop (GtkWidget      *widget,
+                               GdkDragContext *context,
+                               int x, int y,
+                               unsigned int    time,
+                               GschemToplevel *w_current)
 {
   bool            is_valid_drop_site;
   GtkTargetEntry *target_entry;
@@ -244,7 +243,6 @@ bool x_dialog_coord_drag_drop
   is_valid_drop_site = TRUE;
 
   /* Get a list of target types to choose from */
-  //targets = gdk_drag_context_list_targets(context);
   targets = context->targets;
 
   /* If the source offers a target */
@@ -271,10 +269,10 @@ bool x_dialog_coord_drag_drop
     }
 
     /* Request the data from the source. */
-    gtk_drag_get_data ( widget,          /* will receive 'drag-data-received' signal */
-                        context,         /* represents the current state of the DnD */
-                        target_type,     /* the target type we want */
-                        time );          /* time stamp */
+    gtk_drag_get_data (widget,           /* will receive 'drag-data-received' signal */
+                       context,          /* represents the current state of the DnD */
+                       target_type,      /* the target type we want */
+                       time );           /* time stamp */
 
 #if DEBUG || DEBUG_DND_EVENTS
     g_print (" Valid\n");
@@ -283,6 +281,7 @@ bool x_dialog_coord_drag_drop
 
   /* No target offered by source => error */
   else {
+
     is_valid_drop_site = FALSE;
 
 #if DEBUG || DEBUG_DND_EVENTS
@@ -300,13 +299,14 @@ bool x_dialog_coord_drag_drop
  *
  *  \par Function Description
  *
- *  This function destroys the coord dialog box and does some cleanup.
+ *  This function destroys the coord dialog box and invalidates the
+ *  pointers store in toplevel to the entries.
  */
-void
-x_dialog_coord_dialog_response(GtkWidget *Dialog, int response, GschemToplevel *w_current)
+void x_dialog_coord_dialog_response(GtkWidget      *Dialog, int response,
+                                    GschemToplevel *w_current)
 {
   gtk_widget_destroy(Dialog);
-  w_current->world_entry = NULL;
+  w_current->world_entry  = NULL;
   w_current->screen_entry = NULL;
 }
 
@@ -401,10 +401,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
       w_current = Dialog->w_current;
       toplevel = w_current->toplevel;
 
-#if DEBUG || DEBUG_DND_EVENTS
-g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_save_state=%d\n", w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
-#endif
-      /* If we were not in an action the just set the pointer to X,Y location */
+      /* If we were not in an action then just set the pointer to X,Y location */
       if (!w_current->inside_action) {
         i_window_set_pointer_position (w_current, x, y);
       } /* is there something in the Drag&Drop buffer? */

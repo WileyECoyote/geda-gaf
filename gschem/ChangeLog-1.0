@@ -1,3 +1,11 @@
+2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_dnd.c: Added i_status_set_state to SELECT after calling
+      o_move_cancel in x_dnd_drag_end, due to recent changes in events, what
+      a drag.
+
+    * src/x/x_coord.c: Reformat functions and fix indentations.
+
 2015-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/: WEH: Modified per commit to Master branch by Vladimir Zhbanov,

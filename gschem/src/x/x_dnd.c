@@ -907,11 +907,11 @@ x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_
  *  Called when DnD ends to clean up leftover data. We have a couple of
  *  things to do here; first, free the event that was saved when the mouse
  *  button was pressed down to start the implicit Move action and secondly,
- *  cancel the Move action so the object get put back where it was before
+ *  cancel the Move action so the object gets put back where it was before
  *  the D&D operation.
  */
-void x_dnd_drag_end
-(GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
+void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
+                                        GschemToplevel *w_current)
 {
 
 #if DEBUG  || DEBUG_DND_EVENTS
@@ -934,6 +934,7 @@ void x_dnd_drag_end
     case MOVEMODE:
       if (w_current->event_state != ENDDND_MOVE_OBJ) {
         o_move_cancel (w_current);
+        i_status_set_state(w_current, SELECT);
       }
       break;
 
