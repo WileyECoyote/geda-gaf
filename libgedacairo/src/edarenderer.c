@@ -1747,7 +1747,9 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
   int ret_val = FALSE;
   int visible;
 
-  visible = o_get_is_visible(object);
+  //visible = o_get_is_visible(object);
+
+  visible = object->visibility != INVISIBLE;
 
   /* First check if this is hidden text. */
   if ( visible || EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
@@ -1790,19 +1792,19 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
           /* If not normal visible text, account for the little "I" */
           if (object->visibility != 1) {
 
-            double offset = EDAR_TEXT_MARKER_SIZE;
+            double offset = EDAR_TEXT_MARKER_SIZE + 5;
 
             if ((object->text->alignment == LOWER_LEFT) ||
-              (object->text->alignment == LOWER_MIDDLE) ||
-              (object->text->alignment == LOWER_RIGHT))
+                (object->text->alignment == LOWER_MIDDLE) ||
+                (object->text->alignment == LOWER_RIGHT))
             {
               *bottom = *bottom - offset;
             }
 
             /* someday, MIDDLE_MIDDLE UPPER_MIDDLE MIDDLE_LEFT UPPER_LEFT */
             if ((object->text->alignment == UPPER_RIGHT) ||
-              (object->text->alignment == MIDDLE_RIGHT) ||
-              (object->text->alignment == LOWER_RIGHT))
+                (object->text->alignment == MIDDLE_RIGHT) ||
+                (object->text->alignment == LOWER_RIGHT))
             {
               int    size       = object->text->size;
               double adjustment = 1.5 * size  + (2 * offset / 3);
