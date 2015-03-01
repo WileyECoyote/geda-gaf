@@ -156,7 +156,7 @@ bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 
     /* Save the current state. When rotating the selection when
      * moving, we have to come back to here */
-    o_undo_savestate(w_current, UNDO_ALL);
+    //o_undo_savestate(w_current, UNDO_ALL);
 
     w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
@@ -288,7 +288,7 @@ void o_move_end(GschemToplevel *w_current)
     }
 
     /* Remove the undo saved in o_move_start */
-    o_undo_remove_last_undo(w_current);
+    //o_undo_remove_last_undo(w_current);
 
     /* Draw the objects that were moved */
     o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
@@ -335,7 +335,12 @@ void o_move_cancel (GschemToplevel *w_current)
   o_move_stretch_destroy_all (w_current->stretch_list);
   w_current->stretch_list = NULL;
   w_current->inside_action = FALSE;
-  o_undo_callback(w_current, UNDO_ACTION);
+
+  if (Current_Page->place_list) {
+    g_list_free(Current_Page->place_list);
+    Current_Page->place_list = NULL;
+  }
+  //o_undo_callback(w_current, UNDO_ACTION);
 }
 
 /*! \todo Finish function documentation!!!

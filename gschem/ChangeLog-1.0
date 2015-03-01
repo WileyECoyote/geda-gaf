@@ -1,5 +1,12 @@
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Revise o_move_cancel to free the placelist, and
+      most importantly, set the pointer to the place list to NULL.
+
+    * src/iface/i_callbacks.c: Redo i_callback_cancel function.
+
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_callbacks.c: Remove conditional from o_invalidate_all in
       cancel function. See commit 0e7591379474814da54f43253b90c4919b09acea
       in Master branch, by Vladimir Zhbanov.

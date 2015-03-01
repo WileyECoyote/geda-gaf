@@ -179,59 +179,61 @@ DEFINE_I_CALLBACK(page_discard)
  */
 DEFINE_I_CALLBACK(cancel)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  switch (w_current->event_state) {
 
-  if (w_current->event_state == COMPMODE && w_current->cswindow) {
+    case COMPMODE:
 
-    /* user hit escape key when placing components */
+      if (w_current->cswindow) {
 
-    /* Undraw any outline of the place list */
-    o_place_invalidate_rubber (w_current, FALSE);
-    w_current->rubber_visible = FALSE;
+        /* user hit escape key when placing components */
 
-    /* De-select the lists in the component selector */
-    x_compselect_deselect (w_current);
+        /* Undraw any outline of the place list */
+        o_place_invalidate_rubber (w_current, FALSE);
+        w_current->rubber_visible = FALSE;
 
-    /* Present the component selector again */
-    g_object_set (G_OBJECT(w_current->cswindow), "hidden", FALSE, NULL);
-  }
-  else if (w_current->inside_action) {
+        /* De-select the lists in the component selector */
+        x_compselect_deselect (w_current);
 
-    /* If we're cancelling while inside a move action, re-wind the page
-     * contents back to the state before the action started and destroy
-     * the stretch_list*/
-    if (w_current->event_state == MOVEMODE ||
-        w_current->event_state == DRAGMOVE)
-      o_move_cancel (w_current);
+        /* Present the component selector again */
+        g_object_set (G_OBJECT(w_current->cswindow), "hidden", FALSE, NULL);
+      }
+      break;
 
-    /* If we're cancelling from a grip action, call the specific cancel
-     * routine to reset the visibility of the object being modified */
-    if (w_current->event_state == GRIPS)
+    case MOVEMODE:
+    case DRAGMOVE:
+
+      if (w_current->inside_action) {
+
+        /* If we're cancelling while inside a move action, free the place
+         * list and destroy the stretch_list */
+          o_move_cancel (w_current);
+      }
+      break;
+
+    case GRIPS:
+      /* If we're cancelling from a grip action, call the specific cancel
+       * routine to reset the visibility of the object being modified */
       o_grips_cancel (w_current);
+
+    default:
+      break;
+
   }
-  else if (o_select_is_selection (w_current)) {
-    /* Was not in an action so clear the selection */
+
+  if (o_select_is_selection (w_current)) {
     o_select_unselect_all(w_current);
   }
-  else {
 
-    /* leave this on for now... but it might have to change */
-    /* this is problematic since we don't know what the right mode */
-    /* should be (when you cancel inside an action) */
-    i_status_set_state(w_current, SELECT);
+  if (Current_Page->place_list) {
+    s_object_release_objects(Current_Page->place_list);
+    Current_Page->place_list = NULL;
   }
 
-  /* Free the place list and its contents. If we were in a move
-   * action, the list (refering to objects on the page) would
-   * already have been cleared in o_move_cancel(), so this is OK. */
-  s_object_release_objects(toplevel->page_current->place_list);
-  toplevel->page_current->place_list = NULL;
-
-  /* clear the key guile command-sequence */
+  /* Clear the key guile command-sequence */
   g_keys_reset (w_current);
 
   o_invalidate_all (w_current);
-
+  i_status_set_state(w_current, SELECT);
   w_current->inside_action = FALSE;
 }
 
