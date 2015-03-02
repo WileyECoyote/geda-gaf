@@ -151,6 +151,7 @@ const char* IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
    NULL
 };
 
+static int      show_recent_path;
 static GList   *recent_files = NULL;
 static GSList  *ui_list      = NULL;
 
@@ -528,10 +529,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   cfg = eda_config_get_user_context ();
 
-  show_menu_icons = eda_config_get_boolean (cfg, group, "show-menu-icons",  NULL);
-  show_menu_tips  = eda_config_get_boolean (cfg, group, "show-menu-tips",   NULL);
-  show_pop_icons  = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
-  show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
+  show_menu_icons  = eda_config_get_boolean (cfg, group, "show-menu-icons",  NULL);
+  show_menu_tips   = eda_config_get_boolean (cfg, group, "show-menu-tips",   NULL);
+  show_pop_icons   = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
+  show_pop_tips    = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
+  show_recent_path = eda_config_get_boolean (cfg, group, "show-recent-path", NULL);
 
   buffer_menu  = FALSE;
   menus_broken = FALSE;
@@ -886,7 +888,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
       if (item.use_stock) {
         image = gtk_image_new_from_stock(item.icon, GTK_ICON_SIZE_MENU);
-      } else {
+      }
+      else {
         image = create_pixmap (item.icon);
       }
 
@@ -1097,6 +1100,9 @@ void x_menu_save_state(GschemToplevel *w_current)
      else {
        v_log_message (_(" there were %d errors\n"), errors);
      }
+
+     eda_config_set_boolean(cfg, MENU_CONFIG_GROUP, "show-recent-path",
+                                                     show_recent_path);
   }
 }
 
@@ -1399,7 +1405,11 @@ static void x_menu_free_recent_file_data (void *data)
   GEDA_FREE (data);
 }
 
-/* Note that menu item could NULL if called from popup */
+/*! \brief Recent Menu item Clicked
+ *  \par Function Description
+ *  Called with user clicks on a menu item on the recent files menu or when
+ *  the user select "open" from the popup menu on the recent file submenu.
+ */
 static void x_menu_recent_file_clicked (GtkMenuItem *menuitem, void *user_data)
 {
    FILE *fp;
@@ -1446,6 +1456,32 @@ static void x_menu_recent_files_create_empty(void)
 /** \defgroup recent-Popup-Menu Recent Files Popup Menu
  *  @{
  */
+
+/*! \brief Recent Menu item Popup Show Recent Paths Toggled
+ *  \par Function Description
+ *  Called with user toggles to Show path items on recent file pop-up menu.
+ *  Toggles the state of show_recent_path, calls to update the menu and
+ *  causes the recent file sub-menu to reappear with the opposite state.
+ */
+static void x_menu_toggle_recent_path (GtkMenuItem *menuitem, void *user_data)
+{
+  RecentMenuData *data      = (RecentMenuData*) user_data;
+  GschemToplevel *w_current = data->w_current;
+
+  GtkMenuItem *menu_item;
+  MenuData    *menu_data;
+
+  show_recent_path = !show_recent_path;
+  x_menu_update_recent_files();
+
+  /* Get pointer to the recent files submenu */
+  menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+  menu_item = (GtkMenuItem*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+                                                 "_File/Open Recen_t");
+
+  /* Re-display the recent files submenu */
+  gtk_menu_item_select(menu_item);
+}
 
 /*! \brief Recent Files Menu Internal Populate Popup
  *
@@ -1497,6 +1533,15 @@ static void x_menu_recent_show_popup (GtkMenuItem    *menu_widget,
                         (GCallback) x_menu_recent_file_remove, user_data,
                         (GClosureNotify) x_menu_free_recent_file_data,
                          0);
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
+
+  popup_item = gtk_check_menu_item_new_with_mnemonic (_("_Show path"));
+  gtk_check_menu_item_set_active((GtkCheckMenuItem*)popup_item, show_recent_path);
+
+  g_signal_connect (G_OBJECT(popup_item), "toggled",
+                    G_CALLBACK(x_menu_toggle_recent_path),
+                    user_data);
 
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
 
@@ -1572,11 +1617,17 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
    while(iter) {
 
+     const char *filename;
+
      RecentMenuData *menu_data = GEDA_MEM_ALLOC0 (sizeof(RecentMenuData));
+
+     filename                  = iter->data;
      menu_data->filename       = iter->data;
      menu_data->w_current      = w_current;
 
-     item = gtk_menu_item_new_with_label((char*) iter->data);
+     filename = show_recent_path ? filename : f_get_basename(filename);
+
+     item = gtk_menu_item_new_with_label((char*) filename);
 
      g_signal_connect_data (GTK_OBJECT(item), "activate",
                            (GCallback) x_menu_recent_file_clicked, menu_data,

@@ -1,5 +1,31 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Allow users to not show the path when displaying the
+      file names in the recent file submenu, this is useful because the menu
+      items can be long and Gtk sets the width of the menu so larger that
+      the recent submenu covers over the file menu and blocks the remaining
+      items like "file/save".
+
+      1.) Create static int show_recent_path
+
+      2.) Restore the state of show_recent_path in x_menu_setup_ui (when the
+          state of other toggle menu items is retrieved.
+
+      3.) Retain the state of show_recent_path in x_menu_save_state.
+
+      4.) Added popup callback function x_menu_toggle_recent_path.
+
+      5.) Added "Show path" menu item to recent file menu popup in function
+          x_menu_recent_show_popup.
+
+      6.) Revised function x_menu_attach_recent_submenu, adding filename
+          variable, to use the show_recent_path when build the recen-file
+          submenu.
+
+      Added doxygen comment for function x_menu_recent_file_clicked.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_pagesel.h: Add defines for COLUMN_CHANGED and COLUMN_NAME
       MIN_WIDTH, add boolean full_names to data structure.
 
