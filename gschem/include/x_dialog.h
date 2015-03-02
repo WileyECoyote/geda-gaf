@@ -66,6 +66,7 @@ struct st_line_type_data {
 
   GtkWidget *width_entry;
   GtkWidget *line_type;
+  GtkWidget *end_type;
   GtkWidget *length_entry;
   GtkWidget *space_entry;
 

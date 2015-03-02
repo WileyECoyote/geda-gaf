@@ -1,3 +1,9 @@
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Add combo menu for line end-types to the Line Type
+      dialog, removed setting page changed from both the Line and Fill
+      Type dialogs okay routines.
+
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * Happy Birthday Miguel! *

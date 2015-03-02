@@ -684,7 +684,7 @@ void text_size_dialog (GschemToplevel *w_current)
  * to stay open while other editing is performed.
  */
 
-static      GtkWidget* create_menu_linetype (GschemToplevel *w_current);
+static      GtkWidget* create_linetype_menu (GschemToplevel *w_current);
 static int  x_dialog_edit_line_type_change  (GtkWidget *w, line_type_data *ld);
 static void x_dialog_edit_line_type_ok      (GtkWidget *w, line_type_data *ld);
 
@@ -1432,7 +1432,6 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
     o_invalidate_object (w_current, object);
   }
 
-  toplevel->page_current->CHANGED = 1;
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
@@ -1653,16 +1652,57 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
  *  @{ \memberof Editing-Dialogs
  */
 
+/*! \brief Create a line end type menu for the line type dialog
+ *  \par Function Description
+ *  This function creates a GtkMenu with the different line end types.
+ *
+ *  \param [in] w_current Pointer to a GschemToplevel object
+ */
+static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
+{
+  GtkWidget *menu;
+  GSList    *group;
+
+  struct end_type {
+    char *str;
+    LINE_END end;
+  } types[] = { { N_("None"),        END_NONE   },
+                { N_("Square"),      END_SQUARE },
+                { N_("Round"),       END_ROUND  },
+                { N_("*unchanged*"), END_VOID   }
+              };
+  int i;
+
+  menu  = gtk_menu_new ();
+  group = NULL;
+
+  for (i = 0; i < sizeof (types) / sizeof (struct end_type); i++) {
+
+    GtkWidget *menuitem;
+
+    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
+    group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+
+    gtk_menu_append (GTK_MENU (menu), menuitem);
+    gtk_object_set_data (GTK_OBJECT(menuitem), "endtype",
+                         GINT_TO_POINTER (types[i].end));
+    gtk_widget_show (menuitem);
+  }
+
+  return(menu);
+}
+
 /*! \brief Create a line type menu for the line type dialog
  *  \par Function Description
  *  This function creates a GtkMenu with the different linetypes.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
  */
-static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
+static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
 {
   GtkWidget *menu;
-  GSList *group;
+  GSList    *group;
+
   struct line_type {
     char *str;
     LINE_TYPE type;
@@ -1678,10 +1718,12 @@ static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct line_type); i++) {
+
     GtkWidget *menuitem;
 
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+    group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+
     gtk_menu_append (GTK_MENU (menu), menuitem);
     gtk_object_set_data (GTK_OBJECT(menuitem), "linetype",
                          GINT_TO_POINTER (types[i].type));
@@ -1708,34 +1750,37 @@ static bool
 selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
                         int *width, int *length, int *space)
 {
-  GList *iter;
-  Object *object;
-  bool found = FALSE;
-  LINE_END oend;
+  GList  *iter;
+
+  LINE_END   oend;
   LINE_TYPE  otype;
-  int owidth=0, olength=0, ospace=0;
+
+  bool found = FALSE;
+  int owidth = 0, olength = 0, ospace = 0;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
-    object = (Object *) iter->data;
-    if (! o_get_line_options(object, &oend, &otype,
+
+    Object *object = iter->data;
+
+    if (! o_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
       continue;
 
     if (found == FALSE) {  /* first object with filltype */
-      found = TRUE;
-      *end = oend;
-      *type = otype;
-      *width = owidth;
+       found  = TRUE;
+      *end    = oend;
+      *type   = otype;
+      *width  = owidth;
       *length = olength;
-      *space = ospace;
+      *space  = ospace;
     }
     else {
       /* indicate mixed values with the value LEAVE_ALONE = -2 */
-      if (*end != oend)       *end    = LEAVE_ALONE;
-      if (*type != otype)     *type   = LEAVE_ALONE;
-      if (*width != owidth)   *width  = LEAVE_ALONE;
+      if (*end    != oend)    *end    = LEAVE_ALONE;
+      if (*type   != otype)   *type   = LEAVE_ALONE;
+      if (*width  != owidth)  *width  = LEAVE_ALONE;
       if (*length != olength) *length = LEAVE_ALONE;
-      if (*space != ospace)   *space  = LEAVE_ALONE;
+      if (*space  != ospace)  *space  = LEAVE_ALONE;
     }
   }
 
@@ -1764,8 +1809,17 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
 
   if (type == LEAVE_ALONE)
     type = TYPE_ERASE;
+
   gtk_option_menu_set_history(GTK_OPTION_MENU(line_data->line_type), type);
   menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_data->line_type));
+  menuitem = gtk_menu_get_active(GTK_MENU(menu));
+  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
+
+  if (end == LEAVE_ALONE)
+    end = END_VOID;
+
+  gtk_option_menu_set_history(GTK_OPTION_MENU(line_data->end_type), end);
+  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_data->end_type));
   menuitem = gtk_menu_get_active(GTK_MENU(menu));
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
@@ -1803,8 +1857,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
  *  It sets the dash space/length entries either active or inactive.
  */
 static int
-x_dialog_edit_line_type_change(GtkWidget *w,
-                                        line_type_data *line_data)
+x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
 {
   GtkWidget *menuitem;
   bool activate_length_entry, activate_space_entry;
@@ -1851,17 +1904,19 @@ static void
 x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel   *toplevel  = w_current->toplevel;
 
-  GList *selection, *iter;
+  GList  *selection, *iter;
   Object *object;
+
   const char *width_str, *length_str, *space_str;
 
   LINE_TYPE  type;
+  LINE_END   end;
   int width, length, space;
 
   LINE_TYPE  otype;
-  LINE_END oend;
+  LINE_END   oend;
   int owidth, olength, ospace;
 
   LINE_OPTIONS line_options;
@@ -1889,6 +1944,18 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     type = LEAVE_ALONE;
   }
 
+  end = GPOINTER_TO_INT(
+    gtk_object_get_data (
+      GTK_OBJECT (
+        gtk_menu_get_active (
+          GTK_MENU (gtk_option_menu_get_menu (
+                      GTK_OPTION_MENU (
+                        line_data->end_type))))), "endtype"));
+
+  if (end == END_VOID) {
+    end = LEAVE_ALONE;
+  }
+
   /* convert the options to integers, if string is "*unchanged*"
    * then there are multible object with different values and
    * the current value for each object should not be changed.
@@ -1904,17 +1971,15 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
     object = (Object *) iter->data;
 
-    if (! o_get_line_options(object, &oend, &otype,
+    if (! o_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
       continue;
 
     /* if the field is set to LEAVE_ALONE then use the old value,
      * otherwise use the new value extracted from the dialog */
 
-    /* oend is not in the dialog, yet */
-    line_options.line_end    = oend ;
-
     line_options.line_type   = type   == LEAVE_ALONE ? otype   : type;
+    line_options.line_end    = end    == LEAVE_ALONE ? oend    :  end;
     line_options.line_width  = width  == LEAVE_ALONE ? owidth  : width;
     line_options.line_length = length == LEAVE_ALONE ? olength : length;
     line_options.line_space  = space  == LEAVE_ALONE ? ospace  : space;
@@ -1944,7 +2009,6 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     o_invalidate_object (w_current, object);
   }
 
-  toplevel->page_current->CHANGED = 1;
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
@@ -1988,13 +2052,16 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
  */
 static void
 x_dialog_line_type_update_selection (GschemToplevel *w_current,
-                                     Object *object)
+                                     Object         *object)
 {
   GtkWidget *Dialog;
-  GList *selection;
-  LINE_END end=END_NONE;
-  LINE_TYPE type=TYPE_SOLID;
-  int width=1, length=-1, space=-1;
+  GList     *selection;
+
+  LINE_END   end  = END_NONE;
+  LINE_TYPE  type = TYPE_SOLID;
+
+  int width = 1, length = -1, space = -1;
+
   line_type_data *line_data;
 
   /* Get ptr to the data structure */
@@ -2003,16 +2070,19 @@ x_dialog_line_type_update_selection (GschemToplevel *w_current,
   line_data = g_object_get_data (G_OBJECT (Dialog), IDS_LINE_TYPE);
 
   if (o_select_is_selection(w_current)) {
+
     selection = geda_list_get_glist(Current_Selection);
-    if (! selection_get_line_type(selection, &end, &type, &width, &length, &space))
-     return;
-    /* fill in the fields of the dialog */
-    x_dialog_edit_line_type_set_values(line_data, end, type, width, length, space);
 
-    /* calling it once will set the dash space/length activity */
-    x_dialog_edit_line_type_change(line_data->line_type, line_data);
+    if (selection_get_line_type(selection, &end, &type, &width, &length, &space))
+    {
+      /* fill in the fields of the dialog */
+      x_dialog_edit_line_type_set_values(line_data, end, type, width, length, space);
 
-    gtk_widget_grab_focus(line_data->width_entry);
+      /* calling it once will set the dash space/length activity */
+      x_dialog_edit_line_type_change(line_data->line_type, line_data);
+
+      gtk_widget_grab_focus(line_data->width_entry);
+    }
   }
 }
 
@@ -2020,7 +2090,8 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   GtkWidget *vbox;
-  GtkWidget *optionmenu   = NULL;
+  GtkWidget *line_type    = NULL;
+  GtkWidget *end_type     = NULL;
   GtkWidget *length_entry = NULL;
   GtkWidget *space_entry  = NULL;
   GtkWidget *width_entry  = NULL;
@@ -2047,51 +2118,60 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 
   vbox = GTK_DIALOG(Dialog)->vbox;
 
-  table = gtk_table_new (4, 2, FALSE);
+  table = gtk_table_new (5, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
   gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
 
-  label = geda_aligned_label_new (_("Type:"), 0, 0);
+  label = geda_aligned_label_new (_("Line Type:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
 
-  label = geda_aligned_label_new (_("Width:"), 0, 0);
+  label = geda_aligned_label_new (_("End Type:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,1,2, GTK_FILL,0,0,0);
 
-  label = geda_aligned_label_new (_("Dash Length:"), 0, 0);
+  label = geda_aligned_label_new (_("Width:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,2,3, GTK_FILL,0,0,0);
 
-  label = geda_aligned_label_new (_("Dash Space:"), 0, 0);
+  label = geda_aligned_label_new (_("Dash Length:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
 
-  optionmenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
-                           create_menu_linetype (w_current));
-  gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
+  label = geda_aligned_label_new (_("Dash Space:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), label, 0,1,4,5, GTK_FILL,0,0,0);
+
+  line_type = gtk_option_menu_new ();
+  gtk_option_menu_set_menu(GTK_OPTION_MENU(line_type),
+                           create_linetype_menu (w_current));
+  gtk_table_attach_defaults(GTK_TABLE(table), line_type, 1,2,0,1);
+
+  end_type = gtk_option_menu_new ();
+  gtk_option_menu_set_menu(GTK_OPTION_MENU(end_type),
+                           create_endtype_menu (w_current));
+  gtk_table_attach_defaults(GTK_TABLE(table), end_type, 1,2,1,2);
 
   width_entry = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(width_entry), TRUE);
   gtk_editable_select_region(GTK_EDITABLE(width_entry), 0, -1);
-  gtk_table_attach_defaults(GTK_TABLE(table), width_entry, 1,2,1,2);
+  gtk_table_attach_defaults(GTK_TABLE(table), width_entry, 1,2,2,3);
   SetWidgetTip(width_entry, _("Set width of the line"));
 
   length_entry = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(length_entry), TRUE);
   gtk_editable_select_region(GTK_EDITABLE(length_entry), 0, -1);
-  gtk_table_attach_defaults(GTK_TABLE(table), length_entry, 1,2,2,3);
+  gtk_table_attach_defaults(GTK_TABLE(table), length_entry, 1,2,3,4);
   SetWidgetTip(length_entry, _("Set \"dash\" length of the line"));
 
   space_entry = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(space_entry), TRUE);
   gtk_editable_select_region(GTK_EDITABLE(space_entry), 0, -1);
-  gtk_table_attach_defaults(GTK_TABLE(table), space_entry, 1,2,3,4);
+  gtk_table_attach_defaults(GTK_TABLE(table), space_entry, 1,2,4,5);
   SetWidgetTip(space_entry, _("Set spacing between dashes in the line"));
 
   line_data = (line_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_line_type_data));
 
   /* populate the data structure */
   line_data->width_entry  = width_entry;
-  line_data->line_type    = optionmenu;
+  line_data->line_type    = line_type;
+  line_data->end_type     = end_type;
   line_data->length_entry = length_entry;
   line_data->space_entry  = space_entry;
 
@@ -2099,9 +2179,9 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   x_dialog_edit_line_type_set_values(line_data, END_NONE, TYPE_SOLID, 1, 1, 1);
 
   /* calling it once will set the dash space/length activity */
-  x_dialog_edit_line_type_change(optionmenu, line_data);
+  x_dialog_edit_line_type_change(line_type, line_data);
 
-  g_signal_connect(G_OBJECT (optionmenu), "changed",
+  g_signal_connect(G_OBJECT (line_type), "changed",
                    G_CALLBACK (x_dialog_edit_line_type_change),
                    line_data);
 
