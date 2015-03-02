@@ -149,6 +149,7 @@
 #define IDS_SINGLE_ATTRIR      "singleattrib" /* Type: MODELESS */
 
 #define IDS_MULTI_ATTRBI       "multiattrib"  /* Type: MODELESS */
+#define IDS_PAGE_MANAGER       "page-man"     /* Type: MODELESS */
 
 /* -----------------  Strings for RC Read/Write ----------------- */
 

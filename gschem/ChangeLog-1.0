@@ -1,5 +1,64 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_pagesel.h: Add defines for COLUMN_CHANGED and COLUMN_NAME
+      MIN_WIDTH, add boolean full_names to data structure.
+
+    * src/x/x_pagesel.c: Enhance Page Select Dialog:
+
+      1.) Fix the camel case I screwed-up along time ago: TYPE_PageSEL
+
+      2.) Add a configuration define for the dialog, IDS_PAGE_MANAGER
+          Forgot or did not realize PageSel was even derived from Gschem
+          Dialog class.
+
+      3.) Added a toggle switch to allow user the option to have file
+          names display with or without the path. The state of the
+          toggler is stored in the dialog`s data structure with the
+          variable full_names.
+
+      4.) Add cell render data function, which, based upon the state of
+          full_names, use libgeda function f_get_basename to advance ptr
+          past the path in the page file name.
+
+      5.) Added a dummy spacer column, COLUMN_SPACER, tried both before and
+          after the COLUMN_CHANGED, (column of checkboxes), aka last column
+          and both seemed to work okay. Gtk column resizing is flaky at best
+          and much time was spent on this step fighting Gtk to size columns
+          correctly, which of course was a fight I could not win until the
+          extra column was added. I think it looks/works better between the
+          filename and the checkbox column.
+
+      6.) Added function pagesel_finalize, and setup in pagesel_class_init,
+          to retain the users preference in configuration, the setting is
+          restore in pagesel_init.
+
+      7.) Revamp the action area buttons, Gtk was expanding Refresh and
+          Close buttons, see gtk_dialog_add_action_widget source (2.0),
+          (later versions of Gtk-3.x appear to not do this). After much
+          todo, fell-back to traditional approach of scrapping the stock
+          action area and creating new widgets utilizing an alignment and
+          necessitating two new callback functions:
+
+                    pagesel_callback_refresh_clicked
+                    pagesel_callback_close_clicked
+
+          to deliver the dialogs response. The main purpose here was to
+          be able to shrink the dialog size, or at least allow user to
+          reduce the size of the dialog window. With the two buttons
+          expanding, the buttons were propping the entire dialog to more
+          than 500 pixels wide.
+
+      8.) Revise macro DEFINE_POPUP_CALLBACK to (1) be more comprehensible,
+          and (2), call i_command_process directly instead of calling the
+          separate i_callback_xxx_xx functions like i_callback_page_close.
+          (Not sure if these are used by anymore, since i_command registers
+          all actions with Guile there is no reason for scm to use these
+          function.) Maybe remove latter.
+
+      9.) Is dawn, snow mostly gone, time to sleep.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dialog.c: Add combo menu for line end-types to the Line Type
       dialog, removed setting page changed from both the Line and Fill
       Type dialogs okay routines.
