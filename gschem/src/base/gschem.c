@@ -138,6 +138,13 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
   /* Load any file listed on command-line */
   for (i = argv_index; i < argc; i++) {
 
+    if (strstr(argv[i], "*") != NULL) {
+      u_log_message("Warning: <%s> did not expand\n", argv[i]);
+      v_log_message("Command-line error: disabling auto load last\n");
+      override_autoload = TRUE;
+      continue;
+    }
+
     if (f_get_is_path_absolute(argv[i])) {
 
       /* Path is already absolute so no need to do any concat of cwd */

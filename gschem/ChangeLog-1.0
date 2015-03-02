@@ -1,5 +1,16 @@
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Happy Birthday Miguel! *
+
+    * src/base/gschem.c: Check if command line argument contains an
+      unexpanded wild-card (which could happen if specified wild-card
+      did not match, for example *.sch when there are no .sch files in
+      the current directory), issue a warning to log event and disable
+      the auto-load-last feature to avoid confusion, notify user feature
+      was disable if verbose message is enabled.
+
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc.c: Capitalize log messages consistence with other
       modules. Remove extra call to "gtk_rc_parse".
 
