@@ -1,5 +1,9 @@
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * stack_1.sch: Update example.
+
+2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gnetlist.c: Replace g_path_is_absolute with f_get_is_path_absolute
       in function main_prog.
 

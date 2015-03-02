@@ -1,32 +1,32 @@
-v 20031011 1
+v 20150101 2
 C 9600 13100 0 0 0 title-B.sym
 T 20400 14100 3 10 1 0 0 0 1
 EXAMPLE SCHEMATIC FOR VERILOG NETLISTING
 T 24200 13200 3 10 1 0 0 0 1
 MIKE JARABEK
-C 14300 20100 1 0 0 test_verilog.sym
+C 14300 20400 1 0 0 test_verilog.sym
 {
-T 15300 21100 5 10 1 1 0 0 1
+T 15300 21400 5 10 1 1 0 0 1
 refdes=TEST1
 }
-C 18100 19100 1 0 0 block-1.sym
+C 18100 19400 1 0 0 block-1.sym
 {
 T 19700 21000 5 10 1 1 0 0 1
 refdes=U1
 }
-C 18100 16500 1 0 0 block-1.sym
+C 18100 16800 1 0 0 block-1.sym
 {
 T 19700 18400 5 10 1 1 0 0 1
 refdes=U2
 }
-C 14300 18900 1 0 0 test_verilog.sym
+C 14300 19200 1 0 0 test_verilog.sym
 {
-T 15300 19900 5 10 1 1 0 0 1
+T 15300 20200 5 10 1 1 0 0 1
 refdes=TEST2
 }
-C 21700 19700 1 0 0 test_verilog.sym
+C 21700 20000 1 0 0 test_verilog.sym
 {
-T 23000 20700 5 10 1 1 0 0 1
+T 23000 21000 5 10 1 1 0 0 1
 refdes=U3
 }
 C 10500 21700 1 0 0 ipad-1.sym
@@ -184,12 +184,12 @@ netname=MUNGLE_NET
 }
 C 21600 21500 1 0 0 block-1.sym
 {
-T 21900 21600 5 10 1 1 0 0 1
+T 21900 23200 5 10 1 1 0 0 1
 refdes=NO_CONNECTIONS
 }
-C 21700 14700 1 0 0 block_pos-1.sym
+C 21650 15000 1 0 0 block_pos-1.sym
 {
-T 22000 14800 5 10 1 1 0 0 1
+T 22350 16700 5 10 1 1 0 0 1
 refdes=BLOCK_POS
 }
 N 20900 17700 20900 15900 4
