@@ -205,7 +205,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
 
       if (status) {
         /*TODO: This is rude noise with out option to suppress */
-        u_log_message (_("Loaded RC file [%s]\n"), name_norm);
+        u_log_message (_("libgeda: Loaded RC file [%s]\n"), name_norm);
       }
       else {
 

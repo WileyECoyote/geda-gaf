@@ -1,5 +1,18 @@
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc.c: Capitalize log messages consistence with other
+      modules. Remove extra call to "gtk_rc_parse".
+
+    * src/x/x_console.c: Prefix verbose log message with "gschem".
+
+    * src/x/x_draw.cpp: Revise verbose "Done" status message in function
+      x_draw_shutdown, in the output it is not clear what is done.
+
+    * src/x/x_icons.c: Remove "gschem" from verbose log messages since
+      this is prefixed by the logger.
+
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_move.c: Revise o_move_cancel to free the placelist, and
       most importantly, set the pointer to the place list to NULL.
 

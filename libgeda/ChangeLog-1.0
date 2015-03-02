@@ -1,5 +1,13 @@
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc_parse.c: Revise verbose log mssage in g_rc_parse_file,
+      prefixing message with "libgeda"
+
+    * src/object/o_set.c: Change page->CHANGED = 1 to page->CHANGED = TRUE in
+      in function o_set_color.
+
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_set.c: Revised functions o_set_color, o_set_fill_options and
       o_set_line_options to set the page changed flag if the object is on a page
       when modifications are made.

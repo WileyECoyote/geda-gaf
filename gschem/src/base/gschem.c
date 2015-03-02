@@ -115,7 +115,7 @@ static void gschem_quit(void)
 
   i_vars_freenames();
 
-  /* enable this to get more memory usage from glib */
+  /* Enable this to get more memory usage from glib */
   /* You also have to enable something in glib I think RUSAGE_CHILDREN*/
 #ifdef G_STAT_MEM
   g_mem_profile();
@@ -470,6 +470,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     }
 
     gschem_quit();
+    v_log_message(_("Exiting normal"));
   }
 
 }

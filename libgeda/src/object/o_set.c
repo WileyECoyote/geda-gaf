@@ -55,7 +55,13 @@ void o_set_bounds_invalid(Object *obj)
 /*! \brief Change the color of an object
  *
  *  \par Function Description
- *  This function changes the color of an object.
+ *  This function changes the object's color property to \a color if
+ *  \a color is different from the current object color. If modified,
+ *  the page change flag is set if the object is on a page.
+ *
+ *  \note For complex objects, this function is called recursively,
+ *        since o_list_set_color calls this function for each child
+ *        of the complex.
  *
  *  \param [in] object    The Object to change color.
  *  \param [in] color     The new color.
@@ -64,18 +70,19 @@ void o_set_color (Object *object, int color)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-      o_list_set_color (object->complex->prim_objs, color);
-    }
-
     if (object->color != color) {
 
       object->color = color;
 
       if (object->page) {
-        object->page->CHANGED = 1;
+        object->page->CHANGED = TRUE;
       }
     }
+
+    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
+      o_list_set_color (object->complex->prim_objs, color);
+    }
+
   }
   else {
     BUG_MSG ("object is not a GedaObject");

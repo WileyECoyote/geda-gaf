@@ -300,7 +300,7 @@ static void x_icons_shutdown_factory(void * user_data)
   if (gschem_factory) {
 
     /* This will go to the console, because the log system is already down */
-    v_log_message(_("gschem: shutting down icon factory\n"));
+    v_log_message(_("Shutting down icon factory\n"));
 
     GEDA_REF(gschem_factory);
 
@@ -319,7 +319,7 @@ static void x_icons_shutdown_factory(void * user_data)
  */
 void x_icons_initialize (void)
 {
-  v_log_message(_("gschem: initializing icon factory\n"));
+  v_log_message(_("Initializing icon factory\n"));
 
   x_icons_add_search_path ("icons");
 
