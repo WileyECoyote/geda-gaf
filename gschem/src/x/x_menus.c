@@ -159,6 +159,7 @@ int npopup_items = sizeof(popup_items) / sizeof(popup_items[0]);
 
 static void x_menu_toggle_icons        (GtkWidget *widget, GSList* list);
 static void x_menu_toggle_tips         (GtkWidget  *widget, GSList* list);
+static void x_menu_update_recent_files (void);
 
 /*! \brief Execute Main Menu Selection
  *  \par Function Description
@@ -1207,6 +1208,8 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
   }
   mapcar(list)
 
+  x_menu_update_recent_files();
+
   if (state) {
     v_log_message(_("gschem: Enabling menu tooltips\n"));
   }
@@ -1605,6 +1608,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    GtkWidget *label;
    GList     *iter;
    MenuData  *menu_data;
+   bool       show_menu_tips;
 
    menu_data        = g_slist_nth_data (ui_list, w_current->ui_index);
    recent_menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
@@ -1620,6 +1624,8 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
          break;
       gtk_signal_disconnect(recent_menu_item, id);
    }
+
+   g_object_get (recent_menu_item, "has-tooltip", &show_menu_tips, NULL);
 
    recent_submenu = gtk_menu_new();
    iter = recent_files;
@@ -1637,6 +1643,12 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
      filename = show_recent_path ? filename : f_get_basename(filename);
 
      item = gtk_menu_item_new_with_label((char*) filename);
+
+     /* if menu tooltips are enabled and not showing the path in the recent
+      * files menu item then show the full name with path as the tooptip */
+     if (show_menu_tips && !show_recent_path) {
+       gtk_widget_set_tooltip_text(item, iter->data);
+     }
 
      g_signal_connect_data (GTK_OBJECT(item), "activate",
                            (GCallback) x_menu_recent_file_clicked, menu_data,

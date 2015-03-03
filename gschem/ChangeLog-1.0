@@ -1,6 +1,14 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Fix Bug: Main menu items not toggling icons and tooltips:
+    * Enhance Recent File menu
+
+    * src/x/x_menus.c: Include full path name as tool-tips for recent files
+      sub-menu items when menu tool-tips are enabled and the full paths are
+      not.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Fix Bug: Main menu items not toggling icons and tool-tips:
 
     * src/x/x_menus.c: Save non-action menu items that can be activated to
       single linked list of menu items, MENU_ITEMS_LIST, so the tooltips
