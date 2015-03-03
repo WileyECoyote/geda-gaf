@@ -1,5 +1,14 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Fix Bug: Main menu items not toggling icons and tooltips:
+
+    * src/x/x_menus.c: Save non-action menu items that can be activated to
+      single linked list of menu items, MENU_ITEMS_LIST, so the tooltips
+      and icons for these item will be toggled by x_menu_toggle_tips and
+      x_menu_toggle_tips.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Allow users to not show the path when displaying the
       file names in the recent file submenu, this is useful because the menu
       items can be long and Gtk sets the width of the menu so larger that

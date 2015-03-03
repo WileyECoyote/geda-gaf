@@ -157,8 +157,8 @@ static GSList  *ui_list      = NULL;
 
 int npopup_items = sizeof(popup_items) / sizeof(popup_items[0]);
 
-static void x_menu_toggle_icons(GtkWidget *widget, GSList* list);
-static void x_menu_toggle_tips(GtkWidget  *widget, GSList* list);
+static void x_menu_toggle_icons        (GtkWidget *widget, GSList* list);
+static void x_menu_toggle_tips         (GtkWidget  *widget, GSList* list);
 
 /*! \brief Execute Main Menu Selection
  *  \par Function Description
@@ -406,6 +406,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
           if (menu_item_stock) {
 
+            /* Items that might fall into this category are; Open Recen_t, _Export,
+             * and _Restore.
+             */
+
             menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
 
             image = gtk_image_new_from_icon_name (menu_item_stock, GTK_ICON_SIZE_MENU);
@@ -422,10 +426,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                           "image", image,
                           "show-image", show_menu_icons,
                           NULL);
-
           }
           else {
+            /* Note: Currently there are no non-stock, non-action items */
             menu_item = gtk_menu_item_new_with_mnemonic(menu_item_name);
+          }
+
+          if (menu_item) {
+            MENU_ITEMS_LIST = g_slist_append(MENU_ITEMS_LIST, menu_item);
           }
         }
         else {
@@ -1198,6 +1206,7 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
     return FALSE;
   }
   mapcar(list)
+
   if (state) {
     v_log_message(_("gschem: Enabling menu tooltips\n"));
   }
