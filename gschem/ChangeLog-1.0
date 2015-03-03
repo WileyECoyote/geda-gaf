@@ -1,5 +1,12 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_pagesel.c: Revise recent modification to PageSel dialog to
+      eliminate the pagesel-full_names varible that was added. Instead,
+      get pointer to widget stored in dialog and get the state directly
+      from the toggle switch widget.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * Enhance Recent File menu
 
     * src/x/x_menus.c: Include full path name as tool-tips for recent files
@@ -36,7 +43,7 @@
           x_menu_recent_show_popup.
 
       6.) Revised function x_menu_attach_recent_submenu, adding filename
-          variable, to use the show_recent_path when build the recen-file
+          variable, to use the show_recent_path when build the recent-files
           submenu.
 
       Added doxygen comment for function x_menu_recent_file_clicked.

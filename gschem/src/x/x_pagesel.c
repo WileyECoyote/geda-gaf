@@ -360,10 +360,13 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
    */
   if (GEDA_IS_PAGE(page)) {
 
-    Pagesel *pagesel = data;
+    Pagesel    *pagesel = data;
+    GtkWidget  *widget  = GET_EDA_OBJECT(ShowFullName);
+    int         state   = GET_SWITCH_STATE(widget);
+
     const char *filename;
 
-    filename = pagesel->full_names ? page->filename : f_get_basename(page->filename);
+    filename = state ? page->filename : f_get_basename(page->filename);
     g_object_set ((GObject*)cell, "text", filename, NULL);
   }
 }
@@ -379,12 +382,7 @@ static void pagesel_show_fullnames_toggled (GtkWidget *widget,
                                             Pagesel   *pagesel)
 {
   TOGGLE_SWITCH(widget);
-  pagesel->full_names = GET_SWITCH_STATE (widget);
-
-  //int min_width = pagesel->full_names ? NAME_WIDTH_HIGH : NAME_WIDTH_LOW;
-  //g_object_set (pagesel->column, "min-width", min_width, NULL);
-
-  pagesel_update (pagesel);
+  pagesel_update(pagesel);
   gtk_tree_view_columns_autosize(pagesel->treeview);
   return;
 }
@@ -407,13 +405,14 @@ pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
  */
 static void pagesel_finalize(GObject *object)
 {
-  Pagesel *pagesel = PAGESEL(object);
+  Pagesel    *pagesel = PAGESEL(object);
+  GtkWidget  *widget  = GET_EDA_OBJECT(ShowFullName);
+  EdaConfig  *cfg     = eda_config_get_user_context();
+  const char *group   = IDS_PAGE_MANAGER;
+  const char *key     = "full-names";
+        int   value   = GET_SWITCH_STATE(widget);
 
-  EdaConfig  *cfg   = eda_config_get_user_context ();
-  const char *group = IDS_PAGE_MANAGER;
-  const char *key   = "full-names";
-
-  eda_config_set_boolean (cfg, group, key, pagesel->full_names);
+  eda_config_set_boolean (cfg, group, key, value);
 
   /* Chain up to parent Class */
   G_OBJECT_CLASS(pagesel_parent_class)->finalize(object);
@@ -484,9 +483,9 @@ static void pagesel_init (Pagesel *pagesel)
   const char *group = IDS_PAGE_MANAGER;
   const char *key   = "full-names";
 
-  i_var_restore_group_boolean(cfg, group, key, &pagesel->full_names, TRUE);
+  int full_names;
 
-  //int min_width = pagesel->full_names ? NAME_WIDTH_HIGH : NAME_WIDTH_LOW;
+  i_var_restore_group_boolean(cfg, group, key, &full_names, TRUE);
 
   /* dialog initialization */
   g_object_set (G_OBJECT (pagesel),
@@ -651,7 +650,7 @@ static void pagesel_init (Pagesel *pagesel)
   ShowFullNameSwitch = NULL;
 
   /* Create a new Toggle Switch widget */
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, pagesel->full_names);
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), switch_vbox, ShowFullName, 0, full_names);
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
   /* Setup callback for Toggle Switch widget */
