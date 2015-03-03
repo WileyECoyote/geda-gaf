@@ -127,7 +127,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   int wx = w_current->second_wx;
   int wy = w_current->second_wy;
 
-  o_place_end (w_current, wx, wy, TRUE, NULL, "%paste-objects-hook");
+  o_place_end (w_current, wx, wy, TRUE, NULL, "%copy-objects-hook");
 
   /* Stay on ENDMCOPY mode */
   w_current->inside_action = TRUE;

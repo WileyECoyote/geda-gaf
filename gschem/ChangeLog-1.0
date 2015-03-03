@@ -1,5 +1,10 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_copy.c: Change hook name from "%paste-objects-hook" to
+     "%copy-objects-hook" in function o_copy_end.
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_pagesel.c: Revise recent modification to PageSel dialog to
       eliminate the pagesel-full_names varible that was added. Instead,
       get pointer to widget stored in dialog and get the state directly
