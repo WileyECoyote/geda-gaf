@@ -27,7 +27,7 @@
 #include <ctype.h>         /* isdigit */
 
 #include <geda_struct.h>
-#include "libgeda.h"
+#include "libgeda_priv.h"
 
 static
 GedaRefDes StdRefDes[] = {
@@ -199,7 +199,8 @@ void u_refdes_reset(Object *object)
           buffer[index] = '?';
           buffer[++index] = '\0';
           object->text->string= strdup(&buffer[0]);
-          o_text_recreate (object);
+          o_text_update_disp_string(object);
+          //o_text_recreate (object);
           break;
         }
         else

@@ -1,5 +1,11 @@
 2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_refdes.c: Use o_text_update_disp_string instead of
+      o_text_recreate so the page changed flag does not get set when
+      objects are copied to the clipboard or buffers.
+
+2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_text_basic.c: Rename function update_disp_string to
       o_text_update_disp_string and change from static to private.
 
