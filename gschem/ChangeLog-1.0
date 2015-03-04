@@ -1,5 +1,10 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_buffer.c: Revise o_buffer_paste_start to loop through
+      place list and use o_translate_object instead of o_list_translate.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_edit.c: Remove setting the page changed flag in function
       o_edit_rotate_world, revise comments.
 

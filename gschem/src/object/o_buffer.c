@@ -171,6 +171,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
 
     if (o_get_bounds_list(Current_PlaceList, &left, &top, &right, &bottom)) {
 
+      const GList *iter;
       int x, y;
 
       /* Place objects into the buffer at the mouse origin, (w_x, w_y) */
@@ -181,8 +182,11 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
       x = snap_grid (w_current, left);
       y = snap_grid (w_current, top);
 
-      o_list_translate (Current_PlaceList, w_x - x, w_y - y);
-
+      //o_list_translate (Current_PlaceList, w_x - x, w_y - y);
+      for (iter = Current_PlaceList; iter != NULL; iter = iter->next) {
+        Object *o_current = iter->data;
+        o_translate_object(o_current, w_x - x, w_y - y);
+      }
       i_status_set_state(w_current, PASTEMODE);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
