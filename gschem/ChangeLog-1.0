@@ -1,6 +1,11 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_command.c: Remove redundent log message in function
+    * src/x/x_window.c: Change u_log_message to q_log_message in function
+      x_window_close_page to respect the --quiet option when closing pages.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove redundant log message in function
       i_cmd_do_page_close.
 
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>

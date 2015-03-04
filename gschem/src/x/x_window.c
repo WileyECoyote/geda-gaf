@@ -1238,7 +1238,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
       if ((u_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
-        u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
+        q_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
         page->filename);
       }
 
