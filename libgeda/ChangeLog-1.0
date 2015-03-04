@@ -1,5 +1,11 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex_basic.c: Revise o_complex_new to mirror, rotate
+      and translate in a single pass, rather then calling o_list_xxx for
+      each operation.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_list.c: Relocate code from gschem o_edit_rotate to
       disconnect and update connections when rotating a list objects.
 
