@@ -1,3 +1,9 @@
+2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Revise o_list_translate to to disconnect and
+      update connections when translating a list objects as is done in
+      o_list_rotate and o_list_mirror.
+
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex_basic.c: Revise o_complex_new to mirror, rotate
@@ -7,13 +13,14 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Relocate code from gschem o_edit_rotate to
-      disconnect and update connections when rotating a list objects.
+      disconnect and update connections when rotating a list objects
+      in function o_list_rotate.
 
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Relocate code from gschem o_edit_mirror to
       disconnect and update connections when mirroring a list objects.
-      Seems like the right thing to do.
+      in function o_list_mirror. Seems like the right thing to do.
 
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
