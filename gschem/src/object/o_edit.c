@@ -147,15 +147,15 @@ void o_edit_lock (GschemToplevel *w_current)
   i_status_update_sensitivities(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Unlock current selection
  *  \par Function Description
+ *   Sets each object in the "selection" selectable, if the object
+ *   selectable is set, then restores the objects color from the
+ *   locked color property otherwise the color is restored to the
+ *   value returned from o_color_get_object_default().
  *
+ * \note this cannot be called recursively
  */
-/* You can unlock something by selecting it with a bounding box... */
-/* this will probably change in the future, but for now it's a
-   something.. :-) */
-/* this cannot be called recursively */
 void o_edit_unlock(GschemToplevel *w_current)
 {
   Object *object    = NULL;
