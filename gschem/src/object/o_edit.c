@@ -184,7 +184,6 @@ void o_edit_unlock(GschemToplevel *w_current)
  */
 void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   Object   *o_current;
   GList    *o_iter;
 
@@ -220,7 +219,6 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
     /* Run mirror-objects-hook */
     g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
 
-    toplevel->page_current->CHANGED=1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
   w_current->inside_action = FALSE;
