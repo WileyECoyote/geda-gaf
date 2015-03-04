@@ -132,7 +132,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
  */
 void o_list_translate(const GList *list, int dx, int dy)
 {
-  const GList *iter;
+  const GList *o_iter;
 
   o_iter = list;
   while (o_iter != NULL) {
@@ -141,10 +141,10 @@ void o_list_translate(const GList *list, int dx, int dy)
     o_iter = o_iter->next;
   }
 
-  while (iter != NULL) {
-    o_current = (Object *)iter->data;
+  while (o_iter != NULL) {
+    Object *o_current = o_iter->data;
     o_translate_object(o_current, dx, dy);
-    iter = g_list_next (iter);
+    o_iter = o_iter->next;
   }
 
   o_iter = list;

@@ -1,5 +1,10 @@
 2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_text_basic.c: Rename function update_disp_string to
+      o_text_update_disp_string and change from static to private.
+
+2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_list.c: Revise o_list_translate to to disconnect and
       update connections when translating a list objects as is done in
       o_list_rotate and o_list_mirror.

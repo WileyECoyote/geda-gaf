@@ -90,58 +90,6 @@
 /*! Size of a tab in characters */
 int tab_in_chars = 8;
 
-/*! \brief update the visible part of a string
- *
- *  \par Function Description
- *  If a string is an attribute, then it is possible to hide the name or
- *  the value part of the attribute string. This functions updates the
- *  text->disp_string according to the object->show_name_value settings
- *
- *  \param [in] object  The Object to update
- */
-static void update_disp_string (Object *object)
-{
-  char *name  = NULL;
-  char *value = NULL;
-  Text *text  = object->text;
-
-  GEDA_FREE (text->disp_string);
-
-  if (o_attrib_get_name_value (object, &name, &value)) {
-    switch (object->show_name_value) {
-      case (SHOW_NAME_VALUE):
-        text->disp_string = u_string_strdup (text->string);
-        break;
-
-      case (SHOW_NAME):
-        if (name[0] != '\0') {
-          text->disp_string = u_string_strdup (name);
-        } else {
-          g_critical ("Got an improper attribute: %s\n",
-                      text->string);
-          text->disp_string = u_string_strdup ("invalid");
-        }
-        break;
-
-      case (SHOW_VALUE):
-        if (value[0] != '\0') {
-          text->disp_string = u_string_strdup(value);
-        } else {
-          g_critical ("Got an improper attribute: %s\n",
-                      text->string);
-          text->disp_string = u_string_strdup ("invalid");
-        }
-        break;
-    }
-    /* free the strings allocated by o_attrib_get_name_value */
-    GEDA_FREE(name);
-    GEDA_FREE(value);
-  }
-  else {
-    text->disp_string = u_string_strdup (text->string);
-  }
-}
-
 /*! \brief get the position of a text object
  *
  *  \par Function Description
@@ -208,7 +156,7 @@ Object* o_text_new(int color, int x,    int y,          int alignment,
   new_obj->show_name_value = show_name_value;
 
   /* Call directly so no emmision */
-  update_disp_string (new_obj);
+  o_text_update_disp_string (new_obj);
 
   return new_obj;
 }
@@ -404,7 +352,7 @@ void o_text_recreate(Object *o_current)
   Page *page;
 
   o_notify_emit_pre_change(o_current);
-  update_disp_string(o_current);
+  o_text_update_disp_string(o_current);
 
   if (!geda_object_bounds(o_current)) {
     o_current->w_bounds_valid_for = NULL;
@@ -980,4 +928,56 @@ void o_text_set_string (Object *object, const char *new_string)
 
   o_text_recreate (object);
 
+}
+
+/*! \brief update the visible part of a string
+ *
+ *  \par Function Description
+ *  If a string is an attribute, then it is possible to hide the name or
+ *  the value part of the attribute string. This functions updates the
+ *  text->disp_string according to the object->show_name_value settings
+ *
+ *  \param [in] object  The Object to update
+ */
+void o_text_update_disp_string (Object *object)
+{
+  char *name  = NULL;
+  char *value = NULL;
+  Text *text  = object->text;
+
+  GEDA_FREE (text->disp_string);
+
+  if (o_attrib_get_name_value (object, &name, &value)) {
+    switch (object->show_name_value) {
+      case (SHOW_NAME_VALUE):
+        text->disp_string = u_string_strdup (text->string);
+        break;
+
+      case (SHOW_NAME):
+        if (name[0] != '\0') {
+          text->disp_string = u_string_strdup (name);
+        } else {
+          g_critical ("Got an improper attribute: %s\n",
+                      text->string);
+          text->disp_string = u_string_strdup ("invalid");
+        }
+        break;
+
+      case (SHOW_VALUE):
+        if (value[0] != '\0') {
+          text->disp_string = u_string_strdup(value);
+        } else {
+          g_critical ("Got an improper attribute: %s\n",
+                      text->string);
+          text->disp_string = u_string_strdup ("invalid");
+        }
+        break;
+    }
+    /* free the strings allocated by o_attrib_get_name_value */
+    GEDA_FREE(name);
+    GEDA_FREE(value);
+  }
+  else {
+    text->disp_string = u_string_strdup (text->string);
+  }
 }

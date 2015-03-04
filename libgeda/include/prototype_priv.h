@@ -236,6 +236,7 @@ void     o_text_print                  (GedaToplevel *toplevel, FILE *fp, Object
                                         int unicode_count, gunichar *unicode_table);
 double   o_text_shortest_distance      (Object *object, int x, int y, int force_soild);
 bool     o_text_get_position           (int *x, int *y, Object *object);
+void     o_text_update_disp_string     (Object *object);
 
 /* s_clib.c */
 void     s_clib_init                   (void);
