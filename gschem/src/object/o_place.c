@@ -88,7 +88,6 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   GList        *object_list    = NULL;
   GList        *connected_list = NULL;
   GList        *iter;
-  Object       *o_current;
   Page         *p_current;
 
   int w_diff_x, w_diff_y;
@@ -119,7 +118,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
       *ret_new_objects = g_list_copy (object_list);
     }
 
-    o_list_translate(object_list, w_diff_x, w_diff_y);
+    //o_list_translate(object_list, w_diff_x, w_diff_y);
 
     /* Attach each item onto the page's object list. Update object
      * connectivity and add the new objects to the selection list.*/
@@ -127,7 +126,9 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
 
     for (iter = object_list; iter != NULL; NEXT(iter)) {
 
-      o_current = iter->data;                      /* Get pointer to object */
+      Object *o_current = iter->data;              /* Get pointer to object */
+
+      o_translate_object(o_current, w_diff_x, w_diff_y);
 
       o_current->page = NULL;                      /* Remove old references */
 
