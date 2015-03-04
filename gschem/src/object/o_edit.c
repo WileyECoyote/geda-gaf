@@ -184,9 +184,6 @@ void o_edit_unlock(GschemToplevel *w_current)
  */
 void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
 {
-  Object   *o_current;
-  GList    *o_iter;
-
   if (list == NULL) {
     i_status_set_state(w_current, SELECT);
   }
@@ -194,25 +191,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
     o_invalidate_glist (w_current, list);
 
-    /* Find connected objects, removing each object in turn from the
-     * connection list. We only _really_ want those objects connected
-     * to the selection, not those within in it.
-     */
-    for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-      o_current = o_iter->data;
-      s_conn_remove_object (o_current);
-    }
-
     o_list_mirror(list, centerx, centery);
-
-    /* Find connected objects, adding each object in turn back to the
-     * connection list. We only _really_ want those objects connected
-     * to the selection, not those within in it.
-     */
-    for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-      o_current = o_iter->data;
-      s_conn_update_object (o_current);
-    }
 
     o_invalidate_glist (w_current, list);
 

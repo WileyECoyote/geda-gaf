@@ -160,26 +160,48 @@ void o_list_rotate (const GList *list, int x, int y, int angle)
 
 /*! \brief Mirror a glist of Objects
  *  \par Function Description
- *  Calls o_mirror_object for each glist data member
+ *   Calls o_mirror_object for each glist data member
  */
 void o_list_mirror (const GList *list, int x, int y)
 {
-  const GList  *iter = list;
-        Object *o_current;
+  const GList *o_iter;
 
-  while (iter != NULL) {
-    o_current = (Object *)iter->data;
+  /* Find connected objects, removing each object in turn from the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = o_iter->data;
+    s_conn_remove_object (o_current);
+    o_iter = o_iter->next;
+  }
+
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = (Object *)o_iter->data;
     o_mirror_object (o_current, x, y);
-    iter = g_list_next (iter);
+    o_iter = o_iter->next;
+  }
+
+  /* Find connected objects, adding each object in turn back to the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = o_iter->data;
+    s_conn_update_object (o_current);
+    o_iter = o_iter->next;
   }
 }
 
 /*! \brief Change the color of a list of objects
  *  \par Function Description
- *  This function changes the the new color of a list of objects
+ *   This function changes the the new color of a list of objects
  *
- *  \param [in] list      The list of Objects to change color.
- *  \param [in] color     The new color.
+ *  \param [in] list    The list of Objects to change color.
+ *  \param [in] color   The new color.
  */
 void o_list_set_color (const GList *list, int color)
 {

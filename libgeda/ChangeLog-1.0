@@ -1,3 +1,9 @@
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Relocate code from gschem o_edit_mirror disconnects
+      and re-connects connections when mirroring a list objects. Seemss like
+      the right thing to do.
+
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc_parse.c: Revise verbose log mssage in g_rc_parse_file,
