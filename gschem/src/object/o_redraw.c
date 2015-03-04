@@ -336,55 +336,57 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
             break;
         }
       }
+      else {
 
-      switch (w_current->event_state) {
+        switch (w_current->event_state) {
 
-         case GRIPS:
-          o_grips_draw_rubber (w_current);
-          break;
+          case GRIPS:
+            o_grips_draw_rubber (w_current);
+            break;
 
-        case SBOX:
-          o_select_box_draw_rubber (w_current);
-          break;
+          case SBOX:
+            o_select_box_draw_rubber (w_current);
+            break;
 
-        case ZOOMBOX:
-          i_zoom_world_box_draw_rubber (w_current);
-          break;
+          case ZOOMBOX:
+            i_zoom_world_box_draw_rubber (w_current);
+            break;
 
-        case PINMODE:
-          o_pin_draw_rubber (w_current);
-          break;
+          case PINMODE:
+            o_pin_draw_rubber (w_current);
+            break;
 
-        case LINEMODE:
-          o_line_draw_rubber (w_current);
-          break;
+          case LINEMODE:
+            o_line_draw_rubber (w_current);
+            break;
 
-        case BOXMODE:
-          o_box_draw_rubber (w_current);
-          break;
+          case BOXMODE:
+            o_box_draw_rubber (w_current);
+            break;
 
-        case CIRCLEMODE:
-          o_circle_draw_rubber (w_current);
-          break;
+          case CIRCLEMODE:
+            o_circle_draw_rubber (w_current);
+            break;
 
-        case ARCMODE:
-          o_arc_draw_rubber (w_current);
-          break;
+          case ARCMODE:
+            o_arc_draw_rubber (w_current);
+            break;
 
-        case PATHMODE:
-          o_path_draw_rubber (w_current);
-          break;
+          case PATHMODE:
+            o_path_draw_rubber (w_current);
+            break;
 
-        case PICTUREMODE:
-          o_picture_draw_rubber (w_current);
-          break;
+          case PICTUREMODE:
+            o_picture_draw_rubber (w_current);
+            break;
 
-        case BUSMODE:
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
-          o_bus_draw_rubber(w_current);
-          eda_renderer_set_color_map (renderer, render_color_map);
-          break;
+          case BUSMODE:
+            cairo_set_matrix (w_current->cr, &render_mtx);
+            eda_renderer_set_color_map (renderer, render_outline_color_map);
+            o_bus_draw_rubber(w_current);
+            eda_renderer_set_color_map (renderer, render_color_map);
+            break;
+        }
       }
     }
     else if (w_current->event_state == MOVEMODE ||
