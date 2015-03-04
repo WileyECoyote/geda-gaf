@@ -1,5 +1,8 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * object/o_edit.c: Relocate code from function o_edit_rotate_world to
+      disconnect and reconnect objects before and after rotation to library.
+
     * object/o_edit.c: Relocate code from function o_edit_mirror_world to
       disconnect and reconnect objects before and after mirroring to library.
 

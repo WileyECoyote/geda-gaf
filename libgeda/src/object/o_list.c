@@ -148,13 +148,35 @@ void o_list_translate(const GList *list, int dx, int dy)
  */
 void o_list_rotate (const GList *list, int x, int y, int angle)
 {
-  const GList *iter = list;
-  Object *o_current;
+  const GList *o_iter;
 
-  while (iter != NULL) {
-    o_current = (Object *)iter->data;
+  /* Find connected objects, removing each object in turn from the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = o_iter->data;
+    s_conn_remove_object (o_current);
+    o_iter = o_iter->next;
+  }
+
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = (Object *)o_iter->data;
     o_rotate_object (o_current, x, y, angle);
-    iter = g_list_next (iter);
+    o_iter = o_iter->next;
+  }
+
+  /* Find connected objects, adding each object in turn back to the
+   * connection list. We only _really_ want those objects connected
+   * to the selection, not those within in it.
+   */
+  o_iter = list;
+  while (o_iter != NULL) {
+    Object *o_current = o_iter->data;
+    s_conn_update_object (o_current);
+    o_iter = o_iter->next;
   }
 }
 

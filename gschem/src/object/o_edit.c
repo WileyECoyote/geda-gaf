@@ -223,8 +223,6 @@ void o_edit_rotate_world(GschemToplevel *w_current,
                            int centerx, int centery, int angle, GList *list)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object       *o_current;
-  GList        *o_iter;
 
   /* Is okay if user just hits rotate and has nothing selected */
   if (list == NULL) {
@@ -235,25 +233,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
 
   o_invalidate_glist (w_current, list);
 
-  /* Find connected objects, removing each object in turn from the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-    o_current = o_iter->data;
-    s_conn_remove_object (o_current);
-  }
-
   o_list_rotate(list, centerx, centery, angle);
-
-  /* Find connected objects, adding each object in turn back to the
-   * connection list. We only _really_ want those objects connected
-   * to the selection, not those within in it.
-   */
-  for (o_iter = list; o_iter != NULL; NEXT(o_iter)) {
-    o_current = o_iter->data;
-    s_conn_update_object (o_current);
-  }
 
   o_invalidate_glist (w_current, list);
 

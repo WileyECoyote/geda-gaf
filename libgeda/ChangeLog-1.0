@@ -1,8 +1,13 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_list.c: Relocate code from gschem o_edit_mirror disconnects
-      and re-connects connections when mirroring a list objects. Seemss like
-      the right thing to do.
+    * src/object/o_list.c: Relocate code from gschem o_edit_rotate to
+      disconnect and update connections when rotating a list objects.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Relocate code from gschem o_edit_mirror to
+      disconnect and update connections when mirroring a list objects.
+      Seems like the right thing to do.
 
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
