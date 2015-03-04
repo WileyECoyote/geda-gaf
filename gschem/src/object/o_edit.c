@@ -222,9 +222,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 void o_edit_rotate_world(GschemToplevel *w_current,
                            int centerx, int centery, int angle, GList *list)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
-  /* Is okay if user just hits rotate and has nothing selected */
+  /* Is okay if user hits rotate and has nothing selected */
   if (list == NULL) {
     w_current->inside_action = 0;
     i_status_set_state(w_current, SELECT);
@@ -240,9 +238,10 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   /* Run rotate-objects-hook */
   g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
 
-  /* Don't save the undo state if we are inside an action */
-  /* This is useful when rotating the selection while moving, for example */
-  toplevel->page_current->CHANGED = 1;
+  /* Don't save the undo state if we are inside an action, in which
+   * case that action is responsible for saving the undo state. For
+   * example, this is could be called when rotating the selection
+   * while moving, so the Move mode would save the undo state */
   if (!w_current->inside_action) {
     o_undo_savestate(w_current, UNDO_ALL);
   }

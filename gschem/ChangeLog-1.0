@@ -1,7 +1,14 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_edit.c: Remove setting the page changed flag in function
+      o_edit_rotate_world, revise comments.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * object/o_edit.c: Relocate code from function o_edit_rotate_world to
       disconnect and reconnect objects before and after rotation to library.
+
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * object/o_edit.c: Relocate code from function o_edit_mirror_world to
       disconnect and reconnect objects before and after mirroring to library.
@@ -9,7 +16,7 @@
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Remove setting the page changed flag in function
-      o_edit_mirror_world, Revise Doxygen comment for function o_edit_unlock.
+      o_edit_mirror_world. Revise Doxygen comment for function o_edit_unlock.
 
 2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
