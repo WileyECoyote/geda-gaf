@@ -1,5 +1,11 @@
 2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex.c: Revise function o_complex_translate_all
+      to not disconnect and update connection as this is now done by
+      libgeda when using libgeda::o_list_translate function.
+
+2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * Use lower level translator when performing place operation
 
     * src/object/o_place.c: Revise o_place_end to use o_translate_object

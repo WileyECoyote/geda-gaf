@@ -216,11 +216,6 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   x = snap_grid (w_current, left);
   y = snap_grid (w_current, top);
 
-  for (iter = object_list; iter != NULL; iter = iter->next) {
-    o_current = iter->data;
-    s_conn_remove_object (o_current);
-  }
-
   if (offset == 0) {
     u_log_message(_("Translating schematic [%d %d]\n"), -x, -y);
     o_list_translate (object_list, -x, -y);
@@ -230,16 +225,14 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
     o_list_translate (object_list, offset, offset);
   }
 
-  for (iter = object_list; iter != NULL; iter = iter->next) {
-    o_current = iter->data;
-    s_conn_update_object (o_current);
-  }
-
   /* Experimental mod, to be able to translate to all places */
   i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
-  if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
+
+  if (!w_current->SHIFTKEY) {
+    o_select_unselect_all(w_current);
+  }
+
   o_invalidate_all (w_current);
-  toplevel->page_current->CHANGED=1;
   o_undo_savestate(w_current, UNDO_ALL);
   i_status_update_sensitivities(w_current);
 }
