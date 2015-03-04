@@ -273,6 +273,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
   int i;
 
   for (i = 1; i < COMMAND_COUNT; i++) {
+
     if (u_string_strequal(command_struc[i].name, command)) {
 
       v_log_message(_("Processing Action Command <%s>, at index %d\n"), command_struc[i].name, i);
@@ -2131,7 +2132,6 @@ COMMAND (do_page_close)
   }
 
   if (can_close) {
-    q_log_message(_("Closing Page\n"));
     x_window_close_page (w_current, Current_Page);
   }
   EXIT_COMMAND(do_page_close);
@@ -2147,7 +2147,6 @@ COMMAND (do_page_discard)
   BEGIN_NO_ARGUMENT(do_page_discard);
 
   x_window_close_page (w_current, Current_Page);
-
 }
 
 /* ------------------ Hierarchy ---------------- */

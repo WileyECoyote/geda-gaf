@@ -1,3 +1,8 @@
+2015-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove redundent log message in function
+      i_cmd_do_page_close.
+
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_copy.c: Change hook name from "%paste-objects-hook" to
