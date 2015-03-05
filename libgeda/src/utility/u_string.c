@@ -31,6 +31,19 @@
 
 #define USS_BUFFER_SIZE 256
 
+/*! \brief Append variable number of strings together
+ *
+ *  \par Function Description
+ *  The string are not formated.
+ *
+ *  \param [in] string1 The first string,
+ *  \param [in] ...     NULL terminated list strings.
+ *
+ *  \retval char* to all of the string as a new allocation.
+ *
+ *  \warning the last argument MUST be NULL!
+ */
+
 char *u_string_concat (const char *string1, ...)
 {
   char *concat;

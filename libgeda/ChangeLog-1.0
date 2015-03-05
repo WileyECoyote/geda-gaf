@@ -1,5 +1,10 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_string.c: Added Doxygen comment block for u_string_concat,
+      yes, I forgot to add the NULL again, dammit.
+
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_box_basic.c: Eliminated setting the page of the new box
       to the page of the old box when copying a box, also the "selectable"
 
