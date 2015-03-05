@@ -96,20 +96,15 @@ Object *o_box_copy(Object *o_current)
    * Values for its fields are default and need to be modified. */
   new_obj = o_box_new (o_current->color, 0, 0, 0, 0);
 
-  new_obj->page = o_current->page;
-  new_obj->selectable = o_current->selectable;
-
   /* The dimensions of the new box are set with the ones of the original box.
    * The two boxes have the same line type and the same filling options.
    */
-
   new_obj->box->upper_x = old_box->upper_x;
   new_obj->box->upper_y = old_box->upper_y;
   new_obj->box->lower_x = old_box->lower_x;
   new_obj->box->lower_y = old_box->lower_y;
 
   o_set_line_options(new_obj, &old_box->line_options);
-
   o_set_fill_options(new_obj, &old_box->fill_options);
 
   new_obj->w_bounds_valid_for = NULL;

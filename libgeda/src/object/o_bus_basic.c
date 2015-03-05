@@ -177,6 +177,7 @@ Object *o_bus_copy(Object *o_current)
                        o_current->bus->bus_ripper_direction);
 
   new_obj->line_options->line_width = *o_current->bus->line_width;
+
   return new_obj;
 }
 

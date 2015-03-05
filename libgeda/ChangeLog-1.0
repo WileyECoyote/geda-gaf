@@ -1,5 +1,12 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_box_basic.c: Eliminated setting the page of the new box
+      to the page of the old box when copying a box, also the "selectable"
+
+    * src/object/o_xxx_basic.c: General cleaning.
+
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
    ** src/struct/s_page.c: Revised function s_page_search to check for
       NULL filename argument, otherwize glib complains about NULL being
       passed to g_ascii_strcasecmp.

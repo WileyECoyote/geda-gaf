@@ -100,7 +100,6 @@ Object *o_circle_copy(Object *o_current)
   new_obj->circle->radius   = old_circle->radius;
 
   o_set_line_options(new_obj, &old_circle->line_options);
-
   o_set_fill_options(new_obj, &old_circle->fill_options);
 
   return new_obj;
