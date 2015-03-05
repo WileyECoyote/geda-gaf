@@ -347,56 +347,21 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
 static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 {
   GschemToplevel *w_current;
-  GedaToplevel       *toplevel;
+  GedaToplevel   *toplevel;
 
   const char *str;
-  char  buffer[36];
-  char *x_str, *y_str;
-  int   icomma, x, y;
-  int   index;
+  int   x, y;
+
   bool  do_delete;
   bool  valid;
 
-  icomma = -1;
   valid  = FALSE;
-  x_str  = NULL;
-  y_str  = NULL;
   str    = NULL;
   str    = GetEntryText(entry);
 
   if (str) {
-    /* extract entry text and determine world X & Y integers */
-    strcpy(&buffer[0], str);
-    for (index =0; index < 36; index++) {
 
-      if (!buffer[index])
-        break;
-
-      if ( isdigit(buffer[index])) {
-        if (!x_str) {
-          x_str = &buffer[index];
-        }
-        else if (!y_str && icomma > 0) {
-          y_str = &buffer[index];
-        }
-      }
-      else if ( buffer[index] == ASCII_COMMA) {
-        icomma = index;
-      }
-      else if ( buffer[index] == ASCII_LEFT_PARENTHESIS ||
-                buffer[index] == ASCII_RIGHT_PARENTHESIS ) {
-        buffer[index] = ASCII_SPACE;
-      }
-    }
-    if ( x_str && y_str) {
-      if ( icomma > 0)
-        buffer[icomma] = '\0';
-      x = atoi(x_str);
-      y = atoi(y_str);
-      valid = TRUE;
-    }
-
-    if (valid) {
+    if (u_string_parse_xy(str, &x, &y)) {
 
       w_current = Dialog->w_current;
       toplevel = w_current->toplevel;
@@ -404,6 +369,8 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
       /* If we were not in an action then just set the pointer to X,Y location */
       if (!w_current->inside_action) {
         i_window_set_pointer_position (w_current, x, y);
+        w_current->first_wx = x;
+        w_current->first_wy = y;
       } /* is there something in the Drag&Drop buffer? */
       else if (object_buffer[DND_BUFFER] != NULL) {
 
@@ -427,36 +394,39 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 
             /* fall through */
 
-            case ENDDND_MOVE_OBJ:
-              if (w_current->dnd_save_state == MOVEMODE ||
-                  w_current->dnd_save_state == DRAGMOVE)
-              {
-                w_current->second_wx = x;
-                w_current->second_wy = y;
-                o_move_end(w_current);
-              }
-              else {
-                s_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
-                o_place_end(w_current, x, y, 0, 0, NULL);
-              }
+          case ENDDND_MOVE_OBJ:
+            if (w_current->dnd_save_state == MOVEMODE ||
+              w_current->dnd_save_state == DRAGMOVE)
+            {
+              w_current->second_wx = x;
+              w_current->second_wy = y;
+              o_move_end(w_current);
+            }
+            else {
+              s_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
+              o_place_end(w_current, x, y, 0, 0, NULL);
+            }
 
-              valid = TRUE;
-              /* keep falling through */
+            valid = TRUE;
+            /* keep falling through */
 
-              default:
-                if (do_delete) {
-                  s_object_release_objects(object_buffer[DND_BUFFER]);
-                }
-                if (!valid)
-                  fprintf(stderr, "Coord Entry freed the Drag&Drop buffer, "
-                                  "did not know what else to do\n");
+            default:
+              w_current->second_wx = x;
+              w_current->second_wy = y;
+              if (do_delete) {
+                s_object_release_objects(object_buffer[DND_BUFFER]);
+              }
+              if (!valid)
+                fprintf(stderr, "Coord Entry freed the Drag&Drop buffer, "
+                                "did not know what else to do\n");
         }
+
       }
 
       object_buffer[DND_BUFFER] = NULL;
       w_current->dnd_save_state = NONE;
       o_invalidate_all (w_current);
-      i_status_set_state (w_current, SELECT);
+      //i_status_set_state (w_current, SELECT);
     }
   }
 }

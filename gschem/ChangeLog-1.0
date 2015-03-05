@@ -1,3 +1,9 @@
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_coord.c: Revise co_on_entry_activate to use code relocated
+      to libgeda, function u_string_parse_xy, to interpret string entered
+      into the workd entry.
+
 2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex.c: Revise function o_complex_translate_all
