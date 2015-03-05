@@ -640,13 +640,15 @@ int s_page_save_all (GedaToplevel *toplevel)
 Page *s_page_search (GedaToplevel *toplevel, const char *filename)
 {
   const GList *iter;
-  Page *page;
+  Page  *page;
 
-  for (iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
-  {
-    page = (Page *)iter->data;
-    if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )
-      return page;
+  if (filename) {
+    for (iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
+    {
+      page = (Page *)iter->data;
+      if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )
+        return page;
+    }
   }
   return NULL;
 }
