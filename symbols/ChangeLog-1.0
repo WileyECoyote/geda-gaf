@@ -1,5 +1,14 @@
 2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * IEC417/: Fix visible attributes that should be hidden:
+
+        * IEC417/dpst-noblock.sym
+        * IEC417/ground.sym
+        * IEC417/square-up.sym
+        * IEC417/switch-5port.sym
+
+2015-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * apex/: Clean symbols, rename using capital letters.
 
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
