@@ -74,6 +74,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
         o_selection_select (src_object);
       }
     }
+
     src = g_list_next(src);
   }
 
@@ -96,12 +97,13 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
         dest = g_list_prepend (dest, dst_object);
 
         if (src_object->attached_to != NULL &&
-          src_object->attached_to->copied_to != NULL) {
+            src_object->attached_to->copied_to != NULL)
+        {
           o_attrib_attach(dst_object, src_object->attached_to->copied_to, FALSE);
-        /* handle slot= attribute, it's a special case */
-        if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0)
-          s_slot_update_object (src_object->attached_to->copied_to);
-          }
+          /* handle slot= attribute, it's a special case */
+          if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0)
+            s_slot_update_object (src_object->attached_to->copied_to);
+        }
       }
 
       /* reselect it */
@@ -141,6 +143,7 @@ void o_list_translate(const GList *list, int dx, int dy)
     o_iter = o_iter->next;
   }
 
+  o_iter = list;
   while (o_iter != NULL) {
     Object *o_current = o_iter->data;
     o_translate_object(o_current, dx, dy);

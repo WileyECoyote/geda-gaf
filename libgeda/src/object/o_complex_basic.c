@@ -535,6 +535,11 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
     }
     else {
 
+      /* Mirror children if required
+      if (mirror) {
+        o_list_mirror (complex->prim_objs, 0, 0);
+      }*/
+
       /* Mirror, rotate and translate children */
       if (mirror) { /* children if required */
         for (iter = complex->prim_objs; iter != NULL; iter = iter->next) {
@@ -551,6 +556,8 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
           o_translate_object(sub_object, x, y);
         }
       }
+      //o_list_rotate (complex->prim_objs, 0, 0, angle);
+      //o_list_translate (complex->prim_objs, x, y);
     }
 
     GEDA_FREE (buffer);
