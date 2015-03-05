@@ -45,10 +45,7 @@ struct _Pagesel {
   GschemDialog parent_instance;
 
   GtkTreeView       *treeview;
-  //GtkTreeViewColumn *column;
 
-  /* Private */
-  bool full_names;
 };
 
 

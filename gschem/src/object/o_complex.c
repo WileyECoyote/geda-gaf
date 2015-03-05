@@ -198,9 +198,8 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
 void o_complex_translate_all(GschemToplevel *w_current, int offset)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object       *o_current;
   const GList  *object_list;
-  const GList  *iter;
+
   int left, top, right, bottom;
   int x, y;
 

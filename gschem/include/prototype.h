@@ -618,10 +618,6 @@ int         gschem_parse_commandline        (int argc, char *argv[]);
 /* x_autonumber.c */
 void        autonumber_text_dialog          (GschemToplevel *w_current);
 
-/*TODO: Move these libgedauio functions
-int  tree_view_row_get_visibility      (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
-int  tree_view_row_make_visible        (GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
-*/
 /* x_clipboard.c */
 void          x_clipboard_init              (GschemToplevel *w_current);
 void          x_clipboard_finish            (GschemToplevel *w_current);

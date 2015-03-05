@@ -1098,7 +1098,7 @@ COMMAND (do_copy_clip)
 
     /* Copy to one of our buffer */
     o_buffer_copy (w_current, narg);
-    /* if buffer number =0, the copy to system buffer */
+    /* if buffer number = 0, then copy to system buffer */
     if ( narg == 0) {
       x_clipboard_set (w_current, object_buffer[0]);
     }
@@ -2240,7 +2240,7 @@ COMMAND (do_down_schematic)
         save_first_page = child;
       }
 
-      /* now do some error reporting */
+      /* Do error reporting */
       if (child == NULL) {
 
         const char *msg = (err != NULL) ? err->message : "Unknown error.";

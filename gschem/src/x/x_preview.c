@@ -331,7 +331,7 @@ preview_class_init (PreviewClass *class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
-  preview_parent_class = g_type_class_peek_parent (class);
+  preview_parent_class        = g_type_class_peek_parent (class);
 
   gobject_class->set_property = preview_set_property;
   gobject_class->get_property = preview_get_property;
@@ -345,6 +345,7 @@ preview_class_init (PreviewClass *class)
                          "",
                          NULL,
                          G_PARAM_READWRITE));
+
   g_object_class_install_property (
     gobject_class, PROP_BUFFER,
     g_param_spec_string ("buffer",
@@ -352,6 +353,7 @@ preview_class_init (PreviewClass *class)
                          "",
                          NULL,
                          G_PARAM_WRITABLE));
+
   g_object_class_install_property(
     gobject_class, PROP_ACTIVE,
     g_param_spec_boolean ("active",
@@ -376,13 +378,8 @@ preview_event_configure (GtkWidget         *widget,
 {
   bool retval;
   GschemToplevel *preview_window = PREVIEW (widget)->preview_window;
-  //Page     *preview_page = preview_window->toplevel->page_current;
 
   retval = x_event_configure (widget, event, preview_window);
-  /*
-  if (preview_page != NULL) {
-    i_zoom_world_extents(preview_window, s_page_get_objects (preview_page), 0);
-  }*/
   return retval;
 }
 
