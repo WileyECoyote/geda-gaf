@@ -59,7 +59,7 @@
  *  \param [in]     mirrored      Whether the image should be mirrored or not.
  *  \param [in]     embedded      Whether the embedded flag should be set or not.
  *
- *  \return A pointer to a new picture#Object.
+ *  \return A pointer to a new picture #Object.
  */
 Object*
 o_picture_new (const char *file_content, unsigned int file_length,
@@ -285,7 +285,7 @@ o_picture_modify(Object *object, int x, int y, int whichone)
  * the points (\a x1, \a y1) and (\a x2, \a y2), and scaled as large
  * as possible to still fit within that rectangle.
  *
- * \param [in,out] object   picture#Object to be modified.
+ * \param [in,out] object   picture #Object to be modified.
  * \param [in]     x1       x coordinate of first corner of box.
  * \param [in]     y1       y coordinate of first corner of box.
  * \param [in]     x2       x coordinate of second corner of box.
@@ -309,7 +309,7 @@ o_picture_modify_all (Object *object, int x1, int y1, int x2, int y2)
  *
  *  \par Function Description
  *  Parses \a first_line and subsequent lines from \a tb, and returns
- *  a newly-created picture#Object.
+ *  a newly-created picture #Object.
  *
  *  \param [in]  first_line      Character string with picture description.
  *  \param [in]  tb              Text buffer to load embedded data from.
@@ -703,7 +703,7 @@ o_picture_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *
  *  Optional parameters can be passed to the back-ends, see the documentation
  *  for gdk_pixbuf_save. Options usually occur as key/value pairs of pointers
- *  but some are single pointer, these can combined by ensuring solo pointers
+ *  but some are single pointer, these can be combined to ensure solo pointers
  *  are last on the stack or two singles can be paired. The point is, stack
  *  searching stops when a NULL is encountered and a NULL must present at the
  *  end of the data.
@@ -757,7 +757,7 @@ o_picture_add_if_writable (GdkPixbufFormat *data, GSList **list)
  *      reduced.
  * \par
  *  4.) If the "x_hot", and "y_hot" parameters are used with type
- *      "ico", the generated file is actually "cur" type.
+ *      "ico", the generated file is actually a "cur" type.
  */
 static bool
 o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
@@ -820,7 +820,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
         for ( i = 0; i < argc; i++) {
           keys[i] = va_arg (varargs, char *);
           Vals[i] = va_arg (varargs, char *);
-          printf ("found (%d) keys=%s, Vals=%s\n", i, keys[i], Vals[i]);
+          //printf ("found (%d) keys=%s, Vals=%s\n", i, keys[i], Vals[i]);
         }
 
         /* Add sentinels to the two arrays */
@@ -1009,7 +1009,7 @@ o_picture_export_orginal (Object *o_current, const char *filename, const char *t
  *  in a schematic or symbol file; returns FALSE if its data will be
  *  obtained from a separate file.
  *
- * \param object    The picture#Object to inspect.
+ * \param object    The picture #Object to inspect.
  * \return TRUE if \a object is embedded.
  */
 bool
@@ -1234,7 +1234,7 @@ o_picture_shortest_distance (Object *object, int x, int y, int force_solid)
  * Returns the raw image file data underlying the picture \a object,
  * or NULL if the picture could not be loaded.
  *
- * \param object    The picture#Object to inspect.
+ * \param object    The picture #Object to inspect.
  * \param len       Location to store buffer length.
  * \return A read-only buffer of raw image data.
  */
@@ -1253,7 +1253,7 @@ o_picture_get_data (Object *object, size_t *len)
  * \par Function Description
  * Returns the filename associated with the picture \a object.
  *
- * \param object   The picture#Object to inspect
+ * \param object   The picture #Object to inspect
  *
  * \return the filename associated with \a object
  */
@@ -1319,7 +1319,7 @@ o_picture_get_height (Object *object)
 
  * Returns the width/height ratio of picture \a object.
  *
- * \param object    Picture#Object to inspect
+ * \param object    Picture #Object to inspect
  *
  * \return width/height ratio for \a object.
  */
@@ -1365,7 +1365,7 @@ o_picture_get_ratio (Object *object)
  * Returns the width/height ratio of picture \a object, taking the
  * image rotation into account.
  *
- * \param object    Picture#Object to inspect
+ * \param object    Picture #Object to inspect
  *
  * \return width/height ratio for \a object.
  */
@@ -1552,7 +1552,7 @@ o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  * \note object->picture->ratio is set to the ratio of the buffer
  *       image and not the ratio of the as drawn image.
  *
- * \param object   The picture#Object to modify.
+ * \param object   The picture #Object to modify.
  * \param filename The new filename for the picture.
  * \param data     The new image data buffer.
  * \param len      The size of the data buffer.
@@ -1619,7 +1619,7 @@ o_picture_set_from_buffer (Object        *object,
  *  Sets the contents of the picture \a object by reading image data
  *  from a file.
  *
- * \param object   The picture#Object to modify.
+ * \param object   The picture #Object to modify.
  * \param filename The filename to load image data from.
  * \param error    Location to return error information.
  *
@@ -1735,7 +1735,7 @@ o_picture_get_fallback_pixbuf (void)
  * The returned value should have its reference count decremented with
  * GEDA_UNREF() when no longer needed.
  *
- * \param object  The picture#Object to inspect.
+ * \param object  The picture #Object to inspect.
  *
  * \return A GdkPixbuf for the picture.
  */
