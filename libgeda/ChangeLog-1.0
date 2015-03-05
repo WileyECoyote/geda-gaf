@@ -1,5 +1,12 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_string.c: Add new function u_string_parse_xy, which was the
+      code developed for Drag&Drop on the x_coord world entry, the code was enhanced
+      slightly to accept spaces instead of commas, and to accept only one number, in
+      which case the comma is not optional.
+
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_string.c: Added Doxygen comment block for u_string_concat,
       yes, I forgot to add the NULL again, dammit.
 

@@ -206,7 +206,7 @@ char *u_string_remove_last_nl(char *string)
  *
  *  example:  strcat(strbuffer, int2str( total, s_val, 10 ));
  */
-char* u_string_int2str(int value, char* str, int radix) {
+char *u_string_int2str(int value, char* str, int radix) {
 
   static char dig[] ="0123456789"
                      "abcdefghijklmnopqrstuvwxyz";
@@ -230,6 +230,92 @@ char* u_string_int2str(int value, char* str, int radix) {
   for (p = str, q = p + (n-1); p < q; ++p, --q)
   c = *p, *p = *q, *q = c;
   return str;
+}
+
+/*! \brief Parse a c String for X and Y integer pair
+ *  \par Function Description
+ *  Iterates over a string looking for askii digits, parenthesis are
+ *  ignored. The first character digits are interrupted as the string for
+ *  X unless a comma was previously encountered, in which case the string
+ *  is interrupted as the Y. If the is Y set and X has not been set then X
+ *  is presumed zero, and this allows input such as ",600" to mean (0,600).
+ *  If only one value was interrupted and a comma had not be encountered,
+ *  the Y is presumed to be zero. If the string contains two set of valid
+ *  digits, X and Y, then the comma may also be an ASKii SPACE character.
+ *  If neither X nor Y is interpreted then False is returned.
+ *
+ *  \param[in]  string  The string to parse.
+ *  \param[out] *x      Set to integer X value
+ *  \param[out] *y      Set to integer Y value
+ *
+ *  \return True of the string was accepted and the X,Y value are valid
+ *
+ *  acceptable formats: "(4500,380)", "4500,380", "5", ",72"
+ */
+int u_string_parse_xy(const char *string, int *x, int *y)
+{
+  char *buffer;
+  char *x_str, *y_str;
+  int   icomma; // x, y;
+  int   index;
+  int   valid;
+
+  icomma = -1;
+  valid  = FALSE;
+  x_str  = NULL;
+  y_str  = NULL;
+
+  if (string) {
+
+    int length = strlen(string);
+
+    buffer = u_string_strdup(string);
+
+    for (index = 0; index < length; index++) {
+
+      if (!buffer[index])
+        break;
+
+      if (isdigit(buffer[index])) {
+        if (!x_str && icomma < 0) {
+          x_str = &buffer[index];
+        }
+        else if (!y_str && icomma >= 0) {
+          y_str = &buffer[index];
+          if (!x_str) {
+            x_str = "0";
+          }
+        }
+      }
+      else if (buffer[index] == ASCII_COMMA) {
+        icomma = index;
+      }
+      else if (buffer[index] == ASCII_SPACE) {
+        icomma = index;
+      }
+      else if (buffer[index] == ASCII_LEFT_PARENTHESIS ||
+               buffer[index] == ASCII_RIGHT_PARENTHESIS ) {
+        buffer[index] = ASCII_SPACE;
+      }
+    }
+
+    if (!y_str) {
+      y_str = "0";
+    }
+
+    if (x_str && y_str) {
+      if (icomma >= 0)
+        buffer[icomma] = '\0';
+      *x = atoi(x_str);
+      *y = atoi(y_str);
+      valid = 1;
+    }
+    free(buffer);
+  }
+  else {
+    valid = 0;
+  }
+  return valid;
 }
 
 char *gh_scm2newstr (SCM str, unsigned int *lenp);

@@ -621,6 +621,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *u_string_remove_nl              (char *string);
          char   *u_string_remove_last_nl         (char *string);
          char   *u_string_int2str                (int value, char *str, int radix);
+         bool    u_string_parse_xy               (const char *string, int *x, int *y) G_GNUC_WARN_UNUSED_RESULT;
          char   *u_string_scm2c                  (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
          void    u_string_sort_array             (char *strings[], size_t strings_size);
          char   *u_string_sprintf                (const char *format, ...)   G_GNUC_WARN_UNUSED_RESULT;
