@@ -1,6 +1,6 @@
-/* -*- C header file: geda.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*
- *//* File: geda_notify.h *//*
+ * File: geda_notify.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library

@@ -3,7 +3,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2014-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
  * wrapper, GedaList, and his code was used as the basis for the
  * GedaNotifyList module.
  *
- * Contributing Author: Wiley Edward Hill
- * Date Contributed: November, 18, 2013
+ *  Contributing Author: Wiley Edward Hill
+ *  Date Contributed: September, 2nd, 2014
  */
 
 /*! \file geda_notify.c
