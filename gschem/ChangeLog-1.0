@@ -1,5 +1,12 @@
 2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_dialog.c: Get rid of object selection wows in function
+      gd_callback_selection_changed and just pass whatever o_select_return_
+      first_object returns to the dialogs handler function. The dialogs were
+      not getting called when the selection changed from something to nothing.
+
+2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_edit_cprop.c: Redo update selection handler, add functions
       x_dialog_ep_no_selection and x_dialog_ep_set_sensitive to set all
       entries to NULL and disable the widgets when there no selection,

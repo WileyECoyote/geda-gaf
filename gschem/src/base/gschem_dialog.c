@@ -102,9 +102,6 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
 {
   GschemDialog   *Dialog;
   GschemToplevel *w_current;
-  GList  *iter;
-  Object *object;
-  int object_count = 0;
 
   if (GSCHEM_IS_DIALOG(user_data)) {
 
@@ -113,23 +110,8 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
 
     if (w_current != NULL) {
 
-      for (iter = geda_list_get_glist (selection); iter != NULL; iter = g_list_next (iter)) {
-        object = (Object *)iter->data;
-        if(object != NULL);
-        object_count++;
-      }
+      Dialog->tracker (w_current, o_select_return_first_object (w_current));
 
-      if (object_count == 0) {
-        object = NULL;
-      }
-      else
-        if (object_count == 1) {
-          Dialog->tracker (w_current, object);
-        }
-        else {
-          object = o_select_return_first_object (w_current);
-          Dialog->tracker (w_current, object);
-        }
     }
     else {
       BUG_MSG("GedaToplevel not set in Dialog\n");
