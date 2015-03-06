@@ -249,6 +249,7 @@ bool geda_list_add_unique_string (GedaList *list, char  *text)
 
   if (!found) {
     list->glist = g_list_append(list->glist, text);
+    g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
   }
   return !found;
 }
@@ -326,7 +327,6 @@ bool geda_list_is_in_list(GedaList *list, void *item)
   return g_list_find(list->glist, item) ? 1 : 0;
 }
 
-
 /*! \brief Removes the given item from the GedaList
  *
  *  \par Function Description
@@ -341,7 +341,7 @@ void geda_list_remove(GedaList *list, void *item)
 {
   if (g_list_find(list->glist, item)) {
 
-  list->glist = g_list_remove(list->glist, item);
+    list->glist = g_list_remove(list->glist, item);
     g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
   }
 }
