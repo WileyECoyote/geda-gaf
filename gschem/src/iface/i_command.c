@@ -1684,7 +1684,7 @@ COMMAND (do_zoom_box)
 {
   BEGIN_W_COMMAND(do_zoom_box);
 
-  o_select_unselect_all (w_current);
+  //o_select_unselect_all (w_current);
   o_redraw_cleanstates(w_current);
 
   i_status_set_state(w_current, ZOOMBOX);
