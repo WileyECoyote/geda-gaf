@@ -55,10 +55,11 @@ static int slib_index=0;
  */
 static struct st_slib slib[MAX_SLIBS];
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add a Path to Search for Schematics
  *  \par Function Description
- *
+ *   Add \a new_path to the table of directories to search
+ *   for schematics if the directory is not already in the
+ *   table.
  */
 int s_slib_add_entry(char *new_path)
 {
@@ -70,8 +71,10 @@ int s_slib_add_entry(char *new_path)
     return(-1);
   }
 
-  slib[slib_index].dir_name = u_string_strdup (new_path);
-  slib_index++;
+  if (!s_slib_search_for_dirname(new_path)) {
+    slib[slib_index].dir_name = u_string_strdup (new_path);
+    slib_index++;
+  }
 
   return(slib_index);
 }

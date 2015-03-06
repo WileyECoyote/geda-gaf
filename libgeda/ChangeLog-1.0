@@ -1,5 +1,10 @@
 2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_slib.c: Check if path is already in the table and only add
+      if s_slib_search_for_dirname returns false.
+
+2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_slib.c: Revised function s_slib_search_for_dirname to check
       for NULL argument.
 
