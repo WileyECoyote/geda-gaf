@@ -834,16 +834,16 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
 /*! \brief Apply Filter to supplied View.
  *  \par Function Description
  *  This function applies the filtering of components in the treeview of
- *  the dialog based in the text in the search entry. The applying_filter
+ *  the dialog based on the text in the search entry. The applying_filter
  *  variable is used here to prevent expanding when there is no text. This
  *  was added when the notebook sheets were added because the filtering is
  *  is applied to multible tree views on an as needed basis, aka, only when
  *  the user switches Tab's with text in the filter entry widget.
  *
- *  The function is called when ever a filter timeout occurs or when the
+ *  The function is called whenever a filter timeout occurs or when the
  *  user changes tabs.
  *
- *  Note: The filtering done here is based on text entered by the user and
+ *  \note The filtering done here is based on text entered by the user and
  *  has nothing to do with filtering based on style settings.
  *
  *  \param [in] Dialog The component selection dialog Object.
@@ -2694,7 +2694,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent)
 
      gtk_widget_show_all (optionmenu);
 
-     SetWidgetSize(optionmenu, 125, DIALOG_BUTTON_VSIZE);
+     SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
 
      ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
 

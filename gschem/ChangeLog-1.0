@@ -1,5 +1,10 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * x/x_compselect.c: Increase width of reference optionsmenu button in
+      function create_action_area.
+
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_status.c: Add local inline, set_all_need_object_false
       in function i_status_idle_update_sensitivities, and revise logic to
       to not continue checking selection list if not any_object.
