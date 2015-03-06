@@ -51,8 +51,7 @@ static int slib_index=0;
 #define MAX_SLIBS	128
 
 /*! \brief
- * and eventually make this unlimited
- * hack hack
+ * and eventually make this unlimited hack hack
  */
 static struct st_slib slib[MAX_SLIBS];
 
@@ -87,12 +86,14 @@ int s_slib_search_for_dirname(char *dir_name)
 {
   int i;
 
-  for (i = 0; i < slib_index; i++) {
-    if (strcmp(slib[i].dir_name, dir_name) == 0) {
-      return(1);
+  if (dir_name) {
+
+    for (i = 0; i < slib_index; i++) {
+      if (strcmp(slib[i].dir_name, dir_name) == 0) {
+        return(1);
+      }
     }
   }
-
   return(0);
 }
 
@@ -105,13 +106,14 @@ int s_slib_search_for_dirname(char *dir_name)
  */
 char *s_slib_search_dirs(const char *basename)
 {
-  int i;
-  DIR *ptr=NULL;
-  struct dirent *dptr;
-  char *slib_path=NULL;
+  DIR  *ptr       = NULL;
+  char *slib_path = NULL;
+  int   i;
 
-  /* search slib paths backwards */
-  for (i = slib_index-1 ; i >= 0; i--) {
+  struct dirent *dptr;
+
+  /* Search slib paths backwards */
+  for (i = slib_index - 1 ; i >= 0; i--) {
     /* for (i = 0 ; i < slib_index; i++) {*/
 
 #if DEBUG
@@ -126,8 +128,15 @@ char *s_slib_search_dirs(const char *basename)
 
     while(dptr != NULL) {
 
+      /* readdir returns both the "." and ".." entries, the former is a
+       * problem because the dot is likely in file name as .sch */
+      if (dptr->d_name[1] == '\0') {
+        break;
+      }
+
       /* Do a substring comp for a match */
       if (strstr(dptr->d_name, basename) == 0)  {
+
         slib_path = u_string_strdup (slib[i].dir_name);
 
         if (ptr) {
@@ -144,7 +153,6 @@ char *s_slib_search_dirs(const char *basename)
       closedir(ptr);
       ptr = NULL;
     }
-
   }
 
   return(NULL);
@@ -165,12 +173,14 @@ char *s_slib_search_lowlevel(const char *basename)
   slib_path = s_slib_search_dirs(basename);
 
   if (slib_path) {
+
     full_path = g_build_filename (slib_path, basename, NULL);
 
     GEDA_FREE(slib_path);
 
     return(full_path);
-  } else {
+  }
+  else {
     return(NULL);
   }
 }
@@ -201,7 +211,7 @@ char *s_slib_getbasename(const char *rawname)
   if (!rawname)
     return(NULL);
 
-  len = strlen(rawname)+1;
+  len = strlen(rawname) + 1;
 
   return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
 
@@ -211,7 +221,6 @@ char *s_slib_getbasename(const char *rawname)
     return_filename[i] = rawname[i];
     i++;
   }
-
 
   return_filename[i] = '\0';
 
@@ -274,12 +283,12 @@ char *s_slib_getbasename(const char *rawname)
  */
 char *s_slib_search_single(const char *filename)
 {
-  char *string=NULL;
+  char *string = NULL;
 
   string = s_slib_search_lowlevel(filename);
 
   /* don't forget to GEDA_FREE this string */
-  return(string);
+  return (string);
 }
 
 /*! \todo Finish function documentation!!!

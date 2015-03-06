@@ -1,3 +1,8 @@
+2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_slib.c: Revised function s_slib_search_for_dirname to check
+      for NULL argument.
+
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Add emit changed signal when list appended in
