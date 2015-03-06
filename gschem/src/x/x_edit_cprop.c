@@ -518,7 +518,6 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
  *  \param object     pointer to a selected Object.
  *  \param properties pointer to property_data structure
  */
-
 static void x_dialog_ep_component_change(GschemToplevel *w_current,
                                          Object         *object,
                                          property_data  *properties)
@@ -688,9 +687,73 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   g_list_free (all_butes);
 }
 
+
 /*! \brief Handle selection change event for x_dialog_edit_properties
  *  \par Function Description
- *  Called when the selection changes. The functions call
+ *  Updates component information in dialog widgets when the selection
+ *  changes.
+ *
+ *  \param w_current  pointer to GschemToplevel context
+ *  \param object     pointer to a selected Object.
+ *  \param properties pointer to property_data structure
+ */
+static void x_dialog_ep_no_selection(GschemToplevel *w_current,
+                                     property_data  *properties)
+{
+  SetEntryText(properties->symbol_entry, NULL);
+  SetEntryText(properties->device_entry, NULL);
+  SetEntryText(properties->author_entry, NULL);
+  SetEntryText(properties->version_entry, NULL);
+  SetEntryText(properties->ulicense_entry, NULL);
+  SetEntryText(properties->dlicense_entry, NULL);
+  SetEntryText(properties->descr_entry, NULL);
+  SetEntryText(properties->doc_entry, NULL);
+  SetEntryText(properties->comment_entry, NULL);
+
+  SetEntryText(properties->refdes_entry, NULL);
+  SetEntryText(properties->value_entry, NULL);
+  SetEntryText(properties->foot_entry, NULL);
+  SetEntryText(properties->spice_entry, NULL);
+  SetEntryText(properties->mname_entry, NULL);
+
+  SetSpinValue(properties->slots_spin, 0);
+  SetSpinValue(properties->pins_spin, 0);
+
+  SetToggleState(properties->electrical_cb, FALSE);
+
+  //GtkWidget *refdes_combo;
+  //GtkWidget *elect_table;
+}
+/*! \brief Component Properties Dialog Check-box Callback
+ *   Enable or disabled sensitivities of widgets within the electrical
+ *   frame depending on the state of the check-box.
+ *
+ *  \param [in] check_butt Pointer to the CheckBox widget
+ *  \param [in] data       Pointer to a Component Dialog data structure
+ *
+ */
+static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
+{
+  void set_sensitive (GtkWidget *widget, void *nothing){
+    gtk_widget_set_sensitive(widget, state);
+  }
+
+  gtk_widget_set_sensitive(properties->symbol_entry, state);
+  gtk_widget_set_sensitive(properties->device_entry, state);
+  gtk_widget_set_sensitive(properties->author_entry, state);
+  gtk_widget_set_sensitive(properties->version_entry, state);
+  gtk_widget_set_sensitive(properties->ulicense_entry, state);
+  gtk_widget_set_sensitive(properties->dlicense_entry, state);
+  gtk_widget_set_sensitive(properties->descr_entry, state);
+  gtk_widget_set_sensitive(properties->doc_entry, state);
+  gtk_widget_set_sensitive(properties->comment_entry, state);
+  gtk_widget_set_sensitive(properties->electrical_cb, state);
+  gtk_container_foreach (GTK_CONTAINER (properties->elect_table),
+                         set_sensitive, NULL);
+}
+/*! \brief Handle selection change event for x_dialog_edit_properties
+ *  \par Function Description
+ *  Called when the selection changes. The functions calls
  *  x_dialog_ep_component_change to update the data fields
  *
  *  \param w_current pointer to GschemToplevel context
@@ -708,14 +771,21 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
   properties = g_object_get_data (G_OBJECT (dialog), IDS_PROP_EDIT);
 
   if (object != NULL && object->type == OBJ_COMPLEX) {
+    x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, object, properties);
     g_object_set_data(G_OBJECT(dialog), "object", object);
     gtk_widget_grab_focus(properties->symbol_entry);
   }
   else if (s_page_is_symbol_file(Current_Page)) {
+    x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, NULL, properties);
     g_object_set_data(G_OBJECT(dialog), "object", NULL);
     gtk_widget_grab_focus(properties->author_entry);
+  }
+  else {
+    x_dialog_ep_no_selection(w_current, properties);
+    x_dialog_ep_set_sensitive(properties, FALSE);
+    g_object_set_data(G_OBJECT(dialog), "object", NULL);
   }
 }
 

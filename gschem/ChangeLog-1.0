@@ -1,3 +1,10 @@
+2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Redo update selection handler, add functions
+      x_dialog_ep_no_selection and x_dialog_ep_set_sensitive to set all
+      entries to NULL and disable the widgets when there no selection,
+      and is not editing a symbol file.
+
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_compselect.c: Increase width of reference optionsmenu button in
