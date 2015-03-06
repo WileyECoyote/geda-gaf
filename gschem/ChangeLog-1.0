@@ -1,5 +1,11 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_status.c: Add local inline, set_all_need_object_false
+      in function i_status_idle_update_sensitivities, and revise logic to
+      to not continue checking selection list if not any_object.
+
+2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_coord.c: Revise co_on_entry_activate to use code relocated
       to libgeda, function u_string_parse_xy, to interpret string entered
       into the workd entry.

@@ -593,37 +593,48 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
   }
 
-  GedaToplevel *toplevel = w_current->toplevel;
-  GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
+  inline void set_all_need_object_false (void) {
+    can_hatch            = FALSE;
+    can_edit_line        = FALSE;
+    complex_selected     = FALSE;
+    pic_selected         = FALSE;
+    pin_selected         = FALSE;
+    text_selected        = FALSE;
+  }
 
+  GedaToplevel *toplevel = w_current->toplevel;
 
   /* This is improved but still fairly simplistic.  What gets enabled/disabled
    * could be more selective based based on what is in the selection list, WEH
    */
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
-
   if (w_current->toplevel->page_current == NULL) {
     any_object           = FALSE;
-    can_hatch            = FALSE;
-    can_edit_line        = FALSE;
-    mutil_pages          = FALSE;
-    complex_selected     = FALSE;
     is_editing_symbol    = FALSE;
-    pic_selected         = FALSE;
-    pin_selected         = FALSE;
-    text_selected        = FALSE;
+    mutil_pages          = FALSE;
+    set_all_need_object_false();
   }
   else {
+
     any_object           = o_select_is_selection (w_current);
-    can_hatch            = hatchable_object_selected(list);
-    can_edit_line        = linetype_object_selected(list);
-    mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
-    complex_selected     = selected_complex_object(list);
     is_editing_symbol    = s_page_is_symbol_file(Current_Page);
-    pic_selected         = selected_at_least_one_pic_object(list);
-    pin_selected         = selected_at_least_one_pin_object(list);
-    text_selected        = selected_at_least_one_text_object(list);
+    mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
+
+    if (any_object) {
+
+      GList *list        = geda_list_get_glist(Top_Selection);
+
+      can_hatch          = hatchable_object_selected(list);
+      can_edit_line      = linetype_object_selected(list);
+      complex_selected   = selected_complex_object(list);
+      pic_selected       = selected_at_least_one_pic_object(list);
+      pin_selected       = selected_at_least_one_pin_object(list);
+      text_selected      = selected_at_least_one_text_object(list);
+    }
+    else {
+      set_all_need_object_false();
+    }
   }
 
   if ( mutil_pages ) {
@@ -635,7 +646,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
-  if ( any_object  ) {
+  if (any_object) {
 
     /* since one or more objects are selected, we set these TRUE */
     if ( complex_selected ) {
