@@ -202,9 +202,9 @@ char *u_string_remove_last_nl(char *string)
  *                           macro subsitution or literal value.
  *  int number = 4;      <-- Some integer declared somewhere.
  *
- *  *str = int2str( number, s_val, 10 ));
+ *  *str = u_string_int2str( number, s_val, 10 ));
  *
- *  example:  strcat(strbuffer, int2str( total, s_val, 10 ));
+ *  example:  strcat(strbuffer, u_string_int2str( total, s_val, 10 ));
  */
 char *u_string_int2str(int value, char* str, int radix) {
 

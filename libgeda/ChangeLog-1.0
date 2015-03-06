@@ -1,5 +1,9 @@
 2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_string.c: Update example for function u_string_int2str
+
+2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_slib.c: Check if path is already in the table and only add
       if s_slib_search_for_dirname returns false.
 
