@@ -64,8 +64,8 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
                                   GError **err)
 {
   char *string;
-  Page  *found = NULL;
-  Page  *forbear;
+  Page *found = NULL;
+  Page *forbear;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((filename != NULL), NULL);
@@ -73,6 +73,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
 
   string = s_slib_search_single(filename);
   if (string == NULL) {
+
     g_set_error (err, EDA_ERROR, EDA_ERROR_NOLIB,
                  _("Schematic not found in source library."));
     return NULL;
@@ -82,6 +83,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   case HIERARCHY_NORMAL_LOAD:
     {
       char *filename = f_file_normalize_name (string, NULL);
+
       found = s_page_search (toplevel, filename);
       GEDA_FREE (filename);
 
@@ -90,9 +92,11 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
         for (forbear = parent;
              forbear != NULL && found->pid != forbear->pid && forbear->up >= 0;
              forbear = s_page_search_by_page_id (toplevel->pages, forbear->up))
-          ; /* void */
-
+             {
+               ; /* void */
+             }
         if (forbear != NULL && found->pid == forbear->pid) {
+
           g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
                        _("Hierarchy contains a circular dependency."));
           return NULL;  /* error signal */
@@ -126,14 +130,14 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   if (page_control == 0) {
     page_control_counter++;
     found->page_control = page_control_counter;
-  } else {
+  }
+  else {
     found->page_control = page_control;
   }
 
   found->up = parent->pid;
 
   GEDA_FREE (string);
-
   return found;
 }
 
