@@ -118,7 +118,9 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 
     /* boxes with null width or height are not allowed */
     if ((box_width == 0) || (box_height == 0)) {
+
       /* cancel the object creation */
+      o_box_invalidate_rubber (w_current);
       w_current->first_wx  = (-1);
       w_current->first_wy  = (-1);
       w_current->second_wx = (-1);

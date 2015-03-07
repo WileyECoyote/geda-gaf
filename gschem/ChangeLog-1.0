@@ -1,3 +1,8 @@
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_box.c: Fix o_box_end not invalidating rubber with zero
+      width or height.
+
 2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_dialog.c: Get rid of object selection wows in function
