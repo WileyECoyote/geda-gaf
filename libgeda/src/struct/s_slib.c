@@ -103,6 +103,9 @@ int s_slib_search_for_dirname(char *dir_name)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
+ *  Looks for a file in each directory in the slib table whose name
+ *  contains the string \a basename, if found then that directory is
+ *  returned.
  *
  *  \warning
  *  Caller must GEDA_FREE returned pointer.
@@ -131,23 +134,22 @@ char *s_slib_search_dirs(const char *basename)
 
     while(dptr != NULL) {
 
-      /* readdir returns both the "." and ".." entries, the former is a
-       * problem because the dot is likely in file name as .sch */
-      if (dptr->d_name[1] == '\0') {
-        break;
-      }
+      /* Note: readdir returns both the "." and ".." entries, the former
+       * ia a problem because the dot is likely in file name as .sch */
+      if (dptr->d_name[1] != '\0') {
 
-      /* Do a substring comp for a match */
-      if (strstr(dptr->d_name, basename) == 0)  {
+        /* Do a substring comp for a match */
+        if (strstr(dptr->d_name, basename) != 0)  {
 
-        slib_path = u_string_strdup (slib[i].dir_name);
+          slib_path = u_string_strdup (slib[i].dir_name);
 
-        if (ptr) {
-          closedir(ptr);
-          ptr = NULL;
+          if (ptr) {
+            closedir(ptr);
+            ptr = NULL;
+          }
+
+          return(slib_path);
         }
-
-        return(slib_path);
       }
       dptr = readdir(ptr);
     }
@@ -170,8 +172,8 @@ char *s_slib_search_dirs(const char *basename)
  */
 char *s_slib_search_lowlevel(const char *basename)
 {
-  char *slib_path=NULL;
-  char *full_path=NULL;
+  char *slib_path = NULL;
+  char *full_path = NULL;
 
   slib_path = s_slib_search_dirs(basename);
 
@@ -191,12 +193,13 @@ char *s_slib_search_lowlevel(const char *basename)
 /*! \todo Finish function documentation!!!
  *  \brief Get the base file name from a raw file name string.
  *  \par Function Description
- *  This function takes a raw file name and returns a processed file name.
- *  It takes the raw file name and copies everything up to the first period
- *  and removes any _# (where # is any number of digits.
+ *  Creates an returns a file name based on the given \a rawname. The raw
+ *  file name is copied up to the first period and any _# are removed (where
+ *  # is any number of digits.
  *
  *  \param [in] rawname  Character string with the raw file name to parse.
- *  \return The base file name in a character string.
+ *
+ *  \returns The base file name in a character string.
  *
  *  \warning
  *  Caller must GEDA_FREE returned pointer.
@@ -273,13 +276,11 @@ char *s_slib_getbasename(const char *rawname)
 /*! \todo Finish function documentation!!!
  *  \brief Search SLIB for a particular file name.
  *  \par Function Description
- *  This function will search the SLIB for a particular file name starting
- *  at a location specified by the <B>flag</B> parameter.
+ *  This function will search the SLIB for a particular file name.
  *
  *  \param [in] filename  Character string with file name to search for.
  *
- *  Filename is the raw symbol/whatever file name. This function only looks
- *  for the file name as is and does no other changes to it.
+ *  Filename is the raw symbol/whatever file name.
  *
  *  \warning
  *  Caller must GEDA_FREE returned pointer.

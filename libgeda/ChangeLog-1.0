@@ -1,3 +1,8 @@
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_slib.c: Revise s_slib_search_dirs to skip the dot directory.
+      Revise and add Doxygen comments.
+
 2015-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Update example for function u_string_int2str
