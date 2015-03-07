@@ -1,5 +1,9 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: A query function o_get_is_valid_attribute.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_selection.c: Add function o_selection_unselect_all
 
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>

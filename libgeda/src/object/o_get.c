@@ -31,6 +31,7 @@
 #include <config.h>
 #include <ascii.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "libgeda_priv.h"
 #include "geda_text.h"
@@ -232,6 +233,43 @@ bool o_get_is_selectable (Object *object)
 bool o_get_is_selected (Object *object)
 {
   return GEDA_IS_OBJECT(object) && (object->selected);
+}
+
+/*! \brief Checks if an text string is valid attribute format
+ *
+ *  \par Function Description
+ *
+ *  \param object  Text Object to test
+ *
+ *  \return TRUE if valid, otherwise FALSE.
+ */
+bool o_get_is_valid_attribute (Object *object)
+{
+  bool result = FALSE;
+
+  if (GEDA_IS_TEXT(object)) {
+
+    if (object->text->string) {
+
+      const char *ptr, *string;
+
+      string = object->text->string;
+      ptr    = strstr(string, "=");
+
+      if (ptr) {
+
+        int pos = ptr - string;
+
+        if (pos && (pos != strlen(string) - 1)) {
+
+          if (!isspace (string[pos - 1]) && (!isspace(string[pos + 1]))) {
+            result = TRUE;
+          }
+        }
+      }
+    }
+  }
+  return result;
 }
 
 /*! \brief Query visibility of the object

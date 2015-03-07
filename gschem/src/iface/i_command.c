@@ -2833,41 +2833,76 @@ COMMAND (do_attach)
 
   BEGIN_COMMAND(do_attach);
 
-  Object *first_object;
-  GList  *s_current;
-  GList  *attached_objects = NULL;
-
   /* Do Not attach while inside an action */
   if (!w_current->inside_action) {
 
-  /* skip over head */
-    s_current = geda_list_get_glist(Current_Selection);
+    w_current->which_object = NULL;
 
-    if (s_current) {
+    if (o_select_is_selection(w_current)) {
 
-      first_object = (Object *) s_current->data;
+      Object *first_object;
+      GList  *selected;
+      int     count;
 
-      if (first_object) {
+      selected = geda_list_get_glist(Current_Selection);
+      count    = o_select_get_count(w_current);
 
-        s_current = s_current->next; /* skipping over first object */
+      if (count == 1) {
+        u_log_message("Feature not implemented\n");
+      }
+      else if (count == 2) {
 
-        while (s_current != NULL) {
-          Object *object = s_current->data;
-          if (object != NULL && object->attached_to == NULL) {
-            o_attrib_attach (object, first_object, TRUE);
-            attached_objects = g_list_prepend (attached_objects, object);
-            Current_Page->CHANGED=1;
+        Object *second_object;
+        bool    first_is_an_attribute;
+        bool    second_is_an_attribute;
+
+        first_object  = (Object *) selected->data;
+        selected      = selected->next;
+        second_object = (Object *) selected->data;
+
+        first_is_an_attribute  = o_get_is_valid_attribute(first_object);
+        second_is_an_attribute = o_get_is_valid_attribute(second_object);
+
+        /* Ensure 1 and only 1 is a valid attribute */
+        if ( 1 == first_is_an_attribute + second_is_an_attribute) {
+
+          if (first_is_an_attribute) {
+            if (!o_get_is_attached(first_object)) {
+              w_current->which_object = second_object;
+            }
           }
-          s_current = s_current->next;
-        }
+          else {
+            if (!o_get_is_attached(second_object)) {
+              w_current->which_object = first_object;
+            }
+          }
 
-        if (attached_objects != NULL) {
-          g_run_hook_object_list (w_current, "%attach-attribs-hook",
-                                  attached_objects);
-          g_list_free (attached_objects);
+          if (w_current->which_object) {
+            o_attrib_attach_list_2_object(w_current, selected);
+          }
+          else {
+            u_log_message(_("Attribute is already attached\n"));
+          }
         }
+      }
+      else {
 
-        o_undo_savestate(w_current, UNDO_ALL);
+        GList *iter = selected;
+
+        do {
+
+          if (!o_get_is_valid_attribute(iter->data)) {
+            w_current->which_object = iter->data;
+          }
+
+          if (!(NEXT(iter))) {
+            break;
+          }
+        } while (!w_current->which_object);
+
+        if (w_current->which_object) {
+          o_attrib_attach_list_2_object(w_current, selected);
+        }
       }
     }
   }

@@ -1,5 +1,29 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Completely revamp i_cmd_do_attach; allow pairs
+      of object in any order. For selection greated that 3, that first object
+      that can not be attached is the target, utilize w_current->which_object
+      for the target object.
+
+    * src/object/o_attrib.c: Add new function o_attrib_attach_list_2_object,
+      which was orginally intended to relocated from i_cmd_do_attached, and
+      mostly is, but added call to new libgeda::o_get_is_valid_attribute
+      function, revise to use w_current->which_object as target object, and
+      added o_undo_savestate.
+
+      rename o_attrib_add_selected, again, this time to o_attrib_attached_2_
+      selection, because o_attrib_add_attached_2_selection is too long.
+
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Revise and rename o_attrib_add_selected to
+      o_attrib_add_2_selection; reverse conditional test for selection
+      to eliminate premature return and rename variable selected_objects
+      to objects_added, and corrected Doxygen header.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: Implement functions geda_list_remove_all
       and o_selection_unselect_all for testing.
 
