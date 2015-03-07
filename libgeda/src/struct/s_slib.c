@@ -172,15 +172,15 @@ char *s_slib_search_dirs(const char *basename)
  */
 char *s_slib_search_lowlevel(const char *basename)
 {
-  char *slib_path = NULL;
-  char *full_path = NULL;
-
-  slib_path = s_slib_search_dirs(basename);
+  char *slib_path = s_slib_search_dirs(basename);
 
   if (slib_path) {
 
-    full_path = g_build_filename (slib_path, basename, NULL);
+    char *file_path = f_file_normalize_name (slib_path, NULL);
 
+    char *full_path = g_build_filename (file_path, basename, NULL);
+
+    GEDA_FREE(file_path);
     GEDA_FREE(slib_path);
 
     return(full_path);

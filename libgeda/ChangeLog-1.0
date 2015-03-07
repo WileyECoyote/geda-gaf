@@ -1,5 +1,9 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Revise s_slib_search_dirs to return a normalized filename.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_slib.c: Revise s_slib_search_dirs to skip the dot directory.
       Revise and add Doxygen comments.
 
