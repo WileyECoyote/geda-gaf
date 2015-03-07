@@ -42,40 +42,41 @@
  * signifies that this is an attribute
  */
 
-/*! \brief Add attributes of obejct to selection
+/*! \brief Add attributes of object to selection
  *  \par Function Description
- *  Copy all attributes select to the selection list.
+ *  Adds non-selected attributes of \a selected to \a selection list.
  *
- *  \todo get a better name
  */
-void o_attrib_add_selected(GschemToplevel *w_current, SELECTION *selection,
-                           Object *selected)
+void o_attrib_add_2_selection(GschemToplevel *w_current, SELECTION *selection,
+                              Object *selected)
 {
   Object *a_current;
-  GList *a_iter;
-  GList *selected_objects = NULL;
+  GList  *a_iter;
+  GList  *objects_added;
 
-  if (selection == NULL) {
-    BUG_MSG("selection == NULL\n");
-    return;
-  }
+  if (selection) {
 
-  for (a_iter = selected->attribs; a_iter; a_iter = a_iter->next)
-  {
-    a_current = a_iter->data;
+    objects_added = NULL;
 
-    /* make sure object isn't selected already */
-    if (!a_current->selected) {
-      o_selection_add (selection, a_current);
-      selected_objects = g_list_prepend (selected_objects, a_current);
+    for (a_iter = selected->attribs; a_iter; a_iter = a_iter->next) {
+
+      a_current = a_iter->data;
+
+      /* make sure object isn't selected already */
+      if (!a_current->selected) {
+        o_selection_add (selection, a_current);
+        objects_added = g_list_prepend (objects_added, a_current);
+      }
+    }
+
+    if (objects_added) {
+      /* Run select-objects-hook */
+      g_run_hook_object_list(w_current, "%select-objects-hook", objects_added);
+      g_list_free (objects_added);
     }
   }
-
-  if (selected_objects != NULL) {
-    /* Run select-objects-hook */
-    g_run_hook_object_list (w_current, "%select-objects-hook",
-                            selected_objects);
-    g_list_free (selected_objects);
+  else {
+    BUG_MSG("selection == NULL\n");
   }
 }
 

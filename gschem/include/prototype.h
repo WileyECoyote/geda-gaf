@@ -376,7 +376,7 @@ void       o_arc_motion                 (GschemToplevel *w_current, int x, int y
 void       o_arc_draw_rubber            (GschemToplevel *w_current);
 
 /* o_attrib.c */
-void       o_attrib_add_selected             (GschemToplevel *w_current, SELECTION *selection, Object *selected);
+void       o_attrib_add_2_selection             (GschemToplevel *w_current, SELECTION *selection, Object *selected);
 void       o_attrib_deselect_invisible       (GschemToplevel *w_current, SELECTION *selection, Object *selected);
 void       o_attrib_select_invisible         (GschemToplevel *w_current, SELECTION *selection, Object *selected);
 void       o_attrib_toggle_visibility        (GschemToplevel *w_current, Object *object);

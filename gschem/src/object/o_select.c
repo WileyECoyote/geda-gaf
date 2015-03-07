@@ -209,7 +209,7 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
     else {
 
       /* Select all attributes of the object for a single click select */
-      o_attrib_add_selected (w_current, selection, o_current);
+      o_attrib_add_2_selection (w_current, selection, o_current);
     }
   }
 }
@@ -775,7 +775,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
        o_selection_add (selection, obj);
 
     /* Add any attributes of object to selection as well. */
-    o_attrib_add_selected (w_current, selection, obj);
+    o_attrib_add_2_selection (w_current, selection, obj);
   }
 
   /* Run hooks for all items selected */
