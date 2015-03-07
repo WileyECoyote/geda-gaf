@@ -1,5 +1,10 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Implement functions geda_list_remove_all
+      and o_selection_unselect_all for testing.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_box.c: Fix o_box_end not invalidating rubber with zero
       width or height.
 

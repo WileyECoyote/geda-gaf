@@ -680,20 +680,20 @@ void o_select_unselect_all(GschemToplevel *w_current)
 {
   if (o_select_is_selection(w_current)) {
 
-    GedaToplevel  *toplevel  = w_current->toplevel;
-    SELECTION     *selection = Top_Selection;
-
-    Object    *object;
-    GList     *removed;
-
-    removed = NULL;
+    GedaToplevel *toplevel  = w_current->toplevel;
+    SELECTION    *selection = Top_Selection;
+    Object       *object;
 
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
-      GList     *list;
-      GList     *iter;
+      GList *list = geda_list_get_glist (selection);
+/*
+      GList *iter;
+      GList *removed;
+START_PERFORMANCE(w_current)
+      list    = g_list_copy (geda_list_get_glist (selection));
 
-      list = g_list_copy (geda_list_get_glist (selection));
+      geda_notify_list_freeze (Current_Page->change_notify_funcs);
 
       for (iter = list; iter; iter = iter->next) {
 
@@ -703,8 +703,25 @@ void o_select_unselect_all(GschemToplevel *w_current)
           removed = g_list_prepend(removed, object);
         }
       }
+      if (o_selection_unselect_all(selection)) {
+        g_run_hook_object_list (w_current, "%deselect-objects-hook", list);
+      }
+
+      geda_list_remove_all(selection);
+
+      geda_notify_list_thaw (Current_Page->change_notify_funcs);
+
+      o_invalidate_glist (w_current, list);
 
       g_list_free(list);
+
+STOP_PERFORMANCE(w_current)
+*/
+      if (o_selection_unselect_all(selection)) {
+        g_run_hook_object_list (w_current, "%deselect-objects-hook", list);
+      }
+
+      geda_list_remove_all(selection);
     }
     else {
 
@@ -714,11 +731,6 @@ void o_select_unselect_all(GschemToplevel *w_current)
         o_selection_remove(selection, object);
         g_run_hook_object(w_current, "%deselect-objects-hook", object);
       }
-    }
-
-    if (removed) {
-      g_run_hook_object_list (w_current, "%deselect-objects-hook", removed);
-      g_list_free(removed);
     }
   }
 }
