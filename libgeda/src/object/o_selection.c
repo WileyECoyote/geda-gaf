@@ -98,7 +98,6 @@ int o_selection_remove (SELECTION *selection, Object *object)
   return result;
 }
 
-
 /*! \brief Prints the given selection list
  *
  *  \par Function Description
@@ -186,6 +185,50 @@ int o_selection_unselect (Object *object)
   }
   else {
     fprintf(stderr, "%s: Is not gEDA Object:<%p>\n", __func__, object);
+    result = -1;
+  }
+  return result;
+}
+
+/*! \brief Unselects all objects in given selection
+ *
+ *  \par Function Description
+ *  Unsets the selected flag for each object in \a selection.
+ *
+ *  \param [in] selection #GedaList of objects to unselect.
+ *
+ *  \returns count of the number of objects unselected, FALSE if no
+ *           objects were unselected, or -1 to indicate an error
+ *           because \a object is not a valid #GedaList.
+ */
+int o_selection_unselect_all (SELECTION *selection)
+{
+  int result;
+
+  if (GEDA_IS_LIST(selection)) {
+
+    GList  *iter;
+    GList  *list;
+    Object *object;
+
+    list = geda_list_get_glist(selection);
+
+    object = list->data;
+
+    result = 0;
+
+    for (iter = list; iter != NULL; iter = g_list_next (iter)) {
+
+      object = iter->data;
+      if ((result += object->selected)) { /* if was selected */
+        o_notify_emit_pre_change (object);
+        object->selected = FALSE;
+        o_notify_emit_change (object);
+      }
+    }
+  }
+  else {
+    fprintf(stderr, "%s: Invalid selection\n", __func__);
     result = -1;
   }
   return result;

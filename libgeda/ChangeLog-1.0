@@ -1,5 +1,9 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_selection.c: Add function o_selection_unselect_all
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * Revise s_slib_search_dirs to return a normalized filename.
 
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
