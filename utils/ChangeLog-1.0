@@ -1,3 +1,8 @@
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/geda-install.sh.in: Fix error in script; function to get desktop
+      file base-name was not working, should have been in parentheses.
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Replace g_path_is_absolute with f_get_is_path_absolute

@@ -246,7 +246,7 @@ do_install_desktop(){
   if [ "$(ls -A $src_path/*.desktop)" ] ; then
     mkdir -p "$LOCAL_SHARE/applications"
     for file in $src_path/*.desktop; do
-      filename=basename $file
+      filename=$(basename $file)
       target=$LOCAL_SHARE/applications/$filename
       if [ ! -f $target ] && [ ! -h $target ] ; then
         vecho "installing ${file} to ${target}"
