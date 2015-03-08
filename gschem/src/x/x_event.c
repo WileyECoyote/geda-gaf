@@ -553,9 +553,18 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
     else {
+
       w_current->inside_action = FALSE;
-      if (w_current->event_state != COMPMODE) {
-        i_status_set_state(w_current, SELECT);
+
+      switch(w_current->event_state) {
+        case(NETMODE):
+        case(COMPMODE):
+          break;
+
+        default:
+
+          i_status_set_state(w_current, SELECT);
+          break;
       }
     }
   }

@@ -1,5 +1,14 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Make net-resume work again:
+
+    * src/x/x_event.c: Fix new event scheme; modify x_event_button_released
+      for third button release to not go into SELECT for NETMODE so that the
+      old method of to resume drawing nets works properly. TODO: Buses should
+      work the same way. C bus continuation works but not resume.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Completely revamp i_cmd_do_attach; allow pairs
       of object in any order. For selection greated that 3, that first object
       that can not be attached is the target, utilize w_current->which_object
