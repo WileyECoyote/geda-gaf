@@ -1579,6 +1579,7 @@
 (map-keys "E X"        "edit-text")
 (map-keys "E M"        "edit-move")
 (map-keys "E D"        "edit-delete")
+(map-keys "E N"        "edit-snap")
 (map-keys "E P"        "edit-extend")
 (map-keys "E R"        "edit-rotate")
 (map-keys "E I"        "edit-mirror")
@@ -1644,6 +1645,7 @@
 (map-keys "R"          "view-redraw")
 (map-keys "<Shift>R"   "edit-redo")
 (map-keys "S"          "edit-select")
+(map-keys "<Shift>S G" "edit-snap")
 
 (map-keys "T N"            "tools-autonumber")
 (map-keys "T C"            "tools-show-console")
@@ -1787,12 +1789,12 @@
         ("SEPARATOR"               #f                     #f)
         (,(N_ "Copy")               edit-copy              "geda-copy"        ,(N_ "Copy selection"))
         (,(N_ "Multiple Copy")      edit-mcopy             "geda-multi"       ,(N_ "Make Multible Copies of selection"))
-        (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move Objects"))
-        (,(N_ "Rotate 90")          edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
         (,(N_ "Mirror")             edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
+        (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move Selection"))
+        (,(N_ "Rotate 90")          edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
+        (,(N_ "Snap to grid")       edit-snap              "geda-snap"        ,(N_ "Snap Selection to grid to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)
-
         (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break Linear object into seperate objects"))
         (,(N_ "Extend")             edit-extend            "gschem-extend"    ,(N_ "Project Linear objects to other objects"))
 

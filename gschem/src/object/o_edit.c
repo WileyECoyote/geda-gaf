@@ -693,7 +693,6 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
         if (!o_get_is_visible (o_current)) {
           o_set_visibility (o_current, VISIBLE);
           o_text_recreate(o_current);
-
           toplevel->page_current->CHANGED = 1;
         }
       }
@@ -701,6 +700,47 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
     NEXT(iter);
   }
   o_undo_savestate(w_current, UNDO_ALL);
+}
+
+/*! \brief Snap Selection to current Grid Snap Size
+ *
+ * \par Function Description
+ *  Checks the position of each object in the \a list and translates
+ *  objects found to be off the current grid snap.
+ *
+ * \todo Consider launching a dialog to call this routine and pass
+ *       list of objects and snap the user wants to use. Maybe just
+ *       hack the old Grid snap dialog and hack the menus since the
+ *       dialog does not work will in an action.
+ *
+ */
+void o_edit_snap (GschemToplevel *w_current, GList *object_list)
+{
+  GList *iter     = object_list;
+  bool   modified = FALSE;
+
+  while (iter) {
+
+    int cur_x, cur_y, dx, dy;
+
+    Object *object = (Object *)iter->data;
+
+    if (o_get_position(object, &cur_x, &cur_y)) {
+      dx = snap_grid (w_current, cur_x) - cur_x;
+      dy = snap_grid (w_current, cur_y) - cur_y;
+
+      if (dx || dy) {
+        o_translate_object(object, dx, dy);
+        modified = TRUE;
+      }
+    }
+
+    NEXT(iter);
+  }
+  //toplevel->page_current->CHANGED = 1;
+  if (modified) {
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
 }
 
 /*! \brief Update a component.

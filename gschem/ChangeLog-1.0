@@ -1,5 +1,27 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * New Feature Function - Auto-Snap Objects to Grid:
+
+    * etc/system-gschemrc.scm: Add  key sequence "E N" for new action "edit-snap".
+      also added alternate sequence "<Shift>S G" for snap grid, maybe easier to
+      remember. Add menu "Edit/Snap to Grid" for new action "edit-snap".
+
+    * include/i_actions.h: Add action EDIT_SNAP, resequenced EDIT_MIRROR before
+      EDIT_MOVE.
+
+    * include/i_command.h: Add entries for do_snap, relocated do_mirror before
+      do_move.
+
+    * src/iface/i_command.c: Add new action responder do_snap simply to pass
+      selection list to...
+
+    * src/object/o_edit.c: Add new utility function to snap all objects in the
+      given list to the current grid snap. This should have been the very first
+      function I ever add to gschem, (followed by the double click terminations
+      added earlier today.)
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: Updated order of arguments for o_attrib_attach
       in (recently added) function o_attrib_attach_list_2_object.
 

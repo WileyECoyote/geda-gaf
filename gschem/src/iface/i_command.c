@@ -1226,36 +1226,6 @@ COMMAND (do_mcopy)
   EXIT_COMMAND(do_mcopy);
 }
 
-/** @brief i_cmd_do_move in i_command_Edit_Actions */
-/*! \brief Move selected objects on page.
- *  \par Function Description
- *   Initiate Move mode for selected objects
- */
-COMMAND (do_move)
-{
-  BEGIN_W_COMMAND(do_move);
-
-  if (o_select_is_selection(w_current)) {
-    o_redraw_cleanstates(w_current);
-    if HOT_ACTION (do_move) {
-      if (o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move))) {
-        i_status_set_state(w_current, MOVEMODE);
-      }
-    }
-    else {
-      w_current->event_state   = MOVEMODE;
-      w_current->inside_action = FALSE;
-      x_toolbars_update (w_current);
-      i_status_show_msg(w_current, "Move from point");
-    }
-  }
-  else {
-    msg_need_select_1st(w_current);
-  }
-
-  EXIT_COMMAND(do_move);
-}
-
 /*! \brief Mirror selected objects on page
  *
  *  @brief i_cmd_do_mirror in i_command_Edit_Actions
@@ -1295,6 +1265,36 @@ COMMAND (do_mirror)
   }
 
   EXIT_COMMAND(do_mirror);
+}
+
+/** @brief i_cmd_do_move in i_command_Edit_Actions */
+/*! \brief Move selected objects on page.
+ *  \par Function Description
+ *   Initiate Move mode for selected objects
+ */
+COMMAND (do_move)
+{
+  BEGIN_W_COMMAND(do_move);
+
+  if (o_select_is_selection(w_current)) {
+    o_redraw_cleanstates(w_current);
+    if HOT_ACTION (do_move) {
+      if (o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move))) {
+        i_status_set_state(w_current, MOVEMODE);
+      }
+    }
+    else {
+      w_current->event_state   = MOVEMODE;
+      w_current->inside_action = FALSE;
+      x_toolbars_update (w_current);
+      i_status_show_msg(w_current, "Move from point");
+    }
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+
+  EXIT_COMMAND(do_move);
 }
 
 /*! \brief Break Editing Mode
@@ -1413,6 +1413,33 @@ COMMAND (do_rotate)
   }
 
   EXIT_COMMAND(do_rotate);
+}
+
+/*! \brief Snap Selecion Editing Action
+ *
+ *  @brief i_cmd_do_snap in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  Responses to edit-snap actions, simply by passing the list of
+ *  currently selected objects to he o_edit_snap function.
+ *
+ */
+COMMAND (do_snap)
+{
+  BEGIN_W_COMMAND(do_snap);
+
+  GList *object_list;
+
+  object_list = geda_list_get_glist (Current_Selection);
+
+  if (o_select_is_selection(w_current)) {
+    o_redraw_cleanstates(w_current);
+    o_edit_snap (w_current, object_list);
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+  EXIT_COMMAND(do_snap);
 }
 
 /*! \brief Edit Attributes for selected object
