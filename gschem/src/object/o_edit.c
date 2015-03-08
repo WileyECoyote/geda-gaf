@@ -717,9 +717,14 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
  *
  * \return the new Object that replaces \a o_current.
  *
- * TODO: This function retains attribute positions. If an attribute
- * position was what changed between symbols versions then using
- * this "update" function will have no effect.
+ * \note This function retains attribute positions. If an attribute
+ * position was what changed between symbols versions and the user
+ * desires to update the positions of attributes then the user can
+ * use "Attributes/Reset Position" after updating the component.
+ *
+ * \todo Consider launching a dialog to call this routine and pass
+ *       list of attribute names the user wants restored, the dialog
+ *       could also have a check button to restore positions.
  */
 Object *
 o_edit_update_component (GschemToplevel *w_current, Object *o_current)
@@ -735,12 +740,12 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
 
   const  CLibSymbol *clib;
 
-  const char *keepers[] = {  "pinnumber",
-                              "pinlabel",
-                              "pinseq",
-                              "pintype",
-                              "symversion",
-                              NULL };
+  const char *keepers[] = { "pinnumber",
+                            "pinlabel",
+                            "pinseq",
+                            "pintype",
+                            "symversion",
+                            NULL };
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(o_current), NULL);
   g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
@@ -800,13 +805,22 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-/* fprintf(stderr, "\tkeeping %s\n", keepers[index]); */
+/*fprintf(stderr, "\tkeeping %s\n", keepers[index]);*/
             attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
             o_attrib_set_value (attr_old, name,  new_value);
             break;
           }
           index++;
         } while (keepers[index]);
+
+        attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+        if (attr_old != NULL && (attr_old->text->size != attr_new->text->size))
+        {
+          attr_old->dont_redraw = TRUE;
+          o_invalidate_object (w_current, attr_old);
+          attr_old->text->size = attr_new->text->size;
+          attr_old->dont_redraw = FALSE;
+        }
 
         o_attrib_remove (&o_new->attribs, attr_new);
         s_object_release (attr_new);
@@ -839,8 +853,10 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   /* Select new Object */
   o_selection_add (page->selection_list, o_new);
 
+  /* A redraw attributes in case a property (size) was restored */
+  o_invalidate_glist (w_current, o_new->attribs);
+
   /* mark the page as modified */
-  toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 
   return o_new;

@@ -1,5 +1,15 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Restore Attributes font size when symbols updated:
+
+    * src/object/o_edit.c: Revise function o_edit_update_component to
+      restore the font size of attached attribute when symbols are re-
+      loaded, also clean indentation, remove setting page change flag
+      since this is done by libgeda, and revised Doxygen comments. May
+      be need user settable list of what to restore, or open a dialog.
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * Major annoyence - UI Interation: Terminating Add modes:
 
     * src/x/x_event.c: Revised initial conditional for double clicks in
