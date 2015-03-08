@@ -1,5 +1,22 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Updated order of arguments for o_attrib_attach
+      in (recently added) function o_attrib_attach_list_2_object.
+
+    * src/object/o_edit.c: Updated order of arguments for o_attrib_attach_list
+      in function o_edit_update_component.
+
+    * src/object/o_move.c: Updated order of arguments for o_get_position
+      in function o_move_motion.
+
+    * src/object/o_slot.c: Updated order of arguments for o_attrib_attach
+      in function o_slot_end.
+
+    * src/x/x_multiattrib.c: Update order of arguments for o_attrib_attach
+      in function multiattrib_action_promote_attributes.
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * Restore Attributes font size when symbols updated:
 
     * src/object/o_edit.c: Revise function o_edit_update_component to

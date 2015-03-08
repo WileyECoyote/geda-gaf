@@ -1,3 +1,8 @@
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Updated order of arguments for o_attrib_attach
+      in function PyGeda_set_attrib.
+
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsym-attribute.1.in: Add man page for Python utility script.

@@ -2790,7 +2790,7 @@ PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
         attrib = o_attrib_find_attrib_by_name (floaters, name, 0);
         if (attrib) {
           o_attrib_set_value(attrib, name, value);
-          o_attrib_attach (attrib, object, TRUE);
+          o_attrib_attach (object, attrib, TRUE);
         }
         else{
           attrib = o_attrib_new_attached(object, name, value, VISIBLE, SHOW_VALUE);

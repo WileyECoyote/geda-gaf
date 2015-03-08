@@ -99,7 +99,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
         if (src_object->attached_to != NULL &&
             src_object->attached_to->copied_to != NULL)
         {
-          o_attrib_attach(dst_object, src_object->attached_to->copied_to, FALSE);
+          o_attrib_attach(src_object->attached_to->copied_to, dst_object, FALSE);
           /* handle slot= attribute, it's a special case */
           if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0)
             s_slot_update_object (src_object->attached_to->copied_to);

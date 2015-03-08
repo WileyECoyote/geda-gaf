@@ -1,3 +1,8 @@
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Updated order of arguments for libgeda::o_attrib_attach
+      in function s_object_attrib_add_attrib_in_object.
+
 2015-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_states.h: Remove file.

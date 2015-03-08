@@ -1,3 +1,30 @@
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/prototype.h: Change order of arguments for functions:
+
+          * o_attrib_attach
+          * o_attrib_attach_list
+          * o_get_position
+
+      Because the order seemed backwards to me.
+
+    * src/object/o_attrib.c: Revised order of arguments for o_attrib_attach
+      and o_attrib_attach_list per changes to declarations and updated Doxygen
+      comment. Updated functions o_read_attribs and o_attrib_new_attached.
+
+    * src/object/o_complex_basic.c:Updated order of arguments for function
+      o_attrib_attach_list in o_complex_promote_attribs.
+
+    * src/object/o_get.c: Revised order of arguments for o_get_position
+      and per changes to declarations, changed g_critical to BUG_IMSG and
+      updated Doxygen comment.
+
+    * src/object/o_list.c: Updated order of arguments for o_attrib_attach
+      in function o_list_copy_all.
+
+    * src/scheme/scheme_attrib.c: Updated order of arguments for o_attrib_
+      attach in function attach_attrib_x.
+
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Call s_object_set_page_changed in function

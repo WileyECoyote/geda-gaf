@@ -558,15 +558,13 @@ int o_get_parent_id (Object *object)
  *  \par Function Description
  *  This function gets the position of an object in world coordinates.
  *
- *  \param [out] x       pointer to the x-position
- *  \param [out] y       pointer to the y-position
- *  \param [in] object   The object to get the position.
+ *  \param [in] object   The object to get the position,
+ *  \param [out] x       pointer to the x-position,
+ *  \param [out] y       pointer to the y-position.
  *
  *  \return TRUE if successfully determined the position, FALSE otherwise
- *
- * TODO: Fix backward arguments
  */
-bool o_get_position (int *x, int *y, Object *object)
+bool o_get_position (Object *object, int *x, int *y )
 {
   bool (*func) ( int*, int*, Object*) = NULL;
 
@@ -584,8 +582,7 @@ bool o_get_position (int *x, int *y, Object *object)
       case OBJ_PIN:     func = o_pin_get_position;     break;
       case OBJ_ARC:     func = o_arc_get_position;     break;
       default:
-        g_critical ("o_get_position: object %p has bad type '%c'\n",
-                    object, object->type);
+        BUG_IMSG("object has bad type '%c'\n", object->type);
   }
 
   if (func != NULL) {

@@ -99,7 +99,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
     if (object != NULL && object->attached_to == NULL && object != target) {
 
       if (o_get_is_valid_attribute(object)) {
-        o_attrib_attach (object, target, TRUE);
+        o_attrib_attach (target, object, TRUE);
         attached_objects = g_list_prepend (attached_objects, object);
       }
     }

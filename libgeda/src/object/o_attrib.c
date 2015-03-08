@@ -107,12 +107,12 @@ o_attrib_is_attached_to (const Object *attrib, const Object *object)
  *  \par Function Description
  *  Attach existing attribute to an object.
  *
- *  \param [in]  attrib       The attribute to be added.
  *  \param [out] object       The object where you want to add item as an attribute.
+ *  \param [in]  attrib       The attribute to be added.
  *  \param [in]  set_color    Whether or not we should set the new attribute's color.
  */
 void
-o_attrib_attach (Object *attrib, Object *object, int set_color)
+o_attrib_attach (Object *object, Object *attrib, int set_color)
 {
   g_return_if_fail (attrib != NULL);
   g_return_if_fail (object != NULL);
@@ -148,17 +148,17 @@ o_attrib_attach (Object *attrib, Object *object, int set_color)
  *  \par Function Description
  *  Attach list of existing attributes to an object.
  *
- *  \param [in]  attr_list  The list of attributes to be added.
  *  \param [out] object     The object where you want to add item as an attribute.
+ *  \param [in]  attr_list  The list of attributes to be added.
  *  \param [in]  set_color  Whether or not we should set the new attribute's color.
  */
 void
-o_attrib_attach_list (const GList *attr_list, Object *object, int set_color)
+o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
 {
   const GList *iter;
 
   for (iter = attr_list; iter != NULL; iter = g_list_next (iter))
-    o_attrib_attach (iter->data, object, set_color);
+    o_attrib_attach (object, iter->data, set_color);
 }
 
 /*! \brief Detach an attribute from parent
@@ -375,7 +375,7 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
     if (parent->page) {
       s_page_append_object (parent->page, new_obj);
     }
-    o_attrib_attach (new_obj, parent, FALSE);
+    o_attrib_attach (parent, new_obj, FALSE);
   }
 
   /* handle slot= attribute, it's a special case */
@@ -445,7 +445,7 @@ o_attrib_remove(GList **list, Object *remove)
  *  Read attributes from a TextBuffer.
  *
  *  \param [in]  toplevel               The GedaToplevel object.
- *  \param [in]  object_to_get_attribs  Object which gets these attribs.
+ *  \param [in]  parent  Object which gets these attribs.
  *  \param [in]  tb                     The text buffer to read from.
  *  \param [in]  release_ver            libgeda release version number.
  *  \param [in]  fileformat_ver         file format version number.
@@ -458,7 +458,7 @@ o_attrib_remove(GList **list, Object *remove)
  */
 GList*
 o_read_attribs (GedaToplevel *toplevel,
-                Object       *object_to_get_attribs,
+                Object       *parent,
                 TextBuffer   *tb,
                 unsigned int  release_ver, unsigned int fileformat_ver,
                 GError       ** err)
@@ -544,8 +544,8 @@ o_read_attribs (GedaToplevel *toplevel,
                                          toplevel->rendered_text_bounds_data);
 
 
-        if (object_to_get_attribs->type == OBJ_PIN)
-          o_pin_update_read_property(object_to_get_attribs, new_obj);
+        if (parent->type == OBJ_PIN)
+          o_pin_update_read_property(parent, new_obj);
 
         object_list = g_list_prepend (object_list, new_obj);
         ATTACH=TRUE;
@@ -557,7 +557,7 @@ o_read_attribs (GedaToplevel *toplevel,
     }
 
     if (ATTACH) {
-      o_attrib_attach (new_obj, object_to_get_attribs, FALSE);
+      o_attrib_attach (parent, new_obj, FALSE);
       ATTACH=FALSE;
     }
     else {

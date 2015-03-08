@@ -837,7 +837,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   /* Detach attributes from old Object and attach to new Object */
   old_attribs = g_list_copy (o_current->attribs);
   o_attrib_detach_all (o_current);
-  o_attrib_attach_list (old_attribs, o_new, 1);
+  o_attrib_attach_list (o_new, old_attribs, 1);
   g_list_free (old_attribs);
 
   /* Add new attributes to page */

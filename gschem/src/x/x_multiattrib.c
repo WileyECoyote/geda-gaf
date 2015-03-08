@@ -639,7 +639,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
         s_page_append_object (toplevel->page_current, o_new);
 
         /* add the attribute its parent */
-        o_attrib_attach (o_new, o_attrib->parent_object, TRUE);
+        o_attrib_attach (o_attrib->parent_object, o_new, TRUE);
 
         /* Call add-objects-hook */
         g_run_hook_object (w_current, "%add-objects-hook", o_new);

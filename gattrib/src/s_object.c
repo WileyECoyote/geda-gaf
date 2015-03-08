@@ -363,7 +363,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   /* now attach the attribute to the object (if o_current is not NULL) */
   /* remember that o_current contains the object to get the attribute */
   if (o_current) {
-    o_attrib_attach (new_obj, o_current, FALSE);
+    o_attrib_attach (o_current, new_obj, FALSE);
   }
 
   o_selection_add (toplevel->page_current->selection_list, new_obj);

@@ -139,8 +139,8 @@ G_BEGIN_DECLS
          void    o_attrib_add                              (Object *object, Object *item);
         GList   *o_attrib_get_attached_attribs             (const Object *object);
          bool    o_attrib_is_attached_to                   (const Object *attrib, const Object *object);
-         void    o_attrib_attach                           (Object *attrib, Object *object, int set_color);
-         void    o_attrib_attach_list                      (const GList  *attr_list, Object *object, int set_color);
+         void    o_attrib_attach                           (Object *object, Object *attrib, int set_color);
+         void    o_attrib_attach_list                      (Object *object, const GList *attr_list, int set_color);
          void    o_attrib_detach                           (Object *object);
          void    o_attrib_detach_all                       (Object *object);
        Object   *o_attrib_new_attached                     (Object *object, const char *name, const char *value, int visibility, int show_name_value);
@@ -248,7 +248,7 @@ G_BEGIN_DECLS
          Page   *o_get_page                      (Object *obj);
        Object   *o_get_parent                    (Object *object);
           int    o_get_parent_id                 (Object *object);
-         bool    o_get_position                  (int *x, int *y, Object *object);
+         bool    o_get_position                  (Object *object, int *x, int *y);
        double    o_get_shortest_distance         (Object *object, int x, int y);
        double    o_get_shortest_distance_full    (Object *object, int x, int y, int force_solid);
           int    o_get_bounds                    (Object *o_current, int *left, int *top, int *right, int *bottom);

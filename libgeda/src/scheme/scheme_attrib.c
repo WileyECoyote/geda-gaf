@@ -188,7 +188,7 @@ SCM_DEFINE (attach_attrib_x, "%attach-attrib!", 2, 0, 0,
 
   /* Carry out the attachment */
   o_notify_emit_pre_change (attrib);
-  o_attrib_attach (attrib, obj, TRUE);
+  o_attrib_attach (obj, attrib, TRUE);
   o_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);

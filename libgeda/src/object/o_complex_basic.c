@@ -330,7 +330,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   }
 
   /* Attach promoted attributes to the original complex object */
-  o_attrib_attach_list (promoted, object, TRUE);
+  o_attrib_attach_list (object, promoted, TRUE);
 
   g_list_free (promotable);
 
