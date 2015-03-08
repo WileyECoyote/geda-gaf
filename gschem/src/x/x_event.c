@@ -75,15 +75,70 @@ int x_event_button_pressed(GtkWidget      *widget,
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
-  if (event->type == GDK_2BUTTON_PRESS &&
-     (w_current->event_state == STARTSELECT ||
-      w_current->event_state == SELECT))
-  {
-    if (o_select_is_selection (w_current)) {
-      list = geda_list_get_glist(Current_Selection);
-      o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
-      i_status_set_state(w_current, SELECT);
-      return(0);
+  if (event->type == GDK_2BUTTON_PRESS) {
+    if (w_current->inside_action) {
+
+      switch(w_current->event_state) {
+        case (NETMODE):
+          o_net_end (w_current, w_x, w_y);
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (PINMODE):
+          o_pin_end (w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (LINEMODE):
+          o_line_end (w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (BOXMODE):
+          o_box_end (w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (CIRCLEMODE):
+          o_circle_end (w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (ARCMODE):
+          o_arc_end1 (w_current, w_x, w_y);
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (PICTUREMODE):
+          o_picture_end (w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        case (BUSMODE):
+          o_bus_end (w_current, w_x, w_y);
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, SELECT);
+          return(0);
+
+        default:
+          break;
+      }
+    }
+    else {
+      switch(w_current->event_state) {
+        case (STARTSELECT):
+        case (SELECT):
+          if (o_select_is_selection (w_current)) {
+            list = geda_list_get_glist(Current_Selection);
+            o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
+            i_status_set_state(w_current, SELECT);
+          }
+          return(0);
+        default:
+          break;
+      }
     }
   }
 
@@ -309,6 +364,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case(NETMODE):
           o_net_reset (w_current);
+          break;
 
         case(PINMODE):
         case(LINEMODE):

@@ -1,5 +1,20 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Major annoyence - UI Interation: Terminating Add modes:
+
+    * src/x/x_event.c: Revised initial conditional for double clicks in
+      function x_event_button_pressed, which previously only responded
+      to SELECT events to launch associated edit dialogs, in order to
+      terminate the add modes, yes NETMODE, PINMODE, LINEMODE, BOXMODE,
+      CIRCLEMODE, ARCMODE, PICTUREMODE, and BUSMODE, if inside of an
+      action! This seemed to work well during initial testing and has
+      also been tested more extensively. This feature has intuitive feel,
+      and probably should since when the lines, boxes, circles, and nets
+      keep coming and wont go away, it seems natural to "click-it-off".
+      I think this is a good thing.
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * Tweek Temporary Attribute Visibility experiment:
 
     * src/x/x_attrib.c: Revise x_dialog_attrib_edit_update_selection to use
