@@ -1,3 +1,19 @@
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Tweek Temporary Attribute Visibility experiment:
+
+    * src/x/x_attrib.c: Revise x_dialog_attrib_edit_update_selection to use
+      object->visibility != VISIBLE instead of o_get_is_visible (object) in
+      conditional.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Fix magnetic nets not being erased:
+
+    * src/object/o_net.c: Add call to o_net_invalidate_rubber in function
+      o_net_reset, and set inside_action FALSE so the rubber circles get
+      removed when motion occurs before the mouse button is released.
+
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * Make net-resume work again:

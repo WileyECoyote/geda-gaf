@@ -73,11 +73,11 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
 
     /* Update the visibility button widget*/
     widget = g_object_get_data(G_OBJECT(ThisDialog), "visbutton");
-    if (o_get_is_visible (object)) {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), TRUE);
+    if (object->visibility != VISIBLE) {
+      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
     }
     else {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
+      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), TRUE);
     }
 
     /* Update Show Options */
@@ -224,8 +224,16 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     o_undo_savestate(w_current, UNDO_ALL);
   }
   else { /* Editing an existing Attribute */
+
     object =  g_object_get_data(G_OBJECT(ThisDialog), "attrib");
+
     if (object != NULL && object->type == OBJ_TEXT) {
+
+      /* This preserves "temporary" visibility states */
+      if ( !vis && object->visibility != vis) {
+        vis = object->visibility;
+      }
+
       o_text_change(w_current, object, newtext, vis, show);
       o_undo_savestate(w_current, UNDO_ALL);
     }

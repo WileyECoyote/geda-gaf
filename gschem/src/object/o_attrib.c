@@ -47,8 +47,9 @@
  *  Adds non-selected attributes of \a selected to \a selection list.
  *
  */
-void o_attrib_add_2_selection(GschemToplevel *w_current, SELECTION *selection,
-                              Object *selected)
+void o_attrib_attached_2_selection(GschemToplevel *w_current,
+                                   SELECTION      *selection,
+                                   Object         *object)
 {
   Object *a_current;
   GList  *a_iter;
@@ -58,7 +59,7 @@ void o_attrib_add_2_selection(GschemToplevel *w_current, SELECTION *selection,
 
     objects_added = NULL;
 
-    for (a_iter = selected->attribs; a_iter; a_iter = a_iter->next) {
+    for (a_iter = object->attribs; a_iter; a_iter = a_iter->next) {
 
       a_current = a_iter->data;
 
@@ -77,6 +78,40 @@ void o_attrib_add_2_selection(GschemToplevel *w_current, SELECTION *selection,
   }
   else {
     BUG_MSG("selection == NULL\n");
+  }
+}
+
+/*! \brief Attach attributes in list to preset object
+ *  \par Function Description
+ *  Add every text object in list that is an attribute (=) and is not object,
+ *  to object.
+ */
+void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
+{
+  GList  *attached_objects = NULL;
+  GList  *iter             = list;
+  Object *target           = w_current->which_object;
+
+  while (iter != NULL) {
+
+    Object *object = iter->data;
+
+    if (object != NULL && object->attached_to == NULL && object != target) {
+
+      if (o_get_is_valid_attribute(object)) {
+        o_attrib_attach (object, target, TRUE);
+        attached_objects = g_list_prepend (attached_objects, object);
+      }
+    }
+
+    iter = iter->next;
+  }
+
+  if (attached_objects != NULL) {
+    g_run_hook_object_list (w_current, "%attach-attribs-hook",
+                            attached_objects);
+    g_list_free (attached_objects);
+    o_undo_savestate(w_current, UNDO_ALL);
   }
 }
 
@@ -384,6 +419,9 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
  *  defined in the symbol file if the attribute was inherited.
  *
  *  \returns TRUE if the attribute was modified, otherwise FALSE.
+ *
+ * TODO: This function assumes there is only attribute with the given
+ *       name.
  */
 bool o_attrib_reset_position (GschemToplevel *w_current, Object *parent, Object *attrib)
 {
