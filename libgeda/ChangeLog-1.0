@@ -1,5 +1,11 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Call s_object_set_page_changed in function
+      o_attrib_attach so the page changed flag is set if the parent object
+      that is being add to is already on a page.
+
+2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_get.c: A query function o_get_is_valid_attribute.
 
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>

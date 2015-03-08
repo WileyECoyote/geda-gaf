@@ -136,6 +136,9 @@ o_attrib_attach (Object *attrib, Object *object, int set_color)
 
   o_attrib_add (object, attrib);
 
+  /* Only gets set if object is on a page */
+  s_object_set_page_changed (object);
+
   if (set_color)
     o_set_color (attrib, ATTRIBUTE_COLOR);
 }

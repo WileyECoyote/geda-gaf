@@ -237,6 +237,7 @@ G_BEGIN_DECLS
          bool    o_get_is_inside_region          (int xmin, int ymin, int xmax, int ymax, int x, int y);
          bool    o_get_is_selectable             (Object *object);
          bool    o_get_is_selected               (Object *object);
+         bool    o_get_is_valid_attribute        (Object *object);
          bool    o_get_is_visible                (Object *object);
      LINE_END    o_get_line_end                  (int capstyle);
          bool    o_get_line_options              (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
@@ -378,6 +379,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
           int    o_selection_remove              (SELECTION *selection, Object *o_selected);
           int    o_selection_select              (Object *object);
           int    o_selection_unselect            (Object *object);
+          int    o_selection_unselect_all        (SELECTION *selection);
 
 /* o_set.c */
          void    o_set_bounds_invalid            (Object *object);
