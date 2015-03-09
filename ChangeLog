@@ -1,3 +1,9 @@
+2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+      * /include/ansi.h: Add new file with defines for ANSI escape codes,
+        intended to enhance (say "add pizazz") to terminal output where
+        appropriate.
+
 2015-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_macros.h: Add macros BEGIN_DECLS and END_DECLS
