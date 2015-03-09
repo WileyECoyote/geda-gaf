@@ -1,7 +1,13 @@
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gcheck-library.sh: Remove extra characters in help text, no doubt
+      dilapidate X11 mouse wheel pasted, (that's X, not my mouse).
+
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda-install.sh.in: Fix error in script; function to get desktop
-      file base-name was not working, should have been in parentheses.
+      file base-name was not working, should have been in parentheses. Also added
+      REV_DATE varible, for tracking only.
 
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 

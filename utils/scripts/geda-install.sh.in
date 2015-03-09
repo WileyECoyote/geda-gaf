@@ -1,10 +1,11 @@
 #!/bin/bash
 
-VER=0.5
+VER=0.6
 
 # Author: Wiley Edward Hill
 # Date: 02/23/14
 #
+REV_DATA="03/01/2015"
 
 me=`basename $0`
 
