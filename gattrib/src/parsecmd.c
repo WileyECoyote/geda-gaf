@@ -24,7 +24,11 @@
  * information.
  */
 
-#include <gattrib.h>
+#include <config.h>
+#include <ansi.h>
+#include "version.h"
+
+#include "gattrib.h"
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
@@ -61,26 +65,46 @@ void usage(char *cmd)
 "Presents schematic attributes in easy-to-edit spreadsheet format.\n"
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
-"  -q, --quiet            Quiet mode\n"
-"  -v, --verbose          Verbose mode on\n"
-"  -h, --help             This help menu\n"
+"\n"
+"\t-h, --help      This help menu\n"
+"\t-q, --quiet     Quiet mode\n"
+"\t-v, --verbose   Verbose mode on\n"
+"\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
 "  *  What do the colors of the cell text mean?\n"
-"     The cell colors indicate the visibility of the attribute.\n"
-"     Black = Visible attribute, value displayed only.\n"
-"     Grey  = Invisible attribute.\n"
-"     Red   = Visible attribute, name displayed only.\n"
-"     Blue  = Visible attribute, both name and value displayed.\n"
+"     The cell text colors indicate the visibility of the attribute.\n"
+"     " ATT_REVERSE "Black" RESET " = Visible attribute, value displayed only.\n"
+"     " FG_GRAY   "Grey" RESET "  = Invisible attribute.\n"
+"     " FG_L_RED  "Red"  RESET "   = Visible attribute, name displayed only.\n"
+"     " FG_L_BLUE "Blue" RESET "  = Visible attribute, both name and value displayed.\n"
 "\n"
-"  *  What does the period (\".\") at the end of some component refdeses mean?\n"
-"     The period is placed after the refdeses of slotted components.\n"
+"  *  What does the period (\".\") at the end of some component refdes mean?\n"
+"     The period is placed after the refdes of slotted components.\n"
 "     If slots are present on the component, then the different slots appear\n"
 "     in different rows with the slot number after the period.  Example:  C101.2.\n"
 "\n"
-"Copyright (C) 2003 -- 2006 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) net.\n"
+"Copyright (C) 2003-2015 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) net.\n"
 "\n"), cmd);
     exit(0);
+}
+
+/*! \brief Print version info and exit.
+ * \par Function Description
+ * Print gEDA version, and copyright/warranty notices, and exit with
+ * exit status 0.
+ */
+static void version (void)
+{
+  printf(
+    "gEDA %s (g%.7s)\n"
+    "Copyright (C) 1998-2015 gEDA developers\n"
+    "This is free software, and you are welcome to redistribute it under\n"
+    "certain conditions. For details, see the file `COPYING', which is\n"
+    "included in the gEDA distribution.\n"
+    "There is NO WARRANTY, to the extent permitted by law.\n",
+    PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
+    exit (0);
 }
 
 /*!
@@ -98,54 +122,62 @@ void usage(char *cmd)
  */
 int parse_commandline(int argc, char *argv[])
 {
-    int ch;
+  int ch;
 
 #if defined(HAVE_GETOPT_LONG) && defined(HAVE_GETOPT_H)
-    /* Use getopt_long if it is available */
-    int option_index = 0;
-    static struct option long_options[] = {
-      {"help", 0, 0, 'h'},
-      {"quiet", 0, 0, 'q'},
-      {"verbose", 0, 0, 'v'},
-      {0, 0, 0, 0}
-    };
 
-    while (1) {
-      ch = getopt_long(argc, argv, "hqv", long_options, &option_index);
-      if (ch == -1)
-	break;
+  /* Use getopt_long if it is available */
+  int option_index = 0;
+  static struct option long_options[] = {
+    {"help", 0, 0, 'h'},
+    {"quiet", 0, 0, 'q'},
+    {"verbose", 0, 0, 'v'},
+    {"version", 0, 0, 'V'},
+    {0, 0, 0, 0}
+  };
+
+  while (1) {
+
+    ch = getopt_long(argc, argv, "hqvV", long_options, &option_index);
+
+    if (ch == -1) {
+      break;
+    }
+
 #else
+
     /* Otherwise just use regular getopt */
-    while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
+  while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
+
 #endif
 
-      switch (ch) {
-
-      case 'v':
-	verbose_mode = TRUE;
-	break;
+    switch (ch) {
+      case 'h':
+        usage(argv[0]);
+        break;
 
       case 'q':
-	quiet_mode = TRUE;
-	break;
+        quiet_mode = TRUE;
+        break;
 
-      case 'h':
-	usage(argv[0]);
-	break;
+      case 'v':
+        verbose_mode = TRUE;
+        break;
+
+      case 'V':
+        version();
+        break;
 
       case '?':
       default:
-	usage(argv[0]);
-	break;
-      }
+        usage(argv[0]);
+        break;
     }
 
     if (quiet_mode) {
-	verbose_mode = FALSE;
+      verbose_mode = FALSE;
     }
-
-    return (optind);
+  }
+  return (optind);
 }
-
-
 

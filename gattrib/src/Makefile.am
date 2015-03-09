@@ -14,7 +14,9 @@ GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA)
 
 bin_PROGRAMS   = gattrib
 
-gattrib_SOURCES = \
+BUILT_SOURCES   = version.h
+
+gattrib_SOURCES = $(BUILT_SOURCES) \
 		globals.c \
 		listsort.c \
 		parsecmd.c \
@@ -59,6 +61,12 @@ gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
 
 localedir        = @datadir@/locale
 DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+
+version.h:
+	@if test ! -f $(top_srcdir)/version.h; then \
+	cd $(top_srcdir) \
+	$(MAKE) version.h || exit 1; \
+	fi
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for gattrib
