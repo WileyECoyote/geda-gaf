@@ -30,8 +30,6 @@
  *     or better:
  *
  *     printf("The quick " FG_RED "red" RESET " fox jumped over the " FG_YELLOW "yellow" RESET " dog\n");
- *
- *  Have fun!
  */
 #pragma once
 #ifndef ANSI_COLORS_H

@@ -60,6 +60,8 @@
  *                | labeless groups
  * ------------------------------------------------------------------
  * WEH | 09/21/14 | Renamed GEDA_SWITCH->EDA_SWITCH
+ * ------------------------------------------------------------------
+ * WEH | 03/01/15 | Add Macro GET_EDA_OBJECT
 */
 
 #pragma once
@@ -128,6 +130,8 @@ typedef struct
 
 #define GET_SPIN_IVALUE(spinner) gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON (spinner))
 #define GET_SWITCH_STATE(switch) gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (switch))
+
+#define GET_EDA_OBJECT(name) g_object_get_data (G_OBJECT (ThisDialog), WIDGET(name))
 
 #define GTK_HOOKUP_OBJECT(component, widget, name)        \
     g_object_set_data_full (G_OBJECT (component), name,   \
