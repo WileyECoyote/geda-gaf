@@ -487,6 +487,27 @@ void geda_page_remove_weak_ptr (Page *page, void *weak_pointer_loc)
   }
 }
 
+/*! \brief Rename a Page.
+ * \par Function Description
+ * Replace the filename string in \a page with \a newname.
+ *
+ * \param [in,out] page     A valid Page object.
+ * \param [in]     newname  New string name for page filename.
+ */
+int geda_page_rename (Page *page, const char *newname)
+{
+  bool result = FALSE;
+
+  if (GEDA_IS_PAGE(page) && newname) {
+    if (page->filename) {
+      GEDA_FREE(page->filename);
+    }
+    page->filename = u_string_strdup(newname);
+    page->CHANGED = TRUE;
+    result = TRUE;
+  }
+  return result;
+}
 
 /* For now, the toplevel should only be set once, we don't have a
  * low-level clone or copy method and the hooks are holding pointer

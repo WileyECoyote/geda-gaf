@@ -1,5 +1,9 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_page.c: Add vapor function geda_page_rename.
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/prototype.h: Change order of arguments for functions:
 
           * o_attrib_attach

@@ -142,7 +142,7 @@ void      geda_page_add_weak_ptr         (Page *page, void *weak_pointer_loc);
 void      geda_page_remove_weak_ptr      (Page *page, void *weak_pointer_loc);
 
 Page     *geda_page_open                 (const char *filename);
-int       geda_page_rename               (Page *page);
+int       geda_page_rename               (Page *page, const char *filename);
 int       geda_page_save                 (Page *page);
 void      geda_page_close                (Page *page);
 int       geda_page_copy                 (Page *page);
