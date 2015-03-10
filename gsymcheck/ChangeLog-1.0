@@ -1,3 +1,9 @@
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Check if device value string is being used as a directive
+      before condoning graphical device not "none" and do not issue warning or
+      count as an error.
+
 2015-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Replace g_path_is_absolute with f_get_is_path_absolute

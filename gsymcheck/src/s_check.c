@@ -382,9 +382,12 @@ s_check_device (const GList *obj_list, SYMCHECK *s_current)
     ADD_INFO_MESSAGE(message);
   }
   else if (s_current->graphical_symbol) {
-    s_current->device_attribute_incorrect=TRUE;
-    message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
-    ADD_WARN_MESSAGE(message);
+    /* If graphical "device" is not a "Directive" then might be an error */
+    if (u_string_stristr(temp, "Directive")) {
+      s_current->device_attribute_incorrect=TRUE;
+      message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
+      ADD_WARN_MESSAGE(message);
+    }
   }
 
   GEDA_FREE(temp);
