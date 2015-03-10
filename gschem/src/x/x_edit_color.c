@@ -118,12 +118,12 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
                            GschemToplevel *w_current)
 {
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     /* cut link from dialog to selection */
     gtk_widget_destroy(Dialog);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_color_apply(Dialog, w_current);
     break;
   default:
@@ -159,21 +159,21 @@ void x_dialog_edit_color (GschemToplevel *w_current)
                                             GTK_WINDOW(w_current->main_window),
            /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                             IDS_COLOR_EDIT, w_current,
-                                            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                            GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                            GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                            GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position (GTK_WINDOW (Dialog),
                          GTK_WIN_POS_MOUSE);
 
     gtk_dialog_set_default_response (GTK_DIALOG (Dialog),
-                                     GTK_RESPONSE_ACCEPT);
+                                     GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(Dialog)->vbox;
 

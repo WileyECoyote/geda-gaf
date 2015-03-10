@@ -654,8 +654,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   ThisDialog = geda_file_chooser_dialog_new_full (_("Write image..."),
                                             GTK_WINDOW(w_current->main_window),
                                             FILE_CHOOSER_ACTION_SAVE,
-                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                            GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
+                                            GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                            GTK_STOCK_SAVE,   GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
   /* force start in current working directory, NOT in 'Recently Used' */
@@ -786,7 +786,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 #endif
 
   gtk_dialog_set_default_response((GtkDialog*) ThisDialog,
-      GTK_RESPONSE_ACCEPT);
+      GEDA_RESPONSE_ACCEPT);
 
   gtk_window_position (GTK_WINDOW (ThisDialog),
       GTK_WIN_POS_MOUSE);
@@ -799,10 +799,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   g_object_set (ThisDialog, "visible", TRUE, NULL);
 
-  if (gtk_dialog_run((GtkDialog*)ThisDialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run((GtkDialog*)ThisDialog) == GEDA_RESPONSE_ACCEPT) {
 
 #if DEBUG_IMAGING
-  fprintf(stderr, "%s: Dialog GTK_RESPONSE_ACCEPT \n", __func__);
+  fprintf(stderr, "%s: Dialog GEDA_RESPONSE_ACCEPT \n", __func__);
 #endif
 
     /* Retrieve values from the dialog controls */

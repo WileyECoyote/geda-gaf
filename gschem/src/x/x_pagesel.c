@@ -134,17 +134,17 @@ void x_pagesel_callback_response (GtkDialog *dialog, int response, void *data)
   w_current = (GschemToplevel*)data;
 
   switch (response) {
-      case PAGESEL_RESPONSE_UPDATE:
-        pagesel_update (PAGESEL (dialog));
-        break;
-      case GTK_RESPONSE_DELETE_EVENT:
-      case PAGESEL_RESPONSE_CLOSE:
+      case GEDA_RESPONSE_DELETE_EVENT:
+      case GEDA_RESPONSE_CLOSE:
         if (IS_PAGESEL (w_current->pswindow)) {
           gtk_widget_destroy (GTK_WIDGET (dialog));
         }
         else {
           BUG_MSG ("pswindow is wrong object");
         }
+        break;
+      case GEDA_RESPONSE_REFRESH:
+        pagesel_update (PAGESEL (dialog));
         break;
       default:
         BUG_IMSG("unhandled case <%d>", response);
@@ -208,9 +208,19 @@ static bool pagesel_callback_button_pressed (GtkWidget      *widget,
   Pagesel *pagesel = (Pagesel*)user_data;
   bool ret_val;
 
-  if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3) {
-    pagesel_popup_menu (pagesel, event);
-    ret_val = TRUE;
+  if (event->type == GDK_BUTTON_PRESS) {
+    if (event->button == 2) {
+      GschemToplevel *w_current = GSCHEM_DIALOG(pagesel)->w_current;
+      gtk_window_present(GTK_WINDOW(w_current->main_window));
+      ret_val = FALSE;
+    }
+    else if (event->button == 3) {
+      pagesel_popup_menu (pagesel, event);
+      ret_val = TRUE;
+    }
+    else {
+      ret_val = FALSE;
+    }
   }
   else {
     ret_val = FALSE;
@@ -319,12 +329,11 @@ static void pagesel_popup_menu (Pagesel        *pagesel,
 /*! \brief Handler for the notify::gschem-toplevel signal of GschemDialog
  *
  *  \par Function Description
- *
  *  When the gschem-toplevel property is set on the parent GschemDialog,
  *  we should update the pagesel dialog.
  *
- *  \param [in] gobject    the object which received the signal.
- *  \param [in] arg1      the GParamSpec of the property which changed
+ *  \param [in] gobject    Object which received the signal.
+ *  \param [in] arg1       GParamSpec of the property which changed
  *  \param [in] user_data  user data set when the signal handler was connected.
  */
 static void notify_gschem_toplevel_cb (GObject    *gobject,
@@ -390,13 +399,13 @@ static void pagesel_show_fullnames_toggled (GtkWidget *widget,
 static void
 pagesel_callback_refresh_clicked (GtkButton *RefreshButt, void *user_data)
 {
-  gtk_dialog_response (GTK_DIALOG (user_data), PAGESEL_RESPONSE_UPDATE);
+  gtk_dialog_response (GTK_DIALOG (user_data), GEDA_RESPONSE_REFRESH);
 }
 
 static void
 pagesel_callback_close_clicked (GtkButton *CloseButt, void *user_data)
 {
-  gtk_dialog_response (GTK_DIALOG (user_data), PAGESEL_RESPONSE_CLOSE);
+  gtk_dialog_response (GTK_DIALOG (user_data), GEDA_RESPONSE_CLOSE);
 }
 
 /*! \brief Geda Box Object Finalization Function
@@ -700,7 +709,7 @@ static void pagesel_init (Pagesel *pagesel)
   gtk_box_pack_end (GTK_BOX (butt_hbox), fresh_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), PAGESEL_RESPONSE_UPDATE);
+  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_REFRESH);
   gtk_widget_grab_default (fresh_butt);
 }
 

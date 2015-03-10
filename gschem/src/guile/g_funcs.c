@@ -50,7 +50,7 @@ SCM g_funcs_confirm(SCM scm_msg)
   response = x_dialog_confirmation (msg, GTK_MESSAGE_INFO, FALSE);
   free(msg);
 
-  if (response == GTK_RESPONSE_YES)
+  if (response == GEDA_RESPONSE_YES)
     return SCM_BOOL_T;
   else
     return SCM_BOOL_F;
@@ -77,13 +77,13 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
   scm_response  = scm_from_int (-1);
 
   switch (response) {
-    case GTK_RESPONSE_YES:
+    case GEDA_RESPONSE_YES:
       scm_response  = scm_from_int (1);
       break;
-    case GTK_RESPONSE_NO:
+    case GEDA_RESPONSE_NO:
       scm_response  = scm_from_int (0);
       break;
-    case GTK_RESPONSE_CANCEL:
+    case GEDA_RESPONSE_CANCEL:
       default: /* The default response is cancel */
       scm_response  = scm_from_int (-1);
       break;

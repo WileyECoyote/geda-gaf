@@ -1052,7 +1052,7 @@ static void filter_list_set_default( void )
 {
   const char *question = _("Clear attributes and restore default filter list?");
   int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
-  if (response == GTK_RESPONSE_YES) {
+  if (response == GEDA_RESPONSE_YES) {
     clear_attributes();
     load_tree_view_str(GTK_TREE_VIEW (SelectedAttributesView), View2DefaultData);
   }
@@ -2585,13 +2585,13 @@ create_settings_dialog (GschemToplevel *w_current)
 
   CancelButt = gtk_button_new_from_stock ("gtk-cancel");
   g_object_set (CancelButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CancelButt, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CancelButt, GEDA_RESPONSE_CANCEL);
   gtk_widget_set_can_default(CancelButt, TRUE);
   gtk_widget_set_tooltip_text (CancelButt, _("Close without changing any settings"));
 
   SaveButt = gtk_button_new_with_mnemonic (_("Save"));
   g_object_set (SaveButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), SaveButt, GTK_RESPONSE_APPLY);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), SaveButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(SaveButt, TRUE);
   gtk_widget_set_tooltip_text (SaveButt, _("Close and Write settings to disk"));
 

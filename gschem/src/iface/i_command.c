@@ -986,7 +986,7 @@ COMMAND (do_export_symbol) {
     if (!o_get_is_embedded(o_current)) {
       const char *question = _("Symbol is not embeded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
-      if (response == GTK_RESPONSE_YES) {
+      if (response == GEDA_RESPONSE_YES) {
         o_complex_export(w_current, o_current);
       }
     }
@@ -1010,7 +1010,7 @@ COMMAND (do_export_picture) {
     if (!o_get_is_embedded(o_current)) {
       const char *question = _("Picture is not embeded, export anyway?");
       int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
-      if (response == GTK_RESPONSE_YES) {
+      if (response == GEDA_RESPONSE_YES) {
         o_picture_export(w_current, o_current);
       }
     }
@@ -1052,6 +1052,7 @@ COMMAND (do_undo)
   }
   EXIT_COMMAND(do_undo);
 }
+
 COMMAND (do_redo)
 {
   NOT_NULL(w_current);

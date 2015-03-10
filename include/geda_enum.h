@@ -60,7 +60,7 @@ typedef enum { ico_image, bmp_image, tiff_image, jpeg_image, png_image,
                eps_image, pdf_image, last_image
 } IMAGE_TYPES;
 
-/*! \enum gEDA_MessageType Message type */
+/*! \enum IDE_MESSAGE_TYPE Message type */
 typedef enum
 {
   GEDA_MESSAGE_INFO,
@@ -68,9 +68,28 @@ typedef enum
   GEDA_MESSAGE_QUESTON,
   GEDA_MESSAGE_ERROR,
   GEDA_MESSAGE_OTHER,
-} gEDA_MessageType;
+} IDE_MESSAGE_TYPE;
 
-/*! \enum GedaObjectFilter Used by Libgedathon
+typedef enum
+{
+  GEDA_RESPONSE_HELP           = -11,
+  GEDA_RESPONSE_APPLY,        /* -10 */
+  GEDA_RESPONSE_NO,           /* -9 */
+  GEDA_RESPONSE_YES,          /* -8 */
+  GEDA_RESPONSE_CLOSE,        /* -7 */
+  GEDA_RESPONSE_CANCEL,       /* -6 */
+  GEDA_RESPONSE_OK,           /* -5 */
+  GEDA_RESPONSE_DELETE_EVENT, /* -4 */
+  GEDA_RESPONSE_ACCEPT,       /* -3 */
+  GEDA_RESPONSE_REJECT,       /* -2 */
+  GEDA_RESPONSE_NONE,         /* -1 */
+  GEDA_RESPONSE_ERROR,        /* 0 is more of a spacer */
+  GEDA_RESPONSE_PLACE,        /* 1 */
+  GEDA_RESPONSE_HIDE,         /* 2 */
+  GEDA_RESPONSE_REFRESH,      /* 3 */
+}  IDE_RESPONSE_TYPE;
+
+/*! \enum IDE_OBJECT_FILTER Used by Libgedathon
  *  \brief Control returned Object types.
  */
 typedef enum
@@ -87,11 +106,11 @@ typedef enum
   GEDA_FILTER_PICTURE    = 1 << 9,
   GEDA_FILTER_PIN        = 1 << 10,
   GEDA_FILTER_TEXT       = 1 << 11
-} GedaObjectFilter;
+} IDE_OBJECT_FILTER;
 
 /* File System Stuff */
 
-/*! \enum FOpenFlags flags used by libgeda controling file open events
+/*! \enum IDE_OPEN_FLAGS flags used by libgeda controling file open events
  *  \brief f_open behaviour flags. See documentation for f_open_flags()
  *         in f_basic.c.
  */
@@ -99,7 +118,7 @@ typedef enum {
   F_OPEN_RC           = 1,
   F_OPEN_CHECK_BACKUP = 2,
   F_OPEN_RESTORE_CWD  = 4,
-} FOpenFlags;
+} IDE_OPEN_FLAGS;
 
 /*! \enum IDE_FILTER Used to control filter in GedaFileChooser Dialogs */
 typedef  enum {
@@ -123,7 +142,7 @@ typedef  enum {
   FILTER_IMAGES
 } IDE_IMAGE_FILTER;
 
-/*! \enum GedaStateFlags Used by Libgedauio classes to control widget states
+/*! \enum IDE_STATE_FLAG Used by Libgedauio classes to control widget states
  *  \brief Describes a widget state.
  * #GEDA_STATE_FLAG_NORMAL:       State during normal operation.
  * #GEDA_STATE_FLAG_ACTIVE:       Widget is active.
@@ -144,9 +163,9 @@ typedef enum
   GEDA_STATE_FLAG_INCONSISTENT = 1 << 4,
   GEDA_STATE_FLAG_FOCUSED      = 1 << 5,
   GEDA_STATE_FLAG_BACKDROP     = 1 << 6
-} GedaStateFlags;
+} IDE_STATE_FLAG;
 
-/*! \enum GedaSizeRequestMode Used by Libgedauio classes to control widget allocations
+/*! \enum IDE_SIZE_REQUEST Used by Libgedauio classes to control widget allocations
  *  \brief
  *   Used to specifies a preference for height-for-width or width-for-height geometry
  *   management.
@@ -160,7 +179,7 @@ typedef enum
   GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH = 0,
   GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
   GEDA_SIZE_REQUEST_CONSTANT_SIZE
-} GedaSizeRequestMode;
+} IDE_SIZE_REQUEST;
 
 /** @} endgroup geda-global-enumerators */
 #endif

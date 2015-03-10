@@ -265,7 +265,7 @@ on_open_butt_clicked(GtkButton *button, void *user_data)
     if (i_sessions_open_session(w_current, name)) {
 
       g_signal_emit_by_name (GTK_DIALOG (Dialog), "response",
-                             GTK_RESPONSE_REJECT,
+                             GEDA_RESPONSE_REJECT,
                              NULL);
     }
   }
@@ -332,11 +332,11 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     break;
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
@@ -346,7 +346,7 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 
 }
 
-/*! \brief Emit GTK_RESPONSE_REJECT response signal
+/*! \brief Emit GEDA_RESPONSE_REJECT response signal
   * \par Function Description
   *  This function is common to both the Manage Sessions and the
   *  Open Session dialogs.
@@ -354,7 +354,7 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data), "response",
-                           GTK_RESPONSE_REJECT,
+                           GEDA_RESPONSE_REJECT,
                            user_data);
 }
 
@@ -458,8 +458,8 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
                                           -1);
 
   GSCHEM_HOOKUP_OBJECT(ThisDialog, open_butt,  "open-butt");

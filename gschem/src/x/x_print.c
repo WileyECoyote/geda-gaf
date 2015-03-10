@@ -94,14 +94,14 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
                                              GTK_WINDOW (dialog),
                                              GTK_FILE_CHOOSER_ACTION_SAVE,
                                              GTK_STOCK_CANCEL,
-                                             GTK_RESPONSE_CANCEL,
+                                             GEDA_RESPONSE_CANCEL,
                                              GTK_STOCK_OK,
-                                             GTK_RESPONSE_ACCEPT, NULL);
+                                             GEDA_RESPONSE_ACCEPT, NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(filechooser),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_CANCEL,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_CANCEL,
                                           -1);
 
   filename = GetEntryText( dialog->fnfield );
@@ -113,9 +113,9 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
   free (cwd);
 
   gtk_dialog_set_default_response(GTK_DIALOG(filechooser),
-                                  GTK_RESPONSE_ACCEPT);
+                                  GEDA_RESPONSE_ACCEPT);
 
-  if (gtk_dialog_run (GTK_DIALOG (filechooser)) == GTK_RESPONSE_ACCEPT)
+  if (gtk_dialog_run (GTK_DIALOG (filechooser)) == GEDA_RESPONSE_ACCEPT)
   {
     newfilename =
     gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (filechooser));
@@ -391,15 +391,15 @@ static void print_dialog_init (PrintDialog * dialog)
 
   /* Add "Cancel" and "Print" buttons */
   gtk_dialog_add_button (GTK_DIALOG (dialog),
-                         GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT);
+                         GTK_STOCK_CANCEL, GEDA_RESPONSE_REJECT);
   print_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                        GTK_STOCK_PRINT, GTK_RESPONSE_ACCEPT);
+                                        GTK_STOCK_PRINT, GEDA_RESPONSE_ACCEPT);
   gtk_widget_grab_focus(print_button);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
                                           -1);
 
   /* Set initial radiobutton selection */
@@ -696,13 +696,13 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
   gtk_widget_show_all (GTK_WIDGET (dialog));
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-                                  GTK_RESPONSE_ACCEPT);
+                                  GEDA_RESPONSE_ACCEPT);
   gtk_window_set_transient_for(GTK_WINDOW(dialog),
                                GTK_WINDOW(w_current->main_window));
 
   result = gtk_dialog_run (dialog);
 
-  if (result == GTK_RESPONSE_ACCEPT)
+  if (result == GEDA_RESPONSE_ACCEPT)
   {
     /* Extract values from dialog and set the paper size */
     g_object_get (dialog,

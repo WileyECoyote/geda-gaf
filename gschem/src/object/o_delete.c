@@ -86,9 +86,9 @@ void o_delete_selected (GschemToplevel *w_current)
       resp = x_dialog_confirmation(msg, GTK_MESSAGE_QUESTION, TRUE);
 
       switch (resp) {
-        case GTK_RESPONSE_YES: /* Remove all */
+        case GEDA_RESPONSE_YES: /* Remove all */
           break;
-        case GTK_RESPONSE_NO:  /* Remove non locked */
+        case GEDA_RESPONSE_NO:  /* Remove non locked */
           for (iter = to_remove; iter != NULL; iter = iter->next) {
             Object *object = iter->data;
             if (object->selectable == TRUE)

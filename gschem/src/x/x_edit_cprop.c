@@ -437,13 +437,13 @@ static void x_dialog_edit_properties_response(GtkWidget     *Dialog,
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_CLOSE:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_grab_remove (Dialog);
     gtk_widget_destroy (Dialog);
     GEDA_FREE (properties);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_properties_ok(Dialog, properties);
     break;
   default:
@@ -883,7 +883,7 @@ static void x_dialog_edit_properties_load_ieee_des(GtkWidget *widget,
   x_dialog_edit_properties_load_refdes(properties->refdes_combo, RefDesIeee);
 }
 
-/*! \brief Emit GTK_RESPONSE_CLOSE signal.
+/*! \brief Emit GEDA_RESPONSE_CLOSE signal.
  *  \par Function Description
  *  This function is called when the Close button on the Component
  *  Select dialog is pressed.
@@ -892,7 +892,7 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
-                           GTK_RESPONSE_REJECT,
+                           GEDA_RESPONSE_CLOSE,
                            user_data);
 }
 
@@ -905,7 +905,7 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
-                           GTK_RESPONSE_ACCEPT,
+                           GEDA_RESPONSE_ACCEPT,
                            user_data);
 }
 
@@ -991,11 +991,11 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_CLOSE,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_ACCEPT);
   gtk_widget_grab_default (apply_butt);
 }
 

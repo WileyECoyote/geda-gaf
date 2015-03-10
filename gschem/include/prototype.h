@@ -706,12 +706,12 @@ void          x_dialog_symbol_changed       (GschemToplevel* w_current);
 int           x_dialog_validate_attribute   (GtkWindow* parent, char *attribute);
 
   /* Gschem-Generic-Dialogs */
-int           x_dialog_confirmation         (const char *, gEDA_MessageType context, bool thread);
-int           x_dialog_confirm_with_cancel  (const char *, gEDA_MessageType context, bool thread);
+int           x_dialog_confirmation         (const char *, IDE_MESSAGE_TYPE context, bool thread);
+int           x_dialog_confirm_with_cancel  (const char *, IDE_MESSAGE_TYPE context, bool thread);
 char         *x_dialog_select_file          (const char *, const char *, int);
-void          x_dialog_show_message         (const char *, gEDA_MessageType context, const char *title);
+void          x_dialog_show_message         (const char *, IDE_MESSAGE_TYPE context, const char *title);
 void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
-                                             gEDA_MessageType context, const char *title);
+                                             IDE_MESSAGE_TYPE context, const char *title);
 /* x_dnd.c */
 bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, int y, const char *string, int where);
 void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);

@@ -19,11 +19,6 @@
  * MA 02111-1301 USA
  */
 
-
-typedef enum {
-  CONSOLE_RESPONSE_CLOSE  = 1
-} ConsoleResponseType;
-
 typedef enum {
   CONSOLE_COMMAND_MODE,
   CONSOLE_INPUT_MODE
@@ -34,10 +29,8 @@ typedef enum {
 #define CONSOLE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST    ((klass), TYPE_CONSOLE, ConsoleClass))
 #define IS_CONSOLE(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj),   TYPE_CONSOLE))
 
-
 typedef struct _ConsoleClass ConsoleClass;
 typedef struct _Console      Console;
-
 
 struct _ConsoleClass {
   GschemDialogClass parent_class;

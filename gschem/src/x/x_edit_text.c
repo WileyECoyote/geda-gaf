@@ -363,12 +363,12 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
   w_current = GSCHEM_DIALOG (Dialog)->w_current;
 
   switch(response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_text_ok(w_current, object);
     i_status_set_state(w_current, SELECT);
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
     break;
   default:
@@ -442,14 +442,14 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
                                        GTK_WINDOW(w_current->main_window),
         /* nonmodal Editing Dialog */              GSCHEM_MODELESS_DIALOG,
                                                    IDS_TEXT_EDIT, w_current,
-                                     GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                     GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                     GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                     GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                                                      NULL);
 
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
     /* Create the Dialog */
     vbox = GTK_DIALOG(ThisDialog)->vbox;
@@ -599,7 +599,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
 
     /* Set the OKAY button to be the default widget */
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_edit_text_response),

@@ -78,6 +78,7 @@
 #include <dirent.h>
 
 #include "gschem.h"
+//#include "gschem_dialog.h"        /* For GschemDialogResponseType */
 #include "gschem_xdefines.h"
 
 #include "x_settings.h"
@@ -141,16 +142,16 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
                                GschemToplevel *w_current)
 {
   switch (response) {
-    case GTK_RESPONSE_APPLY:
+    case GEDA_RESPONSE_APPLY:
       GatherSettings (w_current);
       x_window_set_grid_type (w_current);
       generate_rc(w_current, "gschemrc");
       break;
-    case GTK_RESPONSE_OK:
+    case GEDA_RESPONSE_OK:
       GatherSettings (w_current);
       x_window_set_grid_type (w_current);
-    case GTK_RESPONSE_DELETE_EVENT:
-    case GTK_RESPONSE_CANCEL:
+    case GEDA_RESPONSE_DELETE_EVENT:
+    case GEDA_RESPONSE_CANCEL:
       /* void */
       break;
     default:

@@ -420,7 +420,6 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
                 fprintf(stderr, "Coord Entry freed the Drag&Drop buffer, "
                                 "did not know what else to do\n");
         }
-
       }
 
       object_buffer[DND_BUFFER] = NULL;
@@ -455,9 +454,9 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Coords"),
                          GTK_WINDOW(w_current->main_window),
-                         GSCHEM_MODELESS_DIALOG,
+                                     GSCHEM_MODELESS_DIALOG,
                                  IDS_COORDINATES, w_current,
-                       GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
+                       GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                        NULL);
 
     gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);

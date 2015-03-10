@@ -655,12 +655,12 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     GEDA_FREE (pin_data);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_pin_type_ok(Dialog, pin_data);
     break;
   default:
@@ -671,21 +671,21 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
 
 }
 
-/*! \brief Emit GTK_RESPONSE_REJECT response signal */
+/*! \brief Emit GEDA_RESPONSE_REJECT response signal */
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
-                           GTK_RESPONSE_REJECT,
+                           GEDA_RESPONSE_REJECT,
                            user_data);
 }
 
-/*! \brief Emit GTK_RESPONSE_ACCEPT response signal */
+/*! \brief Emit GEDA_RESPONSE_ACCEPT response signal */
 static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
-                           GTK_RESPONSE_ACCEPT,
+                           GEDA_RESPONSE_ACCEPT,
                            user_data);
 }
 
@@ -729,11 +729,11 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_ACCEPT);
 
   GSCHEM_HOOKUP_OBJECT(ThisDialog, apply_butt, "apply-butt");
 

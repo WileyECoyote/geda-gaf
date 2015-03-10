@@ -49,7 +49,7 @@ void o_complex_export(GschemToplevel *w_current, Object *o_current)
 
   gtk_widget_show (dialog);
 
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
     char   *filename;
     GError *err;

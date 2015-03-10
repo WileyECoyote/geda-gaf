@@ -80,8 +80,8 @@ multiattrib_callback_response (GtkDialog *dialog,
 /* GschemToplevel *w_current = GSCHEM_TOPLEVEL (user_data); */
 
   switch (arg1) {
-      case GTK_RESPONSE_CLOSE:
-      case GTK_RESPONSE_DELETE_EVENT:
+      case GEDA_RESPONSE_CLOSE:
+      case GEDA_RESPONSE_DELETE_EVENT:
         gtk_widget_destroy (GTK_WIDGET (dialog));
         break;
   }
@@ -2247,7 +2247,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   /* now add the close button to the action area */
   gtk_dialog_add_button (GTK_DIALOG (ThisDialog),
-                         GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+                         GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE);
 
 }
 

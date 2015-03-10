@@ -29,6 +29,7 @@
 #include <ctype.h>
 
 #include "gschem.h"
+
 #include "version.h"
 #include "x_dialog.h"
 
@@ -470,7 +471,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     snap_size = g_object_get_data(G_OBJECT(Dialog), IDS_SNAP_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(snap_size));
 
@@ -478,8 +479,8 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     i_status_update_grid_info (w_current);
     o_invalidate_all (w_current);
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     break;
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
@@ -511,15 +512,15 @@ void snap_size_dialog (GschemToplevel *w_current)
                                             IDS_SNAP_SIZE,
                                             w_current,
                                             GTK_STOCK_CANCEL,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_REJECT,
                                             GTK_STOCK_OK,
-                                            GTK_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
@@ -528,7 +529,7 @@ void snap_size_dialog (GschemToplevel *w_current)
                       G_CALLBACK (snap_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(Dialog)->vbox;
 
@@ -580,14 +581,14 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     text_size = g_object_get_data(G_OBJECT(Dialog), IDS_TEXT_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(text_size));
 
     w_current->text_size = size;
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     /* void */
     break;
   default:
@@ -619,15 +620,15 @@ void text_size_dialog (GschemToplevel *w_current)
                                             GTK_DIALOG_MODAL,
                                             IDS_TEXT_SIZE, w_current,
                                             GTK_STOCK_CANCEL,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_REJECT,
                                             GTK_STOCK_OK,
-                                            GTK_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
@@ -636,7 +637,7 @@ void text_size_dialog (GschemToplevel *w_current)
                       G_CALLBACK (text_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(Dialog)->vbox;
 
@@ -827,11 +828,11 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_arc_angle_apply(Dialog, w_current);
     break;
   default:
@@ -868,14 +869,14 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
                                             GTK_WINDOW(w_current->main_window),
                                             GSCHEM_MODELESS_DIALOG,
                                             IDS_ARC_ANGLE, w_current,
-                                            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                            GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                            GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                            GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                             NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position(GTK_WINDOW(Dialog),
@@ -884,7 +885,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
 
 
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(Dialog)->vbox;
 
@@ -1447,13 +1448,13 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_grab_remove (Dialog);
     gtk_widget_destroy (Dialog);
     GEDA_FREE (fill_data);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_fill_type_ok(Dialog, fill_data);
     break;
   default:
@@ -1520,16 +1521,16 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
                                           GTK_WINDOW(w_current->main_window),
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_FILL_TYPE, w_current,
-                                          GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                          GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                          GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                          GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                           NULL);
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
                                           -1);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(Dialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response(GTK_DIALOG(Dialog), GEDA_RESPONSE_ACCEPT);
 
   vbox = GTK_DIALOG(Dialog)->vbox;
 
@@ -2025,12 +2026,12 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     GEDA_FREE (line_data);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_line_type_ok(Dialog, line_data);
     break;
   default:
@@ -2104,17 +2105,17 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
                                           GTK_WINDOW(w_current->main_window),
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_LINE_TYPE, w_current,
-                                          GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                          GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                          GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                          GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_REJECT,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (Dialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response (GTK_DIALOG (Dialog), GEDA_RESPONSE_ACCEPT);
 
   vbox = GTK_DIALOG(Dialog)->vbox;
 
@@ -2247,12 +2248,12 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
   int         len;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(ThisDialog);
     i_status_set_state(w_current, SELECT);
     break;
-  case GTK_RESPONSE_APPLY:
+  case GEDA_RESPONSE_APPLY:
     textentry = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
     string =  GetEntryText( textentry );
     len = strlen(string);
@@ -2339,21 +2340,21 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
                                    GTK_WINDOW(w_current->main_window),
           /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
                                              IDS_SLOT_EDIT, w_current,
-                                 GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                 GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
+                                 GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                 GTK_STOCK_APPLY, GEDA_RESPONSE_APPLY,
                                                                   NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_APPLY,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_APPLY,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position(GTK_WINDOW(ThisDialog),
                         GTK_WIN_POS_MOUSE);
 
     gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog),
-                                     GTK_RESPONSE_APPLY);
+                                     GEDA_RESPONSE_APPLY);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -2425,7 +2426,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   }
 
   switch (response) {
-    case GTK_RESPONSE_ACCEPT:
+    case GEDA_RESPONSE_ACCEPT:
 
       checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
 
@@ -2454,8 +2455,8 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       }
       start_find = FALSE;
       break;
-    case GTK_RESPONSE_REJECT:
-    case GTK_RESPONSE_DELETE_EVENT:
+    case GEDA_RESPONSE_REJECT:
+    case GEDA_RESPONSE_DELETE_EVENT:
       close = TRUE;
       break;
     default:
@@ -2507,18 +2508,18 @@ void x_dialog_find_text(GschemToplevel *w_current)
                             GTK_WINDOW(w_current->main_window),
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                       IDS_FIND_TEXT, w_current,
-                          GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                           GTK_STOCK_FIND, GTK_RESPONSE_ACCEPT,
+                          GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                           GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
                                                          NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                     GTK_RESPONSE_ACCEPT);
+                                     GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -2572,7 +2573,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
   const char *string;
 
   switch (response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
     textentry = g_object_get_data(G_OBJECT(Dialog), IDS_HIDE_TEXT);
@@ -2587,8 +2588,8 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
                                s_page_get_objects (w_current->toplevel->page_current),
                                string);
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);;
     break;
   default:
@@ -2615,18 +2616,18 @@ void x_dialog_hide_text(GschemToplevel * w_current)
                             GTK_WINDOW(w_current->main_window),
       /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
                                         IDS_HIDE_TEXT, w_current,
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                            GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                            GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                            GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                                            NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -2680,7 +2681,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   const char *string;
 
   switch (response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
     textentry = g_object_get_data(G_OBJECT(Dialog),IDS_SHOW_TEXT);
@@ -2695,8 +2696,8 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
                                s_page_get_objects (w_current->toplevel->page_current),
                                string);
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
     break;
   default:
@@ -2723,18 +2724,18 @@ void x_dialog_show_text(GschemToplevel * w_current)
                             GTK_WINDOW(w_current->main_window),
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                       IDS_SHOW_TEXT, w_current,
-                          GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                          GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                          GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                          GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                                                       NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -2830,11 +2831,11 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
                                   GschemToplevel *w_current)
 {
   switch(response) {
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     x_dialog_text_input_apply(Dialog, w_current);
     break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     i_status_set_state(w_current, SELECT);
     gtk_widget_destroy(Dialog);
     break;
@@ -2867,14 +2868,14 @@ void x_dialog_text_input (GschemToplevel *w_current)
                                 GTK_WINDOW(w_current->main_window),
            /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                          IDS_TEXT_INPUT, w_current,
-                              GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                              GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                              GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                              GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                                               NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
@@ -2884,7 +2885,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                       w_current);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -2960,11 +2961,11 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
   const char *string;
 
   switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     /* void */
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GEDA_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(Dialog),IDS_TRANSLATE);
     string = GetEntryText( textentry );
     if (strlen(string) != 0) {
@@ -2997,19 +2998,19 @@ void x_dialog_translate (GschemToplevel *w_current)
                                               GTK_DIALOG_MODAL,
                                       IDS_TRANSLATE, w_current,
                                               GTK_STOCK_CANCEL,
-                                           GTK_RESPONSE_REJECT,
+                                           GEDA_RESPONSE_REJECT,
                                                   GTK_STOCK_OK,
-                                           GTK_RESPONSE_ACCEPT,
+                                           GEDA_RESPONSE_ACCEPT,
                                                          NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
@@ -3060,8 +3061,8 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
                                GschemToplevel *w_current)
 {
   switch(response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_DELETE_EVENT:
     /* void */
     break;
   default:
@@ -3093,11 +3094,11 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                           GTK_WINDOW(w_current->main_window),
     /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
                                       IDS_HOTKEYS, w_current,
-                        GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
+                        GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                         NULL);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
+                                    GEDA_RESPONSE_ACCEPT);
 
 
     gtk_widget_set_usize(ThisDialog, 300,300);
@@ -3640,19 +3641,19 @@ close_confirmation_dialog_constructor (GedaType type,
 
   /* add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("Close without saving"),  GTK_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,           GTK_RESPONSE_CANCEL,
-                          GTK_STOCK_SAVE,             GTK_RESPONSE_YES,
+                          _("Close without saving"),  GEDA_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,           GEDA_RESPONSE_CANCEL,
+                          GTK_STOCK_SAVE,             GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_YES,
-                                          GTK_RESPONSE_NO,
-                                          GTK_RESPONSE_CANCEL,
+                                          GEDA_RESPONSE_YES,
+                                          GEDA_RESPONSE_NO,
+                                          GEDA_RESPONSE_CANCEL,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
 
   /* all done, let's show the contents of the dialog */
   gtk_widget_show_all (hbox);
@@ -3835,16 +3836,16 @@ x_dialog_close_changed_page (GschemToplevel *w_current, Page *page)
                                      NULL));
 
   /* set default response signal. This is usually triggered by the "Return" key */
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_YES);
 
   switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
 
-      case GTK_RESPONSE_NO:
+      case GEDA_RESPONSE_NO:
         /* close the page, discard changes */
         result = TRUE;
         break;
 
-      case GTK_RESPONSE_YES:
+      case GEDA_RESPONSE_YES:
         /* action selected: save */
         keep_page = w_current->toplevel->page_current;
         s_page_goto (w_current->toplevel, page);
@@ -3859,7 +3860,7 @@ x_dialog_close_changed_page (GschemToplevel *w_current, Page *page)
         }
         break;
 
-      case GTK_RESPONSE_CANCEL:
+      case GEDA_RESPONSE_CANCEL:
 
         /* action selected: cancel */
         /* fall through */
@@ -3928,13 +3929,13 @@ x_dialog_close_window (GschemToplevel *w_current)
   g_list_free (unsaved_pages);
 
   switch ( gtk_dialog_run (GTK_DIALOG (dialog)) ) {
-      case GTK_RESPONSE_NO:
+      case GEDA_RESPONSE_NO:
         /* action selected: close without saving */
         /* discard changes, ok to close window */
         return_value = TRUE;
         break;
 
-      case GTK_RESPONSE_YES:
+      case GEDA_RESPONSE_YES:
         /* action selected: save */
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
         return_value = TRUE;
@@ -3953,7 +3954,7 @@ x_dialog_close_window (GschemToplevel *w_current)
         g_list_free (unsaved_pages);
         break;
 
-      case GTK_RESPONSE_CANCEL:
+      case GEDA_RESPONSE_CANCEL:
         /* action selected: cancel */
         /* fall through */
       default:
@@ -4288,7 +4289,7 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 /*! \brief General Purpose Confirmation Dialog
  *  \remarks TODO: derive this from gschem dialog class
  */
-int x_dialog_confirmation (const char *msg, gEDA_MessageType context, bool thread)
+int x_dialog_confirmation (const char *msg, IDE_MESSAGE_TYPE context, bool thread)
 {
   GtkWidget *dialog;
   int response;
@@ -4306,17 +4307,17 @@ int x_dialog_confirmation (const char *msg, gEDA_MessageType context, bool threa
 
   /* add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          GTK_STOCK_NO,         GTK_RESPONSE_NO,
-                          GTK_STOCK_YES,        GTK_RESPONSE_YES,
+                          GTK_STOCK_NO,         GEDA_RESPONSE_NO,
+                          GTK_STOCK_YES,        GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_YES,
-                                          GTK_RESPONSE_NO,
+                                          GEDA_RESPONSE_YES,
+                                          GEDA_RESPONSE_NO,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
 
   gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[GEDA_MESSAGE_QUESTON]));
 
@@ -4332,7 +4333,7 @@ int x_dialog_confirmation (const char *msg, gEDA_MessageType context, bool threa
 /*! \brief General Purpose Confirmation Dialog with Cancel Option
  *  \remarks TODO: derive this from gschem dialog class
  */
-int x_dialog_confirm_with_cancel (const char *msg, gEDA_MessageType context, bool thread)
+int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, bool thread)
 {
   GtkWidget *dialog;
   int response;
@@ -4350,19 +4351,19 @@ int x_dialog_confirm_with_cancel (const char *msg, gEDA_MessageType context, boo
 
   /* add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          GTK_STOCK_NO,         GTK_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,     GTK_RESPONSE_CANCEL,
-                          GTK_STOCK_YES,        GTK_RESPONSE_YES,
+                          GTK_STOCK_NO,         GEDA_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,     GEDA_RESPONSE_CANCEL,
+                          GTK_STOCK_YES,        GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_YES,
-                                          GTK_RESPONSE_NO,
-                                          GTK_RESPONSE_CANCEL,
+                                          GEDA_RESPONSE_YES,
+                                          GEDA_RESPONSE_NO,
+                                          GEDA_RESPONSE_CANCEL,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
 
   gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[GEDA_MESSAGE_QUESTON]));
 
@@ -4410,8 +4411,8 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_OPEN,
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                          GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+                                          GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                          GTK_STOCK_OPEN, GEDA_RESPONSE_OK,
                                           NULL);
     /* Since this is a load dialog box, the file must exist! */
     flags = flags | FSB_MUST_EXIST;
@@ -4422,18 +4423,18 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_SAVE,
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                          GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+                                          GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                          GTK_STOCK_OPEN, GEDA_RESPONSE_OK,
                                           NULL);
   }
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_OK,
-                                          GTK_RESPONSE_CANCEL,
+                                          GEDA_RESPONSE_OK,
+                                          GEDA_RESPONSE_CANCEL,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_OK);
 
   /* Pick the current default folder to look for files in */
   if (path && *path) {
@@ -4462,7 +4463,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     GEDA_FREE (folder);
   }
 
-  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK) {
+  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GEDA_RESPONSE_OK) {
     result = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     //folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
   }
@@ -4487,7 +4488,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
  *  \remarks This dialog is not for messages with Pango markups,
  *           x_dialog_message_with_markup.
  */
-void x_dialog_show_message (const char *msg, gEDA_MessageType context, const char *title)
+void x_dialog_show_message (const char *msg, IDE_MESSAGE_TYPE context, const char *title)
 {
   GtkWidget *dialog;
 
@@ -4517,7 +4518,7 @@ void x_dialog_show_message (const char *msg, gEDA_MessageType context, const cha
  *  \remarks See Utility Macros defined in globals.h
  */
 void x_dialog_message_with_markup (const char *msg1, const char *msg2,
-                                   gEDA_MessageType context, const char *title)
+                                   IDE_MESSAGE_TYPE context, const char *title)
 {
   GtkWidget *dialog;
 

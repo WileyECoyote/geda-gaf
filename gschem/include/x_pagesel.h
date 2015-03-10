@@ -18,11 +18,6 @@
  * MA 02111-1301 USA
  */
 
-typedef enum {
-  PAGESEL_RESPONSE_CLOSE  = 1,
-  PAGESEL_RESPONSE_UPDATE = 2
-} PageselResponseType;
-
 /*#define NAME_WIDTH_HIGH 535  Minimum column with when full filenames */
 #define COLUMN_NAME_MIN_WIDTH     235 /* Minimum width for filename column */
 #define COLUMN_CHANGED_MIN_WIDTH   35 /* Minimum width for Changed column */
@@ -42,12 +37,12 @@ struct _PageselClass {
 };
 
 struct _Pagesel {
+
   GschemDialog parent_instance;
 
-  GtkTreeView       *treeview;
+  GtkTreeView *treeview;
 
 };
-
 
 unsigned int pagesel_get_type (void);
 

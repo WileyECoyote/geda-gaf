@@ -255,8 +255,8 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
                                          void      *user_data)
 {
   switch (arg1) {
-    case GTK_RESPONSE_DELETE_EVENT:
-    case CONSOLE_RESPONSE_CLOSE:
+    case GEDA_RESPONSE_DELETE_EVENT:
+    case GEDA_RESPONSE_CLOSE:
     x_console_close ();
     break;
     default:
@@ -666,7 +666,7 @@ static void console_init (Console *console) /* *Self */
   /* now add the close button to the action area */
   /* Glib-2.40 generates console noise from gtk-lib */
   gtk_dialog_add_button       (GTK_DIALOG (console),
-                               GTK_STOCK_CLOSE, CONSOLE_RESPONSE_CLOSE);
+                               GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE);
 
   /* scroll to the end of the buffer */
   mark = gtk_text_buffer_get_insert (text_buffer);

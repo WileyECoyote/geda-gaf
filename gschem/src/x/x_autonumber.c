@@ -1395,7 +1395,7 @@ static void autonumber_text_response(GtkWidget       *widget,
                                      AUTONUMBER_TEXT *autotext)
 {
   switch (response) {
-    case GSCHEM_RESPONSE_ACCEPT:
+    case GEDA_RESPONSE_ACCEPT:
       retrieve_values_from_dialog(autotext);
       if (autotext->removenum == TRUE && autotext->scope_overwrite == FALSE) {
         /* temporarly set the overwrite flag */
@@ -1408,9 +1408,9 @@ static void autonumber_text_response(GtkWidget       *widget,
       }
       break;
 
-    case GSCHEM_RESPONSE_CLOSE:
+    case GEDA_RESPONSE_CLOSE:
       retrieve_values_from_dialog(autotext);
-    case GSCHEM_RESPONSE_DELETE_EVENT:
+    case GEDA_RESPONSE_DELETE_EVENT:
       gtk_widget_destroy(autotext->dialog);
       autotext->dialog = NULL;
       break;
@@ -1560,14 +1560,14 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
             /* modal-less */                  GSCHEM_MODELESS_DIALOG,
                                               IDS_AUTONUMBER,
                                               w_current,
-                                              GTK_STOCK_CLOSE, GSCHEM_RESPONSE_CLOSE,
-                                              GTK_STOCK_APPLY, GSCHEM_RESPONSE_ACCEPT,
+                                              GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE,
+                                              GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
                                               NULL );
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GSCHEM_RESPONSE_ACCEPT,
-                                          GSCHEM_RESPONSE_CLOSE,
+                                          GEDA_RESPONSE_ACCEPT,
+                                          GEDA_RESPONSE_CLOSE,
                                           -1);
 
   /* gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);*/
@@ -1731,7 +1731,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
     autonumber_sortorder_create(w_current);
 
     gtk_dialog_set_default_response (GTK_DIALOG (autotext->dialog),
-                                     GSCHEM_RESPONSE_ACCEPT);
+                                     GEDA_RESPONSE_ACCEPT);
 
     g_signal_connect (G_OBJECT (autotext->dialog), "response",
                       G_CALLBACK (autonumber_text_response),
