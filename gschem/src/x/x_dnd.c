@@ -365,10 +365,13 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
 
 /*! \brief When Received String filename with SYM suffix
  *
- *  \par Function Description
- *
+ * \par Function Description
  * Called by x_dnd_receive_string after determining the recieved
  * string ends with ".sym".
+ *
+ * \remark If the symbols are not in the library search path then
+ *  symbols will be loaded as a new page and that maybe what the
+ *  user wants.
 */
 bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const char *filename, int where)
 {
@@ -392,6 +395,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
     if (symbol) {
 
       if(where == DROPPED_ON_COORD) {
+
         object = o_complex_new (w_current->toplevel, x, y, 0,
                                 FALSE, symbol, symbolfile, TRUE);
 
@@ -401,6 +405,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
       else {
         /* If the current page is not a sym, then insert symbol*/
         if (!s_page_is_symbol_file(page)) {
+          gtk_window_present(GTK_WINDOW(w_current->main_window));
           o_redraw_cleanstates    (w_current);
           o_complex_prepare_place (w_current, symbol);
           w_current->event_state = COPYMODE;
@@ -412,6 +417,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
       }
     }
     else {
+      /* TODO: Should embed the symbol */
       u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
     }
     GEDA_FREE(symbolfile);
@@ -612,12 +618,23 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
   if ((selection_data != NULL) &&
     (gtk_selection_data_get_length(selection_data) >= 0))
   {
-    if (context->suggested_action == GDK_ACTION_ASK) {
-      /* Ask the user to move or copy, then set the context action. */
+/*
+    Seems context->suggested_action is useless, is always
+    GDK_ACTION_MOVE regardless of source or buttons.
+
+    switch (context->suggested_action) {
+      case GDK_ACTION_DEFAULT:
+      case GDK_ACTION_COPY:
+      case GDK_ACTION_MOVE:
+      case GDK_ACTION_LINK:
+      case GDK_ACTION_PRIVATE:
+      case GDK_ACTION_ASK:
+        delete_data = TRUE;
+      default:
+        break;
     }
-    else if (context->suggested_action == GDK_ACTION_MOVE) {
-      delete_data = TRUE;
-    }
+*/
+    delete_data = TRUE;
 
     /* Get pointer to the data */
 #if GTK_CHECK_VERSION(2,14,0)

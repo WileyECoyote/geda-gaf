@@ -1,5 +1,14 @@
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dnd.c: Raise main window when string for symbol in path dropped
+      on the drawing area, this was really annoying. If object received then
+      then main window came to foreground but not for a string, particularly
+      when the symbol was known, in which case the symbol needs to be placed.
+
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Resolve issues with Component Selection Dialog:
+
     * src/x/x_compselect.c: Revise function x_compselect_callback_response
       to redo logic for case response place.
 
