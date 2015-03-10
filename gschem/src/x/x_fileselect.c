@@ -206,7 +206,7 @@ x_fileselect_list(GschemToplevel *w_current)
                          G_CALLBACK (x_fileselect_save_filter_index),
                          w_current);
 
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
     filenames =  geda_file_chooser_get_filenames (dialog);
   }
   else {
@@ -270,7 +270,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 
   gtk_widget_show (dialog);
 
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
     outfile = u_string_strdup(geda_image_chooser_get_filename (dialog));
   }
   else {
@@ -346,7 +346,7 @@ x_fileselect_save (GschemToplevel *w_current)
 
   gtk_widget_show (dialog);
 
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
     char *filename;
     char *filebase;
@@ -386,7 +386,7 @@ x_fileselect_save (GschemToplevel *w_current)
                               "Would you like to overwrite it?"),
                               filename);
                               gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
-                              if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GTK_RESPONSE_YES) {
+                              if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GEDA_RESPONSE_YES) {
                                 q_log_message (_("Save cancelled on user request\n"));
                                 GEDA_FREE (filename);
                                 filename = NULL;
@@ -445,18 +445,18 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_YES,
-                                          GTK_RESPONSE_NO,
+                                          GEDA_RESPONSE_YES,
+                                          GEDA_RESPONSE_NO,
                                           -1);
-  gtk_dialog_add_buttons (GTK_DIALOG(dialog), GTK_STOCK_DELETE, GTK_RESPONSE_APPLY, NULL);
+  gtk_dialog_add_buttons (GTK_DIALOG(dialog), GTK_STOCK_DELETE, GEDA_RESPONSE_APPLY, NULL);
 
   gtk_widget_show (dialog);
 
   switch (gtk_dialog_run ((GtkDialog*)dialog)) {
-    case GTK_RESPONSE_YES:
+    case GEDA_RESPONSE_YES:
      result = 1;
      break;
-    case GTK_RESPONSE_APPLY:
+    case GEDA_RESPONSE_APPLY:
      result = 2; /* No and Delete backup*/
      break;
     default:

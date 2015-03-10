@@ -1,3 +1,40 @@
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Fix bug in i_cmd_do_zoom_extents, the wrong
+	  enumerator was used in the CMD_WHO macro, was pasted from do_zoom_out
+
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Improve Integration: Standard Enumerations
+
+    * include/gschem_dialog.h: Remove GschemResponseType enumeration.
+
+    * include/x_console.h: Remove ConsoleResponseType enumeration.
+
+    * include/x_pagesel.h: Remove PageselResponseType enumeration.
+
+      Change response type from GTK to cooresponding IDE_RESPONSE type in the
+      following files:
+
+          * src/guile/g_funcs.c
+          * src/iface/i_command.c
+          * src/object/o_complex.c
+          * src/object/o_delete.c
+          * src/x/x_autonumber.c
+          * src/x/x_console.c
+          * src/x/x_coord.c
+          * src/x/x_dialog.c
+          * src/x/x_edit_color.c
+          * src/x/x_edit_cprop.c
+          * src/x/x_edit_pin.c
+          * src/x/x_edit_text.c
+          * src/x/x_fileselect.c
+          * src/x/x_image.c
+
+    * include/geda_enum.h: Create IDE_RESPONSE_TYPE in an effort standardize response
+      enumeration. Rename other camel case enumerators with IDE prefix, do not look as
+      good but at least consistence.
+
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Rename file, formerly x_attrib.c

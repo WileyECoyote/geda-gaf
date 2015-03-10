@@ -1765,7 +1765,7 @@ COMMAND (do_zoom_in)
 {
   BEGIN_W_COMMAND(do_zoom_in);
 
-  i_zoom_world(w_current, ZOOM_IN_DIRECTIVE, CMD_WHO(do_zoom_out), 0);
+  i_zoom_world(w_current, ZOOM_IN_DIRECTIVE, CMD_WHO(do_zoom_in), 0);
 
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
