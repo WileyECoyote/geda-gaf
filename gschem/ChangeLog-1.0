@@ -1,5 +1,16 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Revert back to old scheme for canceling move operations,
+      the old scheme is inefficient but the new scheme does not work correctly when
+      undoing if component was rotated during the move. The old scheme appears to
+      work correctly.
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Rename file, formerly x_attrib.c
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * New Feature Function - Auto-Snap Objects to Grid:
 
     * etc/system-gschemrc.scm: Add  key sequence "E N" for new action "edit-snap".
@@ -149,7 +160,7 @@
 2015-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_coord.c: Revise co_on_entry_activate to use code relocated
-      to libgeda, function u_string_parse_xy, to interpret string entered
+      to libgeda, function u_string_parse_xy, to interpret strings entered
       into the workd entry.
 
 2015-03-04 Wiley E. Hill <wileyhill@gmail.com>
@@ -1828,7 +1839,7 @@
 
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_coord.c: Useu_string_sprintf instead of g_strdup_printf
+    * src/x/x_coord.c: Use u_string_sprintf instead of g_strdup_printf
 
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
