@@ -1,5 +1,15 @@
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Include File Name when reporting symbol Version Clashes
+
+    * src/object/o_complex_basic.c: Revise function o_complex_check_symversion
+      to include the file name when reporting symbol version conflicts because
+      when multiple files are opened the log shows the warning messages, but
+      not the file and the user has to go back and figure out which page the
+      conflict occurred on (with no help from the log or dialog messages).
+
+2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_page.c: Add vapor function geda_page_rename.
 
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>

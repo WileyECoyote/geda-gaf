@@ -976,22 +976,23 @@ o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
  *
  *  \param [in] toplevel  Optional pointer to GedaToplevel toplevel
  *  \param [in] object    The complex Object
+ *
  */
 void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 {
-  char *inside         = NULL;
-  char *outside        = NULL;
+  char  *inside        = NULL;
+  char  *outside       = NULL;
   double inside_value  = -1.0;
   double outside_value = -1.0;
-  char *err_check      = NULL;
+  char  *err_check     = NULL;
+
   int inside_present   = FALSE;
   int outside_present  = FALSE;
 
   double inside_major, inside_minor;
   double outside_major, outside_minor;
 
-  g_return_if_fail (GEDA_IS_COMPLEX(object));
-
+  const char *schematic;
   const char *refdes;
   const char *match;
   const char *newer;
@@ -1011,11 +1012,32 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
   older     = _("older");
   parse     = _("parse error");
 
-  clash_msg = _("\tInstantiated symbol <%s> is %s than the version in library\n");
+  clash_msg = _("\t<%s> Instantiated symbol <%s> is %s than the version in library\n");
   major_msg = _("\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n");
   minor_msg = _("\tMinor version change (instantiated %.3f, library %.3f)\n");
   parse_msg = _("\tCould not parse symbol file\n");
   warn_msg  = _("WARNING: Symbol version %s on refdes %s:\n");
+
+  Page *page;
+
+  g_return_if_fail (GEDA_IS_COMPLEX(object));
+
+  if (GEDA_IS_PAGE(object->page)) {
+    page = object->page;
+  }
+  else if (GEDA_IS_PAGE(toplevel->page_current)) {
+    page = toplevel->page_current;
+  }
+  else {
+    page = NULL;
+  }
+
+  if (page) {
+    schematic = f_get_basename(page->filename); /* Do not free */
+  }
+  else {
+    schematic = _("unknown file");
+  }
 
   /* first look on the inside for the symversion= attribute */
   inside = o_attrib_search_inherited_attribs_by_name (object, "symversion", 0);
@@ -1097,7 +1119,7 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
           (inside_value > outside_value)))
       {
         u_log_message(warn_msg, match, refdes);
-        u_log_message(clash_msg, object->complex->filename, older);
+        u_log_message(clash_msg, schematic, object->complex->filename, older);
 
         /* break up the version values into major.minor numbers */
         inside_major = floor(inside_value);
@@ -1121,27 +1143,17 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 
         if (inside_major > outside_major) {
 
-          Page *page;
-          char *refdes_copy;
-
           u_log_message (major_msg, outside_value, inside_value, refdes);
 
-          if (GEDA_IS_PAGE(object->page)) {
-            page = object->page;
-          }
-          else if (GEDA_IS_PAGE(toplevel->page_current)) {
-            page = toplevel->page_current;
-          }
-          else {
-            page = NULL;
-          }
-
           if (page) {
+
+            char *refdes_copy;
+
             /* Add the refdes to the major_changed_refdes GList */
             /* if a page was found */
-            refdes_copy = u_string_concat (refdes, " (",
-                                                  object->complex->filename,
-                                                  ")", NULL);
+            refdes_copy = u_string_concat (refdes,
+                                     " (", object->complex->filename, ")",
+                                           NULL);
             page->major_changed_refdes =
             g_list_append(page->major_changed_refdes, refdes_copy);
           }
@@ -1157,7 +1169,7 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
         if ((inside_present && outside_present) && (outside_value > inside_value))
         {
           u_log_message(warn_msg, oddity, refdes);
-          u_log_message(clash_msg, object->complex->filename, newer);
+          u_log_message(clash_msg, schematic, object->complex->filename, newer);
         }
       }
     }
