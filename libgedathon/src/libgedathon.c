@@ -1090,6 +1090,30 @@ PyGeda_set_active_page(int pid )
   return s_page_set_current (toplevel, page);
 }
 
+/*! \brief Get is Page Modified
+ *  \ingroup Python_API_Library
+ *  \par Function Description
+ *   Retrieves page object assocated with \a pid and returns
+ *   page->CHANGED;
+ *
+ *  \param [in] pid     Integer, ID of Page being queried
+ *
+ *  \returns True if page has been modifiied and not save, FALSE
+ *           if the page has been saved, -1 if there was an error,
+ *           such as an invalid page id.
+ */
+int PyGeda_is_page_modified (int pid)
+{
+  Page   *page   = NULL;
+  int     status = -1;
+
+  page = geda_toplevel_get_page(toplevel, pid);
+  if (page && (GEDA_IS_PAGE(page))) {
+    status = page->CHANGED;
+  }
+  return status;
+}
+
 /*! \brief Changes the current page in toplevel
  *  \ingroup Python_API_Library
  *  \par Function Description
@@ -1380,6 +1404,30 @@ PyGeda_new_page( const char *filename, int over_write)
   return PyGeda_open_page(fname);
 }
 
+/*! \brief Rename Page
+ *  \ingroup Python_API_Library
+ *  \par Function Description
+ *  This function calls the libgeda object setter function to
+ *  change the file name string.
+ *
+ *  \param [in] pid      Integer, the page id of the page to rename
+ *  \param [in] filename String to set as the new file name
+ *
+ *  \return [out] True on success, otherwise FALSE
+ *
+ */
+int PyGeda_rename_page (int pid, const char *filename)
+{
+  Page   *page   = NULL;
+  int     status = 0;
+
+  page = geda_toplevel_get_page(toplevel, pid);
+  if (page && (GEDA_IS_PAGE(page))) {
+    status = geda_page_rename(page, filename);
+  }
+  return status;
+}
+
 /*! \brief Save Page
  *  \ingroup Python_API_Library
  *  \par Function Description
@@ -1407,6 +1455,30 @@ PyGeda_save_page( int pid )
     }
   }
   return status;
+}
+
+/*! \brief Save Page As new file Name
+ *  \ingroup Python_API_Library
+ *  \par Function Description
+ *  This is a convenience function that combines PyGeda_rename_page
+ *  and PyGeda_save_page.
+ *
+ *  \param [in] pid      Integer page id of the page to save
+ *  \param [in] filename String to set as the new file name
+ *
+ *  \return [out] True on success, otherwise FALSE
+ *
+ */
+int PyGeda_save_page_as (int pid, const char *filename)
+{
+  Page   *page   = NULL;
+  int     status = 0;
+
+  page = geda_toplevel_get_page(toplevel, pid);
+  if (page && (GEDA_IS_PAGE(page))) {
+    status = geda_page_rename(page, filename);
+  }
+  return status ? !PyGeda_save_page(pid) : 0;
 }
 
 /*! \brief Save All Pages

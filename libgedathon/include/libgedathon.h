@@ -57,13 +57,15 @@ int       PyGeda_declare_local_sym  ( const char *filename );
 PyObject *PyGeda_get_pages          ( void );
 PyObject *PyGeda_get_active_page    ( void );
 int       PyGeda_set_active_page    ( int pid );
+int       PyGeda_is_page_modified   ( int pid );
 int       PyGeda_goto_page          ( int pid );
 
 PyObject *PyGeda_open_page          ( const char *filename );
 int       PyGeda_close_page         ( int pid );
 PyObject *PyGeda_new_page           ( const char *filename, int over_write);
+int       PyGeda_rename_page        ( int pid, const char *filename);
 int       PyGeda_save_page          ( int pid );
-int       PyGeda_save_all_pages     ( PyObject * );
+int       PyGeda_save_page_as       ( int pid, const char *filename);
 int       PyGeda_save_all_pages     ( PyObject * );
 
 int       PyGeda_GedaCapsule_Type   ( PyObject * );

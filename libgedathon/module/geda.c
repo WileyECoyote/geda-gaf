@@ -295,6 +295,7 @@ static inline void BlockMethod (int index)
 
 #define TYPE_INT_C1(symbol)            ON_METHOD_ENTRY(int, symbol, c1)
 #define TYPE_INT_INT(symbol)           ON_METHOD_ENTRY(int, symbol, i1)
+#define TYPE_INT_I1C1(symbol)          ON_METHOD_ENTRY(int, symbol, i1c1)
 #define TYPE_INT_P1(symbol)            ON_METHOD_ENTRY(int, symbol, p1)
 #define TYPE_INT_P3(symbol)            ON_METHOD_ENTRY(int, symbol, p3)
 
@@ -330,6 +331,7 @@ static inline void BlockMethod (int index)
 
 typedef int       (*PyGeda_int_c1_type)          ( const char* );
 typedef int       (*PyGeda_int_i1_type)          ( int );
+typedef int       (*PyGeda_int_i1c1_type)        ( int, const char* );
 typedef int       (*PyGeda_int_p1_type)          ( PyObject * );
 typedef int       (*PyGeda_int_p3_type)          ( PyObject *, PyObject *, PyObject * );
 
@@ -602,6 +604,37 @@ METHOD(set_active_page)
   Py_RETURN_TRUE;
 }
 
+/*! \brief Save Page Objects
+ *  \par Method Description
+ *   This function provides a method to save a Page type objects to
+ *   disk.
+ *
+ *  [in] PyPage page A GedaPage Object
+ *
+ *  \return [out] status True if success, otherwise False.
+ *
+ */
+METHOD(is_page_modified)
+{
+  TYPE_INT_INT(is_page_modified);
+  PageObject *page;
+
+  const char *syntax = "syntax: is_page_modified(PageObject)";
+
+  if(!PyArg_ParseTuple(args, "O!:geda.is_page_modified", PageObjectClass(), &page)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  page->modified = library.func(page->pid);
+
+  ON_METHOD_EXIT(save_page);
+  if (!page->modified) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
 /*! \brief Set an Existing Page to be the Current Page
  *  \par Method Description
  *    This function provides a method to set a page object to be the
@@ -785,12 +818,47 @@ METHOD(new_page)
   return page;
 }
 
+/*! \brief Rename a Page Objects
+ *  \par Method Description
+ *   This function provides a method to rename a Page; in effect change
+ *   the file name. This method corresponds to the libgedathon function
+ *   PyGeda_rename_page.
+ *
+ *  [in] PyPage page A GedaPage Object
+ *  [in] name   String the new name property
+ *  \return [out] status True if success, otherwise False.
+ *
+ */
+METHOD(rename_page)
+{
+  TYPE_INT_I1C1(rename_page);
+  PyObject *page;
+  int       status;
+  char     *new_name;
+
+  const char *syntax = "syntax: rename_page(PageObject)";
+
+  if(!PyArg_ParseTuple(args, "O!s:geda.rename_page", PageObjectClass(),
+                       &page, &new_name)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  status = library.func(((PageObject*)page)->pid, new_name);
+
+  ON_METHOD_EXIT(rename_page);
+  if (status == 0) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
 /*! \brief Save Page Objects
  *  \par Method Description
- *    This function provides a method to save a Page type objects to
- *  disk.
+ *   This function provides a method to save a Page type objects to
+ *   disk.
  *
- *  [in] PyPage page A GedaPAge Object
+ *  [in] PyPage page A GedaPage Object
  *
  *  \return [out] status True if success, otherwise False.
  *
@@ -812,6 +880,41 @@ METHOD(save_page)
 
   ON_METHOD_EXIT(save_page);
   if (status != 0) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
+/*! \brief Save a Page Objects with a new file name
+ *  \par Method Description
+ *   This function provides a method to rename and save a Page single
+ *   call to the library. This method corresponds to the libgedathon
+ *   function PyGeda_save_page_as.
+ *
+ *  [in] PyPage page A GedaPage Object
+ *  [in] name   String the new name property
+ *  \return [out] status True if success, otherwise False.
+ *
+ */
+METHOD(save_page_as)
+{
+  TYPE_INT_I1C1(save_page_as);
+  PyObject *page;
+  int       status;
+  char     *new_name;
+
+  const char *syntax = "syntax: save_page_as(PageObject)";
+
+  if(!PyArg_ParseTuple(args, "O!s:geda.save_page_as", PageObjectClass(),
+                       &page, &new_name)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  status = library.func(((PageObject*)page)->pid, new_name);
+
+  ON_METHOD_EXIT(save_page_as);
+  if (status == 0) {
     Py_RETURN_FALSE;
   }
   Py_RETURN_TRUE;

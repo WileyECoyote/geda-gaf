@@ -54,6 +54,7 @@ struct st_py_page {
     PyObject_HEAD
     int  pid;
     PyObject *filename;
+    bool modified;
 };
 
 struct st_py_color {

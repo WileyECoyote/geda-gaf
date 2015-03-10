@@ -59,11 +59,14 @@ const char declare_local_sym_docs[]  = "Creates a gafrc file in the current dire
 const char get_pages_docs[]          = "Retrieve list of all pages.\n";
 const char get_active_page_docs[]    = "Get pointer to the active page.\n";
 const char set_active_page_docs[]    = "Set the active page.\n";
+const char is_page_modified_docs[]   = "Returns True if page has been modified and not saved.\n";
 const char goto_page_docs[]          = "Set the active page, and changes current directory.\n";
 const char open_page_docs[]          = "Open a page.\n";
 const char close_page_docs[]         = "Close page.\n";
 const char new_page_docs[]           = "Create a new empty page.\n";
+const char rename_page_docs[]        = "Rename a page changes the filename.\n";
 const char save_page_docs[]          = "Save the page by writing to storage\n";
+const char save_page_as_docs[]       = "Save the page using a new file name\n";
 const char save_all_pages_docs[]     = "Save all opened pages to storage\n";
 
 /* Page Level Object operations/Methods */
@@ -117,7 +120,7 @@ const char line_length_docs[]        = "Returns the length of a linear object.\n
 const char filename_docs[]           = "File Name of this Page.\n";
 
 /* Path Object Attributes */
-const char path_string_docs[]        = "String describing gemertric a element";
+const char path_string_docs[]        = "String describing a geometric element";
 
 /* Module Attribute Object Methods */
 const char get_attrib_docs[]         = "Retrieve a specific attribute Object\n";
@@ -141,12 +144,15 @@ const char get_unconnected_docs[]    = "Retrieve list of points of unconnect nod
         METHOD ( get_pages )
         METHOD ( get_active_page )
         METHOD ( set_active_page )
+        METHOD ( is_page_modified )
         METHOD ( goto_page )
 
         METHOD ( open_page )
         METHOD ( close_page )
         METHOD ( new_page )
+        METHOD ( rename_page )
         METHOD ( save_page )
+        METHOD ( save_page_as )
         METHOD ( save_all_pages )
 
         METHOD ( GedaCapsule_Type )
@@ -211,13 +217,16 @@ enum {
      METHOD ( get_pages,          METH_NOARGS  )
      METHOD ( get_active_page,    METH_NOARGS  )
      METHOD ( set_active_page,    METH_VARARGS )
+     METHOD ( is_page_modified,   METH_NOARGS  )
      METHOD ( goto_page,          METH_VARARGS )
 
      METHOD ( open_page,          METH_VARARGS|METH_KEYWORDS )
      METHOD ( close_page,         METH_VARARGS )
      METHOD ( new_page,           METH_VARARGS|METH_KEYWORDS )
+     METHOD ( rename_page,        METH_VARARGS )
      METHOD ( save_page,          METH_VARARGS )
-     METHOD ( save_all_pages,     METH_VARARGS )
+     METHOD ( save_page_as,       METH_VARARGS )
+     METHOD ( save_all_pages,     METH_VARARGS ) /* Optional list of Pages */
 
      METHOD ( GedaCapsule_Type,   METH_O)
      METHOD ( get_bounds,         METH_VARARGS )

@@ -102,8 +102,8 @@ Page_filename(PageObject* self)
 
   if (format == NULL) {
     format = PyString_FromString("%s");
-                                 if (format == NULL)
-                                   return NULL;
+    if (format == NULL)
+      return NULL;
   }
 
   args = Py_BuildValue("O", self->filename);
@@ -147,7 +147,7 @@ static PyObject* go_delete(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef Page_methods[] = {
-  {"filename", (PyCFunction)Page_filename,  METH_NOARGS,  filename_docs},
+  {"name",     (PyCFunction)Page_filename,  METH_NOARGS,  filename_docs},
   {"save",     (PyCFunction)go_save,        METH_NOARGS,  save_page_docs},
   {"select",   (PyCFunction)go_select,      METH_NOARGS,  set_active_page_docs},
   {"goto",     (PyCFunction)go_to_page,     METH_NOARGS,  goto_page_docs},
@@ -176,6 +176,9 @@ Page_getfilename(PageObject *self, void *closure)
 static int
 Page_setfilename(PageObject *self, PyObject *value, void *closure)
 {
+  PyObject *py_status;
+  long result;
+
   /* TODO: “closure” check for invalid characters for a filename */
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the file name attribute");
@@ -191,7 +194,14 @@ Page_setfilename(PageObject *self, PyObject *value, void *closure)
   Py_INCREF(value);
   self->filename = value;
 
-  return 0;
+  py_status = PyObject_CallMethod(geda_module, "rename_page", "OO", self,self->filename);
+
+  result = PyInt_AsLong(py_status);
+  if ((result == -1) && PyErr_Occurred()) {
+      return -1;
+  }
+
+  return self->modified = result;
 }
 
 static PyGetSetDef Page_getseters[] = {

@@ -1,3 +1,25 @@
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Extend API Rename Page, Save Page As, Get Page Changed
+
+    * src/libgedathon.c: Add function PyGeda_is_page_modified to provide an
+      API to get the current status of the page, function PyGeda_rename_page
+      to provide an API to change the page file name without saving the file
+      and PyGeda_save_as_page to provide an API to save the file using a new
+      filename.
+
+    * module/geda.c: Add macro TYPE_INT_I1C1, kind of defeats the purpose
+      because seems like every API is using unique argument format. Add
+      method is_page_modified to get the page status, add rename_page,
+      aka do_rename_page, to provide API to change the page file name,
+      and save_as_page to provide an API to save the file using a new
+      filename.
+
+    * module/objects/geda_py_page.c: Change member "filename" to "name" to
+      fix conflict with the setter method. Revise newly acessible setter
+      PyGeda_rename_page to call module method "rename_page". Set the
+      new modified flag if the file name is changed.
+
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Updated order of arguments for o_attrib_attach
