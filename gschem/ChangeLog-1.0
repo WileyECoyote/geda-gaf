@@ -1,7 +1,13 @@
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revise do_page_revert to not raise dialog to
+      confirm reverting page if the page has not been modified, not only
+      does this not make sense, it is an annoyance.
+
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Fix bug in i_cmd_do_zoom_extents, the wrong
-	  enumerator was used in the CMD_WHO macro, was pasted from do_zoom_out
+      enumerator was used in the CMD_WHO macro, was pasted from do_zoom_out
 
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 

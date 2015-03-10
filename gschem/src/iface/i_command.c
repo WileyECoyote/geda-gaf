@@ -2115,9 +2115,14 @@ COMMAND (do_page_revert) {
   int up;
   int answer;
 
-  answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
+  if (Current_Page->CHANGED) {
+    answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
+  }
+  else {
+    answer = GEDA_RESPONSE_YES;
+  }
 
-  if (answer == GTK_RESPONSE_YES) {
+  if (answer == GEDA_RESPONSE_YES) {
 
     /* save this for later */
     filename = u_string_strdup (Current_Page->filename);
