@@ -32,7 +32,7 @@
 #include "gschem.h"
 
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
-#include "gschem_dialog.h"              /* Definition the base Dialog Class */
+#include "gschem_dialog.h"              /* Definition of base Dialog Class */
 
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
@@ -167,43 +167,51 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
         case COMPSELECT_RESPONSE_PLACE: {
 
-            CLibSymbol *symbol = NULL;
-            CompselectBehavior behavior;
-
-            g_object_get (compselect,
-                          "symbol", &symbol,
-                          "behavior", &behavior,
-                          NULL);
-
-            w_current->include_complex = w_current->embed_components = 0;
-
-            if (behavior == COMPSELECT_BEHAVIOR_EMBED) {
-                w_current->embed_components   = 1;
-            }
-            if (behavior == COMPSELECT_BEHAVIOR_INCLUDE) {
-                w_current->include_complex = 1;
-            }
-
+            /* Check and resolve current state */
             if (w_current->event_state == COMPMODE) {
+
                 if (toplevel->page_current->place_list != NULL) {
+
                     /* Delete the component which was being placed */
                     if (w_current->rubber_visible) {
                         o_place_invalidate_rubber (w_current, FALSE);
                     }
-                    w_current->rubber_visible = 0;
+                    w_current->rubber_visible = FALSE;
                     s_place_free_place_list(toplevel);
                 }
             }
-            else {
+            else if (w_current->event_state != SELECT && w_current->inside_action)
+            {
                 /* Cancel whatever other action is currently in progress */
                 o_redraw_cleanstates (w_current);
             }
+
+            CompselectBehavior behavior;
+
+            CLibSymbol *symbol = NULL;
+
+            /* Get pointer to selected symbol and behavior combo state */
+            /* (Both of which could have been saved in dialog structure) */
+            g_object_get (compselect, "symbol",   &symbol,
+                                      "behavior", &behavior, NULL);
 
             if (symbol == NULL) {
                 /* If there is no symbol selected, switch to SELECT mode */
                 w_current->event_state = SELECT;
             }
             else {
+
+                w_current->event_state      = COMPMODE;
+                w_current->include_complex  = FALSE;
+                w_current->embed_components = FALSE;
+
+                if (behavior == COMPSELECT_BEHAVIOR_EMBED) {
+                    w_current->embed_components = TRUE;
+                }
+                else if (behavior == COMPSELECT_BEHAVIOR_INCLUDE) {
+                    w_current->include_complex = TRUE;
+                }
+
                 /* Otherwise set the new symbol to place */
                 o_complex_prepare_place (w_current, symbol);
                 i_status_show_msg(w_current, "Place Component");

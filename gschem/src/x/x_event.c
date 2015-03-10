@@ -614,7 +614,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
       switch(w_current->event_state) {
         case(NETMODE):
-        case(COMPMODE):
+        //case(COMPMODE):
           break;
 
         default:

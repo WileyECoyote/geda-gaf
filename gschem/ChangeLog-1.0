@@ -1,5 +1,13 @@
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_compselect.c: Revise function x_compselect_callback_response
+      to redo logic for case response place.
+
+    * src/x/x_event.c: Commented-out case COMPMODE for third button release.
+      makes little difference either way.
+
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Revise do_page_revert to not raise dialog to
       confirm reverting page if the page has not been modified, not only
       does this not make sense, it is an annoyance.
