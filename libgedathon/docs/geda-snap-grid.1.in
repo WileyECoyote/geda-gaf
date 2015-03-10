@@ -1,0 +1,113 @@
+.TH geda-snap-grid 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+geda-snap-grid \- A gEDA-gaf Schematics and Symbol cleaning utility
+
+.SH SYNOPSIS
+.B geda-snap-grid
+.RI  [ INFORMATION ] | [ OPTIONS ] [ DIRECTIVES ] [INPUT] [OUTPUT]
+
+.SH DESCRIPTION
+.B geda-snap-grid
+Round X-Y coordinates of attributes in schematic and symbol file to multibles
+of 25 or a specified value.
+
+By default, geda-snap-grid operates on both schematic and symbol files
+unless the file names are specified on the command line, either with the
+--input <inputfile> option or just listing the files. For both schematic
+and symbol files, the extension must be specified when the names of files
+are specified.
+
+.SH QUICK
+.B usage: [Options] -i <inputfile> [[-o] <outputfile> ] [list of files]
+
+Example: Snap all attribute coordinates values in all files in the current
+         directory and in all subdirectories to the nearest multiple of 50 and
+         report modified values:
+
+    geda-snap-grid.py --verbose -R -m 50
+
+Example: Snap all attribute coordinates values in schematic files in the current
+         directory appending "sym" and "sht" to the library search path rounding
+         up to a multiple of 25:
+
+    geda-snap-grid.py -a sht --sch
+
+Example: Snap all attribute coordinates values in the file Motor_Control_sht_2.sch
+         up to a multiple of 25 and save the file to Motor_Control_sht_2.fixed.sch,
+         appending "sym" to the library search path if "./sym/" exist:
+
+    geda-snap-grid -u -i Motor_Control_sht_2.sch -o Motor_Control_sht_2.fixed.sch
+
+.SH INFORMATION
+Use of the following options displays information related to geda-snap-grid
+but does not inspect or alter any symbol files:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "--usage"
+Displays basic usage of this command.
+.IP "-V, --version"
+Displays software version information.
+
+.SH OPTIONS
+The following options can be used to modify the default behavior of geda-snap-grid
+
+.IP "-d, --down"
+"Force rounding down, the default is to round to nearest multible of moduli.
+.IP "-u, --up"
+Force rounding up, the default is to round to nearest multible of moduli.
+.IP "-m #"
+Round to moduli specified by #, default is 25.
+.IP "-x"
+Only round X coordinates, mutually exclusive with -y
+.IP "-y"
+Only round Y coordinates, mutually exclusive with -x
+
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Verbose mode.  Used in both archive and extract mode. Spews lots of info about what the prog is doing.
+.IP "-R, --Recursive"
+Process all symbol files in the current and all subordinated directories.
+.IP "-a, --append <path>"
+When processing schematic files this option can be used to specify addition directories to
+be appended to the libraries search path. This option is not needed for directories with
+the name "sym", if such a directory exist, the directory will be appended automatically.
+.IP "-n, --no-path"
+By default, geda-snap-grid if a directory exist with the name "sym", then the directory
+is appended to the libraries search path when processing schematic files, this option inhibits
+that behavior. This option is provided for advanced users and should not normally be used.
+.IP "-c, --sch"
+Directs geda-snap-grid to only process schematic files. This directive is ignored if a
+file name or names are specified on the command line.
+.IP "-s, --sym"
+Directs geda-snap-grid to only process symbol files. This directive is ignored if a file
+name or names are specified on the command line.
+.IP "-i, --input <input file>"
+Specify the name of the input file. Wild cards are accepted, the default is *.sym + *.sch.
+.IP "-o, --output <output file>"
+Specifies the name of the output file. When the output file name is not specified the input
+file will be over written
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of geda-snap-grid:
+https://bugs.launchpad.net/geda/geda-snap-grid/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR gsym-attribute (1) gsym-set-font-size (1) gsym-set-visibility (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2015 Wiley Edward Hill.  License GPLv3+: GNU GPL
+version 3.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

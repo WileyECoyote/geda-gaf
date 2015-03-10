@@ -1,6 +1,12 @@
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Extend API Rename Page, Save Page As, Get Page Changed
+    * scripts/geda-snap-grid.py: Respin gsym-snap-grip; Make more generalize
+      and improve robustness and rename file. geda-snap-grid can now be used
+      to process schematic file not just symbols.
+
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Extend Python API: Rename Page, Save Page As, Get Page Changed
 
     * src/libgedathon.c: Add function PyGeda_is_page_modified to provide an
       API to get the current status of the page, function PyGeda_rename_page

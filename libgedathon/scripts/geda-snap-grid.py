@@ -7,7 +7,7 @@ from geda import geda
 from geda.constants import *
 
 #---------------------------------------------------------------------------
-Version="0.1.0"
+Version="0.4.1"
 #---------------------------------------------------------------------------
 VerboseMode=False
 #---------------------------------------------------------------------------
@@ -15,35 +15,53 @@ VerboseMode=False
 #  This is the help string.
 Usage =\
 """
-gsym-snap-grid -- A gEDA-gaf Symbol File Utility
-                  Round X-Y coordinates of attributes in a symbol file
-                  to multibles of 25 or a specified value.
+geda-snap-grid -- A gEDA-gaf Schematics and Symbol cleaning utility
 
-Usage: gsym-snap-grid [Options] -i <inputfile> [[-o] <outputfile> ]
+\tRound X-Y coordinates of attributes in schematic and symbol files to
+\tmultiples of 25 or a specified value.
+
+\tBy default, geda-snap-grid operates on both schematic and symbol files
+\tunless the file names are specified on the command line, either with the
+\t--input <inputfile> option or just listing the files. For both schematic
+\tand symbol files, the extension must be specified when the names of files
+\tare specified.
+
+Usage: geda-snap-grid [Options] -i <inputfile> [[-o] <outputfile> ] [list of files]
 """
 
 Help =\
 """
 Options:
 
-  -R, --Recursive -- Process all symbol files in the current and all subordinated directories.
-  -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
-                     Spews lots of info about what the prog is doing.
+  The following options can be used to modify the default behavior of geda-snap-grid
 
-  The following options can be used to modify the default behavior of gsym-snap-grid
+  -R, --Recursive --  Process all files in the current and all subordinated directories.
+  -v, --verbose   --  Verbose mode, spews lots of info about what the prog is doing.
 
-  -u, --up   Force rounding down, defaults to nearest.
-  -d, --down Force rounding up, defaults to nearest.
+  -a, --append <path> When processing schematic files this option can be used to specify
+                      addition directories to be appended to the libraries search path.
+                      This option is not needed for directories with the name "sym", if
+                      such a directory exist, the directory will be appended automatically.
+
+  -n, --no-path   --  By default, geda-snap-grid if a directory exist with the name
+                      "sym", then the  directory is appended to the libraries search path
+                      when processing schematic files, this option inhibits this behavior.
+
+  -c, --sch       --  Only process schematic files, ignored if a file name or names are specified.
+  -s  --sym       --  Only process symbol files, ignored if a file name or names are specified.
+
+  -u, --up   Force rounding up, defaults to nearest.
+  -d, --down Force rounding down, defaults to nearest.
 
   -m # Round to moduli specified by #, default is 25.
   -x   Only round X coordinates, mutually exclusive with -y
   -y   Only round Y coordinates, mutually exclusive with -x
 
-Example: Snap all attribute coordinates values in all symbol files in the current
+Example: Snap all attribute coordinates values in all files in the current
          directory and in all subdirectories to the nearest multiple of 50 and
          report modified values:
 
-    gsym-snap-grid.py --verbose -R -m 50
+    geda-snap-grid.py --verbose -R -m 50
 
 Copyright (C) 2015 by Wiley Edward Hill. Released under GPL Version 3.
 
@@ -66,7 +84,13 @@ class ProgramParameters:
         """
         self.RecursiveMode   = False
         self.VerboseMode     = False
+        self.OnlySchematics  = False
+        self.OnlySymbols     = False
+        self.AutoAppendPath  = True
         self.InputFiles      = []
+        self.InputFileName   = ""
+        self.OutputFileName  = ""
+        self.Path2Symbols    = ""
         self.UserDir         = os.path.abspath(os.getcwd())
 
         self.rnd_up   = False
@@ -78,12 +102,30 @@ class ProgramParameters:
         if len(sys.argv) > 1:
 
             mflag = False
+            iflag = False
+            oflag = False
+            pflag = False
 
             for arg in sys.argv[1:]:       # Skip OurSelf
 
                 if mflag:
                     self.moduli = int(arg)
                     mflag = False
+                    continue
+
+                if iflag:
+                    self.InputFileName = arg
+                    iflag = False
+                    continue
+
+                if oflag:
+                    self.OutputFileName = arg
+                    oflag = False
+                    continue
+
+                if pflag:
+                    self.Path2Symbols = arg
+                    pflag = False
                     continue
 
                 if arg in ('-V', '--version'):
@@ -95,12 +137,40 @@ class ProgramParameters:
                     print Help
                     sys.exit(0)
 
+                if arg == '--usage':
+                    print Usage
+                    sys.exit(0)
+
+                if arg in ('-i', '--input'):
+                    iflag = True
+                    continue
+
+                if arg in ('-o', '--output'):
+                    oflag = True
+                    continue
+
+                if arg in ('-a', '--append'):
+                    pflag = True
+                    continue
+
+                if arg in ('-n', '--no-path'):
+                    self.AutoAppendPath = False
+                    continue
+
                 if arg in ('-v', '--verbose'):
                     self.VerboseMode = True
                     continue
 
                 if arg in ('-R', '--Recursive'):
                     self.RecursiveMode = True
+                    continue
+
+                if arg in ('-c', '--sch'):
+                    self.OnlySchematics = True
+                    continue
+
+                if arg in ('-s', '--sym'):
+                    self.OnlySymbols = True
                     continue
 
                 if arg in ('-d', '--down'):
@@ -119,7 +189,6 @@ class ProgramParameters:
                     self.fix_x = False
                     continue
 
-                # The set to 10 points group
                 if arg in ('-m', '-M', '--moduli'):
                     mflag = True
                     continue
@@ -175,20 +244,20 @@ def SnapText(Options, Text):
 
 #---------------------------------------------------------------------------
 
-def ProcessSymbol(Options, File):
+def ProcessFile(Options, File):
 
-    symbol = geda.open_page(File)
+    gedafile = geda.open_page(File)
 
     if Options.VerboseMode:
-        print "Processing: " + symbol.filename()
+        print "Processing: " + gedafile.name()
 
-    objects  = geda.get_objects(symbol)
+    objects  = geda.get_objects(gedafile)
     modified = 0
     """
       Loop thru all objects and get list of detached text attribute then loop
       again and skip if in list, Sub object (attrinutes) are to be handled by
-      the objects. This is so that detached text gets added to the symbol sym
-      groups.
+      the objects. This is so that detached text gets added to the gedafile
+      sym groups.
     """
     for capsule in objects:
         object = geda.get_object(capsule)          # Retrieve object from GedaCapsule
@@ -197,19 +266,27 @@ def ProcessSymbol(Options, File):
                 modified = modified + 1
 
     if modified:
+        if Options.OutputFileName:
+            OutputFileName = Options.OutputFileName
+            gedafile.filename = Options.OutputFileName # Write the file to storage
+            print "Using " + OutputFileName + " for output file name"
+        else:
+            OutputFileName = gedafile.filename
+
+        gedafile.save() # Write the file to storage
+
         if Options.VerboseMode:
-            print "Made " + str(modified) + " modifications to " + symbol.filename()
-        symbol.save() # Write the symbol to storage
+            print "Made " + str(modified) + " modifications to " + OutputFileName
 
     # Close the file
-    symbol.close()
+    gedafile.close()
 
 #---------------------------------------------------------------------------
 
 def RecursiveGlob(path, *exts):
-	""" Glob recursively a directory and all subdirectories for multiple file extensions
-    Note: Glob is case-insensitive, i. e. for '\*.jpg' you will get files ending
-    with .jpg and .JPG
+	""" Recursively Glob directory and all subdirectories for multiple file
+	extensions. Note: Glob is case-insensitive, i. e. for '\*.sch' you will
+	get files ending with .sch and .SCH
 
     Parameters
     ----------
@@ -237,36 +314,75 @@ def main(argv):
 
 	Options = ProgramParameters()  #  Creates Options object for program varibles.
 
-	InputFiles = Options.InputFiles
+	# Resolve library search paths per Options
+	if not Options.OnlySymbols:
+		if Options.AutoAppendPath:
+			if os.path.isdir("sym"):
+				append_symbol_path("sym");
+		if Options.Path2Symbols:
+			if os.path.isdir(Options.Path2Symbols):
+				append_symbol_path(Options.Path2Symbols);
+			else:
+				print Options.Path2Symbols + " does not exist"
+				exit(1);
 
-	files = []
-	if len(InputFiles) == 0:
-		# Get list of file OurSelf
-		foundOurSelf = True
-		if Options.RecursiveMode:
-			files = RecursiveGlob(os.getcwd(), '/*.sym')
-		else:
-			files = glob.glob('*.sym')
+	# Rearrange input list if wild-card was used with -i
+	if Options.InputFileName and Options.InputFiles:
+		Options.InputFiles.insert(0, Options.InputFileName)
+		Options.InputFileName=""
 
-	if len(files) > 0:
-		foundfiles=True
-		for file in files:
-			InputFiles.append(file)
-
-	if foundOurSelf and len(InputFiles) == 0:
-		print 'No symbols found or specifed, try using --help'
-	elif not foundfiles :
-		if len(InputFiles) > 1:
-			for file in InputFiles:
-				if not os.path.isfile(file):
-					print "Bad file name or option: " + file
-					print Usage
+	if Options.InputFileName:
+		ProcessFile(Options, Options.InputFileName)
 	else:
-		for symbol in InputFiles:
-			ProcessSymbol(Options, symbol)
+
+		# Multi-file mode
+		if Options.OutputFileName:
+			print "output file can not be specified with multiple input files"
+
+		InputFiles = Options.InputFiles
+
+		files = []
+
+		base = os.getcwd()
+
+		if not InputFiles:
+			# Get list of files OurSelf
+			foundOurSelf = True
+			if Options.OnlySymbols:
+				if Options.RecursiveMode:
+					files = RecursiveGlob(base, '/*.sym')
+				else:
+					files = glob.glob(os.path.join(base,'*.sym'))
+			elif Options.OnlySchematics:
+				if Options.RecursiveMode:
+					files = RecursiveGlob(base, '/*.sch')
+				else:
+					files = glob.glob(os.path.join(base,'*.sch'))
+			elif Options.RecursiveMode:
+				files = RecursiveGlob(base,'/*.sym', '/*.sch')
+			else:
+				files = glob.glob(os.path.join(base,'*.sym'))
+				files.extend(glob.glob(os.path.join(base,'*.sch')))
+
+		if files:
+			foundfiles=True
+			for file in files:
+				InputFiles.append(file)
+
+		if foundOurSelf and len(InputFiles) == 0:
+			print 'No symbols found or specifed, try using --help'
+
+		elif not foundfiles :
+			if len(InputFiles) > 1:
+				for file in InputFiles:
+					if not os.path.isfile(file):
+						print "Bad file name or option: " + file
+						print Usage
+		else:
+			for symbol in InputFiles:
+				ProcessFile(Options, symbol)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
 
 # Done!
-

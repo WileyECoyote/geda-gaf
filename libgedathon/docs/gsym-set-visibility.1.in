@@ -89,7 +89,7 @@ https://bugs.launchpad.net/geda/gsym-set-visibility/+filebug
 Wiley Edward Hill < wileyhill dot gmail dot com >
 
 .SH SEE ALSO
-.BR gsym-attribute (1) gsym-set-font-size (1) gsym-snap-grid (1)
+.BR gsym-attribute (1) gsym-set-font-size (1) geda-snap-grid (1)
 
 .SH COPYRIGHT
 .nf

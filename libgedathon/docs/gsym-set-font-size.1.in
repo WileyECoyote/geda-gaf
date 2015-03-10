@@ -76,7 +76,7 @@ https://bugs.launchpad.net/geda/gsym-set-font-size/+filebug
 Wiley Edward Hill < wileyhill dot gmail dot com >
 
 .SH SEE ALSO
-.BR gsym-attribute (1) gsym-set-visibility (1) gsym-snap-grid (1)
+.BR gsym-attribute (1) gsym-set-visibility (1) geda-snap-grid (1)
 
 .SH COPYRIGHT
 .nf

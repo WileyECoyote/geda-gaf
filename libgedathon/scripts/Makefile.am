@@ -8,7 +8,7 @@ PYdir	             = $(TARGET_DIR)
 ## ftest.py gtest.py
 PY_SCRIPTS 	     	 = capacitor.py dual-opamp.py lpbf.py resistor.py \
 			   gsym-attribute.py gsym-set-font-size.py \
-			   gsym-set-visibility.py gsym-snap-grid.py
+			   gsym-set-visibility.py geda-snap-grid.py
 
 #enble this for distcheck
 distcheck:
