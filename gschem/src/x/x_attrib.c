@@ -253,11 +253,11 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
   ThisDialog = w_current->aewindow;
 
   switch(response) {
-    case GTK_RESPONSE_APPLY:
+    case GSCHEM_RESPONSE_APPLY:
       attrib_edit_dialog_ok ( SAE_EDIT_MODE, w_current);
       break;
 
-    case GTK_RESPONSE_ACCEPT:
+    case GSCHEM_RESPONSE_ACCEPT:
       attrib_edit_dialog_ok ( SAE_ADD_MODE, w_current);
       gtk_grab_remove(ThisDialog);
       break;
@@ -392,14 +392,14 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
       name_label_text    = name_label_text_add;
       name_list_tip      = name_list_add_tip;
       value_entry_tip    = value_entry_add_tip;
-      response           = GTK_RESPONSE_ACCEPT;
+      response           = GSCHEM_RESPONSE_ACCEPT;
       dialog_flags       = GSCHEM_DIALOG_MODAL;
     }
     else {
       name_label_text    = name_label_text_edit;
       name_list_tip      = name_list_edit_tip;
       value_entry_tip    = value_entry_edit_tip;
-      response           = GTK_RESPONSE_APPLY;
+      response           = GSCHEM_RESPONSE_APPLY;
       dialog_flags       = GSCHEM_MODELESS_DIALOG;
     }
 
@@ -547,12 +547,12 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
     if (SAE_ADD_MODE == flag) {
       gtk_widget_grab_focus(attrib_combo_entry);
       gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                      GTK_RESPONSE_ACCEPT);
+                                      GSCHEM_RESPONSE_ACCEPT);
     }
     else {
       gtk_widget_grab_focus(value_entry);
       gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                      GTK_RESPONSE_APPLY);
+                                      GSCHEM_RESPONSE_APPLY);
     }
 
     /* Tell our inherited on-selection change callback handler which

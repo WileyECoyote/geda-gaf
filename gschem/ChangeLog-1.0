@@ -1,13 +1,13 @@
-2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_attrib.c: Rename file, formerly x_attrib.c
+
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Revert back to old scheme for canceling move operations,
       the old scheme is inefficient but the new scheme does not work correctly when
       undoing if component was rotated during the move. The old scheme appears to
       work correctly.
-
-2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
-
-    * src/x/x_edit_attrib.c: Rename file, formerly x_attrib.c
 
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
