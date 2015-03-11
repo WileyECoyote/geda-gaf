@@ -1,3 +1,13 @@
+2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Improve Integration: Standardize Enumerations
+      Replace remaining GTK_RESPONSE_xxx enumerators with corresponding
+      GEDA_RESPONSE_xxx enumeration in files:
+
+          src/x/x_settings_dialog.c
+          src/x/x_compselect.c
+          src/x/x_fileselect.c
+
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Raise main window when string for symbol in path dropped

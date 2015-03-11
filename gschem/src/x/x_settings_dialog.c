@@ -2597,7 +2597,7 @@ create_settings_dialog (GschemToplevel *w_current)
 
   OkayButt = gtk_button_new_from_stock ("gtk-ok");
   g_object_set (OkayButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), OkayButt, GTK_RESPONSE_OK);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), OkayButt, GEDA_RESPONSE_OK);
   gtk_widget_set_can_default(OkayButt, TRUE);
   gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage.."));
 
