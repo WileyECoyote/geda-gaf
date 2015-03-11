@@ -1141,14 +1141,14 @@ geda_image_chooser_new (GtkWidget *parent,
     }
 
     gtk_dialog_add_buttons (dialog,
-                            _("_Cancel"),       GTK_RESPONSE_CANCEL,
-                            second_button_text, GTK_RESPONSE_ACCEPT,
+                            _("_Cancel"),       GEDA_RESPONSE_CANCEL,
+                            second_button_text, GEDA_RESPONSE_ACCEPT,
                             NULL);
 
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_CANCEL,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_CANCEL,
                                             -1);
 
     gtk_window_set_title (GTK_WINDOW (dialog), title);
@@ -1168,7 +1168,7 @@ geda_image_chooser_new (GtkWidget *parent,
     }
 
     /* set default response signal, usually triggered by the "Return" key */
-    gtk_dialog_set_default_response (dialog, GTK_RESPONSE_ACCEPT);
+    gtk_dialog_set_default_response (dialog, GEDA_RESPONSE_ACCEPT);
   }
   else {
     widget = NULL;

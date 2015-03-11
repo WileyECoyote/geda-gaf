@@ -1624,15 +1624,15 @@ geda_font_dialog_init (GedaFontDialog *dialog)
 
   dialog->cancel_button = gtk_dialog_add_button (Dialog,
                                                  GTK_STOCK_CANCEL,
-                                                 GTK_RESPONSE_CANCEL);
+                                                 GEDA_RESPONSE_ACCEPT);
 
   dialog->ok_button = gtk_dialog_add_button (Dialog,
                                            _("_Select"),
-                                             GTK_RESPONSE_OK);
+                                             GEDA_RESPONSE_OK);
 
   gtk_dialog_set_alternative_button_order (Dialog,
-                                           GTK_RESPONSE_OK,
-                                           GTK_RESPONSE_CANCEL,
+                                           GEDA_RESPONSE_OK,
+                                           GEDA_RESPONSE_ACCEPT,
                                            -1);
 
   gtk_widget_pop_composite_child ();

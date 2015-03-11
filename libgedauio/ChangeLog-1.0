@@ -1,3 +1,13 @@
+2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Improve Integration: Standardize Enumerations
+      Replace GTK_RESPONSE_xxx enumerators with corresponding
+      GEDA_RESPONSE_xxx enumeration in files:
+
+          include/geda_file_chooser.h
+          geda_image_chooser.c
+          src/widgets/geda_font_dialog.c
+
 2014-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/functions/geda_marshal.c: Add marshal VOID:POINTER,STRING
