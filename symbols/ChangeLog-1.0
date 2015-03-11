@@ -1,5 +1,18 @@
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * graphic/: Redo graphical symbols for No Connects.
+
+        * graphic/nc-bottom-1.sym
+        * graphic/nc-bottom-2.sym
+        * graphic/nc-left-1.sym
+        * graphic/nc-left-2.sym
+        * graphic/nc-right-1.sym
+        * graphic/nc-right-2.sym
+        * graphic/nc-top-1.sym
+        * graphic/nc-top-2.sym
+
+2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/TPS21 Add 5 symbols, Auto Switching Power Multiplexer
 
         * ti/TPS2110-1.sym

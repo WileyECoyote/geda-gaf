@@ -1,31 +1,35 @@
-v 20121031 2
-T 10 10 5 10 0 0 0 0 1
+v 20150101 2
+L 50 200 350 200 3 0 0 0 -1 -1
+T 400 800 8 10 0 0 0 0 1
 author=AutoTron
 P 200 0 200 200 1 0 0
 {
-T 400 0 5 10 0 0 0 0 1
-pinseq=1
-T 400 200 5 10 0 0 0 0 1
+T 100 50 5 6 0 1 0 0 1
 pinnumber=1
-T 400 200 5 10 0 0 0 0 1
-pintype=io
-T 400 200 5 10 0 0 0 0 1
-pinlabel=n_a
+T 100 50 5 6 0 1 0 0 1
+pinseq=1
+T 200 400 5 6 0 1 0 3 1
+pintype=pas
+T 200 250 5 10 0 1 0 3 1
+pinlabel=NC
 }
-L 50 200 350 200 3 0 0 0 -1 -1
 T 200 250 9 10 1 0 0 3 1
 NC
-T 400 500 8 10 0 0 0 0 1
-value=NoConnection
-T 0 600 8 10 0 0 0 0 1
-documentation=nc.pdf
-T 400 700 8 10 0 0 0 0 1
-device=none
-T 400 900 8 10 0 0 0 0 1
+T 100 50 5 6 0 1 0 0 1
 graphical=1
-T 600 100 9 10 0 0 0 0 1
+T 250 50 5 6 0 1 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
-footprint=unknown
-T 600 100 9 10 0 0 0 0 1
+T 400 50 5 10 0 1 0 0 1
+value=NoConnection
+T 400 200 5 10 0 1 0 0 1
+device=DRC_Directive
+T 400 350 9 10 0 1 0 0 1
+footprint=none
+T 400 350 8 10 0 1 0 0 1
 refdes=none
+T 400 500 9 10 0 0 0 0 1
+symversion=0.2
+T 400 650 8 10 0 0 0 0 1
+documentation=nc.pdf
+T 850 350 5 10 0 0 0 0 1
+net:NoConnection
