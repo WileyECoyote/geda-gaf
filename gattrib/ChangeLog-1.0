@@ -1,3 +1,14 @@
+2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Replaced GTK_RESPONSE_xxX with cooresponding
+      GEDA_RESPONSE__xxx.
+
+    * src/x_fileselect.c: Replaced GTK_RESPONSE_xxX with cooresponding
+      GEDA_RESPONSE__xxx.
+
+    * gattrib/src/x_menus.c: Replaced GTK_RESPONSE_xxX with cooresponding
+      GEDA_RESPONSE__xxx.
+
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Specify version.h as build prerequisite to ensure

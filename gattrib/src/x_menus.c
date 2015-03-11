@@ -18,9 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-
-#include <gattrib.h>
 #include <gtk/gtk.h>
+#include <gattrib.h>
+
 #include <geda_debug.h>
 
 static void toolbar_icons_only( void );
@@ -85,11 +85,11 @@ void x_menu_file_open()
   if (file_list != NULL ) {
     if( sheet_head->CHANGED == TRUE) {
       switch (x_dialog_file_not_saved()) {
-	case GTK_RESPONSE_CANCEL:
+	case GEDA_RESPONSE_CANCEL:
 	  return; /* user canceled from the save unsaved file dialog */
-	case GTK_RESPONSE_YES:
+	case GEDA_RESPONSE_YES:
            x_menu_file_save();
-        case GTK_RESPONSE_NO:
+        case GEDA_RESPONSE_NO:
       	   /* No need to do anything here, just fall through */
         default:
           break;
@@ -127,11 +127,11 @@ static void menu_open_recent( char* filename)
 {
   if( sheet_head->CHANGED == TRUE) {
     switch (x_dialog_file_not_saved()) {
-    case GTK_RESPONSE_CANCEL:
+    case GEDA_RESPONSE_CANCEL:
       return; /* user canceled from the save unsaved file dialog */
-    case GTK_RESPONSE_YES:
+    case GEDA_RESPONSE_YES:
       x_menu_file_save();
-    case GTK_RESPONSE_NO:
+    case GEDA_RESPONSE_NO:
     /* No need to do anything here, just fall through */
       default:
       break;

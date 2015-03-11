@@ -92,14 +92,14 @@ bool x_fileselect ( char* filename )
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
                                         GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
+                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                        GTK_STOCK_SAVE,   GEDA_RESPONSE_ACCEPT,
                                         NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
+					  GEDA_RESPONSE_ACCEPT,
+					  GEDA_RESPONSE_CANCEL,
 					  -1);
 
   g_object_set (dialog,                     /* GtkFileChooser */
@@ -124,7 +124,7 @@ bool x_fileselect ( char* filename )
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
     fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     strcpy(filename,fname);
     GEDA_FREE(fname); /* GTK actually does this when dialog is destroyed */
@@ -231,14 +231,14 @@ GSList *x_fileselect_open (void)
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
                                         GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
+                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                        GTK_STOCK_OPEN,   GEDA_RESPONSE_ACCEPT,
                                         NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
+					  GEDA_RESPONSE_ACCEPT,
+					  GEDA_RESPONSE_CANCEL,
 					  -1);
 
   g_object_set (dialog,
@@ -254,7 +254,7 @@ GSList *x_fileselect_open (void)
   gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
   free (cwd);
 
-  if(gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
+  if(gtk_dialog_run (GTK_DIALOG(dialog)) == GEDA_RESPONSE_ACCEPT) {
      filenames = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
      for (ptrname = filenames;
        ptrname != NULL;

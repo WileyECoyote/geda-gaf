@@ -86,7 +86,7 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
   r = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
-  if (r ==  GTK_RESPONSE_OK)
+  if (r ==  GEDA_RESPONSE_OK)
     return 1;
   else
     return 0;
@@ -106,11 +106,11 @@ char *x_dialog_new_attrib()
   /* Create the dialog */
   dialog = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
 				       GTK_DIALOG_MODAL,
-				       GTK_STOCK_OK, GTK_RESPONSE_OK,
-				       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				       GTK_STOCK_OK, GEDA_RESPONSE_OK,
+				       GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
 				       NULL);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
   label = geda_label_new (_("Enter new attribute name"));
@@ -126,10 +126,10 @@ char *x_dialog_new_attrib()
   gtk_widget_show_all(dialog);
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
-    case GTK_RESPONSE_OK:
+    case GEDA_RESPONSE_OK:
       entry_text = u_string_strdup( GetEntryText(attrib_entry) );
       break;
-    case GTK_RESPONSE_CANCEL:
+    case GEDA_RESPONSE_CANCEL:
     default:
       entry_text = NULL;
       break;
@@ -175,7 +175,7 @@ void x_dialog_delete_attrib()
 
   gtk_window_set_title(GTK_WINDOW(dialog), _("Delete attribute"));
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
-    case GTK_RESPONSE_YES:
+    case GEDA_RESPONSE_YES:
       /* call the fcn to actually delete the attrib column.  */
       s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
                                         * which col to delete. */
@@ -207,15 +207,15 @@ void x_dialog_missing_sym()
                                   "%s", string);
 
   gtk_dialog_add_buttons(GTK_DIALOG(dialog),
-                  GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
-                  GTK_STOCK_GO_FORWARD, GTK_RESPONSE_ACCEPT,
+                  GTK_STOCK_QUIT, GEDA_RESPONSE_REJECT,
+                  GTK_STOCK_GO_FORWARD, GEDA_RESPONSE_ACCEPT,
                   NULL);
 
   gtk_window_set_title(GTK_WINDOW(dialog), _("Missing symbol file found for component!"));
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_REJECT);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_REJECT);
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
-    case GTK_RESPONSE_ACCEPT:
+    case GEDA_RESPONSE_ACCEPT:
       /* Continue with the execution */
       break;
 
@@ -247,19 +247,19 @@ int x_dialog_file_not_saved()
                                    GTK_BUTTONS_NONE, NULL);
   gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog), str);
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("Close without saving"), GTK_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,          GTK_RESPONSE_CANCEL,
-                          GTK_STOCK_SAVE,            GTK_RESPONSE_YES,
+                          _("Close without saving"), GEDA_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,          GEDA_RESPONSE_CANCEL,
+                          GTK_STOCK_SAVE,            GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_YES,
-                                          GTK_RESPONSE_NO,
-                                          GTK_RESPONSE_CANCEL,
+                                          GEDA_RESPONSE_YES,
+                                          GEDA_RESPONSE_NO,
+                                          GEDA_RESPONSE_CANCEL,
                                           -1);
 
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_YES);
 
   result = (gtk_dialog_run (GTK_DIALOG (dialog)));
   gtk_widget_destroy (dialog);
@@ -274,12 +274,12 @@ void x_dialog_unsaved_data()
 {
   switch (x_dialog_file_not_saved())
   {
-    case GTK_RESPONSE_NO:
+    case GEDA_RESPONSE_NO:
     {
       gattrib_quit(0);
       break;
     }
-    case GTK_RESPONSE_YES:
+    case GEDA_RESPONSE_YES:
     {
       s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into GedaToplevel */
       s_page_save_all(pr_current);  /* saves all pages in design */
@@ -287,7 +287,7 @@ void x_dialog_unsaved_data()
       gattrib_quit(0);
       break;
     }
-    case GTK_RESPONSE_CANCEL:
+    case GEDA_RESPONSE_CANCEL:
     default:
     {
        break;
@@ -384,11 +384,11 @@ void x_dialog_export_file()
 
   dialog = gtk_file_chooser_dialog_new(_("Export CSV"), NULL,
       GTK_FILE_CHOOSER_ACTION_SAVE,
-      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-      GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT,
+      GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+      GTK_STOCK_SAVE, GEDA_RESPONSE_ACCEPT,
       NULL);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_ACCEPT);
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = getcwd(0,0);
@@ -396,7 +396,7 @@ void x_dialog_export_file()
   free (cwd);
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
-    case GTK_RESPONSE_ACCEPT:
+    case GEDA_RESPONSE_ACCEPT:
       filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
       if(filename != NULL) {
         f_export_components(filename);
@@ -435,17 +435,17 @@ char *x_dialog_get_search_text(char* prompt)
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
                                                       GTK_WINDOW(main_window),
                                                       GTK_DIALOG_MODAL,
-                                                      GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                                      GTK_STOCK_FIND, GTK_RESPONSE_ACCEPT,
+                                                      GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                                      GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
                                                       NULL);
 
   if (dialog) {
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
+                                            GEDA_RESPONSE_ACCEPT,
+                                            GEDA_RESPONSE_REJECT,
                                             -1);
-    gtk_dialog_set_default_response(dialog, GTK_RESPONSE_ACCEPT);
+    gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_ACCEPT);
 
     gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
 
@@ -464,7 +464,7 @@ char *x_dialog_get_search_text(char* prompt)
 
     r = gtk_dialog_run ((GtkDialog*)dialog);
 
-    if (r ==  GTK_RESPONSE_ACCEPT)
+    if (r ==  GEDA_RESPONSE_ACCEPT)
       text = u_string_strdup( GetEntryText(textentry) );
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
@@ -556,14 +556,14 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     add_search_history(search_text);
   }
   switch (response) {
-  case GTK_RESPONSE_REJECT: /* Don't replace find next */
+  case GEDA_RESPONSE_REJECT: /* Don't replace find next */
     unload_dialog();
     Search->Found = x_find_main_search(search_text, NULL);
     if(search_text) GEDA_FREE(search_text);
     break;
-  case GTK_RESPONSE_APPLY: /*"Replace All and close dialog"*/
+  case GEDA_RESPONSE_APPLY: /*"Replace All and close dialog"*/
     Search->ReplaceAll = TRUE;
-  case GTK_RESPONSE_ACCEPT: /* Replace*/
+  case GEDA_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
     replacement_text = u_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
     add_search_history(replacement_text);
@@ -571,8 +571,8 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     if(search_text) GEDA_FREE(search_text);
     if(replacement_text) GEDA_FREE(replacement_text);
     break;
-  case GTK_RESPONSE_DELETE_EVENT:
-  case GTK_RESPONSE_CANCEL:
+  case GEDA_RESPONSE_DELETE_EVENT:
+  case GEDA_RESPONSE_CANCEL:
     gtk_widget_destroy(ThisDialog);
     ThisDialog = NULL;
     break;
@@ -777,7 +777,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
 
   CloseButt = gtk_button_new_from_stock ("gtk-close");
   g_object_set ( CloseButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CloseButt, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CloseButt, GEDA_RESPONSE_CANCEL);
   gtk_widget_set_can_default(CloseButt, TRUE);
   gtk_widget_set_size_request (CloseButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, CloseButt, _("Close this dialog"), NULL);
@@ -785,7 +785,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   ReplaceAllButt = gtk_button_new_with_mnemonic (_("Replace All"));
   if (!find_only_mode)
     g_object_set ( ReplaceAllButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceAllButt, GTK_RESPONSE_APPLY);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceAllButt, GEDA_RESPONSE_APPLY);
   gtk_widget_set_can_default(ReplaceAllButt, TRUE);
   gtk_widget_set_size_request (ReplaceAllButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceAllButt, _("Replace All and close dialog"), NULL);
@@ -793,14 +793,14 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   ReplaceButt = gtk_button_new_with_mnemonic (_("Replace"));
   if (!find_only_mode)
     g_object_set ( ReplaceButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceButt, GTK_RESPONSE_ACCEPT);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceButt, GEDA_RESPONSE_ACCEPT);
   gtk_widget_set_can_default(ReplaceButt, TRUE);
   gtk_widget_set_size_request (ReplaceButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceButt, _("Replace selected text and continue"), NULL);
 
   FindButt = gtk_button_new_with_mnemonic (_("Find"));
   g_object_set ( FindButt, "visible", TRUE, NULL);
-  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), FindButt, GTK_RESPONSE_REJECT);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), FindButt, GEDA_RESPONSE_REJECT);
   gtk_widget_set_can_default(FindButt, TRUE);
   gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
