@@ -1,3 +1,23 @@
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Symbol Versioning System Enhancements
+
+    * gschem/src/x/x_dialog.c: The symbol changed notification dialog does
+      not default to close and requires users to "click" the close button
+      to close the dialog (as stipulated in the gtk documentation). This is
+      undesirable behavior, the dialog is a message dialog and should simply
+      go away if the user presses the enter key.
+
+      Revise x_dialog_symbol_changed; create message dialog without buttons
+      and then create a close button and add to the dialog, set tool tip
+      for ATK, and focus to the widget before running the dialog instead of
+      "showing" with unnecessary response signal to destroy the dialog.
+
+      Revise constructor xd_add_changed_symbol_list to not check if pointer
+      is a GTK Message dialog. Relocated loading list_store to later in the
+      function to improve readability of the code, (flows more continuously)
+      and change loading of the store to simpler while loop.
+
 2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Improve Integration: Standardize Enumerations

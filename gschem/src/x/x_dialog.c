@@ -4093,110 +4093,105 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   char  *tmp;
   GList *changed;
 
-  if (!GTK_IS_MESSAGE_DIALOG(dialog)) {
-    BUG_MSG("Dialog must be a Message Dialog");
-  }
-  else {
+  g_object_get ((GObject*)dialog, "message-area", &mess_area, NULL);
 
-    list_store = gtk_list_store_new (1, G_TYPE_STRING);
+  /* This box contains the warning image and the vbox */
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkContainer */
+                       "border-width", 5,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing", 12,
+                       NULL);
 
-    for (changed = w_current->toplevel->page_current->major_changed_refdes;
-         changed != NULL; NEXT(changed)) {
+  gtk_box_pack_start (GTK_BOX (mess_area), hbox, TRUE, TRUE, 0);
 
-      char *value = (char *) changed->data;
-      GtkTreeIter iter;
+  /* This box contains the labels and list of changed symbols */
+  vbox = g_object_new (GTK_TYPE_VBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing", 12,
+                       NULL);
 
-      gtk_list_store_append (list_store, &iter);
-      gtk_list_store_set (list_store, &iter, 0, value, -1);
-    }
-
-    g_object_get ((GObject*)dialog, "message-area", &mess_area, NULL);
-
-    /* This box contains the warning image and the vbox */
-    hbox = g_object_new (GTK_TYPE_HBOX,
-                         /* GtkContainer */
-                         "border-width", 5,
-                         /* GtkBox */
-                         "homogeneous", FALSE,
-                         "spacing", 12,
-                         NULL);
-
-    gtk_box_pack_start (GTK_BOX (mess_area), hbox, TRUE, TRUE, 0);
-
-    /* This box contains the labels and list of changed symbols */
-    vbox = g_object_new (GTK_TYPE_VBOX,
-                         /* GtkBox */
-                          "homogeneous", FALSE,
-                          "spacing", 12,
-                         NULL);
-
-    gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
 
     /* Primary label */
-    tmp = u_string_concat ("<big><b>", _("Major symbol changes detected."),
-                           "</b></big>", NULL);
+  tmp = u_string_concat ("<big><b>", _("Major symbol changes detected."),
+                         "</b></big>", NULL);
 
-    label = g_object_new (GTK_TYPE_LABEL,
-                          /* GtkMisc */
-                          "xalign", 0.0,
-                          "yalign", 0.0,
-                          "selectable", TRUE,
-                          /* GtkLabel */
-                          "wrap", TRUE,
-                          "use-markup", TRUE,
-                          "label", tmp,
-                          NULL);
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap", TRUE,
+                        "use-markup", TRUE,
+                        "label", tmp,
+                        NULL);
 
-    gtk_container_add (GTK_CONTAINER (vbox), label);
-    GEDA_FREE (tmp);
+  gtk_container_add (GTK_CONTAINER (vbox), label);
+  GEDA_FREE (tmp);
 
-    /* Secondary label */
-    label = g_object_new (GTK_TYPE_LABEL,
-                          /* GtkMisc */
-                          "xalign", 0.0,
-                          "yalign", 0.0,
-                          "selectable", TRUE,
-                          /* GtkLabel */
-                          "wrap", TRUE,
-                          "use-markup", TRUE,
-                          "label",
-                          _("Changes have occurred to the symbols shown below.\n\n"
-                            "Be sure to verify each of these symbols."),
-                          NULL);
+  /* Secondary label */
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap", TRUE,
+                        "use-markup", TRUE,
+                        "label",
+                        _("Changes have occurred to the symbols shown below.\n\n"
+                        "Be sure to verify each of these symbols."),
+                        NULL);
 
 
-    gtk_container_add (GTK_CONTAINER (vbox), label);
+  gtk_container_add (GTK_CONTAINER (vbox), label);
 
-    /* List of changed symbols */
-    scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                           /* GtkScrolledWindow */
-                           "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                           "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                           "shadow-type",       GTK_SHADOW_IN,
-                           NULL);
+  /* List of changed symbols */
+  scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                         /* GtkScrolledWindow */
+                         "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                         "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                         "shadow-type",       GTK_SHADOW_IN,
+                         NULL);
 
-    gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
-    tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
-                              /* GtkTreeView */
-                              "enable-search", FALSE,
-                              "headers-visible", FALSE,
-                              "model", list_store,
-                              NULL);
+  list_store = gtk_list_store_new (1, G_TYPE_STRING);
+  changed    = w_current->toplevel->page_current->major_changed_refdes;
 
-    gtk_container_add (GTK_CONTAINER (scroll), tree_view);
+  while (changed) {
 
-    renderer = gtk_cell_renderer_text_new ();
+    char *value = (char *) changed->data;
+    GtkTreeIter iter;
 
-    column = gtk_tree_view_column_new_with_attributes (_("Symbol"),
+    gtk_list_store_append (list_store, &iter);
+    gtk_list_store_set (list_store, &iter, 0, value, -1);
+
+    NEXT(changed);
+  }
+
+  tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
+                            "enable-search", FALSE,
+                            "headers-visible", FALSE,
+                            "model", list_store,
+                            NULL);
+
+  gtk_container_add (GTK_CONTAINER (scroll), tree_view);
+
+  renderer = gtk_cell_renderer_text_new ();
+
+  column = gtk_tree_view_column_new_with_attributes (_("Symbol"),
                                                        renderer,
                                                        "text", 0,
                                                        NULL);
 
-    gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
-    gtk_widget_show_all (mess_area);
-  }
+  gtk_widget_show_all (mess_area);
 }
 
 /*! \brief Annoyance Dialog
@@ -4211,26 +4206,36 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  */
 void x_dialog_symbol_changed(GschemToplevel* w_current)
 {
-  GtkWidget* dialog;
-
   if (w_current->toplevel->page_current->major_changed_refdes) {
+
+    GtkWidget* dialog;
+    GtkWidget* close_butt;
 
     dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
                                      GTK_DIALOG_DESTROY_WITH_PARENT,
                                      GEDA_MESSAGE_INFO,
-                                     GTK_BUTTONS_CLOSE,
+                                     GTK_BUTTONS_NONE,
                                      NULL);
 
     xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
 
     gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
-    gtk_widget_show(dialog);
+
     gtk_window_set_transient_for (GTK_WINDOW (dialog),
                                   GTK_WINDOW (w_current->main_window));
 
-    g_signal_connect_swapped (dialog, "response",
-                              G_CALLBACK (gtk_widget_destroy),
-                              dialog);
+    /* Add the Close button to dialog action area */
+    close_butt = gtk_button_new_from_stock ("gtk-close");
+    g_object_set (close_butt, "visible", TRUE, NULL);
+    gtk_dialog_add_action_widget (GTK_DIALOG (dialog), close_butt, GEDA_RESPONSE_CLOSE);
+    gtk_widget_set_can_default(close_butt, TRUE);
+    gtk_widget_set_tooltip_text (close_butt, _("Dismiss this dialog"));
+
+    gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_CLOSE);
+    gtk_widget_grab_focus(close_butt);
+    gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy (dialog);
+
   }
 }
 

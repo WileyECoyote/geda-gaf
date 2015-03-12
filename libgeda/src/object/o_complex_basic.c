@@ -1022,6 +1022,8 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 
   g_return_if_fail (GEDA_IS_COMPLEX(object));
 
+  /* When loading multiple documents it is helpful to include the file name
+   * when reporting symbol version conflicts, to do that, get the page: */
   if (GEDA_IS_PAGE(object->page)) {
     page = object->page;
   }
@@ -1032,7 +1034,9 @@ void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
     page = NULL;
   }
 
+  /* Retrieve the file name from the page */
   if (page) {
+    /* The path can clutter the message so just use the base name */
     schematic = f_get_basename(page->filename); /* Do not free */
   }
   else {
