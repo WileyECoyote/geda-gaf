@@ -34,8 +34,9 @@ int   default_attribute_promotion        = TRUE;
 int   default_promote_invisible          = FALSE;
 int   default_keep_invisible             = TRUE;
 
-int   default_enable_style_zero          = TRUE;;
+int   default_check_symbol_version      = TRUE;
 int   default_component_style            = RC_NIL;
+int   default_enable_style_zero          = TRUE;
 
 int   default_make_backup_files          = TRUE;
 int   default_show_full_path             = FALSE;
@@ -80,40 +81,41 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
 {
   GList *iter;
 
-  toplevel->attribute_promotion = default_attribute_promotion;
-  toplevel->promote_invisible   = default_promote_invisible;
-  toplevel->keep_invisible      = default_keep_invisible;
+  toplevel->attribute_promotion   = default_attribute_promotion;
+  toplevel->promote_invisible     = default_promote_invisible;
+  toplevel->keep_invisible        = default_keep_invisible;
 
-  toplevel->make_backup_files   = default_make_backup_files;
-  toplevel->show_full_path      = default_show_full_path;
+  toplevel->check_symbol_version  = default_check_symbol_version;
+  toplevel->make_backup_files     = default_make_backup_files;
+  toplevel->show_full_path        = default_show_full_path;
 
-  toplevel->bus_style           = default_bus_style;
-  toplevel->net_style           = default_net_style;
-  toplevel->pin_style           = default_pin_style;
-  toplevel->line_style          = default_line_style;
+  toplevel->bus_style             = default_bus_style;
+  toplevel->net_style             = default_net_style;
+  toplevel->pin_style             = default_pin_style;
+  toplevel->line_style            = default_line_style;
 
-  toplevel->thick_bus_width     = default_thick_bus_width;
-  toplevel->thick_line_width    = default_thick_line_width;
-  toplevel->thick_net_width     = default_thick_net_width;
-  toplevel->thick_pin_width     = default_thick_pin_width;
+  toplevel->thick_bus_width       = default_thick_bus_width;
+  toplevel->thick_line_width      = default_thick_line_width;
+  toplevel->thick_net_width       = default_thick_net_width;
+  toplevel->thick_pin_width       = default_thick_pin_width;
 
-  toplevel->thin_bus_width      = default_thin_bus_width;
-  toplevel->thin_line_width     = default_thin_line_width;
-  toplevel->thin_net_width      = default_thin_net_width;
-  toplevel->thin_pin_width      = default_thin_pin_width;
+  toplevel->thin_bus_width        = default_thin_bus_width;
+  toplevel->thin_line_width       = default_thin_line_width;
+  toplevel->thin_net_width        = default_thin_net_width;
+  toplevel->thin_pin_width        = default_thin_pin_width;
 
-  toplevel->default_line_end    = default_line_end;
-  toplevel->default_line_end    = default_line_end;
-  toplevel->default_line_width  = default_line_width;
-  toplevel->default_line_width  = default_line_width;
-  toplevel->default_line_space  = default_line_space;
+  toplevel->default_line_end      = default_line_end;
+  toplevel->default_line_end      = default_line_end;
+  toplevel->default_line_width    = default_line_width;
+  toplevel->default_line_width    = default_line_width;
+  toplevel->default_line_space    = default_line_space;
 
-  toplevel->default_line_space  = default_line_space;
-  toplevel->default_fill_width  = default_fill_width;
-  toplevel->default_fill_pitch1 = default_fill_pitch1;
-  toplevel->default_fill_angle1 = default_fill_angle1;
-  toplevel->default_fill_pitch2 = default_fill_pitch2;
-  toplevel->default_fill_angle2 = default_fill_angle2;
+  toplevel->default_line_space    = default_line_space;
+  toplevel->default_fill_width    = default_fill_width;
+  toplevel->default_fill_pitch1   = default_fill_pitch1;
+  toplevel->default_fill_angle1   = default_fill_angle1;
+  toplevel->default_fill_pitch2   = default_fill_pitch2;
+  toplevel->default_fill_angle2   = default_fill_angle2;
 
   /* copy the always_promote_attributes list from the default */
   g_list_foreach(toplevel->always_promote_attributes, (GFunc) g_free, NULL);

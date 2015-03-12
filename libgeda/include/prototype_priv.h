@@ -42,6 +42,8 @@ SCM  g_rc_always_promote_attributes    (SCM scmsymname);
 SCM  g_rc_attribute_promotion          (SCM mode);
 SCM  g_rc_bitmap_directory             (SCM path);
 SCM  g_rc_keep_invisible               (SCM mode);
+
+SCM  g_rc_check_symbol_version         (SCM mode);
 SCM  g_rc_make_backup_files            (SCM mode);
 SCM  g_rc_postscript_prolog            (SCM scmsymname);
 SCM  g_rc_print_color_map              (SCM scm_map);

@@ -115,19 +115,20 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     sscanf(line, "%c", &objtype);
 
     /* Do we need to check the symbol version?  Yes, but only if */
+    /* 0) Is symbol checking enabled */
     /* 1) the last object read was a complex and */
     /* 2) the next object isn't the start of attributes.  */
     /* If the next object is the start of attributes, then check the */
     /* symbol version after the attributes have been read in, see the */
     /* STARTATTACH_ATTR case */
-    if (last_complex && objtype != STARTATTACH_ATTR)
-    {
+    if (toplevel->check_symbol_version) {
+      if (last_complex && objtype != STARTATTACH_ATTR) {
         /* yes */
         /* verify symbol version (not file format but rather contents) */
-        o_complex_check_symversion(toplevel, last_complex);
+        o_complex_check_symbol_version(toplevel, last_complex);
         last_complex = NULL;  /* no longer need to check */
+      }
     }
-
     switch (objtype) {
 
       case(OBJ_LINE):
@@ -225,10 +226,10 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
           /* by now we have finished reading all the attributes */
           /* did we just finish attaching to a complex object? */
-          if (last_complex) {
+          if (toplevel->check_symbol_version && last_complex) {
             /* yes */
             /* verify symbol version (not file format but rather contents) */
-            o_complex_check_symversion(toplevel, last_complex);
+            o_complex_check_symbol_version(toplevel, last_complex);
             last_complex = NULL;
           }
 
@@ -375,8 +376,8 @@ GList * o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   /* Was the very last thing we read a complex and has it not been checked */
   /* yet?  This would happen if the complex is at the very end of the file  */
   /* and had no attached attributes */
-  if (last_complex) {
-    o_complex_check_symversion(toplevel, last_complex);
+  if (toplevel->check_symbol_version && last_complex) {
+    o_complex_check_symbol_version(toplevel, last_complex);
     last_complex = NULL;  /* no longer need to check */
   }
 

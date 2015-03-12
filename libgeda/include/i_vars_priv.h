@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 
 //extern int default_init_right;
-//extern int default_init_bottom;
+//extern int check_symbol_version;
 
 extern int default_bus_style;
 extern int default_net_style;
@@ -41,5 +41,6 @@ extern int default_attribute_promotion;
 extern int default_promote_invisible;
 extern int default_keep_invisible;
 
+extern int default_check_symbol_version;
 extern int default_make_backup_files;
 extern int default_show_full_path;

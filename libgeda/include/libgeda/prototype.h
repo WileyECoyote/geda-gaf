@@ -217,7 +217,7 @@ G_BEGIN_DECLS
           int    o_complex_is_embedded           (Object *o_current);
          bool    o_complex_get_nearest_point     (Object *object, int x, int y, int *nx, int *ny);
        Object   *o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted_value);
-         void    o_complex_check_symversion      (GedaToplevel *toplevel, Object *object);
+         void    o_complex_check_symbol_version  (GedaToplevel *toplevel, Object *object);
 
 /* o_color.c */
           int    o_color_get_object_default      (char type);

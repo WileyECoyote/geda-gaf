@@ -36,6 +36,18 @@
 ; Guile Scheme libraries.
 ;(scheme-directory "${HOME}/.gEDA/scheme")
 
+; check-symbol-versions string
+;
+; Symbol files can have a symversion attribute to track the version of the
+; symbols. Symbol versioning provide a means to insure all of the symbols in
+; a project are the current version. Installations can provide an independent
+; version tracking system, in which case users may want to disable checking
+; of the symbol versions in libgeda. The check-symbol-version keyword can
+; be used to enable or disable symbol version checking.
+;
+;(check-symbol-version "disabled")
+(check-symbol-version "enabled")
+
 ;
 ; Start of attribute promotion keywords
 ;

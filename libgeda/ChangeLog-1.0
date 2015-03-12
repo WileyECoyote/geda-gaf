@@ -1,4 +1,32 @@
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Symbol Versioning System Enhancements
+
+    *  etc/system-gafrc: Add string keyword check-symbol-versions for boolean
+       setting toplevel->check_symbol_version.
+
+    *  include/i_vars_priv.h: Add SCM accessible defaulter.
+
+    *  include/libgeda/geda_toplevel.h: Add new toplevel configuration variable;
+       check_symbol_version.
+
+    *  include/libgeda/prototype.h: Rename function o_complex_check_symversion
+       o_complex_check_symbol_version
+
+    *  libgeda/src/guile/g_rc.c: Add handler for check-symbol-versions keyword.
+
+    *  src/guile/g_register.c: Register handler for check-symbol-versions
+       keyword.
+
+    *  src/iface/i_vars.c: initialize new variable check_symbol_version.
+
+    *  src/object/o_basic.c: Revise function o_read_buffer to not call
+       o_complex_check_symbol_version unless toplevel->check_symbol_version
+       is enabled.
+
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Symbol Versioning System Enhancements
 
     * Include File Name when reporting symbol Version Clashes
 

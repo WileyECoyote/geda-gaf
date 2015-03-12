@@ -978,7 +978,7 @@ o_complex_find_pin_by_attribute (Object *object, char *name, char *wanted)
  *  \param [in] object    The complex Object
  *
  */
-void o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
+void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
 {
   char  *inside        = NULL;
   char  *outside       = NULL;

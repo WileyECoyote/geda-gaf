@@ -165,6 +165,9 @@ struct _GedaToplevel {
   int attribute_offset;
   int attribute_font_size;
 
+  /* controls if symbol versions are checked */
+  int check_symbol_version;
+
   /* holds a list of group names displayed in the component select dialog */
   GList *component_groups;
 

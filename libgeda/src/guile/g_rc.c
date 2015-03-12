@@ -891,6 +891,23 @@ SCM g_rc_keep_invisible(SCM mode)
                    default_keep_invisible,
                    2);
 }
+
+/*! \brief This function handles the check-symbol-version SCM keyword.
+ *  \par Function Description
+ *  Sets boolean configuration variable based on string argument.
+ */
+SCM g_rc_check_symbol_version(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , "enabled" },
+    {FALSE, "disabled"},
+  };
+
+  RETURN_G_RC_MODE("check-symbol-version",
+                   default_check_symbol_version,
+                   2);
+}
+
 /*! \brief Enable the creation of backup files when saving
  *  \par Function Description
  *  If enabled then a backup file, of the form 'example.sch~', is created when

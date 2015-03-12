@@ -41,7 +41,7 @@ static struct gsubr_t libgeda_funcs[] = {
   { "component-library",          1, 1, 0, g_rc_component_library },
   { "component-library-command",  3, 0, 0, g_rc_component_library_command },
   { "component-library-funcs",    3, 0, 0, g_rc_component_library_funcs },
-  { "source-library",             1, 0, 0,  g_rc_source_library },
+  { "source-library",             1, 0, 0, g_rc_source_library },
   { "source-library-search",      1, 0, 0, g_rc_source_library_search },
 
   { "reset-component-library",    0, 0, 0, g_rc_reset_component_library },
@@ -69,6 +69,7 @@ static struct gsubr_t libgeda_funcs[] = {
   { "promote-invisible",          1, 0, 0, g_rc_promote_invisible },
   { "keep-invisible",             1, 0, 0, g_rc_keep_invisible },
   { "always-promote-attributes",  1, 0, 0, g_rc_always_promote_attributes },
+  { "check-symbol-version",       1, 0, 0, g_rc_check_symbol_version },
   { "make-backup-files",          1, 0, 0, g_rc_make_backup_files },
   { "print-color-map",            0, 1, 0, g_rc_print_color_map },
   { "show-full-path",             1, 0, 0, g_rc_show_full_path },
