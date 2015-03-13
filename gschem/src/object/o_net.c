@@ -57,11 +57,14 @@
  */
 void o_net_reset(GschemToplevel *w_current)
 {
+
   o_net_invalidate_rubber (w_current);
+
   w_current->first_wx       = w_current->first_wy    = -1;
   w_current->second_wx      = w_current->second_wy   = -1;
   w_current->third_wx       = w_current->third_wy    = -1;
   w_current->magnetic_wx    = w_current->magnetic_wy = -1;
+
   w_current->rubber_visible = FALSE;
   w_current->inside_action  = FALSE;
 }

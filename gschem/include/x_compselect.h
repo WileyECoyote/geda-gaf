@@ -122,4 +122,4 @@ typedef enum {
   COMPSELECT_RESPONSE_REFRESH = 3
 } CompselectResponseType;
 
-#endif /* __X_COMPSEL_H__ */
+#endif /* __X_COMPSELECT_H__ */
