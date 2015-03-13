@@ -41,7 +41,7 @@
 
 #include <geda_debug.h>
 
-#include <valgrind/callgrind.h>
+//#include <valgrind/callgrind.h>
 
 static EdaX11Render *RenderAdaptor;
 
@@ -343,24 +343,24 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
 
     RenderAdaptor->object = o_current;
 
-    CALLGRIND_START_INSTRUMENTATION;
+    //CALLGRIND_START_INSTRUMENTATION;
 
     draw_func (w_current);
 
-    CALLGRIND_STOP_INSTRUMENTATION;
+    //CALLGRIND_STOP_INSTRUMENTATION;
   }
 }
 
 extern "C" void
 x_draw_set_surface(GschemToplevel *w_current)
 {
-  if (Current_Page) {
+  if (Current_Page && w_current->render_adaptor == X11_ADAPTOR) {
     RenderAdaptor->geda_draw_set_surface(w_current->cr,
                                          Current_Page->to_world_x_constant);
   }
-  else {
+  /*else {
     BUG_MSG("Current page is invalid");
-  }
+  }*/
 }
 
 extern "C" char*
