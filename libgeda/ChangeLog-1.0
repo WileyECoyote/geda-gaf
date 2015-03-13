@@ -2,6 +2,15 @@
 
     *  Symbol Versioning System Enhancements
 
+    *  src/object/o_complex_basic.c: Allow user to disable checking of symbols
+       version on a per reference basis by revising function o_complex_check_
+       symversion to check the first character of the version string and not
+       continue if is a dash, i.e. a negative version number.
+
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Symbol Versioning System Enhancements
+
     *  etc/system-gafrc: Add string keyword check-symbol-versions for boolean
        setting toplevel->check_symbol_version.
 

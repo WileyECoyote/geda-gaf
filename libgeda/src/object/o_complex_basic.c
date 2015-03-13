@@ -1043,11 +1043,17 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
     schematic = _("unknown file");
   }
 
-  /* first look on the inside for the symversion= attribute */
-  inside = o_attrib_search_inherited_attribs_by_name (object, "symversion", 0);
-
-  /* now look for the symversion= attached to object */
+  /* look for the symversion= attached to object */
   outside = o_attrib_search_attached_attribs_by_name (object, "symversion", 0);
+
+  /* Check is version checking is enabled for this refdes */
+  if (outside && outside[0] == '-') {
+    GEDA_FREE(outside);
+    return;
+  }
+
+  /* look on the inside for the symversion= attribute */
+  inside = o_attrib_search_inherited_attribs_by_name (object, "symversion", 0);
 
   /* get the uref for future use */
   refdes = o_get_object_attrib_value(object, "refdes");
