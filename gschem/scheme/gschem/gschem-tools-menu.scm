@@ -149,7 +149,7 @@
 
 ;; ----------------- tools:run-bom ----------------------------
 (define (tools:run-bom)
-  (let  ((fout   (string-append (tools:ifbase) "_bom.txt")))
+  (let  ((fout   (string-append (tools:ifbase) "_bom.csv")))
     (if (tools:check-file "sch")
       (begin
         (system (string-append "gnetlist -g " tools:bom " -o " fout " " (tools:ifpath)))

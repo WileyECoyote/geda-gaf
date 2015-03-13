@@ -1,3 +1,8 @@
+2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  gschem-tools-menu.scm: Change extention for bom output to ".csv" instead
+       of "txt".
+
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     *  include/globals.h: Add enumerators to mask EID_TEXT_SEARCH_DIRECTIVES.
