@@ -2282,7 +2282,7 @@ COMMAND (do_down_schematic)
                          current_filename, msg);
 
         char *secondary = u_string_sprintf (
-                         _("Failed to descend hierarchy into '%s': %s"),
+                         _("Failed to descend into '%s': <i>%s</i>"),
                             current_filename, msg);
 
         titled_pango_error_dialog("<b>Failed to descend hierarchy</b>",
