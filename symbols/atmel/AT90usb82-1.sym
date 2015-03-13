@@ -1,4 +1,4 @@
-v 20081231 1
+v 20150101 2
 L 600 3600 3600 3600 3 0 0 0 -1 -1
 P 900 3900 900 3600 1 0 0
 {
@@ -368,7 +368,7 @@ T 300 4400 5 10 0 0 0 0 1
 description=AVR 8-bit USB Microcontroller
 T 300 4200 5 10 0 0 0 0 1
 device=at90usb82
-T 3700 3700 5 10 1 1 0 6 1
+T 2000 2400 5 10 1 1 0 6 1
 refdes=U?
 T 300 5000 5 10 0 0 0 0 1
 author=Bill Gatliff <bgat@billgatliff.com>

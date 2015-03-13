@@ -1,3 +1,9 @@
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/: General cleaning and review
+
+    * atmel/ATMega644-2.sym: Rename file ATMega644.sym
+
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * graphic/: Redo graphical symbols for No Connects.
