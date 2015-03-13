@@ -282,6 +282,20 @@ static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
         x_dialog_ep_revise_elect_attribs (w_current, properties, NULL);
 }
 
+
+static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
+                                              property_data  *properties,
+                                              Object         *object)
+{
+  bool result = FALSE;
+  const char *str_val;
+
+  /* get the name from the text entries of the dialog */
+  str_val = GetEntryText ( properties->version_entry );
+  result  = x_dialog_ep_check_update_attribs (w_current, object,
+                                              "symversion", str_val);
+  return result;
+}
 /*! \brief Component Properties Dialog Apply Settings
  *  \par Function Description
  *  This function applies the settings of the properties dialog to the
@@ -414,6 +428,13 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
         changed = x_dialog_ep_revise_elect_attribs(w_current,
                                                    properties,
                                                    o_current);
+
+        if (x_dialog_ep_check_symver_attribs(w_current,
+                                             properties,
+                                             o_current))
+        {
+          changed++;
+        }
       }
     }
   }
@@ -489,7 +510,7 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
   }
 }
 
-/*! \brief Component Properties Dialog Check-box Callback
+/*! \brief Component Properties Dialog Electrical Check-box Callback
  *   Enable or disabled sensitivities of widgets within the electrical
  *   frame depending on the state of the check-box.
  *
@@ -507,6 +528,36 @@ static void x_dialog_ep_electrical_cb (GtkWidget *check_butt, void *data)
   }
   gtk_container_foreach (GTK_CONTAINER (properties->elect_table),
                          set_sensitive, NULL);
+}
+
+/*! \brief Component Properties Dialog Enable Version Check-box Callback
+ *   Enable or disabled sensitivities of widgets within the electrical
+ *   frame depending on the state of the check-box.
+ *
+ *  \param [in] check_butt Pointer to the CheckBox widget
+ *  \param [in] data       Pointer to a Component Dialog data structure
+ *
+ */
+static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
+{
+  property_data *properties = data;
+  bool           state      = GetToggleState(check_butt);
+  const char    *str_val    = GetEntryText(properties->version_entry);
+  const char    *dash       = "-";
+
+  char *str = NULL;
+
+  if (strlen(str_val)) {
+    if (!state && (str_val[0] != '-')) {
+      str = u_string_concat(&dash[0], str_val,NULL);
+    }
+    else if (state && (str_val[0] == '-')) {
+      str = u_string_strdup(&str_val[1]);
+    }
+
+    SetEntryText (properties->version_entry, str);
+    GEDA_FREE(str);
+  }
 }
 
 /*! \brief Handle selection change event for x_dialog_edit_properties
@@ -620,6 +671,11 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   set_entry ("description",   properties->descr_entry);
   set_entry ("documentation", properties->doc_entry);
   set_entry ("comment",       properties->comment_entry);
+
+  g_signal_handler_block(properties->version_cb,properties->ver_handler);
+  const char *str_val  = GetEntryText ( properties->version_entry );
+  SetToggleState(properties->version_cb, (str_val[0] != '-'));
+  g_signal_handler_unblock(properties->version_cb,properties->ver_handler);
 
   if (o_attrib_find_attrib_by_name (all_butes, "graphical", 0)) {
 
@@ -1017,11 +1073,13 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   GtkWidget *hbox;
   GtkWidget *table;
   GtkWidget *vbox;
+  GtkWidget *verbox;
   GtkWidget *widget;
 
   GtkWidget *symbol_label;
   GtkWidget *device_label;
   GtkWidget *author_label;
+  GtkWidget *enable_label;
   GtkWidget *version_label;
   GtkWidget *ulicense_label;
   GtkWidget *dlicense_label;
@@ -1042,13 +1100,14 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   const char *symbol_tip     = "Symbol file name";
   const char *device_tip     = "device identifier";
   const char *author_tip     = "The symbols author";
-  const char *version_tip    = "version of symbo";
+  const char *version_tip    = "version of symbol";
+  const char *enable_ver_tip = "Enable version checking for this component";
   const char *ulicense_tip   = "use-license attribute";
   const char *dlicense_tip   = "redistribution license for the symbol";
   const char *descr_tip      = "Component description";
   const char *doc_tip        = "Device documentation";
   const char *comment_tip    = "Addition information related to this symbol";
-  const char *electrical_tip  = "Disable to set electricaly related attribute";
+  const char *electrical_tip = "Disable to set electricaly related attribute";
   const char *refdes_tip     = "Component designator";
   const char *slots_tip      = "Number of slots, equal device per package";
   const char *pins_tip       = "Number of pins per package";
@@ -1109,11 +1168,26 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), version_label, 3,4,1,2, GTK_FILL,0,0,0);
 
   /* Row 2 Col 5 */
+  verbox = gtk_hbox_new(FALSE, 0);
+  g_object_set (verbox, "visible", TRUE, NULL);
+
   widget = gtk_entry_new ();
   gtk_entry_set_activates_default (GTK_ENTRY(widget), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), widget, 4,5,1,2);
+  gtk_box_pack_start (GTK_BOX (verbox), widget, FALSE, FALSE, 0);
   SetWidgetTip(widget, _(version_tip));
   properties->version_entry = widget;
+
+  widget = gtk_check_button_new ();
+  gtk_box_pack_start (GTK_BOX (verbox), widget,  FALSE, FALSE, 5);
+  SetWidgetTip(widget, _(enable_ver_tip));
+  properties->version_cb = widget;
+
+  enable_label = GEDA_AVM_LABEL_NEW (_("_Enable"), 0, 1);
+  gtk_container_add (GTK_CONTAINER (verbox), enable_label);
+
+  gtk_box_set_spacing (GTK_BOX (verbox), 2);
+  g_object_set (verbox, "visible", TRUE, NULL);
+  gtk_table_attach_defaults(GTK_TABLE(table), verbox, 4,5,1,2);
 
   /* Row 3 Col 1 */
   ulicense_label = GEDA_AVM_LABEL_NEW (_("_use-license:"), 0, 0);
@@ -1298,6 +1372,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   geda_label_set_mnemonic_widget (GEDA_LABEL(device_label), properties->device_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(author_label), properties->author_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(version_label), properties->version_entry);
+  geda_label_set_mnemonic_widget (GEDA_LABEL(enable_label),  properties->version_cb);
   geda_label_set_mnemonic_widget (GEDA_LABEL(ulicense_label), properties->ulicense_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(dlicense_label), properties->dlicense_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(descr_label), properties->descr_entry);
@@ -1333,9 +1408,15 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   }
 
   atk_obj = atk_widget_linked_label_new (version_label, properties->version_entry);
-    if ( atk_obj ) {
+  if ( atk_obj ) {
     atk_object_set_name        ( atk_obj,   _("Entry for the version of this symbol"));
     atk_object_set_description ( atk_obj,      version_tip );
+  }
+
+  atk_obj = atk_widget_linked_label_new (enable_label, properties->version_cb);
+  if ( atk_obj ) {
+    atk_object_set_name        ( atk_obj,   _("Enable or Disable version checking of this component"));
+    atk_object_set_description ( atk_obj,      enable_ver_tip );
   }
 
   atk_obj = atk_widget_linked_label_new (ulicense_label, properties->ulicense_entry);
@@ -1441,6 +1522,11 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   g_signal_connect (G_OBJECT (properties->refdes_combo), "changed",
                     G_CALLBACK (x_dialog_ep_refdes_update_entry),
                     Dialog);
+
+  properties->ver_handler =
+  g_signal_connect(G_OBJECT (properties->version_cb), "toggled",
+                   G_CALLBACK(x_dialog_ep_version_cb),
+                   properties);
 
   g_signal_connect (G_OBJECT (properties->electrical_cb), "toggled",
                     G_CALLBACK (x_dialog_ep_electrical_cb),

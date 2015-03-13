@@ -2,6 +2,17 @@
 
     *  Symbol Versioning System Enhancements
 
+    *  Provide a more concise means for users to disable symbol version
+       checking for individual components.
+
+    *  src/x/x_edit_cprop.c: Split cell for symbol version with hbox and add
+       checkbox to enable or disable version checking for a specific component,
+       aka, toggle polarity of the symversion value.
+
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Symbol Versioning System Enhancements
+
     * gschem/src/x/x_dialog.c: The symbol changed notification dialog does
       not default to close and requires users to "click" the close button
       to close the dialog (as stipulated in the gtk documentation). This is
