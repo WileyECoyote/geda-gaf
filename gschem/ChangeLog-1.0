@@ -1,5 +1,18 @@
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    *  include/globals.h: Add enumerators to mask EID_TEXT_SEARCH_DIRECTIVES.
+
+    *  src/object/o_edit.c: Revise function o_edit_find_text, stopped short of
+       a re-write, still need re-write but this will do for now.
+
+    *  src/x/x_dialog.c: Enhance (or mutilate, depending on ones perspective,
+       the Find Text dialog; add two check boxes. The first to allow searching
+       for hidden attribute (while still hidden) and the second to automatically
+       close pages that were descended into if the descend into hierarchy button
+       was checked.
+
+2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
     *  Symbol Versioning System Enhancements
 
     *  Provide a more concise means for users to disable symbol version

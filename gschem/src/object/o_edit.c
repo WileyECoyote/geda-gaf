@@ -531,10 +531,10 @@ int skiplast;
  *
  */
 int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
-                      const char     *stext,       int descend, int skip)
+                      const char     *stext,       int flags, int skip)
 {
   GedaToplevel *toplevel     = w_current->toplevel;
-  Page     *parent           = NULL;
+
   char     *attrib           = NULL;
   char     *current_filename = NULL;
   int       count            = 0;
@@ -545,91 +545,132 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
   const     GList *iter;
 
-  Object *o_current;
-
   skiplast = skip;
+  iter     = o_list;
 
-  iter = o_list;
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
 
-    if (descend) {
-      if (o_current->type == OBJ_COMPLEX) {
-        parent = toplevel->page_current;
-        attrib = o_attrib_search_attached_attribs_by_name (o_current, "source", count);
+    Object *o_current = (Object *)iter->data;
 
-        /* if above is null, then look inside symbol */
-        if (attrib == NULL) {
-          attrib = o_attrib_search_inherited_attribs_by_name (o_current, "source", count);
-          /*          looking_inside = TRUE; */
-        }
+    if (o_current->type == OBJ_TEXT) {
 
-        if (attrib) {
-          pcount = 0;
-          current_filename = u_string_split(attrib, ',', pcount);
-          if (current_filename != NULL) {
-            Page *child_page =
-            s_hierarchy_down_schematic_single(toplevel, current_filename, parent, page_control, HIERARCHY_NORMAL_LOAD, NULL);
+      int visible = o_get_is_visible (o_current);
 
-            if (child_page != NULL) {
-              page_control = child_page->page_control;
-              rv = o_edit_find_text (w_current, s_page_get_objects (child_page), stext, descend, skiplast);
-              if (!rv) {
-                s_page_goto( toplevel, child_page );
+      if (visible || flags & SEARCH_HIDDEN) {
+
+        const char *str = o_text_get_string (o_current);
+
+        /* replaced strcmp with strstr to simplify the search */
+        if (strstr (str,stext)) {
+
+          if (!skiplast) {
+
+            int x1, y1, x2, y2;
+
+            if (!visible) {
+              o_current->visibility = VISIBLE;
+            }
+
+            if (!o_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
+                BUG_MSG("world object bounds returned FALSE");
                 return 0;
-              }
+            }
+
+            i_zoom_world_extents(w_current,
+                                 s_page_get_objects (Current_Page),
+                                 I_PAN_DONT_REDRAW);
+
+            text_screen_height = SCREENabs (w_current, y2 - y1);
+
+            /* this code will zoom/pan till the text screen height is about */
+            /* 50 pixels high, perhaps a future enhancement will be to make */
+            /* this number configurable */
+            while (text_screen_height < 50) {
+              i_zoom_world(w_current, ZOOM_IN_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
+              text_screen_height = SCREENabs (w_current, y2 - y1);
+            }
+
+            i_pan_world_general(w_current, o_current->text->x, o_current->text->y, 1, 0);
+
+            /* Make sure the titlebar and scrollbars are up-to-date */
+           //x_window_set_current_page(w_current, Current_Page);
+
+            last_o = o_current;
+            if (!visible) {
+              o_current->visibility = 2;
+            }
+            break;
+          }
+
+          if (last_o == o_current) {
+            skiplast = 0;
+          }
+        }          /* endif (strstr(o_current->text->string,stext)) */
+      }            /* endif visible || flags & SEARCH_HIDDEN */
+    }              /* endif (o_current->type == OBJ_TEXT) */
+
+    if ((flags & SEARCH_DESCEND) && (o_current->type == OBJ_COMPLEX)) {
+
+      attrib = o_attrib_search_attached_attribs_by_name (o_current, "source", count);
+
+      /* if above is null, then look inside symbol */
+      if (attrib == NULL) {
+        attrib = o_attrib_search_inherited_attribs_by_name (o_current, "source", count);
+      }
+
+      /* Check if a source attribute was found */
+      if (attrib) {
+
+        pcount = 0;
+        current_filename = u_string_split(attrib, ',', pcount);
+
+        if (current_filename != NULL) {
+
+          Page *parent     = toplevel->page_current;
+          Page *child_page = s_hierarchy_down_schematic_single(toplevel,
+                                                               current_filename,
+                                                               parent,
+                                                               page_control,
+                                                               HIERARCHY_NORMAL_LOAD,
+                                                               NULL);
+          if (child_page != NULL) {
+
+            x_window_setup_page(w_current, child_page, w_current->world_left,
+                                                       w_current->world_right,
+                                                       w_current->world_top,
+                                                       w_current->world_bottom);
+
+            s_page_goto (toplevel, child_page);
+
+            o_notify_change_add (child_page,
+                                (ChangeNotifyFunc) o_invalidate_object,
+                                (ChangeNotifyFunc) o_invalidate_object, w_current);
+
+            GList *children = s_page_get_objects (child_page);
+
+            i_zoom_world_extents(w_current, children, I_PAN_DONT_REDRAW);
+
+            page_control = child_page->page_control;
+
+            rv = o_edit_find_text (w_current, children, stext, flags, skiplast);
+
+            if (!rv) {
+              x_window_set_current_page (w_current, child_page);
+              return 0;
+            }
+            else {
+              s_page_goto (toplevel, parent);
+              x_window_set_current_page (w_current, parent);
             }
           }
         }
       }
     }
 
-    if (o_current->type == OBJ_TEXT &&
-       (o_get_is_visible (o_current) ||
-        Current_Page->show_hidden_text))
-    {
-      const char *str = o_text_get_string (o_current);
-
-      /* replaced strcmp with strstr to simplify the search */
-      if (strstr (str,stext)) {
-        if (!skiplast) {
-          int x1, y1, x2, y2;
-
-          i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
-
-          if (!o_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
-            BUG_MSG("world object bounds returned FALSE");
-            return 0;
-          }
-
-          text_screen_height = SCREENabs (w_current, y2 - y1);
-
-          /* this code will zoom/pan till the text screen height is about */
-          /* 50 pixels high, perhaps a future enhancement will be to make */
-          /* this number configurable */
-          while (text_screen_height < 50) {
-            i_zoom_world(w_current, ZOOM_IN_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
-            text_screen_height = SCREENabs (w_current, y2 - y1);
-          }
-
-          i_pan_world_general(w_current, o_current->text->x, o_current->text->y, 1, 0);
-
-          /* Make sure the titlebar and scrollbars are up-to-date */
-          x_window_set_current_page(w_current, Current_Page);
-
-          last_o = o_current;
-          break;
-        }
-
-        if (last_o == o_current) {
-          skiplast = 0;
-        }
-      }           /* endif (strstr(o_current->text->string,stext)) */
-    }             /* endif (o_current->type == OBJ_TEXT) */
     NEXT(iter);
 
     if (iter == NULL) {
-      return 1;
+      return 2;
     }
   }
 

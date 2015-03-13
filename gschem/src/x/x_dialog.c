@@ -2401,21 +2401,26 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
  *  @{ \memberof Editing-Dialogs
  */
 
+Page *remember_page;
+Page *forget_page;
+
 /*! \brief response function for the find text dialog
  *  \par Function Description
  *  This function searches the schematic for the user input string.
  */
 void x_dialog_find_text_response(GtkWidget *Dialog, int response,
-                                 Page *remember_page)
+                                 GschemToplevel *w_current)
 {
-  GschemToplevel *w_current = GSCHEM_DIALOG (Dialog)->w_current;
-  GedaToplevel *toplevel = w_current->toplevel;
+  //GschemToplevel *w_current = GSCHEM_DIALOG (Dialog)->w_current;
+  GedaToplevel   *toplevel  = w_current->toplevel;
 
   GtkWidget  *textentry;
   GtkWidget  *checkdescend;
+  GtkWidget  *checkhidden;
   const char *string;
   int done=0, close=0;
-  int start_find;
+  unsigned    search_flags;
+  int         start_find;
 
   if (remember_page == NULL) {
     remember_page = w_current->toplevel->page_current;
@@ -2428,10 +2433,20 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   switch (response) {
     case GEDA_RESPONSE_ACCEPT:
 
+      /* Get the stored pointer to objects */
       checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
+      checkhidden  = g_object_get_data(G_OBJECT(Dialog), "checkhidden");
+      textentry    = g_object_get_data(G_OBJECT(Dialog), IDS_FIND_TEXT);
 
-      /* Get the stored pointer to the entry object */
-      textentry = g_object_get_data(G_OBJECT(Dialog), IDS_FIND_TEXT);
+      search_flags = 0;
+
+      if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (checkdescend))) {
+        search_flags = SEARCH_DESCEND;
+      }
+
+      if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (checkhidden))) {
+        search_flags += SEARCH_HIDDEN;
+      }
 
       /* Retrieve the text string from the Entry widget */
       string = GetEntryText( textentry );
@@ -2442,16 +2457,29 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       if (remember_page != toplevel->page_current) {
         s_page_goto(toplevel, remember_page);
       }
-      done =
-      o_edit_find_text (w_current,
-                        s_page_get_objects (remember_page),
-                        string,
-                        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON
-                        (checkdescend)),
-                        !start_find);
+      done = o_edit_find_text (w_current,
+                               s_page_get_objects (remember_page),
+                               string,
+                               search_flags,
+                               !start_find);
+
       if (done) {
         o_invalidate_all (w_current);
         close = TRUE;
+      }
+      else {
+        if (forget_page == NULL) {
+          forget_page = Current_Page;
+        }
+        if (Current_Page == remember_page) {
+
+          GtkWidget  *checkascent;
+
+          checkascent = g_object_get_data(G_OBJECT(Dialog), "checkascent");
+          if (GetToggleState(checkascent)) {
+            x_window_close_page (w_current, forget_page);
+          }
+        }
       }
       start_find = FALSE;
       break;
@@ -2468,6 +2496,21 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   }
 }
 
+/*! \brief Find Text Dialog Descend into Hierarchy Check-box Callback
+ *   Enable or disabled sensitivity of Close-on-Ascent checkbox
+ *   based on the state of the check-box.
+ *
+ *  \param [in] check_butt Pointer to the Descend CheckBox widget
+ *  \param [in] cb         Pointer to the Ascend CheckBox widget
+ *
+ */
+static void x_dialog_find_text_on_descend (GtkWidget *check_butt, GtkWidget *cb)
+{
+  bool state = GetToggleState(check_butt);
+
+  gtk_widget_set_sensitive(cb, state);
+}
+
 /*! \brief Create the text find dialog
  *  \par Function Description
  *  This function creates the text find dialog.
@@ -2480,15 +2523,18 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 void x_dialog_find_text(GschemToplevel *w_current)
 {
   GtkWidget  *ThisDialog;
-  GtkWidget  *label = NULL;
   GtkWidget  *vbox;
+  GtkWidget  *alignment;
+  GtkWidget  *checkascent;
   GtkWidget  *checkdescend;
+  GtkWidget  *checkhidden;
   GtkWidget  *textentry;
+  GtkWidget  *label  = NULL;
   Object     *object = NULL;
-  Page       *remember_page;
   const char *string;
 
   remember_page = NULL;
+  forget_page   = NULL;
 
   if ((object = o_select_return_first_object(w_current)) != NULL) {
     if (object->type == OBJ_TEXT) {
@@ -2532,15 +2578,33 @@ void x_dialog_find_text(GschemToplevel *w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
-    checkdescend = gtk_check_button_new_with_label(_("descend into hierarchy"));
-    gtk_box_pack_start(GTK_BOX(vbox), checkdescend, TRUE, TRUE, 0);
+    checkhidden = gtk_check_button_new_with_label(_("Search hidden attributes"));
+    gtk_box_pack_start(GTK_BOX(vbox), checkhidden, TRUE, TRUE, 2);
+
+    checkdescend = gtk_check_button_new_with_label(_("Descend into hierarchy"));
+    gtk_box_pack_start(GTK_BOX(vbox), checkdescend, TRUE, TRUE, 2);
+
+    alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
+                                          "left-padding",  25,
+                                          NULL));
+    gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
+
+    checkascent = gtk_check_button_new_with_label(_("Close on ascent"));
+    gtk_container_add (GTK_CONTAINER (alignment), checkascent);
+    gtk_widget_set_sensitive(checkascent, FALSE);
 
     GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_FIND_TEXT);
+    GSCHEM_HOOKUP_OBJECT(ThisDialog, checkhidden,  "checkhidden");
     GSCHEM_HOOKUP_OBJECT(ThisDialog, checkdescend, "checkdescend");
+    GSCHEM_HOOKUP_OBJECT(ThisDialog, checkascent,  "checkascent");
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_find_text_response),
-                      remember_page);
+                      w_current);
+
+    g_signal_connect (G_OBJECT (checkdescend), "toggled",
+                      G_CALLBACK (x_dialog_find_text_on_descend),
+                      checkascent);
 
     gtk_widget_show_all(ThisDialog);
   }

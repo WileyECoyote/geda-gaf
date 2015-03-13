@@ -132,6 +132,14 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
+/*! \enum Enumerated Text Search Directives
+ *  \brief o_edit.c::o_edit_find_text
+ */
+typedef enum {
+  SEARCH_DESCEND  = 1,
+  SEARCH_HIDDEN   = 2,
+} EID_TEXT_SEARCH_DIRECTIVES;
+
 /*! \brief Enumerated Pan Directive - EID_PAN_DIRECTIVES
  *  \par Description
  *  Directives used as arguments to zoom and pan routines that indicate
