@@ -97,7 +97,8 @@ o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (not used)
  *  \param [in] w_y        (not used)
  */
-void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
+void
+o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object       *new_obj;
@@ -109,6 +110,7 @@ void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 
     /* erase the temporary picture */
     w_current->rubber_visible = FALSE;
+    w_current->inside_action  = FALSE;
 
     picture_left   = w_current->rubber_x1;
     picture_top    = w_current->rubber_y1;
@@ -133,7 +135,6 @@ void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
       o_undo_savestate(w_current, UNDO_ALL);
 
     }  /* else cancel creation of object */
-    w_current->inside_action = FALSE;
   }
   else {
      BUG_MSG("Not inside action\n");
@@ -463,7 +464,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 
     gtk_widget_show (dialog);
 
-    if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+    if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
       filename = u_string_strdup(geda_image_chooser_get_filename (dialog));
     }
     else {
@@ -528,7 +529,7 @@ o_picture_export (GschemToplevel *w_current, Object *o_current)
 
   gtk_widget_show (dialog);
 
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
     const char *file_ext;
     char       *filename;

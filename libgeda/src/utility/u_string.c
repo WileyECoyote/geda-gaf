@@ -104,7 +104,7 @@ char *u_string_concat (const char *string1, ...)
  *  \par Function Description
  *  This function uses u_string_stricmp or u_string_strncmpi to locate
  *  a substring in a string. This is not normally found in standard
- *  libraries but sometimes is. The difference between the u_string_istr
+ *  libraries but sometimes is. The difference between u_string_istr
  *  and u_string_stricmp returns a pointer rather than an integer.
  *
  *  \param [in] str1 is the string to be search

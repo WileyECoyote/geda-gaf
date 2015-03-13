@@ -29,6 +29,7 @@
  */
 
 #include "gschem.h"
+
 #include <geda_stat.h>
 
 #include <x_menus.h>

@@ -885,7 +885,7 @@ geda_bulb_new_visible (GSList *group)
 
 /*! \brief Create a New GedaBulb with a Label
  *  \par Function Description
- *  Creates a new #GedaBulb object with a text label, the bulb is add to
+ *  Creates a new #GedaBulb object with a text label, the bulb is added to
  *  \a group if the group exist. If the group does not exist a new bulb group
  *  is created.
  *

@@ -583,7 +583,6 @@ x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
   cairo_paint (w_current->cr);
 }
 
-
 /*! \brief Draw tile grid pattern
  *
  *  \par Function Description

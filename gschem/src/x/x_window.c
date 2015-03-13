@@ -421,7 +421,7 @@ static void x_window_setup_event_handlers(GschemToplevel *w_current)
 static void x_window_invoke_macro (GtkWidget      *widget, int response,
                                    GschemToplevel *w_current)
 {
-  if (response == GTK_RESPONSE_OK) {
+  if (response == GEDA_RESPONSE_OK) {
     const char *macro = gschem_macro_widget_get_macro_string (widget);
 
     SCM interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
@@ -1039,7 +1039,6 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
     o_redraw_cleanstates (w_current);
 
     s_page_goto (toplevel, page);
-    //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
 
     i_window_on_page_changed(w_current);
 
