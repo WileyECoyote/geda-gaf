@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150101 2
 P 0 100 200 100 1 0 0
 {
 T 150 150 5 10 0 1 0 6 1
@@ -13,7 +13,7 @@ pintype=pas
 L 200 200 200 0 3 0 0 0 -1 -1
 T 150 550 5 10 0 1 0 0 1
 device=none
-T 150 550 5 10 1 1 0 0 1
+T 150 550 5 10 0 1 0 0 1
 refdes=none
 T 150 700 5 10 0 0 0 0 1
 description=Passive module port

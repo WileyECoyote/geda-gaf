@@ -1,3 +1,7 @@
+2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io: Respin the input, output and io symbols.
+
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/: General cleaning and review
