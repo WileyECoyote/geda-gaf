@@ -1,5 +1,16 @@
 2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * New Feature: Implement User Customizable Text Marker Threshold
+
+    *  etc/system-gschemrc.scm: Add new keyword text-marker-threshold.
+
+    *  etc/user-gschemrc.scm: Add new keyword text-marker-threshold.
+
+    *  Add code to implement user configurable text marker threshold, adding
+       new functions i_var_restore_group_double and i_var_restore_global_double.
+
+2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
     *  gschem-tools-menu.scm: Change extention for bom output to ".csv" instead
        of "txt".
 

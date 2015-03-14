@@ -4187,6 +4187,11 @@ COMMAND (text_marker_size) {
 
   SHOW_VARIABLE(text_marker_size, R)
 }
+/** @brief i_cmd_text_marker_threshold in i_command_Variable_Handlers */
+COMMAND (text_marker_threshold) {
+  u_log_message("current value of <%s> is <%.1f>\n", "text-marker-threshold",
+                w_current->cairo_renderer->text_marker_threshold);
+}
 /** @brief i_cmd_text_size in i_command_Variable_Handlers */
 COMMAND (text_size) {
 

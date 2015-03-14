@@ -2014,7 +2014,7 @@ SCM g_rc_text_origin_marker(SCM mode)
 /*! \brief This function processes the text-marker-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text_origin_marker RC entry.
+ *       processing configuration data for the text-marker-size RC entry.
  */
 SCM g_rc_text_marker_size(SCM size)
 {
@@ -2025,6 +2025,23 @@ SCM g_rc_text_marker_size(SCM size)
 
   return SCM_BOOL_T;
 }
+
+/*! \brief This function processes the text-marker-threshold RC entry.
+ *  \par Function Description
+ *   Processing configuration data for the text_marker_threshold RC entry.
+ */
+SCM g_rc_text_marker_threshold(SCM mode)
+{
+  int value = ICHECK( mode, MIN_TEXT_MARKER_THLD,
+                            MAX_TEXT_MARKER_THLD,
+                            DEFAULT_TEXT_MARKER_THLD,
+                           "text-marker-threshold");
+
+  default_text_marker_threshold = value;
+
+  return SCM_BOOL_T;
+}
+
 /*! \brief This function processes the text-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

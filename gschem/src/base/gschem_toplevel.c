@@ -261,6 +261,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
 
   CairoRenderer->text_origin_marker    = TRUE;
   CairoRenderer->text_marker_size      = DEFAULT_TEXT_MARKER_SIZE;
+  CairoRenderer->text_marker_threshold = DEFAULT_TEXT_MARKER_THLD;
   w_current->text_size                 = DEFAULT_TEXT_SIZE;
 
   /* Undo Sub-System */

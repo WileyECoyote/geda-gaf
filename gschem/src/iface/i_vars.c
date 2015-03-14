@@ -173,6 +173,7 @@ int     default_text_display_zoomfactor   = RC_NIL;
 int     default_text_feedback             = ONLY_WHEN_READABLE;
 int     default_text_origin_marker        = TRUE;
 int     default_text_marker_size          = DEFAULT_TEXT_MARKER_SIZE;
+int     default_text_marker_threshold     = DEFAULT_TEXT_MARKER_THLD;
 int     default_text_size                 = DEFAULT_TEXT_SIZE;
 
 /* Undo System */
@@ -250,12 +251,32 @@ i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
 
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
+
+bool i_var_restore_group_double (EdaConfig *cfg, const char *group, const char *key, double *var, double def_val)
+{
+  GError *err = NULL;
+  double tmp_val;
+  bool result;
+
+  tmp_val = eda_config_get_double (cfg, group, key, &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+   *var = def_val;
+    result = FALSE;
+  }
+  else {
+   *var = tmp_val;
+    result = TRUE;
+  }
+  return result;
+}
+
 bool
 i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, int *var, int def_val)
 {
   GError *err = NULL;
   int tmp_int;
-  int result;
+  bool result;
 
   tmp_int = eda_config_get_integer (cfg, group, key, &err);
   if (err != NULL) {
@@ -277,6 +298,12 @@ i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
+void
+i_var_restore_global_double(EdaConfig *cfg, const char *key, double *var, double def_val)
+{
+  const char *group = IVAR_CONFIG_GROUP;
+  i_var_restore_group_double (cfg, group, key, var, def_val);
+}
 
 void
 i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
@@ -434,11 +461,13 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "text-feedback",       &w_current->text_feedback, ALWAYS_FEEDBACK);
   i_var_restore_global_integer(cfg, "text-size",           &w_current->text_size,     DEFAULT_TEXT_SIZE);
   i_var_restore_global_boolean(cfg, "text-origin-marker",  &CairoRenderer->
-                                     text_origin_marker,    TRUE);
-  i_var_restore_global_integer(cfg, "text-marker-size",    &CairoRenderer->
-                                     text_marker_size,      DEFAULT_TEXT_MARKER_SIZE);
-  i_var_restore_global_color(cfg,   "text_marker_color",   &CairoRenderer->
-                                     text_marker_color,     DEFAULT_TEXT_MARKER_COLOR);
+                                     text_origin_marker,      TRUE);
+  i_var_restore_global_integer(cfg, "text-marker-size",      &CairoRenderer->
+                                     text_marker_size,        DEFAULT_TEXT_MARKER_SIZE);
+  i_var_restore_global_double(cfg,  "text-marker-threshold", &CairoRenderer->
+                                     text_marker_threshold,   DEFAULT_TEXT_MARKER_THLD);
+  i_var_restore_global_color(cfg,   "text_marker_color",     &CairoRenderer->
+                                     text_marker_color,       DEFAULT_TEXT_MARKER_COLOR);
 
   /* Pointer Device, aka Mouse stuff - Saved by: x_window_save_settings */
   i_var_restore_global_integer(cfg, "cursor-index",    &w_current->drawing_pointer, DEFAULT_CURSOR_INDEX);
@@ -617,15 +646,16 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->show_toolbar_tips,  default_show_toolbar_tips);
 
 /* Text Related */
-  w_current->text_case                 = default_text_case;
+  w_current->text_case                   = default_text_case;
 
 /* default zoom_factor at which text is displayed completely */
   i_set_rc (&w_current->text_display_zoomfactor, default_text_display_zoomfactor);
 
-  w_current->text_feedback             = default_text_feedback;
-   CairoRenderer->text_origin_marker   = default_text_origin_marker;
-   CairoRenderer->text_marker_size     = default_text_marker_size;
-  w_current->text_size                 = default_text_size;
+  w_current->text_feedback               = default_text_feedback;
+   CairoRenderer->text_origin_marker     = default_text_origin_marker;
+   CairoRenderer->text_marker_size       = default_text_marker_size;
+   CairoRenderer->text_marker_threshold  = default_text_marker_threshold  / 10.0;
+  w_current->text_size                   = default_text_size;
 
 /* Undo Sub-System */
   i_set_rc (&w_current->undo_levels,     default_undo_levels);

@@ -168,6 +168,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "text-display-zoomfactor",   1, 0, 0, g_rc_text_display_zoomfactor },
   { "text-origin-marker",        1, 0, 0, g_rc_text_origin_marker },
   { "text-marker-size",          1, 0, 0, g_rc_text_marker_size },
+  { "text-marker-threshold",     1, 0, 0, g_rc_text_marker_threshold },
   { "text-size",                 1, 0, 0, g_rc_text_size },
 
   /* Undo System */

@@ -254,11 +254,14 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define ONLY_WHEN_READABLE       0
 #define ALWAYS_FEEDBACK          1
 
-/* text_marker_size */
-#define MIN_TEXT_MARKER_SIZE     5
-#define MAX_TEXT_MARKER_SIZE     100
-#define DEFAULT_TEXT_MARKER_SIZE 15
+/* text_marker */
+#define MIN_TEXT_MARKER_SIZE      5
+#define MAX_TEXT_MARKER_SIZE      100
 #define DEFAULT_TEXT_MARKER_COLOR LOCK_COLOR
+#define DEFAULT_TEXT_MARKER_SIZE  15
+#define MIN_TEXT_MARKER_THLD      5
+#define MAX_TEXT_MARKER_THLD      250
+#define DEFAULT_TEXT_MARKER_THLD  20
 
 /* text_size */
 #ifndef DEFAULT_TEXT_SIZE

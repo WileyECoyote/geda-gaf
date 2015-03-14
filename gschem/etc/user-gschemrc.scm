@@ -1096,6 +1096,17 @@
 ;
 ;(text-marker-size 15)
 
+; text-marker-threshold
+;
+; Sets the default text marker distence threshold. The setting is
+; inversely proportional to 10 times the marker distence value at
+; which point text markers are drawn. Larger values result in the
+; markers being draw at lower magnification. Use smaller values to
+; surpress drawing of markers until the desired magnification level
+; is reached.
+;
+;(text-marker-threshold 20)
+
 ; text-size integer
 ;
 ; Sets the default text size.
