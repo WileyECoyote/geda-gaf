@@ -1,3 +1,15 @@
+2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: User Customizable Text Marker Threshold
+
+    * include/edarenderer.h: Remove fixed define EDAR_MARKER_DIST_THREASHOLD,
+      add defines; EDAR_MIN_MARKER_DIST_THLD, EDAR_MAX_MARKER_DIST_THLD,
+      EDAR_DEFAULT_MARKER_DIST_THLD, and EDAR_MARKER_THRESHOLD, cleanup
+      columns, add variable text_marker_threshold as double.
+
+    * src/edarenderer.c: Just make text_marker_threshold user settable,
+      add property text-marker-threshold, with getter and setter.
+
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add 5 pixels to offset to extend bounds beyond

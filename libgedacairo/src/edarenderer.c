@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgedacairo - Rendering gEDA schematics with Cairo
  *
- * Copyright (C) 2010-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2010-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -55,6 +55,7 @@ enum {
   PROP_ENDPOINT_COLOR,
   PROP_MARKER_COLOR,
   PROP_TEXT_MARKER_SIZE,
+  PROP_TEXT_MARKER_THLD,
 
   PROP_RENDER_FLAGS,
 
@@ -317,15 +318,25 @@ eda_renderer_class_init (EdaRendererClass *class)
 
   g_object_class_install_property (gobject_class, PROP_MARKER_COLOR, params);
 
-  params =g_param_spec_int ("text-marker-size",
-                          _("Text Marker size"),
-                          _("Size to draw text markers."),
-                             EDAR_MIN_TEXT_MARKER_SIZE,
-                             EDAR_MAX_TEXT_MARKER_SIZE,
-                             EDAR_DEFAULT_TEXT_MARKER_SIZE,
-                             param_flags);
+  params = g_param_spec_int ("text-marker-size",
+                           _("Text Marker Size"),
+                           _("Size to draw text markers."),
+                              EDAR_MIN_TEXT_MARKER_SIZE,
+                              EDAR_MAX_TEXT_MARKER_SIZE,
+                              EDAR_DEFAULT_TEXT_MARKER_SIZE,
+                              param_flags);
 
   g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_SIZE, params);
+
+  params = g_param_spec_double ("text-marker-threshold",
+                              _("Text Marker Threshold"),
+                              _("The threshold to draw text markers."),
+                                 EDAR_MIN_MARKER_DIST_THLD,
+                                 EDAR_MAX_MARKER_DIST_THLD,
+                                 EDAR_DEFAULT_MARKER_DIST_THLD,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_THLD, params);
 }
 
 static void
@@ -344,9 +355,11 @@ eda_renderer_init (EdaRenderer *renderer)
   }
 
   renderer->priv->override_color = -1;
+
   EDAR_GRIP_SIZE           = EDAR_DEFAULT_GRIP_SIZE;
   EDAR_JUNCTION_SIZE       = EDAR_DEFAULT_JUNCTION_SIZE;
   EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
+  EDAR_MARKER_THRESHOLD    = EDAR_DEFAULT_MARKER_DIST_THLD;
 
   gdk_color_parse(EDAR_DEFAULT_GRIP_STROKE_COLOR,  &EDAR_GRIP_STROKE_COLOR);
   gdk_color_parse(EDAR_DEFAULT_GRIP_FILL_COLOR,    &EDAR_GRIP_FILL_COLOR);
@@ -493,6 +506,10 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
     EDAR_TEXT_MARKER_SIZE          = g_value_get_int (value);
     break;
 
+  case PROP_TEXT_MARKER_THLD:
+    EDAR_MARKER_THRESHOLD          = g_value_get_int (value);
+    break;
+
   case PROP_RENDER_FLAGS:
     renderer->priv->flags          = g_value_get_flags (value);
     break;
@@ -558,6 +575,10 @@ eda_renderer_get_property (GObject *object, unsigned int property_id,
 
   case PROP_TEXT_MARKER_SIZE:
     g_value_set_int (value, EDAR_TEXT_MARKER_SIZE);
+    break;
+
+  case PROP_TEXT_MARKER_THLD:
+    g_value_set_double (value, EDAR_MARKER_THRESHOLD);
     break;
 
   case PROP_RENDER_FLAGS:
@@ -985,7 +1006,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
 
       cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
 
-      if (marker_dist > EDAR_MARKER_DIST_THREASHOLD) {
+      if (marker_dist > EDAR_MARKER_THRESHOLD) {
 
         gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
@@ -1003,8 +1024,8 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
         /* Vertical */
         eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                         END_NONE, 0,
-                        x + EDAR_MARKER_DIST_THREASHOLD, y + EDAR_TEXT_MARKER_SIZE,
-                        x + EDAR_MARKER_DIST_THREASHOLD, y - EDAR_TEXT_MARKER_SIZE);
+                        x + EDAR_MARKER_THRESHOLD, y + EDAR_TEXT_MARKER_SIZE,
+                        x + EDAR_MARKER_THRESHOLD, y - EDAR_TEXT_MARKER_SIZE);
 
         /* Bottom */
         eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
@@ -1519,7 +1540,7 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, Object *object)
 
   /* If the text marker is too tiny, don't draw it. */
   cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
-  if (marker_dist < EDAR_MARKER_DIST_THREASHOLD) return;
+  if (marker_dist < EDAR_MARKER_THRESHOLD) return;
 
   gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
@@ -1999,13 +2020,23 @@ void eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
   g_object_set (G_OBJECT (renderer), "junction-size", new_size, NULL);
 }
 
+double eda_renderer_get_marker_threshold (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return EDAR_MARKER_THRESHOLD;
+}
+void eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_object_set (G_OBJECT (renderer), "text-marker-threshold", threshold, NULL);
+}
+
 const
 GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_NET_ENDPOINT_COLOR;
 }
-
 void
 eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
 {

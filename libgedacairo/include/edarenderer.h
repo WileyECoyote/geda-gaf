@@ -25,9 +25,13 @@ extern "C" {
 #endif /* __cplusplus */
 
 /*! \def EDAR_MARKER_DIST_THREASHOLD
-  The minimum text marker size, "x" smaller then this value are not drawn
+ *  The text marker size threashold, "x" values smaller then this value
+ *  are not drawn.
 */
-#define EDAR_MARKER_DIST_THREASHOLD        2.3
+#define EDAR_MIN_MARKER_DIST_THLD          0.5
+#define EDAR_MAX_MARKER_DIST_THLD         25.0
+#define EDAR_DEFAULT_MARKER_DIST_THLD      2.0
+
 
 #define EDAR_DEFAULT_GRIP_SIZE             100
 #define EDAR_DEFAULT_JUNCTION_SIZE          50
@@ -57,6 +61,7 @@ extern "C" {
 #define EDAR_JUNCTION_SIZE      renderer->junction_size
 #define EDAR_NET_ENDPOINT_COLOR renderer->net_endpoint_color
 #define EDAR_TEXT_MARKER_COLOR  renderer->text_marker_color
+#define EDAR_MARKER_THRESHOLD   renderer->text_marker_threshold
 #define EDAR_TEXT_MARKER_SIZE   renderer->text_marker_size
 
 #if (( CAIRO_VERSION_MAJOR == 1 ) && ( CAIRO_VERSION_MINOR < 12 ))
@@ -99,7 +104,7 @@ struct _EdaRenderer
   GObject parent_instance;
 
   /* Public members */
-  int      draw_grips;         /* controls if grips are enabled or not */
+  int      draw_grips;            /* controls if grips are enabled or not */
   double   grip_size;
   GdkColor grip_stroke_color;
   GdkColor grip_fill_color;
@@ -107,12 +112,13 @@ struct _EdaRenderer
   /* TODO int      min_width; */
 
   int      junction_size;
-  GdkColor junction_color;     /* The stroke color to be used for rendering junctions */
-  GdkColor net_endpoint_color; /* The stroke color to be used for net/pin end points */
+  GdkColor junction_color;        /* The stroke color to be used for rendering junctions */
+  GdkColor net_endpoint_color;    /* The stroke color to be used for net/pin end points */
 
-  int      text_origin_marker; /* controls if text origin marker is displayed or not */
-  int      text_marker_size;   /* controls the size of text origin markers */
-  GdkColor text_marker_color;  /* The stroke color to be used for text origin marker */
+  int      text_origin_marker;    /* controls if text origin marker is displayed or not */
+  int      text_marker_size;      /* controls the size of text origin markers */
+  double   text_marker_threshold; /* controls the size of text origin markers */
+  GdkColor text_marker_color;     /* The stroke color to be used for text origin marker */
 
   /* Private members */
   EdaRendererPrivate *priv;
@@ -160,8 +166,8 @@ int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
                                         int *left,   int *top,
                                         int *right,  int *bottom);
 
-GArray  *eda_renderer_get_color_map (EdaRenderer *renderer);
-void     eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map);
+GArray  *eda_renderer_get_color_map     (EdaRenderer *renderer);
+void     eda_renderer_set_color_map     (EdaRenderer *renderer, GArray *map);
 
 cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer);
 int      eda_renderer_get_cairo_flags   (EdaRenderer *renderer);
@@ -170,17 +176,17 @@ const
 char    *eda_renderer_get_font_name     (EdaRenderer *renderer);
 void     eda_renderer_set_font_name     (EdaRenderer *renderer, const char *name);
 
-bool     eda_renderer_set_flags   (EdaRenderer *renderer, int flags);
-int      eda_renderer_get_flags   (EdaRenderer *renderer);
-bool     eda_renderer_mask_flags  (EdaRenderer *renderer, int flags);
+bool     eda_renderer_set_flags         (EdaRenderer *renderer, int flags);
+int      eda_renderer_get_flags         (EdaRenderer *renderer);
+bool     eda_renderer_mask_flags        (EdaRenderer *renderer, int flags);
 
 int      eda_renderer_get_override_color_index (EdaRenderer *renderer);
 void     eda_renderer_set_override_color_index (EdaRenderer *renderer,
                                                 int          color_index);
 
-double   eda_renderer_get_grips_size    (EdaRenderer *renderer);
-void     eda_renderer_set_grips_size    (EdaRenderer *renderer,
-                                         double       new_size);
+double   eda_renderer_get_grips_size           (EdaRenderer *renderer);
+void     eda_renderer_set_grips_size           (EdaRenderer *renderer,
+                                                double       new_size);
 const
 GdkColor* eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
 void      eda_renderer_set_grips_stroke_color (EdaRenderer *renderer,
@@ -196,6 +202,9 @@ void      eda_renderer_set_junction_color     (EdaRenderer *renderer,
 int       eda_renderer_get_junction_size      (EdaRenderer *renderer);
 void      eda_renderer_set_junction_size      (EdaRenderer *renderer,
                                                int          new_size);
+double    eda_renderer_get_marker_threshold   (EdaRenderer *renderer);
+void      eda_renderer_set_marker_threshold   (EdaRenderer *renderer,
+                                               double       threshold);
 const
 GdkColor* eda_renderer_get_net_endpoint_color (EdaRenderer *renderer);
 void      eda_renderer_set_net_endpoint_color (EdaRenderer *renderer,
@@ -206,7 +215,9 @@ void      eda_renderer_set_text_marker_color  (EdaRenderer *renderer,
                                                GdkColor    *color);
 int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
 void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
-                                               int new_size);
+                                               int          new_size);
+
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
