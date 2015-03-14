@@ -213,7 +213,7 @@
                      ("microchip/battery"     "Manufacturers/Battery")
                      ("microchip/memory"      "Manufacturers/Memory devices")
                      ("microchip/motor"       "Manufacturers/Motor Control")
-                     ("microchip/regulators"  "Manufacturers/Regulators")
+                     ("microchip/switchreg"   "Manufacturers/Switching Regulators")
                   ("microsemi"       "Manufacturers/Microsemi")
                   ("minicircuits"    "Manufacturers/Mini-Circuits")
                   ("mitsubishi"      "Manufacturers/Mitsubishi Electric")
