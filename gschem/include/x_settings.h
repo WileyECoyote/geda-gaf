@@ -6,7 +6,7 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,9 @@
  *                | TextMarkerSize and JunctionSize, NetEndpointColor,
  *                | ScrollBarsVisible
  * ------------------------------------------------------------------
+ * WEH | 03/13/15 | Added TextMarkerThld Spinner (to support new settings
+ *     |          | variable)
+ * ------------------------------------------------------------------
 //
 */
 #ifndef __X_SETTINGS_H__
@@ -72,7 +75,7 @@ struct rc_7_strings_t
 };
 
 /* The following defines are for saving settings to an RC file, this is
- * not required for key-file variables. If following instruction to add
+ * not required for key-file variables. If following instructions to add
  * a widget to the preference dialog, then skip over these defines to the
  * enumerator ControlID
  */
@@ -253,6 +256,7 @@ typedef enum {
         SelectPixels,
         SnapSize,
         TextMarkerSize,
+        TextMarkerThld,
         TextSize,
         TextZoomFactor,
         ThickBusWidth,

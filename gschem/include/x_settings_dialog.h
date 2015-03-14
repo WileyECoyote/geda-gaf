@@ -43,7 +43,7 @@
 /*************************** CAUTION! ******************************/
 /*
  * String data for Labels and ToolTips in the string arrays are
- * referenced using enumerated Control ID's . To add or remove a
+ * referenced using enumerated Control ID's. To add or remove a
  * control:
  *
  *    1.) Be sure to add an enumerator in the ControlID array in the
@@ -110,7 +110,7 @@ WidgetStringData DialogStrings[] = {
         { "Select Junction Color",  "Cue Color:",    "Set the color for junction cues"},
 
     /* Text TAB */
-        { "Select Text Marker Color", "Marker Color:",  "Set the color for text markers"},
+        { "Select Text Marker Color", "Color:",         "Set the color for text markers"},
 
   /* String for Combo Controls  */
         { "TitleBlockCombo",        "Titleblock:",      "Name of Default Titleblock"},
@@ -124,7 +124,7 @@ WidgetStringData DialogStrings[] = {
         { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
         { "RendererCombo",          "     Renderer:",    "Choose which rendering system to use"},
         { "AntiAliasCombo",         "AntiAlias",        "Choose the Anti Alias level for the rendered"},
-        { "ColorMapSchemeCombo",    "  Scheme:",      "Choose which color scheme should be load at startup"},
+        { "ColorMapSchemeCombo",    "  Scheme:",        "Choose which color scheme should be load at startup"},
 
   /* 1 String for Edit Controls Label */
         { "UntitledNameEntry",	        "Untitled Name:",	"Initial name for new drawings"},
@@ -224,11 +224,12 @@ WidgetStringData DialogStrings[] = {
         { "MousePanGainSpin",           "     Mouse Pan Gain:",	"Controls how much the display pans when using mousepan. A larger value provides greater pan distance when moving the mouse while a smaller value provides a smoother but smaller pan distance when moving the mouse."},
         { "RipperSizeSpin",             "   Ripper Size:",       "Sets the size of the auto bus rippers."},
         { "ScrollPanStepsSpin",         "    Scroll Pan Steps:", "Controls the number of scroll pan events required to traverse the viewed schematic area. Larger numbers mean more scroll steps are required to pan across the viewed area and giving finer control over positioning."},
-        { "SelectPixelsSpin",           "Select Pixels:",	"Controls how many pixels around an object can still be clicked as part of that object. A larger value gives greater ease in selecting small or narrow objects."},
-        { "SnapSizeSpin",               "     Snap Size:",	"Sets the default spacing which objects snaps to."},
-        { "TextMarkerSizeSpin",         "  Marker Size:",        "Sets the default size of text origin markers."},
-        { "TextSizeSpin",               "     Text Size:",	"Sets the default text font size."},
-        { "TextZoomFactorSpin",         "   Zoom Factor:",	"Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if FeedBack is set to \"only-when-readable\""},
+        { "SelectPixelsSpin",           "Select Pixels:",       "Controls how many pixels around an object can still be clicked as part of that object. A larger value gives greater ease in selecting small or narrow objects."},
+        { "SnapSizeSpin",               "     Snap Size:",      "Sets the default spacing which objects snaps to."},
+        { "TextMarkerSizeSpin",         "  Size:",              "Sets the default size of text origin markers."},
+        { "TextMarkerThldSpin",         "Threshold:",           "Lateral threshold distence between text and markers at which point the markers drawn"},
+        { "TextSizeSpin",               "     Text Size:",      "Sets the default text font size."},
+        { "TextZoomFactorSpin",         "   Zoom Factor:",      "Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if FeedBack is set to \"only-when-readable\""},
         { "ThickBusWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Buss"},
         { "ThickLineWidthSpin",         "Thick",                "Set the width, in mils, of the Thick Lines"},
         { "ThickNetWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Nets"},
@@ -273,8 +274,8 @@ WidgetStringData DialogStrings[] = {
         { "ScrollBarsSwitch",           "Enable:",	        "Controls if the scrolling is enabled or disabled. If you disable scrolling, both the scrollbars and the mouse scroll wheel will be disable."},
         { "ScrollBarsVisibleSwitch",    "Bars:",                "Controls if horizontal and vertical scrollbars are visible."},
         { "SortLibrarySwitch",          "     Sort Library:",	"If this is enabled then the component library will be sorted in alphanumeric order. This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
-        { "TextOriginMarkerSwitch",     "Origin Marker:",	"Controls if the text origin markers are displayed or not."},
-        { "UndoViewsSwitch",            "  Views:",		"Controls if pan or zoom commands are saved in the undo list. If this is enabled then a pan or zoom command will be considered a command and can be undone. If this is false then panning and zooming is not saved in the undo list and cannot be undone. Note the current viewport information is saved for every command so the display will change to the viewport before a command is executed."},
+        { "TextOriginMarkerSwitch",     "Origin:",	        "Controls if the text origin markers are displayed or not."},
+        { "UndoViewsSwitch",            "  Views:",		    "Controls if pan or zoom commands are saved in the undo list. If this is enabled then a pan or zoom command will be considered a command and can be undone. If this is false then panning and zooming is not saved in the undo list and cannot be undone. Note the current viewport information is saved for every command so the display will change to the viewport before a command is executed."},
         { "WarpCursorSwitch",           "   Warp Cursor:",	"Controls if the cursor is warped (or moved) when you zoom in and out."},
         { "ZoomPanSwitch",              "       Zoom Pan:",     "Sets the zoom in and zoom out functions to pan the display and then zoom. Basically zoom in / out where the mouse pointer sits on the display."},
     /* View Controls */

@@ -1,5 +1,17 @@
 2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add Text Marker Threshold to Preferences/Settings Dialog
+
+    * src/x/x_settings.c: Removed the work "marker" from the labels for
+      text markers because these controls are all in a frame the has a
+      label with text "Markers", was too redundent.
+
+    * src/x/x_settings_dialog.c:Revise module to add spinner control
+      for CairoRenderer->text_marker_threshold as double on the text
+      TAB sheet.
+
+2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * New Feature: Implement User Customizable Text Marker Threshold
 
     *  etc/system-gschemrc.scm: Add new keyword text-marker-threshold.

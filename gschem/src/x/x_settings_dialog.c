@@ -69,6 +69,9 @@
  * ---------------|--------------------------------------------------
  * WEH | 12/13/14 | Add on_change_renderer, revise setup_font_name_combo to
  *                | include X11 scalable fonts.
+ * ---------------|--------------------------------------------------
+ * WEH | 03/13/15 | Add spinner for text marker threshold as a double.
+ *                | Annotated notes to instructions for clarification.
  */
 
 /*!
@@ -89,7 +92,7 @@
  *      c.) Added a WidgetStringData record to struct in the file
  *          x_settings_dialog.h, see instructions at the top of the
  *          header.
- *      d.) Add any necassary support functions and code to the
+ *      d.) Add any necessary support functions and code to the
  *          responder, i.e. the existing callback function. note
  *          that spinners do not generally have a callback.
  *      e.) If there is an error such as "Unknown button Id" then
@@ -104,7 +107,18 @@
  * 4. Retrieve the value of the control in GatherSettings
  *
  *      (At this point the widget should be functioning but the
- *       value will not be saved to rc files.)
+ *       value will not be saved to rc generated files.)
+ *
+ *    \note The setting should be save some where, some how. This
+ *          could be within a function such as dialog code or in
+ *          generalized groups, see x_settings_save_settings and
+ *          x_window_save_settings.
+ *
+ *    \note The older method of generating a scheme file in the
+ *          user configuration directory only works if the keyword
+ *          appears in user-gschemrc.scm. Steps 5 and 6 are only
+ *          necessary to have the keyword appear in the generated
+ *          files.
  *
  * 5. Add the keyword and keyword handlers to the list in the
  *    header file keywords.h
@@ -334,6 +348,7 @@ static GtkWidget *ScrollPanStepsSpin;
 static GtkWidget *SelectPixelsSpin;
 static GtkWidget *SnapSizeSpin;
 static GtkWidget *TextMarkerSizeSpin;
+static GtkWidget *TextMarkerThldSpin;
 static GtkWidget *TextSizeSpin;
 static GtkWidget *TextZoomFactorSpin;
 static GtkWidget *ThickBusWidthSpin;
@@ -1986,11 +2001,11 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
  *  \memberof (Settings-Dialog-Support)
  */
 
-/*! \brief Function load_settings_dialog
+/*! \brief Upload values into the Settings Dialog
  *  \par Function Description: This function sets the value of controls after
- *       the dialog is created based on the current settings, in so much as
- *       possible. Some configurations options are SCM scripts and we have
- *       to find a way to deal with them ...
+ *  the dialog has been created based on the current settings, in so much as
+ *  possible. Some configurations options are SCM scripts and we have to find
+ *  a way to deal with them ...
  */
 bool load_settings_dialog (GschemToplevel *w_current)
 {
@@ -2233,6 +2248,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSpin (SelectPixels, w_current->select_slack_pixels);
   SetSpin (SnapSize, w_current->snap_size);
   SetSpin (TextMarkerSize, CairoRenderer->text_marker_size);
+  SetSpin (TextMarkerThld, CairoRenderer->text_marker_threshold);
   SetSpin (TextSize, w_current->text_size);
   SetSpin (TextZoomFactor, w_current->text_display_zoomfactor);
 
@@ -2527,9 +2543,11 @@ create_settings_dialog (GschemToplevel *w_current)
          VSECTION (Markers_hbox, MarkerOptions)  /* Grp 1 Row 1 */
            HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
              GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
+             GEDA_COLOR_BUTTON (MarkerOptionsRow3_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 58);
            HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
              GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, 2, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
-             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
+             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerThld, 2, DEFAULT_TEXT_MARKER_THLD/10.0, MIN_TEXT_MARKER_THLD/10.0, MAX_TEXT_MARKER_THLD/10.0);
+             SetupSpinner(TextMarkerThldSpin, 1, 0.1, 1.0);
      HD_SEPERATOR (TextPrefTab_vbox, Grp2);
      HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
        GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
@@ -2799,7 +2817,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->scroll_wheel               = GET_SWITCH_STATE (ClassicWheelSwitch);
   w_current->sort_component_library     = GET_SWITCH_STATE (SortLibrarySwitch);
   w_current->pointer_hscroll            = GET_SWITCH_STATE (PointerHScrollSwitch);
-  CairoRenderer->text_origin_marker = GET_SWITCH_STATE (TextOriginMarkerSwitch);
+  CairoRenderer->text_origin_marker     = GET_SWITCH_STATE (TextOriginMarkerSwitch);
   w_current->undo_control               = GET_SWITCH_STATE (EnableUndoSwitch);
   w_current->undo_panzoom               = GET_SWITCH_STATE (UndoViewsSwitch);
   w_current->warp_cursor                = GET_SWITCH_STATE (WarpCursorSwitch);
@@ -2815,15 +2833,17 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_threshold        = GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->grip_size                  = GET_SPIN_IVALUE (GripPixelSizeSpin);
-  CairoRenderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
+  CairoRenderer->junction_size          = GET_SPIN_IVALUE (JunctionSizeSpin);
   w_current->keyboardpan_gain           = GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        = GET_SPIN_IVALUE (MeshGridThresholdSpin);
-  w_current->mesh_line_width_factor       = GET_SPIN_IVALUE (MeshGridWidthSpin);
+  w_current->mesh_line_width_factor     = GET_SPIN_IVALUE (MeshGridWidthSpin);
   w_current->mousepan_gain              = GET_SPIN_IVALUE (MousePanGainSpin);
   w_current->scrollpan_steps            = GET_SPIN_IVALUE (ScrollPanStepsSpin);
   w_current->select_slack_pixels        = GET_SPIN_IVALUE (SelectPixelsSpin);
   w_current->snap_size                  = GET_SPIN_IVALUE (SnapSizeSpin);
-  CairoRenderer->text_marker_size = GET_SPIN_IVALUE (TextMarkerSizeSpin);
+  CairoRenderer->text_marker_size       = GET_SPIN_IVALUE (TextMarkerSizeSpin);
+
+  CairoRenderer->text_marker_threshold  = GET_SPIN_DVALUE (TextMarkerThldSpin);
   w_current->text_size                  = GET_SPIN_IVALUE (TextSizeSpin);
   w_current->text_display_zoomfactor    = GET_SPIN_IVALUE (TextZoomFactorSpin);
 

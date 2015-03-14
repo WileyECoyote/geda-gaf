@@ -157,6 +157,7 @@
      KEYWORD ( text_feedback )
      KEYWORD ( text_origin_marker )
      KEYWORD ( text_marker_size )
+     KEYWORD ( text_marker_threshold )
      KEYWORD ( text_size )
      KEYWORD ( undo_control )
      KEYWORD ( undo_levels )
@@ -258,6 +259,7 @@ enum {
      KEYWORD(text-feedback,                0, 0, text_feedback)
      KEYWORD(text-origin-marker,           0, 0, text_origin_marker)
      KEYWORD(text-marker-size,             0, 0, text_marker_size)
+     KEYWORD(text-marker-threshold,        0, 0, text_marker_threshold)
      KEYWORD(text-size,                    0, 0, text_size)
      KEYWORD(undo-levels,                  0, 0, undo_levels)
      KEYWORD(undo-control,                 0, 0, undo_control)
@@ -393,7 +395,7 @@ enum {
 
   /*\remark
  * Use this Macro to write a CairoRenderer var with single integer
- * @param[in] variable   a CairoRenderer integer variable
+ * @param[in] variable a CairoRenderer integer variable
 */
 #define RC_INTEGER_ROUT(variable) \
   int number = CairoRenderer->variable; \

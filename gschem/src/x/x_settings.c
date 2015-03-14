@@ -57,6 +57,9 @@
  * WEH | 01/14/15 |  Add call to function i_status_update_grid_info in
  *     |          |  function configure_dialog_response (to update the
  *     |          |  status-bar when the dialog closes)
+ * ---------------|--------------------------------------------------
+ * WEH | 03/13/15 | Add saving text-marker-threshold to key file, add
+ *                | keyword writer text marker threshold as a double.
 */
 /*!
  * \file x_settings.c
@@ -232,8 +235,9 @@ void x_settings_save_settings(GschemToplevel *w_current)
 
   /* text-marker probably belong in the x_window_save group but for now well keep
    * text-marks stuff with text stuff */
-  eda_config_set_boolean (cfg, group_name, "text-origin-marker", CairoRenderer->text_origin_marker);
-  eda_config_set_integer (cfg, group_name, "text-marker-size",   CairoRenderer->text_marker_size);
+  eda_config_set_boolean (cfg, group_name, "text-origin-marker",    CairoRenderer->text_origin_marker);
+  eda_config_set_integer (cfg, group_name, "text-marker-size",      CairoRenderer->text_marker_size);
+  eda_config_set_double  (cfg, group_name, "text-marker-threshold", CairoRenderer->text_marker_threshold);
 
   array[0] = CairoRenderer->text_marker_color.pixel;
   array[1] = CairoRenderer->text_marker_color.red;
@@ -1194,6 +1198,20 @@ KEYWORD ( text_origin_marker ) {
 /** @brief function do_kw_text_marker_size in Settings-Keyword-Handlers */
 KEYWORD ( text_marker_size ) {
   RC_INTEGER_ROUT (text_marker_size)
+}
+/** @brief function do_kw_text_marker_threshold in Settings-Keyword-Handlers */
+KEYWORD ( text_marker_threshold ) {
+
+  char s_val[4];
+
+  int number = CairoRenderer->text_marker_threshold * 10;
+
+  strcpy(output_buffer, "(" );
+  strcat(output_buffer, KEY_NAME(text_marker_threshold));
+  strcat(output_buffer, " ");
+  strcat(output_buffer, u_string_int2str( number, s_val, 10 ));
+  strcat(output_buffer, ")\n");
+  fputs(output_buffer, output);
 }
 /** @brief function do_kw_text_size in Settings-Keyword-Handlers */
 KEYWORD ( text_size ) {
