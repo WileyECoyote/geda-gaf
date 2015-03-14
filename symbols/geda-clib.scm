@@ -221,6 +221,7 @@
                   ("moto"            "Manufacturers/Motorola")
                   ("national"        "Manufacturers/National Semiconductor")
                   ("onsemi"          "Manufacturers/ON Semiconductor")
+                     ("onsemi/diodes"                  "Manufacturers/Diodes")
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")

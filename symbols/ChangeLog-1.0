@@ -1,5 +1,11 @@
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Add subdirectory for onsemi/diodes with category Diodes
+
+    * onsemi/diodes: Add subdirectory with 8 symbols for 10Amp schottky diodes.
+
+2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * geda-clib.scm: Rename microchip/regulators to microchip/switchreg
       and change category to Switching Regulators since all of the symbols
       in the directory for switching type regulators and the new category
