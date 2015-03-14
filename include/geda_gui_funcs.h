@@ -41,6 +41,10 @@
               gtk_entry_set_text((GtkEntry *) widget, text);
 
 #define GetToggleState(widget) gtk_toggle_button_get_active ((GtkToggleButton*)widget)
-#define SetToggleState(widget, state) gtk_toggle_button_set_active ((GtkToggleButton*)widget, state)
+#define SetToggleState(widget, state) gtk_toggle_button_set_active ((GtkToggleButton*)widget, state);
 
+#define SetSpinIncrements( name, step, page) gtk_spin_button_set_increments ((GtkSpinButton*)name, step, page);
+#define SetSpinDigits( name, digits) gtk_spin_button_set_digits ((GtkSpinButton*)name, digits);
 #define SetSpinValue( name, var) gtk_spin_button_set_value ((GtkSpinButton*)name, var);
+#define SetupSpinner( name, digits, step, page) SetSpinDigits((GtkSpinButton*)name, digits); \
+                                                SetSpinIncrements((GtkSpinButton*)name, step, page);
