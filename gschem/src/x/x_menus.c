@@ -441,7 +441,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         else {
 
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
-          action_keys = g_find_key(action_name);
+          action_keys = g_keys_find_key(action_name);
 
           if (!buffer_menu && strcmp(action_name, "buffer-copy1") == 0) {
             /* Set flag to indicate we found */

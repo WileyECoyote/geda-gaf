@@ -269,7 +269,6 @@ g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
 void
 g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
 {
-  fprintf(stderr, "%s made it here\n",__func__);
   if (name && object) {
 
     IdleHookData *capsule;

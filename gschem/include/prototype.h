@@ -43,7 +43,7 @@ EHP * g_hook_new_proxy_by_name    (const char *name);
 /* g_keys.c */
 void  g_keys_reset                (GschemToplevel *w_current);
 int   g_keys_execute              (GschemToplevel *w_current, GdkEventKey *event);
-char *g_find_key                  (char *func_name);
+char *g_keys_find_key                  (char *func_name);
 
 GtkListStore *g_keys_to_list_store     (void);
 
@@ -95,7 +95,7 @@ SCM   h_keys_view_pan_down   (SCM rest);
 
 /* Menus and Keyboard */
 SCM   h_keys_cancel          (SCM rest);
-void  g_init_keys            (void);
+void  g_keys_init            (void);
 
 /* g_rc.c */
 void  g_rc_parse_gtkrc();

@@ -278,7 +278,7 @@ SCM_DEFINE (g_key_to_display_string, "%key->display-string", 1, 0, 0,
  *
  * Used internally to Guile.
  */
-static int g_key_print (SCM smob, SCM port, scm_print_state *pstate)
+static int g_keys_print_key (SCM smob, SCM port, scm_print_state *pstate)
 {
   scm_puts ("#<gschem-key ", port);
   scm_write (g_key_to_display_string (smob), port);
@@ -295,7 +295,7 @@ static int g_key_print (SCM smob, SCM port, scm_print_state *pstate)
  *
  * Used internally to Guile.
  */
-static SCM g_key_equalp (SCM a, SCM b)
+static SCM g_keys_equalp (SCM a, SCM b)
 {
   GschemKey *akey = (GschemKey *) SCM_SMOB_DATA (a);
   GschemKey *bkey = (GschemKey *) SCM_SMOB_DATA (b);
@@ -527,7 +527,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
  * example: (find-key (quote file-new))
  *
  */
-char *g_find_key (char *func_name) {
+char *g_keys_find_key (char *func_name) {
   SCM s_expr;
   SCM s_iter;
   SCM s_lst  = NULL;
@@ -653,12 +653,12 @@ static void init_module_gschem_core_keymap ()
  * Registers some Scheme procedures for working with key combinations.
  * Should only be called by main_prog().
  */
-void g_init_keys ()
+void g_keys_init ()
 {
   /* Register key smob type */
   g_key_smob_tag = scm_make_smob_type ("gschem-key", 0);
-  scm_set_smob_print  (g_key_smob_tag, g_key_print);
-  scm_set_smob_equalp (g_key_smob_tag, g_key_equalp);
+  scm_set_smob_print  (g_key_smob_tag, g_keys_print_key);
+  scm_set_smob_equalp (g_key_smob_tag, g_keys_equalp);
   scm_set_smob_free   (g_key_smob_tag, g_key_free);
 
   scm_c_define_module ("gschem core keymap",

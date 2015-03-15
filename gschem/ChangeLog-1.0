@@ -1,5 +1,14 @@
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_keys.c: Renamed functions:
+
+            * g_find_key   -> g_keys_find_key
+            * g_init_keys  -> g_keys_init
+            * g_key_print  -> g_keys_print_key
+            * g_key_equalp -> g_keys_equalp
+
+2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * Run Hooks in idle main context
 
     * include/gschem_struct.h: Add new struct st_idle_hook_data with type

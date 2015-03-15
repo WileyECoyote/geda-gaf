@@ -272,7 +272,7 @@ static void gschem( int argc, char *argv[])
   g_init_select ();
   g_hook_init ();
   g_init_attrib ();
-  g_init_keys ();
+  g_keys_init ();
   g_init_util ();
 
   /* initialise color map (need to do this before reading rc files */
