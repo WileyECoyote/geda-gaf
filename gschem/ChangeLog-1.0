@@ -1,5 +1,16 @@
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Move Lock and Unlock to bottom of
+      Select menu. Changed keys to:
+
+          "S S"  "edit-select"
+          "S L"  "edit-lock"
+          "S U"  "edit-unlock"
+
+2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Function Maintenance - Modularization of function names
+
     * src/guile/g_keys.c: Renamed functions:
 
             * g_find_key   -> g_keys_find_key

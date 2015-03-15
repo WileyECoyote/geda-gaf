@@ -699,8 +699,9 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
+
+    x_menus_sensitivity(w_current, "_Select/Lock", TRUE);
+    x_menus_sensitivity(w_current, "_Select/Unlock", TRUE);
 
     if (can_edit_line) {
       x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
@@ -760,10 +761,11 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     x_menus_sensitivity(w_current, "_Edit/Color...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Lock", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Unlock", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
+
+    x_menus_sensitivity(w_current, "_Select/Lock", FALSE);
+    x_menus_sensitivity(w_current, "_Select/Unlock", FALSE);
 
     x_menus_popup_sensitivity(w_current, "Edit",          FALSE);
     //x_menus_popup_sensitivity(w_current, "Object...",     FALSE);
