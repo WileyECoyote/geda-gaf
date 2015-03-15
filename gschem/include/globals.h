@@ -91,27 +91,6 @@ typedef enum  { CAIRO_ADAPTOR, X11_ADAPTOR } RenderSystem;
 
 typedef enum  { Image_Display, Image_All } ImageExtent;
 
-/*! \brief Enumerated Selection Mode - EFL_SELECTION_MODE
- *  \par Description
- *  Used as argument to routines in o_find module to indicate
- *  how found object should be handled.
- */
-typedef enum  { EFL_SELECTION_NOACTION,
-                EFL_SELECTION_REPLACE,
-                EFL_SELECTION_ADD
-} EFL_SELECTION_MODE;
-
-/*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
- *  \par Description
- *  The ToolBar module maintains lists of GtkToolBarItems groups. These
- *  enumerators refer to groups associated with the active state and can
- *  be passed to x_toolbars_set_sensitivities to enable or disable the
- *  items.
- */
-typedef enum { ANY_OBJECT, CAN_PASTE, CAN_UNDO, CAN_REDO, CAN_HATCH, CAN_ELINE,
-               COMPLEX_OBJECT, HAVE_PAGES, HAVE_PIN, HAVE_TEXT
-} EID_SENITIVITY_MODE;
-
 /*! \brief Enumerated Action Origin - EID_ACTION_ORIGIN
  *  \par Description
  *  All modules passing actions to i_command_process use these to
@@ -132,13 +111,43 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
-/*! \enum Enumerated Text Search Directives
- *  \brief o_edit.c::o_edit_find_text
+/*! \brief Enumerated Selection Mode - EFL_SELECTION_MODE
+ *  \par Description
+ *  Used as argument to routines in o_find module to indicate
+ *  how found object should be handled.
+ */
+typedef enum  { EFL_SELECTION_NOACTION,
+                EFL_SELECTION_REPLACE,
+                EFL_SELECTION_ADD
+} EFL_SELECTION_MODE;
+
+/*! \enum EID_HOOK_TYPE Hook Record Data Type */
+typedef enum {
+               LIST_HOOK,
+               OBJECT_HOOK,
+               PAGE_HOOK,
+} EID_HOOK_TYPE;
+
+/*! \enum  EID_SCM_HOOKS Enumerated SCM Hook Identifier
+ *  \par Description
+ *  Used to identify which SCM hook should be called.
  */
 typedef enum {
-  SEARCH_DESCEND  = 1,
-  SEARCH_HIDDEN   = 2,
-} EID_TEXT_SEARCH_DIRECTIVES;
+              ACTION_PROPERTY_HOOK,
+              ADD_OBJECT_HOOK,
+              ATTACH_ATTRIBS_HOOK,
+              BIND_KEYS_HOOK,
+              COPY_OBJECTS_HOOK,
+              DESELECT_OBJECTS_HOOK,
+              DETACH_ATTRIBS_HOOK,
+              MIRROR_OBJECTS_HOOK,
+              MOVE_OBJECTS_HOOK,
+              NEW_PAGE_HOOK,
+              PASTE_OBJECTS_HOOK,
+              REMOVE_OBJECTS_HOOK,
+              ROTATE_OBJECTS_HOOK,
+              SELECT_OBJECTS_HOOK
+} EID_SCM_HOOKS;
 
 /*! \brief Enumerated Pan Directive - EID_PAN_DIRECTIVES
  *  \par Description
@@ -151,7 +160,27 @@ typedef enum { I_PAN_REDRAW,
                I_PAN_DONT_REDRAW
 } EID_PAN_DIRECTIVES;
 
-/*! \brief Enumerated Zoom Directive - ZOOM_DIRECTIVE
+/*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
+ *  \par Description
+ *  The ToolBar module maintains lists of GtkToolBarItems groups. These
+ *  enumerators refer to groups associated with the active state and can
+ *  be passed to x_toolbars_set_sensitivities to enable or disable the
+ *  items.
+ */
+typedef enum { ANY_OBJECT, CAN_PASTE, CAN_UNDO, CAN_REDO, CAN_HATCH, CAN_ELINE,
+               COMPLEX_OBJECT, HAVE_PAGES, HAVE_PIN, HAVE_TEXT
+} EID_SENITIVITY_MODE;
+
+/*! \enum EID_TEXT_SEARCH_DIRECTIVES Text Search Directives
+ *  \brief Enumeration for o_edit.c::o_edit_find_text
+ */
+typedef enum {
+  SEARCH_DESCEND  = 1,
+  SEARCH_HIDDEN   = 2,
+} EID_TEXT_SEARCH_DIRECTIVES;
+
+/*! \enum  EID_ZOOM_DIRECTIVE
+ *  \brief Enumerated Zoom Directive - ZOOM_DIRECTIVE
  *  \par Description
  *  Zoom Directives are used as an argument to i_zoom_world to indicate
  *  the polarity and magnitude for the relative zoom factor.
@@ -161,7 +190,9 @@ typedef enum { ZOOM_OUT_DIRECTIVE,
                ZOOM_FULL_DIRECTIVE
 } EID_ZOOM_DIRECTIVE;
 
-/*! \brief Undo Type mechanism the Undo system is to use */
+/*! \enum EID_UNDO_TYPE undo-type
+ *  \brief Undo Type mechanism the Undo system is to use
+ */
 typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 
 /* These macros are used to help reduce lines lengths */
