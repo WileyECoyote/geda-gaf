@@ -1580,9 +1580,6 @@
 (map-keys "<Control>C" "clipboard-copy")
 ;(map-keys "D"          "edit-delete")
 
-(map-keys "E <Shift>U" "edit-undo")
-(map-keys "E <Shift>R" "edit-redo")
-(map-keys "E S"        "edit-select")
 (map-keys "E B"        "edit-break")
 (map-keys "E C"        "edit-copy")
 (map-keys "E D"        "edit-delete")
@@ -1600,6 +1597,9 @@
 (map-keys "E <Shift>F" "edit-filltype")
 (map-keys "E <Shift>N" "edit-component")
 (map-keys "E <Shift>S" "edit-slot")
+
+(map-keys "E <Shift>R" "edit-redo")
+(map-keys "E <Shift>U" "edit-undo")
 
 (map-keys "F N"        "file-new")
 (map-keys "F W"        "file-new-window")
@@ -1662,8 +1662,10 @@
 (map-keys "<Shift>S G" "edit-snap")
 
 (map-keys "S S"        "edit-select")
+(map-keys "S T"        "edit-select-last")
 (map-keys "S L"        "edit-lock")
 (map-keys "S U"        "edit-unlock")
+
 (map-keys "T N"            "tools-autonumber")
 (map-keys "T C"            "tools-show-console")
 (map-keys "T O"            "tools-show-coordinates")
@@ -1824,10 +1826,6 @@
         (,(N_ "Fill Type...")         edit-filltype        "geda-mesh"        ,(N_ "Open the Fill Editor Dialog"))
         (,(N_ "Edit Component...")    edit-component       "geda-component"   ,(N_ "Open the Component Editor Dialog"))
         (,(N_ "Slot...")              edit-slot            "geda-slot"        ,(N_ "Open the Slot Editor Dialog"))
-
-        ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Lock")               edit-lock              "geda-lock"        ,(N_ "Lock selected objects"))
-        (,(N_ "Unlock")             edit-unlock            "geda-unlock"      ,(N_ "Unlock selected objects"))
       )
 )
 
@@ -1854,6 +1852,10 @@
         (,(N_ "Paste from 3")       buffer-paste3          "gtk-paste"           ,(N_ "Insert contents of the third auxiliary buffer"))
         (,(N_ "Paste from 4")       buffer-paste4          "gtk-paste"           ,(N_ "Insert contents of the forth auxiliary buffer"))
         (,(N_ "Paste from 5")       buffer-paste5          "gtk-paste"           ,(N_ "Insert contents of the fifth auxiliary buffer"))
+
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Lock")               edit-lock              "geda-lock"        ,(N_ "Lock selected objects"))
+        (,(N_ "Unlock")             edit-unlock            "geda-unlock"      ,(N_ "Unlock selected objects"))
       )
 )
 

@@ -376,6 +376,12 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   }
 }
 
+void o_undo_savestate_object(GschemToplevel *w_current,
+                             int flag, Object *object)
+{
+  w_current->which_object = object;
+  o_undo_savestate(w_current, flag);
+}
 
 /*! \brief Find file name associated wth prev Head
  *  \par Function Description

@@ -611,6 +611,7 @@ void       o_text_change                     (GschemToplevel *w_current, Object 
 /* o_undo.c */
 void        o_undo_init                      (GschemToplevel *w_current);
 void        o_undo_savestate                 (GschemToplevel *w_current, int flag);
+void        o_undo_savestate_object          (GschemToplevel *w_current, int flag, Object *object);
 char       *o_undo_find_prev_filename        (UNDO *start);
 GLT        *o_undo_find_prev_object_head     (UNDO *start);
 void        o_undo_callback                  (GschemToplevel *w_current, int type);

@@ -572,13 +572,14 @@ void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   /* Call add-objects-hook */
   if (added_objects != NULL) {
-    g_run_hook_object_list (w_current, "%add-objects-hook", added_objects);
+    g_hook_run_object_list (w_current, "%add-objects-hook", added_objects);
     g_list_free (added_objects);
   }
 
+  o_undo_savestate_object(w_current, UNDO_ALL, new_net);
+
   w_current->first_wx = save_wx;
   w_current->first_wy = save_wy;
-  o_undo_savestate(w_current, UNDO_ALL);
 
   /* Continue net drawing */
   o_net_start(w_current, w_current->first_wx, w_current->first_wy);

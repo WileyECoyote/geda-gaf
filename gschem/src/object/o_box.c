@@ -139,15 +139,15 @@ void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
   printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);
 #endif
 
+      /* Call add-objects-hook */
+      g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+
+      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
+
       w_current->first_wx  = (-1);
       w_current->first_wy  = (-1);
       w_current->second_wx = (-1);
       w_current->second_wy = (-1);
-
-      /* Call add-objects-hook */
-      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-      o_undo_savestate(w_current, UNDO_ALL);
     }
   }
   else {

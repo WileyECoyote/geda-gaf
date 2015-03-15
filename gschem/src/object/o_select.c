@@ -46,9 +46,14 @@ typedef enum { DESELECT_HOOK, SELECT_HOOK} HOOKS;
  *   Passes \a o_current to g_hook_run_object for deselection or selection
  *   depending on \a which_hook.
  */
+/*
 static void
 o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hook)
+*/
+static void
+o_select_run_hooks(GschemToplevel *w_current, HOOKS which_hook)
 {
+  Object *o_current = w_current->which_object;
 
 #if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
   fprintf(stderr, "o_select_run_hooks: begin\n");
@@ -89,8 +94,7 @@ o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hoo
  *        box.
  */
 void
-o_select_object(GschemToplevel *w_current, Object *o_current,
-                int type, int count)
+o_select_object(GschemToplevel *w_current, Object *o_current, int type, int count)
 {
   SELECTION *selection = Current_Selection;
   bool       removing_obj;
@@ -111,6 +115,8 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
     CONTROLKEY = !w_current->CONTROLKEY;
   else
     CONTROLKEY = w_current->CONTROLKEY;
+
+  w_current->which_object = o_current;
 
   switch(o_current->selected) {
 
@@ -136,7 +142,8 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
       }                        /* End Switch shift key */
 
       /* object not selected, so add it to the selection list */
-      o_select_run_hooks (w_current, o_current, SELECT_HOOK);
+      //o_select_run_hooks (w_current, o_current, SELECT_HOOK);
+      o_select_run_hooks (w_current, SELECT_HOOK);
       o_selection_add    (selection, o_current);
       break;
 
@@ -147,7 +154,8 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
           /* condition: not doing multi-selection  */
           /*     then : remove object from selection */
           if (type != MULTIPLE) {
-            o_select_run_hooks (w_current, o_current, DESELECT_HOOK);
+            //o_select_run_hooks (w_current, o_current, DESELECT_HOOK);
+            o_select_run_hooks (w_current, DESELECT_HOOK);
             o_selection_remove (selection, o_current);
             removing_obj = TRUE;
           }
@@ -162,7 +170,8 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
           /*        2 : add object to selection */
           if (type == MULTIPLE && count == 0 && !CONTROLKEY) {
             o_select_unselect_all (w_current);
-            o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
+            o_select_run_hooks (w_current, SELECT_HOOK);
+            //o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
             o_selection_add       (selection, o_current);
           }
 
@@ -172,12 +181,14 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
           /* 2nd objective: add object to selection list */
           if (type == SINGLE && !CONTROLKEY) {
             o_select_unselect_all (w_current);
-            o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
+            o_select_run_hooks (w_current, SELECT_HOOK);
+            //o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
             o_selection_add       (selection, o_current);
           }
 
           if (CONTROLKEY) {
-            o_select_run_hooks    (w_current, o_current, DESELECT_HOOK);
+            o_select_run_hooks (w_current, DESELECT_HOOK);
+            //o_select_run_hooks    (w_current, o_current, DESELECT_HOOK);
             o_selection_remove    (selection, o_current);
             removing_obj = TRUE;
           }
@@ -232,8 +243,10 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
 
   while (iter) {
     Object *object = iter->data;
+    w_current->which_object = object;
     o_selection_add (selection, object);
-    o_select_run_hooks(w_current, object, SELECT_HOOK);
+    //o_select_run_hooks(w_current, object, SELECT_HOOK);
+    o_select_run_hooks(w_current, SELECT_HOOK);
     iter = iter->next;
   }
 }
@@ -254,8 +267,10 @@ o_select_add_object(GschemToplevel *w_current, Object *object)
   SELECTION    *selection = Top_Selection;
 
   if (GEDA_IS_OBJECT(object)) {
+    w_current->which_object = object;
     o_selection_add (selection, object);
-    o_select_run_hooks(w_current, object, SELECT_HOOK);
+    //o_select_run_hooks(w_current, object, SELECT_HOOK);
+    o_select_run_hooks(w_current, SELECT_HOOK);
   }
   else {
     BUG_MSG("Invalid object");

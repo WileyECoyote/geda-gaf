@@ -1610,6 +1610,7 @@ COMMAND (do_select_all)
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_select_all);
 }
+
 /** @brief i_cmd_do_select_invert in i_command_Select_Actions
  *! \brief Inverts the Selection Set for all unlocked objects on page.
  *  \par Function Description
@@ -1633,6 +1634,33 @@ COMMAND (do_select_invert)
   i_status_set_state (w_current, SELECT);
   w_current->inside_action = FALSE;
   EXIT_COMMAND(do_select_invert);
+}
+
+/** @brief i_cmd_do_select_last in i_command_Select_Actions
+ *! \brief Re Select the last object that was selected
+ *  \par Function Description
+ *  Sets the last object selected as selected.
+ */
+COMMAND (do_select_last)
+{
+  BEGIN_W_COMMAND(do_select_last);
+
+  if (w_current->which_object) {
+
+    Object *object = w_current->which_object;
+
+    if (GEDA_IS_OBJECT(w_current->which_object)) {
+      if (!object->selected) {
+        //o_select_add_object(w_current, object);
+        o_select_object(w_current, object, SINGLE, 0);
+      }
+    }
+    else {
+      w_current->which_object = NULL;
+    }
+  }
+
+  EXIT_COMMAND(do_select_last);
 }
 
 /** @brief i_cmd_do_deselect in i_command_Select_Actions

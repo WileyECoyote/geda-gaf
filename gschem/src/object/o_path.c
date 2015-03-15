@@ -523,8 +523,8 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 
       /* Add the New Path object to the page */
       s_page_append_object (toplevel->page_current, new_obj);
-      g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-      o_undo_savestate (w_current, UNDO_ALL);
+      g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
 
       w_current->rubber_visible = FALSE;
 

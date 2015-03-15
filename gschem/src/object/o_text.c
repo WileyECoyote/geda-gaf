@@ -200,6 +200,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
   changed_something = FALSE;
 
   while(s_current != NULL) {
+
     object = (Object *) s_current->data;
 
     if (object) {

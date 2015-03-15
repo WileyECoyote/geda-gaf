@@ -141,14 +141,14 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
   s_page_append_object (toplevel->page_current, new_obj);
 
+  /* Call add-objects-hook */
+  g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+
+  o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
+
   w_current->first_wx = -1;
   w_current->first_wy = -1;
-  w_current->distance = 0;
-
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  o_undo_savestate(w_current, UNDO_ALL);
+  w_current->distance =  0;
 }
 
 /*! \brief Draw an arc using one angle modification.
