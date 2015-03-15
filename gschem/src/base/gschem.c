@@ -270,7 +270,7 @@ static void gschem( int argc, char *argv[])
   g_register_funcs();
   g_init_window ();
   g_init_select ();
-  g_init_hook ();
+  g_hook_init ();
   g_init_attrib ();
   g_init_keys ();
   g_init_util ();

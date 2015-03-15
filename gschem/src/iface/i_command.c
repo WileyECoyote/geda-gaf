@@ -2060,7 +2060,7 @@ COMMAND (do_page_new)
 
   x_window_set_current_page (w_current, page);
 
-  g_run_hook_page (w_current, "%new-page-hook", page);
+  g_hook_run_page (w_current, "%new-page-hook", page);
 
  /* would be far easier, faster, and safer to set page->CHANGED=FALSE
   * here then for scheme to have done this in the hook, could just add
@@ -2980,7 +2980,7 @@ COMMAND (do_detach)
     }
 
     if (detached_attribs != NULL) {
-      g_run_hook_object_list (w_current, "%detach-attribs-hook",
+      g_hook_run_object_list (w_current, "%detach-attribs-hook",
                               detached_attribs);
       g_list_free (detached_attribs);
     }

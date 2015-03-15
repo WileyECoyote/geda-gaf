@@ -1,8 +1,18 @@
 
+typedef struct st_idle_hook_data IdleHookData;
 typedef struct st_idle_task_data IdleTaskData;
 typedef struct st_session Session;
 typedef struct st_session_menu_data SessionMenuData;
 typedef struct st_stretch STRETCH;
+
+struct st_idle_hook_data {
+  unsigned int    source_id;
+  GschemToplevel *w_current;
+  GList          *list;
+  Object         *object;
+  Page           *page;
+  char           *name;
+};
 
 struct st_idle_task_data {
   unsigned int    source_id;

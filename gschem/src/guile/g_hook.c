@@ -64,14 +64,14 @@ g_get_hook_by_name (const char *name)
  * Runs a hook called \a name, which should expect a list of Object
  * smobs as its argument, with a single-element list containing only \a obj.
  *
- * \sa g_run_hook_object_list()
+ * \sa g_hook_run_object_list()
  *
  * \param w_current Gschem Toplevel object
  * \param name      name of hook to run.
  * \param obj       Object argument for hook.
  */
-void
-g_run_hook_object (GschemToplevel *w_current, const char *name, Object *obj)
+static void
+g_hook_idle_run_object(GschemToplevel *w_current, const char *name, Object *obj)
 {
   scm_dynwind_begin (0);
 
@@ -91,15 +91,15 @@ g_run_hook_object (GschemToplevel *w_current, const char *name, Object *obj)
  * Runs a hook called \a name, which should expect a list of Object
  * smobs as its argument, with \a obj_lst as the argument list.
  *
- * \sa g_run_hook_object()
+ * \sa g_hook_run_object() g_hook_idle_run_object()
  *
  * \param w_current Gschem Toplevel object
  * \param name      name of hook to run.
  * \param obj_lst   list of Object smobs as hook argument.
  */
-void
-g_run_hook_object_list (GschemToplevel *w_current, const char *name,
-                        GList *obj_lst)
+static void
+g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
+                             GList *obj_lst)
 {
   GList *iter;
   int    count = 0;
@@ -141,7 +141,7 @@ g_run_hook_object_list (GschemToplevel *w_current, const char *name,
  * \param page      Page argument for hook.
  */
 void
-g_run_hook_page (GschemToplevel *w_current, const char *name, Page *page)
+g_hook_idle_run_page (GschemToplevel *w_current, const char *name, Page *page)
 {
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
@@ -167,6 +167,146 @@ g_hook_new_proxy_by_name (const char *name)
 {
   SCM hook = g_get_hook_by_name (name);
   return edascm_hook_proxy_new_with_hook (hook);
+}
+
+/* open_command_idle_notify is a callback handler notifying
+ * us that the main loop source open_command_idle_callback
+ * has been destroyed, which is of no particular interest.
+ * These idle threads were to release the memory associated
+ * with x_fileselect_list */
+static void
+g_hook_run_idle_notify (void *data)
+{
+  IdleHookData *capsule = data;;
+
+  if (capsule->page) {
+
+    g_object_ref (G_OBJECT(capsule->page));
+
+  }
+  else if (capsule->object) {
+
+    g_object_ref (G_OBJECT(capsule->object));
+
+  }
+
+  GEDA_FREE(capsule->name);
+  GEDA_FREE(data);
+}
+
+/*! \brief Schedule Update Sensitivity of relevant menu items
+ *  \par Function Description
+ *  This is a default priority main-loop task instigated to run
+ *  SCM hooks.
+ */
+static bool g_hook_run_idle_callback (void *data)
+{
+  IdleHookData   *capsule   = data;
+  GschemToplevel *w_current = capsule->w_current;
+  const char     *name      = capsule->name;
+
+  if (capsule->page) {
+
+    g_hook_idle_run_page(w_current, name, capsule->page);
+  }
+  else if (capsule->object) {
+
+    g_hook_idle_run_object(w_current, name, capsule->object);
+  }
+  else if (capsule->list) {
+
+    g_hook_idle_run_object_list(w_current, name, capsule->list);
+
+  }
+
+  return FALSE;
+}
+
+static IdleHookData*
+g_hook_get_new_capsule(GschemToplevel *w_current, const char *name)
+{
+  IdleHookData *capsule;
+
+  capsule             = g_new(IdleHookData, 1);
+  capsule->w_current  = w_current;
+  capsule->name       = u_string_strdup (name);
+
+  return capsule;
+}
+
+/*! \brief Schedule Update Sensitivity of relevant menu items
+ *  \par Function Description
+ *  Spawns idle thread to run object hooks. This done, not because Guile
+ *  is slow, but because these task need to be ran in the main loop.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void
+g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
+{
+  if (name && list) {
+
+    IdleHookData *capsule;
+
+    capsule             = g_hook_get_new_capsule(wc, name);
+    capsule->list       = list;
+    capsule->object     = NULL;
+    capsule->page       = NULL;
+    capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                                           g_hook_run_idle_callback,
+                                           capsule,
+                                           g_hook_run_idle_notify);
+  }
+}
+
+/*! \brief Schedule Update Sensitivity of relevant menu items
+ *  \par Function Description
+ *  Spawns idle thread to run object hooks. This done, not because Guile
+ *  is slow, but because these task need to be ran in the main loop.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void
+g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
+{
+  fprintf(stderr, "%s made it here\n",__func__);
+  if (name && object) {
+
+    IdleHookData *capsule;
+
+    capsule             = g_hook_get_new_capsule(w_current, name);
+    capsule->list       = NULL;
+    capsule->object     = g_object_ref (G_OBJECT(object));
+    capsule->page       = NULL;
+    capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                                           g_hook_run_idle_callback,
+                                           capsule,
+                                           g_hook_run_idle_notify);
+  }
+}
+
+/*! \brief Schedule Update Sensitivity of relevant menu items
+ *  \par Function Description
+ *  Spawns idle thread to run object hooks. This done, not because Guile
+ *  is slow, but because these task need to be ran in the main loop.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void g_hook_run_page(GschemToplevel *w_current, const char *name, Page *page)
+{
+  if (name && page) {
+
+    IdleHookData *capsule;
+
+    capsule             = g_hook_get_new_capsule(w_current, name);
+    capsule->list       = NULL;
+    capsule->object     = NULL;
+    capsule->page       = g_object_ref (G_OBJECT(page));
+    capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                                           g_hook_run_idle_callback,
+                                           capsule,
+                                           g_hook_run_idle_notify);
+  }
 }
 
 /*! \brief Create the (gschem core hook) Scheme module.
@@ -212,7 +352,7 @@ init_module_gschem_core_hook ()
  * called by main_prog().
  */
 void
-g_init_hook ()
+g_hook_init ()
 {
   /* Define the (gschem core hook) module */
   scm_c_define_module ("gschem core hook",

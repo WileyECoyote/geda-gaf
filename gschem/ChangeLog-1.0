@@ -1,3 +1,37 @@
+2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Run Hooks in idle main context
+
+    * include/gschem_struct.h: Add new struct st_idle_hook_data with type
+      definition IdleHookData.
+
+    * src/guile/g_funcs.c: Rename functions; g_init_hook to g_hook_init, replaced
+      functions g_run_hook_object, g_run_hook_object_list, g_run_hook_page with
+      new functions; g_hook_run_object, g_hook_run_object_list, g_hook_run_page.
+      The old functions were renamed; g_hook_idle_run_object, g_hook_idle_run_page,
+      and g_hook_idle_run_object_list. All functions names in the module are now
+      consistence with the module, aka g_hook_xxx.
+
+      The new functions accept the same arguments but instead of running the SCM
+      hooks the functions setup task to run in the main context with new function
+      g_hook_run_idle_callback routing page, object, and lists to the appropriate
+      function, and new function g_hook_run_idle_notify finalizing the ordeal and
+      releasing resources allocated by g_hook_get_new_capsule for each of the
+      instigators; g_hook_run_object, g_hook_run_object_list and g_hook_run_page.
+
+      The new system means mosts of the tasks that i_command_router dispatched
+      through i_command_dispatch can now be ran directly in the worker threads
+      without have to worry about stumbling across code that will invoke Guide
+      outside the main loops, which was the motivation for developing the new
+      scheme and this is a very good thing Johnny. Secondary benefits should
+      be obvious; more efficient utilization of the thread pool, and lingering
+      hooks should have less impact on over-all performance.
+
+      Need to test each action separately, which will take time. Took a long
+      to time to get current level of stability, but the new scheme should
+      have a positive impact on stability and performance even if with the
+      current thread schedule.
+
 2015-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add Text Marker Threshold to Preferences/Settings Dialog

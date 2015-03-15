@@ -43,7 +43,7 @@ typedef enum { DESELECT_HOOK, SELECT_HOOK} HOOKS;
 
 /*! \brief Run Hook Selection Changed
  *  \par Function Description
- *   Passes \a o_current to g_run_hook_object for deselection or selection
+ *   Passes \a o_current to g_hook_run_object for deselection or selection
  *   depending on \a which_hook.
  */
 static void
@@ -58,12 +58,12 @@ o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hoo
 
     /* If flag == 0, then we are deselecting something. */
     case DESELECT_HOOK:
-      g_run_hook_object (w_current, "%deselect-objects-hook", o_current);
+      g_hook_run_object (w_current, "%deselect-objects-hook", o_current);
       break;
 
       /* If flag == 1, then we are selecting something. */
     case SELECT_HOOK:
-      g_run_hook_object (w_current, "%select-objects-hook", o_current);
+      g_hook_run_object (w_current, "%select-objects-hook", o_current);
       break;
 
     default:
@@ -704,7 +704,7 @@ START_PERFORMANCE(w_current)
         }
       }
       if (o_selection_unselect_all(selection)) {
-        g_run_hook_object_list (w_current, "%deselect-objects-hook", list);
+        g_hook_run_object_list (w_current, "%deselect-objects-hook", list);
       }
 
       geda_list_remove_all(selection);
@@ -718,7 +718,7 @@ START_PERFORMANCE(w_current)
 STOP_PERFORMANCE(w_current)
 */
       if (o_selection_unselect_all(selection)) {
-        g_run_hook_object_list (w_current, "%deselect-objects-hook", list);
+        g_hook_run_object_list (w_current, "%deselect-objects-hook", list);
       }
 
       geda_list_remove_all(selection);
@@ -729,7 +729,7 @@ STOP_PERFORMANCE(w_current)
 
       if (o_selection_remove(selection, object) == 1) {
         o_selection_remove(selection, object);
-        g_run_hook_object(w_current, "%deselect-objects-hook", object);
+        g_hook_run_object(w_current, "%deselect-objects-hook", object);
       }
     }
   }
@@ -782,7 +782,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
   added = geda_list_get_glist (selection);
 
   if (added != NULL) {
-    g_run_hook_object_list (w_current, "%select-objects-hook", added);
+    g_hook_run_object_list (w_current, "%select-objects-hook", added);
   }
 }
 

@@ -34,10 +34,10 @@ SCM   g_funcs_use_rc_values  (void);
 SCM   get_selected_component_attributes     (GschemToplevel *w_current);
 
 /* g_hook.c */
-void  g_init_hook                 (void);
-void  g_run_hook_object           (GschemToplevel *w_current, const char *name, Object *obj);
-void  g_run_hook_object_list      (GschemToplevel *w_current, const char *name, GList *obj_lst);
-void  g_run_hook_page             (GschemToplevel *w_current, const char *name, Page *page);
+void  g_hook_init                 (void);
+void  g_hook_run_object           (GschemToplevel *w_current, const char *name, Object *obj);
+void  g_hook_run_object_list      (GschemToplevel *w_current, const char *name, GList *obj_lst);
+void  g_hook_run_page             (GschemToplevel *w_current, const char *name, Page *page);
 EHP * g_hook_new_proxy_by_name    (const char *name);
 
 /* g_keys.c */

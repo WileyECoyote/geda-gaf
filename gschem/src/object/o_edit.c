@@ -196,7 +196,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
     o_invalidate_glist (w_current, list);
 
     /* Run mirror-objects-hook */
-    g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
+    g_hook_run_object_list (w_current, "%mirror-objects-hook", list);
 
     o_undo_savestate(w_current, UNDO_ALL);
   }
@@ -236,7 +236,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   o_invalidate_glist (w_current, list);
 
   /* Run rotate-objects-hook */
-  g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
+  g_hook_run_object_list (w_current, "%rotate-objects-hook", list);
 
   /* Don't save the undo state if we are inside an action, in which
    * case that action is responsible for saving the undo state. For
