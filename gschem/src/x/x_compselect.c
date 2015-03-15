@@ -711,10 +711,10 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 
   gtk_list_store_clear (model);
 
-  /* Invalidate the column width for the attribute value column, so
-   * the column is re-sized based on the new data being shown. Symbols
-   * with long values are common, and we don't want having viewed those
-   * forcing a h-scroll-bar on symbols with short valued attributes.
+  /* Invalidate the width for the attribute value column, so the column is
+   * re-sized based on the new data being shown. Symbols with long values
+   * are common, and we don't want having viewed those forcing a h-scroll
+   * bar on symbols with short valued attributes.
    *
    * We might also consider invalidating the attribute name columns,
    * however that gives an inconsistent column division when swithing
