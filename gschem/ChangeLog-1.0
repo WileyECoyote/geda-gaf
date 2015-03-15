@@ -1,3 +1,11 @@
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/guile/g_hook.c: Use union inside st_idle_hook_data
+      structure and identify with enumerated EID_HOOK_TYPE.
+
+    * include/gschem_struct.h: True again, stability theory did not
+      pan out as expected. Revise as necessary to access union member.
+
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Move Lock and Unlock to bottom of

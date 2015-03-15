@@ -180,15 +180,8 @@ g_hook_run_idle_notify (void *data)
 {
   IdleHookData *capsule = data;;
 
-  if (capsule->page) {
-
-    g_object_ref (G_OBJECT(capsule->page));
-
-  }
-  else if (capsule->object) {
-
-    g_object_ref (G_OBJECT(capsule->object));
-
+  if (capsule->type) {
+    g_object_ref (G_OBJECT(capsule->data.object));
   }
 
   GEDA_FREE(capsule->name);
@@ -213,20 +206,18 @@ static bool g_hook_run_idle_callback (void *data)
   GschemToplevel *w_current = capsule->w_current;
   const char     *name      = capsule->name;
 
-  if (capsule->page) {
-
-    g_hook_idle_run_page(w_current, name, capsule->page);
+  switch (capsule->type) {
+    case LIST_HOOK:
+      g_hook_idle_run_object_list(w_current, name, capsule->data.list);
+      break;
+    case OBJECT_HOOK:
+      g_hook_idle_run_object(w_current, name, capsule->data.object);
+      break;
+    case PAGE_HOOK:
+      g_hook_idle_run_page(w_current, name, capsule->data.page);
+    default:
+      break;
   }
-  else if (capsule->object) {
-
-    g_hook_idle_run_object(w_current, name, capsule->object);
-  }
-  else if (capsule->list) {
-
-    g_hook_idle_run_object_list(w_current, name, capsule->list);
-
-  }
-
   return FALSE;
 }
 
@@ -264,9 +255,8 @@ g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
     IdleHookData *capsule;
 
     capsule             = g_hook_get_new_capsule(wc, name);
-    capsule->list       = list;
-    capsule->object     = NULL;
-    capsule->page       = NULL;
+    capsule->data.list  = list;
+    capsule->type       = LIST_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                            g_hook_run_idle_callback,
                                            capsule,
@@ -291,14 +281,14 @@ g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
 
     IdleHookData *capsule;
 
-    capsule             = g_hook_get_new_capsule(w_current, name);
-    capsule->list       = NULL;
-    capsule->object     = g_object_ref (G_OBJECT(object));
-    capsule->page       = NULL;
-    capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
-                                           g_hook_run_idle_callback,
-                                           capsule,
-                                           g_hook_run_idle_notify);
+    capsule              = g_hook_get_new_capsule(w_current, name);
+    capsule->data.object = g_object_ref (G_OBJECT(object));
+    capsule->type        = OBJECT_HOOK;
+
+    capsule->source_id   = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+                                            g_hook_run_idle_callback,
+                                            capsule,
+                                            g_hook_run_idle_notify);
   }
 }
 
@@ -319,9 +309,8 @@ void g_hook_run_page(GschemToplevel *w_current, const char *name, Page *page)
     IdleHookData *capsule;
 
     capsule             = g_hook_get_new_capsule(w_current, name);
-    capsule->list       = NULL;
-    capsule->object     = NULL;
-    capsule->page       = g_object_ref (G_OBJECT(page));
+    capsule->data.page  = g_object_ref (G_OBJECT(page));
+    capsule->type       = PAGE_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                            g_hook_run_idle_callback,
                                            capsule,
