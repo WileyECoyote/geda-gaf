@@ -658,7 +658,7 @@ open_command_idle_callback (void *data)
 /* open_command_idle_notify is a callback handler notifying
  * us that the main loop source open_command_idle_callback
  * has been destroyed, which is of no particular interest.
- * These idle threads were to release the memory associated
+ * The idle threads were to release the memory associated
  * with x_fileselect_list */
 static void
 open_command_idle_notify (void *data)
@@ -696,10 +696,10 @@ open_command_idle_notify (void *data)
  *  is assigned to clean up details, mainly to release memory
  *  allocated by x_fileselect_list.
  *
- *  This is worker thread that spawns main-loop threads, the
+ *  This is a worker thread that spawns main-loop threads, the
  *  main reason for this is that, eventually libgeda will be
- *  called and guile will used to process gafrc files and these
- *  guile routines need to be ran in the main context.
+ *  called and guile will be used to process gafrc files and
+ *  these guile routines need to be ran in the main context.
  *  As a bonus, our multi-document load performance increased
  *  dramatically, compared to the old sequential loading.
  */

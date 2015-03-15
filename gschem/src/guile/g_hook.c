@@ -136,9 +136,9 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
  * Runs a hook called \a name, which should expect the single Page \a
  * page as its argument.
  *
- * \param w_current Gschem Toplevel object
- * \param name      name of hook to run
- * \param page      Page argument for hook.
+ * \param [in] w_current Gschem Toplevel object
+ * \param [in] name      name of hook to run
+ * \param [in] page      Page argument for hook.
  */
 void
 g_hook_idle_run_page (GschemToplevel *w_current, const char *name, Page *page)
@@ -169,11 +169,12 @@ g_hook_new_proxy_by_name (const char *name)
   return edascm_hook_proxy_new_with_hook (hook);
 }
 
-/* open_command_idle_notify is a callback handler notifying
- * us that the main loop source open_command_idle_callback
- * has been destroyed, which is of no particular interest.
- * These idle threads were to release the memory associated
- * with x_fileselect_list */
+/*! \brief Dispatch Idle Hook Notify Source is Destroyed
+ *  \par Function Description
+ *  Callback handler for notication that the main loop source
+ *  g_hook_run_idle_callback has been destroyed; removes reference
+ *  on incapsulated objects and releases the memory allocated by
+ *  with g_hook_get_new_capsule */
 static void
 g_hook_run_idle_notify (void *data)
 {
@@ -194,10 +195,17 @@ g_hook_run_idle_notify (void *data)
   GEDA_FREE(data);
 }
 
-/*! \brief Schedule Update Sensitivity of relevant menu items
+/*! \brief Callback Dispatch Idle Hook
  *  \par Function Description
- *  This is a default priority main-loop task instigated to run
- *  SCM hooks.
+ *  This is a main-loop task instigated to run SCM hooks.
+ *
+ *  \warning Should never be called from outside the main context
+ *           this should not be a problem, since the function is
+ *           a callback.
+ *
+ *  \param [in] data  IdleHookData record for hook arguments
+ *
+ *  \returns False so source is destroyed automatically
  */
 static bool g_hook_run_idle_callback (void *data)
 {
@@ -222,6 +230,11 @@ static bool g_hook_run_idle_callback (void *data)
   return FALSE;
 }
 
+/*! \brief Allocate and Load new Idle Hook Data structure
+ *  \par Function Description
+ *   Returns allocated st_idle_hook_data structure after setting
+ *   top-level pointer and obtaining copy of name string.
+ */
 static IdleHookData*
 g_hook_get_new_capsule(GschemToplevel *w_current, const char *name)
 {
@@ -234,12 +247,14 @@ g_hook_get_new_capsule(GschemToplevel *w_current, const char *name)
   return capsule;
 }
 
-/*! \brief Schedule Update Sensitivity of relevant menu items
+/*! \brief Schedule Run Hook for Object List
  *  \par Function Description
  *  Spawns idle thread to run object hooks. This done, not because Guile
  *  is slow, but because these task need to be ran in the main loop.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] wc        Gschem Toplevel object
+ * \param [in] name      name of hook to run
+ * \param [in] list      list of Object smobs as hook argument.
  */
 void
 g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
@@ -259,12 +274,15 @@ g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
   }
 }
 
-/*! \brief Schedule Update Sensitivity of relevant menu items
+/*! \brief Schedule Run Object Hook
  *  \par Function Description
- *  Spawns idle thread to run object hooks. This done, not because Guile
- *  is slow, but because these task need to be ran in the main loop.
+ *  Spawns idle thread to run object hooks. This is done, not because
+ *  Guile is slow, but because the task needs to be ran in the main
+ *  context.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current Gschem Toplevel object
+ * \param [in] name      name of hook to run
+ * \param [in] object    Page argument for hook.
  */
 void
 g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
@@ -284,12 +302,15 @@ g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
   }
 }
 
-/*! \brief Schedule Update Sensitivity of relevant menu items
+/*! \brief Schedule Run Page Hooks
  *  \par Function Description
- *  Spawns idle thread to run object hooks. This done, not because Guile
- *  is slow, but because these task need to be ran in the main loop.
+ *  Spawns idle thread to run page hooks. This is done, not because
+ *  Guile is slow, but because the tasks needs to be ran in the main
+ *  context.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current Gschem Toplevel object
+ * \param [in] name      name of hook to run
+ * \param [in] page      Page argument for hook.
  */
 void g_hook_run_page(GschemToplevel *w_current, const char *name, Page *page)
 {
