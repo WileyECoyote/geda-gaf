@@ -146,7 +146,7 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
     o_attrib_attach (object, new_obj, FALSE);
 
     /* Call add-objects-hook */
-    g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+    g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
   }
 
   s_slot_update_object (object);

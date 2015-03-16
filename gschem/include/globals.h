@@ -133,6 +133,7 @@ typedef enum {
  *  Used to identify which SCM hook should be called.
  */
 typedef enum {
+              INVALID_HOOK,
               ACTION_PROPERTY_HOOK,
               ADD_OBJECT_HOOK,
               ATTACH_ATTRIBS_HOOK,
@@ -148,6 +149,7 @@ typedef enum {
               ROTATE_OBJECTS_HOOK,
               SELECT_OBJECTS_HOOK
 } EID_SCM_HOOKS;
+#define Hooker EID_SCM_HOOKS
 
 /*! \brief Enumerated Pan Directive - EID_PAN_DIRECTIVES
  *  \par Description

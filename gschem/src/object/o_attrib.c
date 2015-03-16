@@ -72,7 +72,7 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
 
     if (objects_added) {
       /* Run select-objects-hook */
-      g_hook_run_object_list(w_current, "%select-objects-hook", objects_added);
+      g_hook_run_object_list(w_current, SELECT_OBJECTS_HOOK, objects_added);
       g_list_free (objects_added);
     }
   }
@@ -108,8 +108,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
   }
 
   if (attached_objects != NULL) {
-    g_hook_run_object_list (w_current, "%attach-attribs-hook",
-                            attached_objects);
+    g_hook_run_object_list (w_current, ATTACH_ATTRIBS_HOOK, attached_objects);
     g_list_free (attached_objects);
     o_undo_savestate(w_current, UNDO_ALL);
   }
@@ -404,8 +403,8 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   }
 
   /* Call add-objects-hook. */
-  g_hook_run_object (w_current, "%add-objects-hook", new_obj);
-  g_hook_run_object (w_current, "%select-objects-hook", new_obj);
+  g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
+  g_hook_run_object (w_current, SELECT_OBJECTS_HOOK, new_obj);
 
   return new_obj;
 }

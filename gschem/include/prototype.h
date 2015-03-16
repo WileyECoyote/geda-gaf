@@ -35,9 +35,9 @@ SCM   get_selected_component_attributes     (GschemToplevel *w_current);
 
 /* g_hook.c */
 void  g_hook_init                 (void);
-void  g_hook_run_object           (GschemToplevel *w_current, const char *name, Object *obj);
-void  g_hook_run_object_list      (GschemToplevel *w_current, const char *name, GList *obj_lst);
-void  g_hook_run_page             (GschemToplevel *w_current, const char *name, Page *page);
+void  g_hook_run_object           (GschemToplevel *w_current, Hooker id, Object *obj);
+void  g_hook_run_object_list      (GschemToplevel *w_current, Hooker id, GList *obj_lst);
+void  g_hook_run_page             (GschemToplevel *w_current, Hooker id, Page *page);
 EHP * g_hook_new_proxy_by_name    (const char *name);
 
 /* g_keys.c */
@@ -561,7 +561,7 @@ void       o_pin_invalidate_rubber           (GschemToplevel *w_current);
 
 /* o_place.c */
 bool       o_place_start                     (GschemToplevel *w_current, int x, int y);
-void       o_place_end                       (GschemToplevel *w_current, int x, int y, int continue_placing, GList **ret_new_objects, const char *hook_name);
+void       o_place_end                       (GschemToplevel *w_current, int x, int y, int continue_placing, GList **ret_new_objects, Hooker id);
 void       o_place_component_end             (GschemToplevel *w_current, int x, int y);
 void       o_place_text_end                  (GschemToplevel *w_current, int w_x, int w_y);
 void       o_place_paste_end                 (GschemToplevel *w_current, int x, int y);

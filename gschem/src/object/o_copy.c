@@ -100,7 +100,7 @@ void o_copy_end(GschemToplevel *w_current)
     int wx = w_current->second_wx;
     int wy = w_current->second_wy;
 
-    o_place_end (w_current, wx, wy, FALSE, NULL, "%copy-objects-hook");
+    o_place_end (w_current, wx, wy, FALSE, NULL, COPY_OBJECTS_HOOK);
   }
   else {
 
@@ -108,7 +108,7 @@ void o_copy_end(GschemToplevel *w_current)
     int    wx   = w_current->second_wx;
     int    wy   = w_current->second_wy;
 
-    o_place_end (w_current, wx, wy, FALSE, &list, "%copy-objects-hook");
+    o_place_end (w_current, wx, wy, FALSE, &list, COPY_OBJECTS_HOOK);
 
     o_select_unselect_all(w_current);
     o_select_add_list(w_current, list);
@@ -127,7 +127,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   int wx = w_current->second_wx;
   int wy = w_current->second_wy;
 
-  o_place_end (w_current, wx, wy, TRUE, NULL, "%copy-objects-hook");
+  o_place_end (w_current, wx, wy, TRUE, NULL, COPY_OBJECTS_HOOK);
 
   /* Stay on ENDMCOPY mode */
   w_current->inside_action = TRUE;

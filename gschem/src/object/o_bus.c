@@ -102,7 +102,7 @@ void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
       g_list_free (prev_conn_objects);
 
       /* Call add-objects-hook */
-      g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+      g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
       o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
 

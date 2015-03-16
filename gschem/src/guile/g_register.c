@@ -63,7 +63,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "anti-aliasing",             1, 0, 0, g_rc_anti_aliasing },
 
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },
-  { "grip-size",           1, 0, 0, g_rc_grips_pixel_size },
+  { "grip-size",                 1, 0, 0, g_rc_grips_pixel_size },
 
   { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
   { "dots-grid-minor-color",     3, 0, 0, g_rc_dots_grid_minor_color },

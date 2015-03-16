@@ -511,6 +511,13 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
       /* Create a copy of the tmp path object */
       Object *new_obj = o_path_copy(GEDA_OBJECT(path));
 
+      /* Add the New Path object to the page */
+      s_page_append_object (toplevel->page_current, new_obj);
+      g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
+      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
+
+      w_current->rubber_visible = FALSE;
+
       /* Release tmp path and and clean up path drawing state */
       GEDA_UNREF (path);
       w_current->temp_path = NULL;
@@ -520,13 +527,6 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
       w_current->second_wy = -1;
       w_current->third_wx  = -1;
       w_current->third_wy  = -1;
-
-      /* Add the New Path object to the page */
-      s_page_append_object (toplevel->page_current, new_obj);
-      g_hook_run_object (w_current, "%add-objects-hook", new_obj);
-      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
-
-      w_current->rubber_visible = FALSE;
 
       result = FALSE;
     }

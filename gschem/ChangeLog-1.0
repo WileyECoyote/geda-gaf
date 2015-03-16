@@ -1,5 +1,162 @@
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancment: Restructure SCM Hook System
+
+    * Implement SCM Hook Enumeration
+
+      The following modifications consolidates ALL of the strings for hook
+      names to a single place in the code; the static structure gschem_hooks.
+      Even though these strings are in one common static structure we still
+      do not want to expose our privates to hookers so we still dynamically
+      allocate storage for the string we pass but, as a fringe benifit, we
+      can now do this in the idle thread g_hook_run_idle_callback, instead
+      of g_hook_get_new_capsule, which is running as the primary thread.
+
+    * src/iface/i_command.c: Revise i_cmd_do_detach to pass DETACH_ATTRIBS_HOOK
+      instead of "%detach-attribs-hook" to g_hook_run_object_list.
+
+    * src/object/o_attrib.c: Change argument for g_hook_run_object_list in
+      o_attrib_attached_2_selection from string "%select-objects-hook" to
+      SELECT_OBJECTS_HOOK and "%attach-attribs-hook" to ATTACH_ATTRIBS_HOOK
+      in function o_attrib_attach_list_2_object. Revise o_attrib_add_attrib
+      to use both SELECT_OBJECTS_HOOK and ATTACH_ATTRIBS_HOOK.
+
+    * src/object/o_arc.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_arc_end4.
+
+    * src/object/o_box.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_box_end.
+
+    * src/object/o_bus.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_bus_end.
+
+    * src/object/o_circle.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_circle_end.
+
+    * src/object/o_copy.c: Revise functions o_copy_end and o_copy_multiple_end
+      to pass a Hooker to o_place_end instead of the hook name string.
+
+    * src/o_delete.c: Revise function o_delete and o_delete_selected to use
+      REMOVE_OBJECTS_HOOK in place of "%remove-objects-hook".
+
+    * src/object/o_edit.c: Revise function o_edit_mirror_world  to use MIRROR
+      _OBJECTS_HOOK instead of "%mirror-objects-hook", o_edit_rotate_world to
+      use ROTATE_OBJECTS_HOOK instead of "%rotate-objects-hook".
+
+    * src/object/o_line.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_line_end.
+
+    * src/object/o_move.c: Change "%move-objects-hook" to MOVE_OBJECTS_HOOK in
+      function o_move_end.
+
+    * src/object/o_net.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_net_end.
+
+    * src/object/o_path.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_path_end and move invalidation of top-level _wx points to
+      after the call to o_undo_savestate_object.
+
+    * src/object/o_picture.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_picture_end.
+
+    * src/object/o_pin.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_pin_end.
+
+    * src/object/o_place.c: Change final argument to o_place_end to type Hooker
+      and revise to pass hook id to g_hook_run_object_list(). Revise function
+      o_place_mirror to use MIRROR_OBJECTS_HOOK instead of "%mirror-objects-hook",
+      o_place_rotate to use ROTATE_OBJECTS_HOOK instead of "%rotate-objects-hook"
+      and 0_place_component_end, o_place_text_end to use ADD_OBJECT_HOOK instead
+      of "%add-objects-hook", o_place_paste_end to use PASTE_OBJECTS_HOOK.
+
+    * src/object/o_slot.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function o_picture_end.
+
+    * src/object/o_select.c: Revise functions; o_select_run_hooks, o_select_
+      unselect_all, o_select_visible_unlocked to use DESELECT_OBJECTS_HOOK,
+      and SELECT_OBJECTS_HOOK instead of "%deselect-objects-hook" and "%select-
+      objects-hook", simplify o_select_run_hooks.
+
+    * src/x/x_coord.c: Pass 0 instead of NULL to o_place_end in co_on_entry_
+      activate.
+
+    * src/x/x_dnd.c: Try passing PASTE_OBJECTS_HOOK o_place_end in function
+      x_dnd_receive_string_sym.
+
+    * src/x/x_multiattrib.c: Change "%add-objects-hook" to ADD_OBJECT_HOOK in
+      function multiattrib_action_promote_attributes
+
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Restructure SCM Hook System
+
+    * Enumerate SCM Hook Identifiers
+
+    * include/globals.h: Add enumeration for EID_SCM_HOOKS
+
+    * src/object/o_select.c: Remove local module HOOK enumerators,
+      use new EID_SCM_HOOKS throughout module.
+
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Select Last object selected
+
+    * etc/system-gschemrc.scm: assign key sequence "S T" to new action
+      "edit-select-last".
+
+    * include/i_actions.h: Define EDIT_SELECT_LAST edit-select-last.
+
+    * include/i_command.h: Add new action edit-select-last.
+
+    * src/iface/i_command.c: Add function i_cmd_do_select_last.
+
+    * src/object/o_undo.c: Add new function o_undo_savestate_object
+      o_undo_savestate_object, which sets w_current->which_object and
+      the calls the noraml undo save state funtion.
+
+    * src/object/o_arc.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_arc_end4, moved invalidating of
+      toplevel points to after call to undo.
+
+    * src/object/o_box.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_box_end, moved invalidating of
+      toplevel points to after call to undo.
+
+    * src/object/o_bus.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_bus_end, moved invalidating of
+      toplevel points to after call to undo.
+
+    * src/object/o_circle.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_circle_end.
+
+    * src/object/o_line.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_line_end.
+
+    * src/object/o_net.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_net_end, moved invalidating of
+      toplevel points to after call to undo.
+
+    * src/object/o_path.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_path_end.
+
+    * src/object/o_picture.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_picture_end.
+
+    * src/object/o_pin.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_pin_end.
+
+    * src/object/o_slot.c: Use o_undo_savestate_object instead of o_undo_
+      savestate_object in function o_slot_end.
+
+    * src/object/o_select.c: Temporarily remove object o_select_run_hooks
+      argument, function is scheduled for removal, the function uses
+      w_current->which_object instead. Adjust caller appropreiately;
+      o_select_object, o_select_add_list and o_select_add_object.
+
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Restructure SCM Hook System
+
     * gschem/src/guile/g_hook.c: Use union inside st_idle_hook_data
       structure and identify with enumerated EID_HOOK_TYPE.
 
@@ -27,6 +184,8 @@
             * g_key_equalp -> g_keys_equalp
 
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Restructure SCM Hook System
 
     * Run Hooks in idle main context
 

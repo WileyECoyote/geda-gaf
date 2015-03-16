@@ -400,7 +400,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
                                 FALSE, symbol, symbolfile, TRUE);
 
         s_page_append_object(page, object);
-        o_place_end(w_current, x, y, 0, 0, NULL);
+        o_place_end(w_current, x, y, 0, 0, PASTE_OBJECTS_HOOK);
       }
       else {
         /* If the current page is not a sym, then insert symbol*/

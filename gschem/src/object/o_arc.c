@@ -142,7 +142,7 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   s_page_append_object (toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */
-  g_hook_run_object (w_current, "%add-objects-hook", new_obj);
+  g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
   o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
 

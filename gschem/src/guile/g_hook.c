@@ -34,6 +34,34 @@ SCM_SYMBOL (hook_sym,     "hook");
 SCM_SYMBOL (run_hook_sym, "run-hook");
 SCM_SYMBOL (list_sym,     "list");
 
+/*! \brief */
+struct ghook_t {
+  const char* name;
+  int arity;
+  /* WEH: should a mutex be here? */
+};
+
+/*! \brief */
+static struct ghook_t gschem_hooks[] = {
+  /* Hooks */
+  { "%invalid-hook",          1 },
+  { "%action-property-hook",  3 },
+  { "%add-objects-hook",      1 },
+  { "%attach-attribs-hook",   1 },
+  { "%bind-keys-hook",        3 },
+  { "%copy-objects-hook",     1 },
+  { "%deselect-objects-hook", 1 },
+  { "%detach-attribs-hook",   1 },
+  { "%mirror-objects-hook",   1 },
+  { "%move-objects-hook",     1 },
+  { "%new-page-hook",         1 },
+  { "%paste-objects-hook",    1 },
+  { "%remove-objects-hook",   1 },
+  { "%rotate-objects-hook",   1 },
+  { "%select-objects-hook",   1 },
+  { NULL }
+};
+
 /*! \brief Gets a Scheme hook object by name.
  * \par Function Description
  * Returns the contents of variable with the given name in the (gschem
@@ -202,19 +230,22 @@ g_hook_run_idle_notify (void *data)
  */
 static bool g_hook_run_idle_callback (void *data)
 {
+  struct ghook_t *record    = gschem_hooks;
   IdleHookData   *capsule   = data;
   GschemToplevel *w_current = capsule->w_current;
-  const char     *name      = capsule->name;
+  const char     *hooker;
+
+  hooker = capsule->name = u_string_strdup (record[capsule->hook].name);
 
   switch (capsule->type) {
     case LIST_HOOK:
-      g_hook_idle_run_object_list(w_current, name, capsule->data.list);
+      g_hook_idle_run_object_list(w_current, hooker, capsule->data.list);
       break;
     case OBJECT_HOOK:
-      g_hook_idle_run_object(w_current, name, capsule->data.object);
+      g_hook_idle_run_object(w_current, hooker, capsule->data.object);
       break;
     case PAGE_HOOK:
-      g_hook_idle_run_page(w_current, name, capsule->data.page);
+      g_hook_idle_run_page(w_current, hooker, capsule->data.page);
     default:
       break;
   }
@@ -226,14 +257,14 @@ static bool g_hook_run_idle_callback (void *data)
  *   Returns allocated st_idle_hook_data structure after setting
  *   top-level pointer and obtaining copy of name string.
  */
-static IdleHookData*
-g_hook_get_new_capsule(GschemToplevel *w_current, const char *name)
+static inline IdleHookData*
+g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
 {
   IdleHookData *capsule;
 
-  capsule             = g_new(IdleHookData, 1);
-  capsule->w_current  = w_current;
-  capsule->name       = u_string_strdup (name);
+  capsule            = g_new(IdleHookData, 1);
+  capsule->w_current = w_current;
+  capsule->hook      = hook;
 
   return capsule;
 }
@@ -243,18 +274,18 @@ g_hook_get_new_capsule(GschemToplevel *w_current, const char *name)
  *  Spawns idle thread to run object hooks. This done, not because Guile
  *  is slow, but because these task need to be ran in the main loop.
  *
- * \param [in] wc        Gschem Toplevel object
- * \param [in] name      name of hook to run
- * \param [in] list      list of Object smobs as hook argument.
+ * \param [in] wc        Gschem Toplevel object,
+ * \param [in] hook      Enumerated hook to run,
+ * \param [in] list      List of Object smobs as hook argument.
  */
 void
-g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
+g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
 {
-  if (name && list) {
+  if (list) {
 
     IdleHookData *capsule;
 
-    capsule             = g_hook_get_new_capsule(wc, name);
+    capsule             = g_hook_get_new_capsule(wc, hook);
     capsule->data.list  = list;
     capsule->type       = LIST_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
@@ -270,21 +301,20 @@ g_hook_run_object_list (GschemToplevel *wc, const char *name, GList *list)
  *  Guile is slow, but because the task needs to be ran in the main
  *  context.
  *
- * \param [in] w_current Gschem Toplevel object
- * \param [in] name      name of hook to run
- * \param [in] object    Page argument for hook.
+ * \param [in] w_current Gschem Toplevel object,
+ * \param [in] hook      Enumerated hook to run,
+ * \param [in] object    Object argument for hook.
  */
 void
-g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
+g_hook_run_object(GschemToplevel *w_current, Hooker hook, Object *object)
 {
-  if (name && object) {
+  if (object) {
 
     IdleHookData *capsule;
 
-    capsule              = g_hook_get_new_capsule(w_current, name);
+    capsule              = g_hook_get_new_capsule(w_current, hook);
     capsule->data.object = g_object_ref (G_OBJECT(object));
     capsule->type        = OBJECT_HOOK;
-
     capsule->source_id   = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                             g_hook_run_idle_callback,
                                             capsule,
@@ -298,17 +328,17 @@ g_hook_run_object(GschemToplevel *w_current, const char *name, Object *object)
  *  Guile is slow, but because the tasks needs to be ran in the main
  *  context.
  *
- * \param [in] w_current Gschem Toplevel object
- * \param [in] name      name of hook to run
+ * \param [in] w_current Gschem Toplevel object,
+ * \param [in] hook      Enumerated hook to run,
  * \param [in] page      Page argument for hook.
  */
-void g_hook_run_page(GschemToplevel *w_current, const char *name, Page *page)
+void g_hook_run_page(GschemToplevel *w_current, Hooker hook, Page *page)
 {
-  if (name && page) {
+  if (page) {
 
     IdleHookData *capsule;
 
-    capsule             = g_hook_get_new_capsule(w_current, name);
+    capsule             = g_hook_get_new_capsule(w_current, hook);
     capsule->data.page  = g_object_ref (G_OBJECT(page));
     capsule->type       = PAGE_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
@@ -320,7 +350,7 @@ void g_hook_run_page(GschemToplevel *w_current, const char *name, Page *page)
 
 /*! \brief Create the (gschem core hook) Scheme module.
  * \par Function Description
- * Defines some hooks in the (gschem core hook) module.  These hooks
+ * Defines some hooks in the (gschem core hook) module. These hooks
  * allow Scheme callbacks to be triggered on certain gschem actions.
  * For a description of the arguments and behaviour of these hooks,
  * please see ../scheme/gschem/hook.scm.
@@ -331,26 +361,14 @@ init_module_gschem_core_hook ()
 
 #include "g_hook.x"
 
-#define DEFINE_HOOK(name,arity)                      \
-  do { \
-    scm_c_define (name, scm_make_hook (scm_from_int (arity)));      \
-    scm_c_export (name, NULL); \
-  } while (0)
+  struct ghook_t *hook = gschem_hooks;
 
-  DEFINE_HOOK ("%action-property-hook",  3);
-  DEFINE_HOOK ("%add-objects-hook",      1);
-  DEFINE_HOOK ("%attach-attribs-hook",   1);
-  DEFINE_HOOK ("%bind-keys-hook",        3);
-  DEFINE_HOOK ("%copy-objects-hook",     1);
-  DEFINE_HOOK ("%deselect-objects-hook", 1);
-  DEFINE_HOOK ("%detach-attribs-hook",   1);
-  DEFINE_HOOK ("%mirror-objects-hook",   1);
-  DEFINE_HOOK ("%move-objects-hook",     1);
-  DEFINE_HOOK ("%new-page-hook",         1);
-  DEFINE_HOOK ("%paste-objects-hook",    1);
-  DEFINE_HOOK ("%remove-objects-hook",   1);
-  DEFINE_HOOK ("%rotate-objects-hook",   1);
-  DEFINE_HOOK ("%select-objects-hook",   1);
+  int i = 1;                 /* Skip, we do not have an invalid-hook */
+  while(hook[i].name) {
+    scm_c_define (hook[i].name, scm_make_hook (scm_from_int (hook[i].arity)));
+    scm_c_export (hook[i].name, NULL);
+    i++;
+  }
 }
 
 /*!

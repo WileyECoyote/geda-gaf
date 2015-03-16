@@ -44,38 +44,19 @@
  *   Passes \a o_current to g_hook_run_object for deselection or selection
  *   depending on \a which_hook.
  */
-/*
 static void
-o_select_run_hooks(GschemToplevel *w_current, Object *o_current, HOOKS which_hook)
-*/
-static void
-o_select_run_hooks(GschemToplevel *w_current, EID_SCM_HOOKS which_hook)
+o_select_run_hooks(GschemToplevel *w_current, Object *o_current, EID_SCM_HOOKS which_hook)
 {
-  Object *o_current = w_current->which_object;
+  if (which_hook == DESELECT_OBJECTS_HOOK) {
 
-#if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
-  fprintf(stderr, "o_select_run_hooks: begin\n");
-#endif
+    /* then we are deselecting something. */
+    w_current->which_object = o_current;
+    g_hook_run_object (w_current, DESELECT_OBJECTS_HOOK, o_current);
 
-  switch (which_hook) {
-
-    /* If flag == 0, then we are deselecting something. */
-    case DESELECT_OBJECTS_HOOK:
-      g_hook_run_object (w_current, "%deselect-objects-hook", o_current);
-      break;
-
-      /* If flag == 1, then we are selecting something. */
-    case SELECT_OBJECTS_HOOK:
-      g_hook_run_object (w_current, "%select-objects-hook", o_current);
-      break;
-
-    default:
-      BUG_IMSG("unhandled case", which_hook);
   }
-
-#if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
-  fprintf(stderr, "%s: exit\n", __func__);
-#endif
+  else { /* else we are selecting something. */
+    g_hook_run_object (w_current, SELECT_OBJECTS_HOOK, o_current);
+  }
 }
 
 /*! \brief Select or Unselect an Object
@@ -140,8 +121,7 @@ o_select_object(GschemToplevel *w_current, Object *o_current, int type, int coun
       }                        /* End Switch shift key */
 
       /* object not selected, so add it to the selection list */
-      //o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
-      o_select_run_hooks (w_current, SELECT_OBJECTS_HOOK);
+      o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
       o_selection_add    (selection, o_current);
       break;
 
@@ -152,8 +132,7 @@ o_select_object(GschemToplevel *w_current, Object *o_current, int type, int coun
           /* condition: not doing multi-selection  */
           /*     then : remove object from selection */
           if (type != MULTIPLE) {
-            //o_select_run_hooks (w_current, o_current, DESELECT_OBJECTS_HOOK);
-            o_select_run_hooks (w_current, DESELECT_OBJECTS_HOOK);
+            o_select_run_hooks (w_current, o_current, DESELECT_OBJECTS_HOOK);
             o_selection_remove (selection, o_current);
             removing_obj = TRUE;
           }
@@ -168,9 +147,8 @@ o_select_object(GschemToplevel *w_current, Object *o_current, int type, int coun
           /*        2 : add object to selection */
           if (type == MULTIPLE && count == 0 && !CONTROLKEY) {
             o_select_unselect_all (w_current);
-            o_select_run_hooks (w_current, SELECT_OBJECTS_HOOK);
-            //o_select_run_hooks    (w_current, o_current, SELECT_OBJECTS_HOOK);
-            o_selection_add       (selection, o_current);
+            o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
+            o_selection_add    (selection, o_current);
           }
 
           /* condition: doing single object add */
@@ -179,15 +157,13 @@ o_select_object(GschemToplevel *w_current, Object *o_current, int type, int coun
           /* 2nd objective: add object to selection list */
           if (type == SINGLE && !CONTROLKEY) {
             o_select_unselect_all (w_current);
-            o_select_run_hooks (w_current, SELECT_OBJECTS_HOOK);
-            //o_select_run_hooks    (w_current, o_current, SELECT_OBJECTS_HOOK);
-            o_selection_add       (selection, o_current);
+            o_select_run_hooks (w_current, o_current, SELECT_OBJECTS_HOOK);
+            o_selection_add    (selection, o_current);
           }
 
           if (CONTROLKEY) {
-            o_select_run_hooks (w_current, DESELECT_OBJECTS_HOOK);
-            //o_select_run_hooks    (w_current, o_current, DESELECT_OBJECTS_HOOK);
-            o_selection_remove    (selection, o_current);
+            o_select_run_hooks (w_current, o_current, DESELECT_OBJECTS_HOOK);
+            o_selection_remove (selection, o_current);
             removing_obj = TRUE;
           }
 
@@ -243,8 +219,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
     Object *object = iter->data;
     w_current->which_object = object;
     o_selection_add (selection, object);
-    //o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
-    o_select_run_hooks(w_current, SELECT_OBJECTS_HOOK);
+    o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
     iter = iter->next;
   }
 }
@@ -267,8 +242,7 @@ o_select_add_object(GschemToplevel *w_current, Object *object)
   if (GEDA_IS_OBJECT(object)) {
     w_current->which_object = object;
     o_selection_add (selection, object);
-    //o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
-    o_select_run_hooks(w_current, SELECT_OBJECTS_HOOK);
+    o_select_run_hooks(w_current, object, SELECT_OBJECTS_HOOK);
   }
   else {
     BUG_MSG("Invalid object");
@@ -717,7 +691,7 @@ START_PERFORMANCE(w_current)
         }
       }
       if (o_selection_unselect_all(selection)) {
-        g_hook_run_object_list (w_current, "%deselect-objects-hook", list);
+        g_hook_run_object_list (w_current, DESELECT_OBJECTS_HOOK, list);
       }
 
       geda_list_remove_all(selection);
@@ -731,7 +705,7 @@ START_PERFORMANCE(w_current)
 STOP_PERFORMANCE(w_current)
 */
       if (o_selection_unselect_all(selection)) {
-        g_hook_run_object_list (w_current, "%deselect-objects-hook", list);
+        g_hook_run_object_list (w_current, DESELECT_OBJECTS_HOOK, list);
       }
 
       geda_list_remove_all(selection);
@@ -742,7 +716,8 @@ STOP_PERFORMANCE(w_current)
 
       if (o_selection_remove(selection, object) == 1) {
         o_selection_remove(selection, object);
-        g_hook_run_object(w_current, "%deselect-objects-hook", object);
+        o_select_run_hooks (w_current, object, DESELECT_OBJECTS_HOOK);
+      //g_hook_run_object(w_current, DESELECT_OBJECTS_HOOK, object);
       }
     }
   }
@@ -795,7 +770,7 @@ o_select_visible_unlocked (GschemToplevel *w_current)
   added = geda_list_get_glist (selection);
 
   if (added != NULL) {
-    g_hook_run_object_list (w_current, "%select-objects-hook", added);
+    g_hook_run_object_list (w_current, SELECT_OBJECTS_HOOK, added);
   }
 }
 

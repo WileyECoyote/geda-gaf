@@ -298,19 +298,19 @@ void o_move_end(GschemToplevel *w_current)
 
     /* Call move-objects-hook for moved objects and changed connected
      * nets/buses */
-    GList *moved_list = g_list_concat (Place_List,
-                                       rubbernet_objects);
-    Place_List        = NULL;
-    rubbernet_objects = NULL;
+    GList *object_list = g_list_concat (Place_List, rubbernet_objects);
 
-    g_run_hook_object_list (w_current, "%move-objects-hook", moved_list);
-    g_list_free (moved_list);
+    g_hook_run_object_list (w_current, MOVE_OBJECTS_HOOK, object_list);
 
     toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
 
     o_move_stretch_destroy_all (w_current->stretch_list);
     w_current->stretch_list = NULL;
+
+    g_list_free (object_list);
+
+    Place_List = NULL;
   }
   w_current->inside_action = FALSE;
 }

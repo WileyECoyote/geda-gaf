@@ -572,7 +572,7 @@ void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   /* Call add-objects-hook */
   if (added_objects != NULL) {
-    g_hook_run_object_list (w_current, "%add-objects-hook", added_objects);
+    g_hook_run_object_list (w_current, ADD_OBJECT_HOOK, added_objects);
     g_list_free (added_objects);
   }
 

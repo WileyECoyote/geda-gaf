@@ -404,7 +404,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
             }
             else {
               s_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
-              o_place_end(w_current, x, y, 0, 0, NULL);
+              o_place_end(w_current, x, y, 0, 0, 0); /* Not passing a Hook Id */
             }
 
             valid = TRUE;

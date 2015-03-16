@@ -82,7 +82,7 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
  */
 void
 o_place_end (GschemToplevel *w_current, int w_x, int w_y,
-             int continue_placing, GList **ret_new_objects, const char* hook_name)
+             int continue_placing, GList **ret_new_objects, Hooker id)
 {
   GedaToplevel *toplevel       = w_current->toplevel;
   GList        *object_list    = NULL;
@@ -118,8 +118,6 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
       *ret_new_objects = g_list_copy (object_list);
     }
 
-    //o_list_translate(object_list, w_diff_x, w_diff_y);
-
     /* Attach each item onto the page's object list. Update object
      * connectivity and add the new objects to the selection list.*/
     p_current = toplevel->page_current;
@@ -139,29 +137,31 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
       connected_list = s_conn_return_others (connected_list, o_current);
     }
 
-    if (hook_name != NULL) {
-      g_run_hook_object_list (w_current, hook_name, object_list);
+    if (id != INVALID_HOOK) {
+      g_hook_run_object_list (w_current, id, object_list);
     }
 
     o_invalidate_glist (w_current, connected_list);
-    g_list_free (connected_list);
-    connected_list = NULL;
-
     o_invalidate_glist (w_current, object_list);  /* only redraw new objects */
-    g_list_free (object_list);
 
     o_undo_savestate (w_current, UNDO_ALL);
     i_status_update_sensitivities (w_current);
     w_current->inside_action = continue_placing;
+
+    g_list_free (connected_list);
+    g_list_free (object_list);
   }
   else {
     BUG_MSG("Not inside an action!");
   }
 }
 
+/* May can eliminate these three function now that hooks are numerated,
+ * their sole purpose was to de-clutter x_event::x_event_button_pressed
+ */
 void o_place_component_end (GschemToplevel *w_current, int w_x, int w_y)
 {
-  o_place_end(w_current, w_x, w_y, w_current->continue_component_place, NULL, "%add-objects-hook");
+  o_place_end(w_current, w_x, w_y, w_current->continue_component_place, NULL, ADD_OBJECT_HOOK);
   if (!w_current->continue_component_place) {
     i_status_set_state(w_current, SELECT);
   }
@@ -169,12 +169,12 @@ void o_place_component_end (GschemToplevel *w_current, int w_x, int w_y)
 
 void o_place_text_end (GschemToplevel *w_current, int w_x, int w_y)
 {
-  o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+  o_place_end(w_current, w_x, w_y, FALSE, NULL, ADD_OBJECT_HOOK);
 }
 
 void o_place_paste_end (GschemToplevel *w_current, int w_x, int w_y)
 {
-  o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
+  o_place_end(w_current, w_x, w_y, FALSE, NULL, PASTE_OBJECTS_HOOK);
   i_status_set_state(w_current, SELECT);
 }
 
@@ -409,7 +409,7 @@ void o_place_mirror (GschemToplevel *w_current)
     o_list_mirror(list, wx, wy);
 
     /* Run mirror-objects-hook */
-    g_run_hook_object_list (w_current, "%mirror-objects-hook", list);
+    g_hook_run_object_list (w_current, MIRROR_OBJECTS_HOOK, list);
 
     o_place_invalidate_rubber (w_current, TRUE);
 
@@ -435,7 +435,7 @@ void o_place_rotate (GschemToplevel *w_current)
     o_list_rotate (list, wx, wy, 90);
 
     /* Run rotate-objects-hook */
-    g_run_hook_object_list (w_current, "%rotate-objects-hook", list);
+    g_hook_run_object_list (w_current, ROTATE_OBJECTS_HOOK, list);
 
     o_place_invalidate_rubber (w_current, TRUE);
 
