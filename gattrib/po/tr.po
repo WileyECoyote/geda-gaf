@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-01-02 06:17-0600\n"
+"POT-Creation-Date: 2015-03-15 12:50-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,7 +28,7 @@ msgstr "Bileşen özelliklerini gattrib ile düzenle"
 
 #: gattrib/src/f_export.c:67
 #, c-format
-msgid "o_save: Could not open [%s]\n"
+msgid "%s: Could not open [%s]\n"
 msgstr ""
 
 #: gattrib/src/gattrib.c:312
@@ -44,7 +44,7 @@ msgid ""
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
-#: gattrib/src/parsecmd.c:59
+#: gattrib/src/parsecmd.c:63
 #, c-format
 msgid ""
 "\n"
@@ -52,28 +52,16 @@ msgid ""
 "Presents schematic attributes in easy-to-edit spreadsheet format.\n"
 "\n"
 "Usage: %s [OPTIONS] filename1 ... filenameN\n"
-"  -q, --quiet            Quiet mode\n"
-"  -v, --verbose          Verbose mode on\n"
-"  -h, --help             This help menu\n"
+"\n"
+"\t-h, --help      This help menu\n"
+"\t-q, --quiet     Quiet mode\n"
+"\t-v, --verbose   Verbose mode on\n"
+"\t-V, --version   Show version information.\n"
 "\n"
 "  FAQ:\n"
 "  *  What do the colors of the cell text mean?\n"
-"     The cell colors indicate the visibility of the attribute.\n"
-"     Black = Visible attribute, value displayed only.\n"
-"     Grey  = Invisible attribute.\n"
-"     Red   = Visible attribute, name displayed only.\n"
-"     Blue  = Visible attribute, both name and value displayed.\n"
-"\n"
-"  *  What does the period (\".\") at the end of some component refdeses "
-"mean?\n"
-"     The period is placed after the refdeses of slotted components.\n"
-"     If slots are present on the component, then the different slots appear\n"
-"     in different rows with the slot number after the period.  Example:  "
-"C101.2.\n"
-"\n"
-"Copyright (C) 2003 -- 2006 Stuart D. Brorson.  E-mail: sdb (AT) cloud9 (DOT) "
-"net.\n"
-"\n"
+"     The cell text colors indicate the visibility of the attribute.\n"
+"     "
 msgstr ""
 
 #: gattrib/src/s_misc.c:66
@@ -88,14 +76,14 @@ msgstr ""
 msgid " DONE\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:209
+#: gattrib/src/s_object.c:212
 #, c-format
 msgid ""
 "In s_object_replace_attrib_in_object, we have failed to find the attrib %s "
 "on the component.  Exiting . . .\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:325
+#: gattrib/src/s_object.c:328
 #, c-format
 msgid ""
 "In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex "

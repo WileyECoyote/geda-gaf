@@ -34,6 +34,7 @@ gschem/src/iface/i_sessions.c
 gschem/src/iface/i_status.c
 gschem/src/iface/i_sessions.c
 gschem/src/iface/i_vars.c
+gschem/src/iface/i_window.c
 gschem/src/iface/i_zoom_world.c
 
 gschem/src/math/m_basic.c
@@ -48,6 +49,7 @@ gschem/src/object/o_complex.c
 gschem/src/object/o_copy.c
 gschem/src/object/o_delete.c
 gschem/src/object/o_edit.c
+gschem/src/object/o_extend.c
 gschem/src/object/o_find.c
 gschem/src/object/o_grips.c
 gschem/src/object/o_invalidate.c
@@ -64,9 +66,7 @@ gschem/src/object/o_slot.c
 gschem/src/object/o_text.c
 gschem/src/object/o_undo.c
 
-gschem/src/x/x_attrib.c
 gschem/src/x/x_autonumber.c
-gschem/src/x/x_basic.c
 gschem/src/x/x_clipboard.c
 gschem/src/x/x_color.c
 gschem/src/x/x_compselect.c
@@ -74,6 +74,8 @@ gschem/src/x/x_console.c
 gschem/src/x/x_coord.c
 gschem/src/x/x_dialog.c
 gschem/src/x/x_dnd.c
+gschem/src/x/x_draw.cpp
+gschem/src/x/x_edit_attrib.c
 gschem/src/x/x_edit_color.c
 gschem/src/x/x_edit_cprop.c
 gschem/src/x/x_edit_pin.c

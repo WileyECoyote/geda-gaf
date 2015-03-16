@@ -10,7 +10,7 @@ LOCAL_HTML  = what-is-geda.html
 LOCAL_TEX   = what-is-geda.tex
 
 LOCAL_EXTRA = ChangeLog-1.0 ChangeLog
- 
+
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX) $(LOCAL_EXTRA)
 
 if HAVE_GIT_REPO
@@ -18,7 +18,7 @@ ChangeLog: $(top_builddir)/stamp-git
 	(cd $(srcdir) && $(GIT) log --pretty=medium $(CHANGELOG_BASE).. -- .) > $@
 endif HAVE_GIT_REPO
 
-all: 
+all:
 	@echo 'Type: make doxygen  to create doxygen documentation for geda'
 
 # When generating doxygen documentation we check for the existence of the
