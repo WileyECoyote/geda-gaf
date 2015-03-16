@@ -1350,6 +1350,7 @@ bool o_line_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
        *ny = line->y[index];
       }
     }
+    result = TRUE;
   }
   else { /* was not an Line */
     result = FALSE;

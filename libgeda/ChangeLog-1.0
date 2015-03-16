@@ -1,3 +1,8 @@
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  src/object/o_line_basic.c: Add missing setter for true results in
+       o_line_get_nearest_point.
+
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     *  Symbol Versioning System Enhancements
