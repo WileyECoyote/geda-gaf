@@ -2,6 +2,23 @@
 
     * Code Enhancment: Restructure SCM Hook System
 
+    * Expand SCM API (Hooks)
+
+    * scheme/gschem/hook.scm: Add defines for change-page-hook, close-page-
+      hook, and open-page-hook.
+
+    * src/guile/g_hook.c: Add change-page-hook and close-page-hook to table
+      gschem_hooks.
+
+    * src/iface/i_command.c: Add call to g_hook_run_page change-page-hook in
+      functions i_cmd_do_page_prev and i_cmd_do_page_next, close-page-hook
+      in i_cmd_do_close and i_cmd_do_page_close. Add run hook in open-page-hook
+      open_command_idle_notify. Add run hook in new-page-hook do_file_new.
+
+2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Restructure SCM Hook System
+
     * Implement SCM Hook Enumeration
 
       The following modifications consolidates ALL of the strings for hook

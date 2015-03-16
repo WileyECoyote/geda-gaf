@@ -35,8 +35,8 @@
 
 #include <geda_dialogs.h>
 
-#define PERFORMANCE
-#include <gschem_diagnostics.h>
+//#define PERFORMANCE
+//#include <gschem_diagnostics.h>
 #include <geda_debug.h>
 
 #define NUMBER_REDRAW_TEST      100
@@ -583,6 +583,8 @@ COMMAND (do_file_new)
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
   x_window_set_current_page (w_current, page);
+  g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
+
   q_log_message (_("New page created [%s]\n"), page->filename);
 
   EXIT_COMMAND(do_file_new);
@@ -671,6 +673,7 @@ open_command_idle_notify (void *data)
   page = s_page_search(packet->w_current->toplevel, last_file);
   if (GEDA_IS_PAGE(page)) {
     x_window_set_current_page (packet->w_current, page);
+    g_hook_run_page (packet->w_current, OPEN_PAGE_HOOK, page);
   }
 
   GSource *source;
@@ -898,6 +901,7 @@ COMMAND (do_close) {
   if (can_close) {
     q_log_message(_("Closing Page\n"));
     x_window_close_page (w_current, Current_Page);
+    g_hook_run_page (w_current, CLOSE_PAGE_HOOK, Current_Page);
   }
   i_status_set_state(w_current, SELECT);
   EXIT_COMMAND(do_close);
@@ -2030,6 +2034,7 @@ COMMAND (do_page_prev)
 
     if (p_new != NULL || p_new != Current_Page) {
       x_window_set_current_page (w_current, p_new);
+      g_hook_run_page (w_current, CHANGE_PAGE_HOOK, p_new);
     }
   }
 }
@@ -2062,6 +2067,7 @@ COMMAND (do_page_next)
 
     if (p_new != NULL || p_new != Current_Page) {
       x_window_set_current_page (w_current, p_new);
+      g_hook_run_page (w_current, CHANGE_PAGE_HOOK, p_new);
     }
   }
 }
@@ -2088,7 +2094,7 @@ COMMAND (do_page_new)
 
   x_window_set_current_page (w_current, page);
 
-  g_hook_run_page (w_current, "%new-page-hook", page);
+  g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
  /* would be far easier, faster, and safer to set page->CHANGED=FALSE
   * here then for scheme to have done this in the hook, could just add
@@ -2194,6 +2200,7 @@ COMMAND (do_page_close)
 
   if (can_close) {
     x_window_close_page (w_current, Current_Page);
+    g_hook_run_page (w_current, CLOSE_PAGE_HOOK, Current_Page);
   }
   EXIT_COMMAND(do_page_close);
 }
@@ -3008,8 +3015,7 @@ COMMAND (do_detach)
     }
 
     if (detached_attribs != NULL) {
-      g_hook_run_object_list (w_current, "%detach-attribs-hook",
-                              detached_attribs);
+      g_hook_run_object_list(w_current, DETACH_ATTRIBS_HOOK, detached_attribs);
       g_list_free (detached_attribs);
     }
 

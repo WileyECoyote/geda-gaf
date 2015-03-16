@@ -32,7 +32,11 @@
 
 (define-public bind-keys-hook        %bind-keys-hook)
 
+(define-public change-page-hook      %change-page-hook)
+
 (define-public copy-objects-hook     %copy-objects-hook)
+
+(define-public close-page-hook       %close-page-hook)
 
 (define-public deselect-objects-hook %deselect-objects-hook)
 
@@ -43,6 +47,8 @@
 (define-public move-objects-hook     %move-objects-hook)
 
 (define-public new-page-hook         %new-page-hook)
+
+(define-public open-page-hook        %open-page-hook)
 
 (define-public paste-objects-hook    %paste-objects-hook)
 
