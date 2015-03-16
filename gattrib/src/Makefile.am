@@ -14,7 +14,7 @@ GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA)
 
 bin_PROGRAMS   = gattrib
 
-BUILT_SOURCES   = version.h
+BUILT_SOURCES   = $(top_builddir)/version.h
 
 gattrib_SOURCES = $(BUILT_SOURCES) \
 		globals.c \

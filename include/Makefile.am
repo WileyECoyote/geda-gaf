@@ -3,7 +3,8 @@
 ## There does not seem to be any reason to use Auto-tools here
 ## Just use static Makefile
 
-noinst_HEADERS  = ascii.h \
+noinst_HEADERS  = ansi.h \
+                  ascii.h \
                   geda.h \
                   geda_bitmaps.h \
                   geda_debug.h \
