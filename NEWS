@@ -2,10 +2,19 @@
  'gschem and Friends' Electronic Design Suite
 ==============================================
 
-Copyright (C) 1998-2014 gEDA Developers
+Copyright (C) 1998-2015 gEDA Developers
 
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
+
+Notable changes in gEDA/gaf 2.0.9.7 - 03/15/15 Rampage Edition
+
+* This is a special intermediate release to celebrate the 17th Anniversary
+  of first GUI version of Gschem. The next major release is scheduled for
+  Apirl 1st, 2015 in commemoration of the first public release of geda-gaf.
+  Much of the work for the 2.1 release had been completed, this intermediate
+  reflect many hours of work and has passed all preliminary testing for the
+  2.1 release, which will have several additional new features.
 
 Notable changes in gEDA/gaf 2.0.9 - Rampage Edition
 
