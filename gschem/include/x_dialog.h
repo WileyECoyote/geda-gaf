@@ -90,6 +90,7 @@ struct st_property_data {
 
   GtkWidget *author_entry;
   GtkWidget *version_entry;
+  GtkWidget *version_cb;
 
   GtkWidget *ulicense_entry;
   GtkWidget *dlicense_entry;
@@ -111,6 +112,7 @@ struct st_property_data {
 
   GtkWidget *elect_table;
 
+  unsigned int ver_handler;
   unsigned int ref_handler;
 };
 

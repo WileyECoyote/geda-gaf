@@ -275,6 +275,12 @@ void       i_command_get_command_list       (GList** list);
 bool       i_command_is_valid               (const char *command);
 void       i_command_process                (GschemToplevel *w_current, const char* command,
                                              int narg, char *arg, EID_ACTION_ORIGIN who);
+/* i_event.c */
+void       i_event_block_buttons            (GschemToplevel *w_current);
+void       i_event_unblock_buttons          (GschemToplevel *w_current);
+void       i_event_block_handler            (GschemToplevel *w_current, EventHandler id);
+void       i_event_unblock_handler          (GschemToplevel *w_current, EventHandler id);
+void       i_event_setup_handlers           (GschemToplevel *w_current);
 
 /* i_pan_world.c */
 void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);

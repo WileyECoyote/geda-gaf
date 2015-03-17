@@ -41,8 +41,6 @@
  *  @{ \par
 */
 
-typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -363,56 +361,6 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
 }
 
-/*! \brief Setup X-Events Event Handlers
- *  \par Function Description
- *   This function configures events for the Drawing Area and connects
- *   callback functions in x_event.c for both the Drawing Area and the
- *   Main window. Lastly, x_dnd_setup_event_handlers is called to setup
- *   Drag-and-Drop events for the drawing area.
- */
-static void x_window_setup_event_handlers(GschemToplevel *w_current)
-{
-  struct event_reg_t {
-    char            *detailed_signal;
-    unsigned long    hid;
-    GschemDrawEvent  handler;
-  };
-
-  struct event_reg_t drawing_area_events[] = {
-    { "expose_event",         0, GSE_HANDLER( x_event_expose          )},
-    { "button_press_event",   0, GSE_HANDLER( x_event_button_pressed  )},
-    { "button_release_event", 0, GSE_HANDLER( x_event_button_released )},
-    { "motion_notify_event",  0, GSE_HANDLER( x_event_motion          )},
-    { "configure_event",      0, GSE_HANDLER( x_event_configure       )},
-    { "key_press_event",      0, GSE_HANDLER( x_event_key             )},
-    { "key_release_event",    0, GSE_HANDLER( x_event_key             )},
-    { "scroll_event",         0, GSE_HANDLER( x_event_scroll          )},
-    {  NULL,                  0, NULL }
-  };
-
-  struct event_reg_t *tmp;
-
-  /* is the configure event type missing here? hack */
-  gtk_widget_set_events (DrawingArea,
-                         GDK_BUTTON_PRESS_MASK        |
-                         GDK_BUTTON_RELEASE_MASK      |
-                         GDK_EXPOSURE_MASK            |
-                         GDK_KEY_PRESS_MASK           |
-                         GDK_POINTER_MOTION_MASK      |
-                         GDK_POINTER_MOTION_HINT_MASK |
-                         GDK_SCROLL_MASK              |
-                         GDK_VISIBILITY_NOTIFY_MASK);
-
-  for (tmp = drawing_area_events; tmp->detailed_signal != NULL; tmp++) {
-   tmp->hid = g_signal_connect (DrawingArea, tmp->detailed_signal,
-                                G_CALLBACK(tmp->handler), w_current);
-  }
-
-  x_dnd_setup_event_handlers(w_current);
-  x_event_governor(w_current);
-}
-
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -576,7 +524,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
   x_window_create_drawing_area(draw_window, w_current);
 
-  x_window_setup_event_handlers(w_current);
+  i_event_setup_handlers (w_current);
 
   /* ----------------- Bottom Toolbar ------------------ */
 

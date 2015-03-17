@@ -1,11 +1,4 @@
 
-/*! \enum Enumerated Hook Record data type */
-typedef enum {
-  LIST_HOOK,
-  OBJECT_HOOK,
-  PAGE_HOOK,
-} EID_HOOK_TYPE;
-
 typedef struct st_idle_hook_data IdleHookData;
 typedef struct st_idle_task_data IdleTaskData;
 typedef struct st_session Session;
@@ -22,7 +15,8 @@ struct st_idle_hook_data {
         } data;
 
   char           *name;
-  int             type;
+  unsigned int    type;
+  unsigned int    hook;
 };
 
 struct st_idle_task_data {

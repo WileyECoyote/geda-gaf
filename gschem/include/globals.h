@@ -111,8 +111,21 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
+/*! \brief Enumerated Selection Mode - EID_EVENT_HANDLERS
  *  \par Description
+ *  Used as argument to i_event_block_xxx i_event_unblock_xxx to identify
+ *  which handler to blocked or unblock.
  */
+typedef enum  { EXPOSE_EVENT_HANDLER,
+                BUTTON_PRESS_HANDLER,
+                BUTTON_RELEASE_HANDLER,
+                MOTION_NOTIFY_HANDLER,
+                CONFIGURE_EVENT_HANDLER,
+                KEY_PRESS_EVENT_HANDLER,
+                KEY_RELEASE_EVENT_HANDLER,
+                SCROLL_EVENT_HANDLER
+} EID_EVENT_HANDLERS;
+#define EventHandler EID_EVENT_HANDLERS
 
 /*! \enum EID_HOOK_TYPE Hook Record Data Type */
 typedef enum {
