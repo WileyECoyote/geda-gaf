@@ -1,3 +1,21 @@
+2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Fix Hook BUG
+
+    * src/guile/g_hook.c: If the third time is a charm, whats the forth?
+      seg-faulting in g_hook_idle_run_object_list, contents of list was
+      invalid. Revised function g_hook_run_object_list to make a copy of
+      the list AND add a reference on each object. Should have done this
+      to start with - a reference is held on single objects and pages, but
+      did not do contents of list. Done now.
+      During diagnostics, tasks were being spawned before the previous task
+      had completed - the code was "flowing" fast, this happened regularly
+      with list. Oddly, this did not seem to cause a problem, perhaps this
+      is because there is no actual hook. Added a Mutex lock on g_hook_run_
+      idle_callback with g_hook_run_idle_notify unlocking so the main loop
+      will iterate and new hooks will not be processed until the previous
+      has completed.
+
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancment: Improve Logistics

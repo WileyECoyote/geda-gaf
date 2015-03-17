@@ -141,8 +141,10 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
 
   for (iter = obj_lst; iter != NULL; NEXT(iter)) {
 
-    if (GEDA_IS_OBJECT(iter->data)) {
-      lst = scm_cons (edascm_from_object ((Object *) iter->data), lst);
+    Object *object = iter->data;
+
+    if (GEDA_IS_OBJECT(object)) {
+      lst = scm_cons (edascm_from_object (object), lst);
       count++;
     }
   }
@@ -200,6 +202,30 @@ g_hook_new_proxy_by_name (const char *name)
   return edascm_hook_proxy_new_with_hook (hook);
 }
 
+/* Anonymous Static Mutex */
+static union
+{
+  void* p;
+  unsigned int i[2];
+} i_lock_is_busy;
+
+static int is_busy = 0;
+
+static void set_is_busy(int value)
+{
+  g_mutex_lock((GMutex*)&i_lock_is_busy);
+    is_busy = value;
+  g_mutex_unlock((GMutex*)&i_lock_is_busy);
+}
+static int get_is_busy()
+{
+  int ret_val;
+  g_mutex_lock((GMutex*)&i_lock_is_busy);
+    ret_val = is_busy;
+  g_mutex_unlock((GMutex*)&i_lock_is_busy);
+  return ret_val;
+}
+
 /*! \brief Dispatch Idle Hook Notify Source is Destroyed
  *  \par Function Description
  *  Callback handler for notication that the main loop source
@@ -211,8 +237,25 @@ g_hook_run_idle_notify (void *data)
 {
   IdleHookData *capsule = data;;
 
-  if (capsule->type) {
-    g_object_ref (G_OBJECT(capsule->data.object));
+  set_is_busy(FALSE);
+
+  if (capsule->type == LIST_HOOK) {
+
+    GList *hook_list = capsule->data.list;
+    GList *iter;
+
+    for (iter = hook_list; iter != NULL; NEXT(iter)) {
+
+      Object *object = iter->data;
+
+      if (GEDA_IS_OBJECT(object)) {
+        g_object_unref (G_OBJECT(object));
+      }
+    }
+    g_list_free(hook_list);
+  }
+  else { /* Page or single object */
+    g_object_unref (G_OBJECT(capsule->data.object));
   }
 
   GEDA_FREE(capsule->name);
@@ -233,26 +276,38 @@ g_hook_run_idle_notify (void *data)
  */
 static bool g_hook_run_idle_callback (void *data)
 {
-  struct ghook_t *record    = gschem_hooks;
-  IdleHookData   *capsule   = data;
-  GschemToplevel *w_current = capsule->w_current;
-  const char     *hooker;
+  struct ghook_t *record = gschem_hooks;
 
-  hooker = capsule->name = u_string_strdup (record[capsule->hook].name);
+  int status;
 
-  switch (capsule->type) {
-    case LIST_HOOK:
-      g_hook_idle_run_object_list(w_current, hooker, capsule->data.list);
-      break;
-    case OBJECT_HOOK:
-      g_hook_idle_run_object(w_current, hooker, capsule->data.object);
-      break;
-    case PAGE_HOOK:
-      g_hook_idle_run_page(w_current, hooker, capsule->data.page);
-    default:
-      break;
+  if (get_is_busy()) {
+    status = TRUE;
   }
-  return FALSE;
+  else {
+
+    set_is_busy(TRUE);
+
+    IdleHookData   *capsule   = data;
+    GschemToplevel *w_current = capsule->w_current;
+    const char     *hooker;
+
+    hooker = capsule->name = u_string_strdup (record[capsule->hook].name);
+
+    switch (capsule->type) {
+      case LIST_HOOK:
+        g_hook_idle_run_object_list(w_current, hooker, capsule->data.list);
+        break;
+      case OBJECT_HOOK:
+        g_hook_idle_run_object(w_current, hooker, capsule->data.object);
+        break;
+      case PAGE_HOOK:
+        g_hook_idle_run_page(w_current, hooker, capsule->data.page);
+      default:
+        break;
+    }
+    status = FALSE;
+  }
+  return status;
 }
 
 /*! \brief Allocate and Load new Idle Hook Data structure
@@ -286,10 +341,21 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
 {
   if (list) {
 
+    GList *hook_list = NULL;
+    GList *iter;
+
+    for (iter = list; iter != NULL; NEXT(iter)) {
+
+      Object *object = iter->data;
+
+      if (GEDA_IS_OBJECT(object)) {
+        hook_list = g_list_append(hook_list, g_object_ref (G_OBJECT(object)));
+      }
+    }
     IdleHookData *capsule;
 
     capsule             = g_hook_get_new_capsule(wc, hook);
-    capsule->data.list  = list;
+    capsule->data.list  = hook_list;
     capsule->type       = LIST_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                            g_hook_run_idle_callback,
