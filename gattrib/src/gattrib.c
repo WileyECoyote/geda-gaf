@@ -319,7 +319,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   if (file_list) { /* do we need to call g here? */
     /* Attempt to Load the files */
-    if(x_fileselect_load_files(file_list)) {
+    if (x_fileselect_load_files(file_list)) {
       /* Sort, Load Tables, Verify Design- Really? */
       s_toplevel_init_data_set(pr_current, sheet_head);
     }

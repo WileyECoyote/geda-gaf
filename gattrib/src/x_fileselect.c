@@ -79,7 +79,7 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
  *
  *  \param filename  char pointer to a buffer to receive the string.
  *
- *  \returns boolean ture of dialog accepted input. returns false if
+ *  \returns boolean True of dialog accepted input. returns false if
  *           the user cancels.
  */
 bool x_fileselect ( char* filename )
@@ -196,7 +196,7 @@ bool x_fileselect_load_files (GSList *filenames)
 {
 
   GSList *ptrname;
-  char *filename;
+  char   *filename;
   int ret_val = TRUE;
 
   /* iterate over selected files */
