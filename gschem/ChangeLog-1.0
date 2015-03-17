@@ -1,5 +1,18 @@
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancment: Use consistence naming for enumerated types.
+
+    * include/globals.h: Rename EFL_SELECTION_MODE (I can not remember
+      what the L was for) to EID_SELECTION_MODE and removed prefix from
+      members. The prefixes were probably a good thing, but the other
+      EID_xx enumerators do not have EID_, all should be ID_ will need
+      to fix someday but low priority.
+
+    * src/object/o_find.c: Update EID_SELECTION_MODE names in functions
+      o_find_is_object_hit and o_find_object.
+
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Add Selection Getter to GschemDialog
 
     * src/base/gschem_dialog.c: Add function gschem_dialog_get_selected.

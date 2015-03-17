@@ -111,15 +111,8 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
-/*! \brief Enumerated Selection Mode - EFL_SELECTION_MODE
  *  \par Description
- *  Used as argument to routines in o_find module to indicate
- *  how found object should be handled.
  */
-typedef enum  { EFL_SELECTION_NOACTION,
-                EFL_SELECTION_REPLACE,
-                EFL_SELECTION_ADD
-} EFL_SELECTION_MODE;
 
 /*! \enum EID_HOOK_TYPE Hook Record Data Type */
 typedef enum {
@@ -164,6 +157,16 @@ typedef enum { I_PAN_REDRAW,
                I_PAN_IGNORE_BORDERS,
                I_PAN_DONT_REDRAW
 } EID_PAN_DIRECTIVES;
+
+/*! \brief Enumerated Selection Mode - EID_SELECTION_MODE
+ *  \par Description
+ *  Used as argument to routines in o_find module to indicate
+ *  how found object should be handled.
+ */
+typedef enum  { SELECTION_NOACTION,
+                SELECTION_REPLACE,
+                SELECTION_ADD
+} EID_SELECTION_MODE;
 
 /*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
  *  \par Description

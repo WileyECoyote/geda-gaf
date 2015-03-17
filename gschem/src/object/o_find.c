@@ -77,7 +77,7 @@ static void o_find_disposition_object (GschemToplevel *w_current,
                                        Object *object,
                                        int mode)
 {
-  if (mode == EFL_SELECTION_REPLACE) {
+  if (mode == SELECTION_REPLACE) {
 
     if (object->type == OBJ_NET && w_current->net_selection_mode) {
       o_select_connected_nets (w_current, object);
@@ -87,7 +87,7 @@ static void o_find_disposition_object (GschemToplevel *w_current,
     }
     i_status_update_sensitivities(w_current);
   }
-  else if (mode == EFL_SELECTION_ADD) {
+  else if (mode == SELECTION_ADD) {
     o_select_add_object(w_current, object);
     i_status_update_sensitivities(w_current);
   }
@@ -230,9 +230,9 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
     /* We did not find anything so reset lastplace */
     Current_Page->object_lastplace = NULL;
 
-    /* Deselect everything if selection mode flag is EFL_SELECTION_REPLACE
+    /* Deselect everything if selection mode flag is SELECTION_REPLACE
      * AND the shift key or the control is not pressed */
-    if (mode == EFL_SELECTION_REPLACE) {
+    if (mode == SELECTION_REPLACE) {
       if (!(w_current->SHIFTKEY || w_current->CONTROLKEY)) {
         o_select_unselect_all (w_current);
         i_status_update_sensitivities(w_current);
