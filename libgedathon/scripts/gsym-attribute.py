@@ -7,7 +7,7 @@ from geda import geda
 from geda.constants import *
 
 #---------------------------------------------------------------------------
-Version="0.2.0"
+Version="0.2.2"
 #---------------------------------------------------------------------------
 VerboseMode=False
 #---------------------------------------------------------------------------
@@ -32,8 +32,8 @@ Options:
                     the output name will be over-written, without any warning.
   -c, --color    -- Optional attribute color.
   -s, --size     -- Optional font size.
-  -v, --verbose  -- Verbose mode.  Used in both archive and extract mode.
-                    Spews lots of info about what the prog is doing.
+  -q, --quite    -- Suppress normal processing messages.
+  -v, --verbose  -- Spews lots of info about what the prog is doing.
   -o <outfile>   -- Specifies the name of the output sym file. When the output file
                     name is not specified the input file will be over written.
 
@@ -59,7 +59,17 @@ def VMessage(Options, String):
     This prints out String when the -v flag is set, otherwise is silent
     """
     if (Options.VerboseMode == "verbose"):
-        print("---- "+ String)
+        print(String)
+    return
+
+#---------------------------------------------------------------------------
+
+def QMessage(Options, String):
+    """
+    This prints out String when the -v flag is set, otherwise is silent
+    """
+    if Options.VerboseMode == "verbose" or not Options.QuiteMode:
+        print(String)
     return
 
 #---------------------------------------------------------------------------
@@ -83,7 +93,9 @@ class ProgramParameters:
     and fills out the public vars.  The public vars are:
     """
     def __init__(self):
+
         global Version
+
         valid_attributes =[ "device", "footprint", "numslots", "refdes",
                             "author", "dist-license", "use-license",
                             "description", "documentation", "symversion",
@@ -94,10 +106,11 @@ class ProgramParameters:
         Constructor: parse through cmd line args and fill out vars. The values
         here are the defaults
         """
-
+        self.ExitCode        = 0
         self.ForceMode       = False
         self.RecursiveMode   = False
         self.VerboseMode     = False
+        self.QuiteMode       = False
         self.InputFiles      = []
         self.UserDir         = os.path.abspath(os.getcwd())
         self.InputFileName   = ""
@@ -130,9 +143,10 @@ class ProgramParameters:
                         "output",
                         "size",
                         "value",
+                        "quite",
                         "verbose",
                         "version"]
-            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:i:u:o:s:u:vV', long_opt)
+            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:i:o:s:l:qvV', long_opt)
         except getopt.error:
             print Usage                # print out usage string if
                                        # user uses invalid flag.
@@ -153,22 +167,29 @@ class ProgramParameters:
                 sys.exit(0)
 
             if Option in ('-a', '--attibute'):
-                self.AttributeName = Value
+                self.AttributeName  = Value
 
             if Option in ('-c', '--color'):
                 self.AttributeColor = Value
 
             if Option in ('-i', '--input'):
-                self.InputFileName = Value
+                self.InputFileName  = Value
 
             if Option in ('-s', '--size'):
-                self.AttributeSize = Value
+                self.AttributeSize  = Value
 
-            if Option in ('-u', '--value'):
+            if Option in ('-l', '--value'):
                 self.AttributeValue = Value
 
+            if Option in ('-q', '--quite'):
+                self.QuiteMode      = True
+
             if Option in ('-v', '--verbose'):
-                self.VerboseMode = True
+                self.VerboseMode    = True
+
+            if Option in ('-V', '--version'):
+                print Version
+                sys.exit(0)
 
             #if os.path.isfile(Value):
             #    self.InputFiles.append(Value)
@@ -220,7 +241,7 @@ def ProcessSymbol(Options, File):
     symbol = geda.open_page(File)
 
     if Options.VerboseMode:
-        print "Processing: " + symbol.filename()
+        print "Processing: " + symbol.filename
 
     objects   = geda.get_objects(symbol)
     modified  = 0
@@ -244,7 +265,8 @@ def ProcessSymbol(Options, File):
             geda.add_object(symbol, Attribute)
             modified = 1
         else:                          # No value specified and attribute not found
-            print Options.AttributeName + ' was not found in ' + symbol.filename()
+            QMessage (Options, (Options.AttributeName + ' was not found in ' + symbol.filename))
+            Options.ExitCode = 1;
     else:                              # Found the attribute
         if Options.AttributeValue:     # Check the value and set only if different
             if not Attribute.value == Options.AttributeValue:
@@ -253,7 +275,7 @@ def ProcessSymbol(Options, File):
                 modified = 1
         else:                          # Get print the current value
             if Options.VerboseMode:
-                print symbol.filename() + '::' + Attribute.string
+                print symbol.filename + '::' + Attribute.string
             else:
                 print Attribute.string
 
@@ -262,8 +284,7 @@ def ProcessSymbol(Options, File):
         modified = 1
 
     if modified:
-        if Options.VerboseMode:
-            print "saving file:" + symbol.filename()
+        QMessage (Options, ("saving file:" + symbol.filename))
         symbol.save() # Write the symbol to storage
 
     # Close the file
@@ -333,16 +354,20 @@ def main(argv):
                 InputFiles.append(file)
 
         if foundOurSelf and len(InputFiles) == 0:
-            print 'No symbols found or specifed, try using --help'
+            QMessage (Options, 'No symbols found or specifed, try using --help')
+            Options.ExitCode = 1
         elif not foundfiles :
             if len(InputFiles) > 1:
                 for file in InputFiles:
                     if not os.path.isfile(file):
-                        print "Bad file name or option: " + file
+                        QMessage (Options, "Bad file name or option: " + file)
                         print Usage
+                        Options.ExitCode = 1
 
         for symbol_file in InputFiles:
             ProcessSymbol(Options, symbol_file)
+
+    exit(Options.ExitCode)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

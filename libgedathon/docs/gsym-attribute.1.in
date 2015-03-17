@@ -16,11 +16,11 @@ Sets or retrieve the value of a Text attribute in a symbol file
 
 ex. 1) Set the footprint in all symbol files in the current directory to SO8:
 
-            gsym-attribute.py -a footprint -u SO8
+            gsym-attribute.py -a footprint -l SO8
 
 ex. 2) Set the author in files in 24LC16BIMC-1.sym 24LC16BEMC-1.sym to Jethro Bodine
 
-            gsym-attribute.py -v -a author -u "Jethro Bodine" 24LC16BIMC-1 24LC16BEMC-1
+            gsym-attribute.py -v -a author -l "Jethro Bodine" 24LC16BIMC-1 24LC16BEMC-1
 
 ex. 3) Get the value of slotdef in the file dual-opamp-3.sym
 
@@ -35,7 +35,7 @@ Show information about the advanced usage of this command.
 Displays software version information.
 
 .SH OPTIONS
-.IP "-u, --value"
+.IP "-l, --value"
 Optional new value for the attribute.
 .IP "-c, --color"
 Optional attribute color.
@@ -43,11 +43,13 @@ Optional attribute color.
 Optional font size.
 
 .SH DIRECTIVES
-.IP "-v, --verbose"
-Verbose mode.  Used in both archive and extract mode. Spews lots of info about what the prog is doing.
 .IP "-f, --force"
 When the force option is specified existing file matching the output name will be over-written, without any warning.
 .IP "-a, --attibute"
+.IP "-q, --quite"
+Quite mode. Suppress normal processing messages.
+.IP "-v, --verbose"
+Verbose mode. Used in both archive and extract mode. Spews lots of info about what the prog is doing.
 The Attribute to be queried or set.
 .IP "-i, --input <input file>"
 Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.

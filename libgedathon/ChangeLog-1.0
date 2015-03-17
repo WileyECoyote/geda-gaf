@@ -1,3 +1,15 @@
+2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gsym-attribute.py: Bump version from 0.2 to 0.2.2, Change -u
+      --value option to -l, added -q, --quite options with function QMessage
+      and implemented in code. Removed string of dashes from VMessages, did
+      not look good. Add member ExitCode to Options container and set when
+      an attribute whose value was requested was not found in the symbol.
+      fixed page.filename(), the member was rename as name so getter could
+      be accessed with page.filename.
+
+    * docs/gsym-attribute.1.in: Update options
+
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda-snap-grid.py: Respin gsym-snap-grip; Make more generalize
