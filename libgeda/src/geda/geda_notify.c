@@ -31,11 +31,11 @@
 /*! \file geda_notify.c
  *  \brief list derived from GList with GObject properties
  *
- *  GedaNotifyList provides a GOBJECT wrapper for GLIST simular to
- *  a GedaList but without the change signal. The list is intented
- *  hold change_notify_entry structures that are free when the
- *  the GedaNotifyList is destroyed, more importantly, it is not
- *  destroyed until all referances are removed, this property is
+ *  GedaNotifyList provides a GOBJECT wrapper for GLIST similar to
+ *  a GedaList but without the change signal. The list is intended
+ *  hold change_notify_entry structures that are freed when the
+ *  GedaNotifyList is destroyed, more importantly, it is not
+ *  destroyed until all references are removed, this property
  *  allows the list to survive an Undo operation of the Page to
  *  which the GedaNotifyList is assigned.
  */
