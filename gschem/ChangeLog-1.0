@@ -1,5 +1,33 @@
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancment: Improve Logistics
+
+    * Move calling of changed page hook from action handlers to interface
+      updater.
+
+    * src/iface/i_command.c Remove calling page hook in i_cmd_do_page_prev
+      i_cmd_do_page_next.
+
+    * src/iface/i_window.c: Notify change page hook in i_window_on_page_
+      changed and update Doxygen comment.
+
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Reorganize code structure, add new module
+
+    * src/iface/i_event.c: New module with code to setup event handlers
+      from the x_window module. Moved structure outside of function and
+      made static. Added member block. Add four new functions:
+
+            * i_event_block_buttons
+            * i_event_unblock_buttons
+            * i_event_block_handler
+            * i_event_unblock_handler
+
+      Seems like these could in handy.
+
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Use consistence naming for enumerated types.
 
     * include/globals.h: Rename EFL_SELECTION_MODE (I can not remember

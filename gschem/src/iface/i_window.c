@@ -85,7 +85,8 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
 /*! \brief Do updates when the Current Page is Changed
  *  \par Function Description
  *  This function calls various functions in order to update the main
- *  window interface and dialogs that are linked to the page selection.
+ *  window interface and dialogs that are linked to the page selection
+ *  and send notifification to SCM hooks that the page has been changed.
  *
  *  \param [in] w_current  The GschemToplevel object
  */
@@ -94,9 +95,11 @@ void i_window_on_page_changed (GschemToplevel *w_current)
   i_status_update_sensitivities (w_current);
   i_status_update_title (w_current);
 
+  i_window_set_viewport_size (w_current);
+
   g_idle_add ((GSourceFunc)i_window_idle_notify_dialogs, w_current);
 
-  i_window_set_viewport_size (w_current);
+  g_hook_run_page (w_current, CHANGE_PAGE_HOOK, Current_Page);
 }
 
 /*! \brief get the pointer position of a given GschemToplevel

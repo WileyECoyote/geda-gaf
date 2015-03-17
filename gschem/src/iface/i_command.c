@@ -2034,7 +2034,6 @@ COMMAND (do_page_prev)
 
     if (p_new != NULL || p_new != Current_Page) {
       x_window_set_current_page (w_current, p_new);
-      g_hook_run_page (w_current, CHANGE_PAGE_HOOK, p_new);
     }
   }
 }
@@ -2067,7 +2066,6 @@ COMMAND (do_page_next)
 
     if (p_new != NULL || p_new != Current_Page) {
       x_window_set_current_page (w_current, p_new);
-      g_hook_run_page (w_current, CHANGE_PAGE_HOOK, p_new);
     }
   }
 }
