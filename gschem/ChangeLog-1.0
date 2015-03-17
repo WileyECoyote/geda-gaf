@@ -1,3 +1,22 @@
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Fix Systemic Logistical Flaw
+
+    * Do not assume that all that is placed should be undone
+
+    * src/object/o_copy.c: Add calling o_undo_savestate after calling
+      o_place_end in functions; o_copy_end and o_undo_savestate.
+
+    * src/object/o_place.c: Remove o_undo_savestate from o_place_end,
+      Add calling o_undo_savestate after calling o_place_end in functions;
+      o_place_component_end, o_place_text_end, and o_place_paste_end.
+
+    * src/x/x_coord.c: Add calling o_undo_savestate after calling
+      o_place_end in function co_on_entry_activate.
+
+    * src/x/x_dnd.c: Add calling o_undo_savestate after calling
+      o_place_end in function x_dnd_receive_string_sym.
+
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancment: Restructure SCM Hook System

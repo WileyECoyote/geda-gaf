@@ -144,7 +144,6 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
     o_invalidate_glist (w_current, connected_list);
     o_invalidate_glist (w_current, object_list);  /* only redraw new objects */
 
-    o_undo_savestate (w_current, UNDO_ALL);
     i_status_update_sensitivities (w_current);
     w_current->inside_action = continue_placing;
 
@@ -165,17 +164,20 @@ void o_place_component_end (GschemToplevel *w_current, int w_x, int w_y)
   if (!w_current->continue_component_place) {
     i_status_set_state(w_current, SELECT);
   }
+  o_undo_savestate (w_current, UNDO_ALL);
 }
 
 void o_place_text_end (GschemToplevel *w_current, int w_x, int w_y)
 {
   o_place_end(w_current, w_x, w_y, FALSE, NULL, ADD_OBJECT_HOOK);
+  o_undo_savestate (w_current, UNDO_ALL);
 }
 
 void o_place_paste_end (GschemToplevel *w_current, int w_x, int w_y)
 {
   o_place_end(w_current, w_x, w_y, FALSE, NULL, PASTE_OBJECTS_HOOK);
   i_status_set_state(w_current, SELECT);
+  o_undo_savestate (w_current, UNDO_ALL);
 }
 
 /*! \brief Handle Erasing and Redrawing of rubber outlines for objects

@@ -405,6 +405,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
             else {
               s_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
               o_place_end(w_current, x, y, 0, 0, 0); /* Not passing a Hook Id */
+              o_undo_savestate (w_current, UNDO_ALL);
             }
 
             valid = TRUE;
@@ -425,7 +426,6 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
       object_buffer[DND_BUFFER] = NULL;
       w_current->dnd_save_state = NONE;
       o_invalidate_all (w_current);
-      //i_status_set_state (w_current, SELECT);
     }
   }
 }

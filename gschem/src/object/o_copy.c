@@ -101,6 +101,7 @@ void o_copy_end(GschemToplevel *w_current)
     int wy = w_current->second_wy;
 
     o_place_end (w_current, wx, wy, FALSE, NULL, COPY_OBJECTS_HOOK);
+
   }
   else {
 
@@ -115,6 +116,7 @@ void o_copy_end(GschemToplevel *w_current)
     g_list_free(list);
 
   }
+  o_undo_savestate (w_current, UNDO_ALL);
   w_current->inside_action = FALSE;
 }
 
@@ -128,6 +130,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   int wy = w_current->second_wy;
 
   o_place_end (w_current, wx, wy, TRUE, NULL, COPY_OBJECTS_HOOK);
+  o_undo_savestate (w_current, UNDO_ALL);
 
   /* Stay on ENDMCOPY mode */
   w_current->inside_action = TRUE;
