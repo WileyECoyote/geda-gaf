@@ -104,11 +104,13 @@ GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent,
                                            const char *first_button_text, ...);
 
 
-GtkWindow  *gschem_dialog_get_parent(GschemDialog *dialog);
-void        gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent);
+GtkWindow  *gschem_dialog_get_parent      (GschemDialog *dialog);
+void        gschem_dialog_set_parent      (GschemDialog *dialog, GtkWindow *parent);
 
-const char *gschem_dialog_get_title(GschemDialog *dialog);
-void        gschem_dialog_set_title(GschemDialog *dialog, const char*title);
+GList      *gschem_dialog_get_selected    (GschemDialog *dialog);
+
+const char *gschem_dialog_get_title       (GschemDialog *dialog);
+void        gschem_dialog_set_title       (GschemDialog *dialog, const char*title);
 
 /* Prototypes for Dialogs */
 GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,

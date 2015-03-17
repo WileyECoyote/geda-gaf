@@ -1,5 +1,11 @@
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancment: Add Selection Getter to GschemDialog
+
+    * src/base/gschem_dialog.c: Add function gschem_dialog_get_selected.
+
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Fix Systemic Logistical Flaw
 
     * Do not disconnect Selection Tracker when dialog Unmaped

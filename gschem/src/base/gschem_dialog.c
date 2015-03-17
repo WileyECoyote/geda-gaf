@@ -789,6 +789,14 @@ void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
     gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
   }
 }
+
+GList *gschem_dialog_get_selected(GschemDialog *dialog)
+{
+  if (GSCHEM_IS_DIALOG(dialog) && dialog->selection)
+    return dialog->selection->glist;
+  return NULL;
+}
+
 const char *gschem_dialog_get_title(GschemDialog *dialog)
 {
   return gtk_window_get_title(GTK_WINDOW(dialog));
