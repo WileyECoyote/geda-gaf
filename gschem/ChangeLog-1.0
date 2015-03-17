@@ -2,6 +2,15 @@
 
     * Code Enhancment: Fix Systemic Logistical Flaw
 
+    * Do not disconnect Selection Tracker when dialog Unmaped
+
+    * src/base/gschem_dialog.c: Relocated disconnection of the selection
+      tracker from unmap_handler to gschem_dialog_finalize.
+
+2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Fix Systemic Logistical Flaw
+
     * Do not assume that all that is placed should be undone
 
     * src/object/o_copy.c: Add calling o_undo_savestate after calling

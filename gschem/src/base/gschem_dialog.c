@@ -176,6 +176,7 @@ static void gd_connect_selection (void *maybe)
     else {
       Dialog->selection = NULL;
     }
+
     g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, Dialog->selection);
   }
   else {
@@ -280,11 +281,11 @@ static void unmap_handler (GtkWidget *widget)
                      cfg, group_name);
   }
 
-  /* Disconnect the update selection handler function*/
+  /* Disconnect the update selection handler function
   if (dialog->tracker != NULL) {
     gd_disconnect_selection (dialog);
   }
-
+  */
   /* Let GTK unmap the window */
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
 }
@@ -382,6 +383,10 @@ static void set_gschem_dialog_null(void *dialog)
 static void gschem_dialog_finalize (GObject *object)
 {
   GschemDialog *dialog = GSCHEM_DIALOG (object);
+
+  if (dialog->tracker != NULL) {
+    gd_disconnect_selection (dialog);
+  }
 
   /* Make sure w_current entry is set to NULL */
   set_gschem_dialog_null(dialog);
@@ -768,6 +773,7 @@ GtkWindow *gschem_dialog_get_parent(GschemDialog *dialog)
     return dialog->parent_window;
   return NULL;
 }
+
 void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
 {
   if( !GSCHEM_IS_DIALOG(dialog))
