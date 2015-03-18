@@ -48,7 +48,13 @@ screen_width(cairo_t *cr, double width)
   if (width < 1)
     width = 1;
 
-  return rint (width);
+
+
+#ifdef HAVE_RINT
+   return rint (width);
+#else
+   return width + 0.5;
+#endif
 }
 
 static inline int
