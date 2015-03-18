@@ -1,3 +1,18 @@
+2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  Code Enhancement: Improve Logistics
+
+    *  Improve Hierarchy System Currently hierarchy down fails if the file is
+       not found in the "source" library path without ever checking the current
+       directory, the modification not only corrects this over-site, the current
+       working directory is given precedence and check first, before resorting
+       to searching the "library".
+
+    *  src/struct/s_hierarchy.c: Revise function s_hierarchy_down_schematic_single
+       to check for a file with the given name in the current directory and only
+       call s_slib_search_single on failure. The file is used if found and is
+       accessible.
+
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     *  src/object/o_line_basic.c: Add missing setter for true results in

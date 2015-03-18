@@ -71,10 +71,21 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   g_return_val_if_fail ((filename != NULL), NULL);
   g_return_val_if_fail ((parent != NULL), NULL);
 
-  string = s_slib_search_single(filename);
+  char *cwd = g_get_current_dir ();
+
+  string = g_build_filename(cwd, filename, NULL);
+  GEDA_FREE (cwd);
+
+  errno = 0;
+  access(string, F_OK | R_OK);
+  if (errno) {
+    errno = 0;
+    GEDA_FREE (string);
+    string = s_slib_search_single(filename);
+  }
+
   if (string == NULL) {
-    /* TODO Should probably check in the current directory before failing,
-     * as is this assumes the user added the current directory to slib */
+
     g_set_error (err, EDA_ERROR, EDA_ERROR_NOLIB,
                  _("Schematic not found in source library."));
     return NULL;
