@@ -283,7 +283,7 @@ def ProcessSymbol(Options, File):
     symbol = geda.open_page(File)
 
     if Options.VerboseMode:
-        print "Processing: " + symbol.filename()
+        print "Processing: " + symbol.filename
 
     objects  = geda.get_objects(symbol)
     modified = 0
@@ -301,7 +301,7 @@ def ProcessSymbol(Options, File):
 
     if modified:
         if Options.VerboseMode:
-            print "Made " + str(modified) + " modifications to " + symbol.filename()
+            print "Made " + str(modified) + " modifications to " + symbol.filename
         symbol.save() # Write the symbol to storage
 
     # Close the file

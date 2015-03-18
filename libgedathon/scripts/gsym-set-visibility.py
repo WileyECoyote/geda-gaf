@@ -34,7 +34,6 @@ Options:
   The following list of attribute flags correspond to attributes turned ON by default,
   if these options are used the corresponding attributes will not be modified:
 
-  -d, --device    ON + SHOW-VALUE
   -r, --refdes    ON + SHOW-VALUE
   -i, --pinnumber ON + SHOW-VALUE
   -p, --pinlabel  ON + SHOW-VALUE
@@ -44,6 +43,7 @@ Options:
 
   -a, --author
   -n, --numslots
+  -d, --device
   -e, --description
   -o, --documentation
   -s, --symversion
@@ -280,6 +280,14 @@ def TurnOffText(Options, Text):
             if not Text.show == SHOW_NAME_VALUE:
                 status += 3
                 show = SHOW_NAME_VALUE
+    elif Text.name() == "device":
+        status = 1
+        if Options.fix_device:
+            if Text.visible == 1:
+                status = 2
+            if not Text.show == SHOW_NAME_VALUE:
+                status += 3
+                show = SHOW_NAME_VALUE
     elif Text.name() == "description":
         status = 1
         if Options.fix_description:
@@ -348,11 +356,7 @@ def TurnOffText(Options, Text):
 #---------------------------------------------------------------------------
 # The turn on (and set SHOW-VALUE) group
 def TurnOnText(Options, Text):
-    if Text.name() == "device":
-        status = 1
-        if Options.fix_device and Text.visible == 0:
-            status = 2
-    elif Text.name() == "refdes":
+    if Text.name() == "refdes":
         status = 1
         if Options.fix_refdes and Text.visible == 0:
             status = 2
@@ -397,7 +401,7 @@ def ProcessSymbol(Options, File):
     symbol = geda.open_page(File)
 
     if Options.VerboseMode:
-        print "Processing: " + symbol.filename()
+        print "Processing: " + symbol.filename
 
     objects  = geda.get_objects(symbol)
     modified = 0
@@ -415,7 +419,7 @@ def ProcessSymbol(Options, File):
 
     if modified:
         if Options.VerboseMode:
-            print "Made " + str(modified) + " modifications to " + symbol.filename()
+            print "Made " + str(modified) + " modifications to " + symbol.filename
         symbol.save() # Write the symbol to storage
 
     # Close the file

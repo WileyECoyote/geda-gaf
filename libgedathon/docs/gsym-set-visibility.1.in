@@ -35,7 +35,6 @@ The following options can be used to modify the default behavior of gsym-set-vis
 .TP
 The following list of attribute flags correspond to attributes turned ON by default, if these options are used the corresponding attributes will not be modified:
 
-.IP "-d, --device    (ON + SHOW-VALUE)"
 .IP "-r, --refdes    (ON + SHOW-VALUE)"
 .IP "-i, --pinnumber (ON + SHOW-VALUE)"
 .IP "-p, --pinlabel  (ON + SHOW-VALUE)"
@@ -45,6 +44,7 @@ The following list of attribute flags correspond to attributes turned OFF by def
 
 .IP "-a, --author"
 .IP "-n, --numslots"
+.IP "-d, --device"
 .IP "-e, --description"
 .IP "-o, --documentation"
 .IP "-s, --symversion"
