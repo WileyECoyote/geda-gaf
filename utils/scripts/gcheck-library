@@ -6,7 +6,7 @@
 # gEDA - GPL Electronic Design Automation
 # gcheck-library - gEDA Symbol Library Batch Processor
 #
-# Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
+# Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
 #
 #------------------------------------------------------------------
 # This program is free software; you can redistribute it and/or modify
@@ -49,7 +49,7 @@ do_show_help()
               echo "A script to assist in maintaining symbol libraries"
               echo Usage:   `basename $0` '[-options] [-d] [-f <pattern>] [ Library ]'
               echo
-              echo "Use the follow options to control behavior:"
+              echo "Use the following options to control behavior:"
               echo
               echo   '  -a | --all       file pattern is changed from *.sym to *'
               echo   '  -c | --clip      Check geda-clib.scm for errors and references'
@@ -63,7 +63,7 @@ do_show_help()
               echo   '       --version   Display version information'
               echo   ''
               echo ' Note: arguments are case sensitive. See documentation for more'
-              echo ' detailed information. [dirname] &2>result.txt'
+              echo ' detailed information.'
               echo ;;
           *)  echo "Help not avaliable for:$1" ;;
    esac
@@ -157,7 +157,7 @@ do_check_clib_references () {
   cd "$symdir"
 
   SYM_DIRS=(`find * -maxdepth 1 -type d ! -name doc -printf "%f "`)
-  
+
   for subdir in "${SYM_DIRS[@]}" ; do
     vecho "Checking reference to $subdir"
     found=$(cat $clibfile | grep $subdir)
@@ -210,7 +210,7 @@ do_check_clib () {
 
 do_Assimilate_Arguments $*
 
-if $CHECK_CLIB ; then 
+if $CHECK_CLIB ; then
   do_check_clib
 else
   if [ "x$FINAL_ARGUMENT" != "x" ] && [ -d $FINAL_ARGUMENT ] ; then
