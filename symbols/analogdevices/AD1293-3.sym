@@ -1,0 +1,196 @@
+v 20150101 2
+B 500 500 2600 2600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 200 1800 500 1800 1 0 0
+{
+T 475 1750 5 8 0 1 0 8 1
+pintype=pwr
+T 600 1750 9 10 1 1 0 0 1
+pinlabel=VCC
+T 300 1875 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1875 5 8 0 1 0 6 1
+pinseq=1
+}
+P 200 800 500 800 1 0 0
+{
+T 475 750 5 8 0 1 0 8 1
+pintype=pas
+T 600 750 9 10 1 1 0 0 1
+pinlabel=VCAP
+T 300 875 5 8 1 1 0 6 1
+pinnumber=2
+T 300 875 5 8 0 1 0 6 1
+pinseq=2
+}
+P 3400 800 3100 800 1 0 0
+{
+T 3125 675 5 8 0 1 0 0 1
+pintype=io
+T 3075 750 9 10 1 1 0 6 1
+pinlabel=GPIO1
+T 3300 850 5 8 1 1 0 0 1
+pinnumber=8
+T 3300 850 5 8 0 1 0 0 1
+pinseq=8
+}
+P 3400 1300 3100 1300 1 0 0
+{
+T 3125 1175 5 8 0 1 0 0 1
+pintype=io
+T 3050 1250 9 10 1 1 0 6 1
+pinlabel=GPIO2
+T 3300 1350 5 8 1 1 0 0 1
+pinnumber=9
+T 3300 1350 5 8 0 1 0 0 1
+pinseq=9
+}
+P 3400 1800 3100 1800 1 0 0
+{
+T 3125 1675 5 8 0 1 0 0 1
+pintype=in
+T 3050 1750 9 10 1 1 0 6 1
+pinlabel=SDAI
+T 3300 1850 5 8 1 1 0 0 1
+pinnumber=5
+T 3300 1850 5 8 0 1 0 0 1
+pinseq=5
+}
+P 3400 2000 3100 2000 1 0 0
+{
+T 3125 1875 5 8 0 1 0 0 1
+pintype=out
+T 3050 1950 9 10 1 1 0 6 1
+pinlabel=SDAO
+T 3300 2050 5 8 1 1 0 0 1
+pinnumber=6
+T 3300 2050 5 8 0 1 0 0 1
+pinseq=6
+}
+P 3400 2300 3100 2300 1 0 0
+{
+T 3125 2200 5 8 0 1 0 0 1
+pintype=oc
+T 3050 2250 9 10 1 1 0 6 1
+pinlabel=SCL
+T 3300 2350 5 8 1 1 0 0 1
+pinnumber=7
+T 3300 2350 5 8 0 1 0 0 1
+pinseq=7
+}
+P 1100 200 1100 500 1 0 0
+{
+T 1150 375 5 8 0 1 0 0 1
+pintype=pas
+T 875 550 9 10 1 1 0 0 1
+pinlabel=ADR1
+T 1025 225 5 8 1 1 0 6 1
+pinnumber=3
+T 1025 225 5 8 0 1 0 6 1
+pinseq=3
+}
+P 1800 200 1800 500 1 0 0
+{
+T 1850 375 5 8 0 1 0 0 1
+pintype=pas
+T 1550 550 9 10 1 1 0 0 1
+pinlabel=ADR2
+T 1675 225 5 8 1 1 0 0 1
+pinnumber=4
+T 1675 225 5 8 0 1 0 0 1
+pinseq=4
+}
+P 3400 2600 3100 2600 1 0 0
+{
+T 3125 2475 5 8 0 1 0 0 1
+pintype=pas
+T 3050 2550 9 10 1 1 0 6 1
+pinlabel=NC
+T 3250 2650 5 8 1 1 0 0 1
+pinnumber=10
+T 3250 2650 5 8 0 1 0 0 1
+pinseq=10
+}
+P 2600 3400 2600 3100 1 0 0
+{
+T 2625 3150 5 8 0 1 0 0 1
+pintype=pas
+T 2850 2900 9 10 1 1 0 6 1
+pinlabel=SENSEN
+T 2400 3300 5 8 1 1 0 0 1
+pinnumber=11
+T 2400 3300 5 8 0 1 0 0 1
+pinseq=11
+}
+P 1000 3400 1000 3100 1 0 0
+{
+T 1025 3150 5 8 0 1 0 0 1
+pintype=pas
+T 1300 2900 9 10 1 1 0 6 1
+pinlabel=SENSEP
+T 800 3300 5 8 1 1 0 0 1
+pinnumber=12
+T 800 3300 5 8 0 1 0 0 1
+pinseq=12
+}
+P 200 2600 500 2600 1 0 0
+{
+T 450 2550 5 8 0 1 0 8 1
+pintype=in
+T 575 2650 9 10 1 1 180 6 1
+pinlabel=VIN
+T 325 2650 5 8 1 1 0 6 1
+pinnumber=13
+T 300 2650 5 8 0 1 0 6 1
+pinseq=13
+}
+P 200 2200 500 2200 1 0 0
+{
+T 450 2150 5 8 0 1 0 8 1
+pintype=pas
+T 575 2250 9 10 1 1 180 6 1
+pinlabel=NC
+T 325 2250 5 8 1 1 0 6 1
+pinnumber=14
+T 300 2250 5 8 0 1 0 6 1
+pinseq=14
+}
+P 2500 200 2500 500 1 0 0
+{
+T 2550 375 5 8 0 1 0 0 1
+pintype=pwr
+T 2275 550 9 10 1 1 0 0 1
+pinlabel=GND
+T 2425 225 5 8 1 1 0 6 1
+pinnumber=15
+T 2425 225 5 8 0 1 0 6 1
+pinseq=15
+}
+P 200 1300 500 1300 1 0 0
+{
+T 475 1250 5 8 0 1 0 8 1
+pintype=in
+T 575 1350 9 10 1 1 180 6 1
+pinlabel=VAUX
+T 350 1350 5 8 1 1 0 6 1
+pinnumber=16
+T 325 1350 5 8 0 1 0 6 1
+pinseq=16
+}
+T 2075 1925 9 10 1 1 0 6 1
+AD1293
+T 300 4000 5 10 0 0 0 0 1
+dist-license=GPL-3
+T 1250 1500 5 10 0 0 0 0 1
+numslots=0
+T 1825 2125 8 10 1 1 0 6 1
+refdes=U?
+T 300 3600 5 10 0 0 0 0 1
+description=Power Monitor with PMBus Interface
+T 300 4400 5 10 0 0 0 0 1
+author=AutoTron
+T 2000 1700 9 10 1 1 0 6 1
+footprint=LFCSP
+T 300 4200 5 10 0 0 0 0 1
+use-license=unlimited
+T 300 3800 5 10 0 0 0 0 1
+device=AD1293
