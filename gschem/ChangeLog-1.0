@@ -1,5 +1,14 @@
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancment: Fix Component No-Place BUG
+
+    * src/x/x_compselect.c: There seems no go reason to call o_redraw_
+      cleanstates in close response, this cancels Move, which undoes the
+      last operation before launching the component select dialog if the
+      user does not actually attempt to place anything.
+
+2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Fix Hook BUG
 
     * src/guile/g_hook.c: If the third time is a charm, whats the forth?

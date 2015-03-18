@@ -234,6 +234,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
         case GEDA_RESPONSE_CLOSE:
         case GEDA_RESPONSE_DELETE_EVENT:
+
             if (GTK_WIDGET (dialog) == w_current->cswindow) {
                 if(ThisDialog->style_menu_widgets) {
                     g_slist_free(ThisDialog->style_menu_widgets);
@@ -244,10 +245,18 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
                 }
             }
             if (w_current->event_state == COMPMODE) {
+
+               /* If user clicked on symbol in tree and did not place, then there
+                *  coud be a component in the place list, so check and release */
+                if (Current_Page->place_list) {
+                    g_list_free(Current_Page->place_list);
+                    Current_Page->place_list = NULL;
+                }
+
                 /* Can not wait for base class todo this*/
                 w_current->cswindow = NULL;
                 /* Cancel the place operation currently in progress */
-                o_redraw_cleanstates (w_current);
+                //o_redraw_cleanstates (w_current);
                 /* return to the default state */
                 i_status_set_state (w_current, SELECT);
             }
