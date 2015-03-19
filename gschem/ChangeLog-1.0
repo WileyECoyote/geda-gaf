@@ -1,3 +1,14 @@
+2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Make starting Edit-Text Dialog more flexible.
+
+    * src/iface/i_command.c: Revised function i_cmd_do_edit_text to launch
+      the text dialog if at least one text object is selected, previous the
+      dialog would not open unless o_select_return_first_object returned a
+      text object, which was annoying because if there were several items,
+      and one was text, the dialog might or might not launch, depending on
+      the order of the text in the selection.
+
 2015-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancment: Fix startup errors when sessions on command line fails

@@ -1485,12 +1485,25 @@ COMMAND (do_edit_ponent)
 COMMAND (do_edit_text)
 {
   BEGIN_W_COMMAND(do_edit_text);
-  Object *o_current;
 
-  o_current = o_select_return_first_object(w_current);
-  if (o_current && (o_current->type == OBJ_TEXT)) {
-      o_text_edit(w_current, o_current);
+  GList *s_current;
+
+  s_current = geda_list_get_glist( Current_Selection );
+
+  if (s_current) {
+
+    GList  *iter;
+
+    for (iter = s_current; iter; iter = iter->next) {
+
+      Object *o_current = iter->data;
+
+      if (o_current->type == OBJ_TEXT) {
+        o_text_edit(w_current, o_current);
+      }
+    }
   }
+
   EXIT_COMMAND(do_edit_text);
 }
 
