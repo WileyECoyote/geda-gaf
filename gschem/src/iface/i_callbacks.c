@@ -180,7 +180,6 @@ DEFINE_I_CALLBACK(page_discard)
 DEFINE_I_CALLBACK(cancel)
 {
   switch (w_current->event_state) {
-
     case COMPMODE:
 
       if (w_current->cswindow) {

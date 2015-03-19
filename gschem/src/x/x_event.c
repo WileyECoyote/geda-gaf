@@ -47,9 +47,9 @@ static int DOING_STROKE = FALSE;
  *   This function is called each time a mouse button is pressed. The
  *  routine checks which button triggered the event and whether a key
  *  -- SHIFT, CONTROL or ALT, was pressed when the press event occured.
- * The routine also check for a "double" click event, which GDK isolates
- * for us. The approiate action is performed based on the current state
- * of the program. Enumerated state are defined in the file x_states.h.
+ *  The routine also check for a "double" click event, which GDK isolates
+ *  for us. The approiate action is performed based on the current state
+ *  of the program. Enumerated state are defined in the file x_states.h.
  */
 int x_event_button_pressed(GtkWidget      *widget,
                            GdkEventButton *event,
