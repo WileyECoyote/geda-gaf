@@ -138,6 +138,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
   /* Load any file listed on command-line */
   for (i = argv_index; i < argc; i++) {
 
+    /* Check for non-expanded wild-card, if not match then no expansion */
     if (strstr(argv[i], "*") != NULL) {
       u_log_message("Warning: <%s> did not expand\n", argv[i]);
       v_log_message("Command-line error: disabling auto load last\n");
@@ -208,8 +209,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
     /*! \brief Sessions */
     if (start_session) { /* If session specified on command line */
       if (!i_sessions_open_session(w_current, start_session)) {
-        q_log_message("Requested session %s, does not exist\n", start_session);
-        x_window_open_page( w_current, NULL );
+        q_log_message(_("An error was encountered loading requested session %s\n"), start_session);
       }
       GEDA_FREE(start_session);
     }

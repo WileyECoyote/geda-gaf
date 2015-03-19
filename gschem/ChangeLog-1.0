@@ -1,3 +1,23 @@
+2015-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Fix startup errors when sessions on command line fails
+      to successfully open any documents.
+
+    * gschem/src/base/gschem.c: Add comment for non-expanded wild-card, removed
+      calling x_window_open_page if session returns error, error recovery is
+      handled in the module, revised error message for session load fail.
+
+    * src/iface/i_sessions.c: Revised function i_session_load_session to
+      request loading a blank document if no files were opened, and check
+      and report relative file names in a session file. If a blank document
+      is required for recovery then sleep for one second to ensure a page is
+      loaded, even if blank, before x_dialog_symbol_changed is called, error
+      recovery only so a delay is acceptable.
+
+    * src/x/x_dialog.c: Revised function x_dialog_symbol_changed to check if
+      current page is NULL, in case file loading/page setup is delayed due to
+      errors.
+
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancment: Fix Component No-Place BUG

@@ -281,48 +281,72 @@ static GSList *i_sessions_get_file_list(Session *record)
  */
 static int i_session_load_session(GschemToplevel *w_current, Session *record)
 {
-  GSList *iter;
-  Page   *blank;
-  char   *filename;
-  int     exist_count;
   int     load_count;
 
   load_count  = 0;
 
   if (i_session_close_all(w_current)) {
 
-    blank = Current_Page;
+    GSList *iter;
+    Page   *blank;
+    char   *filename;
+    int     exist_count;
+    int     missing_path;
 
-    iter = i_sessions_get_file_list(record);
-
-    exist_count = 0;
+    blank        = Current_Page;
+    iter         = i_sessions_get_file_list(record);
+    exist_count  = 0;
+    missing_path = 0;
 
     while (iter) {
       exist_count++;
       filename = iter->data;
+      if (f_get_is_path_absolute(filename)) {
+        fprintf(stderr,"%s is absolute\n",filename );
+        missing_path++;
+      }
       if (x_window_open_page(w_current, filename)) {
         load_count++;
       }
       iter = g_slist_next(iter);
     }
 
-    /* Note: blank coule be NULL if x_window_set_current_page was not
-    *  call after loading a blank "dummy" page */
-    if (blank != NULL) {
-      x_window_close_page (w_current, blank);
+    if (missing_path) {
+      q_log_message(_("Warning relative file names detected in session \"%s\"\n"),
+                       record->session_name);
     }
-    q_log_message(_("Session %s, opened %d of %d documents\n"),
-                  record->session_name, load_count, exist_count);
+
+    /* Note: blank could be NULL if x_window_set_current_page was not
+    *  called after loading a blank "dummy" page */
+    if (load_count) {
+      q_log_message(_("Session %s, opening %d of %d documents\n"),
+                       record->session_name, load_count, exist_count);
+      if (blank != NULL) {
+        x_window_close_page (w_current, blank);
+      }
+      /* Only set session_name if a file was loaded */
+      w_current->session_name = record->session_name;
+    }
+    else { /* do error recovery */
+      if (!exist_count) {
+        v_log_message(_("Session \"%s\" did not contain any accessible documents\n"),
+                         record->session_name);
+      }
+      if (blank == NULL) { /* Do Error recovery */
+        i_command_process(w_current, "file-new", 0, NULL, ID_ORIGIN_CCODE);
+        /* Give the medicine a chance to take effect */
+        sleep(1);
+      }
+    }
 
     /* Update the window for the current page */
     i_status_update_sensitivities(w_current);
     i_status_update_title (w_current);
     x_pagesel_update (w_current); /* If dialog open, update tree */
-    /* x_window_set_current_page( w_current, toplevel->page_current ); */
 
-    w_current->session_name = record->session_name;
     g_slist_free (iter);
   }
+
   return load_count;
 }
 
@@ -615,11 +639,10 @@ static void update_sessions_menus(GschemToplevel *w_current)
 
 /*! \brief Get Count of Documents for Session
  *  \par Function Description
- *  This function attemps to open a session files and reads each line,
- *  and each line not beginning with "#" longer and then 3 char is
- *  assumed to be a file name and the line is counted. The resulting
- *  count of the lines is returned. The function does not check
- *  whether the files are accessible.
+ *  This function attemps to open a session file and read each line,
+ *  and each line not beginning with "#" longer and than 3 char is
+ *  The resulting count of the lines is returned. The function does
+ *  not check whether the files are accessible.
  *
  *  \param session_file Pointer to the name of the session file name
  *
@@ -639,10 +662,14 @@ static int i_sessions_get_count(const char *session_file)
     while ((read = getline(&line, &len, fp)) != -1) {
       char *ptr = advance2char(&line[0]);
       if (read > 3 && *ptr != ASCII_NUMBER_SIGN) {
-        ++lc;
-        //printf("%s", line);
+        //errno = 0;
+        //access(ptr, F_OK | R_OK);
+        //if (!errno) {
+          ++lc;
+        //}
       }
     }
+    //errno = 0;
     free(line);
     fclose(fp);
   }
@@ -655,7 +682,7 @@ static int i_sessions_get_count(const char *session_file)
  *  This function collects the names of files in the sesssion
  *  directory and create a new record for each session definition.
  *  Each record is stored in the Sessions Garray. If the sessions
- *  directory does not exist then a new empty diretory is created.
+ *  directory does not exist then a new empty directory is created.
  *
  *  \note This function does not load a session
  */

@@ -109,6 +109,7 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_STROKE,   /* -26     could pass paramerter */
                ID_ORIGIN_CONSOLE,  /* -25     could pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
+               ID_ORIGIN_CCODE,    /* -23     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
 /*! \brief Enumerated Selection Mode - EID_EVENT_HANDLERS

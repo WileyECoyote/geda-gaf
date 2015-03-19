@@ -4270,36 +4270,42 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  */
 void x_dialog_symbol_changed(GschemToplevel* w_current)
 {
-  if (w_current->toplevel->page_current->major_changed_refdes) {
+  if (w_current->toplevel && Current_Page) {
 
-    GtkWidget* dialog;
-    GtkWidget* close_butt;
+    if (w_current->toplevel->page_current->major_changed_refdes) {
 
-    dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GEDA_MESSAGE_INFO,
-                                     GTK_BUTTONS_NONE,
-                                     NULL);
+      GtkWidget* dialog;
+      GtkWidget* close_butt;
 
-    xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
+      dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       GEDA_MESSAGE_INFO,
+                                       GTK_BUTTONS_NONE,
+                                       NULL);
 
-    gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
+      xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
 
-    gtk_window_set_transient_for (GTK_WINDOW (dialog),
-                                  GTK_WINDOW (w_current->main_window));
+      gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 
-    /* Add the Close button to dialog action area */
-    close_butt = gtk_button_new_from_stock ("gtk-close");
-    g_object_set (close_butt, "visible", TRUE, NULL);
-    gtk_dialog_add_action_widget (GTK_DIALOG (dialog), close_butt, GEDA_RESPONSE_CLOSE);
-    gtk_widget_set_can_default(close_butt, TRUE);
-    gtk_widget_set_tooltip_text (close_butt, _("Dismiss this dialog"));
+      gtk_window_set_transient_for (GTK_WINDOW (dialog),
+                                    GTK_WINDOW (w_current->main_window));
 
-    gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_CLOSE);
-    gtk_widget_grab_focus(close_butt);
-    gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_widget_destroy (dialog);
+      /* Add the Close button to dialog action area */
+      close_butt = gtk_button_new_from_stock ("gtk-close");
+      g_object_set (close_butt, "visible", TRUE, NULL);
+      gtk_dialog_add_action_widget (GTK_DIALOG (dialog), close_butt, GEDA_RESPONSE_CLOSE);
+      gtk_widget_set_can_default(close_butt, TRUE);
+      gtk_widget_set_tooltip_text (close_butt, _("Dismiss this dialog"));
 
+      gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_CLOSE);
+      gtk_widget_grab_focus(close_butt);
+      gtk_dialog_run(GTK_DIALOG(dialog));
+      gtk_widget_destroy (dialog);
+
+    }
+  }
+  else {
+    u_log_message("Null reference to Current Page\n");
   }
 }
 
