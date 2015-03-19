@@ -94,10 +94,10 @@ activate_entry (GtkWidget *entry, GschemMacroWidget *widget)
   else {
 
     if (gtk_entry_get_text_length (GTK_ENTRY (widget->entry)) > 0) {
-      gtk_info_bar_response (GTK_INFO_BAR (widget), GTK_RESPONSE_OK);
+      gtk_info_bar_response (GTK_INFO_BAR (widget), GEDA_RESPONSE_OK);
     }
     else {
-      gtk_info_bar_response (GTK_INFO_BAR (widget), GTK_RESPONSE_CANCEL);
+      gtk_info_bar_response (GTK_INFO_BAR (widget), GEDA_RESPONSE_CANCEL);
     }
   }
 }
@@ -108,7 +108,7 @@ activate_entry (GtkWidget *entry, GschemMacroWidget *widget)
 static void
 click_cancel (GtkWidget *button, GschemMacroWidget *widget)
 {
-  gtk_info_bar_response (GTK_INFO_BAR (widget), GTK_RESPONSE_CANCEL);
+  gtk_info_bar_response (GTK_INFO_BAR (widget), GEDA_RESPONSE_CANCEL);
 }
 
 
@@ -122,7 +122,7 @@ click_evaluate (GtkWidget *entry, GschemMacroWidget *widget)
   }
   else {
     if (gtk_entry_get_text_length (GTK_ENTRY (widget->entry)) > 0) {
-      gtk_info_bar_response (GTK_INFO_BAR (widget), GTK_RESPONSE_OK);
+      gtk_info_bar_response (GTK_INFO_BAR (widget), GEDA_RESPONSE_OK);
     }
   }
 }
