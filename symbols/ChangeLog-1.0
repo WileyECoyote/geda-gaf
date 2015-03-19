@@ -1,5 +1,9 @@
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * led_drivers/PCA9531-1.sym: Add symbol 8bit I2C LED dimmer
+
+2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * analogdevices/AD1293-3.sym: Add dash 3, is more practical version.
 
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
