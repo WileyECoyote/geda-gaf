@@ -301,8 +301,7 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     while (iter) {
       exist_count++;
       filename = iter->data;
-      if (f_get_is_path_absolute(filename)) {
-        fprintf(stderr,"%s is absolute\n",filename );
+      if (!f_get_is_path_absolute(filename)) {
         missing_path++;
       }
       if (x_window_open_page(w_current, filename)) {

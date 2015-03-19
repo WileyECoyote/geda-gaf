@@ -636,7 +636,10 @@ COMMAND (do_file_new_window)
 /* This does not do anything productive, is a delay, the destroy
  * notifier; open_command_idle_notify, does all the work.
  * This is a low priority main-loop task, instigated after higher
- * priority main-loop task were delegated to opening files */
+ * priority main-loop task were delegated to opening files. If
+ * the loader is not done by the time this function is called,
+ * we give it a second chance, after that we destroy our source.
+ */
 static bool
 open_command_idle_callback (void *data)
 {
