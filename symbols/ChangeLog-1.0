@@ -1,3 +1,12 @@
+2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * memory/PCA9501-1.sym: Add symbol; 8bit IO, I2C, interrupt, 6 addresses,
+      2k EEPROM.
+
+2015-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * graphic/busripper-1.sym: Change footprint from "unknown" to "none"
+
 2015-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * led_drivers/PCA9533-1.sym: 4bit I2C LED dimmer.
