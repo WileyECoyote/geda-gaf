@@ -1,7 +1,7 @@
-v 20140728 2
+v 20150101 2
 T 300 4200 8 10 0 0 0 0 1
 author=Dan Fekete
-T 2000 3200 9 10 1 0 0 0 1
+T 300 3500 9 10 1 0 0 0 1
 Boarduino
 T 300 4000 8 10 0 0 0 0 1
 description=Low-power AVR 8-bit Microcontroller
