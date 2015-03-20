@@ -1524,7 +1524,7 @@
 ;; sequence, and each keystroke consists of a non-modifier key with
 ;; some number of modifiers applied.  Examples:
 ;;
-;;  *(map-keys "F N" 'file-new-window)
+;;  *(map-keys "F N" 'file-new)
 ;;
 ;;    The "New Window" command will be run when an <F> is typed,
 ;;    followed by an <A>.
