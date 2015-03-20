@@ -1160,18 +1160,19 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
       }
 
       if (page == toplevel->page_current) {
-        /* as it will delete current page, select new current page */
-        /* first look up in page hierarchy */
+
+        /* select new current page first look up in page hierarchy */
         new_current = s_page_search_by_page_id (toplevel->pages, page->up);
 
         if (new_current == NULL) {
-          /* no up in hierarchy, choice is prev, next, new page */
-          iter = g_list_find( geda_list_get_glist( toplevel->pages ), page );
 
-          if ( g_list_previous( iter ) ) {
-            new_current = (Page *)g_list_previous( iter )->data;
+          /* no up in hierarchy, choice is prev, next, new page */
+          iter = g_list_find(geda_list_get_glist(toplevel->pages), page);
+
+          if (g_list_previous(iter)) {
+            new_current = (Page*)g_list_previous (iter)->data;
           }
-          else if ( g_list_next( iter ) ) {
+          else if (g_list_next(iter)) {
             new_current = (Page *)g_list_next( iter )->data;
           }
           else {
