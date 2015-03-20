@@ -30,7 +30,7 @@
 #ifndef __GSCHEM_TOPLEVEL_H__
 #define __GSCHEM_TOPLEVEL_H__
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GSCHEM_TYPE_TOPLEVEL            (gschem_toplevel_get_type())
 #define GSCHEM_TOPLEVEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GSCHEM_TYPE_TOPLEVEL, GschemToplevel))
@@ -345,5 +345,5 @@ void            gschem_toplevel_free              (GschemToplevel *w_current);
 Page           *gschem_toplevel_get_current_page  (GschemToplevel *w_current);
 GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
 
-G_END_DECLS
+END_DECLS
 #endif /* __GSCHEM_TOPLEVEL_H__ */
