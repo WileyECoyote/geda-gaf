@@ -146,7 +146,15 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   log_situation  = _("This situation may have when an application crashed or was forced to exit abruptly.\n");
   err_corrective = _("\nRun the application to correct this situation or manually delete the backup file.\n\n");
 
-  flags = toplevel->open_flags;
+  int inline f_open_exit (int status) {
+    if (saved_cwd != NULL) {
+      free(saved_cwd);
+    }
+    return status;
+  }
+
+  flags     = toplevel->open_flags;
+  saved_cwd = NULL;
 
   /* Save the cwd so we can restore it later. */
   if (flags & F_OPEN_RESTORE_CWD) {
@@ -158,10 +166,10 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (full_filename == NULL) {
     g_set_error (err, G_FILE_ERROR, tmp_err->code,
-                 _("Cannot find file %s: %s"),
+               _("Cannot find file %s: %s"),
                  filename, tmp_err->message);
     g_error_free(tmp_err);
-    return 0;
+    return f_open_exit(0);
   }
 
   /* write full, absolute filename into page->filename */
@@ -178,7 +186,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       /* Error occurred with chdir */
       fprintf(stderr, _("ERROR, <libgeda>: Could not changed current directory to %s:%s"),
               file_directory, strerror (errno));
-      return 0;
+      return f_open_exit(0);
     }
 
     /* Now open RC and process file */
@@ -295,10 +303,9 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       fprintf(stderr, _("ERROR, <libgeda>: Could not restore current directory to %s:%s"),
               saved_cwd, strerror (errno));
     }
-    free(saved_cwd);
   }
 
-  return opened;
+  return f_open_exit(opened);
 }
 
 /*! \brief Closes the schematic file
