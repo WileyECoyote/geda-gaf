@@ -340,6 +340,7 @@ void       i_vars_init                      (GschemToplevel *w_current);
 void       i_vars_atexit_save_user_config   (void * user_data);
 
 /* i_window.c */
+void       i_window_close_page              (GschemToplevel *w_current);
 void       i_window_on_page_changed         (GschemToplevel *w_current);
 bool       i_window_get_pointer_position    (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
 void       i_window_set_pointer_position    (GschemToplevel *w_current, int wx, int wy);

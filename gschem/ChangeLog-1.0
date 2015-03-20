@@ -1,5 +1,30 @@
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/i_command.h: Change i_cmd_do_page_close to worker thread.
+
+    * src/iface/i_window.c: Add function i_window_close_page as common
+      function for both i_cmd_do_file_close and i_cmd_do_page_close.
+
+    * iface/i_command.c: Revise functions i_cmd_do_file_close and
+      i_cmd_do_page_close to call i_window_close_page.
+
+2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+     * Code Enhancment: Consolidate Page Closing
+
+     * include/i_command.h: Change i_cmd_do_page_close to worker thread.
+
+     * src/iface/i_window.c: Add function i_window_close_page as common
+       function for both i_cmd_do_file_close and i_cmd_do_page_close. Call
+       hook before closing the page.  This allow a reference to be held on
+       the page and probably makes more sense to tell SCM the page is going
+       to close as opose to the page has already been closed.
+
+     * iface/i_command.c: Revise functions i_cmd_do_file_close and
+       i_cmd_do_page_close to call i_window_close_page.
+
+2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Make starting Edit-Text Dialog more flexible.
 
     * src/iface/i_command.c: Revised function i_cmd_do_edit_text to launch

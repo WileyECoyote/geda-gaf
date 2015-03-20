@@ -893,20 +893,11 @@ COMMAND (do_run_script) {
 
 /** @brief i_cmd_do_close in i_command_File_Actions */
 COMMAND (do_close) {
+  NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_close);
-  bool can_close;
-  can_close = TRUE;
 
-  if (Current_Page->CHANGED) {
-    can_close = x_dialog_close_changed_page (w_current, Current_Page);
-  }
+  i_window_close_page(w_current);
 
-  if (can_close) {
-    q_log_message(_("Closing Page\n"));
-    x_window_close_page (w_current, Current_Page);
-    g_hook_run_page (w_current, CLOSE_PAGE_HOOK, Current_Page);
-  }
-  i_status_set_state(w_current, SELECT);
   EXIT_COMMAND(do_close);
 }
 
@@ -2195,25 +2186,10 @@ COMMAND (do_page_revert) {
 COMMAND (do_page_close)
 {
   NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
-
   BEGIN_COMMAND(do_page_close);
 
-  bool  can_close;
+  i_window_close_page(w_current);
 
-  can_close = TRUE;
-
-  if (Current_Page->CHANGED) {
-    gschem_threads_enter();
-    can_close = x_dialog_close_changed_page (w_current, Current_Page);
-    gschem_threads_leave();
-  }
-
-  if (can_close) {
-    x_window_close_page (w_current, Current_Page);
-    g_hook_run_page (w_current, CLOSE_PAGE_HOOK, Current_Page);
-  }
   EXIT_COMMAND(do_page_close);
 }
 

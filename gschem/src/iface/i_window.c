@@ -82,6 +82,29 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
   return FALSE;
 }
 
+void i_window_close_page (GschemToplevel *w_current)
+{
+  bool  can_close;
+  Page *page;
+
+  page = Current_Page
+
+  if (page->CHANGED) {
+    can_close = x_dialog_close_changed_page (w_current, page);
+  }
+  else {
+    can_close = TRUE;
+  }
+
+  if (can_close) {
+    q_log_message(_("Closing Page\n"));
+    x_window_close_page (w_current, page);
+    g_hook_run_page (w_current, CLOSE_PAGE_HOOK, page);
+  }
+
+  i_status_set_state(w_current, SELECT);
+}
+
 /*! \brief Do updates when the Current Page is Changed
  *  \par Function Description
  *  This function calls various functions in order to update the main
