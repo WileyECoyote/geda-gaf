@@ -425,8 +425,7 @@ GList *o_undo_find_prev_object_head (UNDO *start)
 
 /*! \brief Undo
  *  \par Function Description
- *   The function restores the current page to the previous
- *   state, wiping out any change-notify-funcs in the process.
+ *   The function restores the current page to the previous state.
  *
  *  <B>type</B> can be one of the following values:
  *  \par
@@ -535,8 +534,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     GError *err          = NULL;
 
     char *save_filename  = u_string_strdup (Current_Page->filename);
-    int  save_logging    = logging;
-    int  old_flags       = toplevel->open_flags;
+    int   save_logging   = logging;
+    int   old_flags      = toplevel->open_flags;
 
     logging              = FALSE;   /* temporarily disable logging */
     toplevel->open_flags = F_OPEN_RESTORE_CWD;
@@ -589,6 +588,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   x_pagesel_update (w_current);
 
+  /* double check this */
   x_multiattrib_update (w_current);
 
   geda_notify_list_thaw (Current_Page->change_notify_funcs);
