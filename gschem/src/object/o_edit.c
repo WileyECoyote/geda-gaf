@@ -57,6 +57,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
   }
 
   o_current = (Object *) list->data;
+
   if (o_current == NULL) {
     BUG_MSG("unexpected NULL\n");
     return;
@@ -70,24 +71,30 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
     case(OBJ_ARC):
       x_dialog_edit_arc_angle (w_current, o_current);
       break;
+
     case OBJ_BOX:
       x_dialog_edit_fill_type (w_current);
       break;
+
     case OBJ_CIRCLE:
     case (OBJ_LINE):
       x_dialog_edit_line_type (w_current);
       break;
+
     case(OBJ_COMPLEX):
       x_multiattrib_open (w_current);
       break;
+
     case(OBJ_PLACEHOLDER):
     case(OBJ_NET):
     case(OBJ_BUS):
       x_attrib_add_dialog(w_current, o_current);
       break;
+
     case(OBJ_PICTURE):
       o_picture_exchange_file(w_current, o_current);
       break;
+
     case(OBJ_PIN):
       if(isSymbol) {
         x_dialog_edit_pin_type(w_current);
@@ -96,11 +103,13 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
         x_multiattrib_open (w_current);
       }
       break;
+
     case(OBJ_TEXT):
       str = o_text_get_string (o_current);
       if (o_attrib_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
-        o_get_num_text_lines (str) == 1) {
+        o_get_num_text_lines (str) == 1)
+      {
         x_attrib_edit_dialog(w_current, o_current);
       }
       else {
@@ -123,20 +132,22 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
  */
 void o_edit_lock (GschemToplevel *w_current)
 {
-  Object *object = NULL;
-  GList *s_current = NULL;
+  GedaToplevel *toplevel;
+  Page         *page;
+  GList        *s_current = NULL;
 
-  /* skip over head */
-  s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+  toplevel  = gschem_toplevel_get_geda_toplevel(w_current);
+  page      = gschem_toplevel_get_current_page(w_current);
+  s_current = geda_list_get_glist( Top_Selection );
 
   while(s_current != NULL) {
-    object = (Object *) s_current->data;
+    Object *object = (Object *) s_current->data;
     if (object) {
       object->selectable   = FALSE;
       if (object->color   != LOCK_COLOR)
       object->locked_color = object->color;
       object->color        = LOCK_COLOR;
-      w_current->toplevel->page_current->CHANGED=1;
+      page->CHANGED        = TRUE;
     }
 
     s_current = g_list_next(s_current);
@@ -158,19 +169,24 @@ void o_edit_lock (GschemToplevel *w_current)
  */
 void o_edit_unlock(GschemToplevel *w_current)
 {
-  Object *object    = NULL;
-  GList  *s_current = NULL;
+  GedaToplevel *toplevel;
+  Page         *page;
+  GList        *s_current = NULL;
 
-  s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+  toplevel  = gschem_toplevel_get_geda_toplevel(w_current);
+  page      = gschem_toplevel_get_current_page(w_current);
+  s_current = geda_list_get_glist( Top_Selection );
 
   while(s_current != NULL) {
-    object = (Object *) s_current->data;
+
+    Object *object = (Object*) s_current->data;
+
     if (object) {
-        object->selectable        = TRUE;
-        if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
-        object->color             = object->locked_color;
-        else object->color        = o_color_get_object_default(object->type);
-        w_current->toplevel->page_current->CHANGED = 1;
+      object->selectable        = TRUE;
+      if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
+        object->color           = object->locked_color;
+      else object->color        = o_color_get_object_default(object->type);
+      page->CHANGED             = TRUE;
     }
     NEXT(s_current);
   }
@@ -279,15 +295,14 @@ static void log_visibility (int set_hidden, int set_visible)
 static GList*
 o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 {
-  Object *o_current;
-  GList  *iter        = (GList*)o_list;
-  GList  *redraw      = NULL;
-  int     set_hidden  = 0;
-  int     set_visible = 0;
+  GList *iter        = (GList*)o_list;
+  GList *redraw      = NULL;
+  int    set_hidden  = 0;
+  int    set_visible = 0;
 
   while (iter != NULL) {
 
-    o_current = (Object *)iter->data;
+    Object *o_current = (Object *)iter->data;
 
     if (!o_current->selectable) {
       NEXT(iter);
@@ -295,20 +310,30 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
     }
 
     if (o_current->type == OBJ_COMPLEX) {
+
       GList  *iter2;
+
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
+
         Object *sub_obj = iter2->data;
+
         if (sub_obj->type == OBJ_TEXT) {
+
           if (sub_obj->visibility == INVISIBLE) {
+
             sub_obj->visibility = 2;
             redraw = g_list_prepend(redraw, sub_obj);
             ++set_visible;
+
           }
           else if (sub_obj->visibility == 2) {
+
             sub_obj->visibility = INVISIBLE;
+
             /* Since now invisible, renderer won't return a bounds, so... */
             o_invalidate_force(w_current, sub_obj);
             ++set_hidden;
+
           }
         }
       }
@@ -334,15 +359,14 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 static GList*
 o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 {
-  Object *o_current;
-  GList  *iter        = (GList*)o_list;
-  GList  *redraw      = NULL;
-  int     set_hidden  = 0;
-  int     set_visible = 0;
+  GList *iter        = (GList*)o_list;
+  GList *redraw      = NULL;
+  int    set_hidden  = 0;
+  int    set_visible = 0;
 
   while (iter != NULL) {
 
-    o_current = (Object *)iter->data;
+    Object *o_current = (Object *)iter->data;
 
     if (!o_current->selectable) {
       NEXT(iter);
@@ -350,16 +374,26 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
     }
 
     if (o_current->type == OBJ_COMPLEX) {
+
       GList  *iter2;
+
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
+
         Object *sub_obj = iter2->data;
+
         if (sub_obj->type == OBJ_PIN) {
+
           GList  *pa_iter;
+
           for( pa_iter = sub_obj->attribs; pa_iter; NEXT(pa_iter)) {
+
             Object *p_attrib = pa_iter->data;
+
             if (p_attrib->type == OBJ_TEXT) {
+
               if(strncmp(p_attrib->text->string, "pinseq", 6) == 0)
                 continue;
+
               if (p_attrib->visibility == INVISIBLE) {
                 p_attrib->visibility = 2;
                 redraw = g_list_prepend(redraw, p_attrib);
@@ -417,6 +451,7 @@ bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
   bool result = FALSE;
 
   if (o_list != NULL) {
+
     GList *modified;
 
     if (inherited)
@@ -461,18 +496,16 @@ bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
  */
 void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 {
-  GList  *iter        = (GList*)o_list;
-  GList  *redraw      = NULL;
-  Object *a_current;
-  Object *o_current;
-  int     set_hidden  = 0;
-  int     set_visible = 0;
-  char   *name;
-  char   *value;
+  GList *iter        = (GList*)o_list;
+  GList *redraw      = NULL;
+  int    set_hidden  = 0;
+  int    set_visible = 0;
+  char  *name;
+  char  *value;
 
   while (iter != NULL) {
 
-    o_current = (Object *)iter->data;
+    Object *o_current = (Object *)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
 
@@ -498,7 +531,9 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
       }
     }
     else if (o_current->type == OBJ_COMPLEX) {
-      a_current = o_attrib_first_attrib_by_name (o_current, "netname");
+
+      Object *a_current = o_attrib_first_attrib_by_name (o_current, "netname");
+
       if ( a_current != NULL) {
         if (a_current->visibility == INVISIBLE) {
           a_current->visibility = 2;
@@ -591,9 +626,6 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             }
 
             i_pan_world_general(w_current, o_current->text->x, o_current->text->y, 1, 0);
-
-            /* Make sure the titlebar and scrollbars are up-to-date */
-           //x_window_set_current_page(w_current, Current_Page);
 
             last_o = o_current;
             if (!visible) {
@@ -688,15 +720,17 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
                                 const char     *stext)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object   *o_current;
   const GList *iter;
 
   iter = o_list;
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
+
+    Object *o_current = (Object *)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
+
       const char *str = o_text_get_string (o_current);
+
       if (!strncmp (stext, str, strlen (stext))) {
         if (o_get_is_visible (o_current)) {
           o_set_visibility (o_current, INVISIBLE);
@@ -717,19 +751,23 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
  *
  */
 void o_edit_show_specific_text (GschemToplevel *w_current,
-                                const GList *o_list,
-                                const char *stext)
+                                const GList    *o_list,
+                                const char     *stext)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object *o_current;
-  const GList *iter;
+  GedaToplevel *toplevel;
+  const GList  *iter;
 
-  iter = o_list;
+  toplevel = gschem_toplevel_get_geda_toplevel(w_current);
+  iter     = o_list;
+
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
+
+    Object *o_current = (Object *)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
+
       const char *str = o_text_get_string (o_current);
+
       if (!strncmp (stext, str, strlen (stext))) {
         if (!o_get_is_visible (o_current)) {
           o_set_visibility (o_current, VISIBLE);
@@ -778,7 +816,7 @@ void o_edit_snap (GschemToplevel *w_current, GList *object_list)
 
     NEXT(iter);
   }
-  //toplevel->page_current->CHANGED = 1;
+
   if (modified) {
     o_undo_savestate(w_current, UNDO_ALL);
   }
@@ -810,7 +848,7 @@ void o_edit_snap (GschemToplevel *w_current, GList *object_list)
 Object *
 o_edit_update_component (GschemToplevel *w_current, Object *o_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel *toplevel;
 
   Object *o_new;
   Object *attr_old;
@@ -831,7 +869,8 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   g_return_val_if_fail (GEDA_IS_COMPLEX(o_current), NULL);
   g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
 
-  page = o_get_page (o_current);
+  toplevel = gschem_toplevel_get_geda_toplevel(w_current);
+  page     = o_get_page (o_current);
 
   /* Force symbol data to be reloaded from source */
   clib = s_clib_get_symbol_by_name (o_current->complex->filename);
@@ -868,7 +907,9 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
    * At the end, the new_attribs list is updated by removing all list
    * items with NULL data. This is slightly magic, but works. */
   for (iter = new_attribs; iter != NULL; NEXT(iter)) {
+
     Object *attr_new = iter->data;
+
     char *name;
     char *old_value;
     char *new_value;
@@ -886,7 +927,6 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
         int index = 0;
         do {
           if ( strcmp(name, keepers[index]) == 0 ) {
-/*fprintf(stderr, "\tkeeping %s\n", keepers[index]);*/
             attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
             o_attrib_set_value (attr_old, name,  new_value);
             break;

@@ -1,3 +1,11 @@
+2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancment: Use Accessors functions
+
+    * src/object/o_edit.c: Modify functions o_edit_lock and o_edit_unlock to
+      use gschem_toplevel_get_geda_toplevel and gschem_toplevel_get_current_
+      page. General cleaning and update DOxygen comments.
+
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancment: Add Accessors functions
@@ -636,7 +644,7 @@
 2015-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Completely revamp i_cmd_do_attach; allow pairs
-      of object in any order. For selection greated that 3, that first object
+      of object in any order. For selections greater than 3, the first object
       that can not be attached is the target, utilize w_current->which_object
       for the target object.
 
