@@ -337,11 +337,13 @@ struct _GschemToplevel {
 
 };
 
-unsigned int    gschem_toplevel_get_type (void);
+unsigned int    gschem_toplevel_get_type          (void);
 
-GschemToplevel *gschem_toplevel_new( void );
+GschemToplevel *gschem_toplevel_new               ( void );
 
-void            gschem_toplevel_free(GschemToplevel *w_current);
+void            gschem_toplevel_free              (GschemToplevel *w_current);
+Page           *gschem_toplevel_get_current_page  (GschemToplevel *w_current);
+GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
 
 G_END_DECLS
 #endif /* __GSCHEM_TOPLEVEL_H__ */

@@ -87,19 +87,19 @@ void i_window_close_page (GschemToplevel *w_current)
   bool  can_close;
   Page *page;
 
-  page = Current_Page
+  page = gschem_toplevel_get_current_page(w_current);
 
-  if (page->CHANGED) {
+  if (page && page->CHANGED) {
     can_close = x_dialog_close_changed_page (w_current, page);
   }
   else {
     can_close = TRUE;
   }
 
-  if (can_close) {
+  if (page && can_close) {
     q_log_message(_("Closing Page\n"));
-    x_window_close_page (w_current, page);
     g_hook_run_page (w_current, CLOSE_PAGE_HOOK, page);
+    x_window_close_page (w_current, page);
   }
 
   i_status_set_state(w_current, SELECT);

@@ -388,3 +388,32 @@ void gschem_toplevel_free(GschemToplevel *w_current)
     BUG_MSG("w_current no bueno")
 
 }
+
+/*! \brief Get the Current Page from toplevel
+ *
+ *  \param [in] w_current This gschem toplevel
+ *
+ *  \return The libgeda toplevel
+ */
+Page*
+gschem_toplevel_get_current_page (GschemToplevel *w_current)
+{
+  g_return_val_if_fail (w_current != NULL, NULL);
+  g_return_val_if_fail (w_current->toplevel != NULL, NULL);
+
+  return w_current->toplevel->page_current;
+}
+
+/*! \brief Get the libgeda toplevel for this gschem toplevel
+ *
+ *  \param [in] w_current This gschem toplevel
+ *
+ *  \return The libgeda toplevel
+ */
+GedaToplevel*
+gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
+{
+  g_return_val_if_fail (w_current != NULL, NULL);
+
+  return w_current->toplevel;
+}
