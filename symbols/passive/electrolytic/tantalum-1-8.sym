@@ -27,7 +27,7 @@ L 200 500 200 700 3 0 0 0 -1 -1
 T 500 900 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 500 500 8 10 1 1 0 0 1
-value=6.8uF
+value=8.2uF
 T 500 300 8 10 1 1 0 0 1
 value=tantalum
 T 500 100 8 10 1 1 0 0 1

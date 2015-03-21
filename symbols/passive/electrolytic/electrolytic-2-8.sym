@@ -33,20 +33,19 @@ pinlabel=2
 T 175 300 5 6 0 1 0 8 1
 pintype=pas
 }
-L 400 400 0 400 3 0 2 0 -1 -1
-L 400 500 0 500 3 0 2 0 -1 -1
+L 400 500 0 500 3 0 0 0 -1 -1
 L 200 200 200 400 3 0 0 0 -1 -1
 L 200 500 200 700 3 0 0 0 -1 -1
 T 500 700 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 500 300 8 10 1 1 0 0 1
-value=4.7uF
+value=8.2uF
 T 500 100 8 10 1 1 0 0 1
 value=Volts
+A 200 -300 700 75 30 3 0 0 0 -1 -1
 L 400 600 300 600 3 12 2 0 -1 -1
 L 350 550 350 650 3 12 2 0 -1 -1
 T 500 500 8 10 1 1 0 0 1
 refdes=C?
 T 500 900 5 10 0 0 0 0 1
-description=electrolytic capacitor,4.7uF,?V,SM0603
-
+description=electrolytic capacitor,8.2uF,?V,SMD0603

@@ -1,4 +1,4 @@
-v 20131031 2
+v 20150315 2
 P 200 900 200 700 1 0 0
 {
 T 300 750 5 8 1 1 0 0 1
@@ -24,7 +24,7 @@ pintype=pas
 L 400 500 0 500 3 0 0 0 -1 -1
 L 200 200 200 400 3 0 0 0 -1 -1
 L 200 500 200 700 3 0 0 0 -1 -1
-T 400 700 5 10 0 0 0 0 1
+T 500 900 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 500 500 8 10 1 1 0 0 1
 value=4.7uF
@@ -38,10 +38,10 @@ L 350 550 350 650 3 0 0 0 -1 -1
 T 500 700 8 10 1 1 0 0 1
 refdes=C?
 T 200 1500 5 10 0 0 0 0 1
-description=electrolytic capacitor
+description=tantalytic capacitor
 T 200 1300 5 10 0 0 0 0 1
 numslots=0
 T 200 1100 5 10 0 0 0 0 1
 symversion=0.1
-T 900 400 9 10 0 0 0 0 1
+T 1200 100 9 10 0 1 0 0 1
 footprint=SMD_POLAR-60-30
