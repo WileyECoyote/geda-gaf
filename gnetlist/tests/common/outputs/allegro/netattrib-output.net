@@ -1,6 +1,6 @@
 (Allegro netlister by M. Ettus)
 $PACKAGES
-! FUSE! FUSE; F1
+fuseholder-5mm! FUSE! FUSE; F1
 DIP14! 7404! 7404; U300
 DIP14! 7404! 7404; U200
 DIP14! 7400! 7400; U100
@@ -11,7 +11,7 @@ netattrib; U200.2,
 GND; U300.7,
  U200.7,
  U100.7
-Vcc; U300.14,
+VCC; U300.14,
  U200.14,
  U100.14
 one; F1.1,

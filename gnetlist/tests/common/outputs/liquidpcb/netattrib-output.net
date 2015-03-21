@@ -12,7 +12,7 @@
 			<netnode component="U200" pin=7 />
 			<netnode component="U100" pin=7 />
 		</net>
-		<net name="Vcc">
+		<net name="VCC">
 			<netnode component="U300" pin=14 />
 			<netnode component="U200" pin=14 />
 			<netnode component="U100" pin=14 />

@@ -51,7 +51,7 @@
 		(settings_locked "0")
 		(net_group "")
 	)
-	( net "Vcc"
+	( net "VCC"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -81,7 +81,7 @@
 	)
 )
 (components
-	(instance "unknown" "F1"
+	(instance "fuseholder-5mm" "F1"
 		(device "FUSE")
 		(value "FUSE")
 		(gateswap "0")
@@ -119,7 +119,7 @@
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
@@ -162,7 +162,7 @@
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
@@ -221,7 +221,7 @@
 			(gate "")
 		)
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")

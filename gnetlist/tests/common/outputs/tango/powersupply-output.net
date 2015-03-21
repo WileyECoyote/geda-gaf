@@ -1,6 +1,6 @@
 [
 U2
-PATTERN
+TO-220
 LM317
 
 
@@ -35,7 +35,7 @@ POLARIZED_CAPACITOR
 ]
 [
 R2
-PATTERN
+0402
 RESISTOR
 220
 
@@ -56,21 +56,21 @@ SPST
 ]
 [
 CONN1
-PATTERN
+none
 MAINS_CONNECTOR
 
 
 ]
 [
 T1
-PATTERN
-transformer
+none
+TRANSFORMER
 
 
 ]
 [
 F1
-PATTERN
+fuseholder-5mm
 FUSE
 
 
@@ -83,17 +83,17 @@ DIODE-BRIDGE
 
 ]
 (
+eleven
+U2-2
+C4-1
+R2-2
+)
+(
 ten
 U2-1
 R1-2
 C3-1
 R2-1
-)
-(
-eleven
-U2-2
-C4-1
-R2-2
 )
 (
 GND

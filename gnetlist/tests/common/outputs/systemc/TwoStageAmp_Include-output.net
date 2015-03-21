@@ -44,9 +44,9 @@ sc_signal<0> Vem2;
 sc_signal<0> Vout;
 sc_signal<0> VColl2;
 sc_signal<0> GND;
-sc_signal<0> Vcc;
-sc_signal<0> Vin;
+sc_signal<0> VCC;
 sc_signal<0> unnamed_net1;
+sc_signal<0> Vin;
 sc_signal<0> Vbase1;
 sc_signal<0> Vem1;
 sc_signal<0> Vcoll1;
@@ -105,23 +105,23 @@ SC_CTOR(not found):
     C2.1(unnamed_net2);
     C2.2(Vbase2);
 
-    R4.2(Vbase2);
     R4.1(GND);
+    R4.2(Vbase2);
 
-    R3.2(Vcc);
     R3.1(Vbase2);
+    R3.2(VCC);
 
-    R8.2(unnamed_net2);
     R8.1(Vcoll1);
+    R8.2(unnamed_net2);
 
     CE2.1(GND);
     CE2.2(Vem2);
 
-    RE2.2(Vem2);
     RE2.1(GND);
+    RE2.2(Vem2);
 
-    RC1.2(Vcc);
     RC1.1(Vcoll1);
+    RC1.2(VCC);
 
     Q2.3(VColl2);
     Q2.1(Vem2);
@@ -130,7 +130,7 @@ SC_CTOR(not found):
     C1.1(unnamed_net1);
     C1.2(Vbase1);
 
-    VCC.1(Vcc);
+    VCC.1(VCC);
     VCC.2(GND);
 
     Vinput.1(Vin);
@@ -142,23 +142,23 @@ SC_CTOR(not found):
     Cout.1(VColl2);
     Cout.2(Vout);
 
-    RL.2(Vout);
     RL.1(GND);
+    RL.2(Vout);
 
-    RC2.2(Vcc);
     RC2.1(VColl2);
+    RC2.2(VCC);
 
-    RE1.2(Vem1);
     RE1.1(GND);
+    RE1.2(Vem1);
 
-    R2.2(Vbase1);
     R2.1(GND);
+    R2.2(Vbase1);
 
-    R1.2(Vcc);
     R1.1(Vbase1);
+    R1.2(VCC);
 
-    R5.2(unnamed_net1);
     R5.1(Vin);
+    R5.2(unnamed_net1);
 
     Q1.3(Vcoll1);
     Q1.1(Vem1);

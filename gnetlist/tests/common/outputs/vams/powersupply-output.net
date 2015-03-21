@@ -2,8 +2,8 @@
 -- Secondary unit
 
 ARCHITECTURE default_architecture OF default_entity IS
-	unknown ten 	:  unknown;
 	unknown eleven 	:  unknown;
+	unknown ten 	:  unknown;
 	unknown GND 	:  unknown;
 	unknown one 	:  unknown;
 	unknown five 	:  unknown;
@@ -17,9 +17,9 @@ BEGIN
 -- Architecture statement part
  
   U2 : ENTITY LM317
-	PORT MAP (	2 => eleven,
-			3 => eight,
-			1 => ten);
+	PORT MAP (	3 => eight,
+			1 => ten,
+			2 => eleven);
  
   C4 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
@@ -49,8 +49,8 @@ BEGIN
   R2 : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 220)
-	PORT MAP (	2 => eleven,
-			1 => ten);
+	PORT MAP (	1 => ten,
+			2 => eleven);
  
   C1 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
@@ -67,7 +67,7 @@ BEGIN
 			2 => five,
 			3 => GND);
  
-  T1 : ENTITY transformer
+  T1 : ENTITY TRANSFORMER
 	PORT MAP (	2 => five,
 			1 => three,
 			4 => seven,

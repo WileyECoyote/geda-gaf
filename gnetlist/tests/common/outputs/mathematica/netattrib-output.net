@@ -4,9 +4,9 @@ v["U100","5"]=v["netattrib"];
 v["U300","7"]=v["GND"];
 v["U200","7"]=v["GND"];
 v["U100","7"]=v["GND"];
-v["U300","14"]=v["Vcc"];
-v["U200","14"]=v["Vcc"];
-v["U100","14"]=v["Vcc"];
+v["U300","14"]=v["VCC"];
+v["U200","14"]=v["VCC"];
+v["U100","14"]=v["VCC"];
 v["F1","1"]=v["one"];
 v["U300","1"]=v["one"];
 v["U200","1"]=v["one"];
@@ -24,7 +24,7 @@ fuse[value->f1]["F1"],
 variables={
 v["unnamed_net1"],
 v["netattrib"],
-v["Vcc"],
+v["VCC"],
 v["one"],
 i["U300","2"],
 i["U200","2"],

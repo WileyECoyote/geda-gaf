@@ -14,7 +14,7 @@
 #include "RESISTOR.h"
 #include "RESISTOR.h"
 #include "VOLTAGE_SOURCE.h"
-#include "vpulse.h"
+#include "VOLTAGE_SOURCE.h"
 #include "RESISTOR.h"
 #include "RESISTOR.h"
 #include "PMOS_TRANSISTOR.h"
@@ -41,7 +41,7 @@ CAPACITOR Cp;
 RESISTOR Rlp;
 RESISTOR Rlm;
 VOLTAGE_SOURCE Vdd;
-vpulse V1;
+VOLTAGE_SOURCE V1;
 RESISTOR Rt;
 RESISTOR Rb;
 PMOS_TRANSISTOR M1;
@@ -66,11 +66,11 @@ SC_CTOR(not found):
     Cp.1(p);
     Cp.2(GND);
 
-    Rlp.2(Vdd1);
     Rlp.1(p);
+    Rlp.2(Vdd1);
 
-    Rlm.2(GND);
     Rlm.1(m);
+    Rlm.2(GND);
 
     Vdd.1(Vdd1);
     Vdd.2(GND);
@@ -78,11 +78,11 @@ SC_CTOR(not found):
     V1.1(i);
     V1.2(GND);
 
-    Rt.2(m);
     Rt.1(p);
+    Rt.2(m);
 
-    Rb.2(LVH);
     Rb.1(GND);
+    Rb.2(LVH);
 
     M1.S(Vdd1);
     M1.B(Vdd1);

@@ -36,14 +36,14 @@ BEGIN
   Rlp : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 1meg)
-	PORT MAP (	2 => Vdd1,
-			1 => p);
+	PORT MAP (	1 => p,
+			2 => Vdd1);
  
   Rlm : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 500k)
-	PORT MAP (	2 => GND,
-			1 => m);
+	PORT MAP (	1 => m,
+			2 => GND);
  
   Vdd : ENTITY VOLTAGE_SOURCE
 	GENERIC MAP (
@@ -51,7 +51,7 @@ BEGIN
 	PORT MAP (	1 => Vdd1,
 			2 => GND);
  
-  V1 : ENTITY vpulse
+  V1 : ENTITY VOLTAGE_SOURCE
 	GENERIC MAP (
 			value => pulse 3.3 0 1u 10p 10p 1.25u 2.5u)
 	PORT MAP (	1 => i,
@@ -60,15 +60,15 @@ BEGIN
   Rt : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 1k)
-	PORT MAP (	2 => m,
-			1 => p);
+	PORT MAP (	1 => p,
+			2 => m);
  
   Rb : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 5.6k)
-	PORT MAP (	2 => LVH,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => LVH);
  
   M1 : ENTITY PMOS_TRANSISTOR
 	GENERIC MAP (

@@ -1,24 +1,24 @@
 !PADS-POWERPCB-V3.0-MILS!
 
 *PART*
-U2	unknown
+U2	TO-220
 C4	unknown
 C3	unknown
 R1	unknown
 C2	unknown
-R2	unknown
+R2	0402
 C1	unknown
 S1	unknown
-CONN1	unknown
-T1	unknown
-F1	unknown
+CONN1	none
+T1	none
+F1	fuseholder-5mm
 U1	unknown
 
 *NET*
-*SIGNAL* TEN
- U2.1 R1.2 C3.1 R2.1
 *SIGNAL* ELEVEN
  U2.2 C4.1 R2.2
+*SIGNAL* TEN
+ U2.1 R1.2 C3.1 R2.1
 *SIGNAL* GND
  CONN1.3
 *SIGNAL* ONE

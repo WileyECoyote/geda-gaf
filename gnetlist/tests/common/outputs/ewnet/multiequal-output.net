@@ -9,7 +9,7 @@
 	(units Mil)
 )
 (nets
-	( net "GND"
+	( net "unnamed_net1"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -23,7 +23,7 @@
 		(settings_locked "0")
 		(net_group "")
 	)
-	( net "unnamed_net1"
+	( net "GND"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -66,7 +66,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "R1"
+	(instance "0402" "R1"
 		(device "RESISTOR")
 		(value "20")
 		(gateswap "0")
@@ -76,20 +76,20 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "unnamed_net1")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
 			(label "2")
+			(gate "")
+		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
 			(gate "")
 		)
 	)

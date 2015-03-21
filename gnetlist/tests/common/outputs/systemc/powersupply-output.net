@@ -17,7 +17,7 @@
 #include "POLARIZED_CAPACITOR.h"
 #include "SPST.h"
 #include "MAINS_CONNECTOR.h"
-#include "transformer.h"
+#include "TRANSFORMER.h"
 #include "FUSE.h"
 #include "DIODE-BRIDGE.h"
 
@@ -27,8 +27,8 @@ SC_MODULE (not found)
 /* Port directions begin here */
 
 /* Wires from the design */
-sc_signal<0> ten;
 sc_signal<0> eleven;
+sc_signal<0> ten;
 sc_signal<0> GND;
 sc_signal<0> one;
 sc_signal<0> five;
@@ -50,7 +50,7 @@ RESISTOR R2;
 POLARIZED_CAPACITOR C1;
 SPST S1;
 MAINS_CONNECTOR CONN1;
-transformer T1;
+TRANSFORMER T1;
 FUSE F1;
 DIODE-BRIDGE U1;
 
@@ -68,9 +68,9 @@ SC_CTOR(not found):
     F1("F1"),
     U1("U1")
   {
-    U2.2(eleven);
     U2.3(eight);
     U2.1(ten);
+    U2.2(eleven);
 
     C4.1(eleven);
     C4.2(nine);
@@ -85,8 +85,8 @@ SC_CTOR(not found):
     C2.1(eight);
     C2.2(nine);
 
-    R2.2(eleven);
     R2.1(ten);
+    R2.2(eleven);
 
     C1.1(eight);
     C1.2(nine);

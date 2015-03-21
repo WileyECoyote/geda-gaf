@@ -2,13 +2,13 @@
 
 *PART*
 V1	none
-R1	unknown
+R1	0402
 A1	unknown
 
 *NET*
-*SIGNAL* GND
- V1.2 R1.1
 *SIGNAL* UNNAMED_NET1
  V1.1 R1.2
+*SIGNAL* GND
+ V1.2 R1.1
 
 *END*

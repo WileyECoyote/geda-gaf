@@ -14361,7 +14361,7 @@
 	)
 )
 (components
-	(instance "unknown" "C?"
+	(instance "0402" "C?"
 		(device "CAPACITOR")
 		(value "CAPACITOR")
 		(gateswap "0")

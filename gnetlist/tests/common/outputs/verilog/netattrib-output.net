@@ -18,7 +18,7 @@ module \not found  (
 wire unnamed_net1 ;
 wire netattrib ;
 wire GND ;
-wire Vcc ;
+wire VCC ;
 wire one ;
 
 /* continuous assignments */
@@ -32,19 +32,19 @@ FUSE F1 (
     .\1  ( one ),
     .\2  ( unnamed_net1 ),
     .\7  ( GND ),
-    .\14  ( Vcc )
+    .\14  ( VCC )
     );
 
 \7404  U200 ( 
     .\1  ( one ),
     .\2  ( netattrib ),
     .\7  ( GND ),
-    .\14  ( Vcc )
+    .\14  ( VCC )
     );
 
 \7400  U100 ( 
     .\3  ( one ),
-    .\14  ( Vcc ),
+    .\14  ( VCC ),
     .\7  ( GND ),
     .\5  ( netattrib )
     );

@@ -5,7 +5,7 @@
 
 (use-library unknown *)
 (define-block (not found (
-(signals (ten eleven GND one five three two six seven nine eight))
+(signals (eleven ten GND one five three two six seven nine eight))
    (U2)
    (C4)
    (C3)

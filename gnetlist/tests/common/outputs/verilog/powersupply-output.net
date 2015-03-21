@@ -15,8 +15,8 @@ module \not found  (
 
 
 /* Wires from the design */
-wire ten ;
 wire eleven ;
+wire ten ;
 wire GND ;
 wire one ;
 wire five ;
@@ -31,9 +31,9 @@ wire eight ;
 
 /* Package instantiations */
 LM317 U2 ( 
-    .\2  ( eleven ),
     .\3  ( eight ),
-    .\1  ( ten )
+    .\1  ( ten ),
+    .\2  ( eleven )
     );
 
 POLARIZED_CAPACITOR C4 ( 
@@ -58,8 +58,8 @@ POLARIZED_CAPACITOR C2 (
     );
 
 RESISTOR R2 ( 
-    .\2  ( eleven ),
-    .\1  ( ten )
+    .\1  ( ten ),
+    .\2  ( eleven )
     );
 
 POLARIZED_CAPACITOR C1 ( 
@@ -78,7 +78,7 @@ MAINS_CONNECTOR CONN1 (
     .\3  ( GND )
     );
 
-transformer T1 ( 
+TRANSFORMER T1 ( 
     .\2  ( five ),
     .\1  ( three ),
     .\4  ( seven ),

@@ -35,20 +35,20 @@
 			<netnode component="RE1" pin=1 />
 			<netnode component="R2" pin=1 />
 		</net>
-		<net name="Vcc">
+		<net name="VCC">
 			<netnode component="R3" pin=2 />
 			<netnode component="RC1" pin=2 />
 			<netnode component="VCC" pin=1 />
 			<netnode component="RC2" pin=2 />
 			<netnode component="R1" pin=2 />
 		</net>
-		<net name="Vin">
-			<netnode component="Vinput" pin=1 />
-			<netnode component="R5" pin=1 />
-		</net>
 		<net name="unnamed_net1">
 			<netnode component="C1" pin=1 />
 			<netnode component="R5" pin=2 />
+		</net>
+		<net name="Vin">
+			<netnode component="Vinput" pin=1 />
+			<netnode component="R5" pin=1 />
 		</net>
 		<net name="Vbase1">
 			<netnode component="C1" pin=2 />

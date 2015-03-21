@@ -1,5 +1,5 @@
    ;
-ADD 'F1' unknown@smd-ipc (1 1);
+ADD 'F1' fuseholder-5mm@smd-ipc (1 1);
 VALUE 'F1' 'FUSE';
 ADD 'U300' DIP14@smd-ipc (1 1);
 VALUE 'U300' '7404';

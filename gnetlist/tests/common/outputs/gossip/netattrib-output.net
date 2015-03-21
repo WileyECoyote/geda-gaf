@@ -5,7 +5,7 @@
 
 (use-library unknown *)
 (define-block (not found (
-(signals (unnamed_net1 netattrib GND Vcc one))
+(signals (unnamed_net1 netattrib GND VCC one))
    (F1)
    (U300)
    (U200)

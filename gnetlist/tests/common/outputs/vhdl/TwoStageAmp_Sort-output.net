@@ -40,9 +40,9 @@ ARCHITECTURE netlist OF not found IS
     SIGNAL Vout : Std_Logic;
     SIGNAL VColl2 : Std_Logic;
     SIGNAL GND : Std_Logic;
-    SIGNAL Vcc : Std_Logic;
-    SIGNAL Vin : Std_Logic;
+    SIGNAL VCC : Std_Logic;
     SIGNAL unnamed_net1 : Std_Logic;
+    SIGNAL Vin : Std_Logic;
     SIGNAL Vbase1 : Std_Logic;
     SIGNAL Vem1 : Std_Logic;
     SIGNAL Vcoll1 : Std_Logic;
@@ -55,18 +55,18 @@ BEGIN
 
     R4 : RESISTOR
     PORT MAP (
-        2 => Vbase2,
-        1 => GND);
+        1 => GND,
+        2 => Vbase2);
 
     R3 : RESISTOR
     PORT MAP (
-        2 => Vcc,
-        1 => Vbase2);
+        1 => Vbase2,
+        2 => VCC);
 
     R8 : RESISTOR
     PORT MAP (
-        2 => unnamed_net2,
-        1 => Vcoll1);
+        1 => Vcoll1,
+        2 => unnamed_net2);
 
     CE2 : CAPACITOR
     PORT MAP (
@@ -75,13 +75,13 @@ BEGIN
 
     RE2 : RESISTOR
     PORT MAP (
-        2 => Vem2,
-        1 => GND);
+        1 => GND,
+        2 => Vem2);
 
     RC1 : RESISTOR
     PORT MAP (
-        2 => Vcc,
-        1 => Vcoll1);
+        1 => Vcoll1,
+        2 => VCC);
 
     Q2 : NPN_TRANSISTOR
     PORT MAP (
@@ -105,7 +105,7 @@ BEGIN
 
     VCC : VOLTAGE_SOURCE
     PORT MAP (
-        1 => Vcc,
+        1 => VCC,
         2 => GND);
 
     Vinput : vsin
@@ -125,33 +125,33 @@ BEGIN
 
     RL : RESISTOR
     PORT MAP (
-        2 => Vout,
-        1 => GND);
+        1 => GND,
+        2 => Vout);
 
     RC2 : RESISTOR
     PORT MAP (
-        2 => Vcc,
-        1 => VColl2);
+        1 => VColl2,
+        2 => VCC);
 
     RE1 : RESISTOR
     PORT MAP (
-        2 => Vem1,
-        1 => GND);
+        1 => GND,
+        2 => Vem1);
 
     R2 : RESISTOR
     PORT MAP (
-        2 => Vbase1,
-        1 => GND);
+        1 => GND,
+        2 => Vbase1);
 
     R1 : RESISTOR
     PORT MAP (
-        2 => Vcc,
-        1 => Vbase1);
+        1 => Vbase1,
+        2 => VCC);
 
     R5 : RESISTOR
     PORT MAP (
-        2 => unnamed_net1,
-        1 => Vin);
+        1 => Vin,
+        2 => unnamed_net1);
 
     Q1 : NPN_TRANSISTOR
     PORT MAP (

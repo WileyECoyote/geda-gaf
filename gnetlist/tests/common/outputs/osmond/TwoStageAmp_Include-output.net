@@ -1,25 +1,25 @@
-Part unknown { Name C2 }
-Part unknown { Name R4 }
-Part unknown { Name R3 }
-Part unknown { Name R8 }
-Part unknown { Name CE2 }
-Part unknown { Name RE2 }
-Part unknown { Name RC1 }
+Part 0402 { Name C2 }
+Part 0402 { Name R4 }
+Part 0402 { Name R3 }
+Part 0402 { Name R8 }
+Part 0402 { Name CE2 }
+Part 0402 { Name RE2 }
+Part 0402 { Name RC1 }
 Part unknown { Name Q2 }
-Part unknown { Name C1 }
+Part 0402 { Name C1 }
 Part unknown { Name A3 }
 Part unknown { Name A2 }
 Part unknown { Name A1 }
 Part none { Name VCC }
 Part none { Name Vinput }
-Part unknown { Name CE1 }
-Part unknown { Name Cout }
-Part unknown { Name RL }
-Part unknown { Name RC2 }
-Part unknown { Name RE1 }
-Part unknown { Name R2 }
-Part unknown { Name R1 }
-Part unknown { Name R5 }
+Part 0402 { Name CE1 }
+Part 0402 { Name Cout }
+Part 0402 { Name RL }
+Part 0402 { Name RC2 }
+Part 0402 { Name RE1 }
+Part 0402 { Name R2 }
+Part 0402 { Name R1 }
+Part 0402 { Name R5 }
 Part unknown { Name Q1 }
 Signal "unnamed_net2"
   { C2-1 R8-2 }
@@ -33,12 +33,12 @@ Signal "VColl2"
   { Q2-3 Cout-1 RC2-1 }
 Signal "GND"
   { R4-1 CE2-1 RE2-1 VCC-2 Vinput-2 CE1-1 RL-1 RE1-1 R2-1 }
-Signal "Vcc"
+Signal "VCC"
   { R3-2 RC1-2 VCC-1 RC2-2 R1-2 }
-Signal "Vin"
-  { Vinput-1 R5-1 }
 Signal "unnamed_net1"
   { C1-1 R5-2 }
+Signal "Vin"
+  { Vinput-1 R5-1 }
 Signal "Vbase1"
   { C1-2 R2-2 R1-1 Q1-2 }
 Signal "Vem1"

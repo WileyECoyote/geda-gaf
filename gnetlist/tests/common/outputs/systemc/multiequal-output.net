@@ -18,8 +18,8 @@ SC_MODULE (not found)
 /* Port directions begin here */
 
 /* Wires from the design */
-sc_signal<0> GND;
 sc_signal<0> unnamed_net1;
+sc_signal<0> GND;
 
 
 /* Package instantiations */
@@ -35,8 +35,8 @@ SC_CTOR(not found):
     V1.1(unnamed_net1);
     V1.2(GND);
 
-    R1.2(unnamed_net1);
     R1.1(GND);
+    R1.2(unnamed_net1);
   }
 };
 

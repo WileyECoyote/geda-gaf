@@ -2,14 +2,14 @@
 
 *PART*
 A1	unknown
-CM	unknown
-CP	unknown
-RLP	unknown
-RLM	unknown
+CM	0402
+CP	0402
+RLP	0402
+RLM	0402
 VDD	none
 V1	none
-RT	unknown
-RB	unknown
+RT	0402
+RB	0402
 M1	unknown
 X1	unknown
 

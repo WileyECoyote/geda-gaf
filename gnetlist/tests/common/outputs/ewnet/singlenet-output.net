@@ -37,7 +37,7 @@
 		(settings_locked "0")
 		(net_group "")
 	)
-	( net "Vcc"
+	( net "VCC"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -86,7 +86,7 @@
 			(gate "")
 		)
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
@@ -126,7 +126,7 @@
 			(gate "")
 		)
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
@@ -166,7 +166,7 @@
 			(gate "")
 		)
 		(pin "unknown"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")

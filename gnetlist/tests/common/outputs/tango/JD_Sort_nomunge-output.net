@@ -7,28 +7,28 @@ model
 ]
 [
 Cm
-PATTERN
+0402
 CAPACITOR
 20p
 
 ]
 [
 Cp
-PATTERN
+0402
 CAPACITOR
 20p
 
 ]
 [
 Rlp
-PATTERN
+0402
 RESISTOR
 1meg
 
 ]
 [
 Rlm
-PATTERN
+0402
 RESISTOR
 500k
 
@@ -43,20 +43,20 @@ DC 3.3V
 [
 V1
 none
-vpulse
+VOLTAGE_SOURCE
 pulse 3.3 0 1u 10p 10p 1.25u 2.5u
 
 ]
 [
 Rt
-PATTERN
+0402
 RESISTOR
 1k
 
 ]
 [
 Rb
-PATTERN
+0402
 RESISTOR
 5.6k
 

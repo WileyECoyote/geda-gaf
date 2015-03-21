@@ -1,19 +1,19 @@
-Part unknown { Name U2 }
+Part TO-220 { Name U2 }
 Part unknown { Name C4 }
 Part unknown { Name C3 }
 Part unknown { Name R1 }
 Part unknown { Name C2 }
-Part unknown { Name R2 }
+Part 0402 { Name R2 }
 Part unknown { Name C1 }
 Part unknown { Name S1 }
-Part unknown { Name CONN1 }
-Part unknown { Name T1 }
-Part unknown { Name F1 }
+Part none { Name CONN1 }
+Part none { Name T1 }
+Part fuseholder-5mm { Name F1 }
 Part unknown { Name U1 }
-Signal "ten"
-  { U2-1 R1-2 C3-1 R2-1 }
 Signal "eleven"
   { U2-2 C4-1 R2-2 }
+Signal "ten"
+  { U2-1 R1-2 C3-1 R2-1 }
 Signal "GND"
   { CONN1-3 }
 Signal "one"

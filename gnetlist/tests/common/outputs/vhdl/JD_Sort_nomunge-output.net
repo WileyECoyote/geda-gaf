@@ -19,9 +19,6 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT RESISTOR
     END COMPONENT ;
 
-    COMPONENT vpulse
-    END COMPONENT ;
-
     COMPONENT VOLTAGE_SOURCE
     END COMPONENT ;
 
@@ -54,33 +51,33 @@ BEGIN
 
     Rlp : RESISTOR
     PORT MAP (
-        2 => Vdd1,
-        1 => p);
+        1 => p,
+        2 => Vdd1);
 
     Rlm : RESISTOR
     PORT MAP (
-        2 => GND,
-        1 => m);
+        1 => m,
+        2 => GND);
 
     Vdd : VOLTAGE_SOURCE
     PORT MAP (
         1 => Vdd1,
         2 => GND);
 
-    V1 : vpulse
+    V1 : VOLTAGE_SOURCE
     PORT MAP (
         1 => i,
         2 => GND);
 
     Rt : RESISTOR
     PORT MAP (
-        2 => m,
-        1 => p);
+        1 => p,
+        2 => m);
 
     Rb : RESISTOR
     PORT MAP (
-        2 => LVH,
-        1 => GND);
+        1 => GND,
+        2 => LVH);
 
     M1 : PMOS_TRANSISTOR
     PORT MAP (

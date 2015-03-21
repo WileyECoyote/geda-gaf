@@ -16,7 +16,7 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT FUSE
     END COMPONENT ;
 
-    COMPONENT transformer
+    COMPONENT TRANSFORMER
     END COMPONENT ;
 
     COMPONENT MAINS_CONNECTOR
@@ -37,8 +37,8 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT LM317
     END COMPONENT ;
 
-    SIGNAL ten : Std_Logic;
     SIGNAL eleven : Std_Logic;
+    SIGNAL ten : Std_Logic;
     SIGNAL GND : Std_Logic;
     SIGNAL one : Std_Logic;
     SIGNAL five : Std_Logic;
@@ -52,9 +52,9 @@ BEGIN
 -- Architecture statement part
     U2 : LM317
     PORT MAP (
-        2 => eleven,
         3 => eight,
-        1 => ten);
+        1 => ten,
+        2 => eleven);
 
     C4 : POLARIZED_CAPACITOR
     PORT MAP (
@@ -79,8 +79,8 @@ BEGIN
 
     R2 : RESISTOR
     PORT MAP (
-        2 => eleven,
-        1 => ten);
+        1 => ten,
+        2 => eleven);
 
     C1 : POLARIZED_CAPACITOR
     PORT MAP (
@@ -98,7 +98,7 @@ BEGIN
         2 => five,
         3 => GND);
 
-    T1 : transformer
+    T1 : TRANSFORMER
     PORT MAP (
         2 => five,
         1 => three,

@@ -5,5 +5,5 @@
 
 (use-library unknown *)
 (define-block (not found (
-(signals (SING_N_2 GND Vcc SING_N))
+(signals (SING_N_2 GND VCC SING_N))
    (U100)

@@ -22,7 +22,7 @@ SC_MODULE (not found)
 sc_signal<0> unnamed_net1;
 sc_signal<0> netattrib;
 sc_signal<0> GND;
-sc_signal<0> Vcc;
+sc_signal<0> VCC;
 sc_signal<0> one;
 
 
@@ -43,15 +43,15 @@ SC_CTOR(not found):
     U300.1(one);
     U300.2(unnamed_net1);
     U300.7(GND);
-    U300.14(Vcc);
+    U300.14(VCC);
 
     U200.1(one);
     U200.2(netattrib);
     U200.7(GND);
-    U200.14(Vcc);
+    U200.14(VCC);
 
     U100.3(one);
-    U100.14(Vcc);
+    U100.14(VCC);
     U100.7(GND);
     U100.5(netattrib);
   }

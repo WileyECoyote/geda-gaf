@@ -3,10 +3,10 @@
 .CON
 .COD 2
 
-.REM ten
-U2 1 R1 2 C3 1 R2 1
 .REM eleven
 U2 2 C4 1 R2 2
+.REM ten
+U2 1 R1 2 C3 1 R2 1
 .REM GND
 CONN1 3
 .REM one

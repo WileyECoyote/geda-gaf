@@ -3,5 +3,5 @@
 U100	7400	unknown	DIP14	1
 U200	7404	unknown	DIP14	1
 U300	7404	unknown	DIP14	1
-F1	FUSE	unknown	unknown	1
+F1	FUSE	unknown	fuseholder-5mm	1
 .END

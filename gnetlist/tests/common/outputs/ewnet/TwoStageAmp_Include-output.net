@@ -93,21 +93,7 @@
 		(settings_locked "0")
 		(net_group "")
 	)
-	( net "Vcc"
-		(trackwidth "-1.00000000e+000")
-		(trackwidth_max "-1.00000000e+000")
-		(trackwidth_min "-1.00000000e+000")
-		(tracklength_max "-1.00000000e+000")
-		(tracklength_min "-1.00000000e+000")
-		(clearance_to_trace "-1.00000000e+000")
-		(clearance_to_pad "-1.00000000e+000")
-		(clearance_to_via "-1.00000000e+000")
-		(clearance_to_copper "-1.00000000e+000")
-		(routing_layer "")
-		(settings_locked "0")
-		(net_group "")
-	)
-	( net "Vin"
+	( net "VCC"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -122,6 +108,20 @@
 		(net_group "")
 	)
 	( net "unnamed_net1"
+		(trackwidth "-1.00000000e+000")
+		(trackwidth_max "-1.00000000e+000")
+		(trackwidth_min "-1.00000000e+000")
+		(tracklength_max "-1.00000000e+000")
+		(tracklength_min "-1.00000000e+000")
+		(clearance_to_trace "-1.00000000e+000")
+		(clearance_to_pad "-1.00000000e+000")
+		(clearance_to_via "-1.00000000e+000")
+		(clearance_to_copper "-1.00000000e+000")
+		(routing_layer "")
+		(settings_locked "0")
+		(net_group "")
+	)
+	( net "Vin"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -179,7 +179,7 @@
 	)
 )
 (components
-	(instance "unknown" "C2"
+	(instance "0402" "C2"
 		(device "CAPACITOR")
 		(value "2.2uF")
 		(gateswap "0")
@@ -206,7 +206,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "R4"
+	(instance "0402" "R4"
 		(device "RESISTOR")
 		(value "2.8K")
 		(gateswap "0")
@@ -216,14 +216,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "Vbase2")
 			(pintype "BIDIR")
@@ -232,8 +224,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "R3"
+	(instance "0402" "R3"
 		(device "RESISTOR")
 		(value "28K")
 		(gateswap "0")
@@ -243,6 +243,14 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
+		(pin "2"
+			(net "VCC")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "2")
+			(gate "")
+		)
 		(pin "1"
 			(net "Vbase2")
 			(pintype "BIDIR")
@@ -251,16 +259,8 @@
 			(label "1")
 			(gate "")
 		)
-		(pin "2"
-			(net "Vcc")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "2")
-			(gate "")
-		)
 	)
-	(instance "unknown" "R8"
+	(instance "0402" "R8"
 		(device "RESISTOR")
 		(value "1")
 		(gateswap "0")
@@ -270,14 +270,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "Vcoll1")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "unnamed_net2")
 			(pintype "BIDIR")
@@ -286,8 +278,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "Vcoll1")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "CE2"
+	(instance "0402" "CE2"
 		(device "CAPACITOR")
 		(value "1pF")
 		(gateswap "0")
@@ -314,7 +314,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "RE2"
+	(instance "0402" "RE2"
 		(device "RESISTOR")
 		(value "100")
 		(gateswap "0")
@@ -324,14 +324,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "Vem2")
 			(pintype "BIDIR")
@@ -340,8 +332,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "RC1"
+	(instance "0402" "RC1"
 		(device "RESISTOR")
 		(value "3.3K")
 		(gateswap "0")
@@ -351,20 +351,20 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
+		(pin "2"
+			(net "VCC")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "2")
+			(gate "")
+		)
 		(pin "1"
 			(net "Vcoll1")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
 			(label "1")
-			(gate "")
-		)
-		(pin "2"
-			(net "Vcc")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "2")
 			(gate "")
 		)
 	)
@@ -403,7 +403,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "C1"
+	(instance "0402" "C1"
 		(device "CAPACITOR")
 		(value "2.2uF")
 		(gateswap "0")
@@ -482,7 +482,7 @@
 			(gate "")
 		)
 		(pin "1"
-			(net "Vcc")
+			(net "VCC")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
@@ -517,7 +517,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "CE1"
+	(instance "0402" "CE1"
 		(device "CAPACITOR")
 		(value "1pF")
 		(gateswap "0")
@@ -544,7 +544,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "Cout"
+	(instance "0402" "Cout"
 		(device "CAPACITOR")
 		(value "2.2uF")
 		(gateswap "0")
@@ -571,7 +571,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "RL"
+	(instance "0402" "RL"
 		(device "RESISTOR")
 		(value "100K")
 		(gateswap "0")
@@ -581,14 +581,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "Vout")
 			(pintype "BIDIR")
@@ -597,8 +589,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "RC2"
+	(instance "0402" "RC2"
 		(device "RESISTOR")
 		(value "1K")
 		(gateswap "0")
@@ -608,6 +608,14 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
+		(pin "2"
+			(net "VCC")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "2")
+			(gate "")
+		)
 		(pin "1"
 			(net "VColl2")
 			(pintype "BIDIR")
@@ -616,16 +624,8 @@
 			(label "1")
 			(gate "")
 		)
-		(pin "2"
-			(net "Vcc")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "2")
-			(gate "")
-		)
 	)
-	(instance "unknown" "RE1"
+	(instance "0402" "RE1"
 		(device "RESISTOR")
 		(value "100")
 		(gateswap "0")
@@ -635,14 +635,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "Vem1")
 			(pintype "BIDIR")
@@ -651,8 +643,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "R2"
+	(instance "0402" "R2"
 		(device "RESISTOR")
 		(value "2K")
 		(gateswap "0")
@@ -662,14 +662,6 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "GND")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "Vbase1")
 			(pintype "BIDIR")
@@ -678,8 +670,16 @@
 			(label "2")
 			(gate "")
 		)
+		(pin "1"
+			(net "GND")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
+			(gate "")
+		)
 	)
-	(instance "unknown" "R1"
+	(instance "0402" "R1"
 		(device "RESISTOR")
 		(value "28K")
 		(gateswap "0")
@@ -689,6 +689,14 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
+		(pin "2"
+			(net "VCC")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "2")
+			(gate "")
+		)
 		(pin "1"
 			(net "Vbase1")
 			(pintype "BIDIR")
@@ -697,16 +705,8 @@
 			(label "1")
 			(gate "")
 		)
-		(pin "2"
-			(net "Vcc")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "2")
-			(gate "")
-		)
 	)
-	(instance "unknown" "R5"
+	(instance "0402" "R5"
 		(device "RESISTOR")
 		(value "10")
 		(gateswap "0")
@@ -716,20 +716,20 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "Vin")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "unnamed_net1")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
 			(label "2")
+			(gate "")
+		)
+		(pin "1"
+			(net "Vin")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
 			(gate "")
 		)
 	)

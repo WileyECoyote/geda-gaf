@@ -5,7 +5,7 @@ ARCHITECTURE default_architecture OF default_entity IS
 	unknown unnamed_net1 	:  unknown;
 	unknown netattrib 	:  unknown;
 	unknown GND 	:  unknown;
-	unknown Vcc 	:  unknown;
+	unknown VCC 	:  unknown;
 	unknown one 	:  unknown;
 BEGIN
 -- Architecture statement part
@@ -18,13 +18,13 @@ BEGIN
 	PORT MAP (	1 => one,
 			2 => unnamed_net1,
 			7 => GND,
-			14 => Vcc);
+			14 => VCC);
  
   U200 : ENTITY 7404
 	PORT MAP (	1 => one,
 			2 => netattrib,
 			7 => GND,
-			14 => Vcc);
+			14 => VCC);
  
   U100 : ENTITY 7400
 	GENERIC MAP (
@@ -32,7 +32,7 @@ BEGIN
 	PORT MAP (	3 => one,
 			2 => OPEN,
 			1 => OPEN,
-			14 => Vcc,
+			14 => VCC,
 			7 => GND,
 			5 => netattrib);
 END ARCHITECTURE default_architecture;

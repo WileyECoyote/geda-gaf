@@ -1,6 +1,6 @@
 (Allegro netlister by M. Ettus)
 $PACKAGES
-! CAPACITOR! CAPACITOR; C?
+0402! CAPACITOR! CAPACITOR; C?
 $NETS
 unnamed_net1025; C?.2
 unnamed_net1024; C?.1,

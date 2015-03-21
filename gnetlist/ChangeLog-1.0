@@ -1,4 +1,8 @@
-2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/outputs: Regenerate test outputs.
+
+2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * common/inputs/gafrc: Updated path to symbols.
 

@@ -15,8 +15,8 @@ module \not found  (
 
 
 /* Wires from the design */
-wire GND ;
 wire unnamed_net1 ;
+wire GND ;
 
 /* continuous assignments */
 
@@ -27,8 +27,8 @@ VOLTAGE_SOURCE V1 (
     );
 
 RESISTOR R1 ( 
-    .\2  ( unnamed_net1 ),
-    .\1  ( GND )
+    .\1  ( GND ),
+    .\2  ( unnamed_net1 )
     );
 
 options A1 (     );

@@ -16,12 +16,12 @@ Q2 3 Cout 1 RC2 1
 .REM GND
 R4 1 CE2 1 RE2 1 VCC 2 Vinput 2 CE1 1 RL 1 RE1 1
 RE1 1 R2 1
-.REM Vcc
+.REM VCC
 R3 2 RC1 2 VCC 1 RC2 2 R1 2
-.REM Vin
-Vinput 1 R5 1
 .REM unnamed_net1
 C1 1 R5 2
+.REM Vin
+Vinput 1 R5 1
 .REM Vbase1
 C1 2 R2 2 R1 1 Q1 2
 .REM Vem1

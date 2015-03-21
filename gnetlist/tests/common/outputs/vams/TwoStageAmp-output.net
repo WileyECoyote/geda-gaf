@@ -8,9 +8,9 @@ ARCHITECTURE default_architecture OF default_entity IS
 	unknown Vout 	:  unknown;
 	unknown VColl2 	:  unknown;
 	unknown GND 	:  unknown;
-	unknown Vcc 	:  unknown;
-	unknown Vin 	:  unknown;
+	unknown VCC 	:  unknown;
 	unknown unnamed_net1 	:  unknown;
+	unknown Vin 	:  unknown;
 	unknown Vbase1 	:  unknown;
 	unknown Vem1 	:  unknown;
 	unknown Vcoll1 	:  unknown;
@@ -29,22 +29,22 @@ BEGIN
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 2.8K)
-	PORT MAP (	2 => Vbase2,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => Vbase2);
  
   R3 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 28K)
-	PORT MAP (	2 => Vcc,
-			1 => Vbase2);
+	PORT MAP (	1 => Vbase2,
+			2 => VCC);
  
   R8 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 1)
-	PORT MAP (	2 => unnamed_net2,
-			1 => Vcoll1);
+	PORT MAP (	1 => Vcoll1,
+			2 => unnamed_net2);
  
   CE2 : ENTITY CAPACITOR
 	GENERIC MAP (
@@ -58,15 +58,15 @@ BEGIN
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 100)
-	PORT MAP (	2 => Vem2,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => Vem2);
  
   RC1 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 3.3K)
-	PORT MAP (	2 => Vcc,
-			1 => Vcoll1);
+	PORT MAP (	1 => Vcoll1,
+			2 => VCC);
  
   Q2 : ENTITY NPN_TRANSISTOR
 	GENERIC MAP (
@@ -108,7 +108,7 @@ BEGIN
 			footprint => none, 
 			device => VOLTAGE_SOURCE, 
 			value => DC 15V)
-	PORT MAP (	1 => Vcc,
+	PORT MAP (	1 => VCC,
 			2 => GND);
  
   Vinput : ENTITY vsin
@@ -139,43 +139,43 @@ BEGIN
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 100K)
-	PORT MAP (	2 => Vout,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => Vout);
  
   RC2 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 1K)
-	PORT MAP (	2 => Vcc,
-			1 => VColl2);
+	PORT MAP (	1 => VColl2,
+			2 => VCC);
  
   RE1 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 100)
-	PORT MAP (	2 => Vem1,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => Vem1);
  
   R2 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 2K)
-	PORT MAP (	2 => Vbase1,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => Vbase1);
  
   R1 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 28K)
-	PORT MAP (	2 => Vcc,
-			1 => Vbase1);
+	PORT MAP (	1 => Vbase1,
+			2 => VCC);
  
   R5 : ENTITY RESISTOR
 	GENERIC MAP (
 			device => RESISTOR, 
 			value => 10)
-	PORT MAP (	2 => unnamed_net1,
-			1 => Vin);
+	PORT MAP (	1 => Vin,
+			2 => unnamed_net1);
  
   Q1 : ENTITY NPN_TRANSISTOR
 	GENERIC MAP (

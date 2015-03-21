@@ -1,6 +1,6 @@
 [
 F1
-PATTERN
+fuseholder-5mm
 FUSE
 
 
@@ -42,7 +42,7 @@ U200-7
 U100-7
 )
 (
-Vcc
+VCC
 U300-14
 U200-14
 U100-14

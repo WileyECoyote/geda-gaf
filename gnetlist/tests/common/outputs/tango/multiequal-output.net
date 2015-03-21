@@ -7,7 +7,7 @@ DC 1V
 ]
 [
 R1
-PATTERN
+0402
 RESISTOR
 20
 
@@ -20,12 +20,12 @@ abotol=1e-11
 
 ]
 (
-GND
-V1-2
-R1-1
-)
-(
 unnamed_net1
 V1-1
 R1-2
+)
+(
+GND
+V1-2
+R1-1
 )

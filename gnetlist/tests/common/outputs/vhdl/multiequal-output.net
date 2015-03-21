@@ -19,8 +19,8 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT VOLTAGE_SOURCE
     END COMPONENT ;
 
-    SIGNAL GND : Std_Logic;
     SIGNAL unnamed_net1 : Std_Logic;
+    SIGNAL GND : Std_Logic;
 BEGIN
 -- Architecture statement part
     V1 : VOLTAGE_SOURCE
@@ -30,8 +30,8 @@ BEGIN
 
     R1 : RESISTOR
     PORT MAP (
-        2 => unnamed_net1,
-        1 => GND);
+        1 => GND,
+        2 => unnamed_net1);
 
     A1 : options
 ;

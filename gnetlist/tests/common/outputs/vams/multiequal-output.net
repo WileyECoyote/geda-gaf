@@ -2,8 +2,8 @@
 -- Secondary unit
 
 ARCHITECTURE default_architecture OF default_entity IS
-	unknown GND 	:  unknown;
 	unknown unnamed_net1 	:  unknown;
+	unknown GND 	:  unknown;
 BEGIN
 -- Architecture statement part
  
@@ -16,8 +16,8 @@ BEGIN
   R1 : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 20)
-	PORT MAP (	2 => unnamed_net1,
-			1 => GND);
+	PORT MAP (	1 => GND,
+			2 => unnamed_net1);
  
   A1 : ENTITY options
 	GENERIC MAP (

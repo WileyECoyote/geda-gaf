@@ -17,7 +17,7 @@ module \not found  (
 /* Wires from the design */
 wire SING_N_2 ;
 wire GND ;
-wire Vcc ;
+wire VCC ;
 wire SING_N ;
 
 /* continuous assignments */
@@ -27,16 +27,16 @@ wire SING_N ;
     .\6  ( SING_N ),
     .\5  ( SING_N ),
     .\4  ( SING_N ),
-    .\14  ( Vcc ),
+    .\14  ( VCC ),
     .\7  ( GND ),
     .\3  ( SING_N_2 ),
     .\1  ( SING_N_2 ),
-    .\14  ( Vcc ),
+    .\14  ( VCC ),
     .\7  ( GND ),
     .\8  ( SING_N ),
     .\10  ( SING_N ),
     .\9  ( SING_N ),
-    .\14  ( Vcc ),
+    .\14  ( VCC ),
     .\7  ( GND )
     );
 

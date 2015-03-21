@@ -9,7 +9,7 @@
 	(units Mil)
 )
 (nets
-	( net "ten"
+	( net "eleven"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -23,7 +23,7 @@
 		(settings_locked "0")
 		(net_group "")
 	)
-	( net "eleven"
+	( net "ten"
 		(trackwidth "-1.00000000e+000")
 		(trackwidth_max "-1.00000000e+000")
 		(trackwidth_min "-1.00000000e+000")
@@ -165,7 +165,7 @@
 	)
 )
 (components
-	(instance "unknown" "U2"
+	(instance "TO-220" "U2"
 		(device "LM317")
 		(value "LM317")
 		(gateswap "0")
@@ -175,6 +175,14 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
+		(pin "2"
+			(net "eleven")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "2")
+			(gate "")
+		)
 		(pin "1"
 			(net "ten")
 			(pintype "BIDIR")
@@ -189,14 +197,6 @@
 			(gategroup "")
 			(pingroup "")
 			(label "3")
-			(gate "")
-		)
-		(pin "2"
-			(net "eleven")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "2")
 			(gate "")
 		)
 	)
@@ -316,7 +316,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "R2"
+	(instance "0402" "R2"
 		(device "RESISTOR")
 		(value "220")
 		(gateswap "0")
@@ -326,20 +326,20 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "1"
-			(net "ten")
-			(pintype "BIDIR")
-			(gategroup "")
-			(pingroup "")
-			(label "1")
-			(gate "")
-		)
 		(pin "2"
 			(net "eleven")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
 			(label "2")
+			(gate "")
+		)
+		(pin "1"
+			(net "ten")
+			(pintype "BIDIR")
+			(gategroup "")
+			(pingroup "")
+			(label "1")
 			(gate "")
 		)
 	)
@@ -397,7 +397,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "CONN1"
+	(instance "none" "CONN1"
 		(device "MAINS_CONNECTOR")
 		(value "MAINS_CONNECTOR")
 		(gateswap "0")
@@ -432,9 +432,9 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "T1"
-		(device "transformer")
-		(value "transformer")
+	(instance "none" "T1"
+		(device "TRANSFORMER")
+		(value "TRANSFORMER")
 		(gateswap "0")
 		(pinswap "0")
 		(component_space "0.00000000e+000")
@@ -475,7 +475,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "F1"
+	(instance "fuseholder-5mm" "F1"
 		(device "FUSE")
 		(value "FUSE")
 		(gateswap "0")

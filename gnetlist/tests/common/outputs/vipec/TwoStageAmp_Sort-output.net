@@ -10,12 +10,12 @@ CKT
 	RES	0 3 R=100		% RE2
 	RES	11 6 R=3.3K		% RC1
 	error	5 2 3 	% Q2
-	CAP	8 9 C=2.2uF		% C1
+	CAP	7 9 C=2.2uF		% C1
 	error		% A3
 	error		% A2
 	error		% A1
 	error	6 0 	% VCC
-	error	7 0 	% Vinput
+	error	8 0 	% Vinput
 	CAP	0 10 C=1pF		% CE1
 	CAP	5 4 C=2.2uF		% Cout
 	RES	0 4 R=100K		% RL
@@ -23,7 +23,7 @@ CKT
 	RES	0 10 R=100		% RE1
 	RES	0 9 R=2K		% R2
 	RES	9 6 R=28K		% R1
-	RES	7 8 R=10		% R5
+	RES	8 7 R=10		% R5
 	error	11 9 10 	% Q1
 	DEF2P	#<unspecified>  #<unspecified>
 	TERM	50 50

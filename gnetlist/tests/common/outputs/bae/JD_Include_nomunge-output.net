@@ -1,14 +1,14 @@
 LAYOUT board;
 PARTS
     A1 : unknown;
-    Cm : unknown;
-    Cp : unknown;
-    Rlp : unknown;
-    Rlm : unknown;
+    Cm : 0402;
+    Cp : 0402;
+    Rlp : 0402;
+    Rlm : 0402;
     Vdd : none;
     V1 : none;
-    Rt : unknown;
-    Rb : unknown;
+    Rt : 0402;
+    Rb : 0402;
     M1 : unknown;
     X1 : unknown;
 CONNECT

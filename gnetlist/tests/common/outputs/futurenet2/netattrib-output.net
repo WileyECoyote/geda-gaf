@@ -3,7 +3,7 @@ PINLIST,2
 (SYM,1
 DATA,2,F1
 DATA,3,FUSE
-DATA,4,unknown
+DATA,4,fuseholder-5mm
 PIN,,#f,1-1,5,23,2
 PIN,,ONE,1-1,5,23,1
 )

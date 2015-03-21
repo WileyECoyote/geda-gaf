@@ -1,21 +1,21 @@
    ;
-ADD 'C2' unknown@smd-ipc (1 1);
+ADD 'C2' 0402@smd-ipc (1 1);
 VALUE 'C2' '2.2uF';
-ADD 'R4' unknown@smd-ipc (1 1);
+ADD 'R4' 0402@smd-ipc (1 1);
 VALUE 'R4' '2.8K';
-ADD 'R3' unknown@smd-ipc (1 1);
+ADD 'R3' 0402@smd-ipc (1 1);
 VALUE 'R3' '28K';
-ADD 'R8' unknown@smd-ipc (1 1);
+ADD 'R8' 0402@smd-ipc (1 1);
 VALUE 'R8' '1';
-ADD 'CE2' unknown@smd-ipc (1 1);
+ADD 'CE2' 0402@smd-ipc (1 1);
 VALUE 'CE2' '1pF';
-ADD 'RE2' unknown@smd-ipc (1 1);
+ADD 'RE2' 0402@smd-ipc (1 1);
 VALUE 'RE2' '100';
-ADD 'RC1' unknown@smd-ipc (1 1);
+ADD 'RC1' 0402@smd-ipc (1 1);
 VALUE 'RC1' '3.3K';
 ADD 'Q2' unknown@smd-ipc (1 1);
 VALUE 'Q2' 'NPN_TRANSISTOR';
-ADD 'C1' unknown@smd-ipc (1 1);
+ADD 'C1' 0402@smd-ipc (1 1);
 VALUE 'C1' '2.2uF';
 ADD 'A3' unknown@smd-ipc (1 1);
 VALUE 'A3' '.options TEMP=25';
@@ -27,21 +27,21 @@ ADD 'VCC' none@smd-ipc (1 1);
 VALUE 'VCC' 'DC 15V';
 ADD 'Vinput' none@smd-ipc (1 1);
 VALUE 'Vinput' 'DC 1.6V AC 10MV SIN(0 1MV 1KHZ)';
-ADD 'CE1' unknown@smd-ipc (1 1);
+ADD 'CE1' 0402@smd-ipc (1 1);
 VALUE 'CE1' '1pF';
-ADD 'Cout' unknown@smd-ipc (1 1);
+ADD 'Cout' 0402@smd-ipc (1 1);
 VALUE 'Cout' '2.2uF';
-ADD 'RL' unknown@smd-ipc (1 1);
+ADD 'RL' 0402@smd-ipc (1 1);
 VALUE 'RL' '100K';
-ADD 'RC2' unknown@smd-ipc (1 1);
+ADD 'RC2' 0402@smd-ipc (1 1);
 VALUE 'RC2' '1K';
-ADD 'RE1' unknown@smd-ipc (1 1);
+ADD 'RE1' 0402@smd-ipc (1 1);
 VALUE 'RE1' '100';
-ADD 'R2' unknown@smd-ipc (1 1);
+ADD 'R2' 0402@smd-ipc (1 1);
 VALUE 'R2' '2K';
-ADD 'R1' unknown@smd-ipc (1 1);
+ADD 'R1' 0402@smd-ipc (1 1);
 VALUE 'R1' '28K';
-ADD 'R5' unknown@smd-ipc (1 1);
+ADD 'R5' 0402@smd-ipc (1 1);
 VALUE 'R5' '10';
 ADD 'Q1' unknown@smd-ipc (1 1);
 VALUE 'Q1' 'NPN_TRANSISTOR';
@@ -87,13 +87,13 @@ SIGNAL 'VCC'
    'RC2' '2'
    'R1' '2'
 ;
-SIGNAL 'VIN'
-   'Vinput' '1'
-   'R5' '1'
-;
 SIGNAL 'UNNAMED_NET1'
    'C1' '1'
    'R5' '2'
+;
+SIGNAL 'VIN'
+   'Vinput' '1'
+   'R5' '1'
 ;
 SIGNAL 'VBASE1'
    'C1' '2'
