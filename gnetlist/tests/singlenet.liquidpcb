@@ -7,7 +7,7 @@
 		<net name="GND">
 			<netnode component="U100" pin=7 />
 		</net>
-		<net name="Vcc">
+		<net name="VCC">
 			<netnode component="U100" pin=14 />
 		</net>
 		<net name="SINGLE_NET">

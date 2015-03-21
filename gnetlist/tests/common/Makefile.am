@@ -44,8 +44,8 @@ dist-hook: tests.list backends.list
 	  done; \
 	done;
 
-MOSTLYCLEANFILES = core *.log FILE *.ps *~
-CLEANFILES = core *.log FILE *.ps *~
-DISTCLEANFILES = core *.log FILE *.ps *~
+MOSTLYCLEANFILES     = core *.log FILE *.ps *~
+CLEANFILES           = core *.log FILE *.ps *~
+DISTCLEANFILES       = core *.log FILE *.ps *~
 MAINTAINERCLEANFILES = core *.log FILE *.ps *~ Makefile.in
 

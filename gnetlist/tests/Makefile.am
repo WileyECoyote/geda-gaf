@@ -1,8 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
-SUBDIRS = hierarchy hierarchy2 drc2 scripts
-# common
+SUBDIRS = hierarchy hierarchy2 drc2 scripts common
 
 EXTRA_DIST = runtest.sh \
 	     7447.vhdl README amp.spice cascade.sch cascade.cascade \
@@ -26,7 +25,7 @@ GNETLIST=$(builddir)/../src/gnetlist
 
 tests:
 
-notest:
+#notest:
 # cleanup
 	rm -f $(BUILDDIR)/new_*
 	rm -rf $(BUILDDIR)/devfiles
@@ -114,7 +113,7 @@ notest:
 	rm -rf $(BUILDDIR)/devfiles
 	rm -f $(builddir)/gnetlistrc
 
-MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~
-CLEANFILES = new_* core *.log FILE *.ps *~
-DISTCLEANFILES = new_* *.log core FILE *.ps *~
+MOSTLYCLEANFILES     = new_* core *.log FILE *.ps *~
+CLEANFILES           = new_* core *.log FILE *.ps *~
+DISTCLEANFILES       = new_* core *.log FILE *.ps *~
 MAINTAINERCLEANFILES = new_* core *.log FILE *.ps *~ Makefile.in

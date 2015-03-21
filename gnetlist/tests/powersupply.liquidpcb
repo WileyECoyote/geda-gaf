@@ -1,15 +1,15 @@
 <LiquidPCB>
 	<netlist name="Main netlist">
+		<net name="eleven">
+			<netnode component="U2" pin=2 />
+			<netnode component="C4" pin=1 />
+			<netnode component="R2" pin=2 />
+		</net>
 		<net name="ten">
 			<netnode component="U2" pin=1 />
 			<netnode component="R1" pin=2 />
 			<netnode component="C3" pin=1 />
 			<netnode component="R2" pin=1 />
-		</net>
-		<net name="eleven">
-			<netnode component="U2" pin=2 />
-			<netnode component="C4" pin=1 />
-			<netnode component="R2" pin=2 />
 		</net>
 		<net name="GND">
 			<netnode component="CONN1" pin=3 />

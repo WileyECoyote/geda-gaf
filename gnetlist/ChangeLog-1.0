@@ -1,5 +1,32 @@
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * common/inputs/gafrc: Updated path to symbols.
+
+    * tests/gnetlistrc.orig: Updated path to symbols.
+
+    * Fixed/updated schematics for tests:
+
+        * tests/powersupply.sch
+        * tests/common/inputs/netattrib.sch
+        * tests/common/inputs/powersupply.sch
+
+    * Updated "Golden" results:
+
+        * tests/powersupply.allegro
+        * tests/powersupply.bae
+        * tests/powersupply.geda
+        * tests/powersupply.liquidpcb
+        * tests/powersupply.maxascii
+        * tests/powersupply.pads
+        * tests/powersupply.PCB
+        * tests/powersupply.protelII
+        * tests/powersupply.sch
+        * tests/powersupply.tango
+
+    * tests/runtest.sh: Update directory for GEDADATARC: lib->etc
+
+2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-drc2.scm: Patch gnetlist's drc2 backend to check that
       NoConnection nets don't have connections
 
