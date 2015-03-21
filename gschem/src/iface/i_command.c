@@ -2133,7 +2133,8 @@ COMMAND (do_page_new)
 }
 
 /** @brief i_cmd_do_page_print in i_command_Command_Functions */
-COMMAND (do_page_print) {
+COMMAND (do_page_print)
+{
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   BEGIN_COMMAND(do_page_print);
@@ -2141,43 +2142,13 @@ COMMAND (do_page_print) {
   EXIT_COMMAND(do_page_print);
 }
 
-/** @brief i_cmd_do_revert in i_command_Command_Functions */
-COMMAND (do_page_revert) {
-
+/** @brief i_cmd_do_page_revert in i_command_Command_Functions */
+COMMAND (do_page_revert)
+{
+  NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_page_revert);
 
-  Page *page;
-  char *filename;
-  int page_control;
-  int up;
-  int answer;
-
-  if (Current_Page->CHANGED) {
-    answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
-  }
-  else {
-    answer = GEDA_RESPONSE_YES;
-  }
-
-  if (answer == GEDA_RESPONSE_YES) {
-
-    /* save this for later */
-    filename = u_string_strdup (Current_Page->filename);
-    page_control = Current_Page->page_control;
-    up = Current_Page->up;
-
-    /* delete the page, then re-open the file as a new page */
-    s_page_delete (w_current->toplevel, Current_Page);
-
-    page = x_window_open_page (w_current, filename);
-
-    /* make sure we maintain the hierarchy info */
-    page->page_control = page_control;
-    page->up = up;
-
-    x_window_set_current_page (w_current, page);
-    GEDA_FREE (filename);
-  }
+  i_window_revert_page(w_current);
 
   EXIT_COMMAND(do_page_revert);
 }

@@ -105,26 +105,6 @@ void i_window_close_page (GschemToplevel *w_current)
   i_status_set_state(w_current, SELECT);
 }
 
-/*! \brief Do updates when the Current Page is Changed
- *  \par Function Description
- *  This function calls various functions in order to update the main
- *  window interface and dialogs that are linked to the page selection
- *  and send notifification to SCM hooks that the page has been changed.
- *
- *  \param [in] w_current  The GschemToplevel object
- */
-void i_window_on_page_changed (GschemToplevel *w_current)
-{
-  i_status_update_sensitivities (w_current);
-  i_status_update_title (w_current);
-
-  i_window_set_viewport_size (w_current);
-
-  g_idle_add ((GSourceFunc)i_window_idle_notify_dialogs, w_current);
-
-  g_hook_run_page (w_current, CHANGE_PAGE_HOOK, Current_Page);
-}
-
 /*! \brief get the pointer position of a given GschemToplevel
  *  \par Function Description
  *  This function gets the pointer position of the drawing area of the
@@ -163,6 +143,123 @@ bool i_window_get_pointer_position (GschemToplevel *w_current,
   *wy = y;
 
   return TRUE;
+}
+
+/*! \brief Do updates when the Current Page is Changed
+ *  \par Function Description
+ *  This function calls various functions in order to update the main
+ *  window interface and dialogs that are linked to the page selection
+ *  and send notifification to SCM hooks that the page has been changed.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ */
+void i_window_on_page_changed (GschemToplevel *w_current)
+{
+  i_status_update_sensitivities (w_current);
+  i_status_update_title (w_current);
+
+  i_window_set_viewport_size (w_current);
+
+  g_idle_add ((GSourceFunc)i_window_idle_notify_dialogs, w_current);
+
+  g_hook_run_page (w_current, CHANGE_PAGE_HOOK, Current_Page);
+}
+
+/*! \brief Revert Current Page back to File
+ *  \par Function Description
+ *   Attempts to reload the current page from dish into the current page
+ *   by removing all of the object on the current page and reloading. If
+ *   the file can not be reloaded the function resorts to using the undo
+ *   system to restore the objects that were deleted.
+ *
+ *  \note 1. If the file is not modified, the user is not asked to confirm.
+ *  \note 2. The page does not change position in the page list.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ */
+void i_window_revert_page (GschemToplevel *w_current)
+{
+  Page *page;
+  int   answer;
+
+  page = gschem_toplevel_get_current_page(w_current);
+
+  if (page && page->CHANGED) {
+    answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, FALSE);
+  }
+  else {
+    answer = GEDA_RESPONSE_YES;
+  }
+
+  if (page && (answer == GEDA_RESPONSE_YES)) {
+
+    GedaToplevel *toplevel;
+    GError       *err;
+
+    char *filename;
+    int   page_control;
+    int   up;
+
+    err          = NULL;
+    toplevel     = gschem_toplevel_get_geda_toplevel(w_current);
+
+    /* save these for later */
+    filename     = page->filename;
+    page_control = page->page_control;
+    up           = page->up;
+
+    /* Just in case */
+    o_undo_savestate(w_current, UNDO_ALL);
+
+    geda_notify_list_freeze (page->change_notify_funcs);
+
+    i_event_block_handler (w_current, EXPOSE_EVENT_HANDLER);
+
+    /* Clear the selection list Note the we do not use o_select_unselect_all
+     * here because all of the object are soon to be wiped-out */
+    geda_list_remove_all(Top_Selection);
+
+    s_place_free_place_list (toplevel);
+
+    s_page_delete_objects (page);
+
+    toplevel->open_flags = F_OPEN_RESTORE_CWD;
+
+    page->filename = NULL;
+
+    if (f_open(toplevel, page, filename, &err)) {
+
+    /* make sure we maintain the hierarchy info */
+      page->page_control    = page_control;
+      page->up              = up;
+
+      page->CHANGED  = FALSE;
+      GEDA_FREE (filename);
+    }
+    else {
+
+      const char *disk_err_msg;
+
+      disk_err_msg = _("An error occurred during a File Revert operation: %s.");
+
+      char *errmsg = u_string_sprintf (disk_err_msg, err->message);
+      titled_pango_error_dialog(_("<b>File error.</b>"), errmsg, _("Revert failed"));
+      GEDA_FREE(errmsg);
+      g_error_free(err);
+
+      /* Put the file name back */
+      page->filename = filename;
+
+      u_log_message(_("Error encountered during file operation <%s>\n"), filename);
+      u_log_message(_("Recovery: do fall-back\n"));
+
+      /* Do error recovery */
+      o_undo_callback(w_current, UNDO_ACTION);
+    }
+    x_window_set_current_page (w_current, page);
+    i_event_unblock_handler (w_current, EXPOSE_EVENT_HANDLER);
+    geda_notify_list_thaw (page->change_notify_funcs);
+  }
 }
 
 /*! \brief Set Pointer Position Relative to the Drawing Area
@@ -231,7 +328,7 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
  *  \param [in] w_current  The GschemToplevel object
  *  \param [in] scope      Boolean flag, TRUE for inherited
  */
-void i_window_show_attributes(GschemToplevel *w_current, int scope)
+void i_window_show_attributes (GschemToplevel *w_current, int scope)
 {
   GList *object_list;
   bool   show_status;

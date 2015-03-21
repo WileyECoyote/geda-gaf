@@ -457,8 +457,8 @@ enum {
      COMMAND ( PAGE_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)
      COMMAND ( PAGE_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
      COMMAND ( PAGE_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
-     COMMAND ( PAGE_REVERT,         "revert",           USE_MAIN_LOOP,          do_page_revert)
-     COMMAND ( PAGE_CLOSE,          "close",            USE_WORKER_THREAD,          do_page_close)
+     COMMAND ( PAGE_REVERT,         "revert",           USE_WORKER_THREAD,      do_page_revert)
+     COMMAND ( PAGE_CLOSE,          "close",            USE_WORKER_THREAD,      do_page_close)
      COMMAND ( PAGE_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
 
      COMMAND ( DOWN_SCHEMATIC,      "hierarchy down",   USE_WORKER_THREAD,      do_down_schematic)

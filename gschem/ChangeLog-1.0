@@ -1,5 +1,16 @@
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * iface/i_window.c: Add function i_window_revert_page; a slightly more
+      sophisticated reloader. Function reloads the page contents from file
+      rather than destroying page object and reloading new page and this
+      allows revert to stay in the same index position - a major annoyance
+      with the old routines, also saves undo state and can recovery the
+      current page if the file can not be reloaded and does not request
+      confirmation to reload an unmodified page, uses i_event_block_handler
+      to hide blank page when file can not be reloaded and speeds up reloads.
+
+2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancment: Use Accessors functions
 
     * src/object/o_edit.c: Modify functions o_edit_lock and o_edit_unlock to
