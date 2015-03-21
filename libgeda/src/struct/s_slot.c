@@ -119,7 +119,7 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
  *
  *  TODO: If old symbol has slot def and the slot has been set, and
  *  replacement does not then "Did not find slotdef" error message
- *  below shows up in the log. if this occurs, the should check if
+ *  below shows up in the log. if this occurs, then should check if
  *  "numslot=0", in which case the call should remove "slotdef"
  *   attribute.
  */
@@ -162,7 +162,10 @@ void s_slot_update_object (Object *object)
 
   if (slotdef == NULL) {
     if (slot_string) /* only an error if there's a slot string */
-      u_log_message (_("Did not find slotdef=#:#,#,#... attribute\n"));
+
+      /* Note: slot_string is base Zero, tell user about missing slotdef */
+      u_log_message (_("Did not find slotdef=#:#,#,# attribute for slot <%d>\n"),
+                        slot_string + 1);
     return;
   }
 
