@@ -1,5 +1,14 @@
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * symbols/asic: Merge asic and asicpads from Master branch to asic
+      directory. Not sure how useful - other than a couple are mangled
+      gnetlist backend tests, which fail without them and I don't have
+      time to straighten out.
+
+    * symbols/geda-clib.scm: Add asic directory to library path.
+
+2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/electrolytic: Retry electrolytics: replace -1's, overhaul rest.
 
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
