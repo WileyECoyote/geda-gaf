@@ -1,4 +1,4 @@
-v 20140915 1
+v 20150101 2
 P 100 24100 400 24100 1 0 0
 {
 T 300 24150 5 8 1 1 0 6 1
@@ -1544,19 +1544,21 @@ T 8800 24500 8 10 1 1 0 6 1
 refdes=U?
 T 400 24500 9 10 1 0 0 0 1
 TM4C1292NCZAD
-T 400 24700 5 10 0 0 0 0 1
-device=TM4C1292NCZAD
 T 400 24900 5 10 0 0 0 0 1
+device=TM4C1292NCZAD
+T 400 24700 5 10 0 0 0 0 1
 footprint=212BGA
-T 400 25100 5 10 0 0 0 0 1
-author=AutoTron
-T 400 25300 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TM4C1292NCZAD/
-T 400 25500 5 10 0 0 0 0 1
-description=Tiva C Series Microcontroller
-T 400 25700 5 10 0 0 0 0 1
-numslots=0
 T 400 25900 5 10 0 0 0 0 1
+author=AutoTron
+T 400 25100 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/TM4C1292NCZAD/
+T 400 25300 5 10 0 0 0 0 1
+description=Tiva C Series Microcontroller
+T 2000 24700 5 10 0 0 0 0 1
+numslots=0
+T 400 25700 5 10 0 0 0 0 1
 dist-license=GPL3
-T 400 26100 5 10 0 0 0 0 1
+T 400 25500 5 10 0 0 0 0 1
 use-license=unlimited
+T 2000 24500 9 10 0 0 0 0 1
+symversion=0.2

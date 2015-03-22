@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150101 2
 P 100 13600 400 13600 1 0 0
 {
 T 300 13650 5 8 1 1 0 6 1
@@ -413,7 +413,7 @@ pinnumber=M17
 T 5300 12950 5 8 0 1 0 2 1
 pinseq=38
 T 5150 13000 9 8 1 1 0 6 1
-pinlabel=HIB
+pinlabel=\_HIB\_
 T 5150 13000 5 8 0 1 0 8 1
 pintype=out
 }
@@ -424,7 +424,7 @@ pinnumber=U18
 T 5300 12650 5 8 0 1 0 2 1
 pinseq=39
 T 5150 12700 9 8 1 1 0 6 1
-pinlabel=WAKE
+pinlabel=\_WAKE\_
 T 5150 12700 5 8 0 1 0 8 1
 pintype=in
 }
@@ -796,19 +796,21 @@ T 5200 14000 8 10 1 1 0 6 1
 refdes=U?
 T 400 14000 9 10 1 0 0 0 1
 TM4C1292NCZAD
-T 400 14200 5 10 0 0 0 0 1
-device=TM4C1292NCZAD
 T 400 14400 5 10 0 0 0 0 1
+device=TM4C1292NCZAD
+T 400 14200 5 10 0 0 0 0 1
 footprint=212BGA
-T 400 14600 5 10 0 0 0 0 1
-author=AutoTron
-T 400 14800 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TM4C1292NCZAD/
-T 400 15000 5 10 0 0 0 0 1
-description=Tiva C Series Microcontroller
-T 400 15200 5 10 0 0 0 0 1
-numslots=0
 T 400 15400 5 10 0 0 0 0 1
+author=AutoTron
+T 400 14600 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/TM4C1292NCZAD/
+T 400 14800 5 10 0 0 0 0 1
+description=Tiva C Series Microcontroller
+T 2000 14200 5 10 0 0 0 0 1
+numslots=0
+T 400 15200 5 10 0 0 0 0 1
 dist-license=GPL3
-T 400 15600 5 10 0 0 0 0 1
+T 400 15000 5 10 0 0 0 0 1
 use-license=unlimited
+T 2000 14000 9 10 0 0 0 0 1
+symversion=0.2

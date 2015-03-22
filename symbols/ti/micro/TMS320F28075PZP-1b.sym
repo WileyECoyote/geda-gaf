@@ -1,4 +1,4 @@
-v 20150204 1
+v 20150315 2
 P 100 11200 400 11200 1 0 0
 {
 T 300 11250 5 8 1 1 0 6 1
@@ -642,19 +642,21 @@ T 8800 11600 8 10 1 1 0 6 1
 refdes=U?
 T 400 11600 9 10 1 0 0 0 1
 TMS320F27075PZP
-T 400 11800 5 10 0 0 0 0 1
-device=TMS320F27075PZP
 T 400 12000 5 10 0 0 0 0 1
+device=TMS320F27075PZP
+T 400 11800 5 10 0 0 0 0 1
 footprint=TQFP-100
-T 400 12200 5 10 0 0 0 0 1
-author=AutoTron
-T 400 12400 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TMS320F27075/
-T 400 12600 5 10 0 0 0 0 1
-description=Piccolo Microcontroller
-T 400 12800 5 10 0 0 0 0 1
-numslots=0
 T 400 13000 5 10 0 0 0 0 1
+author=AutoTron
+T 400 12200 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/TMS320F27075/
+T 400 12400 5 10 0 0 0 0 1
+description=Piccolo Microcontroller
+T 2200 11800 5 10 0 0 0 0 1
+numslots=0
+T 400 12800 5 10 0 0 0 0 1
 dist-license=GPL3
-T 400 13200 5 10 0 0 0 0 1
+T 400 12600 5 10 0 0 0 0 1
 use-license=unlimited
+T 2200 11600 9 10 0 0 0 0 1
+symversion=0.2

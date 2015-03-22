@@ -1,21 +1,19 @@
-v 20140704 2
+v 20150101 2
 B 300 300 4000 13800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 2300 8500 8 10 1 1 0 6 1
+T 2400 8600 8 10 1 1 0 6 1
 refdes=U?
-T 0 14300 5 10 0 1 0 0 1
+T 1600 12800 5 10 0 1 0 0 1
 device=TM4C1292NCPDT
-T 0 14600 5 10 0 0 0 0 1
+T 1600 12600 5 10 0 1 0 0 1
 footprint=TQFP-128-14_EP
-T 0 14800 5 10 0 0 0 0 1
+T 1800 12000 5 10 0 0 0 0 1
 numslots=0
-T 0 15600 5 10 0 0 0 0 1
+T 1400 2100 5 10 0 0 0 0 1
 author=AutoTron
-T 0 15000 5 10 0 0 0 0 1
+T 1000 12400 5 8 0 1 0 0 1
 documentation=http://www.ti.com/product/tm4c1292ncpdt
-T 0 15200 5 10 0 0 0 0 1
+T 1200 13000 5 10 0 1 0 0 1
 description=Tiva C Series Microcontroller
-T 0 15400 5 8 0 0 0 0 1
-dist-license=GPL3
 P 0 13900 300 13900 1 0 0
 {
 T 200 13950 5 8 1 1 0 6 1
@@ -951,7 +949,7 @@ pinnumber=128
 T 4250 6100 9 8 1 1 0 6 1
 pinlabel=PD7/AIN4
 }
-T 1670 8070 8 10 1 1 0 0 1
+T 1570 8370 9 10 1 1 0 0 1
 value=TM4C1292NCPDT
 P 4600 4300 4300 4300 1 0 0
 {
@@ -1404,3 +1402,9 @@ pinnumber=9
 T 3600 350 9 8 1 1 90 0 1
 pinlabel=VREF+
 }
+T 1600 11800 9 10 0 0 0 0 1
+symversion=0.0.3
+T 1400 1900 5 10 0 0 0 0 1
+dist-license=GPL3
+T 1400 1700 5 10 0 0 0 0 1
+use-license=unlimited
