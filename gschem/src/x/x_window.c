@@ -775,12 +775,13 @@ static bool x_window_idle_thread_post_load_file (void *filename)
 Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Page     *old_current, *page;
-  char      untitled[] = "untitled";
-  char      strbuff[MAX_PATH];
-  char     *path;
-  char     *ptr;
-  int       file_err;
+
+  Page *old_current, *page;
+  char  untitled[] = "untitled";
+  char  strbuff[MAX_PATH];
+  char *path;
+  char *ptr;
+  int   file_err;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
@@ -861,6 +862,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
   else {
 
     old_current = toplevel->page_current; /* save fallback point */
+
     if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
       /* An existing filename was passed, see if already loaded */

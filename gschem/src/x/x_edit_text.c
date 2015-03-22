@@ -437,6 +437,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
   rotation_tip      = _TOOLTIP(Rotation);
 
   ThisDialog = w_current->tewindow;
+
   if (!ThisDialog) {
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit Text Properties"),
                                        GTK_WINDOW(w_current->main_window),
