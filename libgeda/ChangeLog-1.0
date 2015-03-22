@@ -1,5 +1,11 @@
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    *  libgeda/prototype.h: Replace soon to be depreciated G_BEGIN_DECLS and
+       G_END_DECLS with BEGIN_DECLS END_DECLS. Ya known, I programed on Windows
+       platform for over 30 and never heard of Microsoft depreciating anything.
+
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
     *  Code Enhancement: Improve log error messages
 
     *  src/struct/s_slot.c: Append slot number for which the slotdef was not

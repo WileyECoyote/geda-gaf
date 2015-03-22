@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /* f_basic.c */
          bool    f_has_active_autosave           (const char   *filename, GError **err);
@@ -244,8 +244,8 @@ G_BEGIN_DECLS
          bool    o_get_nearest_point             (Object *object, int x, int y, int *nx, int *ny);
           int    o_get_num_text_lines            (const char *string);
    const char   *o_get_object_attrib_value       (Object *object, const char *name);
-        GList   *o_get_objects_by_type           (GList *object_list, int type);
-         Page   *o_get_page                      (Object *obj);
+        GList   *o_get_objects_by_type           (GList  *object_list, int type);
+         Page   *o_get_page                      (Object *object);
        Object   *o_get_parent                    (Object *object);
           int    o_get_parent_id                 (Object *object);
          bool    o_get_position                  (Object *object, int *x, int *y);
@@ -650,4 +650,4 @@ const GedaRefDes *u_refdes_get_ieee_designators     (void);
          void     u_refdes_reset                    (Object *object);
          char    *u_refdes_return_numeric           (void *text);
 
-G_END_DECLS
+END_DECLS
