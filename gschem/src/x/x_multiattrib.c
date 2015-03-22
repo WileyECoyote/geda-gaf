@@ -1016,7 +1016,6 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
   Multiattrib    *ThisDialog = (Multiattrib*)user_data;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-  Object         *o_attrib;
   GschemToplevel *w_current;
   bool            new_visibility;
   GedaList       *attr_list;
@@ -1038,7 +1037,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
   a_iter = geda_list_get_glist (attr_list);
   while (a_iter != NULL) {
 
-    o_attrib = (Object *)a_iter->data;
+    Object *o_attrib = (Object *)a_iter->data;
 
     /* Modify the attribute */
     o_invalidate_object     (w_current, o_attrib);
@@ -1077,7 +1076,6 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
   GschemToplevel *w_current;
   GedaList       *attr_list;
   GList          *a_iter;
-  Object         *o_attrib;
   bool            new_name_visibility;
   bool            value_visible;
   int             new_snv;
@@ -1098,8 +1096,8 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
   a_iter = geda_list_get_glist (attr_list);
   while (a_iter != NULL) {
 
-    o_attrib = (Object *)a_iter->data;
-    value_visible = snv_shows_value (o_attrib->show_name_value);
+    Object *o_attrib = (Object *)a_iter->data;
+    value_visible    = snv_shows_value (o_attrib->show_name_value);
 
     /* If we switch off the name visibility, but the value was not
      * previously visible, make it visible now */
