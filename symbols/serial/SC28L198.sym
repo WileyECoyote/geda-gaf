@@ -1,10 +1,8 @@
-v 20150101 2
-T 400 8400 5 10 0 0 0 0 1
+v 20150315 2
+T 400 8200 5 10 0 0 0 0 1
 footprint=PLCC-84
-T 400 8600 5 10 0 0 0 0 1
-pins=84
 B 400 300 7200 7200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 8200 5 10 0 1 0 0 1
+T 400 8000 5 10 0 1 0 0 1
 device=SC28L198
 T 3725 4200 2 10 1 1 0 0 1
 refdes=U?
@@ -934,17 +932,17 @@ pinlabel=RxDa
 T 1025 7525 5 8 0 1 0 0 1
 pintype=in
 }
-T 400 8800 5 10 0 0 0 0 1
+T 400 8800 5 10 0 1 0 0 1
 documentation=http://www.semiconductors.philips.com/acrobat/datasheets/SC28L198_5.pdf
-T 400 9000 5 10 0 0 0 0 1
+T 400 8600 5 10 0 0 0 0 1
 numslots=0
-T 400 9200 5 10 0 0 0 0 1
+T 400 9000 5 10 0 1 0 0 1
 description=Octal UART for 3.3 and 5V supply voltage for 8-bit microcontrollers
-T 400 9800 5 10 0 0 0 0 1
-author=Wojciech Zabolotny wzabATise.pw.edu.pl
 T 400 9600 5 10 0 0 0 0 1
-dist-license=GPL
+author=Wojciech Zabolotny wzabATise.pw.edu.pl
 T 400 9400 5 10 0 0 0 0 1
+dist-license=GPL
+T 400 9200 5 10 0 0 0 0 1
 use-license=unlimited
-T 400 10000 5 10 0 0 0 0 1
-comment=Suggested library: micro
+T 400 8400 3 10 0 0 0 0 1
+symversion=0.2

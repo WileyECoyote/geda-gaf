@@ -1,7 +1,7 @@
-v 20150101 2
+v 20150315 2
 T 2500 5100 8 10 1 1 0 6 1
 refdes=U?
-T 300 5400 5 10 0 1 0 0 1
+T 300 5300 5 10 0 1 0 0 1
 device=FT232RQ
 B 300 300 2200 4700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 2800 2000 2500 2000 1 0 0
@@ -358,15 +358,19 @@ pintype=io
 }
 T 300 5100 9 10 1 0 0 0 1
 FT232RQ
-T 300 5600 5 10 0 0 0 0 1
+T 300 5500 5 10 0 0 0 0 1
 footprint=QFP-32-7
-T 300 5800 5 10 0 0 0 0 1
+T 300 6900 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
-T 300 6000 5 10 0 0 0 0 1
+T 300 6100 5 10 0 1 0 0 1
 documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT232R.pdf
-T 300 6200 5 10 0 0 0 0 1
+T 300 6300 5 10 0 1 0 0 1
 description=FTDA FT232RL USB to UART bridge
-T 300 6400 5 10 0 0 0 0 1
+T 300 6500 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 6600 5 10 0 0 0 0 1
+T 300 6700 5 10 0 0 0 0 1
 use-license=unlimited
+T 300 5700 3 10 0 0 0 0 1
+symversion=0.2
+T 300 5900 3 10 0 0 0 0 1
+numslots=0

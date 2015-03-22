@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150315 2
 L 600 3600 3600 3600 3 0 0 0 -1 -1
 P 900 3900 900 3600 1 0 0
 {
@@ -361,19 +361,23 @@ T 1500 1900 9 10 1 0 0 0 1
 TUSB2046
 T 1600 1700 9 10 1 0 0 0 1
 LQFP32
-T 300 4600 5 10 0 0 0 0 1
-footprint=LQFP-32-7
-T 300 4800 5 10 0 0 0 0 1
-documentation=http://www.ti.com/lit/gpn/tusb2046b
 T 300 4400 5 10 0 0 0 0 1
+footprint=LQFP-32-7
+T 300 4800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/gpn/tusb2046b
+T 300 4600 5 10 0 0 0 0 1
 description=4-Port Full Speed USB Hub
 T 300 4200 5 10 0 1 0 0 1
 device=TUSB2046
 T 2050 2150 8 10 1 1 0 6 1
 refdes=U?
-T 300 5000 5 10 0 0 0 0 1
+T 300 5800 5 10 0 0 0 0 1
 author=David Griffith <davidgriffith@acm.org>
-T 300 5200 5 10 0 0 0 0 1
-dist-license=GPL
 T 300 5400 5 10 0 0 0 0 1
+dist-license=GPL3
+T 300 5600 5 10 0 0 0 0 1
 use-license=unlimited
+T 300 5200 3 10 0 0 0 0 1
+symversion=0.2
+T 300 5000 3 10 0 0 0 0 1
+numslots=0

@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150315 2
 T 300 11600 5 10 0 0 0 0 1
 footprint=PLCC-68
 B 300 300 6000 10800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -780,3 +780,11 @@ pintype=io
 }
 T 300 11800 9 10 0 0 0 0 1
 numslots=0
+T 300 12200 3 10 0 0 0 0 1
+symversion=0.2
+T 300 12400 5 10 0 0 0 0 1
+use-license=unlimited
+T 300 12800 5 10 0 0 0 0 1
+author=AutoTron
+T 300 12600 5 10 0 0 0 0 1
+dist-license=GPL3

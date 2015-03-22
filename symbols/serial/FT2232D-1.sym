@@ -1,15 +1,15 @@
-v 20150101 2
-T 1800 5400 5 10 1 1 0 0 1
+v 20150315 2
+T 400 11100 5 10 0 0 0 0 1
 device=FT2232D
-T 400 11300 5 10 0 0 0 0 1
+T 400 11300 5 10 0 1 0 0 1
 description=USB to Dual Serial Bridge Controller
-T 400 11500 5 10 0 0 0 0 1
+T 400 11500 5 10 0 1 0 0 1
 documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT2232D.pdf
-T 400 12300 5 10 0 0 0 0 1
+T 400 12500 5 10 0 0 0 0 1
 author=Sam Fladung
-T 400 11700 5 10 0 0 0 0 1
+T 400 11700 9 10 0 0 0 0 1
 numslots=0
-T 2100 5700 8 10 1 1 0 0 1
+T 2200 5600 8 10 1 1 0 3 1
 refdes=U?
 B 400 300 3700 10100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 900 0 900 300 1 0 0
@@ -540,9 +540,13 @@ pinnumber=41
 T 100 4900 5 8 0 1 0 6 1
 pinseq=48
 }
-T 400 11900 5 10 0 0 0 0 1
-dist-license=GPL V3
 T 400 12100 5 10 0 0 0 0 1
+dist-license=GPL V3
+T 400 12300 5 10 0 0 0 0 1
 use-license=unlimited
-T 1800 5200 5 10 1 1 0 0 1
+T 2200 5200 5 10 1 1 0 3 1
 footprint=LQFP-48-7
+T 2200 5400 9 10 1 0 0 3 1
+FT2232D
+T 400 11900 3 10 0 0 0 0 1
+symversion=0.2

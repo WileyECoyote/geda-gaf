@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150315 2
 P 2800 2000 2500 2000 1 0 0
 {
 T 2600 2050 5 8 1 1 0 0 1
@@ -312,17 +312,21 @@ T 2500 4800 8 10 1 1 0 6 1
 refdes=U?
 T 300 4800 9 10 1 0 0 0 1
 FT232RL
-T 300 5100 5 10 0 1 0 0 1
+T 300 5200 5 10 0 1 0 0 1
 device=FT232RL
-T 300 5300 5 10 0 0 0 0 1
+T 300 5000 5 10 0 0 0 0 1
 footprint=SSOP28
-T 300 5500 5 10 0 0 0 0 1
+T 300 6600 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
-T 300 5700 5 10 0 0 0 0 1
+T 300 5800 5 10 0 1 0 0 1
 documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT232R.pdf
-T 300 5900 5 10 0 0 0 0 1
+T 300 6000 5 10 0 1 0 0 1
 description=FTDA FT232RL USB to UART bridge
-T 300 6100 5 10 0 0 0 0 1
-dist-license=GPL
-T 300 6300 5 10 0 0 0 0 1
+T 300 6200 5 10 0 0 0 0 1
 use-license=unlimited
+T 300 6400 5 10 0 0 0 0 1
+dist-license=GPL3
+T 300 5400 3 10 0 0 0 0 1
+symversion=0.2
+T 300 5600 3 10 0 0 0 0 1
+numslots=0

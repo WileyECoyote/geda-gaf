@@ -1,25 +1,25 @@
-v 20150101 2
+v 20150315 2
 B 300 300 2200 3600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 250 1100 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 250 2700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 250 700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 700 250 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 250 1500 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 4150 5 10 0 1 0 0 1
+T 300 4350 5 10 0 1 0 0 1
 device=USBN9604-28M
 T 2500 3950 8 10 1 1 0 6 1
 refdes=U?
-T 300 4550 5 10 0 0 0 0 1
+T 300 4150 5 10 0 0 0 0 1
 footprint=SO28
-T 300 5150 5 10 0 0 0 0 1
-description=USB Full Speed Node Controller with Enhanced DMA Support
-T 300 4350 5 10 0 0 0 0 1
-numslots=0
 T 300 5350 5 10 0 0 0 0 1
+description=USB Full Speed Node Controller with Enhanced DMA Support
+T 300 4550 5 10 0 0 0 0 1
+numslots=0
+T 300 5550 5 10 0 0 0 0 1
 author=Alexander Kurz
-T 300 4750 5 10 0 0 0 0 1
+T 300 4950 2 10 0 0 0 0 1
 net=VCC:22
-T 300 4950 5 10 0 0 0 0 1
+T 300 5150 2 10 0 0 0 0 1
 net=GND:21,23
 T 300 3950 9 10 1 0 0 0 1
 USBN9604-28M
@@ -298,3 +298,5 @@ pinlabel=CLKOUT
 T 2450 1300 5 8 0 1 0 8 1
 pintype=out
 }
+T 300 4750 3 10 0 0 0 0 1
+symversion=0.2

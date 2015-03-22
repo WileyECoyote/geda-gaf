@@ -1,3 +1,9 @@
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/all.sym: General cleaning, all serial symbols, some more than
+      other, add attribute symversion=0.2. Previously none of the symbols
+      had a version attribute.
+
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/asic: Merge asic and asicpads from Master branch to asic
@@ -926,7 +932,7 @@
 2015-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/FT2232D-1.sym: Add new symbol Dual USB to serial UART or
-      FIFO interface
+      FIFO interface.
 
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
