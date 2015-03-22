@@ -120,15 +120,12 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Lock an Object
+/*! \brief Lock Selected Objects
  *  \par Function Description
- *  Locks an object by setting the selectable property to FALSE. The
- *  color is also set to the locked_color
- */
-/* This locks the entire selected list.  It does lock components, but does
- * NOT change the color (of primatives of the components) though this cannot
- * be called recursively
+ *  Locks an object by setting the selectable property to FALSE. The color
+ *  is also set to the locked_color. This locks the entire selected list
+ *  including components, but does NOT change the color of primatives of
+ *  the components. This cannot be called recursively.
  */
 void o_edit_lock (GschemToplevel *w_current)
 {
