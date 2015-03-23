@@ -1984,7 +1984,7 @@
 
         (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace"   ,(N_ "Find an attribute"))
         (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"              ,(N_ "Hide selected attribute"))
-        (,(N_ "_Show Specific Text...")  attributes-show-text    #f                       ,(N_ "Show a specific attribute value"))
+        (,(N_ "_Show Specific Text...")  attributes-show-text    #f                       ,(N_ "Show a specific attribute"))
         ("SEPARATOR"                    #f                       #f)
         (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"             ,(N_ "Open the Attibutes Editor Dialog"))
       )
