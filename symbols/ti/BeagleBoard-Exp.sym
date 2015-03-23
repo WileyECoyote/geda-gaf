@@ -2,15 +2,15 @@ v 20150315 2
 B 0 300 2200 5900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2200 6250 8 10 1 1 0 6 1
 refdes=U?
-T 0 6600 5 10 0 0 0 0 1
+T 2500 6100 5 10 0 0 0 0 1
 device=BeagleBoard
-T 0 7750 5 10 0 0 0 0 1
+T 2500 7500 5 10 0 0 0 0 1
 author=rbarlow
-T 0 7000 5 10 0 0 0 0 1
+T 2500 6500 5 10 0 0 0 0 1
 documentation=
-T 0 7400 5 10 0 0 0 0 1
+T 2500 7300 5 10 0 1 0 0 1
 description=BeagleBoard expansion header
-T 0 7600 5 10 0 0 0 0 1
+T 2500 7100 5 10 0 0 0 0 1
 numslots=0
 P 900 0 900 300 1 0 0
 {
@@ -320,9 +320,13 @@ pinnumber=A20
 T 2500 1800 5 8 0 1 0 0 1
 pinseq=20
 }
-T 0 6800 5 10 0 0 0 0 1
+T 2500 6300 5 10 0 0 0 0 1
 footprint=none
 T 1300 100 5 8 0 0 0 0 1
 symversion=0.1
-T 0 7200 5 10 0 0 0 0 1
+T 2500 6700 5 10 0 1 0 0 1
 comment=Not all available mux'd signals shown to reduce clutter
+T 2500 7100 5 10 0 0 0 0 1
+numslots=0
+T 2500 6900 5 10 0 0 0 0 1
+symversion=0.1

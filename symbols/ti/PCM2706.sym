@@ -376,7 +376,7 @@ T 100 4800 5 10 0 0 0 0 1
 documentation=http://focus.ti.com/lit/ds/symlink/pcm2707.pdf
 T 2100 2000 9 10 0 0 0 3 1
 numslots=0
-T 2100 1800 5 8 1 0 0 3 1
+T 2100 1800 5 8 0 0 0 3 1
 symversion=0.1
 T 2100 2200 9 10 1 0 0 3 1
 PCM2706

@@ -46,7 +46,7 @@ pintype=out
 B 300 0 1000 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1250 9 10 0 0 0 0 1
 INA213
-T 100 1700 5 10 0 0 0 0 1
+T 300 2300 5 10 0 0 0 0 1
 device=INA213
 T 1300 1250 8 10 1 1 0 6 1
 refdes=U?
@@ -72,11 +72,11 @@ pinlabel=V+
 T 1225 825 5 8 0 1 0 6 1
 pintype=out
 }
-T 100 1500 5 10 0 0 0 0 1
+T 300 2100 5 10 0 1 0 0 1
 description=High side current sense amplifier
-T 100 2300 5 10 0 0 0 0 1
+T 300 1900 5 10 0 0 0 0 1
 numslots=0
-T 100 1900 5 10 0 0 0 0 1
+T 300 1500 5 10 0 1 0 0 1
 footprint=SC70-6
-T 100 2100 5 10 0 0 0 0 1
+T 300 1700 5 10 0 0 0 0 1
 symversion=0.1
