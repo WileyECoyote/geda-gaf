@@ -1,5 +1,13 @@
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Change footprint attributes from "unknown" to "fuseholder-5mm",
+      at least there is chance...
+
+            * passive/protection/fuse-1.sym
+            * passive/protection/fuse-2.sym
+
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/opamps: Clean and revise symbols, add symbversion attribute:
 
             * ti/opamps/TL064-1.sym
