@@ -95,10 +95,11 @@ void o_copy_cancel(GschemToplevel *w_current)
  */
 void o_copy_end(GschemToplevel *w_current)
 {
-  if (!w_current->SHIFTKEY) {
 
-    int wx = w_current->second_wx;
-    int wy = w_current->second_wy;
+  int wx = w_current->second_wx;
+  int wy = w_current->second_wy;
+
+  if (!w_current->SHIFTKEY) {
 
     o_place_end (w_current, wx, wy, FALSE, NULL, COPY_OBJECTS_HOOK);
 
@@ -106,8 +107,6 @@ void o_copy_end(GschemToplevel *w_current)
   else {
 
     GList *list = NULL;
-    int    wx   = w_current->second_wx;
-    int    wy   = w_current->second_wy;
 
     o_place_end (w_current, wx, wy, FALSE, &list, COPY_OBJECTS_HOOK);
 

@@ -1,5 +1,12 @@
 2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Remove redundent code.
+
+    * src/object/o_copy.c: Eliminate declaration and setting of the same
+      variable in both branches of the same conditional.
+
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * New Feature: Complete Offset Implementation;
 
     * src/object/o_edit.c: Completed the "non-hot" offset operation, which
@@ -44,7 +51,7 @@
 
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Use Accessors functions
+    * Code Enhancement: Use Accessors functions
 
     * src/object/o_edit.c: Modify functions o_edit_lock and o_edit_unlock to
       use gschem_toplevel_get_geda_toplevel and gschem_toplevel_get_current_
@@ -52,14 +59,14 @@
 
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Add Accessors functions
+    * Code Enhancement: Add Accessors functions
 
     * src/base/gschem_toplevel.c: Add functions gschem_toplevel_get_current
       _page and gschem_toplevel_get_geda_toplevel.
 
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Consolidate Page Closing
+    * Code Enhancement: Consolidate Page Closing
 
     * include/i_command.h: Change i_cmd_do_page_close to worker thread.
 
@@ -74,7 +81,7 @@
 
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Make starting Edit-Text Dialog more flexible.
+    * Code Enhancement: Make starting Edit-Text Dialog more flexible.
 
     * src/iface/i_command.c: Revised function i_cmd_do_edit_text to launch
       the text dialog if at least one text object is selected, previous the
@@ -85,7 +92,7 @@
 
 2015-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Fix startup errors when sessions on command line fails
+    * Code Enhancement: Fix startup errors when sessions on command line fails
       to successfully open any documents.
 
     * gschem/src/base/gschem.c: Add comment for non-expanded wild-card, removed
@@ -105,7 +112,7 @@
 
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Fix Component No-Place BUG
+    * Code Enhancement: Fix Component No-Place BUG
 
     * src/x/x_compselect.c: There seems no go reason to call o_redraw_
       cleanstates in close response, this cancels Move, which undoes the
@@ -114,7 +121,7 @@
 
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Fix Hook BUG
+    * Code Enhancement: Fix Hook BUG
 
     * src/guile/g_hook.c: If the third time is a charm, whats the forth?
       seg-faulting in g_hook_idle_run_object_list, contents of list was
@@ -132,7 +139,7 @@
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Improve Logistics
+    * Code Enhancement: Improve Logistics
 
     * Move calling of changed page hook from action handlers to interface
       updater.
@@ -145,7 +152,7 @@
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Reorganize code structure, add new module
+    * Code Enhancement: Reorganize code structure, add new module
 
     * src/iface/i_event.c: New module with code to setup event handlers
       from the x_window module. Moved structure outside of function and
@@ -160,7 +167,7 @@
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Use consistence naming for enumerated types.
+    * Code Enhancement: Use consistence naming for enumerated types.
 
     * include/globals.h: Rename EFL_SELECTION_MODE (I can not remember
       what the L was for) to EID_SELECTION_MODE and removed prefix from
@@ -173,13 +180,13 @@
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Add Selection Getter to GschemDialog
+    * Code Enhancement: Add Selection Getter to GschemDialog
 
     * src/base/gschem_dialog.c: Add function gschem_dialog_get_selected.
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Fix Systemic Logistical Flaw
+    * Code Enhancement: Fix Systemic Logistical Flaw
 
     * Do not disconnect Selection Tracker when dialog Unmaped
 
@@ -188,7 +195,7 @@
 
 2015-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Fix Systemic Logistical Flaw
+    * Code Enhancement: Fix Systemic Logistical Flaw
 
     * Do not assume that all that is placed should be undone
 
@@ -207,7 +214,7 @@
 
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Restructure SCM Hook System
+    * Code Enhancement: Restructure SCM Hook System
 
     * Expand SCM API (Hooks)
 
@@ -224,7 +231,7 @@
 
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Restructure SCM Hook System
+    * Code Enhancement: Restructure SCM Hook System
 
     * Implement SCM Hook Enumeration
 
@@ -312,7 +319,7 @@
 
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Restructure SCM Hook System
+    * Code Enhancement: Restructure SCM Hook System
 
     * Enumerate SCM Hook Identifiers
 
@@ -379,7 +386,7 @@
 
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Restructure SCM Hook System
+    * Code Enhancement: Restructure SCM Hook System
 
     * gschem/src/guile/g_hook.c: Use union inside st_idle_hook_data
       structure and identify with enumerated EID_HOOK_TYPE.
@@ -409,7 +416,7 @@
 
 2015-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancment: Restructure SCM Hook System
+    * Code Enhancement: Restructure SCM Hook System
 
     * Run Hooks in idle main context
 
