@@ -2722,7 +2722,7 @@ void GatherSettings(GschemToplevel *w_current) {
   if (tmp_int != w_current->drawing_pointer) {
     int pointer_id = DrawingCursorsInt[tmp_int];   /* get the cursor id from our table */
     w_current->drawing_pointer = tmp_int;      /* Save the index with table offset factor*/
-    x_window_set_cursor(w_current, pointer_id);
+    i_window_set_cursor(w_current, pointer_id);
   }
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (ColorMapSchemeCombo));

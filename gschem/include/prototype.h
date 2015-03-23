@@ -344,6 +344,8 @@ void       i_window_close_page              (GschemToplevel *w_current);
 bool       i_window_get_pointer_position    (GschemToplevel *w_current, bool snapped, int *wx, int *wy);
 void       i_window_on_page_changed         (GschemToplevel *w_current);
 void       i_window_revert_page             (GschemToplevel *w_current);
+void       i_window_set_cursor              (GschemToplevel *w_current, int cursor_id);
+void       i_window_set_grid_type           (GschemToplevel *w_current);
 void       i_window_set_pointer_position    (GschemToplevel *w_current, int wx, int wy);
 void       i_window_set_viewport_size       (GschemToplevel *w_current);
 void       i_window_show_attributes         (GschemToplevel *w_current, int scope);

@@ -147,12 +147,12 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   switch (response) {
     case GEDA_RESPONSE_APPLY:
       GatherSettings (w_current);
-      x_window_set_grid_type (w_current);
+      i_window_set_grid_type (w_current);
       generate_rc(w_current, "gschemrc");
       break;
     case GEDA_RESPONSE_OK:
       GatherSettings (w_current);
-      x_window_set_grid_type (w_current);
+      i_window_set_grid_type (w_current);
     case GEDA_RESPONSE_DELETE_EVENT:
     case GEDA_RESPONSE_CANCEL:
       /* void */

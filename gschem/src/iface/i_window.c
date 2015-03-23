@@ -262,6 +262,34 @@ void i_window_revert_page (GschemToplevel *w_current)
   }
 }
 
+void i_window_set_cursor(GschemToplevel *w_current, int cursor_id)
+{
+
+  GdkWindow *draw_window;
+
+  draw_window = gtk_widget_get_window(DrawingArea);
+
+  if(draw_window){
+    if (w_current->cursor) {
+      gdk_window_set_cursor(draw_window, NULL);
+      if (w_current->cursor->ref_count > 0) {
+        gdk_cursor_destroy(w_current->cursor);
+      }
+    }
+
+    if (cursor_id >= 0) {
+      w_current->cursor = gdk_cursor_new (cursor_id);
+      gdk_window_set_cursor (draw_window, w_current->cursor);
+    }
+  }
+}
+
+void i_window_set_grid_type (GschemToplevel *w_current)
+{
+  x_grid_configure_variables (w_current);
+  x_toolbars_set_grid_radio (w_current);
+}
+
 /*! \brief Set Pointer Position Relative to the Drawing Area
  *  \par Function Description
  *   This function sets the pointer position to relative

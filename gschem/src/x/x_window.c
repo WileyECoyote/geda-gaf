@@ -77,7 +77,7 @@ void x_window_setup (GschemToplevel *w_current)
 
   x_window_restore_settings (w_current);
 
-  x_window_set_grid_type (w_current);
+  i_window_set_grid_type (w_current);
 
   x_draw_initialize(w_current);
 
@@ -357,7 +357,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
-  x_window_set_cursor(w_current, pointer_id);
+  i_window_set_cursor(w_current, pointer_id);
 
 }
 
@@ -1211,34 +1211,6 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
   else {
     BUG_MSG("page should not be NULL");
   }
-}
-
-void x_window_set_cursor(GschemToplevel *w_current, int cursor_id)
-{
-
-  GdkWindow *draw_window;
-
-  draw_window = gtk_widget_get_window(DrawingArea);
-
-  if(draw_window){
-    if (w_current->cursor) {
-      gdk_window_set_cursor(draw_window, NULL);
-      if (w_current->cursor->ref_count > 0) {
-        gdk_cursor_destroy(w_current->cursor);
-      }
-    }
-
-    if (cursor_id >= 0) {
-      w_current->cursor = gdk_cursor_new (cursor_id);
-      gdk_window_set_cursor (draw_window, w_current->cursor);
-    }
-  }
-}
-
-void x_window_set_grid_type (GschemToplevel *w_current)
-{
-  x_grid_configure_variables (w_current);
-  x_toolbars_set_grid_radio (w_current);
 }
 
 /*! \brief Set filename as gschem window title

@@ -1,3 +1,19 @@
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Source Code Organization
+
+    * src/iface/i_window.c: Relocate function x_window_set_cursor and
+      x_window_set_grid_type to i_window modules as i_window_set_cursor
+      and i_window_set_grid_type to downsize x_window a bit and I think
+      i_windows is better fit for this two functions.
+
+2015-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Introduce action Offset; selected objects are copied to
+      to the current point postion.
+
+    * src/object/o_edit.c: Implement new "offset" feature; selected objects
+
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * iface/i_window.c: Add function i_window_revert_page; a slightly more
