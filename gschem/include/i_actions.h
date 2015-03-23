@@ -84,6 +84,7 @@
 #define EDIT_MCOPY       edit-mcopy
 #define EDIT_MIRROR      edit-mirror
 #define EDIT_MOVE        edit-move
+#define EDIT_OFFSET      edit-offset
 #define EDIT_ROTATE      edit-rotate
 #define EDIT_SNAP        edit-snap
 #define EDIT_BREAK       edit-break

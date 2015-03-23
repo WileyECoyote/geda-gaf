@@ -216,6 +216,39 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
   w_current->inside_action = FALSE;
 }
 
+void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
+{
+  if (list == NULL) {
+    i_status_set_state(w_current, SELECT);
+  }
+  else {
+
+    int left, right, top, bottom;
+
+    if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+      /* Save the bottom left corner to data structure */
+      w_current->first_wx = left;
+      w_current->first_wy = bottom > top ? top : bottom;
+    }
+
+    s_place_set_place_list(w_current->toplevel, list);
+
+    w_current->inside_action = TRUE;
+
+    w_current->second_wx = x;
+    w_current->second_wy = y;
+    o_place_end (w_current, x, y, TRUE, NULL, 0);
+
+    o_invalidate_glist (w_current, list);
+
+    /* Run copy-objects-hook */
+    g_hook_run_object_list (w_current, COPY_OBJECTS_HOOK, list);
+
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
+  w_current->inside_action = FALSE;
+}
+
 /*! \brief Rotate all objects in list.
  *  \par Function Description
  *  Given an object <B>list</B>, and the center of rotation

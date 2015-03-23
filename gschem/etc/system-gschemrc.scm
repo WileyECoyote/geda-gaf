@@ -1590,6 +1590,7 @@
 (map-keys "E N"        "edit-snap")
 (map-keys "E P"        "edit-extend")
 (map-keys "E R"        "edit-rotate")
+(map-keys "E O"        "edit-offset")
 (map-keys "E I"        "edit-mirror")
 (map-keys "E <Shift>C" "edit-color")
 (map-keys "E <Shift>P" "edit-pintype")
@@ -1807,11 +1808,12 @@
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "Copy")               edit-copy              "geda-copy"        ,(N_ "Copy selection"))
-        (,(N_ "Multiple Copy")      edit-mcopy             "geda-multi"       ,(N_ "Make Multible Copies of selection"))
+        (,(N_ "Multiple Copy")      edit-mcopy             "geda-multi"       ,(N_ "Make multible copies of selection"))
         (,(N_ "Mirror")             edit-mirror            "geda-mirror"      ,(N_ "Mirror an object about a point"))
-        (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move Selection"))
+        (,(N_ "Move")               edit-move              "geda-move"        ,(N_ "Move selection"))
+        (,(N_ "Offset")             edit-offset            #f                 ,(N_ "Offset the selected objects"))
         (,(N_ "Rotate 90")          edit-rotate            "geda-rotate"      ,(N_ "Rotate the current selection about a point"))
-        (,(N_ "Snap to grid")       edit-snap              "geda-snap"        ,(N_ "Snap Selection to grid to current grid"))
+        (,(N_ "Snap to grid")       edit-snap              "geda-snap"        ,(N_ "Snap selection to grid to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break Linear object into seperate objects"))

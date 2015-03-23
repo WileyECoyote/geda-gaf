@@ -1366,6 +1366,41 @@ COMMAND (do_extend)
   EXIT_COMMAND(do_extend);
 }
 
+/*! \brief Offset selected objects
+ *
+ *  @brief i_cmd_do_offset in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  Create a copy of selected objects at offset to pointer position.
+ *
+ */
+COMMAND (do_offset)
+{
+  BEGIN_W_COMMAND(do_offset);
+
+  if (!w_current->inside_action) {
+
+    int state;
+
+    o_redraw_cleanstates(w_current);
+
+    if HOT_ACTION (do_offset) {
+
+      GList *object_list = geda_list_get_glist (Current_Selection);
+
+      if (object_list) {
+        o_edit_offset_hot(w_current, CMD_X(do_offset), CMD_Y(do_offset), object_list);
+      }
+
+      state = SELECT;
+    }
+
+    i_status_set_state(w_current, state);
+  }
+
+  EXIT_COMMAND(do_offset);
+}
+
 /*! \brief Action Rotate  in i_command_Edit_Actions
  *
  *  @brief i_cmd_do_rotate
