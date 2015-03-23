@@ -1,4 +1,4 @@
-v 20141031 2
+v 20150315 2
 P 100 3100 400 3100 1 0 0
 {
 T 300 3150 5 8 1 1 0 6 1
@@ -352,23 +352,23 @@ T 3500 3650 5 8 0 1 90 8 1
 pintype=out
 }
 B 400 400 4000 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 4400 3800 8 10 1 1 0 6 1
+T 2300 2100 8 10 1 1 0 3 1
 refdes=U?
-T 2000 2050 5 10 1 1 0 0 1
+T 300 5000 5 10 0 0 0 0 1
 device=BQ40z50
-T 200 4150 5 10 0 0 0 0 1
+T 2300 1700 9 10 0 1 0 3 1
 footprint=S-PVQFN-N32
-T 200 5350 5 10 0 0 0 0 1
+T 300 5600 5 10 0 0 0 0 1
 author=AutoTron
-T 200 4350 5 10 0 0 0 0 1
+T 300 4600 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/bq20z45-r1
-T 200 4550 5 10 0 0 0 0 1
+T 300 4800 5 10 0 1 0 0 1
 description=Battery Level Gauge and Protection Enabled With Impedance Track
-T 200 4750 5 10 0 0 0 0 1
+T 300 4400 5 10 0 0 0 0 1
 numslots=0
-T 200 4950 5 10 0 0 0 0 1
+T 300 5200 5 10 0 0 0 0 1
 dist-license=GPL3
-T 200 5150 5 10 0 0 0 0 1
+T 300 5400 5 10 0 0 0 0 1
 use-license=unlimited
 P 1000 100 1000 400 1 0 0
 {
@@ -381,3 +381,7 @@ pinlabel=PPAD
 T 1000 450 5 8 0 1 90 2 1
 pintype=pwr
 }
+T 300 4200 5 10 0 0 0 0 1
+symversion=0.1
+T 2300 1900 8 10 1 1 0 3 1
+value=BQ40z50
