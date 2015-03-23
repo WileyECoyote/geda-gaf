@@ -1,21 +1,21 @@
-v 20141031 2
-T 1000 1550 5 10 1 1 0 0 1
-device=TPS55340
-T 2600 2900 8 10 1 1 0 0 1
-refdes=U?
-T 2600 2675 5 10 1 1 0 0 1
-footprint=QFN-16-3
-T 300 4600 5 10 0 0 0 0 1
-author=AutoTron
-T 300 3800 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TPS55340
-T 300 3600 5 10 0 0 0 0 1
-description=Integrated 5-A, 40-V Boost/SEPIC/Flyback DC-DC Regulator
-T 300 4000 5 10 0 0 0 0 1
-numslots=0
-T 300 4400 5 10 0 0 0 0 1
-dist-license=GPLv3
+v 20150315 2
 T 300 4200 5 10 0 0 0 0 1
+device=TPS55340
+T 2600 3100 8 10 1 1 0 0 1
+refdes=U?
+T 2600 2675 9 10 1 1 0 0 1
+footprint=QFN-16-3
+T 300 4800 5 10 0 0 0 0 1
+author=AutoTron
+T 300 3800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/TPS55340
+T 300 4000 5 10 0 1 0 0 1
+description=Integrated 5-A, 40-V Boost/SEPIC/Flyback DC-DC Regulator
+T 300 3600 5 10 0 0 0 0 1
+numslots=0
+T 300 4600 5 10 0 0 0 0 1
+dist-license=GPLv3
+T 300 4400 5 10 0 0 0 0 1
 use-license=unlimited
 B 300 300 2200 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 2100 300 2100 1 0 0
@@ -79,7 +79,7 @@ T 1150 100 5 8 1 1 0 6 1
 pinnumber=6
 T 1150 100 5 8 0 1 0 6 1
 pinseq=6
-T 1240 365 9 10 1 1 90 0 1
+T 1250 375 9 10 1 1 90 0 1
 pinlabel=AGND
 T 1350 25 5 8 0 1 90 0 1
 pintype=pwr
@@ -130,9 +130,9 @@ pintype=pas
 }
 P 2500 1800 2800 1800 1 0 1
 {
-T 2567 1850 5 8 1 1 0 0 1
+T 2575 1850 5 8 1 1 0 0 1
 pinnumber=11
-T 2567 1850 5 8 0 1 0 0 1
+T 2575 1850 5 8 0 1 0 0 1
 pinseq=11
 T 2450 1800 9 10 1 1 0 7 1
 pinlabel=PGND
@@ -194,3 +194,7 @@ pinlabel=SW
 T 750 3200 5 8 0 1 90 0 1
 pintype=pas
 }
+T 900 1100 5 8 0 0 0 0 1
+symversion=0.1
+T 2600 2900 9 10 1 0 0 0 1
+TPS55340

@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150315 2
 P 1900 3300 1600 3300 1 0 0
 {
 T 1700 3350 5 8 1 1 0 0 1
@@ -178,19 +178,23 @@ pintype=io
 B 400 200 1200 3400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 1600 4100 8 10 1 1 0 6 1
 refdes=U?
-T 1600 3900 5 10 1 1 0 6 1
+T 1700 4300 5 10 0 0 0 0 1
 device=TRS3232E
 T 1600 3700 9 10 1 1 0 6 1
 footprint=TSSOP16
-T 100 4400 5 10 0 0 0 0 1
+T 1700 4900 5 10 0 0 0 0 1
 author=AutoTron
-T 100 4600 5 10 0 0 0 0 1
+T 1700 3900 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/trs3232e-q1/
-T 100 4800 5 10 0 0 0 0 1
+T 1700 4100 5 10 0 1 0 0 1
 description=Multi Channel RS-232 Line Driver/Receiver
-T 100 5000 5 10 0 0 0 0 1
+T 1700 3700 5 10 0 0 0 0 1
 numslots=0
-T 100 5200 5 10 0 0 0 0 1
+T 1700 4500 5 10 0 0 0 0 1
 dist-license=GPL3
-T 100 5400 5 10 0 0 0 0 1
+T 1700 4700 5 10 0 0 0 0 1
 use-license=unlimited
+T 500 300 5 8 0 0 0 0 1
+symversion=0.1
+T 1600 3900 9 10 1 0 0 6 1
+TRSF3232E

@@ -1,5 +1,115 @@
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/opamps: Clean and revise symbols, add symbversion attribute:
+
+            * ti/opamps/TL064-1.sym
+            * ti/opamps/TL064D-1.sym
+            * ti/opamps/TL064M-1.sym
+            * ti/opamps/TL064P-1.sym
+            * ti/opamps/TL074-1.sym
+            * ti/opamps/TL074D-1.sym
+            * ti/opamps/TL074M-1.sym
+            * ti/opamps/TL074P-1.sym
+            * ti/opamps/TL084-1.sym
+            * ti/opamps/TL084D-1.sym
+            * ti/opamps/TL084M-1.sym
+            * ti/opamps/TL084P-1.sym
+
+            * ti/LM5050-2E.sym
+            * ti/LM5050-2D.sym
+            * ti/LM5050-2C.sym
+            * ti/LM5050-2B.sym
+            * ti/LM5050-2A.sym
+            * ti/LM5050-1E.sym
+            * ti/LM5050-1D.sym
+            * ti/LM5050-1C.sym
+            * ti/LM5050-1B.sym
+            * ti/LM5050-1A.sym
+            * ti/LM3840-1.sym
+            * ti/LM3723-2.sym
+            * ti/LM3723-1.sym
+            * ti/LM3722-2.sym
+            * ti/LM3722-1.sym
+            * ti/LM3481-2.sym
+            * ti/LM3481-1.sym
+            * ti/LM2734Z-1.sym
+
+            * ti/TLC556-4.sym
+            * ti/TLC556-3.sym
+            * ti/TLC556-2.sym
+            * ti/TLC556-1.sym
+            * ti/TL7715A-1.sym
+            * ti/TL7712A-1.sym
+            * ti/TL7709A-1.sym
+            * ti/TL7705A-1.sym
+            * ti/TL5001ACD-1.sym
+            * ti/TL494-1.sym
+
+            * ti/TPIC6B595-1.sym
+            * ti/TPIC6C596-1.sym
+            * ti/TPS613X-1.sym
+            * ti/TPS2041-1.sym
+            * ti/TPS2044-1.sym
+            * ti/TPS2110-1.sym
+            * ti/TPS2111-1.sym
+            * ti/TPS2112-1.sym
+            * ti/TPS2113-1.sym
+            * ti/TPS2114-1.sym
+            * ti/TPS2115-1.sym
+            * ti/TPS2115A-1.sym
+            * ti/TPS2115A-2.sym
+            * ti/TPS3895-1.sym
+            * ti/TPS3897-1.sym
+            * ti/TPS54060-1.sym
+            * ti/TPS55340-1.sym
+            * ti/TPS62140-1.sym
+            * ti/TPS62140A-1.sym
+            * ti/TPS62141-1.sym
+            * ti/TPS62142-1.sym
+            * ti/TPS62143-1.sym
+            * ti/TRS3232E-1.sym
+            * ti/TRSF3232E-1.sym
+
+            * ti//ti/battery/BQ20z45-1.sym
+            * ti//ti/battery/BQ20z45-2.sym
+            * ti//ti/battery/BQ20Z45-1.sym
+            * ti//ti/battery/BQ20Z45-2.sym
+            * ti//ti/battery/BQ40z50-1.sym
+            * ti//ti/battery/BQ40z50-2.sym
+            * ti//ti/battery/BQ40Z50-1.sym
+            * ti//ti/battery/BQ40Z50-2.sym
+            * ti//ti/battery/BQ2004-1.sym
+            * ti//ti/battery/BQ24030-1.sym
+            * ti//ti/battery/BQ24210-1.sym
+            * ti//ti/battery/BQ24650-1.sym
+            * ti//ti/battery/BQ24765-1.sym
+            * ti//ti/battery/BQ24765-2.sym
+            * ti//ti/battery/BQ25504-1.sym
+            * ti//ti/battery/BQ27210-1.sym
+            * ti//ti/battery/BQ76920-1.sym
+            * ti//ti/battery/BQ294700-1.sym
+            * ti//ti/battery/BQ294700-2.sym
+            * ti//ti/battery/BQ294701-1.sym
+            * ti//ti/battery/BQ294701-2.sym
+            * ti//ti/battery/BQ294702-1.sym
+            * ti//ti/battery/BQ294702-2.sym
+            * ti//ti/battery/BQ294703-1.sym
+            * ti//ti/battery/BQ294703-2.sym
+            * ti//ti/battery/BQ294704-1.sym
+            * ti//ti/battery/BQ294704-2.sym
+            * ti//ti/battery/BQ294705-1.sym
+            * ti//ti/battery/BQ294705-2.sym
+            * ti//ti/battery/BQ294706-1.sym
+            * ti//ti/battery/BQ294706-2.sym
+            * ti//ti/battery/BQ294707-1.sym
+            * ti//ti/battery/BQ294707-2.sym
+
+            * ti/motor/DRV8301-1.sym
+            * ti/motor/DRV8301-2.sym
+            * ti/motor/DRV8313-1.sym
+
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * regulate/LM317-1.sym: Correct pin numbers and pin sequences.
 
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
@@ -12,14 +122,14 @@
 
     * symbols/asic: Merge asic and asicpads from Master branch to asic
       directory. Not sure how useful - other than a couple are mangled
-      gnetlist backend tests, which fail without them and I don't have
+      gnetlist backend tests, which fail without them and I do not have
       time to straighten out.
 
     * symbols/geda-clib.scm: Add asic directory to library path.
 
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * passive/electrolytic: Retry electrolytics: replace -1's, overhaul rest.
+    * passive/electrolytic: Retry electrolytics: replace -1s, overhaul rest.
 
 2015-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -121,10 +231,10 @@
     * linear/opamps: Renamed the single amps with -3 and -4 to -1 and -2
       respectively. Although all of these were derived from the opamp-3
       and opamp-4 templates because they have bypass or offset pins, having
-      -3's and -4's with no -1 or -2's was confusing (to me, not mention
+      -3s and -4s with no -1 or -2s was confusing (to me, not mention
       the schematic I mangled).
 
-    * ti/opamps: Same as in linear, renamed 3's and 4's to 1's and 2's.
+    * ti/opamps: Same as in linear, renamed 3s and 4s to 1s and 2s.
 
 2015-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -145,7 +255,7 @@
     * linear/opamps: Renamed folder with "s", opamp->opamps, is revert, also
       known as momentary lapse of reason, possibly preliminary signs of dementia.
       Mean time, did the same plain version with modifiers, the LF353N actually
-      triggered all of this, there is no LF353 that I can find, even though I've
+      triggered all of this, there is no LF353 that I can find, even though I`ve
       had LF353 stuck in my head for 31 years it seems there is only LF353N and
       other variants. None the less, added a LF353-1.sym as well as others with
       out the letter because other people could be in the same boat with me, but
@@ -395,7 +505,7 @@
       and ti/battery subdirectories with gitignore files.
 
     * ti/Relocate symbols to new subdirectories appropriately, cleaning
-      many of them and replacing other as the orginal symbols weren't
+      many of them and replacing other as the orginal symbols were not
       worth the time to clean. Since the symbols were relocated Git
       shows them as delete/add and this does reflect the amount of effort
       put into re-working these symbols.
@@ -744,7 +854,7 @@
       you never know, somebody may need these. The models are zipped
       text and do not take up too much space. If we could only embed
       and unembed models in symbols similar to symbols and pictures
-      in schematics. I guess if there is a will, there's a way, but
+      in schematics. I guess if there is a will, there is a way, but
       too little time.
 
 2015-02-01 Wiley E. Hill <wileyhill@gmail.com>
@@ -785,7 +895,7 @@
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamp: Redo many opamp symbols, still need to redo
-      LF's, LM's and TL's.
+      LF`s, LM`s and TL`s.
 
 2015-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1192,7 +1302,7 @@
 
     * Makefile.am: Force do normal install in parallel, there are just
       too many symbols and install.sh is too lame to properly handle
-      -j's, so add a "&" in just the right place in make file to force
+      -j`s, so add a "&" in just the right place in make file to force
       the issue. May not wait for error code, who cares?
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
@@ -1392,7 +1502,7 @@
 
 2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-   * source/*.sym: Much editing, cleaning. Added
+   * source/ *.sym: Much editing, cleaning. Added
 
              1.3V-plus-1.sym
              1.5V-plus-1.sym
@@ -1425,11 +1535,11 @@
 
 2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * sources/*.sym: General cleaning and corrections
+        * sources/ *.sym: General cleaning and corrections
 
 2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * IEC417/*.sym: Added missing attributes
+        * IEC417/ *.sym: Added missing attributes
 
 2014-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1437,7 +1547,7 @@
 
 2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
-        * transistors/*.sym: General cleaning and corrections, added missing
+        * transistors/ *.sym: General cleaning and corrections, added missing
           style-5 for npn-thru
 
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
@@ -1452,7 +1562,7 @@
 
 2013-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/*.sym: Added roughly 10k new symbols.
+        * symbols/ *.sym: Added roughly 10k new symbols.
 
 2013-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1462,7 +1572,7 @@
           main library was showing up on the Local tab of the components
           select dialog.
 
-        * symbols/*.sym: Created new folders arduino, microchip, mitsubishi,
+        * symbols/ *.sym: Created new folders arduino, microchip, mitsubishi,
           emechanic/accelerometer, linear/74A, linear/74h, linear/74L, linear/SN
           linear/power, linear/telphone, and probably some other, in order to
           try and better organize the symbols library -- still a big mess!
@@ -1476,10 +1586,10 @@
           better organize the symbols library, see documentation in the file.
           extensive revisions to symbol listings.
 
-        * symbols/*.sym: Created new folders toshiba with 4 diffent styles of
+        * symbols/ *.sym: Created new folders toshiba with 4 diffent styles of
           symbols for bipolor transistor, totaling 720 new symbols.
 
-        * symbols/transistor/*.sym:  Re-vamp. Most of the symbols were replaced
+        * symbols/transistor/ *.sym:  Re-vamp. Most of the symbols were replaced
           for conformity to new style schemes (yes plural). Most of the new
           replacements are compatiable with old symbol in terms of pin alignment
           but not the file names. Template symbols were also included.
@@ -1489,7 +1599,7 @@
         * symbols/geda-clib.scm: Major changes to source list content.
           Added component-groups.
 
-        * symbols/*: Reorganized directory structure (again).
+        * symbols/ *: Reorganized directory structure (again).
 
 2013-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1499,17 +1609,17 @@
 
 2013-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/*: Created new folders misc_ic, ti, vishay, added more symbols
+        * symbols/ *: Created new folders misc_ic, ti, vishay, added more symbols
           from CVS site. Revised .gitignore to suppress inclusion of doc files
           (maybe not so bad).
 
 2013-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/*: Created new folders Atmel, added more symbols from CVS site.
+        * symbols/ *: Created new folders Atmel, added more symbols from CVS site.
 
 2013-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/*: Created new folders dallas (for old), fairchild, intel, network,
+        * symbols/ *: Created new folders dallas (for old), fairchild, intel, network,
           panasonic.
           Renamed "Cirrus" to "cirrus" for uniformity. Fixed some of the symbols with
           visible pintype attributes (from library repairs 2012-10-22), there maybe
@@ -1526,14 +1636,14 @@
 
 2012-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/Makefile.am: Added ./*/*~ to cleaning list.
-        * symbols/*: removed "comment=" from footprints, pins, and spicetype
+        * symbols/Makefile.am: Added ./ * / *~ to cleaning list.
+        * symbols/ *: removed "comment=" from footprints, pins, and spicetype
           that were add previously to eliminate warnings from gsymcheck, as
           gsymcheck now allows these.
 
 2012-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
-        * symbols/*: Processed and reviewed errors and warnings for virtually
+        * symbols/ *: Processed and reviewed errors and warnings for virtually
           every symbol file, updating the libraries as needed to eliminate
           the errors and warnings by commenting out or removing the offending
           lines. Some incomplete, corrupt, or duplicate symbols were removed.
@@ -1577,7 +1687,7 @@
 	  hungarian charset:
 	    - o and O with double acute accent,
 	    - u and U with double acute accent.
-	  They were contributed by Sztrikó János. Thanks.
+	  They were contributed by Sztrik\F3 J\E1nos. Thanks.
 
 2006-02-10 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -3128,3 +3238,4 @@
 5/28/99	Got this new way of doing symbols finally done
 
 	Update all aux files (AUTHORS/README etc...)
+

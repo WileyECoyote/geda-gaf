@@ -1,16 +1,16 @@
-v 20150101 2
+v 20150315 2
 B 400 100 1500 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 1900 1700 8 10 1 1 0 6 1
 refdes=U?
-T 400 1700 5 10 1 1 0 0 1
+T 100 1900 5 10 0 0 0 0 1
 device=INA202
-T 100 2300 5 10 1 0 0 0 1
+T 100 2700 5 10 0 0 0 0 1
 description=High-side current-shunt monitor
-T 100 3100 5 10 0 0 0 0 1
+T 100 3500 5 10 0 0 0 0 1
 author=Sam Fladung
-T 100 2100 5 10 0 0 0 0 1
-numslots=0
 T 100 2500 5 10 0 0 0 0 1
+numslots=0
+T 100 2900 5 10 0 0 0 0 1
 documentation=http://focus.ti.com/docs/prod/folders/print/ina202.html
 P 100 1300 400 1300 1 0 0
 {
@@ -100,9 +100,13 @@ pinnumber=8
 T 200 1050 5 8 0 1 0 6 1
 pinseq=8
 }
-T 100 2700 5 10 0 0 0 0 1
+T 100 3100 5 10 0 0 0 0 1
 dist-license=GPL V3 or later
-T 100 2900 5 10 0 0 0 0 1
+T 100 3300 5 10 0 0 0 0 1
 use-license=unlimited
-T 100 1900 9 10 0 0 0 0 1
+T 100 2100 9 10 0 0 0 0 1
 footprint=SSOP8
+T 100 2300 5 10 0 0 0 0 1
+symversion=0.1
+T 400 1700 9 10 1 0 0 0 1
+INA202

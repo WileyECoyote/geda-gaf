@@ -159,28 +159,30 @@ pintype=clk
 }
 L 400 2800 300 2875 3 0 0 0 -1 -1
 L 400 2800 300 2725 3 0 0 0 -1 -1
-B 300 0 1400 4000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1700 4100 8 10 1 1 0 6 1
+B 300 100 1400 3800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1700 4000 8 10 1 1 0 6 1
 refdes=U?
-T 300 4100 9 10 1 0 0 0 1
+T 300 4000 9 10 1 0 0 0 1
 TPIC6C596
-T 300 4300 5 10 0 1 0 0 1
+T 300 4300 5 10 0 0 0 0 1
 device=TPIC6C596
 T 300 4500 5 10 0 0 0 0 1
 footprint=DIP16
 T 300 6100 5 10 0 0 0 0 1
 author=Bill Gatliff <bgat@billgatliff.com>
-T 300 4700 5 10 0 0 0 0 1
+T 300 4700 5 10 0 1 0 0 1
 documentation=http://focus.ti.com/docs/prod/folders/print/tpic6c596.html
-T 300 4900 5 10 0 0 0 0 1
+T 300 4900 5 10 0 1 0 0 1
 description=Power Logic 8-Bit Shift Register
-T 300 5100 5 10 0 0 0 0 1
+T 1400 5100 5 10 0 0 0 0 1
 numslots=0
-T 300 5300 5 10 0 0 0 0 1
+T 300 5300 2 10 0 0 0 0 1
 net=VCC:1
-T 300 5500 5 10 0 0 0 0 1
+T 300 5500 2 10 0 0 0 0 1
 net=GND:16
 T 300 5700 5 10 0 0 0 0 1
 dist-license=GPL
 T 300 5900 5 10 0 0 0 0 1
 use-license=unlimited
+T 300 5100 5 8 0 0 0 0 1
+symversion=0.1

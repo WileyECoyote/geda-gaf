@@ -1,22 +1,22 @@
-v 20150101 2
+v 20150315 2
 B 300 0 4000 9600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 2400 4600 8 10 1 1 0 6 1
+T 4300 9700 8 10 1 1 0 6 1
 refdes=U?
-T 300 9675 5 10 1 1 0 0 1
+T 300 10700 5 10 0 0 0 0 1
 device=DRV8301
-T 100 10500 5 10 0 0 0 0 1
+T 300 9900 5 10 0 0 0 0 1
 footprint=HTSSOP-56W
-T 100 9900 5 10 0 0 0 0 1
+T 1600 10100 5 10 0 0 0 0 1
 numslots=0
-T 100 11100 5 10 0 0 0 0 1
+T 300 11300 5 10 0 0 0 0 1
 author=AutoTron
-T 100 10100 5 10 0 0 0 0 1
+T 300 10300 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/drv8301
-T 100 10300 5 10 0 0 0 0 1
+T 300 10500 5 10 0 1 0 0 1
 description=Brushless Motor Driver with integrated LDO
-T 100 10700 5 8 0 0 0 0 1
+T 300 10900 5 10 0 0 0 0 1
 use-license=unlimited
-T 100 10900 5 8 0 0 0 0 1
+T 300 11100 5 10 0 0 0 0 1
 dist-license=GPL3
 P 0 1400 300 1400 1 0 0
 {
@@ -634,7 +634,7 @@ pinlabel=SS_TR
 T 350 1700 5 8 0 1 0 2 1
 pintype=in
 }
-T 2770 4350 9 10 1 1 0 6 1
+T 300 9700 8 10 1 1 0 0 1
 value=DRV8301
 P 0 200 300 200 1 0 0
 {
@@ -647,3 +647,5 @@ pinlabel=PPAD
 T 350 175 5 8 0 1 0 2 1
 pintype=pwr
 }
+T 300 10100 5 10 0 0 0 0 1
+symversion=0.1

@@ -1,15 +1,15 @@
-v 20141031 2
-T 0 4900 5 10 0 0 0 0 1
+v 20150315 2
+T 300 5000 5 10 0 0 0 0 1
 author=Alexey Lukomskiy lucomskyATmail.ru
-T 0 4700 5 10 0 0 0 0 1
+T 300 4800 5 10 0 0 0 0 1
 dist-license=GPL
-T 0 4500 5 10 0 0 0 0 1
+T 300 4600 5 10 0 0 0 0 1
 use-license=unlimited
-T 0 4300 5 10 0 0 0 0 1
+T 300 4200 5 10 0 1 0 0 1
 description=Fast battery charge IC
-T 0 4100 5 10 0 0 0 0 1
+T 1600 3800 5 10 0 0 0 0 1
 numslots=0
-T 0 3900 5 10 0 0 0 0 1
+T 300 4000 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/bq2004
 B 300 0 2100 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 3000 300 3000 1 0 0
@@ -188,9 +188,13 @@ pinlabel=SNS
 T 2700 200 5 8 0 1 0 0 1
 pintype=in
 }
-T 400 3600 9 10 0 1 0 0 1
+T 300 3600 9 10 0 1 0 0 1
 footprint=DIP16
-T 400 3400 5 10 1 1 0 0 1
+T 300 4400 5 10 0 0 0 0 1
 device=BQ2004
-T 2000 3400 8 10 1 1 0 0 1
+T 300 3400 8 10 1 1 0 0 1
+value=BQ2004
+T 300 3800 5 10 0 0 0 0 1
+symversion=0.1
+T 2400 3400 8 10 1 1 0 6 1
 refdes=U?

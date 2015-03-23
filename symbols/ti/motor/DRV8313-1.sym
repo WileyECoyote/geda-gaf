@@ -1,20 +1,20 @@
-v 20150101 2
+v 20150315 2
 B 300 0 2600 6300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1700 3300 8 10 1 1 0 6 1
+T 2900 6400 8 10 1 1 0 6 1
 refdes=U?
-T 300 6400 5 10 1 1 0 0 1
+T 300 7400 5 10 0 0 0 0 1
 device=DRV8313
-T 0 6700 5 10 0 0 0 0 1
+T 300 6600 5 10 0 0 0 0 1
 footprint=HTSSOP-28W
-T 0 6900 5 10 0 0 0 0 1
+T 1600 6800 5 10 0 0 0 0 1
 numslots=0
-T 0 7700 5 10 0 0 0 0 1
+T 300 8000 5 10 0 0 0 0 1
 author=AutoTron
-T 0 7100 5 10 0 0 0 0 1
+T 300 7000 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/drv8313
-T 0 7300 5 10 0 0 0 0 1
+T 300 7200 5 10 0 1 0 0 1
 description=Brushless Motor Driver with integrated LDO
-T 0 7500 5 8 0 0 0 0 1
+T 300 7800 5 10 0 0 0 0 1
 dist-license=GPL3
 P 3200 4700 2900 4700 1 0 0
 {
@@ -324,5 +324,9 @@ pinlabel=GND
 T 350 300 5 8 0 1 0 2 1
 pintype=pwr
 }
-T 1170 2970 8 10 1 1 0 0 1
+T 300 6400 8 10 1 1 0 0 1
 value=DRV8313
+T 300 6800 5 10 0 0 0 0 1
+symversion=0.1
+T 300 7600 5 10 0 0 0 0 1
+use-license=unlimited
