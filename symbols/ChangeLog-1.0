@@ -1,5 +1,17 @@
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Redo some resistors, made length of variables consistence with other
+      passives, use rounded ends (looks better):
+
+            * passive/resistor/pot-1.sym
+            * passive/resistor/pot-2.sym
+            * passive/resistor/pot-bourns.sym
+            * passive/resistor/resistor-1.sym
+            * passive/resistor/resistor-1b.sym
+            * passive/resistor/resistor-variable-1.sym
+
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * Change footprint attributes from "unknown" to "fuseholder-5mm",
       at least there is chance...
 
