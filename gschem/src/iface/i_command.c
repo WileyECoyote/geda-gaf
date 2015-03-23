@@ -1858,7 +1858,7 @@ COMMAND (do_zoom_to_mag)
   x = CMD_X(do_zoom_to_mag);
   y = CMD_Y(do_zoom_to_mag);
 
-  mag = geda_dialog_get_real(_("Zoom Mag"), _("Specify new zoom:"));
+  mag = geda_dialog_get_real(_("Zoom Mag"), _("Specify new zoom:"), 5.0);
 
   if (mag != -0) { /* If user did not cancel */
 

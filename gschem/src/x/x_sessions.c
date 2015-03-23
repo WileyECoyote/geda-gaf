@@ -140,7 +140,7 @@ on_rename_butt_clicked (GtkWidget *button, void *user_data)
         char        *new_name;
 
   new_name = geda_dialog_get_string(_("Rename Session"),
-                                    _("Specify new name for Session:"));
+                                    _("Specify new name for Session:"), NULL);
 
   if (new_name != NULL) { /* If  user did not cancel */
 
@@ -809,7 +809,7 @@ void x_sessions_new_dialog (GschemToplevel *w_current)
   char *name;
 
   name = geda_dialog_get_string(_("New Session"),
-                                _("Specify new name for Session:"));
+                                _("Specify new name for Session:"), NULL);
 
   if (name != NULL) { /* If  user did not cancel */
     i_sessions_new_session (w_current, name);
@@ -832,7 +832,7 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
 {
   char *name;
 
-  name = geda_dialog_get_string(_("Save Session As"), _("Specify new name for Session:"));
+  name = geda_dialog_get_string(_("Save Session As"), _("Specify new name for Session:"), NULL);
 
   if (name != NULL) { /* If  user did not cancel */
     i_sessions_save_session (w_current, name);

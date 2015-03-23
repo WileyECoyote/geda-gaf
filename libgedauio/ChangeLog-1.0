@@ -1,3 +1,10 @@
+2014-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Enhance and Expand API
+
+      * src/dialogs/geda_input_dialog.c: Add optional value for input dialogs,
+        add new function geda_dialog_get_integer.
+
 2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Improve Integration: Standardize Enumerations
