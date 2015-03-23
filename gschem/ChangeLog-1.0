@@ -1,5 +1,22 @@
 2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * New Feature: Complete Offset Implementation;
+
+    * src/object/o_edit.c: Completed the "non-hot" offset operation, which
+      offsets selection a given distance, saving in toplevel as offset, and
+      uses new mode ENDOFFSET, but does not end per se. Only in one case in
+      x_event to trigger on mouse down, only sets inside-action in mouse up
+      so that mouse 3 down will cancel the command. Need to figure out how
+      to do with other events, is God awful mess since going to new "MODE"
+      flags. Anyways, hot offset now unconditionally moves selection to new
+      objects and relocates mouse pointer so that repeatedly pressing "E O"
+      keeps creating new copies in the same direction with the same offset.
+      The non-hot version also move the selection to the new objects if the
+      shift key is held down, but does not move the pointer position, just
+      keep offsetting to whichever side user is pointing until right click.
+
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * Source Code Organization
 
     * src/iface/i_window.c: Relocate function x_window_set_cursor and

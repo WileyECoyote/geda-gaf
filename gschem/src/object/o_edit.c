@@ -216,12 +216,39 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
   w_current->inside_action = FALSE;
 }
 
+/** \defgroup Edit-Offset Implementation for Offset editing operations
+ *  @{
+ *  \par
+ *  The Offset action has two similar but distinct modes of operation. The
+ *  first mode is the "Hot" mode, which must be initiated from the keyboard
+ *  like all other "Hot" actions. The Hot mode copies everything currently
+ *  selected to the current pointer position relative to the bounds of the
+ *  selection and this allows angular offsets.
+ *  In the second mode of operation the user was asked to supply an offset
+ *  distance and is then prompted to select the side to offset, similar to
+ *  mirroring, the selected objects are then copied the supplied distance
+ *  in the chosen direction.
+ *
+ *  This groups is contains the following functions:
+ *
+ *      1. o_edit_offset_hot      called by i_cmd_do_offset
+ *      2. o_edit_set_offset      helper called by o_edit_offset_world
+ *      3. o_edit_offset_world    called by x_event_button_pressed
+*/
+
+/*! \brief Offset selected objects Hot mode
+ *  \par Function Description
+ *  Create a copy of selected objects at the pointer position and offset the
+ *  pointer cursor the same amount.
+ */
 void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 {
   if (list == NULL) {
     i_status_set_state(w_current, SELECT);
   }
   else {
+
+    GList *new_list = NULL;
 
     int left, right, top, bottom;
 
@@ -237,17 +264,140 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     w_current->second_wx = x;
     w_current->second_wy = y;
-    o_place_end (w_current, x, y, TRUE, NULL, 0);
 
-    o_invalidate_glist (w_current, list);
+    o_place_end (w_current, x, y, FALSE, &new_list, COPY_OBJECTS_HOOK);
 
-    /* Run copy-objects-hook */
-    g_hook_run_object_list (w_current, COPY_OBJECTS_HOOK, list);
+    o_select_unselect_all(w_current);
+    o_select_add_list(w_current, new_list);
+    g_list_free(new_list);
 
     o_undo_savestate(w_current, UNDO_ALL);
+
+    int dx = x + x - w_current->first_wx;
+    int dy = y + y - w_current->first_wy;
+
+    i_window_set_pointer_position (w_current, dx, dy);
   }
   w_current->inside_action = FALSE;
 }
+
+static bool
+o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
+{
+  int valid;
+  int left, right, top, bottom;
+
+  if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
+
+    int ymin, ymax;  /* Blame it on ass-backwards X11 */
+
+    if (bottom > top) {
+      ymin = top;
+      ymax = bottom;
+    }
+    else {
+      ymin = bottom;
+      ymax = top;
+    }
+
+    if (!o_get_is_inside_region (left, ymin, right, ymax, x, y)) {
+
+      int nx, ny;                /* Point of bound to Nearest Target */
+
+      /* Save the bottom left corner to data structure */
+      w_current->first_wx = left;
+      w_current->first_wy = ymin;
+
+      Object *tmp = geda_box_new();
+
+      tmp->box->upper_x = left;
+      tmp->box->upper_y = ymin;
+      tmp->box->lower_x = right;
+      tmp->box->lower_y = ymax;
+
+      valid = o_box_get_nearest_point (tmp, x, y, &nx, &ny);
+
+      g_object_unref(tmp);
+
+      /* Lateral gets the tie */
+      if (nx == left) {
+        w_current->second_wx = left - w_current->offset;
+        w_current->second_wy = ymin;
+      }
+      else if (nx == right) {
+        w_current->second_wx = left + w_current->offset;
+        w_current->second_wy = ymin;
+      }
+      else if (ny == top) {
+        w_current->second_wx = left;
+        w_current->second_wy = ymin + w_current->offset;
+      }
+      else if (ny == bottom) {
+        w_current->second_wx = left;
+        w_current->second_wy = ymin - w_current->offset;
+      }
+      else {
+        valid = FALSE;
+      }
+    }
+    else {
+      valid = FALSE;
+    }
+  }
+  else {
+    valid = FALSE;
+  }
+
+  return valid;
+
+}
+
+/*! \brief Offset selected objects a Preset Distance
+ *  \par Function Description
+ *  Create a copy of selected objects at a preset offset in the direction
+ *  of the pointer position. The new objects replace the old objects as the
+ *  selection if the SHIFT key is down when then list is placed.
+ */
+void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
+{
+  if (list == NULL) {
+    i_status_set_state(w_current, SELECT);
+  }
+  else {
+
+    if (o_edit_set_offset(w_current, list, x, y)) {
+
+      s_place_set_place_list(w_current->toplevel, list);
+
+      w_current->inside_action = TRUE;
+
+      x = w_current->second_wx;
+      y = w_current->second_wy;
+
+      if (!w_current->SHIFTKEY) {
+
+        o_place_end (w_current, x, y, FALSE, NULL, COPY_OBJECTS_HOOK);
+
+      }
+      else { /* Shift is down, place and move selection to new objects */
+
+        GList *list = NULL;
+
+        o_place_end (w_current, x, y, FALSE, &list, COPY_OBJECTS_HOOK);
+
+        o_select_unselect_all(w_current);
+        o_select_add_list(w_current, list);
+        g_list_free(list);
+
+      }
+
+      o_undo_savestate(w_current, UNDO_ALL);
+    }
+  }
+  w_current->inside_action = FALSE;
+}
+
+/** @} endgroup Edit-Offset */
 
 /*! \brief Rotate all objects in list.
  *  \par Function Description

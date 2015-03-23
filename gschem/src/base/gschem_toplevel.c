@@ -154,6 +154,9 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->SHIFTKEY                  = 0;
   w_current->ALTKEY                    = 0;
 
+  /* retained offset distance */
+  w_current->offset                    = -0;
+
   /* Misc status flags and limits */
   w_current->drawbounding_action_mode  = FREE;
   w_current->doing_pan                 = 0;

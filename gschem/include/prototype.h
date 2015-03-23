@@ -456,7 +456,8 @@ void       o_edit_objects               (GschemToplevel *w_current, GList *list,
 void       o_edit_lock                  (GschemToplevel *w_current);
 void       o_edit_unlock                (GschemToplevel *w_current);
 void       o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
-void       o_edit_offset_hot          (GschemToplevel *w_current, int x, int y, GList *list);
+void       o_edit_offset_hot            (GschemToplevel *w_current, int x, int y, GList *list);
+void       o_edit_offset_world          (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
 //void       o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
 bool       o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
@@ -922,8 +923,6 @@ void       x_window_set_current_page        (GschemToplevel *w_current, Page *pa
 void       x_window_setup_page              (GschemToplevel *w_current, Page *page, int xmin, int xmax, int ymin, int ymax);
 int        x_window_save_page               (GschemToplevel *w_current, Page *page, const char *filename);
 void       x_window_close_page              (GschemToplevel *w_current, Page *page);
-void       x_window_set_cursor              (GschemToplevel *w_current, int cursor_id);
-void       x_window_set_grid_type           (GschemToplevel *w_current);
 void       x_window_update_title            (GschemToplevel *w_current);
 
 void       x_window_add_toolbar_toggle       (GtkWidget *widget, GschemToplevel *w_current);

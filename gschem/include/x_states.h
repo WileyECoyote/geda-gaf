@@ -52,6 +52,7 @@ enum x_states {
   ENDDND_MOVE_OBJ,  /* 24 */
   ENDDND_COPY_OBJ,  /* 25 */
   ENDROTATE,        /* 26 */
+  ENDOFFSET,        /* 27 */
   ENDMIRROR,        /* 27 */
   STARTDND,         /* 28 */
   PASTEMODE,        /* 29 */

@@ -1378,26 +1378,52 @@ COMMAND (do_offset)
 {
   BEGIN_W_COMMAND(do_offset);
 
-  if (!w_current->inside_action) {
+  if (o_select_is_selection(w_current)) {
 
-    int state;
+    if (!w_current->inside_action) {
 
-    o_redraw_cleanstates(w_current);
+      int state = SELECT;
 
-    if HOT_ACTION (do_offset) {
+      o_redraw_cleanstates(w_current);
 
-      GList *object_list = geda_list_get_glist (Current_Selection);
+      if HOT_ACTION (do_offset) {
 
-      if (object_list) {
-        o_edit_offset_hot(w_current, CMD_X(do_offset), CMD_Y(do_offset), object_list);
+        GList *object_list = geda_list_get_glist (Current_Selection);
+
+        if (object_list) {
+
+          int x = CMD_X(do_offset);
+          int y = CMD_Y(do_offset);
+
+          o_edit_offset_hot(w_current, x, y, object_list);
+
+        }
       }
+      else {
 
-      state = SELECT;
+        const char *title  = _("Offset Mode");
+        const char *prompt = _("Specify offset distance:");
+
+        int tmp_int = w_current->offset;
+
+        w_current->offset = geda_dialog_get_integer(title, prompt, tmp_int);
+
+        if (w_current->offset != -0) { /* If user did not cancel */
+          if (w_current->offset) {     /* If user did not enter zero */
+            state = ENDOFFSET;
+          }
+          else {
+            u_log_message("Ignoring zero offset\n");
+            w_current->offset = -0;
+          }
+        }
+      }
+      i_status_set_state(w_current, state);
     }
-
-    i_status_set_state(w_current, state);
   }
-
+  else {
+    msg_need_select_1st(w_current);
+  }
   EXIT_COMMAND(do_offset);
 }
 

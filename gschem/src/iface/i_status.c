@@ -144,6 +144,8 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Copy to point");
     case ENDROTATE:
       return _("Rotate Mode");
+    case(ENDOFFSET):
+      return _("Side to offset?");
     case ENDMIRROR:
       return _("Mirror Mode");
     case PAN:

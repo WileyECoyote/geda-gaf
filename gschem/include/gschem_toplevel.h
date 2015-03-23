@@ -191,6 +191,9 @@ struct _GschemToplevel {
   int SHIFTKEY;                         /* shift key pressed? */
   int ALTKEY;                           /* alt key pressed? */
 
+  /* retained offset distance */
+  int offset;                           /* use for offset mode */
+
   /* Misc status flags and limits */
   int doing_pan;                        /* mouse pan status flag */
   int drawbounding_action_mode;         /* outline vs bounding box */

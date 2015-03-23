@@ -223,6 +223,11 @@ int x_event_button_pressed(GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
+      case(ENDOFFSET):
+        list = geda_list_get_glist(Current_Selection);
+        o_edit_offset_world(w_current, w_x, w_y, list);
+        break;
+
       case(ENDMIRROR):
         list = geda_list_get_glist(Current_Selection);
         o_edit_mirror_world(w_current, w_x, w_y, list);
@@ -362,6 +367,11 @@ int x_event_button_pressed(GtkWidget      *widget,
 
       switch (w_current->event_state) {
 
+        case(ENDOFFSET):
+          w_current->inside_action = FALSE;
+          i_status_set_state(w_current, SELECT);
+          break;
+
         case(NETMODE):
           o_net_reset (w_current);
           break;
@@ -461,6 +471,10 @@ bool x_event_button_released (GtkWidget      *widget,
           gdk_event_free(w_current->drag_event);
           w_current->drag_event = NULL;
         }
+        break;
+
+      case(ENDOFFSET):
+        w_current->inside_action = TRUE;
         break;
     }
 
