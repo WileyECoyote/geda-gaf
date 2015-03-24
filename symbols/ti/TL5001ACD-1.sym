@@ -88,13 +88,15 @@ pinnumber=2
 T 1300 1800 5 8 0 1 0 0 1
 pinseq=2
 }
-T 200 2200 5 10 0 0 0 0 1
+T 1700 1800 9 10 0 1 0 0 1
 footprint=SO8
-T 200 2600 5 10 0 1 0 0 1
+T 1700 2400 5 10 0 1 0 0 1
 description=TL5001 20-500kHz PWM Controller
-T 200 2400 5 10 0 0 0 0 1
+T 1700 2600 5 10 0 0 0 0 1
 device=TL5001ACD
-T 2000 1800 8 10 1 1 0 6 1
+T 1700 2200 8 10 1 1 0 0 1
 refdes=U?
 T 100 100 5 8 0 0 0 0 1
 symversion=0.1
+T 1700 2000 8 10 1 1 0 0 1
+value=TL5001ACD
