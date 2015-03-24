@@ -1,20 +1,20 @@
-v 20141031 2
+v 20150101 2
 B 300 300 1900 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 2250 150 5 10 0 1 0 0 1
+T 300 2500 10 10 0 1 0 0 1
 footprint=SO-8
-T 50 2800 5 10 0 0 0 0 1
+T 2300 400 5 10 0 1 0 0 1
 documentation=http://www.farnell.com/datasheets/91949.pdf
-T 50 3000 5 10 0 0 0 0 1
+T 0 2700 5 10 0 1 0 0 1
 description=UP TO 1A STEP DOWN SWITCHING REGULATOR
-T 1000 1300 5 10 1 1 0 0 1
+T 2300 1000 5 10 1 1 0 0 1
 device=L5970D
-T 50 3200 5 10 0 0 0 0 1
+T 0 2900 5 10 0 0 0 0 1
 dist-license=GPL 3
-T 50 3400 5 10 0 0 0 0 1
+T 0 3100 5 10 0 0 0 0 1
 use-license=unlimited
-T 50 3600 5 10 0 0 0 0 1
+T 0 3300 5 10 0 0 0 0 1
 author=Mitja Jež <mitja.jez@zeitgeist.si>
-T 1300 1600 8 10 1 1 0 3 1
+T 2200 2350 8 10 1 1 0 6 1
 refdes=U?
 P 2500 1900 2200 1900 1 0 0
 {
@@ -104,5 +104,9 @@ pinseq=8
 T 250 1350 5 8 0 1 0 6 1
 pintype=pwr
 }
-T 50 2650 5 10 0 0 0 0 1
+T 2300 600 5 10 0 0 0 0 1
 numslots=0
+T 300 2350 9 10 1 0 0 0 1
+L5970D
+T 2300 800 5 10 0 0 0 0 1
+symversion=0.2
