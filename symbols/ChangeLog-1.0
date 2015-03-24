@@ -1,4 +1,35 @@
-2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/isolate: Add 11 new symbols for TI ISO723x and ISO724x series Multi-
+      Channel Digital Isolators:
+
+            * ti/isolate/ISO7230C-1.sym
+            * ti/isolate/ISO7230M-1.sym
+            * ti/isolate/ISO7231C-1.sym
+            * ti/isolate/ISO7231M-1.sym
+            * ti/isolate/ISO7240C-1.sym
+            * ti/isolate/ISO7240CF-1.sym
+            * ti/isolate/ISO7240M-1.sym
+            * ti/isolate/ISO7241C-1.sym
+            * ti/isolate/ISO7241M-1.sym
+            * ti/isolate/ISO7242C-1.sym
+            * ti/isolate/ISO7242M-1.sym
+
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg: Create new directory/category for TI Switching Regulators
+      and relocate existing symbols:
+
+            * ti/switchreg/LM2734Z-1.sym
+            * ti/switchreg/LM3481-1.sym
+            * ti/switchreg/LM3481-2.sym
+            * ti/switchreg/TPS54060-1.sym
+            * ti/switchreg/TPS55340-1.sym
+
+    * ti/isolate: Create new directory/category for TI digital isolators.
+
+
+2015-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * Redo some resistors, made length of variables consistence with other
       passives, use rounded ends (looks better):
