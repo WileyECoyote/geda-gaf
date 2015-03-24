@@ -46,11 +46,15 @@ Optional font size.
 .IP "-f, --force"
 When the force option is specified existing file matching the output name will be over-written, without any warning.
 .IP "-a, --attibute"
+The Attribute to be queried or set.
+.IP "-d, --hidden"
+When creating an attribute, set the visibility flag to invisible. If the -l option is used and a matching attribute
+is not found, a new attribute is automatically. By default the new attributes are visible, use this option to make
+create invisible attributes.
 .IP "-q, --quite"
 Quite mode. Suppress normal processing messages.
 .IP "-v, --verbose"
 Verbose mode. Used in both archive and extract mode. Spews lots of info about what the prog is doing.
-The Attribute to be queried or set.
 .IP "-i, --input <input file>"
 Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.
 .IP "-o, --output <output file>"

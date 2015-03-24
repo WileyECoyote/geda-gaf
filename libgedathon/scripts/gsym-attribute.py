@@ -31,6 +31,7 @@ Options:
   -f, --force    -- When the force option is specified existing file matching
                     the output name will be over-written, without any warning.
   -c, --color    -- Optional attribute color.
+  -d, --hidden   -- Set the visibility flag to invisible When adding an attribute.
   -s, --size     -- Optional font size.
   -q, --quite    -- Suppress normal processing messages.
   -v, --verbose  -- Spews lots of info about what the prog is doing.
@@ -106,20 +107,21 @@ class ProgramParameters:
         Constructor: parse through cmd line args and fill out vars. The values
         here are the defaults
         """
-        self.ExitCode        = 0
-        self.ForceMode       = False
-        self.RecursiveMode   = False
-        self.VerboseMode     = False
-        self.QuiteMode       = False
-        self.InputFiles      = []
-        self.UserDir         = os.path.abspath(os.getcwd())
-        self.InputFileName   = ""
-        self.OutputFileName  = ""
+        self.ExitCode         = 0
+        self.ForceMode        = False
+        self.RecursiveMode    = False
+        self.VerboseMode      = False
+        self.QuiteMode        = False
+        self.InputFiles       = []
+        self.UserDir          = os.path.abspath(os.getcwd())
+        self.InputFileName    = ""
+        self.OutputFileName   = ""
 
-        self.AttributeName   = ""
-        self.AttributeValue  = ""
-        self.AttributeColor  = 0
-        self.AttributeSize   = None
+        self.AttributeName    = ""
+        self.AttributeValue   = ""
+        self.AttributeColor   = 0
+        self.AttributeSize    = None
+        self.AttributeVisible = VISIBLE;
 
         #  Get ScratchDir, either from environment, or just use /tmp as default.
         for EnvVar in ["TMP", "TMPVAR", "TEMP"]:
@@ -139,6 +141,7 @@ class ProgramParameters:
                         "help",
                         "attibute",
                         "color",
+                        "hidden",
                         "input",
                         "output",
                         "size",
@@ -146,7 +149,7 @@ class ProgramParameters:
                         "quite",
                         "verbose",
                         "version"]
-            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:i:o:s:l:qvV', long_opt)
+            OptList, Args = getopt.getopt(sys.argv[1:], 'fha:c:di:o:s:l:qvV', long_opt)
         except getopt.error:
             print Usage                # print out usage string if
                                        # user uses invalid flag.
@@ -167,25 +170,29 @@ class ProgramParameters:
                 sys.exit(0)
 
             if Option in ('-a', '--attibute'):
-                self.AttributeName  = Value
+                self.AttributeName       = Value
 
             if Option in ('-c', '--color'):
-                self.AttributeColor = Value
+                self.AttributeColor      = Value
+
+            if Option in ('-d', '--hidden'):
+                self.AttributeVisible    = INVISIBLE
 
             if Option in ('-i', '--input'):
-                self.InputFileName  = Value
+                self.InputFileName       = Value
 
-            if Option in ('-s', '--size'):
-                self.AttributeSize  = Value
 
             if Option in ('-l', '--value'):
-                self.AttributeValue = Value
+                self.AttributeValue      = Value
 
             if Option in ('-q', '--quite'):
-                self.QuiteMode      = True
+                self.QuiteMode           = True
+
+            if Option in ('-s', '--size'):
+                self.AttributeSize       = Value
 
             if Option in ('-v', '--verbose'):
-                self.VerboseMode    = True
+                self.VerboseMode         = True
 
             if Option in ('-V', '--version'):
                 print Version
@@ -261,7 +268,9 @@ def ProcessSymbol(Options, File):
 
     if not Attribute:                  # If not found and have value then create new
         if Options.AttributeValue:
-            Attribute = geda.new_attrib(Options.AttributeName, Options.AttributeValue, 100, 100, VISIBLE, SHOW_NAME_VALUE)
+            Attribute = geda.new_attrib(Options.AttributeName,
+                                        Options.AttributeValue, 100, 100,
+                                        Options.AttributeVisible, SHOW_NAME_VALUE)
             geda.add_object(symbol, Attribute)
             modified = 1
         else:                          # No value specified and attribute not found
