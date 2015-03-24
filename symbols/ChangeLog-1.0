@@ -1,5 +1,15 @@
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/isolate: Add 4 new symbols for TI ISO732x series Dual-Channel
+      Digital Isolators:
+
+            * ti/isolate/ISO7320C-1.sym
+            * ti/isolate/ISO7320FC-1.sym
+            * ti/isolate/ISO7321C-1.sym
+            * ti/isolate/ISO7321FC-1.sym
+
+2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/isolate: Add 8 new symbols for TI ISO722x series Dual-Channel
       Digital Isolators:
 
