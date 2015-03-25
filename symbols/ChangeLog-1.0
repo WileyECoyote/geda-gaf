@@ -1,5 +1,11 @@
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * logic/SN: General cleaning, add symbol version attribute for all
+      symbols in the directory, add a little pizazz to the symbols - use
+      net color for interior "connection" features.
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * misc/testpt-1.sym: Add footprint for test point symbol, use foot
       JUMPER-1, works better then "none".
 
