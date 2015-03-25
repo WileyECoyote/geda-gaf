@@ -428,7 +428,7 @@ static GtkWidget *SelectedAttributesView=NULL;
  *  \memberof (Settings-Dialog-Support)
  *  \par
  *   The Inhibitors enable and disable Widgets based on other selections.
- *   This groups is contains the following functions:
+ *   This groups contains the following functions:
  *
  *      1. enable_attribute_list_controls        called in callback functions
  *      2. enable_color_map_controls
@@ -558,7 +558,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
  *  @{
  *  \memberof (Settings-Dialog-Support)
  *  \par
- *  Settings dialog attribute support functions are divided into two sub-groups.
+ *   Settings dialog attribute support functions are divided into two sub-groups.
  */
 
 /* -------------------- Attributes Support Functions Group 1 ----------------*/
@@ -568,7 +568,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
  *  @{
  *  \memberof (Settings-Dialog-Attributes)
  *  \par
- *  The functions to support attribute settings in group 1 are:
+ *   The functions to support attribute settings in group 1 are:
  *
  *      1. st_callback_selection_changed_view  Single click callback
  *      2. st_tree_row_activated               Double click callback
@@ -611,8 +611,8 @@ st_callback_selection_changed_view(GtkTreeSelection *selection,
 
 /*! \brief function st_tree_row_activated in X_Settings_Attribute
  *  \par Function Description
- *  This is a callback handler for attribute views and is called
- *  when an attribute is double clicked.
+ *   This is a callback handler for attribute views and is called
+ *   when an attribute is double clicked.
  *
  *  \param[in]  tree_view GtkTreeView (could be either one).
  *  \param[in]  path      Tree limb.
@@ -646,7 +646,7 @@ st_tree_row_activated (GtkTreeView       *tree_view,
 
 /*! \brief function connect_list_view
  *  \par Function Description
- *  This sets up the callbacks for the attribute views.
+ *   This sets up the callbacks for the attribute views.
  *
  *  \param[in]  Dialog       is really w_current.
  *  \param[in]  TreeTextView A Treeview widge.
@@ -746,15 +746,15 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
 }
 /*! \brief Load Tree View with string data from string array.
  *  \par Function Description
- *  This function passes each char* from an array of strings to
- *  the add_to_list function to store the item in the designated
- *  view.
+ *   This function passes each char* from an array of strings to
+ *   the add_to_list function to store the item in the designated
+ *   view.
  *      while (list[i]) { add_to_list(TreeView, list[i++]);}
  *
- *  The array of string can be NULL, in which case strings are
- *  retieved using s_attrib_get. The only "list" passed to this
- *  function is the default list that is used when the configuration
- *  data is missing.
+ *   The array of string can be NULL, in which case strings are
+ *   retieved using s_attrib_get. The only "list" passed to this
+ *   function is the default list that is used when the configuration
+ *   data is missing.
 */
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 {
@@ -783,7 +783,7 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  *  @{
  *  \memberof (Settings-Dialog-Attributes)
  *  \par
- *  The second group of functions to support attribute settings are:
+ *   The second group of functions to support attribute settings are:
  *
  *      1. GetAttributeFilterMode
  *      2. SaveAttributeFilterList       Save List in the Filter Viewtree
@@ -1094,8 +1094,8 @@ static void filter_list_set_default( void )
  *  \memberof (Settings-Dialog-Buttons)
  *  \weakgroup Settings-Dialog-Attributes
  *  \par
- *  The only member of this groups is a button responder to handler signals
- *  generated from buttons on the Attributes TAB.
+ *   The only member of this groups is a button responder to handler signals
+ *   generated from buttons on the Attributes TAB.
  *
  *      1. butt_responder
 */
@@ -1158,18 +1158,18 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
  *  @{
  *  \memberof (Settings-Dialog-Buttons)
  *  \par
- *  Currently, the remainder of the buttons on the Settings dialog are for
- *  setting color preferences. These color buttons have a supporting utility
- *  menu accessible from the right mouse button that can be used to restore
- *  default colors. Popup menu support for the color buttons are all in
- *  Settings-Dialog-Buttons-Group-2
+ *   Currently, the remainder of the buttons on the Settings dialog are for
+ *   setting color preferences. These color buttons have a supporting utility
+ *   menu accessible from the right mouse button that can be used to restore
+ *   default colors. Popup menu support for the color buttons are all in
+ *   Settings-Dialog-Buttons-Group-2
 */
 /*!
  *  \defgroup Settings-Dialog-Color-Popup Color Button Popup Functions
  *  @{
  *  \memberof (Settings-Dialog-Buttons-Group-2)
  *  \par
- *  The functions to support color buttons are:
+ *   The functions to support color buttons are:
  *
  *      1. color_button_popup_menu_callback
  *      2. default_color_button_popup
@@ -1320,7 +1320,7 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
  *  @{
  *  \memberof (Settings-Dialog-Support)
  *  \par
- *  The functions to support ComboBox on the settings dialog:
+ *   The functions to support ComboBox on the settings dialog:
  *
  *      1. combo_responder
  *      2. setup_titleblock_combo
@@ -1432,18 +1432,6 @@ int setup_titleblock_combo( char *titleblock ){
   return pos;
 }
 #endif
-
-/*
-static void
-on_font_combo_popdown (GtkWidget *button,
-                       void      *user_data)
-{
-  //GtkComboBox *combo = user_data;
-
-fprintf(stderr, "WTF, somebody clicked on me\n");
-
-}
-*/
 
 static int
 cmp_families (const void *a, const void *b)
