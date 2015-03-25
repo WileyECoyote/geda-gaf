@@ -1,5 +1,20 @@
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add documentation link to http://en.wikipedia.org/wiki/Inductor for
+      inductor:
+
+            * passive/inductor/coil-1.sym
+            * passive/inductor/coil-2.sym
+            * passive/inductor/coil-dot-1.sym
+            * passive/inductor/inductor-1.sym
+            * passive/inductor/inductor-2.sym
+            * passive/inductor/inductor-coupled-1.sym
+            * passive/inductor/inductor-coupled-2.sym
+            * passive/inductor/inductor-dot-1.sym
+            * passive/inductor/inductor-mutual-1.sym
+
+2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * Unfortunately, the coil 1 and coil 2 symbols were too wide and were
       inconsistence with other passive, the majority of which are 0.9"
       wide. Replaced both coil 1 and coil 2 with new versions that are

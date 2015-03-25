@@ -1,5 +1,5 @@
 v 20150315 2
-T 100 1500 5 10 0 0 0 0 1
+T 100 1700 5 10 0 0 0 0 1
 author=AutoTron
 A 239 100 98 315 225 3 0 0 0 -1 -1
 A 380 100 100 315 270 3 0 2 0 -1 -1
@@ -29,7 +29,7 @@ pinlabel=2
 T 900 100 5 6 0 1 0 0 1
 pintype=pas
 }
-T 100 1100 5 10 0 0 0 0 1
+T 100 1500 5 10 0 0 0 0 1
 device=INDUCTOR
 T 100 500 8 10 1 1 0 0 1
 refdes=L?
@@ -45,3 +45,5 @@ T 600 300 9 10 0 1 0 0 1
 footprint=0603
 T 100 900 5 10 0 0 0 0 1
 comment=mfr=Vishay
+T 100 1100 5 10 0 1 0 0 1
+documentation=http://en.wikipedia.org/wiki/Inductor
