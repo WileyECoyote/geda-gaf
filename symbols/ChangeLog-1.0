@@ -1,5 +1,13 @@
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/jumper/jumper-1p-1.sym: Update footprint, was "none", set
+      to JUMPER-1, general cleaning, aka align attributes.
+
+    * usb/usb-mini_type_b-1.sym :Change device= USB_CONNECTOR from to
+      CONNECTOR, general cleaning.
+
+2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/isolate: Add 4 new symbols for TI ISO732x series Dual-Channel
       Digital Isolators:
 
