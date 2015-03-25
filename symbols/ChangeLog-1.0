@@ -1,5 +1,14 @@
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add 4 new symbols for SN74ALVC244:
+
+            * logic/SN/SN74ALVC244-1.sym
+            * logic/SN/SN74ALVC244DW-1.sym
+            * logic/SN/SN74ALVC244NS-1.sym
+            * logic/SN/SN74ALVC244PW-1.sym
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * logic/SN: General cleaning, add symbol version attribute for all
       symbols in the directory, add a little pizazz to the symbols - use
       net color for interior "connection" features.
