@@ -1,5 +1,9 @@
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/BAR74-1.sym: Change device=BAR74 to device=DIODE.
+
+2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/jumper/jumper-1p-1.sym: Update footprint, was "none", set
       to JUMPER-1, general cleaning, aka align attributes.
 
