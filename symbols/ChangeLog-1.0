@@ -1,3 +1,8 @@
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * misc/testpt-1.sym: Add footprint for test point symbol, use foot
+      JUMPER-1, works better then "none".
+
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add documentation link to http://en.wikipedia.org/wiki/Inductor for
