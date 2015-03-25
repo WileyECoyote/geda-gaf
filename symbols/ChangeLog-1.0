@@ -1,5 +1,15 @@
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Unfortunately, the coil 1 and coil 2 symbols were too wide and were
+      inconsistence with other passive, the majority of which are 0.9"
+      wide. Replaced both coil 1 and coil 2 with new versions that are
+      more conforming to over-all passive scheme:
+
+            * passive/inductor/coil-1.sym
+            * passive/inductor/coil-2.sym
+
+2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/BAR74-1.sym: Change device=BAR74 to device=DIODE.
 
 2015-03-24 Wiley E. Hill <wileyhill@gmail.com>
