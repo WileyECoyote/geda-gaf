@@ -1024,9 +1024,9 @@ SCM g_rc_attribute_placement_grid(SCM offset)
  */
 SCM g_rc_component_dialog_attributes(SCM stringlist)
 {
-  int length, i;
   GList *list=NULL;
-  char *attr;
+  char  *attr;
+  int    length, i;
 
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
   length = scm_ilength(stringlist);

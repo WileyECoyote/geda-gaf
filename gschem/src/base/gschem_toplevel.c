@@ -288,6 +288,12 @@ static void gschem_toplevel_finalize( GObject *object )
 {
   GschemToplevel *w_current = GSCHEM_TOPLEVEL(object);
 
+  if (w_current->component_select_attrlist != NULL) {
+    g_list_foreach (default_component_select_attrlist, (GFunc)g_free, NULL);
+    g_list_free (default_component_select_attrlist);
+    w_current->component_select_attrlist = NULL;
+  }
+
   if (w_current->toolbar_mode_grp != NULL) {
     g_slist_foreach (w_current->toolbar_mode_grp,(GFunc) g_free, NULL);
     g_slist_free (w_current->toolbar_mode_grp);
