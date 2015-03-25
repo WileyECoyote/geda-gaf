@@ -10,7 +10,7 @@ dnl directory.
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [0])
 m4_define([geda_micro_version],   [9])
-m4_define([geda_mutation],        [7])
+m4_define([geda_mutation],        [8])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -209,7 +209,7 @@ AX_LIBGEDACAIRO([1:4:1])
 AX_LIBGEDATHON([0:5:0])
 
 # Set up libgedauio with the correct ld version number
-AX_LIBGEDAUIO([0:4:0])
+AX_LIBGEDAUIO([0:5:0])
 
 #####################################################################
 # Generate output
