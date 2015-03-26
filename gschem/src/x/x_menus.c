@@ -300,12 +300,13 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   char  *action_name;
   char  *action_keys;
   char  *dummy = NULL;
+
   const char  *menu_item_name;
-  char  *menu_item_keys;
-  char  *menu_item_tip;
-  char  *menu_item_stock;
-  char  *raw_menu_item_name;
-  char **raw_menu_name = &dummy;
+        char  *menu_item_keys;
+        char  *menu_item_tip;
+        char  *menu_item_stock;
+        char  *raw_menu_item_name;
+        char **raw_menu_name = &dummy;
 
   unsigned long handler;
   int i, j;
