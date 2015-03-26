@@ -1,5 +1,25 @@
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Ensure consistence messages, reduce string space.
+
+    * src/iface/i_command.c: Add function action_err and macros NO_ACTION and
+      BEGIN_NO_ACTION. Implement BEGIN_NO_ACTION in functions:
+
+            * i_cmd_do_cut_clip
+            * i_cmd_do_offset
+            * i_cmd_do_attach
+            * i_cmd_do_detach
+            * i_cmd_do_home_attributes
+            * i_cmd_do_show_value
+            * i_cmd_do_show_name
+            * i_cmd_do_show_both
+            * i_cmd_do_toggle_visibility
+
+      This insures that was user is told can not be done in an action is also
+      what the status lines states will be done when repeating last operation.
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Allow existing feature while in actions.
 
     * src/iface/i_command.c: Remove check for inside_action from function

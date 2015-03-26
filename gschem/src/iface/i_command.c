@@ -362,6 +362,14 @@ static inline void msg_need_select_1st(GschemToplevel *w_current)
   i_status_set_state_msg(w_current, SELECT, message);
 }
 
+static inline void action_err(char *var)
+{
+  v_log_message(_("Cannot %s while inside and action!\n"), var);
+}
+
+#define NO_ACTION(symbol) if (w_current->inside_action) \
+                          return action_err(command_struc[cmd_##symbol].repeat)
+
 static inline void null_err(char *var)
 {
   u_log_message("internal error, i_command: variable <%s> can not be NULL\n", var);
@@ -408,6 +416,10 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
                              char  *arg  NOWARN_UNUSED = tokenizer(cmd_##efunc, &argc, &argv);
 
 #define BEGIN_W_COMMAND(efunc) NOT_NULL(w_current); \
+                               BEGIN_COMMAND(efunc);
+
+#define BEGIN_NO_ACTION(efunc) NOT_NULL(w_current); \
+                               NO_ACTION(efunc); \
                                BEGIN_COMMAND(efunc);
 
 #define EXIT_COMMAND(efunc) if(arg) { GEDA_FREE(arg); \
@@ -1061,26 +1073,22 @@ COMMAND (do_redo)
 
 COMMAND (do_cut_clip)
 {
-  BEGIN_W_COMMAND(do_cut_clip);
+  BEGIN_NO_ACTION(do_cut_clip);
 
-  if (!w_current->inside_action) {
-    if (o_select_is_selection (w_current)){
+  if (o_select_is_selection (w_current)){
 
-      if ((narg < 0) || (arg == NULL)) {
-        /* if no arguments then use buffer 0 */
-        narg = 0;
-      }
-
-      o_buffer_cut (w_current, narg);
-      if ( narg == 0)
-        x_clipboard_set (w_current, object_buffer[narg]);
-      else
-        i_status_update_sensitivities(w_current);
+    if ((narg < 0) || (arg == NULL)) {
+      /* if no arguments then use buffer 0 */
+      narg = 0;
     }
+
+    o_buffer_cut (w_current, narg);
+    if ( narg == 0)
+      x_clipboard_set (w_current, object_buffer[narg]);
+    else
+      i_status_update_sensitivities(w_current);
   }
-  else {
-        v_log_message(_("Cannot Cut while inside an action!\n"));
-  }
+
   EXIT_COMMAND(do_cut_clip);
 }
 
@@ -1376,50 +1384,47 @@ COMMAND (do_extend)
  */
 COMMAND (do_offset)
 {
-  BEGIN_W_COMMAND(do_offset);
+  BEGIN_NO_ACTION(do_offset);
 
   if (o_select_is_selection(w_current)) {
 
-    if (!w_current->inside_action) {
+    int state = SELECT;
 
-      int state = SELECT;
+    o_redraw_cleanstates(w_current);
 
-      o_redraw_cleanstates(w_current);
+    if HOT_ACTION (do_offset) {
 
-      if HOT_ACTION (do_offset) {
+      GList *object_list = geda_list_get_glist (Current_Selection);
 
-        GList *object_list = geda_list_get_glist (Current_Selection);
+      if (object_list) {
 
-        if (object_list) {
+        int x = CMD_X(do_offset);
+        int y = CMD_Y(do_offset);
 
-          int x = CMD_X(do_offset);
-          int y = CMD_Y(do_offset);
+        o_edit_offset_hot(w_current, x, y, object_list);
 
-          o_edit_offset_hot(w_current, x, y, object_list);
-
-        }
       }
-      else {
-
-        const char *title  = _("Offset Mode");
-        const char *prompt = _("Specify offset distance:");
-
-        int tmp_int = w_current->offset;
-
-        w_current->offset = geda_dialog_get_integer(title, prompt, tmp_int);
-
-        if (w_current->offset != -0) { /* If user did not cancel */
-          if (w_current->offset) {     /* If user did not enter zero */
-            state = ENDOFFSET;
-          }
-          else {
-            u_log_message("Ignoring zero offset\n");
-            w_current->offset = -0;
-          }
-        }
-      }
-      i_status_set_state(w_current, state);
     }
+    else {
+
+      const char *title  = _("Offset Mode");
+      const char *prompt = _("Specify offset distance:");
+
+      int tmp_int = w_current->offset;
+
+      w_current->offset = geda_dialog_get_integer(title, prompt, tmp_int);
+
+      if (w_current->offset != -0) { /* If user did not cancel */
+        if (w_current->offset) {     /* If user did not enter zero */
+          state = ENDOFFSET;
+        }
+        else {
+          u_log_message("Ignoring zero offset\n");
+          w_current->offset = -0;
+        }
+      }
+    }
+    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
@@ -2912,83 +2917,79 @@ COMMAND (do_attach)
   NOT_NULL(w_current->toplevel);
   NOT_NULL(w_current->toplevel->page_current);
 
-  BEGIN_COMMAND(do_attach);
+ /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_attach);
 
-  /* Do Not attach while inside an action */
-  if (!w_current->inside_action) {
 
-    w_current->which_object = NULL;
+  w_current->which_object = NULL;
 
-    if (o_select_is_selection(w_current)) {
+  if (o_select_is_selection(w_current)) {
 
-      Object *first_object;
-      GList  *selected;
-      int     count;
+    Object *first_object;
+    GList  *selected;
+    int     count;
 
-      selected = geda_list_get_glist(Current_Selection);
-      count    = o_select_get_count(w_current);
+    selected = geda_list_get_glist(Current_Selection);
+    count    = o_select_get_count(w_current);
 
-      if (count == 1) {
-        u_log_message("Feature not implemented\n");
-      }
-      else if (count == 2) {
+    if (count == 1) {
+      u_log_message("Feature not implemented\n");
+    }
+    else if (count == 2) {
 
-        Object *second_object;
-        bool    first_is_an_attribute;
-        bool    second_is_an_attribute;
+      Object *second_object;
+      bool    first_is_an_attribute;
+      bool    second_is_an_attribute;
 
-        first_object  = (Object *) selected->data;
-        selected      = selected->next;
-        second_object = (Object *) selected->data;
+      first_object  = (Object *) selected->data;
+      selected      = selected->next;
+      second_object = (Object *) selected->data;
 
-        first_is_an_attribute  = o_get_is_valid_attribute(first_object);
-        second_is_an_attribute = o_get_is_valid_attribute(second_object);
+      first_is_an_attribute  = o_get_is_valid_attribute(first_object);
+      second_is_an_attribute = o_get_is_valid_attribute(second_object);
 
-        /* Ensure 1 and only 1 is a valid attribute */
-        if ( 1 == first_is_an_attribute + second_is_an_attribute) {
+      /* Ensure 1 and only 1 is a valid attribute */
+      if ( 1 == first_is_an_attribute + second_is_an_attribute) {
 
-          if (first_is_an_attribute) {
-            if (!o_get_is_attached(first_object)) {
-              w_current->which_object = second_object;
-            }
-          }
-          else {
-            if (!o_get_is_attached(second_object)) {
-              w_current->which_object = first_object;
-            }
-          }
-
-          if (w_current->which_object) {
-            o_attrib_attach_list_2_object(w_current, selected);
-          }
-          else {
-            u_log_message(_("Attribute is already attached\n"));
+        if (first_is_an_attribute) {
+          if (!o_get_is_attached(first_object)) {
+            w_current->which_object = second_object;
           }
         }
-      }
-      else {
-
-        GList *iter = selected;
-
-        do {
-
-          if (!o_get_is_valid_attribute(iter->data)) {
-            w_current->which_object = iter->data;
+        else {
+          if (!o_get_is_attached(second_object)) {
+            w_current->which_object = first_object;
           }
-
-          if (!(NEXT(iter))) {
-            break;
-          }
-        } while (!w_current->which_object);
+        }
 
         if (w_current->which_object) {
           o_attrib_attach_list_2_object(w_current, selected);
         }
+        else {
+          u_log_message(_("Attribute is already attached\n"));
+        }
+      }
+    }
+    else {
+
+      GList *iter = selected;
+
+      do {
+
+        if (!o_get_is_valid_attribute(iter->data)) {
+          w_current->which_object = iter->data;
+        }
+
+        if (!(NEXT(iter))) {
+          break;
+        }
+      } while (!w_current->which_object);
+
+      if (w_current->which_object) {
+        o_attrib_attach_list_2_object(w_current, selected);
       }
     }
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_attach);
 }
@@ -3002,44 +3003,39 @@ COMMAND (do_attach)
 /** @brief i_cmd_do_detach in i_command_Attribute_Actions */
 COMMAND (do_detach)
 {
-  BEGIN_W_COMMAND(do_detach);
+ /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_detach);
 
   GList *s_current;
   Object *o_current;
   GList *detached_attribs = NULL;
 
-  /* Do Not detach while inside an action */
-  if (!w_current->inside_action) {
-
-    s_current = geda_list_get_glist(Current_Selection);
-    while (s_current != NULL) {
-      o_current = (Object *) s_current->data;
-      if (o_current) {
-        if (o_current->attribs) {
+  s_current = geda_list_get_glist(Current_Selection);
+  while (s_current != NULL) {
+    o_current = (Object *) s_current->data;
+    if (o_current) {
+      if (o_current->attribs) {
+        detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
+                                          detached_attribs);
+        o_attrib_detach_all (o_current);
+      }
+      else {
+        if (o_current->attached_to) {
+          o_attrib_detach (o_current);
           detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                             detached_attribs);
-          o_attrib_detach_all (o_current);
-        }
-        else {
-          if (o_current->attached_to) {
-            o_attrib_detach (o_current);
-            detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
-                                              detached_attribs);
-          }
         }
       }
-      NEXT(s_current);
     }
-
-    if (detached_attribs != NULL) {
-      g_hook_run_object_list(w_current, DETACH_ATTRIBS_HOOK, detached_attribs);
-      g_list_free (detached_attribs);
-    }
-
-    o_undo_savestate(w_current, UNDO_ALL);
+    NEXT(s_current);
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
+  if (detached_attribs != NULL) {
+    g_hook_run_object_list(w_current, DETACH_ATTRIBS_HOOK, detached_attribs);
+    g_list_free (detached_attribs);
+  }
+
+  o_undo_savestate(w_current, UNDO_ALL);
 
   EXIT_COMMAND(do_detach);
 }
@@ -3054,48 +3050,43 @@ COMMAND (do_detach)
 /** @brief do_home_attributes in i_command_Attribute_Actions */
 COMMAND (do_home_attributes)
 {
-  BEGIN_W_COMMAND(do_home_attributes);
+ /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_home_attributes);
 
-  /* Do Not do this while inside an action */
-  if (!w_current->inside_action) {
+  if (o_select_is_selection (w_current)) {
 
-    if (o_select_is_selection (w_current)) {
+    bool       modified  = FALSE;
+    Page      *page      = Current_Page;
+    SELECTION *selection = Current_Selection;
+    GList     *s_current;
 
-      bool       modified  = FALSE;
-      Page      *page      = Current_Page;
-      SELECTION *selection = Current_Selection;
-      GList     *s_current;
+    for (s_current = geda_list_get_glist (selection); s_current != NULL; NEXT(s_current)) {
 
-      for (s_current = geda_list_get_glist (selection); s_current != NULL; NEXT(s_current)) {
+      Object *object = (Object*)s_current->data;
 
-        Object *object = (Object*)s_current->data;
-
-        if (object->type == OBJ_COMPLEX) {
-          if (o_complex_reset_attrib_positions (w_current, object)) {
-            modified = TRUE;
-          }
-        }
-        else if ((object->type == OBJ_TEXT && o_get_is_attached(object))) {
-          if (o_attrib_reset_position(w_current, object->attached_to, object)) {
-            modified = TRUE;
-          }
+      if (object->type == OBJ_COMPLEX) {
+        if (o_complex_reset_attrib_positions (w_current, object)) {
+          modified = TRUE;
         }
       }
-
-      if (modified) {
-
-        o_undo_savestate (w_current, UNDO_ALL);
-        if (GEDA_IS_PAGE(page)) {
-          page->CHANGED = 1;
-        }
-        else {
-          BUG_MSG("Object has no page association")
+      else if ((object->type == OBJ_TEXT && o_get_is_attached(object))) {
+        if (o_attrib_reset_position(w_current, object->attached_to, object)) {
+          modified = TRUE;
         }
       }
     }
+
+    if (modified) {
+
+      if (GEDA_IS_PAGE(page)) {
+        page->CHANGED = 1;
+      }
+      else {
+        BUG_MSG("Object has no page association")
+      }
+      o_undo_savestate (w_current, UNDO_ALL);
+    }
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_home_attributes);
 }
@@ -3109,29 +3100,25 @@ COMMAND (do_home_attributes)
 /** @brief i_cmd_do_show_value in i_command_Attribute_Actions */
 COMMAND (do_show_value)
 {
-  BEGIN_W_COMMAND(do_show_value);
+  /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_show_value);
 
-  /* Do Not show value while inside an action */
-  if (!w_current->inside_action) {
 
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      GList *s_current;
+  if (o_select_is_selection (w_current)) {
+    SELECTION *selection = Current_Selection;
+    GList *s_current;
 
-      for (s_current = geda_list_get_glist (selection);
-           s_current != NULL;
-           NEXT(s_current)) {
-        Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT) {
-          o_attrib_toggle_show_name_value (w_current, object, SHOW_VALUE);
-	}
+    for (s_current = geda_list_get_glist (selection);
+         s_current != NULL;
+    NEXT(s_current)) {
+      Object *object = (Object*)s_current->data;
+      if (object->type == OBJ_TEXT) {
+        o_attrib_toggle_show_name_value (w_current, object, SHOW_VALUE);
       }
-
-      o_undo_savestate (w_current, UNDO_ALL);
     }
+
+    o_undo_savestate (w_current, UNDO_ALL);
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_show_value);
 }
@@ -3145,29 +3132,24 @@ COMMAND (do_show_value)
 /** @brief i_cmd_do_show_name in i_command_Attribute_Actions */
 COMMAND (do_show_name)
 {
-  BEGIN_W_COMMAND(do_show_name);
+ /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_show_name);
 
-  /* Do Not show name while inside an action */
-  if (!w_current->inside_action) {
+  if (o_select_is_selection (w_current)) {
+    SELECTION *selection = Current_Selection;
+    GList *s_current;
 
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      GList *s_current;
-
-      for (s_current = geda_list_get_glist (selection);
-           s_current != NULL;
-           NEXT(s_current)) {
-        Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT) {
-            o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME);
-	}
+    for (s_current = geda_list_get_glist (selection);
+         s_current != NULL;
+    NEXT(s_current)) {
+      Object *object = (Object*)s_current->data;
+      if (object->type == OBJ_TEXT) {
+        o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME);
       }
-
-      o_undo_savestate (w_current, UNDO_ALL);
     }
+
+    o_undo_savestate (w_current, UNDO_ALL);
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_show_name);
 }
@@ -3181,29 +3163,24 @@ COMMAND (do_show_name)
 /** @brief i_cmd_do_show_both in i_command_Attribute_Actions */
 COMMAND (do_show_both)
 {
-  BEGIN_W_COMMAND(do_show_both);
+  /* Do Not modify attributes while inside an action */
+  BEGIN_NO_ACTION(do_show_both);
 
-  /* Do Not show both while inside an action */
-  if (!w_current->inside_action) {
+  if (o_select_is_selection (w_current)) {
+    SELECTION *selection = Current_Selection;
+    GList *s_current;
 
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      GList *s_current;
-
-      for (s_current = geda_list_get_glist (selection);
-           s_current != NULL;
-           NEXT(s_current)) {
-        Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT) {
-          o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME_VALUE);
-	}
+    for (s_current = geda_list_get_glist (selection);
+         s_current != NULL;
+    NEXT(s_current)) {
+      Object *object = (Object*)s_current->data;
+      if (object->type == OBJ_TEXT) {
+        o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME_VALUE);
       }
-
-      o_undo_savestate (w_current, UNDO_ALL);
     }
+
+    o_undo_savestate (w_current, UNDO_ALL);
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_show_both);
 }
@@ -3211,30 +3188,25 @@ COMMAND (do_show_both)
 /*! @brief Toggle Visibility of ALL Attribute Text */
 COMMAND (do_toggle_visibility)
 {
-  BEGIN_W_COMMAND(do_toggle_visibility);
-
   /* Do Not toggle visibility while inside an action */
-  if (!w_current->inside_action) {
+  BEGIN_NO_ACTION(do_toggle_visibility);
 
-    if (o_select_is_selection (w_current)) {
+  if (o_select_is_selection (w_current)) {
 
-      SELECTION *selection = Current_Selection;
-      GList *s_current;
+    SELECTION *selection = Current_Selection;
+    GList *s_current;
 
-      for (s_current = geda_list_get_glist (selection);
-           s_current != NULL;
-           NEXT(s_current)) {
-        Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT) {
-          o_attrib_toggle_visibility (w_current, object);
-	}
+    for (s_current = geda_list_get_glist (selection);
+         s_current != NULL;
+    NEXT(s_current)) {
+      Object *object = (Object*)s_current->data;
+      if (object->type == OBJ_TEXT) {
+        o_attrib_toggle_visibility (w_current, object);
       }
-
-      o_undo_savestate (w_current, UNDO_ALL);
     }
+
+    o_undo_savestate (w_current, UNDO_ALL);
   }
-  else
-    v_log_message(_("Cannot edit attribute properties inside action!\n"));
 
   EXIT_COMMAND(do_toggle_visibility);
 }
@@ -4290,3 +4262,5 @@ COMMAND (undo_type) {
 #undef CMD_INTEGER
 #undef COMMAND
 #undef WCURRENT
+#undef NO_ACTION
+#undef BEGIN_NO_ACTION
