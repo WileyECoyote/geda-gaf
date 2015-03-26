@@ -129,16 +129,13 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
  */
 void o_edit_lock (GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel;
-  Page         *page;
-  GList        *s_current = NULL;
-
-  toplevel  = gschem_toplevel_get_geda_toplevel(w_current);
-  page      = gschem_toplevel_get_current_page(w_current);
-  s_current = geda_list_get_glist( Top_Selection );
+  Page  *page      = Current_Page;
+  GList *s_current = geda_list_get_glist(Current_Selection);
 
   while(s_current != NULL) {
+
     Object *object = (Object *) s_current->data;
+
     if (object) {
       object->selectable   = FALSE;
       if (object->color   != LOCK_COLOR)
@@ -147,7 +144,7 @@ void o_edit_lock (GschemToplevel *w_current)
       page->CHANGED        = TRUE;
     }
 
-    s_current = g_list_next(s_current);
+    NEXT(s_current);
   }
 
   if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
@@ -166,13 +163,8 @@ void o_edit_lock (GschemToplevel *w_current)
  */
 void o_edit_unlock(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel;
-  Page         *page;
-  GList        *s_current = NULL;
-
-  toplevel  = gschem_toplevel_get_geda_toplevel(w_current);
-  page      = gschem_toplevel_get_current_page(w_current);
-  s_current = geda_list_get_glist( Top_Selection );
+  Page  *page      = Current_Page;
+  GList *s_current = geda_list_get_glist(Current_Selection);
 
   while(s_current != NULL) {
 
@@ -973,10 +965,10 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
  *       dialog does not work will in an action.
  *
  */
-void o_edit_snap (GschemToplevel *w_current, GList *object_list)
+void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
 {
-  GList *iter     = object_list;
-  bool   modified = FALSE;
+  const GList *iter = object_list;
+  bool  modified    = FALSE;
 
   while (iter) {
 

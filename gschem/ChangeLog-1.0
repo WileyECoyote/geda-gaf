@@ -1,3 +1,13 @@
+2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Remove redundent code.
+
+    * src/object/o_edit.c: Revert use of functions gschem_toplevel_get_geda_
+      toplevel and gschem_toplevel_get_current_page in functions o_edit_lock
+      and o_edit_unlock, is redundent code since it was established that a
+      selection existed so pointers to toplevel and current page must have
+      been valid.
+
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Ensure consistence messages, reduce string space.
