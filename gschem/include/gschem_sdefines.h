@@ -129,6 +129,7 @@
 #define IDS_TEXT_SIZE          "text-size"   /* Type: MODAL    */
 #define IDS_ARC_ANGLE          "arc-angle"   /* Type: MODELESS */
 #define IDS_COLOR_EDIT         "color-edit"  /* Type: MODELESS */
+#define IDS_ARRAY_EDIT         "array-edit"  /* Type: MODELESS */
 #define IDS_FILL_TYPE          "fill-type"   /* Type: MODELESS */
 #define IDS_LINE_TYPE          "line-type"   /* Type: MODELESS */
 #define IDS_PIN_EDIT           "pin-edit"    /* Type: MODELESS */

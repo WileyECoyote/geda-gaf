@@ -53,15 +53,16 @@ enum x_states {
   ENDDND_COPY_OBJ,  /* 25 */
   ENDROTATE,        /* 26 */
   ENDOFFSET,        /* 27 */
-  ENDMIRROR,        /* 27 */
-  STARTDND,         /* 28 */
-  PASTEMODE,        /* 29 */
-  GRIPS,            /* 30 */
-  STARTEXTEND,      /* 31 */
-  EXTEND,           /* 32 */
-  ENDEXTEND,        /* 33 */
-  STARTBREAK,       /* 34 */
-  ENDBREAK,         /* 35 */
+  ENDMIRROR,        /* 28 */
+  STARTDND,         /* 29 */
+  PASTEMODE,        /* 30 */
+  GRIPS,            /* 31 */
+  ARRAYMODE,        /* 32 */
+  STARTEXTEND,      /* 33 */
+  EXTEND,           /* 34 */
+  ENDEXTEND,        /* 35 */
+  STARTBREAK,       /* 36 */
+  ENDBREAK,         /* 37 */
 };
 
 #endif

@@ -88,6 +88,7 @@ struct _GschemToplevel {
   GtkWidget *sswindow;          /* Snap Size,  settings: IDS_SNAP_SIZE  */
   GtkWidget *tswindow;          /* text size,  settings: IDS_TEXT_SIZE  */
   GtkWidget *aawindow;          /* Arc attrib, settings: IDS_ARC_ANGLE  */
+  GtkWidget *cawindow;          /* Array edit, settings: IDS_ARRAY_EDIT */
   GtkWidget *clwindow;          /* Color edit, settings: IDS_COLOR_EDIT */
   GtkWidget *hpwindow;          /* Fill Type,  settings: IDS_FILL_TYPE  */
   GtkWidget *ltwindow;          /* Line Type,  settings: IDS_LINE_TYPE  */

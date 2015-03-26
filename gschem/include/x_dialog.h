@@ -57,10 +57,34 @@
 #define HIDE_DIALOG_MAX_ENTRY      20
 #define SHOW_TEXT_DIALOG_MAX_ENTRY 20
 
+typedef struct st_array_data     array_data;
 typedef struct st_line_type_data line_type_data;
 typedef struct st_fill_type_data fill_type_data;
 typedef struct st_pin_type_data  pin_type_data;
 typedef struct st_property_data  property_data;
+
+struct st_array_data {
+
+  GtkWidget *cnt_sel_entry;
+  GtkWidget *x_size_entry;
+  GtkWidget *y_size_entry;
+
+  GtkWidget *row_spin;
+  GtkWidget *col_spin;
+
+  GtkWidget *row_off_entry;
+  GtkWidget *col_off_entry;
+
+  int wx;
+  int wy;
+
+  unsigned int press_hid;
+  unsigned int release_hid;
+
+  void (*post_responder) (GschemToplevel *);
+  int  (*press_butt)     (GtkWidget *widget, GdkEventButton *, GschemToplevel *);
+  int  (*release_butt)   (GtkWidget *widget, GdkEventButton *, GschemToplevel *);
+};
 
 struct st_line_type_data {
 

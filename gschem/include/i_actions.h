@@ -87,6 +87,7 @@
 #define EDIT_OFFSET      edit-offset
 #define EDIT_ROTATE      edit-rotate
 #define EDIT_SNAP        edit-snap
+#define EDIT_ARRAY       edit-array
 #define EDIT_BREAK       edit-break
 #define EDIT_EXTEND      edit-extend
 #define EDIT_ARC         edit-arc

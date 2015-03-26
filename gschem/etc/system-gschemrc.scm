@@ -1580,6 +1580,7 @@
 (map-keys "<Control>C" "clipboard-copy")
 ;(map-keys "D"          "edit-delete")
 
+(map-keys "E A"        "edit-array")
 (map-keys "E B"        "edit-break")
 (map-keys "E C"        "edit-copy")
 (map-keys "E D"        "edit-delete")
@@ -1816,8 +1817,9 @@
         (,(N_ "Snap to grid")       edit-snap              "geda-snap"        ,(N_ "Snap selection to grid to current grid"))
 
         ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break Linear object into seperate objects"))
-        (,(N_ "Extend")             edit-extend            "gschem-extend"    ,(N_ "Project Linear objects to other objects"))
+        (,(N_ "Array")              edit-array            #f                  ,(N_ "Create and array of objects"))
+        (,(N_ "Break")              edit-break             "gschem-break"     ,(N_ "Break a linear object into seperate objects"))
+        (,(N_ "Extend")             edit-extend            "gschem-extend"    ,(N_ "Project a linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Edit...")            edit-attributes        "gtk-indent"       ,(N_ "Edit Properties"))

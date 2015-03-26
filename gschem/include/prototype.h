@@ -750,6 +750,9 @@ int           option_menu_get_history       (GtkOptionMenu *option_menu);
 void          x_attrib_add_dialog           (GschemToplevel *w_current, Object *object);
 void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *object);
 
+/* x_edit_array.c */
+void        x_dialog_array_edit             (GschemToplevel *w_current);
+
 /* x_edit_color.c */
 void        x_dialog_edit_color             (GschemToplevel *w_current);
 

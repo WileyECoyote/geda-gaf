@@ -111,4 +111,3 @@ void i_event_setup_handlers (GschemToplevel *w_current)
   x_dnd_setup_event_handlers(w_current);
   x_event_governor(w_current);
 }
-
