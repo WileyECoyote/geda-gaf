@@ -1,5 +1,13 @@
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Allow existing feature while in actions.
+
+    * src/iface/i_command.c: Remove check for inside_action from function
+      i_cmd_do_show_nets. Does not seem to interfer and could be usefull
+      feature.
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Improve code organization.
 
     * src/iface/i_vars.c: Remove freeing default_component_select_attrlist

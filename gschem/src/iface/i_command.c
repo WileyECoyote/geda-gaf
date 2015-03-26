@@ -1994,17 +1994,14 @@ COMMAND (do_show_nets)
   BEGIN_COMMAND(do_show_nets);
   GList *object_list = NULL;
 
-  /* Don't execute this inside an action */
-  if (!w_current->inside_action) {
-    if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      object_list =  geda_list_get_glist (selection);
-    }
-    else {
-      object_list =  s_page_get_objects (Current_Page);
-    }
-    o_edit_show_netnames (w_current, object_list);
+  if (o_select_is_selection (w_current)) {
+    SELECTION *selection = Current_Selection;
+    object_list =  geda_list_get_glist (selection);
   }
+  else {
+    object_list =  s_page_get_objects (Current_Page);
+  }
+  o_edit_show_netnames (w_current, object_list);
   EXIT_COMMAND(do_show_nets);
 }
 
