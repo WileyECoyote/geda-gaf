@@ -1,5 +1,9 @@
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem_buffers.sch: Update symbol for 741 opamp
+
+2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * examples/cmos-nand.sch: Update symbols, cleanup hidden attributes
 
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
