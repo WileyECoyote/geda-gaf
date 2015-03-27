@@ -1,27 +1,19 @@
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/IEC417.sch: Update symbol arrow.sym (new version use round caps)
+
     * examples/filter_1.sch: Cleanup drawing, assign refdes to CONN1, T1, and
       diodes.
 
-2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+    * examples/stack_1.sch: Updated symbol name with upper case: AM9128-1.sym
 
-    * examples/stack_1.sch: Update symbol name with upper case: AM9128-1.sym
+    * examples/gschem_buffers.sch: Updated symbol for 741 opamp
 
-2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+    * examples/cmos-nand.sch: Updated symbols, cleanup hidden attributes
 
-    * examples/gschem_buffers.sch: Update symbol for 741 opamp
+    * examples/cmos-nand.sch: Updated symbols, cleanup hidden attributes
 
-2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
-
-    * examples/cmos-nand.sch: Update symbols, cleanup hidden attributes
-
-2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
-
-    * examples/cmos-nand.sch: Update symbols, cleanup hidden attributes
-
-2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
-
-    * examples/cmos-invert.sch: Update symbols, cleanup hidden attributes
+    * examples/cmos-invert.sch: Updated symbols, cleanup hidden attributes
 
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 

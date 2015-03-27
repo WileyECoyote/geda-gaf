@@ -1,4 +1,4 @@
-v 20031231 1
+v 20150315 2
 C 7100 6500 0 0 0 title-C.sym
 C 22300 22000 1 0 0 amp-var.sym
 T 22500 23000 9 10 1 0 0 0 1
@@ -61,6 +61,14 @@ C 17500 20400 1 0 0 bandstop.sym
 C 22300 20400 1 0 0 bandstop-var.sym
 C 25500 20400 1 0 0 block-convert.sym
 C 8400 20700 1 0 0 arrow.sym
+{
+T 8450 21200 5 10 0 0 0 0 1
+device=none
+T 8450 21350 5 10 0 0 0 0 1
+footprint=none
+T 8450 21050 5 10 0 0 0 0 1
+symversion=0.1
+}
 C 14300 20400 1 0 0 bandpass-trim.sym
 C 20700 20400 1 0 0 bandstop-trim.sym
 T 8100 21400 9 10 1 0 0 0 1
@@ -253,8 +261,8 @@ T 16100 13400 9 10 1 0 0 0 1
 pushbutton
 C 25500 12400 1 0 0 switch_spdt-1.sym
 C 12700 10800 1 0 0 switch_spst-1.sym
-C 7900  10800 1 0 0 split-2.sym
-C 9500  10800 1 0 0 split-3.sym
+C 7900 10800 1 0 0 split-2.sym
+C 9500 10800 1 0 0 split-3.sym
 C 11100 10800 1 0 0 split-4.sym
 C 15900 10800 1 0 0 square-up.sym
 C 17500 12400 1 0 0 sampler.sym
