@@ -74,7 +74,7 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
                                                array_data     *dialog_data)
 {
   x_dialog_array_edit_disconnect_events(w_current, dialog_data);
-  w_current->event_state = ARRAYMODE;
+  //w_current->event_state = ARRAYMODE;
   i_event_unblock_buttons (w_current);
 }
 
@@ -317,6 +317,7 @@ int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
 
     if (w_current->event_state == STARTSELECT) {
       o_select_end(w_current, x, y);
+      i_status_set_state (w_current, SELECT);
     }
     else if (w_current->event_state == SBOX) {
       o_select_box_end(w_current, x, y);

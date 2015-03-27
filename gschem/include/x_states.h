@@ -57,7 +57,7 @@ enum x_states {
   STARTDND,         /* 29 */
   PASTEMODE,        /* 30 */
   GRIPS,            /* 31 */
-  ARRAYMODE,        /* 32 */
+//  ARRAYMODE,        /* 32 */
   STARTEXTEND,      /* 33 */
   EXTEND,           /* 34 */
   ENDEXTEND,        /* 35 */
