@@ -1,6 +1,10 @@
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem_buffers.sch: Update symbol for 741 opamp
+    * examples/stack_1.sch: Update symbol name with upper case: AM9128-1.sym
+
+2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/gschem_buffers.sch: Update symbol for 741 opamp
 
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
