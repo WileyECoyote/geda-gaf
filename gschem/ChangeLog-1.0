@@ -1,4 +1,22 @@
-2015-03-23 Wiley E. Hill <wileyhill@gmail.com>
+2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/cmos-invert.sch: Minor tweak
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Create arrays of Objects;
+
+    * src/x/x_edit_array.c: New module to implement array operations. The
+      Create Array Dialog is unique in that helper over-ride event handlers
+      and thus x_event. The Create Array Dialog has buttons to Select and
+      Deselect objects, as well as buttons for X, Y or XY offset distances.
+      The normal event handlers are restored once callbacks have completed
+      associated task. The button event schemes allows normal selection
+      keys, zooming, panning, etc..., while selecting objects.
+
+    * include/x_dialog.h: Add structure st_array_data.
+
+2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Remove redundent code.
 
