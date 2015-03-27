@@ -1,5 +1,10 @@
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/filter_1.sch: Cleanup drawing, assign refdes to CONN1, T1, and
+      diodes.
+
+2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * examples/stack_1.sch: Update symbol name with upper case: AM9128-1.sym
 
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
