@@ -3,7 +3,6 @@
 @echo 'export FRAGMENTS=x'
 
 gschem_SOURCES += \
-		x/x_edit_attrib.c \
 		x/x_autonumber.c \
 		x/x_clipboard.c \
 		x/x_color.c \
@@ -14,6 +13,7 @@ gschem_SOURCES += \
 		x/x_dnd.c \
 		x/x_draw.cpp \
 		x/x_edit_array.c \
+		x/x_edit_attrib.c \
 		x/x_edit_color.c \
 		x/x_edit_pin.c \
 		x/x_edit_cprop.c \
