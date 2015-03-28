@@ -1,5 +1,30 @@
 2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Improve Source Code Documentation
+
+    * src/object/o_edit.c: Add documentation group Editing-Operations (as the
+      whole module).
+
+    * src/object/o_break.c: Add entire o_break module as documentation group
+      Break-Operations as subgroup of Editing-Operations.
+
+    * src/object/o_copy.c: Add entire o_copy module as documentation group
+      Copy-Operations as subgroup of Editing-Operations.
+
+    * src/object/o_extend.c: Add entire o_extend module as documentation group
+      Extend-Operations as subgroup of Editing-Operations.
+
+    * src/object/o_move.c: Add entire o_move module as documentation group
+      Move-Operations as subgroup of Editing-Operations.
+
+    * src/object/o_place.c: Add entire o_place module as documentation group
+      Place-Operations as subgroup of Editing-Operations.
+
+    * src/object/o_slot.c: Add entire o_slot module as documentation group
+      Slot-Operations as subgroup of Editing-Operations.
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * images/Makefile.am: New file to generate image from schematics that were
       created for Doxygen documention. Added the following schematics for
       documentation:

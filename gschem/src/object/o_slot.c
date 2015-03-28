@@ -26,6 +26,13 @@
  * \brief Low-level module for editing Slot Properties
  */
 
+/** \defgroup Slot-Operations Slot Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *
+ *  \par This Group contains routines for manipulating Slot Attributes.
+ */
+
 #include <gschem.h>
 #include <geda_debug.h>
 
@@ -33,7 +40,7 @@
 
 /*! \brief Edit Complex Object's Slot Attribute
  *  \par Function Description
- *  This is really a pre-dialog launch for the Edit Slot Dialog.
+ *  This is  really a pre-dialog launch for the Edit Slot Dialog.
  *  The function insures the selected object is a complex and
  *  checks for an existing slot attribute. Either the found slot
  *  attribute or a fictitious values is passed to the Edit-Slot
@@ -154,3 +161,5 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
   o_undo_savestate_object(w_current, UNDO_ALL, object);
   GEDA_FREE (value);
 }
+
+/** @} endgroup Slot-Operations */

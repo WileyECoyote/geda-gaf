@@ -26,9 +26,20 @@
  *  Date: January, 10, 2015
  *  Contributing Author: Wiley Edward Hill
  */
+/*!
+ * \file o_extend.c
+ * \brief Extend/Project Operations Implementatiom Module
+ */
 
 #include "gschem.h"
 #include <math.h>
+
+/** \defgroup Extend-Operations Extend Operations
+/** \defgroup Extend-Operations Extend-Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *  \par This Group contains routines for extending projectables.
+ */
 
 typedef struct st_hit_record  hit_record;
 typedef struct st_path_record path_record;
@@ -2337,3 +2348,5 @@ int o_extend_interrogate (GschemToplevel *w_current, GList *object_list)
 
   return status;
 }
+
+/** @} endgroup Extend-Operations */

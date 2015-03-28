@@ -25,6 +25,13 @@
  * \file o_place.c
  * \brief Low-level module for placing objects
  */
+/** \defgroup Place-Operations Place Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *
+ *  \par This Group contains routines for Placing Operations.
+ */
+
 #include <gschem.h>
 #include <geda_debug.h>
 
@@ -443,3 +450,5 @@ void o_place_rotate (GschemToplevel *w_current)
 
   }
 }
+
+/** @} endgroup Place-Operations */

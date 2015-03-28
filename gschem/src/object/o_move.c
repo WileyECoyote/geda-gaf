@@ -25,6 +25,13 @@
  * \file o_move.c
  * \brief Low-level module for moving objects
  */
+/** \defgroup Move-Operations Move Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *
+ *  \par This Group contains routines for Moving Objects.
+ */
+
 #include <gschem.h>
 #include <geda_debug.h>
 
@@ -709,3 +716,5 @@ void o_move_end_rubberband (GschemToplevel *w_current,
     }
   }
 }
+
+/** @} endgroup Move-Operations */

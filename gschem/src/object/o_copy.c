@@ -25,6 +25,12 @@
  * \file o_copy.c
  * \brief Low-level module for copying objects
  */
+/** \defgroup Copy-Operations Copy-Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *
+ *  \par This Group contains routines for Copy Objects.
+ */
 
 #include <gschem.h>
 #include <geda_debug.h>
@@ -134,3 +140,5 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   /* Stay on ENDMCOPY mode */
   w_current->inside_action = TRUE;
 }
+
+/** @} endgroup Copy-Operations */

@@ -35,6 +35,12 @@
 
 #include <geda_debug.h>
 
+/** \defgroup Editing-Operations Editing Operations
+ *  @{
+ *
+ *  \par This Group contains routines for basic editing operations.
+ */
+
 /* break with the tradition here and input a list */
 /*! \todo probably should go back and do the same for o_copy o_move
  *  o_delete...
@@ -1154,3 +1160,5 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
 
   return o_new;
 }
+
+/** @} endgroup Editing-Operations */

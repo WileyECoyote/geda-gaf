@@ -26,9 +26,19 @@
  *  Date: February, 14, 2015
  *  Contributing Author: Wiley Edward Hill
  */
+/*!
+ * \file o_break.c
+ * \brief Break Operations Implementatiom Module
+ */
 
 #include "gschem.h"
 #include <math.h>
+
+/** \defgroup Break-Operations Break Operations
+ *  @{
+ *  \ingroup (Editing-Operations)
+ *  \par This Group contains routines for Breaking Breakable objects.
+ */
 
 /*! \brief Is an object Breakable
  *  \par Function Description
@@ -1196,3 +1206,5 @@ int o_break_interrogate (GschemToplevel *w_current, GList *object_list)
 
   return status;
 }
+
+/** @} endgroup Break-Operations */
