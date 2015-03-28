@@ -42,13 +42,22 @@
 
 #include <geda_debug.h>
 
+/**  \defgroup Component-Select-Dialog Component Select Dialog Implementation
+ *  @{
+ *  \ingroup (Component-Dialog Editing-Dialogs)
+ *  \par
+ *  This Group contains routines for the Component Select dialog. The
+ *  Component Select Dialog implements Component Select Dialog Class
+ *  and is used to select symbols to be inserted into schematics.
+ */
+
 /*! \def COMPSELECT_FILTER_INTERVAL
  *  \brief The time interval between request and actual filtering
  *
  *  This constant is the time-lag between user modifications in the
  *  filter entry and the actual evaluation of the filter which
- *  ultimately update the display. It helps reduce the frequency of
- *  evaluation of the filter as user types.
+ *  ultimately update the display. This helps reduce the frequency
+ *  of evaluation of the filter as user types.
  *
  *  Unit is milliseconds.
  */
@@ -313,6 +322,16 @@ void x_compselect_open (GschemToplevel *w_current)
     gtk_widget_grab_focus ((GtkWidget*) ActiveDialog->entry_filter);
   }
 }
+
+/** @} end group Component-Select-Dialog */
+
+/** \defgroup Component-Dialog-Class Component Select Dialog Class
+ *  @{
+ *  \ingroup (Component-Dialog)
+ *  \par
+ *  Definition of the Component Select dialog Class. The Component Select
+ *  Dialog Class is derived from #GschemDialogClass.
+ */
 
 /*! \brief Unselect selection in the active tree view.
  *  \par Function Description
@@ -1045,7 +1064,7 @@ static void gtk_set_item_active(GtkWidget *widget, bool state) {
  *  This is call-back function for the style menu toggle widgets. This
  *  functions establishes the flag mask that will be used when loading
  *  the tree-views, compselect->style_flag. In other functions through
- *  out this module this same variable is aliased as MASK (primarily to
+ *  out this module this same variable is aliased as #MASK (primarily to
  *  reduce line length).
  *
  *  Since this function is only used as a call-back for toggle widgets the
@@ -3304,3 +3323,5 @@ unsigned int compselect_behavior_get_type (void)
 
   return etype;
 }
+
+/** @} end group Component-Dialog-Class */

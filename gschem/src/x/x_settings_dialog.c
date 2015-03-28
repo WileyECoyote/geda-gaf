@@ -157,11 +157,14 @@
 #include <geda_widgets.h>               /* Switches use geda_labels */
 #include <geda_debug.h>
 
-/** \defgroup Settings-Dialog Settings Dialog
+/** \defgroup Preferences-Dialog Preferences Dialog
  *  @{
- *  \ingroup (Standard-Dialogs)
+ *  \ingroup (Settings-Dialogs)
  *
  *  \par This Group contains routines for the Preferences dialog.
+ *
+ *  \image html preferences_dialog.png
+ *  \image latex preferences_dialog.png
  */
 
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
@@ -236,9 +239,9 @@ inline void load_combo_str( GtkComboBox *combo, const char *list[])
 
 /* --------------------------- Global Variables ---------------------------- */
 
-/** \defgroup Settings-Dialog-Globals Global Variables
+/** \defgroup Preferences-Dialog-Globals Global Variables
  *  @{
- *  \memberof (Settings-Dialog)
+ *  \memberof (Preferences-Dialog)
  *  \par
  *   This group contains global variables for the Settings Dialog.
  *  \note The variables are only global to this module, not gschem
@@ -403,13 +406,13 @@ static GtkWidget *ZoomPanSwitch=NULL;
 static GtkWidget *PotentialAttributesView=NULL;
 static GtkWidget *SelectedAttributesView=NULL;
 
-/** @} endgroup Settings-Dialog-Globals */
+/** @} endgroup Preferences-Dialog-Globals */
 
 /* --------------------------- Support Functions --------------------------- */
 
-/** \defgroup Settings-Dialog-Support Settings Dialog Support Functions
+/** \defgroup Preferences-Dialog-Support Settings Dialog Support Functions
  *  @{
- *  \memberof (Settings-Dialog)
+ *  \memberof (Preferences-Dialog)
  *  \par
  *   Support functions for the Settings dialog are subgrouped into
  *   categories as follows:
@@ -423,9 +426,9 @@ static GtkWidget *SelectedAttributesView=NULL;
 
 /* ---------------------- Inhibitor Support Functions ---------------------- */
 
-/** \defgroup Settings-Dialog-Inhibitors Settings Dialog Inhibitors Functions
+/** \defgroup Preferences-Dialog-Inhibitors Settings Dialog Inhibitors Functions
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  *  \par
  *   The Inhibitors enable and disable Widgets based on other selections.
  *   This groups contains the following functions:
@@ -552,11 +555,11 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   return;
 }
 
-/** @} endgroup Settings-Dialog-Inhibitors */
+/** @} endgroup Preferences-Dialog-Inhibitors */
 
-/** \defgroup Settings-Dialog-Attributes Attribute Support Functions
+/** \defgroup Preferences-Dialog-Attributes Attribute Support Functions
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  *  \par
  *   Settings dialog attribute support functions are divided into two sub-groups.
  */
@@ -564,9 +567,9 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
 /* -------------------- Attributes Support Functions Group 1 ----------------*/
 
 /*!
- *  \defgroup Settings-Dialog-Attributes-Group-1 Attribute Support Group 1 Functions
+ *  \defgroup Preferences-Dialog-Attributes-Group-1 Attribute Support Group 1 Functions
  *  @{
- *  \memberof (Settings-Dialog-Attributes)
+ *  \memberof (Preferences-Dialog-Attributes)
  *  \par
  *   The functions to support attribute settings in group 1 are:
  *
@@ -774,30 +777,31 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
   }
 }
 
-/** @} endgroup Settings-Dialog-Attributes-Group-1 */
+/** @} endgroup Preferences-Dialog-Attributes-Group-1 */
 
 /* -------------------- Attributes Support Functions Group 2 ----------------*/
 
 /*!
- *  \defgroup Settings-Dialog-Attributes-Group-2 Attribute Support Group 2 Functions
+ *  \defgroup Preferences-Dialog-Attributes-Group-2 Attribute Support Group 2 Functions
  *  @{
- *  \memberof (Settings-Dialog-Attributes)
+ *  \memberof (Preferences-Dialog-Attributes)
  *  \par
  *   The second group of functions to support attribute settings are:
- *
+ *   -
  *      1. GetAttributeFilterMode
- *      2. SaveAttributeFilterList       Save List in the Filter Viewtree
- *      3. SavePotentialAttributes       Save list all attibutes, is left Viewtree
- *      4. is_not_in_list                called by add_selected_attribute
- *      5. decrement_selected_attribute  Move selected attribute down in the list
- *      6. increment_selected_attribute  Move selected attribute up in the list
- *      7. add_selected_attribute        Add selected attribute up in the list
+ *      2. SaveAttributeFilterList
+ *      3. SavePotentialAttributes
+ *      4. is_not_in_list
+ *      5. decrement_selected_attribute
+ *      6. increment_selected_attribute
+ *      7. add_selected_attribute
  *      8. remove_selected_attribute
  *      9. clear_attributes
  *     10. filter_list_set_default
+ *
 */
 
-/*! \brief Function GetAttributeFilterMode
+/*! \brief Preferences Dialog GetAttributeFilterMode
  *  \par Function Description: This is a Group 2 support function that
  *       returns the integer "setting" based on the state of the variable
  *       component_select_attrlist, which should not be confused with the
@@ -817,7 +821,7 @@ static int GetAttributeFilterMode(GschemToplevel *w_current) {
   return data == NULL ? 1 : (data[0] == ASCII_ASTERISK ? 0 : 2 );
 }
 
-/*! \brief Function SaveAttributeFilterList
+/*! \brief Preferences Dialog Save List in the Filter Viewtree
  *  \par Function Description: This is a Group 2 support function that
  *       clears the current attribute "filter" list, creates a new list
  *       or modified the old list based on the Dialog settings
@@ -882,7 +886,7 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
    return index;
 }
 
-/*! \brief Function SavePotentialAttributes
+/*! \brief Preferences Dialog Save list on all attibutes in left Viewtree
  *  \par Function Description: This is a Group 2 support function that
  *       clears the current attribute list, gets the modified attribute
  *       list from the Treeview and stores new list. The dialog does
@@ -912,7 +916,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
     return 0;
 }
 
-/*! \brief Function is_not_in_list
+/*! \brief Preferences Dialog add_selected_attribute Helper
  *  \par Function Description: This is a Group 2 support function
  *       used to check is a given attribute is already in the filter
  *       Treeview.
@@ -945,7 +949,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
   return !answer;
 }
 
-/*! \brief Function increment_selected_attribute
+/*! \brief Preferences Dialog Move selected attribute up in the list
  *  \par Function Description: This is a Group 2 support function use to
  *       move an attribute up in the Potential (left) Treeview list.
  */
@@ -964,7 +968,7 @@ static void increment_selected_attribute( void ){
   }
 }
 
-/*! \brief Function decrement_selected_attribute
+/*! \brief Preferences Dialog Move selected attribute down in the list
  *  \par Function Description: This is a Group 2 support function use to
  *       move an attribute down in the Potential (left) Treeview list.
 */
@@ -984,7 +988,7 @@ static void decrement_selected_attribute( void ){
 
 }
 
-/*! \brief Function add_selected_attribute
+/*! \brief Preferences Dialog Add selected attribute up in the list
  *  \par Function Description: This is a Group 2 support function that
  *       adds the selected attribute from the left list to the right list
  *       but only if the attribute is not already in the list. The attribute
@@ -1028,7 +1032,7 @@ static void add_selected_attribute( void ) {
   } /* endif there was an attribute selected in the left list */
 }
 
-/*! \brief Function remove_selected_attribute
+/*! \brief Preferences Dialog remove_selected_attribute
  *  \par Function Description: This is a Group 2 support function that
  *       remove the selected attribute from the filter list.
  */
@@ -1044,7 +1048,7 @@ static void remove_selected_attribute( void ){
    }
 }
 
-/*! \brief Function clear_attributes
+/*! \brief Preferences Dialog clear_attributes
  *  \par Function Description: This is a Group 2 support function that
  *       clears all of the attributes from the right Treeview, aka the
  *       filter list.
@@ -1058,7 +1062,7 @@ static void clear_attributes( void ){
 
 }
 
-/*! \brief Function filter_list_set_default
+/*! \brief Preferences Dialog filter_list_set_default
  *  \par Function Description: This is a Group 2 support function that
  *       restore the filter list in the right Treeview using a pre-compiled
  *       string array.
@@ -1073,15 +1077,15 @@ static void filter_list_set_default( void )
   }
 }
 
-/** @} endgroup Settings-Dialog-Attributes-Group-2 */
-/** @} endgroup Settings-Dialog-Attributes */
+/** @} endgroup Preferences-Dialog-Attributes-Group-2 */
+/** @} endgroup Preferences-Dialog-Attributes */
 
 /* ------------------------ Button Support Functions ------------------------*/
 
 /*!
- *  \defgroup Settings-Dialog-Buttons Settings Dialog Button Support Functions
+ *  \defgroup Preferences-Dialog-Buttons Settings Dialog Button Support Functions
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  *  \par
  *  Settings dialog button support functions are divided into two sub-groups.
  */
@@ -1089,10 +1093,10 @@ static void filter_list_set_default( void )
 /* --------------------- Button Support Functions Group 1 -------------------*/
 
 /*!
- *  \defgroup Settings-Dialog-Buttons-Group-1 Button Support Group 1 Functions
+ *  \defgroup Preferences-Dialog-Buttons-Group-1 Button Support Group 1 Functions
  *  @{
- *  \memberof (Settings-Dialog-Buttons)
- *  \weakgroup Settings-Dialog-Attributes
+ *  \memberof (Preferences-Dialog-Buttons)
+ *  \weakgroup Preferences-Dialog-Attributes
  *  \par
  *   The only member of this groups is a button responder to handler signals
  *   generated from buttons on the Attributes TAB.
@@ -1100,7 +1104,7 @@ static void filter_list_set_default( void )
  *      1. butt_responder
 */
 
-/*! \brief Function butt_responder
+/*! \brief Preferences Dialog butt_responder
  *  \par Function Description: This callback function response to signals
  *       generated from buttons on the Attribute TAB, (the ones between the
  *       Viewtrees).
@@ -1148,26 +1152,26 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
   }
 }
 
-/** @} endgroup Settings-Dialog-Buttons-Group-1 */
+/** @} endgroup Preferences-Dialog-Buttons-Group-1 */
 
 /* -------------------------- End Attributes Support ------------------------*/
 
 /* --------------------- Button Support Functions Group 2 -------------------*/
 /*!
- *  \defgroup Settings-Dialog-Buttons-Group-2 Button Support Group 2 Functions
+ *  \defgroup Preferences-Dialog-Buttons-Group-2 Button Support Group 2 Functions
  *  @{
- *  \memberof (Settings-Dialog-Buttons)
+ *  \memberof (Preferences-Dialog-Buttons)
  *  \par
  *   Currently, the remainder of the buttons on the Settings dialog are for
  *   setting color preferences. These color buttons have a supporting utility
  *   menu accessible from the right mouse button that can be used to restore
  *   default colors. Popup menu support for the color buttons are all in
- *   Settings-Dialog-Buttons-Group-2
+ *   Preferences-Dialog-Buttons-Group-2
 */
 /*!
- *  \defgroup Settings-Dialog-Color-Popup Color Button Popup Functions
+ *  \defgroup Preferences-Dialog-Color-Popup Color Button Popup Functions
  *  @{
- *  \memberof (Settings-Dialog-Buttons-Group-2)
+ *  \memberof (Preferences-Dialog-Buttons-Group-2)
  *  \par
  *   The functions to support color buttons are:
  *
@@ -1307,18 +1311,18 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
   return resolved;
 }
 
-/** @} endgroup Settings-Dialog-Color-Popup */
+/** @} endgroup Preferences-Dialog-Color-Popup */
 
 /* ---------------------------- End Button Support --------------------------*/
 
-/** @} endgroup Settings-Dialog-Buttons-Group-2 */
-/** @} endgroup Settings-Dialog-Buttons */
+/** @} endgroup Preferences-Dialog-Buttons-Group-2 */
+/** @} endgroup Preferences-Dialog-Buttons */
 
 /* ------------------------ ComboBox Support Functions ----------------------*/
 /*!
- *  \defgroup Settings-Dialog-ComboBox Settings Dialog ComboBox Support Functions
+ *  \defgroup Preferences-Dialog-ComboBox Settings Dialog ComboBox Support Functions
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  *  \par
  *   The functions to support ComboBox on the settings dialog:
  *
@@ -1329,7 +1333,7 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
  *      5. setup_ripper_symbol_combo
 */
 
-/*! \brief Function combo_responder
+/*! \brief Preferences Dialog combo_responder
  *  \par Function Description: This callback function is used to set the
  *       sensitivity of other controls based on combo-box selections.
  */
@@ -1705,16 +1709,16 @@ void setup_ripper_symbol_combo(char* cur_name) {
 
 }
 
-/** @} endgroup Settings-Dialog-ComboBox */
+/** @} endgroup Preferences-Dialog-ComboBox */
 
 /* -------------------------- End Combo Box Support -------------------------*/
 
 /* --------------------- Multi Control Callback Resonders -------------------*/
 
 /*!
- *  \defgroup Settings-Dialog-MultiWidget-Responders Multi-Widget Support Functions
+ *  \defgroup Preferences-Dialog-MultiWidget-Responders Multi-Widget Support Functions
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  *  \par
  *  The functions in this groups are callback responders to handle signal from
  *  radio buttons and switches (check) buttons on all Settings dialog TABs.
@@ -1723,7 +1727,7 @@ void setup_ripper_symbol_combo(char* cur_name) {
  *      2. switch_responder
 */
 
-/*! \brief Function to toggle radio images on the Preferences Dialog
+/*! \brief Preferences Dialog to toggle radio images on the Preferences Dialog
  *  \par Function Description: This function changes the images of
  *       controls created with create_geda_switch to the opposite
  *       state, i.e. if ON use OFF image and if OFF use ON image.
@@ -1892,7 +1896,7 @@ radio_responder(GtkWidget *widget,  int response, ControlID *Control)
   return;
 }
 
-/*! \brief Function to toggle switch images
+/*! \brief Preferences Dialog to toggle switch images
  *  \par Function Description: This function changes the images of
  *       controls created with create_geda_switch to the opposite
  *       state, i.e. if ON use OFF image and if OFF use ON image.
@@ -1978,15 +1982,15 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
    return;
 }
 
-/** @} endgroup Settings-Dialog-MultiWidget-Responders */
+/** @} endgroup Preferences-Dialog-MultiWidget-Responders */
 
 /* ------------------- End Multi Control Callback Resonders -----------------*/
 
-/** @} endgroup Settings-Dialog-Support */
+/** @} endgroup Preferences-Dialog-Support */
 
-/** \defgroup Settings-Dialog-Loader Settings Dialog Loader
+/** \defgroup Preferences-Dialog-Loader Settings Dialog Loader
  *  @{
- *  \memberof (Settings-Dialog-Support)
+ *  \memberof (Preferences-Dialog-Support)
  */
 
 /*! \brief Upload values into the Settings Dialog
@@ -2260,11 +2264,11 @@ bool load_settings_dialog (GschemToplevel *w_current)
   return TRUE;
 }
 
-/** @} endgroup Settings-Dialog-Loader */
+/** @} endgroup Preferences-Dialog-Loader */
 
-/** \defgroup Settings-Dialog-Creator Settings Dialog Creator
+/** \defgroup Preferences-Dialog-Creator Settings Dialog Creator
  *  @{
- *  \memberof (Settings-Dialog)
+ *  \memberof (Preferences-Dialog)
  * \remarks This is the "Local Module Main" routine, before "macrolization"
  * the function create_settings_dialog was > 148kbytes without supporting
  * functions. The macros somewhat obsures base coding but is much more
@@ -2631,20 +2635,20 @@ create_settings_dialog (GschemToplevel *w_current)
   return ThisDialog;
 }
 
-/** @} endgroup Settings-Dialog-Creator */
+/** @} endgroup Preferences-Dialog-Creator */
 
-/** \defgroup Settings-Dialog-Unloader Settings Dialog Unloader
+/** \defgroup Preferences-Dialog-Unloader Settings Dialog Unloader
  *  @{
- *  \memberof (Settings-Dialog)
- *  \defgroup Settings-Dialog-Unloader-Utilities Settings Dialog Unloader
+ *  \memberof (Preferences-Dialog)
+ *  \defgroup Preferences-Dialog-Unloader-Utilities Settings Dialog Unloader
  *  @{
- *  \memberof (Settings-Dialog-Unloader)
+ *  \memberof (Preferences-Dialog-Unloader)
  */
 int x_settings_lookup_cursor(int offset) {
   return DrawingCursorsInt[offset];
 }
 
-/** @} endgroup Settings-Dialog-Unloader-Utilities */
+/** @} endgroup Preferences-Dialog-Unloader-Utilities */
 
 /*! \brief Post Dialog procedure to retrieves values in dialog controls.
  *  \par Function Description
@@ -2879,6 +2883,6 @@ void GatherSettings(GschemToplevel *w_current) {
    SaveAttributeFilterList(w_current); /* SelectedAttributes */
 
 }
-/** @} endgroup Settings-Dialog-Unloader */
+/** @} endgroup Preferences-Dialog-Unloader */
 /** @} endgroup X_Settings_Dialog_Unload_Variables */
-/** @} endgroup Settings-Dialog */
+/** @} endgroup Preferences-Dialog */

@@ -23,7 +23,7 @@
  */
 /*!
  * \file x_autonumber.c
- * \brief A dialog box for Automatically Text Numbering
+ * \brief A dialog box for Automatomating Text Numbering
  */
 
 #include <config.h>
@@ -42,18 +42,21 @@
 #define Switch_Responder switch_responder
 
 /** \defgroup Auto-Number-Dialog Auto Number Dialog
+ *  \image html auto_number_dialog.png
+ *  \image latex auto_number_dialog.png
  *  @{
- *  \ingroup (Editing-Dialogs)
- *
- *  \par This Group contains routines for the AutoNumber dialog.
- *  AutoNumber dialog is primarily used for editing reference
+ *  \ingroup (Standard-Dialogs Editing-Dialogs)
+ *  \par This Group contains routines for the Auto Number dialog.
+ *  Auto Number dialog is primarily used for editing reference
  *  designator attribute, particularly for automatically number
- *  designation but can also be used to auto-number any other
- *  types of text attributes.
+ *  designation but can also be used to auto-number other types
+ *  of text attributes. Auto Number Dialog is a Modeless Dialog
+ *  derived from #GschemDialogClass
  */
 
-/*! \brief How many entries to keep in the "Search text" combo box. */
-#define HISTORY_LENGTH		15
+/*! \def AUTONUM_HISTORY_LENGTH
+ *  \brief How many entries to keep in the "Search text" combo box. */
+#define AUTONUM_HISTORY_LENGTH  15
 
 /* autonumber text structs and enums */
 enum {
@@ -1071,12 +1074,12 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
  *  This function prepends \a text to the list \a history and removes
  *  AND releases \a text from any other position in the \a history if
  *  present. The length of the list is checked and truncated if longer
- *  than #HISTORY_LENGTH.
+ *  than #AUTONUM_HISTORY_LENGTH.
  *  \par
  *  <DL>
  *    <DT>1) Removes \a text from the list</DT>
  *    <DT>2) Prepends \a text to the list list</DT>
- *    <DT>3) Truncates \a history if longer than #HISTORY_LENGTH</DT>
+ *    <DT>3) Truncates \a history if longer than #AUTONUM_HISTORY_LENGTH</DT>
  *  </DL>
  *  \param [in] history GList to be prepended with \a text
  *  \param [in] text    The text string to be prepended to the list
@@ -1107,7 +1110,7 @@ static GList * autonumber_add_history(GList *history, char *text)
   history = g_list_prepend(history, text);
 
   /* Truncate history */
-  while(g_list_length(history) > HISTORY_LENGTH) {
+  while(g_list_length(history) > AUTONUM_HISTORY_LENGTH) {
 
     GList *last = g_list_last(history);
 
@@ -1707,7 +1710,8 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
 /*! \brief Create or restore the autonumber text dialog
  *
  *  If the function is called the first time the dialog is created.
- *  If the dialog is only in background it is moved to the foreground.
+ *  If the dialog is in the background the dialog is raised to the
+ *  foreground.
  *
  *  \param [in] w_current Pointer to the top level struct
  */
@@ -1745,6 +1749,8 @@ void autonumber_text_dialog(GschemToplevel *w_current)
   /* if the dialog is in the background or minimized: show it */
   gtk_window_present(GTK_WINDOW(autotext->dialog));
 }
-/** @} end group Auto-Number-Dialog */
+
+/** @} endgroup Auto-Number-Dialog */
+
 #undef ThisDialog
 #undef Switch_Responder

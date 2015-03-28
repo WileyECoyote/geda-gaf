@@ -36,6 +36,13 @@
 
 #define ThisDialog pagesel
 
+/** \defgroup Page-Select-Dialog Page Select Dialog
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *  \image html page_man_dialog.png
+ *  \image latex page_man_dialog.png
+ */
+
 /* Enumerate Control IDs */
 typedef enum {
        ShowFullName,
@@ -826,5 +833,7 @@ void pagesel_update (Pagesel *pagesel)
   /* select the current page in the treeview */
   select_page (pagesel->treeview, NULL, toplevel->page_current);
 }
+
+/** @} endgroup Page-Select-Dialog */
 
 #undef ThisDialog

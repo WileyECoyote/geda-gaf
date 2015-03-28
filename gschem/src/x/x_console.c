@@ -78,6 +78,9 @@ static GObjectClass *console_parent_class = NULL;
 static void x_console_callback_response (GtkDialog *dialog, int arg1, void * user_data);
 static void log_message (Console *console, const char *message, const char *style);
 
+/** \defgroup Logging-Utilities Logging Utilities
+ *    @{
+ */
 void q_log_message(const char *format, ...)
 {
   if(!quiet_mode) {
@@ -105,6 +108,12 @@ void v_log_message(const char *format, ...)
     if (buffer) free(buffer);
   }
 }
+/** @} endgroup Logging-Utilities */
+
+/** \defgroup Console-Dialog-Implementation Console Dialog Implementation
+ *    @{
+ *  \ingroup (Console-Dialog Systemic-Dialogs)
+ */
 
 /*!
  *  \brief Destroy Command Buffer
@@ -271,33 +280,6 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
  */
 
 /*!
- *  \brief Add a message to the Console Window
- *  \par Function Description
- *  Add a message to the Console window.
- *  Calls log_message() to do the actual logging.
- *  \param [in] log_domain
- *  \param [in] log_level The severity of the message
- *  \param [in] message   The message to be displayed
- */
-void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char *message)
-{
-  char *style;
-  g_return_if_fail (console_dialog != NULL);
-
-  if (log_level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR)) {
-    style = "critical";
-  }
-  else if (log_level & G_LOG_LEVEL_WARNING) {
-    style = "warning";
-  }
-  else {
-    style = "message";
-  }
-
-  log_message (CONSOLE(console_dialog), message, style);
-}
-
-/*!
  *  \brief Add a message to the Console Log window
  *
  *  \par Function Description
@@ -336,13 +318,45 @@ static void log_message (Console *console, const char *message, const char *styl
   gtk_text_buffer_delete_mark (buffer, mark);
 }
 
+/*!
+ *  \brief Add a message to the Console Window
+ *  \par Function Description
+ *  Add a message to the Console window.
+ *  Calls log_message() to do the actual logging.
+ *  \param [in] log_domain
+ *  \param [in] log_level The severity of the message
+ *  \param [in] message   The message to be displayed
+ */
+void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char *message)
+{
+  char *style;
+  g_return_if_fail (console_dialog != NULL);
+
+  if (log_level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR)) {
+    style = "critical";
+  }
+  else if (log_level & G_LOG_LEVEL_WARNING) {
+    style = "warning";
+  }
+  else {
+    style = "message";
+  }
+
+  log_message (CONSOLE(console_dialog), message, style);
+}
+
 /** @} end group Logging-Handlers */
 /** @} end group Console-Dialog-Handlers */
+/** @} endgroup Console-Dialog-Implementation */
 
 /*! ============ Console-Class Initializers & Constructors ============ */
 
-/** \defgroup Console-Class Console Dialog Class Functions
+/** \defgroup Console-Dialog-Class Console Dialog Class
  *  @{
+ *  \ingroup (Console-Dialog)
+ *  \par
+ *  Definition of the Console dialog Class. The Console Dialog Class is
+ *  derived from #GschemDialogClass.
  */
 
 /*!
@@ -506,6 +520,7 @@ static void console_class_init (ConsoleClass *klass)
 {
   console_parent_class = g_type_class_peek_parent (klass);
 }
+
 /*!
  *  \brief Console class instance initialization function
  *
@@ -675,4 +690,4 @@ static void console_init (Console *console) /* *Self */
   gtk_widget_grab_focus(console_entry); /* Not the Close the Button */
 }
 
-/** @} end group Console-Class */
+/** @} end group Console-Dialog-Class */

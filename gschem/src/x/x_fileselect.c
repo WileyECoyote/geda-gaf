@@ -34,6 +34,16 @@
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
 
+/** \defgroup File-Dialogs File System Dialogs
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *  \defgroup File-Select-Dialogs File Select Dialog
+ *    @{
+ *    \ingroup (File-Dialogs)
+ *    \image html fileselect_dialog.png
+ *    \image latex fileselect_dialog.png
+ */
+
 /*! \brief Updates the preview when the selection changes.
  *  \par Function Description
  *  This is the callback function connected to the 'update-preview'
@@ -216,72 +226,6 @@ x_fileselect_list(GschemToplevel *w_current)
   return filenames;
 }
 
-/*! \brief Opens a Image Chooser Dialog for selecting one image file.
- *  \par Function Description
- *  This function opens a Image Chooser Dialog, restores the user's
- *  filter preference, and wait for the user to select at one file to
- *  load. In the toplevel contains a pixbuf_filename, that file name
- *  is set in the dialog. The users filter preference is Preserved
- *  regardless of whether the operation is canceled or not.
- *
- *  \param [in] w_current The GschemToplevel environment
- *  \param [in] filename  Optional file name to fill in the chooser.
- *
- *  \returns pointer to filename string or NULL if the operation was
- *           cancelled by the user. The returned string must be freed
- *           by the caller.
- *
- *  \sa x_fileselect_list
- */
-char *
-x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
-{
-  GtkWidget  *dialog;
-  char       *outfile;
-
-  dialog = geda_image_chooser_new (w_current->main_window,
-                                   IMAGE_CHOOSER_ACTION_OPEN);
-
-  g_object_set (dialog, "select-multiple", FALSE, NULL);
-  /* "local-only", TRUE, */
-
-  /* If a file name was provided then use the path from the file
-   * name then as the starting point if the path exist, and is
-   * readable by the current user */
-  if (filename) {
-
-    char *filepath = f_get_dirname (filename);
-    if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
-    {
-      errno = 0;
-      access(filepath, R_OK);
-      if (!errno) {
-        geda_image_chooser_set_current_folder(dialog, filepath);;
-      }
-      GEDA_FREE(filepath);
-    }
-    geda_image_chooser_set_filename (dialog, f_get_basename(filename));
-  }
-  else { /* start in current working directory, NOT in 'Recently Used' */
-    char *cwd = g_get_current_dir ();
-    geda_image_chooser_set_current_folder (dialog, cwd);
-    GEDA_FREE (cwd);
-  }
-
-  gtk_widget_show (dialog);
-
-  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
-    outfile = u_string_strdup(geda_image_chooser_get_filename (dialog));
-  }
-  else {
-    outfile = NULL;
-  }
-
-  gtk_widget_destroy (dialog);
-
-  return outfile;
-}
-
 /*! \brief Opens a file chooser for saving the current page.
  *  \par Function Description
  *  This function opens a file chooser dialog and wait for the user to
@@ -405,6 +349,89 @@ x_fileselect_save (GschemToplevel *w_current)
   gtk_widget_destroy (dialog);
 }
 
+/** @} endgroup File-Select-Dialogs */
+
+/** \defgroup Image-Select-Dialog Image Select Dialog
+ *  @{
+ *  \ingroup (File-Dialogs)
+ *  \image html image_chooser_dialog.png
+ *  \image latex image_chooser_dialog.png
+ */
+
+/*! \brief Opens a Image Chooser Dialog for selecting one image file.
+ *  \par Function Description
+ *  This function opens a Image Chooser Dialog, restores the user's
+ *  filter preference, and wait for the user to select at one file to
+ *  load. In the toplevel contains a pixbuf_filename, that file name
+ *  is set in the dialog. The users filter preference is Preserved
+ *  regardless of whether the operation is canceled or not.
+ *
+ *  \param [in] w_current The GschemToplevel environment
+ *  \param [in] filename  Optional file name to fill in the chooser.
+ *
+ *  \returns pointer to filename string or NULL if the operation was
+ *           cancelled by the user. The returned string must be freed
+ *           by the caller.
+ *
+ *  \sa x_fileselect_list
+ */
+char *
+x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
+{
+  GtkWidget  *dialog;
+  char       *outfile;
+
+  dialog = geda_image_chooser_new (w_current->main_window,
+                                   IMAGE_CHOOSER_ACTION_OPEN);
+
+  g_object_set (dialog, "select-multiple", FALSE, NULL);
+  /* "local-only", TRUE, */
+
+  /* If a file name was provided then use the path from the file
+   * name then as the starting point if the path exist, and is
+   * readable by the current user */
+  if (filename) {
+
+    char *filepath = f_get_dirname (filename);
+    if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
+    {
+      errno = 0;
+      access(filepath, R_OK);
+      if (!errno) {
+        geda_image_chooser_set_current_folder(dialog, filepath);;
+      }
+      GEDA_FREE(filepath);
+    }
+    geda_image_chooser_set_filename (dialog, f_get_basename(filename));
+  }
+  else { /* start in current working directory, NOT in 'Recently Used' */
+    char *cwd = g_get_current_dir ();
+    geda_image_chooser_set_current_folder (dialog, cwd);
+    GEDA_FREE (cwd);
+  }
+
+  gtk_widget_show (dialog);
+
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
+    outfile = u_string_strdup(geda_image_chooser_get_filename (dialog));
+  }
+  else {
+    outfile = NULL;
+  }
+
+  gtk_widget_destroy (dialog);
+
+  return outfile;
+}
+
+/** @} endgroup Image-Select-Dialog */
+/** @} endgroup File-Dialog */
+
+/** \defgroup Load-Backup-Dialog Load Backup Dialog
+ *  @{
+ *  \ingroup (Systemic-Dialogs)
+ */
+
 /*! \brief Load/Backup selection dialog.
  *  \par Function Description
  *  This function opens a message dialog and waits for the user to choose
@@ -469,3 +496,5 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
 
   return result;
 }
+
+/** @} endgroup Load-Backup-Dialog */

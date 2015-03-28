@@ -38,6 +38,14 @@
 
 #define ThisDialog multiattrib
 
+/** \defgroup Multi-Attribute-Dialog Multi Attribute Dialog
+ *  @{
+ *  \ingroup (Editing-Dialogs)
+ *  \image html multiattrib_dialog.png
+ *  \image latex multiattrib_dialog.png
+ *  \par
+ */
+
 /* Enumerate Control IDs */
 typedef enum {
        ShowInherited,
@@ -647,7 +655,6 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
     NEXT(iter);
   };
 
-  toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
@@ -665,7 +672,6 @@ static void multiattrib_action_delete_attributes(Multiattrib *ThisDialog,
     NEXT(iter);
   };
 
-  //w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
@@ -2738,5 +2744,7 @@ multiattrib_update (Multiattrib *ThisDialog)
                           add_sensitive ? &ThisDialog->value_normal_text_color
                           : &style->text[GTK_STATE_INSENSITIVE]);
 }
+
+/** @} endgroup Multi-Attribute-Dialog */
 
 #undef ThisDialog

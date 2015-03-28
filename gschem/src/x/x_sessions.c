@@ -40,13 +40,12 @@
 
 /** \defgroup Gschem-Session-Dialogs Sessions Dialogs
  *  @{
- *  \ingroup (Gschem-Session-System Systemic-Dialogs)
- *
+ *  \ingroup (Gschem-Session-System Standard-Dialogs)
  *  \par This Group contains core Routines for Sessions Dialogs.
  *   This group contains routines for 4 dialogs to support Geschem
  *   Sessions, the Sessions dialogs are:
  *
- *              1. Manages Sessions
+ *              1. Manage Sessions
  *              2. Open Session
  *              3. New Session
  *              4. Save Session As
@@ -555,6 +554,8 @@ x_sessions_get_treeview (GtkWidget *Dialog)
 }
 
 /*! \brief Manage Sessions Dialog
+ *  \image html manage_sessions_dialog.png
+ *  \image latex manage_sessions_dialog.png
  *  \par Function Description
  *  Creates and displays the Manage Sessions Dialog.
  *
@@ -737,6 +738,9 @@ open_session_selection_changed (GtkTreeSelection *selection,
  *  \sa x_sessions_open_dialog
  *
  *  \param w_current Pointer to GschemToplevel object
+ *
+ *  \image html manage_sessions_dialog.png
+ *  \image latex manage_sessions_dialog.png
  */
 void x_sessions_open_dialog(GschemToplevel *w_current)
 {

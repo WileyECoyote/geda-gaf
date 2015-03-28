@@ -1,5 +1,46 @@
 2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Revise DOxygen comment, include references to
+      image of dialog, this seems to be less then idea for this module, but
+      okay for other modules.
+
+    * src/x/x_compselect.c: Revise DOxygen comment, include references to
+      image of dialog and new group Component-Select-Dialog.
+
+    * src/x/x_console.c: Revise DOxygen comment, include references to images
+      of dialog and new group Console-Dialog-Implementation referencing both
+      Console-Dialog and Systemic-Dialogs, and group Console-Dialog-Class,
+      referencing only parent group Console-Dialog, resequenced out of order
+      function x_log_message and add a separate DOxygen group Logging-Utilities
+      for functions q_log_message and v_log_message since neither is directly
+      associated with the dialog.
+
+    * Applied similar scheme to add a module group and references to dialog
+      images for modules:
+
+            * src/x/x_fileselect.c
+            * src/x/x_image.c
+            * src/x/x_multiattrib.c
+            * src/x/x_pagesel.c
+
+    * Revised existing Doxygen group to include references to dialog images for
+      modules:
+
+            * src/x/x_sessions.c
+            * src/x/x_settings_dialog.c
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_compselect.h: Add DOxygen group Component-Dialog in header
+      file with references to images of the Console dialog.
+
+    * include/x_console.h: Add DOxygen group Console-Dialog in header file
+      with references to images of the Console dialog.
+
+    * include/x_dialog.h: Add DOxygen group Settings-Dialogs in header file.
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * Improve Source Code Documentation
 
     * docs/dialogs: Add seperate subdirectory for static png images of dialog
