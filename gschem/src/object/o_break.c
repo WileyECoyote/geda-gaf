@@ -38,6 +38,8 @@
  *  @{
  *  \ingroup (Editing-Operations)
  *  \par This Group contains routines for Breaking Breakable objects.
+ *  \image html break.png
+ *  \image latex break.png
  */
 
 /*! \brief Is an object Breakable
@@ -198,6 +200,9 @@ static bool o_break_arc(GschemToplevel *w_current, Object *object)
  *  \returns TRUE if the task was completed, otherwise FALSE.
  *
  *  \remark \a object Must be a Box object and is not checked!
+ */
+/*! \image html break_box.png
+ *  \image latex break_box.png
  */
 static bool o_break_box(GschemToplevel *w_current, Object *object)
 {

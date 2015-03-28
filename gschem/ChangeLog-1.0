@@ -2,6 +2,22 @@
 
     * Improve Source Code Documentation
 
+    * src/object/o_break.c: Insert references to images for module; break.png
+      .png and break_box.png.
+
+    * src/object/o_extend.c:Insert references to images for module; projections
+      and projections2.png.
+
+    * src/x/x_edit_array.c: Add second subgroup; Create-Array-Dialog and insert
+      references to images for module; array_dialog.png for the first group;
+      Array-Dialogs. The double grouping results in the images showing before
+      other stuff in the module in the source documentation, looks better. If
+      only it was so painful to do this with DOxygen.
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Improve Source Code Documentation
+
     * src/object/o_edit.c: Add documentation group Editing-Operations (as the
       whole module).
 

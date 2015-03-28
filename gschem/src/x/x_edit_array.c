@@ -36,9 +36,16 @@
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
-/** \defgroup Array-Edit-Dialog Array Edit Dialog Functions
- *  @{ \memberof Editing-Dialogs
- *  \par
+/** \defgroup Array-Dialog Array Dialogs
+ *  @{
+ *  \ingroup (Editing-Dialogs)
+ *  \image html array_dialog.png
+ *  \image latex array_dialog.png
+ *  @} endgroup Array-Dialogs
+ *
+ *  \defgroup Create-Array-Dialog Create Array Dialog
+ *  @{
+ *  \ingroup (Array-Dialog)
  */
 
 static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
@@ -1156,4 +1163,4 @@ void x_dialog_array_edit(GschemToplevel *w_current)
 }
 
 /********************** End of Array dialog box *************************/
-/** @} end group Array-Edit-Dialog */
+/** @} end group Create-Array-Dialog */

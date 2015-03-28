@@ -35,10 +35,11 @@
 #include <math.h>
 
 /** \defgroup Extend-Operations Extend Operations
-/** \defgroup Extend-Operations Extend-Operations
  *  @{
  *  \ingroup (Editing-Operations)
  *  \par This Group contains routines for extending projectables.
+ *  \image html projections.png
+ *  \image latex projections.png
  */
 
 typedef struct st_hit_record  hit_record;
@@ -625,6 +626,8 @@ static bool o_extend_can_arc_bound(Object  *boundary,
  *  \returns TRUE or FALSE
  *
  *  \remark boundary Must be a Box object and is not checked!
+ *  \image html projections2.png
+ *  \image latex projections2.png
  */
 static bool o_extend_can_box_bound(Object  *boundary,
                                    Object  *projectile,
