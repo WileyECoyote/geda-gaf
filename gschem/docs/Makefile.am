@@ -1,3 +1,5 @@
+SUBDIRS     = images
+
 # These "extra" files are for the Doxygen source documentation
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
 	      what-is-geda.tex
@@ -21,6 +23,7 @@ all:
 doxygen: gschem.dox
 	@echo 'Creating doxygen documentation for gschem...'
 if ENABLE_DOXYGEN
+	-(cd images && $(MAKE) images)
 	@if test "X@DOXYGEN_PATH_OUT@" != "X./" ; then \
 	    DOXYGEN_OUTDIR=@DOXYGEN_PATH_OUT@/gschem; \
 	    test -d "$$DOXYGEN_OUTDIR" || $(MKDIR_P) "$$DOXYGEN_OUTDIR"; \
@@ -69,7 +72,7 @@ MOSTLYCLEANFILES = 	*.log *~
 CLEANFILES       = 	*.log *~
 DISTCLEANFILES   = 	*.log core FILE *~ \
 			        *.dvi *.info *.info-* *.aux *.fn \
-			        *.fns *.cp *.ky *.pg *.toc *.tp *.vrs *.vr 
+			        *.fns *.cp *.ky *.pg *.toc *.tp *.vrs *.vr
 MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
 
 distclean-local:

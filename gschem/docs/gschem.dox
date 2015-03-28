@@ -1082,7 +1082,11 @@ HTML_EXTRA_STYLESHEET  =
 # files will be copied as-is; there are no commands or markers available.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_FILES       =
+HTML_EXTRA_FILES       = \
+                         images/break.png \
+                         images/break_box.png \
+                         images/projections.png \
+                         images/projections2.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the stylesheet and background images according to
@@ -1630,7 +1634,11 @@ LATEX_FOOTER           =
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
 LATEX_EXTRA_FILES      = what-is-geda.tex \
-                         what-is-gschem.tex
+                         what-is-gschem.tex \
+                         images/break.png \
+                         images/break_box.png \
+                         images/projections.png \
+                         images/projections2.png
 
 # If the PDF_HYPERLINKS tag is set to YES, the LaTeX that is generated is
 # prepared for conversion to PDF (using ps2pdf or pdflatex). The PDF file will

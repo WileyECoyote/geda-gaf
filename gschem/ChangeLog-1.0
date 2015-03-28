@@ -1,3 +1,15 @@
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * images/Makefile.am: New file to generate image from schematics that were
+      created for Doxygen documention. Added the following schematics for
+      documentation:
+
+            * docs/images/array_dialog.sch
+            * docs/images/break.sch
+            * docs/images/break_box.sch
+            * docs/images/projections.sch
+            * docs/images/projections2.sch
+
 2015-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/IEC417.sch: Update symbol arrow.sym (new version use round caps)
@@ -19,7 +31,7 @@
 
     * New Feature: Create arrays of Objects;
 
-    * src/x/x_edit_array.c: New module to implement array operations. The
+    * src/x/x_array.c: New module to implement array operations. The
       Create Array Dialog is unique in that helper over-ride event handlers
       and thus x_event. The Create Array Dialog has buttons to Select and
       Deselect objects, as well as buttons for X, Y or XY offset distances.
