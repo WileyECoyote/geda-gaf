@@ -1753,7 +1753,6 @@ COMMAND (do_deselect)
     i_status_set_state (w_current, DESELECT);
   else /* Automaticaly switch to SELECT mode cause nothing to deselect */
     msg_need_select_1st(w_current);
-    //i_status_set_state (w_current, SELECT);
 
   w_current->inside_action = FALSE;
   i_status_update_sensitivities (w_current);
@@ -1815,7 +1814,6 @@ COMMAND (do_zoom_box)
 {
   BEGIN_W_COMMAND(do_zoom_box);
 
-  //o_select_unselect_all (w_current);
   o_redraw_cleanstates(w_current);
 
   i_status_set_state(w_current, ZOOMBOX);

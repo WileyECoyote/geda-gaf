@@ -777,8 +777,6 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
 
   SetToggleState(properties->electrical_cb, FALSE);
 
-  //GtkWidget *refdes_combo;
-  //GtkWidget *elect_table;
 }
 /*! \brief Component Properties Dialog Check-box Callback
  *   Enable or disabled sensitivities of widgets within the electrical

@@ -81,7 +81,6 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
                                                array_data     *dialog_data)
 {
   x_dialog_array_edit_disconnect_events(w_current, dialog_data);
-  //w_current->event_state = ARRAYMODE;
   i_event_unblock_buttons (w_current);
 }
 

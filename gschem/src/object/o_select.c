@@ -717,7 +717,6 @@ STOP_PERFORMANCE(w_current)
       if (o_selection_remove(selection, object) == 1) {
         o_selection_remove(selection, object);
         o_select_run_hooks (w_current, object, DESELECT_OBJECTS_HOOK);
-      //g_hook_run_object(w_current, DESELECT_OBJECTS_HOOK, object);
       }
     }
   }

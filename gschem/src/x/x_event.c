@@ -482,8 +482,6 @@ bool x_event_button_released (GtkWidget      *widget,
 
       if (Current_PlaceList != NULL) {
         switch(w_current->event_state) {
-          //case (COPYMODE)  :
-          //case (MCOPYMODE) : o_copy_end(w_current); break;
           case (DRAGMOVE):
             o_move_end(w_current);
             i_status_set_state(w_current, SELECT);
@@ -496,7 +494,6 @@ bool x_event_button_released (GtkWidget      *widget,
         int w_x, w_y;
 
         switch(w_current->event_state) {
-          //case (GRIPS)     : o_grips_end(w_current); break;
           case(PATHMODE):
             w_x = snap_grid (w_current, unsnapped_wx);
             w_y = snap_grid (w_current, unsnapped_wy);
@@ -1090,16 +1087,12 @@ bool x_event_motion (GtkWidget      *widget,
         break;
       }
 
-      /* Fall through to handle move */
     case(DRAGMOVE):
     case(MOVEMODE):
         if (w_current->inside_action) {
           o_move_motion (w_current, w_x, w_y);
         }
         break;
-
-      //case(COPYMODE):
-      //case(MCOPYMODE):
   }
 
   return(0);
