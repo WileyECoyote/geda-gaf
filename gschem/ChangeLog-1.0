@@ -2,6 +2,36 @@
 
     * Improve Source Code Documentation
 
+    * docs/dialogs: Add seperate subdirectory for static png images of dialog
+      boxes (to be) referenced in source documentation. On first go-around the
+      images were added to the /images subdirectory and a subsequent cleaning
+      deleting all of the dialog images, docs/images/Makefile.am. The cleaning
+      scheme wipes all pngs and pdf file, I like but had to capture all of the
+      dialogs again, crap.
+
+    * Add image files:
+
+            * dialogs/array_dialog.png
+            * dialogs/auto_number_dialog.png
+            * dialogs/component_select_dialog.png
+            * dialogs/console_dialog.png
+            * dialogs/fileselect_dialog.png
+            * dialogs/image_chooser_dialog.png
+            * dialogs/manage_sessions_dialog.png
+            * dialogs/multiattrib_dialog.png
+            * dialogs/page_man_dialog.png
+            * dialogs/preferences_dialog.png
+            * dialogs/write_image_dialog.png
+
+    * dialogs/Makefile: Add static MakeFile.
+
+    * docs/gschem.dox: Revise DOxygen configuration file to include the files
+      listed above for both HTML and Latex builds.
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Improve Source Code Documentation
+
     * src/object/o_break.c: Insert references to images for module; break.png
       .png and break_box.png.
 

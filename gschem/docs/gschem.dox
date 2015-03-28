@@ -1086,7 +1086,18 @@ HTML_EXTRA_FILES       = \
                          images/break.png \
                          images/break_box.png \
                          images/projections.png \
-                         images/projections2.png
+                         images/projections2.png \
+                         dialogs/array_dialog.png \
+                         dialogs/auto_number_dialog.png \
+                         dialogs/component_select_dialog.png \
+                         dialogs/console_dialog.png \
+                         dialogs/fileselect_dialog.png \
+                         dialogs/image_chooser_dialog.png \
+                         dialogs/manage_sessions_dialog.png \
+                         dialogs/multiattrib_dialog.png \
+                         dialogs/page_man_dialog.png \
+                         dialogs/preferences_dialog.png \
+                         dialogs/write_image_dialog.png
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the stylesheet and background images according to
@@ -1638,7 +1649,18 @@ LATEX_EXTRA_FILES      = what-is-geda.tex \
                          images/break.png \
                          images/break_box.png \
                          images/projections.png \
-                         images/projections2.png
+                         images/projections2.png \
+                         dialogs/array_dialog.png \
+                         dialogs/auto_number_dialog.png \
+                         dialogs/component_select_dialog.png \
+                         dialogs/console_dialog.png \
+                         dialogs/fileselect_dialog.png \
+                         dialogs/image_chooser_dialog.png \
+                         dialogs/manage_sessions_dialog.png \
+                         dialogs/multiattrib_dialog.png \
+                         dialogs/page_man_dialog.png \
+                         dialogs/preferences_dialog.png \
+                         dialogs/write_image_dialog.png
 
 # If the PDF_HYPERLINKS tag is set to YES, the LaTeX that is generated is
 # prepared for conversion to PDF (using ps2pdf or pdflatex). The PDF file will

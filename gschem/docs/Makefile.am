@@ -1,4 +1,4 @@
-SUBDIRS     = images
+SUBDIRS     = images dialogs
 
 # These "extra" files are for the Doxygen source documentation
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
