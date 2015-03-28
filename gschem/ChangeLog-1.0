@@ -1,5 +1,32 @@
 2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dialog.c: REvise/update Doxygen comments, removing the word
+      "Functions" from group titles for:
+
+            Help-About-Dialog
+            Arc-Edit-Dialog
+            Fill-Type-Dialog
+            Line-Type-Dialog
+            Edit-Slots-Dialog
+            Find-Text-Dialog
+            Edit-Hide-Text-Dialog
+            Show-Text-Dialog
+            Text-Input-Dialog
+            Translate-Dialog
+            Hotkeys-Dialog
+            Confirm-Exit-Dialog
+            Symbol-Changed-Dialog
+            Invalid-Dialog
+            Confirmation-Dialog (and make plural)
+            File-Select-File-Dialog
+            Message-Dialogs Message (and make plural)
+
+      Associated Snap-Size-Dialog and Text-Size-Dialog with the Settings-Dialogs
+      group. Change Editing-Dialogs X-Dialogs to "Editing Schematics" instead of
+      "Editing Object Properties"
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_autonumber.c: Revise DOxygen comment, include references to
       image of dialog, this seems to be less then idea for this module, but
       okay for other modules.

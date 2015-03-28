@@ -36,7 +36,7 @@
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
-/** \defgroup Array-Dialog Array Dialogs
+/** \defgroup Array-Dialogs Array Dialogs
  *  @{
  *  \ingroup (Editing-Dialogs)
  *  \image html array_dialog.png

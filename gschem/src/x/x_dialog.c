@@ -370,7 +370,7 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
  *  @{ \par This Group contains Functions for Standard Dialogs
 */
 
-/** \defgroup Help-About-Dialog Help About Dialog Functions
+/** \defgroup Help-About-Dialog Help About Dialog
  *  @{
 */
 
@@ -455,6 +455,7 @@ void about_dialog (GschemToplevel *w_current)
 
 /** \defgroup Snap-Size-Dialog Snap Size Dialog
  *  @{
+ *  \ingroup (Settings-Dialogs)
 */
 
 /*! \brief response function for the snap size dialog
@@ -567,6 +568,7 @@ void snap_size_dialog (GschemToplevel *w_current)
 
 /** \defgroup Text-Size-Dialog Text Size Dialog
  *  @{
+ *  \ingroup (Settings-Dialogs)
 */
 
 /*! \brief response function for the text size dialog
@@ -673,7 +675,7 @@ void text_size_dialog (GschemToplevel *w_current)
 
 /** @} endgroup Standard-Dialogs */
 
-/** \defgroup Editing-Dialogs X-Dialogs for Editing Object Properties
+/** \defgroup Editing-Dialogs X-Dialogs for Editing Schematics
  *  @{
  *  \brief This Group contains Dialogs routines for Editing Objects
  *  \details
@@ -714,7 +716,7 @@ static void set_text_buffer(const char *string)
   }
 }
 
-/** \defgroup Arc-Edit-Dialog Arc Edit Dialog Functions
+/** \defgroup Arc-Edit-Dialog Arc Edit Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -1089,7 +1091,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 
 /** @} end group Common-Edit-Dialog */
 
-/** \defgroup Fill-Type-Dialog Fill Type Editing-Dialog Functions
+/** \defgroup Fill-Type-Dialog Fill Type Editing-Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -1649,7 +1651,7 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
 
 /** @} end group Fill-Type-Dialog */
 
-/** \defgroup Line-Type-Dialog Line Type Editing-Dialog Functions
+/** \defgroup Line-Type-Dialog Line Type Editing-Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2229,7 +2231,7 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
 
 /** @} end group Line-Type-Dialog */
 
-/** \defgroup Edit-Slots-Dialog Slots Editing-Dialogs Functions
+/** \defgroup Edit-Slots-Dialog Slots Editing-Dialogs
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2397,7 +2399,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 /******************** End of Slot Edit dialog box ***********************/
 /** @} End Group Edit-Slots-Dialog */
 
-/** \defgroup Find-Text-Dialog Find Text Editing-Dialogs Functions
+/** \defgroup Find-Text-Dialog Find Text Editing-Dialogs
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2619,7 +2621,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
 
 /** @} End Group Find-Text-Dialog */
 
-/** \defgroup Edit-Hide-Text-Dialog Hide Text Editing-Dialogs Functions
+/** \defgroup Edit-Hide-Text-Dialog Hide Text Editing-Dialogs
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2727,7 +2729,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
 /** @} End Group Find-Text-Dialog */
 
-/** \defgroup Show-Text-Dialog Show Text Dialogs Functions
+/** \defgroup Show-Text-Dialog Show Text Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2757,7 +2759,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
     set_text_buffer(string);
 
     o_edit_show_specific_text (w_current,
-                               s_page_get_objects (w_current->toplevel->page_current),
+                               s_page_get_objects (Current_Page),
                                string);
     break;
   case GEDA_RESPONSE_REJECT:
@@ -2835,7 +2837,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
 
 /** @} End Group Show-Text-Dialog */
 
-/** \defgroup Text-Input-Dialog Text-Input Dialogs Functions
+/** \defgroup Text-Input-Dialog Text-Input Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -3009,7 +3011,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
 
 /** @} End Group Text-Input-Dialog */
 
-/** \defgroup Translate-Dialog Translate Dialogs Functions
+/** \defgroup Translate-Dialog Translate Dialog
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -3113,7 +3115,7 @@ void x_dialog_translate (GschemToplevel *w_current)
  *  @{ \par This Group contains Functions for System Level Dialogs
 */
 
-/** \defgroup Hotkeys-Dialog  Hotkeys Dialog Functions
+/** \defgroup Hotkeys-Dialog  Hotkeys Dialog
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -3217,7 +3219,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
 /** @} endgroup Hotkeys-Dialog */
 
-/** \defgroup Confirm-Exit-Dialog Confirm Exit Dialog Functions
+/** \defgroup Confirm-Exit-Dialog Confirm Exit Dialog
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -4131,7 +4133,7 @@ void x_dialog_raise_all(GschemToplevel *w_current)
 
 /** @} endgroup Raise-All-Dialog */
 
-/** \defgroup Symbol-Changed-Dialog Symbol Changed Dialog Functions
+/** \defgroup Symbol-Changed-Dialog Symbol Changed Dialog
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -4314,7 +4316,7 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
 /** @} endgroup Symbol-Changed-Dialog */
 
 
-/** \defgroup Invalid-Dialog Invalid attribute Dialog Functions
+/** \defgroup Invalid-Dialog Invalid attribute Dialog
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -4357,7 +4359,7 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
  *  @{ \par This Group contains General Utility Dialogs
 */
 
-/** \defgroup Confirmation-Dialog Confirmation Dialog Functions
+/** \defgroup Confirmation-Dialog Confirmation Dialogs
  *  @{ \memberof Gschem-General-Dialogs
 */
 
@@ -4455,7 +4457,7 @@ int x_dialog_confirm_with_cancel (const char *msg, IDE_MESSAGE_TYPE context, boo
 
 /** @} endgroup Confirmation-Dialog */
 
-/** \defgroup File-Select-File-Dialog Select File Dialog Functions
+/** \defgroup File-Select-File-Dialog Select File Dialog
  *  @{ \memberof Gschem-General-Dialogs
 */
 
@@ -4554,7 +4556,7 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 
 /** @} endgroup File-Select-File-Dialog */
 
-/** \defgroup Message-Dialogs Message Dialogs Functions
+/** \defgroup Message-Dialogs Message Dialogs
  *  @{ \memberof Gschem-General-Dialogs
 */
 
