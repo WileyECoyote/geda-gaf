@@ -22,6 +22,18 @@
 #ifndef __X_COMPSELECT_H__
 #define __X_COMPSELECT_H__
 
+/* The Component-Dialog Group is used to show images of the Dialog
+ * in the Doxygen generated source documnetation, before the other
+ * stuff related to the Component Select Dialog.
+ */
+/** \defgroup Component-Dialog Component Selection Dialog
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *  \image html component_select_dialog.png
+ *  \image latex component_select_dialog.png
+ *  @} end group Component-Dialog
+ */
+
 #define ThisDialog compselect
 #define DialogTitle "Select Component..."
 #define DialogSettings IDS_COMP_SELECT

@@ -155,4 +155,10 @@ struct st_pin_type_data {
   GtkWidget *auto_number;
   GtkWidget *auto_sequence;
 };
+
+/** \defgroup Settings-Dialogs Settings Dialogs
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *  @}
+ */
 #endif /* __X_DIALOG_H__ */

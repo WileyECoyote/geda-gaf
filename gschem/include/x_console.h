@@ -18,6 +18,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
  */
+/** \defgroup Console-Dialog Console Dialog
+ *    @{
+ *    \ingroup (Standard-Dialogs)
+ *    \image html console_dialog.png
+ *    \image latex console_dialog.png
+ *    @} end group Logging-Handlers
+ */
 
 typedef enum {
   CONSOLE_COMMAND_MODE,
