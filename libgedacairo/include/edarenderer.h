@@ -24,14 +24,13 @@
 extern "C" {
 #endif /* __cplusplus */
 
-/*! \def EDAR_MARKER_DIST_THREASHOLD
+/*! \def EDAR_DEFAULT_MARKER_DIST_THLD
  *  The text marker size threashold, "x" values smaller then this value
  *  are not drawn.
 */
 #define EDAR_MIN_MARKER_DIST_THLD          0.5
 #define EDAR_MAX_MARKER_DIST_THLD         25.0
 #define EDAR_DEFAULT_MARKER_DIST_THLD      2.0
-
 
 #define EDAR_DEFAULT_GRIP_SIZE             100
 #define EDAR_DEFAULT_JUNCTION_SIZE          50
