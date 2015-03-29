@@ -1,38 +1,48 @@
-v 20130223 2
+v 20150315 2
+T 200 1300 5 10 0 0 0 0 1
+symversion=0.2
+T 200 1100 5 10 0 0 0 0 1
+device=CRYSTAL
+L 200 200 245 200 4 0 0 0 100 100
+L 450 200 500 200 4 0 0 0 100 100
+B 300 50 100 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+L 250 400 250 0 3 0 0 0 -1 -1
+L 450 400 450 0 3 0 0 0 -1 -1
 P 0 200 200 200 1 0 0
 {
-T 50 250 5 10 0 1 0 0 1
+T 100 250 5 8 1 1 0 6 1
 pinnumber=1
-T 50 250 5 10 0 1 0 0 1
+T 100 250 5 8 1 1 0 6 1
 pinlabel=1
-T -550 50 5 10 0 0 0 0 1
+T 150 250 5 8 0 1 0 6 1
 pinseq=1
-T -550 100 5 10 0 0 0 0 1
+T 200 150 5 8 0 1 0 8 1
 pintype=pas
 }
-P 400 200 600 200 1 0 1
+P 500 200 700 200 1 0 1
 {
-T 550 250 5 10 0 1 0 0 1
+T 550 250 5 8 1 1 0 0 1
 pinnumber=2
-T 550 250 5 10 0 1 0 0 1
+T 100 250 5 8 1 1 0 6 1
 pinlabel=1
-T 450 50 5 10 0 0 0 0 1
+T 550 250 5 8 0 1 0 0 1
 pinseq=2
-T 450 100 5 10 0 0 0 0 1
+T 500 150 5 8 0 1 0 2 1
 pintype=pas
 }
-B 250 50 100 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 100 700 8 10 0 0 0 0 1
-device=CRYSTAL
-L 200 400 200 0 3 0 0 0 -1 -1
-L 400 400 400 0 3 0 0 0 -1 -1
-T 174 456 8 10 1 1 0 0 1
-refdes=XTL?
-T 100 900 8 10 0 0 0 0 1
-author=Walter Fetter Lages <w.fetter@ieee.org> & Diego Caberlon Santini <diegos@eletro.ufrgs.br>
-T 0 0 8 10 0 0 0 0 1
+T 200 900 8 10 1 1 0 0 1
+refdes=X?
+T 200 1700 5 10 0 0 0 0 1
+description=Crystal,7D12000182BTAF60Q5,12MHz,+/-20PPM,18PF,HC-49S,SMD
+T 200 1500 5 10 0 0 0 0 1
+numslots=0
+T 200 500 9 10 1 1 0 0 1
+footprint=HC-49SMD
+T 200 700 8 10 1 1 0 0 1
+value=12MHz
+T 200 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 200 1900 5 10 0 0 0 0 1
 dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 200 2100 5 10 0 0 0 0 1
 use-license=unlimited
-T 600 100 9 10 0 0 0 0 1
-footprint=unknown

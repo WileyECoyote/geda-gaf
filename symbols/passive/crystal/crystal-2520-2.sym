@@ -1,0 +1,54 @@
+v 20150315 2
+T 200 1500 5 10 0 0 0 0 1
+symversion=0.2
+T 200 1100 5 10 0 0 0 0 1
+device=CRYSTAL
+L 200 200 245 200 4 0 0 0 100 100
+L 450 200 500 200 4 0 0 0 100 100
+B 300 50 100 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+L 250 400 250 0 3 0 0 0 -1 -1
+L 450 400 450 0 3 0 0 0 -1 -1
+P 0 200 200 200 1 0 0
+{
+T 150 150 5 8 0 1 0 8 1
+pintype=pas
+T 125 250 5 8 1 1 0 6 1
+pinlabel=1
+T 125 250 5 8 1 1 0 6 1
+pinnumber=1
+T 125 250 5 8 0 1 0 6 1
+pinseq=1
+}
+P 700 200 500 200 1 0 0
+{
+T 650 150 5 8 0 1 0 2 1
+pintype=pas
+T 600 250 5 8 1 1 0 0 1
+pinlabel=3
+T 600 250 5 8 1 1 0 0 1
+pinnumber=3
+T 550 50 5 8 0 1 0 0 1
+pinseq=2
+}
+T 200 900 8 10 1 1 0 0 1
+refdes=X?
+T 200 2100 8 10 0 0 0 0 1
+net=GND:2,4
+T 200 1300 9 10 0 1 0 0 1
+footprint=SMD_4P_2520
+T 1500 1500 5 10 0 0 0 0 1
+numslots=0
+T 200 1700 5 10 0 0 0 0 1
+description=Crystal,16MHz,±30PPM,±20PPM,SMD
+T 200 700 8 10 1 1 0 0 1
+value=12MHz
+T 200 1900 5 10 0 1 0 0 1
+comment=PN=XRCHH16M000F3P01R0
+T 200 500 9 10 1 0 0 0 1
+2520
+T 200 2700 5 10 0 0 0 0 1
+author=AutoTron
+T 200 2300 5 10 0 0 0 0 1
+dist-license=GPL
+T 200 2500 5 10 0 0 0 0 1
+use-license=unlimited
