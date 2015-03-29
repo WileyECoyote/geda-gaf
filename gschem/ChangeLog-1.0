@@ -1,4 +1,11 @@
-2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Use Accessors in general functions
+
+    * src/object/o_select.c: Revise o_select_is_selection and
+      o_select_get_count to use gschem_toplevel_get_current_page.
+
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Remove superfurous code
 

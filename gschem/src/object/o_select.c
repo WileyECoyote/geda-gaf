@@ -640,6 +640,11 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
  */
 int o_select_get_count(GschemToplevel *w_current)
 {
+  Page *page = gschem_toplevel_get_current_page(w_current);
+
+  if (!page)  {
+    return 0;
+  }
   return g_list_length(w_current->Top_Selection->glist);
 }
 
@@ -651,6 +656,12 @@ int o_select_get_count(GschemToplevel *w_current)
  */
 bool o_select_is_selection(GschemToplevel *w_current)
 {
+  Page *page = gschem_toplevel_get_current_page(w_current);
+
+  if (!page)  {
+    return FALSE;
+  }
+
   return (w_current->Top_Selection->glist != FALSE);
 }
 
@@ -674,36 +685,7 @@ void o_select_unselect_all(GschemToplevel *w_current)
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
       GList *list = geda_list_get_glist (selection);
-/*
-      GList *iter;
-      GList *removed;
-START_PERFORMANCE(w_current)
-      list    = g_list_copy (geda_list_get_glist (selection));
 
-      geda_notify_list_freeze (Current_Page->change_notify_funcs);
-
-      for (iter = list; iter; iter = iter->next) {
-
-        object = iter->data;
-
-        if (o_selection_remove(selection, object) == 1) {
-          removed = g_list_prepend(removed, object);
-        }
-      }
-      if (o_selection_unselect_all(selection)) {
-        g_hook_run_object_list (w_current, DESELECT_OBJECTS_HOOK, list);
-      }
-
-      geda_list_remove_all(selection);
-
-      geda_notify_list_thaw (Current_Page->change_notify_funcs);
-
-      o_invalidate_glist (w_current, list);
-
-      g_list_free(list);
-
-STOP_PERFORMANCE(w_current)
-*/
       if (o_selection_unselect_all(selection)) {
         g_hook_run_object_list (w_current, DESELECT_OBJECTS_HOOK, list);
       }
