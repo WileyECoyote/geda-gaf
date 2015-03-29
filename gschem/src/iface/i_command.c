@@ -905,7 +905,6 @@ COMMAND (do_run_script) {
 
 /** @brief i_cmd_do_close in i_command_File_Actions */
 COMMAND (do_close) {
-  NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_close);
 
   i_window_close_page(w_current);
@@ -1065,7 +1064,6 @@ COMMAND (do_undo)
 
 COMMAND (do_redo)
 {
-  NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_redo);
   o_undo_callback(w_current, REDO_ACTION);
   EXIT_COMMAND(do_redo);
@@ -2206,7 +2204,6 @@ COMMAND (do_page_print)
 /** @brief i_cmd_do_page_revert in i_command_Command_Functions */
 COMMAND (do_page_revert)
 {
-  NOT_NULL(w_current);
   BEGIN_W_COMMAND(do_page_revert);
 
   i_window_revert_page(w_current);

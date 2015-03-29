@@ -1,5 +1,13 @@
 2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Remove superfurous code
+
+    * iface/i_command.c: Remove use of NOT_NULL macro in i_cmd_do_close
+      i_cmd_do_redo and i_cmd_do_page_revert, the test for w_current is
+      included by the BEGIN_W_COMMAND macro.
+
+2015-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dialog.c: REvise/update Doxygen comments, removing the word
       "Functions" from group titles for:
 
