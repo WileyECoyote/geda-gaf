@@ -36,14 +36,14 @@
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
-/** \defgroup Array-Dialogs Array Dialogs
+/** \defgroup Array-Dialog Create Array Dialog
  *  @{
  *  \ingroup (Editing-Dialogs)
  *  \image html array_dialog.png
  *  \image latex array_dialog.png
  *  @} endgroup Array-Dialogs
  *
- *  \defgroup Create-Array-Dialog Create Array Dialog
+ *  \defgroup Create-Array-Dialog Create Array Dialog Module
  *  @{
  *  \ingroup (Array-Dialog)
  */
@@ -452,8 +452,8 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
  *  has a value. The function handles the case of exchanging the symbol
  *  and calls helper functions for attribute handling.
  *
- *  \param [in] dialog     Pointer to a Component Dialog instance.
- *  \param [in] properties Pointer to a Component Dialog data structure
+ *  \param [in] dialog      Pointer to a Component Dialog instance.
+ *  \param [in] dialog_data Pointer to a Component Dialog data structure
  *
  */
 static void x_dialog_array_edit_ok(GtkWidget  *dialog,
