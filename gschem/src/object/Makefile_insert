@@ -21,6 +21,7 @@ gschem_SOURCES += \
 		object/o_line.c \
 		object/o_move.c \
 		object/o_net.c \
+		object/o_page.c \
 		object/o_path.c \
 		object/o_picture.c \
 		object/o_pin.c \

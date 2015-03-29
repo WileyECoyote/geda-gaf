@@ -126,6 +126,11 @@
 #define VIEW_LIGHT       view-light-colors
 #define VIEW_BLACK_WHITE view-bw-colors
 
+#define PAGE_DRAW_AFTER  page-draw-after
+#define PAGE_DRAW_BEFORE page-draw-before
+#define PAGE_DRAW_FIRST  page-draw-first
+#define PAGE_DRAW_LAST   page-draw-last
+
 #define PAGE_MANAGER     page-manager
 #define PAGE_PREV        page-prev
 #define PAGE_NEXT        page-next

@@ -171,8 +171,10 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->pointer_sx                = 0;
   w_current->pointer_sy                = 0;
 
+  w_current->primary_selection         = NULL;
+
   /* Sessions */
-  w_current->session_name              = NULL;
+  w_current->session_name              = NULL; /* Do not free */
   w_current->auto_sessions             = TRUE;
 
   /* ------------------ rc/user parameters ----------------- */
@@ -287,6 +289,11 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
 static void gschem_toplevel_finalize( GObject *object )
 {
   GschemToplevel *w_current = GSCHEM_TOPLEVEL(object);
+
+  if (w_current->primary_selection != NULL) {
+    g_list_free (w_current->primary_selection);
+    w_current->primary_selection = NULL;
+  }
 
   if (w_current->component_select_attrlist != NULL) {
     g_list_foreach (default_component_select_attrlist, (GFunc)g_free, NULL);
@@ -425,4 +432,12 @@ gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
   g_return_val_if_fail (w_current != NULL, NULL);
 
   return w_current->toplevel;
+}
+
+void gschem_toplevel_free_primary (GschemToplevel *w_current)
+{
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    g_list_free (w_current->primary_selection);
+    w_current->primary_selection = NULL;
+  }
 }

@@ -157,6 +157,10 @@ enum ActionFlag
 
 /* Page */
         COMMAND ( do_page )
+        COMMAND ( do_draw_after )
+        COMMAND ( do_draw_before )
+        COMMAND ( do_draw_first )
+        COMMAND ( do_draw_last )
         COMMAND ( do_page_manager )
         COMMAND ( do_page_prev )
         COMMAND ( do_page_next )
@@ -456,6 +460,10 @@ enum {
      COMMAND ( VIEW_BLACK_WHITE,    NULL,               USE_MAIN_LOOP,          do_bw_colors)
 
      COMMAND ( page,                NULL,               USE_WORKER_THREAD,      do_page)
+     COMMAND ( PAGE_DRAW_AFTER,     "draw after",       USE_WORKER_THREAD,      do_draw_after)
+     COMMAND ( PAGE_DRAW_BEFORE,    "draw before",      USE_WORKER_THREAD,      do_draw_before)
+     COMMAND ( PAGE_DRAW_FIRST,     "draw first",       USE_WORKER_THREAD,      do_draw_first)
+     COMMAND ( PAGE_DRAW_LAST,      "draw last",        USE_WORKER_THREAD,      do_draw_last)
      COMMAND ( PAGE_MANAGER,        "page manager",     USE_MAIN_LOOP,          do_page_manager)
      COMMAND ( PAGE_PREV,           NULL,               USE_MAIN_LOOP,          do_page_prev)
      COMMAND ( PAGE_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)

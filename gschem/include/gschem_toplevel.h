@@ -209,6 +209,9 @@ struct _GschemToplevel {
   int pointer_sx;                       /* screen x coordinates */
   int pointer_sy;                       /* screen y coordinates */
 
+  /* Selection Set Related */
+  GList *primary_selection;             /* Use in multi-selection set operations */
+
   /* Sessions */
   char *session_name;                   /* Name of active session */
   bool  auto_sessions;
@@ -348,6 +351,8 @@ GschemToplevel *gschem_toplevel_new               ( void );
 void            gschem_toplevel_free              (GschemToplevel *w_current);
 Page           *gschem_toplevel_get_current_page  (GschemToplevel *w_current);
 GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
+
+void            gschem_toplevel_free_primary    (GschemToplevel *w_current);
 
 END_DECLS
 #endif /* __GSCHEM_TOPLEVEL_H__ */

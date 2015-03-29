@@ -2060,6 +2060,94 @@ COMMAND (do_page)
 /** \defgroup i_command_Page_Actions Actions under the Page Menu
  * @{*/
 
+/** @brief i_cmd_do_draw_after in i_command_Command_Functions */
+COMMAND (do_draw_after)
+{
+  BEGIN_NO_ACTION(do_draw_after);
+
+  if (o_select_is_selection(w_current)) {
+
+    GList *object_list;
+
+    o_redraw_cleanstates(w_current);
+
+    gschem_toplevel_free_primary(w_current);
+
+    object_list = geda_list_get_glist (Current_Selection);
+
+    w_current->primary_selection = g_list_copy (object_list);
+    i_status_show_msg(w_current, "Which objects");
+    o_select_connect_selector(w_current, o_page_draw_after);
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+  EXIT_COMMAND(do_draw_after);
+}
+
+/** @brief i_cmd_do_draw_before in i_command_Command_Functions */
+COMMAND (do_draw_before)
+{
+  BEGIN_NO_ACTION(do_draw_before);
+
+  if (o_select_is_selection(w_current)) {
+
+    GList *object_list;
+
+    o_redraw_cleanstates(w_current);
+
+    gschem_toplevel_free_primary(w_current);
+
+    object_list = geda_list_get_glist (Current_Selection);
+
+    w_current->primary_selection = g_list_copy (object_list);
+    i_status_show_msg(w_current, "Which objects");
+    o_select_connect_selector(w_current, o_page_draw_before);
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+  EXIT_COMMAND(do_draw_before);
+}
+
+/** @brief i_cmd_do_draw_first in i_command_Command_Functions */
+COMMAND (do_draw_first)
+{
+  BEGIN_NO_ACTION(do_draw_first);
+
+  if (o_select_is_selection(w_current)) {
+
+    GList *object_list = geda_list_get_glist (Current_Selection);
+
+    o_redraw_cleanstates(w_current);
+    o_page_draw_first(w_current, object_list);
+
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+  EXIT_COMMAND(do_draw_first);
+}
+
+/** @brief i_cmd_do_draw_last in i_command_Command_Functions */
+COMMAND (do_draw_last)
+{
+  BEGIN_NO_ACTION(do_draw_last);
+
+  if (o_select_is_selection(w_current)) {
+
+    GList *object_list = geda_list_get_glist (Current_Selection);
+
+    o_redraw_cleanstates(w_current);
+    o_page_draw_last(w_current, object_list);
+
+  }
+  else {
+    msg_need_select_1st(w_current);
+  }
+  EXIT_COMMAND(do_draw_last);
+}
+
 /** @brief i_cmd_do_page_manager in i_command_Command_Functions */
 COMMAND (do_page_manager)
 {

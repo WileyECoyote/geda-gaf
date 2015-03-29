@@ -1,5 +1,63 @@
 2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Change Draw Order (in gui)
+
+    * etc/system-gschemrc.scm: Add nested menu for Draw order to the Page
+       menu items and add Draw Order items as draw-order-menu-items and
+       action hot-kets as follows:
+
+            * "D A" "page-draw-after"
+            * "D B"           "page-draw-before"
+            * "D F"           "page-draw-first"
+            * "D L"           "page-draw-last"
+
+
+    * include/gschem_toplevel.h: Add new GList member to toplevel: primary_
+      selection to retain a selection while a second set is being collected
+      by the user.
+
+    * include/i_actions.h: Add defines for:
+
+            * PAGE_DRAW_AFTER
+            * PAGE_DRAW_BEFORE
+            * PAGE_DRAW_FIRST
+            * PAGE_DRAW_LAST
+
+    * include/i_command.h: add command structure entry and declarations for
+
+            * do_draw_after
+            * do_draw_before
+            * do_draw_first
+            * do_draw_last
+
+    * include/prototype.h: Add declarations for new functions
+
+            * o_page_draw_after
+            * o_page_draw_before
+            * o_page_draw_first
+            * o_page_draw_last
+
+    * src/base/gschem_toplevel.c: Add resetter gschem_toplevel_free_primary
+      and ensure primary_selection is free in finializer.
+
+    * src/iface/i_callbacks.c: Call gschem_toplevel_free_primary in cancel
+      function.
+
+    * src/iface/i_command.c: Added functions
+
+            * i_cmd_do_draw_after   (activates o_select_connect_selector)
+            * i_cmd_do_draw_before  (activates o_select_connect_selector)
+            * i_cmd_do_draw_first
+            * i_cmd_do_draw_last
+
+    * src/object/o_page.c: New module to implement the Draw-Order operations,
+      which of course are not the actual draw order, changes the order of
+      objects in the page list. This is useful for symbol files when objects
+      were not drawn in the proper order. Previously one would restore to
+      editing the file with a text editor, not good.
+
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Add means for nouns verb nouns.
 
     * src/object/o_select.c; Add static functions o_select_press_butt,

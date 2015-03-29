@@ -543,6 +543,12 @@ void       o_net_draw_rubber            (GschemToplevel *w_current);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);
 int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_obj, GList *other_objects);
 
+/* o_page.c */
+void       o_page_draw_after                 (GschemToplevel *w_current);
+void       o_page_draw_before                (GschemToplevel *w_current);
+void       o_page_draw_first                 (GschemToplevel *w_current, GList *object_list);
+void       o_page_draw_last                  (GschemToplevel *w_current, GList *object_list);
+
 /* o_path.c */
 void       o_path_start                      (GschemToplevel *w_current, int x, int y);
 void       o_path_continue                   (GschemToplevel *w_current, int w_x, int w_y);

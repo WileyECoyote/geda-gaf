@@ -1680,6 +1680,11 @@
 (map-keys "U"             "edit-undo")
 (map-keys "<Shift>U"      "edit-undo")
 
+(map-keys "D A"           "page-draw-after")
+(map-keys "D B"           "page-draw-before")
+(map-keys "D F"           "page-draw-first")
+(map-keys "D L"           "page-draw-last")
+
 (map-keys "V A"           "view-zoom-all")
 (map-keys "V B"           "view-zoom-box")
 (map-keys "V E"           "view-zoom-extents")
@@ -2052,6 +2057,18 @@
       )
 )
 
+(define draw-order-menu-items
+;;
+;;    menu item name         menu action           menu icon                   Menu Item Tooltip
+;;
+  '(("_Lower Behind"         page-draw-before     "gtk-sort-ascending"        ,(N_ "Draw objects before another object"))
+    ("_Raise Above"          page-draw-after      "gtk-sort-descending"       ,(N_ "Draw object after another object"))
+    ("SEPARATOR"            #f                   #f)
+    ("Bring to _Top"         page-draw-last       "gtk-sort-ascending"        ,(N_ "Raise objects to top of drawing order"))
+    ("Move to _Bottom"       page-draw-first      "gtk-sort-descending"       ,(N_ "Lower to bottom of the drawing order"))
+  )
+)
+
 ;
 ; Now actually add the menus.  The order here defines the order in which
 ; the menus appear in the top menu bar.
@@ -2066,6 +2083,9 @@
 (add-menu (N_ "Sessio_ns")   sessions-menu-items)
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 (add-menu (N_ "_Tools")      tools-menu-items)
+
+;; The add the sub-menu items under the Draw Order menu item
+(add-menu "_Page/_Draw Order" draw-order-menu-items)
 
 (load-from-path "gschem/gschem-export-menu.scm")
 

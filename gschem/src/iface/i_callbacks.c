@@ -224,6 +224,11 @@ DEFINE_I_CALLBACK(cancel)
 
   }
 
+  if (w_current->primary_selection) {
+    g_list_free (w_current->primary_selection);
+    w_current->primary_selection = NULL;
+  }
+
   if (o_select_is_selection (w_current)) {
     o_select_unselect_all(w_current);
   }
