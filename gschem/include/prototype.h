@@ -220,11 +220,12 @@ GschemToplevel *g_current_window  (void);
 void  g_dynwind_window            (GschemToplevel *w_current);
 void  g_init_window               (void);
 
+typedef void (*geda_atexit_func) (void *);
+typedef void (*geda_predicator)  (GschemToplevel *);
+
 /* globals.c */
 /* gschem.c */
-typedef void (*geda_atexit_func)(void * data);
 void geda_atexit   (geda_atexit_func func, void * data);
-//void main_prog     (void *closure, int argc, char *argv[]);
 int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
 
@@ -608,6 +609,8 @@ void       o_select_visible_unlocked         (GschemToplevel *w_current);
 void       o_select_move_to_place_list       (GschemToplevel *w_current);
 GLT*       o_select_get_list_selected        (GschemToplevel *w_current, char otype);
 OBJ*       o_select_return_first_object      (GschemToplevel *w_current);
+void       o_select_cancel_events            (GschemToplevel *w_current);
+void       o_select_connect_selector         (GschemToplevel *w_current, geda_predicator func);
 
 /* o_slot.c */
 void       o_slot_start                      (GschemToplevel *w_current, Object *object);

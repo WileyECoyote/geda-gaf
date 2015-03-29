@@ -821,3 +821,95 @@ Object *o_select_return_first_object(GschemToplevel *w_current)
   else
     return (Object *) g_list_first( geda_list_get_glist(Top_Selection))->data;
 }
+
+static unsigned press_hid;
+static unsigned release_hid;
+static void (* verb) (GschemToplevel *w_current);
+
+static
+int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
+                                           GschemToplevel *w_current)
+{
+  if (event->button == 1) {
+
+    int  x, y;
+
+    if (w_current->event_state == SELECT) {
+
+      SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
+
+      w_current->first_wx      = w_current->second_wx = x;
+      w_current->first_wy      = w_current->second_wy = y;
+      w_current->event_state   = STARTSELECT;
+      w_current->inside_action = TRUE;
+    }
+  }
+  return(0);
+}
+
+static
+int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
+                                             GschemToplevel *w_current)
+{
+  if (event->button == 1) {
+
+    int  x, y;
+
+    SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
+
+    if (w_current->event_state == STARTSELECT) {
+      if (o_find_object(w_current, x, y, TRUE)) {
+        w_current->event_state = SELECT;
+      }
+    }
+    else if (w_current->event_state == SBOX) {
+      o_select_box_end(w_current, x, y);
+      w_current->event_state = SELECT;
+    }
+  }
+  else if (event->button == 3) {
+    o_select_cancel_events(w_current);
+    if (verb) {
+      verb(w_current);
+      verb = NULL;
+    }
+  }
+  return(0);
+}
+
+void o_select_cancel_events(GschemToplevel *w_current)
+{
+  if (press_hid) {
+    g_signal_handler_disconnect (w_current->drawing_area, press_hid);
+    press_hid = 0;
+  }
+  if (release_hid) {
+    g_signal_handler_disconnect (w_current->drawing_area, release_hid);
+    release_hid = 0;
+  }
+  i_event_unblock_buttons (w_current);
+}
+
+static void o_select_enable_events(GschemToplevel *w_current)
+{
+  i_event_block_buttons (w_current);
+
+  press_hid   = g_signal_connect (w_current->drawing_area,
+                                  "button_press_event",
+                                  G_CALLBACK(o_select_press_butt),
+                                  w_current);
+
+  release_hid = g_signal_connect (w_current->drawing_area,
+                                  "button_release_event",
+                                  G_CALLBACK(o_select_release_butt),
+                                  w_current);
+}
+
+void o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
+{
+  o_select_cancel_events(w_current);
+  o_select_enable_events(w_current);
+
+  verb = func;
+  w_current->event_state = SELECT;
+}

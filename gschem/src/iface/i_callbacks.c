@@ -214,6 +214,11 @@ DEFINE_I_CALLBACK(cancel)
        * routine to reset the visibility of the object being modified */
       o_grips_cancel (w_current);
 
+    case SELECT:
+    case STARTSELECT:
+      o_select_cancel_events(w_current);
+      break;
+
     default:
       break;
 

@@ -1,5 +1,30 @@
 2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Add means for nouns verb nouns.
+
+    * src/object/o_select.c; Add static functions o_select_press_butt,
+      o_select_release_butt, and o_select_enable_events, with saftey
+      out o_select_cancel_events and feature function o_select_connect
+      _selector. The scheme allow caller to pass a "call after" function
+     and bypasses normal button event handling to allow user to select
+     or deselect objects using the normal methods and calls the passed
+     function when the user "right-clicks" and this facilitate routines
+     that have already collected a selection to ask for a second second
+     set to as to perform and operation on both sets of objects.
+
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Simplify Coding for Select Event
+
+    * src/object/o_select.c: Remove call to o_grips_start and setting of
+      the state (i_status_set_state) function in o_select_end.
+
+    * src/x/x_event.c: Add call to i_status_set_state(SELECT) after calling
+      o_select_end in x_event_button_released, there is no reason to impose
+      that o_select_end should change the event states.
+
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Use Accessors in general functions
 
     * src/object/o_select.c: Revise o_select_is_selection and
