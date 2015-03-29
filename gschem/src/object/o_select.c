@@ -292,21 +292,8 @@ void o_select_start (GschemToplevel *w_current, int wx, int wy)
  */
 void o_select_end (GschemToplevel *w_current, int wx, int wy)
 {
-  int state;
-
-  /* first look for grips */
-  if (!o_grips_start(w_current, wx, wy)) {
-    /* look for objects to select */
-    o_find_object(w_current, wx, wy, TRUE);
-    state = SELECT;
-  }
-  else { /* an grip was found */
-
-    w_current->inside_action = TRUE;
-    state = GRIPS;
-  }
-
-  i_status_set_state (w_current, w_current->event_state = state);
+  o_find_object(w_current, wx, wy, TRUE);
+  w_current->inside_action = FALSE;
 }
 
 /*! \brief Determine whether objects have to be selected or moved

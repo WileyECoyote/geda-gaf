@@ -463,6 +463,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
       case(STARTSELECT):
         o_select_end(w_current, unsnapped_wx, unsnapped_wy);
+        i_status_set_state (w_current, SELECT);
         break;
 
       case STARTDND:
@@ -1071,7 +1072,6 @@ bool x_event_motion (GtkWidget      *widget,
   switch(w_current->event_state) {
 
     case(STARTSELECT):
-
       if (o_select_motion (w_current, unsnapped_wx, unsnapped_wy)) {
 
         /* Start moving the selected object(s) */
