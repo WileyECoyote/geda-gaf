@@ -42,16 +42,21 @@
 #define Switch_Responder switch_responder
 
 /** \defgroup Auto-Number-Dialog Auto Number Dialog
- *  \image html auto_number_dialog.png
- *  \image latex auto_number_dialog.png
  *  @{
  *  \ingroup (Standard-Dialogs Editing-Dialogs)
+ *  \image html auto_number_dialog.png
+ *  \image latex auto_number_dialog.png
+ *  \par
+ *  The Auto Number Dialog is a modeless dialog derived from
+ *  #GschemDialogClass and is primarily used to edit reference
+ *  designators, particularly for automatically numbering but
+ *  can also be used to auto-number other types of attributes.
+ *  @} endgroup Auto-Number-Dialog
+ *
+ *  \defgroup Auto-Number-Dialog-Module Auto Number Dialog Module
+ *  @{
+ *  \ingroup (Auto-Number-Dialog)
  *  \par This Group contains routines for the Auto Number dialog.
- *  Auto Number dialog is primarily used for editing reference
- *  designator attribute, particularly for automatically number
- *  designation but can also be used to auto-number other types
- *  of text attributes. Auto Number Dialog is a Modeless Dialog
- *  derived from #GschemDialogClass
  */
 
 /*! \def AUTONUM_HISTORY_LENGTH
@@ -1750,7 +1755,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
   gtk_window_present(GTK_WINDOW(autotext->dialog));
 }
 
-/** @} endgroup Auto-Number-Dialog */
+/** @} endgroup Auto-Number-Dialog-Module */
 
 #undef ThisDialog
 #undef Switch_Responder
