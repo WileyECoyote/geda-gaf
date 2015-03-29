@@ -1,3 +1,27 @@
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/crystal/crystal-1.sym: Revise symbol, version to 0.2, rounded
+      line for box, pull in both vertical lines to align with edge of pin,
+      resequence drawing order, add new attributes, assign example values
+      as placeholders. Changed Zero reference.
+
+    * passive/crystal/crystal-2.sym: Revise symbol, version to 0.2, increase
+      width from 0.6 to 0.7 so can be interchangable with dash ones, add new
+      filler line (in blue), add new attributes and assign example values as
+      as placeholders. Reqsequence drawing order to make look sharp.
+
+    * Using the two base symbols, created 8 new symbols for crystals with
+      preset package codes and attributes:
+
+            * passive/crystal/crystal-1612-1.sym
+            * passive/crystal/crystal-1612-2.sym
+            * passive/crystal/crystal-2016-1.sym
+            * passive/crystal/crystal-2016-2.sym
+            * passive/crystal/crystal-2520-1.sym
+            * passive/crystal/crystal-2520-2.sym
+            * passive/crystal/crystal-3225-1.sym
+            * passive/crystal/crystal-3225-2.sym
+
 2015-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 4 new symbols for SN74ALVC244:

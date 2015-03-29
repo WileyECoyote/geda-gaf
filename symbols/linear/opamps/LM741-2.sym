@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150315 2
 L 300 1100 300 300 3 0 0 0 -1 -1
 L 300 1100 1000 700 3 0 0 0 -1 -1
 T 1000 1075 5 10 1 1 0 0 1
@@ -88,9 +88,9 @@ T 1000 1250 8 10 1 1 0 0 1
 refdes=U?
 T 100 1600 5 10 0 0 0 0 1
 description=Operational Amplifier
-T 100 1400 5 10 0 0 0 0 1
-numslots=0
 T 100 1800 5 10 0 0 0 0 1
+numslots=0
+T 100 1400 5 10 0 0 0 0 1
 symversion=0.2
 T 100 2195 5 10 0 0 0 0 1
 use-license=unlimited
