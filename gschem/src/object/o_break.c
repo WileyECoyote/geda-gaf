@@ -562,7 +562,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
 #endif
 
   /* Internal wrapper to set node and segment by reference. Note that
-   * returned segment cooresponds to the index in points of the first
+   * returned segment corresponds to the index in points of the first
    * point of the segment that was hit and a returned node cooresponds
    * to the second point */
   void checkpoint (POINT *point, int *segment, int *node, Line *line) {
@@ -660,7 +660,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
        * the user wants to "break" the path between the points, regardless of
        * which was first. The following conditional checks for this situation
        */
-      if (segment1 == segment2) { /* If both points are on the segment */
+      if (segment1 == segment2) { /* If both points are on the same segment */
 
         POINT  previous;
         double distance1;
@@ -686,8 +686,8 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
       }
       else { /* Points are not on the same segment of the path */
 
-        /* If path is open then starting point is the greater because
-         * this path is created first */
+        /* If path is open then the starting point is the greater,
+         * only because this path is created first */
         if (closed || (segment2 > segment1)) {
           start = &point2;
           end   = &point1;
