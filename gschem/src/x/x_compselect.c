@@ -168,114 +168,117 @@ static unsigned int signals[LAST_SIGNAL] = { 0 };
 static void
 x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 {
-    Compselect     *compselect = (Compselect*)dialog;
-    GschemToplevel *w_current  = (GschemToplevel *)user_data;
-    GedaToplevel   *toplevel   = w_current->toplevel;
+  Compselect     *compselect = (Compselect*)dialog;
+  GschemToplevel *w_current  = (GschemToplevel *)user_data;
+  GedaToplevel   *toplevel   = w_current->toplevel;
 
-    switch (response) {
+  switch (response) {
 
-        case COMPSELECT_RESPONSE_PLACE: {
+    case COMPSELECT_RESPONSE_PLACE: {
 
-            /* Check and resolve current state */
-            if (w_current->event_state == COMPMODE) {
+      /* Check and resolve current state */
+      if (w_current->event_state == COMPMODE) {
 
-                if (toplevel->page_current->place_list != NULL) {
+        if (toplevel->page_current->place_list != NULL) {
 
-                    /* Delete the component which was being placed */
-                    if (w_current->rubber_visible) {
-                        o_place_invalidate_rubber (w_current, FALSE);
-                    }
-                    w_current->rubber_visible = FALSE;
-                    s_place_free_place_list(toplevel);
-                }
-            }
-            else if (w_current->event_state != SELECT && w_current->inside_action)
-            {
-                /* Cancel whatever other action is currently in progress */
-                o_redraw_cleanstates (w_current);
-            }
+          /* Delete the component which was being placed */
+          if (w_current->rubber_visible) {
+            o_place_invalidate_rubber (w_current, FALSE);
+          }
+          w_current->rubber_visible = FALSE;
+          s_place_free_place_list(toplevel);
+        }
+      }
+      else if (w_current->event_state != SELECT && w_current->inside_action)
+      {
+        /* Cancel whatever other action is currently in progress */
+        o_redraw_cleanstates (w_current);
+      }
 
-            CompselectBehavior behavior;
+      CompselectBehavior behavior;
 
-            CLibSymbol *symbol = NULL;
+      CLibSymbol *symbol = NULL;
 
-            /* Get pointer to selected symbol and behavior combo state */
-            /* (Both of which could have been saved in dialog structure) */
-            g_object_get (compselect, "symbol",   &symbol,
-                                      "behavior", &behavior, NULL);
+      /* Get pointer to selected symbol and behavior combo state */
+      /* (Both of which could have been saved in dialog structure) */
+      g_object_get (compselect, "symbol",   &symbol,
+                    "behavior", &behavior, NULL);
 
-            if (symbol == NULL) {
-                /* If there is no symbol selected, switch to SELECT mode */
-                w_current->event_state = SELECT;
-            }
-            else {
+      if (symbol == NULL) {
+        /* If there is no symbol selected, switch to SELECT mode */
+        w_current->event_state = SELECT;
+      }
+      else {
 
-                w_current->event_state      = COMPMODE;
-                w_current->include_complex  = FALSE;
-                w_current->embed_components = FALSE;
+        w_current->event_state      = COMPMODE;
+        w_current->include_complex  = FALSE;
+        w_current->embed_components = FALSE;
 
-                if (behavior == COMPSELECT_BEHAVIOR_EMBED) {
-                    w_current->embed_components = TRUE;
-                }
-                else if (behavior == COMPSELECT_BEHAVIOR_INCLUDE) {
-                    w_current->include_complex = TRUE;
-                }
-
-                /* Otherwise set the new symbol to place */
-                o_complex_prepare_place (w_current, symbol);
-                i_status_show_msg(w_current, "Place Component");
-            }
-            break;
+        if (behavior == COMPSELECT_BEHAVIOR_EMBED) {
+          w_current->embed_components = TRUE;
+        }
+        else if (behavior == COMPSELECT_BEHAVIOR_INCLUDE) {
+          w_current->include_complex = TRUE;
         }
 
-        case COMPSELECT_RESPONSE_HIDE:
-            /* Response when clicking on the "hide" button */
-
-            /* If there is no component in the complex place list, set the current one */
-            if (toplevel->page_current->place_list == NULL) {
-                gtk_dialog_response (GTK_DIALOG (compselect),
-                                     COMPSELECT_RESPONSE_PLACE);
-            }
-
-            /* Hide the Component Select Dialog */
-            g_object_set (G_OBJECT (compselect), "hidden", TRUE, NULL);
-            break;
-
-        case GEDA_RESPONSE_CLOSE:
-        case GEDA_RESPONSE_DELETE_EVENT:
-
-            if (GTK_WIDGET (dialog) == w_current->cswindow) {
-                if(ThisDialog->style_menu_widgets) {
-                    g_slist_free(ThisDialog->style_menu_widgets);
-                }
-                /* gtk_widget_destroy(tree_view_popup_menu); */
-                if(GTK_IS_DIALOG(dialog)) {
-                    gtk_widget_destroy (GTK_WIDGET (dialog));
-                }
-            }
-            if (w_current->event_state == COMPMODE) {
-
-               /* If user clicked on symbol in tree and did not place, then there
-                *  coud be a component in the place list, so check and release */
-                if (Current_Page->place_list) {
-                    g_list_free(Current_Page->place_list);
-                    Current_Page->place_list = NULL;
-                }
-
-                /* Can not wait for base class todo this*/
-                w_current->cswindow = NULL;
-                /* Cancel the place operation currently in progress */
-                //o_redraw_cleanstates (w_current);
-                /* return to the default state */
-                i_status_set_state (w_current, SELECT);
-            }
-            break;
-
-        default:
-            /* Do nothing, in case there's another handler function which
-             *          can handle the response ID received. */
-            break;
+        /* Otherwise set the new symbol to place */
+        o_complex_prepare_place (w_current, symbol);
+        i_status_show_msg(w_current, "Place Component");
+      }
+      break;
     }
+
+    case COMPSELECT_RESPONSE_HIDE:
+      /* Response when clicking on the "hide" button */
+
+      /* If there is no component in the complex place list, set the current one */
+      if (toplevel->page_current->place_list == NULL) {
+        gtk_dialog_response (GTK_DIALOG (compselect),
+                             COMPSELECT_RESPONSE_PLACE);
+      }
+
+      /* Hide the Component Select Dialog */
+      g_object_set (G_OBJECT (compselect), "hidden", TRUE, NULL);
+      break;
+
+    case GEDA_RESPONSE_CLOSE:
+    case GEDA_RESPONSE_DELETE_EVENT:
+
+      if (GTK_WIDGET (dialog) == w_current->cswindow) {
+        if(ThisDialog->style_menu_widgets) {
+          g_slist_free(ThisDialog->style_menu_widgets);
+        }
+        /* gtk_widget_destroy(tree_view_popup_menu); */
+        if(GTK_IS_DIALOG(dialog)) {
+          gtk_widget_destroy (GTK_WIDGET (dialog));
+        }
+      }
+
+      if (w_current->event_state == COMPMODE) {
+
+        /* If user clicked on symbol in tree and did not place, then there
+         *  coud be a component in the place list, so check and release */
+        if (Current_Page->place_list) {
+          g_list_free(Current_Page->place_list);
+          Current_Page->place_list = NULL;
+        }
+
+        /* Can not wait for base class todo this*/
+        w_current->cswindow = NULL;
+        /* Cancel the place operation currently in progress */
+        //o_redraw_cleanstates (w_current);
+        /* return to the default state */
+        i_status_set_state (w_current, SELECT);
+      }
+
+      w_current->inside_action = FALSE;
+      break;
+
+    default:
+      /* Do nothing, in case there's another handler function which
+       *          can handle the response ID received. */
+      break;
+  }
 }
 
 /*! \brief Opens a component selection dialog.

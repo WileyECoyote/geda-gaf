@@ -1,5 +1,11 @@
 2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_compselect.c: Set inside_action to FALSE in dialog response
+      function, x_compselect_callback_response, for CASE CLOSE, and change
+      indentation for entire function.
+
+2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Change Draw Order (in gui)
 
     * etc/system-gschemrc.scm: Add nested menu for Draw order to the Page
