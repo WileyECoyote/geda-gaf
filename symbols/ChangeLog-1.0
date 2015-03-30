@@ -2,6 +2,115 @@
 
     * Symbol Library:  Clean, Reorganize, and Expand Symbol Library
 
+    * New styles for diode: Make all diode symbols be the same width as (most)
+      passives (0.9"), use rounded line-type for smoother appearence when
+      applicable, use square-end to balance cathods vertically - either Cairo
+      or libgedacairo issue but seems to work-around and looks good too. Make
+      interior connecting line "blue" so they appear as "nets" (but they are
+      just lines). The color breaks up the "green" and make schematics more
+      plesent to look at while editing, maybe.
+
+    * /diode/schottky: Create subdirectory for Schottky diodes (under diodes).
+      Do not bother to salvage old, replace with new symbols, add more symbols
+      for common Schottky types with variety of prefigured packages, add new
+      styles for Schottky diodes, 41 symbols. Despite what it might seem I
+      actually spent a lot time on these:
+
+            * diode/schottky/1N5711-1.sym
+            * diode/schottky/1N5711-2.sym
+            * diode/schottky/1N5711-3.sym
+            * diode/schottky/1N5711-4.sym
+            * diode/schottky/1N5712-1.sym
+            * diode/schottky/1N5712-2.sym
+            * diode/schottky/1N5712-3.sym
+            * diode/schottky/1N5712-4.sym
+            * diode/schottky/1N5817-1.sym
+            * diode/schottky/1N5817-2.sym
+            * diode/schottky/1N5817-3.sym
+            * diode/schottky/1N5817-4.sym
+            * diode/schottky/1N5818-1.sym
+            * diode/schottky/1N5818-2.sym
+            * diode/schottky/1N5818-3.sym
+            * diode/schottky/1N5818-4.sym
+            * diode/schottky/1N5819-1.sym
+            * diode/schottky/1N5819-2.sym
+            * diode/schottky/1N5819-3.sym
+            * diode/schottky/1N5819-4.sym
+            * diode/schottky/1N5823-1.sym
+            * diode/schottky/1N5823-2.sym
+            * diode/schottky/1N5823-4.sym
+            * diode/schottky/1N5824-1.sym
+            * diode/schottky/1N5824-2.sym
+            * diode/schottky/1N5824-4.sym
+            * diode/schottky/1N5825-1.sym
+            * diode/schottky/1N5825-2.sym
+            * diode/schottky/1N5825-4.sym
+            * diode/schottky/B230LA-1.sym
+            * diode/schottky/B230LA-2.sym
+            * diode/schottky/B240A-1.sym
+            * diode/schottky/B240A-2.sym
+            * diode/schottky/BAT85-1.sym
+            * diode/schottky/BAT85-2.sym
+            * diode/schottky/BAT85-3.sym
+            * diode/schottky/BAT85-4.sym
+            * diode/schottky/schottky-1.sym
+            * diode/schottky/schottky-2.sym
+            * diode/schottky/schottky-3.sym
+            * diode/schottky/schottky-4.sym
+
+    * symbols/diode/: Replace/Revamp:
+
+            * diode/1N914-1.sym
+            * diode/1N4001-1.sym
+            * diode/1N4002-1.sym
+            * diode/1N4003-1.sym
+            * diode/1N4004-1.sym
+            * diode/1N4005-1.sym
+            * diode/1N4006-1.sym
+            * diode/1N4007-1.sym
+            * diode/1N4148-1.sym
+            * diode/1N4448-1.sym
+            * diode/BAR74-1.sym
+            * diode/BAS16-1.sym
+            * diode/BAS19-1.sym
+            * diode/BAS20-1.sym
+            * diode/BAS21-1.sym
+            * diode/diode-1.sym
+            * diode/diode-smd-1.sym
+            * diode/tunnel-1.sym
+
+    * symbols/diode/: Add 23 New symbols (old diode-2 and diode-3 were
+      scrapped):
+
+            * diode/1N914-2.sym
+            * diode/1N914-3.sym
+            * diode/1N4001-2.sym
+            * diode/1N4002-2.sym
+            * diode/1N4003-2.sym
+            * diode/1N4004-2.sym
+            * diode/1N4005-2.sym
+            * diode/1N4006-2.sym
+            * diode/1N4007-2.sym
+            * diode/1N4148-2.sym
+            * diode/1N4148-3.sym
+            * diode/1N4148-4.sym
+            * diode/1N4448-2.sym
+            * diode/1N4448-3.sym
+            * diode/1N4448-4.sym
+            * diode/BAR74-2.sym
+            * diode/BAR74-3.sym
+            * diode/diode-2.sym
+            * diode/diode-3.sym
+            * diode/diode-smd-2.sym
+            * diode/diode-smd-3.sym
+            * diode/gunn-1.sym
+            * diode/gunn-2.sym
+            * diode/tunnel-2.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Symbol Library:  Clean, Reorganize, and Expand Symbol Library
+
     * lineartech/switchreg: Create subdirectory for linear Technologies
       switching regulators and relocate 8 symbols:
 
