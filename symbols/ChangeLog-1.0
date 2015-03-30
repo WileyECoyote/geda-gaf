@@ -1,5 +1,51 @@
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Symbol Library:  Clean, Reorganize, and Expand Symbol Library
+
+    * lineartech/switchreg: Create subdirectory for linear Technologies
+      switching regulators and relocate 8 symbols:
+
+            * lineartech/switchreg/LT1108-1.sym
+            * lineartech/switchreg/LT1308-1.sym
+            * lineartech/switchreg/LT1374CS8.sym
+            * lineartech/switchreg/LT1375-1.sym
+            * lineartech/switchreg/LT1375-2.sym
+            * lineartech/switchreg/LT1376-1.sym
+            * lineartech/switchreg/LT1376-2.sym
+            * lineartech/switchreg/LT1376-5.sym
+
+    * lineartech/: Clean symbols:
+
+            lineartech/LT1160-1.sym
+            lineartech/LT1162-1.sym
+            lineartech/LT1181-1.sym
+            lineartech/LT1761SD-1.sym
+            lineartech/LT1782-1.sym
+
+    * lineartech/switchreg: Add 4 new symbols for LT switching regulators:
+
+            * lineartech/switchreg/LT1302-5-1.sym
+            * lineartech/switchreg/LT1302-5-2.sym
+            * lineartech/switchreg/LT1302-ADJ-1.sym
+            * lineartech/switchreg/LT1302-ADJ-2.sym
+
+    * linear/switchreg: Add 8 new symbols for switching regulators produced
+      ny miltible manufactures:
+
+            * linear/switchreg/MC33063-1.sym
+            * linear/switchreg/MC33063-2.sym
+            * linear/switchreg/MC33063-3.sym
+            * linear/switchreg/MC34063-1.sym
+            * linear/switchreg/MC34063-2.sym
+            * linear/switchreg/MC34063-3.sym
+
+    * linear/switchreg: Add 1 new symbol: Modulesf for Global Positioning
+      System:
+
+            * linear/special/FGPMMOPA6H-1.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/crystal/crystal-1.sym: Revise symbol, version to 0.2, rounded
       line for box, pull in both vertical lines to align with edge of pin,
       resequence drawing order, add new attributes, assign example values

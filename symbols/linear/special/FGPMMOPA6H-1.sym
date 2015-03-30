@@ -1,0 +1,248 @@
+v 20150401 2
+P 2500 4100 2200 4100 1 0 0
+{
+T 2300 4150 5 8 1 1 0 0 1
+pinnumber=13
+T 2300 4050 5 8 0 1 0 2 1
+pinseq=13
+T 2150 4100 9 10 1 1 0 6 1
+pinlabel=1PPS
+T 2150 4100 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 3700 2200 3700 1 0 0
+{
+T 2300 3750 5 8 1 1 0 0 1
+pinnumber=11
+T 2300 3650 5 8 0 1 0 2 1
+pinseq=11
+T 2150 3700 9 10 1 1 0 6 1
+pinlabel=EX_ANT
+T 2150 3700 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 3300 2200 3300 1 0 0
+{
+T 2300 3350 5 8 1 1 0 0 1
+pinnumber=12
+T 2300 3250 5 8 0 1 0 2 1
+pinseq=12
+T 2150 3300 9 10 1 1 0 6 1
+pinlabel=GND
+T 2150 3300 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 2900 2200 2900 1 0 0
+{
+T 2300 2950 5 8 1 1 0 0 1
+pinnumber=19
+T 2300 2850 5 8 0 1 0 2 1
+pinseq=19
+T 2150 2900 9 10 1 1 0 6 1
+pinlabel=GND
+T 2150 2900 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 2500 2200 2500 1 0 0
+{
+T 2300 2550 5 8 1 1 0 0 1
+pinnumber=15
+T 2300 2450 5 8 0 1 0 2 1
+pinseq=15
+T 2150 2500 9 10 1 1 0 6 1
+pinlabel=NC
+T 2150 2500 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 2100 2200 2100 1 0 0
+{
+T 2300 2150 5 8 1 1 0 0 1
+pinnumber=16
+T 2300 2050 5 8 0 1 0 2 1
+pinseq=16
+T 2150 2100 9 10 1 1 0 6 1
+pinlabel=NC
+T 2150 2100 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 1700 2200 1700 1 0 0
+{
+T 2300 1750 5 8 1 1 0 0 1
+pinnumber=17
+T 2300 1650 5 8 0 1 0 2 1
+pinseq=17
+T 2150 1700 9 10 1 1 0 6 1
+pinlabel=NC
+T 2150 1700 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 1300 2200 1300 1 0 0
+{
+T 2300 1350 5 8 1 1 0 0 1
+pinnumber=18
+T 2300 1250 5 8 0 1 0 2 1
+pinseq=18
+T 2150 1300 9 10 1 1 0 6 1
+pinlabel=NC
+T 2150 1300 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 900 2200 900 1 0 0
+{
+T 2300 950 5 8 1 1 0 0 1
+pinnumber=20
+T 2300 850 5 8 0 1 0 2 1
+pinseq=20
+T 2150 900 9 10 1 1 0 6 1
+pinlabel=NC
+T 2150 900 5 8 0 1 0 8 1
+pintype=io
+}
+P 2500 500 2200 500 1 0 0
+{
+T 2300 550 5 8 1 1 0 0 1
+pinnumber=14
+T 2300 450 5 8 0 1 0 2 1
+pinseq=14
+T 2150 500 9 10 1 1 0 6 1
+pinlabel=TRCM
+T 2150 500 5 8 0 1 0 8 1
+pintype=io
+}
+P 100 4100 400 4100 1 0 0
+{
+T 300 4150 5 8 1 1 0 6 1
+pinnumber=5
+T 300 4050 5 8 0 1 0 8 1
+pinseq=5
+T 450 4100 9 10 1 1 0 0 1
+pinlabel=3D-FIX
+T 450 4100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 3700 400 3700 1 0 0
+{
+T 300 3750 5 8 1 1 0 6 1
+pinnumber=3
+T 300 3650 5 8 0 1 0 8 1
+pinseq=3
+T 450 3700 9 10 1 1 0 0 1
+pinlabel=GND
+T 450 3700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 3300 400 3300 1 0 0
+{
+T 300 3350 5 8 1 1 0 6 1
+pinnumber=8
+T 300 3250 5 8 0 1 0 8 1
+pinseq=8
+T 450 3300 9 10 1 1 0 0 1
+pinlabel=GND
+T 450 3300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 2900 400 2900 1 0 0
+{
+T 300 2950 5 8 1 1 0 6 1
+pinnumber=6
+T 300 2850 5 8 0 1 0 8 1
+pinseq=6
+T 450 2900 9 10 1 1 0 0 1
+pinlabel=NC
+T 450 2900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 2500 400 2500 1 0 0
+{
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=7
+T 300 2450 5 8 0 1 0 8 1
+pinseq=7
+T 450 2500 9 10 1 1 0 0 1
+pinlabel=NC
+T 450 2500 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 2100 400 2100 1 0 0
+{
+T 300 2150 5 8 1 1 0 6 1
+pinnumber=2
+T 300 2050 5 8 0 1 0 8 1
+pinseq=2
+T 450 2100 9 10 1 1 0 0 1
+pinlabel=NRESET
+T 450 2100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1700 400 1700 1 0 0
+{
+T 300 1750 5 8 1 1 0 6 1
+pinnumber=10
+T 300 1650 5 8 0 1 0 8 1
+pinseq=10
+T 450 1700 9 10 1 1 0 0 1
+pinlabel=RX
+T 450 1700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=9
+T 300 1250 5 8 0 1 0 8 1
+pinseq=9
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=TX
+T 450 1300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 900 400 900 1 0 0
+{
+T 300 950 5 8 1 1 0 6 1
+pinnumber=4
+T 300 850 5 8 0 1 0 8 1
+pinseq=4
+T 450 900 9 10 1 1 0 0 1
+pinlabel=VBACKUP
+T 450 900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 500 400 500 1 0 0
+{
+T 300 550 5 8 1 1 0 6 1
+pinnumber=1
+T 300 450 5 8 0 1 0 8 1
+pinseq=1
+T 450 500 9 10 1 1 0 0 1
+pinlabel=VCC
+T 450 500 5 8 0 1 0 2 1
+pintype=io
+}
+B 400 200 1800 4200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 2200 4700 8 10 1 1 0 6 1
+refdes=U?
+T 1200 2500 9 10 1 0 0 0 1
+GPS
+T 400 4800 5 10 0 0 0 0 1
+device=FGPMMOPA6H
+T 400 5000 5 10 0 0 0 0 1
+numslots=0
+T 400 6300 5 10 0 0 0 0 1
+author=AutoTron
+T 400 6100 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 5900 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 5700 5 10 0 0 0 0 1
+numslots=0
+T 400 5300 5 10 0 0 0 0 1
+description=Module,Global Positioning System
+T 400 5100 5 10 0 0 0 0 1
+documentation=http://www.gtop-tech.com
+T 400 4900 5 10 0 0 0 0 1
+footprint=FGPMMOPA6H
+T 400 5500 5 10 0 0 0 0 1
+symversion=0.2
+T 2200 4500 9 10 1 0 0 6 1
+FGPMMOPA6H

@@ -1,0 +1,106 @@
+v 20150401 2
+B 400 400 1800 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 1600 400 1600 1 0 0
+{
+T 300 1550 5 8 0 1 0 8 1
+pinseq=1
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=8
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=COMP
+T 450 1600 5 8 0 1 0 2 1
+pintype=oc
+}
+P 1300 2300 1300 2000 1 0 0
+{
+T 1250 2100 5 8 0 1 0 6 1
+pinseq=2
+T 1350 2100 5 8 1 1 0 0 1
+pinnumber=7
+T 1300 1950 9 10 1 1 0 5 1
+pinlabel=VCC
+T 1300 1800 5 8 0 1 0 5 1
+pintype=pwr
+}
+P 100 1200 400 1200 1 0 0
+{
+T 300 1150 5 8 0 1 0 8 1
+pinseq=3
+T 300 1250 5 8 1 1 0 6 1
+pinnumber=6
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=IPK
+T 450 1200 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 800 400 800 1 0 0
+{
+T 300 750 5 8 0 1 0 8 1
+pinseq=4
+T 300 850 5 8 1 1 0 6 1
+pinnumber=5
+T 450 800 9 10 1 1 0 0 1
+pinlabel=DC
+T 450 800 5 8 0 1 0 2 1
+pintype=in
+}
+P 2500 1600 2200 1600 1 0 0
+{
+T 2300 1550 5 8 0 1 0 2 1
+pinseq=5
+T 2300 1650 5 8 1 1 0 0 1
+pinnumber=1
+T 2150 1600 9 10 1 1 0 6 1
+pinlabel=SWC
+T 2150 1600 5 8 0 1 0 8 1
+pintype=oc
+}
+P 2500 1200 2200 1200 1 0 0
+{
+T 2300 1150 5 8 0 1 0 2 1
+pinseq=6
+T 2300 1250 5 8 1 1 0 0 1
+pinnumber=2
+T 2150 1200 9 10 1 1 0 6 1
+pinlabel=SWE
+T 2150 1200 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 800 2200 800 1 0 0
+{
+T 2300 750 5 8 0 1 0 2 1
+pinseq=7
+T 2300 850 5 8 1 1 0 0 1
+pinnumber=3
+T 2150 800 9 10 1 1 0 6 1
+pinlabel=TC
+T 2150 800 5 8 0 1 0 8 1
+pintype=pas
+}
+P 1300 100 1300 400 1 0 0
+{
+T 1250 300 5 8 0 1 0 8 1
+pinseq=8
+T 1350 300 5 8 1 1 0 2 1
+pinnumber=4
+T 1300 450 9 10 1 1 0 3 1
+pinlabel=GND
+T 1300 600 5 8 0 1 0 3 1
+pintype=pwr
+}
+T 2200 2100 8 10 1 1 0 6 1
+refdes=U?
+T 1300 1100 9 10 1 0 0 3 1
+MC34063
+T 2000 2300 5 10 0 1 0 0 1
+device=MC34063
+T 2000 2500 5 10 0 1 0 0 1
+footprint=SOIC8
+T 2000 3300 5 10 0 0 0 0 1
+numslots=0
+T 2000 2900 5 10 0 0 0 0 1
+symversion=0.1
+T 2000 2700 5 10 0 1 0 0 1
+description=DC/DC,Buck/Boost,100kHz,1.5A
+T 2000 3100 5 10 0 1 0 0 1
+documentation=www.ti.com/product/mc33063a

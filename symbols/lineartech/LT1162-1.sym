@@ -1,12 +1,12 @@
-v 20031231 1
+v 20150401 2
 B 300 300 2300 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1900 100 9 10 1 1 0 0 1
+T 300 3700 9 10 1 1 0 0 1
 device=LT1162
 T 400 4100 5 10 0 0 0 0 1
 description=Full-bridge N-channel Power MOSFET Driver
 T 400 4300 5 10 0 0 0 0 1
 documentation=http://www.linear.com/pdf/11602fa.pdf
-T 400 3700 8 10 1 1 0 0 1
+T 2600 3700 8 10 1 1 0 6 1
 refdes=U?
 T 400 3900 5 10 0 0 0 0 1
 footprint=DIP24N
@@ -80,7 +80,7 @@ T 2700 950 5 10 1 1 0 0 1
 pinnumber=6
 T 3000 850 5 10 0 0 0 0 1
 pinseq=6
-T 1600 900 9 10 1 1 0 1 1
+T 2500 900 9 10 1 1 0 7 1
 pinlabel=BGATEFB
 T 1600 800 5 10 0 1 0 1 1
 pintype=in
@@ -91,7 +91,7 @@ T 2700 1250 5 10 1 1 0 0 1
 pinnumber=19
 T 3000 1150 5 10 0 0 0 0 1
 pinseq=7
-T 1600 1200 9 10 1 1 0 1 1
+T 2500 1200 9 10 1 1 0 7 1
 pinlabel=BGATEDR
 T 1600 1100 5 10 0 1 0 1 1
 pintype=out
@@ -113,7 +113,7 @@ T 2700 1850 5 10 1 1 0 0 1
 pinnumber=21
 T 3000 1750 5 10 0 0 0 0 1
 pinseq=9
-T 1600 1800 9 10 1 1 0 1 1
+T 2500 1800 9 10 1 1 0 7 1
 pinlabel=TSOURCE
 T 1600 1700 5 10 0 1 0 1 1
 pintype=pas
@@ -124,7 +124,7 @@ T 2700 2450 5 10 1 1 0 0 1
 pinnumber=22
 T 3000 2350 5 10 0 0 0 0 1
 pinseq=10
-T 1600 2400 9 10 1 1 0 1 1
+T 2500 2400 9 10 1 1 0 7 1
 pinlabel=TGATEFB
 T 1600 2300 5 10 0 1 0 1 1
 pintype=in
@@ -135,7 +135,7 @@ T 2700 2750 5 10 1 1 0 0 1
 pinnumber=23
 T 3000 2650 5 10 0 0 0 0 1
 pinseq=11
-T 1600 2700 9 10 1 1 0 1 1
+T 2500 2700 9 10 1 1 0 7 1
 pinlabel=TGATEDR
 T 1600 2600 5 10 0 1 0 1 1
 pintype=out
@@ -146,7 +146,7 @@ T 2700 3350 5 10 1 1 0 0 1
 pinnumber=24
 T 3000 3250 5 10 0 0 0 0 1
 pinseq=12
-T 1800 3300 9 10 1 1 0 1 1
+T 2500 3300 9 10 1 1 0 7 1
 pinlabel=BOOST
 T 1800 3200 5 10 0 1 0 1 1
 pintype=pwr
