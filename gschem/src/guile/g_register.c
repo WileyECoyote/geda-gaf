@@ -148,6 +148,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "scrollpan-steps",           1, 0, 0, g_rc_scrollpan_steps },
   { "scroll-wheel",              1, 0, 0, g_rc_scroll_wheel },
   { "third-button",              1, 0, 0, g_rc_third_button },
+  { "third-button-cancel",       1, 0, 0, g_rc_third_button_cancel },
 
   /* System Related */
   { "file-preview",              1, 0, 0, g_rc_file_preview },

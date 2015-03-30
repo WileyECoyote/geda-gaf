@@ -4042,8 +4042,6 @@ x_dialog_close_window (GschemToplevel *w_current)
 
 /** @} endgroup Confirm-Exit-Dialog */
 
-//#include "x_coord.c"
-
 /** \defgroup Raise-All-Dialog Utility Function
  *  @{ \memberof Systemic-Dialogs
 */

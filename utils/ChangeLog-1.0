@@ -1,3 +1,9 @@
+2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * utils/src/smash_megafile.c: WEH: Modified per commit to Master branch by
+      Vladimir See commit db9f9e73a56afd68708dd1f3635e4aabe810e7cb; add conditional
+      directive to use windows form of mkdir if __MINGW32__ is defined.
+
 2015-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gcheck-library.sh: Remove extra characters in help text, no doubt

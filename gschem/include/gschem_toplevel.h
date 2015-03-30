@@ -308,6 +308,7 @@ struct _GschemToplevel {
   int scroll_wheel;         /* controls what the mouse scroll wheel does */
   int pointer_hscroll;      /* controls if the mouse can do horizonal scrolling */
   int third_button;         /* controls what the third mouse button does */
+  int third_button_cancel;  /* controls if third mouse button cancels actions */
 
   /* Print Related */
   char *print_command;      /* The command to send postscript to when printing */

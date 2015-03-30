@@ -804,6 +804,14 @@
 ;(third-button "Popup")
 ;(third-button "Pan")
 
+; third-button-cancel string
+;
+; Controls if the third mouse in mousepan mode cancels draw actions such as
+; placing of a component or drawing of a primitive
+;
+(third-button-cancel "enabled")
+;(third-button-cancel "disabled")
+
 ;END ================> Pointer Device  Preferences <================
 
 ;BEGIN ==================>  Printer Related  <======================

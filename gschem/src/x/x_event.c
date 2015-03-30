@@ -130,11 +130,9 @@ int x_event_button_pressed(GtkWidget      *widget,
       switch(w_current->event_state) {
         case (STARTSELECT):
         case (SELECT):
-          if (o_select_is_selection (w_current)) {
-            list = geda_list_get_glist(Current_Selection);
-            o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
-            i_status_set_state(w_current, SELECT);
-          }
+          list = geda_list_get_glist(Current_Selection);
+          o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
+          //i_status_set_state(w_current, SELECT);
           return(0);
         default:
           break;
@@ -341,7 +339,6 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_invalidate_rubber (w_current);
     }
 
-
     if (!w_current->inside_action) {
 
       if (w_current->third_button == POPUP_ENABLED) {
@@ -349,6 +346,10 @@ int x_event_button_pressed(GtkWidget      *widget,
         x_menu_display_popup(w_current, event);
       }
       else {
+
+        if (!w_current->SHIFTKEY && w_current->third_button_cancel) {
+          i_callback_cancel(w_current, 0, NULL);
+        }
 
         w_current->doing_pan   = TRUE;
         start_pan_x            = (int) event->x;

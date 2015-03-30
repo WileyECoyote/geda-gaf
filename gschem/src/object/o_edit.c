@@ -58,7 +58,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 
   if (list == NULL) {
     i_status_action_stop(w_current);
-    i_status_set_state(w_current, SELECT);
+    //i_status_set_state(w_current, SELECT);
     return;
   }
 

@@ -807,6 +807,14 @@
 ;(third-button "Popup")
 ;(third-button "Pan")
 
+; third-button-cancel string
+;
+; Controls if the third mouse in mousepan mode cancels draw actions such as
+; placing of a component or drawing of a primitive
+;
+(third-button-cancel "enabled")
+;(third-button-cancel "disabled")
+
 ;END ================> Pointer Device  Preferences <================
 
 ;BEGIN ==================>  Printer Related  <======================
@@ -1746,6 +1754,24 @@
 (map-keys "less"          "page-prev")
 (map-keys "Page_Up"       "page-prev")
 
+(map-keys "<Alt>Left"     "page-prev")
+(map-keys "<Alt>Right"    "page-next")
+
+(map-keys "F1"            "help-show-manual")
+(map-keys "F2"            "tools-show-console")
+(map-keys "F3"            "options-magneticnet")
+(map-keys "F4"            "edit-attributes")
+(map-keys "F5"            "page-revert")
+;(map-keys "F6"            "options-cycle-coord")
+(map-keys "F7"            "options-cycle-grid")
+;(map-keys "F8"            "options-toggle-ortho")
+(map-keys "F9"            "options-cycle-snap")
+(map-keys "F11"           "options-rubberband")
+(map-keys "F12"           "edit-component")
+
+(map-keys "<Shift>F5"     "tools_update")
+
+
 ; Definitions for the top pull down menu bar
 ;
 ; The "menu item name" is the name of the item as it will appear in the menu
@@ -1772,7 +1798,7 @@
 
 (define file-menu-items
 ;;
-;;      menu item name           menu action            menu stock icon menu       Menu Item Tooltip
+;;      menu item name             menu action          menu icon name             Menu Item Tooltip
 ;;
      `( (,(N_ "_New")              file-new             "gtk-new"             ,(N_ "Create a new empty file" ))
         (,(N_ "_Open...")          file-open            "gtk-open"            ,(N_ "Open an existing schematic or symbol file"))
@@ -1801,7 +1827,7 @@
 
 (define edit-menu-items
 ;;
-;;      menu item name              menu action            menu stock icon menu       Menu Item Tooltip
+;;      menu item name              menu action            menu icon name          Menu Item Tooltip
 ;;
      `( (,(N_ "_Undo")              edit-undo              "gtk-undo"         ,(N_ "Undo the last action"))
         (,(N_ "_Redo")              edit-redo              "gtk-redo"         ,(N_ "redo the last un-done action"))
@@ -1868,9 +1894,13 @@
       )
 )
 
+;; If you prefer, the buffer menu items can be under a seperate top-level menu,
+;; to do this uncomment all of this section and, though not actually required,
+;; comment-out the same items under select-menu-items and uncomment the "_Buffer"
+;; top-level menu near the end of the menu section.
 ;(define buffer-menu-items
 ;
-;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;      menu item name                    menu action             menu icon name             Menu Item Tooltip
 ;
 ;     `( (,(N_ "Copy into 1")    buffer-copy1            "gtk-copy"  ,(N_ "Copy selection to first auxiliary buffer"))
 ;        (,(N_ "Copy into 2")    buffer-copy2            "gtk-copy"  ,(N_ "Copy selection to second auxiliary buffer"))
@@ -1892,9 +1922,10 @@
 
 (define view-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name               menu action             menu icon name              Menu Item Tooltip
 ;;
-     `( (,(N_ "_Redraw")             view-redraw             "gtk-refresh"          ,(N_ "redraw the current window"))
+     `(
+        (,(N_ "_Redraw")             view-redraw             "gtk-refresh"          ,(N_ "redraw the current window"))
         (,(N_ "_Pan")                view-pan                "geda-zoom-pan"        ,(N_ "Activate Panning"))
 
         (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen"       ,(N_ "Zoom to the limits of the drawing area"))
@@ -1908,20 +1939,24 @@
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
         (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
-        (,(N_ "Show/Hide Net Names") view-show-nets          "geda-show-nets" ,      (N_ "Toggle hidden net name attributes"))
+        (,(N_ "Show/Hide Net Names") view-show-nets          "geda-show-nets"       ,(N_ "Toggle hidden net name attributes"))
 
-        ("SEPARATOR"                #f                       #f)
-        (,(N_ "_Dark color scheme")  view-dark-colors        #f                   ,(N_ "Set the color map to the Dark set"))
-        (,(N_ "_Light color scheme") view-light-colors       #f                   ,(N_ "Set the color map to the Light set"))
-        (,(N_ "B_W color scheme")    view-bw-colors          #f                   ,(N_ "Set the color map to the Black and White"))
+        ("SEPARATOR"                #f                      #f)
+        (,(N_ "_Dark color scheme")  view-dark-colors       #f                      ,(N_ "Set the color map to the Dark set"))
+        (,(N_ "_Light color scheme") view-light-colors      #f                      ,(N_ "Set the color map to the Light set"))
+        (,(N_ "B_W color scheme")    view-bw-colors         #f                      ,(N_ "Set the color map to the Black and White"))
       )
 )
 
 (define page-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name             menu action              menu icon name             Menu Item Tooltip
 ;;
-     `( (,(N_ "_Manager...")       page-manager            "gtk-properties"       ,(N_ "Open the Page Manager"))
+     `(
+        (,(N_ "_Draw Order")       #f                      "gtk-index"            ,(N_ "Change order objects are drawn"))
+        ("SEPARATOR"               #f                      #f)
+
+        (,(N_ "_Manager...")       page-manager            "gtk-properties"       ,(N_ "Open the Page Manager"))
         (,(N_ "_Previous")         page-prev               "gtk-go-back"          ,(N_ "Switch to the previous page"))
         (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
         (,(N_ "Ne_w")              page-new                "gtk-new"              ,(N_ "Create a new Page"))
@@ -1932,7 +1967,7 @@
         ("SEPARATOR"              #f                      #f)
         (,(N_ "_Discard")          page-discard            "gtk-discard"          ,(N_ "Close the current page without saving"))
 
-        ("SEPARATOR"              #f                      #f)
+        ("SEPARATOR"              #f                       #f)
         (,(N_ "_Down Schematic")   hierarchy-down-schematic "gtk-go-down"       ,(N_ "Descend down in the schematic hierarchy"))
         (,(N_ "Down _Symbol")      hierarchy-down-symbol    "gtk-goto-bottom"   ,(N_ "Descend down in the symbol hierarchy"))
         (,(N_ "_Up")               hierarchy-up             "gtk-go-up"         ,(N_ "ascend up in the schematic hierarchy"))
@@ -1942,7 +1977,7 @@
 
 (define add-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name             menu action              menu icon name         Menu Item Tooltip
 ;;
      `( (,(N_ "_Component...")     add-component           "geda-component"   ,(N_ "Insert a symbol from the component library"))
         (,(N_ "_Net")              add-net                 "gschem-net"       ,(N_ "Add net"))
@@ -1963,7 +1998,7 @@
 
 (define sessions-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name            menu action              menu icon name           Menu Item Tooltip
 ;;
      `( (,(N_ "_New")             session-new              "gtk-go-down"       ,(N_ "Create a new session"))
         (,(N_ "_Open...")         session-open             "geda-open-recent"  ,(N_ "Launch the open Session dialog"))
@@ -1978,7 +2013,7 @@
 
 (define attributes-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name             menu action                   menu icon name                Menu Item Tooltip
 ;;
      `( (,(N_ "_Attach")           attributes-attach             "gtk-go-up"              ,(N_ "Attach selected attributes to symbol"))
         (,(N_ "_Detach")           attributes-detach             "gtk-go-down"            ,(N_ "Dettach selected attributes from a symbol"))
@@ -1999,7 +2034,7 @@
 
 (define tools-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name                    menu action            menu icon name            Menu Item Tooltip
 ;;
      `( (,(N_ "A_utonumber Text...")      tools-autonumber       "geda-autonum-blue"  ,(N_ "Open Auto Number dialog"))
         (,(N_ "Show _Console Window...")  tools-show-console     #f                   ,(N_ "Display the console"))
@@ -2013,14 +2048,14 @@
         (,(N_ "Update Component")         tools_update           "gtk-refresh"      ,(N_ "Reload definition of selected component"))
 
         ("SEPARATOR"                      #f                     #f)
-        (,(N_ "Embed Component/Picture")   tools-embed            "geda-inbed"       ,(N_ "Embed a component or image object"))
-        (,(N_ "Unembed Component/Picture") tools-unembed          "geda-bed"         ,(N_ "Unembed a component or image object"))
+        (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))
+        (,(N_ "Unembed Component/Picture") tools-unembed         "geda-bed"         ,(N_ "Unembed a component or image object"))
       )
 )
 
 (define options-menu-items
 ;;
-;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;      menu item name                    menu action             menu icon name             Menu Item Tooltip
 ;;
      `( (,(N_ "Cycle _grid styles")       options-cycle-grid       "gtk-jump-to"        ,(N_ "Toggle grid between Dot, Mesh and Off"))
         (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       "gtk-media-previous" ,(N_ "Increase the snap size"))
@@ -2042,7 +2077,7 @@
 
 (define help-menu-items
 ;;
-;;      menu item name                menu action               menu hotkey action        menu stock icon
+;;      menu item name                  menu action               menu hotkey action        menu stock icon
 ;;
      `(
         (,(N_ "Gschem Guide")           help-show-manual          "gtk-help")

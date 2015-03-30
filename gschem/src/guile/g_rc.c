@@ -1531,6 +1531,32 @@ SCM g_rc_third_button(SCM mode)
                    2);
 }
 
+/*! \brief Verify if the third button cancel mode is set in the RC
+ * file under evaluation.
+ * \par Function Description
+ *
+ * Implements the Scheme function "third-button-cancel". Tests
+ * the mode string in the argument against the third button
+ * cancel mode of the application itself.
+ *
+ * \param [in] mode Scheme object containing the third button
+ * cancel mode string
+ *
+ * \returns #t if the third button cancel mode specified in the
+ * RC file matches the application, else #f.
+ */
+SCM g_rc_third_button_cancel(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("third-button-cancel",
+                   default_third_button_cancel,
+                   2);
+}
+
 /* ----- Print Related ----- */
 
 /*! \brief This function processes the image-size RC entry.

@@ -101,6 +101,7 @@ extern int default_fast_mousepan;
 extern int default_drag_can_move;
 extern int default_middle_button;
 extern int default_third_button;
+extern int default_third_button_cancel;
 extern int default_mousepan_gain;
 extern int default_scroll_wheel;
 extern int default_pointer_hscroll;

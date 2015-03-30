@@ -149,6 +149,7 @@ SCM   g_rc_log_destiny                 (SCM mode);
 SCM   g_rc_console_window              (SCM mode);
 SCM   g_rc_console_window_type         (SCM mode);
 SCM   g_rc_third_button                (SCM mode);
+SCM   g_rc_third_button_cancel         (SCM mode);
 SCM   g_rc_map_keys                    (SCM keys, SCM action);
 SCM   g_rc_middle_button               (SCM mode);
 SCM   g_rc_scroll_wheel                (SCM mode);

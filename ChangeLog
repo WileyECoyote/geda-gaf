@@ -1,3 +1,13 @@
+2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+      * build-tools/icon-theme-installer: WEH: Modified per commit to Master
+        branch by Vladimir See commit 78b1b55e9b9f7d63a72377efdb21c7c70b7f4f88.
+        Message from Vladimir:
+
+        gschem: Fixed icon theme installer.
+        Applied patch by dsanity fixing gschem icon theme installer that was
+        broken on several platforms due of using non-portable GNU sed extension.
+
 2015-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
       * /include/ansi.h: Add new file with defines for ANSI escape codes,

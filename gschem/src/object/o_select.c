@@ -376,11 +376,11 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   /* if the pointer is still close to the button press location,
    * then don't enter the selection box mode */
   if (SCREENabs (w_current, max(dx, dy)) < 10) {
-    i_status_action_start(w_current);
+    i_status_action_stop(w_current);
     status = FALSE;
   }
   else {
-    i_status_action_stop(w_current);
+    i_status_action_start(w_current);
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
     status = TRUE;

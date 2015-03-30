@@ -143,6 +143,7 @@ int     default_pointer_hscroll           = RC_NIL;
 int     default_scrollpan_steps           = RC_NIL;
 int     default_scroll_wheel              = RC_NIL;
 int     default_third_button              = RC_NIL;
+int     default_third_button_cancel       = TRUE;
 
 /* Print Related */
 int     default_paper_width               = DEFAULT_PAPER_WIDTH; /* letter size */
@@ -621,6 +622,8 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->scrollpan_steps, default_scrollpan_steps);
   i_set_rc (&w_current->scroll_wheel,    default_scroll_wheel);
   i_set_rc (&w_current->third_button,    default_third_button);
+
+  w_current->third_button_cancel       = default_third_button_cancel;
 
 /* Print & Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);

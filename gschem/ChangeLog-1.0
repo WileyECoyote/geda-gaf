@@ -1,5 +1,39 @@
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * src//*.c: WEH: Modified per commit to Master branch by Vladimir
+      See commit d219c401f782a3104aed533419fd3a2cdb305fe2 (older) to
+      (re) implement canceling with third button:
+
+    * etc/system-gschemrc.scm: Add keyword; third-button-cancel
+
+    * etc/user-gschemrc.scm: Add keyword; third-button-cancel
+
+    * include/gschem_toplevel.h: Add int third_button_cancel
+
+    * include/i_vars.h: Add extern for int default_third_button_cancel
+
+    * include/prototype.h: Declare g_rc_third_button_cancel.
+
+    * src/base/gschem_toplevel.c: Fix indentation (not related to other stuff).
+
+    * src/guile/g_rc.c: Add function g_rc_third_button_cancel.
+
+    * src/guile/g_register.c: register "third-button-cancel".
+
+    * src/iface/i_vars.c: Configure w_current->third_button_cancel.
+
+    * src/x/x_event.c:Remove/comment-out i_status_set_state in case SELECT
+      in function x_event_button_pressed. Not exactly the same as recent
+      modifications to master branch, just did not seem be useful. Added
+      check for third_button_cancel option in 3 button press event handler
+      but is tweaked from Vladimir version, since the previous alterations
+      were also tweaked to allow the third button to cancel in not inside
+      an action, now the third button can cancel both in and out side of
+      actions, if the SHIFT key is not down, indicated the user wants to
+      pan but not cancel, which also allows panning inside of actions.
+
+2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * src/iface/i_status.c: WEH: Modified per commit to Master branch by
       Vladimir See commit 15f714362a1f46c41ccdce559b832ac34999d13c. The
       change is to return a different string for the SBOX states, prior
