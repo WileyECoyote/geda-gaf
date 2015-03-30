@@ -1,6 +1,49 @@
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Symbol Library:  Clean, Reorganize, and Expand Symbol Library
+    * Symbol Library: Expand Symbol Library
+
+    * murata/capacitor: (new subdirectory) Add 12 symbols for Murata Capacitors
+      for popular sizes:
+
+            * murata/capacitor/GCM21BR71A106KE22_10uF_10V.sym
+            * murata/capacitor/GCM21BR71H105KA03_1uF_50V.sym
+            * murata/capacitor/GCM31CC71E106KA03_10uF_25V.sym
+            * murata/capacitor/GCM31CC71H475KA03_4.7uF_50V.sym
+            * murata/capacitor/GCM32EC71H106KA03_10uF_50V.sym
+            * murata/capacitor/GCM155R71C104KA55_0.1uF_16V.sym
+            * murata/capacitor/GCM155R71H104KE02_0.1uF_50V.sym
+            * murata/capacitor/GCM188C71A225KE02_2.2uF_10V.sym
+            * murata/capacitor/GCM188R71C105KA64_1uF_16V.sym
+            * murata/capacitor/GRM21BR71A475KA73_4.7uF_10V.sym
+            * murata/capacitor/GRM155R71A103KA01_0.01uF_10V.sym
+            * murata/capacitor/GRM155R71A104KA01_0.1uF_10V.sym
+
+    * murata/filter: (new subdirectory) Add 20 symbols for Murata EMI filters:
+
+            * murata/filter/BL01RN1A1D2.sym
+            * murata/filter/BL01RN1A1E1.sym
+            * murata/filter/BL01RN1A1F1.sym
+            * murata/filter/BL01RN1A2A2.sym
+            * murata/filter/BL02RN1R2M2.sym
+            * murata/filter/BL02RN1R2N1.sym
+            * murata/filter/BL02RN1R2P1.sym
+            * murata/filter/BL02RN1R2Q1.sym
+            * murata/filter/BL02RN1R3J2.sym
+            * murata/filter/BL02RN1R3N1.sym
+            * murata/filter/BL02RN2R1M2.sym
+            * murata/filter/BL02RN2R1N1.sym
+            * murata/filter/BL02RN2R1P1.sym
+            * murata/filter/BL02RN2R1Q1.sym
+            * murata/filter/BL02RN2R3J2.sym
+            * murata/filter/BL02RN2R3N1.sym
+            * murata/filter/BL03RN2R1M1.sym
+            * murata/filter/BL03RN2R1N1.sym
+            * murata/filter/BL03RN2R1P1.sym
+            * murata/filter/BL03RN2R1Q1.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Symbol Library: Clean, Reorganize, and Expand Symbol Library
 
     * New styles for diode: Make all diode symbols be the same width as (most)
       passives (0.9"), use rounded line-type for smoother appearence when
