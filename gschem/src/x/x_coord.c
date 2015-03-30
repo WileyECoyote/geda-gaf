@@ -128,7 +128,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         if (buffer) {
           /* don't free(buffer) here! leave pointer for our entry to sort */
           object_buffer[DND_BUFFER] = g_list_prepend(object_buffer[DND_BUFFER], buffer);
-          w_current->inside_action = 1;
+          i_status_action_start(w_current);
           i_status_set_state (w_current, ENDDNDSTR);
           dnd_success = TRUE;
         }
@@ -168,7 +168,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
              w_current->dnd_state = w_current->event_state;
           }
           else {
-            w_current->inside_action = TRUE;
+            i_status_action_start(w_current);
             i_status_set_state (w_current, ENDDND_COPY_OBJ);
           }
           dnd_success = TRUE;

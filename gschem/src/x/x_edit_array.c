@@ -59,7 +59,7 @@ static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
     g_signal_handler_disconnect (DrawingArea, dialog_data->release_hid);
     dialog_data->release_hid = 0;
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 static void x_dialog_array_edit_enable_events(GschemToplevel *w_current,
@@ -229,10 +229,12 @@ int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
       w_current->second_wy = w_y;
     }
     else {
+
+      i_status_action_start(w_current);
+
       w_current->first_wx = w_current->second_wx = w_x;
       w_current->first_wy = w_current->second_wy = w_y;
 
-      w_current->inside_action  = TRUE;
       w_current->rubber_visible = TRUE;
     }
   }
@@ -292,12 +294,13 @@ int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
 
     if (w_current->event_state == SELECT) {
 
+      i_status_action_start(w_current);
+
       SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
       w_current->first_wx      = w_current->second_wx = x;
       w_current->first_wy      = w_current->second_wy = y;
       w_current->event_state   = STARTSELECT;
-      w_current->inside_action = TRUE;
     }
   }
   return(0);
@@ -347,12 +350,13 @@ int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
 
     if (w_current->event_state == DESELECT) {
 
+      i_status_action_start(w_current);
+
       SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
       w_current->first_wx      = w_current->second_wx = x;
       w_current->first_wy      = w_current->second_wy = y;
       w_current->event_state   = STARTDESELECT;
-      w_current->inside_action = TRUE;
     }
   }
 
@@ -416,7 +420,7 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
 
     s_place_set_place_list(w_current->toplevel, object_list);
 
-    w_current->inside_action = TRUE;
+    i_status_action_start(w_current);
 
     for (j = 0; j < columns; j++) {
 
@@ -435,8 +439,10 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
       }
     }
 
+    i_status_action_stop(w_current);
+
     g_hook_run_object_list (w_current, COPY_OBJECTS_HOOK, object_list);
-    w_current->inside_action = FALSE;
+
     changed = TRUE;
   }
   else {

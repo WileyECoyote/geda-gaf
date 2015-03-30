@@ -47,7 +47,7 @@ void o_circle_invalidate_rubber (GschemToplevel *w_current)
 /*! \brief Start process to input a new circle.
  *  \par Function Description
  *  This function starts the process to input a new circle. Parameters for
- *  this circle are pu into/extracted from the <B>w_current</B> toplevel
+ *  this circle are put into/extracted from the <B>w_current</B> toplevel
  *  structure.
  *  <B>w_x</B> and <B>w_y</B> are current coordinates of the mouse pointer in
  *  world units.
@@ -61,6 +61,8 @@ void o_circle_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   /* center of circle */
   w_current->first_wx = w_x;
   w_current->first_wy = w_y;
@@ -68,7 +70,6 @@ void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
   /* radius */
   w_current->distance = 0;
 
-  w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
 }
 
@@ -98,7 +99,7 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->inside_action) {
 
-    w_current->inside_action  = FALSE;
+    i_status_action_stop(w_current);
     w_current->rubber_visible = FALSE;
 
     /* circle with null radius are not allowed */

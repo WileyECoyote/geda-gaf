@@ -293,7 +293,7 @@ void o_select_start (GschemToplevel *w_current, int wx, int wy)
 void o_select_end (GschemToplevel *w_current, int wx, int wy)
 {
   o_find_object(w_current, wx, wy, TRUE);
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /*! \brief Determine whether objects have to be selected or moved
@@ -376,14 +376,17 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
   /* if the pointer is still close to the button press location,
    * then don't enter the selection box mode */
   if (SCREENabs (w_current, max(dx, dy)) < 10) {
+    i_status_action_start(w_current);
     status = FALSE;
   }
   else {
+    i_status_action_stop(w_current);
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
     status = TRUE;
   }
-  return w_current->inside_action = status;
+
+  return status;
 }
 
 /*! \brief End Window/Box Selection Callback
@@ -397,7 +400,7 @@ void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
   w_current->rubber_visible = FALSE;
 
   o_select_box_search(w_current);
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /*! \brief Window/Box Selection Pointer Motion Callback
@@ -836,12 +839,13 @@ int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
 
     if (w_current->event_state == SELECT) {
 
+      i_status_action_start(w_current);
+
       SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
       w_current->first_wx      = w_current->second_wx = x;
       w_current->first_wy      = w_current->second_wy = y;
       w_current->event_state   = STARTSELECT;
-      w_current->inside_action = TRUE;
     }
   }
   return(0);

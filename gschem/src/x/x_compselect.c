@@ -271,7 +271,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
         i_status_set_state (w_current, SELECT);
       }
 
-      w_current->inside_action = FALSE;
+      i_status_action_stop(w_current);
       break;
 
     default:

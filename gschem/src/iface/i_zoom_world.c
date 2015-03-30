@@ -289,7 +289,7 @@ void i_zoom_world_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
-  w_current->inside_action = TRUE;
+  i_status_action_start(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -302,6 +302,9 @@ void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
   if (w_current->inside_action) {
 
     i_zoom_world_box_invalidate_rubber (w_current);
+
+    i_status_action_stop(w_current);
+
     w_current->rubber_visible = FALSE;
 
     i_zoom_world_box(w_current, 0);
@@ -309,7 +312,6 @@ void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
     if (w_current->undo_panzoom == TRUE) {
       o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
     }
-    w_current->inside_action = FALSE;
   }
 }
 

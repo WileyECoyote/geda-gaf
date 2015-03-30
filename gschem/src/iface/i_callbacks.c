@@ -243,7 +243,7 @@ DEFINE_I_CALLBACK(cancel)
 
   o_invalidate_all (w_current);
   i_status_set_state(w_current, SELECT);
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /** \defgroup help-menu Help Menu Callback Functions

@@ -268,6 +268,37 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
   GEDA_FREE(what_to_say);
 }
 
+static bool
+i_status_idle_thread_update_action (GschemToplevel *w_current)
+{
+  int index;
+  if (w_current->inside_action) {
+    index = NET_COLOR;
+  }
+  else {
+    index = 0;
+  }
+  gschem_status_bar_set_status_text_color (w_current->status_bar, index);
+  return FALSE;
+}
+
+/*! \brief Schedule Set filename as gschem window title
+ *
+ *  \par Function Description
+ *  Spawn thread to update the  window title
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void i_status_update_action_state(GschemToplevel *w_current, int state)
+{
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    if (w_current->inside_action != state) {
+      w_current->inside_action = state;
+      g_idle_add ((GSourceFunc)i_status_idle_thread_update_action, w_current);
+    }
+  }
+}
+
 /*! \brief Update Coordinate Display
  *
  *  \par Function Description

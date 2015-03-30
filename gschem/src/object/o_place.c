@@ -69,7 +69,6 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
     }
     else {
       u_log_message (_("Buffer is empty, nothing to place\n"));
-      w_current->inside_action = FALSE;
       i_status_set_state(w_current, SELECT);
       result = FALSE;
     }
@@ -78,7 +77,10 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
     i_status_set_state(w_current, SELECT);
     result = FALSE;
   }
-  return w_current->inside_action = result;
+
+  i_status_update_action_state(w_current, result);
+
+  return result;
 }
 
 /*! \brief Finalize objects being Placed
@@ -151,8 +153,8 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
     o_invalidate_glist (w_current, connected_list);
     o_invalidate_glist (w_current, object_list);  /* only redraw new objects */
 
+    i_status_update_action_state(w_current, continue_placing);
     i_status_update_sensitivities (w_current);
-    w_current->inside_action = continue_placing;
 
     g_list_free (connected_list);
     g_list_free (object_list);
@@ -283,7 +285,6 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     /* Get bounds of the drawing to be done */
     if (o_get_bounds_list (Current_PlaceList, &left, &top, &right, &bottom))
     {
-
       WORLDtoSCREEN (w_current, left  + diff_x, top    + diff_y, &s_left, &s_top);
       WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
 

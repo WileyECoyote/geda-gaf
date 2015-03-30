@@ -87,6 +87,9 @@ typedef enum
   GEDA_RESPONSE_PLACE,        /* 1 */
   GEDA_RESPONSE_HIDE,         /* 2 */
   GEDA_RESPONSE_REFRESH,      /* 3 */
+  GEDA_RESPONSE_SELECT,       /* 4 */
+  GEDA_RESPONSE_DESELECT,     /* 4 */
+  GEDA_RESPONSE_GET_DIST,     /* 5 */
 }  IDE_RESPONSE_TYPE;
 
 /*! \enum IDE_OBJECT_FILTER Used by Libgedathon

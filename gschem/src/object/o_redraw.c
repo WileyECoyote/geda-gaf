@@ -90,7 +90,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       s_object_release_objects(toplevel->page_current->place_list);
       toplevel->page_current->place_list = NULL;
 
-      w_current->inside_action = 0;
+      i_status_action_stop(w_current);
 
       /* touch the select state */
       i_status_set_state(w_current, SELECT);
@@ -199,8 +199,8 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   }
 
   if ((is_only_text) &&
-    ( w_current->text_feedback != ALWAYS_FEEDBACK) &&
-    ( w_current->inside_action))
+     (w_current->text_feedback != ALWAYS_FEEDBACK) &&
+     (w_current->inside_action))
     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
 
   /* The display color map is used for "normal" rendering. */

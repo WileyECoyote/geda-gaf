@@ -57,8 +57,9 @@
  */
 void o_net_reset(GschemToplevel *w_current)
 {
-
   o_net_invalidate_rubber (w_current);
+
+  i_status_action_stop(w_current);
 
   w_current->first_wx       = w_current->first_wy    = -1;
   w_current->second_wx      = w_current->second_wy   = -1;
@@ -66,7 +67,6 @@ void o_net_reset(GschemToplevel *w_current)
   w_current->magnetic_wx    = w_current->magnetic_wy = -1;
 
   w_current->rubber_visible = FALSE;
-  w_current->inside_action  = FALSE;
 }
 
 /*! \brief guess the best direction for the next net drawing action
@@ -426,6 +426,8 @@ void o_net_start_magnetic(GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_net_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
     w_current->first_wx = w_current->magnetic_wx;
     w_current->first_wy = w_current->magnetic_wy;
@@ -444,8 +446,6 @@ void o_net_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->net_direction_mode)
     o_net_guess_direction(w_current, w_current->first_wx, w_current->first_wy);
-
-  w_current->inside_action  = TRUE;
 }
 
 /*! \brief finish a net drawing action

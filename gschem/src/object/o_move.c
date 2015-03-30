@@ -191,7 +191,10 @@ bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     o_move_invalidate_rubber (w_current, TRUE);
     status = TRUE;
   }
-  return w_current->inside_action = status;
+
+  i_status_update_action_state(w_current, status);
+
+  return status;
 }
 
 /*! \todo Finish function documentation!!!
@@ -319,7 +322,7 @@ void o_move_end(GschemToplevel *w_current)
 
     Place_List = NULL;
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -339,9 +342,11 @@ void o_move_cancel (GschemToplevel *w_current)
     stretch->object->dont_redraw = FALSE;
   }
 
+  i_status_action_stop(w_current);
+
   o_move_stretch_destroy_all (w_current->stretch_list);
+
   w_current->stretch_list = NULL;
-  w_current->inside_action = FALSE;
 
   if (Current_Page->place_list) {
     g_list_free(Current_Page->place_list);

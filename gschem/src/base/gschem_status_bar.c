@@ -59,7 +59,8 @@ enum
   PROP_RIGHT_BUTTON_TEXT,
   PROP_SNAP_MODE,
   PROP_SNAP_SIZE,
-  PROP_STATUS_TEXT
+  PROP_STATUS_TEXT,
+  PROP_STATUS_TEXT_COLOR,
 };
 
 enum {
@@ -585,6 +586,15 @@ gschem_status_bar_class_init (GschemStatusBarClass *klass)
 
   g_object_class_install_property (gobject_class, PROP_STATUS_TEXT, pspec);
 
+  pspec = g_param_spec_int ("status-text-color",
+                          _("Status State"),
+                          _("Status State"),
+                             0,
+                             MAX_COLORS,
+                             0,
+                            (G_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class, PROP_STATUS_TEXT_COLOR, pspec);
 
   signals[SET_MIDDLE_ACTION]   = g_signal_new ("set-middle-action",
                                                 gschem_status_bar_get_type(),
@@ -1652,14 +1662,52 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
       GschemStatusBar *gsb = (GschemStatusBar*)widget;
       if (GEDA_IS_LABEL(gsb->status_label)) {
         geda_label_widget_set_text (gsb->status_label, text);
-        //g_object_notify (G_OBJECT (widget), "status-text");
       }
       else {
         BUG_MSG("status_label is not a GedaLabel");
       }
     }
     else {
-      BUG_MSG("widget is not a GschemStatusBar");
+      BUG_MSG("widget is not a ");
+    }
+  }
+#endif
+}
+
+/*! \brief Set the status text color
+ *
+ * \par Function Description
+ * Changes the status text color to show if the current editing
+ * action is active or not.
+ *
+ * \param [in] widget This GschemStatusBar
+ * \param [in] index  The state to visualise
+ */
+void
+gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
+{
+  GdkColor *color = x_color_get_color_from_index(index);
+
+#if defined (G_DISABLE_ASSERT)
+  GschemStatusBar *gsb = (GschemStatusBar*)widget;
+  gtk_widget_modify_fg (GTK_WIDGET (gsb->status_label), GTK_STATE_NORMAL, color);
+
+#else
+  if (widget == NULL) {
+    BUG_MSG("widget is NULL");
+  }
+  else {
+    if (GSCHEM_IS_STATUS_BAR(widget)) {
+      GschemStatusBar *gsb = (GschemStatusBar*)widget;
+      if (GEDA_IS_LABEL(gsb->status_label)) {
+        gtk_widget_modify_fg (GTK_WIDGET (gsb->status_label), GTK_STATE_NORMAL, color);
+      }
+      else {
+        BUG_MSG("status_label is not a GedaLabel");
+      }
+    }
+    else {
+      BUG_MSG("widget is not a ");
     }
   }
 #endif
@@ -1714,11 +1762,14 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
       gschem_status_bar_set_status_text (status_bar, g_value_get_string (value));
       break;
 
+    case PROP_STATUS_TEXT_COLOR:
+      gschem_status_bar_set_status_text_color (status_bar, g_value_get_int (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
 
 /*! \brief Write the grid settings to the gschem "status bar."
  *

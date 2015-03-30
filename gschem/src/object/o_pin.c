@@ -39,9 +39,9 @@
  */
 void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
-  w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
 }
 
@@ -67,6 +67,8 @@ void o_pin_end(GschemToplevel *w_current, int x, int y)
     Object *new_obj;
     int     color;
 
+    i_status_action_stop(w_current);
+
     if (w_current->override_pin_color == -1) {
       color = PIN_COLOR;
     }
@@ -74,7 +76,6 @@ void o_pin_end(GschemToplevel *w_current, int x, int y)
       color = w_current->override_pin_color;
     }
 
-    w_current->inside_action = FALSE;
     w_current->rubber_visible = FALSE;
 
     /* don't allow zero length pins */

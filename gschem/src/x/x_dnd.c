@@ -962,8 +962,8 @@ void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
   }
 
   if (w_current->dnd_state) {
+    i_status_action_start(w_current);
     w_current->event_state   = w_current->dnd_state;
-    w_current->inside_action = TRUE;
   }
 
   o_invalidate_all (w_current);

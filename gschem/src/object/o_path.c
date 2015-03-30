@@ -360,6 +360,8 @@ o_path_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   /* Reset path creation state */
   if (w_current->temp_path != NULL) {
     w_current->temp_path->num_sections = 0;
@@ -382,7 +384,6 @@ void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* Enable preview drawing */
   w_current->rubber_visible = TRUE;
-  w_current->inside_action  = TRUE;
 }
 
 /* \brief Begin inputting a new path node.
@@ -401,7 +402,7 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
   w_current->second_wy = w_y;
 
   o_path_invalidate_rubber (w_current);
-  w_current->inside_action = TRUE;
+  i_status_action_start(w_current);
 }
 
 /* \brief Give feedback on path creation during mouse movement.
@@ -540,7 +541,7 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     }
   }
 
-  w_current->inside_action = result;
+  i_status_update_action_state(w_current, result);
 }
 
 /*! \brief Draw path creation preview.

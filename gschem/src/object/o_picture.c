@@ -71,14 +71,15 @@
  */
 void
 o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
- {
+{
+  i_status_action_start(w_current);
+
   /* init first_w[x|y], second_w[x|y] to describe box */
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
 
   /* start to draw the box */
   w_current->rubber_visible = TRUE;
-  w_current->inside_action  = TRUE;
   o_box_invalidate_rubber (w_current);
 }
 
@@ -108,9 +109,10 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->inside_action) {
 
+    i_status_action_stop(w_current);
+
     /* erase the temporary picture */
     w_current->rubber_visible = FALSE;
-    w_current->inside_action  = FALSE;
 
     picture_left   = w_current->rubber_x1;
     picture_top    = w_current->rubber_y1;

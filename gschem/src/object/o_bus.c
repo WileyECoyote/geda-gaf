@@ -41,9 +41,11 @@
  */
 void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
-  w_current->inside_action  = TRUE;
+
   w_current->rubber_visible = TRUE;
 }
 
@@ -85,7 +87,7 @@ void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     if ((w_current->first_wx == w_current->second_wx) &&
         (w_current->first_wy == w_current->second_wy))
     {
-      w_current->inside_action = FALSE;
+      i_status_action_stop(w_current);
     }
     else
     {
@@ -112,7 +114,7 @@ void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
   }
   else {
     BUG_MSG("Not inside an action\n");
-    w_current->inside_action = FALSE;
+    i_status_action_stop(w_current);
   }
 }
 

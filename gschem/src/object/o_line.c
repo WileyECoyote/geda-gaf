@@ -64,11 +64,12 @@ void o_line_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_line_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   /* init first_w[x|y], second_w[x|y] to describe line */
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
 
-  w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
 }
 
@@ -94,7 +95,8 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
   if (w_current->inside_action) {
 
     /* Don't bother.. the real object is invalidated, its in the same place */
-    w_current->inside_action  = FALSE;
+    i_status_action_stop(w_current);
+
     w_current->rubber_visible = FALSE;
 
     /* don't allow zero length lines */

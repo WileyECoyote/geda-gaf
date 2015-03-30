@@ -164,3 +164,5 @@ void          gschem_status_bar_set_snap_mode          (GtkWidget *widget, int m
 void          gschem_status_bar_set_snap_size          (GtkWidget *widget, int size);
 
 void          gschem_status_bar_set_status_text        (GtkWidget *widget, const char *text);
+
+void          gschem_status_bar_set_status_text_color  (GtkWidget *widget, int color);

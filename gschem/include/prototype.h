@@ -310,6 +310,7 @@ void       i_status_set_state_msg           (GschemToplevel *w_current, enum x_s
 void       i_status_set_state               (GschemToplevel *w_current, enum x_states newstate);
 void       i_status_show_msg                (GschemToplevel *w_current, const char *message);
 void       i_status_show_state              (GschemToplevel *w_current, const char *message);
+void       i_status_update_action_state     (GschemToplevel *w_current, int state);
 void       i_status_update_coordinates      (GschemToplevel *w_current, int x, int y);
 void       i_status_update_grid_info        (GschemToplevel *w_current);
 void       i_status_update_sensitivities    (GschemToplevel *w_current);
@@ -466,7 +467,7 @@ void       o_edit_show_netnames         (GschemToplevel *w_current, const GList 
 int        o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
 void       o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void       o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
-void       o_edit_snap                  (GschemToplevel *w_current, GList *object_list);
+void       o_edit_snap                  (GschemToplevel *w_current, const GList *o_list);
 OBJ       *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_extend.c */
@@ -741,7 +742,7 @@ void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
 bool        x_dnd_receive_string            (GschemToplevel *w_current, int x, int y, const char *string, int where);
 void        x_dnd_setup_event_handlers      (GschemToplevel *w_current);
 
-/* o_draw.c */
+/* x_draw.c */
 void          x_draw_object                 (GschemToplevel *w_current, Object *object);
 void          x_draw_set_surface            (GschemToplevel *w_current);
 char         *x_draw_get_font               (void);
@@ -759,7 +760,7 @@ int           option_menu_get_history       (GtkOptionMenu *option_menu);
 void          x_attrib_add_dialog           (GschemToplevel *w_current, Object *object);
 void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *object);
 
-/* x_edit_array.c */
+/* x_array.c */
 void        x_dialog_array_edit             (GschemToplevel *w_current);
 
 /* x_edit_color.c */

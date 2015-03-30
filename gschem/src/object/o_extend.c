@@ -2197,7 +2197,8 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
     Current_Page->CHANGED = 1;
     o_undo_savestate (w_current, UNDO_ALL);
   }
-  w_current->inside_action = TRUE;
+
+  i_status_action_start(w_current);
 
   return (status & 2);
 }

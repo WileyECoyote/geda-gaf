@@ -57,7 +57,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
   const char *str = NULL;
 
   if (list == NULL) {
-    w_current->inside_action = 0;
+    i_status_action_stop(w_current);
     i_status_set_state(w_current, SELECT);
     return;
   }
@@ -211,7 +211,7 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
     o_undo_savestate(w_current, UNDO_ALL);
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /** \defgroup Edit-Offset Implementation for Offset editing operations
@@ -258,7 +258,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     s_place_set_place_list(w_current->toplevel, list);
 
-    w_current->inside_action = TRUE;
+    i_status_action_start(w_current);
 
     w_current->second_wx = x;
     w_current->second_wy = y;
@@ -276,7 +276,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 
     i_window_set_pointer_position (w_current, dx, dy);
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 static bool
@@ -367,7 +367,7 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
 
       s_place_set_place_list(w_current->toplevel, list);
 
-      w_current->inside_action = TRUE;
+      i_status_action_start(w_current);
 
       x = w_current->second_wx;
       y = w_current->second_wy;
@@ -392,7 +392,7 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /** @} endgroup Edit-Offset */
@@ -418,7 +418,7 @@ void o_edit_rotate_world(GschemToplevel *w_current,
 {
   /* Is okay if user hits rotate and has nothing selected */
   if (list == NULL) {
-    w_current->inside_action = 0;
+    i_status_action_stop(w_current);
     i_status_set_state(w_current, SELECT);
     return;
   }
@@ -439,7 +439,8 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   if (!w_current->inside_action) {
     o_undo_savestate(w_current, UNDO_ALL);
   }
-  w_current->inside_action = FALSE;
+
+  i_status_action_stop(w_current);
 }
 
 /* This is a utility function to report the number of objects whose

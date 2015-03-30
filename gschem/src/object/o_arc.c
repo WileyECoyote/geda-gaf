@@ -64,6 +64,8 @@ void o_arc_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 {
+  i_status_action_start(w_current);
+
   /* set the center of the arc */
   w_current->first_wx = w_x;
   w_current->first_wy = w_y;
@@ -72,9 +74,8 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
   w_current->distance = 0;
 
   /* set the start and end angles */
-  w_current->second_wx = w_current->second_wy = 0;
+  w_current->second_wx      = w_current->second_wy = 0;
 
-  w_current->inside_action  = TRUE;
   w_current->rubber_visible = TRUE;
   w_current->which_grip     = ARC_RADIUS;
 }
@@ -100,7 +101,7 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action) {
 
-    w_current->inside_action  = FALSE;
+    i_status_action_stop(w_current);
     w_current->rubber_visible = FALSE;
 
     /* ack! zero length radius */

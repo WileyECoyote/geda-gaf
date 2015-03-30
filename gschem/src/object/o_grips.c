@@ -1027,6 +1027,8 @@ o_grips_start_circle(GschemToplevel *w_current, Object *o_current, int x, int y)
 static void
 o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)
 {
+  i_status_action_start(w_current);
+
   int whichone = w_current->which_grip;
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -1039,7 +1041,7 @@ o_grips_start_line(GschemToplevel *w_current, Object *o_current, int x, int y)
 
   /* draw the first temporary line */
   w_current->rubber_visible = TRUE;
-  w_current->inside_action  = TRUE;
+
 }
 
 /*! \brief Start process of modifiying one grip.
@@ -1138,7 +1140,10 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
   else { /* Grips are turned off */
     result = FALSE;
   }
-  return w_current->inside_action = result;
+
+  i_status_update_action_state(w_current, result);
+
+  return result;
 }
 
 /*! \brief End process of modifying arc object with grip.
@@ -1579,5 +1584,5 @@ o_grips_end(GschemToplevel *w_current)
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }

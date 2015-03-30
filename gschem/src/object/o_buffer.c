@@ -111,7 +111,7 @@ void o_buffer_cut(GschemToplevel *w_current, int buf_num)
   else {
     selection_to_buffer (w_current, buf_num);
     o_delete_selected(w_current);
-    w_current->inside_action = FALSE;
+    i_status_action_stop(w_current);
   }
 }
 
@@ -182,7 +182,6 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
       x = snap_grid (w_current, left);
       y = snap_grid (w_current, top);
 
-      //o_list_translate (Current_PlaceList, w_x - x, w_y - y);
       for (iter = Current_PlaceList; iter != NULL; iter = iter->next) {
         Object *o_current = iter->data;
         o_translate_object(o_current, w_x - x, w_y - y);
@@ -199,7 +198,10 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
       result = FALSE;
     }
   }
-  return w_current->inside_action = result;
+
+  i_status_update_action_state(w_current, result);
+
+  return result;
 }
 
 /*! \brief Initialize the Buffers

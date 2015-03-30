@@ -81,7 +81,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       switch(w_current->event_state) {
         case (NETMODE):
           o_net_end (w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
+          i_status_action_stop(w_current);
           i_status_set_state(w_current, SELECT);
           return(0);
 
@@ -107,7 +107,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case (ARCMODE):
           o_arc_end1 (w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
+          i_status_action_stop(w_current);
           i_status_set_state(w_current, SELECT);
           return(0);
 
@@ -118,7 +118,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case (BUSMODE):
           o_bus_end (w_current, w_x, w_y);
-          w_current->inside_action = FALSE;
+          i_status_action_stop(w_current);
           i_status_set_state(w_current, SELECT);
           return(0);
 
@@ -297,7 +297,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
           if (!o_select_is_selection(w_current)) {
             /* This means the above find did not find anything */
-            w_current->inside_action = FALSE;
+            i_status_action_stop(w_current);
             i_status_set_state(w_current, SELECT);
           }
           else { /* Only Copy and Move are supported */
@@ -341,6 +341,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_invalidate_rubber (w_current);
     }
 
+
     if (!w_current->inside_action) {
 
       if (w_current->third_button == POPUP_ENABLED) {
@@ -348,6 +349,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         x_menu_display_popup(w_current, event);
       }
       else {
+
         w_current->doing_pan   = TRUE;
         start_pan_x            = (int) event->x;
         start_pan_y            = (int) event->y;
@@ -368,7 +370,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       switch (w_current->event_state) {
 
         case(ENDOFFSET):
-          w_current->inside_action = FALSE;
+          i_status_action_stop(w_current);
           i_status_set_state(w_current, SELECT);
           break;
 
@@ -384,7 +386,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         case(BUSMODE):
         case(PATHMODE):
         case(PICTUREMODE):
-          w_current->inside_action = FALSE;
+          i_status_action_stop(w_current);
           break;
 
         default:
@@ -475,7 +477,7 @@ bool x_event_button_released (GtkWidget      *widget,
         break;
 
       case(ENDOFFSET):
-        w_current->inside_action = TRUE;
+        i_status_action_start(w_current);
         break;
     }
 
@@ -622,7 +624,7 @@ bool x_event_button_released (GtkWidget      *widget,
     }
     else {
 
-      w_current->inside_action = FALSE;
+      i_status_action_stop(w_current);
 
       switch(w_current->event_state) {
         case(NETMODE):

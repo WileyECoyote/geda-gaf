@@ -231,7 +231,7 @@ void o_page_draw_after (GschemToplevel *w_current)
     g_list_free(set1);
     g_list_free(set2);
 
-    w_current->inside_action = FALSE;
+    i_status_action_stop(w_current);
     i_status_set_state(w_current, SELECT);
   }
   gschem_toplevel_free_primary(w_current);
@@ -304,7 +304,7 @@ void o_page_draw_before (GschemToplevel *w_current)
 
     }
 
-    w_current->inside_action = FALSE;
+    i_status_action_stop(w_current);
     i_status_set_state(w_current, SELECT);
 
     g_list_free(set1);

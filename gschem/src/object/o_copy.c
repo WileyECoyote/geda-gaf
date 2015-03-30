@@ -63,7 +63,10 @@ bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
       i_status_set_state(w_current, COPYMODE);
     }
   }
-  return w_current->inside_action = status;
+
+  i_status_update_action_state(w_current, status);
+
+  return status;
 }
 
 /*! \brief Start Multiple Copy Mode
@@ -88,8 +91,8 @@ void o_copy_cancel(GschemToplevel *w_current)
 {
   s_place_free_place_list(w_current->toplevel);
 
-  w_current->inside_action = FALSE;
   i_status_set_state(w_current, SELECT);
+  i_status_action_stop(w_current);
 }
 
 /*! \brief Finalize Copy operation of a single object
@@ -122,7 +125,7 @@ void o_copy_end(GschemToplevel *w_current)
 
   }
   o_undo_savestate (w_current, UNDO_ALL);
-  w_current->inside_action = FALSE;
+  i_status_action_stop(w_current);
 }
 
 /*! \brief  Finalize Copy operation of a multible objects
@@ -138,7 +141,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
   o_undo_savestate (w_current, UNDO_ALL);
 
   /* Stay on ENDMCOPY mode */
-  w_current->inside_action = TRUE;
+  i_status_action_start(w_current);
 }
 
 /** @} endgroup Copy-Operations */
