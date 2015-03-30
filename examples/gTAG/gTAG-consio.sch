@@ -1,25 +1,25 @@
-v 20140915 2
+v 20150401 2
 C 46600 40200 0 0 0 title-A2.sym
 C 57100 48400 1 0 1 out-1.sym
 {
-T 57100 49550 5 8 0 0 0 6 1
-symversion=0.3
-T 57100 48800 5 8 0 0 0 6 1
+T 57100 49550 5 10 0 0 0 6 1
+symversion=0.4
+T 57100 48800 5 10 0 0 0 6 1
 device=OUTPUT
 T 56500 48500 5 10 0 0 0 6 1
 footprint=none
-T 57100 48700 5 10 1 1 0 6 1
+T 57100 48700 5 8 1 1 0 6 1
 refdes=usb_io+
 }
 C 57100 49200 1 0 1 out-1.sym
 {
-T 57100 50350 5 8 0 0 0 6 1
-symversion=0.3
-T 57100 49600 5 8 0 0 0 6 1
+T 57100 50350 5 10 0 0 0 6 1
+symversion=0.4
+T 57100 49600 5 10 0 0 0 6 1
 device=OUTPUT
 T 56500 49300 5 10 0 0 0 6 1
 footprint=none
-T 57100 49500 5 10 1 1 0 6 1
+T 57100 49500 5 8 1 1 0 6 1
 refdes=usb_io-
 }
 C 57900 50600 1 0 0 gnd-1.sym
@@ -32,13 +32,13 @@ footprint=conn_usb
 }
 C 59400 51900 1 0 0 out-1.sym
 {
-T 59400 53050 5 8 0 0 0 0 1
-symversion=0.3
-T 59400 52300 5 8 0 0 0 0 1
+T 59400 53050 5 10 0 0 0 0 1
+symversion=0.4
+T 59400 52300 5 10 0 0 0 0 1
 device=OUTPUT
 T 60000 52000 5 10 0 0 0 0 1
 footprint=none
-T 59400 52200 5 10 1 1 0 0 1
+T 59400 52200 5 8 1 1 0 0 1
 refdes=usb_power
 }
 N 57800 51400 58700 51400 4
@@ -80,6 +80,8 @@ $Revision$
 C 46900 40400 1 0 0 copyleft.sym
 C 62000 48800 1 0 0 nc-right-2.sym
 {
+T 62300 49300 5 10 0 0 0 0 1
+symversion=0.2
 T 62100 49300 5 10 0 0 0 0 1
 value=NoConnection
 T 62100 49500 5 10 0 0 0 0 1
@@ -89,6 +91,8 @@ footprint=unknown
 }
 C 62000 49500 1 0 0 nc-right-2.sym
 {
+T 62300 50000 5 10 0 0 0 0 1
+symversion=0.2
 T 62100 50000 5 10 0 0 0 0 1
 value=NoConnection
 T 62100 50200 5 10 0 0 0 0 1

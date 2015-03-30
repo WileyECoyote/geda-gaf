@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150401 2
 C 48300 42000 0 0 0 title-A2.sym
 C 54700 52300 1 0 0 in-1.sym
 {
@@ -172,11 +172,11 @@ device=RESISTOR
 }
 C 65000 52300 1 0 0 out-1.sym
 {
-T 65000 53450 5 8 0 0 0 0 1
-symversion=0.3
+T 65000 53450 5 10 0 0 0 0 1
+symversion=0.4
 T 65600 52400 5 10 0 0 0 0 1
 footprint=none
-T 65000 52600 5 10 1 1 0 0 1
+T 65000 52600 5 8 1 1 0 0 1
 refdes=pon_reset#
 T 65000 52600 5 10 0 0 0 0 1
 device=OUTPUT

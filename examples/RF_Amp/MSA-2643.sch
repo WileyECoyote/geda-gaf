@@ -1,4 +1,4 @@
-v 20070216 1
+v 20150401 2
 C 32300 54900 1 90 0 resistor-1.sym
 {
 T 32600 55700 5 10 1 1 180 0 1
@@ -135,6 +135,10 @@ C 40700 50500 1 0 0 gnd-1.sym
 N 40800 51300 40800 50800 4
 C 40900 54600 1 90 0 inductor-1.sym
 {
+T 40600 55200 5 10 0 1 90 0 1
+footprint=0402
+T 40400 54800 5 10 0 0 90 0 1
+model-name=mpn
 T 41100 55300 5 10 1 1 180 0 1
 refdes=Lc
 T 40900 54600 5 10 1 1 0 0 1
@@ -142,7 +146,7 @@ value=22nH
 T 41100 55100 5 10 0 0 0 0 1
 device=INDUCTOR
 T 41100 55300 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 }
 C 42100 53300 1 0 0 gnd-1.sym
 N 42200 53600 42200 53900 4
@@ -210,6 +214,10 @@ T 30200 56900 9 10 1 0 0 0 1
 Components inside green box are inside the device package
 C 30900 51300 1 0 0 inductor-1.sym
 {
+T 31500 51600 5 10 0 1 0 0 1
+footprint=0402
+T 31100 51800 5 10 0 0 0 0 1
+model-name=mpn
 T 31100 51600 5 10 1 1 0 0 1
 refdes=L4
 T 30900 51200 5 10 1 1 0 0 1
@@ -217,10 +225,14 @@ value=0.386nH
 T 31100 51800 5 10 0 0 0 0 1
 device=INDUCTOR
 T 31100 52000 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 }
 C 38000 51300 1 0 0 inductor-1.sym
 {
+T 38600 51600 5 10 0 1 0 0 1
+footprint=0402
+T 38200 51800 5 10 0 0 0 0 1
+model-name=mpn
 T 38200 51600 5 10 1 1 0 0 1
 refdes=L6
 T 38000 51200 5 10 1 1 0 0 1
@@ -228,10 +240,14 @@ value=0.313nH
 T 38200 51800 5 10 0 0 0 0 1
 device=INDUCTOR
 T 38200 52000 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 }
 C 30900 54000 1 0 0 inductor-1.sym
 {
+T 31500 54300 5 10 0 1 0 0 1
+footprint=0402
+T 31100 54500 5 10 0 0 0 0 1
+model-name=mpn
 T 31100 54300 5 10 1 1 0 0 1
 refdes=L1
 T 30900 53900 5 10 1 1 0 0 1
@@ -239,10 +255,14 @@ value=0.833nH
 T 31100 54500 5 10 0 0 0 0 1
 device=INDUCTOR
 T 31100 54700 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 }
 C 37600 56300 1 0 0 inductor-1.sym
 {
+T 38200 56600 5 10 0 1 0 0 1
+footprint=0402
+T 37800 56800 5 10 0 0 0 0 1
+model-name=mpn
 T 37900 56600 5 10 1 1 0 0 1
 refdes=L7
 T 37700 56200 5 10 1 1 0 0 1
@@ -250,7 +270,7 @@ value=0.407nH
 T 37800 56800 5 10 0 0 0 0 1
 device=INDUCTOR
 T 37800 57000 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 }
 N 31800 54100 32200 54100 4
 N 29900 54100 30900 54100 4
