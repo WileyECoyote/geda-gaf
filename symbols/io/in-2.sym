@@ -1,15 +1,15 @@
-v 20140330 2
-T 700 2000 5 8 0 0 0 0 1
+v 20150315 2
+T 700 600 5 10 0 0 0 0 1
 device=INPORT
-T 700 1800 5 8 0 0 0 0 1
+T 700 1200 5 10 0 0 0 0 1
 description=signal that enters a sub sheet
-T 700 1000 5 8 0 0 0 0 1
+T 700 1800 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
-T 700 800 5 8 0 0 0 0 1
+T 700 1600 5 10 0 0 0 0 1
 dist-license=GPL3
-T 700 600 5 8 0 0 0 0 1
+T 700 1400 5 10 0 0 0 0 1
 use-license=free, no restrictions
-T 700 400 5 8 0 0 0 0 1
+T 700 400 5 10 0 0 0 0 1
 footprint=JUMPER-1
 T 650 100 8 10 1 1 0 7 1
 refdes=in-net
@@ -27,9 +27,9 @@ pinlabel=INPUT
 L 1000 100 700 200 3 10 2 0 -1 -1
 L 1000 100 700 0 3 10 2 0 -1 -1
 L 700 0 700 200 3 10 2 0 -1 -1
-T 700 1200 5 8 0 0 0 0 1
+T 700 800 5 10 0 0 0 0 1
 symversion=0.3
-T 700 1400 9 10 0 0 0 0 1
+T 2100 800 9 10 0 0 0 0 1
 numslots=0
-T 700 1600 5 8 0 0 0 0 1
+T 700 1000 5 10 0 0 0 0 1
 comment=The value of the refdes should correspond to a pin label in a subsheet symbol.
