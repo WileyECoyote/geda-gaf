@@ -1,5 +1,34 @@
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Symbol Library: Clean Symbol Library Inductors
+
+    * passive/inductor/: Over-haul inductor symbols, standardize width to
+      0.9" (there were a couple of odd-balls), add sample part number and
+      descriptions:
+
+            * passive/inductor/coil-1.sym
+            * passive/inductor/coil-2.sym
+            * passive/inductor/coil-dot-1.sym
+            * passive/inductor/inductor-1.sym
+            * passive/inductor/inductor-2.sym
+            * passive/inductor/inductor-coupled-1.sym
+            * passive/inductor/inductor-coupled-2.sym
+            * passive/inductor/inductor-dot-1.sym
+            * passive/inductor/inductor-mutual-1.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * io/: Tweek some of the I/O symbols some more:
+
+            * io/in-1.sym
+            * io/in-2.sym
+            * io/in-3.sym
+            * io/out-1.sym
+            * io/out-2.sym
+            * io/out-3.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * Symbol Library: Expand Symbol Library
 
     * murata/capacitor: (new subdirectory) Add 12 symbols for Murata Capacitors

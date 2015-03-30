@@ -1,23 +1,21 @@
 v 20150315 2
-T 500 300 9 10 1 1 0 0 1
-refdes=K?
-T 300 100 8 10 1 1 0 0 1
-value=L? L? ?
-T 0 595 8 10 0 1 0 0 1
-description=Coupled (Mutual) Inductors
 T 0 795 8 10 0 1 0 0 1
 device=MUTUAL
-T 900 800 8 10 0 1 0 0 1
-numslots=0
-T 1100 800 8 10 0 1 0 0 1
-footprint=none
-T 100 1800 5 10 0 1 0 0 1
-author=Jorge Ernesto Guevara Cuenca guevara.ernestoATgmail.com
+T 500 300 9 10 1 1 0 0 1
+refdes=K?
 A 550 0 450 0 180 3 0 0 0 -1 -1
 L 1000 0 900 100 3 0 0 0 -1 -1
 L 1000 0 1100 100 3 0 0 0 -1 -1
 L 100 0 200 100 3 0 0 0 -1 -1
 L 100 0 0 100 3 0 0 0 -1 -1
+T 300 100 8 10 1 1 0 0 1
+value=L? L? ?
+T 1100 800 8 10 0 1 0 0 1
+footprint=none
+T 900 800 8 10 0 1 0 0 1
+numslots=0
+T 0 595 8 10 0 1 0 0 1
+description=Coupled (Mutual) Inductors
 T 75 1400 5 10 0 0 0 0 1
 dist-license=GPL
 T 75 1600 5 10 0 0 0 0 1
@@ -26,3 +24,5 @@ T 75 1225 5 10 0 0 0 0 1
 comment=Suggested library: spice
 T 100 1000 5 10 0 1 0 0 1
 documentation=http://en.wikipedia.org/wiki/Inductor
+T 100 1800 5 10 0 1 0 0 1
+author=Jorge Ernesto Guevara Cuenca guevara.ernestoATgmail.com
