@@ -1,4 +1,4 @@
-v 20130214 2
+v 20150101 2
 T 200 2800 5 8 0 0 0 0 1
 description=MOSFET, p-channel
 T 200 2600 5 8 0 0 0 0 1
@@ -25,8 +25,8 @@ T 100 300 5 10 0 1 0 4 1
 pinnumber=G
 T 100 300 5 10 0 1 0 4 1
 pinlabel=G
-T 100 400 5 10 0 1 0 0 1
-pinseq=1
+T 50 400 5 10 0 1 0 0 1
+pinseq=2
 T 0 0 5 10 0 1 0 0 1
 pintype=pas
 }
@@ -37,7 +37,7 @@ pinnumber=D
 T 400 700 5 10 0 1 0 3 1
 pinlabel=D
 T 600 800 5 10 0 1 0 3 1
-pinseq=2
+pinseq=1
 T 700 800 5 10 0 1 0 0 1
 pintype=pas
 }
