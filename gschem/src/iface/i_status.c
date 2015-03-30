@@ -134,9 +134,10 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Deselect Mode");
     case STARTSELECT:
     case SELECT:
-    case SBOX:
     case GRIPS:
       return _("Select Mode");
+    case SBOX:
+      return _("Select Box Mode");
     case ZOOMBOX:
       return _("Zoom Box");
     case COPYMODE:

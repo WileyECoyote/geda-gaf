@@ -1,3 +1,22 @@
+2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/iface/i_status.c: WEH: Modified per commit to Master branch by
+      Vladimir See commit 15f714362a1f46c41ccdce559b832ac34999d13c. The
+      change is to return a different string for the SBOX states, prior
+      code returned the same string for SBOX, GRIPS, and SELECT states.
+
+    * src/object/o_grips.c: Move enumerated GRIPS from somewhere near
+      the bottom to position 3, not sure how GRIPS got so far down the
+      list.
+
+2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src//*.c: WEH: Modified per commit to Master branch by Vladimir
+      See commit 1ee899f5ec57dc42375ed6717992e2a4f0989a11 in order provide
+      visual feedback to the used indication an action is in progress. I
+      tweeked Vladimir commit slightly; use macros i_status_action_start
+      and i_status_action_stop instead of using seperate functions.
+
 2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Set inside_action to FALSE in dialog response
@@ -16,7 +35,6 @@
             * "D B"           "page-draw-before"
             * "D F"           "page-draw-first"
             * "D L"           "page-draw-last"
-
 
     * include/gschem_toplevel.h: Add new GList member to toplevel: primary_
       selection to retain a selection while a second set is being collected

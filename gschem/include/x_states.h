@@ -28,41 +28,40 @@ enum x_states {
   NONE,             /* 0 */
   SELECT,           /* 1 */
   DESELECT,         /* 2 */
-  SBOX,             /* 3 */
-  PAN,              /* 4 */
-  STARTSELECT,      /* 5 */
-  STARTDESELECT,    /* 6 */
-  DRAGMOVE,         /* 7 */
-  COPYMODE,         /* 8 */
-  COMPMODE,         /* 9 */
-  ZOOMBOX,          /* 10 */
-  NETMODE,          /* 11 */
-  PINMODE,          /* 12 */
-  LINEMODE,         /* 13 */
-  BOXMODE,          /* 14 */
-  CIRCLEMODE,       /* 15 */
-  TEXTMODE,         /* 16 */
-  ARCMODE,          /* 17 */
-  PATHMODE,         /* 18 */
-  PICTUREMODE,      /* 19 */
-  BUSMODE,          /* 10 */
-  MCOPYMODE,        /* 21 */
-  MOVEMODE,         /* 22 */
-  ENDDNDSTR,        /* 23 */
-  ENDDND_MOVE_OBJ,  /* 24 */
-  ENDDND_COPY_OBJ,  /* 25 */
-  ENDROTATE,        /* 26 */
-  ENDOFFSET,        /* 27 */
-  ENDMIRROR,        /* 28 */
-  STARTDND,         /* 29 */
-  PASTEMODE,        /* 30 */
-  GRIPS,            /* 31 */
-//  ARRAYMODE,        /* 32 */
-  STARTEXTEND,      /* 33 */
-  EXTEND,           /* 34 */
-  ENDEXTEND,        /* 35 */
-  STARTBREAK,       /* 36 */
-  ENDBREAK,         /* 37 */
+  GRIPS,            /* 3 */
+  SBOX,             /* 4 */
+  PAN,              /* 5 */
+  STARTSELECT,      /* 6 */
+  STARTDESELECT,    /* 7 */
+  DRAGMOVE,         /* 8 */
+  COPYMODE,         /* 9 */
+  COMPMODE,         /* 10 */
+  ZOOMBOX,          /* 11 */
+  NETMODE,          /* 12 */
+  PINMODE,          /* 13 */
+  LINEMODE,         /* 14 */
+  BOXMODE,          /* 15 */
+  CIRCLEMODE,       /* 16 */
+  TEXTMODE,         /* 17 */
+  ARCMODE,          /* 18 */
+  PATHMODE,         /* 19 */
+  PICTUREMODE,      /* 20 */
+  BUSMODE,          /* 21 */
+  MCOPYMODE,        /* 22 */
+  MOVEMODE,         /* 23 */
+  ENDDNDSTR,        /* 24 */
+  ENDDND_MOVE_OBJ,  /* 25 */
+  ENDDND_COPY_OBJ,  /* 26 */
+  ENDROTATE,        /* 27 */
+  ENDOFFSET,        /* 28 */
+  ENDMIRROR,        /* 29 */
+  STARTDND,         /* 30 */
+  PASTEMODE,        /* 31 */
+  STARTEXTEND,      /* 32 */
+  EXTEND,           /* 33 */
+  ENDEXTEND,        /* 34 */
+  STARTBREAK,       /* 35 */
+  ENDBREAK,         /* 36 */
 };
 
 #endif
