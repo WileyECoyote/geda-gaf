@@ -1,5 +1,20 @@
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Symbol Library: Expand Symbol Library
+
+    * logic/SN/SN74ALVC244: Add 8 symbols for Tri-State Octal Buffer/Driver.
+
+            * logic/SN/SN74ALVC244-1.sym
+            * logic/SN/SN74ALVC244-2.sym
+            * logic/SN/SN74ALVC244DW-1.sym
+            * logic/SN/SN74ALVC244DW-2.sym
+            * logic/SN/SN74ALVC244NS-1.sym
+            * logic/SN/SN74ALVC244NS-2.sym
+            * logic/SN/SN74ALVC244PW-1.sym
+            * logic/SN/SN74ALVC244PW-2.sym
+
+2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * Symbol Library: Clean Symbol Library Inductors
 
     * passive/inductor/: Over-haul inductor symbols, standardize width to
