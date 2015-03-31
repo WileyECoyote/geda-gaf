@@ -1,3 +1,14 @@
+2015-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Revert not opening a blank document when
+      i_sessions_open_session returns false in function load_documents().
+      Error recovery in the i_sessions module is low-level and effective
+      for issues with in the session files. At program startup when there
+      is no document open and the user specifies a non-existence session
+      on the command line, i_session_load_session does not get called so
+      the low-level recovery does not get an opprotunity to handle.
+      Opening a blank document load_documents() handles these situations.
+
 2015-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revert not calling o_undo_savestate in

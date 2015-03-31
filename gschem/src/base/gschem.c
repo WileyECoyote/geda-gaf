@@ -210,6 +210,9 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
     if (start_session) { /* If session specified on command line */
       if (!i_sessions_open_session(w_current, start_session)) {
         q_log_message(_("An error was encountered loading requested session %s\n"), start_session);
+
+        /* Open a blank document */
+        x_window_open_page( w_current, NULL );
       }
       GEDA_FREE(start_session);
     }
