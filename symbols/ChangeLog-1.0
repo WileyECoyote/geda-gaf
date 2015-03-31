@@ -1,5 +1,16 @@
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/jumper/: Tweak jumper symbol
+
+    * connector/jumper/jumper-1.sym: Reduce length to 0.9", same as
+              most passives. Hide footprint attribute.
+
+    * connector/jumper/jumper-2.sym: New symbol for jumber, use 0.2" hole
+      spacing.
+
+
+2015-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * Symbol Library: Expand Symbol Library
 
     * logic/SN/SN74ALVC244: Add 8 symbols for Tri-State Octal Buffer/Driver.
