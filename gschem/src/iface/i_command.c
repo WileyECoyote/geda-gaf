@@ -2536,7 +2536,7 @@ COMMAND (do_down_symbol)
                           (ChangeNotifyFunc) o_invalidate_object,
                           (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-      //o_undo_savestate(w_current, UNDO_ALL);
+      o_undo_savestate(w_current, UNDO_ALL);
       x_window_set_current_page(w_current, child);
     }
   }

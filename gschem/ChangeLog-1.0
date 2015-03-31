@@ -1,3 +1,13 @@
+2015-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revert not calling o_undo_savestate in
+      do_down_symbol, the first change made in the child symbol can
+      not be undone.
+
+    * gschem/src/x/x_event.c: Revert not calling i_status_set_state after
+      calling o_edit_objects in function x_event_button_pressed; breaks
+      the SAE.
+
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src//*.c: WEH: Modified per commit to Master branch by Vladimir
