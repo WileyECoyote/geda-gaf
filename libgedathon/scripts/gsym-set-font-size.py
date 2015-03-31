@@ -180,7 +180,7 @@ def AlwaysSet10(Options, Text):
         if name == string:
             status = 1
             if not Text.size == 10:
-                Text.visible = 10
+                Text.size = 10
                 status = 2
             break
 
