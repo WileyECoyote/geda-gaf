@@ -1685,7 +1685,7 @@ PyGeda_get_objects( int pid, int sid )
   page = geda_toplevel_get_page(toplevel, pid);
 
   if( sid < 0) {
-    list = page->_object_list;
+    list = s_page_get_objects (page);
   }
   else {
     object = s_page_get_object(page, sid);
