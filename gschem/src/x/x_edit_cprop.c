@@ -37,7 +37,8 @@
 #define Radio_Responder radio_responder
 
 /** \defgroup Component-Properties-Dialog Component Properties Dialog
- *  @{ \memberof Editing-Dialogs
+ *  @{
+ *  \ingroup (Standard-Dialogs Editing-Dialogs)
  *  \par
  *  The Component properties dialog has two modes of operation:
  *
@@ -750,7 +751,6 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
  *  changes.
  *
  *  \param w_current  pointer to GschemToplevel context
- *  \param object     pointer to a selected Object.
  *  \param properties pointer to property_data structure
  */
 static void x_dialog_ep_no_selection(GschemToplevel *w_current,
@@ -782,8 +782,8 @@ static void x_dialog_ep_no_selection(GschemToplevel *w_current,
  *   Enable or disabled sensitivities of widgets within the electrical
  *   frame depending on the state of the check-box.
  *
- *  \param [in] check_butt Pointer to the CheckBox widget
- *  \param [in] data       Pointer to a Component Dialog data structure
+ *  \param [in] properties Pointer to property_data structure
+ *  \param [in] state      Boolean value to set sensitivities
  *
  */
 static void x_dialog_ep_set_sensitive (property_data *properties, bool state)
