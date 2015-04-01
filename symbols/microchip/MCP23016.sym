@@ -1,4 +1,4 @@
-v 20100214 2
+v 20150315 2
 P 0 1600 300 1600 1 0 0
 {
 T 550 1450 5 8 0 1 0 0 1
@@ -308,11 +308,11 @@ T 350 5850 5 8 0 1 0 0 1
 pinseq=14
 }
 B 300 300 1400 6800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 9300 8 10 0 0 0 0 1
+T 300 8200 5 10 0 0 0 0 1
 device=MCP23016
-T 300 9100 8 10 0 0 0 0 1
+T 300 8000 5 10 0 0 0 0 1
 description=16-Bit I2C I/O Expander
-T 300 8500 8 10 0 0 0 0 1
+T 300 7600 5 10 0 0 0 0 1
 footprint=SO28
 T 1700 7150 8 10 1 1 0 6 1
 refdes=U?
@@ -322,13 +322,13 @@ T 350 3950 9 4 1 0 0 0 3
 NOTE: See Datasheet
 for Rext andCext
 values forCLK.
-T 300 8900 8 10 0 0 0 0 1
+T 300 7800 5 10 0 0 0 0 1
 documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/20090C.pdf
-T 300 8300 8 10 0 0 0 0 1
+T 300 7400 5 10 0 0 0 0 1
 numslots=0
-T 300 7900 8 10 0 0 0 0 1
+T 300 8800 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 300 7700 8 10 0 0 0 0 1
+T 300 8600 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 7500 8 10 0 0 0 0 1
+T 300 8400 5 10 0 0 0 0 1
 use-license=unlimited
