@@ -177,6 +177,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
     GEDA_FREE (filename);
   }
   else {
+
     page = s_page_new_with_notify (toplevel, filename);
     GEDA_FREE(filename);
 

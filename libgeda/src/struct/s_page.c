@@ -402,7 +402,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   s_tile_print (toplevel, page);
 #endif
 
-  //geda_page_weakref_notify (page);
+  /*geda_page_weakref_notify (page);*/
 
   geda_page_unref( page );
 
@@ -701,8 +701,9 @@ s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
 /*! \brief Append an Object to the Page
  *
  *  \par Function Description
- *  Links the passed Object to the end of the Page's
- *  linked list of objects and then calls object_added.
+ *  Links the passed Object to the end of the Page's linked list
+ *  of objects and then calls object_added. Notice that only the
+ *  given object is added, descendents of \a object are not added.
  *
  *  \param [in] page      The Page the object is being added to.
  *  \param [in] object    The Object being added to the page.

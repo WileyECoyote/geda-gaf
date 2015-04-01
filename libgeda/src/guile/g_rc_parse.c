@@ -108,6 +108,7 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
   }
 
   cfg->RC_list = g_list_append (cfg->RC_list, filename);
+
   return TRUE;
 }
 
@@ -198,6 +199,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       /* Attempt to load the RC file, if the same file has not been loaded
        * already. If g_rc_try_mark_read() succeeds, it stores name_norm in
        * cfg, so we *don't* free it. */
+
       status = (g_rc_try_mark_read (cfg, name_norm, &tmp_err) &&
       g_read_scheme_file (name_norm, &tmp_err));
 
@@ -215,6 +217,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       }
     }
     else { /* Can not access name_norm for reading */
+
       if(err != NULL) {
         g_set_error(err, G_FILE_ERROR,
                     g_file_error_from_errno (errno),
@@ -226,6 +229,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       GEDA_FREE (name_norm);
     }
   }
+
   return status;
 }
 
@@ -344,8 +348,9 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
   *dir = '\0';
 
   rcfile = strcat (&buffer[0], rcname);
-
+  //rcfile = g_build_filename (&buffer[0], rcname, NULL);
   status = g_rc_parse_file (rcfile, cfg, err);
+  //GEDA_FREE (rcfile);
 
   return status;
 }

@@ -256,7 +256,7 @@ int u_string_parse_xy(const char *string, int *x, int *y)
 {
   char *buffer;
   char *x_str, *y_str;
-  int   icomma; // x, y;
+  int   icomma;
   int   index;
   int   valid;
 

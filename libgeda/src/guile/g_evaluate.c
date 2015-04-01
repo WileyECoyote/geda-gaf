@@ -370,5 +370,6 @@ bool g_read_scheme_file (const char *filename, GError **err)
       free(file_directory);
     }
   }
+
   return result;
 }

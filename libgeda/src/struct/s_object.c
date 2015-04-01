@@ -38,13 +38,13 @@ Object *s_object_new (int type, char const *name)
 
 /*! \brief Attach attribute to an Object and append Parent's Page
  *  \par Function Description
- *  This function is simular to o_attrib_add, which is called by
+ *  This function is similar to o_attrib_add, which is called by
  *  the function, the difference being that this function also
  *  adds the attribute being attached to the page if the parent
  *  is already on a page.
  *
- *  \param [in]  parent     The Object that child is being added to.
- *  \param [in]  child      The item you want to add as an attribute.
+ *  \param [in]  parent The Object that child is being added to.
+ *  \param [in]  child  The item you want to add as an attribute.
  *
  *  \return nothing.
  */

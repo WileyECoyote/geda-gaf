@@ -1,8 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 
-//extern int default_init_right;
-//extern int check_symbol_version;
-
 extern int default_bus_style;
 extern int default_net_style;
 extern int default_line_style;

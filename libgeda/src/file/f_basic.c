@@ -197,10 +197,11 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       if (tmp_err != NULL) {
         /* RC files are allowed to be missing or skipped; check for this. */
         if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
-          !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE)) {
+            !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE))
+        {
           u_log_message ("%s\n", tmp_err->message);
-          }
-          g_error_free (tmp_err);
+        }
+        g_error_free (tmp_err);
         tmp_err = NULL;
       }
     }
@@ -236,7 +237,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
       mem_needed = mem_needed + strlen(log_situation);
 
-      message = malloc(mem_needed + 2);
+      message = malloc(mem_needed + 100);
 
       if(!message) {
         fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);

@@ -50,9 +50,7 @@ typedef struct st_CacheEntry CacheEntry;
 
 /* -- gschem structures (gschem) -- */
 typedef struct st_complex COMPLEX;
-//typedef struct st_object Object;     /* uses glist, simple struct */
 typedef struct st_conn CONN;         /* uses type Object */
-
 typedef struct st_picture PICTURE;
 typedef struct st_tile TILE;         /* uses glist */
 

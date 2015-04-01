@@ -55,8 +55,8 @@
  *  \par Function Description
  *  Add an attribute to an existing attribute list.
  *
- *  \param [in]  object     The Object that item is being added to.
- *  \param [in]  item       The item you want to add as an attribute.
+ *  \param [in]  object The Object that item is being added to.
+ *  \param [in]  item   The attribute that is to be added to object.
  */
 void
 o_attrib_add(Object *object, Object *item)
