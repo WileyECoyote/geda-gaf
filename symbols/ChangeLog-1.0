@@ -1,5 +1,21 @@
 2015-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/isolate/ISO7240: Revise symbols; make isolation lines balanced.
+
+            * ti/isolate/ISO7240M-1.sym
+            * ti/isolate/ISO7240CF-1.sym
+            * ti/isolate/ISO7230M-1.sym
+            * ti/isolate/ISO7230C-1.sym
+            * ti/isolate/ISO7240C-1.sym
+            * ti/isolate/ISO7231M-1.sym
+            * ti/isolate/ISO7231C-1.sym
+            * ti/isolate/ISO7241C-1.sym
+            * ti/isolate/ISO7241M-1.sym
+            * ti/isolate/ISO7242C-1.sym
+            * ti/isolate/ISO7242M-1.sym
+
+2015-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-xx.sym: Revise symbols, put symversion inside symbol
 
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
