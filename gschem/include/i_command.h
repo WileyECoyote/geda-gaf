@@ -474,7 +474,7 @@ enum {
      COMMAND ( PAGE_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
 
      COMMAND ( DOWN_SCHEMATIC,      "hierarchy down",   USE_WORKER_THREAD,      do_down_schematic)
-     COMMAND ( DOWN_SYMBOL,         "hierarchy down",   USE_WORKER_THREAD,      do_down_symbol)
+     COMMAND ( DOWN_SYMBOL,         "hierarchy down",   USE_MAIN_LOOP,          do_down_symbol)
      COMMAND ( HIERARCHY_UP,        "hierarchy up",     USE_WORKER_THREAD,      do_hierarchy_up)
 
      COMMAND ( add,                 NULL,               USE_XY_WORKER,          do_add)

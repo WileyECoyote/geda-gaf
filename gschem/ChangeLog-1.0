@@ -1,5 +1,13 @@
 2015-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/i_command.h: Switch do_down_symbol from USE_WORKER_THREAD
+      to USE_MAIN_LOOP to fix seg faults when symbol is in local branch
+      directory. This needs to be investigated more but seems to fix the
+      problem for now, fault occurs in Scheme g_read_scheme_file__post_
+      handler, likely port related issue.
+
+2015-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem.c: Revert not opening a blank document when
       i_sessions_open_session returns false in function load_documents().
       Error recovery in the i_sessions module is low-level and effective
