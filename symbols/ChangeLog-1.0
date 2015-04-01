@@ -1,3 +1,7 @@
+2015-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/LM5050-xx.sym: Revise symbols, put symversion inside symbol
+
 2015-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper/: Tweak jumper symbol
