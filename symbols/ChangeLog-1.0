@@ -1,5 +1,11 @@
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/ldo: Add two new symbols for 3.3Volt 200mA low-dropout linear
+      regulator:
+
+            * ti/switchreg/TPS73033DBV-1.sym
+            * ti/switchreg/TPS73033DBV-2.sym
+
     * serial/FT2232H-1.sym: Add new symbol for new version of FT2232
       USB to Dual Serial Bridge Controller.
 
