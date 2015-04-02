@@ -83,7 +83,7 @@ pinnumber=4
 T 300 750 5 8 0 1 0 6 1
 pinseq=4
 T 450 700 9 10 1 1 0 0 1
-pinlabel=HO
+pinlabel=HS
 T 450 675 5 8 0 1 0 2 1
 pintype=out
 }
@@ -110,16 +110,16 @@ T 450 1575 5 8 0 1 0 2 1
 pintype=pwr
 }
 B 400 100 1400 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 3000 5 10 0 0 0 0 1
-device=LM5106
+T 400 2000 8 10 1 1 0 0 1
+value=LM5105
 T 400 2200 5 10 0 1 0 0 1
-footprint=VSSOP-10
+footprint=PWSON-10
 T 400 3600 5 10 0 0 0 0 1
 author=AutoTron
 T 400 2800 5 10 0 0 0 0 1
-documentation=http://www.ti.com/lit/ds/symlink/lm5106.pdf
+documentation=http://www.ti.com/lit/ds/symlink/lm5105.pdf
 T 400 2400 5 10 0 0 0 0 1
-description=Half-Bridge Gate Driver, 100V
+description=Half-Bridge Gate Driver,100V,Programmable Dead-Time
 T 1700 2600 5 10 0 0 0 0 1
 numslots=0
 T 400 3200 5 10 0 0 0 0 1
@@ -130,5 +130,5 @@ T 1800 2000 8 10 1 1 0 6 1
 refdes=U?
 T 400 2600 5 10 0 0 0 0 1
 symversion=0.1
-T 400 2000 8 10 1 1 0 0 1
-value=LM5106
+T 400 3000 5 10 0 0 0 0 1
+device=LM5105

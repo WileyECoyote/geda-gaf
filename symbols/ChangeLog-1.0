@@ -1,4 +1,13 @@
-2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 4 new symbols for Half-Bridge Gate Drivers:
+
+            * ti/LM5104-1.sym
+            * ti/LM5104-2.sym
+            * ti/LM5105-1.sym
+            * ti/LM5106-1.sym
+
+2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/mosdrive: Add 3 new symbols for low side drivers:
 
