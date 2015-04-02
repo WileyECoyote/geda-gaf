@@ -1,5 +1,7 @@
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/PCF8574-1.sym: Add new symbol for 8-bit I/O Expander via I2C
+
     * ti/TPS2115A-2.sym: Add dash 2 with alterative pin positions.
 
     * ti/LM5106-1.sym: Add new symbol for 100V Half-Bridge Gate Driver.
