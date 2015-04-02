@@ -264,9 +264,6 @@ DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
 DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
 
-//FILE_SAVE_AS     file-save-as
-//FILE_SAVE_ALL    file-save-all
-
 /*! \brief Popup context-sensitive menu.
  *  \par Function Description
  *  Pops up a context-sensitive menu.
@@ -584,8 +581,6 @@ static void pagesel_init (Pagesel *pagesel)
                                            pagesel, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
-  //pagesel->column = column;
-
   /* --------------------- second column: changed  ---------------------- */
   renderer = GTK_CELL_RENDERER (
     g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
@@ -746,7 +741,6 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
   gtk_tree_store_set (GTK_TREE_STORE (model),
                       &iter,
                       COLUMN_PAGE, page,
-                      //COLUMN_NAME, page->filename,
                       COLUMN_CHANGED, page->CHANGED,
                       -1);
 

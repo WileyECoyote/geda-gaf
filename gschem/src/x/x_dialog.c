@@ -1002,8 +1002,6 @@ void x_dialog_color_menu_view_changed (GedaComboBox *cbox,
                                        unsigned int  view,
                                        void         *data)
 {
-  //GschemToplevel *w_current = data;
-
   EdaConfig  *cfg = eda_config_get_user_context ();
   int value       = view;
   const char *grp = WIDGET_CONFIG_GROUP;
