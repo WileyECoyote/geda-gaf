@@ -1,5 +1,13 @@
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/mosdrive: Add 3 new symbols for low side drivers:
+
+            * linear/mosdrive/IRS4426-1.sym
+            * linear/mosdrive/IRS4427-1.sym
+            * linear/mosdrive/IRS4428-1.sym
+
+2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/PCF8574-1.sym: Add new symbol for 8-bit I/O Expander via I2C
 
     * ti/TPS2115A-2.sym: Add dash 2 with alterative pin positions.
