@@ -8,9 +8,9 @@ dnl directory.
 # Set up Version
 #####################################################################
 m4_define([geda_major_version],   [2])
-m4_define([geda_minor_version],   [0])
-m4_define([geda_micro_version],   [9])
-m4_define([geda_mutation],        [8])
+m4_define([geda_minor_version],   [1])
+m4_define([geda_micro_version],   [0])
+m4_define([geda_mutation],        [0])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -44,10 +44,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20150315])
+AX_GIT_VERSION([20150401])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20150315])
+AC_SUBST([CHANGELOG_BASE], [1.0-20150401])
 
 #####################################################################
 # Windows/MinGW/Cygwin support

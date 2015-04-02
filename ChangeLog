@@ -1,3 +1,11 @@
+2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+      gEDA-gaf 17th Anniversary of First public - 2.10R
+
+      * geda-gaf/NEWS: Updated with notable changes.
+
+      * geda-gaf/configure.ac: Bump version 2.1.0.0
+
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
       * build-tools/icon-theme-installer: WEH: Modified per commit to Master
