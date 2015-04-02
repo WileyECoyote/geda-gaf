@@ -1,5 +1,10 @@
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    *etc/system-gschemrc.scm: Assigned common/standard functions to
+     F-Keys.
+
+2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * object/o_invalidate.c: Rename function o_invalidate_glist to
       o_invalidate_list.
 

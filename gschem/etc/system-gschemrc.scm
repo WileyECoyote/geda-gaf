@@ -1771,7 +1771,6 @@
 
 (map-keys "<Shift>F5"     "tools_update")
 
-
 ; Definitions for the top pull down menu bar
 ;
 ; The "menu item name" is the name of the item as it will appear in the menu
