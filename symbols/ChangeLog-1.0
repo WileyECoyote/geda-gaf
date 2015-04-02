@@ -1,5 +1,9 @@
 2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM5113-1.sym: Add symbol for GaN FETs Half-Bridge Gate Driver
+
+2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/: Add 4 new symbols for Half-Bridge Gate Drivers:
 
             * ti/LM5104-1.sym
