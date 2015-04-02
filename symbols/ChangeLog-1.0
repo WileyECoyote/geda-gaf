@@ -3,6 +3,9 @@
     * ti/TPIC6A259-1.sym: Add symbol for Power Logic 8-Bit Addressable
       Latch
 
+    * ti/TPIC6A259-2.sym: Add symbol for Power Logic 8-Bit Addressable
+      Latch with alternative pin positions.
+
 2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/LM5113-1.sym: Add symbol for GaN FETs Half-Bridge Gate Driver
