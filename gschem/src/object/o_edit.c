@@ -200,11 +200,11 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
   }
   else {
 
-    o_invalidate_glist (w_current, list);
+    o_invalidate_list (w_current, list);
 
     o_list_mirror(list, centerx, centery);
 
-    o_invalidate_glist (w_current, list);
+    o_invalidate_list (w_current, list);
 
     /* Run mirror-objects-hook */
     g_hook_run_object_list (w_current, MIRROR_OBJECTS_HOOK, list);
@@ -423,11 +423,11 @@ void o_edit_rotate_world(GschemToplevel *w_current,
     return;
   }
 
-  o_invalidate_glist (w_current, list);
+  o_invalidate_list (w_current, list);
 
   o_list_rotate(list, centerx, centery, angle);
 
-  o_invalidate_glist (w_current, list);
+  o_invalidate_list (w_current, list);
 
   /* Run rotate-objects-hook */
   g_hook_run_object_list (w_current, ROTATE_OBJECTS_HOOK, list);
@@ -639,11 +639,11 @@ bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
       modified = o_edit_show_hidden_attrib(w_current, o_list);
 
     if (modified) {
-       o_invalidate_glist(w_current, modified);
+       o_invalidate_list(w_current, modified);
        g_list_free(modified);
     }
 
-    o_invalidate_glist(w_current, (GList*)o_list);
+    o_invalidate_list(w_current, (GList*)o_list);
     result = TRUE;
   }
 
@@ -731,7 +731,7 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
   }
 
   log_visibility (set_hidden, set_visible);
-  o_invalidate_glist(w_current, (GList*)redraw);
+  o_invalidate_list(w_current, (GList*)redraw);
 }
 
 Object *last_o = NULL;
@@ -1154,7 +1154,7 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
   o_selection_add (page->selection_list, o_new);
 
   /* A redraw attributes in case a property (size) was restored */
-  o_invalidate_glist (w_current, o_new->attribs);
+  o_invalidate_list (w_current, o_new->attribs);
 
   /* mark the page as modified */
   o_undo_savestate (w_current, UNDO_ALL);

@@ -386,7 +386,7 @@ void o_page_draw_last (GschemToplevel *w_current, GList *object_list)
   page->_object_list = page_list;
   page->CHANGED      = TRUE;
 
-  o_invalidate_glist (w_current, object_list);
+  o_invalidate_list (w_current, object_list);
   o_undo_savestate (w_current, UNDO_ALL);
 }
 

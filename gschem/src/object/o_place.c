@@ -150,8 +150,8 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
       g_hook_run_object_list (w_current, id, object_list);
     }
 
-    o_invalidate_glist (w_current, connected_list);
-    o_invalidate_glist (w_current, object_list);  /* only redraw new objects */
+    o_invalidate_list (w_current, connected_list);
+    o_invalidate_list (w_current, object_list);  /* only redraw new objects */
 
     i_status_update_action_state(w_current, continue_placing);
     i_status_update_sensitivities (w_current);

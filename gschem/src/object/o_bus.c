@@ -100,7 +100,7 @@ void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 
       /* connect the new bus to the other busses */
       prev_conn_objects = s_conn_return_others (prev_conn_objects, new_obj);
-      o_invalidate_glist (w_current, prev_conn_objects);
+      o_invalidate_list (w_current, prev_conn_objects);
       g_list_free (prev_conn_objects);
 
       /* Call add-objects-hook */

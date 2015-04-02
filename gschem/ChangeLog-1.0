@@ -1,3 +1,8 @@
+2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * object/o_invalidate.c: Rename function o_invalidate_glist to
+      o_invalidate_list.
+
 2015-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Switch do_down_symbol from USE_WORKER_THREAD

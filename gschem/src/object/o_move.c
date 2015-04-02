@@ -170,7 +170,7 @@ bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
 
-    o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
+    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
 
     if (w_current->netconn_rubberband) {
 
@@ -301,10 +301,10 @@ void o_move_end(GschemToplevel *w_current)
     o_undo_remove_last_undo(w_current);
 
     /* Draw the objects that were moved */
-    o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
+    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
 
     /* Draw the connected nets/buses that were also changed */
-    o_invalidate_glist (w_current, rubbernet_objects);
+    o_invalidate_list (w_current, rubbernet_objects);
 
     /* Call move-objects-hook for moved objects and changed connected
      * nets/buses */

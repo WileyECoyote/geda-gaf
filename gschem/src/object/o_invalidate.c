@@ -229,7 +229,7 @@ o_invalidate_force(GschemToplevel *w_current, Object *object)
  *  \param [in] list       The glist objects invalidated on screen.
  */
 void
-o_invalidate_glist (GschemToplevel *w_current, GList *list)
+o_invalidate_list (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;

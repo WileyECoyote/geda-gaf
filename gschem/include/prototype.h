@@ -503,7 +503,7 @@ void       o_invalidate_rectangle       (GschemToplevel *w_current, int x1, int 
 void       o_invalidate_all             (GschemToplevel *w_current);
 void       o_invalidate_object          (GschemToplevel *w_current, Object *object);
 void       o_invalidate_force           (GschemToplevel *w_current, Object *object);
-void       o_invalidate_glist           (GschemToplevel *w_current, GList *list);
+void       o_invalidate_list            (GschemToplevel *w_current, GList *list);
 
 /* o_line.c */
 void       o_line_invalidate_rubber     (GschemToplevel *w_current);
