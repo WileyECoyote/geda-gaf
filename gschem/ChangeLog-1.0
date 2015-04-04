@@ -1,5 +1,10 @@
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dialog.c: Add function x_dialog_get_color_name to return random
+      strings for color color menu Combo.
+
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Fix Annoyence.
 
     * src/x/x_event.c: Revise handling for third-button press events to

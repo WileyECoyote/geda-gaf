@@ -38,7 +38,7 @@
 
 #include <geda_debug.h>
 
-const char* IDS_MESSEAGE_TITLES[] = {
+const char *IDS_MESSEAGE_TITLES[] = {
   "Information", "Warning", "Confirmation", "Error", "gschem", /* Message Title Strings*/
   NULL
 };
@@ -959,14 +959,37 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
  *  @{
  */
 
-const char* IDS_COLOR_STRINGS[] = {
-  "Background", "Pin", "Net endpoint", "Graphic", "Net", "Attribute",
-  "Logic bubble", "Grid point", "Detached attribute", "Text", "Bus",
-  "Selection", "Bounding box", "Zoom box", "Stroke", "Lock",
-  "Output background", "Net junction", "Mesh grid major",
-  "Mesh grid minor", "Unknown",
-  NULL
-};
+/*! \brief Given the color index, obtain a human readable name
+ */
+static char*
+x_dialog_get_color_name (int index)
+{
+  switch(index) {
+    case BACKGROUND_COLOR:         return _("Background");
+    case PIN_COLOR:                return _("Pin");
+    case NET_ENDPOINT_COLOR:       return _("Net endpoint");
+    case GRAPHIC_COLOR:            return _("Graphic");
+    case NET_COLOR:                return _("Net");
+    case ATTRIBUTE_COLOR:          return _("Attribute");
+    case LOGIC_BUBBLE_COLOR:       return _("Logic bubble");
+    case DOTS_GRID_COLOR:          return _("Grid point");
+    case DETACHED_ATTRIBUTE_COLOR: return _("Detached attribute");
+    case TEXT_COLOR:               return _("Text");
+    case BUS_COLOR:                return _("Bus");
+    case SELECT_COLOR:             return _("Selection");
+    case BOUNDINGBOX_COLOR:        return _("Bounding box");
+    case ZOOM_BOX_COLOR:           return _("Zoom box");
+    case STROKE_COLOR:             return _("Stroke");
+    case LOCK_COLOR:               return _("Lock");
+    case OUTPUT_BACKGROUND_COLOR:  return _("Output background");
+    case JUNCTION_COLOR:           return _("Net junction");
+    case MESH_GRID_MAJOR_COLOR:    return _("Mesh grid major");
+    case MESH_GRID_MINOR_COLOR:    return _("Mesh grid minor");
+    default:
+      break;
+  }
+  return _("Unknown");
+}
 
 /*! \brief Cell layout data function for color combobox.
  *  \par Function Description
@@ -1073,7 +1096,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   for (i = 0; i < MAX_COLORS; i++) {
     /* Skip 'invalid' colors. */
     if (!x_color_display_enabled(i)) continue;
-    str = _(IDS_COLOR_STRINGS[i]);
+    str = x_dialog_get_color_name(i);
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
     if (i == color_index)
