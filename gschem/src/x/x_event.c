@@ -348,7 +348,13 @@ int x_event_button_pressed(GtkWidget      *widget,
       else {
 
         if (!w_current->SHIFTKEY && w_current->third_button_cancel) {
-          i_callback_cancel(w_current, 0, NULL);
+          switch(w_current->event_state) {
+            case(DESELECT):
+            case(SELECT):
+              break;
+            default:
+              i_callback_cancel(w_current, 0, NULL);
+          }
         }
 
         w_current->doing_pan   = TRUE;

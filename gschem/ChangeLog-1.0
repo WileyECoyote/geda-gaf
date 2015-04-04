@@ -1,5 +1,13 @@
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Fix Annoyence.
+
+    * src/x/x_event.c: Revise handling for third-button press events to
+      not cancel if already in SELECT or DESELCT mode since the users
+      selection is "deselected".
+
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: New Feature.
 
     * gschem/src/x/x_edit_cprop.c: Revised function x_dialog_ep_revise_symbol
