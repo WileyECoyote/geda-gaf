@@ -574,56 +574,60 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
        menu_string[index] = '0';
 
     buffer_menu = x_menu_get_buffer_menu (w_current);
-    buffer      = strcpy(&menu_string[0], buffer_menu);
 
-    length = strlen(buffer);
-    menu_string[length++] = '/';
-    menu_string[length]   = '\0';
+    if (buffer_menu)  {
 
-    buffer = strcat(buffer, "Paste from 1");
-    x_menus_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
-    index = length + 11;         /* set index to where the number is */
-    menu_string[index] = '2';
-    x_menus_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
-    menu_string[index] = '3';
-    x_menus_sensitivity(w_current, buffer, (object_buffer[3] != NULL));
-    menu_string[index] = '4';
-    x_menus_sensitivity(w_current, buffer, (object_buffer[4] != NULL));
-    menu_string[index] = '5';
-    x_menus_sensitivity(w_current, buffer, (object_buffer[5] != NULL));
+      buffer    = strcpy(&menu_string[0], buffer_menu);
 
-    if (state != last_state) {
+      length = strlen(buffer);
+      menu_string[length++] = '/';
+      menu_string[length]   = '\0';
 
-      while(menu_string[length] != '/')length--;
-
-      menu_string[++length]   = '\0';
-      buffer = strcat(buffer, "Copy into 1");
-      x_menus_sensitivity(w_current, buffer, state);
-      index  = length + 10;       /* set index to where the number is */
+      buffer = strcat(buffer, "Paste from 1");
+      x_menus_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
+      index = length + 11;         /* set index to where the number is */
       menu_string[index] = '2';
-      x_menus_sensitivity(w_current, buffer, state);
+      x_menus_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
       menu_string[index] = '3';
-      x_menus_sensitivity(w_current, buffer, state);
+      x_menus_sensitivity(w_current, buffer, (object_buffer[3] != NULL));
       menu_string[index] = '4';
-      x_menus_sensitivity(w_current, buffer, state);
+      x_menus_sensitivity(w_current, buffer, (object_buffer[4] != NULL));
       menu_string[index] = '5';
-      x_menus_sensitivity(w_current, buffer, state);
+      x_menus_sensitivity(w_current, buffer, (object_buffer[5] != NULL));
 
-      /* Incrementing to the leave "C" */
-      menu_string[++length]   = '\0';
-      buffer = strcat(buffer, "ut into 1");
-      x_menus_sensitivity(w_current, buffer, state);
-      index  = length + 8;
-      menu_string[index] = '2';
-      x_menus_sensitivity(w_current, buffer, state);
-      menu_string[index] = '3';
-      x_menus_sensitivity(w_current, buffer, state);
-      menu_string[index] = '4';
-      x_menus_sensitivity(w_current, buffer, state);
-      menu_string[index] = '5';
-      x_menus_sensitivity(w_current, buffer, state);
+      if (state != last_state) {
 
-      last_state = state;
+        while(menu_string[length] != '/')length--;
+
+        menu_string[++length]   = '\0';
+        buffer = strcat(buffer, "Copy into 1");
+        x_menus_sensitivity(w_current, buffer, state);
+        index  = length + 10;       /* set index to where the number is */
+        menu_string[index] = '2';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '3';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '4';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '5';
+        x_menus_sensitivity(w_current, buffer, state);
+
+        /* Incrementing to the leave "C" */
+        menu_string[++length]   = '\0';
+        buffer = strcat(buffer, "ut into 1");
+        x_menus_sensitivity(w_current, buffer, state);
+        index  = length + 8;
+        menu_string[index] = '2';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '3';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '4';
+        x_menus_sensitivity(w_current, buffer, state);
+        menu_string[index] = '5';
+        x_menus_sensitivity(w_current, buffer, state);
+
+        last_state = state;
+      }
     }
   }
 

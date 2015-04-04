@@ -2,6 +2,10 @@
 
     * Code Enhancement: Improve Stability
 
+    * src/iface/i_status.c: Add conditional in i_status_idle_update_sensitivities
+      ::set_sensitivity_for_buffers to check if buffer_menu exist before setting
+      widgets sensitivities.
+
     * src/x/x_toolbars.c: Add conditional in function x_toolbars_set_grid_radio
       to w_current->toolbars to ensure toolbars are enabled before attempting
       to set widgets.
