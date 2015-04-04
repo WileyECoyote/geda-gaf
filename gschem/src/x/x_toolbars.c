@@ -572,6 +572,7 @@ void
 x_toolbars_finialize (GschemToplevel *w_current) {
 
   ToolBarWidgets *bar_widgets;
+
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   if (w_current->toolbars_mode != RC_NIL) { /* If not keyword then let GTK decide */
@@ -579,8 +580,7 @@ x_toolbars_finialize (GschemToplevel *w_current) {
       x_toolbars_restore_state(w_current);
     }
     else { /* use rc value */
-      lambda (GtkWidget *bar)
-      {
+      lambda (GtkWidget *bar) {
         gtk_toolbar_set_style (GTK_TOOLBAR (bar), TOOLBAR_STYLE);
         return FALSE;
       }
@@ -1625,31 +1625,32 @@ x_toolbars_activate_select (GschemToplevel *w_current)
 void
 x_toolbars_set_grid_radio (GschemToplevel *w_current)
 {
-
   ToolBarWidgets  *bar_widgets;
   GtkToggleButton *target = NULL;
 
-  bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+  if (w_current->toolbars) {
+    bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  switch(w_current->grid_mode) {
-    case(GRID_NONE):
-      target = (GtkToggleButton*) bar_widgets->toolbar_off;
-      break;
-    case(GRID_DOTS):
-      target = (GtkToggleButton*) bar_widgets->toolbar_dot;
-      break;
-    case(GRID_MESH):
-      target = (GtkToggleButton*) bar_widgets->toolbar_mesh;
-      break;
-    default:
-      break;
-  }
-  if(GTK_IS_TOGGLE_BUTTON(target)) {
-    /* if button is not active then action was not initiated by the toolbar */
-    if (!target->active) {
-      g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
-      g_signal_handlers_unblock_by_func (target, x_toolbars_execute_radio, w_current);
+    switch(w_current->grid_mode) {
+      case(GRID_NONE):
+        target = (GtkToggleButton*) bar_widgets->toolbar_off;
+        break;
+      case(GRID_DOTS):
+        target = (GtkToggleButton*) bar_widgets->toolbar_dot;
+        break;
+      case(GRID_MESH):
+        target = (GtkToggleButton*) bar_widgets->toolbar_mesh;
+        break;
+      default:
+        break;
+    }
+    if(GTK_IS_TOGGLE_BUTTON(target)) {
+      /* if button is not active then action was not initiated by the toolbar */
+      if (!target->active) {
+        g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
+        g_signal_handlers_unblock_by_func (target, x_toolbars_execute_radio, w_current);
+      }
     }
   }
 }

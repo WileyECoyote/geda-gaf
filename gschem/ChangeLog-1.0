@@ -1,5 +1,11 @@
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Improve Stability
+
+    * src/x/x_toolbars.c: Add conditional in function x_toolbars_set_grid_radio
+      to w_current->toolbars to ensure toolbars are enabled before attempting
+      to set widgets.
+
     * src/base/gschem_toplevel.c: Set toolbars on by default.
 
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
