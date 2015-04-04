@@ -251,6 +251,15 @@ static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
   bool result = FALSE;
   const char *str_val;
 
+  /* Check if symbol file name changed */
+  str_val  = GetEntryText ( properties->symbol_entry );
+  if (str_val && (strcmp (str_val, Current_Page->filename) != 0)) {
+    result = geda_page_rename (Current_Page, str_val);
+    if (result) {
+      u_log_message(_("Symbol renamed, can not be undone\n"));
+    }
+  }
+
   /* get the name from the text entries of the dialog */
   str_val  = GetEntryText ( properties->device_entry );
   result  += x_dialog_ep_check_update_attribs (w_current, NULL, "device", str_val);
@@ -299,7 +308,7 @@ static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
 }
 /*! \brief Component Properties Dialog Apply Settings
  *  \par Function Description
- *  This function applies the settings of the properties dialog to the
+ *  This function applies the settings in the properties dialog to the
  *  selected objects or to the symbol page depending on whether object
  *  has a value. The function handles the case of exchanging the symbol
  *  and calls helper functions for attribute handling.

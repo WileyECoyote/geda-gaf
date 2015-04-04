@@ -1,5 +1,16 @@
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: New Feature.
+
+    * gschem/src/x/x_edit_cprop.c: Revised function x_dialog_ep_revise_symbol
+      _attribs to retrieve and check the symbol file name from the dialog and
+      update the file name if the string has changed. This allows user to rename
+      a symbol file without using "Save As", except the file is not saved.
+
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: BUG Fix.
+
     * src/x/x_edit_pin.c: Fix seg-fault during auto-number pins when pins
       do not have a label strings.
 
