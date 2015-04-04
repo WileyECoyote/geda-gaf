@@ -1,5 +1,14 @@
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_toplevel.c: Set toolbars on by default.
+
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_color.c: Remove function x_color_lookup_dark, the function
+      is not implemented.
+
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Improve Stability
 
     * src/x/x_compselect.c: Revise function compselect_callback_refresh_views

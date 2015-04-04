@@ -238,7 +238,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->save_ui_settings          = 1;
   w_current->select_slack_pixels       = DEFAULT_SLACK_PIXELS;
   w_current->sort_component_library    = 0;
-  w_current->toolbars                  = 0;
+  w_current->toolbars                  = 1;
   w_current->snap                      = SNAP_GRID;
   w_current->snap_size                 = 100;
 
