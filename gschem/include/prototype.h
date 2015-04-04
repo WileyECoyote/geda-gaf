@@ -664,7 +664,6 @@ GArray       *x_color_get_display_color_map (void);
 GArray       *x_color_get_outline_color_map (void);
 GArray       *x_color_get_print_color_map   (void);
 COLOR        *x_color_lookup                (int color);
-COLOR        *x_color_lookup_dark           (int color);
 bool          x_color_get_state             (int color);
 void          x_color_set_state             (int color, int state);
 char         *x_color_get_name              (int index);

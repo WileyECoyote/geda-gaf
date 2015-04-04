@@ -248,24 +248,6 @@ COLOR *x_color_lookup (int color)
  *  \brief
  *  \par Function Documentation
  *
- *  \todo this has to change... to the right code
- */
-COLOR *x_color_lookup_dark (int color)
-{
-  if (color < 0 || color >= MAX_COLORS || !outline_colors[color].enabled) {
-    fprintf(stderr, _("Tried to get an invalid outline color: %d\n"), color);
-    return &outline_colors[DEFAULT_COLOR_INDEX];
-  }
-  else {
-    return &outline_colors[color];
-  }
-
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Documentation
- *
  */
 bool x_color_get_state (int color)
 {
