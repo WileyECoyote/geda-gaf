@@ -1,5 +1,15 @@
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Revise display-color-map and outline-color-map list corresponding to
+      color expansion revisions to libgeda:
+
+            * etc/gschem-colormap-bw
+            * etc/gschem-colormap-custom
+            * etc/gschem-colormap-darkbg
+            * etc/gschem-colormap-lightbg
+
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Improve Stability
 
     * gschem/src/x/x_menus.c: Revise function x_menu_setup_ui, adding subfunctions;
@@ -164,7 +174,7 @@
 
 2015-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancement: Change Draw Order (in gui)
+    * Code Enhancement: New Feature - Change Draw Order (in gui)
 
     * etc/system-gschemrc.scm: Add nested menu for Draw order to the Page
        menu items and add Draw Order items as draw-order-menu-items and

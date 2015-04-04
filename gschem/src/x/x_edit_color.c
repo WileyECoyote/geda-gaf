@@ -180,7 +180,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     label = geda_aligned_label_new(_("Object color:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
 
-    optionmenu = create_color_menu ( w_current, color_index );
+    optionmenu = create_color_menu (w_current, color_index);
 
     gtk_box_pack_start(GTK_BOX(vbox), optionmenu, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text(optionmenu, _("Select the color for the select objects."));

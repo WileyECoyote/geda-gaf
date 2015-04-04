@@ -46,13 +46,19 @@ static COLOR default_colors[] = {
   RGB_GRAY,       /* 14: stroke             */
   RGB_BLACK,      /* 15: lock               */
   RGB_NOCOLOR,    /* 16: output-background  */
-  RGB_NOCOLOR,    /* 17: freestyle1         */
-  RGB_NOCOLOR,    /* 18: freestyle2         */
-  RGB_NOCOLOR,    /* 19: freestyle3         */
-  RGB_NOCOLOR,    /* 20: freestyle4         */
-  RGB_BLACK,      /* 21: junction           */
-  RGB_GRAY,       /* 22: mesh-grid-major    */
-  RGB_NOCOLOR,    /* 23: mesh-grid-minor    */
+  RGB_BLACK,      /* 17: junction           */
+  RGB_GRAY,       /* 18: mesh-grid-major    */
+  RGB_NOCOLOR,    /* 19: mesh-grid-minor    */
+  RGB_BLACK,      /* 20: freestyle0         */
+  RGB_BLACK,      /* 21: freestyle1         */
+  RGB_BLACK,      /* 22: freestyle2         */
+  RGB_BLACK,      /* 23: freestyle3         */
+  RGB_BLACK,      /* 24: freestyle4         */
+  RGB_BLACK,      /* 25: freestyle5         */
+  RGB_BLACK,      /* 26: freestyle6         */
+  RGB_BLACK,      /* 27: freestyle7         */
+  RGB_BLACK,      /* 28: freestyle8         */
+  RGB_BLACK,      /* 29: freestyle9         */
   RGB_ENDMAP
 };
 

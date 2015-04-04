@@ -25,6 +25,7 @@
 
 /*! \file geda_colors.h
  *  \brief define some constants for the colors
+ *  \sa scheme/color-map.scm utility/u_color.c
  */
 
 #ifndef _COLORS_H_INCL
@@ -47,13 +48,19 @@
 #define STROKE_COLOR                    14
 #define LOCK_COLOR                      15
 #define OUTPUT_BACKGROUND_COLOR         16
-#define FREESTYLE1_COLOR                17
-#define FREESTYLE2_COLOR                18
-#define FREESTYLE3_COLOR                19
-#define FREESTYLE4_COLOR                20
-#define JUNCTION_COLOR                  21
-#define MESH_GRID_MAJOR_COLOR           22
-#define MESH_GRID_MINOR_COLOR           23
+#define JUNCTION_COLOR                  17
+#define MESH_GRID_MAJOR_COLOR           18
+#define MESH_GRID_MINOR_COLOR           19
+#define FREESTYLE0_COLOR                20
+#define FREESTYLE1_COLOR                21
+#define FREESTYLE2_COLOR                22
+#define FREESTYLE3_COLOR                23
+#define FREESTYLE4_COLOR                24
+#define FREESTYLE5_COLOR                25
+#define FREESTYLE6_COLOR                26
+#define FREESTYLE7_COLOR                27
+#define FREESTYLE8_COLOR                28
+#define FREESTYLE9_COLOR                29
 
 #define DEFAULT_COLOR_INDEX             GRAPHIC_COLOR
 

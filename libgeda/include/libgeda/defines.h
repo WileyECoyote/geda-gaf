@@ -87,7 +87,7 @@
 #define DEFAULT_PAGE_HEIGHT     90750
 
 /* for color mechanism used in gschem */
-#define MAX_COLORS 25
+#define MAX_COLORS 30
 
 /*! \def NEAR_DISTANCE Used in get nearest routine to snap endpoints */
 #define NEAR_DISTANCE           5

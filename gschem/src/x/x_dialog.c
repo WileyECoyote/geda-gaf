@@ -985,6 +985,16 @@ x_dialog_get_color_name (int index)
     case JUNCTION_COLOR:           return _("Net junction");
     case MESH_GRID_MAJOR_COLOR:    return _("Mesh grid major");
     case MESH_GRID_MINOR_COLOR:    return _("Mesh grid minor");
+    case FREESTYLE0_COLOR:         return _("User Style 0");
+    case FREESTYLE1_COLOR:         return _("User Style 1");
+    case FREESTYLE2_COLOR:         return _("User Style 2");
+    case FREESTYLE3_COLOR:         return _("User Style 3");
+    case FREESTYLE4_COLOR:         return _("User Style 4");
+    case FREESTYLE5_COLOR:         return _("User Style 5");
+    case FREESTYLE6_COLOR:         return _("User Style 6");
+    case FREESTYLE7_COLOR:         return _("User Style 7");
+    case FREESTYLE8_COLOR:         return _("User Style 8");
+    case FREESTYLE9_COLOR:         return _("User Style 9");
     default:
       break;
   }

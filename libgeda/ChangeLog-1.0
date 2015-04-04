@@ -1,3 +1,17 @@
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  libgeda/include/libgeda/defines.h: Increase MAX_COLORS from 25 to 30.
+
+    *  include/libgeda/geda_colors.h: Add defines for 6 additional user colors;
+       FREESTYLE0_COLOR thru FREESTYLE9_COLOR, instead of FREESTYLE1_COLOR thru
+       FREESTYLE4_COLOR. Revise comments to reference references.
+
+    *  scheme/color-map.scm: Revise color-name-map list to coincide with changes
+       described above.
+
+    *  src/utility/u_color.c: Revise default_colors structure to coincide with
+       changes described above.
+
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     *  libgeda/prototype.h: Replace soon to be depreciated G_BEGIN_DECLS and
