@@ -345,6 +345,83 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                                   radio_data);
   }
 
+  inline GtkWidget *create_file_menu() {
+
+    GtkWidget *file_menu = gtk_menu_new ();  /* Don't need to show menus */
+
+    /* Create a Open menu items */
+    action = geda_action_new ("file-open",                                   /* Action name */
+                              "_Open...",                                    /* Text */
+                            _("Open an existing schematic or symbol file"),  /* Tooltip */
+                              "gtk-open",                                    /* Icon stock ID */
+                              "F O");                                        /* Accelerator string */
+
+    GtkWidget *open_item = geda_action_create_menu_item (GEDA_ACTION(action));
+    handler = g_signal_connect (G_OBJECT(action), "activate",
+                                G_CALLBACK(x_menu_execute),
+                                w_current);
+
+    /* Create a Save menu items */
+    action = geda_action_new ("file-save",                                   /* Action name */
+                              "_Save",                                       /* Text */
+                            _("Save the current document"),                  /* Tooltip */
+                              "gtk-save",                                    /* Icon stock ID */
+                              "F S");                                        /* Accelerator string */
+
+    GtkWidget *save_item = geda_action_create_menu_item (GEDA_ACTION(action));
+    handler = g_signal_connect (G_OBJECT(action), "activate",
+                                G_CALLBACK(x_menu_execute),
+                                w_current);
+
+    action = geda_action_new ("file-quit",                                   /* Action name */
+                              "_Quit",                                       /* Text */
+                            _("Quit gschem and exit"),                       /* Tooltip */
+                              "gtk-quit",                                    /* Icon stock ID */
+                              "F S");                                        /* Accelerator string */
+
+    GtkWidget *quit_item = geda_action_create_menu_item (GEDA_ACTION(action));
+    handler = g_signal_connect (G_OBJECT(action), "activate",
+                                G_CALLBACK(x_menu_execute),
+                                w_current);
+
+    /* Add basic items to the file menu */
+    gtk_container_add (GTK_CONTAINER (file_menu), open_item);
+    g_object_set (open_item, "visible", TRUE, NULL);
+
+    gtk_container_add (GTK_CONTAINER (file_menu), save_item);
+    g_object_set (save_item, "visible", TRUE, NULL);
+
+    gtk_container_add (GTK_CONTAINER (file_menu), quit_item);
+    g_object_set (quit_item, "visible", TRUE, NULL);
+
+    return file_menu;
+  }
+
+  inline GtkWidget *create_View_menu() {
+
+    GtkWidget *view_menu = gtk_menu_new ();  /* Don't need to show menus */
+
+    /* Create a Open menu items */
+    action = geda_action_new ("view-redraw",                                   /* Action name */
+                              "_Redraw",                                     /* Text */
+                            _("redraw the current window"),  /* Tooltip */
+                              "gtk-refresh",                                  /* Icon stock ID */
+                              "R");                                           /* Accelerator string */
+
+    GtkWidget *redraw_item = geda_action_create_menu_item (GEDA_ACTION(action));
+    handler = g_signal_connect (G_OBJECT(action), "activate",
+                                G_CALLBACK(x_menu_execute),
+                                w_current);
+
+
+    /* Add the Redraw items to the View menu */
+    gtk_container_add (GTK_CONTAINER (view_menu), redraw_item);
+    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw", redraw_item);
+    g_object_set (redraw_item, "visible", TRUE, NULL);
+
+    return view_menu;
+  }
+
   /* Subfunction to extract menu item properties from scheme using
    * data at given index and create a menu item widget */
   inline GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
@@ -597,7 +674,35 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   }
   scm_dynwind_end ();
 
+  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_File");
+  if (menu_item == NULL) {
+
+    menu = create_file_menu();
+
+    menu_item = gtk_menu_item_new_with_label ("File");
+    g_object_set (menu_item, "visible", TRUE, NULL);;
+
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , menu);
+    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_File", menu_item);
+    gtk_menu_bar_append (GTK_MENU_BAR (MENU_BAR), menu_item);
+  }
+
   menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
+
+  if (menu_item == NULL) {
+
+    menu = create_View_menu();
+
+    menu_item = gtk_menu_item_new_with_label ("View");
+    g_object_set (menu_item, "visible", TRUE, NULL);;
+
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , menu);
+    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View", menu_item);
+    gtk_menu_bar_append (GTK_MENU_BAR (MENU_BAR), menu_item);
+  }
+
+  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
+
   if (menu_item != NULL) {
 
     GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (menu_item));
@@ -793,7 +898,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_show_all(menu_item);
   }
   else
-    fprintf(stderr, "No Menu!");
+    fprintf(stderr, "No Menu!\n");
 
   ui_list = g_slist_append(ui_list, menu_data);
   w_current->ui_index = g_slist_length(ui_list) -1;

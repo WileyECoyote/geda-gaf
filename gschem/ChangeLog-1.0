@@ -2,6 +2,15 @@
 
     * Code Enhancement: Improve Stability
 
+    * gschem/src/x/x_menus.c: Revise function x_menu_setup_ui, adding subfunctions;
+      create_file_menu and create_View_menu, which are used to help build a basic
+      menu in the event there was an error while processing system-gschemrc.scm,
+      and this does commonly occurs with gschem.
+
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve Stability
+
     * src/iface/i_status.c: Add conditional in i_status_idle_update_sensitivities
       ::set_sensitivity_for_buffers to check if buffer_menu exist before setting
       widgets sensitivities.
