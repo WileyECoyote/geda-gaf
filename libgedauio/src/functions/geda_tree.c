@@ -51,7 +51,7 @@ void geda_tree_copy_iter(GtkTreeIter *source, GtkTreeIter *target)
 bool geda_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
     GtkTreePath *path;
-    gboolean ret;
+    bool ret;
 
     path = gtk_tree_model_get_path (tree_model, iter);
     ret = gtk_tree_path_prev (path);
