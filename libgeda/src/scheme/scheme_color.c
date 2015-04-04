@@ -131,5 +131,4 @@ s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
     curr = scm_cdr (curr);
   }
   scm_remember_upto_here_2 (wrong_type_arg_sym, proc_name);
-  //free(proc_name);
 }
