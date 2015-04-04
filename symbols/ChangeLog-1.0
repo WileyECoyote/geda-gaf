@@ -1,5 +1,19 @@
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/inductor/: Tweak inductor symbols:
+
+            * passive/inductor/coil-1.sym
+            * passive/inductor/coil-2.sym
+            * passive/inductor/coil-dot-1.sym
+            * passive/inductor/inductor-1.sym
+            * passive/inductor/inductor-2.sym
+            * passive/inductor/inductor-coupled-1.sym
+            * passive/inductor/inductor-coupled-2.sym
+            * passive/inductor/inductor-dot-1.sym
+            * passive/inductor/inductor-mutual-1.sym
+
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * Symbol Library: Use more deft descriptions
 
     * ti/ldo/TPS73033DBV-1.sym: Revise description

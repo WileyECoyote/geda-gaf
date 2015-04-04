@@ -1,5 +1,5 @@
-v 20150315 2
-T 200 1500 5 10 0 0 0 0 1
+v 20150401 2
+T 200 900 5 10 0 1 0 0 1
 device=INDUCTOR
 T 200 500 8 10 1 1 0 0 1
 refdes=L?
@@ -40,17 +40,17 @@ T 200 325 9 10 1 1 0 0 1
 value=1uH
 T 600 325 9 10 0 1 0 0 1
 footprint=0603
-T 200 900 5 10 0 1 0 0 1
+T 200 1100 5 10 0 1 0 0 1
 description=Inductor,1uH,700mA,0.06ohm,SMD
 T 200 700 5 10 0 0 0 0 1
 model-name=mpn
 T 200 1700 5 10 0 0 0 0 1
 numslots=0
-T 600 500 5 10 0 0 0 0 1
+T 1200 900 5 10 0 0 0 0 1
 symversion=0.2
-T 200 1100 5 10 0 0 0 0 1
+T 200 1300 5 10 0 0 0 0 1
 comment=mfr=Coiltronics
-T 200 1300 5 10 0 1 0 0 1
+T 200 1500 5 10 0 1 0 0 1
 documentation=http://en.wikipedia.org/wiki/Inductor
 T 200 1900 5 10 0 0 0 0 1
 author=AutoTron
