@@ -1,3 +1,12 @@
+2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve Stability
+
+    * src/x/x_compselect.c: Revise function compselect_callback_refresh_views
+      to check iter.stamp when checking whether iters are valid, and check if
+      valid before passing to gtk_tree_model_iter_parent and geda_tree_view_
+      row_make_visible.
+
 2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Add function x_dialog_get_color_name to return random

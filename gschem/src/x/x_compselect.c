@@ -486,7 +486,14 @@ static inline bool
 is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
   bool result;
-  gtk_tree_model_get (tree_model, iter, LVC_ROW_TYPE, &result, -1);
+
+  bool gtk_crap = ( iter->stamp != 0 ? TRUE : FALSE);
+  if (gtk_crap) {
+    gtk_tree_model_get (tree_model, iter, LVC_ROW_TYPE, &result, -1);
+  }
+  else {
+    fprintf(stderr,"Warning: GtkTreeView is depreciated\n");
+  }
   return result;
 }
 
@@ -1625,7 +1632,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     }
     else {
        at_boundary = TRUE;
-       path = gtk_tree_model_get_path ( model, &iter);
+       path = gtk_tree_model_get_path (model, &iter);
        was_expanded = gtk_tree_view_row_expanded (tree_view, path);
        gtk_tree_path_free(path);
        geda_tree_copy_iter(&iter, &parent);
@@ -1647,6 +1654,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
   compselect_refresh_tree_views (COMPSELECT (user_data));
 
   if ( do_restore) {
+
     bool valid;
     bool found = FALSE;
 
@@ -1675,10 +1683,12 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
             break;
           }
         }
-        valid = gtk_tree_model_iter_next (model, &iter);
+        valid = gtk_tree_model_iter_next (model, &iter) && iter.stamp;
       }
       GEDA_FREE (gp_src_name);
     }
+
+    valid = ( iter.stamp != 0 ? TRUE : FALSE);
 
     if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
 
@@ -1700,26 +1710,33 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
           break;
         }
       }
-      valid = gtk_tree_model_iter_next (model, &iter);
+      valid = gtk_tree_model_iter_next (model, &iter) && iter.stamp;
     }
 
     /* We could continue looking even if the current style is set to
      * none but we would have to check the symbol name first and make
      * sure it did not have a style, aka a dash number */
-    if ( !at_boundary && compselect->style_flag) {
+    if (!at_boundary && compselect->style_flag) {
 
-      /* Save iter in case we do not find symbol on 1st pass */
-      gtk_tree_model_iter_parent(model, &parent, &iter);
+      bool parent_is_valid;
+
+      if (valid) {
+        /* Save iter in case we do not find symbol on 1st pass */
+        parent_is_valid = gtk_tree_model_iter_parent(model, &parent, &iter);
+      }
+      else {
+        parent_is_valid = FALSE;
+      }
 
       /* Look for Symbol - 1st pass */
-      if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
+      if (!valid) valid = gtk_tree_model_get_iter_first (model, &iter);
 
       while (valid) {
         if (is_symbol_record(model, &iter)) {
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
           sym_name2 = symbol->name;
           if ( strcmp(sym_name2, sym_name) == 0) {
-            path = gtk_tree_model_get_path ( model, &iter);
+            path = gtk_tree_model_get_path (model, &iter);
             gtk_tree_view_expand_to_path(tree_view, path);
             gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
             gtk_tree_path_free(path);
@@ -1727,10 +1744,10 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
             break;
           }
         }
-        valid = gtk_tree_model_iter_next (model, &iter);
+        valid = gtk_tree_model_iter_next (model, &iter) && iter.stamp;
       }
 
-      if (!found) {
+      if (!found && parent_is_valid) {
         /* remove "-n.sym" from what we are looking for */
         sym_name2 = strndup(sym_name, strlen(sym_name) - 6);
         GEDA_FREE (sym_name);
@@ -1751,13 +1768,15 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
               break;
             }
           }
-          valid = gtk_tree_model_iter_next (model, &iter);
+          valid = gtk_tree_model_iter_next (model, &iter) && iter.stamp;
         }
         GEDA_FREE (sym_name2);
       }
     }
 
-    geda_tree_view_row_make_visible (tree_view, &iter, TRUE);
+    if (valid) {
+      geda_tree_view_row_make_visible (tree_view, &iter, TRUE);
+    }
   } /* End if do_restore */
   GEDA_FREE (src_name);
   GEDA_FREE (sym_name);
