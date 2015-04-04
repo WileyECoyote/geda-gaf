@@ -103,6 +103,7 @@ void x_color_allocate (void)
   for (i = 0; i < MAX_COLORS; i++) {
 
     if (display_colors[i].enabled) {
+
       gdk_colors[i] = (GdkColor *) GEDA_MEM_ALLOC(sizeof(GdkColor));
 
       c = display_colors[i];
@@ -119,11 +120,13 @@ void x_color_allocate (void)
       if (error == FALSE) {
         g_error (_("Could not allocate display color %i!\n"), i);
       }
-    } else {
+    }
+    else {
       gdk_colors[i] = NULL;
     }
 
     if (outline_colors[i].enabled) {
+
       gdk_outline_colors[i] = (GdkColor *) GEDA_MEM_ALLOC(sizeof(GdkColor));
 
       c = outline_colors[i];
