@@ -1,3 +1,11 @@
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Symbol Library: Use more deft descriptions
+
+    * ti/ldo/TPS73033DBV-1.sym: Revise description
+
+    * ti/ldo/TPS73033DBV-2.sym Revise description
+
 2015-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TPIC6A259-1.sym: Add symbol for Power Logic 8-Bit Addressable
