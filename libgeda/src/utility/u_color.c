@@ -99,10 +99,10 @@ void u_color_map_defaults (COLOR *map)
  * \par Function Description
  * Accepts a hexadecimal color code \a rgba of either the form #RRGGBB
  * or #RRGGBBAA, and parses it to extract the numerical color values,
- * placing them in the the #guchar pointers passed as arguments. If
- * the six-digit form is used, the alpha channel is set to full
- * opacity. If an error occurs during parsing, the return values are
- * set to solid white.
+ * placing them in the the char pointers passed as arguments. If the
+ * six-digit form is used, the alpha channel is set to full opacity.
+ * If an error occurs during parsing, the return values are set to
+ * solid white.
  *
  * Note that this function implements similar functionality to
  * gdk_color_parse(). However, for consistency, <em>only</em> this
