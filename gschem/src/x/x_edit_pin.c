@@ -403,7 +403,13 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         }
 
         if(auto_number) {
-          if (auto_number != atoi(onumber_str)) {
+          if (onumber_str) {
+            if (auto_number != atoi(onumber_str)) {
+              changed_something = TRUE;
+              onumber_str = u_string_int2str( auto_number, s_val, 10 );
+            }
+          }
+          else {
             changed_something = TRUE;
             onumber_str = u_string_int2str( auto_number, s_val, 10 );
           }

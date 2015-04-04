@@ -1,7 +1,12 @@
+2015-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_pin.c: Fix seg-fault during auto-number pins when pins
+      do not have a label strings.
+
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    *etc/system-gschemrc.scm: Assigned common/standard functions to
-     F-Keys.
+    * etc/system-gschemrc.scm: Assigned common/standard functions to
+      F-Keys.
 
 2015-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
