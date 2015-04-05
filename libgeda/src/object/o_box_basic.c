@@ -327,8 +327,8 @@ Object* o_box_read (const char buf[], unsigned int release_ver,
   new_obj->line_options->line_end     = box_end;
   new_obj->line_options->line_type    = box_type;
   new_obj->line_options->line_width   = box_width;
-  new_obj->line_options->line_space   = box_length;
-  new_obj->line_options->line_length  = box_space;
+  new_obj->line_options->line_length  = box_length;
+  new_obj->line_options->line_space   = box_space;
 
   /* set its fill options */
   new_obj->fill_options->fill_type   = box_filling;

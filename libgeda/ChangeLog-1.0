@@ -1,3 +1,11 @@
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    *  object/o_box_basic.c: Fix BUG: After reading in correctly, o_box_basic
+       reversed line-type length with line-type spaces and this was corrected.
+
+    *  src/object/o_circle_basic.c: Fix BUG: o_circle_basic reversed line-type
+       length with line-type spaces.
+
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     *  libgeda/include/libgeda/defines.h: Increase MAX_COLORS from 25 to 30.

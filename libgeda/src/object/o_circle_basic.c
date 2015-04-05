@@ -259,8 +259,8 @@ Object *o_circle_read (const char buf[], unsigned int release_ver,
   new_obj->line_options->line_end     = circle_end;
   new_obj->line_options->line_type    = circle_type;
   new_obj->line_options->line_width   = circle_width;
-  new_obj->line_options->line_space   = circle_length;
-  new_obj->line_options->line_length  = circle_space;
+  new_obj->line_options->line_length  = circle_length;
+  new_obj->line_options->line_space   = circle_space;
 
   /* set its fill options */
   new_obj->fill_options->fill_type   = circle_fill;
