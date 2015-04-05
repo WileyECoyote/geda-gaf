@@ -21,12 +21,12 @@
 ; back and look for the "first" error as this is often the only problem.
 ;
 ; A common symptom that appears when there is a problem with this file is
-; "no menus" and a sensitivity error on  non-existent menu item. This is
-; indicative of a syntax error in this file. Maybe one of the easiest mistake
-; is to use a colon instead of a semi-colon and no useful information is
-; provided for locating the problem. Try using an Editor like gedit or Kate
-; with search high-lighting. There are not that many colons in this file and
-; none of them should be the first character on a line.
+; sensitivity errors on  non-existent menu item. This is indicative of a
+; syntax error in this file. Maybe one of the easiest mistake is to use a
+; colon instead of a semi-colon and no useful information is provided for
+; locating the problem. Try using an Editor like gedit or Kate with search
+; high-lighting. There are not that many colons in this file and none of
+; them should be the first character on a line.
 ;
 ; gschem-version string
 ;
@@ -45,11 +45,12 @@
 (color-map-make-friendly display-color-map)
 (color-map-make-friendly display-outline-color-map)
 
-; Load up a color scheme which has a dark (black) background.
-; Comment out the first line and comment in the second line for a
-; light (almost white) background.  The dark background is the
-; original look.
+; Load up a color scheme which has a dark (black) background. Comment out
+; the first line and comment in the second line for a light (almost white)
+; background. The dark background is the original look.
 ;
+; Note: color-map-make-friendly display-color-map above must be enabled
+;       these color schemes to work.
 (load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
 ;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
 ;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
