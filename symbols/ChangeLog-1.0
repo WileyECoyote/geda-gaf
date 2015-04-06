@@ -1,5 +1,17 @@
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/: Revert Blue Tweak for Diodes:
+
+    * diode/-2.sch" Revert use of "blue" lines inside the symbols
+      When targeting nets connected to these pins, a blue on both
+      sides of the pin can result in hesitation, and is confusing.
+
+    * diode/1N4006-1.sym: Replace bad apple.
+
+    * diode/tunnel-2.sym: Fix pin 2 pinseq not attached to pin.
+
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/jumper/jumper-3p1p-1.sym: New symbol for 3 pole
       single position jumper.
 
