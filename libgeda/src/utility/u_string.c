@@ -232,6 +232,27 @@ char *u_string_int2str(int value, char* str, int radix) {
   return str;
 }
 
+/*! \brief Interogate string for non ASCII characters
+ *  \par Function Description
+ * Determines if a string is pure ASCII. A string is pure ASCII if it
+ * contains no bytes with the high bit set.
+ *
+ * Returns: TRUE if \a str is ASCII
+ */
+bool u_string_isalnum (const char *str)
+{
+  int i;
+
+  if (!str)
+    return FALSE;
+
+  for (i = 0; str[i]; i++)
+    if (!isalnum(str[i]))
+      return FALSE;
+
+  return TRUE;
+}
+
 /*! \brief Parse a c String for X and Y integer pair
  *  \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are

@@ -1,5 +1,9 @@
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    *  src/utility/u_string.c: Add utility function u_string_isalnum.
+
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
     *  object/o_box_basic.c: Fix BUG: After reading in correctly, o_box_basic
        reversed line-type length with line-type spaces and this was corrected.
 
