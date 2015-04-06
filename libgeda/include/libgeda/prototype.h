@@ -424,6 +424,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
          void    print_struct                    (Object *ptr);
 
 /* s_clib.c */
+         void     s_clib_flush_cache             (void);
          void     s_clib_free                    (void);
          void     s_clib_refresh                 (void);
         GList    *s_clib_get_sources             (const bool sorted);
@@ -441,8 +442,7 @@ const CLibSource *s_clib_add_scm                 (SCM         listfunc,  SCM    
 const CLibSource *s_clib_symbol_get_source       (const CLibSymbol *symbol);
          char    *s_clib_symbol_get_data         (const CLibSymbol *symbol);
         GList    *s_clib_search                  (const char *pattern, const CLibSearchMode mode);
-         void     s_clib_flush_search_cache      (void);
-         void     s_clib_flush_symbol_cache      (void);
+
          void     s_clib_symbol_invalidate_data  (const CLibSymbol *symbol);
 const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char    *s_clib_symbol_get_data_by_name (const char *name);

@@ -1,5 +1,12 @@
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    *  src/struct/s_clib.c: No need to expose both s_clib_flush_search_cache
+       and s_clib_flush_symbol_cache, if either. Make both static and created
+       new function s_clib_flush_cache as public, resquenced s_clib_flush_xx
+       functions and replaced back-to-back calls with new the function.
+
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
     *  src/utility/u_string.c: Add utility function u_string_isalnum.
 
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>

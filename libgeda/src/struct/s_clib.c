@@ -189,6 +189,34 @@ static char *get_data_directory (const CLibSymbol *symbol);
 static char *get_data_command (const CLibSymbol *symbol);
 static char *get_data_scm (const CLibSymbol *symbol);
 
+/*! \brief Flush the symbol name lookup cache.
+ *  \par Function Description
+ *  Clears the hashtable which caches the results of s_clib_search().
+ *  You should not ever need to call this, as all functions which
+ *  invalidate the cache are supposed to make sure it is flushed.
+ */
+static void s_clib_flush_search_cache (void)
+{
+  g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
+}
+
+/*! \brief Flush the symbol data cache.
+ *  \par Function Description
+ *  Clears the hashtable which caches the results of s_clib_symbol_get_data().
+ *  You should not ever need to call this, as all functions which
+ *  invalidate the cache are supposed to make sure it is flushed.
+ */
+static void s_clib_flush_symbol_cache (void)
+{
+  g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+}
+
+void s_clib_flush_cache (void)
+{
+  g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
+  g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+}
+
 /*! \brief Initialise the component library.
  *  \par Function Description
  *  Resets and initialises the component library.
@@ -196,7 +224,7 @@ static char *get_data_scm (const CLibSymbol *symbol);
  *  \warning This function must be called before any other functions
  *  from s_clib.c.
  */
-void s_clib_init ()
+void s_clib_init (void)
 {
   if (clib_sources != NULL) {
     s_clib_free ();
@@ -307,7 +335,7 @@ static void free_source (CLibSource *source)
  *  Should be called at program exit to clean up any remaining data
  *  being used by the component library system.
  */
-void s_clib_free ()
+void s_clib_free (void)
 {
   GList *iter;
 
@@ -664,8 +692,7 @@ static void refresh_directory (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                  (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_search_cache();
-  s_clib_flush_symbol_cache();
+  s_clib_flush_cache();
 }
 
 /*! \brief Re-poll a library command for symbols.
@@ -726,8 +753,7 @@ static void refresh_command (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                  (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_search_cache();
-  s_clib_flush_symbol_cache();
+  s_clib_flush_cache();
 }
 
 /*! \brief Re-poll a scheme procedure for symbols.
@@ -786,8 +812,7 @@ static void refresh_scm (CLibSource *source)
   source->symbols = g_list_sort (source->symbols,
                                  (GCompareFunc) compare_symbol_name);
 
-  s_clib_flush_search_cache();
-  s_clib_flush_symbol_cache();
+  s_clib_flush_cache();
 }
 
 /*! \brief Rescan all available component libraries.
@@ -799,7 +824,7 @@ static void refresh_scm (CLibSource *source)
  *  \bug Disabled for now because it would break cached CLibSymbols used
  *  all over the place (e.g. in #Object).
  */
-void s_clib_refresh ()
+void s_clib_refresh (void)
 {
   CLibSource *source;
   GList      *sourcelist;
@@ -1268,8 +1293,8 @@ static char *get_data_scm (const CLibSymbol *symbol)
 /*! \brief Get symbol data.
  *  \par Function Description
  *  Get the unparsed gEDA-format data corresponding to a symbol from
- *  the symbol's data source.  The return value should be free()'d
- *  when no longer needed.
+ *  the symbol's data source. The return value should be freed when
+ *  no longer needed.
  *
  *  On failure, returns \b NULL (the error will be logged).
  *
@@ -1439,29 +1464,6 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   g_hash_table_insert (clib_search_cache, key, g_list_copy (result));
   /* Do NOT free key here, it is stored by the hash table! */
   return result;
-}
-
-/*! \brief Flush the symbol name lookup cache.
- *  \par Function Description
- *  Clears the hashtable which caches the results of s_clib_search().
- *  You should not ever need to call this, as all functions which
- *  invalidate the cache are supposed to make sure it is flushed.
- */
-void s_clib_flush_search_cache ()
-{
-  g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
-}
-
-
-/*! \brief Flush the symbol data cache.
- *  \par Function Description
- *  Clears the hashtable which caches the results of s_clib_symbol_get_data().
- *  You should not ever need to call this, as all functions which
- *  invalidate the cache are supposed to make sure it is flushed.
- */
-void s_clib_flush_symbol_cache ()
-{
-  g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
 }
 
 /*! \brief Invalidate all cached data about a symbol.
