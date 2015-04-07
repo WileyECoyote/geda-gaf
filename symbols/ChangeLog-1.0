@@ -1,3 +1,9 @@
+2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/resistor/: Revamp non resistor packs, mostly metal film
+      and flame-proof; revising descriptions, attribute positions, and
+      use round end type to make smoother visuals.
+
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/: Revert Blue Tweak for Diodes:
