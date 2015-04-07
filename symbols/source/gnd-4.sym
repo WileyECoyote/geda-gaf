@@ -1,4 +1,4 @@
-v 20140810 2
+v 20150401 2
 T 100 1450 8 10 0 0 0 0 1
 author=AutoTron
 T 100 1300 8 10 0 0 0 0 1
@@ -9,7 +9,7 @@ T 100 1000 8 10 0 0 0 0 1
 numslots=0
 T 100 850 8 10 0 0 0 0 1
 footprint=none
-T 100 700 9 10 0 0 0 0 1
+T 100 700 9 10 0 1 0 0 1
 description=Chassis Ground
 P 100 100 100 300 1 0 1
 {
@@ -25,7 +25,7 @@ pintype=pwr
 L 0 100 200 100 3 15 0 0 -1 -1
 T 250 100 8 10 0 1 0 0 1
 net=EGND:1
-T 100 500 5 10 0 0 0 0 1
+T 100 500 5 10 0 1 0 0 1
 device=GROUND_NODE
 T 200 350 8 10 0 1 0 0 1
 refdes=none
