@@ -1,5 +1,9 @@
 2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/usb/USB-B-mini-1.sym: Add symbol for USB mini connector
+
+2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/resistor/: Revamp non resistor packs, mostly metal film
       and flame-proof; revising descriptions, attribute positions, and
       use round end type to make smoother visuals.
