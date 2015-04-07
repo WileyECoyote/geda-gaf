@@ -1,5 +1,14 @@
 2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM510x: Tweak symbols
+
+            * ti/LM5104-1.sym
+            * ti/LM5104-2.sym
+            * ti/LM5105-1.sym
+            * ti/LM5106-1.sym
+
+2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * murata/capacitor/: Add 6 capacitor new symbols
 
             * murata/capacitor/GCM21BR71E105KA56_1uF_25V.sym
