@@ -1,3 +1,24 @@
+2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve Stability
+
+    * include/x_compselect.h: Add pointer variable for filter_hbox and boolean
+      rescan_lib in dialog data structure.
+
+    * src/x/x_compselect.c: Clean code, revise function compselect_refresh_tree
+      _views to used more localized variables and check flag rescan_lib and call
+      s_clib_refresh if set; could eliminate variables but I think would reduce
+      readability. The new scheme allows compselect_refresh_tree_views to read
+      any selection in the tree "before" the the library is refreshed, the only
+      reason the old scheme worked at all was because s_clib_refresh lost the
+      race with compselect_refresh_tree_views. Adding wait-states to loader did
+      fix the problem but only used as diagnostics, another option considered was
+      to do away with the implanted CLibSymbol and just put the string in the
+      tree, this would likely speed up the dialog is probably a better long term
+      solution but moving the call to s_clib_refresh is relatively easy fix and
+      should be benign. Also saved pointer to the "filter" area in structure to
+      disable sorting switches in one fell swoop, whilst the refresh is on going.
+
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * Revise display-color-map and outline-color-map list corresponding to

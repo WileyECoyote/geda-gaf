@@ -89,6 +89,7 @@ struct _Compselect {
   GschemDialog parent_instance;
 
   GtkWidget    *hpaned, *vpaned;
+  GtkWidget    *filter_hbox;
 
   GtkTreeView  *attrtreeview;
 
@@ -120,7 +121,7 @@ struct _Compselect {
   bool do_sort;
   bool show_groups;
   bool subgroups;
-
+  bool rescan_lib;
   int  active_tab;
 
 };

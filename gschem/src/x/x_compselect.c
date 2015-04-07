@@ -487,13 +487,12 @@ is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
   bool result;
 
-  bool gtk_crap = ( iter->stamp != 0 ? TRUE : FALSE);
-  if (gtk_crap) {
+  result = (iter->stamp != 0 ? TRUE : FALSE);
+
+  if (result) {
     gtk_tree_model_get (tree_model, iter, LVC_ROW_TYPE, &result, -1);
   }
-  else {
-    fprintf(stderr,"Warning: GtkTreeView is depreciated\n");
-  }
+
   return result;
 }
 
@@ -529,7 +528,7 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
     gtk_tree_model_get (tree_model, iter, LVC_ROW_DATA, &source, -1);
     text = s_clib_source_get_name (source);
     ptr  = strstr(source->name, "/");       /* look for a slash */
-    if( ptr!= NULL) {
+    if (ptr!= NULL) {
       text = ptr + 1;
     }
 
@@ -554,10 +553,8 @@ lib_model_filter_visible_func (GtkTreeModel *model,
                                void         *data)
 {
   Compselect *compselect = (Compselect*)data;
-  CLibSymbol *sym;
-  const char *compname;
   const char *text;
-  char *compname_upper, *text_upper, *pattern;
+
   bool  ret;
 
   if(!IS_COMPSELECT (data)) {
@@ -590,6 +587,11 @@ lib_model_filter_visible_func (GtkTreeModel *model,
       } while (gtk_tree_model_iter_next (model, &iter2));
   }
   else {
+
+    CLibSymbol *sym;
+
+    const char *compname;
+          char *compname_upper, *text_upper, *pattern;
 
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
 
@@ -1283,8 +1285,8 @@ GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
     source =  src_iter->data; /* Retrieve a single source */
 
     /* Check if this source belongs in this group, i.e view TAB */
-    if ( source->category != NULL &&
-       ( strcmp(source->category, IDS_CATEGORIES[data_set]) == 0)) {
+    if (source->category != NULL &&
+       (strcmp(source->category, IDS_CATEGORIES[data_set]) == 0)) {
 
       /* Then add this to the list*/
       selected_sources = g_list_append (selected_sources, source);
@@ -1302,11 +1304,11 @@ GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
  *  if the symbol should be included based on the style flag mask.
  *
  */
-static bool filter_check_style(Compselect *compselect, char *sym_name)
+static bool filter_check_style(Compselect *compselect, const char *sym_name)
 {
-  char *ptr;
-  unsigned char code[2];
-  unsigned int mask = 1;
+  const    char *ptr;
+  unsigned char  code[2];
+  unsigned int   mask = 1;
   int flag;
 
   bool result;
@@ -1371,7 +1373,6 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
 
   char  *tooltip_text;
   char  *previous_grp;
-  char  *sym_name;
   int    sym_count;
 
   w_current = GSCHEM_DIALOG (compselect)->w_current;
@@ -1387,8 +1388,8 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
   group_names = w_current->toplevel->component_groups;
 
     /* Set flag for "special" folders */
-  bypassing   = ( data_set == LOCAL_TAB);
-  bypassing  |= ( data_set == SIM_TAB);
+  bypassing   = (data_set == LOCAL_TAB);
+  bypassing  |= (data_set == SIM_TAB);
 
   previous_grp = "";
 
@@ -1400,12 +1401,12 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
 
     at_boundary  = (g_ascii_strcasecmp (previous_grp, source->group) == 0);
 
-    if ( (compselect->show_groups == FALSE) &&
-         (u_glist_find_string(group_names, source->group) > -1 )) {
+    if ((compselect->show_groups == FALSE) &&
+        (u_glist_find_string(group_names, source->group) > -1 )) {
       bypassing  = TRUE;
     }
 
-    if ( !bypassing) {
+    if (!bypassing) {
       /* Might eliminate 1 of these, they alway seemed to occur in pairs */
       if ( at_boundary) {
         /* At the start of a new group, either add it */
@@ -1422,7 +1423,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
     }
     else { /* Not Nesting a Group */
       if (sym_count > 0) {
-          gtk_tree_store_append (store, &tree_iter, NULL);
+        gtk_tree_store_append (store, &tree_iter, NULL);
       }
       else { /* is empty "special" folder with not files so */
         continue;
@@ -1451,13 +1452,14 @@ load_symbols: /* It Works! */
     for (sym_iter = symlist; sym_iter != NULL;
          sym_iter = g_list_next (sym_iter)) {
 
-      sym_name = (char*) s_clib_symbol_get_name(sym_iter->data);
+      const char *sym_name = s_clib_symbol_get_name(sym_iter->data);
+
       /* if a directory only has one symbol file and the file name is
        * "placeholder.sym" then we don't display the symbol, the file
        * is being used to over-ride the switches and force a group to
        * always be on the treeview list */
       if (sym_count == 1) {
-        if (g_ascii_strcasecmp ( "placeholder.sym", sym_name) == 0)
+        if (g_ascii_strcasecmp (sym_name, "placeholder.sym") == 0)
           continue;
       }
 
@@ -1479,8 +1481,8 @@ load_symbols: /* It Works! */
    * a new model and add the Store since this is what the caller was going
    * to do anyways, then we can setup the filter func for the caller */
   model = (GtkTreeModel *) g_object_new (GTK_TYPE_TREE_MODEL_FILTER,
-                                         "child-model", store,
-                                         "virtual-root", NULL, NULL);
+                                        "child-model", store,
+                                        "virtual-root", NULL, NULL);
 
   gtk_tree_model_filter_set_visible_func ((GtkTreeModelFilter*)model,
                                           lib_model_filter_visible_func,
@@ -1613,6 +1615,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
   CLibSource  *source;
   CLibSymbol  *symbol;
+
   char        *gp_src_name = NULL;
   char        *src_name    = NULL;
   char        *sym_name    = NULL;
@@ -1621,28 +1624,38 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
   selection = gtk_tree_view_get_selection(tree_view);
 
   /* Check if something is selected and if so then save the name of
-   * the contain folder and the symbol if there is one */
+   * the containing folder and the symbol if there is one */
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
 
     if (is_symbol_record(model, &iter)) {
-       gtk_tree_model_get ( model, &iter, LVC_ROW_DATA, &symbol, -1);
-       sym_name = u_string_strdup(symbol->name);
-       gtk_tree_model_iter_parent (model, &parent, &iter);
-       at_boundary = FALSE;
+
+      gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+
+      const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+
+      sym_name = u_string_strdup(ptr_sym_name);
+
+      gtk_tree_model_iter_parent (model, &parent, &iter);
+      was_expanded = TRUE;
+      at_boundary  = FALSE;
+
     }
     else {
-       at_boundary = TRUE;
-       path = gtk_tree_model_get_path (model, &iter);
-       was_expanded = gtk_tree_view_row_expanded (tree_view, path);
-       gtk_tree_path_free(path);
-       geda_tree_copy_iter(&iter, &parent);
+      path         = gtk_tree_model_get_path (model, &iter);
+      was_expanded = gtk_tree_view_row_expanded (tree_view, path);
+      gtk_tree_path_free(path);
+      geda_tree_copy_iter(&iter, &parent);
+      at_boundary  = TRUE;
     }
+
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
     src_name = u_string_strdup(source->name);
+
     if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
       gp_src_name = u_string_strdup(source->name);
     }
+
     do_restore = TRUE;
   }
   else {
@@ -1650,32 +1663,43 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     do_restore = FALSE;
   }
 
-  /* Rebuild the Tree Model */
-  compselect_refresh_tree_views (COMPSELECT (user_data));
+  /* Check of flag set to rescan the libraries for symbols */
+  if (compselect->rescan_lib) {
+    s_clib_refresh ();
+    compselect->rescan_lib = FALSE;
+  }
 
-  if ( do_restore) {
+  /* Rebuild the Tree Model */
+  compselect_refresh_tree_views (compselect);
+
+  if (do_restore) {
 
     bool valid;
     bool found = FALSE;
-
-    char *src_name2 = NULL;
-    char *sym_name2 = NULL;
 
     model = gtk_tree_view_get_model(tree_view);
 
     /* Get the first iter in the list */
     valid = gtk_tree_model_get_iter_first (model, &iter);
 
-    if( gp_src_name ) { /* 1st Look for Grand Parent */
+    if (gp_src_name ) { /* 1st Look for Grand Parent */
+
       while (valid) {
+
         if (!is_symbol_record(model, &iter)) {
+
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-          src_name2 = source->name;
-          if ( strcmp(src_name2, gp_src_name) == 0) {
+
+          const char *ptr_src_name = source->name;
+
+          if (strcmp(ptr_src_name, gp_src_name) == 0) {
+
             /* found grand parent */
-            path = gtk_tree_model_get_path ( model, &iter);
+            path = gtk_tree_model_get_path (model, &iter);
+
             gtk_tree_view_expand_row (tree_view, path, FALSE);
             gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+
             /* Set iter to 1st child */
             gtk_tree_path_down(path);
             gtk_tree_model_get_iter(model, &iter, path);
@@ -1688,21 +1712,29 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       GEDA_FREE (gp_src_name);
     }
 
-    valid = ( iter.stamp != 0 ? TRUE : FALSE);
+    valid = (iter.stamp != 0 ? TRUE : FALSE);
 
     if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
 
     while (valid) {                               /* Look for Parent */
+
       if (!is_symbol_record(model, &iter)) {
+
         gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-        src_name2 = source->name;
-        if ( strcmp(src_name2, src_name) == 0) {
+
+        const char *ptr_src_name = source->name;
+
+        if (strcmp(ptr_src_name, src_name) == 0) {
+
           /* found the folder so check if was expanded and set cursor */
-          path = gtk_tree_model_get_path ( model, &iter);
+          path = gtk_tree_model_get_path (model, &iter);
+
           if (was_expanded) { /* expand folder is previously expanded */
             gtk_tree_view_expand_to_path(tree_view, path);
           }
+
           gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+
           /* Set iter to 1st child for next section */
           gtk_tree_path_down(path);
           gtk_tree_model_get_iter(model, &iter, path);
@@ -1726,16 +1758,19 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       }
       else {
         parent_is_valid = FALSE;
+        valid = gtk_tree_model_get_iter_first (model, &iter);
       }
 
       /* Look for Symbol - 1st pass */
-      if (!valid) valid = gtk_tree_model_get_iter_first (model, &iter);
-
       while (valid) {
+
         if (is_symbol_record(model, &iter)) {
+
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-          sym_name2 = symbol->name;
-          if ( strcmp(sym_name2, sym_name) == 0) {
+
+          const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+
+          if (strcmp(ptr_sym_name, sym_name) == 0) {
             path = gtk_tree_model_get_path (model, &iter);
             gtk_tree_view_expand_to_path(tree_view, path);
             gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
@@ -1748,19 +1783,22 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       }
 
       if (!found && parent_is_valid) {
+
         /* remove "-n.sym" from what we are looking for */
-        sym_name2 = strndup(sym_name, strlen(sym_name) - 6);
-        GEDA_FREE (sym_name);
-        sym_name = sym_name2;
+        char *short_name = strndup(sym_name, strlen(sym_name) - 6);
 
         /* Look for Symbol - 2nd pass, set iter to 1st child of saved parent */
         valid = gtk_tree_model_iter_children(model, &iter, &parent);
 
         while (valid) {
+
           if (is_symbol_record(model, &iter)) {
+
             gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            sym_name2 = symbol->name;
-            if ( strstr(sym_name, sym_name2) == 0) {
+
+            const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
+
+            if (strstr(ptr_sym_name, short_name) == 0) {
               path = gtk_tree_model_get_path ( model, &iter);
               gtk_tree_view_expand_to_path(tree_view, path);
               gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
@@ -1770,7 +1808,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
           }
           valid = gtk_tree_model_iter_next (model, &iter) && iter.stamp;
         }
-        GEDA_FREE (sym_name2);
+        GEDA_FREE (short_name);
       }
     }
 
@@ -1780,7 +1818,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
   } /* End if do_restore */
   GEDA_FREE (src_name);
   GEDA_FREE (sym_name);
-  GEDA_FREE (gp_src_name);
 }
 
 /*!\brief Refresh all Library Tree-Views Signal Handler.
@@ -1808,7 +1845,7 @@ compselect_refresh_inuse_view (GtkWidget *widget, void *user_data)
   Compselect *compselect = COMPSELECT (user_data);
 
   GtkTreeView  *tree_view;
-  GtkTreeModel  *model;
+  GtkTreeModel *model;
 
   tree_view = compselect->inusetreeview;
   GEDA_UNREF (gtk_tree_view_get_model (tree_view));
@@ -1826,9 +1863,15 @@ compselect_refresh_inuse_view (GtkWidget *widget, void *user_data)
 static void
 compselect_callback_rescan_libraries (GtkButton *button, void *user_data)
 {
-  /* Rescan the libraries for symbols */
-  s_clib_refresh ();
+  Compselect  *compselect = COMPSELECT (user_data);
+
+  gtk_widget_set_sensitive (compselect->filter_hbox, FALSE);
+
+  /* Set flag to rescan the libraries for symbols */
+  compselect->rescan_lib = TRUE;
   compselect_callback_refresh_views (NULL, user_data);
+
+  gtk_widget_set_sensitive (compselect->filter_hbox, TRUE);
 }
 
 /*!\brief Collase All button callback.
@@ -3034,7 +3077,6 @@ compselect_constructor (GedaType type,
   GtkWidget *preview       = NULL;
   GtkWidget *alignment     = NULL;
   GtkWidget *frame         = NULL;
-  GtkWidget *filter_hbox   = NULL;
   GtkWidget *action_area   = NULL;
   GtkVBox   *main_vbox     = NULL;
   GtkWidget *label         = NULL;
@@ -3052,6 +3094,7 @@ compselect_constructor (GedaType type,
 
   /* Initialize the hidden property */
   ThisDialog->hidden      = FALSE;
+  ThisDialog->rescan_lib  = FALSE;
 
   ThisDialog->style_menu_widgets = NULL;
 
@@ -3113,10 +3156,10 @@ compselect_constructor (GedaType type,
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
   PACK_BOX( left_vbox, notebook, TRUE, TRUE, 0);
 
-  filter_hbox = create_filter_area ( ThisDialog );
-  gtk_widget_show_all (filter_hbox);
+  ThisDialog->filter_hbox = create_filter_area ( ThisDialog );
+  gtk_widget_show_all (ThisDialog->filter_hbox);
 
-  PACK_BOX( left_vbox, filter_hbox, FALSE, FALSE, 0);
+  PACK_BOX( left_vbox, ThisDialog->filter_hbox, FALSE, FALSE, 0);
 
   gtk_paned_pack1 (GTK_PANED (hpaned), left_vbox, TRUE, FALSE);
 
