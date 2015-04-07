@@ -212,13 +212,13 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
         q_log_message(_("An error was encountered loading requested session %s\n"), start_session);
 
         /* Open a blank document */
-        x_window_open_page( w_current, NULL );
+        x_window_open_page( w_current, NULL);
       }
       GEDA_FREE(start_session);
     }
     else if (i_sessions_present_at_startup()) {
       /* Open a blank document */
-      x_window_open_page( w_current, NULL );
+      x_window_open_page( w_current, NULL);
       x_sessions_open_dialog(w_current);
     }
     else {

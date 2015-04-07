@@ -76,7 +76,6 @@ struct _GschemToplevel {
   GtkWidget *command_entry;
 
   GtkWidget *macro_widget;
-
   GtkWidget *status_bar;
 
   char *keyaccel_string;       /* visual feedback when pressing
