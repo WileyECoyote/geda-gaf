@@ -1,3 +1,7 @@
+2015-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/header14-2.sym: Rename file, was missing the dash 2.
+
 2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/switchreg/LM2575-12-1.sym: Add symbol for Buck regulator with
