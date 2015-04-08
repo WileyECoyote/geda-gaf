@@ -3033,18 +3033,20 @@ COMMAND (do_attach)
     else if (count == 2) {
 
       Object *second_object;
+      GList  *next;
       bool    first_is_an_attribute;
       bool    second_is_an_attribute;
 
-      first_object  = (Object *) selected->data;
-      selected      = selected->next;
-      second_object = (Object *) selected->data;
+      first_object  = (Object*) selected->data;
+      next          = selected->next;
+      second_object = (Object*) next->data;
 
-      first_is_an_attribute  = o_get_is_valid_attribute(first_object);
-      second_is_an_attribute = o_get_is_valid_attribute(second_object);
+      w_current->which_object = NULL;
+      first_is_an_attribute   = o_get_is_valid_attribute(first_object);
+      second_is_an_attribute  = o_get_is_valid_attribute(second_object);
 
       /* Ensure 1 and only 1 is a valid attribute */
-      if ( 1 == first_is_an_attribute + second_is_an_attribute) {
+      if (1 == first_is_an_attribute + second_is_an_attribute) {
 
         if (first_is_an_attribute) {
           if (!o_get_is_attached(first_object)) {
@@ -3071,6 +3073,7 @@ COMMAND (do_attach)
 
       do {
 
+        /* Find first object that is NOT an attribute */
         if (!o_get_is_valid_attribute(iter->data)) {
           w_current->which_object = iter->data;
         }

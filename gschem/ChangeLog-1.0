@@ -1,3 +1,12 @@
+2015-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Incorrect behavior
+
+    * src/iface/i_command.c: Revise function i_cmd_do_attach to set which_object
+      NULL before conditionally setting, add variable for GList pointer, next so
+      the both objects, the selection, are passed to o_attrib_attach_list_2_object.
+      (That was the whole point to the previous revisions.)
+
 2015-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve Stability
