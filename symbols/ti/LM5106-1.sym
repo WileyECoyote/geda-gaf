@@ -40,7 +40,7 @@ pinseq=4
 T 300 750 5 8 1 1 0 6 1
 pinnumber=4
 T 450 700 9 10 1 1 0 0 1
-pinlabel=HO
+pinlabel=HS
 T 450 675 5 8 0 1 0 2 1
 pintype=out
 }
