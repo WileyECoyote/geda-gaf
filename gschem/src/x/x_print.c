@@ -886,7 +886,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
    * making the background color transparent and replacing all other
    * enabled colors with solid black. */
 
-  color_map = x_color_get_print_color_map();
+  color_map = s_color_get_print_color_map();
 
   if (!is_color) {
     int i;

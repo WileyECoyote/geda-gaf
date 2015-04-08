@@ -1038,7 +1038,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   context = pango_layout_get_context (layout);
 
   if (use_print_map) {
-    color_map = x_color_get_print_color_map();
+    color_map = s_color_get_print_color_map();
   }
   else {
     color_map = x_color_get_display_color_map();
