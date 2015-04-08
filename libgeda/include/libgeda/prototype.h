@@ -448,6 +448,10 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char    *s_clib_symbol_get_data_by_name (const char *name);
         GList    *s_toplevel_get_symbols         (const GedaToplevel *toplevel);
 
+/* s_color.c */
+       GArray   *s_color_get_print_color_map     (void);
+         void    s_color_map_defaults            (COLOR *map);
+
 /* s_conn.c */
          void    s_conn_remove_object            (Object *to_remove);
          void    s_conn_update_linear_object     (Object *object);
@@ -597,7 +601,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_print_object                  (Object *object);
 
 /* u_color.c */
-         void    u_color_map_defaults            (COLOR *map);
          bool    u_color_rgba_decode             (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
          char   *u_color_rgba_encode             (uint8 r, uint8 g, uint8 b, uint8 a);
 

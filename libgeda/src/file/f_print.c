@@ -74,7 +74,7 @@ int f_print_set_color(GedaToplevel *toplevel, FILE *fp, int color)
 
   if (!toplevel->print_color || (last_ps_color == color)) return 1;
 
-  string = u_color_postscript_string(color);
+  string = s_color_postscript_string(color);
 
   if (string) {
     fprintf(fp, "%s setrgbcolor\n", string);

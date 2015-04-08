@@ -1,115 +1,124 @@
-2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  src/struct/s_clib.c: No need to expose both s_clib_flush_search_cache
-       and s_clib_flush_symbol_cache, if either. Make both static and created
-       new function s_clib_flush_cache as public, resquenced s_clib_flush_xx
-       functions and replaced back-to-back calls with new the function.
+    * libgeda/src/utility/u_color.c: Remove color-mapping related functions
+      from this module.
 
-2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
-
-    *  src/utility/u_string.c: Add utility function u_string_isalnum.
+    * libgeda/src/struct/s_color.c: Created new module for color-map related
+      function and relocated function formally in u_color, added new function
+      s_color_get_print_color_map.
 
 2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  object/o_box_basic.c: Fix BUG: After reading in correctly, o_box_basic
-       reversed line-type length with line-type spaces and this was corrected.
+    * src/struct/s_clib.c: No need to expose both s_clib_flush_search_cache
+      and s_clib_flush_symbol_cache, if either. Make both static and created
+      new function s_clib_flush_cache as public, resquenced s_clib_flush_xx
+      functions and replaced back-to-back calls with new the function.
 
-    *  src/object/o_circle_basic.c: Fix BUG: o_circle_basic reversed line-type
-       length with line-type spaces.
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Add utility function u_string_isalnum.
+
+2015-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * object/o_box_basic.c: Fix BUG: After reading in correctly, o_box_basic
+      reversed line-type length with line-type spaces and this was corrected.
+
+    * src/object/o_circle_basic.c: Fix BUG: o_circle_basic reversed line-type
+      length with line-type spaces.
 
 2015-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  libgeda/include/libgeda/defines.h: Increase MAX_COLORS from 25 to 30.
+    * libgeda/include/libgeda/defines.h: Increase MAX_COLORS from 25 to 30.
 
-    *  include/libgeda/geda_colors.h: Add defines for 6 additional user colors;
-       FREESTYLE0_COLOR thru FREESTYLE9_COLOR, instead of FREESTYLE1_COLOR thru
-       FREESTYLE4_COLOR. Revise comments to reference references.
+    * include/libgeda/geda_colors.h: Add defines for 6 additional user colors;
+      FREESTYLE0_COLOR thru FREESTYLE9_COLOR, instead of FREESTYLE1_COLOR thru
+      FREESTYLE4_COLOR. Revise comments to reference references.
 
-    *  scheme/color-map.scm: Revise color-name-map list to coincide with changes
-       described above.
+    * scheme/color-map.scm: Revise color-name-map list to coincide with changes
+      described above.
 
-    *  src/utility/u_color.c: Revise default_colors structure to coincide with
-       changes described above.
-
-2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
-
-    *  libgeda/prototype.h: Replace soon to be depreciated G_BEGIN_DECLS and
-       G_END_DECLS with BEGIN_DECLS END_DECLS. Ya known, I programed on Windows
-       platform for over 30 and never heard of Microsoft depreciating anything.
+    * src/utility/u_color.c: Revise default_colors structure to coincide with
+      changes described above.
 
 2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Code Enhancement: Improve log error messages
+    * libgeda/prototype.h: Replace soon to be depreciated G_BEGIN_DECLS and
+      G_END_DECLS with BEGIN_DECLS END_DECLS. Ya known, I programed on Windows
+      platform for over 30 and never heard of Microsoft depreciating anything.
 
-    *  src/struct/s_slot.c: Append slot number for which the slotdef was not
-       found in the log message so as to give the user some clue as to what
-       to look for.
+2015-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve log error messages
+
+    * src/struct/s_slot.c: Append slot number for which the slotdef was not
+      found in the log message so as to give the user some clue as to what
+      to look for.
 
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Code Enhancement: Fix memory leak
+    * Code Enhancement: Fix memory leak
 
-    *  src/file/f_basic.c: Add inline subfunction f_open_exit in f_open to free
-       saved_cwd variable, which was not getting done if an error occurred.
+    * src/file/f_basic.c: Add inline subfunction f_open_exit in f_open to free
+      saved_cwd variable, which was not getting done if an error occurred.
 
 2015-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Code Enhancement: Improve Logistics
+    * Code Enhancement: Improve Logistics
 
-    *  Improve Hierarchy System Currently hierarchy down fails if the file is
-       not found in the "source" library path without ever checking the current
-       directory, the modification not only corrects this over-site, the current
-       working directory is given precedence and check first, before resorting
-       to searching the "library".
+    * Improve Hierarchy System Currently hierarchy down fails if the file is
+      not found in the "source" library path without ever checking the current
+      directory, the modification not only corrects this over-site, the current
+      working directory is given precedence and check first, before resorting
+      to searching the "library".
 
-    *  src/struct/s_hierarchy.c: Revise function s_hierarchy_down_schematic_single
-       to check for a file with the given name in the current directory and only
-       call s_slib_search_single on failure. The file is used if found and is
-       accessible.
+    * src/struct/s_hierarchy.c: Revise function s_hierarchy_down_schematic_single
+      to check for a file with the given name in the current directory and only
+      call s_slib_search_single on failure. The file is used if found and is
+      accessible.
 
 2015-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  src/object/o_line_basic.c: Add missing setter for true results in
-       o_line_get_nearest_point.
+    * src/object/o_line_basic.c: Add missing setter for true results in
+      o_line_get_nearest_point.
 
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Symbol Versioning System Enhancements
+    * Symbol Versioning System Enhancements
 
-    *  src/object/o_complex_basic.c: Allow user to disable checking of symbols
-       version on a per reference basis by revising function o_complex_check_
-       symversion to check the first character of the version string and not
-       continue if is a dash, i.e. a negative version number.
+    * src/object/o_complex_basic.c: Allow user to disable checking of symbols
+      version on a per reference basis by revising function o_complex_check_
+      symversion to check the first character of the version string and not
+      continue if is a dash, i.e. a negative version number.
 
 2015-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Symbol Versioning System Enhancements
+    * Symbol Versioning System Enhancements
 
-    *  etc/system-gafrc: Add string keyword check-symbol-versions for boolean
-       setting toplevel->check_symbol_version.
+    * etc/system-gafrc: Add string keyword check-symbol-versions for boolean
+      setting toplevel->check_symbol_version.
 
-    *  include/i_vars_priv.h: Add SCM accessible defaulter.
+    * include/i_vars_priv.h: Add SCM accessible defaulter.
 
-    *  include/libgeda/geda_toplevel.h: Add new toplevel configuration variable;
-       check_symbol_version.
+    * include/libgeda/geda_toplevel.h: Add new toplevel configuration variable;
+      check_symbol_version.
 
-    *  include/libgeda/prototype.h: Rename function o_complex_check_symversion
-       o_complex_check_symbol_version
+    * include/libgeda/prototype.h: Rename function o_complex_check_symversion
+      o_complex_check_symbol_version
 
-    *  libgeda/src/guile/g_rc.c: Add handler for check-symbol-versions keyword.
+    * libgeda/src/guile/g_rc.c: Add handler for check-symbol-versions keyword.
 
-    *  src/guile/g_register.c: Register handler for check-symbol-versions
-       keyword.
+    * src/guile/g_register.c: Register handler for check-symbol-versions
+      keyword.
 
-    *  src/iface/i_vars.c: initialize new variable check_symbol_version.
+    * src/iface/i_vars.c: initialize new variable check_symbol_version.
 
-    *  src/object/o_basic.c: Revise function o_read_buffer to not call
-       o_complex_check_symbol_version unless toplevel->check_symbol_version
-       is enabled.
+    * src/object/o_basic.c: Revise function o_read_buffer to not call
+      o_complex_check_symbol_version unless toplevel->check_symbol_version
+      is enabled.
 
 2015-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    *  Symbol Versioning System Enhancements
+    * Symbol Versioning System Enhancements
 
     * Include File Name when reporting symbol Version Clashes
 

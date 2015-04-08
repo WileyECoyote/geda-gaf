@@ -51,8 +51,8 @@ x_color_init (void)
   colormap = gdk_colormap_get_system ();
 
   /* Initialise default color maps */
-  u_color_map_defaults (display_colors);
-  u_color_map_defaults (outline_colors);
+  s_color_map_defaults (display_colors);
+  s_color_map_defaults (outline_colors);
 }
 
 /*! \brief Frees memory used by the color system.

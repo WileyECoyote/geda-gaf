@@ -24,83 +24,6 @@
 #include "libgeda_priv.h"
 #include <geda_debug.h>
 
-COLOR print_colors[MAX_COLORS];
-
-/* See defines in geda_colors.h */
-
-static COLOR default_colors[] = {
-  RGB_WHITE,      /*  0: background         */
-  RGB_BLACK,      /*  1: pin                */
-  RGB_BLACK,      /*  2: net-endpoint       */
-  RGB_BLACK,      /*  3: graphic            */
-  RGB_BLACK,      /*  4: net                */
-  RGB_BLACK,      /*  5: attribute          */
-  RGB_BLACK,      /*  6: logic-bubble       */
-  RGB_BLACK,      /*  7: dots-grid          */
-  RGB_BLACK,      /*  8: detached-attribute */
-  RGB_BLACK,      /*  9: text               */
-  RGB_BLACK,      /* 10: bus                */
-  RGB_GRAY,       /* 11: select             */
-  RGB_GRAY,       /* 12: bounding-box       */
-  RGB_GRAY,       /* 13: zoom-box           */
-  RGB_GRAY,       /* 14: stroke             */
-  RGB_BLACK,      /* 15: lock               */
-  RGB_NOCOLOR,    /* 16: output-background  */
-  RGB_BLACK,      /* 17: junction           */
-  RGB_GRAY,       /* 18: mesh-grid-major    */
-  RGB_NOCOLOR,    /* 19: mesh-grid-minor    */
-  RGB_BLACK,      /* 20: freestyle0         */
-  RGB_BLACK,      /* 21: freestyle1         */
-  RGB_BLACK,      /* 22: freestyle2         */
-  RGB_BLACK,      /* 23: freestyle3         */
-  RGB_BLACK,      /* 24: freestyle4         */
-  RGB_BLACK,      /* 25: freestyle5         */
-  RGB_BLACK,      /* 26: freestyle6         */
-  RGB_BLACK,      /* 27: freestyle7         */
-  RGB_BLACK,      /* 28: freestyle8         */
-  RGB_BLACK,      /* 29: freestyle9         */
-  RGB_ENDMAP
-};
-
-/*! \brief Initialises the color subsystem
- *  \par Function Description
- *  At the moment, just initialises the print color map.
- */
-void u_color_init(void)
-{
-  u_color_map_defaults (print_colors);
-}
-
-/*! \brief Initialise a color map to B&W
- *  \par Function Description
- *  Initialises a color map to a simple default: black features on a
- *  white background, with "special" colors as gray.
- *
- *  \warning \a map must be have length of at least #MAX_COLORS.
- *
- *  \param map Color map to initialise.
- */
-void u_color_map_defaults (COLOR *map)
-{
-  bool  reached_end = FALSE;
-  COLOR c;
-  int   i;
-
-  for (i = 0; i < MAX_COLORS; i++) {
-    if (reached_end) {
-      map[i].enabled = FALSE;
-      continue;
-    }
-    c = default_colors[i];
-    if (c.a == 0) { /* Check for end of default map */
-      reached_end = TRUE;
-      i--;
-      continue;
-    }
-    map[i] = c;
-  }
-}
-
 /* \brief Decode a hexadecimal RGB or RGBA color code.
  * \par Function Description
  * Accepts a hexadecimal color code \a rgba of either the form #RRGGBB
@@ -164,11 +87,11 @@ bool u_color_rgba_decode (const char *rgba,
   return TRUE;
 }
 
-/* \brief Encode a hexadecimal RGB or RGBA color code.
- * \par Function Description
- * Encodes four colour components into either the form #RRGGBB or
- * #RRGGBBAA. The shorter form is used when the alpha component is
- * 0xff.
+/*! \brief Encode a hexadecimal RGB or RGBA color code.
+ *  \par Function Description
+ *  Encodes four colour components into either the form #RRGGBB or
+ *  #RRGGBBAA. The shorter form is used when the alpha component is
+ *  0xff.
  *
  * \param [in] r Red component.
  * \param [in] g Green component.
@@ -183,30 +106,4 @@ char *u_color_rgba_encode (uint8 r, uint8 g, uint8 b, uint8 a)
   else
     return u_string_sprintf("#%02x%02x%02x",
                            (int) r, (int) g, (int) b);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-char *u_color_postscript_string(int color)
-{
-  COLOR c;
-
-  if (color >= MAX_COLORS) {
-    fprintf(stderr,_("Color index out of range"));
-    return NULL;
-  }
-
-  c = print_colors[color];
-
-  if ((c.a == 0) || !c.enabled) {
-    return NULL;
-  } else {
-    return u_string_sprintf ("%.3f %.3f %.3f",
-                            (double) c.r/255.0,
-                            (double) c.g/255.0,
-                            (double) c.b/255.0);
-  }
 }

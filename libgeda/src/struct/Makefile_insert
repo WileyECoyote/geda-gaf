@@ -6,6 +6,7 @@ libgeda_la_SOURCES += \
 			struct/s_attrib.c \
 			struct/s_basic.c \
 			struct/s_clib.c \
+			struct/s_color.c \
 			struct/s_conn.c \
 			struct/s_cue.c \
 			struct/s_encoding.c \

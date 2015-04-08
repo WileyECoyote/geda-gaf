@@ -89,7 +89,7 @@ void libgeda_init(void)
   s_slib_init();
   i_menu_init();
   s_attrib_init();
-  u_color_init();
+  s_color_init();
   s_conn_init();
 
   /* Initialize scheme even if client has not booted Guile */
