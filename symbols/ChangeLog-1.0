@@ -1,5 +1,16 @@
 2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM2575-12-1.sym: Add symbol for Buck regulator with
+      standard pin arrangment.
+
+    * linear/switchreg/LM2575-12-2.sym: Add symbol for Buck regulator with
+      alternate pin arrangment.
+
+    * linear/switchreg/LM2576HVT-1.sym: Add symbol for HV version of generic
+      LM2575.
+
+2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/switchreg/LM2575-1.sym: Clean symbol, add symbol version and
       relocate from regulator to switchreg directory.
 
