@@ -209,7 +209,7 @@
                   ("ixys"            "Manufacturers/IXYS")
                   ("lattice"         "Manufacturers/Lattice Semiconductor")
                   ("lineartech"      "Manufacturers/Linear Technology")
-                     ("microchip/switchreg"            "Manufacturers/Switching Regulators")
+                     ("lineartech/switchreg"           "Manufacturers/Switching Regulators")
                   ("maxim"           "Manufacturers/Maxim")
                   ("microchip"       "Manufacturers/Microchip")
                      ("microchip/battery"              "Manufacturers/Battery")
