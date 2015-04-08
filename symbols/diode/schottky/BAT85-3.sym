@@ -1,10 +1,10 @@
-v 20150315 2
-T 300 750 5 10 0 1 0 0 1
+v 20150401 2
+T 300 800 5 10 0 1 0 0 1
 device=BAT85
 T 300 400 8 10 1 1 0 0 1
 refdes=D?
-L 500 200 600 200 4 0 0 0 -1 -1
-L 200 200 295 200 4 0 0 0 -1 -1
+L 500 200 600 200 3 0 0 0 -1 -1
+L 200 200 295 200 3 0 0 0 -1 -1
 L 300 100 500 200 3 0 2 0 -1 -1
 L 300 300 500 200 3 0 2 0 -1 -1
 L 300 300 300 100 3 0 2 0 -1 -1
@@ -35,7 +35,7 @@ pinlabel=A
 T 100 100 5 8 0 1 0 6 1
 pintype=pas
 }
-T 300 550 9 10 0 1 0 0 1
+T 300 600 9 10 0 1 0 0 1
 footprint=DO-35
 T 1000 600 5 10 0 0 0 0 1
 numslots=0
@@ -43,13 +43,13 @@ T 750 0 5 10 1 1 0 0 1
 value=BAT85
 T 1000 450 5 10 0 0 0 0 1
 symversion=0.4
-T 300 950 5 10 0 1 0 0 1
+T 300 1000 5 10 0 1 0 0 1
 description=diode,schottky,30V,200mA,Vf=0.50V@30mA
-T 300 1150 5 10 0 1 0 0 1
+T 300 1200 5 10 0 1 0 0 1
 documentation=http://wikipedia.org/wiki/Schottky_diode
-T 300 1750 5 10 0 0 0 0 1
+T 300 1800 5 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 300 1550 5 10 0 0 0 0 1
+T 300 1600 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 1350 5 10 0 0 0 0 1
+T 300 1400 5 10 0 0 0 0 1
 use-license=unlimited
