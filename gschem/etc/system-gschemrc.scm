@@ -1117,7 +1117,7 @@
 ; surpress drawing of markers until the desired magnification level
 ; is reached.
 ;
-(text-marker-threshold 21)
+;(text-marker-threshold 12)
 
 ; text-size integer
 ;
