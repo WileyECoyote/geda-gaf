@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150401 2
 P 0 1200 300 1200 1 0 0
 {
 T 200 1250 5 8 1 1 0 6 1
@@ -96,9 +96,9 @@ T 300 1800 5 10 1 1 0 0 1
 footprint=DIP8
 T 300 3000 5 10 0 0 0 0 1
 author=AutoTron
-T 300 2000 5 10 0 0 0 0 1
+T 300 2000 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/lm2574.pdf
-T 300 2200 5 10 0 0 0 0 1
+T 300 2200 5 10 0 1 0 0 1
 description=Bucking Voltage Regulator
 T 300 2400 5 10 0 0 0 0 1
 numslots=0

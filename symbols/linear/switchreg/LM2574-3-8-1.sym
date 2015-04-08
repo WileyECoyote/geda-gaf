@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150401 2
 P 0 1200 300 1200 1 0 0
 {
 T 200 1250 5 8 1 1 0 6 1
@@ -94,15 +94,15 @@ T 300 1800 5 10 1 1 0 0 1
 device=LM2574-3.3-P008E
 T 300 1600 9 10 1 1 0 0 1
 footprint=DIP8
-T 300 3000 5 10 0 0 0 0 1
+T 300 3200 5 10 0 0 0 0 1
 author=AutoTron
-T 300 2000 5 10 0 0 0 0 1
+T 300 2400 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/lm2574.pdf
-T 300 2200 5 10 0 0 0 0 1
+T 300 2200 5 10 0 1 0 0 1
 description=Bucking Voltage Regulator
-T 300 2400 5 10 0 0 0 0 1
-numslots=0
 T 300 2600 5 10 0 0 0 0 1
-dist-license=GPL3
+numslots=0
 T 300 2800 5 10 0 0 0 0 1
+dist-license=GPL3
+T 300 3000 5 10 0 0 0 0 1
 use-license=unlimited

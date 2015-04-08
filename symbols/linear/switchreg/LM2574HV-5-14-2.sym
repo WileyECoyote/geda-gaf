@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150401 2
 P 2200 1600 1900 1600 1 0 0
 {
 T 2000 1650 5 8 1 1 0 0 1
@@ -160,9 +160,9 @@ T 400 2800 5 10 1 1 0 0 1
 footprint=SOIC14
 T 400 4000 5 10 0 0 0 0 1
 author=AutoTron
-T 400 3000 5 10 0 0 0 0 1
+T 400 3200 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/lm2574.pdf
-T 400 3200 5 10 0 0 0 0 1
+T 400 3000 5 10 0 1 0 0 1
 description=Inverting Switching Regulator
 T 400 3400 5 10 0 0 0 0 1
 numslots=0
