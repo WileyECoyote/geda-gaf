@@ -1,5 +1,13 @@
 2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/switchreg/LM2575-1.sym: Clean symbol, add symbol version and
+      relocate from regulator to switchreg directory.
+
+    * linear/switchreg/LM2576T-1.sym: Clean symbol, add symbol version and
+      relocate from regulator to switchreg directory.
+
+2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/schottky/MBR540-1.sym: Add symbol for Schottky 40V, 0.5 Amp
 
     * diode/schottky/MBR540-2.sym: Add symbol for Schottky 40V, 0.5 Amp
