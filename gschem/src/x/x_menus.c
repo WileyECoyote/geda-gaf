@@ -674,7 +674,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   }
   scm_dynwind_end ();
 
-  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_File");
+  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_File/_Save");
   if (menu_item == NULL) {
 
     menu = create_file_menu();
