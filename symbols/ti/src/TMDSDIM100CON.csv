@@ -1,0 +1,161 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+# "PB1 (CLK)". That's useful for micro controller port labels						
+# rotate_labels rotates the pintext of top and bottom pins						
+# this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+# useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	yes					
+sym_width	1800					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20150204 1					
+name	TMDSDIM100CON					
+device	TMDSDIM100CON					
+refdes	CONN?					
+footprint	DIM100					
+description	DIMM Socket for Piccolo Microcontrollers					
+documentation	http://www.ti.com/tool/TMDSDIM100CON5PK					
+author	AutoTron					
+numslots	0					
+dist-license	GPL3					
+use-license	unlimited					
+#slot	0					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	negation lines can be added with "\_" example: \_enable\_ 					
+#	if you want to write a "\" use "\\" as escape sequence					
+#						
+#pin number	seq	type	style	posit.	net	label
+100	100	out	line	l		EMU0
+99	99	out	line	l		TRSTN
+98	98	out	line	l		TDO
+97	97	in	line	l		TDI
+96	96	pwr	line	l		+5V
+95	95	io	line	l		GPIO-33
+94	94	io	line	l		GPIO-31
+93	93	io	line	l		GPIO-29
+92	92	pwr	line	l		+5V
+91	91	io	line	l		GPIO-23
+90	90	io	line	l		GPIO-21
+89	89	io	line	l		GPIP-19
+88	88	io	line	l		GPIO-17
+87	87	pwr	line	l		+5V
+86	86	io	line	l		GPIO-27
+85	85	io	line	l		GPIO-25
+84	84	io	line	l		GPIO-14
+83	83	io	line	l		GPIO-13
+82	82	pwr	line	l		+5V
+81	81	io	line	l		GPIO-85
+80	80	io	line	l		GPIO-49
+79	79	io	line	l		GPIO-11
+78	78	io	line	l		GPIO-09
+77	77	pwr	line	l		+5V
+76	76	io	line	l		GPIO-07
+75	75	io	line	l		GPIO-05
+74	74	io	line	l		GPIO-03
+73	73	io	line	l		GPIO-01
+			spacer	l		
+72	72	io	line	l		GPIO-63
+71	71	io	line	l		ADC-A7
+70	70	io	line	l		GPIO-61
+69	69	io	line	l		ADC-A6
+68	68	io	line	l		GPIO-59
+67	67	io	line	l		ADC-A5
+66	66	io	line	l		NC
+65	65	io	line	l		ADC-A4
+64	64	pwr	line	l		AGND
+63	63	io	line	l		ADC-A3
+62	62	pwr	line	l		AGND
+61	61	io	line	l		ADC-A2
+60	60	pwr	line	l		AGND
+59	59	io	line	l		ADC-A1
+58	58	pwr	line	l		AGND
+57	57	io	line	l		ADC-A0
+			spacer	l		
+56	56	pwr	line	l		GND-ISO
+55	55	io	line	l		NC
+54	54	io	line	l		NC
+53	53	io	line	l		NC
+52	52	io	line	l		ISO-TX
+51	51	io	line	l		V33-ISO
+50	50	io	line	r		EMU1
+49	49	io	line	r		TMS
+48	48	io	line	r		TCK
+47	47	pwr	line	r		DGND
+46	46	io	line	r		GPIO-34
+45	45	io	line	r		GPIO-32
+44	44	io	line	r		GPIO-30
+43	43	io	line	r		GPIO-28
+42	42	io	line	r		GPIO-87
+41	41	io	line	r		GPIO-22
+40	40	io	line	r		GPIO-20
+39	39	io	line	r		GPIO-18
+38	38	io	line	r		GPIO-16
+37	37	pwr	line	r		DGND
+36	36	io	line	r		GPIO-26
+35	35	io	line	r		GPIO-24
+34	34	io	line	r		GPIO-15
+33	33	io	line	r		GPIO-12
+32	32	io	line	r		GPIO-86
+31	31	io	line	r		GPIO-84
+30	30	io	line	r		GPIO-48
+29	29	io	line	r		GPIO-10
+28	28	io	line	r		GPIO-08
+27	27	pwr	line	r		DGND
+26	26	io	line	r		GPIO-06
+25	25	io	line	r		GPIO-04
+24	24	io	line	r		GPIO-02
+23	23	io	line	r		GPIO-00
+			spacer	r		
+22	22	io	line	r		GPIO-62
+21	21	io	line	r		ADC-B7
+20	20	io	line	r		GPIO-60
+19	19	io	line	r		ADC-B6
+18	18	io	line	r		GPIO-58
+17	17	io	line	r		ADC-B5
+16	16	io	line	r		NC
+15	15	io	line	r		ADC-B4
+14	14	pwr	line	r		AGND
+13	13	io	line	r		ADC-B3
+12	12	pwr	line	r		AGND
+11	11	io	line	r		ADC-B2
+10	10	pwr	line	r		AGND
+9	9	io	line	r		ADC-B1
+8	8	pwr	line	r		AGND
+7	7	io	line	r		ADC-B0
+			spacer	r		
+6	6	pwr	line	r		GND-ISO
+5	5	io	line	r		NC
+4	4	io	line	r		NC
+3	3	io	line	r		NC
+2	2	io	line	r		ISO-RX
+1	1	io	line	r		V33-ISO

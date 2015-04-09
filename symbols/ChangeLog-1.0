@@ -1,5 +1,10 @@
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/special/TMDSDIM100CON.sym: Add symbol for Texas Instruments
+      DIMM100 socket used for Piccolo Microcontrollers.
+
+2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/header/header26-2.sym: Add symbol, 13 positions, 26 pins
 
     * connector/header/header32-2.sym: Add symbol, 16 positions, 32 pins
