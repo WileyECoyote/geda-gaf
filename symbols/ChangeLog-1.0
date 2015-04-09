@@ -1,3 +1,9 @@
+2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/header26-2.sym: Add symbol, 13 positions, 26 pins
+
+    * connector/header/header32-2.sym: Add symbol, 16 positions, 32 pins
+
 2015-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header24-2.sym: Add symbol, 12 positions, 24 pins
