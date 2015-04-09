@@ -1,5 +1,13 @@
 2015-04-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/header/header24-2.sym: Add symbol, 12 positions, 24 pins
+
+    * connector/header/header8-2.sym: Clean symbol attribute positions.
+
+    * connector/header/header20-2.sym: Clean symbol attribute positions.
+
+2015-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/header/header14-2.sym: Rename file, was missing the dash 2.
 
 2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
