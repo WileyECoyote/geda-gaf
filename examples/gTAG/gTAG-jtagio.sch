@@ -1,8 +1,8 @@
-v 20140915 2
+v 20150401 2
 C 40200 42900 0 0 0 title-A2.sym
 C 45400 53600 1 0 0 in-1.sym
 {
-T 45400 54750 5 8 0 0 0 0 1
+T 45400 54750 5 10 0 0 0 0 1
 symversion=0.3
 T 46000 53700 5 10 0 0 0 0 1
 footprint=none
@@ -13,7 +13,7 @@ device=INPUT
 }
 C 45400 51800 1 0 0 in-1.sym
 {
-T 45400 52950 5 8 0 0 0 0 1
+T 45400 52950 5 10 0 0 0 0 1
 symversion=0.3
 T 46000 51900 5 10 0 0 0 0 1
 footprint=none
@@ -24,7 +24,7 @@ device=INPUT
 }
 C 45400 50100 1 0 0 in-1.sym
 {
-T 45400 51250 5 8 0 0 0 0 1
+T 45400 51250 5 10 0 0 0 0 1
 symversion=0.3
 T 46000 50200 5 10 0 0 0 0 1
 footprint=none
@@ -35,7 +35,7 @@ device=INPUT
 }
 C 45400 48400 1 0 0 in-1.sym
 {
-T 45400 49550 5 8 0 0 0 0 1
+T 45400 49550 5 10 0 0 0 0 1
 symversion=0.3
 T 46000 48500 5 10 0 0 0 0 1
 footprint=none
@@ -46,7 +46,7 @@ device=INPUT
 }
 C 45400 56000 1 0 0 in-1.sym
 {
-T 45400 57150 5 8 0 0 0 0 1
+T 45400 57150 5 10 0 0 0 0 1
 symversion=0.3
 T 46000 56100 5 10 0 0 0 0 1
 footprint=none
@@ -132,11 +132,11 @@ device=7414
 }
 C 46000 55200 1 0 1 out-1.sym
 {
-T 46000 56350 5 8 0 0 0 6 1
-symversion=0.3
+T 46000 56350 5 10 0 0 0 6 1
+symversion=0.4
 T 45400 55300 5 10 0 0 0 6 1
 footprint=none
-T 46000 55500 5 10 1 1 0 6 1
+T 46000 55500 5 8 1 1 0 6 1
 refdes=tdi_ttl
 T 46000 55500 5 10 0 0 0 0 1
 device=OUTPUT
@@ -164,6 +164,12 @@ N 57500 51300 55600 51300 4
 N 55600 51300 55600 48500 4
 N 55600 48500 54200 48500 4
 C 56100 50200 1 0 0 gnd-1.sym
+{
+T 56300 50550 5 10 0 1 0 0 1
+footprint=none
+T 56300 50200 5 10 0 1 0 0 1
+device=GROUND_NODE
+}
 N 57500 51000 56200 51000 4
 N 56200 51000 56200 50500 4
 N 57500 52800 56200 52800 4
@@ -209,10 +215,20 @@ symversion=0.1
 N 59000 57200 59000 57600 4
 N 59000 55900 59000 56300 4
 C 58900 55600 1 0 0 gnd-1.sym
+{
+T 59100 55950 5 10 0 1 0 0 1
+footprint=none
+T 59100 55600 5 10 0 1 0 0 1
+device=GROUND_NODE
+}
 T 57200 55200 9 15 1 0 0 0 1
 Place near the VCC pin for U20
 C 58800 57600 1 0 0 5V-plus-1.sym
 {
+T 58900 58300 5 10 0 0 0 0 1
+footprint=none
+T 58900 58000 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 T 59100 57600 5 10 1 1 0 0 1
 net=jtag_power:1
 }
@@ -266,21 +282,37 @@ N 50000 56700 50000 51900 4
 N 51400 56700 51400 53700 4
 C 47200 57800 1 0 0 5V-plus-1.sym
 {
+T 47300 58500 5 10 0 0 0 0 1
+footprint=none
+T 47300 58200 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 T 47500 57800 5 10 1 1 0 0 1
 net=jtag_power:1
 }
 C 48500 57800 1 0 0 5V-plus-1.sym
 {
+T 48600 58500 5 10 0 0 0 0 1
+footprint=none
+T 48600 58200 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 T 48800 57800 5 10 1 1 0 0 1
 net=jtag_power:1
 }
 C 49800 57800 1 0 0 5V-plus-1.sym
 {
+T 49900 58500 5 10 0 0 0 0 1
+footprint=none
+T 49900 58200 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 T 50100 57800 5 10 1 1 0 0 1
 net=jtag_power:1
 }
 C 51200 57800 1 0 0 5V-plus-1.sym
 {
+T 51300 58500 5 10 0 0 0 0 1
+footprint=none
+T 51300 58200 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 T 51500 57800 5 10 1 1 0 0 1
 net=jtag_power:1
 }
@@ -290,6 +322,8 @@ N 50000 57800 50000 57600 4
 N 51400 57800 51400 57600 4
 C 56700 50600 1 0 0 nc-left-2.sym
 {
+T 57000 51100 5 10 0 0 0 0 1
+symversion=0.2
 T 56700 51000 5 10 0 0 0 0 1
 value=NoConnection
 T 56700 51400 5 10 0 0 0 0 1
