@@ -2168,6 +2168,50 @@ COMMAND (do_page_manager)
   EXIT_COMMAND(do_page_manager);
 }
 
+/** @brief i_cmd_do_page_first in i_command_Command_Functions */
+COMMAND (do_page_first)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_page_first);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page  *p_first;
+  GList *iter;
+
+  if (w_current->enforce_hierarchy) {
+
+    iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+    iter = g_list_previous(iter);
+
+    if (iter != NULL) {
+      Page  *p_prev = p_first = iter->data;
+      while (p_prev) {
+        p_prev = s_hierarchy_find_prev_page(toplevel->pages, p_prev);
+        if (p_prev) {
+          p_first = p_prev;
+        }
+      }
+    }
+    else {
+      iter = g_list_first(geda_list_get_glist(toplevel->pages));
+      p_first = iter->data;
+    }
+  }
+  else {
+    iter = g_list_first(geda_list_get_glist(toplevel->pages));
+    p_first = iter->data;
+  }
+
+  if (p_first != NULL || p_first != Current_Page) {
+    x_window_set_current_page (w_current, p_first);
+  }
+
+}
+
 /** @brief i_cmd_do_page_prev in i_command_Command_Functions */
 COMMAND (do_page_prev)
 {
@@ -2232,6 +2276,50 @@ COMMAND (do_page_next)
       x_window_set_current_page (w_current, p_new);
     }
   }
+}
+
+/** @brief i_cmd_do_page_last in i_command_Command_Functions */
+COMMAND (do_page_last)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_page_last);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page  *p_last;
+  GList *iter;
+
+  if (w_current->enforce_hierarchy) {
+
+    iter   = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+    NEXT(iter);
+
+    if (iter != NULL) {
+      Page  *p_next = p_last = iter->data;
+      while (p_next) {
+        p_next = s_hierarchy_find_next_page(toplevel->pages, p_next);
+        if (p_next) {
+          p_last = p_next;
+        }
+      }
+    }
+    else {
+      iter = g_list_last(geda_list_get_glist(toplevel->pages));
+      p_last = iter->data;
+    }
+  }
+  else {
+    iter = g_list_last(geda_list_get_glist(toplevel->pages));
+    p_last = iter->data;
+  }
+
+  if (p_last != NULL || p_last != Current_Page) {
+    x_window_set_current_page (w_current, p_last);
+  }
+
 }
 
 /** @brief i_cmd_do_page_new in i_command_Command_Functions */

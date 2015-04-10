@@ -1,3 +1,17 @@
+2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: New Feature Page First and Page Last
+
+    * gschem/etc/system-gschemrc.scm: Add keys and menu entries for new actions
+      page-first and page-last.
+
+    * include/i_actions.h: Add new action macros PAGE_FIRST and PAGE_LAST.
+
+    * include/i_command.h: Add entries for new actions page-first and page-last.
+
+    * src/iface/i_command.c: Add functions i_cmd_do_page_first and do_page_last
+      to process new actions page-first and page-last, respectively.
+
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: New Feature
