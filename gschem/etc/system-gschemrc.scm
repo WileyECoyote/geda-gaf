@@ -391,8 +391,8 @@
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show console Window)
 ;
-(console-window "enabled")
-;(console-window "disabled")
+;(console-window "enabled")
+(console-window "disabled")
 
 ; console-window-type string
 ;
@@ -1657,8 +1657,10 @@
 (map-keys "O P"        "options-show-settings")
 
 (map-keys "P M"        "page-manager")
+(map-keys "P F"        "page-first")
 (map-keys "P N"        "page-next")
 (map-keys "P P"        "page-prev")
+(map-keys "P L"        "page-last")
 (map-keys "P E"        "page-new")
 (map-keys "P R"        "page-revert")
 (map-keys "P C"        "page-close")
@@ -1957,8 +1959,10 @@
         ("SEPARATOR"               #f                      #f)
 
         (,(N_ "_Manager...")       page-manager            "gtk-properties"       ,(N_ "Open the Page Manager"))
+        (,(N_ "_First")            page-first              "gtk-goto-first"       ,(N_ "Goto the first page"))
         (,(N_ "_Previous")         page-prev               "gtk-go-back"          ,(N_ "Switch to the previous page"))
         (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
+        (,(N_ "_Last")             page-last               "gtk-goto-last"        ,(N_ "Goto the last page"))
         (,(N_ "Ne_w")              page-new                "gtk-new"              ,(N_ "Create a new Page"))
         (,(N_ "Prin_t")            page-print              "gtk-print"            ,(N_ "Print the current page"))
         (,(N_ "_Revert")           page-revert             "gtk-revert-to-saved"  ,(N_ "Discard changes and reload the current documents"))
