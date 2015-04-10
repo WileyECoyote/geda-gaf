@@ -55,6 +55,8 @@ style "gschem"
    GedaMenuButton::default-outside-border = "GtkBorder"
    GedaMenuButton::inner-border           = "GtkBorder"
 
+   Compselect::focus-filter     = 1
+
    GschemStatusBar::height      = 4
 
    GtkScale::slider-length      = 23

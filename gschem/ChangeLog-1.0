@@ -1,8 +1,18 @@
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: New Feature
+
+  ** gschem/src/x/x_compselect.c: Initial focus on the Component Dialog is the
+     component tree view and this seems reasonable but some might prefer to have
+     the filter entry receive the initial focus. Add GtkWidget style property
+     focus-filter and function compselect_style_set so users can set preference
+     in the gschem-gtkrc.
+
+2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Incomplete implementation
 
-    * gschem_status_bar.c: The status bar widget was previously given a "height"
+   ** gschem_status_bar.c: The status bar widget was previously given a "height"
       property but there was no means to implement. Add GtkWidget style property
       function gschem_status_bar_style_set and now the height of the status bar
       can be set in the gschem-gtkrc file.

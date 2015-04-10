@@ -2998,6 +2998,151 @@ static void compselect_settings_restore (Compselect *Dialog)
 }
 
 #undef MASK
+
+static void compselect_style_set (GtkWidget *widget, GtkStyle *previous)
+{
+  Compselect *ThisDialog = COMPSELECT (widget);
+
+  int ifocus;
+
+  gtk_widget_style_get (widget, "focus-filter", &ifocus, NULL);
+  if (ifocus) {
+    gtk_widget_grab_focus (GTK_WIDGET (ThisDialog->entry_filter));
+  }
+}
+
+static void compselect_finalize (GObject *object)
+{
+  Compselect *ThisDialog = COMPSELECT (object);
+
+  if (ThisDialog->filter_timeout != 0) {
+    g_source_remove (ThisDialog->filter_timeout);
+    ThisDialog->filter_timeout = 0;
+  }
+
+  G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
+
+}
+
+/*! \brief  Set Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handled the gobject properties setters.
+ *
+ *  \param [in] object  Pointer to Compselect dialog structure
+ *  \param [in] epid    The enumerated property ID
+ *  \param [in] value   The value to set the property
+ *  \param [in] pspec   The parameter specifications for the property
+ */
+static void compselect_set_property (GObject      *object,
+                                     unsigned int  epid,
+                                     const GValue *value,
+                                     GParamSpec   *pspec)
+{
+  Compselect *compselect = COMPSELECT (object);
+
+  switch (epid) {
+    case PROP_BEHAVIOR:
+      gtk_option_menu_set_history(compselect->behavior_menu,
+                                  g_value_get_enum (value));
+      break;
+    case PROP_HIDDEN:
+      compselect->hidden = g_value_get_boolean (value);
+      if (compselect->hidden)
+        gtk_widget_hide (GTK_WIDGET (compselect));
+      else
+        gtk_window_present (GTK_WINDOW (compselect));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
+  }
+
+}
+
+/*! \brief  Get Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handles the gobject properties request.
+ *
+ *  \param [in]  object  Pointer to Compselect dialog structure
+ *  \param [in]  epid    The enumerated property ID
+ *  \param [out] value   The variable that will be set to the property value
+ *  \param [in]  pspec   The parameter specifications for the property
+ */
+static void compselect_get_property (GObject     *object,
+                                     unsigned int epid,
+                                     GValue      *value,
+                                     GParamSpec  *pspec)
+{
+  Compselect *compselect = COMPSELECT (object);
+  GtkWidget  *menuitem;
+
+  switch (epid) {
+      case PROP_SYMBOL:
+        {
+          GtkTreeModel *model;
+          GtkTreeIter   iter;
+          CLibSymbol   *symbol = NULL;
+          int           valid  = TRUE;
+
+          switch (compselect->active_tab) {
+          case IN_USE_TAB:
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (compselect->inusetreeview), &model, &iter))
+            {
+              gtk_tree_model_get (model, &iter, IU_DATA_COLUMN, &symbol, -1);
+            }
+            break;
+          case STD_TAB:
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (compselect->stdtreeview), &model, &iter))
+            {
+              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+            }
+            break;
+          case MAN_TAB:
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (compselect->mantreeview), &model, &iter))
+            {
+              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+            }
+            break;
+          case SIM_TAB:
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (compselect->simtreeview), &model, &iter))
+            {
+              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+            }
+            break;
+          case LOCAL_TAB:
+            if (gtk_tree_selection_get_selected (
+                gtk_tree_view_get_selection (compselect->localtreeview), &model, &iter))
+            {
+              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+            }
+            break;
+          default:
+            BUG_MSG("OOPS!: unknown Tab");
+            valid = FALSE;
+            break;
+          }
+          if (valid) {
+            g_value_set_pointer (value, symbol);
+          }
+          break;
+        }
+      case PROP_BEHAVIOR:
+        menuitem = gtk_menu_get_active( GTK_MENU(gtk_option_menu_get_menu(compselect->behavior_menu)));
+        g_value_set_enum (value, GPOINTER_TO_INT(gtk_object_get_data (GTK_OBJECT (menuitem), "behaviors")));
+        break;
+      case PROP_HIDDEN:
+        g_value_set_boolean (value, compselect->hidden);
+        break;
+      case PROP_VIEW:
+        g_value_set_int (value, compselect->active_tab);
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
+  }
+}
+
 /*! \brief  Compselect Dialog Class Initialization
  *  \par Function Description
  *   This is the class initializer function before construction of
@@ -3008,8 +3153,9 @@ compselect_class_init (CompselectClass *class)
 {
   GParamSpec *params;
 
-  GObjectClass *gobject_class            = G_OBJECT_CLASS (class);
+  GObjectClass      *gobject_class       = G_OBJECT_CLASS (class);
   GschemDialogClass *gschem_dialog_class = GSCHEM_DIALOG_CLASS (class);
+  GtkWidgetClass    *widget_class        = (GtkWidgetClass*)class;
 
   gschem_dialog_class->geometry_save     = compselect_geometry_save;
   gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
@@ -3018,6 +3164,8 @@ compselect_class_init (CompselectClass *class)
   gobject_class->finalize     = compselect_finalize;
   gobject_class->set_property = compselect_set_property;
   gobject_class->get_property = compselect_get_property;
+
+  widget_class->style_set     = compselect_style_set;
 
   compselect_parent_class     = g_type_class_peek_parent (class);
 
@@ -3042,6 +3190,19 @@ compselect_class_init (CompselectClass *class)
                              G_PARAM_READABLE);
 
   g_object_class_install_property ( gobject_class, PROP_VIEW, params);
+
+
+  /*!
+  * CompselectClass:focus-filter:
+  * Sets the initial focus to the filter entry widget widget.
+  */
+  params = g_param_spec_boolean ("focus-filter",
+                               _("Focus Filter"),
+                               _("When true, inital focus will be the filter entry, otherwise the Component Tree"),
+                                 FALSE,
+                                 G_PARAM_READABLE);
+
+  gtk_widget_class_install_style_property (widget_class, params);
 
   signals[REFRESH] =  g_signal_new ("refresh",
                                     G_OBJECT_CLASS_TYPE (gobject_class),
@@ -3228,144 +3389,13 @@ compselect_constructor (GedaType type,
   PACK_BOX( main_vbox, opts_hbox, FALSE, FALSE, 0)
 
   action_area = create_action_area (compselect, (GtkWidget*) main_vbox);
+
   gtk_widget_show_all (action_area);
 
   g_signal_connect ((void*) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     ThisDialog);
   return object;
-}
-
-static void compselect_finalize (GObject *object)
-{
-  Compselect *ThisDialog = COMPSELECT (object);
-
-  if (ThisDialog->filter_timeout != 0) {
-    g_source_remove (ThisDialog->filter_timeout);
-    ThisDialog->filter_timeout = 0;
-  }
-
-  G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
-
-}
-
-/*! \brief  Set Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handled the gobject properties setters.
- *
- *  \param [in] object  Pointer to Compselect dialog structure
- *  \param [in] epid    The enumerated property ID
- *  \param [in] value   The value to set the property
- *  \param [in] pspec   The parameter specifications for the property
- */
-static void compselect_set_property (GObject      *object,
-                                     unsigned int  epid,
-                                     const GValue *value,
-                                     GParamSpec   *pspec)
-{
-  Compselect *compselect = COMPSELECT (object);
-
-  switch (epid) {
-    case PROP_BEHAVIOR:
-      gtk_option_menu_set_history(compselect->behavior_menu,
-                                  g_value_get_enum (value));
-      break;
-    case PROP_HIDDEN:
-      compselect->hidden = g_value_get_boolean (value);
-      if (compselect->hidden)
-        gtk_widget_hide (GTK_WIDGET (compselect));
-      else
-        gtk_window_present (GTK_WINDOW (compselect));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
-  }
-
-}
-
-/*! \brief  Get Properties of the Compselect Dialog
- *  \par Function Description
- *   This function handles the gobject properties request.
- *
- *  \param [in]  object  Pointer to Compselect dialog structure
- *  \param [in]  epid    The enumerated property ID
- *  \param [out] value   The variable that will be set to the property value
- *  \param [in]  pspec   The parameter specifications for the property
- */
-static void compselect_get_property (GObject     *object,
-                                     unsigned int epid,
-                                     GValue      *value,
-                                     GParamSpec  *pspec)
-{
-  Compselect *compselect = COMPSELECT (object);
-  GtkWidget  *menuitem;
-
-  switch (epid) {
-      case PROP_SYMBOL:
-        {
-          GtkTreeModel *model;
-          GtkTreeIter   iter;
-          CLibSymbol   *symbol = NULL;
-          int           valid  = TRUE;
-
-          switch (compselect->active_tab) {
-          case IN_USE_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->inusetreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, IU_DATA_COLUMN, &symbol, -1);
-            }
-            break;
-          case STD_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->stdtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case MAN_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->mantreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case SIM_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->simtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          case LOCAL_TAB:
-            if (gtk_tree_selection_get_selected (
-                gtk_tree_view_get_selection (compselect->localtreeview), &model, &iter))
-            {
-              gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
-            }
-            break;
-          default:
-            BUG_MSG("OOPS!: unknown Tab");
-            valid = FALSE;
-            break;
-          }
-          if (valid) {
-            g_value_set_pointer (value, symbol);
-          }
-          break;
-        }
-      case PROP_BEHAVIOR:
-        menuitem = gtk_menu_get_active( GTK_MENU(gtk_option_menu_get_menu(compselect->behavior_menu)));
-        g_value_set_enum (value, GPOINTER_TO_INT(gtk_object_get_data (GTK_OBJECT (menuitem), "behaviors")));
-        break;
-      case PROP_HIDDEN:
-        g_value_set_boolean (value, compselect->hidden);
-        break;
-      case PROP_VIEW:
-        g_value_set_int (value, compselect->active_tab);
-      default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
-  }
 }
 
 unsigned int compselect_behavior_get_type (void)
