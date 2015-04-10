@@ -1,5 +1,9 @@
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    *microchip/battery/MCP1703CB.sym: Add symbol for Battery Charger
+
+2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * microchip/battery/MCP1702-33.sym: Add symbol for Battery Charger
 
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
