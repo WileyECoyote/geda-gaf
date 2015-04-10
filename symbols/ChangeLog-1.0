@@ -1,5 +1,9 @@
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/battery/MCP1702-33.sym: Add symbol for Battery Charger
+
+2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/special/TMDSDIM100CON.sym: Add symbol for Texas Instruments
       DIMM100 socket used for Piccolo Microcontrollers.
 
