@@ -408,6 +408,7 @@ static void compselect_class_init      (CompselectClass *class);
 static GObject *compselect_constructor (unsigned int type,
                                         unsigned int n_construct_properties,
                                         GObjectConstructParam *construct_params);
+/*
 static void compselect_finalize        (GObject *object);
 static void compselect_set_property    (GObject *object,
                                         unsigned int property_id,
@@ -417,7 +418,7 @@ static void compselect_get_property    (GObject *object,
                                         unsigned int property_id,
                                         GValue *value,
                                         GParamSpec *pspec);
-
+*/
 /*! \brief Get Active Tree View.
  *  \par Function Description
  *  This function returns pointer to the active viewtree
