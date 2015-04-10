@@ -1,10 +1,15 @@
+2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS73501DRV-1.sym: Add symbol 500-mA, Low Quiescent Current,
+      Ultra-Low Noise, High PSRR, Low-Dropout Adjustable Linear Regulator.
+
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    *microchip/battery/MCP1703CB.sym: Add symbol for Battery Charger
+    * microchip/battery/MCP1703CB.sym: Add symbol for Battery Charger.
 
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * microchip/battery/MCP1702-33.sym: Add symbol for Battery Charger
+    * microchip/battery/MCP1702-33.sym: Add symbol for Battery Charger.
 
 2015-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
