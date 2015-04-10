@@ -46,7 +46,8 @@
  *
  *  \param [in] object        Object list to search.
  *  \param [in] return_found  attached slot attribute if found, NULL otherwise.
- *  \return Character string with attribute value, NULL otherwise.
+ *
+ *  \returns Character string with attribute value, NULL otherwise.
  *
  *  \warning
  *  Caller must GEDA_FREE returned character string
@@ -77,7 +78,8 @@ char *s_slot_search_slot (Object *object, Object **return_found)
  *
  *  \param [in] object      The Object list to search.
  *  \param [in] slotnumber  The slot number to search for.
- *  \return Character string with attribute value, NULL otherwise.
+ *
+ *  \returns Character string with attribute value, NULL otherwise.
  *
  *  \warning
  *  Caller must GEDA_FREE returned character string.

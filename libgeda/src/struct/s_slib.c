@@ -346,7 +346,8 @@ char *s_slib_getdir(int index)
  *
  *  \param [in] directory  Character string with directory to get files from.
  *  \param [in] flag       Search control flag. (See below...)
- *  \return A file name if one is found, NULL otherwise.
+ *
+ *  \returns A file name if one is found, NULL otherwise.
  *
  *  \warning
  *  Caller must GEDA_FREE returned pointer.

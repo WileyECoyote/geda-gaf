@@ -41,7 +41,8 @@
  *
  *  \param data The address of the buffer to be managed.
  *  \param size The length of the buffer.
- *  \retval Pointer to a new TextBuffer struct.
+ *
+ *  \returns Pointer to a new TextBuffer struct.
  */
 TextBuffer *s_textbuffer_new (const char *data, const int size)
 {
@@ -105,7 +106,8 @@ TextBuffer *s_textbuffer_free (TextBuffer *tb)
  *
  *  \param tb    TextBuffer to read from.
  *  \param count Maximum number of characters to read.
- *  \retval      Character array, or NULL if no characters left.
+ *
+ *  \returns     Character array, or NULL if no characters left.
  */
 const char *
 s_textbuffer_next (TextBuffer *tb, const gssize count)
@@ -170,7 +172,8 @@ s_textbuffer_next (TextBuffer *tb, const gssize count)
  *  s_textbuffer_next_line().
  *
  *  \param tb    TextBuffer to read from.
- *  \retval      Character array, or NULL if no characters left.
+ *
+ *  \returns     Character array, or NULL if no characters left.
  */
 const char *
 s_textbuffer_next_line (TextBuffer *tb)

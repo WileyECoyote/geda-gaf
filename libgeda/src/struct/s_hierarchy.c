@@ -344,6 +344,7 @@ s_hierarchy_print_page (Page *p_current, void * data)
  *
  *  \param [in] page_list    The list of pages in which to search.
  *  \param [in] current_page The reference page for the search.
+ *
  *  \returns A pointer on the page found or NULL if not found.
   */
 Page *
@@ -378,8 +379,9 @@ s_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
  *
  *  \param [in] page_list    The list of pages in which to search.
  *  \param [in] current_page The reference page for the search.
+ *
  *  \returns A pointer on the page found or NULL if not found.
-  */
+ */
 Page *
 s_hierarchy_find_next_page (PageList *page_list, Page *current_page)
 {

@@ -299,6 +299,7 @@ int s_page_autosave (GedaToplevel *toplevel)
  *  object.
  *
  *  \param [in] list  PageList to check CHANGED flag in.
+ *
  *  \return 1 if any page has the CHANGED flag set, 0 otherwise.
  */
 bool s_page_check_changed (PageList *list)
@@ -599,6 +600,7 @@ void s_page_resequence_by_ids (GedaToplevel *toplevel)
  *  Saves all the pages in the <B>toplevel</B> parameter.
  *
  *  \param [in] toplevel  The GedaToplevel to save pages from.
+ *
  *  \return The number of failed tries to save a page.
  */
 int s_page_save_all (GedaToplevel *toplevel)
@@ -661,6 +663,7 @@ Page *s_page_search (GedaToplevel *toplevel, const char *filename)
  *
  *  \param [in] list      The list of page to search the page in.
  *  \param [in] pid       The ID of the page to find.
+ *
  *  \returns A pointer on the page found or NULL if not found.
  */
 Page *s_page_search_by_page_id (PageList *list, int pid)
@@ -836,6 +839,7 @@ Object *s_page_get_object (Page *page, int sid)
  *  \sa s_page_get_object
  *
  *  \param [in] page      The Page to get objects on.
+ *
  *  \returns a pointer to the Page's GList of objects
  */
 GList *s_page_get_objects (Page *page)
@@ -852,6 +856,7 @@ GList *s_page_get_objects (Page *page)
  *  \param [in] page      The Page to find objects on
  *  \param [in] rects     The RECTANGLE regions to check
  *  \param [in] n_rects   The number of regions
+ *
  *  \return The GList of Objects in the region
  */
 GList*

@@ -785,7 +785,7 @@ char *s_path_string_from_path (const Path *path)
  *  \param [in]  path   The path to convert to a polygon
  *  \param [out] points An array of the polygon's vertices
  *
- *  \return TRUE if the path is closed, FALSE if it is open.
+ *  \returns TRUE if the path is closed, FALSE if it is open.
  */
 int s_path_to_polygon (Path *path, GArray *points)
 {

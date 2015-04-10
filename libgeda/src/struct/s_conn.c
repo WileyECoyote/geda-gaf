@@ -236,9 +236,9 @@ void s_conn_remove_object (Object *to_remove)
  *  Checks if the point (<b>x</b>,<b>y</b>) is on the Object
  *  and between it's endpoints.
  *
- *  \return TRUE if the point is a midpoint of the Object. FALSE
- *  if the point is not a midpoint or if the Object is not a
- *  NET a PIN or a BUS or if the Object is not orthogonally oriented.
+ *  \return TRUE if the point is a midpoint of the Object. FALSE if the
+ *          point is not a midpoint or if the Object is not a NET a PIN
+ *          or a BUS or if the Object is not orthogonally oriented.
  */
 Object *s_conn_check_midpoint(Object *o_current, int x, int y)
 {
@@ -315,6 +315,7 @@ void s_conn_update_glist (GList *obj_list)
  *
  *  \param object1  First Object
  *  \param object2  Second Object
+ *
  *  \return TRUE if the objects are compatible, FALSE if not
  */
 static int check_direct_compat (Object *object1, Object *object2)
@@ -610,6 +611,7 @@ int s_conn_net_search(Object* new_net, int whichone, GList * conn_list)
  *
  *  \param [in] input_list GList of Object's or NULL
  *  \param [in] obj_list   The GList of Object to get connections from
+ *
  *  \return A GList of objects
  *
  *  \warning
@@ -642,6 +644,7 @@ static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
  *
  *  \param [in] input_list   GList of Object's
  *  \param [in] object       Object to get other Objects from
+ *
  *  \return A GList of Objects
  *
  *  \warning

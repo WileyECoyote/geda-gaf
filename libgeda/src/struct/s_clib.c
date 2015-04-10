@@ -891,6 +891,7 @@ const CLibSource *s_clib_get_source_by_name (const char *name)
  *
  *  \param directory The path of the directory to add.
  *  \param name      A descriptive name for the directory.
+ *
  *  \return The #CLibSource associated with the directory.
  *
  *  name format options:
@@ -1030,6 +1031,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
  *  \param get_cmd  The executable & arguments used to retrieve symbol
  *                   data.
  *  \param name      A descriptive name for the component source.
+ *
  *  \return The CLibSource associated with the component source.
  */
 const CLibSource *s_clib_add_command (const char *list_cmd,
@@ -1119,6 +1121,7 @@ const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
  *  Get the name of a source for use e.g. in displaying a GUI.
  *
  *  \param source Source to be examined.
+ *
  *  \return Name of source.
 */
 const char *s_clib_source_get_name (const CLibSource *source)
@@ -1136,6 +1139,7 @@ const char *s_clib_source_get_name (const CLibSource *source)
  *  s_clib_refresh().  It should be freed when no longer needed.
  *
  *  \param source Source to be examined.
+ *
  *  \return A \b GList of #CLibSymbol.
  */
 GList *s_clib_source_get_symbols (const CLibSource *source)
@@ -1151,6 +1155,7 @@ GList *s_clib_source_get_symbols (const CLibSource *source)
  *  to libgeda.
  *
  *  \param symbol Symbol to be examined.
+ *
  *  \return Name of symbol.
 */
 const char *s_clib_symbol_get_name (const CLibSymbol *symbol)
@@ -1184,6 +1189,7 @@ char *s_clib_symbol_get_filename (const CLibSymbol *symbol)
  *  Get the source which a symbol is associated.
  *
  *  \param symbol Symbol to be examined.
+ *
  *  \return Source which owns symbol.
 */
 const CLibSource *s_clib_symbol_get_source (const CLibSymbol *symbol)
@@ -1200,6 +1206,7 @@ const CLibSource *s_clib_symbol_get_source (const CLibSymbol *symbol)
  *  Private function used only in s_clib.c.
  *
  *  \param symbol Symbol to get data for.
+ *
  *  \return Allocated buffer containing symbol data.
  */
 static char *get_data_directory (const CLibSymbol *symbol)
@@ -1234,6 +1241,7 @@ static char *get_data_directory (const CLibSymbol *symbol)
  *  Private function used only in s_clib.c.
  *
  *  \param symbol Symbol to get data for.
+ *
  *  \return Allocated buffer containing symbol data.
  */
 static char *get_data_command (const CLibSymbol *symbol)
@@ -1261,6 +1269,7 @@ static char *get_data_command (const CLibSymbol *symbol)
  *  Private function used only in s_clib.c.
  *
  *  \param symbol Symbol to get data for.
+ *
  *  \return Allocated buffer containing symbol data.
  */
 static char *get_data_scm (const CLibSymbol *symbol)
@@ -1299,6 +1308,7 @@ static char *get_data_scm (const CLibSymbol *symbol)
  *  On failure, returns \b NULL (the error will be logged).
  *
  *  \param symbol Symbol to get data for.
+ *
  *  \return Allocated buffer containing symbol data.
  */
 char *s_clib_symbol_get_data (const CLibSymbol *symbol)
@@ -1382,6 +1392,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
  *
  *  \param pattern The pattern to match against.
  *  \param mode    The search mode to use.
+ *
  *  \return A \b GList of matching #CLibSymbol structures.
  */
 GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
@@ -1485,6 +1496,7 @@ s_clib_symbol_invalidate_data (const CLibSymbol *symbol)
  *  emits a log message warning the user.
  *
  *  \param name The symbol name to match against.
+ *
  *  \return The first matching symbol, or NULL if none found.
  */
 const CLibSymbol *s_clib_get_symbol_by_name (const char *name)
@@ -1519,6 +1531,7 @@ const CLibSymbol *s_clib_get_symbol_by_name (const char *name)
  *  On failure, returns \b NULL (the error will be logged).
  *
  *  \param name The symbol name to match against.
+ *
  *  \return Allocated buffer containing symbol data.
  */
 char *s_clib_symbol_get_data_by_name (const char *name)
@@ -1547,6 +1560,7 @@ char *s_clib_symbol_get_data_by_name (const char *name)
  *  should (probably) also appear in the list.
  *
  *  \param toplevel #GedaToplevel structure to scan.
+ *
  *  \return GList of symbols.
  */
 GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
