@@ -38,7 +38,7 @@ style "gschem"
 {
    #font_name = "FreeMono Bold 12"
    #font_name = "DejaVu Sans 12"
-   font_name = "Liberation Mono Bold 13"
+   font_name  = "Liberation Mono Bold 13"
 
    GedaBulb::indicator-size     = 26
    GedaBulb::indicator-spacing  = 2
@@ -55,8 +55,11 @@ style "gschem"
    GedaMenuButton::default-outside-border = "GtkBorder"
    GedaMenuButton::inner-border           = "GtkBorder"
 
+   GschemStatusBar::height      = 4
+
    GtkScale::slider-length      = 23
    GtkToolButton::icon-spacing  = 4
+
 }
 widget_class "*" style "gschem"
 

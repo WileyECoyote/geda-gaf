@@ -384,6 +384,7 @@ static bool third_button_released (GtkWidget      *label,
   return ret_val;
 }
 
+
 /* ------------------------ End Popup Menu Callbacks  ---------------------- */
 
 static void gschem_status_bar_reformat_coordinates (GschemStatusBar *gsb)
@@ -391,10 +392,18 @@ static void gschem_status_bar_reformat_coordinates (GschemStatusBar *gsb)
   gschem_status_bar_set_coordinates (GTK_WIDGET(gsb), gsb->x0, gsb->y0, gsb->x1, gsb->y1);
 }
 
+static void gschem_status_bar_style_set (GtkWidget *widget, GtkStyle *previous)
+{
+  int height;
+
+  gtk_widget_style_get (GTK_WIDGET (widget), "height", &height, NULL);
+
+  gschem_status_bar_set_height (widget, height);
+}
+
 /*! \brief Dispose of the object
  */
-static void
-dispose (GObject *object)
+static void dispose (GObject *object)
 {
   /* lastly, chain up to the parent dispose */
   g_return_if_fail (gschem_status_bar_parent_class != NULL);
@@ -403,8 +412,7 @@ dispose (GObject *object)
 
 /*! \brief Finalize object
  */
-static void
-finalize (GObject *object)
+static void finalize (GObject *object)
 {
   GschemStatusBar *status_bar = GSCHEM_STATUS_BAR (object);
   GEDA_FREE(status_bar->buffers);
@@ -484,8 +492,9 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
 static void
 gschem_status_bar_class_init (GschemStatusBarClass *klass)
 {
-  GObjectClass *gobject_class     = G_OBJECT_CLASS (klass);
-  GParamSpec   *pspec;
+  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class    = (GtkWidgetClass*)klass;
+  GParamSpec     *pspec;
 
   gschem_status_bar_parent_class  = G_OBJECT_CLASS (g_type_class_peek_parent (klass));
 
@@ -496,6 +505,8 @@ gschem_status_bar_class_init (GschemStatusBarClass *klass)
 
   gobject_class->get_property     = get_property;
   gobject_class->set_property     = set_property;
+
+  widget_class->style_set          = gschem_status_bar_style_set;
 
   /* Register properties */
   pspec = g_param_spec_int ("coord-mode",
@@ -595,6 +606,20 @@ gschem_status_bar_class_init (GschemStatusBarClass *klass)
                             (G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_STATUS_TEXT_COLOR, pspec);
+
+  /*!
+  * GschemStatusBar:height:
+  * Sets the status_height of the status bar widget.
+  */
+  pspec = g_param_spec_int ("height",
+                          _("Status Bar Height"),
+                          _("Sets or gets the height of the status bar"),
+                             0,
+                             25,
+                             2,
+                            (G_PARAM_READABLE));
+
+  gtk_widget_class_install_style_property (widget_class, pspec);
 
   signals[SET_MIDDLE_ACTION]   = g_signal_new ("set-middle-action",
                                                 gschem_status_bar_get_type(),
@@ -1283,7 +1308,6 @@ gschem_status_bar_set_grid_mode (GtkWidget *widget, int mode)
   else {
     if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->grid_mode = mode;
-      //g_object_notify (G_OBJECT (widget), "grid-mode");
     }
     else {
       BUG_MSG("widget is not a GschemStatusBar");
@@ -1309,7 +1333,6 @@ gschem_status_bar_set_grid_size (GtkWidget *widget, int size)
   else {
     if (GSCHEM_IS_STATUS_BAR(widget)) {
       ((GschemStatusBar*)widget)->grid_size = size;
-      //g_object_notify (G_OBJECT (widget), "grid-size");
     }
     else {
       BUG_MSG("widget is not a GschemStatusBar");
@@ -1335,7 +1358,7 @@ gschem_status_bar_set_height (GtkWidget *widget, int height)
   gtk_misc_set_padding (GTK_MISC (status_bar->middle_label), STATUS_XPAD, height);
   gtk_misc_set_padding (GTK_MISC (status_bar->right_label), STATUS_XPAD, height);
   gtk_misc_set_padding (GTK_MISC (status_bar->grid_label), STATUS_XPAD, height);
- gtk_misc_set_padding (GTK_MISC (status_bar->status_label), STATUS_XPAD, height);
+  gtk_misc_set_padding (GTK_MISC (status_bar->status_label), STATUS_XPAD, height);
 
 #else
 
