@@ -173,8 +173,8 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "text-size",                 1, 0, 0, g_rc_text_size },
 
   /* Undo System */
-  { "undo-levels",               1, 0, 0, g_rc_undo_levels },
   { "undo-control",              1, 0, 0, g_rc_undo_control },
+  { "undo-levels",               1, 0, 0, g_rc_undo_levels },
   { "undo-type",                 1, 0, 0, g_rc_undo_type },
   { "undo-panzoom",              1, 0, 0, g_rc_undo_panzoom },
   { "undo-preserve",             1, 0, 0, g_rc_undo_preserve },

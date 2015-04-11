@@ -1171,7 +1171,7 @@
 ; was performed unless the undo-panzoom is enabled. This means that if
 ; undo-panzoom is "disabled" and "undo-preserve" is enabled, operations
 ; may be undone that are not in the current view.
-; (User familar with gschem before this feature was implemented, that
+; (User familar with gschem before this feature was implemented that
 ; disabled undo-panzoom, should try setting both to enabled)
 ;
 ;(undo-preserve "disabled")

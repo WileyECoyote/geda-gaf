@@ -2084,7 +2084,9 @@ SCM g_rc_text_size(SCM size)
 
   return SCM_BOOL_T;
 }
+
 /* ----- Undo System ----- */
+
 /*! \brief This function processes the undo-control RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2099,6 +2101,7 @@ SCM g_rc_undo_control(SCM mode)
 
   RETURN_G_RC_MODE("undo-control", default_undo_control, 2);
 }
+
 /*! \brief This function processes the undo-levels RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

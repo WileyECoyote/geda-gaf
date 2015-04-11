@@ -327,8 +327,8 @@ enum ActionFlag
         COMMAND ( text_marker_size )
         COMMAND ( text_marker_threshold )
         COMMAND ( text_size )
-        COMMAND ( undo_levels )
         COMMAND ( undo_control )
+        COMMAND ( undo_levels )
         COMMAND ( undo_panzoom )
         COMMAND ( undo_preserve )
         COMMAND ( undo_type )
@@ -629,10 +629,10 @@ enum {
      COMMAND ( text-marker-size,             NULL, USE_WORKER_THREAD, text_marker_size)
      COMMAND ( text-marker-threshold,        NULL, USE_WORKER_THREAD, text_marker_threshold)
      COMMAND ( text-size,                    NULL, USE_WORKER_THREAD, text_size)
-     COMMAND ( undo-levels,                  NULL, USE_WORKER_THREAD, undo_levels)
      COMMAND ( undo-control,                 NULL, USE_WORKER_THREAD, undo_control)
-     COMMAND ( undo-preserve,                NULL, USE_WORKER_THREAD, undo_panzoom)
-     COMMAND ( undo-restore-view,            NULL, USE_WORKER_THREAD, undo_preserve)
+     COMMAND ( undo-levels,                  NULL, USE_WORKER_THREAD, undo_levels)
+     COMMAND ( undo-panzoom,                 NULL, USE_WORKER_THREAD, undo_panzoom)
+     COMMAND ( undo-preserve,                NULL, USE_WORKER_THREAD, undo_preserve)
      COMMAND ( undo-type,                    NULL, USE_WORKER_THREAD, undo_type)
 
 #ifndef I_DO_DECLARE
