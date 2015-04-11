@@ -1,5 +1,14 @@
 2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/: Add 2 symbols for High-Voltage Half-Bridge Gate Driver With
+      Programmable Delay.
+
+    * ti/LM5102-1.sym: (PWSON)
+
+    * ti/LM5102-2.sym: (VSSOP)
+
+2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/ldo/TPS73501DRV-1.sym: Add symbol 500-mA, Low Quiescent Current,
       Ultra-Low Noise, High PSRR, Low-Dropout Adjustable Linear Regulator.
 
