@@ -3009,7 +3009,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
     /* Set the tab width, using pango tab array */
     tab_array = pango_tab_array_new (1, TRUE);
     real_tab_width = text_view_calculate_real_tab_width(GTK_TEXT_VIEW(tientry),
-                                                        tab_in_chars);
+                                                        DEFAULT_TAB_SIZE);
     if (real_tab_width >= 0) {
       pango_tab_array_set_tab (tab_array, 0, PANGO_TAB_LEFT, real_tab_width);
       /* printf("Real tab width: %i\n", real_tab_width);*/

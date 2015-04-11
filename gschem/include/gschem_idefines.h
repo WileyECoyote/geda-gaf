@@ -146,6 +146,9 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 
 /*--------- Miscellaneous ----------*/
 
+/*! \def DEFAULT_TAB_SIZE Size of a tab in characters */
+#define DEFAULT_TAB_SIZE 8
+
 /* These modes are for action_feedback_mode. There's a hack in */
 /*  i_keypress.c dealing with the 0 and 1 (has to be these values */
 #define OUTLINE         0

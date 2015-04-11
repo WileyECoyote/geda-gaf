@@ -87,9 +87,6 @@
  */
 #define PRINT_LINE_SPACING 1.12
 
-/*! Size of a tab in characters */
-int tab_in_chars = 8;
-
 /*! \brief get the position of a text object
  *
  *  \par Function Description
