@@ -130,13 +130,14 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
                            "elect_type", "mech_type", "node_type", "line_width",
                             NULL};
 
-  if (! PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiiiSSSSiiiiiiiiii:geda.Pin.__init__",
-                                    kwlist, &py_name, &type, &pid, &sid, &locked,
-                                    &self->cid, &self->nid, &py_electrical, &py_mechanical,
-                                    &py_label, &py_number,&self->sequence, &self->whichend,
-                                    &self->x[0], &self->y[0], &self->x[1], &self->y[1],
-                                    &self->elect_type, &self->mech_type, &self->node_type,
-                                    &self->line_width))
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiiiSSSSiiiiiiiiii:geda.Pin.__init__",
+                                   kwlist, &py_name, &type, &pid, &sid, &locked,
+                                   &self->cid, &self->nid,
+                                   &py_electrical, &py_mechanical, &py_label, &py_number,
+                                   &self->sequence, &self->whichend,
+                                   &self->x[0], &self->y[0], &self->x[1], &self->y[1],
+                                   &self->elect_type, &self->mech_type, &self->node_type,
+                                   &self->line_width))
   {
     PyErr_SetString(PyExc_TypeError, "Error initializing new Pin object");
     return -1;
@@ -148,6 +149,7 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(number)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
+
   if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
     return -1;
 

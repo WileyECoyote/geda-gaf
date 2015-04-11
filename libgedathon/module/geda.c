@@ -1043,7 +1043,6 @@ METHOD(get_object)
   }
 
   if (PyObject_TypeCheck(py_capsule, GedaObjectClass())) {
-
     py_object = py_capsule; /* was an object not capsule so give back */
   }
   else {

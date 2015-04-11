@@ -704,13 +704,20 @@ get_pin_object_data(Object *object)
 
   int line_width   = object->line_options->line_width;
 
+  /* Check and handle missing attributes */
   if (!elect_type)
     elect_type = "";
 
   if (!mech_type)
     mech_type = "";
 
-  data = Py_BuildValue("siiiiiissssiiiiiiiiii",  name, type, pid, sid, lock,
+  if (!label)
+    label = "";
+
+  if (!number)
+    number = "";
+
+  data = Py_BuildValue("siiiiiissssiiiiiiiiii", name, type, pid, sid, lock,
                        cid, nid, elect_type, mech_type, label,
                        number, sequence, whichend, x1, y1, x2, y2,
                        e_type, m_type, n_type, line_width);
