@@ -1,3 +1,9 @@
+2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/export.c: Revise function cmd_export to eliminate direct
+      reference to a structure in libgeda, use s_color_get_print_color_map
+      to get a copy of the print color map.
+
 2015-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
      * gaf/po/it.po: Add Italian translation from master branch.

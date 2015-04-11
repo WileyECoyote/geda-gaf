@@ -1,3 +1,12 @@
+2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/globals.h: Relocate file to include directory and eliminate
+      tab_in_chars.
+
+    * include/libgeda_priv.h: Add globals.h
+
+    * include/libgeda/libgeda.h: Remove globals.h
+
 2015-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/src/utility/u_color.c: Remove color-mapping related functions

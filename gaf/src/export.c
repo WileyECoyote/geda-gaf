@@ -155,25 +155,35 @@ static struct ExportSettings settings = {
 void
 cmd_export (int argc, char **argv)
 {
-  int i;
-  GError *err = NULL;
-  char *tmp;
+  GError *err;
+  GArray *color_map;
+
   const char *out_suffix;
-  struct ExportFormat *exporter = NULL;
-  GArray *render_color_map = NULL;
-  char *original_cwd = g_get_current_dir ();
+
+  char *tmp;
+  char *original_cwd;
+
+  int i;
+
+  struct ExportFormat *exporter;
+
+  err = NULL;
+  exporter = NULL;
+  original_cwd = g_get_current_dir ();
 
   gtk_init_check (&argc, &argv);
   scm_init_guile ();
   libgeda_init ();
+
   scm_dynwind_begin (0);
   toplevel = geda_toplevel_new ();
-  edascm_dynwind_toplevel (toplevel);
 
   /* Now load rc files, if necessary */
   if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
     g_rc_parse ("gaf export", NULL, NULL);
   }
+  scm_dynwind_end ();
+
   i_vars_libgeda_set (toplevel); /* Ugh */
 
   /* Parse configuration files */
@@ -260,18 +270,16 @@ cmd_export (int argc, char **argv)
                                       export_text_rendered_bounds,
                                       renderer);
 
-  /* Create color map */
-  render_color_map =
-    g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
-  render_color_map =
-    g_array_append_vals (render_color_map, print_colors, MAX_COLORS);
+  /* Get the print color map */
+  color_map = s_color_get_print_color_map();
+
   if (!settings.color) {
     /* Create a black and white color map.  All non-background colors
      * are black. */
     COLOR white = {~0, ~0, ~0, ~0, TRUE};
     COLOR black = {0, 0, 0, ~0, TRUE};
     for (i = 0; i < MAX_COLORS; i++) {
-      COLOR *c = &g_array_index (render_color_map, COLOR, i);
+      COLOR *c = &g_array_index (color_map, COLOR, i);
       if (!c->enabled) continue;
 
       if (c->a == 0) {
@@ -286,12 +294,13 @@ cmd_export (int argc, char **argv)
       }
     }
   }
-  eda_renderer_set_color_map (renderer, render_color_map);
+  eda_renderer_set_color_map (renderer, color_map);
 
   /* Render */
   exporter->func ();
 
-  scm_dynwind_end ();
+  g_array_free (color_map, TRUE);
+
   exit (0);
 }
 
