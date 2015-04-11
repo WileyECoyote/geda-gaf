@@ -1,5 +1,9 @@
 2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * NEWS: Minor revisions to old news.
+
+2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: New Feature Page First and Page Last
 
     * gschem/etc/system-gschemrc.scm: Add keys and menu entries for new actions

@@ -9,15 +9,15 @@ more information, please consult the `ChangeLog' file.
 
 Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
-* This release of the Rampage Edition of the gEDA-gaf suites commemorates
+* This release of the Rampage Edition of the gEDA-gaf suite commemorates
   the 17th Anniversary of the first public release of gEDA-gaf. The 2.09
-  series releases reflected a very aggressive progression of new features
+  series releases reflected a very aggressive development of new features
   and major enhancements in many areas. Numerous enhancements focused on
   existing features and functions that did not always work as expected.
 
 * New editing functions provide powerful methods to improve productivity.
 
-  A new Extend objects functions allows linear objects to be extended to
+  A new Extend Objects functions allows linear objects to be extended to
   other objects with a simple key press.
 
   A new Break function allows Arcs, Boxes, Circles, Linear objects, and
@@ -33,7 +33,7 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
   A new bimodal Offset function provides editing methods to quickly create
   new objects at programmable distances. The distance can be specified by
-  entering a value in a dialog or offsetting Selections set to the current
+  entering a value in a dialog or offsetting Selection sets to the current
   pointer position using hot-keys. The offset distance is retained between
   operations.
 
@@ -44,7 +44,8 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
   action.
 
   A new RC keyword; third-button-cancel, allows user to specify a preference
-  for canceling operations using the third mouse button.
+  for canceling operations using the third mouse button. In addition, object
+  adder modes can now be cancel by double-clicking the final entry point.
 
   A new Zoom to Magnification feature allows user to zoom to a specified level.
 
@@ -57,7 +58,7 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
   ratios of image objects can be freely modified using Grips. The Ctrl key can
   be combined to maintain the aspect ratio identically to the old behavior.
   When exporting images using the new export feature, options are provided to
-  export the image at the original aspect or the current aspect ratio and size.
+  export the image at the original or the current aspect ratio and size.
 
 * Coordinates can now be displayed in the status bar using Cartesian and vector
   formats. The format can be changed at any time, include inside of an action,
@@ -65,10 +66,10 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
   pop-up menu. Vector formats revert to the previous selected format when not
   applicable to the active context.
 
-* Pointer button assigns can now be set via a pop-up menu by clicking on the
-  associate button status widget on the Status bar. Assignments can still be
-  set using in the Preferences Dialog or over-ridden using RC keywords, but
-  the new method allows changing assignments while inside an action.
+* Pointer button assignments can now be set via a pop-up menu by clicking on
+  the associated status widget on the Status bar. Assignments can still be set
+  using in the Preferences Dialog or over-ridden using RC keywords, but the
+  new method allows changing assignments while inside an action.
 
 * The status text now changes to blue when inside of an editing action.
 
@@ -76,44 +77,47 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
 * Menus in Gschem have been revised for better organization with enhanced
   options. The tools menu now includes access to Version tracking and
-  alternative simulations back-ends. A toggle widget has been added to the
-  Options menu to toggle a new drag-can-move option to disable the dragging
-  moving.
+  alternative simulations back-ends. A toggle widget has been added to
+  the Options menu to toggle a new drag-can-move preference variable in
+  order to enable and disable dragging moving.
 
   A new File/Export main menu fly-out was added for options to export both
   embedded components and pictures. Exporting pictures utilized a new custom
   Image Chooser Dialog allowing user to select from a variety of options.
-  There are no restrictions on the type of image that can be exported.
+  All available image formats suppported by host libraries are supported.
 
   Draw-Order functions have been added to the Page menu as a fly-out using
-  Scheme, allowing users to manipulate the order in which objects a drawn.
+  Scheme, allowing users to manipulate the order in which objects are drawn.
 
   The pop-up context menu now provides options for Copy, Move, Rotate, Mirror,
   Component Properties, Zoom to Mag, and Zoom to Selection. Additional options
-  have also been add as fly-out side menu to the pop-up menu. Fly-out options
-  use the X-Y location of the pointer when the context was invoked.
+  have also been add as fly-out side menus to the pop-up menu. Fly-out options
+  use the X-Y location of the pointer when the context was invoked. Copy, Move,
+  Rotate, and Mirror actions were reinstated and work identically to previous
+  implementations.
 
-  Additional icons are provided for "Move", simulation, DRC, attribute-reset.
-  The default icon for "Move" was changed to have a more consistence theme
-  with other editing icons.
+  Additional icons are provided for "Move", Simulations, DRC, and attribute-
+  reset. The default icon for "Move" was changed to have a more consistence
+  theme with other editing icons.
 
   Menu tool-tips for File/Recent and Sessions/Restore now respond properly to
   user preferences. Tool-tips for symbol names on the Component dialog field
   shows the full path to symbol file.
 
   Anti-alias options were added to the Preference dialog in Gschem for the
-  anti-alias method to be used by the chosen render.
+  anti-alias method to be used by the chosen render. Modifing the anti-alias
+  method longer requires a re-start for the new setting to take effect.
 
 * Page Select Dialog has been enhanced to allow displaying file names without
   the paths, a toggle switch allows users to switch the path portion on or off
   in the tree-view. The user perference is retained between sessions.
 
-* The appearance of Auto-Number Dialog has been improved and dialog is more
-  robust. The dialog was enhanced with frames and separate filter options for
-  scope text including options for wild-cards and a list of recently used
-  filters. Recent filters are not retained between sessions.
+* The appearance of Auto-Number Dialog has been improved and is more robust.
+  The dialog was enhanced with frames and separate filter options for scope
+  text including options for wild-cards and a list of recently used filters.
+  Recent filters are not retained between sessions.
 
-* The Line Type Dialog now includes an options combo to set the line end type.
+* The Line Type Dialog now includes an options combo to set the line end-type.
 
 * The Selection Tracker system used by editing dialogs has been enhanced to
   to update dialogs tracking a selection when the active page is changed.
@@ -121,9 +125,10 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 * Backup files are now properly removed after using "save-as"
 
 * Symbol version checking can now be disabled on a per reference basis using
-  a new option on the Component Dialog.
+  a new option on the Component Properties Dialog.
 
-* Additional Symbols, including symbols for more modern semiconductors.
+* Additional Symbols, including symbols for more modern semiconductors have
+  been added to the library.
 
 * Libgeda API has been expanded to provide more functionality and has improved
   stability. The API now includes image manipulation routines allowing embedded
@@ -138,10 +143,10 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
   intended to be used when implementations provide high-level version tracking.
 
 * Libgedacairo offers improved image quality and better documentation. The Marker
-  Threshold Distance is user customizable and can be set on the Preferences Dialog
-  in Gschem.
+  Threshold Distance is now user customizable and can be set on the Preferences
+  Dialog in Gschem.
 
-* New Libgedathon scripts; geda-snap-grid, gsym-set-visibility, gsym-set-font-size
+* New Libgedathon scripts; geda-snap-grid, gsym-attribute, gsym-set-font-size
   and gsym-set-visibility provide solutions for "batch editing" geda-gaf files.
 
 * Libgedauio has more Widgets and expanded Doxygen documentation. The new
@@ -150,7 +155,9 @@ Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
   The GedaComboBox widget has global settings that can be set through gtk RC,
   or changed via instances using right mouse pop-up menu independent of the
-  application or dialog in which the widget is used.
+  application or dialog in which the widget is used, allowing users to choose
+  between menu style or tree-list style combo boexes, regardless of the host
+  system theme setting.
 
   Color Menu view types can be set on any dialog with the color button with
   the settings retained between sessions.
