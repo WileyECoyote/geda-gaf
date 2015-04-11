@@ -27,7 +27,6 @@ libgedainclude_HEADERS = \
 	libgeda/geda_pin.h \
 	libgeda/geda_text.h \
 	libgeda/geda_toplevel.h \
-	libgeda/globals.h \
 	libgeda/libgeda.h \
 	libgeda/o_types.h \
 	libgeda/papersizes.h \
@@ -38,6 +37,7 @@ libgedainclude_HEADERS = \
 
 noinst_HEADERS = \
 	gettext_priv.h \
+	globals.h \
 	i_vars_priv.h \
 	libgeda_priv.h \
 	prototype_priv.h \

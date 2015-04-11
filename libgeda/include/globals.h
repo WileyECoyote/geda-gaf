@@ -30,9 +30,6 @@
 #ifndef _GLOBALS_H_INCL
 #define _GLOBALS_H_INCL
 
-/* Size of a tab in characters */
-extern int tab_in_chars;
-
 /* Color map for printing */
 extern COLOR print_colors[MAX_COLORS];
 

@@ -51,8 +51,6 @@
 #include <libgeda/geda_config.h>
 #include <libgeda/geda_errors.h>
 
-#include <libgeda/globals.h>
-
 #include <libgeda/geda_colors.h>
 #include <libgeda/papersizes.h>
 #include <libgeda/geda_list.h>
