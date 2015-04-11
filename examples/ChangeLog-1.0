@@ -1,3 +1,9 @@
+2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/gTAG/7414-gt.sym: Rename symbol file to avoid conflict with
+      library symbol 7414-1.sym. Log message reported "found more than one
+      symbol" warning when loading the example.
+
 2015-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/lightning.sch: Fix upper connection to R4
