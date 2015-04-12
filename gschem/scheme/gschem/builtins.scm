@@ -227,40 +227,40 @@
 ;; -------------------------------------------------------------------
 ;;;; Actions related to adding things
 
-(define-action-public (&add-component #:label (_ "Add Component") #:icon "gschem-insert-symbol")
+(define-action-public (&add-component #:label (_ "Add Component") #:icon "insert-symbol")
   (%add-component))
 
-(define-action-public (&add-attribute #:label (_ "Add Attribute") #:icon "gschem-insert-attribute")
+(define-action-public (&add-attribute #:label (_ "Add Attribute") #:icon "insert-attribute")
   (%add-attribute))
 
-(define-action-public (&add-net #:label (_ "Add Net") #:icon "gschem-insert-net")
+(define-action-public (&add-net #:label (_ "Add Net") #:icon "insert-net")
   (%add-net))
 
-(define-action-public (&add-bus #:label (_ "Add Bus") #:icon "gschem-insert-bus")
+(define-action-public (&add-bus #:label (_ "Add Bus") #:icon "insert-bus")
   (%add-bus))
 
-(define-action-public (&add-text #:label (_ "Add Text") #:icon "gschem-insert-text")
+(define-action-public (&add-text #:label (_ "Add Text") #:icon "insert-text")
   (%add-text))
 
-(define-action-public (&add-line #:label (_ "Add Line") #:icon "gschem-insert-line")
+(define-action-public (&add-line #:label (_ "Add Line") #:icon "insert-line")
   (%add-line))
 
-(define-action-public (&add-path #:label (_ "Add Path") #:icon "gschem-insert-path")
+(define-action-public (&add-path #:label (_ "Add Path") #:icon "insert-path")
   (%add-path))
 
-(define-action-public (&add-box #:label (_ "Add Box") #:icon "gschem-insert-box")
+(define-action-public (&add-box #:label (_ "Add Box") #:icon "insert-box")
   (%add-box))
 
-(define-action-public (&add-circle #:label (_ "Add Circle") #:icon "gschem-insert-circle")
+(define-action-public (&add-circle #:label (_ "Add Circle") #:icon "insert-circle")
   (%add-circle))
 
-(define-action-public (&add-arc #:label (_ "Add Arc") #:icon "gschem-insert-arc")
+(define-action-public (&add-arc #:label (_ "Add Arc") #:icon "insert-arc")
   (%add-arc))
 
-(define-action-public (&add-pin #:label (_ "Add Pin") #:icon "gschem-insert-pin")
+(define-action-public (&add-pin #:label (_ "Add Pin") #:icon "insert-pin")
   (%add-pin))
 
-(define-action-public (&add-picture #:label (_ "Add Picture") #:icon "gschem-insert-image")
+(define-action-public (&add-picture #:label (_ "Add Picture") #:icon "insert-image")
   (%add-picture))
 
 ;; -------------------------------------------------------------------
@@ -284,13 +284,13 @@
 (define-action-public (&attributes-detach #:label (_ "Detach Attributes") #:icon "attribute-detach")
   (%attributes-detach))
 
-(define-action-public (&attributes-show-value #:label (_ "Show Attribute Value") #:icon "gschem-show-value")
+(define-action-public (&attributes-show-value #:label (_ "Show Attribute Value") #:icon "show-value")
   (%attributes-show-value))
 
-(define-action-public (&attributes-show-name #:label (_ "Show Attribute Name") #:icon "gschem-show-name")
+(define-action-public (&attributes-show-name #:label (_ "Show Attribute Name") #:icon "show-name")
   (%attributes-show-name))
 
-(define-action-public (&attributes-show-both #:label (_ "Show Name & Value") #:icon "gschem-show-both")
+(define-action-public (&attributes-show-both #:label (_ "Show Name & Value") #:icon "show-both")
   (%attributes-show-both))
 
 (define-action-public (&attributes-visibility #:label (_ "Toggle Text Visibility"))

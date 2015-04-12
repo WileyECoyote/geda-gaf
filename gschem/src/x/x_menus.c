@@ -103,7 +103,7 @@ static PopupEntry popup_items[] = {
   { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL },
   { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL },
   { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL },
-  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "gschem-zoom-mag", NULL},
+  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       NULL},
   { N_("Selection"),         x_menu_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", NULL},
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
@@ -121,7 +121,7 @@ static PopupEntry popup_items[] = {
   { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      NULL },
   { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    NULL },
   { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    NULL },
-  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "gschem-extend",  NULL },
+  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         NULL },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 

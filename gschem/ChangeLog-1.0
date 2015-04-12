@@ -1,3 +1,14 @@
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Change primary assignment key for attributes-
+      find-text from "B <Shift>F" to "B F". Update icon names for actions
+      "add-attribute" and something else.
+
+    * gschem-icons.svg: show-hidden-16 and show-hidden-22 missing from svg, the
+      png files existed, but could not locate even an older svg with the stupid
+      little two Ts, so had to recreate. I think icons came out a little better,
+      not quite so fugly, renamed all theme icons with gschem prefix.
+
 2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_keys.c: Rename function g_keys_to_list_store to

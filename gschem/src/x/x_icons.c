@@ -100,17 +100,17 @@ const char* IDS_GSCHEM_ICONS[] = {
 };
 
 const char* IDS_THEME_ICONS_22[] = {
-  "attribute-visibility",    "gschem-attribute-attach",  "gschem-attribute-detach",
-  "gschem-attribute-reset",  "gschem-clone",
-  "gschem-datasheet",        "gschem-deselect",          "gschem-insert-arc",
-  "gschem-insert-attribute", "gschem-insert-box",        "gschem-insert-bus",
-  "gschem-insert-circle",    "gschem-insert-line",       "gschem-insert-net",
-  "gschem-insert-path",      "gschem-insert-pin",        "gschem-insert-symbol",
-  "gschem-insert-text",      "gschem-extend",            "gschem-multi-clone",
-  "gschem-show-both",        "gschem-show-value",        "gschem-show-name",
-  "gschem-insert-text",      "gschem-unselect-all",      "gschem-zoom-extents",
-  "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
-  "gschem-zoom-out",         "gschem-zoom-selection",
+  "attribute-attach",        "attribute-detach",         "attribute-reset",
+  "attribute-visibility",    "clone",
+  "symbol-datasheet",        "deselect",                 "insert-arc",
+  "insert-attribute",        "insert-box",               "insert-bus",
+  "insert-circle",           "insert-line",              "insert-net",
+  "insert-path",             "insert-pin",               "insert-symbol",
+  "insert-text",             "extend",                   "multi-clone",
+  "show-both",               "show-value",               "show-name",
+  "insert-text",             "unselect-all",             "zoom-extents",
+  "zoom-fit",                "zoom-in",                  "zoom-mag",
+  "zoom-out",                "zoom-selection",
   NULL
 };
 

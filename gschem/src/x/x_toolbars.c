@@ -102,7 +102,8 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_add_net, etb_add_bus, etb_add_attribute, etb_add_text,
                 etb_add_line, etb_add_box, etb_add_circle, etb_add_arc,
                 etb_add_path, etb_add_pin, etb_insert_pic,
-                etb_prev_page, etb_next_page, etb_new_page, etb_page_manager,
+                etb_prev_page, etb_next_page,
+                etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
                 etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
                 etb_zoom_select, etb_zoom_extents, etb_zoom_in, etb_zoom_out,
@@ -146,7 +147,7 @@ static ToolbarStringData ToolbarStrings[] = {
 
   { ACTION(EDIT_SELECT),        "Select",      TBTS_EDIT_SELECT,       "gschem-select"},
   { ACTION(EDIT_DESELECT),      "Deselect",    TBTS_EDIT_DESELECT,     "gschem-unselect"},
-  { ACTION(EDIT_DESELECT_ALL),  "Unselect All",TBTS_EDIT_DESELECT_ALL, "gschem-unselect-all"},
+  { ACTION(EDIT_DESELECT_ALL),  "Unselect All",TBTS_EDIT_DESELECT_ALL, "unselect-all"},
 
   { "nil",                      "nil",        "nil",                   "gtk-no"}, /* dummy corresponding to etb_none */
 
@@ -184,7 +185,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_REDRAW),        "Redraw",     TBTS_VIEW_REDRAW,         GEDA_MAP(VIEW_REDRAW)},
   { ACTION(VIEW_PAN),           "Pan",        TBTS_VIEW_PAN,            GEDA_MAP(ZOOM_PAN)},
   { ACTION(VIEW_BOX),           "Window",     TBTS_VIEW_BOX,            GEDA_MAP(ZOOM_BOX)},
-  { ACTION(VIEW_SELECTED),      "Selected",   TBTS_VIEW_SELECTED,      "gschem-zoom-selection"},
+  { ACTION(VIEW_SELECTED),      "Selected",   TBTS_VIEW_SELECTED,       "zoom-selection"},
   { ACTION(VIEW_EXTENTS),       "Extents",    TBTS_VIEW_EXTENTS,        GEDA_MAP(ZOOM_EXTENTS)},
   { ACTION(VIEW_ZOOM_IN),       "In",         TBTS_VIEW_ZOOM_IN,        GEDA_MAP(ZOOM_IN)},
   { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,       GEDA_MAP(ZOOM_OUT)},
