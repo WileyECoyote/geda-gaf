@@ -2,6 +2,12 @@
 
     * GUI Enhancement: Enhance Hot Key Dialog
 
+    * gschem/src/x/x_dialog.c: Make Hotkey "Action" column visibility togglable.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * GUI Enhancement: Enhance Hot Key Dialog
+
     * gschem/src/x/x_dialog.c: Add "Action" column to hot-key dialog, using
       capitalized action string with hyphen replaced with space.
 

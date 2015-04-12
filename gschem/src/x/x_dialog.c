@@ -370,6 +370,17 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
  *  @{ \par This Group contains Functions for Standard Dialogs
 */
 
+/* Enumerate Control IDs */
+typedef enum {
+       ShowBinding,
+
+} ControlID;
+
+static WidgetStringData DialogStrings[] = {
+  { "ShowBindingSwitch",  "Show binding", "Show or Hide the action column"},
+  { NULL, NULL, NULL},
+};
+
 /** \defgroup Help-About-Dialog Help About Dialog
  *  @{
 */
@@ -3157,10 +3168,17 @@ void x_dialog_translate (GschemToplevel *w_current)
 void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
                                GschemToplevel *w_current)
 {
+  GtkToggleButton *butt;
+  EdaConfig *cfg;
+  int show_bind;
+
   switch(response) {
-  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_CLOSE:
   case GEDA_RESPONSE_DELETE_EVENT:
-    /* void */
+    butt = g_object_get_data (G_OBJECT(w_current->hkwindow), WIDGET(ShowBinding));
+    show_bind = gtk_toggle_button_get_active(butt);
+    cfg = eda_config_get_user_context ();
+    eda_config_set_boolean (cfg, IVAR_CONFIG_GROUP, "hotkey-show-bind", show_bind);
     break;
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
@@ -3209,8 +3227,7 @@ x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
     }
 
     /* Fix up the cell renderer, making sure that this function does not
-     * get called recursively.
-     */
+     * get called recursively.*/
     g_signal_handlers_block_by_func (gobject,
                                      x_dialog_hotkeys_cell_stock_id_notify,
                                      NULL);
@@ -3224,11 +3241,37 @@ x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
                                        NULL);
 
     g_free (stock_id);
-
-
   }
 }
-#define sordid GtkTreeSortable
+
+/*! \brief Regenerate attribute list when the visibility
+ *         setting  changes and toggle switch image
+ *  \par Function Description: This function changes images for
+ *       show_inherited switch to the opposite state, i.e. if ON
+ *       use OFF image and if OFF use ON image. The function then
+ *       calls multiattrib_update to update the attribute list.
+ */
+static void hotkey_show_binding_toggled (GtkToggleButton *widget,
+                                         void            *user_data)
+{
+  TOGGLE_SWITCH(widget);
+
+  GtkTreeViewColumn *column = user_data;
+
+  int state = gtk_toggle_button_get_active(widget);
+
+  g_object_set (column, "visible", state, NULL);
+
+  return;
+}
+
+static void
+hotkey_callback_close_clicked (GtkButton *CloseButt, void *user_data)
+{
+  gtk_dialog_response (GTK_DIALOG (user_data), GEDA_RESPONSE_CLOSE);
+}
+
+#define Sortable GtkTreeSortable
 
 /*! \brief Creates the hotkeys dialog
  *  \par Function Description
@@ -3239,21 +3282,26 @@ x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
  */
 void x_dialog_hotkeys (GschemToplevel *w_current)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *vbox,  *scrolled_win;
-  GtkListStore      *key_store, *store;
-  GtkWidget         *treeview;
-  GtkCellRenderer   *renderer;
-  GtkTreeViewColumn *column;
+  GtkWidget *ThisDialog = w_current->hkwindow;
 
-  ThisDialog = w_current->hkwindow;
   if (!w_current->hkwindow) {
-    ThisDialog = gschem_dialog_new_with_buttons(_("Hotkeys"),
-                          GTK_WINDOW(w_current->main_window),
-    /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
-                                      IDS_HOTKEYS, w_current,
-                        GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
-                                                        NULL);
+
+    GtkWidget *vbox,  *scrolled_win;
+    GtkListStore      *key_store, *store;
+    GtkWidget         *treeview;
+    GtkCellRenderer   *renderer;
+    GtkTreeViewColumn *column;
+    bool               show_bind;
+
+    EdaConfig *cfg = eda_config_get_user_context ();
+
+    show_bind = eda_config_get_boolean (cfg, IVAR_CONFIG_GROUP,
+                                        "hotkey-show-bind", NULL);
+
+    ThisDialog = gschem_dialog_new_empty (_("Hotkeys"),
+                                           GTK_WINDOW(w_current->main_window),
+         /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
+                                           IDS_HOTKEYS, w_current);
 
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GEDA_RESPONSE_ACCEPT);
@@ -3264,10 +3312,10 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
     gtk_box_pack_start (GTK_BOX (vbox), scrolled_win, TRUE, TRUE, 0);
+    g_object_set (scrolled_win, "visible", TRUE, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
-
     /* the model */
     key_store = g_keys_to_new_list_store ();
 
@@ -3280,10 +3328,10 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       do {
         GtkTreeIter iter2;
         const char *icon_id;
-              char *action;
-              char *binding;
-              char *keys;
-              char *ptr;
+        char *action;
+        char *binding;
+        char *keys;
+        char *ptr;
 
         gtk_tree_model_get ((GtkTreeModel*)key_store, &iter, 0, &binding, 1, &keys, -1);
 
@@ -3308,34 +3356,35 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                              1, action,
                                              2, keys,
                                              3, binding,
-                                            -1);
+                                             -1);
         }
         else {
           gtk_list_store_insert_with_values (store, &iter2, -1,
                                              1, action,
                                              2, keys,
                                              3, binding,
-                                            -1);
+                                             -1);
         }
         GEDA_FREE(action);
       } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
 
       g_object_unref(key_store);
 
-      gtk_tree_sortable_set_sort_column_id ((sordid*)store, 1, GTK_SORT_ASCENDING);
+      gtk_tree_sortable_set_sort_column_id ((Sortable*)store, 1, GTK_SORT_ASCENDING);
 
       /* the tree view */
       treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
       gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
+      g_object_set (treeview, "visible", TRUE, NULL);
 
       /* -------------------- The Columns -------------------- */
 
       /* The first column contains the action's icon (if one was set) */
       renderer = gtk_cell_renderer_pixbuf_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Icon"),
-                                                           renderer,
-                                                           "stock-id",
-                                                            0, NULL);
+                                                         renderer,
+                                                         "stock-id",
+                                                         0, NULL);
 
       /* Fix things up to show stock icons *and* theme icons.  */
       g_signal_connect (renderer, "notify::stock-id",
@@ -3347,54 +3396,121 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       /* The second column contains the modified action text */
       renderer = gtk_cell_renderer_text_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Action"),
-      renderer,
-      "text",
-      1,
-      NULL);
+                                                         renderer,
+                                                         "text",
+                                                         1,
+                                                         NULL);
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
-
-      /* The third column contains the action's keybinding */
+      /* Third column contains the action's keybinding */
       renderer = gtk_cell_renderer_text_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Keystroke(s)"),
-      renderer,
-      "text",
-      2,
-      NULL);
+                                                         renderer,
+                                                         "text",
+                                                         2,
+                                                         NULL);
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
-      /* The forth column contains the action's keybinding */
+      /* Forth column contains the action's keybinding */
       renderer = gtk_cell_renderer_text_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Command"),
-      renderer,
-      "text",
-      3,
-      NULL);
+                                                         renderer,
+                                                         "text",
+                                                         3,
+                                                         NULL);
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
+
+      g_object_set (column, "visible", show_bind, NULL);
 
       g_object_set (treeview,
                     "enable-search", TRUE,
                     "headers-clickable", FALSE,
                     "search-column", 1,
-                     NULL);
+                    NULL);
 
       g_signal_connect (G_OBJECT (ThisDialog), "response",
                         G_CALLBACK (x_dialog_hotkeys_response),
                         w_current);
+
+
+      GtkWidget *ShowBindingSwitch;
+      GtkWidget *action_area;        /* GtkButtonBox to be removed */
+      GtkWidget *action_hbox;        /* Replacement container */
+      GtkWidget *alignment;
+      GtkWidget *butt_hbox;
+      GtkWidget *close_butt;
+      GtkWidget *switch_vbox;
+
+      /* Remove Gtk action area from the dialog and don't re-use it */
+      action_area = GTK_DIALOG(ThisDialog)->action_area;
+      gtk_container_remove(GTK_CONTAINER(vbox), action_area);
+
+      /* Replace the action_area with the new container */
+      action_hbox = gtk_hbox_new(FALSE, 0);
+      g_object_set (action_hbox, "visible", TRUE, NULL);
+      gtk_box_pack_end (GTK_BOX (vbox), action_hbox, FALSE, FALSE, 0);
+
+      /* Create and add an option toggle switch */
+      switch_vbox = gtk_vbox_new(FALSE, 0);
+      gtk_box_pack_start (GTK_BOX (action_hbox), switch_vbox, FALSE, FALSE, 0);
+
+      /* Setup the full-name option toggle switch */
+      ShowBindingSwitch = NULL;
+
+      /* Create a new Toggle Switch widget */
+      EDA_SWITCH( (GTK_WIDGET(ThisDialog)), switch_vbox, ShowBinding, 0, show_bind);
+      gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
+
+      /* Setup callback for Toggle Switch widget */
+      GEDA_CALLBACK_SWITCH (ShowBinding, hotkey_show_binding_toggled, column)
+
+      /* Create and add alignment container to hold the button container */
+      alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
+                                            "right-padding", 0,
+                                            "left-padding",  50,
+                                            "xscale",        1.0,
+                                            "yscale",        0.0,
+                                            "xalign",        1.0,
+                                            "yalign",        0.5,
+                                            NULL));
+
+      g_object_set (alignment, "visible", TRUE, NULL);
+      gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);
+
+      /* Create a Horizontal Box for the button to go into */
+      butt_hbox = gtk_hbox_new(FALSE, 0);
+      g_object_set (butt_hbox, "visible", TRUE, NULL);
+      gtk_container_add (GTK_CONTAINER (alignment), butt_hbox);
+
+      /* Create and connect the Close a Button */
+      close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+
+      g_signal_connect (close_butt,
+                        "clicked",
+                        G_CALLBACK (hotkey_callback_close_clicked),
+                        ThisDialog);
+
+      g_object_set (close_butt, "visible", TRUE, NULL);
+      g_object_set (close_butt, "visible", TRUE, "can-default", TRUE, NULL);
+
+      gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
+                        DIALOG_H_SPACING);
+
+      gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_CLOSE);
+      gtk_widget_grab_default (close_butt);
     }
-    /* show all recursively */
-    gtk_widget_show_all(ThisDialog);
+
+    gtk_widget_show(ThisDialog);
     w_current->hkwindow = ThisDialog;
   }
-
   else { /* dialog already created */
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }
 }
-#undef sordid
+#undef Sortable
 /******************* End of help/keymapping dialog box ******************/
 
 /** @} endgroup Hotkeys-Dialog */
