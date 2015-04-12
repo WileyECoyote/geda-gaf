@@ -3169,6 +3169,67 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
   gtk_widget_destroy(Dialog);
 }
 
+/*! \brief Fix up displaying icons in list of hotkeys.
+ * gschem incorporates both GTK's stock and theme icons. Each is identified
+ * by a single icon name, which could be either a GTK stock icon or a theme
+ * icon.  To determine which icon to show, we first check if there's a
+ * matching stock icon, and if one doesn't exist, we fall back to looking
+ * in the theme.
+ *
+ * The GtkCellRendererPixbuf doesn't provide this capability.  If its
+ * "icon-name" property is set, it doesn't look at stock items, but if
+ * its "stock-id" property is set, it ignores the "icon-name" even if
+ * no matching stock item exists.
+ *
+ * This handler hooks into the "notify::stock-id" signal in order to
+ * implement the desired fallback behaviour.
+ */
+static void
+x_dialog_hotkeys_cell_stock_id_notify (GObject    *gobject,
+                                       GParamSpec *pspec,
+                                       bool       *user_data)
+{
+  char *stock_id = NULL;
+
+  /* Decide whether the requested stock ID actually matches a stock item */
+  g_object_get (gobject, "stock-id", &stock_id, NULL);
+
+  if (stock_id != NULL) {
+
+    GtkStockItem stock_info;
+
+    const char *new_icon_name = NULL;
+    const char *new_stock_id  = stock_id;
+
+    if (!gtk_stock_lookup (stock_id, &stock_info) &&
+        !gtk_icon_factory_lookup_default(stock_id))
+    {
+      new_icon_name = stock_id;
+      new_stock_id  = NULL;
+    }
+
+    /* Fix up the cell renderer, making sure that this function does not
+     * get called recursively.
+     */
+    g_signal_handlers_block_by_func (gobject,
+                                     x_dialog_hotkeys_cell_stock_id_notify,
+                                     NULL);
+    g_object_set (gobject,
+                  "icon-name", new_icon_name,
+                  "stock-id", new_stock_id,
+                  NULL);
+
+    g_signal_handlers_unblock_by_func (gobject,
+                                       x_dialog_hotkeys_cell_stock_id_notify,
+                                       NULL);
+
+    g_free (stock_id);
+
+
+  }
+}
+#define sordid GtkTreeSortable
+
 /*! \brief Creates the hotkeys dialog
  *  \par Function Description
  *  This function creates the hotkey dialog and displays the list of
@@ -3213,7 +3274,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     GtkTreeIter iter;
 
-    if( gtk_tree_model_get_iter_first ((GtkTreeModel*)key_store, &iter)) {
+    if (gtk_tree_model_get_iter_first ((GtkTreeModel*)key_store, &iter)) {
 
       do {
         GtkTreeIter iter2;
@@ -3240,6 +3301,8 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
         }
       } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
 
+      gtk_tree_sortable_set_sort_column_id ((sordid*)store, 1, GTK_SORT_ASCENDING);
+
       /* the tree view */
       treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
       gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
@@ -3249,9 +3312,15 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       /* The first column contains the action's icon (if one was set) */
       renderer = gtk_cell_renderer_pixbuf_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Icon"),
-                                                         renderer,
-                                                         "stock-id",
-                                                         0, NULL);
+                                                           renderer,
+                                                           "stock-id",
+                                                            0, NULL);
+
+      /* Fix things up to show stock icons *and* theme icons.  */
+      g_signal_connect (renderer, "notify::stock-id",
+                        G_CALLBACK (x_dialog_hotkeys_cell_stock_id_notify),
+                        NULL);
+
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
       renderer = gtk_cell_renderer_text_new ();
@@ -3274,6 +3343,11 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
+      g_object_set (treeview,
+                    "enable-search", TRUE,
+                    "headers-clickable", FALSE,
+                    "search-column", 1,
+                     NULL);
 
       g_signal_connect (G_OBJECT (ThisDialog), "response",
                         G_CALLBACK (x_dialog_hotkeys_response),
@@ -3288,7 +3362,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }
 }
-
+#undef sordid
 /******************* End of help/keymapping dialog box ******************/
 
 /** @} endgroup Hotkeys-Dialog */

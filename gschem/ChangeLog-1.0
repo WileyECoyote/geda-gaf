@@ -1,5 +1,18 @@
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * GUI Enhancement: Enhance Hot Key Dialog
+
+    * iface/i_command.c: Add special case, aka hack, for buffer actions in
+      function i_command_get_action_icon.
+
+    * src/x/x_dialog.c: Revise x_dialog_hotkeys, add notifier function
+      x_dialog_hotkeys_cell_stock_id_notify for renderer, not sure why; only
+      helps 3 icons help-faq, keyboard-shortcuts, and web-browser and signal
+      is emitted non-stop while mouse is moving. Need to replace the 3 icons
+      and then do away with connecting to notify::stock-id signal.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/system-gschemrc.scm: Change primary assignment key for attributes-
       find-text from "B <Shift>F" to "B F". Update icon names for actions
       "add-attribute" and something else.

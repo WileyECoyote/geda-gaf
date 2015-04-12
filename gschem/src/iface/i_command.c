@@ -252,26 +252,38 @@ const char *i_command_get_action_icon (const char *command)
 {
   const char *icon_id = NULL;
   static int  icache  = 1;
-         int  index;
+  int  index;
 
-  for (index = icache; index < LAST_ACTION; index++) {
-
-    if (u_string_strequal(command_struc[index].name, command)) {
-      if (command_struc[index].icon_id) {
-        icon_id = command_struc[index].icon_id;
-        icache = index;
-        break;
-      }
-    }
+  /* Hack for buffer */
+  if (strstr(command, "buffer-copy") != 0) {
+    icon_id = command_struc[cmd_do_cut_clip].icon_id;
   }
-  if (!icon_id) {
-    icache = index;
-    for (index = 1; index < icache; index++) {
+  if (strstr(command, "buffer-cut") != 0) {
+    icon_id = command_struc[cmd_do_copy_clip].icon_id;
+  }
+  else if (strstr(command, "buffer-paste") != 0) {
+    icon_id = command_struc[cmd_do_paste_clip].icon_id;
+  }
+  else {
+    for (index = icache; index < LAST_ACTION; index++) {
+
       if (u_string_strequal(command_struc[index].name, command)) {
         if (command_struc[index].icon_id) {
           icon_id = command_struc[index].icon_id;
           icache = index;
           break;
+        }
+      }
+    }
+    if (!icon_id) {
+      icache = index;
+      for (index = 1; index < icache; index++) {
+        if (u_string_strequal(command_struc[index].name, command)) {
+          if (command_struc[index].icon_id) {
+            icon_id = command_struc[index].icon_id;
+            icache = index;
+            break;
+          }
         }
       }
     }
