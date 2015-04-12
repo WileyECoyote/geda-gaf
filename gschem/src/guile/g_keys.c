@@ -589,7 +589,7 @@ char *g_keys_find_key (char *func_name) {
  *
  *  \return A GtkListStore containing keymap data.
  */
-GtkListStore *g_keys_to_list_store (void)
+GtkListStore *g_keys_to_new_list_store (void)
 {
   SCM s_expr;
   SCM s_lst;
@@ -609,7 +609,7 @@ GtkListStore *g_keys_to_list_store (void)
 
   for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
     SCM s_binding = scm_caar (s_iter);
-    SCM s_keys = scm_cdar (s_iter);
+    SCM s_keys    = scm_cdar (s_iter);
     char *binding, *keys;
     GtkTreeIter iter;
 

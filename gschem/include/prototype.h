@@ -39,14 +39,13 @@ void  g_hook_init                 (void);
 void  g_hook_run_object           (GschemToplevel *w_current, Hooker id, Object *obj);
 void  g_hook_run_object_list      (GschemToplevel *w_current, Hooker id, GList *obj_lst);
 void  g_hook_run_page             (GschemToplevel *w_current, Hooker id, Page *page);
-EHP * g_hook_new_proxy_by_name    (const char *name);
+EHP  *g_hook_new_proxy_by_name    (const char *name);
 
 /* g_keys.c */
 void  g_keys_reset                (GschemToplevel *w_current);
 int   g_keys_execute              (GschemToplevel *w_current, GdkEventKey *event);
-char *g_keys_find_key                  (char *func_name);
-
-GtkListStore *g_keys_to_list_store     (void);
+char *g_keys_find_key             (char *func_name);
+GLS  *g_keys_to_new_list_store    (void);
 
 /* Hoykeys */
 SCM   buffer_copy1           (SCM action);

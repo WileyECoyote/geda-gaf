@@ -1,5 +1,10 @@
 2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_keys.c: Rename function g_keys_to_list_store to
+      g_keys_to_new_list_store.
+
+2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: New Feature Icon in Hot Key Dialog
 
     * etc/system-gschemrc.scm: For every action, add (map-icon icon action),
