@@ -2,6 +2,13 @@
 
     * GUI Enhancement: Enhance Hot Key Dialog
 
+    * gschem/src/x/x_dialog.c: Add "Action" column to hot-key dialog, using
+      capitalized action string with hyphen replaced with space.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * GUI Enhancement: Enhance Hot Key Dialog
+
     * iface/i_command.c: Add special case, aka hack, for buffer actions in
       function i_command_get_action_icon.
 

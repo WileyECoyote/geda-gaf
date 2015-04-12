@@ -3271,7 +3271,8 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     /* the model */
     key_store = g_keys_to_new_list_store ();
 
-    store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    store = gtk_list_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
+                                   G_TYPE_STRING, G_TYPE_STRING);
     GtkTreeIter iter;
 
     if (gtk_tree_model_get_iter_first ((GtkTreeModel*)key_store, &iter)) {
@@ -3279,27 +3280,47 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       do {
         GtkTreeIter iter2;
         const char *icon_id;
-        char *binding;
-        char *keys;
+              char *action;
+              char *binding;
+              char *keys;
+              char *ptr;
 
         gtk_tree_model_get ((GtkTreeModel*)key_store, &iter, 0, &binding, 1, &keys, -1);
 
         icon_id = i_command_get_action_icon(binding);
 
+        ptr = action = u_string_strdup(binding);
+
+        action[0] = action[0] ^ 0x20;
+
+        ptr++;
+        while (*ptr) {
+          if (*ptr == '-') {
+            *ptr++ = ' ';
+            *ptr   =  *ptr ^ 0x20;
+          }
+          ptr++;
+        }
+
         if (icon_id) {
           gtk_list_store_insert_with_values (store, &iter2, -1,
                                              0, icon_id,
-                                             1, binding,
+                                             1, action,
                                              2, keys,
+                                             3, binding,
                                             -1);
         }
         else {
           gtk_list_store_insert_with_values (store, &iter2, -1,
-                                             1, binding,
+                                             1, action,
                                              2, keys,
+                                             3, binding,
                                             -1);
         }
+        GEDA_FREE(action);
       } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
+
+      g_object_unref(key_store);
 
       gtk_tree_sortable_set_sort_column_id ((sordid*)store, 1, GTK_SORT_ASCENDING);
 
@@ -3323,8 +3344,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
+      /* The second column contains the modified action text */
       renderer = gtk_cell_renderer_text_new ();
-      column = gtk_tree_view_column_new_with_attributes (_("Function"),
+      column = gtk_tree_view_column_new_with_attributes (_("Action"),
       renderer,
       "text",
       1,
@@ -3333,12 +3355,22 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
 
-      /* The second column contains the action's keybinding */
+      /* The third column contains the action's keybinding */
       renderer = gtk_cell_renderer_text_new ();
       column = gtk_tree_view_column_new_with_attributes (_("Keystroke(s)"),
       renderer,
       "text",
       2,
+      NULL);
+
+      gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
+
+      /* The forth column contains the action's keybinding */
+      renderer = gtk_cell_renderer_text_new ();
+      column = gtk_tree_view_column_new_with_attributes (_("Command"),
+      renderer,
+      "text",
+      3,
       NULL);
 
       gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
