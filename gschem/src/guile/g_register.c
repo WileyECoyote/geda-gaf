@@ -106,6 +106,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "image-color",               1, 0, 0, g_rc_image_color },
   { "invert-images",             1, 0, 0, g_rc_invert_images },
   { "image-size",                2, 0, 0, g_rc_image_size },
+  { "map-icon",                  2, 0, 0, g_rc_map_icon },
   { "map-keys",                  2, 0, 0, g_rc_map_keys },
   { "net-consolidate",           1, 0, 0, g_rc_net_consolidate },
   { "enforce-hierarchy",         1, 0, 0, g_rc_enforce_hierarchy },

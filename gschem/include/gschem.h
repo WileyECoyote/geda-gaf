@@ -21,7 +21,6 @@
 #include "gschem_status_bar.h"
 #include "gschem_page_geometry.h"
 #include "gschem_page_view.h"
-#include "gschem_hotkeystore.h"
 #include "gschem_macro_widget.h"
 #include "gschem_main_window.h"
 #include "i_vars.h"                /* declarations of structures */

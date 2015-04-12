@@ -39,6 +39,8 @@
 //#include <gschem_diagnostics.h>
 #include <geda_debug.h>
 
+#define LAST_ACTION cmd_do_show_about
+
 #define NUMBER_REDRAW_TEST      100
 #define NUMBER_UNDO_TEST         15
 
@@ -96,11 +98,12 @@ static struct {
    int     y;
    } point;
 
+   char *icon_id;                            /* icon assigned to action str */
    int   narg;
    unsigned char *sarg;
    GschemToplevel *w_current;
 } command_struc[COMMAND_COUNT] = {
- [ cmd_unknown ] = { "unknown", 0, 0, 0, 0, 0, {0, 0}, 0, 0},
+ [ cmd_unknown ] = { "unknown", 0, 0, 0, 0, 0, {0, 0}, 0, 0, 0},
 
  #include "i_command.h"
 };
@@ -235,20 +238,52 @@ void i_command_disengage(bool immediate, bool wait_return)
 }
 
 /* Command Interface Helpers */
-void i_command_get_command_list(GList** list)
-{
-  int i;
-
-  for (i = 1; i < COMMAND_COUNT; i++)
-    *list = g_list_prepend(*list, (char*)command_struc[i].name);
-  return;
-}
 
 void i_command_get_action_list(GList** list)
 {
   int i;
 
-  for (i = 1; i < cmd_do_show_about; i++)
+  for (i = 1; i < LAST_ACTION; i++)
+    *list = g_list_prepend(*list, (char*)command_struc[i].name);
+  return;
+}
+
+const char *i_command_get_action_icon (const char *command)
+{
+  const char *icon_id = NULL;
+  static int  icache  = 1;
+         int  index;
+
+  for (index = icache; index < LAST_ACTION; index++) {
+
+    if (u_string_strequal(command_struc[index].name, command)) {
+      if (command_struc[index].icon_id) {
+        icon_id = command_struc[index].icon_id;
+        icache = index;
+        break;
+      }
+    }
+  }
+  if (!icon_id) {
+    icache = index;
+    for (index = 1; index < icache; index++) {
+      if (u_string_strequal(command_struc[index].name, command)) {
+        if (command_struc[index].icon_id) {
+          icon_id = command_struc[index].icon_id;
+          icache = index;
+          break;
+        }
+      }
+    }
+  }
+  return icon_id;
+}
+
+void i_command_get_command_list(GList** list)
+{
+  int i;
+
+  for (i = 1; i < COMMAND_COUNT; i++)
     *list = g_list_prepend(*list, (char*)command_struc[i].name);
   return;
 }
@@ -259,6 +294,28 @@ bool i_command_is_valid(const char *command)
   bool result = FALSE;
   for (i = 1; i < COMMAND_COUNT; i++) {
     if (u_string_strequal(command_struc[i].name, command)) {
+      result = TRUE;
+      break;
+    }
+  }
+  return result;
+}
+
+bool i_command_map_icon  (const char *command, const char *icon)
+{
+  int i;
+  bool result = FALSE;
+  for (i = 1; i < LAST_ACTION; i++) {
+    if (u_string_strequal(command_struc[i].name, command)) {
+      if (command_struc[i].icon_id) {
+        GEDA_FREE(command_struc[i].icon_id);
+      }
+      if (icon) {
+        command_struc[i].icon_id = u_string_strdup(icon);
+      }
+      else {
+        command_struc[i].icon_id = NULL;
+      }
       result = TRUE;
       break;
     }
@@ -354,6 +411,19 @@ void i_command_process(GschemToplevel *w_current, const char* command,
     }
   }
   return;
+}
+
+void i_command_shutdown(void)
+{
+  int i;
+
+  i_command_disengage(FALSE, FALSE);
+
+  for (i = 1; i < COMMAND_COUNT; i++) {
+    if (command_struc[i].icon_id) {
+      GEDA_FREE(command_struc[i].icon_id);
+    }
+  }
 }
 
 static inline void msg_need_select_1st(GschemToplevel *w_current)

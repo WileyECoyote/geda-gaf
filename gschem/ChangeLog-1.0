@@ -1,4 +1,20 @@
+2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: New Feature Icon in Hot Key Dialog
+
+    * etc/system-gschemrc.scm: For every action, add (map-icon icon action),
+      where icon is the icon string id and action is the action string id.
+
+    * src/guile/g_rc.c: Add new function g_rc_map_icon.
+
+    * src/guile/g_register.c: Register function g_rc_map_icon.
+
+    * iface/i_command.c: Add column to structure for string pointer to icon id.
+      Add function i_command_get_action_icon_id. Add define LAST_ACTION for
+      enumerated cmd_do_show_about.
+
+    * src/x/x_dialog.c: Revise x_dialog_hotkeys to show the associated action icon
+      in the first column.
 
 2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
 

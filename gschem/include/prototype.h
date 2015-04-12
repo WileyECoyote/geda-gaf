@@ -1,6 +1,7 @@
 /* $Id$  indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 */
 #define GLT GList   /* Only for this file,     */
 #define GSL GSList  /* to improve readability! */
+#define GLS GtkListStore
 #define OBJ Object
 #define EHP EdascmHookProxy
 #define GAY GArray
@@ -150,6 +151,7 @@ SCM   g_rc_console_window              (SCM mode);
 SCM   g_rc_console_window_type         (SCM mode);
 SCM   g_rc_third_button                (SCM mode);
 SCM   g_rc_third_button_cancel         (SCM mode);
+SCM   g_rc_map_icon                    (SCM icon, SCM action);
 SCM   g_rc_map_keys                    (SCM keys, SCM action);
 SCM   g_rc_middle_button               (SCM mode);
 SCM   g_rc_scroll_wheel                (SCM mode);
@@ -270,13 +272,16 @@ void       i_callback_cancel                 I_CALLBACK_ARGUMENTS;
 bool       i_callback_close_wm              (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
 
 /* i_command.c */
-void       i_command_engage                 (GschemToplevel *w_current);
-void       i_command_disengage              (bool immediate, bool wait_return);
-void       i_command_get_action_list        (GList** list);
-void       i_command_get_command_list       (GList** list);
-bool       i_command_is_valid               (const char *command);
-void       i_command_process                (GschemToplevel *w_current, const char* command,
-                                             int narg, char *arg, EID_ACTION_ORIGIN who);
+void        i_command_engage                (GschemToplevel *w_current);
+void        i_command_disengage             (bool immediate, bool wait_return);
+void        i_command_get_action_list       (GList** list);
+const char *i_command_get_action_icon       (const char *command);
+void        i_command_get_command_list      (GList** list);
+bool        i_command_is_valid              (const char *command);
+bool        i_command_map_icon              (const char *command, const char *icon);
+void        i_command_process               (GschemToplevel *w_current, const char* command, int narg, char *arg, EID_ACTION_ORIGIN who);
+void        i_command_shutdown              (void);
+
 /* i_event.c */
 void       i_event_block_buttons            (GschemToplevel *w_current);
 void       i_event_unblock_buttons          (GschemToplevel *w_current);
@@ -951,6 +956,7 @@ G_END_DECLS
 
 #undef GAY
 #undef EHP
+#undef GLS
 #undef GSL
 #undef GLT
 #undef OBJ

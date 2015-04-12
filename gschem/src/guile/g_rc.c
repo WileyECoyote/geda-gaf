@@ -913,6 +913,36 @@ SCM g_rc_add_menu(SCM scm_menu_name, SCM scm_menu_items)
 
   return SCM_BOOL_T;
 }
+
+/*! \brief This function processes the map-icon RC entry.
+ *  \par Function Description
+ *       This procedure is used to load icon id string to the i_command
+ *       table stucture via i_command_map_icon.
+ */
+SCM g_rc_map_icon(SCM s_icon, SCM s_action)
+{
+  char *action_str;
+  char *icon_str;
+
+  SCM_ASSERT (scm_is_string (s_action), s_action, SCM_ARG2, "map-icon");
+
+  action_str = scm_to_utf8_string(s_action);
+
+  if (scm_is_string (s_icon)) {
+    icon_str = scm_to_utf8_string(s_icon);
+  }
+  else {
+    icon_str = NULL;
+  }
+
+  i_command_map_icon (action_str, icon_str);
+
+  free(action_str);
+  free(icon_str);
+
+  return SCM_BOOL_T;
+
+}
 /*! \brief This function processes the map-keys RC entry.
  *  \par Function Description
  *       This procedure is functionally equivalent to the
@@ -947,6 +977,7 @@ SCM g_rc_map_keys(SCM keys, SCM action)
   return s_result;
 
 }
+
 /*! \brief This function processes the auto-load-last RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

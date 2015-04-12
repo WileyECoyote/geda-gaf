@@ -114,6 +114,7 @@ static void gschem_quit(void)
   o_undo_finalize();
 
   i_vars_freenames();
+  i_command_shutdown();
 
   /* Enable this to get more memory usage from glib */
   /* You also have to enable something in glib I think RUSAGE_CHILDREN*/
@@ -356,9 +357,9 @@ static void gschem( int argc, char *argv[])
 
     /* see if open up console/log window on startup  */
     if (console_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
-
       x_console_open (w_current);
     }
+
     /* now we can spam the log */
     u_log_message(_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
                      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);

@@ -3180,7 +3180,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *vbox,  *scrolled_win;
-  GtkListStore      *store;
+  GtkListStore      *key_store, *store;
   GtkWidget         *treeview;
   GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
@@ -3197,7 +3197,6 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GEDA_RESPONSE_ACCEPT);
 
-
     gtk_widget_set_usize(ThisDialog, 300,300);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
@@ -3209,33 +3208,77 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                     GTK_POLICY_AUTOMATIC);
 
     /* the model */
-    store = g_keys_to_list_store ();
-    //store = GTK_TREE_MODEL (gschem_hotkey_store_new ());
-    /* the tree view */
-    treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-    gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
+    key_store = g_keys_to_new_list_store ();
 
-    /* the columns */
-    renderer = gtk_cell_renderer_text_new ();
-    column = gtk_tree_view_column_new_with_attributes (_("Function"),
-                                                       renderer,
-                                                       "text",
-                                                       0,
-                                                       NULL);
-    gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
-    renderer = gtk_cell_renderer_text_new ();
-    column = gtk_tree_view_column_new_with_attributes (_("Keystroke(s)"),
-                                                       renderer,
-                                                       "text",
-                                                       1,
-                                                       NULL);
-    gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
+    store = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    GtkTreeIter iter;
+
+    if( gtk_tree_model_get_iter_first ((GtkTreeModel*)key_store, &iter)) {
+
+      do {
+        GtkTreeIter iter2;
+        const char *icon_id;
+        char *binding;
+        char *keys;
+
+        gtk_tree_model_get ((GtkTreeModel*)key_store, &iter, 0, &binding, 1, &keys, -1);
+
+        icon_id = i_command_get_action_icon(binding);
+
+        if (icon_id) {
+          gtk_list_store_insert_with_values (store, &iter2, -1,
+                                             0, icon_id,
+                                             1, binding,
+                                             2, keys,
+                                            -1);
+        }
+        else {
+          gtk_list_store_insert_with_values (store, &iter2, -1,
+                                             1, binding,
+                                             2, keys,
+                                            -1);
+        }
+      } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
+
+      /* the tree view */
+      treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+      gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
+
+      /* -------------------- The Columns -------------------- */
+
+      /* The first column contains the action's icon (if one was set) */
+      renderer = gtk_cell_renderer_pixbuf_new ();
+      column = gtk_tree_view_column_new_with_attributes (_("Icon"),
+                                                         renderer,
+                                                         "stock-id",
+                                                         0, NULL);
+      gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
+
+      renderer = gtk_cell_renderer_text_new ();
+      column = gtk_tree_view_column_new_with_attributes (_("Function"),
+      renderer,
+      "text",
+      1,
+      NULL);
+
+      gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
 
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
-                      G_CALLBACK (x_dialog_hotkeys_response),
-                      w_current);
+      /* The second column contains the action's keybinding */
+      renderer = gtk_cell_renderer_text_new ();
+      column = gtk_tree_view_column_new_with_attributes (_("Keystroke(s)"),
+      renderer,
+      "text",
+      2,
+      NULL);
 
+      gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
+
+
+      g_signal_connect (G_OBJECT (ThisDialog), "response",
+                        G_CALLBACK (x_dialog_hotkeys_response),
+                        w_current);
+    }
     /* show all recursively */
     gtk_widget_show_all(ThisDialog);
     w_current->hkwindow = ThisDialog;
