@@ -91,20 +91,22 @@ typedef enum {
        RefreshAllViews,
        CollapseButton,
        ExpandButton,
+       Continue,
        SortLibrary,
        ShowGroups,
        SubGroups,
 } ControlID;
 
 static WidgetStringData DialogStrings[] = {
-  { "entry_filter",       "Filter:",      "Enter a filter string"},
-  { "clear-button",       "Clear",        "Clear the filter entry"},
-  { "refresh-button",     "Refresh all",  "Refresh all views"},
-  { "collapse_button",    "Collapse all", "Close all Library containers"},
-  { "expand_button",      "Expand all",   "Expand all Library containers"},
-  { "SortLibrarySwitch",  "Sort",         "If this is enabled then the component library will be sorted in alphanumeric order.\n This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
-  { "ShowGroupsSwitch",   "Groups",       "Enable or disable group folders in tree views"},
-  { "SubGroupsSwitch",    "Assort",       "Enable or disable subfolder with in group categories"},
+  { "entry_filter",       "Filter:",       "Enter a filter string"},
+  { "clear-button",       "Clear",         "Clear the filter entry"},
+  { "refresh-button",     "Refresh all",   "Refresh all views"},
+  { "collapse_button",    "Collapse all",  "Close all Library containers"},
+  { "expand_button",      "Expand all",    "Expand all Library containers"},
+  { "ContinueSwitch",     "Continue",      "Enable or diable continuation mode"},
+  { "SortLibrarySwitch",  "Sort",          "If this is enabled then the component library will be sorted in alphanumeric order.\n This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
+  { "ShowGroupsSwitch",   "Groups",        "Enable or disable group folders in tree views"},
+  { "SubGroupsSwitch",    "Assort",        "Enable or disable subfolder with in group categories"},
   { NULL, NULL, NULL},
 };
 
@@ -266,10 +268,11 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
         /* Can not wait for base class todo this*/
         w_current->cswindow = NULL;
         /* Cancel the place operation currently in progress */
-        //o_redraw_cleanstates (w_current);
         /* return to the default state */
         i_status_set_state (w_current, SELECT);
       }
+
+      w_current->include_complex  = FALSE;
 
       i_status_action_stop(w_current);
       break;
@@ -398,6 +401,7 @@ enum {
   NUM_LV_COLUMNS
 };
 
+static GtkWidget *ContinueSwitch;
 static GtkWidget *SortLibrarySwitch;
 static GtkWidget *SubGroupsSwitch;
 static GtkWidget *ShowGroupsSwitch;
@@ -1023,28 +1027,33 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
   w_current = Dialog->w_current;
   ThisDialog = COMPSELECT (w_current->cswindow);
 
-  if(widget == SortLibrarySwitch) {
-    w_current->sort_component_library = GET_SWITCH_STATE(SortLibrarySwitch);
+  if (widget == ContinueSwitch) {
+    w_current->continue_component_place = GET_SWITCH_STATE(ContinueSwitch);
   }
   else {
-    if(widget == ShowGroupsSwitch) {
-      ThisDialog->show_groups = GET_SWITCH_STATE(ShowGroupsSwitch);
-      /* if 1st level groups is off then 2nd level MUST be on */
-      if (ThisDialog->show_groups == FALSE) {
-        ThisDialog->subgroups = TRUE;
-        SetSwitch(SubGroups, TRUE);
-      }
-      /* Update Widget sensitivities */
-      gtk_widget_set_sensitive (SubGroupsSwitch, ThisDialog->show_groups);
+
+    if (widget == SortLibrarySwitch) {
+      w_current->sort_component_library = GET_SWITCH_STATE(SortLibrarySwitch);
     }
     else {
-      if(widget == SubGroupsSwitch) {
-        ThisDialog->subgroups = GET_SWITCH_STATE(SubGroupsSwitch);
+      if(widget == ShowGroupsSwitch) {
+        ThisDialog->show_groups = GET_SWITCH_STATE(ShowGroupsSwitch);
+        /* if 1st level groups is off then 2nd level MUST be on */
+        if (ThisDialog->show_groups == FALSE) {
+          ThisDialog->subgroups = TRUE;
+          SetSwitch(SubGroups, TRUE);
+        }
+        /* Update Widget sensitivities */
+        gtk_widget_set_sensitive (SubGroupsSwitch, ThisDialog->show_groups);
+      }
+      else {
+        if(widget == SubGroupsSwitch) {
+          ThisDialog->subgroups = GET_SWITCH_STATE(SubGroupsSwitch);
+        }
       }
     }
+    g_signal_emit (ThisDialog, signals[REFRESH], 0);
   }
-
-  g_signal_emit (ThisDialog, signals[REFRESH], 0);
 
   return;
 }
@@ -2740,100 +2749,6 @@ static GtkWidget *create_behaviors_menu ( )
   return(menu);
 }
 
-/*! \brief Creates the Action Area on the Component Select Dialog */
-static GtkWidget*
-create_action_area (Compselect *ThisDialog, GtkWidget *parent)
-{
-  GtkWidget   *action_hbox  = NULL;
-  GtkWidget   *optionmenu   = NULL;
-
-  GedaMenuButton *stylemenu = NULL;
-
-  /* Create a Horizontal Box for everything to go into */
-  NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
-
-  /* ---- style Menu ---- */
-  stylemenu = geda_menu_button_new(NULL, _("Rescan") );
-
-  if ( GEDA_IS_MENU_BUTTON (stylemenu)) {
-
-    compselect->menu = compselect_create_styles_menu (ThisDialog);
-
-    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu );
-
-    geda_menu_button_set_tooltip_text(stylemenu, _("Re-scan component libraries"));
-
-    geda_menu_button_set_arrow_tooltip_text(stylemenu, _("Set style filter"));
-
-    g_signal_connect (stylemenu, "clicked",
-                      G_CALLBACK (compselect_callback_rescan_libraries),
-                      ThisDialog);
-
-    gtk_widget_show_all ((GtkWidget*)stylemenu);
-
-    SetWidgetSize(stylemenu, 125, DIALOG_BUTTON_VSIZE);
-
-    ThisDialog->style_menu = stylemenu;
-
-   /* Add the combobox to the horizontal action box */
-    PACK_BOX( action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
-
-  }
-  else
-    ThisDialog->style_menu = NULL;
-
-  /* ---- behavior Menu ---- */
-  /* Create and Save a pointer to the behavior menu widget */
-  optionmenu = gtk_option_menu_new ();
-
-  if ( GTK_IS_OPTION_MENU ( optionmenu )) {
-     gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
-                              create_behaviors_menu ());
-
-     g_signal_connect (optionmenu, "changed",
-                       G_CALLBACK (compselect_callback_behavior_changed),
-                       ThisDialog);
-
-     gtk_widget_show_all (optionmenu);
-
-     SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
-
-     ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
-
-     /* Add the combobox to the horizontal action box */
-    PACK_BOX( action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
-
-  }
-  else
-    ThisDialog->behavior_menu = NULL;
-
-  /* Create and connect the Close and Okay Buttons */
-  GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
-  GtkWidget *okay_butt  = gtk_button_new_from_stock (GTK_STOCK_OK);
-
-  SetWidgetSize(close_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
-  SetWidgetSize(okay_butt,  DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
-
-  g_signal_connect (close_butt,
-                    "clicked",
-                    G_CALLBACK (on_close_butt_clicked),
-                    ThisDialog);
-
-  g_signal_connect (okay_butt,
-                    "clicked",
-                    G_CALLBACK (on_okay_butt_clicked),
-                    ThisDialog);
-
-  gtk_box_pack_end (GTK_BOX (action_hbox), okay_butt, FALSE, FALSE,
-                    DIALOG_H_SPACING);
-
-  gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
-                    DIALOG_H_SPACING);
-
-  return action_hbox;
-}
-
-
 unsigned int compselect_get_type ()
 {
   static unsigned int compselect_type = 0;
@@ -3214,6 +3129,107 @@ compselect_class_init (CompselectClass *class)
                                     G_TYPE_NONE, 0);
 }
 
+/*! \brief Creates the Action Area on the Component Select Dialog */
+static GtkWidget*
+create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
+{
+  GtkWidget   *action_hbox  = NULL;
+  GtkWidget   *optionmenu   = NULL;
+
+  GedaMenuButton *stylemenu = NULL;
+
+  /* Create a Horizontal Box for everything to go into */
+  NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
+
+  /* ---- style Menu ---- */
+  stylemenu = geda_menu_button_new(NULL, _("Rescan") );
+
+  if ( GEDA_IS_MENU_BUTTON (stylemenu)) {
+
+    compselect->menu = compselect_create_styles_menu (ThisDialog);
+
+    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu );
+
+    geda_menu_button_set_tooltip_text(stylemenu, _("Re-scan component libraries"));
+
+    geda_menu_button_set_arrow_tooltip_text(stylemenu, _("Set style filter"));
+
+    g_signal_connect (stylemenu, "clicked",
+                      G_CALLBACK (compselect_callback_rescan_libraries),
+                      ThisDialog);
+
+    gtk_widget_show_all ((GtkWidget*)stylemenu);
+
+    SetWidgetSize(stylemenu, 125, DIALOG_BUTTON_VSIZE);
+
+    ThisDialog->style_menu = stylemenu;
+
+   /* Add the combobox to the horizontal action box */
+    PACK_BOX( action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
+
+  }
+  else
+    ThisDialog->style_menu = NULL;
+
+  /* ---- behavior Menu ---- */
+  /* Create and Save a pointer to the behavior menu widget */
+  optionmenu = gtk_option_menu_new ();
+
+  if ( GTK_IS_OPTION_MENU ( optionmenu )) {
+     gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
+                              create_behaviors_menu ());
+
+     g_signal_connect (optionmenu, "changed",
+                       G_CALLBACK (compselect_callback_behavior_changed),
+                       ThisDialog);
+
+     gtk_widget_show_all (optionmenu);
+
+     SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
+
+     ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
+
+     /* Add the combobox to the horizontal action box */
+    PACK_BOX( action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
+
+  }
+  else
+    ThisDialog->behavior_menu = NULL;
+
+  ContinueSwitch = NULL;
+
+  /* Create Toggle Switch widgets and put inside the horizontal options box*/
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), action_hbox, Continue, 5, mode);
+
+  /* Setup callback for Switch widgets */
+  GEDA_CALLBACK_SWITCH (Continue, cs_callback_switch_toggled, ThisDialog)
+
+  /* Create and connect the Close and Okay Buttons */
+  GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  GtkWidget *okay_butt  = gtk_button_new_from_stock (GTK_STOCK_OK);
+
+  SetWidgetSize(close_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+  SetWidgetSize(okay_butt,  DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+
+  g_signal_connect (close_butt,
+                    "clicked",
+                    G_CALLBACK (on_close_butt_clicked),
+                    ThisDialog);
+
+  g_signal_connect (okay_butt,
+                    "clicked",
+                    G_CALLBACK (on_okay_butt_clicked),
+                    ThisDialog);
+
+  gtk_box_pack_end (GTK_BOX (action_hbox), okay_butt, FALSE, FALSE,
+                    DIALOG_H_SPACING);
+
+  gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
+                    DIALOG_H_SPACING);
+
+  return action_hbox;
+}
+
 /*! \brief  Compselect Dialog Contructor
  *  \par Function Description
  *   This is the main function for construction of the Compselect
@@ -3389,7 +3405,9 @@ compselect_constructor (GedaType type,
   /* Add the horizontal options box to the main vertical box */
   PACK_BOX( main_vbox, opts_hbox, FALSE, FALSE, 0)
 
-  action_area = create_action_area (compselect, (GtkWidget*) main_vbox);
+  int mode = w_current->continue_component_place;
+
+  action_area = create_action_area (compselect, (GtkWidget*) main_vbox, mode);
 
   gtk_widget_show_all (action_area);
 
