@@ -60,6 +60,10 @@
  * ---------------|--------------------------------------------------
  * WEH | 03/13/15 | Add saving text-marker-threshold to key file, add
  *                | keyword writer text marker threshold as a double.
+ * ---------------|--------------------------------------------------
+ * WEH | 04/12/15 | Add configure_dialog_response, set the toggle menu
+ *     |          | options without checking dialog set or was canceled.
+ * ---------------|--------------------------------------------------
 */
 /*!
  * \file x_settings.c
@@ -81,10 +85,11 @@
 #include <dirent.h>
 
 #include "gschem.h"
-//#include "gschem_dialog.h"        /* For GschemDialogResponseType */
-#include "gschem_xdefines.h"
 
+#include "gschem_xdefines.h"
+#include "x_menus.h"                    /* MenuToggleItem enumeration */
 #include "x_settings.h"
+
 #include "keywords.h"
 
 #include <geda_debug.h>
@@ -184,6 +189,13 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
    * then the string being passed will be ignored */
   x_status_bar_update_middle_mouse(w_current, "Preferences");
   x_status_bar_update_third_mouse(w_current);
+
+  /* Update toggle option in menu, not worth checking of changed */
+  x_menu_set_togglable(w_current, DRAG_CAN_MOVE,   w_current->drag_can_move);
+  x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
+  x_menu_set_togglable(w_current, OUTLINE_TOGGLE,  w_current->action_feedback_mode);
+  x_menu_set_togglable(w_current, RUBBER_TOGGLE,   w_current->netconn_rubberband);
+  x_menu_set_togglable(w_current, SNAP_TOGGLE,     w_current->snap);
 }
 
 /* ----------------- Start Attribute TAB Support Functions ------------------ */

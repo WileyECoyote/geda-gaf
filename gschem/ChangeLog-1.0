@@ -1,5 +1,19 @@
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * x_settings_dialog.c: Remove use of tmp int to check varibles for
+      menu which is changed before saving in function GatherSettings.
+
+    * src/x/x_settings.c: Revise function configure_dialog_response to set
+      the toggle menu options without checking if dialog even had been
+      canceled.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Add a "Continue" "toggle switch" allow users
+      to set continue-component-place directly on the dialog.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Add variables to new configuration system
 
     * etc/system-gschemrc.scm: Remarked/ comment out the following varible

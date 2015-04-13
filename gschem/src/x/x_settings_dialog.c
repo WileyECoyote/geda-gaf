@@ -151,7 +151,6 @@
 #include "gschem.h"
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
 #include "gschem_dialog.h"              /* Definition the base Dialog Class */
-#include "x_menus.h"                    /* MenuToggleItem enumeration */
 
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
@@ -2768,11 +2767,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
   w_current->bus_ripper_type            = GET_SWITCH_STATE (RipperTypeSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
-             tmp_int                    = GET_SWITCH_STATE (DragMoveSwitch);
-  if (tmp_int != w_current->drag_can_move) {
-    w_current->drag_can_move = tmp_int;
-    x_menu_set_togglable(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
-  }
+  w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
 
   CairoRenderer->draw_grips             = GET_SWITCH_STATE (DrawGripsSwitch);
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
@@ -2781,6 +2776,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->enforce_hierarchy          = GET_SWITCH_STATE (EnforceHierarchySwitch);
   w_current->fast_mousepan              = GET_SWITCH_STATE (FastMousePanSwitch);
   w_current->action_feedback_mode       = GET_SWITCH_STATE (FeedbackModeSwitch);
+
   w_current->force_boundingbox          = GET_SWITCH_STATE (ForceBoundingBoxSwitch);
 
   w_current->file_preview               = GET_SWITCH_STATE (FilePreviewSwitch);
@@ -2798,7 +2794,6 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->object_clipping            = GET_SWITCH_STATE (ObjectClippingSwitch);
   w_current->raise_dialog_boxes         = GET_SWITCH_STATE (NotifyEventsSwitch);
   w_current->scrollbars                 = GET_SWITCH_STATE (ScrollBarsSwitch);
-
              tmp_int                    = GET_SWITCH_STATE (ScrollBarsVisibleSwitch);
   if (tmp_int != w_current->scrollbars_visible) {
     w_current->scrollbars_visible       =  tmp_int;
