@@ -1,5 +1,19 @@
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/battery/: Add 8 symbols for MCP7386 Series Li-ion/Li-Po
+      single/dual battery chargers:
+
+            * microchip/battery/MCP73861-1.sym
+            * microchip/battery/MCP73861-2.sym
+            * microchip/battery/MCP73862-1.sym
+            * microchip/battery/MCP73862-2.sym
+            * microchip/battery/MCP73863-1.sym
+            * microchip/battery/MCP73863-2.sym
+            * microchip/battery/MCP73864-1.sym
+            * microchip/battery/MCP73864-2.sym
+
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * symbols/ti/LM5106-2.sym: Add alternative pin arrangement for LM5106.
 
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>

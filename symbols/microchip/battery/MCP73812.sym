@@ -1,0 +1,69 @@
+v 20150101 2
+T 400 1700 8 10 1 1 0 0 1
+refdes=U?
+T 400 1500 9 10 1 1 0 0 1
+device=MCP73812
+T 400 1900 9 10 0 0 0 0 1
+footprint=SOT25
+B 400 200 1000 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 1700 400 1400 400 1 0 0
+{
+T 1350 400 9 10 1 1 0 6 1
+pinlabel=VCC
+T 1600 450 5 8 1 1 0 0 1
+pinnumber=4
+T 1600 250 5 8 0 1 0 0 1
+pinseq=1
+T 1375 275 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 1700 1200 1400 1200 1 0 0
+{
+T 1350 1200 9 10 1 1 0 6 1
+pinlabel=PROG
+T 1600 1250 5 8 1 1 0 0 1
+pinnumber=5
+T 1600 1050 5 8 0 1 0 0 1
+pinseq=2
+T 1350 1050 5 8 0 1 0 6 1
+pintype=in
+}
+P 100 1200 400 1200 1 0 0
+{
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=CE
+T 200 1250 5 8 1 1 0 6 1
+pinnumber=1
+T 200 1050 5 8 0 1 0 6 1
+pinseq=3
+T 450 1075 5 8 0 1 0 0 1
+pintype=in
+}
+P 100 400 400 400 1 0 0
+{
+T 450 400 9 10 1 1 0 0 1
+pinlabel=\_BAT\_
+T 200 450 5 8 1 1 0 6 1
+pinnumber=3
+T 200 250 5 8 0 1 0 6 1
+pinseq=4
+T 450 300 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 100 800 400 800 1 0 0
+{
+T 450 800 9 10 1 1 0 0 1
+pinlabel=GND
+T 200 850 5 8 1 1 0 6 1
+pinnumber=2
+T 200 650 5 8 0 1 0 6 1
+pinseq=5
+T 450 700 5 8 0 1 0 0 1
+pintype=pwr
+}
+T 400 2100 5 10 0 0 0 0 1
+numslots=0
+T 400 2300 5 10 0 0 0 0 1
+documentation=http://www.microchip.com/MCP73811
+T 400 2500 5 10 0 0 0 0 1
+description=Single-Cell, Li Charge Management Controller
