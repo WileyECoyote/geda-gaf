@@ -64,7 +64,7 @@
  *  This support primarily consist of a Gtk icon factory.
  */
 
-static GtkIconFactory* gschem_factory;
+static GtkIconFactory *gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-arc",           "geda-arc-edit",      "geda-analysis",     "geda-autonum-blue",
@@ -114,9 +114,29 @@ const char* IDS_THEME_ICONS_22[] = {
   NULL
 };
 
+bool x_icons_factory_lookup (const char *icon_id)
+{
+  if (icon_id) {
+    GtkIconSet *bs = gtk_icon_factory_lookup (gschem_factory,icon_id);
+    return bs != NULL;
+  }
+  return FALSE;
+}
+
 GtkWidget *x_icons_get_action_icon (const char *action, int size)
 {
   const char *icon_id = i_command_get_action_icon (action);
+  if (icon_id) {
+    GtkWidget *image;
+    image = gtk_image_new_from_icon_name (icon_id, size);
+    return image;
+  }
+  return NULL;
+}
+
+GtkWidget *x_icons_get_factory_icon (const char *icon_id, int size)
+{
+
   if (icon_id) {
     GtkWidget *image;
     image = gtk_image_new_from_icon_name (icon_id, size);

@@ -1,3 +1,8 @@
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_icons.c: Add functions x_icons_factory_lookup and
+      x_icons_get_factory_icon.
+
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_icons.c: Add function x_icons_get_action_icon.

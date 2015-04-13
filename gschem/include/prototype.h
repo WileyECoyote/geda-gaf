@@ -807,6 +807,9 @@ void       x_grid_draw_tiles                (GschemToplevel *w_current);
 
 /* x_icons.c */
 void       x_icons_add_search_path          (const char *path);
+bool       x_icons_factory_lookup           (const char *icon_id);
+GtkWidget *x_icons_get_action_icon          (const char *action, int size);
+GtkWidget *x_icons_get_factory_icon         (const char *icon_id, int size);
 void       x_icons_set_default_icon         (const char *icon_name);
 void       x_icons_initialize               (void);
 
