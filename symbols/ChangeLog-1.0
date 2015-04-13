@@ -1,5 +1,9 @@
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * symbols/ti/LM5106-2.sym: Add alternative pin arrangement for LM5106.
+
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/: Add 3 symbols for High-Voltage Half-Bridge Gate Drivers:
 
             * ti/LM25101A-2.sym (8pin, 3Amp)
