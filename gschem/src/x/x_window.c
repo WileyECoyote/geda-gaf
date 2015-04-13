@@ -276,6 +276,9 @@ void x_window_save_settings(GschemToplevel *w_current)
   array[3] = CairoRenderer->net_endpoint_color.blue;
   eda_config_set_int_list (cfg, win_group, "net-endpoint-color", array, 4);
 
+  /* Misc Drawing Window Related */
+  eda_config_set_boolean (cfg, win_group,    "object-clipping", w_current->object_clipping);
+
   /* Pointer, aka Mouse stuff */
   eda_config_set_integer (cfg, global_group, "cursor-index",    w_current->drawing_pointer);
   eda_config_set_integer (cfg, global_group, "drag-can-move",   w_current->drag_can_move);

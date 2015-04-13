@@ -73,7 +73,7 @@ GdkColor default_dots_grid_minor_color    = { 88 };
 GdkColor default_mesh_grid_minor_color    = { 88 };
 GdkColor default_mesh_grid_major_color    = { 88 };
 
-int     default_object_clipping           = TRUE;
+int     default_object_clipping           = RC_NIL;
 int     default_scrollbars                = RC_NIL;
 int     default_scrollbar_update          = RC_NIL;
 int     default_scrollbars_visible        = RC_NIL;
@@ -109,17 +109,17 @@ int     default_auto_save_interval        = RC_NIL;
 int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
 int     default_chooser_filter            = RC_NIL;
 GList  *default_component_select_attrlist = NULL;
-int     default_continue_component_place  = TRUE;
-int     default_embed_components          = FALSE;
-int     default_enforce_hierarchy         = TRUE;
-int     default_force_boundingbox         = FALSE;
-int     default_include_complex           = FALSE;
-int     default_keyboardpan_gain          = DEFAULT_KEYBOARD_GAIN;
+int     default_continue_component_place  = RC_NIL;
+int     default_embed_components          = RC_NIL;
+int     default_enforce_hierarchy         = RC_NIL;
+int     default_force_boundingbox         = RC_NIL;
+//int     default_include_complex           = FALSE;
+int     default_keyboardpan_gain          = RC_NIL;
 int     default_magnetic_net_mode         = TRUE;
-int     default_netconn_rubberband        = FALSE;
-int     default_select_slack_pixels       = DEFAULT_SLACK_PIXELS;
-int     default_snap_size                 = DEFAULT_SNAP_SIZE;
-int     default_sort_component_library    = FALSE;
+int     default_netconn_rubberband        = RC_NIL;
+int     default_select_slack_pixels       = RC_NIL;
+int     default_snap_size                 = RC_NIL;
+int     default_sort_component_library    = RC_NIL;
 
 /* Nets and Routing */
 int     default_net_consolidate           = TRUE;
@@ -374,9 +374,36 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "image-height",       &w_current->
                                      image_height,         DEFAULT_IMAGE_HEIGHT);
 
-  /* Miscellaneous - in  alphabetical order */
+  /* Miscellaneous - in  alphabetical order, saved by: x_settings_save_settings */
   i_var_restore_global_integer(cfg, "auto-save-interval", &toplevel->
                                      auto_save_interval,   DEFAULT_SAVE_INTERVAL);
+
+  i_var_restore_global_boolean(cfg, "continue-component-place", &w_current->
+                                     continue_component_place,  TRUE);
+
+  i_var_restore_global_boolean(cfg, "embed-components",   &w_current->
+                                     embed_components,     FALSE);
+
+  i_var_restore_global_boolean(cfg, "enforce-hierarchy",  &w_current->
+                                     enforce_hierarchy,    TRUE);
+
+  i_var_restore_global_boolean(cfg, "force-boundingbox",  &w_current->
+                                     force_boundingbox,    FALSE);
+
+  i_var_restore_global_integer(cfg, "keyboardpan-gain",   &w_current->
+                                     keyboardpan_gain,     DEFAULT_KEYBOARD_GAIN);
+
+  i_var_restore_global_boolean(cfg, "netconn-rubberband", &w_current->
+                                     netconn_rubberband,   FALSE);
+
+  i_var_restore_global_integer(cfg, "select-slack-pixels", &w_current->
+                                     select_slack_pixels,   DEFAULT_SLACK_PIXELS);
+
+  i_var_restore_global_integer(cfg, "snap-size",           &w_current->
+                                     snap_size,             DEFAULT_SNAP_SIZE);
+
+  i_var_restore_global_boolean(cfg, "sort-component-library", &w_current->
+                                     sort_component_library,   FALSE);
 
   /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
   group = FILE_CHOOSER_CONFIG_GROUP;
@@ -455,6 +482,10 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 
   i_var_restore_window_color (cfg,  "net-endpoint-color",  &CairoRenderer->
                                      net_endpoint_color,    DEFAULT_NET_ENDPOINT_COLOR);
+
+  /* Misc Drawing Window Related - Saved by: x_window_save_settings */
+  i_var_restore_window_boolean(cfg, "object-clipping",     &w_current->
+                                     object_clipping,       TRUE);
 
   /* Restore text related stuff - Saved by: x_settings_save_settings */
   i_var_restore_global_integer(cfg, "text-case",           &w_current->text_case,     BOTH_CASES);
@@ -560,8 +591,10 @@ void i_vars_set(GschemToplevel *w_current)
     w_current->mesh_grid_major_color.blue  = default_mesh_grid_major_color.blue;
   }
 
-  w_current->object_clipping               = default_object_clipping;
+/* Misc Drawing Window Related */
+  i_set_rc (&w_current->object_clipping,    default_object_clipping);
 
+/* Scrolling Settings */
   i_set_rc (&w_current->scrollbars,         default_scrollbars);
   i_set_rc (&w_current->scrollbar_update,   default_scrollbar_update);
   i_set_rc (&w_current->scrollbars_visible, default_scrollbars_visible);
@@ -589,16 +622,17 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->chooser_filter,  default_chooser_filter);
 
   w_current->component_select_attrlist = default_component_select_attrlist;
-  w_current->continue_component_place  = default_continue_component_place;
-  w_current->embed_components          = default_embed_components;
-  w_current->enforce_hierarchy         = default_enforce_hierarchy;
-  w_current->force_boundingbox         = default_force_boundingbox;
-  w_current->include_complex           = default_include_complex;
-  w_current->keyboardpan_gain          = default_keyboardpan_gain;
-  w_current->netconn_rubberband        = default_netconn_rubberband;
-  w_current->select_slack_pixels       = default_select_slack_pixels;
-  w_current->snap_size                 = default_snap_size;
-  w_current->sort_component_library    = default_sort_component_library;
+
+  i_set_rc (&w_current->continue_component_place, default_continue_component_place);
+  i_set_rc (&w_current->embed_components,         default_embed_components);
+  i_set_rc (&w_current->enforce_hierarchy,        default_enforce_hierarchy);
+  i_set_rc (&w_current->force_boundingbox,        default_force_boundingbox);
+  i_set_rc (&w_current->keyboardpan_gain,         default_keyboardpan_gain);
+  i_set_rc (&w_current->netconn_rubberband,       default_netconn_rubberband);
+
+  i_set_rc (&w_current->select_slack_pixels,      default_select_slack_pixels);
+  i_set_rc (&w_current->snap_size,                default_snap_size);
+  i_set_rc (&w_current->sort_component_library,   default_sort_component_library);
 
 /* Nets and Routing */
   w_current->magnetic_net_mode         = default_magnetic_net_mode;

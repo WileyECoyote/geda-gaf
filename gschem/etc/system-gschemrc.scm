@@ -292,7 +292,7 @@
 ; or disabled. Clipping should not normally be turned off, since some
 ; X servers don't handle clipping correctly.
 ;
-(object-clipping "enabled")
+;(object-clipping "enabled")
 ;(object-clipping "disabled")
 
 ; window-size integer integer
@@ -491,7 +491,7 @@
 ; placed (the user must then press Apply in the dialog box to place multiple
 ; instances of the same component)
 ;
-(continue-component-place "enabled")
+;(continue-component-place "enabled")
 ;(continue-component-place "disabled")
 
 ; embed-components string
@@ -504,7 +504,7 @@
 ; box
 ;
 ;(embed-components "enabled")
-(embed-components "disabled")
+;(embed-components "disabled")
 
 ;  enforce-hierarchy string
 ;
@@ -514,7 +514,7 @@
 ;  move between hierarchy levels otherwise, if enabled, the user sees all
 ;  the hierarchy levels as being flat.
 ;
-(enforce-hierarchy "enabled")
+;(enforce-hierarchy "enabled")
 ;(enforce-hierarchy "disabled")
 
 ; force-boundingbox string
@@ -524,7 +524,7 @@
 ; gschem is guessing incorrectly.
 ;
 ;(force-boundingbox "enabled")
-(force-boundingbox "disabled")
+;(force-boundingbox "disabled")
 
 ; keyboardpan-gain integer
 ;
@@ -532,7 +532,7 @@
 ; A larger value provides greater pan distance when pressing the cursor
 ; keys, while a smaller value provides a smoother, but smaller pan
 ; distance when moving the cursor keys.
-(keyboardpan-gain 20)
+;(keyboardpan-gain 20)
 ;;(keyboardpan-gain 10)
 ;;(keyboardpan-gain 1)
 ;;(keyboardpan-gain 5)
@@ -550,7 +550,7 @@
 ; Controls if net connections are maintained when you move a connecting
 ; component or net.
 ;
-(netconn-rubberband "enabled")
+;(netconn-rubberband "enabled")
 ;(netconn-rubberband "disabled")
 
 ; select-slack-pixels integer
@@ -558,14 +558,16 @@
 ; Controls how many pixels around an object can still be clicked as part of
 ; that object.
 ; A larger value gives greater ease in selecting small, or narrow objects.
-(select-slack-pixels 10)
+;(select-slack-pixels 10)
 ;;(select-slack-pixels 4)
 ;;(select-slack-pixels 0)
 ;;(select-slack-pixels 1)
 
 ; snap-size number
 ;
-; Sets the default snap spacing at start-up of gschem.
+; Sets the default snap spacing at start-up of gschem. This is generally
+; handy to leave enabled at a system level, so gschem does not start-up
+; with an odd snap size.
 ;
 (snap-size 100)
 
@@ -577,7 +579,7 @@
 ; added gets scanned first).
 ;
 ;(sort-component-library "enabled")
-(sort-component-library "disabled")
+;(sort-component-library "disabled")
 
 ;END ==================> Miscellaneous Options <====================
 

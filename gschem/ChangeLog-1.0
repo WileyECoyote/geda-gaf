@@ -1,5 +1,27 @@
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Add variables to new configuration system
+
+    * etc/system-gschemrc.scm: Remarked/ comment out the following varible
+      to allow retention of changes using preferences dialog:
+
+      continue-component-place
+      embed-components
+      enforce-hierarchy
+
+      force-boundingbox
+      keyboardpan-gain
+      netconn-rubberband
+      select-slack-pixels
+      snap-size
+      sort-component-library
+      object-clipping
+
+    * src/iface/i_vars.c: Change defaults, for list above, to RC_NIL, and
+      switch setter to use i_set_rc after restoring.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * GUI Enhancement: Enhance Hot Key Dialog
 
     * gschem/src/x/x_dialog.c: Make Hotkey "Action" column visibility togglable.

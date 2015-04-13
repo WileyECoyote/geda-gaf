@@ -224,8 +224,17 @@ void x_settings_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, group_name, "image-width",    w_current->image_width);
   eda_config_set_integer (cfg, group_name, "image-height",   w_current->image_height);
 
-  /* Miscellaneous - in  alphabetical order */
-  eda_config_set_integer (cfg, group_name, "auto-save-interval", toplevel->auto_save_interval);
+  /* Miscellaneous - in  alphabetical order - Restored by i_vars_recall_user_settings */
+  eda_config_set_integer (cfg, group_name, "auto-save-interval",       toplevel->auto_save_interval);
+  eda_config_set_boolean (cfg, group_name, "continue-component-place", w_current->continue_component_place);
+  eda_config_set_boolean (cfg, group_name, "embed-components",         w_current->embed_components);
+  eda_config_set_boolean (cfg, group_name, "enforce-hierarchy",        w_current->enforce_hierarchy);
+  eda_config_set_boolean (cfg, group_name, "force-boundingbox",        w_current->force_boundingbox);
+  eda_config_set_integer (cfg, group_name, "keyboardpan-gain",         w_current->keyboardpan_gain);
+  eda_config_set_boolean (cfg, group_name, "netconn-rubberband",       w_current->netconn_rubberband);
+  eda_config_set_integer (cfg, group_name, "select-slack-pixels",      w_current->select_slack_pixels);
+  eda_config_set_integer (cfg, group_name, "snap-size",                w_current->snap_size);
+  eda_config_set_boolean (cfg, group_name, "sort-component-library",   w_current->sort_component_library);
 
   /* Save text related stuff  - Restored by i_vars_recall_user_settings */
   eda_config_set_integer (cfg, group_name, "text-case",       w_current->text_case);
