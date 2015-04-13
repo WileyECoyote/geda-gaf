@@ -376,6 +376,7 @@
 #define GSCHEM_BITMAP_RIGHT_2_LEFT_XLARGE                "gschem_right2left.png"
 #define GSCHEM_BITMAP_ROTATE_SMALL                       "gschem_rotate.xpm"
 #define GSCHEM_BITMAP_SAVE_SMALL                         "gschem_save.xpm"
+#define GSCHEM_BITMAP_SAVE_AS_SMALL                      "gschem_save_as.xpm"
 #define GSCHEM_BITMAP_SELECT_TINY                        "gschem_select_22x22.png"
 #define GSCHEM_BITMAP_SELECT_SMALL                       "gschem_select_24x24.png"
 #define GSCHEM_BITMAP_SELECT_MEDIUM                      "gschem_select_26x26.png"
@@ -484,6 +485,7 @@
 #define GSCHEM_RIGHT_2_LEFT_BITMAP      GSCHEM_BITMAP_RIGHT_2_LEFT_XLARGE
 #define GSCHEM_ROTATE_BITMAP            GSCHEM_BITMAP_ROTATE_SMALL
 #define GSCHEM_SAVE_BITMAP              GSCHEM_BITMAP_SAVE_SMALL
+#define GSCHEM_SAVE_AS_BITMAP           GSCHEM_BITMAP_SAVE_AS_SMALL
 #define GSCHEM_SELECT_BITMAP            GSCHEM_BITMAP_SELECT_TINY
 #define GSCHEM_SELECT_ALL_BITMAP        GSCHEM_BITMAP_SELECT_ALL_SMALL
 #define GSCHEM_TEXT_BITMAP              GSCHEM_BITMAP_TEXT_SMALL
