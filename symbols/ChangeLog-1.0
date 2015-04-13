@@ -1,3 +1,12 @@
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 3 symbols for High-Voltage Half-Bridge Gate Drivers:
+
+            * ti/LM25101A-2.sym (8pin, 3Amp)
+            * ti/LM25101B-2.sym (8pin, 3Amp)
+            * ti/LM25101C-2.sym (8pin, 3Amp)
+
+
 2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/: Add 3 symbols for High-Voltage Half-Bridge Gate Drivers:
