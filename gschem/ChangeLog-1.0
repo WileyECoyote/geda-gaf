@@ -1,5 +1,9 @@
 2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_icons.c: Add function x_icons_get_action_icon.
+
+2015-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * x_settings_dialog.c: Remove use of tmp int to check varibles for
       menu which is changed before saving in function GatherSettings.
 

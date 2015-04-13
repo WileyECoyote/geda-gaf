@@ -114,6 +114,17 @@ const char* IDS_THEME_ICONS_22[] = {
   NULL
 };
 
+GtkWidget *x_icons_get_action_icon (const char *action, int size)
+{
+  const char *icon_id = i_command_get_action_icon (action);
+  if (icon_id) {
+    GtkWidget *image;
+    image = gtk_image_new_from_icon_name (icon_id, size);
+    return image;
+  }
+  return NULL;
+}
+
 /*! \brief Setup default icon for GTK windows
  *
  *  \par Function Description
