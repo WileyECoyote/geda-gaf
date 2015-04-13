@@ -33,9 +33,11 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_invert_32x32.png                                \
 		  gschem-net.png                                         \
 		  gschem_net.xpm                                         \
-		  gschem_new.xpm gschem_open.xpm gschem_redo.xpm         \
+		  gschem_new.xpm gschem_open.xpm                         \
+		  gschem-print-document.xpm                              \
 		  gschem_save.xpm                                        \
 		  gschem-save-as.xpm                                     \
+		  gschem_redo.xpm                                        \
 		  gschem_right2left.png gschem_fileorder.png             \
 		  gschem_rotate.xpm gschem_mirror.xpm                    \
 		  gschem-select.png                                      \
