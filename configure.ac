@@ -10,7 +10,7 @@ dnl directory.
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [1])
 m4_define([geda_micro_version],   [0])
-m4_define([geda_mutation],        [3])
+m4_define([geda_mutation],        [5])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -197,7 +197,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:11:0])
+AX_LIBGEDA([50:12:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:2:0])
@@ -206,7 +206,7 @@ AX_LIBGEDADRAW([0:2:0])
 AX_LIBGEDACAIRO([1:4:1])
 
 # Set up libgedathon with the correct ld version number
-AX_LIBGEDATHON([0:5:0])
+AX_LIBGEDATHON([0:6:0])
 
 # Set up libgedauio with the correct ld version number
 AX_LIBGEDAUIO([0:5:0])
