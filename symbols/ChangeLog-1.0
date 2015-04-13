@@ -1,5 +1,11 @@
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/switchreg/LM3481-1.sym: Fix attribute positions.
+
+    * ti/switchreg/LM3481-2.sym: Fix attribute positions.
+
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * microchip/battery/: Add 8 symbols for MCP7386 Series Li-ion/Li-Po
       single/dual battery chargers:
 
