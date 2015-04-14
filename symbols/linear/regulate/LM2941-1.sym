@@ -1,4 +1,4 @@
-v 20130214 2
+v 20150401 2
 T 10 2210 5 10 0 0 0 0 1
 description=Low Dropout Adjustable Regulator
 T 0 1800 5 10 0 0 0 0 1
@@ -26,7 +26,7 @@ pinnumber=2
 T 96 650 5 8 0 0 0 0 1
 pinseq=2
 T 375 550 3 8 1 1 0 0 1
-pinlabel=/On
+pinlabel=\_On\_
 T 96 650 5 8 0 1 0 0 1
 pintype=in
 }
