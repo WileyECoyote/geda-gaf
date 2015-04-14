@@ -1,5 +1,13 @@
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/switchreg/LM5022: Add 2 symbols for Low Side Controller for Boost
+      and SEPIC, 60V:
+
+            * ti/switchreg/LM5022-1.sym,
+            * ti/switchreg/LM5022-2.sym.
+
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/switchreg/LM3481-1.sym: Fix attribute positions.
 
     * ti/switchreg/LM3481-2.sym: Fix attribute positions.
