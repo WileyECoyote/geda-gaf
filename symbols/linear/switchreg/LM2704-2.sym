@@ -1,0 +1,67 @@
+v 20150401 2
+B 200 200 1200 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 1100 1200 1100 1000 1 0 0
+{
+T 1100 1200 5 10 0 1 0 0 1
+pintype=pas
+T 1100 900 9 10 1 1 0 5 1
+pinlabel=SW
+T 1150 1050 5 10 1 1 0 0 1
+pinnumber=1
+T 1150 1050 5 10 0 1 0 0 1
+pinseq=1
+}
+P 800 0 800 200 1 0 0
+{
+T 800 0 5 10 0 1 0 6 1
+pintype=pas
+T 800 250 9 10 1 1 0 3 1
+pinlabel=GND
+T 900 50 5 10 1 1 0 0 1
+pinnumber=2
+T 900 50 5 10 0 1 0 0 1
+pinseq=2
+}
+P 1600 500 1400 500 1 0 0
+{
+T 1600 500 5 10 0 1 0 2 1
+pintype=pas
+T 1350 500 9 10 1 1 0 6 1
+pinlabel=FB
+T 1450 550 5 10 1 1 0 0 1
+pinnumber=3
+T 1450 550 5 10 0 1 0 0 1
+pinseq=3
+}
+P 0 500 200 500 1 0 0
+{
+T 0 500 5 10 0 1 0 0 1
+pintype=pas
+T 250 500 9 10 1 1 0 0 1
+pinlabel=\_SHDN\_
+T 150 550 5 10 1 1 0 6 1
+pinnumber=4
+T 150 550 5 10 0 1 0 6 1
+pinseq=4
+}
+P 500 1200 500 1000 1 0 0
+{
+T 500 1200 5 10 0 1 0 0 1
+pintype=pas
+T 500 900 9 10 1 1 0 5 1
+pinlabel=VIN
+T 550 1050 5 10 1 1 0 0 1
+pinnumber=5
+T 550 1050 5 10 0 1 0 0 1
+pinseq=5
+}
+T 0 1800 8 10 0 0 0 0 1
+footprint=SOT25_2
+T 0 1600 8 10 0 0 0 0 1
+description=Step-up DC/DC converter
+T 0 1400 8 10 0 0 0 0 1
+device=LM2704
+T 1500 1000 8 10 1 1 0 0 1
+refdes=IC?
+T 1500 800 8 10 1 1 0 0 1
+value=LM2704
