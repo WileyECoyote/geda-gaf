@@ -1,4 +1,4 @@
-v 20130214 2
+v 20150401 2
 P 1800 200 1500 200 1 0 0
 {
 T 1600 250 5 8 1 1 0 0 1
@@ -99,23 +99,23 @@ T 350 500 5 8 0 1 0 2 1
 pintype=pwr
 }
 B 300 0 1200 2200 3 15 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 2700 5 10 0 0 0 0 1
+T 300 2700 5 10 0 1 0 0 1
 footprint=SO14
 T 1500 2300 8 10 1 1 0 6 1
 refdes=U?
 T 300 2300 9 10 1 0 0 0 1
 IR21084
-T 300 2500 5 10 0 0 0 0 1
+T 300 2500 5 10 0 1 0 0 1
 device=IR21084
-T 300 2900 5 10 0 0 0 0 1
-author=andrewmATthehacktoryDOTcom
-T 300 3100 5 10 0 0 0 0 1
-documentation=http://www.irf.com/product-info/datasheets/data/ir2108.pdf
-T 300 3300 5 10 0 0 0 0 1
-description=IR21084 Half Bridge Driver programmable dead time
-T 300 3500 5 10 0 0 0 0 1
-dist-license=GPL
 T 300 3700 5 10 0 0 0 0 1
+author=andrewmATthehacktoryDOTcom
+T 300 3100 5 10 0 1 0 0 1
+documentation=http://www.irf.com/product-info/datasheets/data/ir2108.pdf
+T 300 2900 5 10 0 1 0 0 1
+description=IR21084 Half Bridge Driver programmable dead time
+T 300 3300 5 10 0 0 0 0 1
+dist-license=GPL
+T 300 3500 5 10 0 0 0 0 1
 use-license=unlimited
 P 1800 2000 1500 2000 1 0 0
 {
