@@ -228,11 +228,11 @@ GdkColor *x_color_get_darkcolor(int color)
     return (gdk_outline_colors[color]);
   }
 }
-
+ */
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Documentation
- *
+ *  \todo function name should include the word "display"
  */
 COLOR *x_color_lookup (int color)
 {
