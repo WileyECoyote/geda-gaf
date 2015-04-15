@@ -663,7 +663,7 @@ void          x_color_init                  (void);
 void          x_color_free                  (void);
 void          x_color_allocate              (void);
 GdkColor     *x_color_get_color_from_index  (int color);
-GdkColor     *x_color_get_darkcolor         (int color);
+//GdkColor     *x_color_get_darkcolor         (int color);
 GArray       *x_color_get_display_color_map (void);
 GArray       *x_color_get_outline_color_map (void);
 //GArray       *x_color_get_print_color_map   (void);

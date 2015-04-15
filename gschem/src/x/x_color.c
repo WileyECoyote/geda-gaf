@@ -195,28 +195,13 @@ GArray *x_color_get_outline_color_map()
   color_map = g_array_append_vals (color_map, outline_colors, MAX_COLORS);
   return color_map;
 }
-/*! \brief Get Display Color Map
- *  \par Function Documentation
- *   Returns a pointer to a new Garray containing a copy of the
- *   current color-map allocations.
- *
- *  \note the returned color-map MUST be freed using g_array_free.
-
-GArray   *x_color_get_print_color_map()
-{
-  GArray* color_map;
-  color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
-  color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
-  return color_map;
-}
- */
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Documentation
  *
  *  \todo this has to change... to the right code
- */
+
 GdkColor *x_color_get_darkcolor(int color)
 {
   if ((color < 0) || (color >= MAX_COLORS)
