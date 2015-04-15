@@ -124,31 +124,34 @@ DEFINE_I_CALLBACK(view_pan_down)
  *  \note the file-new action is similar to page new but does
  *  not automatically add a title-block
  */
+/*
 DEFINE_I_CALLBACK(file_new)
 {
   i_command_process(w_current, "file-new", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief File Open action
  *  \par Function Description
  *  This is a callback function for the File Open API.
  *  The function calls i_command to process the action.
  */
+/*
 DEFINE_I_CALLBACK(file_open)
 {
   i_command_process(w_current, "file-open", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Save File command action
  *  \par Function Description
  *  This is a callback function for the File Save API
  *  The function calls i_command to process the action.
  */
+/*
 DEFINE_I_CALLBACK(file_save)
 {
   i_command_process(w_current, "file-save", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /** @} end group file-menu */
 
 /*! \brief Page Close
@@ -156,21 +159,23 @@ DEFINE_I_CALLBACK(file_save)
  *  This is a callback function for the New Page API.
  *  The function calls i_command to process the action.
  */
+/*
 DEFINE_I_CALLBACK(page_close)
 {
   i_command_process(w_current, "page-close", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Page Discard
  *  \par Function Description
  *  This is a callback function for the Discard Page API.
  *  The function calls i_command to process the action.
  */
+/*
 DEFINE_I_CALLBACK(page_discard)
 {
   i_command_process(w_current, "page-discard", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Cancel Everthing
  *  \par Function Description
  *
@@ -255,54 +260,56 @@ DEFINE_I_CALLBACK(cancel)
  *  This is a callback function for the Help About API
  *  The function calls i_command to launch the Help About Dialog.
  */
+/*
 DEFINE_I_CALLBACK(help_show_manual)
 {
   i_command_process(w_current, "help-show-manual", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Help Hotkeys Action Callback Responder API Function
  *  \par Function Description
  *  This is a callback function for the Help Hotkeys API
  *  The function calls i_command to launch the Help Hotkeys Dialog.
- *
- *  \note
- *  WEH: like it!, could have icons too!
  */
+/*
 DEFINE_I_CALLBACK(help_show_hotkeys)
 {
   i_command_process(w_current, "help-show-hotkeys", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Help About Action Callback Responder API Function
  *  \par Function Description
  *  This is a callback function for the Help About API
  *  The function calls i_command to launch the Help About Dialog.
  */
+/*
 DEFINE_I_CALLBACK(help_show_faq)
 {
   i_command_process(w_current, "help-show-faq", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Help About Action Callback Responder API Function
  *  \par Function Description
  *  This is a callback function for the Help About API
  *  The function calls i_command to launch the Help About Dialog.
  */
+/*
 DEFINE_I_CALLBACK(help_show_wiki)
 {
   i_command_process(w_current, "help-show-wiki", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /*! \brief Help About Action Callback Responder API Function
  *  \par Function Description
  *  This is a callback function for the Help About API
  *  The function calls i_command to launch the Help About Dialog.
  */
+/*
 DEFINE_I_CALLBACK(help_show_about)
 {
   i_command_process(w_current, "help-show-about", 0, NULL, ID_ORIGIN_SCM);
 }
-
+*/
 /** @} end group help-menu */
 
 /*! \brief Close main window callback
