@@ -127,7 +127,7 @@ pinnumber=89
 T 300 12350 5 8 0 1 0 8 1
 pinseq=12
 T 450 12400 9 8 1 1 0 0 1
-pinlabel=GPIP-19
+pinlabel=GPIO-19
 T 450 12400 5 8 0 1 0 2 1
 pintype=io
 }
@@ -215,7 +215,7 @@ pinnumber=81
 T 300 9950 5 8 0 1 0 8 1
 pinseq=20
 T 450 10000 9 8 1 1 0 0 1
-pinlabel=GPIO-85
+pinlabel=GPIO-43
 T 450 10000 5 8 0 1 0 2 1
 pintype=io
 }
@@ -226,7 +226,7 @@ pinnumber=80
 T 300 9650 5 8 0 1 0 8 1
 pinseq=21
 T 450 9700 9 8 1 1 0 0 1
-pinlabel=GPIO-49
+pinlabel=GPIO-41
 T 450 9700 5 8 0 1 0 2 1
 pintype=io
 }
@@ -314,7 +314,7 @@ pinnumber=72
 T 300 6950 5 8 0 1 0 8 1
 pinseq=29
 T 450 7000 9 8 1 1 0 0 1
-pinlabel=GPIO-63
+pinlabel=GPIO-57
 T 450 7000 5 8 0 1 0 2 1
 pintype=io
 }
@@ -336,7 +336,7 @@ pinnumber=70
 T 300 6350 5 8 0 1 0 8 1
 pinseq=31
 T 450 6400 9 8 1 1 0 0 1
-pinlabel=GPIO-61
+pinlabel=GPIO-55
 T 450 6400 5 8 0 1 0 2 1
 pintype=io
 }
@@ -358,7 +358,7 @@ pinnumber=68
 T 300 5750 5 8 0 1 0 8 1
 pinseq=33
 T 450 5800 9 8 1 1 0 0 1
-pinlabel=GPIO-59
+pinlabel=GPIO-44
 T 450 5800 5 8 0 1 0 2 1
 pintype=io
 }
@@ -644,7 +644,7 @@ pinnumber=42
 T 2300 13250 5 8 0 1 0 2 1
 pinseq=59
 T 2150 13300 9 8 1 1 0 6 1
-pinlabel=GPIO-87
+pinlabel=GPIO-51
 T 2150 13300 5 8 0 1 0 8 1
 pintype=io
 }
@@ -754,7 +754,7 @@ pinnumber=32
 T 2300 10250 5 8 0 1 0 2 1
 pinseq=69
 T 2150 10300 9 8 1 1 0 6 1
-pinlabel=GPIO-86
+pinlabel=GPIO-50
 T 2150 10300 5 8 0 1 0 8 1
 pintype=io
 }
@@ -765,7 +765,7 @@ pinnumber=31
 T 2300 9950 5 8 0 1 0 2 1
 pinseq=70
 T 2150 10000 9 8 1 1 0 6 1
-pinlabel=GPIO-84
+pinlabel=GPIO-42
 T 2150 10000 5 8 0 1 0 8 1
 pintype=io
 }
@@ -776,7 +776,7 @@ pinnumber=30
 T 2300 9650 5 8 0 1 0 2 1
 pinseq=71
 T 2150 9700 9 8 1 1 0 6 1
-pinlabel=GPIO-48
+pinlabel=GPIO-40
 T 2150 9700 5 8 0 1 0 8 1
 pintype=io
 }
@@ -864,7 +864,7 @@ pinnumber=22
 T 2300 6950 5 8 0 1 0 2 1
 pinseq=79
 T 2150 7000 9 8 1 1 0 6 1
-pinlabel=GPIO-62
+pinlabel=GPIO-56
 T 2150 7000 5 8 0 1 0 8 1
 pintype=io
 }
@@ -886,7 +886,7 @@ pinnumber=20
 T 2300 6350 5 8 0 1 0 2 1
 pinseq=81
 T 2150 6400 9 8 1 1 0 6 1
-pinlabel=GPIO-60
+pinlabel=GPIO-54
 T 2150 6400 5 8 0 1 0 8 1
 pintype=io
 }

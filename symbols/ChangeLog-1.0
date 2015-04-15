@@ -1,3 +1,10 @@
+2015-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/special/TMDSDIM100CON.sym: Revise pin-out to match F2802x
+      controller cards, old pin-out was for USB docking station. Not sure
+      why the two do not match, but there are multible GPIO pin that are
+      not the same.
+
 2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/LM5022: Add 2 symbols for Low Side Controller for Boost
