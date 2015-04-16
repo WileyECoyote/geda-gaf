@@ -139,7 +139,7 @@ GtkWidget* create_pixmap (const char *filename)
   pathname = f_get_bitmap_filespec (filename);
 
   if (!pathname) {
-      u_log_message("Could not find image at file: %s.\n", filename);
+      u_log_message("Could not find image file: %s.\n", filename);
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
                                       GTK_ICON_SIZE_INVALID);
   }
