@@ -24,7 +24,7 @@
 #include "libgeda_priv.h"
 #include <geda_debug.h>
 
-/* \brief Decode a hexadecimal RGB or RGBA color code.
+/*! \brief Decode a hexadecimal RGB or RGBA color code.
  * \par Function Description
  * Accepts a hexadecimal color code \a rgba of either the form #RRGGBB
  * or #RRGGBBAA, and parses it to extract the numerical color values,
