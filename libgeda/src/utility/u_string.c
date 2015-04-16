@@ -232,12 +232,13 @@ char *u_string_int2str(int value, char* str, int radix) {
   return str;
 }
 
-/*! \brief Interogate string for non ASCII characters
+/*! \brief Interrogate string for alpha-numeric characters
  *  \par Function Description
- * Determines if a string is pure ASCII. A string is pure ASCII if it
- * contains no bytes with the high bit set.
+ *  Determines if a string contains only alpha-numeric character.
  *
- * Returns: TRUE if \a str is ASCII
+ *  \param[in] string  The string to parse.
+ *
+ *  \returns TRUE if all of the characters in \a str are alpha-numeric.
  */
 bool u_string_isalnum (const char *str)
 {
