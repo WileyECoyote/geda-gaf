@@ -1,4 +1,8 @@
-2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS73501DRB-1.sym: Add symbol, LDO with VSON-8 footprint
+
+2015-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/: Add 2 symbols with alternate pin arrangment Half-Bridge Gate Drivers:
 
