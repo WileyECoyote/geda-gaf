@@ -1,3 +1,10 @@
+2015-04-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/: Add 2 symbols with alternate pin arrangment Half-Bridge Gate Drivers:
+
+            * ti/LM25101C-3.sym
+            * ti/LM25101C-4.sym
+
 2015-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/special/TMDSDIM100CON.sym: Revise pin-out to match F2802x
