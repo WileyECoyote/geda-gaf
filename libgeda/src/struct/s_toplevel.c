@@ -39,10 +39,9 @@ GedaToplevel *s_toplevel_new (void)
   return toplevel;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Releases resource associated with GedaToplevel object
  *  \par Function Description
- *
+ *  Decrements the reference count of the toplevel object by one.
  */
 void s_toplevel_release (GedaToplevel *toplevel)
 {

@@ -49,7 +49,7 @@
  *  \returns #TRUE on success, #FALSE on failure.
  */
 bool u_color_rgba_decode (const char *rgba,
-                     uint8 *r, uint8 *g, uint8 *b, uint8 *a)
+                          uint8 *r, uint8 *g, uint8 *b, uint8 *a)
 {
   int len, i, ri, gi, bi, ai;
   char c;
