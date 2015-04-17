@@ -586,6 +586,13 @@ page_comparator(const void *pg1, const void *pg2)
    return page1->pid - page2->pid;
 }
 
+/*! \brief Resequence the Page List by Page Id.
+ *  \par Function Description
+ *  Sorts the page list in <B>toplevel</B> by page Id, which is
+ *  equivalent to the order the pages were loaded.
+ *
+ *  \param [in] toplevel  The GedaToplevel.
+ */
 void s_page_resequence_by_ids (GedaToplevel *toplevel)
 {
   if (g_list_length(geda_list_get_glist(toplevel->pages)) > 1) {
