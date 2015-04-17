@@ -1,4 +1,3 @@
-*~
 .desktop-i18n
 ABOUT-NLS
 Makefile
@@ -23,3 +22,4 @@ configure.scan
 *.log
 *.swp
 *-swp
+*~
