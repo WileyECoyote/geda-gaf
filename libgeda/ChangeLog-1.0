@@ -1,3 +1,7 @@
+2015-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_page.c: Add function s_page_save_all_changed
+
 2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/globals.h: Relocate file to include directory and eliminate

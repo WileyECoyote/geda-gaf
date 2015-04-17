@@ -636,6 +636,43 @@ int s_page_save_all (GedaToplevel *toplevel)
   return status;
 }
 
+/*! \brief Saves all unsaved pages of a GedaToplevel object.
+ *  \par Function Description
+ *  Saves all pages in given <B>toplevel</B> for which the CHANGED flag
+ *  is set.
+ *
+ *  \param [in] toplevel  The GedaToplevel to save pages from.
+ *
+ *  \return The number of failed tries to save a page.
+ */
+int s_page_save_all_changed (GedaToplevel *toplevel)
+{
+  const GList *iter;
+  Page *p_current;
+  int status = 0;
+
+  for ( iter = geda_list_get_glist( toplevel->pages ); iter; iter = iter->next)
+  {
+    p_current = (Page *)iter->data;
+
+    if (p_current && p_current->CHANGED) {
+
+      if (f_save (toplevel, p_current, p_current->filename, NULL)) {
+        u_log_message (_("Saved [%s]\n"), p_current->filename);
+        /* reset the CHANGED flag of p_current */
+        p_current->CHANGED = 0;
+
+      } else {
+        u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
+        /* increase the error counter */
+        status++;
+      }
+    }
+  }
+
+  return status;
+}
+
 /*! \brief Search for pages by filename.
  *  \par Function Description
  *  Searches in \a toplevel's list of pages for a page with a filename

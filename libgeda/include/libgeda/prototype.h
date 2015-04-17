@@ -508,6 +508,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_page_print_all                (GedaToplevel *toplevel);
          void    s_page_resequence_by_ids        (GedaToplevel *toplevel);
           int    s_page_save_all                 (GedaToplevel *toplevel);
+          int    s_page_save_all_changed         (GedaToplevel *toplevel);
          Page   *s_page_search                   (GedaToplevel *toplevel, const char *filename);
          Page   *s_page_search_by_page_id        (PageList *list, int pid);
          void    s_page_set_bounds_func          (Page *page, RenderedBoundsFunc func, void *user_data);
