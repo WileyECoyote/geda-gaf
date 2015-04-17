@@ -450,7 +450,6 @@ void s_page_delete_list(GedaToplevel *toplevel)
   toplevel->page_current = NULL;
 }
 
-
 /*! \brief Get the current page
 * \par Function Description
 * This function returns the current Page object.
@@ -466,15 +465,16 @@ Page * s_page_get_current (GedaToplevel *toplevel )
   return toplevel->page_current;
 
 }
+
 /*! \brief Set the current page
-* \par Function Description
-* Changes the current page in \a toplevel to the page \a page.
-*
-* \sa s_page_get_current, s_page_goto
-*
-* \param [in,out] toplevel This toplevel
-* \param [in] page The new current page
-*/
+ *  \par Function Description
+ *  Changes the current page in \a toplevel to the page \a page.
+ *
+ * \sa s_page_get_current, s_page_goto
+ *
+ * \param [in,out] toplevel This toplevel
+ * \param [in] page The new current page
+ */
 bool s_page_set_current (GedaToplevel *toplevel, Page *page)
 {
   g_return_val_if_fail (toplevel != NULL, FALSE);
