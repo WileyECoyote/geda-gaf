@@ -1,3 +1,8 @@
+2015-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93AA56A-E-OT-1.sym: Add symbol 2K EEPROM, 8 Bit Serial,
+      1.8-5.5Volt, +85°C, SOIC8 version.
+
 2015-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56A-E-OT-1.sym: Add symbol 2K EEPROM, 8 Bit Serial,
