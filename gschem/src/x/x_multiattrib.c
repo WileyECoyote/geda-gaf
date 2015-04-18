@@ -1520,7 +1520,7 @@ multiattrib_callback_button_add(GtkButton *button, void *user_data)
 
   /* retrieve information from the Add/Edit frame */
   /*   - attribute's name */
-  name = GetEntryText((ThisDialog->combo_name)->entry);
+  name = GetEntryText(ThisDialog->combo_entry);
 
   /*   - attribute's value */
   gtk_text_buffer_get_bounds (buffer, &start, &end);
@@ -1553,22 +1553,40 @@ multiattrib_callback_button_add(GtkButton *button, void *user_data)
  *   during construction of the dialog.
  *
  */
-static void multiattrib_init_attrib_names(GtkCombo *combo)
+static
+GtkWidget *x_multiattrib_new_entry_combo(void)
 {
-  GList      *items = NULL;
+  GtkWidget  *combo;
+  GtkWidget  *combo_entry;
   const char *string;
-  int         i;
+  int i;
 
-  for (i = 0, string = s_attrib_get (i); string != NULL;
-       i++, string = s_attrib_get (i)) {
-    items = g_list_append (items, (void *)string);
+  combo =  geda_combo_box_text_new_with_entry ();
+
+  /* load the combo's tree with our list of attributes names */
+  i = 0;
+  string =s_attrib_get(i);
+  while (string != NULL) {
+    geda_combo_box_append_text(GEDA_COMBO_BOX(combo), string);
+    i++;
+    string = s_attrib_get(i);
   }
 
-  gtk_combo_set_popdown_strings (GTK_COMBO (combo), items);
+  /* Add completion to attribute combo box entry */
+  GtkEntryCompletion *cmp = gtk_entry_completion_new();
 
-  g_list_free (items);
+  gtk_entry_completion_set_model(cmp,
+                                 geda_combo_box_get_model(GEDA_COMBO_BOX(combo)));
+  gtk_entry_completion_set_text_column(cmp, 0);
+  gtk_entry_completion_set_inline_completion(cmp, TRUE);
+  gtk_entry_completion_set_popup_single_match(cmp, FALSE);
+
+  combo_entry = gtk_bin_get_child(GTK_BIN(combo));
+  gtk_entry_set_completion(GTK_ENTRY(combo_entry), cmp);
 
   SetWidgetTip(combo, _("Select an attribute to add"));
+
+  return combo;
 }
 
 /*! \brief Multi-attribute Dialog Pre-load Visibilty Options Menu
@@ -2135,7 +2153,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                     "homogeneous", FALSE,
                                     NULL));
 
-  /*   - the name entry: a GtkComboBoxEntry */
+  /*   - the name entry: a Combo Box Entry */
   label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
                                     /* GtkMisc */
                                     "xalign", 0.0,
@@ -2143,15 +2161,14 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                     /* GtkLabel */
                                     "label",  _("Name:"),
                                     NULL));
-  combo = GTK_WIDGET (g_object_new (GTK_TYPE_COMBO,
-                                    /* GtkCombo */
-                                    "value-in-list", FALSE,
-                                    NULL));
 
-  multiattrib_init_attrib_names (GTK_COMBO (combo));
-  ThisDialog->combo_name = GTK_COMBO (combo);
   gtk_table_attach (GTK_TABLE (table), label,
                     0, 1, 0, 1, 0, 0, 0, 0);
+
+  combo = x_multiattrib_new_entry_combo();
+
+  ThisDialog->combo_entry = gtk_bin_get_child(GTK_BIN(combo));
+
   gtk_table_attach (GTK_TABLE (table), combo,
                     1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 6, 3);
 

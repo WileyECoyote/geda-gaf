@@ -1,5 +1,18 @@
 2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * x_multiattrib.h: Replace GtkCombo *combo_name varible with
+      GtkWidget *combo_entry.
+
+    * src/x/x_multiattrib.c: Replace function with multiattrib_init
+      _attrib_names with new function x_multiattrib_new_entry_combo.
+      The new function create a new geda_combo instead of Gtk, and
+      add entry completion like the single attribute dialog because
+      was irritating to have single attribute editor fill in the name
+      of attributes but not the multiattribute dialog. tooltip is a
+      little irritating.
+
+2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Revise function do_dettach to not save
       undo state unless an object is actually detattached.
 

@@ -53,7 +53,7 @@ struct _Multiattrib {
   GtkTreeView    *treeview;
 
   GtkWidget      *ShowInheritedSwitch;
-  GtkCombo       *combo_name;
+  GtkWidget      *combo_entry;
   GtkTextView    *textview_value;
   GtkCheckButton *button_visible;
   GtkOptionMenu  *optionmenu_shownv;
