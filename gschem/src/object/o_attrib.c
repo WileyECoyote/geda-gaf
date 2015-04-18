@@ -71,6 +71,10 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
     }
 
     if (objects_added) {
+
+      /* Update Multi-Attribute Dialog */
+      x_multiattrib_update (w_current);
+
       /* Run select-objects-hook */
       g_hook_run_object_list(w_current, SELECT_OBJECTS_HOOK, objects_added);
       g_list_free (objects_added);
@@ -108,6 +112,10 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
   }
 
   if (attached_objects != NULL) {
+
+    /* Update Multi-Attribute Dialog */
+    x_multiattrib_update (w_current);
+
     g_hook_run_object_list (w_current, ATTACH_ATTRIBS_HOOK, attached_objects);
     g_list_free (attached_objects);
     o_undo_savestate(w_current, UNDO_ALL);
