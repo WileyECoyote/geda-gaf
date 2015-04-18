@@ -27,7 +27,4 @@ T 900 300 5 10 0 1 0 0 1
 refdes=none
 T 900 300 5 10 0 1 0 0 1
 footprint=none
-T 900 100 9 10 0 2 0 2 1
-graphical=1
-T 900 150 9 10 0 2 0 0 1
-net=name:1
+

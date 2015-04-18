@@ -9,8 +9,6 @@ T 0 1050 5 8 0 0 0 0 1
 author=AutoTron
 T 1350 50 5 8 0 0 0 0 1
 symversion=0.4
-T 350 250 9 10 0 2 0 0 1
-graphical=1
 T 0 900 5 8 0 0 0 0 1
 dist-license=GPL3
 T 0 750 5 8 0 0 0 0 1
@@ -36,5 +34,4 @@ T 1350 150 9 10 0 1 0 0 1
 footprint=none
 T 1350 150 5 10 0 1 0 0 1
 refdes=none
-T 1350 300 9 10 0 2 0 0 1
-net=name:1
+
