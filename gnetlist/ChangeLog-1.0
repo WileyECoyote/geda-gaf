@@ -1,3 +1,8 @@
+2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Replace gassert with BUG_MSG in
+      in function s_netattrib_create_pins.
+
 2015-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/outputs: Regenerate test outputs.

@@ -129,25 +129,28 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
 
       if (old_cpin) {
 
-        g_assert (old_cpin->nets != NULL);
+        if (old_cpin->nets != NULL) {
 
-        if (old_cpin->nets->net_name) {
-          fprintf(stderr, _("Found a cpinlist head with a netname! [%s]\n"),
-                  old_cpin->nets->net_name);
-          GEDA_FREE(old_cpin->nets->net_name);
+          if (old_cpin->nets->net_name) {
+            fprintf(stderr, _("Found a cpinlist head with a netname! [%s]\n"),
+            old_cpin->nets->net_name);
+            GEDA_FREE(old_cpin->nets->net_name);
+          }
+
+          old_cpin->nets->net_name =
+          s_hierarchy_create_netattrib(pr_current, net_name,
+                                       hierarchy_tag);
+          old_cpin->nets->net_name_has_priority = TRUE;
+          connected_to = u_string_sprintf("%s %s",
+          netlist->component_uref,
+          current_pin);
+          old_cpin->nets->connected_to = u_string_strdup(connected_to);
+          old_cpin->nets->nid = o_current->sid;
+          GEDA_FREE(connected_to);
         }
-
-
-        old_cpin->nets->net_name =
-        s_hierarchy_create_netattrib(pr_current, net_name,
-                                     hierarchy_tag);
-        old_cpin->nets->net_name_has_priority = TRUE;
-        connected_to = u_string_sprintf("%s %s",
-                                       netlist->component_uref,
-                                       current_pin);
-        old_cpin->nets->connected_to = u_string_strdup(connected_to);
-        old_cpin->nets->nid = o_current->sid;
-        GEDA_FREE(connected_to);
+        else {
+          BUG_MSG("Check old_cpin->nets");
+        }
       }
       else {
 
@@ -180,8 +183,8 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
         GEDA_FREE(connected_to);
       }
 
-    } else {		/* no uref, means this is a special component */
-
+    } else {
+      /* no uref, means this is a special component */
     }
     current_pin = strtok(NULL, DELIMITERS);
   }
