@@ -142,9 +142,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
                                                 count);
     }
 
-    /* okay we were looking outside and didn't */
-    /* find anything, so now we need to look */
-    /* inside the symbol */
+    /* Did not find anything outside, so now look inside symbol */
     if (!looking_inside && attrib == NULL && !loaded_flag) {
       looking_inside = TRUE;
 #if DEBUG
@@ -173,133 +171,6 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
   }
 }
 
-
-void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
-{
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-
-  char *source_net_name = NULL;
-  int   did_work = FALSE;
-
-  s_rename_next_set();
-
-  nl_current = head;
-  while (nl_current != NULL) {
-    if (nl_current->composite_component) {
-#if DEBUG
-      printf("Found composite %s\n", nl_current->component_uref);
-#endif
-
-      if (nl_current->cpins) {
-        pl_current = nl_current->cpins;
-
-        while (pl_current != NULL) {
-
-          if (pl_current->plid != -1) {
-            verbose_print("p");
-          }
-
-          if (pl_current->pin_label == NULL
-            && pl_current->plid != -1) {
-            fprintf(stderr,
-                    "Found a pin [%s] on component [%s] which does not have a label!\n",
-                    nl_current->component_uref,
-                    pl_current->pin_number);
-            } else if (pl_current->plid != -1) {
-
-#if DEBUG
-              printf("# L: %s %s\n", pl_current->pin_number,
-              pl_current->pin_label);
-#endif
-              /* get source net name, all nets are named already */
-              source_net_name =
-              s_net_name_search(pr_current,
-                                pl_current->nets);
-#if DEBUG
-              printf("name: %s\n", source_net_name);
-              printf("Now we need to search for: %s/%s\n",
-              nl_current->component_uref,
-              pl_current->pin_label);
-#endif
-
-              did_work =
-              s_hierarchy_setup_rename(pr_current, head,
-                                       nl_current->component_uref,
-                                       pl_current->pin_label,
-                                       source_net_name);
-              if (!did_work) {
-                fprintf(stderr,
-                        "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
-                        pl_current->pin_label,
-                        nl_current->component_uref);
-
-              }
-            }
-            pl_current = pl_current->next;
-        }
-      }
-    }
-    nl_current = nl_current->next;
-  }
-
-  s_rename_all(pr_current, head);
-  s_hierarchy_remove_compsite_all(head);
-}
-
-int
-s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
-                         char *label, char *new_name)
-{
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-
-  char *wanted_uref = NULL;
-  int   did_work = FALSE;
-
-  /* this is questionable, because I'm not sure if it's exactly the */
-  /* same as the#if 0'ed out line */
-  /* search for the uref which has the name: label/uref (or whatever the */
-  /* hierarchy tag/separator order is) */
-  wanted_uref = s_hierarchy_create_uref(pr_current, label, uref);
-
-#if DEBUG
-  printf("label: %s, uref: %s, wanted_uref: %s\n", label, uref,
-         wanted_uref);
-#endif
-
-  nl_current = head;
-  while (nl_current != NULL) {
-    if (nl_current->component_uref) {
-      pl_current = nl_current->cpins;
-      if (strcmp(nl_current->component_uref, wanted_uref) == 0) {
-        if (nl_current->cpins) {
-          /* skip over head of special io symbol */
-          pl_current = nl_current->cpins->next;;
-#if DEBUG
-          printf("net to be renamed: %s\n",
-          pl_current->net_name);
-          printf("%s -> %s\n", pl_current->net_name, new_name);
-#endif
-          s_rename_add(pl_current->net_name, new_name);
-
-#if DEBUG
-          printf("Going to remove %s\n",
-          nl_current->component_uref);
-#endif
-          s_hierarchy_remove_urefconn(head,
-                                      nl_current->
-                                      component_uref);
-          did_work = TRUE;
-        }
-      }
-    }
-    nl_current = nl_current->next;
-  }
-
-  return (did_work);
-}
-
 void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 {
   NETLIST  *nl_current;
@@ -308,15 +179,23 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   char uref[80], pin[10];
 
   nl_current = head;
+
   while (nl_current != NULL) {
+
     pl_current = nl_current->cpins;
+
     while (pl_current != NULL) {
+
       n_current = pl_current->nets;
+
       while (n_current != NULL) {
+
         if (n_current->connected_to != NULL) {
+
           sscanf(n_current->connected_to, "%s %s", uref, pin);
+
 #if DEBUG
-          printf("	looking at : %s %s\n", uref, pin);
+          printf("  looking at : %s %s\n", uref, pin);
 #endif
           if (strcmp(uref_disable, uref) == 0) {
 #if DEBUG
@@ -324,7 +203,7 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
             n_current->connected_to);
 #endif
             /* can't do frees, since some names are links */
-            /* 		GEDA_FREE(n_current->connected_to);*/
+            /*      GEDA_FREE(n_current->connected_to);*/
             n_current->connected_to = NULL;
           }
         }
@@ -348,32 +227,17 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   }
 }
 
-void s_hierarchy_remove_compsite_all(NETLIST *head)
-{
-  NETLIST *nl_current;
-
-  nl_current = head;
-  while (nl_current != NULL) {
-    if (nl_current->composite_component) {
-      if (nl_current->component_uref != NULL) {
-        s_hierarchy_remove_urefconn(head,
-                                    nl_current->component_uref);
-      }
-    }
-    nl_current = nl_current->next;
-  }
-
-}
-
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
                               char *hierarchy_tag)
 {
   char *return_value = NULL;
 
   if (hierarchy_tag) {
+
     if (basename) {
 
       if (pr_current->hierarchy_uref_separator) {
+
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
             return_value =
@@ -416,15 +280,176 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
+/* Why is this public? */
+int
+s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
+                         char *label, char *new_name)
+{
+  NETLIST  *nl_current;
+  CPINLIST *pl_current;
+
+  char *wanted_uref = NULL;
+  int   did_work = FALSE;
+
+  /* this is questionable, because I'm not sure if it's exactly the */
+  /* same as the#if 0'ed out line */
+  /* search for the uref which has the name: label/uref (or whatever the */
+  /* hierarchy tag/separator order is) */
+  wanted_uref = s_hierarchy_create_uref(pr_current, label, uref);
+
+#if DEBUG
+  printf("label: %s, uref: %s, wanted_uref: %s\n", label, uref,
+         wanted_uref);
+#endif
+
+  nl_current = head;
+  while (nl_current != NULL) {
+
+    if (nl_current->component_uref) {
+
+      pl_current = nl_current->cpins;
+
+      if (strcmp(nl_current->component_uref, wanted_uref) == 0) {
+
+        if (nl_current->cpins) {
+
+          /* skip over head of special io symbol */
+          pl_current = nl_current->cpins->next;
+
+#if DEBUG
+          printf("net to be renamed: %s\n",
+          pl_current->net_name);
+          printf("%s -> %s\n", pl_current->net_name, new_name);
+#endif
+
+          s_rename_add(pl_current->net_name, new_name);
+
+#if DEBUG
+          printf("Going to remove %s\n",
+          nl_current->component_uref);
+#endif
+
+          s_hierarchy_remove_urefconn(head, nl_current-> component_uref);
+          did_work = TRUE;
+        }
+      }
+    }
+    nl_current = nl_current->next;
+  }
+
+  return (did_work);
+}
+
+void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
+{
+  NETLIST  *nl_current;
+  CPINLIST *pl_current;
+
+  char *source_net_name = NULL;
+  int   did_work = FALSE;
+
+  s_rename_next_set();
+
+  nl_current = head;
+
+  while (nl_current != NULL) {
+
+    if (nl_current->composite_component) {
+
+#if DEBUG
+      printf("Found composite %s\n", nl_current->component_uref);
+#endif
+
+      if (nl_current->cpins) {
+
+        pl_current = nl_current->cpins;
+
+        while (pl_current != NULL) {
+
+          if (pl_current->plid != -1) {
+            verbose_print("p");
+          }
+
+          if (pl_current->pin_label == NULL && pl_current->plid != -1) {
+
+            fprintf(stderr,
+                    "Found a pin [%s] on component [%s] which does not have a label!\n",
+                    nl_current->component_uref,
+                    pl_current->pin_number);
+            }
+            else if (pl_current->plid != -1) {
+
+#if DEBUG
+              printf("# L: %s %s\n", pl_current->pin_number,
+              pl_current->pin_label);
+#endif
+              /* get source net name, all nets are named already */
+              source_net_name =
+              s_net_name_search(pr_current,
+                                pl_current->nets);
+#if DEBUG
+
+              printf("name: %s\n", source_net_name);
+              printf("Searching for: %s/%s\n",
+              nl_current->component_uref,
+              pl_current->pin_label);
+#endif
+
+              did_work =
+              s_hierarchy_setup_rename(pr_current, head,
+                                       nl_current->component_uref,
+                                       pl_current->pin_label,
+                                       source_net_name);
+              if (!did_work) {
+                fprintf(stderr,
+                        "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
+                        pl_current->pin_label,
+                        nl_current->component_uref);
+
+              }
+            }
+            pl_current = pl_current->next;
+        }
+      }
+    }
+    nl_current = nl_current->next;
+  }
+
+  s_rename_all(pr_current, head);
+  s_hierarchy_remove_compsite_all(head);
+}
+
+void s_hierarchy_remove_compsite_all(NETLIST *head)
+{
+  NETLIST *nl_current;
+
+  nl_current = head;
+
+  while (nl_current != NULL) {
+
+    if (nl_current->composite_component) {
+
+      if (nl_current->component_uref != NULL) {
+        s_hierarchy_remove_urefconn(head,
+                                    nl_current->component_uref);
+      }
+    }
+    nl_current = nl_current->next;
+  }
+
+}
+
 char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
                                  char *hierarchy_tag)
 {
   char *return_value = NULL;
 
   if (pr_current->hierarchy_netname_mangle == FALSE) {
+
     if (basename) {
       return (u_string_strdup (basename));
-    } else {
+    }
+    else {
       return (NULL);
     }
   }
@@ -469,10 +494,12 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
     } else {
       return_value = NULL;
     }
-  } else {
+  }
+  else {
     if (basename) {
       return_value = u_string_strdup (basename);
-    } else {
+    }
+    else {
       return_value = NULL;
     }
   }
@@ -512,7 +539,8 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
 
             break;
         }
-      } else {
+      }
+      else {
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
@@ -524,10 +552,12 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
             break;
         }
       }
-    } else {
+    }
+    else {
       return_value = NULL;
     }
-  } else {
+  }
+  else {
     if (basename) {
       return_value = u_string_strdup (basename);
     } else {
@@ -549,6 +579,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
   char *new_connected_to = NULL;
 
   nl_current = head;
+
   while (nl_current != NULL) {
 
     if (nl_current->component_uref) {
@@ -563,7 +594,9 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
     pl_current = nl_current->cpins;
 
     while (pl_current != NULL) {
+
       n_current = pl_current->nets;
+
       while (n_current != NULL) {
 
         if (n_current->connected_to) {
@@ -611,7 +644,8 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 
     return_value = u_string_strdup (start_of_base + 1);
 
-  } else if (pr_current->hierarchy_uref_order == PREPEND) {
+  }
+  else if (pr_current->hierarchy_uref_order == PREPEND) {
 
     end_of_base = strchr(uref, '/');
 
@@ -642,4 +676,3 @@ int s_hierarchy_graphical_search (Object* o_current, int count)
 
   return FALSE;
 }
-
