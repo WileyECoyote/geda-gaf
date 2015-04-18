@@ -3299,11 +3299,12 @@ COMMAND (do_detach)
   }
 
   if (detached_attribs != NULL) {
+
+    o_undo_savestate(w_current, UNDO_ALL);
+
     g_hook_run_object_list(w_current, DETACH_ATTRIBS_HOOK, detached_attribs);
     g_list_free (detached_attribs);
   }
-
-  o_undo_savestate(w_current, UNDO_ALL);
 
   EXIT_COMMAND(do_detach);
 }

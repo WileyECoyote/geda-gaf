@@ -1,5 +1,10 @@
 2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revise function do_dettach to not save
+      undo state unless an object is actually detattached.
+
+2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: Revise function o_attrib_attached_2_
       selection and o_attrib_attach_list_2_object to call function
       x_multiattrib_update if a change is made.
