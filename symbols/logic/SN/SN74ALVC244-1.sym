@@ -178,23 +178,23 @@ T 1750 600 5 8 0 1 0 8 1
 pintype=tri
 }
 B 400 100 1400 3700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 4900 5 10 0 0 0 0 1
+T 400 4700 5 10 0 1 0 0 1
 device=SN74ALVC244
 T 400 4300 8 10 1 1 0 0 1
 refdes=U?
 T 400 3900 9 10 1 1 0 0 1
 footprint=DIP20
-T 400 4500 5 10 0 0 0 0 1
+T 400 4500 5 10 0 1 0 0 1
 description=octal buffer/line driver (tristate)
-T 400 4700 5 10 0 0 0 0 1
+T 900 300 5 8 0 0 0 0 1
 numslots=0
-T 400 5100 5 10 0 0 0 0 1
+T 400 4900 5 10 0 1 0 0 1
 documentation=http://www-s.ti.com/sc/ds/sn74ac244.pdf
-T 400 5700 5 10 0 0 0 0 1
-author=AutoTron
 T 400 5500 5 10 0 0 0 0 1
-dist-license=GPL
+author=AutoTron
 T 400 5300 5 10 0 0 0 0 1
+dist-license=GPL
+T 400 5100 5 10 0 0 0 0 1
 use-license=unlimited
 P 100 3500 400 3500 1 0 0
 {
@@ -243,4 +243,14 @@ T 1750 3200 5 8 0 1 0 8 1
 pintype=in
 }
 T 1750 150 5 8 0 0 0 6 1
-symversion=0.1
+symversion=0.2
+T 400 4700 5 10 0 1 0 0 1
+device=SN74ALVC244
+T 400 4900 5 10 0 1 0 0 1
+documentation=http://www-s.ti.com/sc/ds/sn74ac244.pdf
+T 400 5500 5 10 0 0 0 0 1
+author=AutoTron
+T 400 5300 5 10 0 0 0 0 1
+dist-license=GPL
+T 400 5100 5 10 0 0 0 0 1
+use-license=unlimited
