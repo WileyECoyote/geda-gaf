@@ -1,3 +1,7 @@
+2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_attrib.c: Revise Doxygen comments.
+
 2015-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replaced GTK_RESPONSE_xxX with cooresponding

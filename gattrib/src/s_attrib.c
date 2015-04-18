@@ -19,10 +19,10 @@
 
 /*!
  * \file
- * \brief Functions to operate on attributes in  STRING_LISTs
+ * \brief Functions to operate on attributes in STRING_LISTs
  *
- * Various functions to operate on attribute name=value pairs in supplied
- * STRING_LIST structs.
+ * Various functions to operate on attribute name=value pairs in
+ * STRING_LIST structs arguments.
  */
 
 #include <gattrib.h>
@@ -30,14 +30,17 @@
 
 /*------------------------------------------------------------------*/
 /*! \brief Detect "name" in STRING_LIST
+ *  \par Function Description
+ *  This function is passed a STRING_LIST of name=value pairs, and a
+ *  name.
  *
- * This function is passed a STRING_LIST of name=value pairs, and a
- * name.
  * \param name_value_list pointer to STRING_LIST to search
- * \param name name string to search for
+ * \param name            string to search for
+ *
  * \returns 1 (TRUE) if the name is in the STRING_LIST, otherwise
  *          it returns 0 (FALSE).
  */
+
 int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 {
   STRING_LIST *local_list_item;
@@ -60,16 +63,17 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
   return FALSE;
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Locate the refdes associated with an object.
+ *  \par Function Description
+ *  This function returns the string of refdes attribute attached to
+ *  \a object for normal object. For slotted object the refdes string
+ *  is returned in the form "refdes.slot", NULL if no refdes attribute
+ *  exist.
  *
- * This fcn takes an object, finds its refdes and returns it.
  * \param object Pointer to the object to search for.
- * \return For normal components, it returns a pointer to a
- *         string containing the refdes. If the component is slotted,
- *         it returns a refdes of the form
- *         refdes.slot. If no refdes is found, it returns NULL.
+ *
+ * \return pointer to a string or NULL if no refdes is found.
  */
 char *s_attrib_get_refdes(Object *object)
 {
@@ -96,4 +100,3 @@ char *s_attrib_get_refdes(Object *object)
   return temp_uref;
 
 }
-
