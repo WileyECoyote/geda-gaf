@@ -1,5 +1,9 @@
 2015-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX882-1.sym: Add new symbol for LDO regulator
+
+2015-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * connector/jumper/jumper-1p2p-3.sym: New dash 3 symbol version for 1
       pole 2 position jumper.
 
