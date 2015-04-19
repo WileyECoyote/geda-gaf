@@ -1,5 +1,12 @@
 2015-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/jumper/jumper-1p2p-3.sym: New dash 3 symbol version for 1
+      pole 2 position jumper.
+
+    * connector/jumper/jumper-1p2p-4.sym: Renamed old dash 3 to dash 4.
+
+2015-04-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM25101x-x.sym: Revise symbols; Add symversion attribute, hide
       device and description attribute, align text bottom center.
 
