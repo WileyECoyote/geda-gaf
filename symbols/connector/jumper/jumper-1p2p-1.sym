@@ -37,7 +37,7 @@ T 700 450 5 8 0 1 0 0 1
 pinseq=2
 }
 T 400 900 9 10 0 0 0 0 1
-footprint=H1x3-op
+footprint=JUMPER-3
 T 400 1100 5 10 0 0 0 0 1
 device=JUMPER
 T 500 800 8 10 1 1 0 4 1
