@@ -198,7 +198,7 @@ GArray *x_color_get_outline_color_map()
 
 /*! \todo Finish function documentation!!!
  *  \brief
- *  \par Function Documentation
+ *  \par Function Description
  *
  *  \todo this has to change... to the right code
 
@@ -216,7 +216,7 @@ GdkColor *x_color_get_darkcolor(int color)
  */
 /*! \todo Finish function documentation!!!
  *  \brief
- *  \par Function Documentation
+ *  \par Function Description
  *  \todo function name should include the word "display"
  */
 COLOR *x_color_lookup (int color)
@@ -232,7 +232,7 @@ COLOR *x_color_lookup (int color)
 
 /*! \todo Finish function documentation!!!
  *  \brief
- *  \par Function Documentation
+ *  \par Function Description
  *
  */
 bool x_color_get_state (int color)
@@ -242,7 +242,7 @@ bool x_color_get_state (int color)
 
 /*! \todo Finish function documentation!!!
  *  \brief
- *  \par Function Documentation
+ *  \par Function Description
  *
  */
 void x_color_set_state (int color, int state)
@@ -251,7 +251,7 @@ void x_color_set_state (int color, int state)
 }
 
 /*! \brief Return pointer to string name of the color
- *  \par Function Documentation
+ *  \par Function Description
  *  The function obtains the RGB color at the given index
  *  position and calls library function u_color_rgba_encode
  *  to obtain the a pointer to string name of the color.
@@ -279,7 +279,7 @@ bool x_color_display_enabled (int index)
 }
 
 /*! \brief Loads and executes a color map scheme
- *  \par Function Documentation
+ *  \par Function Description
  *       This function executes a color map scm file after
  *       verifying accessibility. The file must be referenced
  *       relative to the path returned by geda-rc-path. The
