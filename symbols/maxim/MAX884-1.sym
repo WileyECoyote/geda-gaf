@@ -9,7 +9,7 @@ pinseq=1
 T 350 1700 5 8 0 1 0 2 1
 pintype=in
 T 350 1800 9 10 1 1 0 1 1
-pinlabel=\_STBY\_
+pinlabel=\_OFF\_
 }
 P 300 1400 0 1400 1 0 1
 {
@@ -89,11 +89,11 @@ T 1750 1400 9 10 1 1 0 7 1
 pinlabel=LBO
 }
 T 300 2150 9 10 1 0 0 0 1
-MAX882
+MAX884
 T 1800 2150 8 10 1 1 0 6 1
 refdes=U?
 T 300 2550 5 10 0 1 0 0 1
-device=MAX882
+device=MAX884
 T 300 2350 8 10 0 1 0 0 1
 footprint=SO8
 T 300 2750 5 10 0 1 0 0 1
