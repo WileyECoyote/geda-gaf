@@ -1621,6 +1621,7 @@
 (map-keys "F C"        "file-close")
 (map-keys "F A"        "file-save-as")
 (map-keys "F L"        "file-save-all")
+(map-keys "F M"        "file-save-modified")
 (map-keys "F P"        "file-print")
 (map-keys "F R"        "page-revert")
 (map-keys "F I"        "file-write-image")
@@ -1782,6 +1783,7 @@
 (map-icon "gtk-save"                   "file-save")
 (map-icon "gtk-save-as"                "file-save-as")
 (map-icon "gtk-save"                   "file-save-all")
+(map-icon "gtk-save"                   "file-save-modified")
 (map-icon "gtk-print"                  "file-print")
 (map-icon "geda-save-image"            "file-write-image")
 
@@ -1976,6 +1978,7 @@
         (,(N_ "_Save")             file-save            "gtk-save"            ,(N_ "Save the current document"))
         (,(N_ "Save _As...")       file-save-as         "gtk-save-as"         ,(N_ "Save the current document to a new name or location"))
         (,(N_ "Save All")          file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
+        (,(N_ "Save Modified")     file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
 
         ("SEPARATOR"               #f                   #f            #f)

@@ -60,6 +60,7 @@
 #define FILE_SAVE        file-save
 #define FILE_SAVE_AS     file-save-as
 #define FILE_SAVE_ALL    file-save-all
+#define FILE_SAVE_MODS   file-save-modified
 #define FILE_PRINT       file-print
 #define FILE_WRITE_IMAGE file-write-image
 #define FILE_WRITE_PDF   write-pdf

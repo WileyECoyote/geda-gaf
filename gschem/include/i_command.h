@@ -86,6 +86,7 @@ enum ActionFlag
         COMMAND ( do_save )
         COMMAND ( do_save_as )
         COMMAND ( do_save_all )
+        COMMAND ( do_save_mods )
         COMMAND ( do_print )
         COMMAND ( do_write_image )
         COMMAND ( do_write_pdf )
@@ -395,6 +396,7 @@ enum {
      COMMAND ( FILE_SAVE,           NULL,               USE_WORKER_THREAD,      do_save)
      COMMAND ( FILE_SAVE_AS,        "save as",          USE_WORKER_THREAD,      do_save_as)
      COMMAND ( FILE_SAVE_ALL,       NULL,               USE_MAIN_LOOP,          do_save_all)
+     COMMAND ( FILE_SAVE_MODS,      NULL,               USE_MAIN_LOOP,          do_save_mods)
      COMMAND ( FILE_PRINT,          "print",            USE_WORKER_THREAD,      do_print)
      COMMAND ( FILE_WRITE_IMAGE,    "write image",      USE_WORKER_THREAD,      do_write_image)
 /* never works with selection inline*/

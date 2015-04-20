@@ -1,3 +1,15 @@
+2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Save All Modified Files
+
+    * etc/system-gschemrc.scm: Add action save-all-modified
+
+    * include/i_actions.h: Add define to refer to new action FILE_SAVE_MODS
+
+    * include/i_command.h: Add declarations for new action save-all-modified
+
+    * src/iface/i_command.c: Add new function i_cmd_do_save_mods.
+
 2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * x_multiattrib.h: Replace GtkCombo *combo_name varible with

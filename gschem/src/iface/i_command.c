@@ -898,7 +898,25 @@ COMMAND (do_save_all) {
 
   if (s_page_save_all(w_current->toplevel)) {
      i_status_set_state_msg(w_current, SELECT, _("Failed to Save All"));
-  } else {
+  }
+  else {
+     i_status_set_state_msg(w_current, SELECT, _("Saved All"));
+  }
+  i_status_update_title (w_current);
+  x_pagesel_update (w_current);
+  i_status_update_sensitivities(w_current);
+}
+
+/** @brief i_cmd_do_save_mods in i_command_File_Actions */
+COMMAND (do_save_mods) {
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  BEGIN_NO_ARGUMENT(do_save_mods);
+
+  if (s_page_save_all_changed(w_current->toplevel)) {
+     i_status_set_state_msg(w_current, SELECT, _("Error encountered, Save Failed"));
+  }
+  else {
      i_status_set_state_msg(w_current, SELECT, _("Saved All"));
   }
   i_status_update_title (w_current);
