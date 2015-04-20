@@ -1,5 +1,10 @@
 2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/memory/93AA56A-I-OT-1.sym: 2K EEPROM, 8 Bit Serial, 1.8-5.5
+      Volt, +125°C.
+
+2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX883-1.sym: Add new symbol for LDO regulator
 
 2015-04-18 Wiley E. Hill <wileyhill@gmail.com>
