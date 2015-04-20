@@ -171,6 +171,10 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
   }
 }
 
+/*! \brief Remove Unreferenced connections in Hierarchical net list
+ *  \par Function Description
+ *   Remove stuff from netlist connected to \a uref_disable
+ */
 void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 {
   NETLIST  *nl_current;
