@@ -30,6 +30,11 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
                      NETLIST  *netlist)
@@ -231,6 +236,11 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
                               char *hierarchy_tag)
 {
@@ -284,6 +294,11 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 /* Why is this public? */
 int
 s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
@@ -344,6 +359,11 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
   return (did_work);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
@@ -423,6 +443,11 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
   s_hierarchy_remove_compsite_all(head);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_hierarchy_remove_compsite_all(NETLIST *head)
 {
   NETLIST *nl_current;
@@ -443,6 +468,11 @@ void s_hierarchy_remove_compsite_all(NETLIST *head)
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
                                  char *hierarchy_tag)
 {
@@ -511,6 +541,11 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
                                    char *hierarchy_tag)
 {
@@ -572,6 +607,11 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 {
@@ -621,7 +661,11 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
   }
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 {
   char *return_value = NULL;
@@ -667,6 +711,11 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   return (return_value);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int s_hierarchy_graphical_search (Object* o_current, int count)
 {
   char *graphical_attrib;
