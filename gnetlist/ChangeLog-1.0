@@ -1,3 +1,8 @@
+2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netlist.c: Rename variables nl_current and ptr to nl_iter
+      and nl_current in function s_netlist_print, add doxygen comments.
+
 2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Replace gassert with BUG_MSG in

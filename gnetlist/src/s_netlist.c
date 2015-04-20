@@ -93,38 +93,43 @@ NETLIST *s_netlist_add(NETLIST * ptr)
   }
 }
 
-void s_netlist_print(NETLIST * ptr)
+/*! \brief Print Net List
+ *  \par Function Description
+ *   Prints the net-list pointed to by \a nl_current
+ */
+void s_netlist_print(NETLIST * nl_current)
 {
-  NETLIST *nl_current = NULL;
+  NETLIST *nl_iter = NULL;
 
-  nl_current = ptr;
+  nl_iter = nl_current;
 
-  if (nl_current == NULL) {
+  if (nl_iter == NULL) {
     return;
   }
 
-  while (nl_current != NULL) {
+  while (nl_iter != NULL) {
 
-    if (nl_current->nlid != -1) {
+    if (nl_iter->nlid != -1) {
 
-      if (nl_current->component_uref) {
-        printf("component %s \n", nl_current->component_uref);
-      } else {
+      if (nl_iter->component_uref) {
+        printf("component %s \n", nl_iter->component_uref);
+      }
+      else {
         printf("component SPECIAL \n");
       }
 
-      if (nl_current->hierarchy_tag) {
-        printf("Hierarchy tag: %s\n", nl_current->hierarchy_tag);
+      if (nl_iter->hierarchy_tag) {
+        printf("Hierarchy tag: %s\n", nl_iter->hierarchy_tag);
       }
 
-      if (nl_current->cpins) {
-        s_cpinlist_print(nl_current->cpins);
+      if (nl_iter->cpins) {
+        s_cpinlist_print(nl_iter->cpins);
       }
 
       printf("\n");
     }
 
-    nl_current = nl_current->next;
+    nl_iter = nl_iter->next;
   }
   printf("\n");
 }
