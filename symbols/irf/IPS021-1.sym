@@ -1,4 +1,4 @@
-v 20041228 1
+v 20150401 2
 P 1500 700 1300 700 1 0 0
 {
 T 1350 750 5 8 1 1 0 0 1
@@ -37,11 +37,11 @@ T 1100 950 8 10 1 1 0 0 1
 refdes=U?
 T 200 950 3 10 1 1 0 0 1
 device=IPS021
-T 2100 2100 8 10 0 0 0 0 1
+T 1100 1800 5 10 0 0 0 0 1
 numslots=0
-T 2100 1800 8 10 0 0 0 0 1
+T 1100 1200 9 10 0 0 0 0 1
 footprint=TO220
-T 2100 1200 8 10 0 0 0 0 1
+T 1100 1400 5 10 0 1 0 0 1
 description=Fully Protected Power MOSFET Switch
-T 2100 1500 8 10 0 0 0 0 1
+T 1100 1600 5 10 0 1 0 0 1
 documentation=http://www.irf.com/product-info/datasheets/data/ips021.pdf
