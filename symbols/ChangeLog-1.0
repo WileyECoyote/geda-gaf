@@ -1,3 +1,8 @@
+2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * irf/IRSM005-800MH-1.sym: Add new symbol; 80A Half-bridge with integrated
+      gate driver, 40 Volt.
+
 2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56A-I-OT-1.sym: 2K EEPROM, 8 Bit Serial, 1.8-5.5
