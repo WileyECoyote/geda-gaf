@@ -1,4 +1,4 @@
-v 20130214 2
+v 20150401 2
 P 1800 200 1500 200 1 0 0
 {
 T 1600 250 5 8 1 1 0 0 1
@@ -83,17 +83,17 @@ T 1500 1400 8 10 1 1 0 6 1
 refdes=U?
 T 300 1400 9 10 1 0 0 0 1
 IR2108
-T 300 1600 5 10 0 0 0 0 1
+T 300 1600 5 10 0 1 0 0 1
 device=IR2108
-T 300 2000 5 10 0 0 0 0 1
+T 300 2800 5 10 0 0 0 0 1
 author=andrewmATthehacktoryDOTcom
-T 300 2200 5 10 0 0 0 0 1
+T 300 2000 5 10 0 1 0 0 1
 documentation=http://www.irf.com/product-info/datasheets/data/ir2108.pdf
-T 300 2400 5 10 0 0 0 0 1
+T 300 2200 5 10 0 1 0 0 1
 description=IR2108 Half Bridge Driver
 T 300 2600 5 10 0 0 0 0 1
 dist-license=GPL
-T 300 2800 5 10 0 0 0 0 1
+T 300 2400 5 10 0 0 0 0 1
 use-license=unlimited
 P 1800 800 1500 800 1 0 0
 {

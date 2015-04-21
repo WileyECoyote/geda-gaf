@@ -66,6 +66,6 @@ pintype=pas
 T 1000 300 5 10 0 1 0 0 1
 footprint=DIP4
 T 1000 100 5 10 0 1 0 0 1
-description=International Rectifier IRFD110PbF Power MOSFET
+description=IRFD110PbF Power MOSFET
 T 1000 500 5 10 0 1 0 0 1
 device=IRFD110PbF

@@ -13,7 +13,7 @@ T 700 600 8 10 1 1 0 0 1
 refdes=Q?
 T 700 400 8 10 1 1 0 0 1
 device=IRLB8743
-T 700 400 8 10 0 0 0 0 1
+T 1700 1200 8 10 0 0 0 0 1
 numslots=0
 T 700 200 8 8 1 1 0 0 1
 footprint=TO220
@@ -70,7 +70,7 @@ T 600 0 5 10 0 1 0 0 1
 pintype=pas
 }
 T 700 1200 5 8 0 0 0 0 1
-symversion=1.1
+symversion=1.2
 T 700 2000 5 8 0 0 0 0 1
 footprints=SOT23_GSD, TO92_DGS, DPAK_GDS, TO220_GDS
 T 700 1600 5 8 0 0 0 0 1

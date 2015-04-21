@@ -39,7 +39,7 @@ T 200 950 3 10 1 1 0 0 1
 device=IPS021
 T 1100 1800 5 10 0 0 0 0 1
 numslots=0
-T 1100 1200 9 10 0 0 0 0 1
+T 1100 1200 9 10 0 1 0 0 1
 footprint=TO220
 T 1100 1400 5 10 0 1 0 0 1
 description=Fully Protected Power MOSFET Switch
