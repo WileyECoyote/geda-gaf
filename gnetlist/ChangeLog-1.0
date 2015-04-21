@@ -1,3 +1,8 @@
+2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-bom2.scm: Update function bom2:open-input-file to use
+      current-error-port.
+
 2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy.c: Add Doxygen templates as todo's
