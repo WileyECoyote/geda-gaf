@@ -1,3 +1,8 @@
+2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem-tools-menu.scm: Add BOM and BOM2 as option for run-bom, use
+      bom2 by default.
+
 2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * New Feature: Save All Modified Files

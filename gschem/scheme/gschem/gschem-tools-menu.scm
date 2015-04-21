@@ -29,7 +29,9 @@
 (define tools:gitclient "git gui")
 
 ;; Define your preffer BOM backend here
-(define tools:bom "partslist1")
+;(define tools:bom "bom")
+(define tools:bom "bom2")
+;(define tools:bom "partslist1")
 ;(define tools:bom "partslist2")
 ;(define tools:bom "partslist3")
 
