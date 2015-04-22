@@ -88,6 +88,7 @@ o_attrib_get_attached_attribs (const Object *object)
  *
  *  \param [in]  attrib     The attribute to be checket.
  *  \param [in]  object     The object where you want to add item as an attribute.
+ *
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
 bool
@@ -596,6 +597,7 @@ error:
  *  \param [in]  string     String to split into name/value pair.
  *  \param [out] name_ptr   The return location for the name, or NULL.
  *  \param [out] value_ptr  The return location for the value, or NULL.
+ *
  *  \return TRUE on success, FALSE otherwise.
  */
 bool
@@ -677,10 +679,10 @@ o_attrib_set_integer_value (const Object *attrib, const char *name_ptr, int valu
  *  Find all floating attributes in the given object list.
  *
  *  \param [in] list  GList of Objects to search for floating attributes.
+ *
  *  \return GList of floating attributes from the input list
  *
- *  \warning
- *  Caller must g_list_free returned list.
+ *  \note Caller must g_list_free returned list.
  */
 GList*
 o_attrib_find_floating_attribs (const GList *list)
@@ -706,7 +708,6 @@ o_attrib_find_floating_attribs (const GList *list)
   return g_list_reverse (floating_attributes);
 }
 
-
 /*! \brief Find an attribute in a list.
  *  \par Function Description
  *  Search for attribute by name.
@@ -717,6 +718,7 @@ o_attrib_find_floating_attribs (const GList *list)
  *  \param [in] list     GList of attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] count    Which occurance to return.
+ *
  *  \return The n'th attribute object in the given list with the given name.
  */
 Object*
@@ -756,6 +758,7 @@ o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
  *
  *  \param [in] object   Object whose attributes are to searched.
  *  \param [in] name     Character string with attribute name to search for.
+ *
  *  \return The n'th attribute object in the given list with the given name.
  */
 Object*
@@ -777,6 +780,7 @@ o_attrib_first_attrib_by_name (const Object *object, char *name)
  *  \param [in] list     GList of attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
+ *
  *  \return Character string with attribute value, NULL otherwise.
  */
 static char*
@@ -795,7 +799,6 @@ o_attrib_search_attrib_list_by_name (const GList *list,
   return value;
 }
 
-
 /*! \brief Search floating attribute by name.
  *  \par Function Description
  *  Search for attribute by name.
@@ -806,10 +809,10 @@ o_attrib_search_attrib_list_by_name (const GList *list,
  *  \param [in] list     GList of Objects to search for floating attributes.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
+ *
  *  \return Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must release the returned character string.
+ *  \note Caller must release the returned character string.
  */
 char*
 o_attrib_search_floating_attribs_by_name (const GList *list,
@@ -836,10 +839,10 @@ o_attrib_search_floating_attribs_by_name (const GList *list,
  *  \param [in] object   The Object whos attached attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
+ *
  *  \return Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must release the returned character string.
+ *  \note Caller must release the returned character string.
  */
 char*
 o_attrib_search_attached_attribs_by_name (const Object *object,
@@ -860,10 +863,10 @@ o_attrib_search_attached_attribs_by_name (const Object *object,
  *  \param [in] object   The Object whos inherited attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
+ *
  *  \return Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must release the returned character string.
+ *  \note Caller must release the returned character string.
  */
 char*
 o_attrib_search_inherited_attribs_by_name (const Object *object,
@@ -888,10 +891,10 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
  *  \param [in] object   Object who's attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
  *  \param [in] counter  Which occurance to return.
+ *
  *  \return Character string with attribute value, NULL otherwise.
  *
- *  \warning
- *  Caller must GEDA_FREE returned character string.
+ *  \note Caller must release the returned character string.
  */
 char *o_attrib_search_object_attribs_by_name (const Object *object,
                                               const char   *name,
@@ -920,6 +923,7 @@ char *o_attrib_search_object_attribs_by_name (const Object *object,
  *  complex Object's prim_objs).
  *
  *  \param [in] object       Object whos attributes to return.
+ *
  *  \return A GList of attributes belinging to the passed object.
  */
 GList * o_attrib_return_attribs (const Object *object)
@@ -968,6 +972,7 @@ GList * o_attrib_return_attribs (const Object *object)
  *  toplevel un-attached attribute inside a complex's prim_objs.
  *
  *  \param [in] attrib       Object who's status to query.
+ *
  *  \return TRUE if the given attribute is inside a symbol
  */
 int
