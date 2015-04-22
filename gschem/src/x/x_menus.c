@@ -345,6 +345,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                                                   radio_data);
   }
 
+  /* This function is used for recovery in the event of an error resulting in
+   * the menu data not being loaded by scheme, the subfunction creates a basic
+   * file menu with items for open, save and quit.
+   */
   inline GtkWidget *create_file_menu() {
 
     GtkWidget *file_menu = gtk_menu_new ();  /* Don't need to show menus */
@@ -397,14 +401,19 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     return file_menu;
   }
 
+  /* This subfunction is used for recovery in the event of an error resulting
+   * in menu data not being loaded by scheme, the function creates a toplevel
+   * view menu with a single item for Redraw. Note that the parent function
+   * will append other items under the View menu.
+   */
   inline GtkWidget *create_View_menu() {
 
     GtkWidget *view_menu = gtk_menu_new ();  /* Don't need to show menus */
 
-    /* Create a Open menu items */
-    action = geda_action_new ("view-redraw",                                   /* Action name */
-                              "_Redraw",                                     /* Text */
-                            _("redraw the current window"),  /* Tooltip */
+    /* Create a Redraw menu item */
+    action = geda_action_new ("view-redraw",                                  /* Action name */
+                              "_Redraw",                                      /* Text */
+                            _("redraw the current window"),                   /* Tooltip */
                               "gtk-refresh",                                  /* Icon stock ID */
                               "R");                                           /* Accelerator string */
 
