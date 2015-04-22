@@ -41,10 +41,10 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Quite gnetlist
  *  \par Function Description
- *
+ *  This function is called before exiting gnetlist and serves to
+ *  release various resources allocated by the program.
  */
 void gnetlist_quit(void)
 {
@@ -58,7 +58,6 @@ void gnetlist_quit(void)
 
     g_slist_free (input_files);
 }
-
 
 /*! \brief Print a list of available backends.
  *  \par Function Description
@@ -136,10 +135,12 @@ gnetlist_backends (GedaToplevel *pr_current)
   scm_remember_upto_here_1 (s_load_path);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description
- *
+ *  This function is the main program called from scm_boot_guile.
+ *  The function initializes languages, libgeda, all libraries and
+ *  registers function used by back-ends and then attempts to load
+ *  and execute the back-end specified on the command line.
  */
 void main_prog(void *closure, int argc, char *argv[])
 {
@@ -344,10 +345,11 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_dynwind_end();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Main executable entrance point.
  *  \par Function Description
- *
+ *  This is the main function for gnetlist. The function sets up the Scheme
+ *  (GUILE) environment and passes control to via scm_boot_guile to the
+ *  #main_prog function.
  */
 int main(int argc, char *argv[])
 {
