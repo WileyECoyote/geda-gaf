@@ -3,7 +3,7 @@ B 400 100 1900 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 1400 900 9 10 1 1 0 3 1
 footprint=SOIC8
 T 400 2400 5 10 0 1 0 0 1
-description=2K EEPROM, 8 Bit Serial,1.8-5.5Volt,+85°C
+description=2K EEPROM, 8 Bit Serial, 1.8-5.5Volt, +125°C
 T 400 2200 5 10 0 1 0 0 1
 device=93AA56A
 T 400 2800 5 10 0 0 0 0 1
