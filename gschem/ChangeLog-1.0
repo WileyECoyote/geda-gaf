@@ -1,4 +1,13 @@
-2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Menu or Action icon
+
+    * gschem/src/x/x_menus.c: Revise sub-function get_menu_item_from_scheme
+      to check for icon associated with action if not define in the menu data.
+      Also, make action_name and action_keys local variables and add a couple
+      of source comments in the same function.
+
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     Subliminal typo: draw-can-move => drag-can-move:
 

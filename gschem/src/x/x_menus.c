@@ -297,8 +297,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   char  *buf;
   char  *menu_name;
-  char  *action_name;
-  char  *action_keys;
   char  *dummy = NULL;
 
   const char  *menu_item_name;
@@ -491,12 +489,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
         menu_item_stock = scm_is_false (scm_item_stock) ? NULL : scm_to_utf8_string (scm_item_stock);
 
-        if(scm_is_false (scm_item_func)) {
+        if(scm_is_false (scm_item_func)) { /* Then is a nested menu item */
 
-          if (menu_item_stock) {
+          if (menu_item_stock) {           /* Nested menus can have icons */
 
             /* Items that might fall into this category are; Open Recen_t, _Export,
-             * and _Restore.
+             * and _Restore, these are actionless items.
              */
 
             menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
@@ -527,6 +525,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         }
         else {
 
+          char  *action_name;
+          char  *action_keys;
+
+          const char *menu_icon_name;
+
           action_name = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
           action_keys = g_keys_find_key(action_name);
 
@@ -544,6 +547,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             menu_item_keys = action_keys;
           }
 
+          if (!menu_item_stock) {
+            /* Check if an icon is associated with the action */
+            menu_icon_name = i_command_get_action_icon (action_name);
+          }
+          else {
+            menu_icon_name = menu_item_stock; /* Icons specified in menu take presendence */
+          }
+
           is_a_toggle = FALSE;
 
           if (strncmp (menu_item_name, "Toggle", 6) == 0 ) {
@@ -559,7 +570,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             geda_toggle_action_new (action_name,     /* Action name */
                                     menu_item_name,  /* Text */
                                     menu_item_tip ? menu_item_tip : menu_item_name,
-                                    menu_item_stock, /* Icon stock ID */
+                                    menu_icon_name,  /* Icon stock ID */
                                     menu_item_keys); /* Accelerator string */
 
             menu_item = gtk_action_create_menu_item (GTK_ACTION (action));
@@ -570,7 +581,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             action = geda_action_new (action_name,     /* Action name */
                                       menu_item_name,  /* Text */
                                       menu_item_tip ? menu_item_tip : menu_item_name,  /* Tooltip */
-                                      menu_item_stock, /* Icon stock ID */
+                                      menu_icon_name,  /* Icon stock ID */
                                       menu_item_keys); /* Accelerator string */
 
             menu_item = geda_action_create_menu_item (GEDA_ACTION(action));
@@ -605,7 +616,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           g_object_set (menu_item, "has-tooltip", show_menu_tips, NULL);
           free(menu_item_tip);
         }
-        free(menu_item_stock);
+
+        if (menu_item_stock) {
+          free(menu_item_stock);
+        }
       }
     }
 
