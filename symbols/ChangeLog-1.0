@@ -1,5 +1,9 @@
 2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/ldo/TPS73512DRB-1.sym: Add symbol LDO regulator.
+
+2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * irf/IRSM005-800MH-1.sym: Add new symbol; 80A Half-bridge with integrated
       gate driver, 40 Volt.
 
