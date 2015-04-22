@@ -1,3 +1,10 @@
+2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/.c: Add Doxygen templates as todos:
+
+              * src/object/o_attrib.c
+              * src/object/o_pin_basic.c
+
 2015-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Add function s_page_save_all_changed

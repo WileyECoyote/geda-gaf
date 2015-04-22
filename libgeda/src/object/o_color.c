@@ -70,5 +70,3 @@ int o_color_get_object_default (char type)
 
   return table->index;
 }
-
-

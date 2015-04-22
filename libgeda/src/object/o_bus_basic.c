@@ -355,8 +355,14 @@ int o_bus_orientation(Object *object)
 
   return(NEITHER);
 }
-  /* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
 
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+/* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
 int o_bus_get_direction(Object *object)
 {
   int direction = 0;

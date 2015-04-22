@@ -172,8 +172,7 @@ o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
  *
  *  \param [in,out] attribute The Attribute to be detached.
  */
-void
-o_attrib_detach(Object *attribute)
+void o_attrib_detach(Object *attribute)
 {
   Page   *page;
   Object *parent;
@@ -202,8 +201,7 @@ o_attrib_detach(Object *attribute)
  *
  *  \param [in,out] object    The object whos attributes to detach.
  */
-void
-o_attrib_detach_all(Object *object)
+void o_attrib_detach_all(Object *object)
 {
   Object *attribute;
   GList  *a_iter;
@@ -248,9 +246,10 @@ o_attrib_detach_all(Object *object)
  *
  *  \return [out] the new Text attribute Object
  */
-Object*
-o_attrib_new_attached(Object *parent, const char *name, const char *value,
-                      int visibility, int show_name_value)
+Object *o_attrib_new_attached(Object *parent, const char *name,
+                                              const char *value,
+                                              int visibility,
+                                              int show_name_value)
 {
   int world_x, world_y;
   int align;
@@ -636,7 +635,6 @@ o_attrib_string_get_name_value (const char *string,
   return TRUE;
 }
 
-
 /*! \brief Get name and value from an attribute Object
  *  \par Function Description
  *  Calls o_attrib_get_name_value to do the work
@@ -658,6 +656,11 @@ o_attrib_get_name_value (const Object *attrib, char **name_ptr, char **value_ptr
                                          name_ptr, value_ptr);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 o_attrib_set_value (const Object *attrib, const char *name_ptr, const char *value_ptr)
 {
@@ -667,6 +670,11 @@ o_attrib_set_value (const Object *attrib, const char *name_ptr, const char *valu
   attrib->text->string = u_string_concat(name_ptr, "=", value_ptr, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 o_attrib_set_integer_value (const Object *attrib, const char *name_ptr, int value)
 {
@@ -852,7 +860,6 @@ o_attrib_search_attached_attribs_by_name (const Object *object,
   return o_attrib_search_attrib_list_by_name (object->attribs, name, counter);
 }
 
-
 /*! \brief Search inherited attribute by name.
  *  \par Function Description
  *  Search for attribute by name.
@@ -879,7 +886,6 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
   return o_attrib_search_floating_attribs_by_name (object->complex->prim_objs,
                                                    name, counter);
 }
-
 
 /*! \brief Search attributes of object by name.
  *  \par Function Description
@@ -909,7 +915,6 @@ char *o_attrib_search_object_attribs_by_name (const Object *object,
 
   return result;
 }
-
 
 /*! \brief Get all attached attributes of the specified Object.
  *  \par Function Description
@@ -1009,8 +1014,12 @@ static void call_attribs_changed_hook (void *data, void *user_data)
   hook->func (hook->data, object);
 }
 
-void
-o_attrib_emit_attribs_changed (Object *object)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void o_attrib_emit_attribs_changed (Object *object)
 {
   if (object->attrib_notify_freeze_count > 0) {
     object->attrib_notify_pending = 1;
@@ -1025,11 +1034,21 @@ o_attrib_emit_attribs_changed (Object *object)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void o_attrib_freeze_hooks (Object *object)
 {
   object->attrib_notify_freeze_count ++;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void o_attrib_thaw_hooks (Object *object)
 {
   g_return_if_fail (object->attrib_notify_freeze_count > 0);

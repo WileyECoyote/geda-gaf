@@ -756,8 +756,7 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
         fill_func = o_circle_print_hatch;
         break;
 
-      case(FILLING_VOID):
-				/* Unused for now, print it filled */
+      case(FILLING_VOID):          /* Unused for now, print it filled */
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;

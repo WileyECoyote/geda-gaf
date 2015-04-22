@@ -1493,18 +1493,33 @@ void o_pin_update_read_property(Object *o_pin, Object *o_text)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char* o_pin_get_electrical(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->electrical;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char* o_pin_get_label(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->label;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char* o_pin_get_mechanical(Object *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
