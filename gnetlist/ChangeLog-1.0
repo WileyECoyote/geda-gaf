@@ -1,3 +1,7 @@
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/s_traverse.c: Add Doxygen templates as todo's
+
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/gnetlist.c: Add Doxygen templates as todo's

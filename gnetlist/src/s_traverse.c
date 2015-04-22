@@ -37,27 +37,39 @@
  */
 static GHashTable *visit_table = NULL;
 
-/*! Trivial function used when clearing#visit_table. */
-static bool
-returns_true (void * key, void * value, void * user_data)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *   Trivial function used when clearing#visit_table.
+ */
+static
+bool returns_true (void * key, void * value, void * user_data)
 {
   return TRUE;
 }
 
-/*! Retrieve the current visit count for a particular Object. */
-static inline int
-is_visited(Object *obj)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  Retrieve the current visit count for a particular Object.
+ */
+static
+inline int is_visited(Object *obj)
 {
   void * val;
   void * orig_key;
   bool exist = g_hash_table_lookup_extended (visit_table,
-                                                 obj,
-                                                 &orig_key,
-                                                 &val);
+                                             obj,
+                                             &orig_key,
+                                             &val);
   return exist ? GPOINTER_TO_INT(val) : 0;
 }
 
-/*! Increment the current visit count for a particular Object. */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  Increment the current visit count for a particular Object..
+ */
 static inline int visit(Object *obj)
 {
   void * val = GINT_TO_POINTER(is_visited (obj) + 1);
@@ -65,7 +77,11 @@ static inline int visit(Object *obj)
   return GPOINTER_TO_INT (val);
 }
 
-/*! Reset all visit counts. Simply clears the hashtable completely. */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  Reset all visit counts. Simply clears the hashtable completely.
+ */
 static inline void
 s_traverse_clear_all_visited (const GList *obj_list)
 {
@@ -74,6 +90,11 @@ s_traverse_clear_all_visited (const GList *obj_list)
                                NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_traverse_init(void)
 {
   netlist_head = s_netlist_add(NULL);
@@ -104,6 +125,11 @@ void s_traverse_init(void)
                                   g_direct_equal);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_traverse_start(GedaToplevel * pr_current)
 {
   GList *iter;
@@ -136,7 +162,11 @@ void s_traverse_start(GedaToplevel * pr_current)
   }
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierarchy_tag)
 {
@@ -272,6 +302,11 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
   verbose_done();
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 CPINLIST *s_traverse_component(GedaToplevel *pr_current,
                                Object       *component,
                                char         *hierarchy_tag)
@@ -332,7 +367,11 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
   return (cpinlist_head);
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int connection_type (Object *object)
 {
   switch (object->type) {
@@ -345,6 +384,11 @@ static int connection_type (Object *object)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
                      Object   *object, char *hierarchy_tag, int type)
 {
