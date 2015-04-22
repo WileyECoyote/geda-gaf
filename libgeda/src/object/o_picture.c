@@ -1752,6 +1752,36 @@ o_picture_get_pixbuf (Object *object)
   }
 }
 
+/*! \brief Get a fitted pixel buffer for a picture object
+ *  \par Function Description
+ *  Returns a GdkPixbuf for the picture object \a object, or NULL if
+ *  the picture could not be loaded. The returned pixel buffer object
+ *  size is set based on the object properties and page scaling. The
+ *  GdkInterpType enumeration flag describes different interpolation
+ *  modes used with the scaling functions. GDK_INTERP_NEAREST is the
+ *  fastest scaling method, but results in poor quality when scaling
+ *  down. If unsure, pick GDK_INTERP_BILINEAR, it has a good balance
+ *  of speed and quality.
+ *
+ * \param [in] object  The picture #Object to inspect.
+ * \param [in] interp  GdkInterpType flag passed to gdk_pixbuf_scale
+ *
+ *  <B>interp</B> can be one of the following values:
+ *  \par
+ *  <DL>
+ *    <DT>GDK_INTERP_NEAREST</DT>
+ *    <DT>GDK_INTERP_TILES</DT>
+ *    <DT>GDK_INTERP_BILINEAR</DT>
+ *    <DT>GDK_INTERP_HYPER</DT>
+ *  </DL>
+ *
+ * \return A GdkPixbuf for the picture.
+ *
+ * \note Use GEDA_UNREF() to decrement the buffer's reference count so
+ *       that the associated memory is released when no longer needed.
+ *
+ * \sa o_picture_export_object
+ */
 GdkPixbuf *
 o_picture_get_pixbuf_fit (Object *object, int interp)
 {
