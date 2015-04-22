@@ -24,7 +24,12 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/* this function will only return a unique list of packages */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * this function will only return a unique list of packages
+ */
 SCM g_get_packages(SCM level)
 {
   SCM list = SCM_EOL;
@@ -55,7 +60,12 @@ SCM g_get_packages(SCM level)
        return list;
 }
 
-/* this function will only return a non unique list of packages */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * this function will only return a non unique list of packages
+ */
 SCM g_get_non_unique_packages(SCM level)
 {
   SCM list = SCM_EOL;
@@ -75,7 +85,11 @@ SCM g_get_non_unique_packages(SCM level)
        return list;
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM g_get_pins(SCM scm_uref)
 {
   char *uref;
@@ -115,6 +129,11 @@ SCM g_get_pins(SCM scm_uref)
   return (list);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM g_get_all_nets(SCM scm_level)
 {
 
@@ -158,6 +177,11 @@ SCM g_get_all_nets(SCM scm_level)
   return list;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM g_get_all_unique_nets(SCM scm_level)
 {
 
@@ -201,7 +225,12 @@ SCM g_get_all_unique_nets(SCM scm_level)
   return list;
 }
 
-/* given a net name, return all connections */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  given a net name, return all connections
+ */
 SCM g_get_all_connections(SCM scm_netname)
 {
 
@@ -292,8 +321,13 @@ SCM g_get_all_connections(SCM scm_netname)
   return connlist;
 }
 
-/* Given a uref and a pin number return a list of: */
-/*  (netname (uref pin) (uref pin) ... ) */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * Given a uref and a pin number return a list of:
+ *  (netname (uref pin) (uref pin) ... )
+ */
 SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 {
   SCM outerlist = SCM_EOL;
@@ -387,7 +421,11 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 }
 
 
-/* Given a uref, Return a list of pairs, each pair contains the name
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * Given a uref, Return a list of pairs, each pair contains the name
  * of the pin, and the name of the net connected to that pin.
  */
 SCM g_get_pins_nets(SCM scm_uref)
@@ -503,8 +541,13 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
   return scm_reverse_x (ret, SCM_EOL);
 }
 
-/* takes a uref and pinseq number and returns wanted_attribute associated */
-/* with that pinseq pin and component */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * takes a uref and pinseq number and returns wanted_attribute associated
+ * with that pinseq pin and component
+ */
 SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
                               SCM scm_wanted_attrib)
 {
@@ -589,8 +632,13 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   return (scm_return_value);
 }
 
-/* this takes a pin number and returns the appropriate attribute on that pin*/
-/* scm_pin is the value associated with the pinnumber= attribute and uref */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * this takes a pin number and returns the appropriate attribute on that pin
+ * scm_pin is the value associated with the pinnumber= attribute and uref
+ */
 SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM
 scm_wanted_attrib)
 {
@@ -678,9 +726,13 @@ scm_wanted_attrib)
   return (scm_return_value);
 }
 
-
-/* returns value of attribute otherwise string "none" */
-/* still highly temp and doesn't work right */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * returns value of attribute otherwise string "none"
+ * still highly temp and doesn't work right
+ */
 SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 {
   const GList *p_iter;
@@ -758,7 +810,6 @@ SCM g_get_backend_arguments(void)
   return scm_reverse_x (result, SCM_UNDEFINED);
 }
 
-
 /*! \brief Get input files from command line.
  *  \par Function Description
  *  This function returns a list of the files named on the command line.
@@ -778,10 +829,13 @@ SCM g_get_input_files(void)
   return scm_reverse_x (list, SCM_EOL);
 }
 
-
-/* given a net name, an attribute, and a wanted attribute, return all
- *   the given attribute of all the graphical objects connected to that
- *   net name */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  given a net name, an attribute, and a wanted attribute, return all
+ *  the given attribute of all the graphical objects connected to that
+ *  net name
+ */
 SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has_attribute, SCM scm_wanted_attribute)
 {
 
@@ -866,7 +920,6 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
   scm_dynwind_end ();
   return list;
 }
-
 
 /*
  * This function is in s_rename.c:  SCM g_get_renamed_nets(SCM scm_level)
