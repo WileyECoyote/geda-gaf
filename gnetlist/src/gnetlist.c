@@ -41,6 +41,11 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void gnetlist_quit(void)
 {
     s_clib_free();
@@ -55,8 +60,8 @@ void gnetlist_quit(void)
 }
 
 
-/* \brief Print a list of available backends.
- * \par Function Description
+/*! \brief Print a list of available backends.
+ *  \par Function Description
  * Prints a list of available gnetlist backends by searching for files
  * in each of the directories in the current Guile %load-path.  A file
  * is considered to be a gnetlist backend if its basename begins with
@@ -131,7 +136,11 @@ gnetlist_backends (GedaToplevel *pr_current)
   scm_remember_upto_here_1 (s_load_path);
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void main_prog(void *closure, int argc, char *argv[])
 {
   int   i;
@@ -321,7 +330,8 @@ void main_prog(void *closure, int argc, char *argv[])
     scm_c_eval_string (str);
     GEDA_FREE (str);
     /* gh_eval_str_with_stack_saving_handler (input_str); */
-  } else if (interactive_mode) {
+  }
+  else if (interactive_mode) {
     scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");
     scm_shell (0, NULL);
   }
@@ -334,6 +344,11 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_dynwind_end();
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int main(int argc, char *argv[])
 {
     scm_boot_guile (argc, argv, main_prog, 0);
