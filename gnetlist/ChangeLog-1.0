@@ -1,3 +1,9 @@
+2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_hierarchy.c: Revise function s_hierarchy_graphical_search
+      to actually check the value of the graphical attribute if found.
+      Add Doxygen comment.
+
 2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-bom2.scm: Update function bom2:open-input-file to use

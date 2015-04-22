@@ -711,21 +711,28 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   return (return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Has Graphical attribute set
  *  \par Function Description
- *
+ *   Checks for existence of a graphical attribute and if found
+ *   check if the value of the attribute is non zero, which is
+ *   interpreted as meaning the object is a graphical object.
  */
 int s_hierarchy_graphical_search (Object* o_current, int count)
 {
+  bool  result;
   char *graphical_attrib;
+
   graphical_attrib =
   o_attrib_search_object_attribs_by_name (o_current, "graphical", count);
 
   if (graphical_attrib) {
+    char value = graphical_attrib[0];
+    result = value != '0';
     GEDA_FREE (graphical_attrib);
-    return TRUE;
+  }
+  else {
+    result = 0;
   }
 
-  return FALSE;
+  return result;
 }
