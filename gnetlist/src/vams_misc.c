@@ -29,6 +29,11 @@
 #include "gnetlist.h"
 #include <geda_debug.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM vams_get_attribs_list (Object *object)
 {
 
@@ -60,6 +65,11 @@ SCM vams_get_attribs_list (Object *object)
   return list;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM vams_get_package_attributes(SCM scm_uref)
 {
   NETLIST *nl_current;

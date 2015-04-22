@@ -1,5 +1,9 @@
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/vams_misc.c: Add Doxygen templates as todo's
+
+2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/g_netlist.c: Add Doxygen templates as todo's
 
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
