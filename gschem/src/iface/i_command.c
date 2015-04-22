@@ -3951,10 +3951,10 @@ COMMAND (do_toggle_magneticnet)
  *  This is a callback function for the Toggle draw-can-move action API.
  *
  */
-COMMAND (do_toggle_drawcanmove)
+COMMAND (do_toggle_dragcanmove)
 {
   NOT_NULL(w_current);
-  BEGIN_NO_ARGUMENT(do_toggle_drawcanmove);
+  BEGIN_NO_ARGUMENT(do_toggle_dragcanmove);
   const char *OnOff;
   if (w_current->drag_can_move) {
     w_current->drag_can_move = 0;

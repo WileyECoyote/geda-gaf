@@ -242,7 +242,7 @@ enum ActionFlag
         COMMAND ( do_toggle_feedback )
         COMMAND ( do_toggle_rubberband )
         COMMAND ( do_toggle_magneticnet )
-        COMMAND ( do_toggle_drawcanmove )
+        COMMAND ( do_toggle_dragcanmove )
 
         COMMAND ( do_show_text_size )
         COMMAND ( do_show_settings )
@@ -545,7 +545,7 @@ enum {
      COMMAND ( TOGGLE_FEEDBACK,     "feedback",         USE_WORKER_THREAD,      do_toggle_feedback)
      COMMAND ( TOGGLE_RUBBER,       "rubberband",       USE_WORKER_THREAD,      do_toggle_rubberband)
      COMMAND ( TOGGLE_MAGNETIC,     "magnetic net",     USE_WORKER_THREAD,      do_toggle_magneticnet)
-     COMMAND ( TOGGLE_DRAW_MOVE,    "drag can move",    USE_WORKER_THREAD,      do_toggle_drawcanmove)
+     COMMAND ( TOGGLE_DRAG_MOVE,    "drag can move",    USE_WORKER_THREAD,      do_toggle_dragcanmove)
 
      COMMAND ( OPT_TEXT_SIZE,       NULL,               USE_WORKER_THREAD,      do_show_text_size)
      COMMAND ( OPT_SETTINGS,        "Preferences",      USE_MAIN_LOOP,          do_show_settings)

@@ -207,7 +207,7 @@
 #define TOGGLE_FEEDBACK  options-action-feedback
 #define TOGGLE_RUBBER    options-rubberband
 #define TOGGLE_MAGNETIC  options-magneticnet
-#define TOGGLE_DRAW_MOVE options-drawcanmove
+#define TOGGLE_DRAG_MOVE options-dragcanmove
 
 #define OPT_TEXT_SIZE    options-show-text-size
 #define OPT_SETTINGS     options-show-settings

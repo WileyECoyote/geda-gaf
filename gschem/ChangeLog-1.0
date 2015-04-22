@@ -1,3 +1,12 @@
+2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    Subliminal typo: draw-can-move => drag-can-move:
+
+    * etc/system-gschemrc.scm: options-drawcanmove->options-dragcanmove
+    * include/i_actions.h: options-drawcanmove->options-dragcanmove
+    * include/i_command.h: o_toggle_drawcanmove->o_toggle_dragcanmove
+    * include/x_menus.h: do_toggle_drawcanmove->o_toggle_dragcanmove
+
 2015-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem-tools-menu.scm: Add BOM and BOM2 as option for run-bom, use

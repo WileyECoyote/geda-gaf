@@ -2240,7 +2240,7 @@
         (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f ,(N_ "Toggle action feedback"))
         (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband mode"))
         (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
-        (,(N_ "Toggle _Drag Move")        options-drawcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
+        (,(N_ "Toggle _Drag Move")        options-dragcanmove      #f ,(N_ "Toggle Drag-can-Move mode"))
 
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "_Text Size...")            options-show-text-size   #f                ,(N_ "Open the Text Size settings"))
