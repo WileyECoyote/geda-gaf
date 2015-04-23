@@ -1,5 +1,9 @@
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gnetlist/src/g_rc.c: Add Doxygen comments.
+
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * gnetlist/src/gnetlist.c: Add Doxygen comments.
 
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>

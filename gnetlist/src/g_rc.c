@@ -24,6 +24,14 @@
 #include "../include/i_vars.h"
 #include <geda_debug.h>
 
+/*! \brief This function processes the RC version information
+ *  \par Function Description
+ *       This function processes the version string in the rc file and
+ *       compares the value to the current program version. A message
+ *       is issued to standard error if the versions do not match,
+ *
+ *  \returns SCM_TRUE if versions match else FALSE
+ */
 SCM g_rc_gnetlist_version(SCM scm_version)
 {
   char *version;
@@ -35,14 +43,14 @@ SCM g_rc_gnetlist_version(SCM scm_version)
   version = scm_to_utf8_string (scm_version);
   if (strcmp (version, PACKAGE_DATE_VERSION) != 0) {
     fprintf(stderr,
-	    "You are running gEDA/gaf version [%s%s.%s],\n",
+            "You are running gEDA/gaf version [%s%s.%s],\n",
             PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
             PACKAGE_DATE_VERSION);
     fprintf(stderr,
-	    "but you have a version [%s] gnetlistrc file:\n[%s]\n",
-	    version, rc_filename);
+            "but you have a version [%s] gnetlistrc file:\n[%s]\n",
+            version, rc_filename);
     fprintf(stderr,
-	    "Please be sure that you have the latest rc file.\n");
+            "Please be sure that you have the latest rc file.\n");
     ret = SCM_BOOL_F;
   }
 
@@ -50,7 +58,12 @@ SCM g_rc_gnetlist_version(SCM scm_version)
   return ret;
 }
 
-
+/*! \brief Process net-naming-priority Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_net_naming_priority based on the string option
+ *   in RC file for the net-naming-priority keyword.
+ */
 SCM g_rc_net_naming_priority(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
@@ -58,10 +71,15 @@ SCM g_rc_net_naming_priority(SCM mode)
     {NETNAME_ATTRIBUTE, "netname"}
   };
 
-  RETURN_G_RC_MODE("net-naming-priority", default_net_naming_priority,
-                   2);
+  RETURN_G_RC_MODE("net-naming-priority", default_net_naming_priority, 2);
 }
 
+/*! \brief Process hierarchy-traversal Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_traversal based on the string option
+ *   in RC file for the hierarchy-traversal keyword.
+ */
 SCM g_rc_hierarchy_traversal(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
@@ -69,10 +87,15 @@ SCM g_rc_hierarchy_traversal(SCM mode)
     {FALSE, "disabled"}
   };
 
-  RETURN_G_RC_MODE("hierarchy-traversal", default_hierarchy_traversal,
-                   2);
+  RETURN_G_RC_MODE("hierarchy-traversal", default_hierarchy_traversal, 2);
 }
 
+/*! \brief Process hierarchy-uref-mangle Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_uref_mangle based on the string option
+ *   in RC file for the hierarchy-uref-mangle keyword.
+ */
 SCM g_rc_hierarchy_uref_mangle(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
@@ -84,6 +107,13 @@ SCM g_rc_hierarchy_uref_mangle(SCM mode)
                    default_hierarchy_uref_mangle, 2);
 }
 
+/*! \brief Process hierarchy-netname-mangle Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_netname_mangle based on the string
+ *   option in RC file for the hierarchy-netname-mangle
+ *   keyword.
+ */
 SCM g_rc_hierarchy_netname_mangle(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
@@ -95,6 +125,13 @@ SCM g_rc_hierarchy_netname_mangle(SCM mode)
                    default_hierarchy_netname_mangle, 2);
 }
 
+/*! \brief Process hierarchy-netattrib-mangle Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   g_rc_hierarchy_netattrib_mangle based on the string
+ *   option in RC file for the hierarchy-netattrib-mangle
+ *   keyword.
+ */
 SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
@@ -106,6 +143,11 @@ SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
                    default_hierarchy_netattrib_mangle, 2);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  \todo move this function some place else
+ */
 static char *
 u_string_strdup_scm_string(SCM scm_s)
 {
@@ -117,6 +159,12 @@ u_string_strdup_scm_string(SCM scm_s)
   return ret;
 }
 
+/*! \brief Process hierarchy-netname-separator Keyword
+ *  \par Function Description
+ *  This function sets default_hierarchy_netname_separator to
+ *  be the string argument to the hierarchy-netname-separator
+ *  keyword in the RC file.
+ */
 SCM g_rc_hierarchy_netname_separator(SCM name)
 {
   SCM_ASSERT (scm_is_string (name), name,
@@ -129,6 +177,12 @@ SCM g_rc_hierarchy_netname_separator(SCM name)
   return SCM_BOOL_T;
 }
 
+/*! \brief Process hierarchy-netattrib-separator Keyword
+ *  \par Function Description
+ *  This function sets default_hierarchy_netattrib_separator to
+ *  be the string argument to the hierarchy-netattrib-separator
+ *  keyword in the RC file.
+ */
 SCM g_rc_hierarchy_netattrib_separator(SCM name)
 {
   SCM_ASSERT (scm_is_string (name), name,
@@ -141,6 +195,12 @@ SCM g_rc_hierarchy_netattrib_separator(SCM name)
   return SCM_BOOL_T;
 }
 
+/*! \brief Process hierarchy-uref-separator Keyword
+ *  \par Function Description
+ *  This function sets default_hierarchy_uref_separator to
+ *  be the string argument to the hierarchy-uref-separator
+ *  keyword in the RC file.
+ */
 SCM g_rc_hierarchy_uref_separator(SCM name)
 {
   SCM_ASSERT (scm_is_string (name), name,
@@ -153,39 +213,65 @@ SCM g_rc_hierarchy_uref_separator(SCM name)
   return SCM_BOOL_T;
 }
 
+/*! \brief Process hierarchy-netattrib-order Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_netattrib_order based on the string
+ *   option in RC file for the hierarchy-netattrib-order
+ *   keyword.
+ */
 SCM g_rc_hierarchy_netattrib_order(SCM mode)
 {
-    static const vstbl_entry mode_table[] = {
-	{PREPEND, "prepend"},
-	{APPEND, "append"}
-    };
+  static const vstbl_entry mode_table[] = {
+    {PREPEND, "prepend"},
+    {APPEND, "append"}
+  };
 
-    RETURN_G_RC_MODE("hierarchy-netattrib-order",
-		     default_hierarchy_netattrib_order, 2);
+  RETURN_G_RC_MODE("hierarchy-netattrib-order",
+                   default_hierarchy_netattrib_order, 2);
 }
 
+/*! \brief Process hierarchy-netname-order Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_netname_order based on the string
+ *   option in RC file for the hierarchy-netname-order
+ *   keyword.
+ */
 SCM g_rc_hierarchy_netname_order(SCM mode)
 {
-    static const vstbl_entry mode_table[] = {
-	{PREPEND, "prepend"},
-	{APPEND, "append"}
-    };
+  static const vstbl_entry mode_table[] = {
+    {PREPEND, "prepend"},
+    {APPEND, "append"}
+  };
 
-    RETURN_G_RC_MODE("hierarchy-netname-order",
-		     default_hierarchy_netname_order, 2);
+  RETURN_G_RC_MODE("hierarchy-netname-order",
+                   default_hierarchy_netname_order, 2);
 }
 
+/*! \brief Process hierarchy-uref-order Keyword
+ *  \par Function Description
+ *   Indirectly returns value of configuration setting in
+ *   default_hierarchy_uref_order based on the string
+ *   option in RC file for the hierarchy-uref-order
+ *   keyword.
+ */
 SCM g_rc_hierarchy_uref_order(SCM mode)
 {
-    static const vstbl_entry mode_table[] = {
-	{PREPEND, "prepend"},
-	{APPEND, "append"}
-    };
+  static const vstbl_entry mode_table[] = {
+    {PREPEND, "prepend"},
+    {APPEND, "append"}
+  };
 
-    RETURN_G_RC_MODE("hierarchy-uref-order",
-		     default_hierarchy_uref_order, 2);
+  RETURN_G_RC_MODE("hierarchy-uref-order",
+                   default_hierarchy_uref_order, 2);
 }
 
+/*! \brief Process unamed-netname Keyword
+ *  \par Function Description
+ *  This function sets default_unnamed_netname to be the string
+ *  argument to the unamed-netname keyword in the RC file.
+ */
 SCM g_rc_unnamed_netname(SCM name)
 {
   SCM_ASSERT (scm_is_string (name), name,
@@ -198,6 +284,11 @@ SCM g_rc_unnamed_netname(SCM name)
   return SCM_BOOL_T;
 }
 
+/*! \brief Process unamed-busname Keyword
+ *  \par Function Description
+ *  This function sets default_unnamed_busname to be the string
+ *  argument to the unamed-busname keyword in the RC file.
+ */
 SCM g_rc_unnamed_busname(SCM name)
 {
   SCM_ASSERT (scm_is_string (name), name,
@@ -209,7 +300,6 @@ SCM g_rc_unnamed_busname(SCM name)
 
   return SCM_BOOL_T;
 }
-
 
 /*************************** GUILE end done *********************************/
 
