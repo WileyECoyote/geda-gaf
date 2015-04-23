@@ -1,3 +1,8 @@
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgeda/src/guile/g_rc.c: Add Doxygen comments for functions
+      vstbl_lookup_str and vstbl_get_val.
+
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Add Doxygen comments for function
