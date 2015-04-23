@@ -73,7 +73,7 @@
 /*! \brief Loads gtk rc files for pararsing
  *
  *  \par Function Description
- *       This function calls gtk_rc_parse to arse the our system and user
+ *       This function calls gtk_rc_parse to parse system and user
  *       initialization files.
  */
 void g_rc_parse_gtkrc()
@@ -103,10 +103,13 @@ void g_rc_parse_gtkrc()
   GEDA_FREE (filename);
 }
 
-/*! \brief This function is used to validate and convert integers from scm to c type.
+/*! \brief Validate and Convert Integers from SCM to C
  *  \par Function Description
- *       Utility function to be used by functions reading scm interger type input data.
+ *  Utility function to be used by functions reading scm interger type input data.
+ *  This function is used to validate and convert integers from scm to a c type.
  *
+ *  \returns \a value if valid, default if not a scm_integer, \a min if scm_integer
+ *            and value below min, or \a max if scm_integer and value is above \a max.
  */
 #define ICHECK(value, min, max, default, var_name) \
         check_and_convert_scm_integer( value, min, max, default, var_name)
@@ -129,6 +132,8 @@ int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
     fprintf (stderr, _("Continuing with default value=[%d]\n"), default_value);
     return default_value; /* default value*/
   }
+
+  /* -- Parent function begins here -- */
   if (scm_is_integer(val2chk)) {
     val = scm_to_int (val2chk);
     if (val < min_value) { below(); }
@@ -150,7 +155,7 @@ int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
  *       This function processes the version string in the rc and
  *       compares the value to the current program version.
  *
- *       Return value: TRUE if versions match else FALSE
+ *  \returns SCM_TRUE if versions match else FALSE
  */
 SCM g_rc_gschem_version(SCM scm_version)
 {
