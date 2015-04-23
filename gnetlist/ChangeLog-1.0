@@ -1,3 +1,9 @@
+2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/s_misc.c: Simplfy functions verbose_print and
+      verbose_done; use greater not greater than or equal, no need
+      to have else clause. Add Doxygen comments.
+
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/g_rc.c: Add Doxygen comments.
