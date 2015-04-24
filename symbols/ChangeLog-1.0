@@ -1,4 +1,9 @@
-2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/nmosfet-e/AO4420A-nmosfet_enh-1.sym: Tweak symbol, add symbol
+      version
+
+2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56B-E-OT-1.sym: 2K EEPROM, 16 Bit Serial, 1.8-5.5Volt,
       +85°C,SOT26.
