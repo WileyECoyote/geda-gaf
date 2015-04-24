@@ -1,5 +1,10 @@
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/nmosfet-e/2N7000-1.sym: Tweak symbol, add symbol version, rename
+      with dash 1 suffix.
+
+2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * capacitor/GRM1555C1H101FA01_100pF_50V.sym: Add symbol: 100pF 50V Capacitor
 
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
