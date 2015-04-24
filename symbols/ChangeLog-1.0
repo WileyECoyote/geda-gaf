@@ -1,5 +1,16 @@
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * irf/IRSM005-301MH-x.sym: Add symbols Half-Bridge,W/GATE-DRIVER,30A,100V:
+
+            * irf/IRSM005-301MH-1.sym
+            * irf/IRSM005-301MH-2.sym
+
+    * irf/IRSM005-800MH-1.sym: Correct link for documentation.
+
+    * irf/IRSM005-800MH-2.sym: Correct link for documentation.
+
+2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-2D.sym: Tweak symbol; move pin 5 to center X.
 
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>

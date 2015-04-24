@@ -54,15 +54,15 @@ pinlabel=VCC
 T 450 3000 5 8 0 1 0 2 1
 pintype=pwr
 }
-P 100 2100 400 2100 1 0 0
+P 100 2700 400 2700 1 0 0
 {
-T 300 2150 5 8 1 1 0 6 1
+T 300 2750 5 8 1 1 0 6 1
 pinnumber=1
-T 300 2150 5 8 0 1 0 6 1
+T 300 2750 5 8 0 1 0 6 1
 pinseq=1
-T 450 2100 9 8 1 1 0 0 1
+T 450 2700 9 8 1 1 0 0 1
 pinlabel=VB
-T 450 2050 5 8 0 1 0 2 1
+T 450 2650 5 8 0 1 0 2 1
 pintype=pwr
 }
 P 100 1800 400 1800 1 0 0
@@ -76,15 +76,15 @@ pinlabel=HIN
 T 450 1800 5 8 0 1 0 2 1
 pintype=in
 }
-P 100 2700 400 2700 1 0 0
+P 100 2400 400 2400 1 0 0
 {
-T 300 2750 5 8 1 1 0 6 1
+T 300 2450 5 8 1 1 0 6 1
 pinnumber=26
-T 300 2750 5 8 0 1 0 6 1
+T 300 2450 5 8 0 1 0 6 1
 pinseq=26
-T 450 2700 9 8 1 1 0 0 1
+T 450 2400 9 8 1 1 0 0 1
 pinlabel=Vs
-T 450 2700 5 8 0 1 0 2 1
+T 450 2400 5 8 0 1 0 2 1
 pintype=pwr
 }
 B 400 400 3200 2800 3 15 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -93,15 +93,15 @@ footprint=IRSM005-800MH
 T 3400 3600 8 10 1 1 0 0 1
 refdes=U?
 T 3400 3400 9 10 1 1 0 0 1
-value=IRSM005-800MH
+value=IRSM005-301MH
 T 2000 1500 5 10 0 1 0 3 1
-device=IRSM005-800MH
+device=IRSM005-301MH
 T 3400 4600 5 10 0 0 0 0 1
 author=AutoTron
 T 3400 4000 5 10 0 1 0 0 1
-documentation=http://www.irf.com/product-info/datasheets/data/irsm005-800mh.pdf
+documentation=http://www.irf.com/product-info/datasheets/data/irsm005-301mh.pdf
 T 3400 3800 5 10 0 1 0 0 1
-description=Half-Bridge,W/GATE-DRIVER,80A,40V
+description=Half-Bridge,W/GATE-DRIVER,30A,100V
 T 3400 4200 5 10 0 0 0 0 1
 dist-license=GPL
 T 3400 4400 5 10 0 0 0 0 1
@@ -161,15 +161,15 @@ pinlabel=G2
 T 3550 1200 5 8 0 1 0 8 1
 pintype=in
 }
-P 100 2400 400 2400 1 0 0
+P 100 2100 400 2100 1 0 0
 {
-T 300 2450 5 8 1 1 0 6 1
+T 300 2150 5 8 1 1 0 6 1
 pinnumber=27
-T 300 2450 5 8 0 1 0 6 1
+T 300 2150 5 8 0 1 0 6 1
 pinseq=27
-T 450 2400 9 8 1 1 0 0 1
+T 450 2100 9 8 1 1 0 0 1
 pinlabel=Vs
-T 450 2400 5 8 0 1 0 2 1
+T 450 2100 5 8 0 1 0 2 1
 pintype=pwr
 }
 P 3900 2100 3600 2100 1 0 0

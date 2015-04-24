@@ -93,15 +93,15 @@ footprint=IRSM005-800MH
 T 3400 3600 8 10 1 1 0 0 1
 refdes=U?
 T 3400 3400 9 10 1 1 0 0 1
-value=IRSM005-800MH
+value=IRSM005-301MH
 T 2000 1500 5 10 0 1 0 3 1
-device=IRSM005-800MH
+device=IRSM005-301MH
 T 3400 4600 5 10 0 0 0 0 1
 author=AutoTron
 T 3400 4000 5 10 0 1 0 0 1
-documentation=http://www.irf.com/product-info/datasheets/data/irsm005-800mh.pdf
+documentation=http://www.irf.com/product-info/datasheets/data/irsm005-301mh.pdf
 T 3400 3800 5 10 0 1 0 0 1
-description=Half-Bridge,W/GATE-DRIVER,80A,40V
+description=Half-Bridge,W/GATE-DRIVER,30A,100V
 T 3400 4200 5 10 0 0 0 0 1
 dist-license=GPL
 T 3400 4400 5 10 0 0 0 0 1

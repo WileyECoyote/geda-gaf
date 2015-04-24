@@ -99,7 +99,7 @@ device=IRSM005-800MH
 T 3400 4600 5 10 0 0 0 0 1
 author=AutoTron
 T 3400 4000 5 10 0 1 0 0 1
-documentation=http://www.irf.com/product-info/datasheets/data/ir2108.pdf
+documentation=http://www.irf.com/product-info/datasheets/data/irsm005-800mh.pdf
 T 3400 3800 5 10 0 1 0 0 1
 description=Half-Bridge,W/GATE-DRIVER,80A,40V
 T 3400 4200 5 10 0 0 0 0 1
