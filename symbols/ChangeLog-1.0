@@ -1,5 +1,9 @@
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * IRSM005-800MH-2.sym: Add symbol; alternative pin layout.
+
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * microchip/memory/93AA56A-I-ST-1.sym: Add symbol 2K EEPROM, 8 Bit Serial,
       1.8-5.5Volt, +125°C, MSOP8
 
