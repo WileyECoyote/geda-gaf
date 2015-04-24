@@ -1,5 +1,9 @@
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * capacitor/GRM1555C1H101FA01_100pF_50V.sym: Add symbol: 100pF 50V Capacitor
+
+2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * irf/IRSM005-301MH-x.sym: Add symbols Half-Bridge,W/GATE-DRIVER,30A,100V:
 
             * irf/IRSM005-301MH-1.sym
