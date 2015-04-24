@@ -1,3 +1,8 @@
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93AA56B-E-OT-1.sym: 2K EEPROM, 16 Bit Serial, 1.8-5.5Volt,
+      +85°C,SOT26.
+
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-e/2N7002A-1.sym: Add symbol NMOSFET, GP Small
