@@ -44,7 +44,7 @@
           (open-input-file filename)
           (if (backend-option-ref options 'attribs) #f
               (begin
-                (format #t
+                (format (current-error-port)
 "ERROR: Attribute file '~A' not found. You must do one of the following: ~%
          - Create an 'attribs' file ~%
          - Specify an attribute file using -Oattrib_file=<filename> ~%

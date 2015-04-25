@@ -1,3 +1,8 @@
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-bom.scm: Update function bom:open-input-file to use
+      current-error-port.
+
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/s_misc.c: Simplfy functions verbose_print and
