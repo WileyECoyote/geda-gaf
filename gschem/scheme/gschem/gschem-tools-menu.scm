@@ -164,7 +164,7 @@
 
 ;; ----------------- tools:geda-netlist -------------------------------
 (define (tools:geda-netlist)
-    (tools:sch-netlist-0 "geda" ".geda"))
+    (tools:sch-netlist-0 "geda" ".geda.net"))
 
 ;; ----------------- tools:spice-sdb-netlist --------------------------
 (define (tools:spice-sdb-netlist)
