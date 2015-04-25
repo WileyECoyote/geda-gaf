@@ -82,7 +82,11 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:get-verbosity",               0, 0, 0, g_get_verbosity },
   { NULL,                                   0, 0, 0, NULL } };
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void g_register_funcs(void)
 {
   struct gsubr_t *tmp = gnetlist_funcs;
@@ -94,6 +98,11 @@ void g_register_funcs(void)
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM g_quit(void)
 {
     gnetlist_quit();

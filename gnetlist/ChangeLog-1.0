@@ -1,5 +1,9 @@
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gnetlist/src/g_register.c: Add Doxygen templates as todo's.
+
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-bom.scm: Update function bom:open-input-file to use
       current-error-port.
 
