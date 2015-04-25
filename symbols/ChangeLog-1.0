@@ -1,5 +1,10 @@
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/memory/93AA56B-E-SN-1.sym: Add symbol; 2K EEPROM, 16 Bit
+      Serial, 1.8-5.5Volt, +85°C, SOIC8.
+
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * transistor/nmosfet-e/2N6755-x.sym: Add 6 symbols; Classic Power NMOSFET
 
             * transistor/nmosfet-e/2N6755-1.sym
