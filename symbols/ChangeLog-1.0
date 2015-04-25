@@ -1,5 +1,14 @@
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * onsemi/diodes/NRVB0540TxG-x.sym: Add 4 diode symbols, Schottky,40V,0.5A
+
+            * onsemi/diodes/NRVB0540T1G-1.sym
+            * onsemi/diodes/NRVB0540T1G-2.sym
+            * onsemi/diodes/NRVB0540T3G-1.sym
+            * onsemi/diodes/NRVB0540T3G-2.sym
+
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM5050-2x.sym: Add dash 2 to device number to avoid confusion
       with dash 1 type, add orderable part number as value:
 
