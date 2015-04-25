@@ -1,5 +1,16 @@
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/nmosfet-e/2N6755-x.sym: Add 6 symbols; Classic Power NMOSFET
+
+            * transistor/nmosfet-e/2N6755-1.sym
+            * transistor/nmosfet-e/2N6755-2.sym
+            * transistor/nmosfet-e/2N6755-3.sym
+            * transistor/nmosfet-e/2N6756-1.sym
+            * transistor/nmosfet-e/2N6756-2.sym
+            * transistor/nmosfet-e/2N6756-3.sym
+
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * transistor/nmosfet-e/nmos-x.sym: Tweak symbols; improve aesthetics
 
             * transistor/nmosfet-e/nmos-1.sym

@@ -2,19 +2,22 @@ v 20150401 2
 T 800 600 8 10 1 1 0 0 1
 refdes=Q?
 T 800 400 5 10 1 1 0 0 1
-device=PART_NUMBER
+device=2N6756
 T 0 1750 5 8 0 0 0 0 1
 symversion=0.1
 T 0 1300 5 8 0 1 0 0 1
-description=N channel MOS transistor
+description=MOSFET,N CHANNEL, ENHANCED,100V,14A
 T 0 1600 5 8 0 0 0 0 1
 numslots=0
 T 0 1000 9 8 0 0 0 0 1
-footprint=unknown
+footprint=TO-204AA
 T 700 200 5 8 0 1 0 0 1
 value=COMPONENT_VALUE
 T 0 1450 9 8 0 1 0 0 1
 documentation=http://www.wikipedia.org/wiki/MOSFET
+L 450 450 350 400 3 0 2 0 -1 -1
+L 350 400 450 350 3 0 2 0 -1 -1
+L 300 200 200 200 3 0 2 0 -1 -1
 L 300 200 300 600 3 10 2 0 -1 -1
 L 500 400 450 400 3 0 2 0 -1 -1
 L 450 350 450 450 3 0 2 0 -1 -1
@@ -22,21 +25,8 @@ L 500 400 500 210 3 0 2 0 -1 -1
 L 350 135 350 285 3 10 0 0 -1 -1
 L 350 340 350 460 3 10 0 0 -1 -1
 L 350 515 350 665 3 10 0 0 -1 -1
-L 450 450 350 400 3 0 2 0 -1 -1
-L 350 400 450 350 3 0 2 0 -1 -1
-L 300 200 200 200 3 0 2 0 -1 -1
-P 0 200 200 200 1 0 0
-{
-T 75 100 5 5 0 1 0 0 1
-pinnumber=1
-T 0 300 9 6 0 1 0 0 1
-pinlabel=G
-T 175 250 5 5 0 1 0 0 1
-pinseq=2
-T 0 200 5 5 0 1 0 0 1
-pintype=pas
-}
 L 350 590 600 590 3 0 0 0 -1 -1
+L 350 210 600 210 3 0 0 0 -1 -1
 P 600 600 600 800 1 0 1
 {
 T 650 650 5 5 0 1 0 0 1
@@ -48,7 +38,17 @@ pinseq=1
 T 600 800 5 5 0 1 0 0 1
 pintype=pas
 }
-L 350 210 600 210 3 0 0 0 -1 -1
+P 0 200 200 200 1 0 0
+{
+T 75 100 5 5 0 1 0 0 1
+pinnumber=1
+T 0 300 9 6 0 1 0 0 1
+pinlabel=G
+T 175 250 5 5 0 1 0 0 1
+pinseq=2
+T 0 200 5 5 0 1 0 0 1
+pintype=pas
+}
 P 600 200 600 0 1 0 1
 {
 T 625 100 5 5 0 1 0 0 1
