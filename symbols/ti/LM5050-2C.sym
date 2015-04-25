@@ -1,14 +1,14 @@
-v 20150315 2
+v 20150401 2
 T 1500 900 8 10 1 1 0 3 1
 refdes=U?
-T 2850 1650 5 10 0 0 0 0 1
-device=LM5050
+T 2850 1650 5 10 0 1 0 0 1
+device=LM5050-2
 T 2850 1450 5 10 0 1 0 0 1
 footprint=SOT26
-T 2850 2250 5 10 0 0 0 0 1
+T 2850 2450 5 10 0 0 0 0 1
 author=AutoTron
-T 2850 2050 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/lm5050-1
+T 2850 2250 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/lm5050-2
 T 2850 1850 5 10 0 1 0 0 1
 description=High Side OR-ing FET Controller
 T 2850 1300 5 10 0 0 0 0 1
@@ -81,6 +81,8 @@ T 2300 1400 5 8 0 1 0 0 1
 pintype=in
 }
 T 2850 1150 5 8 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 T 1500 700 9 10 1 0 0 3 1
-LM5050
+LM5050-2
+T 2835 2035 5 10 0 1 0 0 1
+value=LM5050MK-2/NOPB

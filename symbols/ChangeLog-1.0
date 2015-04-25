@@ -1,5 +1,15 @@
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM5050-2x.sym: Add dash 2 to device number to avoid confusion
+      with dash 1 type, add orderable part number as value:
+
+            * ti/LM5050-2B.sym
+            * ti/LM5050-2C.sym
+            * ti/LM5050-2D.sym
+            * ti/LM5050-2E.sym
+
+2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * transistor/nmosfet-e/AO4420A-nmosfet_enh-1.sym: Tweak symbol, add symbol
       version
 
