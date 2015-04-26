@@ -1,3 +1,7 @@
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX211-1.sym: Add symbol; 5 volt RS-232 Transceiver
+
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56B-E-SN-1.sym: Add symbol; 2K EEPROM, 16 Bit
