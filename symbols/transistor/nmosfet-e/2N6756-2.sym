@@ -64,7 +64,7 @@ T 600 0 5 5 0 1 0 0 1
 pintype=pas
 }
 T 900 1000 8 8 0 1 0 0 1
-net=VSS:D
+net=VDD:D
 T 0 1000 8 8 0 0 0 0 1
 spice-type=M
 T 0 1150 8 8 0 0 0 0 1

@@ -75,7 +75,7 @@ z
 T 0 1000 8 8 0 0 0 0 1
 spice-type=M
 T 900 1000 8 8 0 0 0 0 1
-net=VSS:D
+net=VDD:D
 T 800 0 9 6 0 0 0 0 1
 value=w=1u
 T 800 100 9 6 0 0 0 0 1

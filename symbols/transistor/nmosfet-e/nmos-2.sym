@@ -68,7 +68,7 @@ documentation=http://www.wikipedia.org/wiki/MOSFET
 T 0 1000 8 8 0 0 0 0 1
 spice-type=M
 T 900 1000 8 8 0 1 0 0 1
-net=VSS:D
+net=VDD:D
 T 800 0 9 6 0 0 0 0 1
 value=w=1u
 T 0 2200 5 8 0 0 0 0 1

@@ -47,7 +47,7 @@ spice-type=M
 T -100 1150 8 8 0 0 0 0 1
 comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
 T 800 1000 8 8 0 1 0 0 1
-net=VSS:D
+net=VDD:D
 T 700 800 5 8 0 0 0 0 1
 footprint=unknown
 T 700 200 9 6 0 0 0 0 1
