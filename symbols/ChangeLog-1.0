@@ -1,5 +1,9 @@
 2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/regulate/LP2985-2.sym: Add symbol, alternate pin arrangement.
+
+2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * simulation/spice/ *.c: Tweak symbols.
 
 2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
