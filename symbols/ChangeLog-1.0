@@ -1,5 +1,9 @@
 2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/resistor/resistor-3.sym: Add plain ordinary vertical resistor
+
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * maxim/MAX211-1.sym: Add symbol; 5 volt RS-232 Transceiver
 
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
