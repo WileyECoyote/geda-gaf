@@ -1,5 +1,9 @@
 2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/regulate/LP2985-1.sym: Align attributes, add symbol versioning
+
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/resistor/resistor-3.sym: Add plain ordinary vertical resistor
 
 2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
