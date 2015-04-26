@@ -48,7 +48,7 @@ SUFFIXES = .fig .pic .ps .doc .pdf
 nc.ps: geda.pic
 nc.pdf: nc.ps
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~ *.ps *.pdf 
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log *~ Makefile.in geda.pic *.pdf *.ps
+MOSTLYCLEANFILES     = *.log *~ core FILE
+CLEANFILES           = *.log *~ core FILE *.pdf *.ps
+DISTCLEANFILES       = *.log *~ core FILE
+MAINTAINERCLEANFILES = *.log *~ core FILE Makefile.in geda.pic *.pdf *.ps
