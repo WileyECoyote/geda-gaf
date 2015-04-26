@@ -130,26 +130,3 @@ cd tmp
 do_rm_substr $old_name $new_name
 cd ..
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
