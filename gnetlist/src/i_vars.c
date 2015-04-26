@@ -49,6 +49,12 @@ char *default_hierarchy_uref_separator = NULL;
 char *default_unnamed_netname = NULL;
 char *default_unnamed_busname = NULL;
 
+/*! \brief Set Variables from Defaults after reading RC
+ *  \par Function Description
+ *  This function assigns default values for top-level variables. The default
+ *  variables is declared extern in i_var.h so that the variables maybe set by
+ *  RC handlers.
+ */
 void i_vars_set(GedaToplevel * pr_current)
 {
   i_vars_libgeda_set(pr_current);

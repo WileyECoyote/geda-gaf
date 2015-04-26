@@ -1,3 +1,7 @@
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/i_vars.c: Add Doxygen comments for fucntion i_vars_set.
+
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/g_register.c: Add Doxygen templates as todo's.
