@@ -1,4 +1,13 @@
-2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
+2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/spice/ *.c: Tweak symbols.
+
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * memory/93AA56B-E-ST-1.sym: Add symbol; 2K EEPROM, 16 Bit Serial,
+      1.8-5.5Volt, +85°C, MSOP8.
+
+2015-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-e/2N6782-x.sym: Add 3 symbols; Classic Medium Power NMOSFET
 
