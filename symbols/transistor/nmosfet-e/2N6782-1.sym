@@ -8,9 +8,9 @@ device=2N6782
 T 0 1600 5 8 0 0 0 0 1
 numslots=0
 T 0 1300 5 8 0 1 0 0 1
-description=MOSFET,N CHANNEL, ENHANCED,100V3.5A
+description=MOSFET,N CHANNEL, ENHANCED,100V,3.5A
 T 800 800 9 8 0 1 0 0 1
-footprint=TO-205AF
+footprint=TO-39
 T 0 1450 9 8 0 1 0 0 1
 documentation=http://www.wikipedia.org/wiki/MOSFET
 T 700 200 5 8 0 1 0 0 1

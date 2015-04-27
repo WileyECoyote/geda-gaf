@@ -6,7 +6,7 @@ device=2N6782
 T 0 1750 5 8 0 0 0 0 1
 symversion=0.1
 T 0 1300 5 8 0 1 0 0 1
-description=MOSFET,N CHANNEL, ENHANCED,100V3.5A
+description=MOSFET,N CHANNEL, ENHANCED,100V,3.5A
 T 0 1600 5 8 0 0 0 0 1
 numslots=0
 T 0 1000 9 8 0 0 0 0 1
