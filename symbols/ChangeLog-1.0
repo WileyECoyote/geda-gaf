@@ -1,5 +1,18 @@
 2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd: Tweak Symbols:
+
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-1.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-2.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-3.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-4.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-5.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-6.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-7.sym
+            * transistor/nmosfet-e/BSS123_100V_0.17A_SOT23-gsd-8.sym
+
+2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/regulate/LP2985-2.sym: Add symbol, alternate pin arrangement.
 
 2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
