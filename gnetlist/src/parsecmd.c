@@ -57,6 +57,11 @@ struct option long_options[] =
   };
 #endif
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void usage(char *cmd)
 {
   printf (_(
@@ -116,8 +121,12 @@ catch_handler (void *data, SCM tag, SCM throw_args)
   return SCM_BOOL_F;
 }
 
-int
-parse_commandline (int argc, char *argv[])
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+int parse_commandline (int argc, char *argv[])
 {
   int ch;
   SCM sym_begin = scm_from_utf8_symbol ("begin");
@@ -129,9 +138,14 @@ parse_commandline (int argc, char *argv[])
 #ifdef HAVE_GETOPT_LONG
   /* int option_index = 0; */
 
-  while ((ch = getopt_long(argc, argv, OPTIONS, long_options, NULL /* &option_index */)) != -1) {
+  while ((ch = getopt_long(argc, argv, OPTIONS, long_options, NULL /* &option_index */)) != -1)
+  {
+
 #else
-    while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
+
+  while ((ch = getopt(argc, argv, OPTIONS)) != -1)
+  {
+
 #endif
       switch (ch) {
 
@@ -216,11 +230,13 @@ parse_commandline (int argc, char *argv[])
             fprintf (stderr,
                      _("ERROR: -%c option requires an argument.\n\n"),
                      optopt);
-          } else if (isprint (optopt)) {
+          }
+          else if (isprint (optopt)) {
             fprintf (stderr, _("ERROR: Unknown option -%c.\n\n"), optopt);
-          } else {
+          }
+          else {
             fprintf (stderr, _("ERROR: Unknown option character `\\x%x'.\n\n"),
-            optopt);
+                     optopt);
           }
 #endif
           fprintf (stderr, _("\nRun `%s --help' for more information.\n"), argv[0]);
@@ -248,4 +264,4 @@ parse_commandline (int argc, char *argv[])
     scm_gc_protect_object (post_backend_list);
 
     return (optind);
-  }
+}
