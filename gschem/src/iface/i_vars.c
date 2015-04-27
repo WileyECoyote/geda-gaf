@@ -184,6 +184,7 @@ int     default_undo_panzoom              = RC_NIL;
 int     default_undo_preserve             = RC_NIL;
 int     default_undo_type                 = RC_NIL;
 
+/* Retrieves a string from key file in specified group */
 char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
 
   GError *err = NULL;
@@ -199,6 +200,7 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
   return tmpstr;
 }
 
+/* Retrieves a color from key file in specified group */
 void
 i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
                           GdkColor  *var, int index)
@@ -226,6 +228,7 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
   }
 }
 
+/* Retrieves a boolean from key file in specified group */
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
 bool
@@ -250,9 +253,9 @@ i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
   return result;
 }
 
+/* Retrieves a double from key file in specified group */
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
-
 bool i_var_restore_group_double (EdaConfig *cfg, const char *group, const char *key, double *var, double def_val)
 {
   GError *err = NULL;
@@ -272,6 +275,7 @@ bool i_var_restore_group_double (EdaConfig *cfg, const char *group, const char *
   return result;
 }
 
+/* Retrieves integer from key file in specified group */
 bool
 i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, int *var, int def_val)
 {
@@ -292,6 +296,7 @@ i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, 
   return result;
 }
 
+/* Retrieve a boolean from key file in global group */
 void
 i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
@@ -299,6 +304,7 @@ i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
+/* Retrieve a double from key file in global group */
 void
 i_var_restore_global_double(EdaConfig *cfg, const char *key, double *var, double def_val)
 {
@@ -306,6 +312,7 @@ i_var_restore_global_double(EdaConfig *cfg, const char *key, double *var, double
   i_var_restore_group_double (cfg, group, key, var, def_val);
 }
 
+/* Retrieve integer from key file in global group */
 void
 i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
@@ -313,12 +320,14 @@ i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
+/* Retrieve a color from key file in global group */
 void
 i_var_restore_global_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
   i_var_restore_group_color(cfg, IVAR_CONFIG_GROUP, key, var, index);
 }
 
+/* Retrieve boolean from key file in global group */
 void
 i_var_restore_window_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
@@ -326,6 +335,7 @@ i_var_restore_window_boolean(EdaConfig *cfg, const char *key, int *var, bool def
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
+/* Retrieve integer from key file in Window group */
 void
 i_var_restore_window_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
@@ -333,6 +343,7 @@ i_var_restore_window_integer(EdaConfig *cfg, const char *key, int *var, int def_
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
+/* Retrieve a color from key file in Window group */
 void
 i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
@@ -528,7 +539,6 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
  *   group last. Variables are listed alphabeticaly within each group.
  *
  */
-
 void i_vars_set(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel               = w_current->toplevel;
@@ -714,9 +724,9 @@ void i_vars_freenames()
 }
 
 /*! \brief Setup gschem default configuration.
- * \par Function Description
- * Populate the default configuration context with compiled-in
- * defaults.
+ *  \par Function Description
+ *  Populate the default configuration context with compiled-in
+ *  defaults.
  */
 void i_vars_init(GschemToplevel *w_current)
 {
@@ -732,11 +742,10 @@ void i_vars_init(GschemToplevel *w_current)
 
   /* This is the prefix of the default filename used for newly created
    * schematics and symbols. */
-  /// TRANSLATORS: This string is used to generate a filename for
-  /// newly-created files.  It will be used to create a filename of
-  /// the form "untitled_N.sch", where N is a number.  Please make
-  /// sure that the translation contains characters suitable for use
-  /// in a filename.
+  /*! \remark TRANSLATORS: This string is used to generate a filename for
+   *   newly-created files in the form "untitled_N.sch", where N is a number.
+   *   Please make sure the translation contains characters suitable for use
+   *   in a filename. */
   eda_config_set_string (cfg, group, "default-filename",   _(DEFAULT_UNTITLED_NAME));
   eda_config_set_string (cfg, group, "default-font-name",   (DEFAULT_FONT_NAME));
   eda_config_set_string (cfg, group, "default-titleblock", _(DEFAULT_TITLEBLOCK));
@@ -754,8 +763,8 @@ void i_vars_init(GschemToplevel *w_current)
 }
 
 /*! \brief Save user config on exit.
- * \par Function Dcoarseescription
- * When gschem exits, try to save the user configuration to disk.
+ *  \par Function Dcoarseescription
+ *  When gschem exits, try to save the user configuration to disk.
  */
 void i_vars_atexit_save_user_config (void * user_data)
 {
