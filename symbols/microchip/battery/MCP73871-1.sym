@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150401 2
 P 100 4400 400 4400 1 0 0
 {
 T 300 4450 5 8 1 1 0 6 1
@@ -140,7 +140,7 @@ pinseq=13
 T 2750 3600 9 10 1 1 0 6 1
 pinlabel=THERM
 T 2750 3575 5 8 0 1 0 8 1
-pintype=io
+pintype=pas
 }
 P 3100 3200 2800 3200 1 0 0
 {
@@ -235,11 +235,13 @@ T 2800 4900 8 10 1 1 0 6 1
 refdes=U?
 T 1200 2600 9 10 1 0 0 0 1
 MCP73871
-T 3000 1600 5 10 0 0 0 0 1
+T 3000 1600 5 10 0 1 0 0 1
 footprint=QFN-20-4
-T 3000 1400 5 10 0 0 0 0 1
+T 3000 1200 5 10 0 1 0 0 1
 documentation=www.microchip.com/en536877
-T 3000 1200 5 10 0 0 0 0 1
+T 3000 1000 5 10 0 0 0 0 1
 numslots=0
 T 3000 1800 5 10 0 1 0 0 1
 device=MCP73871
+T 3000 1400 5 10 0 1 0 0 1
+description=Battery Charger Management,Li-Po
