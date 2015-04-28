@@ -1,3 +1,7 @@
+2015-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS73515DRB-1.sym: Add symbol; LDO Linear Regulator, 1.5V 500mA.
+
 2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56B-I-OT-1.sym: Add symbol; 2K EEPROM, 16 Bit Serial,
