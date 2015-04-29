@@ -29,8 +29,12 @@
 #include "gnetlist.h"
 #include <geda_debug.h>
 
-/* hack rename this to be s_return_tail */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  hack rename this to be s_return_tail
+ *  update object_tail or any list of that matter
+ */
 CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
 {
   CPINLIST *pl_current = NULL;
@@ -45,8 +49,12 @@ CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
   return (ret_struct);
 }
 
-/* hack rename this to be s_return_head */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  hack rename this to be s_return_head
+ *  update object_tail or any list of that matter
+ */
 CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
 {
   CPINLIST *pl_current = NULL;
@@ -61,7 +69,12 @@ CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
   return (ret_struct);
 }
 
-/* returns new node */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  \returns new node
+ */
 CPINLIST *s_cpinlist_add(CPINLIST * ptr)
 {
   CPINLIST *new_node;
@@ -89,77 +102,87 @@ CPINLIST *s_cpinlist_add(CPINLIST * ptr)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_cpinlist_print(CPINLIST * ptr)
 {
-    CPINLIST *pl_current = NULL;
+  CPINLIST *pl_current = NULL;
 
-    pl_current = ptr;
+  pl_current = ptr;
 
-    if (pl_current == NULL) {
-	return;
+  if (pl_current == NULL) {
+    return;
+  }
+
+  while (pl_current != NULL) {
+
+    if (pl_current->plid != -1) {
+      if (pl_current->pin_number) {
+        printf("	pin %s", pl_current->pin_number);
+      } else {
+        printf("	pin ?");
+      }
+
+      if (pl_current->pin_label) {
+        printf(" (%s)", pl_current->pin_label);
+      } else {
+        printf(" ()");
+      }
+
+      if (pl_current->net_name) {
+        printf(" %s", pl_current->net_name);
+      } else {
+        printf(" Null net name");
+      }
+
+
+      printf("\n");
+
+
+      if (pl_current->nets) {
+        s_net_print(pl_current->nets);
+      }
     }
 
-    while (pl_current != NULL) {
-
-	if (pl_current->plid != -1) {
-	     if (pl_current->pin_number) {
-	        printf("	pin %s", pl_current->pin_number);
-	     } else {
-	        printf("	pin ?");
-	     }
-
-	    if (pl_current->pin_label) {
-		printf(" (%s)", pl_current->pin_label);
-	    } else {
-		printf(" ()");
-	    }
-
-	    if (pl_current->net_name) {
-		printf(" %s", pl_current->net_name);
-	    } else {
-		printf(" Null net name");
-	    }
-
-
-	    printf("\n");
-
-
-	    if (pl_current->nets) {
-		s_net_print(pl_current->nets);
-	    }
-	}
-
-	pl_current = pl_current->next;
-    }
+    pl_current = pl_current->next;
+  }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 CPINLIST *s_cpinlist_search_pin(CPINLIST * ptr, char *pin_number)
 {
-    CPINLIST *pl_current = NULL;
+  CPINLIST *pl_current = NULL;
 
-    pl_current = ptr;
+  pl_current = ptr;
 
-    if (pl_current == NULL) {
-	return (NULL);
-    }
+  if (pl_current == NULL) {
+    return (NULL);
+  }
 
-    while (pl_current != NULL) {
+  while (pl_current != NULL) {
 
-	if (pl_current->plid != -1 && (pl_current->pin_number != NULL)) {
+    if (pl_current->plid != -1 && (pl_current->pin_number != NULL)) {
 
-	    if (strcmp(pl_current->pin_number, pin_number) == 0) {
+      if (strcmp(pl_current->pin_number, pin_number) == 0) {
 
 #if DEBUG
-		printf("equal: %s %s\n",
-		       pl_current->pin_number, pin_number);
+        printf("equal: %s %s\n",
+        pl_current->pin_number, pin_number);
 #endif
 
-		return (pl_current);
-	    }
-	}
-
-	pl_current = pl_current->next;
+        return (pl_current);
+      }
     }
 
-    return (NULL);
+    pl_current = pl_current->next;
+  }
+
+  return (NULL);
 }
