@@ -115,9 +115,10 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
         loaded_flag = TRUE;
 
         verbose_print("v\n");
-        verbose_reset_index();
+        verbose_reset_index();  /* sent CR/LF so reset to zero */
 
         netlist->composite_component = TRUE;
+
         /* can't do the following, don't know why... HACK TODO */
         /*netlist->hierarchy_tag = u_basic_strdup (netlist->component_uref);*/
         s_traverse_sheet (pr_current,
