@@ -36,11 +36,21 @@
 /* used by the extract functions below */
 #define DELIMITERS ",; "
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
 {
   return u_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *s_netattrib_connected_string_get_pinnum (const char *str)
 {
   int prefix_len = (sizeof PIN_NET_PREFIX) - 1;
@@ -52,6 +62,11 @@ const char *s_netattrib_connected_string_get_pinnum (const char *str)
   return str + prefix_len;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_netattrib_check_connected_string (const char *str)
 {
   if (s_netattrib_connected_string_get_pinnum (str) == NULL) return;
@@ -61,10 +76,15 @@ void s_netattrib_check_connected_string (const char *str)
            exit (1);
 }
 
-/* things to do here : */
-/* write the net alias function */
-
-/* be sure to GEDA_FREE returned string */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * things to do here :
+ * write the net alias function
+ *
+ * \note GEDA_FREE returned string
+ */
 char *s_netattrib_extract_netname(char *value)
 {
   char *return_value = NULL;
@@ -89,7 +109,11 @@ char *s_netattrib_extract_netname(char *value)
 
 }
 
-/* if this function creates a cpinlist list, it will not have a head node */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  if this function creates a cpinlist list, it will not have a head node
+ */
 void
 s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
                         NETLIST * netlist, char *value, char *hierarchy_tag)
@@ -191,6 +215,11 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
   GEDA_FREE(net_name);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 s_netattrib_handle (GedaToplevel * pr_current, Object * o_current,
                     NETLIST * netlist, char *hierarchy_tag)
@@ -227,6 +256,11 @@ s_netattrib_handle (GedaToplevel * pr_current, Object * o_current,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_netattrib_net_search (Object * o_current, const char *wanted_pin)
 {
   char *value             = NULL;
@@ -309,6 +343,11 @@ char *s_netattrib_net_search (Object * o_current, const char *wanted_pin)
   return return_value;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_netattrib_return_netname(GedaToplevel * pr_current, Object * o_current,
                                  char *pinnumber, char *hierarchy_tag)
 {
