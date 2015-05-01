@@ -1,4 +1,4 @@
-v 20140915 2
+v 20150401 2
 T 0 2050 5 10 0 1 0 0 1
 device=NMOS_TRANSISTOR
 T 0 3100 5 8 0 0 0 0 1
@@ -139,4 +139,4 @@ value=SQS482
 T 1200 1550 5 8 0 1 0 0 1
 value=30V, 20W
 T 50 300 9 8 0 1 0 0 1
-footprint=1212-8
+footprint=1212-8S
