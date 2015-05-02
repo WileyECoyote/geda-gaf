@@ -1,7 +1,7 @@
 
 bitmapdatadir = $(GEDADATADIR)/bitmap
 
-bitmapdata_DATA = gschem_about_logo.png                                  \
+bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem_alignment_bottomcenter.png                      \
 		  gschem_alignment_middleleft.png                        \
 		  gschem_alignment_topright.png                          \
@@ -15,6 +15,7 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_bottom2top.png gschem_left2right.png            \
 		  gschem-bus.png                                         \
 		  gschem_bus.xpm                                         \
+		  gschem-comp.png                                        \
 		  gschem_comp_24x24.xpm                                  \
 		  gschem_comp_26x26.xpm                                  \
 		  gschem_copy.xpm gschem_move.xpm gschem_delete.xpm      \
@@ -34,7 +35,7 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem-net.png                                         \
 		  gschem_net.xpm                                         \
 		  gschem_new.xpm gschem_open.xpm                         \
-		  gschem-print-document.xpm                              \
+		  gschem-print-document.png                              \
 		  gschem_save.xpm                                        \
 		  gschem-save-as.xpm                                     \
 		  gschem_redo.xpm                                        \

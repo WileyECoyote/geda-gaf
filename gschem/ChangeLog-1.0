@@ -1,3 +1,11 @@
+2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/gschem-comp.png: Add file.
+
+    * bitmaps/gschem-print-document.xpm: Remove file.
+
+    * bitmaps/gschem-print-document.pn: Add file.
+
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise/update Doxygen comments for functions
