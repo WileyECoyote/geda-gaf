@@ -1,4 +1,4 @@
-v 20150315 2
+v 20150401 2
 T 200 1300 5 10 0 0 0 0 1
 symversion=0.2
 T 200 1100 5 10 0 0 0 0 1
@@ -37,7 +37,7 @@ description=Crystal,7D12000182BTAF60Q5,12MHz,+/-20PPM,18PF,HC-49S,SMD
 T 200 1500 5 10 0 0 0 0 1
 numslots=0
 T 200 500 9 10 1 1 0 0 1
-footprint=HC-49SMD
+footprint=HC49S
 T 200 700 8 10 1 1 0 0 1
 value=12MHz
 T 200 2300 5 10 0 0 0 0 1
