@@ -18,6 +18,8 @@ bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
 
 bitmapdata_DATA   = \
 			close_box.png                      \
+			gaf-tools.png                      \
+			gaf-add-attribute.png              \
 			geda-analysis.png                  \
 			geda-bus.png                       \
 			geda-arc.png                       \
@@ -36,6 +38,7 @@ bitmapdata_DATA   = \
 			geda-check-red.png                 \
 			geda-circle.png                    \
 			geda-circles.png                   \
+			geda-close.png                     \
 			geda-close-all.png                 \
 			geda-component.png                 \
 			geda-copy.png                      \
@@ -76,6 +79,7 @@ bitmapdata_DATA   = \
 			geda-plot.png                      \
 			geda-probe.png                     \
 			geda-probe2.png                    \
+			geda-redo.png                      \
 			geda-rotate.png                    \
 			geda-save-image.png                \
 			geda-schem.png                     \
@@ -96,8 +100,10 @@ bitmapdata_DATA   = \
 			geda_switch_64x48_off.png          \
 			geda_switch_64x48_on.png           \
 			geda-text-editor.png               \
+			geda-tools.png                     \
 			geda-verilog-blue.png              \
 			geda-verilog-grn.png               \
+			geda-undo.png                      \
 			geda-unlock.png                    \
 			geda-unselect-all.png              \
 			geda_warning.png                   \

@@ -1,5 +1,16 @@
 2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/:Add bitmap image files:
+
+      * bitmaps/gaf-tools.png
+      * bitmaps/gaf-add-attribute.png
+      * bitmaps/geda-close.png
+      * bitmaps/geda-redo.png
+      * bitmaps/geda-tools.png
+      * bitmaps/geda-undo.png
+
+2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * bitmaps/svg/:Add files:
 
       * bitmaps/svg/geda-redo.svg

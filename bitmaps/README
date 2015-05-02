@@ -32,6 +32,8 @@ gaf_add_attribute_24x24.png        Added by wileyhill@gmail.com, <KDE> GPL2
 gaf_add_attribute_26x26.png        Added by wileyhill@gmail.com, <KDE> GPL2
 gaf_add_attribute_28x28.png        Added by wileyhill@gmail.com, <KDE> GPL2
 gaf_add_attribute_32x32.png        Added by wileyhill@gmail.com, <KDE> GPL2
+gaf-add-attribute.png              Added by wileyhill@gmail.com, <KDE> GPL2
+
 gaf_demote_22x22.png               Created by wileyhill@gmail.com, GPL2
 gaf_demote_24x24.png               Created by wileyhill@gmail.com, GPL2
 gaf_demote_26x26.png               Created by wileyhill@gmail.com, GPL2
@@ -56,6 +58,7 @@ gaf_tools_26x26.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_28x28.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_32x32.xpm                Created by wileyhill@gmail.com, GPL2
 gaf_tools_128x128.xpm              Created by wileyhill@gmail.com, GPL2
+gaf-tools.png                      Created by wileyhill@gmail.com, GPL2
 
 geda_analysis_16x16.png            Created by wileyhill@gmail.com, GPL2
 geda_analysis_22x22.png            Created by wileyhill@gmail.com, GPL2
@@ -105,6 +108,7 @@ geda_circles_32x32.png             Created by wileyhill@gmail.com, GPL2
 geda_circles_64x64.png             Created by wileyhill@gmail.com, GPL2
 geda-circles.png                   Created by wileyhill@gmail.com, GPL2
 geda-close-all.png                 Copied from geany-close-all.svg, GPL2
+geda-close.png                     Created by Peter Clifton, GPL2
 geda-component.png                 Created by Peter Clifton, GPL2
 geda_copy_22x22.png                Created by wileyhill@gmail.com, GPL2
 geda_copy_24x24.png                Created by wileyhill@gmail.com, GPL2
@@ -338,6 +342,8 @@ geda_rotate_26x26.png              Created by wileyhill@gmail.com, GPL2
 geda_rotate_28x28.png              Created by wileyhill@gmail.com, GPL2
 geda_rotate_32x32.png              Created by wileyhill@gmail.com, GPL2
 
+geda-redo.png                      Created by Jakub Steiner, http://jimmac.musichall.cz, GPL2
+
 geda_schem2_16x16.png              Created by wileyhill@gmail.com, GPL2
 geda_schem2_22x22.png              Created by wileyhill@gmail.com, GPL2
 geda_schem2_24x24.png              Created by wileyhill@gmail.com, GPL2
@@ -394,11 +400,15 @@ geda_tools_26x26.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
 geda_tools_28x28.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
 geda_tools_32x32.xpm               Added by wileyhill@gmail.com, <KDE> GPL2
 geda_tools_128x128.xpm             Added by wileyhill@gmail.com, <KDE> GPL2
+geda-tools.png                     Added by wileyhill@gmail.com, <KDE> GPL2
+
 geda_translate_22x22.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_24x24.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_26x26.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_28x28.png           Created by wileyhill@gmail.com, GPL2
 geda_translate_32x32.png           Created by wileyhill@gmail.com, GPL2
+
+geda-undo.png                      Created by Jakub Steiner, http://jimmac.musichall.cz, GPL2
 
 geda_unlock_22x22.xpm              Created by wileyhill@gmail.com, GPL2
 geda_unlock_24x24.xpm              Created by wileyhill@gmail.com, GPL2
