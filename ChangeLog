@@ -1,3 +1,12 @@
+2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/:Add files:
+
+      * bitmaps/svg/geda-redo.svg
+      * bitmaps/svg/geda-undo.svg
+      * bitmaps/svg/gschem-print-document.svg
+      * bitmaps/svg/gschem-print-preview.svg
+
 2015-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * NEWS: Minor revisions to old news.
