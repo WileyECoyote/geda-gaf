@@ -1,3 +1,13 @@
+2015-05-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93AA56C-E-ST-1.sym: Add symbol 2K EEPROM, 8/16 Bit
+      Serial, 1.8-5.5Volt, +85°C, MSOP8.
+
+2015-05-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * vishay/dual_nmos/SQJ844AEP-1.sym: Change drain pin numbers P1->5,P2-6,
+      enhance aesthetics.
+
 2015-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93AA56C-E-SN-1.sym: Add symbol; 2K EEPROM, 8/16 Bit
