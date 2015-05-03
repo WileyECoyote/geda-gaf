@@ -67,10 +67,11 @@
 static GtkIconFactory *gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
+  "gaf-add-attribute",  "gaf-tools",
   "geda-arc",           "geda-arc-edit",      "geda-analysis",     "geda-autonum-blue",
   "geda-autonum-green", "geda-autonum-red",   "geda-bed",          "geda-box",
   "geda-bus",           "geda-check-grn",     "geda-check-org",    "geda-check-red",
-  "geda-circle",        "geda-circles",       "geda-close-all",
+  "geda-circle",        "geda-circles",       "geda-close",        "geda-close-all",
   "geda-calculate",     "geda-component",     "geda-copy",         "geda-design",
   "geda-design1",       "geda-design2",       "geda-design3",      "geda-design4",
   "geda-display",       "geda-draft",         "geda-film-roll",    "geda-grid-dot",
@@ -86,16 +87,25 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-scope",         "geda-show-nets",     "geda-simulate",     "geda-sinx",
   "geda-slot",          "geda-snap-off",      "geda-verilog-blue", "geda-verilog-grn",
   "geda-wave",          "geda-waves",
-  "geda-snap-on",       "geda-spectrum",      "geda-text-editor",  "geda-rotate",
-  "geda-unlock",        "geda-unselect-all",  "geda-zoom-box",     "geda-zoom-pan",
-  "geda-zoom-selection",
+  "geda-snap-on",       "geda-spectrum",      "geda-text-editor",  "geda-tools",
+  "geda-redo",          "geda-rotate",        "geda-undo",         "geda-unlock",
+  "geda-unselect-all",  "geda-zoom-box",      "geda-zoom-pan",     "geda-zoom-selection",
   "git-logo",
   NULL
 };
 
 const char* IDS_GSCHEM_ICONS[] = {
-  "gschem-bus",              "gschem-invert",            "gschem-net",
+  "gschem-bus",              "gschem-comp",              "gschem-invert",
+  "gschem-net",              "gschem-print-document",
   "gschem-select",           "gschem-select-all",        "gschem-unselect",
+  NULL
+};
+
+const char* IDS_GSCHEM_XCONS[] = {
+  "gschem_copy",             "gschem_delete",         "gschem_edit",
+  "gschem_mirror",           "gschem_move",           "gschem_new",
+  "gschem_open",             "gschem_redo",           "gschem_rotate",
+  "gschem_save",             "gschem-save-as",        "gschem_undo",
   NULL
 };
 
@@ -125,24 +135,59 @@ bool x_icons_factory_lookup (const char *icon_id)
 
 GtkWidget *x_icons_get_action_icon (const char *action, int size)
 {
+  GtkWidget  *image;
+
   const char *icon_id = i_command_get_action_icon (action);
+
   if (icon_id) {
-    GtkWidget *image;
-    image = gtk_image_new_from_icon_name (icon_id, size);
-    return image;
+
+    GtkIconSet *icon_set;
+
+    icon_set = gtk_icon_factory_lookup(gschem_factory, icon_id);
+
+    if (icon_set) {
+      image = gtk_image_new_from_stock(icon_id, size);
+    }
+    else {
+
+      if (strncmp(icon_id, "gtk-",4) == 0) {
+        image = gtk_image_new_from_stock (icon_id, size);
+      }
+      else {
+        image = gtk_image_new_from_icon_name (icon_id, size);
+      }
+    }
   }
-  return NULL;
+  else {
+    image = NULL;
+  }
+
+  return image;
 }
+
 
 GtkWidget *x_icons_get_factory_icon (const char *icon_id, int size)
 {
+  GtkWidget  *image;
 
   if (icon_id) {
-    GtkWidget *image;
-    image = gtk_image_new_from_icon_name (icon_id, size);
-    return image;
+
+    GtkIconSet *icon_set;
+
+    icon_set = gtk_icon_factory_lookup (gschem_factory, icon_id);
+
+    if (icon_set) {
+      image = gtk_image_new_from_icon_set  (icon_set, size);
+    }
+    else {
+      image = NULL;
+    }
   }
-  return NULL;
+  else {
+    image = NULL;
+  }
+
+  return image;
 }
 
 /*! \brief Setup default icon for GTK windows
@@ -237,6 +282,39 @@ static void x_icons_setup_factory()
     icon_name = IDS_GSCHEM_ICONS[index];
 
     filename = u_string_concat (icon_name, ".png", NULL);
+    pathname = f_get_bitmap_filespec (filename);
+    GEDA_FREE(filename);
+
+    if(pathname) {
+      if (g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+         (access(pathname, R_OK) == 0))
+      {
+        pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
+        if(!err) {
+          icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
+          gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+          GEDA_UNREF(pixbuf);
+        }
+        else {
+          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          g_clear_error (&err);
+          err = NULL;
+        }
+      }
+      else
+      {
+        /* file non existence or not accessible */
+        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+      }
+      GEDA_FREE(pathname);
+    }
+  }
+
+  for (index = 0; IDS_GSCHEM_XCONS[index] != NULL; index++) {
+
+    icon_name = IDS_GSCHEM_XCONS[index];
+
+    filename = u_string_concat (icon_name, ".xpm", NULL);
     pathname = f_get_bitmap_filespec (filename);
     GEDA_FREE(filename);
 

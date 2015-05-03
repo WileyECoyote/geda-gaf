@@ -367,7 +367,7 @@
 #define GSCHEM_BITMAP_NET_SMALL                          "gschem_net.xpm"
 #define GSCHEM_BITMAP_NEW_SMALL                          "gschem_new.xpm"
 #define GSCHEM_BITMAP_OPEN_SMALL                         "gschem_open.xpm"
-#define GSCHEM_BITMAP_PRINT_XXXLARGE                     "gschem-print-document.xpm"
+#define GSCHEM_BITMAP_PRINT_XXXLARGE                     "gschem-print-document.png"
 #define	GSCHEM_BITMAP_PROJECT_CLOSE_TINY                 "22x22/gschem_project_close_22x22.png"
 #define	GSCHEM_BITMAP_PROJECT_CLOSE_SMALL                "24x24/gschem_project_close_24x24.png"
 #define	GSCHEM_BITMAP_PROJECT_CLOSE_MEDIUM               "26x26/gschem_project_close_26x26.png"

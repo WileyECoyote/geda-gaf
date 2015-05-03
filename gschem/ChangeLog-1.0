@@ -1,6 +1,14 @@
 2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/src/x/x_icons.c: Add bitmaps "gaf-add-attribute",  "gaf-tools",
+      "geda-close", "geda-tools", "geda-redo", "geda-undo",  "gschem-comp"
+      and "gschem-print-document". Add IDS_GSCHEM_XCONS. Revamp function
+      x_icons_get_action_icon and x_icons_get_factory_icon.
+
+2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * Temporary revisions to Toolbars until implementation of new system:
+      Phase out use nested network of toolbar macros.
 
     * gschem/include/x_toolbars.h: Add macro GSCHEM_TOOLBAR_BUTTON, define
       TBTS_PAGE_FIRST and TBTS_PAGE_LAST.
