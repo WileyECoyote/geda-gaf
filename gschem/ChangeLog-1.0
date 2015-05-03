@@ -1,5 +1,17 @@
 2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Temporary revisions to Toolbars until implementation of new system:
+
+    * gschem/include/x_toolbars.h: Add macro GSCHEM_TOOLBAR_BUTTON, define
+      TBTS_PAGE_FIRST and TBTS_PAGE_LAST.
+
+    * src/x/x_toolbars.c: Add enumerators for page first and last; etb_first_page,
+      etb_last_page, Add enumeration IDE_TB_ICON_SOURCE, add functions get_pixmap
+      and x_toolbars_load_icons. Convert standard and Page toolbars to new macro
+      GSCHEM_TOOLBAR_BUTTON.
+
+2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * bitmaps/gschem-comp.png: Add file.
 
     * bitmaps/gschem-print-document.xpm: Remove file.

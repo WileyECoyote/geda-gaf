@@ -102,7 +102,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_add_net, etb_add_bus, etb_add_attribute, etb_add_text,
                 etb_add_line, etb_add_box, etb_add_circle, etb_add_arc,
                 etb_add_path, etb_add_pin, etb_insert_pic,
-                etb_prev_page, etb_next_page,
+                etb_first_page, etb_prev_page, etb_next_page, etb_last_page,
                 etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
                 etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
@@ -118,7 +118,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_auto_number, etb_translate, etb_update,
                 etb_grid_dot, etb_grid_mesh, etb_grid_off,
                 etb_snap_up, etb_snap_down, etb_snap_set, etb_snap_off,
-                etb_snap_on, etb_configure,
+                etb_snap_on, etb_configure, etb_last
 } IDE_GSCHEM_Toolbar;
 
 /* Important: See IDS_Menu_Toolbar_Toggles in x_menu.c */
@@ -127,118 +127,132 @@ const char* IDS_Toolbar_Names[] = {  /* ToolBar Name Strings */
   NULL
 };
 
+typedef enum
+{
+  TB_ICON_STOCK         = 0,
+  TB_ICON_BITMAP        = 1 << 1,
+  TB_ICON_SOURCE2       = 1 << 2,
+  TB_ICON_SOURCE3       = 1 << 3,
+  TB_ICON_SOURCE4       = 1 << 4,
+  TB_ICON_SOURCE5       = 1 << 5,
+} IDE_TB_ICON_SOURCE;
+
+/*  action,                     Label,        Tip,                     icon_id, iflag icon */;
+
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
-  { ACTION(FILE_NEW),           "New",        TBTS_FILE_NEW,            GSCHEM_MAP(NEW)},
-  { ACTION(FILE_OPEN),          "Open",       TBTS_FILE_OPEN,           GSCHEM_MAP(OPEN)},
-  { ACTION(FILE_SAVE),          "Save",       TBTS_FILE_SAVE,           GSCHEM_MAP(SAVE)},
-  { ACTION(FILE_SAVE_AS),       "Save As",    TBTS_FILE_SAVE_AS,       "Private"},
-  { ACTION(FILE_CLOSE),         "Close",      TBTS_FILE_CLOSE,          GSCHEM_MAP(PROJECT_CLOSE)},
+  { ACTION(FILE_NEW),           "New",        TBTS_FILE_NEW,            GSCHEM_MAP(NEW),           TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_OPEN),          "Open",       TBTS_FILE_OPEN,           GSCHEM_MAP(OPEN),          TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_SAVE),          "Save",       TBTS_FILE_SAVE,           GSCHEM_MAP(SAVE),          TB_ICON_BITMAP, NULL},
+  { ACTION(FILE_SAVE_AS),       "Save As",    TBTS_FILE_SAVE_AS,        "gschem-save-as",          TB_ICON_STOCK, NULL},
+  { ACTION(FILE_CLOSE),         "Close",      TBTS_FILE_CLOSE,          GSCHEM_MAP(PROJECT_CLOSE), TB_ICON_BITMAP, NULL},
 
-  { ACTION(FILE_PRINT),         "Print",      TBTS_FILE_PRINT,         "Private"}, /* Most do a ZAP print from bar */
-  { ACTION(FILE_WRITE_PDF),     "Write PDF",  TBTS_FILE_WRITE_PDF,     "Private"},
+  { ACTION(FILE_PRINT),         "Print",      TBTS_FILE_PRINT,          "gschem-print-document",   TB_ICON_STOCK,  NULL},
+  { ACTION(FILE_WRITE_PDF),     "Write PDF",  TBTS_FILE_WRITE_PDF,      GAF_PDF_BITMAP,            TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_CB_CUT),        "Cut",        TBTS_EDIT_CB_CUT,        "Private"},
-  { ACTION(EDIT_CB_COPY),       "Copy",       TBTS_EDIT_CB_COPY,       "Private"},
-  { ACTION(EDIT_CB_PASTE),      "Paste",      TBTS_EDIT_CB_PASTE,      "Private"},
+  { ACTION(EDIT_CB_CUT),        "Cut",        TBTS_EDIT_CB_CUT,        "gtk-cut",           TB_ICON_STOCK,  NULL},
+  { ACTION(EDIT_CB_COPY),       "Copy",       TBTS_EDIT_CB_COPY,       "gtk-copy",          TB_ICON_STOCK,  NULL},
+  { ACTION(EDIT_CB_PASTE),      "Paste",      TBTS_EDIT_CB_PASTE,      "gtk-paste",         TB_ICON_STOCK,  NULL},
 
-  { ACTION(EDIT_UNDO),          "Undo",       TBTS_EDIT_UNDO,           GSCHEM_MAP(UNDO)},
-  { ACTION(EDIT_REDO),          "Redo",       TBTS_EDIT_REDO,           GSCHEM_MAP(REDO)},
+  { ACTION(EDIT_UNDO),          "Undo",       TBTS_EDIT_UNDO,           GSCHEM_MAP(UNDO),   TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_REDO),          "Redo",       TBTS_EDIT_REDO,           GSCHEM_MAP(REDO),   TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_SELECT),        "Select",      TBTS_EDIT_SELECT,       "gschem-select"},
-  { ACTION(EDIT_DESELECT),      "Deselect",    TBTS_EDIT_DESELECT,     "gschem-unselect"},
-  { ACTION(EDIT_DESELECT_ALL),  "Unselect All",TBTS_EDIT_DESELECT_ALL, "unselect-all"},
+  { ACTION(EDIT_SELECT),        "Select",      TBTS_EDIT_SELECT,       "gschem-select",     TB_ICON_STOCK, NULL},
+  { ACTION(EDIT_DESELECT),      "Deselect",    TBTS_EDIT_DESELECT,     "gschem-unselect",   TB_ICON_STOCK, NULL},
+  { ACTION(EDIT_DESELECT_ALL),  "Unselect All",TBTS_EDIT_DESELECT_ALL, "unselect-all",      TB_ICON_STOCK, NULL},
 
-  { "nil",                      "nil",        "nil",                   "gtk-no"}, /* dummy corresponding to etb_none */
+  { "nil",                      "nil",        "nil",                   "gtk-no", 0, 0}, /* dummy corresponding to etb_none */
 
-  { ACTION(EDIT_SELECT_ALL),    "Select All", TBTS_EDIT_SELECT_ALL,    "gschem-select-all"},
-  { ACTION(EDIT_INVERT),        "Invert Sel", TBTS_EDIT_INVERT,        "gschem-invert"},
+  { ACTION(EDIT_SELECT_ALL),    "Select All", TBTS_EDIT_SELECT_ALL,    "gschem-select-all", TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_INVERT),        "Invert Sel", TBTS_EDIT_INVERT,        "gschem-invert",     TB_ICON_BITMAP, NULL},
 
-  { ACTION(ADD_COMPONENT),      "Component",  TBTS_ADD_COMPONENT,      "Private"},
-  { ACTION(ADD_NET),            "Nets",       TBTS_ADD_NET,            "geda-net"},
-  { ACTION(ADD_BUS),            "Bus",        TBTS_ADD_BUS,            "geda-bus"},
-  { ACTION(ADD_ATTRIB),         "Attrib",     TBTS_ADD_ATTRIB,         "Private"},
-  { ACTION(ADD_TEXT),           "Text",       TBTS_ADD_TEXT,           "Private"},
+  { ACTION(ADD_COMPONENT),      "Component",  TBTS_ADD_COMPONENT,      "gschem-comp",           TB_ICON_STOCK, NULL},
+  { ACTION(ADD_NET),            "Nets",       TBTS_ADD_NET,            "geda-net",              TB_ICON_STOCK, NULL},
+  { ACTION(ADD_BUS),            "Bus",        TBTS_ADD_BUS,            "geda-bus",              TB_ICON_STOCK, NULL},
+  { ACTION(ADD_ATTRIB),         "Attrib",     TBTS_ADD_ATTRIB,          GAF_MAP(ADD_ATTRIBUTE), TB_ICON_BITMAP, NULL},
+  { ACTION(ADD_TEXT),           "Text",       TBTS_ADD_TEXT,            GSCHEM_TEXT_BITMAP,     TB_ICON_BITMAP, NULL},
 
   /* Add Toolbar */
-  { ACTION(ADD_LINE),           "Line",       TBTS_ADD_LINE,           "geda-line"},
-  { ACTION(ADD_BOX),            "Box",        TBTS_ADD_BOX,            "geda-box"},
-  { ACTION(ADD_CIRCLE),         "circle",     TBTS_ADD_CIRCLE,         "geda-circle"},
-  { ACTION(ADD_ARC),            "Arc",        TBTS_ADD_ARC,            "geda-arc"},
-  { ACTION(ADD_PATH),           "Path",       TBTS_ADD_PATH,           "geda-path"},
-  { ACTION(ADD_PIN),            "Pin",        TBTS_ADD_PIN,            "geda-pin"},
-  { ACTION(ADD_PICTURE),        "Picture",    TBTS_ADD_PICTURE,        "geda-film-roll"},
+  { ACTION(ADD_LINE),           "Line",       TBTS_ADD_LINE,           "geda-line",      TB_ICON_STOCK, NULL},
+  { ACTION(ADD_BOX),            "Box",        TBTS_ADD_BOX,            "geda-box",       TB_ICON_STOCK, NULL},
+  { ACTION(ADD_CIRCLE),         "circle",     TBTS_ADD_CIRCLE,         "geda-circle",    TB_ICON_STOCK, NULL},
+  { ACTION(ADD_ARC),            "Arc",        TBTS_ADD_ARC,            "geda-arc",       TB_ICON_STOCK, NULL},
+  { ACTION(ADD_PATH),           "Path",       TBTS_ADD_PATH,           "geda-path",      TB_ICON_STOCK, NULL},
+  { ACTION(ADD_PIN),            "Pin",        TBTS_ADD_PIN,            "geda-pin",       TB_ICON_STOCK, NULL},
+  { ACTION(ADD_PICTURE),        "Picture",    TBTS_ADD_PICTURE,        "geda-film-roll", TB_ICON_STOCK, NULL},
 
   /* Page Toolbar */
-  { ACTION(PAGE_PREV),          "Prev",       TBTS_PAGE_PREV,          "Private"},
-  { ACTION(PAGE_NEXT),          "next",       TBTS_PAGE_NEXT,          "Private"},
-  { ACTION(PAGE_NEW),           "New",        TBTS_PAGE_NEW,           "Private"},
-  { ACTION(PAGE_MANAGER),       "Manage",     TBTS_PAGE_MANAGER,       "Private"},
+  { ACTION(PAGE_FIRST),         "First",      TBTS_PAGE_FIRST,         "gtk-goto-first",    TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_PREV),          "Prev",       TBTS_PAGE_PREV,          "gtk-go-back",       TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_NEXT),          "next",       TBTS_PAGE_NEXT,          "gtk-go-forward",    TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_LAST),          "Last",       TBTS_PAGE_LAST,          "gtk-goto-last",     TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_NEW),           "New",        TBTS_PAGE_NEW,           "gtk-new",           TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_MANAGER),       "Manage",     TBTS_PAGE_MANAGER,       GEDA_SHEETS_BITMAP,  TB_ICON_BITMAP, NULL},
 
-  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private"},
-  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private"},
-  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       "Private"},
+  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private",    TB_ICON_BITMAP, NULL},
+  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private",    TB_ICON_BITMAP, NULL},
+  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       "Private",    TB_ICON_BITMAP, NULL},
 
-  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "Private"},
+  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "Private",    TB_ICON_BITMAP, NULL},
 
   /* Zoom Toolbar */
-  { ACTION(VIEW_REDRAW),        "Redraw",     TBTS_VIEW_REDRAW,         GEDA_MAP(VIEW_REDRAW)},
-  { ACTION(VIEW_PAN),           "Pan",        TBTS_VIEW_PAN,            GEDA_MAP(ZOOM_PAN)},
-  { ACTION(VIEW_BOX),           "Window",     TBTS_VIEW_BOX,            GEDA_MAP(ZOOM_BOX)},
-  { ACTION(VIEW_SELECTED),      "Selected",   TBTS_VIEW_SELECTED,       "zoom-selection"},
-  { ACTION(VIEW_EXTENTS),       "Extents",    TBTS_VIEW_EXTENTS,        GEDA_MAP(ZOOM_EXTENTS)},
-  { ACTION(VIEW_ZOOM_IN),       "In",         TBTS_VIEW_ZOOM_IN,        GEDA_MAP(ZOOM_IN)},
-  { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,       GEDA_MAP(ZOOM_OUT)},
-  { ACTION(VIEW_ZOOM_ALL),      "All",        TBTS_VIEW_ZOOM_ALL,       GEDA_MAP(ZOOM_LIMITS)},
+  { ACTION(VIEW_REDRAW),        "Redraw",     TBTS_VIEW_REDRAW,        GEDA_MAP(VIEW_REDRAW),  TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_PAN),           "Pan",        TBTS_VIEW_PAN,           GEDA_MAP(ZOOM_PAN),     TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_BOX),           "Window",     TBTS_VIEW_BOX,           GEDA_MAP(ZOOM_BOX),     TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_SELECTED),      "Selected",   TBTS_VIEW_SELECTED,      "zoom-selection",       TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_EXTENTS),       "Extents",    TBTS_VIEW_EXTENTS,       GEDA_MAP(ZOOM_EXTENTS), TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_ZOOM_IN),       "In",         TBTS_VIEW_ZOOM_IN,       GEDA_MAP(ZOOM_IN),      TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_ZOOM_OUT),      "Out",        TBTS_VIEW_ZOOM_OUT,      GEDA_MAP(ZOOM_OUT),     TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_ZOOM_ALL),      "All",        TBTS_VIEW_ZOOM_ALL,      GEDA_MAP(ZOOM_LIMITS),  TB_ICON_BITMAP, NULL},
 
   /* Edit Toolbar */
-  { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private"},
-  { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private"},
-  { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "geda-move"},
-  { ACTION(EDIT_ROTATE),        "Rotate",     TBTS_EDIT_ROTATE,        "Private"},
-  { ACTION(EDIT_MIRROR),        "Mirror",     TBTS_EDIT_MIRROR,        "Private"},
+  { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "geda-move",      TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ROTATE),        "Rotate",     TBTS_EDIT_ROTATE,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_MIRROR),        "Mirror",     TBTS_EDIT_MIRROR,        "Private",        TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_ATTRIB),        "Attributes", TBTS_EDIT_ATTRIB,        "Private"},
-  { ACTION(EDIT_COLOR),         "Color",      TBTS_EDIT_COLOR,         "Private"},
+  { ACTION(EDIT_ATTRIB),        "Attributes", TBTS_EDIT_ATTRIB,        "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_COLOR),         "Color",      TBTS_EDIT_COLOR,         "Private",        TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_TEXT),          "Text",       TBTS_EDIT_TEXT,          "Private"},
-  { ACTION(EDIT_SLOT),          "Slots",      TBTS_EDIT_SLOT,          "geda-slot"},
-  { ACTION(EDIT_PIN),           "Pins",       TBTS_EDIT_PIN,           "geda-pin-type"},
-  { ACTION(EDIT_LINE),          "Line",       TBTS_EDIT_LINE,          "Private"},
-  { ACTION(EDIT_FILL),          "Fill",       TBTS_EDIT_FILL,           GEDA_MAP(MESH)},
-  { ACTION(EDIT_ARC),           "Arcs",       TBTS_EDIT_ARC,           "geda-arc-edit"},
+  { ACTION(EDIT_TEXT),          "Text",       TBTS_EDIT_TEXT,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_SLOT),          "Slots",      TBTS_EDIT_SLOT,          "geda-slot",      TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_PIN),           "Pins",       TBTS_EDIT_PIN,           "geda-pin-type",  TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_LINE),          "Line",       TBTS_EDIT_LINE,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_FILL),          "Fill",       TBTS_EDIT_FILL,           GEDA_MAP(MESH),  TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_ARC),           "Arcs",       TBTS_EDIT_ARC,           "geda-arc-edit",  TB_ICON_BITMAP, NULL},
 
-  { ACTION(EDIT_LOCK),          "Lock",       TBTS_EDIT_LOCK,          "Private"},
-  { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_EDIT_UNLOCK,        "Private"},
+  { ACTION(EDIT_LOCK),          "Lock",       TBTS_EDIT_LOCK,          "Private",        TB_ICON_BITMAP, NULL},
+  { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_EDIT_UNLOCK,        "Private",        TB_ICON_BITMAP, NULL},
 
   /* Attribute Toolbar */
-  { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private"},
-  { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private"},
-  { ACTION(ATTRIB_VALUE),       "Value",      TBTS_ATTRIB_VALUE,        GEDA_MAP(VALUE)},
-  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,        "Private"},
-  { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,        "Private"},
-  { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES)},
-  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "gschem-show-hidden"},
-  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "gschem-show-inherited"},
-  { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE)},
-  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private"},
-  { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private"},
+  { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_VALUE),       "Value",      TBTS_ATTRIB_VALUE,        GEDA_MAP(VALUE),          TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,        "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,        "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES),    TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "gschem-show-hidden",      TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "gschem-show-inherited",   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE), TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private",                 TB_ICON_BITMAP, NULL},
 
-  { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue.png"},
-  { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,     GEDA_MAP(TRANSLATE)},
-  { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,        "Private"},
+  { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue.png",   TB_ICON_BITMAP, NULL},
+  { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,     GEDA_MAP(TRANSLATE),      TB_ICON_BITMAP, NULL},
+  { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,        "Private",                TB_ICON_BITMAP, NULL},
 
-  { ACTION(OPT_GRID_DOT),       "Dots",       TBTS_OPT_GRID_DOT,       "geda-grid-dot"},
-  { ACTION(OPT_GRID_MESH),      "Mesh",       TBTS_OPT_GRID_MESH,      "geda-grid-mesh"},
-  { ACTION(OPT_GRID_OFF),       "Off",        TBTS_OPT_GRID_OFF,       "geda-display"},
+  { ACTION(OPT_GRID_DOT),       "Dots",       TBTS_OPT_GRID_DOT,       "geda-grid-dot",     TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_GRID_MESH),      "Mesh",       TBTS_OPT_GRID_MESH,      "geda-grid-mesh",    TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_GRID_OFF),       "Off",        TBTS_OPT_GRID_OFF,       "geda-display",      TB_ICON_BITMAP, NULL},
 
-  { ACTION(OPT_SNAP_UP),        "UP",         TBTS_OPT_SNAP_UP,        "geda-snap"},
-  { ACTION(OPT_SNAP_DOWN),      "Down",       TBTS_OPT_SNAP_DOWN,      "geda-snap"},
-  { ACTION(OPT_SNAP_SIZE),      "Set",        TBTS_OPT_SNAP_SIZE,      "geda-magnet"},
-  { ACTION(OPT_SNAP_OFF),       "Snap Off",   TBTS_OPT_SNAP_OFF,       "geda-snap-off"},
-  { ACTION(OPT_SNAP_ON),        "Snap On",    TBTS_OPT_SNAP_ON,        "geda-snap-on"},
+  { ACTION(OPT_SNAP_UP),        "UP",         TBTS_OPT_SNAP_UP,        "geda-snap",         TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_SNAP_DOWN),      "Down",       TBTS_OPT_SNAP_DOWN,      "geda-snap",         TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_SNAP_SIZE),      "Set",        TBTS_OPT_SNAP_SIZE,      "geda-magnet",       TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_SNAP_OFF),       "Snap Off",   TBTS_OPT_SNAP_OFF,       "geda-snap-off",     TB_ICON_BITMAP, NULL},
+  { ACTION(OPT_SNAP_ON),        "Snap On",    TBTS_OPT_SNAP_ON,        "geda-snap-on",      TB_ICON_BITMAP, NULL},
 
-  { ACTION(OPT_SETTINGS),       "Config",     TBTS_OPT_SETTINGS,        GEDA_MAP(TOOLS)},
+  { ACTION(OPT_SETTINGS),       "Config",     TBTS_OPT_SETTINGS,        GEDA_MAP(TOOLS),    TB_ICON_BITMAP, NULL},
   { NULL, NULL, NULL},
 };
 
@@ -315,12 +329,46 @@ static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* i
   }
   if (wpixmap == NULL) { /* Try Falling back to Stock icon */
     wpixmap = gtk_image_new_from_stock(item->stock_id,
-                                       GTK_ICON_SIZE_SMALL_TOOLBAR);
+                                       TB_SMALL_ICON);
   }
   if (wpixmap == NULL) {
      u_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", filename);
      wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
-                                        GTK_ICON_SIZE_SMALL_TOOLBAR);
+                                        TB_SMALL_ICON);
+  }
+
+  GEDA_FREE(filename);
+
+  return wpixmap;
+}
+static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
+{
+  GtkWidget *wpixmap = NULL;
+  GdkPixmap *pixmap;
+  GdkBitmap *mask;
+
+  GdkWindow *window=w_current->main_window->window;
+  GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
+
+  char *filename = f_get_bitmap_filespec (name);
+
+  /* 1ST Try custom icon */
+  if(access(filename, R_OK) == 0) {
+    pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+    if (pixmap != NULL) {
+      wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
+    }
+  }
+  if (wpixmap == NULL) { /* Try Falling back to Stock icon */
+    wpixmap = gtk_image_new_from_stock(name, TB_SMALL_ICON);
+  }
+
+  if (wpixmap == NULL) {
+     u_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", filename);
+     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
+  }
+  else {
+    gtk_image_set_pixel_size((GtkImage*)wpixmap, TB_SMALL_ICON);
   }
 
   GEDA_FREE(filename);
@@ -343,6 +391,57 @@ static void x_toolbars_execute(GtkWidget* widget, GschemToplevel* w_current)
   fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
 #endif
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
+}
+
+static void x_toolbars_load_icons( GschemToplevel* w_current)
+{
+
+  ToolbarStringData *tb_data;
+  int index;
+
+  for (index = 0; index < etb_last; index++) {
+
+    if (index == etb_none) continue;
+
+    tb_data = &ToolbarStrings[index];
+
+    tb_data->icon = x_icons_get_action_icon(tb_data->action, TB_SMALL_ICON);
+
+    if (!GTK_IS_IMAGE(tb_data->icon)) {
+
+      const char *icon_id = tb_data->icon_id;
+
+      if (tb_data->iflag == TB_ICON_BITMAP) {
+
+         tb_data->icon = get_pixmap (w_current, icon_id);
+
+      }
+      else {
+
+        GtkStockItem stock_info;
+
+        if (gtk_stock_lookup (icon_id, &stock_info)) {
+          tb_data->icon = gtk_image_new_from_stock(icon_id, TB_SMALL_ICON);
+        }
+        else if (gtk_icon_factory_lookup_default(icon_id)) {
+          tb_data->icon = x_icons_get_factory_icon(icon_id, TB_SMALL_ICON);
+        }
+      }
+    }
+
+    if (!tb_data->icon) {
+      u_log_message("Toolbar: icon not found <%s>\n",tb_data->icon_id);
+    }
+
+#if  DEBUG_TB_CONS
+    else {
+      if (strcmp(tb_data->action, ACTION(EDIT_UNDO)) == 0) {
+        fprintf(stderr, "Got action <%s> icon %p\n", tb_data->action, tb_data->icon);
+      }
+    }
+#endif
+
+  }
 }
 
 /*! \brief Toolbar Radio Button Callback
@@ -973,6 +1072,8 @@ x_toolbars_init_window(GschemToplevel *w_current)
     ui_list = g_slist_insert (ui_list, bar_widgets, w_current->ui_index);
   else
     ui_list = g_slist_append (ui_list, bar_widgets);
+
+  x_toolbars_load_icons(w_current);
 }
 /*! \brief Initialize Toolbars at the Top of the Main Window
  *
@@ -1023,29 +1124,29 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_add              (GTK_CONTAINER (w_current->standard_handlebox), Standard_Toolbar);
 
   /* Add New, Open, Save and Save As Buttons to the Standard Toolbar */
-  TOOLBAR_GEDA_BUTTON( Standard, etb_new,     LOCAL_ALT, NEW,     x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_open,    LOCAL_STK, OPEN,    x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_save,    LOCAL_STK, SAVE,    x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_save_as, LOCAL_STK, SAVE_AS, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_close,   LOCAL_ALT, CLOSE,   x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_new);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_open);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_save);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_save_as);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_close);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Standard_Toolbar));
 
   /* Add Print and Export PDF Buttons to the Standard Toolbar */
-  TOOLBAR_GEDA_BUTTON( Standard, etb_print,      LOCAL_STK, PRINT,          x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_write_pdf,  LOCAL_PIX, GAF_PDF_BITMAP, x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_print);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_write_pdf);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Standard_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON( Standard, etb_cut,   LOCAL_STK, CUT,   x_toolbars_execute, w_current)
-  TOOLBAR_GEDA_BUTTON( Standard, etb_copy,  LOCAL_STK, COPY,  x_toolbars_execute, w_current)
-  TOOLBAR_GEDA_BUTTON( Standard, etb_paste, LOCAL_STK, PASTE, x_toolbars_execute, w_current)
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_cut);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_copy);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_paste);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Standard_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON( Standard, etb_undo,      LOCAL_STK, UNDO,        x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_redo,      LOCAL_STK, REDO,        x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Standard, etb_configure, LOCAL_ALT, PREFERENCES, x_toolbars_execute,  w_current);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_undo);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_redo);
+  GSCHEM_TOOLBAR_BUTTON (Standard, etb_configure);
 
   g_object_set (Standard_Toolbar, "visible", TRUE, NULL);
 
@@ -1070,10 +1171,12 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER (Page_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->page_handlebox), Page_Toolbar);
 
-  TOOLBAR_GEDA_BUTTON( Page, etb_prev_page,    LOCAL_STK, GO_BACK,             x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_next_page,    LOCAL_STK, GO_FORWARD,          x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_new_page,     LOCAL_STK, NEW,                 x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_page_manager, LOCAL_PIX, GEDA_SHEETS_BITMAP,  x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_prev_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_next_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_last_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
 
@@ -1082,8 +1185,10 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,    x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP,   x_toolbars_execute, w_current);
 
+  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_first_page ));
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
+  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_last_page ));
 
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_schematic));
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_symbol   ));
