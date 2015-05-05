@@ -1,5 +1,5 @@
-v 20150315 2
-T 400 12800 5 10 0 0 0 0 1
+v 20150401 2
+T 400 12800 5 10 0 1 0 0 1
 device=FT2232H
 T 400 13200 5 10 0 0 0 0 1
 description=USB to Dual Serial Bridge Controller
@@ -737,3 +737,5 @@ pinnumber=36
 T 3700 775 5 8 0 1 0 0 1
 pinseq=36
 }
+T 1200 12800 9 10 0 1 0 0 1
+comment=Pin Types set RS-232 Interface
