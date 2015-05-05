@@ -51,7 +51,7 @@ pinnumber=3
 T 1450 650 5 8 0 1 0 0 1
 pinseq=3
 T 1600 600 5 8 0 1 0 8 1
-pintype=out
+pintype=pwr
 T 1000 600 9 8 1 1 0 0 1
 pinlabel=OUT
 }
