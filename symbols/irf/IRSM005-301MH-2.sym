@@ -19,7 +19,7 @@ pinseq=17
 T 3550 1500 9 8 1 1 0 6 1
 pinlabel=Vs
 T 3550 1500 5 8 0 1 0 8 1
-pintype=out
+pintype=pas
 }
 P 3900 1800 3600 1800 1 0 0
 {
@@ -30,7 +30,7 @@ pinseq=16
 T 3550 1800 9 8 1 1 0 6 1
 pinlabel=Vs
 T 3550 1800 5 8 0 1 0 8 1
-pintype=out
+pintype=pas
 }
 P 100 1500 400 1500 1 0 0
 {
@@ -181,7 +181,7 @@ pinseq=10
 T 3550 2100 9 8 1 1 0 6 1
 pinlabel=Vs
 T 3550 2100 5 8 0 1 0 8 1
-pintype=out
+pintype=pas
 }
 P 1300 3500 1300 3200 1 0 0
 {
@@ -329,4 +329,4 @@ pintype=pwr
 T 2000 1300 9 10 0 0 0 3 1
 numslots=0
 T 2000 1100 9 10 0 0 0 3 1
-symversion=0.1
+symversion=0.2
