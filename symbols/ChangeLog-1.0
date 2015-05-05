@@ -1,5 +1,10 @@
 2015-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/switchreg/TPS62421-1.sym: Add symbol; Dual Step Down Converter, 1.2,
+      1.8Volt.
+
+2015-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * serial/FT2232H-1.sym: Add comments; dash one symbol has pin types setup
       for RS-232 style interface.
 
