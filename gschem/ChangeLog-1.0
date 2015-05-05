@@ -1,3 +1,13 @@
+2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/gschem-icons.svg: Add new icon show-netnames.
+
+    * etc/system-gschemrc.scm: implement new icon show-netnames, remove icon
+      from menu action view-show-nets so that the same icon will appear every
+      where for the action, user can over-ride if desired.
+
+    * src/x/x_icons.c: Add icon show-netnames, remove duplicate insert-text.
+
 2015-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_icons.c: Add bitmaps "gaf-add-attribute",  "gaf-tools",

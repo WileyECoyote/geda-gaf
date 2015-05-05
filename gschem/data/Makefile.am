@@ -32,6 +32,7 @@ action_icons = \
 	show-hidden \
 	show-inherited \
 	show-name \
+	show-netnames \
 	show-value \
 	unselect-all \
 	zoom-extents \

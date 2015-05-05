@@ -118,7 +118,7 @@ const char* IDS_THEME_ICONS_22[] = {
   "insert-path",             "insert-pin",               "insert-symbol",
   "insert-text",             "extend",                   "multi-clone",
   "show-both",               "show-value",               "show-name",
-  "insert-text",             "unselect-all",             "zoom-extents",
+  "show-netnames",           "unselect-all",             "zoom-extents",
   "zoom-fit",                "zoom-in",                  "zoom-mag",
   "zoom-out",                "zoom-selection",
   NULL
