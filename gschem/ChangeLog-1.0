@@ -1,5 +1,9 @@
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmaps/svg/geda-show-nets.svg: Revise image for geda-show-nets icon.
+
+2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * data/gschem-icons.svg: Add new icon show-netnames.
 
     * etc/system-gschemrc.scm: implement new icon show-netnames, remove icon
