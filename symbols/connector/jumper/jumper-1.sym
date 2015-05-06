@@ -29,4 +29,4 @@ device=JUMPER
 T 300 500 8 10 1 1 0 0 1
 refdes=J?
 T 300 300 9 8 0 1 0 0 1
-footprint=JUMPER-1
+footprint=JUMPER-2

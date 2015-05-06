@@ -1,5 +1,11 @@
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/jumper/jumper-1.sym: Houston, we've had a problem. jumper-1.sym
+      is two pins, foot print JUMPER-1.fp is only 1 pin. Change foot print for
+      jumper-1 to JUMPER-2.
+
+2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * serial/FT2232H-2.sym: Add dash 2 symbol version for pin types setup
       MPSSE Interface, mostly.
 
