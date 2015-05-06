@@ -322,7 +322,7 @@ pinseq=16
 P 3900 11300 3600 11300 1 0 0
 {
 T 3550 11200 5 8 0 1 0 6 1
-pintype=in
+pintype=out
 T 3550 11300 9 10 1 1 0 6 1
 pinlabel=RXD/ADBUS1
 T 3700 11350 5 8 1 1 0 0 1
@@ -333,7 +333,7 @@ pinseq=17
 P 3900 11000 3600 11000 1 0 0
 {
 T 3550 10900 5 8 0 1 0 6 1
-pintype=out
+pintype=in
 T 3550 11000 9 10 1 1 0 6 1
 pinlabel=\_RTS\_/ADBUS2
 T 3700 11050 5 8 1 1 0 0 1
@@ -344,7 +344,7 @@ pinseq=18
 P 3900 10700 3600 10700 1 0 0
 {
 T 3550 10600 5 8 0 1 0 6 1
-pintype=in
+pintype=out
 T 3550 10700 9 10 1 1 0 6 1
 pinlabel=\_CTS\_/ADBUS3
 T 3700 10750 5 8 1 1 0 0 1
@@ -355,7 +355,7 @@ pinseq=19
 P 3900 10400 3600 10400 1 0 0
 {
 T 3550 10300 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 10400 9 10 1 1 0 6 1
 pinlabel=\_DTR\_/ADBUS4
 T 3700 10450 5 8 1 1 0 0 1
@@ -366,7 +366,7 @@ pinseq=21
 P 3900 10100 3600 10100 1 0 0
 {
 T 3550 10000 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 10100 9 10 1 1 0 6 1
 pinlabel=\_DSR\_/ADBUS5
 T 3700 10150 5 8 1 1 0 0 1
@@ -377,7 +377,7 @@ pinseq=22
 P 3900 9800 3600 9800 1 0 0
 {
 T 3550 9700 5 8 0 1 0 6 1
-pintype=in
+pintype=io
 T 3550 9800 9 10 1 1 0 6 1
 pinlabel=\_DCD\_/ADBUS6
 T 3700 9850 5 8 1 1 0 0 1
@@ -388,7 +388,7 @@ pinseq=23
 P 3900 9500 3600 9500 1 0 0
 {
 T 3550 9400 5 8 0 1 0 6 1
-pintype=in
+pintype=io
 T 3550 9500 9 10 1 1 0 6 1
 pinlabel=\_RI\_/ADBUS7
 T 3700 9550 5 8 1 1 0 0 1
@@ -399,7 +399,7 @@ pinseq=24
 P 3900 9000 3600 9000 1 0 0
 {
 T 3550 8900 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 9000 9 10 1 1 0 6 1
 pinlabel=TXDEN/ACBUS0
 T 3700 9050 5 8 1 1 0 0 1
@@ -432,7 +432,7 @@ pinseq=28
 P 3900 8100 3600 8100 1 0 0
 {
 T 3550 8000 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 8100 9 10 1 1 0 6 1
 pinlabel=\_RXLED\_/ACBUS3
 T 3700 8150 5 8 1 1 0 0 1
@@ -443,7 +443,7 @@ pinseq=29
 P 3900 7800 3600 7800 1 0 0
 {
 T 3550 7700 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 7800 9 10 1 1 0 6 1
 pinlabel=\_TXLED\_/ACBUS4
 T 3700 7850 5 8 1 1 0 0 1
@@ -509,7 +509,7 @@ pinseq=39
 P 3900 5800 3600 5800 1 0 0
 {
 T 3550 5700 5 8 0 1 0 6 1
-pintype=out
+pintype=in
 T 3550 5800 9 10 1 1 0 6 1
 pinlabel=\_RTS\_/BDBUS2
 T 3700 5850 5 8 1 1 0 0 1
@@ -520,7 +520,7 @@ pinseq=40
 P 3900 5500 3600 5500 1 0 0
 {
 T 3550 5400 5 8 0 1 0 6 1
-pintype=in
+pintype=out
 T 3550 5500 9 10 1 1 0 6 1
 pinlabel=\_CTS\_/BDBUS3
 T 3700 5550 5 8 1 1 0 0 1
@@ -531,7 +531,7 @@ pinseq=41
 P 3900 5200 3600 5200 1 0 0
 {
 T 3550 5100 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 5200 9 10 1 1 0 6 1
 pinlabel=\_DTR\_/BDBUS4
 T 3700 5250 5 8 1 1 0 0 1
@@ -542,7 +542,7 @@ pinseq=43
 P 3900 4900 3600 4900 1 0 0
 {
 T 3550 4800 5 8 0 1 0 6 1
-pintype=in
+pintype=io
 T 3550 4900 9 10 1 1 0 6 1
 pinlabel=\_DSR\_/BDBUS5
 T 3700 4950 5 8 1 1 0 0 1
@@ -553,7 +553,7 @@ pinseq=44
 P 3900 4600 3600 4600 1 0 0
 {
 T 3550 4500 5 8 0 1 0 6 1
-pintype=in
+pintype=io
 T 3550 4600 9 10 1 1 0 6 1
 pinlabel=\_DCD\_/BDBUS6
 T 3700 4650 5 8 1 1 0 0 1
@@ -564,7 +564,7 @@ pinseq=45
 P 3900 4300 3600 4300 1 0 0
 {
 T 3550 4200 5 8 0 1 0 6 1
-pintype=in
+pintype=io
 T 3550 4300 9 10 1 1 0 6 1
 pinlabel=\_RI\_/BDBUS7
 T 3700 4350 5 8 1 1 0 0 1
@@ -575,7 +575,7 @@ pinseq=46
 P 3900 3800 3600 3800 1 0 0
 {
 T 3550 3700 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 3800 9 10 1 1 0 6 1
 pinlabel=TXDEN/BCBUS0
 T 3700 3850 5 8 1 1 0 0 1
@@ -608,7 +608,7 @@ pinseq=53
 P 3900 2900 3600 2900 1 0 0
 {
 T 3550 2800 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 2900 9 10 1 1 0 6 1
 pinlabel=\_RXLED\_/BCBUS3
 T 3700 2950 5 8 1 1 0 0 1
@@ -619,7 +619,7 @@ pinseq=54
 P 3900 2600 3600 2600 1 0 0
 {
 T 3550 2500 5 8 0 1 0 6 1
-pintype=out
+pintype=io
 T 3550 2600 9 10 1 1 0 6 1
 pinlabel=\_TXLED\_/BCBUS4
 T 3700 2650 5 8 1 1 0 0 1
@@ -737,5 +737,5 @@ pinnumber=36
 T 3700 775 5 8 0 1 0 0 1
 pinseq=36
 }
-T 1200 12800 9 10 0 1 0 0 1
-comment=Pin Types set RS-232 Interface
+T 1300 12800 9 10 0 1 0 0 1
+comment=Pin Types setup MPSSE Interface
