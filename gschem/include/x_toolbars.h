@@ -149,6 +149,7 @@ typedef struct {
 #define TBTS_HIERARCHY_UP       "Elevate hierarchy"
 
 #define TBTS_VIEW_DOCUMENT      "View component documentation"
+#define TBTS_VIEW_NETNAMES      "Toggle visibility of net name attributes"
 
   /* Zoom Toolbar */
 #define TBTS_VIEW_REDRAW        "Redraw current display"

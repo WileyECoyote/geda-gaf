@@ -105,9 +105,9 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_first_page, etb_prev_page, etb_next_page, etb_last_page,
                 etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
-                etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
-                etb_zoom_select, etb_zoom_extents, etb_zoom_in, etb_zoom_out,
-                etb_zoom_all,
+                etb_view_document, etb_view_nets, etb_view_redraw, etb_zoom_pan,
+                etb_zoom_box, etb_zoom_select, etb_zoom_extents, etb_zoom_in,
+                etb_zoom_out, etb_zoom_all,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
@@ -189,11 +189,12 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(PAGE_NEW),           "New",        TBTS_PAGE_NEW,           "gtk-new",           TB_ICON_STOCK, NULL},
   { ACTION(PAGE_MANAGER),       "Manage",     TBTS_PAGE_MANAGER,       GEDA_SHEETS_BITMAP,  TB_ICON_BITMAP, NULL},
 
-  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private",    TB_ICON_BITMAP, NULL},
-  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private",    TB_ICON_BITMAP, NULL},
-  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       "Private",    TB_ICON_BITMAP, NULL},
+  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private",           TB_ICON_BITMAP, NULL},
+  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private",           TB_ICON_BITMAP, NULL},
+  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       "Private",           TB_ICON_BITMAP, NULL},
 
-  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "Private",    TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "Private",           TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_NETS),          "Net Names",  TBTS_VIEW_NETNAMES,      "geda-show-nets",    TB_ICON_STOCK,  NULL},
 
   /* Zoom Toolbar */
   { ACTION(VIEW_REDRAW),        "Redraw",     TBTS_VIEW_REDRAW,        GEDA_MAP(VIEW_REDRAW),  TB_ICON_BITMAP, NULL},
@@ -1454,10 +1455,17 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_value, LOCAL_PIX, GEDA_VALUE_BITMAP,   x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_name,  LOCAL_PIX, GEDA_NAME_TAG_BITMAP,    x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_both,  LOCAL_PIX, GEDA_NAME_VALUE_BITMAP,  x_toolbars_execute,  w_current);
+
+//gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
+
   TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
+
+  GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
 
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
+
+  gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
   TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
