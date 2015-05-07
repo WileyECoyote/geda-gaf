@@ -1,3 +1,8 @@
+2015-05-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * inductor/inductor-2.sym: Change pin numbers to numbers; use n-,n+ for pin
+      label instead.
+
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper/jumper-1.sym: Houston, we've had a problem. jumper-1.sym
