@@ -1788,12 +1788,15 @@
 (map-icon "geda-save-image"            "file-write-image")
 
 (map-icon "gtk-execute"                "file-run-script")
-(map-icon "gtk-close"                  "file-close")
+;;(map-icon "gtk-close"                 "file-close")
+(map-icon "geda-close"                 "file-close")
 (map-icon "geda-close-all"             "file-close-all")
 (map-icon "gtk-quit"                   "file-quit")
 
-(map-icon "gtk-undo"                   "edit-undo")
-(map-icon "gtk-redo"                   "edit-redo")
+;;(map-icon "geda-undo"                  "edit-undo")
+;;(map-icon "geda-redo"                  "edit-redo")
+(map-icon "edit-undo"                  "edit-undo")
+(map-icon "edit-redo"                  "edit-redo")
 
 (map-icon "gtk-cut"                    "clipboard-cut")
 (map-icon "gtk-copy"                   "clipboard-copy")
@@ -1810,7 +1813,7 @@
 
 ;(map-icon #f                           "edit-array")
 (map-icon "gschem-break"               "edit-break")
-(map-icon "extend"              "edit-extend")
+(map-icon "extend"                     "edit-extend")
 
 (map-icon "gtk-indent"                 "edit-attributes")
 (map-icon "gtk-edit"                   "edit-text" )
@@ -1853,15 +1856,16 @@
 
 (map-icon "gtk-fullscreen"             "view-zoom-all")
 (map-icon "geda-zoom-box"              "view-zoom-box")
-(map-icon "zoom-extents"        "view-zoom-extents")
-(map-icon "zoom-in"             "view-zoom-in")
-(map-icon "zoom-out"            "view-zoom-out")
-(map-icon "zoom-mag"            "view-zoom-to-mag")
+(map-icon "zoom-extents"               "view-zoom-extents")
+(map-icon "zoom-in"                    "view-zoom-in")
+(map-icon "zoom-out"                   "view-zoom-out")
+(map-icon "zoom-mag"                   "view-zoom-to-mag")
 (map-icon "geda-zoom-selection"        "view-zoom-selected")
 
 (map-icon "gtk-index"                  "view-documentation")
 (map-icon "gtk-find-and-replace"       "view-show-hidden")
 (map-icon "geda-show-nets"             "view-show-nets")
+;(map-icon "show-netnames"              "view-show-nets")
 
 ;(map-icon #f                          "view-dark-colors")
 ;(map-icon #f                          "view-light-colors")
@@ -1891,6 +1895,7 @@
 (map-icon "gschem-net"                 "add-net")
 (map-icon "gschem-bus"                 "add-bus")
 (map-icon "insert-attribute"           "add-attribute")
+;(map-icon "gaf-add-attribute"           "add-attribute")
 (map-icon "gtk-bold"                   "add-text")
 (map-icon "geda-arc"                   "add-arc")
 (map-icon "geda-box"                   "add-box")
@@ -1908,11 +1913,11 @@
 
 (map-icon "gtk-go-up"                  "attributes-attach")
 (map-icon "gtk-go-down"                "attributes-detach")
-(map-icon "show-value"          "attributes-show-value")
-(map-icon "show-name"           "attributes-show-name")
-(map-icon "show-both"           "attributes-show-both")
+(map-icon "show-value"                 "attributes-show-value")
+(map-icon "show-name"                  "attributes-show-name")
+(map-icon "show-both"                  "attributes-show-both")
 (map-icon "attribute-visibility"       "attributes-visibility")
-(map-icon "attribute-reset"     "attributes-home")
+(map-icon "attribute-reset"            "attributes-home")
 (map-icon "gtk-find-and-replace"       "attributes-find-text")
 (map-icon "gtk-clear"                  "attributes-hide-text")
 ;(map-icon  #f                         "attributes-show-text")
@@ -1932,7 +1937,9 @@
 (map-icon "gtk-media-next"             "scale-down-snap-size")
 (map-icon "gtk-media-rewind"           "options-snap-size")
 ;(map-icon #f                          "options-show-text-size")
-(map-icon "gtk-preferences"            "options-show-settings")
+;;(map-icon "gaf-tools"                  "options-show-settings")
+(map-icon "geda-tools"                 "options-show-settings")
+;;(map-icon "gtk-preferences"            "options-show-settings")
 
 (map-icon "gtk-help"                   "help-show-manual")
 (map-icon "keyboard-shortcuts"         "help-show-hotkeys")
@@ -2000,8 +2007,8 @@
 ;;
 ;;      menu item name              menu action            menu icon name          Menu Item Tooltip
 ;;
-     `( (,(N_ "_Undo")              edit-undo              "gtk-undo"         ,(N_ "Undo the last action"))
-        (,(N_ "_Redo")              edit-redo              "gtk-redo"         ,(N_ "redo the last un-done action"))
+     `( (,(N_ "_Undo")              edit-undo              #f                 ,(N_ "Undo the last action"))
+        (,(N_ "_Redo")              edit-redo              #f                 ,(N_ "redo the last un-done action"))
 
         ("SEPARATOR"               #f                     #f                 #f)
         (,(N_ "Cu_t clipboard")     clipboard-cut          "gtk-cut"          ,(N_ "Cut the current selection to the system clipboard"))
@@ -2110,7 +2117,7 @@
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
         (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
-        (,(N_ "Show/Hide Net Names") view-show-nets          "geda-show-nets"       ,(N_ "Toggle hidden net name attributes"))
+        (,(N_ "Show/Hide Net Names") view-show-nets         #f                      ,(N_ "Toggle hidden net name attributes"))
 
         ("SEPARATOR"                #f                      #f)
         (,(N_ "_Dark color scheme")  view-dark-colors       #f                      ,(N_ "Set the color map to the Dark set"))
