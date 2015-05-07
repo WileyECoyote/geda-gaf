@@ -1,5 +1,12 @@
 2015-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/resistor/: Add description attribute.
+
+        * passive/resistor/resistor-variable-1.sym
+        * passive/resistor/resistor-variable-2.sym
+
+2015-05-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * inductor/inductor-2.sym: Change pin numbers to numbers; use n-,n+ for pin
       label instead.
 
