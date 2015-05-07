@@ -1172,11 +1172,13 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER (Page_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->page_handlebox), Page_Toolbar);
 
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
+
   GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_prev_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_next_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_last_page);
-  GSCHEM_TOOLBAR_BUTTON (Page, etb_new_page);
+
   GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
