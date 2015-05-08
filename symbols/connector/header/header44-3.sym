@@ -1,4 +1,4 @@
-v 20041228 1
+v 20150401 2
 P 100 8700 400 8700 1 0 0
 {
 T 250 8750 5 8 1 1 0 0 1
@@ -506,18 +506,18 @@ L 400 4900 1200 4900 3 0 0 0 -1 -1
 L 400 500 1200 500 3 0 0 0 -1 -1
 L 400 900 1200 900 3 0 0 0 -1 -1
 B 400 100 800 8800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 350 9600 8 10 0 0 0 0 1
+T 350 9400 8 10 0 1 0 0 1
 device=HEADER44
-T 350 9400 8 10 0 0 0 0 1
+T 350 9800 8 10 0 0 0 0 1
 numslots=0
 T 350 9200 8 10 0 0 0 0 1
 description=Header 44 pins
 T 700 9000 8 10 1 1 0 0 1
 refdes=J?
-T 350 9800 8 10 0 0 0 0 1
-author=Walter Fetter Lages <w.fetter@ieee.org>
 T 350 10000 8 10 0 0 0 0 1
-footprint=header44_3
+author=Walter Fetter Lages <w.fetter@ieee.org>
+T 350 9600 8 10 0 1 0 0 1
+footprint=HEADER_44-1
 T 0 0 8 10 0 0 0 0 1
 dist-license=GPL
 T 1600 0 8 10 0 0 0 0 1

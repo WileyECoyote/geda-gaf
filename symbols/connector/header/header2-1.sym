@@ -1,10 +1,10 @@
-v 20130214 2
-T 800 50 8 10 0 0 0 0 1
+v 20150401 2
+T 800 100 8 10 0 1 0 0 1
 device=HEADER 2
 T 400 900 8 10 1 1 0 0 1
 refdes=J?
-T 800 300 8 10 0 0 0 0 1
-footprint=header2
+T 800 300 8 10 0 1 0 0 1
+footprint=HEADER_2-1
 T 800 500 8 10 0 0 0 0 1
 numslots=0
 P 0 600 300 600 1 0 0

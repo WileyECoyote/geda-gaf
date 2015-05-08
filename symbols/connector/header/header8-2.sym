@@ -111,7 +111,7 @@ pintype=pas
 T 300 2250 5 10 0 1 0 0 1
 device=HEADER8
 T 300 2050 8 10 0 1 0 0 1
-footprint=HEADER_8-1
+footprint=HEADER_8-2
 T 300 2450 5 10 0 0 0 0 1
 numslots=0
 T 300 1850 5 10 0 1 0 0 1

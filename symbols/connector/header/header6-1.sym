@@ -1,11 +1,11 @@
-v 20130214 2
-T 800 1250 8 10 0 0 0 0 1
-device=HEADER 6
+v 20150401 2
+T 800 1850 8 10 0 1 0 0 1
+device=HEADER6
 T 400 2500 8 10 1 1 0 0 1
 refdes=J?
-T 800 1500 8 10 0 0 0 0 1
-footprint=header6
-T 800 1700 8 10 0 0 0 0 1
+T 800 2100 8 10 0 1 0 0 1
+footprint=JUMPER-6
+T 800 2300 8 10 0 0 0 0 1
 numslots=0
 P 0 2200 300 2200 1 0 0
 {
