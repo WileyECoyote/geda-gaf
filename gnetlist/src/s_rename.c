@@ -50,6 +50,11 @@ typedef struct {
 static SET * first_set = NULL;
 static SET * last_set = NULL;
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_init(void)
 {
   if (first_set) {
@@ -57,6 +62,11 @@ void s_rename_init(void)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_destroy_all(void)
 {
   RENAME * temp;
@@ -77,6 +87,11 @@ void s_rename_destroy_all(void)
   last_set = NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_next_set(void)
 {
   SET * new_set;
@@ -92,6 +107,11 @@ void s_rename_next_set(void)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_print(void)
 {
   SET * temp_set;
@@ -108,9 +128,14 @@ void s_rename_print(void)
   }
 }
 
-/* if the src is found, return true */
-/* if the dest is found, also return true, but warn user */
-/* If quiet_flag is true than don't print anything */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * if the src is found, return true
+ * if the dest is found, also return true, but warn user
+ * If quiet_flag is true than don't print anything
+ */
 int s_rename_search(char *src, char *dest, int quiet_flag)
 {
   RENAME * temp;
@@ -137,6 +162,11 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
   return (FALSE);
 }
 
+/*  \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_rename_add_lowlevel (const char *src, const char *dest)
 {
   RENAME *new_rename;
@@ -162,6 +192,11 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_add(char *src, char *dest)
 {
   int flag;
@@ -242,6 +277,11 @@ void s_rename_add(char *src, char *dest)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {
   NETLIST *nl_current = NULL;
@@ -270,6 +310,11 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
 {
   RENAME * temp;
@@ -289,6 +334,11 @@ void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
 }
 
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 SCM g_get_renamed_nets(SCM scm_level)
 {
   SCM pairlist = SCM_EOL;

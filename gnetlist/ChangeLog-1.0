@@ -1,6 +1,10 @@
+2015-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/s_rename.c: Add Doxygen templates as todo's.
+
 2015-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/s_netattrib.c Add Doxygen templates as todo's.
+    * gnetlist/src/s_netattrib.c: Add Doxygen templates as todo's.
 
     * gnetlist/src/s_cpinlist.c: Add Doxygen templates as todo's.
 
