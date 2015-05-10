@@ -82,10 +82,10 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:get-verbosity",               0, 0, 0, g_get_verbosity },
   { NULL,                                   0, 0, 0, NULL } };
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Register function with Scheme.
  *  \par Function Description
- *
+ *  Creates <B>subr</B> objects to make <B>g_rc_*</B> gnetlist API functions
+ *  visible to Scheme.
  */
 void g_register_funcs(void)
 {
@@ -98,10 +98,9 @@ void g_register_funcs(void)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief SCM API terminated program
  *  \par Function Description
- *
+ *  Scheme
  */
 SCM g_quit(void)
 {
