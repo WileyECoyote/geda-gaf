@@ -392,7 +392,7 @@
 ;                 (can be opened by Options/Show console Window)
 ;
 ;(console-window "enabled")
-(console-window "disabled")
+;(console-window "disabled")
 
 ; console-window-type string
 ;
