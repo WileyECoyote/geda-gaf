@@ -1462,9 +1462,9 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
 
+  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
 
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
