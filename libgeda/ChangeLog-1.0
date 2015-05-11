@@ -1,5 +1,10 @@
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Add fprint in o_read_attribs to output the
+      line that was the trouble maker.
+
+2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * libgeda/src/guile/g_rc.c: Add Doxygen comments for functions
       vstbl_lookup_str and vstbl_get_val.
 

@@ -561,6 +561,7 @@ o_read_attribs (GedaToplevel *toplevel,
       ATTACH=FALSE;
     }
     else {
+      fprintf(stderr, "Bad line:<%s>\n", line);
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("tried to attach a non-text object as an attribute"));
       goto error;
     }
