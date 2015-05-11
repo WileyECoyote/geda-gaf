@@ -1,5 +1,9 @@
 2015-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * SN/SN75176-1.sym: Add symbol Multipoint RS-485/RS-422 Transceivers
+
+2015-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * logic/SN/SN75176A-1.sym:Rename symbol, formally 75176-1 in the linear/special
       folder, clean symbol, add symversion.
 
