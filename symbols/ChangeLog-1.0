@@ -1,4 +1,9 @@
-2015-05-09 Wiley E. Hill <wileyhill@gmail.com>
+2015-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/SN/SN75176A-1.sym:Rename symbol, formally 75176-1 in the linear/special
+      folder, clean symbol, add symversion.
+
+2015-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header34-2.sym: Add symbol, 34 pin header
 
