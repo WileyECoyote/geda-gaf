@@ -89,7 +89,7 @@ T 1750 1275 5 8 0 1 0 8 1
 pintype=out
 }
 T 400 1700 8 10 1 1 0 0 1
-value=LM25101C
+value=LM25101CMA
 T 400 2100 5 10 0 1 0 0 1
 footprint=SOIC8
 T 400 3300 5 10 0 0 0 0 1
@@ -109,4 +109,4 @@ device=LM25101
 T 750 275 5 8 0 0 0 0 1
 numslots=0
 T 1100 150 5 8 0 0 0 3 1
-symversion=0.1
+symversion=0.2
