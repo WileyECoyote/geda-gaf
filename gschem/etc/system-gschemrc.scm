@@ -2208,7 +2208,7 @@
         (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"              ,(N_ "Hide selected attribute"))
         (,(N_ "_Show Specific Text...")  attributes-show-text    #f                       ,(N_ "Show a specific attribute"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"             ,(N_ "Open the Attibutes Editor Dialog"))
+        (,(N_ "Attribute _Editor...")    attributes-editor       "gtk-indent"             ,(N_ "Open the Attibutes Editor Dialog"))
       )
 )
 

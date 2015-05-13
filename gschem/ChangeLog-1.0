@@ -1,7 +1,11 @@
+2015-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Fix typo in menu.
+
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_toolbars.c: Add toolbar button for geda-show-nets to the
-      aatribute tool bar.
+      attribute tool-bar.
 
 2015-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
