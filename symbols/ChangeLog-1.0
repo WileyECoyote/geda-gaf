@@ -1,3 +1,7 @@
+2015-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62420-1.sym: Add symbol Dual Step Down Converter, Adjustable
+
 2015-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * SN/SN75176-1.sym: Add symbol Multipoint RS-485/RS-422 Transceivers

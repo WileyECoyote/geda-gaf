@@ -1,0 +1,141 @@
+v 20150401 2
+P 2200 1600 1900 1600 1 0 0
+{
+T 2000 1650 5 8 1 1 0 0 1
+pinnumber=6
+T 2000 1650 5 8 0 1 0 0 1
+pinseq=6
+T 1850 1600 9 10 1 1 0 6 1
+pinlabel=SW1
+T 1850 1575 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2200 1000 1900 1000 1 0 0
+{
+T 2000 1050 5 8 1 1 0 0 1
+pinnumber=5
+T 2000 1050 5 8 0 1 0 0 1
+pinseq=5
+T 1850 1000 9 10 1 1 0 6 1
+pinlabel=DEF1
+T 1850 975 5 8 0 1 0 8 1
+pintype=io
+}
+P 2200 700 1900 700 1 0 0
+{
+T 2000 750 5 8 1 1 0 0 1
+pinnumber=10
+T 2000 750 5 8 0 1 0 0 1
+pinseq=10
+T 1850 700 9 10 1 1 0 6 1
+pinlabel=SW2
+T 1850 675 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=9
+T 300 1350 5 8 0 1 0 6 1
+pinseq=9
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=EN2
+T 450 1275 5 8 0 1 0 2 1
+pintype=io
+}
+P 2200 2200 1900 2200 1 0 0
+{
+T 2000 2250 5 8 1 1 0 0 1
+pinnumber=4
+T 2000 2250 5 8 0 1 0 0 1
+pinseq=4
+T 1850 2200 9 10 1 1 0 6 1
+pinlabel=FB1
+T 1850 2175 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2200 400 1900 400 1 0 0
+{
+T 2000 450 5 8 1 1 0 0 1
+pinnumber=1
+T 2000 450 5 8 0 1 0 0 1
+pinseq=1
+T 1850 400 9 10 1 1 0 6 1
+pinlabel=ADJ2
+T 1850 375 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 600 400 600 1 0 0
+{
+T 300 650 5 8 1 1 0 6 1
+pinnumber=8
+T 300 650 5 8 0 1 0 6 1
+pinseq=8
+T 450 600 9 10 1 1 0 0 1
+pinlabel=GND
+T 450 575 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1050 5 8 0 1 0 6 1
+pinseq=2
+T 450 1000 9 10 1 1 0 0 1
+pinlabel=M/D
+T 450 975 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1600 400 1600 1 0 0
+{
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=7
+T 300 1650 5 8 0 1 0 6 1
+pinseq=7
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=EN1
+T 450 1575 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 2200 400 2200 1 0 0
+{
+T 300 2250 5 8 1 1 0 6 1
+pinnumber=3
+T 300 2250 5 8 0 1 0 6 1
+pinseq=3
+T 450 2200 9 10 1 1 0 0 1
+pinlabel=VIN
+T 450 2175 5 8 0 1 0 2 1
+pintype=pwr
+}
+B 400 100 1500 2400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 2600 5 10 1 1 0 0 1
+device=TPS62420
+T 400 2800 5 10 0 1 0 0 1
+footprint=S-PVSON-N10
+T 400 4000 5 10 0 0 0 0 1
+author=AutoTron
+T 400 3200 5 10 0 1 0 0 1
+documentation=www.ti.com/lit/ds/symlink/tps62420.pdf
+T 400 3000 5 10 0 1 0 0 1
+description=Dual Step Down Converter, Adjustable
+T 400 3400 5 10 0 0 0 0 1
+numslots=0
+T 400 3600 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 3800 5 10 0 0 0 0 1
+use-license=unlimited
+T 1200 1400 8 10 1 1 0 3 1
+refdes=U?
+P 100 300 400 300 1 0 0
+{
+T 300 350 5 8 1 1 0 6 1
+pinnumber=11
+T 300 350 5 8 0 1 0 6 1
+pinseq=11
+T 450 300 9 10 1 1 0 0 1
+pinlabel=PGND
+T 450 275 5 8 0 1 0 2 1
+pintype=pwr
+}
