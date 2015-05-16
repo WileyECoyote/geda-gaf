@@ -1,4 +1,4 @@
-v 20150101 2
+v 20150401 2
 P 100 3700 400 3700 1 0 0
 {
 T 300 3750 5 8 1 1 0 6 1
@@ -442,7 +442,7 @@ pintype=pwr
 P 4500 100 4500 400 1 0 0
 {
 T 4450 300 5 8 1 1 90 6 1
-pinnumber=EP
+pinnumber=49
 T 4550 300 5 8 0 1 90 8 1
 pinseq=41
 T 4500 450 9 10 1 1 90 0 1
@@ -455,17 +455,17 @@ T 2800 2600 8 10 1 1 0 3 1
 refdes=U?
 T 2300 2350 5 10 1 1 0 0 1
 device=MCP8025MP
-T 200 4750 5 10 0 0 0 0 1
+T 4600 4450 5 10 0 1 0 0 1
 footprint=QFN-20-5
-T 200 4950 5 10 0 0 0 0 1
+T 4600 5650 5 10 0 0 0 0 1
 author=AutoTron
-T 200 5150 5 10 0 0 0 0 1
+T 4600 4850 5 10 0 1 0 0 1
 documentation=http://www.microchip.com/MCP8025
-T 200 5350 5 10 0 0 0 0 1
-description=Motor Gate Driver, 3-phase, SAE J2602
-T 200 5550 5 10 0 0 0 0 1
+T 4600 4650 5 10 0 1 0 0 1
+description=IC,MOTOR GATE DRIVER,3-PHASE,48TQFP,SAE J2602
+T 4600 5050 5 10 0 0 0 0 1
 numslots=0
-T 200 5750 5 10 0 0 0 0 1
+T 4600 5250 5 10 0 0 0 0 1
 dist-license=GPL3
-T 200 5950 5 10 0 0 0 0 1
+T 4600 5450 5 10 0 0 0 0 1
 use-license=unlimited

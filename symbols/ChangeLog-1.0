@@ -1,3 +1,15 @@
+2015-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/motor/MCP8024*: Revise symbol; update footprint to have
+      version with extra pad, change description, and attribute properties.
+
+        * microchip/motor/MCP8024MP-1.sym
+        * microchip/motor/MCP8024PT-1.sym
+        * microchip/motor/MCP8025MP-1.sym
+        * microchip/motor/MCP8025PT-1.sym
+        * microchip/motor/MCP8026MP-1.sym
+        * microchip/motor/MCP8026PT-1.sym
+
 2015-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62420-1.sym: Add symbol Dual Step Down Converter, Adjustable
