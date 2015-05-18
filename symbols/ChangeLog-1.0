@@ -1,3 +1,7 @@
+2015-05-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS73525DRV-1.sym: Add symbol IC,LDO REG,HI-PSRR,2.5V,500mA,VSON-6
+
 2015-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/motor/MCP8024*: Revise symbol; update footprint to have
