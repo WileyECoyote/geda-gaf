@@ -19,7 +19,7 @@ pinseq=2
 T 450 15400 9 8 1 1 0 0 1
 pinlabel=TRSTN
 T 450 15400 5 8 0 1 0 2 1
-pintype=out
+pintype=in
 }
 P 100 15100 400 15100 1 0 0
 {
@@ -107,7 +107,7 @@ pinseq=10
 T 450 13000 9 8 1 1 0 0 1
 pinlabel=GPIO-23
 T 450 13000 5 8 0 1 0 2 1
-pintype=io
+pintype=pas
 }
 P 100 12700 400 12700 1 0 0
 {
@@ -327,7 +327,7 @@ pinseq=30
 T 450 6700 9 8 1 1 0 0 1
 pinlabel=ADC-A7
 T 450 6700 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 6400 400 6400 1 0 0
 {
@@ -349,7 +349,7 @@ pinseq=32
 T 450 6100 9 8 1 1 0 0 1
 pinlabel=ADC-A6
 T 450 6100 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 5800 400 5800 1 0 0
 {
@@ -371,7 +371,7 @@ pinseq=34
 T 450 5500 9 8 1 1 0 0 1
 pinlabel=ADC-A5
 T 450 5500 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 5200 400 5200 1 0 0
 {
@@ -393,7 +393,7 @@ pinseq=36
 T 450 4900 9 8 1 1 0 0 1
 pinlabel=ADC-A4
 T 450 4900 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 4600 400 4600 1 0 0
 {
@@ -415,7 +415,7 @@ pinseq=38
 T 450 4300 9 8 1 1 0 0 1
 pinlabel=ADC-A3
 T 450 4300 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 4000 400 4000 1 0 0
 {
@@ -437,7 +437,7 @@ pinseq=40
 T 450 3700 9 8 1 1 0 0 1
 pinlabel=ADC-A2
 T 450 3700 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 3400 400 3400 1 0 0
 {
@@ -459,7 +459,7 @@ pinseq=42
 T 450 3100 9 8 1 1 0 0 1
 pinlabel=ADC-A1
 T 450 3100 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 2800 400 2800 1 0 0
 {
@@ -481,7 +481,7 @@ pinseq=44
 T 450 2500 9 8 1 1 0 0 1
 pinlabel=ADC-A0
 T 450 2500 5 8 0 1 0 2 1
-pintype=io
+pintype=in
 }
 P 100 1900 400 1900 1 0 0
 {
@@ -580,7 +580,7 @@ pinseq=53
 T 2150 15100 9 8 1 1 0 6 1
 pinlabel=TCK
 T 2150 15100 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 14800 2200 14800 1 0 0
 {
@@ -877,7 +877,7 @@ pinseq=80
 T 2150 6700 9 8 1 1 0 6 1
 pinlabel=ADC-B7
 T 2150 6700 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 6400 2200 6400 1 0 0
 {
@@ -899,7 +899,7 @@ pinseq=82
 T 2150 6100 9 8 1 1 0 6 1
 pinlabel=ADC-B6
 T 2150 6100 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 5800 2200 5800 1 0 0
 {
@@ -921,7 +921,7 @@ pinseq=84
 T 2150 5500 9 8 1 1 0 6 1
 pinlabel=ADC-B5
 T 2150 5500 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 5200 2200 5200 1 0 0
 {
@@ -932,7 +932,7 @@ pinseq=85
 T 2150 5200 9 8 1 1 0 6 1
 pinlabel=NC
 T 2150 5200 5 8 0 1 0 8 1
-pintype=io
+pintype=pas
 }
 P 2500 4900 2200 4900 1 0 0
 {
@@ -943,7 +943,7 @@ pinseq=86
 T 2150 4900 9 8 1 1 0 6 1
 pinlabel=ADC-B4
 T 2150 4900 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 4600 2200 4600 1 0 0
 {
@@ -965,7 +965,7 @@ pinseq=88
 T 2150 4300 9 8 1 1 0 6 1
 pinlabel=ADC-B3
 T 2150 4300 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 4000 2200 4000 1 0 0
 {
@@ -987,7 +987,7 @@ pinseq=90
 T 2150 3700 9 8 1 1 0 6 1
 pinlabel=ADC-B2
 T 2150 3700 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 3400 2200 3400 1 0 0
 {
@@ -1009,7 +1009,7 @@ pinseq=92
 T 2150 3100 9 8 1 1 0 6 1
 pinlabel=ADC-B1
 T 2150 3100 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 2800 2200 2800 1 0 0
 {
@@ -1031,7 +1031,7 @@ pinseq=94
 T 2150 2500 9 8 1 1 0 6 1
 pinlabel=ADC-B0
 T 2150 2500 5 8 0 1 0 8 1
-pintype=io
+pintype=in
 }
 P 2500 1900 2200 1900 1 0 0
 {
