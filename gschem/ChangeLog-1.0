@@ -1,3 +1,8 @@
+2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_window.c: Add verbose log message when active file/page
+      changes.
+
 2015-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Fix typo in menu.
