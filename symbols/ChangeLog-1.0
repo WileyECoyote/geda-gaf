@@ -1,3 +1,7 @@
+2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/ldo/TPS73527DRB-1.sym: Add symbol Dual Step Down Converter, Adjustable
+
 2015-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93LC56A-E-SN-1.sym: Add symbol:2K EEPROM, 8 Bit Serial,
