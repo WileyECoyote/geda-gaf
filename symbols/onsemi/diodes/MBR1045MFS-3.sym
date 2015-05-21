@@ -31,7 +31,7 @@ description=Schottky Diode
 T 300 1150 5 10 0 0 0 0 1
 documentation=http://en.wikipedia.org/wiki/Schottky_diode
 T 1850 950 9 10 0 1 0 0 1
-footprint=SO8
+footprint=SO8FL-5
 T 900 800 5 10 0 0 0 0 1
 numslots=0
 T 300 1550 5 10 0 0 0 0 1
@@ -41,7 +41,7 @@ use-license=unlimited
 T 1100 100 5 10 1 1 0 0 1
 value=MBR1045MFS
 T 1000 675 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 P 0 400 200 400 1 0 0
 {
 T 150 450 5 8 0 1 0 6 1
