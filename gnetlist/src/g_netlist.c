@@ -321,8 +321,8 @@ SCM g_get_all_connections(SCM scm_netname)
   return connlist;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief SCM API Get Netnames connected to a Pin belonging to UREF
  *  \par Function Description
  *
  * Given a uref and a pin number return a list of:
@@ -421,8 +421,8 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief  SCM API Get Nets of a given Net UREF
  *  \par Function Description
  *
  * Given a uref, Return a list of pairs, each pair contains the name
@@ -541,12 +541,12 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
   return scm_reverse_x (ret, SCM_EOL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief SCM API Get Attribute by Pin Sequence
  *  \par Function Description
- *
- * takes a uref and pinseq number and returns wanted_attribute associated
- * with that pinseq pin and component
+ *  This API function provides a method to retrieve an attribute given
+ *  a uref and pinseq number. Returns the wanted_attribute associated
+ *  with that pinseq pin and component
  */
 SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
                               SCM scm_wanted_attrib)
@@ -632,12 +632,12 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   return (scm_return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief SCM API Get Attribute by Pin Number
  *  \par Function Description
- *
- * this takes a pin number and returns the appropriate attribute on that pin
- * scm_pin is the value associated with the pinnumber= attribute and uref
+ *  This API function takes a pin number and returns the appropriate
+ *  attribute on that pin scm_pin is the value associated with the
+ *  pinnumber= attribute and uref
  */
 SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM
 scm_wanted_attrib)
@@ -677,31 +677,34 @@ scm_wanted_attrib)
   /* search for the first instance */
   /* through the entire list */
   while (nl_current != NULL && !done) {
+
     if (nl_current->component_uref) {
+
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
-        pin_object =
-        o_complex_find_pin_by_attribute (nl_current->object_ptr,
-                                         "pinnumber", pin);
+        pin_object =  o_complex_find_pin_by_attribute (nl_current->object_ptr,
+                                                       "pinnumber", pin);
 
         if (pin_object) {
 
           /* only look for the first occurance of wanted_attrib */
-          return_value =
-          o_attrib_search_object_attribs_by_name (pin_object,
-                                                  wanted_attrib, 0);
+          return_value = o_attrib_search_object_attribs_by_name (pin_object,
+                                                                 wanted_attrib, 0);
 #if DEBUG
           if (return_value) {
             printf("GOT IT: %s\n", return_value);
           }
 #endif
-        } else if (strcmp("pintype",
-          wanted_attrib) == 0) {
+        }
+        else if (strcmp("pintype", wanted_attrib) == 0) {
+
           if (nl_current->cpins) {
-            CPINLIST *pinobject =
-            s_cpinlist_search_pin(nl_current->cpins, pin);
+
+            CPINLIST *pinobject = s_cpinlist_search_pin(nl_current->cpins, pin);
+
             if (pinobject) {
-              return_value="pwr";
+
+              return_value = "pwr";
 #if DEBUG
 
               printf("Supplied pintype 'pwr' for artificial pin '%s' of '%s'\n",
@@ -709,7 +712,7 @@ scm_wanted_attrib)
 #endif
             }
           }
-          }
+        }
       }
     }
     nl_current = nl_current->next;
@@ -719,7 +722,8 @@ scm_wanted_attrib)
 
   if (return_value) {
     scm_return_value = scm_from_utf8_string (return_value);
-  } else {
+  }
+  else {
     scm_return_value = scm_from_utf8_string ("unknown");
   }
 
