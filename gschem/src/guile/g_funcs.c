@@ -91,7 +91,7 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
   return scm_response;
 }
 
-/*! \brief SCM API terminated program
+/*! \brief SCM API terminate program
  *  \par Function Description
  *  Scheme
  */
