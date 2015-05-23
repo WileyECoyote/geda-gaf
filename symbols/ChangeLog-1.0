@@ -1,5 +1,9 @@
 2015-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/ldo/TPS73527DRV-1.sym: Add symbol;IC,LDO REG,HI-PSRR,2.7V,500mA,VSON-6.
+
+2015-05-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/video/TDA8703-1.sym: Add symbol; 8 Bit ADC, Video.
 
 2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
