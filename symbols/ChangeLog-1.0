@@ -1,3 +1,12 @@
+2015-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/FT2232H: Change footprint to LQFP-64-10-EP, datasheet does not
+      provide dimensions of exposed paddle for LQFP, or whether the paddle
+      is even exposed.
+
+        * serial/FT2232H-1.sym
+        * serial/FT2232H-2.sym
+
 2015-05-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/ldo/TPS73527DRV-1.sym: Add symbol;IC,LDO REG,HI-PSRR,2.7V,500mA,VSON-6.
