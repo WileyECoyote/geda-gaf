@@ -7,7 +7,7 @@ L 600 0 0 0 3 0 2 0 -1 -1
 T 600 250 5 10 0 1 0 6 1
 device=INPUT
 T 600 250 5 10 1 1 0 6 1
-netname=INPUT
+pinlabel=INPUT
 T 50 450 5 10 0 1 0 0 1
 description=Input module port
 T 50 600 9 10 0 0 0 0 1
@@ -16,8 +16,6 @@ T 900 300 5 10 0 1 0 0 1
 refdes=none
 T 900 300 5 10 0 1 0 0 1
 footprint=none
-T 900 150 5 10 0 1 0 0 1
-net=INPUT:1
 P 700 100 900 100 1 0 1
 {
 T 750 150 5 10 0 1 0 0 1
