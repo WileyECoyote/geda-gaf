@@ -1,18 +1,22 @@
-v 20150315 2
-T 1900 2250 9 10 1 1 0 6 1
-footprint=MSOP10
-T 100 3800 5 10 0 0 0 0 1
-author=AutoTron
-T 100 2800 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/tps54060.pdf
-T 100 3000 5 10 0 1 0 0 1
-description=0.5A, 60V Step Down DC/DC Converter
-T 100 2600 9 10 0 0 0 0 1
-numslots=0
+v 20150401 2
 T 1900 2550 8 10 1 1 0 6 1
 refdes=U?
 T 100 3200 5 10 0 0 0 0 1
 device=TPS54060
+T 1600 150 9 10 0 1 0 6 1
+footprint=MSOP10-EP
+T 100 2800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/tps54060.pdf
+T 100 3000 5 10 0 1 0 0 1
+description=0.5A, 60V Step Down DC/DC Converter
+T 675 2075 9 8 0 0 0 0 1
+symversion=0.2
+T 100 2600 9 10 0 0 0 0 1
+numslots=0
+T 1900 2400 9 10 1 0 0 6 1
+TPS54060
+T 1900 2250 9 10 1 0 0 6 1
+MSOP10
 B 400 100 1500 2100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 100 1900 400 1900 1 0 0
 {
@@ -124,14 +128,6 @@ pinlabel=PH
 T 1850 1825 5 8 0 1 0 8 1
 pintype=in
 }
-T 1900 2400 9 10 1 0 0 6 1
-TPS54060
-T 100 3600 5 10 0 0 0 0 1
-dist-license=GPL
-T 100 3400 5 10 0 0 0 0 1
-use-license=unlimited
-T 675 2075 9 8 0 0 0 0 1
-symversion=0.1
 P 2200 400 1900 400 1 0 0
 {
 T 2025 450 5 8 1 1 0 0 1
@@ -143,3 +139,9 @@ pinlabel=PAD
 T 1850 325 5 8 0 1 0 8 1
 pintype=in
 }
+T 100 3800 5 10 0 0 0 0 1
+author=AutoTron
+T 100 3600 5 10 0 0 0 0 1
+dist-license=GPL
+T 100 3400 5 10 0 0 0 0 1
+use-license=unlimited
