@@ -1,12 +1,12 @@
 v 20070626 1
 B 300 300 2900 8600 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
-T 300 10050 5 10 0 0 0 0 1
+T 1500 4550 5 10 0 1 0 3 1
 footprint=QFP64
 T 3200 9000 8 10 1 1 0 6 1
 refdes=U?
-T 300 9850 5 10 0 0 0 0 1
+T 1200 1250 5 10 0 0 0 0 1
 numslots=0
-T 300 9250 5 10 0 0 0 0 1
+T 3000 9250 5 10 0 1 0 0 1
 device=MAX7852
 P 1100 8900 1100 9200 1 0 1
 {
@@ -712,9 +712,11 @@ pinlabel=\_EA\_/VPP
 T 3150 700 5 8 0 1 0 8 1
 pintype=in
 }
-T 300 9450 5 10 0 0 0 0 1
+T 3000 9450 5 10 0 1 0 0 1
 description=flash-programmable 12-bit integrated data-acquisition system
-T 300 9650 5 10 0 0 0 0 1
+T 3000 9650 5 10 0 1 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX7651-MAX7652.pdf
-T 1100 4800 9 10 1 0 0 0 1
+T 1500 4800 9 10 1 0 0 3 1
 MAX7651/2
+T 1100 1050 5 10 0 0 0 0 1
+symversion=0.1
