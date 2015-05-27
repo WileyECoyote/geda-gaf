@@ -1,3 +1,8 @@
+2015-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62051-1.sym: Add symbol:synchronous step-down converter,
+      800mA, MSOP10.
+
 2015-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/FT2232H: Change footprint to LQFP-64-10-EP, datasheet does not
