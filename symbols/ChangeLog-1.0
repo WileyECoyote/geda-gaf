@@ -1,3 +1,8 @@
+2015-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * vishay/dual_nmos/SQJ844AEP-1.sym: Revise pin numbers, datasheet unclear on
+      which drain should be pin 5 and which is pin 6. Bump symversion to 0.3.
+
 2015-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62051-1.sym: Add symbol:synchronous step-down converter,

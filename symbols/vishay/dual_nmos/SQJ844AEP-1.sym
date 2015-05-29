@@ -6,7 +6,7 @@ description=Dual N channel MOS transistor
 T 1200 1100 8 10 1 1 0 0 1
 refdes=Q?
 T 0 1150 5 8 0 0 0 0 1
-symversion=0.2
+symversion=0.3
 T 1200 900 5 10 1 1 0 0 1
 value=SQJ844AEP
 T 0 1000 5 8 0 0 0 0 1
@@ -14,9 +14,9 @@ numslots=2
 T 1200 700 9 8 1 1 0 0 1
 footprint=SO8L
 T 1100 250 5 8 0 0 0 0 1
-slotdef=1:5,2,1
+slotdef=1:6,2,1
 T 1100 100 5 8 0 0 0 0 1
-slotdef=2:6,4,3
+slotdef=2:5,4,3
 T 0 1450 9 8 0 0 0 0 1
 documentation=http://www.wikipedia.org/wiki/MOSFET
 L 350 490 595 490 3 0 1 0 -1 -1
