@@ -1,3 +1,8 @@
+2015-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62050-1.sym: Add symbol:synchronous step-down converter,
+      800mA, MSOP10.
+
 2015-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * vishay/dual_nmos/SQJ844AEP-1.sym: Revise pin numbers, datasheet unclear on
