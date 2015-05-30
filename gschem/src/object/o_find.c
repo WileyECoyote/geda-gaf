@@ -184,7 +184,8 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 
           Object *object = iter->data;
 
-          if (object->selectable && object->visibility > 0) {
+          if (object->visibility && (object->selectable || w_current->ALTKEY))
+          {
 
             found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
 
@@ -208,7 +209,8 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 
       Object *object = iter->data;
 
-      if (object->selectable && object->visibility > 0) {
+      if (object->visibility && (object->selectable || w_current->ALTKEY))
+      {
 
         found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
 

@@ -1,3 +1,8 @@
+2015-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_find.c: Modify conditionals in o_find_object to also
+      check !selectables if ALT key down.
+
 2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_window.c: Add verbose log message when active file/page
