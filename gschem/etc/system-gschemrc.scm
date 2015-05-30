@@ -1349,7 +1349,7 @@
 ; The main purpose of this keyword is to allow the user to add any attributes
 ; which should be in this dialog box.
 ; Some of these names are specific for symbols while others are for general
-; components or nets.  The attribute names are case sensitive. (change this?)
+; components or nets. The attribute names are case sensitive. (change this?)
 ;
 ; The order of the attribute-name keywords determines the order they
 ; are displayed.
