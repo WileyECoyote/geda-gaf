@@ -119,7 +119,7 @@ device=TPS62051
 T 400 2600 5 10 1 1 0 0 1
 footprint=MSOP10
 T 400 2800 5 10 0 0 0 0 1
-description=Synchronous Step-down Converter, Adjustable
+description=Synchronous Step-down Converter, Adjustable, ENH LB
 T 400 3200 5 10 0 0 0 0 1
 numslots=0
 T 850 2150 5 8 0 0 0 0 1
