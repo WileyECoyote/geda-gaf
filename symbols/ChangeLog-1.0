@@ -1,3 +1,8 @@
+2015-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62052-1.sym: Add symbol:synchronous step-down converter,
+      800mA, MSOP10, fix 1.5V.
+
 2015-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62050-1.sym: Add symbol:synchronous step-down converter,
