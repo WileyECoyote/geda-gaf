@@ -106,7 +106,6 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
   return slotdef;
 }
 
-
 /*! \brief Update all slot attributes in an object.
  *
  *  \par Function Description
@@ -217,7 +216,8 @@ void s_slot_update_object (Object *object)
       }
 
       pin_counter++;
-    } else {
+    }
+    else {
       u_log_message (_("component missing pinseq= attribute\n"));
     }
 
