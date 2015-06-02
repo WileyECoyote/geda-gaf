@@ -54,7 +54,7 @@
 
 ; attribute-promotion string
 ;
-; This keyword controls if attribute promotion occurs when you instanciate a
+; This keyword controls if attribute promotion occurs when you instantiate a
 ; component.  Attribute promotion basically means that any floating attribute
 ; (unattached) which is inside a symbol gets "promoted" or attached to the
 ; newly inserted component.  This only occurs when the component is
