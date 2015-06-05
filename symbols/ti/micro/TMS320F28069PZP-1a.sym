@@ -1,4 +1,4 @@
-v 20150315 2
+v 20150401 2
 P 100 9400 400 9400 1 0 0
 {
 T 300 9450 5 8 1 1 0 6 1
@@ -356,21 +356,34 @@ T 5200 10100 8 10 1 1 0 6 1
 refdes=U?
 T 400 10100 9 10 1 0 0 0 1
 TMS320F28069PZP
-T 400 10500 5 10 0 0 0 0 1
-device=TMS320F28069PZP
-T 400 10300 5 10 0 0 0 0 1
-footprint=TQFP-100
-T 400 11500 5 10 0 0 0 0 1
-author=AutoTron
 T 400 10700 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TMS320F28075/
+device=TMS320F28069PZP
+T 400 10500 5 10 0 0 0 0 1
+footprint=TQFP-100-14-EP
+T 400 11700 5 10 0 0 0 0 1
+author=AutoTron
 T 400 10900 5 10 0 0 0 0 1
-description=Piccolo Microcontroller, 90MHz
-T 2100 10300 5 10 0 0 0 0 1
-numslots=0
-T 400 11300 5 10 0 0 0 0 1
-dist-license=GPL3
+documentation=http://www.ti.com/product/TMS320F28075/
 T 400 11100 5 10 0 0 0 0 1
+description=Piccolo Microcontroller, 90MHz
+T 3400 10100 5 10 0 0 0 0 1
+numslots=0
+T 400 11500 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 11300 5 10 0 0 0 0 1
 use-license=unlimited
 T 2100 10100 9 10 0 0 0 0 1
-symversion=0.2
+symversion=0.3
+T 400 10300 9 10 1 0 0 0 1
+TQFP-100
+P 100 500 400 500 1 0 0
+{
+T 300 550 5 8 1 1 0 6 1
+pinnumber=101
+T 300 450 5 8 0 1 0 8 1
+pinseq=101
+T 450 500 9 8 1 1 0 0 1
+pinlabel=PAD
+T 450 500 5 8 0 1 0 2 1
+pintype=pwr
+}

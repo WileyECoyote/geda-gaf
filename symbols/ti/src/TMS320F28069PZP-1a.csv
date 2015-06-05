@@ -85,6 +85,8 @@ use-license	unlimited
 92	92	pwr	line	l		VSS
 			spacer	l		
 26	26	pwr	line	l		VSSA
+			spacer	l		
+101	101	pwr	line	l		PAD
 			spacer	r		
 46	46	pwr	line	r		VDD3VFL
 			spacer	r		
