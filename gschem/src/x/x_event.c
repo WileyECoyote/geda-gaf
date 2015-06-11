@@ -78,7 +78,7 @@ int x_event_button_pressed(GtkWidget      *widget,
   if (event->type == GDK_2BUTTON_PRESS) {
     if (w_current->inside_action) {
 
-      switch(w_current->event_state) {
+      switch (w_current->event_state) {
         case (NETMODE):
           o_net_end (w_current, w_x, w_y);
           i_status_action_stop(w_current);
@@ -127,7 +127,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       }
     }
     else {
-      switch(w_current->event_state) {
+      switch (w_current->event_state) {
         case (STARTSELECT):
         case (SELECT):
           list = geda_list_get_glist(Current_Selection);
@@ -152,7 +152,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       /* End action */
 
       if (Current_PlaceList != NULL) {
-        switch(w_current->event_state) {
+        switch (w_current->event_state) {
           case (MOVEMODE):
             o_move_end(w_current);
             i_status_set_state(w_current, SELECT);
@@ -209,7 +209,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       }
     }
 
-    switch(w_current->event_state) {
+    switch (w_current->event_state) {
 
       case(DESELECT):
         w_current->event_state = STARTDESELECT;
@@ -284,7 +284,7 @@ int x_event_button_pressed(GtkWidget      *widget,
     }
     else {
 
-      switch(w_current->middle_button) {
+      switch (w_current->middle_button) {
 
         case(MOUSE_MIDDLE_ACTION):
 
@@ -348,7 +348,7 @@ int x_event_button_pressed(GtkWidget      *widget,
       else {
 
         if (!w_current->SHIFTKEY && w_current->third_button_cancel) {
-          switch(w_current->event_state) {
+          switch (w_current->event_state) {
             case(DESELECT):
             case(SELECT):
               break;
@@ -437,7 +437,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
     /* Switch statement to evaluate state transitions */
 
-    switch(w_current->event_state) {
+    switch (w_current->event_state) {
       case(DESELECT):
       case(SELECT):
         /* do nothing - is almost same as not having a case */
@@ -491,7 +491,7 @@ bool x_event_button_released (GtkWidget      *widget,
     if (w_current->inside_action) {
 
       if (Current_PlaceList != NULL) {
-        switch(w_current->event_state) {
+        switch (w_current->event_state) {
           case (DRAGMOVE):
             o_move_end(w_current);
             i_status_set_state(w_current, SELECT);
@@ -503,7 +503,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
         int w_x, w_y;
 
-        switch(w_current->event_state) {
+        switch (w_current->event_state) {
           case(PATHMODE):
             w_x = snap_grid (w_current, unsnapped_wx);
             w_y = snap_grid (w_current, unsnapped_wy);
@@ -521,7 +521,7 @@ bool x_event_button_released (GtkWidget      *widget,
       }
     }
     else {
-      switch(w_current->event_state) {
+      switch (w_current->event_state) {
         case(COPYMODE):
           i_status_set_state(w_current, SELECT);
           break;
@@ -580,12 +580,12 @@ bool x_event_button_released (GtkWidget      *widget,
     }
     else {
 
-      switch(w_current->middle_button) {
+      switch (w_current->middle_button) {
 
         case(MOUSE_MIDDLE_ACTION):
 
           if (w_current->inside_action && Current_PlaceList) {
-            switch(w_current->event_state) {
+            switch (w_current->event_state) {
               case(DRAGMOVE):
                 o_move_end(w_current);
                 i_status_set_state(w_current, SELECT);
@@ -633,7 +633,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
       i_status_action_stop(w_current);
 
-      switch(w_current->event_state) {
+      switch (w_current->event_state) {
         case(NETMODE):
         //case(COMPMODE):
           break;
@@ -988,7 +988,7 @@ bool x_event_motion (GtkWidget      *widget,
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
 #if DEBUG_EVENTS
-  /*  printf("MOTION!\n");*/
+  printf("MOTION!\n");
 #endif
 
 #ifdef HAVE_LIBSTROKE
@@ -1008,8 +1008,9 @@ bool x_event_motion (GtkWidget      *widget,
       }
       gdk_event_put(test_event); /* put it back in front of the queue */
       gdk_event_free(test_event);
-    if (skip_event == 1)
+    if (skip_event == 1) {
       return 0;
+    }
   }
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
@@ -1026,7 +1027,7 @@ bool x_event_motion (GtkWidget      *widget,
   /* Update coordinates display on the status bar*/
   i_status_update_coordinates(w_current, w_x, w_y);
 
-  if(w_current->doing_pan) {
+  if (w_current->doing_pan) {
 
     int pdiff_x = (event->x - start_pan_x) * w_current->mousepan_gain;
     int pdiff_y = (event->y - start_pan_y) * w_current->mousepan_gain;
@@ -1042,8 +1043,10 @@ bool x_event_motion (GtkWidget      *widget,
   }
 
   if (w_current->inside_action) {
+
     if (Current_PlaceList != NULL) {
-      switch(w_current->event_state) {
+
+      switch (w_current->event_state) {
         case (COMPMODE)  :
         case (COPYMODE)  :
         case (MCOPYMODE) :
@@ -1053,7 +1056,8 @@ bool x_event_motion (GtkWidget      *widget,
       }
     }
     else {
-      switch(w_current->event_state) {
+
+        switch (w_current->event_state) {
 
         case(NETMODE)    :  o_net_motion     (w_current, w_x, w_y); break;
         case(PINMODE)    :  o_pin_motion     (w_current, w_x, w_y); break;
@@ -1072,13 +1076,13 @@ bool x_event_motion (GtkWidget      *widget,
     }
   }
   else {
-    switch(w_current->event_state) {
+    switch (w_current->event_state) {
       case(NETMODE)    :   o_net_start_magnetic(w_current, w_x, w_y); break;
       default: break;
     }
   }
 
-  switch(w_current->event_state) {
+  switch (w_current->event_state) {
 
     case(STARTSELECT):
       if (o_select_motion (w_current, unsnapped_wx, unsnapped_wy)) {
