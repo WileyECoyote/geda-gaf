@@ -236,8 +236,8 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
 
 /*! \brief Offset selected objects Hot mode
  *  \par Function Description
- *  Create a copy of selected objects at the pointer position and offset the
- *  pointer cursor the same amount.
+ *  Create a copy of selected objects at the pointer position and offset
+ *  the pointer cursor the same amount.
  */
 void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
 {
@@ -279,6 +279,14 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
   i_status_action_stop(w_current);
 }
 
+/*! \brief Determine where to Offset a list of objects
+ *  \par Function Description
+ *  Sets toplevel coordinates if x,y is outside the bounds of the
+ *  list of objects, first_w[x,y] is set to the lower left bounds.
+ *  The second_w[x,y] varibles are set based on the relationship
+ *  of x,y to the point nearest a temporary created based on the
+ *  boundary of the objects in the list.
+ */
 static bool
 o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
 {
@@ -352,9 +360,9 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
 
 /*! \brief Offset selected objects a Preset Distance
  *  \par Function Description
- *  Create a copy of selected objects at a preset offset in the direction
- *  of the pointer position. The new objects replace the old objects as the
- *  selection if the SHIFT key is down when then list is placed.
+ *  Places a copy of selected objects at a preset offset in the direction
+ *  of the pointer position. The new objects replaces the old objects as
+ *  the selection if the SHIFT key is down when then list is placed.
  */
 void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
 {

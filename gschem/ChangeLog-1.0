@@ -1,5 +1,9 @@
 2015-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * object/o_edit.c: Add Doxygen comments for function o_edit_set_offset.
+
+2015-06-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * object/o_edit.c: Fix conditionals in function o_edit_set_offset.
 
 2015-05-29 Wiley E. Hill <wileyhill@gmail.com>
