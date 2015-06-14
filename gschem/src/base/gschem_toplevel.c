@@ -1,4 +1,4 @@
-/* -*- gschem_page.c -*-
+/* -*- gschem_toplevel.c -*-
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -21,8 +21,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: November, 4, 2013
+ * Contributing Author: Wiley Edward Hill
+ * Date Contributed: November, 4, 2013
  */
 
 #include <gschem.h>
