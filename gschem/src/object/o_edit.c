@@ -318,19 +318,19 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
       g_object_unref(tmp);
 
       /* Lateral gets the tie */
-      if (nx == left) {
+      if (x < nx && nx == left) {
         w_current->second_wx = left - w_current->offset;
         w_current->second_wy = ymin;
       }
-      else if (nx == right) {
+      else if (x > nx && nx == right) {
         w_current->second_wx = left + w_current->offset;
         w_current->second_wy = ymin;
       }
-      else if (ny == top) {
+      else if (y > ny && ny == top) {
         w_current->second_wx = left;
         w_current->second_wy = ymin + w_current->offset;
       }
-      else if (ny == bottom) {
+      else if (y < ny && ny == bottom) {
         w_current->second_wx = left;
         w_current->second_wy = ymin - w_current->offset;
       }
