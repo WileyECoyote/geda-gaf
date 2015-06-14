@@ -396,7 +396,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 
           case ENDDND_MOVE_OBJ:
             if (w_current->dnd_save_state == MOVEMODE ||
-              w_current->dnd_save_state == DRAGMOVE)
+                w_current->dnd_save_state == DRAGMOVE)
             {
               w_current->second_wx = x;
               w_current->second_wy = y;
