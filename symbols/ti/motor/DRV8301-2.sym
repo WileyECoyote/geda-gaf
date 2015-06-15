@@ -5,7 +5,7 @@ refdes=U?
 T 300 10700 5 10 0 0 0 0 1
 device=DRV8301
 T 300 9900 5 10 0 1 0 0 1
-footprint=TSSOP56N-EP
+footprint=HTSSOP-DCA-56
 T 1600 10100 5 10 0 0 0 0 1
 numslots=0
 T 300 11300 5 10 0 0 0 0 1
@@ -648,4 +648,4 @@ T 350 175 5 8 0 1 0 2 1
 pintype=pwr
 }
 T 300 10100 5 10 0 0 0 0 1
-symversion=0.1
+symversion=0.2
