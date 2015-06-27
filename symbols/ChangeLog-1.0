@@ -1,3 +1,9 @@
+2015-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/motor/DRV8301-1.sym: Update footprint=HTSSOP-DCA-56, bump symversion=0.2.
+
+    * ti/motor/DRV8301-1.sym: Update footprint=HTSSOP-DCA-56, bump symversion=0.2.
+
 2015-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62052-1.sym: Add symbol:synchronous step-down converter,
