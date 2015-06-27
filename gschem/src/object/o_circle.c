@@ -28,49 +28,38 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Invalidate Temporary drawing artifacts for Circle objects
+/*! \brief Draw circle from GschemToplevel object.
  *  \par Function Description
- *   Retrieves coordinates from top-level and invalidate the bounding
- *   region of a Circle object.
- */
-void o_circle_invalidate_rubber (GschemToplevel *w_current)
-{
-  int cx, cy, radius;
-
-  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &cx, &cy);
-  radius = SCREENabs (w_current, w_current->distance);
-
-  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
-                                cx + radius, cy + radius);
-}
-
-/*! \brief Start process to input a new circle.
- *  \par Function Description
- *  This function starts the process to input a new circle. Parameters for
- *  this circle are put into/extracted from the <B>w_current</B> toplevel
- *  structure.
- *  <B>w_x</B> and <B>w_y</B> are current coordinates of the mouse pointer in
- *  world units.
+ *  This function draws the circle from the variables in the GschemToplevel
+ *  structure <B>*w_current</B>.
+ *  The center of the circle is at (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>) and its radius is in <B>w_current->distance</B>.
  *
- *  The first step of the circle input is to set the center of the arc.
- *  This center is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
+ *  It draws a horizontal radius segment on the right half of the circle and
+ *  the circle with the selection color.
  *
  *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
+void o_circle_draw_rubber (GschemToplevel *w_current)
 {
-  i_status_action_start(w_current);
+  double wwidth = 0;
+  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
+  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
 
-  /* center of circle */
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
+  eda_cairo_center_arc (cr, flags, wwidth, wwidth,
+                        w_current->first_wx, w_current->first_wy,
+                        w_current->distance,
+                        0, 360);
 
-  /* radius */
-  w_current->distance = 0;
+  eda_cairo_line (cr, flags, END_NONE, wwidth,
+                  w_current->first_wx,
+                  w_current->first_wy,
+                  w_current->first_wx + w_current->distance,
+                  w_current->first_wy);
 
-  w_current->rubber_visible = TRUE;
+  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
 }
 
 /*! \brief End the input of a circle.
@@ -97,30 +86,69 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
 
-  if (w_current->inside_action) {
+  w_current->second_wy = w_x;
+  w_current->second_wy = w_y;
 
-    i_status_action_stop(w_current);
-    w_current->rubber_visible = FALSE;
+  i_status_action_stop(w_current);
+  w_current->rubber_visible = FALSE;
 
-    /* circle with null radius are not allowed */
-    if (w_current->distance != 0) { /* cancel the object creation */
+  /* circle with null radius are not allowed */
+  if (w_current->distance != 0) { /* cancel the object creation */
 
-      /* create the object */
-      new_obj = o_circle_new (GRAPHIC_COLOR,
-                              w_current->first_wx, w_current->first_wy,
-                              w_current->distance);
-      new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
-      s_page_append_object (toplevel->page_current, new_obj);
+    /* create the object */
+    new_obj = o_circle_new (GRAPHIC_COLOR,
+                            w_current->first_wx, w_current->first_wy,
+                            w_current->distance);
+    new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
+    s_page_append_object (toplevel->page_current, new_obj);
 
-      /* Call add-objects-hook */
-      g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
+    /* Call add-objects-hook */
+    g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
-      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
-    }
+    o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
   }
-  else {
-      BUG_MSG("Not inside action");
-  }
+}
+
+/*! \brief Initialize Variables to input a new circle.
+ *  \par Function Description
+ *  This function initialize variables to input a new circle. Parameters
+ *  for the circle are stored in variables in the <B>w_current</B> toplevel
+ *  structure. <B>w_x</B> and <B>w_y</B> are current coordinates of the ,ouse
+ *  pointer in world units.
+ *
+ *  The first step of the circle input is to set the center of the arc. The
+ *  center is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+static void o_circle_init(GschemToplevel *w_current, int w_x, int w_y)
+{
+  /* center of circle */
+  w_current->first_wx = w_x;
+  w_current->first_wy = w_y;
+
+  /* radius */
+  w_current->distance = 0;
+
+  w_current->rubber_visible = TRUE;
+}
+
+/*! \brief Invalidate Temporary drawing artifacts for Circle objects
+ *  \par Function Description
+ *   Retrieves coordinates from top-level and invalidate the bounding
+ *   region of a Circle object.
+ */
+void o_circle_invalidate_rubber (GschemToplevel *w_current)
+{
+  int cx, cy, radius;
+
+  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &cx, &cy);
+  radius = SCREENabs (w_current, w_current->distance);
+
+  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
+                                cx + radius, cy + radius);
 }
 
 /*! \brief Draw temporary circle while dragging edge.
@@ -172,36 +200,24 @@ void o_circle_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Draw circle from GschemToplevel object.
+/*! \brief Start process to input a new circle.
  *  \par Function Description
- *  This function draws the circle from the variables in the GschemToplevel
- *  structure <B>*w_current</B>.
- *  The center of the circle is at (<B>w_current->first_wx</B>,
- *  <B>w_current->first_wy</B>) and its radius is in <B>w_current->distance</B>.
+ *  This function starts the process to input a new circle. Parameters for
+ *  this circle are put into/extracted from the <B>w_current</B> toplevel
+ *  structure.
+ *  <B>w_x</B> and <B>w_y</B> are current coordinates of the mouse pointer in
+ *  world units.
  *
- *  It draws a horizontal radius segment on the right half of the circle and
- *  the circle with the selection color.
+ *  The first step of the circle input is to set the center of the arc.
+ *  This center is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
  *
  *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_circle_draw_rubber (GschemToplevel *w_current)
+void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  double wwidth = 0;
-  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
-  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
+  o_circle_init(w_current, w_x, w_y);
 
-  eda_cairo_center_arc (cr, flags, wwidth, wwidth,
-                        w_current->first_wx, w_current->first_wy,
-                        w_current->distance,
-                        0, 360);
-
-  eda_cairo_line (cr, flags, END_NONE, wwidth,
-                  w_current->first_wx,
-                  w_current->first_wy,
-                  w_current->first_wx + w_current->distance,
-                  w_current->first_wy);
-
-  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
+  i_event_start_action_handler(w_current, o_circle_init, o_circle_end);
 }

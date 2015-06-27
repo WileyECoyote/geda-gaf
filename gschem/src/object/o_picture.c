@@ -50,39 +50,6 @@
 #define QUAD_14_ASPECT(w) ((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
 #define QUAD_23_ASPECT(w) ((w)->first_wx - (w)->second_wx)/(w)->pixbuf_wh_ratio
 
-/*! \brief Start process to input a new picture.
- *  \par Function Description
- *  This function starts the process to input a new picture. Parameters
- *  for this picture are put into/extracted from the <B>w_current</B> toplevel
- *  structure.
- *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in world
- *  coordinates.
- *
- *  The first step is to input one corner of the picture. This corner is
- *  (<B>w_x</B>,<B>w_y</B>) snapped to the grid and saved in
- *  <B>w_current->first_wx</B> and <B>w_current->first_wy</B>.
- *
- *  The other corner will be saved in (<B>w_current->second_wx</B>,
- *  <B>w_current->second_wy</B>).
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
- */
-void
-o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
-{
-  i_status_action_start(w_current);
-
-  /* init first_w[x|y], second_w[x|y] to describe box */
-  w_current->first_wx = w_current->second_wx = w_x;
-  w_current->first_wy = w_current->second_wy = w_y;
-
-  /* start to draw the box */
-  w_current->rubber_visible = TRUE;
-  o_box_invalidate_rubber (w_current);
-}
-
 /*! \brief End the input of a new Picture.
  *
  *  \par Function Description
@@ -107,102 +74,37 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   int picture_left,  picture_top;
   int picture_width, picture_height;
 
-  if (w_current->inside_action) {
+  w_current->second_wy = w_x;
+  w_current->second_wy = w_y;
 
-    i_status_action_stop(w_current);
+  i_status_action_stop(w_current);
 
-    /* erase the temporary picture */
-    w_current->rubber_visible = FALSE;
+  /* erase the temporary picture */
+  w_current->rubber_visible = FALSE;
 
-    picture_left   = w_current->rubber_x1;
-    picture_top    = w_current->rubber_y1;
-    picture_width  = w_current->rubber_x2;
-    picture_height = w_current->rubber_y2;
+  picture_left   = w_current->rubber_x1;
+  picture_top    = w_current->rubber_y1;
+  picture_width  = w_current->rubber_x2;
+  picture_height = w_current->rubber_y2;
 
-    /* pictures with null width and height are not allowed */
-    if ((picture_width != 0) && (picture_height != 0)) {
+  /* pictures with null width and height are not allowed */
+  if ((picture_width != 0) && (picture_height != 0)) {
 
-      /* create the new picture object */
-      new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
-                                       picture_left, picture_top,
-                                       picture_left + picture_width,
-                                       picture_top - picture_height,
-                                    0, FALSE, FALSE);
+    /* create the new picture object */
+    new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
+                            picture_left, picture_top,
+                            picture_left + picture_width,
+                            picture_top - picture_height,
+                            0, FALSE, FALSE);
 
-      s_page_append_object (toplevel->page_current, new_obj);
+    s_page_append_object (toplevel->page_current, new_obj);
 
-      /* Run %add-objects-hook */
-      g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
+    /* Run %add-objects-hook */
+    g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
-      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
+    o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
 
-    }  /* else cancel creation of object */
-  }
-  else {
-     BUG_MSG("Not inside action\n");
-  }
-}
-
-/*! \brief Draw temporary picture out-line while sizing pictures
- *
- *  \par Function Description
- *  This function is called to update the coordinates of the pointer
- *  position. New world coordinates second_wx, and second_wy  are set
- *  according to the <B>w_x</B> and <B>w_y</B> parameters.
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
- */
-void
-o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
-{
-  if (w_current->inside_action) {
-
-    /* erase the previous temporary box */
-    if (w_current->rubber_visible) {
-      o_picture_invalidate_rubber (w_current);
-    }
-
-    /* update the points with pointer/mouse coordinates */
-    w_current->second_wx = w_x;
-    w_current->second_wy = w_y;
-
-    /* set flag to draw the new temporary box */
-    w_current->rubber_visible = 1;
-  }
-}
-
-/*! \brief Invalidate the Rubber for Picture Objects
- *
- *  \par Function Description
- *  This function invalidates the regions where the temporary box
- *  was drawn when sizing or re-sizing picture objects. The width
- *  and height are determined based on what was drawn, rather than
- *  using macros GET_PICTURE_WIDTH and GET_PICTURE_HEIGHT because
- *  the state of CONTROLKEY state may have changed during motion
- *  and we need to invalidate the rubber that what actually drawn.
- */
-void
-o_picture_invalidate_rubber (GschemToplevel *w_current)
-{
-  int left, top, width, height;
-
-  WORLDtoSCREEN (w_current, w_current->rubber_x1,
-                            w_current->rubber_y1, &left, &top);
-
-  width  = SCREENabs (w_current, w_current->rubber_x2);
-  height = SCREENabs (w_current, w_current->rubber_y2);
-
-  o_invalidate_rectangle (w_current, left, top, left + width, top);
-  o_invalidate_rectangle (w_current, left, top, left, top + height);
-  o_invalidate_rectangle (w_current, left + width, top, left + width, top + height);
-  o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
-
-#if DEBUG
-  fprintf(stderr, "%s \tleft  %d, top %d, width %d, height %d\n", __func__,
-                        left,     top,    width,    height);
-#endif
+  }  /* else cancel creation of object */
 }
 
 /*! \brief Draw picture from GschemToplevel object
@@ -562,6 +464,97 @@ o_picture_export (GschemToplevel *w_current, Object *o_current)
   gtk_widget_destroy (dialog);
 }
 
+/*! \brief Initialize Variables to input a new picture object.
+ *  \par Function Description
+ *  This function initialize variables to input a new picture. Parameters for
+ *  the picture are stored in the <B>w_current</B> toplevel structure.
+ *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in world
+ *  coordinates.
+ *
+ *  The first step is to input one corner of the picture. This corner is
+ *  (<B>w_x</B>,<B>w_y</B>) snapped to the grid and saved in
+ *  <B>w_current->first_wx</B> and <B>w_current->first_wy</B>.
+ *
+ *  The other corner will be saved in (<B>w_current->second_wx</B>,
+ *  <B>w_current->second_wy</B>).
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+static void o_picture_init(GschemToplevel *w_current, int w_x, int w_y)
+{
+  /* init first_w[x|y], second_w[x|y] to describe box */
+  w_current->first_wx = w_current->second_wx = w_x;
+  w_current->first_wy = w_current->second_wy = w_y;
+
+  /* start to draw the box */
+  w_current->rubber_visible = TRUE;
+  o_box_invalidate_rubber (w_current);
+}
+
+/*! \brief Invalidate the Rubber for Picture Objects
+ *
+ *  \par Function Description
+ *  This function invalidates the regions where the temporary box
+ *  was drawn when sizing or re-sizing picture objects. The width
+ *  and height are determined based on what was drawn, rather than
+ *  using macros GET_PICTURE_WIDTH and GET_PICTURE_HEIGHT because
+ *  the state of CONTROLKEY state may have changed during motion
+ *  and we need to invalidate the rubber that what actually drawn.
+ */
+void
+o_picture_invalidate_rubber (GschemToplevel *w_current)
+{
+  int left, top, width, height;
+
+  WORLDtoSCREEN (w_current, w_current->rubber_x1,
+                            w_current->rubber_y1, &left, &top);
+
+  width  = SCREENabs (w_current, w_current->rubber_x2);
+  height = SCREENabs (w_current, w_current->rubber_y2);
+
+  o_invalidate_rectangle (w_current, left, top, left + width, top);
+  o_invalidate_rectangle (w_current, left, top, left, top + height);
+  o_invalidate_rectangle (w_current, left + width, top, left + width, top + height);
+  o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
+
+#if DEBUG
+  fprintf(stderr, "%s \tleft  %d, top %d, width %d, height %d\n", __func__,
+                        left,     top,    width,    height);
+#endif
+}
+
+/*! \brief Draw temporary picture out-line while sizing pictures
+ *
+ *  \par Function Description
+ *  This function is called to update the coordinates of the pointer
+ *  position. New world coordinates second_wx, and second_wy  are set
+ *  according to the <B>w_x</B> and <B>w_y</B> parameters.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void
+o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (w_current->inside_action) {
+
+    /* erase the previous temporary box */
+    if (w_current->rubber_visible) {
+      o_picture_invalidate_rubber (w_current);
+    }
+
+    /* update the points with pointer/mouse coordinates */
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+
+    /* set flag to draw the new temporary box */
+    w_current->rubber_visible = 1;
+  }
+}
+
 /*! \brief Set active pixbuf top-level parameterd
  *
  *  \par Function Description
@@ -631,4 +624,19 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
     result = FALSE;
   }
   return result;
+}
+
+/*! \brief Start process to input a new picture.
+ *  \par Function Description
+ *  This function starts the process to input a new picture.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_picture_init(w_current, w_x, w_y);
+
+  i_event_start_action_handler(w_current, o_picture_init, o_picture_end);
 }

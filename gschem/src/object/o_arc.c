@@ -29,55 +29,44 @@
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \brief Invalidate Temporary drawing artifacts for Arc objects
+/*! \brief Draw arc from GschemToplevel object.
  *  \par Function Description
- *   Retrieves coordinates from top-level and invalidate the bounding
- *   region of a Arc object.
- */
-void o_arc_invalidate_rubber (GschemToplevel *w_current)
-{
-  int wx, wy, cx, cy, radius;
-
-  wx = w_current->first_wx;
-  wy = w_current->first_wy;
-
-  WORLDtoSCREEN (w_current, wx, wy, &cx, &cy);
-  radius = SCREENabs (w_current, w_current->distance);
-
-  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
-                                     cx + radius, cy + radius);
-}
-
-/*! \brief Start process to input a new arc.
- *  \par Function Description
- *  This function starts the process to input a new arc. Parameters for
- *  this arc are put into/extracted from the <B>w_current</B> toplevel structure.
- *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in screen unit.
- *
- *  First step of the arc input is to set the radius of the arc. The center
- *  of the arc is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
- *  The radius of the arc is in <B>w_current->distance</B>.
+ *  This function draws an arc from the variables in the GschemToplevel
+ *  structure <B>*w_current</B>.
+ *  The center of the arc is at (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>), its radius equal to <B>w_current->distance</B>,
+ *  and the start and end angle are given by <B>w_current->second_wx</B> and
+ *  <B>w_current->second_wy</B>.
  *
  *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
+void o_arc_draw_rubber (GschemToplevel *w_current)
 {
-  i_status_action_start(w_current);
+  double rad_angle;
+  int rdx, rdy;
+  double wwidth = 0;
 
-  /* set the center of the arc */
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
+  int x1 = w_current->first_wx;
+  int y1 = w_current->first_wy;
+  int x2 = w_current->second_wx;
+  int y2 = w_current->second_wy;
 
-  /* set the radius */
-  w_current->distance = 0;
+  cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
+  int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
 
-  /* set the start and end angles */
-  w_current->second_wx      = w_current->second_wy = 0;
+  eda_cairo_arc (cr, flags, wwidth, x1, y1, w_current->distance, x2, y2);
 
-  w_current->rubber_visible = TRUE;
-  w_current->which_grip     = ARC_RADIUS;
+  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
+
+  /* draw the radius line */
+  rad_angle = ((double) x2) * M_PI / 180;
+  rdx = (double) w_current->distance * cos (rad_angle);
+  rdy = (double) w_current->distance * sin (rad_angle);
+
+  eda_cairo_line (cr, flags, END_NONE, wwidth, x1, y1, x1 + rdx, y1 + rdy);
+
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
 }
 
 /*! \brief End the input of an arc.
@@ -97,24 +86,22 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
+static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
-  if (w_current->inside_action) {
+  w_current->second_wy = w_x;
+  w_current->second_wy = w_y;
 
-    i_status_action_stop(w_current);
-    w_current->rubber_visible = FALSE;
+  i_status_action_stop(w_current);
+  w_current->rubber_visible = FALSE;
 
-    /* ack! zero length radius */
-    if (w_current->distance != 0) {
+  /* ack! zero length radius */
+  if (w_current->distance != 0) {
 
-      /* Open dialog to input the start and end angle */
-      x_dialog_edit_arc_angle(w_current, NULL);
+    /* Open dialog to input the start and end angle */
+    x_dialog_edit_arc_angle(w_current, NULL);
 
-    }
   }
-  else {
-    BUG_MSG("Not inside action");
-  }
+
 }
 
 /*! \brief Ends the process of arc input.
@@ -150,6 +137,51 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   w_current->first_wx = -1;
   w_current->first_wy = -1;
   w_current->distance =  0;
+}
+
+/*! \brief Initialize Variables to input a new Arc
+ *  \par Function Description
+ *  This function initializes variables to input a new Arc. Parameters for the
+ *  Arc are stored in the <B>w_current</B> toplevel structure. <B>w_x</B> and
+ *  <B>w_y</B> are current coordinates of the pointer in world coordinates.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] w_x        Current x coordinate of pointer in world
+ *  \param [in] w_y        Current y coordinate of pointer in world
+ */
+static void o_arc_init(GschemToplevel *w_current, int w_x, int w_y)
+{
+  /* set the center of the arc */
+  w_current->first_wx = w_x;
+  w_current->first_wy = w_y;
+
+  /* set the radius */
+  w_current->distance = 0;
+
+  /* set the start and end angles */
+  w_current->second_wx      = w_current->second_wy = 0;
+
+  w_current->rubber_visible = TRUE;
+  w_current->which_grip     = ARC_RADIUS;
+}
+
+/*! \brief Invalidate Temporary drawing artifacts for Arc objects
+ *  \par Function Description
+ *   Retrieves coordinates from top-level and invalidate the bounding
+ *   region of a Arc object.
+ */
+void o_arc_invalidate_rubber (GschemToplevel *w_current)
+{
+  int wx, wy, cx, cy, radius;
+
+  wx = w_current->first_wx;
+  wy = w_current->first_wy;
+
+  WORLDtoSCREEN (w_current, wx, wy, &cx, &cy);
+  radius = SCREENabs (w_current, w_current->distance);
+
+  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
+                                     cx + radius, cy + radius);
 }
 
 /*! \brief Draw an arc using one angle modification.
@@ -235,42 +267,23 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Draw arc from GschemToplevel object.
+/*! \brief Start process to input a new arc.
  *  \par Function Description
- *  This function draws an arc from the variables in the GschemToplevel
- *  structure <B>*w_current</B>.
- *  The center of the arc is at (<B>w_current->first_wx</B>,
- *  <B>w_current->first_wy</B>), its radius equal to <B>w_current->distance</B>,
- *  and the start and end angle are given by <B>w_current->second_wx</B> and
- *  <B>w_current->second_wy</B>.
+ *  This function starts the process to input a new arc. Parameters for
+ *  this arc are put into/extracted from the <B>w_current</B> toplevel structure.
+ *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in screen unit.
+ *
+ *  First step of the arc input is to set the radius of the arc. The center
+ *  of the arc is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
+ *  The radius of the arc is in <B>w_current->distance</B>.
  *
  *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_arc_draw_rubber (GschemToplevel *w_current)
+void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  double rad_angle;
-  int rdx, rdy;
-  double wwidth = 0;
+  o_arc_init(w_current, w_x, w_y);
 
-  int x1 = w_current->first_wx;
-  int y1 = w_current->first_wy;
-  int x2 = w_current->second_wx;
-  int y2 = w_current->second_wy;
-
-  cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
-  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
-
-  eda_cairo_arc (cr, flags, wwidth, x1, y1, w_current->distance, x2, y2);
-
-  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-
-  /* draw the radius line */
-  rad_angle = ((double) x2) * M_PI / 180;
-  rdx = (double) w_current->distance * cos (rad_angle);
-  rdy = (double) w_current->distance * sin (rad_angle);
-
-  eda_cairo_line (cr, flags, END_NONE, wwidth, x1, y1, x1 + rdx, y1 + rdy);
-
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
+  i_event_start_action_handler(w_current, o_arc_init, o_arc_end1);
 }

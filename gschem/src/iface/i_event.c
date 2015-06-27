@@ -24,7 +24,7 @@
  * 02110-1301 USA
  */
 
-#include <gschem.h>
+#include "gschem.h"
 #include "x_window.h"
 
 #include <geda_debug.h>
@@ -99,7 +99,6 @@ void i_event_setup_handlers (GschemToplevel *w_current)
                          GDK_EXPOSURE_MASK            |
                          GDK_KEY_PRESS_MASK           |
                          GDK_POINTER_MOTION_MASK      |
-                         GDK_POINTER_MOTION_HINT_MASK |
                          GDK_SCROLL_MASK              |
                          GDK_VISIBILITY_NOTIFY_MASK);
 
@@ -110,4 +109,216 @@ void i_event_setup_handlers (GschemToplevel *w_current)
 
   x_dnd_setup_event_handlers(w_current);
   x_event_governor(w_current);
+}
+
+
+/* ----------------------- Setup Adder Event Handlers ---------------------- */
+
+static void i_event_adder_disconnect_events (GschemToplevel *w_current)
+{
+  GschemEvent *event = w_current->action_event;
+
+  if (event->press_hid) {
+    g_signal_handler_disconnect (DrawingArea, event->press_hid);
+    event->press_hid = 0;
+  }
+  if (event->release_hid) {
+    g_signal_handler_disconnect (DrawingArea, event->release_hid);
+    event->release_hid = 0;
+  }
+}
+
+static void i_event_adder_enable_events(GschemToplevel *w_current)
+{
+  GschemEvent *event = w_current->action_event;
+
+  i_event_block_buttons (w_current);
+
+  i_event_adder_disconnect_events(w_current);
+
+  event->press_hid   = g_signal_connect (DrawingArea, "button_press_event",
+                                         G_CALLBACK(event->press_butt),
+                                         w_current);
+  event->release_hid = g_signal_connect (DrawingArea, "button_release_event",
+                                         G_CALLBACK(event->release_butt),
+                                         w_current);
+}
+
+static void i_event_end_action_handler(GschemToplevel *w_current)
+{
+  i_event_adder_disconnect_events(w_current);
+  i_event_unblock_buttons (w_current);
+
+  //g_object_unref(w_current->action_event);
+
+  //w_current->action_event  = NULL;
+  w_current->action_event->state = 0;
+
+  i_status_action_stop(w_current);
+}
+
+/* ---------------------- Button Event Adder Handlers ---------------------- */
+static
+int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
+{
+  GschemEvent *action = w_current->action_event;
+
+  if (w_current->event_state == action->state) {
+
+    w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
+    w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
+
+    if (event->button == 1) {
+
+      int  x, y;
+      int  w_x, w_y;
+
+      SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
+
+      w_x = snap_grid (w_current, x);
+      w_y = snap_grid (w_current, y);
+
+      if (w_current->inside_action) {
+
+        action->resolver(w_current, w_x, w_y); /* aka o_shape_end */
+
+        if (event->type == GDK_2BUTTON_PRESS) {
+
+          if (w_current->event_state == PATHMODE) {
+            action->resolver(w_current, w_x, w_y);
+          }
+          else {
+            i_event_end_action_handler(w_current);
+            i_status_set_state(w_current, SELECT);
+          }
+        }
+      }
+      else {
+
+        /* Not inside action so let instigator initialize variables */
+        action->initializer(w_current, w_x, w_y);
+
+        i_status_action_start(w_current);
+        w_current->rubber_visible = TRUE;
+      }
+    }
+    else if (event->button == 2) {
+
+      if (w_current->event_state == PICTUREMODE) {
+
+        if (w_current->current_pixbuf != NULL) {
+          GEDA_UNREF(w_current->current_pixbuf);
+          w_current->current_pixbuf = NULL;
+        }
+
+        GEDA_FREE(w_current->pixbuf_filename);
+      }
+    }
+    else if (event->button == 3) {
+
+      if (w_current->rubber_visible) {
+        w_current->rubber_visible = FALSE;
+        o_invalidate_rubber (w_current);
+      }
+
+      switch (w_current->event_state) {
+
+        case(NETMODE):
+          o_net_reset (w_current);
+          break;
+
+        case(PINMODE):
+        case(LINEMODE):
+        case(BOXMODE):
+        case(CIRCLEMODE):
+        case(ARCMODE):
+        case(BUSMODE):
+        case(PATHMODE):
+        case(PICTUREMODE):
+          i_event_end_action_handler(w_current);
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        default:
+          /* Not an Adder event; do nothing */
+          break;
+      }
+    }
+  }
+  else {
+    BUG_MSG("w_current->event_state != action->state");
+  }
+  return(0);
+}
+
+static int i_event_adder_released(GtkWidget      *widget,
+                                  GdkEventButton *event,
+                                  GschemToplevel *w_current)
+{
+  GschemEvent *action = w_current->action_event;
+
+  if (w_current->event_state == action->state) {
+
+    if (event->button == 1) {
+
+      if (w_current->inside_action) {
+
+        if (w_current->event_state == PATHMODE) {
+
+          int w_x, w_y;
+          int unsnapped_wx, unsnapped_wy;
+
+          /* Capture where in the World this event occurred */
+          SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
+                         &unsnapped_wx, &unsnapped_wy);
+
+          w_x = snap_grid (w_current, unsnapped_wx);
+          w_y = snap_grid (w_current, unsnapped_wy);
+          o_path_end (w_current, w_x, w_y);
+        }
+      }
+    }
+    //else if (event->button == 3) {}
+  }
+  else {
+    BUG_MSG("w_current->event_state != action->state");
+  }
+  return(0);
+}
+
+void i_event_cancel_action_handler(GschemToplevel *w_current)
+{
+  GschemEvent *event = w_current->action_event;
+
+  if (event->state) {
+    i_event_end_action_handler(w_current);
+    i_status_set_state(w_current, SELECT);
+    o_invalidate_all(w_current);
+  }
+}
+
+void i_event_start_action_handler (GschemToplevel *w_current,
+                                   EventResolver  ifunc,
+                                   EventResolver  rfunc)
+{
+  GschemEvent *event;
+
+  i_status_action_start(w_current);
+
+  if (w_current->action_event->state) {
+    i_event_end_action_handler(w_current);
+  }
+
+  //event               = g_object_ref(w_current->action_event);
+  event               = w_current->action_event;
+  event->state        = w_current->event_state;
+
+  event->initializer  = (void*)ifunc;
+  event->resolver     = (void*)rfunc;
+
+  event->press_butt   = (void*)i_event_adder_pressed;
+  event->release_butt = (void*)i_event_adder_released;
+
+  i_event_adder_enable_events(w_current);
 }

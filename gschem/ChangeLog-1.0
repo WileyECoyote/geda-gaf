@@ -1,10 +1,60 @@
+2015-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Implement new event loop handlers for adder actions
+
+    * src/iface/i_event.c: Add functions i_event_adder_disconnect_events,
+      i_event_adder_enable_events, i_event_end_action_handler, i_event_adder
+      _pressed, i_event_adder_released, i_event_cancel_action_handler,
+      and i_event_start_action_handler.
+
+    * src/x/x_event.c: Revise to implement new event loop handlers for adder
+      actions.
+
+    * src/iface/i_callbacks.c: Add call i_event_cancel_action_handler in
+      i_callback_cancel.
+
+    * src/object/o_redraw.c: Add call i_event_cancel_action_handler in
+      o_redraw_cleanstates.
+
+    * src/object/o_arc.c: Revise function o_arc_start, add function o_arc_init,
+      make o_arc_end static.
+
+    * src/object/o_box.c: Revise function o_box_start, add function o_box_init,
+      make o_box_end static. Add function o_box_init, resequenced appearance of
+      functions in file.
+
+    * src/object/o_bus.c: Revise function o_bus_start, add function o_bus_init,
+      make o_bus_end static. Add function o_bus_init, resequenced appearance of
+      functions in file.
+
+    * src/object/o_circle.c Revise function o_circle_start, add function o_circle_init,
+      make o_circle_end static. Add function o_circle_init, resequenced appearance
+      of functions in file.
+
+    * src/object/o_line.c Revise function o_line_start, add function o_line_init,
+      make o_line_end static. Add function o_line_init, resequenced appearance of
+      functions in file.
+
+    * src/object/o_net.c Revise function o_net_start, add function o_net_continue,
+      make o_net_end static. Add function o_net_init, resequenced appearance of
+      functions in file.
+
+    * src/object/o_path.c Revise function o_path_start, add function o_path_continue,
+      make o_path_end static. Add function o_path_init, resequenced appearance of
+      functions in file.
+
+    * src/object/o_picture.c Revise function o_picture_start, add function
+      o_picture_init, make o_picture_end static. Add function o_picture_init,
+      resequenced appearance of functions in file.
+
+    * src/object/o_pin.c Revise function o_pin_start, add function o_pin_init,
+      make o_pin_end static. Resequenced appearance of functions in file.
+
 2015-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_event.h: Add header for new Gschem event object.
 
     * src/base/gschem_event.c Add source for new Gschem event object.
-
-2015-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_types.h: Add header for gschem_types
 

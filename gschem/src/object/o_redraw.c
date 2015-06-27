@@ -44,6 +44,8 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
+  i_event_cancel_action_handler (w_current);
+
   /* returns FALSE if the function was'nt nessecary */
   if (w_current->inside_action == 0) {
     return FALSE;
@@ -62,6 +64,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
       o_move_cancel (w_current);
     case ( GRIPS ):
     case ( COPYMODE ):
+
     case ( NETMODE ):
     case ( PINMODE ):
     case ( LINEMODE ):

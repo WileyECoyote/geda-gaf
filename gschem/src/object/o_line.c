@@ -28,49 +28,28 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Invalidate Temporary drawing artifacts for Line objects
+/*! \brief Draw line from GschemToplevel object.
  *  \par Function Description
- *   Get coordinates from top-level and invalidate the bounding
- *   region of a Line object.
- *
- *  \param [in] w_current  The GschemToplevel object
- */
-void o_line_invalidate_rubber (GschemToplevel *w_current)
-{
-  int x1, y1, x2, y2;
-
-  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
-  WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
-
-  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
-
-}
-
-/*! \brief Start process to input a new line.
- *  \par Function Description
- *  This function starts the process of interactively adding a line to
- *  the current sheet.
- *
- *  During all the process, the line is internally represented by the two
- *  ends of the line as (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>) and
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
- *
- *  A temporary line is drawn during the process with the selection color
- *  and changed according to the position of the mouse pointer.
+ *  This function draws a line with an exclusive or function over the sheet.
+ *  The color of the box is <B>SELECT_COLOR</B>. The line is
+ *  described by the two points (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
  *
  *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_line_start(GschemToplevel *w_current, int w_x, int w_y)
+void o_line_draw_rubber (GschemToplevel *w_current)
 {
-  i_status_action_start(w_current);
+  int width = o_style_get_line_width(w_current->toplevel);
+  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
+  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
 
-  /* init first_w[x|y], second_w[x|y] to describe line */
-  w_current->first_wx = w_current->second_wx = w_x;
-  w_current->first_wy = w_current->second_wy = w_y;
+  eda_cairo_line (cr, flags, END_NONE, width,
+                  w_current->first_wx, w_current->first_wy,
+                  w_current->second_wx, w_current->second_wy);
 
-  w_current->rubber_visible = TRUE;
+  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, width, -1, -1);
 }
 
 /*! \brief End the input of a line.
@@ -92,35 +71,73 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
 
-  if (w_current->inside_action) {
+  /* Don't bother.. the real object is invalidated, its in the same place */
+  i_status_action_stop(w_current);
 
-    /* Don't bother.. the real object is invalidated, its in the same place */
-    i_status_action_stop(w_current);
+  w_current->rubber_visible = FALSE;
 
-    w_current->rubber_visible = FALSE;
+  /* don't allow zero length lines */
+  if ((w_current->first_wx - w_current->second_wx) ||
+      (w_current->first_wy - w_current->second_wy))
+  {
+    /* create the line object and draw it */
+    new_obj = o_line_new (GRAPHIC_COLOR,
+                          w_current->first_wx, w_current->first_wy,
+                          w_current->second_wx, w_current->second_wy);
+    new_obj->line_options->line_width = o_style_get_line_width(toplevel);
 
-    /* don't allow zero length lines */
-    if ((w_current->first_wx - w_current->second_wx) ||
-        (w_current->first_wy - w_current->second_wy))
-    {
-      /* create the line object and draw it */
-      new_obj = o_line_new (GRAPHIC_COLOR,
-                            w_current->first_wx, w_current->first_wy,
-                            w_current->second_wx, w_current->second_wy);
-      new_obj->line_options->line_width = o_style_get_line_width(toplevel);
+    s_page_append_object (toplevel->page_current, new_obj);
 
-      s_page_append_object (toplevel->page_current, new_obj);
+    /* Call add-objects-hook */
+    g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
 
-      /* Call add-objects-hook */
-      g_hook_run_object (w_current, ADD_OBJECT_HOOK, new_obj);
+    o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
 
-      o_undo_savestate_object(w_current, UNDO_ALL, new_obj);
-
-    }
   }
-  else {
-    BUG_MSG("Not inside action");
-  }
+
+}
+
+/*! \brief Initialize Variables to input a new line.
+ *  \par Function Description
+ *  This function initialize variables to interactively add a new line to
+ *  the current sheet.
+ *
+ *  During the process, the line is internally represented by the two ends
+ *  of the line as (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>)
+ *  and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *
+ *  A temporary line is drawn during the process with the selection color
+ *  and changed according to the position of the mouse pointer.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_line_init(GschemToplevel *w_current, int w_x, int w_y)
+{
+  /* init first_w[x|y], second_w[x|y] to describe line */
+  w_current->first_wx = w_current->second_wx = w_x;
+  w_current->first_wy = w_current->second_wy = w_y;
+
+  w_current->rubber_visible = TRUE;
+}
+
+/*! \brief Invalidate Temporary drawing artifacts for Line objects
+ *  \par Function Description
+ *   Get coordinates from top-level and invalidate the bounding
+ *   region of a Line object.
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ */
+void o_line_invalidate_rubber (GschemToplevel *w_current)
+{
+  int x1, y1, x2, y2;
+
+  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
+  WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
+
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
+
 }
 
 /*! \brief Draw temporary line while dragging end.
@@ -176,30 +193,6 @@ void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Draw line from GschemToplevel object.
- *  \par Function Description
- *  This function draws a line with an exclusive or function over the sheet.
- *  The color of the box is <B>SELECT_COLOR</B>. The line is
- *  described by the two points (<B>w_current->first_wx</B>,
- *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
- *
- *  \param [in] w_current  The GschemToplevel object.
- */
-void o_line_draw_rubber (GschemToplevel *w_current)
-{
-  int width = o_style_get_line_width(w_current->toplevel);
-  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
-  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
-
-  eda_cairo_line (cr, flags, END_NONE, width,
-                  w_current->first_wx, w_current->first_wy,
-                  w_current->second_wx, w_current->second_wy);
-
-  eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, width, -1, -1);
-}
-
 /*! \brief
  *  \par Function Description
  *
@@ -224,3 +217,26 @@ fprintf(stderr, "o_line_visible\n");
   return WORLDclip_change (w_current, x1, y1, x2, y2);
 }
  */
+
+/*! \brief Start the process to input a new line.
+ *  \par Function Description
+ *  This function starts the process of interactively adding a line to the
+ *  current sheet.
+ *
+ *  During all the process, the line is internally represented by the two ends
+ *  ends of the line as (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>)
+ *  and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *
+ *  A temporary line is drawn during the process with the selection color
+ *  and changed according to the position of the mouse pointer.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_line_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_line_init(w_current, w_x, w_y);
+
+  i_event_start_action_handler(w_current, o_line_init, o_line_end);
+}

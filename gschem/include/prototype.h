@@ -287,6 +287,8 @@ void       i_event_unblock_buttons          (GschemToplevel *w_current);
 void       i_event_block_handler            (GschemToplevel *w_current, EventHandler id);
 void       i_event_unblock_handler          (GschemToplevel *w_current, EventHandler id);
 void       i_event_setup_handlers           (GschemToplevel *w_current);
+void       i_event_cancel_action_handler    (GschemToplevel *w_current);
+void       i_event_start_action_handler     (GschemToplevel *w_current, EventResolver ifunc, EventResolver rfunc);
 
 /* i_pan_world.c */
 void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);
@@ -388,12 +390,11 @@ int        visible                      (GschemToplevel *w_current, int wleft, i
 double     m_round_5_2_1                (double unrounded);
 
 /* o_arc.c */
-void       o_arc_invalidate_rubber      (GschemToplevel *w_current);
-void       o_arc_start                  (GschemToplevel *w_current, int x, int y);
-void       o_arc_end1                   (GschemToplevel *w_current, int x, int y);
 void       o_arc_end4                   (GschemToplevel *w_current, int radius, int start_angle, int arc_sweep);
-void       o_arc_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_arc_draw_rubber            (GschemToplevel *w_current);
+void       o_arc_invalidate_rubber      (GschemToplevel *w_current);
+void       o_arc_motion                 (GschemToplevel *w_current, int x, int y);
+void       o_arc_start                  (GschemToplevel *w_current, int x, int y);
 
 /* o_attrib.c */
 void       o_attrib_attached_2_selection     (GschemToplevel *w_current, SELECTION *selection, Object *selected);
@@ -407,11 +408,10 @@ OBJ       *o_attrib_add_attrib               (GschemToplevel *w_current, const c
 bool       o_attrib_reset_position           (GschemToplevel *w_current, Object *parent, Object *attrib);
 
 /* o_box.c */
-void       o_box_invalidate_rubber      (GschemToplevel *w_current);
-void       o_box_start                  (GschemToplevel *w_current, int x, int y);
-void       o_box_end                    (GschemToplevel *w_current, int x, int y);
-void       o_box_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_box_draw_rubber            (GschemToplevel *w_current);
+void       o_box_invalidate_rubber      (GschemToplevel *w_current);
+void       o_box_motion                 (GschemToplevel *w_current, int x, int y);
+void       o_box_start                  (GschemToplevel *w_current, int x, int y);
 
 /* o_break.c */
 int        o_break_start                (GschemToplevel *w_current, int w_x, int w_y);
@@ -427,18 +427,16 @@ void       o_buffer_init                (void);
 void       o_buffer_free                (GschemToplevel *w_current);
 
 /* o_bus.c */
-void       o_bus_invalidate_rubber      (GschemToplevel *w_current);
-void       o_bus_start                  (GschemToplevel *w_current, int x, int y);
-void       o_bus_end                    (GschemToplevel *w_current, int x, int y);
-void       o_bus_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_bus_draw_rubber            (GschemToplevel *w_current);
+void       o_bus_invalidate_rubber      (GschemToplevel *w_current);
+void       o_bus_motion                 (GschemToplevel *w_current, int x, int y);
+void       o_bus_start                  (GschemToplevel *w_current, int x, int y);
 
 /* o_circle.c */
-void       o_circle_invalidate_rubber   (GschemToplevel *w_current);
-void       o_circle_start               (GschemToplevel *w_current, int x, int y);
-void       o_circle_end                 (GschemToplevel *w_current, int x, int y);
-void       o_circle_motion              (GschemToplevel *w_current, int x, int y);
 void       o_circle_draw_rubber         (GschemToplevel *w_current);
+void       o_circle_invalidate_rubber   (GschemToplevel *w_current);
+void       o_circle_motion              (GschemToplevel *w_current, int x, int y);
+void       o_circle_start               (GschemToplevel *w_current, int x, int y);
 
 /* o_complex.c */
 void       o_complex_export                  (GschemToplevel *w_current, Object *o_current);
@@ -466,7 +464,6 @@ void       o_edit_mirror_world          (GschemToplevel *w_current, int centerx,
 void       o_edit_offset_hot            (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_offset_world          (GschemToplevel *w_current, int x, int y, GList *list);
 void       o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
-//void       o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
 bool       o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
 void       o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
 int        o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
@@ -476,10 +473,10 @@ void       o_edit_snap                  (GschemToplevel *w_current, const GList 
 OBJ       *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_extend.c */
-int        o_extend_start               (GschemToplevel *w_current, int w_x, int w_y);
 int        o_extend_end                 (GschemToplevel *w_current, int x, int y);
 void       o_extend_hot                 (GschemToplevel *w_current, GList *object_list, int x, int y);
 int        o_extend_interrogate         (GschemToplevel *w_current, GList *object_list);
+int        o_extend_start               (GschemToplevel *w_current, int w_x, int w_y);
 
 /* o_find.c */
 Object    *o_find_get_hit               (GschemToplevel *w_current, int w_x, int w_y);
@@ -502,52 +499,47 @@ int        o_grips_half_size            (GschemToplevel *w_current, Object *o_cu
 void       o_grips_draw_rubber          (GschemToplevel *w_current);
 
 /* o_invalidate.c */
+void       o_invalidate_all             (GschemToplevel *w_current);
 int        o_invalidate_rubber          (GschemToplevel *w_current);
 void       o_invalidate_rectangle       (GschemToplevel *w_current, int x1, int y1, int x2, int y2);
-void       o_invalidate_all             (GschemToplevel *w_current);
 void       o_invalidate_object          (GschemToplevel *w_current, Object *object);
 void       o_invalidate_force           (GschemToplevel *w_current, Object *object);
 void       o_invalidate_list            (GschemToplevel *w_current, GList *list);
 
 /* o_line.c */
-void       o_line_invalidate_rubber     (GschemToplevel *w_current);
-void       o_line_start                 (GschemToplevel *w_current, int x, int y);
-void       o_line_end                   (GschemToplevel *w_current, int x, int y);
-void       o_line_motion                (GschemToplevel *w_current, int x, int y);
 void       o_line_draw_rubber           (GschemToplevel *w_current);
-//int  o_line_visible               (GschemToplevel *w_current, LINE *line, int *x1, int *y1, int *x2, int *y2);
+void       o_line_invalidate_rubber     (GschemToplevel *w_current);
+void       o_line_motion                (GschemToplevel *w_current, int x, int y);
+void       o_line_start                 (GschemToplevel *w_current, int x, int y);
 
 /* o_move.c */
+void       o_move_cancel                (GschemToplevel *w_current);
+void       o_move_check_endpoint        (GschemToplevel *w_current, Object *object);
+void       o_move_draw_rubber           (GschemToplevel *w_current, int drawing);
+void       o_move_end                   (GschemToplevel *w_current);
+void       o_move_end_lowlevel          (GschemToplevel *w_current, Object *object, int diff_x, int diff_y);
+void       o_move_end_rubberband        (GschemToplevel *w_current, int world_diff_x, int world_diff_y, GList **objects);
+void       o_move_invalidate_rubber     (GschemToplevel *w_current, int drawing);
+void       o_move_motion                (GschemToplevel *w_current, int x, int y);
+void       o_move_prep_rubberband       (GschemToplevel *w_current);
+int        o_move_return_whichone       (Object *object, int x, int y);
 GLT       *o_move_stretch_add           (GList *list, Object *object, int whichone);
 GLT       *o_move_stretch_remove        (GList *list, Object *object);
 void       o_move_stretch_print_all     (GList *list);
 void       o_move_stretch_destroy_all   (GList *list);
-
 bool       o_move_start                 (GschemToplevel *w_current, int x, int y);
-void       o_move_end_lowlevel          (GschemToplevel *w_current, Object *object, int diff_x, int diff_y);
-void       o_move_end                   (GschemToplevel *w_current);
-void       o_move_cancel                (GschemToplevel *w_current);
-void       o_move_motion                (GschemToplevel *w_current, int x, int y);
-void       o_move_invalidate_rubber     (GschemToplevel *w_current, int drawing);
-void       o_move_draw_rubber           (GschemToplevel *w_current, int drawing);
-int        o_move_return_whichone       (Object *object, int x, int y);
-void       o_move_check_endpoint        (GschemToplevel *w_current, Object *object);
-void       o_move_prep_rubberband       (GschemToplevel *w_current);
 int        o_move_zero_length           (Object *object);
-void       o_move_end_rubberband        (GschemToplevel *w_current, int world_diff_x, int world_diff_y, GList **objects);
 
 /* o_net.c */
-void       o_net_reset                  (GschemToplevel *w_current);
-void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
-void       o_net_find_magnetic          (GschemToplevel *w_current, int event_x, int event_y);
-void       o_net_finish_magnetic        (GschemToplevel *w_current);
-void       o_net_start_magnetic         (GschemToplevel *w_current, int x, int y);
-void       o_net_start                  (GschemToplevel *w_current, int x, int y);
-void       o_net_end                    (GschemToplevel *w_current, int x, int y);
-void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
-void       o_net_draw_rubber            (GschemToplevel *w_current);
-void       o_net_invalidate_rubber      (GschemToplevel *w_current);
 int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_obj, GList *other_objects);
+void       o_net_draw_rubber            (GschemToplevel *w_current);
+//void       o_net_finish_magnetic        (GschemToplevel *w_current);
+void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
+void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
+void       o_net_invalidate_rubber      (GschemToplevel *w_current);
+void       o_net_reset                  (GschemToplevel *w_current);
+void       o_net_start                  (GschemToplevel *w_current, int x, int y);
+void       o_net_start_magnetic         (GschemToplevel *w_current, int x, int y);
 
 /* o_page.c */
 void       o_page_draw_after                 (GschemToplevel *w_current);
@@ -556,36 +548,33 @@ void       o_page_draw_first                 (GschemToplevel *w_current, GList *
 void       o_page_draw_last                  (GschemToplevel *w_current, GList *object_list);
 
 /* o_path.c */
-void       o_path_start                      (GschemToplevel *w_current, int x, int y);
 void       o_path_continue                   (GschemToplevel *w_current, int w_x, int w_y);
-void       o_path_motion                     (GschemToplevel *w_current, int w_x, int w_y);
+void       o_path_draw_rubber                (GschemToplevel *w_current);
+void       o_path_draw_rubber_grips          (GschemToplevel *w_current);
 void       o_path_end                        (GschemToplevel *w_current, int x, int y);
 void       o_path_invalidate_rubber          (GschemToplevel *w_current);
-void       o_path_draw_rubber                (GschemToplevel *w_current);
 void       o_path_invalidate_rubber_grips    (GschemToplevel *w_current);
+void       o_path_motion                     (GschemToplevel *w_current, int w_x, int w_y);
 void       o_path_motion_grips               (GschemToplevel *w_current, int x, int y);
-void       o_path_draw_rubber_grips          (GschemToplevel *w_current);
+void       o_path_start                      (GschemToplevel *w_current, int x, int y);
 
 /* o_picture.c */
-void       o_picture_start                   (GschemToplevel *w_current, int x, int y);
-void       o_picture_end                     (GschemToplevel *w_current, int x, int y);
-void       o_picture_motion                  (GschemToplevel *w_current, int x, int y);
-void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void       o_picture_draw_rubber             (GschemToplevel *w_current);
 bool       o_picture_exchange                (GschemToplevel *w_current, const char *filename, Object *o_current, GError **error);
 void       o_picture_exchange_file           (GschemToplevel *w_current, Object *o_current);
 void       o_picture_export                  (GschemToplevel *w_current, Object *o_current);
+void       o_picture_invalidate_rubber       (GschemToplevel *w_current);
+void       o_picture_motion                  (GschemToplevel *w_current, int x, int y);
 bool       o_picture_set_pixbuf              (GschemToplevel *w_current, char *filename);
+void       o_picture_start                   (GschemToplevel *w_current, int x, int y);
 
 /* o_pin.c */
-void       o_pin_start                       (GschemToplevel *w_current, int x, int y);
-void       o_pin_end                         (GschemToplevel *w_current, int x, int y);
-void       o_pin_motion                      (GschemToplevel *w_current, int x, int y);
 void       o_pin_draw_rubber                 (GschemToplevel *w_current);
 void       o_pin_invalidate_rubber           (GschemToplevel *w_current);
+void       o_pin_motion                      (GschemToplevel *w_current, int x, int y);
+void       o_pin_start                       (GschemToplevel *w_current, int x, int y);
 
 /* o_place.c */
-bool       o_place_start                     (GschemToplevel *w_current, int x, int y);
 void       o_place_end                       (GschemToplevel *w_current, int x, int y, int continue_placing, GList **ret_new_objects, Hooker id);
 void       o_place_component_end             (GschemToplevel *w_current, int x, int y);
 void       o_place_text_end                  (GschemToplevel *w_current, int w_x, int w_y);
@@ -595,6 +584,7 @@ void       o_place_invalidate_rubber         (GschemToplevel *w_current, int dra
 void       o_place_draw_rubber               (GschemToplevel *w_current, int drawing);
 void       o_place_mirror                    (GschemToplevel *w_current);
 void       o_place_rotate                    (GschemToplevel *w_current);
+bool       o_place_start                     (GschemToplevel *w_current, int x, int y);
 
 /* o_redraw.c */
 int        o_redraw_cleanstates              (GschemToplevel *w_current);

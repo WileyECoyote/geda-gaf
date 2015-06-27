@@ -313,79 +313,6 @@ path_next_sections (GschemToplevel *w_current)
   return p->num_sections - save_num_sections;
 }
 
-/*! \brief Invalidate current path creation screen region.
- * \par Function Description
- * Invalidates the screen region occupied by the current path creation
- * preview and control handle helpers.
- */
-void
-o_path_invalidate_rubber (GschemToplevel *w_current)
-{
-  int added_sections;
-  int min_x, min_y, max_x, max_y;
-  int x1, y1, x2, y2;
-
-  /* Calculate any new sections */
-  added_sections = path_next_sections (w_current);
-
-  path_rubber_bbox (w_current, w_current->temp_path,
-                    &min_x, &max_y, &max_x, &min_y);
-
-  /* Expand the bounding box to include any control handles
-   * that are currently being drawn. */
-  min_x = MIN (min_x, w_current->second_wx);
-  max_x = MAX (max_x, w_current->second_wx);
-  min_y = MIN (min_y, w_current->second_wy);
-  max_y = MAX (max_y, w_current->second_wy);
-
-  WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
-  WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
-  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
-
-  w_current->temp_path->num_sections -= added_sections;
-}
-
-/*! \brief Start process to input a new path.
- *  \par Function Description
- *  This function starts the process of interactively adding a path to
- *  the current sheet by resetting the path creation state and
- *  enabling preview ("rubber") drawing.
- *
- *  For details of how #GschemToplevel fields are used during the
- *  path creation process, see path_next_sections().
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
- */
-void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
-{
-  i_status_action_start(w_current);
-
-  /* Reset path creation state */
-  if (w_current->temp_path != NULL) {
-    w_current->temp_path->num_sections = 0;
-  }
-  else {
-    Path *path              = (Path*)geda_path_new ();
-    path->sections          = g_new0 (PATH_SECTION, TEMP_PATH_DEFAULT_SIZE);
-    path->num_sections      = 0;
-    path->num_sections_max  = TEMP_PATH_DEFAULT_SIZE;
-    w_current->temp_path    = path;
-  }
-
-  w_current->which_grip     = -1;
-  w_current->first_wx       = w_x;
-  w_current->first_wy       = w_y;
-  w_current->second_wx      = w_x;
-  w_current->second_wy      = w_y;
-  w_current->third_wx       = w_x;
-  w_current->third_wy       = w_y;
-
-  /* Enable preview drawing */
-  w_current->rubber_visible = TRUE;
-}
-
 /* \brief Begin inputting a new path node.
  * \par Function Description
  * Re-enters path creation mode, saving the current pointer location
@@ -405,37 +332,7 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
   i_status_action_start(w_current);
 }
 
-/* \brief Give feedback on path creation during mouse movement.
- * \par Function Description
- * If the user is currently in the process of creating a path node
- * (i.e. has mouse button pressed), moves the next node's control
- * point.  If the user has not yet pressed the mouse button to start
- * defining a path node, moves the next node's location and control
- * point together.
- */
-void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
-{
-  o_path_invalidate_rubber (w_current);
 
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  /* if the control key was pressed then draw ortho lines */
-  if (w_current->CONTROLKEY) {
-
-    int diff_x = abs(w_current->second_wx - w_current->first_wx);
-    int diff_y = abs(w_current->second_wy - w_current->first_wy);
-
-    if (diff_x >= diff_y) {
-      w_current->second_wy = w_current->first_wy;
-    }
-    else {
-      w_current->second_wx = w_current->first_wx;
-    }
-  }
-
-  o_path_invalidate_rubber (w_current);
-}
 
 /*! \brief End the input of a path.
  *  \par Function Description
@@ -544,6 +441,150 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
   i_status_update_action_state(w_current, result);
 }
 
+/*! \brief Initialize Variables to input a new path object.
+ *  \par Function Description
+ *  This function initialize variables to input a new path to
+ *  the current sheet by resetting the path creation state and
+ *  enabling preview ("rubber") drawing.
+ *
+ *  For details of how #GschemToplevel fields are used during the
+ *  path creation process, see path_next_sections().
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+static void o_path_init(GschemToplevel *w_current, int w_x, int w_y)
+{
+  i_status_action_start(w_current);
+
+  /* Reset path creation state */
+  if (w_current->temp_path != NULL) {
+    w_current->temp_path->num_sections = 0;
+  }
+  else {
+    Path *path              = (Path*)geda_path_new ();
+    path->sections          = g_new0 (PATH_SECTION, TEMP_PATH_DEFAULT_SIZE);
+    path->num_sections      = 0;
+    path->num_sections_max  = TEMP_PATH_DEFAULT_SIZE;
+    w_current->temp_path    = path;
+  }
+
+  w_current->which_grip     = -1;
+  w_current->first_wx       = w_x;
+  w_current->first_wy       = w_y;
+  w_current->second_wx      = w_x;
+  w_current->second_wy      = w_y;
+  w_current->third_wx       = w_x;
+  w_current->third_wy       = w_y;
+
+  /* Enable preview drawing */
+  w_current->rubber_visible = TRUE;
+}
+
+
+/*! \brief Invalidate current path creation screen region.
+ * \par Function Description
+ * Invalidates the screen region occupied by the current path creation
+ * preview and control handle helpers.
+ */
+void
+o_path_invalidate_rubber (GschemToplevel *w_current)
+{
+  int added_sections;
+  int min_x, min_y, max_x, max_y;
+  int x1, y1, x2, y2;
+
+  /* Calculate any new sections */
+  added_sections = path_next_sections (w_current);
+
+  path_rubber_bbox (w_current, w_current->temp_path,
+                    &min_x, &max_y, &max_x, &min_y);
+
+  /* Expand the bounding box to include any control handles
+   * that are currently being drawn. */
+  min_x = MIN (min_x, w_current->second_wx);
+  max_x = MAX (max_x, w_current->second_wx);
+  min_y = MIN (min_y, w_current->second_wy);
+  max_y = MAX (max_y, w_current->second_wy);
+
+  WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
+  WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
+
+  w_current->temp_path->num_sections -= added_sections;
+}
+
+void
+o_path_invalidate_rubber_grips (GschemToplevel *w_current)
+{
+  int min_x, min_y, max_x, max_y;
+  int x1, y1, x2, y2;
+
+  path_rubber_bbox (w_current, NULL,
+                    &min_x, &max_y, &max_x, &min_y);
+
+  WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
+  WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
+}
+
+/* \brief Give feedback on path creation during mouse movement.
+ * \par Function Description
+ * If the user is currently in the process of creating a path node
+ * (i.e. has mouse button pressed), moves the next node's control
+ * point.  If the user has not yet pressed the mouse button to start
+ * defining a path node, moves the next node's location and control
+ * point together.
+ */
+void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_path_invalidate_rubber (w_current);
+
+  w_current->second_wx = w_x;
+  w_current->second_wy = w_y;
+
+  /* if the control key was pressed then draw ortho lines */
+  if (w_current->CONTROLKEY) {
+
+    int diff_x = abs(w_current->second_wx - w_current->first_wx);
+    int diff_y = abs(w_current->second_wy - w_current->first_wy);
+
+    if (diff_x >= diff_y) {
+      w_current->second_wy = w_current->first_wy;
+    }
+    else {
+      w_current->second_wx = w_current->first_wx;
+    }
+  }
+
+  o_path_invalidate_rubber (w_current);
+}
+
+/*! \brief Draw temporary path while dragging end.
+ *  \par Function Description
+ *  This function manages the erase/update/draw process of temporary path
+ *  when modifying one end of the path.
+ *  The path is described by four <B>*w_current</B> variables : the first end
+ *  of the path is (<B>first_wx</B>,<B>first_wy</B>), the second end is
+ *  (<B>second_wx</B>,<B>second_wy</B>).
+ *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (w_current->rubber_visible)
+    o_path_invalidate_rubber_grips (w_current);
+
+  w_current->second_wx = w_x;
+  w_current->second_wy = w_y;
+
+  o_path_invalidate_rubber_grips (w_current);
+  w_current->rubber_visible = 1;
+}
 /*! \brief Draw path creation preview.
  * \par Function Description
  * Draw a preview of the path currently being drawn, including a
@@ -596,46 +637,6 @@ o_path_draw_rubber (GschemToplevel *w_current)
   w_current->temp_path->num_sections -= added_sections;
 }
 
-void
-o_path_invalidate_rubber_grips (GschemToplevel *w_current)
-{
-  int min_x, min_y, max_x, max_y;
-  int x1, y1, x2, y2;
-
-  path_rubber_bbox (w_current, NULL,
-                    &min_x, &max_y, &max_x, &min_y);
-
-  WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
-  WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
-  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
-}
-
-
-/*! \brief Draw temporary path while dragging end.
- *  \par Function Description
- *  This function manages the erase/update/draw process of temporary path
- *  when modifying one end of the path.
- *  The path is described by four <B>*w_current</B> variables : the first end
- *  of the path is (<B>first_wx</B>,<B>first_wy</B>), the second end is
- *  (<B>second_wx</B>,<B>second_wy</B>).
- *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
- *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
- */
-void o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
-{
-  if (w_current->rubber_visible)
-    o_path_invalidate_rubber_grips (w_current);
-
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  o_path_invalidate_rubber_grips (w_current);
-  w_current->rubber_visible = 1;
-}
-
 /*! \brief Draw path from GschemToplevel object.
  *  \par Function Description
  *  This function draws a path with an exclusive or function over the sheet.
@@ -668,3 +669,22 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
   GEDA_UNREF(object);
 }
 
+/*! \brief Start process to input a new path.
+ *  \par Function Description
+ *  This function starts the process of interactively adding a path to
+ *  the current sheet by resetting the path creation state and
+ *  enabling preview ("rubber") drawing.
+ *
+ *  For details of how #GschemToplevel fields are used during the
+ *  path creation process, see path_next_sections().
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  o_path_init(w_current, w_x, w_y);
+
+  i_event_start_action_handler(w_current, o_path_init, o_path_continue);
+}

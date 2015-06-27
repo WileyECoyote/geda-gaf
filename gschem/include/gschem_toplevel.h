@@ -152,7 +152,6 @@ struct _GschemToplevel {
   int third_wy;
   int magnetic_wx, magnetic_wy;         /* Position of the magnetic marker*/
   int distance;
-  int inside_action;                    /* Are we doing an action? */
   int rubber_visible;                   /* Are there any rubber lines on the screen? */
   int rubber_x1;                        /* Used to invalidate rubber drawn based on */
   int rubber_y1;                        /* key states */
@@ -192,7 +191,7 @@ struct _GschemToplevel {
   int ALTKEY;                           /* alt key pressed? */
 
   /* retained offset distance */
-  int offset;                           /* use for offset mode */
+  int offset;                           /* used by offset mode, previous offset dist. */
 
   /* Misc status flags and limits */
   int doing_pan;                        /* mouse pan status flag */
@@ -203,6 +202,10 @@ struct _GschemToplevel {
   int last_drawb_mode;                  /* last above mode */
   int min_zoom;                         /* minimum zoom factor */
   int max_zoom;                         /* maximum zoom factor */
+
+  /* Mode Control */
+  int inside_action;                    /* Are we doing an action? */
+  GschemEvent *action_event;            /* Action Event record */
 
   /* Pointer Device */
   int pointer_sx;                       /* screen x coordinates */

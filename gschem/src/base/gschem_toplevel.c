@@ -4,7 +4,7 @@
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2013-2015 Wiley Edward Hill
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2014-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,11 @@
  * Date Contributed: November, 4, 2013
  */
 
-#include <gschem.h>
 #include <glib-object.h>
+
+#include "gschem.h"
 #include "gschem_toplevel.h"
+
 #include <geda_debug.h>
 
 static GObjectClass *gschem_toplevel_parent_class = NULL;
@@ -122,7 +124,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->distance           =  0;
   w_current->magnetic_wx        = -1;
   w_current->magnetic_wy        = -1;
-  w_current->inside_action      =  0;
   w_current->rubber_visible     =  0;
   w_current->net_direction      =  0;
   w_current->which_grip         = -1;
@@ -166,6 +167,10 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->last_drawb_mode           = LAST_DRAWB_MODE_NONE;
   w_current->min_zoom                  = 0;
   w_current->max_zoom                  = 8;
+
+  /* Mode Control */
+  w_current->inside_action             =  0;
+  w_current->action_event              = gschem_event_new();
 
   /* Pointer Device */
   w_current->pointer_sx                = 0;
@@ -320,6 +325,10 @@ static void gschem_toplevel_finalize( GObject *object )
   if (w_current->print_command != NULL) {
     GEDA_FREE (w_current->print_command);
     w_current->print_command = NULL;
+  }
+
+  if (w_current->action_event != NULL) {
+    g_object_unref(w_current->action_event);;
   }
 
   if (CairoRenderer != NULL) {

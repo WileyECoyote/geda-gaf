@@ -176,6 +176,7 @@ DEFINE_I_CALLBACK(page_discard)
   i_command_process(w_current, "page-discard", 0, NULL, ID_ORIGIN_SCM);
 }
 */
+
 /*! \brief Cancel Everthing
  *  \par Function Description
  *
@@ -228,6 +229,8 @@ DEFINE_I_CALLBACK(cancel)
       break;
 
   }
+
+  i_event_cancel_action_handler (w_current);
 
   if (w_current->primary_selection) {
     g_list_free (w_current->primary_selection);

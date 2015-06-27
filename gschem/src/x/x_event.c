@@ -76,67 +76,15 @@ int x_event_button_pressed(GtkWidget      *widget,
   w_y = snap_grid (w_current, unsnapped_wy);
 
   if (event->type == GDK_2BUTTON_PRESS) {
-    if (w_current->inside_action) {
-
-      switch (w_current->event_state) {
-        case (NETMODE):
-          o_net_end (w_current, w_x, w_y);
-          i_status_action_stop(w_current);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (PINMODE):
-          o_pin_end (w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (LINEMODE):
-          o_line_end (w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (BOXMODE):
-          o_box_end (w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (CIRCLEMODE):
-          o_circle_end (w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (ARCMODE):
-          o_arc_end1 (w_current, w_x, w_y);
-          i_status_action_stop(w_current);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (PICTUREMODE):
-          o_picture_end (w_current, w_x, w_y);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        case (BUSMODE):
-          o_bus_end (w_current, w_x, w_y);
-          i_status_action_stop(w_current);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-
-        default:
-          break;
-      }
-    }
-    else {
-      switch (w_current->event_state) {
-        case (STARTSELECT):
-        case (SELECT):
-          list = geda_list_get_glist(Current_Selection);
-          o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
-          i_status_set_state(w_current, SELECT);
-          return(0);
-        default:
-          break;
-      }
+    switch (w_current->event_state) {
+      case (STARTSELECT):
+      case (SELECT):
+        list = geda_list_get_glist(Current_Selection);
+        o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
+        i_status_set_state(w_current, SELECT);
+        return(0);
+      default:
+        break;
     }
   }
 
@@ -144,132 +92,158 @@ int x_event_button_pressed(GtkWidget      *widget,
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-  /* Huge switch statement to evaluate state transitions */
-
   if (event->button == GDK_BUTTON_PRIMARY) {
 
-    if (w_current->inside_action) {
-      /* End action */
+    if (w_current->inside_action && Current_PlaceList != NULL) {
 
-      if (Current_PlaceList != NULL) {
-        switch (w_current->event_state) {
-          case (MOVEMODE):
-            o_move_end(w_current);
-            i_status_set_state(w_current, SELECT);
-            break;
-          case (COPYMODE)   : o_copy_end(w_current); break;
-          case (MCOPYMODE)  : o_copy_multiple_end(w_current); break;
-          case (COMPMODE)   : o_place_component_end(w_current, w_x, w_y); break;
-          case (TEXTMODE)   : o_place_text_end(w_current, w_x, w_y); break;
-          case(PASTEMODE)   : o_place_paste_end(w_current, w_x, w_y);  break;
-          default: break;
-        }
-      }
-      else {
-        switch (w_current->event_state) {
-          case (NETMODE)    : o_net_end       (w_current, w_x, w_y); break;
-          case (PINMODE)    : o_pin_end       (w_current, w_x, w_y); break;
-          case (LINEMODE)   : o_line_end      (w_current, w_x, w_y); break;
-          case (BOXMODE)    : o_box_end       (w_current, w_x, w_y); break;
-          case (CIRCLEMODE) : o_circle_end    (w_current, w_x, w_y); break;
-          case (ARCMODE)    : o_arc_end1      (w_current, w_x, w_y); break;
-          case (PATHMODE)   : o_path_continue (w_current, w_x, w_y); break;
-          case (PICTUREMODE): o_picture_end   (w_current, w_x, w_y); break;
-          case (BUSMODE)    : o_bus_end       (w_current, w_x, w_y); break;
-          default: break;
-        }
+      switch (w_current->event_state) {
+
+        case (MOVEMODE):
+          o_move_end(w_current);
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        case (COPYMODE):
+          o_copy_end(w_current);
+          break;
+
+        case (MCOPYMODE):
+          o_copy_multiple_end(w_current);
+          break;
+
+        case (COMPMODE):
+          o_place_component_end(w_current, w_x, w_y);
+          break;
+
+        case (TEXTMODE):
+          o_place_text_end(w_current, w_x, w_y);
+          break;
+
+        case (PASTEMODE):
+          o_place_paste_end(w_current, w_x, w_y);
+          break;
+        default: break;
       }
     }
     else {
-      /* Start action */
+
+      /* Huge switch statement to evaluate state transitions */
+
       switch (w_current->event_state) {
+
         case (SELECT):
           o_select_start(w_current, unsnapped_wx, unsnapped_wy);
           break;
-        case (NETMODE)    : o_net_start     (w_current, w_x, w_y); break;
-        case (PINMODE)    : o_pin_start     (w_current, w_x, w_y); break;
-        case (LINEMODE)   : o_line_start    (w_current, w_x, w_y); break;
-        case (BOXMODE)    : o_box_start     (w_current, w_x, w_y); break;
-        case (CIRCLEMODE) : o_circle_start  (w_current, w_x, w_y); break;
-        case (ARCMODE)    : o_arc_start     (w_current, w_x, w_y); break;
-        case (PATHMODE)   : o_path_start    (w_current, w_x, w_y); break;
-        case (PICTUREMODE): o_picture_start (w_current, w_x, w_y); break;
-        case (BUSMODE)    : o_bus_start     (w_current, w_x, w_y); break;
+
+        case (NETMODE):
+          o_net_start (w_current, w_x, w_y);
+          break;
+
+        case (PINMODE):
+          o_pin_start (w_current, w_x, w_y);
+          break;
+
+        case (LINEMODE):
+          o_line_start (w_current, w_x, w_y);
+          break;
+
+        case (BOXMODE):
+          o_box_start (w_current, w_x, w_y);
+          break;
+
+        case (CIRCLEMODE):
+          o_circle_start (w_current, w_x, w_y);
+          break;
+
+        case (ARCMODE):
+          o_arc_start (w_current, w_x, w_y);
+          break;
+        case (PATHMODE):
+          o_path_start (w_current, w_x, w_y);
+          break;
+
+        case (PICTUREMODE):
+          o_picture_start (w_current, w_x, w_y);
+          break;
+
+        case (BUSMODE):
+          o_bus_start (w_current, w_x, w_y);
+          break;
+
         case (ZOOMBOX):
-          i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy); break;
+          i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
+          break;
+
         case (MOVEMODE):
           if (o_move_start(w_current, w_x, w_y)) {
             i_status_set_state(w_current, MOVEMODE);
           }
           break;
-        case (COPYMODE)   : o_copy_start          (w_current, w_x, w_y); break;
-        case (MCOPYMODE)  : o_copy_multiple_start (w_current, w_x, w_y); break;
-        case (PASTEMODE)  : o_buffer_paste_start  (w_current, w_x, w_y, w_current->buffer_number);
-        default: break;
+
+        case (COPYMODE):
+          o_copy_start (w_current, w_x, w_y);
+          break;
+
+        case (MCOPYMODE):
+          o_copy_multiple_start (w_current, w_x, w_y);
+          break;
+
+        case (PASTEMODE):
+          o_buffer_paste_start (w_current, w_x, w_y, w_current->buffer_number);
+          break;
+
+        case(DESELECT):
+          w_current->event_state = STARTDESELECT;
+          break;
+
+        case(ENDROTATE):
+          list = geda_list_get_glist(Current_Selection);
+          o_edit_rotate_world(w_current, w_x, w_y, 90, list);
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        case(ENDOFFSET):
+          list = geda_list_get_glist(Current_Selection);
+          o_edit_offset_world(w_current, w_x, w_y, list);
+          break;
+
+        case(ENDMIRROR):
+          list = geda_list_get_glist(Current_Selection);
+          o_edit_mirror_world(w_current, w_x, w_y, list);
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        case(PAN):
+          i_pan_world(w_current, w_x, w_y);
+          i_status_set_state(w_current, SELECT);
+          break;
+
+        case(STARTBREAK):
+          i_status_set_state(w_current, o_break_start(w_current, unsnapped_wx, unsnapped_wy));
+          break;
+
+        case(ENDBREAK):
+          if(!o_break_end (w_current, unsnapped_wx, unsnapped_wy)) {
+            i_status_set_state(w_current, SELECT);
+          }
+          break;
+
+        case(STARTEXTEND):
+          i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
+          break;
+
+        case EXTEND:
+        case(ENDEXTEND):
+          if(!o_extend_end (w_current, w_x, w_y)) {
+            i_status_set_state(w_current, SELECT);
+          }
+
+        default:
+          break;
       }
-    }
-
-    switch (w_current->event_state) {
-
-      case(DESELECT):
-        w_current->event_state = STARTDESELECT;
-        break;
-
-      case(ENDROTATE):
-        list = geda_list_get_glist(Current_Selection);
-        o_edit_rotate_world(w_current, w_x, w_y, 90, list);
-        i_status_set_state(w_current, SELECT);
-        break;
-
-      case(ENDOFFSET):
-        list = geda_list_get_glist(Current_Selection);
-        o_edit_offset_world(w_current, w_x, w_y, list);
-        break;
-
-      case(ENDMIRROR):
-        list = geda_list_get_glist(Current_Selection);
-        o_edit_mirror_world(w_current, w_x, w_y, list);
-        i_status_set_state(w_current, SELECT);
-        break;
-
-      case(PAN):
-        i_pan_world(w_current, w_x, w_y);
-        i_status_set_state(w_current, SELECT);
-        break;
-
-      case(STARTBREAK):
-        i_status_set_state(w_current, o_break_start(w_current, unsnapped_wx, unsnapped_wy));
-        break;
-
-      case(ENDBREAK):
-        if(!o_break_end (w_current, unsnapped_wx, unsnapped_wy)) {
-          i_status_set_state(w_current, SELECT);
-        }
-        break;
-
-      case(STARTEXTEND):
-        i_status_set_state(w_current, o_extend_start(w_current, w_x, w_y));
-        break;
-
-      case EXTEND:
-      case(ENDEXTEND):
-        if(!o_extend_end (w_current, w_x, w_y)) {
-          i_status_set_state(w_current, SELECT);
-        }
-        break;
     }
   }
   else if (event->button == 2) {
-
-    if (w_current->event_state == PICTUREMODE) {
-
-      if (w_current->current_pixbuf != NULL) {
-        GEDA_UNREF(w_current->current_pixbuf);
-        w_current->current_pixbuf = NULL;
-      }
-
-      GEDA_FREE(w_current->pixbuf_filename);
-    }
 
     /* try this out and see how it behaves */
     if (w_current->inside_action) {
@@ -385,17 +359,6 @@ int x_event_button_pressed(GtkWidget      *widget,
           o_net_reset (w_current);
           break;
 
-        case(PINMODE):
-        case(LINEMODE):
-        case(BOXMODE):
-        case(CIRCLEMODE):
-        case(ARCMODE):
-        case(BUSMODE):
-        case(PATHMODE):
-        case(PICTUREMODE):
-          i_status_action_stop(w_current);
-          break;
-
         default:
           i_callback_cancel(w_current, 0, NULL);
           break;
@@ -501,22 +464,9 @@ bool x_event_button_released (GtkWidget      *widget,
       }
       else {
 
-        int w_x, w_y;
-
-        switch (w_current->event_state) {
-          case(PATHMODE):
-            w_x = snap_grid (w_current, unsnapped_wx);
-            w_y = snap_grid (w_current, unsnapped_wy);
-            o_path_end (w_current, w_x, w_y);
-            break;
-            //case (SBOX)      : o_select_box_end(w_current, unsnapped_wx, unsnapped_wy); break;
-            //case (SELECT)    : o_select_end(w_current, unsnapped_wx, unsnapped_wy); break;
-          case(ZOOMBOX):
-            i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
-            i_status_set_state(w_current, SELECT);
-
-          default:
-            break;
+        if (w_current->event_state == ZOOMBOX) {
+          i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
+          i_status_set_state(w_current, SELECT);
         }
       }
     }
@@ -536,6 +486,7 @@ bool x_event_button_released (GtkWidget      *widget,
     }
   }
   else if (event->button == 2) {
+
     if (w_current->doing_pan) {
       w_current->doing_pan = FALSE;
       o_invalidate_all (w_current);
@@ -635,7 +586,6 @@ bool x_event_button_released (GtkWidget      *widget,
 
       switch (w_current->event_state) {
         case(NETMODE):
-        //case(COMPMODE):
           break;
 
         default:
