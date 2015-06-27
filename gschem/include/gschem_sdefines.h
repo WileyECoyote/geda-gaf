@@ -1,53 +1,53 @@
 /* C header
-;  File: gschem_sdefines.h
-;;
-;;; gEDA - GPL Electronic Design Automation
-;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2015 Ales Hvezda
-;;; Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
-;;
-;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
-;;
-;;; This program is free software; you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation; either version 2 of the License, or
-;;; (at your option) any later version.
-;;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;; GNU General Public License for more details.
-;;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-;;
-;;; Date: Aug, 22, 2012
-;;; Contributing Author: Wiley Edward Hill
-;;
+ * File: gschem_sdefines.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * Date: Aug, 22, 2012
+ * Contributing Author: Wiley Edward Hill
+ *
 */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
-;; ------------------------------------------------------------------
-;; WEH | 09/17/12 |  Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 12/30/12 |  Added msgbox (for debugging). Changed RC_STR_LOGWIN
-;;                |  RC_STR_CONWIN (to integrate new functionality of
-;;                |  the "retrofitted" log window to a console window)
-;; ------------------------------------------------------------------
-;; WEH | 01/06/13 |  Added Bus Ripper Strings for intergration with the
-;;     |          |  configure settings dailog.
-;; WEH | 01/24/13 |  Add filenames for help documents
-;; ------------------------------------------------------------------
-;; WEH | 08/24/13 | Changed IDS_SINGLE_ATTRRI to IDS_SINGLE_ATTRIR and
-;;                | updated to type modeless.
-;; ------------------------------------------------------------------
-;; WEH | 10/16/13 | Remove string for Schematic's and Symbols and relocated
-;;                | to include/libgeda/defines.h.
-;; ------------------------------------------------------------------
-;; WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP
-;; ------------------------------------------------------------------
-;; WEH | 09/15/14 | Add strings for anti-aliasing rc setting
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/17/12 |  Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 12/30/12 |  Added msgbox (for debugging). Changed RC_STR_LOGWIN
+ *                |  RC_STR_CONWIN (to integrate new functionality of
+ *                |  the "retrofitted" log window to a console window)
+ * ------------------------------------------------------------------
+ * WEH | 01/06/13 |  Added Bus Ripper Strings for intergration with the
+ *     |          |  configure settings dailog.
+ * WEH | 01/24/13 |  Add filenames for help documents
+ * ------------------------------------------------------------------
+ * WEH | 08/24/13 | Changed IDS_SINGLE_ATTRRI to IDS_SINGLE_ATTRIR and
+ *                | updated to type modeless.
+ * ------------------------------------------------------------------
+ * WEH | 10/16/13 | Remove string for Schematic's and Symbols and relocated
+ *                | to include/libgeda/defines.h.
+ * ------------------------------------------------------------------
+ * WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP
+ * ------------------------------------------------------------------
+ * WEH | 09/15/14 | Add strings for anti-aliasing rc setting
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
