@@ -14,11 +14,13 @@
 #include <geda_uio_functions.h>
 
 /* gschem headers */
+#include "gschem_event.h"
 #include "gschem_idefines.h"       /* integer defines */
 #include "gschem_sdefines.h"       /* string defines  */
 #include "gschem_toplevel.h"
 #include "gschem_struct.h"
 #include "gschem_status_bar.h"
+#include "gschem_types.h"
 #include "gschem_page_geometry.h"
 #include "gschem_page_view.h"
 #include "gschem_macro_widget.h"

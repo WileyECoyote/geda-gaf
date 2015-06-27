@@ -6,6 +6,7 @@ noinst_HEADERS = \
 		globals.h                   \
 		gschem_dialog.h             \
 		gschem.h                    \
+		gschem_event.h              \
 		gschem_idefines.h           \
 		gschem_macros.h             \
 		gschem_macro_widget.h       \
@@ -16,6 +17,7 @@ noinst_HEADERS = \
 		gschem_status_bar.h         \
 		gschem_struct.h             \
 		gschem_toplevel.h           \
+		gschem_types.h              \
 		gschem_page_view.h          \
 		gschem_xdefines.h           \
 		i_actions.h                 \

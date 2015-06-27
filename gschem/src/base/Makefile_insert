@@ -7,6 +7,7 @@
 gschem_SOURCES += \
 		base/gschem.c \
 		base/gschem_dialog.c \
+		base/gschem_event.c \
 		base/gschem_macro_widget.c \
 		base/gschem_main_window.c \
 		base/gschem_page_geometry.c \

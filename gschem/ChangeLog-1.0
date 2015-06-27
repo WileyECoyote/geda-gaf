@@ -1,6 +1,12 @@
 2015-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/gschem_types.h: Add header
+    * include/gschem_event.h: Add header for new Gschem event object.
+
+    * src/base/gschem_event.c Add source for new Gschem event object.
+
+2015-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_types.h: Add header for gschem_types
 
 2015-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
