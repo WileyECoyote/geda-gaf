@@ -858,52 +858,36 @@ bool x_event_key (GtkWidget      *widget,
    * end_key label to escape the state evaluation rather
    * than returning from the function directly. */
 
-  if (w_current->inside_action) {
+  if (w_current->inside_action && control_key) {
 
     switch (w_current->event_state) {
 
+      x_event_get_snapped_pointer (w_current, &wx, &wy);
+
       case LINEMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_line_motion (w_current, wx, wy);
-        }
+        o_line_motion (w_current, wx, wy);
         break;
 
       case NETMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_net_motion (w_current, wx, wy);
-        }
+        o_net_motion (w_current, wx, wy);
         break;
 
       case PATHMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_path_motion (w_current, wx, wy);
-        }
+        o_path_motion (w_current, wx, wy);
         break;
 
       case BUSMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_bus_motion (w_current, wx, wy);
-        }
+        o_bus_motion (w_current, wx, wy);
         break;
 
       case DRAGMOVE:
       case MOVEMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_move_motion (w_current, wx, wy);
-        }
+        o_move_motion (w_current, wx, wy);
         break;
 
       case COPYMODE:
       case MCOPYMODE:
-        if (control_key) {
-          x_event_get_snapped_pointer (w_current, &wx, &wy);
-          o_place_motion (w_current, wx, wy);
-        }
+        o_place_motion (w_current, wx, wy);
 
       default:
         break;

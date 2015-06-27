@@ -1,3 +1,7 @@
+2015-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Simplify code in function x_event_key.
+
 2015-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Implement new event loop handlers for adder actions
