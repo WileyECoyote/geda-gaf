@@ -1,3 +1,16 @@
+2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Incorrect behavior: Fixed scaling of PDF output.
+
+    * src/x/x_print.c: WEH: Modified per commit to Master branch by Vladimir
+      Zhbanov, commit 7a209a977320a97f93e2b2b2e4f5bc0230372d33:
+
+      Schematics exported in PDF format using File->Write image had inappropriate
+      large scale, which led to inadequate behaviour of some PDF viewers, since
+      some of them cannot show documents after exceeding some size, others do it
+      very slowly. The default scale has been changed and now 1000 gschem points
+      represent 1 inch (72 Adobe points) in output document.
+
 2015-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Simplify code in function x_event_key.

@@ -769,9 +769,22 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
   gtk_widget_destroy (GTK_WIDGET (dialog));
 
 }
-/* ------------------------ End Print Old Dialogs -------------------------- */
 
+/* ------------------------ End Print Old Dialogs -------------------------- */
 #define DEFAULT_PDF_SIZE 256
+
+/*! \def DEFAULT_ADOBE_PDF_PPI
+ *  \brief
+ *  PDF scale used by Adobe is fixed and equal to 72 ppi. */
+#define DEFAULT_ADOBE_PDF_PPI 72
+
+/*! \def DEFAULT_GSCHEM_PPI Gschem Points Per Inch
+ *  \brief
+ * Scaling factor Set 1 gschem point = 1 mil, i.e. 1000 points = 1 inch.
+ * See requirements: http://wiki.geda-project.org/geda:file_format_spec
+ */
+#define DEFAULT_GSCHEM_PPI 1000
+
 #define CFG_GROUP_PRINTING "gschem.printing"
 #define CFG_KEY_PRINTING_ORIENTATION "layout"
 #define CFG_KEY_PRINTING_PAPER "paper"
@@ -1086,8 +1099,8 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
            &wx_min, &wy_min, &wx_max, &wy_max);
 
   if (status) {
-    width = wx_max - wx_min;
-    height = wy_max - wy_min;
+    width = (wx_max - wx_min) * DEFAULT_ADOBE_PDF_PPI / DEFAULT_GSCHEM_PPI;
+    height = (wy_max - wy_min) * DEFAULT_ADOBE_PDF_PPI / DEFAULT_GSCHEM_PPI;
   }
   else {
     /* Fallback size if there are no drawable objects */
