@@ -285,5 +285,5 @@ void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_arc_init(w_current, w_x, w_y);
 
-  i_event_start_action_handler(w_current, o_arc_init, o_arc_end1);
+  i_event_start_adder_handler(w_current, o_arc_init, o_arc_end1);
 }

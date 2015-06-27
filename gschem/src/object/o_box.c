@@ -227,5 +227,5 @@ void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_box_init(w_current, w_x, w_y);
 
-  i_event_start_action_handler(w_current, o_box_init, o_box_end);
+  i_event_start_adder_handler(w_current, o_box_init, o_box_end);
 }

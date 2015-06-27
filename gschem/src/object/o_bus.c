@@ -224,5 +224,5 @@ void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_bus_init(w_current, w_x, w_y);
 
-  i_event_start_action_handler(w_current, o_bus_init, o_bus_end);
+  i_event_start_adder_handler(w_current, o_bus_init, o_bus_end);
 }

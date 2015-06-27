@@ -219,5 +219,5 @@ void o_circle_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_circle_init(w_current, w_x, w_y);
 
-  i_event_start_action_handler(w_current, o_circle_init, o_circle_end);
+  i_event_start_adder_handler(w_current, o_circle_init, o_circle_end);
 }

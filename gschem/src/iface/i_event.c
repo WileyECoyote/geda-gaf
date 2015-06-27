@@ -298,9 +298,9 @@ void i_event_cancel_action_handler(GschemToplevel *w_current)
   }
 }
 
-void i_event_start_action_handler (GschemToplevel *w_current,
-                                   EventResolver  ifunc,
-                                   EventResolver  rfunc)
+void i_event_start_adder_handler (GschemToplevel *w_current,
+                                  EventResolver   ifunc,
+                                  EventResolver   rfunc)
 {
   GschemEvent *event;
 
@@ -310,7 +310,6 @@ void i_event_start_action_handler (GschemToplevel *w_current,
     i_event_end_action_handler(w_current);
   }
 
-  //event               = g_object_ref(w_current->action_event);
   event               = w_current->action_event;
   event->state        = w_current->event_state;
 

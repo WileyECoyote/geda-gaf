@@ -288,7 +288,7 @@ void       i_event_block_handler            (GschemToplevel *w_current, EventHan
 void       i_event_unblock_handler          (GschemToplevel *w_current, EventHandler id);
 void       i_event_setup_handlers           (GschemToplevel *w_current);
 void       i_event_cancel_action_handler    (GschemToplevel *w_current);
-void       i_event_start_action_handler     (GschemToplevel *w_current, EventResolver ifunc, EventResolver rfunc);
+void       i_event_start_adder_handler     (GschemToplevel *w_current, EventResolver ifunc, EventResolver rfunc);
 
 /* i_pan_world.c */
 void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);
