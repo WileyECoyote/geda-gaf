@@ -1,3 +1,9 @@
+2015-06-26 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov See commit   317a042ab4ae3044018e1fa4f141245833ff95fa;
+      gsch2pcb: Slightly shift down text to make m4-pcbdir more visible.
+
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * utils/src/smash_megafile.c: WEH: Modified per commit to Master branch by

@@ -1376,7 +1376,7 @@ static void
 usage ()
 {
   puts (usage_string0);
-  printf ("                         %s\n", default_m4_pcbdir);
+  printf ("                         %s\n\n", default_m4_pcbdir);
   puts (usage_string1);
   exit (0);
 }
@@ -1416,10 +1416,9 @@ get_args (int argc, char ** argv)
       }
       else if (!strcmp (opt, "help") || !strcmp (opt, "h"))
         usage ();
-      else if (i < argc
-               && ((r = parse_config (opt, (i < argc - 1) ? arg : NULL))
-                   >= 0)
-        ) {
+      else if (i < argc &&
+              ((r = parse_config (opt, (i < argc - 1) ? arg : NULL)) >= 0))
+        {
         i += r;
         continue;
       }
@@ -1454,17 +1453,14 @@ main (int argc, char ** argv)
   pcbdata_path = getenv ("PCBDATA");  /* do not free return value */
 
   if (pcbdata_path != NULL) {
-        /* Use the default value passed in from the configure script
-     * instead of trying to hard code a value which is very
-     * likely wrong
-     */
 
-    m4_pcbdir = u_string_concat (PCBDATADIR, "/pcb/m4", NULL);
+    /* If PCBDATA is set, use the value */
+    m4_pcbdir = u_string_concat (pcbdata_path, "/m4", NULL);
 
   }
   else {
-    /* If PCBDATA is set, so use the value */
-    m4_pcbdir = u_string_concat (pcbdata_path, "/m4", NULL);
+    /* else try PCBDATADIR */
+    m4_pcbdir = u_string_concat (PCBDATADIR, "/m4", NULL);
   }
 
   default_m4_pcbdir = u_string_strdup (m4_pcbdir);
@@ -1476,7 +1472,6 @@ main (int argc, char ** argv)
 
   if (!schematics)
     usage ();
-
 
   /* Defaults for the search path if not configured in the project file */
   if (g_file_test ("packages", G_FILE_TEST_IS_DIR))
@@ -1499,9 +1494,9 @@ main (int argc, char ** argv)
   GEDA_FREE (path);
 
   pins_file_name = u_string_concat (sch_basename, ".cmd", NULL);
-  net_file_name = u_string_concat (sch_basename, ".net", NULL);
-  pcb_file_name = u_string_concat (sch_basename, ".pcb", NULL);
-  bak_file_name = u_string_concat (sch_basename, ".pcb.bak", NULL);
+  net_file_name  = u_string_concat (sch_basename, ".net", NULL);
+  pcb_file_name  = u_string_concat (sch_basename, ".pcb", NULL);
+  bak_file_name  = u_string_concat (sch_basename, ".pcb.bak", NULL);
   tmp = u_string_strdup (bak_file_name);
 
   for (i = 0; g_file_test (bak_file_name, G_FILE_TEST_EXISTS); ++i) {
@@ -1514,7 +1509,8 @@ main (int argc, char ** argv)
     initial_pcb = FALSE;
     pcb_new_file_name = u_string_concat (sch_basename, ".new.pcb", NULL);
     get_pcb_element_list (pcb_file_name);
-  } else
+  }
+  else
     pcb_new_file_name = u_string_strdup (pcb_file_name);
 
   if (!run_gnetlist (pins_file_name, net_file_name, pcb_new_file_name,
