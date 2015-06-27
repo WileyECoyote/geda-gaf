@@ -1,7 +1,16 @@
+2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov See commit fd130bf9c522faa902e06232548c5ca7dd0bdf90;
+      This patch fixes output of the m4 dir when the user calls gsch2pcb
+      without args. Before now, the directory was not defined in such a
+      case and gsch2pcb output "(null)". Now it behaves the same way as if
+      '--help' was given.
+
 2015-06-26 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
-      Vladimir Zhbanov See commit   317a042ab4ae3044018e1fa4f141245833ff95fa;
+      Vladimir Zhbanov See commit 317a042ab4ae3044018e1fa4f141245833ff95fa;
       gsch2pcb: Slightly shift down text to make m4-pcbdir more visible.
 
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>

@@ -1447,9 +1447,6 @@ main (int argc, char ** argv)
   char *path, *p;
   const char *pcbdata_path;
 
-  if (argc < 2)
-    usage ();
-
   pcbdata_path = getenv ("PCBDATA");  /* do not free return value */
 
   if (pcbdata_path != NULL) {
@@ -1464,6 +1461,9 @@ main (int argc, char ** argv)
   }
 
   default_m4_pcbdir = u_string_strdup (m4_pcbdir);
+
+  if (argc < 2)
+    usage ();
 
   get_args (argc, argv);
 
