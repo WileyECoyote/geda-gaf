@@ -673,12 +673,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
         if (dnd_success) {
           o_redraw_cleanstates (w_current);
           w_current->buffer_number = DND_BUFFER;
-          if (o_buffer_paste_start (w_current, x, y)) {
-            dnd_success = TRUE;
-          }
-          else {
-            dnd_success = TRUE;
-          }
+          dnd_success = o_buffer_paste_start (w_current, x, y);
         }
         break;
 
