@@ -396,11 +396,14 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
 
       if(where == DROPPED_ON_COORD) {
 
+        w_current->second_wx = x;
+        w_current->second_wy = y;
+
         object = o_complex_new (w_current->toplevel, x, y, 0,
                                 FALSE, symbol, symbolfile, TRUE);
 
         s_page_append_object(page, object);
-        o_place_end(w_current, x, y, 0, 0, PASTE_OBJECTS_HOOK);
+        o_place_end(w_current, 0, 0, PASTE_OBJECTS_HOOK);
         o_undo_savestate (w_current, UNDO_ALL);
       }
       else {
@@ -669,7 +672,8 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
 #endif
         if (dnd_success) {
           o_redraw_cleanstates (w_current);
-          if (o_buffer_paste_start (w_current, x, y, DND_BUFFER)) {
+          w_current->buffer_number = DND_BUFFER;
+          if (o_buffer_paste_start (w_current, x, y)) {
             dnd_success = TRUE;
           }
           else {

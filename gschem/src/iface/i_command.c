@@ -1231,17 +1231,19 @@ COMMAND (do_paste_clip)
   }
 
   if (object_buffer[narg] != NULL) {
+
+    w_current->buffer_number = narg;
+
     if HOT_ACTION (do_paste_clip) {
 
       if (!o_buffer_paste_start (w_current, CMD_X(do_paste_clip),
-                                            CMD_Y(do_paste_clip), narg))
+                                            CMD_Y(do_paste_clip)))
       {
         i_status_set_state (w_current, SELECT);
       }
     }
     else {
       o_redraw_cleanstates (w_current);
-      w_current->buffer_number = narg;
       i_status_action_stop(w_current);
       i_status_set_state (w_current, PASTEMODE);
     }
@@ -1283,7 +1285,8 @@ COMMAND (do_copy)
     o_redraw_cleanstates(w_current);
 
     if HOT_ACTION (do_copy) {
-      if (o_copy_start (w_current,  CMD_X(do_copy),  CMD_Y(do_copy))) {
+      o_copy_start (w_current, CMD_X(do_copy), CMD_Y(do_copy));
+      if (Current_Page->place_list != NULL) {
         i_status_set_state(w_current, COPYMODE);
       }
     }
@@ -1383,8 +1386,8 @@ COMMAND (do_move)
 
   if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
-    if HOT_ACTION (do_move) {
-      o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move)));
+    if (HOT_ACTION (do_move)) {
+      o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move));
     }
     else {
       w_current->event_state   = MOVEMODE;
@@ -2859,26 +2862,6 @@ COMMAND (do_add_attribute)
   EXIT_COMMAND( do_add_attribute);
 }
 
-/*! \brief Add Text Mode in i_command_Add_Actions
- *  \par Function Description
- *  This is the action handler function for #ADD_TEXT.
- */
-COMMAND (do_add_text)
-{
-  BEGIN_W_COMMAND(do_add_text);
-
-  x_toolbars_turn_off_all_radios(w_current);
-
-  o_redraw_cleanstates(w_current);
-  o_invalidate_rubber (w_current);
-
-  i_status_action_stop(w_current);
-  i_status_set_state(w_current, SELECT);
-
-  x_dialog_text_input(w_current);
-  EXIT_COMMAND(do_add_text);
-}
-
 /*! \brief Add Line Mode  in i_command_Add_Actions
  *  \par Function Description
  *  This is the action handler function for ADD_LINE.
@@ -2901,6 +2884,26 @@ COMMAND (do_add_line)
   }
 
   EXIT_COMMAND(do_add_line);
+}
+
+/*! \brief Add Text Mode in i_command_Add_Actions
+ *  \par Function Description
+ *  This is the action handler function for #ADD_TEXT.
+ */
+COMMAND (do_add_text)
+{
+  BEGIN_W_COMMAND(do_add_text);
+
+  x_toolbars_turn_off_all_radios(w_current);
+
+  o_redraw_cleanstates(w_current);
+  o_invalidate_rubber (w_current);
+
+  i_status_action_stop(w_current);
+  i_status_set_state(w_current, SELECT);
+
+  x_dialog_text_input(w_current);
+  EXIT_COMMAND(do_add_text);
 }
 
 /*! \brief Action Add Pin Mode in i_command_Add_Actions
@@ -3709,9 +3712,8 @@ COMMAND (do_update)
   if (o_select_is_selection(w_current)) {
 
     /* Updating components modifies the selection. Therefore, create a
-     * new list of only the Objects we want to update from the current
-     * selection, then iterate over that new list to perform the
-     * update. */
+     * new list of only the Complex Object from the current selection,
+     * then iterate over that new list to perform the update. */
     selection = geda_list_get_glist (toplevel->page_current->selection_list);
     for (iter = selection; iter != NULL; NEXT(iter)) {
       Object *o_current = (Object *) iter->data;
@@ -3727,7 +3729,8 @@ COMMAND (do_update)
 
     g_list_free (selected_components);
 
-  } else {
+  }
+  else {
     /* nothing selected, go back to select state */
     u_log_message("Nothing selected\n");
     o_redraw_cleanstates(w_current);

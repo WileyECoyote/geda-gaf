@@ -219,7 +219,7 @@ void o_move_end(GschemToplevel *w_current)
       object = (Object *) selection_list->data;
 
       if (object == NULL) {
-        BUG_MSG("NULL object in o_move_end!");
+        BUG_MSG("NULL object!");
         return;
       }
 
@@ -678,7 +678,7 @@ void o_move_end_rubberband (GschemToplevel *w_current,
  *
  */
 static
-bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y, int state)
+bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   int status = FALSE;

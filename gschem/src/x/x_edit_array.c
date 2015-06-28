@@ -434,7 +434,7 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
 
           w_current->second_wx = x;
           w_current->second_wy = y;
-          o_place_end (w_current, x, y, TRUE, NULL, 0);
+          o_place_end (w_current, TRUE, NULL, 0);
         }
       }
     }

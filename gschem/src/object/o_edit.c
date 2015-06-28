@@ -263,7 +263,7 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
     w_current->second_wx = x;
     w_current->second_wy = y;
 
-    o_place_end (w_current, x, y, FALSE, &new_list, COPY_OBJECTS_HOOK);
+    o_place_end (w_current, FALSE, &new_list, COPY_OBJECTS_HOOK);
 
     o_select_unselect_all(w_current);
     o_select_add_list(w_current, new_list);
@@ -377,19 +377,16 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
 
       i_status_action_start(w_current);
 
-      x = w_current->second_wx;
-      y = w_current->second_wy;
-
       if (!w_current->SHIFTKEY) {
 
-        o_place_end (w_current, x, y, FALSE, NULL, COPY_OBJECTS_HOOK);
+        o_place_end (w_current, FALSE, NULL, COPY_OBJECTS_HOOK);
 
       }
       else { /* Shift is down, place and move selection to new objects */
 
         GList *list = NULL;
 
-        o_place_end (w_current, x, y, FALSE, &list, COPY_OBJECTS_HOOK);
+        o_place_end (w_current, FALSE, &list, COPY_OBJECTS_HOOK);
 
         o_select_unselect_all(w_current);
         o_select_add_list(w_current, list);

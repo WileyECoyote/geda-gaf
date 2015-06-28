@@ -123,11 +123,10 @@ void o_buffer_cut(GschemToplevel *w_current, int buf_num)
  *  contents and updates the global state variable so the user can
  *  position/place the any objects that were in the buffer.
  */
-bool o_buffer_paste_start(GschemToplevel *w_current, int w_x,
-                                                     int w_y,
-                                                     int buf_num)
+bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int result;
+  int buf_num = w_current->buffer_number;
 
   if (w_current == NULL) {
     BUG_MSG ("w_current");

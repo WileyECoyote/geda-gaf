@@ -96,6 +96,9 @@ int x_event_button_pressed(GtkWidget      *widget,
 
     if (w_current->inside_action && Current_PlaceList != NULL) {
 
+      w_current->second_wx = w_x;
+      w_current->second_wy = w_y;
+
       switch (w_current->event_state) {
 
         case (MOVEMODE):
@@ -111,15 +114,15 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case (COMPMODE):
-          o_place_component_end(w_current, w_x, w_y);
+          o_place_component_end(w_current);
           break;
 
         case (TEXTMODE):
-          o_place_text_end(w_current, w_x, w_y);
+          o_place_text_end(w_current);
           break;
 
         case (PASTEMODE):
-          o_place_paste_end(w_current, w_x, w_y);
+          o_place_paste_end(w_current);
           break;
         default: break;
       }
@@ -174,7 +177,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case (MOVEMODE):
-          o_move_start(w_current, w_x, w_y));
+          o_move_start(w_current, w_x, w_y);
           break;
 
         case (COPYMODE):
@@ -186,7 +189,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case (PASTEMODE):
-          o_buffer_paste_start (w_current, w_x, w_y, w_current->buffer_number);
+          o_buffer_paste_start (w_current, w_x, w_y);
           break;
 
         case(DESELECT):

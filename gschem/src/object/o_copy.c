@@ -57,19 +57,19 @@ void o_copy_cancel(GschemToplevel *w_current)
 void o_copy_end(GschemToplevel *w_current)
 {
 
-  int wx = w_current->second_wx;
-  int wy = w_current->second_wy;
+  //int wx = w_current->second_wx;
+  //int wy = w_current->second_wy;
 
   if (!w_current->SHIFTKEY) {
 
-    o_place_end (w_current, wx, wy, FALSE, NULL, COPY_OBJECTS_HOOK);
+    o_place_end (w_current, FALSE, NULL, COPY_OBJECTS_HOOK);
 
   }
   else {
 
     GList *list = NULL;
 
-    o_place_end (w_current, wx, wy, FALSE, &list, COPY_OBJECTS_HOOK);
+    o_place_end (w_current, FALSE, &list, COPY_OBJECTS_HOOK);
 
     o_select_unselect_all(w_current);
     o_select_add_list(w_current, list);
@@ -86,10 +86,10 @@ void o_copy_end(GschemToplevel *w_current)
  */
 void o_copy_multiple_end(GschemToplevel *w_current)
 {
-  int wx = w_current->second_wx;
-  int wy = w_current->second_wy;
+  //int wx = w_current->second_wx;
+  //int wy = w_current->second_wy;
 
-  o_place_end (w_current, wx, wy, TRUE, NULL, COPY_OBJECTS_HOOK);
+  o_place_end (w_current, TRUE, NULL, COPY_OBJECTS_HOOK);
   o_undo_savestate (w_current, UNDO_ALL);
 
   /* Stay on ENDMCOPY mode */

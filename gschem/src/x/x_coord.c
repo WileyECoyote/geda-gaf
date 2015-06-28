@@ -395,16 +395,18 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
             /* fall through */
 
           case ENDDND_MOVE_OBJ:
+
+            w_current->second_wx = x;
+            w_current->second_wy = y;
+
             if (w_current->dnd_save_state == MOVEMODE ||
                 w_current->dnd_save_state == DRAGMOVE)
             {
-              w_current->second_wx = x;
-              w_current->second_wy = y;
               o_move_end(w_current);
             }
             else {
               s_place_set_place_list(toplevel, object_buffer[DND_BUFFER] );
-              o_place_end(w_current, x, y, 0, 0, 0); /* Not passing a Hook Id */
+              o_place_end(w_current, 0, 0, 0); /* Not passing a Hook Id */
               o_undo_savestate (w_current, UNDO_ALL);
             }
 
@@ -412,8 +414,6 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
             /* keep falling through */
 
             default:
-              w_current->second_wx = x;
-              w_current->second_wy = y;
               if (do_delete) {
                 s_object_release_objects(object_buffer[DND_BUFFER]);
               }
