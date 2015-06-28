@@ -341,14 +341,7 @@ static void gschem( int argc, char *argv[])
     geda_atexit (i_vars_atexit_save_user_config, NULL);
   }
 
-  /*! \internal Begin Setup Log & Console Systems */
-  /*TODO: All of this logging stuff should be relocated to Lib */
-  /* Now that the initialization files have been processed, retrieve the log settings. */
-  logging             = default_logging;
-  log_destiny         = default_log_destiny;
-  console_window      = default_console_window;
-  console_window_type = default_console_window_type;
-
+  /*! \internal Begin Setup Log & Console System */
   x_console_init_commands(w_current, run_mode);
 
   if (logging == TRUE) {

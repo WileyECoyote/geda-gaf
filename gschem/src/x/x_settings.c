@@ -64,7 +64,11 @@
  * WEH | 04/12/15 | Add configure_dialog_response, set the toggle menu
  *     |          | options without checking dialog set or was canceled.
  * ---------------|--------------------------------------------------
+ * WEH | 06/28/15 | Add saving Log & Console Related to key file,
+ *     |          | (previously the variables were not  being saved).
+ * ---------------|--------------------------------------------------
 */
+
 /*!
  * \file x_settings.c
  * \brief Program configuration settings support module
@@ -272,6 +276,15 @@ void x_settings_save_settings(GschemToplevel *w_current)
   eda_config_set_boolean (cfg, group_name, "undo-panzoom",  w_current->undo_panzoom);
   eda_config_set_boolean (cfg, group_name, "undo-preserve", w_current->undo_preserve);
   eda_config_set_integer (cfg, group_name, "undo-type",     w_current->undo_type);
+
+  /* Log Console Related */
+  group_name = LOG_CONFIG_GROUP;
+  eda_config_set_integer (cfg, group_name, "logging",             logging);
+  eda_config_set_integer (cfg, group_name, "log-destiny",         log_destiny);
+
+  group_name = IDS_CONSOLE;
+  eda_config_set_integer (cfg, group_name, "console-window",      console_window);
+  eda_config_set_integer (cfg, group_name, "console-window-type", console_window_type);
 }
 
 /** @brief function change_default_titleblock in GatherSettings */

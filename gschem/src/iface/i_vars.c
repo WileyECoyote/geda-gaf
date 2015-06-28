@@ -96,10 +96,10 @@ int     default_image_width               = RC_NIL;
 int     default_image_height              = RC_NIL;
 
 /* Log Related */
-int     default_logging                   = TRUE;
-int     default_log_destiny               = CONSOLE_WINDOW;
-int     default_console_window            = MAP_ON_STARTUP;
-int     default_console_window_type       = DECORATED;
+int     default_logging                   = RC_NIL;
+int     default_log_destiny               = RC_NIL;
+int     default_console_window            = RC_NIL;
+int     default_console_window_type       = RC_NIL;
 
 /* Miscellaneous - in  alphabetical order */
 int     default_action_feedback_mode      = OUTLINE;
@@ -353,7 +353,7 @@ i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int i
 /*! \brief Recall User Settings
  *  \par  This section retrieves the values of configuration settings from
  *  the new configuration system and assigns the values to the cooresponding
- *  top-level variable. Note that this is done after the "old" system, so
+ *  top-level variables. Note that this is done after the "old" system, so
  *  the RC values will be ignored.
  */
 void i_vars_recall_user_settings(GschemToplevel *w_current)
@@ -541,9 +541,10 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
  */
 void i_vars_set(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel               = w_current->toplevel;
 
   inline void i_set_rc(int *var, int rc) { if (rc != RC_NIL) *var = rc; };
+
+  GedaToplevel *toplevel               = w_current->toplevel;
 
   i_vars_libgeda_set(toplevel);
 
@@ -731,7 +732,7 @@ void i_vars_freenames()
 void i_vars_init(GschemToplevel *w_current)
 {
 
-  EdaConfig *cfg = eda_config_get_default_context ();
+  EdaConfig  *cfg   = eda_config_get_default_context ();
   const char *group = IVAR_CONFIG_GROUP;
 
   /* read in Gtk RC files */
@@ -758,7 +759,7 @@ void i_vars_init(GschemToplevel *w_current)
   eda_config_set_boolean (cfg, IDS_COMP_SELECT, "showtips",  TRUE);
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "style",     255);
 
-  /* read in Gscehm RC files, which may over-ride the hard-coded defaults! */
+  /* read in Gschem RC files, which may over-ride the hard-coded defaults! */
   x_rc_parse_gschem (w_current, rc_filename);
 }
 

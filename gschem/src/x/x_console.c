@@ -40,6 +40,9 @@
  *                   variable number of arguments, (so superfluous info
  *                   is not forced to log window). Revised
  *                   x_console_init_commands (to have dynamic messages).
+ * -----------------------------------------------------------------
+ * WEH | 06/28/15 |  Retrieve Log & Console Systems variables in function
+ *     |          |  x_console_init_commands.
 */
 
 #include <config.h>
@@ -136,6 +139,35 @@ void x_console_destroy_command_buffer(void * user_data) {
 }
 
 void x_console_init_commands(GschemToplevel *w_current, int mode) {
+
+  inline void i_setv_rc(volatile int *var, int rc) { if (rc != RC_NIL) *var = rc; };
+
+  v_log_message("Initializing Log & Console Systems configuration settings\n");
+
+  EdaConfig    *cfg   = eda_config_get_user_context ();
+  const char   *group = LOG_CONFIG_GROUP;
+
+ /*! \internal Retrieve Log & Console Systems variables
+   * \par
+   *   Retrieve the log settings. The log settings are retrieved early during
+   *   startup, before the main variables.
+   *
+   * \note 1. RC Initialization files must have been processed prior to calling
+   *          this function.
+   *       2. Log & Console variables are saved in x_settings_save_settings().
+   */
+  i_var_restore_group_integer (cfg, group, "logging",     (int*)&logging, TRUE);
+  i_var_restore_group_integer (cfg, group, "log-destiny", (int*)&log_destiny, CONSOLE_WINDOW);
+
+  group = IDS_CONSOLE;
+
+  i_var_restore_group_integer (cfg, group, "console-window",     (int*)&console_window, MAP_ON_STARTUP);
+  i_var_restore_group_integer (cfg, group, "console-window-type", (int*)&console_window_type, DECORATED);
+
+  i_setv_rc (&logging,   default_logging);
+  i_setv_rc (&log_destiny,   default_log_destiny);
+  i_setv_rc (&console_window,   default_console_window);
+  i_setv_rc (&console_window_type,   default_console_window_type);
 
   command_buffer = NULL;
 

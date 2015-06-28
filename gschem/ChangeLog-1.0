@@ -1,3 +1,21 @@
+2015-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Add Log and Console window setting to new config
+
+    * include/gschem_sdefines.h: Add LOG_CONFIG_GROUP
+
+    * src/base/gschem.c : Removed setting Log & Console Systems variables
+      in function gschem.
+
+    * src/iface/i_vars.c: Set default values for Log and Console settings to
+      RC_NIL.
+
+    * src/x/x_console.c: Revised function x_console_init_commands retrieve Log
+      and Console settings.
+
+    * src/x/x_settings.c: Add saving Log and Console settings in function
+      x_settings_save_settings using group LOG_CONFIG_GROUP and IDS_CONSOLE.
+
 2015-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_copy.c: Rename o_copy_start to o_copy_real_start and
