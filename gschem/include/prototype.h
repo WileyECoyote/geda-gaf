@@ -446,11 +446,11 @@ void       o_complex_translate_all           (GschemToplevel *w_current, int off
 bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object *complex);
 
 /* o_copy.c */
-bool       o_copy_start                 (GschemToplevel *w_current, int x, int y);
-void       o_copy_multiple_start        (GschemToplevel *w_current, int x, int y);
 void       o_copy_cancel                (GschemToplevel *w_current);
 void       o_copy_end                   (GschemToplevel *w_current);
 void       o_copy_multiple_end          (GschemToplevel *w_current);
+void       o_copy_multiple_start        (GschemToplevel *w_current, int x, int y);
+void       o_copy_start                 (GschemToplevel *w_current, int x, int y);
 
 /* o_delete.c */
 void       o_delete                     (GschemToplevel *w_current, Object *object);
@@ -527,13 +527,11 @@ GLT       *o_move_stretch_add           (GList *list, Object *object, int whicho
 GLT       *o_move_stretch_remove        (GList *list, Object *object);
 void       o_move_stretch_print_all     (GList *list);
 void       o_move_stretch_destroy_all   (GList *list);
-bool       o_move_start                 (GschemToplevel *w_current, int x, int y);
-int        o_move_zero_length           (Object *object);
+void       o_move_start                 (GschemToplevel *w_current, int x, int y);
+void       o_move_start_drag            (GschemToplevel *w_current, int w_x, int w_y);
 
 /* o_net.c */
 int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_obj, GList *other_objects);
-void       o_net_draw_rubber            (GschemToplevel *w_current);
-//void       o_net_finish_magnetic        (GschemToplevel *w_current);
 void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);

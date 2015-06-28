@@ -100,7 +100,6 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         case (MOVEMODE):
           o_move_end(w_current);
-          i_status_set_state(w_current, SELECT);
           break;
 
         case (COPYMODE):
@@ -175,9 +174,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case (MOVEMODE):
-          if (o_move_start(w_current, w_x, w_y)) {
-            i_status_set_state(w_current, MOVEMODE);
-          }
+          o_move_start(w_current, w_x, w_y));
           break;
 
         case (COPYMODE):
@@ -274,13 +271,10 @@ int x_event_button_pressed(GtkWidget      *widget,
           }
           else { /* Only Copy and Move are supported */
             if (w_current->ALTKEY) {
-              if (o_copy_start(w_current, w_x, w_y)) {
-                i_status_set_state(w_current, COPYMODE);
-              }
+              o_copy_start(w_current, w_x, w_y);
             }
             else {
-              o_move_start(w_current, w_x, w_y);
-              i_status_set_state(w_current, DRAGMOVE);
+              o_move_start_drag(w_current, w_x, w_y);
             }
           }
           break;
@@ -457,7 +451,6 @@ bool x_event_button_released (GtkWidget      *widget,
         switch (w_current->event_state) {
           case (DRAGMOVE):
             o_move_end(w_current);
-            i_status_set_state(w_current, SELECT);
             break;
           default: break;
         }
@@ -539,7 +532,6 @@ bool x_event_button_released (GtkWidget      *widget,
             switch (w_current->event_state) {
               case(DRAGMOVE):
                 o_move_end(w_current);
-                i_status_set_state(w_current, SELECT);
                 break;
 
               case(COPYMODE):
@@ -712,25 +704,6 @@ bool x_event_configure (GtkWidget         *widget,
   return FALSE;
 }
 
-/*This function also raises any open dialogs to the foreground if the
- *toplevel raise_dialog_boxes is TRUE
- */
-bool x_event_raise_dialogs(void *user_data)
-{
-  GschemToplevel *w_current = (GschemToplevel*)user_data;
-  /* raise the dialog boxes if this feature is enabled */
-  if (w_current->raise_dialog_boxes) {
-    x_dialog_raise_all(w_current);
-  }
-  return (w_current->raise_dialog_boxes != 0);
-}
-
-void x_event_governor(GschemToplevel *w_current)
-{
-  if (w_current->raise_dialog_boxes > 0)
-  g_timeout_add (w_current->raise_dialog_boxes, x_event_raise_dialogs, w_current);
-}
-
 /*! \brief On event Expose
  *  \par Function Description
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
@@ -779,6 +752,25 @@ int x_event_expose (GtkWidget      *widget,
   }
 
   return FALSE;
+}
+
+/*This function also raises any open dialogs to the foreground if the
+ *toplevel raise_dialog_boxes is TRUE
+ */
+static bool x_event_raise_dialogs(void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+  /* raise the dialog boxes if this feature is enabled */
+  if (w_current->raise_dialog_boxes) {
+    x_dialog_raise_all(w_current);
+  }
+  return (w_current->raise_dialog_boxes != 0);
+}
+
+void x_event_governor(GschemToplevel *w_current)
+{
+  if (w_current->raise_dialog_boxes > 0)
+  g_timeout_add (w_current->raise_dialog_boxes, x_event_raise_dialogs, w_current);
 }
 
 /*! \brief Get a snapped pointer position in world coordinates
@@ -860,9 +852,9 @@ bool x_event_key (GtkWidget      *widget,
 
   if (w_current->inside_action && control_key) {
 
-    switch (w_current->event_state) {
+    x_event_get_snapped_pointer (w_current, &wx, &wy);
 
-      x_event_get_snapped_pointer (w_current, &wx, &wy);
+    switch (w_current->event_state) {
 
       case LINEMODE:
         o_line_motion (w_current, wx, wy);
@@ -1022,9 +1014,7 @@ bool x_event_motion (GtkWidget      *widget,
       if (o_select_motion (w_current, unsnapped_wx, unsnapped_wy)) {
 
         /* Start moving the selected object(s) */
-        if (o_move_start(w_current, w_x, w_y)) {
-          w_current->event_state = DRAGMOVE;
-        }
+        o_move_start_drag(w_current, w_x, w_y);
         if (w_current->drag_event) {
           gdk_event_free(w_current->drag_event);
         }

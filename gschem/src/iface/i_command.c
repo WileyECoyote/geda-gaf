@@ -1384,9 +1384,7 @@ COMMAND (do_move)
   if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_move) {
-      if (o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move))) {
-        i_status_set_state(w_current, MOVEMODE);
-      }
+      o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move)));
     }
     else {
       w_current->event_state   = MOVEMODE;

@@ -144,58 +144,7 @@ void o_move_stretch_destroy_all (GList *list)
   g_list_free (list);
 }
 
-/** @} END Group Python_API_Library_Internal */
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-bool o_move_start(GschemToplevel *w_current, int w_x, int w_y)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  int status = FALSE;
-  GList *s_iter;
-
-  g_return_val_if_fail (w_current->stretch_list == NULL, FALSE);
-
-  if (o_select_is_selection (w_current)) {
-
-    /* Save the current state. When rotating the selection when
-     * moving, we have to come back to here */
-    o_undo_savestate(w_current, UNDO_ALL);
-
-    w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
-
-    w_current->first_wx = w_current->second_wx = w_x;
-    w_current->first_wy = w_current->second_wy = w_y;
-
-    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
-
-    if (w_current->netconn_rubberband) {
-
-      o_move_prep_rubberband(w_current);
-
-      /* Set the do not_redraw flag on rubberbanded objects and invalidate
-       * them. This ensures that they are not drawn (in their un-stretched
-       * position) during screen updates. */
-      for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
-      {
-        STRETCH *stretch = s_iter->data;
-        stretch->object->dont_redraw = TRUE;
-        o_invalidate_object (w_current, stretch->object);
-      }
-    }
-
-    o_select_move_to_place_list(w_current);
-    o_move_invalidate_rubber (w_current, TRUE);
-    status = TRUE;
-  }
-
-  i_status_update_action_state(w_current, status);
-
-  return status;
-}
+/** @} END Group Stretch */
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -323,6 +272,7 @@ void o_move_end(GschemToplevel *w_current)
     Place_List = NULL;
   }
   i_status_action_stop(w_current);
+  i_status_set_state(w_current, SELECT);
 }
 
 /*! \todo Finish function documentation!!!
@@ -662,7 +612,7 @@ void o_move_prep_rubberband(GschemToplevel *w_current)
  *  \par Function Description
  *
  */
-int o_move_zero_length(Object * object)
+static int o_move_zero_length(Object * object)
 {
 #if DEBUG
   printf("x: %d %d y: %d %d\n",
@@ -719,6 +669,74 @@ void o_move_end_rubberband (GschemToplevel *w_current,
       s_conn_update_object (object);
       *objects = g_list_append (*objects, object);
     }
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static
+bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y, int state)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  int status = FALSE;
+  GList *s_iter;
+
+  g_return_val_if_fail (w_current->stretch_list == NULL, FALSE);
+
+  if (o_select_is_selection (w_current)) {
+
+    /* Save the current state. When rotating the selection when
+     * moving, we have to come back to here */
+    o_undo_savestate(w_current, UNDO_ALL);
+
+    w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
+
+    w_current->first_wx = w_current->second_wx = w_x;
+    w_current->first_wy = w_current->second_wy = w_y;
+
+    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
+
+    if (w_current->netconn_rubberband) {
+
+      o_move_prep_rubberband(w_current);
+
+      /* Set the do not_redraw flag on rubberbanded objects and invalidate
+       * them. This ensures that they are not drawn (in their un-stretched
+       * position) during screen updates. */
+      for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
+      {
+        STRETCH *stretch = s_iter->data;
+        stretch->object->dont_redraw = TRUE;
+        o_invalidate_object (w_current, stretch->object);
+      }
+    }
+
+    o_select_move_to_place_list(w_current);
+
+    o_move_invalidate_rubber (w_current, TRUE);
+
+    status = TRUE;
+  }
+
+  i_status_update_action_state(w_current, status);
+
+  return status;
+}
+
+void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (o_move_real_start(w_current, w_x, w_y)) {
+    i_status_set_state(w_current, MOVEMODE);
+  }
+}
+
+void o_move_start_drag(GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (o_move_real_start(w_current, w_x, w_y)) {
+    i_status_set_state(w_current, DRAGMOVE);
   }
 }
 

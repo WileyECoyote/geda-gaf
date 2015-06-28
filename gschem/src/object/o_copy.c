@@ -35,54 +35,6 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Start a Copy operation
- *  \par Function Description
- *  This function is called at the beginning of a copy operation
- *  to save the x and y coordinates for the event and if there is
- *  a selection, add the current selection to the place list.
- */
-bool o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-
-  int status = FALSE;
-
-  /* Copy the objects into the buffer at their current position,
-   * with future motion relative to the mouse origin, (w_x, w_y). */
-
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
-
-  if (o_select_is_selection(w_current)) {
-
-    GList *s_current = geda_list_get_glist(Top_Selection);
-    s_place_set_place_list(toplevel, s_current);
-
-    status = o_place_start(w_current, w_x, w_y);
-    if (status) {
-      i_status_set_state(w_current, COPYMODE);
-    }
-  }
-
-  i_status_update_action_state(w_current, status);
-
-  return status;
-}
-
-/*! \brief Start Multiple Copy Mode
- *  \par Function Description
- *  This function is called at the beginning of a copy multiple operation.
- *  The function uses the normal o_copy_start function to save the x and y
- *  coordinates for the event and if o_copy_start is successful the event
- *  state is set to MCOPYMODE.
- */
-void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
-{
-  if (o_copy_start(w_current, w_x, w_y)) {
-    w_current->event_state = MCOPYMODE;
-  }
-}
-
 /*! \brief Can cancel a copy operation
  *  \par Function Description
  *
@@ -142,6 +94,64 @@ void o_copy_multiple_end(GschemToplevel *w_current)
 
   /* Stay on ENDMCOPY mode */
   i_status_action_start(w_current);
+}
+
+/*! \brief Start a Copy operation
+ *  \par Function Description
+ *  This function is called at the beginning of a copy operation
+ *  to save the x and y coordinates for the event and if there is
+ *  a selection, add the current selection to the place list.
+ */
+static
+bool o_copy_real_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  int status = FALSE;
+
+  /* Copy the objects into the buffer at their current position,
+   * with future motion relative to the mouse origin, (w_x, w_y). */
+
+  w_current->first_wx = w_x;
+  w_current->first_wy = w_y;
+
+  if (o_select_is_selection(w_current)) {
+
+    GList *s_current = geda_list_get_glist(Top_Selection);
+    s_place_set_place_list(toplevel, s_current);
+
+    status = o_place_start(w_current, w_x, w_y);
+
+  }
+
+  i_status_update_action_state(w_current, status);
+
+  return status;
+}
+
+/*! \brief Start Multiple Copy Mode
+ *  \par Function Description
+ *  This function is called at the beginning of a copy multiple operation.
+ *  The function uses the normal o_copy_start function to save the x and y
+ *  coordinates for the event and if o_copy_start is successful the event
+ *  state is set to MCOPYMODE.
+ */
+void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (o_copy_real_start(w_current, w_x, w_y)) {
+    i_status_set_state(w_current, MCOPYMODE);
+  }
+}
+
+/*! \brief Start a Single Copy operation
+ *  \par Function Description
+ *  This function is called at the beginning of a nomral copy operation.
+ */
+void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
+{
+  if (o_copy_real_start(w_current, w_x, w_y)) {
+    i_status_set_state(w_current, COPYMODE);
+  }
 }
 
 /** @} endgroup Copy-Operations */

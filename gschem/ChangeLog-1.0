@@ -1,4 +1,15 @@
-2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
+2015-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_copy.c: Rename o_copy_start to o_copy_real_start and
+      reference from replacement o_copy_start and o_copy_multiple_start,
+      resequenced functions.
+
+    * src/object/o_move.c: Rename o_move_start to o_move_real_start and
+      reference from replacement o_move_start, add o_move_start_drag with
+      conditional to i_status_set_state if o_move_real_start returns true,
+      resequenced functions. Declare o_move_zero_length as static.
+
+2015-06-26 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Incorrect behavior: Fixed scaling of PDF output.
 
