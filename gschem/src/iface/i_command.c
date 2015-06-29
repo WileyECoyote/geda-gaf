@@ -1316,10 +1316,7 @@ COMMAND (do_mcopy)
   if (o_select_is_selection(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_mcopy) {
-      o_copy_start (w_current, CMD_X(do_mcopy), CMD_Y(do_mcopy));
-      if(w_current->inside_action) {
-        i_status_set_state(w_current, MCOPYMODE);
-      }
+      o_copy_multiple_start (w_current, CMD_X(do_mcopy), CMD_Y(do_mcopy));
     }
     else {
       w_current->event_state   = MCOPYMODE;
