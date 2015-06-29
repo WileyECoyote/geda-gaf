@@ -69,13 +69,24 @@ void o_complex_export(GschemToplevel *w_current, Object *o_current)
   gtk_widget_destroy (dialog);
 }
 
+static void o_complex_end (GschemToplevel *w_current)
+{
+  o_place_end(w_current, w_current->continue_component_place, NULL, ADD_OBJECT_HOOK);
+
+  if (!w_current->continue_component_place) {
+    //i_status_set_state(w_current, SELECT);
+    i_event_stop_action_handler (w_current);
+  }
+  o_undo_savestate (w_current, UNDO_ALL);
+}
+
 /*! \brief Prepare for Placement of New Complex Object
  *
  *  \par Function Description
  *  Creates a new Complex object and adds the object to #Current_PlaceList
  *  after ensuring the place list is empty.
  */
-void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
+static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GList        *temp_list;
@@ -148,11 +159,20 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
     }
   }
 
-  if ((w_current->inside_action = success)) {
+  return (w_current->inside_action = success);
+}
 
-    /* Run the complex place list changed hook without redrawing */
-    /* since the place list is going to be redrawn afterwards */
-    o_complex_place_changed_run_hook (w_current);
+/*! \brief Start Placement of New Complex Object
+ *
+ *  \par Function Description
+ *  Calls o_complex_prepare_place to create a new Complex object and sets
+ *  event state and handler on success.
+ */
+void o_complex_start(GschemToplevel *w_current, const CLibSymbol *sym, int state)
+{
+  if (o_complex_prepare_place (w_current, sym)) {
+    i_status_set_state (w_current, state);
+    i_event_start_paster_handler(w_current, o_complex_end);
   }
 }
 

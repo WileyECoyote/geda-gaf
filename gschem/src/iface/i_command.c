@@ -1286,9 +1286,6 @@ COMMAND (do_copy)
 
     if HOT_ACTION (do_copy) {
       o_copy_start (w_current, CMD_X(do_copy), CMD_Y(do_copy));
-      if (Current_Page->place_list != NULL) {
-        i_status_set_state(w_current, COPYMODE);
-      }
     }
     else {
       w_current->event_state   = COPYMODE;

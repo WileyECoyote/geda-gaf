@@ -1,5 +1,58 @@
 2015-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Implement new event handlers for paste actions
+
+    * include/gschem_event.h: Add resolver union.
+
+    * include/gschem_types.h: Add types; ActionInit, ActionPaster, ActionAdder.
+      Remove type ActionResolver.
+
+    * src/base/gschem_event.c: Revised to accomodate new gschem_types.
+
+    * src/iface/i_command.c: Remove setting state for HOT condition in
+      function i_cmd_do_copy.
+
+    * src/iface/i_event.c: Add paste handlers for button events; functions;
+      i_event_paster_pressed and i_event_paster_released. Revise i_event_start
+      _adder_handler for new gschem_types, add functions i_event_start_paster_
+      handler and i_event_stop_action_handler.
+
+    * src/object/o_buffer.c: Add function o_buffer_paste_end. Revise function
+      o_buffer_paste_start to activate i_event_start_paster_handler.
+
+    * src/object/o_complex.c: Add function o_complex_end. Declare function
+      o_complex_prepare_place as static and revise to return bool. Add
+      function o_complex_start to activate i_event_start_paster_handler.
+
+    * src/object/o_copy.c: Add i_event_stop_action_handler in function
+      o_copy_cancel to support DND operations. Add i_event_stop_action_handler
+      to o_copy_end, removing redundant i_status_action_stop. Add i_event_start
+      _action_handler to o_copy_multiple_start and o_copy_start.
+
+    * src/object/o_move.c:Add i_event_stop_action_handler in function
+      o_move_cancel to support DND operations. Add i_event_stop_action_handler
+      to o_move_end, removing redundant i_status_action_stop. Add i_event_start
+      _action_handler to o_move_start and o_move_start_drag.
+
+    * src/object/o_place.c: Remove functions; o_place_component_end, o_place_
+      _text_end and o_place_paste_end.
+
+    * src/object/o_text.c: Add function o_text_end. Revise o_text_prepare_place;
+      adding i_event_start_paster_handler, removing i_status_action_start.
+
+    * src/x/x_compselect.c: Revise x_compselect_callback_response; replacing
+      o_complex_prepare_place with o_complex_start in case COMPSELECT_RESPONSE
+      _PLACE and removed setting w_current->event_state == COMPMODE.
+
+    * src/x/x_dnd.c: Revise x_dnd_receive_string_sym; replacing o_complex
+      _prepare_place with o_complex_start and removed setting w_current->
+      event_state == COPYMODE.
+
+    * src/x/x_event.c:Major revisions to remove extranous cases now handled
+      by past event handlers.
+
+2015-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Add Log and Console window setting to new config
 
     * include/gschem_sdefines.h: Add LOG_CONFIG_GROUP

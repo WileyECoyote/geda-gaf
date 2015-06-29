@@ -212,7 +212,6 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
       }
       else {
 
-        w_current->event_state      = COMPMODE;
         w_current->include_complex  = FALSE;
         w_current->embed_components = FALSE;
 
@@ -224,7 +223,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
         }
 
         /* Otherwise set the new symbol to place */
-        o_complex_prepare_place (w_current, symbol);
+        o_complex_start (w_current, symbol, COMPMODE);
         i_status_show_msg(w_current, "Place Component");
       }
       break;

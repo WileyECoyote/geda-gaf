@@ -106,8 +106,6 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
     w_current->rubber_visible = FALSE;
 
     /* Calc final object positions */
-    //w_current->second_wx = w_x;
-    //w_current->second_wy = w_y;
 
     w_diff_x = w_current->second_wx - w_current->first_wx;
     w_diff_y = w_current->second_wy - w_current->first_wy;
@@ -161,31 +159,6 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
   else {
     BUG_MSG("Not inside an action!");
   }
-}
-
-/* May can eliminate these three function now that hooks are numerated,
- * their sole purpose was to de-clutter x_event::x_event_button_pressed
- */
-void o_place_component_end (GschemToplevel *w_current)
-{
-  o_place_end(w_current, w_current->continue_component_place, NULL, ADD_OBJECT_HOOK);
-  if (!w_current->continue_component_place) {
-    i_status_set_state(w_current, SELECT);
-  }
-  o_undo_savestate (w_current, UNDO_ALL);
-}
-
-void o_place_text_end (GschemToplevel *w_current)
-{
-  o_place_end(w_current, FALSE, NULL, ADD_OBJECT_HOOK);
-  o_undo_savestate (w_current, UNDO_ALL);
-}
-
-void o_place_paste_end (GschemToplevel *w_current)
-{
-  o_place_end(w_current, FALSE, NULL, PASTE_OBJECTS_HOOK);
-  i_status_set_state(w_current, SELECT);
-  o_undo_savestate (w_current, UNDO_ALL);
 }
 
 /*! \brief Handle Erasing and Redrawing of rubber outlines for objects

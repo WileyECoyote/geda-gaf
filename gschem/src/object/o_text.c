@@ -106,6 +106,13 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   return result;
 }
 
+static void o_text_end (GschemToplevel *w_current)
+{
+  o_place_end(w_current, FALSE, NULL, ADD_OBJECT_HOOK);
+  o_undo_savestate (w_current, UNDO_ALL);
+  i_event_stop_action_handler (w_current);
+}
+
 /*! \brief Prepare for Placement of New Text Object
  *
  *  \par Function Description
@@ -124,11 +131,12 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   w_current->first_wy = 0;
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
+
   object = o_text_new (TEXT_COLOR,
                        0, 0, LOWER_LEFT, 0, /* zero is angle */
                        w_current->text_size,
-                       /* has to be visible so you can place it */
-                       /* visibility is set when you create the object */
+                       /* has to be visible so we can place it */
+                       /* visibility is set when we create the object */
                        VISIBLE, SHOW_NAME_VALUE, text);
 
   o_text_set_rendered_bounds_func (object,
@@ -139,12 +147,12 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
   s_object_release_objects(toplevel->page_current->place_list);
   toplevel->page_current->place_list = NULL;
 
-  /* here you need to add OBJ_TEXT when it's done */
+  /* here we need to add OBJ_TEXT when it is done */
   toplevel->page_current->place_list =
     g_list_append(toplevel->page_current->place_list,object);
 
-  i_status_action_start(w_current);
   i_status_set_state (w_current, TEXTMODE);
+  i_event_start_paster_handler(w_current, o_text_end);
 }
 
 /*! \brief Launch the Edit Text Dialog

@@ -34,6 +34,8 @@
 #define _GSCHEM_TYPES_H
 
 /*! \brief Type of callback function for event handler */
-typedef void (*EventResolver)(GschemToplevel*, int, int);
+typedef void (*ActionInit)(GschemToplevel*, int, int);
+typedef void (*ActionPaster)(GschemToplevel*);
+typedef void (*ActionAdder)(GschemToplevel*, int, int);
 
 #endif

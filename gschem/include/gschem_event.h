@@ -58,7 +58,8 @@ struct _GschemEvent
   unsigned int release_hid;
 
   void (*initializer)    (void *, int, int);
-  void (*resolver)       (void *, int, int);
+
+  union { void (*adder) (void *, int, int);  void (*paster) (void *); void * func;} resolver;
 
   int  (*press_butt)     (GtkWidget *widget, GdkEventButton *, void *);
   int  (*release_butt)   (GtkWidget *widget, GdkEventButton *, void *);

@@ -149,9 +149,6 @@ static void i_event_end_action_handler(GschemToplevel *w_current)
   i_event_adder_disconnect_events(w_current);
   i_event_unblock_buttons (w_current);
 
-  //g_object_unref(w_current->action_event);
-
-  //w_current->action_event  = NULL;
   w_current->action_event->state = 0;
 
   i_status_action_stop(w_current);
@@ -181,12 +178,12 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
 
       if (w_current->inside_action) {
 
-        action->resolver(w_current, w_x, w_y); /* aka o_shape_end */
+        action->resolver.adder(w_current, w_x, w_y); /* aka o_shape_end */
 
         if (event->type == GDK_2BUTTON_PRESS) {
 
           if (w_current->event_state == PATHMODE) {
-            action->resolver(w_current, w_x, w_y);
+            action->resolver.adder(w_current, w_x, w_y);
           }
           else {
             i_event_end_action_handler(w_current);
@@ -287,6 +284,151 @@ static int i_event_adder_released(GtkWidget      *widget,
   return(0);
 }
 
+
+/* ---------------------- Button Event Paster Handlers ---------------------- */
+static
+int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
+{
+  GschemEvent *action = w_current->action_event;
+
+  if (w_current->event_state == action->state) {
+
+    w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
+    w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
+
+    if (event->button == 1) {
+
+      int  x, y;
+      int  w_x, w_y;
+
+      SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
+
+      w_x = snap_grid (w_current, x);
+      w_y = snap_grid (w_current, y);
+
+      if (w_current->inside_action) {
+
+        if (Current_PlaceList != NULL) {
+          w_current->second_wx = w_x;
+          w_current->second_wy = w_y;
+
+          action->resolver.paster(w_current); /* o_???_end */
+
+        }
+      }
+      else {
+
+        i_status_action_start(w_current);
+        w_current->rubber_visible = TRUE;
+      }
+    }
+    else if (event->button == 3) {
+
+      if (w_current->rubber_visible) {
+        w_current->rubber_visible = FALSE;
+        o_invalidate_rubber (w_current);
+      }
+
+      i_callback_cancel(w_current, 0, NULL);
+
+    }
+  }
+  else {
+    BUG_MSG("w_current->event_state != action->state");
+  }
+  return(0);
+}
+
+static int i_event_paster_released(GtkWidget      *widget,
+                                  GdkEventButton *event,
+                                  GschemToplevel *w_current)
+{
+  GschemEvent *action = w_current->action_event;
+
+  if (w_current->event_state == action->state) {
+
+    if (event->button == 1) {
+
+      switch (w_current->event_state) {
+
+        case(DRAGMOVE):  /* 8 */
+          if (Current_PlaceList != NULL) {
+            o_move_end(w_current);
+          }
+
+        case(MOVEMODE):  /* 23 */
+          if (w_current->drag_event) {
+            gdk_event_free(w_current->drag_event);
+            w_current->drag_event = NULL;
+          }
+          break;
+
+        case STARTDND:   /* 30 */
+          w_current->dnd_state = NONE;
+          if (w_current->drag_event) {
+            gdk_event_free(w_current->drag_event);
+            w_current->drag_event = NULL;
+          }
+          break;
+      }
+    }
+    else  if (event->button == 2) {
+
+      if (!w_current->inside_action) {
+        BUG_MSG("Oops, Not inside an action!");
+      }
+      else {
+
+        int rotate;
+
+        rotate = (w_current->event_state == DRAGMOVE  ||
+                  w_current->event_state == COMPMODE  ||
+                  w_current->event_state == MOVEMODE  ||
+                  w_current->event_state == COPYMODE  ||
+                  w_current->event_state == MCOPYMODE ||
+                  w_current->event_state == PASTEMODE ||
+                  w_current->event_state == TEXTMODE);
+
+        if (rotate) {
+
+          if (w_current->event_state == MOVEMODE ||
+              w_current->event_state == DRAGMOVE)
+          {
+            o_move_invalidate_rubber (w_current, FALSE);
+          }
+          else {
+            o_place_invalidate_rubber (w_current, FALSE);
+          }
+          w_current->rubber_visible = FALSE;
+
+          o_place_rotate(w_current);
+
+          if (w_current->event_state == COMPMODE) {
+            o_complex_place_changed_run_hook (w_current);
+          }
+
+          if (w_current->event_state == MOVEMODE ||
+              w_current->event_state == DRAGMOVE)
+          {
+            o_move_invalidate_rubber (w_current, TRUE);
+          }
+          else {
+            o_place_invalidate_rubber (w_current, TRUE);
+          }
+          w_current->rubber_visible = TRUE;
+        }
+      }
+    }
+    //else if (event->button == 3) {}
+  }
+  else {
+    BUG_IMSG("action->state != w_current->event_state",w_current->event_state);
+  }
+  return(0);
+}
+/* ----------------------------------------------------------------- */
+
 void i_event_cancel_action_handler(GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
@@ -299,8 +441,8 @@ void i_event_cancel_action_handler(GschemToplevel *w_current)
 }
 
 void i_event_start_adder_handler (GschemToplevel *w_current,
-                                  EventResolver   ifunc,
-                                  EventResolver   rfunc)
+                                  ActionInit      ifunc,
+                                  ActionAdder     rfunc)
 {
   GschemEvent *event;
 
@@ -310,14 +452,47 @@ void i_event_start_adder_handler (GschemToplevel *w_current,
     i_event_end_action_handler(w_current);
   }
 
-  event               = w_current->action_event;
-  event->state        = w_current->event_state;
+  event                = w_current->action_event;
+  event->state         = w_current->event_state;
 
-  event->initializer  = (void*)ifunc;
-  event->resolver     = (void*)rfunc;
+  event->initializer   = (void*)ifunc;
+  event->resolver.func = (void*)rfunc;
 
-  event->press_butt   = (void*)i_event_adder_pressed;
-  event->release_butt = (void*)i_event_adder_released;
+  event->press_butt    = (void*)i_event_adder_pressed;
+  event->release_butt  = (void*)i_event_adder_released;
 
   i_event_adder_enable_events(w_current);
+}
+
+void i_event_start_paster_handler (GschemToplevel *w_current,
+                                   ActionPaster    rfunc)
+{
+  GschemEvent *event;
+
+  i_status_action_start(w_current);
+
+  if (w_current->action_event->state) {
+    i_event_end_action_handler(w_current);
+  }
+
+  event                = w_current->action_event;
+  event->state         = w_current->event_state;
+
+  event->resolver.func = (void*)rfunc;
+
+  event->press_butt    = (void*)i_event_paster_pressed;
+  event->release_butt  = (void*)i_event_paster_released;
+
+  i_event_adder_enable_events(w_current);
+}
+
+void i_event_stop_action_handler(GschemToplevel *w_current)
+{
+  GschemEvent *event = w_current->action_event;
+
+  if (event->state) {
+    i_event_end_action_handler(w_current);
+    i_status_action_stop(w_current);
+    i_status_set_state(w_current, SELECT);
+  }
 }

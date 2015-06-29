@@ -43,8 +43,7 @@ void o_copy_cancel(GschemToplevel *w_current)
 {
   s_place_free_place_list(w_current->toplevel);
 
-  i_status_set_state(w_current, SELECT);
-  i_status_action_stop(w_current);
+  i_event_stop_action_handler (w_current);
 }
 
 /*! \brief Finalize Copy operation of a single object
@@ -56,10 +55,6 @@ void o_copy_cancel(GschemToplevel *w_current)
  */
 void o_copy_end(GschemToplevel *w_current)
 {
-
-  //int wx = w_current->second_wx;
-  //int wy = w_current->second_wy;
-
   if (!w_current->SHIFTKEY) {
 
     o_place_end (w_current, FALSE, NULL, COPY_OBJECTS_HOOK);
@@ -77,7 +72,7 @@ void o_copy_end(GschemToplevel *w_current)
 
   }
   o_undo_savestate (w_current, UNDO_ALL);
-  i_status_action_stop(w_current);
+  i_event_stop_action_handler (w_current);
 }
 
 /*! \brief  Finalize Copy operation of a multible objects
@@ -86,9 +81,6 @@ void o_copy_end(GschemToplevel *w_current)
  */
 void o_copy_multiple_end(GschemToplevel *w_current)
 {
-  //int wx = w_current->second_wx;
-  //int wy = w_current->second_wy;
-
   o_place_end (w_current, TRUE, NULL, COPY_OBJECTS_HOOK);
   o_undo_savestate (w_current, UNDO_ALL);
 
@@ -140,6 +132,7 @@ void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_copy_real_start(w_current, w_x, w_y)) {
     i_status_set_state(w_current, MCOPYMODE);
+    i_event_start_paster_handler(w_current, o_copy_multiple_end);
   }
 }
 
@@ -151,6 +144,7 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_copy_real_start(w_current, w_x, w_y)) {
     i_status_set_state(w_current, COPYMODE);
+    i_event_start_paster_handler(w_current, o_copy_end);
   }
 }
 

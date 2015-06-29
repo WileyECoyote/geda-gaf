@@ -411,8 +411,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
         if (!s_page_is_symbol_file(page)) {
           gtk_window_present(GTK_WINDOW(w_current->main_window));
           o_redraw_cleanstates    (w_current);
-          o_complex_prepare_place (w_current, symbol);
-          w_current->event_state = COPYMODE;
+          o_complex_start (w_current, symbol, COPYMODE);
           i_status_show_msg(w_current, "Place object");
         }
         else {
@@ -951,7 +950,6 @@ void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
     case MOVEMODE:
       if (w_current->event_state != ENDDND_MOVE_OBJ) {
         o_move_cancel (w_current);
-        i_status_set_state(w_current, SELECT);
       }
       break;
 
@@ -1020,6 +1018,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
         /*  case ENDCOMP: We're not quite there yet */
         w_current->dnd_save_state = w_current->event_state; /* save state */
         w_current->event_state = STARTDND;
+        w_current->action_event->state = STARTDND;
         break;
       default:
 

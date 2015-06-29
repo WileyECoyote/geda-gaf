@@ -288,7 +288,9 @@ void       i_event_block_handler            (GschemToplevel *w_current, EventHan
 void       i_event_unblock_handler          (GschemToplevel *w_current, EventHandler id);
 void       i_event_setup_handlers           (GschemToplevel *w_current);
 void       i_event_cancel_action_handler    (GschemToplevel *w_current);
-void       i_event_start_adder_handler     (GschemToplevel *w_current, EventResolver ifunc, EventResolver rfunc);
+void       i_event_start_adder_handler      (GschemToplevel *w_current, ActionInit ifunc, ActionAdder resolver);
+void       i_event_start_paster_handler     (GschemToplevel *w_current, ActionPaster resolver);
+void       i_event_stop_action_handler      (GschemToplevel *w_current);
 
 /* i_pan_world.c */
 void       i_pan_warp_cursor                (GtkWidget *widget, int x, int y);
@@ -422,7 +424,7 @@ int        o_break_interrogate          (GschemToplevel *w_current, GList *objec
 /* o_buffer.c */
 void       o_buffer_copy                (GschemToplevel *w_current, int buf_num);
 void       o_buffer_cut                 (GschemToplevel *w_current, int buf_num);
-bool       o_buffer_paste_start         (GschemToplevel *w_current, int x, int y, int buf_num);
+bool       o_buffer_paste_start         (GschemToplevel *w_current, int x, int y);
 void       o_buffer_init                (void);
 void       o_buffer_free                (GschemToplevel *w_current);
 
@@ -440,10 +442,11 @@ void       o_circle_start               (GschemToplevel *w_current, int x, int y
 
 /* o_complex.c */
 void       o_complex_export                  (GschemToplevel *w_current, Object *o_current);
-void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
+//void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset);
 bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object *complex);
+void       o_complex_start                   (GschemToplevel *w_current, const CLibSymbol *sym, int state);
 
 /* o_copy.c */
 void       o_copy_cancel                (GschemToplevel *w_current);
@@ -532,6 +535,7 @@ void       o_move_start_drag            (GschemToplevel *w_current, int w_x, int
 
 /* o_net.c */
 int        o_net_add_busrippers         (GschemToplevel *w_current, Object *net_obj, GList *other_objects);
+void       o_net_draw_rubber            (GschemToplevel *w_current );
 void       o_net_guess_direction        (GschemToplevel *w_current, int x, int y);
 void       o_net_motion                 (GschemToplevel *w_current, int x, int y);
 void       o_net_invalidate_rubber      (GschemToplevel *w_current);
@@ -573,10 +577,10 @@ void       o_pin_motion                      (GschemToplevel *w_current, int x, 
 void       o_pin_start                       (GschemToplevel *w_current, int x, int y);
 
 /* o_place.c */
-void       o_place_end                       (GschemToplevel *w_current, int x, int y, int continue_placing, GList **ret_new_objects, Hooker id);
-void       o_place_component_end             (GschemToplevel *w_current, int x, int y);
-void       o_place_text_end                  (GschemToplevel *w_current, int w_x, int w_y);
-void       o_place_paste_end                 (GschemToplevel *w_current, int x, int y);
+void       o_place_end                       (GschemToplevel *w_current, int continue_placing, GList **ret_new_objects, Hooker id);
+void       o_place_component_end             (GschemToplevel *w_current);
+//void       o_place_text_end                  (GschemToplevel *w_current);
+//void       o_buffer_paste_end                 (GschemToplevel *w_current);
 void       o_place_motion                    (GschemToplevel *w_current, int x, int y);
 void       o_place_invalidate_rubber         (GschemToplevel *w_current, int drawing);
 void       o_place_draw_rubber               (GschemToplevel *w_current, int drawing);

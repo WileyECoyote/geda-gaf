@@ -94,41 +94,6 @@ int x_event_button_pressed(GtkWidget      *widget,
 
   if (event->button == GDK_BUTTON_PRIMARY) {
 
-    if (w_current->inside_action && Current_PlaceList != NULL) {
-
-      w_current->second_wx = w_x;
-      w_current->second_wy = w_y;
-
-      switch (w_current->event_state) {
-
-        case (MOVEMODE):
-          o_move_end(w_current);
-          break;
-
-        case (COPYMODE):
-          o_copy_end(w_current);
-          break;
-
-        case (MCOPYMODE):
-          o_copy_multiple_end(w_current);
-          break;
-
-        case (COMPMODE):
-          o_place_component_end(w_current);
-          break;
-
-        case (TEXTMODE):
-          o_place_text_end(w_current);
-          break;
-
-        case (PASTEMODE):
-          o_place_paste_end(w_current);
-          break;
-        default: break;
-      }
-    }
-    else {
-
       /* Huge switch statement to evaluate state transitions */
 
       switch (w_current->event_state) {
@@ -240,23 +205,12 @@ int x_event_button_pressed(GtkWidget      *widget,
 
         default:
           break;
-      }
     }
   }
   else if (event->button == 2) {
 
     /* try this out and see how it behaves */
-    if (w_current->inside_action) {
-      if (!(w_current->event_state == DRAGMOVE  ||
-            w_current->event_state == COMPMODE  ||
-            w_current->event_state == MOVEMODE  ||
-            w_current->event_state == COPYMODE  ||
-            w_current->event_state == MCOPYMODE ||
-            w_current->event_state == PASTEMODE)) {
-        i_callback_cancel(w_current, 0, NULL);
-      }
-    }
-    else {
+    if (!w_current->inside_action) {
 
       switch (w_current->middle_button) {
 
@@ -408,14 +362,6 @@ bool x_event_button_released (GtkWidget      *widget,
         i_status_set_state(w_current, SELECT);
         break;
 
-      case(DRAGMOVE):
-      case(MOVEMODE):
-        if (w_current->drag_event) {
-          gdk_event_free(w_current->drag_event);
-          w_current->drag_event = NULL;
-        }
-        break;
-
       case(SBOX):
         o_select_box_end(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, SELECT);
@@ -435,14 +381,6 @@ bool x_event_button_released (GtkWidget      *widget,
         i_status_set_state (w_current, SELECT);
         break;
 
-      case STARTDND:
-        w_current->dnd_state = NONE;
-        if (w_current->drag_event) {
-          gdk_event_free(w_current->drag_event);
-          w_current->drag_event = NULL;
-        }
-        break;
-
       case(ENDOFFSET):
         i_status_action_start(w_current);
         break;
@@ -450,25 +388,16 @@ bool x_event_button_released (GtkWidget      *widget,
 
     if (w_current->inside_action) {
 
-      if (Current_PlaceList != NULL) {
-        switch (w_current->event_state) {
-          case (DRAGMOVE):
-            o_move_end(w_current);
-            break;
-          default: break;
-        }
+      if (w_current->event_state == ZOOMBOX) {
+        i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
+        i_status_set_state(w_current, SELECT);
       }
-      else {
 
-        if (w_current->event_state == ZOOMBOX) {
-          i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
-          i_status_set_state(w_current, SELECT);
-        }
-      }
     }
     else {
       switch (w_current->event_state) {
         case(COPYMODE):
+printf ("<%s> STARTDND; Should not be here\n", __func__);
           i_status_set_state(w_current, SELECT);
           break;
 
@@ -488,41 +417,6 @@ bool x_event_button_released (GtkWidget      *widget,
       o_invalidate_all (w_current);
       if (w_current->undo_panzoom) {
         o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
-      }
-    }
-    else if (w_current->inside_action) {
-      if (w_current->event_state == DRAGMOVE  ||
-          w_current->event_state == COMPMODE  ||
-          w_current->event_state == MOVEMODE  ||
-          w_current->event_state == COPYMODE  ||
-          w_current->event_state == MCOPYMODE ||
-          w_current->event_state == PASTEMODE )
-      {
-        if (w_current->event_state == MOVEMODE ||
-            w_current->event_state == DRAGMOVE)
-        {
-          o_move_invalidate_rubber (w_current, FALSE);
-        }
-        else {
-          o_place_invalidate_rubber (w_current, FALSE);
-        }
-        w_current->rubber_visible = FALSE;
-
-        o_place_rotate(w_current);
-
-        if (w_current->event_state == COMPMODE) {
-          o_complex_place_changed_run_hook (w_current);
-        }
-
-        if (w_current->event_state == MOVEMODE ||
-            w_current->event_state == DRAGMOVE)
-        {
-          o_move_invalidate_rubber (w_current, TRUE);
-        }
-        else {
-          o_place_invalidate_rubber (w_current, TRUE);
-        }
-        w_current->rubber_visible = TRUE;
       }
     }
     else {

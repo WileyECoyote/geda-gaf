@@ -271,8 +271,9 @@ void o_move_end(GschemToplevel *w_current)
 
     Place_List = NULL;
   }
-  i_status_action_stop(w_current);
-  i_status_set_state(w_current, SELECT);
+
+  i_event_stop_action_handler (w_current);
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -292,7 +293,7 @@ void o_move_cancel (GschemToplevel *w_current)
     stretch->object->dont_redraw = FALSE;
   }
 
-  i_status_action_stop(w_current);
+  i_event_stop_action_handler (w_current);
 
   o_move_stretch_destroy_all (w_current->stretch_list);
 
@@ -730,6 +731,7 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_move_real_start(w_current, w_x, w_y)) {
     i_status_set_state(w_current, MOVEMODE);
+    i_event_start_paster_handler(w_current, o_move_end);
   }
 }
 
@@ -737,6 +739,7 @@ void o_move_start_drag(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_move_real_start(w_current, w_x, w_y)) {
     i_status_set_state(w_current, DRAGMOVE);
+    i_event_start_paster_handler(w_current, o_move_end);
   }
 }
 

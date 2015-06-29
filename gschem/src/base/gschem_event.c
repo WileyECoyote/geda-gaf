@@ -95,8 +95,8 @@ static void gschem_event_instance_init(GTypeInstance *instance, void * g_class)
   data->press_hid   = 0;
   data->release_hid = 0;
 
-  data->initializer =  gschem_event_base_handler;
-  data->resolver    =  gschem_event_base_handler;
+  data->initializer    =  gschem_event_base_handler;
+  data->resolver.func  =  gschem_event_base_handler;
 
   data->press_butt     =  gschem_event_press_butt;
   data->release_butt   =  gschem_event_release_butt;

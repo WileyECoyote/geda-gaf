@@ -115,6 +115,13 @@ void o_buffer_cut(GschemToplevel *w_current, int buf_num)
   }
 }
 
+static void o_buffer_paste_end (GschemToplevel *w_current)
+{
+  o_place_end(w_current, FALSE, NULL, PASTE_OBJECTS_HOOK);
+  o_undo_savestate (w_current, UNDO_ALL);
+  i_event_stop_action_handler (w_current);
+}
+
 /*! \brief Paste Buffer Contents to drawing
  *
  *  \par Function Description
@@ -185,7 +192,6 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
         Object *o_current = iter->data;
         o_translate_object(o_current, w_x - x, w_y - y);
       }
-      i_status_set_state(w_current, PASTEMODE);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
   printf("%s: calling o_place_start with %d objects\n", __func__, dint);
@@ -196,6 +202,11 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
     else { /* Buffer does not have objects to define its any bounds */
       result = FALSE;
     }
+  }
+
+  if (result) {
+    i_status_set_state(w_current, PASTEMODE);
+    i_event_start_paster_handler(w_current, o_buffer_paste_end);
   }
 
   i_status_update_action_state(w_current, result);
