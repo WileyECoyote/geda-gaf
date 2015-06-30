@@ -74,7 +74,6 @@ static void o_complex_end (GschemToplevel *w_current)
   o_place_end(w_current, w_current->continue_component_place, NULL, ADD_OBJECT_HOOK);
 
   if (!w_current->continue_component_place) {
-    //i_status_set_state(w_current, SELECT);
     i_event_stop_action_handler (w_current);
   }
   o_undo_savestate (w_current, UNDO_ALL);

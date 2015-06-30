@@ -469,8 +469,6 @@ void i_event_start_paster_handler (GschemToplevel *w_current,
 {
   GschemEvent *event;
 
-  i_status_action_start(w_current);
-
   if (w_current->action_event->state) {
     i_event_end_action_handler(w_current);
   }
@@ -484,6 +482,8 @@ void i_event_start_paster_handler (GschemToplevel *w_current,
   event->release_butt  = (void*)i_event_paster_released;
 
   i_event_adder_enable_events(w_current);
+
+  i_status_action_start(w_current);
 }
 
 void i_event_stop_action_handler(GschemToplevel *w_current)
