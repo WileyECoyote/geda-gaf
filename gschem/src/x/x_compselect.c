@@ -204,7 +204,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
       /* Get pointer to selected symbol and behavior combo state */
       /* (Both of which could have been saved in dialog structure) */
       g_object_get (compselect, "symbol",   &symbol,
-                    "behavior", &behavior, NULL);
+                                "behavior", &behavior, NULL);
 
       if (symbol == NULL) {
         /* If there is no symbol selected, switch to SELECT mode */
@@ -266,14 +266,12 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
         /* Can not wait for base class todo this*/
         w_current->cswindow = NULL;
-        /* Cancel the place operation currently in progress */
-        /* return to the default state */
-        i_status_set_state (w_current, SELECT);
+
       }
 
       w_current->include_complex  = FALSE;
 
-      i_status_action_stop(w_current);
+      i_event_stop_action_handler (w_current);
       break;
 
     default:
