@@ -899,6 +899,7 @@ bool x_event_motion (GtkWidget      *widget,
     }
   }
   else {
+
     switch (w_current->event_state) {
       case(NETMODE)    :   o_net_start_magnetic(w_current, w_x, w_y); break;
       default: break;
