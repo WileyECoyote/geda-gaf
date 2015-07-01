@@ -90,23 +90,23 @@ pinseq=8
 }
 T 2100 1300 8 10 1 1 0 6 1
 refdes=U?
-T 0 1500 8 10 0 0 0 0 1
+T 300 1500 8 10 0 1 0 0 1
 device=LT1376
-T 0 1650 8 10 0 0 0 0 1
-footprint=SO8
-T 0 2100 5 8 0 0 0 0 1
+T 300 1700 8 10 0 1 0 0 1
+footprint=SOIC8
+T 300 2500 5 10 0 0 0 0 1
 numslots=0
-T 0 2250 5 8 0 0 0 0 1
+T 300 2700 5 10 0 0 0 0 1
 use-license=unlimited
-T 0 2400 5 8 0 0 0 0 1
+T 300 2900 5 10 0 0 0 0 1
 dist-license=GPL
-T 0 2550 5 8 0 0 0 0 1
-symversion=2-1.0
-T 0 2700 8 10 0 0 0 0 1
+T 300 2300 5 10 0 0 0 0 1
+symversion=0.3
+T 300 3100 8 10 0 0 0 0 1
 author=AutoTron
-T 0 1800 8 10 0 0 0 0 1
+T 300 2100 8 10 0 1 0 0 1
 documentation=www.linear.com/product/LT1376
-T 0 1950 8 10 0 0 0 0 1
-description=Step-Down Bucking Regulator
+T 300 1900 8 10 0 1 0 0 1
+description=IC REG BUCK SEPIC,ADJ,1.5A,8DIP
 T 300 1300 8 10 1 1 0 0 1
-value=LT1376
+value=LT1376CN8

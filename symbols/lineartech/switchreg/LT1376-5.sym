@@ -95,10 +95,10 @@ device=LT1376-5
 T 400 2900 8 10 1 1 0 0 1
 refdes=U?
 T 2300 100 9 10 0 1 0 0 1
-description=switching regulator
+description=IC REG BUCK SEPIC,FIXED 5V,1.5A,8SOIC
 T 2300 500 9 10 0 0 0 0 1
 numslots=0
 T 400 2500 9 10 1 1 0 0 1
-footprint=SO8
+footprint=SOIC8
 T 2300 300 9 10 0 0 0 0 1
-symversion=0.2
+symversion=0.3
