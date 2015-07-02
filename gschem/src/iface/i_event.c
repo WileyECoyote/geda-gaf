@@ -492,7 +492,7 @@ void i_event_stop_action_handler(GschemToplevel *w_current)
 
   if (event->state) {
     i_event_end_action_handler(w_current);
-    i_status_action_stop(w_current);
-    i_status_set_state(w_current, SELECT);
   }
+
+  i_status_set_state(w_current, SELECT);
 }

@@ -270,7 +270,6 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
       }
 
       w_current->include_complex  = FALSE;
-
       i_event_stop_action_handler (w_current);
       break;
 
