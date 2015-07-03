@@ -306,10 +306,6 @@ int x_event_button_pressed(GtkWidget      *widget,
           i_status_set_state(w_current, SELECT);
           break;
 
-        case(NETMODE):
-          o_net_reset (w_current);
-          break;
-
         default:
           i_callback_cancel(w_current, 0, NULL);
           break;
@@ -392,18 +388,6 @@ bool x_event_button_released (GtkWidget      *widget,
         i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
         i_status_set_state(w_current, SELECT);
       }
-
-    }
-    else {
-      switch (w_current->event_state) {
-        case(COPYMODE):
-printf ("<%s> STARTDND; Should not be here\n", __func__);
-          i_status_set_state(w_current, SELECT);
-          break;
-
-        default:
-          break;
-      }
     }
 
     if (w_current->render_adaptor == X11_ADAPTOR) {
@@ -422,9 +406,8 @@ printf ("<%s> STARTDND; Should not be here\n", __func__);
     else {
 
       switch (w_current->middle_button) {
-
+/*
         case(MOUSE_MIDDLE_ACTION):
-
           if (w_current->inside_action && Current_PlaceList) {
             switch (w_current->event_state) {
               case(DRAGMOVE):
@@ -437,7 +420,7 @@ printf ("<%s> STARTDND; Should not be here\n", __func__);
                 break;
             }
           }
-
+*/
 #ifdef HAVE_LIBSTROKE
         case(MOUSE_MIDDLE_STROKE):
             DOING_STROKE = FALSE;
@@ -472,16 +455,8 @@ printf ("<%s> STARTDND; Should not be here\n", __func__);
     else {
 
       i_status_action_stop(w_current);
+      i_status_set_state(w_current, SELECT);
 
-      switch (w_current->event_state) {
-        case(NETMODE):
-          break;
-
-        default:
-
-          i_status_set_state(w_current, SELECT);
-          break;
-      }
     }
   }
 
