@@ -51,7 +51,7 @@ struct option long_options[] =
     {"quiet",          0, 0, 'q'},
     {"run",            1, 0, 'r'},
     {"start",          1, 0, 's'},
-    {"tmp-dir",        1, 0, 't'},
+    {"undo-dir",       1, 0, 'u'},
     {"verbose",        0, 0, 'v'},
     {0, 0, 0, 0}
   };
@@ -97,7 +97,7 @@ usage(char *cmd)
     "  -q, --quiet              Quiet mode.\n"
     "  -r, --run FILE           Scheme script to run at startup.\n"
     "  -s, --start <name>       Startup using the given session name.\n"
-    "  -t, --tmp-dir DIR        Specify tmp directory for Undo files.\n"
+    "  -u, --undo-dir DIR       Specify tmp directory for Undo files.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
     "  -x EXPR                  Scheme expression to run at startup.\n"

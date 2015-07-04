@@ -8,18 +8,17 @@ gschem - gEDA/gaf Schematic Capture
 .PP
 .B gschem
 is a schematic capture application, and is part of the
-gEDA (GPL Electronic Design Automation) toolset.  It is used to draw
-electronic schematics, which describe the logical structure of an
-circuit.  Schematics are made up of symbols, which represent the
-various components in the circuit, and are obtained either from a
-standard library or created by the user.  The connections between
-components represented by nets (wires).  Schematics may be printed to
-a PostScript file for printing or further conversion to other output
-formats.  Output to various image formats is also supported.
+gEDA (GPL Electronic Design Automation) toolset.  Gschem is used to draw
+electronic schematics, which describe the logical structure of a circuit.
+Schematics are made up of symbols, which represent the various components
+in the circuit, and are obtained either from a standard library or created
+by the user.  The connections between components represented by nets (wires).
+Schematics may be printed to a PostScript file for printing or further
+conversion to other output formats. Output to various image formats is also
+supported.
 
 .B gschem
-can also be used for editing symbols for use in
-schematics.
+can also be used for editing symbols for use in schematics.
 
 .SH OPTIONS
 .TP 8
@@ -52,7 +51,7 @@ Specify a Scheme script to be executed at startup.
 .TP 8
 \fB-s\fR, \fB--start NAME\fR
 Startup using the named session. This over-rides the current auto-load-last configuration setting.
-\fB-t\fR, \fB--tmp-dir DIR\fR
+\fB-u\fR, \fB--undo-dir DIR\fR
 Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
 determine the location of a system temporary directory. This option maybe used to specify
 the directory. In any event, if the undo-type is configured as "disk", the location must be
@@ -61,10 +60,9 @@ read-writable or the Undo system will automatically switch to type "memory". For
 "burn-out".
 .TP 8
 \fB-o\fR, \fB--output\fR=\fIFILE\fR
-Specify a filename for PostScript output.  This command line argument
-is useful when running \fBgschem\fR from a shell script and with a
-Scheme script.  The filename can be changed through the print dialog
-box.
+Specify a filename for PostScript output.  This command line argument is useful when
+running \fBgschem\fR from a shell script and with a Scheme script.  The filename can
+be changed through the print dialog box.
 .TP 8
 \fB-p\fR
 Automatically place the window. This may be useful if running \fBgschem\fR
