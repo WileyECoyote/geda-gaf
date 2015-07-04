@@ -93,13 +93,13 @@ pintype=in
 T 300 2900 5 10 0 0 0 0 1
 device=TPS2115A
 T 1700 1900 9 10 1 1 0 6 1
-footprint=TSSOP8
+footprint=TSSOP8W
 T 300 3500 5 10 0 0 0 0 1
 author=AutoTron
 T 300 2500 5 10 0 0 0 0 1
 documentation=http://www.ti.com/product/tps2115a/
 T 300 2700 5 10 0 0 0 0 1
-description=Auto Switching Power Multiplexer
+description=IC,OR CTRLR SRC SELECT,8TSSOPW
 T 300 2300 5 10 0 0 0 0 1
 numslots=0
 T 300 3100 5 10 0 0 0 0 1
@@ -107,6 +107,6 @@ dist-license=GPL3
 T 300 3300 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 50 5 8 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 T 1700 2100 9 10 1 0 0 6 1
 TPS2115A
