@@ -33,6 +33,7 @@ extern int   optind;
 
 int   override_autoload;
 char *start_session;
+char *comline_tblock;
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
@@ -51,6 +52,7 @@ struct option long_options[] =
     {"quiet",          0, 0, 'q'},
     {"run",            1, 0, 'r'},
     {"start",          1, 0, 's'},
+    {"title-block",    1, 0, 't'},
     {"undo-dir",       1, 0, 'u'},
     {"verbose",        0, 0, 'v'},
     {0, 0, 0, 0}
@@ -97,6 +99,7 @@ usage(char *cmd)
     "  -q, --quiet              Quiet mode.\n"
     "  -r, --run FILE           Scheme script to run at startup.\n"
     "  -s, --start <name>       Startup using the given session name.\n"
+    "  -t, --title-block FILE   Start a new drawing using the specified title-block.\n"
     "  -u, --undo-dir DIR       Specify tmp directory for Undo files.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
@@ -153,6 +156,7 @@ gschem_parse_commandline(int argc, char *argv[])
 
   override_autoload   = FALSE;
   start_session       = NULL;
+  comline_tblock      = NULL;
 
 #ifdef HAVE_GETOPT_LONG
   while ((ch = getopt_long (argc, argv, GETOPT_OPTIONS, long_options, NULL)) != -1) {
@@ -232,6 +236,11 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 't':
+        comline_tblock = u_string_strdup (optarg);
+        override_autoload = 1; /* do not auto load if tblock is not found */
+        break;
+
+      case 'u':
         tmp_directory = u_string_strdup (optarg);
         break;
 

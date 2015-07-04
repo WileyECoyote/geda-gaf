@@ -51,6 +51,8 @@ Specify a Scheme script to be executed at startup.
 .TP 8
 \fB-s\fR, \fB--start NAME\fR
 Startup using the named session. This over-rides the current auto-load-last configuration setting.
+\fB-s\fR, \fB--title-block NAME\fR
+Start a new drawing using the specified title-block.
 \fB-u\fR, \fB--undo-dir DIR\fR
 Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
 determine the location of a system temporary directory. This option maybe used to specify

@@ -45,6 +45,7 @@ extern SCM s_post_load_expr;
 
 extern int   override_autoload;
 extern char *start_session;
+extern char *comline_tblock;
 
 typedef struct {
   void (*func)(void*);
@@ -136,74 +137,88 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
 
   cwd = g_get_current_dir();
 
-  /* Load any file listed on command-line */
-  for (i = argv_index; i < argc; i++) {
+  if (comline_tblock) { /* If title-block was specified on command line */
 
-    /* Check for non-expanded wild-card, if not match then no expansion */
-    if (strstr(argv[i], "*") != NULL) {
-      u_log_message("Warning: <%s> did not expand\n", argv[i]);
-      v_log_message("Command-line error: disabling auto load last\n");
-      override_autoload = TRUE;
-      continue;
+    Page *page = x_window_open_page(w_current, NULL);
+
+    if (o_edit_add_titleblock(w_current, page, comline_tblock)) {
+      i_zoom_world_extents (w_current, s_page_get_objects (page), I_PAN_DONT_REDRAW);
+
+      page->CHANGED = 0;
+      ++page_loaded;
     }
+    GEDA_FREE(comline_tblock);
+  }
+  else {
+    /* Load any file listed on command-line */
+    for (i = argv_index; i < argc; i++) {
 
-    if (f_get_is_path_absolute(argv[i])) {
+      /* Check for non-expanded wild-card, if not match then no expansion */
+      if (strstr(argv[i], "*") != NULL) {
+        u_log_message("Warning: <%s> did not expand\n", argv[i]);
+        v_log_message("Command-line error: disabling auto load last\n");
+        override_autoload = TRUE;
+        continue;
+      }
 
-      /* Path is already absolute so no need to do any concat of cwd */
-      filename = u_string_strdup (argv[i]);
-    }
-    else {
-      filename = g_build_filename (cwd, argv[i], NULL);
-    }
+      if (f_get_is_path_absolute(argv[i])) {
 
-    /* if filename is not valid, check if user left off extension */
-    if( access( filename, F_OK ) == -1 ) {
+        /* Path is already absolute so no need to do any concat of cwd */
+        filename = u_string_strdup (argv[i]);
+      }
+      else {
+        filename = g_build_filename (cwd, argv[i], NULL);
+      }
 
-      /* See if user left off our file suffixes */
-      const char *ext = f_get_filename_ext(filename);
-      if (!ext) {
+      /* if filename is not valid, check if user left off extension */
+      if( access( filename, F_OK ) == -1 ) {
 
-        memset(tmpfilename, 0, sizeof(tmpfilename));
+        /* See if user left off our file suffixes */
+        const char *ext = f_get_filename_ext(filename);
+        if (!ext) {
 
-        /* Check if file name is valid if ".sch" is added */
-        strcpy(tmpfilename, filename);
+          memset(tmpfilename, 0, sizeof(tmpfilename));
 
-        if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
-          filename = tmpfilename;
-          if(verbose_mode) {
-            v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
-          }
-        }
-        else {
-          /* Check if file name is valid if ".sym" is added */
+          /* Check if file name is valid if ".sch" is added */
           strcpy(tmpfilename, filename);
 
-          if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+          if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
             if(verbose_mode) {
-              v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
+              v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+            }
+          }
+          else {
+            /* Check if file name is valid if ".sym" is added */
+            strcpy(tmpfilename, filename);
+
+            if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+              filename = tmpfilename;
+              if(verbose_mode) {
+                v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
+              }
             }
           }
         }
       }
-    }
 
-    /*
-     * \notes SDB: at this point the filename might be unnormalized, like
-     * /path/to/foo/../bar/baz.sch. Bad filenames will be normalized in
-     * f_open, called by x_window_open_page. This works for Linux and MINGW32.
-     */
+      /*
+       * \notes SDB: at this point the filename might be unnormalized, like
+       * /path/to/foo/../bar/baz.sch. Bad filenames will be normalized in
+       * f_open, called by x_window_open_page. This works for Linux and MINGW32.
+       */
 
-    if (x_window_open_page(w_current, filename)) {
-      ++page_loaded;
-    }
+      if (x_window_open_page(w_current, filename)) {
+        ++page_loaded;
+      }
 
-    /* Free the pointer if we did not redirected */
-    if ( filename != tmpfilename ) {
-      GEDA_FREE (filename);
+      /* Free the pointer if we did not redirected */
+      if ( filename != tmpfilename ) {
+        GEDA_FREE (filename);
+      }
     }
+    GEDA_FREE(cwd);
   }
-  GEDA_FREE(cwd);
 
   if (!page_loaded) { /* If no files have been loaded, then ... */
 

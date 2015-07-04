@@ -460,6 +460,7 @@ void       o_delete                     (GschemToplevel *w_current, Object *obje
 void       o_delete_selected            (GschemToplevel *w_current);
 
 /* o_edit.c */
+bool       o_edit_add_titleblock        (GschemToplevel *w_current, Page *page, const char *tblock);
 void       o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
 void       o_edit_lock                  (GschemToplevel *w_current);
 void       o_edit_unlock                (GschemToplevel *w_current);

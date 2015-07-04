@@ -1,5 +1,20 @@
 2015-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_edit.c: Add function o_edit_add_titleblock.
+
+    * src/iface/i_command.c: Revise function i_cmd_page_new to use o_edit_add_
+      titleblock instead of adding directly.
+
+    * src/base/gschem_parsecmd.c: Add new command-line option -t, --title-block
+      to allow users to specify the title-block on the command line.
+
+    * src/base/gschem.c: Revise function load_documents to load a blank document
+      with the title block if specified on the command-line.
+
+    * docs/gschem.1.in: Add command-line option -t, --title-block to man page.
+
+2015-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_parsecmd.c: Change command-line option -t, --tmp-dir to
       -u, --undo-dir.
 

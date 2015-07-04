@@ -2426,13 +2426,8 @@ COMMAND (do_page_new)
   EdaConfig *cfg   = eda_config_get_user_context();
   char      *group = IVAR_CONFIG_GROUP;
   char      *tblock;
-  char      *sym_file;
-  char      *ext;
 
-  Object    *object;
   Page      *page;
-
-  const CLibSymbol *clib;
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -2441,29 +2436,11 @@ COMMAND (do_page_new)
 
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
- /* would be far easier, faster, and safer to set page->CHANGED=FALSE
-  * here then for scheme to have done this in the hook, could just add
-  * the titleblock here too, like so */
-  ext = tblock = eda_config_get_string (cfg, group, "default-titleblock", NULL);
+ /* Add the titleblock here */
+  tblock = eda_config_get_string (cfg, group, "default-titleblock", NULL);
 
-  while (*ext) ext++;
-  ext = ext - 4;
+  o_edit_add_titleblock(w_current, page, tblock);
 
-  if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
-    sym_file = u_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
-  }
-  else {
-    sym_file = g_strdup(tblock);
-  }
-
-  clib = s_clib_get_symbol_by_name (sym_file);
-
-  if (clib != NULL) {
-    object = o_complex_new (w_current->toplevel, 0, 0, 0, FALSE, clib, sym_file, FALSE);
-    s_page_append_object (page, object);
-  }
-
-  GEDA_FREE(sym_file);
   GEDA_FREE(tblock);
 
   page->CHANGED = 0;

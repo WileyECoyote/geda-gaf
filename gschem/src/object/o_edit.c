@@ -41,14 +41,58 @@
  *  \par This Group contains routines for basic editing operations.
  */
 
-/* break with the tradition here and input a list */
-/*! \todo probably should go back and do the same for o_copy o_move
- *  o_delete...
+/*! \brief Add a Title-Block symbol to a Page
+ *  \par Function Description
+ *   This function attempts to insert the symbol for the given title-block
+ *   into the schematic.
  */
+bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *tblock)
+{
+  bool              result;
+  char             *sym_file;
+  const char       *ext;
+  const CLibSymbol *clib;
+
+  ext = tblock;
+
+  while (*ext) ext++;
+  ext = ext - 4;
+
+  if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
+    sym_file = u_string_concat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  }
+  else {
+    sym_file = g_strdup(tblock);
+  }
+
+  clib = s_clib_get_symbol_by_name (sym_file);
+
+  if (clib != NULL) {
+
+    Object *object;
+
+    object = o_complex_new (w_current->toplevel, 0, 0, 0, FALSE, clib, sym_file, FALSE);
+
+    s_page_append_object (page, object);
+
+    result = TRUE;
+  }
+  else {
+    result = FALSE;
+  }
+
+  GEDA_FREE(sym_file);
+
+  return result;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
+ *   break with the tradition here and input a list.
  *
+ *  \todo probably should go back and do the same for o_copy o_move
+ *        o_delete...
  */
 void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 {
