@@ -76,7 +76,8 @@ geda_text_bounds(Object *o_current)
   int result = 0;
 
   /* First check the text if Text object has a func */
-  if (o_current->text->rendered_text_bounds_func != NULL) {
+  if (text->rendered_text_bounds_func != NULL) {
+
     result =
     text->rendered_text_bounds_func (o_current->text->rendered_text_bounds_data,
                                      o_current, &left, &top, &right, &bottom);
@@ -130,14 +131,14 @@ geda_text_bounds(Object *o_current)
   return result;
 }
 
-/*! \brief GedaType instance initialiser for Text
+/*! \brief GedaType instance initializer for Text
  *
  *  \par Function Description
- *  GedaType instance initialiser for Text, initializes a new empty
+ *  GedaType instance initializer for Text, initializes a new empty
  *  Text object by setting pointers to NULL and numbers to zero,
  *  the text PID variable is set to the next text index.
  *
- *  \param [in]  text      The Text instance being initialising.
+ *  \param [in]  text      The Text instance being initialized.
  */
 static void geda_text_init(Text *text)
 {
