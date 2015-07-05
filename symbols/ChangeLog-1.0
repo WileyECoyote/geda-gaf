@@ -1,5 +1,12 @@
 2015-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Revise description, change pin numbers and sequence:
+
+    * passive/resistor/resistor-variable-1.sym
+    * passive/resistor/resistor-variable-2.sym
+
+2015-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * Revise description, change footprint from SO8 to SOIC8:
 
     * lineartech/switchreg/LT1376-1.sym
