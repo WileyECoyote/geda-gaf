@@ -83,19 +83,32 @@ geda_text_bounds(Object *o_current)
 
       /* Check if page level render func is set */
       if (page->rendered_text_bounds_func != NULL) {
+
         result =
         page->rendered_text_bounds_func (page->rendered_text_bounds_data,
                                          o_current, &left, &top, &right, &bottom);
+
+        if (result && !text->rendered_text_bounds_func) {
+          text->rendered_text_bounds_func = page->rendered_text_bounds_func;
+          text->rendered_text_bounds_data = page->rendered_text_bounds_data;
+        }
       }
       else {
+
         g_return_val_if_fail(GEDA_IS_TOPLEVEL(page->toplevel), FALSE);
+
         toplevel = page->toplevel;
 
         /* Check if toplevel render func is set */
         if (toplevel->rendered_text_bounds_func != NULL) {
+
           result =
           toplevel->rendered_text_bounds_func(toplevel->rendered_text_bounds_data,
                                               o_current, &left, &top, &right, &bottom);
+          if (result && !text->rendered_text_bounds_func) {
+            text->rendered_text_bounds_func = toplevel->rendered_text_bounds_func;
+            text->rendered_text_bounds_data = toplevel->rendered_text_bounds_data;
+          }
         }
       }
     }

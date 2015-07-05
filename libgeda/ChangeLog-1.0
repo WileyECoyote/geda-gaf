@@ -1,3 +1,10 @@
+2015-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_text.c: Revise function geda_text_bounds to set the
+      objects bounds function to the Page or Toplevel bounds function
+      (and data) if either is successfully used to determine the bounds,
+      and revise comments.
+
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add fprint in o_read_attribs to output the
