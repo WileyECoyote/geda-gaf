@@ -47,10 +47,17 @@
 
 G_DEFINE_TYPE (Text, geda_text, GEDA_TYPE_OBJECT);
 
-/*! \brief calculate and return the boundaries of a text object
+/*! \brief Calculate and Return the Boundaries of a text object
  *
  *  \par Function Description
- *  This function calculates the object boudaries of a text \a object.
+ *  This function attempts to calls the bounds functions to calculates
+ *  the object boundaries of a text \a object.
+ *
+ *  The object's bounds function is checked first, if the object's bounds
+ *  function is not set then the object's page and Toplevel are checked.
+ *  If either the Page or the Toplevel bounds function can determine the
+ *  bounds the object's bounds function is set to the function that was
+ *  successful.
  *
  *  \param [in]  o_current a text object
  */
