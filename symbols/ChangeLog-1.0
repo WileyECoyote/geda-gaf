@@ -1,5 +1,9 @@
 2015-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/darl-npn/2N6388_80V_10A_TO220.sym: Add symbol; 2N6388 NPN Darlington
+
+2015-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
     *misc/testpt-1.sym: Add description=Test Point
 
 2015-07-04 Wiley E. Hill <wileyhill@gmail.com>
