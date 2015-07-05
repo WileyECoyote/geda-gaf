@@ -1,3 +1,7 @@
+2015-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_place.c: Add debug code in o_place_invalidate_rubber();
+
 2015-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Add function o_edit_add_titleblock.

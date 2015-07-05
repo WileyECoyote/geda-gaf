@@ -263,7 +263,29 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
       o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
     }
     else {
+
       BUG_TRACE("Error No bounds");
+
+#if DEBUG
+
+      if (toplevel->page_current->place_list != NULL) {
+        GList *iter;
+        int len = g_list_length(Current_PlaceList);
+        fprintf(stderr, "Current_PlaceList=%p contains <%d> objects",Current_PlaceList, len);
+
+        if (len > 0) {
+          for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
+            Object *o_current = iter->data;              /* Get pointer to object */
+            u_print_object(o_current);
+          }
+        }
+      }
+      else {
+        BUG_MSG("page_current->place_list is NULL");
+      }
+
+#endif
+
     }
   }
   else {
