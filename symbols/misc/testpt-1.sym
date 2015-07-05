@@ -22,3 +22,5 @@ T 300 100 8 10 0 1 0 0 1
 footprint=CON_TP
 T 300 900 8 10 0 0 0 0 1
 numslots=0
+T 300 1100 8 10 0 1 0 0 1
+description=Test Point
