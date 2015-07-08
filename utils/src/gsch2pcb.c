@@ -1140,9 +1140,9 @@ static void
 add_multiple_schematics (char * sch)
 {
   /* parse the string using shell semantics */
-  int count;
-  char** args = NULL;
-  GError* error = NULL;
+  int      count;
+  char   **args = NULL;
+  GError  *error = NULL;
 
   if (g_shell_parse_argv (sch, &count, &args, &error)) {
     int i;
