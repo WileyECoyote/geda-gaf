@@ -1,4 +1,4 @@
-v 20150401 2
+v 20150703 2
 B 300 0 4000 9600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 4300 9700 8 10 1 1 0 6 1
 refdes=U?
@@ -8,15 +8,15 @@ T 300 9900 5 10 0 1 0 0 1
 footprint=HTSSOP-DCA-56
 T 1600 10100 5 10 0 0 0 0 1
 numslots=0
-T 300 11300 5 10 0 0 0 0 1
+T 300 11500 5 10 0 0 0 0 1
 author=AutoTron
 T 300 10300 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/drv8301
 T 300 10500 5 10 0 1 0 0 1
-description=Brushless Motor Driver with integrated LDO
-T 300 10900 5 10 0 0 0 0 1
-use-license=unlimited
+description=IC,MOTOR CONTROL,SPI,LDO
 T 300 11100 5 10 0 0 0 0 1
+use-license=unlimited
+T 300 11300 5 10 0 0 0 0 1
 dist-license=GPL3
 P 0 1400 300 1400 1 0 0
 {
@@ -648,4 +648,6 @@ T 350 175 5 8 0 1 0 2 1
 pintype=pwr
 }
 T 300 10100 5 10 0 0 0 0 1
-symversion=0.2
+symversion=0.3
+T 300 10900 5 10 0 1 0 0 1
+mfr=Texas Instruments
