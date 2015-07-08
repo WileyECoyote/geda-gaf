@@ -1,11 +1,11 @@
-v 20150401 2
+v 20150703 2
 T 1500 850 8 10 1 1 0 3 1
 refdes=U?
 T 2900 1600 5 10 0 1 0 0 1
 device=LM5050-2
 T 2900 1400 9 10 0 1 0 0 1
 footprint=SOT26
-T 2900 2400 5 10 0 0 0 0 1
+T 2900 2600 5 10 0 0 0 0 1
 author=AutoTron
 T 2900 1800 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/lm5050-2
@@ -81,8 +81,10 @@ T 2300 1400 5 8 0 1 0 0 1
 pintype=in
 }
 T 1050 1025 5 8 0 0 0 0 1
-symversion=0.2
+symversion=0.3
 T 1475 650 9 10 1 0 0 3 1
 LM5050-2
 T 2885 1985 5 10 0 1 0 0 1
 value=LM5050MK-2/NOPB
+T 2900 2400 5 10 0 1 0 0 1
+mfr=Texas Instruments

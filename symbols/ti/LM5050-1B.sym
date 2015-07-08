@@ -1,11 +1,11 @@
-v 20150401 2
+v 20150703 2
 T 1500 850 8 10 1 1 0 3 1
 refdes=U?
 T 2800 1700 5 10 0 0 0 0 1
 device=LM5050
 T 2800 1500 9 10 0 0 0 0 1
 footprint=SOT26
-T 2800 2300 5 10 0 0 0 0 1
+T 2800 2500 5 10 0 0 0 0 1
 author=AutoTron
 T 2800 1900 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/lm5050-1
@@ -81,6 +81,8 @@ T 700 100 5 8 0 1 0 0 1
 pintype=pwr
 }
 T 1050 1025 5 8 0 0 0 0 1
-symversion=0.1
+symversion=0.2
 T 1500 650 9 10 1 0 0 3 1
 LM5050
+T 2800 2300 5 10 0 1 0 0 1
+mfr=Texas Instruments
