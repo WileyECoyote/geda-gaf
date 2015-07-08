@@ -1,4 +1,4 @@
-v 20150315 2
+v 20150703 2
 T 1700 2300 8 10 1 1 0 6 1
 refdes=U?
 B 300 0 1400 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -90,23 +90,25 @@ pinlabel=IN1
 T 350 1475 5 8 0 1 0 2 1
 pintype=in
 }
-T 300 2900 5 10 0 0 0 0 1
+T 300 2300 5 10 0 1 0 0 1
 device=TPS2115A
 T 1700 1900 9 10 1 1 0 6 1
 footprint=TSSOP8W
-T 300 3500 5 10 0 0 0 0 1
+T 300 3700 5 10 0 0 0 0 1
 author=AutoTron
-T 300 2500 5 10 0 0 0 0 1
+T 300 2900 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/tps2115a/
-T 300 2700 5 10 0 0 0 0 1
+T 300 2700 5 10 0 1 0 0 1
 description=IC,OR CTRLR SRC SELECT,8TSSOPW
-T 300 2300 5 10 0 0 0 0 1
+T 300 2500 5 10 0 0 0 0 1
 numslots=0
-T 300 3100 5 10 0 0 0 0 1
-dist-license=GPL3
 T 300 3300 5 10 0 0 0 0 1
+dist-license=GPL3
+T 300 3500 5 10 0 0 0 0 1
 use-license=unlimited
 T 500 50 5 8 0 0 0 0 1
-symversion=0.2
+symversion=0.3
 T 1700 2100 9 10 1 0 0 6 1
 TPS2115A
+T 300 3100 5 10 0 1 0 0 1
+mfr=Texas Instruments
