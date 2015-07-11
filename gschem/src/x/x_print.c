@@ -662,21 +662,20 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
    * better way of doing it with current implementation of
    * varying paper size though. */
   paperidx = 0;
-  while (TRUE)
-  {
+  while (TRUE) {
+
     string = (char *) s_papersizes_get (paperidx);
     s_papersizes_get_size (string, &x, &y);
 
-    if ((x == toplevel->paper_width)
-      && (y == toplevel->paper_height))
-    {
+    if ((x == toplevel->paper_width) && (y == toplevel->paper_height)) {
       break;
     }
-    if (string == NULL)
-    {
+
+    if (string == NULL) {
       paperidx = 0;
       break;
     }
+
     paperidx++;
   }
 
@@ -702,8 +701,8 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   result = gtk_dialog_run (dialog);
 
-  if (result == GEDA_RESPONSE_ACCEPT)
-  {
+  if (result == GEDA_RESPONSE_ACCEPT) {
+
     /* Extract values from dialog and set the paper size */
     g_object_get (dialog,
                   "command", &command,
@@ -721,51 +720,53 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
     /* de select everything first */
     o_select_unselect_all( w_current );
 
-    if (usefile && filename[0])
+    if (usefile && filename[0]) {
+
       /* Print to file */
-      {
-        destination = filename;
-        result = f_print_file (toplevel,
-                               toplevel->page_current,
-                               filename);
-      }
-      else if (command[0])
-        /* Print to command and save command for later use. */
-        {
-          destination = command;
-          result = f_print_command (toplevel,
-                                    toplevel->page_current,
-                                    command);
 
-          GEDA_FREE (w_current->print_command);
-          w_current->print_command = u_string_strdup (command);
-        }
-        else
-        {
-          u_log_message (_("No print destination specified\n"));
-          return;
-        }
+      destination = filename;
+      result = f_print_file (toplevel,
+                             toplevel->page_current,
+                             filename);
+    }
+    else if (command[0]) {
 
-        /* Check whether it worked */
-        if (result)
-        {
-          u_log_message (_("Cannot print current schematic to [%s]\n"),
-                         destination);
+      /* Print to command and save command for later use. */
 
-          /* Inform user */
-         titled_pango_error_dialog ( _("<b>An error occurred while printing</b>"),
-                                     _("check the log for more information"),
-                                     _("Print Error") );
+      destination = command;
+      result = f_print_command (toplevel,
+                                toplevel->page_current,
+                                command);
 
-        }
-        else
-        {
-          u_log_message (_("Printed current schematic to [%s]\n"),
-          destination);
-        }
+      GEDA_FREE (w_current->print_command);
+      w_current->print_command = u_string_strdup (command);
+    }
+    else {
+
+      u_log_message (_("No print destination specified\n"));
+      return;
+    }
+
+    /* Check whether it worked */
+    if (result) {
+
+      u_log_message (_("Cannot print current schematic to [%s]\n"),
+                       destination);
+
+      /* Inform user */
+      titled_pango_error_dialog ( _("<b>An error occurred while printing</b>"),
+                                    _("check the log for more information"),
+                                      _("Print Error") );
+
+    }
+    else {
+
+      u_log_message (_("Printed current schematic to [%s]\n"),
+                       destination);
+    }
   }
 
-  /* We don't need the dialog any more */
+  /* We do not need the dialog any more */
   gtk_widget_destroy (GTK_WIDGET (dialog));
 
 }
@@ -826,17 +827,21 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
 
   if (g_strcmp0 (orientation, "landscape") == 0) {
     gtk_page_setup_set_orientation (setup, GTK_PAGE_ORIENTATION_LANDSCAPE);
-  } else if (g_strcmp0 (orientation, "portrait") == 0) {
+  }
+  else if (g_strcmp0 (orientation, "portrait") == 0) {
     gtk_page_setup_set_orientation (setup, GTK_PAGE_ORIENTATION_PORTRAIT);
-  } else if (orientation == NULL
+  }
+  else if (orientation == NULL
              || g_strcmp0 (orientation, "auto") == 0) {
     /* Automatically choose the orientation that fits best */
     status = o_get_bounds_list (s_page_get_objects (page),
-                                            &wx_min, &wy_min, &wx_max, &wy_max);
+                                &wx_min, &wy_min, &wx_max, &wy_max);
+
     if (!status || (wx_max - wx_min) > (wy_max - wy_min)) {
       /* Default to landscape */
       gtk_page_setup_set_orientation (setup, GTK_PAGE_ORIENTATION_LANDSCAPE);
-    } else {
+    }
+    else {
       gtk_page_setup_set_orientation (setup, GTK_PAGE_ORIENTATION_PORTRAIT);
     }
   }
@@ -904,7 +909,9 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
   if (!is_color) {
     int i;
     for (i = 0; i < MAX_COLORS; i++) {
+
       COLOR *c = &g_array_index (color_map, COLOR, i);
+
       if (!c->enabled) continue;
 
       /* Disable background color & fully-transparent colors */
@@ -1157,6 +1164,7 @@ void x_print (GschemToplevel *w_current)
   if (settings != NULL) {
     gtk_print_operation_set_print_settings (print, settings);
   }
+
   setup = x_print_default_page_setup (w_current->toplevel,
                                       w_current->toplevel->page_current);
   gtk_print_operation_set_default_page_setup (print, setup);
