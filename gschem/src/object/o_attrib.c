@@ -259,7 +259,7 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
  *  \par Function Description
  *   Creates a new text attribute using the supplied values and properties.
  *   If \a parent is not NULL, the new attribute will be added the parent
- *   and to the page associated with the parent. the position of the new
+ *   and to the page associated with the parent. The position of the new
  *   attribute is adjusted based on the parent object type. If parent is
  *   NULL the new object is added as a floating attribute to the current
  *   page.
