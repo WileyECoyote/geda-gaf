@@ -2,8 +2,8 @@
 # serial 2.3
 
 dnl PCB prefix and m4 library directory (needed by gnetlist)
-dnl Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
-dnl Copyright (C) 2011-2014  Peter Clifton <pcjc2@cam.ac.uk>
+dnl Copyright (C) 2009-2015  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2011-2015  Peter Clifton <pcjc2@cam.ac.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
