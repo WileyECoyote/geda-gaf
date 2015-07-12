@@ -1,3 +1,13 @@
+2015-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Set the menu toolbar radio toggler active if style uniform
+      after startup.
+
+    * src/x/x_toolbars.c: Add function x_toolbars_turn_on_radio, rename turn_off_radio
+      to x_toolbars_turn_off_radio. Revise function x_toolbars_restore_state to track
+      the style setting when restoring tool-bars and then set the radio in menu if the
+      style was set uniformly.
+
 2015-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_place.c: Add debug code in o_place_invalidate_rubber();

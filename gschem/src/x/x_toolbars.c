@@ -36,7 +36,7 @@
 #include "x_menus.h"
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
-#define DEFAULT_TOOLBAR_STYLE GTK_TOOLBAR_ICONS          /* default style */
+#define DEFAULT_TOOLBAR_STYLE TOOLBAR_SHOW_ICONS         /* default style */
 #define TheToolBars  bar_widgets->toolbar_slist          /* convenience macro */
 
 #define TOOLBAR_RADIO_VARIABLE(symbol) bar_widgets->toolbar_##symbol
@@ -376,6 +376,7 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 
   return wpixmap;
 }
+
 /*! \brief Toolbar Button Callback
  *
  *  \par Function Description
@@ -443,6 +444,18 @@ static void x_toolbars_load_icons( GschemToplevel* w_current)
 #endif
 
   }
+}
+
+static void x_toolbars_turn_off_radio(RadioMenuData* radio_data) {
+  g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
+  g_object_set  ( G_OBJECT ( radio_data->widget), "active", FALSE, NULL);
+  g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
+}
+
+static void x_toolbars_turn_on_radio(RadioMenuData* radio_data) {
+  g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
+  g_object_set  ( G_OBJECT ( radio_data->widget), "active", TRUE, NULL);
+  g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
 }
 
 /*! \brief Toolbar Radio Button Callback
@@ -584,6 +597,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   const char *group_name;
   GError     *err = NULL;
   GKeyFile   *key_file = NULL;
+  int         global_style;
 
   void RestoreBarProperties(GtkWidget * handlebox) {
     int bar_id;
@@ -594,7 +608,9 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     group_name = IDS_Toolbar_Names[bar_id];
 
     if(key_file) {
+
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
+
       if(!err) {
         gtk_widget_set_visible(handlebox, visible);
         x_menu_set_toolbar_toggle(w_current, bar_id, visible);
@@ -603,12 +619,20 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         gtk_widget_set_visible(handlebox, TRUE);
         g_clear_error (&err);
       }
+
       style = g_key_file_get_integer (key_file, group_name, "style", &err);
+
       if(!err) {
         gtk_toolbar_set_style(GTK_TOOLBAR (GTK_BIN (handlebox)->child), style);
+        if (visible) {
+          global_style += style;
+        }
       }
       else {
         gtk_toolbar_set_style(GTK_TOOLBAR (GTK_BIN (handlebox)->child), DEFAULT_TOOLBAR_STYLE);
+        if (visible) {
+          global_style += DEFAULT_TOOLBAR_STYLE;
+        }
         g_clear_error (&err);
       }
     }
@@ -631,14 +655,17 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     }
   }
 
+  global_style = 0;
+
   filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
   if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
+
     if (access(filename, R_OK) == 0) {
       key_file = g_key_file_new();
       if(g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
-          RestoreAllBars();
-          v_log_message("Toolbar configuration restored from %s\n", filename);
+        RestoreAllBars();
+        v_log_message("Toolbar configuration restored from %s\n", filename);
       }
       else {
         u_log_message("Warning, Error Restoring Toolbar configuration, %s %s\n", filename, err->message);
@@ -648,9 +675,22 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     else {
       u_log_message("Warning, Toolbar configuration file access error:, %s %s\n", filename, err->message);
     }
+
+    /* Check if toolbars styles are uniform and set radio in menu if all the same style */
+    global_style = global_style / (tb_Zoom + 1);
+
+    if ((global_style == TOOLBAR_SHOW_ICONS) ||
+        (global_style == TOOLBAR_SHOW_TEXT)  ||
+        (global_style == TOOLBAR_SHOW_BOTH)  ||
+        (global_style == TOOLBAR_SHOW_HORIZ))
+      {
+        x_toolbars_turn_on_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp,
+                                                                     global_style));
+      }
   }
-  else
+  else {
     v_log_message("Toolbar configuration <%s> not found!\n", filename);
+  }
 
   if(key_file) g_key_file_free(key_file);
   GEDA_FREE(filename);
@@ -1603,12 +1643,6 @@ x_toolbars_set_sensitivities(GschemToplevel *w_current,
   }
 }
 
-static void turn_off_radio(RadioMenuData* radio_data) {
-  g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
-  g_object_set  ( G_OBJECT ( radio_data->widget), "active", FALSE, NULL);
-  g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
-}
-
 /*!
  * \brief View Toolbar Icons
  * \par Function Description
@@ -1630,9 +1664,9 @@ x_toolbar_icons_only(GtkWidget *widget, GschemToplevel *w_current)
   }
   mapcar(TheToolBars)
 
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
 }
 
 /*!
@@ -1655,9 +1689,9 @@ x_toolbar_text_only(GtkWidget *widget, GschemToplevel *w_current)
   }
   mapcar(TheToolBars)
 
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
 }
 
 /*!
@@ -1681,9 +1715,9 @@ x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
   }
   mapcar(TheToolBars)
 
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 3));
 }
 
 /*!
@@ -1703,9 +1737,9 @@ x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
   }
   mapcar(TheToolBars)
 
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
-  turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 0));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 1));
+  x_toolbars_turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
 }
 
 /*! \brief Set All Toolbar Radios InActive
