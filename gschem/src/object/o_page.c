@@ -317,13 +317,14 @@ void o_page_draw_before (GschemToplevel *w_current)
 /*! \brief Draw Objects First
  *  \ingroup Draw-Order-Public
  *  \par Function Description
- *  This function operates on the current selection. Every member is
- *  removed from the page list and added back to the front of the list
- *  after removing any titleblock objects. The title block object are
- *  prepended back to the beginning, regardless of where they were
- *  found in the page list.
+ *  This function operates on the object list. Every member is removed
+ *  from the page list and added back to the front of the list after
+ *  removing any titleblock objects. Title block objects are prepended
+ *  back to the beginning, regardless of where they were found in the
+ *  page list.
  *
  *  \param [in] w_current   Pointer to GschemToplevel structure.
+ *  \param [in] object_list List of objects to be drawn first
  */
 void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
 {
@@ -364,6 +365,7 @@ void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
  *  to the end of the end of the page list.
  *
  *  \param [in] w_current   Pointer to GschemToplevel structure.
+ *  \param [in] object_list List of objects to be drawn last
  *
  *  \todo Check relocated objects for children.
  */

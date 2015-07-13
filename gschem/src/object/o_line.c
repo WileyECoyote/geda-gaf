@@ -193,17 +193,7 @@ void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief
- *  \par Function Description
- *
- *  \param [in] w_current  The GedaToplevel object.
- *  \param [in] line
- *  \param [in] x1
- *  \param [in] y1
- *  \param [in] x2
- *  \param [in] y2
- *  \return int
-
+/*
 int o_line_visible (GschemToplevel *w_current, LINE *line,
                     int *x1, int *y1, int *x2, int *y2)
 {

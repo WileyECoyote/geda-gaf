@@ -289,6 +289,7 @@ i_status_idle_thread_update_action (GschemToplevel *w_current)
  *  Spawn thread to update the  window title
  *
  *  \param [in] w_current GschemToplevel structure
+ *  \param [in] state     Boolean value to set inside_action
  */
 void i_status_update_action_state(GschemToplevel *w_current, int state)
 {

@@ -4617,7 +4617,9 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
 /*! \brief Validate the input attribute
  *  \par Function Description
  *  This function validates the attribute and if it isn't valid
- *  pops up an error message box.
+ *  pops up an error message box. The function is used by both
+ *  the single and the multi-attribute editors to validate text
+ *  input.
  *
  *  \param parent The parent window which spawned this dialog box.
  *  \param attribute The attribute to be validated.

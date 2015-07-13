@@ -1582,8 +1582,8 @@ SCM g_rc_third_button(SCM mode)
  * \param [in] mode Scheme object containing the third button
  * cancel mode string
  *
- * \returns #t if the third button cancel mode specified in the
- * RC file matches the application, else #f.
+ * \returns TRUE if the third button cancel mode specified in the
+ * RC file matches the application, else FALSE.
  */
 SCM g_rc_third_button_cancel(SCM mode)
 {

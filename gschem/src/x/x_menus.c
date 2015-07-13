@@ -1441,9 +1441,10 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
 
 /*! \brief Set State of Menu ToolBar Toggle Items
  * \par Function Description
- *  This is a menu support function to "uncheck" Toolbar Menu toggle items. The
- * function can be used when the menu option was changed by some other means,
- * for example when a floating toolbars is turned off with the "X" box.
+ *  This is a menu support function to "uncheck" Toolbar Menu toggle items.
+ *  The function can be used when the menu option was changed by some other
+ *  means, for example when a floating toolbars is turned off with the "X"
+ *  box.
  *
  * \param w_current Gschem toplevel object
  * \param toggle_id is int index of the IDS_Menu_Toggles item to set

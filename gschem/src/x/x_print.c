@@ -779,8 +779,8 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
  *  PDF scale used by Adobe is fixed and equal to 72 ppi. */
 #define DEFAULT_ADOBE_PDF_PPI 72
 
-/*! \def DEFAULT_GSCHEM_PPI Gschem Points Per Inch
- *  \brief
+/*! \def DEFAULT_GSCHEM_PPI
+ *  \brief Gschem Points Per Inch
  * Scaling factor Set 1 gschem point = 1 mil, i.e. 1000 points = 1 inch.
  * See requirements: http://wiki.geda-project.org/geda:file_format_spec
  */

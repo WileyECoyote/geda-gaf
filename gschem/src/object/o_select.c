@@ -909,6 +909,18 @@ static void o_select_enable_events(GschemToplevel *w_current)
                                   w_current);
 }
 
+/*! \brief Enable Secondary Event Handler for Secondary Selection
+ *  \par Function Description
+ *  This function allow routines to let user pick a second set of objects.
+ *  The current select should be stored to w_current->primary_selection
+ *  prior to calling this function. The secondary selector event handler
+ *  cancels the mode after the user finished the selection, restoring the
+ *  normal event handler.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] func       Current x coordinate of pointer in world units.
+ *
+ */
 void o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
 {
   o_select_cancel_events(w_current);
