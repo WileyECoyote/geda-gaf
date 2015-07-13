@@ -236,7 +236,7 @@ char *u_string_int2str(int value, char* str, int radix) {
  *  \par Function Description
  *  Determines if a string contains only alpha-numeric character.
  *
- *  \param[in] string  The string to parse.
+ *  \param[in] str  The string to parse.
  *
  *  \returns TRUE if all of the characters in \a str are alpha-numeric.
  */

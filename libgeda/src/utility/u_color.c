@@ -26,8 +26,8 @@
 
 /*! \brief Decode a hexadecimal RGB or RGBA color code.
  * \par Function Description
- * Accepts a hexadecimal color code \a rgba of either the form #RRGGBB
- * or #RRGGBBAA, and parses it to extract the numerical color values,
+ * Accepts a hexadecimal color code \a rgba of either the form "#RRGGBB"
+ * or "#RRGGBBAA", and parses it to extract the numerical color values,
  * placing them in the the char pointers passed as arguments. If the
  * six-digit form is used, the alpha channel is set to full opacity.
  * If an error occurs during parsing, the return values are set to
@@ -45,6 +45,7 @@
  * \param [out] r    Location to store red value.
  * \param [out] g    Location to store green value.
  * \param [out] b    Location to store blue value.
+ * \param [out] a    Location to store alpha value.
  *
  *  \returns #TRUE on success, #FALSE on failure.
  */
@@ -89,13 +90,15 @@ bool u_color_rgba_decode (const char *rgba,
 
 /*! \brief Encode a hexadecimal RGB or RGBA color code.
  *  \par Function Description
- *  Encodes four colour components into either the form #RRGGBB or
- *  #RRGGBBAA. The shorter form is used when the alpha component is
+ *  Encodes four colour components into either the form "#RRGGBB" or
+ *  "#RRGGBBAA". The shorter form is used when the alpha component is
  *  0xff.
  *
  * \param [in] r Red component.
  * \param [in] g Green component.
  * \param [in] b Blue component.
+ * \param [in] a Alpha component.
+ *
  * \returns A newly allocated string containing the encoded string.
  */
 char *u_color_rgba_encode (uint8 r, uint8 g, uint8 b, uint8 a)
