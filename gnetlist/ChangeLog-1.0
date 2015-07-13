@@ -1,16 +1,20 @@
+2015-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Update Doxygen comments
+
 2015-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_netlist.c: Add Doxygen templates as todo's.
+    * src/g_netlist.c: Add Doxygen templates as todo's.
 
 2015-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/s_rename.c: Add Doxygen templates as todo's.
+    * src/s_rename.c: Add Doxygen templates as todo's.
 
 2015-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/s_netattrib.c: Add Doxygen templates as todo's.
+    * src/s_netattrib.c: Add Doxygen templates as todo's.
 
-    * gnetlist/src/s_cpinlist.c: Add Doxygen templates as todo's.
+    * src/s_cpinlist.c: Add Doxygen templates as todo's.
 
 2015-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -22,7 +26,7 @@
 
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_register.c: Add Doxygen templates as todo's.
+    * src/g_register.c: Add Doxygen templates as todo's.
 
 2015-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -31,25 +35,25 @@
 
 2015-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/s_misc.c: Simplfy functions verbose_print and
+    * src/s_misc.c: Simplfy functions verbose_print and
       verbose_done; use greater not greater than or equal, no need
       to have else clause. Add Doxygen comments.
 
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/g_rc.c: Add Doxygen comments.
+    * src/g_rc.c: Add Doxygen comments.
 
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/gnetlist.c: Add Doxygen comments.
+    * src/gnetlist.c: Add Doxygen comments.
 
 2015-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/s_traverse.c: Add Doxygen templates as todo's
+    * src/s_traverse.c: Add Doxygen templates as todo's
 
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/src/gnetlist.c: Add Doxygen templates as todo's
+    * src/gnetlist.c: Add Doxygen templates as todo's
 
 2015-04-21 Wiley E. Hill <wileyhill@gmail.com>
 

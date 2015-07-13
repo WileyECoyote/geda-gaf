@@ -24,11 +24,12 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get unique list of all packages
  *  \par Function Description
  *
- * this function will only return a unique list of packages
+ * This function returns a unique list of packages
+ *
+ *  Alias gnetlist:get-packages
  */
 SCM g_get_packages(SCM level)
 {
@@ -60,11 +61,12 @@ SCM g_get_packages(SCM level)
        return list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get non-unique list of all packages
  *  \par Function Description
  *
- * this function will only return a non unique list of packages
+ * This function returns a non unique list of packages
+ *
+ *  Alias gnetlist:get-non-unique-packages
  */
 SCM g_get_non_unique_packages(SCM level)
 {
@@ -75,20 +77,22 @@ SCM g_get_non_unique_packages(SCM level)
   SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-non-unique-packages");
 
   for (nl_current = netlist_head; nl_current != NULL;
-       nl_current = nl_current->next) {
+       nl_current = nl_current->next)
+  {
     if (nl_current->component_uref != NULL) {
       list = scm_cons (scm_from_utf8_string (nl_current->component_uref),
                        list);
     }
-       }
+  }
 
-       return list;
+  return list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get all Pins for a given refdes
  *  \par Function Description
  *
+ *  Given a refdes, returns all pins belonging to the object.
+ *  Alias gnetlist:get-pins
  */
 SCM g_get_pins(SCM scm_uref)
 {
@@ -129,10 +133,9 @@ SCM g_get_pins(SCM scm_uref)
   return (list);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get list of all nets
  *  \par Function Description
- *
+ *  Alias gnetlist:get-all-nets
  */
 SCM g_get_all_nets(SCM scm_level)
 {
@@ -177,10 +180,9 @@ SCM g_get_all_nets(SCM scm_level)
   return list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get unique list of all nets
  *  \par Function Description
- *
+ *  Alias gnetlist:get-all-unique-nets
  */
 SCM g_get_all_unique_nets(SCM scm_level)
 {
@@ -225,11 +227,11 @@ SCM g_get_all_unique_nets(SCM scm_level)
   return list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get All connection for a given Netname
  *  \par Function Description
  *
- *  given a net name, return all connections
+ *  Given a net name, returns all connections
+ *  Alias gnetlist:get-all-connections
  */
 SCM g_get_all_connections(SCM scm_netname)
 {
@@ -264,52 +266,56 @@ SCM g_get_all_connections(SCM scm_netname)
    * being careful to ignore duplicates, and unconnected pins
    */
   while (nl_current != NULL) {
+
     pl_current = nl_current->cpins;
+
     while (pl_current != NULL) {
+
       if (pl_current->net_name) {
 
         net_name = pl_current->net_name;
+
         /* filter off unconnected pins */
         if (strcmp(net_name, wanted_net_name) == 0) {
           /* add the net name to the list */
 
-#if DEBUG
+          #if DEBUG
           printf("found net: `%s'\n", net_name);
-#endif
+          #endif
 
-  n_current = pl_current->nets;
-  while (n_current != NULL) {
+          n_current = pl_current->nets;
+          while (n_current != NULL) {
 
-    if (n_current->connected_to) {
+            if (n_current->connected_to) {
 
-      pairlist = SCM_EOL;
-      pin = (char *) GEDA_MEM_ALLOC(sizeof(char) *
-      strlen(n_current->
-      connected_to));
-      uref =
-      (char *) GEDA_MEM_ALLOC(sizeof(char) *
-      strlen(n_current->
-      connected_to));
+              pairlist = SCM_EOL;
+              pin = (char *) GEDA_MEM_ALLOC(sizeof(char) *
+              strlen(n_current->
+              connected_to));
+              uref =
+              (char *) GEDA_MEM_ALLOC(sizeof(char) *
+              strlen(n_current->
+              connected_to));
 
-      sscanf(n_current->connected_to,
-             "%s %s", uref, pin);
+              sscanf(n_current->connected_to,
+                     "%s %s", uref, pin);
 
-      pairlist = scm_list_n (scm_from_utf8_string (uref),
-                             scm_from_utf8_string (pin),
-                             SCM_UNDEFINED);
+              pairlist = scm_list_n (scm_from_utf8_string (uref),
+                                     scm_from_utf8_string (pin),
+                                     SCM_UNDEFINED);
 
-      x = pairlist;
-      is_member = scm_member(x, connlist);
+              x = pairlist;
+              is_member = scm_member(x, connlist);
 
-      if (scm_is_false (is_member)) {
-        connlist = scm_cons (pairlist, connlist);
-      }
+              if (scm_is_false (is_member)) {
+                connlist = scm_cons (pairlist, connlist);
+              }
 
-      GEDA_FREE(uref);
-      GEDA_FREE(pin);
-    }
-    n_current = n_current->next;
-  }
+              GEDA_FREE(uref);
+              GEDA_FREE(pin);
+            }
+            n_current = n_current->next;
+          }
         }
       }
       pl_current = pl_current->next;
@@ -447,10 +453,12 @@ SCM g_get_pins_nets(SCM scm_uref)
   /* search for the any instances */
   /* through the entire list */
   for (nl_current = netlist_head; nl_current != NULL;
-       nl_current = nl_current->next) {
+       nl_current = nl_current->next)
+  {
 
     /* is there a uref? */
     if (nl_current->component_uref) {
+
       /* is it the one we want ? */
       if (strcmp(nl_current->component_uref, wanted_uref) == 0) {
 
@@ -467,19 +475,16 @@ SCM g_get_pins_nets(SCM scm_uref)
                                    scm_from_utf8_string (net_name));
               pinslist = scm_cons (pairlist, pinslist);
             }
-
           }
-             }
+        }
       }
     }
-       }
+  }
 
-       free (wanted_uref);
+  free (wanted_uref);
 
-       pinslist = scm_reverse (pinslist);	/* pins are in reverse order on the way
-       * out
-       */
-       return (pinslist);
+  pinslist = scm_reverse (pinslist);	/* pins are in reverse order on way out */
+  return (pinslist);
 }
 
 
@@ -580,12 +585,12 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   wanted_attrib = scm_to_utf8_string (scm_wanted_attrib);
   scm_dynwind_free (wanted_attrib);
 
-#if DEBUG
+  #if DEBUG
   printf("gnetlist:g_netlist.c:g_get_attribute_by_pinseq -- \n");
   printf("  wanted uref = %s\n", uref);
   printf("  wanted_pin_seq = %s\n", pinseq);
   printf("  wanted_attrib = %s\n", wanted_attrib);
-#endif
+  #endif
 
   /* here is where you make it multi page aware */
   nl_current = netlist_head;
@@ -595,6 +600,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   while (nl_current != NULL) {
 
     if (nl_current->component_uref) {
+
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
         o_pin_object = o_complex_find_pin_by_attribute (nl_current->object_ptr,
@@ -624,10 +630,10 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
     scm_return_value = scm_from_utf8_string ("unknown");
   }
 
-#if DEBUG
+  #if DEBUG
   printf("gnetlist:g_netlist.c:g_get_attribute_by_pinseq -- ");
   printf("return_value: %s\n", return_value ? return_value : "NULL");
-#endif
+  #endif
 
   return (scm_return_value);
 }
@@ -643,13 +649,15 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM
 scm_wanted_attrib)
 {
   SCM scm_return_value;
+
   NETLIST *nl_current;
-  Object *pin_object;
+  Object  *pin_object;
+
   char *uref;
   char *pin;
   char *wanted_attrib;
   char *return_value = NULL;
-  int done = FALSE;
+  int   done = FALSE;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinnumber");
@@ -730,8 +738,7 @@ scm_wanted_attrib)
   return (scm_return_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get Top-Level Attributes
  *  \par Function Description
  *
  * returns value of attribute otherwise string "none"
@@ -833,8 +840,7 @@ SCM g_get_input_files(void)
   return scm_reverse_x (list, SCM_EOL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get graphical objects connected to given net
  *  \par Function Description
  *  given a net name, an attribute, and a wanted attribute, return all
  *  the given attribute of all the graphical objects connected to that
