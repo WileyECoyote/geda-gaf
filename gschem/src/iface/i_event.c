@@ -50,18 +50,33 @@ static struct event_reg_t drawing_area_events[] = {
   {  NULL,                  0, 0, NULL }
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void i_event_block_buttons (GschemToplevel *w_current)
 {
   i_event_block_handler (w_current, BUTTON_PRESS_HANDLER);
   i_event_block_handler (w_current, BUTTON_RELEASE_HANDLER);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void i_event_unblock_buttons (GschemToplevel *w_current)
 {
   i_event_unblock_handler (w_current, BUTTON_PRESS_HANDLER);
   i_event_unblock_handler (w_current, BUTTON_RELEASE_HANDLER);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void i_event_block_handler (GschemToplevel *w_current, EventHandler id)
 {
   if (!drawing_area_events[id].block) {
@@ -70,6 +85,11 @@ void i_event_block_handler (GschemToplevel *w_current, EventHandler id)
   drawing_area_events[id].block++;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void i_event_unblock_handler (GschemToplevel *w_current, EventHandler id)
 {
   if (drawing_area_events[id].block) {
@@ -114,6 +134,13 @@ void i_event_setup_handlers (GschemToplevel *w_current)
 
 /* ----------------------- Setup Adder Event Handlers ---------------------- */
 
+/*! \brief Disable Action Event Handlers
+ *  \par Function Description
+ *  \internal Function disables the Action Event Handlers and invalidates
+ *  the handler ids.
+ *
+ *  \sa i_event_start_adder_handler i_event_start_paster_handler
+ */
 static void i_event_adder_disconnect_events (GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
@@ -128,7 +155,14 @@ static void i_event_adder_disconnect_events (GschemToplevel *w_current)
   }
 }
 
-static void i_event_adder_enable_events(GschemToplevel *w_current)
+/*! \brief Enable Action Event Handlers
+ *  \par Function Description
+ *  \internal Function blocks the current button event handlers and
+ *   enables the signals to be sent to the Action Event Handler.
+ *
+ *  \sa i_event_start_adder_handler i_event_start_paster_handler
+ */
+static void i_event_action_enable_events(GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
 
@@ -144,6 +178,16 @@ static void i_event_adder_enable_events(GschemToplevel *w_current)
                                          w_current);
 }
 
+/*! \brief Stop the Action Event Handler
+ *  \par Function Description
+ *  \internal Function disconnect the Action Event Handler and unblock
+ *   the previous event handler. This function is the only functions to
+ *   set the action_event->state = FALSE.
+ *
+ *  \sa i_event_stop_action_handler, i_event_cancel_action_handler,
+ *      i_event_start_adder_handler, i_event_start_paster_handler,
+ *      i_event_adder_pressed, i_event_adder_pressed, x_dnd_source_leave
+ */
 static void i_event_end_action_handler(GschemToplevel *w_current)
 {
   i_event_adder_disconnect_events(w_current);
@@ -155,6 +199,12 @@ static void i_event_end_action_handler(GschemToplevel *w_current)
 }
 
 /* ---------------------- Button Event Adder Handlers ---------------------- */
+
+/*! \brief Adder Action button Press events
+ *  \par Function Description
+ *  \internal handler for button press events when performing
+ *  input operations for new objects.
+ */
 static
 int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
 {
@@ -249,6 +299,11 @@ int i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplev
   return(0);
 }
 
+/*! \brief Adder Action button Release events
+ *  \par Function Description
+ *  \internal handler for button release events when performing
+ *  input operations for new objects.
+ */
 static int i_event_adder_released(GtkWidget      *widget,
                                   GdkEventButton *event,
                                   GschemToplevel *w_current)
@@ -286,6 +341,12 @@ static int i_event_adder_released(GtkWidget      *widget,
 
 
 /* ---------------------- Button Event Paster Handlers ---------------------- */
+
+/*! \brief Paster Action button Press events
+ *  \par Function Description
+ *  \internal handler for button press events when performing
+ *  paste operations.
+ */
 static
 int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
 {
@@ -340,6 +401,11 @@ int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemTople
   return(0);
 }
 
+/*! \brief Paster Action button release events
+ *  \par Function Description
+ *  \internal handler for button release events when performing
+ *  paste operations.
+ */
 static int i_event_paster_released(GtkWidget      *widget,
                                   GdkEventButton *event,
                                   GschemToplevel *w_current)
@@ -427,8 +493,16 @@ static int i_event_paster_released(GtkWidget      *widget,
   }
   return(0);
 }
+
 /* ----------------------------------------------------------------- */
 
+/*! \brief Cancel Action Event Handler
+ *  \par Function Description
+ *   Terminates the Action Event Handler and sets the
+ *   event state to SELECT mode, invaliding all.
+ *
+ *  \sa i_event_stop_action_handler
+ */
 void i_event_cancel_action_handler(GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
@@ -440,6 +514,23 @@ void i_event_cancel_action_handler(GschemToplevel *w_current)
   }
 }
 
+/*! \brief Start the Adder Action Event Handler
+ *  \par Function Description
+ *  The Adder Event handler is used to handle button events when
+ *  the user is creating objects for event->state:
+ *  \par
+ *  <DL>
+ *    <DT>NETMODE</DT>
+ *    <DT>PINMODE</DT>
+ *    <DT>LINEMODE</DT>
+ *    <DT>BOXMODE</DT>
+ *    <DT>CIRCLEMODE</DT>
+ *    <DT>ARCMODE</DT>
+ *    <DT>PATHMODE</DT>
+ *    <DT>PICTUREMODE</DT>
+ *    <DT>BUSMODE</DT>
+ *  </DL>
+ */
 void i_event_start_adder_handler (GschemToplevel *w_current,
                                   ActionInit      ifunc,
                                   ActionAdder     rfunc)
@@ -461,9 +552,26 @@ void i_event_start_adder_handler (GschemToplevel *w_current,
   event->press_butt    = (void*)i_event_adder_pressed;
   event->release_butt  = (void*)i_event_adder_released;
 
-  i_event_adder_enable_events(w_current);
+  i_event_action_enable_events(w_current);
 }
 
+/*! \brief Start the Paster Action Event Handler
+ *  \par Function Description
+ *  The Paster Event handler is used to handle button events when
+ *  the user is creating objects for event->state:
+ *  \par
+ *  <DL>
+ *    <DT>COPYMODE</DT>
+ *    <DT>COMPMODE</DT>
+ *    <DT>TEXTMODE</DT>
+ *    <DT>MCOPYMODE</DT>
+ *    <DT>MOVEMODE</DT>
+ *    <DT>ENDDND_MOVE_OBJ</DT>
+ *    <DT>ENDDND_COPY_OBJ</DT>
+ *    <DT>STARTDND</DT>
+ *    <DT>PASTEMODE</DT>
+ *  </DL>
+ */
 void i_event_start_paster_handler (GschemToplevel *w_current,
                                    ActionPaster    rfunc)
 {
@@ -481,11 +589,18 @@ void i_event_start_paster_handler (GschemToplevel *w_current,
   event->press_butt    = (void*)i_event_paster_pressed;
   event->release_butt  = (void*)i_event_paster_released;
 
-  i_event_adder_enable_events(w_current);
+  i_event_action_enable_events(w_current);
 
   i_status_action_start(w_current);
 }
 
+/*! \brief Stop the Action Event Handler
+ *  \par Function Description
+ *   Terminates the Action Event Handler and sets the
+ *   event state to SELECT mode.
+ *
+ *  \sa i_event_cancel_action_handler
+ */
 void i_event_stop_action_handler(GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
