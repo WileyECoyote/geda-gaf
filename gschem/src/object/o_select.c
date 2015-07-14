@@ -363,6 +363,11 @@ bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
  *  capture the cursor position at the on-set of a boxed selection
  *  operation.
  *
+ *
+ *  \param [in] w_current  The GschemToplevel object,
+ *  \param [in] us_wx      Snapped X coordinate in World units,
+ *  \param [in] us_wy      Snapped Y coordinate in World units.
+ *
  *  \todo Reeks box-selection-threashold
  */
 int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
@@ -393,6 +398,10 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
  *  \par Function Description
  *   Invalidates the drawn temporary selection box and invokes selection
  *   search routines.
+ *
+ *  \param [in] w_current  The GschemToplevel object,
+ *  \param [in] us_wx      Unsnapped X coordinate in World units,
+ *  \param [in] us_wy      Unsnapped Y coordinate in World units.
  */
 void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
 {
@@ -408,6 +417,10 @@ void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
  *   Invalidates the old temporary selection box, aka rubber, and causes
  *   new rubber to be drawn. This has the effect of drawing a temporary
  *   box while dragging the edge.
+ *
+ *  \param [in] w_current  The GschemToplevel object,
+ *  \param [in] us_wx      Unsnapped X coordinate in World units,
+ *  \param [in] us_wy      Unsnapped Y coordinate in World units.
  */
 void o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
 {
@@ -425,6 +438,8 @@ void o_select_box_motion (GschemToplevel *w_current, int us_wx, int us_wy)
 /*! \brief Invalidate Temporary drawing artifacts for Box Selection
  *  \par Function Description
  *   Note the similarity to o_box_invalidate_rubber()
+ *
+ *  \param [in] w_current  The GschemToplevel object.
  */
 void o_select_box_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -454,6 +469,8 @@ void o_select_box_draw_rubber (GschemToplevel *w_current)
  *  \par Function Description
  *  Calls o_select_object for objects bounded by the windowed/box
  *  region
+ *
+ *  \param [in] w_current  The GschemToplevel object.
  *
  *  \todo primitive
  */
@@ -895,6 +912,8 @@ int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
  *  \par Function Description
  *   Disconnects signals from the Secondary Selection Handler and unblock
  *   the previous button event handlers.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
  *
  *  \sa i_event_stop_action_handler
  */
