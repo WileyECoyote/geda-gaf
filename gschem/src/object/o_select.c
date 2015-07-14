@@ -829,6 +829,11 @@ static unsigned press_hid;
 static unsigned release_hid;
 static void (* verb) (GschemToplevel *w_current);
 
+/*! \brief Secondary Selection button Press events callback
+ *  \par Function Description
+ *  \internal Callback for button Press events when selecting objects
+ *   for the secondary selection set.
+ */
 static
 int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
                                            GschemToplevel *w_current)
@@ -851,6 +856,11 @@ int o_select_press_butt(GtkWidget *widget, GdkEventButton *event,
   return(0);
 }
 
+/*! \brief Secondary Selection button Release events callback
+ *  \par Function Description
+ *  \internal Callback for button release events when selecting objects
+ *   for the secondary selection set.
+ */
 static
 int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
                                              GschemToplevel *w_current)
@@ -881,6 +891,13 @@ int o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
   return(0);
 }
 
+/*! \brief Cancel Secondary Selection Handler
+ *  \par Function Description
+ *   Disconnects signals from the Secondary Selection Handler and unblock
+ *   the previous button event handlers.
+ *
+ *  \sa i_event_stop_action_handler
+ */
 void o_select_cancel_events(GschemToplevel *w_current)
 {
   if (press_hid) {
@@ -894,6 +911,16 @@ void o_select_cancel_events(GschemToplevel *w_current)
   i_event_unblock_buttons (w_current);
 }
 
+/*! \brief Enable Secondary Selection Event Handler
+ *  \par Function Description
+ *  \internal Function blocks the current button event handlers and
+ *   enables the signals to be sent to the Secondary Selection Event
+ *   Handler.
+ *
+ *  \param [in] w_current  The GschemToplevel object.
+ *
+ *  \sa o_select_connect_selector
+ */
 static void o_select_enable_events(GschemToplevel *w_current)
 {
   i_event_block_buttons (w_current);
@@ -909,7 +936,7 @@ static void o_select_enable_events(GschemToplevel *w_current)
                                   w_current);
 }
 
-/*! \brief Enable Secondary Event Handler for Secondary Selection
+/*! \brief Connect Secondary Selection Event Handler
  *  \par Function Description
  *  This function allow routines to let user pick a second set of objects.
  *  The current select should be stored to w_current->primary_selection
@@ -919,7 +946,6 @@ static void o_select_enable_events(GschemToplevel *w_current)
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] func       Current x coordinate of pointer in world units.
- *
  */
 void o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
 {
