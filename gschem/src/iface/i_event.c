@@ -50,10 +50,14 @@ static struct event_reg_t drawing_area_events[] = {
   {  NULL,                  0, 0, NULL }
 };
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Convenience function to Block the Button Event Handlers
  *  \par Function Description
+ *   This function blocks both the BUTTON_PRESS_HANDLER and the
+ *   BUTTON_RELEASE_HANDLER event handlers.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *
+ *  \sa i_event_unblock_handler
  */
 void i_event_block_buttons (GschemToplevel *w_current)
 {
@@ -61,10 +65,14 @@ void i_event_block_buttons (GschemToplevel *w_current)
   i_event_block_handler (w_current, BUTTON_RELEASE_HANDLER);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Convenience function to Unblock the Button Event Handlers
  *  \par Function Description
+ *   This function unblocks both the BUTTON_PRESS_HANDLER and the
+ *   BUTTON_RELEASE_HANDLER event handlers.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *
+ *  \sa i_event_unblock_handler
  */
 void i_event_unblock_buttons (GschemToplevel *w_current)
 {
@@ -72,10 +80,15 @@ void i_event_unblock_buttons (GschemToplevel *w_current)
   i_event_unblock_handler (w_current, BUTTON_RELEASE_HANDLER);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Global utility function to Block an Event Handler
  *  \par Function Description
+ *   This function block event handler identified by the
+ *   #EID_EVENT_HANDLERS id.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] id         Enumerated ID of handler to block.
+ *
+ *  \sa i_event_unblock_handler i_event_block_buttons
  */
 void i_event_block_handler (GschemToplevel *w_current, EventHandler id)
 {
@@ -85,10 +98,15 @@ void i_event_block_handler (GschemToplevel *w_current, EventHandler id)
   drawing_area_events[id].block++;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Global utility function to Unblock an Event Handler
  *  \par Function Description
+ *   This function unblocks a previously blocked event handler indentify
+ *   by the #EID_EVENT_HANDLERS id.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] id         Enumerated ID of handler to unblock.
+ *
+ *  \sa i_event_block_handler i_event_unblock_buttons
  */
 void i_event_unblock_handler (GschemToplevel *w_current, EventHandler id)
 {
