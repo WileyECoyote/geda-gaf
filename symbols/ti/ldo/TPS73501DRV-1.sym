@@ -1,4 +1,4 @@
-v 20150401 2
+v 20150703 2
 T 400 1800 8 10 1 1 0 0 1
 refdes=U?
 T 400 2400 5 10 0 1 0 0 1
@@ -69,11 +69,11 @@ T 400 2600 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/tps735.pdf
 T 1250 2400 5 10 0 0 0 0 1
 symversion=1.0
-T 400 3000 5 10 0 0 0 0 1
-dist-license=GPL3
 T 400 3200 5 10 0 0 0 0 1
-use-license=unlimited
+dist-license=GPL3
 T 400 3400 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 3600 5 10 0 0 0 0 1
 author=AutoTron
 T 400 1650 9 10 1 1 0 0 1
 value=TPS73501DRV
@@ -99,3 +99,5 @@ pinseq=6
 T 950 300 5 8 0 1 0 0 1
 pintype=pwr
 }
+T 400 3000 5 10 0 1 0 0 1
+mfr=Texas Instruments
