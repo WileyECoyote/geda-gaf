@@ -87,8 +87,6 @@ m4_define([AX_DOC_DIRS],
   # Check where to install doc files. Note that Autoconf will overide
   # this to ${datarootdir}/doc/${PACKAGE_TARNAME}
 
-  AutoconfSucks=""
-
   AC_MSG_CHECKING([where to install Help Documents])
   if test "x$docdir" = "x"; then
      docdir="/doc/geda-gaf"
