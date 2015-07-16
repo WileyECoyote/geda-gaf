@@ -153,7 +153,7 @@ bool m_polygon_interior_point (GArray *points, int x, int y)
  *  \return The shortest distance from the polygon to the point.  With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean closed)
+double m_polygon_shortest_distance (GArray *points, int x, int y, int closed)
 {
   double shortest = G_MAXDOUBLE;
 
@@ -163,7 +163,8 @@ double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean close
 
     if (closed) {
       point = g_array_index (points, POINT, points->len - 1);
-    } else {
+    }
+    else {
       point = g_array_index (points, POINT, i++);
     }
 
@@ -187,4 +188,3 @@ double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean close
 
   return shortest;
 }
-
