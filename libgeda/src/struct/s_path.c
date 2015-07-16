@@ -858,13 +858,19 @@ double s_path_shortest_distance (Path *path, int x, int y, int solid)
   closed = s_path_to_polygon (path, points);
 
   if (!solid) {
+
     shortest_distance = m_polygon_shortest_distance (points, x, y, closed);
 
-  } else if (m_polygon_interior_point (points, x, y)) {
+  }
+  else if (m_polygon_interior_point (points, x, y)) {
+
     shortest_distance = 0;
 
-  } else {
+  }
+  else {
+
     shortest_distance = m_polygon_shortest_distance (points, x, y, TRUE);
+
   }
 
   g_array_free (points, TRUE);
