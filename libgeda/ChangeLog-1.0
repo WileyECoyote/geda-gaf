@@ -1,3 +1,15 @@
+2015-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_path.c: Revise module
+
+              * include io.h if MinGW32
+
+              * Check system mkdir argument format, compile appropriately
+
+              * f_path_create: check for NULL path argument
+
+              * Stop compile if no means to make a directory
+
 2015-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_text.c: Revise function geda_text_bounds to set the

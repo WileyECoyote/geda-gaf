@@ -26,6 +26,10 @@
 
 #include <pwd.h>
 
+#if MKDIR_TAKES_ONE_ARG /* MinGW32 */
+#  include <io.h>
+#endif
+
 #include "libgeda_priv.h"
 
 #ifdef G_OS_WIN32
@@ -264,7 +268,23 @@ const char *f_path_user_config () {
  *  @{ \par This Group contains utilities to manipulate directories.
 */
 
-#ifdef HAVE_MKDIR
+#if defined (HAVE_MKDIR) || defined (HAVE__MKDIR)
+
+  #if MKDIR_TAKES_ONE_ARG
+
+    /* MinGW32, mkdir under MinGW only takes one argument */
+    #define MKDIR(a, b) mkdir(a)
+
+  #else
+
+    #if HAVE__MKDIR
+      /* plain Windows 32 */
+      #define MKDIR(a, b) _mkdir(a)
+    #else
+      #define MKDIR(a, b) mkdir(a, b)
+    #endif
+
+  #endif
 
 /*! \brief Make a Directory
  *  \par Function description
@@ -311,40 +331,55 @@ static int f_create_dir(const char *path, mode_t mode)
  *  \param path Pointer to string path to be created
  *  \param mode valid mode_t integer permission attribute
  *
- *  \retval NO_ERROR on success or -1 if and error was encountered
+ *  \retval NO_ERROR on success or -1 if and error was encountered,
+ *          if \a path is NULL then NO_ERROR is returned.
  *
  *  \remark WEH Tweeked for libgeda
  */
 int f_path_create(const char *path, mode_t mode)
 {
-    char           *pp;
-    char           *sp;
-    int             status;
-    char           *copypath = u_string_strdup(path);
+  char           *pp;
+  char           *sp;
+  int             status;
+  char           *copypath;
 
-    status = NO_ERROR;
-    pp = copypath;
-    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0)
-    {
-        if (sp != pp) {
+  status = NO_ERROR;
 
-            /* Neither root nor double slash in path */
-            *sp = '\0';
-            status = f_create_dir(copypath, mode);
-            *sp = '/';
-        }
-        pp = sp + 1;
+  if (path) {
+
+    copypath = u_string_strdup(path);
+    pp       = copypath;
+
+    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
+
+      if (sp != pp) {
+
+        /* Neither root nor double slash in path */
+        *sp = '\0';
+        status = f_create_dir(copypath, mode);
+        *sp = '/';
+      }
+      pp = sp + 1;
     }
     if (status == NO_ERROR) {
-        status = f_create_dir(path, mode);
+      status = f_create_dir(path, mode);
     }
     GEDA_FREE(copypath);
-    return (status);
+  }
+
+  return (status);
 }
 #else
+
 int f_path_create(const char *path, mode_t mode)
 {
+
+#if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION >= 8 ))
   return g_mkdir_with_parents (path, mode);
+#else
+  #error "Don't know how to create a directory on this system."
+#endif
+
 }
 #endif
 
