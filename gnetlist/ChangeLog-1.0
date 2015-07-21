@@ -1,3 +1,14 @@
+2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Unspecified.
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
+      20f3cacb02f6430258bc78cc0d7e598ee6afadce:
+
+    * scheme/gnet-spice-anise.scm: Replaced 'let*' with 'let'.
+
+    * scheme/gnet-spice-sdb.scm: Replaced 'let*' with 'let'.
+
 2015-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Update Doxygen comments

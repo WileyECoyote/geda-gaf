@@ -880,7 +880,7 @@
     )
 
     ;; next write our model name if it exists
-    (let* ((model-name (get-package-attribute package "model-name")))
+    (let ((model-name (get-package-attribute package "model-name")))
         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
     )
