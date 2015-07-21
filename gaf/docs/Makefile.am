@@ -2,21 +2,22 @@
 
 EXTRA_DIST = $(html_man_files) gaf.1.in
 
-localedir     = @datadir@/locale
-DEFS          = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+localedir  = @datadir@/locale
+DEFS       = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 .1.in.1:
-	d=`LANG=C date -d $(DATE_VERSION) "+%B %-d, %Y"` ; \
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(DOTTED_VERSION).$(DATE_VERSION)" ; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
 
 # Rules for converting man->html
-dist_man_MANS = gaf.1
+dist_man_MANS  = gaf.1
 html_man_files = gaf.html
 
-docsmandir=$(docdir)/man
+docsmandir     = $(docdir)/man
 
-docsman_DATA=$(html_man_files)
+docsman_DATA   = $(html_man_files)
 
 if ENABLE_GROFF_HTML
 .1.html:
@@ -31,12 +32,12 @@ endif
 
 SUFFIXES = .1.in .1 .html
 
-MOSTLYCLEANFILES = 	*.log *~
-CLEANFILES = 		*.log *~
-DISTCLEANFILES = 	*.log core FILE *~ \
+MOSTLYCLEANFILES       = *.log *~
+CLEANFILES             = *.log *~
+DISTCLEANFILES         = *.log core FILE *~ \
 			*.dvi *.info *.info-* *.aux *.fn \
 			*.fns *.cp *.ky *.pg *.toc *.tp *.vrs *.vr
-MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
+MAINTAINERCLEANFILES   = *.log *~ Makefile.in $(html_man_files)
 
 distclean-local:
 	-rm -rf html latex
