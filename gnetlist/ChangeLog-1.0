@@ -1,5 +1,16 @@
 2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * Feature revision: Fixed a comment..
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
+      e7ac674743540567a950aac75e14aea299d8e4cc:
+
+    * scheme/gnet-spice-anise.scm: Removed an unnecessary space in the output.
+
+    * scheme/gnet-spice-sdb.scm: Removed an unnecessary space in the output.
+
+2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * Source Documentation: Fixed a comment..
 
     * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
