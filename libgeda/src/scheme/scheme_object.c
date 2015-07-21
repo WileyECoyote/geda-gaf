@@ -2012,8 +2012,8 @@ SCM_DEFINE (set_picture_x, "%set-picture!", 7, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!",
-            3, 0, 0, (SCM obj_s, SCM data_s, SCM filename_s),
+SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!", 3, 0, 0,
+           (SCM obj_s, SCM data_s, SCM filename_s),
             "Set a picture object's data from a vector.")
 {
   SCM vec_s = scm_any_to_s8vector (data_s);

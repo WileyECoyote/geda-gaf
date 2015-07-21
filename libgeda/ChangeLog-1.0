@@ -1,3 +1,15 @@
+2015-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Applied enhancement per patch
+      From 279fa0a6b031d33f6f7e35a481fcd0c4085a2d34 Mon Sep 17 00:00:00 2001
+      From: dmn <dmn@gibi>
+      Date: Fri, 10 Jul 2015 13:32:49 +0300
+      Subject: [PATCH] Fix FreeBSD build and install errors.
+      See: lp-1473456
+
+      * src/scheme/scheme_object.c: SCM_DEFINE set_picture_data_vector_x
+      fail to expand properly.
+
 2015-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Revise module
