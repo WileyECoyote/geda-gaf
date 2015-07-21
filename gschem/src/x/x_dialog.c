@@ -4411,9 +4411,6 @@ void x_dialog_raise_all(GschemToplevel *w_current)
   if(w_current->cswindow) { /* component select */
     gdk_window_raise(w_current->cswindow->window);
   }
-  if(w_current->iwindow) { /* image writer */
-    gdk_window_raise(w_current->iwindow->window);
-  }
   if(w_current->mawindow) { /* multi attribute */
     gdk_window_raise(w_current->mawindow->window);
   }

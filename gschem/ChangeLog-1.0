@@ -1,3 +1,16 @@
+2015-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Remove unused variable.
+
+    * include/gschem_toplevel.h: Remove variable iwindow from GschemToplevel
+      structure.
+
+    * src/base/gschem_toplevel.c: Remove reference to iwindow.
+
+    * src/x/x_dialog.c: Remove reference to iwindow.
+
+    * src/x/x_window.c: Remove reference to iwindow.
+
 2015-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Set the menu toolbar radio toggler active if style uniform

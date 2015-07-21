@@ -109,7 +109,6 @@ struct _GschemToplevel {
   GtkWidget *aewindow;   /* attribute edit settings: IDS_SINGLE_ATTRIB   */
   GtkWidget *cpwindow;   /* Preferences    settings: IDS_CONFIG_SETTINGS */
   GtkWidget *cswindow;   /* Component      settings: IDS_COMP_SELECT     */
-  GtkWidget *iwindow;    /* image write dialog box */
   GtkWidget *mawindow;   /* multi attribute IDS_MULTI_ATTRBIBUTE */
   GtkWidget *pswindow;   /* page select    settings: IDS_PAGE_MANAGER */
   GtkWidget *sowindow;   /* Script open */

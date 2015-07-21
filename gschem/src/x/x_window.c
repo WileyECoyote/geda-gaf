@@ -625,9 +625,6 @@ void x_window_close_edit_dialogs(GschemToplevel *w_current)
   if (w_current->tswindow)
   gtk_widget_destroy(w_current->tswindow);
 
-  if (w_current->iwindow)
-  gtk_widget_destroy(w_current->iwindow);
-
   if (w_current->clwindow)
   gtk_widget_destroy(w_current->clwindow);
 
