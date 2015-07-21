@@ -1,5 +1,27 @@
 2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * Source Documentation: Fixed a comment..
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
+      764d2ee0dfea99a1c5c86047a2c7c7a45ac87d41:
+
+    * scheme/gnet-spice-anise.scm: Fixed a comment.
+
+    * scheme/gnet-spice-sdb.scm: Fixed a comment.
+
+2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Simplified procedures.
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
+      b42d92a7328109b10cca78c5d2fa9f5873e79d20:
+
+    * scheme/gnet-spice-anise.scm: Simplified a couple of output procedures.
+
+    * scheme/gnet-spice-sdb.scm: Simplified a couple of output procedures.
+
+2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * Code Enhancement: Unspecified.
 
     * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit

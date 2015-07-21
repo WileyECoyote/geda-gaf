@@ -1033,7 +1033,7 @@
                 (display (string-append model-name " " )))
     )
 
-    ;; Next write out attribtes if they exist.  Use
+    ;; Next write out attribtes if they exist. Use
     ;; a list of attributes which can be attached to a junction.
     (let ((attrib-list (list "area")))
       (spice:write-list-of-attributes package attrib-list)
