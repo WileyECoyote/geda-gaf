@@ -208,8 +208,7 @@
           ) ;; end of if
         )  ;; end of inner let
         (close-port model-file)
-        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n"))
-        (display (string-append "*\n"))
+        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n*\n"))
      ) ;; end of outer let
     (begin
       (message (string-append "ERROR: File '" model-filename "' not found.\n"))
@@ -1651,7 +1650,7 @@
 ;; **** and in increasing order.
 ;;
       (debug-spew "Make second pass through design and write out a SPICE card for each component found.\n")
-      (display (string-append "*==============  Begin SPICE netlist of main design ============\n"))
+      (display "*============== Begin SPICE netlist of main design ============\n")
       (if (spice-sdb:sort-refdes? (get-calling-flags))
           (spice-sdb:write-netlist file-info-list (sort netlist:packages spice-sdb:packsort))  ;; sort on refdes
           (spice-sdb:write-netlist file-info-list netlist:packages)                            ;; don't sort.
