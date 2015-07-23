@@ -1,3 +1,8 @@
+2015-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/switchreg/TPS62054-1.sym: Add symbol Synchronous Step-down Converter,
+      Fixed 1.8 V
+
 2015-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * memory/93LC56B-E-OT-1.sym: Add symbol 2K EEPROM, 16 Bit Serial,
