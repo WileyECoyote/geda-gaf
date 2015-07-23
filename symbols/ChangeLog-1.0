@@ -1,5 +1,10 @@
 2015-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/switchreg/TPS62056-1.sym: Add symbol Synchronous Step-down Converter,
+      Fixed 3.3 V
+
+2015-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/switchreg/TPS62054-1.sym: Add symbol Synchronous Step-down Converter,
       Fixed 1.8 V
 
