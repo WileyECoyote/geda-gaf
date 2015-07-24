@@ -317,10 +317,11 @@ int x_color_load_scheme(char* scheme) {
     }
     else {
       GEDA_FREE(strBuffer);
-      u_log_message (_("x_color_load_scheme: Could not locate file:%s\n"), scheme);
+      u_log_message (_("%s: Could not locate file:%s\n"), __func__,scheme);
     }
   }
-  else
-    u_log_message(_("x_color_load_scheme: Memory allocation error\n"));
+  else {
+    u_log_message(_("%s: Memory allocation error\n"), __func__);
+  }
   return result;
 }
