@@ -297,6 +297,7 @@ AC_CONFIG_FILES([Makefile
                  gschem/data/Makefile
                  gschem/docs/Makefile
                  gschem/docs/images/Makefile
+                 gschem/docs/dialogs/Makefile
                  gschem/include/Makefile
                  gschem/scripts/Makefile
                  gschem/src/base/Makefile
