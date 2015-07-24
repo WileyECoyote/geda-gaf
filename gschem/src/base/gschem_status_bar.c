@@ -1828,7 +1828,7 @@ update_grid_label (GschemStatusBar *widget)
         break;
 
       default:
-        ptr = strcat(ptr,_("Err"));
+        ptr = strcat(ptr,_("Error"));
         fprintf(stderr, "%s: snap_mode out of range: %d\n", __func__,
                 widget->snap_mode);
     }
