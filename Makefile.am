@@ -89,6 +89,11 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+dist-hook: 
+	    if test ! -f $(top_distdir)/build-tools/desktop-i18n ; then \
+	      cp -p $(top_srcdir)/build-tools/desktop-i18n $(top_distdir)/build-tools/ || exit $$?; \
+	    fi;
+
 distclean-local:
 	-rm -rf autom4te.cache
 
