@@ -48,7 +48,7 @@
 #include <geda_toplevel.h>
 
 /* Private libgeda headers */
-#include "libgeda/globals.h"
+#include "globals.h"
 #include "prototype_priv.h"
 #include "i_vars_priv.h"
 
