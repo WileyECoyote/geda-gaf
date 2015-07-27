@@ -171,8 +171,10 @@ value_lcopy_scm (const GValue *value,
 GedaType
 edascm_scm_get_type (void)
 {
-  static GedaType edascm_scm_type = 0;
+  static volatile GedaType edascm_scm_type = 0;
+
   if (g_once_init_enter (&edascm_scm_type)) {
+
     GedaType type;
 
     static const GTypeValueTable value_table = {
@@ -279,7 +281,8 @@ param_scm_values_cmp (GParamSpec *pspec,
 GedaType
 edascm_param_spec_scm_get_type (void)
 {
-  static GedaType edascm_param_spec_scm_type = 0;
+  static volatile GedaType edascm_param_spec_scm_type = 0;
+
   if (g_once_init_enter (&edascm_param_spec_scm_type)) {
     GedaType type;
     const GParamSpecTypeInfo pspec_info = {

@@ -28,7 +28,7 @@
 #include "libgedaguile_priv.h"
 
 /*! Non-zero if the Scheme API has been initialised. */
-static unsigned int init_called = 0;
+static volatile unsigned long init_called = 0;
 
 SCM_GLOBAL_SYMBOL (edascm_object_state_sym, "object-state");
 
@@ -69,8 +69,10 @@ static void *edascm_init_impl (void *data)
 void
 edascm_init ()
 {
-  if (g_once_init_enter (&init_called)) {
+  volatile unsigned long *initialized = &init_called;
+
+  if (g_once_init_enter (initialized)) {
     scm_with_guile (edascm_init_impl, NULL);
-    g_once_init_leave (&init_called, 1);
+    g_once_init_leave (initialized, 1);
   }
 }

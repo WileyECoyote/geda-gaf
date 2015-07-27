@@ -1,3 +1,14 @@
+2015-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Declare initialized as static volatile unsigned
+      long in function eda_config_get_context_for_file.
+
+    * src/scheme/edascmvaluetypes.c: Reference GedaType as static volatile in
+      function edascm_scm_get_type and edascm_param_spec_scm_get_type.
+
+    * src/scheme/scheme_init.c: Declare init_called as static volatile unsigned
+      long.
+
 2015-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda_priv.h: Remove "libgeda" from path to globals.h, fails
