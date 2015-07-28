@@ -54,7 +54,7 @@ static void cclosure_marshal_VOID__SCM            (GClosure *closure,
                                                    void *invocation_hint,
                                                    void *marshal_data);
 
-G_DEFINE_TYPE (EdascmHookProxy, edascm_hook_proxy, G_TYPE_OBJECT);
+static GObjectClass *edascm_hook_proxy_parent_class = NULL;
 
 /*! Initialise EdascmHookProxy class. */
 static void
@@ -209,9 +209,9 @@ edascm_hook_proxy_disconnect (EdascmHookProxy *proxy)
 /*! Emit a signal on an EdascmHookProxy whenever its target hook is run. */
 static SCM
 edascm_hook_proxy_closure (SCM args, void *user_data) {
-  g_signal_emit_by_name (user_data,
-                         "run",
-                         SCM_UNPACK (args));
+
+  g_signal_emit_by_name (user_data, "run", SCM_UNPACK (args));
+
   return SCM_UNSPECIFIED;
 }
 
@@ -238,34 +238,59 @@ edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
  * Based heavily on g_cclosure_marshal_VOID__STRING() from GObject.
  */
 static void
- cclosure_marshal_VOID__SCM (GClosure *closure,
- GValue *return_value,
- unsigned int n_param_values,
- const GValue *param_values,
- void *invocation_hint,
- void *marshal_data)
+cclosure_marshal_VOID__SCM (GClosure *closure,
+                             GValue *return_value,
+                             unsigned int n_param_values,
+                             const GValue *param_values,
+                             void *invocation_hint,
+                             void *marshal_data)
 {
- typedef void (*MarshalFunc_VOID__SCM) (void *data1,
- SCM arg_1,
- void *data2);
- register MarshalFunc_VOID__SCM callback;
- register GCClosure *cc = (GCClosure *) closure;
- register void *data1;
- register void *data2;
+  typedef void (*MarshalFunc_VOID__SCM) (void *data1,
+                                         SCM arg_1,
+                                         void *data2);
+  register MarshalFunc_VOID__SCM callback;
+  register GCClosure *cc = (GCClosure *) closure;
+  register void *data1;
+  register void *data2;
 
- g_return_if_fail (n_param_values == 2);
- if (G_CCLOSURE_SWAP_DATA (closure)) {
- data1 = closure->data;
- data2 = g_value_peek_pointer (param_values + 0);
- } else {
- data1 = g_value_peek_pointer (param_values + 0);
- data2 = closure->data;
- }
- callback = (MarshalFunc_VOID__SCM) (marshal_data ? marshal_data : cc->callback);
+  g_return_if_fail (n_param_values == 2);
 
- callback (data1,
- edascm_value_get_scm (param_values + 1),
- data2);
+  if (G_CCLOSURE_SWAP_DATA (closure)) {
+    data1 = closure->data;
+    data2 = g_value_peek_pointer (param_values + 0);
+  } else {
+    data1 = g_value_peek_pointer (param_values + 0);
+    data2 = closure->data;
+  }
+  callback = (MarshalFunc_VOID__SCM) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1, edascm_value_get_scm (param_values + 1), data2);
+}
+
+GedaType edascm_hook_proxy_get_type (void)
+{
+  static GedaType edascm_hook_proxy_type = 0;
+
+  if (!edascm_hook_proxy_type) {
+
+    static const GTypeInfo edascm_hook_proxy_info = {
+      sizeof(EdascmHookProxyClass),
+      NULL, /* base_init */
+      NULL, /* base_finalize */
+      (GClassInitFunc) edascm_hook_proxy_class_init,
+      NULL, /* class_finalize */
+      NULL, /* class_data */
+      sizeof(EdascmHookProxy),
+      0,    /* n_preallocs */
+      (GInstanceInitFunc) edascm_hook_proxy_init, /* instance_init */
+    };
+
+    edascm_hook_proxy_type = g_type_register_static (G_TYPE_OBJECT,
+                                             "GedaBulb",
+                                             &edascm_hook_proxy_info, 0);
+  }
+
+  return edascm_hook_proxy_type;
 }
 
 /* ---------------------------------------------------------------- */
@@ -283,7 +308,5 @@ static void
 EdascmHookProxy *
 edascm_hook_proxy_new_with_hook (SCM hook_s)
 {
-  return g_object_new (EDASCM_TYPE_HOOK_PROXY,
-                       "hook", hook_s,
-                       NULL);
+  return g_object_new (EDASCM_TYPE_HOOK_PROXY, "hook", hook_s, NULL);
 }

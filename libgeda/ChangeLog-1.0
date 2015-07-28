@@ -1,3 +1,7 @@
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/edascmhookproxy.c: Remove macro G_DEFINE_TYPE.
+
 2015-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Declare initialized as static volatile unsigned
