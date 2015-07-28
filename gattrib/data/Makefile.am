@@ -14,6 +14,7 @@ app_icon_files = \
 #
 theme_icons        = $(app_icon_files:%=apps,%)
 
+xdgdatadir         = @XDGDATADIR@
 desktopdir         = $(xdgdatadir)/applications
 desktop_in_files   = geda-gattrib.desktop.in
 desktop_DATA       = $(desktop_in_files:.desktop.in=.desktop)

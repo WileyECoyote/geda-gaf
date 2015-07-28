@@ -1,3 +1,7 @@
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Makefile.am: Fix desktop target location.
+
 2015-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_attrib.c: Revise Doxygen comments.
