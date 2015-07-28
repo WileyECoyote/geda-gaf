@@ -47,9 +47,9 @@ POLARIZED_CAPACITOR C3 (
     );
 
 VARIABLE_RESISTOR R1 ( 
-    .\3  ( nine ),
-    .\2  ( ten ),
-    .\1  ( nine )
+    .\1  ( nine ),
+    .\2  ( nine ),
+    .\3  ( ten )
     );
 
 POLARIZED_CAPACITOR C2 ( 

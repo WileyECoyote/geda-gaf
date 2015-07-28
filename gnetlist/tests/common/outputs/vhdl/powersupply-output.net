@@ -68,9 +68,9 @@ BEGIN
 
     R1 : VARIABLE_RESISTOR
     PORT MAP (
-        3 => nine,
-        2 => ten,
-        1 => nine);
+        1 => nine,
+        2 => nine,
+        3 => ten);
 
     C2 : POLARIZED_CAPACITOR
     PORT MAP (

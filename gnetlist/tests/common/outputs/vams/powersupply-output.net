@@ -36,9 +36,9 @@ BEGIN
   R1 : ENTITY VARIABLE_RESISTOR
 	GENERIC MAP (
 			value => 5k)
-	PORT MAP (	3 => nine,
-			2 => ten,
-			1 => nine);
+	PORT MAP (	1 => nine,
+			2 => nine,
+			3 => ten);
  
   C2 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (

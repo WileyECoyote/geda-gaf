@@ -2,7 +2,7 @@
 U2 eight ten eleven <No valid value attribute found>
 C4 eleven nine 1uf
 C3 ten nine 22uF
-R1 nine ten nine 5k
+R1 nine nine ten 5k
 C2 eight nine 0.1uF
 R2 ten eleven 220
 C1 eight nine 2200uF

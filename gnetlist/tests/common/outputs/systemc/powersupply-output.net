@@ -78,9 +78,9 @@ SC_CTOR(not found):
     C3.1(ten);
     C3.2(nine);
 
-    R1.3(nine);
-    R1.2(ten);
     R1.1(nine);
+    R1.2(nine);
+    R1.3(ten);
 
     C2.1(eight);
     C2.2(nine);

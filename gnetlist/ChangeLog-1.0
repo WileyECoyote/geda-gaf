@@ -1,3 +1,15 @@
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/outputs/*/powersupply-output.net: Updated reference output
+      due to resistor-variable-1.sym symbol revision used in tests/common/
+      inputs/powersupply.sch.
+
+    * tests/powersupply.*: Updated reference output due to resistor-variable-1.sym
+      symbol revision used in tests/powersupply.sch.
+
+    * tests/multiequal.spice-sdb: Update reference output due to minor change to
+      output header.
+
 2015-07-21 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Feature revision: Fixed a comment..

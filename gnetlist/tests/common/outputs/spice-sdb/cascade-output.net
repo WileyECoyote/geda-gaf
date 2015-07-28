@@ -5,7 +5,7 @@
 * provides advanced spice netlisting capability.        *
 * Documentation at http://www.brorson.com/gEDA/SPICE/   *
 *********************************************************
-*==============  Begin SPICE netlist of main design ============
+*============== Begin SPICE netlist of main design ============
 AMP2 6 unconnected_pin-1 unknown
 T1 5 6 <No valid value attribute found>
 MX1 4 5 unknown 

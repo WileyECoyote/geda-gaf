@@ -5,6 +5,6 @@
 * provides advanced spice netlisting capability.        *
 * Documentation at http://www.brorson.com/gEDA/SPICE/   *
 *********************************************************
-*==============  Begin SPICE netlist of main design ============
+*============== Begin SPICE netlist of main design ============
 U1 samenet_output_c minusin_slot1_pin_b plusin_slot1_pin3_a unknown
 .end

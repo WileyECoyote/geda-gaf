@@ -12,7 +12,7 @@
 +               Final line of stuff)
 *^^^^^^^^  End of included SPICE model from ./models/2N3904.mod ^^^^^^^^
 *
-*==============  Begin SPICE netlist of main design ============
+*============== Begin SPICE netlist of main design ============
 C1 1 Vbase1 2.2uF  
 C2 2 Vbase2 2.2uF  
 CE1 0 Vem1 1pF  

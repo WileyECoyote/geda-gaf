@@ -5,6 +5,6 @@
 * provides advanced spice netlisting capability.        *
 * Documentation at http://www.brorson.com/gEDA/SPICE/   *
 *********************************************************
-*==============  Begin SPICE netlist of main design ============
+*============== Begin SPICE netlist of main design ============
 U100 SING_N SING_N SING_N unknown
 .end
