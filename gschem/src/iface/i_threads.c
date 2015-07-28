@@ -47,7 +47,7 @@
 */
 
 /*! Non-zero if the gschem threads has been initialised. */
-static unsigned int init_called = 0;
+static volatile unsigned long init_called = 0;
 
 /* Anonymous Static GMutex, seems more portable then GSTATIC_MUTEXT*/
 static union

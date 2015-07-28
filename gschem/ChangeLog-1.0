@@ -1,3 +1,7 @@
+2015-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_threads.c: Declare init_called as static volatile unsigned long
+
 2015-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add gschem/docs/dialogs/Makefile
