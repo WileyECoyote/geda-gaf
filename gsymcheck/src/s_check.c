@@ -983,23 +983,22 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     Object *o_current = iter->data;
 
-    if (o_current->type == OBJ_TEXT)
-    {
-      if (strstr(o_current->text->string, "pin"))
-      {
+    if (o_current->type == OBJ_TEXT) {
+
+      if (strstr(o_current->text->string, "pin")) {
+
         /* skip over "pin" */
         ptr = o_current->text->string + 3;
 
         found_old = FALSE;
         number_counter = 0;
-        while (ptr && *ptr > '0' && *ptr < '9')
-        {
+
+        while (ptr && *ptr > '0' && *ptr < '9') {
           number_counter++;
           ptr++;
         }
 
-        if (ptr && *ptr == '=')
-        {
+        if (ptr && *ptr == '=') {
           found_old++;
         }
 
@@ -1013,7 +1012,7 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
         /* skip over = char */
         ptr++;
 
-        while (ptr && *ptr > '0' && *ptr < '9') {
+        while (*ptr > '0' && *ptr < '9') {
           ptr++;
         }
 
@@ -1031,9 +1030,7 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
       }
     }
   }
-
 }
-
 
 void
 s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)

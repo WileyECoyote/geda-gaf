@@ -1,3 +1,8 @@
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck/src/s_check.c: Remove redundant test for ptr=NULL in function
+      s_check_oldpin.
+
 2015-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Check if device value string is being used as a directive
