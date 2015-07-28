@@ -1,5 +1,10 @@
 2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/edascmvaluetypes.c: Use union in functions edascm_scm_get_type
+      and edascm_param_spec_scm_get_type
+
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/edascmhookproxy.c: Remove macro G_DEFINE_TYPE.
 
 2015-07-27 Wiley E. Hill <wileyhill@gmail.com>
@@ -8,7 +13,7 @@
       long in function eda_config_get_context_for_file.
 
     * src/scheme/edascmvaluetypes.c: Reference GedaType as static volatile in
-      function edascm_scm_get_type and edascm_param_spec_scm_get_type.
+      functions edascm_scm_get_type and edascm_param_spec_scm_get_type.
 
     * src/scheme/scheme_init.c: Declare init_called as static volatile unsigned
       long.
