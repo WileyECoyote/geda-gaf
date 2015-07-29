@@ -187,9 +187,9 @@ void eda_config_set_trusted (EdaConfig *cfg, bool trusted);
 
 EdaConfig *eda_config_get_trusted_context (EdaConfig *cfg);
 
-char **eda_config_get_groups   (EdaConfig *cfg, unsigned   *length) G_GNUC_WARN_UNUSED_RESULT;
+char **eda_config_get_groups   (EdaConfig *cfg, size_t     *length) G_GNUC_WARN_UNUSED_RESULT;
 bool   eda_config_has_group    (EdaConfig *cfg, const char *group);
-char **eda_config_get_keys     (EdaConfig *cfg, const char *group, unsigned   *length, GError **error) G_GNUC_WARN_UNUSED_RESULT;
+char **eda_config_get_keys     (EdaConfig *cfg, const char *group, size_t     *length, GError **error) G_GNUC_WARN_UNUSED_RESULT;
 bool   eda_config_has_key      (EdaConfig *cfg, const char *group, const char *key, GError **err);
 bool   eda_config_is_inherited (EdaConfig *cfg, const char *group, const char *key, GError **err);
 
@@ -201,20 +201,20 @@ char    *eda_config_get_string       (EdaConfig *cfg, const char *group, const c
 bool     eda_config_get_boolean      (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
 int      eda_config_get_integer      (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
 double   eda_config_get_double       (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
-char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, unsigned *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, unsigned *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, unsigned *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, unsigned *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
 
 
 void eda_config_set_string           (EdaConfig *cfg, const char *group, const char *key, const char *value);
 void eda_config_set_boolean          (EdaConfig *cfg, const char *group, const char *key, bool value);
 void eda_config_set_integer          (EdaConfig *cfg, const char *group, const char *key, int value);
 void eda_config_set_double           (EdaConfig *cfg, const char *group, const char *key, double value);
-void eda_config_set_string_list      (EdaConfig *cfg, const char *group, const char *key, const char * const list[], unsigned length);
-void eda_config_set_boolean_list     (EdaConfig *cfg, const char *group, const char *key, bool list[], unsigned length);
-void eda_config_set_int_list         (EdaConfig *cfg, const char *group, const char *key, int list[], unsigned length);
-void eda_config_set_double_list      (EdaConfig *cfg, const char *group, const char *key, double list[], unsigned length);
+void eda_config_set_string_list      (EdaConfig *cfg, const char *group, const char *key, const char * const list[], size_t length);
+void eda_config_set_boolean_list     (EdaConfig *cfg, const char *group, const char *key, bool list[],   size_t length);
+void eda_config_set_int_list         (EdaConfig *cfg, const char *group, const char *key, int list[],    size_t length);
+void eda_config_set_double_list      (EdaConfig *cfg, const char *group, const char *key, double list[], size_t length);
 
 G_END_DECLS
 

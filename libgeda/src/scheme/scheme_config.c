@@ -452,13 +452,14 @@ SCM_DEFINE (config_groups, "%config-groups", 1, 0, 0,
             (SCM cfg_s),
             "Get a list of available configuration groups.")
 {
-  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
-              s_config_groups);
+  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, s_config_groups);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  unsigned int i, len;
-  char **groups = eda_config_get_groups (cfg, &len);
-  SCM lst_s = SCM_EOL;
+  size_t   len;
+  unsigned i;
+
+  EdaConfig  *cfg     = edascm_to_config (cfg_s);
+  char      **groups  = eda_config_get_groups (cfg, &len);
+  SCM         lst_s   = SCM_EOL;
 
   scm_dynwind_begin (0);
   scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev,
@@ -755,7 +756,8 @@ SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
 {
   EdaConfig    *cfg;
   GError       *error      = NULL;
-  unsigned int  length, i;
+  size_t        length;
+  int           i;
   char         *group;
   char         *key;
   char        **value;
@@ -804,28 +806,47 @@ SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
  * \return configuration value as a list of booleans.
  */
 SCM_DEFINE (config_boolean_list, "%config-boolean-list", 3, 0, 0,
-            (SCM  cfg_s, SCM group_s, SCM key_s),
+           (SCM  cfg_s, SCM group_s, SCM key_s),
             "Get a configuration parameter's value as a boolean list.")
 {
   ASSERT_CFG_GROUP_KEY (s_config_boolean_list);
 
-  scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
+  EdaConfig *cfg;
+  char      *group;
+  char      *key;
+  size_t     length;
+  unsigned   i;
+  GError    *error;
+  bool      *value;
+
+  scm_dynwind_begin(0);
+
+  cfg   = edascm_to_config (cfg_s);
+  group = scm_to_utf8_string (group_s);
+
   scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
+
+  key   = scm_to_utf8_string (key_s);
+
   scm_dynwind_free (key);
-  unsigned int length, i;
-  GError *error = NULL;
-  bool *value = eda_config_get_boolean_list (cfg, group, key,
-                                                 &length, &error);
-  if (value == NULL) error_from_gerror (s_config_boolean_list, &error);
+
+  error = NULL;
+  value = eda_config_get_boolean_list (cfg, group, key, &length, &error);
+
+  if (value == NULL) {
+    error_from_gerror (s_config_boolean_list, &error);
+  }
+
   scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
+
   SCM value_s = SCM_EOL;
+
   for (i = 0; i < length; i++) {
     value_s = scm_cons (value[i] ? SCM_BOOL_T : SCM_BOOL_F, value_s);
   }
+
   scm_dynwind_end ();
+
   return scm_reverse_x (value_s, SCM_EOL);
 }
 

@@ -77,119 +77,7 @@ static void default_config_changed_handler (EdaConfig *cfg, const char *group, c
 static void parent_config_changed_handler (EdaConfig *parent, const char *group, const char* key, EdaConfig *cfg);
 static void propagate_key_file_error (GError *src, GError **dest);
 
-/*! Magic helpful GObject macro */
-G_DEFINE_TYPE (EdaConfig, eda_config, G_TYPE_OBJECT);
-
-/*! Initialise EdaConfig class. */
-static void eda_config_class_init (EdaConfigClass *klass)
-{
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GParamSpec   *pspec;
-
-  g_type_class_add_private (gobject_class, sizeof (EdaConfigPrivate));
-
-  /* Register functions with base class */
-  gobject_class->dispose      = eda_config_dispose;
-  gobject_class->finalize     = eda_config_finalize;
-  gobject_class->set_property = eda_config_set_property;
-  gobject_class->get_property = eda_config_get_property;
-
-  klass->config_changed = default_config_changed_handler;
-
-  /* Register properties */
-  pspec = g_param_spec_string ("file", _("Configuration file"),
-                              _("Set underlying file for EdaConfig"),
-                                "",
-                                G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE);
-
-  g_object_class_install_property (gobject_class,
-                                   PROP_CONFIG_FILE,
-                                   pspec);
-
-  pspec = g_param_spec_object ("parent",
-                               "Configuration context parent",
-                               "Set parent configuration context for EdaConfig",
-                               EDA_TYPE_CONFIG,
-                               G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-  g_object_class_install_property (gobject_class,
-                                   PROP_CONFIG_PARENT,
-                                   pspec);
-
-  pspec = g_param_spec_boolean ("trusted",
-                                "Whether context is trusted",
-                                "Set whether configuration context is trusted config source.",
-                                FALSE /* default value */,
-                                G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-  g_object_class_install_property (gobject_class,
-                                   PROP_CONFIG_TRUSTED,
-                                   pspec);
-
-  /* Create signals */
-  g_signal_new ("config-changed", /* signal name */
-                G_TYPE_FROM_CLASS (gobject_class), /* type */
-                G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, /* flags */
-                G_STRUCT_OFFSET(EdaConfigClass, config_changed), /* class offset */
-                NULL, /* accumulator */
-                NULL, /* accumulator data */
-                cclosure_marshal_VOID__STRING_STRING, /* c_marshaller */
-                G_TYPE_NONE, /* return type */
-                2, /* no. of params */
-                G_TYPE_STRING, G_TYPE_STRING);
-}
-
-/*! Initialise EdaConfig instance. */
-static void eda_config_init (EdaConfig *config)
-{
-  config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
-                                              EDA_TYPE_CONFIG,
-                                              EdaConfigPrivate);
-
-  config->priv->parent            = NULL;
-  config->priv->keyfile           = g_key_file_new ();
-  config->priv->loaded            = FALSE;
-  config->priv->changed           = FALSE;
-  config->priv->parent_handler_id = 0;
-
-  config->RC_list                 = NULL;
-}
-
-/*! Dispose of an EdaConfig instance. Drop all references to other
- * GObjects, but keep the instance otherwise intact. May be run multiple
- * times (due to reference loops).
- */
-static void eda_config_dispose (GObject *object)
-{
-  EdaConfig *config = EDA_CONFIG (object);
-
-  g_object_set (object,
-                "parent", NULL,
-                NULL);
-
-  if (config->RC_list != NULL) {
-    g_list_foreach(config->RC_list, (GFunc) g_free, NULL);
-    g_list_free(config->RC_list);
-    config->RC_list = NULL;
-  }
-
-  /* Chain up to the parent class */
-  G_OBJECT_CLASS (eda_config_parent_class)->dispose (object);
-}
-
-/*! Finalize an EdaConfig instance. Free all resources held by the
- * instance. */
-static void eda_config_finalize (GObject *object)
-{
-  EdaConfig *config = EDA_CONFIG (object);
-
-  if (config->priv->filename != NULL) {
-    GEDA_FREE (config->priv->filename);
-  }
-
-  g_key_file_free (config->priv->keyfile);
-
-  /* Chain up to the parent class */
-  G_OBJECT_CLASS (eda_config_parent_class)->finalize (object);
-}
+static GObjectClass *eda_config_parent_class = NULL;
 
 /*! Set a property of an EdaConfig instance. */
 static
@@ -271,6 +159,152 @@ void eda_config_get_property (GObject *object, unsigned int property_id,
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
+}
+
+/*! Dispose of an EdaConfig instance. Drop all references to other
+ * GObjects, but keep the instance otherwise intact. May be run multiple
+ * times (due to reference loops).
+ */
+static void eda_config_dispose (GObject *object)
+{
+  EdaConfig *config = EDA_CONFIG (object);
+
+  g_object_set (object,
+                "parent", NULL,
+                NULL);
+
+  if (config->RC_list != NULL) {
+    g_list_foreach(config->RC_list, (GFunc) g_free, NULL);
+    g_list_free(config->RC_list);
+    config->RC_list = NULL;
+  }
+
+  /* Chain up to the parent class */
+  G_OBJECT_CLASS (eda_config_parent_class)->dispose (object);
+}
+
+/*! Finalize an EdaConfig instance. Free all resources held by the
+ * instance. */
+static void eda_config_finalize (GObject *object)
+{
+  EdaConfig *config = EDA_CONFIG (object);
+
+  if (config->priv->filename != NULL) {
+    GEDA_FREE (config->priv->filename);
+  }
+
+  g_key_file_free (config->priv->keyfile);
+
+  /* Chain up to the parent class */
+  G_OBJECT_CLASS (eda_config_parent_class)->finalize (object);
+}
+
+/*! Initialise EdaConfig class. */
+static void eda_config_class_init (EdaConfigClass *klass)
+{
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  GParamSpec   *pspec;
+
+  g_type_class_add_private (gobject_class, sizeof (EdaConfigPrivate));
+
+  /* Register functions with base class */
+  gobject_class->dispose      = eda_config_dispose;
+  gobject_class->finalize     = eda_config_finalize;
+  gobject_class->set_property = eda_config_set_property;
+  gobject_class->get_property = eda_config_get_property;
+
+  klass->config_changed = default_config_changed_handler;
+
+  /* Register properties */
+  pspec = g_param_spec_string ("file", _("Configuration file"),
+                              _("Set underlying file for EdaConfig"),
+                                "",
+                                G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_CONFIG_FILE,
+                                   pspec);
+
+  pspec = g_param_spec_object ("parent",
+                               "Configuration context parent",
+                               "Set parent configuration context for EdaConfig",
+                               EDA_TYPE_CONFIG,
+                               G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
+  g_object_class_install_property (gobject_class,
+                                   PROP_CONFIG_PARENT,
+                                   pspec);
+
+  pspec = g_param_spec_boolean ("trusted",
+                                "Whether context is trusted",
+                                "Set whether configuration context is trusted config source.",
+                                FALSE /* default value */,
+                                G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
+  g_object_class_install_property (gobject_class,
+                                   PROP_CONFIG_TRUSTED,
+                                   pspec);
+
+  /* Create signals */
+  g_signal_new ("config-changed", /* signal name */
+                G_TYPE_FROM_CLASS (gobject_class), /* type */
+                G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, /* flags */
+                G_STRUCT_OFFSET(EdaConfigClass, config_changed), /* class offset */
+                NULL, /* accumulator */
+                NULL, /* accumulator data */
+                cclosure_marshal_VOID__STRING_STRING, /* c_marshaller */
+                G_TYPE_NONE, /* return type */
+                2, /* no. of params */
+                G_TYPE_STRING, G_TYPE_STRING);
+}
+
+/*! Initialise EdaConfig instance. */
+static void eda_config_init (EdaConfig *config)
+{
+  config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
+                                              EDA_TYPE_CONFIG,
+                                              EdaConfigPrivate);
+
+  config->priv->parent            = NULL;
+  config->priv->keyfile           = g_key_file_new ();
+  config->priv->loaded            = FALSE;
+  config->priv->changed           = FALSE;
+  config->priv->parent_handler_id = 0;
+
+  config->RC_list                 = NULL;
+}
+
+/*! \brief Retrieve EdaConfig GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdaConfig GedaType identifier. Upon first call,
+ *  this registers the EdaConfig in the Type system. The saved value from
+ *  the first execution is returned on subsequent calls.
+ *
+ *  \return the GedaType identifier associated with EdaConfig.
+ */
+GedaType eda_config_get_type (void)
+{
+  static GedaType eda_config_type = 0;
+
+  if (!eda_config_type) {
+
+    static const GTypeInfo eda_config_info = {
+      sizeof(EdaConfigClass),
+      NULL, /* base_init */
+      NULL, /* base_finalize */
+      (GClassInitFunc) eda_config_class_init,
+      NULL, /* class_finalize */
+      NULL, /* class_data */
+      sizeof(EdaConfig),
+      0,    /* n_preallocs */
+      (GInstanceInitFunc) eda_config_init, /* instance_init */
+    };
+
+    eda_config_type = g_type_register_static (G_TYPE_OBJECT,
+                                             "EdaConfig",
+                                             &eda_config_info, 0);
+  }
+
+  return eda_config_type;
 }
 
 /*! \brief Create an #EdaConfigError from a GKeyFileError.
@@ -787,7 +821,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
   else {
 
     char *buf;
-    unsigned int len;
+    size_t len;
 
     int key_file_flags = G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS;
     GKeyFile *key_file = g_key_file_new ();
@@ -826,7 +860,6 @@ eda_config_load (EdaConfig *cfg, GError **error)
         cfg->priv->keyfile = key_file;
         cfg->priv->changed = FALSE;
         cfg->priv->loaded = TRUE;
-        //    status = TRUE;
       }
       else {
         if(error != NULL) {
@@ -1153,7 +1186,7 @@ char **hash_table_keys_array (GHashTable *table, unsigned int *length)
  * \return a newly-allocated NULL-terminated array of strings.
  */
 char **
-eda_config_get_groups (EdaConfig *cfg, unsigned int *length)
+eda_config_get_groups (EdaConfig *cfg, size_t *length)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
@@ -1163,9 +1196,14 @@ eda_config_get_groups (EdaConfig *cfg, unsigned int *length)
   /* Build a hashtable with all groups in current and parent contexts
    * as keys. */
   EdaConfig *curr = cfg;
+
   while (curr != NULL) {
-    unsigned int len, i;
+
+    size_t len;
+    int    i;
+
     char **local_groups = g_key_file_get_groups (curr->priv->keyfile, &len);
+
     for (i = 0; i < len; i++) {
       g_hash_table_insert (group_table, local_groups[i], NULL);
     }
@@ -1198,10 +1236,13 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
   g_return_val_if_fail (group != NULL, FALSE);
 
   EdaConfig *curr;
+
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
+
     if (g_key_file_has_group (curr->priv->keyfile, group)) {
       return TRUE;
     }
+
   }
   return FALSE;
 }
@@ -1224,15 +1265,17 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
  * \param error   Return location for error information.
  */
 char **
-eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned int *length,
+eda_config_get_keys (EdaConfig *cfg, const char *group, size_t *length,
                      GError **error)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
   GHashTable *key_table = NULL;
   EdaConfig *curr;
+
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
-    unsigned int len, i;
+    size_t len;
+    int    i;
     char **local_keys = g_key_file_get_keys (curr->priv->keyfile,
                                               group, &len, NULL);
     /* Skip files that don't provide the requested group */
@@ -1391,7 +1434,7 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
   if (cfg == NULL) return NULL;
 
   GError *sys_err = NULL;
-  char *result =  g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
+  char   *result  =  g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
   propagate_key_file_error (sys_err, error);
 
   return result;
@@ -1534,7 +1577,7 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
  */
 char **
 eda_config_get_string_list (EdaConfig *cfg, const char *group,
-                            const char *key, unsigned int *length, GError **error)
+                            const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
   char **result;
@@ -1572,7 +1615,7 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
  */
 bool *
 eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, unsigned int *length, GError **error)
+                             const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
   bool   *result;
@@ -1613,7 +1656,7 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  */
 int *
 eda_config_get_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, unsigned int *length, GError **error)
+                         const char *key, size_t *length, GError **error)
 {
   GError *sys_err;
   int *result;
@@ -1652,7 +1695,7 @@ eda_config_get_int_list (EdaConfig *cfg, const char *group,
  */
 double *
 eda_config_get_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, unsigned int *length, GError **error)
+                            const char *key, size_t *length, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
@@ -1767,7 +1810,7 @@ eda_config_set_double (EdaConfig *cfg, const char *group,
 void
 eda_config_set_string_list (EdaConfig *cfg, const char *group,
                             const char *key, const char * const list[],
-                            unsigned int length)
+                            size_t length)
 {
   g_key_file_set_string_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -1791,7 +1834,7 @@ eda_config_set_string_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, bool list[], unsigned int length)
+                             const char *key, bool list[], size_t length)
 {
   g_key_file_set_boolean_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1815,7 +1858,7 @@ eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, int list[], unsigned int length)
+                         const char *key, int list[], size_t length)
 {
   g_key_file_set_integer_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1840,7 +1883,7 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, double list[], unsigned int length)
+                            const char *key, double list[], size_t length)
 {
   g_key_file_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);

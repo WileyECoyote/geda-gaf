@@ -1,5 +1,23 @@
 2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_config.c: Change unsigned int arguments to type size_t for
+      function:
+
+            * eda_config_get_groups
+            * eda_config_get_keys
+            * eda_config_get_string_list
+            * eda_config_get_boolean_list
+            * eda_config_get_int_list
+            * eda_config_get_double_list
+            * eda_config_set_string_list
+            * eda_config_set_boolean_list
+            * eda_config_set_int_list
+            * eda_config_set_double_list
+
+    * src/scheme/scheme_config.c: update size_t arguments for eda_config
+
+2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/edascmvaluetypes.c: Use union in functions edascm_scm_get_type
       and edascm_param_spec_scm_get_type
 

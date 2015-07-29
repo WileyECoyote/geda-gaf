@@ -495,7 +495,7 @@ error:
 #endif
 
 bool
-f_get_file_contents(const char *filename, char **contents, unsigned int *length, GError **err)
+f_get_file_contents(const char *filename, char **contents, size_t *length, GError **err)
 {
   *contents = NULL;
 

@@ -286,7 +286,7 @@ GedaType edascm_hook_proxy_get_type (void)
     };
 
     edascm_hook_proxy_type = g_type_register_static (G_TYPE_OBJECT,
-                                             "GedaBulb",
+                                             "EdascmHookProxy",
                                              &edascm_hook_proxy_info, 0);
   }
 
