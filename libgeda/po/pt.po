@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-07-23 01:43-0500\n"
+"POT-Creation-Date: 2015-07-27 22:49-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -274,31 +274,31 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:780 libgeda/src/geda/geda_config.c:895
+#: libgeda/src/geda/geda_config.c:781 libgeda/src/geda/geda_config.c:896
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:916
+#: libgeda/src/geda/geda_config.c:917
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:958
+#: libgeda/src/geda/geda_config.c:959
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Não é possível encontrar o ficheiro %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1257
+#: libgeda/src/geda/geda_config.c:1258
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1321
+#: libgeda/src/geda/geda_config.c:1322
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1335
+#: libgeda/src/geda/geda_config.c:1336
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""

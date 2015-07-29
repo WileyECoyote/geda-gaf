@@ -251,7 +251,7 @@ void i_window_revert_page (GschemToplevel *w_current)
       page->filename = filename;
 
       u_log_message(_("Error encountered during file operation <%s>\n"), filename);
-      u_log_message(_("Recovery: do fall-back\n"));
+      u_log_message(_("Recovery: undo last action\n"));
 
       /* Do error recovery */
       o_undo_callback(w_current, UNDO_ACTION);

@@ -1,5 +1,6 @@
 gschem/src/base/gschem.c
 gschem/src/base/gschem_dialog.c
+gschem/src/base/gschem_event.c
 gschem/src/base/gschem_macro_widget.c
 gschem/src/base/gschem_main_window.c
 gschem/src/base/gschem_page_geometry.c
@@ -29,6 +30,7 @@ gschem/src/guile/g_window.x
 gschem/src/iface/i_callbacks.c
 gschem/src/iface/i_command.c
 gschem/src/iface/i_pan_world.c
+gschem/src/iface/i_event.c
 gschem/src/iface/i_sessions.c
 gschem/src/iface/i_status.c
 gschem/src/iface/i_sessions.c
@@ -41,6 +43,7 @@ gschem/src/math/m_basic.c
 gschem/src/object/o_arc.c
 gschem/src/object/o_attrib.c
 gschem/src/object/o_box.c
+gschem/src/object/o_break.c
 gschem/src/object/o_buffer.c
 gschem/src/object/o_bus.c
 gschem/src/object/o_circle.c
@@ -78,6 +81,7 @@ gschem/src/x/x_edit_attrib.c
 gschem/src/x/x_edit_color.c
 gschem/src/x/x_edit_cprop.c
 gschem/src/x/x_edit_pin.c
+gschem/src/x/x_edit_slot.c
 gschem/src/x/x_edit_text.c
 gschem/src/x/x_event.c
 gschem/src/x/x_fileselect.c
@@ -110,6 +114,8 @@ gschem/scheme/gschem/attrib.scm
 gschem/scheme/gschem/builtins.scm
 gschem/scheme/gschem/deprecated.scm
 gschem/scheme/gschem/gschemdoc.scm
+gschem/scheme/gschem/gschem-export-menu.scm
+gschem/scheme/gschem/gschem-tools-menu.scm
 gschem/scheme/gschem/hook.scm
 gschem/scheme/gschem/keymap.scm
 gschem/scheme/gschem/selection.scm

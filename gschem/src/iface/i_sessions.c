@@ -247,7 +247,7 @@ static GSList *i_sessions_get_file_list(Session *record)
   }
   else {
     /* Remove this entry from all menus */
-    u_log_message(_("Could not open session file %s\n"), sfile);
+    u_log_message(_("Could not open session file \"%s\"\n"), sfile);
   }
 
   /* Check for any bad files names and resolve */
@@ -883,7 +883,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
     msg = u_string_sprintf ( _("An error occurred attemting to create session %s: %s."),
                          name, err->message);
     /* Log the error */
-    u_log_message( _("%s %s"), __func__, msg);
+    u_log_message( "%s %s", __func__, msg);
 
     /* inform the user */
     titled_pango_error_dialog ( _("<b>Session Error</b>"), msg, _("Creation failed") );
@@ -1050,7 +1050,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 
   if (err) {
 
-    msg = u_string_sprintf(_("An error occurred attemting to save session %s: %s."), name, err->message);
+    msg = u_string_sprintf(_("An error occurred attempting to save session %s: %s."), name, err->message);
 
     u_log_message ("%s", msg); /* Log the error */
 

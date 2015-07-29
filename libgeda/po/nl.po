@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-07-23 01:43-0500\n"
+"POT-Creation-Date: 2015-07-27 22:49-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -273,31 +273,31 @@ msgstr "Ongedefinieerde configuratie bestandsnaam"
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:780 libgeda/src/geda/geda_config.c:895
+#: libgeda/src/geda/geda_config.c:781 libgeda/src/geda/geda_config.c:896
 msgid "Undefined configuration filename"
 msgstr "Ongedefinieerde configuratie bestandsnaam"
 
-#: libgeda/src/geda/geda_config.c:916
+#: libgeda/src/geda/geda_config.c:917
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:958
+#: libgeda/src/geda/geda_config.c:959
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Kan bestand %s niet vinden: %s"
 
-#: libgeda/src/geda/geda_config.c:1257
+#: libgeda/src/geda/geda_config.c:1258
 #, fuzzy, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr "Configuratie heeft geen groep '%s'"
 
-#: libgeda/src/geda/geda_config.c:1321
+#: libgeda/src/geda/geda_config.c:1322
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr "Configuratie heeft geen groep '%s'"
 
-#: libgeda/src/geda/geda_config.c:1335
+#: libgeda/src/geda/geda_config.c:1336
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr "Configuratie heeft geen toets '%s'"

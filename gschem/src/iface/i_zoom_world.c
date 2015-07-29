@@ -259,7 +259,7 @@ void i_zoom_world_box(GschemToplevel *w_current, int pan_flags)
   /*test if there is really a box*/
   if (w_current->first_wx == w_current->second_wx ||
       w_current->first_wy == w_current->second_wy) {
-    u_log_message(_("Zoom too small!  Cannot zoom further.\n"));
+    u_log_message(_("Zoom too small! Cannot zoom further.\n"));
     return;
   }
 

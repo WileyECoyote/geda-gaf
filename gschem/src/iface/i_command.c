@@ -4013,7 +4013,7 @@ COMMAND (do_show_faq)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message(_("Check: pathname=%s\n"), pathname);
+      u_log_message(_("Check: path \"%s\"\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -4030,7 +4030,7 @@ COMMAND (do_show_geda)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message(_("Check: pathname=%s\n"), pathname);
+      u_log_message(_("Check: path \"%s\"\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -4047,7 +4047,7 @@ COMMAND (do_show_wiki)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message(_("Check: pathname=%s\n"), pathname);
+      u_log_message(_("Check: path \"%s\"\n"), pathname);
     }
     GEDA_FREE(pathname);
   }
@@ -4140,7 +4140,7 @@ COMMAND (world_size) {
 
   int width  = w_current->world_right;
   int height = w_current->world_bottom;
-  u_log_message(_("(read only width=%d, height=%d\n)"), width, height);
+  u_log_message(_("(read only) width=%d, height=%d\n"), width, height);
 }
 
 /** @brief i_cmd_zoom_gain in i_command_Variable_Handlers */

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-07-23 01:43-0500\n"
+"POT-Creation-Date: 2015-07-27 22:49-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -293,31 +293,31 @@ msgstr "Не определено имя файла настроек"
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:780 libgeda/src/geda/geda_config.c:895
+#: libgeda/src/geda/geda_config.c:781 libgeda/src/geda/geda_config.c:896
 msgid "Undefined configuration filename"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:916
+#: libgeda/src/geda/geda_config.c:917
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:958
+#: libgeda/src/geda/geda_config.c:959
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/geda/geda_config.c:1257
+#: libgeda/src/geda/geda_config.c:1258
 #, fuzzy, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1321
+#: libgeda/src/geda/geda_config.c:1322
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1335
+#: libgeda/src/geda/geda_config.c:1336
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr "В настройках не обнаружено ключа «%s»"
