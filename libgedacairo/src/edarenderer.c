@@ -160,7 +160,7 @@ static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *
                                                  int *left,   int *top,
                                                  int *right,  int *bottom);
 
-G_DEFINE_TYPE (EdaRenderer, eda_renderer, G_TYPE_OBJECT);
+static GObjectClass *eda_renderer_parent_class = NULL;
 
 /*! \brief Function to retrieve EdaRendererFlags's Type identifier.
  *
@@ -188,189 +188,6 @@ eda_renderer_flags_get_type ()
     flags_type = g_flags_register_static ("EdaRendererFlags", values);
   }
   return flags_type;
-}
-
-static void
-eda_renderer_class_init (EdaRendererClass *class)
-{
-  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
-  GParamSpec   *params;
-  GParamFlags   param_flags;
-
-  g_type_class_add_private (gobject_class, sizeof (EdaRendererPrivate));
-
-  /* Register functions with base class */
-  gobject_class->constructor  = eda_renderer_constructor;
-  gobject_class->finalize     = eda_renderer_finalize;
-  gobject_class->dispose      = eda_renderer_dispose;
-  gobject_class->set_property = eda_renderer_set_property;
-  gobject_class->get_property = eda_renderer_get_property;
-
-  /* Install default implementations of virtual public methods */
-  class->draw        = eda_renderer_default_draw;
-  class->draw_grips  = eda_renderer_default_draw_grips;
-  class->draw_cues   = eda_renderer_default_draw_cues;
-  class->user_bounds = eda_renderer_default_get_user_bounds;
-
-  /* Install properties */
-  param_flags = (G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK |
-                 G_PARAM_STATIC_BLURB);
-
-  params = g_param_spec_pointer ("cairo-context",
-                               _("Cairo context"),
-                               _("The Cairo context for rendering"),
-                                  param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_CAIRO_CONTEXT, params);
-
-  params = g_param_spec_pointer ("pango-context",
-                               _("Pango context"),
-                               _("The Pango context for text rendering"),
-                                  param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_PANGO_CONTEXT, params);
-
-  params = g_param_spec_string ("font-name",
-                              _("Font name"),
-                              _("The name of the font to use for text rendering"),
-                                 EDAR_DEFAULT_FONT_NAME,
-                                 param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
-
-  params =g_param_spec_pointer ("color-map",
-                              _("Color map"),
-                              _("Map for determining colors from color indices"),
-                                 param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_COLOR_MAP, params);
-
-  params =g_param_spec_int ("override-color",
-                          _("Override color"),
-                          _("Index of color to force used for all drawing."),
-                            -1, MAX_COLORS, -1,
-                             param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_OVERRIDE_COLOR, params);
-
-  params = g_param_spec_flags ("render-flags",
-                             _("Rendering  Flags"),
-                             _("Flags controlling rendering"),
-                                EDA_TYPE_RENDERER_FLAGS,
-                                FLAG_HINTING | FLAG_TEXT_ORIGIN,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS, params);
-
-  params = g_param_spec_double ("grip-size",
-                              _("Grip size"),
-                              _("Size in user coordinates to draw grips"),
-                                 0, G_MAXDOUBLE, EDAR_DEFAULT_GRIP_SIZE,
-                                 param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_GRIP_SIZE, params);
-
-  params = g_param_spec_boxed ("grips-stroke",
-                             _("Grip Stroke Color"),
-                             _("GDK color to use when rendering strokes for grips"),
-                                GDK_TYPE_COLOR,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_GRIP_STROKE, params);
-
-  params = g_param_spec_boxed ("grips-fill",
-                             _("Grip Fill Color"),
-                             _("GDK color to use when rendering background of grips"),
-                                GDK_TYPE_COLOR,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_GRIP_FILL, params);
-
-  params = g_param_spec_boxed ("junction-color",
-                             _("Junction Color"),
-                             _("GDK color to use when rendering Junctions"),
-                                GDK_TYPE_COLOR,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_JUNCTION_COLOR, params);
-
-  params =g_param_spec_int ("junction-size",
-                          _("Junction size"),
-                          _("Size to draw junction cue points."),
-                             0, 999, 10,
-                             param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_JUNCTION_SIZE, params);
-
-  params = g_param_spec_boxed ("net-endpoint-color",
-                             _("Net Endpoint Color"),
-                             _("GDK color to use when rendering Net and Pin endpoints"),
-                                GDK_TYPE_COLOR,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_ENDPOINT_COLOR, params);
-
-  params = g_param_spec_boxed ("text-marker-color",
-                             _("Text Marker Color"),
-                             _("GDK color to use when rendering text markers"),
-                                GDK_TYPE_COLOR,
-                                param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_MARKER_COLOR, params);
-
-  params = g_param_spec_int ("text-marker-size",
-                           _("Text Marker Size"),
-                           _("Size to draw text markers."),
-                              EDAR_MIN_TEXT_MARKER_SIZE,
-                              EDAR_MAX_TEXT_MARKER_SIZE,
-                              EDAR_DEFAULT_TEXT_MARKER_SIZE,
-                              param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_SIZE, params);
-
-  params = g_param_spec_double ("text-marker-threshold",
-                              _("Text Marker Threshold"),
-                              _("The threshold to draw text markers."),
-                                 EDAR_MIN_MARKER_DIST_THLD,
-                                 EDAR_MAX_MARKER_DIST_THLD,
-                                 EDAR_DEFAULT_MARKER_DIST_THLD,
-                                 param_flags);
-
-  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_THLD, params);
-}
-
-static void
-eda_renderer_init (EdaRenderer *renderer)
-{
-
-  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
-                                                EDA_TYPE_RENDERER,
-                                                EdaRendererPrivate);
-
-  EdaFontOptions = cairo_font_options_create();
-
-  /* Setup default options */
-  if (renderer->priv->font_name == NULL) {
-    renderer->priv->font_name = u_string_strdup (EDAR_DEFAULT_FONT_NAME);
-  }
-
-  renderer->priv->override_color = -1;
-
-  EDAR_GRIP_SIZE           = EDAR_DEFAULT_GRIP_SIZE;
-  EDAR_JUNCTION_SIZE       = EDAR_DEFAULT_JUNCTION_SIZE;
-  EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
-  EDAR_MARKER_THRESHOLD    = EDAR_DEFAULT_MARKER_DIST_THLD;
-
-  gdk_color_parse(EDAR_DEFAULT_GRIP_STROKE_COLOR,  &EDAR_GRIP_STROKE_COLOR);
-  gdk_color_parse(EDAR_DEFAULT_GRIP_FILL_COLOR,    &EDAR_GRIP_FILL_COLOR);
-  gdk_color_parse(EDAR_DEFAULT_JUNCTION_COLOR,     &EDAR_JUNCTION_COLOR);
-  gdk_color_parse(EDAR_DEFAULT_ENDPOINT_COLOR,     &EDAR_NET_ENDPOINT_COLOR);
-  gdk_color_parse(EDAR_DEFAULT_TEXT_MARKER_COLOR,  &EDAR_TEXT_MARKER_COLOR);
-
-  /* Font metrics are expensive to compute, so we need to cache them.
-  renderer->priv->metrics_cache =
-    g_hash_table_new_full (g_int_hash, g_int_equal, g_free,
-                           (GDestroyNotify) pango_font_metrics_unref);  */
 }
 
 static GObject *
@@ -756,7 +573,8 @@ eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
   return eda_renderer_is_drawable_color (renderer, color, TRUE);
 }
 
-static int eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
+static int
+eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
 {
   GArray *fill_lines;
   LINE   *line;
@@ -1841,12 +1659,247 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
     }
   }
 
-  #ifdef DEBUG_RENDER_TEXT
+#ifdef DEBUG_RENDER_TEXT
   else
     fprintf(stderr, "skippping %s\n", object->text->disp_string);
-  #endif
+#endif
 
   return ret_val;
+}
+
+/*! \brief Type class initializer for EdaRenderer
+ *
+ *  \par Function Description
+ *  Type class initializer for EdaRenderer. We override our parents
+ *  virtual class methods as needed and register our GObject signals.
+ *
+ *  \param [in]  g_class      The EdaRenderer class we are initializing
+ *  \param [in]  class_data   EdaRenderer structure associated with the class
+ */
+static void
+eda_renderer_class_init(void *g_class, void *class_data)
+{
+  EdaRendererClass *class     = (EdaRendererClass*)g_class;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
+  GParamSpec   *params;
+  GParamFlags   param_flags;
+
+  g_type_class_add_private (gobject_class, sizeof (EdaRendererPrivate));
+
+  /* Register functions with base class */
+  gobject_class->constructor  = eda_renderer_constructor;
+  gobject_class->finalize     = eda_renderer_finalize;
+  gobject_class->dispose      = eda_renderer_dispose;
+  gobject_class->set_property = eda_renderer_set_property;
+  gobject_class->get_property = eda_renderer_get_property;
+
+  /* Install default implementations of virtual public methods */
+  class->draw        = eda_renderer_default_draw;
+  class->draw_grips  = eda_renderer_default_draw_grips;
+  class->draw_cues   = eda_renderer_default_draw_cues;
+  class->user_bounds = eda_renderer_default_get_user_bounds;
+
+  /* Install properties */
+  param_flags = (G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK |
+                 G_PARAM_STATIC_BLURB);
+
+  params = g_param_spec_pointer ("cairo-context",
+                               _("Cairo context"),
+                               _("The Cairo context for rendering"),
+                                  param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_CAIRO_CONTEXT, params);
+
+  params = g_param_spec_pointer ("pango-context",
+                               _("Pango context"),
+                               _("The Pango context for text rendering"),
+                                  param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_PANGO_CONTEXT, params);
+
+  params = g_param_spec_string ("font-name",
+                              _("Font name"),
+                              _("The name of the font to use for text rendering"),
+                                 EDAR_DEFAULT_FONT_NAME,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
+
+  params =g_param_spec_pointer ("color-map",
+                              _("Color map"),
+                              _("Map for determining colors from color indices"),
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_COLOR_MAP, params);
+
+  params =g_param_spec_int ("override-color",
+                          _("Override color"),
+                          _("Index of color to force used for all drawing."),
+                            -1, MAX_COLORS, -1,
+                             param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_OVERRIDE_COLOR, params);
+
+  params = g_param_spec_flags ("render-flags",
+                             _("Rendering  Flags"),
+                             _("Flags controlling rendering"),
+                                EDA_TYPE_RENDERER_FLAGS,
+                                FLAG_HINTING | FLAG_TEXT_ORIGIN,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS, params);
+
+  params = g_param_spec_double ("grip-size",
+                              _("Grip size"),
+                              _("Size in user coordinates to draw grips"),
+                                 0, G_MAXDOUBLE, EDAR_DEFAULT_GRIP_SIZE,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_SIZE, params);
+
+  params = g_param_spec_boxed ("grips-stroke",
+                             _("Grip Stroke Color"),
+                             _("GDK color to use when rendering strokes for grips"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_STROKE, params);
+
+  params = g_param_spec_boxed ("grips-fill",
+                             _("Grip Fill Color"),
+                             _("GDK color to use when rendering background of grips"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_FILL, params);
+
+  params = g_param_spec_boxed ("junction-color",
+                             _("Junction Color"),
+                             _("GDK color to use when rendering Junctions"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_JUNCTION_COLOR, params);
+
+  params =g_param_spec_int ("junction-size",
+                          _("Junction size"),
+                          _("Size to draw junction cue points."),
+                             0, 999, 10,
+                             param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_JUNCTION_SIZE, params);
+
+  params = g_param_spec_boxed ("net-endpoint-color",
+                             _("Net Endpoint Color"),
+                             _("GDK color to use when rendering Net and Pin endpoints"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_ENDPOINT_COLOR, params);
+
+  params = g_param_spec_boxed ("text-marker-color",
+                             _("Text Marker Color"),
+                             _("GDK color to use when rendering text markers"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_MARKER_COLOR, params);
+
+  params = g_param_spec_int ("text-marker-size",
+                           _("Text Marker Size"),
+                           _("Size to draw text markers."),
+                              EDAR_MIN_TEXT_MARKER_SIZE,
+                              EDAR_MAX_TEXT_MARKER_SIZE,
+                              EDAR_DEFAULT_TEXT_MARKER_SIZE,
+                              param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_SIZE, params);
+
+  params = g_param_spec_double ("text-marker-threshold",
+                              _("Text Marker Threshold"),
+                              _("The threshold to draw text markers."),
+                                 EDAR_MIN_MARKER_DIST_THLD,
+                                 EDAR_MAX_MARKER_DIST_THLD,
+                                 EDAR_DEFAULT_MARKER_DIST_THLD,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_THLD, params);
+}
+
+/*! \brief Type instance initialiser for EdaRenderer
+ *
+ *  \par Function Description
+ *  Type instance initialiser for EdaRenderer, initializes a new empty
+ *  EdaRenderer object.
+ *
+ *  \param [in] instance The EdaRenderer structure being initialized,
+ *  \param [in] g_class  The EdaRenderer class we are initializing.
+ */
+static void
+eda_renderer_init(GTypeInstance *instance, void *g_class)
+{
+  EdaRenderer *renderer = (EdaRenderer*)instance;
+
+  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
+                                                EDA_TYPE_RENDERER,
+                                                EdaRendererPrivate);
+
+  EdaFontOptions = cairo_font_options_create();
+
+  /* Setup default options */
+  if (renderer->priv->font_name == NULL) {
+    renderer->priv->font_name = u_string_strdup (EDAR_DEFAULT_FONT_NAME);
+  }
+
+  renderer->priv->override_color = -1;
+
+  EDAR_GRIP_SIZE           = EDAR_DEFAULT_GRIP_SIZE;
+  EDAR_JUNCTION_SIZE       = EDAR_DEFAULT_JUNCTION_SIZE;
+  EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
+  EDAR_MARKER_THRESHOLD    = EDAR_DEFAULT_MARKER_DIST_THLD;
+
+  gdk_color_parse(EDAR_DEFAULT_GRIP_STROKE_COLOR,  &EDAR_GRIP_STROKE_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_GRIP_FILL_COLOR,    &EDAR_GRIP_FILL_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_JUNCTION_COLOR,     &EDAR_JUNCTION_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_ENDPOINT_COLOR,     &EDAR_NET_ENDPOINT_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_TEXT_MARKER_COLOR,  &EDAR_TEXT_MARKER_COLOR);
+
+  /* Font metrics are expensive to compute, so we need to cache them.
+  renderer->priv->metrics_cache =
+    g_hash_table_new_full (g_int_hash, g_int_equal, g_free,
+                           (GDestroyNotify) pango_font_metrics_unref);  */
+}
+
+/*! \brief Function to retrieve EdaRenderer GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdaRenderer's Type identifier. On first call, the
+ *  function registers the EdaRenderer in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with EdaRenderer.
+ */
+GedaType
+eda_renderer_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (EdaRendererClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      eda_renderer_class_init,         // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(EdaRenderer),
+      0,                               // n_preallocs
+      eda_renderer_init                // instance_init
+    };
+    type = g_type_register_static (G_TYPE_OBJECT, "EdaRenderer", &info, 0);
+  }
+  return type;
 }
 
 /* ================================================================

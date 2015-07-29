@@ -76,57 +76,15 @@ static void eda_pango_renderer_end          (PangoRenderer *renderer);
 static void eda_pango_renderer_prepare_run  (PangoRenderer *renderer,
                                              PangoLayoutRun *run);
 
-G_DEFINE_TYPE (EdaPangoRenderer, eda_pango_renderer, PANGO_TYPE_RENDERER);
+static GObjectClass *eda_pango_renderer_parent_class = NULL;
 
 /* ---------------------------------------- */
 
 static PangoAttribute *eda_pango_attr_overbar_copy (const PangoAttribute *attr);
-static bool eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
-                                                const PangoAttribute *attr2);
+static bool eda_pango_attr_overbar_compare         (const PangoAttribute *attr1,
+                                                    const PangoAttribute *attr2);
 
 /* ---------------------------------------- */
-
-static void
-eda_pango_renderer_class_init (EdaPangoRendererClass *klass)
-{
-  GObjectClass *object_class       = G_OBJECT_CLASS (klass);
-  PangoRendererClass *parent_class = PANGO_RENDERER_CLASS (klass);
-
-  g_type_class_add_private (object_class, sizeof (EdaPangoRendererPrivate));
-
-  /* Register functions with base class */
-  object_class->constructor  = eda_pango_renderer_constructor;
-  object_class->set_property = eda_pango_renderer_set_property;
-  object_class->get_property = eda_pango_renderer_get_property;
-  object_class->finalize     = eda_pango_renderer_finalize;
-
-  /* Register functions with parent class */
-  parent_class->draw_glyphs          = eda_pango_renderer_draw_glyphs;
-  parent_class->draw_rectangle       = eda_pango_renderer_draw_rectangle;
-  parent_class->draw_error_underline = eda_pango_renderer_draw_error_underline;
-  parent_class->part_changed         = eda_pango_renderer_part_changed;
-  parent_class->begin                = eda_pango_renderer_begin;
-  parent_class->end                  = eda_pango_renderer_end;
-  parent_class->prepare_run          = eda_pango_renderer_prepare_run;
-
-  /* Install properties */
-  g_object_class_install_property (object_class, PROP_CAIRO_CONTEXT,
-                                   g_param_spec_pointer ("cairo-context",
-                                                         _("Cairo context"),
-                                                         _("The Cairo context for rendering"),
-                                                         G_PARAM_READWRITE
-                                                         | G_PARAM_STATIC_NAME
-                                                         | G_PARAM_STATIC_NICK
-                                                         | G_PARAM_STATIC_BLURB));
-}
-
-static void
-eda_pango_renderer_init (EdaPangoRenderer *renderer)
-{
-  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
-                                                EDA_TYPE_PANGO_RENDERER,
-                                                EdaPangoRendererPrivate);
-}
 
 static GObject *
 eda_pango_renderer_constructor (GedaType type,
@@ -305,6 +263,83 @@ eda_pango_renderer_prepare_run (PangoRenderer *renderer,
 
   PANGO_RENDERER_CLASS (eda_pango_renderer_parent_class)->prepare_run (renderer,
                                                                        run);
+}
+
+static void
+eda_pango_renderer_class_init(void *g_class, void *class_data)
+{
+  EdaPangoRendererClass *class         = (EdaPangoRendererClass*)g_class;
+  GObjectClass          *object_class  = G_OBJECT_CLASS (class);
+  PangoRendererClass    *parent_class  = PANGO_RENDERER_CLASS (class);
+
+  g_type_class_add_private (object_class, sizeof (EdaPangoRendererPrivate));
+
+  /* Register functions with base class */
+  object_class->constructor  = eda_pango_renderer_constructor;
+  object_class->set_property = eda_pango_renderer_set_property;
+  object_class->get_property = eda_pango_renderer_get_property;
+  object_class->finalize     = eda_pango_renderer_finalize;
+
+  /* Register functions with parent class */
+  parent_class->draw_glyphs          = eda_pango_renderer_draw_glyphs;
+  parent_class->draw_rectangle       = eda_pango_renderer_draw_rectangle;
+  parent_class->draw_error_underline = eda_pango_renderer_draw_error_underline;
+  parent_class->part_changed         = eda_pango_renderer_part_changed;
+  parent_class->begin                = eda_pango_renderer_begin;
+  parent_class->end                  = eda_pango_renderer_end;
+  parent_class->prepare_run          = eda_pango_renderer_prepare_run;
+
+  /* Install properties */
+  g_object_class_install_property (object_class, PROP_CAIRO_CONTEXT,
+                                   g_param_spec_pointer ("cairo-context",
+                                                         _("Cairo context"),
+                                                         _("The Cairo context for rendering"),
+                                                         G_PARAM_READWRITE
+                                                         | G_PARAM_STATIC_NAME
+                                                         | G_PARAM_STATIC_NICK
+                                                         | G_PARAM_STATIC_BLURB));
+}
+
+static void
+eda_pango_renderer_init (GTypeInstance *instance, void *g_class)
+{
+  EdaPangoRenderer *renderer = (EdaPangoRenderer*)instance;
+
+  renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
+                                                EDA_TYPE_PANGO_RENDERER,
+                                                EdaPangoRendererPrivate);
+}
+
+/*! \brief Function to retrieve EdaPangoRenderer GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdaPangoRenderer's Type identifier. On first call, the
+ *  function registers the EdaPangoRenderer in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with EdaPangoRenderer.
+ */
+GedaType eda_pango_renderer_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (EdaPangoRendererClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      eda_pango_renderer_class_init,   // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(EdaPangoRenderer),
+      0,                               // n_preallocs
+      eda_pango_renderer_init          // instance_init
+    };
+    type = g_type_register_static (PANGO_TYPE_RENDERER,
+                                   "EdaPangoRenderer", &info, 0);
+  }
+  return type;
 }
 
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
