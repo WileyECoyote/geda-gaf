@@ -454,7 +454,7 @@ SCM_DEFINE (config_groups, "%config-groups", 1, 0, 0,
 {
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, s_config_groups);
 
-  size_t   len;
+  unsigned len;
   unsigned i;
 
   EdaConfig  *cfg     = edascm_to_config (cfg_s);
@@ -524,20 +524,24 @@ SCM_DEFINE (config_keys, "%config-keys", 2, 0, 0,
             (SCM cfg_s, SCM group_s),
             "Get a list of available configuration keys.")
 {
-  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
-              s_config_keys);
-  SCM_ASSERT (scm_is_string (group_s), group_s, SCM_ARG2,
-              s_config_keys);
+  SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, s_config_keys);
+  SCM_ASSERT (scm_is_string (group_s), group_s, SCM_ARG2, s_config_keys);
 
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
-  unsigned int i, len;
-  GError *error = NULL;
-  char **keys = eda_config_get_keys (cfg, group, &len, &error);
-  SCM lst_s = SCM_EOL;
+  EdaConfig *cfg   = edascm_to_config (cfg_s);
+  char      *group = scm_to_utf8_string (group_s);
+  GError    *error = NULL;
+  SCM        lst_s = SCM_EOL;
+  char     **keys;
+  unsigned   len;
+  unsigned   i;
+
+  keys = eda_config_get_keys (cfg, group, &len, &error);
 
   free (group);
-  if (keys == NULL) error_from_gerror (s_config_keys, &error);
+
+  if (keys == NULL) {
+    error_from_gerror (s_config_keys, &error);
+  }
 
   scm_dynwind_begin (0);
   scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev,
@@ -872,23 +876,41 @@ SCM_DEFINE (config_int_list, "%config-int-list", 3, 0, 0,
 {
   ASSERT_CFG_GROUP_KEY (s_config_int_list);
 
+  GError    *error;
+  EdaConfig *cfg;
+  char      *group;
+  char      *key;;
+  size_t     length;
+  unsigned   i;
+  int       *value;
+
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
-  scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
-  scm_dynwind_free (key);
-  unsigned int length, i;
-  GError *error = NULL;
-  int *value = eda_config_get_int_list (cfg, group, key,
-                                         &length, &error);
-  if (value == NULL) error_from_gerror  (s_config_int_list, &error);
+
+  cfg   = edascm_to_config(cfg_s);
+  group = scm_to_utf8_string(group_s);
+
+  scm_dynwind_free(group);
+
+  key   = scm_to_utf8_string(key_s);
+
+  scm_dynwind_free(key);
+
+  error = NULL;
+  value = eda_config_get_int_list(cfg, group, key, &length, &error);
+
+  if (value == NULL) {
+    error_from_gerror(s_config_int_list, &error);
+  }
+
   scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
   SCM value_s = SCM_EOL;
+
   for (i = 0; i < length; i++) {
     value_s = scm_cons (scm_from_int (value[i]), value_s);
   }
+
   scm_dynwind_end ();
+
   return scm_reverse_x (value_s, SCM_EOL);
 }
 
@@ -914,23 +936,41 @@ SCM_DEFINE (config_real_list, "%config-real-list", 3, 0, 0,
 {
   ASSERT_CFG_GROUP_KEY (s_config_real_list);
 
+  GError    *error;
+  EdaConfig *cfg;
+  char      *group;
+  char      *key;;
+  size_t     length;
+  unsigned   i;
+  double    *value;
+
   scm_dynwind_begin (0);
-  EdaConfig *cfg = edascm_to_config (cfg_s);
-  char *group = scm_to_utf8_string (group_s);
-  scm_dynwind_free (group);
-  char *key = scm_to_utf8_string (key_s);
-  scm_dynwind_free (key);
-  unsigned int length, i;
-  GError *error = NULL;
-  double *value = eda_config_get_double_list (cfg, group, key,
-                                               &length, &error);
-  if (value == NULL) error_from_gerror  (s_config_real_list, &error);
-  scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
-  SCM value_s = SCM_EOL;
-  for (i = 0; i < length; i++) {
-    value_s = scm_cons (scm_from_double (value[i]), value_s);
+
+  cfg   = edascm_to_config(cfg_s);
+  group = scm_to_utf8_string(group_s);
+
+  scm_dynwind_free(group);
+
+  key   = scm_to_utf8_string(key_s);
+
+  scm_dynwind_free(key);
+
+  error = NULL;
+  value = eda_config_get_double_list(cfg, group, key, &length, &error);
+
+  if (value == NULL) {
+    error_from_gerror(s_config_real_list, &error);
   }
+
+  scm_dynwind_unwind_handler(g_free, value, SCM_F_WIND_EXPLICITLY);
+  SCM value_s = SCM_EOL;
+
+  for (i = 0; i < length; i++) {
+    value_s = scm_cons(scm_from_double (value[i]), value_s);
+  }
+
   scm_dynwind_end ();
+
   return scm_reverse_x (value_s, SCM_EOL);
 }
 

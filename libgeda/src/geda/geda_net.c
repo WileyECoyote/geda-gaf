@@ -42,7 +42,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Net, geda_net, GEDA_TYPE_LINE);
+static GObjectClass *geda_net_parent_class = NULL;
 
 /*! \brief GedaType instance initialiser for Net
  *
@@ -51,12 +51,14 @@ G_DEFINE_TYPE (Net, geda_net, GEDA_TYPE_LINE);
  *  Net object by setting pointers to NULL and numbers to zero,
  *  the net PID variable is set to the next net index.
  *
- *  \param [in]  net The Net instance being initialising.
+ *  \param [in] instance The Net structure being initialized,
+ *  \param [in] g_class  The Net class we are initializing.
  */
-static void geda_net_init(Net *net)
+static void geda_net_init(GTypeInstance *instance, void *g_class)
 {
-  Line   *line      = &net->parent_instance;
-  Object *object    = &line->parent_instance;
+  Net    *net                = (Net*)instance;
+  Line   *line               = &net->parent_instance;
+  Object *object             = &line->parent_instance;
 
   net->nid                   = -1;
   net->net_name_has_priority = FALSE;
@@ -122,10 +124,12 @@ static void geda_net_finalize(GObject *object)
  *  GedaType class initialiser for Net. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Net we are initialising
+ *  \param [in]  g_class      The Net class we are initialising
+ *  \param [in]  class_data   The Net structure associated with the class
  */
-static void geda_net_class_init(NetClass *class)
+static void geda_net_class_init(void *g_class, void *class_data)
 {
+  NetClass     *class          = (NetClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
 
   geda_net_parent_class        = g_type_class_peek_parent( class );
@@ -133,6 +137,37 @@ static void geda_net_class_init(NetClass *class)
   gobject_class->dispose       = geda_net_dispose;
   gobject_class->finalize      = geda_net_finalize;
 
+}
+
+/*! \brief Function to retrieve Net GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Net's Type identifier. On first call, the
+ *  function registers the Net in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Net.
+ */
+GedaType geda_net_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (NetClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_net_class_init,             // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Net),
+      0,                               // n_preallocs
+      geda_net_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_LINE, "Net", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Net object.

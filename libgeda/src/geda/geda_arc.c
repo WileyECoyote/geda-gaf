@@ -45,7 +45,7 @@
 #include "libgeda_priv.h"
 #include <math.h>
 
-G_DEFINE_TYPE (Arc, geda_arc, GEDA_TYPE_OBJECT);
+static GObjectClass *geda_arc_parent_class = NULL;
 
 /*! \brief Geda Arc Bounds
  *  \par Function Description
@@ -124,17 +124,19 @@ geda_arc_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief Type instance initialiser for Arc
+/*! \brief Type instance initializer for Arc
  *
  *  \par Function Description
- *  Type instance initialiser for Arc, initializes a new empty
+ *  Type instance initializer for Arc, initializes a new empty
  *  Arc object by setting pointers to NULL and numbers to zero,
  *  the arc PID variable is set to the next arc index.
  *
- *  \param [in] arc The Arc instance being initialising.
+ *  \param [in] instance The Arc structure being initialized,
+ *  \param [in] g_class  The Arc class we are initializing.
  */
-static void geda_arc_init(Arc *arc)
+static void geda_arc_init(GTypeInstance *instance, void *g_class)
 {
+  Arc    *arc       = (Arc*)instance;
   Object *object    = &arc->parent_instance;
 
   arc->x            = 0;
@@ -197,10 +199,12 @@ static void geda_arc_finalize(GObject *object)
  *  Type class initialiser for Arc. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Arc we are initialising
+ *  \param [in]  g_class      The Arc class we are initialising
+ *  \param [in]  class_data   The Arc structure associated with the class
  */
-static void geda_arc_class_init(ArcClass *class)
+static void geda_arc_class_init(void *g_class, void *class_data)
 {
+  ArcClass     *class          = (ArcClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -210,6 +214,36 @@ static void geda_arc_class_init(ArcClass *class)
   gobject_class->finalize      = geda_arc_finalize;
 
   object_class->bounds         = geda_arc_bounds;
+}
+
+/*! \brief Function to retrieve Arc's GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Arc's Type identifier. On first call, the
+ *  function registers the Arc in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Arc.
+ */
+GedaType geda_arc_get_type(void)
+{
+  static GedaType type = 0;
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (ArcClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_arc_class_init,             // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof (Arc),
+      0,                               // n_preallocs
+      geda_arc_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Arc", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Arc object.

@@ -45,7 +45,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Text, geda_text, GEDA_TYPE_OBJECT);
+static GObjectClass *geda_text_parent_class = NULL;
 
 /*! \brief Calculate and Return the Boundaries of a text object
  *
@@ -138,10 +138,12 @@ geda_text_bounds(Object *o_current)
  *  Text object by setting pointers to NULL and numbers to zero,
  *  the text PID variable is set to the next text index.
  *
- *  \param [in]  text      The Text instance being initialized.
+ *  \param [in] instance The Text structure being initialized,
+ *  \param [in] g_class  The Text class we are initializing.
  */
-static void geda_text_init(Text *text)
+static void geda_text_init(GTypeInstance *instance, void *g_class)
 {
+  Text   *text        = (Text*)instance;
   Object *object      = &text->parent_instance;
 
   text->x             = 0; /* world origin */
@@ -207,10 +209,12 @@ static void geda_text_finalize(GObject *object)
  *  GedaType class initialiser for Text. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Text we are initialising
+ *  \param [in]  g_class      The Text class we are initialising
+ *  \param [in]  class_data   The Text structure associated with the class
  */
-static void geda_text_class_init(TextClass *class)
+static void geda_text_class_init(void *g_class, void *class_data)
 {
+  TextClass    *class          = (TextClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -220,6 +224,37 @@ static void geda_text_class_init(TextClass *class)
   gobject_class->finalize      = geda_text_finalize;
 
   object_class->bounds         = geda_text_bounds;
+}
+
+/*! \brief Function to retrieve Text GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Text's Type identifier. On first call, the
+ *  function registers the Text in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Text.
+ */
+GedaType geda_text_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (TextClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_text_class_init,            // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Text),
+      0,                               // n_preallocs
+      geda_text_init                   // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Text", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new GedaText Object.

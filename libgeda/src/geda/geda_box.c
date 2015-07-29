@@ -30,7 +30,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Box, geda_box, GEDA_TYPE_OBJECT);
+static GObjectClass *geda_box_parent_class = NULL;
 
 /*! \brief Get Box bounding rectangle in WORLD coordinates.
  *
@@ -66,12 +66,12 @@ geda_box_bounds(Object *object)
  *  Box object by setting pointers to NULL and numbers to zero,
  *  the box PID variable is set to the next box index.
  *
- *  \note units is world coordinates
- *
- *  \param [in]  box The Box instance being initialising.
+ *  \param [in] instance The Box structure being initialized,
+ *  \param [in]  g_class The Box class we are initializing.
  */
-static void geda_box_init(Box *box)
+static void geda_box_init(GTypeInstance *instance, void *g_class)
 {
+  Box    *box       = (Box*)instance;
   Object *object    = &box->parent_instance;
 
   box->upper_x      = 0;
@@ -130,10 +130,12 @@ static void geda_box_finalize(GObject *object)
  *  Type class initialiser for Box. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Box we are initialising
+ *  \param [in]  g_class      The Box class we are initialising
+ *  \param [in]  class_data   The Box structure associated with the class
  */
-static void geda_box_class_init(BoxClass *class)
+static void geda_box_class_init(void *g_class, void *class_data)
 {
+  BoxClass     *class          = (BoxClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -143,6 +145,36 @@ static void geda_box_class_init(BoxClass *class)
   gobject_class->finalize      = geda_box_finalize;
 
   object_class->bounds         = geda_box_bounds;
+}
+
+/*! \brief Function to retrieve Box GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Box's Type identifier. On first call, the
+ *  function registers the Box in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Box.
+ */
+GedaType geda_box_get_type(void)
+{
+  static GedaType type = 0;
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (BoxClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_box_class_init,             // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Box),
+      0,                               // n_preallocs
+      geda_box_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Box", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Box object.

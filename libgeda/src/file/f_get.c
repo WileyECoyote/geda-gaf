@@ -545,8 +545,9 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
     else if (stat_buf.st_size > 0 && S_ISREG (stat_buf.st_mode)) {
 
       fsync(fd);
+      unsigned int *len = (unsigned int*)length;
       retval = get_contents_regfile (filename, &stat_buf,
-                                     fd, contents, length, err);
+                                     fd, contents, len, err);
     }
     else {
 

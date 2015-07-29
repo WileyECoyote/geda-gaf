@@ -43,7 +43,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Bus, geda_bus, GEDA_TYPE_LINE);
+static GObjectClass *geda_bus_parent_class = NULL;
 
 /*! \brief Type instance initialiser for Bus
  *
@@ -52,10 +52,12 @@ G_DEFINE_TYPE (Bus, geda_bus, GEDA_TYPE_LINE);
  *  Bus object by setting pointers to NULL and numbers to zero,
  *  the bus PID variable is set to the next bus index.
  *
- *  \param [in]  bus The Bus instance being initialising.
+ *  \param [in] instance The Bus structure being initialized,
+ *  \param [in] g_class  The Bus class we are initializing.
  */
-static void geda_bus_init(Bus *bus)
+static void geda_bus_init(GTypeInstance *instance, void *g_class)
 {
+  Bus    *bus                = (Bus*)instance;
   Line   *line               = &bus->parent_instance;
   Object *object             = &line->parent_instance;
 
@@ -106,10 +108,12 @@ static void geda_bus_finalize(GObject *object)
  *  Type class initialiser for Bus. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Bus we are initialising
+ *  \param [in]  g_class      The Bus class we are initialising
+ *  \param [in]  class_data   The Bus structure associated with the class
  */
-static void geda_bus_class_init(BusClass *class)
+static void geda_bus_class_init(void *g_class, void *class_data)
 {
+  BusClass     *class          = (BusClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
 
   geda_bus_parent_class        = g_type_class_peek_parent( class );
@@ -117,6 +121,37 @@ static void geda_bus_class_init(BusClass *class)
   gobject_class->dispose       = geda_bus_dispose;
   gobject_class->finalize      = geda_bus_finalize;
 
+}
+
+/*! \brief Function to retrieve Bus GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Bus's Type identifier. On first call, the
+ *  function registers the Bus in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Bus.
+ */
+GedaType geda_bus_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (BusClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_bus_class_init,             // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Bus),
+      0,                               // n_preallocs
+      geda_bus_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_LINE, "Bus", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Bus object.

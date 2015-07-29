@@ -46,8 +46,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Complex, geda_complex, GEDA_TYPE_OBJECT);
-
+static GObjectClass *geda_complex_parent_class = NULL;
 
 /*! \brief Return the bounds of the given GList of objects.
  *
@@ -88,6 +87,7 @@ int geda_complex_bounds(Object *object)
   }
 
   if(result) {
+
     left   = sub_object->left;
     top    = sub_object->top;
     right  = sub_object->right;
@@ -121,16 +121,17 @@ int geda_complex_bounds(Object *object)
 /*! \brief GedaType instance initialiser for Complex
  *
  *  \par Function Description
- *  GedaType instance initialiser for Complex, initializes a new empty
+ *  GedaType instance initializer for Complex, initializes a new empty
  *  Complex object by setting pointers to NULL and numbers to zero,
  *  the complex PID variable is set to the next complex index.
  *
- *  \param [in] complex The Complex instance being initialising.
+ *  \param [in] instance The Complex structure being initialized,
+ *  \param [in] g_class  The Complex class we are initializing.
  */
-static void geda_complex_init(Complex *complex)
+static void geda_complex_init(GTypeInstance *instance, void *g_class)
 {
-  Object *object        = &complex->parent_instance;
-
+  Complex *complex      = (Complex*)instance;
+  Object  *object       = &complex->parent_instance;
 
   complex->filename     = NULL;
   complex->is_embedded  = FALSE;  /* is embedded component? */
@@ -187,16 +188,18 @@ static void geda_complex_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_complex_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Complex
+/*! \brief GedaType class initializer for Complex
  *
  *  \par Function Description
- *  GedaType class initialiser for Complex. We override our parents
+ *  GedaType class initializer for Complex. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Complex we are initialising
+ *  \param [in]  g_class      The Complex class we are initializing
+ *  \param [in]  class_data   The Complex structure associated with the class
  */
-static void geda_complex_class_init(ComplexClass *class)
+static void geda_complex_class_init(void *g_class, void *class_data)
 {
+  ComplexClass *class          = (ComplexClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -206,6 +209,37 @@ static void geda_complex_class_init(ComplexClass *class)
   gobject_class->finalize      = geda_complex_finalize;
 
   object_class->bounds         = geda_complex_bounds;
+}
+
+/*! \brief Function to retrieve Complex GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Complex's Type identifier. On first call, the
+ *  function registers the Complex in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Complex.
+ */
+GedaType geda_complex_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (ComplexClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_complex_class_init,         // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Complex),
+      0,                               // n_preallocs
+      geda_complex_init                // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Complex", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Complex object.

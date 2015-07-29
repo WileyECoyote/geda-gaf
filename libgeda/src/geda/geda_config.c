@@ -1186,7 +1186,7 @@ char **hash_table_keys_array (GHashTable *table, unsigned int *length)
  * \return a newly-allocated NULL-terminated array of strings.
  */
 char **
-eda_config_get_groups (EdaConfig *cfg, size_t *length)
+eda_config_get_groups (EdaConfig *cfg, unsigned *length)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
@@ -1265,7 +1265,7 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
  * \param error   Return location for error information.
  */
 char **
-eda_config_get_keys (EdaConfig *cfg, const char *group, size_t *length,
+eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
                      GError **error)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);

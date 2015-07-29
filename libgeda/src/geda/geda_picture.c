@@ -43,7 +43,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Picture, geda_picture, GEDA_TYPE_OBJECT);
+static GObjectClass *geda_picture_parent_class = NULL;
 
 /*! \brief Get picture bounding rectangle in WORLD coordinates.
  *  \par Function Description
@@ -73,10 +73,12 @@ geda_picture_bounds(Object *object)
  *  Picture object by setting pointers to NULL and numbers to zero,
  *  the picture PID variable is set to the next picture index.
  *
- *  \param [in]  picture  The Picture instance being initialising.
+ *  \param [in] instance The Picture structure being initialized,
+ *  \param [in]  g_class The Picture class we are initializing.
  */
-static void geda_picture_init(Picture *picture)
+static void geda_picture_init(GTypeInstance *instance, void *g_class)
 {
+  Picture    *picture      = (Picture*)instance;
   Object *object        = &picture->parent_instance;
 
   picture->pixbuf       = NULL;
@@ -142,10 +144,12 @@ static void geda_picture_finalize(GObject *object)
  *  GedaType class initialiser for Picture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Picture we are initialising
+ *  \param [in]  g_class      The Picture class we are initialising
+ *  \param [in]  class_data   The Picture structure associated with the class
  */
-static void geda_picture_class_init(PictureClass *class)
+static void geda_picture_class_init(void *g_class, void *class_data)
 {
+  PictureClass    *class          = (PictureClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -155,6 +159,36 @@ static void geda_picture_class_init(PictureClass *class)
   gobject_class->finalize      = geda_picture_finalize;
 
   object_class->bounds         = geda_picture_bounds;
+}
+
+/*! \brief Function to retrieve Picture GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Picture's Type identifier. On first call, the
+ *  function registers the Picture in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Picture.
+ */
+GedaType geda_picture_get_type(void)
+{
+  static GedaType type = 0;
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (PictureClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_picture_class_init,            // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Picture),
+      0,                               // n_preallocs
+      geda_picture_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Picture", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Picture object.

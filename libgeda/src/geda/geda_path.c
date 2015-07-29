@@ -42,7 +42,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Path, geda_path, GEDA_TYPE_OBJECT);
+static GObjectClass *geda_path_parent_class = NULL;
 
 /*! \brief Get path bounding rectangle in WORLD coordinates.
  *  \par Function Description
@@ -118,10 +118,12 @@ geda_path_bounds (Object *object)
  *  Path object by setting pointers to NULL and numbers to zero,
  *  the path PID variable is set to the next path index.
  *
- *  \param [in]  path  The Path instance being initialising.
+ *  \param [in] instance The Path structure being initialized,
+ *  \param [in]  g_class The Path class we are initializing.
  */
-static void geda_path_init(Path *path)
+static void geda_path_init(GTypeInstance *instance, void *g_class)
 {
+  Path    *path                   = (Path*)instance;
   Object *object                  = &path->parent_instance;
 
   path->sections                  = NULL;
@@ -182,10 +184,12 @@ static void geda_path_finalize(GObject *object)
  *  GedaType class initialiser for Path. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Path we are initialising
+ *  \param [in]  g_class      The Path class we are initialising
+ *  \param [in]  class_data   The Path structure associated with the class
  */
-static void geda_path_class_init(PathClass *class)
+static void geda_path_class_init(void *g_class, void *class_data)
 {
+  PathClass    *class          = (PathClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
   ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
 
@@ -195,6 +199,37 @@ static void geda_path_class_init(PathClass *class)
   gobject_class->finalize      = geda_path_finalize;
 
   object_class->bounds         = geda_path_bounds;
+}
+
+/*! \brief Function to retrieve Path GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Path's Type identifier. On first call, the
+ *  function registers the Path in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Path.
+ */
+GedaType geda_path_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (PathClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_path_class_init,            // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Path),
+      0,                               // n_preallocs
+      geda_path_init                   // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_OBJECT, "Path", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Path object.

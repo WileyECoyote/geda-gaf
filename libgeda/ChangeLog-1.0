@@ -1,10 +1,25 @@
+2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/: Eliminate macro G_DEFINE_TYPE:
+
+            * src/geda/geda_arc.c
+            * src/geda/geda_box.c
+            * src/geda/geda_bus.c
+            * src/geda/geda_circle.c
+            * src/geda/geda_complex.c
+            * src/geda/geda_line.c
+            * src/geda/geda_net.c
+            * src/geda/geda_object.c
+            * src/geda/geda_path.c
+            * src/geda/geda_picture.c
+            * src/geda/geda_pin.c
+            * src/geda/geda_text.c
+
 2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Change unsigned int arguments to type size_t for
       function:
 
-            * eda_config_get_groups
-            * eda_config_get_keys
             * eda_config_get_string_list
             * eda_config_get_boolean_list
             * eda_config_get_int_list

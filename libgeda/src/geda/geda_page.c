@@ -219,6 +219,11 @@ geda_page_instance_init( GTypeInstance *instance, void *g_class )
 
 }
 
+/*! \brief Geda Page Object Dispose Function
+ *  \par Function Description
+ *   This function removes all object from a page, de-references
+ *   allocated objects and chain up to the parent's disposer.
+ */
 static void
 geda_page_dispose(GObject *object)
 {
@@ -250,11 +255,7 @@ geda_page_dispose(GObject *object)
   }
   g_list_free (page->conns_changed_hooks);
   page->conns_changed_hooks = NULL;
-/*
-  if (page->weak_refs) {
-    g_list_free (page->weak_refs);
-  }
-*/
+
   if (page->weak_refs) {
 
     for (iter = page->weak_refs; iter != NULL; iter = g_list_next (iter)) {
@@ -320,7 +321,9 @@ static void geda_page_class_init( void *g_class, void *g_class_data )
 unsigned int geda_page_get_type(void)
 {
   static unsigned int type = 0;
+
   if (type == 0) {
+
     static const GTypeInfo info = {
       sizeof (PageClass),
       NULL,                            /* base_init */
@@ -332,8 +335,10 @@ unsigned int geda_page_get_type(void)
       0,                               /* n_preallocs */
       geda_page_instance_init          /* instance_init */
     };
+
     type = g_type_register_static (G_TYPE_OBJECT, "Page", &info, 0);
   }
+
   return type;
 }
 

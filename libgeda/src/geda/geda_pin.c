@@ -45,7 +45,7 @@
 
 #include "libgeda_priv.h"
 
-G_DEFINE_TYPE (Pin, geda_pin, GEDA_TYPE_LINE);
+static GObjectClass *geda_pin_parent_class = NULL;
 
 enum {
   PROP_0,
@@ -133,10 +133,12 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
  *  Pin object by setting pointers to NULL and numbers to zero,
  *  the pin PID variable is set to the next pin index.
  *
- *  \param [in]  pin  The Pin instance being initialising.
+ *  \param [in] instance The Pin structure being initialized,
+ *  \param [in] g_class  The Pin class we are initializing.
  */
-static void geda_pin_init(Pin *pin)
+static void geda_pin_init(GTypeInstance *instance, void *g_class)
 {
+  Pin    *pin       = (Pin*)instance;
   Line   *line      = &pin->parent_instance;
   Object *object    = &line->parent_instance;
 
@@ -281,12 +283,14 @@ static void geda_pin_finalize(GObject *object)
  *  GedaType class initialiser for Pin. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The Pin we are initialising
+ *  \param [in]  g_class      The Pin class we are initialising
+ *  \param [in]  class_data   The Pin structure associated with the class
  */
-static void geda_pin_class_init(PinClass *class)
+static void geda_pin_class_init(void *g_class, void *class_data)
 {
-  GParamSpec *params;
+  GParamSpec   *params;
 
+  PinClass     *class          = (PinClass*)g_class;
   GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
 
   geda_pin_parent_class        = g_type_class_peek_parent( class );
@@ -348,6 +352,37 @@ static void geda_pin_class_init(PinClass *class)
 
   g_object_class_install_property (gobject_class, PROP_WHICHEND, params);
 
+}
+
+/*! \brief Function to retrieve Pin GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve Pin's Type identifier. On first call, the
+ *  function registers the Pin in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with Pin.
+ */
+GedaType geda_pin_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (PinClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_pin_class_init,             // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(Pin),
+      0,                               // n_preallocs
+      geda_pin_init                    // instance_init
+    };
+    type = g_type_register_static (GEDA_TYPE_LINE, "Pin", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Returns a pointer to a new Pin object.
