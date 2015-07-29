@@ -972,7 +972,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
 
 /*! \brief Given the color index, obtain a human readable name
  */
-static char*
+static const char*
 x_dialog_get_color_name (int index)
 {
   switch(index) {
