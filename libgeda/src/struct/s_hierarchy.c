@@ -25,6 +25,10 @@
 #include <stdlib.h>
 #endif
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include "libgeda_priv.h"
 
 #include <geda_debug.h>
@@ -78,6 +82,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
 
   errno = 0;
   access(string, F_OK | R_OK);
+
   if (errno) {
     errno = 0;
     GEDA_FREE (string);

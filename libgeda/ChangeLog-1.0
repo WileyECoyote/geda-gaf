@@ -1,5 +1,9 @@
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_hierarchy.c: Include header errno.h
+
+2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/: Eliminate macro G_DEFINE_TYPE:
 
             * src/geda/geda_arc.c
