@@ -121,7 +121,7 @@ struct _GedaObject {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-unsigned int  geda_gobject_get_type          (void) G_GNUC_CONST;
+GedaType      geda_gobject_get_type          (void) G_GNUC_CONST;
 bool          is_a_geda_object               (const void *object);
 
 Object       *geda_object_new                (int type, char const *name );

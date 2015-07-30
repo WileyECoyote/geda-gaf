@@ -3566,7 +3566,7 @@ static void close_confirmation_dialog_get_property (GObject      *object,
                                                     unsigned int  property_id,
                                                     GValue       *value,
                                                     GParamSpec   *pspec);
-static GObject* close_confirmation_dialog_constructor (unsigned int type,
+static GObject* close_confirmation_dialog_constructor (GType      type,
                                                        unsigned int n_construct_properties,
                                                        GObjectConstructParam *construct_params);
 static void     close_confirmation_dialog_finalize    (GObject *object);
@@ -3866,7 +3866,7 @@ close_confirmation_dialog_build_page_list (CloseConfirmationDialog *dialog)
 }
 
 static GObject*
-close_confirmation_dialog_constructor (GedaType type,
+close_confirmation_dialog_constructor (GType type,
                                        unsigned int n_construct_properties,
                                        GObjectConstructParam *construct_params)
 {

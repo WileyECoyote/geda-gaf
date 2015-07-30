@@ -300,12 +300,13 @@ preview_update (Preview *preview)
  *
  *  \return the Type identifier associated with PreviewClass.
  */
-unsigned int
+GedaType
 preview_get_type ()
 {
-  static unsigned int preview_type = 0;
+  static GedaType preview_type = 0;
 
   if (!preview_type) {
+    
     static const GTypeInfo preview_info = {
       sizeof(PreviewClass),
       NULL, /* base_init */

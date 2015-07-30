@@ -804,7 +804,7 @@ geda_bulb_init (GedaBulb *bulb)
  *
  *  \return the GedaType identifier associated with GedaBulb.
  */
-GedaType geda_bulb_get_type ()
+GedaType geda_bulb_get_type (void)
 {
   static GedaType geda_bulb_type = 0;
 

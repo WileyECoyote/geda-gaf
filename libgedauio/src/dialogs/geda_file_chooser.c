@@ -217,7 +217,7 @@ geda_file_chooser_find_entry (GtkWidget *chooser)
 }
 
 static GObject *
-geda_file_chooser_constructor (GedaType               type,
+geda_file_chooser_constructor (GType                  type,
                                unsigned int           n_properties,
                                GObjectConstructParam *properties)
 {

@@ -71,7 +71,7 @@ struct _GedaArc {
 
 BEGIN_DECLS
 
-unsigned int   geda_arc_get_type        (void);
+GedaType       geda_arc_get_type        (void);
 bool           is_a_geda_arc_object     (Arc *object);
 
 Object        *geda_arc_new             (void);

@@ -80,7 +80,7 @@ struct _GedaText {
   unsigned int tail_marker;  /* structure type signature */
 };
 
-unsigned int geda_text_get_type        (void);
+GedaType     geda_text_get_type        (void);
 bool         is_a_geda_text_object     (Text *object);
 
 Object *geda_text_new             (void);

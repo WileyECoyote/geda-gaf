@@ -346,7 +346,7 @@ struct _GschemToplevel {
 
 };
 
-unsigned int    gschem_toplevel_get_type          (void);
+GedaType        gschem_toplevel_get_type          (void);
 
 GschemToplevel *gschem_toplevel_new               ( void );
 

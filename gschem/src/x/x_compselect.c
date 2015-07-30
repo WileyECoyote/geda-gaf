@@ -405,7 +405,7 @@ static GtkWidget *ShowGroupsSwitch;
 static GObjectClass *compselect_parent_class = NULL;
 
 static void compselect_class_init      (CompselectClass *class);
-static GObject *compselect_constructor (unsigned int type,
+static GObject *compselect_constructor (GType    type,
                                         unsigned int n_construct_properties,
                                         GObjectConstructParam *construct_params);
 /*
@@ -2745,9 +2745,9 @@ static GtkWidget *create_behaviors_menu ( )
   return(menu);
 }
 
-unsigned int compselect_get_type ()
+GedaType compselect_get_type ()
 {
-  static unsigned int compselect_type = 0;
+  static GedaType compselect_type = 0;
 
   if (!compselect_type) {
     static const GTypeInfo compselect_info = {
@@ -3238,7 +3238,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
  *  \param [in] construct_params       Inital g_object property values
  */
 static GObject*
-compselect_constructor (GedaType type,
+compselect_constructor (GType type,
                         unsigned int n_construct_properties,
                         GObjectConstructParam *construct_params)
 {
@@ -3413,7 +3413,7 @@ compselect_constructor (GedaType type,
   return object;
 }
 
-unsigned int compselect_behavior_get_type (void)
+GedaType compselect_behavior_get_type (void)
 {
   static unsigned int etype = 0;
 

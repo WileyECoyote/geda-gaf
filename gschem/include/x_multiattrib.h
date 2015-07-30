@@ -71,7 +71,7 @@ struct _Multiattrib {
 };
 
 
-unsigned int multiattrib_get_type (void);
+GedaType multiattrib_get_type (void);
 
 /* CellTextView */
 
@@ -97,7 +97,7 @@ struct _CellTextView {
 };
 
 
-unsigned int celltextview_get_type (void);
+GedaType celltextview_get_type (void);
 
 
 /* CellRendererMultiLineText */
@@ -129,7 +129,7 @@ struct _CellRendererMultiLineText {
   GtkWidget *buffer;
 };
 
-unsigned int cellrenderermultilinetext_get_type (void);
+GedaType cellrenderermultilinetext_get_type (void);
 
 #define CR_SINGLE_LINE GTK_TYPE_CELL_RENDERER_TEXT
 #define CR_MULTI_LINE  TYPE_CELL_RENDERER_MULTI_LINE_TEXT

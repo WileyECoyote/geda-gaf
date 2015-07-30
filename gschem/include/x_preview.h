@@ -44,7 +44,6 @@ struct _Preview {
 
 };
 
-unsigned int preview_get_type (void);
-
+GedaType preview_get_type (void);
 
 #endif /* __X_PREVIEW_H__ */

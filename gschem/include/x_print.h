@@ -48,6 +48,6 @@ struct _PrintDialog
   GedaComboBox   *orientcbox, *typecbox, *papercbox;
 };
 
-unsigned int print_dialog_get_type ();
+GedaType print_dialog_get_type ();
 
 #endif /* !__X_PRINT_H__ */

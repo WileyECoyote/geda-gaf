@@ -77,7 +77,7 @@ struct _EdaRendererPrivate
   EdaPangoRenderer *pr;
   int pc_from_cr;
 
-  unsigned int      flags;
+  GedaType          flags;
   char             *font_name;
   int               override_color;
 
@@ -97,7 +97,7 @@ static inline void
 EDA_RENDERER_SET_FLAG (EdaRenderer *r, int f, bool e) {
   if (e) { r->priv->flags |= f; } else { r->priv->flags &= ~f; }
 }
-static inline unsigned int
+static inline GedaType
 EDA_RENDERER_CAIRO_FLAGS (EdaRenderer *r) {
   return EDA_RENDERER_CHECK_FLAG (r, FLAG_HINTING) ? EDA_CAIRO_ENABLE_HINTS : 0;
 }
@@ -172,7 +172,7 @@ static GObjectClass *eda_renderer_parent_class = NULL;
  *
  *  \return the Type identifier associated with EdaRendererFlags.
  */
-unsigned int
+GedaType
 eda_renderer_flags_get_type ()
 {
   static const GFlagsValue values[] = {
@@ -183,10 +183,13 @@ eda_renderer_flags_get_type ()
     {FLAG_TEXT_ORIGIN,     "text-origin",     _("Text origins")},
     {0, 0, 0},
   };
-  static unsigned int flags_type = 0;
+
+  static GedaType flags_type = 0;
+
   if (flags_type == 0) {
     flags_type = g_flags_register_static ("EdaRendererFlags", values);
   }
+
   return flags_type;
 }
 

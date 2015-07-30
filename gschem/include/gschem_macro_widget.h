@@ -48,7 +48,7 @@ struct _GschemMacroWidget
 };
 
 
-unsigned int         gschem_macro_widget_get_type            (void);
+unsigned int  gschem_macro_widget_get_type            (void);
 
 GtkWidget*    gschem_macro_widget_get_entry           (GtkWidget *widget);
 

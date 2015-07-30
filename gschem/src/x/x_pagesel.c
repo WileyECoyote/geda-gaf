@@ -440,9 +440,9 @@ static void pagesel_finalize(GObject *object)
  *
  *  \return the Type identifier associated with pagesel.
  */
-unsigned int pagesel_get_type()
+GedaType pagesel_get_type()
 {
-  static unsigned int pagesel_type = 0;
+  static GedaType pagesel_type = 0;
 
   if (!pagesel_type) {
     static const GTypeInfo pagesel_info = {

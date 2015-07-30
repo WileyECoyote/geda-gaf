@@ -68,7 +68,7 @@ struct _GedaPath {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-unsigned int geda_path_get_type        (void);
+GedaType     geda_path_get_type        (void);
 bool         is_a_geda_path_object     (Path *object);
 
 Object      *geda_path_new             (void);

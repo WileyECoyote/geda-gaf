@@ -73,8 +73,7 @@ struct _GedaBulbClass
 extern "C" {
 #endif /* __cplusplus */
 
-unsigned
-int        geda_bulb_get_type                         (void) G_GNUC_CONST;
+GedaType   geda_bulb_get_type                         (void) G_GNUC_CONST;
 
 GtkWidget *geda_bulb_new                              (GSList        *group);
 GtkWidget *geda_bulb_new_visible                      (GSList        *group);

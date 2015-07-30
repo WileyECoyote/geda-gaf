@@ -59,7 +59,7 @@ struct _GedaListClass {
   GObjectClass parent;
 };
 
-unsigned int geda_list_get_type (void);
+GedaType  geda_list_get_type (void);
 
 /* It would be nice to add const qualifiers to some of these, but GLib
  * is buggy in this respect, and doesn't have const where necessary. */

@@ -59,7 +59,7 @@ typedef enum {
   COMPSELECT_STYLE_ALL  = 255
 } CompselectStyle;
 
-unsigned int compselect_behavior_get_type (void);
+GedaType compselect_behavior_get_type (void);
 #define COMPSELECT_TYPE_BEHAVIOR  (compselect_behavior_get_type ())
 
 /*
@@ -78,7 +78,7 @@ typedef struct _Compselect      Compselect;
 struct _CompselectClass {
   GschemDialogClass parent_class;
 
-  guint behavior_changed_signal_id;
+  unsigned int behavior_changed_signal_id;
 
   void (* refresh)   (Compselect *compselect);
 
@@ -126,7 +126,7 @@ struct _Compselect {
 
 };
 
-unsigned int compselect_get_type (void);
+GedaType compselect_get_type (void);
 
 /* Response IDs for special dialog buttons */
 typedef enum {

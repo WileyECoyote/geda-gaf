@@ -119,7 +119,7 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
 }
 
 static GObject *
-geda_combo_box_text_constructor (GedaType               type,
+geda_combo_box_text_constructor (GType                  type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {

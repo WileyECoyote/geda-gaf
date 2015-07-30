@@ -84,8 +84,7 @@ struct _GattribDialog {
   GedaToplevel *pr_current;
 };
 
-
-unsigned int gattrib_dialog_get_type (void);
+GedaType   gattrib_dialog_get_type  (void);
 GtkWidget* gattrib_dialog_new_empty (const char            *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,

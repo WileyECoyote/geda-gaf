@@ -50,8 +50,7 @@ struct _GedaSwatchRenderer
   bool enabled;
 };
 
-GType
-geda_swatch_renderer_get_type ();
+GedaType geda_swatch_renderer_get_type ();
 
 GedaSwatchRenderer*
 geda_swatch_renderer_new ();

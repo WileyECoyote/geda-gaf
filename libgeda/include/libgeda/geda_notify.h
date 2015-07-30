@@ -64,7 +64,7 @@ struct _GedaNotifyListClass {
   GObjectClass parent;
 };
 
-unsigned int    geda_notify_list_get_type          (void);
+GedaType  geda_notify_list_get_type                (void);
 
 GedaNotifyList *geda_notify_list_new               ( void );
 
