@@ -48,7 +48,7 @@ struct _EdaPangoRendererPrivate
   bool overbar;
 };
 
-static GObject *eda_pango_renderer_constructor (GedaType type,
+static GObject *eda_pango_renderer_constructor (GType type,
                                                 unsigned int n_construct_properties,
                                                 GObjectConstructParam *construct_params);
 static void eda_pango_renderer_set_property    (GObject *object, unsigned int prop_id,
@@ -87,7 +87,7 @@ static bool eda_pango_attr_overbar_compare         (const PangoAttribute *attr1,
 /* ---------------------------------------- */
 
 static GObject *
-eda_pango_renderer_constructor (GedaType type,
+eda_pango_renderer_constructor (GType type,
                                 unsigned int n_construct_properties,
                                 GObjectConstructParam *construct_params)
 {

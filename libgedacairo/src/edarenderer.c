@@ -106,16 +106,16 @@ EDA_RENDERER_STROKE_WIDTH (EdaRenderer *r,  double line_width) {
   return fmax (line_width, MIN_LINE_WIDTH_THRESHOLD);
 }
 
-static GObject *eda_renderer_constructor (GedaType type,
+static GObject *eda_renderer_constructor (Geda type,
                                           unsigned int n_construct_properties,
                                           GObjectConstructParam *construct_params);
 
-static void eda_renderer_finalize (GObject *object);
-static void eda_renderer_dispose  (GObject *object);
-static void eda_renderer_set_property (GObject *object, unsigned int property_id,
-                                       const GValue *value, GParamSpec *pspec);
-static void eda_renderer_get_property (GObject *object, unsigned int property_id,
-                                       GValue *value, GParamSpec *pspec);
+static void eda_renderer_finalize        (GObject *object);
+static void eda_renderer_dispose         (GObject *object);
+static void eda_renderer_set_property    (GObject *object, unsigned int property_id,
+                                          const GValue *value, GParamSpec *pspec);
+static void eda_renderer_get_property    (GObject *object, unsigned int property_id,
+                                          GValue *value, GParamSpec *pspec);
 static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
                                           PangoContext *new_pc);
 
@@ -191,7 +191,7 @@ eda_renderer_flags_get_type ()
 }
 
 static GObject *
-eda_renderer_constructor (GedaType type,
+eda_renderer_constructor (GType type,
                           unsigned int n_construct_properties,
                           GObjectConstructParam *construct_params) {
   GObject *object;
@@ -1679,10 +1679,10 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 static void
 eda_renderer_class_init(void *g_class, void *class_data)
 {
-  EdaRendererClass *class     = (EdaRendererClass*)g_class;
-  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
-  GParamSpec   *params;
-  GParamFlags   param_flags;
+  EdaRendererClass *class         = (EdaRendererClass*)g_class;
+  GObjectClass     *gobject_class = G_OBJECT_CLASS (class);
+  GParamSpec       *params;
+  GParamFlags       param_flags;
 
   g_type_class_add_private (gobject_class, sizeof (EdaRendererPrivate));
 
