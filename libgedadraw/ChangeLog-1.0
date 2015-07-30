@@ -1,3 +1,8 @@
+2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+     *src/Makefile.am: Add GUILE_CFLAGS to AM_CFLAGS, library does not use Guile
+      but libgeda is included and libgeda.h includes libguile.h.
+
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
      *: Continuing development of new renderer: Fix font hash cache for core fonts.

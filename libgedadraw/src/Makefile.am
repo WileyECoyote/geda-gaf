@@ -15,9 +15,10 @@ LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedadraw\"
 GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-			      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+			      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS) \
+			      $(GUILE_CFLAGS)
 
-AM_LDFLAGS                   = -version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS)     $(X11_LIBS) \
+AM_LDFLAGS                   = -version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS) $(X11_LIBS) \
 			      $(WINDOWS_LIBTOOL_FLAGS)  $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedadraw.la
