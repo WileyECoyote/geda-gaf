@@ -267,6 +267,16 @@ cclosure_marshal_VOID__SCM (GClosure *closure,
   callback (data1, edascm_value_get_scm (param_values + 1), data2);
 }
 
+/*! \brief Retrieve EdascmHookProxy GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdascmHookProxy GedaType identifier. Upon
+ *  first call, this registers the EdascmHookProxy in the Type system.
+ *  The saved value from the first execution is returned on subsequent
+ *  calls.
+ *
+ *  \return the GedaType identifier associated with EdascmHookProxy.
+ */
 GedaType edascm_hook_proxy_get_type (void)
 {
   static GedaType edascm_hook_proxy_type = 0;

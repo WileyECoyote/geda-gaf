@@ -168,6 +168,16 @@ value_lcopy_scm (const GValue *value,
 /* ---------------------------------------------------------------- */
 /* Public functions related to low-level GedaType / GValue support. */
 
+/*! \brief Retrieve edascm scm value type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve edascm scm value type identifier. Upon first
+ *  call, this registers the edascm scm value type in the Type system.
+ *  The saved value from the first execution is returned on subsequent
+ *  calls.
+ *
+ *  \return the GedaType identifier associated with edascm scm values.
+ */
 GedaType
 edascm_scm_get_type (void)
 {
@@ -281,6 +291,16 @@ param_scm_values_cmp (GParamSpec *pspec,
 /* ---------------------------------------------------------------- */
 /* Public functions related to GParamSpec support. */
 
+/*! \brief Retrieve EdascmParamSpecSCM GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve EdascmParamSpecSCM GedaType identifier. Upon
+ *  first call, this registers the EdascmParamSpecSCM in the Type system.
+ *  The saved value from the first execution is returned on subsequent
+ *  calls.
+ *
+ *  \return the GedaType identifier associated with EdascmParamSpecSCM.
+ */
 GedaType
 edascm_param_spec_scm_get_type (void)
 {
