@@ -340,7 +340,6 @@ int u_string_parse_xy(const char *string, int *x, int *y)
   return valid;
 }
 
-char *gh_scm2newstr (SCM str, unsigned int *lenp);
 /*!
  * \brief return c pointer to SCM string.
  * \par Function Description
@@ -350,12 +349,12 @@ char *gh_scm2newstr (SCM str, unsigned int *lenp);
 char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
 {
   SCM s_symbol, s_value;
-  size_t len;
 
   /* Now get string */
   s_symbol = scm_c_lookup(scm_str_name);
-  s_value = scm_variable_ref(s_symbol);
-  return (char*) gh_scm2newstr(s_value, &len);
+  s_value  = scm_variable_ref(s_symbol);
+
+  return scm_to_locale_string(s_value);
 }
 
 void u_string_sort_array( char *strings[], size_t strings_size) {
@@ -482,8 +481,8 @@ int u_string_stristr ( const char *haystack, const char *needle)
  */
 bool u_string_strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */
 {
-  while ((*str1 == *str2) && (*str1)) { str1++; str2++; }
-  return ((*str1 == (unsigned)NULL) && (*str2 == (unsigned)NULL));
+  while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
+  return ((*str1 == '\0') && (*str2 == '\0'));
 }
 
 /*! \brief strstr_rep for c
