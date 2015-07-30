@@ -1,5 +1,14 @@
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Use GType instead of GedaType:
+
+            * include/geda_combobox.h
+            * include/geda_comboboxtext.h
+            * include/geda_label.h
+            * include/geda_menu_button.h
+
+2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * Eliminate macro G_DEFINE_TYPE:
 
             * src/widgets/geda_accel_label.c
