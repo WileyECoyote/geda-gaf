@@ -1,3 +1,13 @@
+2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+     * Add #define WITHOUT_GUILE 1 before including libgeda.h:
+
+            * src/dialogs/geda_file_chooser.c
+            * src/dialogs/geda_image_chooser.c
+            * src/dialogs/geda_input_dialog.c
+            * src/widgets/geda_font_button.c
+            * src/widgets/geda_font_dialog.c
+
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * Use GType instead of GedaType:

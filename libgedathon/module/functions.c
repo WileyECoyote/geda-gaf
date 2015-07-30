@@ -27,6 +27,8 @@
  */
 
 #include <Python.h>
+
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 #define FIRST_PASS_FUNCTIONS(func) static PyObject *do_##func(PyObject *self, PyObject *args, PyObject *kwds)

@@ -36,7 +36,7 @@
 
 #include <gtk/gtk.h>
 
-//#include <geda.h>
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 #include "geda_label.h"

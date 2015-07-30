@@ -37,6 +37,7 @@
 #include <dirent.h>
 #include <errno.h>
 
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 //#include <pygobject.h>

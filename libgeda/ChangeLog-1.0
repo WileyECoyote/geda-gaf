@@ -1,5 +1,10 @@
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+     * include/libgeda/libgeda.h: Add conditional directive to not include
+       libguile.h if WITHOUT_GUILE is defined, else define SCM as void*.
+
+2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_string.c: Update function u_string_scm2c to eliminate
       gh_scm2newstr. Revise function u_string_strequal to check second
       str2 for NULL char.

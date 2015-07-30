@@ -33,7 +33,11 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libguile.h>
+#ifndef WITHOUT_GUILE
+# include <libguile.h>
+#else
+#define SCM void*
+#endif
 
 #ifndef WITHOUT_GDK_PIX_BUFFER
 # include <gdk-pixbuf/gdk-pixbuf.h>

@@ -33,6 +33,7 @@
 
 #include <gtk/gtk.h>
 
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 #include <geda_file_chooser.h>

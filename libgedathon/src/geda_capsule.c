@@ -28,6 +28,8 @@
 
 #include <Python.h>
 #include <structmember.h>
+
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 #include "geda_py_struct.h"

@@ -27,6 +27,7 @@
 #include "config.h"
 #endif
 
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 #include <geda_standard.h>
 

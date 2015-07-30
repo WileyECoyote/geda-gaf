@@ -1,7 +1,13 @@
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
-     *src/Makefile.am: Add GUILE_CFLAGS to AM_CFLAGS, library does not use Guile
-      but libgeda is included and libgeda.h includes libguile.h.
+     * src/Makefile.am: Revert "Add GUILE_CFLAGS to AM_CFLAGS"
+
+     * src/x11/geda_x11.cpp: Add #define WITHOUT_GUILE 1 before including libgeda.h.
+
+2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/Makefile.am: Add GUILE_CFLAGS to AM_CFLAGS, library does not use Guile
+       but libgeda is included and libgeda.h includes libguile.h.
 
 2015-01-04 Wiley E. Hill <wileyhill@gmail.com>
 

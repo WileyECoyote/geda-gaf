@@ -27,6 +27,8 @@
  */
 
 #include <Python.h>
+
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 static PyObject *self;

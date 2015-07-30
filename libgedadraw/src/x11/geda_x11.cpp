@@ -53,6 +53,7 @@
 #undef Complex
 #undef Picture
 
+#define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 
 #include <geda_draw.h>
