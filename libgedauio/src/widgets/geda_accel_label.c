@@ -71,7 +71,7 @@ enum {
   PROP_ACCEL_STRING,
 };
 
-G_DEFINE_TYPE (GedaAccelLabel, geda_accel_label, GTK_TYPE_ACCEL_LABEL)
+static GObjectClass *geda_accel_label_parent_class = NULL;
 
 bool
 geda_accel_label_refetch (GedaAccelLabel *accel_label)
@@ -163,12 +163,6 @@ geda_accel_label_get_property (GObject      *object,
     }
 }
 
-static void
-geda_accel_label_init (GedaAccelLabel *accel_label)
-{
-  accel_label->accel_padding = 3;
-  accel_label->accel_string = NULL;
-}
 
 static void
 geda_accel_label_finalize (GObject *object)
@@ -344,16 +338,21 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
   g_object_notify (G_OBJECT (accel_label), "accel-string");
 }
 
-/*! \brief GedaAccelLabel Class Initializer
+/*! \brief GedaAccelLabel Type Class Initializer
  *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaAccelLabelClass Object
+ *  \param [in]  g_class     GedaAccelLabel class we are initializing
+ *  \param [in]  class_data  GedaAccelLabel structure associated with the class
  */
 static void
-geda_accel_label_class_init (GedaAccelLabelClass *class)
+geda_accel_label_class_init(void *g_class, void *class_data)
 {
+  GedaAccelLabelClass *class   = (GedaAccelLabelClass*)g_class;
+
   GObjectClass *gobject_class  = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
@@ -363,6 +362,8 @@ geda_accel_label_class_init (GedaAccelLabelClass *class)
 
   widget_class->size_request   = geda_accel_label_size_request;
   widget_class->expose_event   = geda_accel_label_expose_event;
+
+  geda_accel_label_parent_class = g_type_class_peek_parent (class);
 
   g_object_class_install_property (gobject_class,
                                    PROP_ACCEL_CLOSURE,
@@ -386,4 +387,54 @@ geda_accel_label_class_init (GedaAccelLabelClass *class)
                                                         NULL,
                                                         G_PARAM_READWRITE));
 }
+
+/*! \brief Type instance initialiser for GedaAccelLabel
+ *
+ *  \par Function Description
+ *  Type instance initialiser for GedaAccelLabel, initializes a new empty
+ *  GedaAccelLabel object.
+ *
+ *  \param [in] instance The GedaAccelLabel structure being initialized,
+ *  \param [in] g_class  The GedaAccelLabel class we are initializing.
+ */
+static void geda_accel_label_init(GTypeInstance *instance, void *g_class)
+{
+  GedaAccelLabel *accel_label = (GedaAccelLabel*)instance;
+
+  accel_label->accel_padding = 3;
+  accel_label->accel_string = NULL;
+}
+
+/*! \brief Function to retrieve GedaAccelLabel GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve GedaAccelLabel's Type identifier. On first call, the
+ *  function registers the GedaAccelLabel in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with GedaAccelLabel.
+ */
+GedaType geda_accel_label_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (GedaAccelLabelClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_accel_label_class_init,     // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(GedaAccelLabel),
+      0,                               // n_preallocs
+      geda_accel_label_init            // instance_init
+    };
+    type = g_type_register_static (GTK_TYPE_ACCEL_LABEL,
+                                   "GedaAccelLabel", &info, 0);
+  }
+  return type;
+}
+
 /** @} endgroup GedaAccelLabel */

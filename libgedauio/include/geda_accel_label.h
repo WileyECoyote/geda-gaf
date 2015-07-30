@@ -71,16 +71,15 @@ struct _GedaAccelLabelClass
   GtkAccelLabelClass  parent_class;
 };
 
-
-GedaType        geda_accel_label_get_type          (void) G_GNUC_CONST;
-GtkWidget*    geda_accel_label_new               (const char      *string);
+GedaType      geda_accel_label_get_type          (void) G_GNUC_CONST;
+GtkWidget*    geda_accel_label_new               (const char     *string);
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
 void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,
-                                                  const char      *accel_string);
+                                                  const char     *accel_string);
 bool          geda_accel_label_refetch           (GedaAccelLabel *accel_label);
 
 /* private */
-char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *klass,
+char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *class,
                                                      unsigned int         accelerator_key,
                                                      GdkModifierType      accelerator_mods);
 

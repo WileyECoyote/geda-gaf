@@ -135,6 +135,7 @@ enum {
  *                | version. Simplified conditionals in geda_handle_box_button
  *                | _press, which checked for GDK_2BUTTON_PRESS. Converted
  *                | comments to Doxygen, (was latex?)
+ * WEH | 07/29/15 | Remove macro G_DEFINE_TYPE (to fix x64 checks)
 */
 static void geda_handle_box_set_property  (GObject        *object,
                                            unsigned int    param_id,
@@ -176,28 +177,35 @@ static void geda_handle_box_end_drag      (GedaHandleBox  *handlebox,
 
 static unsigned int handle_box_signals[SIGNAL_LAST] = { 0 };
 
-G_DEFINE_TYPE (GedaHandleBox, geda_handle_box, GTK_TYPE_BIN)
+static GObjectClass *geda_handle_box_parent_class = NULL;
 
-/*! \brief GedaHandleBox Class Initializer
+/*! \brief GedaHandleBoxClass Type Class Initializer
  *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaHandleBoxClass Object
+ *  \param [in]  g_class     GedaHandleBoxClass class being initializing
+ *  \param [in]  class_data  GedaHandleBoxClass structure associated with the class
  */
 static void
-geda_handle_box_class_init (GedaHandleBoxClass *class)
+geda_handle_box_class_init(void *g_class, void *class_data)
 {
   GObjectClass *gobject_class;
   GtkWidgetClass *widget_class;
   GtkContainerClass *container_class;
+  GedaHandleBoxClass *class;
 
+  class           = (GedaHandleBoxClass*)g_class;
   gobject_class   = (GObjectClass *) class;
   widget_class    = (GtkWidgetClass *) class;
   container_class = (GtkContainerClass *) class;
 
-  gobject_class->set_property = geda_handle_box_set_property;
-  gobject_class->get_property = geda_handle_box_get_property;
+  gobject_class->set_property  = geda_handle_box_set_property;
+  gobject_class->get_property  = geda_handle_box_get_property;
+
+  geda_handle_box_parent_class = g_type_class_peek_parent(class);
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHADOW,
@@ -300,9 +308,19 @@ geda_handle_box_get_private (GedaHandleBox *handlebox)
   return G_TYPE_INSTANCE_GET_PRIVATE (handlebox, GEDA_TYPE_HANDLE_BOX, GedaHandleBoxPrivate);
 }
 
-static void
-geda_handle_box_init (GedaHandleBox *handle_box)
+/*! \brief Type instance initializer for GedaHandleBox
+ *
+ *  \par Function Description
+ *  Type instance initialiser for GedaHandleBox, initializes a new empty
+ *  GedaHandleBox object.
+ *
+ *  \param [in] instance The GedaHandleBox structure being initialized,
+ *  \param [in] g_class  The GedaHandleBox class we are initializing.
+ */
+static void geda_handle_box_init(GTypeInstance *instance, void *g_class)
 {
+  GedaHandleBox *handle_box = (GedaHandleBox*)instance;
+
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
 
   handle_box->bin_window = NULL;
@@ -315,6 +333,38 @@ geda_handle_box_init (GedaHandleBox *handle_box)
   handle_box->shrink_on_detach = TRUE;
   handle_box->snap_edge = -1;
   handle_box->dock_orientation = GTK_ORIENTATION_HORIZONTAL;
+}
+
+/*! \brief Function to retrieve GedaHandleBox GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve GedaHandleBox's Type identifier. On first call, the
+ *  function registers the GedaHandleBox in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with GedaHandleBox.
+ */
+GedaType geda_handle_box_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (GedaHandleBoxClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_handle_box_class_init,      // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(GedaHandleBox),
+      0,                               // n_preallocs
+      geda_handle_box_init             // instance_init
+    };
+    type = g_type_register_static (GTK_TYPE_BIN,
+                                   "GedaHandleBox", &info, 0);
+  }
+  return type;
 }
 
 static void

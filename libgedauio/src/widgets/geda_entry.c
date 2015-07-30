@@ -107,9 +107,9 @@ enum {
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-static void    geda_entry_class_init         (GedaEntryClass   *class);
-static void    geda_entry_init               (GedaEntry        *entry);
-static void    geda_entry_finalize           (GObject          *object);
+//static void    geda_entry_class_init         (GedaEntryClass   *class);
+//static void    geda_entry_init               (GedaEntry        *entry);
+//static void    geda_entry_finalize           (GObject          *object);
 static void    geda_entry_real_activate      (GedaEntry        *entry);
 static bool    geda_entry_key_press          (GedaEntry        *widget,
                                               GdkEventKey      *event,
@@ -150,9 +150,12 @@ static bool    have_auto_complete;
 static bool    set_auto_complete;
 static bool    do_auto_complete;
 
-static GtkEntryClass *parent_class = NULL;
-G_DEFINE_TYPE (GedaEntry, geda_entry, GTK_TYPE_ENTRY);
-void **entry_parent_class;
+//static GtkEntryClass *parent_class = NULL;
+
+//G_DEFINE_TYPE (GedaEntry, geda_entry, GTK_TYPE_ENTRY);
+//void **entry_parent_class;
+
+static GObjectClass *geda_entry_parent_class = NULL;
 
 typedef struct
 {
@@ -596,26 +599,61 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
-/*! \brief GedaEntry Class Initializer
+static void geda_entry_finalize (GObject *object)
+{
+  GedaEntry *entry;
+
+  entry = GEDA_ENTRY (object);
+
+  if (entry->priv->command_completion) {
+    geda_completion_free (entry->priv->command_completion);
+  }
+
+  /* Save history to caller's glist*/
+  if (entry->have_history)
+    *history_list_arg  = history_list;
+
+  G_OBJECT_CLASS (geda_entry_parent_class)->finalize (object);
+
+  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
+    pango_attr_list_unref (entry->priv->attrs);
+
+  if ( entry->priv->font_map && G_IS_OBJECT(entry->priv->font_map) ) {
+    g_object_unref (entry->priv->font_map);
+    entry->priv->font_map = NULL;
+  }
+
+  if (entry->priv) {
+    g_free (entry->priv);
+  }
+}
+
+/*! \brief GedaEntry Type Class Initializer
  *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaEntryClass Object
+ *  \param [in]  g_class     GedaEntry class we are initializing
+ *  \param [in]  class_data  GedaEntry structure associated with the class
  */
-static void geda_entry_class_init (GedaEntryClass *class)
+static void
+geda_entry_class_init(void *g_class, void *class_data)
 {
+  GedaEntryClass *class;
   GParamSpec     *params;
-
   GObjectClass   *gobject_class;
   GtkWidgetClass *widget_class;
   GtkBindingSet  *binding_set;
 
+  class         = (GedaEntryClass*)g_class;
   gobject_class = G_OBJECT_CLASS (class);
   widget_class  = GTK_WIDGET_CLASS (class);
 
-  parent_class       = g_type_class_peek_parent (class);
-  entry_parent_class = g_type_class_peek_parent (g_type_class_peek (GTK_TYPE_ENTRY));
+  //parent_class                = g_type_class_peek_parent (class);
+  //geda_entry_parent_class     = g_type_class_peek_parent (g_type_class_peek (GTK_TYPE_ENTRY));
+  geda_entry_parent_class     = g_type_class_peek_parent (class);
 
   gobject_class->finalize     = geda_entry_finalize;
   gobject_class->set_property = geda_entry_set_property;
@@ -748,22 +786,35 @@ static void geda_entry_class_init (GedaEntryClass *class)
 #endif
 }
 
-static void geda_entry_init (GedaEntry *entry)
+/*! \brief Type instance initialiser for GedaEntry
+ *
+ *  \par Function Description
+ *  Type instance initialiser for GedaEntry, initializes a new empty
+ *  GedaEntry object.
+ *
+ *  \param [in] instance The GedaEntry structure being initialized,
+ *  \param [in] g_class  The GedaEntry class we are initializing.
+ */
+static void geda_entry_init(GTypeInstance *instance, void *g_class)
 {
-  entry->priv = g_new0 (GedaEntryPriv, 1);
+  GedaEntry *entry      = (GedaEntry*)instance;
+  entry->priv           = g_new0 (GedaEntryPriv, 1);
 
   entry->priv->font_map = pango_cairo_font_map_get_default();
 
   g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
 
-  entry->have_history = have_history;
+  entry->have_history   = have_history;
 
-  if(have_history) {
+  if (have_history) {
+
     g_signal_connect     (G_OBJECT (entry), "process-entry",   G_CALLBACK (geda_entry_activate), NULL);
+
     if(history_list_arg) {
-      history_list = *history_list_arg;
+
+      history_list         = *history_list_arg;
       entry->history_index = g_list_length (history_list);
-      entry->max_history = MAX_ENTRY_HISTORY;
+      entry->max_history   = MAX_ENTRY_HISTORY;
     }
     else {
       entry->history_index = 0;
@@ -775,7 +826,8 @@ static void geda_entry_init (GedaEntry *entry)
   g_signal_connect       (G_OBJECT (entry), "insert_text",     G_CALLBACK (geda_entry_validate_input), NULL);
 
   /* Initialize & populate a GCompletion for commands */
-  if(old_complete_list) {
+  if (old_complete_list) {
+
     complete_list = *old_complete_list;
     entry->priv->command_completion = geda_completion_new (NULL);
     geda_completion_add_items (entry->priv->command_completion, complete_list);
@@ -798,35 +850,39 @@ static void geda_entry_init (GedaEntry *entry)
   fprintf(stderr, "%s exit: history=%d, completion=%d\n",
           __func__, entry->have_history, have_auto_complete );
 #endif
+
 }
 
-static void geda_entry_finalize (GObject *object)
+/*! \brief Function to retrieve GedaEntry GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve GedaEntry's Type identifier. On first call, the
+ *  function registers the GedaEntry in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with GedaEntry.
+ */
+GedaType geda_entry_get_type(void)
 {
-  GedaEntry *entry;
+  static GedaType type = 0;
 
-  entry = GEDA_ENTRY (object);
+  if (type == 0) {
 
-  if (entry->priv->command_completion) {
-    geda_completion_free (entry->priv->command_completion);
+    static const GTypeInfo info = {
+      sizeof (GedaEntryClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_entry_class_init,           // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(GedaEntry),
+      0,                               // n_preallocs
+      geda_entry_init                  // instance_init
+    };
+    type = g_type_register_static (GTK_TYPE_ENTRY,
+                                   "GedaEntry", &info, 0);
   }
-
-  /* Save history to caller's glist*/
-  if (entry->have_history)
-    *history_list_arg  = history_list;
-
-  G_OBJECT_CLASS (parent_class)->finalize (object);
-
-  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
-    pango_attr_list_unref (entry->priv->attrs);
-
-  if ( entry->priv->font_map && G_IS_OBJECT(entry->priv->font_map) ) {
-    g_object_unref (entry->priv->font_map);
-    entry->priv->font_map = NULL;
-  }
-
-  if (entry->priv) {
-    g_free (entry->priv);
-  }
+  return type;
 }
 
 /*! \brief Entry Stop Activate Default signal Responder
@@ -846,15 +902,19 @@ geda_entry_real_activate (GedaEntry *entry)
   GtkWidget *default_widget, *focus_widget;
   GtkWidget *toplevel;
   GtkWidget *widget;
+
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "<geda_entry_real_activate> in over-ride: got <activate> signal\n");
 #endif
+
   widget = GTK_WIDGET (entry);
 
   if (entry->activates_default) {
+
     toplevel = gtk_widget_get_toplevel (widget);
-    if (GTK_IS_WINDOW (toplevel))
-    {
+
+    if (GTK_IS_WINDOW (toplevel)) {
+
       window = GTK_WINDOW (toplevel);
 
       if (window) {
@@ -913,7 +973,8 @@ geda_entry_grab_focus (GtkWidget *widget)
  /* GtkEntry's grab_focus selects the contents and therefore
   * claims PRIMARY. So we bypass it; see bug #345356 and bug #347067.
   */
-  GTK_WIDGET_CLASS (entry_parent_class)->grab_focus (widget);
+  //GTK_WIDGET_CLASS (entry_parent_class)->grab_focus (widget);
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
 static void geda_entry_realize (GtkWidget *widget)
 {
@@ -922,7 +983,8 @@ static void geda_entry_realize (GtkWidget *widget)
 
   GedaEntry *entry = GEDA_ENTRY (widget);
 
-  GTK_WIDGET_CLASS (parent_class)->realize (widget);
+  //GTK_WIDGET_CLASS (parent_class)->realize (widget);
+  GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
 
   if (gtk_widget_has_screen(widget)) {
     layout = gtk_entry_get_layout ( (GtkEntry*) widget);
@@ -950,10 +1012,14 @@ geda_entry_activate (GedaEntry *entry, void    *data)
   }
 
   if (history_list) {                                         /* if not a new buffer */
+
     list_length = g_list_length (history_list);   /* hit enter so end is now current */
     iter = g_list_last(history_list);                          /* get the last entry */
+
     if (g_ascii_strcasecmp (iter->data, entry_text) != 0) {   /* same as last entry? */
+
       ++list_length;                                /* if not then increment counter */
+
       if (list_length > entry->max_history) {                  /* at history limit?  */
         iter = g_list_first(history_list);                          /* get the start */
         g_free(iter->data);                                 /* first the oldest data */
@@ -995,18 +1061,22 @@ static void
 geda_entry_history_down (GedaEntry *entry)
 {
   char *new_line;
-  int list_length;
+  int   list_length;
 
   GtkEntry *gtk_entry = GTK_ENTRY (entry);
 
   if (entry->history_index < (entry->max_history - 1)) {
+
     list_length = g_list_length (history_list);
+
     if (entry->history_index < list_length) {
+
       if (g_list_nth_data(history_list, entry->history_index + 1)) {
+
         ++entry->history_index;
-          new_line = g_list_nth_data(history_list, entry->history_index);
-          gtk_entry_set_text (gtk_entry, new_line);
-          gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
+        new_line = g_list_nth_data(history_list, entry->history_index);
+        gtk_entry_set_text (gtk_entry, new_line);
+        gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
       }
       else { /* There is no more data so set blank line */
         gtk_entry_set_text (gtk_entry, "");

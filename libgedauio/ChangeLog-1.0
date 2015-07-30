@@ -1,3 +1,13 @@
+2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Eliminate macro G_DEFINE_TYPE:
+
+            * src/widgets/geda_accel_label.c
+            * src/widgets/geda_entry.c
+            * src/widgets/geda_font_button.c
+            * src/widgets/geda_font_dialog.c
+            * src/widgets/geda_handlebox.c
+
 2014-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * Enhance and Expand API

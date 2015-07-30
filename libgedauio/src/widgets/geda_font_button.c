@@ -119,10 +119,6 @@ struct _GedaFontButtonPrivate
 
 /* Prototypes */
 
-static void geda_font_button_class_init        (GedaFontButtonClass *class);
-
-static void geda_font_button_finalize          (GObject            *object);
-
 static void geda_font_button_get_property      (GObject            *object,
                                                   unsigned int        param_id,
                                                   GValue             *value,
@@ -148,7 +144,7 @@ static void geda_font_button_label_set_font        (GedaFontButton  *gfs);
 
 static unsigned int font_button_signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (GedaFontButton, geda_font_button, GTK_TYPE_BUTTON)
+static GObjectClass *geda_font_button_parent_class = NULL;
 
 static void
 clear_font_data (GedaFontButton *font_button)
@@ -588,29 +584,6 @@ geda_font_button_get_property (GObject *object, unsigned int property,
     }
 }
 
-static void
-geda_font_button_finalize (GObject *object)
-{
-  GedaFontButton *font_button;
-  font_button = GEDA_FONT_BUTTON (object);
-
-  if (font_button->priv->font_dialog != NULL)
-    gtk_widget_destroy (font_button->priv->font_dialog);
-
-  font_button->priv->font_dialog = NULL;
-
-  g_free (font_button->title);
-  font_button->title = NULL;
-
-  g_free(font_button->priv->preview_text);
-  font_button->priv->preview_text = NULL;
-
-  clear_font_data (font_button);
-
-  G_OBJECT_CLASS (geda_font_button_parent_class)->finalize (object);
-
-}
-
 /* Dialog Callback functions */
 static void
 dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
@@ -714,16 +687,43 @@ geda_font_button_clicked (GtkButton *button)
   gtk_window_present (GTK_WINDOW (priv->font_dialog));
 }
 
-/*! \brief GedaFontButton Class Initializer
+static void
+geda_font_button_finalize (GObject *object)
+{
+  GedaFontButton *font_button;
+  font_button = GEDA_FONT_BUTTON (object);
+
+  if (font_button->priv->font_dialog != NULL)
+    gtk_widget_destroy (font_button->priv->font_dialog);
+
+  font_button->priv->font_dialog = NULL;
+
+  g_free (font_button->title);
+  font_button->title = NULL;
+
+  g_free(font_button->priv->preview_text);
+  font_button->priv->preview_text = NULL;
+
+  clear_font_data (font_button);
+
+  G_OBJECT_CLASS (geda_font_button_parent_class)->finalize (object);
+
+}
+
+/*! \brief GedaFontButton Type Class Initializer
  *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaFontButtonClass Object
+ *  \param [in]  g_class     GedaFontButton class being initializing
+ *  \param [in]  class_data  GedaFontButton structure associated with the class
  */
 static void
-geda_font_button_class_init (GedaFontButtonClass *class)
+geda_font_button_class_init(void *g_class, void *class_data)
 {
+  GedaFontButtonClass *class  = (GedaFontButtonClass*)g_class;
   GObjectClass   *gobject_class;
   GtkButtonClass *button_class;
   GParamSpec     *params;
@@ -740,6 +740,8 @@ geda_font_button_class_init (GedaFontButtonClass *class)
 
   class->font_set = NULL;
   class->size_set = NULL;
+
+  geda_font_button_parent_class = g_type_class_peek_parent(class);
 
   /*! property GedaFontButton::title:
    *  \par The title of the font selection dialog.
@@ -857,9 +859,19 @@ geda_font_button_class_init (GedaFontButtonClass *class)
   g_type_class_add_private (gobject_class, sizeof (GedaFontButtonPrivate));
 }
 
-static void
-geda_font_button_init (GedaFontButton *font_button)
+/*! \brief Type instance initialiser for GedaFontButton
+ *
+ *  \par Function Description
+ *  Type instance initialiser for GedaFontButton, initializes a new empty
+ *  GedaFontButton object.
+ *
+ *  \param [in] instance The GedaFontButton structure being initialized,
+ *  \param [in] g_class  The GedaFontButton class we are initializing.
+ */
+static void geda_font_button_init(GTypeInstance *instance, void *g_class)
 {
+  GedaFontButton *font_button = (GedaFontButton*)instance;
+
   font_button->priv = GEDA_FONT_BUTTON_GET_PRIVATE(font_button);
 
   GtkSettings *settings;
@@ -907,6 +919,38 @@ geda_font_button_init (GedaFontButton *font_button)
     atk_object_set_description(obj,_(fontbutton_tip));
   }
 
+}
+
+/*! \brief Function to retrieve GedaFontButton GedaType identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve GedaFontButton's Type identifier. On first call, the
+ *  function registers the GedaFontButton in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
+ *
+ *  \return GedaType identifier associated with GedaFontButton.
+ */
+GedaType geda_font_button_get_type(void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+
+    static const GTypeInfo info = {
+      sizeof (GedaFontButtonClass),
+      NULL,                            // base_init
+      NULL,                            // base_finalize
+      geda_font_button_class_init,     // class_init
+      NULL,                            // class_finalize
+      NULL,                            // class_data
+      sizeof(GedaFontButton),
+      0,                               // n_preallocs
+      geda_font_button_init            // instance_init
+    };
+    type = g_type_register_static (GTK_TYPE_BUTTON,
+                                   "GedaFontButton", &info, 0);
+  }
+  return type;
 }
 
 /*! \brief Create a New GedaFontButton
