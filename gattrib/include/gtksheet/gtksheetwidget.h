@@ -92,7 +92,6 @@ typedef enum
 #define GTK_SHEET_JUSTIFY_ENTRY(sheet)   gtk_sheet_justify_entry(sheet)
 
 
-
 typedef struct _GtkSheet GtkSheet;
 typedef struct _GtkSheetClass GtkSheetClass;
 typedef struct _GtkSheetChild GtkSheetChild;
@@ -475,10 +474,10 @@ struct _GtkSheetClass
 
 };
 
-unsigned int gtk_sheet_get_type (void);
-unsigned int gtk_sheet_range_get_type (void);
-unsigned int gtk_sheet_cell_border_get_type (void);
-unsigned int gtk_sheet_cell_attr_get_type (void);
+GType gtk_sheet_get_type (void);
+GType gtk_sheet_range_get_type (void);
+GType gtk_sheet_cell_border_get_type (void);
+GType gtk_sheet_cell_attr_get_type (void);
 
 /* create a new sheet */
 GtkWidget *
@@ -529,10 +528,10 @@ int gtk_sheet_get_state 		(GtkSheet *sheet);
 
 /* Returns sheet's ranges
  * Added by Murray Cumming */
-guint
+unsigned int
 gtk_sheet_get_columns_count 		(GtkSheet *sheet);
 
-guint
+unsigned int
 gtk_sheet_get_rows_count 		(GtkSheet *sheet);
 
 void
