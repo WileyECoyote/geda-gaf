@@ -33,6 +33,7 @@ AC_DEFUN([AX_GIT_REPO],
   AC_REQUIRE([AX_PROG_GIT])dnl
 
   HAVE_GIT_REPO=no
+
   if test "X$GIT" != "Xno"; then
     AC_MSG_CHECKING([if the source directory is a git repository])
     if (cd $srcdir && $GIT rev-parse --git-dir > /dev/null 2>&1); then

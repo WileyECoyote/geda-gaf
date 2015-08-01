@@ -119,7 +119,6 @@ install-data-local:
 	$(install_icons_exec) -i $(icons)
 	$(install_theme_icons_exec) -i $(theme_icons)
 
-
 install-data-hook:
 if ENABLE_UPDATE_XDG_DATABASE
 	$(UPDATE_DESKTOP_DATABASE) "$(DESTDIR)$(desktopdir)"

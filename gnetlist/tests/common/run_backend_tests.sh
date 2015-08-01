@@ -36,6 +36,7 @@ $0 --regen new_test spice-sdb
 
 EOF
 }
+
 debug=no
 while test -n "$1"
 do

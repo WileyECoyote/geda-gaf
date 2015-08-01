@@ -1,5 +1,7 @@
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * General Improvement: Language Translation
+
     * src/iface/i_command.c: Revise messages in do_show_faq, do_show_geda,
       do_show_wiki and warp_cursor to maybe be less colloquial, (so as to be
       more translatable). Fix parenthesis in message in warp_cursor.
@@ -12,6 +14,8 @@
       colloquial.
 
     * src/iface/i_zoom_world.c: Remove extra space in message.
+
+    * Makefile.am: Move PO after src in SUBDIRS list
 
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 

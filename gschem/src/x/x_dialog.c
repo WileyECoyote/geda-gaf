@@ -389,7 +389,9 @@ static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data
 {
    x_show_uri(link);
 }
+
 #include <gnu/libc-version.h>
+
 /*! \brief Create the about dialog and show it
  *  \par Function Description
  *  This function creates and presents the about dialog.
