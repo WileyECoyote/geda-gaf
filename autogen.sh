@@ -25,7 +25,7 @@ ac_script=configure.ac
 am_version=1.9.6
 aclocal_flags="$ACLOCAL_FLAGS -I m4"
 tooldir=build-tools
-podirs="libgeda/po libgedauio/po gaf/po gattrib/po gnetlist/po gschem/po gaf/po  gsymcheck/po"
+podirs="libgeda/po libgedauio/po gaf/po gattrib/po gnetlist/po gschem/po gaf/po gsymcheck/po"
 
 srcdir=`dirname $0`
 if test "x$srcdir" = x ; then srcdir=.; fi

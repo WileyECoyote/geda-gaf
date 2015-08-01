@@ -1,5 +1,5 @@
-SUBDIRS = po bitmap data docs examples include etc scheme scripts \
-	  src tests
+SUBDIRS = bitmap data docs examples include etc scheme scripts \
+	  src po tests
 
 EXTRA_DIST = BUGS ChangeLog ChangeLog-1.0 icon-theme-installer
 
