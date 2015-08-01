@@ -48,6 +48,14 @@
 # define END_DECLS
 #endif
 
+/*! \def GCC_DIAGNOSTIC_AWARE
+ *  \brief Used to suppress some warnings in some header and implementation files.
+ *  \par
+ *   Some platforms, like CentOS and OpenBSD, use old compilers that do not
+ *   understand -Wno-unknown-pragma.
+ */
+#define GCC_DIAGNOSTIC_AWARE ((__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 7)))
+
 #define GLIST_PREVIOUS(lst) ((lst) ? (((GList *)(lst))->prev) : NULL)
 #define GLIST_NEXT(lst) ((lst) ? (((GList *)(lst))->next) : NULL)
 
@@ -71,4 +79,5 @@
 #define BUG_ITRACE(mesg, val) fprintf (stderr, "File %s, <%s> at line %d: %s=%d\n", \
                                        __FILE__, __func__, __LINE__, mesg, val); \
                                        u_program_backtrace();
+
 /** @} endgroup geda-global-macros */

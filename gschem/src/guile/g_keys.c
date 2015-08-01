@@ -371,6 +371,12 @@ void g_keys_reset (GschemToplevel *w_current)
   g_scm_eval_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
 }
+
+#if GCC_DIAGNOSTIC_AWARE
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 /*! \brief Exports the keymap in scheme to a GLib GArray.
  *  \par Function Description
  *  This function converts the list of key sequence/action pairs
@@ -414,6 +420,11 @@ GArray* g_keys_dump_keymap (void)
 
   return ret;
 }
+
+#if GCC_DIAGNOSTIC_AWARE
+#pragma GCC diagnostic pop
+#endif
+
 /*
  * int s_g_add_c_string_keys(char* keys, char* func) {
  *

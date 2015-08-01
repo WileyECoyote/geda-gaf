@@ -378,11 +378,10 @@ static int o_extend_get_closest_end(Object *projectile, Object *boundary)
 
 /* Discriminating Resolvers, must be passed a point for Determination */
 
-#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
-#endif
-
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 /*! \brief Determine if an Arc boundary can bound a given Projectile
  *  \par Function Description
@@ -1073,11 +1072,10 @@ static bool o_extend_can_box_bound(Object  *boundary,
   return answer;
 }
 
-#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
-#endif
-
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 /*! \brief Determine if a Path boundary can bound a given Projectile
  *  \par Function Description
@@ -1165,7 +1163,7 @@ static bool o_extend_can_path_bound(Object *boundary,
   return answer;
 }
 
-#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic pop
 #endif
 

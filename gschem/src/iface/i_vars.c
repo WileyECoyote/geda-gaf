@@ -208,7 +208,7 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
   GError   *err = NULL;
   GdkColor *color;
   int      *array;
-  unsigned int ridiculous = 4;
+  size_t    ridiculous = 4;
 
   array = eda_config_get_int_list (cfg, group, key, &ridiculous, &err);
   if (err != NULL) {

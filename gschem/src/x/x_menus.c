@@ -1927,9 +1927,9 @@ void x_menu_recent_files_load()
          return;
    }
 
-   unsigned int len;
-   char **list = g_key_file_get_string_list(kf, "Recent files",
-         "Files", &len, NULL);
+   size_t len;
+   char **list = g_key_file_get_string_list(kf, "Recent files", "Files",
+                                            &len, NULL);
 
    if(list == NULL) {
       /* error reading key file, don't bother to correct;

@@ -1,3 +1,7 @@
+2015-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_macros.h: Add define GCC_DIAGNOSTIC_AWARE
+
 2015-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * build-tools/.gitignore: Remove "missing" from list of ignored files.

@@ -72,6 +72,9 @@
  * ---------------|--------------------------------------------------
  * WEH | 03/13/15 | Add spinner for text marker threshold as a double.
  *                | Annotated notes to instructions for clarification.
+ *
+ * ---------------|--------------------------------------------------
+ * WEH | 08/01/15 | Remove include <guile/gh.h>, (<ref> libgeda::u_string.c)
  */
 
 /*!
@@ -145,8 +148,6 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-
-#include <guile/gh.h>
 
 #include "gschem.h"
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
