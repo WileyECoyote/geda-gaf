@@ -713,7 +713,6 @@ void          text_size_dialog              (GschemToplevel *w_current);
 void          x_dialog_edit_arc_angle       (GschemToplevel *w_current, Object *arc_object);
 void          x_dialog_edit_fill_type       (GschemToplevel *w_current);
 void          x_dialog_edit_line_type       (GschemToplevel *w_current);
-void          x_dialog_edit_slot            (GschemToplevel *w_current, const char *string);
 void          x_dialog_find_text            (GschemToplevel *w_current);
 void          x_dialog_hide_text            (GschemToplevel *w_current);
 void          x_dialog_show_text            (GschemToplevel *w_current);
@@ -750,7 +749,7 @@ int           x_draw_set_text_bounds        (Object *object);
 void          x_draw_initialize             (GschemToplevel *w_current);
 void          x_draw_shutdown               (void *user_data);
 
-/* x_attrib.c */
+/* x_edit_attrib.c */
 int           option_menu_get_history       (GtkOptionMenu *option_menu);
 /*    attrib_edit_dialog_ok                 (GtkWidget *w, GschemToplevel *w_current);*/
 /*    attrib_edit_dialog                    (GschemToplevel *w_current, Object *attr_obj, int flag); */
@@ -760,7 +759,7 @@ void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *
 /* x_array.c */
 void        x_dialog_array_edit             (GschemToplevel *w_current);
 
-/* x_edit_color.c */
+/* x_edit_array.c */
 void        x_dialog_edit_color             (GschemToplevel *w_current);
 
 /* x_edit_pin.c */
@@ -768,6 +767,9 @@ void        x_dialog_edit_pin_type          (GschemToplevel *w_current);
 
 /* x_edit_property.c */
 void        x_dialog_edit_properties        (GschemToplevel *w_current, Object *o_current);
+
+/* x_edit_slot.c */
+void        x_dialog_edit_slot              (GschemToplevel *w_current, const char *string);
 
 /* x_edit_text.c */
 void        x_dialog_edit_text              (GschemToplevel *w_current, Object *o_current);

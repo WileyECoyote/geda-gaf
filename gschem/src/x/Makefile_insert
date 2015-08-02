@@ -17,6 +17,7 @@ gschem_SOURCES += \
 		x/x_edit_color.c \
 		x/x_edit_pin.c \
 		x/x_edit_cprop.c \
+		x/x_edit_slot.c \
 		x/x_edit_text.c \
 		x/x_event.c \
 		x/x_fileselect.c \

@@ -1,3 +1,10 @@
+2015-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Source Organization.
+
+    * src/x/x_edit_slot.c: Relocate code for Slot Dialog form x_dialog.c to
+      new file.
+
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * General Improvement: Language Translation
