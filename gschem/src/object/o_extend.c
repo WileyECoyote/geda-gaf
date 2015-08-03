@@ -613,7 +613,7 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   return answer;
 }
 
-#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic pop
 #endif
 

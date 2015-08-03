@@ -48,13 +48,17 @@
 # define END_DECLS
 #endif
 
+#ifndef GCC_VERSION
+#define GCC_VERSION (__GNUC__ * 10000  + __GNUC_MINOR__ * 100  + __GNUC_PATCHLEVEL__)
+#endif /* GCC_VERSION */
+
 /*! \def GCC_DIAGNOSTIC_AWARE
  *  \brief Used to suppress some warnings in some header and implementation files.
  *  \par
  *   Some platforms, like CentOS and OpenBSD, use old compilers that do not
  *   understand -Wno-unknown-pragma.
  */
-#define GCC_DIAGNOSTIC_AWARE ((__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 7)))
+#define GCC_DIAGNOSTIC_AWARE (GCC_VERSION > 40603)
 
 #define GLIST_PREVIOUS(lst) ((lst) ? (((GList *)(lst))->prev) : NULL)
 #define GLIST_NEXT(lst) ((lst) ? (((GList *)(lst))->next) : NULL)
