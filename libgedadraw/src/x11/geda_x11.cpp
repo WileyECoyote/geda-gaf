@@ -58,15 +58,10 @@
 
 #include <geda_draw.h>
 
-#ifndef GCC_VERSION
-#define GCC_VERSION (__GNUC__ * 1000 + __GNUC_MINOR__)
-#endif /* GCC_VERSION */
-
-#if GCC_VERSION > 40600        /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
-#endif
-
 #pragma GCC diagnostic ignored "-fpermissive"
+#endif
 
 EdaRotation EdaX11Render::
 GetRotation(int angle)
@@ -83,7 +78,7 @@ GetRotation(int angle)
   return rotation;
 }
 
-#if GCC_VERSION > 40600      /* check for GCC > 4.6 */
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic pop
 #endif
 
@@ -408,7 +403,12 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
   }
   return ximage;
 }
-
+/*
+#if GCC_DIAGNOSTIC_AWARE
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-fpermissive"
+#endif
+*/
 void
 FontHashDestroyer (void *key, void *data, void *display)
 {
@@ -416,7 +416,7 @@ FontHashDestroyer (void *key, void *data, void *display)
 
 #ifndef HAVE_XFT
 
-  XFontStruct *font = data;
+  XFontStruct *font = (XFontStruct*)data;
 
   if (font) {
     XFreeFont((Display*)display, font);
@@ -425,6 +425,11 @@ FontHashDestroyer (void *key, void *data, void *display)
 #endif
 
 }
+/*
+#if GCC_DIAGNOSTIC_AWARE
+#pragma GCC diagnostic pop
+#endif
+*/
 
 #ifdef HAVE_XFT
 
@@ -501,7 +506,16 @@ CreateFontHash (void)
 void EdaX11Render::
 HashSetFont (void)
 {
-  font = g_hash_table_lookup (font_cache, font_string.c_str());
+
+#ifdef HAVE_XFT
+
+  font = (XftFont*)g_hash_table_lookup (font_cache, font_string.c_str());
+
+#else
+
+  font = (XFontStruct*)g_hash_table_lookup (font_cache, font_string.c_str());
+
+#endif
 
   if (!font) {
 
@@ -1037,7 +1051,7 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
   return;
 }
 
-#if GCC_VERSION > 40600      // check for GCC > 4.6
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
 #endif
 
@@ -1119,7 +1133,7 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
   return;
 }
 
-#if GCC_VERSION > 40600      // check for GCC > 4.6
+#if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic pop
 #endif
 

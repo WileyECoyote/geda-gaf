@@ -1,3 +1,7 @@
+2015-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x11/geda_x11.cpp: Use GCC_DIAGNOSTIC_AWARE macro, GCC vsion > 40603
+
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/Makefile.am: Revert "Add GUILE_CFLAGS to AM_CFLAGS"
