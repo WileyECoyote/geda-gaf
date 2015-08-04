@@ -315,17 +315,26 @@ void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Draw temporary box while drawing region to zoom.
  *  \par Function Description
+ *  This function is used to draw a box while drawing one of the edges,
+ *  erasing the previous temporary box if required, before drawing the
+ *  new updated box. <B>w_x</B> and <B>w_y</B> are the new position of
+ *  the mobile point, ie the mouse. Current coordinate values are save
+ *  to the <B>w_current</B> structure in world units.
  *
+ *  \param [in] w_current  The GschemToplevel object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void i_zoom_world_box_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  if( w_current->inside_action != 0 ) {
+  if ( w_current->inside_action != 0 ) {
 
-    if (w_current->rubber_visible)
+    /* erase the previous temporary box if it is visible */
+    if (w_current->rubber_visible) {
       i_zoom_world_box_invalidate_rubber (w_current);
+    }
 
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
