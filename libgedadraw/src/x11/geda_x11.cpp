@@ -1053,9 +1053,8 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
 
 #if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
-#endif
-
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
 
 void EdaX11Render::
 geda_x11_draw_path (int nsections, PATH_SECTION *sections)
@@ -1458,7 +1457,7 @@ geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 void EdaX11Render::
 geda_x11_draw_set_font_name (const char *font_name)
 {
-  char* tmp_string;
+  char *tmp_string == NULL;
 
   if (font_name == NULL ) {
     font_name  = DEFAULT_FONT_NAME;
