@@ -1,3 +1,12 @@
+2015-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * General Improvement: Language Translation
+
+    * src/base/gschem.c: Revise messages in gschem to (maybe) allow for better
+      translation.
+
+    * src/base/gschem_status_bar.c: Do not translate "(").
+
 2015-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * Source Organization.

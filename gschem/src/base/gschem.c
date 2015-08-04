@@ -300,8 +300,8 @@ static void gschem( int argc, char *argv[])
   if (f_path_sys_data () == NULL) {
     const char *message =
       _("You must set the GEDADATA environment variable!\n\n"
-        "gschem cannot locate its data files. You must set the GEDADATA\n"
-        "environment variable to point to the correct location.\n");
+        "gschem cannot locate some data files. Please ensure the GEDADATA\n"
+        "environment variable points to the correct location.\n");
     GtkWidget* error_diag =
       gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
                               GTK_BUTTONS_OK,
@@ -335,15 +335,15 @@ static void gschem( int argc, char *argv[])
    * will go to the console or null */
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
   if (scm_is_false (scm_tmp)) {
-    u_log_message (_("Unable to locate scm initialization file \"gschem.scm\"\n"));
+    u_log_message (_("Unable to locate scheme initialization file \"gschem.scm\"\n"));
   }
   else {
     input_str = scm_to_utf8_string (scm_tmp);
     if (g_read_scheme_file(input_str, NULL)) {
-      q_log_message(_("Read init scm file [%s]\n"), input_str);
+      q_log_message(_("Read scheme initialization file [%s]\n"), input_str);
     }
     else {
-      u_log_message(_("Failed to read init scm file [%s]\n"), input_str);
+      u_log_message(_("Failed to read initialization scheme file [%s]\n"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */

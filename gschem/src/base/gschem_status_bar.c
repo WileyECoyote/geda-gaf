@@ -1811,7 +1811,9 @@ update_grid_label (GschemStatusBar *widget)
 
     char scratch[6]; /* tmp char used to convert large integers */
 
-    char *ptr = strcpy (widget->grid_label_text,_("Grid("));
+    char *ptr = strcpy (widget->grid_label_text,_("Grid"));
+
+    ptr = strcat(ptr, "(");
 
     switch (widget->snap_mode) {
       case SNAP_OFF:
