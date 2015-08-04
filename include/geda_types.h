@@ -36,6 +36,17 @@ typedef int bool;
 typedef unsigned char uint8;
 typedef unsigned long DWORD;
 
+#if ((ULONG_MAX) == (UINT_MAX))
+# define IS32BIT
+#else
+# define IS64BIT
+#endif
+
+#ifdef IS64BIT
 typedef DWORD GedaType;
+#else
+typedef unsigned int GedaType;
+#endif
+
 
 /** @} endgroup geda-global-types */

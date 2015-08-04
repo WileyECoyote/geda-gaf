@@ -1,3 +1,7 @@
+2015-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Initialize num_records=0 in o_extend_get_bounder.
+
 2015-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_zoom_world.c: Add Doxygen comments, i_zoom_world_box_motion().

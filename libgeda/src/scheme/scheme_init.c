@@ -69,7 +69,7 @@ static void *edascm_init_impl (void *data)
 void
 edascm_init ()
 {
-  volatile unsigned long *initialized = &init_called;
+  volatile GedaType *initialized = &init_called;
 
   if (g_once_init_enter (initialized)) {
     scm_with_guile (edascm_init_impl, NULL);

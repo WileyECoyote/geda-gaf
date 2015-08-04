@@ -280,7 +280,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
 
             unsigned char *row = src_buf + y * src_rowstride;
 
-            if (((unsigned int)row & 3) != 0) {
+            if (((unsigned long)row & 3) != 0) {
 
               unsigned char *p = row;
               unsigned long *q = (unsigned long *)(dest_buf + y * dest_rowstride);
@@ -289,7 +289,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
               while (p < end) {
                 *q = (p[3] << 24) | (p[0] << 16) | (p[1] << 8) | p[2];
                 p += 4;
-                (unsigned long)q++;
+                q++;
               }
             }
             else {
@@ -1448,7 +1448,7 @@ geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 void EdaX11Render::
 geda_x11_draw_set_font_name (const char *font_name)
 {
-  char *tmp_string = NULL;
+  char *tmp_string;
 
   if (font_name == NULL ) {
     font_name  = DEFAULT_FONT_NAME;
@@ -1458,27 +1458,32 @@ geda_x11_draw_set_font_name (const char *font_name)
 
   int   index;
   char  strBuffer[64];
+  const char *str;
 
   memset(&strBuffer[0], 0, sizeof(strBuffer));
 
+  str   = NULL;
   index = 0;
+
   while (font_name[index]) {
+
     if (font_name[index] == ASCII_MINUS) {
       strBuffer[index] = '\0';
       index++;
-      tmp_string = &font_name[index];
+      str = &font_name[index];
       break;
     }
+
     strBuffer[index] = font_name[index];
     index++;
   }
 
   font_family = &strBuffer[0];
 
-  if (tmp_string) {
+  if (str) {
 
-    font_weight = geda_x11_draw_get_font_weight(tmp_string);
-    font_slant  = geda_x11_draw_get_font_slant(tmp_string);
+    font_weight = geda_x11_draw_get_font_weight(str);
+    font_slant  = geda_x11_draw_get_font_slant(str);
 
   }
   else {

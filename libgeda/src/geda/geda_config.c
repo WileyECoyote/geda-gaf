@@ -428,8 +428,8 @@ eda_config_find_project_root (const char *path, const char *filename)
 EdaConfig *
 eda_config_get_default_context ()
 {
-  static volatile unsigned long initialized = 0;
-  static EdaConfig    *config      = NULL;
+  static volatile GedaType initialized = 0;
+  static EdaConfig *config      = NULL;
 
   if (g_once_init_enter (&initialized)) {
 
@@ -460,7 +460,7 @@ eda_config_get_default_context ()
 EdaConfig *
 eda_config_get_system_context (const char *context)
 {
-  static volatile unsigned long initialized = 0;
+  static volatile GedaType initialized = 0;
   static EdaConfig *config = NULL;
 
   if (g_once_init_enter (&initialized)) {
@@ -568,7 +568,7 @@ eda_config_get_system_context (const char *context)
 EdaConfig *
 eda_config_get_user_context ()
 {
-  static volatile unsigned long initialized = 0;
+  static volatile GedaType initialized = 0;
   static EdaConfig *config        = NULL;
 
   const char *app_name = g_get_prgname();
@@ -638,7 +638,7 @@ static bool strhashcmp (const void *a, const void *b) {
 EdaConfig *
 eda_config_get_context_for_file (const char *path)
 {
-  static volatile unsigned long initialized  = 0;
+  static volatile GedaType initialized  = 0;
   static GHashTable *local_contexts = NULL;
   char  *root;
   char  *file = NULL;

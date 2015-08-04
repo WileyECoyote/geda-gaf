@@ -181,11 +181,9 @@ value_lcopy_scm (const GValue *value,
 GedaType
 edascm_scm_get_type (void)
 {
-  static union { unsigned int type;
-                 volatile unsigned long initialized;
-  } edascm_scm_type = {0};
+  static GedaType edascm_scm_type = 0;
 
-  if (g_once_init_enter (&edascm_scm_type.initialized)) {
+  if (g_once_init_enter (&edascm_scm_type)) {
 
     GedaType type;
 
@@ -223,10 +221,10 @@ edascm_scm_get_type (void)
                                         &finfo, /* finfo */
                                         0);    /* type_flags */
 
-    g_once_init_leave (&edascm_scm_type.initialized, type);
+    g_once_init_leave (&edascm_scm_type, type);
   }
 
-  return edascm_scm_type.type;
+  return edascm_scm_type;
 }
 
 /*! \brief Set the contents of a SCM GValue.
@@ -304,11 +302,9 @@ param_scm_values_cmp (GParamSpec *pspec,
 GedaType
 edascm_param_spec_scm_get_type (void)
 {
-  static union { unsigned int type;
-                 volatile unsigned long initialized;
-  } edascm_param_spec_scm_type = {0};
+  static GedaType edascm_param_spec_scm_type = 0;
 
-  if (g_once_init_enter (&edascm_param_spec_scm_type.initialized)) {
+  if (g_once_init_enter (&edascm_param_spec_scm_type)) {
 
     GedaType type;
 
@@ -326,9 +322,9 @@ edascm_param_spec_scm_get_type (void)
     type = g_param_type_register_static (g_intern_static_string ("EdascmParamSCM"),
                                          &pspec_info);
 
-    g_once_init_leave (&edascm_param_spec_scm_type.initialized, type);
+    g_once_init_leave (&edascm_param_spec_scm_type, type);
   }
-  return edascm_param_spec_scm_type.type;
+  return edascm_param_spec_scm_type;
 }
 
 /*! \brief Create a new #EdascmParamSpecSCM.

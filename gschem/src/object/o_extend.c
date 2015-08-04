@@ -1707,6 +1707,7 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
     hit_record *hit_records;
 
     most_hits   = 0;
+    num_records = 0;
     bounders    = o_extend_get_valid_bounders(list);
     projectiles = o_extend_get_projectiles(NULL, list);
 
