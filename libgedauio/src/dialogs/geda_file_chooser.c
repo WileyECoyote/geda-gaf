@@ -267,9 +267,9 @@ geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
 {
   GedaFileChooser *chooser = GEDA_FILE_CHOOSER(object);
 
-  switch (property_id)
-    {
-    case PROP_FILTER_INDEX:
+  switch (property_id) {
+
+	  case PROP_FILTER_INDEX:
       g_value_set_int (value, chooser->filter_index);
       break;
     default:
@@ -324,7 +324,7 @@ geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
 
 
   window = GTK_WINDOW(chooser);
-  cfg    = eda_config_get_user_context ();
+  cfg    = eda_config_get_user_context();
 
   x      = eda_config_get_integer (cfg, group_name, "x", NULL);
   y      = eda_config_get_integer (cfg, group_name, "y", NULL);

@@ -326,12 +326,12 @@ static const GMarkupParser item_parser =
 };
 
 static bool
-geda_combo_box_text_buildable_custom_tag_start (GtkBuildable     *buildable,
-                                                GtkBuilder       *builder,
-                                                GObject          *child,
-                                                const char      *tagname,
-                                                GMarkupParser    *parser,
-                                                void *         *data)
+geda_combo_box_text_buildable_custom_tag_start (GtkBuildable   *buildable,
+                                                GtkBuilder     *builder,
+                                                GObject        *child,
+                                                const char     *tagname,
+                                                GMarkupParser  *parser,
+                                                void          **data)
 {
   if (buildable_parent_iface->custom_tag_start (buildable, builder, child,
                                                 tagname,   parser,  data))

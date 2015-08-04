@@ -96,7 +96,7 @@ static GtkWidget* create_size_menu (void)
   int   default_size_index;
   int   i;
 
-  GtkWidget   *combo = geda_combo_box_text_new();
+  GtkWidget *combo = geda_combo_box_text_new();
 
   for (i=0; x_image_sizes[i] != NULL; i++) {
     geda_combo_box_text_widget_append (combo, x_image_sizes[i]);

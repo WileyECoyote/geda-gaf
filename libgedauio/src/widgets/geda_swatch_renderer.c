@@ -318,8 +318,6 @@ geda_swatch_renderer_get_type()
   return type;
 }
 
-
-
 /*! \brief Create a swatch cell renderer
  */
 GedaSwatchRenderer*

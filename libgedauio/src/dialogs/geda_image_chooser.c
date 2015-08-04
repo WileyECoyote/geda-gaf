@@ -330,9 +330,9 @@ static char *popup_tips[]={  "Set silder to zoom mode",
  *  \param [in] widget    is button widget
  *  \param [in] selection pointer to enumerated menu selection
  */
-static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items* selection)
+static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
 {
-    GedaImageChooser *chooser = g_object_get_data (G_OBJECT (widget), "chooser");
+    GedaImageChooser *chooser = g_object_get_data (G_OBJECT(widget), "chooser");
 
     int WhichItem = (int)(long*) selection;
 
@@ -390,15 +390,16 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
   tooltips = gtk_tooltips_new ();
   menu     = gtk_menu_new();
 
-  for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
-  {
+  for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++) {
+
     item = gtk_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
     g_object_set_data(G_OBJECT(item), "chooser", chooser);
+
     g_signal_connect(GTK_OBJECT(item),"activate",
-                    (void *) popup_activated,
-                    (void *) i);
+                    (void*) popup_activated,
+                    (void*) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);

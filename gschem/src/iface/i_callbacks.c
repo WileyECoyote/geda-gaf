@@ -238,11 +238,11 @@ DEFINE_I_CALLBACK(cancel)
   }
 
   if (o_select_is_selection (w_current)) {
-    o_select_unselect_all(w_current);
+    o_select_unselect_all (w_current);
   }
 
   if (Current_Page->place_list) {
-    s_object_release_objects(Current_Page->place_list);
+    s_object_release_objects (Current_Page->place_list);
     Current_Page->place_list = NULL;
   }
 
@@ -250,7 +250,7 @@ DEFINE_I_CALLBACK(cancel)
   g_keys_reset (w_current);
 
   o_invalidate_all (w_current);
-  i_status_set_state(w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
   i_status_action_stop(w_current);
 }
 

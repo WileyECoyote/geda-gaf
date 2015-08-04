@@ -1117,11 +1117,15 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 
   /* Populate the list */
   for (i = 0; i < MAX_COLORS; i++) {
+
     /* Skip 'invalid' colors. */
-    if (!x_color_display_enabled(i)) continue;
+    if (!x_color_display_enabled(i))
+      continue;
+
     str = x_dialog_get_color_name(i);
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
+
     if (i == color_index)
       geda_combo_box_set_active_iter(cbox, &iter);
   }

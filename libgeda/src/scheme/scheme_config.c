@@ -28,13 +28,13 @@
 #include "libgeda_priv.h"
 #include "libgedaguile_priv.h"
 
-SCM_SYMBOL (system_error_sym, "system-error");
-SCM_SYMBOL (config_error_sym, "config-error");
+SCM_SYMBOL (system_error_sym,     "system-error");
+SCM_SYMBOL (config_error_sym,     "config-error");
 SCM_SYMBOL (unknown_encoding_sym, "unknown-encoding");
-SCM_SYMBOL (parse_sym, "parse");
-SCM_SYMBOL (key_not_found_sym, "key-not-found");
-SCM_SYMBOL (group_not_found_sym, "group-not-found");
-SCM_SYMBOL (invalid_value_sym, "invalid-value");
+SCM_SYMBOL (parse_sym,            "parse");
+SCM_SYMBOL (key_not_found_sym,    "key-not-found");
+SCM_SYMBOL (group_not_found_sym,  "group-not-found");
+SCM_SYMBOL (invalid_value_sym,    "invalid-value");
 
 #define ASSERT_CFG_GROUP_KEY(subr) do { \
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1, subr); \

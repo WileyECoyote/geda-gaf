@@ -473,7 +473,6 @@ static GObject *geda_combo_box_buildable_get_internal_child   (GtkBuildable  *bu
 static void geda_combo_box_start_editing (GtkCellEditable *cell_editable,
                                           GdkEvent        *event);
 
-
 G_DEFINE_TYPE_WITH_CODE (GedaComboBox, geda_combo_box, GTK_TYPE_BIN,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_CELL_LAYOUT,
                                                 geda_combo_box_cell_layout_init)
@@ -587,7 +586,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
   gtk_object_class           = (GtkObjectClass *)class;
   gtk_object_class->destroy  = geda_combo_box_destroy;
 
-  object_class               = (GObjectClass *)class;
+  object_class               = (GObjectClass*)class;
   object_class->constructor  = geda_combo_box_constructor;
   object_class->dispose      = geda_combo_box_dispose;
   object_class->finalize     = geda_combo_box_finalize;

@@ -194,8 +194,9 @@ void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
   else {
 
     /* erase the previous temporary box if it is visible */
-    if (w_current->rubber_visible)
+    if (w_current->rubber_visible) {
       o_box_invalidate_rubber (w_current);
+    }
 
     /*
      * New values are fixed according to the <B>w_x</B> and <B>w_y</B>

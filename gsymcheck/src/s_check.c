@@ -1044,23 +1044,22 @@ s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     Object *o_current = iter->data;
 
-    if (o_current->type == OBJ_TEXT)
-    {
-      if (strstr(o_current->text->string, "slot"))
-      {
+    if (o_current->type == OBJ_TEXT) {
+
+      if (strstr(o_current->text->string, "slot")) {
+
         /* skip over "slot" */
         ptr = o_current->text->string + 4;
 
         found_old = FALSE;
         number_counter = 0;
-        while (ptr && *ptr > '0' && *ptr < '9')
-        {
+
+        while (ptr && *ptr > '0' && *ptr < '9') {
           number_counter++;
           ptr++;
         }
 
-        if (ptr && *ptr == '=')
-        {
+        if (ptr && *ptr == '=') {
           found_old++;
         }
 
@@ -1074,19 +1073,17 @@ s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
         /* skip over = char */
         ptr++;
 
-        while ((ptr && (*ptr > '0') && (*ptr < '9')) || (*ptr == ','))
-        {
+        while ((ptr && (*ptr > '0') && (*ptr < '9')) || (*ptr == ',')) {
           ptr++;
         }
 
-        if (*ptr == '\0')
-        {
+        if (*ptr == '\0') {
           found_old++;
         }
 
         /* 2 matches -> number found after slot and only numbers after = */
-        if (found_old == 2)
-        {
+        if (found_old == 2) {
+
           message = u_string_sprintf (
             _("Found old slot#=# attribute: %s\n"),
               o_current->text->string);
@@ -1108,18 +1105,17 @@ s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     Object *o_current = iter->data;
 
-    if (o_current->type == OBJ_NET)
-    {
+    if (o_current->type == OBJ_NET) {
+
       message =
       u_string_strdup (_("Found a net inside a symbol\n"));
       ADD_ERROR_MESSAGE(message);
       s_current->found_net++;
     }
 
-    if (o_current->type == OBJ_BUS)
-    {
-      message =
-      u_string_strdup (_("Found a bus inside a symbol\n"));
+    if (o_current->type == OBJ_BUS) {
+
+      message = u_string_strdup (_("Found a bus inside a symbol\n"));
       ADD_ERROR_MESSAGE(message);
       s_current->found_bus++;
     }
@@ -1158,16 +1154,16 @@ s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
   }
 
   string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
-  if (!string)
-  {
+
+  if (!string) {
+
     message = u_string_sprintf (
       _("Missing %s= attribute\n"),
         attribute);
       ADD_WARN_MESSAGE(message);
   }
 
-  while (string)
-  {
+  while (string) {
 
     if (found_first) {
       message = u_string_sprintf (
