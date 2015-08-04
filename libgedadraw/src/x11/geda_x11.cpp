@@ -58,15 +58,10 @@
 
 #include <geda_draw.h>
 
-#if GCC_DIAGNOSTIC_AWARE
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-fpermissive"
-#endif
-
 EdaRotation EdaX11Render::
 GetRotation(int angle)
 {
-  EdaRotation rotation;
+  int rotation;
 
   switch (angle) {
     case 0:    rotation = EDA_ROTATE_NONE;             /* =   0 */ break;
@@ -75,12 +70,8 @@ GetRotation(int angle)
     case 270:  rotation = EDA_ROTATE_CLOCKWISE;        /* = 270 */ break;
     default:   rotation = EDA_ROTATE_NONE;             /* =   0 */ break;
   }
-  return rotation;
+  return (EdaRotation)rotation;
 }
-
-#if GCC_DIAGNOSTIC_AWARE
-#pragma GCC diagnostic pop
-#endif
 
 /* Code for accelerated alpha compositing using the RENDER extension.
  * It's a bit long because there are lots of possibilities for
@@ -298,7 +289,7 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
               while (p < end) {
                 *q = (p[3] << 24) | (p[0] << 16) | (p[1] << 8) | p[2];
                 p += 4;
-                q++;
+                (unsigned long)q++;
               }
             }
             else {
@@ -1457,7 +1448,7 @@ geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 void EdaX11Render::
 geda_x11_draw_set_font_name (const char *font_name)
 {
-  char *tmp_string == NULL;
+  char *tmp_string = NULL;
 
   if (font_name == NULL ) {
     font_name  = DEFAULT_FONT_NAME;

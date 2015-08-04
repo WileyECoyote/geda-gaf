@@ -1,5 +1,10 @@
 2015-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
+     * src/x11/geda_x11.cpp: Revise EdaX11Render::GetRotation to appease compiler,
+       eliminating GCC_DIAGNOSTIC_AWARE.
+
+2015-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
      * src/x11/geda_x11.cpp: Initialize tmp_string==NULL in geda_x11_draw_set_font_name
 
 2015-08-03 Wiley E. Hill <wileyhill@gmail.com>
