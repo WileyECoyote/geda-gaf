@@ -67,7 +67,7 @@
 static GtkIconFactory *gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "gaf-add-attribute",  "gaf-tools",
+  "gaf-add-attribute",  "gaf-tools",          "gaf-see-notes",
   "geda-arc",           "geda-arc-edit",      "geda-analysis",     "geda-autonum-blue",
   "geda-autonum-green", "geda-autonum-red",   "geda-bed",          "geda-box",
   "geda-bus",           "geda-check-grn",     "geda-check-org",    "geda-check-red",

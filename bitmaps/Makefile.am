@@ -20,6 +20,7 @@ bitmapdata_DATA   = \
 			close_box.png                      \
 			gaf-tools.png                      \
 			gaf-add-attribute.png              \
+			gaf-see-notes.png                  \
 			geda-analysis.png                  \
 			geda-bus.png                       \
 			geda-arc.png                       \

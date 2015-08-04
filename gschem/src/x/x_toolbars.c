@@ -189,12 +189,12 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(PAGE_NEW),           "New",        TBTS_PAGE_NEW,           "gtk-new",           TB_ICON_STOCK, NULL},
   { ACTION(PAGE_MANAGER),       "Manage",     TBTS_PAGE_MANAGER,       GEDA_SHEETS_BITMAP,  TB_ICON_BITMAP, NULL},
 
-  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private",           TB_ICON_BITMAP, NULL},
-  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private",           TB_ICON_BITMAP, NULL},
-  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       "Private",           TB_ICON_BITMAP, NULL},
+  { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     GEDA_DEMOTE_SCH_BITMAP, TB_ICON_BITMAP, NULL},
+  { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        GEDA_DEMOTE_SYM_BITMAP, TB_ICON_BITMAP, NULL},
+  { ACTION(HIERARCHY_UP),       "Up",         TBTS_HIERARCHY_UP,       GEDA_PROMOTE_BITMAP,    TB_ICON_BITMAP, NULL},
 
-  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "Private",           TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_NETS),          "Net Names",  TBTS_VIEW_NETNAMES,      "geda-show-nets",    TB_ICON_STOCK,  NULL},
+  { ACTION(VIEW_DOCUMENT),      "Spec",       TBTS_VIEW_DOCUMENT,      "gaf-see-notes",        TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_NETS),          "Net Names",  TBTS_VIEW_NETNAMES,      "geda-show-nets",       TB_ICON_STOCK,  NULL},
 
   /* Zoom Toolbar */
   { ACTION(VIEW_REDRAW),        "Redraw",     TBTS_VIEW_REDRAW,        GEDA_MAP(VIEW_REDRAW),  TB_ICON_BITMAP, NULL},
@@ -668,15 +668,18 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         v_log_message("Toolbar configuration restored from %s\n", filename);
       }
       else {
-        u_log_message("Warning, Error Restoring Toolbar configuration, %s %s\n", filename, err->message);
+        u_log_message("Warning, Error Restoring Toolbar configuration, %s %s\n",
+                      filename, err->message);
         g_clear_error (&err);
       }
     }
     else {
-      u_log_message("Warning, Toolbar configuration file access error:, %s %s\n", filename, err->message);
+      u_log_message("Warning, Toolbar configuration file access error:, %s %s\n",
+                    filename, err->message);
     }
 
-    /* Check if toolbars styles are uniform and set radio in menu if all the same style */
+    /* Check if toolbars styles are uniform and set radio in menu
+     * if all the same style */
     global_style = global_style / (tb_Zoom + 1);
 
     if ((global_style == TOOLBAR_SHOW_ICONS) ||
@@ -1223,10 +1226,15 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON( Page, etb_down_symbol,    LOCAL_PIX, GEDA_DEMOTE_SYM_BITMAP, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_down_schematic, LOCAL_PIX, GEDA_DEMOTE_SCH_BITMAP, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,    x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP,   x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_down_symbol);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_down_schematic);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_hierarchy_up);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_view_document);
+
+  //TOOLBAR_GEDA_BUTTON( Page, etb_down_symbol,    LOCAL_PIX, GEDA_DEMOTE_SYM_BITMAP, x_toolbars_execute, w_current);
+  //TOOLBAR_GEDA_BUTTON( Page, etb_down_schematic, LOCAL_PIX, GEDA_DEMOTE_SCH_BITMAP, x_toolbars_execute, w_current);
+  //TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,    x_toolbars_execute, w_current);
+  //TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP,   x_toolbars_execute, w_current);
 
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_first_page ));
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));

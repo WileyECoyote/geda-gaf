@@ -1862,7 +1862,8 @@
 (map-icon "zoom-mag"                   "view-zoom-to-mag")
 (map-icon "geda-zoom-selection"        "view-zoom-selected")
 
-(map-icon "gtk-index"                  "view-documentation")
+(map-icon "gaf-see-notes"              "view-documentation")
+;;(map-icon "gtk-index"                  "view-documentation")
 (map-icon "gtk-find-and-replace"       "view-show-hidden")
 (map-icon "geda-show-nets"             "view-show-nets")
 ;(map-icon "show-netnames"              "view-show-nets")
@@ -1889,7 +1890,10 @@
 (map-icon "gtk-go-down"                "hierarchy-down-schematic")
 (map-icon "gtk-goto-bottom"            "hierarchy-down-symbol")
 (map-icon "gtk-go-up"                  "hierarchy-up")
-(map-icon "gtk-info"                    "hierarchy-documentation")
+
+;(map-icon "gtk-info"                   "hierarchy-documentation")
+;(map-icon "gtk-indent"                 "hierarchy-documentation")
+(map-icon "gtk-index"                   "hierarchy-documentation")
 
 (map-icon "geda-component"             "add-component")
 (map-icon "gschem-net"                 "add-net")
@@ -1944,7 +1948,7 @@
 (map-icon "gtk-help"                   "help-show-manual")
 (map-icon "keyboard-shortcuts"         "help-show-hotkeys")
 (map-icon "help-faq"                   "help-show-faq")
-(map-icon "gtk-indent"                 "hierarchy-documentation")
+
 (map-icon "symbol-datasheet"           "help-show-geda")
 (map-icon "web-browser"                "help-show-wiki")
 (map-icon "gtk-about"                  "help-show-about")
@@ -2115,7 +2119,7 @@
         (,(N_ "Zoom _Selection")     view-zoom-selected      "geda-zoom-selection"  ,(N_ "Zoom to selected objects"))
 
         ("SEPARATOR"                #f                      #f                       #f)
-        (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
+        (,(N_ "D_ocumentation...")   view-documentation     #f)
         (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
         (,(N_ "Show/Hide Net Names") view-show-nets         #f                      ,(N_ "Toggle hidden net name attributes"))
 
@@ -2145,13 +2149,13 @@
         (,(N_ "_Close")            page-close              "gtk-close"            ,(N_ "Close the current page"))
 
         ("SEPARATOR"              #f                      #f)
-        (,(N_ "_Discard")          page-discard            "gtk-discard"          ,(N_ "Close the current page without saving"))
+        (,(N_ "_Discard")          page-discard            "gtk-discard"       ,(N_ "Close the current page without saving"))
 
         ("SEPARATOR"              #f                       #f)
-        (,(N_ "_Down Schematic")   hierarchy-down-schematic "gtk-go-down"       ,(N_ "Descend down in the schematic hierarchy"))
-        (,(N_ "Down _Symbol")      hierarchy-down-symbol    "gtk-goto-bottom"   ,(N_ "Descend down in the symbol hierarchy"))
-        (,(N_ "_Up")               hierarchy-up             "gtk-go-up"         ,(N_ "ascend up in the schematic hierarchy"))
-        (,(N_ "D_ocumentation...") hierarchy-documentation  "gtk-info"          ,(N_ "Find component documentation"))
+        (,(N_ "_Down Schematic")   hierarchy-down-schematic #f                 ,(N_ "Descend down in the schematic hierarchy"))
+        (,(N_ "Down _Symbol")      hierarchy-down-symbol    #f                 ,(N_ "Descend down in the symbol hierarchy"))
+        (,(N_ "_Up")               hierarchy-up             #f                 ,(N_ "ascend up in the schematic hierarchy"))
+        (,(N_ "D_ocumentation...") hierarchy-documentation  #f                 ,(N_ "Find component documentation"))
       )
 )
 
@@ -2264,7 +2268,7 @@
         (,(N_ "_Hotkeys...")            help-show-hotkeys         "keyboard-shortcuts")
         (,(N_ "gschem _FAQ...")         help-show-faq             "help-faq")
         ("SEPARATOR"                   #f                         #f)
-        (,(N_ "Component D_ocumentation...") hierarchy-documentation   "gtk-indent")
+        (,(N_ "Component D_ocumentation...") hierarchy-documentation  #f)
         ("SEPARATOR"                   #f                         #f)
         (,(N_ "gEDA Docu_mentation...") help-show-geda            "symbol-datasheet")
         (,(N_ "gEDA _Wiki...")          help-show-wiki            "web-browser")
