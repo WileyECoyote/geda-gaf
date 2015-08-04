@@ -1702,6 +1702,8 @@ eda_renderer_class_init(void *g_class, void *class_data)
   class->draw_cues   = eda_renderer_default_draw_cues;
   class->user_bounds = eda_renderer_default_get_user_bounds;
 
+  eda_renderer_parent_class = g_type_class_peek_parent (class);
+
   /* Install properties */
   param_flags = (G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK |
                  G_PARAM_STATIC_BLURB);

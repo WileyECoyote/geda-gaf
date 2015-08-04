@@ -289,6 +289,8 @@ eda_pango_renderer_class_init(void *g_class, void *class_data)
   parent_class->end                  = eda_pango_renderer_end;
   parent_class->prepare_run          = eda_pango_renderer_prepare_run;
 
+  eda_pango_renderer_parent_class    = g_type_class_peek_parent (class);
+
   /* Install properties */
   g_object_class_install_property (object_class, PROP_CAIRO_CONTEXT,
                                    g_param_spec_pointer ("cairo-context",
