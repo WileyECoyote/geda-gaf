@@ -45,9 +45,11 @@ static void set_got_answer(int value)
     got_answer = value;
   g_mutex_unlock((GMutex*)&clip_got_answer_lock);
 }
+
 static bool got_an_answer()
 {
   bool ret_val;
+
   g_mutex_lock((GMutex*)&clip_got_answer_lock);
     ret_val = got_answer;
   g_mutex_unlock((GMutex*)&clip_got_answer_lock);
@@ -122,7 +124,7 @@ x_clipboard_init (GschemToplevel *w_current)
                     G_CALLBACK (clip_handle_owner_change),
                     w_current);
 
-  got_answer = TRUE;
+  set_got_answer(TRUE);
 }
 
 /*! \brief Finalize clipboard system
