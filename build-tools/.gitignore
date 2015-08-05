@@ -7,6 +7,7 @@ depcomp
 install-sh
 ltmain.sh
 mdate-sh
+nohup.out
 texinfo.tex
 ylwrap
 test-driver

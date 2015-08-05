@@ -7,7 +7,7 @@ POTFILES
 *.sed
 *.header
 *.sin
-libgedauio.pot
+libgedadraw.pot
 Rules-quot
 Makevars.template
 stamp-po
