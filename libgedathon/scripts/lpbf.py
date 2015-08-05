@@ -24,8 +24,10 @@ os.chdir("tmp")
 if not os.path.exists("sym"):
     os.makedirs("sym")
 
+#print os.getcwd()
+
 ## Create the components needed for the filter ##
-print os.getcwd()
+## ------------------------------------------- ##
 # Create the dual-opamp symbol file
 os.system("../../scripts/dual-opamp.py " + sym_dir)
 

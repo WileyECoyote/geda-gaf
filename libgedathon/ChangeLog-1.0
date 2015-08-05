@@ -1,3 +1,10 @@
+2015-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+     * tests/run_tests.sh: Revise to use copy local module for testing, added
+       functions do_export_module, do_remove_module, and do_err_exit.
+
+     * scripts/lpbf.py: Comment debug print, add comment for section seperator.
+
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
      * Add #define WITHOUT_GUILE 1 before including libgeda.h:
