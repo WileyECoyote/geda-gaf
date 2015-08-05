@@ -7,11 +7,12 @@ MODULE="../module/.libs/geda.so"
 do_export_module () {
    mkdir -p geda
    cp "$MODULE" ./geda/
-
-   export PYTHONPATH=$PYTHONPATH:$PWD/
+   cp ../module/__init__.py ./geda/
+   export PYTHONPATH=$PWD/
 }
 
 do_remove_module () {
+
    if [ -d geda ] ; then
       rm -rf geda
    fi
@@ -28,22 +29,22 @@ if [ ! -f Makefile.am ] ; then
    exit 0;
 fi
 
-if [ -f "$MODULE" ] ; then
+if [ -d "../scripts" ] ; then
+   path2scripts="../scripts"
+else
+   echo " can not check <libgedathon>, can not find directory containing scripts"
+   exit 1;
+fi
 
-   if [ -d "../scripts" ] ; then
-     path2scripts="../scripts"
-   else
-     echo " can not check <libgedathon>, can not find directory containing scripts"
-     exit 1;
-   fi
+if [ -f "$MODULE" ] ; then
 
    do_export_module
 
    # Testing for the existence if the scripts is really on applicable when the make check
    # is ran directly from the tests/ directory, otherwise the Makefile in ../scripts/ would
    # have exit "make check" before reaching the tests/ directory
-   
-if [ ! -f "${path2scripts}/capacitor.py" ] ; then
+
+   if [ ! -f "${path2scripts}/capacitor.py" ] ; then
      do_err_exit " can not check <libgedathon>, because capacitor.py is not in $path2scripts/"
    elif [ ! -f "${path2scripts}/dual-opamp.py" ] ; then
      do_err_exit " can not check <libgedathon>, because dual-opamp.py is not in $path2scripts/"
@@ -92,5 +93,6 @@ else
    echo  "Module not in $MODULE"
    exit 1;
 fi
+
 echo "Completed tests for libgedathon!"
 exit $result;
