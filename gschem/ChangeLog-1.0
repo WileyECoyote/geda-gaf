@@ -1,5 +1,11 @@
 2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_buffer.c: Use gschem_toplevel_get_current_page in
+      function o_buffer_paste_start and revise to eliminate redundant
+      or unnecessary checks.
+
+2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * Source Organization. Relocate Confirm-Exit-Dialog to a seperate file
 
     * include/x_confirm_close.h: New header file to reduce clutter in source.
