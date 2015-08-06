@@ -7,12 +7,12 @@ nobase_scmdata_DATA = geda/core/gettext.scm
 
 check-am: update-gaf-tool
 
-# Unit test support.  The unit tests are run using the geda-shell
+# Unit test support.  The unit tests are run using a geda batch
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
 
 # The new commanline tool uses --no-rcfiles
-GAF_SHELL = $(top_builddir)/gaf/src/gaf --no-rcfiles shell
+GAF_SHELL = $(top_builddir)/gaf/src/.libs/gaf --no-rcfiles shell
 
 #GAF_SHELL = $(builddir)/../shell/geda-shell -q
 
@@ -67,8 +67,12 @@ geda/core/gettext.scm: $(srcdir)/geda/core/gettext.scm.in Makefile
 	  echo "Recreating $@"; mv $@.new $@; \
 	fi
 
+DEPENDS=libgeda/src libgedacairo/src gaf/src
+
 update-gaf-tool:
-	cd $(top_builddir)/gaf && $(MAKE) $(AM_MAKEFLAGS) all
+	for d in $(DEPENDS); do \
+	  (cd $(top_builddir)/$$d && $(MAKE) $(AM_MAKEFLAGS) all); \
+	done
 
 .PHONY: update-gaf-tool
 
@@ -76,4 +80,3 @@ MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~ geda/core/gettext.scm
 DISTCLEANFILES       = *.log *~ core FILE
 MAINTAINERCLEANFILES = *.log *~ Makefile.in
-

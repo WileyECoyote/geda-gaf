@@ -26,10 +26,9 @@ gaf_CPPFLAGS  =
 gaf_CFLAGS    = $(AM_CFLAGS) $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) \
 				$(GTK_CFLAGS) $(CAIRO_CFLAGS) $(CAIRO_PNG_CFLAGS) \
 				$(CAIRO_PDF_CLAGS) $(CAIRO_PS_CFLAGS) $(CAIRO_SVG_CFLAGS)
-		
-		
+
 gaf_LDFLAGS   = $(GUILE_LIBS) $(GTK_LIBS) $(CAIRO_LIBS) $(CAIRO_PNG_LIBS) \
-				$(CAIRO_PDF_CLAGS) $(CAIRO_PS_LIBS) $(CAIRO_SVG_LIBS)
+	        $(CAIRO_PDF_CLAGS) $(CAIRO_PS_LIBS) $(CAIRO_SVG_LIBS)
 
 gaf_LDADD     = $(top_builddir)/libgedacairo/src/libgedacairo.la \
 				$(top_builddir)/libgeda/src/libgeda.la \
