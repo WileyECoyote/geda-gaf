@@ -87,4 +87,3 @@ void      geda_notify_list_remove_all              ( GedaNotifyList *list );
 G_END_DECLS
 
 #endif /* __GEDA_NOTIFY_H__ */
-

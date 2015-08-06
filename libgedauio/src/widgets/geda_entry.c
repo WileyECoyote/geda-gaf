@@ -1340,14 +1340,14 @@ void geda_entry_modify_bg (GedaEntry      *entry,
 GtkWidget *geda_entry_new (GList** history, GList** complete)
 {
 
-  if ((int)history == -1)
+  if ((int)(long*)history == -1)
     have_history = FALSE;
   else {
     history_list_arg = history;
     have_history = TRUE;
   }
 
-  if((int)complete == -1)
+  if ((int)complete == -1)
     have_auto_complete = FALSE;
   else {
     if (complete) {

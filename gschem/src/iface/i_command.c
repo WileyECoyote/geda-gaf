@@ -1045,7 +1045,7 @@ COMMAND (do_close_all) {
   }
 
   if (!can_close) {         /* Ask to save unsaved pages */
-    close_all = x_dialog_close_window (w_current);
+    close_all = x_confirm_close_window (w_current);
     if (!close_all) {       /* user cancelled the close */
       v_log_message(_("Close all canceled\n"));
     }
@@ -2724,7 +2724,7 @@ COMMAND (do_hierarchy_up)
     Page *child  = Current_Page;
 
     if (child->CHANGED) {
-      answer = x_dialog_close_changed_page (w_current, child);
+      answer = x_confirm_close_changed_page (w_current, child);
     }
     if (answer == TRUE) {
       x_window_set_current_page(w_current, up_page);

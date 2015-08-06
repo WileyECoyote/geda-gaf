@@ -90,7 +90,7 @@ void i_window_close_page (GschemToplevel *w_current)
   page = gschem_toplevel_get_current_page(w_current);
 
   if (page && page->CHANGED) {
-    can_close = x_dialog_close_changed_page (w_current, page);
+    can_close = x_confirm_close_changed_page (w_current, page);
   }
   else {
     can_close = TRUE;

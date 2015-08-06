@@ -670,7 +670,7 @@ void x_window_close(GschemToplevel *w_current)
   }
 
   /* last chance to save possible unsaved pages */
-  if (!x_dialog_close_window (w_current)) {
+  if (!x_confirm_close_window (w_current)) {
     v_log_message("Close Window canceled\n");
     /* user cancelled the close */
     return;

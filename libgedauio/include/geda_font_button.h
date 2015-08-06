@@ -62,8 +62,8 @@ struct _GedaFontButton {
   /*< private >*/
   GedaFontButtonPrivate *priv;
 
-  PangoFontDescription    *font_desc;
-  PangoFontFace           *font_face;
+  PangoFontDescription  *font_desc;
+  PangoFontFace         *font_face;
 
   char *title;
 

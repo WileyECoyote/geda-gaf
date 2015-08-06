@@ -209,8 +209,8 @@ confirm_close_dialog_set_page_name (GtkTreeViewColumn *tree_column,
  */
 static void
 confirm_close_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
-                                                     char                 *path,
-                                                     void*               user_data)
+                                         char                  *path,
+                                         void                  *user_data)
 {
   ConfirmCloseDialog *dialog = CLOSE_CONFIRMATION_DIALOG (user_data);
   GtkTreeModel *model;
@@ -247,10 +247,10 @@ confirm_close_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
 static GtkWidget*
 confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
 {
-  GtkWidget *vbox, *scrolled_window, *treeview, *label;
-  GtkCellRenderer *renderer;
+  GtkWidget         *vbox, *scrolled_window, *treeview, *label;
+  GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
-  const char *text;
+  const char        *text;
 
   /* place the treeview and its caption into their own box */
   vbox = GTK_WIDGET (g_object_new (GTK_TYPE_VBOX,
@@ -332,9 +332,11 @@ confirm_close_dialog_set_property (GObject      *object,
                                    GParamSpec   *pspec)
 {
   ConfirmCloseDialog *dialog = CLOSE_CONFIRMATION_DIALOG (object);
-  GtkTreeIter iter;
-  void* data;
+
+  void  *data;
   GList *p_current;
+
+  GtkTreeIter iter;
 
   switch(property_id) {
     case PROP_UNSAVED_Page:
@@ -405,11 +407,8 @@ confirm_close_dialog_constructor (GedaType type,
   const char *cstr;
 
   /* chain up to constructor of parent class */
-  object =
-    G_OBJECT_CLASS (confirm_close_dialog_parent_class)->constructor (
-      type,
-      n_construct_properties,
-      construct_params);
+  object = G_OBJECT_CLASS (confirm_close_dialog_parent_class)->
+           constructor (type, n_construct_properties, construct_params);
 
   dialog = CLOSE_CONFIRMATION_DIALOG (object);
 
@@ -432,14 +431,15 @@ confirm_close_dialog_constructor (GedaType type,
 
   /* check if there is one or more than one page with changes */
   ret = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (
-                                         dialog->store_unsaved_pages),
+                                       dialog->store_unsaved_pages),
                                        &iter);
   if(!ret) {
     BUG_MSG ("gtk_tree_model_get_iter_first returned NULL");
     return NULL;
   }
+
   single_page = !gtk_tree_model_iter_next (GTK_TREE_MODEL (
-                                             dialog->store_unsaved_pages),
+                                           dialog->store_unsaved_pages),
                                            &iter);
 
   /* here starts the layout of the dialog */

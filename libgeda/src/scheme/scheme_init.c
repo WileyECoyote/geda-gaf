@@ -28,7 +28,7 @@
 #include "libgedaguile_priv.h"
 
 /*! Non-zero if the Scheme API has been initialised. */
-static volatile unsigned long init_called = 0;
+static volatile GedaType init_called = 0;
 
 SCM_GLOBAL_SYMBOL (edascm_object_state_sym, "object-state");
 
