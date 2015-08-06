@@ -227,6 +227,7 @@
                   ("national"        "Manufacturers/National Semiconductor")
                   ("onsemi"          "Manufacturers/ON Semiconductor")
                      ("onsemi/diodes"                  "Manufacturers/Diodes")
+                     ("onsemi/ldo"                     "Manufacturers/Low-Dropout Regulators")
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")

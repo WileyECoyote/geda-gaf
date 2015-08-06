@@ -1,3 +1,10 @@
+2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm: Add group onsemi/ldo.
+
+    * onsemi/ldo/NCP1117-DT12-1.sym: Add symbol VOLTAGE REGULATOR,LDO,800mA
+      Fixed 12.0Volt, 0-125°C,DPAK.
+
 2015-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/switchreg/TPS62056-1.sym: Add symbol Synchronous Step-down Converter,
