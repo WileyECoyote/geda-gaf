@@ -26,6 +26,7 @@ noinst_HEADERS = \
 		keywords.h                  \
 		prototype.h                 \
 		x_compselect.h              \
+		x_confirm_close.h           \
 		x_console.h                 \
 		x_dialog.h                  \
 		x_dnd.h                     \

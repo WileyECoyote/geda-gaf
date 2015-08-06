@@ -721,8 +721,6 @@ void          x_dialog_translate            (GschemToplevel *w_current);
 
   /* Systemic-Dialogs */
 void          x_dialog_hotkeys              (GschemToplevel *w_current);
-bool          x_dialog_close_changed_page   (GschemToplevel *w_current, Page *page);
-bool          x_dialog_close_window         (GschemToplevel *w_current);
 void          x_dialog_raise_all            (GschemToplevel *w_current);
 void          x_dialog_symbol_changed       (GschemToplevel* w_current);
 int           x_dialog_validate_attribute   (GtkWindow* parent, char *attribute);
@@ -758,6 +756,10 @@ void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *
 
 /* x_array.c */
 void        x_dialog_array_edit             (GschemToplevel *w_current);
+
+/* x_confirm_close */
+bool        x_confirm_close_changed_page    (GschemToplevel *w_current, Page *page);
+bool        x_confirm_close_window          (GschemToplevel *w_current);
 
 /* x_edit_array.c */
 void        x_dialog_edit_color             (GschemToplevel *w_current);

@@ -1,6 +1,16 @@
+2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Source Organization. Relocate Confirm-Exit-Dialog to a seperate file
+
+    * include/x_confirm_close.h: New header file to reduce clutter in source.
+      Rename class CloseConfirmMationDialog->ConfirmCloseDialog.
+
+    * src/x/x_confirm_close.c: Relocate code for ConfirmCloseDialog from
+      x_dialog.c to new file.
+
 2015-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Code Enhancement: Fix failed initialization with gcc 4.4.3: 
+    * Code Enhancement: Fix failed initialization with gcc 4.4.3:
 
      gschem: pthread_mutex_lock.c:62: __pthread_mutex_lock: Assertion `mutex->__data.__owner == 0' failed.
 
@@ -28,7 +38,7 @@
 
     * Source Organization.
 
-    * src/x/x_edit_slot.c: Relocate code for Slot Dialog form x_dialog.c to
+    * src/x/x_edit_slot.c: Relocate code for Slot Dialog from x_dialog.c to
       new file.
 
 2015-07-29 Wiley E. Hill <wileyhill@gmail.com>

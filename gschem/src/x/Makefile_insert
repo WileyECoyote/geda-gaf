@@ -7,6 +7,7 @@ gschem_SOURCES += \
 		x/x_clipboard.c \
 		x/x_color.c \
 		x/x_compselect.c \
+		x/x_confirm_close.c \
 		x/x_console.c \
 		x/x_coord.c \
 		x/x_dialog.c \
