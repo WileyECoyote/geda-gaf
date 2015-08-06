@@ -179,6 +179,7 @@ for t in $all_tests ; do
 	code=0
     fi
 
+    echo "--------- Begin Run Test ---------"
     echo "Schematics to copy   = $schematics"
     echo "Args to copy         = $args"
     echo "Always copying       = $always_copy"

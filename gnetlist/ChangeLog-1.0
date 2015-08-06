@@ -1,3 +1,8 @@
+2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/run_backend_tests.sh: Add separator between test to assist in
+      reviewing log reports.
+
 2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/outputs/*/powersupply-output.net: Updated reference output
