@@ -95,6 +95,9 @@ enum
   PROP_SHOW_SIZE
 };
 
+/*! \struct _GedaFontButtonPrivate
+ *  \memberof GedaFontButton
+ */
 struct _GedaFontButtonPrivate
 {
   char         *family;
@@ -724,13 +727,14 @@ geda_font_button_finalize (GObject *object)
 static void
 geda_font_button_class_init(void *g_class, void *class_data)
 {
-  GedaFontButtonClass *class  = (GedaFontButtonClass*)g_class;
-  GObjectClass   *gobject_class;
-  GtkButtonClass *button_class;
-  GParamSpec     *params;
+  GedaFontButtonClass *class;
+  GObjectClass        *gobject_class;
+  GtkButtonClass      *button_class;
+  GParamSpec          *params;
 
-  gobject_class   = (GObjectClass *) class;
-  button_class    = (GtkButtonClass *) class;
+  class                       = (GedaFontButtonClass*)g_class;
+  gobject_class               = (GObjectClass *) class;
+  button_class                = (GtkButtonClass *) class;
 
   gobject_class->finalize     = geda_font_button_finalize;
   gobject_class->set_property = geda_font_button_set_property;
@@ -766,7 +770,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
 
-  /*! \property "use-font":
+  /*! property GedaFontButton::use-font:
    *  \par If this property is set to %TRUE, the label will be drawn
    *       in the selected font.
    */
@@ -793,7 +797,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
   /*! property GedaFontButton::show-style:
    *  \par If this property is set to %TRUE, the name of the selected font style
    *       will be shown in the label. For a more WYSIWYG way to show the selected
-   *       style, see the ::use-font property.
+   *       style, see the use-font property.
    */
   params = g_param_spec_boolean ("show-style",
                                _("Show style"),
@@ -806,7 +810,7 @@ geda_font_button_class_init(void *g_class, void *class_data)
   /*! property GedaFontButton::show-size
    *  \par If this property is set to %TRUE, the selected font size will be shown
    *       in the label. For a more WYSIWYG way to show the selected size, see the
-   *       ::use-size property.
+   *       use-size property.
    */
   params = g_param_spec_boolean ("show-size",
                                _("Show size"),
@@ -829,14 +833,14 @@ geda_font_button_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_FONT_SIZE, params);
 
-  /*! \signal GedaFontButton::font-set:
-   * @widget: the object which received the signal.
+  /*!signal GedaFontButton::font-set:
+   * widget: the object which received the signal.
    *
-   * The ::font-set signal is emitted when the user selects a font.
+   * The font-set signal is emitted when the user selects a font.
    * When receiving this signal, use geda_font_button_get_font_name()
    * to find out which font was just selected.
    *
-   * Note that this signal is only emitted when the <emphasis>user</emphasis>
+   * Note that this signal is only emitted when the <b>user</b>
    * changes the font. If you need to react to programmatic font changes
    * as well, use the notify::font-name signal.
    *

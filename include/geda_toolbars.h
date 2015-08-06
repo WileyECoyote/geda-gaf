@@ -30,14 +30,14 @@
 #ifndef __GEDA__TOOLBARS__
 #define __GEDA__TOOLBARS__
 
-/*! \struct  ToolbarStringData String data record for creating toolbar items
+/*! \struct ToolbarStringData
+ *  \brief  String data record for creating toolbar items
  *  \par
  *  action:
  *           1. Must be unadulterated action string
  *              a. string is loaded into widget as "action" data, which is later
  *                 retrieved by func (x_toolbars_execute) when the button is clicked.
  *              b. Primary icon is determined from the action string
- *
  */
 typedef struct
 {

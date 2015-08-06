@@ -124,9 +124,9 @@ bool o_copy_real_start(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Start Multiple Copy Mode
  *  \par Function Description
  *  This function is called at the beginning of a copy multiple operation.
- *  The function uses the normal o_copy_start function to save the x and y
- *  coordinates for the event and if o_copy_start is successful the event
- *  state is set to MCOPYMODE.
+ *  The function calls the normal o_copy_real_start function to save the
+ *  x and y coordinates for the event and if successful the event state is
+ *  set to MCOPYMODE and the paster event handler is activated.
  */
 void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -139,6 +139,9 @@ void o_copy_multiple_start(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Start a Single Copy operation
  *  \par Function Description
  *  This function is called at the beginning of a nomral copy operation.
+ *  The function calls o_copy_real_start function to save the x and y
+ *  coordinates for the event and if successful the event state is set
+ *  to COPYMODE and the paster event handler is activated.
  */
 void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 {

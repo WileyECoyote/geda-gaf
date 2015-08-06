@@ -124,13 +124,13 @@ static void geda_box_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_box_parent_class)->finalize(object);
 }
 
-/*! \brief Type class initialiser for Box
+/*! \brief Type class initializer for Box
  *
  *  \par Function Description
- *  Type class initialiser for Box. We override our parents
+ *  Type class initializer for Box. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Box class we are initialising
+ *  \param [in]  g_class      The Box class we are initializing
  *  \param [in]  class_data   The Box structure associated with the class
  */
 static void geda_box_class_init(void *g_class, void *class_data)

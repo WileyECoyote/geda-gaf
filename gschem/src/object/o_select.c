@@ -364,9 +364,9 @@ bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
  *  operation.
  *
  *
- *  \param [in] w_current  The GschemToplevel object,
- *  \param [in] us_wx      Snapped X coordinate in World units,
- *  \param [in] us_wy      Snapped Y coordinate in World units.
+ *  \param [in] w_current The GschemToplevel object,
+ *  \param [in] w_x       Snapped X coordinate in World units,
+ *  \param [in] w_y       Snapped Y coordinate in World units.
  *
  *  \todo Reeks box-selection-threashold
  */
@@ -399,11 +399,11 @@ int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
  *   Invalidates the drawn temporary selection box and invokes selection
  *   search routines.
  *
- *  \param [in] w_current  The GschemToplevel object,
- *  \param [in] us_wx      Unsnapped X coordinate in World units,
- *  \param [in] us_wy      Unsnapped Y coordinate in World units.
+ *  \param [in] w_current The GschemToplevel object,
+ *  \param [in] wx        Unsnapped X coordinate in World units,
+ *  \param [in] w_y       Unsnapped Y coordinate in World units.
  */
-void o_select_box_end(GschemToplevel *w_current, int us_wx, int w_y)
+void o_select_box_end(GschemToplevel *w_current, int wx, int w_y)
 {
   o_select_box_invalidate_rubber (w_current);
   w_current->rubber_visible = FALSE;

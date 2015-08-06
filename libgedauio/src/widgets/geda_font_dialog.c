@@ -1480,7 +1480,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
 
   geda_font_dialog_parent_class = g_type_class_peek_parent(class);
 
-  /*! \property GedaFontDialog::title
+  /*! property GedaFontDialog::title
    *  \par The title of the font selection dialog.
    */
   params = g_param_spec_string ("title",
@@ -1515,7 +1515,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
 
-  /*! \property font-size:
+  /*! property GedaFontDialog::font-size:
    *  \par Programmactically set the font size.
    */
   params = g_param_spec_int ("font-size",
