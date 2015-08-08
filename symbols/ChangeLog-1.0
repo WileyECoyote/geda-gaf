@@ -1,3 +1,8 @@
+2015-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/ldo/NCP1117-DT15-1.sym:  Add symbol VOLTAGE REGULATOR,LDO,800mA
+      Fixed 15.0Volt, 0-125°C,DPAK.
+
 2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add group onsemi/ldo.
