@@ -1,3 +1,8 @@
+2015-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/geda-install.sh.in: Revise abstract, add retry if UseForce,
+      bump version.
+
 2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by

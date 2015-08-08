@@ -1,11 +1,11 @@
 #!/bin/bash
 
-VER=0.6
+VER=0.65
 
 # Author: Wiley Edward Hill
 # Date: 02/23/14
 #
-REV_DATA="03/01/2015"
+REV_DATA="08/08/2015"
 
 me=`basename $0`
 
@@ -70,10 +70,10 @@ echo
 echo "Abstract: geda-install is for creating shortcut links, usually referred to as soft"
 echo "          links, for files in the geda package folder; icons, man pages, info, etc"
 echo "          to local folders. geda-install uses geda-install-bin to install executables"
-echo "          This is useful after installing from the source as oppose to a distrobution"
+echo "          This is useful after installing from the source as oppose to a distribution"
 echo "          when the --prefix arguments was given during configuration and can be ran"
-echo "          after \"make install\" completes successfully to add links in local folders"
-echo "          User that install geda-gaf from a distrobution package should NOT normally"
+echo "          after \"make install\" completes successfully to add links in local folders."
+echo "          User that install geda-gaf from a distribution package should NOT normally"
 echo "          use this script. This allows local builds to an alternate directory such as"
 echo "          /opt/gEDA.9 (using configure --prefix=/opt/gEDA.9) to remain \"intact\"."
 echo
@@ -154,12 +154,22 @@ do_install_manuals(){
       if [ ! -f $target ] && [ ! -h $target ] ; then
         vecho "linking ${target} to ${file}"
         cp -s ${file} $LOCAL_SHARE/man/man1/
-        if [ $? != 0 ]; then return $? ; fi
+        if [ $? != 0 ]; then
+           if ! $UseForce ; then
+             return $?;
+           else
+             vecho "forcing ${target} to ${file}"
+             cp -fs ${file} $LOCAL_SHARE/man/man1/ >/dev/null 2>&1
+           fi
+        fi
       elif $UseForce ; then
         vecho "forcing ${target} to ${file}"
         cp -fs ${file} $LOCAL_SHARE/man/man1/ >/dev/null 2>&1
-      else # TODO make sure the link is ours
-        vecho "skipping ${file}, ${target} already exist"
+      else
+        if [ -L $target ] ; then
+          # TODO make sure the link is ours
+          vecho "skipping ${file}, ${target} already exist"
+        fi
       fi
     done
   else
@@ -201,8 +211,11 @@ do_install_info(){
           vecho "forcing ${file} to ${target}"
           cp -sf ${file} /usr/share/info/ >/dev/null 2>&1
           install-info --info-file=${file} --dir-file=/usr/share/info/dir
-        else # TODO make sure the link is ours
-          vecho "skipping ${file}, ${target} already exist"
+        else
+          if [ -L $target ] ; then
+            # TODO make sure the link is ours
+            vecho "skipping ${file}, ${target} already exist"
+          fi
         fi
       done
     else
@@ -255,8 +268,11 @@ do_install_desktop(){
       elif $UseForce ; then
         vecho "forcing  ${file} to ${target}"
         cp -fs $file /usr/share/info/ >/dev/null 2>&1
-      else # TODO make sure the link is ours
-        vecho 'skipping' "${file}, ${target} already exist"
+      else
+        if [ -L $target ] ; then
+          # TODO make sure the link is ours
+          vecho "skipping ${file}, ${target} already exist"
+        fi
       fi
     done
     #this works on a debian system
@@ -311,7 +327,6 @@ do_install_bin(){
   eval $installer
   return $?
 }
-
 
 if [ $? = 0 ] || $UseForce ; then
   do_install_manuals
