@@ -191,11 +191,13 @@ geda_object_set_property (GObject *gobject, unsigned int property_id,
   switch (property_id)
   {
     case OBJECT_TYPE:
-#if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION <= 30 ))
+
+#if (( GLIB_MAJOR_VERSION <= 2 ) && ( GLIB_MINOR_VERSION <= 31 ))
       object->type = g_value_get_char (value);
 #else
       object->type = g_value_get_schar (value);
 #endif
+
       break;
     case OBJECT_NAME:
       name = g_value_get_string (value); //

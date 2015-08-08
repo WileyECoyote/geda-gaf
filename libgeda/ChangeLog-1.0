@@ -1,5 +1,10 @@
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+     * src/geda/geda_object.c: Fix conditional compile directive for glib version
+       less than, not greater than, for function g_value_get_char.
+
+2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
      * include/libgeda/libgeda.h: Add conditional directive to not include
        libguile.h if WITHOUT_GUILE is defined, else define SCM as void*.
 
