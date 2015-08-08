@@ -2,7 +2,7 @@
 # serial 1
 
 dnl Carry out configuration tasks needed by desktop-i18n tool
-dnl Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2015  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -30,8 +30,7 @@ AC_DEFUN([AX_DESKTOP_I18N],
   AM_PATH_PROG_WITH_TEST([GETTEXT], [gettext],
     [$ac_dir/$ac_word --version | grep GNU > /dev/null], :)
   if test "x$GETTEXT" = x; then
-    AC_MSG_ERROR([The GNU gettext program could not be found. Please ensure that GNU
-gettext is correctly installed, and rerun configure.])
+    AC_MSG_ERROR([The GNU gettext program could not be found. Please ensure that GNU gettext is correctly installed, and rerun configure.])
   fi
   AC_SUBST([GETTEXT])
 
@@ -41,8 +40,7 @@ gettext is correctly installed, and rerun configure.])
   AC_SUBST([DESKTOP_I18N_SCRIPT])
   AC_SUBST([DESKTOP_I18N])
 
-  # We have a private directory to temporarily install locale data
-  # into.
+  # We have a private directory to temporarily install locale data into.
   DESKTOP_I18N_LOCALE_DIR='$(top_builddir)/.desktop-i18n'
   AC_SUBST([DESKTOP_I18N_LOCALE_DIR])
 
@@ -69,6 +67,6 @@ gettext is correctly installed, and rerun configure.])
 # Stolen from intltool.m4 (GPL v2)
 AC_DEFUN([_IT_SUBST],
 [
-AC_SUBST([$1])
-m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([$1])])
+  AC_SUBST([$1])
+  m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([$1])])
 ])dnl _IT_SUBST
