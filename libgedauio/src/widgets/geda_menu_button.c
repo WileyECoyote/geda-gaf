@@ -88,7 +88,7 @@ static void geda_menu_button_destroy (GtkObject *object);
 
 static int  geda_menu_deactivate_cb(GtkMenuShell *menu_shell, GedaMenuButton *button);
 
-static bool arrow_button_press_event_cb        (GtkWidget         *widget,
+static bool arrow_button_press_event_cb               (GtkWidget         *widget,
                                                        GdkEventButton    *event,
                                                        GedaMenuButton *button);
 static void arrow_button_toggled_cb                   (GtkToggleButton   *togglebutton,
