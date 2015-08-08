@@ -44,8 +44,6 @@
 #ifndef __GEDA_ACCEL_LABEL_H__
 #define __GEDA_ACCEL_LABEL_H__
 
-G_BEGIN_DECLS
-
 #define GEDA_TYPE_ACCEL_LABEL            (geda_accel_label_get_type ())
 #define GEDA_ACCEL_LABEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACCEL_LABEL, GedaAccelLabel))
 #define GEDA_ACCEL_LABEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
@@ -53,6 +51,9 @@ G_BEGIN_DECLS
 #define GEDA_IS_ACCEL_LABEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ACCEL_LABEL))
 #define GEDA_ACCEL_LABEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 typedef struct _GedaAccelLabel       GedaAccelLabel;
 typedef struct _GedaAccelLabelClass  GedaAccelLabelClass;
@@ -83,6 +84,8 @@ char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *class,
                                                      unsigned int         accelerator_key,
                                                      GdkModifierType      accelerator_mods);
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_ACCEL_LABEL_H__ */
