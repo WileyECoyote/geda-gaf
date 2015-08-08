@@ -51,21 +51,29 @@
  */
 void o_slot_start (GschemToplevel *w_current, Object *object)
 {
+  char *slot_count;
   char *slot_value;
 
   /* single object for now */
   if (object->type != OBJ_COMPLEX)
     return;
 
+  slot_count = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
+
+  if (slot_count == NULL) {
+    /* we didn't find a slot=? attribute, make something up */
+    slot_count = u_string_strdup ("0");
+  }
+
   slot_value = o_attrib_search_object_attribs_by_name (object, "slot", 0);
 
   if (slot_value == NULL) {
     /* we didn't find a slot=? attribute, make something up */
-    /* for now.. this is an error condition */
     slot_value = u_string_strdup ("1");
   }
 
-  x_dialog_edit_slot (w_current, slot_value);
+  x_dialog_edit_slot (w_current, slot_count, slot_value);
+  GEDA_FREE (slot_count);
   GEDA_FREE (slot_value);
 }
 

@@ -771,7 +771,7 @@ void        x_dialog_edit_pin_type          (GschemToplevel *w_current);
 void        x_dialog_edit_properties        (GschemToplevel *w_current, Object *o_current);
 
 /* x_edit_slot.c */
-void        x_dialog_edit_slot              (GschemToplevel *w_current, const char *string);
+void        x_dialog_edit_slot              (GschemToplevel *w_current, const char *slots, const char *slot);
 
 /* x_edit_text.c */
 void        x_dialog_edit_text              (GschemToplevel *w_current, Object *o_current);

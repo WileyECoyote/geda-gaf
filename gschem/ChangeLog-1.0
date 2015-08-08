@@ -1,3 +1,11 @@
+2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_slot.c: Revise dialog to add display of the total
+      number of slots.
+
+    * src/object/o_slot.c: Add slot count argument to x_dialog_edit_slot in
+      o_slot_start.
+
 2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_buffer.c: Use gschem_toplevel_get_current_page in

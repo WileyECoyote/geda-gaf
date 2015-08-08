@@ -547,7 +547,7 @@ geda_combo_box_buildable_get_internal_child (GtkBuildable *buildable,
 }
 
 static GObject *
-geda_combo_box_constructor (GType                  type,
+geda_combo_box_constructor (GedaType               type,
                             unsigned int           n_construct_properties,
                             GObjectConstructParam *construct_properties)
 {

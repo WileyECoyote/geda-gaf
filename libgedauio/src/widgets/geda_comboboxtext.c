@@ -119,7 +119,7 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
 }
 
 static GObject *
-geda_combo_box_text_constructor (GType                  type,
+geda_combo_box_text_constructor (GedaType               type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
@@ -263,7 +263,7 @@ item_start_element (GMarkupParseContext *context,
 
 static void item_text (GMarkupParseContext *context,
                        const char          *text,
-                       unsigned int         text_len,
+                       size_t               text_len,
                        void                *user_data,
                        GError             **error)
 {
@@ -301,9 +301,9 @@ static void item_end_element (GMarkupParseContext *context,
       {
         char *translated;
 
-        /* FIXME: This will not use the domain set in the .ui file,
-         * since the parser is not telling the builder about the domain.
-         * However, it will work for gtk_builder_set_translation_domain() calls.
+        /* FIXME: This will not use the domain set in the .ui file, since
+         * the parser is not telling the builder about the domain. However,
+         * this will work for gtk_builder_set_translation_domain() calls.
          */
         translated = geda_builder_parser_translate (data->domain,
                                                     data->context,

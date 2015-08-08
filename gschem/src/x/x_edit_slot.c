@@ -96,12 +96,15 @@ static void
 x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
 {
   GtkWidget *ThisDialog;
+  GtkWidget *countentry;
   GtkWidget *textentry;
+  char *slot_count = NULL;
   char *slot_value = NULL;
 
   if (object != NULL) {
 
     if (object->type == OBJ_COMPLEX) {
+      slot_count = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
       slot_value = o_attrib_search_object_attribs_by_name (object, "slot", 0);
     }
     else {
@@ -114,7 +117,15 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
     ThisDialog = w_current->sewindow;
 
     /* Get ptr to the text widget */
-    textentry = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
+    countentry = g_object_get_data(G_OBJECT(ThisDialog), "slot-count");
+    textentry  = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
+
+    if (slot_count != NULL) {
+      SetEntryText( countentry, slot_count);
+    }
+    else {
+      SetEntryText( countentry, "0");
+    }
 
     if (slot_value != NULL) {
       gtk_widget_set_sensitive (textentry, TRUE);
@@ -136,15 +147,19 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
  *  \param [in] w_current Pointer to a GschemToplevel object
  *  \param [in] string    Optional Pointer to slot string
  */
-void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
+void
+x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *slot)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
   GtkWidget *textentry;
+  GtkWidget *textslots;
   GtkWidget *vbox;
 
   ThisDialog = w_current->sewindow;
+
   if (!ThisDialog) {
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit slot number"),
                                    GTK_WINDOW(w_current->main_window),
           /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
@@ -167,36 +182,52 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
+    /* Number of slots */
+    label = geda_aligned_label_new (_("Number of slots:"), 0, 0);
+    gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
+
+    textslots = gtk_entry_new();
+    gtk_box_pack_start( GTK_BOX(vbox), textslots, FALSE, FALSE, 0);
+
+    gtk_entry_set_max_length(GTK_ENTRY(textslots), 80);
+
+    /* Set the current text to the number of slots */
+    if (slots != NULL) {
+      SetEntryText(textslots, slots);
+    }
+    gtk_editable_set_editable (GTK_EDITABLE(textslots), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET(textslots), FALSE);
+
+    /* Slot Number */
     label = geda_aligned_label_new (_("Edit slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
     textentry = gtk_entry_new();
-    gtk_box_pack_start( GTK_BOX(vbox),
-                       textentry, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
     gtk_entry_set_max_length(GTK_ENTRY(textentry), 80);
 
-    /* always set the current text and select the number of the slot */
-    if (string != NULL) {
-      SetEntryText(textentry, string);
+    /* Set the current text to the slot number */
+    if (slot != NULL) {
+      SetEntryText(textentry, slot);
       gtk_editable_select_region (GTK_EDITABLE(textentry), 0, -1);
     }
 
     gtk_entry_set_activates_default (GTK_ENTRY(textentry),TRUE);
 
+    GSCHEM_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
     GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SLOT_EDIT);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_edit_slot_response),
                       w_current);
 
-    g_object_set (G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
+    g_object_set(G_OBJECT (ThisDialog), DIALOG_SELECTION_TRACKER,
                  x_dialog_slot_edit_update_selection,
                  NULL);
 
     w_current->sewindow = ThisDialog;
     gtk_widget_show_all (ThisDialog);
   }
-
   else { /* dialog already created */
     x_dialog_slot_edit_update_selection (w_current, NULL);
     gtk_window_present (GTK_WINDOW(ThisDialog));
