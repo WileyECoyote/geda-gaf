@@ -213,32 +213,32 @@ static unsigned int combo_box_signals[LAST_SIGNAL] = {0,};
 
 static void     geda_combo_box_cell_layout_init     (GtkCellLayoutIface    *iface);
 static void     geda_combo_box_cell_editable_init   (GtkCellEditableIface  *iface);
-static GObject *geda_combo_box_constructor          (unsigned int           type,
-                                                    unsigned int           n_construct_properties,
-                                                    GObjectConstructParam *construct_properties);
+static GObject *geda_combo_box_constructor          (GedaType               type,
+                                                     unsigned int           n_construct_properties,
+                                                     GObjectConstructParam *construct_properties);
 static void     geda_combo_box_dispose              (GObject          *object);
 static void     geda_combo_box_finalize             (GObject          *object);
 static void     geda_combo_box_destroy              (GtkObject        *object);
 
 static void     geda_combo_box_set_property         (GObject         *object,
-                                                    unsigned int      prop_id,
-                                                    const GValue     *value,
-                                                    GParamSpec       *spec);
+                                                     unsigned int      prop_id,
+                                                     const GValue     *value,
+                                                     GParamSpec       *spec);
 static void     geda_combo_box_get_property         (GObject         *object,
                                                      unsigned int     prop_id,
                                                      GValue          *value,
                                                      GParamSpec      *spec);
 
 static void     geda_combo_box_state_changed        (GtkWidget        *widget,
-			                            GtkStateType      previous);
+                                                     GtkStateType      previous);
 static void     geda_combo_box_grab_focus           (GtkWidget       *widget);
 static void     geda_combo_box_style_set            (GtkWidget       *widget,
                                                      GtkStyle        *previous);
 static void     geda_combo_box_button_toggled       (GtkWidget       *widget,
-                                                    void             *data);
+                                                     void             *data);
 static void     geda_combo_box_button_state_changed (GtkWidget       *widget,
-			                            GtkStateType      previous,
-						    void            *data);
+                                                     GtkStateType      previous,
+                                                     void            *data);
 static void     geda_combo_box_add                  (GtkContainer    *container,
                                                     GtkWidget        *widget);
 static void     geda_combo_box_remove               (GtkContainer    *container,
@@ -253,7 +253,7 @@ static void     geda_combo_box_menu_hide            (GtkWidget        *menu,
                                                      void              *user_data);
 
 static void     geda_combo_box_set_popup_widget     (GedaComboBox     *combo_box,
-                                                    GtkWidget         *popup);
+                                                     GtkWidget         *popup);
 static void     geda_combo_box_menu_position_below  (GtkMenu          *menu,
                                                      int              *x,
                                                      int              *y,
@@ -5954,11 +5954,11 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
 }
 
 static GObject *
-geda_combo_box_constructor (unsigned int           type,
+geda_combo_box_constructor (GedaType               type,
                             unsigned int           n_construct_properties,
                             GObjectConstructParam *construct_properties)
 {
-  GObject            *object;
+  GObject             *object;
   GedaComboBox        *combo_box;
   GedaComboBoxPrivate *priv;
 

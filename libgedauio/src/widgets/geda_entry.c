@@ -1347,7 +1347,7 @@ GtkWidget *geda_entry_new (GList** history, GList** complete)
     have_history = TRUE;
   }
 
-  if ((int)complete == -1)
+  if ((int)(long*)complete == -1)
     have_auto_complete = FALSE;
   else {
     if (complete) {

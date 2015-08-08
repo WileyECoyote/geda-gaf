@@ -119,7 +119,7 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
 }
 
 static GObject *
-geda_combo_box_text_constructor (GType                  type,
+geda_combo_box_text_constructor (GedaType               type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
@@ -223,17 +223,20 @@ item_start_element (GMarkupParseContext *context,
   ItemParserData *data = (ItemParserData*)user_data;
   unsigned int i;
 
-  if (strcmp (element_name, "item") == 0)
-  {
+  if (strcmp (element_name, "item") == 0) {
+
     data->is_text = TRUE;
 
-    for (i = 0; names[i]; i++)
-    {
-      if (strcmp (names[i], "translatable") == 0)
-      {
+    for (i = 0; names[i]; i++) {
+
+      if (strcmp (names[i], "translatable") == 0) {
+
         if (values[i] != NULL) {
+
           int len = strlen(values[i]);
+
           if (gtk_builder_add_from_string (data->builder, values[i], len, error)) {
+
             if (error) {
               g_clear_error (error);
             }
@@ -241,16 +244,19 @@ item_start_element (GMarkupParseContext *context,
           }
         }
       }
-      else if (strcmp (names[i], "comments") == 0)
-      {
+      else if (strcmp (names[i], "comments") == 0) {
+
         /* do nothing, comments are for translators */
       }
-      else if (strcmp (names[i], "context") == 0)
+      else if (strcmp (names[i], "context") == 0) {
         data->context = g_strdup (values[i]);
-      else if (strcmp (names[i], "id") == 0)
+      }
+      else if (strcmp (names[i], "id") == 0) {
         data->id = g_strdup (values[i]);
-      else
+      }
+      else {
         fprintf(stderr, "Unknown custom combo box attribute: %s", names[i]);
+      }
     }
   }
 }
