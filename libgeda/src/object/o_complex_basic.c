@@ -95,7 +95,7 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *obje
       if(object->text->string == NULL) {
         BUG_MSG("GedaText object string value = NULL");
       }
-      else if (strncmp(object->text->string, symversion, sizeof(symversion)) == 0) {
+      else if (strncmp(object->text->string, symversion, 11) == 0) {
         /* always promote symversion= attribute, even if it is invisible */
         answer = TRUE;
       }

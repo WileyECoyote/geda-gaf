@@ -1,4 +1,8 @@
-2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/object/o_complex_basic.c: Use explicit length as argument to strncmp.
+
+2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/geda/geda_object.c: Fix conditional compile directive for glib version
        less than, not greater than, for function g_value_get_char.

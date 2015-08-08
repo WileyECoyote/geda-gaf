@@ -136,7 +136,7 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
      object = g_list_nth_data (objects, num);
      if (GEDA_IS_OBJECT(object)) {
        if (object->type == OBJ_TEXT &&
-          (strncmp(object->text->string, symver, sizeof(symver)) == 0))
+          (strncmp(object->text->string, symver, 6) == 0))
        {
          /* Almost random, we skip deleting symbol versions attributes
           * because this causes errors, which makes us look bad */

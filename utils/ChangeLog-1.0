@@ -1,3 +1,7 @@
+2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/src/gsch2pcb.c: Use explicit length as argument to strncmp.
+
 2015-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/geda-install.sh.in: Revise abstract, add retry if UseForce,
