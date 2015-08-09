@@ -57,6 +57,7 @@ bitmapdata_DATA   = \
 			geda-grid-mesh.png                 \
 			geda-icprint.png                   \
 			geda-inbed.png                     \
+			geda-inspect-grn.png               \
 			geda-line.png                      \
 			geda-line-type.png                 \
 			geda-lock.png                      \

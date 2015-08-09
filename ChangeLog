@@ -1,3 +1,10 @@
+2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/geda-inspect-grn.svg: Add new svg file to generate bitmap
+      for icon.
+
+    * bitmaps/geda-inspect-grn.png: New graphics image file.
+
 2015-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_macros.h: Add define GCC_DIAGNOSTIC_AWARE
