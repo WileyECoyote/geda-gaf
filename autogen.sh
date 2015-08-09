@@ -161,8 +161,7 @@ fix_asneeded() {
 #####################################################################
 
 check_dist_file $ac_script || die=1
-check_dist_file $tooldir/desktop-i18n &&
-  DESKTOP_I18N=$tooldir/desktop-i18n || die=1
+check_dist_file $tooldir/desktop-i18n && DESKTOP_I18N=$tooldir/desktop-i18n || die=1
 
 AUTOCONF=`check_tool autoconf "GNU autoconf" ftp://ftp.gnu.org/pub/gnu/` 2>&1 || die=1
 
