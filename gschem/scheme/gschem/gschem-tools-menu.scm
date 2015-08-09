@@ -109,6 +109,18 @@
   )
 )
 
+;; ----------------- tools:check-symbol ----------------------------
+(define (tools:check-symbol)
+  (let  ((fout (string-append (tools:ifname) "_gsymcheck.log")))
+    (if (tools:check-file "sym")
+      (if (not (equal? 0
+          (status:exit-val (system (string-append "gsymcheck -vv " (tools:ifpath) " >" fout)))))
+        (tools:open-editor? fout)
+      )
+    )
+  )
+)
+
 ;; ----------------- tools:sch-netlist-0 ---------------------------
 ;; Can call this template code, if needed form is:
 ;; gnetlist -g [netlist-type] -o filebase[foutext] inputfilename
@@ -147,7 +159,6 @@
       (system (string-append tools:gitclient))
   )
 )
-
 
 ;; ----------------- tools:run-bom ----------------------------
 (define (tools:run-bom)
@@ -190,12 +201,16 @@
         (system (string-append "gnet_hier_verilog " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
+
+(map-keys "T S"            "tools:check-symbol")
+
 ;; ==================================================================
 (define tools:menu-items
 ;;
 ;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("SEPARATOR"                #f                     #f)
+  '(("Check Symbol"         tools:check-symbol         "geda-inspect-grn"   "Run gsymcheck")
+    ("SEPARATOR"                #f                     #f)
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
     ("Run DRC"              tools:run-drc2             "geda-check-org"     "Launch design rule checker")
     ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
@@ -215,4 +230,3 @@
 (add-menu "_Tools" tools:menu-items)
 ;; ==================================================================
 ;;
-

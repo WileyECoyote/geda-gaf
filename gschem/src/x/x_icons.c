@@ -76,7 +76,7 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-design1",       "geda-design2",       "geda-design3",      "geda-design4",
   "geda-display",       "geda-draft",         "geda-film-roll",    "geda-grid-dot",
   "geda-grid-mesh",
-  "geda-icprint",       "geda-inbed",
+  "geda-icprint",       "geda-inbed",         "geda-inspect-grn",
   "geda-line",          "geda-line-type",     "geda-lock",         "geda-net",
   "geda-marker",        "geda-magnet",        "geda-mesh",         "geda-mirror",
   "geda-molecule",      "geda-move",          "geda-multi",        "geda-nand",

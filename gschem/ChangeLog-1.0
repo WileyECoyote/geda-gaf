@@ -1,3 +1,9 @@
+2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem-tools-menu.scm: Add tools:check-symbol and menu item "Check
+      Symbol" to allow user to run gsymcheck while editing symbols files
+      in gschem.
+
 2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_slot.c: Revise dialog to add display of the total
