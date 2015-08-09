@@ -21,8 +21,8 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
-dnl WEH 04/07/14: Changed AC_SUBST([LIBSTROKE_CPPFLAGS]) to AC_SUBST([LIBSTROKE_CFLAGS])
-dnl               This is the only occurence of "LIBSTROKE_CPPFLAGS" in the source-tree
+dnl WEH 04/07/14: Changed 'AC_SUBST([LIBSTROKE_CPPFLAGS])' to 'AC_SUBST([LIBSTROKE_CFLAGS])'
+dnl               This is the only occurence of 'LIBSTROKE_CPPFLAGS' in the source-tree
 dnl               How long has Gschem used libstrokes? Amazingly, strokes has worked all
 dnl               these years, even without pkg-config! Breaking the cardinal rule "if it
 dnl               ain't broke", just this one time.
