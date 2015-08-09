@@ -491,46 +491,51 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 
   /* If no current hint string, or the hint string is going to be
    * cleared anyway, use key string directly */
-  if ((w_current->keyaccel_string == NULL) ||
-    w_current->keyaccel_ssid) {
+  if ((w_current->keyaccel_string == NULL) || w_current->keyaccel_ssid) {
+
     GEDA_FREE (w_current->keyaccel_string);
-  w_current->keyaccel_string = keystr;
+    w_current->keyaccel_string = keystr;
 
-    } else {
-      char *p = w_current->keyaccel_string;
-      w_current->keyaccel_string = u_string_concat (p, " ", keystr, NULL);
-      GEDA_FREE (p);
-      GEDA_FREE (keystr);
-    }
+  }
+  else {
 
-    /* Update status bar */
-    i_status_show_state(w_current, NULL);
+    char *ptr = w_current->keyaccel_string;
 
-    /* Build and evaluate Scheme expression. */
-    scm_dynwind_begin (0);
-    g_dynwind_window (w_current);
-    s_expr = scm_list_2 (press_key_sym, s_key);
+    w_current->keyaccel_string = u_string_concat (ptr, " ", keystr, NULL);
 
-    s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
-    scm_dynwind_end ();
+    GEDA_FREE (ptr);
+    GEDA_FREE (keystr);
+  }
 
-    /* If the keystroke was not part of a prefix, start a timer to clear
-     * the status bar display. */
-    if (w_current->keyaccel_ssid) {
-      /* Cancel any existing timers that haven't fired yet. */
-      GSource *timer =
-      g_main_context_find_source_by_id (NULL,
-                                        w_current->keyaccel_ssid);
-      g_source_destroy (timer);
-      w_current->keyaccel_ssid = 0;
-    }
-    if (!scm_is_eq (s_retval, prefix_sym)) {
-      w_current->keyaccel_ssid =
-      g_timeout_add(400, clear_keyaccel_string, w_current);
-    }
+  /* Update status bar */
+  i_status_show_state(w_current, NULL);
 
-    return !scm_is_false (s_retval);
+  /* Build and evaluate Scheme expression. */
+  scm_dynwind_begin (0);
+  g_dynwind_window (w_current);
+  s_expr = scm_list_2 (press_key_sym, s_key);
+
+  s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+  scm_dynwind_end ();
+
+  /* If the keystroke was not part of a prefix, start a timer to clear
+   * the status bar display. */
+  if (w_current->keyaccel_ssid) {
+    /* Cancel any existing timers that haven't fired yet. */
+    GSource *timer =
+    g_main_context_find_source_by_id (NULL, w_current->keyaccel_ssid);
+    g_source_destroy (timer);
+    w_current->keyaccel_ssid = 0;
+  }
+
+  if (!scm_is_eq (s_retval, prefix_sym)) {
+    w_current->keyaccel_ssid =
+    g_timeout_add(400, clear_keyaccel_string, w_current);
+  }
+
+  return !scm_is_false (s_retval);
 }
+
 /* Search the global keymap for a particular symbol and return the
  * keys which execute this hotkey, as a string suitable for display
  * to the user. This is used by the gschem menu system.
