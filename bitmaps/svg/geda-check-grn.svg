@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="128"
    height="128"
    id="svg2"
    version="1.1"
    inkscape:export-filename="../geda-check-grn.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="geda-check-grn.svg">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1305"
+     inkscape:window-height="777"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="3.6875"
+     inkscape:cx="96.569961"
+     inkscape:cy="68.570822"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
   <g
-     id="g11"
-     transform="matrix(0.29178612,0,0,0.31537689,-0.60102983,-0.39748313)">
-    <title
-       id="title1">GEDA Check Mark Green</title>
-    <g
-       id="layer1">
-      <g
-         transform="matrix(0.480185,0,0,0.480185,-316.231,468.11)"
-         id="layer1-2">
-        <path
-           d="m 668.51221,-466.14218 287.72119,333.89857 c 146.601,-298.83076 326.0615,-573.74321 614.5155,-834.7465 -215.8856,121.8175 -453.8593,353.14172 -657.14087,639.38031 L 668.51221,-466.14218 z"
-           id="path4068"
-           stroke-miterlimit="4"
-           inkscape:connector-curvature="0"
-           style="fill:#025e21;stroke:#101010;stroke-width:10.89183235;stroke-miterlimit:4" />
-      </g>
-    </g>
+     id="geda-check-grn"
+     inkscape:label="geda-check-grn">
+    <path
+       d="M 0.79328218,76.641368 41.106278,127.20672 C 61.646738,81.952011 86.791185,40.319475 127.20686,0.79333298 96.958839,19.241284 63.61603,54.27285 35.133981,97.620608 L 0.79328218,76.641368 z"
+       id="path4068"
+       stroke-miterlimit="4"
+       inkscape:connector-curvature="0"
+       style="fill:#00ff00;stroke:#101010;stroke-width:1.58656108000000007;stroke-miterlimit:4" />
   </g>
 </svg>
