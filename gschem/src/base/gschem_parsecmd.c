@@ -100,7 +100,7 @@ usage(char *cmd)
     "  -r, --run FILE           Scheme script to run at startup.\n"
     "  -s, --start <name>       Startup using the given session name.\n"
     "  -t, --title-block FILE   Start a new drawing using the specified title-block.\n"
-    "  -u, --undo-dir DIR       Specify tmp directory for Undo files.\n"
+    "  -u, --undo-dir DIR       Specify a temporary directory for Undo files.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
     "  -x EXPR                  Scheme expression to run at startup.\n"
