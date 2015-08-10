@@ -479,7 +479,7 @@ SCM_DEFINE (set_object_stroke_x, "%set-object-stroke!", 4, 2, 0,
    case TYPE_ERASE:
      break;
   }
- BUG_MSG("calling o_notify_emit_pre_change");
+
   o_notify_emit_pre_change (obj);
   o_set_line_options (obj, &line_options);
   o_notify_emit_change (obj);

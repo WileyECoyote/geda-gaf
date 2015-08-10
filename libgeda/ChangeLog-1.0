@@ -1,3 +1,7 @@
+2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/scheme/scheme_object.c: Remove debug message in set_object_stroke_x.
+
 2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/geda/geda_object.c: Add conditional compile for g_value_set_char and
