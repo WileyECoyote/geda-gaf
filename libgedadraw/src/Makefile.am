@@ -36,7 +36,7 @@ libgedadraw_la_DEPENDENCIES   = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedadraw_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                      = @LIBTOOL@ --silent
+LIBTOOL                       = @LIBTOOL@ --silent
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for libgedadraw

@@ -47,15 +47,15 @@ EXTRA_DIST       = $(BUILT_SOURCES)
 
 AM_CFLAGS        = $(DEBUGGING) $(GEDA_INCLUDES)
 
-gschem_CFLAGS    = $(AM_CFLAGS)      $(GCC_CFLAGS)   $(LIBSTROKE_CFLAGS) \
+gschem_CFLAGS    = $(AM_CFLAGS)     $(GCC_CFLAGS)     $(LIBSTROKE_CFLAGS) \
 				   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
 				   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
 
 gschem_CPPFLAGS  = $(gschem_CFLAGS)
 
-gschem_LDFLAGS   = $(GLIB_LIBS)    $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
-				   $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
-				   $(DEBUGGING)
+gschem_LDFLAGS   = $(GLIB_LIBS)     $(GTK_LIBS)     $(LIBSTROKE_LDFLAGS) \
+				   $(GTHREAD_LIBS) $(GUILE_LIBS)      $(MINGW_GUI_LDFLAGS) \
+				   $(X11_LIBS)     $(DEBUGGING)
 
 gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
 				   $(top_builddir)/libgedauio/src/libgedauio.la \
