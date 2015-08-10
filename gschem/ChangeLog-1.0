@@ -1,3 +1,7 @@
+2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Use G_N_ELEMENTS macro instead of sizeof.
+
 2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem-tools-menu.scm: Add tools:check-symbol and menu item "Check

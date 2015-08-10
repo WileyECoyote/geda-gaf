@@ -2876,7 +2876,7 @@ static void compselect_geometry_restore (GschemDialog *dialog,
   GtkWidget *menuitem;
 
   /* skip over "None" & set active if bit is set */
-  for (i = 1; i < sizeof (types) ; i++) {
+  for (i = 1; i < G_N_ELEMENTS(types) ; i++) {
     menuitem = g_slist_nth_data(compselect->style_menu_widgets ,i);
     state = ((MASK & types[i]) == types[i]);
     gtk_set_item_active(menuitem, state);
