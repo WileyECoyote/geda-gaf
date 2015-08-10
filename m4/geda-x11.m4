@@ -3,7 +3,7 @@
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
-dnl Copyright (C) 2014  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2014-2015  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -24,7 +24,22 @@ AC_DEFUN([AX_CHECK_X11],
   AC_PREREQ([2.52])dnl
   AC_REQUIRE([AX_HOST])dnl
 
-  AC_ARG_WITH([x], AS_HELP_STRING([--with-x], [Enable X11 routines]), [with_x=$withval], [with_x=no])
+  AC_MSG_CHECKING(whether to build X11 bindings)
+
+  AC_ARG_WITH([x], AS_HELP_STRING([--with-x], [Enable X11 routines]), [with_x=$withval], [with_x=yes])
+
+  AC_MSG_RESULT($XFT)
+
+  AC_CHECK_LIB([X11], [XInitThreads], have_x11="yes")
+
+  if test x$with_x = xyes; then
+    if test x$have_x11 = xyes ; then
+      X11_LIBS="-lX11"
+      AC_DEFINE([HAVE_X11], [1], [Define to 1 if have Xft])
+    else
+      with_x=no
+    fi
+  fi
 
   AC_ARG_ENABLE([Xft], AS_HELP_STRING([--enable-Xft], [Enable FreeType fonts for X11, default no]),
     [case "${enableval}" in
@@ -46,7 +61,6 @@ AC_DEFUN([AX_CHECK_X11],
       if test "$XFT" = "yes" ; then
         X11_LIBS="$X11_LIBS -lXft"
         AC_DEFINE([HAVE_XFT], [1], [Define to 1 if have Xft])
-        AC_SUBST(X11_LIBS)
       else
         AC_MSG_RESULT([got Xft-dev?])
         AC_MSG_ERROR([Xft support explicitly requested but Xft was not found,
@@ -56,5 +70,6 @@ AC_DEFUN([AX_CHECK_X11],
       AC_MSG_RESULT([no])
     fi
   fi
+  AC_SUBST(X11_LIBS)
   []dnl
 ])dnl AX_CHECK_X11
