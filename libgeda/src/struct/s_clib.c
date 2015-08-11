@@ -1417,10 +1417,10 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   /* Use different cache keys based on search mode */
   switch (mode) {
     case CLIB_GLOB: /* keytype = g */
-      key = g_strdup_printf("g%s", pattern);
+      key = u_string_sprintf("g%s", pattern);
       break;
     case CLIB_EXACT: /* keytype = s */
-      key = g_strdup_printf("s%s", pattern);
+      key = u_string_sprintf("s%s", pattern);
       break;
     default:
       BUG_IMSG ("Bad search mode %i\n", mode);

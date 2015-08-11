@@ -373,12 +373,39 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
   qsort(strings, strings_len, sizeof(char*), cstring_cmp);
 }
 
+static int u_string_strsize (const char *format, va_list args)
+{
+  int size;
+
+#if defined(HAVE_VSNPRINTF)
+
+  size = vsnprintf (0, 0, format, args);
+
+#elif (HAVE_VASPRINTF)
+
+  size = vasprintf (0, 0, format, args);
+
+#else
+
+  char *string;
+
+  va_list args2;
+  va_copy(args2, args);
+  string = (char*)GEDA_MEM_ALLOC(4 * USS_BUFFER_SIZE);
+  size = vsprintf(string, format, args2);
+  GEDA_FREE(string);
+
+#endif
+
+  return size;
+}
+
 char *u_string_sprintf (const char *format, ...)
 {
-  char    local_buffer[USS_BUFFER_SIZE];
-  char   *buffer;
+  char  local_buffer[USS_BUFFER_SIZE];
+  char *buffer;
 
-  unsigned int  size;
+  int   size;
 
   va_list args;
 
@@ -387,7 +414,7 @@ char *u_string_sprintf (const char *format, ...)
   }
 
   va_start (args, format);
-  size = vsnprintf (0, 0, format, args);
+  size = u_string_strsize(format, args);
   va_end (args);
 
   if (size < 0) {
@@ -405,6 +432,7 @@ char *u_string_sprintf (const char *format, ...)
   }
   else {
     buffer = (char*)GEDA_MEM_ALLOC(size);
+    buffer[size] = '\0';
     if (buffer) {
       vsprintf (buffer, format, args);
     }
