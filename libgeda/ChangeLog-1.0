@@ -1,3 +1,8 @@
+2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+     * scheme/unit-tests/t0113-object-library.scm: Move setting up and reset
+       of component library inside component/library function.
+
 2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
      * scheme/unit-tests/t0105-object-complex.scm: Replace dynamic-wind block
