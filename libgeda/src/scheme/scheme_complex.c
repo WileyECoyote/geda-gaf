@@ -80,24 +80,33 @@ SCM_DEFINE (make_complex_library, "%make-complex/library", 1, 0, 0,
   SCM_ASSERT (scm_is_string (basename_s), basename_s, SCM_ARG1,
               s_make_complex_library);
 
-  char *basename = scm_to_utf8_string (basename_s);
-  scm_dynwind_begin (0);
-  scm_dynwind_unwind_handler (free, basename, SCM_F_WIND_EXPLICITLY);
+  char *basename;
+  const CLibSymbol *clib;
+
+  basename = scm_to_utf8_string (basename_s);
+
+  clib = s_clib_get_symbol_by_name (basename);
 
   SCM result = SCM_BOOL_F;
-  const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
+
   if (clib != NULL) {
-    Object *obj = o_complex_new (edascm_c_current_toplevel (),
-                                 0, 0, 0, FALSE, clib, basename, TRUE);
 
-    result = edascm_from_object (obj);
+    scm_dynwind_begin (0);
+    scm_dynwind_unwind_handler (free, basename, SCM_F_WIND_EXPLICITLY);
 
-    /* At the moment, the only pointer to the object is owned by the
-     * smob. */
+    GedaToplevel *toplevel;
+    Object       *obj;
+
+    toplevel = edascm_c_current_toplevel();
+    obj      = o_complex_new (toplevel, 0, 0, 0, FALSE, clib, basename, TRUE);
+    result   = edascm_from_object (obj);
+
+    /* At the moment, the only pointer to the object is owned by the smob. */
     edascm_c_set_gc (result, TRUE);
+
+    scm_dynwind_end ();
   }
 
-  scm_dynwind_end ();
   return result;
 }
 

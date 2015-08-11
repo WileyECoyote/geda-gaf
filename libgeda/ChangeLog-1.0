@@ -1,5 +1,10 @@
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
+     * src/scheme/scheme_complex.c: Revise flow in function make_complex_library;
+       do not manipulate stack if symbols does not exist.
+
+2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
      * scheme/unit-tests/t0113-object-library.scm: Move setting up and reset
        of component library inside component/library function.
 
