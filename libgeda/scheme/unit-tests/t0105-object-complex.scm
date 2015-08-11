@@ -106,7 +106,7 @@
         (A (make-component "test component" '(1 . 2) 0 #t #f))
         (x (make-line '(0 . 0) '(2 . 0)))
         (y (make-line '(0 . 0) '(0 . 2))))
-    (dynamic-wind
+    (begin
      (lambda () #t)
      (lambda ()
 
@@ -132,7 +132,7 @@
         (A (make-component "test component" '(1 . 2) 0 #t #f))
         (x (make-line '(0 . 0) '(2 . 0)))
         (y (make-line '(0 . 0) '(0 . 2))))
-    (dynamic-wind
+    (begin
      (lambda () #t)
      (lambda ()
        ;; Test that if a primitive object is attached directly to

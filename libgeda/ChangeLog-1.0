@@ -1,5 +1,13 @@
 2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
+     * scheme/unit-tests/t0105-object-complex.scm: Replace dynamic-wind block
+       with begin.
+
+     * scheme/unit-tests/t0200-page.scm: Replace dynamic-wind block
+       with begin.
+
+2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
      * src/scheme/scheme_object.c: Remove debug message in set_object_stroke_x.
 
 2015-08-08 Wiley E. Hill <wileyhill@gmail.com>

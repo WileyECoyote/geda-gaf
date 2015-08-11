@@ -28,7 +28,7 @@
         (L1 (make-line '(0 . 0) '(1 . 2)))
         (L2 (make-line '(0 . 1) '(2 . 2))))
 
-    (dynamic-wind ; Make sure pages are cleaned up
+    (begin ; Make sure pages are cleaned up
         (lambda () #f)
         (lambda ()
           (assert-equal '() (page-contents C))
