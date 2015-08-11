@@ -1,5 +1,11 @@
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
+     * src/struct/s_clib.c: Eliminate char keytype in s_clib_search, also
+       g_critical -> BUG_IMSG. Do not return early from function
+       s_clib_get_symbol_by_name.
+
+2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
      * src/scheme/scheme_complex.c: Revise flow in function make_complex_library;
        do not manipulate stack if symbols does not exist.
 

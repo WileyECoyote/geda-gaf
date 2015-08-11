@@ -1399,7 +1399,7 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
 {
   GPatternSpec *globpattern = NULL;
 
-  GList *result = NULL;
+  GList *result;
   GList *sourcelist;
   GList *symlist;
 
@@ -1407,73 +1407,73 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   CLibSymbol *symbol;
 
   char *key;
-  char keytype;
 
   if (pattern == NULL) return NULL;
 
+  result     = NULL;
+  sourcelist = NULL;
+  symlist    = NULL;
+
   /* Use different cache keys based on search mode */
-  switch (mode)
-  {
-    case CLIB_GLOB:
-      keytype = 'g';
+  switch (mode) {
+    case CLIB_GLOB: /* keytype = g */
+      key = g_strdup_printf("g%s", pattern);
       break;
-    case CLIB_EXACT:
-      keytype = 's';
+    case CLIB_EXACT: /* keytype = s */
+      key = g_strdup_printf("s%s", pattern);
       break;
     default:
-      g_critical ("s_clib_search: Bad search mode %i\n", mode);
+      BUG_IMSG ("Bad search mode %i\n", mode);
       return NULL;
   }
-  key = u_string_sprintf("%c%s", keytype, pattern);
 
   /* Check to see if the query is already in the cache */
-  result = (GList *) g_hash_table_lookup (clib_search_cache, key);
+  result = (GList*)g_hash_table_lookup (clib_search_cache, key);
 
   if (result != NULL) {
     GEDA_FREE (key);
-    return g_list_copy (result);
+    result = g_list_copy (result);
   }
+  else {
 
-  if (mode == CLIB_GLOB) {
-    globpattern = g_pattern_spec_new(pattern);
-  }
+    if (mode == CLIB_GLOB) {
+      globpattern = g_pattern_spec_new(pattern);
+    }
 
-  for (sourcelist = clib_sources; sourcelist != NULL;
-       sourcelist = g_list_next(sourcelist))
-  {
+    /* Search each source */
+    for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist)) {
 
-    source = (CLibSource *) sourcelist->data;
+      source = (CLibSource *) sourcelist->data;
 
-    for (symlist = source->symbols;
-         symlist != NULL;
-    symlist = g_list_next(symlist)) {
+      /* Loop through each symbol in the source */
+      for (symlist = source->symbols; symlist != NULL; NEXT(symlist)) {
 
-      symbol = (CLibSymbol *) symlist->data;
+        symbol = (CLibSymbol *) symlist->data;
 
-      switch (mode)
-      {
-        case CLIB_EXACT:
-          if (strcmp (pattern, symbol->name) == 0) {
-            result = g_list_prepend (result, symbol);
-          }
-          break;
-        case CLIB_GLOB:
-          if (g_pattern_match_string (globpattern, symbol->name)) {
-            result = g_list_prepend (result, symbol);
-          }
-          break;
+        switch (mode) { /* TODO Eliminate this switch*/
+          case CLIB_EXACT:
+            if (strcmp (pattern, symbol->name) == 0) {
+              result = g_list_prepend (result, symbol);
+            }
+            break;
+          case CLIB_GLOB:
+            if (g_pattern_match_string (globpattern, symbol->name)) {
+              result = g_list_prepend (result, symbol);
+            }
+            break;
+        }
       }
     }
+
+    result = g_list_reverse (result);
+
+    if (globpattern != NULL) {
+      g_pattern_spec_free (globpattern);
+    }
+
+    g_hash_table_insert (clib_search_cache, key, g_list_copy (result));
+    /* Do NOT free key here, it is stored by the hash table! */
   }
-
-  result = g_list_reverse (result);
-
-  if (globpattern != NULL) {
-    g_pattern_spec_free (globpattern);
-  }
-
-  g_hash_table_insert (clib_search_cache, key, g_list_copy (result));
-  /* Do NOT free key here, it is stored by the hash table! */
   return result;
 }
 
@@ -1502,24 +1502,25 @@ s_clib_symbol_invalidate_data (const CLibSymbol *symbol)
 const CLibSymbol *s_clib_get_symbol_by_name (const char *name)
 {
   GList *symlist = NULL;
-  const CLibSymbol *retval;
+  const CLibSymbol *symbol;
 
   symlist = s_clib_search (name, CLIB_EXACT);
 
   if (symlist == NULL) {
     u_log_message (_("Component [%s] was not found in the component library\n"),
                    name);
-    return NULL;
+    symbol = NULL;
   }
+  else {
 
-  if (g_list_next (symlist) != NULL) { /* More than one symbol */
-    u_log_message (_("More than one component found with name [%s]\n"), name);
+    if (g_list_next (symlist) != NULL) { /* More than one symbol */
+      u_log_message (_("More than one component found with name [%s]\n"), name);
+    }
+
+    symbol = (CLibSymbol *) symlist->data;
+    g_list_free (symlist);
   }
-
-  retval = (CLibSymbol *) symlist->data;
-  g_list_free (symlist);
-
-  return retval;
+  return symbol;
 }
 
 /*! \brief Get symbol data for a given symbol name.
