@@ -142,6 +142,10 @@ m4_define([AX_GEDA_STR_FUNCS],
 
   AC_CHECK_FUNCS([strcspn])
 
+  AC_CHECK_FUNCS([vsnprintf])
+
+  AC_CHECK_FUNCS([vasprintf])
+
   []dnl
 ])dnl AX_GEDA_STR_FUNCS
 

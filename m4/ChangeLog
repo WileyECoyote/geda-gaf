@@ -1,3 +1,7 @@
+2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-std-checks.m4: Check for functions vsnprintf and vasprintf.
+
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * m4/geda-std-checks.m4: Use check lib for rint instead of check function
@@ -8,6 +12,13 @@
           flags
 
         * autogen.sh: Stop patch from making noise
+
+2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+      * m4/geda-x11.m4: Revised FreeType with enable option, defaulting
+        to off, at least for now. After optimization, the free-type font
+        extension server is still too slow, roughly halve the performence
+        of Cairo and the default XFont server. Still work in progress.
 
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
