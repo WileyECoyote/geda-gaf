@@ -210,7 +210,6 @@ static unsigned int combo_box_signals[LAST_SIGNAL] = {0,};
 #define SCROLL_TIME  100
 
 /* common */
-
 static void     geda_combo_box_cell_layout_init     (GtkCellLayoutIface    *iface);
 static void     geda_combo_box_cell_editable_init   (GtkCellEditableIface  *iface);
 static void     geda_combo_box_dispose              (GObject          *object);
@@ -547,7 +546,7 @@ geda_combo_box_buildable_get_internal_child (GtkBuildable *buildable,
 }
 
 static GObject *
-geda_combo_box_constructor (GedaType               type,
+geda_combo_box_constructor (GType                  type,
                             unsigned int           n_construct_properties,
                             GObjectConstructParam *construct_properties)
 {

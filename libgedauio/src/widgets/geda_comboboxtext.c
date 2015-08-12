@@ -99,8 +99,6 @@ static void geda_combo_box_text_buildable_custom_finished   (GtkBuildable      *
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
-void g_type_ensure(GedaType type){return;};
-
 G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GEDA_TYPE_COMBO_BOX,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
                          geda_combo_box_text_buildable_interface_init));
@@ -119,7 +117,7 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
 }
 
 static GObject *
-geda_combo_box_text_constructor (GedaType               type,
+geda_combo_box_text_constructor (GType                  type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
@@ -777,4 +775,6 @@ int geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
   return geda_combo_box_get_active ((GedaComboBox*)widget);
 }
+
 /** @} end group GedaComboBoxText */
+
