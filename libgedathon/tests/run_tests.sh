@@ -29,6 +29,12 @@ if [ ! -f Makefile.am ] ; then
    exit 0;
 fi
 
+ldconfig -p | grep libgeda
+if [ $? != 0 ] ; then
+   echo "Skipping Libgedathon unit test: libgeda is not installed" >test-suite.log
+   exit 0;
+fi
+
 if [ -d "../scripts" ] ; then
    path2scripts="../scripts"
 else
