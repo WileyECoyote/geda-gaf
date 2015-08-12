@@ -423,6 +423,8 @@ char *u_string_sprintf (const char *format, ...)
 
   size++;
 
+  va_start (args, format);
+
   if (size < USS_BUFFER_SIZE) {
     vsprintf (&local_buffer[0], format, args);
     buffer = (char*)GEDA_MEM_ALLOC(size);
@@ -437,6 +439,8 @@ char *u_string_sprintf (const char *format, ...)
       vsprintf (buffer, format, args);
     }
   }
+
+  va_end (args);
 
   return buffer;
 }
@@ -817,4 +821,6 @@ int u_string_word_count(char* str) {
     return count;
 
 }
+
 #undef USS_BUFFER_SIZE
+

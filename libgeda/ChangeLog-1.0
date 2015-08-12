@@ -1,3 +1,7 @@
+2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/utility/u_string.c: Revise u_string_sprintf to reset va_start/va_end arguments.
+
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/utility/u_string.c: Add function u_string_strsize to to help determine
