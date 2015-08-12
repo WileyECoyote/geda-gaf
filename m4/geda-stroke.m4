@@ -1,11 +1,11 @@
 # geda-stroke.m4                                       -*-Autoconf-*-
 # serial 1.1
-dnl Check for CAIRO interface library
+dnl Check for libstroke interface library
 dnl
 dnl gEDA - GPL Electronic Design Automation
 dnl
-dnl Copyright (C) 2009-2014 Peter Brett <peter@peter-b.co.uk>
-dnl Copyright (C) 2012-2014 gEDA Contributors (see ChangeLog for details)
+dnl Copyright (C) 2009-2015 Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
