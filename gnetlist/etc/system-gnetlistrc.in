@@ -42,12 +42,10 @@
 
 ; hierarchy-uref-mangle string
 ;
-; Controls if uref names are mangled to make them uniq when traversing
-; down into the hierarchy.  If this is disabled then urefs are not changed
-; and it is the user's responsibility to make sure they are unique.
-; If you disable this, you really are taking your netlist's life into your
-; own hands.  You *MUST* have unique urefs throughout the entire hierarchy
-; or bad things might happen.  Also you cannot reuse underlying schematics.
+; Controls if uref names are mangled to make them unique when traversing down
+; into the hierarchy. If this options is disabled then reference designators
+; are not changed. Reference designators MUST be unique throughout the entire
+; hierarchy or bad things might happen. Underlying schematics cannot reused.
 ;
 (hierarchy-uref-mangle "enabled")
 ;(hierarchy-uref-mangle "disabled")
@@ -59,8 +57,8 @@
 ; changed and it is the user's responsibility to make sure they are unique.
 ; If you disable this, you really are taking your netlist's life into your
 ; own hands.  This basically has the effect of making all same named nets
-; in the entire hierarchy be electrically connected.  Hope you know what you
-; are doing.
+; in the entire hierarchy be electrically connected. This option is provided
+; for advanced user.
 ;
 (hierarchy-netname-mangle "enabled")
 ;(hierarchy-netname-mangle "disabled")
@@ -158,7 +156,6 @@
 ; End of mode related keywords
 ;
 
-
 ;
 ; Start of path related keywords
 ;
@@ -174,7 +171,7 @@
 ; the values: to get a portrait mode.  Code to support that needs to be added
 ; The code that implements this automatically transforms the dimensions into
 ; the proper aspect ratio.  All units are in inches.
-; This is not the paper size.  That is specified elsewhere.  End users should
+; This is not the paper size.  That is specified elsewhere. End users should
 ; not change this at all
 ;
 ;(world-size 120.0 90.0 1.0)

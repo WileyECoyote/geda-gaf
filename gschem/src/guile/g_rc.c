@@ -716,7 +716,7 @@ SCM g_rc_zoom_gain(SCM gain)
     * direction, but don't allow zero gain as this would result in a
     * division-by-zero error */
     if (val == 0) {
-     fprintf(stderr, _("Invalid value, zoom-gain can not be zero, check entry in rc file\n"));
+     fprintf(stderr, _("Invalid value, zoom-gain cannot be zero, check entry in rc file\n"));
      val = DEFAULT_ZOOM_GAIN; /* assign default */
     }
   }
@@ -1235,7 +1235,7 @@ SCM g_rc_snap_size(SCM size)
   if (scm_is_integer(size)) {
     val = scm_to_int (size);
     if (val == 0) {
-     fprintf(stderr, _("Invalid value, snap-size can not be zero, check entry rc file\n"));
+     fprintf(stderr, _("Invalid value, snap-size cannot be zero, check entry rc file\n"));
      val = DEFAULT_SNAP_SIZE; /* assign default */
     }
   }
@@ -1388,7 +1388,7 @@ SCM g_rc_bus_ripper_size(SCM size)
   if (scm_is_integer(size)) {
     val = scm_to_int (size);
     if (val == 0) {
-     fprintf(stderr, _("Invalid value, bus-ripper-size can not be zero, check entry rc file\n"));
+     fprintf(stderr, _("Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"));
      val = DEFAULT_RIPPER_SIZE; /* assign default */
     }
   }

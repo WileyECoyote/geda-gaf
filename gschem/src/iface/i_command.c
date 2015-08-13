@@ -345,7 +345,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
     if (u_string_strequal(command_struc[i].name, command)) {
 
-      v_log_message(_("Processing Action Command <%s>, at index %d\n"), command_struc[i].name, i);
+      v_log_message(_("Processing Action <%s>, at index %d\n"), command_struc[i].name, i);
 
       if (command_struc[i].repeat != NULL) {
         set_last_command(i); /* save last index for recall by repeat-last */
