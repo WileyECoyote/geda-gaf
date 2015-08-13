@@ -96,7 +96,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
     GtkSheet *sheet;
     sheet = x_gtksheet_get_current_sheet();
 
-    int WhichItem = (int)(long*) selection;
+    int WhichItem = (int)(long)selection;
 
     switch ( WhichItem ) {
       case ToggleVisiablity:
@@ -149,8 +149,8 @@ static GtkWidget *build_menu(GtkWidget *sheet)
     item=gtk_menu_item_new_with_label(popup_items[i]);
 
     g_signal_connect(GTK_OBJECT(item),"activate",
-                    (void *) popup_activated,
-                    (void *) i);
+                    (void*) popup_activated,
+                    (void*)(long) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);

@@ -1,3 +1,8 @@
+2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+     * include/geda_toolbars.h: Replace (int)(long*) with (int)(long) in
+       macro GET_TOOLBAR_ID.
+
 2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/geda-inspect-grn.svg: Add new svg file to generate bitmap

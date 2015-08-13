@@ -53,7 +53,7 @@ static ToolbarStringData ToolbarStrings[] = {
 /*! \brief Redirect Cut, Copy, Paste from Toolbar to Handler function */
 static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
 {
-  int button = (int)(long*) Control;
+  int button = (int)(long)Control;
   x_window_clipboard_handler(button);
   return;
 }
@@ -67,7 +67,7 @@ static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
  */
 static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 {
-  int button = (int)(long*) Control;
+  int button = (int)(long)Control;
 
   switch ( button ) {
     case open:
@@ -96,7 +96,7 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
  */
 static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 {
-  int button = (int)(long*) Control;
+  int button = (int)(long) Control;
 
   switch ( button ) {
     case find:
@@ -128,7 +128,7 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
  */
 static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
 {
-  int button = (int)(long*) Control;
+  int button = (int)(long)Control;
 
   switch ( button ) {
     case invisible:

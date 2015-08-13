@@ -1038,7 +1038,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
       /* Connect things up so that the actions get run */
       g_signal_connect (G_OBJECT (menu_item), "activate",
                         (void*) item.func,
-                        (void*) item.action_id);
+                        (void*)(long)item.action_id);
 
       g_object_set_data (G_OBJECT(menu_item), "top-level", w_current);
       POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);

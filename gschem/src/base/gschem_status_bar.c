@@ -154,7 +154,7 @@ static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
   GschemStatusBar *bar;
   GtkWidget       *widget;
 
-  unsigned   mode = (unsigned)(long*) user_data;
+  unsigned   mode = (unsigned)(long)user_data;
 
   bar    = g_object_get_data (G_OBJECT(menuitem), "status-bar");
   widget = (GtkWidget*)bar;
@@ -166,7 +166,7 @@ static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
 static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
 {
   GtkWidget *widget;
-  unsigned   signal = (unsigned)(long*) user_data;
+  unsigned   signal = (unsigned)(long)user_data;
 
   widget = g_object_get_data (G_OBJECT(menuitem), "status-bar");
 

@@ -1,3 +1,21 @@
+2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_status_bar.c: Replace (int)(long*) with (int)(long) in
+      functions coord_options_popup_clicked and tatus_options_popup_clicked.
+
+    * src/x/x_autonumber.c: Replace (int)(long*) with (int)(long) in
+      functions; switch_responder, color_button_popup_menu_callback,
+      color_butt_responder and combo_responder.
+
+    * src/x/x_image.c: Replace (int)(long*) with (int)(long) in
+      function switch_responder and x_menu_setup_popup.
+
+    * src/x/x_menus.c: Add cast to (long) in function x_menu_setup_popup.
+
+    * src/x/x_settings_dialog.c: Replace (int)(long*) with (int)(long) in
+      function butt_responder
+
+
 2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Use G_N_ELEMENTS macro instead of sizeof.

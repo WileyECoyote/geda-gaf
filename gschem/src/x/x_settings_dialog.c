@@ -1115,7 +1115,7 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
   if (GTK_IS_BUTTON(widget)) {
 
     int WhatHappend = event->type;
-    int WhichButt = (int)(long*) Control;
+    int WhichButt = (int)(long)Control;
 
     if(WhatHappend == GDK_BUTTON_PRESS) /* refraining switch (event->type) */
       switch ( WhichButt ) {
@@ -1196,7 +1196,7 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
   int  color_index;
   GtkColorButton *button;
 
-  restore_default_color = (int)(long*)data;
+  restore_default_color = (int)(long)data;
 
   if (restore_default_color) {
     color_index = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(item), "color-index"));
@@ -1222,7 +1222,7 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
 */
 static void default_color_button_popup (GtkColorButton *button, GdkEventButton *event, int index)
 {
-  GtkWidget   *item;
+  GtkWidget *item;
 
   if (popup_menu) {
     gtk_object_destroy(GTK_OBJECT(popup_menu));
@@ -1272,7 +1272,7 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
   if (GTK_IS_COLOR_BUTTON(widget)) {
 
     int WhatHappend = event->type;
-    int WhichButt   = (int)(long*) Control;
+    int WhichButt   = (int)(long)Control;
     int color_index = -1;
 
     if (event->button == 3) /* only interest in right button down */
@@ -1339,7 +1339,7 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
  */
 void combo_responder(GtkWidget *widget, void * data)
 {
-  int WhichComboBox = (int)(long*) data;
+  int WhichComboBox = (int)(long)data;
 /*
   int row;
   row = gtk_combo_box_get_active (GTK_COMBO_BOX (widget));

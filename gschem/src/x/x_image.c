@@ -592,7 +592,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
   GtkWidget* SwitchImage = get_geda_switch_image( state);
   gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
-  int WhichOne = (int)(long*) Control;
+  int WhichOne = (int)(long)Control;
 
   switch (WhichOne) {
   case Extents:

@@ -23,6 +23,9 @@
  * WEH | 05/02/15 | Modify ToolbarStringData structure; remove members
  *                | Widget and Private, add member icon (to hold a pointer
  *                | to the image widget for the butoon.)
+ * ------------------------------------------------------------------
+ * WEH | 08/12/15 | Modify cast is macro GET_TOOLBAR_ID;  change long pointer
+ *                | long.
 */
 
 /* ------------------------------------------------------------------ */
@@ -74,7 +77,7 @@ typedef struct
 
 #define TB_BUTTON(member) member##_button
 
-#define GET_TOOLBAR_ID(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "BarId");
+#define GET_TOOLBAR_ID(obj) (int)(long) g_object_get_data(G_OBJECT(obj), "BarId");
 #define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data(G_OBJECT(obj), "BarId", GINT_TO_POINTER(bar_id));
 #define GET_TOOLBAR_WC(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "WinData");
 #define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data(G_OBJECT(obj), "WinData", GINT_TO_POINTER(win_cur));

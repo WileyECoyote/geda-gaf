@@ -1,3 +1,12 @@
+2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Replace (int)(long*) with (int)(long) in functions;
+      callBack_clipboard, callBack_toolbar0, callBack_Searchbar and
+      callBack_AttributeBar0.
+
+    * gattrib/src/x_gtksheet.c: Replace (int)(long*) with (int)(long) in functions;
+      popup_activated and add cast to (long) in build_menu.
+
 2015-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Fix desktop target location.
