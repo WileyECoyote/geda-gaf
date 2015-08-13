@@ -802,10 +802,14 @@ x_toolbars_free_window(GschemToplevel *w_current)
 static void do_Hide_HandleBox(GedaHandleBox *handlebox)
 {
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
+
     gtk_widget_hide((GtkWidget*)handlebox);
-    int HandleBoxId =  GET_TOOLBAR_ID(handlebox);
+
     GschemToplevel *w_current  =  (GschemToplevel*)GET_TOOLBAR_WC(handlebox);
+    int HandleBoxId =  GET_TOOLBAR_ID(handlebox);
+
     x_menu_set_toolbar_toggle(w_current, HandleBoxId, FALSE);
+
   }
   else
     BUG_MSG("container is not a handlebox");
