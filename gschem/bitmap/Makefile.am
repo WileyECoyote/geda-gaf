@@ -58,6 +58,7 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem-text.png                                        \
 		  gschem_transitor_28x28.png                             \
 		  gschem_transitor_32x32.png                             \
+		  gschem-transistor.png                                  \
 		  gschem_top2bottom.png gschem_diagonal.png              \
 		  gschem_undo.xpm                                        \
 		  gschem-unselect.png                                    \

@@ -165,12 +165,11 @@ static ToolbarStringData ToolbarStrings[] = {
 
   { ACTION(EDIT_SELECT_ALL),    "Select All", TBTS_EDIT_SELECT_ALL,    "gschem-select-all", TB_ICON_BITMAP, NULL},
   { ACTION(EDIT_INVERT),        "Invert Sel", TBTS_EDIT_INVERT,        "gschem-invert",     TB_ICON_BITMAP, NULL},
-
-  { ACTION(ADD_COMPONENT),      "Component",  TBTS_ADD_COMPONENT,      "gschem-comp",           TB_ICON_STOCK, NULL},
-  { ACTION(ADD_NET),            "Nets",       TBTS_ADD_NET,            "geda-net",              TB_ICON_STOCK, NULL},
-  { ACTION(ADD_BUS),            "Bus",        TBTS_ADD_BUS,            "geda-bus",              TB_ICON_STOCK, NULL},
-  { ACTION(ADD_ATTRIB),         "Attrib",     TBTS_ADD_ATTRIB,          GAF_MAP(ADD_ATTRIBUTE), TB_ICON_BITMAP, NULL},
-  { ACTION(ADD_TEXT),           "Text",       TBTS_ADD_TEXT,            GSCHEM_TEXT_BITMAP,     TB_ICON_BITMAP, NULL},
+  { ACTION(ADD_COMPONENT),      "Component",  TBTS_ADD_COMPONENT,      "gschem-transistor",  TB_ICON_BITMAP, NULL},
+  { ACTION(ADD_NET),            "Nets",       TBTS_ADD_NET,            "geda-net",          TB_ICON_STOCK, NULL},
+  { ACTION(ADD_BUS),            "Bus",        TBTS_ADD_BUS,            "geda-bus",          TB_ICON_STOCK, NULL},
+  { ACTION(ADD_ATTRIB),         "Attrib",     TBTS_ADD_ATTRIB,         "insert-attribute",  TB_ICON_STOCK, NULL},
+  { ACTION(ADD_TEXT),           "Text",       TBTS_ADD_TEXT,           "gtk-bold",          TB_ICON_STOCK, NULL},
 
   /* Add Toolbar */
   { ACTION(ADD_LINE),           "Line",       TBTS_ADD_LINE,           "geda-line",      TB_ICON_STOCK, NULL},
@@ -1231,15 +1230,10 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Page, etb_hierarchy_up);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_view_document);
 
-  //TOOLBAR_GEDA_BUTTON( Page, etb_down_symbol,    LOCAL_PIX, GEDA_DEMOTE_SYM_BITMAP, x_toolbars_execute, w_current);
-  //TOOLBAR_GEDA_BUTTON( Page, etb_down_schematic, LOCAL_PIX, GEDA_DEMOTE_SCH_BITMAP, x_toolbars_execute, w_current);
-  //TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,    x_toolbars_execute, w_current);
-  //TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP,   x_toolbars_execute, w_current);
-
-  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_first_page ));
-  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
-  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
-  HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_last_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_first_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_last_page ));
 
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_schematic));
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_symbol   ));
@@ -1271,9 +1265,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_add              (GTK_CONTAINER (w_current->add_handlebox), Add_Toolbar);
 
   /* not part of any radio button group */
-  TOOLBAR_GEDA_BUTTON( Add, etb_add_attribute, LOCAL_PIX, GAF_MAP(ADD_ATTRIBUTE), x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON( Add, etb_insert_pic,    LOCAL_PIX, GEDA_FILM_ROLL_BITMAP,  x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Add, etb_add_text,      LOCAL_PIX, GSCHEM_TEXT_BITMAP,     x_toolbars_execute,  w_current);
+  GSCHEM_TOOLBAR_BUTTON (Add, etb_add_attribute);
+  GSCHEM_TOOLBAR_BUTTON (Add, etb_add_text);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 
@@ -1289,7 +1282,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(bus),    BarRadio(pin),    etb_add_bus,     w_current)
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(net),    BarRadio(bus),    etb_add_net,     w_current)
 
-  TOOLBAR_GEDA_BUTTON( Add, etb_add_component, LOCAL_PIX, GSCHEM_TRANSISTOR_BITMAP, x_toolbars_execute,  w_current);
+  GSCHEM_TOOLBAR_BUTTON (Add, etb_add_component);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 

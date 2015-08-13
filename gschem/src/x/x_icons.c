@@ -98,7 +98,7 @@ const char* IDS_GSCHEM_ICONS[] = {
   "gschem-bus",              "gschem-comp",              "gschem-invert",
   "gschem-net",              "gschem-print-document",
   "gschem-select",           "gschem-select-all",        "gschem-text",
-  "gschem-unselect",
+  "gschem-transistor",       "gschem-unselect",
   NULL
 };
 

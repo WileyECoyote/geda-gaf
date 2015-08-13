@@ -1,4 +1,8 @@
-2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Convert
+
+2015-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap/gschem-text.png: Add gschem-text icon.
 
