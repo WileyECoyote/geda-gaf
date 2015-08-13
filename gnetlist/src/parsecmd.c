@@ -227,8 +227,7 @@ int parse_commandline (int argc, char *argv[])
         case '?':
 #ifndef HAVE_GETOPT_LONG
           if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
-            fprintf (stderr,
-                     _("ERROR: -%c option requires an argument.\n\n"),
+            fprintf (stderr, _("ERROR: -%c option requires an argument.\n\n"),
                      optopt);
           }
           else if (isprint (optopt)) {
@@ -253,14 +252,19 @@ int parse_commandline (int argc, char *argv[])
     }
 
     /* Make sure Scheme expressions can be passed straight to eval */
-    pre_rc_list = scm_cons (sym_begin,
-                            scm_reverse_x (pre_rc_list, SCM_UNDEFINED));
+    pre_rc_list = scm_cons(sym_begin,
+                           scm_reverse_x(pre_rc_list, SCM_UNDEFINED));
+
     scm_gc_protect_object (pre_rc_list);
+
     pre_backend_list = scm_cons (sym_begin,
                                  scm_reverse_x (pre_backend_list, SCM_UNDEFINED));
+
     scm_gc_protect_object (pre_backend_list);
+
     post_backend_list = scm_cons (sym_begin,
                                   scm_reverse_x (post_backend_list, SCM_UNDEFINED));
+
     scm_gc_protect_object (post_backend_list);
 
     return (optind);

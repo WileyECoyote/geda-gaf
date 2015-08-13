@@ -166,7 +166,6 @@
 ;;  '(            #\e   #\e   #\e   #\e   #\e   #\e   #\e   #\e   #\e   #\e   #\e   #\e )))
 
 
-
 ;; -------------------------------------------------------------------------------
 ;; IMPORTANT: Don't modify anything below unless you know what you are doing.
 ;; -------------------------------------------------------------------------------
@@ -183,7 +182,6 @@
 ;;
 ;; Some internal definitions
 ;;
-
 
 ; Pintype definitions. Overwrite previous definitions, because the backend depends on them.
 (define unknown  0)

@@ -68,8 +68,7 @@ SCM_DEFINE (active_pages, "%active-pages", 0, 0, 0,
  *
  * \return a newly-created #Page smob.
  */
-SCM_DEFINE (new_page, "%new-page", 1, 0, 0,
-            (SCM filename_s), "Create a new page")
+SCM_DEFINE (new_page, "%new-page", 1, 0, 0, (SCM filename_s), "Create a page")
 {
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
   char *filename;
@@ -79,7 +78,9 @@ SCM_DEFINE (new_page, "%new-page", 1, 0, 0,
   SCM_ASSERT (scm_is_string (filename_s), filename_s, SCM_ARG1, s_new_page);
 
   filename = scm_to_utf8_string (filename_s);
+
   page = s_page_new (toplevel, filename);
+
   g_free (filename);
 
   return edascm_from_page (page);
@@ -130,9 +131,7 @@ SCM_DEFINE (filename, "%page-filename", 1, 0, 0,
   Page *page;
 
   /* Ensure that the argument is a page smob */
-  SCM_ASSERT (EDASCM_PAGEP (page_s), page_s,
-              SCM_ARG1, s_filename);
-
+  SCM_ASSERT (EDASCM_PAGEP (page_s), page_s, SCM_ARG1, s_filename);
 
   page = edascm_to_page (page_s);
   return scm_from_utf8_string (page->filename);
@@ -161,9 +160,11 @@ SCM_DEFINE (set_filename_x, "%set-page-filename!", 2, 0, 0,
   Page *page = edascm_to_page (page_s);
 
   char *new_fn = scm_to_utf8_string (filename_s);
+
   if (page->filename != NULL) {
     g_free (page->filename);
   }
+
   page->filename = u_string_strdup(new_fn);
   free (new_fn);
 

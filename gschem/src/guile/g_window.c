@@ -136,12 +136,15 @@ SCM_DEFINE (current_window, "%current-window", 0, 0, 0,
  * Return the value of the #GschemToplevel fluid in the current dynamic
  * context.
  */
-GschemToplevel *g_current_window ()
+GschemToplevel *g_current_window (void)
 {
   SCM window_s = current_window ();
 
-  if (!(SCM_SMOB_PREDICATE (window_smob_tag, window_s) &&  ((void *)SCM_SMOB_DATA (window_s) != NULL))) {
-    scm_misc_error (NULL, _("Found invalid gschem window smob ~S"), scm_list_1 (window_s));
+  if (!(SCM_SMOB_PREDICATE (window_smob_tag, window_s) &&
+     ((void*)SCM_SMOB_DATA (window_s) != NULL)))
+  {
+    scm_misc_error (NULL, _("Found invalid gschem window smob ~S"),
+                    scm_list_1 (window_s));
   }
 
   return (GschemToplevel *) SCM_SMOB_DATA (window_s);

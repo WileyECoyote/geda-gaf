@@ -48,5 +48,5 @@ typedef DWORD GedaType;
 typedef unsigned int GedaType;
 #endif
 
-/** @} endgroup geda-global-types */
 
+/** @} endgroup geda-global-types */
