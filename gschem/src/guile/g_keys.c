@@ -372,12 +372,13 @@ void g_keys_reset (GschemToplevel *w_current)
   scm_dynwind_end ();
 }
 
+/*
 #if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
-
-/*! \brief Exports the keymap in scheme to a GLib GArray.
+*/
+/* ! \brief Exports the keymap in scheme to a GLib GArray.
  *  \par Function Description
  *  This function converts the list of key sequence/action pairs
  *  returned by the scheme function \c dump-current-keymap into an
@@ -387,7 +388,8 @@ void g_keys_reset (GschemToplevel *w_current)
  *
  *  \return A GArray with keymap data.
  */
-GArray* g_keys_dump_keymap (void)
+/*
+GArray *g_keys_dump_keymap (void)
 {
   SCM dump_proc = scm_c_lookup ("dump-current-keymap");
   SCM scm_ret;
@@ -407,12 +409,14 @@ GArray* g_keys_dump_keymap (void)
                            sizeof (struct keyseq_action_t),
                            (unsigned int)scm_ilength (scm_ret));
   for (; scm_ret != SCM_EOL; scm_ret = SCM_CDR (scm_ret)) {
+
     SCM scm_keymap_entry = SCM_CAR (scm_ret);
     struct keyseq_action_t keymap_entry;
 
     g_return_val_if_fail (SCM_CONSP (scm_keymap_entry) &&
-    SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
-    scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
+                          SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
+                          scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
+
     keymap_entry.action = u_string_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
     keymap_entry.keyseq = u_string_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
     ret = g_array_append_val (ret, keymap_entry);
@@ -424,7 +428,7 @@ GArray* g_keys_dump_keymap (void)
 #if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic pop
 #endif
-
+*/
 /*
  * int s_g_add_c_string_keys(char* keys, char* func) {
  *
