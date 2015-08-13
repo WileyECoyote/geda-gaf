@@ -560,9 +560,9 @@ static bool o_extend_can_arc_bound(Object  *boundary,
    */
   if (answer == 1) {     /* tangent, check if arc contains point */
     if (m_arc_includes_point(boundary->arc, &pt1)) {
+      answer = TRUE;
       pt3.x = pt1.x;
       pt3.y = pt1.y;
-      answer = TRUE;
     }
     else {
       answer = FALSE;
@@ -570,16 +570,16 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   }
   else if (answer == 2) {  /* 2 points, first was picked above */
     if (m_arc_includes_point(boundary->arc, &pt1)) {
+      answer = TRUE;
       pt3.x = pt1.x;
       pt3.y = pt1.y;
-      answer = TRUE;
     }
     else if (m_arc_includes_point(boundary->arc, &pt2)) {
       /* Since the 1st point was picked we did not check pt2 */
       if (!m_line_includes_point(projectile->line, &pt2)) {
+        answer = TRUE;
         pt3.x = pt2.x;
         pt3.y = pt2.y;
-        answer = TRUE;
       }
     }
     else {
@@ -588,15 +588,15 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   }
   else if (answer == 3) {  /* 2 points, second was picked above */
     if (m_arc_includes_point(boundary->arc, &pt2)) {
+      answer = TRUE;
       pt3.x = pt2.x;
       pt3.y = pt2.y;
-      answer = TRUE;
     }
     else if (included) { /* If 1st point include but not picked, check */
       if (m_arc_includes_point(boundary->arc, &pt1)) {
+        answer = TRUE;
         pt3.x = pt1.x;
         pt3.y = pt1.y;
-        answer = TRUE;
       }
     }
     else {
@@ -1142,10 +1142,10 @@ static bool o_extend_can_path_bound(Object *boundary,
             distance = sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2));
 
             if (distance != G_MAXDOUBLE && distance < shortest) {
+              answer   = TRUE;
               target.x = intersect.x;
               target.y = intersect.y;
               shortest = distance;
-              answer   = TRUE;
             }
           }
         }
