@@ -55,6 +55,7 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem_select_all_32x32.png                            \
 		  gschem_text_24x24.png                                  \
 		  gschem_text_26x26.png                                  \
+		  gschem-text.png                                        \
 		  gschem_transitor_28x28.png                             \
 		  gschem_transitor_32x32.png                             \
 		  gschem_top2bottom.png gschem_diagonal.png              \
@@ -66,8 +67,8 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem_unselect_28x28.png                              \
 		  gschem_unselect_32x32.png
 
-EXTRA_DIST = $(bitmapdata_DATA)                                          \
-             README                                                      \
+EXTRA_DIST = $(bitmapdata_DATA)                                  \
+             README                                              \
              gschem_about_logo.xcf
 
 MOSTLYCLEANFILES     = *.log *~

@@ -1,5 +1,11 @@
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmap/gschem-text.png: Add gschem-text icon.
+
+    * src/x/x_icons.c: Add gschem-text icon to factory.
+
+2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_status_bar.c: Replace (int)(long*) with (int)(long) in
       functions coord_options_popup_clicked and tatus_options_popup_clicked.
 

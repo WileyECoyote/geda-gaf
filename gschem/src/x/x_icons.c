@@ -97,7 +97,8 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
 const char* IDS_GSCHEM_ICONS[] = {
   "gschem-bus",              "gschem-comp",              "gschem-invert",
   "gschem-net",              "gschem-print-document",
-  "gschem-select",           "gschem-select-all",        "gschem-unselect",
+  "gschem-select",           "gschem-select-all",        "gschem-text",
+  "gschem-unselect",
   NULL
 };
 
