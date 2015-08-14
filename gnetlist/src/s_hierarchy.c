@@ -31,7 +31,7 @@
 #include <geda_debug.h>
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Traverse Hierarchy
  *  \par Function Description
  *
  */
@@ -238,7 +238,7 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Create a refdes relative to Hierarchy
  *  \par Function Description
  *
  */
@@ -296,12 +296,10 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Rename Net
  *  \par Function Description
- *
  */
-/* Why is this public? */
-int
+static int
 s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
                          char *label, char *new_name)
 {
@@ -312,7 +310,7 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
   int   did_work = FALSE;
 
   /* this is questionable, because I'm not sure if it's exactly the */
-  /* same as the#if 0'ed out line */
+  /* same as the #if 0'ed out line */
   /* search for the uref which has the name: label/uref (or whatever the */
   /* hierarchy tag/separator order is) */
   wanted_uref = s_hierarchy_create_uref(pr_current, label, uref);
@@ -361,7 +359,7 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Post Process
  *  \par Function Description
  *
  */
@@ -445,7 +443,7 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Remove Composite
  *  \par Function Description
  *
  */
@@ -470,7 +468,7 @@ void s_hierarchy_remove_compsite_all(NETLIST *head)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Create Net Name
  *  \par Function Description
  *
  */
@@ -543,7 +541,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Create a Net Attribute
  *  \par Function Description
  *
  */
@@ -609,7 +607,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Remove Mangling from Reference
  *  \par Function Description
  *
  */
@@ -663,7 +661,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Hierarchy Get the Base reference
  *  \par Function Description
  *
  */

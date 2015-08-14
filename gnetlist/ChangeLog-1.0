@@ -1,3 +1,7 @@
+2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_hierarchy.c: Make s_hierarchy_setup_rename static.
+
 2015-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/run_backend_tests.sh: Add separator between test to assist in

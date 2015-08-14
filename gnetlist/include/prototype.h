@@ -63,7 +63,6 @@ CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number);
 /* s_hierarchy.c */
 void  s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current, NETLIST *netlist);
 void  s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head);
-int   s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref, char *label, char *new_name);
 void  s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable);
 void  s_hierarchy_remove_compsite_all(NETLIST *head);
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
