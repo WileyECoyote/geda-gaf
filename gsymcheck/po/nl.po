@@ -235,7 +235,7 @@ msgstr "pinnumber=0 attribuut gevonden\n"
 #: gsymcheck/src/s_check.c:650
 #, c-format
 msgid "Notice: net attribute using defined pin number [%s]\n"
-msgstr ""
+msgstr "Otice: netto-kenmerk met opgegeven pennummer [%s]\n"
 
 #: gsymcheck/src/s_check.c:663
 #, c-format
