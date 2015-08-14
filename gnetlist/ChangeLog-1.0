@@ -1,3 +1,13 @@
+2015-08-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Replace depreciated guile function with scm_internal_catch
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, commit
+      59644a1a388314fa7a8865338d5e7d1c82ce51f7
+
+    * src/parsecmd.c: Replace scm_internal_stack_catch scm_internal_catch in
+      function parse_commandline.
+
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy.c: Make s_hierarchy_setup_rename static.
