@@ -256,7 +256,7 @@ static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
   if (str_val && (strcmp (str_val, Current_Page->filename) != 0)) {
     result = geda_page_rename (Current_Page, str_val);
     if (result) {
-      u_log_message(_("Symbol renamed, can not be undone\n"));
+      u_log_message(_("Symbol renamed, cannot be undone\n"));
     }
   }
 

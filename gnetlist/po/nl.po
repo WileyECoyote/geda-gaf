@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-07-23 02:15-0500\n"
+"POT-Creation-Date: 2015-08-14 02:49-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -82,7 +82,7 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
-#: gnetlist/src/gnetlist.c:275 gnetlist/src/parsecmd.c:242
+#: gnetlist/src/gnetlist.c:275 gnetlist/src/parsecmd.c:241
 #, c-format
 msgid ""
 "\n"
@@ -163,7 +163,7 @@ msgstr ""
 "Rapporteer gebreken op <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 
-#: gnetlist/src/parsecmd.c:231
+#: gnetlist/src/parsecmd.c:230
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -172,7 +172,7 @@ msgstr ""
 "FOUT: -%c optie vereist een argument.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:235
+#: gnetlist/src/parsecmd.c:234
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -181,7 +181,7 @@ msgstr ""
 "FOUT: Onbekende optie -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:238
+#: gnetlist/src/parsecmd.c:237
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"

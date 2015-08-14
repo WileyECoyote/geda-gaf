@@ -12,7 +12,7 @@ SUBDIRS = bitmaps include intl libgeda libgedacairo libgedadraw \
 # See doxygen below (in this same file) - these all have configs.dox
 # including the period which is used to reference the top-level docs
 # directory
-DOXDIRS = .       libgeda libgedacairo libgedauio libgedathon \
+DOXDIRS = . libgeda libgedacairo libgedauio libgedathon \
 		  gattrib gsymcheck gnetlist gschem utils
 
 ACLOCAL_AMFLAGS = -I m4
@@ -93,6 +93,13 @@ dist-hook:
 	    if test ! -f $(top_distdir)/build-tools/desktop-i18n ; then \
 	      cp -p $(top_srcdir)/build-tools/desktop-i18n $(top_distdir)/build-tools/ || exit $$?; \
 	    fi;
+
+update-po:
+	@for subdir in $(SUBDIRS); do \
+	    if test -d $$subdir/po ; then \
+	       (cd $$subdir; $(MAKE) -C po update-po) || exit 1; \
+	    fi; \
+	done
 
 distclean-local:
 	-rm -rf autom4te.cache

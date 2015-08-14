@@ -1,3 +1,7 @@
+2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+     * geda-gaf/Makefile.am: Add update-po to regenerate po from top_srcdir.
+
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
      * include/geda_toolbars.h: Replace (int)(long*) with (int)(long) in

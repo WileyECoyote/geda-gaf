@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-07-27 22:49-0500\n"
+"POT-Creation-Date: 2015-08-14 02:38-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -206,7 +206,7 @@ msgstr "Не можу знайти файл %s: %s"
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:559
+#: libgeda/src/file/f_get.c:560
 #, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr ""
@@ -262,168 +262,168 @@ msgstr "Не можу виконати команду [%s] для друку\n"
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Забагато UTF-8 символів, не можу відобразити\n"
 
-#: libgeda/src/geda/geda_config.c:100
+#: libgeda/src/geda/geda_config.c:219
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:101
+#: libgeda/src/geda/geda_config.c:220
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:781 libgeda/src/geda/geda_config.c:896
+#: libgeda/src/geda/geda_config.c:815 libgeda/src/geda/geda_config.c:929
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:917
+#: libgeda/src/geda/geda_config.c:950
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:959
+#: libgeda/src/geda/geda_config.c:992
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Не можу знайти файл %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1258
+#: libgeda/src/geda/geda_config.c:1301
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1322
+#: libgeda/src/geda/geda_config.c:1365
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1336
+#: libgeda/src/geda/geda_config.c:1379
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:300
+#: libgeda/src/geda/geda_pin.c:304
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:301
+#: libgeda/src/geda/geda_pin.c:305
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:307
+#: libgeda/src/geda/geda_pin.c:311
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:308
+#: libgeda/src/geda/geda_pin.c:312
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:314
+#: libgeda/src/geda/geda_pin.c:318
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:315
+#: libgeda/src/geda/geda_pin.c:319
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:321
+#: libgeda/src/geda/geda_pin.c:325
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:322
+#: libgeda/src/geda/geda_pin.c:326
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:328
+#: libgeda/src/geda/geda_pin.c:332
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:329
+#: libgeda/src/geda/geda_pin.c:333
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:335
+#: libgeda/src/geda/geda_pin.c:339
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:336
+#: libgeda/src/geda/geda_pin.c:340
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:342
+#: libgeda/src/geda/geda_pin.c:346
 msgid "Whichend"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:343
+#: libgeda/src/geda/geda_pin.c:347
 msgid "Which end of the pin gets connected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:385
+#: libgeda/src/geda/geda_object.c:391
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:386
+#: libgeda/src/geda/geda_object.c:392
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:395
+#: libgeda/src/geda/geda_object.c:401
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:396
+#: libgeda/src/geda/geda_object.c:402
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:403
+#: libgeda/src/geda/geda_object.c:409
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:404
+#: libgeda/src/geda/geda_object.c:410
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:410
+#: libgeda/src/geda/geda_object.c:416
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:411
+#: libgeda/src/geda/geda_object.c:417
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:416
+#: libgeda/src/geda/geda_object.c:422
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:417
+#: libgeda/src/geda/geda_object.c:423
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:423
+#: libgeda/src/geda/geda_object.c:429
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:424
+#: libgeda/src/geda/geda_object.c:430
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:430
+#: libgeda/src/geda/geda_object.c:436
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:431
+#: libgeda/src/geda/geda_object.c:437
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:438
+#: libgeda/src/geda/geda_object.c:444
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:439
+#: libgeda/src/geda/geda_object.c:445
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:447
+#: libgeda/src/geda/geda_object.c:453
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:448
+#: libgeda/src/geda/geda_object.c:454
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1188,34 +1188,34 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:158
+#: libgeda/src/scheme/scheme_complex.c:167
 msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:274
+#: libgeda/src/scheme/scheme_complex.c:283
 msgid "Object ~A is already on a page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:282
-#: libgeda/src/scheme/scheme_page.c:252
+#: libgeda/src/scheme/scheme_complex.c:291
+#: libgeda/src/scheme/scheme_page.c:253
 msgid "Object ~A is already attached to something"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:342
+#: libgeda/src/scheme/scheme_complex.c:351
 msgid "Object ~A is attached to a different complex"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:349
+#: libgeda/src/scheme/scheme_complex.c:358
 msgid "Object ~A is attached to a page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:356
-#: libgeda/src/scheme/scheme_page.c:300
+#: libgeda/src/scheme/scheme_complex.c:365
+#: libgeda/src/scheme/scheme_page.c:301
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:363
-#: libgeda/src/scheme/scheme_page.c:307
+#: libgeda/src/scheme/scheme_complex.c:372
+#: libgeda/src/scheme/scheme_page.c:308
 msgid "Object ~A has attributes"
 msgstr ""
 
@@ -1231,11 +1231,11 @@ msgstr ""
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:293
+#: libgeda/src/scheme/scheme_page.c:294
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:444
+#: libgeda/src/scheme/scheme_page.c:445
 msgid "Parse error: ~s"
 msgstr ""
 
@@ -1341,24 +1341,24 @@ msgstr ""
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1516
+#: libgeda/src/struct/s_clib.c:1517
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:90
+#: libgeda/src/struct/s_hierarchy.c:95
 msgid "Schematic not found in source library."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:113
+#: libgeda/src/struct/s_hierarchy.c:118
 msgid "Hierarchy contains a circular dependency."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:215
+#: libgeda/src/struct/s_hierarchy.c:220
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:297
+#: libgeda/src/struct/s_hierarchy.c:302
 #, c-format
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr ""

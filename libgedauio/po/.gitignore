@@ -3,7 +3,6 @@ Makefile.in
 Makefile.in.in
 POTFILES
 *.gmo
-*.gmo
 *.sed
 *.header
 *.sin
