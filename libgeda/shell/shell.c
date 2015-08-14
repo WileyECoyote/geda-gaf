@@ -164,6 +164,11 @@ shell_main (void *data, int argc, char **argv)
 
   /* If interactive mode, load readline and run top REPL. */
   if (interactive) {
+
+#ifdef __MINGW32__
+    fprintf (stderr, "readline is not yet supported for MinGW builds\n");
+#else
+
     run_lst = scm_cons (scm_list_2 (sym_use_modules,
                                     scm_list_2 (sym_ice_9, sym_readline)),
                         run_lst);
@@ -182,7 +187,7 @@ shell_main (void *data, int argc, char **argv)
         "There is NO WARRANTY, to the extent permitted by law.\n"
       );
     }
-
+#endif /* __MINGW32__ */
   }
   else {
     run_lst = scm_cons (scm_list_1 (sym_quit), run_lst);

@@ -1,3 +1,10 @@
+2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/shell.c:Revised similar to modifications to the Master branch by
+      Vladimir Zhbanov, see commit  24fdc58906bba7c51e25f3398a3f14bce964d30f
+      Prohibit activating the readline library as it is not yet supported for
+      MinGW builds.
+
 2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf/src/export.c: Revise function cmd_export to eliminate direct
