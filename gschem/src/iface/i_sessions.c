@@ -484,7 +484,7 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
       w_current->session_name = record->session_name;
     }
     else {
-      g_set_error (&err, G_FILE_ERROR, errno, _("'%s': %s"),
+      g_set_error (&err, G_FILE_ERROR, errno, _("%s: %s"),
       session_file, strerror(errno));
     }
   }

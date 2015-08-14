@@ -101,7 +101,7 @@ bool x_window_setup_gc(GschemToplevel *w_current)
   }
   else {
 
-    if ( (w_current->window) && GDK_IS_WINDOW(w_current->window)) {
+    if ((w_current->window) && GDK_IS_WINDOW(w_current->window)) {
 
       w_current->gc  = gdk_gc_new(w_current->window);
       //w_current->xgc = GDK_GC_XGC (w_current->gc);
@@ -118,7 +118,7 @@ bool x_window_setup_gc(GschemToplevel *w_current)
       }
     }
     else {
-      g_critical(_("Could not allocate gc, w_current->window is not a valid GdkWindow\n"));
+      g_critical(_("Could not allocate gc, w_current->window is not a valid Window\n"));
     }
   }
   return result;
@@ -313,7 +313,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
   int x, y, width, height;
 
-  v_log_message(_("Retrieving Window geometry and settings.\n"));
+  v_log_message(_("Retrieving main Window geometry and settings.\n"));
 
   window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();

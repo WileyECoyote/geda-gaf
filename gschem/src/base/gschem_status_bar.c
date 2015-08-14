@@ -1180,8 +1180,8 @@ gschem_status_bar_init (GschemStatusBar *widget)
   {
     AtkObject *obj;
     obj = gtk_widget_get_accessible(GTK_WIDGET(widget));
-    atk_object_set_name (obj, _("Gschem Status Bar"));
-    atk_object_set_description(obj,_(status_bar_tip));
+    atk_object_set_name (obj, status_bar_tip);
+    atk_object_set_description(obj, status_bar_tip);
   }
 
   gtk_widget_pop_composite_child ();
