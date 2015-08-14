@@ -805,8 +805,8 @@ static void do_Hide_HandleBox(GedaHandleBox *handlebox)
 
     gtk_widget_hide((GtkWidget*)handlebox);
 
-    GschemToplevel *w_current  =  (GschemToplevel*)GET_TOOLBAR_WC(handlebox);
-    int HandleBoxId =  GET_TOOLBAR_ID(handlebox);
+    GschemToplevel *w_current = (GschemToplevel*)GET_TOOLBAR_WC(handlebox);
+    int HandleBoxId = GET_TOOLBAR_ID(handlebox);
 
     x_menu_set_toolbar_toggle(w_current, HandleBoxId, FALSE);
 

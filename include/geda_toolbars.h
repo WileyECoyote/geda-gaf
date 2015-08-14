@@ -79,7 +79,7 @@ typedef struct
 
 #define GET_TOOLBAR_ID(obj) (int)(long) g_object_get_data(G_OBJECT(GTK_WIDGET(obj)), "BarId");
 #define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data(G_OBJECT(obj), "BarId", GINT_TO_POINTER(bar_id));
-#define GET_TOOLBAR_WC(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "WinData");
+#define GET_TOOLBAR_WC(obj) (int)(long) g_object_get_data(G_OBJECT(obj), "WinData");
 #define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data(G_OBJECT(obj), "WinData", GINT_TO_POINTER(win_cur));
 
 /*------------------------------------------------------------------
