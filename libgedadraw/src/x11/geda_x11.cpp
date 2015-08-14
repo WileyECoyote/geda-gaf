@@ -1042,11 +1042,6 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
   return;
 }
 
-#if GCC_DIAGNOSTIC_AWARE
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
-#endif
-
 void EdaX11Render::
 geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 {
@@ -1054,6 +1049,9 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
   unsigned long bits;
   int x0, y0;
   int from_x, from_y, to_x, to_y;
+
+  x0 = y0 = 0;
+  from_x = from_y = -1;
 
   XPoint points[4];
 
@@ -1122,10 +1120,6 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
   }
   return;
 }
-
-#if GCC_DIAGNOSTIC_AWARE
-#pragma GCC diagnostic pop
-#endif
 
 void EdaX11Render::
 geda_x11_draw_picture (int x, int y, int width, int height)

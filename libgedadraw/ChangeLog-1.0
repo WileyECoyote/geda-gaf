@@ -1,3 +1,8 @@
+2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x11/geda_x11.cpp: Remove initialization warning directives for method
+       geda_x11_draw_path. Initialize variables to appease compiler.
+
 2015-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/x11/geda_x11.cpp: Revise EdaX11Render::GetRotation to appease compiler,
