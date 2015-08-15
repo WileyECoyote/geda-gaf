@@ -20,13 +20,6 @@ gschem/src/guile/g_select.c
 gschem/src/guile/g_util.c
 gschem/src/guile/g_window.c
 
-gschem/src/guile/g_attrib.x
-gschem/src/guile/g_hook.x
-gschem/src/guile/g_keys.x
-gschem/src/guile/g_select.x
-gschem/src/guile/g_util.x
-gschem/src/guile/g_window.x
-
 gschem/src/iface/i_callbacks.c
 gschem/src/iface/i_command.c
 gschem/src/iface/i_pan_world.c
