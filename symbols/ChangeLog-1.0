@@ -1,4 +1,9 @@
-2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/schottky/NSR05F40NX-1.sym: Add symbol;VOLTAGE REGULATOR,LDO,1.0A,
+      Fixed 1.9Volt, 0-125°C.
+
+2015-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/ldo/NCP1117-DT15-1.sym: Add symbol VOLTAGE REGULATOR,LDO,800mA
       Fixed 15.0Volt, 0-125°C,DPAK.
