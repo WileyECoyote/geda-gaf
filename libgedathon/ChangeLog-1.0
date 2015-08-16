@@ -1,6 +1,6 @@
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
-     * tests/run_tests.sh: Add test "ldconfig -p | grep libgeda" to stop "make check" 
+     * tests/run_tests.sh: Add test "ldconfig -p | grep libgeda" to stop "make check"
        from running if libgeda is not installed.
 
 2015-08-05 Wiley E. Hill <wileyhill@gmail.com>

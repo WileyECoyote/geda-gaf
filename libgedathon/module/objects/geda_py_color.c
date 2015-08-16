@@ -22,7 +22,7 @@
 #include "geda_py_color.h"
 
 static PyObject *
-Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+Color_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 ColorObject_new(const ColorObject *rgb)
 {
@@ -763,14 +763,17 @@ ColorObject_from_pyobject(PyObject *object, ColorObject *color)
     if (ColorObject_check(object)) {
         *color = *pyg_boxed_get(object, ColorObject);
         return 1;
-    } else if (PyString_Check(object)) {
+    }
+    else if (PyString_Check(object)) {
         if (gimp_rgb_parse_css (color, PyString_AsString(object), -1)) {
             return 1;
-        } else {
+        }
+        else {
             PyErr_SetString(PyExc_TypeError, "unable to parse color string");
             return 0;
         }
-    } else if (PySequence_Check(object)) {
+    }
+    else if (PySequence_Check(object)) {
         PyObject *r, *g, *b, *a = NULL;
 
         if (!PyArg_ParseTuple(object, "OOO|O", &r, &g, &b, &a))
