@@ -1,0 +1,88 @@
+v 20150703 2
+B 400 100 1900 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1400 700 9 10 1 1 0 3 1
+footprint=SOT26
+T 400 2000 5 10 0 1 0 0 1
+description=2K EEPROM, 16 Bit Serial, 2.5-5.5Volt, +85°C
+T 400 1800 5 10 0 0 0 0 1
+device=93LC56B
+T 400 2400 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 2600 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 2800 5 10 0 0 0 0 1
+author=AutoTron
+T 1400 1100 8 10 1 1 0 3 1
+refdes=U?
+P 2600 1300 2300 1300 1 0 0
+{
+T 2250 1300 9 10 1 1 0 7 1
+pinlabel=VCC
+T 2400 1350 5 8 1 1 0 0 1
+pinnumber=6
+T 2400 1350 5 8 0 1 0 0 1
+pinseq=6
+T 2600 1150 2 8 0 1 0 6 1
+pintype=pwr
+}
+P 2600 500 2300 500 1 0 0
+{
+T 2250 500 9 10 1 1 0 7 1
+pinlabel=CLK
+T 2400 550 5 8 1 1 0 0 1
+pinnumber=4
+T 2400 550 5 8 0 1 0 0 1
+pinseq=4
+T 2600 350 5 8 0 1 0 6 1
+pintype=clk
+}
+P 2600 900 2300 900 1 0 0
+{
+T 2250 900 9 10 1 1 0 7 1
+pinlabel=CS
+T 2400 950 5 8 1 1 0 0 1
+pinnumber=5
+T 2400 950 5 8 0 1 0 0 1
+pinseq=5
+T 2600 750 9 8 0 1 0 6 1
+pintype=in
+}
+P 100 1300 400 1300 1 0 0
+{
+T 450 1300 9 10 1 1 0 1 1
+pinlabel=DO
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1350 5 8 0 1 0 6 1
+pinseq=1
+T 300 1150 5 8 0 1 0 6 1
+pintype=out
+}
+P 100 500 400 500 1 0 0
+{
+T 450 500 9 10 1 1 0 1 1
+pinlabel=DI
+T 300 550 5 8 1 1 0 6 1
+pinnumber=3
+T 300 550 5 8 0 1 0 6 1
+pinseq=3
+T 300 350 5 8 0 1 0 6 1
+pintype=in
+}
+P 100 900 400 900 1 0 0
+{
+T 450 900 9 10 1 1 0 1 1
+pinlabel=VSS
+T 300 950 5 8 1 1 0 6 1
+pinnumber=2
+T 300 950 5 8 0 1 0 6 1
+pinseq=2
+T 300 750 5 8 0 1 0 6 1
+pintype=pwr
+}
+T 400 2200 5 10 0 1 0 0 1
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/21794G.pdf
+T 1400 900 9 10 1 0 0 3 1
+93LC56C
+T 500 200 5 8 0 0 0 0 1
+symversion=0.1
