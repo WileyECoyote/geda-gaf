@@ -1331,9 +1331,9 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER (Select_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->select_handlebox), Select_Toolbar);
 
-  TOOLBAR_GEDA_BUTTON( Select, etb_unselect_all,  THEME,     NULL, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Select, etb_select_all,    LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Select, etb_select_invert, LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  GSCHEM_TOOLBAR_BUTTON (Select, etb_unselect_all);
+  GSCHEM_TOOLBAR_BUTTON (Select, etb_select_all);
+  GSCHEM_TOOLBAR_BUTTON (Select, etb_select_invert);
 
   g_object_set (Select_Toolbar, "visible", TRUE, NULL);
 
@@ -1350,6 +1350,15 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Zoom_Toolbar), GTK_ORIENTATION_HORIZONTAL);
   gtk_container_set_border_width (GTK_CONTAINER (Zoom_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
+
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_view_redraw);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_pan);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_box);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_select);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_extents);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_in);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_out);
+//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_all);
 
   TOOLBAR_GEDA_BUTTON( Zoom, etb_view_redraw,  LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_pan,     LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
@@ -1408,6 +1417,12 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER (Edit_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->edit_handlebox), Edit_Toolbar);
 
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_copy);
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_multi_copy);
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_move);
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_mirror);
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_rotate);
+
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_copy,  LOCAL_PIX, GEDA_COPY_BITMAP,    x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_multi_copy, LOCAL_PIX, GEDA_MULTI_BITMAP,   x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_move,       LOCAL_PIX, GEDA_MOVE_BITMAP,    x_toolbars_execute, w_current);
@@ -1416,10 +1431,23 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_butes);
+//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_color);
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_butes, LOCAL_STK, INDENT,              x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_color, LOCAL_PIX, GEDA_DISPLAY_COLOR_BITMAP, x_toolbars_execute,  w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
+
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_text);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_slot);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_pin);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_line);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_fill);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_arc);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_translate);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_lock);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_unlock);
+  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_update);
 
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_text,  LOCAL_STK, EDIT,                   x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_slot,  LOCAL_FAC, NULL,                   x_toolbars_execute, w_current);
@@ -1457,6 +1485,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   SET_TOOLBAR_ID        (w_current->edit_handlebox, tb_Edit);
   SET_TOOLBAR_WC        (w_current->edit_handlebox, w_current);
+
   x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar );
   TheToolBars = g_slist_append ( TheToolBars, Edit_Toolbar);
 }
@@ -1497,6 +1526,12 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_add              (GTK_CONTAINER (w_current->attribute_handlebox), Attribute_Toolbar);
 
   /* Add Attribute Button to Toolbar */
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_attach);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_detach);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_value);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_name);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_both);
+
   TOOLBAR_GEDA_BUTTON(Attribute, etb_attach,     LOCAL_PIX, GAF_PROMOTE_BITMAP,  x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_detach,     LOCAL_PIX, GAF_DEMOTE_BITMAP,   x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_value, LOCAL_PIX, GEDA_VALUE_BITMAP,   x_toolbars_execute,  w_current);
@@ -1505,14 +1540,22 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
 //gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_visibilty);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_hidden);
 
+  TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
 
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_inherited);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
+
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_find_text);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_hide_text);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_specific);
+  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_auto_number);
 
   TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
@@ -1551,10 +1594,15 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(GripSnap_Toolbar));
 
+  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_up);
+  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_down);
+  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_set);
   TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_up,     LOCAL_STK, GOTO_TOP,    x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_down,   LOCAL_STK, GOTO_BOTTOM, x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_set,    LOCAL_FAC, JUMP_TO,     x_toolbars_execute,  w_current);
 
+  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_off);
+  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_on);
   TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_off,    LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
   TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_on,     LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
 
