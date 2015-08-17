@@ -828,7 +828,7 @@ static void do_Hide_HandleBox(GedaHandleBox *handlebox)
  */
 static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
 {
-    int WhichItem = (int)(long*) selection;
+    int WhichItem = (int)(long) selection;
 
     switch ( WhichItem ) {
       case DockBar:
@@ -900,8 +900,8 @@ static GtkWidget *build_menu(GtkWidget *widget)
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
     g_signal_connect(GTK_OBJECT(item),"activate",
-                    (void *) popup_activated,
-                    (void *) i);
+                    (void*) popup_activated,
+                    (void*) (long) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
