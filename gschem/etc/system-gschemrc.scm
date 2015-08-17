@@ -1854,13 +1854,15 @@
 (map-icon "gtk-refresh"                "view-redraw")
 (map-icon "geda-zoom-pan"              "view-pan")
 
-(map-icon "gtk-fullscreen"             "view-zoom-all")
+;(map-icon "gtk-fullscreen"             "view-zoom-all")
+(map-icon "geda-zoom-limits"           "view-zoom-all")
 (map-icon "geda-zoom-box"              "view-zoom-box")
 (map-icon "zoom-extents"               "view-zoom-extents")
 (map-icon "zoom-in"                    "view-zoom-in")
 (map-icon "zoom-out"                   "view-zoom-out")
 (map-icon "zoom-mag"                   "view-zoom-to-mag")
 (map-icon "geda-zoom-selection"        "view-zoom-selected")
+;(map-icon "geda-zoom-selection"        "zoom-selection")
 
 (map-icon "gaf-see-notes"              "view-documentation")
 ;;(map-icon "gtk-index"                  "view-documentation")
@@ -2111,18 +2113,18 @@
 ;;      menu item name               menu action             menu icon name              Menu Item Tooltip
 ;;
      `(
-        (,(N_ "_Redraw")             view-redraw             "gtk-refresh"          ,(N_ "redraw the current window"))
-        (,(N_ "_Pan")                view-pan                "geda-zoom-pan"        ,(N_ "Activate Panning"))
+        (,(N_ "_Redraw")             view-redraw             #f              ,(N_ "redraw the current window"))
+        (,(N_ "_Pan")                view-pan                #f              ,(N_ "Activate Panning"))
 
-        (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen"       ,(N_ "Zoom to the limits of the drawing area"))
-        (,(N_ "Zoom _Box")           view-zoom-box           "geda-zoom-box"        ,(N_ "Zoom to a Windowed region"))
-        (,(N_ "Zoom _Extents")       view-zoom-extents       "zoom-extents"         ,(N_ "Zoom to the extents of the drawing"))
-        (,(N_ "Zoom _In")            view-zoom-in            "zoom-in"              ,(N_ "Increase the Zoom magnification"))
+        (,(N_ "Zoom _All")           view-zoom-all           #f              ,(N_ "Zoom to the limits of the drawing area"))
+        (,(N_ "Zoom _Box")           view-zoom-box           #f              ,(N_ "Zoom to a Windowed region"))
+        (,(N_ "Zoom _Extents")       view-zoom-extents       "zoom-extents"  ,(N_ "Zoom to the extents of the drawing"))
+        (,(N_ "Zoom _In")            view-zoom-in            "zoom-in"       ,(N_ "Increase the Zoom magnification"))
         (,(N_ "Zoom _Out")           view-zoom-out           "zoom-out"      ,(N_ "Decrease the Zoom magnification"))
-        (,(N_ "Zoom _Mag")           view-zoom-to-mag        "zoom-mag"             ,(N_ "Zoom to a specified level"))
-        (,(N_ "Zoom _Selection")     view-zoom-selected      "geda-zoom-selection"  ,(N_ "Zoom to selected objects"))
+        (,(N_ "Zoom _Mag")           view-zoom-to-mag        "zoom-mag"      ,(N_ "Zoom to a specified level"))
+        (,(N_ "Zoom _Selection")     view-zoom-selected     #f               ,(N_ "Zoom to selected objects"))
 
-        ("SEPARATOR"                #f                      #f                       #f)
+        ("SEPARATOR"                #f                      #f               #f)
         (,(N_ "D_ocumentation...")   view-documentation     #f)
         (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
         (,(N_ "Show/Hide Net Names") view-show-nets         #f                      ,(N_ "Toggle hidden net name attributes"))
