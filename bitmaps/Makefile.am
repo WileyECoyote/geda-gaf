@@ -113,7 +113,9 @@ bitmapdata_DATA   = \
 			geda-waves.png                     \
 			geda-zoom-box.png                  \
 			geda-zoom-extents.png              \
+			geda-zoom-in.png                   \
 			geda-zoom-limits.png               \
+			geda-zoom-out.png                  \
 			geda-zoom-pan.png                  \
 			geda-zoom-selection.png            \
 			git-logo.png
