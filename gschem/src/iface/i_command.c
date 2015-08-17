@@ -2027,7 +2027,7 @@ COMMAND (do_zoom_to_mag)
   x = CMD_X(do_zoom_to_mag);
   y = CMD_Y(do_zoom_to_mag);
 
-  mag = geda_dialog_get_real(_("Zoom Mag"), _("Specify new zoom:"), 5.0);
+  mag = geda_dialog_get_real(_("Zoom Magnification"), _("Specify new zoom:"), 5.0);
 
   if (mag != -0) { /* If user did not cancel */
 
@@ -2588,14 +2588,13 @@ COMMAND (do_down_schematic)
       /* Do error reporting */
       if (child == NULL) {
 
-        const char *msg = (err != NULL) ? err->message : "Unknown error.";
+        const char *msg1 = _("Failed to descend into");
+        const char *msg2 = (err != NULL) ? err->message : "Unknown error.";
 
-        u_log_message(_("Failed to descend into '%s': %s\n"),
-                         current_filename, msg);
+        u_log_message(_("%s '%s': %s\n"), msg1, current_filename, msg2);
 
-        char *secondary = u_string_sprintf (
-                         _("Failed to descend into '%s': <i>%s</i>"),
-                            current_filename, msg);
+        char *secondary = u_string_sprintf ("%s '%s': <i>%s</i>",
+                                            msg1, current_filename, msg2);
 
         titled_pango_error_dialog("<b>Failed to descend hierarchy</b>",
                                   secondary, _("Hierarchy Error"));
@@ -3590,15 +3589,13 @@ COMMAND (do_translate)
 
   if (w_current->snap == SNAP_OFF) {
     u_log_message(_("WARNING: Do not translate with snap off!\n"));
-    u_log_message(_("WARNING: Turning snap on and continuing "
-                    "with translate.\n"));
+    u_log_message(_("WARNING: Turning snap on and continuing with translate.\n"));
     w_current->snap = SNAP_GRID;
     i_status_show_state(w_current, NULL); /* update status on screen */
   }
 
   if (w_current->snap_size != 100) {
-    u_log_message(_("WARNING: Snap grid size is "
-                    "not equal to 100!\n"));
+    u_log_message(_("WARNING: Snap grid size is not equal to 100!\n"));
     u_log_message(_("WARNING: If you are translating a symbol "
                     "to the origin, the snap grid size should be "
                     "set to 100\n"));

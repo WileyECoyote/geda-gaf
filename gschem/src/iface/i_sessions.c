@@ -159,8 +159,8 @@ static bool i_session_close_all (GschemToplevel *w_current)
   pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
 
   /* Loop through all the pages looking for unsaved pages */
-  for ( iter = pages; iter != NULL; NEXT(iter))
-  {
+  for ( iter = pages; iter != NULL; NEXT(iter)) {
+
     /* get ptr to a page */
     p_current = (Page*)iter->data;
 
@@ -175,7 +175,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
     close_all = x_confirm_close_window (w_current);
     if (!close_all) {       /* user cancelled the close */
-      v_log_message(_("Close all canceled\n"));
+      v_log_message(_("Canceled Close all\n"));
     }
   }
   else {
@@ -484,7 +484,7 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
       w_current->session_name = record->session_name;
     }
     else {
-      g_set_error (&err, G_FILE_ERROR, errno, _("%s: %s"),
+      g_set_error (&err, G_FILE_ERROR, errno, "%s: %s",
       session_file, strerror(errno));
     }
   }
