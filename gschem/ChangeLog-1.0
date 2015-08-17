@@ -1,5 +1,9 @@
 2015-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * data/gschem-icons.svg: Add them-able icon for zoom-limits
+
+2015-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_toolbars.c: Convert add-attribute, add-text and add-component
       to new temporary macro GSCHEM_TOOLBAR_BUTTON.
 

@@ -89,8 +89,8 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-wave",          "geda-waves",
   "geda-snap-on",       "geda-spectrum",      "geda-text-editor",  "geda-tools",
   "geda-redo",          "geda-rotate",        "geda-undo",         "geda-unlock",
-  "geda-unselect-all",  "geda-zoom-box",      "geda-zoom-extents", "geda-zoom-limits",
-  "geda-zoom-pan",      "geda-zoom-selection",
+  "geda-unselect-all",  "geda-zoom-box",      "geda-zoom-extents", "geda-zoom-in",
+  "geda-zoom-limits",   "geda-zoom-out",      "geda-zoom-pan",     "geda-zoom-selection",
   "git-logo",
   NULL
 };
@@ -122,7 +122,7 @@ const char* IDS_THEME_ICONS_22[] = {
   "show-both",               "show-value",               "show-name",
   "show-netnames",           "unselect-all",             "zoom-extents",
   "zoom-fit",                "zoom-in",                  "zoom-mag",
-  "zoom-out",                "zoom-selection",
+  "zoom-out",                "zoom-limits",              "zoom-selection",
   NULL
 };
 

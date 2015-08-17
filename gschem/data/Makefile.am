@@ -40,6 +40,7 @@ action_icons = \
 	zoom-in \
 	zoom-mag \
 	zoom-out \
+	zoom-limits \
 	zoom-selection
 
 action_icon_files = \
