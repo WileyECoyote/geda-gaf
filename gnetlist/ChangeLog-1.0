@@ -1,5 +1,9 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/Makefile.am: Remove commented noinst_MANS.
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/prototype.h: Remove declarations for non-existence functions.
 
 2015-08-14 Vladimir Zhbanov <vzhbanov@gmail.com>
