@@ -62,13 +62,10 @@
         (display debug-string)
 )))
 
-(define-public (get-calling-flags) ; DEPRECATED
+(define-public (get-calling-flags)
   "Returns a list of `-O' arguments in the form:
 
-  ((ARGUMENT #t) ...)
-
-This function is deprecated, and should not be used in new code.  New
-code should use `gnetlist:get-backend-arguments' directly."
+  ((ARGUMENT #t) ...)"
   (map (lambda (x) (list x #t)) (gnetlist:get-backend-arguments))
 )
 

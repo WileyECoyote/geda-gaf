@@ -1,5 +1,9 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnetlist.scm: un-deprecate get-calling-flags
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-spice-noqsi.scm: Remove duplicate prototype for VOLTAGE_SOURCE
 
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
