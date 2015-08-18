@@ -65,7 +65,7 @@ struct option long_options[] =
 void usage(char *cmd)
 {
   printf (_(
-    "Usage: %s [OPTION ...] [-g BACKEND] [--] FILE ...\n"
+    "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
     "\n"
     "Generate a netlist from one or more gEDA schematic FILEs.\n"
     "\n"
@@ -81,14 +81,17 @@ void usage(char *cmd)
     "  -c <expresion>  Evaluate Scheme expression at startup.\n"
     "  -i              Enter interactive Scheme REPL after loading.\n"
     "  --list-backends Print a list of available netlist backends.\n"
-    "  -h, --help      Help; this message.\n"
-    "  -V, --version   Show version information.\n"
+    "  -h, --help      Display usage and parameter information.\n"
+    "  -V, --version   Show gnetlist or a backend version information.\n"
     "  --              Treat all remaining arguments as filenames.\n"
+    "\n"
+    "  Note: Help and version arguments are positional relative to the.\n"
+    "  backend argument, when specified after the backend, details specific\n"
+    "  to the backend will be displayed.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
     "gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
     cmd);
-  exit (0);
 }
 
 /*! \brief Print version info and exit.
@@ -129,10 +132,12 @@ catch_handler (void *data, SCM tag, SCM throw_args)
 int parse_commandline (int argc, char *argv[])
 {
   int ch;
-  SCM sym_begin = scm_from_utf8_symbol ("begin");
-  SCM sym_cons = scm_from_utf8_symbol ("cons");
-  SCM sym_load = scm_from_utf8_symbol ("load");
-  SCM sym_set_x = scm_from_utf8_symbol ("set!");
+  int backend_flag  = FALSE;
+
+  SCM sym_begin     = scm_from_utf8_symbol ("begin");
+  SCM sym_cons      = scm_from_utf8_symbol ("cons");
+  SCM sym_load      = scm_from_utf8_symbol ("load");
+  SCM sym_set_x     = scm_from_utf8_symbol ("set!");
   SCM sym_load_path = scm_from_utf8_symbol ("%load-path");
 
 #ifdef HAVE_GETOPT_LONG
@@ -181,6 +186,7 @@ int parse_commandline (int argc, char *argv[])
 
         case 'g':
           guile_proc = u_string_strdup(optarg);
+          backend_flag = TRUE;
           break;
 
         case 'l':
@@ -218,10 +224,23 @@ int parse_commandline (int argc, char *argv[])
 
         case 'h':
           usage(argv[0]);
+          if (backend_flag) {
+            char *help = "help";
+            backend_params = g_slist_append(backend_params, help);
+          }
+          else {
+            exit (0);
+          }
           break;
 
         case 'V':
-          version();
+          if (!backend_flag) {
+            version();
+          }
+          else {
+            char *version = "version";
+            backend_params = g_slist_append(backend_params, version);
+          }
           break;
 
         case '?':

@@ -1,5 +1,10 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/parsecmd.c: Revise parse_commandline to support passing command-line
+      flags to backends directly.
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnetlist.scm: Add command line utility functions;  error-no-input-file,
       have-input-file?, help-flag? and version-flag?.
 
