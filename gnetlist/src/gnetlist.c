@@ -270,12 +270,6 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   /* free(cwd); - Defered; see below */
 
-  if (argv[argv_index] == NULL) {
-    fprintf (stderr, _("ERROR: No schematics files specified for processing.\n"));
-    fprintf (stderr, _("\nRun `%s --help' for more information.\n"), argv[0]);
-    exit (1);
-  }
-
 #if DEBUG
   s_page_print_all(pr_current);
 #endif
@@ -284,6 +278,7 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_primitive_load_path (scm_from_utf8_string ("gnetlist.scm"));
 
   if (guile_proc) {
+
     SCM s_backend_path;
 
     /* Search for backend scm file in load path */
@@ -308,17 +303,20 @@ void main_prog(void *closure, int argc, char *argv[])
     scm_eval (post_backend_list, scm_current_module ());
   }
 
-  s_traverse_init();
+  if (g_slist_length(input_files) > 0) {
 
-  s_traverse_start(pr_current);
+    s_traverse_init();
 
-  /* Change back to the directory where we started AGAIN.  This is done */
-  /* because the s_traverse functions can change the Current Working Directory. */
-  if (chdir (cwd)) {
-    /* Error occured with chdir */
-    fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
-             cwd, strerror (errno));
-    exit(1);
+    s_traverse_start(pr_current);
+
+    /* Change back to the directory where we started AGAIN.  This is done */
+    /* because the s_traverse functions can change the Current Working Directory. */
+    if (chdir (cwd)) {
+      /* Error occured with chdir */
+      fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
+      cwd, strerror (errno));
+      exit(1);
+    }
   }
   GEDA_FREE(cwd);
 

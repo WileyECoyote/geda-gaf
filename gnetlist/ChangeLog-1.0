@@ -1,5 +1,10 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gnetlist.c: Remove test for input files from C code and do not
+      initialize s_traverse if not input files.
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/Makefile.am: Remove commented noinst_MANS.
 
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
