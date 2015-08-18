@@ -27,7 +27,7 @@
 ;; "files" holds a list of files to include.
 ;; "subcircuit" holds the .SUBCKT card, if any.
 ;; "cards" holds the rest.
-;; Note that "cards" is constructed backwards (linked list), so
+;; Note that "cards" are constructed backwards (linked list), so
 ;; we do the epilog first!
 
 (define (spice-noqsi filename)
@@ -493,7 +493,7 @@ This may indicate an erroneously duplicated refdes.\n"
 (spice-device "vac" "V? %pinseq value@")
 (spice-device "SPICE-vccs" "G? %pinseq value@")
 (spice-device "SPICE-vcvs" "E? %pinseq value@")
-(spice-device "VOLTAGE_SOURCE" "V? %pinseq value@")
+;;(spice-device "VOLTAGE_SOURCE" "V? %pinseq value@")
 (spice-device "vexp" "V? %pinseq value@")
 (spice-device "vpulse" "V? %pinseq value@")
 (spice-device "vpwl" "V? %pinseq value@")

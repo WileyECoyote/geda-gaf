@@ -1,5 +1,9 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-noqsi.scm: Remove duplicate prototype for VOLTAGE_SOURCE
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gnetlist.c: Remove test for input files from C code and do not
       initialize s_traverse if not input files.
 
