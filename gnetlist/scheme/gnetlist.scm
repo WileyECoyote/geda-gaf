@@ -24,7 +24,7 @@
 (use-modules (srfi srfi-1))
 (use-modules (geda deprecated))
 
-;; The real problem is that this module hase the same name as gnetlist.c
+;; The real problem is that this module has the same name as gnetlist.c
 ;; so I do not know how to modularize, so here is my feeble attempt to
 ;; hack-around:
 (define-public get-packages                gnetlist:get-packages)
@@ -47,8 +47,7 @@
 (define-public get-verbosity               gnetlist:get-verbosity)
 
 ;;----------------------------------------------------------------------
-;; The below functions added by SDB in Sept 2003 to support command-line flag
-;; processing.
+;; Functions to support processing command-line arguments.
 ;;----------------------------------------------------------------------
 
 ;;---------------------------------------------------------------
@@ -86,7 +85,7 @@ code should use `gnetlist:get-backend-arguments' directly."
           '#f                                             ;; return #f if null list -- sort_mode not found.
           (let* ((calling-pair (car calling-flag-list))   ;; otherwise look for sort_mode in remainder of list.
                  (calling-flag (car calling-pair))
-                 (flag-value (cadr calling-pair))  )
+                 (flag-value   (cadr calling-pair)))
 
             ;; (display (string-append "examining calling-flag = " calling-flag "\n" ))
             ;; (display (string-append "flag-value = " (if flag-value "true" "false") "\n" ))
@@ -99,7 +98,6 @@ code should use `gnetlist:get-backend-arguments' directly."
      )  ;; end of if (null?
 ))
 
-;;-------------  End of SDB's command line flag functions ----------------
 
 ;; Support functions
 
@@ -121,7 +119,6 @@ code should use `gnetlist:get-backend-arguments' directly."
     )
   )
 )
-
 
 ;;  This fcn returns the first len characters of the string str.  If
 ;;  str has less than len characters, it returns the whole string

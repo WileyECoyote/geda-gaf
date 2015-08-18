@@ -211,6 +211,7 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_eval (pre_rc_list, scm_current_module ());
 
   g_rc_parse (argv[0], "gnetlistrc", rc_filename);
+
   /* immediately setup configuration and user params */
   i_vars_init_gnetlist_defaults ();
   i_vars_set (pr_current);
@@ -227,7 +228,9 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_eval (pre_backend_list, scm_current_module ());
 
   i = argv_index;
+
   while (argv[i] != NULL) {
+
     GError *err = NULL;
 
     if (f_get_is_path_absolute(argv[i])) {
@@ -252,7 +255,7 @@ void main_prog(void *closure, int argc, char *argv[])
       exit(2);
     }
 
-    /* collect input filenames for backend use */
+    /* collect input filenames into Global GSList for backend use */
     input_files = g_slist_append(input_files, argv[i]);
 
     i++;

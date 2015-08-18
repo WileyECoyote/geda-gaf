@@ -495,8 +495,8 @@
 
 ;;---------------------------------------------------------------
 ;; spice-sdb:sort_refdes?
-;;   Returns #t or #f depending upon if -s was discovered in
-;;   the calling flags given to gnetlist.   Used in conjunction with
+;;   Returns #t or #f depending upon if -s was discovered in the
+;;   calling flags given to gnetlist. Used in conjunction with
 ;;   spice-sdb:packsort.
 ;;   Calling form: (spice-sdb:sort-refdes? (get-calling-flags))
 ;;   9.1.2003 -- SDB.

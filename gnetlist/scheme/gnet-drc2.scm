@@ -70,21 +70,22 @@
 ;; Parameters should be passed to the backed using -O option in gnetlist's
 ;; command line.
 ;;
-;;   * ignore-warnings-in-return-value: By default, this backend makes gnetlist
-;;        return a non-zero value when warnings or errors are found. This is
-;;        useful for Makefiles. Using this option, gnetlist will return a zero
-;;        value if there are only DRC warnings.
+;;   * ignore-warnings-in-return-value: By default, this backend makes
+;;     gnetlist return a non-zero value when warnings or errors are found.
+;;     This is useful for Makefiles. Using this option, gnetlist will
+;;     return a zero value if there are only DRC warnings.
 ;;
 ;; Output
 ;; ------
-;; By default, the backend outputs to the filename specified in the command line, or to
-;; stdout if the output filename is "-".
+;; By default, the backend outputs to the filename specified in the command
+;; line, or to stdout if the output filename is "-".
 ;;
 ;; Configuration
 ;; -------------
 ;;
-;; Some test can be disabled defining some variables. Following is a list with a pair of check
-;; and variable. If the variable is defined, then that check is not performed.
+;; Some test can be disabled defining by some variables. Following is a list
+;; with a pair of check and variable. If the variable is defined, then that
+;; check is not performed.
 ;;
 ;;       Check                                    Variable                       Value
 ;; -----------------------------------------------------------------------------------------------
@@ -101,8 +102,9 @@
 ;;     Report them as a warning            action-unused-slots                   #\w
 ;;     Report them as an error             action-unused-slots                   #\w
 ;;
-;; Note 1: DRC checks are case sensitive by default. If you want them to be case insensitive, then you
-;; only have to define the variable 'case_insensitive' to whatever value you want.
+;; Note 1: DRC checks are case sensitive by default. If you want them to be case
+;; insensitive, then you only have to define the variable 'case_insensitive' to
+;; whatever value you want.
 ;;
 ;; Example:
 ;; (define dont-check-non-numbered-parts 1)
@@ -117,23 +119,24 @@
 ;; (define action-unused-slots #\w)
 ;; (define case_insensitive 1)
 ;;
-;; The check for not driven nets only is performed when checking the type of the pins connected
-;; to each net.
-;; There is a list which specifies which type of pin can drive a net. It's called pintype-can-drive.
-;; It's a list, with 0 or 1 integer elements. The order is specified below and is very important, since
-;; each position in the list matches one type of pin. This list can be specified before running this
-;; backend, otherwise, the backend will use the default values.
+;; The check for not driven nets only is performed when checking the type of the
+;; pins connected to each net.There is a list which specifies which type of pin
+;; can drive a net. It's called pintype-can-drive.
+;; It's a list, with 0 or 1 integer elements. The order is specified below and
+;; is very important, since each position in the list matches one type of pin.
+;; This list can be specified before running this backend, otherwise, the
+;; backend will use the default values.
 ;;
 ;; Example:
 ;;   (define pintype-can-drive (list 0 0 1 1 1 1 1 1 1 0 1 0 ))
 ;;
-;; There are two checks that are configurable by a DRC connection matrix: check for unconnected pins
-;; and check for the type of pins connected to each net.
-;; Each element of the DRC matrix matches one connection between two pins (the "row" pin and the "column"
-;; pin). The order is specified below and is very important, since each position in the list matches
-;; one type of pin.
-;; The DRC matrix can be specified before running this backend. Otherwise, the backend will use the
-;; default values.
+;; There are two checks configurable by a DRC connection matrix: check for
+;; unconnected pins and check for the type of pins connected to each net.
+;; Each element of the DRC matrix matches one connection between two pins
+;; (the "row" pin and the "column" pin). The order is specified below and
+;; is very important, since each position in the list matches one type of
+;; pin. The DRC matrix can be specified before running this backend. Other
+;; wise, the backend will use the default values.
 ;;
 ;; Example (default matrix):
 ;;
@@ -532,7 +535,6 @@
 ;  End of symbol checking functions
 ;-----------------------------------------------------------------------
 
-
 ;-----------------------------------------------------------------------
 ;  NETs checking functions
 ;
@@ -573,7 +575,17 @@
     )
   )
 )
-
+(define (drc2:printlist element)
+    (for-each
+     (lambda (netname)
+       (if (string?(netname))
+         (format #t "Processing ~s ~%" netname)
+         (if (list? (netname))
+           (drc2:printlist(netname))
+         )
+       )
+     nets))
+)
 ;;
 ;; Check for nets with less than two pins connected.
 ;;
@@ -590,6 +602,7 @@
               (if (not (member "NoConnection" directives))
                   (begin
                     (if (eq? (length (get-all-connections netname)) '0)
+                        ;; TODO: Use let assign to something helpful in locating where
                         (begin (display (string-append "ERROR: Net '"
                                                        netname "' has no connections."))
                                (newline)
@@ -613,23 +626,25 @@
 ;; Return a list with the pintypes of the pins connected to a net.
 ;;
 ;; Example. net-conn: ((U100 1) (U101 1)). pintypes-list: ("in" "out" "in")
+;;
 (define drc2:get-pintypes-of-net-connections
   (lambda (net-conn pintypes-list)
     (if (not (null? net-conn))
         (let* ( (element (car net-conn))
-                (device (car element))
-                (pin (car (cdr (car net-conn))))
+                (device  (car element))
+                (pin     (cadr element))
                 (pintype (gnetlist:get-attribute-by-pinnumber device pin "pintype"))
-                )
+              )
           (begin
             (cons pintype
-                  (drc2:get-pintypes-of-net-connections (cdr net-conn)
-                                                          pintypes-list)
-                  )
-            ))
-        (list)
+              (drc2:get-pintypes-of-net-connections (cdr net-conn)  pintypes-list)
+            )
+          )
         )
-))
+        (list)
+    )
+  )
+)
 
 ;;
 ;;  Count pintypes of a net.
@@ -806,7 +821,7 @@
                                      connections
                                      '()))
                        (pintype-count (drc2:count-pintypes-of-net pintypes))
-                       (directives (graphical-net-objs-attrib
+                       (directives (gnetlist:graphical-net-objs-attrib
                                     netname
                                     "device=DRC_Directive"
                                     "value"))
@@ -898,6 +913,7 @@
          (+ count
             (list-ref pintype-count (drc2:position-of-pintype "unknown")))))
      0 nets))
+
   (define (display-unknown-pintypes nets)
     (for-each
      (lambda (netname)
@@ -905,6 +921,13 @@
                                   (drc2:position-of-pintype "unknown")
                                   (get-all-connections netname)))
      nets))
+
+  ;;WEH 2015-05/08 Got Stack Overflow errors from guile, defaults to 20000
+  ;; added net line to increase to 200000 and errors went away, need to either
+  ;; update to new guile or fix funtion drc2:get-pintypes-of-net-connections
+  ;; to use less stack space
+  (debug-set! stack 200000)
+
   (and (> (count-unknown-pintypes nets) 0)
        (begin
          (display "NOTE: Found pins without the 'pintype' attribute: ")
@@ -917,7 +940,7 @@
 
 
 ;;; Highest level function
-;;; Write my special testing netlist format
+;;; Write special testing netlist format
 ;;;
 (define (drc2 output-filename)
   (set-current-output-port (output-port output-filename))
@@ -978,6 +1001,7 @@
               (display "Checking pins without the 'pintype' attribute...")
               (newline)
               (drc2:report-unknown-pintypes netlist:all-unique-nets)
+              (debug-spew "Complete 'pintype' attribute check, continuing")
               (newline)))
 
         ;; Check pintypes of the pins connected to every net
