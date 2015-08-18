@@ -1,5 +1,10 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Create function spice-anise-version and
+      consolidate references to local version.
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/parsecmd.c: Revise parse_commandline to support passing command-line
       flags to backends directly.
 
