@@ -95,6 +95,24 @@
      )  ;; end of if (null?
 ))
 
+(define-public (error-no-input-file)
+  (display "ERROR: No schematics files specified for processing.\n")
+  (display "Run `gnetlist --help' for more information.\n")
+)
+
+(define-public have-input-file?
+ (if (= 0 (length (get-input-files))) #f #t)
+)
+
+(define-public help-flag?
+  (calling-flag? "help" (get-calling-flags))
+)
+
+(define-public version-flag?
+  (calling-flag? "version" (get-calling-flags))
+)
+
+;;-------------  End of command line flag functions ----------------
 
 ;; Support functions
 

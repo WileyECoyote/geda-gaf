@@ -1,5 +1,10 @@
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnetlist.scm: Add command line utility functions;  error-no-input-file,
+      have-input-file?, help-flag? and version-flag?.
+
+2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnetlist.scm: un-deprecate get-calling-flags
 
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
