@@ -1,6 +1,5 @@
 /* g_netlist.c */
 void g_set_project_current(GedaToplevel *pr_current);
-//SCM g_scm_c_get_uref(GedaToplevel *toplevel, Object *object);
 SCM g_get_verbosity (void);
 SCM g_get_backend_arguments (void);
 SCM g_get_input_files(void);
@@ -50,7 +49,6 @@ void i_vars_init_gnetlist_defaults (void);
 
 /* parsecmd.c */
 void    usage(char *cmd);
-GSList *create_input_files_list(int argi, int argc, char *argv[]);
 int     parse_commandline(int argc, char *argv[]);
 
 /* s_cpinlist.c */
