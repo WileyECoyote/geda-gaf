@@ -91,9 +91,10 @@ s_traverse_clear_all_visited (const GList *obj_list)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Initialize Traverse Module
  *  \par Function Description
- *
+ *  Initializes netlist_head list, and for some awkwardly displays a
+ *  legend if Verbose mode.
  */
 void s_traverse_init(void)
 {
@@ -125,15 +126,16 @@ void s_traverse_init(void)
                                   g_direct_equal);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Traverse Netlist
  *  \par Function Description
- *
+ *  Loops through open documents and assimilate a netlist and
+ *  a second list of graphical entities. Prints the net-list
+ *  when verbose mode.
  */
 void s_traverse_start(GedaToplevel * pr_current)
 {
   GList *iter;
-  Page *p_current;
+  Page  *p_current;
 
   for ( iter = geda_list_get_glist( pr_current->pages );
         iter != NULL;
