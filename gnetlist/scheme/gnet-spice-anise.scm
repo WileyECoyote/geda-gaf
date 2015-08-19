@@ -125,7 +125,7 @@
 ;;************  Program housekeeping, handling calling flags, etc.  ****************
 ;;**********************************************************************************
 
-(define spice-anise-version "08.08.2015")
+(define spice-anise-version "2015.08.08")
 
 ;; The following is needed to make guile 1.8.x happy.
 (use-modules (ice-9 rdelim) (srfi srfi-1))
@@ -138,6 +138,7 @@
   (display "Anise Spice backend -- Options:")
   (newline)
   (display "  -n, --nomunge \tDo not autocorrect the refdes attributes.\n")
+  (display "  -V, --version \tPrint version information.\n")
   (newline)
 )
 
@@ -1718,11 +1719,7 @@
         (if have-input-file?
           (spice-anise-main output-filename)
           (error-no-input-file)
-        )
-      )
-    )
-  )
-)
+) ) ) ) )
 
 
 ;; Custom get-uref function to append ".${SLOT}" where a component

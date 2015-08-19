@@ -1,5 +1,9 @@
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Change date version format; put year first.
+
+2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/s_rename.c: Add Doxygen comments for function get-renamed-nets,
       comment out unused scm_level parameter.
 
