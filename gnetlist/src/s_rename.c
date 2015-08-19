@@ -146,10 +146,10 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
         return (TRUE);
       }
 
-      if (strcmp(dest, temp->src) == 0)
-      {
-        if (!quiet_flag)
-        {
+      if (strcmp(dest, temp->src) == 0) {
+
+        if (!quiet_flag) {
+
           fprintf(stderr,_("WARNING: Trying to rename something twice:\n\t"
                            "%s and %s\nare both a src and dest name\n"),
                             dest, temp->src);
@@ -181,12 +181,10 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   new_rename->src = u_string_strdup(src);
   new_rename->dest = u_string_strdup(dest);
 
-  if (last_set->first_rename == NULL)
-  {
+  if (last_set->first_rename == NULL) {
     last_set->first_rename = last_set->last_rename = new_rename;
   }
-  else
-  {
+  else {
     last_set->last_rename->next = new_rename;
     last_set->last_rename = new_rename;
   }
@@ -215,10 +213,9 @@ void s_rename_add(char *src, char *dest)
 
     /* If found follow the original behaviour, limiting the operation to the current end-of-list */
     last = last_set->last_rename;
-    for (temp = last_set->first_rename; ; temp = temp->next)
-    {
-      if ((strcmp(dest, temp->src) == 0)
-        && (strcmp(src, temp->dest) != 0))
+    for (temp = last_set->first_rename; ; temp = temp->next) {
+
+      if ((strcmp(dest, temp->src) == 0) && (strcmp(src, temp->dest) != 0))
       {
         /* we found a -> b, while adding c -> a.
          * hence we would have c -> a -> b, so add c -> b.
@@ -232,8 +229,8 @@ void s_rename_add(char *src, char *dest)
         s_rename_add_lowlevel(src, temp->dest);
 
       }
-      else if ((strcmp(src, temp->src) == 0)
-        && (strcmp(dest, temp->dest) != 0))
+      else if ((strcmp(src, temp->src) == 0) &&
+               (strcmp(dest, temp->dest) != 0))
       {
         /* we found a -> b, while adding a -> c.
          * hence b <==> c, so add c -> b.
@@ -246,8 +243,8 @@ void s_rename_add(char *src, char *dest)
 #endif
         s_rename_add_lowlevel(dest, temp->dest);
       }
-      if (temp == last)
-      {
+
+      if (temp == last) {
         break;
       }
     }
@@ -255,22 +252,24 @@ void s_rename_add(char *src, char *dest)
   else {
 
     /* Check for a valid set */
-    if (first_set == NULL)
-    {
+    if (first_set == NULL) {
+
       new_set = GEDA_MEM_ALLOC(sizeof(SET));
       memset(new_set,0,sizeof(SET));
       first_set = last_set = new_set;
     }
+
     new_rename = GEDA_MEM_ALLOC(sizeof(RENAME));
     new_rename->next = NULL;
     new_rename->src = u_string_strdup(src);
     new_rename->dest = u_string_strdup(dest);
-    if (last_set->first_rename == NULL)
-    {
+
+    if (last_set->first_rename == NULL) {
+
       last_set->first_rename = last_set->last_rename = new_rename;
     }
-    else
-    {
+    else {
+
       last_set->last_rename->next = new_rename;
       last_set->last_rename = new_rename;
     }
@@ -333,11 +332,24 @@ void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
   }
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get Top-Level Attributes
  *  \par Function Description
+ *  \memberof (gnetlist-SCM-API)
+ *  When gnetlist expands a hierarchical subcircuit, gnetlist first assigns
+ *  every net within the subcircuit a unique name based on the refdes of the
+ *  subcircuit instance and, if present, the netname within the subcircuit.
+ *  If a net is attached to the higher level circuit, gnetlist then changes
+ *  the name of the subcircuit net to the name of the higher level net to
+ *  which it is attached. This function returns a list of lists of pairs of
+ *  names. The first name in a pair is the initial unique netname within the
+ *  subcircuit, the second is the higher level netname it has acquired. The
+ *  "level" argument is unused.
  *
+ *  Alias gnetlist:get-renamed-nets
+ *
+ * \param [in] scm_level string unused parameter.
+ *
+ * \return list of lists of pairs of names
  */
 SCM g_get_renamed_nets(SCM scm_level)
 {
@@ -345,9 +357,9 @@ SCM g_get_renamed_nets(SCM scm_level)
   SCM outerlist = SCM_EOL;
   SET * temp_set;
   RENAME * temp_rename;
-  char *level;
+  //char *level;
 
-  level = scm_to_utf8_string (scm_level);
+  //level = scm_to_utf8_string (scm_level);
 
   for (temp_set = first_set; temp_set; temp_set = temp_set->next_set)
   {
@@ -360,6 +372,6 @@ SCM g_get_renamed_nets(SCM scm_level)
     }
   }
 
-  free (level);
+  //free (level);
   return (outerlist);
 }

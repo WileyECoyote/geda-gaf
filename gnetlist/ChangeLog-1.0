@@ -1,5 +1,10 @@
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_rename.c: Add Doxygen comments for function get-renamed-nets,
+      comment out unused scm_level parameter.
+
+2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-spice-anise.scm: Added spice-anise-version, modified write-*
       -header, renamed spice-anise->spice-anise-main and added replacement
        spice-anise to intercept help and version argument options. Add functions
