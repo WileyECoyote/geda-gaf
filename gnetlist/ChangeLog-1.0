@@ -1,5 +1,10 @@
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gnetlist/docs/gnetlist.1.in: Revise/update man page with new feature
+      to pass arguments to backends.
+
+2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/g_netlist.c: Add/update (mostly add) Doxygen comments, add Doxygen
       group gnetlist-SCM-API.
 

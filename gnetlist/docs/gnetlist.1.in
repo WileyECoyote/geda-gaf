@@ -3,18 +3,18 @@
 gnetlist - gEDA/gaf Netlist Extraction and Generation
 .SH SYNOPSIS
 .B gnetlist
-[\fIOPTION\fR ...] [\fB-g\fR \fIBACKEND\fR] [\fI--\fR] \fIFILE\fR ...
+[\fIOPTION\fR ...] [\fB-g\fR \fIBACKEND\fR] [ \fIhelp | version\fR ] [\fI--\fR] \fIFILE\fR ...
 
 .SH DESCRIPTION
 .PP
 
-\fBgnetlist\fR is a netlist extraction and generation tool, and is
-part of the gEDA (GPL Electronic Design Automation) toolset.  It takes
-one or electronic schematics as input, and outputs a netlist.  A
-netlist is a machine-interpretable description of the way that
-components in an electronic circuit are connected together, and is
-commonly used as the input to a PCB layout program such as
-\fBpcb\fR(1) or to a simulator such as \fBgnucap\fR(1).
+\fBgnetlist\fR is a netlist extraction and generation tool, and is part
+of the gEDA (GPL Electronic Design Automation) toolset.  gnetlist accepts
+one or electronic schematics as input, and outputs a netlist.  A netlist
+is a machine-interpretable description of the way that components in an
+electronic circuit are connected together, and is commonly used as the
+input to a PCB layout program such as \fBpcb\fR(1) or to a simulator such
+as \fBgnucap\fR(1).
 
 A normal \fBgnetlist\fR run is carried out in two steps.  First, the
 \fBgnetlist\fR frontend loads the specified human-readable schematic
@@ -67,10 +67,14 @@ Scheme files have been loaded, but before running the backend, enter a
 Scheme read-eval-print loop.
 .TP 8
 \fB-h\fR, \fB--help\fR
-Print a help message.
+Print usage and information on options. This is a positional argument.
+When given after the backend is specified, information specific to the
+backend will be displayed.
 .TP 8
 \fB-V\fR, \fB--version\fR
-Print \fBgnetlist\fR version information.
+Prints \fBgnetlist\fR version information when used before the \fBbackend\fR
+and \fBbackend\fR version information when used after the \fBbackend\fR has
+been specified.
 .TP 8
 \fB--\fR
 Treat all remaining arguments as schematic filenames.  Use this if you
@@ -151,7 +155,7 @@ Protel II netlist format.
 \fBredac\fR
 RACAL-REDAC netlist format.
 .TP 8
-\fBspice\fR, \fBspice-sdb\fR
+\fBspice\fR, \fBspice-sdb\fR, \fBspice-noqsi\fR, \fBspice-anise\fR
 SPICE-compatible netlist format (\fBspice-sdb\fR is recommended).
 Suitable for use with \fBgnucap\fR(1).
 .TP 8
@@ -244,7 +248,7 @@ See the `AUTHORS' file included with this program.
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 1999-2013 gEDA Contributors.  License GPLv2+: GNU GPL
+Copyright \(co 1999-2015 gEDA Contributors.  License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP
