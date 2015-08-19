@@ -1,3 +1,10 @@
+2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-anise.scm: Added spice-anise-version, modified write-*
+      -header, renamed spice-anise->spice-anise-main and added replacement
+       spice-anise to intercept help and version argument options. Add functions
+       spice-anise-show-version and spice-anise-help.
+
 2015-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-anise.scm: Create function spice-anise-version and

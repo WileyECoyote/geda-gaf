@@ -104,6 +104,11 @@
 ;;  1.13.2011 -- Subcircuits use the value= attribute attached to the spice-subcircuit-LL symbol
 ;;               to hold parameters. Dan White
 ;;
+;;  8.08.2015 -- Added spice-anise-version, modified write-*-header, renamed spice-anise
+;;               spice-anise-main and added replacement spice-anise to intercept help and
+;;               version argument options. Add functions spice-anise-show-version and
+;;               spice-anise-help.
+;;
 ;;**********************************************************************************
 ;;
 ;;  Organization of gnet-spice-anise.scm file:
@@ -128,6 +133,14 @@
 ;; Common functions for the `spice' and `spice-anise' backends
 (load-from-path "spice-common.scm")
 
+(define (spice-anise-help)
+  (newline)
+  (display "Anise Spice backend -- Options:")
+  (newline)
+  (display "  -n, --nomunge \tDo not autocorrect the refdes attributes.\n")
+  (newline)
+)
+
 (define (spice-anise-show-version)
   (display spice-anise-version)
   (newline)
@@ -149,7 +162,6 @@
           (spice-anise:loop-through-files (cdr file-info-list))
         )  ;; end of let*
 )))
-
 
 
 ;;--------------------------------------------------------------------------------
@@ -1353,14 +1365,12 @@
 ;;**********************************************************************************
 
 ;;----------------------------------------------------------------------
-;; write-netlist is passed a list of refdesses (ls).  It uses
-;; each refdes to get the corresponding
-;; "device" attribute.  Depending upon the device, it then invokes one or another of the
-;; spice line output fcns to output a line of the spice netlist.
-;; I have enlarged the number of devices it recognizes -- SDB.
-;; write the refdes, to the pin# connected net and component
-;; value and optional extra attributes
-;; check if the component is a special spice component.
+;; write-netlist is passed a list of refdesses (ls). This subroutine uses
+;; each refdes to get the corresponding "device" attribute. Depending on
+;; the device, it then invokes one or another of the spice line output fcns
+;; to output a line of the spice netlist. Write the refdes, to the pin#
+;; connected net and component value and optional extra attributes check
+;; if the component is a special spice component.
 ;;----------------------------------------------------------------------
 (define spice-anise:write-netlist
   (lambda (file-info-list ls)
@@ -1601,15 +1611,13 @@
 ;;   5.  If the schematic-type is .SUBCKT:  write out .ENDS,  Otherwise: write out .END
 ;;   6.  Close up the SPICE netlist file and return.
 ;;---------------------------------------------------------------
-(define spice-anise
+(define spice-anise-main
   (lambda (output-filename)
     ;; Redefine write-net-names-on-component
     (set! spice:write-net-names-on-component spice-anise:write-net-names-on-component)
 
-;;
-;; First find out if this is a .SUBCKT lower level,
-;; or if it is a regular schematic.
-;;
+;; First find out if this is a .SUBCKT level or if it is a regular schematic.
+
     (set-current-output-port (output-port output-filename))
     (let* ((schematic-type (spice-anise:get-schematic-type netlist:packages))
            (model-name (spice-anise:get-subcircuit-modelname schematic-type))
@@ -1642,7 +1650,6 @@
 
       ) ;; end of if (not (string=? . . . .
 
-
 ;;
 ;; Now loop through all devices and process all "FILE" attributes.  Create
 ;; file-info-list.
@@ -1667,7 +1674,6 @@
       (spice-anise:loop-through-files file-info-list)
       (debug-spew "Done processing items in model file list.\n")
 
-
 ;;
 ;; Now write out netlist as before.  But don't write file contents out.
 ;; **** Modified by kh to sort list of packages so Spice directives, etc. (A?) are output last,
@@ -1681,10 +1687,9 @@
       )
       (debug-spew "Done writing SPICE cards . . .\n\n")
 
-
 ;;
-;;  Now write out .END(S) of netlist, depending upon whether this schematic is a
-;;  "normal schematic" or a .SUBCKT.
+;;  Now write out .END  if this schematic is a "normal schematic" or .ENDS
+;;  if this is a .SUBCKT.
 ;;
       (if (not (string=? schematic-type "normal schematic"))
           (begin
@@ -1695,7 +1700,6 @@
               (spice-anise:write-bottom-footer ".end"))
       )
 
-
       (debug-spew "\nOutput file is written.  Done.\n")
    )
 ;;
@@ -1703,6 +1707,21 @@
 ;;
     (close-output-port (current-output-port))
  )
+)
+
+(define spice-anise
+  (lambda (output-filename)
+    (if help-flag?
+      (spice-anise-help)
+      (if version-flag?
+        (spice-anise-show-version)
+        (if have-input-file?
+          (spice-anise-main output-filename)
+          (error-no-input-file)
+        )
+      )
+    )
+  )
 )
 
 
