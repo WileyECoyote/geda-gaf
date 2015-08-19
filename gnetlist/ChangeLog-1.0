@@ -1,5 +1,10 @@
 2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/g_netlist.c: Add/update (mostly add) Doxygen comments, add Doxygen
+      group gnetlist-SCM-API.
+
+2015-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-spice-noqsi.scm: Added spice-noqsi-version, spice-noqsi-help,
       spice-noqsi-show-version,renamed spice-noqsi->spice-noqsi-main and added
       replacement spice-noqsi to intercept help and version argument options.

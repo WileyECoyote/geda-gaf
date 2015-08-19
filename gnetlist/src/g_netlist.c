@@ -24,12 +24,23 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
+/** \defgroup gnetlist-SCM-API C Based API for Scheme Routines
+ *  @{
+ *
+ *  \par This Group contains SCM-API functions.
+ */
+
 /*! \brief Get unique list of all packages
  *  \par Function Description
  *
- * This function returns a unique list of packages
+ *  This function returns a unique list of packages, duplicated values
+ *  are only listed once
  *
  *  Alias gnetlist:get-packages
+ *
+ *  \param [in] level string Not used
+ *
+ * \return list of packages
  */
 SCM g_get_packages(SCM level)
 {
@@ -38,46 +49,53 @@ SCM g_get_packages(SCM level)
 
   NETLIST *nl_current = NULL;
 
-  SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-packages");
+  /*SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-packages");*/
 
   /* build a hash table */
   ht = g_hash_table_new (g_str_hash, g_str_equal);
-  for (nl_current = netlist_head; nl_current != NULL;
-       nl_current = nl_current->next) {
+
+  for (nl_current = netlist_head; nl_current != NULL; nl_current = nl_current->next)
+  {
+
     if (nl_current->component_uref != NULL) {
       /* add component_uref in the hash table */
       /* uniqueness of component_uref is guaranteed by the hashtable */
 
       if (g_hash_table_lookup (ht, nl_current->component_uref) == NULL) {
-        g_hash_table_insert (ht, nl_current->component_uref,
+        g_hash_table_insert (ht,
+                             nl_current->component_uref,
                              nl_current->component_uref);
         list = scm_cons (scm_from_utf8_string (nl_current->component_uref),
                          list);
       }
     }
-       }
-       g_hash_table_destroy (ht);
+  }
+  g_hash_table_destroy (ht);
 
-       return list;
+  return list;
 }
 
 /*! \brief Get non-unique list of all packages
  *  \par Function Description
  *
- * This function returns a non unique list of packages
+ * This function returns a non unique list of packages, duplicated values
+ * are listed as many times as they appear.
  *
  *  Alias gnetlist:get-non-unique-packages
+ *
+ * \param [in] scm_level string Not used
+ *
+ * \return list of packages
  */
-SCM g_get_non_unique_packages(SCM level)
+SCM g_get_non_unique_packages(SCM scm_level)
 {
   SCM list = SCM_EOL;
 
   NETLIST *nl_current = NULL;
 
-  SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-non-unique-packages");
+  //SCM_ASSERT(scm_is_string (scm_level), scm_level, SCM_ARG1, "gnetlist:get-non-unique-packages");
 
-  for (nl_current = netlist_head; nl_current != NULL;
-       nl_current = nl_current->next)
+  for (nl_current = netlist_head; nl_current != NULL; nl_current = nl_current->next)
   {
     if (nl_current->component_uref != NULL) {
       list = scm_cons (scm_from_utf8_string (nl_current->component_uref),
@@ -92,7 +110,12 @@ SCM g_get_non_unique_packages(SCM level)
  *  \par Function Description
  *
  *  Given a refdes, returns all pins belonging to the object.
+ *
  *  Alias gnetlist:get-pins
+ *
+ * \param [in] scm_uref Object to query for pins
+ *
+ * \return list of pins
  */
 SCM g_get_pins(SCM scm_uref)
 {
@@ -135,7 +158,13 @@ SCM g_get_pins(SCM scm_uref)
 
 /*! \brief Get list of all nets
  *  \par Function Description
+ *  list of net names for the set of schematics. Duplicated values are
+ *  listed as many times as they appear, once per segment?.
  *  Alias gnetlist:get-all-nets
+ *
+ * \param [in] scm_level string Not used
+ *
+ * \return list of net names
  */
 SCM g_get_all_nets(SCM scm_level)
 {
@@ -145,8 +174,7 @@ SCM g_get_all_nets(SCM scm_level)
   CPINLIST *pl_current;
   char *net_name;
 
-  SCM_ASSERT(scm_is_string (scm_level), scm_level, SCM_ARG1,
-             "gnetlist:get-all-nets");
+  //SCM_ASSERT(scm_is_string (scm_level), scm_level, SCM_ARG1, "gnetlist:get-all-nets");
 
   nl_current = netlist_head;
 
@@ -155,7 +183,9 @@ SCM g_get_all_nets(SCM scm_level)
    * being careful to ignore duplicates, and unconnected pins
    */
   while (nl_current != NULL) {
+
     pl_current = nl_current->cpins;
+
     while (pl_current != NULL) {
       if (pl_current->net_name) {
 
@@ -182,7 +212,14 @@ SCM g_get_all_nets(SCM scm_level)
 
 /*! \brief Get unique list of all nets
  *  \par Function Description
+ *  Gets a list of unique net names for the set of schematics.
+ *  Duplicated values are only listed once.
+ *
  *  Alias gnetlist:get-all-unique-nets
+ *
+ * \param [in] scm_level string Not used
+ *
+ * \return list of net names
  */
 SCM g_get_all_unique_nets(SCM scm_level)
 {
@@ -203,7 +240,9 @@ SCM g_get_all_unique_nets(SCM scm_level)
    * being careful to ignore duplicates, and unconnected pins
    */
   while (nl_current != NULL) {
+
     pl_current = nl_current->cpins;
+
     while (pl_current != NULL) {
       if (pl_current->net_name) {
 
@@ -230,20 +269,29 @@ SCM g_get_all_unique_nets(SCM scm_level)
 /*! \brief Get All connection for a given Netname
  *  \par Function Description
  *
- *  Given a net name, returns all connections
+ *  Given a net name, returns list of all connections to the named net.
+ *  Each element of the list is itself a two element list of the form
+ *  (refdes pinnumber).
+ *
  *  Alias gnetlist:get-all-connections
+ *
+ * \param [in] scm_netname string net name
+ *
+ * \return list of connections
  */
 SCM g_get_all_connections(SCM scm_netname)
 {
 
-  SCM list = SCM_EOL;
-  SCM x = SCM_EOL;
+  SCM list      = SCM_EOL;
+  SCM x         = SCM_EOL;
   SCM is_member = SCM_EOL;
-  SCM connlist = SCM_EOL;
-  SCM pairlist = SCM_EOL;
-  NETLIST *nl_current;
+  SCM connlist  = SCM_EOL;
+  SCM pairlist  = SCM_EOL;
+
+  NETLIST  *nl_current;
   CPINLIST *pl_current;
-  NET *n_current;
+  NET      *n_current;
+
   char *wanted_net_name;
   char *net_name;
   char *pin;
@@ -279,9 +327,9 @@ SCM g_get_all_connections(SCM scm_netname)
         if (strcmp(net_name, wanted_net_name) == 0) {
           /* add the net name to the list */
 
-          #if DEBUG
+#if DEBUG
           printf("found net: `%s'\n", net_name);
-          #endif
+#endif
 
           n_current = pl_current->nets;
           while (n_current != NULL) {
@@ -327,24 +375,42 @@ SCM g_get_all_connections(SCM scm_netname)
   return connlist;
 }
 
+/*  Reports suggest that get_nets does not reliably list all connections,
+ *  possibly due to a problem with net= connections. Most (all?) existing
+ *  back ends that use this appear to use only the netname.
+ */
 /*!
- *  \brief SCM API Get Netnames connected to a Pin belonging to UREF
+ *  \brief Get Netname connected to a Pin belonging to UREF
  *  \par Function Description
- *
- * Given a uref and a pin number return a list of:
+ *  Given a uref and a pin number return a list of:
  *  (netname (uref pin) (uref pin) ... )
+ *
+ *  This is apparently intended to yield the netname connected to the given
+ *  pin along with all pins connected to that net, including the pin in the
+ *  initial query.
+ *
+ *  \todo Validate this function
+ *
+ *  Alias gnetlist:get-nets
+ *
+ * \param [in] scm_uref string reference designator
+ * \param [in] scm_pin  string pin number
+ *
+ * \return list of net connections, (netname (uref pin) (uref pin) ... )
  */
 SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 {
-  SCM outerlist = SCM_EOL;
-  SCM pinslist = SCM_EOL;
-  SCM pairlist = SCM_EOL;
-  NETLIST *nl_current = NULL;
+  SCM outerlist        = SCM_EOL;
+  SCM pinslist         = SCM_EOL;
+  SCM pairlist         = SCM_EOL;
+
+  NETLIST  *nl_current = NULL;
   CPINLIST *pl_current = NULL;
-  NET *n_current;
-  char *wanted_uref = NULL;
-  char *wanted_pin = NULL;
-  char *net_name = NULL;
+
+  NET  *n_current;
+  char *wanted_uref    = NULL;
+  char *wanted_pin     = NULL;
+  char *net_name       = NULL;
 
   char *pin;
   char *uref;
@@ -363,52 +429,45 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
   nl_current = netlist_head;
 
-  /* search for the first instance */
-  /* through the entire list */
-  for (nl_current = netlist_head; nl_current != NULL;
-       nl_current = nl_current->next)
+  /* search through the entire list for the first instance */
+  for (nl_current = netlist_head; nl_current != NULL; nl_current = nl_current->next)
   {
 
     if (!nl_current->component_uref) continue;
-             if (strcmp (nl_current->component_uref, wanted_uref) != 0) continue;
 
-             for (pl_current = nl_current->cpins; pl_current != NULL;
-                  pl_current = pl_current->next)
-             {
+    if (strcmp (nl_current->component_uref, wanted_uref) != 0) continue;
 
-             if (!pl_current->pin_number) continue;
-             if (strcmp(pl_current->pin_number, wanted_pin) != 0) continue;
+      for (pl_current = nl_current->cpins; pl_current != NULL; pl_current = pl_current->next)
+      {
 
-             if (pl_current->net_name) {
-               net_name = pl_current->net_name;
-             }
+        if (!pl_current->pin_number) continue;
+        if (strcmp(pl_current->pin_number, wanted_pin) != 0) continue;
 
-             for (n_current = pl_current->nets;
-                  n_current != NULL;
-             n_current = n_current->next) {
+        if (pl_current->net_name) {
+          net_name = pl_current->net_name;
+        }
 
-               if (!n_current->connected_to) continue;
+        for (n_current = pl_current->nets; n_current != NULL; n_current = n_current->next)
+        {
 
-             pairlist = SCM_EOL;
-             pin = (char *) GEDA_MEM_ALLOC(sizeof(char) *
-             strlen
-             (n_current->
-             connected_to));
-             uref = (char *) GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
+          if (!n_current->connected_to) continue;
 
-             sscanf(n_current->connected_to,
-                    "%s %s", uref, pin);
+          pairlist = SCM_EOL;
+          pin = (char*) GEDA_MEM_ALLOC(sizeof(char) * strlen(n_current->connected_to));
+          uref = (char*) GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
 
-             pairlist = scm_list_n (scm_from_utf8_string (uref),
-                                    scm_from_utf8_string (pin),
-                                    SCM_UNDEFINED);
+          sscanf(n_current->connected_to, "%s %s", uref, pin);
 
-             pinslist = scm_cons (pairlist, pinslist);
+          pairlist = scm_list_n (scm_from_utf8_string (uref),
+                                 scm_from_utf8_string (pin),
+                                 SCM_UNDEFINED);
 
-             GEDA_FREE(uref);
-             GEDA_FREE(pin);
-             }
-             }
+          pinslist = scm_cons (pairlist, pinslist);
+
+          GEDA_FREE(uref);
+          GEDA_FREE(pin);
+        }
+      }
   }
 
   if (net_name != NULL) {
@@ -428,22 +487,29 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
 
 /*!
- *  \brief  SCM API Get Nets of a given Net UREF
+ *  \brief Get Nets of a given Net UREF
  *  \par Function Description
  *
- * Given a uref, Return a list of pairs, each pair contains the name
- * of the pin, and the name of the net connected to that pin.
+ * Given a uref, Return a list of pairs, each pair contains the pin
+ * number and the name of the net connected to that pin.
+ *
+ *  Alias gnetlist:get-pin-nets
+ *
+ * \param [in] scm_uref string reference designator
+ *
+ * \return list containing connections ((pinnumber . netname) ... )
  */
 SCM g_get_pins_nets(SCM scm_uref)
 {
-  SCM pinslist = SCM_EOL;
-  SCM pairlist = SCM_EOL;
-  NETLIST *nl_current = NULL;
+  SCM pinslist         = SCM_EOL;
+  SCM pairlist         = SCM_EOL;
+
+  NETLIST  *nl_current = NULL;
   CPINLIST *pl_current = NULL;
 
   char *wanted_uref = NULL;
-  char *net_name = NULL;
-  char *pin = NULL;
+  char *net_name    = NULL;
+  char *pin         = NULL;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-pins-nets");
@@ -500,9 +566,12 @@ SCM g_get_pins_nets(SCM scm_uref)
  *  symbol instances within gnetlist (the first element is the value
  *  associated with the first symbol instance).
  *
+ *  Alias gnetlist:get-all-package-attributes
+ *
  *  \param [in] scm_uref           Package reference.
  *  \param [in] scm_wanted_attrib  Attribute name.
- *  \return A list of attribute values as strings and#f.
+ *
+ *  \return A list of attribute values as strings and #f.
  */
 SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 {
@@ -547,11 +616,19 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 }
 
 /*!
- *  \brief SCM API Get Attribute by Pin Sequence
+ *  \brief Get Attribute Value by Pin Sequence
  *  \par Function Description
- *  This API function provides a method to retrieve an attribute given
- *  a uref and pinseq number. Returns the wanted_attribute associated
- *  with that pinseq pin and component
+ *  This API function provides a method to retrieve an attribute value
+ *  given a uref and pinseq number. Returns the value associated with
+ *  the first instance.
+ *
+ *  Alias gnetlist:get-attribute-by-pinseq
+ *
+ * \param [in] scm_uref          string reference designator
+ * \param [in] scm_pinseq        string pin sequence
+ * \param [in] scm_wanted_attrib string attribute name (ex. "pinlabel").
+ *
+ * \return value of the attribute or "unknown" if attribute was not found
  */
 SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
                               SCM scm_wanted_attrib)
@@ -585,12 +662,12 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   wanted_attrib = scm_to_utf8_string (scm_wanted_attrib);
   scm_dynwind_free (wanted_attrib);
 
-  #if DEBUG
+#if DEBUG
   printf("gnetlist:g_netlist.c:g_get_attribute_by_pinseq -- \n");
   printf("  wanted uref = %s\n", uref);
   printf("  wanted_pin_seq = %s\n", pinseq);
   printf("  wanted_attrib = %s\n", wanted_attrib);
-  #endif
+#endif
 
   /* here is where you make it multi page aware */
   nl_current = netlist_head;
@@ -630,23 +707,31 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
     scm_return_value = scm_from_utf8_string ("unknown");
   }
 
-  #if DEBUG
+#if DEBUG
   printf("gnetlist:g_netlist.c:g_get_attribute_by_pinseq -- ");
   printf("return_value: %s\n", return_value ? return_value : "NULL");
-  #endif
+#endif
 
   return (scm_return_value);
 }
 
 /*!
- *  \brief SCM API Get Attribute by Pin Number
+ *  \brief Get Attribute by Pin Number
  *  \par Function Description
  *  This API function takes a pin number and returns the appropriate
  *  attribute on that pin scm_pin is the value associated with the
  *  pinnumber= attribute and uref
+ *
+ *  Alias gnetlist:get-attribute-by-pinnumber
+ *
+ * \param [in] scm_uref          string reference designator
+ * \param [in] scm_pin           string pin number
+ * \param [in] scm_wanted_attrib string attribute name (ex. "pintype").
+ *
+ * \return value of the attribute or "unknown" if attribute was not found
  */
-SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM
-scm_wanted_attrib)
+SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
+                                 SCM scm_wanted_attrib)
 {
   SCM scm_return_value;
 
@@ -740,9 +825,14 @@ scm_wanted_attrib)
 
 /*! \brief Get Top-Level Attributes
  *  \par Function Description
+ *  returns value of the named attribute at top level, that is, an attribute
+ *  present in one of the schematics unattached to any object.
  *
- * returns value of attribute otherwise string "none"
- * still highly temp and doesn't work right
+ *  Alias gnetlist:get-toplevel-attribute
+ *
+ * \param [in] scm_wanted_attrib string attribute name (ex. "model").
+ *
+ * \return value of the attribute or "not found" if attribute was not found
  */
 SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 {
@@ -751,37 +841,41 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
   char *wanted_attrib;
   char *attrib_value = NULL;
   SCM scm_return_value;
-  GedaToplevel *toplevel = edascm_c_current_toplevel ();
+
+  GedaToplevel *toplevel;
 
   SCM_ASSERT(scm_is_string (scm_wanted_attrib),
              scm_wanted_attrib, SCM_ARG1, "gnetlist:get-toplevel-attribute");
 
+  toplevel = edascm_c_current_toplevel ();
+
   wanted_attrib = scm_to_utf8_string (scm_wanted_attrib);
 
-  for (p_iter = geda_list_get_glist (toplevel->pages); p_iter != NULL;
-       p_iter = g_list_next (p_iter)) {
+  for (p_iter = geda_list_get_glist (toplevel->pages); p_iter != NULL; NEXT(p_iter))
+  {
     p_current = p_iter->data;
 
-  /* only look for first occurrance of the attribute on each page */
-  attrib_value =
-  o_attrib_search_floating_attribs_by_name (s_page_get_objects (p_current),
-                                            wanted_attrib, 0);
+    /* only look for first occurrance of the attribute on each page */
+    attrib_value =
+    o_attrib_search_floating_attribs_by_name (s_page_get_objects (p_current),
+                                              wanted_attrib, 0);
 
-  /* Stop when we find the first one */
-  if (attrib_value != NULL)
-    break;
-       }
+    /* Stop when we find the first one */
+    if (attrib_value != NULL)
+      break;
+  }
 
-       free (wanted_attrib);
+  free (wanted_attrib);
 
-       if (attrib_value != NULL) {
-         scm_return_value = scm_from_utf8_string (attrib_value);
-         GEDA_FREE (attrib_value);
-       } else {
-         scm_return_value = scm_from_utf8_string ("not found");
-       }
+  if (attrib_value != NULL) {
+    scm_return_value = scm_from_utf8_string (attrib_value);
+    GEDA_FREE (attrib_value);
+  }
+  else {
+    scm_return_value = scm_from_utf8_string ("not found");
+  }
 
-       return (scm_return_value);
+  return (scm_return_value);
 }
 
 /*! \brief Returns verbosity level for messages.
@@ -934,3 +1028,4 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
 /*
  * This function is in s_rename.c:  SCM g_get_renamed_nets(SCM scm_level)
  */
+/** @} endgroup gnetlist-SCM-API */
