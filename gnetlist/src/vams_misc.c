@@ -65,10 +65,17 @@ SCM vams_get_attribs_list (Object *object)
   return list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief vams get package attributes
  *  \par Function Description
+ *  \memberof (gnetlist-SCM-API)
+ *  Retrieves a list of the names of attributes attached to the
+ *  symbol given by \a scm_uref at schematic level.
  *
+ *  Alias gnetlist:vams-get-package-attributes
+ *
+ * \param [in] scm_uref string reference designator.
+ *
+ * \return list of lists of pairs of names
  */
 SCM vams_get_package_attributes(SCM scm_uref)
 {
