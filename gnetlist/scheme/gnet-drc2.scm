@@ -1075,7 +1075,7 @@
      (if (and (not (string=? "-" output-filename)) (> errors_number 0))
          (message "DRC errors found. See output file.\n")
          (if (> warnings_number 0)
-             (if (not (calling-flag? "ignore-warnings-in-return-value" (get-calling-flags)))
+             (if (not (member "ignore-warnings-in-return-value" (get-backend-arguments)))
                  (message "DRC warnings found. See output file.\n"))))
 
      ))

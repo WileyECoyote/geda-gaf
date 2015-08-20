@@ -1,5 +1,9 @@
 2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-drc2.scm: Replace calling flags with get-backend-arguments.
+
+2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-spice-anise.scm: Add other additional options to backend help
 
 2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
