@@ -103,7 +103,6 @@
 ;;               FIXME check for them. This should be a step closer to place holder consistancy. CC
 ;;  1.13.2011 -- Subcircuits use the value= attribute attached to the spice-subcircuit-LL symbol
 ;;               to hold parameters. Dan White
-;;
 ;;  8.08.2015 -- Added spice-anise-version, modified write-*-header, renamed spice-anise
 ;;               spice-anise-main and added replacement spice-anise to intercept help and
 ;;               version argument options. Add functions spice-anise-show-version and
@@ -135,10 +134,15 @@
 
 (define (spice-anise-help)
   (newline)
-  (display "Anise Spice backend -- Options:")
+  (display "Anise Spice backend -- Directives")
   (newline)
-  (display "  -n, --nomunge \tDo not autocorrect the refdes attributes.\n")
-  (display "  -V, --version \tPrint version information.\n")
+  (display "-O embed_mode   \tEmbed or Include models from INCLUDE directives.\n")
+  (display "-O include_mode \tSimilar to embed_mode but with MODEL directive.\n")
+  (display "-O nomunge_mode \tDo not autocorrect the refdes attributes.\n")
+  (display "-O sort_mode    \tEnable sort by refdes mode.\n")
+  (newline)
+  (display "-h, --help    \tPrint Options and Directives\n")
+  (display "-V, --version \tPrint version information.\n")
   (newline)
 )
 
@@ -159,7 +163,7 @@
                 (file-name (cadr list-element))
                 (file-type (caddr list-element))
                )
-          (spice-anise:handle-spice-file file-name)
+          (spice:handle-spice-file file-name)
           (spice-anise:loop-through-files (cdr file-info-list))
         )  ;; end of let*
 )))
@@ -186,57 +190,6 @@
           )
         )  ;; end of let*
 )))
-
-
-;;--------------------------------------------------------------------------
-;; Given a filename, open the file, get the contents, and dump them
-;; into the spice file.
-;; Calling form is "(insert-text-file input-file output-file)"
-;; The function opens input-file, but assumes that output-file is
-;; already open.
-;;
-;; This function is usually used to include spice models contained in
-;; files into the netlist.  Note that it doesn't
-;; check the correctness of the spice code in the file -- you're on your own!
-;;---------------------------------------------------------------------------
-(define spice-anise:insert-text-file
-  (lambda (model-filename)
-    (if (file-exists? model-filename)
-    (let ((model-file (open-input-file model-filename)) )
-      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n"))
-      (let while ((model-line (read-line model-file)))
-          (if (not (eof-object? model-line))
-                   (begin
-                     (display (string-append model-line "\n"))
-                     (while (read-line model-file))
-                   )  ;; end of inner begin
-          ) ;; end of if
-        )  ;; end of inner let
-        (close-port model-file)
-        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n*\n"))
-     ) ;; end of outer let
-    (begin
-      (message (string-append "ERROR: File '" model-filename "' not found.\n"))
-      (primitive-exit 1))
-    )
-  )
-)
-
-;;--------------------------------------------------------------------------
-;; handle-spice-file:  This wraps insert-text-file.
-;; Calling form: (handle-spice-file file-name)
-;; It looks to see if the -I flag was set at the command line.  If so,
-;; it just writes a .INCLUDE card with the file name.  If not,  it calls
-;; insert-text-file to stick the file's contents into the SPICE netlist.
-;;--------------------------------------------------------------------------
-(define spice-anise:handle-spice-file
-  (lambda (file-name)
-    (debug-spew (string-append "Handling spice model file " file-name "\n"))
-    (if (calling-flag? "include_mode" (get-calling-flags))
-        (display (string-append ".INCLUDE " file-name "\n"))       ;; -I found: just print out .INCLUDE card
-        (spice-anise:insert-text-file file-name)                     ;; -I not found: invoke insert-text-file
-    )  ;; end of if (calling-flag
-))
 
 ;;----------------------------------------------------------
 ;; Figure out if this schematic is a .SUBCKT lower level.
@@ -483,7 +436,7 @@
 (define spice-anise:write-prefix
     (lambda (package prefix)
       (let ((different-prefix (not (string=? (substring package 0 1) prefix)) )
-            (nomunge (calling-flag? "nomunge_mode" (get-calling-flags)) )
+            (nomunge (member "nomunge_mode" (get-backend-arguments)))
            )
         (debug-spew (string-append "Checking prefix.  Package prefix =" (substring package 0 1) "\n"))
         (debug-spew (string-append "                  correct prefix =" prefix "\n"))
@@ -541,22 +494,20 @@
 ;;   9.1.2003 -- SDB.
 ;;---------------------------------------------------------------
 ;;  Note:  I should re-write this to use calling-flag? . . . .
-(define spice-anise:sort-refdes?
-  (lambda (calling-flag-list)
-
-    (if (null? calling-flag-list)
-          '#f                                             ;; return #f if null list -- sort_mode not found.
-          (let* ((calling-pair (car calling-flag-list))   ;; otherwise look for sort_mode in remainder of list.
-                 (calling-flag (car calling-pair))
-                 (flag-value (cadr calling-pair))  )
-
-            (if (string=? calling-flag "sort_mode")
-                flag-value                                               ;; return flag-value if sort_mode found
-                (spice-anise:sort-refdes? (cdr calling-flag-list))    ;; otherwise recurse until sort_mode is found
-            )  ;; end if
-          )  ;; end of let*
-     )  ;; end of if
-))
+;;(define spice-anise:sort-refdes?
+;;  (lambda (calling-flag-list)
+;    (if (null? calling-flag-list)
+;          '#f                                             ;; return #f if null list -- sort_mode not found.
+;          (let* ((calling-pair (car calling-flag-list))   ;; otherwise look for sort_mode in remainder of list.
+;                 (calling-flag (car calling-pair))
+;                 (flag-value (cadr calling-pair))  )
+;            (if (string=? calling-flag "sort_mode")
+;                flag-value                                         ;; return flag-value if sort_mode found
+;                (spice-anise:sort-refdes? (cdr calling-flag-list)) ;; otherwise recurse until sort_mode is found
+;            )  ;; end if
+;          )  ;; end of let*
+;     )  ;; end of if
+;))
 
 
 ;;**********************************************************************************
@@ -1220,7 +1171,7 @@
               ;; since there is no value, look for file.
            ((not (string=? file "unknown"))
             (begin
-              (spice-anise:insert-text-file file)   ;; Note that we don't wait until the end here.  Is that OK?
+              (spice:insert-text-file file)   ;; Note that we don't wait until the end here.  Is that OK?
               (debug-spew (string-append "Inserting contents of file = " file " into output file.\n"))
             ))
 
@@ -1242,9 +1193,9 @@
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (calling-flag? "embed_mode" (get-calling-flags))
+        (if  (member "embed_mode" (get-backend-arguments))
               (begin
-                (spice-anise:insert-text-file file)                 ;; -e found: invoke insert-text-file
+                (spice:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
               (begin
                 (display (string-append ".INCLUDE " file "\n"))   ;; -e not found: just print out .INCLUDE card
@@ -1301,7 +1252,7 @@
              ;; model file exists
            ( (not (or (string=? model-file "unknown") ))
              (debug-spew (string-append "found model-file for " package "\n"))
-             ;; (spice-anise:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
+             ;; (spice:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
            )
 
           )  ;; close of cond
@@ -1667,10 +1618,7 @@
 ;;  because numparam will at the subckt definition come before the main netlist.
 ;;  Change suggested by Dominique Michel; implemented in code on 6.12.2005.
 ;;
-;;  Next loop through all items in file-info-list in the SPICE netlist.
-;;  For each model-name, open up the corresponding file, and call handle-spice-file
-;;  to stick the corresponding stuff into the output SPICE file.
-;;
+;;  Handle spice files
       (debug-spew "Now process the items in model file list -- stick appropriate references to models in output SPICE file.\n")
       (spice-anise:loop-through-files file-info-list)
       (debug-spew "Done processing items in model file list.\n")
@@ -1682,7 +1630,7 @@
 ;;
       (debug-spew "Make second pass through design and write out a SPICE card for each component found.\n")
       (display "*============== Begin SPICE netlist of main design ============\n")
-      (if (spice-anise:sort-refdes? (get-calling-flags))
+      (if (member "sort_mode" (get-backend-arguments))
           (spice-anise:write-netlist file-info-list (sort netlist:packages spice-anise:packsort))  ;; sort on refdes
           (spice-anise:write-netlist file-info-list netlist:packages)                            ;; don't sort.
       )
@@ -1697,7 +1645,7 @@
             (spice-anise:write-bottom-footer (string-append ".ends " model-name))
             (display "*******************************\n")
           )
-          (if (not (calling-flag? "no_end_card" (get-calling-flags)))
+          (if (not (member "no_end_card" (get-backend-arguments)))
               (spice-anise:write-bottom-footer ".end"))
       )
 

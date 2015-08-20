@@ -1,5 +1,9 @@
 2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Add other additional options to backend help
+
+2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/spice-common.scm: Add code from spice-sdb to common spice to
       share with other backends.
 
