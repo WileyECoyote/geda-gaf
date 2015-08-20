@@ -26,6 +26,57 @@
 ;; By S. Gieltjes and others.
 ;; --------------------------------------------------------------------------
 
+;;--------------------------------------------------------------------------
+;; Given a filename, open the file, get the contents, and dump the contents
+;; into the current outpout port, aka spice file.
+;; Calling form is "(insert-text-file model-filename)"
+;; The function opens model-filename, but assumes that output-file is stdout
+;;
+;; This function can be to include spice models referenced in schematic files
+;; into the netlist.  Note that it doesn't check the correctness of the spice
+;; code in the file -- you're on your own!
+;;---------------------------------------------------------------------------
+(define spice:insert-text-file
+  (lambda (model-filename)
+    (if (file-exists? model-filename)
+    (let ((model-file (open-input-file model-filename)) )
+      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n"))
+      (let while ((model-line (read-line model-file)))
+          (if (not (eof-object? model-line))
+                   (begin
+                     (display (string-append model-line "\n"))
+                     (while (read-line model-file))
+                   )  ;; end of inner begin
+          ) ;; end of if
+        )  ;; end of inner let
+        (close-port model-file)
+        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n*\n"))
+     ) ;; end of outer let
+    (begin
+      (message (string-append "ERROR: File '" model-filename "' not found.\n"))
+      (primitive-exit 1))
+    )
+  )
+)
+
+;;--------------------------------------------------------------------------
+;; handle-spice-file:  This wraps insert-text-file.
+;; Calling form: (handle-spice-file file-name)
+;; The wrapper check if "include_mode" was passed to the backend using the
+;; -O option. If found, insert-text-file calls to stick the file's contents
+;; into the SPICE netlist, otherwise it just writes a .INCLUDE card with the
+;; file name.
+;;--------------------------------------------------------------------------
+(define spice:handle-spice-file
+  (lambda (file-name)
+    (debug-spew (string-append "Handling spice model file " file-name "\n"))
+    (if (member "include_mode" (get-backend-arguments))
+        (display (string-append ".INCLUDE " file-name "\n"))   ;; flag found: just print out .INCLUDE card
+        (spice:insert-text-file file-name)                     ;; flag not found: invoke insert-text-file
+    ) ;; endif was a member
+) )
+
+
 ;;---------------------------------------------------------------------
 ;; write netnames connected to pin-a and pin-b
 ;;   (currently used by the controlled sources (e, g, f and h)

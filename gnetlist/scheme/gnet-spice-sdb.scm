@@ -137,7 +137,7 @@
                 (file-name (cadr list-element))
                 (file-type (caddr list-element))
                )
-          (spice-sdb:handle-spice-file file-name)
+          (spice:handle-spice-file file-name)
           (spice-sdb:loop-through-files (cdr file-info-list))
         )  ;; end of let*
 )))
@@ -164,59 +164,6 @@
           )
         )  ;; end of let*
 )))
-
-
-;;--------------------------------------------------------------------------
-;; handle-spice-file:  This wraps insert-text-file.
-;; Calling form: (handle-spice-file file-name)
-;; It looks to see if the -I flag was set at the command line.  If so,
-;; it just writes a .INCLUDE card with the file name.  If not,  it calls
-;; insert-text-file to stick the file's contents into the SPICE netlist.
-;;--------------------------------------------------------------------------
-(define spice-sdb:handle-spice-file
-  (lambda (file-name)
-    (debug-spew (string-append "Handling spice model file " file-name "\n"))
-    (if (calling-flag? "include_mode" (get-calling-flags))
-        (display (string-append ".INCLUDE " file-name "\n"))       ;; -I found: just print out .INCLUDE card
-        (spice-sdb:insert-text-file file-name)                     ;; -I not found: invoke insert-text-file
-    )  ;; end of if (calling-flag
-))
-
-
-;;--------------------------------------------------------------------------
-;; Given a filename, open the file, get the contents, and dump them
-;; into the spice file.
-;; Calling form is "(insert-text-file input-file output-file)"
-;; The function opens input-file, but assumes that output-file is
-;; already open.
-;;
-;; This function is usually used to include spice models contained in
-;; files into the netlist.  Note that it doesn't
-;; check the correctness of the spice code in the file -- you're on your own!
-;;---------------------------------------------------------------------------
-(define spice-sdb:insert-text-file
-  (lambda (model-filename)
-    (if (file-exists? model-filename)
-    (let ((model-file (open-input-file model-filename)) )
-      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n"))
-      (let while ((model-line (read-line model-file)))
-          (if (not (eof-object? model-line))
-                   (begin
-                     (display (string-append model-line "\n"))
-                     (while (read-line model-file))
-                   )  ;; end of inner begin
-          ) ;; end of if
-        )  ;; end of inner let
-        (close-port model-file)
-        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n*\n"))
-     ) ;; end of outer let
-    (begin
-      (message (string-append "ERROR: File '" model-filename "' not found.\n"))
-      (primitive-exit 1))
-    )
-  )
-)
-
 
 ;;----------------------------------------------------------
 ;; Figure out if this schematic is a .SUBCKT lower level.
@@ -1181,7 +1128,7 @@
               ;; since there is no value, look for file.
            ((not (string=? file "unknown"))
             (begin
-              (spice-sdb:insert-text-file file)   ;; Note that we don't wait until the end here.  Is that OK?
+              (spice:insert-text-file file)   ;; Note that we don't wait until the end here.  Is that OK?
               (debug-spew (string-append "Inserting contents of file = " file " into output file.\n"))
             ))
 
@@ -1205,7 +1152,7 @@
       (if (not (string=? file "unknown"))
         (if  (calling-flag? "embed_mode" (get-calling-flags))
               (begin
-                (spice-sdb:insert-text-file file)                 ;; -e found: invoke insert-text-file
+                (spice:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
               (begin
                 (display (string-append ".INCLUDE " file "\n"))   ;; -e not found: just print out .INCLUDE card
@@ -1262,7 +1209,7 @@
              ;; model file exists
            ( (not (or (string=? model-file "unknown") ))
              (debug-spew (string-append "found model-file for " package "\n"))
-             ;; (spice-sdb:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
+             ;; (spice:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
            )
 
           )  ;; close of cond
@@ -1579,7 +1526,6 @@
     ;; Redefine write-net-names-on-component
     (set! spice:write-net-names-on-component spice-sdb:write-net-names-on-component)
 
-;;
 ;; First find out if this is a .SUBCKT lower level,
 ;; or if it is a regular schematic.
 ;;
@@ -1614,8 +1560,6 @@
 
       ) ;; end of if (not (string=? . . . .
 
-
-;;
 ;; Now loop through all devices and process all "FILE" attributes.  Create
 ;; file-info-list.
 ;; Thanks to Carlos Nieves Onega for his e-mail to
@@ -1625,22 +1569,15 @@
       (set! file-info-list (spice-sdb:create-file-info-list netlist:packages file-info-list))
       (debug-spew "Done creating file-info-list.\n\n")
 
-
-;;
 ;;  Moved this loop before the next one to get numparam to work with ngspice,
 ;;  because numparam will at the subckt definition come before the main netlist.
 ;;  Change suggested by Dominique Michel; implemented in code on 6.12.2005.
 ;;
-;;  Next loop through all items in file-info-list in the SPICE netlist.
-;;  For each model-name, open up the corresponding file, and call handle-spice-file
-;;  to stick the corresponding stuff into the output SPICE file.
-;;
+;;  handle the model files
       (debug-spew "Now process the items in model file list -- stick appropriate references to models in output SPICE file.\n")
       (spice-sdb:loop-through-files file-info-list)
       (debug-spew "Done processing items in model file list.\n")
 
-
-;;
 ;; Now write out netlist as before.  But don't write file contents out.
 ;; **** Modified by kh to sort list of packages so Spice directives, etc. (A?) are output last,
 ;; **** and in increasing order.
