@@ -3758,9 +3758,9 @@ COMMAND (do_cycle_grid)
   }
 
   switch (w_current->grid_mode) {
-    case GRID_NONE: q_log_message (_("Grid OFF\n"));           break;
-    case GRID_DOTS: q_log_message (_("Dot grid selected\n"));  break;
-    case GRID_MESH: q_log_message (_("Mesh grid selected\n")); break;
+    case GRID_NONE: q_log_message (_("Grid OFF\n"));            break;
+    case GRID_DOTS: q_log_message (_("Dot grid activated\n"));  break;
+    case GRID_MESH: q_log_message (_("Mesh grid activated\n")); break;
   }
 
   i_status_update_grid_info (w_current);
@@ -3892,10 +3892,10 @@ COMMAND (do_toggle_rubberband)
   BEGIN_NO_ARGUMENT(do_toggle_rubberband);
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
-    q_log_message(_("Rubber band OFF \n"));
+    q_log_message(_("Rubber band mode is OFF\n"));
   } else {
     w_current->netconn_rubberband = 1;
-    q_log_message(_("Rubber band ON\n"));
+    q_log_message(_("Rubber band mode is ON\n"));
   }
   x_menu_set_togglable(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
@@ -3906,10 +3906,10 @@ COMMAND (do_toggle_magneticnet)
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_magneticnet);
   if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
-    q_log_message(_("magnetic net mode: ON\n"));
+    q_log_message(_("Magnetic net mode is ON\n"));
   }
   else {
-    q_log_message(_("magnetic net mode: OFF\n"));
+    q_log_message(_("Magnetic net mode is OFF\n"));
   }
   x_menu_set_togglable(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_status_show_state(w_current, NULL);
@@ -3985,7 +3985,7 @@ COMMAND (do_show_manual)
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
-      u_log_message(_("Check: pathname=%s\n"), pathname);
+      u_log_message(_("Check: path \"%s\"\n"), pathname);
     }
     GEDA_FREE(pathname);
   }

@@ -420,7 +420,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
   }
   else {
 
-    g_set_error (err, G_FILE_ERROR, errno, _("'%s': %s"),
+    g_set_error (err, G_FILE_ERROR, errno, "\"%s\": %s",
                  session_file, strerror(errno));
 
     GEDA_FREE(session_file);

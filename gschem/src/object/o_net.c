@@ -73,7 +73,7 @@ static void o_net_continue(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->first_wx != snap_grid (w_current, w_current->first_wx) ||
       w_current->first_wy != snap_grid (w_current, w_current->first_wy))
-      u_log_message(_("Warning: Starting net at off grid coordinate\n"));
+      u_log_message(_("Warning: Starting net off grid coordinate\n"));
 
   if (w_current->net_direction_mode) {
     o_net_guess_direction(w_current, w_current->first_wx, w_current->first_wy);
@@ -467,7 +467,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   if (w_current->third_wx != snap_grid (w_current, w_current->third_wx) ||
       w_current->third_wy != snap_grid (w_current, w_current->third_wy))
-      u_log_message(_("Warning: Ending net at off grid coordinate\n"));
+      u_log_message(_("Warning: Ending net off grid coordinate\n"));
 
   if (!primary_zero_length ) {
 
