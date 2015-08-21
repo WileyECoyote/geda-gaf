@@ -62,6 +62,9 @@
         (display debug-string)
 )))
 
+;; Yields a list of lists of command line flags and values. Each flag
+;; must be known to the gnetlist front end. For example, the "--nomunge"
+;; flag will yield ("nomunge_mode" #t).
 (define-public (get-calling-flags)
   "Returns a list of `-O' arguments in the form:
 
@@ -186,8 +189,8 @@ loaded after the backend ('-m' option of gnetlist)."
 (define (gnetlist:get-slots refdes)
   "Return a sorted list of slots used by package REFDES.
 
-It collects the slot attribute values of each symbol instance of
-REFDES. As a result, slots may be repeated in the returned list."
+get-slots collects the slot attribute values of each symbol instance
+of REFDES. As a result, slots may be repeated in the returned list."
   (sort-list!
    (filter-map
     (lambda (slot)
