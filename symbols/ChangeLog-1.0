@@ -1,5 +1,9 @@
 2015-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * serial/MIC2551ABML.sym: Add symbol; Single chip transceiver,USB 2.0.
+
+2015-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * onsemi/schottky/NSR05F40NX-1.sym: Add symbol;VOLTAGE REGULATOR,LDO,1.0A,
       Fixed 1.9Volt, 0-125°C.
 

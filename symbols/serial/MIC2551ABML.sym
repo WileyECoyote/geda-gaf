@@ -1,0 +1,204 @@
+v 20150703 2
+T 300 3100 9 10 0 1 0 0 1
+device=MIC2551ABML
+T 1800 3100 8 10 1 1 0 0 1
+refdes=U?
+T 300 3500 9 10 0 1 0 0 1
+description=Single chip transceiver,USB 2.0
+T 300 3300 9 10 0 1 0 0 1
+footprint=QFN-16-3-EP
+T 300 3700 9 10 0 1 0 0 1
+documentation=http://www.micrel.com/_PDF/mic2551a.pdf
+P 0 2800 300 2800 1 0 0
+{
+T 350 2650 5 8 0 1 0 0 1
+pintype=pwr
+T 350 2800 9 10 1 1 0 0 1
+pinlabel=VIF
+T 200 2850 5 8 1 1 0 6 1
+pinnumber=15
+T 200 2850 5 8 0 1 0 6 1
+pinseq=15
+}
+P 0 2500 300 2500 1 0 0
+{
+T 350 2350 5 8 0 1 0 0 1
+pintype=in
+T 350 2500 9 10 1 1 0 0 1
+pinlabel=CON
+T 200 2550 5 8 1 1 0 6 1
+pinnumber=5
+T 200 2550 5 8 0 1 0 6 1
+pinseq=5
+}
+P 0 2200 300 2200 1 0 0
+{
+T 350 2050 5 8 0 1 0 0 1
+pintype=in
+T 350 2200 9 10 1 1 0 0 1
+pinlabel=OE_L
+T 200 2250 5 8 1 1 0 6 1
+pinnumber=9
+T 200 2250 5 8 0 1 0 6 1
+pinseq=9
+}
+P 0 1900 300 1900 1 0 0
+{
+T 350 1750 5 8 0 1 0 0 1
+pintype=out
+T 350 1900 9 10 1 1 0 0 1
+pinlabel=RCV
+T 200 1950 5 8 1 1 0 6 1
+pinnumber=2
+T 200 1950 5 8 0 1 0 6 1
+pinseq=2
+}
+P 0 1600 300 1600 1 0 0
+{
+T 350 1450 5 8 0 1 0 0 1
+pintype=io
+T 350 1600 9 10 1 1 0 0 1
+pinlabel=VP
+T 200 1650 5 8 1 1 0 6 1
+pinnumber=3
+T 200 1650 5 8 0 1 0 6 1
+pinseq=3
+}
+P 0 1300 300 1300 1 0 0
+{
+T 350 1150 5 8 0 1 0 0 1
+pintype=io
+T 350 1300 9 10 1 1 0 0 1
+pinlabel=VM
+T 200 1350 5 8 1 1 0 6 1
+pinnumber=4
+T 200 1350 5 8 0 1 0 6 1
+pinseq=4
+}
+P 0 1000 300 1000 1 0 0
+{
+T 350 850 5 8 0 1 0 0 1
+pintype=in
+T 350 1000 9 10 1 1 0 0 1
+pinlabel=SPD
+T 200 1050 5 8 1 1 0 6 1
+pinnumber=1
+T 200 1050 5 8 0 1 0 6 1
+pinseq=1
+}
+P 2300 2800 2000 2800 1 0 0
+{
+T 1950 2650 5 8 0 1 0 6 1
+pintype=pwr
+T 1950 2800 9 10 1 1 0 6 1
+pinlabel=VTRM
+T 2100 2850 5 8 1 1 0 0 1
+pinnumber=12
+T 2100 2850 5 8 0 1 0 0 1
+pinseq=12
+}
+P 2300 2500 2000 2500 1 0 0
+{
+T 1950 2350 5 8 0 1 0 6 1
+pintype=pwr
+T 1950 2500 9 10 1 1 0 6 1
+pinlabel=VBUS
+T 2100 2550 5 8 1 1 0 0 1
+pinnumber=14
+T 2100 2550 5 8 0 1 0 0 1
+pinseq=14
+}
+P 2300 2200 2000 2200 1 0 0
+{
+T 1950 2050 5 8 0 1 0 6 1
+pintype=out
+T 1950 2200 9 10 1 1 0 6 1
+pinlabel=VPU
+T 2100 2250 5 8 1 1 0 0 1
+pinnumber=13
+T 2100 2250 5 8 0 1 0 0 1
+pinseq=13
+}
+P 2300 1400 2000 1400 1 0 0
+{
+T 1950 1250 5 8 0 1 0 6 1
+pintype=io
+T 1950 1400 9 10 1 1 0 6 1
+pinlabel=D+
+T 2100 1450 5 8 1 1 0 0 1
+pinnumber=10
+T 2100 1450 5 8 0 1 0 0 1
+pinseq=10
+}
+P 2300 1700 2000 1700 1 0 0
+{
+T 1950 1550 5 8 0 1 0 6 1
+pintype=io
+T 1950 1700 9 10 1 1 0 6 1
+pinlabel=D-
+T 2100 1750 5 8 1 1 0 0 1
+pinnumber=11
+T 2100 1750 5 8 0 1 0 0 1
+pinseq=11
+}
+P 800 0 800 300 1 0 0
+{
+T 450 175 5 8 0 1 0 0 1
+pintype=pwr
+T 950 500 9 10 1 1 180 0 1
+pinlabel=GND
+T 700 0 5 8 1 1 0 6 1
+pinnumber=6
+T 700 0 5 8 0 1 0 6 1
+pinseq=6
+}
+P 0 700 300 700 1 0 0
+{
+T 350 550 5 8 0 1 0 0 1
+pintype=in
+T 350 700 9 10 1 1 0 0 1
+pinlabel=SUS
+T 200 750 5 8 1 1 0 6 1
+pinnumber=7
+T 200 750 5 8 0 1 0 6 1
+pinseq=7
+}
+L 300 3000 300 300 3 0 0 0 -1 -1
+L 300 300 2000 300 3 0 0 0 -1 -1
+L 300 3000 2000 3000 3 0 0 0 -1 -1
+L 2000 3000 2000 300 3 0 0 0 -1 -1
+P 2300 1000 2000 1000 1 0 0
+{
+T 1950 850 5 8 0 1 0 6 1
+pintype=pas
+T 1950 1000 9 10 1 1 0 6 1
+pinlabel=NC
+T 2100 1050 5 8 1 1 0 0 1
+pinnumber=8
+T 2100 1050 5 8 0 1 0 0 1
+pinseq=8
+}
+P 2300 700 2000 700 1 0 0
+{
+T 1950 550 5 8 0 1 0 6 1
+pintype=pas
+T 1950 700 9 10 1 1 0 6 1
+pinlabel=NC
+T 2100 750 5 8 1 1 0 0 1
+pinnumber=16
+T 2100 750 5 8 0 1 0 0 1
+pinseq=16
+}
+P 1400 0 1400 300 1 0 0
+{
+T 1075 175 5 8 0 1 0 0 1
+pintype=pas
+T 1550 500 9 10 1 1 180 0 1
+pinlabel=PAD
+T 1350 0 5 8 1 1 0 6 1
+pinnumber=17
+T 1350 0 5 8 0 1 0 6 1
+pinseq=17
+}
+T 1600 100 5 8 0 0 0 0 1
+symversion=0.1
