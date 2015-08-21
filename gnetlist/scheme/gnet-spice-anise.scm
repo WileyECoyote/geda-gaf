@@ -97,9 +97,9 @@
 ;;              write-net-names-on-component to make it a bit more flexible.
 ;;              Combine write-probe-item and write-net-names-on-component.  Add
 ;;              a range utility function.  CC
-;;  1.13.2011 -- Add four lines of code (and some comments) that allow formaitting strings
+;;  1.13.2011 -- Add four lines of code (and some comments) that allow formatting strings
 ;;               to be used for netlisting NGspice device models. CC
-;;  6.12.2011 -- Updated the Problematci name=? symbols to name=unknown and removed the
+;;  6.12.2011 -- Updated the Problematic name=? symbols to name=unknown and removed the
 ;;               FIXME check for them. This should be a step closer to place holder consistancy. CC
 ;;  1.13.2011 -- Subcircuits use the value= attribute attached to the spice-subcircuit-LL symbol
 ;;               to hold parameters. Dan White
@@ -107,7 +107,12 @@
 ;;               spice-anise-main and added replacement spice-anise to intercept help and
 ;;               version argument options. Add functions spice-anise-show-version and
 ;;               spice-anise-help.
-;;
+;;  8.08.2015 -- Added spice-anise-version, modified write-*-header, renamed spice-anise
+;;               spice-anise-main and added replacement spice-anise to intercept help and
+;;               version argument options. Add functions spice-anise-show-version and
+;;               spice-anise-help. Replace calling-flags with get-backend-arguments.
+;;               Remove functions handle-spice-file and insert-text-file and redirected
+;;               to common.spice:functions.
 ;;**********************************************************************************
 ;;
 ;;  Organization of gnet-spice-anise.scm file:
@@ -242,6 +247,28 @@
     )
       );let*
 ))
+
+
+;;----------------------------------------------------------
+;; Get the value= attribute of the spice-subcircuit-LL device.
+;; For holding subcircuit parameters.
+;;---------------------------------------------------------
+(define spice-anise:get-subcircuit-params
+  (lambda (ls)
+      (let* ((package (car ls))
+         (device (get-device package))
+        )
+    (begin
+      (if (string=? device "spice-subcircuit-LL")  ;; look for subcircuit label
+          (let* ((value (gnetlist:get-package-attribute package "value"))
+                     )
+                (if (string=? value "unknown") "" value))
+          (spice-anise:get-subcircuit-params (cdr ls))  ;; otherwise just iterate to next package.
+      )
+    )
+      );let*
+))
+
 
 ;;-----------------------------------------------------------
 ;;  This iterates through the schematic and compiles a list of
@@ -484,36 +511,9 @@
 (define (string-tail string start)
   (substring string start (string-length string)))
 
-
-;;---------------------------------------------------------------
-;; spice-anise:sort_refdes?
-;;   Returns #t or #f depending upon if -s was discovered in
-;;   the calling flags given to gnetlist.   Used in conjunction with
-;;   spice-anise:packsort.
-;;   Calling form: (spice-anise:sort-refdes? (get-calling-flags))
-;;   9.1.2003 -- SDB.
-;;---------------------------------------------------------------
-;;  Note:  I should re-write this to use calling-flag? . . . .
-;;(define spice-anise:sort-refdes?
-;;  (lambda (calling-flag-list)
-;    (if (null? calling-flag-list)
-;          '#f                                             ;; return #f if null list -- sort_mode not found.
-;          (let* ((calling-pair (car calling-flag-list))   ;; otherwise look for sort_mode in remainder of list.
-;                 (calling-flag (car calling-pair))
-;                 (flag-value (cadr calling-pair))  )
-;            (if (string=? calling-flag "sort_mode")
-;                flag-value                                         ;; return flag-value if sort_mode found
-;                (spice-anise:sort-refdes? (cdr calling-flag-list)) ;; otherwise recurse until sort_mode is found
-;            )  ;; end if
-;          )  ;; end of let*
-;     )  ;; end of if
-;))
-
-
 ;;**********************************************************************************
 ;;***************  Dealing with nets, devices, & SPICE cards.    *******************
 ;;**********************************************************************************
-
 
 ;;----------------------------------------------------------------
 ;;
@@ -1568,7 +1568,7 @@
     ;; Redefine write-net-names-on-component
     (set! spice:write-net-names-on-component spice-anise:write-net-names-on-component)
 
-;; First find out if this is a .SUBCKT level or if it is a regular schematic.
+    ;; First find out if this is a .SUBCKT level or if it is a regular schematic.
 
     (set-current-output-port (output-port output-filename))
     (let* ((schematic-type (spice-anise:get-schematic-type netlist:packages))
@@ -1588,8 +1588,12 @@
       ;; now write out .SUBCKT header and .SUBCKT line
             (spice-anise:write-subcircuit-header)
             (let ((io-nets-string (list-2-string io-nets-list))
-                  (params (spice-anise:get-subcircuit-params netlist:packages)) )
-              (display (string-append schematic-type " " (list-2-string io-nets-list) params"\n"))
+                  (display (string-append schematic-type " " (list-2-string io-nets-list) params"\n"))
+                  (params (spice-sdb:get-subcircuit-params packages)) )
+               ;; (display (string-append "Found IO nets for subckt = " io-nets-string "\n"))   ;; DEBUG stuff . . .
+               ;; (write io-nets-list)
+               ;; (display "\n")
+                  (display (string-append schematic-type " " (list-2-string io-nets-list) params "\n"))
             )
           )
 
