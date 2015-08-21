@@ -198,6 +198,27 @@
 )
 
 
+;;----------------------------------------------------------
+;; Get the value= attribute of the spice-subcircuit-LL device.
+;; For holding subcircuit parameters.
+;;---------------------------------------------------------
+(define spice-sdb:get-subcircuit-params
+  (lambda (ls)
+      (let* ((package (car ls))
+         (device (get-device package))
+        )
+    (begin
+      (if (string=? device "spice-subcircuit-LL")  ;; look for subcircuit label
+          (let* ((value (gnetlist:get-package-attribute package "value"))
+                     )
+                (if (string=? value "unknown") "" value))
+          (spice-sdb:get-subcircuit-params (cdr ls))  ;; otherwise just iterate to next package.
+      )
+    )
+      );let*
+))
+
+
 ;;-----------------------------------------------------------
 ;;  This iterates through the schematic and compiles a list of
 ;;  all spice-IO pins found.  This is used when writing out
@@ -391,7 +412,7 @@
 (define spice-sdb:write-prefix
     (lambda (package prefix)
       (let ((different-prefix (not (string=? (substring package 0 1) prefix)) )
-            (nomunge (calling-flag? "nomunge_mode" (get-calling-flags)) )
+            (nomunge (member "nomunge_mode" (get-backend-arguments)) )
            )
         (debug-spew (string-append "Checking prefix.  Package prefix =" (substring package 0 1) "\n"))
         (debug-spew (string-append "                  correct prefix =" prefix "\n"))
@@ -459,8 +480,8 @@
                  (flag-value (cadr calling-pair))  )
 
             (if (string=? calling-flag "sort_mode")
-                flag-value                                               ;; return flag-value if sort_mode found
-                (spice-sdb:sort-refdes? (cdr calling-flag-list))    ;; otherwise recurse until sort_mode is found
+                flag-value                                       ;; return flag-value if sort_mode found
+                (spice-sdb:sort-refdes? (cdr calling-flag-list)) ;; otherwise recurse until sort_mode is found
             )  ;; end if
           )  ;; end of let*
      )  ;; end of if
@@ -1150,7 +1171,7 @@
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (calling-flag? "embed_mode" (get-calling-flags))
+        (if (member "embed_mode" (get-backend-arguments))
               (begin
                 (spice:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
@@ -1547,7 +1568,12 @@
       ;; now write out .SUBCKT header and .SUBCKT line
             (spice-sdb:write-subcircuit-header)
             (let ((io-nets-string (list-2-string io-nets-list)) )
-              (display (string-append schematic-type " " (list-2-string io-nets-list) "\n"))
+                  (display (string-append schematic-type " " (list-2-string io-nets-list) params"\n"))
+                  (params (spice-sdb:get-subcircuit-params packages))
+               ;; (display (string-append "Found IO nets for subckt = " io-nets-string "\n"))   ;; DEBUG stuff . . .
+               ;; (write io-nets-list)
+               ;; (display "\n")
+                  (display (string-append schematic-type " " (list-2-string io-nets-list) params "\n"))
             )
           )
 
@@ -1590,8 +1616,6 @@
       )
       (debug-spew "Done writing SPICE cards . . .\n\n")
 
-
-;;
 ;;  Now write out .END(S) of netlist, depending upon whether this schematic is a
 ;;  "normal schematic" or a .SUBCKT.
 ;;
@@ -1600,14 +1624,14 @@
             (spice-sdb:write-bottom-footer (string-append ".ends " model-name))
             (display "*******************************\n")
           )
-          (if (not (calling-flag? "no_end_card" (get-calling-flags)))
+          (if (not (member "no_end_card" (get-backend-arguments)))
               (spice-sdb:write-bottom-footer ".end"))
       )
 
 
       (debug-spew "\nOutput file is written.  We are done.\n")
    )
-;;
+
 ;;  Finally, close up and go home.
 ;;
     (close-output-port (current-output-port))
