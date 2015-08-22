@@ -1,3 +1,8 @@
+2015-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulate/L79L05-1.sym: Add symbol Voltage Regulator, Negative,
+      Fixed,TO-92.
+
 2015-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/MIC2551ABML.sym: Add symbol; Single chip transceiver,USB 2.0.
