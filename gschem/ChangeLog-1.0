@@ -1,3 +1,8 @@
+2015-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Add option key-word "action-color" to provide
+      users means to set the color used for the status text during actions.
+
 2015-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/gschem-icons.svg: Add them-able icon for zoom-limits

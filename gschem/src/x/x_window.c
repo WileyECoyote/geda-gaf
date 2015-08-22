@@ -243,6 +243,7 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_int_list (cfg, win_group, "mesh-grid-major-color", array, 4);
 
   eda_config_set_integer (cfg, win_group, "render-adaptor",  w_current->render_adaptor);
+  eda_config_set_integer (cfg, win_group, "action-color",    w_current->action_color);
   eda_config_set_integer (cfg, win_group, "anti-aliasing",   w_current->anti_aliasing);
 
   /* Grips Settings */

@@ -83,6 +83,16 @@
 ;
 
 ;BEGIN =================> Display Configuration <===================
+
+;
+; action-color integer
+;
+; Sets the color to use for status text while inside an action.
+;
+; Min value: 0, Max value: 29, Default value: 4
+;
+(action-color 4)
+
 ;
 ; anti-aliasing string
 ;

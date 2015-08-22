@@ -60,6 +60,8 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
 
   { "render-adaptor",            1, 0, 0, g_rc_render_adaptor },
+
+  { "action-color",              1, 0, 0, g_rc_action_color },
   { "anti-aliasing",             1, 0, 0, g_rc_anti_aliasing },
 
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },

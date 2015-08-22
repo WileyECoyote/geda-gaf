@@ -103,6 +103,7 @@ int   check_and_convert_scm_integer    (SCM val2chk, int min_value, int max_valu
                                         int default_value, char* keyword);
 SCM   g_rc_gschem_version              (SCM version);
 SCM   g_rc_render_adaptor              (SCM mode);
+SCM   g_rc_action_color                (SCM mode);
 SCM   g_rc_anti_aliasing               (SCM mode);
 SCM   g_rc_draw_grips                  (SCM mode);
 SCM   g_rc_grips_pixel_size            (SCM size);

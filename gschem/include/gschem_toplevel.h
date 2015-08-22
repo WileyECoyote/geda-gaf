@@ -220,6 +220,9 @@ struct _GschemToplevel {
   /* ----------------- rc/user parameters ----------------- */
 
 /* Display Related */
+
+  int action_color;       /* The color to use for status text inside an action */
+
   int anti_aliasing;
   int grip_size;
 

@@ -697,6 +697,11 @@ KEYWORD (render_adaptor) {
   RC_STRING_TABLE_W2OUT (render_adaptor);
 }
 
+/** @brief function do_kw_action_color in Settings-Keyword-Handlers */
+KEYWORD (action_color) {
+  RC_INTEGER_WOUT (action_color);
+}
+
 /** @brief function do_kw_anti_aliasing in Settings-Keyword-Handlers */
 KEYWORD (anti_aliasing) {
   RC_ANTI_ALIASING_STRINGS;

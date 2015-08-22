@@ -265,7 +265,19 @@ SCM g_rc_render_adaptor(SCM mode)
 }
 
 /*! (category "Display")
- *  (sub-category "Cario")
+ *  \brief This function processes the action-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the action-color RC entry.
+ */
+SCM g_rc_action_color(SCM color)
+{
+  default_action_color = ICHECK(color, 0, MAX_COLORS,
+                                DEFAULT_ACTION_COLOR, "action-color");
+  return SCM_BOOL_T;
+}
+
+/*! (sub-category "Cario")
  *  \brief This function processes the anti-aliasing RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

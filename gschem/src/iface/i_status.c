@@ -274,7 +274,7 @@ i_status_idle_thread_update_action (GschemToplevel *w_current)
 {
   int index;
   if (w_current->inside_action) {
-    index = NET_COLOR;
+    index = w_current->action_color;
   }
   else {
     index = 0;
