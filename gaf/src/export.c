@@ -51,26 +51,27 @@ static int export_text_rendered_bounds (void *user_data,
                                         Object *object,
                                         int *left, int *top,
                                         int *right, int *bottom);
-static void export_layout_page (Page *page, cairo_rectangle_t *extents,
-                                cairo_matrix_t *mtx);
-static void export_draw_page (Page *page);
+static void export_layout_page         (Page *page,
+                                        cairo_rectangle_t *extents,
+                                        cairo_matrix_t *mtx);
+static void export_draw_page           (Page *page);
 
-static void export_png (void);
-static void export_postscript (bool is_eps);
-static void export_ps  (void);
-static void export_eps (void);
-static void export_pdf (void);
-static void export_svg (void);
+static void export_png           (void);
+static void export_postscript    (bool is_eps);
+static void export_ps            (void);
+static void export_eps           (void);
+static void export_pdf           (void);
+static void export_svg           (void);
 
-static double export_parse_dist (const char *dist);
-static bool export_parse_scale (const char *scale);
-static bool export_parse_layout (const char *layout);
+static double export_parse_dist  (const char *dist);
+static bool export_parse_scale   (const char *scale);
+static bool export_parse_layout  (const char *layout);
 static bool export_parse_margins (const char *margins);
-static bool export_parse_paper (const char *paper);
-static bool export_parse_size (const char *size);
-static void export_config (void);
-static void export_usage (void);
-static void export_command_line (int argc, char * const *argv);
+static bool export_parse_paper   (const char *paper);
+static bool export_parse_size    (const char *size);
+static void export_config        (void);
+static void export_usage         (void);
+static void export_command_line  (int argc, char * const *argv);
 
 /* Default pixels-per-inch for raster outputs */
 #define DEFAULT_DPI 96
@@ -97,6 +98,7 @@ enum ExportOrientation {
 };
 
 struct ExportSettings {
+
   /* Input & output */
   int    infilec;
   char  *const *infilev; /* Filename encoding */
@@ -151,9 +153,9 @@ static struct ExportSettings settings = {
 #define bad_arg_msg _("ERROR: Bad argument '%s' to %s option.\n")
 #define see_help_msg _("\nRun `gaf export --help' for more information.\n")
 
-/* Main function for `gaf export' */
-void
-cmd_export (int argc, char **argv)
+/*! \brief The Real Main export function call by Guile */
+static void
+cmd_export_impl (void *data, int argc, char **argv)
 {
   GError *err;
   GArray *color_map;
@@ -172,7 +174,7 @@ cmd_export (int argc, char **argv)
   original_cwd = g_get_current_dir ();
 
   gtk_init_check (&argc, &argv);
-  scm_init_guile ();
+
   libgeda_init ();
 
   scm_dynwind_begin (0);
@@ -195,10 +197,13 @@ cmd_export (int argc, char **argv)
   /* If no format was specified, try and guess from output
    * filename. */
   if (settings.format == NULL) {
+
     out_suffix = strrchr (settings.outfile, '.');
+
     if (out_suffix != NULL) {
       out_suffix++; /* Skip '.' */
-    } else {
+    }
+    else {
       fprintf (stderr,
                _("ERROR: Cannot infer output format from filename '%s'.\n"),
                settings.outfile);
@@ -208,19 +213,23 @@ cmd_export (int argc, char **argv)
 
   /* Try and find an exporter function */
   tmp = g_utf8_strdown ((settings.format == NULL) ? out_suffix : settings.format, -1);
+
   for (i = 0; formats[i].name != NULL; i++) {
     if (strcmp (tmp, formats[i].alias) == 0) {
       exporter = &formats[i];
       break;
     }
   }
+
   if (exporter == NULL) {
+
     if (settings.format == NULL) {
       fprintf (stderr,
                _("ERROR: Cannot find supported format for filename '%s'.\n"),
                settings.outfile);
       exit (1);
-    } else {
+    }
+    else {
       fprintf (stderr,
                _("ERROR: Unsupported output format '%s'.\n"),
                settings.format);
@@ -240,16 +249,20 @@ cmd_export (int argc, char **argv)
 
   /* Load schematic files */
   while (optind < argc) {
+
     Page *page;
+
     tmp = argv[optind++];
 
     page = s_page_new (toplevel, tmp);
+
     if (!f_open (toplevel, page, tmp, &err)) {
       fprintf (stderr,
                _("ERROR: Failed to load '%s': %s\n"), tmp,
                err->message);
       exit (1);
     }
+
     if (g_chdir (original_cwd) != 0) {
       fprintf (stderr,
                _("ERROR: Failed to change directory to '%s': %s\n"),
@@ -289,7 +302,8 @@ cmd_export (int argc, char **argv)
 
       if (i == OUTPUT_BACKGROUND_COLOR) {
         *c = white;
-      } else {
+      }
+      else {
         *c = black;
       }
     }
@@ -303,6 +317,15 @@ cmd_export (int argc, char **argv)
 
   exit (0);
 }
+
+/*! \brief Main function for "gaf export" */
+int
+cmd_export (int argc, char **argv)
+{
+ scm_boot_guile (argc, argv, cmd_export_impl, NULL); /* Does not return */
+ return 0;
+}
+
 
 /* Callback function registered with libgeda to allow the libgeda
  * "bounds" functions to get text bounds using the renderer.  If a
