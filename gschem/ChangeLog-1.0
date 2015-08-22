@@ -1,3 +1,18 @@
+2015-08-22 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Fix g_rc_gschem_version.
+
+    * src/guile/g_rc.c: WEH: Modified per commit to Master branch by Vladimir
+      Zhbanov, commit   1bc39de0a196a97e3261f1d22f63ebde2cf864da:
+
+      Guile since version 1.9.6 does not check source properties of evaluated
+      files for some reason returning just #f for them. So the return value of
+      g_rc_rc_filename() is always #f when it checks rc_filename. Obviously,
+      we cannot use this value in scm_to_utf8_string(). This situation appears
+      only if wrong/old gschem-version value is set in a rc file. This patch
+      checks the returned value and sets rc_filename to "unknown" if guile
+      could not determine it.
+
 2015-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add option key-word "action-color" to provide

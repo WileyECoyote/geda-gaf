@@ -172,9 +172,16 @@ SCM g_rc_gschem_version(SCM scm_version)
   scm_dynwind_free (version);
 
   if (g_ascii_strcasecmp (version, PACKAGE_DATE_VERSION) != 0) {
-    sourcefile = NULL;
+
+    sourcefile  = NULL;
     rc_filename = g_rc_rc_filename ();
-    sourcefile = scm_to_utf8_string (rc_filename);
+
+    if (rc_filename == SCM_BOOL_F) {
+      rc_filename = scm_from_utf8_string ("unknown");
+    }
+
+    sourcefile  = scm_to_utf8_string (rc_filename);
+
     scm_dynwind_free (sourcefile);
 
     fprintf(stderr,
