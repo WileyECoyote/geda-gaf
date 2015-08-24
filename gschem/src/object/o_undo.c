@@ -200,11 +200,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
   const char *file_err_msg;
   const char *sys_err_msg;
-  const char *int_err_msg;
 
   file_err_msg = _("Undo: encountered an error: file=<%s> %s\n");
   sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
-  int_err_msg  = _("Internal Error: <%s> line <%d> u_current == NULL\n");
 
   /* save auto save backups if necessary */
   o_save_auto_backup(w_current->toplevel);
@@ -353,7 +351,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       }
 
       if (u_current == NULL) {
-        u_log_message(int_err_msg, __func__, __LINE__);
+        BUG_MSG("u_current == NULL");
       }
       else {
         u_current->prev = NULL;
