@@ -219,8 +219,8 @@ confirm_close_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
 
   model = GTK_TREE_MODEL (dialog->store_unsaved_pages);
 
-  /* Removed conditional but don't know why, can not find documentation supporting
-   * change so re-instating the conditional to "see what happened" */
+  /* Removed conditional but don't know why, can not find documentation
+   * supporting change so re-instating the conditional to "see what happens" */
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
   }
@@ -290,8 +290,7 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
 
   renderer = gtk_cell_renderer_text_new ();
   column = GTK_TREE_VIEW_COLUMN (
-    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN, /* GtkTreeViewColumn */
-                  "title", _("Name"), NULL));
+    g_object_new (GTK_TYPE_TREE_VIEW_COLUMN, "title", _("Name"), NULL));
 
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, renderer,
@@ -302,8 +301,7 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
 
   gtk_container_add (GTK_CONTAINER (scrolled_window), treeview);
 
-  gtk_box_pack_end (GTK_BOX (vbox), scrolled_window,
-                    TRUE, TRUE, 0);
+  gtk_box_pack_end (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
   /* the caption label above the list of pages */
   label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
@@ -317,8 +315,7 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
   text = _("S_elect the schematics you want to save:");
   gtk_label_set_text_with_mnemonic (GTK_LABEL (label), text);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
-  gtk_box_pack_start (GTK_BOX (vbox), label,
-                      FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
   return vbox;
 }
