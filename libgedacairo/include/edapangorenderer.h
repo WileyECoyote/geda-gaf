@@ -49,9 +49,7 @@ struct _EdaPangoRenderer
   EdaPangoRendererPrivate *priv;
 };
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+BEGIN_DECLS
 
 GedaType eda_pango_renderer_get_type   (void) G_GNUC_CONST;
 PangoRenderer *eda_pango_renderer_new  (cairo_t *cr) WARN_UNUSED;
@@ -79,8 +77,6 @@ bool            eda_pango_parse_overbars         (const char *overbar_text,
                                                   PangoAttrList **attr_list,
                                                   char **text);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+END_DECLS
 
 #endif /* !__EDA_PANGO_RENDERER_H__ */
