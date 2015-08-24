@@ -20,10 +20,6 @@
 #ifndef __EDA_RENDERER_H__
 #define __EDA_RENDERER_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 /*! \def EDAR_DEFAULT_MARKER_DIST_THLD
  *  The text marker size threashold, "x" values smaller then this value
  *  are not drawn.
@@ -146,6 +142,8 @@ enum _EdaRendererFlags
 
 typedef enum _EdaRendererFlags EdaRendererFlags;
 
+BEGIN_DECLS
+
 GedaType eda_renderer_get_type       (void) G_GNUC_CONST;
 GedaType eda_renderer_flags_get_type (void) G_GNUC_CONST;
 
@@ -216,9 +214,6 @@ int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
 void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
                                                int          new_size);
 
-
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+END_DECLS
 
 #endif /* !__EDA_RENDERER_H__ */
