@@ -764,7 +764,7 @@ void i_vars_init(GschemToplevel *w_current)
   eda_config_set_boolean (cfg, IDS_COMP_SELECT, "showtips",  TRUE);
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "style",     255);
 
-  /* read in Gschem RC files, which may over-ride the hard-coded defaults! */
+  /* read additional RC files, which may over-ride the hard-coded defaults! */
   x_rc_parse_gschem (w_current, rc_filename);
 }
 

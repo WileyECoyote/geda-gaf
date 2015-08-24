@@ -91,7 +91,7 @@ usage(char *cmd)
     "  -a, --render-adaptor=DRV Specify which render adaptor to use, Cario or X11.\n"
     "  -c, --config-file=FILE   Additional configuration file to load.\n"
     "  -h, --help               Help; this message.\n"
-    "  -L DIR                   Add DIR to Scheme search path.\n"
+    "  -L DIR                   Add DIR to Scheme search path (pre-config).\n"
     "  -m, --safe-mode          Safe Mode.\n"
     "  -n, --no-auto            No auto load last document.\n"
     "  -o, --output=FILE        Output filename (for printing).\n"
@@ -147,11 +147,11 @@ gschem_parse_commandline(int argc, char *argv[])
   char *str;
   int   ch;
 
+  SCM sym_begin       = scm_from_utf8_symbol ("begin");
   SCM sym_cons        = scm_from_utf8_symbol ("cons");
   SCM sym_set_x       = scm_from_utf8_symbol ("set!");
-  SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
-  SCM sym_begin       = scm_from_utf8_symbol ("begin");
   SCM sym_load        = scm_from_utf8_symbol ("load");
+  SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
   override_autoload   = FALSE;
@@ -253,18 +253,23 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case '?':
+
 #ifndef HAVE_GETOPT_LONG
+
         if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
           fprintf (stderr,
                    "ERROR: -%c option requires an argument.\n\n",
                    optopt);
-        } else if (isprint (optopt)) {
+        }
+        else if (isprint (optopt)) {
           fprintf (stderr, "ERROR: Unknown option -%c.\n\n", optopt);
-        } else {
+        }
+        else {
           fprintf (stderr, "ERROR: Unknown option character `\\x%x'.\n\n",
                    optopt);
         }
 #endif
+
         fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
         exit (1);
         break;

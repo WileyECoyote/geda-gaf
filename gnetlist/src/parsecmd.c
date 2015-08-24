@@ -216,10 +216,10 @@ int parse_commandline (int argc, char *argv[])
 
         case 'c':
           scm_internal_catch (SCM_BOOL_T,
-                              (scm_t_catch_body) scm_c_eval_string,
-                              (void *) optarg,
-                              (scm_t_catch_handler) catch_handler,
-                              (void *) optarg);
+                             (scm_t_catch_body) scm_c_eval_string,
+                             (void *) optarg,
+                             (scm_t_catch_handler) catch_handler,
+                             (void *) optarg);
           break;
 
         case 'h':
