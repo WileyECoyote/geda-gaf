@@ -1,5 +1,10 @@
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/src/base/gschem.c: Revise conditionals for pre and post load
+      expressions.
+
+2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dialog.c: Add Guile version to About Dialog.
 
 2015-08-22 Vladimir Zhbanov <vzhbanov@gmail.com>

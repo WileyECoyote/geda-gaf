@@ -326,7 +326,7 @@ static void gschem( int argc, char *argv[])
   g_dynwind_window (w_current);
 
   /* Check for and run pre-load Scheme expressions */
-  if (scm_is_null(s_post_load_expr)) {
+  if (scm_ilength(s_pre_load_expr) - 1) {
     g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
   }
 
@@ -406,9 +406,12 @@ static void gschem( int argc, char *argv[])
 #endif
 
   /* Run post-load expressions */
-  if (scm_is_null(s_post_load_expr)) {
-    g_scm_eval_protected (s_post_load_expr, scm_current_module ());
+  if (scm_ilength(s_post_load_expr) - 1) {
+    if (scm_is_false (g_scm_eval_protected (s_post_load_expr, scm_current_module ()))) {
+      fprintf(stderr, _("ERROR: Failed to load or evaluate startup script.\n"));
+    }
   }
+
   scm_dynwind_end ();
 
   /* if there were any symbols which had major changes, show error dialog */
