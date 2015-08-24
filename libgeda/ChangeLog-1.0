@@ -1,3 +1,9 @@
+2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/utility/u_log.c: Adjusted len calculation in u_log_handler to
+       account for trailing NULL to prevent buffer over-runs, increase
+       write buffer, LOG_WRITE_BUFFER_SIZE from 256 to 1024.
+
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * shell/shell.c:Revised similar to modifications to the Master branch by

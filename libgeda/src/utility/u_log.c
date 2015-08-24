@@ -45,7 +45,7 @@ int is_logging = FALSE; /* Variable to controls whether logging is enable or not
 
 #define LOG_OPEN_ATTEMPTS 5
 #define LOG_READ_BUFFER_SIZE  200
-#define LOG_WRITE_BUFFER_SIZE 256
+#define LOG_WRITE_BUFFER_SIZE 1024
 
 static void u_log_handler (const char *log_domain, GLogLevelFlags log_level,
                            const char *message, void *user_data);
@@ -91,9 +91,12 @@ static void u_log_handler (const char    *log_domain,
     status = write (logfile_fd, message, strlen (message));
   }
   else {
+
     log_entry = strcat(buffer, " ");
-    len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry);
+    len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
+
     log_entry = strncat(buffer, message, len);
+
     status = write (logfile_fd, log_entry, strlen (log_entry));
   }
 
@@ -110,7 +113,6 @@ static void u_log_handler (const char    *log_domain,
   if (x_log_update_func) {
     (*x_log_update_func) (log_domain, log_level, message);
   }
-
 }
 
 /*! \brief Initialize libgeda logging feature.
@@ -237,8 +239,7 @@ void u_log_close (void)
 {
   is_logging = FALSE; /* subsequent messages are lost after the close */
 
-  if (logfile_fd == -1)
-  {
+  if (logfile_fd == -1) {
     return;
   }
 
