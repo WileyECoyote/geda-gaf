@@ -1011,14 +1011,16 @@ SCM g_rc_scheme_directory(SCM s_path)
               SCM_ARG1, "scheme-directory");
 
   /* take care of any shell variables */
-  temp = scm_to_utf8_string (s_path);
+  temp     = scm_to_utf8_string (s_path);
   expanded = u_expand_env_variable (temp);
-  s_path = scm_from_utf8_string (expanded);
+  s_path   = scm_from_utf8_string (expanded);
+
   free (temp);
   GEDA_FREE (expanded);
 
   s_load_path_var = scm_c_lookup ("%load-path");
-  s_load_path = scm_variable_ref (s_load_path_var);
+  s_load_path     = scm_variable_ref (s_load_path_var);
+
   scm_variable_set_x (s_load_path_var, scm_cons (s_path, s_load_path));
 
   scm_remember_upto_here_2 (s_load_path_var, s_load_path);

@@ -684,7 +684,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 #endif
 
   /* Label image size selector combo */
-  size_combo =  create_size_menu ();
+  size_combo = create_size_menu ();
   gtk_box_pack_start (GTK_BOX (vbox1), size_combo, TRUE, TRUE, 0);
   gtk_widget_show(vbox1);
 

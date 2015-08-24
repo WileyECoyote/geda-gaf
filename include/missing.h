@@ -1,7 +1,7 @@
-
 /* This file contains preprocessor macros which provide substitutes
  * for missing functions or other definitions based on the results of
- * configure. */
+ * configure.
+ */
 
 /* We need to be able to pass UTF-8 strings to and from libguile.  The
  * most forward-compatible way to do this is to explicitly use the
@@ -41,9 +41,9 @@
 #ifndef GDK_BUTTON_PRIMARY
 #define GDK_BUTTON_PRIMARY      (1)
 #endif
-#define DRAG_ICON_MAX_WIDTH 250
-#define DRAG_ICON_MAX_HEIGHT 250
-#define DRAG_ICON_LAYOUT_BORDER 5
-#define DRAG_ICON_MAX_LINES 7
-#define ELLIPSIS_CHARACTER "\xe2\x80\xa6"
+#define DRAG_ICON_MAX_WIDTH     250
+#define DRAG_ICON_MAX_HEIGHT    250
+#define DRAG_ICON_LAYOUT_BORDER   5
+#define DRAG_ICON_MAX_LINES       7
+#define ELLIPSIS_CHARACTER      "\xe2\x80\xa6"
 
