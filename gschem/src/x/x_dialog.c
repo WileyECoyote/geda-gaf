@@ -405,6 +405,8 @@ void about_dialog (GschemToplevel *w_current)
         char *comments;
   const char *copyright;
   const char *gEDA_str;
+  const char *guile_str;
+        char *guile_ver;
   GdkPixbuf  *logo;
   GError     *error = NULL;
   GtkWidget  *Dialog;
@@ -426,11 +428,17 @@ void about_dialog (GschemToplevel *w_current)
     }
   }
 
-  gEDA_str  = _("gEDA: GPL Electronic Design Automation\nglibc ");
+  gEDA_str  = _("gEDA: GPL Electronic Design Automation\n\nglibc ");
+  guile_str = _("\nGuile ");
 
-  comments  = u_string_concat (gEDA_str, gnu_get_libc_version(), NULL);
+  guile_ver = scm_to_utf8_string(scm_version());
 
-  copyright = _("Copyright © 1998-2015 Ales Hvezda"
+  comments  = u_string_concat (gEDA_str, gnu_get_libc_version(),
+                               guile_str, guile_ver, NULL);
+
+  free(guile_ver);
+
+  copyright = _("\nCopyright © 1998-2015 Ales Hvezda"
                 " <ahvezda@geda.seul.org>\n"
                 "Copyright © 1998-2015 gEDA Contributors"
                 " (see ChangeLog for details)");
