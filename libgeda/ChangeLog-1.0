@@ -1,19 +1,26 @@
+2015-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * New Feature: Environment variable "GEDALOGS" for location of logs.
+
+    * src/libgeda.c: Revise function libgeda_init to check environment for
+      GEDALOGS set to a valid path
+
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * New Feature: Allow configurable log locations.
 
-     * src/utility/u_log.c: Revise u_log_init to check and use default_log_directory
-       if set.
+    * src/utility/u_log.c: Revise u_log_init to check and use default_log_directory
+      if set.
 
-     * include/i_vars_priv.h: Add declare extern "default_log_directory".
+    * include/i_vars_priv.h: Add declare extern "default_log_directory".
 
-     * src/guile/g_rc.c: Add funtion g_rc_log_directory.
+    * src/guile/g_rc.c: Add funtion g_rc_log_directory.
 
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/utility/u_log.c: Adjusted len calculation in u_log_handler to
-       account for trailing NULL to prevent buffer over-runs, increase
-       write buffer, LOG_WRITE_BUFFER_SIZE from 256 to 1024.
+    * src/utility/u_log.c: Adjusted len calculation in u_log_handler to
+      account for trailing NULL to prevent buffer over-runs, increase
+      write buffer, LOG_WRITE_BUFFER_SIZE from 256 to 1024.
 
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -24,36 +31,36 @@
 
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/utility/u_string.c: Revise u_string_sprintf to reset va_start/va_end arguments.
+    * src/utility/u_string.c: Revise u_string_sprintf to reset va_start/va_end arguments.
 
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/utility/u_string.c: Add function u_string_strsize to to help determine
-       required size for string.
+    * src/utility/u_string.c: Add function u_string_strsize to to help determine
+      required size for string.
 
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/struct/s_clib.c: Eliminate char keytype in s_clib_search, also
-       g_critical -> BUG_IMSG. Do not return early from function
-       s_clib_get_symbol_by_name.
+    * src/struct/s_clib.c: Eliminate char keytype in s_clib_search, also
+      g_critical -> BUG_IMSG. Do not return early from function
+      s_clib_get_symbol_by_name.
 
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/scheme/scheme_complex.c: Revise flow in function make_complex_library;
-       do not manipulate stack if symbols does not exist.
+    * src/scheme/scheme_complex.c: Revise flow in function make_complex_library;
+      do not manipulate stack if symbols does not exist.
 
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-     * scheme/unit-tests/t0113-object-library.scm: Move setting up and reset
-       of component library inside component/library function.
+    * scheme/unit-tests/t0113-object-library.scm: Move setting up and reset
+      of component library inside component/library function.
 
 2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
-     * scheme/unit-tests/t0105-object-complex.scm: Replace dynamic-wind block
-       with begin.
+    * scheme/unit-tests/t0105-object-complex.scm: Replace dynamic-wind block
+      with begin.
 
-     * scheme/unit-tests/t0200-page.scm: Replace dynamic-wind block
-       with begin.
+    * scheme/unit-tests/t0200-page.scm: Replace dynamic-wind block
+      with begin.
 
 2015-08-10 Wiley E. Hill <wileyhill@gmail.com>
 

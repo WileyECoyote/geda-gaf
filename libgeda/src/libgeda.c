@@ -70,6 +70,7 @@ static void *libgeda_guile_init(void *lame)
 void libgeda_init(void)
 {
   int lame;
+  const char *env_path;
 
 #ifdef ENABLE_NLS
   /* Initialise gettext */
@@ -77,7 +78,21 @@ void libgeda_init(void)
   bind_textdomain_codeset(LIBGEDA_GETTEXT_DOMAIN, "UTF-8");
 #endif
 
-  /* Initialise gobject */
+  /* Check environment for location to write logs */
+  env_path = getenv ("GEDALOGS");
+  if (env_path != NULL) {
+    char *path = u_string_sprintf ("%s", env_path);
+    if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
+      default_log_directory = path;
+    }
+    else {
+      fprintf (stderr, "Environment varible GEDALOGS invalid[%s], %s\n",
+               path, strerror (errno));
+      GEDA_FREE(path);
+    }
+  }
+
+  /* Initialize gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init();
 #endif
