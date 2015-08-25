@@ -150,7 +150,7 @@ void s_traverse_start(GedaToplevel * pr_current)
     }
   }
 
-  /* now that all the sheets have been read, go through and do the */
+  /* now that all sheets have been read, go through and do the */
   /* post processing work */
   s_netlist_post_process(pr_current, netlist_head);
 

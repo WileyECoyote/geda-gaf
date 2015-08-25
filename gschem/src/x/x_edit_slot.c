@@ -140,12 +140,14 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
   }
 
 }
+
 /*! \brief Create the slot entry dialog
  *  \par Function Description
  *  This function creates the slot edit dialog.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object
- *  \param [in] string    Optional Pointer to slot string
+ *  \param [in] slots     Pointer to numslots value string
+ *  \param [in] slot      Pointer to slot value string
  */
 void
 x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *slot)

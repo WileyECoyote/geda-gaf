@@ -571,7 +571,7 @@ SCM g_get_pins_nets(SCM scm_uref)
  *  \param [in] scm_uref           Package reference.
  *  \param [in] scm_wanted_attrib  Attribute name.
  *
- *  \return A list of attribute values as strings and #f.
+ *  \return A list of attribute values as strings and FALSE.
  */
 SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 {

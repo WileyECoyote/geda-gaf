@@ -775,12 +775,14 @@ SCM g_rc_thin_pin_width (SCM width)
 }
 /* End Style Related RC varibles */
 
-
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the always-promote-attributes SCM keyword.
  *  \par Function Description
+ *  This function create a list of attribute string that are alway to be
+ *  promoted when symbols file are loaded. A pointer to the list is stored
+ *  to default_always_promote_attributes.
  *
- *  \param [in] attrlist
+ *  \param [in] attrlist Can be a space seperated list of string or a SCM list
+ *
  *  \return SCM_BOOL_T always.
  */
 SCM g_rc_always_promote_attributes(SCM attrlist)
@@ -795,8 +797,6 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
   if (scm_is_string (attrlist)) {
     char *temp;
-    /*u_log_message(_("WARNING: using a string for 'always-promote-attributes'"
-    " is deprecated. Use a list of strings instead\n")); or not */ /* How do we do that? */
 
     /* convert the space separated strings into a GList */
     temp = scm_to_utf8_string (attrlist);
