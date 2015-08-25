@@ -363,7 +363,7 @@ footprint=TQFP-100-14-EP
 T 400 11700 5 10 0 0 0 0 1
 author=AutoTron
 T 400 10900 5 10 0 0 0 0 1
-documentation=http://www.ti.com/product/TMS320F28075/
+documentation=http://www.ti.com/product/TMS320F28069/
 T 400 11100 5 10 0 0 0 0 1
 description=Piccolo Microcontroller, 90MHz
 T 3400 10100 5 10 0 0 0 0 1
