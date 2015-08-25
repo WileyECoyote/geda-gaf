@@ -66,7 +66,7 @@ struct _GedaToplevel {
   char  *untitled_name;           /* untitled sch basename */
   int    num_untitled;            /* keep track of untitled pages */
 
-  char  *bitmap_directory;         /* path of the bitmaps */
+  char  *bitmap_directory;        /* path of the bitmaps */
 
   /* page system */
   Page     *page_current;

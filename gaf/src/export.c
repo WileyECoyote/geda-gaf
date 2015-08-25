@@ -186,7 +186,7 @@ cmd_export_impl (void *data, int argc, char **argv)
   }
   scm_dynwind_end ();
 
-  i_vars_libgeda_set (toplevel); /* Ugh */
+  i_vars_libgeda_set (toplevel);
 
   /* Parse configuration files */
   export_config ();
@@ -384,7 +384,8 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
    * sensible default. */
   if (settings.margins[0] >= 0) {
     memcpy (m, settings.margins, 4*sizeof(double));
-  } else if (settings.paper != NULL) {
+  }
+  else if (settings.paper != NULL) {
     m[0] = gtk_paper_size_get_default_top_margin (settings.paper, GTK_UNIT_POINTS);
     m[1] = gtk_paper_size_get_default_left_margin (settings.paper, GTK_UNIT_POINTS);
     m[2] = gtk_paper_size_get_default_bottom_margin (settings.paper, GTK_UNIT_POINTS);
@@ -860,6 +861,7 @@ static bool
 export_parse_paper (const char *paper)
 {
   GtkPaperSize *paper_size = gtk_paper_size_new (paper);
+
   if (paper_size == NULL) return FALSE;
 
   if (settings.paper != NULL) gtk_paper_size_free (settings.paper);

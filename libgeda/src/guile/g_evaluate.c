@@ -38,8 +38,10 @@ static void process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **er
  */
 static void
 process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err) {
+
   char *long_message;
   char *short_message;
+
   SCM s_port, s_subr, s_message, s_message_args, s_rest, s_location;
 
   /* Split s_args up */
@@ -56,12 +58,14 @@ process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err) {
 
   /* Capture long error message (including possible backtrace) */
   s_port = scm_open_output_string ();
+
   if (scm_is_true (scm_stack_p (s_stack))) {
     scm_puts (_("\nBacktrace:\n"), s_port);
     scm_display_backtrace (s_stack, s_port, SCM_BOOL_F, SCM_BOOL_F);
   }
 
   s_location = SCM_BOOL_F;
+
 #ifdef HAVE_SCM_DISPLAY_ERROR_STACK
   s_location = s_stack;
 #endif /* HAVE_SCM_DISPLAY_ERROR_STACK */
@@ -74,6 +78,7 @@ process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err) {
                      s_message, s_message_args, s_rest);
 
   long_message = scm_to_utf8_string (scm_get_output_string (s_port));
+
   scm_close_output_port (s_port);
 
   /* Send long message to log */
@@ -156,6 +161,8 @@ SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
                         &stack                         /* pre data */
                         );
 
+
+
   scm_remember_upto_here_2 (body_data, stack);
   return result;
 }
@@ -167,23 +174,6 @@ static SCM protected_body_eval_string (void *data)
 {
   SCM str = *((SCM *)data);
   return scm_eval_string (str);
-}
-
-/*! \brief Evaluate a string as a Scheme expression safely
- *  \par Function Description
- *
- *  Evaluates string like scm_c_eval_string().  Simple wrapper for
- *  g_scm_eval_string_protected().
- *
- *  \param str  String to evaluate.
- *
- *  \returns Evaluation results or SCM_BOOL_F if exception caught.
- */
-SCM g_scm_c_eval_string_protected (const char *str) {
-  SCM s_str;
-  g_return_val_if_fail ((str != NULL), SCM_BOOL_F);
-  s_str = scm_from_utf8_string (str);
-  return g_scm_eval_string_protected (s_str);
 }
 
 /*! \brief Evaluate a string as a Scheme expression safely
@@ -282,6 +272,25 @@ g_read_scheme_file__pre_handler (struct g_read_scheme_file_data_t *data, SCM key
   data->stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);
   return SCM_BOOL_F;
 }
+
+/*! \brief Evaluate a string as a Scheme expression safely
+ *  \par Function Description
+ *
+ *  Evaluates string like scm_c_eval_string().  Simple wrapper for
+ *  g_scm_eval_string_protected().
+ *
+ *  \param str  String to evaluate.
+ *
+ *  \returns Evaluation results or SCM_BOOL_F if exception caught.
+ */
+SCM g_scm_c_eval_string_protected (const char *str) {
+  SCM s_str;
+  g_return_val_if_fail ((str != NULL), SCM_BOOL_F);
+
+  s_str = scm_from_utf8_string (str);
+  return g_scm_eval_string_protected (s_str);
+}
+
 
 /*! \brief Load a Scheme file, catching and logging errors.
  * \par Function Description

@@ -362,6 +362,7 @@ static void log_message (Console *console, const char *message, const char *styl
 void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char *message)
 {
   char *style;
+
   g_return_if_fail (console_dialog != NULL);
 
   if (log_level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR)) {

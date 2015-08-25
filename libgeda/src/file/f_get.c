@@ -131,7 +131,7 @@ char *f_get_bitmap_filespec (const char *filename)
     seperator = DIR_SEPARATOR_S;
 
     if (directory) {
-      /*default_bitmap_directory was checked by g_rc, we double check here
+      /* default_bitmap_directory was checked by g_rc, we double check here
        * because the directory could have been removed */
       if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
         filespec = u_string_concat (directory, seperator, filename, NULL);

@@ -361,6 +361,7 @@ static void g_rc_parse__process_error (GError **err, const char *pname)
 
   /* Take no chances; if err was not set for some reason, bail out. */
   if (*err == NULL) {
+
     const char *msgl =
       _("ERROR: An unknown error occurred while parsing configuration files.");
     u_log_message ("%s\n", msgl);

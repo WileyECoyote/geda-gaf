@@ -877,8 +877,7 @@ SCM g_rc_bitmap_directory(SCM path)
   char *string;
   char *temp;
 
-  SCM_ASSERT (scm_is_string (path), path,
-              SCM_ARG1, "bitmap-directory");
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "bitmap-directory");
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);

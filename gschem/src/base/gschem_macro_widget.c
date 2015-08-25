@@ -163,7 +163,7 @@ finalize (GObject *object)
  *  \param [in]     pspec
  */
 static void
-get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
+get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
 {
   GschemMacroWidget *gmw     = GSCHEM_MACRO_WIDGET (object);
   GtkWidget         *widget  = (GtkWidget*)gmw;

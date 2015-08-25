@@ -107,6 +107,7 @@ static void geda_toplevel_instance_init( GTypeInstance *instance, void *g_class 
   toplevel->untitled_name          = NULL;
   toplevel->num_untitled           = 0;
   toplevel->bitmap_directory       = NULL;
+
 /*
   toplevel->init_left              = 0;
   toplevel->init_top               = 0;
