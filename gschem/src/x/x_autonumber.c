@@ -563,7 +563,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
                                              (GCompareFunc) freeslot_compare);
               if (slot_item != NULL) { /* duplicate slot in used_slots */
                 u_log_message(_("duplicate slot may cause problems: "
-                "[symbolname=%s, number=%d, slot=%d]\n"),
+                                "[symbol name=%s, number=%d, slot=%d]\n"),
                 slot->symbolname, slot->number, slot->slotnr);
                 GEDA_FREE(slot);
               }

@@ -135,7 +135,7 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
        iter = g_list_next(iter))
     iter->data = u_string_strdup(iter->data);
 
-  /* you cannot free the default* strings here since new windows */
+  /* Cannot free the default* strings here since new windows */
   /* need them */
   INIT_STR(toplevel, untitled_name   ,   DEFAULT_UNTITLED_NAME   );
   INIT_STR(toplevel, bitmap_directory,   DEFAULT_BITMAP_DIRECTORY);
