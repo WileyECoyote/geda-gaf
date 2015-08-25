@@ -51,10 +51,6 @@
 #define GEDA_IS_ACCEL_LABEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ACCEL_LABEL))
 #define GEDA_ACCEL_LABEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACCEL_LABEL, GedaAccelLabelClass))
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 typedef struct _GedaAccelLabel       GedaAccelLabel;
 typedef struct _GedaAccelLabelClass  GedaAccelLabelClass;
 
@@ -72,6 +68,9 @@ struct _GedaAccelLabelClass
   GtkAccelLabelClass  parent_class;
 };
 
+
+BEGIN_DECLS
+
 GedaType      geda_accel_label_get_type          (void) G_GNUC_CONST;
 GtkWidget*    geda_accel_label_new               (const char     *string);
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
@@ -84,8 +83,6 @@ char *_geda_accel_label_class_get_accelerator_label (GedaAccelLabelClass *class,
                                                      unsigned int         accelerator_key,
                                                      GdkModifierType      accelerator_mods);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+END_DECLS
 
 #endif /* __GEDA_ACCEL_LABEL_H__ */
