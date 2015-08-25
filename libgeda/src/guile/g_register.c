@@ -61,20 +61,23 @@ static struct gsubr_t libgeda_funcs[] = {
   { "thin-net-width",             1, 0, 0, g_rc_thin_net_width },
   { "thin-pin-width",             1, 0, 0, g_rc_thin_pin_width },
 
-  { "untitled-name",              1, 0, 0, g_rc_untitled_name },
-  { "scheme-directory",           1, 0, 0, g_rc_scheme_directory },
-  { "bitmap-directory",           1, 0, 0, g_rc_bitmap_directory },
-  { "postscript-prolog",          1, 0, 0, g_rc_postscript_prolog },
   { "attribute-promotion",        1, 0, 0, g_rc_attribute_promotion },
   { "promote-invisible",          1, 0, 0, g_rc_promote_invisible },
   { "keep-invisible",             1, 0, 0, g_rc_keep_invisible },
   { "always-promote-attributes",  1, 0, 0, g_rc_always_promote_attributes },
+
+  { "bitmap-directory",           1, 0, 0, g_rc_bitmap_directory },
+  { "log-directory",              1, 0, 0, g_rc_log_directory },
+  { "scheme-directory",           1, 0, 0, g_rc_scheme_directory },
+
   { "check-symbol-version",       1, 0, 0, g_rc_check_symbol_version },
+  { "postscript-prolog",          1, 0, 0, g_rc_postscript_prolog },
   { "make-backup-files",          1, 0, 0, g_rc_make_backup_files },
   { "print-color-map",            0, 1, 0, g_rc_print_color_map },
-  { "show-full-path",             1, 0, 0, g_rc_show_full_path },
   { "rc-filename",                0, 0, 0, g_rc_rc_filename },
   { "rc-config",                  0, 0, 0, g_rc_rc_config },
+  { "show-full-path",             1, 0, 0, g_rc_show_full_path },
+  { "untitled-name",              1, 0, 0, g_rc_untitled_name },
   { NULL,                         0, 0, 0, NULL } };
 
 /*! \brief Register all libgeda functions with scheme.

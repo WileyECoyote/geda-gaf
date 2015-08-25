@@ -1,3 +1,9 @@
+2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Tweak startup to initialize logging (u_log_init) after
+      parsing initialization file to allow user to specify the path to logs
+      during initialization.
+
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Translation message "Notice: net attribute using defined pin number".

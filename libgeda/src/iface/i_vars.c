@@ -24,9 +24,12 @@
 
 #include <geda_debug.h>
 
-char  *default_untitled_name             = NULL;
+
 char  *default_bitmap_directory          = NULL;
+char  *default_log_directory             = NULL;
 char  *default_postscript_prolog         = NULL;
+char  *default_untitled_name             = NULL;
+
 GList *default_always_promote_attributes = NULL;
 GList *default_component_groups          = NULL;
 
@@ -149,9 +152,10 @@ void i_vars_libgeda_freenames()
 {
   GList *iter;
 
-  GEDA_FREE(default_untitled_name);
   GEDA_FREE(default_bitmap_directory);
+  GEDA_FREE(default_log_directory)
   GEDA_FREE(default_postscript_prolog);
+  GEDA_FREE(default_untitled_name);
 
   g_list_foreach(default_always_promote_attributes, (GFunc) g_free, NULL);
   g_list_free(default_always_promote_attributes);

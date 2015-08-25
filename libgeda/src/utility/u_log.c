@@ -155,11 +155,16 @@ void u_log_init (const char *prefix)
   full_prefix_len = strlen (full_prefix);
 
   /* Find/create the directory where we are going to put the logs.
-   * FIXME should this be configured somehow? WEH:Yes it should!
-   *
    * Then run through it finding the "biggest" existing filename with
    * a matching prefix & date. */
-  dir_path = g_build_filename (f_path_user_config (), "logs", NULL);
+
+  if (default_log_directory) {
+    dir_path = default_log_directory;
+  }
+  else {
+    const char *user_dir = f_path_user_config();
+    dir_path = g_build_filename(user_dir, "logs", NULL);
+  }
 
   /* Try to create the directory. */
   if (f_path_create (dir_path, 0777 /*octal*/ ) != 0) {
@@ -226,7 +231,11 @@ void u_log_init (const char *prefix)
 
     GEDA_FREE (filename);
   }
-  GEDA_FREE (dir_path);
+
+  if (!default_log_directory) {
+    GEDA_FREE (dir_path);;
+  }
+
   GEDA_FREE (full_prefix);
 }
 

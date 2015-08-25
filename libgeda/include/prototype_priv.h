@@ -40,15 +40,18 @@ SCM  g_rc_thin_pin_width               (SCM mode);
 
 SCM  g_rc_always_promote_attributes    (SCM scmsymname);
 SCM  g_rc_attribute_promotion          (SCM mode);
-SCM  g_rc_bitmap_directory             (SCM path);
 SCM  g_rc_keep_invisible               (SCM mode);
+
+SCM  g_rc_bitmap_directory             (SCM path);
+SCM  g_rc_log_directory                (SCM path);
+SCM  g_rc_scheme_directory             (SCM path);
 
 SCM  g_rc_check_symbol_version         (SCM mode);
 SCM  g_rc_make_backup_files            (SCM mode);
 SCM  g_rc_postscript_prolog            (SCM scmsymname);
 SCM  g_rc_print_color_map              (SCM scm_map);
 SCM  g_rc_promote_invisible            (SCM mode);
-SCM  g_rc_scheme_directory             (SCM path);
+
 SCM  g_rc_untitled_name                (SCM name);
 SCM  g_rc_show_full_path               (SCM mode);
 

@@ -848,6 +848,22 @@ SCM g_rc_attribute_promotion(SCM mode)
                    2);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+SCM g_rc_keep_invisible(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , "enabled" },
+    {FALSE, "disabled"},
+  };
+
+  RETURN_G_RC_MODE("keep-invisible",
+                   default_keep_invisible,
+                   2);
+}
 
 /*! \todo Finish function description!!!
  *  \brief
@@ -882,21 +898,74 @@ SCM g_rc_bitmap_directory(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
+/*! \todo Finish function description!!!
  *  \brief
  *  \par Function Description
  *
+ *  \param [in] path
+ *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
-SCM g_rc_keep_invisible(SCM mode)
+SCM g_rc_log_directory(SCM path)
 {
-  static const vstbl_entry mode_table[] = {
-    {TRUE , "enabled" },
-    {FALSE, "disabled"},
-  };
+  char *string;
+  char *temp;
 
-  RETURN_G_RC_MODE("keep-invisible",
-                   default_keep_invisible,
-                   2);
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "log-directory");
+
+  /* take care of any shell variables */
+  temp = scm_to_utf8_string (path);
+  string = u_expand_env_variable (temp);
+  free (temp);
+
+  /* invalid path? */
+  if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
+    fprintf (stderr, "Path invalid[%s], %s\n", string, strerror (errno));
+    GEDA_FREE(string);
+    return SCM_BOOL_F;
+  }
+
+  GEDA_FREE(default_log_directory);
+  default_log_directory = string;
+
+  return SCM_BOOL_T;
+}
+
+
+/*! \brief Add a directory to the Guile load path.
+ * \par Function Description
+ * Prepends \a s_path to the Guile system '%load-path', after
+ * expanding environment variables.
+ *
+ *  \param [in] s_path  Path to be added.
+ *  \return SCM_BOOL_T.
+ */
+SCM g_rc_scheme_directory(SCM s_path)
+{
+  char *temp;
+  char *expanded;
+  SCM s_load_path_var;
+  SCM s_load_path;
+
+  SCM_ASSERT (scm_is_string (s_path), s_path,
+              SCM_ARG1, "scheme-directory");
+
+  /* take care of any shell variables */
+  temp     = scm_to_utf8_string (s_path);
+  expanded = u_expand_env_variable (temp);
+  s_path   = scm_from_utf8_string (expanded);
+
+  free (temp);
+  GEDA_FREE (expanded);
+
+  s_load_path_var = scm_c_lookup ("%load-path");
+  s_load_path     = scm_variable_ref (s_load_path_var);
+
+  scm_variable_set_x (s_load_path_var, scm_cons (s_path, s_load_path));
+
+  scm_remember_upto_here_2 (s_load_path_var, s_load_path);
+  scm_remember_upto_here_1 (s_path);
+
+  return SCM_BOOL_T;
 }
 
 /*! \brief This function handles the check-symbol-version SCM keyword.
@@ -990,43 +1059,6 @@ SCM g_rc_promote_invisible(SCM mode)
   RETURN_G_RC_MODE("promote-invisible",
                    default_promote_invisible,
                    2);
-}
-
-/*! \brief Add a directory to the Guile load path.
- * \par Function Description
- * Prepends \a s_path to the Guile system '%load-path', after
- * expanding environment variables.
- *
- *  \param [in] s_path  Path to be added.
- *  \return SCM_BOOL_T.
- */
-SCM g_rc_scheme_directory(SCM s_path)
-{
-  char *temp;
-  char *expanded;
-  SCM s_load_path_var;
-  SCM s_load_path;
-
-  SCM_ASSERT (scm_is_string (s_path), s_path,
-              SCM_ARG1, "scheme-directory");
-
-  /* take care of any shell variables */
-  temp     = scm_to_utf8_string (s_path);
-  expanded = u_expand_env_variable (temp);
-  s_path   = scm_from_utf8_string (expanded);
-
-  free (temp);
-  GEDA_FREE (expanded);
-
-  s_load_path_var = scm_c_lookup ("%load-path");
-  s_load_path     = scm_variable_ref (s_load_path_var);
-
-  scm_variable_set_x (s_load_path_var, scm_cons (s_path, s_load_path));
-
-  scm_remember_upto_here_2 (s_load_path_var, s_load_path);
-  scm_remember_upto_here_1 (s_path);
-
-  return SCM_BOOL_T;
 }
 
 /*! \todo Finish function description!!!

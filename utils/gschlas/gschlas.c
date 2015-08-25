@@ -41,10 +41,6 @@ main_prog(void *closure, int argc, char *argv[])
 
   libgeda_init();
 
-  /* create log file right away */
-  /* even if logging is enabled */
-  u_log_init ("gschlas");
-
   log_destiny=STDOUT_TTY;
 
 #if defined(__MINGW32__) && defined(DEBUG)
@@ -56,9 +52,13 @@ main_prog(void *closure, int argc, char *argv[])
   /* register guile (scheme) functions */
   g_register_funcs();
 
-  pr_current = geda_toplevel_new ();
   g_rc_parse (argv[0], "gschlasrc", rc_filename);
+
+  pr_current = geda_toplevel_new ();
   i_vars_set(pr_current);
+
+  /* create log file right away even if logging is enabled */
+  u_log_init ("gschlas");
 
   i = argv_index;
   while (argv[i] != NULL) {

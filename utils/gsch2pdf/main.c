@@ -803,25 +803,24 @@ static void main2(void *closure, int argc, char *argv[])
 
     libgeda_init();
 
-    u_log_init ("gsch2pdf");
-
-    current = geda_toplevel_new();
-
     rc_config_init();
     rc_config_set_print_settings(print_settings);
 
     g_rc_parse(argv[0], "gsch2pdfrc", NULL);
 
+    u_log_init ("gsch2pdf");
+
+    current = geda_toplevel_new();
     i_vars_libgeda_set(current);
 
-    for (i=1; i<argc; i++)
-    {
+    for (i = 1; i < argc; i++) {
+
         Page *page = s_page_new(current, argv[i]);
 
         int success = f_open(current, page, argv[i], NULL);
 
-        if (success && need_cairo_init)
-        {
+        if (success && need_cairo_init) {
+
             surface =
               cairo_pdf_surface_create("output.pdf",
                                        72.0 * print_settings_get_page_width(print_settings),
@@ -835,8 +834,8 @@ static void main2(void *closure, int argc, char *argv[])
             need_cairo_init = FALSE;
         }
 
-        if (success)
-        {
+        if (success) {
+
             print_page(current, cairo, page);
 
             cairo_show_page(cairo);

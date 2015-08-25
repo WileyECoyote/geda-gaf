@@ -27,9 +27,10 @@ extern int default_fill_angle1;
 extern int default_fill_pitch2;
 extern int default_fill_angle2;
 
-extern char *default_untitled_name;
 extern char *default_bitmap_directory;
+extern char *default_log_directory;
 extern char *default_postscript_prolog;
+extern char *default_untitled_name;
 
 extern GList *default_always_promote_attributes;
 extern GList *default_component_groups;

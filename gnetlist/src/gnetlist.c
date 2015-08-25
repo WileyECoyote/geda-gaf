@@ -182,6 +182,25 @@ void main_prog(void *closure, int argc, char *argv[])
 
   libgeda_init();
 
+#if defined(__MINGW32__) && defined(DEBUG)
+  printf( "This is the MINGW32 port.\n\n");
+#endif
+
+  /* register guile (scheme) functions */
+  g_register_funcs();
+
+  scm_dynwind_begin (0);
+
+  pr_current = geda_toplevel_new ();
+
+  edascm_dynwind_toplevel (pr_current);
+
+  /* Evaluate Scheme expressions that need to be run before rc files
+   * are loaded. */
+  scm_eval (pre_rc_list, scm_current_module ());
+
+  g_rc_parse (argv[0], "gnetlistrc", rc_filename);
+
   /* create log file right away */
   /* WEH: even if logging is not enabled */
   u_log_init ("gnetlist");
@@ -194,23 +213,6 @@ void main_prog(void *closure, int argc, char *argv[])
   (_("This is free software, and you are welcome to redistribute it under certain\n"));
   u_log_message
   (_("conditions; please see the COPYING file for more details.\n\n"));
-
-#if defined(__MINGW32__) && defined(DEBUG)
-  printf( "This is the MINGW32 port.\n\n");
-#endif
-
-  /* register guile (scheme) functions */
-  g_register_funcs();
-
-  scm_dynwind_begin (0);
-  pr_current = geda_toplevel_new ();
-  edascm_dynwind_toplevel (pr_current);
-
-  /* Evaluate Scheme expressions that need to be run before rc files
-   * are loaded. */
-  scm_eval (pre_rc_list, scm_current_module ());
-
-  g_rc_parse (argv[0], "gnetlistrc", rc_filename);
 
   /* immediately setup configuration and user params */
   i_vars_init_gnetlist_defaults ();

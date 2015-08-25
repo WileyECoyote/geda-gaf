@@ -274,11 +274,18 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* Initialize gEDA stuff */
   libgeda_init();
 
-  verbose_mode=FALSE;
-  quiet_mode=FALSE;
+  verbose_mode = FALSE;
+  quiet_mode   = FALSE;
+
   /* Note that argv_index holds index to first non-flag command line option
    * (that is, to the first file name) */
   argv_index = parse_commandline(argc, argv);
+
+  /* register guile (scheme) functions, this is necessary to parse RC file */
+  g_register_funcs();
+
+  /* ----- Read in RC files.   ----- */
+  g_rc_parse (argv[0], "gattribrc", NULL);
 
   /* ----------  create log file right away ---------- */
   u_log_init ("gattrib");
@@ -286,14 +293,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
                                                   PACKAGE_DOTTED_VERSION,
                                                   PACKAGE_DATE_VERSION);
 
-  /* register guile (scheme) functions, this is necessary to parse RC file */
-  g_register_funcs();
-
   /* Start creation of new project: (GedaToplevel *pr_current) */
   pr_current = geda_toplevel_new(); /* geda_toplevel_new is in Libgeda */
-
-  /* ----- Read in RC files.   ----- */
-  g_rc_parse (argv[0], "gattribrc", NULL);
 
   i_vars_set(pr_current);
 

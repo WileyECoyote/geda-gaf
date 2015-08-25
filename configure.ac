@@ -10,7 +10,7 @@ dnl directory.
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [1])
 m4_define([geda_micro_version],   [0])
-m4_define([geda_mutation],        [7])
+m4_define([geda_mutation],        [8])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -44,10 +44,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20150703])
+AX_GIT_VERSION([20150823])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20150703])
+AC_SUBST([CHANGELOG_BASE], [1.0-20150823])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -197,7 +197,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:13:0])
+AX_LIBGEDA([50:14:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:3:0])

@@ -49,25 +49,24 @@ main_prog(void *closure, int argc, char *argv[])
 
   libgeda_init();
 
-  /* create log file right away */
-  /* even if logging is enabled */
-  x_log_update_func = s_log_update;
-  u_log_init ("gsymcheck");
-
-  log_destiny=STDOUT_TTY;
-
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
+
+  //log_destiny=STDOUT_TTY;
 
   log_destiny=-1; /* don't output to the screen for now */
 
   /* register guile (scheme) functions */
   g_register_funcs();
 
-  pr_current = geda_toplevel_new ();
   g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
+  /* create log file right away even if logging is enabled */
+  x_log_update_func = s_log_update;
+  u_log_init ("gsymcheck");
+
+  pr_current = geda_toplevel_new ();
   i_vars_set(pr_current);
 
   i = argv_index;

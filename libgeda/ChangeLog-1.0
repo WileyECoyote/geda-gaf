@@ -1,5 +1,16 @@
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * New Feature: Allow configurable log locations.
+
+     * src/utility/u_log.c: Revise u_log_init to check and use default_log_directory
+       if set.
+
+     * include/i_vars_priv.h: Add declare extern "default_log_directory".
+
+     * src/guile/g_rc.c: Add funtion g_rc_log_directory.
+
+2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
      * src/utility/u_log.c: Adjusted len calculation in u_log_handler to
        account for trailing NULL to prevent buffer over-runs, increase
        write buffer, LOG_WRITE_BUFFER_SIZE from 256 to 1024.

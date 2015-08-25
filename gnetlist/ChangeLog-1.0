@@ -1,3 +1,9 @@
+2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gnetlist.c: Tweak startup to initialize logging (u_log_init) after
+      parsing initialization file to allow user to specify the path to logs
+      during initialization.
+
 2015-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Replace calling flags with get-backend-arguments.
