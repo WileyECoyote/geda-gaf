@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-14 02:49-0500\n"
+"POT-Creation-Date: 2015-08-25 08:56-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:420
+#: gnetlist/src/g_netlist.c:479
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
@@ -37,59 +37,42 @@ msgstr ""
 "Lijst van beschikbare backends:\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:192
+#: gnetlist/src/gnetlist.c:211
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:194
+#: gnetlist/src/gnetlist.c:213
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:196
+#: gnetlist/src/gnetlist.c:215
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:242
+#: gnetlist/src/gnetlist.c:247
 #, fuzzy, c-format
 msgid "Loading schematic <%s>\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:243
+#: gnetlist/src/gnetlist.c:248
 #, c-format
 msgid "Loading schematic [%s]\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:249
+#: gnetlist/src/gnetlist.c:254
 #, fuzzy, c-format
 msgid "load failed [%s]: %s\n"
 msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
 
-#: gnetlist/src/gnetlist.c:267 gnetlist/src/gnetlist.c:319
+#: gnetlist/src/gnetlist.c:272 gnetlist/src/gnetlist.c:321
 #, fuzzy, c-format
 msgid "ERROR: File System, could change to directory [%s:] %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
-
-#: gnetlist/src/gnetlist.c:274
-#, fuzzy, c-format
-msgid "ERROR: No schematics files specified for processing.\n"
-msgstr ""
-"FOUT: Geen schema bestanden gespecificeerd voor verwerking.\n"
-"\n"
-"Doe `%s --help' voor meer informatie.\n"
-
-#: gnetlist/src/gnetlist.c:275 gnetlist/src/parsecmd.c:241
-#, c-format
-msgid ""
-"\n"
-"Run `%s --help' for more information.\n"
-msgstr ""
-"\n"
-"Doe `%s --help' voor meer informatie.\n"
 
 #: gnetlist/src/gnetlist.c:296
 #, fuzzy, c-format
@@ -109,7 +92,7 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:340
+#: gnetlist/src/gnetlist.c:343
 #, fuzzy, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
@@ -117,7 +100,7 @@ msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
 #: gnetlist/src/parsecmd.c:68
 #, fuzzy, c-format
 msgid ""
-"Usage: %s [OPTION ...] [-g BACKEND] [--] FILE ...\n"
+"Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
 "\n"
 "Generate a netlist from one or more gEDA schematic FILEs.\n"
 "\n"
@@ -133,9 +116,13 @@ msgid ""
 "  -c <expresion>  Evaluate Scheme expression at startup.\n"
 "  -i              Enter interactive Scheme REPL after loading.\n"
 "  --list-backends Print a list of available netlist backends.\n"
-"  -h, --help      Help; this message.\n"
-"  -V, --version   Show version information.\n"
+"  -h, --help      Display usage and parameter information.\n"
+"  -V, --version   Show gnetlist or a backend version information.\n"
 "  --              Treat all remaining arguments as filenames.\n"
+"\n"
+"  Note: Help and version arguments are positional relative to the.\n"
+"  backend argument, when specified after the backend, details specific\n"
+"  to the backend will be displayed.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf homepage: <http://www.geda-project.org/>\n"
@@ -163,7 +150,7 @@ msgstr ""
 "Rapporteer gebreken op <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 
-#: gnetlist/src/parsecmd.c:230
+#: gnetlist/src/parsecmd.c:249
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -172,7 +159,7 @@ msgstr ""
 "FOUT: -%c optie vereist een argument.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:234
+#: gnetlist/src/parsecmd.c:253
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -181,7 +168,7 @@ msgstr ""
 "FOUT: Onbekende optie -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:237
+#: gnetlist/src/parsecmd.c:256
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -189,6 +176,15 @@ msgid ""
 msgstr ""
 "FOUT: Onbekend optie karakter `\\x%x'.\n"
 "\n"
+
+#: gnetlist/src/parsecmd.c:260
+#, c-format
+msgid ""
+"\n"
+"Run `%s --help' for more information.\n"
+msgstr ""
+"\n"
+"Doe `%s --help' voor meer informatie.\n"
 
 #: gnetlist/src/s_hierarchy.c:86
 #, c-format
@@ -267,7 +263,7 @@ msgstr ""
 "Deze waarschuwing is in orde als je meervoudige niveaus van hiërarchie "
 "hebt!\n"
 
-#: gnetlist/src/s_traverse.c:107
+#: gnetlist/src/s_traverse.c:108
 #, c-format
 msgid ""
 "\n"
@@ -275,66 +271,66 @@ msgid ""
 "------------------------------------------------------\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:108
+#: gnetlist/src/s_traverse.c:109
 #, c-format
 msgid ""
 "Verbose mode legend\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:109
+#: gnetlist/src/s_traverse.c:110
 #, c-format
 msgid "n : Found net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:110
+#: gnetlist/src/s_traverse.c:111
 #, c-format
 msgid "C : Found component (staring to traverse component)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:111
+#: gnetlist/src/s_traverse.c:112
 #, c-format
 msgid "p : Found pin (starting to traverse pin / or examining pin)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:112
+#: gnetlist/src/s_traverse.c:113
 #, c-format
 msgid "P : Found end pin connection (end of this net)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:113
+#: gnetlist/src/s_traverse.c:114
 #, c-format
 msgid "R : Starting to rename a net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:114
+#: gnetlist/src/s_traverse.c:115
 #, c-format
 msgid "v : Found source attribute, traversing down\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:115
+#: gnetlist/src/s_traverse.c:116
 #, c-format
 msgid "^ : Finished underlying source, going back up\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:116
+#: gnetlist/src/s_traverse.c:117
 #, c-format
 msgid "u : Found a refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:117
+#: gnetlist/src/s_traverse.c:118
 #, c-format
 msgid "U : Found a connected_to refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:118
+#: gnetlist/src/s_traverse.c:119
 #, c-format
 msgid ""
 "------------------------------------------------------\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:160
+#: gnetlist/src/s_traverse.c:162
 #, c-format
 msgid ""
 "\n"
@@ -342,12 +338,12 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:195
+#: gnetlist/src/s_traverse.c:197
 #, c-format
 msgid "- Starting internal netlist creation\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:204
+#: gnetlist/src/s_traverse.c:206
 #, fuzzy, c-format
 msgid ""
 "WARNING: Found a placeholder/missing component, is symbol file missing? "
@@ -356,28 +352,35 @@ msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
 "bestand? [%s]\n"
 
-#: gnetlist/src/s_traverse.c:274
+#: gnetlist/src/s_traverse.c:276
 #, fuzzy, c-format
 msgid ""
 "Could not find refdes on component or any special attributes!<%s>, <%s>\n"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!\n"
 
-#: gnetlist/src/s_traverse.c:382
+#: gnetlist/src/s_traverse.c:384
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:424
+#: gnetlist/src/s_traverse.c:426
 #, c-format
 msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
 msgstr ""
 "WAARSCHUWING: vond label=%s. label= is vervallen, gebruik alstublieft "
 "netname=\n"
 
-#: gnetlist/src/s_traverse.c:478
+#: gnetlist/src/s_traverse.c:480
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
+
+#, fuzzy
+#~ msgid "ERROR: No schematics files specified for processing.\n"
+#~ msgstr ""
+#~ "FOUT: Geen schema bestanden gespecificeerd voor verwerking.\n"
+#~ "\n"
+#~ "Doe `%s --help' voor meer informatie.\n"
 
 #~ msgid "Failed to load subcircuit '%s': %s\n"
 #~ msgstr "Faalde bij het laden van subcircuit '%s': %s\n"

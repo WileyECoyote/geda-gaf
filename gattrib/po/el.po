@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-03-15 12:50-0500\n"
+"POT-Creation-Date: 2015-08-25 08:47-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Έλεγχος των γνωρισμάτων των στοιχείων �
 msgid "%s: Could not open [%s]\n"
 msgstr ""
 
-#: gattrib/src/gattrib.c:312
+#: gattrib/src/gattrib.c:313
 #, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr ""

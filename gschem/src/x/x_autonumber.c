@@ -844,7 +844,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 
   scope_len = strlen(scope_text);
   if (scope_len == 0) {
-    u_log_message(_("No searchstring given in autonumber text.\n"));
+    u_log_message(_("No search string given in autonumber text.\n"));
     return; /* error */
   }
   else if (g_str_has_suffix(scope_text,"?") == TRUE) {

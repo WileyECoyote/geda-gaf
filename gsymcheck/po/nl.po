@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-14 02:49-0500\n"
+"POT-Creation-Date: 2015-08-25 08:56-0500\n"
 "PO-Revision-Date: 2012-12-09 15:10+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -31,12 +31,12 @@ msgstr ""
 "[%s]\n"
 "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
 
-#: gsymcheck/src/gsymcheck.c:100
+#: gsymcheck/src/gsymcheck.c:99
 #, c-format
 msgid "Loaded file [%s]\n"
 msgstr "Laadde bestand [%s]\n"
 
-#: gsymcheck/src/gsymcheck.c:107
+#: gsymcheck/src/gsymcheck.c:106
 #, c-format
 msgid ""
 "\n"

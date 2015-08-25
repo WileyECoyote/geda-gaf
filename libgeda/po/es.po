@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-14 02:38-0500\n"
+"POT-Creation-Date: 2015-08-25 08:47-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -434,7 +434,7 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:60
+#: libgeda/src/guile/g_evaluate.c:63
 msgid ""
 "\n"
 "Backtrace:\n"
@@ -442,15 +442,15 @@ msgstr ""
 "\n"
 "Backtrace:\n"
 
-#: libgeda/src/guile/g_evaluate.c:305
+#: libgeda/src/guile/g_evaluate.c:314
 msgid "changed"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:306
+#: libgeda/src/guile/g_evaluate.c:315
 msgid "restore"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:308
+#: libgeda/src/guile/g_evaluate.c:317
 #, c-format
 msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
@@ -586,18 +586,18 @@ msgstr ""
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Un comando de librería ha fallado [%s]\n"
 
-#: libgeda/src/guile/g_rc_parse.c:365
+#: libgeda/src/guile/g_rc_parse.c:366
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 "ERROR: Un error desconocido ocurrió mientras se procesaban los ficheros de "
 "configuración."
 
-#: libgeda/src/guile/g_rc_parse.c:378 libgeda/src/guile/g_rc_parse.c:379
+#: libgeda/src/guile/g_rc_parse.c:379 libgeda/src/guile/g_rc_parse.c:380
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ERROR: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:385
+#: libgeda/src/guile/g_rc_parse.c:386
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ERROR: El log %s puede contener más información.\n"
@@ -1486,7 +1486,7 @@ msgstr "No se ha encontrado un atributo válido slotdef=#:#,#,#...\n"
 msgid "component missing pinseq= attribute\n"
 msgstr "El componente no tiene el atributo pinseq\n"
 
-#: libgeda/src/utility/u_log.c:166
+#: libgeda/src/utility/u_log.c:173
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "No se puede guardar la copia de seguridad: %s"
