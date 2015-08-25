@@ -1,5 +1,10 @@
 2015-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/regulate/LM7915-2.sym: Add symbol Voltage Regulator,Negative,
+      Fixed 15V,TO-220.
+
+2015-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/regulate/L79L05-1.sym: Add symbol Voltage Regulator, Negative,
       Fixed,TO-92.
 
