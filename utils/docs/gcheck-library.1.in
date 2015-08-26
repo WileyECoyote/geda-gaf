@@ -40,6 +40,8 @@ The results are reported. The second stage checks for references to the names of
 uses the "component-library" function to load the main library, so any folder names reported as being unreferenced will not
 appear in the component selection dialog in gschem. Note that this directive can only be used in the installed location
 of the geda-clib.scm or in the source directory containing the geda-clib.scm.
+.IP "-d, --docs"
+Check validity of URL referenced by documentation attributes.
 .IP "-f, --filter"
 The Filter directive is intended to over-ride the internal default symbol file type.
 .SH DIAGNOSTICS

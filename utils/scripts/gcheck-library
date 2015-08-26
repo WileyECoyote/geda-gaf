@@ -24,15 +24,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #------------------------------------------------------------------
 
-VER=1.1.0
+VER=1.2.0
 
 VERBOSE=false
 QUIET=false
 REPORT=true
 CHECK_CLIB=false
+CHECK_DOCS=false
 FILTER="*.sym"
 PROGRAM1="gsymcheck"
 PROGRAM2="gaf"
+PROGRAM3="curl"
 OPT=""
 FINAL_ARGUMENT="${@: -1}"
 
@@ -43,7 +45,7 @@ do_show_help()
 {
    case $1 in
          "1") # Quick help
-              echo Usage:   `basename $0` '[-h] | [-v] | [-r] | [-a,e,n] [-f <pattern>] [ Library ]' ;;
+              echo Usage:   `basename $0` '[-h] | [-v] | [-r] | [-a,d,e,n] [-f <pattern>] [ Library ]' ;;
          "2") # Basic help
               echo
               echo "A script to assist in maintaining symbol libraries"
@@ -53,6 +55,7 @@ do_show_help()
               echo
               echo   '  -a | --all       file pattern is changed from *.sym to *'
               echo   '  -c | --clip      Check geda-clib.scm for errors and references'
+              echo   '  -d | --docs      Check documentation references'
               echo   '  -f | --filter <pattern>   filter pattern is changed to pattern'
               echo   '  -n | --no_report do not perform report statistic'
               echo   '  -r | --report    report statistic only, do not perform checking'
@@ -78,6 +81,18 @@ vecho()
      fi
    fi
 }
+
+have_curl ()
+{
+  exist=$(which $PROGRAM2)
+  if [[ ! $exist = "" ]] ; then
+    CHECK_DOCS=true
+  else
+    echo "Documentation checks requested by could not find [$PROGRAM3]"
+    echo "Skipping Checks for documentation references"
+  fi
+}
+
 PREVIOUS_ARGUMENT=""
 do_Assimilate_Arguments(){
    for Arg in $*; do
@@ -89,6 +104,7 @@ do_Assimilate_Arguments(){
         --quiet | -q) QUIET=true  ; OPT="-q"                          ;;
           --all | -a) FILTER="*"                                      ;;
          --clip | -c) CHECK_CLIB=true                                 ;;
+         --docs | -d) have_curl                                       ;;
     -n | --no_report) REPORT=false                                    ;;
        -r | --report) do_report_only                                  ;;
     	           *) case $PREVIOUS_ARGUMENT in
@@ -127,6 +143,32 @@ do_report_only(){
   exit $result;
 }
 
+do_check_docs () {
+
+  local filename;
+  local files=$1/${FILTER}
+  local result=0;
+  local url
+
+  for filename in $files ; do
+
+    fname=`basename $filename`
+    vecho "checking documentation for $fname"
+    url=$(grep documentation= $filename | cut -f2- -d'=')
+    if [ "x$url" != "x" ] ; then
+       if ! curl --output /dev/null --silent --fail -r 0-0 "$url"; then
+         echo "check $url in $fname"
+         result=1;
+       fi
+    else
+       echo `basename $filename` "does not appear to have a documentation attribute"
+       result=1;
+    fi
+  done
+
+  return $result;
+}
+
 do_check_all_containers () {
   local result=0;
   exist=$(which $PROGRAM1)
@@ -139,6 +181,12 @@ do_check_all_containers () {
       fi
       if $REPORT ; then
         do_report_stats $subdir
+      fi
+      if $CHECK_DOCS ; then
+        do_check_docs $subdir
+        if [ $? -ne 0 ] ; then
+          result=1;
+        fi
       fi
     done
   else
@@ -171,6 +219,7 @@ do_check_clib_references () {
 }
 
 do_check_clib () {
+
   local result=0;
   local filename;
 
@@ -206,6 +255,7 @@ do_check_clib () {
   fi
   return $result;
 }
+
 # ----------------------- Parse Command Line ----------------------
 
 do_Assimilate_Arguments $*
@@ -222,6 +272,9 @@ else
         do_report_stats $FINAL_ARGUMENT
       fi
       $PROGRAM1 $OPT $FINAL_ARGUMENT/${FILTER}
+    fi
+    if $CHECK_DOCS ; then
+       do_check_docs $FINAL_ARGUMENT
     fi
   else
     vecho "Looking in all containers for $FILTER"

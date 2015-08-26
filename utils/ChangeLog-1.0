@@ -1,3 +1,10 @@
+2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gcheck-library.sh: Check validity of URL referenced by
+      documentation attributes.
+
+    * docs/gcheck-library.1.in: Update documentation with new -d option
+
 2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/src/gsch2pcb.c: Use explicit length as argument to strncmp.
