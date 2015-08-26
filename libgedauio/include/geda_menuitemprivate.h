@@ -35,10 +35,6 @@
 
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
 struct _GtkMenuItemPrivate
 {
   GtkWidget *submenu;
@@ -64,6 +60,8 @@ struct _GtkMenuItemPrivate
   unsigned int reserve_indicator      : 1;
 };
 
+BEGIN_DECLS
+
 void     _gtk_menu_item_refresh_accel_path   (GtkMenuItem   *menu_item,
                                               const char    *prefix,
                                               GtkAccelGroup *accel_group,
@@ -81,8 +79,6 @@ void      _gtk_menu_item_popup_submenu       (GtkWidget     *menu_item,
                                               int            with_delay);
 void      _gtk_menu_item_popdown_submenu     (GtkWidget     *menu_item);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+END_DECLS
 
 #endif /* __GEDA_MENU_ITEM_PRIVATE_H__ */
