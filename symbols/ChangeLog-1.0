@@ -1,3 +1,8 @@
+2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/ldo/NCP1117-DT285.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
+      Fixed 2.85Volt,0-125°C,DPAK.
+
 2015-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93LC56B-E-SN-1.sym: Add symbol 2K EEPROM, 16 Bit Serial,

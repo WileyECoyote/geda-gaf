@@ -8,7 +8,7 @@ numslots=0
 T 500 1700 5 10 0 1 0 0 1
 footprint=DPAK__On-Semi_369C
 T 500 1900 5 10 0 1 0 0 1
-description=VOLTAGE REGULATOR,LDO,1.0A,Fixed 1.8Volt, 0-125°C
+description=VOLTAGE REGULATOR,LDO,1.0A,Fixed 1.8Volt,0-125°C,DPAK
 T 500 2100 5 10 0 1 0 0 1
 documentation=www.onsemi.com/pub/Collateral/NCP1117-D.PDF
 T 500 2300 5 10 0 0 0 0 1
