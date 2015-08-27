@@ -22,6 +22,10 @@
 #define GLIB_DISABLE_DEPRECATION_WARNINGS
 #include <config.h>
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include <stdio.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -86,7 +90,7 @@ void libgeda_init(void)
       default_log_directory = path;
     }
     else {
-      fprintf (stderr, "Environment varible GEDALOGS invalid[%s], %s\n",
+      fprintf (stderr, "Environment GEDALOGS invalid [%s], %s\n",
                path, strerror (errno));
       GEDA_FREE(path);
     }
