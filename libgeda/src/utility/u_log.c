@@ -36,7 +36,7 @@
 /*! Default setting for log update callback function. */
 void (*x_log_update_func)() = NULL;
 
-int is_logging = FALSE; /* Variable to controls whether logging is enable or not */
+static int is_logging = FALSE; /* Variable to controls whether logging is enable or not */
 
 #define CATCH_LOG_LEVELS (G_LOG_LEVEL_MASK ^ \
                           (G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_INFO))
