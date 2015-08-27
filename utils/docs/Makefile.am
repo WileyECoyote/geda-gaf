@@ -32,6 +32,9 @@ dist_man_MANS = gsch2pcb.1 grenum.1 gxyrs.1 olib.1 pads_backannotate.1 \
 docsreadmedir   = $(docdir)/readmes
 docsreadme_DATA = $(READ_MES)
 
+all:	$(MANS)
+	@echo 'Type: make doxygen  to create doxygen documentation for gEDA utilities'
+
 doxygen: utils.dox
 if ENABLE_DOXYGEN
 	@echo 'Creating doxygen documentation for utilities...'

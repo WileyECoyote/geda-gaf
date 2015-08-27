@@ -9,19 +9,21 @@ LOCAL_DOX   = libgedathon.dox libgedathon-main.txt
 LOCAL_HTML  = guide-libgedathon.html include-libgedathon.html \
 	      welcome_libgedathon.png  what-is-libgedathon.html
 
+LOCAL_MAN   = gsym-attribute.1.in gsym-set-font-size.1.in \
+	      gsym-set-visibility.1.in geda-snap-grid.1.in
+
 LOCAL_TEX   = what-is-libgedathon.tex include-libgedathon.tex \
 	      guide-libgedathon.tex reference-libgedathon.tex
 
-EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX) \
-	      gsym-attribute.1.in gsym-set-font-size.1.in \
-	      gsym-set-visibility.1.in geda-snap-grid.1.in
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
+
 
 dist_man_MANS = gsym-attribute.1 gsym-set-font-size.1 \
 	        gsym-set-visibility.1 geda-snap-grid.1
 
 #SUFFIXES    = .html .tex .pdf
 
-all:
+all:	$(MANS)
 	@echo 'Type: make doxygen  to create doxygen documentation for libgedathon'
 
 doxygen:

@@ -1,11 +1,16 @@
+2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * */docs/Makefile.am: Add "all:$(MANS)" so that man page are built from
+      input files.
+
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
-     * geda-gaf/Makefile.am: Add update-po to regenerate po from top_srcdir.
+    * geda-gaf/Makefile.am: Add update-po to regenerate po from top_srcdir.
 
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
-     * include/geda_toolbars.h: Replace (int)(long*) with (int)(long) in
-       macro GET_TOOLBAR_ID.
+    * include/geda_toolbars.h: Replace (int)(long*) with (int)(long) in
+      macro GET_TOOLBAR_ID.
 
 2015-08-09 Wiley E. Hill <wileyhill@gmail.com>
 

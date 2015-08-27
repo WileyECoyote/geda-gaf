@@ -22,6 +22,9 @@ dist_docsreadme_DATA = \
 
 dist_man_MANS = gnetlist.1 mk_verilog_syms.1 annotate.1
 
+all:	$(MANS)
+	@echo 'Type: make doxygen to create doxygen documentation for gnetlist'
+
 .1.in.1:
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \

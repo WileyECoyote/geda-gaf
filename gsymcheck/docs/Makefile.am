@@ -13,7 +13,7 @@ LOCAL_TEX   = what-is-gsymcheck.tex
 
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
-all:
+all:	$(MANS)
 	@echo 'Type: make doxygen to create doxygen documentation for gsymcheck'
 
 # When generating doxygen documentation we check for the existence of the
