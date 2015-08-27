@@ -1,3 +1,9 @@
+2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck/src/gsymcheck.c: Revise main_prog to call u_log_set_update_func
+      instead of setting x_log_update_func directly since x_log_update_func is
+      now private.
+
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Tweak startup to initialize logging (u_log_init) after

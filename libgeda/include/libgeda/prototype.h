@@ -620,6 +620,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_log_init                      (const char *app_prefix);
          void    u_log_close                     (void);
          char   *u_log_read                      (void);
+         void    u_log_set_update_func           (LogUpdateFunc func);
 
 /* u_string.c */
          char   *u_string_concat                 (const char *string1, ...)  G_GNUC_WARN_UNUSED_RESULT;

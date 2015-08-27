@@ -1,5 +1,10 @@
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_log.c: Make x_log_update_func static, add accessor function
+      u_log_set_update_func.
+
+2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_log.c: Make integer is_logging static.
 
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>

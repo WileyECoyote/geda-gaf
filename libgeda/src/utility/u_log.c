@@ -34,7 +34,7 @@
 #include <geda_debug.h>
 
 /*! Default setting for log update callback function. */
-void (*x_log_update_func)() = NULL;
+static void (*x_log_update_func)() = NULL;
 
 static int is_logging = FALSE; /* Variable to controls whether logging is enable or not */
 
@@ -261,6 +261,18 @@ void u_log_close (void)
     logfile_fd = -1;
   }
 
+}
+
+/*! \brief  Set Log callback function.
+ *  \par Function Description
+ *  Call to set the a handler function to be called for each log
+ *  event.
+ *
+ *  \param [in] func Pointer to callback function
+ */
+void u_log_set_update_func (LogUpdateFunc func)
+{
+    x_log_update_func = func;
 }
 
 /*! \brief  Reads the current log file and returns its contents.

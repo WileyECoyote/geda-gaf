@@ -63,7 +63,7 @@ main_prog(void *closure, int argc, char *argv[])
   g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
   /* create log file right away even if logging is enabled */
-  x_log_update_func = s_log_update;
+  u_log_set_update_func(s_log_update);
   u_log_init ("gsymcheck");
 
   pr_current = geda_toplevel_new ();
@@ -76,6 +76,7 @@ main_prog(void *closure, int argc, char *argv[])
     GError *err = NULL;
 
     if (f_get_is_path_absolute(argv[i])) {
+
       /* Path is already absolute so no need to do any concat of cwd */
       filename = u_string_strdup (argv[i]);
     }

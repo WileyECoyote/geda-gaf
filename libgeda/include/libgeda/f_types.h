@@ -1,6 +1,5 @@
 
-
-extern void (*x_log_update_func)(const char *, GLogLevelFlags,  const char *);
+typedef void (*LogUpdateFunc)(const char *, GLogLevelFlags,  const char *);
 
 /* Used by g_rc_parse_handler() */
 typedef void (*ConfigParseErrorFunc)(GError **, void *);
