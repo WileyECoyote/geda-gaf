@@ -23,7 +23,6 @@
 ;;(load-from-path "geda-deprecated-config.scm")
 (use-modules (geda deprecated))
 
-
 ;; The directory containing various bitmaps (e.g. icons)
 (bitmap-directory (build-path geda-data-path "bitmap"))
 
@@ -99,6 +98,18 @@
 ; End of attribute promotion keywords
 ;
 
+
+;; Location for writing log files
+;
+; Set the path to the directory where log files are to be written. This
+; keyword is not normally used here. By default, log files are written to
+; a "logs" subdirectory in the users configuration directory. This keyword
+; can be used to change the location to a different path. This keyword is
+; more likely to be used in local gafrc files.
+;
+;(log-directory "./logs")
+
+
 ; make-backup-files
 ;
 ; Enable the creation of backup files (name.sch~) when saving a schematic.
@@ -121,7 +132,6 @@
 ;
 ;(load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
 (load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
-
 
 ;;;; Process configuration script directory
 

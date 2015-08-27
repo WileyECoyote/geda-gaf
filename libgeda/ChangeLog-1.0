@@ -1,5 +1,9 @@
 2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gafrc: Add disabled entry for log-directory.
+
+2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgeda.c: Include errno.h.
 
 2015-08-25 Wiley E. Hill <wileyhill@gmail.com>
