@@ -617,7 +617,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_gslist_free_strings           (void *data);
 
 /* u_log.c */
-         void    u_log_init                      (const char *filename);
+         void    u_log_init                      (const char *app_prefix);
          void    u_log_close                     (void);
          char   *u_log_read                      (void);
 

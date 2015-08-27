@@ -26,9 +26,11 @@
 
 #include <config.h>
 #include <stdio.h>
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
+
 #include "libgeda_priv.h"
 #include "libgedaguile.h"
 
@@ -55,16 +57,18 @@ SCM g_rc_mode_general(SCM scmmode,
   mode = scm_to_utf8_string (scmmode);
 
   index = vstbl_lookup_str(table, table_size, mode);
+
   /* no match? */
-  if(index == table_size) {
+  if (index == table_size) {
     fprintf(stderr,
             "Invalid mode [%s] passed to %s\n",
             mode,
             rc_name);
     ret = SCM_BOOL_F;
-  } else {
+  }
+  else {
     *mode_var = vstbl_get_val(table, index);
-    ret = SCM_BOOL_T;
+     ret = SCM_BOOL_T;
   }
 
   free (mode);
@@ -94,6 +98,7 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
     BUG_MSG("filename is NULL");
     return FALSE;
   }
+
   if (!EDA_IS_CONFIG (cfg)) {
     BUG_MSG("EDA_IS_CONFIG (cfg) failed");
     return TRUE;
@@ -247,7 +252,7 @@ bool g_rc_parse_system (const char *rcname, GError **err)
 {
   char *sysname = NULL;
   char *rcfile = NULL;
-  bool status;
+  bool  status;
 
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
@@ -348,9 +353,7 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
   *dir = '\0';
 
   rcfile = strcat (&buffer[0], rcname);
-  //rcfile = g_build_filename (&buffer[0], rcname, NULL);
   status = g_rc_parse_file (rcfile, cfg, err);
-  //GEDA_FREE (rcfile);
 
   return status;
 }
@@ -441,7 +444,8 @@ g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
  * \param user_data Data to be passed to \a handler.
  */
 void g_rc_gafrc_parse_handler (const char *dummy,
-                            ConfigParseErrorFunc handler, void *user_data)
+                               ConfigParseErrorFunc handler,
+                               void *user_data)
 {
   GError *err = NULL;
 
@@ -509,6 +513,7 @@ g_rc_rcfile_parse_handler (const char *rcfile,
   }
 }
 #undef HANDLER_DISPATCH
+
 /*! \brief General RC file parsing function.
  * \par Function Description
  * Attempt to load system, user and local (current working directory)
@@ -543,6 +548,7 @@ void g_rc_parse_handler (const char *rcname,
    * where the rc file is located on disk. */
   g_rc_rcfile_parse_handler (rcfile, handler, user_data);
 }
+
 /*!
  * \brief Get the name of the RC filename being evaluated.
  * \par Function Description
