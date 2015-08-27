@@ -29,6 +29,9 @@ AC_DEFUN([AX_LIBGEDA],
   AC_MSG_RESULT($1)
   AC_SUBST([LIBGEDA_SHLIB_VERSION], $1)
 
+  LIBGEDA_DOT_VERSION=`echo $LIBGEDA_SHLIB_VERSION | sed -e "y/:/./"`
+  AC_SUBST([LIBGEDA_DOT_VERSION])
+
   # Work out the gettext domain to use
   AC_MSG_CHECKING([libgeda gettext domain])
   so_major=`echo $LIBGEDA_SHLIB_VERSION | sed -e "s/:.*//"`

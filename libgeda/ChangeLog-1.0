@@ -1,4 +1,8 @@
-2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgeda.1.in: First attempt at a man page for Libgeda?
+
+2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gafrc: Add disabled entry for log-directory.
 

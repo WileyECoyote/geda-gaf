@@ -8,13 +8,15 @@ LOCAL_DOX   = libgeda.dox libgeda-main.txt
 
 LOCAL_HTML  = what-is-libgeda.html
 
+LOCAL_MAN   = libgeda.1.in
+
 LOCAL_TEX   = what-is-libgeda.tex
 
-EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
 SUFFIXES    = .html .tex .pdf
 
-all: 
+all:	$(MANS)
 	@echo 'Type: make doxygen  to create doxygen documentation for libgeda'
 
 # When generating doxygen documentation we check for the existence of the
@@ -44,10 +46,18 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
-MOSTLYCLEANFILES = 	*.log *~
-CLEANFILES = 		*.log *~
-DISTCLEANFILES =        *.log *~
-MAINTAINERCLEANFILES = 	*.log *~ Makefile.in
+dist_man_MANS = libgeda.1
+
+.1.in.1:
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
+	v="$(LIBGEDA_DOT_VERSION)-$(DATE_VERSION)" ; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+DISTCLEANFILES       = *.log *~
+MAINTAINERCLEANFILES = *.log *~ Makefile.in
 
 distclean-local:
 	-rm -rf html latex
