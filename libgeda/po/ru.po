@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-08-27 02:03-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -577,40 +577,40 @@ msgstr ""
 msgid "always-promote-attribute: list element is not a string"
 msgstr "always-promote-attribute: элемент списка не является строкой"
 
-#: libgeda/src/guile/g_rc_parse.c:106
+#: libgeda/src/guile/g_rc_parse.c:111
 msgid "RC file already loaded"
 msgstr "Файл настроек уже загружен"
 
-#: libgeda/src/guile/g_rc_parse.c:132
+#: libgeda/src/guile/g_rc_parse.c:137
 #, fuzzy, c-format
 msgid "Failed to load configuration from '%s': %s\n"
 msgstr "Не удалось загрузить настройки из файла «%s»: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:133
+#: libgeda/src/guile/g_rc_parse.c:138
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:134
+#: libgeda/src/guile/g_rc_parse.c:139
 #, c-format
 msgid "Error accessing configuration %s, %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:210
+#: libgeda/src/guile/g_rc_parse.c:215
 #, fuzzy, c-format
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Загружен файл настроек «%s»\n"
 
-#: libgeda/src/guile/g_rc_parse.c:366
+#: libgeda/src/guile/g_rc_parse.c:369
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек"
 
-#: libgeda/src/guile/g_rc_parse.c:379 libgeda/src/guile/g_rc_parse.c:380
+#: libgeda/src/guile/g_rc_parse.c:382 libgeda/src/guile/g_rc_parse.c:383
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ОШИБКА: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:386
+#: libgeda/src/guile/g_rc_parse.c:389
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"

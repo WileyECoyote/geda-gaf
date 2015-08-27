@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-08-27 02:04-0500\n"
 "PO-Revision-Date: 2012-10-28 15:46+0000\n"
 "Last-Translator: Penegal <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1174,7 +1174,8 @@ msgstr ""
 "%s, number=%d, slot=%d]\n"
 
 #: gschem/src/x/x_autonumber.c:847
-msgid "No searchstring given in autonumber text.\n"
+#, fuzzy
+msgid "No search string given in autonumber text.\n"
 msgstr "Pas de motif de recherche fourni pour l'annotation automatique.\n"
 
 #: gschem/src/x/x_autonumber.c:907
@@ -2383,15 +2384,15 @@ msgstr ""
 msgid "Pin Label"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:163
+#: gschem/src/x/x_edit_slot.c:165
 msgid "Edit slot number"
 msgstr "Numéro de slot"
 
-#: gschem/src/x/x_edit_slot.c:186
+#: gschem/src/x/x_edit_slot.c:188
 msgid "Number of slots:"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:202
+#: gschem/src/x/x_edit_slot.c:204
 msgid "Edit slot number:"
 msgstr "Numéro de slot :"
 

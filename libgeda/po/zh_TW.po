@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-08-27 02:03-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -541,40 +541,40 @@ msgstr ""
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:106
+#: libgeda/src/guile/g_rc_parse.c:111
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:132
+#: libgeda/src/guile/g_rc_parse.c:137
 #, fuzzy, c-format
 msgid "Failed to load configuration from '%s': %s\n"
 msgstr "無法找到檔案 %s: %s"
 
-#: libgeda/src/guile/g_rc_parse.c:133
+#: libgeda/src/guile/g_rc_parse.c:138
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:134
+#: libgeda/src/guile/g_rc_parse.c:139
 #, c-format
 msgid "Error accessing configuration %s, %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:210
+#: libgeda/src/guile/g_rc_parse.c:215
 #, c-format
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:366
+#: libgeda/src/guile/g_rc_parse.c:369
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:379 libgeda/src/guile/g_rc_parse.c:380
+#: libgeda/src/guile/g_rc_parse.c:382 libgeda/src/guile/g_rc_parse.c:383
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:386
+#: libgeda/src/guile/g_rc_parse.c:389
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
