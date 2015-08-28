@@ -24,9 +24,14 @@ dist_man_MANS = gsym-attribute.1 gsym-set-font-size.1 \
 #SUFFIXES    = .html .tex .pdf
 
 all:	$(MANS)
-	@echo 'Type: make doxygen  to create doxygen documentation for libgedathon'
+if ENABLE_DOXYGEN
+	@echo 'Type: make doxygen to create doxygen documentation for libgedathon'
+endif
 
-doxygen:
+# When generating doxygen documentation we check for the existence of the
+# output directory and create if needed. After doxygen executes, we check
+# for the latex directory and skip latex if the diretory does not exist.
+doxygen: libgedathon.dox
 	@echo 'Creating doxygen documentation for libgedathon...'
 if ENABLE_DOXYGEN
 	-(cd images && $(MAKE) images)

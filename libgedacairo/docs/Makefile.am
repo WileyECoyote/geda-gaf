@@ -16,13 +16,16 @@ EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
 
 SUFFIXES    = .html .tex .pdf
 
-all: 
-	@echo 'Type: make doxygen  to create doxygen documentation for libgedacairo'
+all:
+if ENABLE_DOXYGEN
+	@echo 'Type: make doxygen to create doxygen documentation for libgedacairo'
+endif
 
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
-# for the latex directory is skip the latex if the diretory does not exist.
-doxygen:
+# for the latex directory and skip latex if the diretory does not exist.
+doxygen: libgedacairo.dox;
+
 	@echo 'Creating doxygen documentation for libgedacairo...'
 if ENABLE_DOXYGEN
 	-(cd images && $(MAKE) images)

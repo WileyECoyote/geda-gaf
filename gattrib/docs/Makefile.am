@@ -13,11 +13,13 @@ LOCAL_TEX   = what-is-gattrib.tex
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
 all:	$(MANS)
+if ENABLE_DOXYGEN
 	@echo 'Type: make doxygen to create doxygen documentation for gattrib'
+endif
 
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
-# for the latex directory is skip the latex if the diretory does not exist.
+# for the latex directory and skip latex if the diretory does not exist.
 doxygen: gattrib.dox
 	@echo 'Creating doxygen documentation for gattrib...'
 if ENABLE_DOXYGEN

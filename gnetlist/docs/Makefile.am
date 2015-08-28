@@ -23,7 +23,9 @@ dist_docsreadme_DATA = \
 dist_man_MANS = gnetlist.1 mk_verilog_syms.1 annotate.1
 
 all:	$(MANS)
+if ENABLE_DOXYGEN
 	@echo 'Type: make doxygen to create doxygen documentation for gnetlist'
+endif
 
 .1.in.1:
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
@@ -50,7 +52,7 @@ endif
 
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
-# for the latex directory is skip the latex if the diretory does not exist.
+# for the latex directory and skip latex if the diretory does not exist.
 doxygen: gnetlist.dox
 	@echo 'Creating doxygen documentation for gnetlist...'
 if ENABLE_DOXYGEN

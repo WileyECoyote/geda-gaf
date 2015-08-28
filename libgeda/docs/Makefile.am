@@ -17,12 +17,14 @@ EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 SUFFIXES    = .html .tex .pdf
 
 all:	$(MANS)
-	@echo 'Type: make doxygen  to create doxygen documentation for libgeda'
+if ENABLE_DOXYGEN
+	@echo 'Type: make doxygen to create doxygen documentation for libgeda'
+endif
 
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
-# for the latex directory is skip the latex if the diretory does not exist.
-doxygen:
+# for the latex directory and skip latex if the diretory does not exist.
+doxygen: libgeda.dox
 	@echo 'Creating doxygen documentation for libgeda...'
 if ENABLE_DOXYGEN
 	-(cd images && $(MAKE) images)
@@ -52,6 +54,12 @@ dist_man_MANS = libgeda.1
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION)-$(DATE_VERSION)" ; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+
+.3.in.3:
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
+	v="$(LIBGEDA_DOT_VERSION).$(DATE_VERSION)" ; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
 
 MOSTLYCLEANFILES     = *.log *~

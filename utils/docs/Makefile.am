@@ -33,8 +33,13 @@ docsreadmedir   = $(docdir)/readmes
 docsreadme_DATA = $(READ_MES)
 
 all:	$(MANS)
-	@echo 'Type: make doxygen  to create doxygen documentation for gEDA utilities'
+if ENABLE_DOXYGEN
+	@echo 'Type: make doxygen to create doxygen documentation for gEDA utilities'
+endif
 
+# When generating doxygen documentation we check for the existence of the
+# output directory and create if needed. After doxygen executes, we check
+# for the latex directory and skip latex if the diretory does not exist.
 doxygen: utils.dox
 if ENABLE_DOXYGEN
 	@echo 'Creating doxygen documentation for utilities...'
