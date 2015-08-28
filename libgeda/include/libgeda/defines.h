@@ -303,7 +303,18 @@
 # define S_IRWXG 0
 #endif
 
-/* Used by the rc loading mechanism */
+/*! \def RETURN_G_RC_MODE(rc, var, size)
+ *  \brief Utility Macro used by the rc loading mechanism
+ *  \note The 1st and 4th arguments to g_rc_mode_general are not passed
+ *  to the macro, Rc handlers incorporating this macro must name their
+ *  Scheme argument "mode" and the vstbl_entry structure "mode_table".
+ *
+ *  \param [in] rc   String keyword,
+ *  \param [in] var  default_variable_name
+ *  \param [in] size Integer number of table entries
+ *
+ *  \todo This macro probably does not belong in this file
+ */
 #define RETURN_G_RC_MODE(rc, var, size) \
   return g_rc_mode_general(mode,        \
                            (rc),        \

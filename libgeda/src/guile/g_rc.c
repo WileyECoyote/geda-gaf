@@ -111,7 +111,7 @@ SCM g_rc_component_groups(SCM stringlist)
  *
  *  \param [in] path
  *  \param [in] name Optional descriptive name for library directory.
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
 SCM g_rc_component_library(SCM path, SCM name)
 {
@@ -191,7 +191,7 @@ SCM g_rc_component_library(SCM path, SCM name)
  *  \param [in] listcmd command to get a list of symbols
  *  \param [in] getcmd  command to get a symbol from the library
  *  \param [in] name    Optional descriptive name for component source.
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F otherwise.
  */
 SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
                                     SCM name)
@@ -275,12 +275,15 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
   return result;
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the source-library SCM keyword.
  *  \par Function Description
+ *   Sets a hokey path to search for schematics.
  *
- *  \param [in] path
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *  \param [in] path String to use as path to Source Library.
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ *
+ *  \sa s_slib_add_entry
  */
 SCM g_rc_source_library(SCM path)
 {
@@ -320,12 +323,15 @@ SCM g_rc_source_library(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the source-library-search SCM keyword.
  *  \par Function Description
+ *   Sets a hokey path to search for schematics.
  *
- *  \param [in] path
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *  \param [in] path String to use as path to search.
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ *
+ *  \sa s_slib_add_entry
  */
 SCM g_rc_source_library_search(SCM path)
 {
@@ -334,8 +340,7 @@ SCM g_rc_source_library_search(SCM path)
   GDir *dir;
   const char *entry;
 
-  SCM_ASSERT (scm_is_string (path), path,
-              SCM_ARG1, "source-library-search");
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "source-library-search");
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
@@ -352,6 +357,7 @@ SCM g_rc_source_library_search(SCM path)
   }
 
   dir = g_dir_open (string, 0, NULL);
+
   if (dir == NULL) {
     fprintf (stderr,
            _("Invalid path [%s] passed to source-library-search\n"),
@@ -396,11 +402,14 @@ SCM g_rc_source_library_search(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the reset-component-library SCM keyword.
  *  \par Function Description
+ *  When reset-component-library is process, all known component
+ *  library paths are erased.
  *
- *  \return SCM_BOOL_T always.
+ *  \returns SCM_BOOL_T always.
+ *
+ *  \sa s_clib_init
  */
 SCM g_rc_reset_component_library(void)
 {
@@ -409,16 +418,19 @@ SCM g_rc_reset_component_library(void)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the reset-source-library SCM keyword.
  *  \par Function Description
+ *  When reset-source-library is process, resources used for library paths
+ *  are released and all known component library paths erased.
  *
- *  \return SCM_BOOL_T always.
+ *  \returns SCM_BOOL_T always.
+ *
+ *  \sa s_clib_init
  */
 SCM g_rc_reset_source_library(void)
 {
-  s_slib_free();
-  s_slib_init();
+  s_slib_free(); /* Release resources */
+  s_slib_init(); /* Sets pointers that were just freed to NULL */
 
   return SCM_BOOL_T;
 }
@@ -544,6 +556,7 @@ SCM g_rc_net_style(SCM mode)
  *       configuration data for the pin-style RC entry. This functions
  *       accepts either string or integer type arguments.
  *
+ *  \returns SCM_BOOL_T always.
  */
 SCM g_rc_pin_style(SCM mode)
 {
@@ -783,7 +796,7 @@ SCM g_rc_thin_pin_width (SCM width)
  *
  *  \param [in] attrlist Can be a space seperated list of string or a SCM list
  *
- *  \return SCM_BOOL_T always.
+ *  \returns SCM_BOOL_T always.
  */
 SCM g_rc_always_promote_attributes(SCM attrlist)
 {
@@ -831,10 +844,14 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Handles the attribute-promote SCM keyword.
  *  \par Function Description
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument.
  *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_attribute_promotion(SCM mode)
 {
@@ -844,14 +861,18 @@ SCM g_rc_attribute_promotion(SCM mode)
   };
 
   RETURN_G_RC_MODE("attribute-promotion",
-                   default_attribute_promotion,
-                   2);
+                    default_attribute_promotion,
+                    2);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Handles the keep-invisible SCM keyword.
  *  \par Function Description
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument.
  *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_keep_invisible(SCM mode)
 {
@@ -865,12 +886,16 @@ SCM g_rc_keep_invisible(SCM mode)
                    2);
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the bitmap-directory SCM keyword.
  *  \par Function Description
+ *  The value of the bitmap-directory keyword specifies where to search
+ *  for bitmage images.
  *
  *  \param [in] path
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ *
+ *  \sa f_get_bitmap_filespec
  */
 SCM g_rc_bitmap_directory(SCM path)
 {
@@ -897,12 +922,16 @@ SCM g_rc_bitmap_directory(SCM path)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the log-directory SCM keyword.
  *  \par Function Description
+ *  The value of the log-directory keyword specifies where to write log
+ *  files.
  *
  *  \param [in] path
- *  \return SCM_BOOL_T on success, SCM_BOOL_F otherwise.
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
+ *
+ *  \sa u_log_init
  */
 SCM g_rc_log_directory(SCM path)
 {
@@ -931,12 +960,13 @@ SCM g_rc_log_directory(SCM path)
 
 
 /*! \brief Add a directory to the Guile load path.
- * \par Function Description
- * Prepends \a s_path to the Guile system '%load-path', after
- * expanding environment variables.
+ *  \par Function Description
+ *  Prepends \a s_path to the Guile system '%load-path', after
+ *  expanding environment variables.
  *
  *  \param [in] s_path  Path to be added.
- *  \return SCM_BOOL_T.
+ *
+ *  \returns SCM_BOOL_T.
  */
 SCM g_rc_scheme_directory(SCM s_path)
 {
@@ -967,9 +997,15 @@ SCM g_rc_scheme_directory(SCM s_path)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function handles the check-symbol-version SCM keyword.
+/*! \brief Handles the check-symbol-version SCM keyword.
  *  \par Function Description
- *  Sets boolean configuration variable based on string argument.
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument that controls whether  symbol version
+ *  checking is enabled or disabled.
+ *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_check_symbol_version(SCM mode)
 {
@@ -979,18 +1015,19 @@ SCM g_rc_check_symbol_version(SCM mode)
   };
 
   RETURN_G_RC_MODE("check-symbol-version",
-                   default_check_symbol_version,
-                   2);
+                    default_check_symbol_version,
+                    2);
 }
 
 /*! \brief Enable the creation of backup files when saving
  *  \par Function Description
- *  If enabled then a backup file, of the form 'example.sch~', is created when
- *  saving a file.
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument. If enabled then a backup file, of
+ *  the form 'example.sch~', is created when saving a file.
  *
- *  \param [in] mode  String. 'enabled' or 'disabled'
- *  \return           Bool. False if mode is not a valid value; true if it is.
+ *  \param [in] mode string "enabled" or "disabled"
  *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_make_backup_files(SCM mode)
 {
@@ -1000,16 +1037,20 @@ SCM g_rc_make_backup_files(SCM mode)
   };
 
   RETURN_G_RC_MODE("make-backup-files",
-                  default_make_backup_files,
-                  2);
+                    default_make_backup_files,
+                    2);
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the postsript-prolog SCM keyword.
  *  \par Function Description
+ *  The value of the log-directory keyword specifies the file name
+ *  of the postscript prolog  file.
  *
- *  \param [in] scmsymname
- *  \return SCM_BOOL_T always.
+ *  \param [in] scmsymname prolog file name.
+ *
+ *  \returns SCM_BOOL_T always.
+ *
+ *  \sa f_print_header
  */
 SCM g_rc_postscript_prolog(SCM scmsymname)
 {
@@ -1022,13 +1063,22 @@ SCM g_rc_postscript_prolog(SCM scmsymname)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (scmsymname);
-  default_postscript_prolog =
-    u_expand_env_variable (temp);
+
+  default_postscript_prolog = u_expand_env_variable (temp);
+
   free (temp);
 
   return SCM_BOOL_T;
 }
 
+/*! \brief Handles the print-color-map SCM keyword.
+ *  \par Function Description
+ *  Specify a  color map to be used for printing.
+ *
+ *  \param [in] scm_map The color map to use
+ *
+ *  \returns SCM_BOOL_T always.
+ */
 SCM g_rc_print_color_map (SCM scm_map)
 {
   if (scm_map == SCM_UNDEFINED) {
@@ -1043,10 +1093,16 @@ SCM g_rc_print_color_map (SCM scm_map)
   return SCM_BOOL_T;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Handles the promote-invisible SCM keyword.
  *  \par Function Description
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument. If enabled, then invisible floating
+ *  attributes are promoted (attached to the outside of the component) if
+ *  the text string is invisible.
  *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_promote_invisible(SCM mode)
 {
@@ -1060,31 +1116,40 @@ SCM g_rc_promote_invisible(SCM mode)
                    2);
 }
 
-/*! \todo Finish function description!!!
- *  \brief
+/*! \brief Handles the untitled-name SCM keyword.
  *  \par Function Description
+ *  Specify the default untitled basename.
  *
  *  \param [in] name
- *  \return SCM_BOOL_T always.
+ *
+ *  \returns SCM_BOOL_T always.
  */
 SCM g_rc_untitled_name(SCM name)
 {
   char *temp;
-  SCM_ASSERT (scm_is_string (name), name,
-              SCM_ARG1, "untitled-name");
+
+  SCM_ASSERT (scm_is_string (name), name, SCM_ARG1, "untitled-name");
 
   GEDA_FREE(default_untitled_name);
 
   temp = scm_to_utf8_string (name);
+
   default_untitled_name = u_string_strdup (temp);
+
   free (temp);
 
   return SCM_BOOL_T;
 }
-/*! \todo Finish function documentation!!!
- *  \brief
+
+/*! \brief Handles the show-full-path SCM keyword.
  *  \par Function Description
+ *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  variable based on string argument. Application should check this
+ *  setting and display the full path in the file name when enabled.
  *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  */
 SCM g_rc_show_full_path(SCM mode)
 {

@@ -104,9 +104,6 @@ void f_path_free (void) {
  *  \warning The returned string is owned by libgeda and should not be
  *  modified or free'd.
  *
- *  \todo On UNIX platforms we should follow the XDG Base Directory
- *  Specification.
- *
  *  \return the gEDA shared data path, or NULL if none could be found.
  */
 const char *f_path_sys_data () {

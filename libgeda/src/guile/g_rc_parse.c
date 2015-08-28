@@ -41,29 +41,21 @@ SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  *  \par Function Description
  *
  */
-SCM g_rc_mode_general(SCM scmmode,
-                      const char *rc_name,
-                      int *mode_var,
-                      const vstbl_entry *table,
-                      int table_size)
+SCM g_rc_mode_general(SCM scmmode, const char *rc_name,      int *mode_var,
+                                   const vstbl_entry *table, int  table_size)
 {
   SCM ret;
   int index;
   char *mode;
 
-  SCM_ASSERT (scm_is_string (scmmode), scmmode,
-              SCM_ARG1, rc_name);
+  SCM_ASSERT (scm_is_string (scmmode), scmmode, SCM_ARG1, rc_name);
 
-  mode = scm_to_utf8_string (scmmode);
-
+  mode  = scm_to_utf8_string (scmmode);
   index = vstbl_lookup_str(table, table_size, mode);
 
   /* no match? */
   if (index == table_size) {
-    fprintf(stderr,
-            "Invalid mode [%s] passed to %s\n",
-            mode,
-            rc_name);
+    fprintf(stderr, "Invalid mode [%s] passed to %s\n", mode, rc_name);
     ret = SCM_BOOL_F;
   }
   else {

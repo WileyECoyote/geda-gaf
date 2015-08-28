@@ -1168,8 +1168,8 @@ char **hash_table_keys_array (GHashTable *table, unsigned int *length)
 }
 
 /*! \public \memberof EdaConfig
- * \brief Return a list of a configuration context's available groups.
- *
+ *  \brief Return a list of a configuration context's available groups.
+ *  \par Function Description
  * Returns a list of the all groups available in \a cfg and its parent
  * contexts.  The value returned by eda_config_get_groups() is a
  * newly-allocated NULL-terminated array of strings.  Use g_strfreev()
@@ -1207,8 +1207,8 @@ eda_config_get_groups (EdaConfig *cfg, unsigned *length)
     for (i = 0; i < len; i++) {
       g_hash_table_insert (group_table, local_groups[i], NULL);
     }
-    GEDA_FREE (local_groups); /* Keys are now owned by hashtable, don't
-                              need to use g_strfreev(). */
+    GEDA_FREE (local_groups);
+    /* Keys are now owned by hashtable, do not need to use g_strfreev */
 
     curr = eda_config_get_parent (curr);
   }

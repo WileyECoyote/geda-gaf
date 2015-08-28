@@ -1,3 +1,7 @@
+2015-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Revised and completed Doxygen documentation.
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_log.c: Make x_log_update_func static, add accessor function

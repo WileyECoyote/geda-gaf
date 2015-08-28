@@ -208,8 +208,7 @@ SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
 {
   SCM result;
 
-  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, s_object_type);
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, s_object_type);
 
   Object *obj = edascm_to_object (obj_s);
   switch (obj->type) {
@@ -891,8 +890,7 @@ SCM_DEFINE (make_net, "%make-net", 0, 0, 0,
  *
  * \return a newly-created bus object.
  */
-SCM_DEFINE (make_bus, "%make-bus", 0, 0, 0,
-            (), "Create a new bus object.")
+SCM_DEFINE (make_bus, "%make-bus", 0, 0, 0, (), "Create a new bus object.")
 {
   Object *obj;
   SCM result;
@@ -1022,8 +1020,8 @@ SCM_DEFINE (make_box, "%make-box", 0, 0, 0,
  * \return the modified box object.
  */
 SCM_DEFINE (set_box_x, "%set-box!", 6, 0, 0,
-            (SCM box_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM color_s),
-            "Set box parameters.")
+           (SCM box_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM color_s),
+           "Set box parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (box_s, OBJ_BOX), box_s,
               SCM_ARG1, s_set_box_x);
@@ -1060,7 +1058,7 @@ SCM_DEFINE (set_box_x, "%set-box!", 6, 0, 0,
  * \return a list of box parameters.
  */
 SCM_DEFINE (box_info, "%box-info", 1, 0, 0,
-            (SCM box_s), "Get box parameters.")
+           (SCM box_s), "Get box parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (box_s, OBJ_BOX), box_s,
               SCM_ARG1, s_box_info);
@@ -1087,7 +1085,7 @@ SCM_DEFINE (box_info, "%box-info", 1, 0, 0,
  * \return a newly-created circle object.
  */
 SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
-            (), "Create a new circle object.")
+           (), "Create a new circle object.")
 {
   Object *obj = o_circle_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
 
@@ -1116,8 +1114,8 @@ SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
  * \return the modified circle object.
  */
 SCM_DEFINE (set_circle_x, "%set-circle!", 5, 0, 0,
-            (SCM circle_s, SCM x_s, SCM y_s, SCM r_s, SCM color_s),
-            "Set circle parameters")
+           (SCM circle_s, SCM x_s, SCM y_s, SCM r_s, SCM color_s),
+           "Set circle parameters")
 {
   SCM_ASSERT (edascm_is_object_type (circle_s, OBJ_CIRCLE), circle_s,
               SCM_ARG1, s_set_circle_x);
@@ -1206,9 +1204,9 @@ SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
  * \return the modified arc object.
  */
 SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
-            (SCM arc_s, SCM x_s, SCM y_s, SCM r_s, SCM start_angle_s,
-             SCM arc_sweep_s, SCM color_s),
-            "Set arc parameters")
+           (SCM arc_s, SCM x_s, SCM y_s, SCM r_s, SCM start_angle_s,
+            SCM arc_sweep_s, SCM color_s),
+           "Set arc parameters")
 {
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC), arc_s,
               SCM_ARG1, s_set_arc_x);
@@ -1258,8 +1256,7 @@ SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
  *
  * \return a list of arc parameters.
  */
-SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0,
-            (SCM arc_s), "Get arc parameters.")
+SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC),
               arc_s, SCM_ARG1, s_arc_info);
@@ -1286,8 +1283,7 @@ SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0,
  * \return a newly-created text object.
  *
  */
-SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
-            (), "Create a new text object.")
+SCM_DEFINE (make_text, "%make-text", 0, 0, 0, (), "Create a new text object.")
 {
   Object *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
                             10, VISIBLE, SHOW_NAME_VALUE, "");
@@ -1330,9 +1326,9 @@ SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
  * \return the modified text object.
  */
 SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
-            (SCM text_s, SCM x_s, SCM y_s, SCM align_s, SCM angle_s,
-             SCM string_s, SCM size_s, SCM visible_s, SCM show_s, SCM color_s),
-            "Set text parameters")
+           (SCM text_s, SCM x_s, SCM y_s, SCM align_s, SCM angle_s,
+            SCM string_s, SCM size_s, SCM visible_s, SCM show_s, SCM color_s),
+           "Set text parameters")
 {
   SCM_ASSERT (edascm_is_object_type (text_s, OBJ_TEXT), text_s,
               SCM_ARG1, s_set_text_x);
@@ -1391,9 +1387,18 @@ SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
 
   /* Name/value visibility */
   int show;
-  if      (show_s == name_sym)  { show = SHOW_NAME;       }
-  else if (show_s == value_sym) { show = SHOW_VALUE;      }
-  else if (show_s == both_sym)  { show = SHOW_NAME_VALUE; }
+
+  if (show_s == name_sym) {
+    show = SHOW_NAME;
+  }
+  else if (show_s == value_sym)
+  {
+    show = SHOW_VALUE;
+  }
+  else if (show_s == both_sym)
+  {
+    show = SHOW_NAME_VALUE;
+  }
   else {
     scm_misc_error (s_set_text_x,
                     _("Invalid text name/value visibility ~A."),
@@ -1518,7 +1523,7 @@ SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
  * \return a list of Object smobs.
  */
 SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
-            (SCM obj_s), "Get objects that are connected to an object.")
+           (SCM obj_s), "Get objects that are connected to an object.")
 {
   /* Ensure that the argument is an object smob */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s, SCM_ARG1, s_object_connections);
@@ -1551,7 +1556,7 @@ SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
  * \return the Object smob of the containing component, or SCM_BOOL_F.
  */
 SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
-            (SCM obj_s), "Get containing complex object of an object.")
+           (SCM obj_s), "Get containing complex object of an object.")
 {
   /* Ensure that the argument is an object smob */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
@@ -1576,7 +1581,7 @@ SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
  * \return a newly-created path object.
  */
 SCM_DEFINE (make_path, "%make-path", 0, 0, 0,
-            (), "Create a new path object")
+           (), "Create a new path object")
 {
   Object *obj = o_path_new (DEFAULT_PATH_COLOR_INDEX, "");
 
@@ -1640,8 +1645,8 @@ SCM_DEFINE (path_length, "%path-length", 1, 0, 0,
  * \return A list containing the requested path element data.
  */
 SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
-            (SCM obj_s, SCM index_s),
-            "Get a path element from a path object.")
+           (SCM obj_s, SCM index_s),
+           "Get a path element from a path object.")
 {
   /* Ensure that the arguments are a path object and integer */
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
@@ -1649,7 +1654,7 @@ SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
   SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, s_path_ref);
 
   Object *obj = edascm_to_object (obj_s);
-  int idx = scm_to_int (index_s);
+  int     idx = scm_to_int (index_s);
 
   /* Check index is valid for path */
   if ((idx < 0) || (idx >= obj->path->num_sections)) {
@@ -1702,8 +1707,8 @@ SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
  * \return \a obj_s.
  */
 SCM_DEFINE (path_remove_x, "%path-remove!", 2, 0, 0,
-            (SCM obj_s, SCM index_s),
-            "Remove a path element from a path object.")
+           (SCM obj_s, SCM index_s),
+           "Remove a path element from a path object.")
 {
 
   /* Ensure that the arguments are a path object and integer */
@@ -1732,8 +1737,7 @@ SCM_DEFINE (path_remove_x, "%path-remove!", 2, 0, 0,
 
     /* Remove section at index by moving all sections above index one
      * location down. */
-    memmove (&obj->path->sections[idx],
-             &obj->path->sections[idx+1],
+    memmove (&obj->path->sections[idx], &obj->path->sections[idx+1],
              sizeof (PATH_SECTION) * (obj->path->num_sections - idx - 1));
     obj->path->num_sections--;
   }
@@ -1793,10 +1797,18 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
   PATH_SECTION section = {0, 0, 0, 0, 0, 0, 0};
 
   /* Check & extract path element type. */
-  if      (type_s == closepath_sym) { section.code = PATH_END;     }
-  else if (type_s == moveto_sym)    { section.code = PATH_MOVETO;  }
-  else if (type_s == lineto_sym)    { section.code = PATH_LINETO;  }
-  else if (type_s == curveto_sym)   { section.code = PATH_CURVETO; }
+  if (type_s == closepath_sym) {
+    section.code = PATH_END;
+  }
+  else if (type_s == moveto_sym) {
+    section.code = PATH_MOVETO;
+  }
+  else if (type_s == lineto_sym) {
+    section.code = PATH_LINETO;
+  }
+  else if (type_s == curveto_sym) {
+    section.code = PATH_CURVETO;
+  }
   else {
     scm_misc_error (s_path_insert_x,
                     _("Invalid path element type ~A."),
@@ -1911,7 +1923,7 @@ SCM_DEFINE (make_picture, "%make-picture", 0, 0, 0, (),
  * \return a list of picture object parameters.
  */
 SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
-            (SCM obj_s), "Get picture object parameters")
+           (SCM obj_s), "Get picture object parameters")
 {
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
               SCM_ARG1, s_picture_info);
@@ -1920,6 +1932,7 @@ SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
   const char *filename = o_picture_get_filename (obj);
 
   SCM filename_s = SCM_BOOL_F;
+
   if (filename != NULL) {
     filename_s = scm_from_utf8_string (filename);
   }
@@ -1934,8 +1947,8 @@ SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/* \brief Set picture object parameters.
- * \par Function Description
+/*! \brief Set picture object parameters.
+ *  \par Function Description
  * Sets the parameters of the picture object \a obj_s.
  *
  * \note Scheme API: Implements the %set-picture! procedure in the
@@ -1951,8 +1964,8 @@ SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
  * \return the modify \a obj_s.
  */
 SCM_DEFINE (set_picture_x, "%set-picture!", 7, 0, 0,
-            (SCM obj_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM angle_s,
-             SCM mirror_s), "Set picture object parameters")
+           (SCM obj_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM angle_s,
+            SCM mirror_s), "Set picture object parameters")
 {
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
               SCM_ARG1, s_set_picture_x);
@@ -2085,7 +2098,7 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!", 3, 0, 0,
  * \return \a obj_s.
  */
 SCM_DEFINE (translate_object_x, "%translate-object!", 3, 0, 0,
-            (SCM obj_s, SCM dx_s, SCM dy_s), "Translate an object.")
+           (SCM obj_s, SCM dx_s, SCM dy_s), "Translate an object.")
 {
   /* Check argument types */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
@@ -2125,8 +2138,8 @@ SCM_DEFINE (translate_object_x, "%translate-object!", 3, 0, 0,
  * \return \a obj_s.
  */
 SCM_DEFINE (rotate_object_x, "%rotate-object!", 4, 0, 0,
-            (SCM obj_s, SCM x_s, SCM y_s, SCM angle_s),
-            "Rotate an object.")
+           (SCM obj_s, SCM x_s, SCM y_s, SCM angle_s),
+           "Rotate an object.")
 {
   /* Check argument types */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
@@ -2173,7 +2186,7 @@ SCM_DEFINE (rotate_object_x, "%rotate-object!", 4, 0, 0,
  * \return \a obj_s.
  */
 SCM_DEFINE (mirror_object_x, "%mirror-object!", 2, 0, 0,
-            (SCM obj_s, SCM x_s),
+           (SCM obj_s, SCM x_s),
             "Mirror an object.")
 {
   /* Check argument types */
