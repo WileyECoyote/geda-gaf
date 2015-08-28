@@ -199,24 +199,6 @@ GArray *x_color_get_outline_color_map()
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
- *  \todo this has to change... to the right code
-
-GdkColor *x_color_get_darkcolor(int color)
-{
-  if ((color < 0) || (color >= MAX_COLORS)
-      || (gdk_outline_colors[color] == NULL)) {
-    fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
-    return(&white);
-  }
-  else {
-    return (gdk_outline_colors[color]);
-  }
-}
- */
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
  *  \todo function name should include the word "display"
  */
 COLOR *x_color_lookup (int color)
@@ -248,29 +230,6 @@ bool x_color_get_state (int color)
 void x_color_set_state (int color, int state)
 {
   display_colors[color].enabled = state != FALSE;
-}
-
-/*! \brief Return pointer to string name of the color
- *  \par Function Description
- *  The function obtains the RGB color at the given index
- *  position and calls library function u_color_rgba_encode
- *  to obtain the a pointer to string name of the color.
- */
-char *x_color_get_name(int index)
-{
-  COLOR c;
-
-  if ((index >= MAX_COLORS) || (index < 0)) {
-    return(NULL);
-  }
-
-  if (display_colors[index].enabled) {
-    c = display_colors[index];
-    return u_color_rgba_encode (c.r, c.g, c.b, c.a);
-  }
-
-  /* didn't find a color, but there still might be more */
-  return(NULL);
 }
 
 bool x_color_display_enabled (int index)

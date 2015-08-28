@@ -1,3 +1,8 @@
+2015-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_color.c: Removed  unused functions: x_color_get_darkcolor and
+      x_color_get_name.
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Revised x_console_open and x_console_close to call

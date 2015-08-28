@@ -2005,9 +2005,8 @@ bool load_settings_dialog (GschemToplevel *w_current)
   EdaConfig    *cfg      = eda_config_get_user_context();
   const char   *group    = IVAR_CONFIG_GROUP;
 
-  char *tmpstr;
-  extern char *x_color_get_name(int index);
-  const GdkColor* color;
+  char  *tmpstr;
+  const  GdkColor *color;
   COLOR *cflag;
 
   /* variable pre-conditioning */
