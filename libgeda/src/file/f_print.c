@@ -33,14 +33,15 @@
 /*! \brief Hashtable storing mapping between character and
  *         postscript glyph name
  */
-GHashTable *unicode_char_to_glyph = NULL;
+static GHashTable *unicode_char_to_glyph = NULL;
 
 static int last_ps_color;  /* used to remember the last code sent */
 
-static int f_print_get_unicode_chars (GedaToplevel * toplevel,
-                                      const GList *obj_list,
-                                      int count, gunichar * table);
-static void f_print_unicode_map(FILE * fp, int count, gunichar * table);
+static int f_print_get_unicode_chars (GedaToplevel        *toplevel,
+                                      const GList         *obj_list,
+                                      int count, gunichar *table);
+
+static void f_print_unicode_map(FILE *fp, int count, gunichar *table);
 
 /*! \brief Prints the line width in mils to a postscript document.
  *  \par Function Description
@@ -62,7 +63,7 @@ void f_print_set_line_width(FILE *fp, int width)
  *  This function converts the color number passed to a string
  *  and prints it to the postscript document provided.
  *
- *  \param [in]     toplevel The current #GedaToplevel structure.
+ *  \param [in]     toplevel The current#GedaToplevel structure.
  *  \param [in]     fp     The postscript document to print the color to.
  *  \param [in]     color  Integer color to convert and print.
  *
@@ -78,7 +79,8 @@ int f_print_set_color(GedaToplevel *toplevel, FILE *fp, int color)
 
   if (string) {
     fprintf(fp, "%s setrgbcolor\n", string);
-  } else {
+  }
+  else {
     last_ps_color = -1;
     return 0;
   }
@@ -104,14 +106,15 @@ int f_print_set_color(GedaToplevel *toplevel, FILE *fp, int color)
  *  \return 0 on success, -1 on failure.
  */
 int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
-		   int paper_size_x, int paper_size_y, int eps, bool landscape)
+                   int paper_size_x, int paper_size_y, int eps, bool landscape)
 {
-  char *buf = NULL;
-  FILE *prolog = NULL;
+  FILE  *prolog = NULL;
+  char  *buf    = NULL;
+  char  *prologfile;
+  int    llx,lly,urx,ury;
+
   size_t bytes;
-  int llx,lly,urx,ury;
   time_t current_time,time_rc;
-  char *prologfile;
 
   /* Compute bounding box */
   llx=0;                          /* So, right now, the box starts at (0,0) */
@@ -131,37 +134,39 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
     fprintf(fp, "%%!PS-Adobe-3.0 EPSF-3.0\n");
   else
     fprintf(fp, "%%!PS-Adobe-3.0\n");
+
   fprintf(fp, "%%%%Creator: gEDA gschem %s\n"
-  "%%%%CreationDate: %s"
-  "%%%%Title: %s\n"
-  #ifdef HAVE_GETLOGIN
-  "%%%%Author: %s\n"
-  #endif
-  "%%%%BoundingBox: %d %d %d %d\n"
-  "%%%%Orientation: %s\n"
-  "%%%%Pages: 1\n"
-  "%%%%Endcomments\n"
-  "%%%%BeginProlog\n",
-  PACKAGE_GIT_VERSION,
-  ctime(&current_time),
-          page->filename,
-          #ifdef HAVE_GETLOGIN
-          getlogin(),
-          #endif
-          llx, lly, urx, ury,
-          (landscape ? "Landscape" : "Portrait")
+              "%%%%CreationDate: %s"
+              "%%%%Title: %s\n"
+#ifdef HAVE_GETLOGIN
+              "%%%%Author: %s\n"
+#endif
+              "%%%%BoundingBox: %d %d %d %d\n"
+              "%%%%Orientation: %s\n"
+              "%%%%Pages: 1\n"
+              "%%%%Endcomments\n"
+              "%%%%BeginProlog\n",
+              PACKAGE_GIT_VERSION,
+              ctime(&current_time),
+              page->filename,
+#ifdef HAVE_GETLOGIN
+              getlogin(),
+#endif
+              llx, lly, urx, ury,
+             (landscape ? "Landscape" : "Portrait")
   );
 
   /* Fetch and insert the Postscript prolog from disk here */
 
   /* Allocate a buffer to use during copy */
-  #define PROLOG_BUFFER_SIZE 8192
+#define PROLOG_BUFFER_SIZE 8192
 
   /* Don't check this (succeeds or aborts) */
   buf = GEDA_MEM_ALLOC(PROLOG_BUFFER_SIZE);
 
   /* Check for prolog file */
   prologfile = u_string_strdup(toplevel->postscript_prolog);
+
   if(access(prologfile, R_OK) != 0) {
     GEDA_FREE(prologfile);
     prologfile = u_string_concat (f_path_sys_data (), DIR_SEPARATOR_S,
@@ -171,14 +176,17 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
       goto f_print_header_fail;
     }
   }
-  else
+  else {
     u_log_message(_("f_print_header: using prolog file [%s]\n"), prologfile);
+  }
 
   prolog = fopen(prologfile,"r");
+
   if(prolog == NULL) {
     u_log_message(_("f_print_header: Unable to open the prolog file \"%s\" for reading\n"), prologfile);
     goto f_print_header_fail;
   }
+
   /* Loop while reading file into buffer and dump it
    * back out to the supplied file handle
    */
@@ -190,7 +198,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
       u_log_message(_("f_print_header: Error while writing prolog \"%s\" \n"), prologfile);
       goto f_print_header_fail;
     }
-  } while(!feof(prolog) && !ferror(prolog) && !ferror(fp));
+  } while (!feof(prolog) && !ferror(prolog) && !ferror(fp));
 
   if(ferror(prolog)) {
     u_log_message(_("f_print_header: Error reading prolog file \"%s\"\n"), prologfile);
@@ -201,23 +209,25 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
     u_log_message(_("f_print_header: Error writing postscript output file\n"));
     goto f_print_header_fail;
   }
+
   GEDA_FREE(buf);  /* If we got to here, the buffer was allocated. */
   GEDA_FREE(prologfile);
   fprintf(fp,"%%%%EndProlog\n"
   "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
 
-
   fclose (prolog);
   return 0;
 
-  f_print_header_fail:
+f_print_header_fail:
+
   u_log_message (_("Giving up on printing\n"));
+
   if (prolog != NULL)
     fclose (prolog);
-  if (prologfile != NULL)
-    GEDA_FREE(prologfile);
 
-  GEDA_FREE (buf); /* GEDA_FREE() succeeds if argument is NULL */
+  GEDA_FREE(prologfile);
+  GEDA_FREE (buf);       /* GEDA_FREE() succeeds if argument is NULL */
+
   return -1;
 }
 
@@ -239,7 +249,7 @@ void f_print_footer(FILE *fp)
  *  This function will parse the head parameter for all objects
  *  and write the to the postscript document.
  *
- *  \param [in] toplevel      The current GedaToplevel object.
+ *  \param [in] toplevel       The current GedaToplevel object.
  *  \param [in] fp             The postscript document to print to.
  *  \param [in] obj_list       List of objects to be printed.
  *  \param [in] start_x        X origin on page to start printing objects.
@@ -269,7 +279,6 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
   if (origin_x != 0 || origin_y != 0) {
     fprintf(fp, "%d %d translate\n", -origin_x, -origin_y);
   }
-
 
   /* no longer change the coords, the postscript translate takes care
    * of this */
@@ -333,7 +342,6 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
           last_ps_color = save_last_ps_color;
         }
         break;
-
 
       case(OBJ_PATH):
         o_path_print(toplevel, fp, o_current,
@@ -413,13 +421,13 @@ int f_print_file (GedaToplevel *toplevel, Page *page, const char *filename)
 int f_print_command (GedaToplevel *toplevel, Page *page, const char *command)
 {
   FILE *fp;
-  int result;
+  int   result;
 
   fp = popen (command, "w");
 
   /* check to see if it worked */
-  if (fp == NULL)
-    {
+  if (fp == NULL) {
+
       u_log_message(_("Could not execute command [%s] for printing\n"),
                     command);
       return -1;
@@ -511,10 +519,13 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
       toplevel->paper_width = dy;
       toplevel->paper_height = dx;
     }
-  } else
+  }
+  else {
     eps = 0;
+  }
 
   scale = 0.0;
+
   if (landscape) {
     /* First attempt to fit in x direction. */
     scale = toplevel->paper_width / (float)dx;
@@ -522,7 +533,8 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
       /* Else fit with y direction */
       scale = (toplevel->paper_height / (float)dy);
     }
-  } else { /* portrait */
+  }
+  else { /* portrait */
     /* First attempt to fit in y direction. */
     scale = toplevel->paper_width / (float) dy;
     if((toplevel->paper_height / (float)dx) < scale ) {
@@ -531,22 +543,22 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
     }
   }
 
-  #if 0
+#if 0
   /* Debug */
   printf("dx: %d dy:%d, origin_x:%d origin_y:%d, right:%d bottom:%d\n",
   dx,dy,origin_x,origin_y,right,bottom);
   printf("scale:%f\n",scale);
-  #endif
+#endif
 
   /* Output the header */
-  if (f_print_header(toplevel, page, fp,
-    toplevel->paper_width,
-    toplevel->paper_height,
-    eps, landscape) != 0) {
+  if (f_print_header(toplevel, page, fp, toplevel->paper_width,
+                                         toplevel->paper_height,
+                     eps, landscape) != 0)
+  {
 
     /* There was an error in f_print_header */
     return -1;
-    }
+  }
 
     /* Output font re-encoding */
     if (unicode_count) {
@@ -588,19 +600,21 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
     /* Now the output is defined in terms of mils */
     /* Draw a box with the background colour covering the whole page */
     if (toplevel->print_color &&
-      f_print_set_color(toplevel, fp, toplevel->print_color_background)) {
+      f_print_set_color(toplevel, fp, toplevel->print_color_background))
+    {
       fprintf (fp, "%d %d 0 0 fbox\n", toplevel->paper_height,
                toplevel->paper_width);
-      }
+    }
 
       /* Now rotate and translate the graphics to fit onto the desired
        * page with the orientation we want. Center it too */
-      if (landscape) {
+    if (landscape) {
         fprintf(fp,
                 "%d %d translate 90 rotate\n",
                 (int)((toplevel->paper_height + ( dy-margin_y) * scale)/2.0),
                 (int)((toplevel->paper_width  + (-dx+margin_x) * scale)/2.0));
-      } else { /* portrait */
+    }
+    else { /* portrait */
         fprintf(fp,"%d %d translate\n",
         (int)((toplevel->paper_height + (-dx + margin_x) * scale)/2.0),
         (int)((toplevel->paper_width  + (-dy + margin_y) * scale)/2.0));
@@ -608,8 +622,7 @@ int f_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
     }
 
     /* Now apply final mils to output scaling factor */
-    fprintf(fp,"%f %f scale\n",
-            scale, scale);
+    fprintf(fp,"%f %f scale\n", scale, scale);
 
     /* Print the objects */
     f_print_objects (toplevel, fp, s_page_get_objects (page),
@@ -644,11 +657,11 @@ void f_print_set_type(GedaToplevel *toplevel, int type)
  *  \return count on success, 0 otherwise.
  */
 static int f_print_get_unicode_chars (GedaToplevel *toplevel,
-                                      const GList *obj_list,
+                                      const GList  *obj_list,
                                       int count, gunichar *table)
 {
   Object *o_current = NULL;
-  char *aux;
+  char   *aux;
   gunichar current_char;
   int i, found;
   const GList *iter;
@@ -722,13 +735,14 @@ static void f_print_unicode_map(FILE * fp, int count, gunichar * table)
   /* Now fill in the active characters */
   for (i=0; i<128; i++) {  /* Copy in the regular latin chars */
     glyph_map[i] = g_hash_table_lookup (unicode_char_to_glyph,
-                                        GUINT_TO_POINTER (i));
+                                       (void*)(unsigned long) i);
   }
+
   /* Finish by using up the rest of the spares */
   for (i=128; i<(count+128); i++) {
     if(i < (count+128)) {
       glyph_map[i] = g_hash_table_lookup (unicode_char_to_glyph,
-                                          GUINT_TO_POINTER (table[i-128]));
+                                         (void*)(unsigned long)(table[i-128]));
     }
   }
 
@@ -737,6 +751,7 @@ static void f_print_unicode_map(FILE * fp, int count, gunichar * table)
 
   /* Output the re-encoding vector, prettily */
   line_count = 0;
+
   for (i=0; i<256; i++) {
     line_count += fprintf(fp, "%s ", glyph_map[i]);
     if(line_count > 60) {
@@ -4448,7 +4463,7 @@ int f_print_initialize_glyph_table(void)
 {
   struct glyph_list *g;
 
-  /* Is the hash already intialized? */
+  /* Is the hash already initialized? */
   if(unicode_char_to_glyph != NULL) return 0;
 
   /* No, allocate hash table */

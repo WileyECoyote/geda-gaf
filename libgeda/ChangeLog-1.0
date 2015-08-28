@@ -1,5 +1,9 @@
 2015-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_print.c: Make unicode_char_to_glyph static.
+
+2015-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc.c: Revised and completed Doxygen documentation.
 
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
