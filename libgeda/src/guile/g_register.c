@@ -24,15 +24,6 @@
 #include "libgeda_priv.h"
 
 /*! \brief */
-struct gsubr_t {
-  char* name;
-  int req;
-  int opt;
-  int rst;
-  SCM (*fnc)();
-};
-
-/*! \brief */
 static struct gsubr_t libgeda_funcs[] = {
   { "eval-protected",             1, 1, 0, g_scm_eval_protected },
   { "eval-string-protected",      1, 0, 0, g_scm_eval_string_protected },
@@ -89,7 +80,7 @@ void g_register_libgeda_funcs (void)
 {
   struct gsubr_t *tmp = libgeda_funcs;
   while (tmp->name != NULL) {
-    scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
+    scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->func);
     tmp++;
   }
 }

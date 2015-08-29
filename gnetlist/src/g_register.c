@@ -29,14 +29,6 @@
 #include "gnetlist.h"
 #include <geda_debug.h>
 
-struct gsubr_t {
-  char *name;
-  int   req;
-  int   opt;
-  int   rst;
-  SCM (*fnc)();
-};
-
 static struct gsubr_t gnetlist_funcs[] = {
   { "quit",                         0, 0, 0, g_quit },
   { "exit",                         0, 0, 0, g_quit },
@@ -92,7 +84,7 @@ void g_register_funcs(void)
   struct gsubr_t *tmp = gnetlist_funcs;
 
   while (tmp->name != NULL) {
-    scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
+    scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->func);
     tmp++;
   }
 

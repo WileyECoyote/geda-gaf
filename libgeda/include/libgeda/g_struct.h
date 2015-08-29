@@ -326,6 +326,19 @@ struct st_schcheck {
 };
 
 /* These do not have type defines in header of this file */
+
+/*------------------------------------------------------------------
+ *                        GUILE SUBROUTINE TABLES
+ *------------------------------------------------------------------*/
+/*! \brief */
+struct gsubr_t {
+  char *name;
+  int   req;
+  int   opt;
+  int   rst;
+  void *func;
+};
+
 struct st_attrib_smob {
   GedaToplevel *world;          /* We need this when updating schematic */
   Object       *attribute;

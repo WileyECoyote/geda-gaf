@@ -1,3 +1,10 @@
+2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/g_struct.h: Relocate gsubr_t structure definition to
+      header file so definition is not repeated in source tree multible times.
+
+    * src/guile/g_register.c: Remove gsubr_t structure definition.
+
 2015-08-28 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * etc/system-gafrc: WEH: Modified per commit to Master branch by

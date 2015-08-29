@@ -28,15 +28,6 @@
 #include <geda_debug.h>
 
 /*! \brief */
-struct gsubr_t {
-  char* name;
-  int req;
-  int opt;
-  int rst;
-  SCM (*fnc)();
-};
-
-/*! \brief */
 static struct gsubr_t gschem_rc_funcs[] = {
   /* rc file */
 
@@ -288,7 +279,7 @@ void g_register_funcs (void)
   for(j = 0; j < 4; j++) {
     grp = func[j];
     while (grp->name != NULL) {
-      scm_c_define_gsubr (grp->name, grp->req, grp->opt, grp->rst, grp->fnc);
+      scm_c_define_gsubr (grp->name, grp->req, grp->opt, grp->rst, grp->func);
       grp++;
     }
   }
