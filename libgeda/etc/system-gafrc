@@ -64,10 +64,10 @@
 
 ; promote-invisible string
 ;
-; If attribute-promotion is enabled, then this controls if invisible floating
-; attributes are promoted (attached to the outside of the component) if the
-; text string is invisible.  There are cases where it is undesirable, so the
-; default is disabled.
+; If attribute-promotion is enabled, then invisible floating attributes are
+; promoted (attached to the outside of the component) if the text string is
+; invisible. There are cases when this is undesirable, so the default is
+; disabled.
 ;
 ;(promote-invisible "enabled")
 (promote-invisible "disabled")
@@ -130,8 +130,8 @@
 ; Comment out the second line and comment in the first line for a
 ; dark background. The dark background is the original look.
 ;
-;(load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
-(load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
+;(primitive-load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
+(primitive-load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
 
 ;;;; Process configuration script directory
 

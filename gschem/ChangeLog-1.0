@@ -1,3 +1,15 @@
+2015-08-28 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * etc/system-gschemrc.scm: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit  af58712b1c5ab2645b28613e141b5aa57792077e:
+
+      On Windows system, guile post-2.0.11 prepends a %load-path directory
+      to the path that is already built using build-path for some reason,
+      which leads to strange names, e.g. "d:\usr\share\geda\d:/usr/share/
+      gEDA/gschem-colormap-darkbg", in several case, which, in turn, breaks
+      loading of rc files by gschem. Using 'primitive-load' instead of
+      'load' solves this.
+
 2015-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_color.c: Removed  unused functions: x_color_get_darkcolor and
@@ -23,7 +35,7 @@
     * Code Enhancement: Fix g_rc_gschem_version.
 
     * src/guile/g_rc.c: WEH: Modified per commit to Master branch by Vladimir
-      Zhbanov, commit   1bc39de0a196a97e3261f1d22f63ebde2cf864da:
+      Zhbanov, commit 1bc39de0a196a97e3261f1d22f63ebde2cf864da:
 
       Guile since version 1.9.6 does not check source properties of evaluated
       files for some reason returning just #f for them. So the return value of

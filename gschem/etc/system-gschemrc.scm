@@ -51,10 +51,10 @@
 ;
 ; Note: color-map-make-friendly display-color-map above must be enabled
 ;       these color schemes to work.
-(load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
-;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
-;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
-;(load (build-path geda-rc-path "gschem-colormap-custom"))
+(primitive-load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
+;(primitive-load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
+;(primitive-load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
+;(primitive-load (build-path geda-rc-path "gschem-colormap-custom"))
 
 ; image-color string
 ;
@@ -1038,8 +1038,9 @@
 ; untitled-name string
 ;
 ; Specify the default untitled basename (usually only used a startup time)
-; And typically not changed at runtime
+; And typically not changed at runtime.
 ;
+; This is a libgeda settings.
 (untitled-name "untitled")
 
 ;BEGIN ===================> Scrollbar Options <=====================
@@ -1647,6 +1648,7 @@
 ;;(map-keys "H H"        "help-show-faq")
 (map-keys "H M"        "help-show-manual")
 (map-keys "H K"        "help-show-hotkeys")
+(map-keys "H U"        "help-show-guile")
 (map-keys "H W"        "help-show-wiki")
 
 (map-keys "<Shift>H D" "hierarchy-down-schematic")
@@ -2294,6 +2296,7 @@
         ("SEPARATOR"                   #f                         #f)
         (,(N_ "gEDA Docu_mentation...") help-show-geda            "symbol-datasheet")
         (,(N_ "gEDA _Wiki...")          help-show-wiki            "web-browser")
+        (,(N_ "G_uile...")              help-show-guile           "gtk-about")
         (,(N_ "_About...")              help-show-about           "gtk-about")
       )
 )
