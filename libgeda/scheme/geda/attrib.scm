@@ -1,6 +1,10 @@
+;; -*-Scheme-*-
+;;
 ;; gEDA - GPL Electronic Design Automation
 ;; libgeda - gEDA's library - Scheme API
-;; Copyright (C) 2010-2011 Peter Brett <peter@peter-b.co.uk>
+;;
+;; Copyright (C) 2010-2015 Peter Brett <peter@peter-b.co.uk>
+;; Copyright (C) 2011-2015 gEDA Contributors (see ChangeLog for details)
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,7 +18,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; if not, write to the Free Software
-;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
+;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+;; MA 02110-1301 USA
 ;;
 
 (define-module (geda attrib)
