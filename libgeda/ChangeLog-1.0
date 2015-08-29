@@ -1,5 +1,10 @@
 2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/geda/os.scm: Replace functions; sys-config-dirs, sys-data-dirs,
+      user-config-dir, and user-data-dir with calls to library functions.
+
+2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/g_struct.h: Relocate gsubr_t structure definition to
       header file so definition is not repeated in source tree multible times.
 

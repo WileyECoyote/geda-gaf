@@ -55,15 +55,19 @@ SCM_DEFINE (platform, "%platform", 0, 0, 0, (),
 # if defined (OS_CARBON)
   result = scm_cons (carbon_sym, result);
 # endif
+
 # if defined (OS_CYGWIN)
   result = scm_cons (cygwin_sym, result);
 # endif
+
 # if defined (OS_LINUX)
   result = scm_cons (linux_sym, result);
 # endif
+
 # if defined (OS_WIN32)
   result = scm_cons (win32_sym, result);
 # endif
+
 # if defined (OS_WIN32_NATIVE)
   result = scm_cons (win32_native_sym, result);
 # endif
@@ -71,7 +75,24 @@ SCM_DEFINE (platform, "%platform", 0, 0, 0, (),
   return result;
 }
 
-/*! \brief Get system data directory directories.
+/*! \brief Get System Configuration directory directories.
+ * \par Function Description
+ * Returns a list of directories to be searched for system
+ * configuration information.
+ *
+ * \note Scheme API: Implements the %sys-config-dirs procedure in the
+ * (geda core os) module.
+ *
+ * \return a Scheme list of 1 string.
+ */
+SCM_DEFINE (sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
+           "Return a list of search directories for system configuration.")
+{
+  SCM dir = scm_from_locale_string (f_path_sys_config ());
+  return scm_list_1 (dir);
+}
+
+/*! \brief Get System Data directory directories.
  * \par Function Description
  * Returns a list of directories to be searched for system data.
  *
@@ -89,22 +110,37 @@ SCM_DEFINE (sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
   return scm_list_1 (dir);
 }
 
-/*! \brief Get system config directory directories.
+/*! \brief Get User Configuration directory.
  * \par Function Description
- * Returns a list of directories to be searched for system
- * configuration information.
+ * Returns a list of directories to be searched for user configuration.
  *
- * \note Scheme API: Implements the %sys-config-dirs procedure in the
+ * \note Scheme API: Implements the %user-config-dir procedure in the
  * (geda core os) module.
  *
- * \return a Scheme list of strings.
+ * \return a Scheme list of 1 string.
  */
-SCM_DEFINE (sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
-            "Return a list of search directories for system configuration.")
+SCM_DEFINE (user_config_dir, "%user-config-dir", 0, 0, 0, (),
+            "Return a list of search directories for user configuration.")
 {
-  /* f_path_sys_data() returns a raw environment string, so assume
-   * it's in the current locale's encoding. */
-  SCM dir = scm_from_locale_string (f_path_sys_config ());
+  SCM dir = scm_from_locale_string (f_path_user_config ());
+  return scm_list_1 (dir);
+}
+
+/*! \brief Get User Data directory.
+ * \par Function Description
+ *  Returns a list of directories to be searched for user data.
+ *
+ * \note gEDA stores user data in the same sirectory as user config
+ *
+ * \note Scheme API: Implements the %user-data-dir procedure in the
+ * (geda core os) module.
+ *
+ * \return a Scheme list of 1 string.
+ */
+SCM_DEFINE (user_data_dir, "%user-data-dir", 0, 0, 0, (),
+            "Return a list of search directories for user data.")
+{
+  SCM dir = scm_from_locale_string (f_path_user_config ());
   return scm_list_1 (dir);
 }
 
@@ -121,8 +157,8 @@ init_module_geda_core_os ()
   #include "scheme_os.x"
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_platform, s_sys_data_dirs, s_sys_config_dirs,
-                NULL);
+  scm_c_export (s_platform, s_sys_config_dirs, s_sys_data_dirs,
+                s_user_config_dir, s_user_data_dir, NULL);
 }
 
 /*!
@@ -130,7 +166,7 @@ init_module_geda_core_os ()
  * \par Function Description
 
  * Registers some Scheme procedures that provide cross-platform
- * support. Should only be called by scheme_api_init().
+ * support. Should only be called by edascm_init().
  */
 void
 edascm_init_os ()
