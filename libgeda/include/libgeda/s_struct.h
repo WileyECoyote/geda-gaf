@@ -203,12 +203,14 @@ struct st_menu_item {
 /*------------------------------------------------------------------
  *                         RC FILE ENTRY
  *------------------------------------------------------------------*/
-/* -- Miscellaneous Structures without defines here -- */
 /* used by the rc loading mechanisms */
 typedef struct {
   int   m_val;
   char *m_str;
 } vstbl_entry;
+
+
+/* -- Miscellaneous Structures without defines here -- */
 
 /** ************ Structures for mathmatical stuff *******************/
 

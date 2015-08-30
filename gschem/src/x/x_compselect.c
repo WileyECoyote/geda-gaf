@@ -155,7 +155,7 @@ enum
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-/*! \brief Process the response returned by the component selection dialog.
+/*! \brief Component Selection Dialog Response Handler.
  *  \par Function Description
  *  This function handles the response <B>arg1</B> of the component
  *  selection dialog <B>dialog</B>.
@@ -230,9 +230,10 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
     }
 
     case COMPSELECT_RESPONSE_HIDE:
-      /* Response when clicking on the "hide" button */
 
-      /* If there is no component in the complex place list, set the current one */
+      /* Response when clicking on the "hide" button, If there is no
+       * component in the complex place list, set the current one */
+
       if (toplevel->page_current->place_list == NULL) {
         gtk_dialog_response (GTK_DIALOG (compselect),
                              COMPSELECT_RESPONSE_PLACE);
@@ -264,7 +265,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
           Current_Page->place_list = NULL;
         }
 
-        /* Can not wait for base class todo this*/
+        /* Cannot wait for base class to do this*/
         w_current->cswindow = NULL;
 
       }
@@ -274,8 +275,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
       break;
 
     default:
-      /* Do nothing, in case there's another handler function which
-       *          can handle the response ID received. */
+      /* Do nothing, in case there's another handler function
+       * which can handle the response ID received. */
       break;
   }
 }
@@ -408,7 +409,6 @@ static void compselect_class_init      (CompselectClass *class);
 static GObject *compselect_constructor (GType    type,
                                         unsigned int n_construct_properties,
                                         GObjectConstructParam *construct_params);
-/*
 static void compselect_finalize        (GObject *object);
 static void compselect_set_property    (GObject *object,
                                         unsigned int property_id,
@@ -418,7 +418,7 @@ static void compselect_get_property    (GObject *object,
                                         unsigned int property_id,
                                         GValue *value,
                                         GParamSpec *pspec);
-*/
+
 /*! \brief Get Active Tree View.
  *  \par Function Description
  *  This function returns pointer to the active viewtree
@@ -579,8 +579,11 @@ lib_model_filter_visible_func (GtkTreeModel *model,
     GtkTreeIter iter2;
 
     ret = FALSE;
+
     if (gtk_tree_model_iter_children (model, &iter2, iter))
+
       do {
+
         if (lib_model_filter_visible_func (model, &iter2, data)) {
           ret = TRUE;
           break;
@@ -657,6 +660,7 @@ static void tree_open_rows (GtkTreeView *tree_view, bool expand_all)
   GtkTreePath      *path;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
+
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
     path = gtk_tree_model_get_path ( model, &iter);
     gtk_tree_view_expand_row (tree_view, path, expand_all);
@@ -682,7 +686,7 @@ static void open_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
 
 /*! \brief Open All Rows in Tree call-back for Tree-View pop-up menu
  *  \par Function Description
- *  The function calls the tree_open_rows function above with a value
+ *   The function calls the tree_open_rows function above with a value
  * of TRUE for the expand-all argument. This is the same functionality
  * as pressing the Expand All button widget.
  *
@@ -731,8 +735,9 @@ static int sort_object_text (Object *a, Object *b)
 
 /*! \brief Update the model of the attributes treeview
  *  \par Function Description
- *  This function takes the toplevel attributes from the preview widget and
+ *   This function takes the toplevel attributes from the preview widget and
  *  puts them into the model of the <b>attrtreeview</b> widget.
+ *
  *  \param [in] compselect       The dialog compselect
  *  \param [in] preview_toplevel The toplevel of the preview widget
  */
@@ -786,14 +791,18 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
       GEDA_FREE (name);
       GEDA_FREE (value);
     }
-  } else {
+  }
+  else {
+
     /* display only attribute that are in the filter list */
-    for (listiter = filter_list;
-         listiter != NULL;
-         listiter = g_list_next (listiter)) {
+    for (listiter = filter_list; listiter != NULL; NEXT(listiter)) {
+
       for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
+
         o_current = o_iter->data;
+
         if (o_attrib_get_name_value (o_current, &name, &value)) {
+
           if (strcmp (name, listiter->data) == 0) {
             gtk_list_store_append (model, &iter);
             name[0] = toupper(name[0]);
@@ -840,7 +849,7 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
 
     is_symbol = is_symbol_record(model, &iter);
 
-    if(is_symbol) {
+    if (is_symbol) {
 
       /* get pointer to tree that triggered signal */
       view = gtk_tree_selection_get_tree_view (selection);
@@ -868,7 +877,7 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
                              preview_window->toplevel);
   }
 
-  if(is_symbol) {
+  if (is_symbol) {
     /* signal a component has been selected to parent of dialog */
     g_signal_emit_by_name (compselect,
                            "response",
@@ -901,14 +910,20 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
 static void cs_apply_filter_tree_view (Compselect  *Dialog,
                                        GtkTreeView *view)
 {
-  GtkTreeModel *model;
+
   if(view != Dialog->inusetreeview) {
-   model = gtk_tree_view_get_model (view);
-   if (model != NULL) {
-     gtk_tree_model_filter_refilter ((GtkTreeModelFilter*) model);
-   }
-   if ( Dialog->applying_filter)
-     gtk_tree_view_expand_all (view);
+
+    GtkTreeModel *model;
+
+    model = gtk_tree_view_get_model (view);
+
+    if (model != NULL) {
+      gtk_tree_model_filter_refilter ((GtkTreeModelFilter*) model);
+    }
+
+    if ( Dialog->applying_filter) {
+      gtk_tree_view_expand_all (view);
+    }
   }
 }
 
@@ -940,7 +955,7 @@ static bool compselect_filter_timeout (void *data)
   if (strcmp ( GetEntryText(Dialog->entry_filter), "") != 0) {
     /* filter text not-empty */
     /* Set Flag before applying filter */
-    Dialog->applying_filter=TRUE;
+    Dialog->applying_filter = TRUE;
     cs_apply_filter_tree_view (Dialog, view);
   }
   else { /* if was filtering then */
@@ -969,13 +984,12 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
                                           void        *user_data)
 {
   Compselect *compselect = COMPSELECT (user_data);
-  GtkWidget *button;
-  bool  sensitive;
-  const char* text;
+  GtkWidget  *button;
+  bool        sensitive;
+  const char *text;
 
-  /* turns button off if filter entry is empty otherwise*/
-  /* turns it on  */
-  button    = GTK_WIDGET (compselect->button_clear);
+  /* turns button off if filter entry is empty otherwise turns it on */
+  button = GTK_WIDGET (compselect->button_clear);
 
   text = GetEntryText(compselect->entry_filter);
 
@@ -1032,17 +1046,22 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
       w_current->sort_component_library = GET_SWITCH_STATE(SortLibrarySwitch);
     }
     else {
+
       if(widget == ShowGroupsSwitch) {
+
         ThisDialog->show_groups = GET_SWITCH_STATE(ShowGroupsSwitch);
+
         /* if 1st level groups is off then 2nd level MUST be on */
         if (ThisDialog->show_groups == FALSE) {
           ThisDialog->subgroups = TRUE;
           SetSwitch(SubGroups, TRUE);
         }
+
         /* Update Widget sensitivities */
         gtk_widget_set_sensitive (SubGroupsSwitch, ThisDialog->show_groups);
       }
       else {
+
         if(widget == SubGroupsSwitch) {
           ThisDialog->subgroups = GET_SWITCH_STATE(SubGroupsSwitch);
         }
@@ -1061,17 +1080,21 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
  *   otherwise the toggle widget is set without blocking the signal.
  */
 static void gtk_set_item_active(GtkWidget *widget, bool state) {
-  unsigned long handler;
 
   if ( GTK_IS_OBJECT(widget)) {
-    GObject *object = G_OBJECT(widget);
+
+    unsigned long handler;
+    GObject      *object;
+
+    object  = G_OBJECT(widget);
     handler =  (unsigned long) g_object_get_data(object, "handler");
+
     if( handler) {
       g_signal_handler_block( object, handler);       /* disable signal */
       g_object_set (object, "active", state, NULL);   /* set the value */
       g_signal_handler_unblock( object, handler);     /* re-enable signal */
     }
-    else { /* Not handler so just set without blocking */
+    else { /* No handler ID so just set without blocking */
       g_object_set (object, "active", state, NULL);   /* set the value */
     }
   }
@@ -1106,30 +1129,34 @@ compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
   index = g_slist_index(compselect->style_menu_widgets, button );
 
   if ( index == COMPSELECT_STYLE_NONE && state) {
-     /* The "None" box was checked so un-check all the check boxes, except
-      * NONE, the second assignment of iter causes the first element to be
-      * skipped, which is "None", which was activated by the user */
-     for (iter = compselect->style_menu_widgets, iter = g_slist_next (iter);
-        iter != NULL; iter = g_slist_next (iter)) {
-       gtk_set_item_active(iter->data, FALSE);
-     }
-     compselect->style_flag = COMPSELECT_STYLE_NONE;  /* Be Zero */
+
+    /* The "None" box was checked so un-check all the check boxes, except
+     * NONE, the second assignment of iter causes the first element to be
+     * skipped, which is "None", which was activated by the user */
+    for (iter = compselect->style_menu_widgets, iter = g_slist_next (iter);
+         iter != NULL; iter = g_slist_next (iter)) {
+      gtk_set_item_active(iter->data, FALSE);
+    }
+    compselect->style_flag = COMPSELECT_STYLE_NONE;  /* Be Zero */
   }
   else {
+
     if ( index == 9 && state) { /* The "All" box was pressed check */
-       /* Un-check the check "none" box */
-       gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
-       /* Check all the other boxes except NONE*/
-       for (iter = compselect->style_menu_widgets,
-         iter = g_slist_next (iter); iter != NULL; iter = g_slist_next (iter)) {
-         gtk_set_item_active(iter->data, TRUE);
-       }
-       compselect->style_flag = COMPSELECT_STYLE_ALL; /* Be 255 */
+
+      /* Un-check the check "none" box */
+      gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
+      /* Check all the other boxes except NONE*/
+      for (iter = compselect->style_menu_widgets,
+        iter = g_slist_next (iter); iter != NULL; iter = g_slist_next (iter)) {
+        gtk_set_item_active(iter->data, TRUE);
+      }
+      compselect->style_flag = COMPSELECT_STYLE_ALL; /* Be 255 */
     }
     else {
 
        GtkWidget *all_butt;
        unsigned int mask = 1;
+
        /* decrement index because 0 was resolved above */
        --index;
 
@@ -1235,9 +1262,10 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
 static GtkTreeModel* create_inuse_tree_model (Compselect *compselect)
 {
   GschemToplevel *w_current;
-  GtkListStore *store;
-  GList *symlist, *iter;
-  GtkTreeIter tree;
+  GtkListStore   *store;
+  GList          *symlist;
+  GList          *iter;
+  GtkTreeIter     tree;
 
   w_current = GSCHEM_DIALOG (compselect)->w_current;
 
@@ -1273,11 +1301,11 @@ static GtkTreeModel* create_inuse_tree_model (Compselect *compselect)
 GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
                         DialogTabs data_set)
 {
+  CLibSource *source;
 
   GList *all_sources;
   GList *selected_sources;
   GList *src_iter;
-  CLibSource *source;
 
   /* Get list of all sources */
   all_sources = s_clib_get_sources (w_current->sort_component_library != 0);

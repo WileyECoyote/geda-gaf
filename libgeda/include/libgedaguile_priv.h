@@ -200,9 +200,9 @@ SCM edascm_from_toplevel (GedaToplevel *toplevel);
 
 /* ---------------------------------------- */
 
-GList *edascm_to_object_glist (SCM objs, const char *subr) G_GNUC_WARN_UNUSED_RESULT;
-SCM edascm_from_object_glist (const GList *objs);
-int edascm_is_object_type (SCM smob, int type);
+GList *edascm_to_object_glist     (SCM objs, const char *subr) G_GNUC_WARN_UNUSED_RESULT;
+SCM    edascm_from_object_glist   (const GList *objs);
+int    edascm_is_object_type      (SCM smob, int type);
 
 
 /*! \brief Flag an object's page as having been changed. */

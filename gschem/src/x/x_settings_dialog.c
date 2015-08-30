@@ -2066,7 +2066,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
     ff = dark
     ee = light
 
-    /TODO: Really should check all indexes
+    TODO: Really should check all indexes
  */
   cflag = x_color_lookup(10); /* index of "bus" */
   if (cflag->g == 0xff) {

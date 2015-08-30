@@ -37,6 +37,7 @@
 
 //#define PERFORMANCE
 //#include <gschem_diagnostics.h>
+
 #include <geda_debug.h>
 
 #define LAST_ACTION cmd_do_show_about

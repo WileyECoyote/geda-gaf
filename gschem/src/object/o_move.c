@@ -102,6 +102,7 @@ GList *o_move_stretch_remove (GList *list, Object *object)
   return g_list_delete_link (list, item);
 }
 
+#if DEBUG_STRETCH
 
 /*! \brief Debug utility function for Stretch routines
  *
@@ -128,6 +129,8 @@ void o_move_stretch_print_all (GList *list)
   }
   printf("DONE printing stretch ********************\n\n");
 }
+
+#endif
 
 /*! \brief Free Stretch Allocations
  *

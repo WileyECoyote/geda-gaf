@@ -328,9 +328,11 @@ struct st_schcheck {
 /* These do not have type defines in header of this file */
 
 /*------------------------------------------------------------------
- *                        GUILE SUBROUTINE TABLES
+ *                             GUILE
  *------------------------------------------------------------------*/
-/*! \brief */
+/*! \struct gsubr_t
+ *  \brief  Used in function tables for scm_c_define_gsubr
+ */
 struct gsubr_t {
   char *name;
   int   req;
