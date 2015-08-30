@@ -1,5 +1,9 @@
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/scheme_complex.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/prototype_priv.h: Remove declarations for vstbl_lookup_str
       and vstbl_get_val.
 
