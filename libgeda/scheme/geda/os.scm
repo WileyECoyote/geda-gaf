@@ -58,7 +58,7 @@
 
 (define-public user-config-dir %user-config-dir)
 
-(define-public user-data-dir %user-data-dir)
+(define-public user-data-dir user-config-dir)
 
 (define-public expand-env-variables
   ;; Only compile regular expression once

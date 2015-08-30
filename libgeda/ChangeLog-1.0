@@ -1,5 +1,10 @@
 2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/unit-tests/t0400-os.scm: Separate tests for system and user
+      directories.
+
+2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/geda/os.scm: Replace functions; sys-config-dirs, sys-data-dirs,
       user-config-dir, and user-data-dir with calls to library functions.
 

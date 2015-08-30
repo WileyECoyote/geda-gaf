@@ -19,8 +19,10 @@
 
   (assert-true (separator-char? separator-char)))
 
-(begin-test 'directories
-  (assert-true (every string? (sys-data-dirs)))
+(begin-test 'sys-directories
   (assert-true (every string? (sys-config-dirs)))
-  (assert-true (string? (user-data-dir)))
-  (assert-true (string? (user-config-dir))))
+  (assert-true (every string? (sys-data-dirs))))
+
+(begin-test 'user-directories
+  (assert-true (every string? (user-config-dir)))
+  (assert-true (every string? (user-data-dir))))
