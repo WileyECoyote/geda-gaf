@@ -1,5 +1,10 @@
 2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgedaguile_priv.h: Add Macro EDA_SCM_DEFINE to replace
+      SCM_DEFINE so c api function are not exposed.
+
+2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/unit-tests/t0400-os.scm: Separate tests for system and user
       directories.
 

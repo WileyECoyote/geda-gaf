@@ -110,6 +110,16 @@ void edascm_init_deprecated ();
  * for the convenience of the other C functions used by the Scheme
  * API. */
 
+#define EDA_SCM_DEFINE(FNAME, PRIMNAME, REQ, OPT, VAR, ARGLIST, DOCSTRING) \
+SCM_SNARF_HERE(\
+static const char scheme_ ## FNAME [] = PRIMNAME; \
+static SCM FNAME ARGLIST\
+)\
+SCM_SNARF_INIT( \
+scm_c_define_gsubr (scheme_ ## FNAME, REQ, OPT, VAR, \
+                    (SCM_FUNC_CAST_ARBITRARY_ARGS) FNAME)) \
+SCM_SNARF_DOCS(primitive, FNAME, PRIMNAME, ARGLIST, REQ, OPT, VAR, DOCSTRING)
+
 /*! The tag used to identify gEDA data structures in Scheme. */
 extern scm_t_bits geda_smob_tag;
 
