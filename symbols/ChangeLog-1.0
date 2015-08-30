@@ -1,3 +1,12 @@
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/ldo/NCP1117-DT33-1.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
+      Fixed 3.3Volt,0-125°C,DPAK.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener2/zener_62_1N5265B.sym: Add symbol 1N5265B, 62Volt zener.
+
 2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/ldo/NCP1117-DT285.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
