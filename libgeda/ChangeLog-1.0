@@ -1,5 +1,11 @@
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/scheme_page.c: A sequence functions in module, replace
+       SCM_DEFINE with EDA_SCM_DEFINE. Update copyright data and add
+       contributors in header.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_complex.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
 
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
