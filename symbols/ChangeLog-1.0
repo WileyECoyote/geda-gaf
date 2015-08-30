@@ -1,5 +1,10 @@
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/micro/TMS320F28069PZP-2b.sym: Add alternate pin arrangement for
+      sheet 2 of F28069 micro-controller.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * onsemi/ldo/NCP1117-DT33-1.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
       Fixed 3.3Volt,0-125°C,DPAK.
 
