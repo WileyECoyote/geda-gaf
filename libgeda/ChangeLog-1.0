@@ -1,4 +1,12 @@
-2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/prototype_priv.h: Remove declarations for vstbl_lookup_str
+      and vstbl_get_val.
+
+    * src/guile/g_rc_parse.c: Relocate functions vstbl_lookup_str and
+      vstbl_get_val from module g_rc.c and declare static.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgedaguile_priv.h: Add Macro EDA_SCM_DEFINE to replace
       SCM_DEFINE so c api function are not exposed.

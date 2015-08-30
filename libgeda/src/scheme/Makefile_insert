@@ -4,6 +4,7 @@
 
 libgeda_la_SOURCES += \
 	scheme/scheme_init.c \
+	scheme/scheme_make.c \
 	scheme/scheme_smob.c \
 	scheme/scheme_toplevel.c \
 	scheme/scheme_object.c \

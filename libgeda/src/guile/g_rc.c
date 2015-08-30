@@ -31,40 +31,6 @@
 #endif
 #include "libgeda_priv.h"
 
-/*! \brief Return Index of string in Virtual String Table
- *  \par Function Description
- *  This function is used by RC handlers to retrieve the index of the
- *  matching string. This is used for RC keywords like keep-invisible,
- *  example:
- *
- *  static const vstbl_entry mode_table[] = {
- *    {TRUE , "enabled" },
- *    {FALSE, "disabled"},
- *  }
- *
- */
-int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
-{
-  int i;
-
-  for(i = 0; i < size; i++) {
-    if(strcmp(table[i].m_str, str) == 0) {
-      break;
-    }
-  }
-  return i;
-}
-
-/*! \brief Get the Value at Index in Virtual String Table
- *  \par Function Description
- *   Returns the value of the first field in \a table at the
- *   given \a index
- */
-int vstbl_get_val(const vstbl_entry *table, int index)
-{
-  return table[index].m_val;
-}
-
 /*! \brief This function processes the component-group SCM list.
  *  \par Function Description
  *  This function reads the string list from the component-groups

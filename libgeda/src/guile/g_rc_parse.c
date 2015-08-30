@@ -36,6 +36,42 @@
 
 SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 
+/*! \brief Return Index of string in Virtual String Table
+ *  \par Function Description
+ *  This function is used by g_rc_mode_general to retrieve the index
+ *  of the matching string RC keywords like keep-invisible.
+ *
+ *  Example:
+ *
+ *  static const vstbl_entry mode_table[] = {
+ *    {TRUE , "enabled" },
+ *    {FALSE, "disabled"},
+ *  }
+ *
+ */
+static int
+vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
+{
+  int i;
+
+  for(i = 0; i < size; i++) {
+    if(strcmp(table[i].m_str, str) == 0) {
+      break;
+    }
+  }
+  return i;
+}
+
+/*! \brief Get the Value at Index in Virtual String Table
+ *  \par Function Description
+ *   Returns the value of the first field in \a table at the
+ *   given \a index
+ */
+static int vstbl_get_val(const vstbl_entry *table, int index)
+{
+  return table[index].m_val;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -44,8 +80,8 @@ SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 SCM g_rc_mode_general(SCM scmmode, const char *rc_name,      int *mode_var,
                                    const vstbl_entry *table, int  table_size)
 {
-  SCM ret;
-  int index;
+  SCM   ret_val;
+  int   index;
   char *mode;
 
   SCM_ASSERT (scm_is_string (scmmode), scmmode, SCM_ARG1, rc_name);
@@ -56,16 +92,16 @@ SCM g_rc_mode_general(SCM scmmode, const char *rc_name,      int *mode_var,
   /* no match? */
   if (index == table_size) {
     fprintf(stderr, "Invalid mode [%s] passed to %s\n", mode, rc_name);
-    ret = SCM_BOOL_F;
+    ret_val = SCM_BOOL_F;
   }
   else {
     *mode_var = vstbl_get_val(table, index);
-     ret = SCM_BOOL_T;
+     ret_val = SCM_BOOL_T;
   }
 
   free (mode);
 
-  return ret;
+  return ret_val;
 }
 
 /*! \brief Mark an RC file as loaded.
