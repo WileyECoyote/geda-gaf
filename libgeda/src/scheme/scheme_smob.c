@@ -23,8 +23,8 @@
  * \brief Scheme representations of gEDA C structures
  *
  * In order for Scheme code to be able to manipulate libgeda data
- * structures, it is convenient for it to be able to get handles to
- * several of the different C Object types used by libgeda, in
+ * structures, it is convenient for the code to be able to get handles
+ * to several of the different C Object types used by libgeda, in
  * particular #GedaToplevel, #Page and #Object.
  *
  * A particular issue is that, in principle, Guile can stash a
@@ -310,10 +310,11 @@ edascm_from_page (Page *page)
 Page *
 edascm_to_page (SCM smob)
 {
+
 #ifndef NDEBUG
-  SCM_ASSERT (EDASCM_PAGEP (smob), smob,
-              SCM_ARG1, "edascm_to_page");
+  SCM_ASSERT (EDASCM_PAGEP (smob), smob, SCM_ARG1, "edascm_to_page");
 #endif
+
   EDASCM_ASSERT_SMOB_VALID (smob);
 
   return GEDA_PAGE(SCM_SMOB_DATA (smob));
@@ -369,10 +370,11 @@ edascm_from_object (Object *object)
 Object *
 edascm_to_object (SCM smob)
 {
+
 #ifndef NDEBUG
-  SCM_ASSERT (EDASCM_OBJECTP (smob), smob,
-              SCM_ARG1, "edascm_to_object");
+  SCM_ASSERT (EDASCM_OBJECTP (smob), smob, SCM_ARG1, "edascm_to_object");
 #endif
+
   EDASCM_ASSERT_SMOB_VALID (smob);
 
   return GEDA_OBJECT(SCM_SMOB_DATA (smob));
@@ -406,10 +408,11 @@ edascm_from_config (EdaConfig *cfg)
 EdaConfig *
 edascm_to_config (SCM smob)
 {
+
 #ifndef NDEBUG
-  SCM_ASSERT (EDASCM_CONFIGP (smob), smob,
-              SCM_ARG1, "edascm_to_object");
+  SCM_ASSERT (EDASCM_CONFIGP (smob), smob, SCM_ARG1, "edascm_to_object");
 #endif
+
   EDASCM_ASSERT_SMOB_VALID (smob);
 
   return EDA_CONFIG (SCM_SMOB_DATA (smob));
