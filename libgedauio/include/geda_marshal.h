@@ -6,9 +6,7 @@
 
 #include	<glib-object.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+BEGIN_DECLS
 
 /* BOOL:INT,INT,POINTER,POINTER (geda-marshal.list:1) */
 extern void geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
@@ -206,9 +204,7 @@ extern void geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closur
                                                             void         *invocation_hint,
                                                             void         *marshal_data);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+END_DECLS
 
 #endif /* __GEDA_MARSHAL_H__ */
 
