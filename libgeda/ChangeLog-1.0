@@ -1,5 +1,10 @@
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_get.c: Check if bitmap file is accessible in function
+      f_get_bitmap_filespec.
+
+2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_page.c: A sequence functions in module, replace
        SCM_DEFINE with EDA_SCM_DEFINE. Update copyright data and add
        contributors in header.

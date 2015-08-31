@@ -148,7 +148,14 @@ char *f_get_bitmap_filespec (const char *filename)
                                          seperator, filename, NULL);
     }
 
-    /* TODO: Check to see of file is accessible */
+    /* Check to see of file is accessible */
+    if (filespec) {
+      if ((access (filespec, R_OK)) == 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+        filespec = NULL;
+      }
+    }
   }
   else {
     return NULL;
