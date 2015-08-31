@@ -175,7 +175,8 @@ GdkColor *x_color_get_color_from_index(int index)
  */
 GArray *x_color_get_display_color_map()
 {
-  GArray* color_map;
+  GArray *color_map;
+
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, display_colors, MAX_COLORS);
   return color_map;
@@ -190,9 +191,11 @@ GArray *x_color_get_display_color_map()
  */
 GArray *x_color_get_outline_color_map()
 {
-  GArray* color_map;
+  GArray *color_map;
+
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, outline_colors, MAX_COLORS);
+
   return color_map;
 }
 
@@ -244,7 +247,7 @@ bool x_color_display_enabled (int index)
  *       relative to the path returned by geda-rc-path. The
  *       current colors are free and the new color allocated.
  */
-int x_color_load_scheme(char* scheme) {
+int x_color_load_scheme(char *scheme) {
 
   char *strBuffer;
   char *inputfile;
@@ -253,24 +256,31 @@ int x_color_load_scheme(char* scheme) {
 
   SCM s_result;
 
-  strBuffer = GEDA_MEM_ALLOC( MAX_FILE ); /* be 255 */
+  strBuffer = GEDA_MEM_ALLOC(MAX_FILE); /* be 255 */
 
   if (strBuffer) {
-    rc_path = u_string_scm2c("geda-rc-path");
+
+    rc_path   = u_string_scm2c("geda-rc-path");
     inputfile = u_string_concat (rc_path, DIR_SEPARATOR_S, scheme, NULL);
+
     free(rc_path);
+
     if ((access (inputfile, R_OK)) == 0) {
+
       x_color_free();
-      strcpy(strBuffer, "(load \"");
+
+      strcpy(strBuffer, "(primitive-load \"");
       strcat(strBuffer, inputfile);
       strcat(strBuffer, "\")");
+
       scm_dynwind_begin (0);
         scm_dynwind_free(inputfile);
         scm_dynwind_free(strBuffer);
         s_result = g_scm_c_eval_string_protected(strBuffer);
       scm_dynwind_end ();
+
       if ((result = scm_is_true(s_result)) ? 1 : 0) {
-        q_log_message(_("Allocatating new color scheme\n"));
+        q_log_message(_("Allocating new color scheme\n"));
         x_color_allocate();
       }
     }

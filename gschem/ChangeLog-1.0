@@ -1,3 +1,10 @@
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve Platform Compatibility.
+
+    * src/x/x_color.c: Use primitive-load for view-xxx-colors actions in
+      function x_color_load_scheme.
+
 2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_register.c: Remove redundent gsubr_t structure definition.
@@ -27,7 +34,7 @@
 
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/base/gschem.c: Revise conditionals for pre and post load
+    * src/base/gschem.c: Revise conditionals for pre and post load
       expressions.
 
 2015-08-24 Wiley E. Hill <wileyhill@gmail.com>
