@@ -110,7 +110,7 @@ static PopupEntry popup_items[] = {
 
   { N_("Edit"),              NULL,                 1,                  0,  NULL,            NULL },
   { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL },
-  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL },
+  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component", NULL },
   { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
@@ -1002,8 +1002,12 @@ int x_menu_setup_popup (GschemToplevel *w_current)
         gtk_menu_item_set_submenu (GTK_MENU_ITEM( submenu ), menu) ;
         g_object_set (menu, "visible", TRUE, NULL);
 
-        POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, submenu);
+        //POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, submenu);
         g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, submenu);
+
+#if DEBUG
+        fprintf(stderr, "%s: submenu <%s> <%p>\n", __func__, item.name, submenu);
+#endif
 
         continue;
       }
@@ -1043,6 +1047,11 @@ int x_menu_setup_popup (GschemToplevel *w_current)
       g_object_set_data (G_OBJECT(menu_item), "top-level", w_current);
       POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);
       g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, menu_item);
+
+#if DEBUG
+      fprintf(stderr, "%s: appending <%s> <%p>\n", __func__, item.name, menu_item);
+#endif
+
     }
 
     g_object_set (menu_item, "visible", TRUE, NULL);
@@ -1268,7 +1277,13 @@ static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
       g_object_set(menu_item, "show-image", state, NULL);
     }
     else {
-      fprintf(stderr, _("<x_menu_toggle_icons> Ignoring invalid object, maybe a seperator\n"));
+
+#if DEBUG
+      fprintf(stderr, "%s: Ignoring invalid object, <%p>\n", __func__, menu_item);
+#else
+      fprintf(stderr, "%s: Ignoring invalid object, maybe a seperator\n", __func__);
+#endif
+
     }
     return FALSE;
   }

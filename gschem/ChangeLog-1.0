@@ -1,5 +1,11 @@
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Set use_stock bit for pop_edit_component in popup_items
+      table, remove adding submenu items to the list of popup menu items, add
+      DEBUG blocks for popup menu items in function x_menu_setup_popup.
+
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Expand Flexibility.
 
     * src/x/x_color.c: Revise function x_color_load_scheme to use libgeda
@@ -87,7 +93,7 @@
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Replace (int)(long*) with (int)(long) in
-      functions coord_options_popup_clicked and tatus_options_popup_clicked.
+      functions coord_options_popup_clicked and status_options_popup_clicked.
 
     * src/x/x_autonumber.c: Replace (int)(long*) with (int)(long) in
       functions; switch_responder, color_button_popup_menu_callback,
