@@ -21,7 +21,12 @@
 
 #include <geda_standard.h>
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include "libgeda_priv.h"
+
 #include <geda_debug.h>
 
 COLOR print_colors[MAX_COLORS];
@@ -75,6 +80,34 @@ GArray *s_color_get_print_color_map()
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
   return color_map;
+}
+
+/*! \brief Load and Evaluate a Color Map Scheme
+ *  \par Function Description
+ *  Use to load a color map file.
+ *
+ *  \note \a Could actually be any scheme file
+ *
+ *  \param inputfile Full name of file including path.
+ */
+bool s_color_load_scheme (const char *inputfile)
+{
+  int result = FALSE;
+
+  if (inputfile && (access (inputfile, R_OK)) == 0) {
+
+    const char *err_load = _("Error loading %s, %s\n");
+
+    GError *err = NULL;
+
+    result = g_read_scheme_file (inputfile, &err);
+
+    if(err != NULL) {
+      u_log_message(err_load, inputfile, strerror(errno));
+      g_clear_error (&err);
+    }
+  }
+  return result;
 }
 
 /*! \brief Initialise a color map to B&W

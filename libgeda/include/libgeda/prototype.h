@@ -451,6 +451,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_color.c */
        GArray   *s_color_get_print_color_map     (void);
+         bool    s_color_load_scheme             (const char *scheme);
          void    s_color_map_defaults            (COLOR *map);
 
 /* s_conn.c */
