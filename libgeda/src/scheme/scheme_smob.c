@@ -555,9 +555,9 @@ edascm_is_config (SCM smob)
  *
  * \return SCM_BOOL_T iff \a page_smob is a #Page instance.
  */
-SCM_DEFINE (page_p, "%page?", 1, 0, 0,
-            (SCM page_smob),
-            "Test whether the value is a gEDA Page instance.")
+EDA_SCM_DEFINE (smob_page_p, "%page?", 1, 0, 0,
+               (SCM page_smob),
+               "Test whether the value is a gEDA Page instance.")
 {
   return (EDASCM_PAGEP (page_smob) ? SCM_BOOL_T : SCM_BOOL_F);
 }
@@ -574,8 +574,8 @@ SCM_DEFINE (page_p, "%page?", 1, 0, 0,
  *
  * \return SCM_BOOL_T iff \a object_smob is an #Object instance.
  */
-SCM_DEFINE (object_p, "%object?", 1, 0, 0, (SCM object_smob),
-            "Test whether the value is a gEDA Object instance.")
+EDA_SCM_DEFINE (smob_object_p, "%object?", 1, 0, 0, (SCM object_smob),
+               "Test whether the value is a gEDA Object instance.")
 {
   return (EDASCM_OBJECTP (object_smob) ? SCM_BOOL_T : SCM_BOOL_F);
 }
@@ -592,9 +592,9 @@ SCM_DEFINE (object_p, "%object?", 1, 0, 0, (SCM object_smob),
  *
  * \return SCM_BOOL_T iff \a config_smob is an #EdaConfig instance.
  */
-SCM_DEFINE (config_p, "%config?", 1, 0, 0,
-            (SCM config_smob),
-            "Test whether the value is a gEDA configuration context.")
+EDA_SCM_DEFINE (smob_config_p, "%config?", 1, 0, 0,
+               (SCM config_smob),
+               "Test whether the value is a gEDA configuration context.")
 {
   return (EDASCM_CONFIGP (config_smob) ? SCM_BOOL_T : SCM_BOOL_F);
 }
@@ -612,7 +612,9 @@ init_module_geda_core_smob ()
   #include "scheme_smob.x"
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_page_p, s_object_p, s_config_p, NULL);
+  scm_c_export (scheme_smob_page_p,
+                scheme_smob_object_p,
+                scheme_smob_config_p, NULL);
 }
 
 /*!
@@ -629,6 +631,7 @@ edascm_init_smob ()
 {
   /* Register gEDA smob type */
   geda_smob_tag = scm_make_smob_type ("geda", 0);
+
   scm_set_smob_free (geda_smob_tag, smob_free);
   scm_set_smob_print (geda_smob_tag, smob_print);
   scm_set_smob_equalp (geda_smob_tag, smob_equalp);

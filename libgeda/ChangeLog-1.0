@@ -1,5 +1,9 @@
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/scheme_smob.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
+
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_get.c: Add function f_get_data_filespec.
 
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
