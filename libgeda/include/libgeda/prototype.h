@@ -45,7 +45,7 @@ BEGIN_DECLS
           int    f_print_stream                  (GedaToplevel *toplevel, Page *page, FILE *fp);
          void    f_print_set_type                (GedaToplevel *toplevel, int type);
 
-/* g_basic.c */
+/* g_evaluate.c */
           SCM    g_scm_eval_action               (SCM action);
           SCM    g_scm_eval_protected            (SCM exp, SCM module_or_state);
           SCM    g_scm_eval_string_protected     (SCM str);

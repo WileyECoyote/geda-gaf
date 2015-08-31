@@ -292,16 +292,15 @@ SCM g_scm_c_eval_string_protected (const char *str) {
 }
 
 
-/*! \brief Load a Scheme file, catching and logging errors.
+/*!
+ * \brief Load a Scheme file, catching and logging errors.
  * \par Function Description
  * Loads \a filename, catching any uncaught errors and logging them.
  *
- * \bug Most other functions in the libgeda API return TRUE on success
- * and FALSE on failure. g_read_scheme_file() shouldn't be an exception.
- *
  * \param filename  The file name of the Scheme file to load.
  * \param err       Return location for errors, or NULL.
- *  \return TRUE on success, FALSE on failure.
+ *
+ * \return TRUE on success, FALSE on failure.
  */
 bool g_read_scheme_file (const char *filename, GError **err)
 {
