@@ -249,48 +249,31 @@ bool x_color_display_enabled (int index)
  */
 int x_color_load_scheme(char *scheme) {
 
-  char *strBuffer;
   char *inputfile;
-  char *rc_path;
-  int   result = FALSE;
+  int   result;
 
-  SCM s_result;
+  inputfile = f_get_data_filespec(scheme);
 
-  strBuffer = GEDA_MEM_ALLOC(MAX_FILE); /* be 255 */
+  if (inputfile) {
 
-  if (strBuffer) {
+    x_color_free();
 
-    rc_path   = u_string_scm2c("geda-rc-path");
-    inputfile = u_string_concat (rc_path, DIR_SEPARATOR_S, scheme, NULL);
-
-    free(rc_path);
-
-    if ((access (inputfile, R_OK)) == 0) {
-
-      x_color_free();
-
-      strcpy(strBuffer, "(primitive-load \"");
-      strcat(strBuffer, inputfile);
-      strcat(strBuffer, "\")");
-
-      scm_dynwind_begin (0);
-        scm_dynwind_free(inputfile);
-        scm_dynwind_free(strBuffer);
-        s_result = g_scm_c_eval_string_protected(strBuffer);
-      scm_dynwind_end ();
-
-      if ((result = scm_is_true(s_result)) ? 1 : 0) {
-        q_log_message(_("Allocating new color scheme\n"));
-        x_color_allocate();
-      }
+    if (s_color_load_scheme(inputfile)) {
+      q_log_message(_("Allocating new color scheme: %s\n"), scheme);
+      x_color_allocate();
+      result = TRUE;
     }
     else {
-      GEDA_FREE(strBuffer);
-      u_log_message (_("%s: Could not locate file:%s\n"), __func__,scheme);
+      u_log_message (_("Something went wrong, check:%s\n"), scheme);
+      result = FALSE;
     }
   }
   else {
-    u_log_message(_("%s: Memory allocation error\n"), __func__);
+    u_log_message (_("%s: Could not locate file:%s\n"), __func__,scheme);
+    result = FALSE;
   }
+
+  GEDA_FREE(inputfile);
+
   return result;
 }

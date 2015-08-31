@@ -1,5 +1,13 @@
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Expand Flexibility.
+
+    * src/x/x_color.c: Revise function x_color_load_scheme to use libgeda
+      functions f_get_data_filespec and s_color_load_scheme and this allows
+      user to have color-maps in home config or in the current directory.
+
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Improve Platform Compatibility.
 
     * src/x/x_color.c: Use primitive-load for view-xxx-colors actions in
