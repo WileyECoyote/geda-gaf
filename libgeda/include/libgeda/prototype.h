@@ -23,6 +23,7 @@ BEGIN_DECLS
          char   *f_get_autosave_filename         (const char *filename);
          char   *f_get_basename                  (const char *path);
          char   *f_get_bitmap_filespec           (const char *filename);
+         char   *f_get_data_filespec             (const char *filename);
        GSList   *f_get_dir_list_files            (      char *path, char *filter);
          char   *f_get_dirname                   (const char *filename);
          bool    f_get_file_contents             (const char *filename, char **contents, size_t *length, GError **err);

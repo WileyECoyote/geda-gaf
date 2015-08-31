@@ -101,8 +101,7 @@ char *f_get_basename(const char *path)
   return NULL;
 }
 
-/*! \brief Return pointer to base file name
- *
+/*! \brief Get full path of given bitmap file name
  *  \par Function description
  *  Prepends the path to the bitmaps directory to \a filename.
  *  User path specified paths using the bitmap-directory keyword
@@ -110,7 +109,7 @@ char *f_get_basename(const char *path)
  *  which is the path returned by f_path_sys_data suffix suffixed
  *  with "bitmaps".
  *
- *  \param [in] filename The file name to perpend the path to.
+ *  \param [in] filename The file name to prepend the path to.
  *
  *  \return string with file name and path for the specified file.
  */
@@ -150,7 +149,7 @@ char *f_get_bitmap_filespec (const char *filename)
 
     /* Check to see of file is accessible */
     if (filespec) {
-      if ((access (filespec, R_OK)) == 0) {
+      if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
         GEDA_FREE(filespec);
         filespec = NULL;
@@ -160,6 +159,81 @@ char *f_get_bitmap_filespec (const char *filename)
   else {
     return NULL;
   }
+  return filespec;
+}
+
+/*! \brief Get full path of given Data File
+ *
+ *  \par Function description
+ *  Checks for the existence of a file with the given name in the
+ *  current, user data, and system data directories. Testing stops
+ *  if a file is found. The full filename is returned or NULL if
+ *  a file is not found.
+ *
+ *  \note \a filename could have a subfolder prefix.
+ *
+ *  \param [in] filename The data file to find.
+ *
+ *  \return string with file name and path for the specified file.
+ */
+char *f_get_data_filespec (const char *filename)
+{
+  char *filespec;
+
+  if (filename) {
+
+          char *cwd;
+    const char *directory;
+    const char *seperator;
+
+    /* initialize variables */
+    cwd       = getcwd(0,0);
+    filespec  = NULL;
+    seperator = DIR_SEPARATOR_S;
+
+    /* Look for file in current directory */
+    if (!cwd) {
+      fprintf (stderr, "System error getting cwd: [%s]\n", strerror(errno));
+    }
+    else {
+
+      filespec = u_string_concat (cwd, seperator, filename, NULL);
+      free (cwd);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+
+    /* Look for file in user config/data directory */
+    if (!filespec) {
+
+      directory = f_path_user_config();
+      filespec  = u_string_concat (directory, seperator, filename, NULL);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+
+    /* Look for file in system data directory */
+    if (!filespec) {
+
+      directory = f_path_sys_data();
+      filespec  = u_string_concat (directory, seperator, filename, NULL);
+
+      if ((access (filespec, R_OK)) != 0) {
+        /* Does not point to accessible file, release string */
+        GEDA_FREE(filespec);
+      }
+    }
+  }
+  else {
+    return NULL;
+  }
+
   return filespec;
 }
 

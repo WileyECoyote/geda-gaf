@@ -1,5 +1,9 @@
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_get.c: Add function f_get_data_filespec.
+
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_basic.c: Eliminate goto check_autosave_finish in function
       f_has_active_autosave.
 
