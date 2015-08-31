@@ -47,54 +47,62 @@
  */
 bool f_has_active_autosave (const char *filename, GError **err)
 {
-  bool result = FALSE;
-  char *auto_filename;
-  int file_err = 0;
-  int save_errno = 0;
   GFileError g_errcode = 0;
+  bool  result         = FALSE;
+  int   file_err       = 0;
+  int   save_errno     = 0;
+  char *auto_filename;
+
   struct stat file_stat, auto_stat;
 
   auto_filename = f_get_autosave_filename (filename);
+
   if (stat (filename, &file_stat) != 0) {
     file_err = errno;
   }
+
   if (stat (auto_filename, &auto_stat) != 0) {
     save_errno = errno;
   }
 
-  /* A valid use of goto! (checks for raptors) */
   if (save_errno == ENOENT) {
     /* The autosave file does not exist. */
     result = FALSE;
-    goto check_autosave_finish;
   }
-  if (save_errno) {
-    g_set_error (err, G_FILE_ERROR, save_errno,
-                 _("Failed to stat [%s]: %s"),
-                 auto_filename, strerror (save_errno));
-    result = TRUE;
-    goto check_autosave_finish;
-  }
-  if (file_err == ENOENT) {
-    /* The autosave file exists, but the actual file does not. */
-    result = TRUE;
-    goto check_autosave_finish;
-  }
-  if (file_err) {
-    g_errcode = g_file_error_from_errno (file_err);
-    g_set_error (err, G_FILE_ERROR, g_errcode,
-                 _("Failed to stat [%s]: %s"),
-                 auto_filename, strerror (file_err));
-    result = TRUE;
-    goto check_autosave_finish;
-  }
-  /* If we got this far, both files exist and we have managed to get
-   * their stat info. */
-  if (difftime (file_stat.st_mtime, auto_stat.st_mtime) < 0) {
-    result = TRUE;
+  else {
+
+    if (save_errno) {
+      g_set_error (err, G_FILE_ERROR, save_errno,
+                   _("Failed to stat [%s]: %s"),
+                   auto_filename, strerror (save_errno));
+                   result = TRUE;
+    }
+    else {
+
+      if (file_err == ENOENT) {
+        /* The autosave file exists, but the actual file does not. */
+        result = TRUE;
+      }
+      else {
+        if (file_err) {
+          g_errcode = g_file_error_from_errno (file_err);
+          g_set_error (err, G_FILE_ERROR, g_errcode,
+                       _("Failed to stat [%s]: %s"),
+                       auto_filename, strerror (file_err));
+                       result = TRUE;
+        }
+        else {
+
+          /* If we got this far, both files exist and we have
+           * managed to get their stat info. */
+          if (difftime (file_stat.st_mtime, auto_stat.st_mtime) < 0) {
+            result = TRUE;
+          }
+        }
+      }
+    }
   }
 
- check_autosave_finish:
   GEDA_FREE (auto_filename);
   return result;
 }

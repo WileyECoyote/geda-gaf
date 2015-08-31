@@ -1,4 +1,9 @@
-2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Eliminate goto check_autosave_finish in function
+      f_has_active_autosave.
+
+2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Check if bitmap file is accessible in function
       f_get_bitmap_filespec.
