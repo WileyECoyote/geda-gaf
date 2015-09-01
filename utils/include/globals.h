@@ -1,6 +1,15 @@
-/* gEDA - GPL Electronic Design Automation
- * utils - gEDA Utilities
- * Copyright (C) 1998-2015 Ales Hvezda
+/*!
+ * \file globals.h
+ *
+ * \brief Global Declarations and References for gschlas Program
+ *
+ * <hr>
+ *
+ * <h1><b>Copyright.</b></h1>\n
+ * gEDA - GPL Electronic Design Automation
+ * gschlas - gEDA Load and Save
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
  * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,8 +23,9 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * along with this program; if  not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 extern volatile int log_destiny;

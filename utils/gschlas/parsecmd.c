@@ -1,7 +1,16 @@
-/* gEDA - GPL Electronic Design Automation
+/*!
+ * \file parsecmd.c
+ *
+ * \brief Parse Command-line Arguments in gschlas Program
+ *
+ * <hr>
+ *
+ * <h1><b>Copyright.</b></h1>\n
+ * gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,10 +23,11 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
+ * along with this program; if  not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+
 #include <config.h>
 
 #include "common.h"
@@ -58,52 +68,44 @@ void usage(char *cmd)
 
 int parse_commandline(int argc, char *argv[])
 {
-    int ch;
+  int ch;
 
 #ifdef HAVE_GETOPT_LONG
-    while ((ch = getopt_long (argc, argv, OPTIONS, long_options, NULL)) != -1) {
+  while ((ch = getopt_long (argc, argv, OPTIONS, long_options, NULL)) != -1)
 #else
-    while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
+  while ((ch = getopt(argc, argv, OPTIONS)) != -1)
 #endif
-        switch (ch) {
 
-	case 'v':
-	    verbose_mode = TRUE;
-	    break;
+  {
+    switch (ch) {
 
-	case 'q':
-	    quiet_mode = TRUE;
-	    break;
+      case 'v':
+        verbose_mode = TRUE;
+        break;
 
-	case 'e':
-	    embed_mode = TRUE;
-	    break;
+      case 'q':
+        quiet_mode = TRUE;
+        break;
 
-	case 'u':
-	    unembed_mode = TRUE;
-	    break;
+      case 'e':
+        embed_mode = TRUE;
+        break;
 
-	case 'h':
-	    usage(argv[0]);
-	    break;
+      case 'u':
+        unembed_mode = TRUE;
+        break;
 
-	case '?':
-	default:
-	    usage(argv[0]);
-	    break;
-	}
+      case 'h':
+      case '?':
+      default:
+        usage(argv[0]);
+        break;
     }
+  }
 
-    if (quiet_mode) {
-	verbose_mode = FALSE;
-    }
+  if (quiet_mode) {
+    verbose_mode = FALSE;
+  }
 
-    if (embed_mode && unembed_mode) {
-	fprintf(stderr,
-	        "Cannot specify both -e and -u at the same time (ignoring both flags)\n");
-	embed_mode = FALSE;
-	unembed_mode = FALSE;
-    }
-
-    return (optind);
+  return (optind);
 }

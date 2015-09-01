@@ -1,23 +1,31 @@
-/* gEDA - GPL Electronic Design Automation
+/*!
+ * \file gschlas.c
+ *
+ * \brief Main Module for gschlas Program
+ *
+ * <hr>
+ *
+ * <h1><b>Copyright.</b></h1>\n
+ * gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
  *
  * Copyright (C) 2002-2015 Ales Hvezda
  * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- *  MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if  not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include "common.h"
@@ -59,86 +67,96 @@ main_prog(void *closure, int argc, char *argv[])
   GedaToplevel *pr_current;
 
   argv_index = parse_commandline(argc, argv);
-  cwd = g_get_current_dir();
 
-  libgeda_init();
+  if (embed_mode + unembed_mode == 1) {
+
+    cwd = g_get_current_dir();
+
+    libgeda_init();
 
 #if defined(__MINGW32__) && defined(DEBUG)
-  fprintf(stderr, "This is the MINGW32 port.\n");
+    fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
 
-  /* register guile (scheme) functions */
-  g_register_funcs();
+    /* register guile (scheme) functions */
+    g_register_funcs();
 
-  g_rc_parse (argv[0], "gschlasrc", NULL);
+    g_rc_parse (argv[0], "gschlasrc", NULL);
 
-  pr_current = geda_toplevel_new ();
-  i_vars_set(pr_current);
+    pr_current = geda_toplevel_new ();
+    i_vars_set(pr_current);
 
-  /* create log file right away even if logging is enabled */
-  u_log_init ("gschlas");
+    /* create log file right away even if logging is enabled */
+    u_log_init ("gschlas");
 
-  i = argv_index;
-  while (argv[i] != NULL) {
+    i = argv_index;
+    while (argv[i] != NULL) {
 
-    char   *filename;
-    GError *err = NULL;
+      char       *filename;
+      GError     *err = NULL;
 
-    if (f_get_is_path_absolute(argv[i])) {
+      if (f_get_is_path_absolute(argv[i])) {
 
-      /* Path is already absolute so no need to do any concat of cwd */
-      filename = u_string_strdup (argv[i]);
+        /* Path is already absolute so no need to do any concat of cwd */
+        filename = u_string_strdup (argv[i]);
+      }
+      else {
+        filename = g_build_filename (cwd, argv[i], NULL);
+      }
+
+      s_page_goto (pr_current, s_page_new (pr_current, filename));
+
+      if (!f_open (pr_current, pr_current->page_current,
+                   pr_current->page_current->filename, &err))
+      {
+        fprintf(stderr, "%s\n", err->message);
+        g_error_free (err);
+        /* Not being able to load a file is apparently a fatal error */
+        exit(2);
+      }
+      else {
+        g_message ("Loaded file [%s]\n", filename);
+      }
+
+      i++;
+      GEDA_FREE (filename);
     }
-    else {
-      filename = g_build_filename (cwd, argv[i], NULL);
+
+    if (argv[argv_index] == NULL) {
+      fprintf(stderr, "\nERROR! You must specify at least one filename\n\n");
+      usage(argv[0]);
     }
 
-    s_page_goto (pr_current, s_page_new (pr_current, filename));
-
-    if (!f_open (pr_current, pr_current->page_current,
-                 pr_current->page_current->filename, &err)) {
-      /* Not being able to load a file is apparently a fatal error */
-
-      fprintf(stderr, "%s\n", err->message);
-      g_error_free (err);
-      exit(2);
-    }
-    else {
-      g_message ("Loaded file [%s]\n", filename);
-    }
-
-    i++;
-    GEDA_FREE (filename);
-  }
-
-  if (argv[argv_index] == NULL) {
-    fprintf(stderr, "\nERROR! You must specify at least one filename\n\n");
-    usage(argv[0]);
-  }
-
-  GEDA_FREE(cwd);
+    GEDA_FREE(cwd);
 
 #if DEBUG
-  s_page_print_all(pr_current);
+    s_page_print_all(pr_current);
 #endif
 
-  if (!quiet_mode) u_log_message("\n");
+    if (!quiet_mode) u_log_message("\n");
 
-  if (embed_mode) {
-    s_util_embed(pr_current, TRUE);
+    if (embed_mode) {
+      s_util_embed(pr_current, TRUE);
+    }
+    else if (unembed_mode) {
+      s_util_embed(pr_current, FALSE);
+    }
+
+    /* save all the opened files */
+    s_page_save_all(pr_current);
+
+    s_page_delete_list (pr_current);
+
+    gschlas_quit();
   }
-
-  if (unembed_mode) {
-    s_util_embed(pr_current, FALSE);
+  else {
+    if (embed_mode && unembed_mode) {
+      fprintf(stderr, "Cannot specify both -e and -u at the same time\n");
+    }
+    else {
+      fprintf(stderr, "Must specify whether to embed or unembed\n");
+    }
   }
-
-  /* save all the opened files */
-  s_page_save_all(pr_current);
-
-  s_page_delete_list (pr_current);
-
-  gschlas_quit();
-
   exit(0);
 }
 

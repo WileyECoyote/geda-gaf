@@ -1,7 +1,16 @@
-/* gEDA - GPL Electronic Design Automation
+/*!
+ * \file globals.c
+ *
+ * \brief Global declarations in gschlas
+ *
+ * <hr>
+ *
+ * <h1><b>Copyright.</b></h1>\n
+ * gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,14 +23,9 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
-
-/*! \file
- * \brief Global declarations
- *
- * Global declarations
+ * along with this program; if  not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <geda.h>

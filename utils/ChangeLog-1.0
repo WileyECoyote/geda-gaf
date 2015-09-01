@@ -1,10 +1,28 @@
-2015-09-1 Vladimir Zhbanov <vzhbanov@gmail.com>
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschlas/g_rc.c: Update file header, replace g_strcasecmp with
+      g_ascii_strcasecmp. Revise flow, use u_string_strdup, remove
+      "latest rc file" since the version of the file is irrelvent,
+      only containing what user customize.
+
+    * gschlas/parsecmd.c: Update file header, remove check for both
+      embed and unembed, remove extra breaks for case usage.
+
+    * gschlas/gschlas.c: Update file header, add checks for embed and
+      unembed logistics.
+
+    * gschlas/g_register.c: Update file header.
+    * gschlas/globals.c: Update file header.
+    * gschlas/i_vars.c: Update file header.
+    * include/globals.h: Update file header.
+
+2015-09-01 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * WEH: Modified per commit to Master branch by Vladimir Zhbanov, See
       commit    b22205de1d41672d68b94211267ce4620ee0405d;
       gschlas: Removed unused variables, functions and headers:
 
-            * utils/gschlas/g_rc.c:
+            * gschlas/g_rc.c:
             * gschlas/g_register.c
             * gschlas/globals.c
             * gschlas/gschlas.c
@@ -13,7 +31,7 @@
             * include/globals.h
             * etc/system-gschlasrc.in
 
-2015-09-1 Vladimir Zhbanov <vzhbanov@gmail.com>
+2015-09-01 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * WEH: Modified per commit to Master branch by Vladimir Zhbanov, See
       commit    b22205de1d41672d68b94211267ce4620ee0405d;
@@ -22,7 +40,7 @@
 
     *  Add doxygen comments:
 
-            * utils/gschlas/g_rc.c:
+            * gschlas/g_rc.c:
             * gschlas/g_register.c
             * gschlas/globals.c
             * gschlas/gschlas.c
