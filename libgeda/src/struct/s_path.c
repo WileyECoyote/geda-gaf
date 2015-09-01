@@ -171,8 +171,8 @@ void s_path_art_finish (Path * path)
   path->sections[num_sections].code = PATH_END;
 }
 
-Path *path_copy_modify (Path *path, int dx, int dy,
-                        int new_x, int new_y, int whichone)
+Path *s_path_copy_modify (Path *path, int dx, int dy,
+                          int new_x, int new_y, int whichone)
 {
   Path *new_path;
   char *path_string;

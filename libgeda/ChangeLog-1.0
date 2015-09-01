@@ -1,5 +1,9 @@
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_path.c Rename function path_copy_modify->s_path_copy_modify.
+
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_object.c: Break off "makers" to a separate
       compilation unit, replace SCM_DEFINE with EDA_SCM_DEFINE.
 
