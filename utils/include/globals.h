@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * utils - gEDA Utilities
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,23 +18,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-extern char *rc_filename;
-
-extern int logfile_fd;
-extern volatile int logging;
 extern volatile int log_destiny;
-
-/* gnetlist specific stuff */
-extern NETLIST *netlist_head;
-extern char    *guile_proc;
 
 /* command line switch settings */
 extern int verbose_mode;
-extern int interactive_mode;
 extern int quiet_mode;
-extern int netlist_mode;
 extern int embed_mode;
 extern int unembed_mode;
-
-extern char *output_filename;
 

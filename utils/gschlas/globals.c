@@ -26,17 +26,10 @@
 
 #include <geda.h>
 
-char *rc_filename      = '\0';
-
-int logfile_fd         = -1;
-int log_destiny        = CONSOLE_WINDOW;
-
 /* command line arguments */
 int verbose_mode=0;
 int interactive_mode   = 0;
 int quiet_mode         = 0;
 int embed_mode         = 0;
 int unembed_mode       = 0;
-
-
 

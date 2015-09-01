@@ -2,6 +2,21 @@
 
     * WEH: Modified per commit to Master branch by Vladimir Zhbanov, See
       commit    b22205de1d41672d68b94211267ce4620ee0405d;
+      gschlas: Removed unused variables, functions and headers:
+
+            * utils/gschlas/g_rc.c:
+            * gschlas/g_register.c
+            * gschlas/globals.c
+            * gschlas/gschlas.c
+            * gschlas/i_vars.c
+            * include/Makefile.am
+            * include/globals.h
+            * etc/system-gschlasrc.in
+
+2015-09-1 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, See
+      commit    b22205de1d41672d68b94211267ce4620ee0405d;
       gschlas: Added doxygen comments for several functions and files and
       WEH updated copyright information.
 

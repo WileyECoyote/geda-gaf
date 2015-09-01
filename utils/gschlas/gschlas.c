@@ -63,18 +63,14 @@ main_prog(void *closure, int argc, char *argv[])
 
   libgeda_init();
 
-  log_destiny=STDOUT_TTY;
-
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
 
-  log_destiny=-1; /* don't output to the screen for now */
-
   /* register guile (scheme) functions */
   g_register_funcs();
 
-  g_rc_parse (argv[0], "gschlasrc", rc_filename);
+  g_rc_parse (argv[0], "gschlasrc", NULL);
 
   pr_current = geda_toplevel_new ();
   i_vars_set(pr_current);
@@ -102,7 +98,7 @@ main_prog(void *closure, int argc, char *argv[])
     if (!f_open (pr_current, pr_current->page_current,
                  pr_current->page_current->filename, &err)) {
       /* Not being able to load a file is apparently a fatal error */
-      log_destiny = STDOUT_TTY;
+
       fprintf(stderr, "%s\n", err->message);
       g_error_free (err);
       exit(2);
@@ -122,8 +118,6 @@ main_prog(void *closure, int argc, char *argv[])
 
   GEDA_FREE(cwd);
 
-  log_destiny=STDOUT_TTY;
-
 #if DEBUG
   s_page_print_all(pr_current);
 #endif
@@ -142,6 +136,7 @@ main_prog(void *closure, int argc, char *argv[])
   s_page_save_all(pr_current);
 
   s_page_delete_list (pr_current);
+
   gschlas_quit();
 
   exit(0);
