@@ -1,5 +1,13 @@
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/scheme_object.c: Break off "makers" to a separate
+      compilation unit, replace SCM_DEFINE with EDA_SCM_DEFINE.
+
+    * src/scheme/scheme_make.c: New file with object "makers" from
+      scheme_object.c, replace SCM_DEFINE with EDA_SCM_DEFINE.
+
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_os.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
 
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>

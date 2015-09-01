@@ -15,6 +15,7 @@ BUILT_SOURCES   = \
 		scheme/scheme_init.x \
 		scheme/scheme_smob.x \
 		scheme/scheme_toplevel.x \
+		scheme/scheme_make.x \
 		scheme/scheme_object.x \
 		scheme/scheme_complex.x \
 		scheme/scheme_color.x \

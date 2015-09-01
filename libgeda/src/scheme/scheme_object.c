@@ -33,6 +33,8 @@
  #define SCM_ARG9 9
 #endif
 
+extern void edascm_init_make_object(void);
+
 SCM_SYMBOL (wrong_type_arg_sym , "wrong-type-arg");
 SCM_SYMBOL (arc_sym ,            "arc");
 SCM_SYMBOL (box_sym ,            "box");
@@ -159,11 +161,14 @@ edascm_from_object_glist (const GList *objs)
 int
 edascm_is_object_type (SCM smob, int type)
 {
-  if (!EDASCM_OBJECTP(smob)) return 0;
+  if (!EDASCM_OBJECTP(smob))
+    return 0;
 
   Object *obj = edascm_to_object (smob);
   return (obj->type == type);
 }
+
+/* ----------------------- Scheme Object API ---------------------- */
 
 /*! \brief Copy an object.
  * \par Function Description
@@ -176,12 +181,11 @@ edascm_is_object_type (SCM smob, int type)
  * param [in] obj_s an Object smob.
  * \return a new Object smob containing a copy of the Object in \a obj_s.
  */
-SCM_DEFINE (copy_object, "%copy-object", 1, 0, 0,
-            (SCM obj_s), "Copy an object.")
+EDA_SCM_DEFINE (object_copy, "%copy-object", 1, 0, 0,
+               (SCM obj_s), "Copy an object.")
 {
   SCM result;
-  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, s_copy_object);
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, scheme_object_copy);
 
   Object *obj = edascm_to_object (obj_s);
 
@@ -193,46 +197,40 @@ SCM_DEFINE (copy_object, "%copy-object", 1, 0, 0,
   return result;
 }
 
-/*! \brief Get the type of an object.
+/*! \brief Mirror an object.
  * \par Function Description
- * Returns a symbol describing the type of the Object smob \a obj_s.
+ * Mirrors \a obj_s in the line x = \a x_s.
  *
- * \note Scheme API: Implements the %object-type procedure in the
+ * \note Scheme API: Implements the %mirror-object! procedure of the
  * (geda core object) module.
  *
- * param [in] obj_s an Object smob.
- * \return a Scheme symbol representing the object type.
+ * param obj_s    Object smob for object to translate.
+ * param x_s      x-coordinate of centre of rotation.
+ *
+ * \return \a obj_s.
  */
-SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
-            (SCM obj_s), "Get an object smob's type")
+EDA_SCM_DEFINE (object_mirror_x, "%mirror-object!", 2, 0, 0,
+               (SCM obj_s, SCM x_s),
+               "Mirror an object.")
 {
-  SCM result;
-
-  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, s_object_type);
+  /* Check argument types */
+  SCM_ASSERT (edascm_is_object (obj_s), obj_s,
+              SCM_ARG1, scheme_object_mirror_x);
+  SCM_ASSERT (scm_is_integer (x_s), x_s,
+              SCM_ARG2, scheme_object_mirror_x);
 
   Object *obj = edascm_to_object (obj_s);
-  switch (obj->type) {
-  case OBJ_LINE:    result = line_sym;       break;
-  case OBJ_NET:     result = net_sym;        break;
-  case OBJ_BUS:     result = bus_sym;        break;
-  case OBJ_BOX:     result = box_sym;        break;
-  case OBJ_PICTURE: result = picture_sym;    break;
-  case OBJ_CIRCLE:  result = circle_sym;     break;
-  case OBJ_PLACEHOLDER:
-  case OBJ_COMPLEX: result = complex_sym;    break;
-  case OBJ_TEXT:    result = text_sym;       break;
-  case OBJ_PATH:    result = path_sym;       break;
-  case OBJ_PIN:     result = pin_sym;        break;
-  case OBJ_ARC:     result = arc_sym;        break;
-  default:
-    scm_misc_error (s_object_type, _("Object ~A has bad type '~A'"),
-                    scm_list_2 (obj_s,
-                                scm_integer_to_char (scm_from_int (obj->type))));
-  }
+  int x = scm_to_int (x_s);
 
-  return result;
+  o_notify_emit_pre_change (obj);
+  o_mirror_object (obj, x, 0);
+  o_notify_emit_change (obj);
+
+  s_object_set_page_changed ( obj);
+
+  return obj_s;
 }
-extern int myflag;
+
 /*! \brief Get the bounds of a list of objects
  * \par Function Description
  * Returns the bounds of the objects in the variable-length argument
@@ -257,8 +255,8 @@ extern int myflag;
  * param [in] rst_s Variable-length list of Object arguments.
  * \return bounds of objects or SCM_BOOL_F.
  */
-SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
-            (SCM rst_s), "Get the bounds of a list of objects")
+EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
+               (SCM rst_s), "Get the bounds of a list of objects")
 {
   GList        *obj_list;
   Page         *page;
@@ -266,7 +264,7 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
   int left, top, right, bottom;
   int success = FALSE;
 
-  obj_list = edascm_to_object_glist (rst_s, s_object_bounds);
+  obj_list = edascm_to_object_glist (rst_s, scheme_object_bounds);
 
   if (obj_list != NULL) {
 
@@ -276,13 +274,11 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
     if (page == NULL) {
 
-      success = o_get_bounds_list (obj_list,
-                                               &left, &top, &right, &bottom);
+      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
     }
     else if (page->show_hidden_text) {
 
-      success = o_get_bounds_list (obj_list,
-                                               &left, &top, &right, &bottom);
+      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
     }
     else {
 
@@ -294,14 +290,14 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
         o_current->w_bounds_valid_for = NULL;
       }
 
-      success = o_get_bounds_list (obj_list,
-                                               &left, &top, &right, &bottom);
+      success = o_get_bounds_list (obj_list, &left, &top, &right, &bottom);
 
       page->show_hidden_text = FALSE;
     }
   }
 
   SCM result = SCM_BOOL_F;
+
   if (success) {
     result = scm_cons (scm_cons (scm_from_int (min(left, right)),
                                  scm_from_int (max(top, bottom))),
@@ -334,15 +330,15 @@ SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
  * param obj_s object to get stroke settings for.
  * \return a list of stroke parameters.
  */
-SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
-            (SCM obj_s), "Get the stroke properties of an object.")
+EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
+               (SCM obj_s), "Get the stroke properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)
-               || edascm_is_object_type (obj_s, OBJ_BOX)
-               || edascm_is_object_type (obj_s, OBJ_CIRCLE)
-               || edascm_is_object_type (obj_s, OBJ_ARC)
-               || edascm_is_object_type (obj_s, OBJ_PATH)),
-              obj_s, SCM_ARG1, s_object_stroke);
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+               obj_s, SCM_ARG1, scheme_object_stroke);
 
   Object *obj = edascm_to_object (obj_s);
 
@@ -360,7 +356,7 @@ SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   case END_SQUARE: cap_s = square_sym; break;
   case END_ROUND: cap_s = round_sym; break;
   default:
-    scm_misc_error (s_object_stroke,
+    scm_misc_error (scheme_object_stroke,
                     _("Object ~A has invalid stroke cap style ~A"),
                     scm_list_2 (obj_s, scm_from_int (end)));
   }
@@ -373,7 +369,7 @@ SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   case TYPE_CENTER: dash_s = center_sym; break;
   case TYPE_PHANTOM: dash_s = phantom_sym; break;
   default:
-    scm_misc_error (s_object_stroke,
+    scm_misc_error (scheme_object_stroke,
                     _("Object ~A has invalid stroke dash style ~A"),
                     scm_list_2 (obj_s, scm_from_int (type)));
   }
@@ -388,104 +384,6 @@ SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   default:
     return scm_list_3 (width_s, cap_s, dash_s);
   }
-}
-
-/*! \brief Set the stroke properties of an object.
- * \par Function Description
- * Updates the stroke settings of the object \a obj_s.  If \a obj_s is
- * not a line, box, circle, arc, or path, throws a Scheme error.  The
- * optional parameters \a space_s and \a length_s can be set to
- * SCM_UNDEFINED if not required by the dash style \a dash_s.
- *
- * \note Scheme API: Implements the %object-stroke procedure in the
- * (geda core object) module.
- *
- * param obj_s object to set stroke settings for.
- * param width_s new stroke width for \a obj_s.
- * param cap_s new stroke cap style for \a obj_s.
- * param dash_s new dash style for \a obj_s.
- * param space_s dot/dash spacing for dash styles other than solid.
- * param length_s dash length for dash styles other than solid or
- *                 dotted.
- * \return \a obj_s.
- */
-SCM_DEFINE (set_object_stroke_x, "%set-object-stroke!", 4, 2, 0,
-            (SCM obj_s, SCM width_s, SCM cap_s, SCM dash_s, SCM space_s,
-             SCM length_s), "Set the stroke properties of an object.")
-{
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)
-               || edascm_is_object_type (obj_s, OBJ_BOX)
-               || edascm_is_object_type (obj_s, OBJ_CIRCLE)
-               || edascm_is_object_type (obj_s, OBJ_ARC)
-               || edascm_is_object_type (obj_s, OBJ_PATH)),
-              obj_s, SCM_ARG1, s_set_object_stroke_x);
-
-  Object *obj = edascm_to_object (obj_s);
-  LINE_OPTIONS line_options;
-
-  SCM_ASSERT (scm_is_integer (width_s), width_s,
-              SCM_ARG2, s_set_object_stroke_x);
-  SCM_ASSERT (scm_is_symbol (cap_s), cap_s,
-              SCM_ARG3, s_set_object_stroke_x);
-  SCM_ASSERT (scm_is_symbol (dash_s), dash_s,
-              SCM_ARG4, s_set_object_stroke_x);
-
-  line_options.line_width = scm_to_int (width_s);
-
-  if      (cap_s == none_sym)   { line_options.line_end = END_NONE;   }
-  else if (cap_s == square_sym) { line_options.line_end = END_SQUARE; }
-  else if (cap_s == round_sym)  { line_options.line_end = END_ROUND;  }
-  else {
-    scm_misc_error (s_set_object_stroke_x,
-                    _("Invalid stroke cap style ~A."),
-                    scm_list_1 (cap_s));
-  }
-
-  if      (dash_s == solid_sym)   { line_options.line_type = TYPE_SOLID;   }
-  else if (dash_s == dotted_sym)  { line_options.line_type = TYPE_DOTTED;  }
-  else if (dash_s == dashed_sym)  { line_options.line_type = TYPE_DASHED;  }
-  else if (dash_s == center_sym)  { line_options.line_type = TYPE_CENTER;  }
-  else if (dash_s == phantom_sym) { line_options.line_type = TYPE_PHANTOM; }
-  else {
-    scm_misc_error (s_set_object_stroke_x,
-                    _("Invalid stroke dash style ~A."),
-                    scm_list_1 (dash_s));
-  }
-
-  switch (line_options.line_type) {
-  case TYPE_DASHED:
-  case TYPE_CENTER:
-  case TYPE_PHANTOM:
-    if (length_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_stroke_x,
-                      _("Missing dash length parameter for dash style ~A."),
-                      scm_list_1 (length_s));
-    }
-    SCM_ASSERT (scm_is_integer (length_s), length_s,
-                SCM_ARG6, s_set_object_stroke_x);
-    line_options.line_length = scm_to_int (length_s);
-    /* This case intentionally falls through */
-  case TYPE_DOTTED:
-    if (space_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_stroke_x,
-                      _("Missing dot/dash space parameter for dash style ~A."),
-                      scm_list_1 (space_s));
-    }
-    SCM_ASSERT (scm_is_integer (space_s), space_s,
-                SCM_ARG5, s_set_object_stroke_x);
-    line_options.line_space = scm_to_int (space_s);
-   case TYPE_SOLID:
-   case TYPE_ERASE:
-     break;
-  }
-
-  o_notify_emit_pre_change (obj);
-  o_set_line_options (obj, &line_options);
-  o_notify_emit_change (obj);
-
-  s_object_set_page_changed ( obj);
-
-  return obj_s;
 }
 
 /*! \brief Get the fill properties of an object.
@@ -507,13 +405,13 @@ SCM_DEFINE (set_object_stroke_x, "%set-object-stroke!", 4, 2, 0,
  * param obj_s object to get fill settings for.
  * \return a list of fill parameters.
  */
-SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
-            (SCM obj_s), "Get the fill properties of an object.")
+EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
+               (SCM obj_s), "Get the fill properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)
-               || edascm_is_object_type (obj_s, OBJ_CIRCLE)
-               || edascm_is_object_type (obj_s, OBJ_PATH)),
-              obj_s, SCM_ARG1, s_object_fill);
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+               obj_s, SCM_ARG1, scheme_object_fill);
 
   Object *obj = edascm_to_object (obj_s);
 
@@ -534,7 +432,7 @@ SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
   case FILLING_MESH:   type_s = mesh_sym;   break;
   case FILLING_HATCH:  type_s = hatch_sym;  break;
   default:
-    scm_misc_error (s_object_fill,
+    scm_misc_error (scheme_object_fill,
                     _("Object ~A has invalid fill style ~A"),
                     scm_list_2 (obj_s, scm_from_int (type)));
   }
@@ -564,75 +462,82 @@ SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
  * param obj_s object to set fill settings for.
  * \return \a obj_s.
  */
-SCM_DEFINE (set_object_fill_x, "%set-object-fill!", 2, 5, 0,
-            (SCM obj_s, SCM type_s, SCM width_s, SCM space1_s, SCM angle1_s,
-             SCM space2_s, SCM angle2_s),
-            "Set the fill properties of an object.")
+EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
+               (SCM obj_s, SCM type_s, SCM width_s, SCM space1_s, SCM angle1_s,
+                SCM space2_s, SCM angle2_s),
+               "Set the fill properties of an object.")
 {
-  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)
-               || edascm_is_object_type (obj_s, OBJ_CIRCLE)
-               || edascm_is_object_type (obj_s, OBJ_PATH)),
-              obj_s, SCM_ARG1, s_set_object_fill_x);
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+               obj_s, SCM_ARG1, scheme_object_set_fill_x);
 
   Object *obj = edascm_to_object (obj_s);
   FILL_OPTIONS fill_options;
 
-  if      (type_s == hollow_sym) {fill_options.fill_type = FILLING_HOLLOW;}
-  else if (type_s == solid_sym)  {fill_options.fill_type = FILL_SOLID;  }
-  else if (type_s == hatch_sym)  {fill_options.fill_type = FILLING_HATCH; }
-  else if (type_s == mesh_sym)   {fill_options.fill_type = FILLING_MESH;  }
+  if (type_s == hollow_sym) {
+    fill_options.fill_type = FILLING_HOLLOW;
+  }
+  else if (type_s == solid_sym) {
+    fill_options.fill_type = FILL_SOLID;
+  }
+  else if (type_s == hatch_sym) {
+    fill_options.fill_type = FILLING_HATCH;
+  }
+  else if (type_s == mesh_sym) {
+    fill_options.fill_type = FILLING_MESH;
+  }
   else {
-    scm_misc_error (s_set_object_fill_x,
-                    _("Invalid fill style ~A."),
+    scm_misc_error (scheme_object_set_fill_x, _("Invalid fill style ~A."),
                     scm_list_1 (type_s));
   }
 
   switch (fill_options.fill_type) {
   case FILLING_MESH:
     if (space2_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_fill_x,
+      scm_misc_error (scheme_object_set_fill_x,
                       _("Missing second space parameter for fill style ~A."),
                       scm_list_1 (space2_s));
     }
     SCM_ASSERT (scm_is_integer (space2_s), space2_s,
-                SCM_ARG6, s_set_object_fill_x);
+                SCM_ARG6, scheme_object_set_fill_x);
     fill_options.fill_pitch2 = scm_to_int (space2_s);
 
     if (angle2_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_fill_x,
+      scm_misc_error (scheme_object_set_fill_x,
                       _("Missing second angle parameter for fill style ~A."),
                       scm_list_1 (angle2_s));
     }
     SCM_ASSERT (scm_is_integer (angle2_s), angle2_s,
-                SCM_ARG7, s_set_object_fill_x);
+                SCM_ARG7, scheme_object_set_fill_x);
     fill_options.fill_angle2 = scm_to_int (angle2_s);
     /* This case intentionally falls through */
   case FILLING_HATCH:
     if (width_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_fill_x,
+      scm_misc_error (scheme_object_set_fill_x,
                       _("Missing stroke width parameter for fill style ~A."),
                       scm_list_1 (width_s));
     }
     SCM_ASSERT (scm_is_integer (width_s), width_s,
-                SCM_ARG3, s_set_object_fill_x);
+                SCM_ARG3, scheme_object_set_fill_x);
     fill_options.fill_width = scm_to_int (width_s);
 
     if (space1_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_fill_x,
+      scm_misc_error (scheme_object_set_fill_x,
                       _("Missing space parameter for fill style ~A."),
                       scm_list_1 (space1_s));
     }
     SCM_ASSERT (scm_is_integer (space1_s), space1_s,
-                SCM_ARG4, s_set_object_fill_x);
+                SCM_ARG4, scheme_object_set_fill_x);
     fill_options.fill_pitch1 = scm_to_int (space1_s);
 
     if (angle1_s == SCM_UNDEFINED) {
-      scm_misc_error (s_set_object_fill_x,
+      scm_misc_error (scheme_object_set_fill_x,
                       _("Missing angle parameter for fill style ~A."),
                       scm_list_1 (angle1_s));
     }
     SCM_ASSERT (scm_is_integer (angle1_s), angle1_s,
-                SCM_ARG5, s_set_object_fill_x);
+                SCM_ARG5, scheme_object_set_fill_x);
     fill_options.fill_angle1 = scm_to_int (angle1_s);
     /* This case intentionally falls through */
     break;
@@ -664,11 +569,11 @@ SCM_DEFINE (set_object_fill_x, "%set-object-fill!", 2, 5, 0,
  * param [in] obj_s Object smob to inspect.
  * \return The colormap index used by \a obj_s.
  */
-SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
-            (SCM obj_s), "Get the color of an object.")
+EDA_SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
+               (SCM obj_s), "Get the color of an object.")
 {
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, s_object_color);
+              SCM_ARG1, scheme_object_color);
 
   Object *obj = edascm_to_object (obj_s);
   return scm_from_int (obj->color);
@@ -687,13 +592,13 @@ SCM_DEFINE (object_color, "%object-color", 1, 0, 0,
  * param color_s new colormap index to use for \a obj_s.
  * \return the modified \a obj_s.
  */
-SCM_DEFINE (set_object_color_x, "%set-object-color!", 2, 0, 0,
-            (SCM obj_s, SCM color_s), "Set the color of an object.")
+EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
+               (SCM obj_s, SCM color_s), "Set the color of an object.")
 {
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, s_set_object_color_x);
+              SCM_ARG1, scheme_object_set_color_x);
   SCM_ASSERT (scm_is_integer (color_s), color_s,
-              SCM_ARG2, s_set_object_color_x);
+              SCM_ARG2, scheme_object_set_color_x);
 
   Object *obj = edascm_to_object (obj_s);
 
@@ -704,30 +609,6 @@ SCM_DEFINE (set_object_color_x, "%set-object-color!", 2, 0, 0,
   s_object_set_page_changed ( obj);
 
   return obj_s;
-}
-
-/*! \brief Create a new line.
- * \par Function Description
- * Creates a new line object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-line procedure in the (geda
- * core object) module.
- *
- * \return a newly-created line object.
- */
-SCM_DEFINE (make_line, "%make-line", 0, 0, 0,
-            (), "Create a new line object.")
-{
-  Object *obj = o_line_new (DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, TRUE);
-
-  return result;
 }
 
 /*! \brief Set line parameters.
@@ -750,21 +631,21 @@ SCM_DEFINE (make_line, "%make-line", 0, 0, 0,
  *
  * \return the modified line object.
  */
-SCM_DEFINE (set_line_x, "%set-line!", 6, 0, 0,
+EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
             (SCM line_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM color_s),
             "Set line parameters.")
 {
-  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE)
-               || edascm_is_object_type (line_s, OBJ_NET)
-               || edascm_is_object_type (line_s, OBJ_BUS)
-               || edascm_is_object_type (line_s, OBJ_PIN)),
-              line_s, SCM_ARG1, s_set_line_x);
+  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
+               edascm_is_object_type (line_s, OBJ_NET)  ||
+               edascm_is_object_type (line_s, OBJ_BUS)  ||
+               edascm_is_object_type (line_s, OBJ_PIN)),
+               line_s, SCM_ARG1, scheme_object_set_line_x);
 
-  SCM_ASSERT (scm_is_integer (x1_s),    x1_s,    SCM_ARG2, s_set_line_x);
-  SCM_ASSERT (scm_is_integer (y1_s),    y1_s,    SCM_ARG3, s_set_line_x);
-  SCM_ASSERT (scm_is_integer (x2_s),    x2_s,    SCM_ARG4, s_set_line_x);
-  SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, s_set_line_x);
-  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, s_set_line_x);
+  SCM_ASSERT (scm_is_integer (x1_s),    x1_s,    SCM_ARG2, scheme_object_set_line_x);
+  SCM_ASSERT (scm_is_integer (y1_s),    y1_s,    SCM_ARG3, scheme_object_set_line_x);
+  SCM_ASSERT (scm_is_integer (x2_s),    x2_s,    SCM_ARG4, scheme_object_set_line_x);
+  SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, scheme_object_set_line_x);
+  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_line_x);
 
   Object *obj = edascm_to_object (line_s);
   int x1 = scm_to_int (x1_s);
@@ -826,21 +707,21 @@ SCM_DEFINE (set_line_x, "%set-line!", 6, 0, 0,
  * param line_s the line object to inspect.
  * \return a list of line parameters.
  */
-SCM_DEFINE (line_info, "%line-info", 1, 0, 0,
-            (SCM line_s), "Get line parameters.")
+EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
+               (SCM line_s), "Get line parameters.")
 {
-  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE)
-               || edascm_is_object_type (line_s, OBJ_NET)
-               || edascm_is_object_type (line_s, OBJ_BUS)
-               || edascm_is_object_type (line_s, OBJ_PIN)),
-              line_s, SCM_ARG1, s_line_info);
+  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
+               edascm_is_object_type (line_s, OBJ_NET)  ||
+               edascm_is_object_type (line_s, OBJ_BUS)  ||
+               edascm_is_object_type (line_s, OBJ_PIN)),
+               line_s, SCM_ARG1, scheme_object_line_info);
 
   Object *obj = edascm_to_object (line_s);
-  SCM x1 = scm_from_int (obj->line->x[0]);
-  SCM y1 = scm_from_int (obj->line->y[0]);
-  SCM x2 = scm_from_int (obj->line->x[1]);
-  SCM y2 = scm_from_int (obj->line->y[1]);
-  SCM color = scm_from_int (obj->color);
+  SCM      x1 = scm_from_int (obj->line->x[0]);
+  SCM      y1 = scm_from_int (obj->line->y[0]);
+  SCM      x2 = scm_from_int (obj->line->x[1]);
+  SCM      y2 = scm_from_int (obj->line->y[1]);
+  SCM   color = scm_from_int (obj->color);
 
   /* Swap ends according to pin's whichend flag. */
   if ((obj->type == OBJ_PIN) && obj->pin->whichend) {
@@ -852,113 +733,21 @@ SCM_DEFINE (line_info, "%line-info", 1, 0, 0,
   return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
 }
 
-/*! \brief Create a new net.
- * \par Function Description
- * Creates a new net object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-net procedure in the (geda
- * core object) module.
- *
- * \return a newly-created net object.
- */
-SCM_DEFINE (make_net, "%make-net", 0, 0, 0,
-            (), "Create a new net object.")
-{
-  Object *obj;
-  SCM result;
-
-  obj = o_net_new (NET_COLOR, 0, 0, 0, 0);
-
-  result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
-}
-
-/*! \brief Create a new bus.
- * \par Function Description
- * Creates a new bus object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-bus procedure in the (geda
- * core object) module.
- *
- * \todo Do we need a way to get/set bus ripper direction?
- *
- * \return a newly-created bus object.
- */
-SCM_DEFINE (make_bus, "%make-bus", 0, 0, 0, (), "Create a new bus object.")
-{
-  Object *obj;
-  SCM result;
-
-  obj = o_bus_new (BUS_COLOR, 0, 0, 0, 0, 0);
-
-  result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
-}
-
-/*! \brief Create a new pin.
- * \par Function description
- * Creates a new pin object, with all parameters set to default
- * values.  type_s is a Scheme symbol indicating whether the pin
- * should be a "net" pin or a "bus" pin.
- *
- * \note Scheme API: Implements the %make-pin procedure in the (geda
- * core object) module.
- *
- * \return a newly-created pin object.
- */
-SCM_DEFINE (make_pin, "%make-pin", 1, 0, 0, (SCM type_s), "Create a new pin object.")
-{
-  SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG1, s_make_pin);
-
-  int type;
-  if (type_s == net_sym) {
-    type = PIN_NET_NODE;
-  }
-  else if (type_s == bus_sym) {
-    type = PIN_BUS_NODE;
-  }
-  else {
-    scm_misc_error (s_make_pin,
-                    _("Invalid pin type ~A, must be 'net or 'bus"),
-                    scm_list_1 (type_s));
-  }
-
-  Object *obj = o_pin_new (PIN_COLOR, 0, 0, 0, 0, type, 0);
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
-
-  return result;
-}
-
 /*! \brief Get the type of a pin object.
  * \par Function Description
  * Returns a symbol describing the pin type of the pin object \a
  * pin_s.
  *
- * \note Scheme API: Implements the %make-pin procedure in the (geda
+ * \note Scheme API: Implements the %pin-type procedure in the (geda
  * core object) module.
  *
  * \return the symbol 'pin or 'bus.
  */
-SCM_DEFINE (pin_type, "%pin-type", 1, 0, 0,
+EDA_SCM_DEFINE (object_pin_type, "%pin-type", 1, 0, 0,
             (SCM pin_s), "Get the type of a pin object.")
 {
   SCM_ASSERT (edascm_is_object_type (pin_s, OBJ_PIN), pin_s,
-              SCM_ARG1, s_pin_type);
+              SCM_ARG1, scheme_object_pin_type);
 
   Object *obj = edascm_to_object (pin_s);
   SCM result;
@@ -971,34 +760,11 @@ SCM_DEFINE (pin_type, "%pin-type", 1, 0, 0,
     result = bus_sym;
     break;
   default:
-    scm_misc_error (s_make_pin,
+    scm_misc_error (scheme_object_pin_type,
                     _("Object ~A has invalid pin type."),
                     scm_list_1 (pin_s));
   }
 
-  return result;
-}
-
-/*! \brief Create a new box.
- * \par Function Description
- * Creates a new box object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-box procedure in the (geda
- * core object) module.
- *
- * \return a newly-created box object.
- */
-SCM_DEFINE (make_box, "%make-box", 0, 0, 0,
-            (), "Create a new box object.")
-{
-  Object *obj = o_box_new (DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
   return result;
 }
 
@@ -1019,17 +785,17 @@ SCM_DEFINE (make_box, "%make-box", 0, 0, 0,
  *
  * \return the modified box object.
  */
-SCM_DEFINE (set_box_x, "%set-box!", 6, 0, 0,
+EDA_SCM_DEFINE (object_set_box_x, "%set-box!", 6, 0, 0,
            (SCM box_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM color_s),
            "Set box parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (box_s, OBJ_BOX), box_s,
-              SCM_ARG1, s_set_box_x);
-  SCM_ASSERT (scm_is_integer (x1_s),    x1_s,    SCM_ARG2, s_set_box_x);
-  SCM_ASSERT (scm_is_integer (y1_s),    y1_s,    SCM_ARG3, s_set_box_x);
-  SCM_ASSERT (scm_is_integer (x2_s),    x2_s,    SCM_ARG4, s_set_box_x);
-  SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, s_set_box_x);
-  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, s_set_box_x);
+              SCM_ARG1, scheme_object_set_box_x);
+  SCM_ASSERT (scm_is_integer (x1_s),    x1_s,    SCM_ARG2, scheme_object_set_box_x);
+  SCM_ASSERT (scm_is_integer (y1_s),    y1_s,    SCM_ARG3, scheme_object_set_box_x);
+  SCM_ASSERT (scm_is_integer (x2_s),    x2_s,    SCM_ARG4, scheme_object_set_box_x);
+  SCM_ASSERT (scm_is_integer (y2_s),    y2_s,    SCM_ARG5, scheme_object_set_box_x);
+  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_box_x);
 
   Object *obj = edascm_to_object (box_s);
   o_box_modify_all (obj,
@@ -1057,11 +823,11 @@ SCM_DEFINE (set_box_x, "%set-box!", 6, 0, 0,
  * param box_s the box object to inspect.
  * \return a list of box parameters.
  */
-SCM_DEFINE (box_info, "%box-info", 1, 0, 0,
-           (SCM box_s), "Get box parameters.")
+EDA_SCM_DEFINE (object_box_info, "%box-info", 1, 0, 0,
+               (SCM box_s), "Get box parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (box_s, OBJ_BOX), box_s,
-              SCM_ARG1, s_box_info);
+              SCM_ARG1, scheme_object_box_info);
 
   Object *obj = edascm_to_object (box_s);
 
@@ -1071,30 +837,6 @@ SCM_DEFINE (box_info, "%box-info", 1, 0, 0,
                      scm_from_int (obj->box->lower_y),
                      scm_from_int (obj->color),
                      SCM_UNDEFINED);
-}
-
-/*! \brief Create a new circle.
- * \par Function Description
-
- * Creates a new circle object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-circle procedure in the
- * (geda core object) module.
- *
- * \return a newly-created circle object.
- */
-SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
-           (), "Create a new circle object.")
-{
-  Object *obj = o_circle_new (DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
 }
 
 /*! \brief Set circle parameters.
@@ -1113,16 +855,16 @@ SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
  *
  * \return the modified circle object.
  */
-SCM_DEFINE (set_circle_x, "%set-circle!", 5, 0, 0,
-           (SCM circle_s, SCM x_s, SCM y_s, SCM r_s, SCM color_s),
-           "Set circle parameters")
+EDA_SCM_DEFINE (object_set_circle_x, "%set-circle!", 5, 0, 0,
+               (SCM circle_s, SCM x_s, SCM y_s, SCM r_s, SCM color_s),
+               "Set circle parameters")
 {
   SCM_ASSERT (edascm_is_object_type (circle_s, OBJ_CIRCLE), circle_s,
-              SCM_ARG1, s_set_circle_x);
-  SCM_ASSERT (scm_is_integer (x_s),     x_s,     SCM_ARG2, s_set_circle_x);
-  SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, s_set_circle_x);
-  SCM_ASSERT (scm_is_integer (r_s),     r_s,     SCM_ARG4, s_set_circle_x);
-  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG5, s_set_circle_x);
+              SCM_ARG1, scheme_object_set_circle_x);
+  SCM_ASSERT (scm_is_integer (x_s),     x_s,     SCM_ARG2, scheme_object_set_circle_x);
+  SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, scheme_object_set_circle_x);
+  SCM_ASSERT (scm_is_integer (r_s),     r_s,     SCM_ARG4, scheme_object_set_circle_x);
+  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG5, scheme_object_set_circle_x);
 
   Object *obj = edascm_to_object (circle_s);
   o_circle_modify (obj, scm_to_int(x_s), scm_to_int(y_s), CIRCLE_CENTER);
@@ -1148,11 +890,11 @@ SCM_DEFINE (set_circle_x, "%set-circle!", 5, 0, 0,
  * param circle_s the circle object to inspect.
  * \return a list of circle parameters.
  */
-SCM_DEFINE
-(circle_info, "%circle-info", 1, 0, 0, (SCM circle_s), "Get circle parameters.")
+EDA_SCM_DEFINE (object_circle_info, "%circle-info", 1, 0, 0,
+                (SCM circle_s), "Get circle parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (circle_s, OBJ_CIRCLE),
-              circle_s, SCM_ARG1, s_circle_info);
+              circle_s, SCM_ARG1, scheme_object_circle_info);
 
   Object *obj = edascm_to_object (circle_s);
 
@@ -1161,28 +903,6 @@ SCM_DEFINE
                      scm_from_int (obj->circle->radius),
                      scm_from_int (obj->color),
                      SCM_UNDEFINED);
-}
-
-/*! \brief Create a new arc.
- * \par Function Description
- * Creates a new arc object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-arc procedure in the
- * (geda core object) module.
- *
- * \return a newly-created arc object.
- */
-SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
-            (), "Create a new arc object.")
-{
-  Object *obj = o_arc_new (DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
 }
 
 /*! \brief Set arc parameters.
@@ -1203,21 +923,21 @@ SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
  *
  * \return the modified arc object.
  */
-SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
-           (SCM arc_s, SCM x_s, SCM y_s, SCM r_s, SCM start_angle_s,
-            SCM arc_sweep_s, SCM color_s),
-           "Set arc parameters")
+EDA_SCM_DEFINE (object_set_arc_x, "%set-arc!", 7, 0, 0,
+               (SCM arc_s, SCM x_s, SCM y_s, SCM r_s, SCM start_angle_s,
+                SCM arc_sweep_s, SCM color_s),
+               "Set arc parameters")
 {
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC), arc_s,
-              SCM_ARG1, s_set_arc_x);
-  SCM_ASSERT (scm_is_integer (x_s),     x_s,     SCM_ARG2, s_set_arc_x);
-  SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, s_set_arc_x);
-  SCM_ASSERT (scm_is_integer (r_s),     r_s,     SCM_ARG4, s_set_arc_x);
-  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG7, s_set_arc_x);
+              SCM_ARG1, scheme_object_set_arc_x);
+  SCM_ASSERT (scm_is_integer (x_s),     x_s,     SCM_ARG2, scheme_object_set_arc_x);
+  SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, scheme_object_set_arc_x);
+  SCM_ASSERT (scm_is_integer (r_s),     r_s,     SCM_ARG4, scheme_object_set_arc_x);
+  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG7, scheme_object_set_arc_x);
   SCM_ASSERT (scm_is_integer (start_angle_s),
-                                  start_angle_s, SCM_ARG5, s_set_arc_x);
+                                  start_angle_s, SCM_ARG5, scheme_object_set_arc_x);
   SCM_ASSERT (scm_is_integer (arc_sweep_s),
-                                  arc_sweep_s, SCM_ARG6, s_set_arc_x);
+                                  arc_sweep_s, SCM_ARG6, scheme_object_set_arc_x);
 
   Object *obj = edascm_to_object (arc_s);
 
@@ -1256,10 +976,10 @@ SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
  *
  * \return a list of arc parameters.
  */
-SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc parameters.")
+EDA_SCM_DEFINE (object_arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC),
-              arc_s, SCM_ARG1, s_arc_info);
+              arc_s, SCM_ARG1, scheme_object_arc_info);
 
   Object *obj = edascm_to_object (arc_s);
 
@@ -1270,29 +990,6 @@ SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0, (SCM arc_s), "Get arc parameters.")
                      scm_from_int (obj->arc->arc_sweep),
                      scm_from_int (obj->color),
                      SCM_UNDEFINED);
-}
-
-/*! \brief Create a new text item.
- * \par Function Description
- * Creates a new text object, with all its parameters set to default
- * values.
- *
- * \note Scheme API: Implements the %make-text procedure in the
- * (geda core object) module.
- *
- * \return a newly-created text object.
- *
- */
-SCM_DEFINE (make_text, "%make-text", 0, 0, 0, (), "Create a new text object.")
-{
-  Object *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
-                            10, VISIBLE, SHOW_NAME_VALUE, "");
-
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
 }
 
 /*! \brief Set text parameters.
@@ -1325,22 +1022,29 @@ SCM_DEFINE (make_text, "%make-text", 0, 0, 0, (), "Create a new text object.")
  *
  * \return the modified text object.
  */
-SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
-           (SCM text_s, SCM x_s, SCM y_s, SCM align_s, SCM angle_s,
-            SCM string_s, SCM size_s, SCM visible_s, SCM show_s, SCM color_s),
-           "Set text parameters")
+EDA_SCM_DEFINE (object_set_text_x, "%set-text!", 10, 0, 0,
+               (SCM text_s, SCM x_s, SCM y_s, SCM align_s, SCM angle_s,
+                SCM string_s, SCM size_s, SCM visible_s, SCM show_s, SCM color_s),
+               "Set text parameters")
 {
   SCM_ASSERT (edascm_is_object_type (text_s, OBJ_TEXT), text_s,
-              SCM_ARG1, s_set_text_x);
-  SCM_ASSERT (scm_is_integer (x_s),     x_s,      SCM_ARG2, s_set_text_x);
-  SCM_ASSERT (scm_is_integer (y_s),     y_s,      SCM_ARG3, s_set_text_x);
-  SCM_ASSERT (scm_is_symbol (align_s),  align_s,  SCM_ARG4, s_set_text_x);
-  SCM_ASSERT (scm_is_integer (angle_s), angle_s,  SCM_ARG5, s_set_text_x);
-  SCM_ASSERT (scm_is_string (string_s), string_s, SCM_ARG6, s_set_text_x);
-  SCM_ASSERT (scm_is_integer (size_s),  size_s,   SCM_ARG7, s_set_text_x);
+              SCM_ARG1, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_integer (x_s), x_s,
+              SCM_ARG2, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_integer (y_s), y_s,
+              SCM_ARG3, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_symbol (align_s),  align_s,
+              SCM_ARG4, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_integer (angle_s), angle_s,
+              SCM_ARG5, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_string (string_s), string_s,
+              SCM_ARG6, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_integer (size_s),  size_s,   SCM_ARG7, scheme_object_set_text_x);
 
-  SCM_ASSERT (scm_is_symbol (show_s),    show_s,     9, s_set_text_x);
-  SCM_ASSERT (scm_is_integer (color_s),  color_s,   10, s_set_text_x);
+  SCM_ASSERT (scm_is_symbol (show_s),    show_s,
+              9, scheme_object_set_text_x);
+  SCM_ASSERT (scm_is_integer (color_s),  color_s,
+              10, scheme_object_set_text_x);
 
   Object *obj = edascm_to_object (text_s);
 
@@ -1356,7 +1060,7 @@ SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
   else if (align_s == middle_right_sym)  { align = MIDDLE_RIGHT;  }
   else if (align_s == upper_right_sym)   { align = UPPER_RIGHT;   }
   else {
-    scm_misc_error (s_set_text_x,
+    scm_misc_error (scheme_object_set_text_x,
                     _("Invalid text alignment ~A."),
                     scm_list_1 (align_s));
   }
@@ -1372,7 +1076,7 @@ SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
     break;
   default:
     /* Otherwise, not fine. */
-    scm_misc_error (s_set_text_x,
+    scm_misc_error (scheme_object_set_text_x,
                     _("Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"),
                     scm_list_1 (angle_s));
   }
@@ -1400,7 +1104,7 @@ SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
     show = SHOW_NAME_VALUE;
   }
   else {
-    scm_misc_error (s_set_text_x,
+    scm_misc_error (scheme_object_set_text_x,
                     _("Invalid text name/value visibility ~A."),
                     scm_list_1 (show_s));
   }
@@ -1453,11 +1157,11 @@ SCM_DEFINE (set_text_x, "%set-text!", 10, 0, 0,
  *
  * \return a list of text parameters.
  */
-SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
-            (SCM text_s), "Get text parameters.")
+EDA_SCM_DEFINE (object_text_info, "%text-info", 1, 0, 0,
+               (SCM text_s), "Get text parameters.")
 {
   SCM_ASSERT (edascm_is_object_type (text_s, OBJ_TEXT),
-              text_s, SCM_ARG1, s_text_info);
+              text_s, SCM_ARG1, scheme_object_text_info);
 
   Object *obj = edascm_to_object (text_s);
   SCM align_s, visible_s, show_s;
@@ -1473,7 +1177,7 @@ SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
   case MIDDLE_RIGHT:  align_s = middle_right_sym;  break;
   case UPPER_RIGHT:   align_s = upper_right_sym;   break;
   default:
-    scm_misc_error (s_text_info,
+    scm_misc_error (scheme_object_text_info,
                     _("Text object ~A has invalid text alignment ~A"),
                     scm_list_2 (text_s, scm_from_int (obj->text->alignment)));
   }
@@ -1482,7 +1186,7 @@ SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
   case VISIBLE:   visible_s = SCM_BOOL_T; break;
   case INVISIBLE: visible_s = SCM_BOOL_F; break;
   default:
-    scm_misc_error (s_text_info,
+    scm_misc_error (scheme_object_text_info,
                     _("Text object ~A has invalid visibility ~A"),
                     scm_list_2 (text_s, scm_from_int (obj->visibility)));
   }
@@ -1492,7 +1196,7 @@ SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
   case SHOW_VALUE:      show_s = value_sym; break;
   case SHOW_NAME_VALUE: show_s = both_sym;  break;
   default:
-    scm_misc_error (s_text_info,
+    scm_misc_error (scheme_object_text_info,
                     _("Text object ~A has invalid text attribute visibility ~A"),
                     scm_list_2 (text_s, scm_from_int (obj->show_name_value)));
   }
@@ -1522,16 +1226,16 @@ SCM_DEFINE (text_info, "%text-info", 1, 0, 0,
  * param obj_s Object smob for object to get connections for.
  * \return a list of Object smobs.
  */
-SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
-           (SCM obj_s), "Get objects that are connected to an object.")
+EDA_SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
+               (SCM obj_s), "Get objects that are connected to an object.")
 {
   /* Ensure that the argument is an object smob */
-  SCM_ASSERT (edascm_is_object (obj_s), obj_s, SCM_ARG1, s_object_connections);
+  SCM_ASSERT (edascm_is_object (obj_s), obj_s, SCM_ARG1, scheme_object_connections);
 
   Object *obj = edascm_to_object (obj_s);
 
   if (geda_object_get_page (obj) == NULL) {
-    scm_error (edascm_object_state_sym, s_object_connections,
+    scm_error (edascm_object_state_sym, scheme_object_connections,
                _("Object ~A is not included in a page."),
                scm_list_1 (obj_s), SCM_EOL);
   }
@@ -1555,12 +1259,12 @@ SCM_DEFINE (object_connections, "%object-connections", 1, 0, 0,
  *
  * \return the Object smob of the containing component, or SCM_BOOL_F.
  */
-SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
+EDA_SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
            (SCM obj_s), "Get containing complex object of an object.")
 {
   /* Ensure that the argument is an object smob */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
-              SCM_ARG1, s_object_complex);
+              SCM_ARG1, scheme_object_complex);
 
   Object *obj = edascm_to_object (obj_s);
   Object *parent = o_get_parent (obj);
@@ -1570,26 +1274,141 @@ SCM_DEFINE (object_complex, "%object-complex", 1, 0, 0,
   return edascm_from_object (parent);
 }
 
-/*! \brief Make a new, empty path object.
+/*! \brief Set the stroke properties of an object.
  * \par Function Description
- * Creates a new, empty path object with default color, stroke and
- * fill options.
+ * Updates the stroke settings of the object \a obj_s.  If \a obj_s is
+ * not a line, box, circle, arc, or path, throws a Scheme error.  The
+ * optional parameters \a space_s and \a length_s can be set to
+ * SCM_UNDEFINED if not required by the dash style \a dash_s.
  *
- * \note Scheme API: Implements the %make-path procedure in the (geda
- * core object) module.
+ * \note Scheme API: Implements the %object-stroke procedure in the
+ * (geda core object) module.
  *
- * \return a newly-created path object.
+ * param obj_s object to set stroke settings for.
+ * param width_s new stroke width for \a obj_s.
+ * param cap_s new stroke cap style for \a obj_s.
+ * param dash_s new dash style for \a obj_s.
+ * param space_s dot/dash spacing for dash styles other than solid.
+ * param length_s dash length for dash styles other than solid or
+ *                 dotted.
+ * \return \a obj_s.
  */
-SCM_DEFINE (make_path, "%make-path", 0, 0, 0,
-           (), "Create a new path object")
+EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
+               (SCM obj_s, SCM width_s, SCM cap_s, SCM dash_s, SCM space_s,
+                SCM length_s), "Set the stroke properties of an object.")
 {
-  Object *obj = o_path_new (DEFAULT_PATH_COLOR_INDEX, "");
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+              obj_s, SCM_ARG1, scheme_object_set_stroke_x);
 
-  SCM result = edascm_from_object (obj);
+  Object *obj = edascm_to_object (obj_s);
+  LINE_OPTIONS line_options;
 
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, TRUE);
+  SCM_ASSERT (scm_is_integer (width_s), width_s,
+              SCM_ARG2, scheme_object_set_stroke_x);
+  SCM_ASSERT (scm_is_symbol (cap_s), cap_s,
+              SCM_ARG3, scheme_object_set_stroke_x);
+  SCM_ASSERT (scm_is_symbol (dash_s), dash_s,
+              SCM_ARG4, scheme_object_set_stroke_x);
+
+  line_options.line_width = scm_to_int (width_s);
+
+  if      (cap_s == none_sym)   { line_options.line_end = END_NONE;   }
+  else if (cap_s == square_sym) { line_options.line_end = END_SQUARE; }
+  else if (cap_s == round_sym)  { line_options.line_end = END_ROUND;  }
+  else {
+    scm_misc_error (scheme_object_set_stroke_x,
+                    _("Invalid stroke cap style ~A."),
+                    scm_list_1 (cap_s));
+  }
+
+  if      (dash_s == solid_sym)   { line_options.line_type = TYPE_SOLID;   }
+  else if (dash_s == dotted_sym)  { line_options.line_type = TYPE_DOTTED;  }
+  else if (dash_s == dashed_sym)  { line_options.line_type = TYPE_DASHED;  }
+  else if (dash_s == center_sym)  { line_options.line_type = TYPE_CENTER;  }
+  else if (dash_s == phantom_sym) { line_options.line_type = TYPE_PHANTOM; }
+  else {
+    scm_misc_error (scheme_object_set_stroke_x,
+                    _("Invalid stroke dash style ~A."),
+                    scm_list_1 (dash_s));
+  }
+
+  switch (line_options.line_type) {
+  case TYPE_DASHED:
+  case TYPE_CENTER:
+  case TYPE_PHANTOM:
+    if (length_s == SCM_UNDEFINED) {
+      scm_misc_error (scheme_object_set_stroke_x,
+                      _("Missing dash length parameter for dash style ~A."),
+                      scm_list_1 (length_s));
+    }
+    SCM_ASSERT (scm_is_integer (length_s), length_s,
+                SCM_ARG6, scheme_object_set_stroke_x);
+    line_options.line_length = scm_to_int (length_s);
+    /* This case intentionally falls through */
+  case TYPE_DOTTED:
+    if (space_s == SCM_UNDEFINED) {
+      scm_misc_error (scheme_object_set_stroke_x,
+                      _("Missing dot/dash space parameter for dash style ~A."),
+                      scm_list_1 (space_s));
+    }
+    SCM_ASSERT (scm_is_integer (space_s), space_s,
+                SCM_ARG5, scheme_object_set_stroke_x);
+    line_options.line_space = scm_to_int (space_s);
+   case TYPE_SOLID:
+   case TYPE_ERASE:
+     break;
+  }
+
+  o_notify_emit_pre_change (obj);
+  o_set_line_options (obj, &line_options);
+  o_notify_emit_change (obj);
+
+  s_object_set_page_changed ( obj);
+
+  return obj_s;
+}
+
+/*! \brief Get the type of an object.
+ * \par Function Description
+ * Returns a symbol describing the type of the Object smob \a obj_s.
+ *
+ * \note Scheme API: Implements the %object-type procedure in the
+ * (geda core object) module.
+ *
+ * param [in] obj_s an Object smob.
+ * \return a Scheme symbol representing the object type.
+ */
+EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
+               (SCM obj_s), "Get an object smob's type")
+{
+  SCM result;
+
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, scheme_object_type);
+
+  Object *obj = edascm_to_object (obj_s);
+  switch (obj->type) {
+  case OBJ_LINE:    result = line_sym;       break;
+  case OBJ_NET:     result = net_sym;        break;
+  case OBJ_BUS:     result = bus_sym;        break;
+  case OBJ_BOX:     result = box_sym;        break;
+  case OBJ_PICTURE: result = picture_sym;    break;
+  case OBJ_CIRCLE:  result = circle_sym;     break;
+  case OBJ_PLACEHOLDER:
+  case OBJ_COMPLEX: result = complex_sym;    break;
+  case OBJ_TEXT:    result = text_sym;       break;
+  case OBJ_PATH:    result = path_sym;       break;
+  case OBJ_PIN:     result = pin_sym;        break;
+  case OBJ_ARC:     result = arc_sym;        break;
+  default:
+    scm_misc_error (scheme_object_type, _("Object ~A has bad type '~A'"),
+                    scm_list_2 (obj_s,
+                                scm_integer_to_char (scm_from_int (obj->type))));
+  }
+
   return result;
 }
 
@@ -1604,12 +1423,12 @@ SCM_DEFINE (make_path, "%make-path", 0, 0, 0,
  *
  * \return The number of path elements in \a obj_s.
  */
-SCM_DEFINE (path_length, "%path-length", 1, 0, 0,
+EDA_SCM_DEFINE (object_path_length, "%path-length", 1, 0, 0,
             (SCM obj_s), "Get number of elements in a path object.")
 {
   /* Ensure that the argument is a path object */
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
-              SCM_ARG1, s_path_length);
+              SCM_ARG1, scheme_object_path_length);
 
   Object *obj = edascm_to_object (obj_s);
   return scm_from_int (obj->path->num_sections);
@@ -1644,21 +1463,21 @@ SCM_DEFINE (path_length, "%path-length", 1, 0, 0,
  *
  * \return A list containing the requested path element data.
  */
-SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
+EDA_SCM_DEFINE (object_path_ref, "%path-ref", 2, 0, 0,
            (SCM obj_s, SCM index_s),
            "Get a path element from a path object.")
 {
   /* Ensure that the arguments are a path object and integer */
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
-              SCM_ARG1, s_path_ref);
-  SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, s_path_ref);
+              SCM_ARG1, scheme_object_path_ref);
+  SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, scheme_object_path_ref);
 
   Object *obj = edascm_to_object (obj_s);
   int     idx = scm_to_int (index_s);
 
   /* Check index is valid for path */
   if ((idx < 0) || (idx >= obj->path->num_sections)) {
-    scm_out_of_range (s_path_ref, index_s);
+    scm_out_of_range (scheme_object_path_ref, index_s);
   }
 
   PATH_SECTION *section = &obj->path->sections[idx];
@@ -1685,7 +1504,7 @@ SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
   case PATH_END:
     return scm_list_1 (closepath_sym);
   default:
-    scm_misc_error (s_path_ref,
+    scm_misc_error (scheme_object_path_ref,
                     _("Path object ~A has invalid element type ~A at index ~A"),
                     scm_list_3 (obj_s, scm_from_int (section->code), index_s));
   }
@@ -1706,22 +1525,23 @@ SCM_DEFINE (path_ref, "%path-ref", 2, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (path_remove_x, "%path-remove!", 2, 0, 0,
+EDA_SCM_DEFINE (object_path_remove_x, "%path-remove!", 2, 0, 0,
            (SCM obj_s, SCM index_s),
            "Remove a path element from a path object.")
 {
 
   /* Ensure that the arguments are a path object and integer */
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
-              SCM_ARG1, s_path_ref);
-  SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, s_path_ref);
+              SCM_ARG1, scheme_object_path_remove_x);
+  SCM_ASSERT (scm_is_integer (index_s), index_s,
+              SCM_ARG2, scheme_object_path_remove_x);
 
   Object *obj = edascm_to_object (obj_s);
   int idx = scm_to_int (index_s);
 
   if ((idx < 0) || (idx >= obj->path->num_sections)) {
     /* Index is valid for path */
-    scm_out_of_range (s_path_ref, index_s);
+    scm_out_of_range (scheme_object_path_remove_x, index_s);
 
   }
 
@@ -1783,14 +1603,14 @@ SCM_DEFINE (path_remove_x, "%path-remove!", 2, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
+EDA_SCM_DEFINE (object_path_insert_x, "%path-insert", 3, 6, 0,
             (SCM obj_s, SCM index_s, SCM type_s,
              SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM x3_s, SCM y3_s),
             "Insert a path element into a path object.")
 {
-  SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s, SCM_ARG1, s_path_insert_x);
-  SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, s_path_insert_x);
-  SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG3, s_path_insert_x);
+  SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s, SCM_ARG1, scheme_object_path_insert_x);
+  SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, scheme_object_path_insert_x);
+  SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG3, scheme_object_path_insert_x);
 
   Object *obj = edascm_to_object (obj_s);
   Path *path = obj->path;
@@ -1810,7 +1630,7 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
     section.code = PATH_CURVETO;
   }
   else {
-    scm_misc_error (s_path_insert_x,
+    scm_misc_error (scheme_object_path_insert_x,
                     _("Invalid path element type ~A."),
                     scm_list_1 (type_s));
   }
@@ -1818,31 +1638,31 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
   /* Check the right number of coordinates have been provided. */
   switch (section.code) {
     case PATH_CURVETO:
-      SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG4, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG4, scheme_object_path_insert_x);
       section.x1 = scm_to_int (x1_s);
 
-      SCM_ASSERT (scm_is_integer (y1_s), y1_s, SCM_ARG5, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (y1_s), y1_s, SCM_ARG5, scheme_object_path_insert_x);
       section.y1 = scm_to_int (y1_s);
 
-      SCM_ASSERT (scm_is_integer (x2_s), x2_s, SCM_ARG6, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (x2_s), x2_s, SCM_ARG6, scheme_object_path_insert_x);
       section.x2 = scm_to_int (x2_s);
 
-      SCM_ASSERT (scm_is_integer (y2_s), y2_s, SCM_ARG7, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (y2_s), y2_s, SCM_ARG7, scheme_object_path_insert_x);
       section.y2 = scm_to_int (y2_s);
 
-      SCM_ASSERT (scm_is_integer (x3_s), x3_s, SCM_ARG8, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (x3_s), x3_s, SCM_ARG8, scheme_object_path_insert_x);
       section.x3 = scm_to_int (x3_s);
 
-      SCM_ASSERT (scm_is_integer (y3_s), y3_s, SCM_ARG9, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (y3_s), y3_s, SCM_ARG9, scheme_object_path_insert_x);
       section.y3 = scm_to_int (y3_s);
 
       break;
     case PATH_MOVETO:
     case PATH_MOVETO_OPEN:
     case PATH_LINETO:
-      SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG4, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG4, scheme_object_path_insert_x);
       section.x3 = scm_to_int (x1_s);
-      SCM_ASSERT (scm_is_integer (y1_s), y1_s, SCM_ARG5, s_path_insert_x);
+      SCM_ASSERT (scm_is_integer (y1_s), y1_s, SCM_ARG5, scheme_object_path_insert_x);
       section.y3 = scm_to_int (y1_s);
       break;
     case PATH_END:
@@ -1863,7 +1683,8 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
 
   if ((idx < 0) || (idx > path->num_sections)) {
     idx = path->num_sections;
-  } else {
+  }
+  else {
     memmove (&path->sections[idx+1], &path->sections[idx],
              sizeof (PATH_SECTION) * (path->num_sections - idx));
   }
@@ -1876,30 +1697,6 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
   s_object_set_page_changed ( obj);
 
   return obj_s;
-}
-
-/*! \brief Create a new, empty picture object.
- * \par Function Description
- * Creates a new picture object with no filename, no image data and
- * all other parameters set to default values.  It is initially set to
- * be embedded.
- *
- * \note Scheme API: Implements the %make-picture procedure in the
- * (geda core object) module.
- *
- * \return a newly-created picture object.
- */
-SCM_DEFINE (make_picture, "%make-picture", 0, 0, 0, (),
-            "Create a new picture object")
-{
-
-  Object *obj = o_picture_new (NULL, 0, NULL, 0, 0, 0, 0, 0, FALSE, TRUE);
-  SCM result = edascm_from_object (obj);
-
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
-  edascm_c_set_gc (result, 1);
-  return result;
 }
 
 /*! \brief Get picture object parameters.
@@ -1922,11 +1719,11 @@ SCM_DEFINE (make_picture, "%make-picture", 0, 0, 0, (),
  *
  * \return a list of picture object parameters.
  */
-SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
-           (SCM obj_s), "Get picture object parameters")
+EDA_SCM_DEFINE (object_picture_info, "%picture-info", 1, 0, 0,
+               (SCM obj_s), "Get picture object parameters")
 {
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
-              SCM_ARG1, s_picture_info);
+              SCM_ARG1, scheme_object_picture_info);
 
   Object *obj = edascm_to_object (obj_s);
   const char *filename = o_picture_get_filename (obj);
@@ -1963,17 +1760,17 @@ SCM_DEFINE (picture_info, "%picture-info", 1, 0, 0,
  * param mirror_s    whether the picture object should be mirrored.
  * \return the modify \a obj_s.
  */
-SCM_DEFINE (set_picture_x, "%set-picture!", 7, 0, 0,
+EDA_SCM_DEFINE (object_set_picture_x, "%set-picture!", 7, 0, 0,
            (SCM obj_s, SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM angle_s,
             SCM mirror_s), "Set picture object parameters")
 {
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
-              SCM_ARG1, s_set_picture_x);
-  SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG2, s_set_picture_x);
-  SCM_ASSERT (scm_is_integer (y1_s), x1_s, SCM_ARG3, s_set_picture_x);
-  SCM_ASSERT (scm_is_integer (x2_s), x1_s, SCM_ARG4, s_set_picture_x);
-  SCM_ASSERT (scm_is_integer (y2_s), x1_s, SCM_ARG5, s_set_picture_x);
-  SCM_ASSERT (scm_is_integer (angle_s), angle_s, SCM_ARG6, s_set_picture_x);
+              SCM_ARG1, scheme_object_set_picture_x);
+  SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG2, scheme_object_set_picture_x);
+  SCM_ASSERT (scm_is_integer (y1_s), x1_s, SCM_ARG3, scheme_object_set_picture_x);
+  SCM_ASSERT (scm_is_integer (x2_s), x1_s, SCM_ARG4, scheme_object_set_picture_x);
+  SCM_ASSERT (scm_is_integer (y2_s), x1_s, SCM_ARG5, scheme_object_set_picture_x);
+  SCM_ASSERT (scm_is_integer (angle_s), angle_s, SCM_ARG6, scheme_object_set_picture_x);
 
   Object *obj = edascm_to_object (obj_s);
 
@@ -1988,8 +1785,8 @@ SCM_DEFINE (set_picture_x, "%set-picture!", 7, 0, 0,
     break;
   default:
     /* Otherwise, not fine. */
-    scm_misc_error (s_set_picture_x,
-                    _("Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"),
+    scm_misc_error (scheme_object_set_picture_x,
+                  _("Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"),
                     scm_list_1 (angle_s));
   }
 
@@ -2025,18 +1822,19 @@ SCM_DEFINE (set_picture_x, "%set-picture!", 7, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!", 3, 0, 0,
+EDA_SCM_DEFINE (object_set_picture_data_x, "%set-picture-data/vector!", 3, 0, 0,
            (SCM obj_s, SCM data_s, SCM filename_s),
             "Set a picture object's data from a vector.")
 {
   SCM vec_s = scm_any_to_s8vector (data_s);
+
   /* Check argument types */
   SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PICTURE), obj_s,
-              SCM_ARG1, s_set_picture_data_vector_x);
+              SCM_ARG1, scheme_object_set_picture_data_x);
   SCM_ASSERT (scm_is_true (scm_s8vector_p (vec_s)), data_s, SCM_ARG2,
-              s_set_picture_data_vector_x);
+              scheme_object_set_picture_data_x);
   SCM_ASSERT (scm_is_string (filename_s), filename_s, SCM_ARG3,
-              s_set_picture_data_vector_x);
+              scheme_object_set_picture_data_x);
 
   scm_dynwind_begin (0);
 
@@ -2069,7 +1867,7 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!", 3, 0, 0,
   if (!status) {
     scm_dynwind_unwind_handler ((void (*)(void *)) g_error_free, error,
                                 SCM_F_WIND_EXPLICITLY);
-    scm_misc_error (s_set_picture_data_vector_x,
+    scm_misc_error (scheme_object_set_picture_data_x,
                     "Failed to set picture image data from vector: ~S",
                     scm_list_1 (scm_from_utf8_string (error->message)));
   }
@@ -2097,16 +1895,16 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!", 3, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (translate_object_x, "%translate-object!", 3, 0, 0,
+EDA_SCM_DEFINE (object_translate_x, "%translate-object!", 3, 0, 0,
            (SCM obj_s, SCM dx_s, SCM dy_s), "Translate an object.")
 {
   /* Check argument types */
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
-              SCM_ARG1, s_translate_object_x);
+              SCM_ARG1, scheme_object_translate_x);
   SCM_ASSERT (scm_is_integer (dx_s), dx_s,
-              SCM_ARG2, s_translate_object_x);
+              SCM_ARG2, scheme_object_translate_x);
   SCM_ASSERT (scm_is_integer (dy_s), dy_s,
-              SCM_ARG3, s_translate_object_x);
+              SCM_ARG3, scheme_object_translate_x);
 
   Object *obj = edascm_to_object (obj_s);
   int dx = scm_to_int (dx_s);
@@ -2137,69 +1935,31 @@ SCM_DEFINE (translate_object_x, "%translate-object!", 3, 0, 0,
  *
  * \return \a obj_s.
  */
-SCM_DEFINE (rotate_object_x, "%rotate-object!", 4, 0, 0,
-           (SCM obj_s, SCM x_s, SCM y_s, SCM angle_s),
-           "Rotate an object.")
+EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
+               (SCM obj_s, SCM x_s, SCM y_s, SCM angle_s),
+               "Rotate an object.")
 {
   /* Check argument types */
-  SCM_ASSERT (edascm_is_object (obj_s), obj_s,
-              SCM_ARG1, s_rotate_object_x);
-  SCM_ASSERT (scm_is_integer (x_s), x_s,
-              SCM_ARG2, s_rotate_object_x);
-  SCM_ASSERT (scm_is_integer (y_s), y_s,
-              SCM_ARG3, s_rotate_object_x);
-  SCM_ASSERT (scm_is_integer (angle_s), angle_s,
-              SCM_ARG4, s_rotate_object_x);
+  SCM_ASSERT (edascm_is_object (obj_s), obj_s, SCM_ARG1, scheme_object_rotate_x);
+  SCM_ASSERT (scm_is_integer   (x_s), x_s, SCM_ARG2, scheme_object_rotate_x);
+  SCM_ASSERT (scm_is_integer   (y_s), y_s, SCM_ARG3, scheme_object_rotate_x);
+  SCM_ASSERT (scm_is_integer   (angle_s), angle_s, SCM_ARG4, scheme_object_rotate_x);
 
   Object *obj = edascm_to_object (obj_s);
-  int x = scm_to_int (x_s);
-  int y = scm_to_int (y_s);
-  int angle = scm_to_int (angle_s);
+  int       x = scm_to_int (x_s);
+  int       y = scm_to_int (y_s);
+  int   angle = scm_to_int (angle_s);
 
   /* FIXME Work around horribly broken libgeda behaviour.  Some
    * libgeda functions treat a rotation of -90 degrees as a rotation
    * of +90 degrees, etc., which is not sane. */
   while (angle < 0) angle += 360;
   while (angle >= 360) angle -= 360;
-  SCM_ASSERT (angle % 90 == 0, angle_s,
-              SCM_ARG4, s_rotate_object_x);
+
+  SCM_ASSERT (angle % 90 == 0, angle_s, SCM_ARG4, scheme_object_rotate_x);
 
   o_notify_emit_pre_change (obj);
   o_rotate_object (obj, x, y, angle);
-  o_notify_emit_change (obj);
-
-  s_object_set_page_changed ( obj);
-
-  return obj_s;
-}
-
-/*! \brief Mirror an object.
- * \par Function Description
- * Mirrors \a obj_s in the line x = \a x_s.
- *
- * \note Scheme API: Implements the %mirror-object! procedure of the
- * (geda core object) module.
- *
- * param obj_s    Object smob for object to translate.
- * param x_s      x-coordinate of centre of rotation.
- *
- * \return \a obj_s.
- */
-SCM_DEFINE (mirror_object_x, "%mirror-object!", 2, 0, 0,
-           (SCM obj_s, SCM x_s),
-            "Mirror an object.")
-{
-  /* Check argument types */
-  SCM_ASSERT (edascm_is_object (obj_s), obj_s,
-              SCM_ARG1, s_mirror_object_x);
-  SCM_ASSERT (scm_is_integer (x_s), x_s,
-              SCM_ARG2, s_mirror_object_x);
-
-  Object *obj = edascm_to_object (obj_s);
-  int x = scm_to_int (x_s);
-
-  o_notify_emit_pre_change (obj);
-  o_mirror_object (obj, x, 0);
   o_notify_emit_change (obj);
 
   s_object_set_page_changed ( obj);
@@ -2220,25 +1980,41 @@ init_module_geda_core_object ()
   #include "scheme_object.x"
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_object_type, s_copy_object, s_object_bounds,
-                s_object_stroke, s_set_object_stroke_x,
-                s_object_fill, s_set_object_fill_x,
-                s_object_color, s_set_object_color_x,
-                s_make_line, s_make_net, s_make_bus,
-                s_make_pin, s_pin_type,
-                s_set_line_x, s_line_info,
-                s_make_box, s_set_box_x, s_box_info,
-                s_make_circle, s_set_circle_x, s_circle_info,
-                s_make_arc, s_set_arc_x, s_arc_info,
-                s_make_text, s_set_text_x, s_text_info,
-                s_object_connections, s_object_complex,
-                s_make_path, s_path_length, s_path_ref,
-                s_path_remove_x, s_path_insert_x,
-                s_make_picture, s_picture_info, s_set_picture_x,
-                s_set_picture_data_vector_x,
-                s_translate_object_x, s_rotate_object_x,
-                s_mirror_object_x,
+  scm_c_export (scheme_object_copy,
+                scheme_object_mirror_x,
+                scheme_object_rotate_x,
+                scheme_object_translate_x,
+                scheme_object_type,
+                scheme_object_connections,
+                scheme_object_complex,
+                scheme_object_bounds,
+                scheme_object_stroke,
+                scheme_object_set_stroke_x,
+                scheme_object_fill,
+                scheme_object_set_fill_x,
+                scheme_object_color,
+                scheme_object_set_color_x,
+                scheme_object_arc_info,
+                scheme_object_set_arc_x,
+                scheme_object_box_info,
+                scheme_object_set_box_x,
+                scheme_object_circle_info,
+                scheme_object_set_circle_x,
+                scheme_object_line_info,
+                scheme_object_set_line_x,
+                scheme_object_path_length,
+                scheme_object_path_insert_x,
+                scheme_object_path_ref,
+                scheme_object_path_remove_x,
+                scheme_object_picture_info,
+                scheme_object_set_picture_x,
+                scheme_object_set_picture_data_x,
+                scheme_object_pin_type,
+                scheme_object_text_info,
+                scheme_object_set_text_x,
                 NULL);
+
+  edascm_init_make_object();
 }
 
 /*!
