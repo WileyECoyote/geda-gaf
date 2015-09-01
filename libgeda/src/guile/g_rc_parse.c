@@ -587,8 +587,7 @@ void g_rc_parse_handler (const char *rcname,
  * \returns If the interpreter can resolve the filename, returns a
  * Scheme object with the full path to the RC file, otherwise FALSE
  */
-SCM
-g_rc_rc_filename()
+SCM g_rc_rc_filename(void)
 {
   SCM stack, frame, source;
 
@@ -619,8 +618,7 @@ g_rc_rc_filename()
  *
  * \returns An EdaConfig smob.
  */
-SCM
-g_rc_rc_config()
+SCM g_rc_rc_config(void)
 {
   SCM cfg_s = scm_fluid_ref (scheme_rc_config_fluid);
   if (!scm_is_false (cfg_s)) return cfg_s;
