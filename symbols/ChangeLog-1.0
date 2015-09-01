@@ -1,3 +1,7 @@
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener2/zener_68_1N5266B.sym: Add symbol 1N5266B, 68Volt zener.
+
 2015-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/micro/TMS320F28069PZP-2b.sym: Add alternate pin arrangement for
