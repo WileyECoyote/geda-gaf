@@ -18,6 +18,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+/*! \file
+ * \brief Global declarations
+ *
+ * Global declarations
+ */
+
 #include <geda.h>
 
 char *rc_filename      = '\0';

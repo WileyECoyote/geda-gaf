@@ -1,3 +1,18 @@
+2015-09-1 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * WEH: Modified per commit to Master branch by Vladimir Zhbanov, See
+      commit    b22205de1d41672d68b94211267ce4620ee0405d;
+      gschlas: Added doxygen comments for several functions and files and
+      WEH updated copyright information.
+
+    *  Add doxygen comments:
+
+            * utils/gschlas/g_rc.c:
+            * gschlas/g_register.c
+            * gschlas/globals.c
+            * gschlas/gschlas.c
+            * gschlas/i_vars.c
+
 2015-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gcheck-library.sh: Check validity of URL referenced by

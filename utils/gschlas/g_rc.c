@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,6 +23,14 @@
 
 #include "version.h"
 
+/*! \brief Test the version of gschlas and gEDA/gaf
+ *  \par Function Description
+ * Test the version of gschlas and gEDA/gaf
+ *
+ * \param version Version being tested
+ *
+ * \returns false if incorrect version, true if OK
+ */
 SCM g_rc_gschlas_version(SCM scm_version)
 {
     char *version;

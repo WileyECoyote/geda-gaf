@@ -26,12 +26,15 @@ extern volatile int log_destiny;
 
 /* gnetlist specific stuff */
 extern NETLIST *netlist_head;
-extern char *guile_proc;
+extern char    *guile_proc;
+
+/* command line switch settings */
 extern int verbose_mode;
 extern int interactive_mode;
 extern int quiet_mode;
 extern int netlist_mode;
 extern int embed_mode;
 extern int unembed_mode;
+
 extern char *output_filename;
 

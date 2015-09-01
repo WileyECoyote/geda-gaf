@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2012 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,13 +15,19 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include "common.h"
 
 int default_force_boundingbox = 0;
 
+/*! \brief Initialize variables in the TOPLEVEL
+ *
+ * Initialize the variables in toplevel.
+ * \param toplevel pointer to the TOPLEVEL structure.
+ */
 void i_vars_set(GedaToplevel * pr_current)
 {
     i_vars_libgeda_set(pr_current);

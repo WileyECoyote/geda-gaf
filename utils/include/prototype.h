@@ -1,18 +1,28 @@
+/*! \file
+ * Function prototypes for the gschlas
+ * utility.
+ */
 /* g_rc.c */
 SCM g_rc_gschlas_version(SCM version);
 SCM g_rc_force_boundingbox(SCM mode);
+
 /* g_register.c */
 void g_register_funcs(void);
-SCM g_quit(void);
+SCM  g_quit(void);
+
 /* globals.c */
+
 /* gschlas.c */
 void gschlas_quit(void);
 void main_prog(void *closure, int argc, char *argv[]);
-int main(int argc, char *argv[]);
+int  main(int argc, char *argv[]);
+
 /* i_vars.c */
 void i_vars_set(GedaToplevel *pr_current);
+
 /* parsecmd.c */
 void usage(char *cmd);
-int parse_commandline(int argc, char *argv[]);
+int  parse_commandline(int argc, char *argv[]);
+
 /* s_util.c */
 void s_util_embed(GedaToplevel *pr_current, int embed_mode);

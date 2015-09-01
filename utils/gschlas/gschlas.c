@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,12 +22,33 @@
 
 #include "common.h"
 
+/*! \brief Cleanup gschlas on exit.
+ *  \par Function Description
+ *  This function is called at exit to call the necessary subroutines
+ *  to release program resource.
+ */
 void gschlas_quit(void)
 {
   s_clib_free();
   s_slib_free();
 }
 
+/*! \brief The "real" main for gschlas.
+ *
+ * This is the main program body for gschlas. A pointer to this
+ * function is passed to scm_boot_guile() at startup.
+ *
+ * This function:
+ * - initialises libgeda;
+ * - parses the command line;
+ * - starts logging;
+ * - registers the Scheme functions with Guile;
+ * - parses the RC files;
+ *
+ * \param closure
+ * \param argc Number of command line arguments
+ * \param argv Command line arguments
+ */
 void
 main_prog(void *closure, int argc, char *argv[])
 {
@@ -125,8 +147,15 @@ main_prog(void *closure, int argc, char *argv[])
   exit(0);
 }
 
-int
-main (int argc, char *argv[])
+/*! \brief Entry point to gschlas
+ *
+ * This is just a wrapper which invokes the guile stuff, and
+ * points to the real main program main_prog().
+ *
+ * \param argc Number of command line arguments
+ * \param argv Command line arguments
+ */
+int main (int argc, char *argv[])
 {
   scm_boot_guile (argc, argv, main_prog, NULL);
   return 0;

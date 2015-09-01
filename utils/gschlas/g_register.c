@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2014 Ales Hvezda
- * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2002-2015 Ales Hvezda
+ * Copyright (C) 2002-2015 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,17 +21,27 @@
 
 #include "common.h"
 
+/*! \brief Register Scheme functions
+ *  \par Function Description
+ * This function registers Scheme functions required to use gschlas,
+ * which are necessary for reading the gschlasrc file during initialization
+ * which yields the library search paths.
+ */
 void g_register_funcs(void)
 {
   /* general functions */
   scm_c_define_gsubr ("quit", 0, 0, 0, g_quit);
   scm_c_define_gsubr ("exit", 0, 0, 0, g_quit);
 
-  /* gsymcheckrc functions */
+  /* gschlas functions */
   scm_c_define_gsubr ("gschlas-version", 1, 0, 0, g_rc_gschlas_version);
 
 }
 
+/*! \brief Scheme function to quit the application
+ *
+ * Quit the application from within Scheme.
+ */
 SCM g_quit(void)
 {
   gschlas_quit();
