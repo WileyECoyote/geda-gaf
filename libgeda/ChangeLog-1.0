@@ -1,3 +1,7 @@
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_os.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
+
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_color.c: Add function s_color_load_scheme.
