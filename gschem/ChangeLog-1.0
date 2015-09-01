@@ -1,3 +1,8 @@
+2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_path.c: Remove duplicate function path_copy_modify, use
+      version in library.
+
 2015-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Set use_stock bit for pop_edit_component in popup_items

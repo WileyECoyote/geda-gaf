@@ -36,57 +36,6 @@ typedef void (*FILL_FUNC) (GschemToplevel *w_current,
                            int fill_width,
                            int angle1, int pitch1, int angle2, int pitch2);
 
-static Path *path_copy_modify (Path *path, int dx, int dy,
-                               int new_x, int new_y, int whichone)
-{
-  Path *new_path;
-  int x1, y1, x2, y2, x3, y3;
-  int i;
-  int grip_no = 0;
-
-  new_path = (Path*)geda_path_new ();
-  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
-  new_path->num_sections = path->num_sections;
-  new_path->num_sections_max = path->num_sections;
-
-  for (i = 0; i <  path->num_sections; i++) {
-    PATH_SECTION *section     = &path->sections[i];
-    PATH_SECTION *new_section = &new_path->sections[i];
-
-    x1 = section->x1 + dx; y1 = section->y1 + dy;
-    x2 = section->x2 + dx; y2 = section->y2 + dy;
-    x3 = section->x3 + dx; y3 = section->y3 + dy;
-
-    switch (section->code) {
-      case PATH_CURVETO:
-        /* Two control point grips */
-        if (whichone == grip_no++) {
-          x1 = new_x; y1 = new_y;
-        }
-        if (whichone == grip_no++) {
-          x2 = new_x; y2 = new_y;
-        }
-        /* Fall through */
-      case PATH_MOVETO:
-      case PATH_MOVETO_OPEN:
-      case PATH_LINETO:
-        /* Destination point grip */
-        if (whichone == grip_no++) {
-          x3 = new_x; y3 = new_y;
-        }
-      /* Fall through */
-      case PATH_END:
-        break;
-    }
-
-    new_section->code = section->code;
-    new_section->x1 = x1;  new_section->y1 = y1;
-    new_section->x2 = x2;  new_section->y2 = y2;
-    new_section->x3 = x3;  new_section->y3 = y3;
-  }
-  return new_path;
-}
-
 /*! \brief Calculate path bounding box for rubber purposes
  *  \par Function Description
  * Calculate the bounding box of \a path, returning its bounds in \a
@@ -659,7 +608,7 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
   object->line_options->line_width = 0; /* clamped to 1 pixel in circle_path */
   object->path  = w_current->temp_path;
 
-  object->path = path_copy_modify (w_current->which_object->path, 0, 0,
+  object->path = s_path_copy_modify (w_current->which_object->path, 0, 0,
                                    w_current->second_wx,
                                    w_current->second_wy, w_current->which_grip);
 
