@@ -69,8 +69,8 @@ EDA_SCM_DEFINE (object_make_line, "%make-line", 0, 0, 0,
  *
  * \return a newly-created net object.
  */
-EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0,
-            (), "Create a new net object.")
+EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0, (),
+               "Create a new net object.")
 {
   Object *obj;
   SCM result;
@@ -97,7 +97,8 @@ EDA_SCM_DEFINE (object_make_net, "%make-net", 0, 0, 0,
  *
  * \return a newly-created bus object.
  */
-EDA_SCM_DEFINE (object_make_bus, "%make-bus", 0, 0, 0, (), "Create a new bus object.")
+EDA_SCM_DEFINE (object_make_bus, "%make-bus", 0, 0, 0, (),
+               "Create a new bus object.")
 {
   Object *obj;
   SCM result;
@@ -123,7 +124,8 @@ EDA_SCM_DEFINE (object_make_bus, "%make-bus", 0, 0, 0, (), "Create a new bus obj
  *
  * \return a newly-created pin object.
  */
-EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s), "Create a new pin object.")
+EDA_SCM_DEFINE (object_make_pin, "%make-pin", 1, 0, 0, (SCM type_s),
+               "Create a new pin object.")
 {
   SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG1, scheme_object_make_pin);
 
@@ -236,7 +238,8 @@ EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
  * \return a newly-created text object.
  *
  */
-EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (), "Create a new text object.")
+EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
+               "Create a new text object.")
 {
   Object *obj = o_text_new (DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
                             10, VISIBLE, SHOW_NAME_VALUE, "");

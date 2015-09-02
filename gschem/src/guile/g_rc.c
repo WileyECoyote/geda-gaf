@@ -225,7 +225,7 @@ SCM g_rc_display_color_map (SCM scm_map)
               scm_map, SCM_ARG1, "display-color-map");
   cmap_flag = 1;
 
-  g_rc_map_from_scm (display_colors, scm_map, "display-color-map");
+  g_rc_color_map_from_scm (display_colors, scm_map, "display-color-map");
 
   return SCM_BOOL_T;
 }
@@ -246,7 +246,7 @@ SCM g_rc_display_outline_color_map (SCM scm_map)
               scm_map, SCM_ARG1, "display-outline-color-map");
   cmap_flag = cmap_flag * -1;
 
-  g_rc_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
+  g_rc_color_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
 
   return SCM_BOOL_T;
 }
