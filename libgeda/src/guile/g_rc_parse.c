@@ -36,7 +36,16 @@
 
 SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 
-/*! \brief Return Index of string in Virtual String Table
+/**   \defgroup Libgeda-RC-Parsers Libgeda RC Parsers
+ *  @{\par
+ *  Contains functions to parse initialization (RC) files.
+ */
+
+/**   \defgroup Libgeda-RC-Utilities Libgeda RC Utilities
+ *  @{\par This Group contains utility functions used by various dialogs
+ *    \ingroup (Libgeda-RC-Handlers)
+ */
+
 /*! \brief Helper to Return Index of string in Virtual String Table
  *  \par Function Description
  *  This function is used by g_rc_parse_mode to retrieve the index
@@ -50,8 +59,8 @@ SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  *  }
  *
  */
-static int
-vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
+static
+int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
 {
   int i;
 
@@ -63,12 +72,13 @@ vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
   return i;
 }
 
-/*! \brief Get the Value at Index in Virtual String Table
+/*! \brief Helper to Get the Value at Index in Virtual String Table
  *  \par Function Description
  *   Returns the value of the first field in \a table at the
  *   given \a index
  */
-static int vstbl_get_val(const vstbl_entry *table, int index)
+static
+int vstbl_get_val(const vstbl_entry *table, int index)
 {
   return table[index].m_val;
 }
@@ -106,7 +116,9 @@ g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
   return ret_val;
 }
 
-/*! \brief Mark an RC file as loaded.
+/** @} endgroup Libgeda-RC-Utilities */
+
+/*! \brief Helper Function to Mark an RC file as loaded.
  * \par Function Description
  *   If the Scheme initialization file \a filename has not already been
  * loaded, mark the file as loaded and return TRUE, storing \a filename
@@ -120,7 +132,8 @@ g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
  * \param err       Return location for errors, or NULL.
  * \return TRUE if \a filename not already loaded, FALSE otherwise.
  */
-static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
+static bool
+g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
 {
   GList *found = NULL;
 
@@ -278,7 +291,8 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-bool g_rc_parse_system (const char *rcname, GError **err)
+bool
+g_rc_parse_system (const char *rcname, GError **err)
 {
   char *sysname = NULL;
   char *rcfile = NULL;
@@ -388,7 +402,8 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
   return status;
 }
 
-static void g_rc_parse__process_error (GError **err, const char *pname)
+static void
+g_rc_parse__process_error (GError **err, const char *pname)
 {
   char *pbase;
 
@@ -473,9 +488,10 @@ g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void g_rc_gafrc_parse_handler (const char *dummy,
-                               ConfigParseErrorFunc handler,
-                               void *user_data)
+void
+g_rc_gafrc_parse_handler (const char *dummy,
+                          ConfigParseErrorFunc handler,
+                          void *user_data)
 {
   GError *err = NULL;
 
@@ -500,8 +516,9 @@ void g_rc_gafrc_parse_handler (const char *dummy,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void g_rc_rcname_parse_handler (const char *rcname,
-                                ConfigParseErrorFunc handler, void *user_data)
+void
+g_rc_rcname_parse_handler (const char *rcname,
+                           ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
 
@@ -562,9 +579,10 @@ g_rc_rcfile_parse_handler (const char *rcfile,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void g_rc_parse_handler (const char *rcname,
-                         const char *rcfile, ConfigParseErrorFunc handler,
-                         void *user_data)
+void
+g_rc_parse_handler (const char *rcname,
+                    const char *rcfile, ConfigParseErrorFunc handler,
+                    void *user_data)
 {
   /* Load RC files in order. */
   /* First gafrc files. */
@@ -589,7 +607,8 @@ void g_rc_parse_handler (const char *rcname,
  * \returns If the interpreter can resolve the filename, returns a
  * Scheme object with the full path to the RC file, otherwise FALSE
  */
-SCM g_rc_rc_filename(void)
+SCM
+g_rc_rc_filename(void)
 {
   SCM stack, frame, source;
 
@@ -620,7 +639,8 @@ SCM g_rc_rc_filename(void)
  *
  * \returns An EdaConfig smob.
  */
-SCM g_rc_rc_config(void)
+SCM
+g_rc_rc_config(void)
 {
   SCM cfg_s = scm_fluid_ref (scheme_rc_config_fluid);
   if (!scm_is_false (cfg_s)) return cfg_s;
@@ -628,3 +648,5 @@ SCM g_rc_rc_config(void)
   EdaConfig *cfg = eda_config_get_context_for_file (NULL);
   return edascm_from_config (cfg);
 }
+
+/** @} endgroup Libgeda-RC-Parsers */

@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 /*! \file g_rc.c
- *  \brief Execute Scheme initialization files.
+ *  \brief Process Scheme initialization file data.
  *
  * Contains functions to open, parse and manage Scheme initialization
  * (RC) files.
@@ -30,6 +30,11 @@
 #include <errno.h>
 #endif
 #include "libgeda_priv.h"
+
+/**   \defgroup Libgeda-RC-Handlers Libgeda RC Handlers
+ *  @{\par
+ *  Contains functions to parse initialization (RC) files.
+ */
 
 /*! \brief This function processes the component-group SCM list.
  *  \par Function Description
@@ -1128,3 +1133,5 @@ SCM g_rc_show_full_path(SCM mode)
                    default_show_full_path,
                    2);
 }
+
+/** @} endgroup Libgeda-RC-Handlers */

@@ -1,5 +1,10 @@
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc.c: Add doxygen group Libgeda-RC-Handlers,
+      Libgeda-RC-Parsers, and Libgeda-RC-Utilities.
+
+2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc_parse.c: Rename function g_rc_mode_general->
       g_rc_parse_mode.
 
