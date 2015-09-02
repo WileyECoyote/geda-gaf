@@ -57,7 +57,7 @@ BEGIN_DECLS
          void    g_rc_map_from_scm               (COLOR *map, SCM lst, const char *scheme_proc_name);
 
 /* g_rc_parse.c */
-          SCM    g_rc_mode_general               (SCM       scmmode,  const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
+          SCM    g_rc_parse_mode                 (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
          bool    g_rc_parse_file                 (const char *rcfile, EdaConfig *cfg, GError **err);
          bool    g_rc_parse_system               (const char *rcname, GError **err);
          bool    g_rc_parse_user                 (const char *rcname, GError **err);

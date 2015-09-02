@@ -305,7 +305,7 @@
 
 /*! \def RETURN_G_RC_MODE(rc, var, size)
  *  \brief Utility Macro used by the rc loading mechanism
- *  \note The 1st and 4th arguments to g_rc_mode_general are not passed
+ *  \note The 1st and 4th arguments to g_rc_parse_mode are not passed
  *  to the macro, Rc handlers incorporating this macro must name their
  *  Scheme argument "mode" and the vstbl_entry structure "mode_table".
  *
@@ -316,7 +316,7 @@
  *  \todo This macro probably does not belong in this file
  */
 #define RETURN_G_RC_MODE(rc, var, size) \
-  return g_rc_mode_general(mode,        \
+  return g_rc_parse_mode(mode,        \
                            (rc),        \
                            &(var),      \
                            mode_table,  \

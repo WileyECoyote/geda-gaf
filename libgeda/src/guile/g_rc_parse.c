@@ -37,8 +37,9 @@
 SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 
 /*! \brief Return Index of string in Virtual String Table
+/*! \brief Helper to Return Index of string in Virtual String Table
  *  \par Function Description
- *  This function is used by g_rc_mode_general to retrieve the index
+ *  This function is used by g_rc_parse_mode to retrieve the index
  *  of the matching string RC keywords like keep-invisible.
  *
  *  Example:
@@ -77,8 +78,9 @@ static int vstbl_get_val(const vstbl_entry *table, int index)
  *  \par Function Description
  *
  */
-SCM g_rc_mode_general(SCM scmmode, const char *rc_name,      int *mode_var,
-                                   const vstbl_entry *table, int  table_size)
+SCM
+g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
+                               const vstbl_entry *table, int  table_size)
 {
   SCM   ret_val;
   int   index;

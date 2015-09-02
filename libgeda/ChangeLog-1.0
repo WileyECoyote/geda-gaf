@@ -1,5 +1,10 @@
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc_parse.c: Rename function g_rc_mode_general->
+      g_rc_parse_mode.
+
+2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * guile/g_rc_color.c: Rename and relocate file from scheme group,
       rename containing functions accordingly.
 

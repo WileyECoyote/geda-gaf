@@ -812,7 +812,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
 /*! \brief Handles the attribute-promote SCM keyword.
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument.
  *
  *  \param [in] mode string "enabled" or "disabled"
@@ -833,7 +833,7 @@ SCM g_rc_attribute_promotion(SCM mode)
 
 /*! \brief Handles the keep-invisible SCM keyword.
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument.
  *
  *  \param [in] mode string "enabled" or "disabled"
@@ -965,7 +965,7 @@ SCM g_rc_scheme_directory(SCM s_path)
 
 /*! \brief Handles the check-symbol-version SCM keyword.
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument that controls whether  symbol version
  *  checking is enabled or disabled.
  *
@@ -987,7 +987,7 @@ SCM g_rc_check_symbol_version(SCM mode)
 
 /*! \brief Enable the creation of backup files when saving
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument. If enabled then a backup file, of
  *  the form 'example.sch~', is created when saving a file.
  *
@@ -1061,7 +1061,7 @@ SCM g_rc_print_color_map (SCM scm_map)
 
 /*! \brief Handles the promote-invisible SCM keyword.
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument. If enabled, then invisible floating
  *  attributes are promoted (attached to the outside of the component) if
  *  the text string is invisible.
@@ -1109,7 +1109,7 @@ SCM g_rc_untitled_name(SCM name)
 
 /*! \brief Handles the show-full-path SCM keyword.
  *  \par Function Description
- *  Uses MACRO to call g_rc_mode_general to sets boolean configuration
+ *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
  *  variable based on string argument. Application should check this
  *  setting and display the full path in the file name when enabled.
  *
