@@ -35,6 +35,8 @@
 
 extern void edascm_init_make_object(void);
 
+SCM_GLOBAL_SYMBOL (edascm_object_state_sym, "object-state");
+
 SCM_SYMBOL (wrong_type_arg_sym , "wrong-type-arg");
 SCM_SYMBOL (arc_sym ,            "arc");
 SCM_SYMBOL (box_sym ,            "box");

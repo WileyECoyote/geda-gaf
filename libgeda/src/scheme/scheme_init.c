@@ -30,8 +30,6 @@
 /*! Non-zero if the Scheme API has been initialised. */
 static volatile GedaType init_called = 0;
 
-SCM_GLOBAL_SYMBOL (edascm_object_state_sym, "object-state");
-
 /*! \brief Scheme API initialisation worker function.
  *
  *  \par Function Description
@@ -40,8 +38,6 @@ SCM_GLOBAL_SYMBOL (edascm_object_state_sym, "object-state");
  */
 static void *edascm_init_impl (void *data)
 {
-  #include "scheme_init.x"
-
   scm_setlocale(scm_variable_ref(scm_c_lookup("LC_ALL")), scm_from_locale_string(""));
 
   edascm_init_smob ();
@@ -54,6 +50,7 @@ static void *edascm_init_impl (void *data)
   edascm_init_config ();
   edascm_init_closure ();
   edascm_init_deprecated ();
+
   return NULL;
 }
 
