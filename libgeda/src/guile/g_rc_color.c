@@ -31,6 +31,19 @@
 
 #include <geda_debug.h>
 
+/**   \defgroup Libgeda-RC-Color Libgeda RC Color
+ *  @{\par
+ *     This Group contains utility functions used when processing
+ *     color map data in RC files.
+ *    \ingroup (Libgeda-RC-Utilities)
+ */
+
+/*!
+ * \brief Color Map to Scheme
+ * \par Function Description
+ * \todo Finish Documentation
+ * \returns list of color (index . string) pairs
+ */
 SCM g_rc_color_map_to_scm (const COLOR *map)
 {
   SCM result = SCM_EOL;
@@ -135,3 +148,4 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
   scm_remember_upto_here_2 (wrong_type_arg_sym, proc_name);
 }
 
+/** @} endgroup Libgeda-RC-Color */

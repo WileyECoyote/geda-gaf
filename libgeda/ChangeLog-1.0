@@ -1,7 +1,13 @@
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/guile/g_rc.c: Add doxygen group Libgeda-RC-Handlers,
-      Libgeda-RC-Parsers, and Libgeda-RC-Utilities.
+    * src/guile/g_rc.c: Add doxygen groups Libgeda-RC-Handlers
+      and Libgeda-RC-Utilities.
+
+    * src/guile/g_rc_parse.c: Add doxygen group Libgeda-RC-Handlers
+      Libgeda-RC-Parsers.
+
+    * src/guile/g_rc_color.c: Add doxygen group Libgeda-RC-Handlers
+      Libgeda-RC-Color, and comment for functions.
 
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
