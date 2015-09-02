@@ -24,7 +24,7 @@
 #include "libgeda_priv.h"
 
 /*! \brief */
-static struct gsubr_t libgeda_funcs[] = {
+static struct gsubr_t rc_func_table[] = {
   { "eval-protected",             1, 1, 0, g_scm_eval_protected },
   { "eval-string-protected",      1, 0, 0, g_scm_eval_string_protected },
 
@@ -76,9 +76,10 @@ static struct gsubr_t libgeda_funcs[] = {
  *  Creates g_subr_t objects to make g_rc_* functions that are defined
  *  in g_rc.c visible to Scheme.
  */
-void g_register_libgeda_funcs (void)
+void g_register_rc_handlers (void)
 {
-  struct gsubr_t *tmp = libgeda_funcs;
+  struct gsubr_t *tmp = rc_func_table;
+
   while (tmp->name != NULL) {
     scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->func);
     tmp++;

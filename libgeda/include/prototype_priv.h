@@ -53,7 +53,7 @@ SCM  g_rc_untitled_name                (SCM name);
 SCM  g_rc_show_full_path               (SCM mode);
 
 /* g_register.c */
-void g_register_libgeda_funcs          (void);
+void g_register_rc_handlers            (void);
 void g_register_libgeda_dirs           (void);
 
 /* geda_object.c */

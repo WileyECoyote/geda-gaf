@@ -1,5 +1,11 @@
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_register.c: Rename RC function table; libgeda_funcs
+      ->rc_func_table and function g_register_libgeda_funcs->
+      g_register_rc_handlers.
+
+2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc.c: Add doxygen groups Libgeda-RC-Handlers
       and Libgeda-RC-Utilities.
 

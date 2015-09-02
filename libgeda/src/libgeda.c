@@ -54,7 +54,7 @@
  */
 static void *libgeda_guile_init(void *lame)
 {
-  g_register_libgeda_funcs();
+  g_register_rc_handlers();
   g_register_libgeda_dirs();
 
   edascm_init ();

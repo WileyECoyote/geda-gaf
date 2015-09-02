@@ -54,7 +54,7 @@ BEGIN_DECLS
 
 /* g_rc_color.c */
           SCM    g_rc_color_map_to_scm           (const COLOR *map);
-         void    g_rc_map_from_scm               (COLOR *map, SCM lst, const char *scheme_proc_name);
+         void    g_rc_color_map_from_scm         (COLOR *map, SCM lst, const char *scheme_proc_name);
 
 /* g_rc_parse.c */
           SCM    g_rc_parse_mode                 (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
