@@ -197,7 +197,8 @@ SCM g_rc_gschem_version(SCM scm_version)
           _("Please be sure that you have the latest rc file.\n"));
 
     ret = SCM_BOOL_F;
-  } else {
+  }
+  else {
     ret = SCM_BOOL_T;
   }
   scm_dynwind_end();
@@ -217,14 +218,14 @@ extern COLOR outline_colors[MAX_COLORS];
 SCM g_rc_display_color_map (SCM scm_map)
 {
   if (scm_map == SCM_UNDEFINED) {
-    return s_color_map_to_scm (display_colors);
+    return g_rc_color_map_to_scm (display_colors);
   }
 
   SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
               scm_map, SCM_ARG1, "display-color-map");
   cmap_flag = 1;
 
-  s_color_map_from_scm (display_colors, scm_map, "display-color-map");
+  g_rc_map_from_scm (display_colors, scm_map, "display-color-map");
 
   return SCM_BOOL_T;
 }
@@ -238,14 +239,14 @@ SCM g_rc_display_color_map (SCM scm_map)
 SCM g_rc_display_outline_color_map (SCM scm_map)
 {
   if (scm_map == SCM_UNDEFINED) {
-    return s_color_map_to_scm (outline_colors);
+    return g_rc_color_map_to_scm (outline_colors);
   }
 
   SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
               scm_map, SCM_ARG1, "display-outline-color-map");
   cmap_flag = cmap_flag * -1;
 
-  s_color_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
+  g_rc_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
 
   return SCM_BOOL_T;
 }
@@ -820,7 +821,8 @@ SCM g_rc_logging(SCM mode)
     RETURN_G_RC_MODE("logging",
 	    	      default_logging,
                       2);
-  } else {
+  }
+  else {
     if (scm_is_integer(mode)) {
       int val;
 
@@ -1048,7 +1050,8 @@ SCM g_rc_attribute_name(SCM scm_path)
   /* not unique? */
   if (!s_attrib_uniq(path)) {
     ret = SCM_BOOL_F;
-  } else {
+  }
+  else {
     s_attrib_add_entry (path);
     ret = SCM_BOOL_T;
   }
@@ -1685,7 +1688,8 @@ SCM g_rc_paper_sizes(SCM scm_papername, SCM scm_width, SCM scm_height)
 
   if (!s_papersizes_uniq(papername)) {
     ret = SCM_BOOL_F;
-  } else {
+  }
+  else {
     s_papersizes_add_entry(papername, width, height);
     ret = SCM_BOOL_T;
   }

@@ -5,6 +5,7 @@
 libgeda_la_SOURCES += \
 			guile/g_evaluate.c \
 			guile/g_rc.c \
+			guile/g_rc_color.c \
 			guile/g_rc_parse.c \
 			guile/g_register.c
 

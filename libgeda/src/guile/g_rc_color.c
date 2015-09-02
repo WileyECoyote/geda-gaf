@@ -31,8 +31,7 @@
 
 #include <geda_debug.h>
 
-SCM
-s_color_map_to_scm (const COLOR *map)
+SCM g_rc_color_map_to_scm (const COLOR *map)
 {
   SCM result = SCM_EOL;
   int i;
@@ -50,10 +49,13 @@ s_color_map_to_scm (const COLOR *map)
 }
 
 /*!
+ * \brief Color Map from Scheme
+ * \par Function Description
+ * \todo Finish Documentation
  * \warning This function should ONLY be called from Scheme procedures.
  */
 void
-s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
+g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
 {
   SCM curr = lst;
   SCM wrong_type_arg_sym = scm_from_utf8_symbol ("wrong-type-arg");
@@ -132,3 +134,4 @@ s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
   }
   scm_remember_upto_here_2 (wrong_type_arg_sym, proc_name);
 }
+

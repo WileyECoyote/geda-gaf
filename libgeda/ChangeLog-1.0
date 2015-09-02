@@ -1,3 +1,10 @@
+2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * guile/g_rc_color.c: Rename and relocate file from scheme group,
+      rename containing functions accordingly.
+
+    * scheme/edascm_closure.c: File relocated to guile/g_rc_color.c.
+
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_path.c Rename function path_copy_modify->s_path_copy_modify.

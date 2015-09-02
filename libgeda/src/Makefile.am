@@ -18,7 +18,6 @@ BUILT_SOURCES   = \
 		scheme/scheme_make.x \
 		scheme/scheme_object.x \
 		scheme/scheme_complex.x \
-		scheme/scheme_color.x \
 		scheme/scheme_page.x \
 		scheme/scheme_attrib.x \
 		scheme/scheme_os.x \

@@ -52,6 +52,10 @@ BEGIN_DECLS
           SCM    g_scm_c_eval_string_protected   (const char *str);
          bool    g_read_scheme_file              (const char *filename, GError **err);
 
+/* g_rc_color.c */
+          SCM    g_rc_color_map_to_scm           (const COLOR *map);
+         void    g_rc_map_from_scm               (COLOR *map, SCM lst, const char *scheme_proc_name);
+
 /* g_rc_parse.c */
           SCM    g_rc_mode_general               (SCM       scmmode,  const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
          bool    g_rc_parse_file                 (const char *rcfile, EdaConfig *cfg, GError **err);
@@ -592,10 +596,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_undo_update_modified          (Page *p_current);
          void    s_undo_init                     (Page *p_current);
          void    s_undo_free_all                 (Page *p_current);
-
-/* scheme_color.c */
-          SCM    s_color_map_to_scm              (const COLOR *map);
-         void    s_color_map_from_scm            (COLOR *map, SCM lst, const char *scheme_proc_name);
 
 /* ---------------- Utilities -------------- */
 
