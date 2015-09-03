@@ -63,6 +63,27 @@ edascm_closure_marshal (SCM args, SCM smob) {
   return func (args, user_data);
 }
 
+/*! \brief Get a smob from a C closure.
+ * \par Function Description
+ * Create a new smob representing a C closure.
+ *
+ * \warning Do not call this function from user code; use
+ *          edascm_c_make_closure() instead.
+ *
+ * \param func C function to make closure around.
+ * \param user_data User data for function.
+ *
+ * \return a C closure smob.
+ */
+static SCM
+edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
+{
+ SCM smob;
+ SCM_NEWSMOB2 (smob, geda_smob_tag, func, user_data);
+ SCM_SET_SMOB_FLAGS (smob, GEDA_SMOB_CLOSURE);
+ return smob;
+}
+
 /*! \brief Make a C closure.
  * \ingroup guile_c_iface
  * \par Function Description

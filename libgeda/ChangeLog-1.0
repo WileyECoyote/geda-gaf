@@ -1,3 +1,8 @@
+2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_closure.c: Relocate function edascm_from_closure
+      from smob module and make static.
+
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/scheme_init.c: Remove edascm_object_state_sym and inclusion
