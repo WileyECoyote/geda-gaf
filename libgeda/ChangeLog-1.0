@@ -1,5 +1,13 @@
 2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/scheme_init.c: Remove edascm_object_state_sym and inclusion
+      of scheme_init.x.
+
+    * scheme/scheme_object.c: Relocate edascm_object_state_sym from
+      scheme_init module.
+
+2015-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_attrib.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
     * src/scheme/scheme_config.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
     * src/scheme/scheme_make.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.

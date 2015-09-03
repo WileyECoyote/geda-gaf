@@ -49,10 +49,12 @@ static SCM marshal_proc;
  */
 static SCM
 edascm_closure_marshal (SCM args, SCM smob) {
+
 #ifndef NDEBUG
   SCM_ASSERT (EDASCM_CLOSUREP (smob), smob, SCM_ARG2,
               "edascm_closure_marshal");
 #endif
+
   EDASCM_ASSERT_SMOB_VALID (smob);
 
   SCM (*func)(SCM, void*) = (SCM (*)(SCM, void*)) SCM_SMOB_DATA (smob);
@@ -104,6 +106,8 @@ edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
   return result;
 }
 
+
+
 /*!
  * \brief Initialise the C closure procedures.
  * \par Function Description
@@ -111,7 +115,7 @@ edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
  * closures.  Should only be called by edascm_init().
  */
 void
-edascm_init_closure ()
+edascm_init_closure (void)
 {
   /* Register functions and symbols */
   #include "scheme_closure.x"

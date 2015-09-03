@@ -86,23 +86,24 @@
 /*!
  * \file libgedaguile_priv.h
  * Scheme API private declarations and definitions.
- * \warning Don't include from libgeda_priv.h: should only be included
+ * \warning Do not include from libgeda_priv.h: should only be included
  * by Scheme API source files.
  */
 
 #include <missing.h>
 #include <libgeda/libgedaguile.h>
 
-void edascm_init_smob ();
-void edascm_init_toplevel ();
-void edascm_init_object ();
-void edascm_init_complex ();
-void edascm_init_page ();
-void edascm_init_attrib ();
-void edascm_init_os ();
-void edascm_init_config ();
-void edascm_init_closure (void);
-void edascm_init_deprecated ();
+/* Declarations of Initialization Procedures for Scheme Module */
+void edascm_init_attrib     (void);
+void edascm_init_closure    (void);
+void edascm_init_complex    (void);
+void edascm_init_config     (void);
+void edascm_init_deprecated (void);
+void edascm_init_object     (void);
+void edascm_init_os         (void);
+void edascm_init_page       (void);
+void edascm_init_smob       (void);
+void edascm_init_toplevel   (void);
 
 /* ---------------------------------------- */
 
