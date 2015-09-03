@@ -1,3 +1,8 @@
+2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/16C550N-1.sym: Add symbol RS232 5x receiver, 3x transmitter
+      5V single supply.
+
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener2/zener_68_1N5266B.sym: Add symbol 1N5266B, 68Volt zener.
