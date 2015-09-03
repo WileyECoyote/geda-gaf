@@ -250,14 +250,14 @@ struct g_read_scheme_file_data_t
 
 /* Body function for g_read_scheme_file(). Simply loads the specified
  * file. */
-SCM g_read_scheme_file__body (struct g_read_scheme_file_data_t *data)
+static SCM g_read_scheme_file__body (struct g_read_scheme_file_data_t *data)
 {
   return scm_primitive_load (data->filename);
 }
 
 /* Post-unwind handler for g_read_scheme_file(). Processes the stack captured
  * in the pre-unwind handler. */
-SCM
+static SCM
 g_read_scheme_file__post_handler (struct g_read_scheme_file_data_t *data, SCM key, SCM args)
 {
   process_error_stack (data->stack, key, args, &data->err);
@@ -266,7 +266,7 @@ g_read_scheme_file__post_handler (struct g_read_scheme_file_data_t *data, SCM ke
 
 /* Pre-unwind handler for g_read_scheme_file().  Captures the Guile stack for
  * processing in the post-unwind handler. */
-SCM
+static SCM
 g_read_scheme_file__pre_handler (struct g_read_scheme_file_data_t *data, SCM key, SCM args)
 {
   data->stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);

@@ -34,7 +34,7 @@
 #include "libgeda_priv.h"
 #include "libgedaguile.h"
 
-SCM scheme_rc_config_fluid = SCM_UNDEFINED;
+static SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 
 /**   \defgroup Libgeda-RC-Parsers Libgeda RC Parsers
  *  @{\par

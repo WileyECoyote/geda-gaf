@@ -1,5 +1,17 @@
 2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_evaluate.c Make functions static:
+
+            * g_read_scheme_file__body
+            * g_read_scheme_file__post_handler
+            * g_read_scheme_file__pre_handler
+
+2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_deprecated.c: Replace SCM_DEFINE with EDA_SCM_DEFINE.
+
+2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/scheme/scheme_closure.c: Relocate function edascm_from_closure
       from smob module and make static.
 
