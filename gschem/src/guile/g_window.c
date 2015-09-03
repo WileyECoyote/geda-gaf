@@ -42,10 +42,9 @@ smob_free (SCM smob)
   GschemToplevel *window = (GschemToplevel *) SCM_SMOB_DATA (smob);
 
   /* If the weak ref has been cleared, do nothing */
-  if (window == NULL) return 0;
-
-  /* Otherwise, go away. */
-  window->smob = SCM_UNDEFINED;
+  if (window != NULL) {
+    window->smob = SCM_UNDEFINED; /* make it go away. */
+  }
 
   return 0;
 }
