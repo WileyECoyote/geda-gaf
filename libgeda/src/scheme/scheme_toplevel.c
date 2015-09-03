@@ -28,7 +28,7 @@
 #include "libgeda_priv.h"
 #include "libgedaguile_priv.h"
 
-SCM scheme_toplevel_fluid = SCM_UNDEFINED;
+static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
 
 /*!
  * \brief Set the #GedaToplevel fluid in the current dynamic context.
