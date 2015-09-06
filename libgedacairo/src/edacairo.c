@@ -72,6 +72,12 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   *sx = round (wx); *sy = round (wy);
 }
 
+/*!
+ *  \brief Set the Cairo Source Color
+ *  \par Function Description
+ *  This function sets the source color using the color in the given map
+ *  at the given index.
+ */
 void
 eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
 {
