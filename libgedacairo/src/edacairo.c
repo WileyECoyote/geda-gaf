@@ -70,8 +70,7 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   *sx = round (wx); *sy = round (wy);
 }
 
-/*!
- *  \brief Set the Cairo Source Color
+/*! \brief Set the Cairo Source Color
  *  \par Function Description
  *  This function sets the source color using the color in the given map
  *  at the given index.
@@ -98,6 +97,11 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
   }
 }
 
+/*! \brief Draw line using Cairo Graphic Renderer
+ *  \par Function Description
+ *  Scale line to screen coordinates, establish end points and render
+ *  a line using Cairo graphics library.
+ */
 void
 eda_cairo_line (cairo_t *cr, int flags, int line_end,
                 double w_line_width,
@@ -188,7 +192,11 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
   cairo_line_to        (cr, x1,   y1);
 }
 
-
+/*! \brief Render a Rectangular Box using Cairo Graphic
+ *  \par Function Description
+ *  Scale coordinates of vertices to screen coordinates and render a box
+ *  using Cairo graphics library.
+ */
 void
 eda_cairo_box (cairo_t *cr, int flags, double line_width,
                double x1, double y1, double x2, double y2)
@@ -226,7 +234,11 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
   cairo_close_path (cr);
 }
 
-
+/*! \brief Render a Box at center point using Cairo Graphic
+ *  \par Function Description
+ *  Scale coordinates of centerpoint to screen coordinates, calculate vertices
+ *  of the rectangle and render using Cairo graphics library.
+ */
 void
 eda_cairo_center_box (cairo_t *cr, int flags,
                       double center_width,
