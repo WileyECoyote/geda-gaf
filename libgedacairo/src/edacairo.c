@@ -48,8 +48,6 @@ screen_width(cairo_t *cr, double width)
   if (width < 1)
     width = 1;
 
-
-
 #ifdef HAVE_RINT
    return rint (width);
 #else
@@ -81,23 +79,23 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
 void
 eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
 {
-  COLOR c;
-
   if (map == NULL) {
     BUG_MSG ("map = NULL");
-    return;
   }
-  if ( (color < 0) || (color > map->len - 1)) {
+  else if ( (color < 0) || (color > map->len - 1)) {
     BUG_IMSG("Invalid color index <%d>", color);
-    return;
   }
+  else {
+    
+    COLOR c;
 
-  c = g_array_index (map, COLOR, color);
+    c = g_array_index (map, COLOR, color);
 
-  cairo_set_source_rgba (cr, (double)c.r / 255.0,
-                             (double)c.g / 255.0,
-                             (double)c.b / 255.0,
-                             (double)c.a / 255.0);
+    cairo_set_source_rgba (cr, (double)c.r / 255.0,
+                               (double)c.g / 255.0,
+                               (double)c.b / 255.0,
+                               (double)c.a / 255.0);
+  }
 }
 
 void
