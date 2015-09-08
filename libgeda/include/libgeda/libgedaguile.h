@@ -33,18 +33,24 @@
  *          included by source files that need to use the Scheme API.
  */
 
-/* Initialise the Scheme API. */
+/* scheme_init.c */
+
+/* Initialize the Scheme API. (implmentation scheme_init.c) */
 void edascm_init ();
+
+/* scheme_toplevel.c */
 
 /* Get the value of the #GedaToplevel fluid. */
 GedaToplevel *edascm_c_current_toplevel ();
 
 /* Set the #GedaToplevel fluid in the current dynamic context. */
-void edascm_dynwind_toplevel (GedaToplevel *toplevel);
+void edascm_dynwind_toplevel (GedaToplevel *toplevel); // edascm_c_dynwind_toplevel?
 
 /* Set the current #GedaToplevel temporarily. */
 SCM edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
                             void *user_data);
+
+/* scheme_smob.c */
 
 /* Create a Guile value from a page structure. */
 SCM edascm_from_page (Page *page);
@@ -75,6 +81,8 @@ int edascm_is_config (SCM smob);
 
 /* Set whether a gEDA object may be garbage collected. */
 void edascm_c_set_gc (SCM smob, int gc);
+
+/* scheme_closure.c */
 
 /* Create a Scheme closure around a C function. */
 SCM edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data);
