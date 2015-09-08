@@ -12,7 +12,6 @@ GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 lib_LTLIBRARIES = libgeda.la
 
 BUILT_SOURCES   = \
-		scheme/scheme_init.x \
 		scheme/scheme_smob.x \
 		scheme/scheme_toplevel.x \
 		scheme/scheme_make.x \
@@ -28,13 +27,13 @@ BUILT_SOURCES   = \
 libgeda_la_SOURCES =
 
 # Include partial makefiles from subdirectories
-include scheme/Makefile_insert
 include file/Makefile_insert
 include geda/Makefile_insert
 include guile/Makefile_insert
 include iface/Makefile_insert
 include math/Makefile_insert
 include object/Makefile_insert
+include scheme/Makefile_insert
 include struct/Makefile_insert
 include utility/Makefile_insert
 include Makefile_insert
@@ -55,7 +54,7 @@ libgeda_la_LDFLAGS   = -version-info $(LIBGEDA_SHLIB_VERSION) \
 
 LIBTOOL=@LIBTOOL@ --silent
 
-# This is used to generate boilerplate for defining Scheme functions in C.
+# This is used to generate boilerplate for defining edascm functions in C.
 SUFFIXES = .x
 snarf_cpp_opts       = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	               $(libgeda_la_CPPFLAGS) $(libgeda_la_CFLAGS)
@@ -72,13 +71,16 @@ else
 	@echo 'in the top of the source tree and then try again'
 endif
 
-CLEAN_DIRS = file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ scheme/*~ struct/*~ utility/*~
+CLEAN_DIRS = edascm/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ \
+             scheme/*~ struct/*~ utility/*~
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~ $(CLEAN_DIRS) $(BUILT_SOURCES)
 DISTCLEANFILES       = *.log core FILE *~ $(CLEAN_DIRS)
 MAINTAINERCLEANFILES = *.log core FILE *~ $(CLEAN_DIRS) Makefile.in
 
+edascm/clean:
+			@rm -rf edascm/*~
 file/clean:
 			@rm -rf file/*~
 geda/clean:

@@ -29,7 +29,7 @@
 #include "libgedaguile_priv.h"
 
 SCM_SYMBOL (lambda_sym, "lambda");
-SCM_SYMBOL (args_sym, "args");
+SCM_SYMBOL (args_sym,   "args");
 
 static SCM marshal_proc;
 
