@@ -252,6 +252,8 @@ smob_equalp (SCM obj1, SCM obj2)
   }
 }
 
+/* libgedaguile-priv.h */
+
 /*! \brief Get the smob for a GedaToplevel.
  * \ingroup guile_c_iface
  * \par Function Description
@@ -274,26 +276,6 @@ edascm_from_toplevel (GedaToplevel *toplevel)
   return smob;
 }
 
-/*! \brief Get a smob for a C closure.
- * \par Function Description
- * Create a new smob representing a C closure.
- *
- * \warning Do not call this function from user code; use
- * edascm_c_make_closure() instead.
- *
- * \param func C function to make closure around.
- * \param user_data User data for function.
- * \return a C closure smob.
-
-SCM
-edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
-{
- SCM smob;
- SCM_NEWSMOB2 (smob, geda_smob_tag, func, user_data);
- SCM_SET_SMOB_FLAGS (smob, GEDA_SMOB_CLOSURE);
- return smob;
-}
- */
 /* libgedaguile.h */
 
 /*! \brief Get a smob for a page.
@@ -440,24 +422,51 @@ edascm_to_config (SCM smob)
   return EDA_CONFIG (SCM_SMOB_DATA (smob));
 }
 
-/*! \brief Get a smob for a C closure.
+/*! \brief Test whether a smob is a #Object instance
+ * \ingroup guile_c_iface
  * \par Function Description
- * Create a new smob representing a C closure.
+ * If \a smob is a #Object instance, returns non-zero. Otherwise,
+ * returns zero.
  *
- * \warning Do not call this function from user code; use
- * edascm_c_make_closure() instead.
+ * \param [in] smob Guile value to test.
  *
- * \param func C function to make closure around.
- * \param user_data User data for function.
- * \return a C closure smob.
+ * \return non-zero iff \a smob is a #Object instance.
  */
-SCM
-edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
+int
+edascm_is_object (SCM smob)
 {
- SCM smob;
- SCM_NEWSMOB2 (smob, geda_smob_tag, func, user_data);
- SCM_SET_SMOB_FLAGS (smob, GEDA_SMOB_CLOSURE);
- return smob;
+  return EDASCM_OBJECTP (smob);
+}
+
+/*! \brief Test whether a smob is a #Page instance
+ * \ingroup guile_c_iface
+ * \par Function Description
+ * If \a smob is a #Page instance, returns non-zero. Otherwise,
+ * returns zero.
+ *
+ * \param [in] smob Guile value to test.
+ *
+ * \return non-zero iff \a smob is a #Page instance.
+ */
+int
+edascm_is_page (SCM smob)
+{
+  return EDASCM_PAGEP (smob);
+}
+
+/*! \brief Test whether a smob is an #EdaConfig instance.
+ * \ingroup guile_c_iface
+ * \par Function Description
+ * If \a smob is a configuration context, returns non-zero. Otherwise,
+ * returns zero.
+ *
+ * \param [in] smob Guile value to test.
+ * \return non-zero iff \a smob is an #EdaConfig instance.
+ */
+int
+edascm_is_config (SCM smob)
+{
+  return EDASCM_CONFIGP (smob);
 }
 
 /*! \brief Set whether a gEDA object may be garbage collected.
@@ -518,52 +527,7 @@ edascm_c_set_gc (SCM smob, int gc)
   }*/
 }
 
-/*! \brief Test whether a smob is a #Object instance
- * \ingroup guile_c_iface
- * \par Function Description
- * If \a smob is a #Object instance, returns non-zero. Otherwise,
- * returns zero.
- *
- * \param [in] smob Guile value to test.
- *
- * \return non-zero iff \a smob is a #Object instance.
- */
-int
-edascm_is_object (SCM smob)
-{
-  return EDASCM_OBJECTP (smob);
-}
-
-/*! \brief Test whether a smob is a #Page instance
- * \ingroup guile_c_iface
- * \par Function Description
- * If \a smob is a #Page instance, returns non-zero. Otherwise,
- * returns zero.
- *
- * \param [in] smob Guile value to test.
- *
- * \return non-zero iff \a smob is a #Page instance.
- */
-int
-edascm_is_page (SCM smob)
-{
-  return EDASCM_PAGEP (smob);
-}
-
-/*! \brief Test whether a smob is an #EdaConfig instance.
- * \ingroup guile_c_iface
- * \par Function Description
- * If \a smob is a configuration context, returns non-zero. Otherwise,
- * returns zero.
- *
- * \param [in] smob Guile value to test.
- * \return non-zero iff \a smob is an #EdaConfig instance.
- */
-int
-edascm_is_config (SCM smob)
-{
-  return EDASCM_CONFIGP (smob);
-}
+/* ---------------------------------------------------------------- */
 
 /*! \brief Test whether a smob is a #Page instance.
  * \par Function Description
