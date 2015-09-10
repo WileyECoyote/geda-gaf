@@ -543,13 +543,15 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
   if (color == -1) {
     BUG_IMSG("color = %d\n", color);
   }
-  eda_cairo_set_source_color (renderer->priv->cr, color,
-                              renderer->priv->color_map);
+  else {
+    eda_cairo_set_source_color (renderer->priv->cr, color,
+                                renderer->priv->color_map);
+  }
 }
 
 static int
 eda_renderer_is_drawable_color (EdaRenderer *renderer, int color,
-                                int use_override)
+                                                       int use_override)
 {
   GArray *map = renderer->priv->color_map;
   /* Check for override color */
