@@ -30,6 +30,8 @@
 
 static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
 
+/* libgedaguile.h */
+
 /*!
  * \brief Set the #GedaToplevel fluid in the current dynamic context.
  * \ingroup guile_c_iface
@@ -55,9 +57,8 @@ edascm_dynwind_toplevel (GedaToplevel *toplevel)
  * Return the value of the #GedaToplevel fluid in the current dynamic
  * context.
  */
-SCM_DEFINE (edascm_current_toplevel, "%current-toplevel", 0, 0, 0,
-            (),
-            "Get the GedaToplevel for the current dynamic context.")
+EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
+               "Get the GedaToplevel for the current dynamic context.")
 {
   return scm_fluid_ref (scheme_toplevel_fluid);
 }
@@ -69,12 +70,14 @@ SCM_DEFINE (edascm_current_toplevel, "%current-toplevel", 0, 0, 0,
  * Return the value of the #GedaToplevel fluid in the current dynamic
  * context.
  *
- * \note This is a part of the public C interface to the Scheme API.
+ * \note This is a part of the public C interface to the Scheme API,
+ *       this essentially makes the toplevel a global varible as was
+ *       done in the old version of geda-gaf.
  */
 GedaToplevel *
 edascm_c_current_toplevel ()
 {
-  SCM s_toplevel = edascm_current_toplevel ();
+  SCM s_toplevel = current_toplevel ();
   EDASCM_ASSERT_SMOB_VALID(s_toplevel);
   return (GedaToplevel *) SCM_SMOB_DATA (s_toplevel);
 }
@@ -84,7 +87,7 @@ edascm_c_current_toplevel ()
  * \par Function Description
  * Set the #GedaToplevel fluid to \a toplevel and call \a thunk.
  */
-SCM_DEFINE (edascm_with_toplevel, "%with-toplevel", 2, 0, 0,
+EDA_SCM_DEFINE (with_toplevel, "%with-toplevel", 2, 0, 0,
             (SCM toplevel, SCM thunk),
             "Call `thunk', setting the GedaToplevel fluid to `toplevel'.")
 {
@@ -119,7 +122,7 @@ init_module_geda_core_toplevel ()
   #include "scheme_toplevel.x"
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_edascm_with_toplevel, s_edascm_current_toplevel, NULL);
+  scm_c_export (scheme_with_toplevel, scheme_current_toplevel, NULL);
 }
 
 /*!

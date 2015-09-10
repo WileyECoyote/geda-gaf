@@ -37,11 +37,10 @@
  *
  * \return the line width.
  */
-SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
-            (SCM obj_s), "Get the width of line used to draw an object")
+EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
+               (SCM obj_s), "Get the width of line used to draw an object")
 {
-  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, s_get_line_width);
+  SCM_ASSERT (EDASCM_OBJECTP(obj_s), obj_s, SCM_ARG1, scheme_get_line_width);
 
   Object *object = edascm_to_object (obj_s);
 
@@ -75,7 +74,8 @@ init_module_geda_core_deprecated ()
   scm_c_define("OBJ_PATH",    SCM_MAKE_CHAR((unsigned char) OBJ_PATH));
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_get_line_width, "OBJ_LINE", "OBJ_BOX", "OBJ_PICTURE",
+  scm_c_export (scheme_get_line_width,
+                "OBJ_LINE", "OBJ_BOX", "OBJ_PICTURE",
                 "OBJ_CIRCLE", "OBJ_NET", "OBJ_BUS", "OBJ_COMPLEX", "OBJ_TEXT",
                 "OBJ_PIN", "OBJ_ARC", "OBJ_PATH", "OBJ_PLACEHOLDER", NULL);
 }
