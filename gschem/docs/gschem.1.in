@@ -16,13 +16,14 @@ by the user. The connections between components represented by nets (wires).
 Schematics may be printed to a PostScript file for printing or further
 conversion to other output formats. Output to various image formats is also
 supported.
-
+.PP
 .B gschem
 can also be used for editing symbols for use in schematics.
-
+.PP
 .SH OPTIONS
+.PP
 .TP 8
-\fB-c\fR, \fB--config-file\fR=\fIFILE\fR
+\fB\-c\fR, \fB\--config-file\fR=\fIFILE\fR
 Specify an additional configuration file. Normally \fBgschem\fR
 searches for the system configuration file, then
 `$HOME/.gEDA/gschemrc', and finally for a `gschemrc' file in the
@@ -30,30 +31,30 @@ current working directory. This option allows the user to specify an
 additional rc file which is read after all the other rc files have
 been are read.
 .TP 8
-\fB-h\fR, \fB--help\fR
+\fB\-h\fR, \fB\--help\fR
 Print a help message.
 .TP 8
-\fB-L\fR \fIDIRECTORY\fR
+\fB\-L\fR \fIDIRECTORY\fR
 Prepend \fIDIRECTORY\fR to the list of directories to be searched for
 Scheme files before configuration are loaded.
 .TP 8
-\fB-m\fR, \fB--safe-mode\fR
+\fB\-m\fR, \fB\--safe-mode\fR
 Run gschem in single task mode.
 .TP 8
-\fB-n\fR, \fB--no-auto\fR
+\fB\-n\fR, \fB\--no-auto\fR
 No auto load last document. This over-rides the current auto-load-last configuration setting.
 .TP 8
-\fB-q\fR, \fB--quiet\fR
+\fB\-q\fR, \fB\--quiet\fR
 Quiet mode. Turn off some warnings/notes/messages.
 .TP 8
-\fB-r\fR, \fB--run\fR \fIFILE\fR
+\fB\-r\fR, \fB\--run\fR \fIFILE\fR
 Specify a Scheme script to be executed at startup.
 .TP 8
-\fB-s\fR, \fB--start NAME\fR
+\fB\-s\fR, \fB\--start NAME\fR
 Startup using the named session. This over-rides the current auto-load-last configuration setting.
-\fB-s\fR, \fB--title-block NAME\fR
+\fB\-s\fR, \fB\--title-block NAME\fR
 Start a new drawing using the specified title-block.
-\fB-u\fR, \fB--undo-dir DIR\fR
+\fB\-u\fR, \fB\--undo-dir DIR\fR
 Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
 determine the location of a system temporary directory. This option maybe used to specify
 the directory. In any event, if the undo-type is configured as "disk", the location must be
@@ -61,37 +62,39 @@ read-writable or the Undo system will automatically switch to type "memory". For
 "disk" a tmpfs or ramfs is recommended for systems using SDD`s in order to help reduce
 "burn-out".
 .TP 8
-\fB-o\fR, \fB--output\fR=\fIFILE\fR
+\fB\-o\fR, \fB\--output\fR=\fIFILE\fR
 Specify a filename for PostScript output. This command line argument is useful when
 running \fBgschem\fR from a shell script and with a Scheme script. The filename can
 be changed through the print dialog box.
 .TP 8
-\fB-p\fR
+\fB\-p\fR
 Automatically place the window. This may be useful if running \fBgschem\fR
 from the command line and generating output.
 .TP 8
-\fB-V\fR, \fB--version\fR
+\fB\-V\fR, \fB\--version\fR
 Print \fBgschem\fR version information.
 .TP 8
-\fB-v\fR, \fB--verbose\fR
+\fB\-v\fR, \fB\--verbose\fR
 Verbose mode. Output all diagnostic information.
 .TP 8
-\fB-x\fR \fIEXPR\fR
+\fB\-x\fR \fIEXPR\fR
 Specify a Scheme expression to be evaluated at startup.
 .TP 8
-\fB--\fR
+\fB\--\fR
 Treat all remaining arguments as schematic or symbol filenames. Use
 this if you have a schematic or symbol filename which begins with `-'.
-
+.PP
 .SH SCHEMATIC AND SYMBOL FILES
+.PP
 Optionally, schematic or symbol \fIFILE\fRs may be specified on the
 command line. Any schematic or symbols specified are loaded at
 startup as separate documents in the schematic editor.
 .PP
 If no \fIFILE\fRs are specified, a blank schematic is created for
 editing.
-
+.PP
 .SH ENVIRONMENT
+.PP
 .TP 8
 .B GEDADATA
 specifies the search directory for Scheme and rc files. The default
@@ -99,10 +102,11 @@ is `${prefix}/share/gEDA'.
 .TP 8
 .B GEDADATARC
 specifies the search directory for rc files. The default is `$GEDADATA'.
-
+.PP
 .SH AUTHORS
+.PP
 See the `AUTHORS' file included with this program.
-
+.PP
 .SH COPYRIGHT
 .nf
 Copyright \(co 1999-2013 gEDA Contributors. License GPLv2+: GNU GPL
@@ -111,8 +115,9 @@ program for full details.
 .PP
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
-
+.PP
 .SH SEE ALSO
+.PP
 \fBgnetlist\fR(1), \fBgsymcheck\fR(1)
 .PP
 The full documentation for

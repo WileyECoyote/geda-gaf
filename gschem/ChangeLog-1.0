@@ -1,3 +1,11 @@
+2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Documentation: Improve Platform Compatibility.
+
+    * gschem/docs/gschem.1.in: Revise syntax, preceding dashes for options
+      with backslash. Is archaic but technically more correct and more
+      portable. Replaced blank lines with .PP.
+
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_path.c: Remove duplicate function path_copy_modify, use
