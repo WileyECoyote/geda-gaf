@@ -566,7 +566,7 @@ void snap_size_dialog (GschemToplevel *w_current)
 
     SetWidgetTip(snap_size, _("Sets the default spacing\n which objects snaps to."));
 
-    GSCHEM_HOOKUP_OBJECT(Dialog, snap_size, IDS_SNAP_SIZE);
+    GEDA_HOOKUP_OBJECT(Dialog, snap_size, IDS_SNAP_SIZE);
 
     w_current->sswindow = Dialog;
 
@@ -676,7 +676,7 @@ void text_size_dialog (GschemToplevel *w_current)
 
     SetWidgetTip(text_size, _("Sets the default text font size."));
 
-    GSCHEM_HOOKUP_OBJECT(Dialog, text_size, IDS_TEXT_SIZE);
+    GEDA_HOOKUP_OBJECT(Dialog, text_size, IDS_TEXT_SIZE);
     w_current->tswindow = Dialog;
     gtk_widget_show_all(Dialog);
   }
@@ -946,9 +946,9 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
     gtk_table_attach_defaults(GTK_TABLE(table), spin_sweep, 1,2,2,3);
     SetWidgetTip(spin_sweep,  _("Sets the central angle of the arc."));
 
-    GSCHEM_HOOKUP_OBJECT(Dialog, radius,    "radius");
-    GSCHEM_HOOKUP_OBJECT(Dialog, spin_start,"spin_start");
-    GSCHEM_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");
+    GEDA_HOOKUP_OBJECT(Dialog, radius,    "radius");
+    GEDA_HOOKUP_OBJECT(Dialog, spin_start,"spin_start");
+    GEDA_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");
 
     gtk_window_set_transient_for (GTK_WINDOW(Dialog),
                                   GTK_WINDOW(w_current->main_window));
@@ -1046,8 +1046,10 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
 
   /* Get the index of the color on this row */
   gtk_tree_model_get_value (model, iter, 1, &v);
+
   index = g_value_get_int (&v);
   color = x_color_get_color_from_index (index);
+
   /* Set the cell's background color */
   g_object_set (cell, "background-gdk", color, NULL);
 }
@@ -2485,10 +2487,10 @@ void x_dialog_find_text(GschemToplevel *w_current)
     gtk_container_add (GTK_CONTAINER (alignment), checkascent);
     gtk_widget_set_sensitive(checkascent, FALSE);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_FIND_TEXT);
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, checkhidden,  "checkhidden");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, checkdescend, "checkdescend");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, checkascent,  "checkascent");
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_FIND_TEXT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, checkhidden,  "checkhidden");
+    GEDA_HOOKUP_OBJECT(ThisDialog, checkdescend, "checkdescend");
+    GEDA_HOOKUP_OBJECT(ThisDialog, checkascent,  "checkascent");
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_find_text_response),
@@ -2595,7 +2597,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_HIDE_TEXT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_HIDE_TEXT);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_hide_text_response),
@@ -2703,7 +2705,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SHOW_TEXT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SHOW_TEXT);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_show_text_response),
@@ -2980,7 +2982,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_TRANSLATE);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK ( x_dialog_translate_response),

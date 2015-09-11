@@ -495,8 +495,8 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
     g_object_set (world_entry, "name", world_name, NULL);
     GEDA_FREE(world_name);
 
-    GSCHEM_HOOKUP_OBJECT ( ThisDialog, screen_entry, "screen");
-    GSCHEM_HOOKUP_OBJECT ( ThisDialog, world_entry,  "world");
+    GEDA_HOOKUP_OBJECT ( ThisDialog, screen_entry, "screen");
+    GEDA_HOOKUP_OBJECT ( ThisDialog, world_entry,  "world");
 
     g_signal_connect (world_entry, "process-entry",
                       G_CALLBACK (co_on_entry_activate),
@@ -527,8 +527,8 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
 
     gtk_widget_show(ThisDialog);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, world_entry,  "world_entry");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, screen_entry, "screen_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, world_entry,  "world_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, screen_entry, "screen_entry");
 
     w_current->world_entry  = world_entry;      /* Save Pointers to widgets Entry */
     w_current->screen_entry = screen_entry;

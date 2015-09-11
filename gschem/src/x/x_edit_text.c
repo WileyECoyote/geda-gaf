@@ -559,10 +559,10 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
                       G_CALLBACK (widget_value_modified),
                       NULL);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry,   IDS_TEXT_EDIT);
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, combobox,    WIDGET(TextAlign));
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, optionmenu,  WIDGET(TextColor));
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, font_button, WIDGET(TextFont));
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry,   IDS_TEXT_EDIT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, combobox,    WIDGET(TextAlign));
+    GEDA_HOOKUP_OBJECT(ThisDialog, optionmenu,  WIDGET(TextColor));
+    GEDA_HOOKUP_OBJECT(ThisDialog, font_button, WIDGET(TextFont));
 
     /** Set the relationships between the label and their Widgets **/
     geda_label_set_mnemonic_widget (GEDA_LABEL (text_label), textentry);

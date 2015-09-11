@@ -27,10 +27,6 @@
 
 #define LEAVE_ALONE -2  /* Used as a flag for multible selections */
 
-#define GSCHEM_HOOKUP_OBJECT(component, widget, name) \
-  g_object_set_data_full (G_OBJECT (component), name, \
-  gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
-
 #include "geda_dialog_controls.h"
 
 /* Define spacings for dialogs. Defines are in a sperate header,

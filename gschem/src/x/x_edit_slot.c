@@ -25,8 +25,6 @@
  * \brief A dialog box for editing Slot Attributes.
  */
 
-//#include <gdk/gdk.h>
-
 #include "gschem.h"
 #include "x_dialog.h"
 
@@ -216,8 +214,8 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
 
     gtk_entry_set_activates_default (GTK_ENTRY(textentry),TRUE);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SLOT_EDIT);
+    GEDA_HOOKUP_OBJECT(ThisDialog, textslots, "slot-count");
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry, IDS_SLOT_EDIT);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_edit_slot_response),

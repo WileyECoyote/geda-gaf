@@ -2611,13 +2611,13 @@ create_settings_dialog (GschemToplevel *w_current)
   gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage.."));
 
   /* Store pointers to widgets, for use by get_widget_data(). */
-  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, "ThisDialog");
-  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox, "MainDialogVBox");
-  GTK_HOOKUP_OBJECT (ThisDialog, notebook, "notebook");
-  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
-  GTK_HOOKUP_OBJECT (ThisDialog, CancelButt, "CancelButt");
-  GTK_HOOKUP_OBJECT (ThisDialog, SaveButt,   "SaveButt");
-  GTK_HOOKUP_OBJECT (ThisDialog, OkayButt,   "OkayButt");
+  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, "ThisDialog");
+  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox, "MainDialogVBox");
+  GEDA_HOOKUP_OBJECT (ThisDialog, notebook, "notebook");
+  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
+  GEDA_HOOKUP_OBJECT (ThisDialog, CancelButt, "CancelButt");
+  GEDA_HOOKUP_OBJECT (ThisDialog, SaveButt,   "SaveButt");
+  GEDA_HOOKUP_OBJECT (ThisDialog, OkayButt,   "OkayButt");
 
   gtk_widget_grab_default (CancelButt);
 

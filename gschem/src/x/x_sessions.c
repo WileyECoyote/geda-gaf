@@ -461,8 +461,8 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
                                           GEDA_RESPONSE_REJECT,
                                           -1);
 
-  GSCHEM_HOOKUP_OBJECT(ThisDialog, open_butt,  "open-butt");
-  GSCHEM_HOOKUP_OBJECT(ThisDialog, close_butt, "close-butt");
+  GEDA_HOOKUP_OBJECT(ThisDialog, open_butt,  "open-butt");
+  GEDA_HOOKUP_OBJECT(ThisDialog, close_butt, "close-butt");
 
   return action_hbox;
 }
@@ -548,7 +548,7 @@ x_sessions_get_treeview (GtkWidget *Dialog)
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   /* store pointer to treeview in Dialog */
-  GSCHEM_HOOKUP_OBJECT (Dialog, treeview, "tree-view");
+  GEDA_HOOKUP_OBJECT (Dialog, treeview, "tree-view");
 
   return scrolled_window;
 }
@@ -626,21 +626,21 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), button, 0,1,0,1, GTK_FILL,0,0,0);
   gtk_widget_set_sensitive (button, FALSE);
   gtk_widget_set_tooltip_text(button, rename_tip);
-  GSCHEM_HOOKUP_OBJECT (ThisDialog, button, "rename-butt");
+  GEDA_HOOKUP_OBJECT (ThisDialog, button, "rename-butt");
 
   button = gtk_button_new_with_mnemonic (_("_Delete"));
   g_object_set (button, "visible", TRUE, NULL);
   gtk_table_attach(GTK_TABLE(table), button, 0,1,1,2, GTK_FILL,0,0,0);
   gtk_widget_set_sensitive (button, FALSE);
   gtk_widget_set_tooltip_text(button, delete_tip);
-  GSCHEM_HOOKUP_OBJECT (ThisDialog, button, "delete-butt");
+  GEDA_HOOKUP_OBJECT (ThisDialog, button, "delete-butt");
 
   button = gtk_button_new_with_mnemonic (_("_Export"));
   g_object_set (button, "visible", TRUE, NULL);
   gtk_table_attach(GTK_TABLE(table), button, 0,1,2,3, GTK_FILL,0,0,0);
   gtk_widget_set_sensitive (button, FALSE);
   gtk_widget_set_tooltip_text(button, export_tip);
-  GSCHEM_HOOKUP_OBJECT (ThisDialog, button, "export-butt");
+  GEDA_HOOKUP_OBJECT (ThisDialog, button, "export-butt");
 
   action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
                                     (GtkWidget*) main_vbox);

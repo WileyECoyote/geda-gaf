@@ -1,3 +1,7 @@
+2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Replace GTK_HOOKUP_OBJECT wit GEDA_HOOKUP_OBJECT.
+
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_toolbars.c: Replace (int)(long*) with (int)(long) in functions;

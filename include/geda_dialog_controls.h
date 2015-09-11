@@ -62,6 +62,8 @@
  * WEH | 09/21/14 | Renamed GEDA_SWITCH->EDA_SWITCH
  * ------------------------------------------------------------------
  * WEH | 03/01/15 | Add Macro GET_EDA_OBJECT
+ * ------------------------------------------------------------------
+ * WEH | 09/11/15 | Rename GTK_HOOKUP_OBJECT GEDA_HOOKUP_OBJECT
 */
 
 #pragma once
@@ -134,11 +136,11 @@ typedef struct
 
 #define GET_EDA_OBJECT(name) g_object_get_data (G_OBJECT (ThisDialog), WIDGET(name))
 
-#define GTK_HOOKUP_OBJECT(component, widget, name)        \
+#define GEDA_HOOKUP_OBJECT(component, widget, name)        \
     g_object_set_data_full (G_OBJECT (component), name,   \
-    gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref);
+    g_object_ref (widget), (GDestroyNotify) g_object_unref);
 
-#define GTK_HOOKUP_OBJECT_NO_REF(component, widget, name) \
+#define GEDA_HOOKUP_OBJECT_NO_REF(component, widget, name) \
     g_object_set_data (G_OBJECT (component), name, widget);
 
 #define HOOKUP_GEDA_OBJECT_NO_REF(name, type) \
@@ -603,11 +605,11 @@ typedef struct
         gtk_container_add (GTK_CONTAINER (alignment), hbox);        /* Put box container inside the Alignment */ \
         LightOn = get_bulb_image(TRUE); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
-        GTK_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
+        GEDA_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
         LightOff = get_bulb_image(FALSE); \
         g_object_set (LightOff, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOff, FALSE, FALSE, 0); \
-        GTK_HOOKUP_OBJECT (ThisDialog, LightOff, "Off"); \
+        GEDA_HOOKUP_OBJECT (ThisDialog, LightOff, "Off"); \
         GtkWidget *name##Label = geda_visible_label_new (_(LABEL (name))); \
         gtk_box_pack_start (GTK_BOX (hbox), name##Label, FALSE, FALSE, 0); \
         gtk_misc_set_padding (GTK_MISC (name##Label), 0, 0); }\

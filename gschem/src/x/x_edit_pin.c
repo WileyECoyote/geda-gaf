@@ -741,7 +741,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
 
   gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_ACCEPT);
 
-  GSCHEM_HOOKUP_OBJECT(ThisDialog, apply_butt, "apply-butt");
+  GEDA_HOOKUP_OBJECT(ThisDialog, apply_butt, "apply-butt");
 
   return action_hbox;
 }
@@ -892,7 +892,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   GEDA_CALLBACK_SWITCH (AutoNumber,       xd_edit_pin_switch_toggled, ThisDialog)
   GEDA_CALLBACK_SWITCH (AutoSequence,     xd_edit_pin_switch_toggled, ThisDialog)
 
-  GSCHEM_HOOKUP_OBJECT(ThisDialog, table, "over-rides");
+  GEDA_HOOKUP_OBJECT(ThisDialog, table, "over-rides");
 
     /** Set the relationships between the label and their Widgets **/
   geda_label_set_mnemonic_widget (GEDA_LABEL (type_label),   optionmenu);

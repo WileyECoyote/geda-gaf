@@ -525,10 +525,10 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
     gtk_entry_completion_set_popup_single_match(attrib_combo_entry_completion, FALSE);
     gtk_entry_set_completion(GTK_ENTRY(attrib_combo_entry), attrib_combo_entry_completion);
 
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, attrib_combo_entry, "attrib_combo_entry");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, value_entry,        "value_entry");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, visbutton,          "visbutton");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, show_options,       "show_options");
+    GEDA_HOOKUP_OBJECT(ThisDialog, attrib_combo_entry, "attrib_combo_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, value_entry,        "value_entry");
+    GEDA_HOOKUP_OBJECT(ThisDialog, visbutton,          "visbutton");
+    GEDA_HOOKUP_OBJECT(ThisDialog, show_options,       "show_options");
 
     /* Connect Attribute Name Combo Entry widget in order to move focus
      * to the Value entry after changing the Attribute Name */

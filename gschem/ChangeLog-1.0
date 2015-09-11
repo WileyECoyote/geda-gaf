@@ -1,5 +1,11 @@
 2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_dialog.h: Remove macro GSCHEM_HOOKUP_OBJECT.
+
+    * src/x_dialog.c: Replace GSCHEM_HOOKUP_OBJECT with GEDA_HOOKUP_OBJECT.
+
+2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem_parsecmd.c: Add long option to automatically place the
       main window on startup; --place.
 
