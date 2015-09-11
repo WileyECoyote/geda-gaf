@@ -12,4 +12,9 @@
     \latexonly
         \input what-is-libgeda.tex
     \endlatexonly
+\section libgeda-manual libgEDA Man Page
+    \htmlinclude libgeda-man-1.html
+    \latexonly
+        \input libgeda-man-1.tex
+    \endlatexonly
 */

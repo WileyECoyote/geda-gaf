@@ -8,9 +8,11 @@
 .TH Libgeda 1 "@DATE@" "gEDA Project" @VERSION@
 .LP
 .SH NAME
+.PP
 Libgeda \- The GPL Electronic Design Automation core library
 .LP
 .SH DESCRIPTION
+.PP
 .B Libgeda
 is a set of library routines used by applications to manipulate data
 for electronic schematics and symbols, primarily in the gEDA suite of
@@ -32,6 +34,7 @@ find documentation on other aspect of
 such as the Scheme API.
 .LP
 .SH CONFIGURATION
+.PP
 Library operations are controlled parameter variables and some of the key
 parameters are exposed so that installations can be customized. These key
 parameters are associated with "keywords" in text based files. The files
@@ -85,6 +88,7 @@ the list of promoted attributes for a particular project. Users should
 backup initialization files before making any modifications to the files.
 .LP
 .SH ENVIRONMENT
+.PP
 The following environment variables are recognized by
 .B Libgeda
 :
@@ -93,16 +97,16 @@ The following environment variables are recognized by
 .SS GEDADATA
 Specifies the search directory for Scheme and bitmap files. The default is
 compilation dependent based on the location of the data directory and can
-be set using --datarootdir configuration option. Normally the location is
-`${prefix}/share/gEDA'. The GEDADATA environment setting over-rides the
-default location.
+be set using the -datarootdir configuration option. Normally the location
+is "prefix/share/gEDA" where "prefix" is the root of the installation build.
+The GEDADATA environment setting over-rides the default location.
 .LP
 .TP 8
 .SS GEDADATARC
 Specifies the search directory for rc files. The default is compilation
 dependent based on the location of the data directory and can be set using
---with-rcdir configuration option. The default is `$GEDADATA'. Specifying
-a GEDADATARD environment setting over-rides the default location.
+--with-rcdir configuration option. The default is the same as GEDADATA.
+Specifying a GEDADATARD environment setting over-rides the default location.
 .LP
 .TP 8
 .SS GEDALOGS
@@ -112,6 +116,7 @@ using --with-logdir configuration option. The GEDALOGS environment setting
 over-rides the default location.
 .LP
 .SH DOCUMENTATION
+.PP
 .TP 8
 .SS SOURCE CODE
 The gEDA-gaf suite utilizes Doxygen for generating source documentation. By
@@ -131,9 +136,11 @@ The Doxygen configuration is set to produce both HTML and latex. Other formats
 are possible, see the Doxygen documentation for details.
 .LP
 .SH AUTHORS
-See the `AUTHORS' file included with this program.
+.PP
+See the "AUTHORS" file included with this program.
 .LP
 .SH COPYRIGHT
+.PP
 .nf
 Copyright \(co 2015 gEDA Contributors. License GPLv2+: GNU GPL
 version 2 or later. Please see the `COPYING' file included with this
@@ -143,6 +150,7 @@ This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 .fi
 .SH SEE ALSO
+.PP
 \fBlibgedacairo\fR(1), \fBlibgedathon\fR(1), \fBlibgedauio\fR(1)
 \fBgnetlist\fR(1), \fBgschem\fR(1), \fBgsymcheck\fR(1)
 .LP

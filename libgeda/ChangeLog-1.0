@@ -1,3 +1,16 @@
+2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Documentation: Enhance Doxygen output to include Man section.
+
+    * docs/libgeda.dox: Add LATEX_EXTRA_FILES = ...,libgeda-man-1.tex.
+
+    * docs/libgeda-main.txt: Add section libgeda-manual for Man pages.
+
+    * docs/libgeda.1.in: Revise to eliminate reference to make varibles.
+
+    * docs/Makefile.am: Create and include libgeda-man-1.html and
+      libgeda-man-1.tex.
+
 2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_evaluate.c Make functions static:

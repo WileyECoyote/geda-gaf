@@ -2,19 +2,19 @@ SUBDIRS     = images
 
 # These "extra" files are all for the Doxygen source documentation
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
-	      what-is-geda.tex
+	      what-is-geda.tex libgeda-man-1.html libgeda-man-1.tex
 
 LOCAL_DOX   = libgeda.dox libgeda-main.txt
 
-LOCAL_HTML  = what-is-libgeda.html
+LOCAL_HTML  = what-is-libgeda.html libgeda-man-1.html
 
 LOCAL_MAN   = libgeda.1.in
 
-LOCAL_TEX   = what-is-libgeda.tex
+LOCAL_TEX   = what-is-libgeda.tex libgeda-man-1.tex
 
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
-SUFFIXES    = .html .tex .pdf
+SUFFIXES    = .1 .html .tex .pdf
 
 all:	$(MANS)
 if ENABLE_DOXYGEN
@@ -24,7 +24,7 @@ endif
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
 # for the latex directory and skip latex if the diretory does not exist.
-doxygen: libgeda.dox
+doxygen: libgeda.dox $(dist_docsman_DATA) $(text_man_files)
 	@echo 'Creating doxygen documentation for libgeda...'
 if ENABLE_DOXYGEN
 	-(cd images && $(MAKE) images)
@@ -51,16 +51,44 @@ endif
 dist_man_MANS = libgeda.1
 
 .1.in.1:
+	@printf "" \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION)-$(DATE_VERSION)" ; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
 
 .3.in.3:
+	@printf "" \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION).$(DATE_VERSION)" ; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+
+# Rules for converting man->html
+html_man_files = $(dist_man_MANS:%.1=%.html)
+text_man_files = $(dist_man_MANS:%.1=%.tex)
+
+docsmandir=$(docdir)/man
+
+dist_docsman_DATA=$(html_man_files)
+
+if ENABLE_GROFF_HTML
+.1.html:
+	@rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
+	cp -f $@.tmp $@ && \
+	mv -f $@.tmp $(basename $@)-man-1.html
+
+
+.1.tex: $(dist_man_MANS)
+	@rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -t -e -mandoc -Tascii $(dist_man_MANS) | col -bx > $@.tmp && \
+	mv -f $@.tmp $(basename $@)-man-1.tex
+else
+.1.html:
+	@echo "No working groff available: cannot create $@"
+	@! :
+endif
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~
