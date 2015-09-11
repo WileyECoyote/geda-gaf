@@ -67,7 +67,7 @@ Specify a filename for PostScript output. This command line argument is useful w
 running \fBgschem\fR from a shell script and with a Scheme script. The filename can
 be changed through the print dialog box.
 .TP 8
-\fB\-p\fR
+\fB\-p\fR, \fB\--place\fR
 Automatically place the window. This may be useful if running \fBgschem\fR
 from the command line and generating output.
 .TP 8

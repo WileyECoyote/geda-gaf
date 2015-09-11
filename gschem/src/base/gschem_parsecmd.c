@@ -49,6 +49,7 @@ struct option long_options[] =
     {"no-auto",        0, 0, 'n'},
     {"output",         1, 0, 'o'},
     {"version",        0, 0, 'V'},
+    {"place",          0, 0, 'p'},
     {"quiet",          0, 0, 'q'},
     {"run",            1, 0, 'r'},
     {"start",          1, 0, 's'},
@@ -95,7 +96,7 @@ usage(char *cmd)
     "  -m, --safe-mode          Safe Mode.\n"
     "  -n, --no-auto            No auto load last document.\n"
     "  -o, --output=FILE        Output filename (for printing).\n"
-    "  -p                       Automatically place the window.\n"
+    "  -p, --place              Automatically place the window.\n"
     "  -q, --quiet              Quiet mode.\n"
     "  -r, --run FILE           Scheme script to run at startup.\n"
     "  -s, --start <name>       Startup using the given session name.\n"

@@ -1,5 +1,10 @@
 2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_parsecmd.c: Add long option to automatically place the
+      main window on startup; --place.
+
+2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * Documentation: Improve Platform Compatibility.
 
     * gschem/docs/gschem.1.in: Revise syntax, preceding dashes for options
