@@ -9,32 +9,35 @@ libgeda/src/file/f_get.c
 libgeda/src/file/f_path.c
 libgeda/src/file/f_print.c
 
-libgeda/src/geda/geda_config.c
-libgeda/src/geda/geda_errors.c
-libgeda/src/geda/geda_list.c
 libgeda/src/geda/geda_arc.c
 libgeda/src/geda/geda_box.c
 libgeda/src/geda/geda_bus.c
 libgeda/src/geda/geda_circle.c
 libgeda/src/geda/geda_complex.c
+libgeda/src/geda/geda_config.c
+libgeda/src/geda/geda_errors.c
 libgeda/src/geda/geda_line.c
+libgeda/src/geda/geda_list.c
 libgeda/src/geda/geda_net.c
+libgeda/src/geda/geda_notitfy.c
+libgeda/src/geda/geda_object.c
+libgeda/src/geda/geda_page.c
 libgeda/src/geda/geda_path.c
 libgeda/src/geda/geda_picture.c
 libgeda/src/geda/geda_pin.c
 libgeda/src/geda/geda_text.c
-libgeda/src/geda/geda_object.c
-libgeda/src/geda/geda_page.c
 libgeda/src/geda/geda_toplevel.c
 
 libgeda/src/guile/g_evaluate.c
 libgeda/src/guile/g_rc.c
+libgeda/src/guile/g_rc_color.c
 libgeda/src/guile/g_rc_parse.c
 libgeda/src/guile/g_register.c
 
 libgeda/src/iface/i_vars.c
 libgeda/src/iface/i_menu.c
 
+libgeda/src/math/m_arc.c
 libgeda/src/math/m_basic.c
 libgeda/src/math/m_bounds.c
 libgeda/src/math/m_box.c
@@ -67,23 +70,26 @@ libgeda/src/object/o_set.c
 libgeda/src/object/o_style.c
 libgeda/src/object/o_text_basic.c
 
-libgeda/src/scheme/scheme_init.c
-libgeda/src/scheme/scheme_smob.c
-libgeda/src/scheme/scheme_toplevel.c
-libgeda/src/scheme/scheme_object.c
+libgeda/src/scheme/edascmhookproxy.c
+libgeda/src/scheme/edascmvaluetypes.c
+
+libgeda/src/scheme/scheme_attrib.c
+libgeda/src/scheme/scheme_closure.c
 libgeda/src/scheme/scheme_complex.c
-libgeda/src/scheme/scheme_color.c
+libgeda/src/scheme/scheme_config.c
+libgeda/src/scheme/scheme_deprecated.c
+libgeda/src/scheme/scheme_init.c
+libgeda/src/scheme/scheme_make.c
+libgeda/src/scheme/scheme_object.c
 libgeda/src/scheme/scheme_os.c
 libgeda/src/scheme/scheme_page.c
-libgeda/src/scheme/scheme_attrib.c
-libgeda/src/scheme/scheme_config.c
-libgeda/src/scheme/scheme_closure.c
-libgeda/src/scheme/scheme_deprecated.c
-libgeda/src/scheme/edascmhookproxy.c
+libgeda/src/scheme/scheme_smob.c
+libgeda/src/scheme/scheme_toplevel.c
 
 libgeda/src/struct/s_attrib.c
 libgeda/src/struct/s_basic.c
 libgeda/src/struct/s_clib.c
+libgeda/src/struct/s_color.c
 libgeda/src/struct/s_conn.c
 libgeda/src/struct/s_cue.c
 libgeda/src/struct/s_encoding.c
@@ -102,10 +108,9 @@ libgeda/src/struct/s_undo.c
 libgeda/src/struct/s_weakref.c
 
 libgeda/src/utility/u_basic.c
-libgeda/src/utility/u_glist.c
 libgeda/src/utility/u_color.c
+libgeda/src/utility/u_glist.c
 libgeda/src/utility/u_log.c
-libgeda/src/utility/u_program.c
 libgeda/src/utility/u_program.c
 libgeda/src/utility/u_refdes.c
 

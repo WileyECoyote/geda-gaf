@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-27 02:04-0500\n"
+"POT-Creation-Date: 2015-09-11 13:27-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:84
+#: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
@@ -116,7 +116,7 @@ msgid ""
 "  -m, --safe-mode          Safe Mode.\n"
 "  -n, --no-auto            No auto load last document.\n"
 "  -o, --output=FILE        Output filename (for printing).\n"
-"  -p                       Automatically place the window.\n"
+"  -p, --place              Automatically place the window.\n"
 "  -q, --quiet              Quiet mode.\n"
 "  -r, --run FILE           Scheme script to run at startup.\n"
 "  -s, --start <name>       Startup using the given session name.\n"
@@ -132,7 +132,7 @@ msgid ""
 "gEDA/gaf homepage: <http://www.geda-project.org/>\n"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:124
+#: gschem/src/base/gschem_parsecmd.c:125
 #, c-format
 msgid ""
 "gEDA %s (g%.7s)\n"
@@ -317,9 +317,9 @@ msgstr ""
 msgid "Continuing with minimum value=[%d]\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:132 gschem/src/guile/g_rc.c:744
-#: gschem/src/guile/g_rc.c:1263 gschem/src/guile/g_rc.c:1416
-#: gschem/src/guile/g_rc.c:2013
+#: gschem/src/guile/g_rc.c:132 gschem/src/guile/g_rc.c:745
+#: gschem/src/guile/g_rc.c:1266 gschem/src/guile/g_rc.c:1419
+#: gschem/src/guile/g_rc.c:2017
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
@@ -346,53 +346,53 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:738
+#: gschem/src/guile/g_rc.c:739
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:743
+#: gschem/src/guile/g_rc.c:744
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:831
+#: gschem/src/guile/g_rc.c:833
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1257
+#: gschem/src/guile/g_rc.c:1260
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1262
+#: gschem/src/guile/g_rc.c:1265
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1410
+#: gschem/src/guile/g_rc.c:1413
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1415
+#: gschem/src/guile/g_rc.c:1418
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2007
+#: gschem/src/guile/g_rc.c:2011
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2012
+#: gschem/src/guile/g_rc.c:2016
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2057
+#: gschem/src/guile/g_rc.c:2061
 #, c-format
 msgid "Invalid zoomfactor [%d] passed to %s\n"
 msgstr "Nieprawidłowa skala powiększenia [%d] przekazana do funkcji %s\n"
@@ -407,7 +407,7 @@ msgstr "Obiekt ~A nie jest przypisany do arkusza"
 msgid "Could not launch URI %s\n"
 msgstr "Nie można otworzyć adresu URI ~S: ~A"
 
-#: gschem/src/guile/g_window.c:146
+#: gschem/src/guile/g_window.c:145
 msgid "Found invalid gschem window smob ~S"
 msgstr "Nieprawidłowy obiekt reprezentujący okno gschem: ~S"
 
@@ -750,13 +750,13 @@ msgstr ""
 msgid "Session system initialized!\n"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2074
+#: gschem/src/iface/i_status.c:134 gschem/etc/system-gschemrc.scm:2075
 #, fuzzy
 msgid "Deselect Mode"
 msgstr "Tryb zaznaczania"
 
 #: gschem/src/iface/i_status.c:138 gschem/src/x/x_status_bar.c:376
-#: gschem/etc/system-gschemrc.scm:2073 gschem/scheme/gschem/builtins.scm:92
+#: gschem/etc/system-gschemrc.scm:2074 gschem/scheme/gschem/builtins.scm:92
 msgid "Select Mode"
 msgstr "Tryb zaznaczania"
 
@@ -973,7 +973,7 @@ msgstr ""
 msgid "Updating symbol [%s]\n"
 msgstr "Szukam symbolu [%s]\n"
 
-#: gschem/src/object/o_move.c:481
+#: gschem/src/object/o_move.c:484
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1241,148 +1241,148 @@ msgstr "Nie udało się przydzielić koloru obwiedni %i!\n"
 msgid "Tried to get an invalid color index: %d\n"
 msgstr "Próba użycia nieprawidłowego koloru: %d\n"
 
-#: gschem/src/x/x_color.c:225
+#: gschem/src/x/x_color.c:210
 #, c-format
 msgid "Tried to get an invalid color: %d\n"
 msgstr "Próba użycia nieprawidłowego koloru: %d\n"
 
-#: gschem/src/x/x_color.c:314
-#, fuzzy
-msgid "Allocatating new color scheme\n"
+#: gschem/src/x/x_color.c:262
+#, fuzzy, c-format
+msgid "Allocating new color scheme: %s\n"
 msgstr "_Jasny zestaw kolorów"
 
-#: gschem/src/x/x_color.c:320
+#: gschem/src/x/x_color.c:267
+#, c-format
+msgid "Something went wrong, check:%s\n"
+msgstr ""
+
+#: gschem/src/x/x_color.c:272
 #, fuzzy, c-format
 msgid "%s: Could not locate file:%s\n"
 msgstr "Nie znaleziono pliku inicjalizacyjnego scm [%s]\n"
 
-#: gschem/src/x/x_color.c:324
-#, c-format
-msgid "%s: Memory allocation error\n"
-msgstr ""
-
-#: gschem/src/x/x_compselect.c:1213
+#: gschem/src/x/x_compselect.c:1240
 #, fuzzy
 msgid "Default is to reference the component"
 msgstr "Domyślnie - użyj odniesiena do pliku elementu"
 
-#: gschem/src/x/x_compselect.c:1217
+#: gschem/src/x/x_compselect.c:1244
 msgid "Embed component in schematic"
 msgstr "Osadź element w pliku schematu"
 
-#: gschem/src/x/x_compselect.c:1221
+#: gschem/src/x/x_compselect.c:1248
 msgid "Include component as individual objects"
 msgstr "Wstaw element jako indywidualne obiekty składowe"
 
-#: gschem/src/x/x_compselect.c:2027 gschem/src/x/x_compselect.c:2386
+#: gschem/src/x/x_compselect.c:2055 gschem/src/x/x_compselect.c:2414
 msgid "Components"
 msgstr "Elementy"
 
-#: gschem/src/x/x_compselect.c:2460 gschem/src/x/x_multiattrib.c:1958
+#: gschem/src/x/x_compselect.c:2488 gschem/src/x/x_multiattrib.c:1958
 #: gschem/src/x/x_multiattrib.c:1964
 msgid "Name"
 msgstr "Nazwa"
 
-#: gschem/src/x/x_compselect.c:2472 gschem/src/x/x_multiattrib.c:1960
+#: gschem/src/x/x_compselect.c:2500 gschem/src/x/x_multiattrib.c:1960
 #: gschem/src/x/x_multiattrib.c:1966
 msgid "Value"
 msgstr "Wartość"
 
-#: gschem/src/x/x_compselect.c:2654 gschem/src/x/x_dialog.c:1728
+#: gschem/src/x/x_compselect.c:2682 gschem/src/x/x_dialog.c:1730
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2655
+#: gschem/src/x/x_compselect.c:2683
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2656
+#: gschem/src/x/x_compselect.c:2684
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2657
+#: gschem/src/x/x_compselect.c:2685
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2658
+#: gschem/src/x/x_compselect.c:2686
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2659
+#: gschem/src/x/x_compselect.c:2687
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2660
+#: gschem/src/x/x_compselect.c:2688
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2661
+#: gschem/src/x/x_compselect.c:2689
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2662
+#: gschem/src/x/x_compselect.c:2690
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2663
+#: gschem/src/x/x_compselect.c:2691
 msgid "All"
 msgstr "Wszystko"
 
-#: gschem/src/x/x_compselect.c:2697
+#: gschem/src/x/x_compselect.c:2725
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2698
+#: gschem/src/x/x_compselect.c:2726
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2721
+#: gschem/src/x/x_compselect.c:2749
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2722
+#: gschem/src/x/x_compselect.c:2750
 msgid "Embed"
 msgstr "Osadź"
 
-#: gschem/src/x/x_compselect.c:2723
+#: gschem/src/x/x_compselect.c:2751
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3099
+#: gschem/src/x/x_compselect.c:3127
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3100
+#: gschem/src/x/x_compselect.c:3128
 msgid "Active sheet of the notebook widget"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3112
+#: gschem/src/x/x_compselect.c:3140
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3113
+#: gschem/src/x/x_compselect.c:3141
 msgid ""
 "When true, inital focus will be the filter entry, otherwise the Component "
 "Tree"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3141
+#: gschem/src/x/x_compselect.c:3169
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3149
+#: gschem/src/x/x_compselect.c:3177
 msgid "Re-scan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3151
+#: gschem/src/x/x_compselect.c:3179
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3343 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3371 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Podgląd"
 
-#: gschem/src/x/x_compselect.c:3374
+#: gschem/src/x/x_compselect.c:3402
 msgid "Attributes"
 msgstr "Atrybuty"
 
@@ -1530,7 +1530,7 @@ msgid "Graphic"
 msgstr "Graficzne"
 
 #: gschem/src/x/x_dialog.c:993 gschem/src/x/x_edit_pin.c:137
-#: gschem/src/x/x_menus.c:93
+#: gschem/src/x/x_menus.c:94
 msgid "Net"
 msgstr "Połączenie"
 
@@ -1553,16 +1553,16 @@ msgstr "Punkt siatki"
 msgid "Detached attribute"
 msgstr "Odłączony atrybut"
 
-#: gschem/src/x/x_dialog.c:998 gschem/src/x/x_menus.c:97
+#: gschem/src/x/x_dialog.c:998 gschem/src/x/x_menus.c:98
 msgid "Text"
 msgstr "Tekst"
 
 #: gschem/src/x/x_dialog.c:999 gschem/src/x/x_edit_pin.c:138
-#: gschem/src/x/x_menus.c:96
+#: gschem/src/x/x_menus.c:97
 msgid "Bus"
 msgstr "Magistralę"
 
-#: gschem/src/x/x_dialog.c:1000 gschem/src/x/x_menus.c:107
+#: gschem/src/x/x_dialog.c:1000 gschem/src/x/x_menus.c:108
 #, fuzzy
 msgid "Selection"
 msgstr "Zaznaczanie"
@@ -1579,7 +1579,7 @@ msgstr "Obszar powiększenia"
 msgid "Stroke"
 msgstr "Gest"
 
-#: gschem/src/x/x_dialog.c:1004 gschem/etc/system-gschemrc.scm:2097
+#: gschem/src/x/x_dialog.c:1004 gschem/etc/system-gschemrc.scm:2098
 #: gschem/scheme/gschem/builtins.scm:140
 msgid "Lock"
 msgstr "Zablokuj"
@@ -1644,197 +1644,197 @@ msgstr ""
 msgid "Unknown"
 msgstr "Nieznane"
 
-#: gschem/src/x/x_dialog.c:1167
+#: gschem/src/x/x_dialog.c:1169
 msgid "Hollow"
 msgstr "Brak"
 
-#: gschem/src/x/x_dialog.c:1168
+#: gschem/src/x/x_dialog.c:1170
 msgid "Filled"
 msgstr "Pełne"
 
-#: gschem/src/x/x_dialog.c:1169
+#: gschem/src/x/x_dialog.c:1171
 msgid "Mesh"
 msgstr "Siatka"
 
-#: gschem/src/x/x_dialog.c:1170
+#: gschem/src/x/x_dialog.c:1172
 msgid "Hatch"
 msgstr "Kreskowanie"
 
-#: gschem/src/x/x_dialog.c:1171 gschem/src/x/x_dialog.c:1279
-#: gschem/src/x/x_dialog.c:1288 gschem/src/x/x_dialog.c:1297
-#: gschem/src/x/x_dialog.c:1306 gschem/src/x/x_dialog.c:1315
-#: gschem/src/x/x_dialog.c:1432 gschem/src/x/x_dialog.c:1434
-#: gschem/src/x/x_dialog.c:1436 gschem/src/x/x_dialog.c:1438
-#: gschem/src/x/x_dialog.c:1440 gschem/src/x/x_dialog.c:1731
-#: gschem/src/x/x_dialog.c:1773 gschem/src/x/x_dialog.c:1886
-#: gschem/src/x/x_dialog.c:1895 gschem/src/x/x_dialog.c:1905
-#: gschem/src/x/x_dialog.c:2023 gschem/src/x/x_dialog.c:2025
-#: gschem/src/x/x_dialog.c:2027
+#: gschem/src/x/x_dialog.c:1173 gschem/src/x/x_dialog.c:1281
+#: gschem/src/x/x_dialog.c:1290 gschem/src/x/x_dialog.c:1299
+#: gschem/src/x/x_dialog.c:1308 gschem/src/x/x_dialog.c:1317
+#: gschem/src/x/x_dialog.c:1434 gschem/src/x/x_dialog.c:1436
+#: gschem/src/x/x_dialog.c:1438 gschem/src/x/x_dialog.c:1440
+#: gschem/src/x/x_dialog.c:1442 gschem/src/x/x_dialog.c:1733
+#: gschem/src/x/x_dialog.c:1775 gschem/src/x/x_dialog.c:1888
+#: gschem/src/x/x_dialog.c:1897 gschem/src/x/x_dialog.c:1907
+#: gschem/src/x/x_dialog.c:2025 gschem/src/x/x_dialog.c:2027
+#: gschem/src/x/x_dialog.c:2029
 msgid "*unchanged*"
 msgstr "*bez zmian*"
 
-#: gschem/src/x/x_dialog.c:1578 gschem/scheme/gschem/builtins.scm:134
+#: gschem/src/x/x_dialog.c:1580 gschem/scheme/gschem/builtins.scm:134
 msgid "Edit Fill Type"
 msgstr "Edytuj typ wypełnienia"
 
-#: gschem/src/x/x_dialog.c:1600
+#: gschem/src/x/x_dialog.c:1602
 msgid "Fill Type:"
 msgstr "Typ wypełnienia:"
 
-#: gschem/src/x/x_dialog.c:1603
+#: gschem/src/x/x_dialog.c:1605
 msgid "Line Width:"
 msgstr "Szerokość linii:"
 
-#: gschem/src/x/x_dialog.c:1606
+#: gschem/src/x/x_dialog.c:1608
 msgid "Angle 1:"
 msgstr "Kąt linii 1:"
 
-#: gschem/src/x/x_dialog.c:1609
+#: gschem/src/x/x_dialog.c:1611
 msgid "Pitch 1:"
 msgstr "Odstęp między liniami 1:"
 
-#: gschem/src/x/x_dialog.c:1612
+#: gschem/src/x/x_dialog.c:1614
 msgid "Angle 2:"
 msgstr "Kąt linii 2:"
 
-#: gschem/src/x/x_dialog.c:1615
+#: gschem/src/x/x_dialog.c:1617
 msgid "Pitch 2:"
 msgstr "Odstęp między liniami 2:"
 
-#: gschem/src/x/x_dialog.c:1622
+#: gschem/src/x/x_dialog.c:1624
 msgid "Select fill pattern"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1627
+#: gschem/src/x/x_dialog.c:1629
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1632
+#: gschem/src/x/x_dialog.c:1634
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1637
+#: gschem/src/x/x_dialog.c:1639
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1642
+#: gschem/src/x/x_dialog.c:1644
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1647
+#: gschem/src/x/x_dialog.c:1649
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1729
+#: gschem/src/x/x_dialog.c:1731
 msgid "Square"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1730
+#: gschem/src/x/x_dialog.c:1732
 msgid "Round"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1768
+#: gschem/src/x/x_dialog.c:1770
 msgid "Solid"
 msgstr "Jednolita"
 
-#: gschem/src/x/x_dialog.c:1769
+#: gschem/src/x/x_dialog.c:1771
 msgid "Dotted"
 msgstr "Kropki"
 
-#: gschem/src/x/x_dialog.c:1770
+#: gschem/src/x/x_dialog.c:1772
 msgid "Dashed"
 msgstr "Kreski"
 
-#: gschem/src/x/x_dialog.c:1771
+#: gschem/src/x/x_dialog.c:1773
 msgid "Center"
 msgstr "Kropka-kreska"
 
-#: gschem/src/x/x_dialog.c:1772
+#: gschem/src/x/x_dialog.c:1774
 msgid "Phantom"
 msgstr "Kropka-kropka-kreska"
 
-#: gschem/src/x/x_dialog.c:2162 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_dialog.c:2164 gschem/scheme/gschem/builtins.scm:131
 msgid "Edit Line Width & Type"
 msgstr "Edycja stylu linii"
 
-#: gschem/src/x/x_dialog.c:2185
+#: gschem/src/x/x_dialog.c:2187
 #, fuzzy
 msgid "Line Type:"
 msgstr "Typ wypełnienia:"
 
-#: gschem/src/x/x_dialog.c:2188
+#: gschem/src/x/x_dialog.c:2190
 #, fuzzy
 msgid "End Type:"
 msgstr "Rodzaj:"
 
-#: gschem/src/x/x_dialog.c:2191
+#: gschem/src/x/x_dialog.c:2193
 msgid "Width:"
 msgstr "Szerokość:"
 
-#: gschem/src/x/x_dialog.c:2194
+#: gschem/src/x/x_dialog.c:2196
 msgid "Dash Length:"
 msgstr "Długość kreski"
 
-#: gschem/src/x/x_dialog.c:2197
+#: gschem/src/x/x_dialog.c:2199
 msgid "Dash Space:"
 msgstr "Długość przerwy"
 
-#: gschem/src/x/x_dialog.c:2214
+#: gschem/src/x/x_dialog.c:2216
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2220
+#: gschem/src/x/x_dialog.c:2222
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2226
+#: gschem/src/x/x_dialog.c:2228
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2445
+#: gschem/src/x/x_dialog.c:2447
 msgid "Find Text"
 msgstr "Znajdź tekst"
 
-#: gschem/src/x/x_dialog.c:2464
+#: gschem/src/x/x_dialog.c:2466
 msgid "Text to find:"
 msgstr "Szukany tekst:"
 
-#: gschem/src/x/x_dialog.c:2473
+#: gschem/src/x/x_dialog.c:2475
 #, fuzzy
 msgid "Search hidden attributes"
 msgstr "Pokaż odziedziczone atrybuty"
 
-#: gschem/src/x/x_dialog.c:2476
+#: gschem/src/x/x_dialog.c:2478
 #, fuzzy
 msgid "Descend into hierarchy"
 msgstr "Szukaj również wewnątrz elementów"
 
-#: gschem/src/x/x_dialog.c:2484
+#: gschem/src/x/x_dialog.c:2486
 #, fuzzy
 msgid "Close on ascent"
 msgstr "Zamknij arkusz"
 
-#: gschem/src/x/x_dialog.c:2571
+#: gschem/src/x/x_dialog.c:2573
 msgid "Hide Text"
 msgstr "Ukryj tekst"
 
-#: gschem/src/x/x_dialog.c:2590
+#: gschem/src/x/x_dialog.c:2592
 msgid "Hide text starting with:"
 msgstr "Ukryj tekst zaczynający się od:"
 
-#: gschem/src/x/x_dialog.c:2679
+#: gschem/src/x/x_dialog.c:2681
 msgid "Show Text"
 msgstr "Wyświetl tekst"
 
-#: gschem/src/x/x_dialog.c:2698
+#: gschem/src/x/x_dialog.c:2700
 msgid "Show text starting with:"
 msgstr "Wyświetl tekst zaczynający się od:"
 
-#: gschem/src/x/x_dialog.c:2823
+#: gschem/src/x/x_dialog.c:2825
 msgid "Text Entry..."
 msgstr "Wprowadzanie tekstu..."
 
-#: gschem/src/x/x_dialog.c:2848
+#: gschem/src/x/x_dialog.c:2850
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
@@ -1844,58 +1844,58 @@ msgstr ""
 "przenieś kursor do głownego okna, kliknij aby umieścić tekst.\n"
 "Środkowy przycisk obraca tekst przed umieszczeniem."
 
-#: gschem/src/x/x_dialog.c:2952
+#: gschem/src/x/x_dialog.c:2954
 msgid "Translate"
 msgstr "Tłumacz"
 
-#: gschem/src/x/x_dialog.c:2973
+#: gschem/src/x/x_dialog.c:2975
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3149
+#: gschem/src/x/x_dialog.c:3151
 msgid "Hotkeys"
 msgstr "Klawisze skrótów"
 
-#: gschem/src/x/x_dialog.c:3232
+#: gschem/src/x/x_dialog.c:3234
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3246
+#: gschem/src/x/x_dialog.c:3248
 msgid "Action"
 msgstr "Czynność"
 
-#: gschem/src/x/x_dialog.c:3256
+#: gschem/src/x/x_dialog.c:3258
 msgid "Keystroke(s)"
 msgstr "Klawisz(e)"
 
-#: gschem/src/x/x_dialog.c:3266
+#: gschem/src/x/x_dialog.c:3268
 #, fuzzy
 msgid "Command"
 msgstr "Polecenie:"
 
-#: gschem/src/x/x_dialog.c:3501
+#: gschem/src/x/x_dialog.c:3503
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3528
+#: gschem/src/x/x_dialog.c:3530
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3569
+#: gschem/src/x/x_dialog.c:3571
 #, fuzzy
 msgid "Symbol"
 msgstr "Symbole"
 
-#: gschem/src/x/x_dialog.c:3616
+#: gschem/src/x/x_dialog.c:3618
 msgid "Dismiss this dialog"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3660
+#: gschem/src/x/x_dialog.c:3662
 #, c-format
 msgid ""
 "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\n"
@@ -1912,7 +1912,7 @@ msgstr ""
 "Nazwa nie może zaczynać się od spacji.\n"
 "Wartość nie może zaczynać się od spacji."
 
-#: gschem/src/x/x_dialog.c:3662
+#: gschem/src/x/x_dialog.c:3664
 msgid "Invalid Attribute"
 msgstr "Nieprawidłowy atrybut"
 
@@ -2329,16 +2329,16 @@ msgstr ""
 msgid "Pin Label"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:165
+#: gschem/src/x/x_edit_slot.c:163
 #, fuzzy
 msgid "Edit slot number"
 msgstr "Kolor"
 
-#: gschem/src/x/x_edit_slot.c:188
+#: gschem/src/x/x_edit_slot.c:186
 msgid "Number of slots:"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:204
+#: gschem/src/x/x_edit_slot.c:202
 msgid "Edit slot number:"
 msgstr ""
 
@@ -2527,318 +2527,313 @@ msgid ""
 "When enbled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:88
+#: gschem/src/x/x_menus.c:89
 msgid "Select"
 msgstr "Zaznaczanie"
 
-#: gschem/src/x/x_menus.c:92
+#: gschem/src/x/x_menus.c:93
 #, fuzzy
 msgid "Add"
 msgstr "_Dodaj"
 
-#: gschem/src/x/x_menus.c:94
+#: gschem/src/x/x_menus.c:95
 #, fuzzy
 msgid "Attribute..."
 msgstr "_Atrybut..."
 
-#: gschem/src/x/x_menus.c:95 gschem/src/x/x_menus.c:113
+#: gschem/src/x/x_menus.c:96 gschem/src/x/x_menus.c:114
 #, fuzzy
 msgid "Component..."
 msgstr "_Element..."
 
-#: gschem/src/x/x_menus.c:101
+#: gschem/src/x/x_menus.c:102
 #, fuzzy
 msgid "Zoom"
 msgstr "/Powiększ"
 
-#: gschem/src/x/x_menus.c:102
+#: gschem/src/x/x_menus.c:103
 msgid "In"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:103
+#: gschem/src/x/x_menus.c:104
 #, fuzzy
 msgid "Out"
 msgstr "Wy_tnij"
 
-#: gschem/src/x/x_menus.c:104
+#: gschem/src/x/x_menus.c:105
 msgid "Box"
 msgstr "Prostokąt"
 
-#: gschem/src/x/x_menus.c:105
+#: gschem/src/x/x_menus.c:106
 #, fuzzy
 msgid "Extents"
 msgstr "/Dopasuj do ekranu"
 
-#: gschem/src/x/x_menus.c:106
+#: gschem/src/x/x_menus.c:107
 msgid "Mag"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:111
+#: gschem/src/x/x_menus.c:112
 msgid "Edit"
 msgstr "Edycja"
 
-#: gschem/src/x/x_menus.c:112
+#: gschem/src/x/x_menus.c:113
 msgid "Object..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:114
+#: gschem/src/x/x_menus.c:115
 #, fuzzy
 msgid "Pin type..."
 msgstr "Styl wypełnienia..."
 
-#: gschem/src/x/x_menus.c:118 gschem/src/x/x_multiattrib.c:1644
+#: gschem/src/x/x_menus.c:119 gschem/src/x/x_multiattrib.c:1644
 #: gschem/scheme/gschem/builtins.scm:101
 msgid "Delete"
 msgstr "Usuń"
 
-#: gschem/src/x/x_menus.c:119 gschem/etc/system-gschemrc.scm:2047
+#: gschem/src/x/x_menus.c:120 gschem/etc/system-gschemrc.scm:2048
 #: gschem/scheme/gschem/builtins.scm:155
 msgid "Copy"
 msgstr "Kopiuj"
 
-#: gschem/src/x/x_menus.c:120
+#: gschem/src/x/x_menus.c:121
 #, fuzzy
 msgid "MCopy"
 msgstr "Kopiuj"
 
-#: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2050
+#: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2051
 msgid "Move"
 msgstr "Przesuń"
 
-#: gschem/src/x/x_menus.c:122 gschem/etc/system-gschemrc.scm:2049
+#: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2050
 msgid "Mirror"
 msgstr "Lustrzane odbicie"
 
-#: gschem/src/x/x_menus.c:123
+#: gschem/src/x/x_menus.c:124
 msgid "Rotate"
 msgstr "Obróć"
 
-#: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2058
+#: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2059
 #, fuzzy
 msgid "Extend"
 msgstr "/Dopasuj do ekranu"
 
-#: gschem/src/x/x_menus.c:130
+#: gschem/src/x/x_menus.c:131
 #, fuzzy
 msgid "Hierarchy"
 msgstr "Hie_rarchia"
 
-#: gschem/src/x/x_menus.c:131 gschem/scheme/gschem/builtins.scm:269
+#: gschem/src/x/x_menus.c:132 gschem/scheme/gschem/builtins.scm:269
 #, fuzzy
 msgid "Down Schematic"
 msgstr "/Wgłąb schematu"
 
-#: gschem/src/x/x_menus.c:132 gschem/scheme/gschem/builtins.scm:272
+#: gschem/src/x/x_menus.c:133 gschem/scheme/gschem/builtins.scm:272
 #, fuzzy
 msgid "Down Symbol"
 msgstr "/Wgłąb symbolu"
 
-#: gschem/src/x/x_menus.c:133
+#: gschem/src/x/x_menus.c:134
 #, fuzzy
 msgid "Up"
 msgstr "/Do góry"
 
-#: gschem/src/x/x_menus.c:138
+#: gschem/src/x/x_menus.c:139
 #, fuzzy
 msgid "Cut to Clipboard"
 msgstr "Wytnij do schowka"
 
-#: gschem/src/x/x_menus.c:139
+#: gschem/src/x/x_menus.c:140
 #, fuzzy
 msgid "Copy to Clipboard"
 msgstr "Kopiuj do schowka"
 
-#: gschem/src/x/x_menus.c:140
+#: gschem/src/x/x_menus.c:141
 #, fuzzy
 msgid "Paste Clipboard"
 msgstr "Wklej ze schowka"
 
-#: gschem/src/x/x_menus.c:357 gschem/etc/system-gschemrc.scm:2008
+#: gschem/src/x/x_menus.c:358 gschem/etc/system-gschemrc.scm:2009
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:369 gschem/etc/system-gschemrc.scm:2012
+#: gschem/src/x/x_menus.c:370 gschem/etc/system-gschemrc.scm:2013
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:380 gschem/etc/system-gschemrc.scm:2029
+#: gschem/src/x/x_menus.c:381 gschem/etc/system-gschemrc.scm:2030
 msgid "Quit gschem and exit"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:414 gschem/etc/system-gschemrc.scm:2133
+#: gschem/src/x/x_menus.c:415 gschem/etc/system-gschemrc.scm:2134
 #, fuzzy
 msgid "redraw the current window"
 msgstr "Bieżący widok"
 
-#: gschem/src/x/x_menus.c:450 gschem/src/x/x_menus.c:452
+#: gschem/src/x/x_menus.c:451 gschem/src/x/x_menus.c:453
 #, c-format
 msgid "Error reading menu item <%d>, Bad string\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:662
+#: gschem/src/x/x_menus.c:663
 #, c-format
 msgid "Oops.. got a NULL menu name in %s()\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:780
+#: gschem/src/x/x_menus.c:781
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:781
+#: gschem/src/x/x_menus.c:782
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:782
+#: gschem/src/x/x_menus.c:783
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:783
+#: gschem/src/x/x_menus.c:784
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:784
+#: gschem/src/x/x_menus.c:785
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:785
+#: gschem/src/x/x_menus.c:786
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:786
+#: gschem/src/x/x_menus.c:787
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:787
+#: gschem/src/x/x_menus.c:788
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:839
+#: gschem/src/x/x_menus.c:840
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:840
+#: gschem/src/x/x_menus.c:841
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:841
+#: gschem/src/x/x_menus.c:842
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:842
+#: gschem/src/x/x_menus.c:843
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:906
+#: gschem/src/x/x_menus.c:907
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:907
+#: gschem/src/x/x_menus.c:908
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:908
+#: gschem/src/x/x_menus.c:909
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:909
+#: gschem/src/x/x_menus.c:910
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1145
+#: gschem/src/x/x_menus.c:1155
 #, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
 msgstr "Próba aktywacji nieistniejącego elementu menu '%s'\n"
 
-#: gschem/src/x/x_menus.c:1149
+#: gschem/src/x/x_menus.c:1159
 #, fuzzy, c-format
 msgid "Tried to set the sensitivity on non-existent menu item '%s',\n"
 msgstr "Próba aktywacji nieistniejącego elementu menu '%s'\n"
 
-#: gschem/src/x/x_menus.c:1153
+#: gschem/src/x/x_menus.c:1163
 #, c-format
 msgid "Excessive errors <%d>, disabling sensitivity warnings\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1175
+#: gschem/src/x/x_menus.c:1185
 #, fuzzy, c-format
 msgid "Popup menu widget doesn't exist!\n"
 msgstr "Popup_menu_item_factory nie istnieje!\n"
 
-#: gschem/src/x/x_menus.c:1227
+#: gschem/src/x/x_menus.c:1237
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1237
+#: gschem/src/x/x_menus.c:1247
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1240
+#: gschem/src/x/x_menus.c:1250
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1271
-#, c-format
-msgid "<x_menu_toggle_icons> Ignoring invalid object, maybe a seperator\n"
-msgstr ""
-
-#: gschem/src/x/x_menus.c:1278
+#: gschem/src/x/x_menus.c:1294
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1281
+#: gschem/src/x/x_menus.c:1297
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1344
+#: gschem/src/x/x_menus.c:1360
 msgid "gschem: Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1347
+#: gschem/src/x/x_menus.c:1363
 msgid "gschem: Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1390
+#: gschem/src/x/x_menus.c:1406
 #, c-format
 msgid "%s: Action not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1393
+#: gschem/src/x/x_menus.c:1409
 #, c-format
 msgid "%s: Menu path not found, \"%s\" \n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1396
+#: gschem/src/x/x_menus.c:1412
 #, c-format
 msgid "%s: invalid pointer [menubar]\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1471
+#: gschem/src/x/x_menus.c:1487
 #, c-format
 msgid "Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1568
+#: gschem/src/x/x_menus.c:1584
 #, fuzzy, c-format
 msgid "Could not open file %s\n"
 msgstr "Nie znaleziono pliku inicjalizacyjnego scm [%s]\n"
 
-#: gschem/src/x/x_menus.c:1664
+#: gschem/src/x/x_menus.c:1680
 #, fuzzy
 msgid "Open"
 msgstr "Otwórz..."
 
-#: gschem/src/x/x_menus.c:1673
+#: gschem/src/x/x_menus.c:1689
 #, fuzzy
 msgid "Remove"
 msgstr "Usuń numery"
 
-#: gschem/src/x/x_menus.c:1682
+#: gschem/src/x/x_menus.c:1698
 #, fuzzy
 msgid "_Show path"
 msgstr "Pokazuj o_bie"
 
-#: gschem/src/x/x_menus.c:1803
+#: gschem/src/x/x_menus.c:1819
 msgid "Clear"
 msgstr ""
 
@@ -3189,11 +3184,11 @@ msgstr ""
 msgid "_Rename"
 msgstr "Nazwa pliku"
 
-#: gschem/src/x/x_sessions.c:631 gschem/etc/system-gschemrc.scm:2044
+#: gschem/src/x/x_sessions.c:631 gschem/etc/system-gschemrc.scm:2045
 msgid "_Delete"
 msgstr "_Usuń"
 
-#: gschem/src/x/x_sessions.c:638 gschem/etc/system-gschemrc.scm:2020
+#: gschem/src/x/x_sessions.c:638 gschem/etc/system-gschemrc.scm:2021
 msgid "_Export"
 msgstr ""
 
@@ -3258,20 +3253,20 @@ msgstr ""
 msgid "Cancel"
 msgstr "Przesuń widok/Anuluj"
 
-#: gschem/src/x/x_settings_dialog.c:2600
+#: gschem/src/x/x_settings_dialog.c:2599
 #, fuzzy
 msgid "Close without changing any settings"
 msgstr "_Zamknij bez zapisywania"
 
-#: gschem/src/x/x_settings_dialog.c:2602 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2601 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr "Zapisz"
 
-#: gschem/src/x/x_settings_dialog.c:2606
+#: gschem/src/x/x_settings_dialog.c:2605
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2612
+#: gschem/src/x/x_settings_dialog.c:2611
 msgid "Change settings and close but do not write settings to storage.."
 msgstr ""
 
@@ -3392,1198 +3387,1198 @@ msgstr "gEDA Edytor Schematów"
 msgid "Create and edit electrical schematics and symbols with gschem"
 msgstr "Projektuj i edytuj schematy i symbole elektroniczne za pomocą gschem"
 
-#: gschem/etc/system-gschemrc.scm:2007 gschem/etc/system-gschemrc.scm:2210
+#: gschem/etc/system-gschemrc.scm:2008 gschem/etc/system-gschemrc.scm:2211
 msgid "_New"
 msgstr "_Nowy"
 
-#: gschem/etc/system-gschemrc.scm:2007
+#: gschem/etc/system-gschemrc.scm:2008
 msgid "Create a new empty file"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2008 gschem/etc/system-gschemrc.scm:2211
+#: gschem/etc/system-gschemrc.scm:2009 gschem/etc/system-gschemrc.scm:2212
 msgid "_Open..."
 msgstr "_Otwórz..."
 
-#: gschem/etc/system-gschemrc.scm:2009
+#: gschem/etc/system-gschemrc.scm:2010
 msgid "Open Recen_t"
 msgstr "Otwórz os_tatnio używane"
 
-#: gschem/etc/system-gschemrc.scm:2009
+#: gschem/etc/system-gschemrc.scm:2010
 msgid "Open recently accessed schematic or symbol files"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2012 gschem/etc/system-gschemrc.scm:2214
+#: gschem/etc/system-gschemrc.scm:2013 gschem/etc/system-gschemrc.scm:2215
 msgid "_Save"
 msgstr "Zapi_sz"
 
-#: gschem/etc/system-gschemrc.scm:2013 gschem/etc/system-gschemrc.scm:2215
+#: gschem/etc/system-gschemrc.scm:2014 gschem/etc/system-gschemrc.scm:2216
 msgid "Save _As..."
 msgstr "Zapisz j_ako..."
 
-#: gschem/etc/system-gschemrc.scm:2013
+#: gschem/etc/system-gschemrc.scm:2014
 msgid "Save the current document to a new name or location"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2014 gschem/scheme/gschem/builtins.scm:62
+#: gschem/etc/system-gschemrc.scm:2015 gschem/scheme/gschem/builtins.scm:62
 msgid "Save All"
 msgstr "Zapisz _wszystkie"
 
-#: gschem/etc/system-gschemrc.scm:2014
+#: gschem/etc/system-gschemrc.scm:2015
 msgid "Save all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2015
+#: gschem/etc/system-gschemrc.scm:2016
 #, fuzzy
 msgid "Save Modified"
 msgstr "Tryb przesuwania"
 
-#: gschem/etc/system-gschemrc.scm:2015
+#: gschem/etc/system-gschemrc.scm:2016
 msgid "Save all modified documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2016 gschem/etc/system-gschemrc.scm:2171
+#: gschem/etc/system-gschemrc.scm:2017 gschem/etc/system-gschemrc.scm:2172
 msgid "_Revert"
 msgstr "P_rzywróć"
 
-#: gschem/etc/system-gschemrc.scm:2016
+#: gschem/etc/system-gschemrc.scm:2017
 msgid "Discard changes and reload the current document"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2019
+#: gschem/etc/system-gschemrc.scm:2020
 msgid "_Print..."
 msgstr "_Drukuj..."
 
-#: gschem/etc/system-gschemrc.scm:2019
+#: gschem/etc/system-gschemrc.scm:2020
 #, fuzzy
 msgid "Print the current document"
 msgstr "Wydrukowano bieżący arkusz do [%s]\n"
 
-#: gschem/etc/system-gschemrc.scm:2020
+#: gschem/etc/system-gschemrc.scm:2021
 msgid "Export options"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2021
+#: gschem/etc/system-gschemrc.scm:2022
 msgid "Write _image..."
 msgstr "Zap_isz obraz..."
 
-#: gschem/etc/system-gschemrc.scm:2021
+#: gschem/etc/system-gschemrc.scm:2022
 msgid "This is a dummy tip"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2024
+#: gschem/etc/system-gschemrc.scm:2025
 msgid "Execute Script..."
 msgstr "Wykonaj skrypt..."
 
-#: gschem/etc/system-gschemrc.scm:2024
+#: gschem/etc/system-gschemrc.scm:2025
 #, fuzzy
 msgid "Execute a script file"
 msgstr "Wykonaj skrypt..."
 
-#: gschem/etc/system-gschemrc.scm:2027 gschem/etc/system-gschemrc.scm:2172
+#: gschem/etc/system-gschemrc.scm:2028 gschem/etc/system-gschemrc.scm:2173
 msgid "_Close"
 msgstr "_Zamknij"
 
-#: gschem/etc/system-gschemrc.scm:2027
+#: gschem/etc/system-gschemrc.scm:2028
 msgid "Close the current document"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2028
+#: gschem/etc/system-gschemrc.scm:2029
 #, fuzzy
 msgid "_Close All"
 msgstr "_Zamknij"
 
-#: gschem/etc/system-gschemrc.scm:2028
+#: gschem/etc/system-gschemrc.scm:2029
 msgid "Close all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2029
+#: gschem/etc/system-gschemrc.scm:2030
 msgid "_Quit"
 msgstr "Za_kończ"
 
-#: gschem/etc/system-gschemrc.scm:2037
+#: gschem/etc/system-gschemrc.scm:2038
 msgid "_Undo"
 msgstr "_Cofnij"
 
-#: gschem/etc/system-gschemrc.scm:2037
+#: gschem/etc/system-gschemrc.scm:2038
 #, fuzzy
 msgid "Undo the last action"
 msgstr "Cofnij ostatnią operację"
 
-#: gschem/etc/system-gschemrc.scm:2038
+#: gschem/etc/system-gschemrc.scm:2039
 msgid "_Redo"
 msgstr "_Ponów"
 
-#: gschem/etc/system-gschemrc.scm:2038
+#: gschem/etc/system-gschemrc.scm:2039
 #, fuzzy
 msgid "redo the last un-done action"
 msgstr "Cofnij ostatnią operację"
 
-#: gschem/etc/system-gschemrc.scm:2041
+#: gschem/etc/system-gschemrc.scm:2042
 #, fuzzy
 msgid "Cu_t clipboard"
 msgstr "Wytnij do schowka"
 
-#: gschem/etc/system-gschemrc.scm:2041
+#: gschem/etc/system-gschemrc.scm:2042
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2042
+#: gschem/etc/system-gschemrc.scm:2043
 #, fuzzy
 msgid "_Copy clipboard"
 msgstr "Kopiuj do schowka"
 
-#: gschem/etc/system-gschemrc.scm:2042
+#: gschem/etc/system-gschemrc.scm:2043
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2043
+#: gschem/etc/system-gschemrc.scm:2044
 #, fuzzy
 msgid "_Paste clipboard"
 msgstr "Wklej ze schowka"
 
-#: gschem/etc/system-gschemrc.scm:2043
+#: gschem/etc/system-gschemrc.scm:2044
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2044
+#: gschem/etc/system-gschemrc.scm:2045
 msgid "Delete the current selection"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2047
+#: gschem/etc/system-gschemrc.scm:2048
 #, fuzzy
 msgid "Copy selection"
 msgstr "Zaznaczenie"
 
-#: gschem/etc/system-gschemrc.scm:2048
+#: gschem/etc/system-gschemrc.scm:2049
 msgid "Multiple Copy"
 msgstr "Kopiuj wielokrotnie"
 
-#: gschem/etc/system-gschemrc.scm:2048
+#: gschem/etc/system-gschemrc.scm:2049
 msgid "Make multible copies of selection"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2049
+#: gschem/etc/system-gschemrc.scm:2050
 msgid "Mirror an object about a point"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2050
+#: gschem/etc/system-gschemrc.scm:2051
 #, fuzzy
 msgid "Move selection"
 msgstr "Zaznaczenie"
 
-#: gschem/etc/system-gschemrc.scm:2051
+#: gschem/etc/system-gschemrc.scm:2052
 msgid "Offset"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2051
+#: gschem/etc/system-gschemrc.scm:2052
 #, fuzzy
 msgid "Offset the selected objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2052
+#: gschem/etc/system-gschemrc.scm:2053
 #, fuzzy
 msgid "Rotate 90"
 msgstr "Obróć"
 
-#: gschem/etc/system-gschemrc.scm:2052
+#: gschem/etc/system-gschemrc.scm:2053
 msgid "Rotate the current selection about a point"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2053
+#: gschem/etc/system-gschemrc.scm:2054
 msgid "Snap to grid"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2053
+#: gschem/etc/system-gschemrc.scm:2054
 msgid "Snap selection to grid to current grid"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2056
+#: gschem/etc/system-gschemrc.scm:2057
 msgid "Array"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2056
+#: gschem/etc/system-gschemrc.scm:2057
 msgid "Create and array of objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2057
+#: gschem/etc/system-gschemrc.scm:2058
 msgid "Break"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2057
+#: gschem/etc/system-gschemrc.scm:2058
 msgid "Break a linear object into seperate objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2058
+#: gschem/etc/system-gschemrc.scm:2059
 msgid "Project a linear objects to other objects"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2061 gschem/scheme/gschem/builtins.scm:119
+#: gschem/etc/system-gschemrc.scm:2062 gschem/scheme/gschem/builtins.scm:119
 msgid "Edit..."
 msgstr "Edytuj..."
 
-#: gschem/etc/system-gschemrc.scm:2061
+#: gschem/etc/system-gschemrc.scm:2062
 #, fuzzy
 msgid "Edit Properties"
 msgstr "Edycja właściwości tekstu"
 
-#: gschem/etc/system-gschemrc.scm:2062
+#: gschem/etc/system-gschemrc.scm:2063
 msgid "Edit Text..."
 msgstr "Edytuj tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2062
+#: gschem/etc/system-gschemrc.scm:2063
 msgid "Open the Text Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2063
+#: gschem/etc/system-gschemrc.scm:2064
 msgid "Color..."
 msgstr "Kolor..."
 
-#: gschem/etc/system-gschemrc.scm:2063
+#: gschem/etc/system-gschemrc.scm:2064
 msgid "Open the Color Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2064
+#: gschem/etc/system-gschemrc.scm:2065
 #, fuzzy
 msgid "Edit Pin..."
 msgstr "/Edytuj typ pinu..."
 
-#: gschem/etc/system-gschemrc.scm:2064
+#: gschem/etc/system-gschemrc.scm:2065
 msgid "Open the Pin Type Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2065
+#: gschem/etc/system-gschemrc.scm:2066
 msgid "Line Width & Type..."
 msgstr "Styl linii..."
 
-#: gschem/etc/system-gschemrc.scm:2065
+#: gschem/etc/system-gschemrc.scm:2066
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2066
+#: gschem/etc/system-gschemrc.scm:2067
 msgid "Fill Type..."
 msgstr "Styl wypełnienia..."
 
-#: gschem/etc/system-gschemrc.scm:2066
+#: gschem/etc/system-gschemrc.scm:2067
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2067
+#: gschem/etc/system-gschemrc.scm:2068
 #, fuzzy
 msgid "Edit Component..."
 msgstr "/Dodaj element..."
 
-#: gschem/etc/system-gschemrc.scm:2067
+#: gschem/etc/system-gschemrc.scm:2068
 #, fuzzy
 msgid "Open the Component Editor Dialog"
 msgstr "Edycja pojedyńczego atrybutu"
 
-#: gschem/etc/system-gschemrc.scm:2068
+#: gschem/etc/system-gschemrc.scm:2069
 msgid "Slot..."
 msgstr "Slot..."
 
-#: gschem/etc/system-gschemrc.scm:2068
+#: gschem/etc/system-gschemrc.scm:2069
 msgid "Open the Slot Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2073
+#: gschem/etc/system-gschemrc.scm:2074
 #, fuzzy
 msgid "Activate Select mode"
 msgstr "Tryb zaznaczania"
 
-#: gschem/etc/system-gschemrc.scm:2074
+#: gschem/etc/system-gschemrc.scm:2075
 #, fuzzy
 msgid "Activate Deselect mode"
 msgstr "Tryb zaznaczania"
 
-#: gschem/etc/system-gschemrc.scm:2075 gschem/scheme/gschem/builtins.scm:95
+#: gschem/etc/system-gschemrc.scm:2076 gschem/scheme/gschem/builtins.scm:95
 msgid "Select All"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2075
+#: gschem/etc/system-gschemrc.scm:2076
 #, fuzzy
 msgid "Select all objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2076
+#: gschem/etc/system-gschemrc.scm:2077
 #, fuzzy
 msgid "Deselect All"
 msgstr "Odznacz"
 
-#: gschem/etc/system-gschemrc.scm:2076
+#: gschem/etc/system-gschemrc.scm:2077
 msgid "Unselect everything"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2077
+#: gschem/etc/system-gschemrc.scm:2078
 #, fuzzy
 msgid "_Invert Selection"
 msgstr "Zaznaczenie"
 
-#: gschem/etc/system-gschemrc.scm:2077
+#: gschem/etc/system-gschemrc.scm:2078
 msgid "Invert the current selection set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2080
+#: gschem/etc/system-gschemrc.scm:2081
 msgid "Copy into 1"
 msgstr "Kopiuj do 1"
 
-#: gschem/etc/system-gschemrc.scm:2080
+#: gschem/etc/system-gschemrc.scm:2081
 msgid "Copy selection to first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2081
+#: gschem/etc/system-gschemrc.scm:2082
 msgid "Copy into 2"
 msgstr "Kopiuj do 2"
 
-#: gschem/etc/system-gschemrc.scm:2081
+#: gschem/etc/system-gschemrc.scm:2082
 msgid "Copy selection to second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2082
+#: gschem/etc/system-gschemrc.scm:2083
 msgid "Copy into 3"
 msgstr "Kopiuj do 3"
 
-#: gschem/etc/system-gschemrc.scm:2082
+#: gschem/etc/system-gschemrc.scm:2083
 msgid "Copy selection to third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2083
+#: gschem/etc/system-gschemrc.scm:2084
 msgid "Copy into 4"
 msgstr "Kopiuj do 4"
 
-#: gschem/etc/system-gschemrc.scm:2083
+#: gschem/etc/system-gschemrc.scm:2084
 msgid "Copy selection to forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2084
+#: gschem/etc/system-gschemrc.scm:2085
 msgid "Copy into 5"
 msgstr "Kopiuj do 5"
 
-#: gschem/etc/system-gschemrc.scm:2084
+#: gschem/etc/system-gschemrc.scm:2085
 msgid "Copy selection to fifth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2085
+#: gschem/etc/system-gschemrc.scm:2086
 msgid "Cut into 1"
 msgstr "Wytnij do 1"
 
-#: gschem/etc/system-gschemrc.scm:2085
+#: gschem/etc/system-gschemrc.scm:2086
 msgid "Cut selection to first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2086
+#: gschem/etc/system-gschemrc.scm:2087
 msgid "Cut into 2"
 msgstr "Wytnij do 2"
 
-#: gschem/etc/system-gschemrc.scm:2086
+#: gschem/etc/system-gschemrc.scm:2087
 msgid "Cut selection to second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2087
+#: gschem/etc/system-gschemrc.scm:2088
 msgid "Cut into 3"
 msgstr "Wytnij do 3"
 
-#: gschem/etc/system-gschemrc.scm:2087
+#: gschem/etc/system-gschemrc.scm:2088
 msgid "Cut selection to third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2088
+#: gschem/etc/system-gschemrc.scm:2089
 msgid "Cut into 4"
 msgstr "Wytnij do 4"
 
-#: gschem/etc/system-gschemrc.scm:2088
+#: gschem/etc/system-gschemrc.scm:2089
 msgid "Cut selection to forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2089
+#: gschem/etc/system-gschemrc.scm:2090
 msgid "Cut into 5"
 msgstr "Wytnij do 5"
 
-#: gschem/etc/system-gschemrc.scm:2089
+#: gschem/etc/system-gschemrc.scm:2090
 msgid "Cut selection to fifth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2090
+#: gschem/etc/system-gschemrc.scm:2091
 msgid "Paste from 1"
 msgstr "Wklej z 1"
 
-#: gschem/etc/system-gschemrc.scm:2090
+#: gschem/etc/system-gschemrc.scm:2091
 msgid "Insert contents of the first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2091
+#: gschem/etc/system-gschemrc.scm:2092
 msgid "Paste from 2"
 msgstr "Wklej z 2"
 
-#: gschem/etc/system-gschemrc.scm:2091
+#: gschem/etc/system-gschemrc.scm:2092
 msgid "Insert contents of the second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2092
+#: gschem/etc/system-gschemrc.scm:2093
 msgid "Paste from 3"
 msgstr "Wklej z 3"
 
-#: gschem/etc/system-gschemrc.scm:2092
+#: gschem/etc/system-gschemrc.scm:2093
 msgid "Insert contents of the third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2093
+#: gschem/etc/system-gschemrc.scm:2094
 msgid "Paste from 4"
 msgstr "Wklej z 4"
 
-#: gschem/etc/system-gschemrc.scm:2093
+#: gschem/etc/system-gschemrc.scm:2094
 msgid "Insert contents of the forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2094
+#: gschem/etc/system-gschemrc.scm:2095
 msgid "Paste from 5"
 msgstr "Wklej z 5"
 
-#: gschem/etc/system-gschemrc.scm:2094
+#: gschem/etc/system-gschemrc.scm:2095
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2097
+#: gschem/etc/system-gschemrc.scm:2098
 #, fuzzy
 msgid "Lock selected objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2098 gschem/scheme/gschem/builtins.scm:143
+#: gschem/etc/system-gschemrc.scm:2099 gschem/scheme/gschem/builtins.scm:143
 msgid "Unlock"
 msgstr "Odblokuj"
 
-#: gschem/etc/system-gschemrc.scm:2098
+#: gschem/etc/system-gschemrc.scm:2099
 #, fuzzy
 msgid "Unlock selected objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2133
+#: gschem/etc/system-gschemrc.scm:2134
 msgid "_Redraw"
 msgstr "_Aktualizuj"
 
-#: gschem/etc/system-gschemrc.scm:2134
+#: gschem/etc/system-gschemrc.scm:2135
 msgid "_Pan"
 msgstr "_Przesuń"
 
-#: gschem/etc/system-gschemrc.scm:2134
+#: gschem/etc/system-gschemrc.scm:2135
 msgid "Activate Panning"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2136
+#: gschem/etc/system-gschemrc.scm:2137
 #, fuzzy
 msgid "Zoom _All"
 msgstr "Maksymalne pomniejszenie"
 
-#: gschem/etc/system-gschemrc.scm:2136
+#: gschem/etc/system-gschemrc.scm:2137
 msgid "Zoom to the limits of the drawing area"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2137
+#: gschem/etc/system-gschemrc.scm:2138
 msgid "Zoom _Box"
 msgstr "Powiększ _obszar"
 
-#: gschem/etc/system-gschemrc.scm:2137
+#: gschem/etc/system-gschemrc.scm:2138
 msgid "Zoom to a Windowed region"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2138
+#: gschem/etc/system-gschemrc.scm:2139
 msgid "Zoom _Extents"
 msgstr "_Dopasuj widok"
 
-#: gschem/etc/system-gschemrc.scm:2138
+#: gschem/etc/system-gschemrc.scm:2139
 msgid "Zoom to the extents of the drawing"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2139
+#: gschem/etc/system-gschemrc.scm:2140
 msgid "Zoom _In"
 msgstr "Pow_iększ"
 
-#: gschem/etc/system-gschemrc.scm:2139
+#: gschem/etc/system-gschemrc.scm:2140
 msgid "Increase the Zoom magnification"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2140
+#: gschem/etc/system-gschemrc.scm:2141
 msgid "Zoom _Out"
 msgstr "P_omniejsz"
 
-#: gschem/etc/system-gschemrc.scm:2140
+#: gschem/etc/system-gschemrc.scm:2141
 msgid "Decrease the Zoom magnification"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2141
+#: gschem/etc/system-gschemrc.scm:2142
 #, fuzzy
 msgid "Zoom _Mag"
 msgstr "Pow_iększ"
 
-#: gschem/etc/system-gschemrc.scm:2141
+#: gschem/etc/system-gschemrc.scm:2142
 #, fuzzy
 msgid "Zoom to a specified level"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2142
+#: gschem/etc/system-gschemrc.scm:2143
 #, fuzzy
 msgid "Zoom _Selection"
 msgstr "Zaznaczenie"
 
-#: gschem/etc/system-gschemrc.scm:2142
+#: gschem/etc/system-gschemrc.scm:2143
 #, fuzzy
 msgid "Zoom to selected objects"
 msgstr "Zaznaczonych elementach"
 
-#: gschem/etc/system-gschemrc.scm:2145 gschem/etc/system-gschemrc.scm:2181
+#: gschem/etc/system-gschemrc.scm:2146 gschem/etc/system-gschemrc.scm:2182
 msgid "D_ocumentation..."
 msgstr "Do_kumentacja..."
 
-#: gschem/etc/system-gschemrc.scm:2146
+#: gschem/etc/system-gschemrc.scm:2147
 msgid "Show/Hide Inv Text"
 msgstr "Wyświetlaj/ukryj niewidoczny tekst"
 
-#: gschem/etc/system-gschemrc.scm:2146
+#: gschem/etc/system-gschemrc.scm:2147
 #, fuzzy
 msgid "Toggle hidden text attributes"
 msgstr "Pokaż odziedziczone atrybuty"
 
-#: gschem/etc/system-gschemrc.scm:2147
+#: gschem/etc/system-gschemrc.scm:2148
 #, fuzzy
 msgid "Show/Hide Net Names"
 msgstr "Wyświetlaj/ukryj niewidoczny tekst"
 
-#: gschem/etc/system-gschemrc.scm:2147
+#: gschem/etc/system-gschemrc.scm:2148
 #, fuzzy
 msgid "Toggle hidden net name attributes"
 msgstr "Pokaż odziedziczone atrybuty"
 
-#: gschem/etc/system-gschemrc.scm:2150
+#: gschem/etc/system-gschemrc.scm:2151
 msgid "_Dark color scheme"
 msgstr "_Ciemny zestaw kolorów"
 
-#: gschem/etc/system-gschemrc.scm:2150
+#: gschem/etc/system-gschemrc.scm:2151
 msgid "Set the color map to the Dark set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2151
+#: gschem/etc/system-gschemrc.scm:2152
 msgid "_Light color scheme"
 msgstr "_Jasny zestaw kolorów"
 
-#: gschem/etc/system-gschemrc.scm:2151
+#: gschem/etc/system-gschemrc.scm:2152
 msgid "Set the color map to the Light set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2152
+#: gschem/etc/system-gschemrc.scm:2153
 msgid "B_W color scheme"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2152
+#: gschem/etc/system-gschemrc.scm:2153
 msgid "Set the color map to the Black and White"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2161
+#: gschem/etc/system-gschemrc.scm:2162
 msgid "_Draw Order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2161
+#: gschem/etc/system-gschemrc.scm:2162
 msgid "Change order objects are drawn"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2164
+#: gschem/etc/system-gschemrc.scm:2165
 msgid "_Manager..."
 msgstr "_Zarządzaj..."
 
-#: gschem/etc/system-gschemrc.scm:2164
+#: gschem/etc/system-gschemrc.scm:2165
 #, fuzzy
 msgid "Open the Page Manager"
 msgstr "Zarządzanie arkuszami"
 
-#: gschem/etc/system-gschemrc.scm:2165
+#: gschem/etc/system-gschemrc.scm:2166
 msgid "_First"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2165
+#: gschem/etc/system-gschemrc.scm:2166
 #, fuzzy
 msgid "Goto the first page"
 msgstr "Bieżącej stronie"
 
-#: gschem/etc/system-gschemrc.scm:2166
+#: gschem/etc/system-gschemrc.scm:2167
 msgid "_Previous"
 msgstr "_Poprzedni"
 
-#: gschem/etc/system-gschemrc.scm:2166
+#: gschem/etc/system-gschemrc.scm:2167
 msgid "Switch to the previous page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2167
+#: gschem/etc/system-gschemrc.scm:2168
 msgid "_Next"
 msgstr "_Następny"
 
-#: gschem/etc/system-gschemrc.scm:2167
+#: gschem/etc/system-gschemrc.scm:2168
 msgid "Switch to the next page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2168
+#: gschem/etc/system-gschemrc.scm:2169
 msgid "_Last"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2168
+#: gschem/etc/system-gschemrc.scm:2169
 #, fuzzy
 msgid "Goto the last page"
 msgstr "Cofnij ostatnią operację"
 
-#: gschem/etc/system-gschemrc.scm:2169
+#: gschem/etc/system-gschemrc.scm:2170
 msgid "Ne_w"
 msgstr "No_wy"
 
-#: gschem/etc/system-gschemrc.scm:2169
+#: gschem/etc/system-gschemrc.scm:2170
 msgid "Create a new Page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2170
+#: gschem/etc/system-gschemrc.scm:2171
 #, fuzzy
 msgid "Prin_t"
 msgstr "Drukuj..."
 
-#: gschem/etc/system-gschemrc.scm:2170
+#: gschem/etc/system-gschemrc.scm:2171
 #, fuzzy
 msgid "Print the current page"
 msgstr "Bieżącej stronie"
 
-#: gschem/etc/system-gschemrc.scm:2171
+#: gschem/etc/system-gschemrc.scm:2172
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2172
+#: gschem/etc/system-gschemrc.scm:2173
 #, fuzzy
 msgid "Close the current page"
 msgstr "Bieżącej stronie"
 
-#: gschem/etc/system-gschemrc.scm:2175
+#: gschem/etc/system-gschemrc.scm:2176
 msgid "_Discard"
 msgstr "Po_rzuć"
 
-#: gschem/etc/system-gschemrc.scm:2175
+#: gschem/etc/system-gschemrc.scm:2176
 #, fuzzy
 msgid "Close the current page without saving"
 msgstr "_Zamknij bez zapisywania"
 
-#: gschem/etc/system-gschemrc.scm:2178
+#: gschem/etc/system-gschemrc.scm:2179
 msgid "_Down Schematic"
 msgstr "W głąb _schematu"
 
-#: gschem/etc/system-gschemrc.scm:2178
+#: gschem/etc/system-gschemrc.scm:2179
 #, fuzzy
 msgid "Descend down in the schematic hierarchy"
 msgstr "Szukaj również wewnątrz elementów"
 
-#: gschem/etc/system-gschemrc.scm:2179
+#: gschem/etc/system-gschemrc.scm:2180
 msgid "Down _Symbol"
 msgstr "W głąb _elementu"
 
-#: gschem/etc/system-gschemrc.scm:2179
+#: gschem/etc/system-gschemrc.scm:2180
 #, fuzzy
 msgid "Descend down in the symbol hierarchy"
 msgstr "Szukaj również wewnątrz elementów"
 
-#: gschem/etc/system-gschemrc.scm:2180
+#: gschem/etc/system-gschemrc.scm:2181
 msgid "_Up"
 msgstr "W _górę"
 
-#: gschem/etc/system-gschemrc.scm:2180
+#: gschem/etc/system-gschemrc.scm:2181
 #, fuzzy
 msgid "ascend up in the schematic hierarchy"
 msgstr "Szukaj również wewnątrz elementów"
 
-#: gschem/etc/system-gschemrc.scm:2181
+#: gschem/etc/system-gschemrc.scm:2182
 #, fuzzy
 msgid "Find component documentation"
 msgstr "Dokumentacja _elementu..."
 
-#: gschem/etc/system-gschemrc.scm:2189
+#: gschem/etc/system-gschemrc.scm:2190
 msgid "_Component..."
 msgstr "_Element..."
 
-#: gschem/etc/system-gschemrc.scm:2189
+#: gschem/etc/system-gschemrc.scm:2190
 msgid "Insert a symbol from the component library"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2190
+#: gschem/etc/system-gschemrc.scm:2191
 msgid "_Net"
 msgstr "_Sieć"
 
-#: gschem/etc/system-gschemrc.scm:2190
+#: gschem/etc/system-gschemrc.scm:2191
 #, fuzzy
 msgid "Add net"
 msgstr "/Dodaj połączenie"
 
-#: gschem/etc/system-gschemrc.scm:2191
+#: gschem/etc/system-gschemrc.scm:2192
 msgid "B_us"
 msgstr "_Magistrala"
 
-#: gschem/etc/system-gschemrc.scm:2191
+#: gschem/etc/system-gschemrc.scm:2192
 #, fuzzy
 msgid "Add bus"
 msgstr "/Dodaj magistralę"
 
-#: gschem/etc/system-gschemrc.scm:2192
+#: gschem/etc/system-gschemrc.scm:2193
 msgid "_Attribute..."
 msgstr "_Atrybut..."
 
-#: gschem/etc/system-gschemrc.scm:2192
+#: gschem/etc/system-gschemrc.scm:2193
 #, fuzzy
 msgid "Add attribute"
 msgstr "Dodaj atrybut"
 
-#: gschem/etc/system-gschemrc.scm:2193
+#: gschem/etc/system-gschemrc.scm:2194
 msgid "_Text..."
 msgstr "_Tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2193
+#: gschem/etc/system-gschemrc.scm:2194
 #, fuzzy
 msgid "Add text"
 msgstr "/Dodaj tekst"
 
-#: gschem/etc/system-gschemrc.scm:2196
+#: gschem/etc/system-gschemrc.scm:2197
 msgid "A_rc"
 msgstr "Ł_uk"
 
-#: gschem/etc/system-gschemrc.scm:2196
+#: gschem/etc/system-gschemrc.scm:2197
 msgid "Create arc"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2197
+#: gschem/etc/system-gschemrc.scm:2198
 msgid "_Box"
 msgstr "Pros_tokąt"
 
-#: gschem/etc/system-gschemrc.scm:2197
+#: gschem/etc/system-gschemrc.scm:2198
 #, fuzzy
 msgid "Add box"
 msgstr "/Dodaj magistralę"
 
-#: gschem/etc/system-gschemrc.scm:2198
+#: gschem/etc/system-gschemrc.scm:2199
 msgid "C_ircle"
 msgstr "_Okrąg"
 
-#: gschem/etc/system-gschemrc.scm:2198
+#: gschem/etc/system-gschemrc.scm:2199
 #, fuzzy
 msgid "Add circle"
 msgstr "Okrąg"
 
-#: gschem/etc/system-gschemrc.scm:2199
+#: gschem/etc/system-gschemrc.scm:2200
 msgid "_Line"
 msgstr "_Linia"
 
-#: gschem/etc/system-gschemrc.scm:2199
+#: gschem/etc/system-gschemrc.scm:2200
 #, fuzzy
 msgid "Add line"
 msgstr "Linię"
 
-#: gschem/etc/system-gschemrc.scm:2200
+#: gschem/etc/system-gschemrc.scm:2201
 msgid "Pat_h"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2200 gschem/scheme/gschem/builtins.scm:248
+#: gschem/etc/system-gschemrc.scm:2201 gschem/scheme/gschem/builtins.scm:248
 #, fuzzy
 msgid "Add Path"
 msgstr "/Dodaj połączenie"
 
-#: gschem/etc/system-gschemrc.scm:2201
+#: gschem/etc/system-gschemrc.scm:2202
 msgid "Pictu_re..."
 msgstr "Ob_raz..."
 
-#: gschem/etc/system-gschemrc.scm:2201
+#: gschem/etc/system-gschemrc.scm:2202
 msgid "Insert an image into the current document"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2202
+#: gschem/etc/system-gschemrc.scm:2203
 msgid "_Pin"
 msgstr "_Pin"
 
-#: gschem/etc/system-gschemrc.scm:2202
+#: gschem/etc/system-gschemrc.scm:2203
 #, fuzzy
 msgid "Add pin"
 msgstr "Linię"
 
-#: gschem/etc/system-gschemrc.scm:2210
+#: gschem/etc/system-gschemrc.scm:2211
 msgid "Create a new session"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2211
+#: gschem/etc/system-gschemrc.scm:2212
 msgid "Launch the open Session dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2212
+#: gschem/etc/system-gschemrc.scm:2213
 msgid "_Restore"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2212
+#: gschem/etc/system-gschemrc.scm:2213
 msgid "Restore an existing Session"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2214
+#: gschem/etc/system-gschemrc.scm:2215
 #, fuzzy
 msgid "Save the current Session"
 msgstr "Bieżący widok"
 
-#: gschem/etc/system-gschemrc.scm:2215
+#: gschem/etc/system-gschemrc.scm:2216
 msgid "Save the current Session to another name"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2217
+#: gschem/etc/system-gschemrc.scm:2218
 #, fuzzy
 msgid "_Manage..."
 msgstr "_Zarządzaj..."
 
-#: gschem/etc/system-gschemrc.scm:2217
+#: gschem/etc/system-gschemrc.scm:2218
 #, fuzzy
 msgid "Open the Session Manager dialog"
 msgstr "Zarządzanie arkuszami"
 
-#: gschem/etc/system-gschemrc.scm:2225
+#: gschem/etc/system-gschemrc.scm:2226
 msgid "_Attach"
 msgstr "_Dołącz"
 
-#: gschem/etc/system-gschemrc.scm:2225
+#: gschem/etc/system-gschemrc.scm:2226
 msgid "Attach selected attributes to symbol"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2226
+#: gschem/etc/system-gschemrc.scm:2227
 msgid "_Detach"
 msgstr "_Odłącz"
 
-#: gschem/etc/system-gschemrc.scm:2226
+#: gschem/etc/system-gschemrc.scm:2227
 #, fuzzy
 msgid "Dettach selected attributes from a symbol"
 msgstr "Odłączony atrybut"
 
-#: gschem/etc/system-gschemrc.scm:2227
+#: gschem/etc/system-gschemrc.scm:2228
 msgid "Show _Value"
 msgstr "Pokazuj _wartość"
 
-#: gschem/etc/system-gschemrc.scm:2227
+#: gschem/etc/system-gschemrc.scm:2228
 msgid "Set selected value visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2228
+#: gschem/etc/system-gschemrc.scm:2229
 msgid "Show _Name"
 msgstr "Pokazuj _nazwę"
 
-#: gschem/etc/system-gschemrc.scm:2228
+#: gschem/etc/system-gschemrc.scm:2229
 msgid "Set selected name visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2229
+#: gschem/etc/system-gschemrc.scm:2230
 msgid "Show _Both"
 msgstr "Pokazuj o_bie"
 
-#: gschem/etc/system-gschemrc.scm:2229
+#: gschem/etc/system-gschemrc.scm:2230
 msgid "Set selected name and value visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2231
+#: gschem/etc/system-gschemrc.scm:2232
 msgid "_Toggle Visibility"
 msgstr "Przełącz _widoczność"
 
-#: gschem/etc/system-gschemrc.scm:2231
+#: gschem/etc/system-gschemrc.scm:2232
 #, fuzzy
 msgid "Toggle attribute visibilty"
 msgstr "Przełącz _widoczność"
 
-#: gschem/etc/system-gschemrc.scm:2232
+#: gschem/etc/system-gschemrc.scm:2233
 #, fuzzy
 msgid "_Reset Position"
 msgstr "Lokalizacja docelowa"
 
-#: gschem/etc/system-gschemrc.scm:2232
+#: gschem/etc/system-gschemrc.scm:2233
 msgid "Restore attribute positions and orientation"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2234
+#: gschem/etc/system-gschemrc.scm:2235
 msgid "_Find Specific Text..."
 msgstr "_Szukaj tekstu..."
 
-#: gschem/etc/system-gschemrc.scm:2234
+#: gschem/etc/system-gschemrc.scm:2235
 #, fuzzy
 msgid "Find an attribute"
 msgstr "Dodaj atrybut"
 
-#: gschem/etc/system-gschemrc.scm:2235
+#: gschem/etc/system-gschemrc.scm:2236
 msgid "_Hide Specific Text..."
 msgstr "_Ukryj wybrany tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2235
+#: gschem/etc/system-gschemrc.scm:2236
 #, fuzzy
 msgid "Hide selected attribute"
 msgstr "Odłączony atrybut"
 
-#: gschem/etc/system-gschemrc.scm:2236
+#: gschem/etc/system-gschemrc.scm:2237
 msgid "_Show Specific Text..."
 msgstr "_Pokazuj wybrany tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2236
+#: gschem/etc/system-gschemrc.scm:2237
 #, fuzzy
 msgid "Show a specific attribute"
 msgstr "Pokaż odziedziczone atrybuty"
 
-#: gschem/etc/system-gschemrc.scm:2238
+#: gschem/etc/system-gschemrc.scm:2239
 #, fuzzy
 msgid "Attribute _Editor..."
 msgstr "Edycja pojedyńczego atrybutu"
 
-#: gschem/etc/system-gschemrc.scm:2238
+#: gschem/etc/system-gschemrc.scm:2239
 #, fuzzy
 msgid "Open the Attibutes Editor Dialog"
 msgstr "Edycja pojedyńczego atrybutu"
 
-#: gschem/etc/system-gschemrc.scm:2246
+#: gschem/etc/system-gschemrc.scm:2247
 msgid "A_utonumber Text..."
 msgstr "A_utomatycznie numeruj..."
 
-#: gschem/etc/system-gschemrc.scm:2246
+#: gschem/etc/system-gschemrc.scm:2247
 msgid "Open Auto Number dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2247
+#: gschem/etc/system-gschemrc.scm:2248
 #, fuzzy
 msgid "Show _Console Window..."
 msgstr "Pokaż okno współrzędnych..."
 
-#: gschem/etc/system-gschemrc.scm:2247
+#: gschem/etc/system-gschemrc.scm:2248
 msgid "Display the console"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2248
+#: gschem/etc/system-gschemrc.scm:2249
 #, fuzzy
 msgid "Show Coord _Window..."
 msgstr "Pokaż okno współrzędnych..."
 
-#: gschem/etc/system-gschemrc.scm:2248
+#: gschem/etc/system-gschemrc.scm:2249
 msgid "Display coordinates"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2251 gschem/scheme/gschem/builtins.scm:319
+#: gschem/etc/system-gschemrc.scm:2252 gschem/scheme/gschem/builtins.scm:319
 msgid "Invoke Macro"
 msgstr "Wykonaj makro"
 
-#: gschem/etc/system-gschemrc.scm:2251
+#: gschem/etc/system-gschemrc.scm:2252
 #, fuzzy
 msgid "Invoke a macro"
 msgstr "Wykonaj makro"
 
-#: gschem/etc/system-gschemrc.scm:2254
+#: gschem/etc/system-gschemrc.scm:2255
 #, fuzzy
 msgid "Symbol _Translate..."
 msgstr "Tłumaczenie symbolu..."
 
-#: gschem/etc/system-gschemrc.scm:2254
+#: gschem/etc/system-gschemrc.scm:2255
 msgid "Reset the X-Y Zero point"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2255 gschem/scheme/gschem/builtins.scm:331
+#: gschem/etc/system-gschemrc.scm:2256 gschem/scheme/gschem/builtins.scm:331
 msgid "Update Component"
 msgstr "Aktualizuj element"
 
-#: gschem/etc/system-gschemrc.scm:2255
+#: gschem/etc/system-gschemrc.scm:2256
 msgid "Reload definition of selected component"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2258 gschem/scheme/gschem/builtins.scm:325
+#: gschem/etc/system-gschemrc.scm:2259 gschem/scheme/gschem/builtins.scm:325
 msgid "Embed Component/Picture"
 msgstr "Osadź element/obraz"
 
-#: gschem/etc/system-gschemrc.scm:2258
+#: gschem/etc/system-gschemrc.scm:2259
 #, fuzzy
 msgid "Embed a component or image object"
 msgstr "Osadź element w pliku schematu"
 
-#: gschem/etc/system-gschemrc.scm:2259 gschem/scheme/gschem/builtins.scm:328
+#: gschem/etc/system-gschemrc.scm:2260 gschem/scheme/gschem/builtins.scm:328
 msgid "Unembed Component/Picture"
 msgstr "Cofnij osadzanie elem./obr."
 
-#: gschem/etc/system-gschemrc.scm:2259
+#: gschem/etc/system-gschemrc.scm:2260
 #, fuzzy
 msgid "Unembed a component or image object"
 msgstr "Cofnij osadzanie elem./obr."
 
-#: gschem/etc/system-gschemrc.scm:2267
+#: gschem/etc/system-gschemrc.scm:2268
 msgid "Cycle _grid styles"
 msgstr "Przełącz styl _siatki"
 
-#: gschem/etc/system-gschemrc.scm:2267
+#: gschem/etc/system-gschemrc.scm:2268
 msgid "Toggle grid between Dot, Mesh and Off"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2268
+#: gschem/etc/system-gschemrc.scm:2269
 msgid "Scale _up Grid Spacing"
 msgstr "Z_mniejsz siatkę przyciągania"
 
-#: gschem/etc/system-gschemrc.scm:2268 gschem/etc/system-gschemrc.scm:2269
+#: gschem/etc/system-gschemrc.scm:2269 gschem/etc/system-gschemrc.scm:2270
 msgid "Increase the snap size"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2269
+#: gschem/etc/system-gschemrc.scm:2270
 msgid "Scale _down Grid Spacing"
 msgstr "Z_większ siatkę przyciągania"
 
-#: gschem/etc/system-gschemrc.scm:2270
+#: gschem/etc/system-gschemrc.scm:2271
 #, fuzzy
 msgid "S_nap Grid Spacing..."
 msgstr "_Odstęp przyciągania..."
 
-#: gschem/etc/system-gschemrc.scm:2270
+#: gschem/etc/system-gschemrc.scm:2271
 msgid "Adjust snap size"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2273
+#: gschem/etc/system-gschemrc.scm:2274
 #, fuzzy
 msgid "Toggle _Snap On-Off"
 msgstr "Przełącz _przyciąganie"
 
-#: gschem/etc/system-gschemrc.scm:2273
+#: gschem/etc/system-gschemrc.scm:2274
 msgid "Toggle the object snap mode"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2274
+#: gschem/etc/system-gschemrc.scm:2275
 #, fuzzy
 msgid "Toggle _Outline-Box"
 msgstr "Przełącz wyświetlanie _konturów"
 
-#: gschem/etc/system-gschemrc.scm:2274
+#: gschem/etc/system-gschemrc.scm:2275
 msgid "Toggle action feedback"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2275
+#: gschem/etc/system-gschemrc.scm:2276
 #, fuzzy
 msgid "Toggle _Rubberband"
 msgstr "Przełącz _rozciąganie połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2275
+#: gschem/etc/system-gschemrc.scm:2276
 #, fuzzy
 msgid "Toggle rubberband mode"
 msgstr "Przełącz _rozciąganie połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2276
+#: gschem/etc/system-gschemrc.scm:2277
 msgid "Toggle _Magnetic Net"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2276
+#: gschem/etc/system-gschemrc.scm:2277
 #, fuzzy
 msgid "Toggle magnetic net mode"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2277
+#: gschem/etc/system-gschemrc.scm:2278
 #, fuzzy
 msgid "Toggle _Drag Move"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2277
+#: gschem/etc/system-gschemrc.scm:2278
 #, fuzzy
 msgid "Toggle Drag-can-Move mode"
 msgstr "Przełącz \"_magnes\" połączeń"
 
-#: gschem/etc/system-gschemrc.scm:2280
+#: gschem/etc/system-gschemrc.scm:2281
 msgid "_Text Size..."
 msgstr "Rozmiar _tekstu..."
 
-#: gschem/etc/system-gschemrc.scm:2280
+#: gschem/etc/system-gschemrc.scm:2281
 msgid "Open the Text Size settings"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2281
+#: gschem/etc/system-gschemrc.scm:2282
 msgid "_Preferences..."
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2281
+#: gschem/etc/system-gschemrc.scm:2282
 msgid "Open the Preferences dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2290
+#: gschem/etc/system-gschemrc.scm:2291
 #, fuzzy
 msgid "Gschem Guide"
 msgstr "_FAQ gschem..."
 
-#: gschem/etc/system-gschemrc.scm:2291
+#: gschem/etc/system-gschemrc.scm:2292
 msgid "_Hotkeys..."
 msgstr "Skróty _klawiszowe..."
 
-#: gschem/etc/system-gschemrc.scm:2292
+#: gschem/etc/system-gschemrc.scm:2293
 msgid "gschem _FAQ..."
 msgstr "_FAQ gschem..."
 
-#: gschem/etc/system-gschemrc.scm:2294
+#: gschem/etc/system-gschemrc.scm:2295
 msgid "Component D_ocumentation..."
 msgstr "Dokumentacja _elementu..."
 
-#: gschem/etc/system-gschemrc.scm:2296
+#: gschem/etc/system-gschemrc.scm:2297
 msgid "gEDA Docu_mentation..."
 msgstr "Doku_mentacja gEDA..."
 
-#: gschem/etc/system-gschemrc.scm:2297
+#: gschem/etc/system-gschemrc.scm:2298
 msgid "gEDA _Wiki..."
 msgstr "_Wiki gEDA..."
 
-#: gschem/etc/system-gschemrc.scm:2298
+#: gschem/etc/system-gschemrc.scm:2299
 msgid "G_uile..."
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2299
+#: gschem/etc/system-gschemrc.scm:2300
 msgid "_About..."
 msgstr "_O programie..."
 
-#: gschem/etc/system-gschemrc.scm:2307
+#: gschem/etc/system-gschemrc.scm:2308
 msgid "Draw objects before another object"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2308
+#: gschem/etc/system-gschemrc.scm:2309
 msgid "Draw object after another object"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2310
+#: gschem/etc/system-gschemrc.scm:2311
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2311
+#: gschem/etc/system-gschemrc.scm:2312
 msgid "Lower to bottom of the drawing order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2319
+#: gschem/etc/system-gschemrc.scm:2320
 msgid "_File"
 msgstr "_Plik"
 
-#: gschem/etc/system-gschemrc.scm:2320
+#: gschem/etc/system-gschemrc.scm:2321
 msgid "_Edit"
 msgstr "_Edycja"
 
-#: gschem/etc/system-gschemrc.scm:2321
+#: gschem/etc/system-gschemrc.scm:2322
 #, fuzzy
 msgid "_Select"
 msgstr "Zaznaczanie"
 
-#: gschem/etc/system-gschemrc.scm:2323
+#: gschem/etc/system-gschemrc.scm:2324
 msgid "_View"
 msgstr "_Widok"
 
-#: gschem/etc/system-gschemrc.scm:2324
+#: gschem/etc/system-gschemrc.scm:2325
 msgid "_Page"
 msgstr "_Arkusz"
 
-#: gschem/etc/system-gschemrc.scm:2325
+#: gschem/etc/system-gschemrc.scm:2326
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: gschem/etc/system-gschemrc.scm:2326
+#: gschem/etc/system-gschemrc.scm:2327
 msgid "Sessio_ns"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2327
+#: gschem/etc/system-gschemrc.scm:2328
 msgid "A_ttributes"
 msgstr "A_trybuty"
 
-#: gschem/etc/system-gschemrc.scm:2328
+#: gschem/etc/system-gschemrc.scm:2329
 msgid "_Tools"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2338
+#: gschem/etc/system-gschemrc.scm:2339
 msgid "_Options"
 msgstr "_Ustawienia"
 
-#: gschem/etc/system-gschemrc.scm:2339
+#: gschem/etc/system-gschemrc.scm:2340
 msgid "_Help"
 msgstr "_Pomoc"
 
