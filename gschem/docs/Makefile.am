@@ -48,6 +48,7 @@ endif
 dist_man_MANS = gschem.1
 
 .1.in.1:
+	@printf "" \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(DOTTED_VERSION).$(DATE_VERSION)" ; \
