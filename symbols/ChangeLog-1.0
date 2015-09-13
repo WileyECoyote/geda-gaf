@@ -1,3 +1,13 @@
+2015-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/TL16C550-1.sym: Add symbol RS232 5x receiver, 3x transmitter,
+      5V single supply.
+
+2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX9955-1.sym: Add symbol flash-programmable 12-bit integrated
+      data-acquisition system.
+
 2015-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/16C550N-1.sym: Add symbol RS232 5x receiver, 3x transmitter
