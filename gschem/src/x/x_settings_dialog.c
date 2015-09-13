@@ -1199,8 +1199,8 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
   restore_default_color = (int)(long)data;
 
   if (restore_default_color) {
-    color_index = GPOINTER_TO_INT( g_object_get_data (G_OBJECT(item), "color-index"));
-    button      = g_object_get_data (G_OBJECT(item), "color-button");
+    color_index = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(item, "color-index"));
+    button      = GEDA_OBJECT_GET_DATA(item, "color-button");
     gtk_color_button_set_color(button, x_color_get_color_from_index(color_index));
   }
 

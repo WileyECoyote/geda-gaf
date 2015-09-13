@@ -272,12 +272,11 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
     return;
 
   ntype = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (
-              pin_data->node_type))))), WIDGET(PinNodeType)));
+              pin_data->node_type)))), WIDGET(PinNodeType)));
 
   if (ntype != PIN_NET_NODE && ntype != PIN_BUS_NODE) {
     titled_warning_dialog(_("Pin Properties"), "%s", _("Invalid Pin Node Type"));
@@ -285,12 +284,11 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   }
 
   etype = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (
-              pin_data->pin_electrical))))), WIDGET(PinElectrical)));
+              pin_data->pin_electrical)))), WIDGET(PinElectrical)));
 
   if (etype == PIN_ELECT_VOID)
     titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin electrical VOID"));
@@ -465,15 +463,15 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
   GschemToplevel *w_current = Dialog->w_current;
 
   /* Get ptr to the data structure */
-  pin_data = g_object_get_data (G_OBJECT (Dialog), IDS_PIN_EDIT);
+  pin_data = GEDA_OBJECT_GET_DATA (Dialog, IDS_PIN_EDIT);
 
   /* Determine the number of selected pin objects */
   pin_objects   = o_select_get_list_selected(w_current, OBJ_PIN);
   num_selected  = g_list_length( pin_objects);
   g_list_free (pin_objects); /*Just needed to know how many */
 
-  over_rides = g_object_get_data (G_OBJECT(Dialog), "over-rides");
-  apply_butt = g_object_get_data (G_OBJECT(Dialog), "apply-butt");
+  over_rides = GEDA_OBJECT_GET_DATA (Dialog, "over-rides");
+  apply_butt = GEDA_OBJECT_GET_DATA (Dialog, "apply-butt");
 
   /* Set sensitivity of widgets */
   if ( num_selected == 0 ) {  /* No pins selected so disable everything! */
@@ -632,7 +630,7 @@ xd_pin_type_update_selection (GschemToplevel *w_current, Object *object)
     xd_edit_pin_set_sensitivity ( Dialog );
 
     /* Get ptr to the data structure */
-    pin_data = g_object_get_data (G_OBJECT (Dialog), IDS_PIN_EDIT);
+    pin_data = GEDA_OBJECT_GET_DATA (Dialog, IDS_PIN_EDIT);
 
     /* Check this object */
     if (o_pin_get_attributes(object, &label, &number, &sequence,  &elect_type, &mech_type, &node_type)) {

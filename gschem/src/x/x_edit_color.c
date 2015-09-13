@@ -52,13 +52,14 @@
 static void
 x_dialog_color_update_selection (GschemToplevel *w_current, Object *object)
 {
-  GedaComboBox *ColorCombo;
-  int index;
-
   if (object != NULL) {
-    index = object->color;
 
-    ColorCombo = g_object_get_data (G_OBJECT (w_current->clwindow), IDS_COLOR_EDIT);
+    GedaComboBox *ColorCombo;
+    int index;
+
+    index = object->color;
+    ColorCombo = GEDA_OBJECT_GET_DATA(w_current->clwindow, IDS_COLOR_EDIT);
+
     geda_combo_box_set_active(ColorCombo, index);
   }
 }
@@ -68,7 +69,7 @@ x_dialog_color_update_selection (GschemToplevel *w_current, Object *object)
  *  This function applies a color change to the currently selected objects.
  */
 static void
-x_dialog_edit_color_apply(GtkWidget *dialog, GschemToplevel *w_current)
+x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
 {
   GList  *s_current = NULL;
   Object *object    = NULL;
@@ -83,7 +84,7 @@ x_dialog_edit_color_apply(GtkWidget *dialog, GschemToplevel *w_current)
   if(s_current != NULL) {
 
     /* Get ptr to the Combo widget */
-    ColorCombo = g_object_get_data (G_OBJECT (dialog), IDS_COLOR_EDIT);
+    ColorCombo = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_COLOR_EDIT);
 
     /* Retrieve the current index from the tree model in the widget */
     if (geda_combo_box_get_active_iter(ColorCombo, &iter)) {

@@ -101,7 +101,7 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   if (o_select_is_selection(w_current)) {
 
@@ -142,7 +142,7 @@ static void post_response_row (GschemToplevel *w_current)
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
@@ -164,7 +164,7 @@ static void post_response_row_col (GschemToplevel *w_current)
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
@@ -192,7 +192,7 @@ static void post_response_col (GschemToplevel *w_current)
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
@@ -252,7 +252,7 @@ int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   if (w_current->second_wx != -0) {
 
@@ -316,7 +316,7 @@ int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   if (event->button == 1) {
 
@@ -372,7 +372,7 @@ int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
   if (event->button == 1) {
 
@@ -407,7 +407,7 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
   array_data     *dialog_data;
   GList          *object_list;
 
-  dialog_data = g_object_get_data (G_OBJECT (dialog), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
   object_list = gschem_dialog_get_selected(GSCHEM_DIALOG(dialog));
 
   bool changed;
@@ -622,7 +622,7 @@ static void on_select_butt_clicked(GtkButton *button, void *user_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
   array_data     *dialog_data;
 
-  dialog_data = g_object_get_data (G_OBJECT (user_data), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (user_data, IDS_ARRAY_EDIT);
 
   dialog_data->press_butt   = x_dialog_array_edit_butt_pressed_select;
   dialog_data->release_butt = x_dialog_array_edit_butt_released_select;
@@ -638,7 +638,7 @@ static void on_deselect_butt_clicked(GtkButton *button, void *user_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
   array_data     *dialog_data;
 
-  dialog_data = g_object_get_data (G_OBJECT (user_data), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (user_data, IDS_ARRAY_EDIT);
 
   dialog_data->press_butt   = x_dialog_array_edit_butt_pressed_deselect;
   dialog_data->release_butt = x_dialog_array_edit_butt_released_deselect;
@@ -665,7 +665,7 @@ static void on_row_butt_clicked(GtkButton *button, void *user_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
   array_data     *dialog_data;
 
-  dialog_data = g_object_get_data (G_OBJECT (user_data), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (user_data, IDS_ARRAY_EDIT);
 
   dialog_data->post_responder = post_response_row;
 
@@ -680,7 +680,7 @@ static void on_row_col_butt_clicked(GtkButton *button, void *user_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
   array_data     *dialog_data;
 
-  dialog_data = g_object_get_data (G_OBJECT (user_data), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (user_data, IDS_ARRAY_EDIT);
 
   dialog_data->post_responder = post_response_row_col;
 
@@ -694,7 +694,7 @@ static void on_col_butt_clicked(GtkButton *button, void *user_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
   array_data     *dialog_data;
 
-  dialog_data = g_object_get_data (G_OBJECT (user_data), IDS_ARRAY_EDIT);
+  dialog_data = GEDA_OBJECT_GET_DATA (user_data, IDS_ARRAY_EDIT);
 
   dialog_data->post_responder = post_response_col;
 

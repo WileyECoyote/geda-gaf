@@ -38,7 +38,7 @@
  */
 
 #define GEDA_OBJECT_GET_DATA(object, key) \
-    g_object_get_data (G_OBJECT (object), key)
+    g_object_get_data (G_OBJECT(object), key)
 
 #define GEDA_OBJECT_SET_DATA(object, data,  key) \
     g_object_set_data (G_OBJECT(object), key, data);

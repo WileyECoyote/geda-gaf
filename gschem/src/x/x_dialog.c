@@ -494,7 +494,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 
   switch (response) {
   case GEDA_RESPONSE_ACCEPT:
-    snap_size = g_object_get_data (G_OBJECT(Dialog), IDS_SNAP_SIZE);
+    snap_size = GEDA_OBJECT_GET_DATA(Dialog, IDS_SNAP_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(snap_size));
 
     w_current->snap_size = size;
@@ -578,7 +578,7 @@ void snap_size_dialog (GschemToplevel *w_current)
   }
 
   /* always set the current gschem value to the dialog entry */
-  snap_size = g_object_get_data (G_OBJECT(Dialog), IDS_SNAP_SIZE);
+  snap_size = GEDA_OBJECT_GET_DATA(Dialog, IDS_SNAP_SIZE);
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(snap_size), w_current->snap_size);
   gtk_editable_select_region(GTK_EDITABLE(snap_size), 0, -1);
 }
@@ -605,7 +605,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 
   switch (response) {
   case GEDA_RESPONSE_ACCEPT:
-    text_size = g_object_get_data (G_OBJECT(Dialog), IDS_TEXT_SIZE);
+    text_size = GEDA_OBJECT_GET_DATA(Dialog, IDS_TEXT_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(text_size));
 
     w_current->text_size = size;
@@ -685,7 +685,7 @@ void text_size_dialog (GschemToplevel *w_current)
   }
 
   /* always set the current text size to the dialog */
-  text_size = g_object_get_data (G_OBJECT(Dialog),IDS_TEXT_SIZE);
+  text_size = GEDA_OBJECT_GET_DATA(Dialog,IDS_TEXT_SIZE);
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(text_size), w_current->text_size);
   gtk_editable_select_region(GTK_EDITABLE(text_size), 0, -1);
 }
@@ -755,9 +755,9 @@ x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
 
   GtkWidget *Dialog = w_current->aawindow;
 
-  spin_radius = g_object_get_data (G_OBJECT(Dialog), "radius");
-  spin_start  = g_object_get_data (G_OBJECT(Dialog), "spin_start");
-  spin_sweep  = g_object_get_data (G_OBJECT(Dialog), "spin_sweep");
+  spin_radius = GEDA_OBJECT_GET_DATA(Dialog, "radius");
+  spin_start  = GEDA_OBJECT_GET_DATA(Dialog, "spin_start");
+  spin_sweep  = GEDA_OBJECT_GET_DATA(Dialog, "spin_sweep");
 
   if (object == NULL) {
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_radius), w_current->distance);
@@ -801,11 +801,11 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   }
 
   /* Get ptr to the spinner widgets */
-  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"radius");
+  spin_entry  = GEDA_OBJECT_GET_DATA(Dialog,"radius");
   radius      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
-  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"spin_start");
+  spin_entry  = GEDA_OBJECT_GET_DATA(Dialog,"spin_start");
   start_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
-  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"spin_sweep");
+  spin_entry  = GEDA_OBJECT_GET_DATA(Dialog,"spin_sweep");
   sweep_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
 
   if (s_current != NULL) {
@@ -1346,7 +1346,7 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
                 GTK_OPTION_MENU (fill_data->fill_type))));
 
   type = GPOINTER_TO_INT(
-    g_object_get_data (G_OBJECT (menuitem), "filltype"));
+    GEDA_OBJECT_GET_DATA (menuitem, "filltype"));
 
   switch(type) {
   case(FILLING_HOLLOW):
@@ -1416,12 +1416,11 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   pitch2_str = GetEntryText ( fill_data->pitch2_entry );
 
   type = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
-                        fill_data->fill_type))))), "filltype"));
+                        fill_data->fill_type)))), "filltype"));
 
   if (type == FILLING_VOID)
     type = LEAVE_ALONE;
@@ -1543,7 +1542,7 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
 
   /* Get ptr to the data structure */
   Dialog    = w_current->hpwindow;
-  fill_data = g_object_get_data (G_OBJECT (Dialog), IDS_FILL_TYPE);
+  fill_data = GEDA_OBJECT_GET_DATA(Dialog, IDS_FILL_TYPE);
 
   if (o_select_is_selection(w_current)) {
 
@@ -1928,8 +1927,8 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
     GTK_MENU (gtk_option_menu_get_menu (
                 GTK_OPTION_MENU (line_data->line_type))));
 
-  type = GPOINTER_TO_INT(
-    g_object_get_data (G_OBJECT (menuitem), "linetype"));
+  type = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(menuitem, "linetype"));
+
   switch(type) {
       case(TYPE_SOLID):
         activate_length_entry = FALSE;
@@ -1994,24 +1993,22 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   space_str   = GetEntryText ( line_data->space_entry );
 
   type = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
-                        line_data->line_type))))), "linetype"));
+                        line_data->line_type)))), "linetype"));
 
   if (type == TYPE_ERASE) {
     type = LEAVE_ALONE;
   }
 
   end = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
-                        line_data->end_type))))), "endtype"));
+                        line_data->end_type)))), "endtype"));
 
   if (end == END_VOID) {
     end = LEAVE_ALONE;
@@ -2128,7 +2125,7 @@ x_dialog_line_type_update_selection (GschemToplevel *w_current,
   /* Get ptr to the data structure */
   Dialog    = w_current->ltwindow;
 
-  line_data = g_object_get_data (G_OBJECT (Dialog), IDS_LINE_TYPE);
+  line_data = GEDA_OBJECT_GET_DATA (Dialog, IDS_LINE_TYPE);
 
   if (o_select_is_selection(w_current)) {
 
@@ -2328,9 +2325,9 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
     case GEDA_RESPONSE_ACCEPT:
 
       /* Get the stored pointer to objects */
-      checkdescend = g_object_get_data (G_OBJECT(Dialog), "checkdescend");
-      checkhidden  = g_object_get_data (G_OBJECT(Dialog), "checkhidden");
-      textentry    = g_object_get_data (G_OBJECT(Dialog), IDS_FIND_TEXT);
+      checkdescend = GEDA_OBJECT_GET_DATA(Dialog, "checkdescend");
+      checkhidden  = GEDA_OBJECT_GET_DATA(Dialog, "checkhidden");
+      textentry    = GEDA_OBJECT_GET_DATA(Dialog, IDS_FIND_TEXT);
 
       search_flags = 0;
 
@@ -2369,7 +2366,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 
           GtkWidget  *checkascent;
 
-          checkascent = g_object_get_data (G_OBJECT(Dialog), "checkascent");
+          checkascent = GEDA_OBJECT_GET_DATA(Dialog, "checkascent");
           if (GetToggleState(checkascent)) {
             x_window_close_page (w_current, forget_page);
           }
@@ -2504,7 +2501,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
   }
 
   /* always select the text string in the entry */
-  textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_FIND_TEXT);
+  textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_FIND_TEXT);
   SetEntryText   (textentry, text_buffer);
   EntrySelectAll (textentry);
 }
@@ -2534,7 +2531,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
-    textentry = g_object_get_data (G_OBJECT(Dialog), IDS_HIDE_TEXT);
+    textentry = GEDA_OBJECT_GET_DATA(Dialog, IDS_HIDE_TEXT);
 
     /* Retrieve the text string from the Entry widget */
     string = GetEntryText( textentry );
@@ -2612,7 +2609,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
   }
 
   /* always select the text in the search entry */
-  textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_HIDE_TEXT);
+  textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_HIDE_TEXT);
   SetEntryText   ( textentry, text_buffer );
   EntrySelectAll (textentry );
 }
@@ -2642,7 +2639,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
-    textentry = g_object_get_data (G_OBJECT(Dialog),IDS_SHOW_TEXT);
+    textentry = GEDA_OBJECT_GET_DATA(Dialog,IDS_SHOW_TEXT);
 
     /* Retrieve the text string from the Entry widget */
     string    = GetEntryText( textentry );
@@ -2720,7 +2717,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
   }
 
   /* always select the text in the entry */
-  textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_SHOW_TEXT);
+  textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_SHOW_TEXT);
   SetEntryText   ( textentry, text_buffer );
   EntrySelectAll ( textentry );
 }
@@ -2745,7 +2742,7 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
 
-  tientry = g_object_get_data (G_OBJECT(Dialog), IDS_TEXT_INPUT);
+  tientry = GEDA_OBJECT_GET_DATA(Dialog, IDS_TEXT_INPUT);
 
   textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(tientry));
 
@@ -2895,7 +2892,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
   }
 
   /* always select the text in the entry */
-  tientry = g_object_get_data (G_OBJECT(ThisDialog), IDS_TEXT_INPUT);
+  tientry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_INPUT);
   select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
   gtk_widget_grab_focus(tientry);
 }
@@ -2925,7 +2922,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     /* void */
     break;
   case GEDA_RESPONSE_ACCEPT:
-    textentry = g_object_get_data (G_OBJECT(Dialog),IDS_TRANSLATE);
+    textentry = GEDA_OBJECT_GET_DATA(Dialog,IDS_TRANSLATE);
     string = GetEntryText( textentry );
     if (strlen(string) != 0) {
       o_complex_translate_all(w_current, atoi(string));
@@ -3026,7 +3023,7 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
   switch(response) {
   case GEDA_RESPONSE_CLOSE:
   case GEDA_RESPONSE_DELETE_EVENT:
-    butt = g_object_get_data (G_OBJECT(w_current->hkwindow), WIDGET(ShowBinding));
+    butt = GEDA_OBJECT_GET_DATA (w_current->hkwindow, WIDGET(ShowBinding));
     show_bind = gtk_toggle_button_get_active(butt);
     cfg = eda_config_get_user_context ();
     eda_config_set_boolean (cfg, IVAR_CONFIG_GROUP, "hotkey-show-bind", show_bind);

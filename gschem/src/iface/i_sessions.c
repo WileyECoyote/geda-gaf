@@ -549,8 +549,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
-    sessions_menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar),
-                                                          SESSIONS_RESTORE_SUBMENU);
+    sessions_menu_item = GEDA_OBJECT_GET_DATA(menubar, SESSIONS_RESTORE_SUBMENU);
 
     if(sessions_menu_item != NULL) {
 
@@ -605,8 +604,8 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 static void update_sessions_menus(GschemToplevel *w_current)
 {
    GtkWidget        *menubar;
+   GtkWidget        *menu_item;
    GtkWidget        *submenu;
-   GtkWidget        *sessions_menu_item;
    GList            *iter;
 
    for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
@@ -616,15 +615,14 @@ static void update_sessions_menus(GschemToplevel *w_current)
       if (menubar == NULL)
         continue;
 
-      sessions_menu_item =
-        (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar),
-                                          SESSIONS_RESTORE_SUBMENU);
-      if (sessions_menu_item == NULL) {
+      menu_item = GEDA_OBJECT_GET_DATA (menubar,SESSIONS_RESTORE_SUBMENU);
+
+      if (menu_item == NULL) {
          /* The main Session menu did not get defined so do nothing */
          break;
       }
 
-      submenu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(sessions_menu_item));
+      submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM(menu_item));
 
       if (submenu != NULL) {
         gtk_widget_destroy(submenu);

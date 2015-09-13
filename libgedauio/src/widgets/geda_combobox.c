@@ -3875,9 +3875,9 @@ find_menu_by_path (GtkWidget   *menu,
   item = NULL;
   for (i = list; i; i = i->next) {
 
-    if (GTK_IS_SEPARATOR_MENU_ITEM (i->data))
-    {
-      mref = g_object_get_data (G_OBJECT (i->data), "gtk-combo-box-item-path");
+    if (GTK_IS_SEPARATOR_MENU_ITEM (i->data)) {
+
+      mref = GEDA_OBJECT_GET_DATA (i->data, "gtk-combo-box-item-path");
       if (!mref)
         continue;
       else if (!gtk_tree_row_reference_valid (mref))

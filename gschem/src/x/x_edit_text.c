@@ -147,7 +147,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     /* Grey non matching values */
     {
-      widget = g_object_get_data (G_OBJECT (ThisDialog), IDS_TEXT_EDIT);
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
       if (GTK_IS_TEXT_VIEW (widget)) {
         textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
 
@@ -164,7 +164,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     }
 
     { /* Text Font Size */
-      widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextFont));
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextFont));
       if (GEDA_IS_FONT_BUTTON(widget)) {
         if (match_size) {
           gtk_widget_set_can_default (widget, TRUE);
@@ -177,7 +177,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     }
 
     { /* Text Color */
-      widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextColor));
       if (match_color) {
         geda_combo_widget_set_active (widget, text_color);
       }
@@ -188,7 +188,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     }
 
     { /* Text Alignment */
-      widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextAlign));
       if (match_align) {
         geda_combo_widget_set_active(widget, alignment_lookup[text_align]);
       }
@@ -198,7 +198,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     }
 
     { /* Text Rotation */
-      widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(Rotation));
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(Rotation));
       if (match_angle) {
         gtk_spin_button_set_value (GTK_SPIN_BUTTON(widget), text_angle);
         gtk_widget_set_can_default (widget, TRUE);
@@ -297,14 +297,14 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   /* text string entry will only show up if one object is selected */
   {
-    widget = g_object_get_data (G_OBJECT (ThisDialog), IDS_TEXT_EDIT);
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
     textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(widget));
     gtk_text_buffer_get_bounds (textbuffer, &start, &end);
     string = gtk_text_iter_get_text (&start, &end);
   }
 
   { /* Text Size */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextFont));
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextFont));
     has_value = gtk_widget_get_can_default (widget);
     if (has_value) {
       fontname = geda_font_button_get_font_name(GEDA_FONT_BUTTON (widget));
@@ -315,7 +315,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   }
 
   { /* Text Color */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextColor));
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextColor));
     text_color = geda_combo_widget_get_active(widget);
     if (text_color > 0) {
       if (geda_combo_widget_get_active_iter(widget, &iter)) {
@@ -326,7 +326,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   }
 
   { /* Text Alignment */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(TextAlign));
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextAlign));
     has_value = geda_combo_widget_get_active(widget);
     if (has_value >= 0) {
       if (geda_combo_widget_get_active_iter(widget, &iter)) {
@@ -337,7 +337,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
   }
 
   { /* Text Rotation */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), WIDGET(Rotation));
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(Rotation));
     has_value = gtk_widget_get_can_default (widget);
     if (has_value)
       text_angle = GET_SPIN_IVALUE(widget);

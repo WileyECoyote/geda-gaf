@@ -1087,7 +1087,7 @@ static void gtk_set_item_active(GtkWidget *widget, bool state) {
     GObject      *object;
 
     object  = G_OBJECT(widget);
-    handler =  (unsigned long) g_object_get_data(object, "handler");
+    handler = (unsigned long) GEDA_OBJECT_GET_DATA(object, "handler");
 
     if( handler) {
       g_signal_handler_block( object, handler);       /* disable signal */
@@ -1202,7 +1202,7 @@ compselect_popup_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
   int  i;
   GtkCheckMenuItem *real_butt;
 
-  i = GPOINTER_TO_INT (g_object_get_data( G_OBJECT(button), "index"));
+  i = GPOINTER_TO_INT (GEDA_OBJECT_GET_DATA(button, "index"));
   real_butt = g_slist_nth_data(compselect->style_menu_widgets, i);
 
   gtk_check_menu_item_set_active(real_butt, gtk_check_menu_item_get_active(button));
@@ -1231,8 +1231,8 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
 
   menuitem = gtk_menu_get_active ( GTK_MENU
             (gtk_option_menu_get_menu (GTK_OPTION_MENU (optionmenu))));
-  menu_choice = GPOINTER_TO_INT(
-             g_object_get_data (G_OBJECT (menuitem), "behaviors"));
+
+  menu_choice = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(menuitem, "behaviors"));
 
   switch(menu_choice) {
     case COMPSELECT_BEHAVIOR_REFERENCE:
@@ -3069,8 +3069,8 @@ static void compselect_get_property (GObject     *object,
           break;
         }
       case PROP_BEHAVIOR:
-        menuitem = gtk_menu_get_active( GTK_MENU(gtk_option_menu_get_menu(compselect->behavior_menu)));
-        g_value_set_enum (value, GPOINTER_TO_INT(g_object_get_data (G_OBJECT (menuitem), "behaviors")));
+        menuitem = gtk_menu_get_active (GTK_MENU (gtk_option_menu_get_menu(compselect->behavior_menu)));
+        g_value_set_enum (value, GPOINTER_TO_INT (GEDA_OBJECT_GET_DATA (menuitem, "behaviors")));
         break;
       case PROP_HIDDEN:
         g_value_set_boolean (value, compselect->hidden);

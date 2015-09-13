@@ -1883,20 +1883,17 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
   GtkWidget *toplevel;
   GtkWidget *mnemonic_menu;
 
-  mnemonic_menu = g_object_get_data (G_OBJECT (label), "gtk-mnemonic-menu");
+  mnemonic_menu = GEDA_OBJECT_GET_DATA(label, "gtk-mnemonic-menu");
 
-  if (last_key != GDK_KEY_VoidSymbol)
-  {
-    if (priv->mnemonic_window)
-    {
+  if (last_key != GDK_KEY_VoidSymbol) {
+
+    if (priv->mnemonic_window) {
+
       gtk_window_remove_mnemonic  (priv->mnemonic_window, last_key, widget);
       priv->mnemonic_window = NULL;
     }
-    if (mnemonic_menu)
-    {
-      //_gtk_menu_shell_remove_mnemonic (GTK_MENU_SHELL (mnemonic_menu),
-      //                                 last_key,
-      //                                 widget);
+
+    if (mnemonic_menu) {
       mnemonic_menu = NULL;
     }
   }
@@ -1907,26 +1904,19 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
   connect_mnemonics_visible_notify (GEDA_LABEL (widget));
 
   toplevel = gtk_widget_get_toplevel (widget);
-  if (gtk_widget_is_toplevel (toplevel))
-  {
+
+  if (gtk_widget_is_toplevel (toplevel)) {
+
     GtkWidget *menu_shell;
 
     menu_shell = gtk_widget_get_ancestor (widget,
                                           GTK_TYPE_MENU_SHELL);
 
-    if (menu_shell)
-    {
-      //_gtk_menu_shell_add_mnemonic (GTK_MENU_SHELL (menu_shell),
-      //                              priv->mnemonic_keyval,
-      //                              widget);
+    if (menu_shell) {
       mnemonic_menu = menu_shell;
     }
 
-    if (!GTK_IS_MENU (menu_shell))
-    {
-      //gtk_window_add_mnemonic (GTK_WINDOW (toplevel),
-      //                         priv->mnemonic_keyval,
-      //                         widget);
+    if (!GTK_IS_MENU (menu_shell)) {
       priv->mnemonic_window = GTK_WINDOW (toplevel);
     }
   }
@@ -1947,11 +1937,13 @@ static void
 label_shortcut_setting_traverse_container (GtkWidget *widget,
                                            void *   data)
 {
-  if (GEDA_IS_LABEL (widget))
+  if (GEDA_IS_LABEL (widget)) {
     label_shortcut_setting_apply (GEDA_LABEL (widget));
-  else if (GTK_IS_CONTAINER (widget))
+  }
+  else if (GTK_IS_CONTAINER (widget)) {
     gtk_container_forall (GTK_CONTAINER (widget),
                           label_shortcut_setting_traverse_container, data);
+  }
 }
 
 static void
@@ -2040,11 +2032,10 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
   settings = gtk_widget_get_settings (widget);
 
   shortcuts_connected =
-    GPOINTER_TO_INT (g_object_get_data (G_OBJECT (settings),
-                                        "gtk-label-shortcuts-connected"));
+  (int)(long)GEDA_OBJECT_GET_DATA (settings, "gtk-label-shortcuts-connected");
 
-  if (! shortcuts_connected)
-    {
+  if (! shortcuts_connected) {
+
       g_signal_connect (settings, "notify::gtk-enable-mnemonics",
                         G_CALLBACK (label_shortcut_setting_changed),
                         NULL);
@@ -2053,15 +2044,15 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
                         NULL);
 
       g_object_set_data (G_OBJECT (settings), "gtk-label-shortcuts-connected",
-                         GINT_TO_POINTER (TRUE));
-    }
+                        (void*)(long)TRUE);
+  }
 
   label_shortcut_setting_apply (GEDA_LABEL (widget));
 }
 
 
 static void
-label_mnemonic_widget_weak_notify (void * data, GObject *where_the_object_was)
+label_mnemonic_widget_weak_notify (void *data, GObject *where_the_object_was)
 {
   GedaLabel *label = data;
   GedaLabelPrivate *priv = label->priv;
@@ -4371,9 +4362,8 @@ connect_mnemonics_visible_notify (GedaLabel *label)
   label->priv->mnemonics_visible =
     gtk_window_get_mnemonics_visible (GTK_WINDOW (toplevel));
 
-  connected =
-  GPOINTER_TO_INT (g_object_get_data (G_OBJECT (toplevel),
-                                      "gtk-label-mnemonics-visible-connected"));
+  connected = (int)(long)
+  GEDA_OBJECT_GET_DATA(toplevel, "gtk-label-mnemonics-visible-connected");
 
   if (!connected) {
 
@@ -5708,7 +5698,7 @@ static void geda_label_select_all (GedaLabel *label)
  */
 static void activate_cb (GtkWidget *menuitem, GedaLabel *label)
 {
-  const char *signal = g_object_get_data (G_OBJECT (menuitem), "gtk-signal");
+  const char *signal = GEDA_OBJECT_GET_DATA(menuitem, "gtk-signal");
   g_signal_emit_by_name (label, signal);
 }
 

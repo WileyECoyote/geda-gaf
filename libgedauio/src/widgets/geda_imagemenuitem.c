@@ -1092,7 +1092,7 @@ geda_image_menu_item_screen_changed (GtkWidget *widget,
   settings = gtk_widget_get_settings (widget);
 
   show_image_connection =
-  GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (settings),
+  (void*)(long) (GEDA_OBJECT_GET_DATA(settings,
                                        "gtk-image-menu-item-connection"));
 
   if (show_image_connection)

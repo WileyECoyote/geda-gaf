@@ -1293,7 +1293,7 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
   GSList    *scope_group;
 
   /* Scope */
-  scope_group = g_object_get_data (G_OBJECT (autotext->dialog), "ScopeGroup");
+  scope_group = GEDA_OBJECT_GET_DATA(autotext->dialog, "ScopeGroup");
 
   geda_bulb_group_set_active_index (scope_group, autotext->last_criteria);
 
@@ -1360,19 +1360,17 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 
   /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
   autotext->scope_number = GPOINTER_TO_INT(
-    g_object_get_data (
-      G_OBJECT (
+    GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
-            GTK_OPTION_MENU (ScopeNumberMenu))))), "scope_menu"));
+            GTK_OPTION_MENU (ScopeNumberMenu)))), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
     autotext->scope_skip = GPOINTER_TO_INT(
-      g_object_get_data (
-        G_OBJECT (
+      GEDA_OBJECT_GET_DATA (
           gtk_menu_get_active (
             GTK_MENU (gtk_option_menu_get_menu (
-              GTK_OPTION_MENU (ScopeSkipMenu))))), "scope_menu"));
+              GTK_OPTION_MENU (ScopeSkipMenu)))), "scope_menu"));
 
       autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 

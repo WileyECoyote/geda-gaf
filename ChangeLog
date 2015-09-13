@@ -1,3 +1,8 @@
+2015-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_wrap.h: New file for wrapper utility macros that do not
+      seem fit into other files.
+
 2015-09-12 dmn <graahnul.grom@gmail.com>
 
     * Code Enhancement: Improve Platform Compatibility.

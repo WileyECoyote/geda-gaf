@@ -176,7 +176,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   int         note_tab;
 
   if (w_current->save_ui_settings) {
-    notebook = g_object_get_data (G_OBJECT(Dialog), "notebook");
+    notebook = GEDA_OBJECT_GET_DATA(Dialog, "notebook");
     note_tab = gtk_notebook_get_current_page (GTK_NOTEBOOK(notebook));
     cfg      = eda_config_get_user_context();
     group    = IVAR_CONFIG_GROUP;

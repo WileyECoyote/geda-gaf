@@ -332,7 +332,7 @@ static char *popup_tips[]={  "Set silder to zoom mode",
  */
 static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
 {
-    GedaImageChooser *chooser = g_object_get_data (G_OBJECT(widget), "chooser");
+    GedaImageChooser *chooser = GEDA_OBJECT_GET_DATA(widget, "chooser");
 
     int WhichItem = (int)(long) selection;
 

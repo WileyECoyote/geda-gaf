@@ -376,8 +376,8 @@ static void multiline_text_editing_done(GtkCellEditable *cell_editable,
   gtk_text_buffer_get_end_iter   (buffer, &end);
   new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
-  path = g_object_get_data (G_OBJECT (cell_editable),
-                            CELL_RENDERER_MULTI_LINE_TEXT_PATH);
+  path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
+
   g_signal_emit_by_name (cell, "edited", path, new_text);
 
   GEDA_FREE (new_text);

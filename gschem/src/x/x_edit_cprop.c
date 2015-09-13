@@ -330,7 +330,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
 
     Object *o_current;
 
-    o_current = g_object_get_data (G_OBJECT (dialog), "object");
+    o_current =GEDA_OBJECT_GET_DATA (dialog, "object");
 
     if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
 
@@ -491,9 +491,9 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
   property_data *properties;
 
   Object *o_current;
-  properties = g_object_get_data (G_OBJECT (dialog), IDS_PROP_EDIT);
+  properties =GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
 
-  o_current  = g_object_get_data (G_OBJECT (dialog), "object");
+  o_current  =GEDA_OBJECT_GET_DATA (dialog, "object");
 
   if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
 
@@ -831,7 +831,7 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
   /* Get ptr to the data structure */
   dialog     = w_current->prwindow;
 
-  properties = g_object_get_data (G_OBJECT (dialog), IDS_PROP_EDIT);
+  properties =GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
 
   if (object != NULL && object->type == OBJ_COMPLEX) {
     x_dialog_ep_set_sensitive(properties, TRUE);
