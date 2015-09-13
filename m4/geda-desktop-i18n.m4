@@ -2,6 +2,9 @@
 # serial 1
 
 dnl Carry out configuration tasks needed by desktop-i18n tool
+# geda-desktop-i18n.m4                                   -*-Autoconf-*-
+# serial 1.2
+
 dnl Copyright (C) 2009-2015  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
@@ -51,9 +54,17 @@ AC_DEFUN([AX_DESKTOP_I18N],
   # Define some rules for substitution into Makefiles
   DESKTOP_I18N_CREATE='$(DESKTOP_I18N) --create --gettext=$(GETTEXT) --domain=$(DOMAIN) \
     --localedir=$(DESKTOP_I18N_LOCALE_DIR)/share/locale $(DESKTOP_I18N_LANGS)'
-  DESKTOP_I18N_LANGS_RULE='DESKTOP_I18N_LANGS = $(addprefix --lang=,$(shell cat $(DESKTOP_I18N_LOCALE_DIR)/$(DOMAIN).LINGUAS))'
+
+  DESKTOP_I18N_LANGS_RULE='DESKTOP_I18N_LANGS = $[$](echo "{ printf \"--lang=%s \", \$[$]1 }" \
+    | awk -f - $(DESKTOP_I18N_LOCALE_DIR)/$(DOMAIN).LINGUAS)'
+
   DESKTOP_I18N_DESKTOP_RULE='%.desktop: %.desktop.in ; $(DESKTOP_I18N_CREATE) $< [$]@'
+
   DESKTOP_I18N_XML_RULE='%.xml: %.xml.in ; $(DESKTOP_I18N_CREATE) $< [$]@'
+
+  #DESKTOP_I18N_DESKTOP_RULE='.SUFFIXES: .desktop.in .desktop .desktop.in.desktop: ; $(DESKTOP_I18N_CREATE) $< [$]@'
+
+  #DESKTOP_I18N_XML_RULE='.SUFFIXES: .xml.in .xml .xml.in.xml: ; $(DESKTOP_I18N_CREATE) $< [$]@'
 
   AC_SUBST([DESKTOP_I18N_CREATE])
   _IT_SUBST([DESKTOP_I18N_LANGS_RULE])

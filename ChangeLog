@@ -1,3 +1,14 @@
+2015-09-12 dmn <graahnul.grom@gmail.com>
+
+    * Code Enhancement: Improve Platform Compatibility.
+
+    * etc/system-gschemrc.scm: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit  a0e12c3ea81617ddbcb3749a4617d7a528b1104f:
+
+    * Fix build and install with non-GNU make.
+
+            * docs/wiki/Makefile.am
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * */docs/Makefile.am: Add "all:$(MANS)" so that man page are built from
