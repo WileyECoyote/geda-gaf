@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-11 14:48-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -299,62 +299,6 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:304
-msgid "Electrical"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:305
-msgid "Electrical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:311
-msgid "Label"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:312
-msgid "A Label for the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:318
-msgid "Number"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:319
-msgid "The pin number"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:325
-msgid "Mechanical"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:326
-msgid "Mechanical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:332
-msgid "Sequence"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:333
-msgid "The pin sequence"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:339
-msgid "Type"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:340
-msgid "Either Mechanical or Electrical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:346
-msgid "Whichend"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:347
-msgid "Which end of the pin gets connected"
-msgstr ""
-
 #: libgeda/src/geda/geda_object.c:391
 msgid "object-type"
 msgstr ""
@@ -425,6 +369,62 @@ msgstr ""
 
 #: libgeda/src/geda/geda_object.c:454
 msgid "Whether the object is displayed, normaly text attributes"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:304
+msgid "Electrical"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:305
+msgid "Electrical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:311
+msgid "Label"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:312
+msgid "A Label for the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:318
+msgid "Number"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:319
+msgid "The pin number"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:325
+msgid "Mechanical"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:326
+msgid "Mechanical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:332
+msgid "Sequence"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:333
+msgid "The pin sequence"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:339
+msgid "Type"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:340
+msgid "Either Mechanical or Electrical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:346
+msgid "Whichend"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:347
+msgid "Which end of the pin gets connected"
 msgstr ""
 
 #: libgeda/src/guile/g_evaluate.c:63
@@ -1108,6 +1108,67 @@ msgstr "Ρύθμιση στοίχισης σε LOWER_LEFT\n"
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
 
+#: libgeda/src/scheme/edascmhookproxy.c:81
+msgid "Scheme hook"
+msgstr ""
+
+#: libgeda/src/scheme/edascmhookproxy.c:82
+msgid "The Scheme-level hook to proxy"
+msgstr ""
+
+#: libgeda/src/scheme/scheme_attrib.c:78
+msgid "Objects ~A and ~A are not part of the same page and/or complex object"
+msgstr ""
+"Τα αντικείμενα ~A και ~A δεν είναι μέρη της ίδια σελίδας ή/και πολύπλοκου "
+"αντικειμένου"
+
+#: libgeda/src/scheme/scheme_attrib.c:85 libgeda/src/scheme/scheme_attrib.c:90
+msgid "Object ~A is already attached as an attribute"
+msgstr "Το αντικείμενο Object ~A είναι ήδη συνδεδεμένο με ένα γνώρισμα"
+
+#: libgeda/src/scheme/scheme_attrib.c:138
+msgid "Object ~A is attribute of wrong object"
+msgstr "Το αντικείμενο ~A είναι γνώρισμα του λάθος αντικειμένου"
+
+#: libgeda/src/scheme/scheme_attrib.c:241
+msgid "~A is not a valid attribute: invalid string '~A'."
+msgstr "Το ~A δεν είναι έγκυρο γνώρισμα: μη έγκυρη συμβολοσειρά '~A'."
+
+#: libgeda/src/scheme/scheme_complex.c:167
+msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
+msgstr ""
+
+#: libgeda/src/scheme/scheme_complex.c:283
+#, fuzzy
+msgid "Object ~A is already on a page"
+msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
+
+#: libgeda/src/scheme/scheme_complex.c:291 libgeda/src/scheme/scheme_page.c:64
+msgid "Object ~A is already attached to something"
+msgstr "Το αντικείμενο ~A είναι ήδη συνδεδεμένο με κάτι"
+
+#: libgeda/src/scheme/scheme_complex.c:351
+msgid "Object ~A is attached to a different complex"
+msgstr ""
+
+#: libgeda/src/scheme/scheme_complex.c:358
+msgid "Object ~A is attached to a page"
+msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
+
+#: libgeda/src/scheme/scheme_complex.c:365
+#: libgeda/src/scheme/scheme_page.c:348
+msgid "Object ~A is attached as an attribute"
+msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
+
+#: libgeda/src/scheme/scheme_complex.c:372
+#: libgeda/src/scheme/scheme_page.c:355
+msgid "Object ~A has attributes"
+msgstr "Το αντικείμενο ~A έχει γνωρίσματα"
+
+#: libgeda/src/scheme/scheme_make.c:145
+msgid "Invalid pin type ~A, must be 'net or 'bus"
+msgstr ""
+
 #: libgeda/src/scheme/scheme_object.c:362
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr ""
@@ -1209,69 +1270,12 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Μη έγκυρη γωνία εικόνας ~A. Πρέπει να είναι 0, 90, 180, ή 270 μοίρες"
 
-#: libgeda/src/scheme/scheme_complex.c:167
-msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
-msgstr ""
-
-#: libgeda/src/scheme/scheme_complex.c:283
-#, fuzzy
-msgid "Object ~A is already on a page"
-msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
-
-#: libgeda/src/scheme/scheme_complex.c:291 libgeda/src/scheme/scheme_page.c:64
-msgid "Object ~A is already attached to something"
-msgstr "Το αντικείμενο ~A είναι ήδη συνδεδεμένο με κάτι"
-
-#: libgeda/src/scheme/scheme_complex.c:351
-msgid "Object ~A is attached to a different complex"
-msgstr ""
-
-#: libgeda/src/scheme/scheme_complex.c:358
-msgid "Object ~A is attached to a page"
-msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
-
-#: libgeda/src/scheme/scheme_complex.c:365
-#: libgeda/src/scheme/scheme_page.c:348
-msgid "Object ~A is attached as an attribute"
-msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
-
-#: libgeda/src/scheme/scheme_complex.c:372
-#: libgeda/src/scheme/scheme_page.c:355
-msgid "Object ~A has attributes"
-msgstr "Το αντικείμενο ~A έχει γνωρίσματα"
-
 #: libgeda/src/scheme/scheme_page.c:177
 msgid "Parse error: ~s"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_page.c:341
 msgid "Object ~A is attached to a complex or different page"
-msgstr ""
-
-#: libgeda/src/scheme/scheme_attrib.c:78
-msgid "Objects ~A and ~A are not part of the same page and/or complex object"
-msgstr ""
-"Τα αντικείμενα ~A και ~A δεν είναι μέρη της ίδια σελίδας ή/και πολύπλοκου "
-"αντικειμένου"
-
-#: libgeda/src/scheme/scheme_attrib.c:85 libgeda/src/scheme/scheme_attrib.c:90
-msgid "Object ~A is already attached as an attribute"
-msgstr "Το αντικείμενο Object ~A είναι ήδη συνδεδεμένο με ένα γνώρισμα"
-
-#: libgeda/src/scheme/scheme_attrib.c:138
-msgid "Object ~A is attribute of wrong object"
-msgstr "Το αντικείμενο ~A είναι γνώρισμα του λάθος αντικειμένου"
-
-#: libgeda/src/scheme/scheme_attrib.c:241
-msgid "~A is not a valid attribute: invalid string '~A'."
-msgstr "Το ~A δεν είναι έγκυρο γνώρισμα: μη έγκυρη συμβολοσειρά '~A'."
-
-#: libgeda/src/scheme/edascmhookproxy.c:81
-msgid "Scheme hook"
-msgstr ""
-
-#: libgeda/src/scheme/edascmhookproxy.c:82
-msgid "The Scheme-level hook to proxy"
 msgstr ""
 
 #: libgeda/src/struct/s_clib.c:450
@@ -1359,6 +1363,16 @@ msgstr "Το στοιχείο [%s] δε βρέθηκε στη βιβλιοθήκ
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Βρέθηκαν περισσότερα από ένα στοιχεία με το όνομα [%s]\n"
+
+#: libgeda/src/struct/s_color.c:99
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
+
+#: libgeda/src/struct/s_color.c:153
+#, c-format
+msgid "Color index out of range"
+msgstr ""
 
 #: libgeda/src/struct/s_hierarchy.c:95
 msgid "Schematic not found in source library."

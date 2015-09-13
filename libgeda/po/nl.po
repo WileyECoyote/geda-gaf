@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-11 14:48-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -302,62 +302,6 @@ msgstr "Configuratie heeft geen groep '%s'"
 msgid "Configuration does not have key '%s'"
 msgstr "Configuratie heeft geen toets '%s'"
 
-#: libgeda/src/geda/geda_pin.c:304
-msgid "Electrical"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:305
-msgid "Electrical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:311
-msgid "Label"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:312
-msgid "A Label for the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:318
-msgid "Number"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:319
-msgid "The pin number"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:325
-msgid "Mechanical"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:326
-msgid "Mechanical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:332
-msgid "Sequence"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:333
-msgid "The pin sequence"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:339
-msgid "Type"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:340
-msgid "Either Mechanical or Electrical Properties of the pin"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:346
-msgid "Whichend"
-msgstr ""
-
-#: libgeda/src/geda/geda_pin.c:347
-msgid "Which end of the pin gets connected"
-msgstr ""
-
 #: libgeda/src/geda/geda_object.c:391
 msgid "object-type"
 msgstr ""
@@ -428,6 +372,62 @@ msgstr ""
 
 #: libgeda/src/geda/geda_object.c:454
 msgid "Whether the object is displayed, normaly text attributes"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:304
+msgid "Electrical"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:305
+msgid "Electrical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:311
+msgid "Label"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:312
+msgid "A Label for the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:318
+msgid "Number"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:319
+msgid "The pin number"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:325
+msgid "Mechanical"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:326
+msgid "Mechanical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:332
+msgid "Sequence"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:333
+msgid "The pin sequence"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:339
+msgid "Type"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:340
+msgid "Either Mechanical or Electrical Properties of the pin"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:346
+msgid "Whichend"
+msgstr ""
+
+#: libgeda/src/geda/geda_pin.c:347
+msgid "Which end of the pin gets connected"
 msgstr ""
 
 #: libgeda/src/guile/g_evaluate.c:63
@@ -1140,6 +1140,67 @@ msgstr "Uitlijning op LINKS_ONDER ingesteld\n"
 msgid "Unexpected end-of-file after %d lines"
 msgstr "Onverwacht einde-bestand na %d lijnen"
 
+#: libgeda/src/scheme/edascmhookproxy.c:81
+msgid "Scheme hook"
+msgstr "Scheme haak"
+
+#: libgeda/src/scheme/edascmhookproxy.c:82
+msgid "The Scheme-level hook to proxy"
+msgstr "De Scheme-level haak naar proxy"
+
+#: libgeda/src/scheme/scheme_attrib.c:78
+msgid "Objects ~A and ~A are not part of the same page and/or complex object"
+msgstr ""
+"Objecten ~A en ~A zijn geen onderdeel van dezelfde pagina en/of complex "
+"object"
+
+#: libgeda/src/scheme/scheme_attrib.c:85 libgeda/src/scheme/scheme_attrib.c:90
+msgid "Object ~A is already attached as an attribute"
+msgstr "Object ~A is reeds bevestigd als een attribuut"
+
+#: libgeda/src/scheme/scheme_attrib.c:138
+msgid "Object ~A is attribute of wrong object"
+msgstr "Object ~A is attribuut van een fout object"
+
+#: libgeda/src/scheme/scheme_attrib.c:241
+msgid "~A is not a valid attribute: invalid string '~A'."
+msgstr "~A is een ongeldige attribuut: ongeldige rij '~A'."
+
+#: libgeda/src/scheme/scheme_complex.c:167
+msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
+msgstr "Ongeldige complex hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
+
+#: libgeda/src/scheme/scheme_complex.c:283
+#, fuzzy
+msgid "Object ~A is already on a page"
+msgstr "Object ~A is bevestigd aan een pagina"
+
+#: libgeda/src/scheme/scheme_complex.c:291 libgeda/src/scheme/scheme_page.c:64
+msgid "Object ~A is already attached to something"
+msgstr "Object ~A is reeds bevestigd aan iets"
+
+#: libgeda/src/scheme/scheme_complex.c:351
+msgid "Object ~A is attached to a different complex"
+msgstr "Object ~A is bevestigd aan een andere complex"
+
+#: libgeda/src/scheme/scheme_complex.c:358
+msgid "Object ~A is attached to a page"
+msgstr "Object ~A is bevestigd aan een pagina"
+
+#: libgeda/src/scheme/scheme_complex.c:365
+#: libgeda/src/scheme/scheme_page.c:348
+msgid "Object ~A is attached as an attribute"
+msgstr "Object ~A is bevestigd als een attribuut"
+
+#: libgeda/src/scheme/scheme_complex.c:372
+#: libgeda/src/scheme/scheme_page.c:355
+msgid "Object ~A has attributes"
+msgstr "Object ~A heeft attributen"
+
+#: libgeda/src/scheme/scheme_make.c:145
+msgid "Invalid pin type ~A, must be 'net or 'bus"
+msgstr "Ongeldig pen type ~A, moet een 'net of 'bus zijn"
+
 #: libgeda/src/scheme/scheme_object.c:362
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr "Object ~A heeft een ongeldige slag cap stijl ~A"
@@ -1240,37 +1301,6 @@ msgstr "Ongeldig pad element type ~A."
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ongeldige afbeelding hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
 
-#: libgeda/src/scheme/scheme_complex.c:167
-msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
-msgstr "Ongeldige complex hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
-
-#: libgeda/src/scheme/scheme_complex.c:283
-#, fuzzy
-msgid "Object ~A is already on a page"
-msgstr "Object ~A is bevestigd aan een pagina"
-
-#: libgeda/src/scheme/scheme_complex.c:291 libgeda/src/scheme/scheme_page.c:64
-msgid "Object ~A is already attached to something"
-msgstr "Object ~A is reeds bevestigd aan iets"
-
-#: libgeda/src/scheme/scheme_complex.c:351
-msgid "Object ~A is attached to a different complex"
-msgstr "Object ~A is bevestigd aan een andere complex"
-
-#: libgeda/src/scheme/scheme_complex.c:358
-msgid "Object ~A is attached to a page"
-msgstr "Object ~A is bevestigd aan een pagina"
-
-#: libgeda/src/scheme/scheme_complex.c:365
-#: libgeda/src/scheme/scheme_page.c:348
-msgid "Object ~A is attached as an attribute"
-msgstr "Object ~A is bevestigd als een attribuut"
-
-#: libgeda/src/scheme/scheme_complex.c:372
-#: libgeda/src/scheme/scheme_page.c:355
-msgid "Object ~A has attributes"
-msgstr "Object ~A heeft attributen"
-
 #: libgeda/src/scheme/scheme_page.c:177
 msgid "Parse error: ~s"
 msgstr "Ontleedfout: ~s"
@@ -1278,32 +1308,6 @@ msgstr "Ontleedfout: ~s"
 #: libgeda/src/scheme/scheme_page.c:341
 msgid "Object ~A is attached to a complex or different page"
 msgstr "Object ~A is bevestigd aan een complex of een andere pagina"
-
-#: libgeda/src/scheme/scheme_attrib.c:78
-msgid "Objects ~A and ~A are not part of the same page and/or complex object"
-msgstr ""
-"Objecten ~A en ~A zijn geen onderdeel van dezelfde pagina en/of complex "
-"object"
-
-#: libgeda/src/scheme/scheme_attrib.c:85 libgeda/src/scheme/scheme_attrib.c:90
-msgid "Object ~A is already attached as an attribute"
-msgstr "Object ~A is reeds bevestigd als een attribuut"
-
-#: libgeda/src/scheme/scheme_attrib.c:138
-msgid "Object ~A is attribute of wrong object"
-msgstr "Object ~A is attribuut van een fout object"
-
-#: libgeda/src/scheme/scheme_attrib.c:241
-msgid "~A is not a valid attribute: invalid string '~A'."
-msgstr "~A is een ongeldige attribuut: ongeldige rij '~A'."
-
-#: libgeda/src/scheme/edascmhookproxy.c:81
-msgid "Scheme hook"
-msgstr "Scheme haak"
-
-#: libgeda/src/scheme/edascmhookproxy.c:82
-msgid "The Scheme-level hook to proxy"
-msgstr "De Scheme-level haak naar proxy"
 
 #: libgeda/src/struct/s_clib.c:450
 #, c-format
@@ -1397,6 +1401,16 @@ msgstr "Komponent [%s] is niet in de komponenten bibliotheek gevonden\n"
 msgid "More than one component found with name [%s]\n"
 msgstr "Meer dan een komponent gevonden met de naam [%s]\n"
 
+#: libgeda/src/struct/s_color.c:99
+#, fuzzy, c-format
+msgid "Error loading %s, %s\n"
+msgstr "Kan bestand %s niet vinden: %s"
+
+#: libgeda/src/struct/s_color.c:153
+#, c-format
+msgid "Color index out of range"
+msgstr "Kleuren index buiten bereik"
+
 #: libgeda/src/struct/s_hierarchy.c:95
 msgid "Schematic not found in source library."
 msgstr "Schema niet gevonden in bron bibliotheek."
@@ -1454,12 +1468,6 @@ msgstr "Kan reservekopie niet opslaan: %s."
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Object ~A is geen deel van een pagina"
-
-#~ msgid "Invalid pin type ~A, must be 'net or 'bus"
-#~ msgstr "Ongeldig pen type ~A, moet een 'net of 'bus zijn"
-
-#~ msgid "Color index out of range"
-#~ msgstr "Kleuren index buiten bereik"
 
 #~ msgid "s_page_delete: Can't get the real filename of %s."
 #~ msgstr "s_page_delete: Kan de echte bestandsnaam van %s niet krijgen."

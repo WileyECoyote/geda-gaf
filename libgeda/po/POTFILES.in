@@ -19,7 +19,7 @@ libgeda/src/geda/geda_errors.c
 libgeda/src/geda/geda_line.c
 libgeda/src/geda/geda_list.c
 libgeda/src/geda/geda_net.c
-libgeda/src/geda/geda_notitfy.c
+libgeda/src/geda/geda_notify.c
 libgeda/src/geda/geda_object.c
 libgeda/src/geda/geda_page.c
 libgeda/src/geda/geda_path.c
