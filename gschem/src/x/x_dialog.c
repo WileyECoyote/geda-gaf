@@ -44,16 +44,16 @@ const char *IDS_MESSEAGE_TITLES[] = {
 };
 
 
-/*!   \defgroup Dialog-Utilities Common Dialog Utlities
+/**   \defgroup Dialog-Utilities Common Dialog Utlities
  *  @{\par This Group contains utilities used by various Gschem dialogs
  */
 
-/*!   \defgroup General-Dialog-Utilities General Dialog Utilities
+/**   \defgroup General-Dialog-Utilities General Dialog Utilities
  *  @{\par This Group contains utility functions used by various dialogs
  *    \ingroup (Dialog-Utilities)
  */
 
-/*!   \defgroup Atk-Dialog-Utilities Atk Dialog Utilities
+/**   \defgroup Atk-Dialog-Utilities Atk Dialog Utilities
  *  @{\par This Group contains utility functions used by various dialogs
  *    \ingroup (General-Dialog-Utilities)
  */
@@ -125,7 +125,7 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
  *  \param [in] filename File name of file containing image data
  */
 
-GtkWidget* create_pixmap (const char *filename)
+GtkWidget *create_pixmap (const char *filename)
 {
   char *pathname = NULL;
   GtkWidget *pixmap;
