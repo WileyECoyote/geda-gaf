@@ -77,7 +77,7 @@ static void session_tree_update (GtkWidget *dialog)
   GtkTreeModel  *model;
   int            index;
 
-  treeview = gtk_object_get_data(GTK_OBJECT(dialog), "tree-view");
+  treeview = g_object_get_data (G_OBJECT(dialog), "tree-view");
   model    = gtk_tree_view_get_model (treeview);
 
   /* wipe out every thing in the store */
@@ -110,7 +110,7 @@ session_dialog_get_selection(GschemDialog *dialog)
 {
   GtkWidget  *treeview;
 
-  treeview = gtk_object_get_data(GTK_OBJECT(dialog), "tree-view");
+  treeview = g_object_get_data (G_OBJECT(dialog), "tree-view");
   return gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
 }
 
@@ -285,7 +285,7 @@ manage_session_selection_changed (GtkTreeSelection *selection,
   GtkWidget *Dialog = (GtkWidget*)user_data;
   GtkWidget *button;
 
-  button = gtk_object_get_data(GTK_OBJECT(Dialog), "rename-butt");
+  button = g_object_get_data (G_OBJECT(Dialog), "rename-butt");
 
   if(!gtk_widget_get_sensitive (button)) {
 
@@ -294,19 +294,19 @@ manage_session_selection_changed (GtkTreeSelection *selection,
                       G_CALLBACK (on_rename_butt_clicked),
                       Dialog);
 
-    button = gtk_object_get_data(GTK_OBJECT(Dialog), "delete-butt");
+    button = g_object_get_data (G_OBJECT(Dialog), "delete-butt");
     gtk_widget_set_sensitive (button, TRUE);
     g_signal_connect (button, "clicked",
                       G_CALLBACK (on_delete_butt_clicked),
                       Dialog);
 
-    button = gtk_object_get_data(GTK_OBJECT(Dialog), "export-butt");
+    button = g_object_get_data (G_OBJECT(Dialog), "export-butt");
     gtk_widget_set_sensitive (button, TRUE);
     g_signal_connect (button, "clicked",
                       G_CALLBACK (on_export_butt_clicked),
                       Dialog);
 
-    button = gtk_object_get_data(GTK_OBJECT(Dialog), "open-butt");
+    button = g_object_get_data (G_OBJECT(Dialog), "open-butt");
     gtk_widget_set_sensitive (button, TRUE);
     g_signal_connect (button, "clicked",
                       G_CALLBACK (on_open_butt_clicked),
@@ -688,7 +688,7 @@ callback_treeview_button_pressed (GtkWidget      *widget,
 
     /* If was a double-left click */
     if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
-      button = gtk_object_get_data(GTK_OBJECT(ThisDialog), "open-butt");
+      button = g_object_get_data (G_OBJECT(ThisDialog), "open-butt");
       on_open_butt_clicked (GTK_BUTTON(button), ThisDialog);
       retval = TRUE;
     }
@@ -711,7 +711,7 @@ open_session_selection_changed (GtkTreeSelection *selection,
   GtkWidget *Dialog = (GtkWidget*)user_data;
   GtkWidget *button;
 
-  button = gtk_object_get_data(GTK_OBJECT(Dialog), "open-butt");
+  button = g_object_get_data (G_OBJECT(Dialog), "open-butt");
 
   /* If not already,  then enable the open button */
   if(!gtk_widget_get_sensitive (button)) {
@@ -776,7 +776,7 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
 
   gtk_widget_show_all (action_area);
 
-  treeview = gtk_object_get_data(GTK_OBJECT(ThisDialog), "tree-view");
+  treeview = g_object_get_data (G_OBJECT(ThisDialog), "tree-view");
   selection = session_dialog_get_selection(GSCHEM_DIALOG(ThisDialog));
 
   g_signal_connect (selection, "changed",

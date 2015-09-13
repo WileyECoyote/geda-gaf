@@ -154,9 +154,9 @@ static void coord_options_popup_clicked (GtkMenuItem *menuitem, void *user_data)
   GschemStatusBar *bar;
   GtkWidget       *widget;
 
-  unsigned   mode = (unsigned)(long)user_data;
+  unsigned mode = (unsigned)(long)user_data;
 
-  bar    = g_object_get_data (G_OBJECT(menuitem), "status-bar");
+  bar    = GEDA_OBJECT_GET_DATA(menuitem, "status-bar");
   widget = (GtkWidget*)bar;
 
   gschem_status_bar_set_coord_mode (widget, mode);
@@ -168,7 +168,7 @@ static void status_options_popup_clicked (GtkMenuItem *menuitem, void *user_data
   GtkWidget *widget;
   unsigned   signal = (unsigned)(long)user_data;
 
-  widget = g_object_get_data (G_OBJECT(menuitem), "status-bar");
+  widget = GEDA_OBJECT_GET_DATA(menuitem, "status-bar");
 
   g_signal_emit (widget, signals[signal], 0);
 
@@ -204,7 +204,7 @@ static void coord_display_options_popup (GtkWidget      *event_box,
                      (GCallback)coord_options_popup_clicked,
                       GUINT_TO_POINTER(entry.signal));
 
-    g_object_set_data (G_OBJECT(popup_item), "status-bar", user_data);
+    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
   }
@@ -274,7 +274,7 @@ static void middle_button_options_popup (GtkWidget      *event_box,
                      (GCallback)status_options_popup_clicked,
                       GUINT_TO_POINTER(entry.signal));
 
-    g_object_set_data (G_OBJECT(popup_item), "status-bar", user_data);
+    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
   }
@@ -344,7 +344,7 @@ static void third_button_options_popup (GtkWidget      *event_box,
                      (GCallback)status_options_popup_clicked,
                       GUINT_TO_POINTER(entry.signal));
 
-    g_object_set_data (G_OBJECT(popup_item), "status-bar", user_data);
+    GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), popup_item);
   }

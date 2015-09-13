@@ -144,7 +144,7 @@ static void gd_callback_selection_finalized (void *data, GObject *where_the_obje
   if (GSCHEM_IS_DIALOG(data)) {
     Dialog = (GschemDialog*)data;
     Dialog->selection = NULL;
-    g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, NULL);
+    GEDA_OBJECT_SET_DATA (Dialog, NULL, DIALOG_SELECTION_TRACKER);
   }
   else {
     BUG_MSG("Bad pointer to Dialog\n");
@@ -177,7 +177,7 @@ static void gd_connect_selection (void *maybe)
       Dialog->selection = NULL;
     }
 
-    g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, Dialog->selection);
+    GEDA_OBJECT_SET_DATA (Dialog, Dialog->selection, DIALOG_SELECTION_TRACKER);
   }
   else {
     BUG_MSG("Bad pointer to Dialog\n");
@@ -209,7 +209,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   }
 
   /* get selection watched from dialog data */
-  selection = (SELECTION*)g_object_get_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER);
+  selection = (SELECTION*)GEDA_OBJECT_GET_DATA(Dialog, DIALOG_SELECTION_TRACKER);
 
   if (selection && G_IS_OBJECT(selection)) {
 
@@ -219,7 +219,7 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   }
 
   /* reset Dialog data */
-  g_object_set_data (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER, NULL);
+  GEDA_OBJECT_SET_DATA (Dialog, NULL, DIALOG_SELECTION_TRACKER);
 }
 
 /*! \brief GtkWidget show signal handler

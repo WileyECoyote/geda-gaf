@@ -806,14 +806,14 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
 
   /* Store pointers to widgets, for use by get_widget_data(). */
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, DialogTitle);
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox,     "MainDialogVBox");
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
+  GEDA_OBJECT_SET_DATA (ThisDialog, ThisDialog,         DialogTitle);
+  GEDA_OBJECT_SET_DATA (ThisDialog, MainDialogVBox,     "MainDialogVBox");
+  GEDA_OBJECT_SET_DATA (ThisDialog, dialog_action_area, "dialog_action_area");
   GEDA_HOOKUP_OBJECT (ThisDialog, CloseButt,       "CloseButt");
   GEDA_HOOKUP_OBJECT (ThisDialog, ReplaceButt,     "ReplaceButt");
   GEDA_HOOKUP_OBJECT (ThisDialog, ReplaceAllButt,  "ReplaceAllButt");
   GEDA_HOOKUP_OBJECT (ThisDialog, FindButt,        "FindButt");
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, tooltips, "tooltips");
+  GEDA_OBJECT_SET_DATA (ThisDialog, tooltips, "tooltips");
 
   return ThisDialog;
 }

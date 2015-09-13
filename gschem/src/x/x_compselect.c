@@ -1232,7 +1232,7 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
   menuitem = gtk_menu_get_active ( GTK_MENU
             (gtk_option_menu_get_menu (GTK_OPTION_MENU (optionmenu))));
   menu_choice = GPOINTER_TO_INT(
-             gtk_object_get_data (GTK_OBJECT (menuitem), "behaviors"));
+             g_object_get_data (G_OBJECT (menuitem), "behaviors"));
 
   switch(menu_choice) {
     case COMPSELECT_BEHAVIOR_REFERENCE:
@@ -2258,8 +2258,8 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
                                 G_CALLBACK (compselect_popup_toggle_style),
                                 compselect);
 
-    gtk_object_set_data (GTK_OBJECT(menuitem), "handler", (void*) handler);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "index", GINT_TO_POINTER(index));
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)handler, "handler");
+    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER(index), "index");
     index++;
   }
 
@@ -2700,8 +2700,7 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
     menuitem = gtk_check_menu_item_new_with_mnemonic (_(types[i].str));
     gtk_menu_append ( menu, menuitem);
 
-    gtk_object_set_data (GTK_OBJECT(menuitem), "style",
-                         GINT_TO_POINTER (types[i].style));
+    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER (types[i].style), "style");
 
     /* Maybe shouldn't bother since this will be over-riden
      * when dialog is restored */
@@ -2719,9 +2718,9 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
                                G_CALLBACK (compselect_toggle_style),
                                ThisDialog);
 
-    gtk_object_set_data (GTK_OBJECT(menuitem), "handler", (void*) handler);
-
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)handler, "handler");
   }
+
   gtk_widget_set_tooltip_text(menuitem, _("Enable all styles"));
   gtk_widget_set_tooltip_text(widget_list->data, _("Uncheck all styles"));
 
@@ -2765,8 +2764,8 @@ static GtkWidget *create_behaviors_menu ( )
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
 
-    gtk_object_set_data (GTK_OBJECT(menuitem), "behaviors",
-                         GINT_TO_POINTER (types[i].behavior));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER(types[i].behavior), "behaviors");
     gtk_widget_show (menuitem);
   }
 
@@ -3071,7 +3070,7 @@ static void compselect_get_property (GObject     *object,
         }
       case PROP_BEHAVIOR:
         menuitem = gtk_menu_get_active( GTK_MENU(gtk_option_menu_get_menu(compselect->behavior_menu)));
-        g_value_set_enum (value, GPOINTER_TO_INT(gtk_object_get_data (GTK_OBJECT (menuitem), "behaviors")));
+        g_value_set_enum (value, GPOINTER_TO_INT(g_object_get_data (G_OBJECT (menuitem), "behaviors")));
         break;
       case PROP_HIDDEN:
         g_value_set_boolean (value, compselect->hidden);

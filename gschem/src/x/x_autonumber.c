@@ -1360,16 +1360,16 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 
   /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
   autotext->scope_number = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (ScopeNumberMenu))))), "scope_menu"));
 
     /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
     autotext->scope_skip = GPOINTER_TO_INT(
-      gtk_object_get_data (
-        GTK_OBJECT (
+      g_object_get_data (
+        G_OBJECT (
           gtk_menu_get_active (
             GTK_MENU (gtk_option_menu_get_menu (
               GTK_OPTION_MENU (ScopeSkipMenu))))), "scope_menu"));
@@ -1498,7 +1498,7 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
   gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_wild), autotext);
 
-  g_object_set_data(G_OBJECT(Dialog), "ScopeGroup", geda_bulb_get_group(widget));
+  GEDA_OBJECT_SET_DATA(Dialog, geda_bulb_get_group(widget), "ScopeGroup");
 
 }
 
@@ -1532,7 +1532,7 @@ GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "scope_menu", GINT_TO_POINTER (types[i].scope));
+    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER (types[i].scope), "scope_menu");
     gtk_widget_show (menuitem);
   }
 

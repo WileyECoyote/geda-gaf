@@ -1133,7 +1133,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
                 x_dialog_ca_update_selection,
                 NULL);
 
-  g_object_set_data(G_OBJECT(Dialog), IDS_ARRAY_EDIT, dialog_data);
+  GEDA_OBJECT_SET_DATA(Dialog, dialog_data, IDS_ARRAY_EDIT);
 
   return Dialog;
 }

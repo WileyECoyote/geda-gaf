@@ -45,5 +45,6 @@
 #include <geda_macros.h>
 #include <geda_enum.h>
 #include <geda_struct.h>
+#include <geda_wrap.h>
 
 /** @} endgroup geda-globals */

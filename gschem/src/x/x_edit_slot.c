@@ -61,7 +61,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
     i_status_set_state(w_current, SELECT);
     break;
   case GEDA_RESPONSE_APPLY:
-    textentry = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
+    textentry = g_object_get_data (G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
     string =  GetEntryText( textentry );
     len = strlen(string);
     if (len != 0) {
@@ -115,8 +115,8 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
     ThisDialog = w_current->sewindow;
 
     /* Get ptr to the text widget */
-    countentry = g_object_get_data(G_OBJECT(ThisDialog), "slot-count");
-    textentry  = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
+    countentry = g_object_get_data (G_OBJECT(ThisDialog), "slot-count");
+    textentry  = g_object_get_data (G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
 
     if (slot_count != NULL) {
       SetEntryText( countentry, slot_count);

@@ -31,10 +31,11 @@
 #include "gschem.h"
 
 #include <geda_stat.h>
-
-#include <x_menus.h>
 #include <geda_widgets.h>
-#include <i_actions.h>
+
+#include "x_menus.h"
+#include "i_actions.h"
+
 #include <geda_debug.h>
 
 /** \defgroup Menu-Module Menu Module
@@ -214,7 +215,7 @@ static void x_menu_popup_execute(GtkObject *widget, int action_id)
   GschemToplevel *w_current;
   const char     *action;
 
-  w_current  = gtk_object_get_data(widget, "top-level");
+  w_current  = g_object_get_data(G_OBJECT(widget), "top-level");
   action     = IDS_Popup_Actions[action_id];
 #if DEBUG
     fprintf(stderr, "<x_menu_popup_execute> procssing popup menu action %s\n",action);
@@ -424,7 +425,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     /* Add the Redraw items to the View menu */
     gtk_container_add (GTK_CONTAINER (view_menu), redraw_item);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw", redraw_item);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, redraw_item, "_View/_Redraw");
     g_object_set (redraw_item, "visible", TRUE, NULL);
 
     return view_menu;
@@ -627,7 +628,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     /* add a handle to the menu_bar object to get access to widget
      * objects. This string should NOT be internationalized */
     buf = u_string_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), buf, menu_item);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, buf);
     GEDA_FREE(buf);
 
     scm_dynwind_end();
@@ -684,7 +685,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     root_menu = NULL;
 
     if (strstr(menu_name, "/")) {
-      root_menu = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), menu_name);
+      root_menu = (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR), menu_name);
     }
 
     if (root_menu == NULL) {
@@ -698,7 +699,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   }
   scm_dynwind_end ();
 
-  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_File/_Save");
+  menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR), "_File/_Save");
   if (menu_item == NULL) {
 
     menu = create_file_menu();
@@ -707,11 +708,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     g_object_set (menu_item, "visible", TRUE, NULL);;
 
     gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , menu);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_File", menu_item);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_File");
     gtk_menu_bar_append (GTK_MENU_BAR (MENU_BAR), menu_item);
   }
 
-  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
+  menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR), "_View/_Redraw");
 
   if (menu_item == NULL) {
 
@@ -721,11 +722,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     g_object_set (menu_item, "visible", TRUE, NULL);;
 
     gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , menu);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View", menu_item);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View");
     gtk_menu_bar_append (GTK_MENU_BAR (MENU_BAR), menu_item);
   }
 
-  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR), "_View/_Redraw");
+  menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR), "_View/_Redraw");
 
   if (menu_item != NULL) {
 
@@ -739,7 +740,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       toggle_menu = gtk_menu_new();
 
       gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , toggle_menu);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Toolbars", menu_item);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View/_Toolbars");
 
       GtkWidget *stdbar_toggle   = gtk_check_menu_item_new_with_mnemonic ("_Standard");
       GtkWidget *selbar_toggle   = gtk_check_menu_item_new_with_mnemonic ("Se_lect");
@@ -760,14 +761,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_check_menu_item_set_active((GtkCheckMenuItem*)gridbar_toggle,  TRUE);
 
       /* Normally the ui manager would do this for us but we don't have one so...*/
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_STDBAR_MENU_PATH,  stdbar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_SELBAR_MENU_PATH,  selbar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_PageBAR_MENU_PATH, pagebar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_ADDBAR_MENU_PATH,  addbar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_ZOOMBAR_MENU_PATH, zoombar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_EDITBAR_MENU_PATH, editbar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_ATTRBAR_MENU_PATH, attribar_toggle);
-      gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_GRIDBAR_MENU_PATH, gridbar_toggle);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, stdbar_toggle,   OPT_STDBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, selbar_toggle,   OPT_SELBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, pagebar_toggle,  OPT_PageBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, addbar_toggle,   OPT_ADDBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, zoombar_toggle,  OPT_ZOOMBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, editbar_toggle,  OPT_EDITBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, attribar_toggle, OPT_ATTRBAR_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, gridbar_toggle,  OPT_GRIDBAR_MENU_PATH);
 
       gtk_container_add (GTK_CONTAINER (toggle_menu), stdbar_toggle);
       gtk_container_add (GTK_CONTAINER (toggle_menu), selbar_toggle);
@@ -827,10 +828,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             setup_radio((GtkCheckMenuItem*)tb_vert_bulb,  x_toolbar_display_both);
             setup_radio((GtkCheckMenuItem*)tb_hori_bulb,  x_toolbar_display_horiz);
 
-            gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_BAR_ICON_MENU_PATH, tb_icons_bulb);
-            gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_BAR_TEXT_MENU_PATH, tb_text_bulb);
-            gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_BAR_VERT_MENU_PATH, tb_vert_bulb);
-            gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_BAR_HOZI_MENU_PATH, tb_hori_bulb);
+            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_icons_bulb, OPT_BAR_ICON_MENU_PATH);
+            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_text_bulb,  OPT_BAR_TEXT_MENU_PATH);
+            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_vert_bulb,  OPT_BAR_VERT_MENU_PATH);
+            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_hori_bulb,  OPT_BAR_HOZI_MENU_PATH);
 
             gtk_container_add (GTK_CONTAINER (toggle_menu), tb_icons_bulb);
             gtk_container_add (GTK_CONTAINER (toggle_menu), tb_text_bulb);
@@ -877,7 +878,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     toggle_menu = gtk_menu_new();
 
     gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item) , toggle_menu);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Menu", menu_item);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View/_Menu");
 
     GtkWidget *menu_icons_toggle   = gtk_check_menu_item_new_with_mnemonic ("_Icons");
     GtkWidget *menu_tips_toggle    = gtk_check_menu_item_new_with_mnemonic ("_ToolTips");
@@ -894,10 +895,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_popcons_toggle, show_pop_icons);
     gtk_check_menu_item_set_active((GtkCheckMenuItem*)menu_poptips_toggle, show_pop_tips);
 
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_ICON_MENU_PATH,    menu_icons_toggle);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_TIPS_MENU_PATH,    menu_tips_toggle);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_POPCONS_MENU_PATH, menu_popcons_toggle);
-    gtk_object_set_data(GTK_OBJECT(MENU_BAR), OPT_POPTIPS_MENU_PATH, menu_poptips_toggle);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_icons_toggle,   OPT_ICON_MENU_PATH);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_tips_toggle,    OPT_TIPS_MENU_PATH);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_popcons_toggle, OPT_POPCONS_MENU_PATH);
+    GEDA_OBJECT_SET_DATA(MENU_BAR, menu_poptips_toggle, OPT_POPTIPS_MENU_PATH);
 
     gtk_container_add (GTK_CONTAINER (toggle_menu), menu_icons_toggle);
     gtk_container_add (GTK_CONTAINER (toggle_menu), menu_tips_toggle);
@@ -1045,7 +1046,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
                         (void*) item.func,
                         (void*)(long)item.action_id);
 
-      g_object_set_data (G_OBJECT(menu_item), "top-level", w_current);
+      GEDA_OBJECT_SET_DATA(menu_item, w_current, "top-level");
       POPUP_ITEMS_LIST = g_slist_append (POPUP_ITEMS_LIST, menu_item);
       g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, menu_item);
 
@@ -1070,7 +1071,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
     char *popcons_path = OPT_POPCONS_MENU_PATH;
     char *poptips_path = OPT_POPTIPS_MENU_PATH;
 
-    menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menu), popcons_path);
+    menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(menu), popcons_path);
     if (GTK_IS_MENU_ITEM(menu_item)) {
 
       g_signal_connect (G_OBJECT(menu_item), "toggled",
@@ -1078,7 +1079,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
                         POPUP_ITEMS_LIST);
     }
 
-    menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menu), poptips_path);
+    menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(menu), poptips_path);
     if (GTK_IS_MENU_ITEM(menu_item)) {
 
       g_signal_connect (G_OBJECT(menu_item), "toggled",
@@ -1144,7 +1145,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
-    item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), buf);
+    item = (GtkWidget*) g_object_get_data (G_OBJECT(menubar), buf);
 
     if (item && GTK_IS_MENU_ITEM(item)) {
       gtk_widget_set_sensitive(GTK_WIDGET(item), flag);
@@ -1220,7 +1221,7 @@ void x_menu_save_state(GschemToplevel *w_current)
 
   void save_menu_toggler_state(const char* key, const char* path) {
     GtkCheckMenuItem *toggler =
-   (GtkCheckMenuItem*) gtk_object_get_data(GTK_OBJECT(menubar), path);
+   (GtkCheckMenuItem*) g_object_get_data (G_OBJECT(menubar), path);
     if (GTK_IS_CHECK_MENU_ITEM (toggler)) {
       state = gtk_check_menu_item_get_active(toggler);
       eda_config_set_boolean(cfg, MENU_CONFIG_GROUP, key, state);
@@ -1390,7 +1391,7 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 
   if (menubar != NULL) {
 
-    menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
+    menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(menubar), menu_path);
 
      if (menu_item != NULL) {
 
@@ -1479,7 +1480,7 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   menubar = x_menu_get_main_menu(w_current);
 
   menu_path = u_string_concat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
-  menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
+  menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(menubar), menu_path);
   if (menu_item != NULL) {
     gtk_check_menu_item_set_active((GtkCheckMenuItem*) menu_item, state);
   }
@@ -1530,7 +1531,7 @@ static void x_menu_update_recent_files(void)
         continue;
 
       recent_menu_item =
-        (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+        (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR),
                                           "_File/Open Recen_t");
       if(recent_menu_item == NULL)
          return;
@@ -1635,7 +1636,7 @@ static void x_menu_toggle_recent_path (GtkMenuItem *menuitem, void *user_data)
 
   /* Get pointer to the recent files submenu */
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
-  menu_item = (GtkMenuItem*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+  menu_item = (GtkMenuItem*) g_object_get_data (G_OBJECT(MENU_BAR),
                                                  "_File/Open Recen_t");
 
   /* Re-display the recent files submenu */
@@ -1758,7 +1759,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    bool       show_menu_tips;
 
    menu_data        = g_slist_nth_data (ui_list, w_current->ui_index);
-   recent_menu_item = (GtkWidget*) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+   recent_menu_item = (GtkWidget*) g_object_get_data (G_OBJECT(MENU_BAR),
                                                         "_File/Open Recen_t");
    if(recent_menu_item == NULL)
       return;

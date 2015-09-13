@@ -445,13 +445,13 @@ void about_dialog (GschemToplevel *w_current)
 
   Dialog = gtk_about_dialog_new ();
 
-  g_object_set (GTK_OBJECT(Dialog), "version",    version_string,
-                                    "logo",       logo,
-                                    "title",      _("About gschem"),
-                                    "comments",   comments,
-                                    "copyright",  copyright,
-                                    "website",    "http://geda-project.org/",
-                                       NULL);     /* End marker */
+  g_object_set (G_OBJECT(Dialog), "version",    version_string,
+                                  "logo",       logo,
+                                  "title",      _("About gschem"),
+                                  "comments",   comments,
+                                  "copyright",  copyright,
+                                  "website",    "http://geda-project.org/",
+                                   NULL);      /* End marker */
 
   /* About dialog URI calls maybe broken on Windows */
 #if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24)
@@ -494,7 +494,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 
   switch (response) {
   case GEDA_RESPONSE_ACCEPT:
-    snap_size = g_object_get_data(G_OBJECT(Dialog), IDS_SNAP_SIZE);
+    snap_size = g_object_get_data (G_OBJECT(Dialog), IDS_SNAP_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(snap_size));
 
     w_current->snap_size = size;
@@ -578,7 +578,7 @@ void snap_size_dialog (GschemToplevel *w_current)
   }
 
   /* always set the current gschem value to the dialog entry */
-  snap_size = g_object_get_data(G_OBJECT(Dialog), IDS_SNAP_SIZE);
+  snap_size = g_object_get_data (G_OBJECT(Dialog), IDS_SNAP_SIZE);
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(snap_size), w_current->snap_size);
   gtk_editable_select_region(GTK_EDITABLE(snap_size), 0, -1);
 }
@@ -605,7 +605,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 
   switch (response) {
   case GEDA_RESPONSE_ACCEPT:
-    text_size = g_object_get_data(G_OBJECT(Dialog), IDS_TEXT_SIZE);
+    text_size = g_object_get_data (G_OBJECT(Dialog), IDS_TEXT_SIZE);
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(text_size));
 
     w_current->text_size = size;
@@ -685,7 +685,7 @@ void text_size_dialog (GschemToplevel *w_current)
   }
 
   /* always set the current text size to the dialog */
-  text_size = g_object_get_data(G_OBJECT(Dialog),IDS_TEXT_SIZE);
+  text_size = g_object_get_data (G_OBJECT(Dialog),IDS_TEXT_SIZE);
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(text_size), w_current->text_size);
   gtk_editable_select_region(GTK_EDITABLE(text_size), 0, -1);
 }
@@ -755,9 +755,9 @@ x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
 
   GtkWidget *Dialog = w_current->aawindow;
 
-  spin_radius = g_object_get_data(G_OBJECT(Dialog), "radius");
-  spin_start  = g_object_get_data(G_OBJECT(Dialog), "spin_start");
-  spin_sweep  = g_object_get_data(G_OBJECT(Dialog), "spin_sweep");
+  spin_radius = g_object_get_data (G_OBJECT(Dialog), "radius");
+  spin_start  = g_object_get_data (G_OBJECT(Dialog), "spin_start");
+  spin_sweep  = g_object_get_data (G_OBJECT(Dialog), "spin_sweep");
 
   if (object == NULL) {
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_radius), w_current->distance);
@@ -801,11 +801,11 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   }
 
   /* Get ptr to the spinner widgets */
-  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"radius");
+  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"radius");
   radius      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
-  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"spin_start");
+  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"spin_start");
   start_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
-  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"spin_sweep");
+  spin_entry  = g_object_get_data (G_OBJECT(Dialog),"spin_sweep");
   sweep_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
 
   if (s_current != NULL) {
@@ -1183,8 +1183,8 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "filltype",
-                         GINT_TO_POINTER (types[i].type));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER (types[i].type), "filltype");
     gtk_widget_show (menuitem);
   }
 
@@ -1346,7 +1346,7 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
                 GTK_OPTION_MENU (fill_data->fill_type))));
 
   type = GPOINTER_TO_INT(
-    gtk_object_get_data (GTK_OBJECT (menuitem), "filltype"));
+    g_object_get_data (G_OBJECT (menuitem), "filltype"));
 
   switch(type) {
   case(FILLING_HOLLOW):
@@ -1416,8 +1416,8 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   pitch2_str = GetEntryText ( fill_data->pitch2_entry );
 
   type = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
@@ -1673,7 +1673,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
                 x_dialog_fill_type_update_selection,
                 NULL);
 
-  g_object_set_data(G_OBJECT(Dialog), IDS_FILL_TYPE, fill_data);
+  GEDA_OBJECT_SET_DATA(Dialog, fill_data, IDS_FILL_TYPE);
 
   return Dialog;
 }
@@ -1745,8 +1745,8 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
     group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "endtype",
-                         GINT_TO_POINTER (types[i].end));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER (types[i].end), "endtype");
     gtk_widget_show (menuitem);
   }
 
@@ -1786,8 +1786,8 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
     group    = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "linetype",
-                         GINT_TO_POINTER (types[i].type));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER (types[i].type), "linetype");
     gtk_widget_show (menuitem);
   }
 
@@ -1929,7 +1929,7 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
                 GTK_OPTION_MENU (line_data->line_type))));
 
   type = GPOINTER_TO_INT(
-    gtk_object_get_data (GTK_OBJECT (menuitem), "linetype"));
+    g_object_get_data (G_OBJECT (menuitem), "linetype"));
   switch(type) {
       case(TYPE_SOLID):
         activate_length_entry = FALSE;
@@ -1994,8 +1994,8 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   space_str   = GetEntryText ( line_data->space_entry );
 
   type = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
@@ -2006,8 +2006,8 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   }
 
   end = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
@@ -2254,7 +2254,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
                 x_dialog_line_type_update_selection,
                 NULL);
 
-  g_object_set_data(G_OBJECT(Dialog), IDS_LINE_TYPE, line_data);
+  GEDA_OBJECT_SET_DATA(Dialog, line_data, IDS_LINE_TYPE);
 
   return Dialog;
 }
@@ -2328,9 +2328,9 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
     case GEDA_RESPONSE_ACCEPT:
 
       /* Get the stored pointer to objects */
-      checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
-      checkhidden  = g_object_get_data(G_OBJECT(Dialog), "checkhidden");
-      textentry    = g_object_get_data(G_OBJECT(Dialog), IDS_FIND_TEXT);
+      checkdescend = g_object_get_data (G_OBJECT(Dialog), "checkdescend");
+      checkhidden  = g_object_get_data (G_OBJECT(Dialog), "checkhidden");
+      textentry    = g_object_get_data (G_OBJECT(Dialog), IDS_FIND_TEXT);
 
       search_flags = 0;
 
@@ -2369,7 +2369,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 
           GtkWidget  *checkascent;
 
-          checkascent = g_object_get_data(G_OBJECT(Dialog), "checkascent");
+          checkascent = g_object_get_data (G_OBJECT(Dialog), "checkascent");
           if (GetToggleState(checkascent)) {
             x_window_close_page (w_current, forget_page);
           }
@@ -2534,7 +2534,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
-    textentry = g_object_get_data(G_OBJECT(Dialog), IDS_HIDE_TEXT);
+    textentry = g_object_get_data (G_OBJECT(Dialog), IDS_HIDE_TEXT);
 
     /* Retrieve the text string from the Entry widget */
     string = GetEntryText( textentry );
@@ -2642,7 +2642,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_ACCEPT:
 
     /* Get the stored pointer to the entry object */
-    textentry = g_object_get_data(G_OBJECT(Dialog),IDS_SHOW_TEXT);
+    textentry = g_object_get_data (G_OBJECT(Dialog),IDS_SHOW_TEXT);
 
     /* Retrieve the text string from the Entry widget */
     string    = GetEntryText( textentry );
@@ -2745,7 +2745,7 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
 
-  tientry = gtk_object_get_data(GTK_OBJECT(Dialog), IDS_TEXT_INPUT);
+  tientry = g_object_get_data (G_OBJECT(Dialog), IDS_TEXT_INPUT);
 
   textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(tientry));
 
@@ -2880,10 +2880,11 @@ void x_dialog_text_input (GschemToplevel *w_current)
     else {
       fprintf(stderr, "%s: Impossible to set tab width.\n", __func__);
     }
+
     pango_tab_array_free (tab_array);
     gtk_container_add(GTK_CONTAINER(scrolled_window), tientry);
 
-    gtk_object_set_data(GTK_OBJECT(ThisDialog), IDS_TEXT_INPUT, tientry);
+    GEDA_OBJECT_SET_DATA(ThisDialog, tientry, IDS_TEXT_INPUT);
 
     gtk_widget_show_all (ThisDialog);
 
@@ -2894,7 +2895,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
   }
 
   /* always select the text in the entry */
-  tientry = gtk_object_get_data(GTK_OBJECT(ThisDialog), IDS_TEXT_INPUT);
+  tientry = g_object_get_data (G_OBJECT(ThisDialog), IDS_TEXT_INPUT);
   select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
   gtk_widget_grab_focus(tientry);
 }
@@ -2924,7 +2925,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     /* void */
     break;
   case GEDA_RESPONSE_ACCEPT:
-    textentry = g_object_get_data(G_OBJECT(Dialog),IDS_TRANSLATE);
+    textentry = g_object_get_data (G_OBJECT(Dialog),IDS_TRANSLATE);
     string = GetEntryText( textentry );
     if (strlen(string) != 0) {
       o_complex_translate_all(w_current, atoi(string));

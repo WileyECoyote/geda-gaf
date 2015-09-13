@@ -387,7 +387,7 @@ static void x_toolbars_execute(GtkWidget* widget, GschemToplevel* w_current)
 {
   char* action;
 
-  action = g_object_get_data (G_OBJECT(widget), "action");
+  action = GEDA_OBJECT_GET_DATA(widget, "action");
 #if DEBUG_TOOLBARS
   fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
 #endif
@@ -468,7 +468,7 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel* w
 {
   char* action;
 
-  action = g_object_get_data (G_OBJECT(button), "action");
+  action = GEDA_OBJECT_GET_DATA(button, "action");
 
 #if DEBUG_TOOLBARS
   fprintf(stderr, "x_toolbars_execute_radio: action=%s\n",action);
@@ -493,8 +493,8 @@ static void x_toolbars_snap_toggle(GtkWidget* widget, GschemToplevel* w_current)
   char*      action;
   GtkWidget* button;
 
-  action = g_object_get_data (G_OBJECT(widget), "action");
-  button = g_object_get_data (G_OBJECT(widget), "snap-widget");
+  action = GEDA_OBJECT_GET_DATA(widget, "action");
+  button = GEDA_OBJECT_GET_DATA(widget, "snap-widget");
 
   g_object_set (widget, "visible",  FALSE, NULL);
   g_object_set (button, "visible", TRUE, NULL);
@@ -1081,7 +1081,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
                     (GtkSignalFunc) On_mouse_button_press,
                     w_current);
 
-  gtk_object_set_data(GTK_OBJECT(HandleBar), "CloseButton",  CloseButton);
+  GEDA_OBJECT_SET_DATA(HandleBar, CloseButton, "CloseButton");
 
   return;
 }

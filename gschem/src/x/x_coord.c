@@ -109,7 +109,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
     }
 
     Dialog      = gtk_widget_get_toplevel(widget);
-    world_entry = g_object_get_data(G_OBJECT(Dialog), "world_entry");
+    world_entry = g_object_get_data (G_OBJECT(Dialog), "world_entry");
 
     /* Make sure the Drag&Drop Buffer is empty/freed */
     if (object_buffer[DND_BUFFER] != NULL) {
@@ -325,8 +325,8 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
   int   world_x, world_y;
 
   Dialog = w_current->cowindow;
-  screen_entry = gtk_object_get_data(GTK_OBJECT(Dialog), "screen");
-  world_entry  = gtk_object_get_data(GTK_OBJECT(Dialog), "world");
+  screen_entry = g_object_get_data (G_OBJECT(Dialog), "screen");
+  world_entry  = g_object_get_data (G_OBJECT(Dialog), "world");
 
   string = u_string_sprintf("(%d, %d)", x, y);
   SetEntryText(screen_entry, string );

@@ -72,7 +72,7 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
   if (object != NULL && object->type == OBJ_TEXT) {
 
     /* Update the visibility button widget*/
-    widget = g_object_get_data(G_OBJECT(ThisDialog), "visbutton");
+    widget = g_object_get_data (G_OBJECT(ThisDialog), "visbutton");
     if (object->visibility != VISIBLE) {
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
     }
@@ -81,7 +81,7 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
     }
 
     /* Update Show Options */
-    widget = g_object_get_data(G_OBJECT(ThisDialog), "show_options");
+    widget = g_object_get_data (G_OBJECT(ThisDialog), "show_options");
     if (object->show_name_value == SHOW_VALUE) {
       gtk_option_menu_set_history (GTK_OPTION_MENU (widget), 0);
     }
@@ -96,21 +96,21 @@ static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
     o_attrib_get_name_value (object, &name, &val);
 
     /* Update the Value Entry */
-    widget = g_object_get_data(G_OBJECT(ThisDialog), "value_entry");
+    widget = g_object_get_data (G_OBJECT(ThisDialog), "value_entry");
     if (val) {
-      SetEntryText   ( widget, val );
-      EntrySelectAll ( widget );
+      SetEntryText   (widget, val);
+      EntrySelectAll (widget);
     }
 
-    widget = g_object_get_data(G_OBJECT(ThisDialog), "attrib_combo_entry");
-    SetEntryText( widget, name);
+    widget = g_object_get_data (G_OBJECT(ThisDialog), "attrib_combo_entry");
+    SetEntryText (widget, name);
 
-    GEDA_FREE(name);
-    GEDA_FREE(val);
+    GEDA_FREE (name);
+    GEDA_FREE (val);
 
   }
 
-  g_object_set_data(G_OBJECT(ThisDialog), "attrib", object);
+  GEDA_OBJECT_SET_DATA (ThisDialog, object, "attrib");
 
 }
 /*! \todo Finish function documentation!!!
@@ -162,10 +162,10 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
   ThisDialog = w_current->aewindow;
 
-  value_entry  = g_object_get_data(G_OBJECT(ThisDialog), "value_entry");
-  name_entry   = g_object_get_data(G_OBJECT(ThisDialog), "attrib_combo_entry");
-  visbutton    = g_object_get_data(G_OBJECT(ThisDialog), "visbutton");
-  show_options = g_object_get_data(G_OBJECT(ThisDialog), "show_options");
+  value_entry  = g_object_get_data (G_OBJECT(ThisDialog), "value_entry");
+  name_entry   = g_object_get_data (G_OBJECT(ThisDialog), "attrib_combo_entry");
+  visbutton    = g_object_get_data (G_OBJECT(ThisDialog), "visbutton");
+  show_options = g_object_get_data (G_OBJECT(ThisDialog), "show_options");
 
   value   = GetEntryText(value_entry);
   label   = GetEntryText(name_entry);
@@ -225,7 +225,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   }
   else { /* Editing an existing Attribute */
 
-    object =  g_object_get_data(G_OBJECT(ThisDialog), "attrib");
+    object =  g_object_get_data (G_OBJECT(ThisDialog), "attrib");
 
     if (object != NULL && object->type == OBJ_TEXT) {
 
@@ -505,15 +505,15 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
       gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
     }
 
-    g_object_set_data(G_OBJECT(ThisDialog), "mode_flag", GINT_TO_POINTER(flag));
+    GEDA_OBJECT_SET_DATA(ThisDialog, GINT_TO_POINTER(flag), "mode_flag");
 
     /* load the combo's tree with our list of attributes names */
     i = 0;
-    string = (char *) s_attrib_get(i);
+    string = (char*) s_attrib_get(i);
     while (string != NULL) {
       geda_combo_box_append_text(GEDA_COMBO_BOX(attrib_combo_box_entry), string);
       i++;
-      string = (char *) s_attrib_get(i);
+      string = (char*) s_attrib_get(i);
     }
 
     /* Add completion to attribute combo box entry */

@@ -117,7 +117,9 @@ static GtkWidget *create_menu_pin_electricals ( void )
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), WIDGET(PinElectrical), GINT_TO_POINTER (types[i].electrical));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER (types[i].electrical),
+                         WIDGET(PinElectrical));
     gtk_widget_show (menuitem);
   }
 
@@ -143,13 +145,15 @@ static GtkWidget *create_menu_pin_type ( void )
   group = NULL;
 
   for (i = 0; i < sizeof (types) / sizeof (struct pin_type); i++) {
+
     GtkWidget *menuitem;
 
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), WIDGET(PinNodeType),
-                         GINT_TO_POINTER (types[i].type));
+    GEDA_OBJECT_SET_DATA(menuitem,
+                         GINT_TO_POINTER (types[i].type),
+                         WIDGET(PinNodeType));
     gtk_widget_show (menuitem);
   }
 
@@ -268,8 +272,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
     return;
 
   ntype = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (
@@ -281,8 +285,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   }
 
   etype = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
+    g_object_get_data (
+      G_OBJECT (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
             GTK_OPTION_MENU (
@@ -468,8 +472,8 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
   num_selected  = g_list_length( pin_objects);
   g_list_free (pin_objects); /*Just needed to know how many */
 
-  over_rides = gtk_object_get_data(GTK_OBJECT(Dialog), "over-rides");
-  apply_butt = gtk_object_get_data(GTK_OBJECT(Dialog), "apply-butt");
+  over_rides = g_object_get_data (G_OBJECT(Dialog), "over-rides");
+  apply_butt = g_object_get_data (G_OBJECT(Dialog), "apply-butt");
 
   /* Set sensitivity of widgets */
   if ( num_selected == 0 ) {  /* No pins selected so disable everything! */
@@ -946,7 +950,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   /* fill in the fields of the dialog */
   x_dialog_edit_pin_type_set_values(pin_data, NULL, NULL, 1, PIN_ELECT_PAS, PIN_MECH_LEAD, PIN_NET_NODE);
 
-  g_object_set_data (G_OBJECT(ThisDialog), IDS_PIN_EDIT, pin_data);
+  GEDA_OBJECT_SET_DATA(ThisDialog, pin_data, IDS_PIN_EDIT);
 
   action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
                                    (GtkWidget*) main_vbox);

@@ -1199,8 +1199,8 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
   restore_default_color = (int)(long)data;
 
   if (restore_default_color) {
-    color_index = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(item), "color-index"));
-    button      = g_object_get_data(G_OBJECT(item), "color-button");
+    color_index = GPOINTER_TO_INT( g_object_get_data (G_OBJECT(item), "color-index"));
+    button      = g_object_get_data (G_OBJECT(item), "color-button");
     gtk_color_button_set_color(button, x_color_get_color_from_index(color_index));
   }
 
@@ -1232,9 +1232,9 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 
   item = gtk_image_menu_item_new_with_label (_("Restore default"));
 
-  g_object_set_data(G_OBJECT(item), "color-index",  GINT_TO_POINTER(index));
+  GEDA_OBJECT_SET_DATA(item, GINT_TO_POINTER(index), "color-index");
 
-  g_object_set_data (G_OBJECT(item), "color-button", button);
+  GEDA_OBJECT_SET_DATA(item, button, "color-button");
 
   g_signal_connect (G_OBJECT (item), "activate",
                     G_CALLBACK (color_button_popup_menu_callback), GINT_TO_POINTER (1));
@@ -2611,10 +2611,11 @@ create_settings_dialog (GschemToplevel *w_current)
   gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage.."));
 
   /* Store pointers to widgets, for use by get_widget_data(). */
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, "ThisDialog");
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox, "MainDialogVBox");
-  GEDA_HOOKUP_OBJECT (ThisDialog, notebook, "notebook");
-  GEDA_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
+  GEDA_OBJECT_SET_DATA (ThisDialog, ThisDialog, "ThisDialog");
+  GEDA_OBJECT_SET_DATA (ThisDialog, MainDialogVBox, "MainDialogVBox");
+  GEDA_OBJECT_SET_DATA (ThisDialog, dialog_action_area, "dialog_action_area");
+
+  GEDA_HOOKUP_OBJECT (ThisDialog, notebook,   "notebook");
   GEDA_HOOKUP_OBJECT (ThisDialog, CancelButt, "CancelButt");
   GEDA_HOOKUP_OBJECT (ThisDialog, SaveButt,   "SaveButt");
   GEDA_HOOKUP_OBJECT (ThisDialog, OkayButt,   "OkayButt");

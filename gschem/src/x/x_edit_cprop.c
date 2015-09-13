@@ -836,19 +836,19 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
   if (object != NULL && object->type == OBJ_COMPLEX) {
     x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, object, properties);
-    g_object_set_data(G_OBJECT(dialog), "object", object);
+    GEDA_OBJECT_SET_DATA(dialog, object, "object");
     gtk_widget_grab_focus(properties->symbol_entry);
   }
   else if (s_page_is_symbol_file(Current_Page)) {
     x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, NULL, properties);
-    g_object_set_data(G_OBJECT(dialog), "object", NULL);
+    GEDA_OBJECT_SET_DATA(dialog, NULL, "object");
     gtk_widget_grab_focus(properties->author_entry);
   }
   else {
     x_dialog_ep_no_selection(w_current, properties);
     x_dialog_ep_set_sensitive(properties, FALSE);
-    g_object_set_data(G_OBJECT(dialog), "object", NULL);
+    GEDA_OBJECT_SET_DATA(dialog, NULL, "object");
   }
 }
 
@@ -1074,7 +1074,7 @@ static
 GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 {
   AtkObject *atk_obj;
-  GtkWidget *Dialog;
+  GtkWidget *dialog;
   GtkWidget *alignment;
   GtkWidget *frame;
   GtkWidget *hbox;
@@ -1123,14 +1123,14 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   const char *spice_tip      = "The spice-type attributes over-rides the refdes";
   const char *mname_tip      = "Name of the model for this component";
 
-  Dialog = gschem_dialog_new_empty(_("Edit Component Properties"),
+  dialog = gschem_dialog_new_empty(_("Edit Component Properties"),
                                           GTK_WINDOW(w_current->main_window),
          /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                           IDS_PROP_EDIT, w_current);
 
   properties = (property_data*) GEDA_MEM_ALLOC (sizeof (struct st_property_data));
 
-  vbox = GTK_DIALOG(Dialog)->vbox;
+  vbox = GTK_DIALOG(dialog)->vbox;
 
   table = gtk_table_new (6, 5, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
@@ -1519,16 +1519,16 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 
   gtk_widget_show_all (vbox);
 
-  x_dialog_edit_properties_action_area(Dialog, properties);
+  x_dialog_edit_properties_action_area(dialog, properties);
 
-  g_signal_connect (G_OBJECT (Dialog), "response",
+  g_signal_connect (G_OBJECT (dialog), "response",
                     G_CALLBACK (x_dialog_edit_properties_response),
                     properties);
 
   properties->ref_handler =
   g_signal_connect (G_OBJECT (properties->refdes_combo), "changed",
                     G_CALLBACK (x_dialog_ep_refdes_update_entry),
-                    Dialog);
+                    dialog);
 
   properties->ver_handler =
   g_signal_connect(G_OBJECT (properties->version_cb), "toggled",
@@ -1539,13 +1539,13 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
                     G_CALLBACK (x_dialog_ep_electrical_cb),
                     properties);
 
-  g_object_set (G_OBJECT (Dialog), DIALOG_SELECTION_TRACKER,
+  g_object_set (G_OBJECT (dialog), DIALOG_SELECTION_TRACKER,
                 x_dialog_ep_update_selection,
                 NULL);
 
-  g_object_set_data(G_OBJECT(Dialog), IDS_PROP_EDIT, properties);
+  GEDA_OBJECT_SET_DATA(dialog, properties, IDS_PROP_EDIT);
 
-  return Dialog;
+  return dialog;
 }
 
 /*! \brief Creates the Properties dialog
@@ -1555,23 +1555,23 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
  */
 void x_dialog_edit_properties(GschemToplevel *w_current, Object *o_current)
 {
-  GtkWidget *Dialog;
+  GtkWidget *dialog;
 
-  Dialog = w_current->prwindow;
+  dialog = w_current->prwindow;
 
-  if (!Dialog) {
+  if (!dialog) {
 
-    Dialog = x_dialog_edit_properties_constructor(w_current);
+    dialog = x_dialog_edit_properties_constructor(w_current);
 
-    gtk_window_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
-    gtk_window_set_transient_for (GTK_WINDOW(Dialog),
+    gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_transient_for (GTK_WINDOW(dialog),
                                   GTK_WINDOW(w_current->main_window));
 
-    w_current->prwindow = Dialog;
-    gtk_widget_show (Dialog);
+    w_current->prwindow = dialog;
+    gtk_widget_show (dialog);
   }
   else { /* dialog already created */
-    gtk_window_present(GTK_WINDOW(Dialog));
+    gtk_window_present(GTK_WINDOW(dialog));
   }
 
   x_dialog_ep_update_selection (w_current, o_current);
