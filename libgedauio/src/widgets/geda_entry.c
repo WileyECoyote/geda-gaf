@@ -107,9 +107,6 @@ enum {
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-//static void    geda_entry_class_init         (GedaEntryClass   *class);
-//static void    geda_entry_init               (GedaEntry        *entry);
-//static void    geda_entry_finalize           (GObject          *object);
 static void    geda_entry_real_activate      (GedaEntry        *entry);
 static bool    geda_entry_key_press          (GedaEntry        *widget,
                                               GdkEventKey      *event,
@@ -149,11 +146,6 @@ static GList **old_complete_list;
 static bool    have_auto_complete;
 static bool    set_auto_complete;
 static bool    do_auto_complete;
-
-//static GtkEntryClass *parent_class = NULL;
-
-//G_DEFINE_TYPE (GedaEntry, geda_entry, GTK_TYPE_ENTRY);
-//void **entry_parent_class;
 
 static GObjectClass *geda_entry_parent_class = NULL;
 
@@ -651,8 +643,6 @@ geda_entry_class_init(void *g_class, void *class_data)
   gobject_class = G_OBJECT_CLASS (class);
   widget_class  = GTK_WIDGET_CLASS (class);
 
-  //parent_class                = g_type_class_peek_parent (class);
-  //geda_entry_parent_class     = g_type_class_peek_parent (g_type_class_peek (GTK_TYPE_ENTRY));
   geda_entry_parent_class     = g_type_class_peek_parent (class);
 
   gobject_class->finalize     = geda_entry_finalize;
@@ -973,7 +963,6 @@ geda_entry_grab_focus (GtkWidget *widget)
  /* GtkEntry's grab_focus selects the contents and therefore
   * claims PRIMARY. So we bypass it; see bug #345356 and bug #347067.
   */
-  //GTK_WIDGET_CLASS (entry_parent_class)->grab_focus (widget);
   GTK_WIDGET_CLASS (geda_entry_parent_class)->grab_focus (widget);
 }
 static void geda_entry_realize (GtkWidget *widget)
@@ -983,7 +972,6 @@ static void geda_entry_realize (GtkWidget *widget)
 
   GedaEntry *entry = GEDA_ENTRY (widget);
 
-  //GTK_WIDGET_CLASS (parent_class)->realize (widget);
   GTK_WIDGET_CLASS (geda_entry_parent_class)->realize (widget);
 
   if (gtk_widget_has_screen(widget)) {

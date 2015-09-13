@@ -451,8 +451,7 @@ geda_completion_set_compare(GedaCompletion *cmp,
 #ifdef TEST_COMPLETION
 #include <stdio.h>
 int
-main (int   argc,
-      char* argv[])
+main (int argc, char *argv[])
 {
   FILE *file;
   char buf[1024];

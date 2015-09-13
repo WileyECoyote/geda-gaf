@@ -28,8 +28,6 @@
  * MA 02110-1301 USA
  */
 
-extern volatile int log_destiny;
-
 /* command line switch settings */
 extern int verbose_mode;
 extern int quiet_mode;

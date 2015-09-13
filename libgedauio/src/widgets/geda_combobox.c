@@ -1144,7 +1144,7 @@ static void
 geda_combo_box_buildable_init (GtkBuildableIface *iface)
 {
   parent_buildable_iface     = g_type_interface_peek_parent (iface);
-  //iface->add_child           = _gtk_cell_layout_buildable_add_child;
+
   iface->add_child           = gtk_buildable_add_child;
   iface->custom_tag_start    = geda_combo_box_buildable_custom_tag_start;
   iface->custom_tag_end      = geda_combo_box_buildable_custom_tag_end;
@@ -2871,11 +2871,6 @@ typedef struct {
 static bool
 path_visible (GtkTreeView *view, GtkTreePath *path)
 {
-  //GtkRBTree *tree;
-  //GtkRBNode *node;
-
-  /* Note that we rely on the fact that collapsed rows do not have nodes */
-  //return _gtk_tree_view_find_node (view, path, &tree, &node);
   return TRUE;
 }
 

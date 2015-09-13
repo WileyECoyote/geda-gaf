@@ -24,23 +24,23 @@
 
 struct PrintSettings
 {
-	double           paper_width;
-	double           paper_height;
+  double           paper_width;
+  double           paper_height;
 
-	double           margin_bottom;
-	double           margin_left;
-	double           margin_right;
-	double           margin_top;
+  double           margin_bottom;
+  double           margin_left;
+  double           margin_right;
+  double           margin_top;
 
-	double           align_horizontal;
-	double           align_vertical;
+  double           align_horizontal;
+  double           align_vertical;
 
-	char             *font_string;
+  char             *font_string;
 
-        double           junction_size_bus;
-        double           junction_size_net;
+  double           junction_size_bus;
+  double           junction_size_net;
 
-	PrintOrientation orientation;
+  PrintOrientation orientation;
 };
 
 /*! \brief Get a string representation of the selected font

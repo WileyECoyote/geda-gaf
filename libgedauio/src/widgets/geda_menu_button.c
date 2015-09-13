@@ -494,10 +494,10 @@ geda_menu_button_set_property (GObject      *object,
  * \param [in] pspec:     The parameter specifications for the property
  */
 static void
-geda_menu_button_get_property (GObject    *object,
-                               guint       prop_id,
-                               GValue     *value,
-                               GParamSpec *pspec)
+geda_menu_button_get_property (GObject     *object,
+                               unsigned int prop_id,
+                               GValue      *value,
+                               GParamSpec  *pspec)
 {
   GedaMenuButton *button      = GEDA_MENU_BUTTON (object);
   GedaMenuButtonPrivate *priv = button->priv;

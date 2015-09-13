@@ -35,21 +35,15 @@ static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList
 static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
-        );
+        cairo, object->line_options->line_width > 10.0 ?
+               object->line_options->line_width : 10.0);
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb( cairo, 0.0, 0.0, 0.0);
 
     cairo_new_sub_path(cairo);
 
-    if (object->arc->arc_sweep > 0)
-    {
+    if (object->arc->arc_sweep > 0) {
+
         cairo_arc(
             cairo,
             object->arc->x,
@@ -59,8 +53,8 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
             M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
             );
     }
-    else
-    {
+    else {
+
          cairo_arc_negative(
             cairo,
             object->arc->x,
@@ -103,8 +97,8 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
             object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
             );
 
-        for (index=0; index<lines->len; index++)
-        {
+        for (index=0; index<lines->len; index++) {
+
             LINE *line = &g_array_index(lines, LINE, index);
 
             cairo_move_to(
@@ -121,34 +115,17 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
         }
     }
 
-    cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
+    cairo_set_line_width(cairo, object->line_options->line_width > 10.0 ?
+                         object->line_options->line_width : 10.0);
+
+    cairo_move_to(cairo, object->box->upper_x, object->box->upper_y);
+
+    cairo_line_to(cairo, object->box->lower_x, object->box->upper_y);
+
+    cairo_line_to(cairo, object->box->lower_x, object->box->lower_y
         );
 
-    cairo_move_to(
-        cairo,
-        object->box->upper_x,
-        object->box->upper_y
-        );
-
-    cairo_line_to(
-        cairo,
-        object->box->lower_x,
-        object->box->upper_y
-        );
-
-    cairo_line_to(
-        cairo,
-        object->box->lower_x,
-        object->box->lower_y
-        );
-
-    cairo_line_to(
-        cairo,
-        object->box->upper_x,
-        object->box->lower_y
-        );
+    cairo_line_to(cairo, object->box->upper_x, object->box->lower_y);
 
     cairo_close_path(cairo);
 
@@ -163,41 +140,20 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
 static void print_bus(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
 
-    cairo_set_line_width(
-        cairo,
-        30.0
-        );
+    cairo_set_line_width(cairo, 30.0);
 
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
-    cairo_move_to(
-        cairo,
-        object->line->x[0],
-        object->line->y[0]
-        );
+    cairo_move_to(cairo, object->line->x[0], object->line->y[0]);
 
-    cairo_line_to(
-        cairo,
-        object->line->x[1],
-        object->line->y[1]
-        );
+    cairo_line_to(cairo, object->line->x[1], object->line->y[1]);
 
     cairo_stroke(cairo);
 }
 
 static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
-    cairo_set_source_rgb(
-        cairo,
-        0.0,
-        0.0,
-        0.0
-        );
+    cairo_set_source_rgb(cairo, 0.0, 0.0, 0.0);
 
     if ((object->fill_options->fill_type == FILLING_HATCH) ||
          (object->fill_options->fill_type == FILLING_MESH))
@@ -214,10 +170,8 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
                            object->fill_options->fill_pitch2, lines);
         }
 
-        cairo_set_line_width(
-            cairo,
-            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
-            );
+        cairo_set_line_width( cairo, object->fill_options->fill_width > 5.0 ?
+                                     object->fill_options->fill_width : 5.0);
 
 
         for (index=0; index<lines->len; index++)
@@ -238,10 +192,8 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
         }
     }
 
-    cairo_set_line_width(
-        cairo,
-        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
-        );
+    cairo_set_line_width(cairo, object->line_options->line_width > 10.0 ?
+                                object->line_options->line_width : 10.0);
 
     cairo_new_sub_path(cairo);
 
@@ -254,8 +206,8 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
         2.0 * M_PI
         );
 
-    if (object->fill_options->fill_type == FILL_SOLID)
-    {
+    if (object->fill_options->fill_type == FILL_SOLID) {
+
         cairo_fill(cairo);
     }
 
@@ -325,10 +277,7 @@ static void print_line(GedaToplevel *current, cairo_t *cairo, Object *object)
 
 static void print_net(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
-    cairo_set_line_width(
-        cairo,
-        10.0
-        );
+    cairo_set_line_width(cairo, 10.0);
 
     cairo_set_source_rgb(
         cairo,
