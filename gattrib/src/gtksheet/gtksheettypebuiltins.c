@@ -2,13 +2,18 @@
 /* Generated data (by glib-mkenums) */
 
 #define GTKSHEET_ENABLE_BROKEN
+
+#include <gtk/gtk.h>
+#include <gdk/gdk.h>
+#include <glib.h>
+
 #include "gtksheet.h"
 
-/* enumerations from "gtksheetwidget.h" */
-unsigned int
+/* enumerations from "gtksheet.h" */
+GType
 gtk_sheet_attr_type_get_type (void)
 {
-  static unsigned int etype = 0;
+  static GType etype = 0;
   if (etype == 0) {
     static const GEnumValue values[] = {
       { GTK_SHEET_FOREGROUND, "GTK_SHEET_FOREGROUND", "foreground" },
@@ -25,10 +30,11 @@ gtk_sheet_attr_type_get_type (void)
   }
   return etype;
 }
-unsigned int
+
+GType
 gtk_sheet_state_get_type (void)
 {
-  static unsigned int etype = 0;
+  static GType etype = 0;
   if (etype == 0) {
     static const GEnumValue values[] = {
       { GTK_SHEET_NORMAL, "GTK_SHEET_NORMAL", "normal" },
@@ -41,19 +47,41 @@ gtk_sheet_state_get_type (void)
   }
   return etype;
 }
-unsigned int
-gtk_sheet_border_flags_get_type (void)
+
+GType
+gtk_sheet_entry_type_get_type (void)
 {
-  static unsigned int etype = 0;
+  static GType etype = 0;
   if (etype == 0) {
-    static const GFlagsValue values[] = {
-      { GTK_SHEET_LEFT_BORDER, "GTK_SHEET_LEFT_BORDER", "left-border" },
-      { GTK_SHEET_RIGHT_BORDER, "GTK_SHEET_RIGHT_BORDER", "right-border" },
-      { GTK_SHEET_TOP_BORDER, "GTK_SHEET_TOP_BORDER", "top-border" },
-      { GTK_SHEET_BOTTOM_BORDER, "GTK_SHEET_BOTTOM_BORDER", "bottom-border" },
+    static const GEnumValue values[] = {
+      { GTK_SHEET_ENTRY_TYPE_DEFAULT, "GTK_SHEET_ENTRY_TYPE_DEFAULT", "default" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_ITEM_ENTRY, "GTK_SHEET_ENTRY_TYPE_GTK_ITEM_ENTRY", "gtk-item-entry" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_ENTRY, "GTK_SHEET_ENTRY_TYPE_GTK_ENTRY", "gtk-entry" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_TEXT_VIEW, "GTK_SHEET_ENTRY_TYPE_GTK_TEXT_VIEW", "gtk-text-view" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_SPIN_BUTTON, "GTK_SHEET_ENTRY_TYPE_GTK_SPIN_BUTTON", "gtk-spin-button" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_COMBO_BOX, "GTK_SHEET_ENTRY_TYPE_GTK_COMBO_BOX", "gtk-combo-box" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_COMBO_BOX_ENTRY, "GTK_SHEET_ENTRY_TYPE_GTK_COMBO_BOX_ENTRY", "gtk-combo-box-entry" },
+      { GTK_SHEET_ENTRY_TYPE_GTK_COMBO, "GTK_SHEET_ENTRY_TYPE_GTK_COMBO", "gtk-combo" },
       { 0, NULL, NULL }
     };
-    etype = g_flags_register_static ("GtkSheetBorderFlags", values);
+    etype = g_enum_register_static ("GtkSheetEntryType", values);
+  }
+  return etype;
+}
+
+GType
+gtk_sheet_vertical_justification_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT, "GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT", "default" },
+      { GTK_SHEET_VERTICAL_JUSTIFICATION_TOP, "GTK_SHEET_VERTICAL_JUSTIFICATION_TOP", "top" },
+      { GTK_SHEET_VERTICAL_JUSTIFICATION_MIDDLE, "GTK_SHEET_VERTICAL_JUSTIFICATION_MIDDLE", "middle" },
+      { GTK_SHEET_VERTICAL_JUSTIFICATION_BOTTOM, "GTK_SHEET_VERTICAL_JUSTIFICATION_BOTTOM", "bottom" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("GtkSheetVerticalJustification", values);
   }
   return etype;
 }

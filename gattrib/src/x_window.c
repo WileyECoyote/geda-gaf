@@ -163,8 +163,8 @@ void x_window_init()
 
   gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);
 
-  gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
-                      GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
+  GEDA_SIGNAL_CONNECT (main_window, "delete_event",
+                       GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */
   main_vbox = gtk_vbox_new(FALSE,1);
@@ -201,9 +201,9 @@ void x_window_init()
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
 
-  g_signal_connect ((void *) notebook, "switch-page",
-                    G_CALLBACK (on_notebook_switch_page),
-                    NULL);
+  GEDA_SIGNAL_CONNECT (notebook, "switch-page",
+                       G_CALLBACK (on_notebook_switch_page),
+                       NULL);
   /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */
   /* This basically sets up the overhead for the sheets, as I understand
    * it.  The memory for the actual sheet cells is allocated later,
@@ -392,12 +392,12 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   for( i = 0; i <= count; i++) {
     if (show) {
       toggle = TRUE;
-      curr_title =sheets[Components]->column[i].name;
+      curr_title = sheet->column[i]->title;
       for(row=0; row < sheet_head->attached_attrib_count; row++) {
         attached = s_string_list_get_data_at_index(sheet_head->attached_attrib,row);
         if(strcmp(attached, curr_title) == 0) {
           toggle = FALSE;
-	  break;
+          break;
         }
       } /* Next row */
       if(toggle)

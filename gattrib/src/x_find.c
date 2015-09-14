@@ -225,7 +225,7 @@ void x_find_attribute()
     found = FALSE;
     count = sheet->maxcol;
     for( i = 0; i <= count; i++) {
-      if (strcmp(sheet->column[i].name, text) == 0) {
+      if (strcmp(sheet->column[i]->title, text) == 0) {
         found = TRUE;
         gtk_sheet_select_column(sheet,i);
         break;

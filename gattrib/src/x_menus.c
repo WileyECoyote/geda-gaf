@@ -405,7 +405,8 @@ void x_menu_fix_gtk_recent_submenu() {
   }
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), menu_files);
 
-  g_signal_connect (menu_files, "selection-done", G_CALLBACK (on_recent_selection), main_window);
+  GEDA_SIGNAL_CONNECT (menu_files, "selection-done",
+                       G_CALLBACK (on_recent_selection), main_window);
 
   return;
 
@@ -444,9 +445,9 @@ GtkActionGroup *x_menu_create_recent_action_group() {
  */
 
   gtk_action_group_add_action (recent_action_group, GTK_ACTION (recent_action));
-  g_signal_connect (recent_action, "item-activated",
-                    G_CALLBACK (on_recent_selection),
-                    NULL);
+  GEDA_SIGNAL_CONNECT (recent_action, "item-activated",
+                       G_CALLBACK (on_recent_selection),
+                       NULL);
 
   return recent_action_group;
 }

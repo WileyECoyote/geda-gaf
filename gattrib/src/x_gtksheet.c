@@ -148,9 +148,7 @@ static GtkWidget *build_menu(GtkWidget *sheet)
   {
     item=gtk_menu_item_new_with_label(popup_items[i]);
 
-    g_signal_connect(GTK_OBJECT(item),"activate",
-                    (void*) popup_activated,
-                    (void*)(long) i);
+    GEDA_SIGNAL_CONNECT(item,"activate", popup_activated, (void*)(long) i);
 
     gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
@@ -199,6 +197,7 @@ static GtkWidget *build_menu(GtkWidget *sheet)
     }
     return (menu);
 }
+
 /*! \brief Mouse Button Call Back
  *
  *  \par Function Description
@@ -418,42 +417,26 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
   GtkObject *SheetObj;
   SheetObj = GTK_OBJECT(sheet);
 
-  gtk_signal_connect(SheetObj,
-                    "button_press_event",
-                    (GtkSignalFunc) on_mouse_button_press,
-                    NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event",
+                      on_mouse_button_press, NULL);
 
-  gtk_signal_connect(SheetObj,
-                    "activate",
-                    (GtkSignalFunc) on_activate_cell,
-                     NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "activate",
+                      on_activate_cell,
+                      NULL);
 
-  gtk_signal_connect(SheetObj,
-                     "deactivate",
-                     (GtkSignalFunc) on_deactivate_cell,
-                     PageData);
+  GEDA_SIGNAL_CONNECT(SheetObj, "deactivate",
+                      on_deactivate_cell,
+                      PageData);
 
   return;
 
-  gtk_signal_connect(SheetObj,
-                    "changed", /* or just clicked on */
-                    (GtkSignalFunc) on_change,
-                    NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "changed", (GtkSignalFunc) on_change, NULL);
 
- gtk_signal_connect(SheetObj,
-                    "resize_range",
-                    (GtkSignalFunc) on_resize,
-                    NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", (GtkSignalFunc) on_resize, NULL);
 
- gtk_signal_connect(SheetObj,
-                    "move_range",
-                    (GtkSignalFunc) on_move,
-                    NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", (GtkSignalFunc) on_move, NULL);
 
- gtk_signal_connect(SheetObj,
-                    "traverse",
-                    (GtkSignalFunc) on_traverse,
-                    NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "traverse", (GtkSignalFunc) on_traverse, NULL);
 }
 
 /* Call back for Entry Combo "change" signal*/
@@ -523,8 +506,8 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
   sheet=GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
-  if(GTK_SHEET(widget)->column[column].name)
-    sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column].name, row);
+  if(GTK_SHEET(widget)->column[column]->title)
+    sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column]->title, row);
   else
     sprintf(cell, "R:%d C: %d", row, column);
 
@@ -552,7 +535,8 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
  *
  */
 
-void  x_gtksheet_reinititialize(PageDataSet *PageData) {
+void  x_gtksheet_reinititialize(PageDataSet *PageData)
+{
 
   void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
     unsigned int cRows = gtk_sheet_get_rows_count(sheet);
@@ -560,10 +544,10 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData) {
 
     if (nRows > 0) {
       if ( nRows > cRows) {
-	  gtk_sheet_add_row(sheet, nRows - cRows );
+        gtk_sheet_add_row(sheet, nRows - cRows );
       }
       else {
-	if (  cRows > nRows) {
+        if (  cRows > nRows) {
           gtk_sheet_delete_rows	(sheet, 0, cRows - nRows);
         }
       }
@@ -571,12 +555,12 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData) {
     }
     if (nCols > 0) {
       if ( nCols > cCols) {
-	  gtk_sheet_add_column(sheet, nCols - cCols );
+        gtk_sheet_add_column(sheet, nCols - cCols );
       }
       else {
-	if ( cCols > nCols) {
+        if ( cCols > nCols) {
           gtk_sheet_delete_columns(sheet, 0, cCols - nCols);
-	}
+        }
       }
       /* else they are the same size so do nothing */
     }
@@ -608,15 +592,16 @@ void x_gtksheet_init(PageDataSet *PageData)
   void CreateSheet(SheetId index, int nRow, int nCol) {
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
       fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
-    } else {
+    }
+    else {
       if ((nRow > 0) && (nCol > 0)) {
         sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol, _(SheetNames[index]));
       }
       else {
         fprintf(stderr, "ERROR: x_gtksheet_init: (%s )row count =[%d], col count=[%d]\n",
-	        _(SheetNames[index]), nRow , nCol);
-	sheets[index] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[index]));
-	gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
+                _(SheetNames[index]), nRow , nCol);
+        sheets[index] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[index]));
+        gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
       }
     }
     if(!GTK_IS_SHEET (sheets[index])) {
@@ -638,7 +623,7 @@ void x_gtksheet_init(PageDataSet *PageData)
   /* --- Finally stick labels on the notebooks holding the sheets. --- */
   for(i=0; i<NUM_SHEETS; i++){
     if (sheets[i] != NULL) {  /* is this check needed?
-			       * Yes, it prevents us from segfaulting on empty nets sheet. */
+      * Yes, it prevents us from segfaulting on empty nets sheet. */
       scrolled_windows=(GtkWidget **)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget *));
       scrolled_windows[i]=gtk_scrolled_window_new(NULL, NULL);
 
@@ -646,16 +631,18 @@ void x_gtksheet_init(PageDataSet *PageData)
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
       if (notebook != NULL)
-	gtk_notebook_remove_page(GTK_NOTEBOOK(notebook), i);
+        gtk_notebook_remove_page(GTK_NOTEBOOK(notebook), i);
 
       /* Then add new, updated notebook page */
       label= gtk_label_new(_(SheetNames[i]));
 
       gtk_notebook_append_page(GTK_NOTEBOOK(notebook),
-			       GTK_WIDGET(scrolled_windows[i]),
-			       GTK_WIDGET(label) );
+                               GTK_WIDGET(scrolled_windows[i]),
+                               GTK_WIDGET(label) );
 
-      sheets[i]->autoresize=FALSE;
+      sheets[i]->autoresize_columns = FALSE;
+      sheets[i]->autoresize_rows = FALSE;
+
       gtk_sheet_set_autoscroll(sheets[i], TRUE);
 
       /* Maybe this fixes a long time sore spot for gattrib */
@@ -668,30 +655,30 @@ void x_gtksheet_init(PageDataSet *PageData)
       }
       gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
 
-      gtk_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
-                         (GtkSignalFunc) clipboard_handler, NULL);
+      g_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
+                        (GtkSignalFunc) clipboard_handler, NULL);
 
       /*  The entry cell is the text entry field is the one at the top */
-      gtk_signal_connect(GTK_OBJECT(gtk_sheet_get_entry(GTK_SHEET(sheets[i]))),
-		         "changed", (GtkSignalFunc)show_entry, NULL);
+      g_signal_connect(GTK_OBJECT(gtk_sheet_get_entry(GTK_SHEET(sheets[i]))),
+                       "changed", (GtkSignalFunc)show_entry, NULL);
 
-      gtk_signal_connect(GTK_OBJECT(sheets[i]),
-		         "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
+      g_signal_connect(GTK_OBJECT(sheets[i]),
+                       "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
     }
   }
   /* The next 2 functions setup callbacks for the Entry widget in the would be
    * status bar*/
-  gtk_signal_connect(GTK_OBJECT(entry),
-		      "changed", (GtkSignalFunc)show_sheet_entry, NULL);
+  g_signal_connect(GTK_OBJECT(entry),
+                   "changed", (GtkSignalFunc)show_sheet_entry, NULL);
 
-  gtk_signal_connect(GTK_OBJECT(entry),
-		      "activate", (GtkSignalFunc)activate_sheet_entry,
-		      NULL);
+  g_signal_connect(GTK_OBJECT(entry),
+                   "activate", (GtkSignalFunc)activate_sheet_entry,
+                   NULL);
 
   SetupCSheetHandlers(sheets[Components], PageData);
 
-  sheets[Pins]->autoresize=TRUE;
-
+  sheets[Pins]->autoresize_columns=TRUE;
+  //sheets[Pins]->autoresize_rows=TRUE;
 }
 
 /*------------------------------------------------------------------*/
@@ -887,7 +874,7 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
 
   /* Auto resize up to limit */
   if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
-      ( desired_width > sheet->column[col].width )) {
+      ( desired_width > sheet->column[col]->width )) {
     gtk_sheet_set_column_width(sheet, col, desired_width);
   }
 

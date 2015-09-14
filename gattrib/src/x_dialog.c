@@ -817,6 +817,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
 
   return ThisDialog;
 }
+
 /*! \brief Startup Search and Replace Dialog
  *  \par Function Description: This is the main function called by external
  *       to launch a new Search and Replace Dialog session.
@@ -832,33 +833,12 @@ void x_dialog_search_replace(SearchRecord *Search) {
 
   x_dialog_init_search_replace(ThisDialog, Search);
 
-  g_signal_connect (GTK_OBJECT (ThisDialog), "response",
-                    GTK_SIGNAL_FUNC(search_replace_dialog_response), Search);
+  GEDA_SIGNAL_CONNECT(ThisDialog, "response",
+                      search_replace_dialog_response, Search);
 
-  gtk_container_border_width (GTK_CONTAINER(ThisDialog),
-                                DIALOG_BORDER_WIDTH);
+  gtk_container_border_width (GTK_CONTAINER(ThisDialog), DIALOG_BORDER_WIDTH);
 
   gtk_widget_show(ThisDialog);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*********** End of find text dialog box *******/

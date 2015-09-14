@@ -1,3 +1,7 @@
+2015-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * */gtksheet/*: Upgraded gtksheet module to latest version: 3.1.5
+
 2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace GTK_HOOKUP_OBJECT wit GEDA_HOOKUP_OBJECT.
@@ -291,7 +295,7 @@
         Disabled visability of the "Nets" tab. Previously the was controled
         with preprocessor directives to prevent compilation. The Nets tab
         is now compiled in but it is kept off and requires development.
-        (Idea: Would it be easer to just have gnetlist generate a text file
+        (TODO: Would it be easer to just have gnetlist generate a text file
         and read that in to the net sheet then to sort through toplevel
         with library?)
 

@@ -261,7 +261,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   col = sheet->range.col0;
 
   /* Get name of the column to delete */
-  attrib_name = u_string_strdup(sheet->column[col].name);
+  attrib_name = u_string_strdup(sheet->column[col]->title);
 
   /* Ask user to confirm deletion */
   strcpy(msg_buffer, "Are you sure you want to\n delete the Attribute \"");

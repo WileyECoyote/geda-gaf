@@ -1,5 +1,5 @@
-/* gtkextra - set of widgets for gtk+
- * Copyright 1999-2001  Adrian E. Feiguin <feiguin@ifir.edu.ar>
+/* gtkdataformat - data formatter
+ * Copyright 2011  Fredy Paquet <fredy@opag.ch>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,15 +17,19 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef GTK_SHEET_H
-#define GTK_SHEET_H
+#ifndef __GTK_DATA_FORMAT_H__
+#define __GTK_DATA_FORMAT_H__
 
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
-#include <glib.h>
+#ifdef __cplusplus
+extern "C"
+{
+#endif /* __cplusplus */
 
-#include <gtksheet/gtksheet-version.h>
-#include <gtksheet/gtkitementry.h>
-#include <gtksheet/gtksheet.h>
+char *gtk_data_format(const char *str, const char *dataformat);
+char *gtk_data_format_remove(const char *str, const char *dataformat);
 
-#endif /* GTK_EXTRA_H */
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /* __GTK_DATA_FORMAT_H__ */

@@ -28,9 +28,9 @@ extern "C" {
 /* GtkExtra version.
  */
 
-#define GTKSHEET_MAJOR_VERSION			(0)
-#define GTKSHEET_MINOR_VERSION			(2)
-#define GTKSHEET_MICRO_VERSION			(1)
+#define GTKSHEET_MAJOR_VERSION			(3)
+#define GTKSHEET_MINOR_VERSION			(1)
+#define GTKSHEET_MICRO_VERSION			(5)
 #define GTKSHEET_BINARY_AGE			(0)
 #define GTKSHEET_INTERFACE_AGE			(0)
 #define GTKSHEET_CHECK_VERSION(major,minor,micro)    \

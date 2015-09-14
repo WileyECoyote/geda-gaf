@@ -23,52 +23,70 @@
 #define __GTK_ITEM_ENTRY_H__
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif /* __cplusplus */
 
-#define GTK_TYPE_ITEM_ENTRY            (gtk_item_entry_get_type ())
-#define GTK_ITEM_ENTRY(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_ITEM_ENTRY, GtkItemEntry))
-#define GTK_ITEM_ENTRY_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_ITEM_ENTRY, GtkItemEntryClass))
-#define GTK_IS_ITEM_ENTRY(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_ITEM_ENTRY))
-                                                                       /* Is this an error?*/
-#define GTK_IS_ITEM_ENTRY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_ENTRY))
-#define GTK_ITEM_ENTRY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_ITEM_ENTRY, GtkItemEntryClass))
+#define G_TYPE_ITEM_ENTRY \
+    (gtk_item_entry_get_type ())
 
-typedef struct _GtkItemEntry       GtkItemEntry;
-typedef struct _GtkItemEntryClass  GtkItemEntryClass;
+#define GTK_ITEM_ENTRY(obj)  \
+    (G_TYPE_CHECK_INSTANCE_CAST (obj, gtk_item_entry_get_type (), GtkItemEntry))
 
-struct _GtkItemEntry
-{
-  GtkEntry parent;
+#define GTK_ITEM_ENTRY_CLASS(klass) \
+    (G_TYPE_CHECK_CLASS_CAST (klass, gtk_item_entry_get_type (), GtkItemEntryClass))
 
-  int text_max_size;
+#define GTK_IS_ITEM_ENTRY(obj) \
+    (G_TYPE_CHECK_INSTANCE_TYPE (obj, gtk_item_entry_get_type ()))
 
-  GtkJustification justification;
-};
+#define GTK_IS_ITEM_ENTRY_CLASS(klass) \
+    (GTK_CHECK_CLASS_TYPE ((klass), gtk_entry_get_type()))
 
-struct _GtkItemEntryClass
-{
-  GtkEntryClass parent_class;
-};
+    typedef struct _GtkItemEntry GtkItemEntry;
+    typedef struct _GtkItemEntryClass GtkItemEntryClass;
 
-GType        gtk_item_entry_get_type            (void);
-GtkWidget*   gtk_item_entry_new                 (void);
-GtkWidget*   gtk_item_entry_new_with_max_length (int   max);
-void         gtk_item_entry_set_text            (GtkItemEntry     *entry,
-                                                 const char      *text,
-                                                 GtkJustification justification);
+    struct _GtkItemEntry
+    {
+	/*< private >*/
+	GtkEntry parent;
 
-GtkJustification gtk_item_entry_get_justification (GtkItemEntry     *entry);
-void       gtk_item_entry_set_justification       (GtkItemEntry     *entry,
-                                                   GtkJustification  just);
+	int text_max_size;  /* upper limit for geometric size allocation or 0 */
 
-void       gtk_item_entry_set_cursor_visible      (GtkItemEntry     *entry,
-                                                   int               visible);
-int        gtk_item_entry_get_cursor_visible      (GtkItemEntry     *entry);
+	gint16 item_text_size;   /* length of allocated entry->text memory buffer block */
+	gint16 item_n_bytes;  /* string length of entry->text, used part of memory buffer */
+
+	/* pseudo-properties */
+
+	int max_length_bytes;   /* maximum length in bytes */
+	GtkJustification justification;  /* justification of the entry */
+    };
+
+    struct _GtkItemEntryClass
+    {
+	GtkEntryClass parent_class;
+    };
+
+    GType gtk_item_entry_get_type(void);
+
+    GtkWidget *gtk_item_entry_new(void);
+    GtkWidget *gtk_item_entry_new_with_max_length(int max);
+
+    void gtk_item_entry_set_text(GtkItemEntry *entry,
+	const char *text, GtkJustification justification);
+
+    int
+	gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry);
+
+    void gtk_item_entry_set_max_length_bytes(GtkItemEntry *item_entry,
+                                    int max_length_bytes);
+
+    void gtk_item_entry_set_justification(GtkItemEntry *entry, GtkJustification just);
+
+    void gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, int visible);
+    int gtk_item_entry_get_cursor_visible(GtkItemEntry *entry);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
 
 #endif /* __GTK_ITEM_ENTRY_H__ */
