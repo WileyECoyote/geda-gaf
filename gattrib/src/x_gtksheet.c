@@ -49,6 +49,7 @@ const char* Colors [] = { "black",      "red",    "blue",
                           "lightgreen", "tan",    "violet",
                           "yellow",     "white"
 };
+
 static char *popup_items[]={ "Toggle Visiablity",
                              "Add Attribute",
                              "Insert Attribute",
@@ -127,6 +128,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
     gtk_widget_destroy(popup);
     return (TRUE);
 }
+
 /*! \brief Create and Setup Popup Mouse Menu
  *
  *  \par Function Description
@@ -259,6 +261,7 @@ static int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
 
     return (FALSE);
 }
+
 /*! \brief Callback on sheet resize
  *  \par Function Description
  *  This function is not used.
@@ -271,6 +274,7 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
                                     new_range->rowi, new_range->coli);
 }
+
 /*! \brief Callback on sheet Move
  *  \par Function Description
  *  This function is not used.
@@ -324,6 +328,7 @@ static void on_change(GtkWidget *widget, int row, int col, void * data)
 {
 
 }
+
 /*! \brief Call Back on cell activate
  *
  *  \par Function Description
@@ -351,6 +356,7 @@ static bool on_activate_cell(GtkWidget *widget, int row, int col, void * data)
 
  return TRUE;
 }
+
 /*! \brief Call Back on cell de-activate
  *
  *  \par Function Description
@@ -384,6 +390,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
 
  return TRUE;
 }
+
 /*! \brief Callback on Traverse Cell
  *  \par Function Description
  *  This function is not used. This function could be called after
@@ -440,7 +447,7 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 }
 
 /* Call back for Entry Combo "change" signal*/
-void show_sheet_entry(GtkWidget *widget, void * data)
+static void show_sheet_entry(GtkWidget *widget, void * data)
 {
  const char *text;
  GtkSheet *sheet;
@@ -456,8 +463,9 @@ void show_sheet_entry(GtkWidget *widget, void * data)
    SetEntryText(sheet_entry, text);
  }
 }
+
 /*! \brief Call back for Entry Combo activate*/
-void activate_sheet_entry(GtkWidget *widget, void * data)
+static void activate_sheet_entry(GtkWidget *widget, void * data)
 {
   GtkSheet *sheet;
   GtkEntry *sheet_entry;
@@ -477,7 +485,7 @@ void activate_sheet_entry(GtkWidget *widget, void * data)
 }
 
 /*! \brief Call back for "change" signal from embeded Entry widget */
-void show_entry(GtkWidget *widget, void * data)
+static void show_entry(GtkWidget *widget, void * data)
 {
   const char *text;
   GtkSheet   *sheet;
@@ -496,7 +504,7 @@ void show_entry(GtkWidget *widget, void * data)
 }
 
 /*! \brief Call back for "activate" signal from sheet cell array widget */
-int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
+static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
 {
   GtkSheetCellAttr attributes;
   GtkSheet   *sheet;
@@ -808,14 +816,15 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
   gtk_sheet_range_set_foreground(sheet, &range, &color_t);
 
 }
+
 /*! \brief Set the text background color of a range of cells
  *  \par Function Description
- *  This functions sets the color of a range cells identified by row,
- *  col.
+ *  This functions sets the color of a range cells identified by
+ *  \a row and \a col.
  *
  * \param sheet GtkSheet to operate on
- * \param row Row of cell to set
- * \param col Column of cell to set
+ * \param row   Row of cell to set
+ * \param col   Column of cell to set
  * \param Color id Color to set text to
  */
 void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
@@ -852,7 +861,7 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
 /*------------------------------------------------------------------*/
 /*! \brief Add a cell item to the GtkSheet
  *  \par Function Description
- *  This functions loads text into a cell, increaseing the column width
+ *  This functions loads text into a cell and increases the column width
  * up to COLUMN_WIDTH_LIMIT if needed. The function calls x_gtksheet_set
  * _cell_fgcolor to set the text color based on the properties of the
  * attribute.

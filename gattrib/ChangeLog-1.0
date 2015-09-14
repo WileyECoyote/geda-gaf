@@ -1,5 +1,10 @@
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x_gtksheet.c: Make functions show_sheet_entry, show_entry,
+      activate_sheet_entry and activate_sheet_cell static.
+
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/s_string_list.c: Remove checking of list->length in function
       s_string_list_get_data_at_index, does not appear to be operative.
       And rename varible "local_item" to something more accurate: "iter".
