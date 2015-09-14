@@ -120,30 +120,30 @@ struct _GtkSheetColumnClass
 GType gtk_sheet_column_get_type(void);
 
 GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col);
-int gtk_sheet_column_get_index(GtkSheetColumn *colobj);
+int            gtk_sheet_column_get_index(GtkSheetColumn *colobj);
 
 /* set column width */
-void gtk_sheet_set_column_width(GtkSheet *sheet, int column, guint width);
+void      gtk_sheet_set_column_width(GtkSheet *sheet, int column, guint width);
 const int gtk_sheet_get_column_width(GtkSheet *sheet, int column);
 
-void gtk_sheet_column_set_justification(GtkSheet *sheet, int col, GtkJustification just);
+void             gtk_sheet_column_set_justification(GtkSheet *sheet, int col, GtkJustification just);
 GtkJustification gtk_sheet_column_get_justification(GtkSheet *sheet, int col);
-void gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col, GtkSheetVerticalJustification vjust);
+void             gtk_sheet_column_set_vjustification(GtkSheet *sheet, int col, GtkSheetVerticalJustification vjust);
 GtkSheetVerticalJustification gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col);
 
 /* column properties */
-int gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col, const int is_key);
-int  gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col, const int  is_readonly);
+int    gtk_sheet_column_get_iskey(GtkSheet *sheet, const int col);
+void   gtk_sheet_column_set_iskey(GtkSheet *sheet, const int col, const int is_key);
+int    gtk_sheet_column_get_readonly(GtkSheet *sheet, const int col);
+void   gtk_sheet_column_set_readonly(GtkSheet *sheet, const int col, const int  is_readonly);
 char  *gtk_sheet_column_get_format(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_format(GtkSheet *sheet, const int col, const char  *format);
+void   gtk_sheet_column_set_format(GtkSheet *sheet, const int col, const char  *format);
 char  *gtk_sheet_column_get_datatype(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_datatype(GtkSheet *sheet, const int col, const char  *data_type);
+void   gtk_sheet_column_set_datatype(GtkSheet *sheet, const int col, const char  *data_type);
 char  *gtk_sheet_column_get_description(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_description(GtkSheet *sheet, const int col, const char  *description);
-GType gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col);
-void gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col, const GType entry_type);
+void   gtk_sheet_column_set_description(GtkSheet *sheet, const int col, const char  *description);
+GType  gtk_sheet_column_get_entry_type(GtkSheet *sheet, const int col);
+void   gtk_sheet_column_set_entry_type(GtkSheet *sheet, const int col, const GType entry_type);
 
 /* column tooltips */
 char  *gtk_sheet_column_get_tooltip_markup(GtkSheet *sheet, const int col);
@@ -183,13 +183,13 @@ void gtk_sheet_set_column_title(GtkSheet *sheet, int column, const char  *title)
 
 /*< private >*/
 
-int _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col);
-int _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col);
+int _gtk_sheet_column_left_xpixel            (GtkSheet *sheet, int col);
+int _gtk_sheet_column_right_xpixel           (GtkSheet *sheet, int col);
 
-void _gtk_sheet_column_size_request(GtkSheet *sheet, int col, guint *requisition);
-void _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet);
-void _gtk_sheet_column_button_set(GtkSheet *sheet, int col);
-void _gtk_sheet_column_button_release(GtkSheet *sheet, int col);
+void _gtk_sheet_column_size_request          (GtkSheet *sheet, int col, guint *requisition);
+void _gtk_sheet_column_buttons_size_allocate (GtkSheet *sheet);
+void _gtk_sheet_column_button_set            (GtkSheet *sheet, int col);
+void _gtk_sheet_column_button_release        (GtkSheet *sheet, int col);
 
 #ifdef __cplusplus
 }

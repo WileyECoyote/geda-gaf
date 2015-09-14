@@ -25,8 +25,8 @@ extern "C"
 {
 #endif /* __cplusplus */
 
-char *gtk_data_format(const char *str, const char *dataformat);
-char *gtk_data_format_remove(const char *str, const char *dataformat);
+char *gtk_data_format        (const char *str, const char *dataformat);
+char *gtk_data_format_remove (const char *str, const char *dataformat);
 
 #ifdef __cplusplus
 }

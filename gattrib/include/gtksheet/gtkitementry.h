@@ -47,18 +47,18 @@ extern "C"
 
     struct _GtkItemEntry
     {
-	/*< private >*/
-	GtkEntry parent;
+      /*< private >*/
+      GtkEntry parent;
 
-	int text_max_size;  /* upper limit for geometric size allocation or 0 */
+      int text_max_size;       /* upper limit for geometric size allocation or 0 */
 
-	gint16 item_text_size;   /* length of allocated entry->text memory buffer block */
-	gint16 item_n_bytes;  /* string length of entry->text, used part of memory buffer */
+      gint16 item_text_size;   /* length of allocated entry->text memory buffer block */
+      gint16 item_n_bytes;     /* string length of entry->text, used part of memory buffer */
 
-	/* pseudo-properties */
+      /* pseudo-properties */
 
-	int max_length_bytes;   /* maximum length in bytes */
-	GtkJustification justification;  /* justification of the entry */
+      int max_length_bytes;            /* maximum length in bytes */
+      GtkJustification justification;  /* justification of the entry */
     };
 
     struct _GtkItemEntryClass
@@ -66,16 +66,15 @@ extern "C"
 	GtkEntryClass parent_class;
     };
 
-    GType gtk_item_entry_get_type(void);
+    GType gtk_item_entry_get_type (void);
 
-    GtkWidget *gtk_item_entry_new(void);
-    GtkWidget *gtk_item_entry_new_with_max_length(int max);
+    GtkWidget *gtk_item_entry_new (void);
+    GtkWidget *gtk_item_entry_new_with_max_length (int max);
 
     void gtk_item_entry_set_text(GtkItemEntry *entry,
-	const char *text, GtkJustification justification);
+                                 const char *text, GtkJustification justification);
 
-    int
-	gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry);
+    int  	gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry);
 
     void gtk_item_entry_set_max_length_bytes(GtkItemEntry *item_entry,
                                     int max_length_bytes);
@@ -83,7 +82,7 @@ extern "C"
     void gtk_item_entry_set_justification(GtkItemEntry *entry, GtkJustification just);
 
     void gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, int visible);
-    int gtk_item_entry_get_cursor_visible(GtkItemEntry *entry);
+    int  gtk_item_entry_get_cursor_visible(GtkItemEntry *entry);
 
 #ifdef __cplusplus
 }

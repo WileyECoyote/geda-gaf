@@ -28,13 +28,13 @@ extern "C"
 #endif /* __cplusplus */
 
 #define GTK_TYPE_DATA_TEXT_VIEW              (gtk_data_text_view_get_type ())
-#define GTK_DATA_TEXT_VIEW(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextView))
-#define GTK_DATA_TEXT_VIEW_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextViewClass))
-#define GTK_IS_DATA_TEXT_VIEW(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_DATA_TEXT_VIEW))
-#define GTK_IS_DATA_TEXT_VIEW_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_DATA_TEXT_VIEW))
-#define GTK_DATA_TEXT_VIEW_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextViewClass))
+#define GTK_DATA_TEXT_VIEW(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextView))
+#define GTK_DATA_TEXT_VIEW_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextViewClass))
+#define GTK_IS_DATA_TEXT_VIEW(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_DATA_TEXT_VIEW))
+#define GTK_IS_DATA_TEXT_VIEW_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_TYPE_DATA_TEXT_VIEW))
+#define GTK_DATA_TEXT_VIEW_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_TYPE_DATA_TEXT_VIEW, GtkDataTextViewClass))
 
-typedef struct _GtkDataTextView        GtkDataTextView;
+typedef struct _GtkDataTextView       GtkDataTextView;
 typedef struct _GtkDataTextViewClass  GtkDataTextViewClass;
 
 /**
@@ -49,8 +49,8 @@ struct _GtkDataTextView
     GtkTextView textview;
 
     char *description;       /* column description */
-    gint max_length;         /* maximum length in characters */
-    gint max_length_bytes;   /* maximum length in bytes */
+    int   max_length;        /* maximum length in characters */
+    int   max_length_bytes;  /* maximum length in bytes */
 };
 
 struct _GtkDataTextViewClass
@@ -58,24 +58,23 @@ struct _GtkDataTextViewClass
     GtkTextViewClass parent_class;
 };
 
-GType gtk_data_text_view_get_type(void) G_GNUC_CONST;
-GtkDataTextView *gtk_data_text_view_new(void);
+GType            gtk_data_text_view_get_type    (void) G_GNUC_CONST;
+GtkDataTextView *gtk_data_text_view_new         (void);
 
-const char *
-    gtk_data_text_view_get_description(GtkDataTextView *data_text_view);
+const char  *gtk_data_text_view_get_description (GtkDataTextView *data_text_view);
 
-void gtk_data_text_view_set_description(GtkDataTextView *data_text_view,
-                                    const char *description);
+void         gtk_data_text_view_set_description (GtkDataTextView *data_text_view,
+                                                 const char      *description);
 
-gint gtk_data_text_view_get_max_length(GtkDataTextView *data_text_view);
+int          gtk_data_text_view_get_max_length  (GtkDataTextView *data_text_view);
 
-void gtk_data_text_view_set_max_length(GtkDataTextView *data_text_view,
-                                    gint max_length);
+void         gtk_data_text_view_set_max_length  (GtkDataTextView *data_text_view,
+                                                 int              max_length);
 
-gint gtk_data_text_view_get_max_length_bytes(GtkDataTextView *data_text_view);
+int          gtk_data_text_view_get_max_length_bytes (GtkDataTextView *data_text_view);
 
-void gtk_data_text_view_set_max_length_bytes(GtkDataTextView *data_text_view,
-                                    gint max_length_bytes);
+void         gtk_data_text_view_set_max_length_bytes (GtkDataTextView *data_text_view,
+                                                      int              max_length_bytes);
 
 #ifdef __cplusplus
 }

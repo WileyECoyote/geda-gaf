@@ -28,4 +28,4 @@
 #include <gtksheet/gtkitementry.h>
 #include <gtksheet/gtksheet.h>
 
-#endif /* GTK_EXTRA_H */
+#endif /* GTK_SHEET_H */
