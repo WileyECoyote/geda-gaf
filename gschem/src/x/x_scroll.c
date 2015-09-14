@@ -85,14 +85,16 @@ x_hscrollbar_idle_update(GschemToplevel *w_current)
   printf("Hp %f\n", hadjustment->page_size);
 #endif
 
-  gtk_signal_emit_by_name(GTK_OBJECT(hadjustment), "changed");
-  gtk_signal_emit_by_name(GTK_OBJECT(hadjustment), "value_changed");
+  g_signal_emit_by_name(G_OBJECT(hadjustment), "changed");
+  g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
   }
+
 #if DEBUG
   else {
     BUG_MSG("Bad pointer, w_current->h_scrollbar == NULL");
   }
 #endif
+
   return FALSE;
 }
 
@@ -157,8 +159,8 @@ x_vscrollbar_idle_update(GschemToplevel *w_current)
     printf("Vp %f\n", vadjustment->page_size);
 #endif
 
-    gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "changed");
-    gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "value_changed");
+    g_signal_emit_by_name(G_OBJECT(vadjustment), "changed");
+    g_signal_emit_by_name(G_OBJECT(vadjustment), "value_changed");
   }
 #if DEBUG
   else {
