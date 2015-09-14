@@ -1904,11 +1904,9 @@ multiattrib_finalize (GObject *object)
 static void multiattrib_class_init(MultiattribClass *class)
 {
   GObjectClass      *gobject_class;
-  //GtkObjectClass    *gtk_object_class;
   GschemDialogClass *gschem_dialog_class;
 
   gobject_class        = G_OBJECT_CLASS (class);
-  //gtk_object_class     = (GtkObjectClass*) class;
   gschem_dialog_class  = (GschemDialogClass*) class;
 
   gschem_dialog_class->geometry_save    = multiattrib_geometry_save;
@@ -1917,8 +1915,6 @@ static void multiattrib_class_init(MultiattribClass *class)
   gobject_class->set_property = multiattrib_set_property;
   gobject_class->get_property = multiattrib_get_property;
   gobject_class->finalize     = multiattrib_finalize;
-
-  //gtk_object_class->destroy   = multiattrib_destroy;
 
   multiattrib_parent_class = g_type_class_peek_parent (class);
 

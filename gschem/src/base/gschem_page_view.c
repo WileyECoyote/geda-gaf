@@ -100,7 +100,6 @@ cclosure_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
 }
 
 
-
 /*! \brief Get a property
 *
 * \param [in] object
@@ -130,7 +129,6 @@ get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
 
 
 /*! \brief Initialize GschemPageView class
@@ -181,7 +179,6 @@ gschem_page_view_class_init (GschemPageViewClass *klass)
 }
 
 
-
 /*! \brief Get the horizontal adjustment for this view
 *
 * \param [in] view The view
@@ -196,7 +193,6 @@ gschem_page_view_get_hadjustment (GschemPageView *view)
 }
 
 
-
 /*! \brief Get page for this view
 *
 * \param [in] view The view
@@ -209,7 +205,6 @@ gschem_page_view_get_page (GschemPageView *view)
 
   return view->page;
 }
-
 
 
 /*! \brief Get/register GschemPageView type.
@@ -262,16 +257,9 @@ gschem_page_view_init (GschemPageView *view)
 {
   g_return_if_fail (view != NULL);
 
-  //GTK_WIDGET_UNSET_FLAGS (GTK_WIDGET(view), GTK_DOUBLE_BUFFERED);
   view->page = NULL;
-/*
-  g_signal_connect (view,
-                    "set-scroll-adjustments",
-                    G_CALLBACK (set_scroll_adjustments),
-                    NULL);
-*/
-}
 
+}
 
 
 /*! \brief Create a new instanceof the GschemPageView
@@ -283,7 +271,6 @@ gschem_page_view_new ()
 {
   return GSCHEM_PAGE_VIEW (g_object_new (GSCHEM_TYPE_PAGE_VIEW, NULL));
 }
-
 
 
 /*! \brief Set horizontal adjustment for this view
@@ -308,7 +295,6 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
 }
 
 
-
 /*! \brief Set page for this view
 *
 * \param [in,out] view The view
@@ -329,7 +315,6 @@ gschem_page_view_set_page (GschemPageView *view, void *page)
 
   g_object_notify (G_OBJECT (view), "page");
 }
-
 
 
 /*! \brief Set a property
@@ -383,7 +368,6 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
 
   g_object_notify (G_OBJECT (view), "vadjustment");
 }
-
 
 
 /*! \brief Signal handler for setting the scroll adjustments
