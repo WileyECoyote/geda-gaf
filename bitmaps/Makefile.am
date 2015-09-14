@@ -118,8 +118,8 @@ bitmapdata_DATA   = \
 			geda-zoom-out.png                  \
 			geda-zoom-pan.png                  \
 			geda-zoom-selection.png            \
-			git-logo.png
-
+			git-logo.png                       \
+			guile-logo.png
 
 bitmapdata_16_DATA = \
 					 geda_analysis_16x16.png            \

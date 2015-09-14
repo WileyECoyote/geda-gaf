@@ -1648,7 +1648,6 @@
 ;;(map-keys "H H"        "help-show-faq")
 (map-keys "H M"        "help-show-manual")
 (map-keys "H K"        "help-show-hotkeys")
-(map-keys "H U"        "help-show-guile")
 (map-keys "H W"        "help-show-wiki")
 
 (map-keys "<Shift>H D" "hierarchy-down-schematic")
@@ -1695,6 +1694,7 @@
 
 (map-keys "T N"            "tools-autonumber")
 (map-keys "T C"            "tools-show-console")
+(map-keys "T G"            "tools-guile-path")
 (map-keys "T O"            "tools-show-coordinates")
 (map-keys "T T"            "tools-translate")
 (map-keys "T <Shift>colon" "tools-invoke-macro")
@@ -1955,6 +1955,7 @@
 ;(map-icon #f                          "tools-show-console")
 ;(map-icon #f                          "tools-show-coordinates")
 (map-icon "gtk-execute"                "tools-invoke-macro")
+(map-icon "guile-logo"                 "tools-guile-path")
 (map-icon "gtk-convert"                "tools-translate")
 (map-icon "gtk-refresh"                "tools_update")
 (map-icon "geda-inbed"                 "tools-embed")
@@ -2250,6 +2251,7 @@
 
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Invoke Macro")             tools-invoke-macro     "gtk-execute"      ,(N_ "Invoke a macro"))
+        (,(N_ "G_uile Path...")           tools-guile-path       "guile-logo"       ,(N_ "View or manage guile path"))
 
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Symbol _Translate...")     tools-translate        "gtk-convert"      ,(N_ "Reset the X-Y Zero point"))
@@ -2296,7 +2298,6 @@
         ("SEPARATOR"                   #f                         #f)
         (,(N_ "gEDA Docu_mentation...") help-show-geda            "symbol-datasheet")
         (,(N_ "gEDA _Wiki...")          help-show-wiki            "web-browser")
-        (,(N_ "G_uile...")              help-show-guile           "gtk-about")
         (,(N_ "_About...")              help-show-about           "gtk-about")
       )
 )

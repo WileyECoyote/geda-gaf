@@ -1,3 +1,18 @@
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Add menu entry for G_uile Path.
+
+    * include/i_actions.h: Add TOOLS_GUILE.
+
+    * include/i_command.h: Add action do_guile_path.
+
+    * src/iface/i_command.c: Add action handler do_guile to launch the
+      x_guile_dialog.
+
+    * src/x/x_guile.c: Add new dialog to display the guile path.
+
+    * src/x/x_icons.c: Add guile-logo to IDS_GEDA_ICONS string table.
+
 2015-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_dialog.h: Remove macro GSCHEM_HOOKUP_OBJECT.

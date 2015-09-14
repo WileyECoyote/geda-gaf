@@ -1,3 +1,8 @@
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/guile-logo.svg: Add new svg file for to generate bitmap for
+      guile logo.
+
 2015-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_wrap.h: New file for wrapper utility macros that do not

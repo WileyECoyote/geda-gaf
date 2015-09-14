@@ -800,6 +800,9 @@ int        x_grid_query_drawn_spacing       (GschemToplevel *w_current);
 void       x_grid_repaint_background        (GschemToplevel *w_current, GdkRectangle *rectangle);
 void       x_grid_draw_tiles                (GschemToplevel *w_current);
 
+/* x_guile.c */
+void       x_guile_dialog                   (GschemToplevel *w_current);
+
 /* x_icons.c */
 void       x_icons_add_search_path          (const char *path);
 bool       x_icons_factory_lookup           (const char *icon_id);
@@ -817,7 +820,6 @@ void       x_image_lowlevel                 (GschemToplevel *w_current, const ch
                                              bool use_print_map, bool invert_color_bw );
 
 void       x_image_setup                    (GschemToplevel *w_current, IMAGE_TYPES default_type);
-/* GdkPixbuf *x_image_get_pixbuf            (GschemToplevel *w_current, ImageExtent extent); */
 GdkPixbuf *x_image_get_pixbuf               (GschemToplevel *w_current, ImageExtent extent,
                                              bool use_print_map, bool invert_color_bw);
 
@@ -924,10 +926,8 @@ void       x_toolbars_update                (GschemToplevel *w_current);
 void       x_window_setup                   (GschemToplevel *w_current);
 bool       x_window_setup_gc                (GschemToplevel *w_current);
 void       x_window_free_gc                 (GschemToplevel *w_current);
-/*         x_window_create_drawing          (GtkWidget *drawbox, GschemToplevel *w_current);*/
 void       x_window_restore_settings        (GschemToplevel *w_current);
 void       x_window_save_settings           (GschemToplevel *w_current);
-/*void       x_window_setup_draw_events     (GschemToplevel *w_current);*/
 void       x_window_create_main             (GschemToplevel *w_current);
 void       x_window_close_edit_dialogs      (GschemToplevel *w_current);
 void       x_window_close_all_dialogs       (GschemToplevel *w_current);

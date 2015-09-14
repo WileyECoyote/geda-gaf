@@ -23,6 +23,7 @@ gschem_SOURCES += \
 		x/x_event.c \
 		x/x_fileselect.c \
 		x/x_grid.c \
+		x/x_guile.c \
 		x/x_icons.c \
 		x/x_image.c \
 		x/x_menus.c \

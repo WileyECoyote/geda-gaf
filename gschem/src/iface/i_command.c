@@ -1945,6 +1945,9 @@ COMMAND (do_zoom_selected)
 
   selection = Current_Selection->glist;
   i_zoom_world_extents (w_current, selection, 0);
+
+  i_zoom_world(w_current, ZOOM_OUT_DIRECTIVE, CMD_WHO(do_zoom_selected), 0);
+
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   EXIT_COMMAND(do_zoom_selected);
@@ -3581,6 +3584,13 @@ COMMAND (do_macro)
     gtk_widget_grab_focus (gschem_macro_widget_get_entry(widget));
   }
   EXIT_COMMAND(do_macro);
+}
+
+/*! @brief Launch the Guile Path Dialog */
+COMMAND (do_guile_path)
+{
+  BEGIN_NO_ARGUMENT(do_guile_path);
+  x_guile_dialog(w_current);
 }
 
 /*! \brief Edit Translate in i_command_Edit_Actions */

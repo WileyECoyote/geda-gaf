@@ -182,6 +182,7 @@
 #define TOOLS_AUTONUM        tools-autonumber
 #define TOOLS_CONSOLE        tools-show-console
 #define TOOLS_COORDINATES    tools-show-coordinates
+#define TOOLS_GUILE          tools-guile-path
 #define TOOLS_MACRO          tools-invoke-macro
 #define TOOLS_TRANSLATE      tools-translate
 
