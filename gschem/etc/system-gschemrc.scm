@@ -2326,7 +2326,7 @@
 (add-menu (N_ "_Page")       page-menu-items)
 (add-menu (N_ "_Add")        add-menu-items)
 (add-menu (N_ "Sessio_ns")   sessions-menu-items)
-(add-menu (N_ "A_ttributes") attributes-menu-items)
+(add-menu (N_ "Attri_butes") attributes-menu-items)
 (add-menu (N_ "_Tools")      tools-menu-items)
 
 ;; The add the sub-menu items under the Draw Order menu item

@@ -556,10 +556,10 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   }
 
   void set_sensitivity_for_text (bool state) {
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Value", state);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Name",  state);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Both",   state);
-    x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", state);
+    x_menus_sensitivity(w_current, "Attri_butes/Show _Value", state);
+    x_menus_sensitivity(w_current, "Attri_butes/Show _Name",  state);
+    x_menus_sensitivity(w_current, "Attri_butes/Show _Both",   state);
+    x_menus_sensitivity(w_current, "Attri_butes/_Toggle Visibility", state);
   }
 
   void set_sensitivity_for_buffers (bool state) {
@@ -823,17 +823,17 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   }
 
   if (complex_selected && text_selected) {
-    x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
+    x_menus_sensitivity(w_current, "Attri_butes/_Attach", TRUE);
   }
   else {
-    x_menus_sensitivity(w_current, "A_ttributes/_Attach", FALSE);
+    x_menus_sensitivity(w_current, "Attri_butes/_Attach", FALSE);
   }
 
   if (complex_selected || text_selected) {
-    x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
+    x_menus_sensitivity(w_current, "Attri_butes/_Detach", TRUE);
   }
   else {
-    x_menus_sensitivity(w_current, "A_ttributes/_Detach", FALSE);
+    x_menus_sensitivity(w_current, "Attri_butes/_Detach", FALSE);
   }
 
   /* Update sensitivities on the Toolbars */

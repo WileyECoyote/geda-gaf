@@ -1,5 +1,12 @@
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Change designation for hot key assignment
+      of top-level menu item "A_ttribute" to "Attri_bute".
+
+    * src/iface/i_status.c: Update string for menu item "Attri_butes".
+
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/system-gschemrc.scm: Add menu entry for G_uile Path.
 
     * include/i_actions.h: Add TOOLS_GUILE.
