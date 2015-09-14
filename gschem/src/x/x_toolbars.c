@@ -1077,7 +1077,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
                     CloseButton);
 
   GtkObject *HandleBarObj = (GtkObject *)HandleBar;
-  gtk_signal_connect(HandleBarObj, "button_press_event",
+  g_signal_connect(HandleBarObj, "button_press_event",
                     (GtkSignalFunc) On_mouse_button_press,
                     w_current);
 
@@ -1608,8 +1608,8 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   g_object_set (GripSnap_Toolbar, "visible", TRUE, NULL);
 
-  g_object_set_data (G_OBJECT(etb_snap_off_button), "snap-widget", etb_snap_on_button);
-  g_object_set_data (G_OBJECT(etb_snap_on_button),  "snap-widget", etb_snap_off_button);
+  GEDA_OBJECT_SET_DATA(etb_snap_off_button, etb_snap_on_button,  "snap-widget");
+  GEDA_OBJECT_SET_DATA(etb_snap_on_button,  etb_snap_off_button, "snap-widget");
 
   if (w_current->snap == SNAP_OFF) {
     g_object_set (etb_snap_off_button, "visible", FALSE, NULL);

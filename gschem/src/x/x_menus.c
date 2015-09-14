@@ -1772,7 +1772,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
             0, 0, NULL, NULL, NULL);
       if(id == 0)
          break;
-      gtk_signal_disconnect(recent_menu_item, id);
+      g_signal_handler_disconnect(recent_menu_item, id);
    }
 
    g_object_get (recent_menu_item, "has-tooltip", &show_menu_tips, NULL);
@@ -1824,8 +1824,8 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
       gtk_container_add(GTK_CONTAINER(item), alignment);
 
-      gtk_signal_connect_object(GTK_OBJECT(item), "activate",
-            GTK_SIGNAL_FUNC(x_menu_clear_recent_file_list), NULL);
+      GEDA_SIGNAL_CONNECT(item, "activate",
+                          x_menu_clear_recent_file_list, NULL);
 
 
       gtk_menu_append(GTK_MENU(recent_submenu), gtk_separator_menu_item_new());

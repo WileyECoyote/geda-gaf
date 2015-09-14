@@ -559,7 +559,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
                                    0, 0, NULL, NULL, NULL);
         if(id == 0)
           break;
-        gtk_signal_disconnect(sessions_menu_item, id);
+        g_signal_handler_disconnect(sessions_menu_item, id);
       }
 
       sessions_submenu = gtk_menu_new();

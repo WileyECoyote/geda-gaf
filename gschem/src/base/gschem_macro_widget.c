@@ -362,25 +362,20 @@ gschem_macro_widget_init (GschemMacroWidget *widget)
 
   /* Note: We do not need the "activate" signal here because the geda-entry
    * widget generates a "process-entry" signal instead. */
-  g_signal_connect (G_OBJECT (widget->entry),
-                    "process-entry",
-                    G_CALLBACK (activate_entry),
-                    widget);
+  GEDA_SIGNAL_CONNECT (widget->entry, "process-entry",
+                       G_CALLBACK (activate_entry), widget);
 
-  g_signal_connect (G_OBJECT (cancel_button),
-                    "clicked",
-                    G_CALLBACK (click_cancel),
-                    widget);
+  GEDA_SIGNAL_CONNECT (cancel_button, "clicked",
+                       G_CALLBACK (click_cancel),
+                       widget);
 
-  g_signal_connect (G_OBJECT (widget->evaluate_button),
-                    "clicked",
-                    G_CALLBACK (click_evaluate),
-                    widget);
+  GEDA_SIGNAL_CONNECT (widget->evaluate_button, "clicked",
+                       G_CALLBACK (click_evaluate),
+                       widget);
 
-  g_signal_connect (G_OBJECT (widget->entry),
-                    "notify::text",
-                    G_CALLBACK (notify_entry_text),
-                    widget);
+  GEDA_SIGNAL_CONNECT (widget->entry, "notify::text",
+                       G_CALLBACK (notify_entry_text),
+                       widget);
 }
 
 

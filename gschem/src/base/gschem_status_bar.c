@@ -270,9 +270,9 @@ static void middle_button_options_popup (GtkWidget      *event_box,
 
     popup_item = gtk_menu_item_new_with_label (entry.text);
 
-    g_signal_connect (GTK_OBJECT(popup_item), "activate",
-                     (GCallback)status_options_popup_clicked,
-                      GUINT_TO_POINTER(entry.signal));
+    g_signal_connect (popup_item, "activate",
+                      (GCallback)status_options_popup_clicked,
+                      (void*)(long)(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
@@ -340,9 +340,9 @@ static void third_button_options_popup (GtkWidget      *event_box,
 
     popup_item = gtk_menu_item_new_with_label (entry.text);
 
-    g_signal_connect (GTK_OBJECT(popup_item), "activate",
+    g_signal_connect(popup_item, "activate",
                      (GCallback)status_options_popup_clicked,
-                      GUINT_TO_POINTER(entry.signal));
+                     (void*)(long)(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 
@@ -1186,34 +1186,9 @@ gschem_status_bar_init (GschemStatusBar *widget)
 
   gtk_widget_pop_composite_child ();
 
-/*
-  g_signal_connect (G_OBJECT (widget),
-                    "notify::grid-mode",
-                    G_CALLBACK (update_grid_label),
-                    NULL);
-
-  g_signal_connect (G_OBJECT (widget),
-                    "notify::grid-size",
-                    G_CALLBACK (update_grid_label),
-                    NULL);
-
-  g_signal_connect (G_OBJECT (widget),
-                    "notify::snap-mode",
-                    G_CALLBACK (update_grid_label),
-                    NULL);
-
-  g_signal_connect (G_OBJECT (widget),
-                    "notify::snap-size",
-                    G_CALLBACK (update_grid_label),
-                    NULL);
-                    widget->middle_label
-*/
-
-  g_signal_connect (G_OBJECT (widget),
-                    "notify::coord-mode",
-                    G_CALLBACK
-                    (G_STRUCT_OFFSET (GschemStatusBarClass,
-                                      reformat_coordinates)),
+  g_signal_connect (widget, "notify::coord-mode",
+                    G_CALLBACK (G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                 reformat_coordinates)),
                     NULL);
 
   signals[UPDATE_GRID_LABEL] =
