@@ -28,16 +28,15 @@
  * \brief Interface to the gEDA Scheme API for programs written in C.
  *
  * This module contains a variety of functions for use in applications
- * that use libgeda and which need to make use of or extend the gEDA
- * Scheme API.
+ * using libgeda that need to make use of or extend the gEDA Scheme API.
  *
  * To initialise the API, edascm_init() needs to be called before any
- * Scheme code is executed or any of the other functions listed in
- * this module are called.  Normally, this will be called
- * automatically by libgeda_init().
+ * Scheme code is executed and any of the other functions listed in
+ * this module are called. Normally, this will be called automatically
+ * by libgeda_init().
  *
  * The Scheme API requires a libgeda #GedaToplevel context to be available
- * at any given time.  The #GedaToplevel can be set on a per-thread basis
+ * at any given time. The #GedaToplevel can be set on a per-thread basis
  * using the edascm_dynwind_toplevel() or edascm_c_with_toplevel()
  * functions.  For example:
  *
@@ -68,26 +67,27 @@
  * For more information on dynamic wind, see the Guile Reference
  * Manual.
  *
- * The remaining functions in this module allow you to convert gEDA
- * #Object and #Page structures to and from Scheme values ("smobs").
+ * The remaining functions in this module allow routines to convert
+ * gEDA #Object and #Page structures to and from Scheme values ("smobs").
  *
  * When an #Object is created by Scheme code, it is permitted to be
  * garbage-collected if all references to it are lost; this is an
  * important part of allowing Scheme programmers to write efficient
- * code.  However, because #Object instances are not reference
- * counted, each Scheme object that contains an #Object has a flag
- * that indicates whether it is wholly owned by Scheme or whether
- * there are any remaining references to it from C code.  If you use
- * edascm_from_object() to create a Scheme value for an #Object that
- * has no remaining references from other C structures, you should use
- * edascm_c_set_gc() to mark it as garbage-collectable.
+ * code. However, because #Object instances are not reference counted,
+ * each Scheme object that contains an #Object has a flag that indicates
+ * whether the #Object is wholly owned by Scheme or whether there are
+ * any remaining references to it from C code.  If edascm_from_object()
+ * is used to create a Scheme value for an #Object that has no remaining
+ * references from other C structures, then edascm_c_set_gc() should use
+ * to mark the #Object as garbage-collectable.
  */
 
 /*!
  * \file libgedaguile_priv.h
  * Scheme API private declarations and definitions.
- * \warning Do not include from libgeda_priv.h: should only be included
- * by Scheme API source files.
+ *
+ * \warning Do not include from libgeda_priv.h: This file should only
+ * be included by Scheme API source files.
  */
 
 #include <missing.h>
@@ -222,7 +222,3 @@ extern inline void o_page_changed (GedaToplevel *t, Object *o);
 /* ---------------------------------------- */
 
 extern SCM edascm_object_state_sym;
-
-/* ---------------------------------------- */
-
-//SCM edascm_from_closure (SCM (*func)(SCM, void *), void *user_data);

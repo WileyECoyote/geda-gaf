@@ -64,15 +64,19 @@ SCM g_rc_color_map_to_scm (const COLOR *map)
 /*!
  * \brief Color Map from Scheme
  * \par Function Description
- * \todo Finish Documentation
- * \warning This function should ONLY be called from Scheme procedures.
+ * Common routine to processes a color-map entry in an RC file.
+ * Each member pair of list and converts the hex string to RGB
+ * data and sets the associated slot in the given color map
+ * table the resulting RGA values.
+ *
+ * \sa g_rc_print_color_map
  */
 void
 g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
 {
-  SCM curr = lst;
+  SCM curr               = lst;
   SCM wrong_type_arg_sym = scm_from_utf8_symbol ("wrong-type-arg");
-  SCM proc_name = scm_from_utf8_string (scheme_proc_name);
+  SCM proc_name          = scm_from_utf8_string (scheme_proc_name);
 
   while (curr != SCM_EOL) {
 
@@ -87,12 +91,13 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
     scm_entry = scm_car (curr);
 
     /* Check map entry has correct type */
-    if (!scm_is_true (scm_list_p (scm_entry))
-      || (scm_to_int (scm_length (scm_entry)) != 2)) {
+    if (!scm_is_true (scm_list_p (scm_entry)) ||
+       (scm_to_int (scm_length (scm_entry)) != 2))
+    {
       scm_error_scm (wrong_type_arg_sym, proc_name,
                      scm_from_utf8_string (_("Color map entry must be a two-element list")),
                      SCM_EOL, scm_list_1 (scm_entry));
-      }
+    }
 
       /* Check color index has correct type, and extract it */
       s = scm_car (scm_entry);
