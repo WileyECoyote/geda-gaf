@@ -1,3 +1,9 @@
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Change default sheet background and grid
+      colors from GtkExtras default values, use a white background with
+      a dark gray grid.
+
 2015-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * */gtksheet/*: Upgraded gtksheet module to latest version: 3.1.5

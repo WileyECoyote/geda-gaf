@@ -303,25 +303,26 @@ typedef enum _GtkSheetArea
 
 /* defaults */
 
-#define CELL_SPACING 1
-#define DRAG_WIDTH 6
-#define TIMEOUT_SCROLL 20
-#define TIMEOUT_FLASH 200
-#define TIME_INTERVAL 8
-#define MINROWS 0
-#define MINCOLS 0
-#define MAXLENGTH 30
-#define CELLOFFSET 4
+#define CELL_SPACING    1
+#define DRAG_WIDTH      6
+#define TIMEOUT_SCROLL  20
+#define TIMEOUT_FLASH   200
+#define TIME_INTERVAL   8
+#define MINROWS         0
+#define MINCOLS         0
+#define MAXLENGTH       30
+#define CELLOFFSET      4
 
-#define GTK_SHEET_ROW_DEFAULT_HEIGHT 24
+#define GTK_SHEET_ROW_DEFAULT_HEIGHT   24
 
 #define GTK_SHEET_DEFAULT_FONT_ASCENT  12
-#define GTK_SHEET_DEFAULT_FONT_DESCENT  12
+#define GTK_SHEET_DEFAULT_FONT_DESCENT 12
 
-#define GTK_SHEET_DEFAULT_BG_COLOR      "lightgray"
-#define GTK_SHEET_DEFAULT_GRID_COLOR  "gray"
-#define GTK_SHEET_DEFAULT_TM_COLOR  "red"   /* tooltip marker */
-#define GTK_SHEET_DEFAULT_TM_SIZE  4  /* pixels, size of tooltip marker */
+/* GtkExtras use lightgray as default background, seems bizarre */
+#define GTK_SHEET_DEFAULT_BG_COLOR    "white"      /* "lightgray" */
+#define GTK_SHEET_DEFAULT_GRID_COLOR  "dark gray"  /*  "gray" */
+#define GTK_SHEET_DEFAULT_TM_COLOR    "red"        /* tooltip marker */
+#define GTK_SHEET_DEFAULT_TM_SIZE       4          /* pixels, size of tooltip marker */
 
 #define GTK_SHEET_PAGE_OVERLAP 1  /* rows to stay visible with PageUp/Dn */
 
@@ -3469,21 +3470,21 @@ gtk_sheet_grid_visible(GtkSheet *sheet)
 void
 gtk_sheet_set_background(GtkSheet *sheet, GdkColor *color)
 {
-    g_return_if_fail(sheet != NULL);
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(sheet != NULL);
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!color)
-    {
-	gdk_color_parse(GTK_SHEET_DEFAULT_BG_COLOR, &sheet->bg_color);
-    }
-    else
-    {
-	sheet->bg_color = *color;
-    }
-    gdk_colormap_alloc_color(gdk_colormap_get_system(), &sheet->bg_color, FALSE, TRUE);
+  if (!color) {
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, NULL, TRUE);
+    gdk_color_parse(GTK_SHEET_DEFAULT_BG_COLOR, &sheet->bg_color);
+  }
+  else {
+
+    sheet->bg_color = *color;
+  }
+  gdk_colormap_alloc_color(gdk_colormap_get_system(), &sheet->bg_color, FALSE, TRUE);
+
+  if (!GTK_SHEET_IS_FROZEN(sheet))
+    _gtk_sheet_range_draw(sheet, NULL, TRUE);
 }
 
 /**
@@ -14113,42 +14114,46 @@ gtk_sheet_delete_columns(GtkSheet *sheet, guint col, guint ncols)
  */
 void
 gtk_sheet_range_set_background(GtkSheet *sheet,
-    const GtkSheetRange *urange,
-    const GdkColor *color)
+                               const GtkSheetRange *urange,
+                               const GdkColor *color)
 {
-    int i, j;
-    GtkSheetRange range;
+  int i, j;
+  GtkSheetRange range;
 
-    g_return_if_fail(sheet != NULL);
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(sheet != NULL);
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!urange)
-	range = sheet->range;
-    else
-	range = *urange;
+  if (!urange)
+    range = sheet->range;
+  else
+    range = *urange;
 
 #if GTK_SHEET_DEBUG_COLORS > 0
     g_debug("gtk_sheet_range_set_background: %s row %d-%d col %d-%d)",
-	gdk_color_to_string(color), range.row0, range.rowi, range.col0, range.coli);
+            gdk_color_to_string(color), range.row0, range.rowi, range.col0, range.coli);
 #endif
 
-    for (i = range.row0; i <= range.rowi; i++) for (j = range.col0; j <= range.coli; j++)
-    {
-	GtkSheetCellAttr attributes;
-	gtk_sheet_get_attributes(sheet, i, j, &attributes);
+    for (i = range.row0; i <= range.rowi; i++) {
 
-	if (color != NULL)
-	    attributes.background = *color;
-	else
-	    attributes.background = sheet->bg_color;
+      for (j = range.col0; j <= range.coli; j++) {
 
-	gdk_colormap_alloc_color(gdk_colormap_get_system(), &attributes.background, FALSE, TRUE);
+        GtkSheetCellAttr attributes;
+        gtk_sheet_get_attributes(sheet, i, j, &attributes);
 
-	gtk_sheet_set_cell_attributes(sheet, i, j, attributes);
+        if (color != NULL)
+          attributes.background = *color;
+        else
+          attributes.background = sheet->bg_color;
+
+        gdk_colormap_alloc_color(gdk_colormap_get_system(), &attributes.background, FALSE, TRUE);
+
+        gtk_sheet_set_cell_attributes(sheet, i, j, attributes);
+      }
     }
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, &range, TRUE);
+    if (!GTK_SHEET_IS_FROZEN(sheet)) {
+      _gtk_sheet_range_draw(sheet, &range, TRUE);
+    }
 }
 
 /**
