@@ -331,23 +331,26 @@ int s_string_list_in_list(STRING_LIST *list, char *item) {
 char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 {
   int i;
-  STRING_LIST *local_item;
+  STRING_LIST *iter;
 
   /* First check to see if list is empty.  If empty, return
    * NULL automatically.  */
-  if (list->length == 0) {
-    return NULL;
-  }
+  //if (list->length == 0) {
+  //  return NULL;
+  //}
 
-  local_item = list;
+  iter = list;
+
   for (i = 0 ; i < index ; i++) {
-    if (local_item == NULL) {
+    if (iter == NULL) {
       return NULL;
-    } else {
-      local_item = local_item->next;
+    }
+    else {
+      iter = iter->next;
     }
   }
-  return local_item->data;
+
+  return iter->data;
 }
 
 /*------------------------------------------------------------------*/
@@ -360,8 +363,7 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
  *
  * all refdeses in alphabetical order
  *
- * Right now it does nothing other than fill in the "position"
- * and "length" variables.
+ * Right now it does nothing other than fill in the "position".
  *
  */
 void s_string_list_sort_master_comp_list() {
@@ -425,8 +427,7 @@ static struct {
  *
  * all refdeses in alphabetical order
  *
- * Right now it does nothing other than fill in the "position"
- * and "length" variables.
+ * Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_comp_attrib_list() {
   int i = 0;
@@ -528,8 +529,7 @@ void s_string_list_sort_master_net_attrib_list() {
  *
  * all refdeses in alphabetical order
  *
- * Right now it does nothing other than fill in the "position"
- * and "length" variables.
+ * Right now it does nothing other than fill in the "position".
  */
 /*------------------------------------------------------------------*/
 void s_string_list_sort_master_pin_list() {
@@ -549,7 +549,8 @@ void s_string_list_sort_master_pin_list() {
     if (local_list->next != NULL) {
       i++;
       local_list = local_list->next;
-    } else {
+    }
+    else {
       break;                    /* leave loop *before* iterating to NULL EOL marker */
     }
   }
@@ -573,8 +574,7 @@ void s_string_list_sort_master_pin_list() {
  *
  * all pin attribs in alphabetical order
  *
- * Right now it does nothing other than fill in the "position"
- * and "length" variables.
+ * Right now it does nothing other than fill in the "position".
  */
 /*------------------------------------------------------------------*/
 void s_string_list_sort_master_pin_attrib_list() {
