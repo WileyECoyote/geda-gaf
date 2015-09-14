@@ -2036,12 +2036,12 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
 
   if (! shortcuts_connected) {
 
-      g_signal_connect (settings, "notify::gtk-enable-mnemonics",
-                        G_CALLBACK (label_shortcut_setting_changed),
-                        NULL);
-      g_signal_connect (settings, "notify::gtk-enable-accels",
-                        G_CALLBACK (label_shortcut_setting_changed),
-                        NULL);
+      GEDA_SIGNAL_CONNECT (settings, "notify::gtk-enable-mnemonics",
+                           G_CALLBACK (label_shortcut_setting_changed),
+                           NULL);
+      GEDA_SIGNAL_CONNECT (settings, "notify::gtk-enable-accels",
+                           G_CALLBACK (label_shortcut_setting_changed),
+                           NULL);
 
       g_object_set_data (G_OBJECT (settings), "gtk-label-shortcuts-connected",
                         (void*)(long)TRUE);

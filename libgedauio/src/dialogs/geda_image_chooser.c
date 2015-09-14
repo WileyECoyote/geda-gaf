@@ -615,30 +615,28 @@ chooser_add_preview (GtkWidget *chooser, bool state, int size)
   gtk_widget_set_size_request(preview, size, -1);
 
   /* connect callback to update preview image */
-  g_signal_connect (chooser, "update-preview",
-                    G_CALLBACK (chooser_update_preview),
-                    preview);
+  GEDA_SIGNAL_CONNECT (chooser, "update-preview",
+                       G_CALLBACK (chooser_update_preview),
+                       preview);
 
   /* connect callback to update preview image */
-  g_signal_connect (adjustment, "value-changed",
-                    G_CALLBACK (chooser_adjust_size),
-                    chooser);
+  GEDA_SIGNAL_CONNECT (adjustment, "value-changed",
+                       G_CALLBACK (chooser_adjust_size),
+                       chooser);
 
   gtk_widget_set_events (vbox,
                          GDK_BUTTON_PRESS_MASK |
                          GDK_BUTTON_RELEASE_MASK);
 
-  gtk_signal_connect(GTK_OBJECT(ebox), "button_press_event",
-                    (GtkSignalFunc) On_mouse_button_press,
-                     chooser);
+  GEDA_SIGNAL_CONNECT(ebox, "button_press_event",
+                      On_mouse_button_press, chooser);
 
-  gtk_signal_connect(GTK_OBJECT(slider), "button_press_event",
-                    (GtkSignalFunc) On_adjust_button_press,
-                     chooser);
+  GEDA_SIGNAL_CONNECT(slider, "button_press_event",
+                      On_adjust_button_press, chooser);
 
-  gtk_signal_connect(GTK_OBJECT(slider), "button_release_event",
-                    (GtkSignalFunc) On_adjust_button_release,
-                     chooser);
+  GEDA_SIGNAL_CONNECT(slider, "button_release_event",
+                      On_adjust_button_release, chooser);
+
   return preview;
 }
 
