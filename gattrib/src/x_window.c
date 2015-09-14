@@ -23,8 +23,8 @@
  * \brief Functions for the toplevel window
  *
  * This file holds functions used to handle the toplevel window and
- * various widgets held by that window.  Widges used to handle
- * (GtkSheet *sheet) itself are held in a different file.
+ * various widgets held by that window. Widgets used to handle
+ * GtkSheet pointers are in a different file.
  */
 
 #include <gattrib.h>
@@ -84,8 +84,8 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 
 /*! \brief Handle Cut, Copy, Paste for Menus and Toolbar
  * \par Function Description
- * This function is call from the menu and toolbar callbacks to processes
- * Cut, Copy, Paste.
+ * This function is called from the menu and toolbar callbacks to
+ * process Cut, Copy, Paste request.
  *
  *  \param [in] do_what Enumerated integer ID of operation to perform
  */
@@ -114,12 +114,13 @@ void x_window_clipboard_handler(int do_what) {
      u_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
   }
 }
+
 /** @brief on_notebook_switch_page in X_Windows_Support_Functions */
 /*! \brief Callback on TAB change.
  *  \par Function Description
  *       This function is called when ever a TAB sheet is selected. This
  *       allows all sensitivities for menus and toolbars to be set on a
- *       per sheets basis.
+ *       per sheet basis.
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
@@ -144,11 +145,13 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
 }
 /*! \brief Initializes the Main Window
  * \par Function Description
- * This function creates and initializes the Main window. The
- * function call various other function to add the primary window
- * widgets like menus, toolbars, the GTK notebook container, etc.
- * Each widget is set visible here except the main window itself,
- * this is done later.
+ * This function creates and initializes the Main window, calling
+ * various other function to add the primary window widgets like
+ * menus, toolbars, the GTK notebook container, etc. Each widget
+ * is set visible here except the main window itself, which is
+ * done later.
+ *
+ *  \sa x_window_finalize_startup
  */
 void x_window_init()
 {
@@ -310,10 +313,11 @@ void x_window_add_items(PageDataSet *PageData)
     }
   }
 }
+
 /*!
  * \brief Complete startup initialization for Main Window
  * \par Function Description
- *      This function is called from the main-line after the GTKSheet is up.
+ *   This function is called from the main-line after the GTKSheet is up.
  * The function calls the previous function, x_window_add_items to load
  * attribute values, then sets the main window position and displayed the
  * window and update the Titlebar.
@@ -335,9 +339,9 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
 /*!
  * \brief View toogle Attribute toolbar
  * \par Function Description
- *      This function toggles the visibility of the Attribute toobar.
- * Note: the function actually toggles visibility of the handlebox
- * containing the toolbar
+ *      This function toggles the visibility of the Attribute tool-bar.
+ * Note: The function actually toggles visibility of the handlebox
+ *       containing the toolbar.
  */
 void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
                                        GtkWindow *main_window)
@@ -350,6 +354,7 @@ void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
+
 /*!
  * \brief View toogle standard toolbar
  * \par Function Description
@@ -372,7 +377,7 @@ void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *main_w
  * \brief Toggle View between All and Attached Attributes
  * \par Function Description
  *      This function checks each column name and hides or unhides
- *  the column, depending on the action paramter, all columns that
+ *  the column, depending on the action parameter, all columns that
  *  are not members of attached atribute list ->attached_attrib.
  */
 #define TOGGLE_ATTACH_X_OFFSET 100
@@ -380,7 +385,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   int i, row;
   int x, y;
-  char *curr_title;
+  char *col_name;
   char *attached;
   bool toggle;
 
@@ -390,22 +395,35 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   int count = sheet->maxcol;
 
   for( i = 0; i <= count; i++) {
+
     if (show) {
-      toggle = TRUE;
-      curr_title = sheet->column[i]->title;
-      for(row=0; row < sheet_head->attached_attrib_count; row++) {
-        attached = s_string_list_get_data_at_index(sheet_head->attached_attrib,row);
-        if(strcmp(attached, curr_title) == 0) {
+
+      int num_ribs;
+
+      toggle     = TRUE;
+      col_name   = sheet->column[i]->title;
+      num_ribs   = sheet_head->attached_attrib_count;
+
+      for (row = 0; row < num_ribs; row++) {
+
+        attached = s_string_list_get_data_at_index(sheet_head->attached_attrib, row);
+
+        if (strcmp(attached, col_name) == 0) {
           toggle = FALSE;
           break;
         }
       } /* Next row */
-      if(toggle)
+
+      if(toggle) {
         gtk_sheet_column_set_visibility(sheet, i, FALSE);
+      }
     }
-    else /* Make a columns visible */
+    else {
+      /* Make a columns visible */
       gtk_sheet_column_set_visibility(sheet, i, TRUE);
+    }
   } /* Next i */
+
   /* The background outside the sheet will not get updated until something
    * happens to the parent window and this will leave residual lines, (newer
    * version of gtksheet claiming fix had the same problem, so we will resize,
@@ -418,6 +436,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
 }
+
 /*!
  * \brief Toggle View of Inherited Attributes
  * \par Function Description
@@ -463,6 +482,7 @@ void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
     gtk_widget_hide(edit_box);
   //config_file_set_bool(PREFS_STATUSBAR_VISIBLE, show);
 }
+
 /*!
  * \brief Toggle Auto-Resize Option On Off
  * \par Function Description
@@ -476,6 +496,7 @@ void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_sheet_set_autoresize(sheets[Nets], show);
   gtk_sheet_set_autoresize(sheets[Pins], show);
 }
+
 /*!
  * \brief Toggle Auto-Scroll Option On Off
  * \par Function Description
@@ -489,6 +510,7 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_sheet_set_autoscroll(sheets[Nets], show);
   gtk_sheet_set_autoscroll(sheets[Pins], show);
 }
+
 /*!
  * \brief Toggle Sheet Grid Option On Off
  * \par Function Description
