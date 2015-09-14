@@ -33,7 +33,10 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 # The current configuration builds with Automake 1.9, but Distro checks
 # are performed using Automake 1.11,
 # use update-alternatives --config automake to switch on debian systems
+# to generate with Automake 1.9 use:
 #AM_INIT_AUTOMAKE
+
+# to generate with Automake 1.11 use:
 AM_INIT_AUTOMAKE([parallel-tests color-tests])
 
 AX_SET_AM_OPTIONS
@@ -197,7 +200,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:14:0])
+AX_LIBGEDA([50:15:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:3:0])
@@ -235,13 +238,13 @@ AC_CONFIG_FILES([Makefile
                  libgeda/etc/Makefile
                  libgeda/scheme/Makefile
                  libgeda/share/Makefile
-                 libgeda/src/scheme/Makefile
                  libgeda/src/file/Makefile
                  libgeda/src/geda/Makefile
                  libgeda/src/guile/Makefile
                  libgeda/src/iface/Makefile
                  libgeda/src/math/Makefile
                  libgeda/src/object/Makefile
+                 libgeda/src/scheme/Makefile
                  libgeda/src/struct/Makefile
                  libgeda/src/utility/Makefile
                  libgeda/src/Makefile
