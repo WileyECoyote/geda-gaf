@@ -109,7 +109,7 @@
                      ("diode/half-bridge"       "Standard/Half Bridge")
                      ("diode/led"               "Standard/LED")
                      ("diode/zener"             "Standard/Zener-generic")
-                     ("diode/zener2"            "Standard/Zener Diodes")
+                     ("diode/zener52"           "Standard/Zener Diodes")
                      ("diode/segments"          "Standard/Segments")
 
                   ("linear" "Standard/Linear")

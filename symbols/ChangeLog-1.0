@@ -1,3 +1,9 @@
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener52: Rename directory zener2->zener52.
+
+    * geda-clib.scm: Change directory name for 52 series zener diodes.
+
 2015-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/TL16C550-1.sym: Add symbol RS232 5x receiver, 3x transmitter,
