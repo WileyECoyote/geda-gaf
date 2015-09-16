@@ -361,7 +361,7 @@ footprint=S-PVQFN-N32
 T 300 5600 5 10 0 0 0 0 1
 author=AutoTron
 T 300 4600 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/bq20z45-r1
+documentation=http://www.ti.com/product/bq40z50
 T 300 4800 5 10 0 1 0 0 1
 description=Battery Level Gauge and Protection Enabled With Impedance Track
 T 300 4400 5 10 0 0 0 0 1
