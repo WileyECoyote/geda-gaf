@@ -1,5 +1,10 @@
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gattrib/src/x_toolbars.c: Replace gtk_toolbar_set_orientation with
+      macro SET_TOOLBAR_ORIENTATION.
+
+2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x_gtksheet.c: Make functions show_sheet_entry, show_entry,
       activate_sheet_entry and activate_sheet_cell static.
 

@@ -185,8 +185,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
 
   Standard_Toolbar = gtk_toolbar_new ();
 
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Standard_Toolbar),
-			       GTK_ORIENTATION_HORIZONTAL);
+  SET_TOOLBAR_ORIENTATION (Standard_Toolbar, HORIZONTAL);
+
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
   gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
   gtk_container_add (GTK_CONTAINER (Standard_handlebox), Standard_Toolbar);
@@ -233,8 +233,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
 
   Attribute_Toolbar = gtk_toolbar_new ();
 
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Attribute_Toolbar),
-                               GTK_ORIENTATION_HORIZONTAL);
+  SET_TOOLBAR_ORIENTATION (Attribute_Toolbar, HORIZONTAL);
+
   gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
   gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
   gtk_container_add (GTK_CONTAINER (Attribute_handlebox), Attribute_Toolbar);
