@@ -1,3 +1,8 @@
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Replace gtk_toolbar_set_orientation with
+      macro SET_TOOLBAR_ORIENTATION.
+
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change designation for hot key assignment
