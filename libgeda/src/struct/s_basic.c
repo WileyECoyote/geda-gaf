@@ -34,10 +34,12 @@
 
 #include "libgeda_priv.h"
 
-#ifdef G_OS_WIN32
-#  define STRICT
-#  include <windows.h>
-#  undef STRICT
+#ifdef OS_WIN32
+#  ifndef STRICT
+#    define STRICT
+#    include <windows.h>
+#    undef STRICT
+#  endif
 #  ifndef GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
 #    define GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT 2
 #    define GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS 4

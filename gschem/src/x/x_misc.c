@@ -28,9 +28,11 @@
 #include "gschem.h"
 
 #ifdef OS_WIN32
-# define STRICT
-# include <windows.h>
-# undef STRICT
+#  ifndef STRICT
+#    define STRICT
+#    include <windows.h>
+#    undef STRICT
+#  endif
 #endif
 
 #include <geda_debug.h>
