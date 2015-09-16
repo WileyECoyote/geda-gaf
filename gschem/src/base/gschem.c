@@ -279,7 +279,7 @@ static void gschem( int argc, char *argv[])
   libgeda_init();
 
 #if defined(__MINGW32__) && defined(DEBUG)
-  fprintf(stderr, _("This is the MINGW32 port.\n"));
+    printf("This is the MINGW32 port.\n");
 #endif
 
   /* init global buffers */

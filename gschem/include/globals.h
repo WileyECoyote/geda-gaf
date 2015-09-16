@@ -73,8 +73,7 @@ extern SCM complex_place_list_changed_hook;
 # define N_(String) (String)
 #endif
 
-/*
- * __attribute__((unused)) is a gcc extension so define
+/* __attribute__((unused)) is a gcc extension so define
  * a portable macro, ATTRIBUTE_UNUSED, to use instead
  */
 #ifndef GCC_VERSION
@@ -112,6 +111,7 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_CCODE,    /* -23     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
+
 /*! \brief Enumerated Selection Mode - EID_EVENT_HANDLERS
  *  \par Description
  *  Used as argument to i_event_block_xxx i_event_unblock_xxx to identify
@@ -134,6 +134,7 @@ typedef enum {
                OBJECT_HOOK,
                PAGE_HOOK,
 } EID_HOOK_TYPE;
+
 
 /*! \enum  EID_SCM_HOOKS Enumerated SCM Hook Identifier
  *  \par Description
@@ -161,6 +162,7 @@ typedef enum {
 } EID_SCM_HOOKS;
 #define Hooker EID_SCM_HOOKS
 
+
 /*! \brief Enumerated Pan Directive - EID_PAN_DIRECTIVES
  *  \par Description
  *  Directives used as arguments to zoom and pan routines that indicate
@@ -172,6 +174,7 @@ typedef enum { I_PAN_REDRAW,
                I_PAN_DONT_REDRAW
 } EID_PAN_DIRECTIVES;
 
+
 /*! \brief Enumerated Selection Mode - EID_SELECTION_MODE
  *  \par Description
  *  Used as argument to routines in o_find module to indicate
@@ -181,6 +184,7 @@ typedef enum  { SELECTION_NOACTION,
                 SELECTION_REPLACE,
                 SELECTION_ADD
 } EID_SELECTION_MODE;
+
 
 /*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
  *  \par Description
@@ -193,6 +197,7 @@ typedef enum { ANY_OBJECT, CAN_PASTE, CAN_UNDO, CAN_REDO, CAN_HATCH, CAN_ELINE,
                COMPLEX_OBJECT, HAVE_PAGES, HAVE_PIN, HAVE_TEXT
 } EID_SENITIVITY_MODE;
 
+
 /*! \enum EID_TEXT_SEARCH_DIRECTIVES Text Search Directives
  *  \brief Enumeration for o_edit.c::o_edit_find_text
  */
@@ -200,6 +205,7 @@ typedef enum {
   SEARCH_DESCEND  = 1,
   SEARCH_HIDDEN   = 2,
 } EID_TEXT_SEARCH_DIRECTIVES;
+
 
 /*! \enum  EID_ZOOM_DIRECTIVE
  *  \brief Enumerated Zoom Directive - ZOOM_DIRECTIVE
