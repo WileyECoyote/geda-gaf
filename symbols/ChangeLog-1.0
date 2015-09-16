@@ -1,5 +1,9 @@
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * micro/C8051F020-1.sym:Add symbol C8051F020; IC,8051 MCU 64K FLASH 100TQFP.
+
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * diode/zener52: Rename directory zener2->zener52.
 
     * geda-clib.scm: Change directory name for 52 series zener diodes.

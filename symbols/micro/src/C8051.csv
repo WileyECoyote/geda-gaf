@@ -1,0 +1,164 @@
+# This is the template file for creating symbols with tragesym						
+# every line starting with '#' is a comment line.						
+# save it as text file with tab separated cells and start tragesym						
+						
+[options]						
+# wordswap swaps labels if the pin is on the right side an looks like this:						
+#   "PB1 (CLK)". That's useful for micro controller port labels						
+# rotate_labels rotates the pintext of top and bottom pins						
+#   this is useful for large symbols like FPGAs with more than 100 pins						
+# sort_labels will sort the pins by it's labels						
+#   useful for address ports, busses, ...						
+wordswap	yes					
+rotate_labels	yes					
+sort_labels	no					
+generate_pinseq	yes					
+sym_width	9700					
+pinwidthvertical	300					
+pinwidthhorizontal	300					
+						
+[geda_attr]						
+# name will be printed in the top of the symbol						
+# if you have a device with slots, you'll have to use slot= and slotdef=						
+# use comment= if there are special information you want to add						
+version	20140915 1					
+name	C8051F020					
+device	C8051F020					
+refdes	U?					
+footprint	TQFP100					
+description	IC 8051 MCU 64K FLASH 100TQFP					
+documentation	https://www.silabs.com/Support Documents/TechnicalDocs/C8051F02x.pdf					
+author	AutoTron					
+numslots	0					
+dist-license	GPL3					
+use-license	unlimited					
+#slot	1					
+#slotdef	1:					
+#slotdef	2:					
+#slotdef	3:					
+#slotdef	4:					
+#comment						
+#comment						
+#comment						
+						
+[pins]						
+# tabseparated list of pin descriptions						
+#						
+# pinnr is the physical number of the pin						
+# seq is the pinseq= attribute, leave it blank if it doesn't matter						
+# type can be (in, out, io, oc, oe, pas, tp, tri, clk, pwr)						
+# style can be (line,dot,clk,dotclk,spacer,none). none if only want to add a net						
+# posit. can be (l,r,t,b) or empty for nets.						
+# net specifies the name of the net. Vcc or GND for example.						
+# label represents the pinlabel.						
+#	negation lines can be added with "\_" example: \_enable\_ 					
+#	if you want to write a "\" use "\\" as escape sequence					
+#						
+#pinnr	seq	type	style	posit.	net	label
+			spacer	l		
+1	1	in	line	l		TMS
+2	2	clk	line	l		TCK
+3	3	in	line	l		TDI
+4	4	out	line	l		TDO
+5	5	in	line	l		\_RST
+6	6	out	line	l		CP1-
+7	7	out	line	l		CP1+
+8	8	out	line	l		CP0-
+9	9	out	line	l		CP0+
+10	10	pwr	line	l		AGND
+11	11	pwr	line	l		AV+
+12	12	in	line	l		VREF
+13	13	pwr	line	l		AGND
+14	14	in	line	l		AV+
+15	15	in	line	l		VREFD
+16	16	in	line	l		VREF0
+17	17	in	line	l		VREF1
+18	18	in	line	l		AIN0.0
+19	19	in	line	l		AIN0.1
+20	20	in	line	l		AIN0.2
+21	21	in	line	l		AIN0.3
+22	22	in	line	l		AIN0.4
+23	23	in	line	l		AIN0.5
+24	24	in	line	l		AIN0.6
+25	25	in	line	l		AIN0.7
+			spacer	l		
+			spacer	b		
+26	26	out	line	b		XTAL1
+27	27	in	line	b		XTAL2
+28	28	io	line	b		MONEN
+29	29	io	line	b		AIN1.7/A15/P1.7
+30	30	io	line	b		AIN1.6/A14/P1.6
+31	31	io	line	b		AIN1.5/A13/P1.5
+32	32	io	line	b		AIN1.4/A12/P1.4
+33	33	io	line	b		AIN1.3/A11/P1.3
+34	34	io	line	b		AIN1.2/A10/P1.2
+35	35	io	line	b		AIN1.1/A9/P1.1
+36	36	io	line	b		AIN1.0/A8/P1.0
+37	37	pwr	line	b		VDD
+38	38	pwr	line	b		DGND
+39	39	io	line	b		A15m/A7/P2.7
+40	40	io	line	b		A14m/A6/P2.6
+41	41	io	line	b		A13m/A5/P2.5
+42	42	io	line	b		A12m/A4/P2.4
+43	43	io	line	b		A11m/A3/P2.3
+44	44	io	line	b		A10m/A2/P2.2
+45	45	io	line	b		A9m/A1/P2.1
+46	46	io	line	b		A8m/A0/P2.0
+47	47	io	line	b		AD7/D7/P3.7
+48	48	io	line	b		AD6/D6/P3.6
+49	49	io	line	b		AD5/D5/P3.5
+50	50	io	line	b		AD4/D4/P3.4
+			spacer	b		
+			spacer	r		
+51	51	io	line	r		AD3/D3/P3.3
+52	52	io	line	r		AD2/D2/P3.2
+53	53	io	line	r		AD1/D1/P3.1
+54	54	io	line	r		AD0/D0/P3.0
+55	55	io	line	r		\_WR\_/P0.7
+56	56	io	line	r		\_RD\_/P0.6
+57	57	io	line	r		ALE/P0.5
+58	58	io	line	r		P0.4
+59	59	io	line	r		P0.3
+60	60	io	line	r		P0.2
+61	61	io	line	r		P0.1
+62	62	io	line	r		P0.0
+63	63	pwr	line	r		DGND
+64	64	pwr	line	r		VDD
+65	65	io	line	r		AD7/D7/P7.7
+66	66	io	line	r		AD6/D6/P7.6
+67	67	io	line	r		AD5/D5/P7.5
+68	68	io	line	r		AD4/D4/P7.4
+69	69	io	line	r		AD3/D3/P7.3
+70	70	io	line	r		AD2/D2/P7.2
+71	71	io	line	r		AD1/D1/P7.1
+72	72	io	line	r		AD0/D0/P7.0
+73	73	io	line	r		A15m/A7/P6.7
+74	74	io	line	r		A14m/A6/P6.6
+75	75	io	line	r		A13m/A5/P6.5
+			spacer	r		
+			spacer	t		
+76	76	io	line	t		A12m/A4/P6.4
+77	77	io	line	t		A11m/A3/P6.3
+78	78	io	line	t		A10m/A2/P6.2
+79	79	io	line	t		A9m/A1/P6.1
+80	80	io	line	t		A8m/A0/P6.0
+81	81	io	line	t		A15/P5.7
+82	82	io	line	t		A14/P5.6
+83	83	io	line	t		A13/P5.5
+84	84	io	line	t		A12/P5.4
+85	85	io	line	t		A11/P5.3
+86	86	io	line	t		A10/P5.2
+87	87	io	line	t		A9/P5.1
+88	88	io	line	t		A8/P5.0
+89	89	pwr	line	t		DGND
+90	90	pwr	line	t		VDD
+91	91	io	line	t		\_WR\_/P4.7
+92	92	io	line	t		\_RD\_/P4.6
+93	93	io	line	t		ALE/P4.5
+94	94	io	line	t		P4.4
+95	95	io	line	t		P4.3
+96	96	io	line	t		P4.2
+97	97	io	line	t		P4.1
+98	98	io	line	t		P4.0
+99	99	in	line	t		DAC1/NC
+100	100	in	line	t		DAC0/NC
