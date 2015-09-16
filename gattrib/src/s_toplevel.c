@@ -252,7 +252,6 @@ void s_toplevel_add_new_attrib(int column_location) {
  */
 void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 
-  //int mincol, maxcol;
   char *attrib_name;
   int col;
 

@@ -123,8 +123,6 @@ struct _CellRendererMultiLineText {
   /*< private >*/
   unsigned int  focus_out_id;
   unsigned int  in_buffer_menu;
-  //unsigned long populate_popup_id;
-  //unsigned long buffer_menu_popdown_timeout;
 
   GtkWidget *buffer;
 };
