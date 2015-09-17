@@ -34,14 +34,12 @@
  * solid white.
  *
  * Note that this function implements similar functionality to
- * gdk_color_parse(). However, for consistency, <em>only</em> this
- * function should be used to parse color strings from gEDA
- * configuration files, as gdk_color_parse() does not support the
- * alpha channel.
+ * gdk_color_parse(). This function support the alpha channel and
+ * should be used to parse color strings from gEDA configuration
  *
  * \todo Use GError mechanism to give more specific error messages.
  *
- * \param [in]  rgba Colour code to parse.
+ * \param [in]  rgba Color code to parse.
  * \param [out] r    Location to store red value.
  * \param [out] g    Location to store green value.
  * \param [out] b    Location to store blue value.
@@ -60,15 +58,16 @@ bool u_color_rgba_decode (const char *rgba,
 
   /* Check that the string is a valid length and starts with a '#' */
   len = strlen (rgba);
+
   if ((len != 9 && len != 7) || rgba[0] != '#')
     return FALSE;
 
   /* Check we only have [0-9a-fA-F] */
   for (i = 1; i < len; i++) {
+
     c = rgba[i];
-    if ((c < '0' || c > '9')
-        && (c < 'a' || c > 'f')
-        && (c < 'A' || c > 'F'))
+
+    if ((c < '0' || c > '9') && (c < 'a' || c > 'f') && (c < 'A' || c > 'F'))
       return FALSE;
   }
 
@@ -90,7 +89,7 @@ bool u_color_rgba_decode (const char *rgba,
 
 /*! \brief Encode a hexadecimal RGB or RGBA color code.
  *  \par Function Description
- *  Encodes four colour components into either the form "#RRGGBB" or
+ *  Encodes four color components into either the form "#RRGGBB" or
  *  "#RRGGBBAA". The shorter form is used when the alpha component is
  *  0xff.
  *
@@ -110,3 +109,42 @@ char *u_color_rgba_encode (uint8 r, uint8 g, uint8 b, uint8 a)
     return u_string_sprintf("#%02x%02x%02x",
                            (int) r, (int) g, (int) b);
 }
+
+/*! \brief Return pointer to hexidecimal string name of color
+ *  \par Function Description
+ *  The function obtains the RGB color at the given index
+ *  position and calls library function u_color_rgba_encode
+ *  to obtain the a pointer to hex string name of the color.
+ *  This function is similar to u_color_rgba_encode but does
+ *  not return a value if the given color in not enabled.
+ *
+ *  \sa u_color_rgba_encode
+ */
+char *u_color_get_hex(COLOR *c)
+{
+  if (c->enabled) {
+    return u_color_rgba_encode (c->r, c->g, c->b, c->a);
+  }
+
+  /* didn't find a color, but there still might be more */
+  return(NULL);
+}
+
+/*! \brief Return distance between colors
+ *  \par Function Description
+ *  Calculates the distance squared between colors *c1 and *c2.
+ *  RGB values scaled
+ */
+static long u_color_dist(COLOR *c1, COLOR *c2)
+{
+    long r, g, b;
+
+    /* distance components between *c1 & *c2 */
+    r = c1->r - c2->r;
+    g = c1->g - c2->g;
+    b = c1->b - c2->b;
+
+    /* distance squared */
+    return Yred2 * r * r + Ygre2 * g * g + Yblu2 * b * b;
+}
+

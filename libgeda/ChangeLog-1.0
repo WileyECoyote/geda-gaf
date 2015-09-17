@@ -1,3 +1,7 @@
+2015-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_color.c: Add function u_color_get_hex and u_color_dist.
+
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_color.c: Add table for standard color names and accessors
