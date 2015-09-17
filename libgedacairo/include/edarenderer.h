@@ -150,16 +150,18 @@ GedaType eda_renderer_flags_get_type (void) G_GNUC_CONST;
 EdaRenderer *eda_renderer_new     (cairo_t *cr, PangoContext *pc) G_GNUC_WARN_UNUSED_RESULT;
 void         eda_renderer_destroy (EdaRenderer *renderer);
 
-void eda_renderer_draw            (EdaRenderer *renderer, Object *object);
-void eda_renderer_draw_grips      (EdaRenderer *renderer, Object *object);
-void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects);
-void eda_renderer_draw_cues       (EdaRenderer *renderer, Object *object);
+bool     eda_renderer_parse_color      (const char *spec, COLOR *color);
 
-int  eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
-                                   int *left,   int *top,
-                                   int *right,  int *bottom);
+void     eda_renderer_draw             (EdaRenderer *renderer, Object *object);
+void     eda_renderer_draw_grips       (EdaRenderer *renderer, Object *object);
+void     eda_renderer_draw_grips_list  (EdaRenderer *renderer, GList *objects);
+void     eda_renderer_draw_cues        (EdaRenderer *renderer, Object *object);
 
-int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
+int      eda_renderer_get_user_bounds  (EdaRenderer *renderer, Object *object,
+                                        int *left,   int *top,
+                                        int *right,  int *bottom);
+
+int      eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
                                         int *left,   int *top,
                                         int *right,  int *bottom);
 

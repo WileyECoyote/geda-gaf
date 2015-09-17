@@ -465,6 +465,49 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   }
 }
 
+/*! \brief Return RGB color from string color name
+ *  \par Function Description
+ * Parses a textual specification of a color and fill in the <b>red</b>,
+ * <b>green</b>, and <b>blue</b> fields of a #GdkColor structure. The color
+ * is <em>not</em> allocated. The string can be either one of the standard
+ * names (Taken from the X11 <filename>rgb.txt</filename> file), or a hex
+ * value in the form '&num;rgb' '&num;rrggbb' '&num;rrrgggbbb' or
+ * '&num;rrrrggggbbbb' where 'r', 'g' and 'b' are hex digits of the
+ * red, green, and blue components of the color, respectively. (White
+ * in the four forms is '&num;fff' '&num;ffffff' '&num;fffffffff' and
+ * '&num;ffffffffffff')
+ * This function implements similar functionality to u_color_rgba_decode
+ * and gdk_color_parse() but accept a pointer to a GEDA #COLOR structure
+ * as an argument but does not fully support the alpha channel. The alpha
+ * value is always set to 0xff.
+ *
+ * \param [in] spec  Pointer to string hex representation of color to parse
+ * \param [in] color GEDA Color structure to recieve RGB values.
+ * \param [in] b Blue component.
+ *
+ * \returns: TRUE on success, otherwise FALSE.
+ */
+bool
+eda_renderer_parse_color (const char *spec, COLOR *color)
+{
+  PangoColor pango_color;
+  bool result;
+
+  if (pango_color_parse (&pango_color, spec)) {
+
+      color->r = pango_color.red;
+      color->g = pango_color.green;
+      color->b = pango_color.blue;
+      color->a = 0xff;
+
+      result = TRUE;
+  }
+  else {
+    result = FALSE;
+  }
+  return result;
+}
+
 /* ================================================================
  * Object DRAWING
  * ================================================================ */

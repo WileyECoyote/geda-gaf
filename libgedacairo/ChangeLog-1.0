@@ -1,3 +1,8 @@
+2015-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add function eda_renderer_parse_color as public
+      utility function that can by-pass gdk_color_parse.
+
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Use GType for Constructors instead of GedaType:
