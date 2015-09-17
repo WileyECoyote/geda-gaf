@@ -150,7 +150,7 @@ GedaType eda_renderer_flags_get_type (void) G_GNUC_CONST;
 EdaRenderer *eda_renderer_new     (cairo_t *cr, PangoContext *pc) G_GNUC_WARN_UNUSED_RESULT;
 void         eda_renderer_destroy (EdaRenderer *renderer);
 
-bool     eda_renderer_parse_color      (const char *spec, COLOR *color);
+bool     eda_renderer_parse_color      (const char  *spec, COLOR *color);
 
 void     eda_renderer_draw             (EdaRenderer *renderer, Object *object);
 void     eda_renderer_draw_grips       (EdaRenderer *renderer, Object *object);

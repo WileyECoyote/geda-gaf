@@ -483,7 +483,6 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
  *
  * \param [in] spec  Pointer to string hex representation of color to parse
  * \param [in] color GEDA Color structure to recieve RGB values.
- * \param [in] b Blue component.
  *
  * \returns: TRUE on success, otherwise FALSE.
  */
@@ -1908,6 +1907,8 @@ eda_renderer_init(GTypeInstance *instance, void *g_class)
   EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
   EDAR_MARKER_THRESHOLD    = EDAR_DEFAULT_MARKER_DIST_THLD;
 
+  //TODO
+  //eda_renderer_parse_color (EDAR_DEFAULT_GRIP_STROKE_COLOR, &EDAR_GRIP_STROKE_COLOR);
   gdk_color_parse(EDAR_DEFAULT_GRIP_STROKE_COLOR,  &EDAR_GRIP_STROKE_COLOR);
   gdk_color_parse(EDAR_DEFAULT_GRIP_FILL_COLOR,    &EDAR_GRIP_FILL_COLOR);
   gdk_color_parse(EDAR_DEFAULT_JUNCTION_COLOR,     &EDAR_JUNCTION_COLOR);
