@@ -1,5 +1,9 @@
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/battery/BQ2004-1.sym: Add symbol Programmable Battery Pack Manager
+
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/regulate/L79L15-1.sym: Add symbol Voltage Regulator, Negative,
       15 VOLT,FIXED,TO-92.
 
