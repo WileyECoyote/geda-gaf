@@ -26,6 +26,7 @@
 
 #include <globals.h>
 
+#include <geda_color.h>
 #include <geda_colors.h>
 #include <papersizes.h>
 #include <prototype.h>

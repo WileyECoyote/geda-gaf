@@ -39,6 +39,7 @@ typedef struct st_path_section  PATH_SECTION;
 
 /* Structures for user interface objects */
 typedef struct st_color         edaColor;
+typedef struct st_color_element ColorElement;
 typedef struct st_menu_item     MENU;
 
 /* Structures for mathmatical stuff */
@@ -263,6 +264,12 @@ struct st_color {
 struct st_object_color {
   unsigned char r, g, b, a;
   bool enabled;
+};
+
+/* Color element structure */
+struct st_color_element {
+  unsigned char  red, gre, blu;
+  const char *name;
 };
 
 /*------------------------------------------------------------------
