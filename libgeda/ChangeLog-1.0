@@ -1,3 +1,10 @@
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Extend Compatibility.
+
+    * include/libgeda/geda_color.h: Add new file for inclusion of color
+      related constants.
+
 2015-09-12 dmn <graahnul.grom@gmail.com>
 
     * Code Enhancement: Improve Platform Compatibility.
