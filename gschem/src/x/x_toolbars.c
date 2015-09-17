@@ -1356,23 +1356,14 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER (Zoom_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
 
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_view_redraw);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_pan);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_box);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_select);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_extents);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_in);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_out);
-//  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_all);
-
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_view_redraw,  LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_pan,     LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_box,     LOCAL_ALT, ZOOM_FIT, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_select,  THEME,     ZOOM_FIT, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_extents, LOCAL_ALT, ZOOM_FIT, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_in,      LOCAL_ALT, ZOOM_IN,  x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_out,     LOCAL_ALT, ZOOM_OUT, x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_all,     LOCAL_ALT, ZOOM_100, x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_view_redraw);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_pan);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_box);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_select);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_extents);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_in);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_out);
+  GSCHEM_TOOLBAR_BUTTON( Zoom, etb_zoom_all);
 
   g_object_set (Zoom_Toolbar, "visible", TRUE, NULL);
 
@@ -1418,7 +1409,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   Edit_Toolbar = gtk_toolbar_new ();
 
-  SET_TOOLBAR_ORIENTATION (Edit_Toolbar, GTK_ORIENTATION_VERTICAL);
+  SET_TOOLBAR_ORIENTATION (Edit_Toolbar, VERTICAL);
 
   gtk_container_set_border_width (GTK_CONTAINER  (Edit_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->edit_handlebox), Edit_Toolbar);

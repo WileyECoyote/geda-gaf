@@ -83,7 +83,7 @@ typedef struct
 #define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data(G_OBJECT(GTK_WIDGET(obj)), "WinData", win_cur);
 
 #define SET_TOOLBAR_ORIENTATION(bar, orient) \
-     gtk_orientable_set_orientation (GTK_ORIENTABLE (bar), GTK_ORIENTATION_#orient);
+     gtk_orientable_set_orientation (GTK_ORIENTABLE (bar), GTK_ORIENTATION_##orient);
 
 /*------------------------------------------------------------------
  * GTK Toolbar includes: stuff for dealing with Toolbars.
