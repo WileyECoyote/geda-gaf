@@ -268,7 +268,7 @@ struct st_object_color {
 
 /* Color element structure */
 struct st_color_element {
-  unsigned char  red, gre, blu;
+  unsigned char  r, g, b;
   const char *name;
 };
 

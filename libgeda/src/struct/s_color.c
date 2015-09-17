@@ -217,22 +217,6 @@ static ColorElement stdcolors [] =
   { 0,0,0, NULL}
 };
 
-/*! \brief Get Tabled of Standard Color Names
- *  \par Function Documentation
- *   Returns a pointer to a new Garray containing a copy of the
- *   current stdcolors allocations.
- *
- *  \returns color_table, the table should be freed using g_array_free.
- */
-GArray *s_color_get_standard_names(void)
-{
-  GArray* color_table;
-
-  color_table = g_array_sized_new (FALSE, FALSE, sizeof(ColorElement), sizeof(ColorElement));
-  color_table = g_array_append_vals (color_table, stdcolors, sizeof(ColorElement));
-  return color_table;
-}
-
 /*! \brief Get Print Color Map
  *  \par Function Documentation
  *   Returns a pointer to a new Garray containing a copy of the
@@ -242,10 +226,65 @@ GArray *s_color_get_standard_names(void)
  */
 GArray *s_color_get_print_color_map(void)
 {
-  GArray* color_map;
+  GArray *color_map;
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
   return color_map;
+}
+
+/*! \brief Get Table of Standard Color Names
+ *  \par Function Documentation
+ *   Returns a pointer to a new Garray containing a copy of the
+ *   stdcolors allocations.
+ *
+ *  \returns color_table, the table should be freed using g_array_free.
+ */
+GArray *s_color_get_standard_names(void)
+{
+  GArray *color_table;
+
+  color_table = g_array_sized_new (FALSE, FALSE, sizeof(ColorElement), G_N_ELEMENTS(stdcolors));
+  color_table = g_array_append_vals (color_table, stdcolors, G_N_ELEMENTS(stdcolors));
+  return color_table;
+}
+]
+
+char *
+s_color_get_colorname(int index, GArray *cmap, GError **err)
+{
+  COLOR *color;
+  int limit;
+
+  if (cmap) {                       /* Find end of cmap */
+    limit = cmap->len;
+  }
+  else {                            /* Use the print_colors map */
+    limit = MAX_COLORS;
+  }
+
+  /* Check if index is with bounds of print_colors */
+  if ((index < 0) || (index >= limit)) {
+    if (!err) {
+      fprintf (stderr, "Color index out of range: %i\n", index);
+    }
+    else {
+      g_set_error (err, G_FILE_ERROR, EDA_ERROR_NUM_ERRORS, "Color index out of range: %i", index);
+    }
+
+  }
+  else {
+
+    if (cmap) {                       /* Find end of cmap */
+      color = &g_array_index (cmap, COLOR, index);
+    }
+    else {                            /* get offet in print_colors map */
+      color = &print_colors[index];
+    }
+
+    return u_color_lookup_colorname (color, err);
+
+  }
+  return NULL;
 }
 
 /*! \brief Load and Evaluate a Color Map Scheme
@@ -292,11 +331,14 @@ void s_color_map_defaults (COLOR *map)
   int   i;
 
   for (i = 0; i < MAX_COLORS; i++) {
+
     if (reached_end) {
       map[i].enabled = FALSE;
       continue;
     }
+
     c = default_colors[i];
+
     if (c.a == 0) { /* Check for end of default map */
       reached_end = TRUE;
       i--;

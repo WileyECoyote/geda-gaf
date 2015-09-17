@@ -454,6 +454,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
         GList    *s_toplevel_get_symbols         (const GedaToplevel *toplevel);
 
 /* s_color.c */
+         char   *s_color_get_colorname           (int index, GArray *map, GError **err);
        GArray   *s_color_get_standard_names      (void);
        GArray   *s_color_get_print_color_map     (void);
          bool    s_color_load_scheme             (const char *scheme);
