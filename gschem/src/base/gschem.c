@@ -429,13 +429,13 @@ static void main_prog(void *closure, int argc, char *argv[])
 {
   XInitThreads();
 
-#  ifdef G_STAT_MEM
+#ifdef G_STAT_MEM
      g_mem_set_vtable(glib_mem_profiler_table);
-#  else
+#else
      u_program_mem_set_vtable();
-#  endif
+#endif
 
-#  if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION <= 33 ))
+#if ((GLIB_MAJOR_VERSION >= 2 ) && (GLIB_MINOR_VERSION <= 33 ))
      g_slice_set_config(G_SLICE_CONFIG_ALWAYS_MALLOC, 1);
 #endif
 
@@ -443,36 +443,41 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   /* Initialise threading before any more GLib functions are called. */
 
-#  if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 32 ))
+#if ((GLIB_MAJOR_VERSION == 2 ) && (GLIB_MINOR_VERSION < 32 ))
 
      g_thread_init (NULL);
 
-#  endif
+#endif
 
   if (gschem_threads_init()) {
     run_mode = 2;
   }
+
 #else
+
   run_mode = 1;
+
 #endif
 
 #if ENABLE_NLS
-  /* This should be equivalent to setlocale (LC_ALL, "") */
-  gtk_set_locale();
 
-  /* This must be the same for all locales */
+  /* This should be equivalent to setlocale (LC_ALL, "") */
+  gdk_set_locale();
+
+  /* This must be the same for all locales,  use decimal point instead
+   * of comma, use "C" or "POSIX" */
   setlocale(LC_NUMERIC, "C");
 
-  /* Disable gtk's ability to set the locale. If gtk is allowed to set the
-   * locale, then it will override the setlocale for LC_NUMERIC (which is
-   * important for proper PS output. This may look funny here, given we make
-   * a call to gtk_set_locale() above. Is this really the right thing to do?
-   */
+  /* Prevent gtk_init() and gtk_init_check() from automatically
+   * calling setlocale (LC_ALL, "") which would undo our LC_NUMERIC. */
   gtk_disable_setlocale();
 
-#  if DEBUG
-     fprintf(stderr, "Current locale settings: %s\n", setlocale(LC_ALL, NULL));
-#  endif
+# if DEBUG
+
+  fprintf(stderr, "Current locale settings: %s\n", setlocale(LC_ALL, NULL));
+
+# endif
+
 #endif
 
   if (gtk_init_check(&argc, &argv)) {
