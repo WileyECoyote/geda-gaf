@@ -43,14 +43,14 @@ static GdkColormap *colormap = NULL;
 /*! \brief Initializes the color system for the application.
  *  \par Function Documentation
  *
- *  Initialises the color maps to defaults.
+ *  Initializes color maps to default values.
  */
 void
 x_color_init (void)
 {
   colormap = gdk_colormap_get_system ();
 
-  /* Initialise default color maps */
+  /* Initialize default color maps */
   s_color_map_defaults (display_colors);
   s_color_map_defaults (outline_colors);
 }
