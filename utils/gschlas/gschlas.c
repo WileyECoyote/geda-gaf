@@ -79,7 +79,7 @@ main_prog(void *closure, int argc, char *argv[])
 #endif
 
     if (!quiet_mode) {
-      s_log_message ("gEDA/gschlas version %s%s.%s\ngEDA/gschlas comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\nThis is free software, and you are welcome to redistribute it under certain\nconditions; please see the COPYING file for more details.\n\n",
+      u_log_message ("gEDA/gschlas version %s%s.%s\ngEDA/gschlas comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\nThis is free software, and you are welcome to redistribute it under certain\nconditions; please see the COPYING file for more details.\n\n",
                       PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
                       PACKAGE_DATE_VERSION);
     }

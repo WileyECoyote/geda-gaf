@@ -31,3 +31,4 @@
 
 #include "globals.h"
 #include "prototype.h"
+#include <version.h>
