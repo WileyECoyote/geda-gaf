@@ -131,7 +131,7 @@ bool x_window_setup_gc(GschemToplevel *w_current)
  */
 void x_window_free_gc(GschemToplevel *w_current)
 {
-  gdk_gc_unref(w_current->gc);
+  g_object_unref(w_current->gc);
 }
 
 /*! \brief Create the Drawing Area

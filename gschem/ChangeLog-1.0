@@ -1,3 +1,10 @@
+2015-09-18 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/x/x_window.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit  cfeded192e6213f24246064150e895f5f83e14a4:
+
+      Replace gdk_gc_unref() with g_object_unref.
+
 2015-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Replace gtk_set_locale with gdk_set_locale.
