@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -17,6 +17,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:441
+#: libgedauio/src/dialogs/geda_image_chooser.c:988
+msgid "Set or retrieve index of the filter combo"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:442
+#: libgedauio/src/dialogs/geda_image_chooser.c:989
+msgid "IDE_FILTER"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:1124
+#, fuzzy
+msgid "_Open"
+msgstr "_Otwórz..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:578
+#: libgedauio/src/dialogs/geda_image_chooser.c:1125
+msgid "Open..."
+msgstr "Otwórz..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:582
+#: libgedauio/src/dialogs/geda_image_chooser.c:1129
+msgid "_Save"
+msgstr "Zapi_sz"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:583
+#: libgedauio/src/dialogs/geda_image_chooser.c:1130
+#, fuzzy
+msgid "Save As.."
+msgstr "Zapisz j_ako..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:587
+#: libgedauio/src/dialogs/geda_image_chooser.c:1134
+#, fuzzy
+msgid "_Select Folder..."
+msgstr "Tryb zaznaczania"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:588
+#: libgedauio/src/dialogs/geda_image_chooser.c:1135
+#, fuzzy
+msgid "Select Folder"
+msgstr "Tryb zaznaczania"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:592
+#: libgedauio/src/dialogs/geda_image_chooser.c:1139
+msgid "OOPS"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:597
+#: libgedauio/src/dialogs/geda_image_chooser.c:1144
+#, fuzzy
+msgid "_Cancel"
+msgstr "Przesuń widok/Anuluj"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:562
+#: libgedauio/src/dialogs/geda_image_chooser.c:746
+#, fuzzy
+msgid "Preview"
+msgstr "Podgląd"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:748
+msgid "Active to enable the preview pane"
+msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:676
 msgid "Activates default"
@@ -428,20 +493,20 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1935
+#: libgedauio/src/widgets/geda_label.c:1925
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5724
+#: libgedauio/src/widgets/geda_label.c:5714
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5848
+#: libgedauio/src/widgets/geda_label.c:5838
 #, fuzzy
 msgid "_Open Link"
 msgstr "Otwórz plik..."
 
-#: libgedauio/src/widgets/geda_label.c:5860
+#: libgedauio/src/widgets/geda_label.c:5850
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -750,9 +815,6 @@ msgstr ""
 #~ "%s\n"
 #~ "\n"
 #~ "Logi programu mogą zawierać dodatkowe informacje."
-
-#~ msgid "Select Mode"
-#~ msgstr "Tryb zaznaczania"
 
 #~ msgid "Component Mode"
 #~ msgstr "Tryb elementów"
@@ -1429,9 +1491,6 @@ msgstr ""
 #~ msgid "All files"
 #~ msgstr "Wszystkie pliki"
 
-#~ msgid "Open..."
-#~ msgstr "Otwórz..."
-
 #~ msgid "Save as..."
 #~ msgstr "Zapisz jako..."
 
@@ -1713,9 +1772,6 @@ msgstr ""
 #~ msgid "Menu/Cancel"
 #~ msgstr "Menu/Anuluj"
 
-#~ msgid "Pan/Cancel"
-#~ msgstr "Przesuń widok/Anuluj"
-
 #~ msgid "Loading schematic [%s]\n"
 #~ msgstr "Wczytywanie schematu [%s]\n"
 
@@ -1769,17 +1825,8 @@ msgstr ""
 #~ msgid "_New"
 #~ msgstr "_Nowy"
 
-#~ msgid "_Open..."
-#~ msgstr "_Otwórz..."
-
 #~ msgid "Open Recen_t"
 #~ msgstr "Otwórz os_tatnio używane"
-
-#~ msgid "_Save"
-#~ msgstr "Zapi_sz"
-
-#~ msgid "Save _As..."
-#~ msgstr "Zapisz j_ako..."
 
 #~ msgid "Save All"
 #~ msgstr "Zapisz _wszystkie"

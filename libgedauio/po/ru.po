@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2012-12-04 01:55+0400\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -20,6 +20,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:441
+#: libgedauio/src/dialogs/geda_image_chooser.c:988
+msgid "Set or retrieve index of the filter combo"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:442
+#: libgedauio/src/dialogs/geda_image_chooser.c:989
+msgid "IDE_FILTER"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:1124
+#, fuzzy
+msgid "_Open"
+msgstr "_Открыть..."
+
+# Заголовок окна выбора файла при открывании существующего файла
+#: libgedauio/src/dialogs/geda_file_chooser.c:578
+#: libgedauio/src/dialogs/geda_image_chooser.c:1125
+msgid "Open..."
+msgstr "Выберите файл"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:582
+#: libgedauio/src/dialogs/geda_image_chooser.c:1129
+msgid "_Save"
+msgstr "_Сохранить"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:583
+#: libgedauio/src/dialogs/geda_image_chooser.c:1130
+#, fuzzy
+msgid "Save As.."
+msgstr "Сохранить _как..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:587
+#: libgedauio/src/dialogs/geda_image_chooser.c:1134
+#, fuzzy
+msgid "_Select Folder..."
+msgstr "Выделение"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:588
+#: libgedauio/src/dialogs/geda_image_chooser.c:1135
+#, fuzzy
+msgid "Select Folder"
+msgstr "Выделение"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:592
+#: libgedauio/src/dialogs/geda_image_chooser.c:1139
+msgid "OOPS"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:597
+#: libgedauio/src/dialogs/geda_image_chooser.c:1144
+#, fuzzy
+msgid "_Cancel"
+msgstr "Прокрутка/Отмена действия"
+
+# Можно "Предварительный просмотр", но занимает много места на экране
+#: libgedauio/src/dialogs/geda_image_chooser.c:562
+#: libgedauio/src/dialogs/geda_image_chooser.c:746
+#, fuzzy
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:748
+msgid "Active to enable the preview pane"
+msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:676
 msgid "Activates default"
@@ -436,20 +503,20 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1935
+#: libgedauio/src/widgets/geda_label.c:1925
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5724
+#: libgedauio/src/widgets/geda_label.c:5714
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5848
+#: libgedauio/src/widgets/geda_label.c:5838
 #, fuzzy
 msgid "_Open Link"
 msgstr "Открыть файл..."
 
-#: libgedauio/src/widgets/geda_label.c:5860
+#: libgedauio/src/widgets/geda_label.c:5850
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -773,9 +840,6 @@ msgstr ""
 #~ "ОШИБКА: не удалось загрузить или выполнить скрипт при запуске.\n"
 #~ "\n"
 #~ "В журнале gschem может быть больше информации.\n"
-
-#~ msgid "Select Mode"
-#~ msgstr "Выделение"
 
 #~ msgid "Component Mode"
 #~ msgstr "Вставка компонентов"
@@ -1677,10 +1741,6 @@ msgstr ""
 #~ msgid "All files"
 #~ msgstr "Все файлы"
 
-# Заголовок окна выбора файла при открывании существующего файла
-#~ msgid "Open..."
-#~ msgstr "Выберите файл"
-
 # Заголовок окна выбора файла при сохранении
 #~ msgid "Save as..."
 #~ msgstr "Введите имя файла для сохранения"
@@ -1999,9 +2059,6 @@ msgstr ""
 #~ msgid "Menu/Cancel"
 #~ msgstr "Меню/Отмена действия"
 
-#~ msgid "Pan/Cancel"
-#~ msgstr "Прокрутка/Отмена действия"
-
 #~ msgid "Loading schematic [%s]\n"
 #~ msgstr "Загрузка схемы [%s]\n"
 
@@ -2055,17 +2112,8 @@ msgstr ""
 #~ msgid "_New"
 #~ msgstr "_Новый"
 
-#~ msgid "_Open..."
-#~ msgstr "_Открыть..."
-
 #~ msgid "Open Recen_t"
 #~ msgstr "Открыть не_давние"
-
-#~ msgid "_Save"
-#~ msgstr "_Сохранить"
-
-#~ msgid "Save _As..."
-#~ msgstr "Сохранить _как..."
 
 #~ msgid "Save All"
 #~ msgstr "Сохранить все"

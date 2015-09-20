@@ -1,3 +1,8 @@
+2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+     * po/POTFILES.in: Add filenames:geda_file_chooser.c geda_image_chooser.c
+       and geda_input_dialog.c, regenerate.
+
 2015-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
      * Add #define WITHOUT_GUILE 1 before including libgeda.h:

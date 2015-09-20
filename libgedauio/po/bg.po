@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -17,6 +17,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:441
+#: libgedauio/src/dialogs/geda_image_chooser.c:988
+msgid "Set or retrieve index of the filter combo"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:442
+#: libgedauio/src/dialogs/geda_image_chooser.c:989
+msgid "IDE_FILTER"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:1124
+msgid "_Open"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:578
+#: libgedauio/src/dialogs/geda_image_chooser.c:1125
+#, fuzzy
+msgid "Open..."
+msgstr "Отвори Страница..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:582
+#: libgedauio/src/dialogs/geda_image_chooser.c:1129
+#, fuzzy
+msgid "_Save"
+msgstr "Съхрани Всичко"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:583
+#: libgedauio/src/dialogs/geda_image_chooser.c:1130
+#, fuzzy
+msgid "Save As.."
+msgstr "Съхрани Всичко"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:587
+#: libgedauio/src/dialogs/geda_image_chooser.c:1134
+msgid "_Select Folder..."
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:588
+#: libgedauio/src/dialogs/geda_image_chooser.c:1135
+#, fuzzy
+msgid "Select Folder"
+msgstr "Избери режим"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:592
+#: libgedauio/src/dialogs/geda_image_chooser.c:1139
+msgid "OOPS"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:597
+#: libgedauio/src/dialogs/geda_image_chooser.c:1144
+msgid "_Cancel"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:562
+#: libgedauio/src/dialogs/geda_image_chooser.c:746
+#, fuzzy
+msgid "Preview"
+msgstr "Затвори Страницата"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:748
+msgid "Active to enable the preview pane"
+msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:676
 msgid "Activates default"
@@ -417,19 +481,19 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1935
+#: libgedauio/src/widgets/geda_label.c:1925
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5724
+#: libgedauio/src/widgets/geda_label.c:5714
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5848
+#: libgedauio/src/widgets/geda_label.c:5838
 msgid "_Open Link"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5860
+#: libgedauio/src/widgets/geda_label.c:5850
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -649,9 +713,6 @@ msgstr ""
 #~ msgid "New Page"
 #~ msgstr "Нова Страница"
 
-#~ msgid "Open Page..."
-#~ msgstr "Отвори Страница..."
-
 #~ msgid "Save Page"
 #~ msgstr "Съхрани Страницата"
 
@@ -715,10 +776,6 @@ msgstr ""
 #~ msgstr "Нова Страница"
 
 #, fuzzy
-#~ msgid "Save As"
-#~ msgstr "Съхрани Всичко"
-
-#, fuzzy
 #~ msgid "Print"
 #~ msgstr "Принтирай..."
 
@@ -733,10 +790,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Embed Component/Pictore"
 #~ msgstr "Вграден Компонент/Картина"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "Затвори Страницата"
 
 #, fuzzy
 #~ msgid "Next Page"

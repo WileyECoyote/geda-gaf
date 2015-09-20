@@ -1,4 +1,8 @@
 
+libgedauio/src/dialogs/geda_file_chooser.c
+libgedauio/src/dialogs/geda_image_chooser.c
+libgedauio/src/dialogs/geda_input_dialog.c
+
 libgedauio/src/widgets/geda_accel_label.c
 libgedauio/src/widgets/geda_comboboxtext.c
 libgedauio/src/widgets/geda_completion.c

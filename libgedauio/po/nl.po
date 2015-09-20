@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2012-12-01 01:41+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -16,6 +16,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:441
+#: libgedauio/src/dialogs/geda_image_chooser.c:988
+msgid "Set or retrieve index of the filter combo"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:442
+#: libgedauio/src/dialogs/geda_image_chooser.c:989
+msgid "IDE_FILTER"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:1124
+#, fuzzy
+msgid "_Open"
+msgstr "_Open..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:578
+#: libgedauio/src/dialogs/geda_image_chooser.c:1125
+msgid "Open..."
+msgstr "Open..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:582
+#: libgedauio/src/dialogs/geda_image_chooser.c:1129
+msgid "_Save"
+msgstr "Op_slaan"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:583
+#: libgedauio/src/dialogs/geda_image_chooser.c:1130
+#, fuzzy
+msgid "Save As.."
+msgstr "Opslaan _Als..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:587
+#: libgedauio/src/dialogs/geda_image_chooser.c:1134
+#, fuzzy
+msgid "_Select Folder..."
+msgstr "Selectie Mode"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:588
+#: libgedauio/src/dialogs/geda_image_chooser.c:1135
+#, fuzzy
+msgid "Select Folder"
+msgstr "Selectie Mode"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:592
+#: libgedauio/src/dialogs/geda_image_chooser.c:1139
+msgid "OOPS"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:597
+#: libgedauio/src/dialogs/geda_image_chooser.c:1144
+#, fuzzy
+msgid "_Cancel"
+msgstr "Schuif/Afbreken"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:562
+#: libgedauio/src/dialogs/geda_image_chooser.c:746
+#, fuzzy
+msgid "Preview"
+msgstr "Vooraf zien"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:748
+msgid "Active to enable the preview pane"
+msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:676
 msgid "Activates default"
@@ -427,20 +492,20 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1935
+#: libgedauio/src/widgets/geda_label.c:1925
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5724
+#: libgedauio/src/widgets/geda_label.c:5714
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5848
+#: libgedauio/src/widgets/geda_label.c:5838
 #, fuzzy
 msgid "_Open Link"
 msgstr "Open bestand..."
 
-#: libgedauio/src/widgets/geda_label.c:5860
+#: libgedauio/src/widgets/geda_label.c:5850
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -744,9 +809,6 @@ msgstr ""
 #~ "Faalde bij het hierarchie afdalen in '%s': %s\n"
 #~ "\n"
 #~ "Het gschem log kan meer informatie bevatten."
-
-#~ msgid "Select Mode"
-#~ msgstr "Selectie Mode"
 
 #~ msgid "Component Mode"
 #~ msgstr "Component Mode"
@@ -1567,9 +1629,6 @@ msgstr ""
 #~ msgid "All files"
 #~ msgstr "Alle bestanden"
 
-#~ msgid "Open..."
-#~ msgstr "Open..."
-
 #~ msgid "Save as..."
 #~ msgstr "Opslaan Als..."
 
@@ -1879,9 +1938,6 @@ msgstr ""
 #~ msgid "Menu/Cancel"
 #~ msgstr "Menu/Afbreken"
 
-#~ msgid "Pan/Cancel"
-#~ msgstr "Schuif/Afbreken"
-
 #~ msgid "Loading schematic [%s]\n"
 #~ msgstr "Bezig met laden van schema [%s]\n"
 
@@ -1933,17 +1989,8 @@ msgstr ""
 #~ msgid "_New"
 #~ msgstr "_Nieuw"
 
-#~ msgid "_Open..."
-#~ msgstr "_Open..."
-
 #~ msgid "Open Recen_t"
 #~ msgstr "Open Recen_t"
-
-#~ msgid "_Save"
-#~ msgstr "Op_slaan"
-
-#~ msgid "Save _As..."
-#~ msgstr "Opslaan _Als..."
 
 #~ msgid "Save All"
 #~ msgstr "Alles Opslaan"

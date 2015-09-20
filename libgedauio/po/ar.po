@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 13:27-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2010-02-14 06:08+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,6 +18,71 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:441
+#: libgedauio/src/dialogs/geda_image_chooser.c:988
+msgid "Set or retrieve index of the filter combo"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:442
+#: libgedauio/src/dialogs/geda_image_chooser.c:989
+msgid "IDE_FILTER"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:577
+#: libgedauio/src/dialogs/geda_image_chooser.c:1124
+#, fuzzy
+msgid "_Open"
+msgstr "ا_فتح..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:578
+#: libgedauio/src/dialogs/geda_image_chooser.c:1125
+msgid "Open..."
+msgstr "افتح..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:582
+#: libgedauio/src/dialogs/geda_image_chooser.c:1129
+msgid "_Save"
+msgstr "ا_حفظ"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:583
+#: libgedauio/src/dialogs/geda_image_chooser.c:1130
+#, fuzzy
+msgid "Save As.."
+msgstr "احفظ _ك‍..."
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:587
+#: libgedauio/src/dialogs/geda_image_chooser.c:1134
+#, fuzzy
+msgid "_Select Folder..."
+msgstr "وضع الانتقاء"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:588
+#: libgedauio/src/dialogs/geda_image_chooser.c:1135
+#, fuzzy
+msgid "Select Folder"
+msgstr "وضع الانتقاء"
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:592
+#: libgedauio/src/dialogs/geda_image_chooser.c:1139
+msgid "OOPS"
+msgstr ""
+
+#: libgedauio/src/dialogs/geda_file_chooser.c:597
+#: libgedauio/src/dialogs/geda_image_chooser.c:1144
+#, fuzzy
+msgid "_Cancel"
+msgstr "انتقل/ألغِ"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:562
+#: libgedauio/src/dialogs/geda_image_chooser.c:746
+#, fuzzy
+msgid "Preview"
+msgstr "معاينة"
+
+#: libgedauio/src/dialogs/geda_image_chooser.c:748
+msgid "Active to enable the preview pane"
+msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:676
 msgid "Activates default"
@@ -429,20 +494,20 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1935
+#: libgedauio/src/widgets/geda_label.c:1925
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5724
+#: libgedauio/src/widgets/geda_label.c:5714
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5848
+#: libgedauio/src/widgets/geda_label.c:5838
 #, fuzzy
 msgid "_Open Link"
 msgstr "افتح ملفا..."
 
-#: libgedauio/src/widgets/geda_label.c:5860
+#: libgedauio/src/widgets/geda_label.c:5850
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -710,9 +775,6 @@ msgstr ""
 
 #~ msgid "Failed to read init scm file [%s]\n"
 #~ msgstr "فشل قراءة ملف الاستهلال [‎%s‬]\n"
-
-#~ msgid "Select Mode"
-#~ msgstr "وضع الانتقاء"
 
 #~ msgid "Component Mode"
 #~ msgstr "وضع المكون"
@@ -1420,9 +1482,6 @@ msgstr ""
 #~ msgid "All files"
 #~ msgstr "كل الملفات"
 
-#~ msgid "Open..."
-#~ msgstr "افتح..."
-
 #~ msgid "Save as..."
 #~ msgstr "احفظ كـ..."
 
@@ -1670,9 +1729,6 @@ msgstr ""
 #~ msgid "Menu/Cancel"
 #~ msgstr "قائمة/ألغِ"
 
-#~ msgid "Pan/Cancel"
-#~ msgstr "انتقل/ألغِ"
-
 #~ msgid "Loading schematic [%s]\n"
 #~ msgstr "تحميل المخطط [‎%s‬]\n"
 
@@ -1716,17 +1772,8 @@ msgstr ""
 #~ msgid "_New"
 #~ msgstr "_جديد"
 
-#~ msgid "_Open..."
-#~ msgstr "ا_فتح..."
-
 #~ msgid "Open Recen_t"
 #~ msgstr "افتح الأح_دث"
-
-#~ msgid "_Save"
-#~ msgstr "ا_حفظ"
-
-#~ msgid "Save _As..."
-#~ msgstr "احفظ _ك‍..."
 
 #~ msgid "Save All"
 #~ msgstr "احفظ الكل"
