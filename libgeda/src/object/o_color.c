@@ -24,15 +24,9 @@
 */
 
 #include <config.h>
-#include <missing.h>
 
-#include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "libgeda_priv.h"
+#include "o_types.h"
+#include "geda_colors.h"
 
 #include <geda_debug.h>
 

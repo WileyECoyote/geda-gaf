@@ -1,5 +1,10 @@
 2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_color.c: Remove inclusion of unnecessary headers; missing.h
+      stdio.h, math.h, and string.h.
+
+2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_color.c: Add function u_color_lookup_colorname
 
 2015-09-17 Wiley E. Hill <wileyhill@gmail.com>
