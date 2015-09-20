@@ -83,14 +83,24 @@ int vstbl_get_val(const vstbl_entry *table, int index)
   return table[index].m_val;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief Lookup SCM RC string in table and set associated value
  *  \par Function Description
+ *  Searches for the string from \a scmmode in \a table and sets
+ *  \a mode_var to the cooresponding index where the string was
+ *  found if the string is found.
  *
+ * \param scmmode    Scheme variable containing the string to search for.
+ * \param rc_name    Pointer to string name of the RC variable.
+ * \param mode_var   Pointer to integer variable to be set.
+ * \param table      The table to be search.
+ * \param table_size Number of entry in the table.
+ *
+ * \return TRUE if the value was set, FALSE otherwise.
  */
 SCM
 g_rc_parse_mode(SCM scmmode, const char *rc_name,      int *mode_var,
-                               const vstbl_entry *table, int  table_size)
+                             const vstbl_entry *table, int  table_size)
 {
   SCM   ret_val;
   int   index;
@@ -529,9 +539,10 @@ g_rc_rcname_parse_handler (const char *rcname,
     g_rc_parse_local  (rcname, NULL, &err); HANDLER_DISPATCH;
   }
 }
+
 /*! \brief General RC file parsing function.
  * \par Function Description
- * Attempt to load configuration from \a rcfile if \a rcfile is not NULL.
+ * Attempt to load configuration file \a rcfile if \a rcfile is not NULL.
  *
  * If an error occurs, calls \a handler with the provided \a user_data
  * and a GError.
@@ -601,8 +612,8 @@ g_rc_parse_handler (const char *rcname,
  * \brief Get the name of the RC filename being evaluated.
  * \par Function Description
  *
- * Creates a Guile stack object, extracts the topmost frame from that
- * stack and gets the sourcefile name.
+ * Creates a Guile stack object and extracts the top most frame from
+ * the stack and gets the sourcefile name.
  *
  * \returns If the interpreter can resolve the filename, returns a
  * Scheme object with the full path to the RC file, otherwise FALSE

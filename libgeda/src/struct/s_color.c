@@ -247,7 +247,6 @@ GArray *s_color_get_standard_names(void)
   color_table = g_array_append_vals (color_table, stdcolors, G_N_ELEMENTS(stdcolors));
   return color_table;
 }
-]
 
 char *
 s_color_get_colorname(int index, GArray *cmap, GError **err)

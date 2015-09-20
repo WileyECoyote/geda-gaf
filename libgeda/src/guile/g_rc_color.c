@@ -92,7 +92,7 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
 
     /* Check map entry has correct type */
     if (!scm_is_true (scm_list_p (scm_entry)) ||
-       (scm_to_int (scm_length (scm_entry)) != 2))
+        (scm_to_int (scm_length (scm_entry)) != 2))
     {
       scm_error_scm (wrong_type_arg_sym, proc_name,
                      scm_from_utf8_string (_("Color map entry must be a two-element list")),
