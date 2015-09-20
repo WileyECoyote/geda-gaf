@@ -608,6 +608,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* u_color.c */
          bool    u_color_rgba_decode             (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
          char   *u_color_rgba_encode             (uint8 r, uint8 g, uint8 b, uint8 a);
+         char   *u_color_get_hex                 (COLOR *c);
+         char   *u_color_lookup_colorname        (COLOR *c1, GError **err);
 
 /* u_glist.c */
         GList   *u_glist_clear                   (GList* list);

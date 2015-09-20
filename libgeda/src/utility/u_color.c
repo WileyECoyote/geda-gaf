@@ -135,7 +135,7 @@ char *u_color_get_hex(COLOR *c)
  *  Calculates the distance squared between colors *c1 and *c2.
  *  RGB values scaled
  */
-static long u_color_dist(COLOR *c1, COLOR *c2)
+long u_color_dist(COLOR *c1, COLOR *c2)
 {
     long r, g, b;
 
@@ -146,5 +146,52 @@ static long u_color_dist(COLOR *c1, COLOR *c2)
 
     /* distance squared */
     return Yred2 * r * r + Ygre2 * g * g + Yblu2 * b * b;
+}
+
+char *
+u_color_lookup_colorname(COLOR *c1, GError **err)
+{
+  GArray *color_table = s_color_get_standard_names();
+  int     index;
+  int     max_colors;
+
+  char *name = NULL;
+
+  max_colors = color_table->len;
+
+  index = 0;
+
+  while (index >= 0 && index < max_colors) {
+
+    ColorElement *record;
+    COLOR c2;
+
+    record = &g_array_index(color_table, ColorElement, index);
+
+    c2.r = record->r;
+    c2.g = record->g;
+    c2.b = record->b;
+
+    if (c2.r == c1->r && c2.g == c1->g && c2.b == c1->b) {
+
+      if (record->name) {
+        name = u_string_strdup(record->name);
+      }
+      else {
+
+        if (!err) {
+          fprintf(stderr, "%s: I see RED\n", __func__);
+        }
+        else {
+          g_set_error (err, G_FILE_ERROR, EDA_ERROR_NUM_ERRORS, "I see RED");
+        }
+      }
+      break;
+    }
+    index++;
+  }
+
+  g_array_free(color_table, TRUE);
+  return name;
 }
 

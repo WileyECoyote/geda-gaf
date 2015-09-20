@@ -1,6 +1,10 @@
+2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_color.c: Add function u_color_lookup_colorname
+
 2015-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    *src/struct/s_color.c: Add function s_color_get_colorname.
+    * src/struct/s_color.c: Add function s_color_get_colorname.
 
 2015-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
