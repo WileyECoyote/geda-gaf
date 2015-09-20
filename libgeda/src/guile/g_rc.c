@@ -882,7 +882,7 @@ SCM g_rc_bitmap_directory(SCM path)
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr, "Path invalid[%s], %s\n", string, strerror (errno));
+    fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
@@ -918,7 +918,7 @@ SCM g_rc_log_directory(SCM path)
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr, "Path invalid[%s], %s\n", string, strerror (errno));
+    fprintf (stderr, _("Path invalid[%s], %s\n"), string, strerror (errno));
     GEDA_FREE(string);
     return SCM_BOOL_F;
   }
