@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -185,7 +185,7 @@ msgstr "s_string_list_delete_item: не удалось удалить элеме
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Приступаем к созданию внутренней таблицы выводов\n"
 
-#: gattrib/src/s_toplevel.c:475
+#: gattrib/src/s_toplevel.c:474
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
@@ -194,13 +194,13 @@ msgstr ""
 "s_toplevel_get_component_attribs_in_sheet: не найдено значение «refdes» в "
 "основном списке!\n"
 
-#: gattrib/src/s_toplevel.c:504
+#: gattrib/src/s_toplevel.c:503
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr "s_toplevel_get_component_attribs_in_sheet: count != i!  Выход . . .\n"
 
-#: gattrib/src/s_toplevel.c:809
+#: gattrib/src/s_toplevel.c:808
 #, c-format
 msgid ""
 "In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
@@ -209,7 +209,7 @@ msgstr ""
 "s_toplevel_get_pin_attribs_in_sheet: отсутствует атрибут «refdes» или "
 "«pinnumber» у объекта!\n"
 
-#: gattrib/src/s_toplevel.c:846
+#: gattrib/src/s_toplevel.c:845
 #, c-format
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr "s_toplevel_get_pin_attribs_in_sheet: count != i!  Выход . . .\n"
@@ -403,7 +403,7 @@ msgstr "Не удалось загрузить схему «%s»\n"
 msgid "Open..."
 msgstr "Открыть..."
 
-#: gattrib/src/x_menus.c:530
+#: gattrib/src/x_menus.c:531
 #, c-format
 msgid ""
 "Error loading %s:\n"

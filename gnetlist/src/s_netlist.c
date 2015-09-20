@@ -32,8 +32,12 @@
 /* used by the extract functions below */
 #define DELIMITERS ",; "
 
-/* hack rename this to be s_return_tail */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ * hack rename this to be s_return_tail
+ * update object_tail or any list of that matter
+ */
 NETLIST *s_netlist_return_tail(NETLIST * head)
 {
   NETLIST *nl_current = NULL;
@@ -48,8 +52,14 @@ NETLIST *s_netlist_return_tail(NETLIST * head)
   return (ret_struct);
 }
 
-/* hack rename this to be s_return_head */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * hack rename this to be s_return_head
+ * update object_tail or any list of that matter
+ */
+
 NETLIST *s_netlist_return_head(NETLIST * tail)
 {
   NETLIST *nl_current = NULL;
@@ -64,8 +74,11 @@ NETLIST *s_netlist_return_head(NETLIST * tail)
   return (ret_struct);
 }
 
-
-/* returns new node */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  \returns new node
+ */
 NETLIST *s_netlist_add(NETLIST * ptr)
 {
   NETLIST *new_node;
@@ -134,6 +147,11 @@ void s_netlist_print(NETLIST * nl_current)
   printf("\n");
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
 {
   NETLIST *nl_current;
@@ -215,6 +233,11 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   verbose_done();
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_netlist_name_named_nets (GedaToplevel *pr_current,
                                 NETLIST *named_netlist,
                                 NETLIST *unnamed_netlist)
@@ -269,8 +292,13 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
 
   verbose_done();
 
-                }
+}
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
                                   NETLIST *netlist_head,
                                   int net_id)

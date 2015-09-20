@@ -37,8 +37,13 @@ static int unnamed_pin_counter = 1;
 #define MAX_UNNAMED_NETS 99999999
 #define MAX_UNNAMED_PINS 99999999
 
-/* hack rename this to be s_return_tail */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * hack rename this to be s_return_tail
+ * update object_tail or any list of that matter
+ */
 NET *s_net_return_tail(NET * head)
 {
   NET *n_current = NULL;
@@ -53,8 +58,13 @@ NET *s_net_return_tail(NET * head)
   return (ret_struct);
 }
 
-/* hack rename this to be s_return_head */
-/* update object_tail or any list of that matter */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * hack rename this to be s_return_head
+ * update object_tail or any list of that matter
+ */
 NET *s_net_return_head(NET * tail)
 {
   NET *n_current = NULL;
@@ -69,6 +79,11 @@ NET *s_net_return_head(NET * tail)
   return (ret_struct);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 NET *s_net_add(NET * ptr)
 {
   NET *new_node;
@@ -95,6 +110,11 @@ NET *s_net_add(NET * ptr)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_net_print(NET * ptr)
 {
   NET *n_current = NULL;
@@ -125,7 +145,12 @@ void s_net_print(NET * ptr)
 }
 
 
-/* object being a pin */
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * object being a pin
+ */
 char *s_net_return_connected_string(GedaToplevel *pr_current,
                                     Object       *object,
                                     char         *hierarchy_tag)
@@ -188,6 +213,11 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   return (string);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int s_net_find(NET * net_head, NET * node)
 {
   NET *n_current;
@@ -203,6 +233,11 @@ int s_net_find(NET * net_head, NET * node)
   return (FALSE);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 {
   NET       *n_current;
@@ -332,6 +367,11 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
                   NET * net_head, char *hierarchy_tag, int node_type)
 {

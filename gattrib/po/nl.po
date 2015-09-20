@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-09-19 11:53-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -186,7 +186,7 @@ msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
 
-#: gattrib/src/s_toplevel.c:475
+#: gattrib/src/s_toplevel.c:474
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
@@ -195,7 +195,7 @@ msgstr ""
 "In s_toplevel_get_component_attribs_in_sheet, geen refdes gevonden in de "
 "hoofdlijst!\n"
 
-#: gattrib/src/s_toplevel.c:504
+#: gattrib/src/s_toplevel.c:503
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
@@ -203,7 +203,7 @@ msgstr ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  "
 "Afsluiten . . . .\n"
 
-#: gattrib/src/s_toplevel.c:809
+#: gattrib/src/s_toplevel.c:808
 #, c-format
 msgid ""
 "In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
@@ -212,7 +212,7 @@ msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, ofwel een refdes of een pennummer "
 "van het object ontbreken!\n"
 
-#: gattrib/src/s_toplevel.c:846
+#: gattrib/src/s_toplevel.c:845
 #, c-format
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
@@ -408,7 +408,7 @@ msgstr "Kon schema [%s] niet laden\n"
 msgid "Open..."
 msgstr "Open..."
 
-#: gattrib/src/x_menus.c:530
+#: gattrib/src/x_menus.c:531
 #, c-format
 msgid ""
 "Error loading %s:\n"

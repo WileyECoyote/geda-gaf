@@ -584,13 +584,13 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData)
   RedimensionSheet(sheets[Pins], PageData->pin_count, PageData->pin_attrib_count);
   /*TODO: May repaint window here? */
 }
+
 /*! \brief Create the GtkSheet
  *  \par Function Description
  * Creates and initializes the GtkSheet widget, which is the
  * spreadsheet widget used for displaying the data.
  *
  */
-
 void x_gtksheet_init(PageDataSet *PageData)
 {
   int i;

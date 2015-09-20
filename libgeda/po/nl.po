@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-11 14:48-0500\n"
+"POT-Creation-Date: 2015-09-19 06:39-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -557,15 +557,20 @@ msgstr ""
 msgid "always-promote-attribute: list element is not a string"
 msgstr "always-promote-attribute: lijst element is geen string"
 
-#: libgeda/src/guile/g_rc_color.c:93
+#: libgeda/src/guile/g_rc.c:885 libgeda/src/guile/g_rc.c:921
+#, c-format
+msgid "Path invalid[%s], %s\n"
+msgstr ""
+
+#: libgeda/src/guile/g_rc_color.c:98
 msgid "Color map entry must be a two-element list"
 msgstr "Kleuren map invoer moet een twee-element lijst zijn"
 
-#: libgeda/src/guile/g_rc_color.c:101
+#: libgeda/src/guile/g_rc_color.c:106
 msgid "Index in color map entry must be an integer"
 msgstr "Index in kleuren map invoer moet een integer zijn"
 
-#: libgeda/src/guile/g_rc_color.c:126
+#: libgeda/src/guile/g_rc_color.c:131
 msgid "Value in color map entry must be #f or a string"
 msgstr "Waarde in kleuren map invoer moet een #f of een string zijn"
 
@@ -1401,12 +1406,12 @@ msgstr "Komponent [%s] is niet in de komponenten bibliotheek gevonden\n"
 msgid "More than one component found with name [%s]\n"
 msgstr "Meer dan een komponent gevonden met de naam [%s]\n"
 
-#: libgeda/src/struct/s_color.c:99
+#: libgeda/src/struct/s_color.c:303
 #, fuzzy, c-format
 msgid "Error loading %s, %s\n"
 msgstr "Kan bestand %s niet vinden: %s"
 
-#: libgeda/src/struct/s_color.c:153
+#: libgeda/src/struct/s_color.c:360
 #, c-format
 msgid "Color index out of range"
 msgstr "Kleuren index buiten bereik"
