@@ -42,8 +42,7 @@ dnl  Automake version >= 1.11 and enable for supporting Automake's.
 
   AC_SUBST([GEDA_AUTOMAKE_OPTIONS])
 
-  m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])dnl
+  m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])dnl # make --enable-silent-rules the default.
 
   []dnl
 ])dnl
-

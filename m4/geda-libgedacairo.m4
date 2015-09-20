@@ -18,7 +18,6 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
-# Work out the gettext domain that libgedacairo should use
 AC_DEFUN([AX_LIBGEDACAIRO],
 [
   AC_PREREQ([2.60])dnl

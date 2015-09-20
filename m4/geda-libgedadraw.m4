@@ -1,7 +1,7 @@
 # geda-libgedadraw.m4                                  -*-Autoconf-*-
 # serial 1
 
-dnl libgedacairo-specific setup
+dnl libgedadraw-specific setup
 dnl Copyright (C) 2010-2014  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
@@ -20,7 +20,7 @@ dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 dnl
 dnl Date: 11/27/14, Wiley E. Hill
 dnl
-# Work out the gettext domain that libgedacairo should use
+
 AC_DEFUN([AX_LIBGEDADRAW],
 [
   AC_PREREQ([2.60])dnl
