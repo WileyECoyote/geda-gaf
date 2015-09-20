@@ -40,6 +40,11 @@ static GdkColor* gdk_outline_colors[MAX_COLORS];
 
 static GdkColormap *colormap = NULL;
 
+static void inline x_color_invalid_index(int index)
+{
+  u_log_message(_("Tried to get an invalid color: %d\n"), index);
+}
+
 /*! \brief Initializes the color system for the application.
  *  \par Function Documentation
  *
@@ -87,16 +92,20 @@ void x_color_allocate (void)
   int i;
   COLOR c;
 
+  char *err_allocate_s1   = _("Could not allocate the color %s!\n");
+  char *err_allocate_s1i1 = _("Could not allocate %s color %i!\n");
+
+
   gdk_color_parse ("black", &black);
   if (!gdk_colormap_alloc_color (colormap, &black, FALSE, TRUE)) {
-    fprintf (stderr, _("Could not allocate the color %s!\n"), _("black"));
+    fprintf (stderr, err_allocate_s1, _("black"));
     exit (-1);
   }
 
   gdk_color_parse ("white", &white);
 
   if (!gdk_colormap_alloc_color (colormap, &white, FALSE, TRUE)) {
-    fprintf (stderr, _("Could not allocate the color %s!\n"), _("white"));
+    fprintf (stderr, err_allocate_s1, _("white"));
     exit (-1);
   }
 
@@ -118,7 +127,7 @@ void x_color_allocate (void)
       error = gdk_color_alloc(colormap, gdk_colors[i]);
 
       if (error == FALSE) {
-        g_error (_("Could not allocate display color %i!\n"), i);
+        u_log_message (err_allocate_s1i1, _("display"), i);
       }
     }
     else {
@@ -131,9 +140,8 @@ void x_color_allocate (void)
 
       c = outline_colors[i];
 
-      /* Interpolate 8-bpp colours into 16-bpp GDK color
-       * space. N.b. ignore transparency because GDK doesn't
-       * understand it. */
+      /* Interpolate 8-bpp colours into 16-bpp GDK color space. N.b.
+       * ignore transparency because GDK does not understand it. */
       gdk_outline_colors[i]->red   = c.r + (c.r<<8);
       gdk_outline_colors[i]->green = c.g + (c.g<<8);
       gdk_outline_colors[i]->blue  = c.b + (c.b<<8);
@@ -141,7 +149,7 @@ void x_color_allocate (void)
       error = gdk_color_alloc(colormap, gdk_outline_colors[i]);
 
       if (error == FALSE) {
-        g_error (_("Could not allocate outline color %i!\n"), i);
+        u_log_message (err_allocate_s1i1, _("outline"), i);
       }
     }
     else {
@@ -153,12 +161,12 @@ void x_color_allocate (void)
 /*! \brief Get Pointer to GdkColor
  *  \par Function Documentation
  *   Returns a pointer to the active GdkColor object given the geda
- *   gschem color index.
+ *   color index.
  */
 GdkColor *x_color_get_color_from_index(int index)
 {
   if ((index < 0) || (index >= MAX_COLORS) || (gdk_colors[index] == NULL)) {
-    u_log_message (_("Tried to get an invalid color index: %d\n"), index);
+    x_color_invalid_index(index);
     return(&white);
   }
   else {
@@ -199,15 +207,16 @@ GArray *x_color_get_outline_color_map()
   return color_map;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief Get RGBA color for display given a color Index
  *  \par Function Description
+ *  \return display color at index.
  *  \todo function name should include the word "display"
  */
 COLOR *x_color_lookup (int color)
 {
   if (color < 0 || color >= MAX_COLORS || !display_colors[color].enabled) {
-    fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
+    x_color_invalid_index(color);
     return &display_colors[DEFAULT_COLOR_INDEX];
   }
   else {

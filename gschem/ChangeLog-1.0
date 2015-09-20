@@ -1,3 +1,10 @@
+2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_color.c: Add function x_color_invalid_index as inline.
+      Revise funtion x_color_allocate; adding arrays err_allocate_s1
+      and err_allocate_s1i1 for error messages, change g_error to
+      u_log_message and edit comments.
+
 2015-09-18 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/x/x_window.c: WEH: Modified per commit to Master branch by
