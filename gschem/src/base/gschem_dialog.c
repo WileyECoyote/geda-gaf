@@ -607,11 +607,12 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
 
   dialog->tail_marker   = GSCHEM_TYPE_DIALOG;
 
-  gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), DIALOG_V_SPACING);
+  /* Set properties here to apply regardless of how dialog created */
+  g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
+  g_object_set (GTK_DIALOG (dialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 }
 
-/*! \brief Function to retrieve GschemDialog's Type identifier.
+/*! \brief Retrieve GschemDialog's Type identifier.
  *
  *  \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
@@ -645,11 +646,11 @@ GedaType gschem_dialog_get_type ()
   return gschem_dialog_type;
 }
 
-/*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
- *  to support gschem_dialog_new_with_buttons(...)
- *
+/*! \brief Add variable number of buttons to a GschemDialog
  *  \par Function Description
- *  Convenience function which adds buttons to a pre-existing GtkDialog
+ *  Internal function which adds buttons to a pre-existing GtkDialog.
+ *  This function was modified from GTK+-2.4.14 gtkdialog.c to support
+ *  gschem_dialog_new_with_buttons(...)
  *
  *  \param [in]  dialog             The GtkDialog buttons are being added to
  *  \param [in]  first_button_text  The text string for the first button
@@ -662,7 +663,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
   const char* text;
   int response_id;
 
-  g_return_if_fail (GTK_IS_DIALOG (dialog));
+  //g_return_if_fail (GTK_IS_DIALOG (dialog));
 
   if (first_button_text == NULL)
     return;
@@ -670,15 +671,15 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
   text = first_button_text;
   response_id = va_arg (args, int);
 
-  while (text != NULL)
-    {
-      gtk_dialog_add_button (dialog, text, response_id);
+  while (text != NULL) {
 
-      text = va_arg (args, char*);
-      if (text == NULL)
-        break;
-      response_id = va_arg (args, int);
-    }
+    gtk_dialog_add_button (dialog, text, response_id);
+
+    text = va_arg (args, char*);
+    if (text == NULL)
+      break;
+    response_id = va_arg (args, int);
+  }
 }
 
 /*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c

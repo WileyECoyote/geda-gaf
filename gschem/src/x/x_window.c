@@ -433,7 +433,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);
-  gtk_container_border_width(GTK_CONTAINER(main_box), 0);
+  g_object_set (main_box, "border-width", 0, NULL);
   gtk_container_add(GTK_CONTAINER(MainWindow), main_box);
   g_object_set (main_box, "visible", TRUE, NULL);
 
@@ -467,7 +467,7 @@ void x_window_create_main(GschemToplevel *w_current)
   x_menu_setup_popup(w_current);
 
   center_hbox = gtk_hbox_new(FALSE, 1);
-  gtk_container_border_width(GTK_CONTAINER(center_hbox), 0);
+  g_object_set (center_hbox, "border-width", 0, NULL);
   gtk_container_add(GTK_CONTAINER(main_box), center_hbox);
   g_object_set (center_hbox, "visible", TRUE, NULL);
 
@@ -476,7 +476,7 @@ void x_window_create_main(GschemToplevel *w_current)
   }
 
   center_vbox = gtk_vbox_new(FALSE, 1);
-  gtk_container_border_width(GTK_CONTAINER(center_vbox), 0);
+  g_object_set (center_vbox, "border-width", 0, NULL);
   gtk_container_add(GTK_CONTAINER(center_hbox), center_vbox);
   g_object_set (center_vbox, "visible", TRUE, NULL);
 
@@ -501,7 +501,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
     draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);
 
-    gtk_container_border_width(GTK_CONTAINER(draw_window), 0);
+    g_object_set (draw_window, "border-width", 0, NULL);
     g_object_set (draw_window, "visible", TRUE, NULL);
     gtk_container_add(GTK_CONTAINER(center_vbox), draw_window);
 

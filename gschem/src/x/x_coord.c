@@ -461,9 +461,6 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
 
     gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
 
-    gtk_container_border_width (GTK_CONTAINER(ThisDialog),
-                                DIALOG_BORDER_WIDTH);
-
     bg_color.red   = 0xEEEE;
     bg_color.green = 0xEBEB;
     bg_color.blue  = 0xE7E7;
