@@ -95,7 +95,6 @@ void x_color_allocate (void)
   char *err_allocate_s1   = _("Could not allocate the color %s!\n");
   char *err_allocate_s1i1 = _("Could not allocate %s color %i!\n");
 
-
   gdk_color_parse ("black", &black);
   if (!gdk_colormap_alloc_color (colormap, &black, FALSE, TRUE)) {
     fprintf (stderr, err_allocate_s1, _("black"));

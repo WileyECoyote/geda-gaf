@@ -171,10 +171,11 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
       }
 
       /* if filename is not valid, check if user left off extension */
-      if( access( filename, F_OK ) == -1 ) {
+      if (access(filename, F_OK ) == -1 ) {
 
         /* See if user left off our file suffixes */
         const char *ext = f_get_filename_ext(filename);
+
         if (!ext) {
 
           memset(tmpfilename, 0, sizeof(tmpfilename));
@@ -182,7 +183,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
           /* Check if file name is valid if ".sch" is added */
           strcpy(tmpfilename, filename);
 
-          if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+          if (access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
             if(verbose_mode) {
               v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
@@ -192,9 +193,9 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
             /* Check if file name is valid if ".sym" is added */
             strcpy(tmpfilename, filename);
 
-            if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+            if ( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
               filename = tmpfilename;
-              if(verbose_mode) {
+              if (verbose_mode) {
                 v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
               }
             }

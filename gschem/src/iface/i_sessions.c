@@ -564,7 +564,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
       sessions_submenu = gtk_menu_new();
 
-      for(index=0; index<sessions->len; index++) {
+      for(index=0; index < sessions->len; index++) {
 
         Session *record = &g_array_index(sessions, Session, index);
 

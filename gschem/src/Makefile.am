@@ -22,12 +22,12 @@ bin_PROGRAMS  = gschem
 gschem_CXXFLAGS=$(AM_CXXFLAGS)
 
 BUILT_SOURCES  = \
-				guile/g_attrib.x \
-				guile/g_hook.x   \
-				guile/g_keys.x   \
-				guile/g_util.x   \
-				guile/g_window.x \
-				guile/g_select.x
+		guile/g_attrib.x \
+		guile/g_hook.x   \
+		guile/g_keys.x   \
+		guile/g_util.x   \
+		guile/g_window.x \
+		guile/g_select.x
 
 gschem_SOURCES = globals.c
 
@@ -53,15 +53,15 @@ gschem_CFLAGS    = $(AM_CFLAGS)     $(GCC_CFLAGS)     $(LIBSTROKE_CFLAGS) \
 
 gschem_CPPFLAGS  = $(gschem_CFLAGS)
 
-gschem_LDFLAGS   = $(GLIB_LIBS)     $(GTK_LIBS)     $(LIBSTROKE_LDFLAGS) \
-				   $(GTHREAD_LIBS) $(GUILE_LIBS)      $(MINGW_GUI_LDFLAGS) \
-				   $(X11_LIBS)     $(DEBUGGING)
+gschem_LDFLAGS   = $(GLIB_LIBS)     $(GTK_LIBS)      $(LIBSTROKE_LDFLAGS) \
+				   $(GTHREAD_LIBS)  $(GUILE_LIBS)    $(MINGW_GUI_LDFLAGS) \
+				   $(X11_LIBS)      $(DEBUGGING)
 
 gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
 				   $(top_builddir)/libgedauio/src/libgedauio.la \
 				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
 				   $(top_builddir)/libgeda/src/libgeda.la \
-		   @LIBINTL@
+				   @LIBINTL@
 
 LIBTOOL          = @LIBTOOL@ --silent
 
