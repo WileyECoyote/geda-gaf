@@ -32,7 +32,7 @@
 #ifndef __GEDA_COMBO_BOX_TEXT_H__
 #define __GEDA_COMBO_BOX_TEXT_H__
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_COMBO_BOX_TEXT                 (geda_combo_box_text_get_type ())
 #define GEDA_COMBO_BOX_TEXT(obj)                 (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_COMBO_BOX_TEXT, GedaComboBoxText))
@@ -126,6 +126,6 @@ void         geda_combo_box_text_widget_set_active     (GtkWidget          *widg
                                                         int                 position);
 int          geda_combo_box_text_widget_get_active     (GtkWidget          *widget);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_COMBO_BOX_TEXT_H__ */

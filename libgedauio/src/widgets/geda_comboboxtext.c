@@ -683,8 +683,8 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 
   if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
-    if (geda_combo_box_get_has_entry (GEDA_COMBO_BOX (combo_box)))
-    {
+    if (geda_combo_box_get_has_entry (GEDA_COMBO_BOX (combo_box))) {
+
       GtkWidget *entry;
 
       entry = gtk_bin_get_child (GTK_BIN (combo_box));
