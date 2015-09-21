@@ -592,7 +592,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
  */
 static void search_replace_combo_responder(GtkWidget *widget, void * data)
 {
-  int WhichComboBox = GPOINTER_TO_UINT (data);
+  int WhichComboBox = (int)(long) (data);
 
   char *text = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
 
