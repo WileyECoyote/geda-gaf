@@ -30,6 +30,12 @@
 static char search_string[MAX_SEARCH_STRING+12];
 static SearchRecord Search;
 
+/*! \brief Notify Search Text Not Found Dialog
+ *  \par
+ *  Common pre-search routine to save the range of the current
+ * selection of the active worksheet and sets the search mode
+ * flag to row, column or all based on the current state.
+ */
 static void x_find_set_search_parameters()
 {
   int cur_page;
@@ -38,15 +44,19 @@ static void x_find_set_search_parameters()
   Search.sheet = sheets[cur_page];
 
   x_gtksheet_range_copy(&Search.sheet->range, &Search.range);
-  if (Search.sheet->state==GTK_SHEET_COLUMN_SELECTED)
+
+  if (Search.sheet->state==GTK_SHEET_COLUMN_SELECTED) {
      Search.mode = Search.sheet->range.col0;
-  else
-    if (Search.sheet->state==GTK_SHEET_ROW_SELECTED)
+  }
+  else {
+    if (Search.sheet->state==GTK_SHEET_ROW_SELECTED) {
        Search.mode = -1 * Search.sheet->range.row0;
+    }
     else {
        Search.mode = SEARCH_ALL; /* is just 0 flag */
        x_gtksheet_set_max_range(Search.sheet, &Search.range);
     }
+  }
 
   /* STUB: Load Previous Settings */
   Search.Case      = FALSE;
@@ -58,6 +68,10 @@ static void x_find_set_search_parameters()
 
 }
 
+/*! \brief Notify Search Text Not Found Dialog
+ * called by x_find_attribute and x_find_refdes when the search
+ * text was not found
+ */
 static void x_find_notify_not_found(char* text)
 {
   strcpy(search_string, text);
@@ -65,6 +79,11 @@ static void x_find_notify_not_found(char* text)
   x_dialog_generic_confirm_dialog (search_string, GTK_MESSAGE_INFO);
 }
 
+/*! \brief Search Sheet for text and optionally replace string
+ *  \par Function Description
+ *  Performs search, either forward or backward over the active search
+ *  range based on flags in SearchRecord.
+ */
 bool x_find_main_search(char* text, char *replacement) {
 
   int row, col;
@@ -93,6 +112,7 @@ bool x_find_main_search(char* text, char *replacement) {
       else
         return (u_string_istr ( cell_text, text)) ? (strlen (u_string_istr ( cell_text, text))) : 0;
   }
+
   void do_replace_text(int row, int col) {
     char *new;
     new = malloc(strlen (cell_text) - strlen (text) + strlen (replacement) +2 );
@@ -131,6 +151,7 @@ bool x_find_main_search(char* text, char *replacement) {
         srow = Search.range.rowi; /* for subsequent rows start at the beginning*/
     }
   }
+
   void search_range_forward() {
     for( col = scol; col < (Search.range.coli+1); col++) {
       /*check current cell and advance here?*/
@@ -152,6 +173,8 @@ bool x_find_main_search(char* text, char *replacement) {
     }
   }
 
+  /* Begin */
+
   if (Search.Backword) {
     inc = -1;
     search_func = search_range_backword;
@@ -162,9 +185,11 @@ bool x_find_main_search(char* text, char *replacement) {
     search_func = search_range_forward;
     first_cell = 0;
   }
+
   /* How we start depends on whether we are replacing AND if
    * the current cell is a target, so get current cell value */
   cell_text = gtk_sheet_cell_get_text(Search.sheet, srow, scol);
+
   if ((replacement) && (ishit() > 0) && (!Search.ReplaceAll)) { /* if need to replace */
     do_replace_text(srow, scol);
     found = TRUE;
@@ -179,6 +204,7 @@ bool x_find_main_search(char* text, char *replacement) {
         srow = srow + inc; /* advance the cursor in case we are on a hit */
       search_func();
   }
+
   /* if Wrap is enabled and we did not find and was not from the beginning */
   if ((Search.Wrap) && (!found || Search.ReplaceAll) && (srow + scol != first_cell )) {
     /* reset starting index to the beginning and search again */
@@ -202,6 +228,7 @@ void x_find_attribute_value(void)
   Search.FindOnlyMode=TRUE;
   x_dialog_search_replace(&Search);
 }
+
 void x_find_replace_attrib_value()
 {
   x_find_set_search_parameters();
@@ -210,6 +237,11 @@ void x_find_replace_attrib_value()
   x_dialog_search_replace(&Search);
 }
 
+/*! \brief Find Reference Designator
+ *  \par Function Description
+ *  Opens x_dialog_get_search_text dialog for search string and
+ *  searches column labels.
+ */
 void x_find_attribute()
 {
   GtkSheet *sheet;
@@ -219,6 +251,7 @@ void x_find_attribute()
   int i;
 
   char *text = x_dialog_get_search_text("Find Attribute:");
+
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
     sheet = sheets[cur_page];
@@ -235,6 +268,12 @@ void x_find_attribute()
     GEDA_FREE(text);
   }
 }
+
+/*! \brief Find Reference Designator
+ *  \par Function Description
+ *  Opens x_dialog_get_search_text dialog for search string and
+ *  searches row labels.
+ */
 void x_find_refdes()
 {
   GtkSheet *sheet;
@@ -243,7 +282,8 @@ void x_find_refdes()
   int count;
   int i;
 
-  char * text = x_dialog_get_search_text("Find Designator:");
+  char *text = x_dialog_get_search_text("Find Designator:");
+
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
     sheet = sheets[cur_page];

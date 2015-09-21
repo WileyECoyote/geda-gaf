@@ -25,7 +25,6 @@
  */
 /* ----------------------------------------------------------------- */
 
-
 #ifndef SHEET_DATA_STRUCT
 #define SHEET_DATA_STRUCT
 
@@ -56,12 +55,12 @@ typedef struct st_table TABLE;
 typedef struct st_string_list STRING_LIST;
 typedef struct st_pin_list PIN_LIST;
 
-//typedef struct st_main_window MAIN_WINDOW;
 typedef struct st_search SearchRecord;
 
 /* -------------------------------------------------------------------- */
-/*! \brief Sheet data structure
- *
+/*! \struct st_sheet_data
+ *  \brief Sheet data structure
+ *  \par
  * st_sheet_data defines SHEET_DATA, and holds master lists holding
  * sorted lists of comp/netlist names.  Also holds pointers to the heads
  * of the attribute-holding component and net structures.
@@ -94,13 +93,13 @@ struct st_sheet_data {
 };
 
 
-
 /* -------------------------------------------------------------------- */
-/* \brief Table cell struct
- *
- * st_table defined what is held in a spreadsheet cell for both 
- * comp and net spreadsheets.  Holds pointer to individual comp/net name, and 
- * pointer to attrib list.  Ideally, the name pointer points to the 
+/*! \struct st_table
+ *  \brief Table cell struct
+ *  \par
+ * st_table defined what is held in a spreadsheet cell for both
+ * comp and net spreadsheets.  Holds pointer to individual comp/net name, and
+ * pointer to attrib list.  Ideally, the name pointer points to the
  * refdes/netname string held in the GedaToplevel data structure, so that
  * when SHEET_DATA is manipulated, so is GedaToplevel.
  */
@@ -119,13 +118,12 @@ struct st_table {
 
 
 /* -------------------------------------------------------------------- */
-/*! \brief A list of strings.
- *
+/*! \struct st_pin_list
+ *  \brief A list of strings.
+ *  \par
  * STRING_LIST is a doubly-linked list of strings.  This struct is
  * used for several different jobs, including serving as base class
  * for master lists.
- *
- * \todo Consider replacing with a GList-based implementation
  */
 /* -------------------------------------------------------------------- */
 struct st_string_list {
@@ -137,15 +135,13 @@ struct st_string_list {
 };
 
 /* -------------------------------------------------------------------- */
-/*! \brief A list of pins
- *
+/*! \struct st_pin_list
+ *  \brief A list of pins
+ *  \par
  * PIN_LIST is a special struct used for keeping track of pins.  Since
- * the master_pin_list must keep track of both refdes and pin, we need a 
- * special struct for pins.  Later processing will for a STRING_LIST 
+ * the master_pin_list must keep track of both refdes and pin, we need a
+ * special struct for pins.  Later processing will for a STRING_LIST
  * of refdes:pinnumber pairs for insertion in the spreadsheet.
- *
- * \todo Is this still in use? Consider replacing with a GList-based
- *       implementation.
  */
 /* -------------------------------------------------------------------- */
 struct st_pin_list {
@@ -158,7 +154,8 @@ struct st_pin_list {
   PIN_LIST *next;
 };
 
-struct st_search {  
+
+struct st_search {
   GtkSheet  *sheet;
   GtkSheetRange range;
   bool FindOnlyMode;
@@ -171,10 +168,4 @@ struct st_search {
   int  count;
   int  mode;
 };
-#endif // #ifndef SHEET_DATA_STRUCT
-
-
-
-
-
-
+#endif /* ifndef SHEET_DATA_STRUCT */
