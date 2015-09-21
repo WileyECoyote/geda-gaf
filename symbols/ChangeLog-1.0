@@ -1,5 +1,10 @@
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/TC4426A-1.sym: Add symbol 1.5A Dual High-Speed Power MOSFET
+      Drivers.
+
+2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/battery/BQ2004-1.sym: Add symbol Programmable Battery Pack Manager
 
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
