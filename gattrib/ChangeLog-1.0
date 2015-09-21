@@ -1,3 +1,8 @@
+2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Remove GPOINTER_TO_INT from exit code in function
+      x_dialog_fatal_error.
+
 2015-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace gtk_container_border_width with g_object_set

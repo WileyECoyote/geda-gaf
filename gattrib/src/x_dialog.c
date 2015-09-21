@@ -325,7 +325,6 @@ void x_dialog_unimplemented_feature()
  *
  *  \param [in] string the error string
  *  \param [in] return_code the exit code
- *  \todo Is the GPOINTER_TO_INT() call needed in exit()?
  */
 void x_dialog_fatal_error(char *string, int return_code)
 {
@@ -344,7 +343,7 @@ void x_dialog_fatal_error(char *string, int return_code)
   gtk_dialog_run(GTK_DIALOG(dialog));
   gtk_widget_destroy(dialog);
 
-  exit(GPOINTER_TO_INT(return_code));
+  exit (return_code);
 }
 
 /*! \brief About gattrib dialog
