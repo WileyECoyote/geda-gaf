@@ -437,9 +437,10 @@ static void     geda_combo_box_child_show                     (GtkWidget       *
 static void     geda_combo_box_child_hide                     (GtkWidget       *widget,
                                                                GedaComboBox    *combo_box);
 
-/* GedaComboBox:has-entry callbacks
+/* GedaComboBox:has-entry callbacks */
 static void     geda_combo_box_entry_contents_changed         (GtkEntry        *entry,
-                                                               void            *user_data);*/
+                                                               void            *user_data);
+
 static void     geda_combo_box_entry_active_changed           (GedaComboBox    *combo_box,
                                                                void            *user_data);
 
@@ -1560,11 +1561,11 @@ geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 
       /* this flag is a hack to tell the entry to fill its allocation. */
       GTK_ENTRY (widget)->is_cell_renderer = TRUE;
-/*
+
       g_signal_connect (widget, "changed",
-			G_CALLBACK (geda_combo_box_entry_contents_changed),
-			combo_box);
-*/
+                        G_CALLBACK (geda_combo_box_entry_contents_changed),
+                        combo_box);
+
       gtk_entry_set_has_frame (GTK_ENTRY (widget), priv->has_frame);
     }
 }
@@ -1584,9 +1585,9 @@ geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 
     child_widget = gtk_bin_get_child (GTK_BIN (container));
     if (widget && widget == child_widget) {
-      /* g_signal_handlers_disconnect_by_func (widget,
-       *                                                geda_combo_box_entry_contents_changed,
-       *                                                container);*/
+      g_signal_handlers_disconnect_by_func (widget,
+                                            geda_combo_box_entry_contents_changed,
+                                            container);
       GTK_ENTRY (widget)->is_cell_renderer = FALSE;
     }
   }
@@ -5994,8 +5995,20 @@ geda_combo_box_destroy (GtkObject *object)
 }
 
 static void
+geda_combo_box_entry_contents_changed (GtkEntry *entry,
+                                       void     *user_data)
+{
+  GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
+
+  if (geda_combo_box_get_active(combo_box) == -1)
+    g_signal_emit_by_name (combo_box, "changed");
+  else
+    geda_combo_box_set_active (combo_box, -1);
+}
+
+static void
 geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
-                                     void         *user_data)
+                                     void         *nothing)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -6007,27 +6020,26 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
     if (entry) {
 
       GtkTreePath *path;
-      char       *path_str;
-      char       *text = NULL;
+      char        *path_str;
+      char        *text = NULL;
 
       model    = geda_combo_box_get_model (combo_box);
       path     = gtk_tree_model_get_path (model, &iter);
       path_str = gtk_tree_path_to_string (path);
-/*
+
       g_signal_handlers_block_by_func (entry,
                                        geda_combo_box_entry_contents_changed,
                                        combo_box);
-*/
 
       g_signal_emit (combo_box, combo_box_signals[FORMAT_ENTRY_TEXT], 0,
                      path_str, &text);
 
       gtk_entry_set_text (entry, text);
-/*
+
       g_signal_handlers_unblock_by_func (entry,
                                          geda_combo_box_entry_contents_changed,
                                          combo_box);
-*/
+
       gtk_tree_path_free (path);
       g_free (text);
       g_free (path_str);

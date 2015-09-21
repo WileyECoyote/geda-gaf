@@ -1,3 +1,8 @@
+2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_combobox.c: Add callback: geda_combo_box_entry_contents
+       _changed so the "changed" signal actually gets emitted.
+
 2015-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
      * po/POTFILES.in: Add filenames:geda_file_chooser.c geda_image_chooser.c
