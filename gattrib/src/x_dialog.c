@@ -450,7 +450,8 @@ char *x_dialog_get_search_text(char* prompt)
     g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
     GtkWidget *vbox = dialog->vbox;
-    gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
+
+    g_object_set (vbox, "spacing", DIALOG_V_SPACING, NULL);
 
     GtkWidget *label = geda_aligned_label_new(_(prompt), 0, 0);
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
@@ -837,7 +838,7 @@ void x_dialog_search_replace(SearchRecord *Search) {
   GEDA_SIGNAL_CONNECT(ThisDialog, "response",
                       search_replace_dialog_response, Search);
 
-  gtk_container_border_width (GTK_CONTAINER(ThisDialog), DIALOG_BORDER_WIDTH);
+  g_object_set (ThisDialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
   gtk_widget_show(ThisDialog);
 }

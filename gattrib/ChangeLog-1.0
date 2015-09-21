@@ -1,7 +1,7 @@
 2015-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x_dialog.c: Replace gtk_container_border_width g_object_set
-      "border-width".
+    * src/x_dialog.c: Replace gtk_container_border_width with g_object_set
+      "border-width". Replace gtk_box_set_spacing with g_object_set "spacing".
 
 2015-09-20 Vladimir Zhbanov <vzhbanov@gmail.com>
 
