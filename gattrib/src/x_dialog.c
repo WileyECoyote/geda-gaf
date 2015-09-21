@@ -426,8 +426,8 @@ char *x_dialog_get_search_text(char* prompt)
   char      *text      = NULL;
   int r;
 
-  if(dialog != NULL)
-  {
+  if (dialog != NULL) {
+
     gtk_widget_hide((GtkWidget*)dialog);
     gtk_widget_destroy((GtkWidget*)dialog);
   }
@@ -438,8 +438,8 @@ char *x_dialog_get_search_text(char* prompt)
                                                       GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                       GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
                                                       NULL);
-
   if (dialog) {
+
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
                                             GEDA_RESPONSE_ACCEPT,
@@ -447,7 +447,7 @@ char *x_dialog_get_search_text(char* prompt)
                                             -1);
     gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
+    g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
     GtkWidget *vbox = dialog->vbox;
     gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
@@ -456,6 +456,7 @@ char *x_dialog_get_search_text(char* prompt)
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(32);
+
     gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
     gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
