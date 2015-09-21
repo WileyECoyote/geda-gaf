@@ -529,7 +529,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
   gtk_sheet_get_attributes(sheet,sheet->active_cell.row,
                            sheet->active_cell.col, &attributes);
 
-  gtk_entry_set_editable(GTK_ENTRY(entry), attributes.is_editable);
+  gtk_editable_set_editable(GTK_EDITABLE(sheet_entry), attributes.is_editable);
 
   return TRUE;
 }

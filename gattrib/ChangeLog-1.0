@@ -1,3 +1,10 @@
+2015-09-20 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/x_gtksheet.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit fa7e86e83d466dbe4d045c99cb8fa896480b9e77:
+
+      Replace gtk_entry_set_editable with gtk_editable_set_editable.
+
 2015-09-18 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/gtksheet/gtksheet.c: WEH: Modified per commit to Master branch by
