@@ -64,6 +64,11 @@
  * WEH | 03/01/15 | Add Macro GET_EDA_OBJECT
  * ------------------------------------------------------------------
  * WEH | 09/11/15 | Rename GTK_HOOKUP_OBJECT GEDA_HOOKUP_OBJECT
+ * ------------------------------------------------------------------
+ * WEH | 09/21/15 | Add Macro GetGedaComboActiveText, remove g_object_ref
+ *                | from HOOKUP_GEDA_OBJECT_NO_REF, append GTK_ICALLBACK_
+ *                | COMBO to GEDA_NEW_COMBO and GEDA_NEW_TEXT_ENTRY_COMBO
+ * ------------------------------------------------------------------
 */
 
 #pragma once
@@ -115,8 +120,9 @@ typedef struct
 #define NOT_BELOW_ZERO(padding) padding < 0 ? 0 : padding
 
 /* Set Widget Values, see also geda_gui_macros.h */
-#define GetGedaCombo( name) geda_combo_box_get_active (GEDA_COMBO_BOX(name##Combo));
+#define GetGedaCombo( name) geda_combo_box_get_active (GEDA_COMBO_BOX(name##Combo))
 #define SetGedaCombo( name, var) geda_combo_box_set_active (GEDA_COMBO_BOX(name##Combo), var);
+#define GetGedaComboActiveText( name) geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(name##Combo))
 
 //const char *depth = gtk_entry_get_text( GTK_ENTRY(GTK_COMBO(textureDepthCombo)->entry) );
 #define SetCombo( name, var)  gtk_combo_box_set_active (GTK_COMBO_BOX(name##Combo), var);
@@ -148,8 +154,7 @@ typedef struct
 
 #define HOOKUP_GEDA_OBJECT_NO_REF(name, type) \
     gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
-    g_object_set_data (G_OBJECT (ThisDialog), WIDGET(name), \
-    g_object_ref(name##type));
+    g_object_set_data (G_OBJECT (ThisDialog), WIDGET(name), name##type);
 
 /* Tabs Related (not Tables) */
 #define GTK_START_TAB(name) \
@@ -487,7 +492,7 @@ typedef struct
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, 32) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
-        GTK_ICALLBACK_COMBO (name) \
+        GTK_ICALLBACK_COMBO (name)
 
 /* These macros use GedaComboBox and GedaComboBoxText, NOT derived from Gtk */
 
@@ -510,7 +515,8 @@ typedef struct
         g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, 34) \
-        HOOKUP_GEDA_OBJECT(name, Combo)
+        HOOKUP_GEDA_OBJECT(name, Combo) \
+        GTK_ICALLBACK_COMBO (name)
 
 #define GEDA_NEW_TEXT_ENTRY_COMBO(parent, name, width, hpad)    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
@@ -520,7 +526,8 @@ typedef struct
         g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, 34) \
-        HOOKUP_GEDA_OBJECT(name, Combo)
+        HOOKUP_GEDA_OBJECT(name, Combo) \
+        GTK_ICALLBACK_COMBO (name)
 
 #define GEDA_NEW_LIST_ENTRY_COMBO(parent, name, width, hpad)    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
