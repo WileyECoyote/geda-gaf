@@ -156,7 +156,7 @@ do_check_docs () {
     vecho "checking documentation for $fname"
     url=$(grep documentation= $filename | cut -f2- -d'=')
     if [ "x$url" != "x" ] ; then
-       if ! curl --output /dev/null --silent --fail -r 0-0 "$url"; then
+       if ! curl --output /dev/null --location --silent --fail -r 0-0 "$url"; then
          echo "check $url in $fname"
          result=1;
        fi
