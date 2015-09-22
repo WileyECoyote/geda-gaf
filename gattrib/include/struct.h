@@ -105,15 +105,15 @@ struct st_sheet_data {
  */
 /* -------------------------------------------------------------------- */
 struct st_table {
-  int row;                       /*!< location on spreadsheet */
-  int col;                       /*!< location on spreadsheet */
+  int   row;                    /*!< location on spreadsheet */
+  int   col;                    /*!< location on spreadsheet */
   char *row_name;               /*!< comp, net, or refdes:pin name */
   char *col_name;               /*!< attrib name */
   char *attrib_value;           /*!< attrib value */
-  int is_inherited;
-  int is_promoted;
-  int visibility;
-  int show_name_value;
+  int   is_inherited;
+  int   is_promoted;
+  int   visibility;
+  int   show_name_value;
 };
 
 
@@ -145,9 +145,9 @@ struct st_string_list {
  */
 /* -------------------------------------------------------------------- */
 struct st_pin_list {
-  char *refdes;       /*!< holds refdes string */
-  int pinnumber;
-  char *pinlabel;     /*!< holds pin label string */
+  char *refdes;        /*!< holds refdes string */
+  int   pinnumber;
+  char *pinlabel;      /*!< holds pin label string */
   int pos;             /*!< pos on spreadsheet */
   int length;          /*!< number of items in list */
   PIN_LIST *prev;
@@ -156,7 +156,7 @@ struct st_pin_list {
 
 
 struct st_search {
-  GtkSheet  *sheet;
+  GtkSheet     *sheet;
   GtkSheetRange range;
   bool FindOnlyMode;
   bool Case;

@@ -3616,7 +3616,7 @@ gtk_sheet_set_selection_mode(GtkSheet *sheet, GtkSelectionMode mode)
  * @sheet: a #GtkSheet
  * @autoresize: TRUE or FALSE
  *
- * Controls wether cells will be autoresized upon deactivation,
+ * Controls whether cells will be autoresized upon deactivation,
  * as you type text or set a cell_text value. If you want the
  * cells to be autoresized when you pack widgets look at
  * gtk_sheet_attach_*(). This function sets both:
@@ -9055,9 +9055,8 @@ gtk_sheet_show_active_cell(GtkSheet *sheet)
 
     gtk_widget_set_visible(GTK_WIDGET(sheet->sheet_entry), is_visible);
 
-    if (GTK_IS_ENTRY(entry_widget))
-    {
-	gtk_entry_set_visibility(GTK_ENTRY(entry_widget), is_visible);
+    if (GTK_IS_ENTRY(entry_widget)) {
+      gtk_entry_set_visibility(GTK_ENTRY(entry_widget), is_visible);
     }
 
     /* update text  */
