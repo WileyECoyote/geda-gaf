@@ -190,88 +190,88 @@ void s_toplevel_update_pin_attribs_in_toplevel(GedaToplevel *toplevel,
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 
 /* ------------- i_vars.c ------------- */
-void i_vars_set(GedaToplevel *toplevel);
-void i_window_vars_set(GedaToplevel *toplevel);
+void  i_vars_set(GedaToplevel *toplevel);
+void  i_window_vars_set(GedaToplevel *toplevel);
 
 /* ------------- x_dialog.c ------------- */
-void generic_msg_dialog (const char *msg);
-bool x_dialog_generic_confirm_dialog (const char *msg, int type);
-char* x_dialog_new_attrib();
-void x_dialog_delete_attrib();
-void x_dialog_missing_sym();
-int  x_dialog_file_not_saved();
-void x_dialog_unsaved_data();
-void x_dialog_unimplemented_feature();
-void x_dialog_fatal_error(char *string, int return_code);
-void x_dialog_about_dialog();
-void x_dialog_export_file();
+void  generic_msg_dialog (const char *msg);
+bool  x_dialog_generic_confirm_dialog (const char *msg, int type);
+char *x_dialog_new_attrib();
+void  x_dialog_delete_attrib();
+void  x_dialog_missing_sym();
+int   x_dialog_file_not_saved();
+void  x_dialog_unsaved_data();
+void  x_dialog_unimplemented_feature();
+void  x_dialog_fatal_error(char *string, int return_code);
+void  x_dialog_about_dialog();
+void  x_dialog_export_file();
 
 
-char* x_dialog_get_search_text(char* prompt);
+char *x_dialog_get_search_text(char* prompt);
 void  x_dialog_find_value(char* prompt, SearchRecord *Search);
-void  x_dialog_search_replace(SearchRecord *Search);
+void  x_dialog_search_replace(SearchRecord *Search, const char *find_text);
 
 /* ------------- x_find.c ------------- */
-bool x_find_main_search(char* text, char *replacement);
-void x_find_attribute_value(void);
-void x_find_replace_attrib_value(void);
-void x_find_attribute(void);
-void x_find_refdes(void);
+bool  x_find_main_search(char* text, char *replacement);
+void  x_find_attribute_value(void);
+void  x_find_replace_attrib_value(void);
+void  x_find_attribute(void);
+void  x_find_refdes(void);
 
 /* ------------- x_gtksheet.c ------------- */
 GtkSheet *x_gtksheet_get_current_sheet();
-void x_gtksheet_destroy_all(void);
-void x_gtksheet_init(PageDataSet *PageData);
-void x_gtksheet_reinititialize(PageDataSet *PageData);
-void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
-void x_gtksheet_add_col_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
-void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
-void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
-void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
+void  x_gtksheet_destroy_all(void);
+void  x_gtksheet_init(PageDataSet *PageData);
+void  x_gtksheet_reinititialize(PageDataSet *PageData);
+void  x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
+void  x_gtksheet_add_col_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
+void  x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
+void  x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, ColorId Color );
+void  x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
                               int visibility, int show_name_value, int is_inherited);
 
-int  x_gtksheet_get_min_col(GtkSheet *sheet);
-int  x_gtksheet_get_max_col(GtkSheet *sheet);
-void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
-void x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range);
+int   x_gtksheet_get_min_col(GtkSheet *sheet);
+int   x_gtksheet_get_max_col(GtkSheet *sheet);
+void  x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
+void  x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range);
 
 /* ------------- x_fileselect.c ------------- */
-bool x_fileselect ( char* filename );
-bool x_fileselect_load_file (char *filename);
-bool x_fileselect_load_files (GSList *filenames);
+bool  x_fileselect ( char* filename );
+bool  x_fileselect_load_file (char *filename);
+bool  x_fileselect_load_files (GSList *filenames);
 
 GSList *x_fileselect_open (void);
-void x_fileselect_save (void);
+void  x_fileselect_save (void);
 
 /* ------------- x_menus.c ------------- */
-void x_menu_file_open();
-void x_menu_file_save();
-void x_menu_file_save_as();
-void x_menu_file_export_csv();
-void x_menu_edit_new_attrib();
-void x_menu_edit_delete_attrib();
-void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
-void x_menu_fix_gtk_recent_submenu();
+void  x_menu_file_open();
+void  x_menu_file_save();
+void  x_menu_file_save_as();
+void  x_menu_file_export_csv();
+void  x_menu_edit_new_attrib();
+void  x_menu_edit_delete_attrib();
+void  x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
+void  x_menu_fix_gtk_recent_submenu();
 GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
 
 /* ------------- x_toolbars.c ------------- */
-void x_toolbars_init(GtkWidget *parent_container);
-void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
+void  x_toolbars_init(GtkWidget *parent_container);
+void  x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
 
 /* ------------- x_window.c ------------- */
-void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData);
-void x_window_clipboard_handler(int do_what);
-void x_window_init();
-void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData);
-void x_window_add_items(PageDataSet *PageData);
-void x_window_finalize_startup(GtkWindow *w_current, PageDataSet *PageData);
+void  x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData);
+void  x_window_clipboard_handler(int do_what);
+void  x_window_init();
+void  x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData);
+void  x_window_add_items(PageDataSet *PageData);
+void  x_window_finalize_startup(GtkWindow *w_current, PageDataSet *PageData);
 
-void x_window_attribute_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window);
-void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *window);
-void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_attribute_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_attached_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window);
+void  x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *window);
+void  x_window_grid_toggle(GtkToggleAction *action, GtkWindow *window);

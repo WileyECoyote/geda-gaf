@@ -485,7 +485,7 @@ static void activate_sheet_entry(GtkWidget *widget, void * data)
 }
 
 /*! \brief Call back for "change" signal from embeded Entry widget */
-static void show_entry(GtkWidget *widget, void * data)
+static void show_entry(GtkWidget *widget, void *data)
 {
   const char *text;
   GtkSheet   *sheet;

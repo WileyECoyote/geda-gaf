@@ -21,7 +21,8 @@
  * Contributing Author: Wiley Edward Hill
  */
 
-#include <gattrib.h>
+#include "gattrib.h"
+#include "geda_gui_funcs.h"
 #include <geda_debug.h>
 
 #define MAX_SEARCH_STRING 128
@@ -223,18 +224,37 @@ bool x_find_main_search(char* text, char *replacement) {
 
 void x_find_attribute_value(void)
 {
+  GtkEntry   *entry;
+  const char *text;
+
   x_find_set_search_parameters();
+
+  entry = GTK_ENTRY(gtk_sheet_get_entry(Search.sheet));
+  text  = NULL;
+
+  if(GTK_WIDGET_HAS_FOCUS(entry)) {
+
+    int start, end;
+
+    if (gtk_editable_get_selection_bounds (GTK_EDITABLE(entry), &start, &end)) {
+      if (end - start > 3) {
+        text = gtk_editable_get_chars (GTK_EDITABLE(entry), start, end);
+      }
+    }
+  }
+
   gtk_sheet_unselect_range(Search.sheet);
   Search.FindOnlyMode=TRUE;
-  x_dialog_search_replace(&Search);
+  x_dialog_search_replace(&Search, text);
 }
+
 
 void x_find_replace_attrib_value()
 {
   x_find_set_search_parameters();
   gtk_sheet_unselect_range(Search.sheet);
   Search.FindOnlyMode=FALSE;
-  x_dialog_search_replace(&Search);
+  x_dialog_search_replace(&Search, NULL);
 }
 
 /*! \brief Find Reference Designator

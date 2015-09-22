@@ -675,7 +675,9 @@ static void search_replace_switch_responder(GtkWidget *widget, int response,  Co
  *       Search Record structure. Controls for options and all but the
  *       Close button are disabled.
  */
-static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Search)
+static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
+                                         SearchRecord *Search,
+                                         const char   *text)
 {
   Search->ReplaceAll = FALSE; /* could have been on if struc re-used */
 
@@ -714,6 +716,10 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
        foreach (search_history);
     }
   }
+
+  if (text) {
+    geda_combo_box_text_widget_set_active_text(SearchTextCombo, text);
+  }
 }
 /*! \brief Create Search Dialog Controls
  *  \par Function Description: This function creates the Search Dialog
@@ -729,8 +735,7 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
  */
 static
 GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
-                                                  int find_only_mode,
-                                                  const char *text)
+                                                  int find_only_mode)
 {
   GtkWidget *ThisDialog;
   GtkWidget *MainDialogVBox;
@@ -826,17 +831,17 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
  *  \par Function Description: This is the main function called by external
  *       to launch a new Search and Replace Dialog session.
  */
-void x_dialog_search_replace(SearchRecord *Search)
+void x_dialog_search_replace(SearchRecord *Search, const char *text)
 {
 
   GtkWidget *ThisDialog;
 
   ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
-                                                     Search->FindOnlyMode, text);
+                                                     Search->FindOnlyMode);
 
   gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
-  x_dialog_init_search_replace(ThisDialog, Search);
+  x_dialog_init_search_replace(ThisDialog, Search, text);
 
   GEDA_SIGNAL_CONNECT(ThisDialog, "response",
                       search_replace_dialog_response, Search);

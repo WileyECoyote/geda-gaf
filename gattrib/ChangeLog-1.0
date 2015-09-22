@@ -1,5 +1,15 @@
 2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x_find.c: Revise x_find_attribute_value to check for selection
+      and pass non-trial length of text to x_dialog_search_replace dialog
+      to prefill in search text.
+
+    * src/x_dialog.c: Revise x_dialog_search_replace to accpet optional
+      search string and pass to x_dialog_init_search_replace, which
+      add preloads to the SearchTextCombo widget.
+
+2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x_dialog.c: increase width of the search and replace text combos
       in x_dialog_create_search_replace_dialog.
 
