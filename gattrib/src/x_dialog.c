@@ -591,11 +591,11 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
  *  \par Function Description: This callback function is used to set the
  *       sensitivity of other controls based on combo-box input.
  */
-static void search_replace_combo_responder(GtkWidget *widget, void * data)
+static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
 {
   int WhichComboBox = (int)(long) (data);
 
-  char *text = geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
+  char *text = GetGedaComboActiveText (widget);
 
   switch ( WhichComboBox ) {
   case SearchText:
