@@ -1303,7 +1303,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), widget, 1,2,0,1, GTK_FILL,0,0,0);
   SetWidgetTip(widget, _(refdes_tip));
   properties->refdes_combo = widget;
-  widget = geda_combo_box_text_get_entry(GEDA_COMBO_BOX_TEXT(widget));
+  widget = geda_combo_box_text_get_entry_widget(GEDA_COMBO_BOX_TEXT(widget));
   properties->refdes_entry = widget;
 
   /* Row 1 Col 4 => Number of Slots */
