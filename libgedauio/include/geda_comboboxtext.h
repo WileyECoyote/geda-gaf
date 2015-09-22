@@ -91,22 +91,24 @@ void         geda_combo_box_text_list_prepend          (GedaComboBoxText   *comb
 
 /* These exist to be consistent with Gtk function naming */
 void         geda_combo_box_text_append_text           (GedaComboBoxText   *combo_box,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_insert_text           (GedaComboBoxText   *combo_box,
                                                         int                 position,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_prepend_text          (GedaComboBoxText   *combo_box,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_remove_text           (GedaComboBoxText   *combo_box,
                                                         int                 position);
 void         geda_combo_box_text_remove_all_text       (GedaComboBoxText   *combo_box);
-
-char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *combo_box);
 
 void         geda_combo_box_text_set_active            (GedaComboBoxText   *combo_box,
                                                         int                 position);
 int          geda_combo_box_text_get_active            (GedaComboBoxText   *combo_box);
 
+char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *combo_box);
+
+bool         geda_combo_box_text_set_active_text       (GedaComboBoxText   *combo_box,
+                                                        const char         *text);
 void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *combo_box,
                                                         bool setting);
 GtkEntry    *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
@@ -114,6 +116,7 @@ GtkEntry    *geda_combo_box_text_get_entry             (GedaComboBoxText   *comb
 GtkWidget   *geda_combo_box_text_get_entry_widget      (GedaComboBoxText   *combo_box);
 
 /* Widget Receptors - it had better be a GedaComboBoxText widget */
+
 void         geda_combo_box_text_widget_append         (GtkWidget          *widget,
                                                         const char         *text);
 void         geda_combo_box_text_widget_insert         (GtkWidget          *widget,
@@ -127,6 +130,10 @@ void         geda_combo_box_text_widget_set_active     (GtkWidget          *widg
                                                         int                 position);
 int          geda_combo_box_text_widget_get_active     (GtkWidget          *widget);
 
+char        *geda_combo_box_text_widget_get_active_text(GtkWidget          *widget);
+
+bool         geda_combo_box_text_widget_set_active_text(GtkWidget          *widget,
+                                                        const char         *text);
 END_DECLS
 
 #endif /* __GEDA_COMBO_BOX_TEXT_H__ */

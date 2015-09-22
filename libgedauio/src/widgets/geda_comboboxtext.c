@@ -460,13 +460,11 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
   combo_box->count++;
 }
 
-/*! \brief GedaComboBoxText Text Append
+/*! \brief GedaComboBoxText Insert Text
  *  \par Function Description
  *
- * Appends text to the list of strings stored in combo_box.
- *
- * This is the same as calling geda_combo_box_text_insert() with a
- * position of -1.
+ * Inserts \a text to the list of strings stored in combo_box at
+ * the given \a position.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
  * \param [in] position  Integer position where text is to be inserted
@@ -662,6 +660,17 @@ void geda_combo_box_text_remove_all_text (GedaComboBoxText *combo_box)
   geda_combo_box_text_remove_all (combo_box);
 }
 
+void
+geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
+{
+  geda_combo_box_set_active((GedaComboBox*)combo_box, position);
+}
+
+int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
+{
+  return geda_combo_box_get_active ((GedaComboBox*)combo_box);
+}
+
 /*! \brief GedaComboBoxText Get Text
  *  \par Function Description
  *
@@ -710,15 +719,63 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
     return NULL;
 }
 
-void
-geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
+bool
+geda_combo_box_text_set_active_text (GedaComboBoxText *combo_box,
+                                     const char       *text)
 {
-  geda_combo_box_set_active((GedaComboBox*)combo_box, position);
-}
+  bool added = 0;
 
-int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
-{
-  return geda_combo_box_get_active ((GedaComboBox*)combo_box);
+  if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
+
+    if (!combo_box->count) { /* Is Empty? */
+
+      if (GTK_IS_ENTRY(combo_box->entry)) {
+        gtk_entry_set_text((GtkEntry*)combo_box->entry,text);
+      }
+      else {
+        geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
+        added = 1;
+      }
+    }
+    else {
+
+      GtkTreeModel *model;
+      GtkTreeIter   iter;
+      int text_column;
+      int i, found;
+      const char *str;
+
+      model       = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
+      text_column = geda_combo_box_get_entry_text_column (GEDA_COMBO_BOX (combo_box));
+      found       = 0;
+
+      if (gtk_tree_model_get_iter_first (model, &iter)) {
+
+        for (i=0;i<combo_box->count;i++) {
+          gtk_tree_model_get (model, &iter, text_column, &str, -1);
+          if (str && (strcmp(text, str) == 0)) {
+            found = i;
+            break;
+          }
+        }
+      }
+
+      if (found) {
+        geda_combo_box_text_set_active (combo_box, found);
+      }
+      else {
+        if (GTK_IS_ENTRY(combo_box->entry)) {
+          gtk_entry_set_text((GtkEntry*)combo_box->entry,text);
+        }
+        else {
+          geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
+          added = 1;
+        }
+      }
+    }
+  }
+
+  return added;
 }
 
 void
@@ -769,21 +826,35 @@ geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), position, text);
 }
+
 void geda_combo_box_text_widget_prepend (GtkWidget *widget, const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), 0, text);
 }
+
 void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 {
-  geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position );
+  geda_combo_box_text_remove (GEDA_COMBO_BOX_TEXT(widget), position);
 }
+
 void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
   geda_combo_box_set_active((GedaComboBox*)widget, position);
 }
+
 int geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
   return geda_combo_box_get_active ((GedaComboBox*)widget);
+}
+
+char *geda_combo_box_text_widget_get_active_text(GtkWidget *widget)
+{
+  return geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
+}
+
+bool geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *text)
+{
+  return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
 }
 
 /** @} end group GedaComboBoxText */
