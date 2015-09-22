@@ -502,14 +502,14 @@ typedef enum {
 
 WidgetStringData DialogStrings[] = {
   /* 2 String for Edit Controls */
-        { "SearchTextCombo",	        "  Search for:",      "Enter or select the text to find"},
-        { "ReplaceTextCombo",	        "Replace with:",      "Enter or select the replacement text"},
+        { "SearchTextCombo",	        "  Search for:",     "Enter or select the text to find"},
+        { "ReplaceTextCombo",	    "Replace with:",     "Enter or select the replacement text"},
 
   /* 4 Strings for Switch Controls */
-        { "IgnoreCaseSwitch",	        "    Ignore Case",   "Set search case sensitivity"},
-        { "WholeWordSwitch",	        "  Match Words",       "Limit Search hits to entire work"},
+        { "IgnoreCaseSwitch",	    "    Ignore Case",   "Set search case sensitivity"},
+        { "WholeWordSwitch",	        "  Match Words",     "Limit Search hits to entire work"},
         { "SearchBackwordSwitch",	"Search Backword",   "Reverse search direction"},
-        { "WrapAroundSwitch",	        "  Wrap Around",        "Continue search from the beginning"},
+        { "WrapAroundSwitch",	    "  Wrap Around",     "Continue search from the beginning"},
         { NULL, NULL, NULL}
 };
 
@@ -521,6 +521,7 @@ static GtkWidget *FindButt;
 /* The Combo Boxes */
 static GtkWidget *SearchTextCombo;
 static GtkWidget *ReplaceTextCombo;
+
 /* The Switches */
 static GtkWidget *IgnoreCaseSwitch=NULL;
 static GtkWidget *WholeWordSwitch=NULL;
@@ -549,13 +550,14 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
   /*!@brief Retrieve values and settings from Search Dialog controls */
   void unload_dialog() {
-    search_text      = u_string_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo)));
+    search_text      =  GetGedaComboActiveText(SearchText);
     Search->Case     = !GET_SWITCH_STATE (IgnoreCaseSwitch);
     Search->Whole    =  GET_SWITCH_STATE (WholeWordSwitch);
     Search->Backword =  GET_SWITCH_STATE (SearchBackwordSwitch);
     Search->Wrap     =  GET_SWITCH_STATE (WrapAroundSwitch);
     add_search_history(search_text);
   }
+
   switch (response) {
   case GEDA_RESPONSE_REJECT: /* Don't replace find next */
     unload_dialog();
@@ -593,20 +595,18 @@ static void search_replace_combo_responder(GtkWidget *widget, void * data)
 {
   int WhichComboBox = (int)(long) (data);
 
-  char *text = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
+  char *text = geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(widget));
 
   switch ( WhichComboBox ) {
   case SearchText:
-    if ( strlen(text) >0)
-    {
+    if ( strlen(text) > 0) {
        gtk_widget_set_sensitive (FindButt, TRUE);
        gtk_widget_set_sensitive (IgnoreCaseSwitch, TRUE);
        gtk_widget_set_sensitive (WholeWordSwitch, TRUE);
        gtk_widget_set_sensitive (SearchBackwordSwitch, TRUE);
        gtk_widget_set_sensitive (WrapAroundSwitch, TRUE);
     }
-    else
-    {
+    else {
        gtk_widget_set_sensitive (FindButt, FALSE);
        gtk_widget_set_sensitive (ReplaceButt, FALSE);
        gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
@@ -619,8 +619,8 @@ static void search_replace_combo_responder(GtkWidget *widget, void * data)
   case ReplaceText:
     /* We are not going to enable Replace buttons unless there is text in the
      * Search Combo, the pointer in text is to the text in the Replace Combo */
-    if (( strlen(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo))) >0) &&
-        ( strlen(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo))) >0))
+    if ((strlen(GetGedaComboActiveText (SearchText)) >0) &&
+        (strlen(GetGedaComboActiveText (ReplaceText)) >0))
     {
        gtk_widget_set_sensitive (ReplaceButt, TRUE);
        gtk_widget_set_sensitive (ReplaceAllButt, TRUE);
@@ -649,7 +649,7 @@ static void search_replace_combo_responder(GtkWidget *widget, void * data)
  */
 static void search_replace_switch_responder(GtkWidget *widget, int response,  ControlID *Control)
 {
-   gboolean state = GET_SWITCH_STATE (widget);
+   int state = GET_SWITCH_STATE (widget);
    GtkWidget* SwitchImage = get_geda_switch_image( state);
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
@@ -700,7 +700,7 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
     {
        lambda (const char* data)
        {
-         LOAD_STD_COMBO(SearchText,data);
+         LOAD_GEDA_TEXT_COMBO(SearchText,data);
          return FALSE;
        }
        foreach (search_history);
@@ -708,7 +708,7 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
     {
        lambda (const char* data)
        {
-         LOAD_STD_COMBO(ReplaceText,data);
+         LOAD_GEDA_TEXT_COMBO(ReplaceText,data);
          return FALSE;
        }
        foreach (search_history);
@@ -728,7 +728,9 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
  *
  */
 static
-GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_only_mode)
+GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
+                                                  int find_only_mode,
+                                                  const char *text)
 {
   GtkWidget *ThisDialog;
   GtkWidget *MainDialogVBox;
@@ -753,10 +755,10 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   gtk_widget_show (MainDialogVBox);
 
   HSECTION (MainDialogVBox, InputText);   /* Row 1 */
-    GTK_NEW_COMBO (InputText_hbox, SearchText, 200, 41);
-
+    GEDA_NEW_TEXT_ENTRY_COMBO (InputText_hbox, SearchText, 200, 41);
   HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
-    GTK_NEW_COMBO (NewText_hbox, ReplaceText, 200, 41);
+    GEDA_NEW_TEXT_ENTRY_COMBO (NewText_hbox, ReplaceText, 200, 41);
+
   if (find_only_mode) {
     gtk_widget_hide(ReplaceTextLabel);
     gtk_widget_hide(ReplaceTextCombo);
@@ -810,11 +812,11 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   GEDA_OBJECT_SET_DATA (ThisDialog, ThisDialog,         DialogTitle);
   GEDA_OBJECT_SET_DATA (ThisDialog, MainDialogVBox,     "MainDialogVBox");
   GEDA_OBJECT_SET_DATA (ThisDialog, dialog_action_area, "dialog_action_area");
-  GEDA_HOOKUP_OBJECT (ThisDialog, CloseButt,       "CloseButt");
-  GEDA_HOOKUP_OBJECT (ThisDialog, ReplaceButt,     "ReplaceButt");
-  GEDA_HOOKUP_OBJECT (ThisDialog, ReplaceAllButt,  "ReplaceAllButt");
-  GEDA_HOOKUP_OBJECT (ThisDialog, FindButt,        "FindButt");
-  GEDA_OBJECT_SET_DATA (ThisDialog, tooltips, "tooltips");
+  GEDA_HOOKUP_OBJECT   (ThisDialog, CloseButt,          "CloseButt");
+  GEDA_HOOKUP_OBJECT   (ThisDialog, ReplaceButt,        "ReplaceButt");
+  GEDA_HOOKUP_OBJECT   (ThisDialog, ReplaceAllButt,     "ReplaceAllButt");
+  GEDA_HOOKUP_OBJECT   (ThisDialog, FindButt,           "FindButt");
+  GEDA_OBJECT_SET_DATA (ThisDialog, tooltips,           "tooltips");
 
   return ThisDialog;
 }
@@ -823,12 +825,13 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
  *  \par Function Description: This is the main function called by external
  *       to launch a new Search and Replace Dialog session.
  */
-void x_dialog_search_replace(SearchRecord *Search) {
+void x_dialog_search_replace(SearchRecord *Search)
+{
 
   GtkWidget *ThisDialog;
 
   ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
-                                                     Search->FindOnlyMode);
+                                                     Search->FindOnlyMode, text);
 
   gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
