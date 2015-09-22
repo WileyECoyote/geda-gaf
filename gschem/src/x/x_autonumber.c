@@ -1354,7 +1354,7 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
    */
 
   /* Search text history */
-  text = geda_combo_box_text_get_active_text(GEDA_COMBO_BOX_TEXT(ScopeTextCombo));
+  text = GetGedaComboActiveText(ScopeText);
 
   autotext->scope_history = autonumber_add_history(autotext->scope_history, text);
 

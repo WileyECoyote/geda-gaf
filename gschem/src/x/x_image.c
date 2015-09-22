@@ -254,7 +254,7 @@ static char *x_image_get_type_from_description(char *descr) {
  *
  */
 static void
-x_image_update_dialog_filename(GedaComboBox     *combo,
+x_image_update_dialog_filename(GedaComboBox     *type_Combo,
                                GschemToplevel   *w_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
@@ -272,14 +272,13 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
   fprintf(stderr, "%s: begin\n", __func__);
 #endif
 
-  image_type_descr =
-  geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(combo));
+  image_type_descr = GetGedaComboActiveText (type_);
   image_type = x_image_get_type_from_description(image_type_descr);
 
   GEDA_FREE(image_type_descr);
 
   /* Get the parent dialog */
-  file_chooser = gtk_widget_get_ancestor(GTK_WIDGET(combo),
+  file_chooser = gtk_widget_get_ancestor(GTK_WIDGET(type_Combo),
                                          GTK_TYPE_FILE_CHOOSER);
 
   /* Try and get the previous file name. If none, revert to the page filename */
@@ -627,8 +626,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GtkWidget *label;
   GtkWidget *alignment;
 
-  GtkWidget *size_combo;
-  GtkWidget *type_combo;
+  GtkWidget *size_Combo;
+  GtkWidget *type_Combo;
   GtkWidget *switch_vbox;
   GtkWidget *use_print;
   GtkWidget *invert_bw;
@@ -684,8 +683,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 #endif
 
   /* Label image size selector combo */
-  size_combo = create_size_menu ();
-  gtk_box_pack_start (GTK_BOX (vbox1), size_combo, TRUE, TRUE, 0);
+  size_Combo = create_size_menu ();
+  gtk_box_pack_start (GTK_BOX (vbox1), size_Combo, TRUE, TRUE, 0);
   gtk_widget_show(vbox1);
 
   /* Image type selection */
@@ -699,16 +698,16 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   fprintf(stderr, "x_image_setup: Creating image type button\n");
 #endif
 
-  type_combo = create_type_menu ( default_type);
-  gtk_box_pack_start (GTK_BOX (vbox2), type_combo, TRUE, TRUE, 0);
+  type_Combo = create_type_menu ( default_type);
+  gtk_box_pack_start (GTK_BOX (vbox2), type_Combo, TRUE, TRUE, 0);
 
   /* Connect the changed signal to the callback, so the filename
      gets updated every time the image type is changed */
-  g_signal_connect (type_combo, "changed",
+  g_signal_connect (type_Combo, "changed",
                     G_CALLBACK(x_image_update_dialog_filename),
                     w_current);
 
-  gtk_widget_show (type_combo);
+  gtk_widget_show (type_Combo);
   gtk_widget_show(vbox2);
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
@@ -782,7 +781,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   NULL);
 
   /* Update the filename */
-  x_image_update_dialog_filename(GEDA_COMBO_BOX(type_combo), w_current);
+  x_image_update_dialog_filename(GEDA_COMBO_BOX(type_Combo), w_current);
 
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: configuring the dialog window\n", __func__);
@@ -809,15 +808,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 #endif
 
     /* Retrieve values from the dialog controls */
-    image_size =
-    geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(size_combo));
-    last_image_size = geda_combo_box_get_active(GEDA_COMBO_BOX(size_combo));
+    image_size = GetGedaComboActiveText (size_);
+    last_image_size = geda_combo_widget_get_active(size_Combo);
     sscanf(image_size, "%ix%i", &width, &height);
     GEDA_FREE(image_size);
 
-    image_type_descr =
-    geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(type_combo));
-    last_image_type  = geda_combo_box_get_active(GEDA_COMBO_BOX(type_combo));
+    image_type_descr = GetGedaComboActiveText (type_);
+    last_image_type  = geda_combo_widget_get_active(type_Combo);
     image_type       = x_image_get_type_from_description(image_type_descr);
 
     GEDA_FREE(image_type_descr);
