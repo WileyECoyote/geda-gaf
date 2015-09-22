@@ -732,9 +732,19 @@ geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool sett
   }
 }
 
+GtkEntry*
+geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
+{
+  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+    if (GTK_IS_ENTRY(combo_box->entry)) {
+      return GTK_ENTRY(combo_box->entry);
+    }
+  }
+  return NULL;
+}
 
 GtkWidget*
-geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
+geda_combo_box_text_get_entry_widget (GedaComboBoxText *combo_box)
 {
   GtkWidget *entry = NULL;
 

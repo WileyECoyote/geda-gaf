@@ -1,3 +1,9 @@
+2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_combobox.c: Rename geda_combo_box_text_get_entry to
+       geda_combo_box_text_get_entry_widget, add function geda_combo_box_text
+       _get_entry returning type GtkEntry.
+
 2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_combobox.c: Add callback: geda_combo_box_entry_contents

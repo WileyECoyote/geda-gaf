@@ -109,8 +109,9 @@ int          geda_combo_box_text_get_active            (GedaComboBoxText   *comb
 
 void         geda_combo_box_text_set_activate_default  (GedaComboBoxText   *combo_box,
                                                         bool setting);
+GtkEntry    *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
 
-GtkWidget   *geda_combo_box_text_get_entry             (GedaComboBoxText   *combo_box);
+GtkWidget   *geda_combo_box_text_get_entry_widget      (GedaComboBoxText   *combo_box);
 
 /* Widget Receptors - it had better be a GedaComboBoxText widget */
 void         geda_combo_box_text_widget_append         (GtkWidget          *widget,
