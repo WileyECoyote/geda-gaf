@@ -1,3 +1,13 @@
+2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/ldo/NCP1117-DTA-1.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
+      ADJ,0-125°C,DPAK.
+
+2015-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulate/L79L15-2.sym: Add symbol Voltage Regulator,Negative,
+      Fixed 15V,SOT89.
+
 2015-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/TC4426A-1.sym: Add symbol 1.5A Dual High-Speed Power MOSFET
