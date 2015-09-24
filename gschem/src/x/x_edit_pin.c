@@ -993,7 +993,7 @@ void x_dialog_edit_pin_type (GschemToplevel *w_current)
 
     ThisDialog = x_dialog_pin_type_create_dialog(w_current);
 
-    gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
     gtk_window_set_transient_for (GTK_WINDOW(ThisDialog),
                                   GTK_WINDOW(w_current->main_window));
 

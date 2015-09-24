@@ -1563,7 +1563,7 @@ void x_dialog_edit_properties(GschemToplevel *w_current, Object *o_current)
 
     dialog = x_dialog_edit_properties_constructor(w_current);
 
-    gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
     gtk_window_set_transient_for (GTK_WINDOW(dialog),
                                   GTK_WINDOW(w_current->main_window));
 

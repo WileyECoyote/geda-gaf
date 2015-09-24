@@ -545,7 +545,7 @@ void snap_size_dialog (GschemToplevel *w_current)
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
     g_signal_connect (G_OBJECT (Dialog), "response",
                       G_CALLBACK (snap_size_dialog_response),
@@ -654,7 +654,7 @@ void text_size_dialog (GschemToplevel *w_current)
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
+    gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
     g_signal_connect (G_OBJECT (Dialog), "response",
                       G_CALLBACK (text_size_dialog_response),
@@ -902,10 +902,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position(GTK_WINDOW(Dialog),
-                        GTK_WIN_POS_MOUSE);
-
-
+    gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GEDA_RESPONSE_ACCEPT);
@@ -1688,10 +1685,13 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
   GtkWidget *Dialog;
 
   Dialog = w_current->hpwindow;
+
   if (!Dialog) {
 
     Dialog = x_dialog_fill_type_create_dialog(w_current);
-    gtk_window_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
+
+    gtk_window_set_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
+
     gtk_window_set_transient_for (GTK_WINDOW(Dialog),
                                   GTK_WINDOW(w_current->main_window));
 
@@ -2269,7 +2269,9 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
   if (!Dialog) {
 
     Dialog = x_dialog_line_type_create_dialog(w_current);
-    gtk_window_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
+
+    gtk_window_set_position(GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
+
     gtk_window_set_transient_for (GTK_WINDOW(Dialog),
                                   GTK_WINDOW(w_current->main_window));
 
@@ -2833,7 +2835,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
+    gtk_window_set_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_text_input_response),
@@ -3603,7 +3605,7 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
 
       xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
 
-      gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
+      gtk_window_set_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
 
       gtk_window_set_transient_for (GTK_WINDOW (dialog),
                                     GTK_WINDOW (w_current->main_window));

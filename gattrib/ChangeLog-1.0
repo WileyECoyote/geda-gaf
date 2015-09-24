@@ -1,3 +1,9 @@
+2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Replace gtk_window_position with gtk_window_set_position
+
+    * src/x_window.c: Replace gtk_window_position with gtk_window_set_position
+
 2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_find.c: Revise x_find_attribute_value to check for selection

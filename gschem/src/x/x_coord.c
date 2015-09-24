@@ -459,7 +459,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
                        GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                                                        NULL);
 
-    gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
+    gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
 
     bg_color.red   = 0xEEEE;
     bg_color.green = 0xEBEB;

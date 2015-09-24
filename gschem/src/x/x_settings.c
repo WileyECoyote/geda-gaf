@@ -214,7 +214,7 @@ void x_configure_settings (GschemToplevel* w_current)
 
   gtk_window_set_destroy_with_parent (GTK_WINDOW(w_current->cpwindow), TRUE);
 
-  gtk_window_position (GTK_WINDOW (w_current->cpwindow), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (GTK_WINDOW (w_current->cpwindow), GTK_WIN_POS_MOUSE);
 
   load_settings_dialog (w_current);
 

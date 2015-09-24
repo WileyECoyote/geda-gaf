@@ -329,7 +329,7 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
   x_window_add_items(PageData); /* This updates the top level stuff,and then
                                    calls another fcn to update the GtkSheet */
 
-  gtk_window_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
 
   gtk_widget_show( GTK_WIDGET(main_window));
   x_window_update_title(pr_current, PageData);

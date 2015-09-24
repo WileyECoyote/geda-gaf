@@ -170,8 +170,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position (GTK_WINDOW (Dialog),
-                         GTK_WIN_POS_MOUSE);
+    gtk_window_set_position (GTK_WINDOW (Dialog), GTK_WIN_POS_MOUSE);
 
     gtk_dialog_set_default_response (GTK_DIALOG (Dialog),
                                      GEDA_RESPONSE_ACCEPT);

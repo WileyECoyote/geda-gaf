@@ -790,7 +790,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_dialog_set_default_response((GtkDialog*) ThisDialog,
       GEDA_RESPONSE_ACCEPT);
 
-  gtk_window_position (GTK_WINDOW (ThisDialog),
+  gtk_window_set_position (GTK_WINDOW (ThisDialog),
       GTK_WIN_POS_MOUSE);
 
   gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),

@@ -1576,7 +1576,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                                           GEDA_RESPONSE_CLOSE,
                                           -1);
 
-  /* gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);*/
+  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
 
   main_vbox = GTK_DIALOG(ThisDialog)->vbox;
 

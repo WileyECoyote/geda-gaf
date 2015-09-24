@@ -839,7 +839,7 @@ void x_dialog_search_replace(SearchRecord *Search, const char *text)
   ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
                                                      Search->FindOnlyMode);
 
-  gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
   x_dialog_init_search_replace(ThisDialog, Search, text);
 
