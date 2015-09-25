@@ -6862,23 +6862,27 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
     g_return_if_fail(sheet != NULL);
 
     /* bail now if we aren't drawable yet */
-    if (!GTK_WIDGET_DRAWABLE(sheet))
-	return;
+    if (!gtk_widget_is_drawable((GtkWidget*)sheet))
+	  return;
 
     if (row < 0 || row > sheet->maxallocrow)
 	return;
+
     if (col < 0 || col > sheet->maxalloccol)
 	return;
 
     if (!sheet->data[row])
 	return;
+
     if (!sheet->data[row][col])
 	return;
+
     if (!sheet->data[row][col]->text || !sheet->data[row][col]->text[0])
 	return;
 
     if (row < 0 || row > sheet->maxrow)
 	return;
+
     if (col < 0 || col > sheet->maxcol)
 	return;
 
@@ -6890,6 +6894,7 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
 
     if (!GTK_SHEET_COLUMN_IS_VISIBLE(colptr))
 	return;
+
     if (!GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)))
 	return;
 
@@ -6920,28 +6925,28 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
     layout = gtk_widget_create_pango_layout(GTK_WIDGET(sheet), label);
     pango_layout_set_font_description(layout, attributes.font_desc);
 
-    if (!gtk_sheet_autoresize_columns(sheet))
-    {
-	switch(colptr->wrap_mode)
-	{
-	    case GTK_WRAP_NONE:
-		break;
+    if (!gtk_sheet_autoresize_columns(sheet)) {
 
-	    case GTK_WRAP_CHAR:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_CHAR);
-		break;
+      switch(colptr->wrap_mode) {
 
-	    case GTK_WRAP_WORD:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_WORD);
-		break;
+        case GTK_WRAP_NONE:
+          break;
 
-	    case GTK_WRAP_WORD_CHAR:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR);
-		break;
-	}
+        case GTK_WRAP_CHAR:
+          pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+          pango_layout_set_wrap(layout, PANGO_WRAP_CHAR);
+          break;
+
+        case GTK_WRAP_WORD:
+          pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+          pango_layout_set_wrap(layout, PANGO_WRAP_WORD);
+          break;
+
+        case GTK_WRAP_WORD_CHAR:
+          pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+          pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR);
+          break;
+      }
     }
 
     pango_layout_get_pixel_extents(layout, NULL, &rect);
@@ -6959,47 +6964,47 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
 
     /* vertical cell text justification */
     {
-	/* column->vjust overrides sheet->vjust */
+      /* column->vjust overrides sheet->vjust */
 
-	vjust = colptr->vjust;
-	if (vjust == GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT)
-	    vjust = sheet->vjust;
+      vjust = colptr->vjust;
+      if (vjust == GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT)
+        vjust = sheet->vjust;
 
-	/* Vertical justification is quantisized, so that all text lines using the
-	   same font appear vertically aligned, even if adjacent columns have
-	   different vjust settings.
-	   */
-	switch(vjust)
-	{
-	    case GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT:
-	    case GTK_SHEET_VERTICAL_JUSTIFICATION_TOP:
-		y_pos = CELLOFFSET;
-		break;
+      /* Vertical justification is quantisized, so that all text lines using the
+       s *ame font appear vertically aligned, even if adjacent columns have
+       different vjust settings.
+       */
+      switch(vjust)
+      {
+        case GTK_SHEET_VERTICAL_JUSTIFICATION_DEFAULT:
+        case GTK_SHEET_VERTICAL_JUSTIFICATION_TOP:
+          y_pos = CELLOFFSET;
+          break;
 
-	    case GTK_SHEET_VERTICAL_JUSTIFICATION_MIDDLE:
-		{
-		    /* the following works only if the whole text is set with same metrics */
-		    register int line_height = ascent + descent + spacing;
-		    register int area_lines = area.height / line_height;
-		    register int text_lines = rect.height / line_height;
+        case GTK_SHEET_VERTICAL_JUSTIFICATION_MIDDLE:
+        {
+          /* the following works only if the whole text is set with same metrics */
+          register int line_height = ascent + descent + spacing;
+          register int area_lines = area.height / line_height;
+          register int text_lines = rect.height / line_height;
 
-		    y_pos = CELLOFFSET - ((text_lines - area_lines) / 2) * line_height;
-		}
-		break;
+          y_pos = CELLOFFSET - ((text_lines - area_lines) / 2) * line_height;
+        }
+        break;
 
-	    case GTK_SHEET_VERTICAL_JUSTIFICATION_BOTTOM:
-		{
-		    /* the following works only if the whole text is set with same metrics */
-		    register int line_height = ascent + descent + spacing;
-		    register int area_lines = area.height / line_height;
-		    register int area_height_quant = area_lines * line_height;
+        case GTK_SHEET_VERTICAL_JUSTIFICATION_BOTTOM:
+        {
+          /* the following works only if the whole text is set with same metrics */
+          register int line_height = ascent + descent + spacing;
+          register int area_lines = area.height / line_height;
+          register int area_height_quant = area_lines * line_height;
 
-		    y_pos = CELLOFFSET + area_height_quant - rect.height;
-		}
-		break;
-	}
+          y_pos = CELLOFFSET + area_height_quant - rect.height;
+        }
+        break;
+      }
 
-	y = area.y + y_pos;
+      y = area.y + y_pos;
     }
 
     text_width = rect.width;
@@ -7012,19 +7017,19 @@ _cell_draw_label(GtkSheet *sheet, int row, int col)
 	    size = area.width;  /* start with col size */
 	    area.x += area.width;  /* anchor clip_area at right */
 
-	    if (!gtk_sheet_clip_text(sheet))  /* text extends multiple cells */
-	    {
-		for (i = col - 1; i >= MIN_VIEW_COLUMN(sheet); i--)
-		{
+	    if (!gtk_sheet_clip_text(sheet))  { /* text extends multiple cells */
+
+		for (i = col - 1; i >= MIN_VIEW_COLUMN(sheet); i--) {
+
 		    GtkSheetColumn *cpi = COLPTR(sheet, i);
 
 		    if (i < 0 || i > sheet->maxcol)
-			break;
+			  break;
 
 		    if (!GTK_SHEET_COLUMN_IS_VISIBLE(cpi))
 			continue;
 		    if (gtk_sheet_cell_get_text(sheet, row, i))
-			break;
+			  break;
 		    if (size >= text_width + CELLOFFSET)
 			break;
 
