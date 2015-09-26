@@ -1,3 +1,12 @@
+2015-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Add function gattrib_save_user_config and move gtk_init
+      before libgeda_init so g_get_prgname returns "gattrib" in eda_config.
+
+    * src/x_window.c: Add functions x_window_save_settings and x_window_restore
+      _settings, revise x_window_init to set geda_atexit to save the main
+      geometry, and call x_window_restore_settings to restore.
+
 2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace gtk_window_position with gtk_window_set_position

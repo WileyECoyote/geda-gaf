@@ -143,6 +143,103 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
 
   return;
 }
+
+static void x_window_save_settings(void *data)
+{
+  if (GTK_IS_WINDOW(data)) {
+
+    EdaConfig  *cfg;
+    GtkWindow  *window;
+
+    const char *win_group     = "gattrib";
+    int x, y, width, height;
+
+    window = GTK_WINDOW(data);
+
+    u_log_message(_("Saving main window geometry and settings.\n"));
+
+    /* Get the Window Geometry - Restored by x_window_restore_settings */
+
+    cfg    = eda_config_get_user_context ();
+
+    gtk_window_get_position (window, &x, &y);
+    gtk_window_get_size (window, &width, &height);
+
+    /* Save the Window Geometry data */
+    eda_config_set_integer (cfg, win_group, "window-x-position", x);
+    eda_config_set_integer (cfg, win_group, "window-y-position", y);
+    eda_config_set_integer (cfg, win_group, "window-width",      width );
+    eda_config_set_integer (cfg, win_group, "window-height",     height);
+  }
+}
+
+#define DEFAULT_WINDOW_WIDTH  1000
+#define DEFAULT_WINDOW_HEIGHT 600
+
+/*! \brief Restore Window Geometry and Cursor
+ *  \par Function Description
+ *  This functions retrieves the given window size and position from the
+ *  key file and sets the given window to the retrived values.
+ *
+ *  \param [in] MainWindow  Gattrib toplevel Window.
+ */
+void x_window_restore_settings(GtkWidget *MainWindow)
+{
+  GtkWindow  *window;
+  EdaConfig  *cfg;
+  GError     *err        = NULL;
+  const char *group_name = "gattrib";
+  bool        xy_error   = FALSE;
+
+  int x, y, width, height;
+
+  u_log_message(_("Retrieving main Window geometry and settings.\n"));
+
+  window = GTK_WINDOW(MainWindow);
+  cfg    = eda_config_get_user_context ();
+
+  x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
+  if (err != NULL) {
+    fprintf(stderr, "Error retrieving user configuration: '%s'\n", err->message);
+    g_clear_error (&err);
+    xy_error = TRUE;
+  }
+  y = eda_config_get_integer (cfg, group_name, "window-y-position", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    xy_error = TRUE;
+  }
+
+  width  = eda_config_get_integer (cfg, group_name, "window-width", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+  height = eda_config_get_integer (cfg, group_name, "window-height", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  if (xy_error)
+    gtk_window_set_position(window, GTK_WIN_POS_CENTER);
+  else
+    gtk_window_move (window, x, y);
+
+  /* If, for any reason, we pass a zero value to gtk_window_resize an error
+   * will be generated. We double check these as fail safe because the above
+   * conditionals only set default values if an error occurred retrieving
+   * settings, so...*/
+  if (width == 0 ) {
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+  if (height == 0) {
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  gtk_window_resize (window, width, height);
+}
+
 /*! \brief Initializes the Main Window
  * \par Function Description
  * This function creates and initializes the Main window, calling
@@ -155,8 +252,8 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
  */
 void x_window_init()
 {
-  GtkWidget *main_vbox;
-  GtkRequisition request;
+  GtkWidget      *main_vbox;
+  GtkRequisition  request;
 
   /* Set default icon */
   x_window_set_default_icon();
@@ -164,7 +261,9 @@ void x_window_init()
   /*  window is a global declared in globals.h.  */
   main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
-  gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);
+  geda_atexit(x_window_save_settings, main_window);
+
+  x_window_restore_settings(main_window);
 
   GEDA_SIGNAL_CONNECT (main_window, "delete_event",
                        GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
@@ -344,7 +443,7 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
  *       containing the toolbar.
  */
 void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
-                                       GtkWindow *main_window)
+                                       GtkWindow       *main_window)
   {
   bool show = gtk_toggle_action_get_active(action);
   if(show)
@@ -358,11 +457,12 @@ void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
 /*!
  * \brief View toogle standard toolbar
  * \par Function Description
- *      This function toggles the visibility of the Standard toobar.
+ *  This function toggles the visibility of the Standard toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar
  */
-void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
+void x_window_standard_toolbar_toggle(GtkToggleAction *action,
+                                      GtkWindow       *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
   if(show)

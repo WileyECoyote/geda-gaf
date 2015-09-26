@@ -149,7 +149,7 @@ enum {
   LAST_SIGNAL
 };
 
-static guint gattrib_dialog_signals[ LAST_SIGNAL ] = { 0 };
+static unsigned int gattrib_dialog_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *gattrib_dialog_parent_class = NULL;
 
 static GKeyFile *dialog_geometry = NULL;
@@ -164,7 +164,7 @@ static GKeyFile *dialog_geometry = NULL;
  *
  *  \param [in] user_data unused
  */
-static void save_geometry_to_file(void * user_data)
+static void save_geometry_to_file(void *user_data)
 {
   char *data, *file;
 

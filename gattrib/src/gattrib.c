@@ -164,28 +164,28 @@ void geda_atexit(geda_atexit_func func, void* data)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief GTK callback to quit the program.
- *  \par Function Description
- * This is called when the user quits the program using the UI. The
- * callback is attached to the GTK window_delete event in
- * x_window_init() and attached to the File->Quit menu item in
- * x_window_create_menu().  On execution, the function checks for
- * unsaved changes before calling gattrib_quit() to quit the program.
- *
- *  \return value 0 to the shell to denote a successful quit.
- */
-bool gattrib_really_quit(void)
-{
-  if (sheet_head->CHANGED == TRUE) {
-    x_dialog_unsaved_data();
-  } else {
-    gattrib_quit(0);
-  }
 
-  return TRUE;
+/*! \brief Save user config on exit.
+ *  \par Function Description
+ *  Try to save the user configuration to disk when gattrib exits.
+ */
+void gattrib_save_user_config (void)
+{
+  EdaConfig *cfg = eda_config_get_user_context ();
+  GError    *err = NULL;
+
+  eda_config_save (cfg, &err);
+
+  if (err != NULL) {
+    fprintf (stderr, _("Failed to save user configuration to '%s': %s."),
+                        eda_config_get_filename (cfg),
+                        err->message);
+    g_clear_error (&err);
+  }
 }
 
 /*------------------------------------------------------------------*/
+
 /*! \brief Quit the program.
  *
  *  Unconditionally quit gattrib. Flushes caches and I/O channels,
@@ -215,16 +215,45 @@ int gattrib_quit(int return_code)
   s_clib_free();
   s_slib_free();
   /* s_rename_destroy_all(); */
+
 #ifdef DEBUG
   fflush(stderr);
   fflush(stdout);
   printf("In gattrib_quit, calling gtk_main_quit()\n");
 #endif
+
+  gattrib_save_user_config();
+
   gtk_main_quit();
   exit(return_code);
 }
 
 /*------------------------------------------------------------------*/
+
+/*! \brief GTK callback to quit the program.
+ *  \par Function Description
+ * This is called when the user quits the program using the UI. The
+ * callback is attached to the GTK window_delete event in
+ * x_window_init() and attached to the File->Quit menu item in
+ * x_window_create_menu().  On execution, the function checks for
+ * unsaved changes before calling gattrib_quit() to quit the program.
+ *
+ *  \return value 0 to the shell to denote a successful quit.
+ */
+bool gattrib_really_quit(void)
+{
+  if (sheet_head->CHANGED == TRUE) {
+    x_dialog_unsaved_data();
+  }
+  else {
+    gattrib_quit(0);
+  }
+
+  return TRUE;
+}
+
+/*------------------------------------------------------------------*/
+
 /*! \brief The "real" main for gattrib.
  *
  * This is the main program body for gattrib. A pointer to this
@@ -271,6 +300,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
   }
 #endif
 
+  gtk_init(&argc, &argv);
+
   /* Initialize gEDA stuff */
   libgeda_init();
 
@@ -297,8 +328,6 @@ void gattrib_main(void *closure, int argc, char *argv[])
   pr_current = geda_toplevel_new(); /* geda_toplevel_new is in Libgeda */
 
   i_vars_set(pr_current);
-
-  gtk_init(&argc, &argv);
 
   x_window_init();
 
@@ -380,5 +409,7 @@ int main(int argc, char *argv[])
 
   exit(0);   /* This is not real exit point.  Real exit is in gattrib_quit. */
 }
-void gattrib_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
+
+void gattrib_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData)
+{
 }
