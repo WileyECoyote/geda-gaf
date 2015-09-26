@@ -157,9 +157,6 @@ class ProgramParameters:
 
         # First pass through args.  Get switch settings & set program modes.
         for Option, Value in OptList:
-            if Option in ('-V', '--version'):
-                print Version
-                sys.exit(0)
 
             if Option in ('-f', '--force'):
                 self.ForceMode = True
