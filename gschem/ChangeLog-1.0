@@ -1,3 +1,21 @@
+2015-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Use DEFAULT_WINDOW_WIDTH and DEFAULT_WINDOW_HEIGHT
+      in x_window_restore_settings when values are zero instead of hard
+      coded constants.
+
+2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Replace Replace gtk_window_position with gtk_window_set_position:
+
+            * x_dialog.c
+            * x_edit_array.c
+            * x_edit_color.c
+            * x_edit_pin.c
+            * x_edit_cprop.c
+            * x_image.c
+            * x_settings.c
+
 2015-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_dialog.c: Replace gtk_container_border_width with
@@ -32,18 +50,6 @@
 
     * src/x/x_toolbars.c: Replace gtk_toolbar_set_orientation with
       macro SET_TOOLBAR_ORIENTATION.
-
-2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
-
-    * Replace Replace gtk_window_position with gtk_window_set_position:
-
-            * x_dialog.c
-            * x_edit_array.c
-            * x_edit_color.c
-            * x_edit_pin.c
-            * x_edit_cprop.c
-            * x_image.c
-            * x_settings.c
 
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -321,7 +321,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
   if (err != NULL) {
-    fprintf(stderr, "Error retrieving user configuration: '%s'", err->message);
+    fprintf(stderr, "Error retrieving user configuration: '%s'\n", err->message);
     g_clear_error (&err);
     xy_error = TRUE;
   }
@@ -352,10 +352,10 @@ void x_window_restore_settings(GschemToplevel *w_current)
    * conditionals only set default values if an error occurred retrieving
    * settings, so...*/
   if (width == 0 ) {
-    width = 800;
+    width = DEFAULT_WINDOW_WIDTH;
   }
   if (height == 0) {
-    height=600;
+    height = DEFAULT_WINDOW_HEIGHT;
   }
   gtk_window_resize (window, width, height);
 
