@@ -35,8 +35,12 @@ Options:
   -s, --size     -- Optional font size.
   -q, --quite    -- Suppress normal processing messages.
   -v, --verbose  -- Spews lots of info about what the prog is doing.
-  -o <outfile>   -- Specifies the name of the output sym file. When the output file
-                    name is not specified the input file will be over written.
+
+  -i, --input   <outfile> -- Specifies the name of the input sym file.
+
+  -o, --output  <outfile> -- Specifies the name of the output sym file. When the
+                             output file name is not specified the input file will
+                             be over written.
 
 Example: Set the footprint in all symbol files in the current directory to SO8:
 
