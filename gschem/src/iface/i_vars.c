@@ -769,7 +769,7 @@ void i_vars_init(GschemToplevel *w_current)
 }
 
 /*! \brief Save user config on exit.
- *  \par Function Dcoarseescription
+ *  \par Function Description
  *  When gschem exits, try to save the user configuration to disk.
  */
 void i_vars_atexit_save_user_config (void * user_data)
