@@ -15,9 +15,9 @@ VerboseMode=False
 #  This is the help string.
 Usage =\
 """
-gsym-attribute.py -- A gEDA-gaf Symbol File Attribute Manipulator Utility
-                     set or retrieve the value of a Text attribute in a
-                     symbol file
+gsym-attribute -- A gEDA-gaf Symbol File Attribute Manipulator Utility
+                  to set or retrieve the value of a Text attribute in a
+                  symbol file
 
 Usage: gsym-attribute [Options] [-a] attibute -i <inputfile> [[-o] <outputfile> ]
 """

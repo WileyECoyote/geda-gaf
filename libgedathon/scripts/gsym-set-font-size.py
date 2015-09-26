@@ -16,8 +16,8 @@ VerboseMode=False
 Usage =\
 """
 gsym-set-font-size -- A gEDA-gaf Symbol File Utility
-                     set the font size of Text attributes in a symbol file
-                     to default values unless otherwise specified
+                      to set the font size of Text attributes in a symbol file
+                      to default values unless otherwise specified
 
 Usage: gsym-set-font-size [Options] -i <inputfile> [[-o] <outputfile> ]
 """

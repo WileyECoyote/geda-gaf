@@ -15,11 +15,11 @@ VerboseMode=False
 #  This is the help string.
 Usage =\
 """
-gsym-set-visibility.py --  -- A gEDA-gaf Symbol File Utility
-                     set the Visibility of Text attributes in a symbol file
-                     to default values unless otherwise specified
+gsym-set-visibility -- A gEDA-gaf Symbol File Utility
+                       to set the Visibility of Text attributes in a symbol file
+                       to default values unless otherwise specified
 
-Usage: gsym-set-visibility.py [Options] -i <inputfile> [[-o] <outputfile> ]
+Usage: gsym-set-visibility [Options] -i <inputfile> [[-o] <outputfile> ]
 """
 
 Help =\
