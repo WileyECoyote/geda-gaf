@@ -195,35 +195,6 @@ int gtk_radio_group_get_active(GSList *RadioGroupList) {
   return ((length - 1) - active);
 }
 
-/* You would have thought . . . */
-void gtk_radio_group_set_active(GSList *RadioGroupList, int value)
-{
-  GtkToggleButton *button;
-  int length;
-  int index;
-  int pos = GPOINTER_TO_UINT(value);
-
-  length = g_slist_length (RadioGroupList);
-
-  /* new buttons are *prepended* to the list, so buttons added as
-   * first have last position in the list and using glist reverse
-   * confuses gtk */
-
-  index = (length - 1) - pos;
-
-  if (index < 0 || index >= length) return;
-
-  button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, index));
-  if (button == NULL) return;
-
-  if (gtk_toggle_button_get_active (button) == FALSE)
-  {
-    gtk_toggle_button_set_active (button, TRUE);
-  }
-
-  return;
-}
-
 /*! \brief function load_combo_str
  *  \par Function Description
  *  Loads GTK Combobox with strings from char array.

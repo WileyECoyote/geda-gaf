@@ -326,7 +326,6 @@ int  generate_rc(GschemToplevel *w_current, const char *rcname);
 /* Defined in x_settings_dialog.c */
 bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);
 int  gtk_radio_group_get_active(GSList *RadioGroupList);
-void gtk_radio_group_set_active(GSList *RadioGroupList, int value);
 
 void initialize_tree_View(GtkTreeView *list, int list_item, int nColumns, int DataType);
 void load_combo_str( GtkComboBox *combo, const char *list[]);
