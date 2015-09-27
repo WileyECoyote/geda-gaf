@@ -1290,7 +1290,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
   GtkToggleButton *button;
   int length;
   int index;
-  int pos = GPOINTER_TO_UINT(which_bulb);
+  unsigned pos = (unsigned int)(long)which_bulb;
 
   length = g_slist_length (group_list);
 
@@ -1335,7 +1335,7 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
   int length;
   int target;
   int index;
-  int pos = GPOINTER_TO_UINT(which_bulb);
+  int pos = (unsigned int)(long)which_bulb;
 
   length = g_slist_length (group_list);
 

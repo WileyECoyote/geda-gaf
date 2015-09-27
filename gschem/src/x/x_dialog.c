@@ -272,7 +272,7 @@ void bulb_group_set_active(GSList *RadioGroupList, int value)
   GtkToggleButton *button;
   int length;
   int index;
-  int pos = GPOINTER_TO_UINT(value);
+  unsigned int pos = (unsigned int)(long)value;
   int j;
 
   /* Get number of buttons in group */
