@@ -128,7 +128,8 @@ typedef struct
 #define SetCombo( name, var)  gtk_combo_box_set_active (GTK_COMBO_BOX(name##Combo), var);
 #define SetSwitch( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Switch), var);
 #define SetRadio( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Radio), var);
-#define SetRadioGroup(group, var) gtk_radio_group_set_active(group##RadioGroup, var);
+
+#define SetRadioGroup(group, var) geda_bulb_group_set_active_index(group##RadioGroup, var);
 #define SetBulbGroup(group, var) bulb_group_set_active(group##RadioGroup, var);
 #define SetSpin( name, var) gtk_spin_button_set_value (GTK_SPIN_BUTTON (name##Spin), var);
 

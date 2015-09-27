@@ -1,3 +1,10 @@
+2015-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_dialog_controls.h: Replace gtk_radio_group_set_active with
+      geda_bulb_group_set_active_index, which works the same way, nothing that
+      there really was no gtk_radio_group_set_active excepet what was defined
+      in gschem.
+
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/guile-logo.svg: Add new svg file for to generate bitmap for
