@@ -213,20 +213,23 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
       }
       alignment = LOWER_LEFT; /* older versions didn't have this */
       num_lines = 1; /* only support a single line */
-  } else {
+  }
+  else {
     if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d\n", &type, &x, &y,
-      &color, &size,
-      &visibility, &show_name_value,
-      &angle, &alignment) != 9) {
+               &color, &size,
+               &visibility, &show_name_value,
+               &angle, &alignment) != 9)
+    {
       g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
-    return NULL;
-      }
-      num_lines = 1; /* only support a single line */
+      return NULL;
+    }
+    num_lines = 1; /* only support a single line */
   }
 
   if (size == 0) {
     u_log_message(_("Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"),
                   type, x, y, color, size, visibility, show_name_value, angle, alignment);
+    size = DEFAULT_TEXT_SIZE;
   }
 
   switch(alignment) {
@@ -258,7 +261,9 @@ o_text_read (const char *first_line, TextBuffer *tb, unsigned int release_ver,
   /* g_assert(num_lines && num_lines > 0) */
 
   textstr = g_string_new ("");
+
   for (i = 0; i < num_lines; i++) {
+
     const char *line;
 
     line = s_textbuffer_next_line (tb);
