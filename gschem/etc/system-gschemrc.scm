@@ -1696,11 +1696,11 @@
 (map-keys "T C"            "tools-show-console")
 (map-keys "T G"            "tools-guile-path")
 (map-keys "T O"            "tools-show-coordinates")
-(map-keys "T T"            "tools-translate")
+;; see scheme/gschem/gschem-tools-menu.scm
 (map-keys "T <Shift>colon" "tools-invoke-macro")
-(map-keys "T P"            "tools_update")
 (map-keys "T E"            "tools-embed")
 (map-keys "T U"            "tools-unembed")
+(map-keys "T P"            "tools_update")
 
 (map-keys "U"             "edit-undo")
 (map-keys "<Shift>U"      "edit-undo")
@@ -2194,7 +2194,7 @@
         (,(N_ "_Attribute...")     add-attribute           #f                 ,(N_ "Add attribute"))
         (,(N_ "_Text...")          add-text                #f                 ,(N_ "Add text"))
 
-        ("SEPARATOR"              #f                      #f)
+        ("SEPARATOR"              #f                       #f)
         (,(N_ "A_rc")              add-arc                 "geda-arc"         ,(N_ "Create arc"))
         (,(N_ "_Box")              add-box                 "geda-box"         ,(N_ "Add box"))
         (,(N_ "C_ircle")           add-circle              "geda-circle"      ,(N_ "Add circle"))
@@ -2254,12 +2254,9 @@
         (,(N_ "G_uile Path...")           tools-guile-path       "guile-logo"       ,(N_ "View or manage guile path"))
 
         ("SEPARATOR"                      #f                     #f)
-        (,(N_ "Symbol _Translate...")     tools-translate        "gtk-convert"      ,(N_ "Reset the X-Y Zero point"))
-        (,(N_ "Update Component")         tools_update           "gtk-refresh"      ,(N_ "Reload definition of selected component"))
-
-        ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))
         (,(N_ "Unembed Component/Picture") tools-unembed         "geda-bed"         ,(N_ "Unembed a component or image object"))
+        (,(N_ "Update Component")          tools_update          "gtk-refresh"      ,(N_ "Reload definition of selected component"))
       )
 )
 

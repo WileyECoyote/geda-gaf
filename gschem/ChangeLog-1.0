@@ -1,3 +1,12 @@
+2015-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Revise comments, remove "tools-translate" items,
+      modify menu to relocate "tools_update" after embed/unembed.
+
+    * scheme/gschem/gschem-tools-menu.scm: Add "Tools/Symbols" submenu item,
+      with actions tools-translate and tools:check-symbol as submenu items
+      under the "Tools/Symbols" submenu.
+
 2015-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_settings_dialog.h: Remove function gtk_radio_group_get_active.

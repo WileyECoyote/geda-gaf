@@ -13,7 +13,6 @@
 ;     (load-from-path "gschem/gschem-export-menu.scm")
 ;;
 
-
 (use-modules (geda page)
              (gschem action))
 
@@ -34,4 +33,3 @@
 (add-menu "_File/_Export" export:menu-items)
 ;; ==================================================================
 ;;
-

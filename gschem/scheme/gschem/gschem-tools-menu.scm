@@ -202,14 +202,16 @@
         (tools:open-editor? fout)
 ))))
 
-(map-keys "T S"            "tools:check-symbol")
+(map-keys "T S"    "tools:check-symbol")
+(map-keys "T T"    "tools-translate")
 
 ;; ==================================================================
 (define tools:menu-items
 ;;
 ;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("Check Symbol"         tools:check-symbol         "geda-inspect-grn"   "Run gsymcheck")
+  '(
+    ("_Symbols"                 #f                     "geda-component"     "Tool for symbol files")
     ("SEPARATOR"                #f                     #f)
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
     ("Run DRC"              tools:run-drc2             "geda-check-org"     "Launch design rule checker")
@@ -227,6 +229,18 @@
   )
 )
 
-(add-menu "_Tools" tools:menu-items)
 ;; ==================================================================
+(define tools:symbol-items
 ;;
+;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
+;;
+  '(
+    ("Symbol _Translate..."  tools-translate           "gtk-convert"       "Reset the X-Y Zero point")
+    ("Check Symbol"          tools:check-symbol        "geda-inspect-grn"  "Run gsymcheck")
+  )
+)
+
+(add-menu "_Tools" tools:menu-items)
+(add-menu "_Tools/_Symbols" tools:symbol-items)
+
+;; ==================================================================
