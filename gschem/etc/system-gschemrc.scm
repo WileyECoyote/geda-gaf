@@ -50,7 +50,7 @@
 ; background. The dark background is the original look.
 ;
 ; Note: color-map-make-friendly display-color-map above must be enabled
-;       these color schemes to work.
+;       for these color schemes to work.
 (primitive-load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
 ;(primitive-load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
 ;(primitive-load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
@@ -61,7 +61,7 @@
 ; Controls if images (png, jpg, etc.) are color (enabled) or black/white
 ; (disabled). If disabled images will be generated in black and white.
 ; When enabled, colorable image types will be generated using the active
-; color map scheme, (which could be black/white).
+; color map scheme, which could be black/white.
 ;
 ;(image-color "enabled")
 ;(image-color "disabled")
