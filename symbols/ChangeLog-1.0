@@ -1,4 +1,8 @@
-2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
+2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * serial/MIC2551ABTS.sym: Add symbol Single chip transceiver,USB 2.0.
+
+2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/ldo/NCP1117-DTA-1.sym: Add symbol VOLTAGE REGULATOR,LDO,1.0A,
       ADJ,0-125°C,DPAK.
