@@ -1,3 +1,10 @@
+2015-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/opamps/LMV710M-N-2.sym: Add symbol; Operational Amplifier,RRIO,2.7Volt
+
+    * ti/opamps/LMV710M-N-2.sym: Add symbol; Operational Amplifier,RRIO,2.7Volt
+      with inverted inputs.
+
 2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * serial/MIC2551ABTS.sym: Add symbol Single chip transceiver,USB 2.0.
