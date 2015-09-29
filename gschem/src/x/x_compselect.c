@@ -3123,8 +3123,9 @@ compselect_class_init (CompselectClass *class)
   params = g_param_spec_boolean ("hidden", "", "", FALSE, G_PARAM_READWRITE);
   g_object_class_install_property ( gobject_class, PROP_HIDDEN, params);
 
-  params = g_param_spec_int ("view", _("active view"),
-                             _("Active sheet of the notebook widget"),
+  params = g_param_spec_int ("view",
+                           _("active view"),
+                           _("Active sheet of the notebook"),
                              IN_USE_TAB, LOCAL_TAB, IN_USE_TAB,
                              G_PARAM_READABLE);
 
@@ -3133,11 +3134,11 @@ compselect_class_init (CompselectClass *class)
 
   /*!
   * CompselectClass:focus-filter:
-  * Sets the initial focus to the filter entry widget widget.
+  * Sets the initial focus to the filter entry widget.
   */
   params = g_param_spec_boolean ("focus-filter",
                                _("Focus Filter"),
-                               _("When true, inital focus will be the filter entry, otherwise the Component Tree"),
+                               _("When true, initial focus will be the filter entry, otherwise the Component Tree"),
                                  FALSE,
                                  G_PARAM_READABLE);
 
@@ -3173,7 +3174,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 
     geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu );
 
-    geda_menu_button_set_tooltip_text(stylemenu, _("Re-scan component libraries"));
+    geda_menu_button_set_tooltip_text(stylemenu, _("Rescan component libraries"));
 
     geda_menu_button_set_arrow_tooltip_text(stylemenu, _("Set style filter"));
 

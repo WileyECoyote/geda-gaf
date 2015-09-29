@@ -1,3 +1,7 @@
+2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Remove extra "widget", remove hyphen from "Rescan".
+
 2015-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Revise comments, remove "tools-translate" items,
