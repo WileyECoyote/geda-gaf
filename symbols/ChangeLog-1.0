@@ -1,3 +1,17 @@
+2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 9 symbol; Operational Amplifiers, RRIO, 2.7Volt:
+
+        * linear/opamps/LMV321SE-1.sym
+        * linear/opamps/LMV321SE-2.sym
+        * linear/opamps/LMV321W-1.sym
+        * linear/opamps/LMV321W-2.sym
+        * linear/opamps/LMV324TSG-N-1.sym
+        * linear/opamps/LMV358M8G-1.sym
+        * linear/opamps/LMV358M8G-2.sym
+        * linear/opamps/LMV358SG-1.sym
+        * linear/opamps/LMV358SG-2.sym
+
 2015-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/opamps/LMV710M-N-2.sym: Add symbol; Operational Amplifier,RRIO,2.7Volt
