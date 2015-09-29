@@ -141,12 +141,12 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         object_buffer[DND_BUFFER] = o_read_buffer (toplevel,
                                                    object_buffer[DND_BUFFER],
                                                    buffer,
-                                                   -1, "Drag&Drop", &err);
+                                                   -1, _("Drag & Drop"), &err);
 
         /* Check for errors */
         if (err) {
           char *errmsg = u_string_sprintf ( _("An error occurred while receiving dropped data: %s."), err->message);
-          titled_pango_error_dialog ( _("<b>Data error.</b>"), errmsg, _("Drag&Drop failed") );
+          titled_pango_error_dialog ( _("<b>Data error.</b>"), errmsg, _("Drag & Drop failed") );
           GEDA_FREE(errmsg);
           g_error_free(err);
           dnd_success = FALSE;
@@ -452,7 +452,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
 
   if (!ThisDialog) {
 
-    ThisDialog = gschem_dialog_new_with_buttons(_("Coords"),
+    ThisDialog = gschem_dialog_new_with_buttons(_("Coordinates"),
                          GTK_WINDOW(w_current->main_window),
                                      GSCHEM_MODELESS_DIALOG,
                                  IDS_COORDINATES, w_current,

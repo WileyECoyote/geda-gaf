@@ -1,6 +1,12 @@
 2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Revise text in messages to improve translatability.
+
     * src/x/x_compselect.c: Remove extra "widget", remove hyphen from "Rescan".
+
+    * src/x/x_coord.c: Add spaces in "Drag & Drop"
+
+    * src/x/x_dnd.c: Add spaces in "Drag & Drop"
 
 2015-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -25,7 +31,7 @@
 
 2015-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Replace Replace gtk_window_position with gtk_window_set_position:
+    * Replace gtk_window_position with gtk_window_set_position:
 
             * x_dialog.c
             * x_edit_array.c

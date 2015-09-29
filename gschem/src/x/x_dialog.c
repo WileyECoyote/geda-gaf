@@ -411,7 +411,7 @@ void about_dialog (GschemToplevel *w_current)
   GError     *error = NULL;
   GtkWidget  *Dialog;
 
-  version_string = u_string_sprintf (_("%s (g%.7s)"),
+  version_string = u_string_sprintf ("%s (g%.7s)",
                                      PACKAGE_DOTTED_VERSION,
                                      PACKAGE_GIT_COMMIT);
 
