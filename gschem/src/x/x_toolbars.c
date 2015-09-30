@@ -1078,7 +1078,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
 
   GtkObject *HandleBarObj = (GtkObject *)HandleBar;
   g_signal_connect(HandleBarObj, "button_press_event",
-                    (GtkSignalFunc) On_mouse_button_press,
+                    (GCallback) On_mouse_button_press,
                     w_current);
 
   GEDA_OBJECT_SET_DATA(HandleBar, CloseButton, "CloseButton");
