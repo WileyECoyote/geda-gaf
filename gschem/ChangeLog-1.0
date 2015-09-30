@@ -1,3 +1,8 @@
+2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_image.c: Replace gtk_container_set_border_width and gtk_box_set
+      _spacing with g_object_set property setters.
+
 2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * Revise text in messages to improve translatability.

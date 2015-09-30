@@ -787,17 +787,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   fprintf(stderr, "%s: configuring the dialog window\n", __func__);
 #endif
 
-  gtk_dialog_set_default_response((GtkDialog*) ThisDialog,
-      GEDA_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response((GtkDialog*) ThisDialog, GEDA_RESPONSE_ACCEPT);
 
-  gtk_window_set_position (GTK_WINDOW (ThisDialog),
-      GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
-  gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),
-      DIALOG_BORDER_WIDTH);
+  g_object_set (ThisDialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
-  gtk_box_set_spacing(GTK_BOX(((GtkDialog*)ThisDialog)->vbox),
-      DIALOG_V_SPACING);
+  g_object_set ( ((GtkDialog*)ThisDialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 
   g_object_set (ThisDialog, "visible", TRUE, NULL);
 
