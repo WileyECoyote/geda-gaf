@@ -1,10 +1,19 @@
 2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add 4 symbols; 1.5A Dual High-Speed Power MOSFET Drivers:
+
+        * microchip/TC4427-1.sym
+        * microchip/TC4427A-1.sym
+        * microchip/TC4428-1.sym
+        * microchip/TC4428A-1.sym
+
+2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * xilinx/XC9572-PC44-1.sym: Add symbol Xilinx,CPLD,PLCC44.
 
 2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Add 9 symbol; Operational Amplifiers, RRIO, 2.7Volt:
+    * Add 9 symbols; Operational Amplifiers, RRIO, 2.7Volt:
 
         * linear/opamps/LMV321SE-1.sym
         * linear/opamps/LMV321SE-2.sym
