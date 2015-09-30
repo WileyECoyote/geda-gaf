@@ -1,5 +1,14 @@
 2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add 4 symbols; Operational Amplifiers, RRIO, 2.7Volt:
+
+        * ti/opamps/LMV711-1.sym
+        * ti/opamps/LMV711-2.sym
+        * ti/opamps/LMV715-1.sym
+        * ti/opamps/LMV715-2.sym
+
+2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * Add 4 symbols; 1.5A Dual High-Speed Power MOSFET Drivers:
 
         * microchip/TC4427-1.sym
