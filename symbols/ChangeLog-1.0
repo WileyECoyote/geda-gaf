@@ -1,3 +1,7 @@
+2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * xilinx/XC9572-PC44-1.sym: Add symbol Xilinx,CPLD,PLCC44.
+
 2015-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 9 symbol; Operational Amplifiers, RRIO, 2.7Volt:
