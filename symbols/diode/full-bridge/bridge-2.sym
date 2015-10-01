@@ -1,4 +1,4 @@
-v 20050820 1
+v 20150823 2
 P 0 700 200 700 1 0 0
 {
 T 150 750 5 8 1 1 0 6 1
@@ -24,9 +24,9 @@ pintype=pas
 P 1000 700 1200 700 1 0 1
 {
 T 1050 750 5 8 1 1 0 0 1
-pinnumber=4
+pinnumber=3
 T 1050 650 5 8 0 1 0 2 1
-pinseq=4
+pinseq=3
 T 950 700 9 8 0 1 0 6 1
 pinlabel=-
 T 950 700 5 8 0 1 0 8 1
@@ -35,9 +35,9 @@ pintype=pas
 P 1000 200 1200 200 1 0 1
 {
 T 1050 250 5 8 1 1 0 0 1
-pinnumber=3
+pinnumber=4
 T 1050 150 5 8 0 1 0 2 1
-pinseq=3
+pinseq=4
 T 950 200 9 8 0 1 0 6 1
 pinlabel=+
 T 950 200 5 8 0 1 0 8 1
@@ -53,13 +53,13 @@ A 300 200 50 0 180 3 0 0 0 -1 -1
 A 400 200 50 180 180 3 0 0 0 -1 -1
 T 200 1000 8 10 1 1 0 0 1
 refdes=U?
-T 200 1200 5 10 0 0 0 0 1
-device=BRIDGE
-T 200 1800 5 10 0 0 0 0 1
-description=bridge rectifier
-T 200 1600 5 10 0 0 0 0 1
-numslots=0
 T 200 1400 5 10 0 0 0 0 1
+device=BRIDGE
+T 200 2000 5 10 0 0 0 0 1
+description=bridge rectifier
+T 200 1800 5 10 0 0 0 0 1
+numslots=0
+T 200 1600 5 10 0 0 0 0 1
 symversion=0.1
-T 200 1700 8 10 0 1 0 0 1
+T 200 1200 9 10 0 1 0 0 1
 footprint=unknown
