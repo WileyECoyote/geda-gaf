@@ -151,7 +151,7 @@ typedef struct
 #define HOOKUP_GEDA_OBJECT(name, type) \
     gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
     g_object_set_data_full (G_OBJECT (ThisDialog), WIDGET(name), \
-    g_object_ref(name##type), (GDestroyNotify) gtk_object_unref);
+    g_object_ref(name##type), (GDestroyNotify) g_object_unref);
 
 #define HOOKUP_GEDA_OBJECT_NO_REF(name, type) \
     gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \

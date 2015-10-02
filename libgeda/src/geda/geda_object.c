@@ -175,7 +175,6 @@ geda_object_get_property (GObject *gobject, unsigned int property_id,
 }
 
 /*! \brief GedaObject property setter function
- *
  *  \par Function Description
  *  Setter function for GedaAction's GObject properties,
  *  "settings-name" and "toplevel".
@@ -239,7 +238,6 @@ int geda_object_get_next_sid(void)
 }
 
 /*! \brief GedaType instance initialiser for a Geda Object
- *
  *  \par Function Description
  *  GedaType instance initialiser for an Object, initializes a new empty
  *  Object by setting pointers to NULL and numbers to zero or default
@@ -362,7 +360,6 @@ static void geda_object_finalize(GObject *gobject)
 }
 
 /*! \brief GedaType class initialiser for Object
- *
  *  \par Function Description
  *  GedaType class initialiser for Object. We override our parents
  *  virtual class methods as needed and register our GObject signals.
@@ -461,7 +458,6 @@ static void geda_object_class_init(void *g_class, void *class_data)
 }
 
 /*! \brief Function to retrieve Object's GedaType identifier.
- *
  *  \par Function Description
  *  Function to retrieve Object's Type identifier. On first call, the
  *  function registers the Object in the GedaType system. Subsequently
@@ -491,7 +487,6 @@ GedaType geda_gobject_get_type(void)
 }
 
 /*! \brief Create a new Object.
- *
  *  \par Function Description
  *  Returns a pointer to a new Object object.
  *
@@ -510,7 +505,6 @@ Object *geda_object_new (int type, char const *name)
 }
 
 /*! \brief Determine if object is a Geda Object.
- *
  *  \par Function Description
  *  Returns true if the argument is a Geda Object.
  *  All of the graphical and connection type Geda objects
@@ -544,22 +538,39 @@ bool is_a_geda_object (const void *object)
   return answer;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Decrement the GObject Reference Count
+/*! \brief Increment the GedaObject Reference Count
  *  \par Function Description
+ *  Increases the GedaObject's reference count by one
  *
+ * \param [in,out] object Pointer to a GedaObject.
+ *
+ * \returns void pointer to a GedaObject
+ *
+ * \sa geda_object_unref
+ */
+void *geda_object_ref(Object *object)
+{
+  g_return_val_if_fail (GEDA_IS_OBJECT(object), NULL);
+  return g_object_ref ((GObject*)object);
+}
+
+/*! \brief Decrement the GedaObject Reference Count
+ *  \par Function Description
+ *  decreases the GedaObject's reference count;
+ *
+ * \param [in] object  Pointer to a GedaObject.
+ *
+ * \sa geda_object_ref
  */
 void geda_object_unref(Object *object)
 {
   g_return_if_fail (GEDA_IS_OBJECT(object));
-
   g_object_unref ((GObject*)object);
-
 }
 
 /*! \brief Notify weak reference watchers that a structure is dead.
- * \par Function Description
- * For each entry in \a weak_refs, call notify function with the dead
+ *  \par Function Description
+ *  For each entry in \a weak_refs, call notify function with the dead
  * pointer \a dead_ptr and the entry's specified user data, and free
  * \a weak_refs. Should be called during destruction of an structure
  * that allows weak references.
@@ -577,9 +588,7 @@ geda_object_weakref_notify (Object *object)
 }
 
 /*! \brief Add a weak reference watcher to an Object
- *
  *  \par Function Description
- *
  *   Adds the weak reference callback \a notify_func to \a Object.
  * When \a Object is destroyed, the \a notify_func will be called
  * with two arguments: the \a Object, and the \a user_data.
@@ -589,7 +598,7 @@ geda_object_weakref_notify (Object *object)
  *
  * \sa object_weak_unref
  *
- * \param [in,out] object       Object  to weak-reference.
+ * \param [in,out] object     Object  to weak-reference.
  * \param [in] notify_func    Weak reference notify function.
  * \param [in] user_data      Data to be passed to \a notify_func.
  */
@@ -603,10 +612,8 @@ void geda_object_weak_ref (Object *object, WeakNotifyFunc notify_func, void *use
 }
 
 /*! \brief Remove a weak reference watcher from a Object.
- * \par Function Description
- * Removes the weak reference callback \a notify_func from \a Object.
- *
- * \sa object_weak_ref()
+ *  \par Function Description
+ *  Removes the weak reference callback \a notify_func from \a Object.
  *
  * \note This function is for legacy purposes; since Object is
  *       now a GObject, just use g_object_weak_unref instead!
@@ -614,6 +621,8 @@ void geda_object_weak_ref (Object *object, WeakNotifyFunc notify_func, void *use
  * \param [in,out] object        Object to remove weak-reference function.
  * \param [in]     notify_func Notify function to search for.
  * \param [in]     user_data   Data to to search for.
+ *
+ * \sa object_weak_ref()
  */
 void geda_object_weak_unref (Object *object, WeakNotifyFunc notify_func, void *user_data)
 {
@@ -625,8 +634,8 @@ void geda_object_weak_unref (Object *object, WeakNotifyFunc notify_func, void *u
 }
 
 /*! \brief Add a weak pointer to a Object.
- * \par Function Description
- * Adds the weak pointer at \a weak_pointer_loc to \a object. The
+ *  \par Function Description
+ *  Adds the weak pointer at \a weak_pointer_loc to \a object. The
  * value of \a weak_pointer_loc will be set to NULL when \a object is
  * destroyed.
  *
@@ -642,8 +651,8 @@ void geda_object_add_weak_ptr (Object *object, void *weak_pointer_loc)
 }
 
 /*! \brief Remove a weak pointer from an Object.
- * \par Function Description
- * Removes the weak pointer at \a weak_pointer_loc from \a object.
+ *  \par Function Description
+ *  Removes the weak pointer at \a weak_pointer_loc from \a object.
  *
  * \sa object_add_weak_ptr()
  *
@@ -657,9 +666,8 @@ void geda_object_remove_weak_ptr (Object *object, void *weak_pointer_loc)
 }
 
 /*! \brief Get an object's parent Page.
- *
- * \par Function Description
- * Returns the Page structure which owns \a object. If \a object is
+ *  \par Function Description
+ *  Returns the Page structure which owns \a object. If \a object is
  * not currently associated with a Page, returns NULL. If \a object is
  * part of a compound object, recurses upward.
  *

@@ -1,3 +1,13 @@
+2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/prototype_priv.h: Remove declaration for geda_object_unref.
+
+    * include/libgeda/geda_object.h: Add declaration for geda_object_ref and
+      geda_object_unref.
+
+    * src/geda/geda_object.c: Add function geda_object_ref, edit doxygen
+      comments.
+
 2015-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_text_basic.c: Set default text size using DEFAULT_TEXT_SIZE
