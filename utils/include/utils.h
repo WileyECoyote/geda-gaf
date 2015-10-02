@@ -1,5 +1,5 @@
 /*!
- * \file globals.h
+ * \file utils.h
  *
  * \brief Global Declarations and References for gschlas Program
  *

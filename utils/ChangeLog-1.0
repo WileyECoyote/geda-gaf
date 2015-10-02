@@ -1,3 +1,7 @@
+2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/include/utils.h: Rename globals.h->utils.h.
+
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/g_rc.c: Update file header, replace g_strcasecmp with

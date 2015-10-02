@@ -29,6 +29,6 @@
 
 #include <libgeda/libgeda.h>
 
-#include "globals.h"
+#include "utils.h"
 #include "prototype.h"
 #include <version.h>
