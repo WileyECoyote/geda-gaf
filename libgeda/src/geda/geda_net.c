@@ -44,17 +44,17 @@
 
 static GObjectClass *geda_net_parent_class = NULL;
 
-/*! \brief GedaType instance initialiser for Net
+/*! \brief GedaType instance initializer for Net
  *
  *  \par Function Description
- *  GedaType instance initialiser for Net, initializes a new empty
+ *  GedaType instance initializer for Net, initializes a new empty
  *  Net object by setting pointers to NULL and numbers to zero,
  *  the net PID variable is set to the next net index.
  *
  *  \param [in] instance The Net structure being initialized,
  *  \param [in] g_class  The Net class we are initializing.
  */
-static void geda_net_init(GTypeInstance *instance, void *g_class)
+static void geda_net_instance_init(GTypeInstance *instance, void *g_class)
 {
   Net    *net                = (Net*)instance;
   Line   *line               = &net->parent_instance;
@@ -118,10 +118,10 @@ static void geda_net_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_net_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Net
+/*! \brief GedaType class initializer for Net
  *
  *  \par Function Description
- *  GedaType class initialiser for Net. We override our parents
+ *  GedaType class initializer for Net. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Net class we are initialising
@@ -163,7 +163,7 @@ GedaType geda_net_get_type(void)
       NULL,                            // class_data
       sizeof(Net),
       0,                               // n_preallocs
-      geda_net_init                    // instance_init
+      geda_net_instance_init           // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_LINE, "Net", &info, 0);
   }

@@ -237,9 +237,9 @@ int geda_object_get_next_sid(void)
   return global_sid++;
 }
 
-/*! \brief GedaType instance initialiser for a Geda Object
+/*! \brief GedaType instance initializer for a Geda Object
  *  \par Function Description
- *  GedaType instance initialiser for an Object, initializes a new empty
+ *  GedaType instance initializer for an Object, initializes a new empty
  *  Object by setting pointers to NULL and numbers to zero or default
  *  values, the object SID variable is set to the next Object index.
  *
@@ -359,9 +359,9 @@ static void geda_object_finalize(GObject *gobject)
   /* Return to the child's finalizer */
 }
 
-/*! \brief GedaType class initialiser for Object
+/*! \brief GedaType class initializer for Object
  *  \par Function Description
- *  GedaType class initialiser for Object. We override our parents
+ *  GedaType class initializer for Object. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The Object we are initialising

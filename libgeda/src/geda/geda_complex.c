@@ -118,7 +118,7 @@ int geda_complex_bounds(Object *object)
   return result;
 }
 
-/*! \brief GedaType instance initialiser for Complex
+/*! \brief GedaType instance initializer for Complex
  *
  *  \par Function Description
  *  GedaType instance initializer for Complex, initializes a new empty
@@ -128,7 +128,7 @@ int geda_complex_bounds(Object *object)
  *  \param [in] instance The Complex structure being initialized,
  *  \param [in] g_class  The Complex class we are initializing.
  */
-static void geda_complex_init(GTypeInstance *instance, void *g_class)
+static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
 {
   Complex *complex      = (Complex*)instance;
   Object  *object       = &complex->parent_instance;
@@ -235,7 +235,7 @@ GedaType geda_complex_get_type(void)
       NULL,                            // class_data
       sizeof(Complex),
       0,                               // n_preallocs
-      geda_complex_init                // instance_init
+      geda_complex_instance_init       // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Complex", &info, 0);
   }

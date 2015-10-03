@@ -66,20 +66,20 @@ geda_picture_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief GedaType instance initialiser for Picture
+/*! \brief GedaType instance initializer for Picture
  *
  *  \par Function Description
- *  GedaType instance initialiser for Picture, initializes a new empty
+ *  GedaType instance initializer for Picture, initializes a new empty
  *  Picture object by setting pointers to NULL and numbers to zero,
  *  the picture PID variable is set to the next picture index.
  *
  *  \param [in] instance The Picture structure being initialized,
  *  \param [in]  g_class The Picture class we are initializing.
  */
-static void geda_picture_init(GTypeInstance *instance, void *g_class)
+static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
 {
-  Picture    *picture      = (Picture*)instance;
-  Object *object        = &picture->parent_instance;
+  Picture *picture      = (Picture*)instance;
+  Object  *object       = &picture->parent_instance;
 
   picture->pixbuf       = NULL;
   picture->file_content = NULL;
@@ -138,10 +138,10 @@ static void geda_picture_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_picture_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Picture
+/*! \brief GedaType class initializer for Picture
  *
  *  \par Function Description
- *  GedaType class initialiser for Picture. We override our parents
+ *  GedaType class initializer for Picture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Picture class we are initialising
@@ -173,6 +173,7 @@ static void geda_picture_class_init(void *g_class, void *class_data)
 GedaType geda_picture_get_type(void)
 {
   static GedaType type = 0;
+
   if (type == 0) {
 
     static const GTypeInfo info = {
@@ -184,7 +185,7 @@ GedaType geda_picture_get_type(void)
       NULL,                            // class_data
       sizeof(Picture),
       0,                               // n_preallocs
-      geda_picture_init                    // instance_init
+      geda_picture_instance_init       // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Picture", &info, 0);
   }

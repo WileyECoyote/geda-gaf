@@ -59,17 +59,17 @@ geda_box_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief Type instance initialiser for Box
+/*! \brief Type instance initializer for Box
  *
  *  \par Function Description
- *  Type instance initialiser for Box, initializes a new empty
+ *  Type instance initializer for Box, initializes a new empty
  *  Box object by setting pointers to NULL and numbers to zero,
  *  the box PID variable is set to the next box index.
  *
  *  \param [in] instance The Box structure being initialized,
  *  \param [in]  g_class The Box class we are initializing.
  */
-static void geda_box_init(GTypeInstance *instance, void *g_class)
+static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   Box    *box       = (Box*)instance;
   Object *object    = &box->parent_instance;
@@ -170,7 +170,7 @@ GedaType geda_box_get_type(void)
       NULL,                            // class_data
       sizeof(Box),
       0,                               // n_preallocs
-      geda_box_init                    // instance_init
+      geda_box_instance_init                    // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Box", &info, 0);
   }

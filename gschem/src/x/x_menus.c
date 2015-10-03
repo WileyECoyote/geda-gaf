@@ -240,7 +240,7 @@ static void x_menu_free_toggler (void *data_record, void *user_data)
  *  This function is called by gschem_quit to free each ToggleMenuData
  *  structure that was allocated for toggle menu items.
  */
-void x_menu_free_all()
+void x_menu_free_all(void)
 {
   lambda (MenuData *menu_data){
     g_slist_free (MENU_ITEMS_LIST);

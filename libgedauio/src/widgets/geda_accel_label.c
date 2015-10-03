@@ -315,14 +315,13 @@ substitute_underscores (char *str)
       *p = ' ';
 }
 
-
-/**
- * geda_accel_label_set_accel_string:
- * \param accel_label a #GedaAccelLabel
- * \param accel_string the accelerator string.
+/*! \brief Set Accelerator for a GedaAccelLabel
+ *  \par Function Description
+ *  This function Sets the accelerator string for this accelerator label.
  *
- * Sets the accelerator string for this accelerator label.
- **/
+ * \param accel_label  A #GedaAccelLabel object
+ * \param accel_string Pointer accelerator string.
+ */
 void
 geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
                                    const char     *accel_string)
@@ -393,10 +392,10 @@ geda_accel_label_class_init(void *g_class, void *class_data)
                                                         G_PARAM_READWRITE));
 }
 
-/*! \brief Type instance initialiser for GedaAccelLabel
+/*! \brief Type instance initializer for GedaAccelLabel
  *
  *  \par Function Description
- *  Type instance initialiser for GedaAccelLabel, initializes a new empty
+ *  Type instance initializer for GedaAccelLabel, initializes a new empty
  *  GedaAccelLabel object.
  *
  *  \param [in] instance The GedaAccelLabel structure being initialized,

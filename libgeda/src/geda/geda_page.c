@@ -173,10 +173,10 @@ geda_page_remove_all_objects(Page *page)
     page->_object_list = NULL;
 }
 
-/*! \brief GedaType instance initialiser for Page
+/*! \brief GedaType instance initializer for Page
  *
  *  \par Function Description
- *  GedaType instance initialiser for Page, initializes a new empty
+ *  GedaType instance initializer for Page, initializes a new empty
  *  Page object by setting pointers to NULL and numbers to zero,
  *  the page PID variable is set to the next page index.
  *
@@ -289,10 +289,10 @@ static void geda_page_finalize(GObject *object)
   G_OBJECT_CLASS(geda_page_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Page
+/*! \brief GedaType class initializer for Page
  *
  *  \par Function Description
- *  GedaType class initialiser for Page. We override our parents
+ *  GedaType class initializer for Page. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The Page we are initialising

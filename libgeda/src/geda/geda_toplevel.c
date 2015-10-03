@@ -90,16 +90,16 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
   new_toplevel_hooks = g_list_append (new_toplevel_hooks, new_hook);
 }
 
-/*! \brief GedaType instance initialiser for GedaToplevel
+/*! \brief GedaType instance initializer for GedaToplevel
  *
  *  \par Function Description
- *  GedaType instance initialiser for GedaToplevel,  initializes a
+ *  GedaType instance initializer for GedaToplevel,  initializes a
  *  new GedaToplevel object with sensible default properties.
  *
  *  \param [in]  instance  The GedaToplevel being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
  */
-static void geda_toplevel_instance_init( GTypeInstance *instance, void *g_class )
+static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaToplevel *toplevel           = (GedaToplevel *)instance;
 
@@ -108,23 +108,12 @@ static void geda_toplevel_instance_init( GTypeInstance *instance, void *g_class 
   toplevel->num_untitled           = 0;
   toplevel->bitmap_directory       = NULL;
 
-/*
-  toplevel->init_left              = 0;
-  toplevel->init_top               = 0;
-*/
   toplevel->width                  = DEFAULT_PAGE_WIDTH;
   toplevel->height                 = DEFAULT_PAGE_HEIGHT;
-
-// toplevel->override_color         = -1;
 
   toplevel->pages                  = geda_list_new();
   toplevel->page_current           = NULL;
 
-/*
-  toplevel->override_net_color     = -1;
-  toplevel->override_bus_color     = -1;
-  toplevel->override_pin_color     = -1;
-*/
   toplevel->bus_style              = default_bus_style;
   toplevel->line_style             = default_line_style;
   toplevel->net_style              = default_net_style;
@@ -270,23 +259,23 @@ static void geda_toplevel_finalize(GObject *object)
   toplevel->head_marker = 1;
   toplevel->tail_marker = 0;
 
-  G_OBJECT_CLASS( geda_toplevel_parent_class )->finalize( object );
+  G_OBJECT_CLASS(geda_toplevel_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for GedaToplevel
+/*! \brief GedaType class initializer for GedaToplevel
  *
  *  \par Function Description
- *  GedaType class initialiser for GedaToplevel. We override our parents
+ *  GedaType class initializer for GedaToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The GedaToplevel we are initialising
  *  \param [in]  g_class_data  (unused)
  */
-static void geda_toplevel_class_init (void *g_class, void *g_class_data )
+static void geda_toplevel_class_init (void *g_class, void *g_class_data)
 {
-  GedaToplevelClass *klass    = GEDA_TOPLEVEL_CLASS( g_class );
-  GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
-  geda_toplevel_parent_class  = g_type_class_peek_parent( klass );
+  GedaToplevelClass *klass    = GEDA_TOPLEVEL_CLASS(g_class);
+  GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
+  geda_toplevel_parent_class  = g_type_class_peek_parent(klass);
   gobject_class->finalize     = geda_toplevel_finalize;
 }
 
@@ -327,7 +316,7 @@ GedaType geda_toplevel_get_type(void)
  *  \return pointer to the new GedaToplevel object.
  */
 GedaToplevel *geda_toplevel_new (void) {
-  return g_object_new( GEDA_TYPE_TOPLEVEL, NULL );
+  return g_object_new(GEDA_TYPE_TOPLEVEL, NULL);
 }
 
 /*! \brief Determine if object is Geda GedaToplevel Object.
@@ -504,7 +493,7 @@ Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   found_page = NULL;
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; NEXT(iter))
+  for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
   {
     ptr = (Page *)iter->data;
     if (ptr->pid == page_id) {

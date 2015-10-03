@@ -72,17 +72,17 @@ geda_circle_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief Type instance initialiser for Circle
+/*! \brief Type instance initializer for Circle
  *
  *  \par Function Description
- *  Type instance initialiser for Circle, initializes a new empty
+ *  Type instance initializer for Circle, initializes a new empty
  *  Circle object by setting pointers to NULL and numbers to zero,
  *  the circle PID variable is set to the next circle index.
  *
  *  \param [in] instance The Circle structure being initialized,
  *  \param [in] g_class  The Circle class we are initializing.
  */
-static void geda_circle_init(GTypeInstance *instance, void *g_class)
+static void geda_circle_instance_init(GTypeInstance *instance, void *g_class)
 {
   Circle *circle       = (Circle*)instance;
   Object *object       = &circle->parent_instance;
@@ -182,7 +182,7 @@ GedaType geda_circle_get_type(void)
       NULL,                            // class_data
       sizeof(Circle),
       0,                               // n_preallocs
-      geda_circle_init                 // instance_init
+      geda_circle_instance_init        // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Circle", &info, 0);
   }

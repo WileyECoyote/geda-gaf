@@ -3443,7 +3443,7 @@ compselect_constructor (GType type,
 
 GedaType compselect_behavior_get_type (void)
 {
-  static unsigned int etype = 0;
+  static GedaType etype = 0;
 
   if (etype == 0) {
     static const GEnumValue values[] = {

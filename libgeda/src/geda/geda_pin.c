@@ -126,17 +126,17 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
   return str;
 }
 
-/*! \brief GedaType instance initialiser for Pin
+/*! \brief GedaType instance initializer for Pin
  *
  *  \par Function Description
- *  GedaType instance initialiser for Pin, initializes a new empty
+ *  GedaType instance initializer for Pin, initializes a new empty
  *  Pin object by setting pointers to NULL and numbers to zero,
  *  the pin PID variable is set to the next pin index.
  *
  *  \param [in] instance The Pin structure being initialized,
  *  \param [in] g_class  The Pin class we are initializing.
  */
-static void geda_pin_init(GTypeInstance *instance, void *g_class)
+static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
 {
   Pin    *pin       = (Pin*)instance;
   Line   *line      = &pin->parent_instance;
@@ -277,10 +277,10 @@ static void geda_pin_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_pin_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Pin
+/*! \brief GedaType class initializer for Pin
  *
  *  \par Function Description
- *  GedaType class initialiser for Pin. We override our parents
+ *  GedaType class initializer for Pin. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Pin class we are initialising
@@ -378,7 +378,7 @@ GedaType geda_pin_get_type(void)
       NULL,                            // class_data
       sizeof(Pin),
       0,                               // n_preallocs
-      geda_pin_init                    // instance_init
+      geda_pin_instance_init           // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_LINE, "Pin", &info, 0);
   }

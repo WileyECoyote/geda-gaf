@@ -50,10 +50,10 @@
 
 static GObjectClass *geda_notify_list_parent_class = NULL;
 
-/*! \brief GedaType instance initialiser for GedaNotifyList
+/*! \brief GedaType instance initializer for GedaNotifyList
  *
  *  GedaType Function Description
- *  GedaType instance initialiser for GedaNotifyList.
+ *  GedaType instance initializer for GedaNotifyList.
  *
  *  \param [in]  instance  The GedaNotifyList we are initialising.
  *  \param [in]  class     The class of the type the instance is created for.
@@ -83,10 +83,10 @@ static void geda_notify_list_finalize (GObject *object)
   G_OBJECT_CLASS( geda_notify_list_parent_class )->finalize (object);
 }
 
-/*! \brief GedaType class initialiser for GedaNotifyList
+/*! \brief GedaType class initializer for GedaNotifyList
  *
  *  \par Function Description
- *  GedaType class initialiser for GedaNotifyList. We override our parents
+ *  GedaType class initializer for GedaNotifyList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The GedaNotifyList we are initialising

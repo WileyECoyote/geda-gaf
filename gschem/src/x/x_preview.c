@@ -44,7 +44,7 @@ enum {
 static GObjectClass *preview_parent_class = NULL;
 
 static void preview_class_init   (PreviewClass   *class);
-static void preview_init         (Preview        *preview);
+static void preview_instance_init         (Preview        *preview);
 static void preview_set_property (GObject        *object,
                                   unsigned int    property_id,
                                   const GValue   *value,
@@ -306,7 +306,7 @@ preview_get_type ()
   static GedaType preview_type = 0;
 
   if (!preview_type) {
-    
+
     static const GTypeInfo preview_info = {
       sizeof(PreviewClass),
       NULL, /* base_init */
@@ -316,7 +316,7 @@ preview_get_type ()
       NULL, /* class_data */
       sizeof(Preview),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) preview_init,
+      (GInstanceInitFunc) preview_instance_init
     };
 
     preview_type = g_type_register_static (GTK_TYPE_DRAWING_AREA,
@@ -413,7 +413,7 @@ preview_set_xy (Preview *preview, int x, int y)
 }
 
 static void
-preview_init (Preview *preview)
+preview_instance_init (Preview *preview)
 {
   struct event_reg_t {
     char *detailed_signal;

@@ -46,10 +46,10 @@ static unsigned int geda_list_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *geda_list_parent_class = NULL;
 
 
-/*! \brief GedaType instance initialiser for GedaList
+/*! \brief GedaType instance initializer for GedaList
  *
  *  GedaType Function Description
- *  GedaType instance initialiser for GedaList.
+ *  GedaType instance initializer for GedaList.
  *
  *  \param [in]  instance       The GedaList we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
@@ -80,10 +80,10 @@ static void geda_list_finalize(GObject *object)
 }
 
 
-/*! \brief GedaType class initialiser for GedaList
+/*! \brief GedaType class initializer for GedaList
  *
  *  \par Function Description
- *  GedaType class initialiser for GedaList. We override our parents
+ *  GedaType class initializer for GedaList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The GedaList we are initialising

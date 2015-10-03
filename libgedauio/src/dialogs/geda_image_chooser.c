@@ -954,10 +954,10 @@ static void unmap_handler (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_image_chooser_parent_class)->unmap (widget);
 }
 
-/*! \brief Type class initialiser for GedaImageChooser
+/*! \brief Type class initializer for GedaImageChooser
  *
  *  \par Function Description
- *  Type class initialiser for GedaImageChooser. We override our parent
+ *  Type class initializer for GedaImageChooser. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
  *  \param [in]  class       The GedaImageChooserClass we are initialising

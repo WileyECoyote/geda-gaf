@@ -71,7 +71,7 @@ static void
 gschem_macro_widget_class_init (GschemMacroWidgetClass *klass);
 
 static void
-gschem_macro_widget_init (GschemMacroWidget *view);
+gschem_macro_widget_instance_init (GschemMacroWidget *view);
 
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
@@ -292,40 +292,12 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
   return ret_val;
 }
 
-
-/*! \brief Get/register GschemMacroWidget type.
- */
-unsigned int
-gschem_macro_widget_get_type ()
-{
-  static unsigned int type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo info = {
-      sizeof(GschemMacroWidgetClass),
-      NULL,                                                    /* base_init */
-      NULL,                                                    /* base_finalize */
-      (GClassInitFunc) gschem_macro_widget_class_init,
-      NULL,                                                    /* class_finalize */
-      NULL,                                                    /* class_data */
-      sizeof(GschemMacroWidget),
-      0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_macro_widget_init,
-    };
-
-    type = g_type_register_static (GTK_TYPE_INFO_BAR, "GschemMacroWidget", &info, 0);
-  }
-
-  return type;
-}
-
-
 /*! \brief Initialize GschemMacroWidget instance
  *
  *  \param [in,out] widget the GschemMacroWidget
  */
 static void
-gschem_macro_widget_init (GschemMacroWidget *widget)
+gschem_macro_widget_instance_init (GschemMacroWidget *widget)
 {
   GtkWidget *action = gtk_info_bar_get_action_area (GTK_INFO_BAR (widget));
   GtkWidget *button_box;
@@ -378,6 +350,30 @@ gschem_macro_widget_init (GschemMacroWidget *widget)
                        widget);
 }
 
+/*! \brief Get/register GschemMacroWidget type.
+ */
+GedaType gschem_macro_widget_get_type (void)
+{
+  static GedaType type = 0;
+
+  if (type == 0) {
+    static const GTypeInfo info = {
+      sizeof(GschemMacroWidgetClass),
+      NULL,                                                    /* base_init */
+      NULL,                                                    /* base_finalize */
+      (GClassInitFunc) gschem_macro_widget_class_init,
+      NULL,                                                    /* class_finalize */
+      NULL,                                                    /* class_data */
+      sizeof(GschemMacroWidget),
+      0,                                                       /* n_preallocs */
+      (GInstanceInitFunc) gschem_macro_widget_instance_init
+    };
+
+    type = g_type_register_static (GTK_TYPE_INFO_BAR, "GschemMacroWidget", &info, 0);
+  }
+
+  return type;
+}
 
 /*! \brief Set the label text
  *

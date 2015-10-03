@@ -407,10 +407,10 @@ static void unmap_handler (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_file_chooser_parent_class)->unmap (widget);
 }
 
-/*! \brief Type class initialiser for GedaFileChooser
+/*! \brief Type class initializer for GedaFileChooser
  *
  *  \par Function Description
- *  Type class initialiser for GedaFileChooser. We override our parent
+ *  Type class initializer for GedaFileChooser. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
  *  \param [in]  class       The GedaFileChooserClass we are initialising
@@ -498,7 +498,7 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
  *
  * \param [in] self A GedaFileChooser object (structure)
  */
-static void geda_file_chooser_init (GedaFileChooser *self)
+static void geda_file_chooser_instance_init (GedaFileChooser *self)
 {
   chooser_entry       = NULL;
   self->filter_button = NULL;
@@ -513,7 +513,7 @@ static void geda_file_chooser_init (GedaFileChooser *self)
  *
  *  \return the GedaType identifier associated with GedaFileChooser.
  */
-GedaType geda_file_chooser_get_type ()
+GedaType geda_file_chooser_get_type (void)
 {
   static GedaType geda_file_chooser_type = 0;
 
@@ -527,7 +527,7 @@ GedaType geda_file_chooser_get_type ()
       NULL, /* class_data */
       sizeof(GedaFileChooser),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_file_chooser_init, /* instance_init */
+      (GInstanceInitFunc)geda_file_chooser_instance_init /* instance_init */
     };
 
     geda_file_chooser_type = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,

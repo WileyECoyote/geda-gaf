@@ -45,17 +45,17 @@
 
 static GObjectClass *geda_bus_parent_class = NULL;
 
-/*! \brief Type instance initialiser for Bus
+/*! \brief Type instance initializer for Bus
  *
  *  \par Function Description
- *  Type instance initialiser for Bus, initializes a new empty
+ *  Type instance initializer for Bus, initializes a new empty
  *  Bus object by setting pointers to NULL and numbers to zero,
  *  the bus PID variable is set to the next bus index.
  *
  *  \param [in] instance The Bus structure being initialized,
  *  \param [in] g_class  The Bus class we are initializing.
  */
-static void geda_bus_init(GTypeInstance *instance, void *g_class)
+static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
 {
   Bus    *bus                = (Bus*)instance;
   Line   *line               = &bus->parent_instance;
@@ -102,10 +102,10 @@ static void geda_bus_finalize(GObject *object)
   GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
 }
 
-/*! \brief Type class initialiser for Bus
+/*! \brief Type class initializer for Bus
  *
  *  \par Function Description
- *  Type class initialiser for Bus. We override our parents
+ *  Type class initializer for Bus. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Bus class we are initialising
@@ -147,7 +147,7 @@ GedaType geda_bus_get_type(void)
       NULL,                            // class_data
       sizeof(Bus),
       0,                               // n_preallocs
-      geda_bus_init                    // instance_init
+      geda_bus_instance_init           // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_LINE, "Bus", &info, 0);
   }

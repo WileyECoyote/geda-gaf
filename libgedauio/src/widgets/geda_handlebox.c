@@ -311,13 +311,13 @@ geda_handle_box_get_private (GedaHandleBox *handlebox)
 /*! \brief Type instance initializer for GedaHandleBox
  *
  *  \par Function Description
- *  Type instance initialiser for GedaHandleBox, initializes a new empty
+ *  Type instance initializer for GedaHandleBox, initializes a new empty
  *  GedaHandleBox object.
  *
  *  \param [in] instance The GedaHandleBox structure being initialized,
  *  \param [in] g_class  The GedaHandleBox class we are initializing.
  */
-static void geda_handle_box_init(GTypeInstance *instance, void *g_class)
+static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
 
@@ -359,7 +359,7 @@ GedaType geda_handle_box_get_type(void)
       NULL,                            // class_data
       sizeof(GedaHandleBox),
       0,                               // n_preallocs
-      geda_handle_box_init             // instance_init
+      geda_handle_box_instance_init    // instance_init
     };
     type = g_type_register_static (GTK_TYPE_BIN,
                                    "GedaHandleBox", &info, 0);
@@ -495,8 +495,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.visual = gtk_widget_get_visual (widget);
   attributes.colormap = gtk_widget_get_colormap (widget);
-  attributes.event_mask = (gtk_widget_get_events (widget)
-                           | GDK_EXPOSURE_MASK);
+  attributes.event_mask = (gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK);
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
   gdk_window_set_user_data (widget->window, widget);

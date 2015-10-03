@@ -164,8 +164,8 @@ x_multiattrib_update (GschemToplevel *w_current)
  * tree views ('GtkTreeView').
  */
 static void celltextview_class_init (CellTextViewClass *class);
-static void celltextview_init       (CellTextView *self);
-static void celltextview_cell_editable_init (GtkCellEditableIface *iface);
+static void celltextview_instance_init        (CellTextView *self);
+static void celltextview_editable_instance_init (GtkCellEditableIface *iface);
 
 enum {
     PROP_EDIT_CANCELED = 1
@@ -271,11 +271,11 @@ GedaType celltextview_get_type()
       NULL, /* class_data */
       sizeof(CellTextView),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) celltextview_init,
+      (GInstanceInitFunc) celltextview_instance_init
     };
 
     static const GInterfaceInfo cell_editable_info = {
-      (GInterfaceInitFunc) celltextview_cell_editable_init,
+      (GInterfaceInitFunc) celltextview_editable_instance_init,
       NULL, /* interface_finalize */
       NULL  /* interface_data */
     };
@@ -319,7 +319,7 @@ static void celltextview_class_init(CellTextViewClass *class)
  *  \par Function Description
  *
  */
-static void celltextview_init(CellTextView *celltextview)
+static void celltextview_instance_init (CellTextView *celltextview)
 {
   celltextview->editing_canceled = FALSE;
 }
@@ -329,7 +329,7 @@ static void celltextview_init(CellTextView *celltextview)
  *  \par Function Description
  *
  */
-static void celltextview_cell_editable_init(GtkCellEditableIface *iface)
+static void celltextview_editable_instance_init(GtkCellEditableIface *iface)
 {
   iface->start_editing = celltextview_start_editing;
 }
@@ -438,12 +438,16 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
 
 #undef CELL_RENDERER_MULTI_LINE_TEXT_PATH
 
-/*! \todo Finish function documentation
- *  \brief
+/*! \brief Retrieve CellRendererMultiLineText GedaType identifier.
  *  \par Function Description
+ *  Function to retrieve CellRendererMultiLineText GedaType identifier.
+ * On the first call this functions registers the EdaConfig in the Type
+ * system. On subsequent calls, the saved value returned.
+ * A CellRendererMultiLineText is derived from GtkCellRendererTextClass
  *
+ *  \return the GedaType identifier associated with EdaConfig.
  */
-GedaType cellrenderermultilinetext_get_type()
+GedaType cellrenderermultilinetext_get_type(void)
 {
   static GedaType cellrenderermultilinetext_type = 0;
 
@@ -1892,11 +1896,11 @@ multiattrib_finalize (GObject *object)
 
   G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
 }
-/*! \brief GedaType class initialiser for Multiattrib
+/*! \brief GedaType class initializer for Multiattrib
  *
  *  \par Function Description
  *
- *  Type class initialiser for Multiattrib. We override our parent's
+ *  Type class initializer for Multiattrib. We override our parent's
  *  virtual class methods as needed and register our GObject properties.
  *
  *  \param [in]  class       The MultiattribClass we are initialising
@@ -1976,11 +1980,11 @@ static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
 #define ColumnResizable    column_def[i].is_resizable
 #define ColumnDataFunc     column_def[i].data_func
 
-/*! \brief GedaType instance initialiser for Multiattrib
+/*! \brief GedaType instance initializer for Multiattrib
  *
  *  \par Function Description
  *
- *  GedaType instance initialiser for Multiattrib. Create
+ *  GedaType instance initializer for Multiattrib. Create
  *  and setup the widgets which make up the dialog.
  *
  *  \param [in] multiattrib The Multiattrib we are initialising

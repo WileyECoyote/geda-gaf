@@ -52,10 +52,10 @@ enum
 static void print_dialog_action_radio_toggled    (GtkWidget    *w,
                                                   PrintDialog  *dialog);
 
-static void print_dialog_init                    (PrintDialog  *dialog);
-static void print_dialog_init_paper_combobox     (PrintDialog  *d);
-static void print_dialog_init_type_combobox      (PrintDialog  *d);
-static void print_dialog_init_orient_combobox    (PrintDialog  *d);
+static void print_dialog_instance_init                    (PrintDialog  *dialog);
+static void print_dialog_instance_init_paper_combobox     (PrintDialog  *d);
+static void print_dialog_instance_init_type_combobox      (PrintDialog  *d);
+static void print_dialog_instance_init_orient_combobox    (PrintDialog  *d);
 static void print_dialog_set_property            (GObject      *object,
                                                   unsigned int  property_id,
                                             const GValue       *value,
@@ -132,7 +132,7 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
  *  \par Private function, should not be
  *  called by any code outside x_print.c
  */
-static void print_dialog_init_paper_combobox (PrintDialog * d)
+static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
 {
   GedaComboBox *combobox;
 
@@ -161,7 +161,7 @@ static void print_dialog_init_paper_combobox (PrintDialog * d)
  *  \par Private function, should not be called by any code
  *  outside x_print.c
  */
-static void print_dialog_init_type_combobox (PrintDialog * d)
+static void print_dialog_instance_init_type_combobox (PrintDialog * d)
 {
   GtkListStore    *model;
   GtkTreeIter      iter;
@@ -203,7 +203,7 @@ static void print_dialog_init_type_combobox (PrintDialog * d)
  *  outside x_print.c
  */
 static void
-print_dialog_init_orient_combobox (PrintDialog * d)
+print_dialog_instance_init_orient_combobox (PrintDialog * d)
 {
   GtkListStore *model;
   GtkTreeIter iter;
@@ -271,7 +271,7 @@ print_dialog_action_radio_toggled (GtkWidget * w, PrintDialog * dialog)
  *  \par Function Description
  *
  */
-static void print_dialog_init (PrintDialog * dialog)
+static void print_dialog_instance_init (PrintDialog * dialog)
 {
   GtkWidget *box;
   GtkWidget *frame;
@@ -307,7 +307,7 @@ static void print_dialog_init (PrintDialog * dialog)
                     label,
                     0, 1, 0, 1, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
 
-  print_dialog_init_paper_combobox (dialog);
+  print_dialog_instance_init_paper_combobox (dialog);
   gtk_table_attach (GTK_TABLE (settingstable),
                     GTK_WIDGET (dialog->papercbox),
                     1, 2, 0, 1, GTK_FILL, 0, 0, 0);
@@ -317,7 +317,7 @@ static void print_dialog_init (PrintDialog * dialog)
                     label,
                     0, 1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
 
-  print_dialog_init_type_combobox (dialog);
+  print_dialog_instance_init_type_combobox (dialog);
   gtk_table_attach (GTK_TABLE (settingstable),
                     GTK_WIDGET (dialog->typecbox),
                     1, 2, 1, 2, GTK_FILL, 0, 0, 0);
@@ -327,7 +327,7 @@ static void print_dialog_init (PrintDialog * dialog)
                     label,
                     0, 1, 2, 3, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
 
-  print_dialog_init_orient_combobox (dialog);
+  print_dialog_instance_init_orient_combobox (dialog);
   gtk_table_attach (GTK_TABLE (settingstable),
                     GTK_WIDGET (dialog->orientcbox),
                     1, 2, 2, 3, GTK_FILL, 0, 0, 0);
@@ -613,12 +613,12 @@ print_dialog_class_init (PrintDialogClass * class)
  *
  *  \return the Type identifier associated with PrintDialog.
  */
-GedaType print_dialog_get_type ()
+GedaType print_dialog_get_type (void)
 {
   static GedaType print_dialog_type = 0;
 
-  if (!print_dialog_type)
-  {
+  if (!print_dialog_type) {
+
     static const GTypeInfo print_dialog_info = {
       sizeof (PrintDialogClass),
       NULL,                      /* base_init */
@@ -628,7 +628,7 @@ GedaType print_dialog_get_type ()
       NULL,                      /* class_data */
       sizeof (PrintDialog),
       0,                      /* n_preallocs */
-      (GInstanceInitFunc) print_dialog_init,
+      (GInstanceInitFunc) print_dialog_instance_init,
     };
     print_dialog_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
                                                 "PrintDialog",
@@ -646,12 +646,15 @@ GedaType print_dialog_get_type ()
 void x_print_setup (GschemToplevel *w_current, char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  char *command      = w_current->print_command;
-  int orient         = toplevel->print_orientation;
-  int type           = toplevel->print_output_type;
-  int paperidx, x, y, result;
+
+  char *command = w_current->print_command;
+  int   orient  = toplevel->print_orientation;
+  int   typ     = toplevel->print_output_type;
+
+  int   paperidx, x, y, result;
   char *string, *destination;
-  bool usefile = FALSE;
+  bool  usefile = FALSE;
+
   GtkDialog *dialog;
 
   /* Work out current paper size by iterating through available paper

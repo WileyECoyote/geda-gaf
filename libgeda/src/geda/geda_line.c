@@ -70,7 +70,7 @@ geda_line_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief GedaType instance initialiser for Line
+/*! \brief GedaType instance initializer for Line
  *
  *  \par Function Description
  *  GedaType instance initializer for Line, initializes a new empty
@@ -80,7 +80,7 @@ geda_line_bounds(Object *object)
  *  \param [in] instance The Line structure being initialized,
  *  \param [in] g_class  The Line class we are initializing.
  */
-static void geda_line_init(GTypeInstance *instance, void *g_class)
+static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
 {
   Line   *line       = (Line*)instance;
   Object *object     = &line->parent_instance;
@@ -127,10 +127,10 @@ static void geda_line_finalize(GObject *object)
   /* Possible return to line, net, or pin finalizer */
 }
 
-/*! \brief GedaType class initialiser for Line
+/*! \brief GedaType class initializer for Line
  *
  *  \par Function Description
- *  GedaType class initialiser for Line. We override our parents
+ *  GedaType class initializer for Line. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Line class we are initialising
@@ -176,7 +176,7 @@ GedaType geda_line_get_type(void)
       NULL,                            // class_data
       sizeof(Line),
       0,                               // n_preallocs
-      geda_line_init                   // instance_init
+      geda_line_instance_init                   // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Line", &info, 0);
   }

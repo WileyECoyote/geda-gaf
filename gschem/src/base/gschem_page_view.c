@@ -47,7 +47,7 @@ static void
 gschem_page_view_class_init (GschemPageViewClass *klass);
 
 static void
-gschem_page_view_init (GschemPageView *view);
+gschem_page_view_instance_init (GschemPageView *view);
 
 static void
 set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *pspec);
@@ -64,10 +64,10 @@ set_scroll_adjustments (GschemPageView *view, GtkAdjustment *hadjustment, GtkAdj
 */
 static void
 cclosure_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
-                                      GValue       *return_value G_GNUC_UNUSED,
+                                      GValue       *return_value GEDA_UNUSED,
                                       unsigned int  n_param_values,
                                       const GValue *param_values,
-                                      void         *invocation_hint G_GNUC_UNUSED,
+                                      void         *invocation_hint GEDA_UNUSED,
                                       void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void *data1,
@@ -209,10 +209,10 @@ gschem_page_view_get_page (GschemPageView *view)
 
 /*! \brief Get/register GschemPageView type.
 */
-unsigned int
-gschem_page_view_get_type ()
+GedaType
+gschem_page_view_get_type (void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
 
   if (type == 0) {
     static const GTypeInfo info = {
@@ -224,7 +224,7 @@ gschem_page_view_get_type ()
       NULL, /* class_data */
       sizeof(GschemPageView),
       0, /* n_preallocs */
-      (GInstanceInitFunc) gschem_page_view_init,
+      (GInstanceInitFunc) gschem_page_view_instance_init,
     };
 
     type = g_type_register_static (GTK_TYPE_DRAWING_AREA, "GschemPageView", &info, 0);
@@ -253,7 +253,7 @@ gschem_page_view_get_vadjustment (GschemPageView *view)
 * \param [in,out] view
 */
 static void
-gschem_page_view_init (GschemPageView *view)
+gschem_page_view_instance_init (GschemPageView *view)
 {
   g_return_if_fail (view != NULL);
 

@@ -117,7 +117,7 @@ G_DEFINE_TYPE_WITH_CODE (GedaImageMenuItem, geda_image_menu_item, GTK_TYPE_MENU_
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_ACTIVATABLE,
                                                 geda_image_menu_item_activatable_interface_init))
 
-/*! \brief Type class initialiser for GedaImageMenuItem
+/*! \brief Type class initializer for GedaImageMenuItem
  *
  *  \par Function Description
  *  Type class initializer for GedaImageMenuItem. We override our parent

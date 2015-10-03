@@ -134,7 +134,7 @@ geda_arc_bounds(Object *object)
  *  \param [in] instance The Arc structure being initialized,
  *  \param [in] g_class  The Arc class we are initializing.
  */
-static void geda_arc_init(GTypeInstance *instance, void *g_class)
+static void geda_arc_instance_init(GTypeInstance *instance, void *g_class)
 {
   Arc    *arc       = (Arc*)instance;
   Object *object    = &arc->parent_instance;
@@ -193,10 +193,10 @@ static void geda_arc_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_arc_parent_class)->finalize(object);
 }
 
-/*! \brief Type class initialiser for Arc
+/*! \brief Type class initializer for Arc
  *
  *  \par Function Description
- *  Type class initialiser for Arc. We override our parents
+ *  Type class initializer for Arc. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Arc class we are initialising
@@ -239,7 +239,7 @@ GedaType geda_arc_get_type(void)
       NULL,                            // class_data
       sizeof (Arc),
       0,                               // n_preallocs
-      geda_arc_init                    // instance_init
+      geda_arc_instance_init           // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Arc", &info, 0);
   }

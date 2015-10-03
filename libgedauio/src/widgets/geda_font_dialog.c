@@ -1550,13 +1550,13 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
 /*! \brief Type instance initializer for GedaFontDialog
  *
  *  \par Function Description
- *  Type instance initialiser for GedaFontDialog, initializes a new empty
+ *  Type instance initializer for GedaFontDialog, initializes a new empty
  *  GedaFontDialog object.
  *
  *  \param [in] instance The GedaFontDialog structure being initialized,
  *  \param [in] g_class  The GedaFontDialog class we are initializing.
  */
-static void geda_font_dialog_init(GTypeInstance *instance, void *g_class)
+static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaFontDialog *dialog     = (GedaFontDialog*)instance;
   GtkDialog      *Dialog     = GTK_DIALOG (dialog);
@@ -1683,7 +1683,7 @@ GedaType geda_font_dialog_get_type(void)
       NULL,                            // class_data
       sizeof(GedaFontDialog),
       0,                               // n_preallocs
-      geda_font_dialog_init            // instance_init
+      geda_font_dialog_instance_init   // instance_init
     };
     type = g_type_register_static (GTK_TYPE_DIALOG,
                                    "GedaFontDialog", &info, 0);

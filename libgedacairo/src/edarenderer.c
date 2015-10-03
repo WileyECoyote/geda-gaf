@@ -1911,17 +1911,17 @@ eda_renderer_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_THLD, params);
 }
 
-/*! \brief Type instance initialiser for EdaRenderer
+/*! \brief Type instance initializer for EdaRenderer
  *
  *  \par Function Description
- *  Type instance initialiser for EdaRenderer, initializes a new empty
+ *  Type instance initializer for EdaRenderer, initializes a new empty
  *  EdaRenderer object.
  *
  *  \param [in] instance The EdaRenderer structure being initialized,
  *  \param [in] g_class  The EdaRenderer class we are initializing.
  */
 static void
-eda_renderer_init(GTypeInstance *instance, void *g_class)
+eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
 {
   EdaRenderer *renderer = (EdaRenderer*)instance;
 
@@ -1982,7 +1982,7 @@ eda_renderer_get_type(void)
       NULL,                            // class_data
       sizeof(EdaRenderer),
       0,                               // n_preallocs
-      eda_renderer_init                // instance_init
+      eda_renderer_instance_init       // instance_init
     };
     type = g_type_register_static (G_TYPE_OBJECT, "EdaRenderer", &info, 0);
   }

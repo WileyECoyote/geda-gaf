@@ -34,7 +34,7 @@ static void
 gschem_main_window_class_init (GschemMainWindowClass *klass);
 
 static void
-gschem_main_window_init (GschemMainWindow *window);
+gschem_main_window_instance_init (GschemMainWindow *window);
 
 static void
 set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *pspec);
@@ -76,10 +76,9 @@ gschem_main_window_class_init (GschemMainWindowClass *klass)
 
 /*! \brief Get/register GschemSelection type.
  */
-unsigned int
-gschem_main_window_get_type ()
+GedaType gschem_main_window_get_type (void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
 
   if (type == 0) {
     static const GTypeInfo info = {
@@ -91,7 +90,7 @@ gschem_main_window_get_type ()
       NULL,                                                    /* class_data */
       sizeof(GschemMainWindow),
       0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_main_window_init,
+      (GInstanceInitFunc) gschem_main_window_instance_init,
     };
 
     type = g_type_register_static (GTK_TYPE_WINDOW, "GschemMainWindow", &info, 0);
@@ -106,7 +105,7 @@ gschem_main_window_get_type ()
  *  \param [in,out] window
  */
 static void
-gschem_main_window_init (GschemMainWindow *window)
+gschem_main_window_instance_init (GschemMainWindow *window)
 {
 
 }

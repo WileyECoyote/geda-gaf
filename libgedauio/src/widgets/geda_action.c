@@ -194,10 +194,10 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   GTK_ACTION_CLASS (geda_action_parent_class)->connect_proxy (action, proxy);
 }
 
-/*! \brief Type class initialiser for GedaAction
+/*! \brief Type class initializer for GedaAction
  *
  *  \par Function Description
- *  Type class initialiser for GedaAction. We override our parent
+ *  Type class initializer for GedaAction. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
  *  \param [in]  klass       The GedaActionClass we are initialising
@@ -257,7 +257,7 @@ static void geda_action_class_init (GedaActionClass *klass)
  *
  * \param [in] action A GedaAction object (structure)
  */
-static void geda_action_init (GedaAction *action)
+static void geda_action_instance_init (GedaAction *action)
 {
   action->multikey_accel = NULL;
   action->icon_name      = NULL;
@@ -272,7 +272,7 @@ static void geda_action_init (GedaAction *action)
  *
  *  \return the GedaType identifier associated with GedaAction.
  */
-GedaType geda_action_get_type ()
+GedaType geda_action_get_type (void)
 {
   static GedaType geda_action_type = 0;
 
@@ -286,7 +286,7 @@ GedaType geda_action_get_type ()
       NULL, /* class_data */
       sizeof(GedaAction),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_action_init, /* instance_init */
+      (GInstanceInitFunc) geda_action_instance_init, /* instance_init */
     };
 
     geda_action_type = g_type_register_static (GTK_TYPE_ACTION,

@@ -101,7 +101,7 @@ static void
 gschem_status_bar_class_init (GschemStatusBarClass *klass);
 
 static void
-gschem_status_bar_init (GschemStatusBar *view);
+gschem_status_bar_instance_init (GschemStatusBar *view);
 
 static void
 set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
@@ -995,10 +995,10 @@ gschem_status_bar_get_status_text (GtkWidget *widget)
 
 /*! \brief Get/register GschemStatusBar type.
  */
-unsigned int
-gschem_status_bar_get_type ()
+GedaType
+gschem_status_bar_get_type (void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
 
   if (type == 0) {
     static const GTypeInfo info = {
@@ -1010,7 +1010,7 @@ gschem_status_bar_get_type ()
       NULL,                                                    /* class_data */
       sizeof(GschemStatusBar),
       0,                                                       /* n_preallocs */
-      (GInstanceInitFunc) gschem_status_bar_init,
+      (GInstanceInitFunc) gschem_status_bar_instance_init,
     };
 
     type = g_type_register_static (GTK_TYPE_HBOX, "GschemStatusBar", &info, 0);
@@ -1076,7 +1076,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
  *  \param [in] widget This GschemStatusBar
  */
 static void
-gschem_status_bar_init (GschemStatusBar *widget)
+gschem_status_bar_instance_init (GschemStatusBar *widget)
 {
   EdaConfig  *cfg = eda_config_get_user_context ();
 

@@ -141,7 +141,7 @@ geda_text_bounds(Object *o_current)
  *  \param [in] instance The Text structure being initialized,
  *  \param [in] g_class  The Text class we are initializing.
  */
-static void geda_text_init(GTypeInstance *instance, void *g_class)
+static void geda_text_instance_init(GTypeInstance *instance, void *g_class)
 {
   Text   *text        = (Text*)instance;
   Object *object      = &text->parent_instance;
@@ -203,10 +203,10 @@ static void geda_text_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_text_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initialiser for Text
+/*! \brief GedaType class initializer for Text
  *
  *  \par Function Description
- *  GedaType class initialiser for Text. We override our parents
+ *  GedaType class initializer for Text. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class      The Text class we are initialising
@@ -250,7 +250,7 @@ GedaType geda_text_get_type(void)
       NULL,                            // class_data
       sizeof(Text),
       0,                               // n_preallocs
-      geda_text_init                   // instance_init
+      geda_text_instance_init          // instance_init
     };
     type = g_type_register_static (GEDA_TYPE_OBJECT, "Text", &info, 0);
   }

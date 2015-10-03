@@ -79,7 +79,7 @@ geda_tree_view_class_init (GedaTreeViewClass *klass)
  *
  * \param [in] tree_view A GedaTreeView object (structure)
  */
-static void geda_tree_view_init (GedaTreeView *tree_view)
+static void geda_tree_view_instance_init (GedaTreeView *tree_view)
 {
 
 }
@@ -94,7 +94,7 @@ static void geda_tree_view_init (GedaTreeView *tree_view)
  *
  *  \return GedaType identifier associated with GedaTreeView.
  */
-GedaType geda_tree_view_get_type ()
+GedaType geda_tree_view_get_type (void)
 {
   static GedaType geda_tree_view_type = 0;
 
@@ -108,7 +108,7 @@ GedaType geda_tree_view_get_type ()
       NULL, /* class_data     */
       sizeof(GedaTreeView),
       0,    /* n_preallocs    */
-      (GInstanceInitFunc) geda_tree_view_init, /* instance_init */
+      (GInstanceInitFunc) geda_tree_view_instance_init /* instance_init */
     };
 
     geda_tree_view_type = g_type_register_static (GTK_TYPE_TREE_VIEW,

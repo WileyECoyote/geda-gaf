@@ -864,16 +864,16 @@ geda_font_button_class_init(void *g_class, void *class_data)
   g_type_class_add_private (gobject_class, sizeof (GedaFontButtonPrivate));
 }
 
-/*! \brief Type instance initialiser for GedaFontButton
+/*! \brief Type instance initializer for GedaFontButton
  *
  *  \par Function Description
- *  Type instance initialiser for GedaFontButton, initializes a new empty
+ *  Type instance initializer for GedaFontButton, initializes a new empty
  *  GedaFontButton object.
  *
  *  \param [in] instance The GedaFontButton structure being initialized,
  *  \param [in] g_class  The GedaFontButton class we are initializing.
  */
-static void geda_font_button_init(GTypeInstance *instance, void *g_class)
+static void geda_font_button_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaFontButton *font_button = (GedaFontButton*)instance;
 
@@ -950,7 +950,7 @@ GedaType geda_font_button_get_type(void)
       NULL,                            // class_data
       sizeof(GedaFontButton),
       0,                               // n_preallocs
-      geda_font_button_init            // instance_init
+      geda_font_button_instance_init   // instance_init
     };
     type = g_type_register_static (GTK_TYPE_BUTTON,
                                    "GedaFontButton", &info, 0);

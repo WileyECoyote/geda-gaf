@@ -256,8 +256,8 @@ static void eda_config_class_init (EdaConfigClass *klass)
                 G_TYPE_STRING, G_TYPE_STRING);
 }
 
-/*! Initialise EdaConfig instance. */
-static void eda_config_init (EdaConfig *config)
+/*! Initialize EdaConfig instance. */
+static void eda_config_instance_init (EdaConfig *config)
 {
   config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
                                               EDA_TYPE_CONFIG,
@@ -296,7 +296,7 @@ GedaType eda_config_get_type (void)
       NULL, /* class_data */
       sizeof(EdaConfig),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) eda_config_init, /* instance_init */
+      (GInstanceInitFunc) eda_config_instance_init /* instance_init */
     };
 
     eda_config_type = g_type_register_static (G_TYPE_OBJECT,
@@ -566,12 +566,13 @@ eda_config_get_system_context (const char *context)
  * \return the user #EdaConfig configuration context.
  */
 EdaConfig *
-eda_config_get_user_context ()
+eda_config_get_user_context (void)
 {
   static volatile GedaType initialized = 0;
-  static EdaConfig *config        = NULL;
+  static EdaConfig *config = NULL;
 
   const char *app_name = g_get_prgname();
+
   if ( app_name == NULL ) {
     app_name = DEFAULT_CONTEXT;
   }
@@ -581,7 +582,7 @@ eda_config_get_user_context ()
     char *filename = NULL;
     char *tmpname;
 
-    tmpname = u_string_concat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
+    tmpname  = u_string_concat(app_name, GEDA_CONFIG_USER_SUFFIX, NULL);
     filename = g_build_filename(f_path_user_config(), tmpname, NULL);
     GEDA_FREE (tmpname);
 
@@ -839,19 +840,23 @@ eda_config_load (EdaConfig *cfg, GError **error)
         }
 
         GEDA_FREE (buf);
+
         if (!status) {
           g_key_file_free (cfg->priv->keyfile);
         }
         else {
           /* Substitute in new key file object, and reset loaded and changed flags. */
-          if(cfg->priv->keyfile) g_key_file_free(cfg->priv->keyfile);
+          if (cfg->priv->keyfile) {
+            g_key_file_free(cfg->priv->keyfile);
+          }
           cfg->priv->keyfile = key_file;
           cfg->priv->changed = FALSE;
-          cfg->priv->loaded = TRUE;
+          cfg->priv->loaded  = TRUE;
         }
       }
     }
     else {
+
       if (errno == ENOENT) {
         /* Substitute in new key file object, and reset loaded and changed flags. */
         if(cfg->priv->keyfile) {
@@ -859,7 +864,8 @@ eda_config_load (EdaConfig *cfg, GError **error)
         }
         cfg->priv->keyfile = key_file;
         cfg->priv->changed = FALSE;
-        cfg->priv->loaded = TRUE;
+        cfg->priv->loaded  = TRUE;
+
       }
       else {
         if(error != NULL) {

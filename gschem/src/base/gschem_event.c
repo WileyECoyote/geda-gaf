@@ -33,6 +33,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include <geda_types.h>
 #include "gschem_event.h"
 
 static GObjectClass *gschem_event_parent_class = NULL;
@@ -123,8 +124,7 @@ static void gschem_event_class_init( void *g_class, void *g_class_data )
 
 /*! \brief Get/register GschemSelection type.
  */
-unsigned int
-gschem_event_get_type ()
+GedaType gschem_event_get_type (void)
 {
   static unsigned int type = 0;
 

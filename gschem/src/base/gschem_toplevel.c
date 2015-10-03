@@ -34,10 +34,10 @@
 
 static GObjectClass *gschem_toplevel_parent_class = NULL;
 
-/*! \brief Type instance initialiser for GschemToplevel
+/*! \brief Type instance initializer for GschemToplevel
  *
  *  \par Function Description
- *  Type instance initialiser for GschemToplevel.
+ *  Type instance initializer for GschemToplevel.
  *
  *  \param [in]  instance       The GschemToplevel we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
@@ -343,10 +343,10 @@ static void gschem_toplevel_finalize( GObject *object )
   G_OBJECT_CLASS( gschem_toplevel_parent_class )->finalize( object );
 }
 
-/*! \brief Type class initialiser for GschemToplevel
+/*! \brief Type class initializer for GschemToplevel
  *
  *  \par Function Description
- *  Type class initialiser for GschemToplevel. We override our parents
+ *  Type class initializer for GschemToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The GschemToplevel we are initialising
@@ -374,6 +374,7 @@ static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
 GedaType gschem_toplevel_get_type(void)
 {
   static GedaType type = 0;
+
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof (GschemToplevelClass),

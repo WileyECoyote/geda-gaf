@@ -759,7 +759,7 @@ geda_bulb_class_init (GedaBulbClass *class)
 }
 
 static void
-geda_bulb_init (GedaBulb *bulb)
+geda_bulb_instance_init (GedaBulb *bulb)
 {
   if (off_pixbuf == NULL) {
     off_pixbuf = gdk_pixbuf_new_from_xpm_data (geda_bulb_off_xpm);
@@ -811,14 +811,14 @@ GedaType geda_bulb_get_type (void)
   if (!geda_bulb_type) {
     static const GTypeInfo geda_bulb_info = {
       sizeof(GedaBulbClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
+      NULL,                                      /* base_init */
+      NULL,                                      /* base_finalize */
       (GClassInitFunc) geda_bulb_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data */
       sizeof(GedaBulb),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_bulb_init, /* instance_init */
+      0,                                         /* n_preallocs */
+      (GInstanceInitFunc)geda_bulb_instance_init /* instance_init */
     };
 
     geda_bulb_type = g_type_register_static (GTK_TYPE_CHECK_BUTTON,

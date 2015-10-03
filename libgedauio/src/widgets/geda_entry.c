@@ -776,16 +776,16 @@ geda_entry_class_init(void *g_class, void *class_data)
 #endif
 }
 
-/*! \brief Type instance initialiser for GedaEntry
+/*! \brief Type instance initializer for GedaEntry
  *
  *  \par Function Description
- *  Type instance initialiser for GedaEntry, initializes a new empty
+ *  Type instance initializer for GedaEntry, initializes a new empty
  *  GedaEntry object.
  *
  *  \param [in] instance The GedaEntry structure being initialized,
  *  \param [in] g_class  The GedaEntry class we are initializing.
  */
-static void geda_entry_init(GTypeInstance *instance, void *g_class)
+static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaEntry *entry      = (GedaEntry*)instance;
   entry->priv           = g_new0 (GedaEntryPriv, 1);
@@ -867,7 +867,7 @@ GedaType geda_entry_get_type(void)
       NULL,                            // class_data
       sizeof(GedaEntry),
       0,                               // n_preallocs
-      geda_entry_init                  // instance_init
+      geda_entry_instance_init         // instance_init
     };
     type = g_type_register_static (GTK_TYPE_ENTRY,
                                    "GedaEntry", &info, 0);

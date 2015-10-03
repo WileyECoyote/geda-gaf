@@ -167,7 +167,7 @@ enum {
 };
 
 static void pagesel_class_init (PageselClass *class);
-static void pagesel_init       (Pagesel *pagesel);
+static void pagesel_instance_init       (Pagesel *pagesel);
 static void pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event);
 
 /*! \brief Page Manager Dialog Tree View Page Selected
@@ -454,7 +454,7 @@ GedaType pagesel_get_type()
       NULL, /* class_data */
       sizeof(Pagesel),
       0,    /* n_preallocs */
-      (GInstanceInitFunc) pagesel_init,
+      (GInstanceInitFunc) pagesel_instance_init
     };
 
     pagesel_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
@@ -484,7 +484,7 @@ static void pagesel_class_init (PageselClass *class)
  *  \par Function Description
  *
  */
-static void pagesel_init (Pagesel *pagesel)
+static void pagesel_instance_init (Pagesel *pagesel)
 {
   GtkWidget *scrolled_win, *treeview, *label;
   GtkTreeModel *store;
