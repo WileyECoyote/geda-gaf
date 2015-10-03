@@ -888,7 +888,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
 
   if (!Dialog) {
 
-    Dialog = gschem_dialog_new_with_buttons(_("Arc Params"),
+    Dialog = gschem_dialog_new_with_buttons(_("Arc Parameters"),
                                             GTK_WINDOW(w_current->main_window),
                                             GSCHEM_MODELESS_DIALOG,
                                             IDS_ARC_ANGLE, w_current,
