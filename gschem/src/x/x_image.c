@@ -50,6 +50,7 @@
  *  \image latex write_image_dialog.png
  */
 
+/* Maybe should be user configurable default size, 2 = 800x600 */
 #define X_IMAGE_DEFAULT_SIZE_INDEX 2
 
 #define X_IMAGE_SIZE_MENU_NAME "image_size_menu"
@@ -91,7 +92,7 @@ GtkWidget *InvertImageSwitch = NULL;
  *  \note
  *  This function is only used in this file, there are other create_menus...
  */
-static GtkWidget* create_size_menu (void)
+static GtkWidget *create_size_menu (void)
 {
   int   default_size_index;
   int   i;
@@ -146,7 +147,9 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 
   formats = gdk_pixbuf_get_formats ();
   list    = formats;
+
   if(list) {
+
     while (list) {
 
       if (gdk_pixbuf_format_is_writable (list->data)) {
@@ -240,13 +243,13 @@ static char *x_image_get_type_from_description(char *descr) {
   return ret_val;
 }
 
-/*! \brief Update the filename of a file dialog, when the image type has changed.
+/*! \brief Update the filename of a file dialog, when the image type has changed
  *  \par Function Description
  *  Given a combobox inside a file chooser dialog, this function updates
  *  the filename displayed by the dialog, removing the current extension,
  *  and adding the extension of the image type selected.
  *
- *  \param[in] combo      A combobox inside a file chooser dialog, with
+ *  \param[in] type_Combo A combobox inside a file chooser dialog, with
  *                        gdk-pixbuf image type descriptions.
  *  \param[in] w_current  the GschemToplevel structure.
  *
@@ -362,8 +365,7 @@ void x_image_write_eps(GschemToplevel *w_current, const char* filename)
  *  This function is used to set module level globals that are
  *  use to retain the user choices on a per session basis.
  *  The settings here are not considered important enough to
- *  retain between sessions. We set the values to our default
- *  choices.
+ *  retain between sessions. The values are set to defaults.
  */
 void x_image_init (void)
 {
@@ -376,8 +378,8 @@ void x_image_init (void)
 
 /*! \brief Write the Image file, with the desired options.
  *  \par Function Description
- *  This function writes the image file, with the options set in the
- *  dialog by the user.
+ *  This function writes the image file, with the options set in
+ *  the dialog by the user.
  *
  *  \param [in] w_current       A GschemToplevel object.
  *  \param [in] filename        the image filename.
@@ -574,6 +576,7 @@ static void x_image_enable_color_bw_invert (GtkWidget *widget,
   gtk_widget_set_has_tooltip (button, state);
   return;
 }
+
 /*! \brief Toggle switch images on the Write Image Dialog
  *  \par Function Description: This function changes the images of
  *       controls created with create_geda_switch to the opposite
@@ -607,9 +610,10 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 /** @} END Group X-Image-Switch-Callback Functions */
 
 /*! \brief Display the image file selection dialog.
- *  \par Display the image file selection dialog, allowing the user to
- *  set several options, like image size and image type.
- *  When the user hits "ok", then it writes the image file.
+ *  \par Function Description
+ *   Displays the image file selection dialog, allowing the user to
+ * set several options, like image size and image type.
+ * When the user hits "ok", the image is written to the file.
  *
  *  \param[in] w_current    the GschemToplevel structure.
  *  \param[in] default_type the default (last) image type created.
