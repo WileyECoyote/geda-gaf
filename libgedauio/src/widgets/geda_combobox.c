@@ -2199,22 +2199,30 @@ geda_combo_box_menu_popup (GedaComboBox *combo_box,
 }
 
 static bool
-popup_grab_on_window (GdkWindow *window,
-		      unsigned int    activate_time,
-		      bool   grab_keyboard)
+popup_grab_on_window (GdkWindow    *window,
+                      unsigned int  activate_time,
+                      bool          grab_keyboard)
 {
-  if ((gdk_pointer_grab (window, TRUE,
-    GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-    GDK_POINTER_MOTION_MASK,
-    NULL, NULL, activate_time) == 0))
+  if ((gdk_pointer_grab (window, TRUE, GDK_BUTTON_PRESS_MASK |
+                                       GDK_BUTTON_RELEASE_MASK |
+                                       GDK_POINTER_MOTION_MASK,
+                         NULL, NULL, activate_time) == 0))
   {
     if (!grab_keyboard ||
-      gdk_keyboard_grab (window, TRUE,
-                         activate_time) == 0)
+      gdk_keyboard_grab (window, TRUE, activate_time) == 0)
       return TRUE;
     else {
-      gdk_display_pointer_ungrab (gdk_drawable_get_display (GDK_DRAWABLE(window)),
-                                  activate_time);
+
+      GdkDisplay *display;
+
+#if GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24
+      display = gdk_drawable_get_display (GDK_DRAWABLE(window)); /* Since 2.2 */
+#else
+      display = gdk_window_get_display (GDK_WINDOW(window));     /* Since 2.24 */
+#endif
+
+      gdk_display_pointer_ungrab (display, activate_time);
+
       return FALSE;
     }
   }

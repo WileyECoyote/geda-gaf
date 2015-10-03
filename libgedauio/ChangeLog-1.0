@@ -1,3 +1,9 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_combobox.c: Conditionally call gdk_window_get_display
+       instead of gdk_drawable_get_display based on GTK_VERSION in function
+       popup_grab_on_window.
+
 2015-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_combobox.c: Rename geda_combo_box_text_get_entry to
