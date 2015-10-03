@@ -44,7 +44,7 @@
 #define GEDA_IS_COMPLEX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_COMPLEX))
 #define GEDA_COMPLEX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_COMPLEX, ComplexClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaComplexClass ComplexClass;
 
@@ -79,5 +79,5 @@ bool     is_a_geda_complex_object (Complex *object);
 Object  *geda_complex_new         (void);
 
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_COMPLEX_H__ */

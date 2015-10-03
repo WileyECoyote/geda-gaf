@@ -23,7 +23,7 @@
  * 02110-1301 USA
  */
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /*! Domain for GErrors originating in libgeda. */
 #define EDA_ERROR eda_error_quark ()
@@ -42,4 +42,4 @@ typedef enum {
 
 GQuark eda_error_quark (void);
 
-G_END_DECLS
+END_DECLS

@@ -32,7 +32,7 @@
 #include <gtk/gtkaction.h>
 #include "geda_action.h"       /* only because is current dir, otherwise inclusion belongs in src */
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_TOGGLE_ACTION            (geda_toggle_action_get_type ())
 #define GEDA_TOGGLE_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TOGGLE_ACTION, GedaToggleAction))
@@ -64,6 +64,6 @@ GedaToggleAction *geda_toggle_action_new         (const char *name,
                                                   const char *stock_id,
                                                   const char *multikey_accel);
 
-G_END_DECLS
+END_DECLS
 
 #endif  /* __GEDA_TOGGLE_ACTION_H__ */

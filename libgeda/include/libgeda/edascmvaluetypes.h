@@ -40,7 +40,7 @@
 #define EDASCM_TYPE_SCM (edascm_scm_get_type ())
 #define EDASCM_VALUE_HOLDS_SCM(value) (G_TYPE_CHECK_VALUE_TYPE ((value), EDASCM_TYPE_SCM))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 GedaType edascm_scm_get_type (void) GEDA_CONST;
 
@@ -79,6 +79,6 @@ GParamSpec *edascm_param_spec_scm (const char *name,
                                    const char *blurb,
                                    GParamFlags flags) GEDA_WARN_UNUSED_RESULT;
 
-G_END_DECLS
+END_DECLS
 
 #endif /* ! __EDASCM_VALUE_H__ */

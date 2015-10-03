@@ -47,7 +47,7 @@
 
 #include "geda_completion.h"
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct
 {
@@ -177,6 +177,6 @@ void geda_entry_set_valid_input     (GedaEntry *entry, GedaEntryAccept mode);
 void geda_entry_set_attributes      (GedaEntry *entry, PangoAttrList *attrs);
 PangoAttrList  *geda_entry_get_attributes (GedaEntry *entry);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GTK_ENTRY_H__ */

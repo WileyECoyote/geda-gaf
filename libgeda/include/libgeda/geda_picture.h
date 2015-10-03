@@ -46,7 +46,7 @@
 #define GdkPixbuf void
 #endif
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaPictureClass PictureClass;
 
@@ -85,7 +85,7 @@ bool         is_a_geda_picture_object  (Picture *object);
 
 Object      *geda_picture_new          (void);
 
-G_END_DECLS
+END_DECLS
 
 #ifndef GDK_PIXBUF_H
 #undef GdkPixbuf

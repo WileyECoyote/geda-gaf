@@ -7,7 +7,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /* This is deprecated, don't use */
 #define PYGIL_API_IS_BUGGY FALSE
@@ -21,7 +21,7 @@ struct _PyGClosure {
     GClosure closure;
     PyObject *callback;
     PyObject *extra_args; /* tuple of extra args to pass to callback */
-    PyObject *swap_data; /* other object for gtk_signal_connect__object */
+    PyObject *swap_data; /* other object for g_signal_connect_object */
     PyClosureExceptionHandler exception_handler;
 };
 
@@ -390,6 +390,6 @@ pygobject_init(int req_major, int req_minor, int req_micro)
 
 #endif /* !_INSIDE_PYGOBJECT_ */
 
-G_END_DECLS
+END_DECLS
 
 #endif /* !_PYGOBJECT_H_ */

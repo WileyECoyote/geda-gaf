@@ -47,7 +47,7 @@
 #define GEDA_IS_TOPLEVEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_TOPLEVEL))
 #define GEDA_TOPLEVEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_TOPLEVEL, GedaToplevelClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaToplevelClass GedaToplevelClass;
 
@@ -212,6 +212,6 @@ void          geda_toplevel_remove_weak_ptr  (GedaToplevel *toplevel, void *weak
 Page*         geda_toplevel_get_current_page (GedaToplevel *toplevel);
 Page*         geda_toplevel_get_page         (GedaToplevel *toplevel, int page_id);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* _LIBGEDA_TOPLEVEL_H */

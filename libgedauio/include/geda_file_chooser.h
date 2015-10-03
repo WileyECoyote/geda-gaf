@@ -58,7 +58,7 @@ typedef enum
   FILE_CHOOSER_ACTION_CREATE_FOLDER
 } FileChooserAction;
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /* GedaFileChooser is a widget that displays a file chooser dialog */
 
@@ -119,6 +119,6 @@ void          geda_file_chooser_set_current_name   (GtkWidget *chooser, const ch
 GtkWidget    *geda_file_chooser_get_extra_widget   (GtkWidget *chooser);
 void          geda_file_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_FILE_CHOOSER_H__ */

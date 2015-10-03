@@ -43,7 +43,7 @@
  * */
 #define ROTATION_ELLIPSIZE_PADDING 2
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 struct _GdkRGBA
 {
@@ -237,6 +237,6 @@ void _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
 int  _geda_label_get_cursor_position                 (GedaLabel *label);
 int  _geda_label_get_selection_bound                 (GedaLabel *label);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_LABEL_H__ */

@@ -35,7 +35,7 @@
 
 #include <geda_tree.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_TREE_VIEW            (geda_tree_view_get_type ())
 #define GEDA_TREE_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TREE_VIEW, GedaTreeView))
@@ -66,6 +66,6 @@ GtkWidget    *geda_tree_view_new_with_model      (GtkTreeModel *model);
 int           geda_tree_view_row_get_visibility  (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
 int           geda_tree_view_row_make_visible    (GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
 
-G_END_DECLS
+END_DECLS
 
 #endif  /* __GEDA_TREE_VIEW_H__ */

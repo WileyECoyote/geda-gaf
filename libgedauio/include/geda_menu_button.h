@@ -33,7 +33,7 @@
 
 #include <gtk/gtk.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_MENU_BUTTON             (geda_menu_button_get_type ())
 #define GEDA_MENU_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton))
@@ -143,7 +143,7 @@ void            geda_menu_button_set_arrow_tooltip_text   (GedaMenuButton *butto
                                                            const char     *text);
 void            geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
                                                            const char     *markup);
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_MENU_BUTTON_H__ */
 /* ex:set ts=8 noet: */

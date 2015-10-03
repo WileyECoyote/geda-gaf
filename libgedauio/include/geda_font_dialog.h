@@ -47,7 +47,7 @@
 #ifndef __GEDA_FONT_DIALOG_H__
 #define __GEDA_FONT_DIALOG_H__
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_FONT_DIALOG            (geda_font_dialog_get_type ())
 #define GEDA_FONT_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_FONT_DIALOG, GedaFontDialog))

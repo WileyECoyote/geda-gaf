@@ -24,7 +24,9 @@ unsigned int gtk_sheet_border_flags_get_type (void);
 
 #define GTK_TYPE_SHEET_BORDER_FLAGS (gtk_sheet_border_flags_get_type())
 
-G_END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GTKSHEET_TYPE_BUILTINS_H__ */
 

@@ -29,7 +29,7 @@
 #ifndef __GEDA_NOTIFY_H__
 #define __GEDA_NOTIFY_H__
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct st_change_notify change_notify;
 
@@ -84,6 +84,6 @@ void      geda_notify_list_remove_all              (GedaNotifyList *list);
 
 #define geda_notify_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_NOTIFY_H__ */

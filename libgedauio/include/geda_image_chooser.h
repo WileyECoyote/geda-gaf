@@ -42,7 +42,7 @@
 #define MIN_CHOOSER_PREVIEW_SIZE     100
 #define MAX_CHOOSER_PREVIEW_SIZE     1000
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /*!
  * ImageChooserAction:
@@ -142,6 +142,6 @@ void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidg
 
 void          gtk_image_chooser_set_preview_active  (GtkWidget *chooser, bool state);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_IMAGE_CHOOSER_H__ */

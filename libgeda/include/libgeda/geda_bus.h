@@ -43,7 +43,7 @@
 #define GEDA_IS_BUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_BUS))
 #define GEDA_BUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_BUS, BusClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaBusClass BusClass;
 
@@ -73,5 +73,5 @@ bool     is_a_geda_bus_object     (Bus *object);
 Object  *geda_bus_new             (void);
 
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_BUS_H__ */

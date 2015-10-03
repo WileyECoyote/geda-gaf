@@ -34,7 +34,7 @@
 
 #include <glib.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaCompletion     GedaCompletion;
 
@@ -43,8 +43,8 @@ typedef char* (*GedaCompletionFunc)      (void *);
 /* GedaCompletion */
 
 typedef int (*GedaStrCompareNFunc) (const char   *s1,
-                                          const char   *s2,
-                                          unsigned long n);
+                                    const char   *s2,
+                                    unsigned long n);
 
 struct _GedaCompletion
 {
@@ -79,6 +79,6 @@ void         geda_completion_set_compare   (GedaCompletion *cmp,
 
 void         geda_completion_free          (GedaCompletion *cmp);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_COMPLETION_H__ */

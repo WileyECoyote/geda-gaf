@@ -43,7 +43,7 @@
 #define GEDA_IS_LINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LINE))
 #define GEDA_LINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LINE, LineClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaLineClass LineClass;
 
@@ -70,5 +70,5 @@ bool     is_a_geda_line_object    (Line *object);
 
 Object  *geda_line_new            (void);
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_LINE_H__ */

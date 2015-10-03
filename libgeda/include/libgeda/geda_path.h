@@ -43,7 +43,7 @@
 #define GEDA_IS_PATH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PATH))
 #define GEDA_PATH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PATH, PathClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaPathClass PathClass;
 
@@ -74,5 +74,5 @@ bool         is_a_geda_path_object     (Path *object);
 Object      *geda_path_new             (void);
 
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_PATH_H__ */

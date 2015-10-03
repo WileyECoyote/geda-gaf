@@ -40,7 +40,7 @@
 
 #define DEFAULT_PREVIEW_TEXT _("abcdefghijk ABCDEFGHIJK")
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /* GedaFontButton is a button widget that allow user to select font properties. */
 
@@ -114,6 +114,6 @@ const PangoFontDescription *geda_font_button_get_font_desc (GedaFontButton *gfp)
 void  geda_font_button_set_font_desc (GedaFontButton *font_button,
                                       PangoFontDescription * pfd);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_FONT_BUTTON_H__ */

@@ -3,7 +3,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 /* enumerations from "gtkiconlist.h" */
 GType gtk_icon_list_mode_get_type (void);
 #define GTK_TYPE_ICON_LIST_MODE (gtk_icon_list_mode_get_type())
@@ -81,7 +81,7 @@ GType gtk_plot_canvas_arrow_get_type (void);
 /* enumerations from "gtkplotcanvasplot.h" */
 GType gtk_plot_canvas_plot_pos_get_type (void);
 #define GTK_TYPE_PLOT_CANVAS_PLOT_POS (gtk_plot_canvas_plot_pos_get_type())
-G_END_DECLS
+END_DECLS
 
 #endif /* __GTKEXTRA_TYPE_BUILTINS_H__ */
 

@@ -64,7 +64,7 @@
 #define EDASCM_IS_HOOK_PROXY(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EDASCM_TYPE_HOOK_PROXY))
 #define EDASCM_HOOK_PROXY_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDASCM_TYPE_HOOK_PROXY, EdascmHookProxy))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _EdascmHookProxyClass EdascmHookProxyClass;
 typedef struct _EdascmHookProxy EdascmHookProxy;
@@ -90,6 +90,6 @@ GedaType edascm_hook_proxy_get_type (void) GEDA_CONST;
 
 EdascmHookProxy *edascm_hook_proxy_new_with_hook (SCM hook_s) GEDA_WARN_UNUSED_RESULT;
 
-G_END_DECLS
+END_DECLS
 
 #endif /* ! __EDASCM_HOOK_PROXY_H__ */

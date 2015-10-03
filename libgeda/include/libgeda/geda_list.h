@@ -45,7 +45,7 @@
 #define GEDA_IS_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LIST))
 #define GEDA_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LIST, GedaListClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaList      GedaList;
 typedef struct _GedaListClass GedaListClass;

@@ -111,7 +111,7 @@
  * eda_config_get_context_for_path().
  */
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 /*! Domain for errors relating to EdaConfig operations. */
 #define EDA_CONFIG_ERROR eda_config_error_quark ()
@@ -216,6 +216,6 @@ void eda_config_set_boolean_list     (EdaConfig *cfg, const char *group, const c
 void eda_config_set_int_list         (EdaConfig *cfg, const char *group, const char *key, int list[],    size_t length);
 void eda_config_set_double_list      (EdaConfig *cfg, const char *group, const char *key, double list[], size_t length);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* !__EDA_CONFIG_H__ */

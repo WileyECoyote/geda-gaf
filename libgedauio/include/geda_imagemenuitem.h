@@ -37,7 +37,7 @@
 
 #include <gtk/gtkmenuitem.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_IMAGE_MENU_ITEM            (geda_image_menu_item_get_type ())
 #define GEDA_IMAGE_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_MENU_ITEM, GedaImageMenuItem))
@@ -84,6 +84,6 @@ bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_
 void       geda_image_menu_item_set_accel_group       (GedaImageMenuItem *image_menu_item,
                                                        GtkAccelGroup     *accel_group);
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_IMAGE_MENU_ITEM_H__ */

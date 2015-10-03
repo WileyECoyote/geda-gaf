@@ -29,7 +29,7 @@
 
 #include <gtk/gtkbin.h>
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 #define GEDA_TYPE_HANDLE_BOX            (geda_handle_box_get_type ())
 #define GEDA_HANDLE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_HANDLE_BOX, GedaHandleBox))
@@ -88,6 +88,6 @@ void            geda_handle_box_set_snap_edge        (GedaHandleBox *handlebox, 
 GtkPositionType geda_handle_box_get_snap_edge        (GedaHandleBox *handlebox);
 bool            geda_handle_box_get_child_detached   (GedaHandleBox *handlebox);
 
-G_END_DECLS
+END_DECLS
 
 #endif  /* __GEDA_HANDLE_BOX_H__ */

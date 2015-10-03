@@ -42,7 +42,7 @@
 #define GEDA_IS_PIN_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PIN))
 #define GEDA_PIN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PIN, PinClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaPinClass PinClass;
 
@@ -92,5 +92,5 @@ const char *geda_pin_lookup_estring   (PIN_ELECT   e_type);
 PIN_MECH    geda_pin_lookup_mtype     (const char *m_str);
 const char *geda_pin_lookup_mstring   (PIN_MECH    m_type);
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_PIN_H__ */

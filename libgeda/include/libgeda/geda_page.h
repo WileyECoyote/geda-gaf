@@ -48,7 +48,7 @@
 #define GEDA_IS_PAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PAGE))
 #define GEDA_PAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PAGE, PageClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaPageClass PageClass;
 
@@ -151,5 +151,5 @@ void      geda_page_add_object           (Page *page, Object *object);
 Object   *geda_page_get_object           (Page *page, int sid);
 void      geda_page_remove_object        (Page *page, Object *object);
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_PAGE_H__ */

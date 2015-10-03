@@ -46,7 +46,7 @@
 #define GEDA_IS_TEXT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_TEXT))
 #define GEDA_TEXT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_TEXT, TextClass))
 
-G_BEGIN_DECLS
+BEGIN_DECLS
 
 typedef struct _GedaTextClass TextClass;
 
@@ -85,5 +85,5 @@ bool         is_a_geda_text_object     (Text *object);
 
 Object *geda_text_new             (void);
 
-G_END_DECLS
+END_DECLS
 #endif /* __GEDA_TEXT_H__ */
