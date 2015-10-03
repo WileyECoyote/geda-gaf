@@ -10,5 +10,5 @@ S1 two one <No valid value attribute found>
 CONN1 one five 0 <No valid value attribute found>
 T1 five three seven six <No valid value attribute found>
 F1 two three <No valid value attribute found>
-U1 eight nine seven six <No valid value attribute found>
+U1 seven six eight nine <No valid value attribute found>
 .END

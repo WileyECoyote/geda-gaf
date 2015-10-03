@@ -44,10 +44,10 @@ ARCHITECTURE netlist OF not found IS
     SIGNAL five : Std_Logic;
     SIGNAL three : Std_Logic;
     SIGNAL two : Std_Logic;
-    SIGNAL six : Std_Logic;
-    SIGNAL seven : Std_Logic;
     SIGNAL nine : Std_Logic;
     SIGNAL eight : Std_Logic;
+    SIGNAL six : Std_Logic;
+    SIGNAL seven : Std_Logic;
 BEGIN
 -- Architecture statement part
     U2 : LM317
@@ -112,10 +112,10 @@ BEGIN
 
     U1 : DIODE-BRIDGE
     PORT MAP (
-        1 => eight,
-        2 => nine,
-        3 => seven,
-        4 => six);
+        1 => seven,
+        2 => six,
+        3 => eight,
+        4 => nine);
 
 -- Signal assignment part
 END netlist;

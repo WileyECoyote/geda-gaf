@@ -22,10 +22,10 @@ wire one ;
 wire five ;
 wire three ;
 wire two ;
-wire six ;
-wire seven ;
 wire nine ;
 wire eight ;
+wire six ;
+wire seven ;
 
 /* continuous assignments */
 
@@ -91,10 +91,10 @@ FUSE F1 (
     );
 
 \DIODE-BRIDGE  U1 ( 
-    .\1  ( eight ),
-    .\2  ( nine ),
-    .\3  ( seven ),
-    .\4  ( six )
+    .\1  ( seven ),
+    .\2  ( six ),
+    .\3  ( eight ),
+    .\4  ( nine )
     );
 
 endmodule

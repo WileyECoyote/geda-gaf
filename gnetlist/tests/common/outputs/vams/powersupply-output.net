@@ -9,10 +9,10 @@ ARCHITECTURE default_architecture OF default_entity IS
 	unknown five 	:  unknown;
 	unknown three 	:  unknown;
 	unknown two 	:  unknown;
-	unknown six 	:  unknown;
-	unknown seven 	:  unknown;
 	unknown nine 	:  unknown;
 	unknown eight 	:  unknown;
+	unknown six 	:  unknown;
+	unknown seven 	:  unknown;
 BEGIN
 -- Architecture statement part
  
@@ -78,8 +78,8 @@ BEGIN
 			2 => three);
  
   U1 : ENTITY DIODE-BRIDGE
-	PORT MAP (	1 => eight,
-			2 => nine,
-			3 => seven,
-			4 => six);
+	PORT MAP (	1 => seven,
+			2 => six,
+			3 => eight,
+			4 => nine);
 END ARCHITECTURE default_architecture;

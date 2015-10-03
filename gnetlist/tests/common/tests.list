@@ -1,6 +1,6 @@
 # Format:
 #
-# test_name | input schematics | aux files (gafrc, symbols, etc) | \ 
+# test_name | input schematics | aux files (gafrc, symbols, etc) | \
 # extra flags to pass to gnetlist -g spice-sdb | \
 # variable which must be set for the test to run
 #
@@ -14,7 +14,7 @@
 cascade | cascade.sch | | |
 multiequal | multiequal.sch | | |
 netattrib | netattrib.sch | | |
-powersupply | powersupply.sch | | |
+powersupply | powersupply.sch | gafrc sym/rectifier-bridge-1.sym | |
 singlenet | singlenet.sch | | |
 
 # The two stage amp

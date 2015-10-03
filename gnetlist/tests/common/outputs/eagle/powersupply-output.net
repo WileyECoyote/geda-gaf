@@ -53,14 +53,6 @@ SIGNAL 'TWO'
    'S1' '2'
    'F1' '1'
 ;
-SIGNAL 'SIX'
-   'T1' '3'
-   'U1' '4'
-;
-SIGNAL 'SEVEN'
-   'T1' '4'
-   'U1' '3'
-;
 SIGNAL 'NINE'
    'C4' '2'
    'C3' '2'
@@ -68,11 +60,19 @@ SIGNAL 'NINE'
    'R1' '1'
    'C2' '2'
    'C1' '2'
-   'U1' '2'
+   'U1' '4'
 ;
 SIGNAL 'EIGHT'
    'U2' '3'
    'C2' '1'
    'C1' '1'
+   'U1' '3'
+;
+SIGNAL 'SIX'
+   'T1' '3'
+   'U1' '2'
+;
+SIGNAL 'SEVEN'
+   'T1' '4'
    'U1' '1'
 ;

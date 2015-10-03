@@ -34,10 +34,10 @@ sc_signal<0> one;
 sc_signal<0> five;
 sc_signal<0> three;
 sc_signal<0> two;
-sc_signal<0> six;
-sc_signal<0> seven;
 sc_signal<0> nine;
 sc_signal<0> eight;
+sc_signal<0> six;
+sc_signal<0> seven;
 
 
 /* Package instantiations */
@@ -106,10 +106,10 @@ SC_CTOR(not found):
     F1.1(two);
     F1.2(three);
 
-    U1.1(eight);
-    U1.2(nine);
-    U1.3(seven);
-    U1.4(six);
+    U1.1(seven);
+    U1.2(six);
+    U1.3(eight);
+    U1.4(nine);
   }
 };
 

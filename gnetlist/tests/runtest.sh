@@ -40,5 +40,3 @@ if [ "$status" != 0 ]
 then
 	exit 2
 fi
-
-

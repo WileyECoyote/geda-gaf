@@ -1,3 +1,8 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/inputs/sym/rectifier-bridge-1.sym: Add local symbol
+      from library for common tests and regenerate test outputs.
+
 2015-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_register.c: Remove redundent gsubr_t structure definition.

@@ -16,6 +16,7 @@ input_files = \
 	inputs/models/openIP_5.cir \
 	\
 	inputs/sym/LVD.sym \
+	inputs/sym/rectifier-bridge-1.sym \
 	inputs/sym/transistor.sym \
 	inputs/sym/LM324_slotted-1.sym
 
