@@ -468,16 +468,15 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
 /*! \brief Return RGB color from string color name
  *  \par Function Description
  * Parses a textual specification of a color and fill in the <b>red</b>,
- * <b>green</b>, and <b>blue</b> fields of a #GdkColor structure. The color
+ * <b>green</b>, and <b>blue</b> fields of a GdkColor structure. The color
  * is <em>not</em> allocated. The string can be either one of the standard
- * names (Taken from the X11 <filename>rgb.txt</filename> file), or a hex
- * value in the form '&num;rgb' '&num;rrggbb' '&num;rrrgggbbb' or
- * '&num;rrrrggggbbbb' where 'r', 'g' and 'b' are hex digits of the
- * red, green, and blue components of the color, respectively. (White
- * in the four forms is '&num;fff' '&num;ffffff' '&num;fffffffff' and
- * '&num;ffffffffffff')
+ * names (Taken from the X11 <b>rgb.txt</b> file), or a hex
+ * value in the form 'rgb' 'rrggbb' 'rrrgggbbb' or 'rrrrggggbbbb' where 'r',
+ * 'g' and 'b' are hex digits of the red, green, and blue components of the
+ *  color, respectively. (White in the four forms is 'fff' 'ffffff' 'fffffffff'
+ *  and 'ffffffffffff')
  * This function implements similar functionality to u_color_rgba_decode
- * and gdk_color_parse() but accept a pointer to a GEDA #COLOR structure
+ * and gdk_color_parse() but accept a pointer to a <b>GEDA COLOR</b>structure
  * as an argument but does not fully support the alpha channel. The alpha
  * value is always set to 0xff.
  *
@@ -521,6 +520,14 @@ eda_renderer_draw_list (EdaRenderer *renderer, GList *objects)
   }
 }
 
+/*! \brief Draw GedaObject using Cairo Renderer
+ *  \par Function Description
+ *  Wrapper that calls the virtual eda_renderer_draw_xxxxx routine
+ *  associated with the GedaObject.
+ *
+ *  \param [in] renderer Pointer to a EdaRenderer object.
+ *  \param [in] object   Pointer to a GedaObject.
+ */
 void
 eda_renderer_draw (EdaRenderer *renderer, Object *object)
 {
@@ -1189,21 +1196,38 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   GEDA_UNREF (pixbuf);
 }
 
+/** \defgroup eda-renderer-draw-grips EdaRenderer Draw Grips
+ *  @{
+ */
 /* ================================================================
  * GRIP DRAWING
  * ================================================================
  */
 
-void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects)
+/*! \brief Draw Grips for List of GedaObject using Cairo Renderer
+ *  \par Function Description
+ *  Wrapper that calls eda_renderer_draw_grips for each member of list.
+ *
+ *  \param [in] renderer Pointer to a EdaRenderer object.
+ *  \param [in] list     List of GedaObjects for which grips are to be drawn.
+ */
+void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
 {
   GList *iter;
   if(renderer->draw_grips) {
-    for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
+    for (iter = list; iter != NULL; iter = g_list_next (iter)) {
       eda_renderer_draw_grips (renderer, (Object *) iter->data);
     }
   }
 }
 
+/*! \brief Draw Grips for GedaObject using Cairo Renderer
+ *  \par Function Description
+ *  Calls virtual draw_grips routine for \a object.
+ *
+ *  \param [in] renderer Pointer to a EdaRenderer object.
+ *  \param [in] object   GedaObject for which grips are to be drawn.
+ */
 void
 eda_renderer_draw_grips (EdaRenderer *renderer, Object *object)
 {
@@ -1422,7 +1446,11 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, Object *object)
                     EDA_RENDERER_STROKE_WIDTH (renderer, 0),
                     -1, -1);
 }
+/** @} eda-renderer-draw-grips */
 
+/** \defgroup eda-renderer-draw-cue EdaRenderer Draw Cue
+ *  @{
+ */
 /* ================================================================
  * CUE DRAWING
  * ================================================================ */
@@ -1576,6 +1604,12 @@ eda_renderer_draw_cues (EdaRenderer *renderer, Object *object)
   EDA_RENDERER_GET_CLASS (renderer)->draw_cues (renderer, object);
 }
 
+/** @} eda-renderer-draw-cue */
+
+/** \defgroup eda-renderer-bounds EdaRenderer Bouds Routines
+ *  @{
+ */
+
 /* ================================================================
  * RENDERED BOUNDS
  * ================================================================ */
@@ -1714,13 +1748,15 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
   return ret_val;
 }
 
+/** @} eda-renderer-bounds */
+
 /*! \brief Type class initializer for EdaRenderer
  *
  *  \par Function Description
- *  Type class initializer for EdaRenderer. We override our parents
- *  virtual class methods as needed and register our GObject signals.
+ *  Type class initializer for EdaRenderer. Overrides parent virtual class
+ *  methods as needed and register GObject signals.
  *
- *  \param [in]  g_class      The EdaRenderer class we are initializing
+ *  \param [in]  g_class      The EdaRenderer class being initialized
  *  \param [in]  class_data   EdaRenderer structure associated with the class
  */
 static void
