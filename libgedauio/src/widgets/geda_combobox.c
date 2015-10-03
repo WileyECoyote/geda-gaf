@@ -1402,10 +1402,10 @@ geda_combo_box_button_state_changed (GtkWidget    *widget,
   GedaComboBox *combo_box   = GEDA_COMBO_BOX (data);
   GedaComboBoxPrivate *priv = combo_box->priv;
 
-  if (gtk_widget_get_realized (widget))
-  {
-    if (!priv->tree_view && priv->cell_view)
-    {
+  if (gtk_widget_get_realized (widget)) {
+
+    if (!priv->tree_view && priv->cell_view) {
+
       if ((gtk_widget_get_state (widget) == GTK_STATE_INSENSITIVE) !=
         (gtk_widget_get_state (priv->cell_view) == GTK_STATE_INSENSITIVE))
         gtk_widget_set_sensitive (priv->cell_view, gtk_widget_get_sensitive (widget));
@@ -2254,7 +2254,7 @@ geda_combo_box_real_popup (GedaComboBox *combo_box)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
   GtkTreePath         *path = NULL;
-  GtkTreePath         *ppath;
+
   GtkWidget           *toplevel;
 
   int x, y, width, height;
@@ -2273,46 +2273,49 @@ geda_combo_box_real_popup (GedaComboBox *combo_box)
   }
 
   toplevel = gtk_widget_get_toplevel (GTK_WIDGET (combo_box));
-  if (GTK_IS_WINDOW (toplevel))
+
+  if (GTK_IS_WINDOW (toplevel)) {
     gtk_window_group_add_window (gtk_window_get_group (GTK_WINDOW (toplevel)),
                                  GTK_WINDOW (priv->popup_window));
+  }
 
-    gtk_widget_show_all (priv->scrolled_window);
+  gtk_widget_show_all (priv->scrolled_window);
   geda_combo_box_list_position (combo_box, &x, &y, &width, &height);
 
   gtk_widget_set_size_request (priv->popup_window, width, height);
   gtk_window_move (GTK_WINDOW (priv->popup_window), x, y);
 
   if (gtk_tree_row_reference_valid (priv->active_row)) {
-    path = gtk_tree_row_reference_get_path (priv->active_row);
+
+    GtkTreePath *ppath;
+
+    path  = gtk_tree_row_reference_get_path (priv->active_row);
     ppath = gtk_tree_path_copy (path);
+
     if (gtk_tree_path_up (ppath))
-      gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->tree_view),
-                                    ppath);
-      gtk_tree_path_free (ppath);
+      gtk_tree_view_expand_to_path (GTK_TREE_VIEW (priv->tree_view), ppath);
+
+    gtk_tree_path_free (ppath);
   }
-  gtk_tree_view_set_hover_expand (GTK_TREE_VIEW (priv->tree_view),
-                                  TRUE);
+
+  gtk_tree_view_set_hover_expand (GTK_TREE_VIEW (priv->tree_view), TRUE);
 
   /* popup */
   gtk_widget_show (priv->popup_window);
 
   if (path) {
-    gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->tree_view),
-                              path, NULL, FALSE);
+    gtk_tree_view_set_cursor(GTK_TREE_VIEW (priv->tree_view),path,NULL,FALSE);
     gtk_tree_path_free (path);
   }
 
   gtk_widget_grab_focus (priv->popup_window);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button),
-                                TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
 
   if (!gtk_widget_has_focus (priv->tree_view)) {
     gtk_widget_grab_focus (priv->tree_view);
   }
 
-  if (!popup_grab_on_window (priv->popup_window->window,
-    GDK_CURRENT_TIME, TRUE))
+  if (!popup_grab_on_window(priv->popup_window->window,GDK_CURRENT_TIME,TRUE))
   {
     gtk_widget_hide (priv->popup_window);
     return;
@@ -5790,6 +5793,10 @@ geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
   }
 }
 
+/** \defgroup GedaComboBox-methods GedaComboBox Methods
+ *  @{
+ */
+
 /*! \brief Get Active GedaComboTextBox Text
  *
  *  \par Function Description
@@ -5823,6 +5830,7 @@ geda_combo_box_get_active_text (GedaComboBox *combo_box)
   }
   return NULL;
 }
+
 
 static char *
 geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
@@ -6175,6 +6183,11 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
   }
 }
 
+/** @} endgroup GedaComboBox-methods */
+
+/** \defgroup GedaComboBox-properties GedaComboBox Properties
+ *  @{
+ */
 
 /*! \brief Get Add Tearoff GedaComboTextBox Property
  *
@@ -6554,6 +6567,10 @@ void geda_combo_box_set_tooltip_column (GedaComboBox *combo, int column)
 
 /* ------------------------ Widget Versions ------------------------ */
 
+/** \defgroup GedaComboBox-widget GedaComboBox Widget Operatives
+ *  @{
+ */
+
 int geda_combo_widget_get_wrap_width (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->wrap_width;
@@ -6630,7 +6647,10 @@ void geda_combo_widget_set_tooltip_column (GtkWidget *combo_box, int column) {
     BUG_MSG ("Operative is not a GedaComboBox");
 }
 
-/* get/set active item */
+/** \defgroup GedaComboBox-widget-active GedaComboBox Widget get/set active item
+ *  @{
+ */
+
 int geda_combo_widget_get_active (GtkWidget *combo_box) {
   return geda_combo_box_get_active((GedaComboBox*)combo_box);
 }
@@ -6647,14 +6667,19 @@ void geda_combo_widget_set_active_iter(GtkWidget *combo, GtkTreeIter *iter) {
   return geda_combo_box_set_active_iter((GedaComboBox*)combo, iter);
 }
 
+/** @} endgroup GedaComboBox-widget-active */
 
-/* getters and setters */
+/** \defgroup GedaComboBox-widget-getters-setters GedaComboBox Widget getters and setters
+ *  @{
+ */
+
 GtkTreeModel *geda_combo_widget_get_model (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->model;
   BUG_MSG ("Operative is not a GedaComboBox");
   return NULL;
 }
+
 void geda_combo_widget_set_model (GtkWidget *combo_box, GtkTreeModel *model) {
   return geda_combo_box_set_model((GedaComboBox*)combo_box, model);
 }
@@ -6677,7 +6702,12 @@ void geda_combo_widget_set_entry_text_column (GtkWidget *cb, int text_column) {
  return geda_combo_box_set_entry_text_column((GedaComboBox*)cb, text_column);
 }
 
-/* programmatic control */
+/** @} endgroup GedaComboBox-widget-getters-setters */
+
+/** \defgroup GedaComboBox-widget-programmatic GedaComboBox Programmatic Control
+ *  @{
+ */
+
 void geda_combo_widget_popup (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     g_signal_emit (combo_box, combo_box_signals[POPUP], 0);
@@ -6686,8 +6716,16 @@ void geda_combo_widget_popdown (GtkWidget *combo_box) {
   return geda_combo_box_popdown((GedaComboBox*)combo_box);
 }
 
+/** @} endgroup GedaComboBox-widget-programmatic */
+
+/** \defgroup GedaComboBox-widget-atk
+ *  @{
+ */
 AtkObject *geda_combo_widget_get_popup_accessible (GtkWidget *combo_box) {
   return geda_combo_box_get_popup_accessible((GedaComboBox*)combo_box);
 }
 
-/** @} end group GedaComboBox */
+/** @} endgroup GedaComboBox-widget-atk */
+/** @} endgroup GedaComboBox-widget */
+/** @} endgroup GedaComboBox-properties */
+/** @} endgroup GedaComboBox */

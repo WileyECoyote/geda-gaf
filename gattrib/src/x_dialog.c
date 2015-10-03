@@ -36,10 +36,12 @@
 
 /***************** Start of generic message dialog box *******************/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create generic dialog and display message
+ * \par Function Description
+ *  Use generic Gtk message dialog to display \a msg
  *
+ * \param msg    pointer to message to be displayed
  */
 void generic_msg_dialog (const char *msg)
 {
@@ -190,10 +192,9 @@ void x_dialog_delete_attrib()
 
 /*! \brief Missing Symbol dialog
  *
- * This is the "missing symbol file found on object" dialog.
- *
- *  It offers the user the chance to close the project without
- *  saving because he read a schematic with a missing symbol file.
+ * This is the "missing symbol file found on object" dialog,
+ * which offers users an opertunity to close the project without
+ * saving because the schematic was read with a missing symbol.
  */
 void x_dialog_missing_sym()
 {
@@ -227,6 +228,12 @@ void x_dialog_missing_sym()
 
   gtk_widget_destroy(dialog);
 }
+
+/*! \brief File Not Saved dialog
+ *
+ * Displays a dialog notifing users that the content has changes and
+ * provides an opportunity to save the file.
+ */
 int x_dialog_file_not_saved()
 {
   GtkWidget  *dialog;
@@ -265,6 +272,7 @@ int x_dialog_file_not_saved()
   gtk_widget_destroy (dialog);
   return result;
 }
+
 /*! \brief Unsaved data dialog
  *
  * This is the "Unsaved data -- are you sure you want to quit?" dialog
@@ -354,7 +362,6 @@ void x_dialog_about_dialog()
 {
   GtkWidget *dialog;
   const char *string = _("gEDA : GPL Electronic Design Automation\n\nThis is gattrib -- gEDA's attribute editor\n\nGattrib version: %s%s.%s\n\nGattrib is written by: Stuart Brorson (sdb@cloud9.net)\nwith generous helpings of code from gschem, gnetlist, \nand gtkextra, as well as support from the gEDA community.");
-
 
   /* Create the dialog */
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
