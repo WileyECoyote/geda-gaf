@@ -80,7 +80,7 @@ struct _GedaPicture {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType     geda_picture_get_type     (void);
+GedaType     geda_picture_get_type     (void) GEDA_CONST;
 bool         is_a_geda_picture_object  (Picture *object);
 
 Object      *geda_picture_new          (void);

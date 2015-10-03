@@ -159,14 +159,14 @@ struct _EdaConfig
   GList *RC_list;            /* List of RC files which have been read in. */
 };
 
-GedaType eda_config_get_type (void) G_GNUC_CONST;
+GedaType eda_config_get_type (void) GEDA_CONST;
 
 /* ---------------------------------------------------------------- */
 
-char      *eda_config_find_project_root     (const char *path, const char *filename) G_GNUC_WARN_UNUSED_RESULT;
+char      *eda_config_find_project_root     (const char *path, const char *filename) GEDA_WARN_UNUSED_RESULT;
 
-EdaConfig *eda_config_get_context_for_file  (const char *file) G_GNUC_WARN_UNUSED_RESULT;
-EdaConfig *eda_config_get_context_for_path  (const char *path) G_GNUC_WARN_UNUSED_RESULT;
+EdaConfig *eda_config_get_context_for_file  (const char *file) GEDA_WARN_UNUSED_RESULT;
+EdaConfig *eda_config_get_context_for_path  (const char *path) GEDA_WARN_UNUSED_RESULT;
 
 EdaConfig *eda_config_get_default_context   (void);
 EdaConfig *eda_config_get_system_context    (const char *context);
@@ -187,9 +187,9 @@ void eda_config_set_trusted (EdaConfig *cfg, bool trusted);
 
 EdaConfig *eda_config_get_trusted_context (EdaConfig *cfg);
 
-char **eda_config_get_groups   (EdaConfig *cfg, unsigned   *length) G_GNUC_WARN_UNUSED_RESULT;
+char **eda_config_get_groups   (EdaConfig *cfg, unsigned   *length) GEDA_WARN_UNUSED_RESULT;
 bool   eda_config_has_group    (EdaConfig *cfg, const char *group);
-char **eda_config_get_keys     (EdaConfig *cfg, const char *group, unsigned   *length, GError **error) G_GNUC_WARN_UNUSED_RESULT;
+char **eda_config_get_keys     (EdaConfig *cfg, const char *group, unsigned   *length, GError **error) GEDA_WARN_UNUSED_RESULT;
 bool   eda_config_has_key      (EdaConfig *cfg, const char *group, const char *key, GError **err);
 bool   eda_config_is_inherited (EdaConfig *cfg, const char *group, const char *key, GError **err);
 
@@ -197,14 +197,14 @@ EdaConfig *eda_config_get_source (EdaConfig *cfg, const char *group, const char 
 
 /* ---------------------------------------------------------------- */
 
-char    *eda_config_get_string       (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
-bool     eda_config_get_boolean      (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
-int      eda_config_get_integer      (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
-double   eda_config_get_double       (EdaConfig *cfg, const char *group, const char *key, GError  **err) G_GNUC_WARN_UNUSED_RESULT;
-char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
-double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+char    *eda_config_get_string       (EdaConfig *cfg, const char *group, const char *key, GError  **err) GEDA_WARN_UNUSED_RESULT;
+bool     eda_config_get_boolean      (EdaConfig *cfg, const char *group, const char *key, GError  **err) GEDA_WARN_UNUSED_RESULT;
+int      eda_config_get_integer      (EdaConfig *cfg, const char *group, const char *key, GError  **err) GEDA_WARN_UNUSED_RESULT;
+double   eda_config_get_double       (EdaConfig *cfg, const char *group, const char *key, GError  **err) GEDA_WARN_UNUSED_RESULT;
+char   **eda_config_get_string_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+int     *eda_config_get_int_list     (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) GEDA_WARN_UNUSED_RESULT;
+double  *eda_config_get_double_list  (EdaConfig *cfg, const char *group, const char *key, size_t  *length, GError **err) GEDA_WARN_UNUSED_RESULT;
 
 
 void eda_config_set_string           (EdaConfig *cfg, const char *group, const char *key, const char *value);

@@ -71,7 +71,7 @@ struct _GedaAccelLabelClass
 
 BEGIN_DECLS
 
-GedaType      geda_accel_label_get_type          (void) G_GNUC_CONST;
+GedaType      geda_accel_label_get_type          (void) GEDA_CONST;
 GtkWidget*    geda_accel_label_new               (const char     *string);
 unsigned int  geda_accel_label_get_accel_width   (GedaAccelLabel *accel_label);
 void          geda_accel_label_set_accel_string  (GedaAccelLabel *accel_label,

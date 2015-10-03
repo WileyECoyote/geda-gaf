@@ -133,7 +133,7 @@ BEGIN_DECLS
 
 /* o_arc_basic.c */
        Object   *o_arc_new                       (int color, int x, int y, int radius, int start_angle, int arc_sweep);
-       Object   *o_arc_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_arc_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_arc_mirror                    (Object *object, int center_x, int center_y);
          void    o_arc_modify                    (Object *object, int x, int y, int whichone);
          void    o_arc_rotate                    (Object *object, int center_x, int center_y, int angle);
@@ -174,14 +174,14 @@ BEGIN_DECLS
                                                   const int size, const char *name, GError **err);
         GList   *o_read                          (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
          void    o_scale                         (GList *list, int x_scale, int y_scale);
-       Object   *o_copy_object                   (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_copy_object                   (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_mirror_object                 (Object *object, int center_x, int center_y);
          void    o_rotate_object                 (Object *object, int center_x, int center_y, int angle);
          void    o_translate_object              (Object *object, int dx, int dy);
 
 /* o_box_basic.c */
        Object   *o_box_new                       (int color, int x1, int y1, int x2, int y2);
-       Object   *o_box_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_box_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_box_modify_all                (Object *object, int x1, int y1, int x2, int y2);
          void    o_box_modify                    (Object *object, int x, int y, int whichone);
          void    o_box_mirror                    (Object *object, int center_x, int center_y);
@@ -191,7 +191,7 @@ BEGIN_DECLS
 
 /* o_bus_basic.c */
        Object   *o_bus_new                       (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
-       Object   *o_bus_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_bus_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_bus_modify                    (Object *object, int x, int y, int whichone);
          void    o_bus_mirror                    (Object *object, int center_x, int center_y);
          void    o_bus_rotate                    (Object *object, int center_x, int center_y, int angle);
@@ -260,8 +260,8 @@ BEGIN_DECLS
           int    o_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
 
 /* o_line_basic.c */
-       Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2) G_GNUC_WARN_UNUSED_RESULT;
-       Object   *o_line_copy                     (Object *object) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_line_new                      (int color, int x1, int y1, int x2, int y2) GEDA_WARN_UNUSED_RESULT;
+       Object   *o_line_copy                     (Object *object) GEDA_WARN_UNUSED_RESULT;
          void    o_line_modify                   (Object *object, int x, int y, int whichone);
          void    o_line_mirror                   (Object *object, int center_x, int center_y);
          void    o_line_rotate                   (Object *object, int center_x, int center_y, int angle);
@@ -315,8 +315,8 @@ BEGIN_DECLS
 /* o_picture.c */
        Object   *o_picture_new                   (const char *file_content, unsigned int file_length,
                                                   const char *filename, int x1, int y1, int x2, int y2, int angle, int mirrored,
-                                                  int embedded)      G_GNUC_WARN_UNUSED_RESULT;
-       Object   *o_picture_copy                  (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+                                                  int embedded)      GEDA_WARN_UNUSED_RESULT;
+       Object   *o_picture_copy                  (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_picture_modify                (Object *object, int x, int y, int whichone);
          void    o_picture_modify_all            (Object *object, int x1, int y1, int x2, int y2);
          void    o_picture_mirror                (Object *object, int center_x, int center_y);
@@ -338,16 +338,16 @@ BEGIN_DECLS
 
 #ifdef GDK_PIXBUF_H
          bool    o_picture_export_pixbuf         (GdkPixbuf *pixbuf, const char *filename, const char *type, ...);
-    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void)           G_GNUC_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf            (Object *object) G_GNUC_WARN_UNUSED_RESULT;
-    GdkPixbuf   *o_picture_get_pixbuf_fit        (Object *object, int interpolate) G_GNUC_WARN_UNUSED_RESULT;
-unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UNUSED_RESULT;
-        uint8   *o_picture_get_mask_data         (Object *object) G_GNUC_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_fallback_pixbuf   (void)           GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_pixbuf            (Object *object) GEDA_WARN_UNUSED_RESULT;
+    GdkPixbuf   *o_picture_get_pixbuf_fit        (Object *object, int interpolate) GEDA_WARN_UNUSED_RESULT;
+unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUSED_RESULT;
+        uint8   *o_picture_get_mask_data         (Object *object) GEDA_WARN_UNUSED_RESULT;
 #endif
 
 /* o_pin_basic.c */
        Object   *o_pin_new                       (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);
-       Object   *o_pin_copy                      (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_pin_copy                      (Object *o_current) GEDA_WARN_UNUSED_RESULT;
          void    o_pin_mirror                    (Object *object, int center_x, int center_y);
          void    o_pin_modify                    (Object *object, int x, int y, int whichone);
          void    o_pin_normalize                 (Object *object);
@@ -405,7 +405,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) G_GNUC_WARN_UN
                                                   int size, int visibility, int show_name_value, const char *string);
          void    o_text_recreate                 (Object *o_current);
          void    o_text_mirror                   (Object *object, int center_x, int center_y);
-       Object   *o_text_copy                     (Object *object) G_GNUC_WARN_UNUSED_RESULT;
+       Object   *o_text_copy                     (Object *object) GEDA_WARN_UNUSED_RESULT;
          void    o_text_translate                (Object *object, int dx, int dy);
          void    o_text_rotate                   (Object *object, int center_x, int center_y, int angle);
 
@@ -629,20 +629,20 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_log_set_update_func           (LogUpdateFunc func);
 
 /* u_string.c */
-         char   *u_string_concat                 (const char *string1, ...)  G_GNUC_WARN_UNUSED_RESULT;
+         char   *u_string_concat                 (const char *string1, ...)  GEDA_WARN_UNUSED_RESULT;
    const char   *u_string_istr                   (const char *str1, const char *str2);
          char   *u_string_remove_nl              (char *string);
          char   *u_string_remove_last_nl         (char *string);
          char   *u_string_int2str                (int value, char *str, int radix);
          bool    u_string_isalnum                (const char *string);
-         bool    u_string_parse_xy               (const char *string, int *x, int *y) G_GNUC_WARN_UNUSED_RESULT;
-         char   *u_string_scm2c                  (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
+         bool    u_string_parse_xy               (const char *string, int *x, int *y) GEDA_WARN_UNUSED_RESULT;
+         char   *u_string_scm2c                  (char *scm_str_name) GEDA_WARN_UNUSED_RESULT;
          void    u_string_sort_array             (char *strings[], size_t strings_size);
-         char   *u_string_sprintf                (const char *format, ...)   G_GNUC_WARN_UNUSED_RESULT;
-         char   *u_string_strdup                 (const char *str)           G_GNUC_WARN_UNUSED_RESULT;
-         char   *u_string_strndup                (const char *str, size_t n) G_GNUC_WARN_UNUSED_RESULT;
+         char   *u_string_sprintf                (const char *format, ...)   GEDA_WARN_UNUSED_RESULT;
+         char   *u_string_strdup                 (const char *str)           GEDA_WARN_UNUSED_RESULT;
+         char   *u_string_strndup                (const char *str, size_t n) GEDA_WARN_UNUSED_RESULT;
          int     u_string_stristr                (const char *haystack, const char *needle);
-         bool    u_string_strequal               (const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
+         bool    u_string_strequal               (const char *str1, const char *str2) GEDA_WARN_UNUSED_RESULT;
          char   *u_string_strstr_rep             (char *original,   const char *old_str, const char *new_str);
          int     u_string_stricmp                (const char *str1, const char *str2);
          int     u_string_strncmpi               (const char *str1, const char *str2, int n);

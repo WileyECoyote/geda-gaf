@@ -1,3 +1,8 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_macros.h: Add macros; GEDA_UNUSED,GEDA_CONST, GEDA_NO_
+      INSTRUMENT, and GEDA_WARN_UNUSED_RESULT.
+
 2015-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_dialog_controls.h: Replace gtk_radio_group_set_active with

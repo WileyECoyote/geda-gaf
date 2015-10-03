@@ -58,7 +58,7 @@ struct _GedaTreeViewClass
   GtkTreeViewClass parent_class;
 };
 
-GedaType      geda_tree_view_get_type            (void) G_GNUC_CONST;
+GedaType      geda_tree_view_get_type            (void) GEDA_CONST;
 
 GtkWidget    *geda_tree_view_new                 (void);
 GtkWidget    *geda_tree_view_new_with_model      (GtkTreeModel *model);

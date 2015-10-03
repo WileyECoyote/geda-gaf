@@ -44,6 +44,6 @@ struct _Pagesel {
 
 };
 
-GedaType pagesel_get_type (void);
+GedaType pagesel_get_type (void) GEDA_CONST;
 
 void pagesel_update (Pagesel *pagesel);

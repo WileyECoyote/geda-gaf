@@ -66,7 +66,7 @@ struct _GedaImageMenuItemClass
   GtkMenuItemClass parent_class;
 };
 
-GType	   geda_image_menu_item_get_type              (void) G_GNUC_CONST;
+GType	   geda_image_menu_item_get_type              (void) GEDA_CONST;
 GtkWidget* geda_image_menu_item_new                   (void);
 GtkWidget* geda_image_menu_item_new_with_label        (const char        *label);
 GtkWidget* geda_image_menu_item_new_with_mnemonic     (const char        *label);

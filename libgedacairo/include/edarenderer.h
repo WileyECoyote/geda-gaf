@@ -144,11 +144,11 @@ typedef enum _EdaRendererFlags EdaRendererFlags;
 
 BEGIN_DECLS
 
-GedaType eda_renderer_get_type       (void) G_GNUC_CONST;
-GedaType eda_renderer_flags_get_type (void) G_GNUC_CONST;
+GedaType     eda_renderer_get_type       (void) GEDA_CONST;
+GedaType     eda_renderer_flags_get_type (void) GEDA_CONST;
 
-EdaRenderer *eda_renderer_new     (cairo_t *cr, PangoContext *pc) G_GNUC_WARN_UNUSED_RESULT;
-void         eda_renderer_destroy (EdaRenderer *renderer);
+EdaRenderer *eda_renderer_new          (cairo_t *cr, PangoContext *pc) GEDA_WARN_UNUSED_RESULT;
+void         eda_renderer_destroy      (EdaRenderer *renderer);
 
 bool     eda_renderer_parse_color      (const char  *spec, COLOR *color);
 

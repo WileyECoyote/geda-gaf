@@ -86,7 +86,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head);
 char *s_net_name(GedaToplevel *pr_current, NETLIST *netlist_head, NET *net_head, char *hierarchy_tag, int type);
 
 /* s_netattrib.c */
-char *s_netattrib_pinnum_get_connected_string (const char *pinnum) G_GNUC_WARN_UNUSED_RESULT;
+char *s_netattrib_pinnum_get_connected_string (const char *pinnum) GEDA_WARN_UNUSED_RESULT;
 const char *s_netattrib_connected_string_get_pinnum (const char *str);
 void  s_netattrib_check_connected_string (const char *str);
 char *s_netattrib_extract_netname(char *value);

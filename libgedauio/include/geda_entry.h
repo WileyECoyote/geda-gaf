@@ -141,7 +141,7 @@ struct _GedaEntryClass
                                unsigned int       time_);
 };
 
-GedaType   geda_entry_get_type               (void) G_GNUC_CONST;
+GedaType   geda_entry_get_type               (void) GEDA_CONST;
 GtkWidget *geda_entry_new                    (GList** history, GList** complete);
 GtkWidget *geda_visible_entry_new            (GList** history, GList** complete);
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);

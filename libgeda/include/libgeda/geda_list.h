@@ -59,7 +59,7 @@ struct _GedaListClass {
   GObjectClass parent;
 };
 
-GedaType  geda_list_get_type (void);
+GedaType  geda_list_get_type (void) GEDA_CONST;
 
 /* It would be nice to add const qualifiers to some of these, but GLib
  * is buggy in this respect, and doesn't have const where necessary. */
@@ -88,7 +88,7 @@ void      geda_list_remove_all              ( GedaList *list );
 #define Place_List    toplevel->page_current->place_list
 #define Top_Selection toplevel->page_current->selection_list
 
-G_END_DECLS
+END_DECLS
 
 #endif /* __GEDA_LIST_H__ */
 

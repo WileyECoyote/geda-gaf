@@ -90,10 +90,10 @@ struct _GschemDialog {
 };
 
 
-GedaType     gschem_dialog_get_type       (void);
+GedaType     gschem_dialog_get_type       (void) GEDA_CONST;
 bool         is_a_gschem_dialog           (void *dialog);
 
-GtkWidget* gschem_dialog_new_empty        (const char           *title,
+GtkWidget* gschem_dialog_new_empty        (const char     *title,
                                            GtkWindow      *parent,
                                            GtkDialogFlags  flags,
                                            const char     *settings_name,
@@ -113,9 +113,8 @@ const char *gschem_dialog_get_title       (GschemDialog *dialog);
 void        gschem_dialog_set_title       (GschemDialog *dialog, const char*title);
 
 /* Prototypes for Dialogs */
-GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
-           GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
-GtkWidget* get_geda_switch_image ( gboolean WhichState);
-
+GtkWidget* create_geda_switch             (GtkWidget *Dialog, GtkWidget *parent,
+                                           GtkWidget *widget, GtkWidget *SwitchImage, int istate);
+GtkWidget* get_geda_switch_image          (int WhichState);
 
 #endif /* __GSCHEM_DIALOG_H__ */

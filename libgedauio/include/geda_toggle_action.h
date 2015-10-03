@@ -56,7 +56,7 @@ struct _GedaToggleActionClass
   GtkToggleActionClass parent_class;
 };
 
-GedaType          geda_toggle_action_get_type    (void) G_GNUC_CONST;
+GedaType          geda_toggle_action_get_type    (void) GEDA_CONST;
 
 GedaToggleAction *geda_toggle_action_new         (const char *name,
                                                   const char *label,

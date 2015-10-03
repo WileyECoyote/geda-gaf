@@ -129,7 +129,7 @@ struct _GedaPage {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-unsigned int geda_page_get_type          (void);
+unsigned int geda_page_get_type          (void) GEDA_CONST;
 bool      is_a_geda_page                 (Page *page);
 void      geda_page_debug_print          (Page *page);
 

@@ -42,7 +42,7 @@
 
 G_BEGIN_DECLS
 
-GedaType edascm_scm_get_type (void) G_GNUC_CONST;
+GedaType edascm_scm_get_type (void) GEDA_CONST;
 
 void edascm_value_set_scm (GValue *value, SCM v_scm);
 SCM edascm_value_get_scm (const GValue *value);
@@ -65,7 +65,7 @@ SCM edascm_value_get_scm (const GValue *value);
 #define EDASCM_IS_PARAM_SPEC_SCM(pspec) (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), EDASCM_TYPE_PARAM_SCM))
 #define EDASCM_PARAM_SPEC_SCM(pspec) (G_TYPE_CHECK_INSTANCE_CAST ((pspec), EDASCM_TYPE_PARAM_SCM, EdascmParamSpecSCM))
 
-GedaType edascm_param_spec_scm_get_type (void) G_GNUC_CONST;
+GedaType edascm_param_spec_scm_get_type (void) GEDA_CONST;
 
 typedef struct _EdascmParamSpecSCM EdascmParamSpecSCM;
 
@@ -77,7 +77,7 @@ struct _EdascmParamSpecSCM
 GParamSpec *edascm_param_spec_scm (const char *name,
                                    const char *nick,
                                    const char *blurb,
-                                   GParamFlags flags) G_GNUC_WARN_UNUSED_RESULT;
+                                   GParamFlags flags) GEDA_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 

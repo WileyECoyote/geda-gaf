@@ -65,7 +65,7 @@ struct _GedaLine {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType geda_line_get_type       (void);
+GedaType geda_line_get_type       (void) GEDA_CONST;
 bool     is_a_geda_line_object    (Line *object);
 
 Object  *geda_line_new            (void);

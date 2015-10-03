@@ -90,7 +90,7 @@ struct _GedaFileChooserClass {
   void (* geometry_restore) (GedaFileChooser *chooser, char *group);
 };
 
-GedaType      geda_file_chooser_get_type         (void) G_GNUC_CONST;
+GedaType      geda_file_chooser_get_type         (void) GEDA_CONST;
 GtkWidget    *geda_file_chooser_new              (GtkWidget         *parent,
                                                   FileChooserAction  action);
 GtkWidget    *geda_file_chooser_dialog_new_full  (const char       *title,

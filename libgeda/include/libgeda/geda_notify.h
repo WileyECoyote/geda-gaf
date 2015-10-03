@@ -64,22 +64,22 @@ struct _GedaNotifyListClass {
   GObjectClass parent;
 };
 
-GedaType  geda_notify_list_get_type                (void);
+GedaType  geda_notify_list_get_type                (void) GEDA_CONST;
 
-GedaNotifyList *geda_notify_list_new               ( void );
+GedaNotifyList *geda_notify_list_new               (void);
 
-int       geda_notify_list_is_frozen               ( GedaNotifyList *list );
-void      geda_notify_list_freeze                  ( GedaNotifyList *list );
-void      geda_notify_list_thaw                    ( GedaNotifyList *list );
+int       geda_notify_list_is_frozen               (GedaNotifyList *list);
+void      geda_notify_list_freeze                  (GedaNotifyList *list);
+void      geda_notify_list_thaw                    (GedaNotifyList *list);
 
-void      geda_notify_list_add                     ( GedaNotifyList *list, void *item );
-void      geda_notify_list_add_glist               ( GedaNotifyList *list, GList *items );
-GList    *geda_notify_list_copy_glist              ( GedaNotifyList *list );
-int       geda_notify_list_in_list                 ( GedaNotifyList *list, void *func);
-void      geda_notify_list_remove                  ( GedaNotifyList *list, void *item );
+void      geda_notify_list_add                     (GedaNotifyList *list, void *item);
+void      geda_notify_list_add_glist               (GedaNotifyList *list, GList *items);
+GList    *geda_notify_list_copy_glist              (GedaNotifyList *list);
+int       geda_notify_list_in_list                 (GedaNotifyList *list, void *func);
+void      geda_notify_list_remove                  (GedaNotifyList *list, void *item);
 
-/*void geda_notify_list_remove_glist( GedaNotifyList *list, GList *items ); */ /* Undemanded as yet */
-void      geda_notify_list_remove_all              ( GedaNotifyList *list );
+/*void geda_notify_list_remove_glist(GedaNotifyList *list, GList *items); */ /* Undemanded as yet */
+void      geda_notify_list_remove_all              (GedaNotifyList *list);
 
 
 #define geda_notify_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)

@@ -1,3 +1,21 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add GEDA_CONST attribute to function prototypes:
+
+        * include/gschem_dialog.h::gschem_dialog_get_type
+        * include/gschem_toplevel.h::gschem_toplevel_get_type
+        * include/x_compselect.h::compselect_get_type
+        * include/x_console.h::console_get_type
+        * include/x_multiattrib.h::cellrenderermultilinetext_get_type
+        * include/x_pagesel.h::pagesel_get_type
+        * include/x_preview.h::preview_get_type
+        * include/x_print.h::print_dialog_get_type
+
+2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Use whole word "Parameters" for dialog title;
+      translates better.
+
 2015-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Replace gtk_container_set_border_width and gtk_box_set

@@ -77,7 +77,7 @@ struct _GedaFontButtonClass {
   void (* size_set ) (GedaFontButton *gfp);
 };
 
-GedaType      geda_font_button_get_type       (void) G_GNUC_CONST;
+GedaType      geda_font_button_get_type       (void) GEDA_CONST;
 GtkWidget    *geda_font_button_new            (void);
 GtkWidget    *geda_font_button_new_with_font  (const char       *fontname);
 

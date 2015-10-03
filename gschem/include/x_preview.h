@@ -44,6 +44,6 @@ struct _Preview {
 
 };
 
-GedaType preview_get_type (void);
+GedaType preview_get_type (void) GEDA_CONST;
 
 #endif /* __X_PREVIEW_H__ */

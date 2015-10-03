@@ -111,7 +111,7 @@ struct _GedaImageChooserClass {
   void (* geometry_restore) (GedaImageChooser *chooser, char *group);
 };
 
-GedaType      geda_image_chooser_get_type        (void) G_GNUC_CONST;
+GedaType      geda_image_chooser_get_type        (void) GEDA_CONST;
 GtkWidget    *geda_image_chooser_new             (GtkWidget         *parent,
                                                   ImageChooserAction action);
 GtkWidget    *geda_image_chooser_dialog_new_full (const char        *title,

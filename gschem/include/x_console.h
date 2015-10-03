@@ -51,4 +51,4 @@ struct _Console {
 
 };
 
-GedaType console_get_type (void);
+GedaType console_get_type (void) GEDA_CONST;

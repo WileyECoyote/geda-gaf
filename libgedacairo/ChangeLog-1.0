@@ -1,3 +1,11 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Replace macros G_GNUC_CONST and G_GNUC_WARN_UNUSED_RESULT with GEDA_CONST
+      and GEDA_WARN_UNUSED_RESULT:
+
+            * include/edapangorenderer.h
+            * include/edarenderer.h
+
 2015-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add function eda_renderer_parse_color as public

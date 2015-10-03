@@ -71,7 +71,7 @@ struct _GedaBulbClass
 
 BEGIN_DECLS
 
-GedaType   geda_bulb_get_type                         (void) G_GNUC_CONST;
+GedaType   geda_bulb_get_type                         (void) GEDA_CONST;
 
 GtkWidget *geda_bulb_new                              (GSList        *group);
 GtkWidget *geda_bulb_new_visible                      (GSList        *group);

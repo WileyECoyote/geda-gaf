@@ -73,19 +73,6 @@ extern SCM complex_place_list_changed_hook;
 # define N_(String) (String)
 #endif
 
-/* __attribute__((unused)) is a gcc extension so define
- * a portable macro, ATTRIBUTE_UNUSED, to use instead
- */
-#ifndef GCC_VERSION
-#define GCC_VERSION (__GNUC__ * 1000 + __GNUC_MINOR__)
-#endif /* GCC_VERSION */
-
-#if GCC_VERSION > 2007
-#define ATTRIBUTE_UNUSED __attribute__((unused))
-#else
-#define ATTRIBUTE_UNUSED
-#endif
-
 typedef enum  { CAIRO_ADAPTOR, X11_ADAPTOR } RenderSystem;
 
 typedef enum  { Image_Display, Image_All } ImageExtent;

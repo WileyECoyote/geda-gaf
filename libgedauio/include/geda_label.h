@@ -111,7 +111,7 @@ struct _GedaLabelClass
 
 };
 
-GType       geda_label_get_type                     (void)           G_GNUC_CONST;
+GType       geda_label_get_type                     (void)           GEDA_CONST;
 
 GtkWidget  *geda_label_new                          (const char     *str) __attribute__((warn_unused_result));
 GtkWidget  *geda_mnemonic_label_new                 (const char     *str) __attribute__((warn_unused_result));

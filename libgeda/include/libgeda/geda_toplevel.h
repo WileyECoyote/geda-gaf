@@ -200,7 +200,7 @@ struct _GedaToplevel {
 };
 
 /* geda_toplevel.c */
-GedaType      geda_toplevel_get_type         (void);
+GedaType      geda_toplevel_get_type         (void) GEDA_CONST;
 GedaToplevel *geda_toplevel_new              (void);
 
 bool          is_a_geda_toplevel             (GedaToplevel *toplevel);

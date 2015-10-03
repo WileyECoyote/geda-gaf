@@ -127,7 +127,7 @@ struct _CellRendererMultiLineText {
   GtkWidget *buffer;
 };
 
-GedaType cellrenderermultilinetext_get_type (void);
+GedaType cellrenderermultilinetext_get_type (void) GEDA_CONST;
 
 #define CR_SINGLE_LINE GTK_TYPE_CELL_RENDERER_TEXT
 #define CR_MULTI_LINE  TYPE_CELL_RENDERER_MULTI_LINE_TEXT

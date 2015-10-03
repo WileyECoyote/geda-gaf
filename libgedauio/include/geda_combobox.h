@@ -77,7 +77,7 @@ struct _GedaComboBoxClass
 };
 
 /* construction */
-GType         geda_combo_box_get_type                 (void) G_GNUC_CONST;
+GType         geda_combo_box_get_type                 (void) GEDA_CONST;
 GtkWidget    *geda_combo_box_new                      (void);
 GtkWidget    *geda_combo_box_new_with_entry           (void);
 GtkWidget    *geda_combo_box_new_with_model           (GtkTreeModel *model);

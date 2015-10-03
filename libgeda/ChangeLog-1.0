@@ -1,3 +1,8 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add GEDA_CONST attribute to function prototypes, replace macro
+      G_GNUC_WARN_UNUSED_RESULT with GEDA_WARN_UNUSED_RESULT.
+
 2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype_priv.h: Remove declaration for geda_object_unref.

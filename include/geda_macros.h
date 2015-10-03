@@ -52,6 +52,29 @@
 #define GCC_VERSION (__GNUC__ * 10000  + __GNUC_MINOR__ * 100  + __GNUC_PATCHLEVEL__)
 #endif /* GCC_VERSION */
 
+/* Define some gcc extension __attribute__ macros for portability
+ * so they can be used on gcc without breaking non-gcc
+ */
+#if GCC_VERSION > 20700
+#define GEDA_UNUSED  __attribute__((__unused__))
+#else
+#define GEDA_UNUSED
+#endif
+
+#if GCC_VERSION > 40407
+#define GEDA_CONST  __attribute__((__const__))
+#define GEDA_NO_INSTRUMENT __attribute__((__no_instrument_function__))
+#else   /* !__GNUC__ */
+#define GEDA_CONST
+#define GEDA_NO_INSTRUMENT
+#endif
+
+#if GCC_VERSION > 30400
+#define GEDA_WARN_UNUSED_RESULT __attribute__((warn_unused_result))
+#else
+#define GEDA_WARN_UNUSED_RESULT
+#endif /* __GNUC__ */
+
 /*! \def GCC_DIAGNOSTIC_AWARE
  *  \brief Used to suppress some warnings in some header and implementation files.
  *  \par

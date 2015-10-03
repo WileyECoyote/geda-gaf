@@ -126,7 +126,7 @@ struct _Compselect {
 
 };
 
-GedaType compselect_get_type (void);
+GedaType compselect_get_type (void) GEDA_CONST;
 
 /* Response IDs for special dialog buttons */
 typedef enum {

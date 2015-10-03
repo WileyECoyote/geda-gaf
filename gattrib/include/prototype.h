@@ -146,7 +146,7 @@ void s_string_list_sort_all_list();
 
 /* ------------- s_table.c ------------- */
 TABLE **s_table_new(int rows, int cols);
-TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt) G_GNUC_WARN_UNUSED_RESULT;
+TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt) GEDA_WARN_UNUSED_RESULT;
 //TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols);
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int  s_table_get_index(STRING_LIST *list, char *string);

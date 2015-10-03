@@ -77,7 +77,7 @@ struct _GedaNet {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType  geda_net_get_type        (void);
+GedaType  geda_net_get_type      (void) GEDA_CONST;
 bool    is_a_geda_net_object     (Net *object);
 
 Object *geda_net_new             (void);

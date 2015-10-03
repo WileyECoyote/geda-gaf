@@ -73,7 +73,7 @@ struct _GedaPin {
   unsigned int tail_marker;  /* structure type signature */
 };
 
-GedaType     geda_pin_get_type           (void);
+GedaType     geda_pin_get_type           (void) GEDA_CONST;
 bool         is_a_geda_pin_object        (Pin *object);
 
 Object     *geda_pin_new                 (void);

@@ -61,7 +61,7 @@ struct _GedaComboBoxTextClass
   GedaComboBoxClass parent_class;
 };
 
-GType        geda_combo_box_text_get_type              (void) G_GNUC_CONST;
+GType        geda_combo_box_text_get_type              (void) GEDA_CONST;
 GtkWidget   *geda_combo_box_text_new                   (void);
 GtkWidget   *geda_combo_box_text_new_with_entry        (void);
 GtkWidget   *geda_combo_box_text_list_new              (void);
