@@ -30,9 +30,11 @@
 #include <limits.h>
 #include <math.h>
 
+#include <geda_macros.h>
+
 /* gEDA file version: change NEW version as soon as available */
-#define EDA_VERSION_OLD   "20020209"
-#define EDA_VERSION_NEW	  "20020825"
+#define EDA_VERSION_OLD "20020209"
+#define EDA_VERSION_NEW "20020825"
 
 
 /* defines for flags and types */
@@ -49,19 +51,8 @@
 #define PIN_TYPE_HIZ	7
 #define PIN_TYPE_OE	8
 
-
-#ifndef GCC_VERSION
-#define GCC_VERSION (__GNUC__ * 1000 + __GNUC_MINOR__)
-#endif /* GCC_VERSION */
-
-#if GCC_VERSION > 2007
-#define ATTRIBUTE_UNUSED __attribute__((unused)) 
-#else
-#define ATTRIBUTE_UNUSED
-#endif 
-
-static const ATTRIBUTE_UNUSED char *mp_name = "OrCAD to gEDA lib converter";
-static const ATTRIBUTE_UNUSED char *mp_license = "Copyright (c) 2002 Mario Pascucci <m.pas@libero.it>";
+static const GEDA_UNUSED char *mp_name = "OrCAD to gEDA lib converter";
+static const GEDA_UNUSED char *mp_license = "Copyright (c) 2002 Mario Pascucci <m.pas@libero.it>";
 
 static char fnsym[512];	    /* gEDA symbol file name */
 static FILE *fsym;	    /* FILE* to gEDA symbol file */
@@ -102,7 +93,7 @@ static int vector_count;	/* number of vector found */
 struct vector_def {
   char	type;		/* line, arc, circle, box */
   float p[12];		/* parameters for element drawing */
-  char *str;		/* string for "TEXT" statement */
+  char *str;		    /* string for "TEXT" statement */
 };
 
 static int paramcount;	/* vector param number count */
@@ -149,8 +140,8 @@ static int ii;
 
 
 /* strip filename-aware chars from part name,
-    leave only '.' '-' or '_' and changes space
-    in '_' */
+ * leave only '.' '-' or '_' and changes space
+ * in '_' */
 char *strip_invalid(char *str)
 {
   char *p;
@@ -198,7 +189,9 @@ char *strip_quotes(char *str)
 
 %}
 
-
+/* #define YY_NO_INPUT */
+%option noinput
+%option nounput
 
 /* decimal integer */
 INTEGER		[+-]?[0-9]+
@@ -216,8 +209,7 @@ COMMENT		\{[^\n\}]*\}
 PIN_ID		[TBLR][0-9]{1,4}
 
 
-
-%s wait_END wait_sizex wait_sizey wait_parts pin_list pinrealnum pindata 
+%s wait_END wait_sizex wait_sizey wait_parts pin_list pinrealnum pindata
 %s waitnamestart in_name waitnameend waitpinend vector_list vector_ignore
 %s param_list convert convert_ignore_pin reference
 
@@ -301,8 +293,7 @@ PIN_ID		[TBLR][0-9]{1,4}
 
 
 <wait_sizex>^{IDENT} {
-  /* found an alias for the part name 
-      store alias for future use */
+  /* found an alias for the part name store alias for future use */
   fprintf(stderr,"Found an alias: %s\n",yytext);
   strcpy(part_aliases[aliascount], strip_invalid(yytext));
   aliascount++;
@@ -398,7 +389,7 @@ PIN_ID		[TBLR][0-9]{1,4}
 
 
 <vector_list,vector_ignore>{IDENT} {
-  /* the component shape is identical to a previous one 
+  /* the component shape is identical to a previous one
       unsupported at the moment */
   BEGIN(pin_list);
   fprintf(stderr,"Found unsupported: VECTOR 'IDENT'\n");
@@ -784,7 +775,7 @@ PIN_ID		[TBLR][0-9]{1,4}
 
 
 %{
-  /* 
+  /*
    * we don't need to use <*> to match any state, we just don't
    * specify a state
    */
@@ -794,9 +785,6 @@ PIN_ID		[TBLR][0-9]{1,4}
 
 
 [ \t\n\r]    { /* ignored, the \r char is for "DOS" ASCII files */ }
-
-
-
 
 
 %%
@@ -818,7 +806,7 @@ int yywrap()
 {
   /* found a part name after pinlist, this mean that part definition ends,
       and starts a new part definition */
-  fprintf(stderr,"Writing down new symbol: %s pin: %d  vectors: %d\n",part_aliases[0],pincount,vector_count);      
+  fprintf(stderr,"Writing down new symbol: %s pin: %d  vectors: %d\n",part_aliases[0],pincount,vector_count);
   write_sym();	    /* write the .sym gEDA symbol definition */
   /* restore initial condition */
   fprintf(stderr,"End of lib file\n");
@@ -838,8 +826,9 @@ int main (int argc, char *argv[])
   use_old_version = 0;	      /* old version flag */
   pin_name_hidden = 0;	      /* hides pin name on VECTOR drawed symbols */
   opterr = 0;	/* do NOT print default error message for getopt */
-  do
-  {
+
+  do {
+
     i = getopt(argc,argv,"hon");
     switch (i)
     {
@@ -881,7 +870,5 @@ int main (int argc, char *argv[])
   yyin = flib;
   yylex();
   fclose(flib);
-  return 0;  
+  return 0;
 }
-
-

@@ -46,22 +46,8 @@
 
 #include <geda_debug.h>
 
-/*
- * make it so we can use __attribute__((unused)) on gcc without
- * breaking non-gcc
- */
-#ifndef GCC_VERSION
-#define GCC_VERSION (__GNUC__ * 1000 + __GNUC_MINOR__)
-#endif /* GCC_VERSION */
-
-#if GCC_VERSION > 2007
-#define ATTRIBUTE_UNUSED __attribute__((unused))
-#else
-#define ATTRIBUTE_UNUSED
-#endif
-
 #ifndef lint
-static char vcid[] ATTRIBUTE_UNUSED = "$Id$";
+static char vcid[] GEDA_UNUSED = "$Id$";
 #endif /* lint */
 
 #ifndef OPTARG_IN_UNISTD

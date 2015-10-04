@@ -1,3 +1,13 @@
+2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/olib.l: Remove ATTRIBUTE_UNUSED, replace with GEDA_UNUSED.
+      Revise comments.  Add %option noinput and %option nounput to
+      suppress warnings; ‘yyunput’ ‘input’ defined but not used,
+      thank God, good riddance!
+
+    * src/convert_sym.c: Remove ATTRIBUTE_UNUSED, replace with
+      GEDA_UNUSED.
+
 2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/include/utils.h: Rename globals.h->utils.h.
