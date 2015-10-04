@@ -75,6 +75,9 @@
  *
  * ---------------|--------------------------------------------------
  * WEH | 08/01/15 | Remove include <guile/gh.h>, (<ref> libgeda::u_string.c)
+ * ---------------|--------------------------------------------------
+ * WEH | 10/02/15 | Add missing FontNameCombo to combo_responder
+ * ------------------------------------------------------------------
  */
 
 /*!
@@ -1319,8 +1322,6 @@ void combo_responder(GtkWidget *widget, void * data)
   switch ( WhichComboBox ) {
   case TitleBlock:              /*GEDA_COMBO_BOX*/
     break;
-  case ColorMapScheme:
-    break;
   case DotGridMode:
     if (gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo)) == DOTS_GRID_VARIABLE_MODE)
        gtk_widget_set_sensitive (DotGridThresholdSpin, FALSE);
@@ -1328,16 +1329,15 @@ void combo_responder(GtkWidget *widget, void * data)
        gtk_widget_set_sensitive (DotGridThresholdSpin, TRUE);
     break;
   case ConsoleWindowType:
-    break;
-  case UndoType:
-    break;
   case PointerCursor:
-  case ThirdButton:
   case MiddleButton:
+  case ThirdButton:
+  case UndoType:
+  case FontName:
   case RipperSymbol:
-    break;
   case Renderer:
   case AntiAlias:
+  case ColorMapScheme:
     break;
   default:
     BUG_IMSG( "Unknown Combo Id", WhichComboBox);

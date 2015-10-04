@@ -2764,15 +2764,14 @@ static GtkWidget *create_behaviors_menu ( )
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
 
-    GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER(types[i].behavior), "behaviors");
+    GEDA_OBJECT_SET_DATA(menuitem, (int)(long)types[i].behavior, "behaviors");
     gtk_widget_show (menuitem);
   }
 
   return(menu);
 }
 
-GedaType compselect_get_type ()
+GedaType compselect_get_type (void)
 {
   static GedaType compselect_type = 0;
 

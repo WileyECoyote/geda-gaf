@@ -65,6 +65,6 @@ struct _GschemEvent
   int  (*release_butt)   (GtkWidget *widget, GdkEventButton *, void *);
 };
 
-unsigned int  gschem_event_get_type(void);
+GedaType      gschem_event_get_type(void);
 
 GschemEvent  *gschem_event_new (void);

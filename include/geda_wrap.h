@@ -44,7 +44,7 @@
     g_object_set_data (G_OBJECT(object), key, data);
 
 #define GEDA_SIGNAL_CONNECT(object, signal, callback, data) \
-  g_signal_connect(G_OBJECT(object), signal, (GCallback)callback, data);
+    g_signal_connect(G_OBJECT(object), signal, (GCallback)callback, data);
 
 /** @} endgroup geda-wrapper-macros */
 

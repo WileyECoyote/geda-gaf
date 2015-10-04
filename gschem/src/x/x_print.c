@@ -649,7 +649,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 
   char *command = w_current->print_command;
   int   orient  = toplevel->print_orientation;
-  int   typ     = toplevel->print_output_type;
+  int   type    = toplevel->print_output_type;
 
   int   paperidx, x, y, result;
   char *string, *destination;

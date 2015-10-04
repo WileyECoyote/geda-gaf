@@ -350,8 +350,8 @@ static PyObject *
 rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     char *css;
-    int len;
-    bool success, with_alpha = FALSE;
+    int   len;
+    bool  success, with_alpha = FALSE;
 
     static char *kwlist[] = { "css", "with_alpha", NULL };
 
@@ -577,7 +577,8 @@ rgb_subscript(PyObject *self, PyObject *item)
 
          return ret;
      }
-    } else if (PyString_Check(item)) {
+    }
+    else if (PyString_Check(item)) {
      char *s = PyString_AsString(item);
 
      if (g_ascii_strcasecmp(s, "r") == 0 ||
