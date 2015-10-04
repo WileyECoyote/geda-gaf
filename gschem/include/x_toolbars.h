@@ -139,8 +139,8 @@ typedef struct {
 
   /* Page Toolbar */
 #define TBTS_PAGE_FIRST         "Go to the first page"
-#define TBTS_PAGE_PREV          "Switch to the previous page"
-#define TBTS_PAGE_NEXT          "Switch to the next page"
+#define TBTS_PAGE_UP            "Switch to the previous page"
+#define TBTS_PAGE_DOWN          "Switch to the next page"
 #define TBTS_PAGE_LAST          "Go to the last page"
 #define TBTS_PAGE_NEW           "Create a new page"
 #define TBTS_PAGE_MANAGER       "Open the Page Manager"

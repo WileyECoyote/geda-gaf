@@ -2311,14 +2311,14 @@ COMMAND (do_page_first)
 
 }
 
-/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
-COMMAND (do_page_prev)
+/** @brief i_cmd_do_page_up in i_command_Command_Functions */
+COMMAND (do_page_up)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   NOT_NULL(w_current->toplevel->page_current);
 
-  BEGIN_NO_ARGUMENT(do_page_prev);
+  BEGIN_NO_ARGUMENT(do_page_up);
 
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -2345,14 +2345,14 @@ COMMAND (do_page_prev)
   }
 }
 
-/** @brief i_cmd_do_page_next in i_command_Command_Functions */
-COMMAND (do_page_next)
+/** @brief i_cmd_do_page_down in i_command_Command_Functions */
+COMMAND (do_page_down)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
   NOT_NULL(w_current->toplevel->page_current);
 
-  BEGIN_NO_ARGUMENT(do_page_next);
+  BEGIN_NO_ARGUMENT(do_page_down);
 
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -3734,6 +3734,14 @@ COMMAND (do_grid_dots)
   w_current->grid_mode = GRID_DOTS;
   x_grid_configure_variables (w_current);
   i_status_update_grid_info (w_current);
+
+  GArray *color_map = x_color_get_display_color_map();
+
+  char *name = s_color_get_colorname(3, color_map, NULL);
+  fprintf(stderr, "%s: I see <%s>\n", __func__, name);
+  GEDA_FREE(name);
+  g_array_free (color_map, TRUE);
+
   o_invalidate_all (w_current);
 }
 /*! @brief Set the Grid Display to Mesh Mode */

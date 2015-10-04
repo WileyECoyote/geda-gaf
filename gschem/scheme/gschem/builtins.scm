@@ -212,11 +212,11 @@
 (define-action-public (&page-manager #:label (_ "Page Manager"))
   (%page-manager))
 
-(define-action-public (&page-prev #:label (_ "Previous Page") #:icon "gtk-go-back")
-  (%page-prev))
+(define-action-public (&page-up #:label (_ "Previous Page") #:icon "gtk-go-up")
+  (%page-up))
 
-(define-action-public (&page-next #:label (_ "Next Page") #:icon "gtk-go-forward")
-  (%page-next))
+(define-action-public (&page-down #:label (_ "Next Page") #:icon "gtk-go-down")
+  (%page-down))
 
 (define-action-public (&page-close #:label (_ "Close Page") #:icon "gtk-close")
   (%page-close))
