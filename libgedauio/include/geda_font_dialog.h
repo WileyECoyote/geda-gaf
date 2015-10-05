@@ -109,12 +109,12 @@ struct _GedaFontDialogClass
   GtkDialogClass parent_class;
 };
 
-GedaType   geda_font_dialog_get_type (void);
+GedaType   geda_font_dialog_get_type           (void) GEDA_CONST;
 
-GtkWidget* geda_font_dialog_new (void);
-GtkWidget* geda_font_dialog_new_with_title (char *title);
-GtkWidget* geda_font_dialog_new_with_font_name ( const char *font_name);
-GtkWidget* geda_font_dialog_new_with_window (const char *title, GtkWindow *parent);
+GtkWidget* geda_font_dialog_new                (void);
+GtkWidget* geda_font_dialog_new_with_title     (const char *title);
+GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name);
+GtkWidget* geda_font_dialog_new_with_window    (const char *title, GtkWindow *parent);
 
 GdkFont* geda_font_dialog_get_font (GedaFontDialog *dialog);
 bool     geda_font_dialog_set_font (GedaFontDialog *dialog, GdkFont* Font);

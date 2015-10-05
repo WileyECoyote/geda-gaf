@@ -405,7 +405,7 @@ static GtkWidget *ShowGroupsSwitch;
 
 static GObjectClass *compselect_parent_class = NULL;
 
-static void compselect_class_init      (CompselectClass *class);
+static void     compselect_class_init  (void *class, void *class_data);
 static GObject *compselect_constructor (GType    type,
                                         unsigned int n_construct_properties,
                                         GObjectConstructParam *construct_params);
@@ -2764,33 +2764,49 @@ static GtkWidget *create_behaviors_menu ( )
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
 
-    GEDA_OBJECT_SET_DATA(menuitem, (int)(long)types[i].behavior, "behaviors");
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)types[i].behavior, "behaviors");
     gtk_widget_show (menuitem);
   }
 
   return(menu);
 }
 
+/*! \brief Function to retrieve Compselect's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #Compselect Type identifier. When
+ *  first called, the function registers a #Compselect in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a Compselect and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with Compselect.
+ */
 GedaType compselect_get_type (void)
 {
   static GedaType compselect_type = 0;
 
-  if (!compselect_type) {
-    static const GTypeInfo compselect_info = {
-      sizeof (CompselectClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) compselect_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
-      sizeof (Compselect),
-      0,    /* n_preallocs */
-      NULL  /* instance_init */
+  if (g_once_init_enter (&compselect_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(CompselectClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      compselect_class_init,           /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
+      sizeof(Compselect),
+      0,                               /* n_preallocs         */
+      NULL   /* compselect_instance_init  (GInstanceInitFunc) */
     };
 
-    compselect_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
-                                              "Compselect",
-                                              &compselect_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Compselect");
+    type   = g_type_register_static (GSCHEM_TYPE_DIALOG, string, &info, 0);
+
+    g_once_init_leave (&compselect_type, type);
   }
 
   return compselect_type;
@@ -3087,40 +3103,41 @@ static void compselect_get_property (GObject     *object,
  *   the Compselect dialog.
  */
 static void
-compselect_class_init (CompselectClass *class)
+compselect_class_init (void *class, void *class_data)
 {
   GParamSpec *params;
 
-  GObjectClass      *gobject_class       = G_OBJECT_CLASS (class);
-  GschemDialogClass *gschem_dialog_class = GSCHEM_DIALOG_CLASS (class);
+  CompselectClass   *compselect_class    = (CompselectClass*)class;
+  GObjectClass      *object_class        = G_OBJECT_CLASS (class);
+  GschemDialogClass *gschem_dialog_class = (GschemDialogClass*)class;
   GtkWidgetClass    *widget_class        = (GtkWidgetClass*)class;
 
   gschem_dialog_class->geometry_save     = compselect_geometry_save;
   gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
 
-  gobject_class->constructor  = compselect_constructor;
-  gobject_class->finalize     = compselect_finalize;
-  gobject_class->set_property = compselect_set_property;
-  gobject_class->get_property = compselect_get_property;
+  object_class->constructor   = compselect_constructor;
+  object_class->finalize      = compselect_finalize;
+  object_class->set_property  = compselect_set_property;
+  object_class->get_property  = compselect_get_property;
 
   widget_class->style_set     = compselect_style_set;
 
   compselect_parent_class     = g_type_class_peek_parent (class);
 
-  class->refresh              = compselect_on_refresh_tree_views;
+  compselect_class->refresh   = compselect_on_refresh_tree_views;
 
   params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
-  g_object_class_install_property ( gobject_class, PROP_SYMBOL, params);
+  g_object_class_install_property ( object_class, PROP_SYMBOL, params);
 
   params = g_param_spec_enum ("behavior", "", "",
                               COMPSELECT_TYPE_BEHAVIOR,
                               COMPSELECT_BEHAVIOR_REFERENCE,
                               G_PARAM_READWRITE);
 
-  g_object_class_install_property ( gobject_class, PROP_BEHAVIOR, params);
+  g_object_class_install_property (object_class, PROP_BEHAVIOR, params);
 
   params = g_param_spec_boolean ("hidden", "", "", FALSE, G_PARAM_READWRITE);
-  g_object_class_install_property ( gobject_class, PROP_HIDDEN, params);
+  g_object_class_install_property (object_class, PROP_HIDDEN, params);
 
   params = g_param_spec_int ("view",
                            _("active view"),
@@ -3128,8 +3145,7 @@ compselect_class_init (CompselectClass *class)
                              IN_USE_TAB, LOCAL_TAB, IN_USE_TAB,
                              G_PARAM_READABLE);
 
-  g_object_class_install_property ( gobject_class, PROP_VIEW, params);
-
+  g_object_class_install_property (object_class, PROP_VIEW, params);
 
   /*!
   * CompselectClass:focus-filter:
@@ -3144,7 +3160,7 @@ compselect_class_init (CompselectClass *class)
   gtk_widget_class_install_style_property (widget_class, params);
 
   signals[REFRESH] =  g_signal_new ("refresh",
-                                    G_OBJECT_CLASS_TYPE (gobject_class),
+                                    G_OBJECT_CLASS_TYPE (object_class),
                                     G_SIGNAL_RUN_FIRST,
                                     G_STRUCT_OFFSET (CompselectClass, refresh),
                                     NULL, NULL,

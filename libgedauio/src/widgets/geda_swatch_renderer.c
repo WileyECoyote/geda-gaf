@@ -85,7 +85,6 @@ render (GtkCellRenderer      *cell,
         GtkCellRendererState flags);
 
 
-
 /*! \private
  *  \brief Get a property.
  *
@@ -122,57 +121,6 @@ get_property (GObject    *object,
       break;
   }
 }
-
-
-
-/*! \brief Initialize swatch cell renderer class
- *
- *  \param [in,out] klass The swatch cell renderer class
- */
-static void
-swatchcr_class_init (GedaSwatchRendererClass *klass)
-{
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  klass->parent_class.parent_class.render = render;
-
-  object_class->get_property = get_property;
-  object_class->set_property = set_property;
-
-  g_object_class_install_property (object_class,
-                                   PROP_COLOR,
-                                   g_param_spec_boxed ("color",
-                                                      _("Swatch Color"),
-                                                      _("Swatch Color"),
-                                                       GDK_TYPE_COLOR,
-                                                       G_PARAM_READWRITE));
-  g_object_class_install_property (object_class,
-                                   PROP_ENABLED,
-                                   g_param_spec_boolean ("enabled",
-                                                       _("Swatch Enabled"),
-                                                       _("Swatch Enabled"),
-                                                         TRUE,
-                                                         G_PARAM_READWRITE));
-}
-
-
-
-/*! \brief Initialize Swatchcr instance
- *
- *  \param [in,out] swatch The swatch cell renderer
- */
-static void
-swatchcr_init (GedaSwatchRenderer *swatch)
-{
-  swatch->color.red = 0;
-  swatch->color.green = 0;
-  swatch->color.blue = 0;
-
-  swatch->enabled = TRUE;
-
-}
-
-
 
 /*! \brief Render the swatch into the cell
  *
@@ -240,7 +188,6 @@ render (GtkCellRenderer      *cell,
 }
 
 
-
 /*! \private
  *  \brief Set the swatch color.
  *
@@ -258,7 +205,6 @@ set_color (GedaSwatchRenderer *swatch, const GdkColor *color)
 }
 
 
-
 /*! \private
  *  \brief Set a property.
  *
@@ -269,7 +215,7 @@ set_color (GedaSwatchRenderer *swatch, const GdkColor *color)
  */
 static void
 set_property (GObject      *object,
-              guint        param_id,
+              unsigned int  param_id,
               const GValue *value,
               GParamSpec   *pspec)
 {
@@ -290,38 +236,111 @@ set_property (GObject      *object,
   }
 }
 
-
-
-/*! \brief Get/register Swatchcr type.
+/*! \brief Initialize swatch cell renderer class
+ *  \par Function Description
+ *  Called to initialize the class instance.
+ *
+ * \param [in] class A GedaSwatchRendererClass Object
+ * \param [in] data  A GedaSwatchRenderer data structure
  */
-GedaType
-geda_swatch_renderer_get_type()
+static void
+swatch_renderer_class_init (void *class, void *data)
 {
-  static GedaType type = 0;
+  GObjectClass *object_class;
+  GParamSpec   *params;
 
-  if (type == 0) {
+  GedaSwatchRendererClass *swatch = (GedaSwatchRendererClass*)class;
+
+  object_class = G_OBJECT_CLASS (class);
+
+  swatch->parent_class.parent_class.render = render;
+
+  object_class->get_property = get_property;
+  object_class->set_property = set_property;
+
+  params = g_param_spec_boxed ("color",
+                             _("Swatch Color"),
+                             _("Swatch Color"),
+                               GDK_TYPE_COLOR,
+                               G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_COLOR, params);
+
+  params = g_param_spec_boolean ("enabled",
+                               _("Swatch Enabled"),
+                               _("Swatch Enabled"),
+                                 TRUE,                /* default value */
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_ENABLED, params);
+}
+
+/*! \brief Initialize new GedaSwatchRenderer data structure instance.
+ *
+ *  \par Function Description
+ *  This function is call after the #GedaSwatchRendererClass is created
+ *  to initialize the data structure.
+ *
+ *  \param [in,out] instance A GedaSwatchRenderer data structure
+ *  \param [in]     class    A GedaSwatchRendererClass Object
+ */
+static void
+swatch_renderer_instance_init (GTypeInstance *instance, void *class)
+{
+  GedaSwatchRenderer *swatch = (GedaSwatchRenderer*)instance;
+
+  swatch->color.red   = 0;
+  swatch->color.green = 0;
+  swatch->color.blue  = 0;
+
+  swatch->enabled = TRUE;
+}
+
+/*! \brief Function to retrieve GedaSwatchRenderer's Type identifier.
+ *
+ *  \par Function Description
+ *  Function to retrieve a #GedaSwatchRenderer Type identifier. When
+ *  first called, the function registers a #GedaSwatchRenderer in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaSwatchRenderer and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
+ *
+ *  \return GedaType identifier associated with GedaSwatchRenderer.
+ */
+GedaType geda_swatch_renderer_get_type (void)
+{
+  static GedaType swatch_renderer_type = 0;
+
+  if (g_once_init_enter (&swatch_renderer_type)) {
+
     static const GTypeInfo info = {
       sizeof(GedaSwatchRendererClass),
-      NULL,                                   /* base_init */
-      NULL,                                   /* base_finalize */
-      (GClassInitFunc) swatchcr_class_init,
-      NULL,                                   /* class_finalize */
-      NULL,                                   /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      swatch_renderer_class_init,      /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaSwatchRenderer),
-      0,                                      /* n_preallocs */
-      (GInstanceInitFunc) swatchcr_init,
+      0,                               /* n_preallocs         */
+      swatch_renderer_instance_init    /* (GInstanceInitFunc) */
     };
 
-    type = g_type_register_static (GTK_TYPE_CELL_RENDERER_TEXT, "GedaSwatchRenderer", &info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaSwatchRenderer");
+    type   = g_type_register_static (GTK_TYPE_CELL_RENDERER_TEXT, string, &info, 0);
+
+    g_once_init_leave (&swatch_renderer_type, type);
   }
 
-  return type;
+  return swatch_renderer_type;
 }
 
 /*! \brief Create a swatch cell renderer
  */
 GedaSwatchRenderer*
-geda_swatch_renderer_new()
+geda_swatch_renderer_new(void)
 {
   GedaSwatchRenderer *swatch = GEDA_SWATCH_RENDERER (g_object_new (GEDA_TYPE_SWATCH_RENDERER, NULL));
 

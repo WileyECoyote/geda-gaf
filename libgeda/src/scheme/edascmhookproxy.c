@@ -283,6 +283,8 @@ GedaType edascm_hook_proxy_get_type (void)
 
   if (!edascm_hook_proxy_type) {
 
+    const char *string;
+
     static const GTypeInfo edascm_hook_proxy_info = {
       sizeof(EdascmHookProxyClass),
       NULL, /* base_init */
@@ -295,9 +297,12 @@ GedaType edascm_hook_proxy_get_type (void)
       (GInstanceInitFunc) edascm_hook_proxy_init, /* instance_init */
     };
 
+    string = g_intern_static_string ("EdascmHookProxy");
+
     edascm_hook_proxy_type = g_type_register_static (G_TYPE_OBJECT,
-                                             "EdascmHookProxy",
-                                             &edascm_hook_proxy_info, 0);
+                                                     string,
+                                                     &edascm_hook_proxy_info,
+                                                     0);
   }
 
   return edascm_hook_proxy_type;

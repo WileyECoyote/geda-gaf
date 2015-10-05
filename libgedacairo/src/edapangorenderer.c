@@ -303,7 +303,7 @@ eda_pango_renderer_class_init(void *g_class, void *class_data)
 }
 
 static void
-eda_pango_renderer_init (GTypeInstance *instance, void *g_class)
+eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
 {
   EdaPangoRenderer *renderer = (EdaPangoRenderer*)instance;
 
@@ -312,36 +312,45 @@ eda_pango_renderer_init (GTypeInstance *instance, void *g_class)
                                                 EdaPangoRendererPrivate);
 }
 
-/*! \brief Function to retrieve EdaPangoRenderer GedaType identifier.
+/*! \brief Function to retrieve EdaPangoRenderer's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve EdaPangoRenderer's Type identifier. On first call, the
- *  function registers the EdaPangoRenderer in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #EdaPangoRenderer Type identifier. When
+ *  first called, the function registers a #EdaPangoRenderer in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a EdaPangoRenderer and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with EdaPangoRenderer.
  */
-GedaType eda_pango_renderer_get_type(void)
+GedaType eda_pango_renderer_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType eda_pango_renderer_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&eda_pango_renderer_type)) {
 
     static const GTypeInfo info = {
-      sizeof (EdaPangoRendererClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      eda_pango_renderer_class_init,   // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(EdaPangoRendererClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      eda_pango_renderer_class_init,   /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(EdaPangoRenderer),
-      0,                               // n_preallocs
-      eda_pango_renderer_init          // instance_init
+      0,                               /* n_preallocs         */
+      eda_pango_renderer_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (PANGO_TYPE_RENDERER,
-                                   "EdaPangoRenderer", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("EdaPangoRenderer");
+    type   = g_type_register_static (PANGO_TYPE_RENDERER, string, &info, 0);
+
+    g_once_init_leave (&eda_pango_renderer_type, type);
   }
-  return type;
+
+  return eda_pango_renderer_type;
 }
 
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)

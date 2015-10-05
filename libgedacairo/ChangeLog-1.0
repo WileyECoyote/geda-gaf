@@ -1,3 +1,13 @@
+2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+     * Code Enhancement: Improve thread-safety:
+
+     * src/edapangorenderer.c: Revise eda_pango_renderer_get_type to use
+       g_once_init_enter, g_intern_static_string, and g_once_init_leave.
+
+     * src/edarenderer.c: Revise eda_renderer_get_type to use g_once_init_enter
+       g_intern_static_string, and g_once_init_leave.
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * Replace macros G_GNUC_CONST and G_GNUC_WARN_UNUSED_RESULT with GEDA_CONST

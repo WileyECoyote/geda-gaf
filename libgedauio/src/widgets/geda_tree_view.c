@@ -58,74 +58,79 @@ static GObjectClass *geda_tree_view_parent_class = NULL;
  *  \par Function Description
  *  Function is called to initialize the class instance.
  *
- * \param [in] klass A GedaTreeViewClass Object
+ * \param [in] class A GedaTreeViewClass Object
+ * \param [in] data  A GedaTreeView data structure
  */
 static void
-geda_tree_view_class_init (GedaTreeViewClass *klass)
+geda_tree_view_class_init (void *class, void *data)
 {
-  //GObjectClass   *gobject_class;
-
-  geda_tree_view_parent_class = g_type_class_peek_parent (klass);
-
-  //gobject_class = G_OBJECT_CLASS (klass);
-
+  //GObjectClass      *object_class    = G_OBJECT_CLASS (class);
+  //GedaTreeViewClass *tree_view_class = (GedaTreeViewClass)class;
+  geda_tree_view_parent_class = g_type_class_peek_parent (class);
 }
 
-/*! \brief Initialize GedaTreeView data structure.
+/*! \brief Initialize new GedaTreeView data structure instance.
  *
  *  \par Function Description
- *  Function is call after the GedaTreeViewClass is created
+ *  This function is call after the GedaTreeViewClass is created
  *  to initialize the data structure.
  *
- * \param [in] tree_view A GedaTreeView object (structure)
+ * \param [in] instance  A GedaTreeView data structure
+ * \param [in] class     A GedaTreeViewClass Object
  */
-static void geda_tree_view_instance_init (GedaTreeView *tree_view)
+static void
+geda_tree_view_instance_init (GTypeInstance *instance, void *class)
 {
-
+  // GedaTreeView *tree_view = (GedaTreeView*)instance;
 }
 
 /*! \brief Function to retrieve GedaTreeView's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaTreeView's Type identifier.
- *  On the first call, this registers the GedaTreeView in the GedaType
- *  system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #GedaTreeView Type identifier. When first
+ *  called this function registers a #GedaTreeView in the GedaType
+ *  system to obtain an unique itentifier for a GedaTreeView and
+ *  returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaTreeView.
+ *  \returns GedaType identifier associated with a GedaTreeView.
  */
 GedaType geda_tree_view_get_type (void)
 {
   static GedaType geda_tree_view_type = 0;
 
-  if (!geda_tree_view_type) {
+  if (g_once_init_enter (&geda_tree_view_type)) {
+
     static const GTypeInfo geda_tree_view_info = {
       sizeof(GedaTreeViewClass),
-      NULL, /* base_init      */
-      NULL, /* base_finalize  */
-      (GClassInitFunc) geda_tree_view_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data     */
+      NULL,                                      /* base_init      */
+      NULL,                                      /* base_finalize  */
+      geda_tree_view_class_init,                 /* (GClassInitFunc) */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data     */
       sizeof(GedaTreeView),
-      0,    /* n_preallocs    */
-      (GInstanceInitFunc) geda_tree_view_instance_init /* instance_init */
+      0,                                         /* n_preallocs    */
+      geda_tree_view_instance_init               /* (GInstanceInitFunc) */
     };
 
-    geda_tree_view_type = g_type_register_static (GTK_TYPE_TREE_VIEW,
-                                                  "GedaTreeView",
-                                                  &geda_tree_view_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaTreeView");
+    type   = g_type_register_static (GTK_TYPE_TREE_VIEW, string,
+                                    &geda_tree_view_info, 0);
+
+    g_once_init_leave (&geda_tree_view_type, type);
   }
 
   return geda_tree_view_type;
 }
 
 /*! \brief Create a New GedaTreeView
- *
  *  \par Function Description
  *  This function creates and returns a new GedaTreeView
  *
- * Return value: a new GedaTreeView
- *
+ *  \returns a new GedaTreeView
  */
 GtkWidget *
 geda_tree_view_new (void)

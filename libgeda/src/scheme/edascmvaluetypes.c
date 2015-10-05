@@ -306,21 +306,22 @@ edascm_param_spec_scm_get_type (void)
 
   if (g_once_init_enter (&edascm_param_spec_scm_type)) {
 
-    GedaType type;
+    const char *string;
+    GedaType    type;
 
     const GParamSpecTypeInfo pspec_info = {
-      sizeof (EdascmParamSpecSCM), /* instance_size */
-      0, /* n_preallocs */
-      NULL, /* instance_init */
-      EDASCM_TYPE_SCM, /* value_type */
-      NULL, /* finalize */
-      NULL, /* value_set_default */
-      NULL, /* value_validate */
-      param_scm_values_cmp, /* values_cmp */
+      sizeof (EdascmParamSpecSCM),          /* instance_size */
+      0,                                    /* n_preallocs */
+      NULL,                                 /* instance_init */
+      EDASCM_TYPE_SCM,                      /* value_type */
+      NULL,                                 /* finalize */
+      NULL,                                 /* value_set_default */
+      NULL,                                 /* value_validate */
+      param_scm_values_cmp,                 /* values_cmp */
     };
 
-    type = g_param_type_register_static (g_intern_static_string ("EdascmParamSCM"),
-                                         &pspec_info);
+    string = g_intern_static_string ("EdascmParamSCM");
+    type   = g_param_type_register_static (string, &pspec_info);
 
     g_once_init_leave (&edascm_param_spec_scm_type, type);
   }

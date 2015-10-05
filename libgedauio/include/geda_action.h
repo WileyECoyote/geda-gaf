@@ -48,7 +48,7 @@ struct _GedaActionClass
   GtkActionClass parent_class;
 };
 
-GedaType geda_action_get_type (void);
+GedaType    geda_action_get_type                 (void) GEDA_CONST;
 
 GedaAction *geda_action_new                      (const char   *name,
                                                   const char   *label,

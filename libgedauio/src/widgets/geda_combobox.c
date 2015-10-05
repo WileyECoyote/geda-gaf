@@ -6718,7 +6718,7 @@ void geda_combo_widget_popdown (GtkWidget *combo_box) {
 
 /** @} endgroup GedaComboBox-widget-programmatic */
 
-/** \defgroup GedaComboBox-widget-atk
+/** \defgroup GedaComboBox-widget-atk GedaComboBox Widget Accessibility
  *  @{
  */
 AtkObject *geda_combo_widget_get_popup_accessible (GtkWidget *combo_box) {

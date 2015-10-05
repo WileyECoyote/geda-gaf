@@ -42,6 +42,8 @@
 
 #include "gettext.h"
 
+#define ChooseClass GedaFileChooserClass
+
 /**
  * \brief GedaFileChooser - A File Chooser Dialog
  * \par
@@ -408,32 +410,34 @@ static void unmap_handler (GtkWidget *widget)
 }
 
 /*! \brief Type class initializer for GedaFileChooser
- *
  *  \par Function Description
  *  Type class initializer for GedaFileChooser. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  class       The GedaFileChooserClass we are initialising
+ * \param [in] class A GedaFileChooserClass Object
+ * \param [in] data  A GedaFileChooser data structure
  */
 static void
-geda_file_chooser_class_init (GedaFileChooserClass *class)
+geda_file_chooser_class_init (void *class, void *data)
 {
   GParamSpec     *params;
+  GedaType        type;
 
-  GObjectClass   *gobject_class  = (GObjectClass*) class;
-  GtkWidgetClass *widget_class   = (GtkWidgetClass*) class;
+  ChooseClass    *chooser_class   = (ChooseClass*) class;
+  GObjectClass   *gobject_class   = (GObjectClass*) class;
+  GtkWidgetClass *widget_class    = (GtkWidgetClass*) class;
 
-  gobject_class->get_property    = geda_file_chooser_get_property;
-  gobject_class->set_property    = geda_file_chooser_set_property;
-  gobject_class->constructor     = geda_file_chooser_constructor;
-  gobject_class->finalize        = geda_file_chooser_finalize;
+  gobject_class->get_property     = geda_file_chooser_get_property;
+  gobject_class->set_property     = geda_file_chooser_set_property;
+  gobject_class->constructor      = geda_file_chooser_constructor;
+  gobject_class->finalize         = geda_file_chooser_finalize;
 
-  class->filter_changed          = geda_file_chooser_filter_changed;
-  class->geometry_save           = geda_file_chooser_geometry_save;
-  class->geometry_restore        = geda_file_chooser_geometry_restore;
+  chooser_class->filter_changed   = geda_file_chooser_filter_changed;
+  chooser_class->geometry_save    = geda_file_chooser_geometry_save;
+  chooser_class->geometry_restore = geda_file_chooser_geometry_restore;
 
-  widget_class->show             = show_handler;
-  widget_class->unmap            = unmap_handler;
+  widget_class->show              = show_handler;
+  widget_class->unmap             = unmap_handler;
 
   geda_file_chooser_parent_class = g_type_class_peek_parent (class);
 
@@ -447,6 +451,8 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
 
   g_object_class_install_property (gobject_class, PROP_FILTER_INDEX, params);
 
+  type = geda_file_chooser_get_type();
+
   /**
    * GedaFileChooser::filter-changed:
    * Chooser: The chooser on which the signal is emitted
@@ -455,8 +461,7 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
    * changes the selection of the filter combo text box.
    */
 
-  chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed",
-                                                      geda_file_chooser_get_type(),
+  chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed", type,
                                                       G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                                                       G_STRUCT_OFFSET (GedaFileChooserClass,
                                                                        filter_changed),
@@ -465,8 +470,7 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       g_cclosure_marshal_VOID__VOID,
                                                       G_TYPE_NONE, 0);
 
-  chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore",
-                                                      geda_file_chooser_get_type(),
+  chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaFileChooserClass,
                                                                        geometry_restore ),
@@ -477,8 +481,7 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       1,    /* n_params */
                                                       G_TYPE_STRING);
 
-  chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save",
-                                                      geda_file_chooser_get_type(),
+  chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaFileChooserClass,
                                                                        geometry_save ),
@@ -490,51 +493,63 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
                                                       G_TYPE_STRING);
 }
 
-/*! \brief Initialize GedaFileChooser data structure.
+/*! \brief Initialize new GedaFileChooser data structure instance.
  *
  *  \par Function Description
- *  Function tois call after the GedaFileChooserClass is created
+ *  This function is call after the GedaFileChooserClass is created
  *  to initialize the data structure.
  *
- * \param [in] self A GedaFileChooser object (structure)
+ * \param [in] instance  A GedaFileChooser data structure
+ * \param [in] class     A GedaFileChooserClass Object
  */
-static void geda_file_chooser_instance_init (GedaFileChooser *self)
+static void
+geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
 {
+  GedaFileChooser *self = (GedaFileChooser*)instance;
+
   chooser_entry       = NULL;
   self->filter_button = NULL;
 }
 
-/*! \brief Function to retrieve GedaFileChooser's Type identifier.
+    /*! \brief Function to retrieve GedaFileChooser's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaFileChooser's Type identifier. On the first
- *  call, this registers the GedaFileChooser in the GedaType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #GedaFileChooser Type identifier. When
+ *  first called, the function registers a #GedaFileChooser in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaFileChooser and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
- *  \return the GedaType identifier associated with GedaFileChooser.
+ *  \return GedaType identifier associated with GedaFileChooser.
  */
 GedaType geda_file_chooser_get_type (void)
 {
   static GedaType geda_file_chooser_type = 0;
 
-  if (!geda_file_chooser_type) {
-    static const GTypeInfo geda_file_chooser_info = {
+  if (g_once_init_enter (&geda_file_chooser_type)) {
+
+    static const GTypeInfo info = {
       sizeof(GedaFileChooserClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) geda_file_chooser_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_file_chooser_class_init,    /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaFileChooser),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc)geda_file_chooser_instance_init /* instance_init */
+      0,                               /* n_preallocs         */
+      geda_file_chooser_instance_init  /* (GInstanceInitFunc) */
     };
 
-    geda_file_chooser_type = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
-                                                     "GedaFileChooser",
-                                                     &geda_file_chooser_info,
-                                                     0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaFileChooser");
+    type   = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
+                                     string, &info, 0);
+
+    g_once_init_leave (&geda_file_chooser_type, type);
   }
+
   return geda_file_chooser_type;
 }
 
@@ -862,5 +877,5 @@ geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
     BUG_MSG ("Operative is not a GtkFileChooser");
   }
 }
-
+#undef ChooseClass
 /** @} end group GedaFileChooser */

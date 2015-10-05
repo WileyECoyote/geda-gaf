@@ -42,6 +42,8 @@
 
 #include "gettext.h"
 
+#define ChooseClass GedaImageChooserClass
+
 /**
  * \brief GedaImageChooser - A Image File Chooser Dialog
  * \par
@@ -955,32 +957,34 @@ static void unmap_handler (GtkWidget *widget)
 }
 
 /*! \brief Type class initializer for GedaImageChooser
- *
  *  \par Function Description
  *  Type class initializer for GedaImageChooser. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  class       The GedaImageChooserClass we are initialising
+ * \param [in] class A GedaImageChooserClass Object
+ * \param [in] data  A GedaImageChooser data structure
  */
 static void
-geda_image_chooser_class_init (GedaImageChooserClass *class)
+geda_image_chooser_class_init (void *class, void *data)
 {
   GParamSpec     *params;
+  GedaType        type;
 
-  GObjectClass   *gobject_class  = (GObjectClass*) class;
-  GtkWidgetClass *widget_class   = (GtkWidgetClass*) class;
+  ChooseClass    *chooser_class   = (ChooseClass*) class;
+  GObjectClass   *gobject_class   = (GObjectClass*) class;
+  GtkWidgetClass *widget_class    = (GtkWidgetClass*) class;
 
-  gobject_class->get_property    = geda_image_chooser_get_property;
-  gobject_class->set_property    = geda_image_chooser_set_property;
-  gobject_class->constructor     = geda_image_chooser_constructor;
-  gobject_class->finalize        = geda_image_chooser_finalize;
+  gobject_class->get_property     = geda_image_chooser_get_property;
+  gobject_class->set_property     = geda_image_chooser_set_property;
+  gobject_class->constructor      = geda_image_chooser_constructor;
+  gobject_class->finalize         = geda_image_chooser_finalize;
 
-  class->filter_changed          = geda_image_chooser_filter_changed;
-  class->geometry_save           = geda_image_chooser_geometry_save;
-  class->geometry_restore        = geda_image_chooser_geometry_restore;
+  chooser_class->filter_changed   = geda_image_chooser_filter_changed;
+  chooser_class->geometry_save    = geda_image_chooser_geometry_save;
+  chooser_class->geometry_restore = geda_image_chooser_geometry_restore;
 
-  widget_class->show             = show_handler;
-  widget_class->unmap            = unmap_handler;
+  widget_class->show              = show_handler;
+  widget_class->unmap             = unmap_handler;
 
   geda_image_chooser_parent_class = g_type_class_peek_parent (class);
 
@@ -994,6 +998,8 @@ geda_image_chooser_class_init (GedaImageChooserClass *class)
 
   g_object_class_install_property (gobject_class, PROP_FILTER_INDEX, params);
 
+  type = geda_image_chooser_get_type();
+
   /**
    * GedaImageChooser::filter-changed:
    * Chooser: The chooser on which the signal is emitted
@@ -1001,9 +1007,7 @@ geda_image_chooser_class_init (GedaImageChooserClass *class)
    * The  GedaImageChooser::filter-changed signal is emitted when the user
    * changes the selection of the filter combo text box.
    */
-
-  chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed",
-                                                      geda_image_chooser_get_type(),
+  chooser_signals[FILTER_CHANGED]     = g_signal_new ("filter-changed", type,
                                                       G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                                                       G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        filter_changed),
@@ -1012,8 +1016,7 @@ geda_image_chooser_class_init (GedaImageChooserClass *class)
                                                       g_cclosure_marshal_VOID__VOID,
                                                       G_TYPE_NONE, 0);
 
-  chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore",
-                                                      geda_image_chooser_get_type(),
+  chooser_signals[ GEOMETRY_RESTORE ] = g_signal_new ("geometry-restore", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        geometry_restore ),
@@ -1024,8 +1027,7 @@ geda_image_chooser_class_init (GedaImageChooserClass *class)
                                                       1,    /* n_params */
                                                       G_TYPE_STRING);
 
-  chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save",
-                                                      geda_image_chooser_get_type(),
+  chooser_signals[ GEOMETRY_SAVE ]    = g_signal_new ("geometry-save", type,
                                                       G_SIGNAL_RUN_FIRST,     /*signal_flags */
                                                       G_STRUCT_OFFSET (GedaImageChooserClass,
                                                                        geometry_save ),
@@ -1037,16 +1039,20 @@ geda_image_chooser_class_init (GedaImageChooserClass *class)
                                                       G_TYPE_STRING);
 }
 
-/*! \brief Initialize GedaImageChooser data structure.
+/*! \brief Initialize new GedaImageChooser data structure instance.
  *
  *  \par Function Description
- *  Function tois call after the GedaImageChooserClass is created
+ *  This function is call after the GedaImageChooserClass is created
  *  to initialize the data structure.
  *
- * \param [in] self A GedaImageChooser object (structure)
+ * \param [in] instance  A GedaImageChooser data structure
+ * \param [in] class     A GedaImageChooserClass Object
  */
-static void geda_image_chooser_init (GedaImageChooser *self)
+static void
+geda_image_chooser_instance_init (GTypeInstance *instance, void *class)
 {
+  GedaImageChooser *self = (GedaImageChooser*)instance;
+
   chooser_entry       = NULL;
   self->filter_button = NULL;
 }
@@ -1054,34 +1060,42 @@ static void geda_image_chooser_init (GedaImageChooser *self)
 /*! \brief Function to retrieve GedaImageChooser's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaImageChooser's Type identifier. On the first
- *  call, this registers the GedaImageChooser in the GedaType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #GedaImageChooser Type identifier. When
+ *  first called, the function registers a #GedaImageChooser in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaImageChooser and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
- *  \return the GedaType identifier associated with GedaImageChooser.
+ *  \return GedaType identifier associated with GedaImageChooser.
  */
-GedaType geda_image_chooser_get_type ()
+GedaType geda_image_chooser_get_type (void)
 {
   static GedaType geda_image_chooser_type = 0;
 
-  if (!geda_image_chooser_type) {
-    static const GTypeInfo geda_image_chooser_info = {
+  if (g_once_init_enter (&geda_image_chooser_type)) {
+
+    static const GTypeInfo info = {
       sizeof(GedaImageChooserClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) geda_image_chooser_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_image_chooser_class_init,   /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaImageChooser),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_image_chooser_init, /* instance_init */
+      0,                               /* n_preallocs         */
+      geda_image_chooser_instance_init /* (GInstanceInitFunc) */
     };
 
-    geda_image_chooser_type = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
-                                                     "GedaImageChooser",
-                                                     &geda_image_chooser_info,
-                                                     0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaImageChooser");
+    type   = g_type_register_static (GTK_TYPE_FILE_CHOOSER_DIALOG,
+                                     string, &info, 0);
+
+    g_once_init_leave (&geda_image_chooser_type, type);
   }
+
   return geda_image_chooser_type;
 }
 
@@ -1409,4 +1423,6 @@ void gtk_image_chooser_set_preview_active (GtkWidget *widget, bool state)
     BUG_MSG ("Operative is not a GedaImageChooser");
   }
 }
+
+#undef ChooseClass
 /** @} end group GedaImageChooser */

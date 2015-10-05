@@ -357,33 +357,33 @@ geda_accel_label_class_init(void *g_class, void *class_data)
 {
   GedaAccelLabelClass *class   = (GedaAccelLabelClass*)g_class;
 
-  GObjectClass *gobject_class  = G_OBJECT_CLASS (class);
+  GObjectClass   *object_class = G_OBJECT_CLASS (class);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
-  gobject_class->finalize      = geda_accel_label_finalize;
-  gobject_class->set_property  = geda_accel_label_set_property;
-  gobject_class->get_property  = geda_accel_label_get_property;
+  object_class->finalize      = geda_accel_label_finalize;
+  object_class->set_property  = geda_accel_label_set_property;
+  object_class->get_property  = geda_accel_label_get_property;
 
   widget_class->size_request   = geda_accel_label_size_request;
   widget_class->expose_event   = geda_accel_label_expose_event;
 
   geda_accel_label_parent_class = g_type_class_peek_parent (class);
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_ACCEL_CLOSURE,
                                    g_param_spec_boxed ("accel-closure",
                                                        P_("Accelerator Closure"),
                                                        P_("The closure to be monitored for accelerator changes"),
                                                        G_TYPE_CLOSURE,
                                                        G_PARAM_READWRITE));
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_ACCEL_WIDGET,
                                    g_param_spec_object ("accel-widget",
                                                         P_("Accelerator Widget"),
                                                         P_("The widget to be monitored for accelerator changes"),
                                                         GTK_TYPE_WIDGET,
                                                         G_PARAM_READWRITE));
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_ACCEL_STRING,
                                    g_param_spec_string ("accel-string",
                                                         P_("Accelerator String"),
@@ -401,7 +401,8 @@ geda_accel_label_class_init(void *g_class, void *class_data)
  *  \param [in] instance The GedaAccelLabel structure being initialized,
  *  \param [in] g_class  The GedaAccelLabel class we are initializing.
  */
-static void geda_accel_label_init(GTypeInstance *instance, void *g_class)
+static void
+geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
 {
   GedaAccelLabel *accel_label = (GedaAccelLabel*)instance;
 
@@ -409,36 +410,45 @@ static void geda_accel_label_init(GTypeInstance *instance, void *g_class)
   accel_label->accel_string = NULL;
 }
 
-/*! \brief Function to retrieve GedaAccelLabel GedaType identifier.
+/*! \brief Function to retrieve GedaAccelLabel's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaAccelLabel's Type identifier. On first call, the
- *  function registers the GedaAccelLabel in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #GedaAccelLabel Type identifier. When
+ *  first called, the function registers a #GedaAccelLabel in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaAccelLabel and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with GedaAccelLabel.
  */
-GedaType geda_accel_label_get_type(void)
+GedaType geda_accel_label_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_accel_label_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_accel_label_type)) {
 
     static const GTypeInfo info = {
-      sizeof (GedaAccelLabelClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_accel_label_class_init,     // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(GedaAccelLabelClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_accel_label_class_init,          /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaAccelLabel),
-      0,                               // n_preallocs
-      geda_accel_label_init            // instance_init
+      0,                               /* n_preallocs         */
+      geda_accel_label_instance_init        /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GTK_TYPE_ACCEL_LABEL,
-                                   "GedaAccelLabel", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaAccelLabel");
+    type   = g_type_register_static (GTK_TYPE_ACCEL_LABEL, string, &info, 0);
+
+    g_once_init_leave (&geda_accel_label_type, type);
   }
-  return type;
+
+  return geda_accel_label_type;
 }
 
 /** @} endgroup GedaAccelLabel */

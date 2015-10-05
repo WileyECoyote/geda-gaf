@@ -843,36 +843,45 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 
 }
 
-/*! \brief Function to retrieve GedaEntry GedaType identifier.
+/*! \brief Function to retrieve GedaEntry's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaEntry's Type identifier. On first call, the
- *  function registers the GedaEntry in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #GedaEntry Type identifier. When
+ *  first called, the function registers a #GedaEntry in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaEntry and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with GedaEntry.
  */
-GedaType geda_entry_get_type(void)
+GedaType geda_entry_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_entry_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_entry_type)) {
 
     static const GTypeInfo info = {
-      sizeof (GedaEntryClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_entry_class_init,           // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(GedaEntryClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_entry_class_init,           /* (GClassInitFunc)   */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaEntry),
-      0,                               // n_preallocs
-      geda_entry_instance_init         // instance_init
+      0,                               /* n_preallocs         */
+      geda_entry_instance_init         /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GTK_TYPE_ENTRY,
-                                   "GedaEntry", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaEntry");
+    type   = g_type_register_static (GTK_TYPE_ENTRY, string, &info, 0);
+
+    g_once_init_leave (&geda_entry_type, type);
   }
-  return type;
+
+  return geda_entry_type;
 }
 
 /*! \brief Entry Stop Activate Default signal Responder

@@ -1957,36 +1957,45 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
                            (GDestroyNotify) pango_font_metrics_unref);  */
 }
 
-/*! \brief Function to retrieve EdaRenderer GedaType identifier.
+/*! \brief Function to retrieve EdaRenderer's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve EdaRenderer's Type identifier. On first call, the
- *  function registers the EdaRenderer in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #EdaRenderer Type identifier. When
+ *  first called, the function registers a #EdaRenderer in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a EdaRenderer and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with EdaRenderer.
  */
-GedaType
-eda_renderer_get_type(void)
+GedaType eda_renderer_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType eda_renderer_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&eda_renderer_type)) {
 
     static const GTypeInfo info = {
-      sizeof (EdaRendererClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      eda_renderer_class_init,         // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(EdaRendererClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      eda_renderer_class_init,         /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(EdaRenderer),
-      0,                               // n_preallocs
-      eda_renderer_instance_init       // instance_init
+      0,                               /* n_preallocs         */
+      eda_renderer_instance_init       /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (G_TYPE_OBJECT, "EdaRenderer", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("EdaRenderer");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&eda_renderer_type, type);
   }
-  return type;
+
+  return eda_renderer_type;
 }
 
 /* ================================================================

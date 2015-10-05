@@ -53,7 +53,7 @@ gschem_page_view_get_hadjustment (GschemPageView *view);
 void*
 gschem_page_view_get_page (GschemPageView *view);
 
-unsigned int
+GedaType
 gschem_page_view_get_type ();
 
 GtkAdjustment*

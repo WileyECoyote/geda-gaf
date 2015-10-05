@@ -54,7 +54,6 @@ struct _GschemPageGeometry
 };
 
 
-
 GschemPageGeometry*
 gschem_page_geometry_copy (GschemPageGeometry *geometry);
 
@@ -67,7 +66,7 @@ gschem_page_geometry_get_screen_height (GschemPageGeometry *geometry);
 int
 gschem_page_geometry_get_screen_width (GschemPageGeometry *geometry);
 
-unsigned int
+GedaType
 gschem_page_geometry_get_type ();
 
 int

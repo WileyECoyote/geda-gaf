@@ -655,35 +655,40 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
   }
 }
 
-/*! \brief GedaBulb Class Initializer
+/*! \brief GedaBulb Type Class Initializer
  *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- * \param [in] class A GedaBulbClass Object
+ *  \param [in]  class       GedaBulb class we are initializing
+ *  \param [in]  class_data  GedaBulb structure associated with the class
  */
 static void
-geda_bulb_class_init (GedaBulbClass *class)
+geda_bulb_class_init(void *class, void *class_data)
 {
-  GObjectClass        *gobject_class;
+  GedaBulbClass       *bulb_class;
+  GObjectClass        *object_class;
   GtkButtonClass      *button_class;
   GtkCheckButtonClass *check_button_class;
   GtkWidgetClass      *widget_class;
   GParamSpec          *params;
 
-  gobject_class      = G_OBJECT_CLASS (class);
-  widget_class       = (GtkWidgetClass*) class;
-  button_class       = (GtkButtonClass*) class;
-  check_button_class = (GtkCheckButtonClass*) class;
+  bulb_class         = (GedaBulbClass*)class;
+  button_class       = (GtkButtonClass*)class;
+  check_button_class = (GtkCheckButtonClass*)class;
+  widget_class       = (GtkWidgetClass*)class;
+  object_class       = G_OBJECT_CLASS(class);
 
-  gobject_class->set_property = geda_bulb_set_property;
-  gobject_class->get_property = geda_bulb_get_property;
+  object_class->set_property = geda_bulb_set_property;
+  object_class->get_property = geda_bulb_get_property;
 
-  gobject_class->finalize     = geda_bulb_finalize;
+  object_class->finalize     = geda_bulb_finalize;
 
-  widget_class->focus         = geda_bulb_focus;
+  widget_class->focus        = geda_bulb_focus;
 
-  button_class->clicked       = geda_bulb_clicked;
+  button_class->clicked      = geda_bulb_clicked;
 
   check_button_class->draw_indicator = geda_bulb_draw_indicator;
 
@@ -701,7 +706,7 @@ geda_bulb_class_init (GedaBulbClass *class)
                                 GEDA_TYPE_BULB,
                                 G_PARAM_WRITABLE);
 
-  g_object_class_install_property (gobject_class, PROP_GROUP, params);
+  g_object_class_install_property (object_class, PROP_GROUP, params);
 
   /*! property "use-font":
    *  \par If this property is set to %TRUE, the button widget will be displayed
@@ -713,7 +718,7 @@ geda_bulb_class_init (GedaBulbClass *class)
                                   FALSE,
                                  (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_SHOW_BUTT, params);
+  g_object_class_install_property (object_class, PROP_SHOW_BUTT, params);
 
   params = g_param_spec_int ("indicator-size",
                            _("Indicator Size"),
@@ -735,7 +740,7 @@ geda_bulb_class_init (GedaBulbClass *class)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
-  class->group_changed = NULL;
+  bulb_class->group_changed = NULL;
 
   /*! \brief Bulb group-changed
    * GedaBulb::group-changed:
@@ -750,7 +755,7 @@ geda_bulb_class_init (GedaBulbClass *class)
    *
    */
   group_changed_signal = g_signal_new (_("group-changed"),
-                                       G_OBJECT_CLASS_TYPE (gobject_class),
+                                       G_OBJECT_CLASS_TYPE (object_class),
                                        G_SIGNAL_RUN_FIRST,
                                        G_STRUCT_OFFSET (GedaBulbClass, group_changed),
                                        NULL, NULL,
@@ -758,9 +763,22 @@ geda_bulb_class_init (GedaBulbClass *class)
                                        G_TYPE_NONE, 0);
 }
 
+/*! \brief Initialize new GedaBulb data structure instance.
+ *
+ *  \par Function Description
+ *  This function is call after the GedaBulbClass is created
+ *  to initialize the data structure.
+ *
+ * \param [in] instance  A GedaBulb data structure
+ * \param [in] class     A GedaBulbClass Object
+ */
 static void
-geda_bulb_instance_init (GedaBulb *bulb)
+geda_bulb_instance_init (GTypeInstance *instance, void *class)
 {
+  GedaBulb  *bulb   = (GedaBulb*)instance;
+  GtkButton *button = (GtkButton*)bulb;
+  GtkWidget *widget = (GtkWidget*)bulb;
+
   if (off_pixbuf == NULL) {
     off_pixbuf = gdk_pixbuf_new_from_xpm_data (geda_bulb_off_xpm);
   }
@@ -777,53 +795,60 @@ geda_bulb_instance_init (GedaBulb *bulb)
   pix_buff_ref_count++;
 
   bulb->height = gdk_pixbuf_get_height (on_pixbuf);
-  bulb->width  = gdk_pixbuf_get_width (on_pixbuf);
+  bulb->width  = gdk_pixbuf_get_width  (on_pixbuf);
 
-  gtk_widget_set_receives_default (GTK_WIDGET (bulb), FALSE);
+  gtk_widget_set_receives_default (widget, FALSE);
 
-  gtk_button_set_focus_on_click(GTK_BUTTON (bulb), FALSE);
+  gtk_button_set_focus_on_click(button, FALSE);
 
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (bulb), TRUE);
+  gtk_toggle_button_set_active ((GtkToggleButton*)bulb, TRUE);
 
-  GTK_BUTTON (bulb)->depress_on_activate = FALSE;
+  button->depress_on_activate = FALSE;
 
   GTK_CONTAINER (bulb)->border_width = 1;
 
   bulb->group = g_slist_prepend (NULL, bulb);
 
-  button_set_depressed (GTK_BUTTON (bulb), TRUE);
-  gtk_widget_set_state (GTK_WIDGET (bulb), GTK_STATE_ACTIVE);
+  button_set_depressed (button, TRUE);
+  gtk_widget_set_state (widget, GTK_STATE_ACTIVE);
 }
 
 /*! \brief Function to retrieve GedaBulb's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaBulb's Type identifier. On the first
- *  call, this registers the #GedaBulb in the GedaType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #GedaBulb Type identifier. When
+ *  first called, the function registers a #GedaBulb in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaBulb and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
- *  \return the GedaType identifier associated with GedaBulb.
+ *  \return GedaType identifier associated with GedaBulb.
  */
 GedaType geda_bulb_get_type (void)
 {
   static GedaType geda_bulb_type = 0;
 
-  if (!geda_bulb_type) {
-    static const GTypeInfo geda_bulb_info = {
+  if (g_once_init_enter (&geda_bulb_type)) {
+
+    static const GTypeInfo info = {
       sizeof(GedaBulbClass),
-      NULL,                                      /* base_init */
-      NULL,                                      /* base_finalize */
-      (GClassInitFunc) geda_bulb_class_init,
-      NULL,                                      /* class_finalize */
-      NULL,                                      /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_bulb_class_init,           /* (GClassInitFunc)   */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaBulb),
-      0,                                         /* n_preallocs */
-      (GInstanceInitFunc)geda_bulb_instance_init /* instance_init */
+      0,                               /* n_preallocs         */
+      geda_bulb_instance_init         /* (GInstanceInitFunc) */
     };
 
-    geda_bulb_type = g_type_register_static (GTK_TYPE_CHECK_BUTTON,
-                                             "GedaBulb",
-                                             &geda_bulb_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaBulb");
+    type   = g_type_register_static (GTK_TYPE_CHECK_BUTTON, string, &info, 0);
+
+    g_once_init_leave (&geda_bulb_type, type);
   }
 
   return geda_bulb_type;

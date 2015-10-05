@@ -194,27 +194,30 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   GTK_ACTION_CLASS (geda_action_parent_class)->connect_proxy (action, proxy);
 }
 
-/*! \brief Type class initializer for GedaAction
+/*! \brief GedaAction Type Class Initializer
  *
  *  \par Function Description
- *  Type class initializer for GedaAction. We override our parent
- *  virtual class methods as needed and register our GObject properties.
+ *  Type class initializer called to initialize the class instance.
+ *  Overrides parents virtual class methods as needed and registers
+ *  GObject signals.
  *
- *  \param [in]  klass       The GedaActionClass we are initialising
+ *  \param [in]  class       GedaAction class we are initializing
+ *  \param [in]  class_data  GedaAction structure associated with the class
  */
-static void geda_action_class_init (GedaActionClass *klass)
+static void
+geda_action_class_init(void *class, void *class_data)
 {
   GParamSpec     *params;
-  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
-  GtkActionClass *gtkaction_class = GTK_ACTION_CLASS (klass);
+  GObjectClass   *object_class    = G_OBJECT_CLASS (class);
+  GtkActionClass *gtkaction_class = GTK_ACTION_CLASS (class);
 
   gtkaction_class->connect_proxy  = geda_action_connect_proxy;
 
-  gobject_class->finalize         = geda_action_finalize;
-  gobject_class->set_property     = geda_action_set_property;
-  gobject_class->get_property     = geda_action_get_property;
+  object_class->finalize         = geda_action_finalize;
+  object_class->set_property     = geda_action_set_property;
+  object_class->get_property     = geda_action_get_property;
 
-  geda_action_parent_class      = g_type_class_peek_parent (klass);
+  geda_action_parent_class      = g_type_class_peek_parent (class);
 
   params = g_param_spec_string ("multikey-accel",
                               _("multikey-accelerator"),
@@ -222,7 +225,7 @@ static void geda_action_class_init (GedaActionClass *klass)
                                  NULL,
                                (G_PARAM_READWRITE));
 
-  g_object_class_install_property( gobject_class, PROP_MULTIKEY_ACCEL, params);
+  g_object_class_install_property( object_class, PROP_MULTIKEY_ACCEL, params);
 
   params = g_param_spec_string ("icon-id",
                               _("icon-identification"),
@@ -230,7 +233,7 @@ static void geda_action_class_init (GedaActionClass *klass)
                                  NULL,
                                (G_PARAM_READWRITE));
 
-  g_object_class_install_property( gobject_class, PROP_ICON_ID, params);
+  g_object_class_install_property( object_class, PROP_ICON_ID, params);
 /*
   params = g_param_spec_string ("icon-id",
                               _("icon-identification"),
@@ -238,7 +241,7 @@ static void geda_action_class_init (GedaActionClass *klass)
                                  NULL,
                                (G_PARAM_WRITABLE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_TOOLBAR_STYLE,
                                    g_param_spec_enum ("toolbar-style",
                                                       P_("Toolbar Style"),
@@ -249,16 +252,20 @@ static void geda_action_class_init (GedaActionClass *klass)
 */
 }
 
-/*! \brief Initialize GedaAction data structure.
+/*! \brief Initialize new GedaAction data structure instance.
  *
  *  \par Function Description
- *  Function tois call after the GedaActionClass is created
+ *  This function is call after the GedaActionClass is created
  *  to initialize the data structure.
  *
- * \param [in] action A GedaAction object (structure)
+ * \param [in] instance  A GedaAction data structure
+ * \param [in] class     A GedaActionClass Object
  */
-static void geda_action_instance_init (GedaAction *action)
+static void
+geda_action_instance_init (GTypeInstance *instance, void *class)
 {
+  GedaAction *action = (GedaAction*)instance;
+
   action->multikey_accel = NULL;
   action->icon_name      = NULL;
 }
@@ -266,32 +273,39 @@ static void geda_action_instance_init (GedaAction *action)
 /*! \brief Function to retrieve GedaAction's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaAction's Type identifier. On the first
- *  call, this registers the GedaAction in the GedaType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #GedaAction Type identifier. When
+ *  first called, the function registers a #GedaAction in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaAction and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
- *  \return the GedaType identifier associated with GedaAction.
+ *  \return GedaType identifier associated with GedaAction.
  */
 GedaType geda_action_get_type (void)
 {
   static GedaType geda_action_type = 0;
 
-  if (!geda_action_type) {
-    static const GTypeInfo geda_action_info = {
+  if (g_once_init_enter (&geda_action_type)) {
+
+    static const GTypeInfo info = {
       sizeof(GedaActionClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) geda_action_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_action_class_init,          /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaAction),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) geda_action_instance_init, /* instance_init */
+      0,                               /* n_preallocs         */
+      geda_action_instance_init        /* (GInstanceInitFunc) */
     };
 
-    geda_action_type = g_type_register_static (GTK_TYPE_ACTION,
-                                                 "GedaAction",
-                                                 &geda_action_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaAction");
+    type   = g_type_register_static (GTK_TYPE_ACTION, string, &info, 0);
+
+    g_once_init_leave (&geda_action_type, type);
   }
 
   return geda_action_type;

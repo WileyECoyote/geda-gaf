@@ -187,27 +187,27 @@ static GObjectClass *geda_handle_box_parent_class = NULL;
  *  GObject signals.
  *
  *  \param [in]  g_class     GedaHandleBoxClass class being initializing
- *  \param [in]  class_data  GedaHandleBoxClass structure associated with the class
+ *  \param [in]  class_data  Associated GedaHandleBoxClass structure
  */
 static void
 geda_handle_box_class_init(void *g_class, void *class_data)
 {
-  GObjectClass *gobject_class;
-  GtkWidgetClass *widget_class;
-  GtkContainerClass *container_class;
+  GObjectClass       *object_class;
+  GtkWidgetClass     *widget_class;
+  GtkContainerClass  *container_class;
   GedaHandleBoxClass *class;
 
   class           = (GedaHandleBoxClass*)g_class;
-  gobject_class   = (GObjectClass *) class;
-  widget_class    = (GtkWidgetClass *) class;
-  container_class = (GtkContainerClass *) class;
+  object_class    = (GObjectClass*)class;
+  widget_class    = (GtkWidgetClass*)class;
+  container_class = (GtkContainerClass*)class;
 
-  gobject_class->set_property  = geda_handle_box_set_property;
-  gobject_class->get_property  = geda_handle_box_get_property;
+  object_class->set_property   = geda_handle_box_set_property;
+  object_class->get_property   = geda_handle_box_get_property;
 
   geda_handle_box_parent_class = g_type_class_peek_parent(class);
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_SHADOW,
                                    g_param_spec_enum ("shadow",
                                                       NULL,
@@ -216,7 +216,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                       GTK_SHADOW_OUT,
                                                       G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_SHADOW_TYPE,
                                    g_param_spec_enum ("shadow-type",
                                                       NULL,
@@ -225,7 +225,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                       GTK_SHADOW_OUT,
                                                       G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_HANDLE_POSITION,
                                    g_param_spec_enum ("handle-position",
                                                       NULL,
@@ -234,7 +234,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                       GTK_POS_LEFT,
                                                       G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_SNAP_EDGE,
                                    g_param_spec_enum ("snap-edge",
                                                       NULL,
@@ -243,7 +243,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                       GTK_POS_TOP,
                                                       G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_SNAP_EDGE_SET,
                                    g_param_spec_boolean ("snap-edge-set",
                                                          NULL,
@@ -251,7 +251,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_CHILD_DETACHED,
                                    g_param_spec_boolean ("child-detached",
                                                          NULL,
@@ -297,7 +297,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                 G_TYPE_NONE, 1,
                 G_TYPE_POINTER);
 
-  g_type_class_add_private (gobject_class, sizeof (GedaHandleBoxPrivate));
+  g_type_class_add_private (object_class, sizeof (GedaHandleBoxPrivate));
 
 
 }
@@ -317,54 +317,64 @@ geda_handle_box_get_private (GedaHandleBox *handlebox)
  *  \param [in] instance The GedaHandleBox structure being initialized,
  *  \param [in] g_class  The GedaHandleBox class we are initializing.
  */
-static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
+static void
+geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handle_box = (GedaHandleBox*)instance;
 
   gtk_widget_set_has_window (GTK_WIDGET (handle_box), TRUE);
 
-  handle_box->bin_window = NULL;
-  handle_box->float_window = NULL;
-  handle_box->shadow_type = GTK_SHADOW_OUT;
-  handle_box->handle_position = GTK_POS_LEFT;
+  handle_box->bin_window          = NULL;
+  handle_box->float_window        = NULL;
+  handle_box->shadow_type         = GTK_SHADOW_OUT;
+  handle_box->handle_position     = GTK_POS_LEFT;
   handle_box->float_window_mapped = FALSE;
-  handle_box->child_detached = FALSE;
-  handle_box->in_drag = FALSE;
-  handle_box->shrink_on_detach = TRUE;
-  handle_box->snap_edge = -1;
-  handle_box->dock_orientation = GTK_ORIENTATION_HORIZONTAL;
+  handle_box->child_detached      = FALSE;
+  handle_box->in_drag             = FALSE;
+  handle_box->shrink_on_detach    = TRUE;
+  handle_box->snap_edge           = -1;
+  handle_box->dock_orientation    = GTK_ORIENTATION_HORIZONTAL;
 }
 
-/*! \brief Function to retrieve GedaHandleBox GedaType identifier.
+/*! \brief Function to retrieve GedaHandleBox's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaHandleBox's Type identifier. On first call, the
- *  function registers the GedaHandleBox in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #GedaHandleBox Type identifier. When
+ *  first called, the function registers a #GedaHandleBox in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaHandleBox and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with GedaHandleBox.
  */
-GedaType geda_handle_box_get_type(void)
+GedaType geda_handle_box_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_handle_box_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_handle_box_type)) {
 
     static const GTypeInfo info = {
-      sizeof (GedaHandleBoxClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_handle_box_class_init,      // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(GedaHandleBoxClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_handle_box_class_init,      /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaHandleBox),
-      0,                               // n_preallocs
-      geda_handle_box_instance_init    // instance_init
+      0,                               /* n_preallocs         */
+      geda_handle_box_instance_init    /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GTK_TYPE_BIN,
-                                   "GedaHandleBox", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaHandleBox");
+    type   = g_type_register_static (GTK_TYPE_BIN, string, &info, 0);
+
+    g_once_init_leave (&geda_handle_box_type, type);
   }
-  return type;
+
+  return geda_handle_box_type;
 }
 
 static void

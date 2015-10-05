@@ -182,85 +182,93 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 }
 
 /*! \brief GedaToggleAction Class Initializer
- *
  *  \par Function Description
- *  Function is called to initialize the class instance.
+ *  Called to initialize the class instance.
  *
- * \param [in] klass A GedaToggleActionClass Object
+ * \param [in] class A GedaToggleActionClass Object
+ * \param [in] data  A GedaToggleAction data structure
  */
 static void
-geda_toggle_action_class_init (GedaToggleActionClass *klass)
+geda_toggle_action_class_init (void *class, void *data)
 {
-  GObjectClass   *gobject_class;
+  GObjectClass   *object_class;
   GtkActionClass *action_class;
+  GParamSpec     *params;
 
-  geda_toggle_action_parent_class = g_type_class_peek_parent (klass);
+  geda_toggle_action_parent_class = g_type_class_peek_parent (class);
 
-  gobject_class = G_OBJECT_CLASS (klass);
-  action_class  = GTK_ACTION_CLASS (klass);
+  object_class = G_OBJECT_CLASS (class);
+  action_class = GTK_ACTION_CLASS (class);
 
   action_class->connect_proxy = geda_toggle_action_connect_proxy;
 
-  gobject_class->finalize     = geda_toggle_action_finalize;
-  gobject_class->set_property = geda_toggle_action_set_property;
-  gobject_class->get_property = geda_toggle_action_get_property;
+  object_class->finalize     = geda_toggle_action_finalize;
+  object_class->set_property = geda_toggle_action_set_property;
+  object_class->get_property = geda_toggle_action_get_property;
 
-  g_object_class_install_property ( gobject_class,
-                                    PROP_MULTIKEY_ACCEL,
-                                    g_param_spec_string ("multikey-accel",
-                                    "",
-                                    "",
-                                    NULL,
-                                    G_PARAM_READWRITE));
+  params = g_param_spec_string ("multikey-accel",
+                              _("Multikey Accelerator"),
+                              _("Multikey Accelerator"),
+                                 NULL,
+                                 G_PARAM_READWRITE);
+
+  g_object_class_install_property(object_class, PROP_MULTIKEY_ACCEL, params);
 
 }
 
-/*! \brief Initialize GedaToggleAction data structure.
+/*! \brief Initialize new GedaToggleAction data structure instance.
  *
  *  \par Function Description
- *  Function is call after the GedaToggleActionClass is created
+ *  This function is call after the GedaToggleActionClass is created
  *  to initialize the data structure.
  *
- * \param [in] action A GedaToggleAction object (structure)
+ * \param [in] instance  A GedaToggleAction data structure
+ * \param [in] class     A GedaToggleActionClass Object
  */
-static void geda_toggle_action_init (GedaToggleAction *action)
+static void
+geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
 {
-  action->multikey_accel = NULL;
+  //GedaToggleAction *action = (GedaToggleAction*)instance;
 }
 
-/*! \brief Function to retrieve GedaAction's Type identifier.
+/*! \brief Function to retrieve GedaToggleAction's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaAction's Type identifier.
- *  On the first call, this registers the GedaAction in the GedaType
- *  system.
+ *  Function to retrieve #GedaToggleAction Type identifier. On the first
+ *  call, this registers the #GedaToggleAction in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return GedaType identifier associated with GedaAction.
+ *  \return GedaType identifier associated with a GedaToggleAction.
  */
-GedaType geda_toggle_action_get_type ()
+GedaType geda_toggle_action_get_type (void)
 {
-  static GedaType geda_toggle_action_type = 0;
+  static GedaType toggle_action_type = 0;
 
-  if (!geda_toggle_action_type) {
+  if (g_once_init_enter (&toggle_action_type)) {
+
     static const GTypeInfo geda_toggle_action_info = {
       sizeof(GedaToggleActionClass),
-      NULL, /* base_init      */
-      NULL, /* base_finalize  */
-      (GClassInitFunc) geda_toggle_action_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data     */
+      NULL,                                      /* base_init      */
+      NULL,                                      /* base_finalize  */
+      geda_toggle_action_class_init,             /* (GClassInitFunc) */
+      NULL,                                      /* class_finalize */
+      NULL,                                      /* class_data     */
       sizeof(GedaToggleAction),
-      0,    /* n_preallocs    */
-      (GInstanceInitFunc) geda_toggle_action_init, /* instance_init */
+      0,                                         /* n_preallocs    */
+      geda_toggle_action_instance_init           /* (GInstanceInitFunc) */
     };
 
-    geda_toggle_action_type = g_type_register_static (GTK_TYPE_TOGGLE_ACTION,
-                                                        "GedaToggleAction",
-                                                        &geda_toggle_action_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaToggleAction");
+    type   = g_type_register_static (GTK_TYPE_TOGGLE_ACTION, string,
+                                    &geda_toggle_action_info, 0);
+
+    g_once_init_leave (&toggle_action_type, type);
   }
 
-  return geda_toggle_action_type;
+  return toggle_action_type;
 }
 
 /*! \brief Create a New GedaToggleAction

@@ -1457,28 +1457,28 @@ static void geda_font_dialog_finalize (GObject *object)
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  g_class     GedaFontDialog class being initializing
+ *  \param [in]  class       GedaFontDialog class being initializing
  *  \param [in]  class_data  GedaFontDialog structure associated with the class
  */
 static void
-geda_font_dialog_class_init(void *g_class, void *class_data)
+geda_font_dialog_class_init(void *class, void *class_data)
 {
-  GedaFontDialogClass *class;
-  GObjectClass        *gobject_class;
+  GedaFontDialogClass *dialog_class;
+  GObjectClass        *object_class;
   GtkWidgetClass      *widget_class;
   GParamSpec          *params;
 
-  class         = (GedaFontDialogClass*)g_class;
-  gobject_class = G_OBJECT_CLASS (class);
-  widget_class  = GTK_WIDGET_CLASS (class);
+  dialog_class = (GedaFontDialogClass*)class;
+  object_class = G_OBJECT_CLASS (dialog_class);
+  widget_class = GTK_WIDGET_CLASS (dialog_class);
 
-  gobject_class->get_property = geda_font_dialog_get_property;
-  gobject_class->set_property = geda_font_dialog_set_property;
-  gobject_class->finalize     = geda_font_dialog_finalize;
+  object_class->get_property = geda_font_dialog_get_property;
+  object_class->set_property = geda_font_dialog_set_property;
+  object_class->finalize     = geda_font_dialog_finalize;
 
   widget_class->screen_changed  = geda_font_dialog_screen_changed;
 
-  geda_font_dialog_parent_class = g_type_class_peek_parent(class);
+  geda_font_dialog_parent_class = g_type_class_peek_parent(dialog_class);
 
   /*! property GedaFontDialog::title
    *  \par The title of the font selection dialog.
@@ -1489,7 +1489,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                               _("Pick a Font"),
                                (G_PARAM_WRITABLE));
 
-  g_object_class_install_property (gobject_class, PROP_TITLE, params);
+  g_object_class_install_property (object_class, PROP_TITLE, params);
 
   params = g_param_spec_boxed ("font",
                              _("Font"),
@@ -1497,7 +1497,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                                 GDK_TYPE_FONT,
                                (G_PARAM_READABLE));
 
-  g_object_class_install_property (gobject_class, PROP_FONT, params);
+  g_object_class_install_property (object_class, PROP_FONT, params);
 
   params = g_param_spec_boxed ("font-desc",
                              _("Font description"),
@@ -1505,7 +1505,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                                 PANGO_TYPE_FONT_DESCRIPTION,
                                (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_FONT_DESC, params);
+  g_object_class_install_property (object_class, PROP_FONT_DESC, params);
 
   params = g_param_spec_string ("font-name",
                               _("Font name"),
@@ -1513,7 +1513,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                                  DEFAULT_FONT_NAME,
                                 (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
+  g_object_class_install_property (object_class, PROP_FONT_NAME, params);
 
   /*! property GedaFontDialog::font-size:
    *  \par Programmactically set the font size.
@@ -1526,7 +1526,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                               10, /* default_value */
                              (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_FONT_SIZE, params);
+  g_object_class_install_property (object_class, PROP_FONT_SIZE, params);
 
 
   params = g_param_spec_string ("preview-text",
@@ -1535,7 +1535,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                               _(PREVIEW_TEXT),
                                (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_PREVIEW_TEXT, params);
+  g_object_class_install_property (object_class, PROP_PREVIEW_TEXT, params);
 
   params = g_param_spec_boolean ("show-preview",
                                _("Show preview text entry"),
@@ -1543,7 +1543,7 @@ geda_font_dialog_class_init(void *g_class, void *class_data)
                                   TRUE,
                                  (G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_SHOW_PREVIEW, params);
+  g_object_class_install_property (object_class, PROP_SHOW_PREVIEW, params);
 
 }
 
@@ -1659,36 +1659,45 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
   gtk_widget_show                (GTK_WIDGET(Dialog));
 }
 
-/*! \brief Function to retrieve GedaFontDialog GedaType identifier.
+/*! \brief Function to retrieve GedaFontDialog's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaFontDialog's Type identifier. On first call, the
- *  function registers the GedaFontDialog in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #GedaFontDialog Type identifier. When
+ *  first called, the function registers a #GedaFontDialog in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaFontDialog and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with GedaFontDialog.
  */
-GedaType geda_font_dialog_get_type(void)
+GedaType geda_font_dialog_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_font_dialog_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_font_dialog_type)) {
 
     static const GTypeInfo info = {
-      sizeof (GedaFontDialogClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_font_dialog_class_init,     // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(GedaFontDialogClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_font_dialog_class_init,     /* (GClassInitFunc)    */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaFontDialog),
-      0,                               // n_preallocs
-      geda_font_dialog_instance_init   // instance_init
+      0,                               /* n_preallocs         */
+      geda_font_dialog_instance_init   /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GTK_TYPE_DIALOG,
-                                   "GedaFontDialog", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaFontDialog");
+    type   = g_type_register_static (GTK_TYPE_DIALOG, string, &info, 0);
+
+    g_once_init_leave (&geda_font_dialog_type, type);
   }
-  return type;
+
+  return geda_font_dialog_type;
 }
 
 GtkWidget* geda_font_dialog_new (void)
@@ -1696,14 +1705,15 @@ GtkWidget* geda_font_dialog_new (void)
   return g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 }
 
-GtkWidget* geda_font_dialog_new_with_title (char *title)
+GtkWidget* geda_font_dialog_new_with_title (const char *title)
 {
   GedaFontDialog *dialog;
 
   dialog = g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 
-  if (title)
+  if (title) {
     gtk_window_set_title (GTK_WINDOW (dialog), title);
+  }
 
   return GTK_WIDGET (dialog);
 }

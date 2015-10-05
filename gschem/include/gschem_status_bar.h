@@ -120,7 +120,7 @@ struct _GschemStatusBar
   int        y1;
 };
 
-unsigned int  gschem_status_bar_get_type               (void);
+GedaType      gschem_status_bar_get_type               (void);
 GtkWidget    *gschem_status_bar_new                    (void);
 
 int           gschem_status_bar_get_grid_mode          (GtkWidget *widget);

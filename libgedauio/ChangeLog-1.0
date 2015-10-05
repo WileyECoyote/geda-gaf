@@ -1,3 +1,15 @@
+2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+     * Code Enhancement: Improve thread-safety:
+
+     * src/ * / *.c: Revamp geda_xxx_get_type functions to use g_once_init_enter
+       g_intern_static_string, and g_once_init_leave, revise geda_xxx_class_init
+       and geda_xxx_instance_init functions to cast GClassInitFunc and GInstanceInitFunc
+       to suppress complier warnings.
+
+     * src/widgets/geda_toggle_action.c: add params in class initializer.
+
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_combobox.c: Conditionally call gdk_window_get_display

@@ -926,36 +926,45 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
 
 }
 
-/*! \brief Function to retrieve GedaFontButton GedaType identifier.
+/*! \brief Function to retrieve GedaFontButton's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaFontButton's Type identifier. On first call, the
- *  function registers the GedaFontButton in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #GedaFontButton Type identifier. When
+ *  first called, the function registers a #GedaFontButton in the
+ *  GedaType system to obtain an identifier that uniquely itentifies
+ *  a GedaFontButton and returns the unsigned integer value.
+ *  The retained value is returned on all Subsequent calls.
  *
  *  \return GedaType identifier associated with GedaFontButton.
  */
-GedaType geda_font_button_get_type(void)
+GedaType geda_font_button_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_font_button_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_font_button_type)) {
 
     static const GTypeInfo info = {
-      sizeof (GedaFontButtonClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_font_button_class_init,     // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(GedaFontButtonClass),
+      NULL,                            /* base_init           */
+      NULL,                            /* base_finalize       */
+      geda_font_button_class_init,      /* (GClassInitFunc)   */
+      NULL,                            /* class_finalize      */
+      NULL,                            /* class_data          */
       sizeof(GedaFontButton),
-      0,                               // n_preallocs
-      geda_font_button_instance_init   // instance_init
+      0,                               /* n_preallocs         */
+      geda_font_button_instance_init   /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GTK_TYPE_BUTTON,
-                                   "GedaFontButton", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaFontButton");
+    type   = g_type_register_static (GTK_TYPE_BUTTON, string, &info, 0);
+
+    g_once_init_leave (&geda_font_button_type, type);
   }
-  return type;
+
+  return geda_font_button_type;
 }
 
 /*! \brief Create a New GedaFontButton
