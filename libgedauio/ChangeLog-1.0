@@ -1,5 +1,22 @@
 2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+     * src/widgets/geda_label.c:
+
+       In function geda_label_move_visually; move  split_cursor and  bool strong out
+       side of while loop, add GtkSettings *split and GtkWidget   *widget and get
+       the setting before the while loop. The setting is no likely to change while
+       cursor is moving on a label.
+
+       In function geda_label_move_cursor; Replace
+
+           new_pos = count < 0 ? 0 : strlen (label->text);
+
+           with
+
+           new_pos = count < 0 ? 0 : (label->text) ? strlen (label->text) : 0;
+
+2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
      * Code Enhancement: Improve thread-safety:
 
      * src/ * / *.c: Revamp geda_xxx_get_type functions to use g_once_init_enter
@@ -7,7 +24,7 @@
        and geda_xxx_instance_init functions to cast GClassInitFunc and GInstanceInitFunc
        to suppress complier warnings.
 
-     * src/widgets/geda_toggle_action.c: add params in class initializer.
+     * src/widgets/geda_toggle_action.c: Add params in class initializer.
 
 
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>

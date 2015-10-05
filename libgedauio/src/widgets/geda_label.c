@@ -83,6 +83,8 @@
 #define G_VALUE_INIT  { 0, { { 0 } } }
 #endif
 
+#define PangoFontDescr  PangoFontDescription
+
 struct _GedaLabelPrivate
 {
   GedaLabelSelectionInfo *select_info;
@@ -1424,22 +1426,25 @@ attribute_from_text (GtkBuilder *builder, const char *name,
   PangoAttribute *attribute = NULL;
   PangoAttrType   type;
   PangoLanguage  *language;
-  PangoFontDescription *font_desc;
+  PangoFontDescr *font_desc;
   GdkColor       *color;
   GValue          val = G_VALUE_INIT;
 
-  if (!gtk_builder_value_from_string_type (builder, PANGO_TYPE_ATTR_TYPE, name, &val, error))
+  if (!gtk_builder_value_from_string_type (builder,
+                                           PANGO_TYPE_ATTR_TYPE,
+                                           name, &val, error))
+  {
     return NULL;
+  }
 
   type = g_value_get_enum (&val);
   g_value_unset (&val);
 
-  switch (type)
-  {
+  switch (type) {
+
     /* PangoAttrLanguage */
     case PANGO_ATTR_LANGUAGE:
-      if ((language = pango_language_from_string (value)))
-      {
+      if ((language = pango_language_from_string (value))) {
         attribute = pango_attr_language_new (language);
         g_value_init (&val, G_TYPE_INT);
       }
@@ -5389,13 +5394,13 @@ get_better_cursor (GedaLabel *label, int index, int *x, int *y)
   }
 }
 
-
 static int
 geda_label_move_logically (GedaLabel *label, int start, int count)
 {
   int offset = g_utf8_pointer_to_offset (label->text, label->text + start);
 
   if (label->text) {
+
     PangoLogAttr *log_attrs;
     int n_attrs;
     int length;
@@ -5431,25 +5436,31 @@ geda_label_move_logically (GedaLabel *label, int start, int count)
 static int
 geda_label_move_visually (GedaLabel *label, int start, int count)
 {
-  int index;
+  int  index;
+  bool split_cursor;
+  bool strong;
 
-  index = start;
+  GtkSettings *split;
+  GtkWidget   *widget;
+
+  index  = start;
+  widget = GTK_WIDGET(label);
+
+  split = gtk_widget_get_settings (widget);
+
+  g_object_get (split, "gtk-split-cursor", &split_cursor, NULL);
 
   while (count != 0) {
 
     int new_index, new_trailing;
-    bool split_cursor;
-    bool strong;
 
     geda_label_ensure_layout (label);
 
-    g_object_get (gtk_widget_get_settings (GTK_WIDGET (label)),
-                  "gtk-split-cursor", &split_cursor, NULL);
-
-    if (split_cursor)
+    if (split_cursor) {
       strong = TRUE;
+    }
     else {
-      GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display (GTK_WIDGET (label)));
+      GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display (widget));
       PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
 
       strong = keymap_direction == get_cursor_direction (label);
@@ -5496,8 +5507,10 @@ geda_label_move_forward_word (GedaLabel *label, int start)
 
     /* Find the next word end */
     new_pos++;
-    while (new_pos < n_attrs && !log_attrs[new_pos].is_word_end)
+
+    while (new_pos < n_attrs && !log_attrs[new_pos].is_word_end) {
       new_pos++;
+    }
 
     g_free (log_attrs);
   }
@@ -5512,6 +5525,7 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
                                           label->text + start);
 
   if (new_pos > 0) {
+
     PangoLogAttr *log_attrs;
     int n_attrs;
 
@@ -5522,8 +5536,9 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
     new_pos -= 1;
 
     /* Find the previous word beginning */
-    while (new_pos > 0 && !log_attrs[new_pos].is_word_start)
+    while (new_pos > 0 && !log_attrs[new_pos].is_word_start) {
       new_pos--;
+    }
 
     g_free (log_attrs);
   }
@@ -5533,7 +5548,7 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
 
 static void
 geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
-                        int        count, bool     extend_selection)
+                        int        count, bool extend_selection)
 {
   GedaLabelSelectionInfo *info;
 
@@ -5546,17 +5561,17 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
 
   old_pos = new_pos = info->selection_end;
 
-  if (info->selection_end != info->selection_anchor &&
-    !extend_selection)
-  {
+  if (info->selection_end != info->selection_anchor && !extend_selection) {
+
     /* If we have a current selection and aren't extending it, move to the
-     * start/or end of the selection as appropriate
-     */
+     * start/or end of the selection as appropriate */
+
     switch (step) {
+
       case GTK_MOVEMENT_VISUAL_POSITIONS:
       {
-        int end_x, end_y;
-        int anchor_x, anchor_y;
+        int  end_x, end_y;
+        int  anchor_x, anchor_y;
         bool end_is_left;
 
         get_better_cursor (label, info->selection_end, &end_x, &end_y);
@@ -5580,8 +5595,7 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
       case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
       case GTK_MOVEMENT_PARAGRAPH_ENDS:
       case GTK_MOVEMENT_BUFFER_ENDS:
-        /* FIXME: Can do better here */
-        new_pos = count < 0 ? 0 : strlen (label->text);
+        new_pos = count < 0 ? 0 : (label->text) ? strlen (label->text) : 0;
         break;
       case GTK_MOVEMENT_DISPLAY_LINES:
       case GTK_MOVEMENT_PARAGRAPHS:
@@ -5591,17 +5605,27 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
     }
   }
   else {
+
     switch (step) {
       case GTK_MOVEMENT_LOGICAL_POSITIONS:
         new_pos = geda_label_move_logically (label, new_pos, count);
         break;
       case GTK_MOVEMENT_VISUAL_POSITIONS:
+
         new_pos = geda_label_move_visually (label, new_pos, count);
+
         if (new_pos == old_pos) {
+
           if (!extend_selection) {
-            if (!gtk_widget_keynav_failed (GTK_WIDGET (label),
-              count > 0 ? GTK_DIR_RIGHT : GTK_DIR_LEFT))
-            {
+
+            GtkDirectionType direct;
+            bool success;
+
+            direct  = count > 0 ? GTK_DIR_RIGHT : GTK_DIR_LEFT;
+            success = gtk_widget_keynav_failed (GTK_WIDGET(label), direct);
+
+            if (!success) {
+
               GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (label));
 
               if (toplevel)
@@ -5643,12 +5667,12 @@ geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
     }
   }
 
-  if (extend_selection)
-    geda_label_select_region_index (label,
-                                    info->selection_anchor,
-                                    new_pos);
-    else
+  if (extend_selection) {
+    geda_label_select_region_index (label, info->selection_anchor, new_pos);
+  }
+  else {
       geda_label_select_region_index (label, new_pos, new_pos);
+  }
 }
 
 static void
@@ -5656,11 +5680,10 @@ geda_label_copy_clipboard (GedaLabel *label)
 {
   GedaLabelSelectionInfo *info = label->priv->select_info;
 
-  if (label->text && info)
-  {
-    int start, end;
-    int len;
+  if (label->text && info) {
+
     GtkClipboard *clipboard;
+    int start, end, len;
 
     start = MIN (info->selection_anchor, info->selection_end);
     end   = MAX (info->selection_anchor,info->selection_end);
@@ -5673,18 +5696,21 @@ geda_label_copy_clipboard (GedaLabel *label)
     if (start > len)
       start = len;
 
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label),
-                                          GDK_SELECTION_CLIPBOARD);
+    clipboard =
+    gtk_widget_get_clipboard (GTK_WIDGET (label), GDK_SELECTION_CLIPBOARD);
 
-    if (start != end)
+    if (start != end) {
       gtk_clipboard_set_text (clipboard, label->text + start, end - start);
-    else
-    {
+    }
+    else {
+
       GedaLabelLink *link;
 
       link = geda_label_get_focus_link (label);
-      if (link)
+
+      if (link) {
         gtk_clipboard_set_text (clipboard, link->uri, -1);
+      }
     }
   }
 }
@@ -5712,38 +5738,36 @@ append_action_signal (GedaLabel   *label,
   GtkWidget *menuitem = geda_image_menu_item_new_from_stock (stock_id, NULL);
 
   g_object_set_data (G_OBJECT (menuitem), _("gtk-signal"), (char *)signal);
-  g_signal_connect (menuitem, "activate",
-                    G_CALLBACK (activate_cb), label);
+
+  g_signal_connect (menuitem, "activate", G_CALLBACK (activate_cb), label);
 
   gtk_widget_set_sensitive (menuitem, sensitive);
 
   gtk_widget_show (menuitem);
+
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 }
 
 static void
 popup_menu_detach (GtkWidget *attach_widget, GtkMenu *menu)
 {
-  GedaLabel *label = GEDA_LABEL (attach_widget);
-  GedaLabelPrivate *priv = label->priv;
+  GedaLabel        *label = GEDA_LABEL (attach_widget);
+  GedaLabelPrivate *priv  = label->priv;
 
-  if (priv->select_info)
+  if (priv->select_info) {
     priv->select_info->popup_menu = NULL;
+  }
 }
 
 static void
-popup_position_func (GtkMenu   *menu,
-                     int       *x,
-                     int       *y,
-                     bool      *push_in,
-                     void * user_data)
+popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
 {
   GedaLabel *label;
   GtkWidget *widget;
   GtkRequisition req;
   GdkScreen *screen;
 
-  label = GEDA_LABEL (user_data);
+  label  = GEDA_LABEL (data);
   widget = GTK_WIDGET (label);
 
   g_return_if_fail (gtk_widget_get_realized (widget));
@@ -5764,30 +5788,30 @@ popup_position_func (GtkMenu   *menu,
 }
 
 static void
-open_link_activate_cb (GtkMenuItem *menu_item,
-                       GedaLabel    *label)
+open_link_activate_cb (GtkMenuItem *menu_item, GedaLabel *label)
 {
   GedaLabelLink *link;
 
   link = geda_label_get_current_link (label);
 
-  if (link)
+  if (link) {
     emit_activate_link (label, link);
+  }
 }
 
 static void
-copy_link_activate_cb (GtkMenuItem *menu_item,
-                       GedaLabel    *label)
+copy_link_activate_cb (GtkMenuItem *menu_item, GedaLabel *label)
 {
   GtkClipboard *clipboard;
   const char *uri;
 
   uri = geda_label_get_current_uri (label);
+
   if (uri) {
 
-      clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label), GDK_SELECTION_CLIPBOARD);
-      gtk_clipboard_set_text (clipboard, uri, -1);
-    }
+    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (label), GDK_SELECTION_CLIPBOARD);
+    gtk_clipboard_set_text (clipboard, uri, -1);
+  }
 }
 
 static bool
@@ -5799,8 +5823,7 @@ geda_label_popup_menu (GtkWidget *widget)
 }
 
 static void
-geda_label_do_popup (GedaLabel       *label,
-                    GdkEventButton *event)
+geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 {
   GedaLabelSelectionInfo *info = label->priv->select_info;
   GtkWidget *menuitem;
@@ -5812,15 +5835,15 @@ geda_label_do_popup (GedaLabel       *label,
   if (!info)
     return;
 
-  if (info->popup_menu)
+  if (info->popup_menu) {
     gtk_widget_destroy (info->popup_menu);
+  }
 
   info->popup_menu = menu = gtk_menu_new ();
 
-  gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (label), popup_menu_detach);
+  gtk_menu_attach_to_widget (GTK_MENU(menu), GTK_WIDGET(label), popup_menu_detach);
 
-  have_selection =
-    info->selection_anchor != info->selection_end;
+  have_selection = info->selection_anchor != info->selection_end;
 
   if (event) {
 
@@ -5828,9 +5851,10 @@ geda_label_do_popup (GedaLabel       *label,
         link = info->active_link;
       else
         link = NULL;
-    }
-  else
+  }
+  else {
     link = geda_label_get_focus_link (label);
+  }
 
   if (!have_selection && link) {
 
@@ -5857,9 +5881,9 @@ geda_label_do_popup (GedaLabel       *label,
       image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
       gtk_widget_show (image);
       geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM (menuitem), image);
-    }
-  else
-    {
+  }
+  else {
+
       append_action_signal (label, menu, GTK_STOCK_CUT, "cut-clipboard", FALSE);
       append_action_signal (label, menu, GTK_STOCK_COPY, "copy-clipboard", have_selection);
       append_action_signal (label, menu, GTK_STOCK_PASTE, "paste-clipboard", FALSE);
@@ -5899,18 +5923,17 @@ geda_label_clear_links (GedaLabel *label)
 {
   GedaLabelSelectionInfo *info = label->priv->select_info;
 
-  if (!info)
-    return;
+  if (info) {
 
-  g_list_foreach (info->links, (GFunc) link_free, NULL);
-  g_list_free (info->links);
-  info->links = NULL;
-  info->active_link = NULL;
+    g_list_foreach (info->links, (GFunc) link_free, NULL);
+    g_list_free (info->links);
+    info->links = NULL;
+    info->active_link = NULL;
+  }
 }
 
 static bool
-geda_label_activate_link (GedaLabel    *label,
-                         const char *uri)
+geda_label_activate_link (GedaLabel *label, const char *uri)
 {
   GtkWidget *widget = GTK_WIDGET (label);
   GError *error = NULL;
@@ -5926,8 +5949,7 @@ geda_label_activate_link (GedaLabel    *label,
 }
 
 static void
-emit_activate_link (GedaLabel     *label,
-                    GedaLabelLink *link)
+emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 {
   GedaLabelPrivate *priv = label->priv;
   bool handled;
@@ -5937,6 +5959,7 @@ emit_activate_link (GedaLabel     *label,
   if (handled && priv->track_links && !link->visited) {
 
     link->visited = TRUE;
+
     /* FIXME: shouldn't have to redo everything here */
     geda_label_clear_layout (label);
   }
@@ -5960,11 +5983,13 @@ static void geda_label_activate_current_link (GedaLabel *label)
     GtkWidget *default_widget, *focus_widget;
 
     toplevel = gtk_widget_get_toplevel (widget);
-    if (GTK_IS_WINDOW (toplevel))
-    {
+
+    if (GTK_IS_WINDOW (toplevel)) {
+
       window = GTK_WINDOW (toplevel);
 
       if (window) {
+
         default_widget = gtk_window_get_default_widget (window);
         focus_widget   = gtk_window_get_focus (window);
 
@@ -6036,11 +6061,10 @@ geda_label_get_current_uri (GedaLabel *label)
  * links (and use a different color for them).
  *
  *  \param [in] label:       The GedaLabel object
- *  \param [in] track_links:  %TRUE to track visited links
+ *  \param [in] track_links: %TRUE to track visited links
  */
 void
-geda_label_set_track_visited_links (GedaLabel *label,
-                                   bool  track_links)
+geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 {
   GedaLabelPrivate *priv;
 
@@ -6050,8 +6074,8 @@ geda_label_set_track_visited_links (GedaLabel *label,
 
   track_links = track_links != FALSE;
 
-  if (priv->track_links != track_links)
-    {
+  if (priv->track_links != track_links) {
+
       priv->track_links = track_links;
 
       /* FIXME: shouldn't have to redo everything here */
@@ -6081,10 +6105,10 @@ bool geda_label_get_track_visited_links (GedaLabel *label)
 
 static bool
 geda_label_query_tooltip (GtkWidget  *widget,
-                         int        x,
-                         int        y,
-                         bool    keyboard_tip,
-                         GtkTooltip *tooltip)
+                          int         x,
+                          int         y,
+                          bool        keyboard_tip,
+                          GtkTooltip *tooltip)
 {
   GedaLabel *label = GEDA_LABEL (widget);
   GedaLabelSelectionInfo *info = label->priv->select_info;
@@ -6149,4 +6173,5 @@ _geda_label_get_selection_bound (GedaLabel *label)
 
   return 0;
 }
+#undef PangoFontDescr
 /** @} end group GedaLabel */
