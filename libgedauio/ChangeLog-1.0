@@ -1,3 +1,11 @@
+2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_accel_label.c: Revise function geda_accel_label_expose_event;
+       replace GTK_WIDGET_STATE with gtk_widget_get_state, add local width integers
+       for pango_layout_get_width, remove cast from (GtkWidget*)accel_label and pass
+       widget argument instead. Add provisions for Gtk-3.0; scope varibles in both
+       the event and draw handlers.
+
 2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_label.c:
