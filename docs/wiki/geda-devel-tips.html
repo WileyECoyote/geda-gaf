@@ -377,7 +377,7 @@ This template is not intented to compile, but you can easily copy the code block
   textentry <span class="sy0">=</span> g_object_get_data<span class="br0">&#40;</span>G_OBJECT<span class="br0">&#40;</span>dialog<span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;textentry&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
   gtk_entry_set_text<span class="br0">&#40;</span>GTK_ENTRY<span class="br0">&#40;</span>textentry<span class="br0">&#41;</span><span class="sy0">,</span> string<span class="br0">&#41;</span><span class="sy0">;</span>
   <span class="coMULTI">/* select the text region that the user usually likes to overwrite */</span>
-  gtk_entry_select_region<span class="br0">&#40;</span>GTK_ENTRY<span class="br0">&#40;</span>textentry<span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> strlen<span class="br0">&#40;</span>string<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  gtk_editable_select_region<span class="br0">&#40;</span>GTK_ENTRY<span class="br0">&#40;</span>textentry<span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> strlen<span class="br0">&#40;</span>string<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
 <span class="br0">&#125;</span></pre>
 
 <p>

@@ -28,7 +28,7 @@
             if (GTK_IS_WIDGET(widget))  { \
               const char *text = GetEntryText(widget); \
               if (text != NULL) { \
-                gtk_entry_select_region((GtkEntry *) widget, 0, strlen(text)); \
+                gtk_editable_select_region((GtkEditable*) widget, 0, strlen(text)); \
               } \
             }
 
