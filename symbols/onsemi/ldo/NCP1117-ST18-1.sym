@@ -1,0 +1,66 @@
+v 20150703 2
+T 500 1700 8 10 1 1 0 0 1
+refdes=U?
+T 500 1550 9 10 1 1 0 0 1
+device=NCP1117-ST18
+T 2000 2300 5 10 0 0 0 0 1
+numslots=0
+T 500 1400 5 10 1 1 0 0 1
+footprint=SOT223
+T 500 1900 5 10 0 1 0 0 1
+description=VOLTAGE REGULATOR,LDO,800mA,Fixed 1.8Volt, 0-125°C
+T 500 2100 5 10 0 1 0 0 1
+documentation=www.onsemi.com/pub/Collateral/NCP1117-D.PDF
+T 500 2300 5 10 0 0 0 0 1
+symversion=1.0
+T 500 2500 5 10 0 0 0 0 1
+dist-license=GPL3
+T 500 2700 5 10 0 0 0 0 1
+use-license=unlimited
+T 500 2900 5 10 0 0 0 0 1
+author=AutoTron
+B 500 400 1000 900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 500 1000 200 1000 1 0 1
+{
+T 350 1050 5 8 0 1 0 6 1
+pinseq=1
+T 475 875 5 8 0 1 0 6 1
+pintype=pwr
+T 550 950 9 10 1 1 0 0 1
+pinlabel=IN
+T 350 1050 5 8 1 1 0 6 1
+pinnumber=1
+}
+P 1000 400 1000 100 1 0 1
+{
+T 950 150 5 8 0 1 0 6 1
+pinseq=2
+T 1125 375 5 8 0 1 90 6 1
+pintype=pwr
+T 850 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 950 150 5 8 1 1 0 6 1
+pinnumber=2
+}
+P 1500 1000 1800 1000 1 0 1
+{
+T 1600 1050 5 8 0 1 0 0 1
+pinseq=3
+T 1525 900 5 8 0 1 0 0 1
+pintype=pwr
+T 1450 950 9 10 1 1 0 6 1
+pinlabel=OUT
+T 1600 1050 5 8 1 1 0 0 1
+pinnumber=3
+}
+P 1500 700 1800 700 1 0 1
+{
+T 1600 750 5 8 0 1 0 0 1
+pinseq=4
+T 1525 600 5 8 0 1 0 0 1
+pintype=pwr
+T 1450 650 9 10 1 1 0 6 1
+pinlabel=TAB
+T 1600 750 5 8 1 1 0 0 1
+pinnumber=4
+}

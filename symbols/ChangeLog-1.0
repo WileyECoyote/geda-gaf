@@ -1,5 +1,17 @@
 2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Add 6 symbols; VOLTAGE LDO REGULATORS:
+
+        * onsemi/ldo/NCP1117-ST15-1.sym
+        * onsemi/ldo/NCV1117-DT15-1.sym
+        * onsemi/ldo/NCV1117-ST15-1.sym
+
+        * onsemi/ldo/NCP1117-ST18-1.sym
+        * onsemi/ldo/NCV1117-DT18-1.sym
+        * onsemi/ldo/NCV1117-ST18-1.sym
+
+2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * Add 4 symbols; Operational Amplifier, single, RRIO, 1.8Volt:
 
         * ti/opamps/LMV931MF-N-1.sym
