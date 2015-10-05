@@ -1,6 +1,6 @@
 2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
-     * Code Enhancement: Improve thread-safety:
+     * Code Enhancement -- Improve thread-safety:
 
      * src/scheme/edascmvaluetypes.c: Revise eda_pango_renderer_get_type to
        g_intern_static_string.
