@@ -110,36 +110,46 @@ static void geda_list_class_init(void *g_class, void *g_class_data)
                 );
 }
 
-
 /*! \brief Function to retrieve GedaList's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaList's Type identifier. On the first call,
- *  this registers the pagesel in the GedaType system. Subsequently
- *  the functions returns the saved value from its first execution..
+ *  Function to retrieve a #GedaList Type identifier. When first called,
+ *  the function registers a #GedaList in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a GedaList and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
- *  \return the Type identifier associated with GedaList.
+ *  \return GedaType identifier associated with GedaList.
  */
-GedaType geda_list_get_type(void)
+GedaType geda_list_get_type (void)
 {
-  static GedaType type = 0;
-  if (type == 0) {
-    static const GTypeInfo info = {
-      sizeof (GedaListClass),
-      NULL,                         /* base_init */
-      NULL,                         /* base_finalize */
-      geda_list_class_init,         /* class_init */
-      NULL,                         /* class_finalize */
-      NULL,                         /* class_data */
-      sizeof (GedaList),
-      0,                            /* n_preallocs */
-      geda_list_instance_init       /* instance_init */
-    };
-    type = g_type_register_static (G_TYPE_OBJECT, "GedaList", &info, 0);
-  }
-  return type;
-}
+  static GedaType geda_list_type = 0;
 
+  if (g_once_init_enter (&geda_list_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GedaListClass),
+      NULL,                   /* base_init           */
+      NULL,                   /* base_finalize       */
+      geda_list_class_init,   /* (GClassInitFunc)    */
+      NULL,                   /* class_finalize      */
+      NULL,                   /* class_data          */
+      sizeof(GedaList),
+      0,                      /* n_preallocs         */
+      geda_list_instance_init /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaList");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_list_type, type);
+  }
+
+  return geda_list_type;
+}
 
 /*! \brief Returns a pointer to a new GedaList object.
  *

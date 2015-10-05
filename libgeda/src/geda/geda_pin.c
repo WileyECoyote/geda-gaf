@@ -354,35 +354,45 @@ static void geda_pin_class_init(void *g_class, void *class_data)
 
 }
 
-/*! \brief Function to retrieve Pin GedaType identifier.
+/*! \brief Function to retrieve Pin's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Pin's Type identifier. On first call, the
- *  function registers the Pin in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Pin Type identifier. When first called,
+ *  the function registers a #Pin in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Pin and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Pin.
  */
-GedaType geda_pin_get_type(void)
+GedaType geda_pin_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_pin_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_pin_type)) {
 
     static const GTypeInfo info = {
-      sizeof (PinClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_pin_class_init,             // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(PinClass),
+      NULL,                   /* base_init           */
+      NULL,                   /* base_finalize       */
+      geda_pin_class_init,   /* (GClassInitFunc)    */
+      NULL,                   /* class_finalize      */
+      NULL,                   /* class_data          */
       sizeof(Pin),
-      0,                               // n_preallocs
-      geda_pin_instance_init           // instance_init
+      0,                      /* n_preallocs         */
+      geda_pin_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_LINE, "Pin", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Pin");
+    type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
+
+    g_once_init_leave (&geda_pin_type, type);
   }
-  return type;
+
+  return geda_pin_type;
 }
 
 /*! \brief Returns a pointer to a new Pin object.

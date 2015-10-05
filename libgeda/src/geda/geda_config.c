@@ -199,21 +199,31 @@ static void eda_config_finalize (GObject *object)
   G_OBJECT_CLASS (eda_config_parent_class)->finalize (object);
 }
 
-/*! Initialise EdaConfig class. */
-static void eda_config_class_init (EdaConfigClass *klass)
+/*! \brief Initialisze EdaConfig class
+ *
+ *  \par Function Description
+ *  GedaType class initializer for EdaConfigClass. We override the
+ *  parent virtual class methods as needed and register GObject
+ *  signals.
+ *
+ *  \param [in,out] class       A EdaConfigClass Object
+ *  \param [in]     class_data  A EdaConfigClass data structure (unused)
+ */
+static void eda_config_class_init(void *class, void *class_data)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GParamSpec   *pspec;
+  EdaConfigClass *config_class = (EdaConfigClass*)class;
+  GObjectClass   *object_class = G_OBJECT_CLASS (class);
+  GParamSpec     *pspec;
 
-  g_type_class_add_private (gobject_class, sizeof (EdaConfigPrivate));
+  g_type_class_add_private (object_class, sizeof (EdaConfigPrivate));
 
   /* Register functions with base class */
-  gobject_class->dispose      = eda_config_dispose;
-  gobject_class->finalize     = eda_config_finalize;
-  gobject_class->set_property = eda_config_set_property;
-  gobject_class->get_property = eda_config_get_property;
+  object_class->dispose        = eda_config_dispose;
+  object_class->finalize       = eda_config_finalize;
+  object_class->set_property   = eda_config_set_property;
+  object_class->get_property   = eda_config_get_property;
 
-  klass->config_changed = default_config_changed_handler;
+  config_class->config_changed = default_config_changed_handler;
 
   /* Register properties */
   pspec = g_param_spec_string ("file", _("Configuration file"),
@@ -221,7 +231,7 @@ static void eda_config_class_init (EdaConfigClass *klass)
                                 "",
                                 G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE);
 
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_CONFIG_FILE,
                                    pspec);
 
@@ -230,7 +240,7 @@ static void eda_config_class_init (EdaConfigClass *klass)
                                "Set parent configuration context for EdaConfig",
                                EDA_TYPE_CONFIG,
                                G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_CONFIG_PARENT,
                                    pspec);
 
@@ -239,13 +249,13 @@ static void eda_config_class_init (EdaConfigClass *klass)
                                 "Set whether configuration context is trusted config source.",
                                 FALSE /* default value */,
                                 G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-  g_object_class_install_property (gobject_class,
+  g_object_class_install_property (object_class,
                                    PROP_CONFIG_TRUSTED,
                                    pspec);
 
   /* Create signals */
   g_signal_new ("config-changed", /* signal name */
-                G_TYPE_FROM_CLASS (gobject_class), /* type */
+                G_TYPE_FROM_CLASS (object_class), /* type */
                 G_SIGNAL_RUN_FIRST | G_SIGNAL_NO_RECURSE | G_SIGNAL_NO_HOOKS, /* flags */
                 G_STRUCT_OFFSET(EdaConfigClass, config_changed), /* class offset */
                 NULL, /* accumulator */
@@ -257,8 +267,11 @@ static void eda_config_class_init (EdaConfigClass *klass)
 }
 
 /*! Initialize EdaConfig instance. */
-static void eda_config_instance_init (EdaConfig *config)
+static void
+eda_config_instance_init(GTypeInstance *instance, void *class)
 {
+  EdaConfig *config = (EdaConfig*)instance;
+
   config->priv = G_TYPE_INSTANCE_GET_PRIVATE (config,
                                               EDA_TYPE_CONFIG,
                                               EdaConfigPrivate);
@@ -285,23 +298,27 @@ GedaType eda_config_get_type (void)
 {
   static GedaType eda_config_type = 0;
 
-  if (!eda_config_type) {
+  if (g_once_init_enter (&eda_config_type)) {
 
-    static const GTypeInfo eda_config_info = {
+    static const GTypeInfo info = {
       sizeof(EdaConfigClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) eda_config_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                      /* base_init           */
+      NULL,                      /* base_finalize       */
+      eda_config_class_init,     /* (GClassInitFunc)    */
+      NULL,                      /* class_finalize      */
+      NULL,                      /* class_data          */
       sizeof(EdaConfig),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) eda_config_instance_init /* instance_init */
+      0,                         /* n_preallocs         */
+      eda_config_instance_init   /* (GInstanceInitFunc) */
     };
 
-    eda_config_type = g_type_register_static (G_TYPE_OBJECT,
-                                             "EdaConfig",
-                                             &eda_config_info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("EdaConfig");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&eda_config_type, type);
   }
 
   return eda_config_type;

@@ -123,35 +123,45 @@ static void geda_bus_class_init(void *g_class, void *class_data)
 
 }
 
-/*! \brief Function to retrieve Bus GedaType identifier.
+/*! \brief Function to retrieve Bus's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Bus's Type identifier. On first call, the
- *  function registers the Bus in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Bus Type identifier. When first called,
+ *  the function registers a #Bus in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Bus and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Bus.
  */
-GedaType geda_bus_get_type(void)
+GedaType geda_bus_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_bus_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_bus_type)) {
 
     static const GTypeInfo info = {
-      sizeof (BusClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_bus_class_init,             // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(BusClass),
+      NULL,                  /* base_init           */
+      NULL,                  /* base_finalize       */
+      geda_bus_class_init,   /* (GClassInitFunc)    */
+      NULL,                  /* class_finalize      */
+      NULL,                  /* class_data          */
       sizeof(Bus),
-      0,                               // n_preallocs
-      geda_bus_instance_init           // instance_init
+      0,                     /* n_preallocs         */
+      geda_bus_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_LINE, "Bus", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Bus");
+    type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
+
+    g_once_init_leave (&geda_bus_type, type);
   }
-  return type;
+
+  return geda_bus_type;
 }
 
 /*! \brief Returns a pointer to a new Bus object.

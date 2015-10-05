@@ -132,9 +132,9 @@ geda_arc_bounds(Object *object)
  *  the arc PID variable is set to the next arc index.
  *
  *  \param [in] instance The Arc structure being initialized,
- *  \param [in] g_class  The Arc class we are initializing.
+ *  \param [in] class    The Arc class we are initializing.
  */
-static void geda_arc_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_arc_instance_init(GTypeInstance *instance, void *class)
 {
   Arc    *arc       = (Arc*)instance;
   Object *object    = &arc->parent_instance;
@@ -216,34 +216,45 @@ static void geda_arc_class_init(void *g_class, void *class_data)
   object_class->bounds         = geda_arc_bounds;
 }
 
-/*! \brief Function to retrieve Arc's GedaType identifier.
+/*! \brief Function to retrieve Arc's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Arc's Type identifier. On first call, the
- *  function registers the Arc in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Arc Type identifier. When first called,
+ *  the function registers a #Arc in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Arc and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Arc.
  */
-GedaType geda_arc_get_type(void)
+GedaType geda_arc_get_type (void)
 {
-  static GedaType type = 0;
-  if (type == 0) {
+  static GedaType geda_arc_type = 0;
+
+  if (g_once_init_enter (&geda_arc_type)) {
 
     static const GTypeInfo info = {
-      sizeof (ArcClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_arc_class_init,             // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
-      sizeof (Arc),
-      0,                               // n_preallocs
-      geda_arc_instance_init           // instance_init
+      sizeof(ArcClass),
+      NULL,                  /* base_init           */
+      NULL,                  /* base_finalize       */
+      geda_arc_class_init,   /* (GClassInitFunc)    */
+      NULL,                  /* class_finalize      */
+      NULL,                  /* class_data          */
+      sizeof(Arc),
+      0,                     /* n_preallocs         */
+      geda_arc_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_OBJECT, "Arc", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Arc");
+    type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_arc_type, type);
   }
-  return type;
+
+  return geda_arc_type;
 }
 
 /*! \brief Returns a pointer to a new Arc object.

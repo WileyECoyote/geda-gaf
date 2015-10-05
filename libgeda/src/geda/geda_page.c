@@ -180,11 +180,11 @@ geda_page_remove_all_objects(Page *page)
  *  Page object by setting pointers to NULL and numbers to zero,
  *  the page PID variable is set to the next page index.
  *
- *  \param [in]  instance  The Page being initialising.
- *  \param [in]  g_class   The class of the type the instance is created for.
+ *  \param [in] instance The Page being initialising.
+ *  \param [in] class    The class the instance is created for.
  */
 static void
-geda_page_instance_init( GTypeInstance *instance, void *g_class )
+geda_page_instance_init( GTypeInstance *instance, void *class)
 {
   Page *page                      = (Page *)instance;
   page->pid                       = global_pid++;
@@ -295,51 +295,60 @@ static void geda_page_finalize(GObject *object)
  *  GedaType class initializer for Page. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The Page we are initialising
- *  \param [in]  g_class_data  (unused)
+ *  \param [in,out] class       A PageClass Object
+ *  \param [in]     class_data  A Page data structure
  */
-static void geda_page_class_init( void *g_class, void *g_class_data )
+static void geda_page_class_init(void *class, void *class_data)
 {
-  PageClass *klass            = GEDA_PAGE_CLASS( g_class );
-  GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
-  geda_page_parent_class      = g_type_class_peek_parent( klass );
+  PageClass    *page_class   = GEDA_PAGE_CLASS(class);
+  GObjectClass *object_class = G_OBJECT_CLASS(page_class);
 
-  gobject_class->dispose      = geda_page_dispose;
-  gobject_class->finalize     = geda_page_finalize;
+  geda_page_parent_class     = g_type_class_peek_parent(page_class);
+
+  object_class->dispose      = geda_page_dispose;
+  object_class->finalize     = geda_page_finalize;
 
 }
 
-/*! \brief Function to retrieve Page's GedaType identifier.
+/*! \brief Function to retrieve Page's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Page's GedaType identifier.
- *  Upon first call, this registers the Page in the GedaType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve a #Page Type identifier. When first called,
+ *  the function registers a #Page in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Page and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
- *  \return the GedaType identifier associated with Page.
+ *  \return GedaType identifier associated with Page.
  */
-unsigned int geda_page_get_type(void)
+GedaType geda_page_get_type (void)
 {
-  static unsigned int type = 0;
+  static GedaType geda_page_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_page_type)) {
 
     static const GTypeInfo info = {
-      sizeof (PageClass),
-      NULL,                            /* base_init */
-      NULL,                            /* base_finalize */
-      geda_page_class_init,            /* class_init */
-      NULL,                            /* class_finalize */
-      NULL,                            /* class_data */
-      sizeof (Page),
-      0,                               /* n_preallocs */
-      geda_page_instance_init          /* instance_init */
+      sizeof(PageClass),
+      NULL,                          /* base_init           */
+      NULL,                          /* base_finalize       */
+      geda_page_class_init,          /* (GClassInitFunc)    */
+      NULL,                          /* class_finalize      */
+      NULL,                          /* class_data          */
+      sizeof(Page),
+      0,                             /* n_preallocs         */
+      geda_page_instance_init        /* (GInstanceInitFunc) */
     };
 
-    type = g_type_register_static (G_TYPE_OBJECT, "Page", &info, 0);
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Page");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_page_type, type);
   }
 
-  return type;
+  return geda_page_type;
 }
 
 /*! \brief Returns a pointer to a new Page object.
@@ -352,7 +361,7 @@ unsigned int geda_page_get_type(void)
 Page *geda_page_new (void)
 {
   Page *page;
-  page = g_object_new( geda_page_get_type(), NULL );
+  page = g_object_new( geda_page_get_type(), NULL);
   return page;
 }
 
@@ -366,13 +375,13 @@ Page *geda_page_new (void)
 Page *geda_page_new_with_notify (void)
 {
   Page *page;
-  page = g_object_new( geda_page_get_type(), NULL );
+  page = g_object_new( geda_page_get_type(), NULL);
   page->change_notify_funcs = geda_notify_list_new();
 
   return page;
 }
 
-/*! \brief Return True if object is Geda PageObject.
+/*! \brief Return True if object is Geda PagePage.
  *
  *  \par Function Description
  *  Returns true if the argument is a Geda Page object.
@@ -435,7 +444,7 @@ geda_page_weakref_notify (Page *page)
  */
 void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
-  if (GEDA_IS_PAGE(page) && notify_func !=NULL ) {
+  if (GEDA_IS_PAGE(page) && notify_func !=NULL) {
     page->weak_refs = s_weakref_add (page->weak_refs, notify_func, user_data);
   }
 }
@@ -454,7 +463,7 @@ void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data
  */
 void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
-  if (GEDA_IS_PAGE(page) && notify_func !=NULL ) {
+  if (GEDA_IS_PAGE(page) && notify_func !=NULL) {
     page->weak_refs = s_weakref_remove (page->weak_refs, notify_func, user_data);
   }
 }
@@ -487,7 +496,7 @@ void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
  */
 void geda_page_remove_weak_ptr (Page *page, void *weak_pointer_loc)
 {
-  if (GEDA_IS_PAGE(page) && weak_pointer_loc !=NULL ) {
+  if (GEDA_IS_PAGE(page) && weak_pointer_loc !=NULL) {
     g_object_remove_weak_pointer ((GObject*)page, weak_pointer_loc);
   }
 }

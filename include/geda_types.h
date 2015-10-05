@@ -36,10 +36,10 @@ typedef int bool;
 typedef unsigned char uint8;
 typedef unsigned long DWORD;
 
-#if ((ULONG_MAX) == (UINT_MAX))
-# define IS32BIT
-#else
+#if defined(__LP64__) || defined(_LP64)
 # define IS64BIT
+#else
+# define IS32BIT
 #endif
 
 #ifdef IS64BIT

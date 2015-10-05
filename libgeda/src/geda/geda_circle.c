@@ -34,7 +34,7 @@
  */
 /*! \class Circle geda_circle.h "include/libgeda/geda_circle.h"
  *  \implements geda-object
- *  \brief This is an implementaion class for GEDA Arc Objects.
+ *  \brief This is an implementaion class for GEDA Circle Objects.
  *  A Geda Circle Object is a graphical object that does not involve
  *  electrical interconnections. Circles have line-type and fill-type
  *  properties.
@@ -80,9 +80,9 @@ geda_circle_bounds(Object *object)
  *  the circle PID variable is set to the next circle index.
  *
  *  \param [in] instance The Circle structure being initialized,
- *  \param [in] g_class  The Circle class we are initializing.
+ *  \param [in] class    The Circle class we are initializing.
  */
-static void geda_circle_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_circle_instance_init(GTypeInstance *instance, void *class)
 {
   Circle *circle       = (Circle*)instance;
   Object *object       = &circle->parent_instance;
@@ -158,35 +158,45 @@ static void geda_circle_class_init(void *g_class, void *class_data)
   object_class->bounds         = geda_circle_bounds;
 }
 
-/*! \brief Function to retrieve Circle GedaType identifier.
+/*! \brief Function to retrieve Circle's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Circle's Type identifier. On first call, the
- *  function registers the Circle in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Circle Type identifier. When first called,
+ *  the function registers a #Circle in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Circle and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Circle.
  */
-GedaType geda_circle_get_type(void)
+GedaType geda_circle_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_circle_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_circle_type)) {
 
     static const GTypeInfo info = {
-      sizeof (CircleClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_circle_class_init,             // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(CircleClass),
+      NULL,                     /* base_init           */
+      NULL,                     /* base_finalize       */
+      geda_circle_class_init,   /* (GClassInitFunc)    */
+      NULL,                     /* class_finalize      */
+      NULL,                     /* class_data          */
       sizeof(Circle),
-      0,                               // n_preallocs
-      geda_circle_instance_init        // instance_init
+      0,                        /* n_preallocs         */
+      geda_circle_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_OBJECT, "Circle", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Circle");
+    type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_circle_type, type);
   }
-  return type;
+
+  return geda_circle_type;
 }
 
 /*! \brief Returns a pointer to a new Circle object.

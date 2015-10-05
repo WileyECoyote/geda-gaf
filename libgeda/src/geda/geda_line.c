@@ -133,54 +133,64 @@ static void geda_line_finalize(GObject *object)
  *  GedaType class initializer for Line. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The Line class we are initialising
- *  \param [in]  class_data   The Line structure associated with the class
+ *  \param [in]  class       The Line class we are initialising
+ *  \param [in]  class_data  The Line structure associated with the class
  */
-static void geda_line_class_init(void *g_class, void *class_data)
+static void geda_line_class_init(void *class, void *class_data)
 {
-  LineClass    *class          = (LineClass*)g_class;
-  GObjectClass *gobject_class  = G_OBJECT_CLASS( class );
-  ObjectClass  *object_class   = GEDA_OBJECT_CLASS( class );
+  LineClass    *line_class     = (LineClass*)class;
+  GObjectClass *gobject_class  = G_OBJECT_CLASS(class);
+  ObjectClass  *object_class   = GEDA_OBJECT_CLASS(class);
 
-  geda_line_parent_class       = g_type_class_peek_parent( class );
+  geda_line_parent_class       = g_type_class_peek_parent(class);
 
-  class->finalize              = geda_line_finalize;
+  line_class->finalize         = geda_line_finalize;
 
   gobject_class->dispose       = geda_line_dispose;
-  gobject_class->finalize      = class->finalize;
+  gobject_class->finalize      = line_class->finalize;
 
   object_class->bounds         = geda_line_bounds;
 }
 
-/*! \brief Function to retrieve Line GedaType identifier.
+/*! \brief Function to retrieve Line's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Line's Type identifier. On first call, the
- *  function registers the Line in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Line Type identifier. When first called,
+ *  the function registers a #Line in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Line and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Line.
  */
-GedaType geda_line_get_type(void)
+GedaType geda_line_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_line_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_line_type)) {
 
     static const GTypeInfo info = {
-      sizeof (LineClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_line_class_init,            // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(LineClass),
+      NULL,                   /* base_init           */
+      NULL,                   /* base_finalize       */
+      geda_line_class_init,   /* (GClassInitFunc)    */
+      NULL,                   /* class_finalize      */
+      NULL,                   /* class_data          */
       sizeof(Line),
-      0,                               // n_preallocs
-      geda_line_instance_init                   // instance_init
+      0,                      /* n_preallocs         */
+      geda_line_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_OBJECT, "Line", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Line");
+    type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_line_type, type);
   }
-  return type;
+
+  return geda_line_type;
 }
 
 /*! \brief Returns a pointer to a new Line object.
@@ -195,7 +205,7 @@ Object *geda_line_new (void)
   Object *line = g_object_new( GEDA_TYPE_LINE,
                               "type", OBJ_LINE,
                               "name", "line",
-                               NULL );
+                               NULL);
   return GEDA_OBJECT(line);
 }
 

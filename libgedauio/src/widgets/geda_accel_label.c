@@ -431,12 +431,12 @@ GedaType geda_accel_label_get_type (void)
       sizeof(GedaAccelLabelClass),
       NULL,                            /* base_init           */
       NULL,                            /* base_finalize       */
-      geda_accel_label_class_init,          /* (GClassInitFunc)    */
+      geda_accel_label_class_init,     /* (GClassInitFunc)    */
       NULL,                            /* class_finalize      */
       NULL,                            /* class_data          */
       sizeof(GedaAccelLabel),
       0,                               /* n_preallocs         */
-      geda_accel_label_instance_init        /* (GInstanceInitFunc) */
+      geda_accel_label_instance_init   /* (GInstanceInitFunc) */
     };
 
     const char *string;

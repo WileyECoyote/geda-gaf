@@ -1,4 +1,4 @@
-2015-10-04 Wiley E. Hill <wileyhill@gmail.com>
+2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
      * Code Enhancement: Improve thread-safety:
 
@@ -7,6 +7,30 @@
 
      * src/scheme/edascmhookproxy.c: Revise edascm_hook_proxy_get_type to
        g_intern_static_string.
+
+     * src/geda/geda_config.c: Revise geda_config_class_init geda_config
+       _instance_init functions to eliminate cast GClassInitFunc and
+       GInstanceInitFunc to suppress complier warnings.
+
+     * src/geda/.c: Revamp geda_xxx_get_type functions to use g_once_init_
+       enter, g_intern_static_string, and g_once_init_leave.
+
+            * src/geda/geda_arc.c
+            * src/geda/geda_box.c
+            * src/geda/geda_bus.c
+            * src/geda/geda_circle.c
+            * src/geda/geda_complex.c
+            * src/geda/geda_line.c
+            * src/geda/geda_list.c
+            * src/geda/geda_net.c
+            * src/geda/geda_notify.c
+            * src/geda/geda_object.c
+            * src/geda/geda_page.c
+            * src/geda/geda_path.c
+            * src/geda/geda_picture.c
+            * src/geda/geda_pin.c
+            * src/geda/geda_text.c
+            * src/geda/geda_toplevel.c
 
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 

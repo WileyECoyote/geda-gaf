@@ -35,7 +35,7 @@
 #ifndef __GEDA_OBJECT_H__
 #define __GEDA_OBJECT_H__
 
-#define GEDA_TYPE_OBJECT            (geda_gobject_get_type())
+#define GEDA_TYPE_OBJECT            (geda_object_get_type())
 #define GEDA_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_OBJECT, Object))
 #define GEDA_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_OBJECT, ObjectClass))
 #define GEDA_IS_OBJECT(obj)         (is_a_geda_object(obj))
@@ -121,7 +121,7 @@ struct _GedaObject {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GedaType      geda_gobject_get_type          (void) GEDA_CONST;
+GedaType      geda_object_get_type           (void) GEDA_CONST;
 bool          is_a_geda_object               (const void *object);
 
 Object       *geda_object_new                (int type, char const *name);

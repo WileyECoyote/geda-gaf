@@ -53,7 +53,7 @@ static GObjectClass *geda_path_parent_class = NULL;
  *  \note Bounding box for bezier curves is loose because we just consider
  *        the convex hull of the curve control and end-points.
  *
- *  \param [in]  object     Line Object to read coordinates from.
+ *  \param [in]  object     Path Object to read coordinates from.
  */
 int
 geda_path_bounds (Object *object)
@@ -201,35 +201,45 @@ static void geda_path_class_init(void *g_class, void *class_data)
   object_class->bounds         = geda_path_bounds;
 }
 
-/*! \brief Function to retrieve Path GedaType identifier.
+/*! \brief Function to retrieve Path's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve Path's Type identifier. On first call, the
- *  function registers the Path in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+ *  Function to retrieve a #Path Type identifier. When first called,
+ *  the function registers a #Path in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Path and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
  *  \return GedaType identifier associated with Path.
  */
-GedaType geda_path_get_type(void)
+GedaType geda_path_get_type (void)
 {
-  static GedaType type = 0;
+  static GedaType geda_path_type = 0;
 
-  if (type == 0) {
+  if (g_once_init_enter (&geda_path_type)) {
 
     static const GTypeInfo info = {
-      sizeof (PathClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_path_class_init,            // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
+      sizeof(PathClass),
+      NULL,                   /* base_init           */
+      NULL,                   /* base_finalize       */
+      geda_path_class_init,   /* (GClassInitFunc)    */
+      NULL,                   /* class_finalize      */
+      NULL,                   /* class_data          */
       sizeof(Path),
-      0,                               // n_preallocs
-      geda_path_instance_init                   // instance_init
+      0,                      /* n_preallocs         */
+      geda_path_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (GEDA_TYPE_OBJECT, "Path", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Path");
+    type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_path_type, type);
   }
-  return type;
+
+  return geda_path_type;
 }
 
 /*! \brief Returns a pointer to a new Path object.

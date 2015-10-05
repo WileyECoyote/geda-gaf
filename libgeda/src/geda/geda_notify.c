@@ -106,30 +106,42 @@ static void geda_notify_list_class_init(void *class, void *class_data)
 /*! \brief Function to retrieve GedaNotifyList's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaNotifyList's Type identifier. On the first call,
- *  this registers the pagesel in the GedaType system. Subsequently
- *  the functions returns the saved value from its first execution..
+ *  Function to retrieve a #GedaNotifyList Type identifier. When first called,
+ *  the function registers a #GedaNotifyList in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a GedaNotifyList and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
  *
- *  \return the Type identifier associated with GedaNotifyList.
+ *  \return GedaType identifier associated with GedaNotifyList.
  */
 GedaType geda_notify_list_get_type (void)
 {
-  static GedaType type = 0;
-  if (type == 0) {
+  static GedaType geda_notify_list_type = 0;
+
+  if (g_once_init_enter (&geda_notify_list_type)) {
+
     static const GTypeInfo info = {
-      sizeof (GedaNotifyListClass),
-      NULL,                            /* base_init */
-      NULL,                            /* base_finalize */
-      geda_notify_list_class_init,     /* class_init */
-      NULL,                            /* class_finalize */
-      NULL,                            /* class_data */
-      sizeof (GedaNotifyList),
-      0,                               /* n_preallocs */
-      geda_notify_list_instance_init   /* instance_init */
+      sizeof(GedaNotifyListClass),
+      NULL,                          /* base_init           */
+      NULL,                          /* base_finalize       */
+      geda_notify_list_class_init,   /* (GClassInitFunc)    */
+      NULL,                          /* class_finalize      */
+      NULL,                          /* class_data          */
+      sizeof(GedaNotifyList),
+      0,                             /* n_preallocs         */
+      geda_notify_list_instance_init /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (G_TYPE_OBJECT, "GedaNotifyList", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("GedaNotifyList");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_notify_list_type, type);
   }
-  return type;
+
+  return geda_notify_list_type;
 }
 
 /*! \brief Returns a pointer to a new GedaNotifyList object.

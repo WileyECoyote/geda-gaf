@@ -457,33 +457,45 @@ static void geda_object_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gobject_class, OBJECT_VISIBLE, params);
 }
 
-/*! \brief Function to retrieve Object's GedaType identifier.
- *  \par Function Description
- *  Function to retrieve Object's Type identifier. On first call, the
- *  function registers the Object in the GedaType system. Subsequently
- *  the function returns the saved value from its first execution.
+/*! \brief Function to retrieve Object's Type identifier.
  *
- *  \return the GedaType identifier associated with Object.
+ *  \par Function Description
+ *  Function to retrieve a #Object Type identifier. When first called,
+ *  the function registers a #Object in the GedaType system to obtain
+ *  an identifier that uniquely itentifies a Object and returns the
+ *  unsigned integer value. The retained value is returned on all
+ *  Subsequent calls.
+ *
+ *  \return GedaType identifier associated with Object.
  */
-
-GedaType geda_gobject_get_type(void)
+GedaType geda_object_get_type (void)
 {
-  static GedaType type = 0;
-  if (type == 0) {
+  static GedaType geda_object_type = 0;
+
+  if (g_once_init_enter (&geda_object_type)) {
+
     static const GTypeInfo info = {
-      sizeof (ObjectClass),
-      NULL,                            // base_init
-      NULL,                            // base_finalize
-      geda_object_class_init,          // class_init
-      NULL,                            // class_finalize
-      NULL,                            // class_data
-      sizeof (Object),
-      0,                               // n_preallocs
-      geda_object_instance_init        // instance_init
+      sizeof(ObjectClass),
+      NULL,                          /* base_init           */
+      NULL,                          /* base_finalize       */
+      geda_object_class_init,        /* (GClassInitFunc)    */
+      NULL,                          /* class_finalize      */
+      NULL,                          /* class_data          */
+      sizeof(Object),
+      0,                             /* n_preallocs         */
+      geda_object_instance_init      /* (GInstanceInitFunc) */
     };
-    type = g_type_register_static (G_TYPE_OBJECT, "Object", &info, 0);
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Object");
+    type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
+
+    g_once_init_leave (&geda_object_type, type);
   }
-  return type;
+
+  return geda_object_type;
 }
 
 /*! \brief Create a new Object.
