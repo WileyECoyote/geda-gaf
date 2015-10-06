@@ -180,9 +180,8 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   page->top    = 0;
   page->bottom = toplevel->height;
 
-  /* append page to page list of toplevel */
-  geda_list_add( toplevel->pages, page );
-  geda_page_set_toplevel(page, toplevel);
+  geda_toplevel_add_page (toplevel, page);
+  geda_page_set_toplevel (page, toplevel);
 
   return s_page_new_common(page);
 }
@@ -217,8 +216,7 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   page->top    = 0;
   page->bottom = toplevel->height;
 
-  /* append page to page list of toplevel */
-  geda_list_add( toplevel->pages, page );
+  geda_toplevel_add_page (toplevel, page);
   geda_page_set_toplevel(page, toplevel);
 
   return s_page_new_common(page);
@@ -371,14 +369,14 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
     tmp = NULL;
   }
   else {
-    tmp = toplevel->page_current;
+    tmp = geda_toplevel_get_current_page(toplevel);
     s_page_goto (toplevel, page);
   }
 
   f_remove_backup_file(page->filename);
 
   /* Free the selection object */
-  GEDA_UNREF( page->selection_list );
+  GEDA_UNREF (page->selection_list);
 
   /* then delete objects of page */
   s_page_delete_objects (page);
@@ -397,7 +395,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   GEDA_FREE (page->filename);
   page->filename = NULL;
 
-  geda_list_remove( toplevel->pages, page );
+  geda_toplevel_remove_page(toplevel, page);
 
 #if DEBUG
   s_tile_print (toplevel, page);
@@ -405,7 +403,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
 
   /*geda_page_weakref_notify (page);*/
 
-  geda_page_unref( page );
+  geda_page_unref (page);
 
   /* restore page_current */
   if (tmp != NULL) {
@@ -413,7 +411,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   }
   else {
     /* page was page_current */
-    toplevel->page_current = NULL;
+    geda_toplevel_set_current_page(toplevel, NULL);
     /* page_current must be updated by calling function */
   }
 }
@@ -447,7 +445,7 @@ void s_page_delete_list(GedaToplevel *toplevel)
   g_list_free (list_copy);
 
   /* reset toplevel fields */
-  toplevel->page_current = NULL;
+  geda_toplevel_set_current_page(toplevel, NULL);
 }
 
 /*! \brief Get the current page
@@ -458,12 +456,9 @@ void s_page_delete_list(GedaToplevel *toplevel)
 *
 * \param [in,out] toplevel This toplevel
 */
-Page * s_page_get_current (GedaToplevel *toplevel )
+Page *s_page_get_current (GedaToplevel *toplevel)
 {
-  g_return_val_if_fail (toplevel != NULL, FALSE);
-
-  return toplevel->page_current;
-
+  return geda_toplevel_get_current_page(toplevel);
 }
 
 /*! \brief Set the current page
@@ -477,11 +472,7 @@ Page * s_page_get_current (GedaToplevel *toplevel )
  */
 bool s_page_set_current (GedaToplevel *toplevel, Page *page)
 {
-  g_return_val_if_fail (toplevel != NULL, FALSE);
-
-  toplevel->page_current = page;
-
-  return TRUE;
+  return geda_toplevel_set_current_page(toplevel, page);
 }
 
 /*! \brief Get File Extension of the File Assocatiacted with Page.
@@ -520,17 +511,26 @@ const char *s_page_get_file_extension (Page *page)
  */
 bool s_page_goto (GedaToplevel *toplevel, Page *page)
 {
-  char *dirname;
   bool  result;
 
-  result = FALSE;
   if (s_page_set_current (toplevel, page)) {
+
+    char *dirname;
+
     dirname = g_path_get_dirname(page->filename);
+
     if (!chdir (dirname)) {
       result = TRUE;
     }
+    else {
+      result = FALSE;
+    }
     GEDA_FREE (dirname);
   }
+  else {
+    result = FALSE;
+  }
+
   return result;
 }
 
@@ -625,7 +625,8 @@ int s_page_save_all (GedaToplevel *toplevel)
       /* reset the CHANGED flag of p_current */
       p_current->CHANGED = 0;
 
-    } else {
+    }
+    else {
       u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
       /* increase the error counter */
       status++;

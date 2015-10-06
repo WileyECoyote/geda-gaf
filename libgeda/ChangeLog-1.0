@@ -7,6 +7,8 @@
             * geda_toplevel_set_current_page
             * geda_toplevel_remove_page
 
+     * src/struct/s_page.c: Implement new toplevel accessor functions.
+
 2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
      * Code Enhancement -- Improve thread-safety:
