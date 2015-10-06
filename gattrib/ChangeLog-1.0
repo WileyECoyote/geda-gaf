@@ -1,3 +1,12 @@
+2015-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Removed toplevel->page_current->CHANGED from functions
+      s_object_attrib_add_attrib_in_object and s_object_delete_text_object_in
+      _object, this is done by libgeda.
+
+    * src/x_menus.c: Removed toplevel->page_current->CHANGED from functions
+      x_menu_file_save_as, this is done by libgeda.
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gattrib_dialog.h: GEDA_CONST attribute ->gattrib_dialog_get_type

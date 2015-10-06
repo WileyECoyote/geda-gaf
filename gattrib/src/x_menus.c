@@ -60,8 +60,7 @@ void x_menu_file_save_as()
       GEDA_FREE (pr_current->page_current->filename);
       pr_current->page_current->filename = filename;
       s_page_save_all(pr_current);
-      /* reset the changed flag of current page*/
-      pr_current->page_current->CHANGED = FALSE;
+      /* reset the changed flag of current sheet*/
       sheet_head->CHANGED = FALSE;
       x_window_update_title(pr_current, sheet_head);
     } /* else user aborted, do nothing */

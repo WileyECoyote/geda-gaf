@@ -140,6 +140,7 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
         iter = g_list_next( iter ) ) {
 
     p_current = (Page *)iter->data;
+
     /*toplevel->page_current = p_current;*/
     if(s_page_set_current (toplevel, p_current)) {
       /* only traverse pages which are toplevel */

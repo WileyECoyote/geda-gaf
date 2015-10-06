@@ -368,9 +368,6 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   o_selection_add (toplevel->page_current->selection_list, new_obj);
 
-
-  toplevel->page_current->CHANGED = 1;
-
   return TRUE;
 }
 
@@ -392,7 +389,6 @@ s_object_delete_text_object_in_object (GedaToplevel *toplevel,
 {
   s_page_remove_object (toplevel->page_current, text_object);
   s_object_release (text_object);
-  toplevel->page_current->CHANGED = 1;
 }
 
 /*------------------------------------------------------------------*/
