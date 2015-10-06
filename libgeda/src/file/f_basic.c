@@ -672,8 +672,8 @@ void f_remove_backup_file (const char *filename)
        (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
     {
       if (unlink(backup_filename) != 0) {
-        u_log_message(_("s_page_delete: Unable to delete backup file %s."),
-                      backup_filename);
+        u_log_message(_("%s: Unable to delete backup file %s."),
+                      __func__, backup_filename);
       }
     }
 
