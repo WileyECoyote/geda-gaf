@@ -268,8 +268,8 @@ static void geda_toplevel_finalize(GObject *object)
  *  GedaType class initializer for GedaToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The GedaToplevel we are initialising
- *  \param [in]  g_class_data  (unused)
+ *  \param [in]  class       The GedaToplevel we are initializing
+ *  \param [in]  class_data  (unused)
  */
 static void geda_toplevel_class_init (void *class, void *class_data)
 {
@@ -277,6 +277,7 @@ static void geda_toplevel_class_init (void *class, void *class_data)
   GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
   geda_toplevel_parent_class  = g_type_class_peek_parent(klass);
   gobject_class->finalize     = geda_toplevel_finalize;
+
 }
 
 /*! \brief Function to retrieve GedaToplevel's Type identifier.

@@ -328,13 +328,13 @@ void f_close(GedaToplevel *toplevel)
 
 }
 
-/*! \brief Save the schematic file
+/*! \brief Save Schematic or Symbol file
  *  \par Function Description
- *  This function saves the current schematic file in the toplevel object.
+ *  This function saves the current file in the toplevel object.
  *
- *  \param [in,out] toplevel  The GedaToplevel object containing the schematic.
+ *  \param [in,out] toplevel  The GedaToplevel object containing the file.
  *  \param [in]     page      A Page object to be associated with the file
- *  \param [in]     filename  The file name to save the schematic to.
+ *  \param [in]     filename  The file name to save the schematic or symbol.
  *  \param [in,out] err       GError structure for error reporting, or
  *                            NULL to disable error reporting
  *  \return 1 on success, 0 on failure.
@@ -651,6 +651,17 @@ void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
   }
 }
 
+/*! \brief Remove backup file
+ *  \par Function Description
+ *  This function deletes files created by the autosave sub-system, if
+ *  the such a file exist for \a filename.
+ *
+ *  \param [in]     filename  The file name of the schematic or symbol.
+ *
+ *  \todo implement err argument?
+ *   param [in,out] err       GError structure for error reporting, or
+ *                            NULL to disable error reporting
+ */
 void f_remove_backup_file (const char *filename)
 {
   char *backup_filename;

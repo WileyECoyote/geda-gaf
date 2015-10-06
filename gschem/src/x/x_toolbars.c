@@ -90,9 +90,9 @@ static ToolBarInfo ActiveToolBar;
  *            must be added to the cooresponding position in the other.
  *
  *  \note #2: etb_none is a dummy member used in the add mode radio group.
- *            The group is a collection of radio button and when don't want
- *            any of them selected then we set etb_none to be the active
- *            radio button.
+ *            The group is a collection of radio button and when we don't
+ *            want any of them selected then we set etb_none to be the
+ *            active radio button.
  */
 typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_print, etb_write_pdf, etb_cut, etb_copy, etb_paste,

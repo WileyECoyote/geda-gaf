@@ -511,8 +511,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   geda_notify_list_freeze (Current_Page->change_notify_funcs);
 
-  /* Clear the selection list Note the we do not use o_select_unselect_all
-   * here because all of the object are soon to be wiped-out */
+  /* Clear the selection list, o_select_unselect_all is not used
+   * here because all of the objects are soon to be wiped-out */
   geda_list_remove_all(Top_Selection);
 
   if ((w_current->undo_type == UNDO_DISK && u_current->filename) ||
