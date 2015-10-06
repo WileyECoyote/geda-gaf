@@ -71,6 +71,7 @@ struct _GedaToplevel {
   /* page system */
   Page     *page_current;
   PageList *pages;
+  GArray   *page_history;
 
   int width;
   int height;
@@ -209,8 +210,14 @@ void          geda_toplevel_weak_ref         (GedaToplevel *toplevel, WeakNotify
 void          geda_toplevel_weak_unref       (GedaToplevel *toplevel, WeakNotifyFunc notify_func, void *user_data);
 void          geda_toplevel_add_weak_ptr     (GedaToplevel *toplevel, void *weak_pointer_loc);
 void          geda_toplevel_remove_weak_ptr  (GedaToplevel *toplevel, void *weak_pointer_loc);
-Page*         geda_toplevel_get_current_page (GedaToplevel *toplevel);
-Page*         geda_toplevel_get_page         (GedaToplevel *toplevel, int page_id);
+
+void          geda_toplevel_add_page         (GedaToplevel *toplevel, Page *page);
+
+Page         *geda_toplevel_get_current_page (GedaToplevel *toplevel);
+bool          geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page);
+Page         *geda_toplevel_get_page         (GedaToplevel *toplevel, int page_id);
+
+void          geda_toplevel_remove_page      (GedaToplevel *toplevel, Page *page);
 
 END_DECLS
 

@@ -101,7 +101,7 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
  */
 static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaToplevel *toplevel           = (GedaToplevel *)instance;
+  GedaToplevel *toplevel           = (GedaToplevel*)instance;
 
   toplevel->open_flags             = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
   toplevel->untitled_name          = NULL;
@@ -387,7 +387,8 @@ geda_toplevel_set_bounds(GedaToplevel *toplevel, Object *o_current)
  *
  * \param [in] toplevel  Pointer to GedaToplevel Object
  */
-void geda_toplevel_unref(GedaToplevel *toplevel)
+void
+geda_toplevel_unref(GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   g_object_unref (toplevel);
@@ -488,19 +489,56 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
   g_object_remove_weak_pointer((GObject*)toplevel, weak_pointer_loc);
 }
 
-Page* geda_toplevel_get_current_page (GedaToplevel *toplevel)
+void geda_toplevel_add_page (GedaToplevel *toplevel, Page *page)
+{
+  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
+  /* append page to page list of toplevel */
+  if (GEDA_IS_PAGE(page)) {
+    geda_list_add_unique (toplevel->pages, page);
+  }
+}
+
+Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
-  g_return_val_if_fail (GEDA_IS_PAGE(toplevel->page_current), NULL);
 
   return toplevel->page_current;
 }
 
-Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
+bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
+{
+  const GList *iter;
+  bool  found_page;
+
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
+
+  found_page = FALSE;
+
+  if (!page) {
+    toplevel->page_current = NULL;
+  }
+  else if (GEDA_IS_PAGE(page)) {
+
+    iter = geda_list_get_glist(toplevel->pages);
+
+    while (iter != NULL) {
+
+      if (iter->data == page) {
+        toplevel->page_current = page;
+        break;
+      }
+      NEXT(iter);
+    }
+  }
+
+  return found_page;
+}
+
+Page *geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
 {
   const GList *iter;
   Page *found_page;
-  Page *ptr;
 
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
@@ -508,7 +546,8 @@ Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
 
   for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
   {
-    ptr = (Page *)iter->data;
+    Page *ptr = (Page*)iter->data;
+
     if (ptr->pid == page_id) {
       found_page = ptr;
       break;
@@ -517,4 +556,14 @@ Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
 
   return found_page;
 }
+
+void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
+{
+  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
+  if (page && geda_list_is_in_list(toplevel->pages, page)) {
+    geda_list_remove (toplevel->pages, page);
+  }
+}
+
 /** @} endgroup geda-toplevel */

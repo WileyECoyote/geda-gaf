@@ -1,3 +1,12 @@
+2015-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/geda/geda_toplevel.c: Add some accessor functions;
+
+            * geda_toplevel_add_page
+            * geda_toplevel_get_current_page
+            * geda_toplevel_set_current_page
+            * geda_toplevel_remove_page
+
 2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
      * Code Enhancement -- Improve thread-safety:
