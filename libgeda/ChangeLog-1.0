@@ -1,3 +1,12 @@
+2015-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Relocate functions for better organization
+
+     * src/file/f_basic.c: Remove f_set_backup_loader_query_func function.
+
+     * src/struct/s_toplevel.c: Add s_toplevel_set_backup_loader_query_func
+       that was removed from f_basic and add Dpxygen comments.
+
 2015-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/geda/geda_toplevel.c: Add some accessor functions;

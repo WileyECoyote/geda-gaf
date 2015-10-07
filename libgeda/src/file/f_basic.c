@@ -403,7 +403,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     /* Do a backup if it's not an undo file backup and it was never saved.
      * Only do a backup if backup files are enabled */
     if (page->saved_since_first_loaded == 0 &&
-      toplevel->make_backup_files == TRUE)
+        toplevel->make_backup_files == TRUE)
     {
       if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
         (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
@@ -560,6 +560,7 @@ char *f_file_normalize_name (const char *name, GError **error)
   return result;
 
 #else
+
 #define ROOT_MARKER_LEN 1 /* What the ?*/
 
   rpath = g_string_sized_new (strlen (name));
@@ -638,17 +639,6 @@ error:
   return NULL;
 #undef ROOT_MARKER_LEN
 #endif
-}
-
-void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
-{
-  if (toplevel) {
-    va_list argp;
-    va_start (argp, func);
-    toplevel->load_newer_backup_func = func;
-    toplevel->load_newer_backup_data = va_arg(argp, void*);
-    va_end (argp);
-  }
 }
 
 /*! \brief Remove backup file
