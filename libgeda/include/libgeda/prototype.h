@@ -550,8 +550,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
 
 /* s_slib.c */
-          int    s_slib_add_entry                (char *new_path);
-          int    s_slib_search_for_dirname       (char *dir_name);
+          int    s_slib_add_entry                (const char *new_path);
+          int    s_slib_search_for_dirname       (const char *dir_name);
          char   *s_slib_search_dirs              (const char *basename);
          char   *s_slib_search_lowlevel          (const char *basename);
          char   *s_slib_getbasename              (const char *rawname);
@@ -560,10 +560,10 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    s_slib_free                     (void);
          void    s_slib_init                     (void);
          char   *s_slib_getdir                   (int index);
-         char   *s_slib_getfiles                 (char *directory, int flag);
+         char   *s_slib_getfiles                 (const char *directory, int flag);
          void    s_slib_print                    (void);
-          int    s_slib_uniq                     (char *path);
          void    s_slib_print_dirs               (void);
+          int    s_slib_uniq                     (const char *path);
 
 /* s_slot.c */
          char   *s_slot_search_slot              (Object *object, Object **return_found);

@@ -1,5 +1,15 @@
 2015-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_slib.c: Declare first char pointer argument const for
+      functions:
+
+            * s_slib_add_entry
+            * s_slib_search_for_dirname
+            * s_slib_getfiles
+            * s_slib_uniq
+
+2015-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Relocate functions for better organization
 
     * src/file/f_basic.c: Remove f_set_backup_loader_query_func function.

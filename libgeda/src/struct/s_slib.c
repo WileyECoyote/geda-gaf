@@ -61,7 +61,7 @@ static struct st_slib slib[MAX_SLIBS];
  *   for schematics if the directory is not already in the
  *   table.
  */
-int s_slib_add_entry(char *new_path)
+int s_slib_add_entry(const char *new_path)
 {
   if (new_path == NULL) {
     return(-1);
@@ -85,7 +85,7 @@ int s_slib_add_entry(char *new_path)
  *
  *  \return 1 if directory is found, zero otherwise.
  */
-int s_slib_search_for_dirname(char *dir_name)
+int s_slib_search_for_dirname(const char *dir_name)
 {
   int i;
 
@@ -363,7 +363,7 @@ char *s_slib_getdir(int index)
  *  \warning
  *  this function is not reentrant
  */
-char *s_slib_getfiles(char *directory, int flag)
+char *s_slib_getfiles(const char *directory, int flag)
 {
   static DIR *ptr;
   static struct dirent *dptr;
@@ -419,7 +419,8 @@ char *s_slib_getfiles(char *directory, int flag)
           while (dptr != NULL) {
             if (dptr->d_name[0] == '.') {
               dptr = readdir(ptr);
-            } else {
+            }
+            else {
               break;
             }
           }
@@ -433,7 +434,8 @@ char *s_slib_getfiles(char *directory, int flag)
 
             whole_dir[count] = u_string_strdup (dptr->d_name);
             count++;
-          } else {
+          }
+          else {
             g_error ("uggg. too many files in s_slib_getfiles!\n");
           }
 
@@ -484,29 +486,6 @@ void s_slib_print(void)
  *  \par Function Description
  *
  */
-int s_slib_uniq(char *path)
-{
-  if (s_slib_search_for_dirname(path)) {
-
-#if DEBUG
-    printf("found\n");
-#endif
-    return(0);
-  } else {
-
-#if DEBUG
-    printf("NOT found\n");
-#endif
-
-    return(1);
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
 void s_slib_print_dirs(void)
 {
   int i;
@@ -531,5 +510,28 @@ void s_slib_print_dirs(void)
     s_slib_getfiles(string, CLOSE_DIR);
     i++;
     string = s_slib_getdir(i);
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+int s_slib_uniq(const char *path)
+{
+  if (s_slib_search_for_dirname(path)) {
+
+#if DEBUG
+    printf("found\n");
+#endif
+    return(0);
+  } else {
+
+#if DEBUG
+    printf("NOT found\n");
+#endif
+
+    return(1);
   }
 }
