@@ -242,6 +242,7 @@ void     o_text_update_disp_string     (Object *object);
 
 /* s_clib.c */
 void     s_clib_init                   (void);
+GList   *s_clib_get_symbols            (const GedaToplevel *toplevel);
 
 /* s_color.c */
 void     s_color_init                  (void);

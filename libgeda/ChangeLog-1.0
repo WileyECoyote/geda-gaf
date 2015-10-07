@@ -2,10 +2,14 @@
 
     * Code Enhancement: Relocate functions for better organization
 
-     * src/file/f_basic.c: Remove f_set_backup_loader_query_func function.
+    * src/file/f_basic.c: Remove f_set_backup_loader_query_func function.
 
-     * src/struct/s_toplevel.c: Add s_toplevel_set_backup_loader_query_func
-       that was removed from f_basic and add Dpxygen comments.
+    * src/struct/s_toplevel.c: Add s_toplevel_set_backup_loader_query_func
+      that was removed from f_basic and add Doxygen comments. Add function
+      s_toplevel_get_symbols.
+
+    * src/struct/s_clib.c: Rename s_toplevel_get_symbols to s_clib_get_symbols
+      and make private.
 
 2015-10-06 Wiley E. Hill <wileyhill@gmail.com>
 

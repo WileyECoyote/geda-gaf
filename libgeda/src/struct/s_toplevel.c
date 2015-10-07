@@ -39,6 +39,30 @@ GedaToplevel *s_toplevel_new (void)
   return toplevel;
 }
 
+/*! \brief Get a list of symbols in-use.
+ *  \par Function Description
+ *
+ *  Retrieves a list of all symbols currently in use by the component
+ *  library module and returns the list.
+ *
+ *  \warning The #CLibSymbol instances in the \b GList returned belong
+ *  to the component library, and should be considered constants; they
+ *  should not be manipulated or free'd.  On the other hand, the \b
+ *  GList returned must be freed with \b g_list_free() when no longer
+ *  needed.  Note that the values returned will be invalidated by a
+ *  call to s_clib_free() or s_clib_refresh().
+ *
+ *  \param toplevel #GedaToplevel structure.
+ *
+ *  \return GList of symbols.
+ */
+GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
+{
+  g_return_val_if_fail ((toplevel != NULL), NULL);
+
+  return s_clib_get_symbols (toplevel);
+}
+
 /*! \brief Releases resource associated with GedaToplevel object
  *  \par Function Description
  *  Decrements the reference count of the toplevel object by one.

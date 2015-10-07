@@ -709,9 +709,9 @@ COMMAND (do_file_new_window)
 
   x_window_setup (new_window);
 
-  f_set_backup_loader_query_func  (toplevel,
-                                   x_fileselect_load_backup,
-                                   new_window);
+  s_toplevel_set_backup_loader_query_func  (toplevel,
+                                            x_fileselect_load_backup,
+                                            new_window);
 
   s_toplevel_set_rendered_bounds_func (toplevel,
                                        o_text_get_rendered_bounds,

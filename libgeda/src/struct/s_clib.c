@@ -1564,7 +1564,7 @@ char *s_clib_symbol_get_data_by_name (const char *name)
  *
  *  \return GList of symbols.
  */
-GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
+GList *s_clib_get_symbols (const GedaToplevel *toplevel)
 {
   GList  *result  = NULL;
   GList  *iter    = NULL;
@@ -1575,8 +1575,6 @@ GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
   const GList *p_iter;
   const GList *o_iter;
         Page  *page;
-
-  g_return_val_if_fail ((toplevel != NULL), NULL);
 
   for ( p_iter = geda_list_get_glist( toplevel->pages ); p_iter != NULL; NEXT(p_iter))
   {

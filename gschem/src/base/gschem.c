@@ -316,8 +316,8 @@ static void gschem( int argc, char *argv[])
   w_current->toplevel = geda_toplevel_new ();
   toplevel            = w_current->toplevel;
 
-  f_set_backup_loader_query_func  (toplevel, x_fileselect_load_backup,
-                                   w_current);
+  s_toplevel_set_backup_loader_query_func (toplevel, x_fileselect_load_backup,
+                                           w_current);
 
   s_toplevel_set_rendered_bounds_func (toplevel,
                                        o_text_get_rendered_bounds,

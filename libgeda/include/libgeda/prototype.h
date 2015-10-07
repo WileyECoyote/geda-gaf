@@ -8,7 +8,6 @@ BEGIN_DECLS
           int    f_open_flags                    (GedaToplevel *toplevel, Page *page, const char *filename, const int flags, GError **err);
          void    f_close                         (GedaToplevel *toplevel);
          bool    f_save                          (GedaToplevel *toplevel, Page *page, const char *filename, GError **error);
-         void    f_set_backup_loader_query_func  (GedaToplevel *toplevel, void *func, ...);
          void    f_remove_backup_file            (const char *filename);
 
 /* f_file.c */
@@ -451,7 +450,6 @@ const CLibSource *s_clib_symbol_get_source       (const CLibSymbol *symbol);
          void     s_clib_symbol_invalidate_data  (const CLibSymbol *symbol);
 const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char    *s_clib_symbol_get_data_by_name (const char *name);
-        GList    *s_toplevel_get_symbols         (const GedaToplevel *toplevel);
 
 /* s_color.c */
          char   *s_color_get_colorname           (int index, GArray *map, GError **err);
@@ -510,9 +508,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          Page   *s_page_get_current              (GedaToplevel *toplevel);
          bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);
    const char   *s_page_get_file_extension       (Page *page);
-         bool    s_page_is_symbol_file           (Page *page);
-
          bool    s_page_goto                     (GedaToplevel *toplevel, Page *page);
+         bool    s_page_is_symbol_file           (Page *page);
          void    s_page_print_all                (GedaToplevel *toplevel);
          void    s_page_resequence_by_ids        (GedaToplevel *toplevel);
           int    s_page_save_all                 (GedaToplevel *toplevel);
@@ -577,9 +574,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          GList  *s_tile_get_objectlists          (Page   *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_toplevel.c */
- GedaToplevel   *s_toplevel_new                       (void);
-         void    s_toplevel_release                   (GedaToplevel *toplevel);
-         void    s_toplevel_set_rendered_bounds_func  (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
+ GedaToplevel   *s_toplevel_new                          (void);
+        GList   *s_toplevel_get_symbols                  (const GedaToplevel *toplevel);
+         void    s_toplevel_release                      (GedaToplevel *toplevel);
+         void    s_toplevel_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...);
+         void    s_toplevel_set_rendered_bounds_func     (GedaToplevel *toplevel, RenderedBoundsFunc func, void *user_data);
 
 /* s_undo.c */
          UNDO   *s_undo_return_tail              (UNDO *head);
