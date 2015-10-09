@@ -48,9 +48,10 @@
  */
 void gnetlist_quit(void)
 {
-    s_clib_free();
-    s_slib_free();
+    libgeda_release();
+
     s_rename_destroy_all();
+
     /* o_text_freeallfonts(); */
 
     /* Free GSList *backend_params */

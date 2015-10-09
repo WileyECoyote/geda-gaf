@@ -1,3 +1,8 @@
+2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/src/gnetlist.c: Call libgeda_release instead of just
+      s_clib_free and s_slib_free, oops!
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/sym/rectifier-bridge-1.sym: Add local symbol
