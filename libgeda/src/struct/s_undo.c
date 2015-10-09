@@ -31,13 +31,14 @@
  */
 UNDO *s_undo_return_tail(UNDO *head)
 {
-  UNDO *u_current=NULL;
-  UNDO *ret_struct=NULL;
+  UNDO *u_current;
+  UNDO *ret_struct = NULL;
 
   u_current = head;
-  while ( u_current != NULL ) { /* goto end of list */
+
+  while (u_current != NULL) { /* goto end of list */
     ret_struct = u_current;
-    u_current = u_current->next;
+    u_current  = u_current->next;
   }
 
   return(ret_struct);
@@ -55,13 +56,14 @@ UNDO *s_undo_return_tail(UNDO *head)
  */
 UNDO *s_undo_return_head(UNDO *tail)
 {
-  UNDO *u_current=NULL;
-  UNDO *ret_struct=NULL;
+  UNDO *u_current;
+  UNDO *ret_struct = NULL;
 
   u_current = tail;
-  while ( u_current != NULL ) { /* goto end of list */
+
+  while (u_current != NULL) { /* goto end of list */
     ret_struct = u_current;
-    u_current = u_current->prev;
+    u_current  = u_current->prev;
   }
 
   return(ret_struct);
@@ -85,7 +87,7 @@ UNDO *s_undo_new_head(void)
   u_new->left = u_new->right = u_new->top = u_new->bottom = -1;
 
   u_new->page_control = 0;
-  u_new->up = -2;
+  u_new->hierarchy_up = -2;
 
   u_new->prev = NULL;
   u_new->next = NULL;
@@ -144,7 +146,7 @@ UNDO *s_undo_add_disk (int type, char *filename, Page *page)
   u_new->bottom       = page->bottom;
 
   u_new->page_control = page->page_control;
-  u_new->up           = page->up;
+  u_new->hierarchy_up = page->hierarchy_up;
 
   if (head == NULL) {
     u_new->prev = NULL; /* setup previous link */
@@ -200,7 +202,7 @@ UNDO *s_undo_add_memory (int type, Page *page)
   u_new->bottom       = page->bottom;
 
   u_new->page_control = page->page_control;
-  u_new->up           = page->up;
+  u_new->hierarchy_up = page->hierarchy_up;
 
   if (head == NULL) {
     u_new->prev = NULL; /* setup previous link */
@@ -246,7 +248,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
   u_new->bottom = bottom;
 
   u_new->page_control = page_control;
-  u_new->up = up;
+  u_new->hierarchy_up = up;
 
   if (head == NULL) {
     u_new->prev = NULL; /* setup previous link */

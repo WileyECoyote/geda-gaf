@@ -1252,8 +1252,10 @@ static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
 
   autotext->last_criteria = SCOPE_QUESTION;
 
-  if (Current_Page->up < 0) {
+  if (Current_Page->hierarchy_up < 0) {
+
     autotext->scope_skip = SCOPE_PAGE;
+
     if (o_select_is_selection(w_current)) {
       autotext->scope_number = SCOPE_SELECTED;
     }
@@ -1267,14 +1269,11 @@ static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
   }
 
   autotext->scope_overwrite = FALSE;
-  autotext->order = AUTONUMBER_SORT_DIAGONAL;
-
-  autotext->startnum=1;
-
-  autotext->removenum = FALSE;
-  autotext->slotting  = FALSE;
-
-  autotext->dialog = NULL;
+  autotext->order           = AUTONUMBER_SORT_DIAGONAL;
+  autotext->startnum        = 1;
+  autotext->removenum       = FALSE;
+  autotext->slotting        = FALSE;
+  autotext->dialog          = NULL;
 
   return autotext;
 }

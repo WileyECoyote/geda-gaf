@@ -71,7 +71,6 @@ struct _GedaToplevel {
   /* page system */
   Page     *page_current;
   PageList *pages;
-  GArray   *page_history;
 
   int width;
   int height;

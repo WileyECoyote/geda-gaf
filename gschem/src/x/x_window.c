@@ -1166,8 +1166,10 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
 
       if (page == toplevel->page_current) {
 
+        int pid = page->hierarchy_up;
+
         /* select new current page first look up in page hierarchy */
-        new_current = s_page_search_by_page_id (toplevel->pages, page->up);
+        new_current = s_page_search_by_page_id (toplevel->pages, pid);
 
         if (new_current == NULL) {
 

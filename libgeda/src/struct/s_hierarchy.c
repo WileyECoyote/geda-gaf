@@ -107,8 +107,8 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
       if (found) {
         /* check whether this page is in the parents list */
         for (forbear = parent;
-             forbear != NULL && found->pid != forbear->pid && forbear->up >= 0;
-             forbear = s_page_search_by_page_id (toplevel->pages, forbear->up))
+             forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
+             forbear = s_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
              {
                ; /* void */
              }
@@ -122,7 +122,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
         if (page_control != 0) {
           found->page_control = page_control;
         }
-        found->up = parent->pid;
+        found->hierarchy_up = parent->pid;
         GEDA_FREE (string);
         return found;
       }
@@ -152,7 +152,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
     found->page_control = page_control;
   }
 
-  found->up = parent->pid;
+  found->hierarchy_up = parent->pid;
 
   GEDA_FREE (string);
   return found;
@@ -177,7 +177,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
   if (page) {
     /* change link to parent page since we can come here from
      * any parent and must come back to the same page */
-    page->up = parent->pid;
+    page->hierarchy_up = parent->pid;
     s_page_goto (toplevel, page);
     GEDA_FREE (filename);
   }
@@ -190,7 +190,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
 
     f_open(toplevel, page, page->filename, NULL);
 
-    page->up = parent->pid;
+    page->hierarchy_up = parent->pid;
     page_control_counter++;
     page->page_control = page_control_counter;
   }
@@ -216,12 +216,12 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
 Page *
 s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 {
-  if (current_page->up < 0) {
+  if (current_page->hierarchy_up < 0) {
     u_log_message(_("There are no schematics above the current one!\n"));
     return NULL;
   }
 
-  return s_page_search_by_page_id (page_list, current_page->up);
+  return s_page_search_by_page_id (page_list, current_page->hierarchy_up);
 }
 
 /*! \brief Find page hierarchy below a page.

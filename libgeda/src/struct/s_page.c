@@ -123,7 +123,7 @@ pre_object_removed (Page *page, Object *object)
 static Page *
 s_page_new_common(Page *page)
 {
-  page->up = -2;
+  page->hierarchy_up = -2;
 
   /* Init tile array */
   s_tile_init (page);
@@ -391,7 +391,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   s_undo_free_all (page);
 
   /* ouch, deal with parents going away and the children still around */
-  page->up = -2;
+  page->hierarchy_up = -2;
   GEDA_FREE (page->filename);
   page->filename = NULL;
 

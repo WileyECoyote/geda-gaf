@@ -568,7 +568,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   if (restored) {
       i_window_set_viewport_size(w_current);
       Current_Page->page_control = u_current->page_control;
-      Current_Page->up           = u_current->up;
+      Current_Page->hierarchy_up = u_current->hierarchy_up;
       Current_Page->CHANGED      = u_current->modified;
   }
 

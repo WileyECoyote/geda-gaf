@@ -1,3 +1,9 @@
+2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/g_struct.h: Rename st_undo member up to hierarchy_up.
+
+    * include/libgeda/geda_page.h: Rename member up to hierarchy_up.
+
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove defines for s_clib_getfilename.

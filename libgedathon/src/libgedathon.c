@@ -1320,7 +1320,7 @@ PyGeda_open_page( const char *filename )
  *
  */
 int
-PyGeda_close_page( int pid )
+PyGeda_close_page(int pid)
 {
   Page  *page;
   Page  *new_current = NULL;
@@ -1330,19 +1330,24 @@ PyGeda_close_page( int pid )
   page = geda_toplevel_get_page(toplevel, pid);
 
   if (page->pid == toplevel->page_current->pid) {
-    /* as it will delete current page, select new current page */
+
+    int up = page->hierarchy_up;
+
+    /* as this will delete current page, select new current page */
     /* first look up in page hierarchy */
-    new_current = s_page_search_by_page_id (toplevel->pages, page->up);
+    new_current = s_page_search_by_page_id (toplevel->pages, up);
 
     if (new_current == NULL) {
       /* no up in hierarchy, choice is prev, next, new page */
-      iter = g_list_find( geda_list_get_glist( toplevel->pages ), page );
+      iter = g_list_find( geda_list_get_glist(toplevel->pages), page);
 
       if ( g_list_previous( iter ) ) {
         new_current = (Page *)g_list_previous( iter )->data;
-      } else if ( g_list_next( iter ) ) {
+      }
+      else if (g_list_next (iter)) {
         new_current = (Page *)g_list_next( iter )->data;
-      } else {
+      }
+      else {
         /* need to add a new untitled page */
         new_current = NULL;
       }

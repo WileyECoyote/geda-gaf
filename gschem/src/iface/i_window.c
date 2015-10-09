@@ -206,7 +206,7 @@ void i_window_revert_page (GschemToplevel *w_current)
     /* save these for later */
     filename     = page->filename;
     page_control = page->page_control;
-    up           = page->up;
+    up           = page->hierarchy_up;
 
     /* Just in case */
     o_undo_savestate(w_current, UNDO_ALL);
@@ -231,7 +231,7 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     /* make sure we maintain the hierarchy info */
       page->page_control    = page_control;
-      page->up              = up;
+      page->hierarchy_up    = up;
 
       page->CHANGED  = FALSE;
       GEDA_FREE (filename);

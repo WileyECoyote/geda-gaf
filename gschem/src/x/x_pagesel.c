@@ -750,7 +750,7 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
         p_iter = g_list_next( p_iter ) ) {
 
     p_current = (Page *)p_iter->data;
-    if (p_current->up == page->pid) {
+    if (p_current->hierarchy_up == page->pid) {
       add_page (model, &iter, pages, p_current);
     }
   }
@@ -814,12 +814,14 @@ void pagesel_update (Pagesel *pagesel)
         iter != NULL;
         iter = g_list_next( iter ) ) {
 
+    int pid;
+
     p_current = (Page *)iter->data;
+    pid       = p_current->hierarchy_up;
 
     /* find every page that is not a hierarchy-down of another page */
-    if (p_current->up < 0 ||
-        s_page_search_by_page_id (toplevel->pages,
-                                  p_current->up) == NULL) {
+    if (pid < 0 || s_page_search_by_page_id (toplevel->pages, pid) == NULL)
+    {
       add_page (model, NULL, toplevel->pages, p_current);
     }
   }

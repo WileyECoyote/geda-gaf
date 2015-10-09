@@ -236,7 +236,7 @@ struct st_undo {
   int left, top, right, bottom;
 
   /* up and down the hierarchy */
-  int up;
+  int hierarchy_up;
 
   /* used to control which pages are viewable when moving around */
   int page_control; /* WEH: Still sounds hokey */
