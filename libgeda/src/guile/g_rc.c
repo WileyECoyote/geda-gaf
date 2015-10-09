@@ -339,30 +339,30 @@ SCM g_rc_source_library_search(SCM path)
 
   while ((entry = g_dir_read_name (dir))) {
 
-    /* don't do . and .. and special case font */
+    /* Skip . and .. and special case font */
     if ((g_ascii_strcasecmp (entry, ".")    != 0) &&
         (g_ascii_strcasecmp (entry, "..")   != 0) &&
         (g_ascii_strcasecmp (entry, "font") != 0))
     {
       char *fullpath = g_build_filename (string, entry, NULL);
 
-      if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
-        if (s_slib_uniq (fullpath)) {
-          if (f_get_is_path_absolute (fullpath)) {
-            s_slib_add_entry (fullpath);
-          }
-          else {
+      if (s_slib_unique_dir_exist (fullpath)) {
 
-            char *cwd  = g_get_current_dir ();
-            char *temp = g_build_filename (cwd, fullpath, NULL);
+        if (f_get_is_path_absolute (fullpath)) {
+          s_slib_add_entry (fullpath);
+        }
+        else {
 
-            s_slib_add_entry (temp);
+          char *cwd  = g_get_current_dir ();
+          char *temp = g_build_filename (cwd, fullpath, NULL);
 
-            GEDA_FREE(temp);
-            GEDA_FREE(cwd);
-          }
+          s_slib_add_entry (temp);
+
+          GEDA_FREE(temp);
+          GEDA_FREE(cwd);
         }
       }
+
       GEDA_FREE(fullpath);
     }
   }

@@ -513,25 +513,24 @@ void s_slib_print_dirs(void)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check is Path exist and is not in the search path.
  *  \par Function Description
+ *   TRUE if path exist and is not in the component library search
+ *   path.
+ *  \param [in] path The path to test.
  *
+ *  \returns TRUE if path exist and is not in search path.
  */
-int s_slib_uniq(const char *path)
+int s_slib_unique_dir_exist(const char *path)
 {
-  if (s_slib_search_for_dirname(path)) {
+  int result;
 
-#if DEBUG
-    printf("found\n");
-#endif
-    return(0);
-  } else {
-
-#if DEBUG
-    printf("NOT found\n");
-#endif
-
-    return(1);
+  if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
+    result = !s_slib_search_for_dirname(path);
   }
+  else {
+    result = 0;
+  }
+
+  return result;
 }

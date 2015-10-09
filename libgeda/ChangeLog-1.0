@@ -1,3 +1,8 @@
+2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_slib.c: Rename s_slib_uniq->s_slib_unique_dir_exist
+      and add test for existence of the path.
+
 2015-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_slib.c: Declare first char pointer argument const for

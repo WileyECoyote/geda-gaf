@@ -563,7 +563,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *s_slib_getfiles                 (const char *directory, int flag);
          void    s_slib_print                    (void);
          void    s_slib_print_dirs               (void);
-          int    s_slib_uniq                     (const char *path);
+          int    s_slib_unique_dir_exist         (const char *path);
 
 /* s_slot.c */
          char   *s_slot_search_slot              (Object *object, Object **return_found);
