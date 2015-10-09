@@ -1,3 +1,8 @@
+2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call libgeda_release instead of just s_clib_free and
+      s_slib_free, oops!
+
 2015-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Removed toplevel->page_current->CHANGED from functions

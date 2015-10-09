@@ -211,9 +211,9 @@ int gattrib_quit(int return_code)
 
   if (search_history) g_list_free(search_history);
 
-  /*   s_clib_cache_free(); */
-  s_clib_free();
-  s_slib_free();
+  /* Shutdown libgeda */
+  libgeda_release();
+
   /* s_rename_destroy_all(); */
 
 #ifdef DEBUG
