@@ -86,7 +86,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   if (errno) {
     errno = 0;
     GEDA_FREE (string);
-    string = s_slib_search_single(filename);
+    string = s_slib_search_for_file(filename);
   }
 
   if (string == NULL) {

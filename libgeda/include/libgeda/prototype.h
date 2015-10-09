@@ -551,16 +551,13 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_slib.c */
           int    s_slib_add_entry                (const char *new_path);
-          int    s_slib_search_for_dirname       (const char *dir_name);
-         char   *s_slib_search_dirs              (const char *basename);
-         char   *s_slib_search_lowlevel          (const char *basename);
-         char   *s_slib_getbasename              (const char *rawname);
-         char   *s_slib_search                   (const char *filename, int flag);
-         char   *s_slib_search_single            (const char *filename);
          void    s_slib_free                     (void);
+         char   *s_slib_get_basename             (const char *rawname);
+         char   *s_slib_get_dir                  (int index);
          void    s_slib_init                     (void);
-         char   *s_slib_getdir                   (int index);
-         char   *s_slib_getfiles                 (const char *directory, int flag);
+          int    s_slib_search_for_dirname       (const char *dir_name);
+         char   *s_slib_search_for_file          (const char *filename);
+         char   *s_slib_search_dirs              (const char *basename);
          void    s_slib_print                    (void);
          void    s_slib_print_dirs               (void);
           int    s_slib_unique_dir_exist         (const char *path);

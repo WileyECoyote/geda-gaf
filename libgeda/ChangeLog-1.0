@@ -1,7 +1,15 @@
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/defines.h: Remove defines for s_clib_getfilename.
+
     * src/struct/s_slib.c: Rename s_slib_uniq->s_slib_unique_dir_exist
-      and add test for existence of the path.
+      and add test for existence of the path. Rename s_slib_search_single
+      s_slib_search_for_file. Remove function for s_clib_getfilename and
+      replace with f_get_dir_list_files in function s_slib_print_dirs and
+      free strings. Add Doxygen comments.
+
+    * src/struct/s_hierarchy.c: Replace s_slib_search_single with
+      s_slib_search_for_file.
 
 2015-10-07 Wiley E. Hill <wileyhill@gmail.com>
 

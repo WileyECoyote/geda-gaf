@@ -79,8 +79,214 @@ int s_slib_add_entry(const char *new_path)
   return(slib_index);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Release Source Library resources
+ *  \par Function Description
+ *  Free the strings in the Component Library path table.
+ */
+void s_slib_free()
+{
+  int i;
+
+  for (i = 0; i < slib_index; i++) {
+    GEDA_FREE(slib[i].dir_name);
+  }
+
+  slib_index=0;
+}
+
+/*! \brief Get the base file name from a raw file name string.
+ *  \par Function Description
+ *  Creates an returns a file name based on the given \a rawname. The raw
+ *  file name is copied up to the first period and any _# are removed (where
+ *  # is any number of digits.
+ *
+ *  \param [in] rawname  Character string with the raw file name to parse.
+ *
+ *  \returns The base file name in a character string.
+ *
+ *  \remarks Caller should GEDA_FREE returned pointer.
+ */
+char *s_slib_get_basename(const char *rawname)
+{
+  char *return_filename;
+  int i;
+  int done=0;
+  int lastchar;
+  int valid=0;
+  int len;
+  int seen_underscore=0;
+
+  if (!rawname)
+    return(NULL);
+
+  len = strlen(rawname) + 1;
+
+  return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
+
+  i = 0;
+  /* first get everything up to the leading dot */
+  while(rawname[i] != '\0' && rawname[i] != '.') {
+    return_filename[i] = rawname[i];
+    i++;
+  }
+
+  return_filename[i] = '\0';
+
+  /* skip null terminator */
+  i--;
+
+  lastchar=i;
+
+  /* this is a quick and dirty state machine to */
+  /* go back and strip off any _#'s */
+  /* if there is a better way let me know */
+  while (i >= 0 && !done) {
+
+    /* first we need to check to see if we have seen the first '_' */
+    /* if we have then we already removing chars, continue with that */
+    if ( seen_underscore ) {
+      if (return_filename[i] == '_') {
+        done = 1;
+      }
+
+      return_filename[i] = '\0';
+    }
+    else {
+      /* we are still searching for the first underscore */
+
+      /* first make sure char is a number */
+      if (isdigit((int) return_filename[i])) {
+        valid=1;
+      }
+      else if (return_filename[i] == '_' && valid) {
+        /* yes it is okay to delete the chars */
+        seen_underscore=1;
+        /* incremented, since it is then */
+        /* decremented */
+        i = lastchar+1;
+      }
+      else {
+        valid = 0;
+        done = 1;
+      }
+    }
+
+    i--;
+  }
+
+  /* be sure to GEDA_FREE this somewhere */
+  return(return_filename);
+}
+
+/*! \brief Get the Component Library directory at the Given index
+ *  \par Function Description
+ *   Returns the directory entry in the Component Library path
+ *   table at the given index, which could be NULL.
+ *
+ *  \returns Component Library directory at \a index
+ *
+ *  \warning Caller must NOT free the returned pointer.
+ */
+char *s_slib_get_dir(int index)
+{
+  if (slib[index].dir_name != NULL)
+    return(slib[index].dir_name);
+  else
+    return(NULL);
+}
+
+/*! \brief Initialize the Source Library
+ *  \par Function Description
+ *  Sets each entry in the Component Library path table to NULL.
+ */
+void s_slib_init()
+{
+  int i;
+  for (i = 0; i < MAX_SLIBS; i++) {
+    slib[i].dir_name = NULL;
+  }
+}
+
+/*! \brief Write contents of Component Libraries
+ *  \par Function Description
+ *  Write Component Library directory names and containing files in the
+ *  component library search path to standard out.
+ */
+void s_slib_print(void)
+{
+  int i;
+
+  for (i = 0; i < slib_index; i++) {
+    printf("%s\n", slib[i].dir_name);
+  }
+}
+
+/*! \brief Write contents of Component Libraries
+ *  \par Function Description
+ *  Write the names of directories and containing files in the
+ *  component library search path to standard out.
+ */
+void s_slib_print_dirs(void)
+{
+  int i;
+  char *directory;
+
+  i = 0;
+  directory = s_slib_get_dir(i);
+
+  while(directory != NULL) {
+
+    printf("Opened %s\n", directory);
+
+    GSList *files = f_get_dir_list_files(directory, NULL);
+
+    while(files) {
+      char *file = files->data;
+      printf("file: %s\n", file);
+      files = files->next;
+    }
+
+    g_slist_free_full (files, g_free);
+
+    printf("Closed %s\n", directory);
+    GEDA_FREE(directory);
+
+    i++;
+    directory = s_slib_get_dir(i);
+  }
+}
+
+/*! \brief Search SLIB for a particular file name.
+ *  \par Function Description
+ *  This function will search the SLIB for a particular file name.
+ *
+ *  \param [in] filename  Character string with file name to search for.
+ *
+ *  Filename is the raw symbol/whatever file name.
+ *
+ *  \remarks Caller should GEDA_FREE returned pointer.
+ */
+char *s_slib_search_for_file (const char *basename)
+{
+  char *slib_path = s_slib_search_dirs(basename);
+
+  if (slib_path) {
+
+    char *file_path = f_file_normalize_name (slib_path, NULL);
+
+    char *full_path = g_build_filename (file_path, basename, NULL);
+
+    GEDA_FREE(file_path);
+    GEDA_FREE(slib_path);
+
+    return(full_path);
+  }
+  else {
+    return(NULL);
+  }
+}
+
+/*! \brief Search Source Library for a Directory
  *  \par Function Description
  *
  *  \return 1 if directory is found, zero otherwise.
@@ -100,15 +306,13 @@ int s_slib_search_for_dirname(const char *dir_name)
   return(0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Search Source Library Directories for a File name
  *  \par Function Description
  *  Looks for a file in each directory in the slib table whose name
  *  contains the string \a basename, if found then that directory is
  *  returned.
  *
- *  \warning
- *  Caller must GEDA_FREE returned pointer.
+ *  \remarks Caller should GEDA_FREE returned pointer.
  */
 char *s_slib_search_dirs(const char *basename)
 {
@@ -163,356 +367,6 @@ char *s_slib_search_dirs(const char *basename)
   return(NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- *  \warning
- *  Caller must GEDA_FREE returned pointer.
- */
-char *s_slib_search_lowlevel(const char *basename)
-{
-  char *slib_path = s_slib_search_dirs(basename);
-
-  if (slib_path) {
-
-    char *file_path = f_file_normalize_name (slib_path, NULL);
-
-    char *full_path = g_build_filename (file_path, basename, NULL);
-
-    GEDA_FREE(file_path);
-    GEDA_FREE(slib_path);
-
-    return(full_path);
-  }
-  else {
-    return(NULL);
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief Get the base file name from a raw file name string.
- *  \par Function Description
- *  Creates an returns a file name based on the given \a rawname. The raw
- *  file name is copied up to the first period and any _# are removed (where
- *  # is any number of digits.
- *
- *  \param [in] rawname  Character string with the raw file name to parse.
- *
- *  \returns The base file name in a character string.
- *
- *  \warning
- *  Caller must GEDA_FREE returned pointer.
- */
-char *s_slib_getbasename(const char *rawname)
-{
-  char *return_filename;
-  int i;
-  int done=0;
-  int lastchar;
-  int valid=0;
-  int len;
-  int seen_underscore=0;
-
-  if (!rawname)
-    return(NULL);
-
-  len = strlen(rawname) + 1;
-
-  return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
-
-  i = 0;
-  /* first get everything up to the leading dot */
-  while(rawname[i] != '\0' && rawname[i] != '.') {
-    return_filename[i] = rawname[i];
-    i++;
-  }
-
-  return_filename[i] = '\0';
-
-  /* skip null terminator */
-  i--;
-
-  lastchar=i;
-
-  /* this is a quick and dirty state machine to */
-  /* go back and strip off any _#'s */
-  /* if there is a better way let me know */
-  while (i >= 0 && !done) {
-
-    /* first we need to check to see if we have seen the first '_' */
-    /* if we have then we already removing chars, continue with that */
-    if ( seen_underscore ) {
-      if (return_filename[i] == '_') {
-        done = 1;
-      }
-
-      return_filename[i] = '\0';
-    } else {
-      /* we are still searching for the first underscore */
-
-      /* first make sure char is a number */
-      if (isdigit((int) return_filename[i])) {
-        valid=1;
-      } else if (return_filename[i] == '_' && valid) {
-        /* yes it is okay to delete the chars */
-        seen_underscore=1;
-        /* incremented, since it is then */
-        /* decremented */
-        i = lastchar+1;
-      } else {
-        valid = 0;
-        done = 1;
-      }
-    }
-
-    i--;
-  }
-
-  /* be sure to GEDA_FREE this somewhere */
-  return(return_filename);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief Search SLIB for a particular file name.
- *  \par Function Description
- *  This function will search the SLIB for a particular file name.
- *
- *  \param [in] filename  Character string with file name to search for.
- *
- *  Filename is the raw symbol/whatever file name.
- *
- *  \warning
- *  Caller must GEDA_FREE returned pointer.
- */
-char *s_slib_search_single(const char *filename)
-{
-  char *string = NULL;
-
-  string = s_slib_search_lowlevel(filename);
-
-  /* don't forget to GEDA_FREE this string */
-  return (string);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void s_slib_free()
-{
-  int i;
-
-  for (i = 0; i < slib_index; i++) {
-    GEDA_FREE(slib[i].dir_name);
-  }
-
-  slib_index=0;
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void s_slib_init()
-{
-  int i;
-  for (i = 0; i < MAX_SLIBS; i++) {
-    slib[i].dir_name = NULL;
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- *  \warning
- *  Caller must not free the returned pointer.
- */
-/* returns slibs */
-char *s_slib_getdir(int index)
-{
-  if (slib[index].dir_name != NULL)
-    return(slib[index].dir_name);
-  else
-    return(NULL);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- *  \param [in] directory  Character string with directory to get files from.
- *  \param [in] flag       Search control flag. (See below...)
- *
- *  \returns A file name if one is found, NULL otherwise.
- *
- *  \warning
- *  Caller must GEDA_FREE returned pointer.
- *
- *  The flag parameter can be one of the following values:
- *  <DL>
- *    <DT>OPEN_DIR</DT><DD>Opens the directory and returns NULL.
- *    <DT>READ_DIR</DT><DD>Returns the next non "." entry.
- *    <DT>CLOSE_DIR</DT><DD>Closes the directory.
- *  </DL>
- *  \bug This is TOTALLY BROKEN!
- *       statics are not allowed anymore
- *  \warning
- *  this function is not reentrant
- */
-char *s_slib_getfiles(const char *directory, int flag)
-{
-  static DIR *ptr;
-  static struct dirent *dptr;
-  static char *whole_dir[256]; /* make this dynamic hack */
-  static int count=0;
-  static int current=0;
-
-  int j;
-
-  switch(flag) {
-
-    case(CLOSE_DIR):
-      if (ptr) {
-        closedir(ptr);
-      }
-
-      ptr = NULL;
-
-      for (j = 0 ; j < count ;j++) {
-        GEDA_FREE(whole_dir[j]);
-      }
-      count = current = 0 ;
-
-      return(NULL);
-      break;
-
-      /* open the directory and return first element (after if) */
-      case(OPEN_DIR):
-
-        if (ptr) {
-          closedir(ptr);
-        }
-
-        ptr = NULL;
-
-        for (j = 0 ; j < count ;j++) {
-          GEDA_FREE(whole_dir[j]);
-        }
-        count = current = 0 ;
-
-        ptr = opendir(directory); /* hack check for existance */
-
-        if (ptr == NULL)
-          return(NULL);
-
-
-        /* now read the entire directory */
-        dptr = readdir(ptr);
-
-        while (dptr != NULL) {
-
-          /* skip .'s */
-          while (dptr != NULL) {
-            if (dptr->d_name[0] == '.') {
-              dptr = readdir(ptr);
-            }
-            else {
-              break;
-            }
-          }
-
-          if (dptr == NULL) {
-            break;
-          }
-
-          /* hack */
-          if (count < 256) {
-
-            whole_dir[count] = u_string_strdup (dptr->d_name);
-            count++;
-          }
-          else {
-            g_error ("uggg. too many files in s_slib_getfiles!\n");
-          }
-
-          dptr = readdir(ptr);
-        }
-        return(NULL);
-
-        break;
-
-        case(READ_DIR):
-
-
-          if (whole_dir[current] && current < count) {
-            return(whole_dir[current++]);
-          } else {
-            return(NULL);
-          }
-
-          break;
-
-        default:
-          return(NULL);
-  }
-
-  #if DEBUG
-  for (j = 0;j < count; j++) {
-    printf("string: %s\n", whole_dir[j]);
-  }
-  #endif
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void s_slib_print(void)
-{
-  int i;
-
-  for (i = 0; i < slib_index; i++) {
-    printf("%s\n", slib[i].dir_name);
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void s_slib_print_dirs(void)
-{
-  int i;
-  char *string;
-  char *file;
-
-  i = 0;
-  string = s_slib_getdir(i);
-  while(string != NULL) {
-
-    s_slib_getfiles(string, OPEN_DIR);
-    printf("Opened %s\n", string);
-
-    file = (char *) s_slib_getfiles(string, READ_DIR);
-
-    while(file != NULL) {
-      printf("file: %s\n", file);
-      file = (char *) s_slib_getfiles(string, READ_DIR);
-    }
-
-    printf("Closed %s\n", string);
-    s_slib_getfiles(string, CLOSE_DIR);
-    i++;
-    string = s_slib_getdir(i);
-  }
-}
-
 /*! \brief Check is Path exist and is not in the search path.
  *  \par Function Description
  *   TRUE if path exist and is not in the component library search
@@ -525,7 +379,7 @@ int s_slib_unique_dir_exist(const char *path)
 {
   int result;
 
-  if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
+  if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
     result = !s_slib_search_for_dirname(path);
   }
   else {
