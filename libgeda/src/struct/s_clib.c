@@ -30,19 +30,18 @@
  *  or a Scheme function which can do likewise.  A component source is
  *  represented by a #CLibSource instance.
  *
- *  The component library system manages component sources and
- *  symbols, and abstracts the interface to the underlying storage.
+ *  The component library system manages component sources and symbols,
+ *  and abstracts the interface to the underlying storage.
  *
- *  To initialise the component library, s_clib_init() is called.  To
+ *  To initialise the component library, s_clib_init() is called. To
  *  clean up when it is no longer needed, s_clib_free() should be
  *  called.
  *
- *  A directory which contains one or more symbol files in gEDA
- *  format may be used as a component source. Each symbol file should
- *  have a filename ending in ".sym" (case insensitive).  A
- *  component source based on a directory can be added using
- *  s_clib_add_directory().  Symbol files with filenames starting with
- *  a period "." are ignored.
+ *  A directory which contains one or more symbol files in gEDA format
+ *  may be used as a component source. Each symbol file should have a
+ *  filename ending in ".sym" (case insensitive).  A component source
+ *  based on a directory can be added using s_clib_add_directory().
+ *  Symbol files with filenames starting with a period "." are ignored.
  *
  *  An executable program in the system search path may be used as a
  *  component source, and it must conform with the specification given
@@ -85,7 +84,7 @@
  *  a wrapper for s_clib_add_command().
  *
  *  The list command will be executed with no further arguments, and
- *  should output a list of available symbol names on stdout.  The get
+ *  should output a list of available symbol names on stdout. The get
  *  command will have a symbol name appended to it as the final
  *  argument, and should output gEDA symbol data on stdout.
  *
@@ -417,7 +416,7 @@ static void cache_find_oldest (void *key,
 /*! \brief Execute a library command.
  *  \par Function Description
  *  Execute a library command, returning the standard output, or \b
- *  NULL if the command fails for some reason.  The system \b PATH is
+ *  NULL if the command fails for some reason. The system \b PATH is
  *  used to find the program to execute.
  *  The command can write messages to the standard error output. They
  *  are forwarded to the libgeda logging mechanism.
@@ -704,11 +703,11 @@ static void refresh_directory (CLibSource *source)
  */
 static void refresh_command (CLibSource *source)
 {
-  char *cmdout;
+  char       *cmdout;
   TextBuffer *tb;
   const char *line;
   CLibSymbol *symbol;
-  char *name;
+  char       *name;
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_CMD);
@@ -720,6 +719,7 @@ static void refresh_command (CLibSource *source)
 
   /* Run the command to get the list of symbols */
   cmdout = run_source_command (source->list_cmd);
+
   if (cmdout == NULL) return;
 
   /* Use a TextBuffer to help reading out the lines of the output */
@@ -820,18 +820,16 @@ static void refresh_scm (CLibSource *source)
  *  Resets the list of symbols available from each source, and
  *  repopulates it from scratch.  Useful e.g. for checking for new
  *  symbols.
- *
- *  \bug Disabled for now because it would break cached CLibSymbols used
- *  all over the place (e.g. in #Object).
  */
 void s_clib_refresh (void)
 {
   CLibSource *source;
   GList      *sourcelist;
 
-  for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist))
-  {
+  for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist)) {
+
     source = (CLibSource *) sourcelist->data;
+
     switch (source->type) {
       case CLIB_DIR:
         refresh_directory(source);
@@ -848,6 +846,7 @@ void s_clib_refresh (void)
     }
   }
 }
+
 /*! \brief Get a named component source.
  *  \par Function Description
  *  Iterates through the known component sources, checking if there is
@@ -1235,7 +1234,7 @@ static char *get_data_directory (const CLibSymbol *symbol)
 
 /*! \brief Get symbol data from a library command.
  *  \par Function Description
- *  Get symbol data from a library command.  The return value should
+ *  Get symbol data from a library command. The return value should
  *  be free()'d when no longer needed.
  *
  *  Private function used only in s_clib.c.

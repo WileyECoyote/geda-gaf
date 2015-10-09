@@ -1,7 +1,7 @@
 /* -*- C header file: f_file.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
- * Copyright (C) 2013-2014 Wiley Edward Hill
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2015 Wiley Edward Hill
+ * Copyright (C) 2013-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,6 @@
 */
 /*! \file f_file.c
  *  \brief utilility file functions
- */
-
-/*! TODO: review function s_slib_getbasename. Could other modules use this
- *        function? if so then should relocate to this module
  */
 
 #include <config.h>

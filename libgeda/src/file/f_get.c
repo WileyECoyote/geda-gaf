@@ -239,9 +239,12 @@ char *f_get_data_filespec (const char *filename)
 
 /*! \brief Get list of file in Given directory
  *  \par Function Description
- *  This function collect the names of files contain in the
+ *  This function collect the names of files contained in the
  *  specified path using the optional extension filter. The
- *  list of file is return in a single linked list.
+ *  list of files is return in a single linked list.
+ *
+ *  \param [in] path    Path to directory to examine
+ *  \param [in] filter  Optional file extension to use as filter
  *
  * \retval Returns GSList of files or NULL if no matching files
 */
