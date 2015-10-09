@@ -65,6 +65,7 @@ struct _GedaPage {
   GedaToplevel *toplevel;
 
   int pid;
+  int seq;
 
   GList      *_object_list;            /* Glist of all Object on this page*/
   SELECTION  *selection_list;          /* new selection mechanism */
@@ -89,11 +90,14 @@ struct _GedaPage {
 
   TILE world_tiles[MAX_TILES_X][MAX_TILES_Y];
 
+  /* Time tracking variables */
+  time_t last_load_or_save_time;   /* Currently set but not used */
+
   /* Undo/Redo Stacks and pointers */
   /* needs to go into page mechanism actually */
   UNDO *undo_bottom;
   UNDO *undo_current;
-  UNDO *undo_tos;                      /* Top Of Stack */
+  UNDO *undo_tos;                  /* Top Of Stack */
 
   /* used to control which pages are viewable when traversing hierarchy */
   int page_control; /* WEH sound's hokey */
@@ -105,8 +109,6 @@ struct _GedaPage {
   int show_hidden_text;
 
   /* backup variables */
-  time_t last_load_or_save_time;   /* Current set but not used */
-
   char saved_since_first_loaded;
   int  ops_since_last_backup;      /* page->CHANGED since last backup */
   char do_autosave_backup;         /* If true file should backed up */

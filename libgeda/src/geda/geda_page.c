@@ -188,6 +188,7 @@ geda_page_instance_init( GTypeInstance *instance, void *class)
 {
   Page *page                      = (Page *)instance;
   page->pid                       = global_pid++;
+  page->seq                       = -1;
 
   page->_object_list              = NULL;
   page->selection_list            = NULL;
@@ -544,8 +545,9 @@ GedaToplevel *geda_page_get_toplevel (Page *page)
 void
 geda_page_debug_print (Page *page)
 {
+  printf( "toplevel=%p, pid=%d, seq=%d\n", page->toplevel, page->pid, page->seq);
 
-  printf( "toplevel=%p, pid=%d, filename=%s\n", page->toplevel, page->pid, page->filename);
+  printf( "filename=%s\n", page->filename);
 
   printf( "object    count=%d\n", g_list_length(page->_object_list));
   printf( "selection count=%d\n", g_list_length(page->selection_list->glist));

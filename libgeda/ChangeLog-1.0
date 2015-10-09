@@ -2,7 +2,8 @@
 
     * include/libgeda/g_struct.h: Rename st_undo member up to hierarchy_up.
 
-    * include/libgeda/geda_page.h: Rename member up to hierarchy_up.
+    * include/libgeda/geda_page.h: Rename member up to hierarchy_up. Add
+      new member seq.
 
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -459,8 +459,8 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       time (&page->last_load_or_save_time);
 
       page->ops_since_last_backup = 0;
-      page->do_autosave_backup = 0;
-      page->CHANGED=0; /* WEH: added 11/17/13, really */
+      page->do_autosave_backup    = 0;
+      page->CHANGED               = 0; /* WEH: added 11/17/13, really */
 
       s_undo_update_modified(toplevel->page_current);
 
