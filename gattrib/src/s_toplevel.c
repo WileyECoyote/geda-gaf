@@ -66,14 +66,16 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
   /* Set the new filename */
   toplevel->page_current->filename = u_string_strdup(filename);
 
-  /* read in and fill out toplevel using f_open and its callees */
+  /* Read in and fill out toplevel using f_open and its callees */
   if(!f_open (toplevel, toplevel->page_current, filename, &err)) {
     u_log_message ("%s\n", err->message);
     result = 0;
     g_error_free (err);
   }
-  else
+  else {
     result = 1;
+  }
+
   return result;
 }
 
@@ -366,7 +368,9 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
 							o_current,
 							new_comp_attrib_pair_list);
 	GEDA_FREE(temp_uref);
-      } else {
+      }
+      else {
+
 #ifdef DEBUG
 	fprintf(stderr, "In s_toplevel_sheetdata_to_toplevel, found complex with no refdes. name = %s\n",
 	       o_current->name);
@@ -397,38 +401,41 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
 
   for (o_iter = g_list_last (copy_list);
        o_iter != NULL;
-       o_iter = g_list_previous (o_iter)) {
+       o_iter = g_list_previous (o_iter))
+  {
     Object *o_current = o_iter->data;
 
     /* ------- Object is a complex.  Handle pins by looking ------ */
     /* ------- for all pins attached to a component.        ------ */
     if (o_current->type == OBJ_COMPLEX) {
       /*  Upon finding a component, here's what to do:
-       *  0.  Get refdes of component.
-       *  1.  Loop over prim_objects, looking for pins.
-       *  2.  When a pin is found, create refdes:pinnumber pair
-       *      used in searching TABLE.
-       *  3.  Search TABLE using refdes:pinnumber as key, and get list of
-       *      attribs corresponding to this refdes:pinnumber
-       *  4.  Stick the attribs into the GedaToplevel data structure.
-       */
+      *  0.  Get refdes of component.
+      *  1.  Loop over prim_objects, looking for pins.
+      *  2.  When a pin is found, create refdes:pinnumber pair
+      *      used in searching TABLE.
+      *  3.  Search TABLE using refdes:pinnumber as key, and get list of
+      *      attribs corresponding to this refdes:pinnumber
+      *  4.  Stick the attribs into the GedaToplevel data structure.
+      */
       temp_uref =  s_attrib_get_refdes(o_current);
-      if ( (temp_uref != NULL) &&
-	 (strcmp (temp_uref, "none")) &&
-	 (strcmp (temp_uref, "pinlabel")) &&
-	 (o_current->complex->prim_objs) ) {    /* make sure object complex has a refdes  */
 
+      /* make sure object complex has a refdes  */
+      if ((temp_uref != NULL) &&
+          (strcmp (temp_uref, "none")) &&
+          (strcmp (temp_uref, "pinlabel")) &&
+          (o_current->complex->prim_objs))
+      {
         for (prim_iter = o_current->complex->prim_objs;
-             prim_iter != NULL;
-             prim_iter = g_list_next (prim_iter)) {
+            prim_iter != NULL;
+            prim_iter = g_list_next (prim_iter)) {
           Object *comp_prim_obj = prim_iter->data;
 
           if (comp_prim_obj->type == OBJ_PIN) {
             new_pin_attrib_list = s_toplevel_get_pin_attribs_in_sheet (temp_uref, comp_prim_obj);
             s_toplevel_update_pin_attribs_in_toplevel (toplevel,
-                                                       temp_uref,
-                                                       comp_prim_obj,
-                                                       new_pin_attrib_list);
+                                                      temp_uref,
+                                                      comp_prim_obj,
+                                                      new_pin_attrib_list);
           }
         }
       }     /* if(temp_uref  */
@@ -470,6 +477,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 
   /* Sanity check */
   if (row == -1) {
+
     /* we didn't find the item in the list */
     fprintf(stderr,
 	    _("In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in the master list!\n"));
@@ -544,14 +552,16 @@ s_toplevel_update_component_attribs_in_toplevel (
 {
   STRING_LIST *local_list;
   STRING_LIST *complete_comp_attrib_list;
-  char *old_name_value_pair;
-  char *new_attrib_name;
-  char *new_attrib_value;
-  char *old_attrib_name;
-  char *old_attrib_value;
-  char *refdes;
-  GList *a_iter;
+
+  GList  *a_iter;
   Object *a_current;
+  char   *old_name_value_pair;
+  char   *new_attrib_name;
+  char   *new_attrib_value;
+  char   *old_attrib_name;
+  char   *old_attrib_value;
+  char   *refdes;
+
   int count = 0;  /* This is to fake out a function called later */
   int row, col;
   int visibility = 0;
@@ -574,8 +584,11 @@ s_toplevel_update_component_attribs_in_toplevel (
   /* Now create a complete list of unique attribute names.  This will be used in
   *  the loop below when updating attributes.  */
   a_iter = o_current->attribs;
+
   while (a_iter != NULL) {
+
     a_current = a_iter->data;
+
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
       /* found a name=value attribute pair. */
       /* may need to check more thoroughly here. . . . */
@@ -584,32 +597,36 @@ s_toplevel_update_component_attribs_in_toplevel (
       /* Else clause is suggestion from Ales */
       old_attrib_name = u_string_split(old_name_value_pair, '=', 0);
       if ( (strcmp(old_attrib_name, "refdes") != 0) &&
-	   (strcmp(old_attrib_name, "net") != 0) &&
-	   (strcmp(old_attrib_name, "slot") != 0) &&
-	   (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
-	s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-      }
-      else {
-        int status;
-        status = o_attrib_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
-        if (status == 0) {
-        /* Don't put "refdes" or "slot" into list.  Don't put old name=value pair into list if a new
-         * one is already in there. */
-           if ( (strcmp(old_attrib_name, "refdes") != 0) &&
-	       (strcmp(old_attrib_name, "net") != 0) &&
-	       (strcmp(old_attrib_name, "slot") != 0) &&
-	       (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
-	    s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+        (strcmp(old_attrib_name, "net") != 0) &&
+        (strcmp(old_attrib_name, "slot") != 0) &&
+        (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
+        s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+        }
+        else {
+
+          int status;
+
+          status = o_attrib_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
+
+          if (status == 0) {
+
+            /* Don't put "refdes" or "slot" into list.  Don't put old name=value pair into list if a new
+             * one is already in there. */
+            if ( (strcmp(old_attrib_name, "refdes") != 0) &&
+              (strcmp(old_attrib_name, "net") != 0) &&
+              (strcmp(old_attrib_name, "slot") != 0) &&
+              (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
+              s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+              }
+              GEDA_FREE (old_attrib_name);
+            GEDA_FREE (old_attrib_value);
           }
-	  GEDA_FREE (old_attrib_name);
-	  GEDA_FREE (old_attrib_value);
-	}
-      }
-      GEDA_FREE(old_name_value_pair);
-      GEDA_FREE(old_attrib_name);
+        }
+        GEDA_FREE(old_name_value_pair);
+        GEDA_FREE(old_attrib_name);
     }
     a_iter = g_list_next (a_iter);
-  }  /* while (a_current != NULL) */
+  }  /* end while (a_current != NULL) */
 
 
   /*
@@ -651,6 +668,7 @@ s_toplevel_update_component_attribs_in_toplevel (
   } else {
     new_attrib_value = NULL;
   }
+
 #if DEBUG
   printf("        In s_toplevel_update_component_attribs_in_toplevel, new name = \"%s\" .\n",
 	 new_attrib_name);
@@ -671,36 +689,43 @@ s_toplevel_update_component_attribs_in_toplevel (
     visibility = sheet_head->component_table[col][row].visibility;
     show_name_value = sheet_head->component_table[col][row].show_name_value;
   }
+
   GEDA_FREE(refdes);
 
 
     /* -------  Four cases to consider: Case 1 ----- */
-    if ( (old_attrib_value != NULL) && (new_attrib_value != NULL) && (strlen(new_attrib_value) != 0) ) {
-      /* simply write new attrib into place of old one. */
-#if DEBUG
-      printf("     -- In s_toplevel_update_component_attribs_in_toplevel,\n");
-      printf("               about to replace old attrib with name= %s, value= %s\n",
-	                new_attrib_name, new_attrib_value);
-      printf("               visibility = %d, show_name_value = %d.\n",
-	     visibility, show_name_value);
-#endif
-      s_object_replace_attrib_in_object(toplevel,
-					o_current,
-					new_attrib_name,
-					new_attrib_value,
-					visibility,
-					show_name_value);
-    }
+  if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
+      (strlen(new_attrib_value) != 0) )
+  {
+    /* simply write new attrib into place of old one. */
 
-    /* -------  Four cases to consider: Case 2 ----- */
-    else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
-      /* remove attrib from component*/
 #if DEBUG
-      printf("     -- In s_toplevel_update_component_attribs_in_toplevel, about to remove old attrib with name= %s, value= %s\n",
-	     old_attrib_name, old_attrib_value);
+    printf("     -- In s_toplevel_update_component_attribs_in_toplevel,\n");
+    printf("               about to replace old attrib with name= %s, value= %s\n",
+           new_attrib_name, new_attrib_value);
+    printf("               visibility = %d, show_name_value = %d.\n",
+           visibility, show_name_value);
 #endif
-      s_object_release_attrib_in_object (toplevel, o_current, old_attrib_name);
-    }
+
+    s_object_replace_attrib_in_object(toplevel,
+                                      o_current,
+                                      new_attrib_name,
+                                      new_attrib_value,
+                                      visibility,
+                                      show_name_value);
+  }
+
+  /* -------  Four cases to consider: Case 2 ----- */
+  else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
+      /* remove attrib from component*/
+
+#if DEBUG
+    printf("     -- In s_toplevel_update_component_attribs_in_toplevel, about to remove old attrib with name= %s, value= %s\n",
+	       old_attrib_name, old_attrib_value);
+#endif
+
+    s_object_release_attrib_in_object (toplevel, o_current, old_attrib_name);
+  }
 
     /* -------  Four cases to consider: Case 3 ----- */
     else if ( (old_attrib_value == NULL) && (new_attrib_value != NULL) ) {
@@ -719,8 +744,11 @@ s_toplevel_update_component_attribs_in_toplevel (
                                           show_name_value);
 
       /* -------  Four cases to consider: Case 4 ----- */
-    } else {
+    }
+    else {
+
       /* Do nothing. */
+
 #if DEBUG
       printf("     -- In s_toplevel_update_component_attribs_in_toplevel, nothing needs to be done.\n");
 #endif
@@ -804,7 +832,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
 
   if ( (refdes != NULL) && (pinnumber != NULL) ) {
     row_label = u_string_concat(refdes, ":", pinnumber, NULL);
-  } else {
+  }
+  else {
     fprintf(stderr,
 	    _("In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object missing!\n"));
     return NULL;
@@ -831,7 +860,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
       new_attrib_value = u_string_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
       name_value_pair = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
-    } else {
+    }
+    else {
       name_value_pair = u_string_concat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
 
@@ -906,20 +936,20 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
   }
   old_attrib_value = o_attrib_search_attached_attribs_by_name (o_pin, new_attrib_name, 0);
 
-    /* -------  Four cases to consider: Case 1: old and new attribs exist ----- */
-    if ( (old_attrib_value != NULL) && (new_attrib_value != NULL) && (strlen(new_attrib_value) != 0) ) {
+  /* -------  Four cases to consider: Case 1: old and new attribs exist ----- */
+  if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
+      (strlen(new_attrib_value) != 0) )
+  {
       /* simply write new attrib into place of old one. */
 #if DEBUG
       printf("In s_toplevel_update_pin_attribs_in_toplevel, about to replace old attrib with new one: name= %s, value= %s\n",
              new_attrib_name, new_attrib_value);
 #endif
-      s_object_replace_attrib_in_object(toplevel,
-					o_pin,
-					new_attrib_name,
-					new_attrib_value,
-					LEAVE_VISIBILITY_ALONE,
-					LEAVE_NAME_VALUE_ALONE);
-    }
+      s_object_replace_attrib_in_object(toplevel, o_pin, new_attrib_name,
+                                                         new_attrib_value,
+                                        LEAVE_VISIBILITY_ALONE,
+                                        LEAVE_NAME_VALUE_ALONE);
+  }
 
     /* -------  Four cases to consider: Case 2: old attrib exists, new one doesn't ----- */
     else if ( (old_attrib_value != NULL) && (new_attrib_value == NULL) ) {
@@ -946,11 +976,14 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
                                          new_attrib_value);
 
       /* -------  Four cases to consider: Case 4 ----- */
-    } else {
+    }
+    else {
       /* Do nothing. */
+
 #if DEBUG
       printf("In s_toplevel_update_pin_attribs_in_toplevel, nothing needs to be done.\n");
 #endif
+
     }
 
     /* free everything and iterate */
@@ -966,9 +999,6 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
 
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
-  /* ---------- Sort the Headers  ---------- */
-  //s_string_list_sort_all_list();
-
   /* ---------- Create and load the tables  ---------- */
   s_table_load_new_page(PageData);
 
@@ -976,4 +1006,3 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
   s_toplevel_verify_design(toplevel);  /* pr_current is a global */
 
 }
-

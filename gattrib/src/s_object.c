@@ -175,44 +175,50 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel, Object *o_current,
 
 
   a_iter = o_current->attribs;
+
   while (a_iter != NULL) {
+
     a_current = a_iter->data;
-    if (a_current->type == OBJ_TEXT
-      && a_current->text != NULL) {  /* found an attribute */
+
+    if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
+
+      /* found an attribute? */
 
       /* may need to check more thoroughly here. . . . */
       old_attrib_text = u_string_strdup(a_current->text->string);
-    old_attrib_name = u_string_split(old_attrib_text, '=', 0);
+      old_attrib_name = u_string_split(old_attrib_text, '=', 0);
 
-    if (strcmp(old_attrib_name, new_attrib_name) == 0) {
-      /* create attrib=value text string & stuff it back into toplevel */
-      new_attrib_text = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
-      GEDA_FREE(a_current->text->string);   /* remove old attrib string */
-      a_current->text->string = u_string_strdup(new_attrib_text);   /* insert new attrib string */
-      if (visibility != LEAVE_VISIBILITY_ALONE)
-        o_set_visibility (a_current, visibility);
-      if (show_name_value != LEAVE_NAME_VALUE_ALONE)
-        a_current->show_name_value = show_name_value;
-      GEDA_FREE(new_attrib_text);
-      GEDA_FREE(old_attrib_text);
-      GEDA_FREE(old_attrib_name);
-      return;     /* we are done -- leave. */
-    } else {
-      GEDA_FREE(old_attrib_text);
-      GEDA_FREE(old_attrib_name);
-    }  /* if (strcmp . . . . */
-  } /* if (a_current . . . . */
+      if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
-  a_iter = g_list_next (a_iter);
-}  /* while */
+        /* create attrib=value text string & stuff it back into toplevel */
+        new_attrib_text = u_string_concat(new_attrib_name, "=", new_attrib_value, NULL);
+        GEDA_FREE(a_current->text->string);   /* remove old attrib string */
+        a_current->text->string = u_string_strdup(new_attrib_text);   /* insert new attrib string */
+        if (visibility != LEAVE_VISIBILITY_ALONE)
+          o_set_visibility (a_current, visibility);
+        if (show_name_value != LEAVE_NAME_VALUE_ALONE)
+          a_current->show_name_value = show_name_value;
+        GEDA_FREE(new_attrib_text);
+        GEDA_FREE(old_attrib_text);
+        GEDA_FREE(old_attrib_name);
+        return;     /* we are done -- leave. */
+      } else {
+        GEDA_FREE(old_attrib_text);
+        GEDA_FREE(old_attrib_name);
+      }  /* if (strcmp . . . . */
+    } /* if (a_current . . . . */
 
-/* if we get here, it's because we have failed to find the attrib on the component.
- * This is an error condition. */
-fprintf(stderr,
-        _("In s_object_replace_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
-                                         new_attrib_name);
-      return;
-      }
+    a_iter = g_list_next (a_iter);
+  } /* while */
+
+  /* if we get here, it's because we have failed to find the attrib on the component.
+   * This is an error condition. */
+  fprintf(stderr,
+          _("In s_object_replace_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
+            new_attrib_name);
+
+  return;
+}
 
 
 /*------------------------------------------------------------------*/
@@ -239,8 +245,11 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
   char *old_attrib_name;
 
   a_iter = o_current->attribs;
+
   while (a_iter != NULL) {
+
     a_current = a_iter->data;
+
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {  /* found an attribute */
 
       /* may need to check more thoroughly here. . . . */
@@ -293,10 +302,10 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
  */
 bool
 s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
-                                      char *text_string,
-                                      int visibility,
-                                      int show_name_value,
-                                      Object * object)
+                                      char         *text_string,
+                                      int           visibility,
+                                      int           show_name_value,
+                                      Object       *object)
 {
   int world_x = -1, world_y = -1;
   int color;
@@ -385,7 +394,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
  */
 void
 s_object_delete_text_object_in_object (GedaToplevel *toplevel,
-                                       Object * text_object)
+                                       Object       *text_object)
 {
   s_page_remove_object (toplevel->page_current, text_object);
   s_object_release (text_object);
@@ -405,14 +414,19 @@ int s_object_has_sym_file(Object *object)
 
   filename = object->complex->filename;
   if (filename != NULL) {
+
 #ifdef DEBUG
     printf("In s_object_has_sym_file, object has sym file = %s.\n", filename);
 #endif
+
     return 0;
-  } else {
+  }
+  else {
+
 #ifdef DEBUG
     printf("In s_object_has_sym_file, found object with no attached symbol file.\n");
 #endif
+
     return 1;
   }
 }
