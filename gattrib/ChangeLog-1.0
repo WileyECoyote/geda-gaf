@@ -1,5 +1,10 @@
 2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gattrib_dialog.c: Remove function gattrib_marshal_VOID__POINTER_STRING,
+      use geda_marshal_VOID__POINTER_STRING instead.
+
+2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gattrib.c: Call libgeda_release instead of just s_clib_free and
       s_slib_free, oops!
 

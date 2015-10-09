@@ -21,6 +21,8 @@
 
 #include <gattrib.h>
 #include "gattrib_dialog.h"
+
+#include <geda_marshal.h>
 #include <geda_stat.h>
 #include <geda_debug.h>
 
@@ -43,12 +45,12 @@ create_pixmap (const char *filename)
 
   pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
 
-  if (!pathname)
-    {
-      u_log_message("Could not find image at file: %s.\n", filename);
-      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
-                                      GTK_ICON_SIZE_INVALID);
-    }
+  if (!pathname) {
+
+    u_log_message("Could not find image at file: %s.\n", filename);
+    return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
+                                    GTK_ICON_SIZE_INVALID);
+  }
 
   pixmap = gtk_image_new_from_file (pathname);
   GEDA_FREE (pathname);
@@ -99,43 +101,6 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
 
   return widget;
 }
-
-/* Signal marshaller based on generated code from glib-genmarshal */
-static void
-gattrib_marshal_VOID__POINTER_STRING (GClosure     *closure,
-                                      GValue       *return_value,
-                                      guint         n_param_values,
-                                      const GValue *param_values,
-                                      void         *invocation_hint,
-                                      void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *     data1,
-                                                     void *     arg_1,
-                                                     void *     arg_2,
-                                                     void *     data2);
-  register GMarshalFunc_VOID__POINTER_STRING callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  } else {
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-  callback = (GMarshalFunc_VOID__POINTER_STRING) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_value_get_pointer (param_values + 1),
-            (char*)g_value_get_string (param_values + 2),
-            data2);
-}
-/* End section based on generated code from glib-genmashal */
-
 
 enum {
   PROP_SETTINGS_NAME = 1,
@@ -432,7 +397,7 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
                   G_STRUCT_OFFSET( GattribDialogClass, geometry_save ),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
-                  gattrib_marshal_VOID__POINTER_STRING,
+                  geda_marshal_VOID__POINTER_STRING,
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
@@ -446,7 +411,7 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
                   G_STRUCT_OFFSET( GattribDialogClass, geometry_restore ),
                   NULL, /* accumulator */
                   NULL, /* accu_data */
-                  gattrib_marshal_VOID__POINTER_STRING,
+                  geda_marshal_VOID__POINTER_STRING,
                   G_TYPE_NONE,
                   2,    /* n_params */
                   G_TYPE_POINTER,
