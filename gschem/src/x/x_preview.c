@@ -605,7 +605,7 @@ preview_finalize (GObject *self)
     toplevel = preview_window->toplevel;
 
     if (toplevel) {
-      s_page_delete (toplevel, toplevel->page_current);
+      s_page_delete (toplevel, toplevel->page_current, FALSE);
       GEDA_UNREF (preview_window->toplevel);
       preview_window->toplevel = NULL;
     }

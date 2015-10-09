@@ -348,7 +348,7 @@ void s_page_clear_changed (PageList *list)
  * \param [in] page       Page to be removed.
  *
  */
-void s_page_delete (GedaToplevel *toplevel, Page *page)
+void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   Page *tmp;
 
@@ -423,7 +423,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
  *
  *  \param toplevel  The GedaToplevel object.
  */
-void s_page_delete_list(GedaToplevel *toplevel)
+void s_page_delete_list (GedaToplevel *toplevel)
 {
   GList *list_copy, *iter;
   Page *page;
@@ -437,15 +437,13 @@ void s_page_delete_list(GedaToplevel *toplevel)
 
       o_notify_change_remove_all(page);
 
-      s_page_delete (toplevel, page);
+      s_page_delete (toplevel, page, FALSE);
 
     }
   }
 
   g_list_free (list_copy);
 
-  /* reset toplevel fields */
-  geda_toplevel_set_current_page(toplevel, NULL);
 }
 
 /*! \brief Get the current page
@@ -469,6 +467,8 @@ Page *s_page_get_current (GedaToplevel *toplevel)
  *
  * \param [in,out] toplevel This toplevel
  * \param [in] page The new current page
+ *
+ * \returns TRUE if \a page was set as the current page
  */
 bool s_page_set_current (GedaToplevel *toplevel, Page *page)
 {

@@ -360,7 +360,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
     /* There was at least 1 error opening files, and we do not know
        which one, so clear all and start a blank page */
-       s_page_delete (pr_current, pr_current->page_current);
+       s_page_delete (pr_current, pr_current->page_current, FALSE);
        x_window_blank_document(pr_current, sheet_head);
     }
   }

@@ -864,12 +864,12 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 
     old_current = toplevel->page_current; /* save fallback point */
 
-    if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
+    if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
       /* An existing filename was passed, see if already loaded */
       page = s_page_search (toplevel, filename);
 
-      if ( page == NULL ) {
+      if (page == NULL) {
 
         GError *err = NULL;
         /* Problem: f_open needs a pointer to a page so we have to create
@@ -884,7 +884,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
           fprintf(stderr, "Error loading file:%s\n", err->message);
           u_log_message( "Failed to load file:%s\n", err->message);
           g_error_free (err);
-          s_page_delete (toplevel, page);
+          s_page_delete (toplevel, page, FALSE); /* FALSE for now */
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */

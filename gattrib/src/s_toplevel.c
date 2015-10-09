@@ -43,11 +43,14 @@ void s_toplevel_close(PageDataSet *PageData) {
   s_table_destroy(PageData->net_table, PageData->net_count, PageData->net_attrib_count);
   s_table_destroy(PageData->pin_table , PageData->pin_count, PageData->pin_attrib_count);
   s_sheet_data_reset(PageData);
-  f_close(pr_current);  /*  Does absolutely nothing */
-  if(pr_current->page_current != NULL)
-    s_page_delete (pr_current, pr_current->page_current);
 
+  if (pr_current->page_current != NULL) {
+    s_page_delete (pr_current, pr_current->page_current, FALSE);
+  }
+
+  f_close(pr_current);  /*  Does absolutely nothing */
 }
+
 /*! \brief Read a schematic page
  *
  * Reads in a schematic page & calls f_open, which fills out the

@@ -503,7 +503,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    s_page_check_changed            (PageList *list);
          void    s_page_clear_changed            (PageList *list);
 
-         void    s_page_delete                   (GedaToplevel *toplevel, Page *page);
+         void    s_page_delete                   (GedaToplevel *toplevel, Page *page, int previous);
          void    s_page_delete_list              (GedaToplevel *toplevel);
          Page   *s_page_get_current              (GedaToplevel *toplevel);
          bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);

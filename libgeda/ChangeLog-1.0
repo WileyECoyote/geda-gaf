@@ -5,6 +5,8 @@
     * include/libgeda/geda_page.h: Rename member up to hierarchy_up. Add
       new member seq.
 
+    * src/struct/s_page.c: Add int previous argument to s_page_delete.
+
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove defines for s_clib_getfilename.

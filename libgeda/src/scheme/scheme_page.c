@@ -100,7 +100,7 @@ EDA_SCM_DEFINE (page_close_x, "%close-page!", 1, 0, 0,
 
   Page *page = edascm_to_page (page_s);
 
-  s_page_delete (toplevel, page);
+  s_page_delete (toplevel, page, TRUE);
 
   return SCM_UNDEFINED;
 }
