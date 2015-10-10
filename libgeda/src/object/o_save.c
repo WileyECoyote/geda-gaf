@@ -51,6 +51,9 @@ void o_save_auto_backup(GedaToplevel *toplevel)
   mode_t    saved_umask;
   mode_t    mask;
   struct    stat st;
+  int       count;
+
+  count = 0;
 
   /* save current page */
   p_save = toplevel->page_current;
@@ -64,6 +67,9 @@ void o_save_auto_backup(GedaToplevel *toplevel)
     }
 
     if (p_current->ops_since_last_backup != 0) {
+
+      count++;
+
       /* make p_current the current page of toplevel */
       s_page_goto (toplevel, p_current);
 
@@ -88,6 +94,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
          */
 
         if (stat (real_filename, &st) != 0) {
+
 #if defined(HAVE_GETUID) && defined(HAVE_GETGID)
             struct stat dir_st;
             int result;
@@ -97,6 +104,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
             saved_umask = umask(0);
             st.st_mode = 0666 & ~saved_umask;
             umask(saved_umask);
+
 #if defined(HAVE_GETUID) && defined(HAVE_GETGID)
             st.st_uid = getuid ();
 
@@ -107,7 +115,8 @@ void o_save_auto_backup(GedaToplevel *toplevel)
             else
               st.st_gid = getgid ();
 #endif
-          }
+
+        }
         GEDA_FREE (dirname);
         GEDA_FREE (only_filename);
         GEDA_FREE (real_filename);
@@ -154,8 +163,9 @@ void o_save_auto_backup(GedaToplevel *toplevel)
       }
     }
   }
-  /* restore current page */
-  s_page_goto (toplevel, p_save);
+
+  if (count)/* restore current page */
+     s_page_goto (toplevel, p_save);
 }
 
 /*! \brief Save a series of objects into a string buffer

@@ -1,5 +1,7 @@
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: Potential Stability Issues
+
     * src/object/o_arc_basic.c: Revised variable definitions in function
       o_arc_get_nearest_point to declare variables as volatile to suppress
       gcc warnings that the variables might be used initialized, presumably
@@ -11,6 +13,11 @@
 
     * src/utility/u_string.c: Revised function u_string_sprintf to add NULL
       terminator to buffer only if malloc returned a pointer to buffer, dah.
+
+    * Code Enhancement: Improve Performance
+
+    * src/object/o_save.c: Add counter in o_save_auto_backup so the current
+      page is only set and restored if a backup is actually performed.
 
 2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
