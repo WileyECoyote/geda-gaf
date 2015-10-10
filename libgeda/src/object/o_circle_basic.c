@@ -459,8 +459,9 @@ bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
   int     cx, cy, r;
   double  dx, dy;
   double  A, B, C, D;
-  double  b = b;
-  double  m = m;
+
+  volatile double  b;
+  volatile double  m;
 
   if (GEDA_IS_CIRCLE(object)) {
 

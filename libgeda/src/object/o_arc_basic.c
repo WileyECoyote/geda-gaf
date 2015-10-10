@@ -500,9 +500,10 @@ o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 
         int x1, y1, x2, y2;
         double A, B, C, D;
-        double b = b;
-        double m = m;
-        double tmp_x, tmp_y;
+
+        volatile double b;
+        volatile double m;
+                 double tmp_x, tmp_y;
 
         x1 = cx;
         y1 = cy;
@@ -528,6 +529,7 @@ o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         else {                                   /* Westward */
           tmp_x = (-1 * B + sqrt(D)) / (2 * A);
         }
+
         tmp_y = m * tmp_x + b;
 
 #ifdef HAVE_LRINT
