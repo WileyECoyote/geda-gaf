@@ -404,8 +404,8 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   int    cx, cy, r;
   double dx, dy;
   double A, B, C, D;
-  double b = b;                        /* Shutup lame compiler */
-  double m = m;
+  double b; // = b;                        /* Shutup lame compiler */
+  double m; // = m;
 
   POINT pt1;
   POINT pt2;
@@ -1292,8 +1292,9 @@ static bool o_extend_can_circle_bound(Object  *boundary,
   int    cx, cy, r;
   double dx, dy;
   double A, B, C, D;
-  double b = b;                        /* Shutup lame compiler */
-  double m = m;
+
+  volatile double b;
+  volatile double m;
 
   x1 = projectile->line->x[!which_end];
   y1 = projectile->line->y[!which_end];

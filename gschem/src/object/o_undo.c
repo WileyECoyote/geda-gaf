@@ -445,11 +445,10 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   int   find_prev_data=FALSE;
   int   restored;
 
-  /* The following varible are initialized to suppress errent gcc warnings */
-  int left    = left;
-  int right   = right;
-  int top     = top;
-  int bottom  = bottom;
+  volatile int left;
+  volatile int right;
+  volatile int top;
+  volatile int bottom;
 
   const char *disk_err_msg;
 

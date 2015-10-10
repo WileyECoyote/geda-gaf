@@ -1,3 +1,13 @@
+2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Revise variable definitions in function
+      o_extend_can_circle_bound as volatile to suppress gcc warnings
+      that the variables might be used initialized, presumably after
+      gcc optimization.
+
+    * src/object/o_undo.c: Revise o_undo_callback to use volatile for
+      the reason as the previous entry.
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add GEDA_CONST attribute to function prototypes:
