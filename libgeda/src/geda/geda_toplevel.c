@@ -536,17 +536,19 @@ bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
   return found_page;
 }
 
-Page *geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
+Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 {
-  const GList *iter;
+  const GList *pages, *iter;
   Page *found_page;
 
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   found_page = NULL;
 
-  for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
-  {
+  pages = geda_list_get_glist(toplevel->pages);
+
+  for (iter = pages; iter != NULL; NEXT(iter)) {
+
     Page *ptr = (Page*)iter->data;
 
     if (ptr->pid == page_id) {

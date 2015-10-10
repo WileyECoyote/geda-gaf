@@ -7,6 +7,9 @@
 
     * src/struct/s_page.c: Add int previous argument to s_page_delete.
 
+    * src/geda/geda_toplevel.c: Renamed function geda_toplevel_get_page to
+      geda_toplevel_get_page_by_id.
+
 2015-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove defines for s_clib_getfilename.
