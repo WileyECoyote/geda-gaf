@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2012-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -426,16 +426,21 @@ char *u_string_sprintf (const char *format, ...)
   va_start (args, format);
 
   if (size < USS_BUFFER_SIZE) {
+
     vsprintf (&local_buffer[0], format, args);
+
     buffer = (char*)GEDA_MEM_ALLOC(size);
+
     if (buffer) {
       buffer = memcpy(buffer, &local_buffer[0], size);
     }
   }
   else {
+
     buffer = (char*)GEDA_MEM_ALLOC(size);
-    buffer[size] = '\0';
+
     if (buffer) {
+      buffer[size] = '\0';
       vsprintf (buffer, format, args);
     }
   }

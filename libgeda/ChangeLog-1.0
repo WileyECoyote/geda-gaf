@@ -1,6 +1,6 @@
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_arc_basic.c: Revise variable definitions in function
+    * src/object/o_arc_basic.c: Revised variable definitions in function
       o_arc_get_nearest_point to declare variables as volatile to suppress
       gcc warnings that the variables might be used initialized, presumably
       this would occur after gcc optimization.
@@ -8,6 +8,9 @@
     * src/object/o_circle_basic.c:Revise variable definitions in function
       o_arc_get_nearest_point with volatile keyword for the same reason as
       the previous entry.
+
+    * src/utility/u_string.c: Revised function u_string_sprintf to add NULL
+      terminator to buffer only if malloc returned a pointer to buffer, dah.
 
 2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
