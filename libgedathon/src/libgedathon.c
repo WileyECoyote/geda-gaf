@@ -1094,7 +1094,7 @@ int
 PyGeda_set_active_page(int pid )
 {
   Page *page;
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   return s_page_set_current (toplevel, page);
 }
 
@@ -1115,7 +1115,7 @@ int PyGeda_is_page_modified (int pid)
   Page   *page   = NULL;
   int     status = -1;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
     status = page->CHANGED;
   }
@@ -1138,7 +1138,7 @@ int
 PyGeda_goto_page( int pid )
 {
   Page *page;
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   return s_page_goto (toplevel, page);
 }
 
@@ -1234,7 +1234,9 @@ PyGeda_open_page( const char *filename )
     filename = page->filename;
   }
   else {
+
     old_current = toplevel->page_current; /* save fallback point */
+
     if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
       /* An existing filename was passed, see if already loaded */
 
@@ -1252,7 +1254,7 @@ PyGeda_open_page( const char *filename )
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
           g_error_free (err);
-          s_page_delete (toplevel, page);
+          s_page_delete (toplevel, page, FALSE);
           resolve_2_recover(NULL);
         }
       }
@@ -1327,7 +1329,7 @@ PyGeda_close_page(int pid)
   GList *iter;
   int    new_pid;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page->pid == toplevel->page_current->pid) {
 
@@ -1356,7 +1358,7 @@ PyGeda_close_page(int pid)
   }
 
   /* remove page from toplevel list of page and free */
-  s_page_delete (toplevel, page);
+  s_page_delete (toplevel, page, TRUE);
 
   /* Switch to a different page if we just removed the current */
   if (toplevel->page_current == NULL) {
@@ -1434,7 +1436,7 @@ int PyGeda_rename_page (int pid, const char *filename)
   Page   *page   = NULL;
   int     status = 0;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
     status = geda_page_rename(page, filename);
   }
@@ -1459,7 +1461,7 @@ PyGeda_save_page( int pid )
   Page   *page   = NULL;
   int     status = 0;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
     if ( !f_save (toplevel, page, page->filename, &err)) {
       fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
@@ -1487,7 +1489,7 @@ int PyGeda_save_page_as (int pid, const char *filename)
   Page   *page   = NULL;
   int     status = 0;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
     status = geda_page_rename(page, filename);
   }
@@ -1528,7 +1530,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
 
       py_page     = PyList_GET_ITEM(py_page_list, i);
       pid         = ((PageObject*)py_page)->pid;
-      page        = geda_toplevel_get_page(toplevel, pid);
+      page        = geda_toplevel_get_page_by_id(toplevel, pid);
       pages       = g_list_append(pages, page);
     }
   }
@@ -1583,7 +1585,7 @@ PyGeda_get_bounds( int pid, int sid )
 
   int left, top, right, bottom;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if( sid < 0) {
     list = s_page_get_objects(page);
@@ -1695,7 +1697,7 @@ PyGeda_get_objects( int pid, int sid )
   Page     *page;
   PyObject *py_list;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if( sid < 0) {
     list = s_page_get_objects (page);
@@ -1756,7 +1758,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
   if (PyPage) {
 
     pid  = ((PageObject*)PyPage)->pid;
-    page = geda_toplevel_get_page(toplevel, pid);
+    page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     if (page && (GEDA_IS_PAGE(page))) {
       geda_pyobject->pid = pid; /* save page id to the pyobject */
@@ -1816,7 +1818,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
   else { /* Adding an attribute object to an object */
 
     pid  = geda_pyparent->pid;
-    page = geda_toplevel_get_page(toplevel, pid);
+    page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     /* If the pyparent is already on a page then add child */
     if (page && (GEDA_IS_PAGE(page))) {
@@ -1914,7 +1916,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 
   sid  = geda_object->sid;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
     src_object = s_page_get_object(page, sid);
@@ -1985,7 +1987,7 @@ PyGeda_remove_object( PyObject *py_object )
   const Object     *object;
         Page       *page;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
     sid  = geda_object->sid;
@@ -2052,7 +2054,7 @@ PyGeda_delete_object( PyObject *py_object )
   const char *name;
 
   if ( pid >= 0 ) {
-    page   = geda_toplevel_get_page(toplevel, pid);
+    page   = geda_toplevel_get_page_by_id(toplevel, pid);
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
       if (GEDA_IS_OBJECT(object)) {
@@ -2132,7 +2134,7 @@ PyGeda_sync_object( PyObject *py_object )
   Page       *page;
 
   if ( pid >= 0 ) {
-    page   = geda_toplevel_get_page(toplevel, pid);
+    page   = geda_toplevel_get_page_by_id(toplevel, pid);
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
     }
@@ -2725,7 +2727,7 @@ PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
     parent = get_floating_object(sid);
   }
   else {
-    page   = geda_toplevel_get_page(toplevel, pid);
+    page   = geda_toplevel_get_page_by_id(toplevel, pid);
     parent = s_page_get_object(page, sid);
   }
 
@@ -2789,7 +2791,7 @@ PyGeda_get_attribs( PyObject *py_object )
     parent = get_floating_object(sid);
   }
   else {
-    page   = geda_toplevel_get_page(toplevel, pid);
+    page   = geda_toplevel_get_page_by_id(toplevel, pid);
     parent = s_page_get_object(page, sid);
   }
 
@@ -2857,7 +2859,7 @@ PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
       object = get_floating_object(sid);
     }
     else {
-      page   = geda_toplevel_get_page(toplevel, pid);
+      page   = geda_toplevel_get_page_by_id(toplevel, pid);
       object = s_page_get_object(page, sid);
     }
     if (GEDA_IS_OBJECT(object)) {
@@ -2914,7 +2916,7 @@ PyGeda_refresh_attribs( PyObject *py_object )
   const Object *object;
   Page         *page;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
 
@@ -2993,7 +2995,7 @@ PyGeda_get_network( int pid, int sid, int filter )
 
   network = NULL;
 
-  page = geda_toplevel_get_page(toplevel, pid);
+  page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if( sid >= 0) {
 
@@ -3134,7 +3136,7 @@ get_cue_locations(PyObject *py_objects, int flag)
     geda_object = (GedaObject*)PyList_GET_ITEM(py_objects, 1);
     pid         = geda_object->pid;
 
-    page = geda_toplevel_get_page(toplevel, pid);
+    page = geda_toplevel_get_page_by_id(toplevel, pid);
 
     for (i = 1; i < count; i++) {
 
