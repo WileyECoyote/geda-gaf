@@ -31,7 +31,6 @@ BEGIN_DECLS
          bool    f_get_is_path_absolute          (const char *filename);
 
 /* f_path.c */
-         void    f_path_free                     (void);
          char   *f_path_get_dirname              (const char *filename);
    const char   *f_path_sys_data                 (void);
    const char   *f_path_sys_doc                  (void);
@@ -420,7 +419,6 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUS
           int    s_attrib_count                  (void);
          void    s_attrib_print                  (void);
           int    s_attrib_uniq                   (char *name);
-         void    s_attrib_free                   (void);
          void    s_attrib_init                   (void);
          char   *s_attrib_get                    (int counter);
 
@@ -430,7 +428,6 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUS
 
 /* s_clib.c */
          void     s_clib_flush_cache             (void);
-         void     s_clib_free                    (void);
          void     s_clib_refresh                 (void);
         GList    *s_clib_get_sources             (const bool sorted);
          bool     s_clib_source_name_exist       (const char *name);
@@ -534,7 +531,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
           int    s_papersizes_add_entry          (char *new_papersize, int width, int height);
          void    s_papersizes_print              (void);
           int    s_papersizes_uniq               (char *name);
-         void    s_papersizes_free               (void);
          void    s_papersizes_init               (void);
          char   *s_papersizes_get                (int counter);
          void    s_papersizes_get_size           (char *string, int *width, int *height);
@@ -552,7 +548,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_slib.c */
           int    s_slib_add_entry                (const char *new_path);
-         void    s_slib_free                     (void);
          char   *s_slib_get_basename             (const char *rawname);
          char   *s_slib_get_dir                  (int index);
          void    s_slib_init                     (void);

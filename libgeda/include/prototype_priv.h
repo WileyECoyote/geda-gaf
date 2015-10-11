@@ -1,93 +1,95 @@
+/* f_path.c */
+void     f_path_free                         (void);
+
 /* f_print.c */
-void f_print_set_line_width            (FILE *fp, int width);
-int  f_print_set_color                 (GedaToplevel *toplevel, FILE *fp, int color);
-int  f_print_header                    (GedaToplevel *toplevel, Page *page, FILE *fp, int paper_size_x, int paper_size_y, int eps, bool landscape);
-void f_print_footer                    (FILE *fp);
-void f_print_objects                   (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
-                                        int start_x, int start_y, float scale,
-                                        int unicode_count, gunichar *unicode_table);
-int  f_print_initialize_glyph_table    (void);
+void     f_print_set_line_width              (FILE *fp, int width);
+int      f_print_set_color                   (GedaToplevel *toplevel, FILE *fp, int color);
+int      f_print_header                      (GedaToplevel *toplevel, Page *page, FILE *fp, int paper_size_x, int paper_size_y, int eps, bool landscape);
+void     f_print_footer                      (FILE *fp);
+void     f_print_objects                     (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
+                                              int start_x, int start_y, float scale,
+                                              int unicode_count, gunichar *unicode_table);
+int      f_print_initialize_glyph_table      (void);
 
 /* g_rc.c */
-SCM  g_rc_component_groups             (SCM stringlist);
-SCM  g_rc_component_library            (SCM path, SCM name);
-SCM  g_rc_component_library_command    (SCM listcmd, SCM getcmd, SCM name);
-SCM  g_rc_component_library_funcs      (SCM listfunc, SCM getfunc, SCM name);
+SCM      g_rc_component_groups               (SCM stringlist);
+SCM      g_rc_component_library              (SCM path, SCM name);
+SCM      g_rc_component_library_command      (SCM listcmd, SCM getcmd, SCM name);
+SCM      g_rc_component_library_funcs        (SCM listfunc, SCM getfunc, SCM name);
 
-SCM  g_rc_source_library               (SCM path);
-SCM  g_rc_source_library_search        (SCM path);
+SCM      g_rc_source_library                 (SCM path);
+SCM      g_rc_source_library_search          (SCM path);
 
-SCM  g_rc_reset_component_library      (void);
-SCM  g_rc_reset_source_library         (void);
+SCM      g_rc_reset_component_library        (void);
+SCM      g_rc_reset_source_library           (void);
 
-SCM  g_rc_bus_style                    (SCM mode);
-SCM  g_rc_line_style                   (SCM mode);
-SCM  g_rc_net_style                    (SCM mode);
-SCM  g_rc_pin_style                    (SCM mode);
+SCM      g_rc_bus_style                      (SCM mode);
+SCM      g_rc_line_style                     (SCM mode);
+SCM      g_rc_net_style                      (SCM mode);
+SCM      g_rc_pin_style                      (SCM mode);
 
-SCM  g_rc_thick_bus_width              (SCM mode);
-SCM  g_rc_thick_line_width             (SCM mode);
-SCM  g_rc_thick_net_width              (SCM mode);
-SCM  g_rc_thick_pin_width              (SCM mode);
+SCM      g_rc_thick_bus_width                (SCM mode);
+SCM      g_rc_thick_line_width               (SCM mode);
+SCM      g_rc_thick_net_width                (SCM mode);
+SCM      g_rc_thick_pin_width                (SCM mode);
 
-SCM  g_rc_thin_bus_width               (SCM mode);
-SCM  g_rc_thin_line_width              (SCM mode);
-SCM  g_rc_thin_net_width               (SCM mode);
-SCM  g_rc_thin_pin_width               (SCM mode);
+SCM      g_rc_thin_bus_width                 (SCM mode);
+SCM      g_rc_thin_line_width                (SCM mode);
+SCM      g_rc_thin_net_width                 (SCM mode);
+SCM      g_rc_thin_pin_width                 (SCM mode);
 
-SCM  g_rc_always_promote_attributes    (SCM scmsymname);
-SCM  g_rc_attribute_promotion          (SCM mode);
-SCM  g_rc_keep_invisible               (SCM mode);
+SCM      g_rc_always_promote_attributes      (SCM scmsymname);
+SCM      g_rc_attribute_promotion            (SCM mode);
+SCM      g_rc_keep_invisible                 (SCM mode);
 
-SCM  g_rc_bitmap_directory             (SCM path);
-SCM  g_rc_log_directory                (SCM path);
-SCM  g_rc_scheme_directory             (SCM path);
+SCM      g_rc_bitmap_directory               (SCM path);
+SCM      g_rc_log_directory                  (SCM path);
+SCM      g_rc_scheme_directory               (SCM path);
 
-SCM  g_rc_check_symbol_version         (SCM mode);
-SCM  g_rc_make_backup_files            (SCM mode);
-SCM  g_rc_postscript_prolog            (SCM scmsymname);
-SCM  g_rc_print_color_map              (SCM scm_map);
-SCM  g_rc_promote_invisible            (SCM mode);
+SCM      g_rc_check_symbol_version           (SCM mode);
+SCM      g_rc_make_backup_files              (SCM mode);
+SCM      g_rc_postscript_prolog              (SCM scmsymname);
+SCM      g_rc_print_color_map                (SCM scm_map);
+SCM      g_rc_promote_invisible              (SCM mode);
 
-SCM  g_rc_untitled_name                (SCM name);
-SCM  g_rc_show_full_path               (SCM mode);
+SCM      g_rc_untitled_name                  (SCM name);
+SCM      g_rc_show_full_path                 (SCM mode);
 
 /* g_register.c */
-void g_register_rc_handlers            (void);
-void g_register_libgeda_dirs           (void);
+void     g_register_rc_handlers              (void);
+void     g_register_libgeda_dirs             (void);
 
 /* geda_object.c */
-int            geda_object_get_next_sid            (void);
-void           geda_object_append_new_hook         (NewObjectFunc func, void *data);
-void           geda_object_unref                   (Object *object);
+int      geda_object_get_next_sid            (void);
+void     geda_object_append_new_hook         (NewObjectFunc func, void *data);
+void     geda_object_unref                   (Object *object);
 
 /* geda_page.c */
-void           geda_page_append_new_hook           (NewPageFunc func, void *data);
-void           geda_page_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data);
-void           geda_page_unref                     (Page *page);
-void           geda_page_set_toplevel              (Page *page, GedaToplevel *toplevel);
+void     geda_page_append_new_hook           (NewPageFunc func, void *data);
+void     geda_page_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data);
+void     geda_page_unref                     (Page *page);
+void     geda_page_set_toplevel              (Page *page, GedaToplevel *toplevel);
 GedaToplevel  *geda_page_get_toplevel              (Page *page);
 
 /* geda_toplevel.c */
-void           geda_toplevel_append_new_hook       (NewToplevelFunc func, void *data);
-bool           geda_toplevel_set_bounds            (GedaToplevel *toplevel, Object *o_current);
-void           geda_toplevel_unref                 (GedaToplevel *toplevel);
+void     geda_toplevel_append_new_hook       (NewToplevelFunc func, void *data);
+bool     geda_toplevel_set_bounds            (GedaToplevel *toplevel, Object *o_current);
+void     geda_toplevel_unref                 (GedaToplevel *toplevel);
 
 /* m_bounds.c */
-void   m_bounds_init                   (BOUNDS *bounds);
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+void     m_bounds_init            (BOUNDS *bounds);
 
 /* m_transform.c */
-void m_transform_combine       (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );
-void m_transform_init          (TRANSFORM *transform);
-void m_transform_invert        (TRANSFORM *transform, TRANSFORM *inverse);
-void m_transform_line          (TRANSFORM *transform, LINE *line );
-void m_transform_lines         (TRANSFORM *transform, GArray *lines);
-void m_transform_point         (TRANSFORM *transform, int *x, int *y);
-void m_transform_points        (TRANSFORM *transform, GArray *points);
-void m_transform_rotate        (TRANSFORM *transform, double angle);
-void m_transform_scale         (TRANSFORM *transform, double factor);
-void m_transform_translate     (TRANSFORM *transform, double dx, double dy);
+void     m_transform_combine      (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );
+void     m_transform_init         (TRANSFORM *transform);
+void     m_transform_invert       (TRANSFORM *transform, TRANSFORM *inverse);
+void     m_transform_line         (TRANSFORM *transform, LINE *line );
+void     m_transform_lines        (TRANSFORM *transform, GArray *lines);
+void     m_transform_point        (TRANSFORM *transform, int *x, int *y);
+void     m_transform_points       (TRANSFORM *transform, GArray *points);
+void     m_transform_rotate       (TRANSFORM *transform, double angle);
+void     m_transform_scale        (TRANSFORM *transform, double factor);
+void     m_transform_translate    (TRANSFORM *transform, double dx, double dy);
 
 /* o_arc_basic.c */
 Object  *o_arc_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
@@ -112,25 +114,25 @@ GList   *o_read_attribs           (GedaToplevel *toplevel, Object *receiving_obj
                                    unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
 
 /* o_box_basic.c */
-Object  *o_box_read              (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char    *o_box_save              (Object *object);
-void     o_box_print             (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
-void     o_box_print_solid       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+Object  *o_box_read               (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char    *o_box_save               (Object *object);
+void     o_box_print              (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
+void     o_box_print_solid        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_box_print_dotted       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_box_print_dashed       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_box_print_dotted      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_box_print_dashed      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                 int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_box_print_center      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_box_print_phantom     (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_box_print_filled      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void     o_box_print_mesh        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void     o_box_print_hatch       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
-                                  int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void     o_box_print_center       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_box_print_phantom      (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_box_print_filled       (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void     o_box_print_mesh         (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void     o_box_print_hatch        (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
+                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 double   o_box_shortest_distance  (Object *object, int x, int y, int force_soild);
 bool     o_box_get_position       (int *x, int *y, Object *object);
 
@@ -142,25 +144,25 @@ void     o_bus_print              (GedaToplevel *toplevel, FILE *fp, Object *o_c
 bool     o_bus_get_position       (int *x, int *y, Object *object);
 
 /* o_circle_basic.c */
-Object  *o_circle_read            (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char    *o_circle_save            (Object *object);
-void     o_circle_print           (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
-void     o_circle_print_solid     (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_circle_print_dotted    (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_circle_print_dashed    (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_circle_print_center    (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_circle_print_phantom   (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
-void     o_circle_print_filled    (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void     o_circle_print_mesh      (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
-void     o_circle_print_hatch     (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
-                                   int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+Object  *o_circle_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
+char    *o_circle_save                 (Object *object);
+void     o_circle_print                (GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, int origin_y);
+void     o_circle_print_solid          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_circle_print_dotted         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_circle_print_dashed         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_circle_print_center         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_circle_print_phantom        (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
+void     o_circle_print_filled         (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void     o_circle_print_mesh           (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
+void     o_circle_print_hatch          (GedaToplevel *toplevel, FILE *fp, int x, int y, int radius, int color,
+                                        int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 double   o_circle_shortest_distance    (Object *object, int x, int y, int force_soild);
 bool     o_circle_get_position         (int *x, int *y, Object *object);
 
@@ -240,8 +242,12 @@ double   o_text_shortest_distance      (Object *object, int x, int y, int force_
 bool     o_text_get_position           (int *x, int *y, Object *object);
 void     o_text_update_disp_string     (Object *object);
 
+/* s_attrib.c */
+         void    s_attrib_free         (void);
+
 /* s_clib.c */
 void     s_clib_init                   (void);
+         void     s_clib_free          (void);
 GList   *s_clib_get_symbols            (const GedaToplevel *toplevel);
 
 /* s_color.c */
@@ -259,6 +265,12 @@ void     s_conn_init                   (void);
 /* s_encoding.c */
 char    *s_encoding_base64_encode      (char* src, unsigned int srclen, unsigned int* dstlenp, bool strict);
 char    *s_encoding_base64_decode      (char* src, unsigned int srclen, unsigned int* dstlenp);
+
+/* s_papersizes.c */
+         void    s_papersizes_free     (void);
+
+/* s_slib.c */
+         void    s_slib_free           (void);
 
 /* s_textbuffer.c */
 TextBuffer   *s_textbuffer_new         (const char *data, const int size);

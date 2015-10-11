@@ -1,3 +1,16 @@
+2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Function Maintenance
+
+    * include/prototype_priv.h: Make function private, (removed from
+      include/libgeda/prototype.h):
+
+            * f_path_free
+            * s_attrib_free
+            * s_clib_free
+            * s_papersizes_free
+            * s_slib_free
+
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Potential Stability Issues
