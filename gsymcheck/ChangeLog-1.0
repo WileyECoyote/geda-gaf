@@ -3,6 +3,11 @@
     * src/gsymcheck.c: Call libgeda_release instead of just s_clib_free and
       s_slib_free.
 
+    * include/prototype.h: Clean file (some what), add blank lines before
+      file name comments, remove proto-types for main and main_prog.
+
+    * src/gsymcheck.c: Define main_prog as static.
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/gsymcheck.c: Revise main_prog to call u_log_set_update_func

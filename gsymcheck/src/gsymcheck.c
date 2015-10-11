@@ -34,8 +34,7 @@ gsymcheck_quit(void)
   libgeda_release();
 }
 
-void
-main_prog(void *closure, int argc, char *argv[])
+static void main_prog(void *closure, int argc, char *argv[])
 {
   int i;
   int argv_index;
