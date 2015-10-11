@@ -902,7 +902,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
       access (filename,  W_OK && F_OK);
       file_err = errno;                        /* save file error */
       path = strcpy (&strbuff[0], filename);
-      path = dirname(path);                    /* f_get_dirname make copy */
+      path = dirname(path);                    /* f_path_get_dirname make copy */
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
         q_log_message("Creating new file \"%s\"\n", filename);
@@ -1198,7 +1198,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
       }
 
       /* remove page from toplevel list of page and free */
-      s_page_delete (toplevel, page);
+      s_page_delete (toplevel, page, TRUE);
 
       /* Switch to a different page if we just removed the current */
       if (toplevel->page_current == NULL) {

@@ -414,9 +414,10 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
     s_page_goto (toplevel, tmp);
   }
   else {
-    /* page was page_current */
-    geda_toplevel_set_current_page(toplevel, NULL);
-    /* page_current must be updated by calling function */
+    /* page was page_current, so check previous flag */
+    if (previous) {
+      geda_toplevel_goto_prev_page(toplevel);
+    }
   }
 }
 

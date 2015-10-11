@@ -186,7 +186,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   /* Before we open the page, let's load the corresponding gafrc. */
   /* First cd into file's directory. */
-  file_directory = f_get_dirname (full_filename);
+  file_directory = f_path_get_dirname (full_filename);
 
   if (file_directory) {
 
@@ -397,7 +397,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     }
 
     /* Get the directory in which the real filename lives */
-    dirname = f_get_dirname (real_filename);
+    dirname = f_path_get_dirname (real_filename);
     only_filename = g_path_get_basename(real_filename);
 
     /* Do a backup if it's not an undo file backup and it was never saved.

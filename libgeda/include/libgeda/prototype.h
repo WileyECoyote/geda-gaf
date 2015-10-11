@@ -24,7 +24,7 @@ BEGIN_DECLS
          char   *f_get_bitmap_filespec           (const char *filename);
          char   *f_get_data_filespec             (const char *filename);
        GSList   *f_get_dir_list_files            (      char *path, char *filter);
-         char   *f_get_dirname                   (const char *filename);
+
          bool    f_get_file_contents             (const char *filename, char **contents, size_t *length, GError **err);
    const char   *f_get_filename_ext              (const char *filename);
    const char   *f_get_format_header             (void);
@@ -32,6 +32,7 @@ BEGIN_DECLS
 
 /* f_path.c */
          void    f_path_free                     (void);
+         char   *f_path_get_dirname              (const char *filename);
    const char   *f_path_sys_data                 (void);
    const char   *f_path_sys_doc                  (void);
    const char   *f_path_sys_config               (void);
@@ -509,7 +510,6 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);
    const char   *s_page_get_file_extension       (Page *page);
          bool    s_page_goto                     (GedaToplevel *toplevel, Page *page);
-         bool    s_page_goto_dir                 (Page *page);
          bool    s_page_is_symbol_file           (Page *page);
          void    s_page_print_all                (GedaToplevel *toplevel);
          void    s_page_resequence_by_ids        (GedaToplevel *toplevel);

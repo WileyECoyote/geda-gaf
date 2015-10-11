@@ -14,6 +14,13 @@
     * src/utility/u_string.c: Revised function u_string_sprintf to add NULL
       terminator to buffer only if malloc returned a pointer to buffer, dah.
 
+    * Code Enhancement: Function Maintenance
+
+    * src/file/f_path.c: Rename f_get_dirname and relocate to this module as
+      f_path_get_dirname.
+
+    * src/file/f_get.c: Remove function f_get_dirname.
+
     * Code Enhancement: Improve Performance
 
     * src/struct/s_page.c: Revamp function s_page_goto; make toplevel argument

@@ -72,7 +72,7 @@ char *f_get_autosave_filename (const char *filename)
   }
   else {
     old_basename  = f_get_basename(filename);
-    path_spec     = f_get_dirname(filename);
+    path_spec     = f_path_get_dirname(filename);
     new_basename  = u_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
@@ -286,133 +286,6 @@ GSList *f_get_dir_list_files(char *path, char *filter)
   }
 
   return g_slist_reverse(files);
-}
-
-/*! \brief Gets Directory Component of a File Name
- *
- *  \par Function Description
- * Returns directory component of \a filepath. If \a filepath is
- * a directory a copy of \a filepath is returned. If \a filepath
- * has no directory components "." is returned. The returned
- * string should be freed when no longer needed.
- *
- *  \param [in] filepath The filepath to search.
- *
- *  \returns directory components of \a filepath.
- */
-char*
-f_get_dirname (const char *filepath)
-{
-  register char          *path;
-  register unsigned int   len;
-
-  if (filepath == NULL) {
-    path = NULL;
-  }
-  else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
-    path = u_string_strdup(filepath);
-  }
-  else {
-
-    path = strrchr (filepath, G_DIR_SEPARATOR);
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    const char *ptr;
-
-    ptr = strrchr (filepath, '/');
-
-    if (path == NULL || (ptr != NULL && ptr > path)) {
-      path = ptr;
-    }
-
-#endif
-
-    if (!path) {
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-      if (isalpha (filepath[0]) && filepath[1] == ':') {
-
-        char root_path[4];
-
-        root_path[0] = filepath[0];
-        root_path[1] = ':';
-        root_path[2] = '.';
-        root_path[3] = '\0';
-
-      }
-
-#else
-
-      char root_path[2];
-
-      root_path[0] = '.';
-      root_path[1] = '\0';
-
-#endif
-
-      return u_string_strdup (root_path);
-    }
-
-    while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    /* path points to the char before the last slash.
-     *
-     * In case filepath is the root of a drive (X:\) or a child of the
-     * root of a drive (X:\foo), include the slash.
-     *
-     * In case filepath is the root share of an UNC path
-     * (\\server\share), add a slash, returning \\server\share\ .
-     *
-     * In case filepath is a direct child of a share in an UNC path
-     * (\\server\share\foo), include the slash after the share name,
-     * returning \\server\share\ .
-     */
-    if (path == filepath + 1 && isalpha (filepath[0]) && filepath[1] == ':') {
-      path++;
-    }
-    else if (G_IS_DIR_SEPARATOR (filepath[0]) &&
-             G_IS_DIR_SEPARATOR (filepath[1]) &&
-             filepath[2] &&
-            !G_IS_DIR_SEPARATOR (filepath[2]) &&
-             path >= filepath + 2)
-    {
-      ptr = filepath + 2;
-
-      while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
-
-      if (ptr == path + 1) {
-        len = (unsigned int) strlen (filepath) + 1;
-        path = GEDA_MEM_ALLOC (len + 1);
-        strcpy (path, filepath);
-        path[len-1] = G_DIR_SEPARATOR;
-        path[len] = 0;
-        return path;
-      }
-
-      if (G_IS_DIR_SEPARATOR (*ptr)) {
-
-        ptr++;
-        while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
-
-        if (ptr == path + 1) {
-          path++;
-        }
-      }
-    }
-
-#endif
-
-    len = (unsigned int) 1 + path - filepath;
-
-    path = GEDA_MEM_ALLOC (len + 1);
-    memmove (path, filepath, len);
-    path[len] = 0;
-  }
-  return path;
 }
 
 static bool

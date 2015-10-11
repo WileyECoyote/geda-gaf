@@ -130,10 +130,13 @@ const char *f_path_sys_data () {
     /* On other platforms, use the compiled-in path */
     sys_data_path = u_string_strdup(GEDADATADIR);
 # endif
+
     setenv ("GEDADATA", sys_data_path, FALSE);
   }
+
   return sys_data_path;
 }
+
 /*! \brief Get the directory with the gEDA system doc.
  *  \par Function description
  *  Returns the path to be searched for gEDA doc shared between all
@@ -166,6 +169,7 @@ const char *f_path_sys_doc () {
   }
   return sys_doc_path;
 }
+
 /*! \brief Get the directory with the gEDA system configuration.
  *  \par Function description
  *  Returns the path to be searched for gEDA configuration shared
@@ -380,5 +384,132 @@ int f_path_create(const char *path, mode_t mode)
 
 }
 #endif
+
+/*! \brief Gets Directory Component of a File Name
+ *
+ *  \par Function Description
+ *   Returns directory portion of \a filepath. If \a filepath is
+ * a directory a copy of \a filepath is returned. If \a filepath
+ * has no directory components "." is returned. The returned
+ * string should be freed when no longer needed.
+ *
+ *  \param [in] filepath The filepath to search.
+ *
+ *  \returns directory components of \a filepath.
+ */
+char*
+f_path_get_dirname (const char *filepath)
+{
+  register char         *path;
+  register unsigned int  len;
+
+  if (filepath == NULL) {
+    path = NULL;
+  }
+  else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
+    path = u_string_strdup(filepath);
+  }
+  else {
+
+    path = strrchr (filepath, G_DIR_SEPARATOR);
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+    const char *ptr;
+
+    ptr = strrchr (filepath, '/');
+
+    if (path == NULL || (ptr != NULL && ptr > path)) {
+      path = ptr;
+    }
+
+#endif
+
+    if (!path) {
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+      if (isalpha (filepath[0]) && filepath[1] == ':') {
+
+        char root_path[4];
+
+        root_path[0] = filepath[0];
+        root_path[1] = ':';
+        root_path[2] = '.';
+        root_path[3] = '\0';
+
+      }
+
+#else
+
+      char root_path[2];
+
+      root_path[0] = '.';
+      root_path[1] = '\0';
+
+#endif
+
+      return u_string_strdup (root_path);
+    }
+
+    while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+    /* path points to the char before the last slash.
+     *
+     * In case filepath is the root of a drive (X:\) or a child of the
+     * root of a drive (X:\foo), include the slash.
+     *
+     * In case filepath is the root share of an UNC path
+     * (\\server\share), add a slash, returning \\server\share\ .
+     *
+     * In case filepath is a direct child of a share in an UNC path
+     * (\\server\share\foo), include the slash after the share name,
+     * returning \\server\share\ .
+     */
+    if (path == filepath + 1 && isalpha (filepath[0]) && filepath[1] == ':') {
+      path++;
+    }
+    else if (G_IS_DIR_SEPARATOR (filepath[0]) &&
+             G_IS_DIR_SEPARATOR (filepath[1]) &&
+             filepath[2] &&
+            !G_IS_DIR_SEPARATOR (filepath[2]) &&
+             path >= filepath + 2)
+    {
+      ptr = filepath + 2;
+
+      while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
+
+      if (ptr == path + 1) {
+        len = (unsigned int) strlen (filepath) + 1;
+        path = GEDA_MEM_ALLOC (len + 1);
+        strcpy (path, filepath);
+        path[len-1] = G_DIR_SEPARATOR;
+        path[len] = 0;
+        return path;
+      }
+
+      if (G_IS_DIR_SEPARATOR (*ptr)) {
+
+        ptr++;
+        while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
+
+        if (ptr == path + 1) {
+          path++;
+        }
+      }
+    }
+
+#endif
+
+    len = (unsigned int) 1 + path - filepath;
+
+    path = GEDA_MEM_ALLOC (len + 1);
+    memmove (path, filepath, len);
+    path[len] = 0;
+  }
+  return path;
+}
 
 /** @} endgroup libgeda-dir-utilities */

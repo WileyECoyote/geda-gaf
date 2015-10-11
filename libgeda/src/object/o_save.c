@@ -84,7 +84,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
       else {
 
         /* Get the directory in which the real filename lives */
-        dirname         = f_get_dirname (real_filename);
+        dirname         = f_path_get_dirname (real_filename);
         only_filename   = g_path_get_basename(real_filename);
 
         backup_filename = u_string_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
@@ -346,7 +346,7 @@ o_save (const GList *object_list, const char *filename, GError **err)
   int   result;
 
   errno = 0;
-  path  = f_get_dirname(filename);
+  path  = f_path_get_dirname(filename);
 
   /* Check to see if real filename is writable */
   if (access(path, W_OK) != 0) {

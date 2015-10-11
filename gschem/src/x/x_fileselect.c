@@ -392,7 +392,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
    * readable by the current user */
   if (filename) {
 
-    char *filepath = f_get_dirname (filename);
+    char *filepath = f_path_get_dirname (filename);
     if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
     {
       errno = 0;

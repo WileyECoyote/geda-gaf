@@ -339,7 +339,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
      * there is only one picture selected */
     if (oldfilename) {
 
-      char *filepath = f_get_dirname (oldfilename);
+      char *filepath = f_path_get_dirname (oldfilename);
 
       if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
       {
