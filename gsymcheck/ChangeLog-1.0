@@ -1,3 +1,8 @@
+2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Call libgeda_release instead of just s_clib_free and
+      s_slib_free.
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/gsymcheck.c: Revise main_prog to call u_log_set_update_func
