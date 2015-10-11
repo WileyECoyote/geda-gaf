@@ -1,3 +1,11 @@
+2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pdf/main.c: Call libgeda_release instead of just s_clib_free and
+      s_slib_free.
+
+    * utils/gschlas/gschlas.c: Call libgeda_release instead of just s_clib_free and
+      s_slib_free.
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/olib.l: Remove ATTRIBUTE_UNUSED, replace with GEDA_UNUSED.

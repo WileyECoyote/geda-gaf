@@ -790,13 +790,12 @@ static void main2(void *closure, int argc, char *argv[])
             cairo_show_page(cairo);
         }
 
-        s_page_delete(current, page);
+        s_page_delete(current, page, FALSE);
     }
 
     s_page_delete_list(current);
 
-    s_clib_free();
-    s_slib_free();
+    libgeda_release();
 
     cairo_destroy(cairo);
 

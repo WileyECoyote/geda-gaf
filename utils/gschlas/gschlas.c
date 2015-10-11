@@ -37,8 +37,7 @@
  */
 void gschlas_quit(void)
 {
-  s_clib_free();
-  s_slib_free();
+  libgeda_release();
 }
 
 /*! \brief The "real" main for gschlas.
