@@ -1,7 +1,12 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: s_log.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +27,7 @@
 #include <config.h>
 #include <libgeda/libgeda.h>
 #include "globals.h"
+
 
 void s_log_update (const char *log_domain, GLogLevelFlags log_level,
                    const char *buf)

@@ -1,21 +1,27 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: parsecmd.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  */
 
 #include <config.h>
@@ -47,23 +53,44 @@ struct option long_options[] =
   };
 #endif
 
+/*! \brief Print brief usage information and exit.
+ * \par Function Description
+ * Print brief help message describing gsymcheck usage & command-line
+ * options, then exit with exit_status 0.
+ *
+ * \param cmd First element of argv (name of program as run).
+ */
 void
 usage(char *cmd)
 {
   printf(_(
-"Usage: %s [OPTIONS] filename1 ... filenameN\n"
-"  -h, --help        Print usage\n"
-"  -q, --quiet       Quiet mode\n"
-"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
-"                    Use this to get the actual symbol error messages\n"
-"\nfilename1 ... filenameN are the symbols to check\n"
-"\n"),
-      cmd);
-  exit(0);
+    "Usage: %s [OPTIONS] filename1 ... filenameN\n"
+    "  -h, --help        Print usage\n"
+    "  -q, --quiet       Quiet mode\n"
+    "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+    "                    Use this to get the actual symbol error messages\n"
+    "\nfilename1 ... filenameN are the symbols to check\n"
+    "\n"),
+    cmd);
+    exit(0);
 }
 
-int
-parse_commandline(int argc, char *argv[])
+/*! \brief Parse gsymcheck command-line options.
+ * \par Function Description
+ * Parse command line options, displaying usage message or version
+ * information as required.
+ *
+ * \param argc Number of command-line arguments.
+ * \param argv Array of command-line arguments.
+ *
+ * \return index into \a argv of first non-option argument.
+ *
+ * \todo Version option?
+ * \todo strict option?
+ * \todo Consider adding option for attributes to selectively check,
+ *       example: gsymcheck --documentation *.sch
+ */
+int parse_commandline(int argc, char *argv[])
 {
   int ch;
 

@@ -1,22 +1,27 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: s_check.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- *  MA 02110-1301 USA
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  */
 
 #include <config.h>
@@ -54,7 +59,11 @@ static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK 
 static void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int s_check_all(GedaToplevel *pr_current)
 {
   GList *iter;
@@ -79,7 +88,11 @@ int s_check_all(GedaToplevel *pr_current)
   return(return_status);
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int
 s_check_symbol (GedaToplevel *pr_current, Page *p_current, const GList *obj_list)
 {
@@ -181,7 +194,11 @@ s_check_symbol (GedaToplevel *pr_current, Page *p_current, const GList *obj_list
   }
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static bool s_check_list_has_item(char **list , char *item)
 {
   int cur;
@@ -192,6 +209,11 @@ static bool s_check_list_has_item(char **list , char *item)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *  \todo get list of valid_attributes using scheme
+ */
 static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -283,6 +305,11 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -358,6 +385,11 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
 {
   char *temp;
@@ -371,6 +403,11 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 {
   char *temp;
@@ -378,6 +415,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 
   /* search for device attribute */
   temp = o_attrib_search_floating_attribs_by_name (obj_list, "device", 0);
+
   if (!temp) {
     /* did not find device= attribute */
     message = u_string_strdup (_("Missing device= attribute\n"));
@@ -410,6 +448,11 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
   GEDA_FREE(temp);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 {
   char *string;
@@ -525,6 +568,11 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
   g_list_free(found_numbers);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
 {
   char *string;
@@ -685,6 +733,11 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   g_list_free(net_numbers);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
 {
   int x1, x2, y1, y2;
@@ -724,6 +777,11 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 {
   char *value = NULL;
@@ -984,6 +1042,11 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -1044,6 +1107,11 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -1106,6 +1174,11 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -1132,6 +1205,11 @@ static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
@@ -1149,6 +1227,11 @@ static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
 {
   char *string;
@@ -1196,6 +1279,11 @@ static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK 
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 {
@@ -1251,6 +1339,11 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;

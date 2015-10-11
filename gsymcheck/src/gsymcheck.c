@@ -1,23 +1,29 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: gsymcheck.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- *  MA 02110-1301 USA
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  */
+
 
 #include <config.h>
 #include <libgeda/libgeda.h>
@@ -27,6 +33,11 @@
 #include "../include/prototype.h"
 #include "../include/gettext.h"
 
+/*! \brief Cleanup gsymcheck on exit.
+ *  \par Function Description
+ *  This function is used to release system resource allocated during
+ *  the program runtime.
+ */
 void
 gsymcheck_quit(void)
 {
@@ -34,6 +45,12 @@ gsymcheck_quit(void)
   libgeda_release();
 }
 
+/*! \brief Main Scheme(GUILE) program function.
+ *  \par Function Description
+ *  This function is the main program called from scm_boot_guile.
+ *  The function handles initializing all libraries and gsymcheck
+ *  variables.
+ */
 static void main_prog(void *closure, int argc, char *argv[])
 {
   int i;
@@ -51,8 +68,6 @@ static void main_prog(void *closure, int argc, char *argv[])
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
-
-  //log_destiny=STDOUT_TTY;
 
   log_destiny=-1; /* don't output to the screen for now */
 
@@ -128,6 +143,11 @@ static void main_prog(void *closure, int argc, char *argv[])
   exit(exit_status);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int main (int argc, char *argv[])
 {
   scm_boot_guile (argc, argv, main_prog, NULL);

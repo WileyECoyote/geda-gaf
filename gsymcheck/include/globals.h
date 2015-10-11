@@ -1,6 +1,12 @@
-/* gEDA - GPL Electronic Design Automation
- * gsymcheck - gEDA Symbol Checker
- * Copyright (C) 1998-2014 Ales Hvezda
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: globals.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ * gsymcheck - gEDA Symbol Check
+ *
+ * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

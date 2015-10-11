@@ -6,10 +6,31 @@
     * include/prototype.h: Clean file (some what), add blank lines before
       file name comments, remove proto-types for main and main_prog.
 
+    * src/globals.c: Update file header information.
+
     * src/gsymcheck.c: Define main_prog as static.
 
+    * src/i_vars.c: Update file header information.
+
     * src/s_check.c: Relocate function proto-types from prototype.h to top of
-      file and declare/define all function except s_check_all as static.
+      file and declare/define all function except s_check_all as static. Add
+      Doxygen comment blocks "todo" templates.
+
+    * src/g_rc.c: Update file header, add Doxygen comment blocks.
+
+    * src/g_register.c: Update file header, add Doxygen comment blocks.
+
+    * src/parsecmd.c: Update file header, add Doxygen comment blocks.
+
+    * src/s_check.c: Update file header information.
+
+    * src/s_log.c: Update file header information.
+
+    * src/s_symstruct.c: Update file header information.
+
+    * include/globals.h: Update file header information.
+
+    * include/struct.h: Add file header information.
 
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
