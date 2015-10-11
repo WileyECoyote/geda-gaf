@@ -138,6 +138,9 @@ GSList *ComponentToolbarButtons;
 extern int verbose_mode;
 extern int quiet_mode;
 
+/* rc variables */
+extern int sort_components;
+
 typedef enum { Black, Red, Blue,
                Green, Orange, Purple,
                Gray, Pink, SkyBlue,

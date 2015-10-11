@@ -24,7 +24,8 @@
  * contains a function to test the version number of the program.
  */
 
-#include <gattrib.h>
+#include "gattrib.h"
+#include "g_rc.h"
 #include "version.h"
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
 #include <geda_debug.h>
@@ -56,5 +57,18 @@ SCM g_rc_gattrib_version(SCM scm_version)
   return ret;
 }
 
+/*! \brief This function processes the sort-components RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the sort-components RC entry.
+ */
+SCM g_rc_sort_components(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
 
+  RETURN_G_RC_MODE("sort-components", default_sort_components, 2);
+}
 

@@ -1,3 +1,27 @@
+2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gattribrc.in: Add new keyword "sort-components".
+
+    * include/g_rc.h: Add new header file.
+
+    * include/globals.h: Declare int sort_components is extern.
+
+    * include/i_vars.h: Declare int default_sort_components is extern.
+
+    * include/prototype.h: Add declaration for g_rc_sort_components.
+
+    * src/g_rc.c: Add function g_rc_sort_components.
+
+    * src/g_register.c: Register function g_rc_sort_components to handle
+      "sort-components".
+
+    * src/globals.c: Add define int sort_components.
+
+    * src/i_vars.c: Initialize default_sort_components, set sort_components.
+
+    * src/s_toplevel.c: Revise function to conditionaly execute sort if
+      is set.
+
 2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Remove function gattrib_marshal_VOID__POINTER_STRING,

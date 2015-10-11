@@ -38,9 +38,10 @@ void g_register_funcs(void)
   scm_c_define_gsubr ("quit", 0, 0, 0, g_quit);
   scm_c_define_gsubr ("exit", 0, 0, 0, g_quit);
 
+  scm_c_define_gsubr ("sort-components", 1, 0, 0, g_rc_sort_components),
+
   /* gattrib functions */
   scm_c_define_gsubr ("gattrib-version", 1, 0, 0, g_rc_gattrib_version);
-
 }
 
 /*! \brief Scheme function to quit the application

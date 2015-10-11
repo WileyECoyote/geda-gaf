@@ -1005,6 +1005,10 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
   /* ---------- Create and load the tables  ---------- */
   s_table_load_new_page(PageData);
 
+  if (sort_components) {
+    s_string_list_sort_all_list();
+  }
+
   /* ---------- Now verify correctness of entire design.  ---------- */
   s_toplevel_verify_design(toplevel);  /* pr_current is a global */
 

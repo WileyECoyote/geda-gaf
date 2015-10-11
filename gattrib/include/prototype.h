@@ -31,7 +31,8 @@ void g_register_funcs(void);
 SCM g_quit(void);
 
 /* ------------- g_rc.c ------------- */
-SCM g_rc_gattrib_version(SCM version);
+SCM  g_rc_gattrib_version(SCM version);
+SCM  g_rc_sort_components(SCM mode);
 
 /* -------------- g_util.c -------------- */
 bool g_list_str_inlist(GList *list, char *string);

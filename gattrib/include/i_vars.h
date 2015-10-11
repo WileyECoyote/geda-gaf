@@ -31,3 +31,4 @@ extern int   default_paper_height;
 extern int   default_init_right;
 extern int   default_init_bottom;
 
+extern int   default_sort_components;

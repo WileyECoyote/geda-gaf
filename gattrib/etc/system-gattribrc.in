@@ -1,18 +1,18 @@
 
-; 
+;
 ; Init file for gattrib
 ;
 
 ;  ;'s are comments
 ;  keywords are case sensitive (guile feature)
 ;  mode strings are case sensitive
-;  colors are not case sensitive 
-;  
+;  colors are not case sensitive
+;
 
 ; gattrib-version string
 ;
-; Specifies the version of this file.  This number is used to make sure 
-; that the rc file is compatible with the version of gschem that is 
+; Specifies the version of this file.  This number is used to make sure
+; that the rc file is compatible with the version of gschem that is
 ; being run. The end user should *not* change this value.
 ;
 (gattrib-version "@DATE_VERSION@")
@@ -23,3 +23,10 @@
 (define gedadata (getenv "GEDADATA"))
 (define gedadatarc (getenv "GEDADATARC"))
 
+; sort-components string
+;
+; If this is enabled, then components will be sorted in
+; alphanumeric order of the reference designators.
+;
+;(sort-components "enabled")
+(sort-components "disabled")

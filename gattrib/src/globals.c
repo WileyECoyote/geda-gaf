@@ -30,6 +30,9 @@
 int verbose_mode; //!< Reflects the value of the command line flag
 int quiet_mode;   //!< Reflects the value of the command line flag
 
+/* rc variables */
+int sort_components;
+
 /*!
  * these are required by libgeda
  * I have made most of these NULL because they aren't needed
