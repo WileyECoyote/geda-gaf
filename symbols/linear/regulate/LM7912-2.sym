@@ -21,7 +21,7 @@ T 850 100 5 8 0 1 0 2 1
 pinseq=2
 T 800 350 9 8 1 1 0 3 1
 pinlabel=GND
-T 800 500 5 8 0 1 0 3 1
+T 1100 200 5 8 0 1 0 3 1
 pintype=pwr
 }
 P 1300 600 1600 600 1 0 1
@@ -49,3 +49,14 @@ T 300 2000 5 10 0 1 0 0 1
 documentation=http://www.ti.com.cn/cn/lit/ds/symlink/lm7912.pdf
 T 300 950 9 12 1 0 0 0 1
 7912
+P 500 300 500 0 1 0 1
+{
+T 450 100 5 8 1 1 0 6 1
+pinnumber=4
+T 450 100 5 8 0 1 0 6 1
+pinseq=4
+T 450 350 9 8 1 1 0 0 1
+pinlabel=IN
+T 750 200 5 8 0 1 0 6 1
+pintype=pas
+}

@@ -1,7 +1,7 @@
-v 20150703 2
+v 20150823 2
 B 300 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1200 5 10 0 0 0 0 1
-device=7912
+device=7906
 P 300 600 0 600 1 0 1
 {
 T 200 650 5 8 1 1 0 6 1
@@ -21,7 +21,7 @@ T 850 100 5 8 0 1 0 2 1
 pinseq=2
 T 800 350 9 8 1 1 0 3 1
 pinlabel=GND
-T 800 500 5 8 0 1 0 3 1
+T 1100 200 5 8 0 1 0 3 1
 pintype=pwr
 }
 P 1300 600 1600 600 1 0 1
@@ -40,12 +40,23 @@ refdes=U?
 T 300 1400 5 10 0 0 0 0 1
 footprint=TO-220
 T 300 1800 5 10 0 1 0 0 1
-description=LM7912,Voltage Regulator,Fixed,Neg 12 Volt,TO-220
+description=LM7906,Voltage Regulator,Fixed,Neg 6 Volt
 T 300 1600 5 10 0 0 0 0 1
 numslots=0
 T 300 2200 5 10 0 0 0 0 1
 symversion=1.0
 T 300 2000 5 10 0 1 0 0 1
-documentation=http://www.ti.com.cn/cn/lit/ds/symlink/lm7912.pdf
+documentation=http://www.ti.com.cn/cn/lit/ds/symlink/lm7906.pdf
 T 300 950 9 12 1 0 0 0 1
-7912
+7906
+P 500 300 500 0 1 0 1
+{
+T 450 100 5 8 1 1 0 6 1
+pinnumber=4
+T 450 100 5 8 0 1 0 6 1
+pinseq=4
+T 450 350 9 8 1 1 0 0 1
+pinlabel=IN
+T 750 200 5 8 0 1 0 6 1
+pintype=pas
+}

@@ -1,7 +1,7 @@
 v 20150703 2
 B 300 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1200 5 10 0 0 0 0 1
-device=7912
+device=7915
 P 300 600 0 600 1 0 1
 {
 T 200 650 5 8 1 1 0 6 1
@@ -40,12 +40,12 @@ refdes=U?
 T 300 1400 5 10 0 0 0 0 1
 footprint=TO-220
 T 300 1800 5 10 0 1 0 0 1
-description=LM7912,Voltage Regulator,Fixed,Neg 12 Volt,TO-220
+description=LM7915,Voltage Regulator,Negative,Fixed 15V,TO-220
 T 300 1600 5 10 0 0 0 0 1
 numslots=0
 T 300 2200 5 10 0 0 0 0 1
 symversion=1.0
 T 300 2000 5 10 0 1 0 0 1
-documentation=http://www.ti.com.cn/cn/lit/ds/symlink/lm7912.pdf
+documentation=http://www.onsemi.com/pub/Collateral/MC7900-D.PDF
 T 300 950 9 12 1 0 0 0 1
-7912
+7915

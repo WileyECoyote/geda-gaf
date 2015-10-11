@@ -40,7 +40,7 @@ refdes=U?
 T 300 1400 5 10 0 0 0 0 1
 footprint=TO-220
 T 300 1800 5 10 0 1 0 0 1
-description=Voltage Regulator,Negative,Fixed 15V,TO-220
+description=LM7915,Voltage Regulator,Negative,Fixed 15V,TO-220
 T 300 1600 5 10 0 0 0 0 1
 numslots=0
 T 300 2200 5 10 0 0 0 0 1
