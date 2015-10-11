@@ -8,6 +8,9 @@
 
     * src/gsymcheck.c: Define main_prog as static.
 
+    * src/s_check.c: Relocate function proto-types from prototype.h to top of
+      file and declare/define all function except s_check_all as static.
+
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/gsymcheck.c: Revise main_prog to call u_log_set_update_func
