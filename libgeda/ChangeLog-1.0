@@ -16,6 +16,9 @@
 
     * Code Enhancement: Improve Performance
 
+    * src/struct/s_page.c: Revamp function s_page_goto; make toplevel argument
+      optional, include and manage errno
+
     * src/object/o_save.c: Add counter in o_save_auto_backup so the current
       page is only set and restored if a backup is actually performed.
 

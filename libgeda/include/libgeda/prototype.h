@@ -509,6 +509,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);
    const char   *s_page_get_file_extension       (Page *page);
          bool    s_page_goto                     (GedaToplevel *toplevel, Page *page);
+         bool    s_page_goto_dir                 (Page *page);
          bool    s_page_is_symbol_file           (Page *page);
          void    s_page_print_all                (GedaToplevel *toplevel);
          void    s_page_resequence_by_ids        (GedaToplevel *toplevel);

@@ -57,6 +57,10 @@
 #include <unistd.h>
 #endif
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include "libgeda_priv.h"
 
 
@@ -472,6 +476,7 @@ Page *s_page_get_current (GedaToplevel *toplevel)
  */
 bool s_page_set_current (GedaToplevel *toplevel, Page *page)
 {
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
   return geda_toplevel_set_current_page(toplevel, page);
 }
 
@@ -497,41 +502,67 @@ const char *s_page_get_file_extension (Page *page)
   return NULL;
 }
 
-/*! \brief changes the current page in toplevel
+/*! \brief Changes set current page in toplevel and change directory
  *  \par Function Description
- *  Calls s_page_set_current to change the current page
- * referenced by \a toplevel and changes the current
- * working directory to the directory associated with the
- * page.
  *
- *  \param toplevel  The GedaToplevel object
+ *  Calls geda_toplevel_set_current_page to set the current page
+ * referenced by \a toplevel if and only if \a toplevel is valid
+ * GedaToplevel. Page must be in the toplevels list of pages.
+ * If \a page is valid, the current working directory is set to
+ * the directory associated with the file.
+ *
+ *  \param toplevel  Optional GedaToplevel object (can be NULL)
  *  \param page      The Page to go to
  *
  *  \returns True on success, otherwise FALSE
+ *
+ *  \todo is toplevel argument really need here, page->toplevel?
  */
 bool s_page_goto (GedaToplevel *toplevel, Page *page)
 {
-  bool  result;
+  bool  success;
+  int   sav_err;
 
-  if (s_page_set_current (toplevel, page)) {
+  g_return_val_if_fail (GEDA_IS_PAGE(page), FALSE);
 
-    char *dirname;
+  success = TRUE;            /* Assume success */
 
-    dirname = g_path_get_dirname(page->filename);
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
 
-    if (!chdir (dirname)) {
-      result = TRUE;
+    /* Check if page is already the current page, set if not */
+    if (geda_toplevel_get_current_page(toplevel) != page) {
+      success = geda_toplevel_set_current_page(toplevel, page);
+    }
+  }
+
+  sav_err = 0;
+
+  if (success) {
+
+    char *target_dirname;
+
+    target_dirname = f_path_get_dirname(page->filename);
+
+    if (!chdir (target_dirname)) {
+      success = TRUE;
     }
     else {
-      result = FALSE;
+
+      success = FALSE;
+
+#ifdef HAVE_ERRNO_H
+      sav_err = errno;   /* GEDA_FREE will overwrite the error */
+#endif
+
     }
-    GEDA_FREE (dirname);
-  }
-  else {
-    result = FALSE;
+    GEDA_FREE (target_dirname);
   }
 
-  return result;
+#ifdef HAVE_ERRNO_H
+  errno = sav_err;
+#endif
+
+  return success;
 }
 
 /*! \brief Get is Page a Symbol file.
