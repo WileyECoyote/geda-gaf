@@ -35,55 +35,28 @@
 /*! \brief Create and initialize a new SYMCHECK structure
  *  \par Function Description
  *  This is called for every symbol that needs to be checked
+ *
+ *  \returns A new empty SYMCHECK structure
  */
 SYMCHECK *s_symstruct_init(void)
 {
   SYMCHECK *s_symcheck;
 
-  s_symcheck = (SYMCHECK *) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
+  s_symcheck = (SYMCHECK*) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
 
-  s_symcheck->info_messages = NULL;
-  s_symcheck->warning_messages = NULL;
-  s_symcheck->error_messages = NULL;
-
-  s_symcheck->graphical_symbol=FALSE;
-  s_symcheck->missing_device_attrib=FALSE;
-  s_symcheck->device_attribute_incorrect=FALSE;
-  s_symcheck->device_attribute=NULL;
-
-  s_symcheck->missing_pinseq_attrib=FALSE;
-  s_symcheck->multiple_pinseq_attrib=FALSE;
-  s_symcheck->duplicate_pinseq_attrib=FALSE;
-
-  s_symcheck->missing_pinnumber_attrib=FALSE;
-  s_symcheck->multiple_pinnumber_attrib=FALSE;
-  s_symcheck->duplicate_pinnumber_attrib=FALSE;
-
-  s_symcheck->missing_numslots_attrib=FALSE;
-  s_symcheck->slotting_errors=FALSE;
-  s_symcheck->found_oldpin_attrib=FALSE;
-  s_symcheck->found_oldslot_attrib=FALSE;
-  s_symcheck->unattached_attribs=FALSE;
-  s_symcheck->found_net=FALSE;
-  s_symcheck->found_bus=FALSE;
-  s_symcheck->found_connection=FALSE;
-  s_symcheck->found_footprint=FALSE;
-  s_symcheck->found_refdes=FALSE;
-
-  s_symcheck->numpins=0;
-  s_symcheck->numnetpins=0;
-  s_symcheck->numslots=0;
-  s_symcheck->numslotpins=0;
-  s_symcheck->error_count=0;
-  s_symcheck->warning_count=0;
-
-  s_symcheck->missing_pintype_attrib=FALSE;
-  s_symcheck->multiple_pintype_attrib=FALSE;
-  s_symcheck->duplicate_pintype_attrib=FALSE;
+  memset(s_symcheck, 0, sizeof(SYMCHECK));
 
   return(s_symcheck);
 }
 
+/*! \brief Print results stored in SYMCHECK structure
+ *  \par Function Description
+ *  This is called after routines in the s_check module have
+ *  interogated the symbol data to print the results. This
+ *  routine is call for each symbol that is checked.
+ *
+ *  \param [in] s_current Pointer to SYMCHECK containing the results
+ */
 void
 s_symstruct_print(SYMCHECK *s_current)
 {

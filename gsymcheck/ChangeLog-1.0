@@ -24,7 +24,9 @@
 
     * src/s_check.c: Update file header information.
 
-    * src/s_log.c: Update file header information.
+    * src/s_log.c: Update file header information.Use memset to zero-out the
+      SYMCHECK structure instead of setting each field to 0, or NULL, or FALSE.
+      Add Doxygen comment blocks.
 
     * src/s_symstruct.c: Update file header information.
 
@@ -32,6 +34,7 @@
 
     * include/struct.h: Add file header information.
 
+    * src/s_symstruct.c:
 2015-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/gsymcheck.c: Revise main_prog to call u_log_set_update_func
