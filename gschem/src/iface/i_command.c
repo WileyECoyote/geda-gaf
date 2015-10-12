@@ -34,6 +34,7 @@
 #include "x_menus.h"
 
 #include <geda_dialogs.h>
+#include <geda_help.h>
 
 //#define PERFORMANCE
 //#include <gschem_diagnostics.h>
@@ -3999,7 +4000,8 @@ COMMAND (do_show_manual)
   bool result;
   char *pathname = NULL;
 
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_MANUAL_FILE, NULL);
+  pathname = g_build_filename (f_path_sys_doc (), "wiki",
+                               HELP_GSCHEM_GUIDE_HTML, NULL);
 
   if (pathname) {
     result = x_show_uri (pathname);
@@ -4025,7 +4027,8 @@ COMMAND (do_show_faq)
   BEGIN_COMMAND(do_show_faq);
   bool result;
   char *pathname = NULL;
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_FAQ_FILE, NULL);
+  pathname = g_build_filename (f_path_sys_doc (), "wiki",
+                               HELP_GSCHEM_FAQ_HTML, NULL);
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
@@ -4042,7 +4045,7 @@ COMMAND (do_show_geda)
   BEGIN_COMMAND(do_show_geda);
   bool result;
   char *pathname = NULL;
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_GEDA_FILE, NULL);
+  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_GEDA_DOC_HTML, NULL);
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {
@@ -4059,7 +4062,7 @@ COMMAND (do_show_wiki)
   BEGIN_COMMAND(do_show_wiki);
   bool result;
   char *pathname = NULL;
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_WIKI_FILE, NULL);
+  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_GEDA_WIKI_HTML, NULL);
   if (pathname) {
     result = x_show_uri (pathname);
     if (!result) {

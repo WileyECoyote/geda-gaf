@@ -1,3 +1,8 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_help.h: Add new header file with defines for some HTML
+      file names located in docs/wiki for use with help menus.
+
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_macros.h: Add macros; GEDA_UNUSED,GEDA_CONST, GEDA_NO_

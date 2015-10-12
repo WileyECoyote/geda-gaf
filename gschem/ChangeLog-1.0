@@ -1,3 +1,11 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_sdefines.h: Remove defines for HTML "help" files,
+      replacements were added top-level include directory.
+
+    * src/iface/i_command.c: include <geda_help.h> with replacement
+      defines for HTML file names.
+
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_extend.c: Revise variable definitions in function

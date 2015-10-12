@@ -12,6 +12,7 @@ noinst_HEADERS  = \
 					geda_dialog_controls.h \
 					geda_enum.h \
 					geda_gui_funcs.h \
+					geda_help.h \
 					geda_idefines.h \
 					geda_sdefines.h \
 					geda_macros.h \

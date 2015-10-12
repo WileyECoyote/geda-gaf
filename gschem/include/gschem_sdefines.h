@@ -91,12 +91,6 @@
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
 /* Filenames for Stock Color Maps  */
-#define HELP_MANUAL_FILE           "geda-gschem_ug.html"
-#define HELP_FAQ_FILE              "geda-faq-gschem.html"
-#define HELP_GEDA_FILE             "geda-documentation.html"
-#define HELP_WIKI_FILE             "index.html"
-
-/* Filenames for Stock Color Maps  */
 #define DARK_COLOR_MAP             "gschem-colormap-darkbg"
 #define LIGHT_COLOR_MAP            "gschem-colormap-lightbg"
 #define BW_COLOR_MAP               "gschem-colormap-bw"
