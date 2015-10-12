@@ -481,6 +481,10 @@ char *u_string_strndup(const char *str, size_t n)
   return ptr;
 }
 
+/* A non zero result is the position needle waas fount in haystack
+ * a negative result means needle was not found OR one of the two
+ * inputs is NULL
+ */
 int u_string_stristr ( const char *haystack, const char *needle)
 {
    int result = -1;
@@ -488,20 +492,24 @@ int u_string_stristr ( const char *haystack, const char *needle)
    char *upper_needle;
    char *upper_haystack;
 
-   if (g_strstr_len( haystack, -1, needle) != NULL) {
-     result = 0;
-   }
-   else {
-     upper_needle   = g_ascii_strup( needle, -1);
-     upper_haystack = g_ascii_strup( haystack, -1);
-     if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL) {
+   if (needle && haystack) {
+
+     if (g_strstr_len( haystack, -1, needle) != NULL) {
        result = 0;
      }
-     else
-     GEDA_FREE(upper_needle);
-     GEDA_FREE(upper_haystack);
-   }
+     else {
 
+       upper_needle   = g_ascii_strup( needle, -1);
+       upper_haystack = g_ascii_strup( haystack, -1);
+
+       if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL) {
+         result = 0;
+       }
+       else
+         GEDA_FREE(upper_needle);
+       GEDA_FREE(upper_haystack);
+     }
+   }
    return result;
 }
 

@@ -1,3 +1,8 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Revise function u_string_stristr to check
+      for a NULL argument.
+
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Function Maintenance
