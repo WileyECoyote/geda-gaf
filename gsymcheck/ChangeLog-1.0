@@ -8,6 +8,19 @@
       loops in function s_symstruct_free to fre the message strings and call
       g_list_free for each list.
 
+    * Code Enhancement: Extend functionality
+
+    * src/s_check.c: Revise function s_check_device to check for duplicate and
+      multible device attributes.
+
+    * tests/: Add files to test checks for duplicate and multible device
+      attributes.
+
+            * duplicate_device.output
+            * duplicate_device.sym
+            * multiple_device.output
+            * multiple_device.sym
+
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Call libgeda_release instead of just s_clib_free and

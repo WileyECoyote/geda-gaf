@@ -39,10 +39,12 @@ struct st_symcheck {
   GList* error_messages;
 
   /* device= check */
-  int missing_device_attrib;
-  int graphical_symbol;
+  int   missing_device_attrib;
+  int   graphical_symbol;
   char *device_attribute;
-  int device_attribute_incorrect;
+  int   device_attribute_incorrect;
+  int   multiple_device_attrib;
+  int   duplicate_device_attrib;
 
   /* pinseq= check */
   int missing_pinseq_attrib;

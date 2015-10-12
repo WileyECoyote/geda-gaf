@@ -410,42 +410,76 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 {
-  char *temp;
+  const char *directive = "Directive";
+  char *string;
   char *message;
+  int   counter;
 
-  /* search for device attribute */
-  temp = o_attrib_search_floating_attribs_by_name (obj_list, "device", 0);
+  /* search for device attributes */
 
-  if (!temp) {
+  for (counter = 0;
+      (string = o_attrib_search_floating_attribs_by_name (obj_list, "device", counter)) != NULL;
+       counter++)
+  {
+    if (counter == 0) { /* collect the first appearance */
+      s_current->missing_device_attrib=FALSE;
+      s_current->device_attribute = u_string_strdup (string);
+      message = u_string_sprintf (_("Found device=%s\n"), string);
+      ADD_INFO_MESSAGE(message);
+    }
+    else { /* counter must be > 0 */
+
+      if (strlen(string) == strlen(s_current->device_attribute)) {
+        if (strcmp(s_current->device_attribute, string) == 0) {
+          message = u_string_sprintf (_("Found Duplicate device=%s attributes\n"), string);
+          ADD_ERROR_MESSAGE(message);
+          s_current->duplicate_device_attrib++;
+        }
+        else {
+          if (u_string_stristr(string, directive) < 0) {
+            message = u_string_strdup (_("Found multiple device= attributes\n"));
+            ADD_WARN_MESSAGE(message);
+            s_current->multiple_device_attrib++;
+          }
+        }
+      }
+      else {
+        if (u_string_stristr(string, directive) < 0) {
+          message = u_string_strdup (_("Found multiple device= attributes\n"));
+          ADD_WARN_MESSAGE(message);
+          s_current->multiple_device_attrib++;
+        }
+      }
+    }
+    GEDA_FREE(string);
+  }
+
+  if (counter == 0) {
     /* did not find device= attribute */
     message = u_string_strdup (_("Missing device= attribute\n"));
     ADD_ERROR_MESSAGE(message);
     s_current->missing_device_attrib=TRUE;
-  }
-  else {
-    /* found device= attribute */
-    s_current->missing_device_attrib=FALSE;
-    s_current->device_attribute = u_string_strdup (temp);
-    message = u_string_sprintf (_("Found device=%s\n"), temp);
-    ADD_INFO_MESSAGE(message);
+    /* s_current->device_attribute was initialized to NULL */
   }
 
+  string = s_current->device_attribute;
+
   /* check for device = none for graphical symbols */
-  if (temp && s_current->graphical_symbol && (strcmp(temp, "none") == 0)) {
+  if (string && s_current->graphical_symbol && (strcmp(string, "none") == 0)) {
     s_current->device_attribute_incorrect=FALSE;
     message = u_string_strdup (_("Found graphical symbol, device=none\n"));
     ADD_INFO_MESSAGE(message);
   }
   else if (s_current->graphical_symbol) {
     /* If graphical "device" is not a "Directive" then might be an error */
-    if (u_string_stristr(temp, "Directive")) {
+    if (u_string_stristr(string, directive)) {
       s_current->device_attribute_incorrect=TRUE;
       message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
       ADD_WARN_MESSAGE(message);
     }
   }
 
-  GEDA_FREE(temp);
+  /* string is not freed here, points to s_current->device_attribute */
 }
 
 /*! \todo Finish function documentation!!!
