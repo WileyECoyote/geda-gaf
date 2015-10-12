@@ -44,33 +44,33 @@ SYMCHECK *s_symstruct_init(void)
 
   s_symcheck = (SYMCHECK*) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
 
-  memset(s_symcheck, 0, sizeof(SYMCHECK));
-
-  return(s_symcheck);
+  return memset(s_symcheck, 0, sizeof(SYMCHECK));
 }
 
 /*! \brief Print results stored in SYMCHECK structure
  *  \par Function Description
  *  This is called after routines in the s_check module have
- *  interogated the symbol data to print the results. This
- *  routine is call for each symbol that is checked.
+ *  interogated the symbol data in order to print the results.
+ *  This routine is call for each symbol that is checked.
  *
  *  \param [in] s_current Pointer to SYMCHECK containing the results
  */
-void
-s_symstruct_print(SYMCHECK *s_current)
+void s_symstruct_print(SYMCHECK *s_current)
 {
   GList *list;
-  char *msg;
+  char  *msg;
 
   if (verbose_mode > 2) {
+
     list = s_current->info_messages;
+
     while (list != NULL) {
+
       msg = (char *) list->data;
+
       /* printf("found info: %s\n", msg); */
       if (msg) {
         u_log_message("Info: %s", msg);
-        GEDA_FREE(msg);
       }
 
       NEXT(list);
@@ -78,14 +78,16 @@ s_symstruct_print(SYMCHECK *s_current)
   }
 
   if (verbose_mode > 1) {
+
     list = s_current->warning_messages;
+
     while (list != NULL) {
+
       msg = (char *) list->data;
 
       /* printf("found warning: %s\n", msg); */
       if (msg) {
         u_log_message("Warning: %s", msg);
-        GEDA_FREE(msg);
       }
 
       NEXT(list);
@@ -93,14 +95,16 @@ s_symstruct_print(SYMCHECK *s_current)
   }
 
   if (verbose_mode > 0) {
+
     list = s_current->error_messages;
+
     while (list != NULL) {
+
       msg = (char *) list->data;
 
       /* printf("found error: %s\n", msg); */
       if (msg && verbose_mode) {
         u_log_message("ERROR: %s", msg);
-        GEDA_FREE(msg);
       }
 
       NEXT(list);
@@ -113,7 +117,36 @@ s_symstruct_free(SYMCHECK *s_current)
 {
   if (s_current) {
 
+    GList *list;
+
     GEDA_FREE(s_current->device_attribute);
+
+    /* release memory allocated for message strings */
+    list = s_current->info_messages;
+
+    while (list != NULL) {
+      GEDA_FREE(list->data);
+      NEXT(list);
+    }
+
+    list = s_current->warning_messages;
+
+    while (list != NULL) {
+      GEDA_FREE(list->data);
+      NEXT(list);
+    }
+
+    list = s_current->error_messages;
+
+    while (list != NULL) {
+      GEDA_FREE(list->data);
+      NEXT(list);
+    }
+
+    /* free the List */
+    g_list_free(s_current->info_messages);
+    g_list_free(s_current->warning_messages);
+    g_list_free(s_current->error_messages);
 
     GEDA_FREE(s_current);
   }

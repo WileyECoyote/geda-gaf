@@ -1,3 +1,13 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Release dynamically allocated resources properly
+
+    * src/s_symstruct.c: Revise function s_symstruct_init to return the pointer
+      from memset directly. Revise function s_symstruct_init to not free message
+      strings since loops are iterated conditionally based on verbosity. Added
+      loops in function s_symstruct_free to fre the message strings and call
+      g_list_free for each list.
+
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Call libgeda_release instead of just s_clib_free and
