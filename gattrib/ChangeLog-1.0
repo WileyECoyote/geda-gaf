@@ -1,3 +1,28 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add some help menu items to gattrib, is basic and little direct
+      relevances to GUI but is better than help menu with no help at all.
+
+    * etc/gattrib-menus.xml: Add help sub-menu items:
+
+        * "help-show-manual"
+        * "help-show-faq"
+        * "help-show-geda"
+        * "help-show-wiki"
+        * "help-show-attribs"
+        * "help-show-glossary"
+
+    * src/x_menus.c: Revise actions table to support new menu actions
+      listed above, assign some stock gtk icons to other menu entries.
+      Add callback function menu_help_xxx for the new items.
+
+    * src/i_basic.c: Copied code from gschem to launch uri's, in this
+      case local html file adding functions:
+
+        * i_basic_show_uri__win32
+        * i_basic_show_uri
+        * i_show_wiki_help
+
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gattribrc.in: Add new keyword "sort-components".

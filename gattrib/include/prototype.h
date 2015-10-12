@@ -38,6 +38,9 @@ SCM  g_rc_sort_components(SCM mode);
 bool g_list_str_inlist(GList *list, char *string);
 bool g_list_stri_inlist(GList *list, char *string);
 
+/* -------------- i_basic.c -------------- */
+void i_show_wiki_help(const char *html_file);
+
 /* ------------- s_attrib.c ------------- */
 int   s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
 char *s_attrib_get_refdes(Object *object);

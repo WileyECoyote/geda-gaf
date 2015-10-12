@@ -21,6 +21,7 @@
 #include <gtk/gtk.h>
 #include <gattrib.h>
 
+#include <geda_help.h>   /* Include file names for HTML files */
 #include <geda_debug.h>
 
 static void toolbar_icons_only( void );
@@ -147,6 +148,7 @@ static void menu_open_recent( char* filename)
   x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
   x_window_update_title(pr_current, sheet_head);
 }
+
 /*!
  * \brief File->Export CSV menu item
  *
@@ -203,6 +205,35 @@ static void menu_edit_paste()
 {
   x_window_clipboard_handler(paste);
 }
+
+/* Handlers for Help menu */
+static void menu_help_manual()
+{
+  i_show_wiki_help (HELP_GATTRIB_GUIDE_HTML);
+}
+static void menu_help_faq()
+{
+  i_show_wiki_help (HELP_GATTRIB_FAQ_HTML);
+}
+
+static void menu_help_geda()
+{
+  i_show_wiki_help (HELP_GEDA_DOC_HTML);
+}
+static void menu_help_wiki()
+{
+  i_show_wiki_help (HELP_GEDA_WIKI_HTML);
+}
+
+static void menu_help_attribs()
+{
+  i_show_wiki_help (HELP_ATTRIBUTES_HTML);
+}
+static void menu_help_glossary()
+{
+  i_show_wiki_help (HELP_GEDA_GLOSSARY_HTML);
+}
+
 /*!
  * \brief View Toolbar Icons
  * \par Function Description
@@ -281,7 +312,7 @@ static const GtkActionEntry actions[] = {
   { "file-open", GTK_STOCK_OPEN, "Open", "<Control>O", "", x_menu_file_open},
   { "file-save", GTK_STOCK_SAVE, "Save", "<Control>S", "", x_menu_file_save},
   { "file-save-as", GTK_STOCK_SAVE_AS, "Save As", "<Shift><Control>S", "", x_menu_file_save_as},
-  { "file-export-csv", NULL, "Export CSV", "", "", x_menu_file_export_csv},
+  { "file-export-csv", GTK_STOCK_CONVERT, "Export CSV", "", "", x_menu_file_export_csv},
   /* { "file-print", GTK_STOCK_PRINT, "Print", "<Control>P", "", x_dialog_unimplemented_feature}, */
   { "file-quit", GTK_STOCK_QUIT, "Quit", "<Control>Q", "", G_CALLBACK(gattrib_really_quit)},
 
@@ -291,13 +322,13 @@ static const GtkActionEntry actions[] = {
   { "edit-clipboard-copy", GTK_STOCK_COPY, "Copy", "<Control>C", "", menu_edit_copy},
   { "edit-clipboard-paste", GTK_STOCK_PASTE, "Paste", "<Control>V", "", menu_edit_paste},
 
-  { "edit-add-attrib",    NULL, "_Add new Attribute", "", "", x_menu_edit_new_attrib},
-  { "edit-delete-attrib", NULL, "D_elete Attribute",  "", "", x_menu_edit_delete_attrib},
+  { "edit-add-attrib",    GTK_STOCK_ADD, "_Add new Attribute", "", "", x_menu_edit_new_attrib},
+  { "edit-delete-attrib", GTK_STOCK_DELETE, "D_elete Attribute",  "", "", x_menu_edit_delete_attrib},
   { "edit-promote-attrib", NULL, "_Promote Attribute", "", "Attach the selected attribute",  s_properties_promote_attribute},
   { "edit-demote-attrib",  NULL, "_Demote Attribute",  "", "Dettach the selected attribute", s_properties_demote_attribute},
 
   { "edit-find-value", GTK_STOCK_FIND, "Find Value", "<Control>F", "Find attribute value", x_find_attribute_value},
-  { "edit-search-replace-value", NULL, "Replace value", "<Control>R", "Search and Replace Attribute value", x_find_replace_attrib_value},
+  { "edit-search-replace-value", GTK_STOCK_FIND_AND_REPLACE, "Replace value", "<Control>R", "Search and Replace Attribute value", x_find_replace_attrib_value},
   { "edit-locate-attrib", GTK_STOCK_FIND, "Locate Attribute", "", "Search for an attribute", x_find_attribute},
   { "edit-locate-refdes", NULL, "Locate Reference", "", "Search for reference designator", x_find_refdes},
 
@@ -310,18 +341,26 @@ static const GtkActionEntry actions[] = {
 
   /* Visibility menu */
   { "visibility", NULL, "_Visibility"},
-  { "visibility-invisible", NULL, "Set selected invisible", "", "", s_properties_set_invisible},
-  { "visibility-visible",   NULL, "Set selected visible",   "", "", s_properties_set_visible},
-  { "visibility-name-only", NULL, "Set selected name visible only",   "", "", s_properties_set_name_only},
+  { "visibility-invisible",  NULL, "Set selected invisible", "", "", s_properties_set_invisible},
+  { "visibility-visible",    NULL, "Set selected visible",   "", "", s_properties_set_visible},
+  { "visibility-name-only",  NULL, "Set selected name visible only",   "", "", s_properties_set_name_only},
   { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_properties_set_value_only},
   { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_properties_set_name_and_value},
 
   { "window", NULL, "_Window"},
   /* Help menu */
   { "help", NULL, "_Help"},
-  { "help-about", GTK_STOCK_ABOUT, "About", "", "", x_dialog_about_dialog},
+  { "help-show-manual",   GTK_STOCK_HELP,   "Gattrib Guide",          "", "", menu_help_manual},
+  { "help-show-faq",      GTK_STOCK_INFO ,  "Gattrib FAQ",            "", "", menu_help_faq},
+  { "help-show-geda",     GTK_STOCK_INFO ,  "gEDA Docu_mentation...", "", "", menu_help_geda},
+  { "help-show-wiki",     GTK_STOCK_INFO ,  "gEDA _Wiki...",          "", "", menu_help_wiki},
+
+  { "help-show-attribs",  GTK_STOCK_INDEX , "gEDA Attributes",        "", "", menu_help_attribs},
+  { "help-show-glossary", GTK_STOCK_SPELL_CHECK ,  "gEDA Glossary",          "", "", menu_help_glossary},
+  { "help-about",         GTK_STOCK_ABOUT,  "About",                  "", "", x_dialog_about_dialog},
 };
 
+  /* name, stock-id, label, accelerator, tooltip, callback function */
 /* Toggle items */
 static const GtkToggleActionEntry toggle_entries[] = {
 /* View menu */

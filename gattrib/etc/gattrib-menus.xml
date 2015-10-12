@@ -33,7 +33,7 @@
          <menuitem action="view-editbar" />
          <menuitem action="view-toolbar-standard" />
          <menuitem action="view-toolbar-attribute" />
-         <separator/>  
+         <separator/>
          <menuitem action="view-toolbar-icons" />
          <menuitem action="view-toolbar-text" />
          <menuitem action="view-toolbar-both" />
@@ -54,6 +54,15 @@
       <menuitem action="window-show_grid" />
     </menu>
     <menu action="help">
+      <menuitem action="help-show-manual" />
+      <menuitem action="help-show-faq" />
+      <separator/>
+      <menuitem action="help-show-geda" />
+      <menuitem action="help-show-wiki" />
+      <separator/>
+      <menuitem action="help-show-attribs" />
+      <menuitem action="help-show-glossary" />
+      <separator/>
       <menuitem action="help-about" />
     </menu>
   </menubar>
