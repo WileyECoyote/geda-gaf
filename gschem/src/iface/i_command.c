@@ -881,13 +881,21 @@ COMMAND (do_save) {
 /** @brief i_cmd_do_save_as in i_command_File_Actions */
 COMMAND (do_save_as) {
   BEGIN_W_COMMAND(do_save_as);
+
   char *old_name;
+
   old_name = u_string_strdup(Current_Page->filename);
+
   x_fileselect_save (w_current);
+
   i_status_update_title (w_current);
+
+  /* If the user actually changed the file name then delete the
+   * the old backup file or else the file will be stranded! */
   if (strcmp(Current_Page->filename, old_name) != 0) {
     f_remove_backup_file(old_name);
   }
+
   GEDA_FREE(old_name);
   EXIT_COMMAND(do_save_as);
 }

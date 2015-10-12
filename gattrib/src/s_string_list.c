@@ -377,18 +377,18 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
  *
  *  \par Function Description
  * Takes the master comp list sheet_head->master_comp_list_head
- * and sorts it in this order:
- *
- * all refdeses in alphabetical order
+ * and sorts the list by putting the refrence desiginators (refdes)
+ * in alphabetical order.
  *
  * Right now it does nothing other than fill in the "position".
  *
  */
 void s_string_list_sort_master_comp_list() {
-  int i = 0;
-  STRING_LIST *local_list, *iter;
 
-  /* Here's where we do the sort. The sort is done using a fcn found on the web. */
+  STRING_LIST *local_list, *iter;
+  int i;
+
+  /* Sort the list */
   local_list = sheet_head->master_comp_list_head;
 
   for (iter = local_list; iter; iter = iter->next) {
@@ -397,10 +397,13 @@ void s_string_list_sort_master_comp_list() {
 
   local_list = listsort(local_list, 0, 1);
 
-  /* Do this after sorting is done to reset the order of the individual
-   * items in the list.  */
+  i = 0;
+
+  /* Reset the order of the individual items in the list. */
   while (local_list != NULL) {  /* make sure item is not null */
+
     local_list->pos = i;
+
     if (local_list->next != NULL) {
       i++;
       local_list = local_list->next;
@@ -410,8 +413,8 @@ void s_string_list_sort_master_comp_list() {
     }
   }
 
-  /* Now go to first item in local list and reassign list head to new
-   * first element */
+  /* Now go to first item in local list and reassign list head to
+   * the new first element */
   while (local_list->prev) {
     local_list = local_list->prev;
   }
@@ -450,23 +453,23 @@ static struct {
  * Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_comp_attrib_list() {
-  int i = 0;
+
+  int i;
   STRING_LIST *local_list, *iter;
 
   /* Here's where we do the sort */
   local_list = sheet_head->master_comp_attrib_list_head;
 
-  /*
-* Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
-* certain attribs to go first.
-*/
-  for (iter=local_list; iter; iter=iter->next) {
+  /* Note that this sort is TBD -- it is more than just an alphabetic
+   * sort because we want certain attribs to go first.
+   */
+  for (iter = local_list; iter; iter = iter->next) {
 
     int i;
 
     iter->pos = DEFAULT_ATTRIB_POS;
 
-    for (i=0; i<NUM_CERTAINS; i++) {
+    for (i = 0; i < NUM_CERTAINS; i++) {
 
       if (iter->data != NULL) {
 
@@ -482,8 +485,8 @@ void s_string_list_sort_master_comp_attrib_list() {
   local_list = listsort(local_list, 0, 1);
   sheet_head->master_comp_attrib_list_head = local_list;
 
-  /* Do this after sorting is done. This resets the order of the
-   * individual items in the list. */
+  /* After sorting, reset the order of the individual items in list. */
+  i = 0;
   while (local_list) {
 
     local_list->pos = i;
@@ -497,12 +500,8 @@ void s_string_list_sort_master_comp_attrib_list() {
 /*------------------------------------------------------------------*/
 /*! \brief Sort the master netlist
  *
- * This fcn takes the master net list
- * sheet_head->master_net_list_head
- * and sorts it in this order:
- *
- * all nets in alphabetical order
- *
+ * This fcn takes the master net list sheet_head->master_net_list_head
+ * and sorts the list by putting all nets in alphabetical order
  */
 void s_string_list_sort_master_net_list() {
   int i = 0;
@@ -584,7 +583,7 @@ void s_string_list_sort_master_pin_list() {
     }
   }
 
-  /* Now go to first item in local list and reassign list head to new first element */
+  /* After assign list head to new first element */
   while (local_list->prev) {
     local_list = local_list->prev;
   }
@@ -627,6 +626,7 @@ void s_string_list_sort_master_pin_attrib_list() {
 
   return;
 }
+
 void s_string_list_sort_all_list() {
    /* ---------- Sort the master lists  ---------- */
   s_string_list_sort_master_comp_list();

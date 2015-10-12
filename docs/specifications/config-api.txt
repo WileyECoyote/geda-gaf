@@ -137,7 +137,7 @@ Obtaining a Context
 
 C function::
 
-  EdaConfig *eda_config_get_context_for_path (const gchar *path,
+  EdaConfig *eda_config_get_context_for_path (const char *path,
                                               GError *error)
 
 Scheme function::
@@ -157,8 +157,8 @@ configuration file was found, the returned context will be associated
 with a ``geda.conf`` in the same directory as ``path``.
 
 .. warning:: Do not assume that the configuration file associated with
-             the context returned by ``path-config-context`` is
-             located in the directory specified by ``path``.
+             the context returned by ``path-config-context`` is located
+             in the directory specified by ``path``.
 
 The configuration context returned by
 ``eda_config_get_context_for_path()`` is owned by the library, and
@@ -238,7 +238,7 @@ associated with an on-disk configuration file.
 
 C function::
 
-  const gchar *eda_config_get_filename (EdaConfig *cfg)
+  const char *eda_config_get_filename (EdaConfig *cfg)
 
 Scheme function::
 
@@ -250,7 +250,7 @@ context`_), this will return ``NULL`` (in C) or ``#f`` (in Scheme).
 
 C function::
 
-  gboolean eda_config_load (EdaConfig *cfg, GError **err)
+  boolean eda_config_load (EdaConfig *cfg, GError **err)
 
 Scheme function::
 
@@ -262,7 +262,7 @@ C) or a ``system-error`` (in Scheme).
 
 C function::
 
-  gboolean eda_config_is_loaded (EdaConfig *cfg)
+  boolean eda_config_is_loaded (EdaConfig *cfg)
 
 Scheme function::
 
@@ -276,7 +276,7 @@ Saving configuration files
 
 C function::
 
-  gboolean eda_config_save (EdaConfig *cfg, GError *error)
+  boolean eda_config_save (EdaConfig *cfg, GError *error)
 
 Scheme function::
 
@@ -288,7 +288,7 @@ C) or a ``system-error`` (in Scheme).
 
 C function::
 
-  gboolean eda_config_is_changed (EdaConfig *cfg)
+  boolean eda_config_is_changed (EdaConfig *cfg)
 
 Scheme function::
 
@@ -346,7 +346,7 @@ context`_ are trusted, and all other contexts untrusted.
 
 C function::
 
-  gboolean eda_config_is_trusted (EdaConfig *cfg)
+  boolean eda_config_is_trusted (EdaConfig *cfg)
 
 Scheme function::
 
@@ -356,7 +356,7 @@ Test whether ``cfg`` is a trusted configuration context.
 
 C function::
 
-  void eda_config_set_trusted (EdaConfig *cfg, gboolean trusted)
+  void eda_config_set_trusted (EdaConfig *cfg, boolean trusted)
 
 Scheme function::
 
@@ -406,7 +406,7 @@ Groups
 
 C function::
 
-  gchar **eda_config_get_groups (EdaConfig *cfg, gsize *length)
+  char **eda_config_get_groups (EdaConfig *cfg, gsize *length)
 
 Scheme function::
 
@@ -420,7 +420,7 @@ optional return location for the number of groups returned.
 
 C function::
 
-  gboolean eda_config_has_group (EdaConfig *cfg, const gchar *group)
+  boolean eda_config_has_group (EdaConfig *cfg, const char *group)
 
 Scheme function::
 
@@ -434,7 +434,7 @@ Keys
 
 C function::
 
-  gchar **eda_config_get_keys (EdaConfig *cfg, const gchar *group,
+  char **eda_config_get_keys (EdaConfig *cfg, const char *group,
                                gsize *length, GError **error)
 
 Scheme function::
@@ -452,8 +452,8 @@ returned.  If neither ``cfg`` nor any of its parent contexts contain
 
 C function::
 
-  gboolean eda_config_has_key (EdaConfig *cfg, const gchar *group,
-                               const gchar *key, GError **err)
+  boolean eda_config_has_key (EdaConfig *cfg, const char *group,
+                               const char *key, GError **err)
 
 Scheme function::
 
@@ -467,8 +467,8 @@ Configuration inheritance
 
 C function::
 
-  gboolean eda_config_is_inherited (EdaConfig *cfg, const gchar *group,
-                                    const gchar *key, GError **err)
+  boolean eda_config_is_inherited (EdaConfig *cfg, const char *group,
+                                    const char *key, GError **err)
 
 Scheme function::
 
@@ -480,8 +480,8 @@ it is inherited from a parent context of ``cfg``.
 
 C function::
 
-  EdaConfig *eda_config_get_source (EdaConfig *cfg, const gchar *group,
-                                    const gchar *key, GError **err)
+  EdaConfig *eda_config_get_source (EdaConfig *cfg, const char *group,
+                                    const char *key, GError **err)
 
 Scheme function::
 
@@ -519,28 +519,28 @@ using ``g_free()``, and returned lists should be freed using
 
 C functions::
 
-  gchar *eda_config_get_string (EdaConfig *cfg, const gchar *group, const gchar *key,
+  char *eda_config_get_string (EdaConfig *cfg, const char *group, const char *key,
                                 GError **err)
 
-  gboolean eda_config_get_boolean (EdaConfig *cfg, const gchar *group, const gchar *key,
+  boolean eda_config_get_boolean (EdaConfig *cfg, const char *group, const char *key,
                                    GError **err)
 
-  gint eda_config_get_int (EdaConfig *cfg, const gchar *group, const gchar *key,
+  int eda_config_get_int (EdaConfig *cfg, const char *group, const char *key,
                            GError **err)
 
-  gdouble eda_config_get_double (EdaConfig *cfg, const gchar *group, const gchar *key,
+  double eda_config_get_double (EdaConfig *cfg, const char *group, const char *key,
                                  GError **err)
 
-  gchar **eda_config_get_string_list (EdaConfig *cfg, const gchar *group, const gchar *key,
+  char **eda_config_get_string_list (EdaConfig *cfg, const char *group, const char *key,
                                       gsize *length, GError **err)
 
-  gboolean *eda_config_get_boolean_list (EdaConfig *cfg, const gchar *group, const gchar *key,
+  boolean *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key,
                                          gsize *length, GError **err)
 
-  gint *eda_config_get_int_list (EdaConfig *cfg, const gchar *group, const gchar *key,
+  int *eda_config_get_int_list (EdaConfig *cfg, const char *group, const char *key,
                                  gsize *length, GError **err)
 
-  gdouble *eda_config_get_double_list (EdaConfig *cfg, const gchar *group, const gchar *key,
+  double *eda_config_get_double_list (EdaConfig *cfg, const char *group, const char *key,
                                        gsize *length, GError **err)
 
 Scheme functions::
@@ -566,29 +566,29 @@ Setting configuration values
 
 C functions::
 
-  void eda_config_set_string (EdaConfig *cfg, const gchar *group, const gchar *key,
-                              const gchar *value)
+  void eda_config_set_string (EdaConfig *cfg, const char *group, const char *key,
+                              const char *value)
 
-  void eda_config_set_boolean (EdaConfig *cfg, const gchar *group, const gchar *key,
-                               gboolean value)
+  void eda_config_set_boolean (EdaConfig *cfg, const char *group, const char *key,
+                               boolean value)
 
-  void eda_config_set_int (EdaConfig *cfg, const gchar *group, const gchar *key,
-                           gint value)
+  void eda_config_set_int (EdaConfig *cfg, const char *group, const char *key,
+                           int value)
 
-  void eda_config_set_double (EdaConfig *cfg, const gchar *group, const gchar *key,
-                              gdouble value)
+  void eda_config_set_double (EdaConfig *cfg, const char *group, const char *key,
+                              double value)
 
-  void eda_config_set_string_list (EdaConfig *cfg, const char *group, const gchar *key,
-                                   const gchar * const list[], gsize length)
+  void eda_config_set_string_list (EdaConfig *cfg, const char *group, const char *key,
+                                   const char * const list[], gsize length)
 
-  void eda_config_set_boolean_list (EdaConfig *cfg, const gchar *group, const gchar *key,
-                                    gboolean list[], gsize length)
+  void eda_config_set_boolean_list (EdaConfig *cfg, const char *group, const char *key,
+                                    boolean list[], gsize length)
 
-  void eda_config_set_int_list (EdaConfig *cfg, const gchar *group, const gchar *key,
-                                gint list[], gsize length)
+  void eda_config_set_int_list (EdaConfig *cfg, const char *group, const char *key,
+                                int list[], gsize length)
 
-  void eda_config_set_double_list (EdaConfig *cfg, const gchar *group, const gchar *key,
-                                   gdouble list[], gsize length)
+  void eda_config_set_double_list (EdaConfig *cfg, const char *group, const char *key,
+                                   double list[], gsize length)
 
 Scheme functions::
 
@@ -643,7 +643,7 @@ Handlers
 In C, configuration event handlers must have the
 ``EdaConfigEventHandlerFunc`` prototype::
 
-  void handler (EdaConfig *cfg, const gchar *group, const gchar *key, gpointer user_data)
+  void handler (EdaConfig *cfg, const char *group, const char *key, gpointer user_data)
 
 In Scheme, a configuration event handler must be a closure that
 accepts three arguments::
@@ -660,7 +660,7 @@ Adding and removing handlers is quite straightforward:
 
 C function::
 
-  void eda_config_event_add (EdaConfig *cfg, const gchar *group, const gchar *key, EdaConfigEventHandlerFunc func, gpointer user_data)
+  void eda_config_event_add (EdaConfig *cfg, const char *group, const char *key, EdaConfigEventHandlerFunc func, gpointer user_data)
 
 Scheme function::
 
@@ -675,7 +675,7 @@ registered, does nothing.
 
 C function::
 
-  void eda_config_event_remove (EdaConfig *cfg, const gchar *group, const gchar *key, EdaConfigEventHandlerFunc func, gpointer user_data)
+  void eda_config_event_remove (EdaConfig *cfg, const char *group, const char *key, EdaConfigEventHandlerFunc func, gpointer user_data)
 
 Scheme function::
 

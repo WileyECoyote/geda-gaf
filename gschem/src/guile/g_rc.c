@@ -1245,6 +1245,7 @@ SCM g_rc_select_slack_pixels(SCM pixels)
                                 "select-slack-pixels");
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the snap-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1271,6 +1272,7 @@ SCM g_rc_snap_size(SCM size)
 
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the sort-component-library RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1305,6 +1307,7 @@ SCM g_rc_net_consolidate(SCM mode)
                    default_net_consolidate,
                    2);
 }
+
 /*! \brief This function processes the net-endpoint-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1359,6 +1362,7 @@ SCM g_rc_net_direction_mode(SCM mode)
                    default_net_direction_mode,
                    2);
 }
+
 /*! \brief This function processes the net-selection_mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1398,6 +1402,7 @@ SCM g_rc_bus_ripper_rotation(SCM mode)
                    default_bus_ripper_rotation,
                    2);
 }
+
 /*! \brief This function processes the bus-ripper-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1423,6 +1428,7 @@ SCM g_rc_bus_ripper_size(SCM size)
   default_bus_ripper_size = val;
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the bus-ripper-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1439,6 +1445,7 @@ SCM g_rc_bus_ripper_type(SCM mode)
                    default_bus_ripper_type,
                    2);
 }
+
 /*! \brief This function processes the bus-ripper-symname RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1520,6 +1527,7 @@ SCM g_rc_middle_button(SCM mode)
                    default_middle_button,
                    4);
 }
+
 /*! \brief This function processes the mousepan-gain RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1640,6 +1648,7 @@ SCM g_rc_image_size(SCM width, SCM height)
 
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the paper-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1720,7 +1729,9 @@ SCM g_rc_print_command(SCM scm_command)
 
   return SCM_BOOL_T;
 }
+
 #undef FUNC_NAME
+
 /*! \brief This function processes the output-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1740,6 +1751,7 @@ SCM g_rc_output_type(SCM mode)
                    default_print_output_type,
                    4);
 }
+
 /*! \brief This function processes the output-orientation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1756,6 +1768,7 @@ SCM g_rc_output_orientation(SCM mode)
                    default_print_orientation,
                    2);
 }
+
 /*! \brief This function processes the output-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1773,6 +1786,7 @@ SCM g_rc_output_color(SCM mode)
                    default_print_color,
                    2);
 }
+
 /*! \brief This function processes the output-capstyle RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1790,6 +1804,7 @@ SCM g_rc_output_capstyle(SCM mode)
                    default_print_output_capstyle,
                    3);
 }
+
 /*! \brief This function processes the setpagedevice-orientation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1806,6 +1821,7 @@ SCM g_rc_setpagedevice_orientation(SCM mode)
                    default_setpagedevice_orientation,
                    2);
 }
+
 /*! \brief This function processes the setpagedevice-pagesize RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1849,6 +1865,7 @@ SCM g_rc_file_preview(SCM mode)
                    default_file_preview,
                    2);
 }
+
 /*! \brief This function processes the handleboxes RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1865,6 +1882,7 @@ SCM g_rc_handleboxes(SCM mode)
                    default_handleboxes,
                    2);
 }
+
 /*! \brief This function processes the raise-dialog-boxes-on-expose RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1915,6 +1933,7 @@ SCM g_rc_toolbars(SCM mode)
                    default_toolbars,
                    2);
 }
+
 /*! \brief This function processes the toolbars-mode RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2043,6 +2062,7 @@ SCM g_rc_text_case(SCM mode)
                    default_text_case,
                    3);
 }
+
 /*! \brief This function processes the text-display_zoomfactor RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2068,6 +2088,7 @@ SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the text-feedback RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2084,6 +2105,7 @@ SCM g_rc_text_feedback(SCM mode)
                    default_text_feedback,
                    2);
 }
+
 /*! \brief This function processes the text-origin-marker RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2100,6 +2122,7 @@ SCM g_rc_text_origin_marker(SCM mode)
                    default_text_origin_marker,
                    2);
 }
+
 /*! \brief This function processes the text-marker-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

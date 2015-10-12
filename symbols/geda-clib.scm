@@ -316,3 +316,5 @@
     (component-library-search "/usr/local/gEDA/sym" "Local/Local")
     ;;(component-library "/usr/local/gEDA/sym" "local")
 ) )
+
+;;; Why not auto-load-dot-sym if ./sym folder exist?

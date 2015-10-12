@@ -57,10 +57,14 @@ struct option long_options[] =
   };
 #endif
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Print brief usage information and exit.
+ * \par Function Description
+ * Print brief help message describing gnetlist usage & command-line
+ * options.
  *
+ * \note Does exit program.
+ *
+ * \param cmd First element of argv (name of program as run).
  */
 void usage(char *cmd)
 {
@@ -94,7 +98,7 @@ void usage(char *cmd)
     cmd);
 }
 
-/*! \brief Print version info and exit.
+/*! \brief Print gnetlist version info and exit.
  * \par Function Description
  * Print gEDA version, and copyright/warranty notices, and exit with
  * exit status 0.
@@ -124,10 +128,15 @@ catch_handler (void *data, SCM tag, SCM throw_args)
   return SCM_BOOL_F;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Parse gnetlist command-line options.
+ * \par Function Description
+ * Parse command line options, displaying usage message or version
+ * information as required.
  *
+ * \param argc Number of command-line arguments.
+ * \param argv Array of command-line arguments.
+ *
+ * \return index into \a argv of first non-option argument.
  */
 int parse_commandline (int argc, char *argv[])
 {
@@ -148,7 +157,7 @@ int parse_commandline (int argc, char *argv[])
 
 #else
 
-  while ((ch = getopt(argc, argv, OPTIONS)) != -1)
+  while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
   {
 
 #endif

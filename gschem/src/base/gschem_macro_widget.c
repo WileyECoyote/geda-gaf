@@ -357,6 +357,7 @@ GedaType gschem_macro_widget_get_type (void)
   static GedaType type = 0;
 
   if (type == 0) {
+
     static const GTypeInfo info = {
       sizeof(GschemMacroWidgetClass),
       NULL,                                                    /* base_init */

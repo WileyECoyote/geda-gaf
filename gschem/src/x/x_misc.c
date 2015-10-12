@@ -109,7 +109,7 @@ static bool show_uri__win32 (const char *uri, GError **error)
  * Calling the ShellExecute() Windows API call (default on Windows)
  * Running an appropriate external tool.
  *
- * \param uri        URI to launch viewer for.
+ * \param uri  URI to launch viewer for.
  *
  * \return TRUE on success, FALSE on failure.
  */

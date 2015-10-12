@@ -1,13 +1,15 @@
 
-
 Tests for gnetlist
 ----------------------------------------------------------------------------
 
+Prologue
+--------
+
 The tests in this directory are basically just diffs against known good
 output.  Fairly simplistic, but for now it's enough.  I have NOT verified
-that the known good output is correct. 
+that the known good output is correct.
 
-gnetlist must be  insalled before these these tests can be run.  You 
+gnetlist must be  installed before these these tests can be run.  You
 must also run the tests with all of the gEDA packages in ../..
 
 To run the tests type:
@@ -15,7 +17,6 @@ To run the tests type:
 	make tests
 
 	The diffs should NOT generate any output.
-
 
 Eventually the tests here will become a bit sophisticated.
 

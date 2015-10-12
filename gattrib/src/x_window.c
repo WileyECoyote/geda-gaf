@@ -199,6 +199,7 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   cfg    = eda_config_get_user_context ();
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
+
   if (err != NULL) {
     fprintf(stderr, "Error retrieving user configuration: '%s'\n", err->message);
     g_clear_error (&err);
@@ -211,11 +212,14 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   }
 
   width  = eda_config_get_integer (cfg, group_name, "window-width", &err);
+
   if (err != NULL) {
     g_clear_error (&err);
     width = DEFAULT_WINDOW_WIDTH;
   }
+
   height = eda_config_get_integer (cfg, group_name, "window-height", &err);
+
   if (err != NULL) {
     g_clear_error (&err);
     height = DEFAULT_WINDOW_HEIGHT;
@@ -233,6 +237,7 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   if (width == 0 ) {
     width = DEFAULT_WINDOW_WIDTH;
   }
+
   if (height == 0) {
     height = DEFAULT_WINDOW_HEIGHT;
   }
