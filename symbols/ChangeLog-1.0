@@ -1,3 +1,15 @@
+2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 2 symbols; STEREO AUDIO DAC,USB,HEADPHONE S/PDIF OUTPUT,SSOP28:
+
+        * ti/PCM2704.sym
+        * ti/PCM2705.sym
+
+    * Replace 2 symbols: STEREO AUDIO DAC,USB,HEADPHONE S/PDIF OUTPUT,TQFP32
+
+        * ti/PCM2706.sym
+        * ti/PCM2707.sym
+
 2015-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 6 symbols; Fixed negative voltage regulators:
@@ -9,7 +21,7 @@
         * linear/regulate/LM7912-2.sym
         * linear/regulate/LM7915-1.sym
 
-    * Edit 3 symbols;
+    * Edit 3 symbols:
 
         * linear/regulate/LM7905-2.sym
         * linear/regulate/LM7912-1.sym
