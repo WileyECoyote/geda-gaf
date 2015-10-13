@@ -280,7 +280,7 @@ int s_page_autosave (GedaToplevel *toplevel)
 
     if ( toplevel->pages != NULL) {
 
-      for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+      for ( iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
       {
         p_current = (Page *)iter->data;
 
@@ -309,7 +309,7 @@ bool s_page_check_changed (PageList *list)
   const GList *iter;
   Page *p_current;
 
-  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  for ( iter = geda_list_get_glist(list); iter != NULL; NEXT(iter))
   {
     p_current = (Page *)iter->data;
     if (p_current->CHANGED) {
@@ -331,7 +331,7 @@ void s_page_clear_changed (PageList *list)
   const GList *iter;
   Page *p_current;
 
-  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  for ( iter = geda_list_get_glist(list); iter != NULL; NEXT(iter))
   {
     p_current = (Page *)iter->data;
     p_current->CHANGED = 0;
@@ -434,7 +434,7 @@ void s_page_delete_list (GedaToplevel *toplevel)
   Page *page;
 
   /* s_page_delete removes items from the page list, so make a copy */
-  list_copy = g_list_copy (geda_list_get_glist (toplevel->pages));
+  list_copy = g_list_copy (geda_toplevel_get_pages (toplevel));
 
   for (iter = list_copy; iter != NULL; NEXT(iter)) {
 
@@ -601,7 +601,7 @@ void s_page_print_all (GedaToplevel *toplevel)
   const GList *iter;
   Page *page;
 
-  for ( iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
+  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
   {
     page = (Page *)iter->data;
     printf ("FILENAME: %s\n", page->filename);
@@ -627,7 +627,7 @@ page_comparator(const void *pg1, const void *pg2)
  */
 void s_page_resequence_by_ids (GedaToplevel *toplevel)
 {
-  if (g_list_length(geda_list_get_glist(toplevel->pages)) > 1) {
+  if (g_list_length(geda_toplevel_get_pages(toplevel)) > 1) {
 
     toplevel->pages->glist = g_list_sort (toplevel->pages->glist,
                                           page_comparator);
@@ -648,7 +648,7 @@ int s_page_save_all (GedaToplevel *toplevel)
   Page *p_current;
   int status = 0;
 
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter; iter = iter->next)
+  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
   {
     p_current = (Page *)iter->data;
 
@@ -684,7 +684,7 @@ int s_page_save_all_changed (GedaToplevel *toplevel)
   Page *p_current;
   int status = 0;
 
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter; iter = iter->next)
+  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
   {
     p_current = (Page *)iter->data;
 
@@ -722,7 +722,7 @@ Page *s_page_search (GedaToplevel *toplevel, const char *filename)
   Page  *page;
 
   if (filename) {
-    for (iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
+    for (iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
     {
       page = (Page *)iter->data;
       if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )

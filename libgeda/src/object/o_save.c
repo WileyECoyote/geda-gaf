@@ -58,7 +58,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
   /* save current page */
   p_save = toplevel->page_current;
 
-  for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  for (iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
   {
     p_current = (Page *)iter->data;
 

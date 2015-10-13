@@ -220,4 +220,6 @@ void          geda_toplevel_remove_page      (GedaToplevel *toplevel, Page *page
 
 END_DECLS
 
+#define geda_toplevel_get_pages(top) geda_list_get_glist (top->pages)
+
 #endif /* _LIBGEDA_TOPLEVEL_H */

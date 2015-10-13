@@ -545,7 +545,7 @@ Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 
   found_page = NULL;
 
-  pages = geda_list_get_glist(toplevel->pages);
+  pages = geda_toplevel_get_pages(toplevel);
 
   for (iter = pages; iter != NULL; NEXT(iter)) {
 

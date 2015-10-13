@@ -243,7 +243,7 @@ EDA_SCM_DEFINE (page_get_opened, "%active-pages", 0, 0, 0, (),
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
   SCM lst = SCM_EOL;
   SCM rlst;
-  GList *page_list = geda_list_get_glist (toplevel->pages);
+  GList *page_list = geda_toplevel_get_pages (toplevel);
 
   while (page_list != NULL) {
     lst = scm_cons (edascm_from_page (page_list->data), lst);

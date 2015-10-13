@@ -1,3 +1,9 @@
+2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_toplevel.h: Add macro geda_toplevel_get_pages,
+      is only 3 characters less than geda_list_get_glist with (toplevel->
+      pages) but maybe more readable.
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revise function u_string_stristr to check

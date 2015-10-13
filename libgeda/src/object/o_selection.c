@@ -111,7 +111,7 @@ void o_selection_print_all(const SELECTION *selection)
   const GList *s_current;
   Object      *object;
 
-  s_current = geda_list_get_glist( selection );
+  s_current = geda_list_get_glist (selection);
 
   printf("START printing selection ********************\n");
   while(s_current != NULL) {
