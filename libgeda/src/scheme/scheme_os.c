@@ -157,7 +157,7 @@ EDA_SCM_DEFINE (os_user_data_dir, "%user-data-dir", 0, 0, 0, (),
  * accessed using (use-modules (geda core os)).
  */
 static void
-init_module_geda_core_os ()
+init_module_geda_core_os (void *nothing)
 {
   /* Register the functions and symbols */
   #include "scheme_os.x"
@@ -177,7 +177,7 @@ init_module_geda_core_os ()
  * support. Should only be called by edascm_init().
  */
 void
-edascm_init_os ()
+edascm_init_os (void)
 {
   /* Define the (geda core os) module */
   scm_c_define_module ("geda core os", init_module_geda_core_os, NULL);

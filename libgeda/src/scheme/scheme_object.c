@@ -1976,7 +1976,7 @@ EDA_SCM_DEFINE (object_rotate_x, "%rotate-object!", 4, 0, 0,
  * be accessed using (use-modules (geda core object)).
  */
 static void
-init_module_geda_core_object ()
+init_module_geda_core_object (void *nothing)
 {
   /* Register the functions and symbols */
   #include "scheme_object.x"
@@ -2026,7 +2026,7 @@ init_module_geda_core_object ()
  * smobs. Should only be called by edascm_init().
  */
 void
-edascm_init_object ()
+edascm_init_object (void)
 {
   /* Define the (geda core object) module */
   scm_c_define_module ("geda core object",

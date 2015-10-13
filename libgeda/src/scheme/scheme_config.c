@@ -1208,7 +1208,7 @@ EDA_SCM_DEFINE (config_remove_event_x, "%remove-config-event!", 2, 0, 0,
  * be accessed using (use-modules (geda core config)).
  */
 static void
-init_module_geda_core_config ()
+init_module_geda_core_config (void *nothing)
 {
   /* Register the functions and symbols */
   #include "scheme_config.x"
@@ -1252,7 +1252,7 @@ init_module_geda_core_config ()
  * smobs. Should only be called by edascm_init().
  */
 void
-edascm_init_config ()
+edascm_init_config (void)
 {
   /* Define the (geda core object) module */
   scm_c_define_module ("geda core config",

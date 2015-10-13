@@ -404,7 +404,7 @@ EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
  * be accessed using (use-modules (geda core complex)).
  */
 static void
-init_module_geda_core_complex ()
+init_module_geda_core_complex (void *nothing)
 {
   /* Register the functions and symbols */
   #include "scheme_complex.x"
@@ -428,7 +428,7 @@ init_module_geda_core_complex ()
  * smobs. Should only be called by edascm_init().
  */
 void
-edascm_init_complex ()
+edascm_init_complex (void)
 {
   /* Define the (geda core object) module */
   scm_c_define_module ("geda core complex",

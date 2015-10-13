@@ -75,7 +75,7 @@ EDA_SCM_DEFINE (current_toplevel, "%current-toplevel", 0, 0, 0, (),
  *       done in the old version of geda-gaf.
  */
 GedaToplevel *
-edascm_c_current_toplevel ()
+edascm_c_current_toplevel (void)
 {
   SCM s_toplevel = current_toplevel ();
   EDASCM_ASSERT_SMOB_VALID(s_toplevel);
@@ -116,7 +116,7 @@ edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
  * can be accessed using (use-modules (geda core toplevel)).
  */
 static void
-init_module_geda_core_toplevel ()
+init_module_geda_core_toplevel (void *nothing)
 {
   /* Register the functions */
   #include "scheme_toplevel.x"
@@ -133,7 +133,7 @@ init_module_geda_core_toplevel ()
  * edascm_init().
  */
 void
-edascm_init_toplevel ()
+edascm_init_toplevel (void)
 {
   scheme_toplevel_fluid = scm_permanent_object (scm_make_fluid ());
 

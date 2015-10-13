@@ -279,7 +279,7 @@ EDA_SCM_DEFINE (attrib_promotable, "%promotable-attribs", 1, 0, 0,
  * be accessed using (use-modules (geda core attrib)).
  */
 static void
-init_module_geda_core_attrib ()
+init_module_geda_core_attrib (void *nothing)
 {
   /* Register the functions */
   #include "scheme_attrib.x"
@@ -301,7 +301,7 @@ init_module_geda_core_attrib ()
  * attributes. Should only be called by edascm_init().
  */
 void
-edascm_init_attrib ()
+edascm_init_attrib (void)
 {
   /* Define the (geda core attrib) module */
   scm_c_define_module ("geda core attrib",

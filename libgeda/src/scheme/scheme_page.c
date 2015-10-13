@@ -464,7 +464,7 @@ EDA_SCM_DEFINE (page_to_string, "%page->string", 1, 0, 0,
  * be accessed using (use-modules (geda core page)).
  */
 static void
-init_module_geda_core_page ()
+init_module_geda_core_page (void *nothing)
 {
   /* Register the functions */
   #include "scheme_page.x"
@@ -494,7 +494,7 @@ init_module_geda_core_page ()
  * smobs. Should only be called by edascm_init().
  */
 void
-edascm_init_page ()
+edascm_init_page (void)
 {
   /* Define the (geda core page) module */
   scm_c_define_module ("geda core page",

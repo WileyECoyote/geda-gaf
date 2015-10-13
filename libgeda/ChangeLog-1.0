@@ -4,6 +4,24 @@
       is only 3 characters less than geda_list_get_glist with (toplevel->
       pages) but maybe more readable.
 
+    * Code Enhancement: Function Maintenance
+
+      Rectify incomplete  function () definitions, initialization functions
+      for scm_c_define_module should be void *, not void:
+
+            * src/scheme/scheme_attrib.c
+            * src/scheme/scheme_closure.c
+            * src/scheme/scheme_complex.c
+            * src/scheme/scheme_config.c
+            * src/scheme/scheme_deprecated.c
+            * src/scheme/scheme_init.c
+            * src/scheme/scheme_make.c
+            * src/scheme/scheme_object.c
+            * src/scheme/scheme_os.c
+            * src/scheme/scheme_page.c
+            * src/scheme/scheme_smob.c
+            * src/scheme/scheme_toplevel.c
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Revise function u_string_stristr to check

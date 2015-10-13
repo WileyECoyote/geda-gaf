@@ -54,7 +54,7 @@ EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
  * be accessed using (use-modules (geda core deprecated)).
  */
 static void
-init_module_geda_core_deprecated ()
+init_module_geda_core_deprecated (void *nothing)
 {
   /* Register the functions */
   #include "scheme_deprecated.x"
@@ -87,7 +87,7 @@ init_module_geda_core_deprecated ()
  * smobs. Should only be called by edascm_init().
  */
 void
-edascm_init_deprecated ()
+edascm_init_deprecated (void)
 {
   /* Define the (geda core page) module */
   scm_c_define_module ("geda core deprecated",

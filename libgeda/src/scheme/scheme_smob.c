@@ -592,7 +592,7 @@ EDA_SCM_DEFINE (smob_config_p, "%config?", 1, 0, 0,
  * be accessed using (use-modules (geda core smob)).
  */
 static void
-init_module_geda_core_smob ()
+init_module_geda_core_smob (void *nothing)
 {
   /* Register the functions. */
   #include "scheme_smob.x"
@@ -613,7 +613,7 @@ init_module_geda_core_smob ()
  * edascm_init().
  */
 void
-edascm_init_smob ()
+edascm_init_smob (void)
 {
   /* Register gEDA smob type */
   geda_smob_tag = scm_make_smob_type ("geda", 0);
