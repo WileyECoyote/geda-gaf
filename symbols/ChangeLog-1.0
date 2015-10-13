@@ -1,3 +1,11 @@
+2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 3 symbols; VOLTAGE LDO REGULATORS:
+
+        * onsemi/ldo/NCP1117-ST19-1.sym
+        * onsemi/ldo/NCV1117-DT19-1.sym
+        * onsemi/ldo/NCV1117-ST19-1.sym
+
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 2 symbols; STEREO AUDIO DAC,USB,HEADPHONE S/PDIF OUTPUT,SSOP28:
