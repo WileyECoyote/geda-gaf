@@ -143,10 +143,14 @@ static void main_prog(void *closure, int argc, char *argv[])
   exit(exit_status);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Main executable entrance point.
  *  \par Function Description
+ *  This is the main function for gsymcheck. The function sets up the
+ *  Scheme(GUILE) environment and passes control to the #main_prog
+ *  function via scm_boot_guile.
  *
+ * \param argc Number of command line arguments
+ * \param argv Command line arguments
  */
 int main (int argc, char *argv[])
 {

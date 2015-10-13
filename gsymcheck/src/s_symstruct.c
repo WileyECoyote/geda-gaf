@@ -112,8 +112,15 @@ void s_symstruct_print(SYMCHECK *s_current)
   }
 }
 
-void
-s_symstruct_free(SYMCHECK *s_current)
+/*! \brief Release resources for SYMCHECK structure
+ *  \par Function Description
+ *  Called after each symbol is checked and the results reported to
+ *  release memory allocated for the structure, containing list and
+ *  message strings referenced in the lists.
+ *
+ *  \param [in] s_current Pointer to SYMCHECK free
+ */
+void s_symstruct_free(SYMCHECK *s_current)
 {
   if (s_current) {
 
