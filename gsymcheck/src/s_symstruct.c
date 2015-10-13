@@ -112,15 +112,15 @@ void s_symstruct_print(SYMCHECK *s_current)
   }
 }
 
-/*! \brief Release resources for SYMCHECK structure
+/*! \brief Release resources in SYMCHECK structure and reset to zero
  *  \par Function Description
  *  Called after each symbol is checked and the results reported to
- *  release memory allocated for the structure, containing list and
- *  message strings referenced in the lists.
+ *  release memory allocated for string message and list within
+ *  #SYMCHECK structure \a s_current and zero-out the memory.
  *
- *  \param [in] s_current Pointer to SYMCHECK free
+ *  \param [in] s_current Pointer to SYMCHECK structure to reset
  */
-void s_symstruct_free(SYMCHECK *s_current)
+void s_symstruct_reset(SYMCHECK *s_current)
 {
   if (s_current) {
 
@@ -155,6 +155,19 @@ void s_symstruct_free(SYMCHECK *s_current)
     g_list_free(s_current->warning_messages);
     g_list_free(s_current->error_messages);
 
+    memset(s_current, 0, sizeof(SYMCHECK));
+  }
+}
+
+/*! \brief Release allocation for SYMCHECK structure
+ *  \par Function Description
+ *  Called to release memory allocated for the structure.
+ *
+ *  \param [in] s_current Pointer to SYMCHECK free
+ */
+void s_symstruct_free(SYMCHECK *s_current)
+{
+  if (s_current) {
     GEDA_FREE(s_current);
   }
 }

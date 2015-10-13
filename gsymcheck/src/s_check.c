@@ -41,7 +41,7 @@
                                s_current->warning_count++;
 
 /* Function prototypes */
-static int  s_check_symbol(GedaToplevel *pr_current, Page *p_current, const GList *obj_list);
+static int  s_check_symbol(SYMCHECK *s_current, const GList *obj_list);
 static bool s_check_list_has_item(char **list , char *item);
 static void s_check_symbol_structure(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current);
@@ -59,102 +59,134 @@ static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK 
 static void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Wrapper to execute s_check_symbol for each page
  *  \par Function Description
+ *   Calls s_check_symbol for each in page in the top-level,
+ *   accumulates and returns the results.
  *
+ * \param [in] toplevel  The GedaToplevel object
+ *
+ * \returns total number findings
  */
-int s_check_all(GedaToplevel *pr_current)
+int s_check_all(GedaToplevel *toplevel)
 {
-  GList *iter;
-  Page *p_current;
-  int return_status=0;
+  GList    *iter;
+  SYMCHECK *s_current;
 
+  int total = 0;
 
-  for ( iter = geda_list_get_glist( pr_current->pages );
-       iter != NULL;
-  iter = g_list_next( iter ) ) {
+  s_current = s_symstruct_init();
 
-    p_current = (Page *)iter->data;
+  if (s_current) {
 
-    if (s_page_get_objects (p_current)) {
-      return_status = return_status +
-      s_check_symbol (pr_current, p_current,
-                      s_page_get_objects (p_current));
-      if (!quiet_mode) u_log_message("\n");
+    GList *pages;
+
+    pages = geda_toplevel_get_pages (toplevel);
+
+    for (iter = pages; iter != NULL; iter = g_list_next(iter)) {
+
+      GList *obj_list;
+      Page  *page;
+      int    result;
+
+      result   = 0;
+      page     = (Page*)iter->data;
+      obj_list = s_page_get_objects (page);
+
+      if (obj_list) {
+
+        if (!quiet_mode) {
+          u_log_message(_("Checking: %s\n"), page->filename);
+        }
+
+        result = s_check_symbol (s_current, obj_list);
+
+        if (!quiet_mode) {
+          u_log_message("\n");
+        }
+
+        total =  total + result;
+      }
+      s_symstruct_reset (s_current);
     }
+
+    s_symstruct_free (s_current);
   }
 
-  return(return_status);
+  return (total);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check the Symbol
  *  \par Function Description
+ *   Passes the object list and data structure for results to each of the
+ *   checker (worker) functions and then prints the results and returns
+ *   a yes/no result.
  *
+ *  \param [in] s_current Pointer to SYMCHECK structure to store results
+ *  \param [in] obj_list  List of all objects associated with the symbol
+ *
+ *  return
  */
 static int
-s_check_symbol (GedaToplevel *pr_current, Page *p_current, const GList *obj_list)
+s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
 {
-  SYMCHECK *s_symcheck=NULL;
   int errors=0, warnings=0;
 
-  s_symcheck = s_symstruct_init();
-
-  if (!quiet_mode) {
-    u_log_message(_("Checking: %s\n"), p_current->filename);
-  }
-
   /* overal symbol structure test */
-  s_check_symbol_structure (obj_list, s_symcheck);
+  s_check_symbol_structure (obj_list, s_current);
 
   /* test all text elements */
-  s_check_text (obj_list, s_symcheck);
+  s_check_text (obj_list, s_current);
 
   /* check for graphical attribute */
-  s_check_graphical (obj_list, s_symcheck);
+  s_check_graphical (obj_list, s_current);
 
   /* check for device attribute */
-  s_check_device (obj_list, s_symcheck);
+  s_check_device (obj_list, s_current);
 
   /* check for missing attributes */
-  s_check_missing_attributes (obj_list, s_symcheck);
+  s_check_missing_attributes (obj_list, s_current);
 
   /* check for pintype attribute (and multiples) on all pins */
-  s_check_pintype (obj_list, s_symcheck);
+  s_check_pintype (obj_list, s_current);
 
   /* check for pinseq attribute (and multiples) on all pins */
-  s_check_pinseq (obj_list, s_symcheck);
+  s_check_pinseq (obj_list, s_current);
 
   /* check for pinnumber attribute (and multiples) on all pins */
-  s_check_pinnumber (obj_list, s_symcheck);
+  s_check_pinnumber (obj_list, s_current);
 
   /* check for whether all pins are on grid */
-  s_check_pin_ongrid (obj_list, s_symcheck);
+  s_check_pin_ongrid (obj_list, s_current);
 
   /* check for slotdef attribute on all pins (if numslots exists) */
-  s_check_slotdef (obj_list, s_symcheck);
+  s_check_slotdef (obj_list, s_current);
 
   /* check for old pin#=# attributes */
-  s_check_oldpin (obj_list, s_symcheck);
+  s_check_oldpin (obj_list, s_current);
 
   /* check for old pin#=# attributes */
-  s_check_oldslot (obj_list, s_symcheck);
+  s_check_oldslot (obj_list, s_current);
 
   /* check for nets or buses within the symbol (completely disallowed) */
-  s_check_nets_buses (obj_list, s_symcheck);
+  s_check_nets_buses (obj_list, s_current);
 
   /* check for connections with in a symbol (completely disallowed) */
-  s_check_connections (obj_list, s_symcheck);
+  s_check_connections (obj_list, s_current);
+
+  errors   = s_current->error_count;
+  warnings = s_current->warning_count;
 
   /* now report the info/warnings/errors to the user */
   if (!quiet_mode) {
 
-    /* done, now print out the messages */
-    s_symstruct_print(s_symcheck);
+    /* Print out messages stored in the structure */
+    s_symstruct_print(s_current);
 
-    if (s_symcheck->warning_count > 0) {
-      u_log_message(_("%d warnings found "), s_symcheck->warning_count);
+    if (warnings > 0) {
+
+      u_log_message(_("%d warnings found "), warnings);
+
       if (verbose_mode < 2) {
         u_log_message(_("(use -vv to view details)\n"));
       } else {
@@ -162,36 +194,34 @@ s_check_symbol (GedaToplevel *pr_current, Page *p_current, const GList *obj_list
       }
     }
 
-    if (s_symcheck->error_count == 0) {
+    if (errors == 0) {
       u_log_message(_("No errors found\n"));
-    } else if (s_symcheck->error_count == 1) {
+    }
+    else if (errors == 1) {
+
       u_log_message(_("1 ERROR found "));
+
       if (verbose_mode < 1) {
         u_log_message(_("(use -v to view details)\n"));
-      } else {
+      }
+      else {
         u_log_message("\n");
       }
+    }
+    else if (errors > 1) {
 
-    } else if (s_symcheck->error_count > 1) {
-      u_log_message(_("%d ERRORS found "), s_symcheck->error_count);
+      u_log_message(_("%d ERRORS found "), errors);
+
       if (verbose_mode < 1) {
         u_log_message(_("(use -v to view details)\n"));
-      } else {
+      }
+      else {
         u_log_message("\n");
       }
     }
   }
 
-  errors = s_symcheck->error_count;
-  warnings = s_symcheck->warning_count;
-  s_symstruct_free(s_symcheck);
-  if (errors) {
-    return(2);
-  } else if (warnings) {
-    return(1);
-  } else {
-    return(0);
-  }
+  return (errors || warnings) ? 1 : 0;
 }
 
 /*! \todo Finish function documentation!!!

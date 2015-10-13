@@ -24,4 +24,5 @@ void s_log_update (const char *log_domain, GLogLevelFlags log_level, const char 
 /* s_symstruct.c */
 SYMCHECK *s_symstruct_init(void);
 void s_symstruct_print(SYMCHECK *s_current);
+void s_symstruct_reset(SYMCHECK *s_current);
 void s_symstruct_free(SYMCHECK *s_current);

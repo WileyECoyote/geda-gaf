@@ -1,6 +1,25 @@
+2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve performance
+
+    * src/s_symstruct.c: Add function s_symstruct_reset to release memory for
+      string and list referenced with the structure and re-zero the block.
+      Remove code to do above from function s_symstruct_free.
+
+    * src/s_check.c: Revise/revamp s_check_all and s_check_symbol so that the
+      memory for SYMCHECK is not released and reallocated for each symbol,
+      only free the string and lists, and then re-zeroed. Allocate and pass
+      SYMCHECK to s_check_symbol, removed passing toplevel, formally pr_current
+      which was not used by s_check_symbol, and confusing p_current = page.
+      Just conditionally print the filename in s_check_all before calling
+      s_check_symbol. Completed Doxygen comments for both s_check_all and
+      s_check_symbol.
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Release dynamically allocated resources properly
+
+    * gsymcheck has zero memory leaks!
 
     * src/s_symstruct.c: Revise function s_symstruct_init to return the pointer
       from memset directly. Revise function s_symstruct_init to not free message
