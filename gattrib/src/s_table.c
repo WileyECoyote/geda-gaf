@@ -870,9 +870,10 @@ void s_table_load_new_page(PageDataSet *PageData) {
   PageData->pin_table = s_table_new(PageData->pin_count, PageData->pin_attrib_count);
 
   /* iterate over all pages in design */
-  for ( iter = geda_list_get_glist( pr_current->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
+  for (iter  = geda_toplevel_get_pages (pr_current);
+       iter != NULL;
+       iter  = g_list_next(iter)) {
+
     p_local = (Page *)iter->data;
 
     /* only traverse pages which are toplevel */

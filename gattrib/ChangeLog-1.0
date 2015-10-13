@@ -1,3 +1,12 @@
+2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Replace geda_list_get_glist with geda_toplevel_get_pages
+      in function s_table_load_new_page.
+
+    * src/s_toplevel.c: Replace geda_list_get_glist with geda_toplevel_get_pages
+      in functions; s_toplevel_verify_design (k) and s_toplevel_gtksheet_to_top
+      level.
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add some help menu items to gattrib, is basic and little direct

@@ -100,9 +100,10 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 
   int missing_sym_flag = 0;
 
-  for (p_iter = geda_list_get_glist (toplevel->pages);
+  for (p_iter  = geda_toplevel_get_pages (toplevel);
        p_iter != NULL;
-       p_iter = g_list_next (p_iter)) {
+       p_iter  = g_list_next (p_iter)) {
+
     Page *p_current = p_iter->data;
 
     for (o_iter = s_page_get_objects (p_current);
@@ -140,9 +141,9 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
   s_table_gtksheet_to_all_tables();
 
   /* iterate over all pages in design */
-  for ( iter = geda_list_get_glist( toplevel->pages );
+  for ( iter  = geda_toplevel_get_pages(toplevel);
         iter != NULL;
-        iter = g_list_next( iter ) ) {
+        iter  = g_list_next( iter ) ) {
 
     p_current = (Page *)iter->data;
 
