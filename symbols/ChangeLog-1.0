@@ -1,3 +1,21 @@
+2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 5 symbols; 16-Bit I/O Expander with I2C Interface:
+
+        * microchip/MCP23016-1.sym
+        * microchip/MCP23016-3.sym
+        * microchip/MCP23017-1.sym
+        * microchip/MCP23017-2.sym
+        * microchip/MCP23017-3.sym
+
+    * Add 3 symbols; 16-Bit I/O Expander with SPI Interface:
+
+        * microchip/MCP23S17-1.sym
+        * microchip/MCP23S17-2.sym
+        * microchip/MCP23S17-3.sym
+
+    * analogdevices/ADV7123-2.sym: Rename and clean symbol
+
 2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93LC56B-I-ST-1.sym: Add symbol 2K EEPROM, 16 Bit
