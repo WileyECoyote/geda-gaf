@@ -388,8 +388,10 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
 
   if (fp) {
 
+    GedaToplevel *toplevel = w_current->toplevel;
+
     count = 0;
-    iter = geda_list_get_glist(w_current->toplevel->pages);
+    iter = geda_toplevel_get_pages(toplevel);
 
     /* Loop through all the pages looking for unsaved pages */
     while (iter) {
@@ -461,8 +463,9 @@ static int i_sessions_save(GschemToplevel *w_current, GError *err)
 
     if (fp) {
 
+      GedaToplevel *toplevel = w_current->toplevel;
 
-      iter = geda_list_get_glist(w_current->toplevel->pages);
+      iter = geda_toplevel_get_pages(toplevel);
 
       /* Loop through all the pages looking for unsaved pages */
       while (iter) {

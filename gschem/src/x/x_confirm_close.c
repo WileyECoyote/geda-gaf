@@ -748,7 +748,7 @@ x_confirm_close_window (GschemToplevel *w_current)
   unsaved_pages = NULL;
 
   /* Loop through all the pages */
-  for (iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  for (iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
   {
     /* get ptr to a page */
     p_current = (Page*)iter->data;

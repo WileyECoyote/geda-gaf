@@ -76,7 +76,8 @@ static bool show_uri__win32 (const char *uri, GError **error)
 
   if (status == 0) {
     msg = u_string_strdup (_("The operating system is out of memory or resources."));
-  } else {
+  }
+  else {
     LPVOID buf;
     FormatMessage ((FORMAT_MESSAGE_ALLOCATE_BUFFER |
                     FORMAT_MESSAGE_FROM_SYSTEM |
@@ -117,6 +118,7 @@ bool
 x_show_uri (const char *uri)
 {
   GError *error = NULL;
+
 #if defined (OS_WIN32) && !defined (OS_CYGWIN)
 
   return show_uri__win32 (uri, error);
@@ -157,7 +159,7 @@ x_show_uri (const char *uri)
     u_log_message("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
   }
 
-# endif
+#endif
 
   bool spawn_status;
   char *argv[3];
@@ -179,6 +181,4 @@ x_show_uri (const char *uri)
   if (!spawn_status) return FALSE;
 
   return TRUE;
-
-
 }

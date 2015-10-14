@@ -550,7 +550,7 @@ bool x_event_configure (GtkWidget         *widget,
     /* save current page */
     old_page_current = toplevel->page_current;
 
-    pages = geda_list_get_glist(toplevel->pages);
+    pages = geda_toplevel_get_pages(toplevel);
 
     /* re-pan each page of the GedaToplevel */
     for (iter = pages; iter != NULL; iter  = iter->next) {

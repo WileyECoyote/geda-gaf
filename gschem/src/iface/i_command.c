@@ -2305,12 +2305,12 @@ COMMAND (do_page_first)
       }
     }
     else {
-      iter = g_list_first(geda_list_get_glist(toplevel->pages));
+      iter = geda_toplevel_get_pages(toplevel);
       p_first = iter->data;
     }
   }
   else {
-    iter = g_list_first(geda_list_get_glist(toplevel->pages));
+    iter = geda_toplevel_get_pages(toplevel);
     p_first = iter->data;
   }
 
@@ -2318,6 +2318,72 @@ COMMAND (do_page_first)
     x_window_set_current_page (w_current, p_first);
   }
 
+}
+
+/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
+COMMAND (do_page_prev)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_page_prev);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page *p_new;
+  GList *iter;
+
+  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+  iter = g_list_previous( iter);
+
+  if ( iter != NULL) {
+
+    p_new = (Page *)iter->data;
+
+    if (w_current->enforce_hierarchy) {
+      p_new = s_hierarchy_find_prev_page(toplevel->pages, Current_Page);
+    }
+    else {
+      p_new = (Page *)iter->data;
+    }
+
+    if (p_new != NULL || p_new != Current_Page) {
+      x_window_set_current_page (w_current, p_new);
+    }
+  }
+}
+
+/** @brief i_cmd_do_page_next in i_command_Command_Functions */
+COMMAND (do_page_next)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_page_next);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page *p_new;
+  GList *iter;
+
+  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+  NEXT(iter);
+
+  if (iter != NULL) {
+
+    if (w_current->enforce_hierarchy) {
+      p_new = s_hierarchy_find_next_page(toplevel->pages, Current_Page);
+    }
+    else {
+      p_new = (Page *)iter->data;
+    }
+
+    if (p_new != NULL || p_new != Current_Page) {
+      x_window_set_current_page (w_current, p_new);
+    }
+  }
 }
 
 /** @brief i_cmd_do_page_up in i_command_Command_Functions */
