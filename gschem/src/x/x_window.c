@@ -1157,6 +1157,9 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
     }
     else {
 
+      Page *current_page;
+      bool  deleted_current;
+
       /* If we're closing whilst inside an action, re-wind the
        * page contents back to their state before we started */
       if (w_current->inside_action) {
@@ -1164,7 +1167,9 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         i_callback_cancel (w_current, 0, NULL);
       }
 
-      if (page == toplevel->page_current) {
+      current_page = geda_toplevel_get_current_page(toplevel);
+
+      if (current_page && page == current_page) {
 
         int pid = page->hierarchy_up;
 
@@ -1188,6 +1193,17 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
           }
         }
         /* new_current will be the new current page at the end of the function */
+
+        deleted_current = TRUE;
+      }
+      else {
+
+        if (current_page) {
+          deleted_current = FALSE;
+        }
+        else {
+          deleted_current = TRUE;
+        }
       }
 
       if ((u_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
@@ -1200,8 +1216,9 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
       /* remove page from toplevel list of page and free */
       s_page_delete (toplevel, page, TRUE);
 
+
       /* Switch to a different page if we just removed the current */
-      if (toplevel->page_current == NULL) {
+      if (deleted_current) {
 
         /* Create a new page if there wasn't another to switch to */
         if (new_current == NULL) {
