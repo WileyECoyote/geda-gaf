@@ -1,3 +1,8 @@
+2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/memory/93LC56B-I-ST-1.sym: Add symbol 2K EEPROM, 16 Bit
+      Serial, 2.5-5.5Volt, +125°C, MSOP8.
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 3 symbols; VOLTAGE LDO REGULATORS:
