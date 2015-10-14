@@ -18,6 +18,9 @@
 
     * analogdevices/ADV7123-2.sym: Rename and clean symbol
 
+    * analogdevices/ADuM1300-1.sym: Clean symbol, correct footprint,
+      add symversion attribute.
+
 2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/memory/93LC56B-I-ST-1.sym: Add symbol 2K EEPROM, 16 Bit
