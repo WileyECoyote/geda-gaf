@@ -236,9 +236,9 @@ T 450 775 5 8 0 1 180 6 1
 pintype=pwr
 T 450 800 9 10 1 1 0 0 1
 pinlabel=GND
-T 250 850 5 8 1 1 0 6 1
+T 200 900 5 8 1 1 0 6 1
 pinnumber=8
-T 250 850 5 8 0 1 0 6 1
+T 200 900 5 8 0 1 0 6 1
 pinseq=8
 }
 P 100 500 400 500 1 0 0
@@ -313,7 +313,7 @@ device=MCP23016
 T 400 7600 5 10 0 0 0 0 1
 description=16-Bit I2C I/O Expander
 T 400 7200 9 10 1 1 0 0 1
-footprint=SO28
+footprint=DIP28N
 T 2700 6950 8 10 1 1 0 6 1
 refdes=U?
 T 450 3750 9 4 1 0 0 0 3
@@ -331,6 +331,6 @@ dist-license=GPL
 T 400 8200 5 10 0 0 0 0 1
 use-license=unlimited
 T 400 7400 5 10 0 0 0 0 1
-value=MCP23016-E/SO
+value=MCP23016-E/DIP
 T 1000 200 9 8 0 0 0 0 1
 symversion=0.2
