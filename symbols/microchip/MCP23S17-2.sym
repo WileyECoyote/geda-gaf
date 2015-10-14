@@ -1,0 +1,327 @@
+v 20150823 2
+B 400 3300 2300 3600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 7400 5 10 0 0 0 0 1
+value=MCP23S17-E/SO
+T 2700 6900 8 10 1 1 0 6 1
+refdes=U?
+P 400 6500 100 6500 1 0 1
+{
+T 300 6550 5 8 1 1 0 6 1
+pinnumber=1
+T 450 6500 9 10 1 1 0 0 1
+pinlabel=GPB0
+T 300 6450 5 8 0 1 0 8 1
+pinseq=1
+T 450 6475 5 8 0 1 0 2 1
+pintype=out
+}
+P 400 6100 100 6100 1 0 1
+{
+T 300 6150 5 8 1 1 0 6 1
+pinnumber=2
+T 450 6100 9 10 1 1 0 0 1
+pinlabel=GPB1
+T 300 6050 5 8 0 1 0 8 1
+pinseq=2
+T 450 6075 5 8 0 1 0 2 1
+pintype=io
+}
+P 400 5700 100 5700 1 0 1
+{
+T 300 5750 5 8 1 1 0 6 1
+pinnumber=3
+T 450 5700 9 10 1 1 0 0 1
+pinlabel=GPB2
+T 300 5650 5 8 0 1 0 8 1
+pinseq=3
+T 450 5675 5 8 0 1 0 2 1
+pintype=io
+}
+P 400 5300 100 5300 1 0 1
+{
+T 300 5350 5 8 1 1 0 6 1
+pinnumber=4
+T 450 5300 9 10 1 1 0 0 1
+pinlabel=GPB3
+T 300 5250 5 8 0 1 0 8 1
+pinseq=4
+T 450 5275 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4900 400 4900 1 0 0
+{
+T 300 4950 5 8 1 1 0 6 1
+pinnumber=5
+T 450 4900 9 10 1 1 0 0 1
+pinlabel=GPB4
+T 300 4850 5 8 0 1 0 8 1
+pinseq=5
+T 450 4875 5 8 0 1 0 2 1
+pintype=out
+}
+P 400 4500 100 4500 1 0 1
+{
+T 300 4550 5 8 1 1 0 6 1
+pinnumber=6
+T 450 4500 9 10 1 1 0 0 1
+pinlabel=GPB5
+T 300 4450 5 8 0 1 0 8 1
+pinseq=6
+T 450 4475 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 400 4100 100 4100 1 0 1
+{
+T 300 4150 5 8 1 1 0 6 1
+pinnumber=7
+T 450 4100 9 10 1 1 0 0 1
+pinlabel=GPB6
+T 300 4050 5 8 0 1 0 8 1
+pinseq=7
+T 450 4075 5 8 0 1 0 2 1
+pintype=io
+}
+P 400 3700 100 3700 1 0 1
+{
+T 300 3750 5 8 1 1 0 6 1
+pinnumber=8
+T 450 3700 9 10 1 1 0 0 1
+pinlabel=GPB7
+T 300 3650 5 8 0 1 0 8 1
+pinseq=8
+T 450 3675 5 8 0 1 0 2 1
+pintype=out
+}
+P 400 900 100 900 1 0 1
+{
+T 300 950 5 8 1 1 0 6 1
+pinnumber=9
+T 450 900 9 10 1 1 0 0 1
+pinlabel=Vdd
+T 300 850 5 8 0 1 0 8 1
+pinseq=9
+T 450 875 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 500 100 500 1 0 1
+{
+T 300 550 5 8 1 1 0 6 1
+pinnumber=10
+T 450 500 9 10 1 1 0 0 1
+pinlabel=Vss
+T 300 450 5 8 0 1 0 8 1
+pinseq=10
+T 450 475 5 8 0 1 0 2 1
+pintype=out
+}
+P 2700 1700 3000 1700 1 0 1
+{
+T 2800 1750 5 8 1 1 0 0 1
+pinnumber=11
+T 2650 1700 9 10 1 1 0 6 1
+pinlabel=\_CS\_
+T 2800 1650 5 8 0 1 0 2 1
+pinseq=11
+T 2650 1675 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 1300 3000 1300 1 0 1
+{
+T 2800 1350 5 8 1 1 0 0 1
+pinnumber=12
+T 2650 1300 9 10 1 1 0 6 1
+pinlabel=SCK
+T 2800 1250 5 8 0 1 0 2 1
+pinseq=12
+T 2650 1275 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 900 3000 900 1 0 1
+{
+T 2800 950 5 8 1 1 0 0 1
+pinnumber=13
+T 2650 900 9 10 1 1 0 6 1
+pinlabel=SI
+T 2800 850 5 8 0 1 0 2 1
+pinseq=13
+T 2650 875 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 500 3000 500 1 0 1
+{
+T 2800 550 5 8 1 1 0 0 1
+pinnumber=14
+T 2650 500 9 10 1 1 0 6 1
+pinlabel=SO
+T 2800 450 5 8 0 1 0 2 1
+pinseq=14
+T 2650 475 5 8 0 1 0 8 1
+pintype=out
+}
+P 400 2900 100 2900 1 0 1
+{
+T 300 2950 5 8 1 1 0 6 1
+pinnumber=15
+T 450 2900 9 10 1 1 0 0 1
+pinlabel=A0
+T 300 2850 5 8 0 1 0 8 1
+pinseq=15
+T 450 2875 5 8 0 1 0 2 1
+pintype=out
+}
+P 400 2500 100 2500 1 0 1
+{
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=16
+T 450 2500 9 10 1 1 0 0 1
+pinlabel=A1
+T 300 2450 5 8 0 1 0 8 1
+pinseq=16
+T 450 2475 5 8 0 1 0 2 1
+pintype=out
+}
+P 400 2100 100 2100 1 0 1
+{
+T 300 2150 5 8 1 1 0 6 1
+pinnumber=17
+T 450 2100 9 10 1 1 0 0 1
+pinlabel=A2
+T 300 2050 5 8 0 1 0 8 1
+pinseq=17
+T 450 2075 5 8 0 1 0 2 1
+pintype=out
+}
+P 2700 2100 3000 2100 1 0 1
+{
+T 2800 2150 5 8 1 1 0 0 1
+pinnumber=18
+T 2650 2100 9 10 1 1 0 6 1
+pinlabel=!RESET
+T 2800 2050 5 8 0 1 0 2 1
+pinseq=18
+T 2650 2075 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 2500 3000 2500 1 0 1
+{
+T 2800 2550 5 8 1 1 0 0 1
+pinnumber=19
+T 2650 2500 9 10 1 1 0 6 1
+pinlabel=INTB
+T 2800 2450 5 8 0 1 0 2 1
+pinseq=19
+T 2650 2475 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 2900 3000 2900 1 0 1
+{
+T 2800 2950 5 8 1 1 0 0 1
+pinnumber=20
+T 2650 2900 9 10 1 1 0 6 1
+pinlabel=INTA
+T 2800 2850 5 8 0 1 0 2 1
+pinseq=20
+T 2650 2875 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 6500 3000 6500 1 0 1
+{
+T 2800 6550 5 8 1 1 0 0 1
+pinnumber=21
+T 2650 6500 9 10 1 1 0 6 1
+pinlabel=GPA0
+T 2800 6450 5 8 0 1 0 2 1
+pinseq=21
+T 2650 6475 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 6100 3000 6100 1 0 1
+{
+T 2800 6150 5 8 1 1 0 0 1
+pinnumber=22
+T 2650 6100 9 10 1 1 0 6 1
+pinlabel=GPA1
+T 2800 6050 5 8 0 1 0 2 1
+pinseq=22
+T 2650 6075 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 5700 3000 5700 1 0 1
+{
+T 2800 5750 5 8 1 1 0 0 1
+pinnumber=23
+T 2650 5700 9 10 1 1 0 6 1
+pinlabel=GPA2
+T 2800 5650 5 8 0 1 0 2 1
+pinseq=23
+T 2650 5675 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 3000 5300 2700 5300 1 0 0
+{
+T 2800 5350 5 8 1 1 0 0 1
+pinnumber=24
+T 2650 5300 9 10 1 1 0 6 1
+pinlabel=GPA3
+T 2800 5250 5 8 0 1 0 2 1
+pinseq=24
+T 2650 5275 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 4900 3000 4900 1 0 1
+{
+T 2800 4950 5 8 1 1 0 0 1
+pinnumber=25
+T 2650 4900 9 10 1 1 0 6 1
+pinlabel=GPA4
+T 2800 4850 5 8 0 1 0 2 1
+pinseq=25
+T 2650 4875 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 4500 3000 4500 1 0 1
+{
+T 2800 4550 5 8 1 1 0 0 1
+pinnumber=26
+T 2650 4500 9 10 1 1 0 6 1
+pinlabel=GPA5
+T 2800 4450 5 8 0 1 0 2 1
+pinseq=26
+T 2650 4475 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 4100 3000 4100 1 0 1
+{
+T 2800 4150 5 8 1 1 0 0 1
+pinnumber=27
+T 2650 4100 9 10 1 1 0 6 1
+pinlabel=GPA6
+T 2800 4050 5 8 0 1 0 2 1
+pinseq=27
+T 2650 4075 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 3700 3000 3700 1 0 1
+{
+T 2800 3750 5 8 1 1 0 0 1
+pinnumber=28
+T 2650 3700 9 10 1 1 0 6 1
+pinlabel=GPA7
+T 2800 3650 5 8 0 1 0 2 1
+pinseq=28
+T 2650 3675 5 8 0 1 0 8 1
+pintype=out
+}
+T 400 7200 9 10 1 1 0 0 1
+footprint=SO28
+T 400 7600 5 10 0 0 0 0 1
+description=16-Bit I/O Expander with SPI Interface
+T 400 8000 5 10 0 0 0 0 1
+numslots=0
+T 400 7800 5 10 0 0 0 0 1
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf
+B 400 100 2300 3200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 7000 9 10 1 1 0 0 1
+device=MCP23S17
+T 1000 200 9 8 0 0 0 0 1
+symversion=0.2
