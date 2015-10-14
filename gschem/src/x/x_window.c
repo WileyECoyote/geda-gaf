@@ -1174,7 +1174,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         if (new_current == NULL) {
 
           /* no up in hierarchy, choice is prev, next, new page */
-          iter = g_list_find(geda_list_get_glist(toplevel->pages), page);
+          iter = geda_toplevel_get_page(toplevel, page);
 
           if (g_list_previous(iter)) {
             new_current = (Page*)g_list_previous (iter)->data;
