@@ -2,7 +2,7 @@
 
     * include/libgeda/geda_toplevel.h: Add macro geda_toplevel_get_pages,
       is only 3 characters less than geda_list_get_glist with (toplevel->
-      pages) but maybe more readable.
+      pages) but maybe more readable. Add macro geda_toplevel_get_page.
 
     * Code Enhancement: Function Maintenance
 
