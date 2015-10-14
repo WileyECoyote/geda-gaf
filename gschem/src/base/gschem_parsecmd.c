@@ -74,7 +74,7 @@ SCM s_post_load_expr = SCM_EOL;
 /*! \brief Print brief help message and exit.
  * \par Function Description
  * Print brief help message describing gschem usage & command-line
- * options, then exit with \a exit_status.
+ * options, then exit with exit status 0.
  *
  * \param cmd         First element of argv (name of program as run).
  */
