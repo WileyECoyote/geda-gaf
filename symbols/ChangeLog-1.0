@@ -14,6 +14,8 @@
         * microchip/MCP23S17-2.sym
         * microchip/MCP23S17-3.sym
 
+    * analogdevices/ADV7123-1.sym: Add symbol; High Speed Video 10-Bit DAC, CMOS
+
     * analogdevices/ADV7123-2.sym: Rename and clean symbol
 
 2015-10-13 Wiley E. Hill <wileyhill@gmail.com>
