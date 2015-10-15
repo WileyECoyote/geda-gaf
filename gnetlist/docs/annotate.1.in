@@ -70,15 +70,15 @@ https://bugs.launchpad.net/geda/annotate/+filebug
 Encapsulated utility: JM Routoure
 Bash Wrapper: Wiley Edward Hill < wileyhill dot gmail dot com >
 
-.SH SEE ALSO
-.BR unannotate (1) gnetlist (1) bompp (1) bom_xref (1) 
-
 .SH COPYRIGHT
 .nf
-Copyright \(co 2012-2013 Wiley Edward Hill, JM Routoure License GPLv2+: GNU GPL
+Copyright \(co 2012-@YEAR@ Wiley Edward Hill, JM Routoure License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this program for full details.
 .PP
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+.BR unannotate (1) gnetlist (1) bompp (1) bom_xref (1)
 
 .

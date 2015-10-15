@@ -248,7 +248,7 @@ See the `AUTHORS' file included with this program.
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 1999-2015 gEDA Contributors.  License GPLv2+: GNU GPL
+Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP
@@ -257,3 +257,5 @@ There is NO WARRANTY, to the extent permitted by law.
 
 .SH SEE ALSO
 \fBgschem\fR(1), \fBgsymcheck\fR(1), \fBpcb\fR(1), \fBgnucap\fR(1)
+
+.
