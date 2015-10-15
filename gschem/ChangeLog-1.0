@@ -1,6 +1,16 @@
+2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * Code Enhancement: Improve BUILD System Maintainence.
+
+    * docs/Makefile.am: WEH: Modified per commit to Master branch by Vladimir
+      Zhbanov, commit cf60e1d772c2d2b1dc820748b5048cf8381fa289: Automatically
+      update Copyright in man pages.
+
+    * docs/gschem.1.in: Add @YEAR@ tag in copyright section.
+
 2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_window.c: Use accsessor geda_toplevel_get_current_page
+    * src/x/x_window.c: Use accessors geda_toplevel_get_current_page
       in function geda_toplevel_get_current_page and redo logic so
       geda_toplevel_get_current_page is not call twice.
 
