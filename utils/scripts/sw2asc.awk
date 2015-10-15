@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #
-# This is a script to extract out PRINT data from a SWITCAP simulation 
+# This is a script to extract out PRINT data from a SWITCAP simulation
 # and write it to a format which gwave can read
 #
 
@@ -58,11 +58,11 @@ BEGIN {
       usage();
       close("/dev/stderr");
       exit 1;
-    } 
+    }
     printf("ARGV[%d] = %s\n", i, ARGV[i]);
   }
   infile = ARGV[ARGC-1];
-  
+
   copyright();
 
   printf("Loading SWITCAP output file [%s]\n", infile);
@@ -124,7 +124,7 @@ BEGIN {
       printf("%s ", vnames[i]) >> outf;
     }
     printf("\n") >> outf;
-    
+
     for(pt = 1; pt < cnt ; pt = pt + 1) {
       if( debug > 1) { printf("point #%d: ", pt); }
       for(i = 1; i <= variable_offset; i = i + 1) {
@@ -154,9 +154,9 @@ state == state_wait {
       if( debug ) { printf("\tVariable #%d = %s\n", i, $i); }
       vnames[i + variable_offset] = $i;
     }
-    
+
     nvars = NF;
-    
+
     if( debug ) { printf("state_wait:  moving to state_skip_blank\n") };
     state = state_skip_blank;
   }
@@ -166,9 +166,9 @@ state == state_wait {
 state == state_skip_blank {
   if( $0 == "" ) {
     if( debug) { printf("state_skip_blank:  skipping blank line\n"); }
-    next; 
+    next;
   }
-  
+
   cnt = 1;
   if( debug ) { printf("state_skip_blank:  moving to state_read_data\n") };
   state = state_read_data;
@@ -225,6 +225,6 @@ function usage() {
   printf("have 3 SSS analyses in your file, you will end up with .SSS.1.asc, .SSS.2.asc,\n");
   printf("and .SSS.3.asc.\n");
   printf("\n");
-  
+
 }
 

@@ -21,7 +21,7 @@
 # program (http://pcb.geda-project.org) to backannotate
 # changes to gEDA schematics.
 #
-# It is heavily based on the pads_backannotate program which is also 
+# It is heavily based on the pads_backannotate program which is also
 # part of gEDA
 
 # for parsing input options
@@ -188,7 +188,7 @@ sub executeRENAME {
   # renamed
   return $line unless exists $cmd_rename{$refdes};
 
-  print "executeRENAME():  Renaming $refdes to $cmd_rename{$refdes}\n" 
+  print "executeRENAME():  Renaming $refdes to $cmd_rename{$refdes}\n"
       if $verbose;
   return "refdes=$cmd_rename{$refdes}\n";
 
@@ -232,7 +232,7 @@ sub parseRENAME {
   $refs[0] =~ s/"//g; # "
   $refs[1] =~ s/"//g; # "
 
-  print "parseRENAME():  Scheduling rename of $refs[0] to $refs[1]\n" 
+  print "parseRENAME():  Scheduling rename of $refs[0] to $refs[1]\n"
       if $verbose;
   $cmd_rename{$refs[0]} = $refs[1];
 
@@ -247,7 +247,7 @@ sub parseSWPGATES {
   my @refs;
   @refs = split ' ',,$line;
 
-  print "parseSWPGATES():  Scheduling swap of gate $refs[0] with $refs[1]\n" 
+  print "parseSWPGATES():  Scheduling swap of gate $refs[0] with $refs[1]\n"
       if $verbose;
   $cmd_swap_gates{$refs[0]} = $refs[1];
 

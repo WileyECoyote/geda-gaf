@@ -3,7 +3,7 @@
 # Copyright (C) 2008 Carlos Nieves Onega
 # Copyright (C) 2008 other contributors
 #                        (see ChangeLog or SCM history for details)
- 
+
 # This file is part of gxyrs.
 
 # This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
 
 use strict;
@@ -39,7 +39,7 @@ use vars qw {
 };
 
 my $tempfile;
-		
+
 
 # Set these for debugging purposes
 my $DEBUG = 0;
@@ -66,7 +66,7 @@ $VALUE_COL = -1;
 #---------------------------------
 # guess_file_format()
 #
-# Check current line and try to guess column numbers by 
+# Check current line and try to guess column numbers by
 # testing if it is the title line and there are some title keywords.
 #---------------------------------
 sub guess_file_format () {
@@ -87,7 +87,7 @@ sub guess_file_format () {
     while ($LINE[0] =~ /^\s+/) {
 	$LINE[0] = substr($LINE[0], 1);
     }
-    
+
 
     # Now try to guess column numbers from column titles.
     for (my $i = 0; $i <= $num_elems-1; $i++) {
@@ -109,7 +109,7 @@ sub guess_file_format () {
 	}
 	if ( ($LINE[$i] =~ /^Footprint$/) ||
 	     ($LINE[$i] =~ /^TopCell$/) ||
-	     ( ($LINE[$i] =~ /^Description$/) && 
+	     ( ($LINE[$i] =~ /^Description$/) &&
 	       (! grep(/\bTopCell\b/,@LINE)) )
 	    ) {
 	    if ($DEBUG_GUESSING) {
@@ -142,8 +142,8 @@ sub guess_file_format () {
 	    push(@positions,$Y_COL);
 	}
 	if ( ($LINE[$i] =~ /^[Rr]otation$/) ||
-	     ($LINE[$i] =~ /^Rot$/) 
-	     
+	     ($LINE[$i] =~ /^Rot$/)
+
 	    ) {
 	    if ($DEBUG_GUESSING) {
 		print "Found angle column: ".($i+1).".\n";
@@ -174,7 +174,7 @@ sub guess_file_format () {
 	    if ($DEBUG_GUESSING) {
 		print "Found value column: ".($i+1).".\n";
 	    }
-	    $VALUE_COL = $i+1; 	
+	    $VALUE_COL = $i+1;
 	    if (grep(/\b$VALUE_COL\b/, @positions)) {
 		$position_repeated = 1;
 	    }
@@ -256,10 +256,10 @@ sub usage {
     my $output_delimiter="";
 
     # Delimiters to try when guessing file format.
-    my @delimiters = ('\s+', ',\s*'); 
+    my @delimiters = ('\s+', ',\s*');
     my @delimiters_char = (' ', ','); # Used when writing the output file
-    my $delimiter_index=-1; 
-    
+    my $delimiter_index=-1;
+
     my $pass;
     my $total_passes = scalar(@delimiters) + 1;
     my $guessing_file_format;
@@ -275,7 +275,7 @@ sub usage {
     # Comparisons are case insensitive by default.
     $CASE_INSENSITIVE=0;
 
-    &GetOptions(("help" => \&usage, 
+    &GetOptions(("help" => \&usage,
 		 "verbose" => \$verbose,
 		 "process-comments" => \$process_comments,
 		 "tabulate!" => \$tabulate,
@@ -290,25 +290,25 @@ sub usage {
 	print STDERR "Wrong arguments.\n";
 	usage();
     }
-    
+
     # Print usage string in event user didn't call out any args
     usage() unless @ARGV;
-    
+
     # Make sure the input schematic exists and we can read it.
     # Also count number of files to open.
     while(@ARGV) {
 	my $i=0;
 	$fname[$i]=shift(@ARGV);
 	print "Checking argument $fname[$i].\n";
- 	if (! -r $fname[$i]) {  
+ 	if (! -r $fname[$i]) {
  	    die("Input file $fname[$i] does not exist or can not be read");
  	}
 	$i++;
     }
-    
+
     $file_in = $fname[0];
-	
-    # Print usage string in event user didn't specify input, adjust 
+
+    # Print usage string in event user didn't specify input, adjust
     # and output files.
     if (! ($file_in && $file_out && ($adjust_file || $eval_string))) {
 	print STDERR "Nothing to do.\n";
@@ -320,13 +320,13 @@ sub usage {
 	}
 	usage();
     }
-    
+
 
     if ($file_in !~ '^-$') {
 	open(FILE_IN, $file_in) || die ("Can't open input file $file_in: $!");
     }
     else {
-	*FILE_IN = &stdin();	
+	*FILE_IN = &stdin();
     }
 
     if (length($output_delimiter) > 1) {
@@ -346,7 +346,7 @@ sub usage {
 	if ($pass >= $total_passes) {
 	    open(FILE_OUT, "> ".$file_out) || die ("Can't open output file $file_out: $!");
 	}
-	
+
 	# Set the return code to 0
 	$return_code = 0;
 	if ($DEBUG_RETURN_CODE) {
@@ -375,8 +375,8 @@ sub usage {
 	    $LINE_NUMBER += 1;
 	    next if /^@/;
 	    next if /^q/;
-	    
-	    # Test if the line is a comment 
+
+	    # Test if the line is a comment
 	    # (which shouldn't be processed).
 	    if ( ($this_line =~ /^\s*#/) ||
 		 ($this_line =~ /^\s*$/) ) {
@@ -387,7 +387,7 @@ sub usage {
 	    } else {
 		$is_comment = 0;
 	    }
-	    
+
 	    # First, some column titles are separated by spaces, so join them.
 	    if ($LINE_NUMBER == 1) {
 		my $num_elems = scalar(@LINE);
@@ -400,7 +400,7 @@ sub usage {
 			     ( ($LINE[$i] =~ /^Mid$/) &&
 			       ($LINE[$i+1] =~/^[XY]$/) ) ||
 			     ( ($LINE[$i] =~ /^Ref$/) &&
-			       ($LINE[$i+1] =~/^[XY]$/) ) 
+			       ($LINE[$i+1] =~/^[XY]$/) )
 			    ) {
 			    $LINE[$i] = $LINE[$i]." ".$LINE[$i+1];
 			    for (my $j = $i+1; $j <= $num_elems-2; $j++) {
@@ -411,9 +411,9 @@ sub usage {
 			}
 		    }
 		}
-		
+
 	    }
-	    
+
 	    if ( ($pass != $total_passes) &&
 		 $guessing_file_format ) {
 		my $old_guessing_file_format = $guessing_file_format;
@@ -427,7 +427,7 @@ sub usage {
 					  ($ANGLE_COL == -1) ||
 					  ($LAYER_COL == -1) ||
 					  ($VALUE_COL == -1) );
-		
+
 		if (!$guessing_file_format) {
 		    if ($old_guessing_file_format == 1) {
 			$TITLE_LINE = $LINE_NUMBER;
@@ -436,17 +436,17 @@ sub usage {
 			print "Found file format. ";
 			print "Delimiter is $delimiters[$pass-1].\n";
 		    }
-		    
+
 		    $delimiter_index = $pass-1;
 		}
 	    }
-	    
+
 	    if (!$guessing_file_format) {
 		if (($is_comment == 0) || $process_comments) {
 		    my $rc ;
 
 		    # If it's parsing the file then keep the number
-		    # of columns constant, joining all the fields 
+		    # of columns constant, joining all the fields
 		    # in the last one.
  		    while ( (@LINE > @lengths) &&
 			    (scalar(@lengths) > 0) ) {
@@ -461,7 +461,7 @@ sub usage {
 
 		    # Run the adjust file.
 		    if (defined $adjust_file) {
-			$rc = do $adjust_file || 
+			$rc = do $adjust_file ||
 			    die("Can't use adjust file: $!\n");
 		    } else {
 			#print "Eval: $eval_string\n";
@@ -471,9 +471,9 @@ sub usage {
 			print STDERR "Error: ".$@."\n";
 			$rc = -10;
 		    }
-		    
+
 		    # Set $return_code based on priorities.
-		    # 1 means the command found a match and was succesful 
+		    # 1 means the command found a match and was succesful
 		    #   at least one time in the whole file.
 		    # 0 means there was no match.
 		    # -1 means there was an error.
@@ -502,12 +502,12 @@ sub usage {
 		    if ($DEBUG_RETURN_CODE) {
 			print "Global return code: $return_code.\n";
 		    }
-		}	
+		}
 		if ( ($pass != $total_passes) &&
 		     ( ($is_comment == 0) || $process_comments) ) {
 		    if ($DEBUG_COL_LENGTH == 1) {
 			print "Measuring column length of line: ".
-			    "'$this_line'\n"; 
+			    "'$this_line'\n";
 		    }
 		    # Calcule max length array
 		    if ($tabulate) {
@@ -527,12 +527,12 @@ sub usage {
 			    }
 			    if ($DEBUG_COL_LENGTH == 1) {
 				print "Column ".($i-$j+1).
-				    ", length: $lengths[$i].\n"; 
+				    ", length: $lengths[$i].\n";
 			    }
 			}
 		    }
 		}
-		
+
 		# Print the result after processing
 		if ($pass >= $total_passes) {
 		    if (($is_comment == 1) && !$process_comments) {
@@ -541,8 +541,8 @@ sub usage {
 		    elsif (@LINE > 0) {
 			my $delimiter;
 			my $j=0;
-			
-			# Set the output delimiter 
+
+			# Set the output delimiter
 			if (length($output_delimiter) != 0) {
 			    $delimiter = $output_delimiter;
 			}
@@ -560,7 +560,7 @@ sub usage {
 				next;
 			    }
 			    if (($i-$j) > scalar(@lengths)-1) {
-				# If column length array has no number 
+				# If column length array has no number
 				# for this column, print it as is.
 				print FILE_OUT $LINE[$i];
 				} else {
@@ -576,13 +576,13 @@ sub usage {
 		    }
 		}
 	    }
-	    
-	}	
+
+	}
 	# Close output file.
 	if ($pass >= $total_passes) {
 	    close(FILE_OUT);
 	}
-	
+
 	# Print all column numbers (DEBUGGING)
 	if ( ($pass != $total_passes) && ($DEBUG_GUESSING==1) ) {
 	    print "Reference column: $REF_COL.\n";
@@ -594,7 +594,7 @@ sub usage {
 	    print "Value column:     $VALUE_COL.\n";
 	}
 
-	# If last guessing pass is complete, but all columns were not guessed, 
+	# If last guessing pass is complete, but all columns were not guessed,
 	# exit with an error.
 	if ( $guessing_file_format &&
 	     ($pass == $total_passes-1) )
@@ -608,7 +608,7 @@ sub usage {
 	     ($pass < $total_passes-1) ) {
 	    $pass = $total_passes-1;
 	}
-    }        
+    }
     close(FILE_IN);
     if ($tempfile) {
 	unlink $tempfile;

@@ -226,7 +226,7 @@ sub executeRENPART {
   # renamed
   return $line unless exists $cmd_rename{$refdes};
 
-  print "executeRENPART():  Renaming $refdes to $cmd_rename{$refdes}\n" 
+  print "executeRENPART():  Renaming $refdes to $cmd_rename{$refdes}\n"
       if $verbose;
   return "refdes=$cmd_rename{$refdes}\n";
 
@@ -267,7 +267,7 @@ sub parseRENPART {
   my @refs;
   @refs = split ' ',,$line;
 
-  print "parseRENPART():  Scheduling rename of $refs[0] to $refs[1]\n" 
+  print "parseRENPART():  Scheduling rename of $refs[0] to $refs[1]\n"
       if $verbose;
   $cmd_rename{$refs[0]} = $refs[1];
 
@@ -282,7 +282,7 @@ sub parseSWPGATES {
   my @refs;
   @refs = split ' ',,$line;
 
-  print "parseSWPGATES():  Scheduling swap of gate $refs[0] with $refs[1]\n" 
+  print "parseSWPGATES():  Scheduling swap of gate $refs[0] with $refs[1]\n"
       if $verbose;
   $cmd_swap_gates{$refs[0]} = $refs[1];
 
