@@ -1,20 +1,20 @@
-v 20100214 2
-T 3700 2850 8 10 1 1 0 0 1
+v 20150823 2
+T 3700 2800 8 10 1 1 0 0 1
 refdes=D?
-T 0 4300 5 10 0 0 0 0 1
+T 3700 2200 5 10 0 0 0 0 1
 device=LN526RA
-T 0 4100 5 10 0 0 0 0 1
+T 3700 2000 5 10 0 0 0 0 1
 description=Dual Digit 7-segment-display with common anode
-T 0 3900 5 10 0 0 0 0 1
+T 3700 1800 5 10 0 0 0 0 1
 documentation=Panasonic LN526RA Datasheet
-T 0 3700 5 10 0 0 0 0 1
+T 3700 1600 5 10 0 0 0 0 1
 numslots=0
-T 0 3500 5 10 0 0 0 0 1
-footprint=none
+T 3700 2400 5 10 0 0 0 0 1
+footprint=LN526RA
 B 0 300 3600 2700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 0 4500 8 10 0 0 0 0 1
+T 3700 1200 8 10 0 0 0 0 1
 dist-license=GPL
-T 0 4700 8 10 0 0 0 0 1
+T 3700 1400 8 10 0 0 0 0 1
 use-license=unlimited
 P 200 0 200 300 1 0 0
 {
@@ -336,3 +336,5 @@ T 3250 700 9 10 1 0 0 0 1
 dp
 T 2450 1300 9 10 1 0 0 1 1
 D2
+T 3700 2600 5 10 1 1 0 0 1
+value=LN526RA
