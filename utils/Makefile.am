@@ -2,8 +2,8 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = docs examples include gmake gsch2pdf gschemdoc gschlas gxyrs \
-	      etc scripts src tests
+SUBDIRS = docs examples include gmake gsch2pcb gsch2pdf gschemdoc gschlas \
+	      gxyrs etc scripts src tests
 
 EXTRA_DIST = ChangeLog ChangeLog.tragesym-1.0 ChangeLog.gsch2pcb-1.0 \
 	         ChangeLog-1.0 AUTHORS

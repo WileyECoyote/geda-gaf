@@ -1,5 +1,9 @@
 2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * utils/gsch2pcb: Relocate gsch2pcb to it's own src folder.
+
+2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * utils/src/gsch2pcb.c:utils/gsch2pcb: fix bugs: see commit to master branch
       2181abe63512c7b5ad2279ab4609878586d497a2 by Sergey Stepanov:
 

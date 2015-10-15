@@ -370,6 +370,7 @@ AC_CONFIG_FILES([Makefile
                  utils/examples/tragesym/Makefile
                  utils/gmake/Makefile
                  utils/include/Makefile
+                 utils/gsch2pcb/Makefile
                  utils/gsch2pdf/Makefile
                  utils/gschemdoc/Makefile
                  utils/gschlas/Makefile
