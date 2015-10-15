@@ -29,7 +29,7 @@ Werner Hoch
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 2008-2014 Werner Hoch.  License GPLv2+: GNU GPL
+Copyright \(co 2008-@YEAR@ Werner Hoch.  License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP

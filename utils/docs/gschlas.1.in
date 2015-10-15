@@ -17,8 +17,8 @@ gschlas \- gEDA schematic load and save
 .B gschlas
 can embed the in-use schematic symbols and pictures into a schematic
 or set of schematics.
-It allows, for instance, putting a schematic on a website or in an email 
-without the recipient needing to download lots of custom symbols for the 
+It allows, for instance, putting a schematic on a website or in an email
+without the recipient needing to download lots of custom symbols for the
 design.
 .PP
 .B gschlas
@@ -51,7 +51,7 @@ Ales Hvezda
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 1999-2011 gEDA Contributors.  License GPLv2+: GNU GPL
+Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP

@@ -63,6 +63,12 @@ gnetlist(1), gschem(1)
 
 Also refer to "Forward/Backward Annotation Between gEDA/gaf and PADS PowerPCB" which
 may be found at http://wiki.geda-project.org/geda:fbabgapp
-
-
-
+.PP
+.SH COPYRIGHT
+.nf
+Copyright \(co 2003-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.

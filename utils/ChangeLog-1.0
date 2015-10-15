@@ -1,3 +1,37 @@
+2015-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Modified similar to commit to Master branch by Vladimir Zhbanov,
+      to automatically update Copyright in man pages except that build
+      tree if different and COPYRIGHT sections to man pages where added
+      where missing. See commit cf60e1d772c2d2b1dc820748b5048cf8381fa289;
+
+    * docs/convert_sym.1.in
+    * docs/garchive.1.in
+    * docs/gcheck-library.1.in
+    * docs/gclean-symbol.1.in
+    * docs/geda-install.1.in
+    * docs/geda-install-bin.1.in
+    * docs/gfix-library.1.in
+    * docs/gmake-caps-sym.1.in
+    * docs/gmake-transistors-sym.1.in
+    * docs/gmk_sym.1.in
+    * docs/gnet_hier_verilog.1.in
+    * docs/grenum.1.in
+    * docs/gsch2pcb.1.in
+    * docs/gschlas.1.in
+    * docs/gsymfix.1.in
+    * docs/gxyrs.1.in
+    * docs/olib.1.in
+    * docs/pads_backannotate.1.in
+    * docs/pcb_backannotate.1.in
+    * docs/refdes_renum.1.in
+    * docs/sarlacc_schem.1.in
+    * docs/sarlacc_sym.1.in
+    * docs/schdiff.1.in
+    * docs/smash_megafile.1.in
+    * docs/sw2asc.1.in
+    * docs/tragesym.1.in
+
 2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/gsch2pcb: Relocate gsch2pcb to it's own src folder.
