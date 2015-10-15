@@ -1105,10 +1105,13 @@ expand_dir (char * dir)
 {
   char *s;
 
-  if (*dir == '~')
+  if (dir == NULL)
+    s = NULL;
+  else if (*dir == '~')
     s = g_build_filename ((char *) g_get_home_dir (), dir + 1, NULL);
   else
     s = u_string_strdup (dir);
+
   return s;
 }
 
@@ -1119,6 +1122,7 @@ add_default_m4_files (void)
   char *home;
 
   home = getenv ("HOME");
+
   path = g_build_filename (home, ".pcb", DEFAULT_PCB_INC, NULL);
 
   if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
@@ -1212,11 +1216,13 @@ parse_config (char * config, char * arg)
   result = 1;
 
   if (!strcmp (config, "elements-dir") || !strcmp (config, "d")) {
+
+    char *elements_dir = expand_dir (arg);
+
     if (verbose > 1)
-      printf ("\tAdding directory to file element directory list: %s\n",
-              expand_dir (arg));
+      printf ("\tAdding directory to file element directory list: %s\n", elements_dir);
       element_directory_list =
-      g_list_prepend (element_directory_list, expand_dir (arg));
+      g_list_prepend (element_directory_list, elements_dir);
   }
   else if (!strcmp (config, "output-name") || !strcmp (config, "o")) {
     sch_basename = u_string_strdup (arg);
