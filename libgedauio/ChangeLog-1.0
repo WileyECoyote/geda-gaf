@@ -1,3 +1,22 @@
+2015-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+     * include/geda_entry.[c,h]: Add widget version for functions:
+
+            * geda_entry_widget_get_attributes
+            * geda_entry_widget_get_max_history
+            * geda_entry_widget_set_max_history
+            * geda_entry_widget_get_completion
+            * geda_entry_widget_completion_get_case
+            * geda_entry_widget_completion_set_case
+            * geda_entry_widget_get_input_case
+            * geda_entry_widget_set_input_case
+            * geda_entry_widget_get_activates_default
+            * void geda_entry_widget_set_activates_default
+            * void geda_entry_widget_set_attributes
+            * void geda_entry_widget_set_valid_input
+            * geda_entry_widget_modify_fg
+            * geda_entry_widget_modify_bg
+
 2015-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_accel_label.c: Revise function geda_accel_label_expose_event;

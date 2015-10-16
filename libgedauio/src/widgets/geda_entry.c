@@ -291,6 +291,12 @@ int  geda_entry_get_max_history (GedaEntry *entry)
   return entry->max_history;
 }
 
+GedaCompletion * geda_entry_get_completion (GedaEntry *entry)
+{
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+  return entry->priv->command_completion;
+}
+
 /*! \brief Get sensitivity of internal completion algorithms */
 bool geda_entry_completion_get_case (GedaEntry *entry) {
 
@@ -734,7 +740,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 
   g_object_class_install_property (gobject_class, PROP_VALIDATE, params);
 
-  /**
+  /*!
    * GedaEntry::activate:
    * entry: The entry on which the signal is emitted
    *
@@ -1269,10 +1275,10 @@ geda_entry_modify_color_component (GtkWidget      *widget,
 
   rc_style = gtk_widget_get_modifier_style (widget);
 
-  if (color)
-  {
-    switch (component)
-    {
+  if (color) {
+
+    switch (component) {
+
       case GTK_RC_FG:
         rc_style->fg[state]   = *color;
         break;
@@ -1297,21 +1303,6 @@ geda_entry_modify_color_component (GtkWidget      *widget,
   gtk_widget_modify_style (widget, rc_style);
 }
 
-void
-geda_entry_widget_modify_color (GtkWidget      *widget,
-                                GtkRcFlags      component,
-                                GtkStateType    state,
-                                const GdkColor *color)
-{
-  g_return_if_fail (GTK_IS_WIDGET (widget));
-
-  if(state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE)
-    state = GTK_STATE_NORMAL;
-
-  geda_entry_modify_color_component (widget, component, state, color);
-
-}
-
 void geda_entry_modify_fg (GedaEntry *entry,
                            GtkStateType state,
                            const GdkColor *color)
@@ -1326,7 +1317,102 @@ void geda_entry_modify_bg (GedaEntry      *entry,
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
 }
 
+void
+geda_entry_widget_modify_color (GtkWidget      *widget,
+                                GtkRcFlags      component,
+                                GtkStateType    state,
+                                const GdkColor *color)
+{
+  g_return_if_fail (GTK_IS_WIDGET (widget));
+
+  if(state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE)
+     state = GTK_STATE_NORMAL;
+
+  geda_entry_modify_color_component (widget, component, state, color);
+
+}
+
 /** @} endgroup Entry-Style */
+
+/** \defgroup GedaEntry-Widget-Methods GedaEntry Widget Methods
+ *  @{
+ */
+
+PangoAttrList *geda_entry_widget_get_attributes (GtkWidget *entry)
+{
+  return geda_entry_get_attributes (GEDA_ENTRY(entry));
+}
+
+int  geda_entry_widget_get_max_history (GtkWidget *entry)
+{
+  return geda_entry_get_max_history (GEDA_ENTRY(entry));
+}
+
+void geda_entry_widget_set_max_history (GtkWidget *entry, int value)
+{
+  geda_entry_set_max_history (GEDA_ENTRY(entry), value);
+}
+
+GedaCompletion *geda_entry_widget_get_completion (GtkWidget *entry)
+{
+  return geda_entry_get_completion (GEDA_ENTRY(entry));
+}
+
+bool geda_entry_widget_completion_get_case (GtkWidget *entry)
+{
+  return geda_entry_completion_get_case (GEDA_ENTRY(entry));
+}
+
+void geda_entry_widget_completion_set_case (GtkWidget *entry, bool sensitive)
+{
+  geda_entry_completion_set_case (GEDA_ENTRY(entry), sensitive);
+}
+
+bool geda_entry_widget_get_input_case (GtkWidget *entry)
+{
+  return geda_entry_get_input_case (GEDA_ENTRY(entry));
+}
+
+void geda_entry_widget_set_input_case (GtkWidget *entry, int mode)
+{
+  return geda_entry_set_input_case (GEDA_ENTRY(entry), mode);
+}
+
+bool geda_entry_widget_get_activates_default (GtkWidget *entry)
+{
+  return geda_entry_get_activates_default (GEDA_ENTRY(entry));
+}
+
+void geda_entry_widget_set_activates_default (GtkWidget *entry, bool  setting)
+{
+  geda_entry_set_activates_default (GEDA_ENTRY(entry), setting);
+}
+
+void geda_entry_widget_set_attributes (GtkWidget *entry, PangoAttrList *attrs)
+{
+  geda_entry_set_attributes (GEDA_ENTRY(entry), attrs);
+}
+
+void geda_entry_widget_set_valid_input (GtkWidget *entry, GedaEntryAccept mode)
+{
+  geda_entry_set_valid_input (GEDA_ENTRY(entry), mode);
+}
+
+void geda_entry_widget_modify_fg (GtkWidget *entry,
+                                  GtkStateType state,
+                                  const GdkColor *color)
+{
+  geda_entry_widget_modify_color (entry, GTK_RC_FG, state, color);
+}
+
+void geda_entry_widget_modify_bg (GtkWidget      *entry,
+                                  GtkStateType    state,
+                                  const GdkColor *color)
+{
+  geda_entry_widget_modify_color (entry, GTK_RC_BG, state, color);
+}
+
+/** @} endgroup GedaEntry-Widget-Methods */
 
 /* -------------------------------------------------------------- */
 
