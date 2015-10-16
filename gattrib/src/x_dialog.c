@@ -450,6 +450,10 @@ char *x_dialog_get_search_text(char *prompt)
 
   if (dialog) {
 
+    GtkWidget *label;
+    GtkWidget *vbox;
+    char      *real_prompt;
+
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
                                             GEDA_RESPONSE_ACCEPT,
@@ -459,12 +463,14 @@ char *x_dialog_get_search_text(char *prompt)
 
     g_object_set (dialog, "border-width", DIALOG_BORDER_WIDTH, NULL);
 
-    GtkWidget *vbox = dialog->vbox;
+    vbox = dialog->vbox;
 
-    g_object_set (vbox, "spacing", DIALOG_V_SPACING, NULL);
+    g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
-    GtkWidget *label = geda_aligned_label_new(_(prompt), 0, 0);
+    real_prompt = u_string_concat(_("Enter "), prompt, ":", NULL);
+    label       = geda_aligned_label_new(real_prompt, 0, 0);
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
+    GEDA_FREE(real_prompt);
 
     textentry = gtk_entry_new_with_max_length(32);
 

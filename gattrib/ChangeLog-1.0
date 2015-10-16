@@ -6,7 +6,9 @@
 
     * src/x_dialog.c: Append the search prompt text to the word find for the
       dialog title so the title is unique between "Find Attribute" and "Find
-      Designator".
+      Designator". Prepend the word "Enter" to the prompt and append a colon,
+      increase dialog vertical spacing to improve the appearence of the
+      get_search_text dialog.
 
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
