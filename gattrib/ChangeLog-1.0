@@ -1,3 +1,9 @@
+2015-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_find.c: Remove the work "Find" from the search prompt passed to
+      x_dialog_get_search_text in functions x_find_attribute and x_find_refdes,
+      looks stupid.
+
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.

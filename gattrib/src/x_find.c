@@ -270,7 +270,7 @@ void x_find_attribute()
   int count;
   int i;
 
-  char *text = x_dialog_get_search_text("Find Attribute:");
+  char *text = x_dialog_get_search_text("Attribute:");
 
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -302,7 +302,7 @@ void x_find_refdes()
   int count;
   int i;
 
-  char *text = x_dialog_get_search_text("Find Designator:");
+  char *text = x_dialog_get_search_text("Designator:");
 
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
