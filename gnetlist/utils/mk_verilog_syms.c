@@ -101,45 +101,52 @@ main(int argc, char **argv)
 {
   int i,j;
   int rc;
+  int status;
+
   char name[127];
 
   FILE *fp;
 
   printf("Making verilog symbols\n");
 
-  for(i=0; i<nGenerate; i++) /* loop over table entries */
-    for(j=2; j<10; j++)      /* loop over number of pins */
-      {
-	/* build file name */
-	sprintf(name, "sym/%s%u-%u.sym",
-		generate[i].name, j, generate[i].suffix);
-	printf("Working on:%s\n",name);
-	fp = fopen(name, "wb");
-	if(fp == NULL)
-	  {
-	    fprintf(stderr,"Error: Unable to create file `%s' in %s()\n",
-		    name, __func__);
-	    return 1;
-	  }
+  status = 0;
 
-	rc = MakeSymbol(fp, j,
-			generate[i].inputBubbles, generate[i].outputBubbles,
-			generate[i].body);
-	if(rc)
-	  {
-	    fprintf(stderr,"Error: Symbol creation failed in %s()\n",
-		    __func__);
-	    return 1;
-	  }
+  for (i=0; i<nGenerate; i++) { /* loop over table entries */
 
-	/* and finally add the device attribute */
-	fprintf(fp,"T 400 100 5 8 0 0 0 0\ndevice=%s\n",generate[i].name);
-	/* and the positional pin directive */
-	fprintf(fp,"T 400 200 5 8 0 0 0 0\nVERILOG_PORTS=POSITIONAL");
-	fclose(fp);
+    for (j=2; j<10; j++) {      /* loop over number of pins */
+
+      /* build file name */
+      sprintf(name, "sym/%s%u-%u.sym", generate[i].name, j, generate[i].suffix);
+      printf("Processing:%s\n",name);
+
+      fp = fopen(name, "wb");
+
+      if (fp == NULL) {
+        fprintf(stderr,"Error: Unable to create file `%s' in %s()\n",
+                name, __func__);
+        return 1;                   /* Not continuing */
       }
 
-  return 0;
+      rc = MakeSymbol(fp, j,
+                      generate[i].inputBubbles, generate[i].outputBubbles,
+                      generate[i].body);
+      if (rc) {
+        fprintf(stderr,"Error: Symbol creation failed in %s()\n", __func__);
+        status++;
+      }
+      else {
+        /* and finally add the device attribute */
+        fprintf(fp,"T 400 100 5 8 0 0 0 0\ndevice=%s\n",generate[i].name);
+
+        /* and the positional pin directive */
+        fprintf(fp,"T 400 200 5 8 0 0 0 0\nVERILOG_PORTS=POSITIONAL");
+      }
+
+      fclose(fp);
+    }
+  }
+
+  return status;
 }
 
 /* output a complete symbol having the desired body
@@ -148,7 +155,7 @@ main(int argc, char **argv)
  */
 int
 MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
-	   int (*body)(FILE *, int, int, unsigned int, unsigned int))
+           int (*body)(FILE *, int, int, unsigned int, unsigned int))
 {
   unsigned int i;
   int rc;
@@ -166,15 +173,15 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   char pinName[20];       /* temp for pinnname */
 
-  if(fp == NULL)
-    {
+  if(fp == NULL) {
+
       fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
 	      __func__);
       return 1;
-    }
+  }
 
-  if(body == NULL)
-    {
+  if(body == NULL) {
+
       fprintf(stderr, "Error: NULL body drawing function pointer passed "
 	      "to %s()\n",
 	      __func__);
@@ -205,17 +212,18 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   /* draw the body */
   rc = (*body)(fp, bodyx, bodyy, pins, GREEN);
-  if(rc)
-    {
-      fprintf(stderr, "Error: Body function failed in %s()\n",
-	      __func__);
+
+  if(rc) {
+
+      fprintf(stderr, "Error: Body function failed in %s()\n", __func__);
       return 1;
-    }
+  }
 
   /* draw the pins and attach appropriate attributes */
   rc = Pin(fp, outputx, outputy, outputx+PinLength, outputy, outputBubbles);
-  if(rc)
-    {
+
+  if(rc) {
+
       fprintf(stderr, "Error: Pin drawing function failed in %s() "
 	      "for output pin\n",
 	      __func__);
@@ -223,23 +231,25 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
     }
   /* attach pin attribute */
   rc = PinAttribute(fp, outputx, outputy, pinCount++, "OUT");
-  if(rc)
-    {
+
+  if(rc) {
+
       fprintf(stderr, "Error: Pin Attribute function failed for output pin "
 	      "in %s()\n",__func__);
       return 1;
     }
 
   /* do input pins */
-  for(i=0; i<pins; i++)
-    {
+  for(i=0; i<pins; i++) {
+
       /* calculate the position of the pin */
       pinx = firstx;
       piny = firsty+i*PinSpacing;
       /* output a pin */
       rc = Pin(fp, pinx, piny, pinx-PinLength, piny, inputBubbles);
-      if(rc)
-	{
+
+      if(rc) {
+
 	  fprintf(stderr,"Error: Pin drawing function failed for pin %u "
 		  "in %s()\n",
 		  i, __func__);
@@ -248,21 +258,17 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
       /* output the attributes */
       sprintf(pinName,"IN%u",i);
       rc = PinAttribute(fp, pinx, piny, pinCount++, pinName);
-      if(rc)
-	{
+      if(rc) {
+
 	  fprintf(stderr,"Error: Pin Attributes function failed for pin %u "
 		  "in %s()\n", i, __func__);
 	  return 1;
 	}
-
     }
 
 
   /* drop on a template uref attribute */
-  fprintf(fp,"T %d %d 5 10 1 1 0 2\nrefdes=U?\n",
-	  bodyx+100,
-	  bodyy-400);
-
+  fprintf(fp,"T %d %d 5 10 1 1 0 2\nrefdes=U?\n", bodyx+100, bodyy-400);
 
   return 0;
 }
