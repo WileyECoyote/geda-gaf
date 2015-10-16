@@ -96,15 +96,16 @@ specifies where the various required scheme and rc files are located
 (the default is ${prefix}/share/gEDA).  This environment variables does
 not need to be set by the end user unless they are moving the executables
 to a new install ${prefix}.
-
+.PP
 .SH "AUTHOR"
 Ales Hvezda and many others
-
+.PP
+.SH COPYRIGHT
+Copyright \(co 1999-@YEAR@ Ales Hvezda
+.PP
+This document can be freely redistributed according to the terms of the
+GNU General Public License version 2.0
+.PP
 .SH SEE ALSO
 .BR gschem (1),
 .BR gnetlist (1)
-.SH COPYRIGHT
-Copyright \(co 1999-2008 Ales Hvezda
-
-This document can be freely redistributed according to the terms of the
-GNU General Public License version 2.0
