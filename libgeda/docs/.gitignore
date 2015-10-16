@@ -2,5 +2,6 @@ Makefile.in
 Makefile
 latex
 *.html
+libgeda.1
 libgeda-man-1.tex
 *~

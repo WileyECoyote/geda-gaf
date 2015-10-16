@@ -9,6 +9,8 @@ convert_sym.html
 gcheck-library.html
 gclean-symbol.html
 geda-install.html
+geda-install-bin.html
+gfix-library.html
 gmake-caps-sym.html
 gmake-transistors-sym.html
 gnet_hier_verilog.html
