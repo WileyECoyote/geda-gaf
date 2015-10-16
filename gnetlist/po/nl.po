@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:56-0500\n"
+"POT-Creation-Date: 2015-10-16 07:53-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -23,12 +23,12 @@ msgstr ""
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
 
-#: gnetlist/src/gnetlist.c:96
+#: gnetlist/src/gnetlist.c:97
 #, fuzzy, c-format
 msgid "ERROR: Can not open directory [%s:] %s\n"
 msgstr "Kan bestandenmap %s: %s niet openen\n"
 
-#: gnetlist/src/gnetlist.c:128
+#: gnetlist/src/gnetlist.c:129
 #, c-format
 msgid ""
 "List of available backends: \n"
@@ -37,44 +37,44 @@ msgstr ""
 "Lijst van beschikbare backends:\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:211
+#: gnetlist/src/gnetlist.c:212
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:213
+#: gnetlist/src/gnetlist.c:214
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:215
+#: gnetlist/src/gnetlist.c:216
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:247
+#: gnetlist/src/gnetlist.c:248
 #, fuzzy, c-format
 msgid "Loading schematic <%s>\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:248
+#: gnetlist/src/gnetlist.c:249
 #, c-format
 msgid "Loading schematic [%s]\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:254
+#: gnetlist/src/gnetlist.c:255
 #, fuzzy, c-format
 msgid "load failed [%s]: %s\n"
 msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
 
-#: gnetlist/src/gnetlist.c:272 gnetlist/src/gnetlist.c:321
+#: gnetlist/src/gnetlist.c:273 gnetlist/src/gnetlist.c:322
 #, fuzzy, c-format
 msgid "ERROR: File System, could change to directory [%s:] %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
-#: gnetlist/src/gnetlist.c:296
+#: gnetlist/src/gnetlist.c:297
 #, fuzzy, c-format
 msgid "ERROR: Could not find backend `%s' in load path.\n"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:299
+#: gnetlist/src/gnetlist.c:300
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -92,12 +92,12 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:343
+#: gnetlist/src/gnetlist.c:344
 #, fuzzy, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
 
-#: gnetlist/src/parsecmd.c:68
+#: gnetlist/src/parsecmd.c:72
 #, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
@@ -150,7 +150,7 @@ msgstr ""
 "Rapporteer gebreken op <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 
-#: gnetlist/src/parsecmd.c:249
+#: gnetlist/src/parsecmd.c:258
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -159,7 +159,7 @@ msgstr ""
 "FOUT: -%c optie vereist een argument.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:253
+#: gnetlist/src/parsecmd.c:262
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -168,7 +168,7 @@ msgstr ""
 "FOUT: Onbekende optie -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:256
+#: gnetlist/src/parsecmd.c:265
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -177,7 +177,7 @@ msgstr ""
 "FOUT: Onbekend optie karakter `\\x%x'.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:260
+#: gnetlist/src/parsecmd.c:269
 #, c-format
 msgid ""
 "\n"

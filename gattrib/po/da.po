@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-19 11:53-0500\n"
+"POT-Creation-Date: 2015-10-16 07:53-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -31,17 +31,31 @@ msgstr "Ændre komponent attributter med gattrib"
 msgid "%s: Could not open [%s]\n"
 msgstr ""
 
-#: gattrib/src/gattrib.c:313
+#: gattrib/src/gattrib.c:180
+#, c-format
+msgid "Failed to save user configuration to '%s': %s."
+msgstr ""
+
+#: gattrib/src/gattrib.c:345
 #, c-format
 msgid "Couldn not find file [%s]\n"
 msgstr ""
 
-#: gattrib/src/g_rc.c:49
+#: gattrib/src/g_rc.c:50
 #, c-format
 msgid ""
 "You are running gEDA/gaf version [%s%s.%s],\n"
 "but you have a version [%s] gattribrc file.\n"
 "Please be sure that you have the latest rc file.\n"
+msgstr ""
+
+#: gattrib/src/i_basic.c:105
+msgid "The operating system is out of memory or resources."
+msgstr ""
+
+#: gattrib/src/i_basic.c:213
+#, c-format
+msgid "Check: path \"%s\"\n"
 msgstr ""
 
 #: gattrib/src/parsecmd.c:63
@@ -76,14 +90,14 @@ msgstr ""
 msgid " DONE\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:212
+#: gattrib/src/s_object.c:217
 #, c-format
 msgid ""
 "In s_object_replace_attrib_in_object, we have failed to find the attrib %s "
 "on the component.  Exiting . . .\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:328
+#: gattrib/src/s_object.c:337
 #, c-format
 msgid ""
 "In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex "
@@ -146,17 +160,17 @@ msgstr ""
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:119
+#: gattrib/src/s_string_list.c:128
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:180
+#: gattrib/src/s_string_list.c:193
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:244
+#: gattrib/src/s_string_list.c:265
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
@@ -166,48 +180,48 @@ msgstr ""
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:474
+#: gattrib/src/s_toplevel.c:487
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
 "the master list!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:503
+#: gattrib/src/s_toplevel.c:516
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:808
+#: gattrib/src/s_toplevel.c:842
 #, c-format
 msgid ""
 "In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
 "missing!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:845
+#: gattrib/src/s_toplevel.c:880
 #, c-format
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:107
+#: gattrib/src/x_dialog.c:109
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:116
+#: gattrib/src/x_dialog.c:118
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:174
+#: gattrib/src/x_dialog.c:176
 msgid "Are you sure you want to delete this attribute?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:176
+#: gattrib/src/x_dialog.c:178
 msgid "Delete attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:201
+#: gattrib/src/x_dialog.c:202
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -218,31 +232,31 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:214
+#: gattrib/src/x_dialog.c:215
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:237
+#: gattrib/src/x_dialog.c:244
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:238
+#: gattrib/src/x_dialog.c:245
 msgid "<big><b>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:238
+#: gattrib/src/x_dialog.c:245
 msgid "</b></big>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:240
+#: gattrib/src/x_dialog.c:247
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:250
+#: gattrib/src/x_dialog.c:257
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:307
+#: gattrib/src/x_dialog.c:315
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -256,15 +270,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:315
+#: gattrib/src/x_dialog.c:323
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:342
+#: gattrib/src/x_dialog.c:349
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:357
+#: gattrib/src/x_dialog.c:364
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -278,43 +292,47 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:368
+#: gattrib/src/x_dialog.c:374
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:385
+#: gattrib/src/x_dialog.c:391
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:435
-msgid "Find Text"
+#: gattrib/src/x_dialog.c:441
+msgid "Find "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:783
+#: gattrib/src/x_dialog.c:470
+msgid "Enter "
+msgstr ""
+
+#: gattrib/src/x_dialog.c:816
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:785
+#: gattrib/src/x_dialog.c:818
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:791
+#: gattrib/src/x_dialog.c:824
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:793
+#: gattrib/src/x_dialog.c:826
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:799
+#: gattrib/src/x_dialog.c:832
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:801
+#: gattrib/src/x_dialog.c:834
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:806
+#: gattrib/src/x_dialog.c:839
 msgid "Find next"
 msgstr ""
 
@@ -352,9 +370,25 @@ msgstr ""
 msgid "Open..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:531
+#: gattrib/src/x_find.c:273
+msgid "Attribute"
+msgstr ""
+
+#: gattrib/src/x_find.c:305
+msgid "Designator"
+msgstr ""
+
+#: gattrib/src/x_menus.c:569
 #, c-format
 msgid ""
 "Error loading %s:\n"
 "%s\n"
+msgstr ""
+
+#: gattrib/src/x_window.c:159
+msgid "Saving main window geometry and settings.\n"
+msgstr ""
+
+#: gattrib/src/x_window.c:196
+msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""

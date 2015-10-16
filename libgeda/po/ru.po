@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-09-19 06:39-0500\n"
+"POT-Creation-Date: 2015-10-16 03:30-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -118,7 +118,7 @@ msgstr "Файл «%s» не найден: %s"
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:100
+#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:96
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
@@ -159,76 +159,76 @@ msgstr "Не удалось сохранить файл резервной ко�
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/file/f_basic.c:663
+#: libgeda/src/file/f_basic.c:664
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/file/f_basic.c:675
-#, c-format
-msgid "s_page_delete: Unable to delete backup file %s."
+#: libgeda/src/file/f_basic.c:676
+#, fuzzy, c-format
+msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: не удалось удалить файл резервной копии %s."
 
-#: libgeda/src/file/f_file.c:79
+#: libgeda/src/file/f_file.c:75
 #, fuzzy
 msgid "File error"
 msgstr "Ошибка обработки: ~s"
 
-#: libgeda/src/file/f_file.c:83
+#: libgeda/src/file/f_file.c:79
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:84
+#: libgeda/src/file/f_file.c:80
 #, c-format
 msgid "%s: attempting to lock/unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:327
+#: libgeda/src/file/f_file.c:323
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/file/f_get.c:282
+#: libgeda/src/file/f_get.c:285
 #, c-format
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:447
+#: libgeda/src/file/f_get.c:323
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:458
+#: libgeda/src/file/f_get.c:334
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/file/f_get.c:469
+#: libgeda/src/file/f_get.c:345
 #, fuzzy, c-format
 msgid "File \"%s\" is too large"
 msgstr "Файл %s только для чтения"
 
-#: libgeda/src/file/f_get.c:526
+#: libgeda/src/file/f_get.c:402
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:546
+#: libgeda/src/file/f_get.c:422
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
 
-#: libgeda/src/file/f_get.c:611
+#: libgeda/src/file/f_get.c:487
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Не удалось открыть каталог «%s»: %s\n"
 
-#: libgeda/src/file/f_get.c:623
+#: libgeda/src/file/f_get.c:499
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:641
+#: libgeda/src/file/f_get.c:517
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
@@ -284,113 +284,113 @@ msgstr ""
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:219
+#: libgeda/src/geda/geda_config.c:229
 #, fuzzy
 msgid "Configuration file"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:220
+#: libgeda/src/geda/geda_config.c:230
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:815 libgeda/src/geda/geda_config.c:929
+#: libgeda/src/geda/geda_config.c:833 libgeda/src/geda/geda_config.c:952
 msgid "Undefined configuration filename"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:950
+#: libgeda/src/geda/geda_config.c:973
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:992
+#: libgeda/src/geda/geda_config.c:1015
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Файл «%s» не найден: %s"
 
-#: libgeda/src/geda/geda_config.c:1301
+#: libgeda/src/geda/geda_config.c:1324
 #, fuzzy, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1365
+#: libgeda/src/geda/geda_config.c:1388
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1379
+#: libgeda/src/geda/geda_config.c:1402
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr "В настройках не обнаружено ключа «%s»"
 
-#: libgeda/src/geda/geda_object.c:391
+#: libgeda/src/geda/geda_object.c:388
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:392
+#: libgeda/src/geda/geda_object.c:389
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:401
+#: libgeda/src/geda/geda_object.c:398
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:402
+#: libgeda/src/geda/geda_object.c:399
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:409
+#: libgeda/src/geda/geda_object.c:406
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:410
+#: libgeda/src/geda/geda_object.c:407
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:416
+#: libgeda/src/geda/geda_object.c:413
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:417
+#: libgeda/src/geda/geda_object.c:414
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:422
+#: libgeda/src/geda/geda_object.c:419
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:423
+#: libgeda/src/geda/geda_object.c:420
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:429
+#: libgeda/src/geda/geda_object.c:426
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:430
+#: libgeda/src/geda/geda_object.c:427
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:436
+#: libgeda/src/geda/geda_object.c:433
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:437
+#: libgeda/src/geda/geda_object.c:434
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:444
+#: libgeda/src/geda/geda_object.c:441
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:445
+#: libgeda/src/geda/geda_object.c:442
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:450
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:454
+#: libgeda/src/geda/geda_object.c:451
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -594,40 +594,40 @@ msgstr "Индекс записи в таблице цветов должен б
 msgid "Value in color map entry must be #f or a string"
 msgstr "Значение записи в таблице цветов должно быть «#f» или строкой"
 
-#: libgeda/src/guile/g_rc_parse.c:154
+#: libgeda/src/guile/g_rc_parse.c:164
 msgid "RC file already loaded"
 msgstr "Файл настроек уже загружен"
 
-#: libgeda/src/guile/g_rc_parse.c:180
+#: libgeda/src/guile/g_rc_parse.c:190
 #, fuzzy, c-format
 msgid "Failed to load configuration from '%s': %s\n"
 msgstr "Не удалось загрузить настройки из файла «%s»: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:181
+#: libgeda/src/guile/g_rc_parse.c:191
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:182
+#: libgeda/src/guile/g_rc_parse.c:192
 #, c-format
 msgid "Error accessing configuration %s, %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:258
+#: libgeda/src/guile/g_rc_parse.c:268
 #, fuzzy, c-format
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Загружен файл настроек «%s»\n"
 
-#: libgeda/src/guile/g_rc_parse.c:414
+#: libgeda/src/guile/g_rc_parse.c:424
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек"
 
-#: libgeda/src/guile/g_rc_parse.c:427 libgeda/src/guile/g_rc_parse.c:428
+#: libgeda/src/guile/g_rc_parse.c:437 libgeda/src/guile/g_rc_parse.c:438
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ОШИБКА: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:434
+#: libgeda/src/guile/g_rc_parse.c:444
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ОШИБКА: в файле журнала %s может быть больше информации\n"
@@ -646,7 +646,7 @@ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d�
 #: libgeda/src/object/o_circle_basic.c:245
 #: libgeda/src/object/o_line_basic.c:240 libgeda/src/object/o_net_basic.c:151
 #: libgeda/src/object/o_path_basic.c:262 libgeda/src/object/o_pin_basic.c:177
-#: libgeda/src/object/o_text_basic.c:254
+#: libgeda/src/object/o_text_basic.c:257
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Недопустимое значение цветового индекса «%s»\n"
@@ -656,7 +656,7 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_circle_basic.c:246
 #: libgeda/src/object/o_line_basic.c:241 libgeda/src/object/o_net_basic.c:152
 #: libgeda/src/object/o_path_basic.c:263 libgeda/src/object/o_pin_basic.c:178
-#: libgeda/src/object/o_text_basic.c:255
+#: libgeda/src/object/o_text_basic.c:258
 msgid "Setting color to default color\n"
 msgstr "Установка цвета по умолчанию\n"
 
@@ -1100,41 +1100,41 @@ msgstr ""
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).
-#: libgeda/src/object/o_save.c:74
+#: libgeda/src/object/o_save.c:81
 #, fuzzy, c-format
 msgid "%s: Can't get real filename of %s."
 msgstr "Не удалось определить имя реального файла для %s: %s"
 
-#: libgeda/src/object/o_save.c:122
+#: libgeda/src/object/o_save.c:132
 #, fuzzy, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr ""
 "Не удалось установить режим чтения-записи для файла предыдущей резервной  "
 "копии «%s»\n"
 
-#: libgeda/src/object/o_save.c:131
+#: libgeda/src/object/o_save.c:140
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:143
+#: libgeda/src/object/o_save.c:152
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr ""
 "Не удалось установить режим доступа только на чтение для резервной копии "
 "файла «%s»\n"
 
-#: libgeda/src/object/o_save.c:149
+#: libgeda/src/object/o_save.c:158
 #, fuzzy, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr "Не удалось сохранить файл: %s"
 
-#: libgeda/src/object/o_save.c:260
+#: libgeda/src/object/o_save.c:273
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: объект %p неизвестного типа «%c»\n"
 
-#: libgeda/src/object/o_save.c:340
+#: libgeda/src/object/o_save.c:353
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""
@@ -1150,27 +1150,27 @@ msgid "Setting line space to default=%d\n"
 msgstr "Установка цвета по умолчанию\n"
 
 #: libgeda/src/object/o_text_basic.c:200 libgeda/src/object/o_text_basic.c:211
-#: libgeda/src/object/o_text_basic.c:221
+#: libgeda/src/object/o_text_basic.c:223
 msgid "Failed to parse text object"
 msgstr "Ошибка в определении текстового объекта"
 
-#: libgeda/src/object/o_text_basic.c:228
+#: libgeda/src/object/o_text_basic.c:230
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr "Текстовая строка нулевого размера «%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_basic.c:246
+#: libgeda/src/object/o_text_basic.c:249
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Неподдерживаемое значение поля «alignment» в определении текстового объекта  "
 "«%c %d %d %d %d %d %d %d %d»\n"
 
-#: libgeda/src/object/o_text_basic.c:248
+#: libgeda/src/object/o_text_basic.c:251
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Установка выравнивания по левому нижнему углу\n"
 
-#: libgeda/src/object/o_text_basic.c:268
+#: libgeda/src/object/o_text_basic.c:273
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr "Неожиданный конец файла после %d строк"
@@ -1352,22 +1352,22 @@ msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 "Объект ~A прикреплён к составному объекту или находится на другой странице"
 
-#: libgeda/src/struct/s_clib.c:450
+#: libgeda/src/struct/s_clib.c:449
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr "Ошибка при выполнении команды над библиотекой «%s»: %s\n"
 
-#: libgeda/src/struct/s_clib.c:456
+#: libgeda/src/struct/s_clib.c:455
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr "Сбой команды создания библиотеки «%s»: необработанный сигнал %i.\n"
 
-#: libgeda/src/struct/s_clib.c:460
+#: libgeda/src/struct/s_clib.c:459
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr "Сбой команды создания библиотеки «%s»\n"
 
-#: libgeda/src/struct/s_clib.c:461
+#: libgeda/src/struct/s_clib.c:460
 #, c-format
 msgid ""
 "Error output was:\n"
@@ -1376,17 +1376,17 @@ msgstr ""
 "Вывод ошибки:\n"
 "%s\n"
 
-#: libgeda/src/struct/s_clib.c:549
+#: libgeda/src/struct/s_clib.c:548
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr "Библиотека с именем «%s» уже имеется. Используется «%s».\n"
 
-#: libgeda/src/struct/s_clib.c:678
+#: libgeda/src/struct/s_clib.c:677
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:687
+#: libgeda/src/struct/s_clib.c:686
 #, fuzzy, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr "Не удалось открыть каталог «%s»: %s\n"
@@ -1404,11 +1404,11 @@ msgstr ""
 "При сканировании библиотеки обнаружено имя символа, не являющееся строкой "
 "«%s»\n"
 
-#: libgeda/src/struct/s_clib.c:1045 libgeda/src/struct/s_clib.c:1092
+#: libgeda/src/struct/s_clib.c:1044 libgeda/src/struct/s_clib.c:1091
 msgid "Cannot add library: name not specified\n"
 msgstr "Невозможно добавить библиотеку: не указано имя\n"
 
-#: libgeda/src/struct/s_clib.c:1052
+#: libgeda/src/struct/s_clib.c:1051
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
@@ -1416,29 +1416,29 @@ msgstr ""
 "Невозможно добавить библиотеку «%s»: должны быть указаны обе команды «list» "
 "и «get».\n"
 
-#: libgeda/src/struct/s_clib.c:1101
+#: libgeda/src/struct/s_clib.c:1100
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 "Невозможно добавить библиотеку Scheme «%s»: функции обратного вызова должны "
 "быть замкнутыми выражениями\n"
 
-#: libgeda/src/struct/s_clib.c:1227
+#: libgeda/src/struct/s_clib.c:1226
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Ошибка загрузки символа из файла «%s»: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1288
+#: libgeda/src/struct/s_clib.c:1287
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Ошибка загрузки данных символа «%s» из источника «%s»\n"
 
-#: libgeda/src/struct/s_clib.c:1510
+#: libgeda/src/struct/s_clib.c:1509
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Компонент «%s» не найден в библиотеке компонентов\n"
 
-#: libgeda/src/struct/s_clib.c:1517
+#: libgeda/src/struct/s_clib.c:1516
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Обнаружено несколько компонентов с именем «%s»\n"
@@ -1470,16 +1470,16 @@ msgstr "Для текущей схемы нет схемы, вышестояще
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
 
-#: libgeda/src/struct/s_page.c:272
+#: libgeda/src/struct/s_page.c:274
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:624 libgeda/src/struct/s_page.c:661
+#: libgeda/src/struct/s_page.c:656 libgeda/src/struct/s_page.c:694
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Файл «%s» сохранён\n"
 
-#: libgeda/src/struct/s_page.c:629 libgeda/src/struct/s_page.c:666
+#: libgeda/src/struct/s_page.c:662 libgeda/src/struct/s_page.c:699
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "Не удалось сохранить «%s»\n"
