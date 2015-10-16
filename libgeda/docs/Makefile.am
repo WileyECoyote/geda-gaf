@@ -55,14 +55,16 @@ dist_man_MANS = libgeda.1
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION)-$(DATE_VERSION)" ; \
-	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
 
 .3.in.3:
 	@printf "" \
 	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
 	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
 	v="$(LIBGEDA_DOT_VERSION).$(DATE_VERSION)" ; \
-	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" < $< > $@
+	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
 
 # Rules for converting man->html
 html_man_files = $(dist_man_MANS:%.1=%.html)

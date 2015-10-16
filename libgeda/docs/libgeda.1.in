@@ -142,7 +142,7 @@ See the "AUTHORS" file included with this program.
 .SH COPYRIGHT
 .PP
 .nf
-Copyright \(co 2015 gEDA Contributors. License GPLv2+: GNU GPL
+Copyright \(co @YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
 version 2 or later. Please see the `COPYING' file included with this
 program for full details.
 .PP
