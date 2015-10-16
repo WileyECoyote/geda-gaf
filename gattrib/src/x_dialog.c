@@ -424,12 +424,12 @@ void x_dialog_export_file()
  *  This function creates the get text dialog and returns a pointer
  *  to the string or NULL is the user canceled.
  */
-char *x_dialog_get_search_text(char* prompt)
+char *x_dialog_get_search_text(char *prompt)
 {
   GtkDialog *dialog    = NULL;
   GtkWidget *textentry = NULL;
-
   char      *text      = NULL;
+  char      *title;
   int r;
 
   if (dialog != NULL) {
@@ -438,12 +438,16 @@ char *x_dialog_get_search_text(char* prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-  dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
-                                                      GTK_WINDOW(main_window),
-                                                      GTK_DIALOG_MODAL,
-                                                      GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
-                                                      GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
-                                                      NULL);
+  title = u_string_concat(_("Find "), prompt, NULL);
+
+  dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
+                                                    GTK_WINDOW(main_window),
+                                                    GTK_DIALOG_MODAL,
+                                                    GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                                    GTK_STOCK_FIND, GEDA_RESPONSE_ACCEPT,
+                                                    NULL);
+  GEDA_FREE(title);
+
   if (dialog) {
 
     /* Set the alternative button order (ok, cancel, help) for other systems */
@@ -476,6 +480,7 @@ char *x_dialog_get_search_text(char* prompt)
       text = u_string_strdup( GetEntryText(textentry) );
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
+
   return text;
 
 }
@@ -486,7 +491,7 @@ char *x_dialog_get_search_text(char* prompt)
 #define DialogSettings "SearchReplace"
 #define ControlID EnumeratedSearchControl
 
-#define AlternateTitle "Geda-gaf Search"
+#define AlternateTitle "Find Attribute Value"
 #define AlternateSettings "FindDialog"
 
 #define Combo_Responder search_replace_combo_responder
@@ -753,12 +758,14 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent,
   GtkTooltips *tooltips;
   tooltips = gtk_tooltips_new ();
 
-  if (find_only_mode)
-    ThisDialog=NEW_STD_GATTRIB_DIALOG( AlternateTitle, AlternateSettings, parent);
-  else
-    ThisDialog=NEW_STD_GATTRIB_DIALOG( DialogTitle, DialogSettings, parent);
+  if (find_only_mode) {
+    ThisDialog=NEW_STD_GATTRIB_DIALOG(_(AlternateTitle), AlternateSettings, parent);
+  }
+  else {
+    ThisDialog=NEW_STD_GATTRIB_DIALOG(_(DialogTitle), DialogSettings, parent);
+  }
 
-  gtk_window_set_title (GTK_WINDOW (ThisDialog), _(DialogTitle));
+  //gtk_window_set_title (GTK_WINDOW (ThisDialog), _(DialogTitle));
   gtk_window_set_modal (GTK_WINDOW (ThisDialog), FALSE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (ThisDialog), TRUE);
   gtk_window_set_type_hint (GTK_WINDOW (ThisDialog), GDK_WINDOW_TYPE_HINT_DIALOG);

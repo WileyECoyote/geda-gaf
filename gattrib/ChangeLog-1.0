@@ -2,7 +2,11 @@
 
     * src/x_find.c: Remove the work "Find" from the search prompt passed to
       x_dialog_get_search_text in functions x_find_attribute and x_find_refdes,
-      looks stupid.
+      looks stupid. Pass both would be prompts strings via gettext.
+
+    * src/x_dialog.c: Append the search prompt text to the word find for the
+      dialog title so the title is unique between "Find Attribute" and "Find
+      Designator".
 
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
