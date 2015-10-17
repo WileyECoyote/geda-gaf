@@ -113,7 +113,7 @@
  *          bytes of s2.
  */
 
-static void completion_check_cache (GedaCompletion* cmp,
+static void completion_check_cache (GedaCompletion* comp,
                                     char**          new_prefix);
 
 /*! \brief Create a New Geda Completion Object
@@ -131,16 +131,16 @@ static void completion_check_cache (GedaCompletion* cmp,
 GedaCompletion*
 geda_completion_new (GedaCompletionFunc func)
 {
-  GedaCompletion* gcomp;
+  GedaCompletion* comp;
 
-  gcomp               = g_new (GedaCompletion, 1);
-  gcomp->items        = NULL;
-  gcomp->cache        = NULL;
-  gcomp->prefix       = NULL;
-  gcomp->func         = func;
-  gcomp->strncmp_func = (GedaStrCompareNFunc) strncmp;
+  comp               = g_new (GedaCompletion, 1);
+  comp->items        = NULL;
+  comp->cache        = NULL;
+  comp->prefix       = NULL;
+  comp->func         = func;
+  comp->strncmp_func = (GedaStrCompareNFunc) strncmp;
 
-  return gcomp;
+  return comp;
 }
 
 /*! \brief Geda Completion Add Items
@@ -148,35 +148,36 @@ geda_completion_new (GedaCompletionFunc func)
  *
  * Adds items to the #GedaCompletion.
  *
- * \param [in] cmp:   A #GedaCompletion object.
+ * \param [in] comp:   A #GedaCompletion object.
  * \param [in] items: List of items to add.
  */
 void
-geda_completion_add_items (GedaCompletion* cmp, GList* items)
+geda_completion_add_items (GedaCompletion *comp, GList *items)
 {
-  GList* it;
+  GList *iter;
 
-  g_return_if_fail (cmp != NULL);
+  g_return_if_fail (comp != NULL);
 
   /* optimize adding to cache? */
-  if (cmp->cache)
-    {
-      g_list_free (cmp->cache);
-      cmp->cache = NULL;
-    }
+  if (comp->cache) {
 
-  if (cmp->prefix)
-    {
-      g_free (cmp->prefix);
-      cmp->prefix = NULL;
-    }
+      g_list_free (comp->cache);
+      comp->cache = NULL;
+  }
 
-  it = items;
-  while (it)
-    {
-      cmp->items = g_list_prepend (cmp->items, it->data);
-      it = it->next;
-    }
+  if (comp->prefix) {
+
+      g_free (comp->prefix);
+      comp->prefix = NULL;
+  }
+
+  iter = items;
+
+  while (iter) {
+
+      comp->items = g_list_prepend (comp->items, iter->data);
+      iter = iter->next;
+  }
 }
 
 /*! \brief Geda Completion Remove Items
@@ -186,30 +187,31 @@ geda_completion_add_items (GedaCompletion* cmp, GList* items)
  * memory was dynamically allocated, free items with u_glist_free_full()
  * after calling this function.
  *
- * \param [in] cmp:   A #GedaCompletion object.
+ * \param [in] comp:   A #GedaCompletion object.
  * \param [in] items: List of items to remove.
  *
  */
 void
-geda_completion_remove_items (GedaCompletion* cmp, GList* items)
+geda_completion_remove_items (GedaCompletion* comp, GList* items)
 {
-  GList* it;
+  GList* iter;
 
-  g_return_if_fail (cmp != NULL);
+  g_return_if_fail (comp != NULL);
 
-  it = items;
-  while (cmp->items && it)
-    {
-      cmp->items = g_list_remove (cmp->items, it->data);
-      it = it->next;
-    }
+  iter = items;
 
-  it = items;
-  while (cmp->cache && it)
-    {
-      cmp->cache = g_list_remove(cmp->cache, it->data);
-      it = it->next;
-    }
+  while (comp->items && iter) {
+      comp->items = g_list_remove (comp->items, iter->data);
+      iter = iter->next;
+  }
+
+  iter = items;
+
+  while (comp->cache && iter) {
+
+      comp->cache = g_list_remove(comp->cache, iter->data);
+      iter = iter->next;
+  }
 }
 
 /*! \brief Geda Completion Clear Items
@@ -219,25 +221,27 @@ geda_completion_remove_items (GedaCompletion* cmp, GList* items)
  * so if the memory was dynamically allocated, it should be freed after
  * calling this function.
  *
- * \param [in] cmp A #GedaCompletion object.
+ * \param [in] comp A #GedaCompletion object.
  */
 void
-geda_completion_clear_items (GedaCompletion* cmp)
+geda_completion_clear_items (GedaCompletion *comp)
 {
-  g_return_if_fail (cmp != NULL);
+  g_return_if_fail (comp != NULL);
 
-  g_list_free (cmp->items);
-  cmp->items = NULL;
-  g_list_free (cmp->cache);
-  cmp->cache = NULL;
-  g_free (cmp->prefix);
-  cmp->prefix = NULL;
+  g_list_free (comp->items);
+  comp->items = NULL;
+
+  g_list_free (comp->cache);
+  comp->cache = NULL;
+
+  g_free (comp->prefix);
+  comp->prefix = NULL;
 }
 
 static void
-completion_check_cache (GedaCompletion* cmp, char** new_prefix)
+completion_check_cache (GedaCompletion *comp, char **new_prefix)
 {
-  register GList* list;
+  register GList *list;
   register gsize len;
   register gsize i;
   register gsize plen;
@@ -246,22 +250,22 @@ completion_check_cache (GedaCompletion* cmp, char** new_prefix)
 
   if (!new_prefix)
     return;
-  if (!cmp->cache)
+  if (!comp->cache)
     {
       *new_prefix = NULL;
       return;
     }
 
-  len = strlen(cmp->prefix);
-  list = cmp->cache;
-  s = cmp->func ? cmp->func (list->data) : (char*) list->data;
+  len = strlen(comp->prefix);
+  list = comp->cache;
+  s = comp->func ? comp->func (list->data) : (char*) list->data;
   postfix = s + len;
   plen = strlen (postfix);
   list = list->next;
 
   while (list && plen)
     {
-      s = cmp->func ? cmp->func (list->data) : (char*) list->data;
+      s = comp->func ? comp->func (list->data) : (char*) list->data;
       s += len;
       for (i = 0; i < plen; ++i)
 	{
@@ -273,7 +277,7 @@ completion_check_cache (GedaCompletion* cmp, char** new_prefix)
     }
 
   *new_prefix = g_new0 (char, len + plen + 1);
-  strncpy (*new_prefix, cmp->prefix, len);
+  strncpy (*new_prefix, comp->prefix, len);
   strncpy (*new_prefix + len, postfix, plen);
 }
 
@@ -290,7 +294,7 @@ completion_check_cache (GedaCompletion* cmp, char** new_prefix)
  *
  * \remark This string should be freed when no longer needed.
  *
- * \param [in] cmp          A #GedaCompletion object.
+ * \param [in] comp          A #GedaCompletion object.
  * \param [in] prefix       A the prefix string.
  * \param [in] new_prefix   A the new prefix string.
  *
@@ -303,14 +307,14 @@ completion_check_cache (GedaCompletion* cmp, char** new_prefix)
  * if strings contains only UTF-8 characters.
  */
 GList*
-geda_completion_complete_utf8 (GedaCompletion  *cmp,
+geda_completion_complete_utf8 (GedaCompletion  *comp,
                                const char  *prefix,
                                char       **new_prefix)
 {
   GList *list;
   char *p, *q;
 
-  list = geda_completion_complete (cmp, prefix, new_prefix);
+  list = geda_completion_complete (comp, prefix, new_prefix);
 
   if (new_prefix && *new_prefix)
     {
@@ -341,7 +345,7 @@ geda_completion_complete_utf8 (GedaCompletion  *cmp,
  * or %NULL if no items matched prefix. This string should be freed
  * when no longer needed.
  *
- * \param [in] cmp          A #GedaCompletion object.
+ * \param [in] comp          A #GedaCompletion object.
  * \param [in] prefix       A the prefix string.
  * \param [in] new_prefix   A the new prefix string.
  *
@@ -352,30 +356,37 @@ geda_completion_complete_utf8 (GedaCompletion  *cmp,
  *
  */
 GList*
-geda_completion_complete (GedaCompletion *cmp, const char *prefix, char **new_prefix)
+geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_prefix)
 {
   bool   done = FALSE;
   gsize  plen, len;
   GList *list;
 
-  g_return_val_if_fail (cmp != NULL, NULL);
+  g_return_val_if_fail (comp != NULL, NULL);
   g_return_val_if_fail (prefix != NULL, NULL);
 
   len = strlen (prefix);
 
-  if (cmp->prefix && cmp->cache) {
+  if (comp->prefix && comp->cache) {
 
-    plen = strlen (cmp->prefix);
-    if (plen <= len && ! cmp->strncmp_func (prefix, cmp->prefix, plen)) {
+    plen = strlen (comp->prefix);
+
+    if (plen <= len && ! comp->strncmp_func (prefix, comp->prefix, plen))
+    {
 
       /* use the cache */
-      list = cmp->cache;
+      list = comp->cache;
+
       while (list) {
 
         GList *next = list->next;
+        char  *str2;
 
-        if (cmp->strncmp_func (prefix, cmp->func ? cmp->func (list->data) : (char*) list->data, len))
-          cmp->cache = g_list_delete_link (cmp->cache, list);
+        str2 = comp->func ? comp->func (list->data) : (char*)list->data;
+
+        if (comp->strncmp_func (prefix, str2, len)) {
+          comp->cache = g_list_delete_link (comp->cache, list);
+        }
 
         list = next;
       }
@@ -386,31 +397,37 @@ geda_completion_complete (GedaCompletion *cmp, const char *prefix, char **new_pr
   if (!done) {
 
     /* normal code */
-    g_list_free (cmp->cache);
-    cmp->cache = NULL;
-    list = cmp->items;
+    g_list_free (comp->cache);
+
+    comp->cache = NULL;
+    list = comp->items;
+
     while (*prefix && list) {
 
-      if (!cmp->strncmp_func (prefix,
-        cmp->func ? cmp->func (list->data) : (char*) list->data,
-                              len))
-        cmp->cache = g_list_prepend (cmp->cache, list->data);
+      char  *str2;
+
+      str2 = comp->func ? comp->func (list->data) : (char*)list->data;
+
+      if (!comp->strncmp_func (prefix, str2, len)) {
+        comp->cache = g_list_prepend (comp->cache, list->data);
+      }
+
       list = list->next;
     }
   }
 
-  if (cmp->prefix) {
+  if (comp->prefix) {
 
-    g_free (cmp->prefix);
-    cmp->prefix = NULL;
+    g_free (comp->prefix);
+    comp->prefix = NULL;
   }
 
-  if (cmp->cache)
-    cmp->prefix = g_strdup (prefix);
+  if (comp->cache)
+    comp->prefix = g_strdup (prefix);
 
-  completion_check_cache (cmp, new_prefix);
+  completion_check_cache (comp, new_prefix);
 
-  return *prefix ? cmp->cache : cmp->items;
+  return *prefix ? comp->cache : comp->items;
 }
 
 /*! \brief Free a Geda Completion Object
@@ -420,15 +437,15 @@ geda_completion_complete (GedaCompletion *cmp, const char *prefix, char **new_pr
  * if the memory was dynamically allocated, it should be freed after calling
  * this function.
  *
- * \param [in] cmp A #GedaCompletion object.
+ * \param [in] comp A #GedaCompletion object.
  */
 void
-geda_completion_free (GedaCompletion* cmp)
+geda_completion_free (GedaCompletion* comp)
 {
-  g_return_if_fail (cmp != NULL);
+  g_return_if_fail (comp != NULL);
 
-  geda_completion_clear_items (cmp);
-  g_free (cmp);
+  geda_completion_clear_items (comp);
+  g_free (comp);
 }
 
 /*! \brief Geda Completion Object Set Compare Function
@@ -437,15 +454,15 @@ geda_completion_free (GedaCompletion* cmp)
  * Sets the function to use for string comparisons. The default string
  * comparison function is strncmp().
  *
- * \param [in] cmp          A #GedaCompletion object.
+ * \param [in] comp          A #GedaCompletion object.
  * \param [in] strncmp_func Pointer to a string comparator function.
  *
  */
 void
-geda_completion_set_compare(GedaCompletion *cmp,
+geda_completion_set_compare(GedaCompletion *comp,
                             GedaStrCompareNFunc strncmp_func)
 {
-  cmp->strncmp_func = strncmp_func;
+  comp->strncmp_func = strncmp_func;
 }
 
 #ifdef TEST_COMPLETION
@@ -458,7 +475,7 @@ main (int argc, char *argv[])
   GList *list;
   GList *result;
   GList *tmp;
-  GedaCompletion *cmp;
+  GedaCompletion *comp;
   int   i;
   char *longp = NULL;
 
@@ -476,13 +493,13 @@ main (int argc, char *argv[])
 
   }
 
-  cmp = geda_completion_new (NULL);
+  comp = geda_completion_new (NULL);
   list = g_list_alloc ();
 
   while (fgets (buf, 1024, file)) {
 
     list->data = g_strdup (buf);
-    geda_completion_add_items (cmp, list);
+    geda_completion_add_items (comp, list);
 
   }
   fclose (file);
@@ -490,7 +507,7 @@ main (int argc, char *argv[])
   for (i = 2; i < argc; ++i) {
 
     printf ("COMPLETING: %s\n", argv[i]);
-    result = geda_completion_complete (cmp, argv[i], &longp);
+    result = geda_completion_complete (comp, argv[i], &longp);
     g_list_foreach (result, (GFunc) printf, NULL);
     printf ("LONG MATCH: %s\n", longp);
     g_free (longp);
@@ -498,8 +515,8 @@ main (int argc, char *argv[])
 
   }
 
-  g_list_foreach (cmp->items, (GFunc) g_free, NULL);
-  geda_completion_free (cmp);
+  g_list_foreach (comp->items, (GFunc) g_free, NULL);
+  geda_completion_free (comp);
   g_list_free (list);
 
   return 0;

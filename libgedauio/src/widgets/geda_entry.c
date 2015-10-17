@@ -286,6 +286,7 @@ void geda_entry_set_max_history (GedaEntry *entry, int value)
 {
   entry->max_history = value;
 }
+
 int  geda_entry_get_max_history (GedaEntry *entry)
 {
   return entry->max_history;
@@ -323,11 +324,13 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
                                  (GedaStrCompareNFunc) u_string_strncmpi);
   }
 }
+
 bool geda_entry_get_input_case (GedaEntry *entry)
 {
   g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
   return entry->text_case;
 }
+
 void geda_entry_set_input_case  (GedaEntry *entry, int mode)
 {
   GEDA_ENTRY(entry)->text_case = mode;
@@ -363,8 +366,8 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
 {
   GedaEntry *entry = GEDA_ENTRY(object);
 
-  switch (property_id)
-    {
+  switch (property_id) {
+
     case PROP_ACTIVATES_DEFAULT:
       geda_entry_set_activates_default (entry, g_value_get_boolean (value));
       break;
@@ -410,8 +413,8 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
 {
   GedaEntry *entry = GEDA_ENTRY(object);
 
-  switch (property_id)
-    {
+  switch (property_id) {
+
     case PROP_ACTIVATES_DEFAULT:
       g_value_set_boolean (value, entry->activates_default);
       break;

@@ -175,14 +175,15 @@ geda_tree_view_row_get_visibility (GtkTreeView *tree_view,
                                    GtkTreeIter *iter,
                                    bool         fully_visible)
 {
-  GtkTreeModel *model;
-  GtkTreePath  *path, *start_path, *end_path;
   bool valid;
-  int  ret = 0;
+  int  visible = 0;
 
   valid = ( iter->stamp != 0 ? TRUE : FALSE);
 
   if (valid) {
+
+    GtkTreeModel *model;
+    GtkTreePath  *path, *start_path, *end_path;
 
     if (!gtk_tree_view_get_visible_range (tree_view, &start_path, &end_path))
       return -1;
@@ -193,19 +194,19 @@ geda_tree_view_row_get_visibility (GtkTreeView *tree_view,
 
     if (fully_visible) {
       if (gtk_tree_path_compare(path, start_path) <= 0) {
-        ret = -1;
+        visible = -1;
       }
       else if (gtk_tree_path_compare (path, end_path) >= 0) {
-        ret = 1;
+        visible = 1;
       }
     }
     else {
       if (gtk_tree_path_compare (path, start_path) < 0) {
-        ret = -1;
+        visible = -1;
       }
       else
         if (gtk_tree_path_compare (path, end_path) > 0) {
-          ret = 1;
+          visible = 1;
         }
     }
 
@@ -213,8 +214,10 @@ geda_tree_view_row_get_visibility (GtkTreeView *tree_view,
     gtk_tree_path_free (start_path);
     gtk_tree_path_free (end_path);
   }
-  else ret = -1;
-  return ret;
+  else {
+    visible = -1;
+  }
+  return visible;
 }
 
 /*! \brief Make Tree Row Visible in GtkTreeView
@@ -228,33 +231,38 @@ geda_tree_view_row_make_visible(GtkTreeView *tree_view,
                                 GtkTreeIter *iter,
                                 bool         center)
 {
-  GtkTreePath *path;
   int visible;
   bool valid;
 
   valid = ( iter->stamp != 0 ? TRUE : FALSE);
 
   if (valid) {
-  visible = geda_tree_view_row_get_visibility (tree_view, iter, TRUE);
 
-  path = gtk_tree_model_get_path(gtk_tree_view_get_model (tree_view), iter);
-  if (center && visible != 0) {
-    gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 0.5, 0.0);
-  }
-  else
-    if (visible < 0) {
-      gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 0.0, 0.0);
+    GtkTreePath *path;
+
+    visible = geda_tree_view_row_get_visibility (tree_view, iter, TRUE);
+
+    path = gtk_tree_model_get_path(gtk_tree_view_get_model (tree_view), iter);
+
+    if (center && visible != 0) {
+      gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 0.5, 0.0);
     }
-    else if (visible > 0) {
-      gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 1.0, 0.0);
+    else {
+      if (visible < 0) {
+        gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 0.0, 0.0);
+      }
+      else if (visible > 0) {
+        gtk_tree_view_scroll_to_cell (tree_view, path, NULL, TRUE, 1.0, 0.0);
+      }
     }
 
-  gtk_tree_path_free (path);
+    gtk_tree_path_free (path);
 
   }
   else {
     visible = -1;
   }
+
   return visible;
 }
 

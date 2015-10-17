@@ -381,14 +381,17 @@ geda_image_menu_item_toggle_size_request (GtkMenuItem *menu_item,
                           "toggle-spacing", &toggle_spacing,
                           NULL);
 
-    if (pack_dir == GTK_PACK_DIRECTION_LTR || pack_dir == GTK_PACK_DIRECTION_RTL) {
-      if (image_requisition.width > 0)
+    if (pack_dir == GTK_PACK_DIRECTION_LTR || pack_dir == GTK_PACK_DIRECTION_RTL)
+    {
+      if (image_requisition.width > 0) {
         *requisition = image_requisition.width + toggle_spacing;
+      }
     }
     else
     {
-      if (image_requisition.height > 0)
+      if (image_requisition.height > 0) {
         *requisition = image_requisition.height + toggle_spacing;
+      }
     }
   }
 }
@@ -403,20 +406,21 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 
   if (image_menu_item->use_stock && image_menu_item->label) {
 
-    if (!image_menu_item->image)
-    {
+    if (!image_menu_item->image) {
       image = gtk_image_new_from_stock (image_menu_item->label, GTK_ICON_SIZE_MENU);
       geda_image_menu_item_set_image (image_menu_item, image);
     }
 
-    if (gtk_stock_lookup (image_menu_item->label, &stock_item))
+    if (gtk_stock_lookup (image_menu_item->label, &stock_item)) {
       resolved_label = stock_item.label;
+    }
 
     gtk_menu_item_set_use_underline (GTK_MENU_ITEM (image_menu_item), TRUE);
   }
 
   GTK_MENU_ITEM_CLASS
-  (geda_image_menu_item_parent_class)->set_label (GTK_MENU_ITEM (image_menu_item), resolved_label);
+  (geda_image_menu_item_parent_class)->
+   set_label (GTK_MENU_ITEM (image_menu_item), resolved_label);
 
 }
 
@@ -427,14 +431,15 @@ geda_image_menu_item_set_label (GtkMenuItem *menu_item,
   GedaImageMenuItem *image_menu_item = GEDA_IMAGE_MENU_ITEM (menu_item);
 
   if (image_menu_item->label != label) {
-      g_free (image_menu_item->label);
-      image_menu_item->label = g_strdup (label);
 
-      geda_image_menu_item_recalculate (GEDA_IMAGE_MENU_ITEM (menu_item));
+    g_free (image_menu_item->label);
+    image_menu_item->label = g_strdup (label);
 
-      g_object_notify (G_OBJECT (menu_item), "label");
+    geda_image_menu_item_recalculate (GEDA_IMAGE_MENU_ITEM (menu_item));
 
-    }
+    g_object_notify (G_OBJECT (menu_item), "label");
+
+  }
 }
 
 static const char *
@@ -506,7 +511,8 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
   GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->size_allocate (widget, allocation);
 
-  if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image)) {
+  if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
+  {
     int x, y, offset;
     GtkRequisition child_requisition;
     GtkAllocation child_allocation;

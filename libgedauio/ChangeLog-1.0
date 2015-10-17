@@ -1,3 +1,19 @@
+2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_completion.c: Clean and reformat code, use
+       consistent completion variable name.
+
+     * src/widgets/geda_entry.c: Clean and reformat code.
+
+     * src/widgets/geda_font_button.c: Clean and reformat code. Only
+       set font_face and font_desc NULL if was not NULL;
+
+     * src/widgets/geda_imagemenuitem.c: Clean and reformat code.
+
+     * src/widgets/geda_menu_button.c: Clean and reformat code.
+
+     * src/widgets/geda_tree_view.c: Clean and reformat code.
+
 2015-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
      * include/geda_entry.[c,h]: Add widget version for functions:

@@ -725,11 +725,11 @@ geda_menu_button_finish_activate (GedaMenuButton *button, bool do_it)
   g_source_remove (button->activate_timeout);
   button->activate_timeout = 0;
 
-  if (priv->has_grab)
-    {
-      gdk_display_keyboard_ungrab (gtk_widget_get_display (widget),
-                                   priv->grab_time);
-    }
+  if (priv->has_grab) {
+    GdkDisplay *display = gtk_widget_get_display(widget);
+    gdk_display_keyboard_ungrab (display, priv->grab_time);
+  }
+
   gtk_grab_remove (widget);
 
   button->button_down = FALSE;
@@ -758,9 +758,10 @@ geda_menu_button_activate (GedaMenuButton *button)
 
   priv = GEDA_MENU_BUTTON_GET_PRIVATE (button);
 
-  if (gtk_widget_get_realized (widget) && !button->activate_timeout)
-    {
+  if (gtk_widget_get_realized (widget) && !button->activate_timeout) {
+
       time = gtk_get_current_event_time ();
+
       if (gdk_keyboard_grab (button->event_window, TRUE, time) ==
           GDK_GRAB_SUCCESS)
         {
@@ -786,8 +787,8 @@ geda_menu_button_button_press_event (GtkWidget *widget, GdkEventButton *event)
 {
   GedaMenuButton *button;
 
-  if (event->type == GDK_BUTTON_PRESS)
-    {
+  if (event->type == GDK_BUTTON_PRESS) {
+
       button = GEDA_MENU_BUTTON (widget);
 
       if (button->focus_on_click && !gtk_widget_has_focus (widget))
@@ -807,16 +808,16 @@ geda_menu_button_grab_broken_event (GtkWidget *widget, GdkEventGrabBroken *event
   bool save_in;
 
   /* Simulate a button release without the pointer in the button */
-  if (button->button_down)
-    {
+  if (button->button_down) {
+
       save_in = button->in_button;
       button->in_button = FALSE;
       geda_menu_button_released (button);
-      if (save_in != button->in_button)
-        {
+      if (save_in != button->in_button) {
+
           button->in_button = save_in;
           geda_menu_button_update_state (button);
-        }
+      }
     }
 
   return TRUE;
@@ -827,11 +828,11 @@ geda_menu_button_key_release_event (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenuButton *button = GEDA_MENU_BUTTON (widget);
 
-  if (button->activate_timeout)
-    {
+  if (button->activate_timeout) {
+
       geda_menu_button_finish_activate (button, TRUE);
       return TRUE;
-    }
+  }
   else if (GTK_WIDGET_CLASS (geda_menu_button_parent_class)->key_release_event)
     return GTK_WIDGET_CLASS (geda_menu_button_parent_class)->key_release_event (widget, event);
   else
@@ -847,12 +848,11 @@ geda_menu_button_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
   button = GEDA_MENU_BUTTON (widget);
   event_widget = gtk_get_event_widget ((GdkEvent*) event);
 
-  if ((event_widget == widget) &&
-      (event->detail != GDK_NOTIFY_INFERIOR))
-    {
-      button->in_button = TRUE;
-      geda_menu_button_enter (button);
-    }
+  if ((event_widget == widget) && (event->detail != GDK_NOTIFY_INFERIOR))
+  {
+    button->in_button = TRUE;
+    geda_menu_button_enter (button);
+  }
 
   return FALSE;
 }
@@ -869,10 +869,10 @@ geda_menu_button_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
   if ((event_widget == widget) &&
       (event->detail != GDK_NOTIFY_INFERIOR) &&
       (gtk_widget_get_sensitive (event_widget)))
-    {
+  {
       button->in_button = FALSE;
       geda_menu_button_leave (button);
-    }
+  }
 
   return FALSE;
 }
@@ -882,10 +882,9 @@ geda_menu_button_state_changed (GtkWidget *widget, GtkStateType  previous_state)
   GedaMenuButton *button = GEDA_MENU_BUTTON (widget);
   GedaMenuButtonPrivate *priv = button->priv;
 
-  if (!gtk_widget_is_sensitive (widget) && priv->menu)
-    {
+  if (!gtk_widget_is_sensitive (widget) && priv->menu) {
       gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
-    }
+  }
 }
 
 /* BEGIN ------+------ Internal callbacks for main button -----+-------+-----*/
@@ -919,8 +918,8 @@ geda_menu_button_destroy (GtkObject *object)
 
   menu = (GtkMenu*) button->priv->menu;
 
-  if (menu)
-    {
+  if (menu) {
+
       g_signal_handlers_disconnect_by_func (menu,
                                             geda_menu_deactivate_cb,
                                             button);
@@ -948,7 +947,7 @@ geda_menu_button_destroy (GtkObject *object)
                                             geda_menu_button_button_released,
                                             NULL);;
 
-    }
+  }
 
   GTK_OBJECT_CLASS (geda_menu_button_parent_class)->destroy (object);
 }
@@ -1318,12 +1317,12 @@ arrow_button_toggled_cb (GtkToggleButton   *togglebutton,
 
   if (gtk_toggle_button_get_active (togglebutton) &&
       !gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
-    {
+  {
       /* we get here only when the menu is activated by a key
        * press, so that we can select the first menu item */
       popup_menu_under_arrow (button, NULL);
       gtk_menu_shell_select_first (GTK_MENU_SHELL (priv->menu), FALSE);
-    }
+  }
 }
 
 static bool
@@ -1331,17 +1330,16 @@ arrow_button_press_event_cb (GtkWidget         *widget,
                                     GdkEventButton    *event,
                                     GedaMenuButton *button)
 {
-  if (event->button == 1)
-    {
+  if (event->button == 1) {
+
       popup_menu_under_arrow (button, event);
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), TRUE);
 
       return TRUE;
-    }
-  else
-    {
+  }
+  else  {
       return FALSE;
-    }
+  }
 }
 
 static void
@@ -1383,23 +1381,23 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
 
   priv = button->priv;
 
-  if (priv->menu != menu)
-    {
+  if (priv->menu != menu) {
+
       if (priv->menu && gtk_widget_get_visible (GTK_WIDGET (priv->menu)))
         gtk_menu_shell_deactivate (GTK_MENU_SHELL (priv->menu));
 
-      if (priv->menu)
-        {
+      if (priv->menu) {
+
           g_signal_handlers_disconnect_by_func (priv->menu,
                                                 geda_menu_deactivate_cb,
                                                 button);
           gtk_menu_detach ((GtkMenu*)priv->menu);
-        }
+      }
 
       priv->menu = menu;
 
-      if (priv->menu)
-        {
+      if (priv->menu) {
+
           gtk_menu_attach_to_widget ((GtkMenu*)priv->menu, GTK_WIDGET (button),
                                      menu_detacher);
 
@@ -1407,9 +1405,10 @@ geda_menu_button_set_menu (GedaMenuButton *button, GtkWidget *menu)
 
           g_signal_connect (priv->menu, "deactivate",
                             G_CALLBACK (geda_menu_deactivate_cb), button);
-        }
-      else
+      }
+      else {
        gtk_widget_set_sensitive (priv->arrow_button, FALSE);
+      }
     }
 
   g_object_notify (G_OBJECT (button), "menu");

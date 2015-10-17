@@ -124,23 +124,23 @@ struct _GedaFontButtonPrivate
 /* Prototypes */
 
 static void geda_font_button_get_property      (GObject            *object,
-                                                  unsigned int        param_id,
-                                                  GValue             *value,
-                                                  GParamSpec         *pspec);
+                                                unsigned int        param_id,
+                                                GValue             *value,
+                                                GParamSpec         *pspec);
 static void geda_font_button_set_property      (GObject            *object,
-                                                  unsigned int        param_id,
-                                                  const GValue       *value,
-                                                  GParamSpec         *pspec);
+                                                unsigned int        param_id,
+                                                const GValue       *value,
+                                                GParamSpec         *pspec);
 
 static void geda_font_button_clicked           (GtkButton          *button);
 
 /* Dialog response functions */
-static void dialog_ok_clicked                    (GtkWidget         *widget,
-                                                  void *           data);
-static void dialog_cancel_clicked                (GtkWidget         *widget,
-                                                  void *           data);
-static void dialog_destroy                       (GtkWidget         *widget,
-                                                  void *           data);
+static void dialog_ok_clicked                  (GtkWidget         *widget,
+                                                void *           data);
+static void dialog_cancel_clicked              (GtkWidget         *widget,
+                                                void *           data);
+static void dialog_destroy                     (GtkWidget         *widget,
+                                                void *           data);
 
 /* Auxiliary functions */
 static GtkWidget *geda_font_button_create_widgets  (GedaFontButton  *gfs);
@@ -154,13 +154,19 @@ static void
 clear_font_data (GedaFontButton *font_button)
 {
 
-  if (font_button->font_face && G_IS_OBJECT(font_button->font_face))
-    g_object_unref (font_button->font_face);
-  font_button->font_face = NULL;
+  if (font_button->font_face) {
 
-  if (font_button->font_desc)
+    if (G_IS_OBJECT(font_button->font_face)) {
+      g_object_unref (font_button->font_face);
+    }
+
+    font_button->font_face = NULL;
+  }
+
+  if (font_button->font_desc) {
     pango_font_description_free (font_button->font_desc);
-  font_button->font_desc = NULL;
+    font_button->font_desc = NULL;
+  }
 
   g_free (font_button->priv->font_name);
   font_button->priv->font_name = NULL;
@@ -174,6 +180,7 @@ clear_font_data (GedaFontButton *font_button)
   g_free(font_button->priv->size_text);
   font_button->priv->size_text = NULL;
 }
+
 /*
 static void
 clear_font_filter_data (GedaFontButton *font_button)
@@ -249,7 +256,7 @@ geda_font_button_label_set_text (GedaFontButton *font_button)
   data = font_button->priv;
 
   /* Check for label_text and re-create if needed */
-  if ( !data->label_text ) {
+  if (!data->label_text) {
 
     if (data->show_style) {
 
@@ -307,7 +314,6 @@ static bool
 font_description_style_equal (const PangoFontDescription *a,
                               const PangoFontDescription *b)
 {
-
   return (pango_font_description_get_weight (a)  == pango_font_description_get_weight (b) &&
           pango_font_description_get_style (a)   == pango_font_description_get_style (b) &&
           pango_font_description_get_stretch (a) == pango_font_description_get_stretch (b) &&
@@ -437,6 +443,7 @@ geda_font_button_update_from_name (GedaFontButton *font_button)
     pango_font_description_free (font_button->font_desc);
     font_button->font_desc = NULL;
   }
+
   font_button->font_desc = pango_font_description_from_string (FONT_NAME);
 
   {
@@ -1139,6 +1146,7 @@ geda_font_button_set_font_name (GedaFontButton *font_button,
   g_return_val_if_fail (GEDA_IS_FONT_BUTTON (font_button), result);
 
   if (g_ascii_strcasecmp (font_button->priv->font_name, font_name)) {
+
     old_fontname = font_button->priv->font_name;
     font_button->priv->font_name = u_string_strdup (font_name);
     g_free (old_fontname);
