@@ -27,11 +27,13 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.8"
+#define GSC2PCB_VERSION "1.9"
 
-#define DEFAULT_PCB_INC "pcb.inc"
+#define DEFAULT_PCB_INC    "pcb.inc"
 
-#define SEP_STRING "--------\n"
+#define PCB_PATH_DELIMETER ":"
+
+#define SEP_STRING         "--------\n"
 
 typedef struct
 {
@@ -53,9 +55,11 @@ typedef struct
 ElementMap;
 
 static GList *pcb_element_list,
-  *element_directory_list, *extra_gnetlist_list, *extra_gnetlist_arg_list;
+             *element_directory_list,
+             *extra_gnetlist_list,
+             *extra_gnetlist_arg_list;
 
-static char *sch_basename;
+static char  *sch_basename;
 
 static GList *schematics;
 
@@ -78,8 +82,9 @@ static int verbose,
   n_preserved, n_changed_value, n_not_found, n_unknown, n_none, n_empty;
 
 static _Bool remove_unfound_elements = TRUE,
-  quiet_mode = FALSE,
-  force_element_files, preserve, fix_elements, bak_done, need_PKG_purge;
+             quiet_mode = FALSE,
+             force_element_files,
+             preserve, fix_elements, bak_done, need_PKG_purge;
 
 
 static void
@@ -89,6 +94,7 @@ create_m4_override_file ()
 
   m4_override_file = "gnet-gsch2pcb-tmp.scm";
   f = fopen (m4_override_file, "wb");
+
   if (!f) {
     m4_override_file = NULL;
     return;
@@ -134,28 +140,30 @@ static _Bool
 build_and_run_command (const char *format, ...)
 {
   va_list vargs;
-  char ** split;
-  GList *tmp = NULL;
+  char  **split;
+  GList  *tmp = NULL;
+
   int num_split;
   int i;
-  int status;
+
   _Bool result = FALSE;
-  //_Bool spawn_result;
-  char *standard_output = NULL;
-  char *standard_error = NULL;
-  GError * error = NULL;
 
   va_start (vargs, format);
-  split = g_strsplit_set (format, " \t\n\v", 0);
+
+  split     = g_strsplit_set (format, " \t\n\v", 0);
   num_split = g_strv_length (split);
 
   for (i = 0; i < num_split; ++i) {
+
     char *chunk = split[i];
+
     if (strcmp (chunk, "%l") == 0) {
+
       /* append contents of list into command args - shared data */
       tmp = g_list_concat (tmp, g_list_copy (va_arg (vargs, GList*)));
     }
     else if (strcmp (chunk, "%s") == 0) {
+
       /* insert contents of string into output */
       tmp = g_list_append (tmp, va_arg (vargs, char*));
     }
@@ -167,13 +175,23 @@ build_and_run_command (const char *format, ...)
   va_end (vargs);
 
   if (tmp) {
+
     /* we have something in the list, build & call command */
+
+    GError *error           = NULL;
+    char   *standard_output = NULL;
+    char   *standard_error  = NULL;
+
     GList *p;
-    int i = 0;
-    char ** args = g_new0 (char*, g_list_length (tmp) + 1/* NULL terminate the list */);
+    char **args;
+    int    status;
 
     if (verbose)
       printf ("Running command:\n\t");
+
+    args = GEDA_MEM_ALLOC0(sizeof(char*) * g_list_length (tmp) + 1);
+
+    i = 0;
 
     for (p = tmp; p; p = g_list_next (p)) {
       args[i++] = (char*) p->data;
@@ -193,7 +211,8 @@ build_and_run_command (const char *format, ...)
                       &standard_output,     /* standard output */
                       &standard_error,      /* standard error */
                       &status,              /* exit status return */
-                      &error)) {            /* GError return */
+                      &error))              /* GError return */
+    {
       if (verbose) {
         fputs(standard_output, stdout);
       }
@@ -234,15 +253,14 @@ build_and_run_command (const char *format, ...)
  * board file (only gnetlist >= 20030901 recognizes -m).
  */
 static _Bool
-run_gnetlist (char * pins_file, char * net_file, char * pcb_file,
-              char * basename, GList * largs)
+run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
+              char *basename, GList *largs)
 {
   struct stat st;
   time_t mtime;
   static const char *gnetlist = NULL;
-  GList *list = NULL;
   GList *verboseList = NULL;
-  GList *args1 = NULL;
+ _Bool   result;
 
   /* Allow the user to specify a full path or a different name for
    * the gnetlist command.  Especially useful if multiple copies
@@ -250,93 +268,109 @@ run_gnetlist (char * pins_file, char * net_file, char * pcb_file,
    */
   if (gnetlist == NULL)
     gnetlist = g_getenv ("GNETLIST");
+
   if (gnetlist == NULL)
     gnetlist = "gnetlist";
 
   if (!verbose)
     verboseList = g_list_append (verboseList, "-q");
 
-  if (!build_and_run_command ("%s %l -g pcbpins -o %s %l %l",
-    gnetlist,
-    verboseList,
-    pins_file,
-    extra_gnetlist_arg_list,
-    largs))
-    return FALSE;
+  result = build_and_run_command ("%s %l -g pcbpins -o %s %l %l",
+                                  gnetlist,
+                                  verboseList,
+                                  pins_file,
+                                  extra_gnetlist_arg_list,
+                                  largs);
 
-  if (!build_and_run_command ("%s %l -g PCB -o %s %l %l",
-    gnetlist,
-    verboseList,
-    net_file,
-    extra_gnetlist_arg_list,
-    largs))
-    return FALSE;
+  if (result) {
 
-  create_m4_override_file ();
 
-  if (m4_override_file) {
-    args1 = g_list_append (args1, "-m");
-    args1 = g_list_append (args1, m4_override_file);
-  }
+    result = build_and_run_command ("%s %l -g PCB -o %s %l %l",
+                                    gnetlist,
+                                    verboseList,
+                                    net_file,
+                                    extra_gnetlist_arg_list,
+                                    largs);
 
-  mtime = (stat (pcb_file, &st) == 0) ? st.st_mtime : 0;
+    if (result) {
 
-  if (!build_and_run_command ("%s %l -g gsch2pcb -o %s %l %l %l",
-    gnetlist,
-    verboseList,
-    pcb_file,
-    args1,
-    extra_gnetlist_arg_list,
-    largs)) {
-    if (stat (pcb_file, &st) != 0 || mtime == st.st_mtime) {
-      fprintf (stderr,
-               "gsch2pcb: gnetlist command failed, `%s' not updated\n",
-               pcb_file
-      );
-      if (m4_override_file)
-        fprintf (stderr,
-                 "    At least gnetlist 20030901 is required for m4-xxx options.\n");
-        return FALSE;
-    }
-    return FALSE;
-    }
+      GList *args1 = NULL;
 
-    if (m4_override_file)
-      unlink (m4_override_file);
+      create_m4_override_file ();
 
-    for (list = extra_gnetlist_list; list; list = g_list_next (list)) {
-      const char *s = (char *) list->data;
-      const char *s2 = strstr (s, " -o ");
-      char *out_file;
-      char *backend;
-      if (!s2) {
-        out_file = u_string_concat (basename, ".", s, NULL);
-        backend = u_string_strdup (s);
-      } else {
-        out_file = u_string_strdup (s2 + 4);
-        backend = u_string_strndup (s, s2 - s);
+      if (m4_override_file) {
+        args1 = g_list_append (args1, "-m");
+        args1 = g_list_append (args1, m4_override_file);
       }
 
-      if (!build_and_run_command ("%s %l -g %s -o %s %l %l",
-        gnetlist,
-        verboseList,
-        backend,
-        out_file,
-        extra_gnetlist_arg_list,
-        largs))
-        return FALSE;
-      GEDA_FREE (out_file);
-      GEDA_FREE (backend);
+      mtime = (stat (pcb_file, &st) == 0) ? st.st_mtime : 0;
+
+      result = build_and_run_command ("%s %l -g gsch2pcb -o %s %l %l %l",
+                                      gnetlist,
+                                      verboseList,
+                                      pcb_file,
+                                      args1,
+                                      extra_gnetlist_arg_list,
+                                      largs);
+
+      if (!result) {
+
+        if (stat (pcb_file, &st) != 0 || mtime == st.st_mtime) {
+          fprintf (stderr,
+                   "gsch2pcb: gnetlist command failed, `%s' not updated\n",
+                   pcb_file
+          );
+          if (m4_override_file)
+            fprintf (stderr,
+                     "    At least gnetlist 20030901 is required for m4-xxx options.\n");
+        }
+      }
+      else {
+
+        GList *list = NULL;
+
+        if (m4_override_file) {
+          unlink (m4_override_file);
+        }
+
+        for (list = extra_gnetlist_list; list; list = g_list_next (list)) {
+
+          const char *s1 = (char*) list->data;
+          const char *s2 = strstr (s1, " -o ");
+          char *out_file;
+          char *backend;
+
+          if (!s2) {
+            out_file = u_string_concat (basename, ".", s1, NULL);
+            backend  = u_string_strdup (s1);
+          }
+          else {
+            out_file = u_string_strdup (s2 + 4);
+            backend  = u_string_strndup (s1, s2 - s1);
+          }
+
+          result = build_and_run_command ("%s %l -g %s -o %s %l %l",
+                                          gnetlist,
+                                          verboseList,
+                                          backend,
+                                          out_file,
+                                          extra_gnetlist_arg_list,
+                                          largs);
+          GEDA_FREE (out_file);
+          GEDA_FREE (backend);
+        }
+      }
+      g_list_free (args1);
     }
+  }
 
-    g_list_free (args1);
+  if (verbose) {
     g_list_free (verboseList);
-
-    return TRUE;
+  }
+  return result;
 }
 
-static char *
-token (char * string, char ** next, _Bool * quoted_ret)
+static char *token (char *string, char **next, _Bool *quoted_ret)
 {
   static char *str;
   char *s, *ret;
@@ -344,23 +378,32 @@ token (char * string, char ** next, _Bool * quoted_ret)
 
   if (string)
     str = string;
+
   if (!str || !*str) {
     if (next)
       *next = str;
     return u_string_strdup ("");
   }
+
   while (*str == ' ' || *str == '\t' || *str == ',' || *str == '\n')
     ++str;
+
   if (*str == '"') {
+
     quoted = TRUE;
+
     if (quoted_ret)
       *quoted_ret = TRUE;
+
     ++str;
+
     for (s = str; *s && *s != '"' && *s != '\n'; ++s);
   }
   else {
+
     if (quoted_ret)
       *quoted_ret = FALSE;
+
     for (s = str;
          *s && (*s != ' ' && *s != '\t' && *s != ',' && *s != '\n'); ++s);
   }
@@ -369,16 +412,17 @@ token (char * string, char ** next, _Bool * quoted_ret)
   str = (quoted && *s) ? s + 1 : s;
   if (next)
     *next = str;
+
   return ret;
 }
 
-static char *
-fix_spaces (char * str)
+static char *fix_spaces (char *str)
 {
   char *s;
 
   if (!str)
     return NULL;
+
   for (s = str; *s; ++s)
     if (*s == ' ' || *s == '\t')
       *s = '_';
@@ -407,103 +451,122 @@ pcb_element_line_parse (char * line)
   char *s, *t, close_char;
   int state = 0, elcount = 0;
 
-  if (strncmp (line, "Element", 7))
-    return NULL;
+  if (strncmp (line, "Element", 7) == 0) {
 
-  el = g_new0 (PcbElement, 1);
+    el = GEDA_MEM_ALLOC0 (sizeof(PcbElement));
 
-  s = line + 7;
-  while (*s == ' ' || *s == '\t')
-    ++s;
+    if (el) {
 
-  if (*s == '[')
-    el->hi_res_format = TRUE;
-  else if (*s != '(') {
-    GEDA_FREE (el);
-    return NULL;
+      s = line + 7;                    /* Skip the word "Element" */
+
+      while (*s == ' ' || *s == '\t')  /* Skip over spaces and tabs */
+        ++s;
+
+      if (*s == '[') {
+        el->hi_res_format = TRUE;
+      }
+      else if (*s != '(') {
+        GEDA_FREE (el);
+      }
+
+      if (el) {
+
+        el->res_char    = el->hi_res_format ? '[' : '(';
+        close_char      = el->hi_res_format ? ']' : ')';
+
+        el->flags       = token (s + 1, NULL, &el->quoted_flags);
+        el->description = token (NULL, NULL, NULL);
+        el->refdes      = token (NULL, NULL, NULL);
+        el->value       = token (NULL, NULL, NULL);
+
+        el->x           = token (NULL, NULL, NULL);
+        el->y           = token (NULL, &t, NULL);
+
+        el->tail = u_string_strdup (t ? t : "");
+        if ((s = strrchr (el->tail, (int) '\n')) != NULL)
+          *s = '\0';
+
+        /* Count the tokens in tail to decide if it's new or old format.
+         * Old format will have 3 tokens, new format will have 5 tokens.
+         */
+        for (s = el->tail; *s && *s != close_char; ++s) {
+
+          if (*s != ' ') {
+            if (state == 0)
+              ++elcount;
+            state = 1;
+          }
+          else {
+            state = 0;
+          }
+        }
+
+        if (elcount > 4)
+          el->new_format = TRUE;
+
+        fix_spaces (el->description);
+        fix_spaces (el->refdes);
+        fix_spaces (el->value);
+
+        /* Don't allow elements with no refdes to ever be deleted because
+         * they may be desired pc board elements not in schematics.  So
+         * initialize still_exists to TRUE if empty or non-alphanumeric
+         * refdes.
+         */
+        if (!*el->refdes || !isalnum ((int) (*el->refdes))) {
+          el->still_exists = TRUE;
+        }
+      }
+    }
   }
-
-  el->res_char = el->hi_res_format ? '[' : '(';
-  close_char = el->hi_res_format ? ']' : ')';
-
-  el->flags = token (s + 1, NULL, &el->quoted_flags);
-  el->description = token (NULL, NULL, NULL);
-  el->refdes = token (NULL, NULL, NULL);
-  el->value = token (NULL, NULL, NULL);
-
-  el->x = token (NULL, NULL, NULL);
-  el->y = token (NULL, &t, NULL);
-
-  el->tail = u_string_strdup (t ? t : "");
-  if ((s = strrchr (el->tail, (int) '\n')) != NULL)
-    *s = '\0';
-
-  /* Count the tokens in tail to decide if it's new or old format.
-   * Old format will have 3 tokens, new format will have 5 tokens.
-   */
-  for (s = el->tail; *s && *s != close_char; ++s) {
-    if (*s != ' ') {
-      if (state == 0)
-        ++elcount;
-      state = 1;
-    } else
-      state = 0;
-  }
-  if (elcount > 4)
-    el->new_format = TRUE;
-
-  fix_spaces (el->description);
-  fix_spaces (el->refdes);
-  fix_spaces (el->value);
-
-  /* Don't allow elements with no refdes to ever be deleted because
-   * they may be desired pc board elements not in schematics.  So
-   * initialize still_exists to TRUE if empty or non-alphanumeric
-   * refdes.
-   */
-  if (!*el->refdes || !isalnum ((int) (*el->refdes)))
-    el->still_exists = TRUE;
-
   return el;
 }
 
 static void
 pcb_element_free (PcbElement * el)
 {
-  if (!el)
-    return;
-  GEDA_FREE (el->flags);
-  GEDA_FREE (el->description);
-  GEDA_FREE (el->changed_description);
-  GEDA_FREE (el->changed_value);
-  GEDA_FREE (el->refdes);
-  GEDA_FREE (el->value);
-  GEDA_FREE (el->x);
-  GEDA_FREE (el->y);
-  GEDA_FREE (el->tail);
-  GEDA_FREE (el->pkg_name_fix);
-  GEDA_FREE (el);
+  if (el) {
+    GEDA_FREE (el->flags);
+    GEDA_FREE (el->description);
+    GEDA_FREE (el->changed_description);
+    GEDA_FREE (el->changed_value);
+    GEDA_FREE (el->refdes);
+    GEDA_FREE (el->value);
+    GEDA_FREE (el->x);
+    GEDA_FREE (el->y);
+    GEDA_FREE (el->tail);
+    GEDA_FREE (el->pkg_name_fix);
+    GEDA_FREE (el);
+  }
 }
 
 static void
-get_pcb_element_list (char * pcb_file)
+get_pcb_element_list (char *pcb_file)
 {
   FILE *f;
   PcbElement *el;
+
   char *s, buf[1024];
 
   if ((f = fopen (pcb_file, "r")) == NULL)
     return;
+
   while ((fgets (buf, sizeof (buf), f)) != NULL) {
+
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
+
     if (!strncmp (s, "PKG_", 4)) {
       need_PKG_purge = TRUE;
       continue;
     }
-    if ((el = pcb_element_line_parse (s)) == NULL)
-      continue;
-    pcb_element_list = g_list_append (pcb_element_list, el);
+
+    el = pcb_element_line_parse (s);
+
+    if (el) {
+      pcb_element_list = g_list_append (pcb_element_list, el);
+    }
   }
+
   fclose (f);
 }
 
@@ -752,20 +815,24 @@ pkg_to_element (FILE * f, char * pkg_line)
     return NULL;
 
   args = g_strsplit (s + 1, ",", 12);
+
   if (!args[0] || !args[1] || !args[2]) {
     fprintf (stderr, "Bad package line: %s\n", pkg_line);
     return NULL;
   }
+
   fix_spaces (args[0]);
   fix_spaces (args[1]);
   fix_spaces (args[2]);
 
-  el = g_new0 (PcbElement, 1);
+  el = GEDA_MEM_ALLOC0 (sizeof(PcbElement));
   el->description = u_string_strdup (args[0]);
   el->refdes = u_string_strdup (args[1]);
   el->value = u_string_strdup (args[2]);
-  if ((s = strchr (el->value, (int) ')')) != NULL)
+
+  if ((s = strchr (el->value, (int) ')')) != NULL) {
     *s = '\0';
+  }
 
   /* If the component value has a comma, eg "1k, 1%", the gnetlist generated
    * PKG line will be
@@ -783,10 +850,13 @@ pkg_to_element (FILE * f, char * pkg_line)
    * description with '-' when there are extra args.
    */
   for (n_extra_args = 0; args[3 + n_extra_args] != NULL; ++n_extra_args);
+
   s = el->description;
+
   for (n_dashes = 0; (s = strchr (s + 1, '-')) != NULL; ++n_dashes);
 
   n = 3;
+
   if (n_extra_args == n_dashes + 1) { /* Assume there was a comma in the value, eg "1K, 1%" */
     s = el->value;
     el->value = u_string_concat (s, ",", fix_spaces (args[n]), NULL);
@@ -795,6 +865,7 @@ pkg_to_element (FILE * f, char * pkg_line)
       *s = '\0';
     n = 4;
   }
+
   if (args[n]) {
     el->pkg_name_fix = u_string_strdup (args[n]);
     for (n += 1; args[n] != NULL; ++n) {
@@ -805,6 +876,7 @@ pkg_to_element (FILE * f, char * pkg_line)
     if ((s = strchr (el->pkg_name_fix, (int) ')')) != NULL)
       *s = '\0';
   }
+
   g_strfreev (args);
 
   if (empty_footprint_name && !strcmp (el->description, empty_footprint_name)) {
@@ -814,19 +886,22 @@ pkg_to_element (FILE * f, char * pkg_line)
          el->refdes, el->description);
     n_empty += 1;
     el->omit_PKG = TRUE;
-  } else if (!strcmp (el->description, "none")) {
+  }
+  else if (!strcmp (el->description, "none")) {
     fprintf (stderr,
              "WARNING: %s has a footprint attribute \"%s\" so won't be in the layout.\n",
              el->refdes, el->description);
     n_none += 1;
     el->omit_PKG = TRUE;
-  } else if (!strcmp (el->description, "unknown")) {
+  }
+  else if (!strcmp (el->description, "unknown")) {
     fprintf (stderr,
              "WARNING: %s has no footprint attribute so won't be in the layout.\n",
              el->refdes);
     n_unknown += 1;
     el->omit_PKG = TRUE;
   }
+
   return el;
 }
 
@@ -1301,7 +1376,7 @@ load_extra_project_files (void)
 static char *usage_string0 =
   "usage: gsch2pcb [options] {project | foo.sch [foo1.sch ...]}\n"
   "\n"
-  "Generate a PCB layout file from a set of gschem schematics.\n"
+  "   Generate a PCB layout file from a set of gschem schematics.\n"
   "   gnetlist -g PCB is run to generate foo.net from the schematics.\n"
   "\n"
   "   gnetlist -g gsch2pcb is run to get PCB m4 derived elements which\n"
@@ -1445,12 +1520,11 @@ get_args (int argc, char ** argv)
   }
 }
 
-int
-main (int argc, char ** argv)
+int main (int argc, char **argv)
 {
-  char *pcb_file_name,
-    *pcb_new_file_name, *bak_file_name, *pins_file_name, *net_file_name, *tmp;
-  int i;
+  char *pcb_file_name, *pcb_new_file_name, *bak_file_name,
+       *pins_file_name, *net_file_name, *tmp;
+  int i, exit_code;
   _Bool initial_pcb = TRUE;
   _Bool created_pcb_file = TRUE;
   char *path, *p;
@@ -1486,16 +1560,17 @@ main (int argc, char ** argv)
   if (g_file_test ("packages", G_FILE_TEST_IS_DIR))
     element_directory_list = g_list_append (element_directory_list, "packages");
 
-#define PCB_PATH_DELIMETER ":"
   if (verbose)
     printf ("Processing PCBLIBPATH=\"%s\"\n", PCBLIBPATH);
 
   path = u_string_strdup (PCBLIBPATH);
-  for (p = strtok (path, PCB_PATH_DELIMETER); p && *p;
-       p = strtok (NULL, PCB_PATH_DELIMETER)) {
+
+  for (p = strtok (path, PCB_PATH_DELIMETER); p && *p; p = strtok (NULL, PCB_PATH_DELIMETER))
+  {
     if (g_file_test (p, G_FILE_TEST_IS_DIR)) {
-      if (verbose)
+      if (verbose) {
         printf ("Adding %s to the newlib search path\n", p);
+      }
       element_directory_list = g_list_append (element_directory_list,
                                               u_string_strdup (p));
     }
@@ -1506,6 +1581,7 @@ main (int argc, char ** argv)
   net_file_name  = u_string_concat (sch_basename, ".net", NULL);
   pcb_file_name  = u_string_concat (sch_basename, ".pcb", NULL);
   bak_file_name  = u_string_concat (sch_basename, ".pcb.bak", NULL);
+
   tmp = u_string_strdup (bak_file_name);
 
   for (i = 0; g_file_test (bak_file_name, G_FILE_TEST_EXISTS); ++i) {
@@ -1519,122 +1595,138 @@ main (int argc, char ** argv)
     pcb_new_file_name = u_string_concat (sch_basename, ".new.pcb", NULL);
     get_pcb_element_list (pcb_file_name);
   }
-  else
+  else {
     pcb_new_file_name = u_string_strdup (pcb_file_name);
+  }
 
   if (!run_gnetlist (pins_file_name, net_file_name, pcb_new_file_name,
-		     sch_basename, schematics)) {
+       sch_basename, schematics))
+  {
     fprintf(stderr, "Failed to run gnetlist\n");
-    exit (1);
+    exit_code = 1;
   }
+  else {
 
-  if (add_elements (pcb_new_file_name) == 0) {
-    build_and_run_command ("rm %s", pcb_new_file_name);
-    if (initial_pcb) {
-      printf ("No elements found, so nothing to do.\n");
-      exit (0);
+    exit_code = 0;
+
+    if (add_elements (pcb_new_file_name) == 0) {
+      build_and_run_command ("rm %s", pcb_new_file_name);
+      if (initial_pcb) {
+        printf ("No elements found, so nothing to do.\n");
+      }
+    }
+    else {
+
+      if (fix_elements)
+        update_element_descriptions (pcb_file_name, bak_file_name);
+
+      prune_elements (pcb_file_name, bak_file_name);
+
+      /* Report work done during processing */
+      if (verbose)
+        printf ("\n");
+      printf ("\n----------------------------------\n");
+      printf ("Done processing.  Work performed:\n");
+
+      if (n_deleted > 0 || n_fixed > 0 || need_PKG_purge || n_changed_value > 0)
+        printf ("%s is backed up as %s.\n", pcb_file_name, bak_file_name);
+
+      if (pcb_element_list && n_deleted > 0)
+        printf ("%d elements deleted from %s.\n", n_deleted, pcb_file_name);
+
+      if (n_added_ef + n_added_m4 > 0) {
+        printf ("%d file elements and %d m4 elements added to %s.\n",
+        n_added_ef, n_added_m4, pcb_new_file_name);
+      }
+      else if (n_not_found == 0) {
+        printf ("No elements to add so not creating %s\n", pcb_new_file_name);
+        created_pcb_file = FALSE;
+      }
+
+      if (n_not_found > 0) {
+        printf ("%d not found elements added to %s.\n",
+        n_not_found, pcb_new_file_name);
+      }
+
+      if (n_unknown > 0)
+        printf ("%d components had no footprint attribute and are omitted.\n", n_unknown);
+
+      if (n_none > 0)
+        printf ("%d components with footprint \"none\" omitted from %s.\n", n_none, pcb_new_file_name);
+
+      if (n_empty > 0){
+        printf ("%d components with empty footprint \"%s\" omitted from %s.\n",
+        n_empty, empty_footprint_name, pcb_new_file_name);
+      }
+
+      if (n_changed_value > 0) {
+        printf ("%d elements had a value change in %s.\n", n_changed_value, pcb_file_name);
+      }
+
+      if (n_fixed > 0)
+        printf ("%d elements fixed in %s.\n", n_fixed, pcb_file_name);
+
+      if (n_PKG_removed_old > 0) {
+        printf ("%d elements could not be found.", n_PKG_removed_old);
+        if (created_pcb_file)
+          printf ("  So %s is incomplete.\n", pcb_file_name);
+        else
+          printf ("\n");
+      }
+
+      if (n_PKG_removed_new > 0) {
+        printf ("%d elements could not be found.", n_PKG_removed_new);
+        if (created_pcb_file)
+          printf ("  So %s is incomplete.\n", pcb_new_file_name);
+        else
+          printf ("\n");
+      }
+
+      if (n_preserved > 0) {
+        printf ("%d elements not in the schematic preserved in %s.\n",
+        n_preserved, pcb_file_name);
+      }
+
+      /* Tell user what to do next */
+      if (verbose)
+        printf ("\n");
+
+      if (n_added_ef + n_added_m4 > 0) {
+        if (initial_pcb) {
+          printf ("\nNext step:\n");
+          printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
+          printf ("    You will find all your footprints in a bundle ready for you to place\n");
+          printf ("    or disperse with \"Select -> Disperse all elements\" in PCB.\n\n");
+          printf ("2.  From within PCB, select \"File -> Load netlist file\" and select \n");
+          printf ("    %s to load the netlist.\n\n", net_file_name);
+          printf ("3.  From within PCB, enter\n\n");
+          printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
+          printf ("    to propagate the pin names of all footprints to the layout.\n\n");
+        }
+        else if (quiet_mode == FALSE) {
+          printf ("\nNext steps:\n");
+          printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
+          printf ("2.  From within PCB, select \"File -> Load layout data to paste buffer\"\n");
+          printf ("    and select %s to load the new footprints into your existing layout.\n",
+          pcb_new_file_name);
+          printf ("3.  From within PCB, select \"File -> Load netlist file\" and select \n");
+          printf ("    %s to load the updated netlist.\n\n", net_file_name);
+          printf ("4.  From within PCB, enter\n\n");
+          printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
+          printf ("    to update the pin names of all footprints.\n\n");
+        }
+      }
     }
   }
-
-  if (fix_elements)
-    update_element_descriptions (pcb_file_name, bak_file_name);
-  prune_elements (pcb_file_name, bak_file_name);
-
-  /* Report work done during processing */
-  if (verbose)
-    printf ("\n");
-  printf ("\n----------------------------------\n");
-  printf ("Done processing.  Work performed:\n");
-
-  if (n_deleted > 0 || n_fixed > 0 || need_PKG_purge || n_changed_value > 0)
-    printf ("%s is backed up as %s.\n", pcb_file_name, bak_file_name);
-  if (pcb_element_list && n_deleted > 0)
-    printf ("%d elements deleted from %s.\n", n_deleted, pcb_file_name);
-
-  if (n_added_ef + n_added_m4 > 0)
-    printf ("%d file elements and %d m4 elements added to %s.\n",
-            n_added_ef, n_added_m4, pcb_new_file_name);
-  else if (n_not_found == 0) {
-    printf ("No elements to add so not creating %s\n", pcb_new_file_name);
-    created_pcb_file = FALSE;
-  }
-
-  if (n_not_found > 0) {
-    printf ("%d not found elements added to %s.\n",
-            n_not_found, pcb_new_file_name);
-  }
-  if (n_unknown > 0)
-    printf ("%d components had no footprint attribute and are omitted.\n",
-            n_unknown);
-  if (n_none > 0)
-    printf ("%d components with footprint \"none\" omitted from %s.\n",
-            n_none, pcb_new_file_name);
-  if (n_empty > 0)
-    printf ("%d components with empty footprint \"%s\" omitted from %s.\n",
-            n_empty, empty_footprint_name, pcb_new_file_name);
-  if (n_changed_value > 0)
-    printf ("%d elements had a value change in %s.\n",
-            n_changed_value, pcb_file_name);
-  if (n_fixed > 0)
-    printf ("%d elements fixed in %s.\n", n_fixed, pcb_file_name);
-  if (n_PKG_removed_old > 0) {
-    printf ("%d elements could not be found.", n_PKG_removed_old);
-    if (created_pcb_file)
-      printf ("  So %s is incomplete.\n", pcb_file_name);
-    else
-      printf ("\n");
-  }
-  if (n_PKG_removed_new > 0) {
-    printf ("%d elements could not be found.", n_PKG_removed_new);
-    if (created_pcb_file)
-      printf ("  So %s is incomplete.\n", pcb_new_file_name);
-    else
-      printf ("\n");
-  }
-  if (n_preserved > 0)
-    printf ("%d elements not in the schematic preserved in %s.\n",
-            n_preserved, pcb_file_name);
-
-  /* Tell user what to do next */
-  if (verbose)
-    printf ("\n");
-
-  if (n_added_ef + n_added_m4 > 0) {
-    if (initial_pcb) {
-      printf ("\nNext step:\n");
-      printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
-      printf
-        ("    You will find all your footprints in a bundle ready for you to place\n");
-      printf
-        ("    or disperse with \"Select -> Disperse all elements\" in PCB.\n\n");
-      printf
-        ("2.  From within PCB, select \"File -> Load netlist file\" and select \n");
-      printf ("    %s to load the netlist.\n\n", net_file_name);
-      printf ("3.  From within PCB, enter\n\n");
-      printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
-      printf
-        ("    to propagate the pin names of all footprints to the layout.\n\n");
-    } else if (quiet_mode == FALSE) {
-      printf ("\nNext steps:\n");
-      printf ("1.  Run pcb on your file %s.\n", pcb_file_name);
-      printf
-        ("2.  From within PCB, select \"File -> Load layout data to paste buffer\"\n");
-      printf
-        ("    and select %s to load the new footprints into your existing layout.\n",
-         pcb_new_file_name);
-      printf
-        ("3.  From within PCB, select \"File -> Load netlist file\" and select \n");
-      printf ("    %s to load the updated netlist.\n\n", net_file_name);
-      printf ("4.  From within PCB, enter\n\n");
-      printf ("           :ExecuteFile(%s)\n\n", pins_file_name);
-      printf ("    to update the pin names of all footprints.\n\n");
-    }
-  }
-
   GEDA_FREE (net_file_name);
   GEDA_FREE (pins_file_name);
   GEDA_FREE (pcb_file_name);
   GEDA_FREE (bak_file_name);
 
-  return 0;
+  if (pcb_element_list)
+    g_list_free(pcb_element_list);
+
+  return exit_code;
 }
+
+#undef PCB_PATH_DELIMETER

@@ -1,6 +1,64 @@
-
 gsch2pcb Changelog
 ------------------
+1.9
+---------
+2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pcb/gsch2pcb.c: Revise function build_and_run_command to use
+      local scoping for variables; error, standard_output and standard_error,
+      args and status. Eliminate unnecessary local scoping for variable i.
+      Major modifications to function run_gnetlist to use local scoping and
+      results variable to run build_and_run_command and remove early returns
+      and this allows resources to be released if errors are encountered.
+      Replace g_new0 with GEDA_MEM_ALLOC0. Free pcb_element_list file names
+      before exiting program. Increment GSC2PCB_VERSION.
+
+2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pcb: Relocate gsch2pcb to it's own src folder.
+
+2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/src/gsch2pcb.c:utils/gsch2pcb: fix bugs: see commit to master branch
+      2181abe63512c7b5ad2279ab4609878586d497a2 by Sergey Stepanov:
+
+    * expand_dir(): Dereference of null pointer (loaded from variable 'dir')
+    * possible resource leak (as pointer to allocated memory by expand_dir()
+      is lost after printf())
+
+2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/src/gsch2pcb.c: Use explicit length as argument to strncmp.
+
+2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov See commit fd130bf9c522faa902e06232548c5ca7dd0bdf90;
+      This patch fixes output of the m4 dir when the user calls gsch2pcb
+      without args. Before now, the directory was not defined in such a
+      case and gsch2pcb output "(null)". Now it behaves the same way as if
+      '--help' was given.
+
+2015-06-26 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov See commit 317a042ab4ae3044018e1fa4f141245833ff95fa;
+      gsch2pcb: Slightly shift down text to make m4-pcbdir more visible.
+
+1.8
+---------
+2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pcb.c: Replace g_strdup with geda_strdup, replace g_strndup with
+          geda_strndup, replace g_strdup_printf with geda_sprintf, replace g_free
+          with GEDA_FREE
+
+        * src/Makefile.am: Link gsch2pcb against libgeda.
+
+2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pcb.c: Rectified unused variables and functions.
+
 1.5
 ---------
 	* Fix handling of quoted flags in new CVS PCB versions.

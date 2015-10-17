@@ -1,3 +1,14 @@
+2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gsch2pcb/gsch2pcb.c: Revise function build_and_run_command to use
+      local scoping for variables; error, standard_output and standard_error,
+      args and status. Eliminate unnecessary local scoping for variable i.
+      Major modifications to function run_gnetlist to use local scoping and
+      results variable to run build_and_run_command and remove early returns
+      and this allows resources to be released if errors are encountered.
+      Replace g_new0 with GEDA_MEM_ALLOC0. Free pcb_element_list file names
+      before exiting program. Increment GSC2PCB_VERSION.
+
 2015-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * Modified similar to commit to Master branch by Vladimir Zhbanov,
