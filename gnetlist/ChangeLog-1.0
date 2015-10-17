@@ -1,14 +1,15 @@
-2015-10-16 Wiley E. Hill <wileyhill@gmail.com>
+2015-10-17 Hannu Vuolasaho <vuokkosetae@gmail.com>
 
-    * Code Enhancement: Improve Error Handling
+    * Code Enhancement: Improve program compatibility
 
-    * gnetlist/utils/mk_verilog_syms.c: After reviewing commit
-      030fee2b0a0857098b7a3ff92bf533c077c3f2fe to Master branch,
-      revised main function by adding "else" clause to if (rc) so
-      the file is closed properly, then allow mk_verilog_syms to
-      continue and index to the next symbol, returning the sum of
-      all errors with new int status variable. Fixes BUG: did not
-      previous close the file if there was an error.
+    *  scheme/gnet-spice-sdb.scm: WEH: Modified per commit to Master
+       branch, commit 88635e0c1bbd004ee894d9b6117d72f6a38a4e43, Fix
+       debug-spew:
+
+      gspiceUI calls gnetlist in verbose mode. The debug-spew procedure output
+      its data in the verbose mode to current-output-port using the display
+      procedure and thus crippled netlists. Instead, it now uses the message
+      procedure which outputs debug data to the current-error-port.
 
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 

@@ -59,7 +59,7 @@
 (define-public debug-spew
   (lambda (debug-string)
     (if (= 1 (gnetlist:get-verbosity))
-        (display debug-string)
+        (message debug-string)
 )))
 
 ;; Yields a list of lists of command line flags and values. Each flag
