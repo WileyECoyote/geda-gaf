@@ -382,7 +382,7 @@ print_settings_get_print_width(const PrintSettings *settings)
 PrintSettings*
 print_settings_new()
 {
-  PrintSettings *settings = g_new0(PrintSettings, 1);
+  PrintSettings *settings = GEDA_MEM_ALLOC0 (sizeof(PrintSettings));
 
   settings->paper_height = DEFAULT_PAPER_HEIGHT;
   settings->paper_width  = DEFAULT_PAPER_WIDTH;
