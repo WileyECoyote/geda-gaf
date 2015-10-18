@@ -1558,6 +1558,15 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
   for (iter = geda_list_get_glist(font_list); iter; iter = iter->next) {
 
     pfont = iter->data;
+
+    char *gtk_blunder = strstr(pfont, "&");
+
+    if (gtk_blunder) {
+
+      *gtk_blunder = '-';
+
+    }
+
     LOAD_GEDA_TEXT_COMBO (FontName, pfont);
 
     /* current < 0 here means do not keep looking, but we got to keep loading */
@@ -1605,6 +1614,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
   geda_list_free_full (font_list);
 
   geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
+
 }
 
 /* TODO: This should be moved to the Combo responder once the GTK Combo
