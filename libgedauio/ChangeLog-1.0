@@ -1,3 +1,13 @@
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+     * Code Enhancement: Use the same memory pool.
+
+     * src/widgets/geda_completion.c: Replace g_new0 with g_malloc0.
+
+     * src/widgets/geda_entry.c: Replace g_new0 with g_malloc0.
+
+     * src/widgets/geda_label.c: Replace g_new0 with g_malloc0.
+
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_completion.c: Clean and reformat code, use

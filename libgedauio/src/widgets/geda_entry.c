@@ -797,7 +797,7 @@ geda_entry_class_init(void *g_class, void *class_data)
 static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaEntry *entry      = (GedaEntry*)instance;
-  entry->priv           = g_new0 (GedaEntryPriv, 1);
+  entry->priv           = g_malloc0 (sizeof (GedaEntryPriv));
 
   entry->priv->font_map = pango_cairo_font_map_get_default();
 

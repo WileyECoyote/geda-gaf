@@ -666,7 +666,7 @@ static void refresh_directory (CLibSource *source)
           if (source_has_symbol (source, entry->d_name) == NULL) {
 
           /* Create and add new symbol record */
-          symbol         = g_new0 (CLibSymbol, 1);
+          symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
           symbol->source = source;
           symbol->name   = u_string_strdup(entry->d_name);
 
@@ -738,7 +738,7 @@ static void refresh_command (CLibSource *source)
       continue;
     }
 
-    symbol         = g_new0 (CLibSymbol, 1);
+    symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
     symbol->source = source;
     symbol->name   = name;
 
@@ -793,7 +793,7 @@ static void refresh_scm (CLibSource *source)
                      source->name);
     }
     else {
-      symbol         = g_new0 (CLibSymbol, 1);
+      symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
       symbol->source = source;
 
       /* Use free function on strings allocated by Guile. */
@@ -988,6 +988,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   if( category == NULL) {
     category = u_string_strdup("Standard");
   }
+
 /*
   if ( source_name_exist(tmpstr) ) {
     unique_name = u_string_concat(category, "-", tmpstr, NULL);
@@ -996,7 +997,9 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
   unique_name = get_unique_source_name (tmpstr);
 */
-  source            = g_new0 (CLibSource, 1);
+
+  source            = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
+
   source->type      = CLIB_DIR;
   source->directory = u_string_strdup (directory);
   source->name      = tmpstr;
@@ -1053,7 +1056,7 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
                    unique_name);
   }
 
-  source           = g_new0 (CLibSource, 1);
+  source           = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
   source->type     = CLIB_CMD;
   source->name     = unique_name;
 
@@ -1102,7 +1105,7 @@ const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
     return NULL;
   }
 
-  source           = g_new0 (CLibSource, 1);
+  source           = GEDA_MEM_ALLOC0 (sizeof (CLibSource));
   source->type     = CLIB_SCM;
   source->name     = unique_name;
   source->list_fn  = scm_gc_protect_object (listfunc);

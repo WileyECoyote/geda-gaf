@@ -2452,20 +2452,23 @@ start_element_handler (GMarkupParseContext  *context,
 
     visited = FALSE;
     priv = pdata->label->priv;
+
     if (priv->track_links && priv->select_info) {
-      GList *l;
-      for (l = priv->select_info->links; l; l = l->next)
-      {
-        link = l->data;
-        if (strcmp (uri, link->uri) == 0)
-        {
+
+      GList *list;
+
+      for (list = priv->select_info->links; list; list = list->next) {
+
+        link = list->data;
+
+        if (strcmp (uri, link->uri) == 0) {
           visited = link->visited;
           break;
         }
       }
     }
 
-    link = g_new0 (GedaLabelLink, 1);
+    link = g_malloc0 (sizeof(GedaLabelLink));
     link->uri = g_strdup (uri);
     link->title = g_strdup (title);
     link->visited = visited;
@@ -2473,12 +2476,14 @@ start_element_handler (GMarkupParseContext  *context,
     pdata->links = g_list_prepend (pdata->links, link);
   }
   else {
+
     int i;
 
     g_string_append_c (pdata->new_str, '<');
     g_string_append (pdata->new_str, element_name);
 
     for (i = 0; attribute_names[i] != NULL; i++) {
+
       const char *attr  = attribute_names[i];
       const char *value = attribute_values[i];
       char *newvalue;
@@ -2505,13 +2510,11 @@ end_element_handler (GMarkupParseContext  *context,
 {
   UriParserData *pdata = user_data;
 
-  if (!strcmp (element_name, "a"))
-    {
+  if (!strcmp (element_name, "a")) {
       GedaLabelLink *link = pdata->links->data;
       link->end = pdata->text_len;
-    }
-  else
-    {
+  }
+  else {
       g_string_append (pdata->new_str, "</");
       g_string_append (pdata->new_str, element_name);
       g_string_append_c (pdata->new_str, '>');
@@ -4756,7 +4759,8 @@ geda_label_ensure_select_info (GedaLabel *label)
   GedaLabelPrivate *priv = label->priv;
 
   if (priv->select_info == NULL) {
-    priv->select_info = g_new0 (GedaLabelSelectionInfo, 1);
+
+    priv->select_info = g_malloc0 (sizeof(GedaLabelSelectionInfo));
 
     gtk_widget_set_can_focus (GTK_WIDGET (label), TRUE);
 

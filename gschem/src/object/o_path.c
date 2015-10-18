@@ -412,8 +412,11 @@ static void o_path_init(GschemToplevel *w_current, int w_x, int w_y)
     w_current->temp_path->num_sections = 0;
   }
   else {
+
+    int size = sizeof(PATH_SECTION) * TEMP_PATH_DEFAULT_SIZE;
+
     Path *path              = (Path*)geda_path_new ();
-    path->sections          = g_new0 (PATH_SECTION, TEMP_PATH_DEFAULT_SIZE);
+    path->sections          = GEDA_MEM_ALLOC0 (size);
     path->num_sections      = 0;
     path->num_sections_max  = TEMP_PATH_DEFAULT_SIZE;
     w_current->temp_path    = path;

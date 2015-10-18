@@ -15178,12 +15178,12 @@ gtk_sheet_attach_default(GtkSheet *sheet,
  */
 void
 gtk_sheet_attach(GtkSheet *sheet,
-    GtkWidget *widget,
-    int row, int col,
-    int xoptions,
-    int yoptions,
-    int xpadding,
-    int ypadding)
+                 GtkWidget *widget,
+                 int row, int col,
+                 int xoptions,
+                 int yoptions,
+                 int xpadding,
+                 int ypadding)
 {
     GdkRectangle area;
     GtkSheetChild *child = NULL;
@@ -15192,10 +15192,9 @@ gtk_sheet_attach(GtkSheet *sheet,
     g_return_if_fail(GTK_IS_SHEET(sheet));
     g_return_if_fail(widget != NULL);
 
-    if (row < 0 || col < 0)
-    {
-	gtk_sheet_button_attach(sheet, widget, row, col);
-	return;
+    if (row < 0 || col < 0) {
+      gtk_sheet_button_attach(sheet, widget, row, col);
+      return;
     }
 
 #if GTK_SHEET_DEBUG_CHILDREN > 0
@@ -15203,7 +15202,7 @@ gtk_sheet_attach(GtkSheet *sheet,
 	sheet, gtk_widget_get_name(sheet), widget);
 #endif
 
-    child = g_new0(GtkSheetChild, 1);
+    child = g_malloc0 (sizeof(GtkSheetChild));
     child->attached_to_cell = TRUE;
     child->floating = FALSE;
     child->widget = widget;
@@ -15225,15 +15224,15 @@ gtk_sheet_attach(GtkSheet *sheet,
     child->x = area.x + child->xpadding;
     child->y = area.y + child->ypadding;
 
-    if (gtk_widget_get_visible(GTK_WIDGET(sheet)))
-    {
-	if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
-	    (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
-	    gtk_sheet_realize_child(sheet, child);
+    if (gtk_widget_get_visible(GTK_WIDGET(sheet))) {
 
-	if (gtk_widget_get_mapped(GTK_WIDGET(sheet)) &&
-	    !gtk_widget_get_mapped(widget))
-	    gtk_widget_map(widget);
+      if (gtk_widget_get_realized(GTK_WIDGET(sheet)) &&
+        (!gtk_widget_get_realized(widget) || gtk_widget_get_has_window(widget)))
+        gtk_sheet_realize_child(sheet, child);
+
+      if (gtk_widget_get_mapped(GTK_WIDGET(sheet)) &&
+        !gtk_widget_get_mapped(widget))
+        gtk_widget_map(widget);
     }
 
     gtk_sheet_position_child(sheet, child);

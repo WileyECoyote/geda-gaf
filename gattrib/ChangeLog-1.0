@@ -1,3 +1,9 @@
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Use the same memory pool.
+
+    * src/gtksheet/gtksheet.c: Replace g_new0 with g_malloc0.
+
 2015-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_find.c: Remove the work "Find" from the search prompt passed to

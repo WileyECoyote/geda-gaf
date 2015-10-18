@@ -1036,7 +1036,9 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
     int i = 0;
 
     if (scm_is_string (first_s)) {
-      char **value = g_new0 (char *, len);
+
+      char **value = GEDA_MEM_ALLOC0 (sizeof(char*) * len);
+
       scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev, value,
                                   SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
@@ -1049,7 +1051,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
     }
     else if (scm_is_bool (first_s)) {
-      bool *value = g_new0 (bool, len);
+      bool *value = GEDA_MEM_ALLOC0 (sizeof(bool) * len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_is_true (scm_car (curr_s));
@@ -1059,7 +1061,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
     }
     else if (scm_is_integer (first_s)
                && scm_is_true (scm_exact_p (first_s))) {
-      int *value = g_new0 (int, len);
+      int *value = GEDA_MEM_ALLOC0 (sizeof(int) * len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_int (scm_car (curr_s));
@@ -1068,7 +1070,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
     }
     else if (scm_is_real (first_s)) {
-      double *value = g_new0 (double, len);
+      double *value = GEDA_MEM_ALLOC0 (sizeof(double) * len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_double (scm_car (curr_s));

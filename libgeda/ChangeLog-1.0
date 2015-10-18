@@ -1,3 +1,15 @@
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Use the same memory pool.
+
+    * src/geda/geda_config.c: Replace g_new0 with GEDA_MEM_ALLOC0.
+
+    * src/scheme/scheme_config.c: Replace g_new0 with GEDA_MEM_ALLOC0.
+
+    * src/struct/s_clib.c: Replace g_new0 with GEDA_MEM_ALLOC0.
+
+    * src/struct/s_conn.c: Replace g_new0 with GEDA_MEM_ALLOC0.
+
 2015-10-16 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.

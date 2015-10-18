@@ -250,11 +250,11 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
 
   if (!new_prefix)
     return;
-  if (!comp->cache)
-    {
-      *new_prefix = NULL;
-      return;
-    }
+  if (!comp->cache) {
+
+    *new_prefix = NULL;
+    return;
+  }
 
   len = strlen(comp->prefix);
   list = comp->cache;
@@ -263,20 +263,20 @@ completion_check_cache (GedaCompletion *comp, char **new_prefix)
   plen = strlen (postfix);
   list = list->next;
 
-  while (list && plen)
-    {
-      s = comp->func ? comp->func (list->data) : (char*) list->data;
-      s += len;
-      for (i = 0; i < plen; ++i)
-	{
-	  if (postfix[i] != s[i])
-	    break;
-	}
-      plen = i;
-      list = list->next;
-    }
+  while (list && plen) {
 
-  *new_prefix = g_new0 (char, len + plen + 1);
+    s = comp->func ? comp->func (list->data) : (char*) list->data;
+    s += len;
+    for (i = 0; i < plen; ++i) {
+
+      if (postfix[i] != s[i])
+        break;
+    }
+    plen = i;
+    list = list->next;
+  }
+
+  *new_prefix = g_malloc0 (sizeof (char) * len + plen + 1);
   strncpy (*new_prefix, comp->prefix, len);
   strncpy (*new_prefix + len, postfix, plen);
 }

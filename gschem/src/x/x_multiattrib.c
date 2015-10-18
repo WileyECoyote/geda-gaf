@@ -2444,7 +2444,7 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
 
     ThisDialog->num_lone_attribs_in_list ++;
 
-    m_row = g_new0 (MODEL_ROW, 1);
+    m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
     m_row->inherited = o_attrib_is_inherited (object);
     o_attrib_get_name_value (object, &m_row->name, &m_row->value);
     m_row->visibility = o_get_is_visible (object);

@@ -6503,6 +6503,7 @@ geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_column)
                                         priv->text_renderer,
                                         "text", text_column,
                                         NULL);
+
       }
     }
   }

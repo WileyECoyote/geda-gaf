@@ -706,7 +706,7 @@ s_conn_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data)
 {
   ConnsChangedHook *new_hook;
 
-  new_hook = g_new0 (ConnsChangedHook, 1);
+  new_hook = GEDA_MEM_ALLOC0 (sizeof (ConnsChangedHook));
   new_hook->func = func;
   new_hook->data = data;
 

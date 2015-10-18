@@ -1174,19 +1174,26 @@ static
 char **hash_table_keys_array (GHashTable *table, unsigned int *length)
 {
   unsigned int len = g_hash_table_size (table);
-  char **result = g_new0 (char *, 1 + len);
+  char **result    = GEDA_MEM_ALLOC0 (sizeof(char*) * (len + 1));
+
   GHashTableIter iter;
   void *key;
   int i = 0;
+
   g_hash_table_iter_init (&iter, table);
+
   while (g_hash_table_iter_next (&iter, &key, NULL)) {
     g_hash_table_iter_steal (&iter);
     result[i++] = (char *) key;
   }
+
   result[i] = NULL;
 
   g_hash_table_destroy (table);
-  if (length != NULL) *length = len;
+
+  if (length != NULL)
+    *length = len;
+
   return result;
 }
 

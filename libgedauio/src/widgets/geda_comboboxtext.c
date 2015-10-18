@@ -285,6 +285,7 @@ char *geda_builder_parser_translate (const char *domain,
 
   return g_strdup (s);
 }
+
 static void item_end_element (GMarkupParseContext *context,
                               const char          *element_name,
                               void                *user_data,
@@ -293,10 +294,10 @@ static void item_end_element (GMarkupParseContext *context,
   ItemParserData *data = (ItemParserData*)user_data;
 
   /* Append the translated strings */
-  if (data->string->len)
-    {
-      if (data->translatable)
-      {
+  if (data->string->len) {
+
+      if (data->translatable) {
+
         char *translated;
 
         /* FIXME: This will not use the domain set in the .ui file, since
@@ -402,7 +403,7 @@ GtkWidget *geda_combo_box_text_new ()
  * \return new #GedaComboBoxText
  *
  */
-GtkWidget *geda_combo_box_text_new_with_entry ()
+GtkWidget *geda_combo_box_text_new_with_entry (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE, NULL);
 }
