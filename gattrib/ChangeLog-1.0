@@ -1,5 +1,13 @@
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtksheet.c: Set max-length by setting the object property
+      instead of using gtk_entry_set_max_length.
+
+    * src/x_gtksheet.c: Revise activate_sheet_cell to set the "max-length"
+      property using g_object_set instead of using gtk_entry_set_max_length.
+
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * Code Enhancement: Use the same memory pool.
 
     * src/gtksheet/gtksheet.c: Replace g_new0 with g_malloc0.

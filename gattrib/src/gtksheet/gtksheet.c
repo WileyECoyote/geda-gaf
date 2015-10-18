@@ -8929,8 +8929,8 @@ static void _gtk_sheet_entry_setup(GtkSheet *sheet, int row, int col,
 
     if (GTK_IS_ITEM_ENTRY(entry_widget))
     {
-	GtkItemEntry *item_entry = GTK_ITEM_ENTRY(entry_widget);
-	GtkEntry *entry = GTK_ENTRY(entry_widget);
+	  GtkItemEntry *item_entry = GTK_ITEM_ENTRY(entry_widget);
+	  GtkEntry     *entry      = GTK_ENTRY(entry_widget);
 
 	/* 5.8.2010/fp - the code below has no effect in GTK 2.18.9,
 	   a right justified editable will pop to left justification
@@ -8940,12 +8940,12 @@ static void _gtk_sheet_entry_setup(GtkSheet *sheet, int row, int col,
 	   justification value in the editable is correct. */
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-	g_debug("_gtk_sheet_entry_setup: GtkItemEntry justification %d", justification);
+	  g_debug("_gtk_sheet_entry_setup: GtkItemEntry justification %d", justification);
 #endif
-	gtk_item_entry_set_justification(item_entry, justification);
-	gtk_item_entry_set_max_length_bytes(item_entry, colptr->max_length_bytes);
+	  gtk_item_entry_set_justification(item_entry, justification);
+	  gtk_item_entry_set_max_length_bytes(item_entry, colptr->max_length_bytes);
 
-	gtk_entry_set_max_length(entry, colptr->max_length);
+      g_object_set (entry, "max-length", colptr->max_length, NULL);
     }
     else if (GTK_IS_DATA_TEXT_VIEW(entry_widget))
     {
@@ -8956,20 +8956,19 @@ static void _gtk_sheet_entry_setup(GtkSheet *sheet, int row, int col,
 	gtk_data_text_view_set_max_length(data_textview, colptr->max_length);
 	gtk_data_text_view_set_max_length_bytes(data_textview, colptr->max_length_bytes);
     }
-    else if (GTK_IS_TEXT_VIEW(entry_widget))
-    {
-	GtkTextView *textview = GTK_TEXT_VIEW(entry_widget);
+    else if (GTK_IS_TEXT_VIEW(entry_widget)) {
+
+      GtkTextView *textview = GTK_TEXT_VIEW(entry_widget);
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0
-	g_debug("_gtk_sheet_entry_setup: GtkTextView justification %d", justification);
+	  g_debug("_gtk_sheet_entry_setup: GtkTextView justification %d", justification);
 #endif
-	gtk_text_view_set_justification(textview, justification);
-	gtk_text_view_set_wrap_mode(textview, colptr->wrap_mode);
+	  gtk_text_view_set_justification(textview, justification);
+	  gtk_text_view_set_wrap_mode(textview, colptr->wrap_mode);
     }
-    else if (GTK_IS_ENTRY(entry_widget))
-    {
-	GtkEntry *entry = GTK_ENTRY(entry_widget);
-	gtk_entry_set_max_length(entry, colptr->max_length);
+    else if (GTK_IS_ENTRY(entry_widget)) {
+	  GtkEntry *entry = GTK_ENTRY(entry_widget);
+      g_object_set (entry, "max-length", colptr->max_length, NULL);
     }
 
 #if GTK_SHEET_DEBUG_CELL_ACTIVATION > 0

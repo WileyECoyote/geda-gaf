@@ -521,8 +521,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void * da
 
   gtk_label_set(GTK_LABEL(location), cell);
 
-  gtk_entry_set_max_length(GTK_ENTRY(entry),
-                           GTK_ENTRY(sheet_entry)->text_max_length);
+  g_object_set (entry, "max-length", GTK_ENTRY(sheet_entry)->text_max_length, NULL);
 
   SetEntryText(entry, GetEntryText(gtk_sheet_get_entry(sheet)));
 
