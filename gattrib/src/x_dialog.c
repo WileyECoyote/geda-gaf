@@ -93,10 +93,11 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
   else
     return 0;
 }
+
 /*! \brief Add new attribute dialog.
  *
  * This asks for the name of the attrib column to insert
- *         and then inserts the column.
+ * and then inserts the column.
  */
 char *x_dialog_new_attrib()
 {
@@ -116,12 +117,12 @@ char *x_dialog_new_attrib()
 
   /*  Create a text label for the dialog window */
   label = geda_label_new (_("Enter new attribute name"));
-  gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label,
-		      FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label, FALSE, FALSE, 0);
 
   /*  Create the "attrib" text entry area */
-  attrib_entry = gtk_entry_new();
-  gtk_entry_set_max_length ((GtkEntry *)attrib_entry, 48);
+  attrib_entry = geda_entry_new_with_max_length(48);
+  geda_entry_widget_set_activates_default(attrib_entry, TRUE);
+
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), attrib_entry, TRUE, TRUE, 5);
   gtk_widget_set_size_request (dialog, 260, 140);
 
@@ -129,7 +130,7 @@ char *x_dialog_new_attrib()
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GEDA_RESPONSE_OK:
-      entry_text = u_string_strdup( GetEntryText(attrib_entry) );
+      entry_text = u_string_strdup(GetEntryText(attrib_entry) );
       break;
     case GEDA_RESPONSE_CANCEL:
     default:
@@ -472,11 +473,15 @@ char *x_dialog_get_search_text(char *prompt)
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
 
-    textentry = gtk_entry_new_with_max_length(32);
+    textentry = geda_visible_entry_new(NO_HISTORY, NO_COMPLETION);
+
+    g_object_set (textentry, "max-length", 32, NULL);
 
     gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
     gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
-    gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
+
+    geda_entry_widget_set_activates_default(textentry, TRUE);
+
     gtk_widget_grab_focus(textentry);
     gtk_widget_show_all(GTK_WIDGET(dialog));
 

@@ -3,6 +3,10 @@
     * src/gtksheet/gtksheet.c: Set max-length by setting the object property
       instead of using gtk_entry_set_max_length.
 
+    * src/x_dialog.c: Revise x_dialog_new_attrib and x_dialog_get_search_text
+      to use geda_entry instead of a gtk_entry and set activates defaults on
+      the entry widgets.
+
     * src/x_gtksheet.c: Revise activate_sheet_cell to set the "max-length"
       property using g_object_set instead of using gtk_entry_set_max_length.
 
