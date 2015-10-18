@@ -750,7 +750,7 @@ x_toolbars_finialize (GschemToplevel *w_current) {
 /*! \brief Free Window Specific Toolbar Widgets
  *  \par Function Description
  *  This function releases the memory associated with a ToolBarWidgets
- *  structure that was allocated with g_new0 in x_toolbars_init_window.
+ *  structure that was allocated with malloc in x_toolbars_init_window.
  */
 void
 x_toolbars_free_window(GschemToplevel *w_current)

@@ -1100,7 +1100,7 @@
 ; text-feedback string
 ;
 ; Controls if text is rendered when doing an xor action (like copy/move)
-; or when the zoom is above the zoom threashold specified by text-display
+; or when the zoom is above the zoom threshold specified by text-display
 ; -zoomfactor. Comment out if you want the default mode.
 ;
 ;(text-feedback "only-when-readable")
