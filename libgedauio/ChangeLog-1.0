@@ -1,5 +1,12 @@
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+     * Code Enhancement: Expand API
+
+     * include/geda_entry.[c,h]: Add creator function geda_entry_new_
+       with_max_length.
+
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
      * Code Enhancement: Use the same memory pool.
 
      * src/widgets/geda_completion.c: Replace g_new0 with g_malloc0.

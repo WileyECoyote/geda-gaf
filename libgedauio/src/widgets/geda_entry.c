@@ -1471,5 +1471,23 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
   return g_object_new  (GEDA_TYPE_ENTRY, "buffer", buffer, NULL);
 }
 
+/*! \brief Create a New GedaEntry specified max length property
+ *  \par Function Description
+ *
+ * Creates a new entry and sets the max-length property to \a max_length,
+ * which does not really do much.
+ *
+ * \param [in] max_length Value to set the Max length property.
+ *
+ * \return a new #GedaEntry
+ */
+GtkWidget *geda_entry_new_with_max_length (int max_length)
+{
+  GtkWidget *entry;
+  entry = geda_entry_new (NO_HISTORY, NO_COMPLETION);
+  g_object_set (entry, "max-length", max_length, NULL);
+  return entry;
+}
+
 /** @} endgroup Entry-Creators */
 /** @} end group GedaEntry */

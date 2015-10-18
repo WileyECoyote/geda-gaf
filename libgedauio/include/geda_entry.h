@@ -145,6 +145,7 @@ GedaType   geda_entry_get_type               (void) GEDA_CONST;
 GtkWidget *geda_entry_new                    (GList** history, GList** complete);
 GtkWidget *geda_visible_entry_new            (GList** history, GList** complete);
 GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
+GtkWidget *geda_entry_new_with_max_length    (int length);
 
 PangoAttrList*
      geda_entry_get_attributes               (GedaEntry *entry);
@@ -183,7 +184,6 @@ void geda_entry_widget_modify_color          (GtkWidget    *widget,
                                               GtkRcFlags    component,
                                               GtkStateType  state,
                                         const GdkColor     *color);
-
 PangoAttrList*
      geda_entry_widget_get_attributes        (GtkWidget *entry);
 
