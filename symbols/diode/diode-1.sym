@@ -1,4 +1,4 @@
-v 20150401 2
+v 20151031 2
 T 500 1200 5 10 0 1 0 0 1
 device=DIODE
 T 500 600 8 10 1 1 0 0 1
@@ -30,13 +30,13 @@ T 25 75 5 8 0 1 0 0 1
 pintype=pas
 }
 T 500 800 9 10 0 1 0 0 1
-footprint=DO-41
+footprint=DO-35
 T 500 1000 5 10 0 1 0 0 1
-description=diode,rectifier,1N4001
+description=diode,rectifier,1N4148
 T 700 0 5 10 0 1 0 0 1
 value=1N4148
 T 500 1400 9 10 0 0 0 0 1
-symversion=0.4
+symversion=0.5
 T 1900 1400 5 10 0 0 0 0 1
 numslots=0
 T 500 2200 5 10 0 0 0 0 1

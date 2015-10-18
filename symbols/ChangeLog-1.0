@@ -1,3 +1,25 @@
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Clean symbol files:
+
+        * connector/plug/chassis-receptacle-1.sym
+        * connector/plug/cord-plug-1.sym
+        * connector/plug/cord-plug-2.sym
+        * connector/plug/receptacle-110V-15A-1.sym
+
+        * diode/diode-1.sym
+        * diode/diode-smd-1.sym
+        * diode/diode-smd-2.sym
+        * diode/diode-smd-3.sym
+
+        * diode/zener/zener-1.sym
+        * diode/zener/zener-2.sym
+        * diode/zener/zener-3.sym
+        * diode/zener/zener-4.sym
+        * diode/zener/zener-5.sym
+        * diode/zener/zener-6.sym
+        * diode/zener/zener-7.sym
+
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * vishay/nmosfet/SQJ850EP_nmosfet_60V_45W-1.sym: Add symbol NMOS.
