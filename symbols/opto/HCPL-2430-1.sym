@@ -1,5 +1,5 @@
-v 20130414 2
-T 1200 100 8 10 1 1 0 0 1
+v 20151031 2
+T 1200 700 8 10 1 1 0 0 1
 refdes=U?
 T 300 950 5 10 0 0 0 0 1
 device=HCPL-2430
@@ -15,7 +15,7 @@ T 200 550 5 8 1 1 0 6 1
 pinnumber=1
 T 200 650 5 8 0 1 0 8 1
 pinseq=1
-T 350 450 9 8 1 1 0 0 1
+T 350 450 9 10 1 1 0 0 1
 pinlabel=IN+
 T 350 450 5 8 0 1 0 2 1
 pintype=in
@@ -26,7 +26,7 @@ T 200 250 5 8 1 1 0 6 1
 pinnumber=2
 T 200 350 5 8 0 1 0 8 1
 pinseq=2
-T 350 150 9 8 1 1 0 0 1
+T 350 150 9 10 1 1 0 0 1
 pinlabel=IN-
 T 350 150 5 8 0 1 0 2 1
 pintype=in
@@ -37,14 +37,14 @@ T 1200 450 5 8 1 1 0 0 1
 pinnumber=7
 T 1200 350 5 8 0 1 0 2 1
 pinseq=3
-T 1050 350 9 8 1 1 0 6 1
+T 1050 350 9 10 1 1 0 6 1
 pinlabel=OUT
 T 1050 350 5 8 0 1 0 8 1
 pintype=out
 }
 B 300 0 800 725 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2750 5 10 0 0 0 0 1
-documentation=http://rocky.digikey.com/WebLib/Agilent/Web%20Data/HCPL-2400_2430.pdf
+documentation=http://www.avagotech.com/docs/AV02-0962EN
 T 300 2550 5 10 0 0 0 0 1
 description=dual channel 20 MBd optocoupler
 T 300 2350 5 10 0 0 0 0 1
@@ -57,3 +57,5 @@ T 300 1750 5 10 0 0 0 0 1
 slot=1
 T 300 775 9 8 1 0 0 0 1
 HCPL-2430
+T 1200 100 5 8 0 0 0 0 1
+symversion=0.1

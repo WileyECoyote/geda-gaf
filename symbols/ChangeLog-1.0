@@ -1,5 +1,27 @@
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Rename and Clean 17 opto symbol files, maybe replace:
+
+        * opto/GP1US30-1.sym
+        * opto/HCNR201-1.sym
+        * opto/HCPL-0534-1.sym
+        * opto/HCPL-2430-1.sym
+        * opto/HCPL-2630-1.sym
+        * opto/HCPL-2631-1.sym
+        * opto/HCPL-4534-1.sym
+        * opto/HCTL-2000-1.sym
+        * opto/HCTL-2016-1.sym
+        * opto/HSDL-7000-1.sym
+        * opto/HSDL-3612-1.sym
+        * opto/MCT6-1.sym
+        * opto/MCT9001-1.sym
+        * opto/MOC3041-1.sym
+        * opto/PS2501-1.sym
+        * opto/TFDS4500-1.sym
+        * opto/TSOP17xx-1.sym
+
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * Clean symbol files:
 
         * connector/plug/chassis-receptacle-1.sym
