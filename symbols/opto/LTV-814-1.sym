@@ -1,4 +1,4 @@
-v 20100214 2
+v 20151031 2
 L 300 600 475 600 3 0 0 0 -1 -1
 L 300 200 475 200 3 0 0 0 -1 -1
 L 350 350 450 350 3 0 0 0 -1 -1
@@ -87,23 +87,21 @@ pinseq=3
 }
 T 895 850 8 10 1 1 0 6 1
 refdes=U?
-T 300 2200 8 10 0 0 0 0 1
-footprint=DIP4.fp
-T 300 2800 8 10 0 0 0 0 1
+T 700 1200 9 10 0 1 0 0 1
+footprint=DIP4
+T 700 2000 8 10 0 1 0 0 1
 description=Single Channel Optoisolator w/AC input
-T 325 775 9 8 1 0 0 2 1
-LTV-814
-T 300 3200 8 10 0 0 0 0 1
-device=OPTO_ISOLATOR
-T 300 2600 8 10 0 0 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
-T 300 2000 8 10 0 0 0 0 1
-numslots=0
-T 300 1600 8 10 0 0 0 0 1
-author=Daniel Fekete <thefekete AT gmail DOT com>
-T 300 1400 8 10 0 0 0 0 1
-dist-license=GPL
-T 300 1200 8 10 0 0 0 0 1
-use-license=unlimited
-T 300 3000 8 10 0 0 0 0 1
+T 700 1000 9 10 1 1 0 0 1
 value=LTV-814
+T 700 1600 8 10 0 0 0 0 1
+device=LTV-814
+T 700 1800 8 10 0 1 0 0 1
+documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-814H_824H_844H%20(M,S,S_TA1).pdf
+T 700 1400 8 10 0 0 0 0 1
+numslots=0
+T 700 2600 8 10 0 0 0 0 1
+author=Daniel Fekete <thefekete AT gmail DOT com>
+T 700 2400 8 10 0 0 0 0 1
+dist-license=GPL
+T 700 2200 8 10 0 0 0 0 1
+use-license=unlimited

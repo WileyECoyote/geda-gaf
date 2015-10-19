@@ -1,4 +1,4 @@
-v 20130214 2
+v 20151031 2
 P 100 0 100 200 1 0 0
 {
 T 0 50 5 8 0 1 0 0 1
@@ -27,10 +27,10 @@ L 200 700 200 500 3 0 0 0 -1 -1
 L 300 700 300 500 3 0 0 0 -1 -1
 L 300 600 400 600 3 0 0 0 -1 -1
 L 200 600 100 600 3 0 0 0 -1 -1
-T 0 1300 8 10 0 0 0 0 1
+T 0 1100 8 10 0 0 0 0 1
 refdes=Q?
-T 0 1700 8 10 0 0 0 0 1
-device=Reflective Optical Sensor (four-pins)
+T 0 1900 8 10 0 0 0 0 1
+description=Reflective Optical Sensor (four-pins)
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 750,525
 L 699,500
@@ -95,11 +95,13 @@ T 1200 50 5 8 0 1 0 0 1
 pintype=pas
 }
 B 50 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 6 1122 8 10 0 0 0 0 1
+T 6 2122 8 10 0 0 0 0 1
 author=David Griffith <davidgriffith@acm.org>
-T 12 1522 8 10 0 0 0 0 1
-description=Diode and phototransistor individually wired
-T 600 100 9 10 0 0 0 0 1
+T 12 1722 8 10 0 0 0 0 1
+comment=Diode and phototransistor individually wired
+T 0 1500 9 10 0 0 0 0 1
 numslots=0
 T 0 950 9 10 0 0 0 0 1
 footprint=unknown
+T 0 1300 9 10 0 0 0 0 1
+device=ir_reflect

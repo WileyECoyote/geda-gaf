@@ -1,4 +1,4 @@
-v 20140728 2
+v 20151031 2
 L 300 500 475 500 3 0 0 0 -1 -1
 L 300 100 475 100 3 0 0 0 -1 -1
 L 425 250 525 250 3 0 0 0 -1 -1
@@ -77,26 +77,24 @@ pinseq=3
 }
 T 900 750 8 10 1 1 0 0 1
 refdes=U?
-T 0 2500 8 10 0 0 0 0 1
+T 100 1800 8 10 0 0 0 0 1
 description=Single Channel Optoisolator
-T 300 625 9 6 1 0 0 0 1
-HCPL-817
-T 0 2700 8 10 0 0 0 0 1
-value=HCPL-817
-T 0 2100 8 10 0 0 0 0 1
+T 300 625 9 6 1 1 0 0 1
+value=HCPL-814
+T 100 1400 8 10 0 0 0 0 1
 footprint=DIP4.fp
-T 0 2300 8 10 0 0 0 0 1
+T 100 1600 8 10 0 0 0 0 1
 documentation=http://www.avagotech.com/docs/AV02-0265EN
-T 0 1900 8 10 0 0 0 0 1
+T 100 1200 8 10 0 0 0 0 1
 numslots=0
-T 0 1400 8 10 0 0 0 0 1
+T 100 2400 8 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 0 1200 8 10 0 0 0 0 1
+T 100 2200 8 10 0 0 0 0 1
 dist-license=GPL
-T 0 1000 8 10 0 0 0 0 1
+T 100 2000 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 1600 9 6 0 0 0 0 2
+T 100 750 9 6 0 0 0 0 2
 CTR: 50%
 Vf: 1.2v
-T 0 2900 8 10 0 0 0 0 1
-device=OPTO_ISOLATOR
+T 100 1000 8 10 0 0 0 0 1
+device=HCPL-814

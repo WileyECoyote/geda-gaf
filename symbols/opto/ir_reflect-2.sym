@@ -1,4 +1,4 @@
-v 20130214 2
+v 20151031 2
 P 100 0 100 200 1 0 0
 {
 T 0 50 5 8 0 1 0 0 1
@@ -29,8 +29,8 @@ L 300 600 400 600 3 0 0 0 -1 -1
 L 200 600 100 600 3 0 0 0 -1 -1
 T 1100 800 8 10 1 1 0 0 1
 refdes=Q?
-T -50 1300 8 10 0 0 0 0 1
-device=Reflective Optical Sensor (three-pins)
+T 100 1600 8 10 0 0 0 0 1
+description=Reflective Optical Sensor (three-pins)
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 650,525
 L 599,500
@@ -84,12 +84,14 @@ T 1100 50 5 8 0 1 0 0 1
 pintype=pas
 }
 B 0 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T -44 1722 8 10 0 0 0 0 1
+T 100 2000 8 10 0 0 0 0 1
 author=Autotron
-T -38 1522 8 10 0 0 0 0 1
-description=Diode and phototransistor cathode and emitter coupled
+T 100 1800 8 10 0 1 0 0 1
+comment=Diode and phototransistor cathode and emitter coupled
 L 500 500 500 200 3 0 0 0 -1 -1
-T -50 1150 9 10 0 0 0 0 1
+T 100 1200 9 10 0 0 0 0 1
 numslots=0
-T -50 950 9 10 0 0 0 0 1
+T 100 1000 9 10 0 0 0 0 1
 footprint=unknown
+T 100 1400 8 10 0 0 0 0 1
+device=ir_reflect

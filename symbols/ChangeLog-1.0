@@ -10,6 +10,19 @@
         * fairchild/FDJ128N-1.sym
         * fairchild/FMS6400-1.sym
 
+    * Clean 10 opto symbol files, (somewhat):
+
+        * opto/HCPL-814-1.sym
+        * opto/HSDL-7000-1.sym
+        * opto/LTV-810-1.sym
+        * opto/LTV-814-1.sym
+        * opto/LTV-814-2.sym
+        * opto/LTV-817-1.sym
+        * opto/LTV-844-1.sym
+        * opto/LTV-847-1.sym
+        * opto/ir_reflect-1.sym
+        * opto/ir_reflect-2.sym
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename and Clean 17 opto symbol files, maybe replace:

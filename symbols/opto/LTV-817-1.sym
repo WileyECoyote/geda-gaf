@@ -1,4 +1,4 @@
-v 20130414 2
+v 20151031 2
 L 300 600 475 600 3 0 0 0 -1 -1
 L 300 200 475 200 3 0 0 0 -1 -1
 L 425 350 525 350 3 0 0 0 -1 -1
@@ -77,26 +77,24 @@ pinseq=3
 }
 T 895 850 8 10 1 1 0 0 1
 refdes=U?
-T 300 2600 8 10 0 0 0 0 1
-description=Single Channel Optoisolator
-T 325 775 9 8 1 0 0 2 1
-LTV-817
-T 300 2800 8 10 0 0 0 0 1
-value=LTV-817
-T 300 2200 8 10 0 0 0 0 1
-footprint=DIP4.fp
-T 300 2400 8 10 0 0 0 0 1
-documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
 T 300 2000 8 10 0 0 0 0 1
+description=Single Channel Optoisolator
+T 300 1200 9 10 0 1 0 0 1
+value=LTV-817
+T 300 1400 9 10 1 1 0 0 1
+footprint=DIP4
+T 300 1800 8 10 0 0 0 0 1
+documentation=http://media.digikey.com/pdf/Data%20Sheets/Lite-On%20PDFs/LTV-817_827_847(M,S,S_TA1).pdf
+T 300 1600 8 10 0 0 0 0 1
 numslots=0
-T 300 1500 8 10 0 0 0 0 1
+T 300 2800 8 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 300 1300 8 10 0 0 0 0 1
+T 300 2600 8 10 0 0 0 0 1
 dist-license=GPL
-T 300 1100 8 10 0 0 0 0 1
+T 300 2400 8 10 0 0 0 0 1
 use-license=unlimited
-T 300 1700 9 6 0 0 0 0 2
+T 300 900 9 6 0 0 0 0 2
 CTR: 50%
 Vf: 1.2v
-T 300 3000 8 10 0 0 0 0 1
-device=OPTO_ISOLATOR
+T 300 2200 8 10 0 0 0 0 1
+device=LTV-817
