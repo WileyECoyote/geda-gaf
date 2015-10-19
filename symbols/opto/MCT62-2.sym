@@ -1,0 +1,103 @@
+v 20151031 2
+T 800 1100 5 10 0 0 0 0 1
+device=MCT62
+T 800 700 5 10 1 1 0 0 1
+refdes=ISO?
+T 800 1300 5 10 0 0 0 0 1
+description=8-Pin DIP Dual-Channel Phototransistor
+T 800 300 9 10 1 1 0 0 1
+footprint=DIP8
+L 100 150 40 250 3 0 2 0 -1 -1
+L 40 250 160 250 3 0 2 0 -1 -1
+L 160 250 100 150 3 0 2 0 -1 -1
+L 400 300 400 100 3 0 0 0 -1 -1
+L 460 125 400 165 3 0 2 0 -1 -1
+L 400 230 500 300 3 0 0 0 -1 -1
+L 339 232 275 275 3 0 2 0 -1 -1
+L 275 275 275 225 3 0 2 0 -1 -1
+L 275 225 200 275 3 0 2 0 -1 -1
+L 350 150 275 200 3 0 2 0 -1 -1
+L 275 200 275 150 3 0 2 0 -1 -1
+L 275 150 200 200 3 0 2 0 -1 -1
+L 100 100 100 150 3 0 2 0 -1 -1
+L 160 150 40 150 3 0 0 0 -1 -1
+L 100 300 100 250 3 0 2 0 -1 -1
+P 100 400 100 300 1 0 0
+{
+T 150 325 5 8 1 1 0 0 1
+pinnumber=1
+T 150 325 5 8 0 1 0 0 1
+pinseq=1
+T 50 300 5 8 0 1 0 6 1
+pintype=pas
+T 225 300 5 10 0 1 0 0 1
+pinlabel=A
+}
+P 100 100 100 0 1 0 1
+{
+T 150 0 5 8 1 1 0 0 1
+pinnumber=2
+T 150 0 5 8 0 1 0 0 1
+pinseq=2
+T 50 0 5 8 0 1 0 6 1
+pintype=pas
+T 225 0 5 10 0 1 0 0 1
+pinlabel=K
+}
+P 500 400 500 300 1 0 0
+{
+T 550 325 5 8 1 1 0 0 1
+pinnumber=8
+T 400 325 5 8 0 1 0 0 1
+pinseq=3
+T 525 225 5 8 0 1 0 0 1
+pintype=oc
+T 625 325 5 10 0 1 0 0 1
+pinlabel=C
+}
+P 500 100 500 0 1 0 1
+{
+T 550 -25 5 8 1 1 0 0 1
+pinnumber=7
+T 400 0 5 8 0 1 0 0 1
+pinseq=4
+T 525 100 5 8 0 1 0 0 1
+pintype=oe
+T 625 100 5 10 0 1 0 2 1
+pinlabel=E
+}
+T 800 1500 5 10 0 0 0 0 1
+numslots=2
+T 800 1700 5 10 0 0 0 0 1
+slotdef=1:1,2,7,8
+T 800 1900 5 10 0 0 0 0 1
+slotdef=2:3,4,5,6
+T 800 900 9 10 0 0 0 0 1
+slot=1
+T 800 100 9 10 0 0 0 0 1
+symversion=0.2
+T 800 2100 5 10 0 1 0 0 1
+documentation=https://www.fairchildsemi.com/products/optoelectronics/phototransistor-optocouplers/phototransistor-output-dc-sensing-input/MCT9001.html
+T 800 2700 5 10 0 0 0 0 1
+author=AutoTron
+T 800 2500 5 10 0 0 0 0 1
+dist-license=GPL2
+T 800 2300 5 10 0 0 0 0 1
+use-license=unlimited
+T 800 500 9 10 1 1 0 0 1
+value=MCT62
+H 3 0 0 0 100 100 1 0 -1 -1 -1 -1 4
+M 337,223
+L 347,237
+L 358,219
+z
+H 3 0 0 0 100 100 1 0 -1 -1 -1 -1 4
+M 337,148
+L 347,162
+L 358,144
+z
+H 3 0 0 0 100 100 1 0 -1 -1 -1 -1 4
+M 460,115
+L 470,129
+L 481,111
+z

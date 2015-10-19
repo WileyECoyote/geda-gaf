@@ -1,12 +1,12 @@
 v 20151031 2
-T 700 1100 5 10 0 0 0 0 1
-device=PS2501
-T 700 700 5 10 1 1 0 0 1
+T 800 1100 5 10 0 0 0 0 1
+device=PS2501L
+T 800 700 5 10 1 1 0 0 1
 refdes=ISO?
-T 700 1300 5 10 0 0 0 0 1
-description=Opto-Coupler,Single,5kV Iso,4-Pin DIP
-T 700 300 9 10 1 1 0 0 1
-footprint=DIP4
+T 800 1300 5 10 0 0 0 0 1
+description=Quad Opto-Coupler, 5kV Iso,16 Pin SMD
+T 800 300 9 10 1 1 0 0 1
+footprint=SOL16
 L 100 150 40 250 3 0 2 0 -1 -1
 L 40 250 160 250 3 0 2 0 -1 -1
 L 160 250 100 150 3 0 2 0 -1 -1
@@ -26,7 +26,7 @@ P 100 400 100 300 1 0 0
 {
 T 50 375 5 8 1 1 0 6 1
 pinnumber=1
-T 50 375 5 8 0 1 0 6 1
+T 25 400 5 8 0 1 0 6 1
 pinseq=1
 T 50 275 5 8 0 1 0 6 1
 pintype=pas
@@ -41,47 +41,51 @@ T 50 25 5 8 0 1 0 8 1
 pinseq=2
 T 50 50 5 8 0 1 0 6 1
 pintype=pas
-T 150 75 5 10 0 1 0 2 1
+T 150 0 5 10 0 1 0 0 1
 pinlabel=K
-}
-P 500 100 500 0 1 0 1
-{
-T 550 -25 5 8 1 1 0 0 1
-pinnumber=3
-T 550 -25 5 8 0 1 0 0 1
-pinseq=3
-T 525 100 5 8 0 1 0 0 1
-pintype=oe
-T 450 50 5 10 0 1 0 8 1
-pinlabel=E
 }
 P 500 400 500 300 1 0 0
 {
 T 550 325 5 8 1 1 0 0 1
-pinnumber=4
-T 550 325 5 8 0 1 0 0 1
-pinseq=4
-T 525 225 5 8 0 1 0 0 1
+pinnumber=9
+T 525 300 5 8 0 1 0 2 1
+pinseq=3
+T 600 225 5 8 0 1 0 0 1
 pintype=oc
 T 450 350 5 10 0 1 0 6 1
 pinlabel=C
 }
-T 700 1500 5 10 0 0 0 0 1
-numslots=0
-T 700 900 9 10 0 0 0 0 1
+P 500 100 500 0 1 0 1
+{
+T 550 -25 5 8 1 1 0 0 1
+pinnumber=10
+T 525 100 5 8 0 1 0 0 1
+pinseq=4
+T 600 100 5 8 0 1 0 0 1
+pintype=oe
+T 450 75 5 10 0 1 0 8 1
+pinlabel=E
+}
+T 800 1500 5 10 0 0 0 0 1
+numslots=4
+T 800 2300 5 10 0 0 0 0 1
+slotdef=1:1,2,16,15
+T 800 2100 5 10 0 0 0 0 1
+slotdef=2:3,4,14,13
+T 800 900 9 10 0 0 0 0 1
 slot=1
-T 700 100 9 10 0 0 0 0 1
-symversion=0.2
-T 700 1700 5 10 0 1 0 0 1
+T 800 100 9 10 0 0 0 0 1
+symversion=0.3
+T 800 2500 5 10 0 1 0 0 1
 documentation=http://www.cel.com/pdf/datasheets/ps2501.pdf
-T 700 2300 5 10 0 0 0 0 1
+T 800 3100 5 10 0 0 0 0 1
 author=AutoTron
-T 700 2100 5 10 0 0 0 0 1
+T 800 2900 5 10 0 0 0 0 1
 dist-license=GPL2
-T 700 1900 5 10 0 0 0 0 1
+T 800 2700 5 10 0 0 0 0 1
 use-license=unlimited
-T 700 500 9 10 1 1 0 0 1
-value=PS2501-1
+T 800 500 9 10 1 1 0 0 1
+value=PS2501L
 H 3 0 0 0 100 100 1 0 -1 -1 -1 -1 4
 M 337,223
 L 347,237
@@ -97,3 +101,7 @@ M 460,115
 L 470,129
 L 481,111
 z
+T 800 1900 5 10 0 0 0 0 1
+slotdef=3:5,6,12,11
+T 800 1700 5 10 0 0 0 0 1
+slotdef=4:7,8,10,9

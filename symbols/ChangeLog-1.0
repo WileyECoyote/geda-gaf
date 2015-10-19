@@ -26,6 +26,30 @@
         * opto/photo-resistor-1.sym
         * opto/photo-transistor-1.sym
 
+    * Add 21 new opto symbol files:
+
+        * opto/HCNR200-1.sym
+        * opto/MCT6-2.sym
+        * opto/MCT61-1.sym
+        * opto/MCT61-2.sym
+        * opto/MCT62-1.sym
+        * opto/MCT62-2.sym
+        * opto/MCT623-1.sym
+        * opto/MCT623-2.sym
+        * opto/MOC3042-1.sym
+        * opto/MOC3043-1.sym
+        * opto/TFDT4500-1.sym
+        * opto/TFDU4100-1.sym
+        * opto/TSOP1733-1.sym
+        * opto/TSOP1736-1.sym
+        * opto/TSOP1737-1.sym
+        * opto/TSOP1738-1.sym
+        * opto/TSOP1740-1.sym
+        * opto/TSOP1750-1.sym
+        * opto/PS2501-4.sym
+        * opto/PS2501L-1.sym
+        * opto/PS2501L-4.sym
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Clean symbol files:
