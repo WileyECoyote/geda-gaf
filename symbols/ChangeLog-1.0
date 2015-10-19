@@ -1,3 +1,15 @@
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Rename and 7 symbol files using UPPER case:
+
+        * fairchild/FAN7380-1.sym
+        * fairchild/FAN7380-2.sym
+        * fairchild/FDC6321C-1.sym
+        * fairchild/FDC6330L-1.sym
+        * fairchild/FDC6333C-1.sym
+        * fairchild/FDJ128N-1.sym
+        * fairchild/FMS6400-1.sym
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename and Clean 17 opto symbol files, maybe replace:
