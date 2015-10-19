@@ -29,7 +29,7 @@
 #include "error_functions.h"  /* Declares our error-handling functions */
 
 /* Unfortunately some UNIX implementations define FALSE and TRUE -
-   here we'll undefine them */
+   here we'll undefine them
 
 #ifdef TRUE
 #undef TRUE
@@ -40,6 +40,7 @@
 #endif
 
 typedef enum { FALSE, TRUE } Boolean;
+ */
 
 #ifndef min
 #define min(m,n) ((m) < (n) ? (m) : (n))

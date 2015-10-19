@@ -1,3 +1,11 @@
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/rusage/tlpi_hdr.h: Remove typedef of Boolean from rusage headers.
+
+    * include/geda_types.h: Add type Boolean; was defined for weeks, but
+      not committed, the duplication was only detected when performance
+      testing was enabled.
+
 2015-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_help.h: Add new header file with defines for some HTML

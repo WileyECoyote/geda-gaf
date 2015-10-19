@@ -31,6 +31,16 @@
 
 typedef int bool;
 
+#ifdef TRUE
+#undef TRUE
+#endif
+
+#ifdef FALSE
+#undef FALSE
+#endif
+
+typedef enum { FALSE, TRUE } Boolean;
+
 #endif
 
 typedef unsigned char uint8;
