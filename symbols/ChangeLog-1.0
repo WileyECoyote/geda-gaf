@@ -20,6 +20,12 @@
         * opto/TFDS4500-1.sym
         * opto/TSOP17xx-1.sym
 
+    * Redo photo[diode,resistor,transistor] symbol files:
+
+        * opto/photo-diode-1.sym
+        * opto/photo-resistor-1.sym
+        * opto/photo-transistor-1.sym
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Clean symbol files:
