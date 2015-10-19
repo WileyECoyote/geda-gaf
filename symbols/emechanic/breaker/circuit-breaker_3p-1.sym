@@ -1,55 +1,98 @@
-v 20130414 2
-V 240 600 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-V 560 300 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-P 180 600 0 600 1 0 1
-{
-T 95 635 5 8 0 1 0 6 1
-pinnumber=1
-}
-P 620 600 800 600 1 0 1
-{
-T 705 635 5 8 0 1 0 0 1
-pinnumber=2
-}
-T 0 900 5 10 0 0 0 0 1
-device=ZESTYK
-T 0 1100 5 10 0 0 0 0 1
-description=zestyk zwierny - stare oznaczenie
-T 0 1300 5 10 0 0 0 0 1
-numslots=0
-T 0 1500 5 10 0 0 0 0 1
-author=JacekPlucinski
-T 0 1700 5 10 0 0 0 0 1
-version=080424
-T 300 25 5 10 1 1 180 8 1
-value=XX
-T 650 1150 8 10 1 1 180 6 1
+v 20151031 2
+T 0 1300 5 10 0 1 0 0 1
+device=BREAKER
+T 600 1100 8 10 1 1 0 0 1
 refdes=CB?
+T 0 2100 5 10 0 0 0 0 1
+numslots=0
+T 0 1900 5 10 0 0 0 0 1
+symversion=0.2
+T 0 1700 5 10 0 1 0 0 1
+description=CIRCUIT BREAKER,SIEMENS 3AH
 A 399 474 300 45 90 3 0 1 0 -1 -1
 L 400 475 400 1150 3 0 1 0 -1 -1
-P 180 300 0 300 1 0 1
-{
-T 95 335 5 8 0 1 0 6 1
-pinnumber=1
-}
+V 240 600 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+V 560 300 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 240 300 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 560 600 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-P 620 300 800 300 1 0 1
-{
-T 705 335 5 8 0 1 0 0 1
-pinnumber=2
-}
 A 399 174 300 45 90 3 0 1 0 -1 -1
 V 240 900 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-P 180 900 0 900 1 0 1
-{
-T 95 935 5 8 0 1 0 6 1
-pinnumber=1
-}
-P 620 900 800 900 1 0 1
-{
-T 705 935 5 8 0 1 0 0 1
-pinnumber=2
-}
-V 560 900 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 A 399 774 300 45 90 3 0 1 0 -1 -1
+V 560 900 60 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 200 900 0 900 1 0 1
+{
+T 100 950 5 8 0 1 0 6 1
+pinnumber=1
+T 100 950 5 8 0 1 0 6 1
+pinseq=1
+T 100 950 5 8 1 1 0 6 1
+pinlabel=1
+T 180 850 5 8 0 1 0 8 1
+pintype=pas
+}
+P 200 600 0 600 1 0 1
+{
+T 100 650 5 8 0 1 0 6 1
+pinnumber=2
+T 100 650 5 8 0 1 0 6 1
+pinseq=2
+T 100 650 5 8 1 1 0 6 1
+pinlabel=2
+T 180 550 5 8 0 1 0 8 1
+pintype=pas
+}
+P 200 300 0 300 1 0 1
+{
+T 100 350 5 8 0 1 0 6 1
+pinnumber=3
+T 100 350 5 8 0 1 0 6 1
+pinseq=3
+T 100 350 5 8 1 1 0 6 1
+pinlabel=3
+T 180 250 5 8 0 1 0 8 1
+pintype=pas
+}
+P 600 900 800 900 1 0 1
+{
+T 700 950 5 8 0 1 0 0 1
+pinnumber=4
+T 700 950 5 8 0 1 0 0 1
+pinseq=4
+T 700 950 5 8 1 1 0 0 1
+pinlabel=4
+T 620 850 5 8 0 1 0 2 1
+pintype=pas
+}
+P 600 600 800 600 1 0 1
+{
+T 700 650 5 8 0 1 0 0 1
+pinnumber=5
+T 700 650 5 8 0 1 0 0 1
+pinseq=5
+T 700 650 5 8 1 1 0 0 1
+pinlabel=5
+T 620 550 5 8 0 1 0 2 1
+pintype=pas
+}
+P 600 300 800 300 1 0 1
+{
+T 700 350 5 8 0 1 0 0 1
+pinnumber=6
+T 700 350 5 8 0 1 0 0 1
+pinseq=6
+T 700 350 5 8 1 1 0 0 1
+pinlabel=6
+T 620 250 5 8 0 1 0 2 1
+pintype=pas
+}
+T 0 2300 5 10 0 1 0 0 1
+documentation=http://www.energy.siemens.com/us/pool/us/services/power-transmission-distribution/medium-voltage-product-services/medium-voltage-vacuum-replacement-circuit-breakers/medium-voltage-vacuum-replacement-breaker-instruction-manuals/sgim-9918d.pdf
+T 0 1500 5 10 0 0 0 0 1
+footprint=none
+T 0 2700 5 10 0 0 0 0 1
+author=JacekPlucinski
+T 100 25 5 10 1 1 180 8 1
+value=VS30030
+T 0 2500 5 10 0 1 0 0 1
+comment=Version 080424
+

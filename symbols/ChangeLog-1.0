@@ -20,6 +20,23 @@
         * diode/zener/zener-6.sym
         * diode/zener/zener-7.sym
 
+        * emechanic/breaker/circuit-breaker_1p-1.sym
+        * emechanic/breaker/circuit-breaker_2p-1.sym
+        * emechanic/breaker/circuit-breaker_3p-1.sym
+
+        * analogdevices/AD1293-1.sym
+        * analogdevices/AD1293-2.sym
+        * analogdevices/AD1293-3.sym
+        * analogdevices/AD1294-1.sym
+        * analogdevices/AD1294-2.sym
+
+        * linear/opamps/LF353-1.sym
+        * linear/opamps/LF353-2.sym
+        * linear/opamps/LF353D-1.sym
+        * linear/opamps/LF353D-2.sym
+        * linear/opamps/LF353P-1.sym
+        * linear/opamps/LF353P-2.sym
+
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * vishay/nmosfet/SQJ850EP_nmosfet_60V_45W-1.sym: Add symbol NMOS.
