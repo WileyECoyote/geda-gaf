@@ -1,5 +1,21 @@
 gsch2pcb Changelog
 ------------------
+1.9.1
+---------
+2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Revise function add_multiple_schematics to append
+      the file names directly to the list of schematics so that add_schematic
+      does not set sch_basename when a project files is used. The parse_config
+      function also sets sch_basename if an output options is give and this
+      memory is not be released. And this allow the a trailing output name on
+      the command line because function get_args calls add_schematic. Add a
+      warning in parse_config if multiple output specifications are detected.
+      Revise parse_config to continue with elif format instead of switching
+      to nested if format in the middle of checking for options. Initialize
+      sch_basename in main and free before exiting main.
+
+------------------
 1.9
 ---------
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>

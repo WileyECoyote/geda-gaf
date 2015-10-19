@@ -1210,12 +1210,16 @@ add_default_m4_files (void)
 }
 
 static void
-add_schematic (char * sch)
+add_schematic (char *sch)
 {
-  const char* s;
+  const char *s;
+
   schematics = g_list_append (schematics, u_string_strdup (sch));
+
   if (!sch_basename && (s = g_strrstr (sch, ".sch")) != NULL && strlen(s) == 4)
+  {
     sch_basename = u_string_strndup (sch, s - sch);
+  }
 }
 
 static void
@@ -1227,10 +1231,13 @@ add_multiple_schematics (char * sch)
   GError  *error = NULL;
 
   if (g_shell_parse_argv (sch, &count, &args, &error)) {
+
     int i;
-    for (i = 0; i < count; ++i)
-    {
-      add_schematic (args[i]);
+
+    for (i = 0; i < count; ++i) {
+
+      schematics = g_list_append (schematics, u_string_strdup (args[i]));
+
     }
     g_strfreev (args);
   }
@@ -1241,7 +1248,7 @@ add_multiple_schematics (char * sch)
 }
 
 static int
-parse_config (char * config, char * arg)
+parse_config (char *config, char *arg)
 {
   char *s;
   int   result;
@@ -1299,35 +1306,34 @@ parse_config (char * config, char * arg)
       element_directory_list =
       g_list_prepend (element_directory_list, elements_dir);
   }
-  else if (!strcmp (config, "output-name") || !strcmp (config, "o")) {
-    sch_basename = u_string_strdup (arg);
-  }
-  else {
-    if (!strcmp (config, "schematics")) {
+  else if (!strcmp (config, "schematics")) {
       add_multiple_schematics (arg);
-    }
-    else {
-      if (!strcmp (config, "m4-pcbdir")) {
+  }
+  else if (!strcmp (config, "m4-pcbdir")) {
         GEDA_FREE (m4_pcbdir);
         m4_pcbdir = u_string_strdup (arg);
-      }
-      else if (!strcmp (config, "m4-file")) {
-        add_m4_file (arg);
-      }
-      else {
-        if (!strcmp (config, "gnetlist")) {
-          extra_gnetlist_list = g_list_append (extra_gnetlist_list, u_string_strdup (arg));
-        }
-        else {
-          if (!strcmp (config, "empty-footprint")) {
-            empty_footprint_name = u_string_strdup (arg);
-          }
-          else
-            result = -1;
-        }
-      }
-    }
   }
+  else if (!strcmp (config, "m4-file")) {
+        add_m4_file (arg);
+  }
+  else if (!strcmp (config, "gnetlist")) {
+          extra_gnetlist_list = g_list_append (extra_gnetlist_list, u_string_strdup (arg));
+  }
+  else if (!strcmp (config, "empty-footprint")) {
+            empty_footprint_name = u_string_strdup (arg);
+  }
+  else if (!strcmp (config, "output-name") || !strcmp (config, "o")) {
+    if (sch_basename) {
+      fprintf (stderr, "Warning multible \"output-name\" options\n");
+      GEDA_FREE(sch_basename);
+    }
+    sch_basename = u_string_strdup (arg);
+
+  }
+  else {  /* else was unknown option*/
+    result = -1;
+  }
+
   return result;
 }
 
@@ -1530,6 +1536,7 @@ int main (int argc, char **argv)
   char *path, *p;
   const char *pcbdata_path;
 
+  sch_basename = NULL;
   pcbdata_path = getenv ("PCBDATA");  /* do not free return value */
 
   if (pcbdata_path != NULL) {
@@ -1722,6 +1729,8 @@ int main (int argc, char **argv)
   GEDA_FREE (pins_file_name);
   GEDA_FREE (pcb_file_name);
   GEDA_FREE (bak_file_name);
+
+  GEDA_FREE (sch_basename);
 
   if (pcb_element_list)
     g_list_free(pcb_element_list);
