@@ -186,10 +186,8 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     label = geda_aligned_label_new (_("Number of slots:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-    textslots = gtk_entry_new();
+    textslots = geda_entry_new_with_max_length(80);
     gtk_box_pack_start( GTK_BOX(vbox), textslots, FALSE, FALSE, 0);
-
-    gtk_entry_set_max_length(GTK_ENTRY(textslots), 80);
 
     /* Set the current text to the number of slots */
     if (slots != NULL) {
@@ -202,9 +200,8 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
     label = geda_aligned_label_new (_("Edit slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-    textentry = gtk_entry_new();
+    textentry = geda_entry_new_with_max_length(80);
     gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
-    gtk_entry_set_max_length(GTK_ENTRY(textentry), 80);
 
     /* Set the current text to the slot number */
     if (slot != NULL) {
