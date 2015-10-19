@@ -23,6 +23,11 @@
         * opto/ir_reflect-1.sym
         * opto/ir_reflect-2.sym
 
+    * Add 2 new symbol files: Ground Fault Interupt Circuit.
+
+        * fairchild/RV4141A-1.sym
+        * fairchild/RV4145A-1.sym
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename and Clean 17 opto symbol files, maybe replace:
