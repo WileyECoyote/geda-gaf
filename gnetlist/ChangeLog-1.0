@@ -1,5 +1,13 @@
 2015-10-17 Hannu Vuolasaho <vuokkosetae@gmail.com>
 
+    * tests/scripts/usg_driver.sch: Update symbol names and cleanup
+      drawing.
+
+    * tests/scripts/inverter.sch: Update symbol names and cleanup
+      drawing.
+
+2015-10-17 Hannu Vuolasaho <vuokkosetae@gmail.com>
+
     * Code Enhancement: Improve program compatibility
 
     *  scheme/gnet-spice-sdb.scm: WEH: Modified per commit to Master
