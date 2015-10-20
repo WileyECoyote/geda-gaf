@@ -1527,7 +1527,7 @@ get_args (int argc, char ** argv)
 
 int main (int argc, char **argv)
 {
-  char *pcb_file_name, *pcb_new_file_name, *bak_file_name,
+  char *pcb_file_name,  *pcb_new_file_name, *bak_file_name,
        *pins_file_name, *net_file_name, *tmp;
   int i, exit_code;
   _Bool initial_pcb = TRUE;
@@ -1726,6 +1726,8 @@ int main (int argc, char **argv)
       }
     }
   }
+
+  GEDA_FREE (pcb_new_file_name);
   GEDA_FREE (net_file_name);
   GEDA_FREE (pins_file_name);
   GEDA_FREE (pcb_file_name);
