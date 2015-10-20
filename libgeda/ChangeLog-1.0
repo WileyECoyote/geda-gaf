@@ -1,3 +1,11 @@
+2015-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/prototype.h: Revert making f_path_free private.
+      This function should be accessible to functions so simple path
+      function can be utilized without fully initializing libgeda.
+
+    * include/prototype_priv.h: Remove prot-type for f_path_free.
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Use the same memory pool.

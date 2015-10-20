@@ -31,6 +31,7 @@ BEGIN_DECLS
          bool    f_get_is_path_absolute          (const char *filename);
 
 /* f_path.c */
+         void    f_path_free                     (void);
          char   *f_path_get_dirname              (const char *filename);
    const char   *f_path_sys_data                 (void);
    const char   *f_path_sys_doc                  (void);

@@ -1,6 +1,3 @@
-/* f_path.c */
-void     f_path_free                         (void);
-
 /* f_print.c */
 void     f_print_set_line_width              (FILE *fp, int width);
 int      f_print_set_color                   (GedaToplevel *toplevel, FILE *fp, int color);
