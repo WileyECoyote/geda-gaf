@@ -1,5 +1,13 @@
 gsch2pcb Changelog
 ------------------
+1.9.2
+---------
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Unconditionally free verboseList in function
+      run_gnetlist.
+
+------------------
 1.9.1
 ---------
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>

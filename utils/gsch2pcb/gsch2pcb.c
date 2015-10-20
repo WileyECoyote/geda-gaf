@@ -364,9 +364,8 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
     }
   }
 
-  if (verbose) {
-    g_list_free (verboseList);
-  }
+  g_list_free (verboseList);
+
   return result;
 }
 

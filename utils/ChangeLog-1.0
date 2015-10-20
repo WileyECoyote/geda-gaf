@@ -1,3 +1,8 @@
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Unconditionally free verboseList in function
+      run_gnetlist.
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Revise function add_multiple_schematics to append
