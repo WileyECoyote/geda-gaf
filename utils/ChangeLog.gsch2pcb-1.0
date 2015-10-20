@@ -8,6 +8,8 @@ gsch2pcb Changelog
       run_gnetlist. Initialize schematics list in main and free before
       exiting main, along with all of the string file names reference by
       the list using g_list_free_full. Free pcb_new_file_name in main.
+      Revise function pcb_element_line_parse to only set the element list
+      pointer to NULL if the line was not an Element line.
 
 ------------------
 1.9.1

@@ -409,6 +409,7 @@ static char *token (char *string, char **next, _Bool *quoted_ret)
 
   ret = u_string_strndup (str, s - str);
   str = (quoted && *s) ? s + 1 : s;
+
   if (next)
     *next = str;
 
@@ -446,7 +447,7 @@ static char *fix_spaces (char *str)
 PcbElement *
 pcb_element_line_parse (char * line)
 {
-  PcbElement *el = NULL;
+  PcbElement *el;
   char *s, *t, close_char;
   int state = 0, elcount = 0;
 
@@ -482,6 +483,7 @@ pcb_element_line_parse (char * line)
         el->y           = token (NULL, &t, NULL);
 
         el->tail = u_string_strdup (t ? t : "");
+
         if ((s = strrchr (el->tail, (int) '\n')) != NULL)
           *s = '\0';
 
@@ -508,7 +510,7 @@ pcb_element_line_parse (char * line)
         fix_spaces (el->value);
 
         /* Don't allow elements with no refdes to ever be deleted because
-         * they may be desired pc board elements not in schematics.  So
+         * they may be desired pc board elements not in schematics. So
          * initialize still_exists to TRUE if empty or non-alphanumeric
          * refdes.
          */
@@ -517,6 +519,9 @@ pcb_element_line_parse (char * line)
         }
       }
     }
+  }
+  else {
+    el = NULL;
   }
   return el;
 }
@@ -612,14 +617,16 @@ pcb_element_exists (PcbElement * el_test, _Bool record)
 static void
 simple_translate (PcbElement * el)
 {
+  g_free(el->x);
+  g_free(el->y);
 
   el->x=strdup("0");
   el->y=strdup("0");
 }
 
 static _Bool
-insert_element (FILE * f_out, char * element_file,
-                char * footprint, char * refdes, char * value)
+insert_element (FILE *f_out,     char *element_file,
+                char *footprint, char *refdes, char *value)
 {
   FILE *f_in;
   PcbElement *el;
@@ -653,12 +660,15 @@ insert_element (FILE * f_out, char * element_file,
      * Element() or Element[] line and strip comments.
      */
     while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+
       for (str = buf; *str == ' ' || *str == '\t'; ++str);
+
       if ((el = pcb_element_line_parse (str)) != NULL) {
+
         simple_translate (el);
         fmt = el->quoted_flags ?
-        "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
-        "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
+             "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
+             "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
 
         fprintf (f_out, fmt,
                  el->res_char, el->flags, footprint, refdes, value,
@@ -1514,12 +1524,11 @@ get_args (int argc, char ** argv)
       printf ("gsch2pcb: bad or incomplete arg: %s\n", argv[i]);
       usage ();
     }
-    else {
-      if (!g_str_has_suffix (argv[i], ".sch")) {
+    else if (!g_str_has_suffix (argv[i], ".sch")) {
         load_extra_project_files ();
         load_project (argv[i]);
-      }
-      else
+    }
+    else {
         add_schematic (argv[i]);
     }
   }
