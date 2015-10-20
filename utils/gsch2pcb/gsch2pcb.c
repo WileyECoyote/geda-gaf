@@ -955,59 +955,77 @@ add_elements (char * pcb_file)
 
     is_m4 = FALSE;
 
-    if ((el = pcb_element_line_parse (s)) != NULL)
+    if ((el = pcb_element_line_parse (s)) != NULL) {
       is_m4 = TRUE;
-    else
+    }
+    else { /* get the element */
       el = pkg_to_element (f_out, s);
+    }
 
     if (el && pcb_element_exists (el, TRUE)) {
       skipping = is_m4;
       pcb_element_free (el);
       continue;
     }
+
     if (!el || el->omit_PKG) {
       if (el) {
-
-      } else
+         pcb_element_free (el);
+      }
+      else {
         fputs (buf, f_out);
+      }
       continue;
     }
 
     if (!is_m4 || (is_m4 && force_element_files)) {
-      if (verbose && !is_m4)
+
+      if (verbose && !is_m4) {
         printf ("%s: need new file element for footprint  %s (value=%s)\n",
                 el->refdes, el->description, el->value);
-      if (verbose && is_m4 && force_element_files)
+      }
+
+      if (verbose && is_m4 && force_element_files) {
         printf
           ("%s: have m4 element %s, but trying to replace with a file element.\n",
            el->refdes, el->description);
+      }
+
       p = search_element_directories (el);
-      if (!p && verbose && is_m4 && force_element_files)
+
+      if (!p && verbose && is_m4 && force_element_files) {
         printf ("\tNo file element found.\n");
+      }
 
       if (p && insert_element (f_out, p,
-                               el->description, el->refdes, el->value)) {
+                               el->description, el->refdes, el->value))
+      {
         skipping = is_m4;
         is_m4 = FALSE;
         ++n_added_ef;
         if (verbose)
           printf ("%s: added new file element for footprint %s (value=%s)\n",
                   el->refdes, el->description, el->value);
-      } else if (!is_m4) {
+      }
+      else if (!is_m4) {
+
         fprintf (stderr,
                  "%s: can't find PCB element for footprint %s (value=%s)\n",
                  el->refdes, el->description, el->value);
+
         if (remove_unfound_elements && !fix_elements) {
           fprintf (stderr,
                    "So device %s will not be in the layout.\n", el->refdes);
           ++n_PKG_removed_new;
-        } else {
+        }
+        else {
           ++n_not_found;
           fputs (buf, f_out);   /* Copy PKG_ line */
         }
       }
       GEDA_FREE (p);
     }
+
     if (is_m4) {
       fputs (buf, f_out);
       ++n_added_m4;
@@ -1015,19 +1033,26 @@ add_elements (char * pcb_file)
         printf ("%s: added new m4 element for footprint   %s (value=%s)\n",
                 el->refdes, el->description, el->value);
     }
+
     pcb_element_free (el);
-    if (verbose)
+
+    if (verbose) {
       printf ("----\n");
-  }
+    }
+  }   /* wend read file */
+
   fclose (f_in);
   fclose (f_out);
 
   total = n_added_ef + n_added_m4 + n_not_found;
+
   if (total == 0)
     build_and_run_command ("rm %s", tmp_file);
   else
     build_and_run_command ("mv %s %s", tmp_file, pcb_file);
+
   GEDA_FREE (tmp_file);
+
   return total;
 }
 
@@ -1038,7 +1063,6 @@ update_element_descriptions (char * pcb_file, char * bak)
   GList *list;
   PcbElement *el, *el_exists;
   char *fmt, *tmp, *s, buf[1024];
-  // *command not used
 
   for (list = pcb_element_list; list; list = g_list_next (list)) {
     el = (PcbElement *) list->data;

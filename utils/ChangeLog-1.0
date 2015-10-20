@@ -5,7 +5,34 @@
       exiting main, along with all of the string file names reference by
       the list using g_list_free_full. Free pcb_new_file_name in main.
       Revise function pcb_element_line_parse to only set the element list
-      pointer to NULL if the line was not an Element line.
+      pointer to NULL if the line was not an Element line. Add missing call
+      to pcb_element_free in function add_elements, clean and reformat
+      code to improve readability.
+
+      Before:
+
+      LEAK SUMMARY:
+             definitely lost: 624 bytes in 94 blocks
+             indirectly lost: 171 bytes in 18 blocks
+               possibly lost: 0 bytes in 0 blocks
+             still reachable: 2,276 bytes in 18 blocks
+                  suppressed: 0 bytes in 0 blocks
+          Reachable blocks (those to which a pointer was found) are not shown.
+
+          ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
+
+      After:
+
+      LEAK SUMMARY:
+
+           definitely lost: 0 bytes in 0 blocks
+           indirectly lost: 0 bytes in 0 blocks
+             possibly lost: 0 bytes in 0 blocks
+           still reachable: 2,248 bytes in 16 blocks
+                suppressed: 0 bytes in 0 blocks
+        Reachable blocks (those to which a pointer was found) are not shown.
+
+        ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
