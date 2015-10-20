@@ -85,6 +85,12 @@ static char *sys_doc_path     = NULL;
 static char *sys_config_path  = NULL;
 static char *user_config_path = NULL;
 
+/*! \brief Free memory used by Libgeda Path Module.
+ *  \par Function Description
+ *  This function is public so that programs can use libgeda's path
+ *  module without calling libgeda_init. Programs that do so should
+ *  call this function before exiting.
+ */
 void f_path_free (void) {
   GEDA_FREE(sys_data_path);
   GEDA_FREE(sys_doc_path);
