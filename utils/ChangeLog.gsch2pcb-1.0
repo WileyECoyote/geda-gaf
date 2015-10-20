@@ -1,5 +1,15 @@
 gsch2pcb Changelog
 ------------------
+1.10
+---------
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Revised function load_extra_project_files to
+      call libgeda to get the user config directory instead of hard-coding
+      ".gEDA" so gsch2pcb can be XDG compliant if this option was compiled
+      into geda-gaf.
+
+------------------
 1.9.2
 ---------
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>

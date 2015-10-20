@@ -1,5 +1,12 @@
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gsch2pcb/gsch2pcb.c: Revised function load_extra_project_files to
+      call libgeda to get the user config directory instead of hard-coding
+      ".gEDA" so gsch2pcb can be XDG compliant if this option was compiled
+      into geda-gaf.
+
+2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * gsch2pcb/gsch2pcb.c: Unconditionally free verboseList in function
       run_gnetlist. Initialize schematics list in main and free before
       exiting main, along with all of the string file names reference by

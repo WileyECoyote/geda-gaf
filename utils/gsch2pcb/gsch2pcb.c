@@ -1395,8 +1395,9 @@ load_project (char * path)
 static void
 load_extra_project_files (void)
 {
+  const char *config_dir;
   char *path;
-  static _Bool done = FALSE;
+  static _Bool  done = FALSE;
 
   if (done)
     return;
@@ -1404,8 +1405,10 @@ load_extra_project_files (void)
   load_project ("/etc/gsch2pcb");
   load_project ("/usr/local/etc/gsch2pcb");
 
-  path = g_build_filename ((char *) g_get_home_dir (), ".gEDA",
-                           "gsch2pcb", NULL);
+  config_dir = f_path_user_config();
+
+  path = u_string_concat(config_dir, DIR_SEPARATOR_S, "gsch2pcb", NULL);
+
   load_project (path);
   GEDA_FREE (path);
 
@@ -1773,6 +1776,8 @@ int main (int argc, char **argv)
 
   if (pcb_element_list)
     g_list_free(pcb_element_list);
+
+  f_path_free();
 
   return exit_code;
 }
