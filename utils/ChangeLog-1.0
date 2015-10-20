@@ -1,7 +1,9 @@
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Unconditionally free verboseList in function
-      run_gnetlist.
+      run_gnetlist. Initialize schematics list in main and free before
+      exiting main, along with all of the string file names reference by
+      the list using g_list_free_full.
 
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 

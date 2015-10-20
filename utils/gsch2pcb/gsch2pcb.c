@@ -1536,6 +1536,8 @@ int main (int argc, char **argv)
   const char *pcbdata_path;
 
   sch_basename = NULL;
+  schematics   = NULL;
+
   pcbdata_path = getenv ("PCBDATA");  /* do not free return value */
 
   if (pcbdata_path != NULL) {
@@ -1730,6 +1732,9 @@ int main (int argc, char **argv)
   GEDA_FREE (bak_file_name);
 
   GEDA_FREE (sch_basename);
+
+  if (schematics)
+    g_list_free_full(schematics, g_free);
 
   if (pcb_element_list)
     g_list_free(pcb_element_list);
