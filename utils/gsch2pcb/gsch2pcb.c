@@ -29,7 +29,7 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.9"
+#define GSC2PCB_VERSION "1.10"
 
 #define DEFAULT_PCB_INC    "pcb.inc"
 
@@ -48,7 +48,6 @@ typedef struct
   _Bool still_exists, new_format, hi_res_format, quoted_flags, omit_PKG;
 }
 PcbElement;
-
 
 typedef struct
 {
@@ -196,7 +195,7 @@ build_and_run_command (const char *format, ...)
     i = 0;
 
     for (p = tmp; p; p = g_list_next (p)) {
-      args[i++] = (char*) p->data;
+      args[i++] = p->data;
       if (verbose)
         printf ("%s ", (char*)p->data);
     }
@@ -205,7 +204,7 @@ build_and_run_command (const char *format, ...)
       printf ("\n%s", SEP_STRING);
 
     if (g_spawn_sync (".",                  /* Working directory */
-                      args,                 /* argv */
+                      args,                /* argv */
                       NULL,                 /* envp */
                       G_SPAWN_SEARCH_PATH,  /* flags */
                       NULL,                 /* child_setup */
@@ -641,6 +640,7 @@ insert_element (FILE *f_out,     char *element_file,
     GEDA_FREE (str);
   }
   else {
+
     /* Scan the file to detect whether it is actually a PCB
      * layout. Assumes that a PCB layout will have a "PCB" line. */
     while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
@@ -744,13 +744,12 @@ search_element_directories (PcbElement * el)
 
   /* See comment before pkg_to_element() */
   if (el->pkg_name_fix) {
-    if (strchr (el->description, '-')) {
-      n1 = strlen (el->description);
-      n2 = strlen (el->pkg_name_fix);
-      str = el->description + n1 - n2 - 1;
 
-// printf("n1=%d n2=%d desc:%s fix:%s s:%s\n",
-//  n1, n2, el->description, el->pkg_name_fix, str);
+    if (strchr (el->description, '-')) {
+
+      n1  = strlen (el->description);
+      n2  = strlen (el->pkg_name_fix);
+      str = el->description + n1 - n2 - 1;
 
       if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix) {
         str = u_string_strndup (el->description, n1 - n2 - 1);
@@ -930,7 +929,6 @@ add_elements (char * pcb_file)
 {
   FILE *f_in, *f_out;
   PcbElement *el = NULL;
-  //char *command
   char *p, *tmp_file, *s, buf[1024];
   int total, paren_level = 0;
   _Bool is_m4, skipping = FALSE;
@@ -943,6 +941,7 @@ add_elements (char * pcb_file)
     GEDA_FREE (tmp_file);
     return 0;
   }
+
   while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
 
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
@@ -1197,7 +1196,7 @@ prune_elements (char * pcb_file, char * bak)
 }
 
 static void
-add_m4_file (char * arg)
+add_m4_file (char *arg)
 {
   char *s;
 
@@ -1277,7 +1276,7 @@ add_schematic (char *sch)
 }
 
 static void
-add_multiple_schematics (char * sch)
+add_multiple_schematics (char *sch)
 {
   /* parse the string using shell semantics */
   int      count;
@@ -1319,6 +1318,7 @@ parse_config (char *config, char *arg)
     printf ("    %s \"%s\"\n", config, arg ? arg : "");
 
   if (!strcmp (config, "remove-unfound") || !strcmp (config, "r")) {
+
     /* This is default behavior set in header section */
     remove_unfound_elements = TRUE;
     return 0;
@@ -1384,7 +1384,7 @@ parse_config (char *config, char *arg)
     sch_basename = u_string_strdup (arg);
 
   }
-  else {  /* else was unknown option*/
+  else {  /* else was an unknown option*/
     result = -1;
   }
 
@@ -1392,24 +1392,32 @@ parse_config (char *config, char *arg)
 }
 
 static void
-load_project (char * path)
+load_project (char *path)
 {
   FILE *f;
   char *s, buf[1024], config[32], arg[768];
 
   f = fopen (path, "r");
+
   if (!f)
     return;
   if (verbose)
     printf ("Reading project file: %s\n", path);
+
   while (fgets (buf, sizeof (buf), f)) {
+
     for (s = buf; *s == ' ' || *s == '\t' || *s == '\n'; ++s);
+
     if (!*s || *s == '#' || *s == '/' || *s == ';')
       continue;
+
     arg[0] = '\0';
+
     sscanf (s, "%31s %767[^\n]", config, arg);
+
     parse_config (config, arg);
   }
+
   fclose (f);
 }
 
@@ -1529,7 +1537,7 @@ usage ()
 }
 
 static void
-get_args (int argc, char ** argv)
+get_args (int argc, char **argv)
 {
   char *opt, *arg;
   int i, r;
@@ -1604,6 +1612,7 @@ int main (int argc, char **argv)
 
   }
   else {
+
     /* else try PCBDATADIR */
     m4_pcbdir = u_string_concat (PCBDATADIR, "/m4", NULL);
   }
