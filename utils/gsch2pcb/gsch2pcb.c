@@ -1784,6 +1784,7 @@ int main (int argc, char **argv)
     }
   }
 
+  GEDA_FREE (default_m4_pcbdir);
   GEDA_FREE (pcb_new_file_name);
   GEDA_FREE (net_file_name);
   GEDA_FREE (pins_file_name);

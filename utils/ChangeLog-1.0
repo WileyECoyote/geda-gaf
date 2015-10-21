@@ -8,7 +8,7 @@
       Add new function const char *get_home_dir as static inline, called by
       expand_dir and add_default_m4_files. The new function uses enviroment
       varible for target is LINUX. This is done to avoid slice allocations
-      by glib.
+      by glib. Fix indirect? leak; free default_m4_pcbdir in main.
 
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
