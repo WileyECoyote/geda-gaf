@@ -18,6 +18,8 @@
  *  MA 02110-1301 USA
  */
 
+#include <config.h>
+
 #define WITHOUT_GDK_PIX_BUFFER 1
 
 #include <geda_stat.h>
@@ -1208,33 +1210,52 @@ add_m4_file (char * arg)
   }
 }
 
-static char *
-expand_dir (char * dir)
+static inline const char *get_home_dir(void) {
+
+  char *home_dir;
+
+#ifdef OS_LINUX
+
+  home_dir = getenv ("HOME");
+
+#else
+
+  home = (char*) g_get_home_dir ();
+
+#endif
+
+  return home_dir;
+}
+
+static char *expand_dir (char *dir)
 {
-  char *s;
+  char *path;
 
-  if (dir == NULL)
-    s = NULL;
-  else if (*dir == '~')
-    s = g_build_filename ((char *) g_get_home_dir (), dir + 1, NULL);
-  else
-    s = u_string_strdup (dir);
+  if (dir == NULL) {
+    path = NULL;
+  }
+  else if (*dir == '~') {
 
-  return s;
+    path =  u_string_concat(get_home_dir(), DIR_SEPARATOR_S, dir + 1, NULL);
+  }
+  else {
+    path = u_string_strdup (dir);
+  }
+
+  return path;
 }
 
 static void
 add_default_m4_files (void)
 {
   char *path;
-  char *home;
 
-  home = getenv ("HOME");
-
-  path = g_build_filename (home, ".pcb", DEFAULT_PCB_INC, NULL);
+  path = u_string_concat(get_home_dir(), DIR_SEPARATOR_S,
+                       ".pcb", DIR_SEPARATOR_S, DEFAULT_PCB_INC, NULL);
 
   if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
     add_m4_file (path);
+
   GEDA_FREE (path);
 
   if (g_file_test (DEFAULT_PCB_INC, G_FILE_TEST_IS_REGULAR))

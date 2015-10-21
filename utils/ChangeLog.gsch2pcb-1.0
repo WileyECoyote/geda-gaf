@@ -1,13 +1,18 @@
 gsch2pcb Changelog
 ------------------
-1.10
+1.10.1
 ---------
-2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
+2015-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Revised function load_extra_project_files to
       call libgeda to get the user config directory instead of hard-coding
       ".gEDA" so gsch2pcb can be XDG compliant if this option was compiled
       into geda-gaf.
+
+      Add new function const char *get_home_dir as static inline, called by
+      expand_dir and add_default_m4_files. The new function uses enviroment
+      varible for target is LINUX. This is done to avoid slice allocations
+      by glib.
 
 ------------------
 1.9.2
