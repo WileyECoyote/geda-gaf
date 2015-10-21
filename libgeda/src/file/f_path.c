@@ -85,6 +85,7 @@ static char *sys_doc_path     = NULL;
 static char *sys_config_path  = NULL;
 static char *user_config_path = NULL;
 
+
 /*! \brief Free memory used by Libgeda Path Module.
  *  \par Function Description
  *  This function is public so that programs can use libgeda's path
@@ -247,21 +248,41 @@ const char *f_path_user_config () {
 
   if (user_config_path == NULL) {
 
+    const char *homedir;
+    const char *configdir;
+
 #if defined (GEDA_USE_XDG) && defined(_WIN32)
 
-    user_config_path = g_build_filename (g_get_user_config_dir(), GEDA_CONFIG_DIR, NULL);
+    configdir = GEDA_CONFIG_DIR;
+    homedir   = g_get_user_config_dir();
 
 #else
-    const char *homedir = getenv ("HOME");
+
+    configdir = USER_CONFIG_DIR;
+
+#ifdef OS_LINUX
+
+    homedir = getenv ("HOME");
+
+#else
+
+    homedir = (char*)g_get_home_dir();
+
+#endif
+
     if (homedir == NULL) {
+
       struct passwd *pw = getpwuid(getuid());
+
       if (pw) {
         homedir = pw->pw_dir;
       }
     }
 
-    user_config_path = g_build_filename(homedir, USER_CONFIG_DIR, NULL);
 #endif
+
+    user_config_path =
+    u_string_concat(homedir, DIR_SEPARATOR_S, configdir, DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
     if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
       user_config_path = u_string_strdup(f_path_sys_data ());

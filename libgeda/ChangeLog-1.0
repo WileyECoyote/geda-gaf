@@ -1,5 +1,12 @@
 2015-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_path.c: Revise function f_path_user_config to use
+      HOME environment variable when the target platform is Linux.
+      Change compilation conditionals slightly and and u_string_concat
+      to avoid using g_build_filename.
+
+2015-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/prototype.h: Revert making f_path_free private.
       This function should be accessible to functions so simple path
       function can be utilized without fully initializing libgeda.
