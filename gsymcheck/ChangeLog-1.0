@@ -5,6 +5,10 @@
       find "device=DRC_Directive" text but allow for future directive=attributes.
       the has_directive flag is used later in s_check_device().
 
+      Add check for ordinary symbols, i.e not graphical and not containing
+      a directive, symbols to have warning issued if the device value is not
+      found in the file name.
+
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.

@@ -100,6 +100,8 @@ int s_check_all(GedaToplevel *toplevel)
           u_log_message(_("Checking: %s\n"), page->filename);
         }
 
+        s_current->filename = page->filename;
+
         result = s_check_symbol (s_current, obj_list);
 
         if (!quiet_mode) {
@@ -543,8 +545,13 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
     message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
     ADD_WARN_MESSAGE(message);
   }
+
+  if (string && !graphical && not_directive) {
+
+    /* is an ordinary device attribute so check the file name */
+    if (u_string_stristr(s_current->filename, string) < 0) {
       s_current->device_attribute_incorrect=TRUE;
-      message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
+      message = u_string_strdup (_("Device not found in symbol filename\n"));
       ADD_WARN_MESSAGE(message);
     }
   }

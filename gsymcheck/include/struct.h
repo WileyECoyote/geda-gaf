@@ -39,12 +39,16 @@ struct st_symcheck {
   GList* error_messages;
 
   /* Influential Symbol Properties */
+  const char *filename;              /* Not freed, points to page */
+
   int   graphical_symbol;
   int   has_directive;               /* Set if at least one found */
+  /* device= check */
   char *device_attribute;
   int   device_attribute_incorrect;
-  int   multiple_device_attrib;
   int   duplicate_device_attrib;
+  int   missing_device_attrib;
+  int   multiple_device_attrib;
 
   /* pinseq= check */
   int missing_pinseq_attrib;
