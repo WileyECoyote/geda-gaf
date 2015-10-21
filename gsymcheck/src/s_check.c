@@ -125,6 +125,9 @@ int s_check_all(GedaToplevel *toplevel)
  *   checker (worker) functions and then prints the results and returns
  *   a yes/no result.
  *
+ *  \note The check for graphical must be performed before the device
+ *        check.
+ *
  *  \param [in] s_current Pointer to SYMCHECK structure to store results
  *  \param [in] obj_list  List of all objects associated with the symbol
  *
@@ -421,10 +424,10 @@ static void s_check_text (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check if symbol is Graphical object
  *  \par Function Description
- *
+ *   Checks for the existence of graphical attribute and set flag
+ *   in \a s_current if found. Does not set any error or warnings.
  */
 static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
 {

@@ -9,6 +9,8 @@
       a directive, symbols to have warning issued if the device value is not
       found in the file name.
 
+      Add Doxygen comments for s_check_graphical.
+
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.
