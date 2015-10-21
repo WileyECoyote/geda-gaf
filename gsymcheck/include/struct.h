@@ -38,9 +38,9 @@ struct st_symcheck {
   GList* warning_messages;
   GList* error_messages;
 
-  /* device= check */
-  int   missing_device_attrib;
+  /* Influential Symbol Properties */
   int   graphical_symbol;
+  int   has_directive;               /* Set if at least one found */
   char *device_attribute;
   int   device_attribute_incorrect;
   int   multiple_device_attrib;

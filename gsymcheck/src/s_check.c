@@ -46,6 +46,7 @@ static bool s_check_list_has_item(char **list , char *item);
 static void s_check_symbol_structure(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current);
 static void s_check_graphical(const GList *obj_list, SYMCHECK *s_current);
+static void s_check_directive(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_device(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pinseq(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pinnumber(const GList *obj_list, SYMCHECK *s_current);
@@ -140,6 +141,9 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
 
   /* check for graphical attribute */
   s_check_graphical (obj_list, s_current);
+
+  /* check for directive attribute */
+  s_check_directive (obj_list, s_current);
 
   /* check for device attribute */
   s_check_device (obj_list, s_current);
@@ -433,6 +437,35 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+
+/*! \brief Check if symbol has a Directive
+ *  \par Function Description
+ *   Checks for the existence of graphical attribute and set flag
+ *   in \a s_current if found. Does not set any error or warnings.
+ */
+static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
+{
+  const char  *directive = "Directive";
+  const GList *iter;
+
+  /* look for special graphical tag */
+
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
+
+    if (o_get_is_valid_attribute(o_current)) {
+
+      /* Check is attribute has directive */
+      const char *string = o_current->text->string;
+
+      if (u_string_stristr(string, directive) >= 0) {
+        s_current->has_directive = TRUE;
+      }
+    }
+  }
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -440,10 +473,14 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 {
-  const char *directive = "Directive";
   char *string;
   char *message;
   int   counter;
+  bool  graphical;
+  bool  not_directive;
+
+  graphical     =  s_current->graphical_symbol;
+  not_directive = !s_current->has_directive;
 
   /* search for device attributes */
 
@@ -466,7 +503,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
           s_current->duplicate_device_attrib++;
         }
         else {
-          if (u_string_stristr(string, directive) < 0) {
+          if (not_directive) {
             message = u_string_strdup (_("Found multiple device= attributes\n"));
             ADD_WARN_MESSAGE(message);
             s_current->multiple_device_attrib++;
@@ -474,7 +511,7 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
         }
       }
       else {
-        if (u_string_stristr(string, directive) < 0) {
+        if (not_directive) {
           message = u_string_strdup (_("Found multiple device= attributes\n"));
           ADD_WARN_MESSAGE(message);
           s_current->multiple_device_attrib++;
@@ -495,14 +532,17 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
   string = s_current->device_attribute;
 
   /* check for device = none for graphical symbols */
-  if (string && s_current->graphical_symbol && (strcmp(string, "none") == 0)) {
+  if (string && graphical && (strcmp(string, "none") == 0)) {
     s_current->device_attribute_incorrect=FALSE;
     message = u_string_strdup (_("Found graphical symbol, device=none\n"));
     ADD_INFO_MESSAGE(message);
   }
-  else if (s_current->graphical_symbol) {
+  else if (graphical && not_directive) {
     /* If graphical "device" is not a "Directive" then might be an error */
-    if (u_string_stristr(string, directive)) {
+    s_current->device_attribute_incorrect=TRUE;
+    message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
+    ADD_WARN_MESSAGE(message);
+  }
       s_current->device_attribute_incorrect=TRUE;
       message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
       ADD_WARN_MESSAGE(message);
