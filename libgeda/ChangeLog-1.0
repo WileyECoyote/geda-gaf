@@ -1,3 +1,8 @@
+2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Replace _LINUX with OS_LINUX, fix argument to
+      lockf; T_LOCK should be F_TLOCK.
+
 2015-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Revise function f_path_user_config to use

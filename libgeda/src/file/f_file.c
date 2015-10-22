@@ -29,18 +29,19 @@
 #include <config.h>
 
 #ifdef HAVE_FCNTL_H
-  #include <fcntl.h>
+# include <fcntl.h>
 #endif
 
 #include <stdio.h>
+
 #ifdef HAVE_UNISTD_H
-  #include <unistd.h>
+# include <unistd.h>
 #endif
 
 #include <sys/param.h>      /* MAXPATHLEN */
 
 #ifdef HAVE_ERRNO_H
-#include <errno.h>
+# include <errno.h>
 #endif
 
 #include "libgeda_priv.h"
@@ -75,7 +76,7 @@ int f_file_copy(const char *source, const char *target)
   const char *err_file = _("File error");
   const char *log_3SQ2 = "%s: \"%s\", %s\n";
 
-#if defined(_LINUX)
+#if defined(OS_LINUX)
   const char *err_lock = _("File lock error");
   const char *err_sys  = _("%s: attempting to lock/unlock file \"%s\"\n");
 #endif
@@ -110,7 +111,7 @@ int f_file_copy(const char *source, const char *target)
     }
     else {
 
-#if defined(_LINUX)
+#if defined(OS_LINUX)
       if (input > 0) {
         if (lockf(input, F_LOCK, 0) == -1) {
           free(buffer);
@@ -167,15 +168,18 @@ int f_file_copy(const char *source, const char *target)
         close(input);
       }
 
-#if defined(_LINUX)
+#if defined(OS_LINUX)
+
     /* Sanity-Check for Lock */
-      if (lockf(input, T_LOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
+      if (lockf(input, F_TLOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
         lockf(input, F_ULOCK, 0);
       }
       else {
         fprintf(stderr, err_sys, err_file, source);
       }
+
 #endif
+
     }
     free(buffer);
   }
