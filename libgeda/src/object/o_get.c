@@ -25,7 +25,6 @@
  *  This file contains the code used to retrieve the properties ot
  *  relations of <b>Objects</b>. The object is the basic type of all
  *  elements stored in schematic and symbol files.
- *
  */
 
 #include <config.h>
@@ -111,7 +110,6 @@ int o_get_capstyle (LINE_END end)
  *  \param [out]  angle2    cross hatch angle
  *
  *  \return TRUE on succes, FALSE otherwise
- *
  */
 bool o_get_fill_options(Object *object,
                         OBJECT_FILLING   *type, int *width,
@@ -238,6 +236,8 @@ bool o_get_is_selected (Object *object)
 /*! \brief Checks if an text string is valid attribute format
  *
  *  \par Function Description
+ *   Check for the presents of an ASCII_EQUAL_SIGN without adjacent
+ *   spaces characters in the text string.
  *
  *  \param object  Text Object to test
  *
@@ -320,7 +320,6 @@ LINE_END o_get_line_end (int capstyle)
  *  \param [out]  space     Spacing between dashes/dots.
  *
  *  \return TRUE on succes, FALSE otherwise
- *
  */
 bool o_get_line_options(Object *object,
                         LINE_END *end, LINE_TYPE *type,
@@ -422,16 +421,16 @@ int o_get_num_text_lines(const char *string)
 
 /*! \brief Get pointer to an Object's Attribute Value given the name
  *
- * \par Function Description
- *  Returns a pointer to the value of a named attribute belonging to object,
- *  the string belongs to libgeda and must not be freed. The value returned
- *  is for the first attribute found with the given \a name.
+ *  \par Function Description
+ *   Returns a pointer to the value of a named attribute belonging to object,
+ *   the string belongs to libgeda and must not be freed. The value returned
+ *   is for the first attribute found with the given \a name.
  *
- * \param [in] object Object whose attributes are to be searched
- * \param [in] name   The name of the attribute to search for
+ *  \param [in] object Object whose attributes are to be searched
+ *  \param [in] name   The name of the attribute to search for
  *
- * \return If objects is valid and has an attribute with a matching \a name
- *         then the value of the attribute is returned , otherwise NULL.
+ *  \return If objects is valid and has an attribute with a matching \a name
+ *          then the value of the attribute is returned , otherwise NULL.
  */
 const char *o_get_object_attrib_value (Object *object, const char *name)
 {
@@ -463,15 +462,15 @@ const char *o_get_object_attrib_value (Object *object, const char *name)
 
 /*! \brief Get List of Objects in List by Object Type.
  *
- * \par Function Description
- * Returns a glist of objects, that are members of the \a olist that match
- * the given \a type. The returned glist must be freed with g_list_free.
+ *  \par Function Description
+ *  Returns a glist of objects, that are members of the \a olist that match
+ *  the given \a type. The returned glist must be freed with g_list_free.
  *
- * \param [in] olist A GList of Objects to search
- * \param [in] type  The object type to search for
+ *  \param [in] olist A GList of Objects to search
+ *  \param [in] type  The object type to search for
  *
- * \return list of Objects if found, or %NULL if no member was the requested
- *         type or the input list was empty.
+ *  \return list of Objects if found, or %NULL if no member was the requested
+ *          type or the input list was empty.
  */
 GList* o_get_objects_by_type (GList *olist, int type)
 {
@@ -491,13 +490,13 @@ GList* o_get_objects_by_type (GList *olist, int type)
 
 /*! \brief Get the Page associated with an Object.
  *
- * \par Function Description
- * If \a object is on a page, the page is return, otherwise %NULL
- * is returned.
+ *  \par Function Description
+ *  If \a object is on a page, the page is return, otherwise %NULL
+ *  is returned.
  *
- * \param [in] object    The Object for which to get the Page Object.
+ *  \param [in] object    The Object for which to get the Page Object.
  *
- * \return page Object which owns \a object, or %NULL.
+ *  \return page Object which owns \a object, or %NULL.
  */
 Page *o_get_page (Object *object)
 {
@@ -506,13 +505,13 @@ Page *o_get_page (Object *object)
 
 /*! \brief Get an object's containing complex object.
  *
- * \par Function Description
- * If \a object is part of a complex #Object, returns that
- * #Object. Otherwise, returns %NULL.
+ *  \par Function Description
+ *  If \a object is part of a complex #Object, returns that
+ *  #Object. Otherwise, returns %NULL.
  *
- * \param [in] object    The Object for which to get the containing Object.
+ *  \param [in] object    The Object for which to get the containing Object.
  *
- * \return The complex Object which owns \a object, or %NULL.
+ *  \return The complex Object which owns \a object, or %NULL.
  */
 Object *o_get_parent (Object *object)
 {
@@ -531,13 +530,13 @@ Object *o_get_parent (Object *object)
 
 /*! \brief Get an object's containing object index.
  *
- * \par Function Description
- * If \a object is a sub object of another #Object, returns the
- * sid of the parent object. Otherwise, returns -1.
+ *  \par Function Description
+ *  If \a object is a sub object of another #Object, returns the
+ *  sid of the parent object. Otherwise, returns -1.
  *
- * \param [in] object    The Object for which to get the containing Object.
+ *  \param [in] object    The Object for which to get the containing Object.
  *
- * \return The complex Object which owns \a object, or %NULL.
+ *  \return The complex Object which owns \a object, or %NULL.
  */
 int o_get_parent_id (Object *object)
 {

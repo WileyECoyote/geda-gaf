@@ -719,10 +719,9 @@ o_attrib_find_floating_attribs (const GList *list)
 
 /*! \brief Find an attribute in a list.
  *  \par Function Description
- *  Search for attribute by name.
- *
- *  Counter is the n'th occurance of the attribute, and starts searching
- *  from zero.  Zero is the first occurance of an attribute.
+ *  Case sensitive search for attribute by name. Counter is the n'th
+ *  occurance of the attribute, and starts searching from zero.  Zero
+ *  is the first occurance of an attribute.
  *
  *  \param [in] list     GList of attributes to search.
  *  \param [in] name     Character string with attribute name to search for.
