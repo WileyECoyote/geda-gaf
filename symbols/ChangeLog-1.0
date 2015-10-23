@@ -2,8 +2,9 @@
 
     * cirrus/CS4270-1.sym: Clean symbol, add symversion=0.1
 
-    * Add 10 symbol files:
+    * Add 11 symbol files:
 
+        * atmel/AT28C64-1.sym,64Kx8 parallel EEPROM
         * cirrus/CS4330-1.sym,18 bit serial dual D/A converter
         * cirrus/CS4330-2.sym,18 bit serial dual D/A converter,SOIC8
         * cirrus/CS4331-1.sym,18 bit serial dual D/A converter,SOIC8
@@ -14,6 +15,7 @@
         * cirrus/CS8411-2.sym,Digtal audio interface receiver,SOIC28W
         * cirrus/CS8412-1.sym,Digtal audio interface receiver,DIP28
         * cirrus/CS8412-2.sym,Digtal audio interface receiver,SOIC28W
+
 
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
