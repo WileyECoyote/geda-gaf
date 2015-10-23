@@ -60,7 +60,7 @@ tests:
 	  $(SHELL) $(SRCDIR)/runtest.sh $$file $(BUILDDIR) $(SRCDIR); \
           if [ $$? -ne 0 ]; then \
 	     echo "$$base FAILED!"; \
-             fail=`expr $$pass + 1`; \
+             fail=`expr $$fail + 1`; \
 	   else \
 	     echo "$$base passed."; \
              pass=`expr $$pass + 1`; \
