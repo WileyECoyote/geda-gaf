@@ -1,3 +1,7 @@
+2015-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * cirrus/CS4270-1.sym: Clean symbol, add symversion=0.1
+
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename and 7 symbol files using UPPER case:
