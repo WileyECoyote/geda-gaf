@@ -47,6 +47,7 @@ static void s_check_symbol_structure(const GList *obj_list, SYMCHECK *s_current)
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current);
 static void s_check_graphical(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_directive(const GList *obj_list, SYMCHECK *s_current);
+static void s_check_description(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_device(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pinseq(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
@@ -150,6 +151,9 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
 
   /* check for directive attribute */
   s_check_directive (obj_list, s_current);
+
+  /* check for description attribute */
+  s_check_description (obj_list, s_current);
 
   /* check for device attribute */
   s_check_device (obj_list, s_current);
@@ -494,10 +498,49 @@ static void s_check_directive (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Performs checks of the description= attribute
  *  \par Function Description
- *
+ *   Checks for:
+ *  <DL>
+ *    <DT>Existence of Description attributes</DT>
+ *    <DT>Duplicate Device attribute values</DT>
+ *  </DL>
+ */
+static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
+{
+  char *message;
+  char *string;
+  int   counter;
+
+  /* look for special description tag */
+  for (counter = 0;
+      (string = o_attrib_search_floating_attribs_by_name (obj_list, "description", counter)) != NULL;
+       counter++)
+  {
+    if (counter == 0) { /* collect the first appearance */
+      s_current->description_attribute = u_string_strdup (string);
+      message = u_string_sprintf (_("Found description=%s\n"), string);
+      ADD_INFO_MESSAGE(message);
+    }
+    else { /* counter must be > 0 */
+
+      if (strlen(string) == strlen(s_current->description_attribute)) {
+        if (strcmp(s_current->description_attribute, string) == 0) {
+          message = u_string_sprintf (_("Found Duplicate description=%s attributes\n"), string);
+          ADD_ERROR_MESSAGE(message);
+          s_current->duplicate_descr_attribute++;
+        }
+      }
+    }
+    GEDA_FREE(string);
+  }
+
+  if (counter == 0) {
+    s_current->missing_descr_attrib = TRUE;
+    message = u_string_strdup (_("Missing description= attribute\n"));
+    ADD_ERROR_MESSAGE(message);
+  }
+}
  */
 static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 {

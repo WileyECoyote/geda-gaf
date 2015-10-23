@@ -43,6 +43,12 @@ struct st_symcheck {
 
   int   graphical_symbol;
   int   has_directive;               /* Set if at least one found */
+
+  /* description= check */
+  int   missing_descr_attrib;
+  char *description_attribute;
+  int   duplicate_descr_attribute;
+
   /* device= check */
   char *device_attribute;
   int   device_attribute_incorrect;

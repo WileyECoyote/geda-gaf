@@ -126,6 +126,7 @@ void s_symstruct_reset(SYMCHECK *s_current)
 
     GList *list;
 
+    GEDA_FREE(s_current->description_attribute);
     GEDA_FREE(s_current->device_attribute);
 
     /* release memory allocated for message strings */

@@ -6,6 +6,8 @@
       message in s_check_slotdef because all of the error containing this
       text all continue. Revise function s_check_missing_attribute to
       return boolean TRUE if found. Resequence functions.
+      Add s_check_description new check for missing description and duplicates
+      but not multiples.
 
     * tests/Makefile.am: Organize symbol files for test and test outputs into
       separate subdirectories.
