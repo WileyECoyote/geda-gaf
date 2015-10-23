@@ -6,9 +6,11 @@
       message in s_check_slotdef because all of the error containing this
       text all continue.
 
-2015-10-22 Wiley E. Hill <wileyhill@gmail.com>
+    * tests/Makefile.am: Organize symbol files for test and test outputs into
+      separate subdirectories.
 
-    * src/s_check.c: Add check for missing or duplicated description attributes.
+    * tests/runtest.sh: Update location of inputs and reference outputs locations
+      with subdirectories and use base name without the .sym extension.
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 

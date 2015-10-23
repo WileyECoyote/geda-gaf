@@ -1,0 +1,66 @@
+v 20151031 2
+L 300 200 300 800 3 0 0 0 -1 -1
+T 300 0 9 8 1 0 0 0 1
+7400
+L 300 800 700 800 3 0 0 0 -1 -1
+T 300 1100 5 10 0 0 0 0 1
+device=connections3
+T 1000 1900 5 10 0 0 0 0 1
+footprint=unspecified
+T 300 1900 5 10 0 0 0 0 1
+slot=1
+T 300 2100 5 10 0 0 0 0 1
+numslots=4
+T 300 2300 5 10 0 0 0 0 1
+slotdef=1:1,2,3
+T 300 2500 5 10 0 0 0 0 1
+slotdef=2:4,5,6
+T 300 2700 5 10 0 0 0 0 1
+slotdef=3:9,10,8
+T 300 2900 5 10 0 0 0 0 1
+slotdef=4:12,13,11
+L 300 200 700 200 3 0 0 0 -1 -1
+A 700 500 300 270 180 3 0 0 0 -1 -1
+V 1050 500 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 1100 500 1300 500 1 0 1
+{
+T 1185 550 5 8 0 1 0 0 1
+pinseq=3
+T 1185 550 5 8 1 1 0 0 1
+pinnumber=3
+T 785 450 5 8 0 1 0 0 1
+pinlabel=C
+T 1085 350 5 8 0 1 0 0 1
+pintype=out
+}
+P 300 300 0 300 1 0 1
+{
+T 100 350 5 8 0 1 0 0 1
+pinseq=2
+T 100 350 5 8 1 1 0 0 1
+pinnumber=2
+T 400 250 5 8 0 1 0 0 1
+pinlabel=B
+T 100 150 5 8 0 1 0 0 1
+pintype=in
+}
+P 300 700 0 700 1 0 1
+{
+T 100 750 5 8 0 1 0 0 1
+pinseq=1
+T 100 750 5 8 1 1 0 0 1
+pinnumber=1
+T 400 650 5 8 0 1 0 0 1
+pinlabel=A
+T 100 550 5 8 0 1 0 0 1
+pintype=in
+}
+T 300 900 8 10 1 1 0 0 1
+refdes=U?
+U 1300 500 1300 1000 10 0
+T 300 1500 5 10 0 0 0 0 1
+description=gsymcheck test s_check_nets_buses
+T 300 1700 5 10 0 0 0 0 1
+documentation=127.0.0.0
+T 300 1300 5 10 0 0 0 0 1
+description=gsymcheck test s_check_connections

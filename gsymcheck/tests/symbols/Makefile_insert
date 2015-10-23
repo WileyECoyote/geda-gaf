@@ -1,0 +1,52 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+			7400_buses.sym \
+			7400_connections1.sym \
+			7400_connections2.sym \
+			7400_connections3.sym \
+			7400_correct.sym \
+			7400_duplicate_device.sym \
+			7400_duplicate_net.sym \
+			7400_duplicate_pinnumber.sym \
+			7400_duplicate_pinseq.sym \
+			7400_graphical_correct.sym \
+			7400_graphical_incorrect.sym \
+			7400_invalid_slotdef1.sym \
+			7400_invalid_slotdef2.sym \
+			7400_invalid_slotdef3.sym \
+			7400_invalid_slotdef4.sym \
+			7400_labelinside.sym \
+			7400_lots_of_errors.sym \
+			7400_many_slotdefs.sym \
+			7400_misplaced_attributes.sym \
+			7400_missing_device.sym \
+			7400_missing_footprint.sym \
+			7400_missing_numslots.sym \
+			7400_missing_pinlabel.sym \
+			7400_missing_pinnumber.sym \
+			7400_missing_pinseq.sym \
+			7400_missing_slotdef.sym \
+			7400_multiple_device.sym \
+			7400_multiple_footprint.sym \
+			7400_multiple_pinlabel.sym \
+			7400_multiple_pinnumber.sym \
+			7400_multiple_pinseq.sym \
+			7400_multiple_pintype.sym \
+			7400_multiple_refdes.sym \
+			7400_nameinside.sym \
+			7400_nets.sym \
+			7400_noslots.sym \
+			7400_oldpins.sym \
+			7400_oldslot.sym \
+			7400_old_symbol.sym \
+			7400_pin_offgrid.sym \
+			7400_pintypes.sym \
+			7400_text_errors.sym \
+			7400_typeinside.sym \
+			7400_urefinside.sym \
+			7400_zero_pinnumber.sym \
+			7400_zero_pinseq.sym \
+			7400_zero_slotnum.sym \
+			7400_zero_slots.sym
+

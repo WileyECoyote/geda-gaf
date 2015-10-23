@@ -19,8 +19,8 @@ export TESTDIR
 
 symbasename=`basename $INPUT .sym`
 
-in="${INPUT}"
-ref="${SRCDIR}/${symbasename}.output"
+in="${SRCDIR}/symbols/${symbasename}.sym"
+ref="${SRCDIR}/output/${symbasename}.output"
 new="${rundir}/new_${symbasename}.output"
 tmpfile=${rundir}/tmp$$
 
