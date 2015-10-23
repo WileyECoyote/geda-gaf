@@ -1,3 +1,16 @@
+2015-10-22  Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve BUILD System Maintainence.
+
+    * docs/Makefile.am: Automatically update Copyright in man pages.
+
+    * Add @YEAR@ tag in copyright section.
+
+          * docs/gsym-attribute.1.in
+          * docs/geda-snap-grid.1.in
+          * docs/gsym-set-visibility.1.in
+          * docs/gsym-set-font-size.1.in
+
 2015-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Replaced function geda_toplevel_get_page with

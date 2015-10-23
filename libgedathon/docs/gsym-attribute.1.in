@@ -70,16 +70,16 @@ https://bugs.launchpad.net/geda/gsym-attribute/+filebug
 .SH AUTHOR
 Wiley Edward Hill < wileyhill dot gmail dot com >
 
-.SH SEE ALSO
-.BR gsym-set-font-size (1) gsym-set-visibility (1) geda-snap-grid (1)
-
 .SH COPYRIGHT
 .nf
-Copyright \(co 2015 Wiley Edward Hill.  License GPLv3+: GNU GPL
+Copyright \(co @YEAR@ Wiley Edward Hill.  License GPLv3+: GNU GPL
 version 3.  Please see the `COPYING' file included with this
 program for full details.
 .PP
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+.BR gsym-set-font-size (1) gsym-set-visibility (1) geda-snap-grid (1)
 
 .
