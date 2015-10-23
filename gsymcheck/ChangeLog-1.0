@@ -2,6 +2,10 @@
 
    ** tests/Makefile.am: Fix fail count
 
+   ** src/s_check.c: Update error message; remove "not continuing" from
+      message in s_check_slotdef because all of the error containing this
+      text all continue.
+
 2015-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Add check for missing or duplicated description attributes.

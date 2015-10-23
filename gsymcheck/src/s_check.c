@@ -969,19 +969,17 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
     if (!slotnum) {
 
-      message = u_string_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
-        ADD_ERROR_MESSAGE(message);
-        s_current->slotting_errors++;
-        error_parsing = TRUE;
-        continue;
+      message = u_string_sprintf (_("Invalid slotdef=%s attributes\n"), slotdef);
+      ADD_ERROR_MESSAGE(message);
+      s_current->slotting_errors++;
+      error_parsing = TRUE;
+      continue;
     }
 
     if (strcmp(slotnum, "0") == 0) {
-      message = u_string_sprintf (
-        _("Found a zero slot in slotdef=%s\n"),
-          slotdef);
-        ADD_ERROR_MESSAGE(message);
+      message = u_string_sprintf (_("Found a zero slot in slotdef=%s\n"),
+                                  slotdef);
+      ADD_ERROR_MESSAGE(message);
     }
 
     slot = atoi(slotnum);
@@ -990,28 +988,28 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     /* make sure that the slot # is less than the number of slots */
     if (slot > s_current->numslots) {
       sprintf(tempstr1, "%d", slot);
-      message = u_string_sprintf (
-        _("Slot %s is larger then the maximum number (%s) of slots\n"),
-          tempstr1, numslots_str);
-        ADD_ERROR_MESSAGE(message);
-        s_current->slotting_errors++;
+      message = u_string_sprintf
+      (_("Slot %s is larger then the maximum number (%s) of slots\n"),
+       tempstr1, numslots_str);
+      ADD_ERROR_MESSAGE(message);
+      s_current->slotting_errors++;
     }
 
     /* skip over the : */
     pins = strchr(slotdef, ':');
     if (!pins) {
-      message = u_string_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
-        ADD_ERROR_MESSAGE(message);
-        s_current->slotting_errors++;
-        error_parsing = TRUE;
-        continue;
+      message = u_string_sprintf
+      (_("Invalid slotdef=%s attributes\n"), slotdef);
+      ADD_ERROR_MESSAGE(message);
+      s_current->slotting_errors++;
+      error_parsing = TRUE;
+      continue;
     }
 
     pins++;  /* get past that : */
     if (!pins) {
       message = u_string_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        _("Invalid slotdef=%s attributes\n"), slotdef);
         ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
@@ -1020,7 +1018,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
     if (*pins == '\0') {
       message = u_string_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        _("Invalid slotdef=%s attributes\n"), slotdef);
         ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
