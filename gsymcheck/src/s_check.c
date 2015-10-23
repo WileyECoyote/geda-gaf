@@ -49,6 +49,7 @@ static void s_check_graphical(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_directive(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_device(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pinseq(const GList *obj_list, SYMCHECK *s_current);
+static void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pinnumber(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_pin_ongrid(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_slotdef(const GList *obj_list, SYMCHECK *s_current);
@@ -56,9 +57,9 @@ static void s_check_oldpin(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_oldslot(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_nets_buses(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_connections(const GList *obj_list, SYMCHECK *s_current);
-static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current);
+static bool s_check_missing_attribute(Object *object, const char *attribute, SYMCHECK *s_current);
 static void s_check_missing_attributes(const GList *obj_list, SYMCHECK *s_current);
-static void s_check_pintype(const GList *obj_list, SYMCHECK *s_current);
+
 
 /*! \brief Wrapper to execute s_check_symbol for each page
  *  \par Function Description
@@ -156,17 +157,17 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
   /* check for missing attributes */
   s_check_missing_attributes (obj_list, s_current);
 
-  /* check for pintype attribute (and multiples) on all pins */
-  s_check_pintype (obj_list, s_current);
-
-  /* check for pinseq attribute (and multiples) on all pins */
-  s_check_pinseq (obj_list, s_current);
+  /* check for whether all pins are on grid */
+  s_check_pin_ongrid (obj_list, s_current);
 
   /* check for pinnumber attribute (and multiples) on all pins */
   s_check_pinnumber (obj_list, s_current);
 
-  /* check for whether all pins are on grid */
-  s_check_pin_ongrid (obj_list, s_current);
+  /* check for pinseq attribute (and multiples) on all pins */
+  s_check_pinseq (obj_list, s_current);
+
+  /* check for pintype attribute (and multiples) on all pins */
+  s_check_pintype (obj_list, s_current);
 
   /* check for slotdef attribute on all pins (if numslots exists) */
   s_check_slotdef (obj_list, s_current);
@@ -443,6 +444,27 @@ static void s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
+/*! \brief Check if object in list have a connection and report error
+ *  \par Function Description
+ *  symbol files should not have internal connections.
+ */
+static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
+{
+  const GList *iter;
+  char *message;
+
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
+
+    if (o_current->conn_list) {
+      message =
+      u_string_strdup (_("Found a connection inside a symbol\n"));
+      ADD_ERROR_MESSAGE(message);
+      s_current->found_connection++;
+    }
+  }
+}
 
 /*! \brief Check if symbol has a Directive
  *  \par Function Description
@@ -531,157 +553,38 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
     /* did not find device= attribute */
     message = u_string_strdup (_("Missing device= attribute\n"));
     ADD_ERROR_MESSAGE(message);
-    s_current->missing_device_attrib=TRUE;
+    s_current->missing_device_attrib = TRUE;
     /* s_current->device_attribute was initialized to NULL */
   }
+  else {
 
-  string = s_current->device_attribute;
+    string = s_current->device_attribute;
 
-  /* check for device = none for graphical symbols */
-  if (string && graphical && (strcmp(string, "none") == 0)) {
-    s_current->device_attribute_incorrect=FALSE;
-    message = u_string_strdup (_("Found graphical symbol, device=none\n"));
-    ADD_INFO_MESSAGE(message);
-  }
-  else if (graphical && not_directive) {
-    /* If graphical "device" is not a "Directive" then might be an error */
-    s_current->device_attribute_incorrect=TRUE;
-    message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
-    ADD_WARN_MESSAGE(message);
-  }
-
-  if (string && !graphical && not_directive) {
-
-    /* is an ordinary device attribute so check the file name */
-    if (u_string_stristr(s_current->filename, string) < 0) {
+    /* check for device = none for graphical symbols */
+    if (string && graphical && (strcmp(string, "none") == 0)) {
+      s_current->device_attribute_incorrect=FALSE;
+      message = u_string_strdup (_("Found graphical symbol, device=none\n"));
+      ADD_INFO_MESSAGE(message);
+    }
+    else if (graphical && not_directive) {
+      /* If graphical "device" is not a "Directive" then might be an error */
       s_current->device_attribute_incorrect=TRUE;
-      message = u_string_strdup (_("Device not found in symbol filename\n"));
+      message = u_string_strdup (_("Found graphical symbol, device= should be set to none\n"));
       ADD_WARN_MESSAGE(message);
     }
-  }
 
-  /* string is not freed here, points to s_current->device_attribute */
-}
+    if (string && !graphical && not_directive) {
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
-{
-  char *string;
-  int found_first=FALSE;
-  int missing_pinseq_attrib_sum=0;
-  int multiple_pinseq_attrib_sum=0;
-  int counter=0;
-
-  GList *found_numbers = NULL;
-  GList *ptr1 = NULL;
-  GList *ptr2 = NULL;
-  const GList *iter;
-  char *number;
-  char *message;
-
-  for (iter = obj_list; iter != NULL; iter = iter->next) {
-
-    Object *o_current = iter->data;
-
-    if (o_current->type == OBJ_PIN) {
-
-      missing_pinseq_attrib_sum = 0;
-      multiple_pinseq_attrib_sum = 0;
-      found_first = FALSE;
-      counter = 0;
-
-      string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
-                                                       counter);
-      if (!string) {
-
-        message = u_string_strdup (_("Missing pinseq= attribute\n"));
-        ADD_ERROR_MESSAGE(message);
-        missing_pinseq_attrib_sum++;
+      /* is an ordinary device attribute so check the file name */
+      if (u_string_stristr(s_current->filename, string) < 0) {
+        s_current->device_attribute_incorrect=TRUE;
+        message = u_string_strdup (_("Device not found in symbol filename\n"));
+        ADD_WARN_MESSAGE(message);
       }
-
-      while (string) {
-
-        message = u_string_sprintf (_("Found pinseq=%s attribute\n"), string);
-        ADD_INFO_MESSAGE(message);
-
-        number = u_string_strdup (string);
-
-        if (strcmp(number, "0") == 0) {
-          message = u_string_strdup (_("Found pinseq=0 attribute\n"));
-          ADD_ERROR_MESSAGE(message);
-        }
-
-        if (found_first) {
-          message = u_string_sprintf (
-            _("Found multiple pinseq=%s attributes on one pin\n"),
-              string);
-            ADD_ERROR_MESSAGE(message);
-            multiple_pinseq_attrib_sum++;
-        }
-
-        GEDA_FREE(string);
-
-        /* this is the first attribute found */
-        if (!found_first) {
-          found_numbers = g_list_append(found_numbers, number);
-          found_first=TRUE;
-        } else {
-          GEDA_FREE(number);
-        }
-
-        counter++;
-        string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
-                                                         counter);
-      }
-
-      s_current->missing_pinseq_attrib += missing_pinseq_attrib_sum;
-      s_current->multiple_pinseq_attrib += multiple_pinseq_attrib_sum;
     }
 
+    /* string is not freed here, points to s_current->device_attribute */
   }
-
-  ptr1 = found_numbers;
-
-  while (ptr1) {
-
-    char *string = (char *) ptr1->data;
-    int found = 0;
-
-    ptr2 = found_numbers;
-
-    while(ptr2 && string) {
-
-      char *current = (char *) ptr2->data;
-
-      if (current && strcmp(string, current) == 0) {
-        found++;
-      }
-
-      ptr2 = g_list_next(ptr2);
-    }
-
-    if (found > 1) {
-
-      message = u_string_sprintf (
-        _("Found duplicate pinseq=%s attribute in the symbol\n"), string);
-        ADD_ERROR_MESSAGE(message);
-        s_current->duplicate_pinseq_attrib++;
-    }
-
-    ptr1 = g_list_next(ptr1);
-  }
-
-  ptr1 = found_numbers;
-  while (ptr1)
-  {
-    GEDA_FREE(ptr1->data);
-    ptr1 = g_list_next(ptr1);
-  }
-  g_list_free(found_numbers);
 }
 
 /*! \todo Finish function documentation!!!
@@ -847,6 +750,181 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   g_list_free(pin_numbers);
   g_list_foreach(net_numbers, (GFunc) g_free, NULL);
   g_list_free(net_numbers);
+}
+
+/*! \brief Performs checks of the pinseq= attribute
+ *  \par Function Description
+ *   Checks for:
+ *  <DL>
+ *    <DT>Pins missing a pinseq attributes</DT>
+ *    <DT>pinseq attributes with value zero</DT>
+ *    <DT>Duplicate pinseq attribute values</DT>
+ *    <DT>Multiple pinseq attributes</DT>
+ *  </DL>
+ */
+static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
+{
+  char *string;
+  int found_first=FALSE;
+  int missing_pinseq_attrib_sum=0;
+  int multiple_pinseq_attrib_sum=0;
+  int counter=0;
+
+  GList *found_numbers = NULL;
+  GList *ptr1 = NULL;
+  GList *ptr2 = NULL;
+  const GList *iter;
+  char  *number;
+  char  *message;
+
+  /* Loop through object list and look for pins */
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
+
+    if (o_current->type == OBJ_PIN) {
+
+      missing_pinseq_attrib_sum = 0;
+      multiple_pinseq_attrib_sum = 0;
+      found_first = FALSE;
+      counter = 0;
+
+      string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
+                                                       counter);
+      if (!string) {
+
+        message = u_string_strdup (_("Missing pinseq= attribute\n"));
+        ADD_ERROR_MESSAGE(message);
+        missing_pinseq_attrib_sum++;
+      }
+
+      while (string) {
+
+        message = u_string_sprintf (_("Found pinseq=%s attribute\n"), string);
+        ADD_INFO_MESSAGE(message);
+
+        number = u_string_strdup (string);
+
+        if (strcmp(number, "0") == 0) {
+          message = u_string_strdup (_("Found pinseq=0 attribute\n"));
+          ADD_ERROR_MESSAGE(message);
+        }
+
+        if (found_first) {
+          message = u_string_sprintf (
+            _("Found multiple pinseq=%s attributes on one pin\n"),
+              string);
+            ADD_ERROR_MESSAGE(message);
+            multiple_pinseq_attrib_sum++;
+        }
+
+        GEDA_FREE(string);
+
+        /* this is the first attribute found */
+        if (!found_first) {
+          found_numbers = g_list_append(found_numbers, number);
+          found_first=TRUE;
+        }
+        else {
+          GEDA_FREE(number);
+        }
+
+        counter++;
+        string = o_attrib_search_object_attribs_by_name (o_current, "pinseq",
+                                                         counter);
+      }
+
+      s_current->missing_pinseq_attrib += missing_pinseq_attrib_sum;
+      s_current->multiple_pinseq_attrib += multiple_pinseq_attrib_sum;
+    }
+  }
+
+  ptr1 = found_numbers;
+
+  while (ptr1) {
+
+    char *string = (char *) ptr1->data;
+    int found = 0;
+
+    ptr2 = found_numbers;
+
+    while(ptr2 && string) {
+
+      char *current = (char *) ptr2->data;
+
+      if (current && strcmp(string, current) == 0) {
+        found++;
+      }
+
+      ptr2 = g_list_next(ptr2);
+    }
+
+    if (found > 1) {
+
+      message = u_string_sprintf (
+        _("Found duplicate pinseq=%s attribute in the symbol\n"), string);
+        ADD_ERROR_MESSAGE(message);
+        s_current->duplicate_pinseq_attrib++;
+    }
+
+    ptr1 = g_list_next(ptr1);
+  }
+
+  ptr1 = found_numbers;
+
+  while (ptr1) {
+    GEDA_FREE(ptr1->data);
+    ptr1 = g_list_next(ptr1);
+  }
+
+  g_list_free(found_numbers);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
+{
+  const GList *iter;
+  int   counter;
+  bool  done;
+  char *pintype;
+  char *message;
+
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
+
+    if (o_current->type == OBJ_PIN) {
+
+      counter = 0;
+      done    = FALSE;
+
+      do {
+
+        pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter);
+
+        if (pintype != NULL) {
+
+          message = u_string_sprintf(_("Found pintype=%s attribute\n"), pintype);
+          ADD_INFO_MESSAGE(message);
+
+          if (geda_pin_lookup_etype(pintype) == PIN_ELECT_VOID) {
+            message = u_string_sprintf (_("Unknown pintype=%s attribute\n"), pintype);
+            ADD_ERROR_MESSAGE(message);
+          }
+
+          GEDA_FREE(pintype);
+        }
+        else {
+          done = TRUE;
+        }
+        counter++;
+      } while (!done);
+    }
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -1296,106 +1374,42 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
  *  \par Function Description
  *
  */
-static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
-{
-  const GList *iter;
-  char *message;
-
-  for (iter = obj_list; iter != NULL; iter = iter->next) {
-
-    Object *o_current = iter->data;
-
-    if (o_current->type == OBJ_NET) {
-
-      message =
-      u_string_strdup (_("Found a net inside a symbol\n"));
-      ADD_ERROR_MESSAGE(message);
-      s_current->found_net++;
-    }
-
-    if (o_current->type == OBJ_BUS) {
-
-      message = u_string_strdup (_("Found a bus inside a symbol\n"));
-      ADD_ERROR_MESSAGE(message);
-      s_current->found_bus++;
-    }
-
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
-{
-  const GList *iter;
-  char *message;
-
-  for (iter = obj_list; iter != NULL; iter = iter->next) {
-
-    Object *o_current = iter->data;
-
-    if (o_current->conn_list) {
-      message =
-      u_string_strdup (_("Found a connection inside a symbol\n"));
-      ADD_ERROR_MESSAGE(message);
-      s_current->found_connection++;
-    }
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
+static bool s_check_missing_attribute(Object *object, const char *attribute, SYMCHECK *s_current)
 {
   char *string;
-  int found_first=FALSE;
+  int found;
   int counter=0;
   char *message;
-
-  if (!attribute) {
-    return;
-  }
 
   string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
 
   if (!string) {
-
-    message = u_string_sprintf (
-      _("Missing %s= attribute\n"),
-        attribute);
-      ADD_WARN_MESSAGE(message);
+    message = u_string_sprintf (_("Missing %s= attribute\n"), attribute);
+    ADD_WARN_MESSAGE(message);
+    found=FALSE;
   }
+  else {
 
-  while (string) {
-
-    if (found_first) {
-      message = u_string_sprintf (
-        _("Found multiple %s=%s attributes on one pin\n"),
-          attribute, string);
-        ADD_ERROR_MESSAGE(message);
-    }
-
-    /* this is the first attribute found */
-    if (!found_first) {
-
-      message = u_string_sprintf (
-        _("Found %s=%s attribute\n"), attribute, string);
-        ADD_INFO_MESSAGE(message);
-        found_first=TRUE;
-    }
-
+    /* this is the first time attribute was found */
+    message = u_string_sprintf (_("Found %s=%s attribute\n"), attribute, string);
+    ADD_INFO_MESSAGE(message);
     GEDA_FREE(string);
-
+    found = TRUE;
     counter++;
     string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
   }
 
+  while (string) {
+
+    message = u_string_sprintf (_("Found multiple %s=%s attributes\n"), attribute, string);
+    ADD_ERROR_MESSAGE(message);
+
+    GEDA_FREE(string);
+    counter++;
+    string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
+  }
+
+  return found;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1403,8 +1417,7 @@ static void s_check_missing_attribute(Object *object, char *attribute, SYMCHECK 
  *  \par Function Description
  *
  */
-void
-s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
+void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
   char *message;
@@ -1414,7 +1427,9 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
     Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
+
       s_check_missing_attribute(o_current, "pinlabel", s_current);
+
       s_check_missing_attribute(o_current, "pintype", s_current);
     }
 
@@ -1456,53 +1471,35 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
     message = u_string_strdup (_("Multiple refdes= attributes found\n"));
     ADD_ERROR_MESSAGE(message);
   }
-
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check for Net or Bus objects in list and report errors
  *  \par Function Description
- *
+ *   Net and Bus object are not allowed inside of symbols
  */
-static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
+static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  int   counter;
-  bool  done;
-  char *pintype;
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
     Object *o_current = iter->data;
 
-    if (o_current->type == OBJ_PIN) {
+    if (o_current->type == OBJ_NET) {
 
-      counter = 0;
-      done    = FALSE;
-
-      do {
-
-        pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter);
-
-        if (pintype != NULL) {
-
-          message = u_string_sprintf(_("Found pintype=%s attribute\n"), pintype);
-          ADD_INFO_MESSAGE(message);
-
-          if (geda_pin_lookup_etype(pintype) == PIN_ELECT_VOID) {
-            message = u_string_sprintf (_("Unknown pintype=%s attribute\n"), pintype);
-            ADD_ERROR_MESSAGE(message);
-          }
-
-          GEDA_FREE(pintype);
-        }
-        else {
-          done = TRUE;
-        }
-        counter++;
-      } while (!done);
-
+      message =
+      u_string_strdup (_("Found a net inside a symbol\n"));
+      ADD_ERROR_MESSAGE(message);
+      s_current->found_net++;
     }
+
+    if (o_current->type == OBJ_BUS) {
+
+      message = u_string_strdup (_("Found a bus inside a symbol\n"));
+      ADD_ERROR_MESSAGE(message);
+      s_current->found_bus++;
+    }
+
   }
 }

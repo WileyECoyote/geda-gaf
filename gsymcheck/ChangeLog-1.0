@@ -4,7 +4,8 @@
 
    ** src/s_check.c: Update error message; remove "not continuing" from
       message in s_check_slotdef because all of the error containing this
-      text all continue.
+      text all continue. Revise function s_check_missing_attribute to
+      return boolean TRUE if found. Resequence functions.
 
     * tests/Makefile.am: Organize symbol files for test and test outputs into
       separate subdirectories.
