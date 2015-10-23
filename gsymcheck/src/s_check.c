@@ -1027,21 +1027,16 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   char *slotnum = NULL;
   char *pins = NULL;
   char *temp = NULL;
-  char numslots_str[10];
-  int slot;
-  int i,j;
+  char  numslots_str[10];
+  int   slot;
+  int   i,j;
   char *message;
-  char tempstr1[10];
+  char  tempstr1[10];
 
   /*  pinlist will store the pin definitions for each slot */
   /* example: pinlist[0] = 3,2,8,4,1 ; pinlist[1] = 5,6,8,4,7 */
   char **pinlist = NULL;
-  int n,m;
-  char *pin;
-  char *cmp;
-  int match;
   bool error_parsing = FALSE;
-  int errors_found = 0;
 
   /* look for numslots to see if this symbol has slotting info */
   value = o_attrib_search_floating_attribs_by_name (obj_list, "numslots", 0);
@@ -1212,7 +1207,9 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   }
   else {
 
-    /* Validate that pinslist does not contain a null entry.  If any entry */
+    int  errors_found = 0;
+
+    /* Validate that pinslist does not contain a null entry. If any entry */
     /* is null, that means the slotdef= attribute was malformed to start */
     /* with. */
     for (i = 0; i < s_current->numslots; i++) {
@@ -1234,13 +1231,21 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
       for (i = 0; i < s_current->numslots; i++) {
 
+        int n,m;
+
         for (n = 1; n <= s_current->numpins; n++) {
 
-         /* Get the number of one pin */
+          char *cmp;
+          char *pin;
+          int   match;
+
+          /* Get the number of one pin */
           pin = u_string_split(pinlist[i], ',', n);
 
           if (pin && *pin) {
+
             match = FALSE;
+
             for (j = i - 1; j >= 0 && !match; j--) {
               for (m = 1; m <= s_current->numpins && !match; m++) {
                 /* Get the number of the other pin */
@@ -1251,6 +1256,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
                 }
               }
             }
+
             if (!match) {
               /* If they don't match, then increase the number of pins */
               s_current->numslotpins++;
@@ -1420,8 +1426,8 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 static bool s_check_missing_attribute(Object *object, const char *attribute, SYMCHECK *s_current)
 {
   char *string;
-  int found;
-  int counter=0;
+  int   found;
+  int   counter=0;
   char *message;
 
   string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
