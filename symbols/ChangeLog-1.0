@@ -2,6 +2,15 @@
 
     * cirrus/CS4270-1.sym: Clean symbol, add symversion=0.1
 
+    * Add 6 symbol files:
+
+        * cirrus/CS4330-1.sym,18 bit serial dual D/A converter
+        * cirrus/CS4330-2.sym,18 bit serial dual D/A converter,SOIC8
+        * cirrus/CS4331-1.sym,18 bit serial dual D/A converter,SOIC8
+        * cirrus/CS4331-2.sym,18 bit serial dual D/A converter,SOIC8
+        * cirrus/CS4333-1.sym,18 bit serial dual D/A converter,SOIC8
+        * cirrus/CS4333-2.sym,18 bit serial dual D/A converter,SOIC8
+
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename and 7 symbol files using UPPER case:
