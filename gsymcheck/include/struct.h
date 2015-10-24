@@ -53,7 +53,6 @@ struct st_symcheck {
   char *device_attribute;
   int   device_attribute_incorrect;
   int   duplicate_device_attrib;
-  int   missing_device_attrib;
   int   multiple_device_attrib;
 
   /* pinseq= check */

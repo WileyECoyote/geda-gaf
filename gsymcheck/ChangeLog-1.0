@@ -1,11 +1,15 @@
-2015-10-22 Wiley E. Hill <wileyhill@gmail.com>
+2015-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
    ** tests/Makefile.am: Fix fail count
+
+   ** include/struct.h: Remove unused boolean missing_device_attrib.
 
    ** src/s_check.c: Update error message; remove "not continuing" from
       message in s_check_slotdef because all of the error containing this
       text all continue. Revise function s_check_missing_attribute to
-      return boolean TRUE if found. Resequence functions.
+      return boolean TRUE if found. Resequence functions. Remove boolean
+      missing_device_attrib, is not used and code can just check for a non
+      null device_attribute string.
 
       Add s_check_description new check for missing description and duplicates
       but not multiples.
@@ -19,6 +23,7 @@
       with subdirectories and use base name without the .sym extension. Rename
       tests file like xxxinside.sym and xxxinside.output to xxx_inside.sym and
       xxx_inside.output, i.e. with an underscore in the file name.
+
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 

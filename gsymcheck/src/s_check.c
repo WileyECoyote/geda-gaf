@@ -560,7 +560,6 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
        counter++)
   {
     if (counter == 0) { /* collect the first appearance */
-      s_current->missing_device_attrib=FALSE;
       s_current->device_attribute = u_string_strdup (string);
       message = u_string_sprintf (_("Found device=%s\n"), string);
       ADD_INFO_MESSAGE(message);
@@ -596,7 +595,6 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
     /* did not find device= attribute */
     message = u_string_strdup (_("Missing device= attribute\n"));
     ADD_ERROR_MESSAGE(message);
-    s_current->missing_device_attrib = TRUE;
     /* s_current->device_attribute was initialized to NULL */
   }
   else {
@@ -746,9 +744,9 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
 
   /* check for duplicate pinlabel numbers */
   pin_numbers = g_list_sort(pin_numbers, (GCompareFunc)strcmp);
-  for (cur = pin_numbers;
-       cur != NULL && g_list_next(cur) != NULL;
-  cur = g_list_next(cur)) {
+
+  for (cur = pin_numbers; cur != NULL && cur->next != NULL; cur = cur->next)
+  {
     if (strcmp((char*)cur->data, (char*) cur->next->data) == 0) {
       message = u_string_sprintf (_("Found duplicate pinnumber=%s attribute in the symbol\n"), (char*) cur->data);
       ADD_ERROR_MESSAGE(message);
@@ -1070,9 +1068,9 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
     if (i > s_current->numslots-1) {
 
-      sprintf(tempstr1, "%d", i+1); /* i starts at zero */
+      sprintf(tempstr1, "%d", i + 1); /* i starts at zero */
       message = u_string_sprintf (
-        _("Found %s slotdef= attributes.  Expecting %s slotdef= attributes\n"),
+        _("Found %s slotdef= attributes. Expecting %s slotdef= attributes\n"),
           tempstr1, numslots_str);
         ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
