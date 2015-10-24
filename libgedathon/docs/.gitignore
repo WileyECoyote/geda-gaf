@@ -6,7 +6,7 @@ Makefile.in
 *.bak
 *.txt
 TAGS
-gattrib-snap-grid.html
+geda-snap-grid.html
 gsym-attribute.html
 gsym-set-font-size.html
 gsym-set-visibility.html
