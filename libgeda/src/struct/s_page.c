@@ -369,7 +369,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
    */
 
   /* save page_current and switch to page */
-  if (page == toplevel->page_current) {
+  if (page && page == toplevel->page_current) {
     tmp = NULL;
   }
   else {
@@ -406,8 +406,6 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 #endif
 
   /*geda_page_weakref_notify (page);*/
-
-  geda_page_unref (page);
 
   /* restore page_current */
   if (tmp != NULL) {

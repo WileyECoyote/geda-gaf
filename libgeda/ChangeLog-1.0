@@ -5,6 +5,9 @@
       and changed the path to relative. Relative paths do not work
       for the UNDODISK type.
 
+    * geda_toplevel.c: Reference Page Object in geda_toplevel_add_page
+      and unreference in geda_toplevel_remove_page.
+
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_get.c: Replace _LINUX with OS_LINUX, fix argument to

@@ -494,9 +494,12 @@ void geda_toplevel_add_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
-  /* append page to page list of toplevel */
-  if (GEDA_IS_PAGE(page)) {
-    geda_list_add_unique (toplevel->pages, page);
+  /* append page to page list in toplevel */
+  if (GEDA_IS_PAGE(new_page)) {
+
+    geda_list_add_unique (toplevel->pages, g_object_ref(new_page));
+
+    new_page->seq = geda_list_length(toplevel->pages);
   }
 }
 
