@@ -336,6 +336,7 @@ o_picture_read (const char  *first_line,
   const char *line         = NULL;
         char *file_content = NULL;
         char *filename;
+        char *tmpstr;
         char  type;
 
   unsigned int file_length = 0;
@@ -383,14 +384,28 @@ o_picture_read (const char  *first_line,
 
   }
 
-  filename = u_string_strdup(s_textbuffer_next_line(tb));
-  filename = u_string_remove_last_nl(filename);
+
+  tmpstr = u_string_strdup(s_textbuffer_next_line(tb));
+  tmpstr = u_string_remove_last_nl(tmpstr);
+
+  if (f_get_is_path_absolute(tmpstr)) {
+
+    /* Path is already absolute so no need to do anything */
+    filename = tmpstr;
+  }
+  else {
+
+    /* Handle relative filenames, which will not work with UNDODISK.
+     * File names in schematics would not normally be relative but
+     * could happen if someone edited the file */
+    filename = f_file_normalize_name (tmpstr, NULL);
+    GEDA_FREE (tmpstr);
+  }
 
   /* Handle empty filenames */
   if (strlen (filename) == 0) {
     u_log_message (_("Image filename is missing."));
     GEDA_FREE (filename);
-    filename = NULL;
   }
 
   if (embedded == 1) {
