@@ -16,7 +16,9 @@
       separate subdirectories.
 
     * tests/runtest.sh: Update location of inputs and reference outputs locations
-      with subdirectories and use base name without the .sym extension.
+      with subdirectories and use base name without the .sym extension. Rename
+      tests file like xxxinside.sym and xxxinside.output to xxx_inside.sym and
+      xxx_inside.output, i.e. with an underscore in the file name.
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
