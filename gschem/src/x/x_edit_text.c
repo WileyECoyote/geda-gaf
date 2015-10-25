@@ -347,6 +347,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   fontname = fontname;
   o_text_edit_end(w_current, string, text_align, text_color, text_size, text_angle);
+  GEDA_FREE(string);
 }
 
 /*! \brief Response function for the text property dialog
