@@ -40,7 +40,7 @@
 #include "edacairo.h"
 #include "edapangorenderer.h"
 
-/* We don't use gettext */
+/* We do not use gettext */
 #define _(x) (x)
 
 #define EdaFontOptions renderer->priv->font_options

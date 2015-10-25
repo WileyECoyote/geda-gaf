@@ -260,7 +260,7 @@ void s_slib_print_dirs(void)
  *  \par Function Description
  *  This function will search the SLIB for a particular file name.
  *
- *  \param [in] filename  Character string with file name to search for.
+ *  \param [in] basename  Character string with file name to search for.
  *
  *  Filename is the raw symbol/whatever file name.
  *

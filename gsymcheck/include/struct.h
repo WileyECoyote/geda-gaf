@@ -60,7 +60,7 @@ struct st_symcheck {
   int multiple_pinseq_attrib;
   int duplicate_pinseq_attrib;
 
-  /* multiple pinnumber= check */
+  /* pinnumber= check */
   int missing_pinnumber_attrib;
   int multiple_pinnumber_attrib;
   int duplicate_pinnumber_attrib;

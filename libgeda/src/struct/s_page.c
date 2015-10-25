@@ -350,6 +350,8 @@ void s_page_clear_changed (PageList *list)
  *
  * \param [in] toplevel   Toplevel Object to which page belongs.
  * \param [in] page       Page to be removed.
+ * \param [in] previous   If True the previous page will be set current
+ *                        if the page being deleted is the current page.
  *
  */
 void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)

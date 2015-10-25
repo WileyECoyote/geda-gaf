@@ -58,6 +58,11 @@
 
 #include <geda_draw.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief  Get Rotation
+ *  \par Function Description
+ *
+ */
 EdaRotation EdaX11Render::
 GetRotation(int angle)
 {
@@ -73,12 +78,14 @@ GetRotation(int angle)
   return (EdaRotation)rotation;
 }
 
-/* Code for accelerated alpha compositing using the RENDER extension.
+/*! \todo Finish function documentation!!!
+ *  \brief Get Image Format
+ *  \par Function Description
+ * Code for accelerated alpha compositing using the RENDER extension.
  * It's a bit long because there are lots of possibilities for
  * what's the fastest depending on the available picture formats,
  * whether we can used shared pixmaps, etc.
  */
-
 EdaX11Format EdaX11Render::
 GetImageFormat (XRenderPictFormat **format, XRenderPictFormat **mask)
 {
@@ -190,6 +197,11 @@ GetImageFormat (XRenderPictFormat **format, XRenderPictFormat **mask)
   return EDA_X11_FORMAT_NONE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Pixbuf to Ximage
+ *  \par Function Description
+ *
+ */
 XImage *EdaX11Render::
 Pixbuf2Ximage (GdkPixbuf *pixbuf)
 {
@@ -394,12 +406,19 @@ Pixbuf2Ximage (GdkPixbuf *pixbuf)
   }
   return ximage;
 }
+
 /*
 #if GCC_DIAGNOSTIC_AWARE
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-fpermissive"
 #endif
 */
+
+/*! \todo Finish function documentation!!!
+ *  \brief FontHashDestroyer
+ *  \par Function Description
+ *
+ */
 void
 FontHashDestroyer (void *key, void *data, void *display)
 {
@@ -488,12 +507,22 @@ CreateXftFont(void)
 }
 #endif
 
+/*! \todo Finish function documentation!!!
+ *  \brief CreateFontHash
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 CreateFontHash (void)
 {
   font_cache = g_hash_table_new ( g_str_hash, g_str_equal);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief HashSetFont
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 HashSetFont (void)
 {
@@ -545,8 +574,12 @@ GetFontString(int size) {
   return str.data();
 }
 
-/* Used run-time by the text renderer funtion to determine if the
- * current font needs to be updated */
+/*! \todo Finish function documentation!!!
+ *  \brief QueryCurrentFont
+ *  \par Function Description
+ *  Used run-time by the text renderer funtion to determine if the
+ *  current font needs to be updated
+ */
 bool EdaX11Render::
 QueryCurrentFont (const char *font_name, int size)
 {
@@ -581,7 +614,10 @@ QueryCurrentFont (const char *font_name, int size)
 
   return update;
 }
-/*
+
+/*! \todo Finish function documentation!!!
+ *  \brief IsScalableFont
+ *  \par Function Description
  * This routine returns True if the font string is a properly formed
  * XLFD styled font name with a pixel size, point size, and average
  * width (fields 7,8, and 12) are "0".
@@ -634,7 +670,10 @@ XSetColorRed(void)
 }
 #endif
 
-/* Call from all drawing routines to set line properties,
+/*! \todo Finish function documentation!!!
+ *  \brief SetLineAttributes
+ *  \par Function Description
+ * Called from all drawing routines to set line properties,
  * i.e. cap-style, style and width. The total (length)
  * parameter is used to adjust the dash-length and spaces
  * for dash, center and phantom styles so tht short lines
@@ -740,6 +779,11 @@ SetLineAttributes(XGCValues *gcvals, int total)
   return success ? GCCapStyle | GCLineStyle | GCLineWidth : 0;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief DrawBezierCurve
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 DrawBezierCurve (XPoint *points)
 {
@@ -791,6 +835,11 @@ DrawBezierCurve (XPoint *points)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief TextAlignSetBounds
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
 {
@@ -928,8 +977,12 @@ TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
 
 /*---------------------- Begin Public Drawing Routines ----------------------*/
 
-/* Only God knows what xorg developers were thinking, obviously the developer
- * were confused */
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_arc
+ *  \par Function Description
+ *  Only God knows what xorg developers were thinking, obviously the developer
+ *  were confused
+ */
 void EdaX11Render::
 geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
 {
@@ -964,6 +1017,11 @@ geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_box
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_box (int x, int y, int width, int height)
 {
@@ -983,6 +1041,11 @@ geda_x11_draw_box (int x, int y, int width, int height)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_circle
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_circle (int cx, int cy, int radius)
 {
@@ -1010,6 +1073,11 @@ geda_x11_draw_circle (int cx, int cy, int radius)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_line
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_line (int x1, int y1, int x2, int y2)
 {
@@ -1029,6 +1097,11 @@ geda_x11_draw_line (int x1, int y1, int x2, int y2)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_net
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_net (int x1, int y1, int x2, int y2)
 {
@@ -1042,6 +1115,11 @@ geda_x11_draw_net (int x1, int y1, int x2, int y2)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_path
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 {
@@ -1121,6 +1199,11 @@ geda_x11_draw_path (int nsections, PATH_SECTION *sections)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_picture
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_picture (int x, int y, int width, int height)
 {
@@ -1198,6 +1281,11 @@ geda_x11_draw_picture (int x, int y, int width, int height)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_text
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_text (int x, int y)
 {
@@ -1259,6 +1347,11 @@ geda_x11_draw_text (int x, int y)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_set_color
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_set_color (unsigned short red, unsigned short green, unsigned short blue)
 {
@@ -1278,6 +1371,11 @@ geda_x11_draw_set_color (unsigned short red, unsigned short green, unsigned shor
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_get_font_slant
+ *  \par Function Description
+ *
+ */
 int EdaX11Render::
 geda_x11_draw_get_font_slant (const char *font_descr)
 {
@@ -1299,6 +1397,11 @@ geda_x11_draw_get_font_slant (const char *font_descr)
   return slant;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_get_font_weight
+ *  \par Function Description
+ *
+ */
 int EdaX11Render::
 geda_x11_draw_get_font_weight (const char *font_descr)
 {
@@ -1364,6 +1467,11 @@ geda_x11_draw_get_font_weight (const char *font_descr)
   return weight;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_get_text_bounds
+ *  \par Function Description
+ *
+ */
 int EdaX11Render::
 geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
 {
@@ -1427,6 +1535,11 @@ geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
   return result;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_get_font_name
+ *  \par Function Description
+ *
+ */
 int EdaX11Render::
 geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 {
@@ -1439,6 +1552,11 @@ geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
   return length;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_set_font_name
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_set_font_name (const char *font_name)
 {
@@ -1459,12 +1577,13 @@ geda_x11_draw_set_font_name (const char *font_name)
   str   = NULL;
   index = 0;
 
+  /* Replace first dash with NULL */
   while (font_name[index]) {
 
     if (font_name[index] == ASCII_MINUS) {
       strBuffer[index] = '\0';
       index++;
-      str = &font_name[index];
+      str = &font_name[index]; /* set a pointer to char after dash */
       break;
     }
 
@@ -1475,10 +1594,8 @@ geda_x11_draw_set_font_name (const char *font_name)
   font_family = &strBuffer[0];
 
   if (str) {
-
     font_weight = geda_x11_draw_get_font_weight(str);
     font_slant  = geda_x11_draw_get_font_slant(str);
-
   }
   else {
 
@@ -1498,9 +1615,13 @@ geda_x11_draw_set_font_name (const char *font_name)
   font_format   = tmp_string;
 
 #if HAVE_XFT
+
   font_format   = font_format + "%d";
+
 #else
+
   font_format   = font_format + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
+
 #endif
 
   font_string   = GetFontString(font_size);
@@ -1508,6 +1629,11 @@ geda_x11_draw_set_font_name (const char *font_name)
   GEDA_FREE(tmp_string);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_set_font
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_set_font (const char *font_name, int size)
 {
@@ -1515,6 +1641,11 @@ geda_x11_draw_set_font (const char *font_name, int size)
   geda_x11_draw_set_font_name(font_name);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_get_font_list
+ *  \par Function Description
+ *
+ */
 bool EdaX11Render::
 geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
 {
@@ -1574,6 +1705,11 @@ geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
   return result;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief geda_x11_draw_set_surface
+ *  \par Function Description
+ *
+ */
 void EdaX11Render::
 geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
 {

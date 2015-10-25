@@ -220,7 +220,6 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
 
   /* Allow filled boxes (inferred from line_width == -1)
    * to touch an extra pixel, so the filled span is inclusive */
-  /* FIXME this has no effect */
   if (line_width == -1) {
     if (x1 > x2) x1 += 1; else x2 += 1;
     if (y1 > y2) y1 += 1; else y2 += 1;
@@ -431,7 +430,10 @@ eda_cairo_center_arc (cairo_t *cr, int flags,
   do_arc (cr, s_x, s_y, s_radius, start_angle, arc_sweep);
 }
 
-
+/*! \brief Render a Stroke using Cairo Graphic
+ *  \par Function Description
+ *  Sets end point type and render stroke using Cairo graphics library.
+ */
 void
 eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
                   double wwidth, double wlength, double wspace)
@@ -447,9 +449,10 @@ eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
   cairo_line_cap_t cap;
   cairo_line_cap_t round_cap_if_legible = CAIRO_LINE_CAP_ROUND;
   int num_dashes;
-  int iwidth;
 
   if (flags & EDA_CAIRO_ENABLE_HINTS) {
+
+    int iwidth;
 
     /* cairo_user_to_device_distance */
     width  = iwidth = screen_width (cr, wwidth);
@@ -585,16 +588,18 @@ void eda_cairo_path (cairo_t *cr, int flags, double line_width,
 {
   int i;
   int s_line_width;
-  double dummy = 0;
 
   if (flags & EDA_CAIRO_ENABLE_HINTS) {
     s_line_width = screen_width (cr, line_width);
-  } else {
+  }
+  else {
+    double dummy = 0;
     cairo_user_to_device (cr, &line_width, &dummy);
     s_line_width = line_width;
   }
 
   for (i = 0; i < nsections; i++) {
+
     PATH_SECTION *section = sections + i;
     double x1 = section->x1;
     double x2 = section->x2;

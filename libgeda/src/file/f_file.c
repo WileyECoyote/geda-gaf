@@ -364,7 +364,6 @@ int f_file_remove (const char *pathname)
  *
  * \warning MUST not be const char
 */
-/*  */
 bool f_file_remove_extension(char *filename) {
 
   int i   = 0;

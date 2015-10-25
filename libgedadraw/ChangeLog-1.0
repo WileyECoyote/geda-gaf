@@ -2,7 +2,8 @@
 
      * include/*: Update file headers; add GNU URL.
 
-     * src/*: Update file headers; add GNU URL.
+     * src/x11/geda_x11.cpp: Update file headers; add GNU URL. Add Doxygen todo
+       "template" block.
 
 2015-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
