@@ -397,9 +397,9 @@
 			(gate "")
 		)
 	)
-	(instance "none" "CONN1"
-		(device "MAINS_CONNECTOR")
-		(value "MAINS_CONNECTOR")
+	(instance "3WIRES" "CONN1"
+		(device "CONNECTOR")
+		(value "CONNECTOR")
 		(gateswap "0")
 		(pinswap "0")
 		(component_space "0.00000000e+000")

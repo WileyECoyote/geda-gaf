@@ -33,7 +33,7 @@ for Arg in $*; do
        rm $Arg.new
        rm $Arg.org
      fi
-     
+
      cat $Arg | $path2scripts/annotate > "$Arg.new"
 
      if [ ! -f "$Arg.new" ] ; then

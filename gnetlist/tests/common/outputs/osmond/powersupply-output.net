@@ -6,7 +6,7 @@ Part unknown { Name C2 }
 Part 0402 { Name R2 }
 Part unknown { Name C1 }
 Part unknown { Name S1 }
-Part none { Name CONN1 }
+Part 3WIRES { Name CONN1 }
 Part none { Name T1 }
 Part fuseholder-5mm { Name F1 }
 Part unknown { Name U1 }

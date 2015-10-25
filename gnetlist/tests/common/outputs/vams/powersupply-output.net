@@ -23,13 +23,17 @@ BEGIN
  
   C4 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 1uf)
+			value => 1uf, 
+			symversion => 0.1, 
+			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => eleven,
 			2 => nine);
  
   C3 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 22uF)
+			value => 22uF, 
+			symversion => 0.1, 
+			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => ten,
 			2 => nine);
  
@@ -42,7 +46,9 @@ BEGIN
  
   C2 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 0.1uF)
+			value => 0.1uF, 
+			symversion => 0.1, 
+			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => eight,
 			2 => nine);
  
@@ -54,7 +60,9 @@ BEGIN
  
   C1 : ENTITY POLARIZED_CAPACITOR
 	GENERIC MAP (
-			value => 2200uF)
+			value => 2200uF, 
+			symversion => 0.1, 
+			device => POLARIZED_CAPACITOR)
 	PORT MAP (	1 => eight,
 			2 => nine);
  
@@ -62,7 +70,11 @@ BEGIN
 	PORT MAP (	2 => two,
 			1 => one);
  
-  CONN1 : ENTITY MAINS_CONNECTOR
+  CONN1 : ENTITY CONNECTOR
+	GENERIC MAP (
+			symversion => 1.2, 
+			footprint => 3WIRES, 
+			device => CONNECTOR)
 	PORT MAP (	1 => one,
 			2 => five,
 			3 => GND);
@@ -74,6 +86,10 @@ BEGIN
 			3 => six);
  
   F1 : ENTITY FUSE
+	GENERIC MAP (
+			footprint => fuseholder-5mm, 
+			symversion => 0.2, 
+			device => FUSE)
 	PORT MAP (	1 => two,
 			2 => three);
  

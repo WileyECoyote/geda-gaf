@@ -72,7 +72,7 @@ SPST S1 (
     .\1  ( one )
     );
 
-MAINS_CONNECTOR CONN1 ( 
+CONNECTOR CONN1 ( 
     .\1  ( one ),
     .\2  ( five ),
     .\3  ( GND )
