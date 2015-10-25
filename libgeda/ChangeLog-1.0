@@ -1,5 +1,9 @@
 2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
+     * include/ *.h: Update file headers; add GNU URL.
+
+     * include/libgeda/ *.h: Update file headers; add GNU URL.
+
     * scheme/geda/object.scm: Add scheme API function set-component-with-
       transform.
 

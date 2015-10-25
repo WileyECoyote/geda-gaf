@@ -14,13 +14,13 @@ GEDA_INCLUDES   = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 lib_LTLIBRARIES = libgedacairo.la
 
 libgedacairo_la_SOURCES = edacairo.c \
-			  edapangorenderer.c \
-			  edarenderer.c
+			 edapangorenderer.c \
+			 edarenderer.c
 
 AM_CPPFLAGS = $(GEDA_INCLUDES) -I$(includedir)
 
-AM_CFLAGS  = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
-	     $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+AM_CFLAGS   = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
+	      $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 libgedacairo_la_CFLAGS = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS)
 

@@ -1,8 +1,11 @@
-/*
+/* -*- C edacairo.c indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*-
+ *
+ * File: edacairo.c
+ *
  * gEDA - GPL Electronic Design Automation
  * libgedacairo - Rendering gEDA schematics with Cairo
  *
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2010-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA <http://www.gnu.org/licenses/>.
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
 #include <config.h>
@@ -85,7 +88,7 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
     BUG_IMSG("Invalid color index <%d>", color);
   }
   else {
-    
+
     COLOR c;
 
     c = g_array_index (map, COLOR, color);
@@ -634,4 +637,3 @@ void eda_cairo_path (cairo_t *cr, int flags, double line_width,
     }
   }
 }
-

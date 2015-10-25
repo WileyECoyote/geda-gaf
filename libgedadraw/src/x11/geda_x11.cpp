@@ -1,11 +1,11 @@
-/* -*- C geda_x11.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- C geda_x11.c indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*-
  *
  * File: geda_x11.c
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: Dec, 25, 2014
  * Contributing Author: Wiley Edward Hill
