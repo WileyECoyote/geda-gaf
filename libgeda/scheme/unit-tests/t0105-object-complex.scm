@@ -157,3 +157,25 @@
     )
   )
 )
+
+;; Test the 'set-component-with-transform!' procedure. This test
+;; includes testing of mirroring and rotation of a component's
+;; primitives.
+
+(begin-test 'set-component-with-transform
+  (let ((P (make-page "/test/page/A"))
+        (C (make-component/library "line.sym" '(0 . 0) 90 #f #f)))
+
+      (lambda () #t)
+      (lambda ()
+        (page-append! P C)
+
+        (set-component-with-transform! C '(0 . 0) 90 #t #f)
+
+        (assert-equal '(-2 . -1) (line-start (car (component-contents C))))
+        (assert-equal '(-4 . -3) (line-end   (car (component-contents C))))
+        )
+      (lambda ()
+        (close-page! P))
+  )
+)

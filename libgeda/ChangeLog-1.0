@@ -1,3 +1,11 @@
+2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/geda/object.scm: Add scheme API function set-component-with-
+      transform.
+
+    * scheme/unit-tests/t0105-object-complex.scm: Add update from master
+      branch: test set-component-with-transform.
+
 2015-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Use f_file_normalize_name in function
