@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-10-16 03:30-0500\n"
+"POT-Creation-Date: 2015-10-24 23:59-0500\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -93,70 +93,70 @@ msgstr ""
 msgid "Cannot find file %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:195
+#: libgeda/src/file/f_basic.c:194
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:96
+#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:97
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:312
+#: libgeda/src/file/f_basic.c:314
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:361
+#: libgeda/src/file/f_basic.c:363
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:362
+#: libgeda/src/file/f_basic.c:364
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:363
+#: libgeda/src/file/f_basic.c:365
 #, c-format
 msgid "File %s is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:365
+#: libgeda/src/file/f_basic.c:367
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "sadece okunabilir [%s] yedekleme dosyası oluşturulamadı\n"
 
-#: libgeda/src/file/f_basic.c:366
+#: libgeda/src/file/f_basic.c:368
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "[%s] kaydedilemedi.\n"
 
-#: libgeda/src/file/f_basic.c:664
+#: libgeda/src/file/f_basic.c:667
 #, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:676
+#: libgeda/src/file/f_basic.c:679
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "[%s] kaydedilemedi.\n"
 
-#: libgeda/src/file/f_file.c:75
+#: libgeda/src/file/f_file.c:76
 msgid "File error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:79
+#: libgeda/src/file/f_file.c:80
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:80
+#: libgeda/src/file/f_file.c:81
 #, c-format
 msgid "%s: attempting to lock/unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:323
+#: libgeda/src/file/f_file.c:328
 #, c-format
 msgid "%s: %s"
 msgstr ""
@@ -279,17 +279,17 @@ msgstr ""
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1324
+#: libgeda/src/geda/geda_config.c:1331
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1388
+#: libgeda/src/geda/geda_config.c:1395
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1402
+#: libgeda/src/geda/geda_config.c:1409
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -779,7 +779,7 @@ msgstr ""
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:672 libgeda/src/object/o_picture.c:380
+#: libgeda/src/object/o_complex_basic.c:672 libgeda/src/object/o_picture.c:381
 msgid "Setting angle to 0\n"
 msgstr ""
 
@@ -910,98 +910,98 @@ msgstr ""
 msgid "Failed to load image from [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:347
+#: libgeda/src/object/o_picture.c:348
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:352
+#: libgeda/src/object/o_picture.c:353
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:357
+#: libgeda/src/object/o_picture.c:358
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:359
+#: libgeda/src/object/o_picture.c:360
 msgid "Setting mirrored to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:364
+#: libgeda/src/object/o_picture.c:365
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:366
+#: libgeda/src/object/o_picture.c:367
 msgid "Setting embedded to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:379
+#: libgeda/src/object/o_picture.c:380
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:391
+#: libgeda/src/object/o_picture.c:407
 msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:424
+#: libgeda/src/object/o_picture.c:439
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:425
+#: libgeda/src/object/o_picture.c:440
 msgid "Base64 decoding failed."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:426
+#: libgeda/src/object/o_picture.c:441
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:487
+#: libgeda/src/object/o_picture.c:502
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:876
+#: libgeda/src/object/o_picture.c:891
 #, c-format
 msgid "Can not export to type %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:888
+#: libgeda/src/object/o_picture.c:903
 #, c-format
 msgid "Failed to export [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1124
+#: libgeda/src/object/o_picture.c:1139
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1125
+#: libgeda/src/object/o_picture.c:1140
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1134
+#: libgeda/src/object/o_picture.c:1149
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1170
+#: libgeda/src/object/o_picture.c:1185
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1172
+#: libgeda/src/object/o_picture.c:1187
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1181
+#: libgeda/src/object/o_picture.c:1196
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1707
+#: libgeda/src/object/o_picture.c:1722
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
@@ -1304,37 +1304,37 @@ msgstr ""
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1044 libgeda/src/struct/s_clib.c:1091
+#: libgeda/src/struct/s_clib.c:1047 libgeda/src/struct/s_clib.c:1094
 msgid "Cannot add library: name not specified\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1051
+#: libgeda/src/struct/s_clib.c:1054
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1100
+#: libgeda/src/struct/s_clib.c:1103
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1226
+#: libgeda/src/struct/s_clib.c:1229
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1287
+#: libgeda/src/struct/s_clib.c:1290
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1509
+#: libgeda/src/struct/s_clib.c:1512
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1516
+#: libgeda/src/struct/s_clib.c:1519
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
@@ -1370,12 +1370,12 @@ msgstr ""
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:656 libgeda/src/struct/s_page.c:694
+#: libgeda/src/struct/s_page.c:654 libgeda/src/struct/s_page.c:692
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "[%s] kaydedildi\n"
 
-#: libgeda/src/struct/s_page.c:662 libgeda/src/struct/s_page.c:699
+#: libgeda/src/struct/s_page.c:660 libgeda/src/struct/s_page.c:697
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "[%s] kaydedilemedi.\n"

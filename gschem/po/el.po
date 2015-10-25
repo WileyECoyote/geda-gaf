@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-10-16 07:53-0500\n"
+"POT-Creation-Date: 2015-10-25 00:38-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -415,221 +415,216 @@ msgstr "Αδυναμία εκτέλεσης URI ~S: ~A"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:350
+#: gschem/src/iface/i_command.c:351
 #, c-format
 msgid "Processing Action <%s>, at index %d\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:451
+#: gschem/src/iface/i_command.c:452
 #, c-format
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:684 gschem/src/iface/i_command.c:2528
+#: gschem/src/iface/i_command.c:685 gschem/src/iface/i_command.c:2529
 #, c-format
 msgid "New page created [%s]\n"
 msgstr "Δημιουργήθηκε νέα σελίδα [%s]\n"
 
-#: gschem/src/iface/i_command.c:724
+#: gschem/src/iface/i_command.c:725
 #, c-format
 msgid "New Window created [%s]\n"
 msgstr "Δημιουργήθηκε νέο παράθυρο [%s]\n"
 
-#: gschem/src/iface/i_command.c:910
+#: gschem/src/iface/i_command.c:911
 msgid "Failed to Save All"
 msgstr "Απέτυχε η αποθήκευση όλων"
 
-#: gschem/src/iface/i_command.c:913 gschem/src/iface/i_command.c:930
+#: gschem/src/iface/i_command.c:914 gschem/src/iface/i_command.c:931
 msgid "Saved All"
 msgstr "Αποθήκευση όλων"
 
-#: gschem/src/iface/i_command.c:927
+#: gschem/src/iface/i_command.c:928
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:978 gschem/src/x/x_image.c:468
+#: gschem/src/iface/i_command.c:979 gschem/src/x/x_image.c:468
 #, fuzzy
 msgid "Write Image"
 msgstr "Εγγραφή εικόνας..."
 
-#: gschem/src/iface/i_command.c:994
+#: gschem/src/iface/i_command.c:995
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1060
+#: gschem/src/iface/i_command.c:1061
 msgid "Close all canceled\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1069 gschem/src/iface/i_sessions.c:187
+#: gschem/src/iface/i_command.c:1070 gschem/src/iface/i_sessions.c:187
 #, fuzzy
 msgid "Closing all documents\n"
 msgstr "Κλείσιμο σελίδας"
 
-#: gschem/src/iface/i_command.c:1092
+#: gschem/src/iface/i_command.c:1093
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1106
+#: gschem/src/iface/i_command.c:1107
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1130
+#: gschem/src/iface/i_command.c:1131
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1262
+#: gschem/src/iface/i_command.c:1263
 msgid "Empty buffer"
 msgstr "Άδειασμα ενδιάμεσης μνήμης"
 
-#: gschem/src/iface/i_command.c:1525
+#: gschem/src/iface/i_command.c:1526
 #, fuzzy
 msgid "Offset Mode"
 msgstr "Λειτουργία δικτύου"
 
-#: gschem/src/iface/i_command.c:1526
+#: gschem/src/iface/i_command.c:1527
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2043
+#: gschem/src/iface/i_command.c:2044
 #, fuzzy
 msgid "Zoom Magnification"
 msgstr "Επιλογή"
 
-#: gschem/src/iface/i_command.c:2043
+#: gschem/src/iface/i_command.c:2044
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2090
+#: gschem/src/iface/i_command.c:2091
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2636
+#: gschem/src/iface/i_command.c:2637
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr "Αναζήτηση πηγής [%s]\n"
 
-#: gschem/src/iface/i_command.c:2670
+#: gschem/src/iface/i_command.c:2671
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
 
-#: gschem/src/iface/i_command.c:2673
-#, c-format
-msgid "%s '%s': %s\n"
-msgstr ""
-
-#: gschem/src/iface/i_command.c:2679
+#: gschem/src/iface/i_command.c:2680
 #, fuzzy
 msgid "Hierarchy Error"
 msgstr "_Ιεραρχία"
 
-#: gschem/src/iface/i_command.c:2749
+#: gschem/src/iface/i_command.c:2750
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr "Αναζήτηση συμβόλου [%s]\n"
 
-#: gschem/src/iface/i_command.c:2756
+#: gschem/src/iface/i_command.c:2757
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 "Το σύμβολο δεν είναι πραγματικό αρχείο. Το σύμβολο δεν μπορεί να φορτωθεί.\n"
 
-#: gschem/src/iface/i_command.c:2797
+#: gschem/src/iface/i_command.c:2798
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Δεν μπορούν να βρεθούν σχεδιαγράμματα πάνω από το τρέχον!\n"
 
-#: gschem/src/iface/i_command.c:3304
+#: gschem/src/iface/i_command.c:3305
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3677
+#: gschem/src/iface/i_command.c:3678
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3678
+#: gschem/src/iface/i_command.c:3679
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3684
+#: gschem/src/iface/i_command.c:3685
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3685
+#: gschem/src/iface/i_command.c:3686
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3855
+#: gschem/src/iface/i_command.c:3856
 msgid "Grid OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3856
+#: gschem/src/iface/i_command.c:3857
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3857
+#: gschem/src/iface/i_command.c:3858
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3936
+#: gschem/src/iface/i_command.c:3937
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3941
+#: gschem/src/iface/i_command.c:3942
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3945
+#: gschem/src/iface/i_command.c:3946
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3961
+#: gschem/src/iface/i_command.c:3962
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3964
+#: gschem/src/iface/i_command.c:3965
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3989
+#: gschem/src/iface/i_command.c:3990
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3992
+#: gschem/src/iface/i_command.c:3993
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4003
+#: gschem/src/iface/i_command.c:4004
 #, fuzzy
 msgid "Magnetic net mode is ON\n"
 msgstr "Λειτουργία μαγνητικού δικτύου"
 
-#: gschem/src/iface/i_command.c:4006
+#: gschem/src/iface/i_command.c:4007
 #, fuzzy
 msgid "Magnetic net mode is OFF\n"
 msgstr "Λειτουργία μαγνητικού δικτύου"
 
-#: gschem/src/iface/i_command.c:4024
+#: gschem/src/iface/i_command.c:4025
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4027
+#: gschem/src/iface/i_command.c:4028
 #, fuzzy
 msgid "On"
 msgstr "Άνοιγμα"
 
-#: gschem/src/iface/i_command.c:4029
+#: gschem/src/iface/i_command.c:4030
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4083 gschem/src/iface/i_command.c:4109
-#: gschem/src/iface/i_command.c:4126 gschem/src/iface/i_command.c:4143
+#: gschem/src/iface/i_command.c:4084 gschem/src/iface/i_command.c:4110
+#: gschem/src/iface/i_command.c:4127 gschem/src/iface/i_command.c:4144
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4236
+#: gschem/src/iface/i_command.c:4237
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1107,16 +1102,16 @@ msgstr ""
 "\n"
 "Συνέβη ένα σφάλμα κατά τη διάρκεια εισαγωγής τω δεδομένων προχείρου: %s."
 
-#: gschem/src/object/o_undo.c:458
+#: gschem/src/object/o_undo.c:462
 msgid "Undo/Redo disabled\n"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:545
+#: gschem/src/object/o_undo.c:549
 #, fuzzy
 msgid "<b>Undo error.</b>"
 msgstr "<b>Σκοπός</b>"
 
-#: gschem/src/object/o_undo.c:545
+#: gschem/src/object/o_undo.c:549
 msgid "Undo failed"
 msgstr ""
 
@@ -2345,7 +2340,7 @@ msgstr "Επεξεργασία αριθμού υποδοχής"
 msgid "Number of slots:"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:202
+#: gschem/src/x/x_edit_slot.c:200
 msgid "Edit slot number:"
 msgstr "Επεξεργασία αριθμού υποδοχής:"
 
@@ -3257,20 +3252,20 @@ msgstr ""
 msgid "Cancel"
 msgstr "Μενού/Άκυρο"
 
-#: gschem/src/x/x_settings_dialog.c:2570
+#: gschem/src/x/x_settings_dialog.c:2580
 #, fuzzy
 msgid "Close without changing any settings"
 msgstr "_Κλείσιμο χωρίς αποθήκευση"
 
-#: gschem/src/x/x_settings_dialog.c:2572 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2582 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gschem/src/x/x_settings_dialog.c:2576
+#: gschem/src/x/x_settings_dialog.c:2586
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2582
+#: gschem/src/x/x_settings_dialog.c:2592
 msgid "Change settings and close but do not write settings to storage.."
 msgstr ""
 

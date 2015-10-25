@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-10-16 07:53-0500\n"
+"POT-Creation-Date: 2015-10-23 13:03-0500\n"
 "PO-Revision-Date: 2010-01-29 16:49+0000\n"
 "Last-Translator: Carlos Nieves Ónega <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -207,23 +207,23 @@ msgstr ""
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:109
+#: gattrib/src/x_dialog.c:110
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:118
+#: gattrib/src/x_dialog.c:119
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:176
+#: gattrib/src/x_dialog.c:177
 msgid "Are you sure you want to delete this attribute?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:178
+#: gattrib/src/x_dialog.c:179
 msgid "Delete attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:202
+#: gattrib/src/x_dialog.c:203
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -234,31 +234,31 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:215
+#: gattrib/src/x_dialog.c:216
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:244
+#: gattrib/src/x_dialog.c:245
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:245
+#: gattrib/src/x_dialog.c:246
 msgid "<big><b>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:245
+#: gattrib/src/x_dialog.c:246
 msgid "</b></big>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:247
+#: gattrib/src/x_dialog.c:248
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:257
+#: gattrib/src/x_dialog.c:258
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:315
+#: gattrib/src/x_dialog.c:316
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -272,15 +272,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:323
+#: gattrib/src/x_dialog.c:324
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:349
+#: gattrib/src/x_dialog.c:350
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:364
+#: gattrib/src/x_dialog.c:365
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -294,47 +294,47 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:374
+#: gattrib/src/x_dialog.c:375
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:391
+#: gattrib/src/x_dialog.c:392
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:441
+#: gattrib/src/x_dialog.c:442
 msgid "Find "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:470
+#: gattrib/src/x_dialog.c:471
 msgid "Enter "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:816
+#: gattrib/src/x_dialog.c:817
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:818
+#: gattrib/src/x_dialog.c:819
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:824
+#: gattrib/src/x_dialog.c:825
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:826
+#: gattrib/src/x_dialog.c:827
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:832
+#: gattrib/src/x_dialog.c:833
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:834
+#: gattrib/src/x_dialog.c:835
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:839
+#: gattrib/src/x_dialog.c:840
 msgid "Find next"
 msgstr ""
 
