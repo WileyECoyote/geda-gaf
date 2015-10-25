@@ -174,8 +174,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   if (full_filename == NULL) {
     g_set_error (err, G_FILE_ERROR, tmp_err->code,
-               _("Cannot find file %s: %s"),
-                 filename, tmp_err->message);
+               _("Cannot find file %s: %s"), filename, tmp_err->message);
     g_error_free(tmp_err);
     return f_open_exit(0);
   }
@@ -184,8 +183,8 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   GEDA_FREE(page->filename);
   page->filename = u_string_strdup(full_filename);
 
-  /* Before we open the page, let's load the corresponding gafrc. */
-  /* First cd into file's directory. */
+  /* Before we open the page, load the corresponding gafrc. */
+  /* First change into file's directory. */
   file_directory = f_path_get_dirname (full_filename);
 
   if (file_directory) {
@@ -203,6 +202,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       g_rc_parse_local ("gafrc", file_directory, &tmp_err);
 
       if (tmp_err != NULL) {
+
         /* RC files are allowed to be missing or skipped; check for this. */
         if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
             !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE))
@@ -274,10 +274,12 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   /* Now that we have set the current directory and read
    * the RC file, it's time to read in the file. */
   if (load_backup_file == 1) {
+
     /* Load the backup file */
     objects = o_read (toplevel, NULL, backup_filename, &tmp_err);
   }
   else {
+
     /* Load the original file */
     objects = o_read (toplevel, NULL, full_filename, &tmp_err);
     if (load_backup_file == 2) {
@@ -500,8 +502,9 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
  *  \param [in]     name  A character string containing the pathname
  *                        to resolve.
  *  \param [in,out] error Return location for a GError, or NULL.
+ *
  *  \return A newly-allocated string with the resolved absolute
- *  pathname on success, NULL otherwise.
+ *          pathname on success, NULL otherwise.
  */
 char *f_file_normalize_name (const char *name, GError **error)
 {

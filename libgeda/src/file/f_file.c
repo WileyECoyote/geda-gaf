@@ -205,7 +205,6 @@ int f_file_copy(const char *source, const char *target)
  *    time_t now;
  *    int secs = f_file_cmp_mod_time(filename, time(&now));
  *    printf( "%s is %d seconds old\n",filename, secs);
- *
  */
 int f_file_cmp_mod_time (const char *filename, time_t ref_time)
 {
@@ -239,11 +238,10 @@ int f_file_cmp_mod_time (const char *filename, time_t ref_time)
  *  \param [in]     filename  The filename to search for.
  *  \param [in,out] err       GError structure for error reporting,
  *                            or NULL to disable error reporting.
- *  \return The newly-allocated path to real file on success, NULL
- *          otherwise.
+ *  \returns The newly-allocated path to real file on success, NULL
+ *           otherwise.
  *
  *  \note Originally taken from gedit's source code.
- *  TODO: Get rid of MAXPATHLEN
  */
 char *f_file_follow_symlinks (const char *filename, GError **err)
 {
@@ -257,7 +255,7 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
     return NULL;
   }
 
-  if (strlen (filename) + 1 > MAXPATHLEN) {
+  if (strlen (filename) + 1 > MAX_PATH) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_NAMETOOLONG,
                  "%s", strerror (ENAMETOOLONG));
     return NULL;
@@ -266,11 +264,14 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
   followed_filename = g_strdup (filename);
 
 #ifdef __MINGW32__
+
   /* MinGW does not have symlinks */
   return followed_filename;
+
 #else
 
   while (link_count < MAX_LINK_LEVEL) {
+
     struct stat st;
     char *linkname = NULL;
 
@@ -329,6 +330,7 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
   return NULL;
 
 #endif /* __MINGW32__ */
+
 }
 
 /*! \brief Remove File
@@ -336,7 +338,7 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
  *  This function calls the standard remove function after setting
  *  the system error number to 0.
  *
- * \retval Returns result of remove = zero on success -1 if error
+ * \returns result of remove = zero on success -1 if error
 */
 int f_file_remove (const char *pathname)
 {
@@ -353,8 +355,17 @@ int f_file_remove (const char *pathname)
   return result;
 }
 
-/* warning: MUST not be const char */
-void f_file_remove_extension(char *filename) {
+/*! \brief Remove Extension from a file name
+ *  \par Function Description
+ *  This function replaces the first dot/period from the end of a string
+ *  and all characters after, with a NULL.
+ *
+ * \returns non-zero if successful
+ *
+ * \warning MUST not be const char
+*/
+/*  */
+bool f_file_remove_extension(char *filename) {
 
   int i   = 0;
   int n   = 0;
@@ -368,8 +379,11 @@ void f_file_remove_extension(char *filename) {
        break;
     }
   }
+
   if (n > 0)
     for(i = n; i < len; i++) {            /* starting with the '.'  */
       filename[i] = '\0';
     }
+
+  return n;
 }

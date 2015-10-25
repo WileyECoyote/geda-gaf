@@ -16,7 +16,7 @@ BEGIN_DECLS
          char   *f_file_follow_symlinks          (const char *filename, GError **error);
          char   *f_file_normalize_name           (const char *filename, GError **error);
           int    f_file_remove                   (const char *pathname);
-         void    f_file_remove_extension         (      char *filename);
+         bool    f_file_remove_extension         (      char *filename);
 
 /* f_get.c */
          char   *f_get_autosave_filename         (const char *filename);

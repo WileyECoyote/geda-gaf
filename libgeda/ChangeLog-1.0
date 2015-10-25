@@ -5,8 +5,11 @@
       and changed the path to relative. Relative paths do not work
       for the UNDODISK type.
 
-    * geda_toplevel.c: Reference Page Object in geda_toplevel_add_page
+    * src/geda/geda_toplevel.c: Reference Page Object in geda_toplevel_add_page
       and unreference in geda_toplevel_remove_page.
+
+    * src/file/f_file.c: Revise function f_file_remove_extension to return
+      boolean result= >0 successfully removed extension.
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
