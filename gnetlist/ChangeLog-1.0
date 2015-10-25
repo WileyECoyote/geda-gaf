@@ -2,6 +2,12 @@
 
     * tests/: Update schematics for tests and regenerate outputs.
 
+    * tests/scripts/inverter.sch: Redo drawing, use title-block-A1.
+
+    * tests/scripts/usg_driver.sch: Added AC input voltage, cleanup drawing.
+
+    * tests/scripts/Makefile.am: Also clean *_drc2.txt.
+
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/scripts/usg_driver.sch: Update symbol names and cleanup

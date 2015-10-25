@@ -15,7 +15,7 @@ EXTRA_DIST= ${RUN_TESTS} ${SAMPLES} README.txt
 tests:
 	@exec $(srcdir)/${RUN_TESTS} ${SAMPLES}
 
-MOSTLYCLEANFILES = *.log core FILE *~
-CLEANFILES = *.log core FILE *~
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~ *_drc2.txt
+DISTCLEANFILES       = *.log core FILE *~ *_drc2.txt
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
