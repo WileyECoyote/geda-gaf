@@ -376,7 +376,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   }
   else {
     tmp = geda_toplevel_get_current_page(toplevel);
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
   }
 
   f_remove_backup_file(page->filename);
@@ -411,7 +411,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 
   /* restore page_current */
   if (tmp != NULL) {
-    s_page_goto (toplevel, tmp);
+    s_page_goto (tmp);
   }
   else {
     /* page was page_current, so check previous flag */
@@ -516,52 +516,49 @@ const char *s_page_get_file_extension (Page *page)
  *  \param page      The Page to go to
  *
  *  \returns True on success, otherwise FALSE
- *
- *  \todo is toplevel argument really need here, page->toplevel?
  */
-bool s_page_goto (GedaToplevel *toplevel, Page *page)
+bool s_page_goto (Page *page)
 {
   bool  success;
   int   sav_err;
 
-  g_return_val_if_fail (GEDA_IS_PAGE(page), FALSE);
-
-  success = TRUE;            /* Assume success */
-
-  if (GEDA_IS_TOPLEVEL(toplevel)) {
-
-    /* Check if page is already the current page, set if not */
-    if (geda_toplevel_get_current_page(toplevel) != page) {
-      success = geda_toplevel_set_current_page(toplevel, page);
-    }
-  }
-
-  sav_err = 0;
-
-  if (success) {
+  if (GEDA_IS_PAGE(page)) {
 
     char *target_dirname;
+
+    sav_err = 0;
 
     target_dirname = f_path_get_dirname(page->filename);
 
     if (!chdir (target_dirname)) {
-      success = TRUE;
+
+      success = TRUE;            /* Assume success */
+
+      /* Check if page is already the current page, set if not */
+      if (geda_toplevel_get_current_page(page->toplevel) != page) {
+
+        success = geda_toplevel_set_current_page(page->toplevel, page);
+      }
     }
     else {
-
-      success = FALSE;
 
 #ifdef HAVE_ERRNO_H
       sav_err = errno;   /* GEDA_FREE will overwrite the error */
 #endif
 
+      success = FALSE;
     }
+
     GEDA_FREE (target_dirname);
-  }
 
 #ifdef HAVE_ERRNO_H
-  errno = sav_err;
+    errno = sav_err;
 #endif
+
+  }
+  else {
+    success = FALSE;  /* Invalid pointer to Page*/
+  }
 
   return success;
 }

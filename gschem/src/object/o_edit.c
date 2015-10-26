@@ -900,7 +900,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                                                        w_current->world_top,
                                                        w_current->world_bottom);
 
-            s_page_goto (toplevel, child_page);
+            s_page_goto (child_page);
 
             o_notify_change_add (child_page,
                                 (ChangeNotifyFunc) o_invalidate_object,
@@ -919,7 +919,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
               return 0;
             }
             else {
-              s_page_goto (toplevel, parent);
+              s_page_goto (parent);
               x_window_set_current_page (w_current, parent);
             }
           }

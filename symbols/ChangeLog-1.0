@@ -1,3 +1,7 @@
+2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulate/LF33CDT-1.sym: Add symbol; Low Drop Out regulator,DPAK-3
+
 2015-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * cirrus/CS4270-1.sym: Clean symbol, add symversion=0.1

@@ -156,7 +156,7 @@ bool x_fileselect_load_file (char *filename) {
     u_log_message(_("Loading file [%s]\n"), filename);
   }
 
-  s_page_goto (pr_current, s_page_new (pr_current, filename));
+  s_page_goto (s_page_new (pr_current, filename));
 
   if(s_toplevel_read_page(pr_current, filename) == 0) {
      fprintf(stderr, _("Could not load schematic [%s]\n"), filename);

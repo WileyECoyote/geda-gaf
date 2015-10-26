@@ -690,14 +690,14 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
       case GEDA_RESPONSE_YES:
         /* action selected: save */
         keep_page = w_current->toplevel->page_current;
-        s_page_goto (w_current->toplevel, page);
+        s_page_goto (page);
         x_window_save_page (w_current,
                             w_current->toplevel->page_current,
                             w_current->toplevel->page_current->filename);
 
         if(!page->CHANGED) {
           if (keep_page != page)
-            s_page_goto (w_current->toplevel, keep_page);
+            s_page_goto (keep_page);
             result = TRUE;
         }
         break;
@@ -785,7 +785,7 @@ x_confirm_close_window (GschemToplevel *w_current)
         {
           p_current = (Page*)p_unsaved->data;
 
-          s_page_goto (toplevel, p_current);
+          s_page_goto (p_current);
 
           x_window_save_page (w_current, p_current,
                               Current_Page->filename);
@@ -809,7 +809,7 @@ x_confirm_close_window (GschemToplevel *w_current)
 
   /* Switch back to the page we were on */
   g_return_val_if_fail (keep_page != NULL, return_value);
-  s_page_goto (toplevel, keep_page);
+  s_page_goto (keep_page);
 
   return return_value;
 }

@@ -2648,12 +2648,12 @@ COMMAND (do_down_schematic)
                                               w_current->world_right,
                                               w_current->world_top,
                                               w_current->world_bottom);
-        s_page_goto (w_current->toplevel, child);
+        s_page_goto (child);
         i_zoom_world_extents(w_current,
                              s_page_get_objects (child),
                              I_PAN_DONT_REDRAW);
         o_undo_savestate(w_current, UNDO_ALL);
-        s_page_goto (w_current->toplevel, parent);
+        s_page_goto (parent);
         o_notify_change_add (child,
                             (ChangeNotifyFunc) o_invalidate_object,
                             (ChangeNotifyFunc) o_invalidate_object, w_current);

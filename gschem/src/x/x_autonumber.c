@@ -857,7 +857,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     searchtext = g_strndup(scope_text, scope_len - 1);
     /* collect all the possible searchtexts in all pages of the hierarchy */
     for (page_item = pages; page_item != NULL; page_item = g_list_next(page_item)) {
-      s_page_goto(w_current->toplevel, page_item->data);
+      s_page_goto(page_item->data);
       /* iterate over all objects an look for matching searchtext's */
       for (iter = s_page_get_objects(Current_Page); iter != NULL; NEXT(iter))
       {
@@ -923,7 +923,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
         for (page_item = pages; page_item != NULL; NEXT(page_item))
         {
           autotext->root_page = (pages->data == page_item->data);
-          s_page_goto(w_current->toplevel, page_item->data);
+          s_page_goto(page_item->data);
           autonumber_get_used(w_current, autotext);
         }
       }
@@ -932,7 +932,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     /* renumber the elements */
     for (page_item = pages; page_item != NULL; NEXT(page_item)) {
 
-      s_page_goto(w_current->toplevel, page_item->data);
+      s_page_goto(page_item->data);
 
       autotext->root_page = (pages->data == page_item->data);
 
@@ -1004,7 +1004,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   /* cleanup and redraw all*/
   g_list_foreach(searchtext_list, (GFunc) g_free, NULL);
   g_list_free(searchtext_list);
-  s_page_goto(w_current->toplevel, pages->data); /* go back to the root page */
+  s_page_goto(pages->data); /* go back to the root page */
   o_invalidate_all (w_current);
   g_list_free(pages);
   o_undo_savestate(w_current, UNDO_ALL);

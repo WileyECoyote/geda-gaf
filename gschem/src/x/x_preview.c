@@ -128,7 +128,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
                       (ChangeNotifyFunc) preview_invalidate,
                        preview_window);
 
-  s_page_goto (preview_toplevel, preview_page);
+  s_page_goto (preview_page);
 
   i_zoom_world_extents(preview_window,
                  s_page_get_objects (preview_page),

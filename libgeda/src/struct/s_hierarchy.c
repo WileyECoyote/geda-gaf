@@ -118,7 +118,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
                        _("Hierarchy contains a circular dependency."));
           return NULL;  /* error signal */
         }
-        s_page_goto (toplevel, found);
+        s_page_goto (found);
         if (page_control != 0) {
           found->page_control = page_control;
         }
@@ -178,7 +178,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
     /* change link to parent page since we can come here from
      * any parent and must come back to the same page */
     page->hierarchy_up = parent->pid;
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
     GEDA_FREE (filename);
   }
   else {
@@ -186,7 +186,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
     page = s_page_new_with_notify (toplevel, filename);
     GEDA_FREE(filename);
 
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
 
     f_open(toplevel, page, page->filename, NULL);
 

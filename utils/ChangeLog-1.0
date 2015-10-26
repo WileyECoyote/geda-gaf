@@ -1,3 +1,8 @@
+2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschlas/gschlas.c:Remove first argument, pr_current, from
+      s_page_goto
+
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Remove deadwood, minor reformatting, bump version

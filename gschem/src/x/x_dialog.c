@@ -2348,7 +2348,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       set_text_buffer(string);
 
       if (remember_page != toplevel->page_current) {
-        s_page_goto(toplevel, remember_page);
+        s_page_goto(remember_page);
       }
       done = o_edit_find_text (w_current,
                                s_page_get_objects (remember_page),

@@ -1,3 +1,7 @@
+2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_fileselect.c: Remove first argument, pr_current, from s_page_goto.
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Set max-length by setting the object property

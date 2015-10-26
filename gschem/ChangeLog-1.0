@@ -1,3 +1,19 @@
+2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Remove first argument from s_page_goto in files:
+
+        * src/iface/i_command.c
+        * src/object/o_edit.c
+        * src/x/x_autonumber.c
+        * src/x/x_confirm_close.c
+        * src/x/x_event.c
+        * src/x/x_preview.c
+        * src/x/x_window.c
+
+2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_text.c: Free string allocated in x_dialog_edit_text_ok.
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_slot.c: Replace GtkEntry with GedaEntry, which is

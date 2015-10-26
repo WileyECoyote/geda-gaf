@@ -249,7 +249,7 @@ void main_prog(void *closure, int argc, char *argv[])
       fprintf (stderr, _("Loading schematic [%s]\n"), filename);
     }
 
-    s_page_goto (pr_current, s_page_new (pr_current, filename));
+    s_page_goto (s_page_new (pr_current, filename));
 
     if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
       fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);

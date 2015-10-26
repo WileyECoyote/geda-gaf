@@ -1139,7 +1139,7 @@ PyGeda_goto_page( int pid )
 {
   Page *page;
   page = geda_toplevel_get_page_by_id(toplevel, pid);
-  return s_page_goto (toplevel, page);
+  return s_page_goto (page);
 }
 
 /*! \brief Open a Page
@@ -1212,7 +1212,7 @@ PyGeda_open_page( const char *filename )
     char *fname;
     fname = u_string_strdup ( name ? name : generate_untitled() );
     page = s_page_new (toplevel, fname);
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
     GEDA_FREE (fname);
     return page;
   }
@@ -1221,7 +1221,7 @@ PyGeda_open_page( const char *filename )
   inline void resolve_2_recover( const char *name ) {
     /* There was an error, try go back to old page */
     if ( old_current != NULL ) {
-      s_page_goto (toplevel, old_current);
+      s_page_goto (old_current);
     }
     else { /* There was error and no previous page */
       /*fprintf(stderr, "creating empty page\n"); */
@@ -1249,7 +1249,7 @@ PyGeda_open_page( const char *filename )
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
         page = s_page_new (toplevel, u_string_strdup (filename));
-        s_page_goto (toplevel, page);
+        s_page_goto (page);
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
@@ -1259,7 +1259,7 @@ PyGeda_open_page( const char *filename )
         }
       }
       else { /* File is already open, so make it the current page */
-        s_page_goto (toplevel, page);
+        s_page_goto (page);
         /* Fall through and return existing page */
       }
     }

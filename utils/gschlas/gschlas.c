@@ -109,7 +109,7 @@ main_prog(void *closure, int argc, char *argv[])
         filename = g_build_filename (cwd, argv[i], NULL);
       }
 
-      s_page_goto (pr_current, s_page_new (pr_current, filename));
+      s_page_goto (s_page_new (pr_current, filename));
 
       if (!f_open (pr_current, pr_current->page_current,
                    pr_current->page_current->filename, &err))

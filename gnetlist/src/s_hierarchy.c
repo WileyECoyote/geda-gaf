@@ -110,7 +110,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
       }
       else {
         page_control = child_page->page_control;
-        s_page_goto (pr_current, child_page);
+        s_page_goto (child_page);
 
         loaded_flag = TRUE;
 

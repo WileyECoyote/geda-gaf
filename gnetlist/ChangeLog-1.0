@@ -1,3 +1,9 @@
+2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gnetlist.c: Remove first argument, pr_current, from s_page_goto.
+
+    * src/s_hierarchy.c: Remove first argument, pr_current, from s_page_goto.
+
 2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/: Update schematics for tests and regenerate outputs.

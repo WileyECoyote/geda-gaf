@@ -830,7 +830,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
                         w_current->world_right,
                         w_current->world_top,
                         w_current->world_bottom);
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
     return page;
   }
 
@@ -850,7 +850,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
   inline void resolve_2_recover( const char *name ) {
     /* There was an error, try go back to old page */
     if ( old_current != NULL ) {
-      s_page_goto (toplevel, old_current);
+      s_page_goto (old_current);
     }
     else { /* There was error and no previous page */
       page = empty_page(name);
@@ -893,7 +893,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
         }
       }
       else { /* File is already open, so make it the current page */
-        s_page_goto (toplevel, page);
+        s_page_goto (page);
         /* Fall through and return existing page */
       }
     }
@@ -989,7 +989,7 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 
     o_redraw_cleanstates (w_current);
 
-    s_page_goto (toplevel, page);
+    s_page_goto (page);
 
     i_window_on_page_changed(w_current);
 
@@ -1085,7 +1085,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   old_current = toplevel->page_current;
 
   /* change to page */
-  s_page_goto (toplevel, page);
+  s_page_goto (page);
   /* and try saving current page to filename */
   result = f_save (toplevel, toplevel->page_current, filename, &err);
 
