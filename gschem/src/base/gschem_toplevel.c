@@ -449,3 +449,12 @@ void gschem_toplevel_free_primary (GschemToplevel *w_current)
     w_current->primary_selection = NULL;
   }
 }
+
+void gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
+{
+  GedaToplevel *toplevel = gschem_toplevel_get_geda_toplevel (w_current);
+
+  if (toplevel) {
+    geda_toplevel_set_current_page(toplevel, page);
+  }
+}
