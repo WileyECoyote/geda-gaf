@@ -16,6 +16,9 @@
 
     * src/iface/i_command.c: Revise i_cmd_do_page_last to use accessor
       geda_toplevel_get_current_page and macro geda_toplevel_get_pages.
+      Revise i_cmd_do_page_up to use geda_toplevel_get_current_page and
+      geda_toplevel_get_page_up,i_cmd_do_page_down to use geda_toplevel_
+      get_current_page and geda_toplevel_get_page_down.
 
     * src/x/x_window.c: Reverse arguments for x_window_create_drawing_area,
       looked weird.

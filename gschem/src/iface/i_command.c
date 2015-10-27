@@ -2320,101 +2320,34 @@ COMMAND (do_page_first)
 
 }
 
-/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
-COMMAND (do_page_prev)
-{
-  NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
-
-  BEGIN_NO_ARGUMENT(do_page_prev);
-
-  GedaToplevel *toplevel = w_current->toplevel;
-
-  Page *p_new;
-  GList *iter;
-
-  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
-  iter = g_list_previous( iter);
-
-  if ( iter != NULL) {
-
-    p_new = (Page *)iter->data;
-
-    if (w_current->enforce_hierarchy) {
-      p_new = s_hierarchy_find_prev_page(toplevel->pages, Current_Page);
-    }
-    else {
-      p_new = (Page *)iter->data;
-    }
-
-    if (p_new != NULL || p_new != Current_Page) {
-      x_window_set_current_page (w_current, p_new);
-    }
-  }
-}
-
-/** @brief i_cmd_do_page_next in i_command_Command_Functions */
-COMMAND (do_page_next)
-{
-  NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
-
-  BEGIN_NO_ARGUMENT(do_page_next);
-
-  GedaToplevel *toplevel = w_current->toplevel;
-
-  Page *p_new;
-  GList *iter;
-
-  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
-  NEXT(iter);
-
-  if (iter != NULL) {
-
-    if (w_current->enforce_hierarchy) {
-      p_new = s_hierarchy_find_next_page(toplevel->pages, Current_Page);
-    }
-    else {
-      p_new = (Page *)iter->data;
-    }
-
-    if (p_new != NULL || p_new != Current_Page) {
-      x_window_set_current_page (w_current, p_new);
-    }
-  }
-}
-
 /** @brief i_cmd_do_page_up in i_command_Command_Functions */
 COMMAND (do_page_up)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
 
   BEGIN_NO_ARGUMENT(do_page_up);
 
   GedaToplevel *toplevel = w_current->toplevel;
 
+  Page *page_current;
   Page *p_new;
-  GList *iter;
 
-  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
-  iter = g_list_previous( iter);
+  page_current = geda_toplevel_get_current_page(toplevel);
 
-  if ( iter != NULL) {
-
-    p_new = (Page *)iter->data;
+  if (page_current != NULL) {
 
     if (w_current->enforce_hierarchy) {
-      p_new = s_hierarchy_find_prev_page(toplevel->pages, Current_Page);
+
+      p_new = s_hierarchy_find_prev_page(toplevel->pages, page_current);
+
     }
     else {
-      p_new = (Page *)iter->data;
+
+      p_new = geda_toplevel_get_page_up(toplevel);
     }
 
-    if (p_new != NULL || p_new != Current_Page) {
+    if (p_new != NULL || p_new != page_current) {
       x_window_set_current_page (w_current, p_new);
     }
   }
@@ -2425,28 +2358,28 @@ COMMAND (do_page_down)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
 
   BEGIN_NO_ARGUMENT(do_page_down);
 
   GedaToplevel *toplevel = w_current->toplevel;
 
+  Page *current_page;
   Page *p_new;
-  GList *iter;
 
-  iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
-  NEXT(iter);
+  current_page = geda_toplevel_get_current_page(toplevel);
 
-  if (iter != NULL) {
+  if (current_page != NULL) {
 
     if (w_current->enforce_hierarchy) {
-      p_new = s_hierarchy_find_next_page(toplevel->pages, Current_Page);
+
+      p_new = s_hierarchy_find_next_page(toplevel->pages, current_page);
     }
     else {
-      p_new = (Page *)iter->data;
+
+      p_new = geda_toplevel_get_page_down(toplevel);
     }
 
-    if (p_new != NULL || p_new != Current_Page) {
+    if (p_new != NULL || p_new != current_page) {
       x_window_set_current_page (w_current, p_new);
     }
   }
