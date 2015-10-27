@@ -93,13 +93,16 @@ void
 gschem_page_view_invalidate_all (GschemPageView *view);
 
 void
-gschem_page_view_invalidate_object (GschemPageView *view, Object *object);
+gschem_page_view_invalidate_object (GschemToplevel *w_current, Object *object);
 
 void
-gschem_page_view_invalidate_screen_rect (GschemPageView *view, int left, int top, int right, int bottom);
+gschem_page_view_invalidate_screen_rect (GschemToplevel *w_current, int left, int top, int right, int bottom);
 
 void
-gschem_page_view_invalidate_world_rect (GschemPageView *view, int left, int top, int right, int bottom);
+gschem_page_view_invalidate_world_rect (GschemToplevel *w_current, int left, int top, int right, int bottom);
+
+GschemPageView*
+gschem_page_view_new ();
 
 GschemPageView*
 gschem_page_view_new_with_page (Page *page);
