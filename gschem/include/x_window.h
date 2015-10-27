@@ -1,6 +1,9 @@
-/* -*- x_window-h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_window.h $"
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
@@ -19,8 +22,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Date: October, 11, 2013
- *  Contributing Author: Wiley Edward Hill
+ * Date: October, 11, 2013
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ */
+/*!
+ * \file globals.h
+ *
+ * \brief header for the GschemMainWindow interface module
  */
 
 #ifndef __X_WINDOW_H__

@@ -1,8 +1,9 @@
-/* C header
- *  File: x_toolbar.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_toolbar.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  *
  * Copyright (C) 2013-2015 Wiley Edward Hill <wileyhill@gmail.com>
@@ -24,8 +25,13 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: January, 31, 2013
- * Contributing Author: Wiley Edward Hill
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
+ */
+/*!
+ * \file x_toolbar.h
+ *
+ * \brief header for the toolbar module
  */
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
@@ -35,6 +41,7 @@
  *
  * ------------------------------------------------------------------
  */
+
 #ifndef __X_TOOLBARS_H__
 #define __X_TOOLBARS_H__
 

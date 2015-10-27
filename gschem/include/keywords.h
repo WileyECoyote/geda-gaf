@@ -1,5 +1,5 @@
-/* C header
- * File: keywords.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/keywords.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -24,21 +24,27 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: Aug, 17, 2012
- * Contributing Author: Wiley Edward Hill
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ *
  */
-
+/*!
+ * \file keywords.h
+ *
+ * \brief header used by the settings module
+ * The file is used by the setting module to regenerate rc files.
+ */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
-;; ------------------------------------------------------------------
-;; WEH | 10/31/12 |  Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 12/02/12 |  Renamed autoplace_attributes_grid to attribute_
-;;                |  placement-grid
-;; ------------------------------------------------------------------
-;; WEH | 01/06/16 |  Setup remaining Net Ripper variables (to complete
-;;     |          |  the integration of the Ripper settings on the
-;;     |          |  configure settings dailog.
-;; ------------------------------------------------------------------
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 10/31/12 |  Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 12/02/12 |  Renamed autoplace_attributes_grid to attribute_
+ *                |  placement-grid
+ * ------------------------------------------------------------------
+ * WEH | 01/06/16 |  Setup remaining Net Ripper variables (to complete
+ *     |          |  the integration of the Ripper settings on the
+ *     |          |  configure settings dailog.
+ * ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
 /*

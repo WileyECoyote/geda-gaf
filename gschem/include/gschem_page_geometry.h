@@ -1,4 +1,7 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_page_geometry.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
@@ -17,11 +20,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
  */
 /*!
  * \file gschem_page_geometry.h
  *
  * \brief
+ */
+
+/*! \class GschemPageGeometry gschem_page_geometry.h "gschem_page_geometry.h"
+ *  \brief Page Geometry Object
  */
 
 #define GSCHEM_TYPE_PAGE_GEOMETRY (gschem_page_geometry_get_type())

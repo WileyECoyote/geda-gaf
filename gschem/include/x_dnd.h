@@ -1,4 +1,6 @@
-/* -*- x_dnd.h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_dnd.h $"
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
@@ -22,8 +24,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Date: September, 27, 2013
- *  Contributing Author: Wiley Edward Hill
+ * Date: September, 27, 2013
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ */
+/*!
+ * \file x_dnd.h
+ *
+ * \brief header for the Drag & Drop module
  */
 
 #ifndef H_GSCHEM_DRAGnDROP_H

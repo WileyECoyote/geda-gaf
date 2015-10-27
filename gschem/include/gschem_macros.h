@@ -1,6 +1,5 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
-/*
- * File: gschem_macros.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_macros.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -23,15 +22,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: December, 29, 2014
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date Contributed: December, 29, 2014
+ *
  */
-/*! \file gschem_macros.h
+/*!
+ *  \file gschem_macros.h
+ *
  *  \brief Pre-Processor Marcos for gschem
  *  The file contains macros used by gschem.
  *
- *  \note Presently, this header is only included by o_box.c and
- *        o_grips.c.
+ *  \note Presently, this header is only included by o_box.c and o_grips.c.
  */
 
 /* Macro for inserting and (grip) editing Box Objects. */

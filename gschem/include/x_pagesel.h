@@ -1,5 +1,9 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_pagesel.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
@@ -16,6 +20,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ */
+/*!
+ * \file x_pagesel.h
+ *
+ * \brief header for the Page Select Dialog
+ */
+/*! \class Pagesel x_pagesel.h "x_pagesel.h"
+ *  \brief Page Select Dialog
+ *  \par
+ *  The Page Select Dialog ...
  */
 
 /*#define NAME_WIDTH_HIGH 535  Minimum column with when full filenames */

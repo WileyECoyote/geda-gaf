@@ -1,5 +1,5 @@
-/* C header                                           -*- gschem_toplevel.h -*-
- * File: gschem_toplevel.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_toplevel.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -24,9 +24,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: November, 4, 2013
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date Contributed: November, 4, 2013
+ *
  */
+
+/*!
+ * \file gschem_toplevel.h
+ *
+ * \brief Toplevel Data Structure Object
+ */
+
+/*! \class GschemToplevel gschem_toplevel.h "gschem_toplevel.h"
+ *  \brief Gschem Toplevel Object
+ */
+
 #ifndef __GSCHEM_TOPLEVEL_H__
 #define __GSCHEM_TOPLEVEL_H__
 

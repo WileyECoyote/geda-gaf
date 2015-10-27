@@ -1,4 +1,7 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_confirm_close.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 1998-2015 Ales Hvezda
@@ -18,6 +21,18 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ */
+/*!
+ * \file x_confirm_close.h
+ *
+ * \brief header for the Confirm Close Dialog
+ */
+
+/*! \class ConfirmCloseDialog x_confirm_close.h "x_confirm_close.h"
+ *  \brief Confirm Close Dialog
+ *  \par
+ *  Confirm Close Dialog ...
  */
 
 #ifndef __CLOSE_CONFIRMATION_H__

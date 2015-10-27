@@ -1,4 +1,5 @@
-/* -*- i_command.h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/i_command.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -23,14 +24,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: February, 02, 2013
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date Contributed: February, 02, 2013
  *
  */
- /*! \warning Unless you really know what your doing - Don't do it.
-  *           This file is included twice in i_command.c and once in
-  *           i_callbacks.c and is compiled differently each time!
-  */
+/*!
+ * \file i_command.h
+ *
+ * \brief header for the command interface module
+ *
+ * \warning Unless you really know what your doing - Don't do it.
+ *          This file is included twice in i_command.c and once in
+ *          i_callbacks.c and is compiled differently each time!
+ */
 /*
 clear (log screen)
 install

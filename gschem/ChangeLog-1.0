@@ -10,6 +10,8 @@
         * src/x/x_preview.c
         * src/x/x_window.c
 
+    * include/ *.h: Redo file headers, again.
+
 2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_text.c: Free string allocated in x_dialog_edit_text_ok.

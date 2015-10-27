@@ -1,4 +1,6 @@
-/* -*- x_window-h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_status_bar.h $"
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
@@ -19,8 +21,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Date: March 07, 2014
- *  Contributing Author: Wiley Edward Hill
+ * Date: March 07, 2014
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ */
+/*!
+ * \file x_status_bar.h
+ *
+ * \brief header for the GschemStatusBar widget interface module
  */
 
 #ifndef __X_STATUS_BAR_H__

@@ -1,4 +1,6 @@
-/* -*- i_action.h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/i_action.h $"
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
@@ -20,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: February, 02, 2013
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date Contributed: February, 02, 2013
  *
  */
 /*! \file i_actions.h
@@ -31,7 +33,7 @@
  *   Maybe a temporary scheme used to synchronize the action
  *  "text". With the old system, all actions in gschem were
  *   dependent on finding and successfully reading a Scheme
- *   RC file, which is proved both unstable and unreliable,
+ *   RC file, which has proved both unstable and unreliable,
  *   particularly on nix's due to stricter enforcement of file
  *   "permissions" and there is no control over the contents of
  *   these files. Maybe the Menu definitions need their own file

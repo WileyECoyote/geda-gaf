@@ -1,5 +1,9 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_print.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
@@ -16,6 +20,12 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ */
+/*!
+ * \file x_print.h
+ *
+ * \brief header for the Print Dialog module
  */
 
 #ifndef __X_PRINT_H__

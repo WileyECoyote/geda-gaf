@@ -1,4 +1,7 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_dialog.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2015 Ales Hvezda
  *
@@ -16,8 +19,20 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
  */
-
+/*!
+ * \file gschem_dialog.h
+ *
+ * \brief Header for Gschem Dialog Class
+ */
+/*! \class GschemDialog gschem_dialog.h "gschem_dialog.h"
+ *  \brief Gschem Dialog Class
+ *  This is the base class from which other dialogs in gschem are
+ *  derived. GschemDialog base class takes care saving and restoring
+ *  the geometry and position of sibling dialogs. Derived dialogs can
+ *  also register a selection notifier function with the base class.
+ */
 
 #ifndef __GSCHEM_DIALOG_H__
 #define __GSCHEM_DIALOG_H__

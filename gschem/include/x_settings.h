@@ -1,8 +1,9 @@
-/* C header
- * File: x_settings.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_settings.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
@@ -24,8 +25,13 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: Aug, 17, 2012
- * Contributing Author: Wiley Edward Hill
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
+ */
+/*!
+ * \file x_settings.h
+ *
+ * \brief  header used by the Setting module
  */
 /************************ REVISION HISTORY *************************
  * Who |   When   | What (Why)
@@ -47,7 +53,6 @@
  * WEH | 03/13/15 | Added TextMarkerThld Spinner (to support new settings
  *     |          | variable)
  * ------------------------------------------------------------------
-//
 */
 #ifndef __X_SETTINGS_H__
 #define __X_SETTINGS_H__

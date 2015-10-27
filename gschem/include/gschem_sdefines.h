@@ -1,5 +1,5 @@
-/* C header
- * File: gschem_sdefines.h
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_sdefines.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -24,9 +24,16 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: Aug, 22, 2012
- * Contributing Author: Wiley Edward Hill
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
 */
+
+/*!
+ * \file gschem_sdefines.h
+ *
+ * \brief Defines String constants used in gschem
+ */
+
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
  * ------------------------------------------------------------------

@@ -1,4 +1,7 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/x_compselect.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
@@ -17,15 +20,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
  */
-
-#ifndef __X_COMPSELECT_H__
-#define __X_COMPSELECT_H__
-
-/* The Component-Dialog Group is used to show images of the Dialog
+/*!
+ * \file x_compselect.h
+ *
+ * \brief header for the Component Selection Dialog module
+ * The Component-Dialog Group is used to show images of the Dialog
  * in the Doxygen generated source documnetation, before the other
  * stuff related to the Component Select Dialog.
  */
+
 /** \defgroup Component-Dialog Component Selection Dialog
  *  @{
  *  \ingroup (Standard-Dialogs)
@@ -34,11 +39,18 @@
  *  @} end group Component-Dialog
  */
 
+/*! \class Compselect x_compselect.h "x_compselect.h"
+ *  \brief Component Selection Dialog
+ *  \par
+ *  Component Selection Dialog ...
+ */
+
+#ifndef __X_COMPSELECT_H__
+#define __X_COMPSELECT_H__
+
 #define ThisDialog compselect
 #define DialogTitle "Select Component..."
 #define DialogSettings IDS_COMP_SELECT
-
-/* CompselectBehavior */
 
 typedef enum {
   COMPSELECT_BEHAVIOR_REFERENCE,

@@ -1,4 +1,7 @@
-/* gEDA - GPL Electronic Design Automation
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_main_window.h $"
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
@@ -17,11 +20,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
  */
 /*!
  * \file gschem_main_window.h
  *
  * \brief
+ */
+
+/*! \class GschemMainWindow gschem_main_window.h "gschem_main_window.h"
+ *  \brief Main Window Object
  */
 
 #define GSCHEM_TYPE_MAIN_WINDOW           (gschem_main_window_get_type())

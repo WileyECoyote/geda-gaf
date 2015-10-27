@@ -1,4 +1,5 @@
-/* $Id$  indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 */
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+
 #define GLT GList   /* Only for this file,     */
 #define GSL GSList  /* to improve readability! */
 #define GLS GtkListStore

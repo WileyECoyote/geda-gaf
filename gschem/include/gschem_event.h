@@ -1,4 +1,5 @@
-/* -*- gschem_event.h -*-
+/* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
+/* "$Id include/gschem_event.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -20,14 +21,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
- *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: June, 23, 2015
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Date Contributed: June, 23, 2015
  *
  */
 /*!
  * \file gschem_event.h
  *
- * \brief
+ * \brief header for Gschem Event Objects
+ */
+/*! \class GschemEvent gschem_event.h "gschem_event.h"
+ *  \brief Gschem Event Objects could probably just be a structure
  */
 
 #define GSCHEM_TYPE_EVENT           (gschem_event_get_type())
