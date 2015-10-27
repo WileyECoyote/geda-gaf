@@ -140,11 +140,11 @@ void x_window_free_gc(GschemToplevel *w_current)
  *  added to the given container \a window and assigned a name base on
  *  the programs process ID.
  *
- * \param [in] window    The Main window
  * \param [in] w_current The toplevel environment.
+ * \param [in] window    The Main window
  */
 static
-void x_window_create_drawing_area (GtkWidget *window, GschemToplevel *w_current)
+void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 {
   /* drawing next */
   //DrawingArea = gtk_drawing_area_new ();
@@ -526,7 +526,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
   }
 
-  x_window_create_drawing_area(draw_window, w_current);
+  x_window_create_drawing_area(w_current, draw_window);
 
   i_event_setup_handlers (w_current);
 
