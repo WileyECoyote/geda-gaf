@@ -3,9 +3,6 @@
  *
  * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
  *
- * Date: December 26, 2012
- * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
- *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -18,8 +15,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
+ *
+ * Date: December 26, 2012
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 
 #ifndef __X_DIALOG_H__
