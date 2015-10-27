@@ -1,9 +1,16 @@
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_toplevel.h: Add geda_toplevel_get_page_down
+      and geda_toplevel_get_page_up.
+
     * src/struct/s_page.c: Eliminate toplevel argument to s_page_goto.
 
     * src/struct/s_hierarchy.c: Remove first argument, toplevel, from
       s_page_goto.
+
+    * src/geda/geda_toplevel.c:: Add functions geda_toplevel_get_page_up
+      and geda_toplevel_get_page_down. Eliminate g_return_val_if_fail in
+      function geda_toplevel_set_current_page.
 
 2015-10-25 Wiley E. Hill <wileyhill@gmail.com>
 

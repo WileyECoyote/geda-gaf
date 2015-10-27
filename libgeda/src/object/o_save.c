@@ -72,7 +72,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
       /* make p_current the current page of toplevel */
       toplevel->page_current = p_current;
-      s_page_goto (NULL, p_current);
+      s_page_goto (p_current);
 
       /* Get the real filename and file permissions */
       real_filename = f_file_follow_symlinks (p_current->filename, NULL);
@@ -167,7 +167,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
   /* Restore current page if any backups were performed */
   if (count) {
     toplevel->page_current = p_save;
-    s_page_goto (NULL, p_current);
+    s_page_goto (p_current);
   }
 }
 
