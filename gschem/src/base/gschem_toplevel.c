@@ -425,7 +425,7 @@ gschem_toplevel_get_current_page (GschemToplevel *w_current)
   g_return_val_if_fail (w_current != NULL, NULL);
   g_return_val_if_fail (w_current->toplevel != NULL, NULL);
 
-  return w_current->toplevel->page_current;
+  return geda_toplevel_get_current_page(w_current->toplevel);
 }
 
 /*! \brief Get the libgeda toplevel for this gschem toplevel
