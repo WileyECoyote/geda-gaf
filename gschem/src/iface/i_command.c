@@ -2463,12 +2463,15 @@ COMMAND (do_page_last)
 
   GedaToplevel *toplevel = w_current->toplevel;
 
+  Page  *current_page;
   Page  *p_last;
   GList *iter;
 
+  current_page = geda_toplevel_get_current_page(toplevel);
+
   if (w_current->enforce_hierarchy) {
 
-    iter   = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+    iter   = g_list_find(geda_toplevel_get_pages(toplevel), current_page);
     NEXT(iter);
 
     if (iter != NULL) {
@@ -2481,19 +2484,18 @@ COMMAND (do_page_last)
       }
     }
     else {
-      iter = g_list_last(geda_list_get_glist(toplevel->pages));
+      iter = g_list_last(geda_toplevel_get_pages(toplevel));
       p_last = iter->data;
     }
   }
   else {
-    iter = g_list_last(geda_list_get_glist(toplevel->pages));
+    iter = g_list_last(geda_toplevel_get_pages(toplevel));
     p_last = iter->data;
   }
 
-  if (p_last != NULL || p_last != Current_Page) {
+  if (p_last != NULL || p_last != current_page) {
     x_window_set_current_page (w_current, p_last);
   }
-
 }
 
 /** @brief i_cmd_do_page_new in i_command_Command_Functions */
