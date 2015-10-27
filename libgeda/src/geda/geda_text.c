@@ -172,14 +172,8 @@ geda_text_dispose(GObject *object)
 {
   Text *text = GEDA_TEXT(object);
 
-  if (text->string) {
-    GEDA_FREE(text->string);
-    text->string = NULL;
-  }
-  if (text->disp_string) {
-    GEDA_FREE(text->disp_string);
-    text->disp_string = NULL;
-  }
+  GEDA_FREE(text->string);
+  GEDA_FREE(text->disp_string);
 
   G_OBJECT_CLASS(geda_text_parent_class)->dispose(object);
 

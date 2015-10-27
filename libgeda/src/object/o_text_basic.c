@@ -958,9 +958,9 @@ void o_text_update_disp_string (Object *object)
       case (SHOW_NAME):
         if (name[0] != '\0') {
           text->disp_string = u_string_strdup (name);
-        } else {
-          g_critical ("Got an improper attribute: %s\n",
-                      text->string);
+        }
+        else {
+          g_critical ("Got an improper attribute: %s\n", text->string);
           text->disp_string = u_string_strdup ("invalid");
         }
         break;
@@ -968,9 +968,9 @@ void o_text_update_disp_string (Object *object)
       case (SHOW_VALUE):
         if (value[0] != '\0') {
           text->disp_string = u_string_strdup(value);
-        } else {
-          g_critical ("Got an improper attribute: %s\n",
-                      text->string);
+        }
+        else {
+          g_critical ("Got an improper attribute: %s\n", text->string);
           text->disp_string = u_string_strdup ("invalid");
         }
         break;

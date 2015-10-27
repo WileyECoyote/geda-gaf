@@ -202,8 +202,9 @@ void u_refdes_reset(Object *object)
           o_text_update_disp_string(object);
           break;
         }
-        else
+        else {
           buffer[index] = ptr[index];
+        }
       }
     }
   }

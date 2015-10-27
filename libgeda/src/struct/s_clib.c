@@ -258,15 +258,13 @@ void s_clib_init (void)
 static void free_symbol (void *data, void *user_data)
 {
   CLibSymbol *symbol = data;
+
   if (symbol != NULL) {
-    if (symbol->source != NULL) {
-      symbol->source = NULL;
-    }
-    if (symbol->name != NULL) {
-      GEDA_FREE (symbol->name);
-      symbol->name = NULL;
-    }
-    GEDA_FREE(symbol);
+
+    symbol->source = NULL;
+
+    GEDA_FREE (symbol->name);
+    GEDA_FREE (symbol);
   }
 }
 
@@ -290,35 +288,22 @@ static void free_symbol_cache_entry (void *data)
 static void free_source (CLibSource *source)
 {
   if (source != NULL) {
+
     if (source->name != NULL) {
       GEDA_FREE (source->name);
-      source->name = NULL;
     }
+
     if (source->symbols != NULL) {
       g_list_foreach (source->symbols, (GFunc) free_symbol, NULL);
       g_list_free (source->symbols);
       source->symbols = NULL;
     }
-    if (source->category != NULL) {
-      GEDA_FREE (source->category);
-      source->category = NULL;
-    }
-    if (source->directory != NULL) {
-      GEDA_FREE (source->directory);
-      source->directory = NULL;
-    }
-    if (source->group != NULL) {
-      GEDA_FREE (source->group);
-      source->group = NULL;
-    }
-    if (source->get_cmd != NULL) {
-      GEDA_FREE (source->get_cmd);
-      source->get_cmd = NULL;
-    }
-    if (source->list_cmd != NULL) {
-      GEDA_FREE (source->list_cmd);
-      source->list_cmd = NULL;
-    }
+
+    GEDA_FREE (source->category);
+    GEDA_FREE (source->directory);
+    GEDA_FREE (source->group);
+    GEDA_FREE (source->get_cmd);
+    GEDA_FREE (source->list_cmd);
 
     if (source->type == CLIB_SCM) {
       scm_gc_unprotect_object (source->list_fn);
@@ -336,11 +321,12 @@ static void free_source (CLibSource *source)
  */
 void s_clib_free (void)
 {
-  GList *iter;
-
   if (clib_sources != NULL) {
+
+    GList *iter;
+
     for (iter = clib_sources; iter != NULL;  NEXT(iter)) {
-      free_source((CLibSource *) iter->data);
+      free_source((CLibSource*) iter->data);
     }
     g_list_free (clib_sources);
     clib_sources = NULL;
@@ -643,12 +629,15 @@ static void refresh_directory (CLibSource *source)
 
     strcpy(tmpname, source->directory);
     tail = &tmpname[0];
-    while (*tail != '\0') tail++;
-           *tail++ = DIR_SEPARATOR;
+
+    while (*tail != '\0')
+      tail++;
+
+    *tail++ = DIR_SEPARATOR;
 
     /* get all the files within directory */
-    while ((entry = readdir (dirp)) != NULL)
-    {
+    while ((entry = readdir (dirp)) != NULL) {
+
       if (entry->d_name[0] == '.') {
         continue;
       }
@@ -660,6 +649,7 @@ static void refresh_directory (CLibSource *source)
       if (g_file_test (&tmpname[0], G_FILE_TEST_IS_REGULAR)) {
 
         suffix = f_get_filename_ext(entry->d_name);
+
         if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
 
           /* skip filenames that we already know about. */
@@ -689,7 +679,7 @@ static void refresh_directory (CLibSource *source)
 
   /* Now sort the list of symbols by name. */
   source->symbols = g_list_sort (source->symbols,
-                                 (GCompareFunc) compare_symbol_name);
+                                (GCompareFunc) compare_symbol_name);
 
   s_clib_flush_cache();
 }
@@ -949,20 +939,24 @@ const CLibSource *s_clib_add_directory (const char *directory,
   if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
     group = u_string_strdup(ptr_dir2);
   }
-  else
+  else {
     if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
       group = u_string_strdup(ptr_dir1);
     }
-    else
+    else {
       if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
          if ( name != NULL )  {
            group = u_string_strdup(basename(name));
          }
-         else
+         else {
            group = u_string_strdup( ptr_dir2 );
+         }
       }
-      else
+      else {
         group = u_string_strdup( ptr_dir2 );
+      }
+    }
+  }
 
   if (name != NULL) {
     int count = 0;
