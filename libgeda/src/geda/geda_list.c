@@ -346,6 +346,8 @@ bool geda_list_is_in_list(GedaList *list, void *item)
  *
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item to remove from the GedaList.
+ *
+ *  \note Only removes the first instance of item.
  */
 void geda_list_remove(GedaList *list, void *item)
 {
