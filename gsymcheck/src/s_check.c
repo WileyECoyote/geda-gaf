@@ -541,6 +541,17 @@ static void s_check_description (const GList *obj_list, SYMCHECK *s_current)
     ADD_ERROR_MESSAGE(message);
   }
 }
+
+/*! \brief Performs checks of the device= attribute
+ *  \par Function Description
+ *   Checks for:
+ *  <DL>
+ *    <DT>Existence of Device attributes</DT>
+ *    <DT>Duplicate Device attribute values</DT>
+ *    <DT>Multiple Device attributes</DT>
+ *    <DT>device=none if graphical</DT>
+ *    <DT>Present of device value in symbol filename</DT>
+ *  </DL>
  */
 static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
 {
