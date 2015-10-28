@@ -5,6 +5,10 @@
       value without checking the value, this is what was previously done
       in s_page_set_current.
 
+    * src/file/f_file.c: Replace lockf with flock and use error exit in
+      function f_file_copy, close the input even if byte balence not zero
+      and save errno.
+
     * src/struct/s_page.c: Check pointers for Page and Objects in various
       functions, add geda_toplevel_get_pages macro to get the page list,
       let the compiler optimize out.

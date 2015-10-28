@@ -28,9 +28,7 @@
 
 #include <config.h>
 
-#ifdef HAVE_FCNTL_H
-# include <fcntl.h>
-#endif
+#include <sys/file.h>
 
 #include <stdio.h>
 
@@ -77,12 +75,27 @@ int f_file_copy(const char *source, const char *target)
   const char *log_3SQ2 = "%s: \"%s\", %s\n";
 
 #if defined(OS_LINUX)
+
   const char *err_lock = _("File lock error");
-  const char *err_sys  = _("%s: attempting to lock/unlock file \"%s\"\n");
+  const char *err_sys  = _("%s: attempting to unlock file \"%s\"\n");
+
+  void unlock_input(int input) {
+    /* Unlock the input file */
+    if (flock(input, LOCK_UN) == -1) {
+      fprintf(stderr, err_sys, err_file, source);
+    }
+  }
+
+#define unlock_file(fd) unlock_input(fd)
+
+#else
+
+#define unlock_file(fd)
+
 #endif
 
-  int error_exit( int TheError ) {
-    u_log_message(log_3SQ2, err_file, source, strerror(TheError));
+  int error_exit (const char *msg, int TheError ) {
+    u_log_message(log_3SQ2, msg, source, strerror(TheError));
     if (buffer >  0) free(buffer);
     if (input  >= 0) close(input);
     if (output >= 0) close(output);
@@ -105,6 +118,7 @@ int f_file_copy(const char *source, const char *target)
   else {
 
     input = open(source, O_RDONLY);
+
     if (input < 0) {
       u_log_message(log_3SQ2, err_file, source, strerror(errno));
       status = -1;
@@ -112,27 +126,21 @@ int f_file_copy(const char *source, const char *target)
     else {
 
 #if defined(OS_LINUX)
-      if (input > 0) {
-        if (lockf(input, F_LOCK, 0) == -1) {
-          free(buffer);
-          return -1; /* FAILURE */
-          u_log_message(log_3SQ2, err_lock, source, strerror(errno));
-        }
-        else { /* else the input is locked */
-          u_log_message(log_3SQ2, err_lock, source, strerror(errno));
-          free(buffer);
-          return -1; /* FAILURE */
-        }
+
+      /* Lock the input file, to prevent processes from writting to
+       * file until we are done */
+      if (flock(input, LOCK_EX) == -1) {
+        return error_exit(err_lock, errno);
       }
+
 #endif
 
       output = open(target, O_WRONLY | O_CREAT | O_EXCL, 0666);
 
       if (output < 0) {
         status  = errno;
-        close(input);
-        free(buffer);
-        return error_exit(status);
+        unlock_file(input);
+        return error_exit(err_file, status);
       };
 
       while (nread = read(input, buffer, DISK_BUFFER_SIZE), nread > 0)
@@ -141,6 +149,7 @@ int f_file_copy(const char *source, const char *target)
         size_t nwritten;
 
         do {
+
           nwritten = write(output, ptr_out, nread);
 
           if (nwritten >= 0) {
@@ -149,10 +158,8 @@ int f_file_copy(const char *source, const char *target)
           }
           else if (errno != EINTR) {
             status = errno;
-            close(input);
-            close(output);
-            free(buffer);
-            return error_exit(status);
+            unlock_file(input);
+            return error_exit(err_file, status);
           }
         } while (nread > 0);
       }
@@ -160,31 +167,20 @@ int f_file_copy(const char *source, const char *target)
       if (nread == 0) {
         if (close(output) < 0) {
           status = errno;
-          close(input);
+          unlock_file(input);
           output = -1;
-          free(buffer);
-          return error_exit(status);
+          return error_exit(err_file, status);
         }
-        close(input);
       }
 
-#if defined(OS_LINUX)
-
-    /* Sanity-Check for Lock */
-      if (lockf(input, F_TLOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
-        lockf(input, F_ULOCK, 0);
-      }
-      else {
-        fprintf(stderr, err_sys, err_file, source);
-      }
-
-#endif
-
+      unlock_file(input);
+      close(input);
+      status = errno;
     }
     free(buffer);
   }
-  return status; /* Success! */
 
+  return status; /* Success! */
 }
 
 /*! \brief Compare file modification time to a given time
@@ -214,6 +210,7 @@ int f_file_cmp_mod_time (const char *filename, time_t ref_time)
   errno = 0;
 
   if (stat (filename, &file_stat) != 0) {
+
     if (errno == ENOENT) {
       /* The file does not exist. */
       result =  -1;
