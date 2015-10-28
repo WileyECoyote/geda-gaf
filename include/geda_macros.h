@@ -99,6 +99,9 @@
 #define BUG_IMSG(mesg, val) fprintf(stderr, "File %s, <%s> at line %d: %s=%d\n", \
                                         __FILE__, __func__, __LINE__, mesg, val);
 
+#define BUG_PMSG(mesg, val) fprintf(stderr, "File %s, <%s> at line %d: %s=<%p>\n", \
+                                        __FILE__, __func__, __LINE__, mesg, val);
+
 #define BUG_TRACE(mesg) fprintf (stderr, "File %s, <%s> at line %d: %s\n", \
                                  __FILE__, __func__, __LINE__, mesg); \
                                  u_program_backtrace();
