@@ -2797,8 +2797,19 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->attribute_placement_grid   = GET_SPIN_IVALUE (AutoPlacementGridSpin);
   x_settings_set_scm_int("autoplace-attributes-grid", w_current->attribute_placement_grid);
 
+  /* auto save interval */ {
+
+    /* Save the current auto_save_interval */
+    int old_auto_save = toplevel->auto_save_interval;
+
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
-   toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
+     toplevel->auto_save_interval       = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
+
+     /* Check if Auto save was enabled, i.e. from 0 -> >0 */
+    if (!old_auto_save && toplevel->auto_save_interval)
+      s_page_autosave_init(toplevel);
+  }
+
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_threshold        = GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->grip_size                  = GET_SPIN_IVALUE (GripPixelSizeSpin);

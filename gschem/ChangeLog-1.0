@@ -1,3 +1,8 @@
+2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Check if auto-save was enable in the
+      dialog and call s_page_autosave_init if not previously enabled.
+
 2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Add gschem_page_view_new and pass a
