@@ -610,25 +610,11 @@ void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 
 bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
 {
-  bool found_page = FALSE;
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
 
-  if (page->toplevel == toplevel) {
+  toplevel->page_current = page;
 
-    const GList *iter = geda_toplevel_get_pages(toplevel);
-
-    while (iter != NULL) {
-
-      if (iter->data == page) {
-        toplevel->page_current = page;
-        found_page = TRUE;
-        break;
-      }
-
-      NEXT(iter);
-    }
-  }
-
-  return found_page;
+  return TRUE;
 }
 
 /** @} endgroup geda-toplevel */

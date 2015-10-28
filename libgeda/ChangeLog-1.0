@@ -1,3 +1,10 @@
+2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Revert setting the toplevel to old method
+      of just checking the toplevel and setting the current page to passed
+      value without checking the value, this is what was previously done
+      in s_page_set_current.
+
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_toplevel.h: Add geda_toplevel_get_page_down
