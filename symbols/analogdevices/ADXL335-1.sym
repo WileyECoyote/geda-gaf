@@ -149,7 +149,7 @@ use-license=ask
 T 2700 600 9 10 0 0 0 0 1
 numslots=0
 T 2200 2900 5 10 0 1 0 0 1
-description=Accelerometer,3-Axis ±3 g,Low Power
+description=Accelerometer,3-Axis ±3 g,Low Power,QFN
 T 2200 2500 9 10 0 1 0 0 1
 footprint=QFN-16-4-EP
 T 400 2300 9 10 0 1 0 0 1
