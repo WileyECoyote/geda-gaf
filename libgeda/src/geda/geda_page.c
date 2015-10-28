@@ -110,9 +110,11 @@ Object *geda_page_get_object(Page *page, int sid)
   g_return_val_if_fail(GEDA_IS_PAGE(page), NULL);
 
   iter = g_list_first(page->_object_list);
-  while (iter != NULL)
-  {
+
+  while (iter != NULL) {
+
     Object *object = (Object *)iter->data;
+
     if (object->sid == sid) {
       return object;
     }

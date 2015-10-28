@@ -103,7 +103,7 @@ s_object_release(Object *o_current)
     geda_object_weakref_notify(o_current);
     geda_object_unref(o_current);
 
-    o_current=NULL; /* misc clean up */
+    o_current = NULL; /* misc clean up */
   }
 }
 

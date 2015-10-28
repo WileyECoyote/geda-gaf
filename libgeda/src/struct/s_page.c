@@ -118,6 +118,7 @@ pre_object_removed (Page *page, Object *object)
 
     /* Remove object from tile system */
     s_tile_remove_object (object);
+
   }
   else {
     BUG_MSG("Object is not a GedaObject");
@@ -478,8 +479,7 @@ Page *s_page_get_current (GedaToplevel *toplevel)
  */
 bool s_page_set_current (GedaToplevel *toplevel, Page *page)
 {
-  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), FALSE);
-  return geda_toplevel_set_current_page(toplevel, page);
+   return geda_toplevel_set_current_page(toplevel, page);
 }
 
 /*! \brief Get File Extension of the File Assocatiacted with Page.
@@ -643,11 +643,15 @@ void s_page_resequence_by_ids (GedaToplevel *toplevel)
 int s_page_save_all (GedaToplevel *toplevel)
 {
   const GList *iter;
-  Page *p_current;
+  const GList *list;
   int status = 0;
 
-  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
+  list = geda_toplevel_get_pages(toplevel);
+
+  for ( iter = list; iter; iter = iter->next)
   {
+    Page *p_current;
+
     p_current = (Page *)iter->data;
 
     if (f_save (toplevel, p_current, p_current->filename, NULL)) {
@@ -679,11 +683,15 @@ int s_page_save_all (GedaToplevel *toplevel)
 int s_page_save_all_changed (GedaToplevel *toplevel)
 {
   const GList *iter;
-  Page *p_current;
+  const GList *list;
   int status = 0;
 
-  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
-  {
+  list = geda_toplevel_get_pages(toplevel);
+
+  for ( iter = list; iter; iter = iter->next) {
+
+    Page *p_current;
+
     p_current = (Page *)iter->data;
 
     if (p_current && p_current->CHANGED) {
@@ -716,14 +724,18 @@ int s_page_save_all_changed (GedaToplevel *toplevel)
  */
 Page *s_page_search (GedaToplevel *toplevel, const char *filename)
 {
-  const GList *iter;
-  Page  *page;
-
   if (filename) {
-    for (iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
-    {
-      page = (Page *)iter->data;
-      if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )
+
+    const GList *iter;
+    const GList *list;
+
+    list = geda_toplevel_get_pages(toplevel);
+
+    for (iter = list; iter; iter = iter->next)   {
+
+      Page *page = (Page *)iter->data;
+
+      if (g_ascii_strcasecmp (page->filename, filename) == 0)
         return page;
     }
   }
@@ -748,6 +760,7 @@ Page *s_page_search_by_page_id (PageList *list, int pid)
   for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
   {
     Page *page = (Page *)iter->data;
+
     if (page->pid == pid) {
       return page;
     }
@@ -770,10 +783,13 @@ Page *s_page_search_by_page_id (PageList *list, int pid)
 void
 s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
 {
-  g_return_if_fail(GEDA_IS_PAGE(page));
-
-  page->rendered_text_bounds_func = func;
-  page->rendered_text_bounds_data = user_data;
+  if (GEDA_IS_PAGE(page)) {
+    page->rendered_text_bounds_func = func;
+    page->rendered_text_bounds_data = user_data;
+  }
+  else {
+    BUG_PMSG("Invalid page pointer", page);
+  }
 }
 
 /*! \brief Append an Object to the Page
@@ -788,12 +804,20 @@ s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
  */
 void s_page_append_object (Page *page, Object *object)
 {
-  if(GEDA_IS_OBJECT(object)){
-    page->_object_list = g_list_append (page->_object_list, object);
-    object_added (page, object);
+  if (GEDA_IS_PAGE(page)) {
+
+    if (GEDA_IS_OBJECT(object)) {
+
+      page->_object_list = g_list_append (page->_object_list, object);
+      object_added (page, object);
+    }
+    else {
+      BUG_PMSG("Object is not a GedaObject", object);
+    }
+
   }
   else {
-    BUG_MSG("Objects is not a GedaObject");
+    BUG_PMSG("Invalid page pointer", page);
   }
 }
 
@@ -805,16 +829,26 @@ void s_page_append_object (Page *page, Object *object)
  *
  *  \param [in] page      The Page the objects are being added to.
  *  \param [in] obj_list  The Object list being added to the page.
+ *
+ *  \todo The list of objects is not checked
  */
 void s_page_append_list (Page *page, GList *obj_list)
 {
-  GList  *iter;
-  Object *object;
+  if (GEDA_IS_PAGE(page)) {
 
-  page->_object_list = g_list_concat (page->_object_list, obj_list);
-  for (iter = obj_list; iter != NULL; iter = iter->next) {
-    object = iter->data;
-    object_added (page, object);
+    GList  *iter;
+    Object *object;
+
+    page->_object_list = g_list_concat (page->_object_list, obj_list);
+
+    for (iter = obj_list; iter != NULL; iter = iter->next) {
+
+      object = iter->data;
+      object_added (page, object);
+    }
+  }
+  else {
+    BUG_PMSG("Invalid page pointer", page);
   }
 }
 
@@ -828,10 +862,22 @@ void s_page_append_list (Page *page, GList *obj_list)
  */
 void s_page_remove_object (Page *page, Object *object)
 {
-  pre_object_removed (page, object);
-  page->_object_list = g_list_remove (page->_object_list, object);
-  o_notify_emit_change (object);
-  page->CHANGED = 1;
+  if (GEDA_IS_PAGE(page)) {
+
+    if (GEDA_IS_OBJECT(object)) {
+
+      pre_object_removed (page, object);
+
+      page->_object_list = g_list_remove (page->_object_list, object);
+
+      o_notify_emit_change (object);
+
+      page->CHANGED = 1;
+    }
+  }
+  else {
+    BUG_PMSG("Invalid page pointer", page);
+  }
 }
 
 /*! \brief Replace an Object in a Page, in the same list position.
@@ -848,17 +894,30 @@ void s_page_remove_object (Page *page, Object *object)
 void
 s_page_replace_object (Page *page, Object *object1, Object *object2)
 {
-  GList *iter = g_list_find (page->_object_list, object1);
+  if (GEDA_IS_PAGE(page)) {
 
-  /* If object1 not found, append object2 */
-  if (iter == NULL) {
-    s_page_append_object (page, object2);
-    return;
+    GList *iter = g_list_find (page->_object_list, object1);
+
+    /* If object1 not found, append object2 */
+    if (iter == NULL) {
+      s_page_append_object (page, object2);
+    }
+    else {
+
+      pre_object_removed (page, object1);
+
+      if (GEDA_IS_OBJECT(object2)) {
+        iter->data = object2;
+        object_added (page, object2);
+      }
+      else {
+        BUG_PMSG("Object is not a GedaObject", object2);
+      }
+    }
   }
-
-  pre_object_removed (page, object1);
-  iter->data = object2;
-  object_added (page, object2);
+  else {
+    BUG_PMSG("Invalid page pointer", page);
+  }
 }
 
 /*! \brief Remove and free all Objects from the Page
@@ -870,17 +929,21 @@ s_page_replace_object (Page *page, Object *object1, Object *object2)
  */
 void s_page_delete_objects (Page *page)
 {
-  GList *objects = page->_object_list;
-  GList *iter;
+  if (GEDA_IS_PAGE(page)) {
 
-  for (iter = objects; iter != NULL; NEXT(iter)) {
-    if (GEDA_IS_OBJECT(iter->data)) {
-       pre_object_removed (page, iter->data);
+    GList *objects = page->_object_list;
+    GList *iter;
+
+    for (iter = objects; iter != NULL; NEXT(iter)) {
+      pre_object_removed (page, iter->data);
     }
-  }
-  page->_object_list = NULL;
+    page->_object_list = NULL;
 
-  s_object_release_objects (objects);
+    s_object_release_objects (objects);
+  }
+  else {
+    BUG_PMSG("Invalid page pointer", page);
+  }
 }
 
 /*! \brief Return an Object on the Page by ID
@@ -919,7 +982,10 @@ Object *s_page_get_object (Page *page, int sid)
  */
 GList *s_page_get_objects (Page *page)
 {
-  return page->_object_list;
+  if (GEDA_IS_PAGE(page)) {
+    return page->_object_list;
+  }
+  return NULL;
 }
 
 /*! \brief Find the objects in a given region
@@ -944,18 +1010,21 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
   if (GEDA_IS_PAGE(page)) {
 
     for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
+
       Object *object = iter->data;
       int left, top, right, bottom;
-      if (o_get_bounds (object, &left, &top, &right, &bottom))
-      {
+
+      if (o_get_bounds (object, &left, &top, &right, &bottom)) {
+
         for (i = 0; i < n_rects; i++) {
+
           if (right  >= rects[i].lower_x &&
-            left   <= rects[i].upper_x &&
-            top    <= rects[i].upper_y &&
-            bottom >= rects[i].lower_y) {
-            list = g_list_prepend (list, object);
-          break;
-            }
+              left   <= rects[i].upper_x &&
+              top    <= rects[i].upper_y &&
+              bottom >= rects[i].lower_y) {
+              list = g_list_prepend (list, object);
+              break;
+          }
         }
       }
     }

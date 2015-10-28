@@ -5,6 +5,10 @@
       value without checking the value, this is what was previously done
       in s_page_set_current.
 
+    * src/struct/s_page.c: Check pointers for Page and Objects in various
+      functions, add geda_toplevel_get_pages macro to get the page list,
+      let the compiler optimize out.
+
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_toplevel.h: Add geda_toplevel_get_page_down
