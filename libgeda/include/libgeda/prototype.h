@@ -553,8 +553,8 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          char   *s_slib_get_dir                  (int index);
          void    s_slib_init                     (void);
           int    s_slib_search_for_dirname       (const char *dir_name);
-         char   *s_slib_search_for_file          (const char *filename);
-         char   *s_slib_search_dirs              (const char *basename);
+         char   *s_slib_search_for_file          (const char *filename)GEDA_WARN_UNUSED_RESULT;
+         char   *s_slib_search_dirs              (const char *basename)GEDA_WARN_UNUSED_RESULT;
          void    s_slib_print                    (void);
          void    s_slib_print_dirs               (void);
           int    s_slib_unique_dir_exist         (const char *path);
@@ -641,7 +641,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          int     u_string_strncmpi               (const char *str1, const char *str2, int n);
          char   *u_string_strsubst               (char *source, char *old_str, char *new_str);
          char   *u_string_strisubst              (char *source, char *old_str, char *new_str);
-         char   *u_string_split                  (char *string, char delimiter, int count);
+         char   *u_string_split                  (char *string, char delimiter, int count) GEDA_WARN_UNUSED_RESULT;
          int     u_string_word_count             (char *str);
 
 /* u_program.c */

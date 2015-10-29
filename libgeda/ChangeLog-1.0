@@ -1,5 +1,11 @@
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/prototype.h: Add warn unused results for functions:
+
+            * s_slib_search_for_file
+            * s_slib_search_dirs
+            * u_string_split
+
     * src/utility/u_string.c: Revise function u_string_istr to only get
       the lenght of the string once and fix return NULL; fix typo in
       comments and add Doxygen comments.
