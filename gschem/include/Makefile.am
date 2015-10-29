@@ -18,7 +18,6 @@ noinst_HEADERS = \
 		gschem_struct.h             \
 		gschem_toplevel.h           \
 		gschem_types.h              \
-		gschem_page_view.h          \
 		gschem_xdefines.h           \
 		i_actions.h                 \
 		i_command.h                 \

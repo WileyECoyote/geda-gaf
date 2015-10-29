@@ -1015,7 +1015,6 @@ hadjustment_value_changed (GtkAdjustment *hadjustment, GschemPageView *view)
 }
 
 
-
 /*! \brief Set a gobject property
  */
 static void
@@ -1040,7 +1039,6 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
 
 
 /*! \brief Get absolute SCREEN coordinate.
