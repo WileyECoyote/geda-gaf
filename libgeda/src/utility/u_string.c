@@ -116,21 +116,24 @@ char *u_string_concat (const char *string1, ...)
 const char *u_string_istr(const char *str1, const char *str2)
 {
   const char *ptr = NULL;
+  int len1, len2;
+
+  len1 = strlen(str1);
+  len2 = strlen(str2);
 
   /* if 2 is longer than 1, 2 can not be IN 1 */
-  if (strlen(str2) > strlen(str1)) return NULL;
+  if (len2 > len1) return NULL;
 
   /* if strings are the same length then can do */
-  if (strlen(str2) == strlen(str1))
+  if (len2 == len1)
     return (!u_string_stricmp ( str1, str2)) ? str1 : NULL;
 
   for (ptr = str1; *ptr ; ++ptr) {
-    if (u_string_strncmpi(ptr, str2, strlen(str2)) == 0)
+    if (u_string_strncmpi(ptr, str2, len2) == 0)
       return ptr;
   }
 
-  ptr = "\0";
-  return ptr;
+  return NULL;
 }
 
 /*! \brief Remove Line Feed and Carriage Return Characters from string
