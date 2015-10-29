@@ -6,6 +6,8 @@
         * analogdevices/ADXL345-1.sym
         * analogdevices/ADXL362-1.sym
 
+    * analogdevices/ADXL362-2.sym: Remove file, was same as -1
+
 2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT45DB321C-1.sym: Add symbol; 32-Megabit DataFlash,TSOP28
