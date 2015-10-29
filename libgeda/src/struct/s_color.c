@@ -248,6 +248,13 @@ GArray *s_color_get_standard_names(void)
   return color_table;
 }
 
+/*! \brief Get the regular string name of a color at index
+ *  \par Function Description
+ *  Returns a string name for the color that is the closes
+ *  match to color currently associate with \a index in the
+ *  given \a cmap.
+ *  \remarks Caller should GEDA_FREE returned pointer.
+ */
 char *
 s_color_get_colorname(int index, GArray *cmap, GError **err)
 {

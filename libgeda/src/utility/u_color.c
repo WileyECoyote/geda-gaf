@@ -148,6 +148,12 @@ long u_color_dist(COLOR *c1, COLOR *c2)
     return Yred2 * r * r + Ygre2 * g * g + Yblu2 * b * b;
 }
 
+/*! \brief Lookup the normal string name of a color
+ *  \par Function Description
+ *  Returns a string name for the color that is the closes
+ *  match to \a c1.
+ *  \remarks Caller should GEDA_FREE returned pointer.
+ */
 char *
 u_color_lookup_colorname(COLOR *c1, GError **err)
 {

@@ -51,7 +51,7 @@
  *  \param [in] ...     NULL terminated list strings.
  *
  *  \retval char* to all of the string as a new allocation.
- *
+ *  \remarks Caller should GEDA_FREE returned pointer.
  *  \warning the last argument MUST be NULL!
  */
 char *u_string_concat (const char *string1, ...)
@@ -120,7 +120,7 @@ char *u_string_concat (const char *string1, ...)
  *  \param [in] str2 is the string to search for
  *
  *  \retval char* to the first occurance of str2 in str2 or
- *  NULL if str2 is not contained in str1.
+ *                NULL if str2 is not contained in str1.
  */
 const char *u_string_istr(const char *str1, const char *str2)
 {
@@ -355,7 +355,7 @@ int u_string_parse_xy(const char *string, int *x, int *y)
 /*! \brief return c pointer to SCM string.
  *  \par Function Description
  *  String utility function to get a c pointer to a scm string.
- *  The caller is responsible for freeing the pointer.
+ * \remarks  caller is responsible for freeing the pointer.
  */
 char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
 {
@@ -804,6 +804,7 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
 /*! \brief Split a string using an optional delimiter
  *  \par Function Description
  *  The delimiter is what is passed in or spaces count starts at zero
+ *  \remarks Caller should GEDA_FREE returned pointer.
  */
 char *u_string_split(char *string, char delimiter, int count)
 {
