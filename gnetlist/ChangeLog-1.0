@@ -1,3 +1,8 @@
+2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc2.scm: Change "device=DRC_Directive" to simply
+      "DRC_Directive", and this allow both to work.
+
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Remove first argument, pr_current, from s_page_goto.

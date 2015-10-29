@@ -23,8 +23,12 @@
 
 ;; --------------------------------------------------------------------------
 ;;
-;; DRC backend written by Carlos Nieves Onega starts here.
+;; DRC backend written by Carlos Nieves Onega.
 ;;
+;; --------------------------------------------------------------------------
+
+;;  2015-10-29: Removed "device" from "device=DRC_Directive". WEH
+;;  2015-05-08: Fixed stack overflows with very large designs. WEH
 ;;  2010-12-11: Fix stack overflows with large designs.
 ;;  2010-10-02: Applied patch from Karl Hammar. Do drc-matrix lower triangular
 ;;                    and let get-drc-matrixelement swap row/column if row < column.
@@ -549,7 +553,7 @@
       (let* ((netname (car all-nets))
         (directives (gnetlist:graphical-net-objs-attrib
                      netname
-                     "device=DRC_Directive"
+                     "DRC_Directive"
                      "value")))
         (begin
           ; Only check nets with a NoConnection directive
@@ -595,7 +599,7 @@
       (if (not (null? all-nets))
           (let* ((netname (car all-nets))
                  (directives (gnetlist:graphical-net-objs-attrib
-                              netname "device=DRC_Directive" "value")))
+                              netname "DRC_Directive" "value")))
             (begin
               ; If one of the directives is NoConnection,
               ; then it shouldn't be checked.
@@ -823,7 +827,7 @@
                        (pintype-count (drc2:count-pintypes-of-net pintypes))
                        (directives (gnetlist:graphical-net-objs-attrib
                                     netname
-                                    "device=DRC_Directive"
+                                    "DRC_Directive"
                                     "value"))
                        )
                 ; If some directives are defined, then it shouldn't be checked.
