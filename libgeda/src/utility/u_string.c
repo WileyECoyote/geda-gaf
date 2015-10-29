@@ -29,10 +29,21 @@
 
 #include <geda_debug.h>
 
+/**
+ * \brief String Utility Function
+ * \par
+ *  A collection of general string utility functions for geda-gaf
+ *  applications.
+ *
+ * \note There is no Scheme API for these functions.
+ *
+ * \defgroup Libgeda-String-Utilities String Utility Functions
+ * @{
+ */
+
 #define USS_BUFFER_SIZE 256
 
 /*! \brief Append variable number of strings together
- *
  *  \par Function Description
  *  The string are not formated.
  *
@@ -43,7 +54,6 @@
  *
  *  \warning the last argument MUST be NULL!
  */
-
 char *u_string_concat (const char *string1, ...)
 {
   char *concat;
@@ -100,7 +110,6 @@ char *u_string_concat (const char *string1, ...)
 }
 
 /*! \brief Find substring in string, ignore case.
- *
  *  \par Function Description
  *  This function uses u_string_stricmp or u_string_strncmpi to locate
  *  a substring in a string. This is not normally found in standard
@@ -343,11 +352,10 @@ int u_string_parse_xy(const char *string, int *x, int *y)
   return valid;
 }
 
-/*!
- * \brief return c pointer to SCM string.
- * \par Function Description
- * String utility function to get a c pointer to a scm string.
- * The caller is responsible for freeing the pointer.
+/*! \brief return c pointer to SCM string.
+ *  \par Function Description
+ *  String utility function to get a c pointer to a scm string.
+ *  The caller is responsible for freeing the pointer.
  */
 char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
 {
@@ -360,6 +368,10 @@ char *u_string_scm2c( char* scm_str_name) /* WEH: couldn't find it, made it */
   return scm_to_locale_string(s_value);
 }
 
+/*! \brief  Sort an array of Characters
+ *  \par Function Description
+ *  sort array using qsort functions
+ */
 void u_string_sort_array( char *strings[], size_t strings_size) {
 
   int cstring_cmp(const void *a, const void *b)
@@ -376,6 +388,11 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
   qsort(strings, strings_len, sizeof(char*), cstring_cmp);
 }
 
+/*! \brief  Get the formated size of a string
+ *  \par Function Description
+ *  Returns the number of bytes needed to hold the string formed
+ *  after substituting variable arguments into the format specifier.
+ */
 static int u_string_strsize (const char *format, va_list args)
 {
   int size;
@@ -403,6 +420,12 @@ static int u_string_strsize (const char *format, va_list args)
   return size;
 }
 
+/*! \brief  Get formated string using printf like specifiers
+ *  \par Function Description
+ *  \returns a newly allocated string that is the result of
+ *  the substitution of the variable arguments into \a format.
+ *  \remarks returned string must be freed using GEDA_FREE.
+ */
 char *u_string_sprintf (const char *format, ...)
 {
   char  local_buffer[USS_BUFFER_SIZE];
@@ -453,6 +476,11 @@ char *u_string_sprintf (const char *format, ...)
   return buffer;
 }
 
+/*! \brief  Get a Duplicate string
+ *  \par Function Description
+ *  \returns a newly allocated string copy of \a str.
+ *  \remarks returned string must be freed using GEDA_FREE.
+ */
 char *u_string_strdup (const char *str)
 {
   if (!str) return NULL;
@@ -463,6 +491,13 @@ char *u_string_strdup (const char *str)
   return ptr ? (char*)memcpy(ptr, str, len) : NULL;
 }
 
+/*! \brief  Duplicate a specified number of characters
+ *  \par Function Description
+ *  \returns a newly allocated string containing the first
+ *  \a n characters of \a str. The new string is terminated
+ *   with a NULL.
+ *  \remarks returned string must be freed using GEDA_FREE.
+ */
 char *u_string_strndup(const char *str, size_t n)
 {
   char *ptr;
@@ -484,9 +519,11 @@ char *u_string_strndup(const char *str, size_t n)
   return ptr;
 }
 
-/* A non zero result is the position needle waas fount in haystack
- * a negative result means needle was not found OR one of the two
- * inputs is NULL
+/*! \brief Non case sensitive search for string in a string
+ *  \par Function Description
+ *  \retval  A non zero result is the position needle was found in
+ *  haystack, a negative result means needle was not found OR one
+ *  of the two inputs is NULL.
  */
 int u_string_stristr ( const char *haystack, const char *needle)
 {
@@ -516,8 +553,7 @@ int u_string_stristr ( const char *haystack, const char *needle)
    return result;
 }
 
-/*! \brief Check for equal strings.
- *
+/*! \brief Check for equal strings
  *  \par Function Description
  *  This function compares to strings and returns true if
  *  they are equal or fals if they are not.
@@ -580,8 +616,7 @@ char *u_string_strstr_rep(char *original, const char *old, const char *new)
   return original;
 }
 
-/*! \brief Compare strings ignoring case.
- *
+/*! \brief Compare strings ignoring case
  *  \par Function Description
  *  This is a garden varity string compare using toupper
  *  on both inputs. This is commonly in standard libraries,
@@ -602,7 +637,6 @@ int u_string_stricmp(const char *str1, const char *str2)
 }
 
 /*! \brief Compare n characters ignoring case.
- *
  *  \par Function Description
  *  Another garden varity string compare using toupper
  *  on both inputs. This is somthimes found in standard
@@ -641,7 +675,6 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
 }
 
 /*! \brief Replace substring in string.
- *
  *  \par Function Description
  *  This function replaces the first occurance of str1 with str2
  *  in the source. This version uses array indexes and dynamically
@@ -704,10 +737,9 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
 }
 
 /*! \brief Replace substring in string ignoring case
- *
  *  \par Function Description
- *  This function replaces the first occurance of str1 with str2
- *  in the source. This version dynamically allocates tempory storage
+ *  This function replaces the first occurrence of str1 with str2
+ *  in the source. This version dynamically allocates temporary storage
  *  and uses pointer returned from the previously defined u_string_istr to
  *  get the first position of old_str in the source. The Caller is
  *  responsible for insuring source is sufficiently large enough to
@@ -769,8 +801,7 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
 }
 
 /* Copyright (C) 1998, 1999, 2000 Kazu Hirata / Ales Hvezda */
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Split a string using an optional delimiter
  *  \par Function Description
  *  The delimiter is what is passed in or spaces count starts at zero
  */
@@ -828,6 +859,10 @@ char *u_string_split(char *string, char delimiter, int count)
   return(return_value);
 }
 
+/*! \brief  Get Word Count
+ *  \par Function Description
+ *  returns the number of spaces in a string plus one.
+ */
 int u_string_word_count(char* str) {
     int count = 0;
     while ( *str != ASCII_NUL) {
@@ -838,5 +873,6 @@ int u_string_word_count(char* str) {
 
 }
 
-#undef USS_BUFFER_SIZE
+/** @} endgroup Libgeda-String-Utilities */
 
+#undef USS_BUFFER_SIZE
