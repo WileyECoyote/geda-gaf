@@ -1,0 +1,145 @@
+v 20151031 2
+P 100 700 400 700 1 0 0
+{
+T 375 575 5 8 0 1 0 6 1
+pintype=in
+T 450 700 9 10 1 1 0 0 1
+pinlabel=DGND
+T 225 750 5 8 1 1 0 6 1
+pinnumber=4
+T 225 750 5 8 0 1 0 6 1
+pinseq=4
+}
+P 100 1000 400 1000 1 0 0
+{
+T 375 875 5 8 0 1 0 6 1
+pintype=in
+T 450 1000 9 10 1 1 0 0 1
+pinlabel=MCLK
+T 225 1050 5 8 1 1 0 6 1
+pinnumber=5
+T 225 1050 5 8 0 1 0 6 1
+pinseq=5
+}
+P 100 1600 400 1600 1 0 0
+{
+T 375 1475 5 8 0 1 0 6 1
+pintype=pas
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=COMP
+T 225 1650 5 8 1 1 0 6 1
+pinnumber=1
+T 225 1650 5 8 0 1 0 6 1
+pinseq=1
+}
+P 100 1300 400 1300 1 0 0
+{
+T 375 1175 5 8 0 1 0 6 1
+pintype=in
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=CAP/2.5
+T 225 1350 5 8 1 1 0 6 1
+pinnumber=3
+T 225 1350 5 8 0 1 0 6 1
+pinseq=3
+}
+P 2400 1600 2100 1600 1 0 0
+{
+T 2150 1450 5 8 0 1 0 0 1
+pintype=in
+T 2050 1600 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 2200 1700 5 8 1 1 0 0 1
+pinnumber=10
+T 2200 1700 5 8 0 1 0 0 1
+pinseq=10
+}
+P 2400 1300 2100 1300 1 0 0
+{
+T 2150 1150 5 8 0 1 0 0 1
+pintype=tri
+T 2050 1300 9 10 1 1 0 6 1
+pinlabel=FSYNC
+T 2300 1350 5 8 1 1 0 0 1
+pinnumber=8
+T 2300 1350 5 8 0 1 0 0 1
+pinseq=8
+}
+P 1300 2200 1300 1900 1 0 0
+{
+T 1325 2050 5 8 0 1 0 0 1
+pintype=pwr
+T 1150 1700 9 10 1 1 0 0 1
+pinlabel=Vdd
+T 1150 2025 5 8 1 1 0 0 1
+pinnumber=2
+T 1150 2025 5 8 0 1 0 0 1
+pinseq=2
+}
+P 1000 100 1000 400 1 0 0
+{
+T 950 300 5 8 0 1 0 6 1
+pintype=pwr
+T 750 500 9 10 1 1 0 0 1
+pinlabel=AGND
+T 1075 175 5 8 1 1 0 0 1
+pinnumber=9
+T 1075 175 5 8 0 1 0 0 1
+pinseq=9
+}
+P 2400 1000 2100 1000 1 0 0
+{
+T 2150 850 5 8 0 1 0 0 1
+pintype=in
+T 2050 1000 9 10 1 1 0 6 1
+pinlabel=SCLK
+T 2300 1100 5 8 1 1 0 0 1
+pinnumber=7
+T 2300 1100 5 8 0 1 0 0 1
+pinseq=7
+}
+P 2400 700 2100 700 1 0 0
+{
+T 2150 550 5 8 0 1 0 0 1
+pintype=tri
+T 2050 700 9 10 1 1 0 6 1
+pinlabel=SDATA
+T 2300 750 5 8 1 1 0 0 1
+pinnumber=6
+T 2300 750 5 8 0 1 0 0 1
+pinseq=6
+}
+P 1600 100 1600 400 1 0 0
+{
+T 1550 300 5 8 0 1 0 6 1
+pintype=pwr
+T 1350 500 9 10 1 1 0 0 1
+pinlabel=PAD
+T 1675 175 5 8 1 1 0 0 1
+pinnumber=11
+T 1675 175 5 8 0 1 0 0 1
+pinseq=11
+}
+T 1800 2700 5 10 0 0 0 0 1
+device=AD9837
+T 1800 2900 5 10 0 0 0 0 1
+numslots=0
+T 1800 2100 8 10 1 1 0 0 1
+refdes=U?
+T 1800 3100 5 10 0 0 0 0 1
+description=Programmable Waveform Generator,DFN
+B 400 400 1700 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1800 2500 9 10 0 1 0 0 1
+footprint=DFN-3-4-10-EP
+T 1800 3300 5 10 0 0 0 0 1
+documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD9837.PDF
+T 1800 2300 5 10 1 1 0 0 1
+value=AD9837
+T 2000 200 5 8 0 0 0 0 1
+symversion=0.1
+T 1800 3900 5 10 0 0 0 0 1
+author=AutoTron
+T 1800 3700 5 10 0 0 0 0 1
+dist-license=GPL3
+T 1800 3500 5 10 0 0 0 0 1
+use-license=unlimited

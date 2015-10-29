@@ -1,4 +1,4 @@
-2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
+2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/: Cleanup symbol files, add symversion attribute:
 
@@ -7,6 +7,12 @@
         * analogdevices/ADXL362-1.sym
 
     * analogdevices/ADXL362-2.sym: Remove file, was same as -1
+
+    * Add 2 symbol files:
+
+        * analogdevices/AD7706-1.sym: ADC,16-Bit, Sigma-Delta,2-Channel
+
+        * analogdevices/AD9837-1.sym: Programmable Waveform Generator,DFN
 
 2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
