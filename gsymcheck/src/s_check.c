@@ -140,17 +140,17 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
 {
   int errors=0, warnings=0;
 
-  /* overal symbol structure test */
-  s_check_symbol_structure (obj_list, s_current);
-
-  /* test all text elements */
-  s_check_text (obj_list, s_current);
-
   /* check for graphical attribute */
   s_check_graphical (obj_list, s_current);
 
   /* check for directive attribute */
   s_check_directive (obj_list, s_current);
+
+  /* overal symbol structure test */
+  s_check_symbol_structure (obj_list, s_current);
+
+  /* test all text elements */
+  s_check_text (obj_list, s_current);
 
   /* check for description attribute */
   s_check_description (obj_list, s_current);
@@ -253,6 +253,20 @@ static bool s_check_list_has_item(char **list , char *item)
   return FALSE;
 }
 
+static bool s_check_is_valid_directive(const char *string)
+{
+  const char *ptr;
+
+  ptr = u_string_istr(string, "Directive");
+
+  /* If Directive followed by an EQUAL and not equal NULL */
+  if (ptr && *ptr + 9 == ASCII_EQUAL_SIGN && *ptr + 10) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -306,8 +320,19 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
     Object *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT) {
+
       tokens = g_strsplit(o_current->text->string,"=", 2);
+
       if (tokens[0] != NULL && tokens[1] != NULL) {
+
+        if (s_current->has_directive) {
+
+          if (s_check_is_valid_directive(o_current->text->string)) {
+            g_strfreev(tokens);
+            continue;
+          }
+        }
+
         if (s_check_list_has_item(forbidden_attributes, tokens[0])) {
           message = u_string_sprintf (_("Found forbidden %s= attribute: [%s=%s]\n"),
                                      tokens[0], tokens[0], tokens[1]);
@@ -324,7 +349,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
           {
             message = u_string_sprintf (_("Found misplaced pin attribute: [%s=%s]\n"), tokens[0], tokens[1]);
             ADD_ERROR_MESSAGE(message);
-            }
+          }
         }
         else if (!s_check_list_has_item(valid_attributes, tokens[0])) {
           message = u_string_sprintf (_("Found unknown %s= attribute: [%s=%s]\n"),

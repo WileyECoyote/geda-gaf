@@ -1,3 +1,23 @@
+2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck/src/s_check.c: Revised function s_check_all to check for
+      graphical and directive attributes first. Add static function
+      s_check_is_valid_directive and modify s_check_symbol_structure to
+      skip over attributes that appear to be valid Directives. The intend
+      is to allow symbols to contain "special" attributes for use with
+      geda-gaf applications like gnetlist backends without specifying
+      an exact strings to match an thus allowing for flexibility. The
+      only requirements is that the word "directive", not case sensitive,
+      be in a VALID attribute AND the word directive be immediately followed
+      by and equal sign which must be followed by a non null character,
+      thus:
+             device=DRC_Directive=something (current scheme)
+             DRC_Directive=something
+             Directive=something
+             SPICE_DirecTive=anything
+
+      are ignore by gsymcheck.
+
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Remove first argument, pr_current, from s_page_goto.
