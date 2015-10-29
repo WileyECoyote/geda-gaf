@@ -1,5 +1,13 @@
 2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/: Cleanup symbol files, add symversion attribute:
+
+        * analogdevices/AD7705-1.sym
+        * analogdevices/ADXL345-1.sym
+        * analogdevices/ADXL362-1.sym
+
+2015-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * atmel/AT45DB321C-1.sym: Add symbol; 32-Megabit DataFlash,TSOP28
 
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
