@@ -182,15 +182,7 @@ void o_move_end(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  Object *object;
-  Object *sub_object;
-  GList  *iter;
-  GList  *selection_list = NULL;
-  GList  *rubbernet_objects = NULL;
-
-  int diff_x, diff_y;
-
-  object = o_select_return_first_object(w_current);
+  Object *object = o_select_return_first_object(w_current);
 
   if (!object) {
     /* This is an error condition hack */
@@ -198,11 +190,26 @@ void o_move_end(GschemToplevel *w_current)
   }
   else {
 
+    Object *sub_object;
+    GList  *iter;
+    GList  *selection_list = NULL;
+    GList  *rubbernet_objects = NULL;
+    int diff_x, diff_y;
+
     diff_x = w_current->second_wx - w_current->first_wx;
     diff_y = w_current->second_wy - w_current->first_wy;
 
     o_move_invalidate_rubber (w_current, FALSE);
     w_current->rubber_visible = FALSE;
+
+    if (w_current->CONTROLKEY) {
+      if (abs (diff_x) >= abs (diff_y)) {
+        diff_y = 0;
+      }
+      else {
+        diff_x = 0;
+      }
+    }
 
     if (w_current->netconn_rubberband) {
       o_move_end_rubberband (w_current, diff_x, diff_y, &rubbernet_objects);

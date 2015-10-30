@@ -208,10 +208,10 @@ static void i_event_action_enable_events(GschemToplevel *w_current)
  */
 static void i_event_end_action_handler(GschemToplevel *w_current)
 {
+  w_current->action_event->state = 0;
+
   i_event_adder_disconnect_events(w_current);
   i_event_unblock_buttons (w_current);
-
-  w_current->action_event->state = 0;
 
   i_status_action_stop(w_current);
 }
@@ -389,6 +389,7 @@ int i_event_paster_pressed(GtkWidget *widget, GdkEventButton *event, GschemTople
       if (w_current->inside_action) {
 
         if (Current_PlaceList != NULL) {
+
           w_current->second_wx = w_x;
           w_current->second_wy = w_y;
 
@@ -442,6 +443,7 @@ static int i_event_paster_released(GtkWidget      *widget,
           }
 
         case(MOVEMODE):  /* 23 */
+
           if (w_current->drag_event) {
             gdk_event_free(w_current->drag_event);
             w_current->drag_event = NULL;

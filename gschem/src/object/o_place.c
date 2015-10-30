@@ -98,17 +98,25 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
   GList        *iter;
   Page         *p_current;
 
-  int w_diff_x, w_diff_y;
-
   if (w_current->inside_action) {
+
+    int w_diff_x, w_diff_y;
 
     /* Turn off flag */
     w_current->rubber_visible = FALSE;
 
-    /* Calc final object positions */
-
+    /* Calculate final object positions */
     w_diff_x = w_current->second_wx - w_current->first_wx;
     w_diff_y = w_current->second_wy - w_current->first_wy;
+
+    if (w_current->CONTROLKEY) {
+      if (abs (w_diff_x) >= abs (w_diff_y)) {
+        w_diff_y = 0;
+      }
+      else {
+        w_diff_x = 0;
+      }
+    }
 
     if (continue_placing) {
       /* Make a copy of the place list if we want to keep it afterwards */
@@ -228,8 +236,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
       /* Ensure we set this to flag there is "something" supposed to be
        * drawn when the invaliate call below causes an expose event. */
       w_current->last_drawb_mode = w_current->action_feedback_mode;
-      w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
-      ? CONSTRAINED : FREE;
+      w_current->drawbounding_action_mode = (w_current->CONTROLKEY) ? CONSTRAINED : FREE;
     }
 
     /* Calculate delta of X-Y positions from buffer's origin */
@@ -289,7 +296,11 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     }
   }
   else {
-    BUG_MSG("page_current->place_list is NULL");
+    static int once = 0;
+    if(!once)
+    BUG_TRACE("page_current->place_list is NULL");
+    EMBED_BREAKPOINT;
+    once++;
   }
 }
 

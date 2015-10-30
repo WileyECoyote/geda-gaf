@@ -1,3 +1,12 @@
+2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_move.c: Zero the smaller difference in o_move_end
+      if constraining, previously this was done in event handlers but
+      longer.
+
+    * src/object/o_place.c:: Zero the smaller difference in o_move_end
+      if containing.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_idefines.h: Change default auto save interval to
