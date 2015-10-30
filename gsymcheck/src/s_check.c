@@ -42,7 +42,9 @@
 
 /* Function prototypes */
 static int  s_check_symbol(SYMCHECK *s_current, const GList *obj_list);
-static bool s_check_list_has_item(char **list , char *item);
+static bool s_check_list_has_item(char **list , const char *item);
+static bool s_check_is_known_device(const char *device);
+static bool s_check_is_valid_directive(const char *string);
 static void s_check_symbol_structure(const GList *obj_list, SYMCHECK *s_current);
 static void s_check_text (const GList *obj_list, SYMCHECK *s_current);
 static void s_check_graphical(const GList *obj_list, SYMCHECK *s_current);
@@ -243,7 +245,7 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
  *  \par Function Description
  *
  */
-static bool s_check_list_has_item(char **list , char *item)
+static bool s_check_list_has_item(char **list , const char *item)
 {
   int cur;
   for (cur = 0; list[cur] != NULL; cur++) {
@@ -253,6 +255,53 @@ static bool s_check_list_has_item(char **list , char *item)
   return FALSE;
 }
 
+static bool s_check_is_known_device (const char *device)
+{
+  bool strict = FALSE;
+  bool known;
+  int  index;
+  char *known_devices[] = {
+                            "RESISTOR",
+                            "CAPACITOR",
+                            "POLARIZED_CAPACITOR",
+                            "COIL",
+                            "INDUCTOR",
+                            "DIODE",
+                            "PMOS_TRANSISTOR",
+                            "NMOS_TRANSISTOR",
+                            "PNP_TRANSISTOR",
+                            "NPN_TRANSISTOR",
+                            "PFET_TRANSISTOR",
+                            "NFET_TRANSISTOR",
+                            "MESFET_TRANSISTOR",
+                            "TESTPOINT",
+                            "VOLTAGE_SOURCE",
+                            "CURRENT_SOURCE",
+                            "ZENER",
+                            NULL};
+
+  if (u_string_strncmpi(device, "SPICE", 5) == 0)
+        return TRUE;
+
+  if (!strict) {
+    for (index = 0; known_devices[index] != NULL; index++) {
+      if (u_string_stricmp(device, known_devices[index]) == 0)
+        return TRUE;
+    }
+    known = FALSE;
+  }
+  else {
+   known = s_check_list_has_item(known_devices, device);
+  }
+
+  return known;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static bool s_check_is_valid_directive(const char *string)
 {
   const char *ptr;
@@ -650,13 +699,18 @@ static void s_check_device (const GList *obj_list, SYMCHECK *s_current)
       ADD_WARN_MESSAGE(message);
     }
 
+    /* If attribute is not graphical and does not contain a directive */
     if (string && !graphical && not_directive) {
 
-      /* is an ordinary device attribute so check the file name */
+      /* then is an ordinary device attribute, check the file name */
       if (u_string_stristr(s_current->filename, string) < 0) {
-        s_current->device_attribute_incorrect=TRUE;
-        message = u_string_strdup (_("Device not found in symbol filename\n"));
-        ADD_WARN_MESSAGE(message);
+
+        /* And if not a know device type */
+        if (!s_check_is_known_device(string)) {
+          s_current->device_attribute_incorrect=TRUE;
+          message = u_string_strdup (_("Device not found in symbol filename\n"));
+          ADD_WARN_MESSAGE(message);
+        }
       }
     }
 

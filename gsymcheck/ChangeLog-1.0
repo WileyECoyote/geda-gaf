@@ -1,3 +1,9 @@
+2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsymcheck/src/s_check.c: Add function s_check_is_known_device and
+      call in s_check_device to skip device value not in filname warning
+      if the device is known type.
+
 2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/s_check.c: Revised function s_check_all to check for
