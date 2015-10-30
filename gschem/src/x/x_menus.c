@@ -87,59 +87,59 @@ const char* IDS_Popup_Actions[] = {
 
 static PopupEntry popup_items[] = {
 
-  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  NULL },
+  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  N_("Activate Select mode") },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Add"),               NULL,                 1,                  0,  NULL,            NULL },
-  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     NULL },
-  { N_("Attribute..."),      x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), NULL},
-  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", NULL },
-  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     NULL },
-  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       NULL },
+  { N_("Add"),               NULL,                 1,                  0,  NULL,            N_("Add modes") },
+  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     N_("Add net") },
+  { N_("Attribute..."),      x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), N_("Add attribute")},
+  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", N_("Insert a symbol from the component library") },
+  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     N_("Add bus") },
+  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       N_("Add text") },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Zoom"),              NULL,                 1,                  0,  NULL,            NULL },
-  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    NULL },
-  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL },
-  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL },
-  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL },
-  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       NULL},
-  { N_("Selection"),         x_menu_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", NULL},
+  { N_("Zoom"),              NULL,                 1,                  0,  NULL,            N_("Add operations") },
+  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    N_("Increase the Zoom magnification") },
+  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   N_("Decrease the Zoom magnification") },
+  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  N_("Zoom to a Windowed region") },
+  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   N_("Zoom to the extents of the drawing") },
+  { N_("Mag"),               x_menu_popup_execute, pop_zoom_to_mag,    1, "zoom-mag",       N_("Zoom to a specified level")},
+  { N_("Selection"),         x_menu_popup_execute, pop_zoom_to_select, 1, "geda-zoom-selection", N_("Zoom to selected objects")},
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Edit"),              NULL,                 1,                  0,  NULL,            NULL },
-  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL },
-  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component", NULL },
-  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL },
+  { N_("Edit"),              NULL,                 1,                  0,  NULL,            N_("Edit modes") },
+  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     N_("Edit Object Attributes") },
+  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 1, "geda-component", N_("Open the Component Editor Dialog") },
+  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  N_("Open the Pin Type Dialog") },
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
-  { N_("Copy"),              x_menu_popup_execute, pop_edit_copy,      1, "geda-copy",      NULL },
-  { N_("MCopy"),             x_menu_popup_execute, pop_edit_mcopy,     1, "geda-multi",     NULL },
-  { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      NULL },
-  { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    NULL },
-  { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    NULL },
-  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         NULL },
+  { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete",     N_("Delete the current selection" )},
+  { N_("Copy"),              x_menu_popup_execute, pop_edit_copy,      1, "geda-copy",      N_("Copy selection") },
+  { N_("MCopy"),             x_menu_popup_execute, pop_edit_mcopy,     1, "geda-multi",     N_("Make multible copies of selection") },
+  { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      N_("Move selection") },
+  { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    N_("Rotate the current selection about a point") },
+  { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    N_("Mirror an object about a point") },
+  { N_("Extend"),            x_menu_popup_execute, pop_edit_extend,    1, "extend",         N_("Project a linear objects to other objects") },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
 
-  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL},
-  { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
-  { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
-  { N_("Up"),                x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       NULL},
+  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             N_("Edit operations")},
+  { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     N_("Descend down in the schematic hierarchy")},
+  { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", N_("Descend down in the symbol hierarchy")},
+  { N_("Up"),                x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       N_("ascend up in the schematic hierarchy")},
 
   /* Menu items for clip-board added by WEH 07.20.2013 */
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-  { N_("Cut to Clipboard"),  x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
-  { N_("Copy to Clipboard"), x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
-  { N_("Paste Clipboard"),   x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
+  { N_("Cut to Clipboard"),  x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        N_("Cut the current selection to the system clipboard") },
+  { N_("Copy to Clipboard"), x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       N_("Copy the current selection to the system clipboard") },
+  { N_("Paste Clipboard"),   x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      N_("Paste the contents of the system clipboard") },
   {NULL} /* sentinel */
 };
 

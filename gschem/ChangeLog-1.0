@@ -8,7 +8,9 @@
       if containing.
 
     * src/x/x_menus.c: Set the "show-image" in x_menu_setup_popup so the
-      state of the icon matches the setting at startup.
+      state of the icon matches the setting at startup. Add strings for
+      tool-tips in popup_items structure, the tool-tips worked but did not
+      have strings defined.
 
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
