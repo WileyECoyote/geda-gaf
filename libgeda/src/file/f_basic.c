@@ -330,6 +330,13 @@ void f_close(GedaToplevel *toplevel)
 
 }
 
+static int f_file_Size(const char *filename)
+{
+  struct stat st;
+  stat(filename, &st);
+  return st.st_size;
+}
+
 /*! \brief Save Schematic or Symbol file
  *  \par Function Description
  *  This function saves the current file in the toplevel object.
@@ -407,8 +414,9 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     if (page->saved_since_first_loaded == 0 &&
         toplevel->make_backup_files == TRUE)
     {
-      if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
-        (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
+      if ((g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
+         (!g_file_test (real_filename, G_FILE_TEST_IS_DIR)) &&
+           f_file_Size (real_filename))
       {
         backup_filename = u_string_sprintf("%s%c%s~", dirname, DIR_SEPARATOR,
                                           only_filename);

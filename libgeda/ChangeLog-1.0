@@ -1,3 +1,8 @@
+2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Implement helper f_file_Size to inhibit creating
+      backups of zero length files in function f_save.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Add warn unused results for functions:
