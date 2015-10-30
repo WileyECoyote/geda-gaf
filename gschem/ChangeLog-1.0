@@ -7,6 +7,9 @@
     * src/object/o_place.c:: Zero the smaller difference in o_move_end
       if containing.
 
+    * src/x/x_menus.c: Set the "show-image" in x_menu_setup_popup so the
+      state of the icon matches the setting at startup.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_idefines.h: Change default auto save interval to

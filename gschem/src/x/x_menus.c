@@ -994,7 +994,9 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
       /* Then is not an action item */
       if (item.action_id == 1) {
-        /* Create and add the pop-out submenu item */
+
+        /* Create and add the pop-out submenu item, note that the
+         * sub-menus do not have icon images */
         submenu = gtk_menu_item_new_with_label(_(item.name));
         g_object_set (submenu, "visible", TRUE, NULL);
         gtk_container_add (GTK_CONTAINER (menu), submenu);
@@ -1006,7 +1008,6 @@ int x_menu_setup_popup (GschemToplevel *w_current)
         gtk_menu_item_set_submenu (GTK_MENU_ITEM( submenu ), menu) ;
         g_object_set (menu, "visible", TRUE, NULL);
 
-        //POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, submenu);
         g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, submenu);
 
 #if DEBUG
@@ -1041,7 +1042,10 @@ int x_menu_setup_popup (GschemToplevel *w_current)
       }
 
       geda_image_menu_item_set_image (GEDA_IMAGE_MENU_ITEM(menu_item), image);
+
+      /* Enable icon visibility based on the current setting */
       g_object_set (image, "visible", show_pop_icons, NULL);
+      g_object_set (menu_item, "show-image", show_pop_icons, NULL);
 
       /* Connect things up so that the actions get run */
       g_signal_connect (G_OBJECT (menu_item), "activate",
