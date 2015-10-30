@@ -1,3 +1,8 @@
+2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_idefines.h: Change default auto save interval to
+      3 minutes.
+
 2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Check if auto-save was enable in the

@@ -177,7 +177,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_AUTO_LOAD_LAST    1
 
 /* For auto_save_interval */
-#define DEFAULT_SAVE_INTERVAL   120
+#define DEFAULT_SAVE_INTERVAL   180
 
 /* For autoplace_attributes_grid */
 #define MIN_AUTOPLACE_GRID          0
