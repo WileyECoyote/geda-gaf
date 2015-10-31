@@ -1,9 +1,10 @@
-
+/*! \brief Type of callback function  used by u_log_set_update_func */
 typedef void (*LogUpdateFunc)(const char *, GLogLevelFlags,  const char *);
 
-/* Used by g_rc_parse_handler() */
+/*! \brief Type of callback function used by g_rc_parse_handler */
 typedef void (*ConfigParseErrorFunc)(GError **, void *);
 
+/*! \brief Type of callback function for getting the bounds of a GedaObject */
 typedef int (*ObjectBoundsFunc)(Object *);
 
 /*! \brief Type of callback function for calculating text bounds */
