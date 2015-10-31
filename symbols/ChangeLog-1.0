@@ -1,3 +1,27 @@
+2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 19 symbols; VOLTAGE LDO REGULATORS:
+
+        * onsemi/ldo/NCP1117-DT25-1.sym
+        * onsemi/ldo/NCP1117-DT33-1.sym
+        * onsemi/ldo/NCP1117-DT50-1.sym
+        * onsemi/ldo/NCP1117-DT285-1.sym
+        * onsemi/ldo/NCP1117-DTA-1.sym
+        * onsemi/ldo/NCP1117-ST25-1.sym
+        * onsemi/ldo/NCP1117-ST33-1.sym
+        * onsemi/ldo/NCP1117-ST50-1.sym
+        * onsemi/ldo/NCP1117-ST285-1.sym
+        * onsemi/ldo/NCP1117-STA-1.sym
+        * onsemi/ldo/NCV1117-DT25-1.sym
+        * onsemi/ldo/NCV1117-DT33-1.sym
+        * onsemi/ldo/NCV1117-DT50-1.sym
+        * onsemi/ldo/NCV1117-DT285-1.sym
+        * onsemi/ldo/NCV1117-DTA-1.sym
+        * onsemi/ldo/NCV1117-ST25-1.sym
+        * onsemi/ldo/NCV1117-ST33-1.sym
+        * onsemi/ldo/NCV1117-ST50-1.sym
+        * onsemi/ldo/NCV1117-ST285-1.sym
+
 2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/: Cleanup symbol files, add symversion attribute:
