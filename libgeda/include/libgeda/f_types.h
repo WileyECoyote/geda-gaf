@@ -4,7 +4,7 @@ typedef void (*LogUpdateFunc)(const char *, GLogLevelFlags,  const char *);
 /* Used by g_rc_parse_handler() */
 typedef void (*ConfigParseErrorFunc)(GError **, void *);
 
-typedef int (*BoundsFunc)(Object *);
+typedef int (*ObjectBoundsFunc)(Object *);
 
 /*! \brief Type of callback function for calculating text bounds */
 typedef int(*RenderedBoundsFunc)(void *, Object *, int *, int *, int *, int *);

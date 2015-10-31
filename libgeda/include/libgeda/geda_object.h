@@ -47,9 +47,12 @@ BEGIN_DECLS
 typedef struct _GedaObjectClass ObjectClass;
 
 struct _GedaObjectClass {
+
   GObjectClass parent;
+
   void (*finalize) (GObject *object);
-  BoundsFunc bounds;
+
+  ObjectBoundsFunc bounds;
 };
 
 /* The type definition for this structure is in g_types.h*/

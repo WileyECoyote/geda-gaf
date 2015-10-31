@@ -3,6 +3,8 @@
     * src/file/f_basic.c: Implement helper f_file_Size to inhibit creating
       backups of zero length files in function f_save.
 
+    * libgeda/f_types.h: Rename BoundsFunc -> ObjectBoundsFunc.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/prototype.h: Add warn unused results for functions:
@@ -16,7 +18,6 @@
     * src/utility/u_string.c: Revise function u_string_istr to only get
       the lenght of the string once and fix return NULL; fix typo in
       comments and add Doxygen comments.
-
 
 2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
