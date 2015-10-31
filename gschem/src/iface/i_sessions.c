@@ -293,7 +293,7 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     int     exist_count;
     int     missing_path;
 
-    blank        = Current_Page;
+    blank        = gschem_toplevel_get_current_page(w_current);
     iter         = i_sessions_get_file_list(record);
     exist_count  = 0;
     missing_path = 0;
@@ -315,8 +315,8 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
                        record->session_name);
     }
 
-    /* Note: blank could be NULL if x_window_set_current_page was not
-    *  called after loading a blank "dummy" page */
+    /* Note: blank could be NULL if gschem_toplevel_set_current_page
+     * was not called after loading a blank "dummy" page */
     if (load_count) {
       q_log_message(_("Session %s, opening %d of %d documents\n"),
                        record->session_name, load_count, exist_count);

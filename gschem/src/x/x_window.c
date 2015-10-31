@@ -888,8 +888,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
-          g_idle_add (x_window_idle_thread_post_load_file,
-                      Current_Page->filename);
+          g_idle_add (x_window_idle_thread_post_load_file, page->filename);
         }
       }
       else { /* File is already open, so make it the current page */
@@ -1245,20 +1244,21 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
  */
 void x_window_update_title(GschemToplevel *w_current)
 {
-  const char *filename=NULL;
-  char       *print_string=NULL;
+  const char *filename     = NULL;
+  char       *print_string = NULL;
+  Page       *current_page = gschem_toplevel_get_current_page(w_current);
 
-  if (w_current->main_window) {
+  if (current_page && w_current->main_window) {
 
-    if (w_current->toplevel && Current_Page) {
+    if (w_current->toplevel) {
 
-      if (Current_Page->filename) {
+      if (current_page->filename) {
 
         if (w_current->toplevel->show_full_path) {
-          filename = Current_Page->filename;
+          filename = current_page->filename;
         }
         else {
-          filename = f_get_basename(Current_Page->filename);
+          filename = f_get_basename(current_page->filename);
         }
 
       }
@@ -1270,7 +1270,7 @@ void x_window_update_title(GschemToplevel *w_current)
       filename = "loading"; /* Should never happen */
     }
 
-    if (Current_Page->CHANGED) {
+    if (current_page->CHANGED) {
 
       if (w_current->session_name != NULL) {
         print_string = u_string_sprintf("*%s: %s - gschem",

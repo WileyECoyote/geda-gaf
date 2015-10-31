@@ -354,24 +354,30 @@ SCM g_funcs_save_file(void)
 
   w_current = g_current_window ();
 
-  if (w_current && w_current->toplevel) {
+  if (w_current) {
 
-    if (w_current->toplevel->page_current) {
+    Page *p_current;
 
-      if(Current_Page->filename == NULL)
+    p_current = gschem_toplevel_get_current_page (w_current);
+
+    if (p_current) {
+
+      if(p_current->filename == NULL)
         w_current->force_save_as = TRUE;
 
-      if (strstr(Current_Page->filename,
-        w_current->toplevel->untitled_name))
+      if (strstr(p_current->filename,
+                w_current->toplevel->untitled_name))
+      {
         w_current->force_save_as = TRUE;
+      }
 
       if (w_current->force_save_as) {
         x_fileselect_save (w_current);
       }
       else {
         x_window_save_page (w_current,
-                            Current_Page,
-                            Current_Page->filename);
+                            p_current,
+                            p_current->filename);
       }
       status = TRUE;
     }

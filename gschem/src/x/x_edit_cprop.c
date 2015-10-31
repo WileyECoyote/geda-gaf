@@ -120,8 +120,10 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
     }
     else {
 
+      Page *p_current = gschem_toplevel_get_current_page(w_current);
+
       /* symbol mode, get all objects on the page */
-      attribs   = s_page_get_objects(Current_Page);
+      attribs   = s_page_get_objects(p_current);
       a_current = NULL;
 
     }
@@ -248,13 +250,16 @@ static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
 static bool x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
                                                property_data  *properties)
 {
-  bool result = FALSE;
+  bool  result = FALSE;
   const char *str_val;
+  Page *p_current;
 
   /* Check if symbol file name changed */
-  str_val  = GetEntryText ( properties->symbol_entry );
-  if (str_val && (strcmp (str_val, Current_Page->filename) != 0)) {
-    result = geda_page_rename (Current_Page, str_val);
+  str_val   = GetEntryText ( properties->symbol_entry );
+  p_current = gschem_toplevel_get_current_page(w_current);
+
+  if (str_val && (strcmp (str_val, p_current->filename) != 0)) {
+    result = geda_page_rename (p_current, str_val);
     if (result) {
       u_log_message(_("Symbol renamed, cannot be undone\n"));
     }
@@ -320,10 +325,16 @@ static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
 static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
                                         property_data *properties)
 {
-  GschemToplevel *w_current = GSCHEM_DIALOG(dialog)->w_current;
-  bool changed              = FALSE;
+  GschemToplevel *w_current;
 
-  if (s_page_is_symbol_file(Current_Page)) {
+  bool  changed;
+  Page *p_current;
+
+  changed   = FALSE;
+  w_current = GSCHEM_DIALOG(dialog)->w_current;
+  p_current = gschem_toplevel_get_current_page(w_current);
+
+  if (s_page_is_symbol_file(p_current)) {
     changed = x_dialog_ep_revise_symbol_attribs (w_current, properties);
   }
   else {
@@ -398,7 +409,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           }
 
            /* Add new attributes to page */
-          s_page_append_list (Current_Page, new_butes);
+          s_page_append_list (p_current, new_butes);
 
           /* Update pinnumbers for current slot */
           s_slot_update_object (o_new);
@@ -410,12 +421,12 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
             Object *obj = (Object *) iter->data;
             Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
-            s_page_remove_object (Current_Page, obj);
+            s_page_remove_object (p_current, obj);
             s_object_release (obj);
           }
 
           /* Replace old Object with new Object */
-          s_page_replace_object (Current_Page, o_current, o_new);
+          s_page_replace_object (p_current, o_current, o_new);
 
           s_object_release (o_current);
 
@@ -653,18 +664,18 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
 
     Page *page;
 
-    page = geda_toplevel_get_current_page(w_current->toplevel);
+    page = gschem_toplevel_get_current_page(w_current);
 
     if (GEDA_IS_PAGE(page)) {
 
-      filename = f_get_basename(Current_Page->filename);
+      filename = f_get_basename(page->filename);
       SetEntryText(properties->symbol_entry, filename);
 
       /* set the tooltip as the full file name */
-      SetWidgetTip(properties->symbol_entry, Current_Page->filename);
+      SetWidgetTip(properties->symbol_entry, page->filename);
 
       /* symbol mode, get all objects on the page */
-      attribs   = s_page_get_objects(Current_Page);
+      attribs   = s_page_get_objects(page);
       all_butes = o_get_objects_by_type (attribs, OBJ_TEXT);
     }
     else {
@@ -827,11 +838,14 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
 {
   GtkWidget     *dialog;
   property_data *properties;
+  Page          *p_current;
 
   /* Get ptr to the data structure */
   dialog     = w_current->prwindow;
+  properties = GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
 
-  properties =GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
+  /* Get ptr to the current page */
+  p_current  = gschem_toplevel_get_current_page(w_current);
 
   if (object != NULL && object->type == OBJ_COMPLEX) {
     x_dialog_ep_set_sensitive(properties, TRUE);
@@ -839,7 +853,7 @@ static void x_dialog_ep_update_selection (GschemToplevel *w_current,
     GEDA_OBJECT_SET_DATA(dialog, object, "object");
     gtk_widget_grab_focus(properties->symbol_entry);
   }
-  else if (s_page_is_symbol_file(Current_Page)) {
+  else if (s_page_is_symbol_file(p_current)) {
     x_dialog_ep_set_sensitive(properties, TRUE);
     x_dialog_ep_component_change(w_current, NULL, properties);
     GEDA_OBJECT_SET_DATA(dialog, NULL, "object");

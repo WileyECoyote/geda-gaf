@@ -85,20 +85,20 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
 {
   int incr;
 
-  g_return_val_if_fail(w_current->toplevel != NULL, -1);
+  Page *page = gschem_toplevel_get_current_page(w_current);
 
-  if (GEDA_IS_PAGE(Current_Page)) {
+  if (GEDA_IS_PAGE(page)) {
 
     if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
 
       /* In the variable mode around every (DOTS_VARIABLE_MODE_SPACING)'th
        * screenpixel will be grid-point. Adding 0.1 for correct cast*/
-      incr = m_round_5_2_1 (Current_Page->to_world_x_constant *
+      incr = m_round_5_2_1 (page->to_world_x_constant *
                             DOTS_VARIABLE_MODE_SPACING) + 0.1;
 
       /* limit minimum grid spacing to grid to snap_size */
       if (incr < w_current->snap_size) {
-        incr = w_current->snap_size;
+          incr = w_current->snap_size;
       }
     }
     else {
@@ -173,7 +173,9 @@ draw_dots (GschemToplevel *w_current,
 
   for (i = x_start; i <= x_end; i = i + incr) {
 
-    if (i < Current_Page->left)
+    Page *p_current = gschem_toplevel_get_current_page(w_current);
+
+    if (i < p_current->left)
       continue;
 
     /* Skip columns drawn in the coarser grid */
@@ -184,7 +186,7 @@ draw_dots (GschemToplevel *w_current,
 
     for(j = y_start; j <= y_end; j = j + incr) {
 
-      if (j < Current_Page->top)
+      if (j < p_current->top)
         continue;
 
       /* Skip rows drawn in the coarser grid */

@@ -194,6 +194,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   GedaToplevel *toplevel     = w_current->toplevel;
   GError       *err          = NULL;
   char         *filename     = NULL;
+  Page         *p_current;
   UNDO         *u_current;
   UNDO         *u_current_next;
   int           levels;
@@ -213,11 +214,10 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     return;
   }
 
-  if (w_current->toplevel == NULL) {
-    BUG_MSG("toplevel == NULL");
-  }
-  else if (Current_Page == NULL) {
-    BUG_MSG("w_current->toplevel->current_page == NULL");
+  p_current = gschem_toplevel_get_current_page (w_current);
+
+  if (p_current == NULL) {
+    BUG_MSG("Could not get current page");
   }
   else {
 
@@ -226,7 +226,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       /* Increment the number of operations since last backup if
        *      auto-save is enabled */
       if (toplevel->auto_save_interval != 0) {
-        Current_Page->ops_since_last_backup++;
+        p_current->ops_since_last_backup++;
       }
 
       /* HACK */
@@ -236,7 +236,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
        * triggered before it was removed from o_save_buffer().
        */
       if (toplevel->net_consolidate == TRUE)
-        o_net_consolidate (toplevel, Current_Page);
+        o_net_consolidate (toplevel, p_current);
     }
 
     if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
@@ -245,7 +245,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
                                   tmp_path, DIR_SEPARATOR,
                                   prog_pid, undo_file_index++);
 
-      if (!o_save (s_page_get_objects (Current_Page), filename, &err)) {
+      if (!o_save (s_page_get_objects (p_current), filename, &err)) {
           /* Error recovery sequence, the last disk operation failed
            * so log the event and switched to type Memory. We do not,
            * and likely can not, remove any existing undo files.*/
@@ -253,44 +253,44 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           u_log_message(sys_err_msg, err->code);
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
-          s_undo_free_all (Current_Page);
+          s_undo_free_all (p_current);
       }
 
     }
 
     /* Clear Anything above current */
-    if (Current_Page->undo_current) {
-      s_undo_remove_rest(Current_Page->undo_current->next);
-      Current_Page->undo_current->next = NULL;
+    if (p_current->undo_current) {
+      s_undo_remove_rest(p_current->undo_current->next);
+      p_current->undo_current->next = NULL;
     }
     else { /* undo current is NULL */
-      s_undo_remove_rest(Current_Page->undo_bottom);
-      Current_Page->undo_bottom = NULL;
+      s_undo_remove_rest(p_current->undo_bottom);
+      p_current->undo_bottom = NULL;
     }
 
-    Current_Page->undo_tos = Current_Page->undo_current;
+    p_current->undo_tos = p_current->undo_current;
 
     if (w_current->undo_type == UNDO_DISK) {
-      Current_Page->undo_tos = s_undo_add_disk(flag,
+      p_current->undo_tos = s_undo_add_disk(flag,
                                                filename,
-                                               Current_Page);
+                                               p_current);
     }
     else if (w_current->undo_type == UNDO_MEMORY) {
-      Current_Page->undo_tos = s_undo_add_memory(flag, Current_Page);
+      p_current->undo_tos = s_undo_add_memory(flag, p_current);
     }
 
-    Current_Page->undo_current = Current_Page->undo_tos;
+    p_current->undo_current = p_current->undo_tos;
 
-    if (Current_Page->undo_bottom == NULL) {
-      Current_Page->undo_bottom = Current_Page->undo_tos;
+    if (p_current->undo_bottom == NULL) {
+      p_current->undo_bottom = p_current->undo_tos;
     }
 
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
-    s_undo_print_all       (Current_Page->undo_bottom);
-    printf("BOTTOM: %s\n",  Current_Page->undo_bottom->filename);
-    printf("TOS: %s\n",     Current_Page->undo_tos->filename);
-    printf("CURRENT: %s\n", Current_Page->undo_current->filename);
+    s_undo_print_all       (p_current->undo_bottom);
+    printf("BOTTOM: %s\n",  p_current->undo_bottom->filename);
+    printf("TOS: %s\n",     p_current->undo_tos->filename);
+    printf("CURRENT: %s\n", p_current->undo_current->filename);
     printf("----\n");
 #endif
 
@@ -304,7 +304,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       return;
     }
 
-    levels = s_undo_levels(Current_Page->undo_bottom);
+    levels = s_undo_levels(p_current->undo_bottom);
 
 #if DEBUG_UNDO
     printf("levels: %d\n", levels);
@@ -317,7 +317,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       printf("Trimming: %d levels\n", levels);
 #endif
 
-      u_current = Current_Page->undo_bottom;
+      u_current = p_current->undo_bottom;
 
       while (levels > 0) {
 
@@ -355,7 +355,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       }
       else {
         u_current->prev = NULL;
-        Current_Page->undo_bottom = u_current;
+        p_current->undo_bottom = u_current;
 
 #if DEBUG_UNDO
         printf("New current is: %s\n", u_current->filename);
@@ -365,10 +365,10 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
 #if DEBUG_UNDO
     printf("\n\n---Undo----\n");
-    s_undo_print_all(Current_Page->undo_bottom);
-    printf("BOTTOM: %s\n", Current_Page->undo_bottom->filename);
-    printf("TOS: %s\n", Current_Page->undo_tos->filename);
-    printf("CURRENT: %s\n", Current_Page->undo_current->filename);
+    s_undo_print_all(p_current->undo_bottom);
+    printf("BOTTOM: %s\n", p_current->undo_bottom->filename);
+    printf("TOS: %s\n", p_current->undo_tos->filename);
+    printf("CURRENT: %s\n", p_current->undo_current->filename);
     printf("----\n");
 #endif
   }

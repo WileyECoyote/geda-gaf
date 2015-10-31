@@ -179,7 +179,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
  */
 void o_edit_lock (GschemToplevel *w_current)
 {
-  Page  *page      = Current_Page;
+  Page  *page      = gschem_toplevel_get_current_page(w_current);
   GList *s_current = geda_list_get_glist(Current_Selection);
 
   while(s_current != NULL) {

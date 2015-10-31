@@ -27,6 +27,7 @@
  *  Date Contributed: February, 02, 2013
  *
  */
+#define PERFORMANCE 1
 
 #include <gschem.h>
 
@@ -36,8 +37,9 @@
 #include <geda_dialogs.h>
 #include <geda_help.h>
 
-//#define PERFORMANCE
-//#include <gschem_diagnostics.h>
+#ifdef PERFORMANCE
+#include <gschem_diagnostics.h>
+#endif
 
 #include <geda_debug.h>
 
@@ -530,6 +532,7 @@ COMMAND (do_debug)
 
 #ifdef PERFORMANCE
 
+  Page *p_current;
   float cpu_time[10];
   float total = 0;
   float average, per_obj;
@@ -544,14 +547,17 @@ COMMAND (do_debug)
 
   gtk_window_resize (GTK_WINDOW(w_current->main_window), 1092, 924);
 
+  /* Get ptr to the current page */
+  p_current  = gschem_toplevel_get_current_page(w_current);
+
 /*
-  o_attrib_append_attribs_changed_hook (Current_Page,
+  o_attrib_append_attribs_changed_hook (p_current,
                                        (AttribsChangedFunc) o_diagnostics_notify_attribute,
                                         w_current);
 */
   int test = gschem_diagnostics_dialog(w_current);
 
-  old_page_state = Current_Page->CHANGED;
+  old_page_state = p_current->CHANGED;
 
   switch (test) {
 
@@ -573,21 +579,21 @@ COMMAND (do_debug)
         total = total + cpu_time[cycle];
       }
       average = total / 10;
-      count   = g_list_length((GList*)s_page_get_objects(Current_Page));
+      count   = g_list_length((GList*)s_page_get_objects(p_current));
       per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
       results = u_string_sprintf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
-      printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
+      printf ("file=%s, has %d objects: %s\n", p_current->filename, count, results);
       msg = complete;
       g_free(results);
       break;
 
     case RUN_UNDO_TESTS:
-      count   = g_list_length(s_page_get_objects(Current_Page));
+      count   = g_list_length(s_page_get_objects(p_current));
       if (count > NUMBER_UNDO_TEST - 1) {
         if (w_current->undo_levels < NUMBER_UNDO_TEST) {
           printf ("Warning undo levels setting=%d, number of tests=%d\n", NUMBER_UNDO_TEST, w_current->undo_levels);
         }
-        printf ("file=%s, has %d objects before testing\n", Current_Page->filename, count);
+        printf ("file=%s, has %d objects before testing\n", p_current->filename, count);
         printf ("undo system type: %s, ", (w_current->undo_type == UNDO_DISK) ? "DISK" : "MEMORY");
         printf ("undo capacity (levels): %d, undo pan-zoom setting: %d\n", w_current->undo_levels,
                                                                            w_current->undo_panzoom);
@@ -598,9 +604,9 @@ COMMAND (do_debug)
           total = total + cpu_time[cycle];
         }
         average = total / 10;
-        count   = g_list_length(s_page_get_objects(Current_Page));
+        count   = g_list_length(s_page_get_objects(p_current));
         per_obj = ((average / count) * 1000) / NUMBER_UNDO_TEST;
-        printf ("file=%s, has %d objects after testing\n", Current_Page->filename, count);
+        printf ("file=%s, has %d objects after testing\n", p_current->filename, count);
         results = u_string_sprintf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
         printf ("%s\n", results);
         msg = complete;
@@ -678,7 +684,7 @@ COMMAND (do_file_new)
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
-  x_window_set_current_page (w_current, page);
+  gschem_toplevel_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
   q_log_message (_("New page created [%s]\n"), page->filename);
@@ -719,7 +725,7 @@ COMMAND (do_file_new_window)
                                        new_window);
 
   page = x_window_open_page (new_window, NULL);
-  x_window_set_current_page (new_window, page);
+  gschem_toplevel_set_current_page (new_window, page);
 
   q_log_message (_("New Window created [%s]\n"), page->filename);
 
@@ -771,7 +777,7 @@ open_command_idle_notify (void *data)
 
   page = s_page_search(packet->w_current->toplevel, last_file);
   if (GEDA_IS_PAGE(page)) {
-    x_window_set_current_page (packet->w_current, page);
+    gschem_toplevel_set_current_page (packet->w_current, page);
     g_hook_run_page (packet->w_current, OPEN_PAGE_HOOK, page);
   }
 
@@ -854,12 +860,15 @@ COMMAND (do_save) {
   BEGIN_NO_ARGUMENT(do_save);
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
 
-  if(Current_Page->filename == NULL)
+  Page *p_current;
+
+  p_current = gschem_toplevel_get_current_page(w_current);
+
+  if (p_current->filename == NULL)
     w_current->force_save_as = TRUE;
 
-  if (strstr(Current_Page->filename,
+  if (strstr(p_current->filename,
       w_current->toplevel->untitled_name))
         w_current->force_save_as = TRUE;
 
@@ -868,8 +877,8 @@ COMMAND (do_save) {
   }
   else {
       x_window_save_page (w_current,
-                          Current_Page,
-                          Current_Page->filename);
+                          p_current,
+                          p_current->filename);
   }
 }
 
@@ -880,11 +889,18 @@ COMMAND (do_save) {
  */
 /** @brief i_cmd_do_save_as in i_command_File_Actions */
 COMMAND (do_save_as) {
-  BEGIN_W_COMMAND(do_save_as);
 
+  BEGIN_W_COMMAND(do_save_as);
+  NOT_NULL(w_current->toplevel);
+
+  Page *p_current;
   char *old_name;
 
-  old_name = u_string_strdup(Current_Page->filename);
+  /* Get ptr to the current page */
+  p_current  = gschem_toplevel_get_current_page(w_current);
+
+ /* Make a copy of the page file name */
+  old_name   = u_string_strdup(p_current->filename);
 
   x_fileselect_save (w_current);
 
@@ -892,7 +908,7 @@ COMMAND (do_save_as) {
 
   /* If the user actually changed the file name then delete the
    * the old backup file or else the file will be stranded! */
-  if (strcmp(Current_Page->filename, old_name) != 0) {
+  if (strcmp(p_current->filename, old_name) != 0) {
     f_remove_backup_file(old_name);
   }
 
@@ -940,18 +956,27 @@ COMMAND (do_print) {
   NOT_NULL(w_current->toplevel);
   NOT_NULL(w_current->toplevel->page_current);
   NOT_NULL(w_current->toplevel->page_current->filename);
-  BEGIN_COMMAND(do_print);
-  char *base=NULL, *filename;
-  char *ps_filename=NULL;
 
-  /* shortcut */
-  filename = Current_Page->filename;
+  BEGIN_COMMAND(do_print);
+
+  char *base;
+  char *filename;
+  char *ps_filename;
+  Page *p_current;
+
+  base        = NULL;
+  ps_filename = NULL;
+  p_current   = gschem_toplevel_get_current_page(w_current);
+  filename    = p_current->filename;
 
   /* get the base file name */
   if (g_str_has_suffix(filename, ".sch")) {
+
     /* the filename ends with ".sch", remove it */
     base = g_strndup(filename, strlen(filename) - strlen(".sch"));
-  } else {
+  }
+  else {
+
     /* the filename does not end with .sch */
     base = u_string_strdup (filename);
   }
@@ -962,7 +987,8 @@ COMMAND (do_print) {
 
   if (output_filename) {
     x_print_setup(w_current, output_filename);
-  } else {
+  }
+  else {
     x_print_setup(w_current, ps_filename);
   }
 
@@ -1969,10 +1995,17 @@ COMMAND (do_zoom_selected)
 COMMAND (do_zoom_extents)
 {
   BEGIN_W_COMMAND(do_zoom_extents);
+
+  Page *p_current;
+
+  p_current = gschem_toplevel_get_current_page(w_current);
+
   /* scroll bar stuff */
-  i_zoom_world_extents (w_current, s_page_get_objects (Current_Page), 0);
+  i_zoom_world_extents (w_current, s_page_get_objects (p_current), 0);
+
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+
   EXIT_COMMAND(do_zoom_extents);
 }
 
@@ -2112,17 +2145,28 @@ COMMAND (do_show_inherited)
 
 COMMAND (do_show_nets)
 {
-  BEGIN_COMMAND(do_show_nets);
+  BEGIN_W_COMMAND(do_show_nets);
+
   GList *object_list = NULL;
 
   if (o_select_is_selection (w_current)) {
-    SELECTION *selection = Current_Selection;
+
+    SELECTION *selection;
+
+    selection   = Current_Selection;
     object_list =  geda_list_get_glist (selection);
+
   }
   else {
-    object_list =  s_page_get_objects (Current_Page);
+
+    Page *p_current;
+
+    p_current   = gschem_toplevel_get_current_page(w_current);
+    object_list =  s_page_get_objects (p_current);
   }
+
   o_edit_show_netnames (w_current, object_list);
+
   EXIT_COMMAND(do_show_nets);
 }
 
@@ -2147,9 +2191,12 @@ COMMAND (do_dark_colors)
 COMMAND (do_light_colors)
 {
   BEGIN_W_COMMAND(do_light_colors);
+
   /* Change the scheme here */
   x_color_load_scheme(LIGHT_COLOR_MAP); /* call for load */
+
   o_invalidate_all (w_current);
+
   EXIT_COMMAND(do_light_colors);
 }
 /*! \brief Load the BW color map scheme in i_command_View_Actions
@@ -2160,9 +2207,12 @@ COMMAND (do_light_colors)
 COMMAND (do_bw_colors)
 {
   BEGIN_W_COMMAND(do_bw_colors);
+
   /* Change the scheme here */
   x_color_load_scheme(BW_COLOR_MAP); /* call for load */
+
   o_invalidate_all (w_current);
+
   EXIT_COMMAND(do_bw_colors);
 }
 
@@ -2198,6 +2248,7 @@ COMMAND (do_draw_after)
     w_current->primary_selection = g_list_copy (object_list);
     i_status_show_msg(w_current, "Which objects");
     o_select_connect_selector(w_current, o_page_draw_after);
+
   }
   else {
     msg_need_select_1st(w_current);
@@ -2221,8 +2272,11 @@ COMMAND (do_draw_before)
     object_list = geda_list_get_glist (Current_Selection);
 
     w_current->primary_selection = g_list_copy (object_list);
+
     i_status_show_msg(w_current, "Which objects");
+
     o_select_connect_selector(w_current, o_page_draw_before);
+
   }
   else {
     msg_need_select_1st(w_current);
@@ -2240,6 +2294,7 @@ COMMAND (do_draw_first)
     GList *object_list = geda_list_get_glist (Current_Selection);
 
     o_redraw_cleanstates(w_current);
+
     o_page_draw_first(w_current, object_list);
 
   }
@@ -2259,6 +2314,7 @@ COMMAND (do_draw_last)
     GList *object_list = geda_list_get_glist (Current_Selection);
 
     o_redraw_cleanstates(w_current);
+
     o_page_draw_last(w_current, object_list);
 
   }
@@ -2287,16 +2343,21 @@ COMMAND (do_page_first)
 
   GedaToplevel *toplevel = w_current->toplevel;
 
+  Page  *p_current;
   Page  *p_first;
   GList *iter;
 
+  p_current = geda_toplevel_get_current_page (toplevel);
+
   if (w_current->enforce_hierarchy) {
 
-    iter = g_list_find( geda_list_get_glist(toplevel->pages), Current_Page);
+    iter = g_list_find( geda_list_get_glist(toplevel->pages), p_current);
     iter = g_list_previous(iter);
 
     if (iter != NULL) {
+
       Page  *p_prev = p_first = iter->data;
+
       while (p_prev) {
         p_prev = s_hierarchy_find_prev_page(toplevel->pages, p_prev);
         if (p_prev) {
@@ -2305,8 +2366,10 @@ COMMAND (do_page_first)
       }
     }
     else {
+
       iter = geda_toplevel_get_pages(toplevel);
       p_first = iter->data;
+
     }
   }
   else {
@@ -2314,10 +2377,52 @@ COMMAND (do_page_first)
     p_first = iter->data;
   }
 
-  if (p_first != NULL || p_first != Current_Page) {
-    x_window_set_current_page (w_current, p_first);
+  if (p_first != NULL || p_first != p_current) {
+    gschem_toplevel_set_current_page (w_current, p_first);
   }
 
+}
+
+/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
+COMMAND (do_page_prev)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+
+  BEGIN_NO_ARGUMENT(do_page_prev);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page *p_old;
+  Page *p_new;
+
+  p_old = geda_toplevel_get_current_page (toplevel);
+  p_new = geda_toplevel_get_page_up (toplevel);
+
+  if (p_new != NULL || p_new != p_old) {
+    gschem_toplevel_set_current_page (w_current, p_new);
+  }
+}
+
+/** @brief i_cmd_do_page_next in i_command_Command_Functions */
+COMMAND (do_page_next)
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+
+  BEGIN_NO_ARGUMENT(do_page_next);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+
+  Page *p_old;
+  Page *p_new;
+
+  p_old = geda_toplevel_get_current_page (toplevel);
+  p_new = geda_toplevel_get_page_down (toplevel);
+
+  if (p_new != NULL || p_new != p_old) {
+    gschem_toplevel_set_current_page (w_current, p_new);
+  }
 }
 
 /** @brief i_cmd_do_page_up in i_command_Command_Functions */
@@ -2348,7 +2453,7 @@ COMMAND (do_page_up)
     }
 
     if (p_new != NULL || p_new != page_current) {
-      x_window_set_current_page (w_current, p_new);
+      gschem_toplevel_set_current_page (w_current, p_new);
     }
   }
 }
@@ -2505,7 +2610,11 @@ COMMAND (do_page_discard)
 
   BEGIN_NO_ARGUMENT(do_page_discard);
 
-  x_window_close_page (w_current, Current_Page);
+  Page *p_current;
+
+  p_current = gschem_toplevel_get_current_page (w_current);
+
+  x_window_close_page (w_current, p_current);
 }
 
 /* ------------------ Hierarchy ---------------- */
@@ -2544,7 +2653,7 @@ COMMAND (do_down_schematic)
   if (object == NULL || object->type != OBJ_COMPLEX)
     return;
 
-  parent = Current_Page;
+  parent = gschem_toplevel_get_current_page (w_current);
   attrib = o_attrib_search_attached_attribs_by_name (object, "source", count);
 
   /* if above is null, then look inside symbol */
@@ -2641,22 +2750,27 @@ COMMAND (do_down_schematic)
     /* okay we were looking outside and didn't find anything,
      * so now we need to look inside the symbol */
     if (!looking_inside && attrib == NULL && !loaded_flag) {
+
       looking_inside = TRUE;
+
 #if DEBUG
       printf("switching to go to look inside\n");
 #endif
+
     }
 
     if (looking_inside) {
+
 #if DEBUG
       printf("looking inside\n");
 #endif
+
       attrib = o_attrib_search_inherited_attribs_by_name(object, "source", count);
     }
   }
 
   if (loaded_flag && (save_first_page != NULL)) {
-    x_window_set_current_page (w_current, save_first_page);
+    gschem_toplevel_set_current_page (w_current, save_first_page);
   }
 }
 
@@ -2693,7 +2807,9 @@ COMMAND (do_down_symbol)
         return;
       }
 
-      child = s_hierarchy_down_symbol(w_current->toplevel, sym, Current_Page);
+      p_current = gschem_toplevel_get_current_page(w_current);
+
+      child = s_hierarchy_down_symbol(w_current->toplevel, sym, p_current);
 
       x_window_setup_page(w_current, child, w_current->world_left,
                                             w_current->world_right,
@@ -2724,9 +2840,12 @@ COMMAND (do_hierarchy_up)
 
   BEGIN_NO_ARGUMENT(do_hierarchy_up);
 
+  Page *p_current;
   Page *up_page;
 
-  up_page = s_hierarchy_find_up_page (w_current->toplevel->pages, Current_Page);
+  p_current = gschem_toplevel_get_current_page (w_current);
+
+  up_page   = s_hierarchy_find_up_page (w_current->toplevel->pages, p_current);
 
   if (up_page == NULL) {
     u_log_message(_("Cannot find any schematics above the current one!\n"));
@@ -2734,13 +2853,13 @@ COMMAND (do_hierarchy_up)
   else {
 
     int   answer = TRUE;
-    Page *child  = Current_Page;
+    Page *child  = p_current;
 
     if (child->CHANGED) {
       answer = x_confirm_close_changed_page (w_current, child);
     }
     if (answer == TRUE) {
-      x_window_set_current_page(w_current, up_page);
+      gschem_toplevel_set_current_page(w_current, up_page);
       x_window_close_page (w_current, child);
     }
   }
@@ -3328,7 +3447,6 @@ COMMAND (do_home_attributes)
   if (o_select_is_selection (w_current)) {
 
     bool       modified  = FALSE;
-    Page      *page      = Current_Page;
     SELECTION *selection = Current_Selection;
     GList     *s_current;
 
@@ -3350,12 +3468,11 @@ COMMAND (do_home_attributes)
 
     if (modified) {
 
-      if (GEDA_IS_PAGE(page)) {
-        page->CHANGED = 1;
-      }
-      else {
-        BUG_MSG("Object has no page association")
-      }
+      /* Get ptr to the current page */
+      Page *p_current  = gschem_toplevel_get_current_page(w_current);
+
+      geda_page_set_changed (p_current, TRUE);
+
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }
@@ -3891,15 +4008,17 @@ COMMAND (do_toggle_feedback)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_toggle_feedback);
+
   if (w_current->action_feedback_mode == BOUNDINGBOX) {
     w_current->action_feedback_mode = OUTLINE;
     q_log_message(_("Action feedback mode set to OUTLINE\n"));
-  } else {
+  }
+  else {
     w_current->action_feedback_mode = BOUNDINGBOX;
     q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
   }
 
-  if (w_current->inside_action && Current_Page->place_list != NULL) {
+  if (w_current->inside_action && Current_PlaceList != NULL) {
     o_place_invalidate_rubber (w_current, FALSE);
   }
 
