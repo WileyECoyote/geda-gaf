@@ -2,7 +2,8 @@
 
     * src/file/f_basic.c: Implement helper f_file_Size to inhibit creating
       backups of zero length files in function f_save. Complete missing
-      description for type defines.
+      description for type defines. Add doxygen \typedef tags to function
+      type definitions.
 
     * libgeda/f_types.h: Rename BoundsFunc -> ObjectBoundsFunc.
 
