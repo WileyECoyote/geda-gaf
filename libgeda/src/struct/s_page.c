@@ -359,10 +359,6 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 {
   Page *tmp;
 
-#if DEBUG
-  printf("s_page_delete: Freeing page: %s\n", page->filename);
-#endif
-
   /* We need to temporarily make the page being deleted current because
    * various functions called below (some indirectly) assume they are
    * deleting objects from the current page.

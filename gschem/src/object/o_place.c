@@ -295,13 +295,6 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 
     }
   }
-  else {
-    static int once = 0;
-    if(!once)
-    BUG_TRACE("page_current->place_list is NULL");
-    EMBED_BREAKPOINT;
-    once++;
-  }
 }
 
 /*! \brief Draw a bounding box or outline for Object placement
