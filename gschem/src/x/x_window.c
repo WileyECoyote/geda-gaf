@@ -888,6 +888,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
+          /* Have idle thread assigned to update recent history */
           g_idle_add (x_window_idle_thread_post_load_file, page->filename);
         }
       }

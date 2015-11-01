@@ -1993,7 +1993,7 @@
 ; Actions can have several hotkeys, but the displayed keys are the last
 ; ones found.
 ;
-; The SEPARATOR keyword is case sensitive and add a separator into the menu.
+; The SEPARATOR keyword is case sensitive and adds a separator into the menu.
 ;
 
 (or (defined? 'define-syntax)

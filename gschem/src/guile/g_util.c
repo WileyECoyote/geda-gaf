@@ -28,19 +28,20 @@
  * \brief Scheme utility functions
  */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
-;; ------------------------------------------------------------------
-;; PB  | ??/??/11 |  Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 10/15/12 | Added u_string_int2str, u_string_scm2c function, u_string_strequal
-;;                | (so that these generic functions could be used
-;;                | shared rather than defined locally in a module.
-;;                | Update address for Free Software Foundation.
-;; ------------------------------------------------------------------
-;; WEH | 01/18/13 | Relocated generic string stuff to libgeda (so code
-;;                | could be used by all geda apps.
-;; WEH | 03/18/13 | Added function g_list_find_string.
-
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * PB  | ??/??/11 |  Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 10/15/12 | Added u_string_int2str, u_string_scm2c function,
+ *                | u_string_strequal (so that these generic functions
+ *                | could be used shared rather than defined locally in
+ *                | a module. Update address for Free Software Foundation.
+ * ------------------------------------------------------------------
+ * WEH | 01/18/13 | Relocated generic string stuff to libgeda (so code
+ *                | could be used by all geda apps.
+ * ------------------------------------------------------------------
+ * WEH | 03/18/13 | Added function g_list_find_string.
+ * ------------------------------------------------------------------
 */
 
 #include <config.h>

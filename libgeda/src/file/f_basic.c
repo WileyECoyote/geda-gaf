@@ -294,8 +294,8 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       page->CHANGED=0; /* added 4/7/98 */
     }
     else {
-      /* We are loading the backup file, so gschem should ask
-       *    the user if save it or not when closing the page. */
+      /* We are loading the backup file, so gschem should ask the
+       * user whether to save the page or not when closing the page. */
       page->CHANGED=1;
     }
     opened = TRUE;

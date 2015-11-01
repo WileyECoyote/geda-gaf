@@ -34,7 +34,7 @@
  *  \par Function Description
  *
  *  This function returns a unique list of packages, duplicated values
- *  are only listed once
+ *  are only listed once.
  *
  *  Alias gnetlist:get-packages
  *

@@ -37,6 +37,8 @@
  *  \param [in] dest_list  The GList to copy to
  *
  *  \return dest_list GList with objects appended
+ *
+ *  \todo should be o_list_concat?
  */
 GList* o_list_copy_all (const GList *src_list, GList *dest_list)
 {

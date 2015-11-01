@@ -2044,11 +2044,10 @@ int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
 
 /*! \brief Start a Projection operation
  *  \par Function Description
- *  This function is called at the beginning of a project operation
- *  to save the x and y coordinates for the event and if there any
- *  object was hits an attempt is made to complete the operation,
- *  if a project is not performed then the object is added to the
- *  current selection.
+ *  This function is called at the beginning of a extend operation to
+ *  save x and y coordinates for the event and if an object can be hit
+ *  an attempt is made to complete the operation, if a projection is
+ *  not performed then the object is added to the current selection.
  *
  *  \returns 1. EXTEND if the found object is a bounder, or a the
  *              object is projectile but can not be projected

@@ -107,10 +107,9 @@ s_object_release(Object *o_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Deletes a list of GedaObjects
  *  \par Function Description
- *   deletes everything including the GList
+ *   Deletes everything including the GList
  */
 void
 s_object_release_objects(GList *list)
