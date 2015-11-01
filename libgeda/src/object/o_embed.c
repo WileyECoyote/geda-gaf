@@ -60,8 +60,8 @@ bool o_embed(GedaToplevel *toplevel, Object *o_current)
     page_modified = o_picture_embed (o_current);
   }
 
-  if (page_modified && (GEDA_IS_PAGE(page))) {
-    page->CHANGED = 1;
+  if (page_modified) {
+    geda_page_set_changed (page, TRUE);
   }
   return (page_modified);
 }
@@ -113,7 +113,7 @@ void o_unembed(GedaToplevel *toplevel, Object *o_current)
     page_modified = 1;
   }
 
-  if (page_modified && page != NULL) {
-    page->CHANGED = 1;
+  if (page_modified) {
+    geda_page_set_changed (page, TRUE);
   }
 }

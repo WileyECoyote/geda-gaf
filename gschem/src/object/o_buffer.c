@@ -160,6 +160,7 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
 
       /* remove the old place list if it exists */
       s_object_release_objects(Current_Page->place_list);
+
       Current_Page->place_list = NULL;
 
       Current_PlaceList = o_list_copy_all (object_buffer[buf_num],

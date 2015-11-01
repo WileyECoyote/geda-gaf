@@ -1139,6 +1139,7 @@ static bool o_extend_can_path_bound(Object *boundary,
 
             int x2   = intersect.x;
             int y2   = intersect.y;
+
             distance = sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2));
 
             if (distance != G_MAXDOUBLE && distance < shortest) {

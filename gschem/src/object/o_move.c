@@ -272,6 +272,7 @@ void o_move_end(GschemToplevel *w_current)
     g_hook_run_object_list (w_current, MOVE_OBJECTS_HOOK, object_list);
 
     toplevel->page_current->CHANGED = 1;
+
     o_undo_savestate(w_current, UNDO_ALL);
 
     o_move_stretch_destroy_all (w_current->stretch_list);

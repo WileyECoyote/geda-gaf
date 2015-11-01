@@ -144,6 +144,7 @@ x_rc_parse_gschem_error (GError **err, void *retry_flag)
 }
 
 #define ConfigParseFunc void (*parser)(const char *, ConfigParseErrorFunc, void *)
+
 /*! \brief Load gschem configuration files and display error dialogs.
  * \par Function Description
  *  Calls functions in Libgeda to process RC initialization files using

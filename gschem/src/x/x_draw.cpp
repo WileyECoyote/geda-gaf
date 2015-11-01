@@ -358,9 +358,6 @@ x_draw_set_surface(GschemToplevel *w_current)
     RenderAdaptor->geda_draw_set_surface(w_current->cr,
                                          Current_Page->to_world_x_constant);
   }
-  /*else {
-    BUG_MSG("Current page is invalid");
-  }*/
 }
 
 extern "C" char*

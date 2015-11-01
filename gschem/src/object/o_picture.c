@@ -225,9 +225,6 @@ o_picture_exchange (GschemToplevel *w_current,
 
     if (o_current->type == OBJ_PICTURE) {
 
-      /* Erase previous picture, WEH: Really? How? */
-      //o_invalidate_object (w_current, o_current);
-
       if (o_picture_set_from_file (o_current, filename, error)) {
         o_invalidate_object (w_current, o_current); /* Draw new picture */
       }
@@ -251,9 +248,6 @@ o_picture_exchange (GschemToplevel *w_current,
       }
 
       if (object->type == OBJ_PICTURE) {
-
-        /* Erase previous picture, WEH: Really? Why? */
-        //o_invalidate_object (w_current, object);
 
         if (o_picture_set_from_file (object, filename, error)) {
           o_invalidate_object (w_current, object); /* Draw new picture */

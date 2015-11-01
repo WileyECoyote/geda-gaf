@@ -71,4 +71,3 @@ SCM g_rc_sort_components(SCM mode)
 
   RETURN_G_RC_MODE("sort-components", default_sort_components, 2);
 }
-

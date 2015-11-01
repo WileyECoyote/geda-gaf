@@ -409,8 +409,9 @@ void gschem_toplevel_free(GschemToplevel *w_current)
     s_toplevel_release (w_current->toplevel);
     GEDA_UNREF (w_current);
   }
-  else
-    BUG_MSG("w_current no bueno")
+  else {
+    BUG_MSG("w_current no bueno");
+  }
 }
 
 /*! \brief Get the Current Page from toplevel

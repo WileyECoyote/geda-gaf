@@ -310,6 +310,7 @@ o_text_change(GschemToplevel *w_current, Object *object,
       BUG_MSG("object != OBJ_TEXT");
     }
     else {
+
       o_text_set_string (object, string);
 
       o_set_visibility (object, visibility);

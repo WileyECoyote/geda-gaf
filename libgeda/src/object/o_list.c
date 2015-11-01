@@ -59,8 +59,10 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
     src_object = (Object *) src->data;
 
     if (GEDA_IS_OBJECT(src_object)) {
+
       /* unselect the object before the copy */
       selected_save = src_object->selected;
+
       if (selected_save)
         o_selection_unselect (src_object);
 
@@ -89,6 +91,7 @@ GList* o_list_copy_all (const GList *src_list, GList *dest_list)
 
       /* unselect the object before the copy */
       selected_save = src_object->selected;
+
       if (selected_save)
         o_selection_unselect (src_object);
 
