@@ -1,7 +1,32 @@
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Add 19 symbols; VOLTAGE LDO REGULATORS:
+    * symbols/geda-clib.scm: Add directory/manufacture:epson, add
+      catagories epson/crystal, st/ldo
 
+    * diode/zener: Change device=ZENER_DIODE->device=ZENER:
+
+        * diode/zener/zener-1.sym
+        * diode/zener/zener-2.sym
+        * diode/zener/zener-3.sym
+        * diode/zener/zener-4.sym
+        * diode/zener/zener-5.sym
+        * diode/zener/zener-6.sym
+        * diode/zener/zener-7.sym
+
+    * onsemi/diodes: Change device=SCHOTTKY DIODE->device=DIODE, update
+      footprint=DPAK__On-Semi_369C, chnage draw order (lines before pins):
+
+        * onsemi/diodes/MBR1045MFS-1.sym
+        * onsemi/diodes/MBR1045MFS-2.sym
+        * onsemi/diodes/MBR1045MFS-3.sym
+        * onsemi/diodes/MBR1045MFS-4.sym
+
+    * Add 35 symbols; VOLTAGE LDO REGULATORS:
+
+        * arduino/XBeePRO.sym
+        * epson/crystal/FA-238-1.sym
+        * epson/crystal/FA-238V-1.sym
+        * epson/crystal/TSX-3225-1.sym
         * onsemi/ldo/NCP1117-DT25-1.sym
         * onsemi/ldo/NCP1117-DT33-1.sym
         * onsemi/ldo/NCP1117-DT50-1.sym
@@ -21,6 +46,17 @@
         * onsemi/ldo/NCV1117-ST33-1.sym
         * onsemi/ldo/NCV1117-ST50-1.sym
         * onsemi/ldo/NCV1117-ST285-1.sym
+        * st/ldo/LD2981ABM33TR-1.sym
+        * st/ldo/LD2981ABM50TR-1.sym
+        * st/ldo/LD2981ABU33TR-1.sym
+        * st/ldo/LD2981ABU50TR-1.sym
+        * st/ldo/LD2981CM25TR-1.sym
+        * st/ldo/LD2981CM30TR-1.sym
+        * st/ldo/LD2981CM33TR-1.sym
+        * st/ldo/LD2981CM50TR-1.sym
+        * st/ldo/LD2981CU30TR-1.sym
+        * st/ldo/LD2981CU33TR-1.sym
+        * st/ldo/LD2981CU50TR-1.sym
 
 2015-10-28 Wiley E. Hill <wileyhill@gmail.com>
 

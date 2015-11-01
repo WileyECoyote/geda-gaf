@@ -1,0 +1,244 @@
+v 20151031 2
+T 400 4900 5 10 0 0 0 0 1
+device=XbeePro
+T 400 4500 5 10 0 0 0 0 1
+description=Zigbee wireless module
+T 400 4700 5 10 0 0 0 0 1
+documentation=http://ftp1.digi.com/support/documentation/manual_xb_oem-rf-modules_802.15.4_v1.xAx.pdf
+T 400 5500 5 10 0 0 0 0 1
+author=Sam Fladung
+T 1600 400 5 10 0 0 0 0 1
+numslots=0
+T 4100 4100 8 10 1 1 0 6 1
+refdes=U?
+B 400 100 3700 3900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 400 400 400 1 0 0
+{
+T 450 375 5 8 0 1 0 2 1
+pintype=pwr
+T 450 400 9 10 1 1 0 0 1
+pinlabel=GND
+T 300 450 5 8 1 1 0 6 1
+pinnumber=10
+T 300 450 5 8 0 1 0 6 1
+pinseq=10
+}
+P 100 2800 400 2800 1 0 0
+{
+T 450 2775 5 8 0 1 0 2 1
+pintype=out
+T 450 2800 9 10 1 1 0 0 1
+pinlabel=Dout
+T 300 2850 5 8 1 1 0 6 1
+pinnumber=2
+T 300 2850 5 8 0 1 0 6 1
+pinseq=2
+}
+P 100 2500 400 2500 1 0 0
+{
+T 450 2475 5 8 0 1 0 2 1
+pintype=in
+T 450 2500 9 10 1 1 0 0 1
+pinlabel=Din
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=3
+T 300 2550 5 8 0 1 0 6 1
+pinseq=3
+}
+P 4400 3700 4100 3700 1 0 0
+{
+T 4050 3675 5 8 0 1 0 8 1
+pintype=out
+T 4050 3700 9 10 1 1 0 6 1
+pinlabel=DO8
+T 4200 3750 5 8 1 1 0 0 1
+pinnumber=4
+T 4200 3750 5 8 0 1 0 0 1
+pinseq=4
+}
+P 4400 3400 4100 3400 1 0 0
+{
+T 4050 3375 5 8 0 1 0 8 1
+pintype=out
+T 4050 3400 9 10 1 1 0 6 1
+pinlabel=PWM0/RSSI
+T 4200 3450 5 8 1 1 0 0 1
+pinnumber=6
+T 4200 3450 5 8 0 1 0 0 1
+pinseq=6
+}
+P 4400 3100 4100 3100 1 0 0
+{
+T 4050 3075 5 8 0 1 0 8 1
+pintype=out
+T 4050 3100 9 10 1 1 0 6 1
+pinlabel=PWM1
+T 4200 3150 5 8 1 1 0 0 1
+pinnumber=7
+T 4200 3150 5 8 0 1 0 0 1
+pinseq=7
+}
+P 4400 2800 4100 2800 1 0 0
+{
+T 4050 2775 5 8 0 1 0 8 1
+pintype=out
+T 4050 2800 9 10 1 1 0 6 1
+pinlabel=RESERVED
+T 4200 2850 5 8 1 1 0 0 1
+pinnumber=8
+T 4200 2850 5 8 0 1 0 0 1
+pinseq=8
+}
+P 4400 2500 4100 2500 1 0 0
+{
+T 4050 2475 5 8 0 1 0 8 1
+pintype=io
+T 4050 2500 9 10 1 1 0 6 1
+pinlabel=AD4/DIO4
+T 4200 2550 5 8 1 1 0 0 1
+pinnumber=11
+T 4200 2550 5 8 0 1 0 0 1
+pinseq=11
+}
+P 4400 2200 4100 2200 1 0 0
+{
+T 4050 2175 5 8 0 1 0 8 1
+pintype=out
+T 4050 2200 9 10 1 1 0 6 1
+pinlabel=\_ON/SLEEP\_
+T 4200 2250 5 8 1 1 0 0 1
+pinnumber=13
+T 4200 2250 5 8 0 1 0 0 1
+pinseq=13
+}
+P 100 2200 400 2200 1 0 0
+{
+T 450 2175 5 8 0 1 0 2 1
+pintype=in
+T 450 2200 9 10 1 1 0 0 1
+pinlabel=RESET
+T 300 2250 5 8 1 1 0 6 1
+pinnumber=5
+T 300 2250 5 8 0 1 0 6 1
+pinseq=5
+}
+P 100 1900 400 1900 1 0 0
+{
+T 450 1875 5 8 0 1 0 2 1
+pintype=in
+T 450 1900 9 10 1 1 0 0 1
+pinlabel=\_DTR\_/SLEEP_RQ/DI8
+T 300 1950 5 8 1 1 0 6 1
+pinnumber=9
+T 300 1950 5 8 0 1 0 6 1
+pinseq=9
+}
+P 100 1600 400 1600 1 0 0
+{
+T 450 1575 5 8 0 1 0 2 1
+pintype=in
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=\_CTS\_/DIO4
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=12
+T 300 1650 5 8 0 1 0 6 1
+pinseq=12
+}
+P 100 1300 400 1300 1 0 0
+{
+T 450 1275 5 8 0 1 0 2 1
+pintype=in
+T 450 1300 9 10 1 1 0 0 1
+pinlabel=RTS/AD6/DIO6
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=16
+T 300 1350 5 8 0 1 0 6 1
+pinseq=16
+}
+P 4400 1900 4100 1900 1 0 0
+{
+T 4050 1875 5 8 0 1 0 8 1
+pintype=in
+T 4050 1900 9 10 1 1 0 6 1
+pinlabel=Vref
+T 4200 1950 5 8 1 1 0 0 1
+pinnumber=14
+T 4200 1950 5 8 0 1 0 0 1
+pinseq=14
+}
+P 4400 1600 4100 1600 1 0 0
+{
+T 4050 1575 5 8 0 1 0 8 1
+pintype=out
+T 4050 1600 9 10 1 1 0 6 1
+pinlabel=ASSOCIATE/AD5/DIO5
+T 4200 1650 5 8 1 1 0 0 1
+pinnumber=15
+T 4200 1650 5 8 0 1 0 0 1
+pinseq=15
+}
+P 4400 1300 4100 1300 1 0 0
+{
+T 4050 1275 5 8 0 1 0 8 1
+pintype=out
+T 4050 1300 9 10 1 1 0 6 1
+pinlabel=AD3/DIO3
+T 4200 1350 5 8 1 1 0 0 1
+pinnumber=17
+T 4200 1350 5 8 0 1 0 0 1
+pinseq=17
+}
+P 4400 1000 4100 1000 1 0 0
+{
+T 4050 975 5 8 0 1 0 8 1
+pintype=out
+T 4050 1000 9 10 1 1 0 6 1
+pinlabel=AD2/DIO2
+T 4200 1050 5 8 1 1 0 0 1
+pinnumber=18
+T 4200 1050 5 8 0 1 0 0 1
+pinseq=18
+}
+P 4400 700 4100 700 1 0 0
+{
+T 4050 675 5 8 0 1 0 8 1
+pintype=out
+T 4050 700 9 10 1 1 0 6 1
+pinlabel=AD1/DIO1
+T 4200 750 5 8 1 1 0 0 1
+pinnumber=19
+T 4200 750 5 8 0 1 0 0 1
+pinseq=19
+}
+P 4400 400 4100 400 1 0 0
+{
+T 4050 375 5 8 0 1 0 8 1
+pintype=out
+T 4050 400 9 10 1 1 0 6 1
+pinlabel=AD0/DIO0
+T 4200 450 5 8 1 1 0 0 1
+pinnumber=20
+T 4200 450 5 8 0 1 0 0 1
+pinseq=20
+}
+T 400 5300 5 10 0 0 0 0 1
+dist-license=GPL V3 or later
+T 400 5100 5 10 0 0 0 0 1
+use-license=unlimited
+T 1600 200 5 10 0 0 0 0 1
+symversion=0.1
+T 400 4100 5 10 0 1 0 0 1
+value=XbeePro
+P 100 3600 400 3600 1 0 0
+{
+T 450 3575 5 8 0 1 0 2 1
+pintype=pwr
+T 450 3600 9 10 1 1 0 0 1
+pinlabel=Vcc
+T 300 3650 5 8 1 1 0 6 1
+pinnumber=1
+T 300 3650 5 8 0 1 0 6 1
+pinseq=1
+}
+T 400 4300 9 10 0 0 0 0 1
+footprint=XbeePro

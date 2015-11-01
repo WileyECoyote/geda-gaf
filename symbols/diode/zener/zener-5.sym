@@ -30,7 +30,7 @@ T 250 150 5 8 0 1 0 0 1
 pintype=pas
 }
 T 500 200 5 10 1 1 0 0 1
-device=ZENER_DIODE
+device=ZENER
 T 500 600 8 10 1 1 0 0 1
 refdes=Z?
 T 500 1700 8 10 0 0 0 0 1

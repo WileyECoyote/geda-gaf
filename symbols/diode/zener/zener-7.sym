@@ -30,7 +30,7 @@ pinseq=2
 T 400 700 8 10 1 1 0 0 1
 refdes=D?
 T 400 900 5 10 0 1 0 0 1
-device=ZENER DIODE
+device=ZENER
 T 400 1300 5 10 0 1 0 0 1
 description=Zener Diode
 T 400 1700 5 10 0 1 0 0 1
