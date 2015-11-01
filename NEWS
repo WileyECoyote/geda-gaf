@@ -7,6 +7,105 @@ Copyright (C) 1998-2015 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
+
+* Improvements were made to both the build system and source code to ensure
+  gEDA-GAF builds more reliably on 64 bit platforms. Testing was performed
+  using Ubuntu 12.04 and Ubuntu 14.04 64 bit host systems.
+
+* The path for logs file can now be set in initialization files, include local
+  gafrc file. This allows logs to be organized on a per project basis. The
+  location for logs can also be set using a new GEDALOGS environment varible.
+
+* The Multi-Attribute Editor Dialog entry now has attribute "word" completion
+  identical to the Single-Attribute Editor Dialog.
+
+* Symbol files can now be renamed using the Component Dialog.
+
+* The number of user defined colors was increased by 6 to a total of
+  10 user definable colors in each color map.
+
+* The main menu system has been modified to automatical build a basic
+  fallback menu when errors are discovered in the menu RC file.
+
+* The height of the status bar in Gschem can now be set in the gschem-gtkrc
+
+* HotKey dialog now includes actions icon and a column to display the actual
+  binding string. User can enable or disable viewing the action column and
+  the setting is retained bewteen session.
+
+* Additional preferences variables have been incorperated in new configuration
+  system allow retention of changes using preferences dialog:
+
+      continue-component-place
+      embed-components
+      enforce-hierarchy
+      force-boundingbox
+      keyboardpan-gain
+      netconn-rubberband
+      select-slack-pixels
+      snap-size
+      sort-component-library
+      object-clipping
+
+  Uses of these keywords in rc files is still permissable and will over-ride the
+  preference setting.
+
+* A new command line options has been provide to specify a title-block at startup.
+
+* New bitmaps have been added;
+
+      * gaf-tools.png
+      * gaf-add-attribute.png
+      * geda-close.png
+      * geda-redo.png
+      * geda-tools.png
+      * geda-undo.png
+      * geda-inspect-grn.png
+      * guile-logo.png
+
+* Context menu now have tool-tips.
+
+* Issues resolved:
+
+* Dettaching an attribute no longer sets the undo state if nothing was dettached.
+
+* Attaching an attribute to an object now updates the Multi-attribute Dialog if
+  the dialog is open.
+
+* Add Log and Console window settings are now saved in the new configuration system.
+
+* The menu toolbar radio togglers in Gschem are now set at startup when the tool-bar
+  styles are uniform.
+
+* The Slot Editor Dialog now displays the total number of slots per component.
+
+* Symbols file can now be checked directly in Gschem with gsymcheck using the
+  "Check Symbol' option under the tools menu. An options dialog allows users
+  to view the log when errors or warnings have been detected.
+
+* Utilities to check symbol libraries can now check the validity of URL referenced
+  by documentation attributes.
+
+* gattrib now saves and restore the main window size and position.
+
+* gattrib's search function now auto fills in selected text.
+
+* Minor issues have been resolved in gsch2pcb.
+
+* gsch2pcb now XDG compliant if this option was compiled into geda-gaf.
+
+* Fixed errors in Libgedathon when processing pin objects with missing
+  label and or pinnumber attributes.
+
+* gschem no longer has to be restarted to enable auto-save when enabled from
+  preference dialog.
+
+* Icon states on the pop-up menu in gschem are now displayed start-up if
+  the setting is enabled.
+
+* libgeda no longer makes backups of empty files.
+
 Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 
 * This release of the Rampage Edition of the gEDA-gaf suite commemorates

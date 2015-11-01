@@ -1,3 +1,9 @@
+2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * NEWS: Update news
+
+    * configure.ac: Bump versions gEDA 2.1.0.11 - 10/31/15 Rampage Edition
+
 2015-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/rusage/tlpi_hdr.h: Remove typedef of Boolean from rusage headers.
@@ -25,7 +31,7 @@
 
 2015-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * bitmaps/svg/guile-logo.svg: Add new svg file for to generate bitmap for
+    * bitmaps/svg/guile-logo.svg: Add new svg file to generate bitmap for
       guile logo.
 
 2015-09-12 Wiley E. Hill <wileyhill@gmail.com>

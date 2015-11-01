@@ -20,6 +20,21 @@
     * src/.c: Revise modules to use accessor gschem_toplevel_get_current_page
       and remove superflorous page->CHANGED.
 
+    * etc/system-gschemrc.scm: Add Menu/Actions for Page Prev/Next
+
+    * include/gschem_toplevel.h: Add GList pointers for pages_back and
+      pages_forw to toplevel.
+
+    * include/i_actions.h: Define actions page-previous and page-next.
+
+    * include/i_command.h: Add page-previous and page-next.
+
+    * src/x/x_toolbars.c: Add buttons for page-previous and page-next.
+
+    * Page Prev/Next not working yet (accidentally committed action handlers
+      in i_Command.c so just add to date), right now back/forward does
+      the same as up/down.
+
 2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Zero the smaller difference in o_move_end
