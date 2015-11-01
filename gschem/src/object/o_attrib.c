@@ -205,8 +205,6 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
  */
 void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
   if (object->visibility == VISIBLE) {
@@ -227,8 +225,6 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
 
     o_text_recreate(object);
   }
-
-  toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief Set what part of an attribute is shown.
@@ -244,15 +240,11 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
 void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
                                      Object *object, int show_name_value)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
   o_invalidate_object (w_current, object);
   object->show_name_value = show_name_value;
   o_text_recreate(object);
-
-  toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief Create and Add and Attribute Text Object

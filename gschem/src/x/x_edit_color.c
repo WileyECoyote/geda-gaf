@@ -88,19 +88,20 @@ x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
 
     /* Retrieve the current index from the tree model in the widget */
     if (geda_combo_box_get_active_iter(ColorCombo, &iter)) {
+
       gtk_tree_model_get_value(geda_combo_box_get_model(ColorCombo), &iter, 1, &value);
       color_index = g_value_get_int (&value);
 
       while(s_current != NULL) {
 
         object = (Object *) s_current->data;
+
         if (object == NULL) {
           fprintf(stderr, _("ERROR: NULL object in x_dialog_edit_color_apply!\n"));
         }
         else {
           if(object->color != color_index) {
             o_set_color (object, color_index);
-            w_current->toplevel->page_current->CHANGED = 1;
           }
         }
         s_current = g_list_next(s_current);

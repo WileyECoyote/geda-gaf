@@ -2777,8 +2777,6 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
     select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
     gtk_widget_grab_focus(tientry);
 
-    w_current->toplevel->page_current->CHANGED=1;
-
     o_text_prepare_place (w_current, tmp == NULL ? string : tmp);
     GEDA_FREE (string);
     GEDA_FREE (tmp);

@@ -558,9 +558,8 @@ void o_mirror_object (Object *object, int center_x, int center_y)
 
     o_notify_emit_change(object);
 
-    if (object->page) {
-       object->page->CHANGED = 1;
-    }
+    s_object_set_page_changed (object);
+
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);
@@ -610,9 +609,7 @@ void o_rotate_object (Object *object, int center_x, int center_y, int angle)
 
     o_notify_emit_change(object);
 
-    if (object->page) {
-       object->page->CHANGED = 1;
-    }
+    s_object_set_page_changed (object);
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);
@@ -660,9 +657,7 @@ void o_translate_object (Object *object, int dx, int dy)
 
     o_notify_emit_change(object);
 
-    if (object->page) {
-       object->page->CHANGED = 1;
-    }
+    s_object_set_page_changed (object);
   }
   else {
     BUG_IMSG("Bad object type '%c'", object->type);

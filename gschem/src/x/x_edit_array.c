@@ -541,7 +541,6 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
                               _("Both row and column\ncan not be zero"));
   }
   if (changed) {
-    Current_Page->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
 }

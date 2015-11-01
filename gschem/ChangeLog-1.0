@@ -17,7 +17,8 @@
         * src/x/x_confirm_close.c: in function x_confirm_close_changed_page,
         * src/x/x_edit_cprop.c: in function x_dialog_edit_properties_ok,
 
-    * src/.c: Revise modules to use accessor gschem_toplevel_get_current_page.
+    * src/.c: Revise modules to use accessor gschem_toplevel_get_current_page
+      and remove superflorous page->CHANGED.
 
 2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
 

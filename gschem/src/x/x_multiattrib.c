@@ -579,7 +579,6 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
     }
   }
 
-  w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 
   GEDA_FREE (newtext);
@@ -609,7 +608,6 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
                          o_attrib->attached_to);
   }
 
-  w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 
 }
@@ -722,7 +720,6 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
     }
   }
 
-  w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
@@ -940,8 +937,6 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
   GEDA_UNREF (attr_list);
   GEDA_FREE (value);
   GEDA_FREE (newtext);
-
-  w_current->toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief  Multi-attribute Dialog
@@ -1003,7 +998,6 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
                             -1);
 
         o_undo_savestate (w_current, UNDO_ALL);
-        w_current->toplevel->page_current->CHANGED = 1;
       }
 
       GEDA_FREE (newtext);
@@ -1066,8 +1060,6 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
   o_undo_savestate (w_current, UNDO_ALL);
 
   GEDA_UNREF (attr_list);
-
-  w_current->toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief  Multi-attribute Dialog
@@ -1132,8 +1124,6 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
   o_undo_savestate (w_current, UNDO_ALL);
 
   GEDA_UNREF (attr_list);
-
-  w_current->toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief  Multi-attribute Dialog
@@ -1206,8 +1196,6 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
   o_undo_savestate (w_current, UNDO_ALL);
 
   GEDA_UNREF (attr_list);
-
-  w_current->toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief  Multi-attribute Dialog

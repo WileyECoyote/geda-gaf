@@ -947,7 +947,6 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
                                 const GList    *o_list,
                                 const char     *stext)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   const GList *iter;
 
   iter = o_list;
@@ -963,7 +962,6 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
         if (o_get_is_visible (o_current)) {
           o_set_visibility (o_current, INVISIBLE);
           o_text_recreate(o_current);
-          toplevel->page_current->CHANGED = 1;
         }
       }
     }
@@ -982,10 +980,8 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
                                 const GList    *o_list,
                                 const char     *stext)
 {
-  GedaToplevel *toplevel;
   const GList  *iter;
 
-  toplevel = gschem_toplevel_get_geda_toplevel(w_current);
   iter     = o_list;
 
   while (iter != NULL) {
@@ -1000,7 +996,6 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
         if (!o_get_is_visible (o_current)) {
           o_set_visibility (o_current, VISIBLE);
           o_text_recreate(o_current);
-          toplevel->page_current->CHANGED = 1;
         }
       }
     }

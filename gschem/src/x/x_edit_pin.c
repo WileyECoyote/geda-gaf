@@ -239,7 +239,6 @@ static void
 x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 {
   GschemToplevel *w_current;
-  GedaToplevel   *toplevel;
 
   GList  *iter;
   GList  *pin_objects;
@@ -263,7 +262,6 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   /* Initialize variables */
   w_current   = GSCHEM_DIALOG(Dialog)->w_current;
-  toplevel    = w_current->toplevel;
   iter        = NULL;
   pin_objects = NULL;
 
@@ -431,7 +429,6 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   }
 
   if(changed_something) {
-    toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
 

@@ -2098,7 +2098,8 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
       status = EXTEND;
     }
     else if (result == 3) { /* Something was hit */
-      Current_Page->CHANGED = 1;
+
+      s_object_set_page_changed (o_current);
       o_undo_savestate (w_current, UNDO_ALL);
 
       /* Was verb->noun so just stay in STARTEXTEND state */
@@ -2194,7 +2195,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
   }
 
   if (status & 1) {
-    Current_Page->CHANGED = 1;
+    s_object_set_page_changed (o_current);
     o_undo_savestate (w_current, UNDO_ALL);
   }
 
@@ -2292,12 +2293,19 @@ void o_extend_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
   int    status;
 
   if (projectiles) {
-    w_current->second_wx     = x;
-    w_current->second_wy     = y;
+
+    w_current->second_wx = x;
+    w_current->second_wy = y;
+
     status = o_extend_blind_list(w_current, projectiles);
     g_list_free(projectiles);
+
     if (status) {
-      Current_Page->CHANGED = 1;
+
+      Page *p_current = gschem_toplevel_get_current_page (w_current);
+
+      geda_page_set_changed (p_current, TRUE);
+
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }

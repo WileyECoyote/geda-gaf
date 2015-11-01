@@ -267,7 +267,6 @@ o_picture_exchange (GschemToplevel *w_current,
   }
 
   if (result) {
-    toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
 
