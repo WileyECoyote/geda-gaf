@@ -64,6 +64,9 @@ struct _GschemToplevel {
 
   GedaToplevel *toplevel;
 
+  GSList   *pages_back;
+  GSList   *pages_forw;
+
   /* ----------------- main window widgets ---------------- */
   GtkWidget *main_window;
   GtkWidget *drawing_area;

@@ -102,8 +102,8 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_add_net, etb_add_bus, etb_add_attribute, etb_add_text,
                 etb_add_line, etb_add_box, etb_add_circle, etb_add_arc,
                 etb_add_path, etb_add_pin, etb_insert_pic,
-                etb_first_page, etb_up_page, etb_down_page, etb_last_page,
-                etb_new_page, etb_page_manager,
+                etb_first_page, etb_prev_page, etb_next_page, etb_up_page,
+                etb_down_page, etb_last_page, etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
                 etb_view_document, etb_view_nets, etb_view_redraw, etb_zoom_pan,
                 etb_zoom_box, etb_zoom_select, etb_zoom_extents, etb_zoom_in,
@@ -182,6 +182,8 @@ static ToolbarStringData ToolbarStrings[] = {
 
   /* Page Toolbar */
   { ACTION(PAGE_FIRST),         "First",      TBTS_PAGE_FIRST,         "gtk-goto-first",    TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_PREV),          "Prev",       TBTS_PAGE_UP,            "gtk-go-back",       TB_ICON_STOCK, NULL},
+  { ACTION(PAGE_NEXT),          "Next",       TBTS_PAGE_DOWN,          "gtk-go-forward",    TB_ICON_STOCK, NULL},
   { ACTION(PAGE_UP),            "Up",         TBTS_PAGE_UP,            "gtk-go-up",         TB_ICON_STOCK, NULL},
   { ACTION(PAGE_DOWN),          "Down",       TBTS_PAGE_DOWN,          "gtk-go-down",       TB_ICON_STOCK, NULL},
   { ACTION(PAGE_LAST),          "Last",       TBTS_PAGE_LAST,          "gtk-goto-last",     TB_ICON_STOCK, NULL},
@@ -1225,6 +1227,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Page, etb_first_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_up_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_down_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_prev_page);
+  GSCHEM_TOOLBAR_BUTTON (Page, etb_next_page);
   GSCHEM_TOOLBAR_BUTTON (Page, etb_last_page);
 
   GSCHEM_TOOLBAR_BUTTON (Page, etb_page_manager);
@@ -1239,6 +1243,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_first_page ));
   HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_up_page ));
   HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_down_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
   HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_last_page ));
 
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_schematic));

@@ -137,6 +137,8 @@
 
 #define PAGE_MANAGER     page-manager
 #define PAGE_FIRST       page-first
+#define PAGE_PREV        page-previous
+#define PAGE_NEXT        page-next
 #define PAGE_UP          page-up
 #define PAGE_DOWN        page-down
 #define PAGE_LAST        page-last

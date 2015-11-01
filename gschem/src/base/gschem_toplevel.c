@@ -48,6 +48,9 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
 
   w_current->toplevel           = NULL;
 
+  w_current->pages_back         = NULL;
+  w_current->pages_forw         = NULL;
+
   /* ----------------- main window widgets ----------------- */
   w_current->main_window        = NULL;
   w_current->drawing_area       = NULL;

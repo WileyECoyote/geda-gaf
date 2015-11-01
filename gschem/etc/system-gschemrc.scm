@@ -1894,8 +1894,8 @@
 
 (map-icon "gtk-properties"             "page-manager")
 (map-icon "gtk-goto-first"             "page-first")
-;(map-icon "gtk-go-back"                "page-up")
-;(map-icon "gtk-go-forward"             "page-down")
+(map-icon "gtk-go-back"                "page-prev")
+(map-icon "gtk-go-forward"             "page-next")
 (map-icon "gtk-go-up"                  "page-up")
 (map-icon "gtk-go-down"                "page-down")
 (map-icon "gtk-goto-last"              "page-last")
@@ -2062,7 +2062,7 @@
         (,(N_ "Extend")             edit-extend            "extend"           ,(N_ "Project a linear objects to other objects"))
 
         ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Edit...")            edit-attributes        "gtk-indent"       ,(N_ "Edit Properties"))
+        (,(N_ "Edit...")            edit-attributes        "gtk-indent"       ,(N_ "Edit Object Attributes"))
         (,(N_ "Edit Text...")       edit-text              "gtk-edit"         ,(N_ "Open the Text Editor Dialog"))
         (,(N_ "Color...")           edit-color             "gtk-select-color" ,(N_ "Open the Color Editor Dialog"))
         (,(N_ "Edit Pin...")        edit-pintype           "geda-pin-type"    ,(N_ "Open the Pin Type Dialog"))
@@ -2167,6 +2167,8 @@
 
         (,(N_ "_Manager...")       page-manager            "gtk-properties"       ,(N_ "Open the Page Manager"))
         (,(N_ "_First")            page-first              "gtk-goto-first"       ,(N_ "Goto the first page"))
+        (,(N_ "_Previous")         page-prev               "gtk-go-back"          ,(N_ "Switch to the previous page"))
+        (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
         (,(N_ "_Up")               page-up                 "gtk-go-up"            ,(N_ "Go up one page"))
         (,(N_ "_Down")             page-down               "gtk-go-down"          ,(N_ "Go down one page"))
         (,(N_ "_Last")             page-last               "gtk-goto-last"        ,(N_ "Goto the last page"))

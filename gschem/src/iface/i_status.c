@@ -679,15 +679,15 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   if ( mutil_pages ) {
     x_menus_sensitivity(w_current, "_Page/_Up", TRUE);
     x_menus_sensitivity(w_current, "_Page/_Down", TRUE);
-    //x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
-    //x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
+    x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
+    x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
 
   }
   else {
     x_menus_sensitivity(w_current, "_Page/_Up", FALSE);
     x_menus_sensitivity(w_current, "_Page/_Down", FALSE);
-    //x_menus_sensitivity(w_current, "_Page/_Next", FALSE);
-    //x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
+    x_menus_sensitivity(w_current, "_Page/_Next", FALSE);
+    x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
   if (any_object) {
