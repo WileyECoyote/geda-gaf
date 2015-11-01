@@ -741,7 +741,7 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
   gtk_tree_store_set (GTK_TREE_STORE (model),
                       &iter,
                       COLUMN_PAGE, page,
-                      COLUMN_CHANGED, page->CHANGED,
+                      COLUMN_CHANGED, geda_page_get_changed(page),
                       -1);
 
   /* search a page that has a up field == p_current->pid */

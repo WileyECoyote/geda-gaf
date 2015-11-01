@@ -543,6 +543,32 @@ GedaToplevel *geda_page_get_toplevel (Page *page)
   return page->toplevel;
 }
 
+int geda_page_get_changed (Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_PAGE(page), -1);
+  return page->CHANGED;
+}
+
+void geda_page_set_changed (Page *page, int changed)
+{
+  if (GEDA_IS_PAGE(page)) {
+    page->CHANGED = changed;
+  }
+}
+
+GList *geda_page_get_place_list (Page *page)
+{
+  g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
+  return page->place_list;
+}
+
+void geda_page_set_place_list (Page *page, GList *object_list)
+{
+  if (GEDA_IS_PAGE(page)) {
+    page->place_list = object_list;
+  }
+}
+
 /** @} endgroup geda-page */
 void
 geda_page_debug_print (Page *page)

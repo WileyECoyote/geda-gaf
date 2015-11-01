@@ -40,16 +40,16 @@
  */
 void s_place_free_place_list(GedaToplevel *toplevel)
 {
-  if (GEDA_IS_TOPLEVEL(toplevel)) {
+  Page  *page = geda_toplevel_get_current_page (toplevel);
 
-    if (toplevel->page_current->place_list != NULL) {
-      s_object_release_objects(toplevel->page_current->place_list);
+  if (page) {
+
+    GList *list = geda_page_get_place_list(page);
+
+    if (list) {
+      s_object_release_objects(list);
       toplevel->page_current->place_list = NULL;
     }
-
-  }
-  else {
-    BUG_MSG("TopLevel is NULL\n");
   }
 }
 
@@ -65,22 +65,21 @@ void s_place_free_place_list(GedaToplevel *toplevel)
  *  \param [in] new_place_list Glist of objects to append or NULL to clear
  *                             the current place list.
  */
-void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list )
+void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list)
 {
-  if (GEDA_IS_TOPLEVEL(toplevel)) {
+  Page *page = geda_toplevel_get_current_page (toplevel);
 
-    if (toplevel->page_current->place_list) {
-      s_place_free_place_list(toplevel);
-    }
+  if (page) {
+
+    s_place_free_place_list(toplevel);
 
     if (new_place_list) {
-      toplevel->page_current->place_list =
-      o_list_copy_all (new_place_list,
-                        toplevel->page_current->place_list);
-    }
 
-  }
-  else {
-    BUG_MSG("TopLevel is NULL\n");
+      GList *list;
+
+      list = o_list_copy_all (new_place_list, page->place_list);
+
+      geda_page_set_place_list (page, list);
+    }
   }
 }

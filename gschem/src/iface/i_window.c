@@ -89,7 +89,7 @@ void i_window_close_page (GschemToplevel *w_current)
 
   page = gschem_toplevel_get_current_page(w_current);
 
-  if (page && page->CHANGED) {
+  if (geda_page_get_changed(page) > 0) {
     can_close = x_confirm_close_changed_page (w_current, page);
   }
   else {
@@ -182,9 +182,9 @@ void i_window_revert_page (GschemToplevel *w_current)
   Page *page;
   int   answer;
 
-  page = gschem_toplevel_get_current_page(w_current);
+  page = gschem_toplevel_get_current_page (w_current);
 
-  if (page && page->CHANGED) {
+  if (geda_page_get_changed(page) > 0) {
     answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, FALSE);
   }
   else {
@@ -201,7 +201,7 @@ void i_window_revert_page (GschemToplevel *w_current)
     int   up;
 
     err          = NULL;
-    toplevel     = gschem_toplevel_get_geda_toplevel(w_current);
+    toplevel     = gschem_toplevel_get_geda_toplevel (w_current);
 
     /* save these for later */
     filename     = page->filename;
@@ -233,7 +233,8 @@ void i_window_revert_page (GschemToplevel *w_current)
       page->page_control    = page_control;
       page->hierarchy_up    = up;
 
-      page->CHANGED  = FALSE;
+      geda_page_set_changed (page, FALSE);
+
       GEDA_FREE (filename);
     }
     else {

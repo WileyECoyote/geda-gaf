@@ -461,8 +461,8 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
   }
 
   if (changed) {
-    Current_Page->CHANGED = 1;
-    o_undo_savestate(w_current, UNDO_ALL);
+    geda_page_set_changed (p_current, TRUE);
+    o_undo_savestate (w_current, UNDO_ALL);
   }
 }
 

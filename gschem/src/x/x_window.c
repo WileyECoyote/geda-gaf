@@ -1085,6 +1085,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
 
   /* change to page */
   s_page_goto (page);
+
   /* and try saving current page to filename */
   result = f_save (toplevel, toplevel->page_current, filename, &err);
 
@@ -1113,8 +1114,9 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
 
     state_msg  = _("Saved");
 
-    /* reset page CHANGED flag */
-    page->CHANGED = FALSE;
+    /* reset page modified flag */
+    geda_page_set_changed (page, FALSE);
+
     /* add to recent file list */
     x_menu_recent_files_add(filename);
   }
@@ -1123,7 +1125,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   u_log_message (log_msg, filename);
 
   /* update display and page manager */
-  x_window_set_current_page (w_current, old_current);
+  gschem_toplevel_set_current_page (w_current, old_current);
 
   i_status_set_state_msg  (w_current, SELECT, state_msg);
 
@@ -1270,7 +1272,7 @@ void x_window_update_title(GschemToplevel *w_current)
       filename = "loading"; /* Should never happen */
     }
 
-    if (current_page->CHANGED) {
+    if (geda_page_get_changed(current_page) > 0) {
 
       if (w_current->session_name != NULL) {
         print_string = u_string_sprintf("*%s: %s - gschem",

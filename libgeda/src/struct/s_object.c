@@ -130,9 +130,15 @@ s_object_release_objects(GList *list)
   g_list_free(list);
 
 }
-void s_object_set_page_changed (Object *obj)
+
+/*! \brief Mark Object's Page as modified
+ *  \par Function Description
+ *   Updates the CHANGED flag of the page associated with
+ *  \a object if the page is attached to a page.
+ */
+void s_object_set_page_changed (Object *object)
 {
-  Page *page = geda_object_get_page (obj);
+  Page *page = geda_object_get_page (object);
   if (page != NULL){
     page->CHANGED = TRUE;
   }

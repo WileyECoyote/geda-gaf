@@ -1,3 +1,9 @@
+2015-10-31  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Revise PyGeda_is_page_modified to set status
+      using geda_page_get_changed, which would be -1 if the page is
+      invalid.
+
 2015-10-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.

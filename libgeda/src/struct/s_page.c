@@ -268,9 +268,6 @@ void s_page_autosave_init(GedaToplevel *toplevel)
  */
 int s_page_autosave (GedaToplevel *toplevel)
 {
-  const GList *iter;
-        Page  *p_current;
-
   if (toplevel == NULL) {
     u_log_message (_("Disabling auto save timer, no toplevel"));
     return 0;
@@ -281,11 +278,14 @@ int s_page_autosave (GedaToplevel *toplevel)
 
     if ( toplevel->pages != NULL) {
 
+      const GList *iter;
+
       for ( iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
       {
-        p_current = (Page *)iter->data;
+        Page  *p_current = (Page *)iter->data;
 
-        if (p_current->CHANGED) {
+        if (geda_page_get_changed (p_current) > 0) {
+
           if (p_current->ops_since_last_backup != 0) {
             /* Real autosave is done in o_undo_savestate */
             p_current->do_autosave_backup = 1;
@@ -509,7 +509,6 @@ const char *s_page_get_file_extension (Page *page)
  * If \a page is valid, the current working directory is set to
  * the directory associated with the file.
  *
- *  \param toplevel  Optional GedaToplevel object (can be NULL)
  *  \param page      The Page to go to
  *
  *  \returns True on success, otherwise FALSE
@@ -644,24 +643,24 @@ int s_page_save_all (GedaToplevel *toplevel)
 
   list = geda_toplevel_get_pages(toplevel);
 
-  for ( iter = list; iter; iter = iter->next)
-  {
+  for ( iter = list; iter; iter = iter->next) {
+
     Page *p_current;
 
     p_current = (Page *)iter->data;
 
     if (f_save (toplevel, p_current, p_current->filename, NULL)) {
-       u_log_message (_("Saved [%s]\n"), p_current->filename);
-      /* reset the CHANGED flag of p_current */
-      p_current->CHANGED = 0;
 
+      u_log_message (_("Saved [%s]\n"), p_current->filename);
+
+      geda_page_set_changed (p_current, 0); /* reset CHANGED flag */
     }
     else {
-      u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
-      /* increase the error counter */
-      status++;
-    }
 
+      u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
+
+      status++; /* increment the error counter */
+    }
   }
 
   return status;
@@ -693,14 +692,17 @@ int s_page_save_all_changed (GedaToplevel *toplevel)
     if (p_current && p_current->CHANGED) {
 
       if (f_save (toplevel, p_current, p_current->filename, NULL)) {
-        u_log_message (_("Saved [%s]\n"), p_current->filename);
-        /* reset the CHANGED flag of p_current */
-        p_current->CHANGED = 0;
 
-      } else {
+        u_log_message (_("Saved [%s]\n"), p_current->filename);
+
+        geda_page_set_changed(p_current, 0); /* reset CHANGED flag */
+
+      }
+      else {
+
         u_log_message (_("Could NOT save [%s]\n"), p_current->filename);
-        /* increase the error counter */
-        status++;
+
+        status++; /* increment the error counter */
       }
     }
   }

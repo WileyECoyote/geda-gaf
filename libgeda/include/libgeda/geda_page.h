@@ -150,8 +150,14 @@ void      geda_page_close                (Page *page);
 int       geda_page_copy                 (Page *page);
 
 void      geda_page_add_object           (Page *page, Object *object);
-Object   *geda_page_get_object           (Page *page, int sid);
+Object   *geda_page_get_object           (Page *page, int sid) GEDA_WARN_UNUSED_RESULT;
 void      geda_page_remove_object        (Page *page, Object *object);
+
+int       geda_page_get_changed          (Page *page) GEDA_WARN_UNUSED_RESULT;
+void      geda_page_set_changed          (Page *page, int changed);
+
+GList    *geda_page_get_place_list       (Page *page)GEDA_WARN_UNUSED_RESULT;
+void      geda_page_set_place_list       (Page *page, GList *object_list);
 
 END_DECLS
 #endif /* __GEDA_PAGE_H__ */

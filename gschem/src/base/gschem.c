@@ -142,14 +142,17 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
     Page *page = x_window_open_page(w_current, NULL);
 
     if (o_edit_add_titleblock(w_current, page, comline_tblock)) {
+
       i_zoom_world_extents (w_current, s_page_get_objects (page), I_PAN_DONT_REDRAW);
 
-      page->CHANGED = 0;
+      geda_page_set_changed (page, FALSE);
+
       ++page_loaded;
     }
     GEDA_FREE(comline_tblock);
   }
   else {
+
     /* Load any file listed on command-line */
     for (i = argv_index; i < argc; i++) {
 
@@ -260,6 +263,7 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
       }
     }
   }
+
   /* Update the window to show the current page */
   x_window_set_current_page( w_current, Current_Page);
 
@@ -417,7 +421,6 @@ static void gschem( int argc, char *argv[])
 
   /* if there were any symbols which had major changes, show error dialog */
   x_dialog_symbol_changed(w_current);
-
 }
 
 /*! \brief Main Scheme(GUILE) program function.

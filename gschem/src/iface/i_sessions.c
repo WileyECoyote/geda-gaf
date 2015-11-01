@@ -161,11 +161,8 @@ static bool i_session_close_all (GschemToplevel *w_current)
   /* Loop through all the pages looking for unsaved pages */
   for ( iter = pages; iter != NULL; NEXT(iter)) {
 
-    /* get ptr to a page */
-    p_current = (Page*)iter->data;
-
-    /* if flag set */
-    if (p_current->CHANGED) {
+    /* if page has been modified */
+    if (geda_page_get_changed(iter->data) > 0) {
       can_close = FALSE;
       break;                 /* if at least one page */
     }

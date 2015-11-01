@@ -622,7 +622,7 @@ COMMAND (do_debug)
   }
   printf("%s", msg);
 
-  Current_Page->CHANGED = old_page_state;
+  p_current->CHANGED = old_page_state;
 #else
   printf("Performance_diagnostic is not enable, must recompile\n");
 #endif
@@ -684,7 +684,7 @@ COMMAND (do_file_new)
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
-  gschem_toplevel_set_current_page (w_current, page);
+  x_window_set_current_page (w_current, page);
   g_hook_run_page (w_current, NEW_PAGE_HOOK, page);
 
   q_log_message (_("New page created [%s]\n"), page->filename);
@@ -725,7 +725,7 @@ COMMAND (do_file_new_window)
                                        new_window);
 
   page = x_window_open_page (new_window, NULL);
-  gschem_toplevel_set_current_page (new_window, page);
+  x_window_set_current_page (new_window, page);
 
   q_log_message (_("New Window created [%s]\n"), page->filename);
 
@@ -777,7 +777,7 @@ open_command_idle_notify (void *data)
 
   page = s_page_search(packet->w_current->toplevel, last_file);
   if (GEDA_IS_PAGE(page)) {
-    gschem_toplevel_set_current_page (packet->w_current, page);
+    x_window_set_current_page (packet->w_current, page);
     g_hook_run_page (packet->w_current, OPEN_PAGE_HOOK, page);
   }
 
@@ -865,12 +865,12 @@ COMMAND (do_save) {
 
   p_current = gschem_toplevel_get_current_page(w_current);
 
-  if (p_current->filename == NULL)
+  if (p_current->filename == NULL) {
     w_current->force_save_as = TRUE;
-
-  if (strstr(p_current->filename,
-      w_current->toplevel->untitled_name))
-        w_current->force_save_as = TRUE;
+  }
+  else if (strstr(p_current->filename, w_current->toplevel->untitled_name)) {
+    w_current->force_save_as = TRUE;
+  }
 
   if (w_current->force_save_as) {
       x_fileselect_save (w_current);
@@ -1074,7 +1074,7 @@ COMMAND (do_close_all) {
     p_current = (Page*)iter->data;
 
     /* if flag set */
-    if (p_current->CHANGED) {
+    if (geda_page_get_changed(p_current)  > 0) {
       can_close = FALSE;
       break;                 /* if at least one page */
     }
@@ -2378,7 +2378,7 @@ COMMAND (do_page_first)
   }
 
   if (p_first != NULL || p_first != p_current) {
-    gschem_toplevel_set_current_page (w_current, p_first);
+    x_window_set_current_page (w_current, p_first);
   }
 
 }
@@ -2400,7 +2400,7 @@ COMMAND (do_page_prev)
   p_new = geda_toplevel_get_page_up (toplevel);
 
   if (p_new != NULL || p_new != p_old) {
-    gschem_toplevel_set_current_page (w_current, p_new);
+    x_window_set_current_page (w_current, p_new);
   }
 }
 
@@ -2421,7 +2421,7 @@ COMMAND (do_page_next)
   p_new = geda_toplevel_get_page_down (toplevel);
 
   if (p_new != NULL || p_new != p_old) {
-    gschem_toplevel_set_current_page (w_current, p_new);
+    x_window_set_current_page (w_current, p_new);
   }
 }
 
@@ -2453,7 +2453,7 @@ COMMAND (do_page_up)
     }
 
     if (p_new != NULL || p_new != page_current) {
-      gschem_toplevel_set_current_page (w_current, p_new);
+      x_window_set_current_page (w_current, p_new);
     }
   }
 }
@@ -2562,7 +2562,8 @@ COMMAND (do_page_new)
 
   GEDA_FREE(tblock);
 
-  page->CHANGED = 0;
+  geda_page_set_changed (page, FALSE);
+
   i_zoom_world_extents (w_current, s_page_get_objects (page), I_PAN_DONT_REDRAW);
 
   q_log_message (_("New page created [%s]\n"), page->filename);
@@ -2770,7 +2771,7 @@ COMMAND (do_down_schematic)
   }
 
   if (loaded_flag && (save_first_page != NULL)) {
-    gschem_toplevel_set_current_page (w_current, save_first_page);
+    x_window_set_current_page (w_current, save_first_page);
   }
 }
 
@@ -2794,6 +2795,7 @@ COMMAND (do_down_symbol)
       const char *filename = object->complex->filename;
       const CLibSymbol *sym;
       Page *child;
+      Page *p_current;
 
       u_log_message(_("Searching for symbol [%s]\n"), filename);
 
@@ -2826,6 +2828,7 @@ COMMAND (do_down_symbol)
                           (ChangeNotifyFunc) o_invalidate_object, w_current);
 
       o_undo_savestate(w_current, UNDO_ALL);
+
       x_window_set_current_page(w_current, child);
     }
   }
@@ -2840,26 +2843,25 @@ COMMAND (do_hierarchy_up)
 
   BEGIN_NO_ARGUMENT(do_hierarchy_up);
 
-  Page *p_current;
+  Page *child;
   Page *up_page;
 
-  p_current = gschem_toplevel_get_current_page (w_current);
+  child = gschem_toplevel_get_current_page (w_current);
 
-  up_page   = s_hierarchy_find_up_page (w_current->toplevel->pages, p_current);
+  up_page = s_hierarchy_find_up_page (w_current->toplevel->pages, child);
 
   if (up_page == NULL) {
     u_log_message(_("Cannot find any schematics above the current one!\n"));
   }
   else {
 
-    int   answer = TRUE;
-    Page *child  = p_current;
+    int answer = TRUE;
 
-    if (child->CHANGED) {
+    if (geda_page_get_changed(child) > 0) {
       answer = x_confirm_close_changed_page (w_current, child);
     }
     if (answer == TRUE) {
-      gschem_toplevel_set_current_page(w_current, up_page);
+      x_window_set_current_page(w_current, up_page);
       x_window_close_page (w_current, child);
     }
   }

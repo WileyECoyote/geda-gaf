@@ -258,12 +258,9 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
       if (w_current->event_state == COMPMODE) {
 
-        /* If user clicked on symbol in tree and did not place, then there
-         *  coud be a component in the place list, so check and release */
-        if (Current_Page->place_list) {
-          g_list_free(Current_Page->place_list);
-          Current_Page->place_list = NULL;
-        }
+        /* If user clicked on symbol in the tree and did not place, there
+         * could be a component in the place list, so check and release */
+        s_place_free_place_list(toplevel);
 
         /* Cannot wait for base class to do this*/
         w_current->cswindow = NULL;

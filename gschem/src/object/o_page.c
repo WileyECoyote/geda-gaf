@@ -219,9 +219,9 @@ void o_page_draw_after (GschemToplevel *w_current)
       page->_object_list = page_list;
 
       if (list_was_modified(old_list, page_list)) {
-        page->CHANGED = TRUE;
-        o_invalidate_all(w_current);
-        o_undo_savestate(w_current, UNDO_ALL);
+        geda_page_set_changed (page, TRUE);
+        o_invalidate_all (w_current);
+        o_undo_savestate (w_current, UNDO_ALL);
       }
 
       g_list_free(old_list);
@@ -295,7 +295,7 @@ void o_page_draw_before (GschemToplevel *w_current)
       page->_object_list = page_list;
 
       if (list_was_modified(old_list, page_list)) {
-        page->CHANGED = TRUE;
+        geda_page_set_changed (page, TRUE);
         o_invalidate_all(w_current);
         o_undo_savestate(w_current, UNDO_ALL);
       }
@@ -349,7 +349,8 @@ void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
   page_list = restore_title_blocks(page_list, tblocks);
 
   page->_object_list = page_list;
-  page->CHANGED      = TRUE;
+
+  geda_page_set_changed (page, TRUE);
 
   o_invalidate_all (w_current);
   o_undo_savestate (w_current, UNDO_ALL);
@@ -386,8 +387,8 @@ void o_page_draw_last (GschemToplevel *w_current, GList *object_list)
   }
 
   page->_object_list = page_list;
-  page->CHANGED      = TRUE;
 
+  geda_page_set_changed (page, TRUE);
   o_invalidate_list (w_current, object_list);
   o_undo_savestate (w_current, UNDO_ALL);
 }

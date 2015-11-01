@@ -1625,6 +1625,8 @@ o_picture_set_from_buffer (Object        *object,
   object->picture->file_content = buf;
   object->picture->file_length  = len;
 
+  s_object_set_page_changed(object);
+
   return TRUE;
 }
 

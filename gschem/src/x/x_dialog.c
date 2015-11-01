@@ -788,7 +788,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   GtkWidget *spin_entry;
   GList     *s_current   = NULL;
   Object    *object      = NULL;
-
+  int        modified    = 0;;
   int        radius;
   int        start_angle;
   int        sweep_angle;
@@ -810,7 +810,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 
   if (s_current != NULL) {
 
-    while(s_current != NULL) {
+    while (s_current != NULL) {
 
       object = (Object *) s_current->data;
       if (object == NULL) {
@@ -824,6 +824,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
           o_arc_modify(object, start_angle, 0, ARC_START_ANGLE);
           o_arc_modify(object, sweep_angle, 0, ARC_END_ANGLE);
           o_invalidate_object (w_current, object);
+          modified++;
         }
       }
       NEXT(s_current);
@@ -834,9 +835,13 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
     o_arc_end4(w_current, radius, start_angle, sweep_angle);
   }
 
-  w_current->toplevel->page_current->CHANGED = 1;
-  o_undo_savestate(w_current, UNDO_ALL);
+  if (modified) {
 
+    Page *p_current = gschem_toplevel_get_current_page(w_current);
+
+    geda_page_set_changed(p_current, TRUE);
+    o_undo_savestate(w_current, UNDO_ALL);
+  }
 }
 
 /*! \brief response function for the arc angle dialog

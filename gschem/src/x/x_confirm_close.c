@@ -669,7 +669,7 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
   Page      *keep_page;
   bool       result;
 
-  g_return_val_if_fail (page != NULL && page->CHANGED, TRUE);
+  g_return_val_if_fail (geda_page_get_changed(page) > 0, TRUE);
 
   result = FALSE;
 
@@ -695,7 +695,7 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
                             w_current->toplevel->page_current,
                             w_current->toplevel->page_current->filename);
 
-        if(!page->CHANGED) {
+        if (geda_page_get_changed(page) > 0) {
           if (keep_page != page)
             s_page_goto (keep_page);
             result = TRUE;
@@ -752,8 +752,8 @@ x_confirm_close_window (GschemToplevel *w_current)
   {
     /* get ptr to a page */
     p_current = (Page*)iter->data;
-    /* if flag set */
-    if (p_current->CHANGED) {
+
+    if (geda_page_get_changed(p_current) > 0) {
       /* Add to list of un-saved pages */
       unsaved_pages = g_list_append (unsaved_pages, (void*)p_current);
     }
@@ -809,6 +809,7 @@ x_confirm_close_window (GschemToplevel *w_current)
 
   /* Switch back to the page we were on */
   g_return_val_if_fail (keep_page != NULL, return_value);
+
   s_page_goto (keep_page);
 
   return return_value;

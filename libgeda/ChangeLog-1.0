@@ -1,3 +1,29 @@
+2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Add getter and setters:
+
+            * geda_page_get_changed
+            * geda_page_set_changed
+            * geda_page_get_place_list
+            * geda_page_set_place_list
+
+    * src/struct/s_page.c: Implement geda_page_set_changed in functions
+      s_page_save_all and s_page_save_all_changed.
+
+    * src/struct/s_place.c: Implement geda_toplevel_get_current_page,
+      geda_page_get_place_list, and geda_page_set_place_list in functions
+      s_place_free_place_list and s_place_free_place_list, implement
+      geda_page_get_changed in s_page_autosave_init.
+
+    * src/object/o_picture.c: Call s_object_set_page_changed in function
+      o_picture_set_from_buffer.
+
+    * src/object/o_set.c: Add call geda_page_set_changed in function
+      o_set_visibility.
+
+    * o_text_basic.c: Use geda_object_get_page and geda_page_set_changed
+      in function o_text_recreate.
+
 2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Implement helper f_file_Size to inhibit creating

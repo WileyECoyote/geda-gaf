@@ -1116,8 +1116,9 @@ int PyGeda_is_page_modified (int pid)
   int     status = -1;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
-  if (page && (GEDA_IS_PAGE(page))) {
-    status = page->CHANGED;
+
+  if (page) {
+    status = geda_page_get_changed(page);
   }
   return status;
 }

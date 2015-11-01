@@ -1,6 +1,23 @@
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/.c: Revise modules to use accessor gschem_toplevel_get_current_page
+    * src/x/x_compselect.c: Revise function x_compselect_callback_response
+      to use s_place_free_place_list instead of manually check place_list.
+
+    * src/.c: Revise modules to use setter s_object_set_page_changed:
+
+        * src/base/gschem.c: in function load_documents,
+        * src/iface/i_command.c: in function do_close_all, do_hierarchy_up,
+          do_page_new,
+        * src/iface/i_sessions.c: in function i_session_close_all,
+        * src/iface/i_window.c: in function  i_window_close_page,
+          i_window_revert_page,
+        * src/object/o_break.c: in function o_break_end,
+        * src/object/o_page.c: in function o_page_draw_after, o_page_draw_before,
+          o_page_draw_first, o_page_draw_last,
+        * src/x/x_confirm_close.c: in function x_confirm_close_changed_page,
+        * src/x/x_edit_cprop.c: in function x_dialog_edit_properties_ok,
+
+    * src/.c: Revise modules to use accessor gschem_toplevel_get_current_page.
 
 2015-10-30 Wiley E. Hill <wileyhill@gmail.com>
 

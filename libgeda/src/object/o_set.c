@@ -241,6 +241,7 @@ o_set_visibility (Object *object, int visibility)
     if (object->visibility != visibility) {
       object->visibility = visibility;
       o_set_bounds_invalid (object);
+      s_object_set_page_changed (object);
     }
   }
   else {

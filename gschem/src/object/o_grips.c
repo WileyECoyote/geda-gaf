@@ -1505,8 +1505,7 @@ o_grips_end_bus(GschemToplevel *w_current, Object *o_current)
 void
 o_grips_end(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object       *object;
+  Object *object;
 
   int modified;
 
@@ -1580,7 +1579,10 @@ o_grips_end(GschemToplevel *w_current)
     w_current->rubber_visible = FALSE;
 
     if (modified) {
-      toplevel->page_current->CHANGED = 1;
+
+      Page *p_current = gschem_toplevel_get_current_page(w_current);
+
+      geda_page_set_changed(p_current, TRUE);;
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }
