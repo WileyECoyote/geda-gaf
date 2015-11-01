@@ -50,10 +50,10 @@
 /* BOOL:INT,INT,POINTER,POINTER (geda-marshal.list:1) */
 void
 geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
-                                               GValue       *return_value G_GNUC_UNUSED,
+                                               GValue       *return_value GEDA_UNUSED,
                                                unsigned int  n_param_values,
                                                const GValue *param_values,
-                                               void         *invocation_hint G_GNUC_UNUSED,
+                                               void         *invocation_hint GEDA_UNUSED,
                                                void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (void    *data1,
@@ -95,10 +95,10 @@ geda_marshal_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
 /* BOOL:BOXED,POINTER (geda-marshal.list:2) */
 void
 geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
-                                     GValue       *return_value G_GNUC_UNUSED,
+                                     GValue       *return_value GEDA_UNUSED,
                                      unsigned int  n_param_values,
                                      const GValue *param_values,
-                                     void         *invocation_hint G_GNUC_UNUSED,
+                                     void         *invocation_hint GEDA_UNUSED,
                                      void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__BOXED_POINTER) (void    *data1,
@@ -137,10 +137,10 @@ geda_marshal_BOOLEAN__BOXED_POINTER (GClosure     *closure,
 /* BOOL:BOXED,STRING (geda-marshal.list:3) */
 void
 geda_marshal_BOOLEAN__BOXED_STRING (GClosure     *closure,
-                                    GValue       *return_value G_GNUC_UNUSED,
+                                    GValue       *return_value GEDA_UNUSED,
                                     unsigned int  n_param_values,
                                     const GValue *param_values,
-                                    void         *invocation_hint G_GNUC_UNUSED,
+                                    void         *invocation_hint GEDA_UNUSED,
                                     void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__BOXED_STRING) (void    *data1,
@@ -179,10 +179,10 @@ geda_marshal_BOOLEAN__BOXED_STRING (GClosure     *closure,
 /* BOOL:BOXED,BOXED (geda-marshal.list:4) */
 void
 geda_marshal_BOOLEAN__BOXED_BOXED (GClosure     *closure,
-                                   GValue       *return_value G_GNUC_UNUSED,
+                                   GValue       *return_value GEDA_UNUSED,
                                    unsigned int  n_param_values,
                                    const GValue *param_values,
-                                   void         *invocation_hint G_GNUC_UNUSED,
+                                   void         *invocation_hint GEDA_UNUSED,
                                    void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__BOXED_BOXED) (void    *data1,
@@ -221,10 +221,10 @@ geda_marshal_BOOLEAN__BOXED_BOXED (GClosure     *closure,
 /* BOOL:BOXED,DOUBLE,DOUBLE (geda-marshal.list:5) */
 void
 geda_marshal_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
-                                           GValue       *return_value G_GNUC_UNUSED,
+                                           GValue       *return_value GEDA_UNUSED,
                                            unsigned int  n_param_values,
                                            const GValue *param_values,
-                                           void         *invocation_hint G_GNUC_UNUSED,
+                                           void         *invocation_hint GEDA_UNUSED,
                                            void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__BOXED_DOUBLE_DOUBLE) (void    *data1,
@@ -265,10 +265,10 @@ geda_marshal_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
 /* BOOL:POINTER,POINTER (geda-marshal.list:6) */
 void
 geda_marshal_BOOLEAN__POINTER_POINTER (GClosure     *closure,
-                                       GValue       *return_value G_GNUC_UNUSED,
+                                       GValue       *return_value GEDA_UNUSED,
                                        unsigned int  n_param_values,
                                        const GValue *param_values,
-                                       void         *invocation_hint G_GNUC_UNUSED,
+                                       void         *invocation_hint GEDA_UNUSED,
                                        void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__POINTER_POINTER) (void    *data1,
@@ -307,10 +307,10 @@ geda_marshal_BOOLEAN__POINTER_POINTER (GClosure     *closure,
 /* BOOL:POINTER,BOXED (geda-marshal.list:7) */
 void
 geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
-                                     GValue       *return_value G_GNUC_UNUSED,
+                                     GValue       *return_value GEDA_UNUSED,
                                      unsigned int  n_param_values,
                                      const GValue *param_values,
-                                     void         *invocation_hint G_GNUC_UNUSED,
+                                     void         *invocation_hint GEDA_UNUSED,
                                      void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__POINTER_BOXED) (void    *data1,
@@ -349,10 +349,10 @@ geda_marshal_BOOLEAN__POINTER_BOXED (GClosure     *closure,
 /* BOOL:POINTER,STRING (geda-marshal.list:8) */
 void
 geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
-                                      GValue       *return_value G_GNUC_UNUSED,
+                                      GValue       *return_value GEDA_UNUSED,
                                       unsigned int  n_param_values,
                                       const GValue *param_values,
-                                      void         *invocation_hint G_GNUC_UNUSED,
+                                      void         *invocation_hint GEDA_UNUSED,
                                       void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__POINTER_STRING) (void    *data1,
@@ -391,10 +391,10 @@ geda_marshal_BOOLEAN__POINTER_STRING (GClosure     *closure,
 /* BOOL:POINTER (geda-marshal.list:9) */
 void
 geda_marshal_BOOLEAN__POINTER (GClosure     *closure,
-                               GValue       *return_value G_GNUC_UNUSED,
+                               GValue       *return_value GEDA_UNUSED,
                                unsigned int  n_param_values,
                                const GValue *param_values,
-                               void         *invocation_hint G_GNUC_UNUSED,
+                               void         *invocation_hint GEDA_UNUSED,
                                void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__POINTER) (void    *data1,
@@ -431,10 +431,10 @@ geda_marshal_BOOLEAN__POINTER (GClosure     *closure,
 /* BOOL:BOXED (geda-marshal.list:10) */
 void
 geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
-                             GValue       *return_value G_GNUC_UNUSED,
+                             GValue       *return_value GEDA_UNUSED,
                              unsigned int  n_param_values,
                              const GValue *param_values,
-                             void         *invocation_hint G_GNUC_UNUSED,
+                             void         *invocation_hint GEDA_UNUSED,
                              void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__BOXED) (void    *data1,
@@ -471,10 +471,10 @@ geda_marshal_BOOLEAN__BOXED (GClosure     *closure,
 /* BOOL:INT,INT (geda-marshal.list:11) */
 void
 geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
-                               GValue       *return_value G_GNUC_UNUSED,
+                               GValue       *return_value GEDA_UNUSED,
                                unsigned int  n_param_values,
                                const GValue *param_values,
-                               void         *invocation_hint G_GNUC_UNUSED,
+                               void         *invocation_hint GEDA_UNUSED,
                                void         *marshal_data)
 {
   typedef bool (*GMarshalFunc_BOOLEAN__INT_INT) (void    *data1,
@@ -513,10 +513,10 @@ geda_marshal_BOOLEAN__INT_INT (GClosure     *closure,
 /* STRING:STRING (geda-marshal.list:13)*/
 void
 geda_marshal_STRING__STRING (GClosure     *closure,
-                                     GValue       *return_value G_GNUC_UNUSED,
+                                     GValue       *return_value GEDA_UNUSED,
                                      unsigned int  n_param_values,
                                      const GValue *param_values,
-                                     void         *invocation_hint G_GNUC_UNUSED,
+                                     void         *invocation_hint GEDA_UNUSED,
                                      void         *marshal_data)
 {
   typedef char* (*GMarshalFunc_STRING__STRING) (void   *data1,
@@ -556,10 +556,10 @@ geda_marshal_STRING__STRING (GClosure     *closure,
 /* VOID:INT,STRING (geda-marshal.list:14) */
 void
 geda_marshal_VOID__INT_STRING (GClosure     *closure,
-                               GValue       *return_value G_GNUC_UNUSED,
+                               GValue       *return_value GEDA_UNUSED,
                                unsigned int  n_param_values,
                                const GValue *param_values,
-                               void         *invocation_hint G_GNUC_UNUSED,
+                               void         *invocation_hint GEDA_UNUSED,
                                void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_STRING) (void    *data1,
@@ -602,10 +602,10 @@ geda_marshal_VOID__INT_STRING (GClosure     *closure,
 /* VOID:INT,INT (geda-marshal.list:19) */
 void
 geda_marshal_VOID__INT_INT (GClosure     *closure,
-                            GValue       *return_value G_GNUC_UNUSED,
+                            GValue       *return_value GEDA_UNUSED,
                             unsigned int  n_param_values,
                             const GValue *param_values,
-                            void         *invocation_hint G_GNUC_UNUSED,
+                            void         *invocation_hint GEDA_UNUSED,
                             void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_INT) (void    *data1,
@@ -640,10 +640,10 @@ geda_marshal_VOID__INT_INT (GClosure     *closure,
 /* VOID:INT,POINTER (geda-marshal.list:20) */
 void
 geda_marshal_VOID__INT_POINTER (GClosure     *closure,
-                                GValue       *return_value G_GNUC_UNUSED,
+                                GValue       *return_value GEDA_UNUSED,
                                 unsigned int  n_param_values,
                                 const GValue *param_values,
-                                void         *invocation_hint G_GNUC_UNUSED,
+                                void         *invocation_hint GEDA_UNUSED,
                                 void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_POINTER) (void    *data1,
@@ -679,10 +679,10 @@ geda_marshal_VOID__INT_POINTER (GClosure     *closure,
 /* VOID:POINTER,POINTER (geda-marshal.list:21) */
 void
 geda_marshal_VOID__POINTER_POINTER (GClosure     *closure,
-                                    GValue       *return_value G_GNUC_UNUSED,
+                                    GValue       *return_value GEDA_UNUSED,
                                     unsigned int  n_param_values,
                                     const GValue *param_values,
-                                    void         *invocation_hint G_GNUC_UNUSED,
+                                    void         *invocation_hint GEDA_UNUSED,
                                     void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__POINTER_POINTER) (void *data1,
@@ -752,10 +752,10 @@ geda_marshal_VOID__POINTER_STRING (GClosure     *closure,
 /* VOID:BOXED,POINTER (geda-marshal.list:23) */
 void
 geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
-                                  GValue       *return_value G_GNUC_UNUSED,
+                                  GValue       *return_value GEDA_UNUSED,
                                   unsigned int  n_param_values,
                                   const GValue *param_values,
-                                  void         *invocation_hint G_GNUC_UNUSED,
+                                  void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__BOXED_POINTER) (void    *data1,
@@ -790,10 +790,10 @@ geda_marshal_VOID__BOXED_POINTER (GClosure     *closure,
 /* VOID:BOXED,BOXED (geda-marshal.list:23) */
 void
 geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
-                                GValue       *return_value G_GNUC_UNUSED,
+                                GValue       *return_value GEDA_UNUSED,
                                 unsigned int  n_param_values,
                                 const GValue *param_values,
-                                void         *invocation_hint G_GNUC_UNUSED,
+                                void         *invocation_hint GEDA_UNUSED,
                                 void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__BOXED_BOXED) (void    *data1,
@@ -828,10 +828,10 @@ geda_marshal_VOID__BOXED_BOXED (GClosure     *closure,
 /* VOID:OBJECT,OBJECT (geda-marshal.list:25) */
 void
 geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
-                                  GValue       *return_value G_GNUC_UNUSED,
+                                  GValue       *return_value GEDA_UNUSED,
                                   unsigned int  n_param_values,
                                   const GValue *param_values,
-                                  void         *invocation_hint G_GNUC_UNUSED,
+                                  void         *invocation_hint GEDA_UNUSED,
                                   void         *marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void    *data1,
@@ -866,7 +866,7 @@ geda_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
 /* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (geda-marshal.list:26) */
 void
 geda_marshal_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
-                                                GValue       *return_value G_GNUC_UNUSED,
+                                                GValue       *return_value GEDA_UNUSED,
                                                 unsigned int  n_param_values,
                                                 const GValue *param_values,
                                                 void         *invocation_hint G_GNUC_UNUSED,

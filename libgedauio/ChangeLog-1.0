@@ -1,3 +1,8 @@
+2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/functions/geda_marshal.c: Replace G_GNUC_UNUSED with
+       GEDA_UNUSED.
+
 2015-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
      * Code Enhancement: Expand API
