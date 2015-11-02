@@ -1,10 +1,16 @@
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/gschem_toplevel.h: return boolean from gschem_toplevel_set
+    * include/gschem_toplevel.h: Return boolean from gschem_toplevel_set
       _current_page, true if all is well.
 
+    * src/base/gschem_toplevel.c: Revise gschem_toplevel_set_current_page
+      so as to not allow the current page to be NULL, like libgeda does,
+      A TRUE return assures w_current, toplevel and page are all valid
+      pointers
+
     * src/x/x_window.c: Call gschem_toplevel_set_current_page in
-      x_window_set_current_page.
+      x_window_set_current_page and revise to utilize returned value,
+      eliminating the toplevel variable.
 
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
