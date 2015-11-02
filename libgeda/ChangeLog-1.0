@@ -13,6 +13,11 @@
             * geda_toplevel_get_current_page
             * geda_toplevel_get_page_by_id
 
+    * src/struct/s_page.c: Removed setting the page file name to NULL
+      in s_page_delete because the GEDA_FREE macro does this. Move call
+      to geda_toplevel_remove_page after tile debugging and add, geda_
+      page_unref and comments.
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add getter and setters:

@@ -395,16 +395,19 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 
   /* ouch, deal with parents going away and the children still around */
   page->hierarchy_up = -2;
-  GEDA_FREE (page->filename);
-  page->filename = NULL;
 
-  geda_toplevel_remove_page(toplevel, page);
+  GEDA_FREE (page->filename);
 
 #if DEBUG
   s_tile_print (toplevel, page);
 #endif
 
   /*geda_page_weakref_notify (page);*/
+
+  geda_toplevel_remove_page(toplevel, page); /* remove reference on page */
+
+  /* This should destroy the Page object */
+  geda_page_unref (page); /* Removes internal reference to toplevel */
 
   /* restore page_current */
   if (tmp != NULL) {
