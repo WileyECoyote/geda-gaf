@@ -1,7 +1,41 @@
+2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * asic/*.sym: Rename files with capital letters, clean symbols and
+      add missing attributes:
+
+        * asic/ASIC-CAP-1.sym
+        * asic/ASIC-CAP-2.sym
+        * asic/ASIC-CAP-3.sym
+        * asic/ASIC-DIODE-1.sym
+        * asic/ASIC-NHHV-1.sym
+        * asic/ASIC-NHV-1.sym
+        * asic/ASIC-NMMV-1.sym
+        * asic/ASIC-NMOS-1.sym
+        * asic/ASIC-NMV-1.sym
+        * asic/ASIC-PHHV-1.sym
+        * asic/ASIC-PHV-1.sym
+        * asic/ASIC-PMMV-1.sym
+        * asic/ASIC-PMOS-1.sym
+        * asic/ASIC-PMV-1.sym
+        * asic/ASIC-RES-1.sym
+        * asic/ASIC-RES-2.sym
+        * asic/ASIC-RES-3.sym
+        * asic/ASIC-RES-4.sym
+        * asic/PAD.sym
+        * asic/PAD_ANALOG.sym
+        * asic/PAD_GND.sym
+        * asic/PAD_IN.sym
+        * asic/PAD_IO.sym
+        * asic/PAD_NO_ESD.sym
+        * asic/PAD_OUT.sym
+        * asic/PAD_PULL_DOWN.sym
+        * asic/PAD_PULL_UP.sym
+        * asic/PAD_VDD.sym
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * symbols/geda-clib.scm: Add directory/manufacture:epson, add
-      catagories epson/crystal, st/ldo
+    * geda-clib.scm: Add directory/manufacture:epson, add
+      catagories epson/crystal, st/ldo.
 
     * diode/zener: Change device=ZENER_DIODE->device=ZENER:
 
