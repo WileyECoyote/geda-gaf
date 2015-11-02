@@ -405,6 +405,10 @@ bool is_a_geda_page (Page *page)
 void geda_page_unref(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
+    if (page->toplevel) {
+      g_object_unref ((GObject*)page->toplevel);
+      page->toplevel = NULL;
+    }
     g_object_unref ((GObject*)page);
   }
 }
@@ -534,7 +538,7 @@ void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
   g_return_if_fail (GEDA_IS_PAGE(page));
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
-  page->toplevel = toplevel;
+  page->toplevel =  g_object_ref (toplevel);
 }
 
 GedaToplevel *geda_page_get_toplevel (Page *page)

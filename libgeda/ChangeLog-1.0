@@ -1,3 +1,8 @@
+2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Increment and decrment refererence on top
+      level while page hold a reference to the top-level.
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add getter and setters:
