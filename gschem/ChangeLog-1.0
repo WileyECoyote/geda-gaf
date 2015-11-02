@@ -1,5 +1,8 @@
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_toplevel.h: return boolean from gschem_toplevel_set
+      _current_page, true if all is well.
+
     * src/x/x_window.c: Call gschem_toplevel_set_current_page in
       x_window_set_current_page.
 

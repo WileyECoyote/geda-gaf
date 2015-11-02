@@ -372,7 +372,7 @@ void            gschem_toplevel_free_primary      (GschemToplevel *w_current);
 Page           *gschem_toplevel_get_current_page  (GschemToplevel *w_current);
 GedaToplevel   *gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current);
 
-void            gschem_toplevel_set_current_page  (GschemToplevel *w_current, Page *page);
+bool            gschem_toplevel_set_current_page  (GschemToplevel *w_current, Page *page);
 
 END_DECLS
 #endif /* __GSCHEM_TOPLEVEL_H__ */

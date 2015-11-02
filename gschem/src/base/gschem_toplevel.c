@@ -441,7 +441,7 @@ gschem_toplevel_get_current_page (GschemToplevel *w_current)
 GedaToplevel*
 gschem_toplevel_get_geda_toplevel (GschemToplevel *w_current)
 {
-  g_return_val_if_fail (w_current != NULL, NULL);
+  g_return_val_if_fail (GSCHEM_IS_TOPLEVEL(w_current), NULL);
 
   return w_current->toplevel;
 }
@@ -454,11 +454,20 @@ void gschem_toplevel_free_primary (GschemToplevel *w_current)
   }
 }
 
-void gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
+bool gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
 {
-  GedaToplevel *toplevel = gschem_toplevel_get_geda_toplevel (w_current);
+  GedaToplevel *toplevel;
+  int result;
+
+  g_return_val_if_fail (GEDA_IS_PAGE(page), FALSE);
+
+  toplevel = gschem_toplevel_get_geda_toplevel (w_current);
 
   if (toplevel) {
-    geda_toplevel_set_current_page(toplevel, page);
+    result = geda_toplevel_set_current_page(toplevel, page);
   }
+  else {
+    result = FALSE;
+  }
+  return result;
 }
