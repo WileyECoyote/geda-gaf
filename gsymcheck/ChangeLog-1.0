@@ -5,6 +5,12 @@
       shortens to "pr_current, page, page->filename", the compiler is
       going to optimize out anyways.
 
+    * src/s_check.c: Capture (new) return from s_check_missing_attribute
+      in s_check_missing_attributes, and if a Pin object was missing a
+      pinlabel or pintype, then attempt to retrieve a pin number or pin
+      sequence and add to warning messages if one found to help users
+      locate errors quicker.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/s_check.c: Add function s_check_is_known_device and

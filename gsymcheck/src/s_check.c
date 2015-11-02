@@ -1565,9 +1565,30 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_PIN) {
 
-      s_check_missing_attribute(o_current, "pinlabel", s_current);
+      int missing;
 
-      s_check_missing_attribute(o_current, "pintype", s_current);
+      missing  = !s_check_missing_attribute(o_current, "pinlabel", s_current);
+      missing += !s_check_missing_attribute(o_current, "pintype", s_current);
+
+      if (missing) {
+
+        char *pin;
+
+        pin = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", 0);
+        if (pin) {
+          message = u_string_sprintf (_("Check pin number=<%s>\n"), pin);
+          ADD_WARN_MESSAGE(message);
+          GEDA_FREE(pin);
+        }
+        else {
+          pin = o_attrib_search_object_attribs_by_name (o_current, "pinseq", 0);
+          if (pin) {
+            message = u_string_sprintf (_("Check pin sequence=<%s>\n"), pin);
+            ADD_WARN_MESSAGE(message);
+            GEDA_FREE(pin);
+          }
+        }
+      }
     }
 
     if (o_current->type == OBJ_TEXT) {
