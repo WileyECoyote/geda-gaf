@@ -1,3 +1,8 @@
+2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Call gschem_toplevel_set_current_page in
+      x_window_set_current_page.
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Revise function x_compselect_callback_response

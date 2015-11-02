@@ -987,6 +987,8 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 
   if (page) {
 
+    gschem_toplevel_set_current_page (w_current, page);
+
     o_redraw_cleanstates (w_current);
 
     s_page_goto (page);
@@ -1126,7 +1128,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
   u_log_message (log_msg, filename);
 
   /* update display and page manager */
-  gschem_toplevel_set_current_page (w_current, old_current);
+  x_window_set_current_page (w_current, old_current);
 
   i_status_set_state_msg  (w_current, SELECT, state_msg);
 
