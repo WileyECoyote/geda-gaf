@@ -86,8 +86,9 @@ static void main_prog(void *closure, int argc, char *argv[])
   i = argv_index;
   while (argv[i] != NULL) {
 
-    char *filename;
+    char   *filename;
     GError *err = NULL;
+    Page   *page;
 
     if (f_get_is_path_absolute(argv[i])) {
 
@@ -98,10 +99,10 @@ static void main_prog(void *closure, int argc, char *argv[])
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
-    s_page_goto (s_page_new (pr_current, filename));
+    page = s_page_new (pr_current, filename);
+    s_page_goto (page);
 
-    if (!f_open (pr_current, pr_current->page_current,
-                             pr_current->page_current->filename, &err))
+    if (!f_open (pr_current, page, page->filename, &err))
     {
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;

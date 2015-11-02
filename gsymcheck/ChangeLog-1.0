@@ -1,3 +1,10 @@
+2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Add a local pointer to the page so that
+      "pr_current, pr_current->page_current, pr_current->page_current->filename"
+      shortens to "pr_current, page, page->filename", the compiler is
+      going to optimize out anyways.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsymcheck/src/s_check.c: Add function s_check_is_known_device and
