@@ -492,6 +492,14 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 
 /* -------------------------------------------------------------- */
 
+
+/*! \brief Add Page list of pages of <B>toplevel</B>.
+ *  \par Function Description
+ *  Increases the reference count on the GedaPage object by one and
+ *  adds \a new_page to the page list referenced by \a toplevel
+ *
+ *  \param toplevel  The GedaToplevel object.
+ */
 void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
@@ -499,12 +507,20 @@ void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
   /* append page to page list in toplevel */
   if (GEDA_IS_PAGE(new_page)) {
 
-    geda_list_add_unique (toplevel->pages, g_object_ref(new_page));
+    if (!geda_list_is_in_list(toplevel->pages, new_page)) {
+      geda_list_add_unique (toplevel->pages, g_object_ref(new_page));
+    }
 
     new_page->seq = geda_list_length(toplevel->pages);
   }
 }
 
+/*! \brief Get the current page
+*   \par Function Description
+*   This function returns a pointer the current Page object.
+*
+*   \param [in,out] toplevel This toplevel
+*/
 Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
@@ -512,6 +528,14 @@ Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
   return toplevel->page_current;
 }
 
+/*! \brief Get Page given the Page Id
+*   \par Function Description
+*   This function returns a pointer the Page object with the given
+*   page ID or NULL is no such Page exist in \a toplevel.
+*
+*   \param [in] toplevel This toplevel
+*   \param [in] page_id  The pid
+*/
 Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 {
   const GList *pages, *iter;

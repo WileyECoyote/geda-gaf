@@ -218,6 +218,8 @@ void geda_list_add_glist_unique (GedaList *list, GList *items)
  *
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item item to add to the GedaList.
+ *
+ *  \todo Should return whether item was added or not.
  */
 void geda_list_add_unique (GedaList *list, void *item)
 {

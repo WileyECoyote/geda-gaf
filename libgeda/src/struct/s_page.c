@@ -185,8 +185,8 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   page->top    = 0;
   page->bottom = toplevel->height;
 
-  geda_toplevel_add_page (toplevel, page);
-  geda_page_set_toplevel (page, toplevel);
+  geda_toplevel_add_page (toplevel, page); /* Adds reference to page */
+  geda_page_set_toplevel (page, toplevel); /* Adds reference to toplevel */
 
   return s_page_new_common(page);
 }
@@ -221,8 +221,8 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   page->top    = 0;
   page->bottom = toplevel->height;
 
-  geda_toplevel_add_page (toplevel, page);
-  geda_page_set_toplevel(page, toplevel);
+  geda_toplevel_add_page (toplevel, page); /* Adds reference to page */
+  geda_page_set_toplevel(page, toplevel);  /* Adds reference to toplevel */
 
   return s_page_new_common(page);
 }

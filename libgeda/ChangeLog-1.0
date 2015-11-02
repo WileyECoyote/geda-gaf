@@ -3,6 +3,16 @@
     * src/geda/geda_page.c: Increment and decrment refererence on top
       level while page hold a reference to the top-level.
 
+    * src/geda/geda_toplevel.c: Verify the page is not already in the
+      page list before attempting to add to the list, more importantly,
+      before increasing the reference count since g_object does not
+      provide a method to get the current reference count. Add Doxygen
+      comments for:
+
+            * geda_toplevel_add_page
+            * geda_toplevel_get_current_page
+            * geda_toplevel_get_page_by_id
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add getter and setters:
