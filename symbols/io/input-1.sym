@@ -6,8 +6,6 @@ L 700 100 600 0 3 0 2 0 -1 -1
 L 600 0 0 0 3 0 2 0 -1 -1
 T 600 250 5 10 0 1 0 6 1
 device=INPUT
-T 600 250 5 10 1 1 0 6 1
-pinlabel=INPUT
 T 50 450 5 10 0 1 0 0 1
 description=Input module port
 T 50 600 9 10 0 0 0 0 1
