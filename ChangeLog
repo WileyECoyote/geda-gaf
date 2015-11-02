@@ -1,3 +1,15 @@
+2015-11-02 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * etc/system-gschemrc.scm: WEH: Modified per commit to Master branch by
+      Vladimir Zhbanov, commit  8fd737c25d30e4cec35e028d873e94fb29913ba2:
+
+    * Avoid interactive mode of 'mv'
+
+      Sometimes 'mv' asks if it should rewrite stamp files and waits for user
+      input, which makes not possible automation of building/installing jobs.
+
+    * build-tools/desktop-i18n: A force argument to mv operation.
+
 2015-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * NEWS: Update news
