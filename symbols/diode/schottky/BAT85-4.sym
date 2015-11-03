@@ -36,7 +36,7 @@ T 125 25 9 10 0 1 0 0 1
 pinlabel=A
 }
 T 300 900 9 10 0 1 0 0 1
-footprint=SOT-23
+footprint=SOT23
 T 600 550 9 10 0 0 0 0 1
 symversion=0.1
 T 850 0 5 10 0 1 0 0 1
