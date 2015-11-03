@@ -2715,7 +2715,7 @@ COMMAND (do_down_schematic)
         const char *msg1 = _("Failed to descend into");
         const char *msg2 = (err != NULL) ? err->message : "Unknown error.";
 
-        u_log_message(_("%s '%s': %s\n"), msg1, current_filename, msg2);
+        u_log_message("%s '%s': %s\n", msg1, current_filename, msg2);
 
         char *secondary = u_string_sprintf ("%s '%s': <i>%s</i>",
                                             msg1, current_filename, msg2);

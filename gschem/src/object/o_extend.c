@@ -1154,7 +1154,7 @@ static bool o_extend_can_path_bound(Object *boundary,
     }
   }
 
-  if (answer && point) {
+  if (answer == TRUE && point != NULL) {
     point->x = target.x;
     point->y = target.y;
   }

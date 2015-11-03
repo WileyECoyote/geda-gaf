@@ -981,7 +981,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
  */
 void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
-  if (gschem_toplevel_set_current_page (w_current, page) {
+  if (gschem_toplevel_set_current_page (w_current, page)) {
 
     o_redraw_cleanstates (w_current);
 
