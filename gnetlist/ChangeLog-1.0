@@ -1,3 +1,7 @@
+2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc2.scm: Add a space after 'pintype' attribute:"
+
 2015-11-03 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch

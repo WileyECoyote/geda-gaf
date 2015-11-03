@@ -590,6 +590,7 @@
        )
      nets))
 )
+
 ;;
 ;; Check for nets with less than two pins connected.
 ;;
@@ -934,7 +935,7 @@
 
   (and (> (count-unknown-pintypes nets) 0)
        (begin
-         (display "NOTE: Found pins without the 'pintype' attribute: ")
+         (display "NOTE: Found pins without a 'pintype' attribute: ")
          (display-unknown-pintypes nets)
          (message "\n"))))
 
