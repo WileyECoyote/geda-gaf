@@ -1,3 +1,11 @@
+2015-11-03 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 0f0936bbb959c41799a0b5b37ba65addb1e1dbeb:Remove
+      not working code in test script, Remove succeed if neither output nor golden
+      file exists. Check for '! -f ${ref}' conficts with check for '-f ${ref}' in
+      the outer 'if'.
+
 2015-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Change "device=DRC_Directive" to simply
@@ -31,9 +39,9 @@
 
     * Code Enhancement: Improve program compatibility
 
-    *  scheme/gnet-spice-sdb.scm: WEH: Modified per commit to Master
-       branch, commit 88635e0c1bbd004ee894d9b6117d72f6a38a4e43, Fix
-       debug-spew:
+    * scheme/gnet-spice-sdb.scm: WEH: Modified per commit to Master
+      branch, commit 88635e0c1bbd004ee894d9b6117d72f6a38a4e43, Fix
+      debug-spew:
 
       gspiceUI calls gnetlist in verbose mode. The debug-spew procedure output
       its data in the verbose mode to current-output-port using the display
