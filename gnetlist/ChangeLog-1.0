@@ -1,6 +1,12 @@
 2015-11-03 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 01cfa12bbfb3a1cbdade2f98147c3ce182b33579: Added
+      separate messages for stdout and plain output tests.
+
+2015-11-03 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 0f0936bbb959c41799a0b5b37ba65addb1e1dbeb:Remove
       not working code in test script, Remove succeed if neither output nor golden
       file exists. Check for '! -f ${ref}' conficts with check for '-f ${ref}' in
