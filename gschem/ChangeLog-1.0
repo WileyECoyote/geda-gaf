@@ -1,3 +1,10 @@
+2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Convert toggle-visibilty, view-show-hidden and
+      view-show-inherited to new temporary macro GSCHEM_TOOLBAR_BUTTON.
+
+    * gschem/src/x/x_icons.c: Add gschem icons: show-hidden and show-inherited.
+
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_toplevel.h: Return boolean from gschem_toplevel_set

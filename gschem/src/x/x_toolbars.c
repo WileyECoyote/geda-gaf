@@ -234,8 +234,8 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,        "Private",                 TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,        "Private",                 TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES),    TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "gschem-show-hidden",      TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "gschem-show-inherited",   TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "show-hidden",             TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "show-inherited",          TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE), TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private",                 TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private",                 TB_ICON_BITMAP, NULL},
@@ -1542,17 +1542,17 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_name,  LOCAL_PIX, GEDA_NAME_TAG_BITMAP,    x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_both,  LOCAL_PIX, GEDA_NAME_VALUE_BITMAP,  x_toolbars_execute,  w_current);
 
-//gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
+  gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_visibilty);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_hidden);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_visibilty);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_hidden);
 
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
 
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_inherited);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_inherited);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 

@@ -119,10 +119,11 @@ const char* IDS_THEME_ICONS_22[] = {
   "insert-circle",           "insert-line",              "insert-net",
   "insert-path",             "insert-pin",               "insert-symbol",
   "insert-text",             "extend",                   "multi-clone",
-  "show-both",               "show-value",               "show-name",
-  "show-netnames",           "unselect-all",             "zoom-extents",
-  "zoom-fit",                "zoom-in",                  "zoom-mag",
-  "zoom-out",                "zoom-limits",              "zoom-selection",
+  "show-both",               "show-hidden",              "show-inherited",
+  "show-name",               "show-netnames",            "show-value",
+  "unselect-all",            "zoom-extents",             "zoom-fit",
+  "zoom-in",                 "zoom-mag",                 "zoom-out",
+  "zoom-limits",             "zoom-selection",
   NULL
 };
 

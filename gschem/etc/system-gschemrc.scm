@@ -1884,7 +1884,7 @@
 
 (map-icon "gaf-see-notes"              "view-documentation")
 ;;(map-icon "gtk-index"                  "view-documentation")
-(map-icon "gtk-find-and-replace"       "view-show-hidden")
+(map-icon "show-hidden"                "view-show-hidden")
 (map-icon "geda-show-nets"             "view-show-nets")
 ;(map-icon "show-netnames"              "view-show-nets")
 
@@ -2147,13 +2147,13 @@
 
         ("SEPARATOR"                #f                      #f               #f)
         (,(N_ "D_ocumentation...")   view-documentation     #f)
-        (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
-        (,(N_ "Show/Hide Net Names") view-show-nets         #f                      ,(N_ "Toggle hidden net name attributes"))
+        (,(N_ "Show/Hide Inv Text")  view-show-hidden       #f               ,(N_ "Toggle hidden text attributes"))
+        (,(N_ "Show/Hide Net Names") view-show-nets         #f               ,(N_ "Toggle hidden net name attributes"))
 
         ("SEPARATOR"                #f                      #f)
-        (,(N_ "_Dark color scheme")  view-dark-colors       #f                      ,(N_ "Set the color map to the Dark set"))
-        (,(N_ "_Light color scheme") view-light-colors      #f                      ,(N_ "Set the color map to the Light set"))
-        (,(N_ "B_W color scheme")    view-bw-colors         #f                      ,(N_ "Set the color map to the Black and White"))
+        (,(N_ "_Dark color scheme")  view-dark-colors       #f               ,(N_ "Set the color map to the Dark set"))
+        (,(N_ "_Light color scheme") view-light-colors      #f               ,(N_ "Set the color map to the Light set"))
+        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to the Black and White"))
       )
 )
 
