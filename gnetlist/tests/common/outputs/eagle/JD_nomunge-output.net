@@ -17,14 +17,14 @@ ADD 'Rt' 0402@smd-ipc (1 1);
 VALUE 'Rt' '1k';
 ADD 'Rb' 0402@smd-ipc (1 1);
 VALUE 'Rb' '5.6k';
-ADD 'M1' unknown@smd-ipc (1 1);
-VALUE 'M1' 'PMOS_TRANSISTOR';
+ADD 'M1' PMOS_100000X10000@smd-ipc (1 1);
+VALUE 'M1' 'w=10u';
 ADD 'X1' unknown@smd-ipc (1 1);
 VALUE 'X1' 'LVD';
 SIGNAL 'VDD1'
    'Rlp' '2'
-   'M1' 'B'
-   'M1' 'S'
+   'M1' '4'
+   'M1' '3'
    'Vdd' '1'
    'X1' '6'
 ;
@@ -40,8 +40,8 @@ SIGNAL 'GND'
 ;
 SIGNAL 'LVH'
    'Rb' '2'
-   'M1' 'D'
-   'M1' 'G'
+   'M1' '1'
+   'M1' '2'
    'X1' '3'
 ;
 SIGNAL 'I'

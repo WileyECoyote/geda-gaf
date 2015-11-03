@@ -19,7 +19,7 @@ PKG_none(none,Vdd,DC 3.3V)
 PKG_none(none,V1,pulse 3.3 0 1u 10p 10p 1.25u 2.5u)
 PKG_0402(0402,Rt,1k)
 PKG_0402(0402,Rb,5.6k)
-PKG_unknown(unknown,M1,unknown)
+PKG_PMOS_100000X10000(PMOS_100000X10000,M1,w=10u)
 PKG_unknown(unknown,X1,unknown)
 Layer(1 "top")
 (

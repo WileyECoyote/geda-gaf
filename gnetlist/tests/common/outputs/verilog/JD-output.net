@@ -68,10 +68,10 @@ RESISTOR Rb (
     );
 
 PMOS_TRANSISTOR M1 ( 
-    .S ( Vdd1 ),
-    .B ( Vdd1 ),
-    .D ( LVH ),
-    .G ( LVH )
+    .\3  ( Vdd1 ),
+    .\4  ( Vdd1 ),
+    .\1  ( LVH ),
+    .\2  ( LVH )
     );
 
 LVD X1 ( 

@@ -6,7 +6,7 @@ refdes=X1
 T 9600 84300 5 10 1 1 0 0 1
 model-name=unknown_LVD
 }
-C 9300 86500 1 0 0 asic-pmos-1.sym
+C 9300 86500 1 0 0 ASIC-PMOS-1.sym
 {
 T 10100 87300 5 10 1 1 0 0 1
 refdes=M1

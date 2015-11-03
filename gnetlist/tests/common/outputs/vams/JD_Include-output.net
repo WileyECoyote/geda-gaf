@@ -76,10 +76,10 @@ BEGIN
 			l => 3u, 
 			w => 3u, 
 			model-name => pch)
-	PORT MAP (	S => Vdd1,
-			B => Vdd1,
-			D => LVH,
-			G => LVH);
+	PORT MAP (	3 => Vdd1,
+			4 => Vdd1,
+			1 => LVH,
+			2 => LVH);
  
   X1 : ENTITY LVD
 	GENERIC MAP (

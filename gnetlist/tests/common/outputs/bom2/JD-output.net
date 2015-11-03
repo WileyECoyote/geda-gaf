@@ -1,6 +1,6 @@
 refdes:refdes:value:device:qty
 X1:X1:unknown:LVD:1
-M1:M1:unknown:PMOS_TRANSISTOR:1
+M1:M1:w=10u:PMOS_TRANSISTOR:1
 Rb:Rb:5.6k:RESISTOR:1
 Rt:Rt:1k:RESISTOR:1
 V1:V1:pulse 3.3 0 1u 10p 10p 1.25u 2.5u:VOLTAGE_SOURCE:1

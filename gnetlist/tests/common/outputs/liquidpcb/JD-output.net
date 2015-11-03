@@ -2,8 +2,8 @@
 	<netlist name="Main netlist">
 		<net name="Vdd1">
 			<netnode component="Rlp" pin=2 />
-			<netnode component="M1" pin=B />
-			<netnode component="M1" pin=S />
+			<netnode component="M1" pin=4 />
+			<netnode component="M1" pin=3 />
 			<netnode component="Vdd" pin=1 />
 			<netnode component="X1" pin=6 />
 		</net>
@@ -19,8 +19,8 @@
 		</net>
 		<net name="LVH">
 			<netnode component="Rb" pin=2 />
-			<netnode component="M1" pin=D />
-			<netnode component="M1" pin=G />
+			<netnode component="M1" pin=1 />
+			<netnode component="M1" pin=2 />
 			<netnode component="X1" pin=3 />
 		</net>
 		<net name="i">

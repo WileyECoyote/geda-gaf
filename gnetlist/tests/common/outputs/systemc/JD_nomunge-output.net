@@ -84,10 +84,10 @@ SC_CTOR(not found):
     Rb.1(GND);
     Rb.2(LVH);
 
-    M1.S(Vdd1);
-    M1.B(Vdd1);
-    M1.D(LVH);
-    M1.G(LVH);
+    M1.3(Vdd1);
+    M1.4(Vdd1);
+    M1.1(LVH);
+    M1.2(LVH);
 
     X1.4(m);
     X1.5(p);

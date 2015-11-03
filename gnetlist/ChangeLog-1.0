@@ -1,5 +1,10 @@
 2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/common/run_tests.sh: Regenerated test output because symbol file
+      asic-pmos-1.sym symbols were renamed to ASIC-PMOS-1.sym.
+
+2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-drc2.scm: Add a space after 'pintype' attribute:"
 
 2015-11-03 Vladimir Zhbanov <vzhbanov@gmail.com>

@@ -63,9 +63,9 @@ RESISTOR
 ]
 [
 M1
-PATTERN
+PMOS_100000X10000
 PMOS_TRANSISTOR
-
+w=10u
 
 ]
 [
@@ -78,8 +78,8 @@ LVD
 (
 Vdd1
 Rlp-2
-M1-B
-M1-S
+M1-4
+M1-3
 Vdd-1
 X1-6
 )
@@ -97,8 +97,8 @@ X1-2
 (
 LVH
 Rb-2
-M1-D
-M1-G
+M1-1
+M1-2
 X1-3
 )
 (

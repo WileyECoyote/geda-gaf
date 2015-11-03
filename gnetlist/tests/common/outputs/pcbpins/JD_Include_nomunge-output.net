@@ -35,10 +35,10 @@ ChangePinName(Rb, 2, 2)
 ChangePinName(Rb, 1, 1)
 
 # Start of element M1
-ChangePinName(M1, G, G)
-ChangePinName(M1, D, D)
-ChangePinName(M1, B, B)
-ChangePinName(M1, S, S)
+ChangePinName(M1, 2, G)
+ChangePinName(M1, 1, D)
+ChangePinName(M1, 4, SUB)
+ChangePinName(M1, 3, S)
 
 # Start of element X1
 ChangePinName(X1, 7, Vss)

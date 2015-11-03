@@ -322,9 +322,9 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "M1"
+	(instance "PMOS_100000X10000" "M1"
 		(device "PMOS_TRANSISTOR")
-		(value "PMOS_TRANSISTOR")
+		(value "w=10u")
 		(gateswap "0")
 		(pinswap "0")
 		(component_space "0.00000000e+000")
@@ -332,36 +332,36 @@
 		(settings_locked "0")
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
-		(pin "G"
+		(pin "2"
 			(net "LVH")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
-			(label "G")
+			(label "2")
 			(gate "")
 		)
-		(pin "D"
+		(pin "1"
 			(net "LVH")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
-			(label "D")
+			(label "1")
 			(gate "")
 		)
-		(pin "B"
+		(pin "4"
 			(net "Vdd1")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
-			(label "B")
+			(label "4")
 			(gate "")
 		)
-		(pin "S"
+		(pin "3"
 			(net "Vdd1")
 			(pintype "BIDIR")
 			(gategroup "")
 			(pingroup "")
-			(label "S")
+			(label "3")
 			(gate "")
 		)
 	)

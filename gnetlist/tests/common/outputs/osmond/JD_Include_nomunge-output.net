@@ -7,14 +7,14 @@ Part none { Name Vdd }
 Part none { Name V1 }
 Part 0402 { Name Rt }
 Part 0402 { Name Rb }
-Part unknown { Name M1 }
+Part PMOS_100000X10000 { Name M1 }
 Part unknown { Name X1 }
 Signal "Vdd1"
-  { Rlp-2 M1-B M1-S Vdd-1 X1-6 }
+  { Rlp-2 M1-4 M1-3 Vdd-1 X1-6 }
 Signal "GND"
   { Cm-2 Cp-2 Rlm-2 Vdd-2 V1-2 Rb-1 X1-7 X1-2 }
 Signal "LVH"
-  { Rb-2 M1-D M1-G X1-3 }
+  { Rb-2 M1-1 M1-2 X1-3 }
 Signal "i"
   { V1-1 X1-1 }
 Signal "p"

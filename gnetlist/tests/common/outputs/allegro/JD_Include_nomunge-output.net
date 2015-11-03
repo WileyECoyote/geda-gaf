@@ -9,12 +9,12 @@ none! VOLTAGE_SOURCE! DC 3.3V; Vdd
 none! VOLTAGE_SOURCE! pulse 3.3 0 1u 10p 10p 1.25u 2.5u; V1
 0402! RESISTOR! 1k; Rt
 0402! RESISTOR! 5.6k; Rb
-! PMOS_TRANSISTOR! PMOS_TRANSISTOR; M1
+PMOS_100000X10000! PMOS_TRANSISTOR! w=10u; M1
 ! LVD! LVD; X1
 $NETS
 Vdd1; Rlp.2,
- M1.B,
- M1.S,
+ M1.4,
+ M1.3,
  Vdd.1,
  X1.6
 GND; Cm.2,
@@ -26,8 +26,8 @@ GND; Cm.2,
  X1.7,
  X1.2
 LVH; Rb.2,
- M1.D,
- M1.G,
+ M1.1,
+ M1.2,
  X1.3
 i; V1.1,
  X1.1
