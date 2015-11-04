@@ -1,3 +1,7 @@
+2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TSB41AB1-1.sym: Add symbol Link-Layer Controller,IEEE1394
+
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * asic/*.sym: Rename files with capital letters, clean symbols and
