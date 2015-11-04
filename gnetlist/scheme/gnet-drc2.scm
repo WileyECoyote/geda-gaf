@@ -563,7 +563,7 @@
                 (begin
                   (display (string-append "ERROR: Net '"
                                   netname "' has connections, but "
-                                  "has the NoConnection DRC directive: "))
+                                  "has the NoConnection DRC directive:"))
                   (drc2:display-pins-of-type "all"
                   (gnetlist:get-all-connections netname))
                   (display ".")
@@ -616,7 +616,7 @@
                         )
                     (if (eq? (length (get-all-connections netname)) '1)
                         (begin (display (string-append "ERROR: Net '"
-                                                       netname "' is connected to only one pin: "))
+                                                       netname "' is connected to only one pin:"))
                                (drc2:display-pins-of-type "all" (get-all-connections netname))
                                (display ".")
                                (newline)
@@ -690,11 +690,7 @@
                     (string-ci=? (list-ref pintype-names type)
                                  (gnetlist:get-attribute-by-pinnumber device pin "pintype"))
                     )
-                (begin
-                  (display device)
-                  (display ":")
-                  (display pin)
-                  (display " ")))
+                (format #t " ~a:~a" device pin))
             (drc2:display-pins-of-type type (cdr connections))
             ""
             )))))
@@ -729,13 +725,13 @@
                        ))
                    (display "Pin(s) with pintype '")
                    (display (drc2:get-full-name-of-pintype-by-number type1))
-                   (display "': ")
+                   (display "':")
                    (display (drc2:display-pins-of-type type1
                                                          connections))
                    (display (string-append "\n\tare connected by net '" netname))
                    (display "'\n\tto pin(s) with pintype '")
                    (display (drc2:get-full-name-of-pintype-by-number type2))
-                   (display "': ")
+                   (display "':")
                    (display (drc2:display-pins-of-type type2
                                                          connections))
                    (newline)
@@ -935,7 +931,7 @@
 
   (and (> (count-unknown-pintypes nets) 0)
        (begin
-         (display "NOTE: Found pins without a 'pintype' attribute: ")
+         (display "NOTE: Found pins without a 'pintype' attribute:")
          (display-unknown-pintypes nets)
          (message "\n"))))
 

@@ -1,3 +1,9 @@
+2015-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc2.scm: Use single format output instead of begin block for
+      4 display's, adding space to the leading side of the Ref:Pin string, which
+      eliminates the trailing space on the line in pin related error messages.
+
 2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/run_tests.sh: Regenerated test output because symbol file
