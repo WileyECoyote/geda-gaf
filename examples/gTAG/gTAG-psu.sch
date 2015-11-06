@@ -1,4 +1,4 @@
-v 20150401 2
+v 20151031 2
 C 48300 42000 0 0 0 title-A2.sym
 C 54700 52300 1 0 0 in-1.sym
 {
@@ -40,7 +40,7 @@ refdes=C32
 T 63800 50900 5 10 1 1 0 0 1
 value=2.2u
 T 63800 50700 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SMD_POLAR-120-60
 T 63800 51500 5 10 0 1 0 0 1
 device=POLARIZED_CAPACITOR
 T 63800 51300 5 10 0 0 0 0 1
@@ -53,7 +53,7 @@ refdes=C31
 T 59000 50600 5 10 1 1 0 0 1
 value=2.2u
 T 58700 51300 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SMD_POLAR-120-60
 T 58900 52000 5 10 0 0 0 0 1
 device=POLARIZED_CAPACITOR
 T 58900 52200 5 10 0 0 0 0 1
@@ -76,7 +76,7 @@ refdes=R30
 T 56200 52100 5 10 1 1 0 0 1
 value=0
 T 56500 52600 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 56200 52650 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -87,7 +87,7 @@ refdes=R31
 T 56200 51400 5 10 1 1 0 0 1
 value=0
 T 56400 51900 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 56200 51950 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -102,7 +102,7 @@ refdes=C30
 T 58100 50600 5 10 1 1 0 0 1
 value=100n
 T 57800 51300 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 58000 52000 5 10 0 0 0 0 1
 device=CAPACITOR
 T 58000 52200 5 10 0 0 0 0 1
@@ -137,7 +137,7 @@ refdes=R33
 T 60200 50600 5 10 1 1 0 0 1
 value=39k
 T 60200 50400 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 60200 51000 5 10 0 1 0 0 1
 device=RESISTOR
 }
@@ -148,7 +148,7 @@ refdes=R32
 T 60200 51600 5 10 1 1 0 0 1
 value=100k
 T 60200 51800 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 60500 51750 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -166,7 +166,7 @@ refdes=R34
 T 64300 53000 5 10 1 1 0 0 1
 value=10k
 T 64300 52800 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 64300 53350 5 10 0 1 0 0 1
 device=RESISTOR
 }

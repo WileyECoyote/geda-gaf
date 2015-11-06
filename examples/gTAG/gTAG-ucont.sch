@@ -1,4 +1,4 @@
-v 20150401 2
+v 20151031 2
 C 43700 38500 0 0 0 title-A2.sym
 C 46000 42600 1 0 0 24Cxx-1.sym
 {
@@ -20,7 +20,7 @@ refdes=X1
 T 55100 52900 5 10 1 1 0 0 1
 value=12MHz
 T 55000 52700 5 10 0 1 0 0 1
-footprint=CRYSTAL 300
+footprint=HC49
 T 55200 53600 5 10 0 0 0 0 1
 device=CRYSTAL
 T 55200 53800 5 10 0 0 0 0 1
@@ -33,7 +33,7 @@ refdes=R17
 T 55200 53900 5 10 1 1 0 0 1
 value=1M
 T 55100 53700 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 55300 54450 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -44,7 +44,7 @@ refdes=C4
 T 54200 53800 5 10 1 1 0 0 1
 value=30p
 T 54000 53600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 54100 54700 5 10 0 0 0 0 1
 device=CAPACITOR
 T 54100 54900 5 10 0 0 0 0 1
@@ -57,7 +57,7 @@ refdes=C5
 T 56200 53800 5 10 1 1 0 0 1
 value=30p
 T 56000 53600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 56100 54700 5 10 0 0 0 0 1
 device=CAPACITOR
 T 56100 54900 5 10 0 0 0 0 1
@@ -84,7 +84,7 @@ refdes=R13
 T 57500 38900 5 10 1 1 0 0 1
 value=10k
 T 57800 39400 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 57600 39450 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -131,7 +131,7 @@ refdes=R2
 T 47000 50700 5 10 1 1 0 0 1
 value=1.5k
 T 47300 51200 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47100 51250 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -149,7 +149,7 @@ refdes=R12
 T 48800 43500 5 10 1 1 90 0 1
 value=1k
 T 48600 43200 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 49000 43550 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -160,7 +160,7 @@ refdes=R11
 T 48000 43500 5 10 1 1 90 0 1
 value=1k
 T 47800 43200 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 48200 43550 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -187,7 +187,7 @@ refdes=R6
 T 47600 44900 5 10 1 1 90 0 1
 value=0
 T 47500 45100 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47800 44850 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -199,7 +199,7 @@ refdes=R15
 T 59100 52300 5 10 1 1 90 0 1
 value=10k
 T 58900 52000 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 59300 52350 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -213,7 +213,7 @@ refdes=R4
 T 47000 49100 5 10 1 1 0 0 1
 value=22
 T 47300 49600 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47100 49650 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -224,7 +224,7 @@ refdes=R3
 T 47000 49900 5 10 1 1 0 0 1
 value=22
 T 47300 50400 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47100 50450 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -262,7 +262,7 @@ value=0
 T 47500 46000 5 10 1 1 0 0 1
 comment=do not mount
 T 47600 46400 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47800 46150 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -273,7 +273,7 @@ refdes=R7
 T 49600 44700 5 10 1 1 0 0 1
 value=10k
 T 49800 45200 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 49700 45250 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -284,7 +284,7 @@ refdes=R8
 T 49600 43500 5 10 1 1 0 0 1
 value=10k
 T 49800 44000 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 49700 44050 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -295,7 +295,7 @@ refdes=C3
 T 50100 52400 5 10 1 1 90 0 1
 value=100n
 T 49400 51900 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 50100 52900 5 10 0 0 0 0 1
 device=CAPACITOR
 T 50100 53100 5 10 0 0 0 0 1
@@ -308,7 +308,7 @@ refdes=C2
 T 49100 52500 5 10 1 1 90 0 1
 value=2.2u
 T 48300 51900 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SMD_POLAR-120-60
 T 48700 53800 5 10 0 0 0 0 1
 device=POLARIZED_CAPACITOR
 T 48700 54000 5 10 0 0 0 0 1
@@ -413,7 +413,7 @@ refdes=R16
 T 59900 52300 5 10 1 1 90 0 1
 value=10k
 T 59700 52000 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 60100 52350 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -425,7 +425,7 @@ refdes=R14
 T 61100 51400 5 10 1 1 0 0 1
 value=10k
 T 60800 51600 5 10 0 1 270 0 1
-footprint=sm0805
+footprint=SM0805
 T 61200 51950 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -451,7 +451,7 @@ refdes=R10
 T 45300 42600 5 10 1 1 90 0 1
 value=0
 T 45200 42800 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 45500 42550 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -464,7 +464,7 @@ value=0
 T 45200 43700 5 10 1 1 0 0 1
 comment=do not mount
 T 45200 44100 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 45500 43850 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -511,7 +511,7 @@ refdes=C6
 T 63400 52900 5 10 1 1 90 0 1
 value=100n
 T 62200 52600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 63400 53400 5 10 0 0 0 0 1
 device=CAPACITOR
 T 63400 53600 5 10 0 0 0 0 1
@@ -524,7 +524,7 @@ refdes=C7
 T 64400 52900 5 10 1 1 90 0 1
 value=100n
 T 63300 52600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 64400 53400 5 10 0 0 0 0 1
 device=CAPACITOR
 T 64400 53600 5 10 0 0 0 0 1
@@ -537,7 +537,7 @@ refdes=C8
 T 65400 52900 5 10 1 1 90 0 1
 value=100n
 T 64300 52600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 65400 53400 5 10 0 0 0 0 1
 device=CAPACITOR
 T 65400 53600 5 10 0 0 0 0 1
@@ -550,7 +550,7 @@ refdes=C9
 T 66400 52900 5 10 1 1 90 0 1
 value=100n
 T 65300 52600 5 10 0 1 0 0 1
-footprint=sm1206
+footprint=SM1206
 T 66400 53400 5 10 0 0 0 0 1
 device=CAPACITOR
 T 66400 53600 5 10 0 0 0 0 1

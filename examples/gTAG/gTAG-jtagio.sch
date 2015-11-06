@@ -239,7 +239,7 @@ refdes=R20
 T 47700 57000 5 10 1 1 90 0 1
 value=10k
 T 47400 56900 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 47900 57050 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -250,7 +250,7 @@ refdes=R21
 T 49000 57000 5 10 1 1 90 0 1
 value=10k
 T 48700 57100 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 49200 57050 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -261,7 +261,7 @@ refdes=R22
 T 50300 57000 5 10 1 1 90 0 1
 value=10k
 T 50100 57100 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 50500 57050 5 10 0 0 0 0 1
 device=RESISTOR
 }
@@ -272,7 +272,7 @@ refdes=R23
 T 51700 57000 5 10 1 1 90 0 1
 value=10k
 T 51400 57200 5 10 0 1 0 0 1
-footprint=sm0805
+footprint=SM0805
 T 51900 57050 5 10 0 0 0 0 1
 device=RESISTOR
 }
