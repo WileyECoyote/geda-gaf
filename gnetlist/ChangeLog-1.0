@@ -6,8 +6,9 @@
       scope wanted_net_name to current_name and remove conditional check for wanted_
       net_name since SCM_ASSERT scm_is_string would already handle this situation.
 
-      Eliminate variable "list" and remove conditional check for wanted_net_name
-      since SCM_ASSERT scm_is_string would already handle this situation.
+      Revise function g_get_all_unique_nets simlar to above; eliminate variable "list"
+      and remove conditional check for wanted_net_name since SCM_ASSERT scm_is_string
+      would already handle this situation. Eliminate variables "x" and "is_member".
 
 2015-11-04 Wiley E. Hill <wileyhill@gmail.com>
 

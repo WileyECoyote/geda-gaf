@@ -225,7 +225,7 @@ SCM g_get_all_unique_nets(SCM scm_level)
 {
 
   SCM list = SCM_EOL;
-  SCM x = SCM_EOL;
+  SCM x    = SCM_EOL;
   NETLIST *nl_current;
   CPINLIST *pl_current;
   char *net_name;
@@ -281,18 +281,12 @@ SCM g_get_all_unique_nets(SCM scm_level)
  */
 SCM g_get_all_connections(SCM scm_netname)
 {
+  SCM connlist = SCM_EOL;
+  SCM pairlist = SCM_EOL;
 
-  SCM connlist  = SCM_EOL;
-  SCM pairlist  = SCM_EOL;
-
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-  NET      *n_current;
+  NETLIST *nl_current;
 
   char *wanted_net_name;
-  char *net_name;
-  char *pin;
-  char *uref;
 
   SCM_ASSERT(scm_is_string(scm_netname), scm_netname, SCM_ARG1,
              "gnetlist:get-all-connections");
@@ -307,38 +301,42 @@ SCM g_get_all_connections(SCM scm_netname)
    */
   while (nl_current != NULL) {
 
+    CPINLIST *pl_current;
+
     pl_current = nl_current->cpins;
 
     while (pl_current != NULL) {
 
       if (pl_current->net_name) {
 
+        char *net_name;
+
         net_name = pl_current->net_name;
 
         /* filter off unconnected pins */
         if (strcmp(net_name, wanted_net_name) == 0) {
-          /* add the net name to the list */
 
 #if DEBUG
           printf("found net: `%s'\n", net_name);
 #endif
 
+          NET *n_current;
+
+          /* add the net name to the list */
           n_current = pl_current->nets;
+
           while (n_current != NULL) {
 
             if (n_current->connected_to) {
 
-              pairlist = SCM_EOL;
-              pin = (char *) GEDA_MEM_ALLOC(sizeof(char) *
-              strlen(n_current->
-              connected_to));
-              uref =
-              (char *) GEDA_MEM_ALLOC(sizeof(char) *
-              strlen(n_current->
-              connected_to));
+              char *pin;
+              char *uref;
 
-              sscanf(n_current->connected_to,
-                     "%s %s", uref, pin);
+              pin =(char*)GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
+
+              uref =(char*)GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
+
+              sscanf(n_current->connected_to, "%s %s", uref, pin);
 
               pairlist = scm_list_n (scm_from_utf8_string (uref),
                                      scm_from_utf8_string (pin),
@@ -394,15 +392,11 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
   SCM pairlist         = SCM_EOL;
 
   NETLIST  *nl_current = NULL;
-  CPINLIST *pl_current = NULL;
 
   NET  *n_current;
   char *wanted_uref    = NULL;
   char *wanted_pin     = NULL;
   char *net_name       = NULL;
-
-  char *pin;
-  char *uref;
 
   SCM_ASSERT(scm_is_string (scm_uref), scm_uref, SCM_ARG1, "gnetlist:get-nets");
 
@@ -411,10 +405,9 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
   scm_dynwind_begin (0);
 
   wanted_uref = scm_to_utf8_string (scm_uref);
-  scm_dynwind_free (wanted_uref);
-
   wanted_pin = scm_to_utf8_string (scm_pin);
-  scm_dynwind_free (wanted_pin);
+
+  scm_dynwind_end ();
 
   nl_current = netlist_head;
 
@@ -426,10 +419,13 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
     if (strcmp (nl_current->component_uref, wanted_uref) != 0) continue;
 
+      CPINLIST *pl_current;
+
       for (pl_current = nl_current->cpins; pl_current != NULL; pl_current = pl_current->next)
       {
 
         if (!pl_current->pin_number) continue;
+
         if (strcmp(pl_current->pin_number, wanted_pin) != 0) continue;
 
         if (pl_current->net_name) {
@@ -439,9 +435,13 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
         for (n_current = pl_current->nets; n_current != NULL; n_current = n_current->next)
         {
 
+          char *pin;
+          char *uref;
+
           if (!n_current->connected_to) continue;
 
           pairlist = SCM_EOL;
+
           pin = (char*) GEDA_MEM_ALLOC(sizeof(char) * strlen(n_current->connected_to));
           uref = (char*) GEDA_MEM_ALLOC(sizeof(char) *strlen(n_current->connected_to));
 
@@ -463,13 +463,13 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
     outerlist = scm_cons (scm_from_utf8_string (net_name), pinslist);
   }
   else {
-    outerlist = scm_cons (scm_from_utf8_string ("ERROR_INVALID_PIN"),
-                          outerlist);
+    outerlist = scm_cons (scm_from_utf8_string ("ERROR_INVALID_PIN"), outerlist);
     fprintf(stderr, _("Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"),
             wanted_uref, wanted_pin);
   }
 
-  scm_dynwind_end ();
+  free (wanted_uref);
+  free (wanted_pin);
 
   return (outerlist);
 }
