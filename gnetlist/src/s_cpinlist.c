@@ -29,8 +29,7 @@
 #include "gnetlist.h"
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Return last record in a linked list
  *  \par Function Description
  *  hack rename this to be s_return_tail
  *  update object_tail or any list of that matter
@@ -41,6 +40,7 @@ CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
   CPINLIST *ret_struct = NULL;
 
   pl_current = head;
+
   while (pl_current != NULL) {	/* goto end of list */
     ret_struct = pl_current;
     pl_current = pl_current->next;
@@ -69,9 +69,13 @@ CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
   return (ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add a Pin List record to Pin List
  *  \par Function Description
+ *   Allocates and initializes a CPINLIST record struct. The
+ *   record is appended the Pin List given by \a ptr and links
+ *   the previous record.
+ *
+ *  \note \a ptr can be NULL.
  *
  *  \returns new node
  */
@@ -95,19 +99,19 @@ CPINLIST *s_cpinlist_add(CPINLIST * ptr)
   if (ptr == NULL) {
     new_node->prev = NULL;	/* setup previous link */
     return (new_node);
-  } else {
+  }
+  else {
     new_node->prev = ptr;	/* setup previous link */
     ptr->next = new_node;
     return (ptr->next);
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Netlister: Print list of Pins
  *  \par Function Description
- *
+ *  Used by s_netlist_print().
  */
-void s_cpinlist_print(CPINLIST * ptr)
+void s_cpinlist_print(CPINLIST *ptr)
 {
   CPINLIST *pl_current = NULL;
 
@@ -120,24 +124,27 @@ void s_cpinlist_print(CPINLIST * ptr)
   while (pl_current != NULL) {
 
     if (pl_current->plid != -1) {
+
       if (pl_current->pin_number) {
         printf("	pin %s", pl_current->pin_number);
-      } else {
+      }
+      else {
         printf("	pin ?");
       }
 
       if (pl_current->pin_label) {
         printf(" (%s)", pl_current->pin_label);
-      } else {
+      }
+      else {
         printf(" ()");
       }
 
       if (pl_current->net_name) {
         printf(" %s", pl_current->net_name);
-      } else {
+      }
+      else {
         printf(" Null net name");
       }
-
 
       printf("\n");
 
@@ -151,12 +158,15 @@ void s_cpinlist_print(CPINLIST * ptr)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Search or Pin Number in List of Pins
  *  \par Function Description
+ *   Searches pin list \a ptr looking for a record containing
+ *   \a pin_number.
  *
+ *  \returns pointer to pinlist record containing \a pin_number
+ *           or NULL if the number was not found.
  */
-CPINLIST *s_cpinlist_search_pin(CPINLIST * ptr, char *pin_number)
+CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number)
 {
   CPINLIST *pl_current = NULL;
 
@@ -173,8 +183,7 @@ CPINLIST *s_cpinlist_search_pin(CPINLIST * ptr, char *pin_number)
       if (strcmp(pl_current->pin_number, pin_number) == 0) {
 
 #if DEBUG
-        printf("equal: %s %s\n",
-        pl_current->pin_number, pin_number);
+        printf("equal: %s %s\n", pl_current->pin_number, pin_number);
 #endif
 
         return (pl_current);
