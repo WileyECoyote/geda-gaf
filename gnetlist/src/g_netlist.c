@@ -282,7 +282,6 @@ SCM g_get_all_unique_nets(SCM scm_level)
 SCM g_get_all_connections(SCM scm_netname)
 {
 
-  SCM list      = SCM_EOL;
   SCM x         = SCM_EOL;
   SCM is_member = SCM_EOL;
   SCM connlist  = SCM_EOL;
@@ -301,11 +300,6 @@ SCM g_get_all_connections(SCM scm_netname)
              "gnetlist:get-all-connections");
 
   wanted_net_name = scm_to_utf8_string (scm_netname);
-
-  if (wanted_net_name == NULL) {
-    return list;
-  }
-
 
   nl_current = netlist_head;
 
