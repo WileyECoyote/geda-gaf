@@ -282,8 +282,6 @@ SCM g_get_all_unique_nets(SCM scm_level)
 SCM g_get_all_connections(SCM scm_netname)
 {
 
-  SCM x         = SCM_EOL;
-  SCM is_member = SCM_EOL;
   SCM connlist  = SCM_EOL;
   SCM pairlist  = SCM_EOL;
 
@@ -346,10 +344,7 @@ SCM g_get_all_connections(SCM scm_netname)
                                      scm_from_utf8_string (pin),
                                      SCM_UNDEFINED);
 
-              x = pairlist;
-              is_member = scm_member(x, connlist);
-
-              if (scm_is_false (is_member)) {
+              if (scm_is_false (scm_member(pairlist, connlist))) {
                 connlist = scm_cons (pairlist, connlist);
               }
 
