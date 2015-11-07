@@ -1,3 +1,11 @@
+2015-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Revise function g_graphical_objs_in_net_with_attrib_get_attrib
+      to not use scm_dynwind_free to release variable, instead explicitly release the
+      memory using free() function, and locally scope pl_current, rename and locally
+      scope wanted_net_name to current_name and remove conditional check for wanted_
+      net_name since SCM_ASSERT scm_is_string would already handle this situation.
+
 2015-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Use single format output instead of begin block for
