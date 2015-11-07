@@ -1,2 +1,4 @@
-(component-library ".")
-(source-library  ".")
+(component-library "./sht")
+(component-library "./sym")
+(source-library  "./sch")
+

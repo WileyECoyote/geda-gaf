@@ -1,3 +1,21 @@
+2015-11-06  Wiley E. Hill <wileyhill@gmail.com>
+
+    * Updated all files to the latest gEDA/gaf version and cleaned
+      drawings, aka revised attribute positions and visibility.
+
+    * Updated all symbols latest footprints, capitalizing symbol file
+      names, replaced local complexes.
+
+    * Reorganized example creating sub-directories bom/ sch/ sht/ sym/
+      and ps and located files into the new sub-directories. Everything
+      seems to work okay and this shows user a method that can be used
+      to organize project files.
+
+    * crdist.sh: Updated script to use gTAG_Files variable, this seems
+      more maintainable.
+
+    * gafrc: Update search directories.
+
 2015-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/gTAG/7414-gt.sym: Rename symbol file to avoid conflict with

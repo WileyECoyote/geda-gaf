@@ -1,16 +1,34 @@
+2015-11-06  Wiley E. Hill <wileyhill@gmail.com>
+
+	* Updated all files to the latest gEDA/gaf version and cleaned
+      drawings, aka revised attribute positions and visibility.
+
+	* Updated all symbols latest footprints, capitalizing symbol file
+      names, replaced local complexes.
+
+	* Reorganized example creating sub-directories bom/ sch/ sht/ sym/
+      and ps and located files into the new sub-directories. Everything
+      seems to work okay and this shows user a method that can be used
+      to organize project files.
+
+	* crdist.sh: Updated script to use gTAG_Files variable, this seems
+      more maintainable.
+
+    * gafrc: Update search directories.
+
 2003-05-22  Ales Hvezda (ahvezda@seul.org)
 
 	* Updated all sym/sch files to the latest gEDA/gaf version.
 
 2003-01-11  Ales Hvezda (ahvezda@seul.org)
 
-	* Updated all files to the current gEDA/gaf file formats.  
+	* Updated all files to the current gEDA/gaf file formats.
 
-	* Corrected CONN1 offset problem.  
+	* Corrected CONN1 offset problem.
 
-	* Re-ran gnetlist and recreated netlist and bom.  
+	* Re-ran gnetlist and recreated netlist and bom.
 
-	* Added attribs file for bom generation.  
+	* Added attribs file for bom generation.
 
 	* Added gschlasrc file.
 
@@ -23,15 +41,15 @@
 	* Added proper power-on-reset from the MAX882 to the u-controller
 	  after suggestion from Luis Miguel Brugarolas <lmbruga@sire.es>.
 	  R1 and C1 removed. Added is R33, R32 and R34. U30 is changed.
-	  
+
 
 2001-02-11  Stefan Petersen (spe@stacken.kth.se)
 
-	* Added the lines 
+	* Added the lines
 	  (hierarchy-netname-mangle "disabled")
           (hierarchy-uref-mangle "disabled")
 	  to gnetlistrc so PCB likes the PCB netlist gnetlist generates.
-	
+
 
 2001-02-08  Stefan Petersen (spe@stacken.kth.se)
 
@@ -39,4 +57,4 @@
 	* Changed distribution script so the generated PCB netlist is
 	  called gTAG-pcb.net due to possible name clash with PCB layout.
 	* Added R20-R23 after suggestion from Andrew Dyer.
-	
+

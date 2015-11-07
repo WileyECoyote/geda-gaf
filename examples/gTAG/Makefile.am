@@ -1,16 +1,37 @@
 exampledir = $(docdir)/examples/gTAG/
 
-example_DATA = 	7414-gt.sym attribs gafrc copyleft.sym crdist.sh \
-				cy7c64603-52nc.sym gTAG-consio.ps gTAG-consio.sch \
-				gTAG-consio.sym gTAG-jtagio.ps gTAG-jtagio.sch \
-				gTAG-jtagio.sym gTAG-pcb.net gTAG-psu.ps gTAG-psu.sch \
-				gTAG-psu.sym gTAG-ucont.ps gTAG-ucont.sch gTAG-ucont.sym \
-				gTAG.bom gTAG.ps gTAG.sch gnetlistrc max882.sym sn75240pw.sym \
-				README
+example_DATA =  attribs \
+				crdist.sh \
+				gafrc \
+				gnetlistrc \
+				gTAG.sch \
+				gTAG-pcb.net \
+				README \
+				bom/gTAG.bom \
+				bom/gTAG_bom.csv \
+				ps/gTAG.ps \
+				ps/gTAG-consio.ps \
+				ps/gTAG-jtagio.ps \
+				ps/gTAG-psu.ps \
+				ps/gTAG-ucont.ps \
+				sch/gTAG-consio.sch \
+				sch/gTAG-jtagio.sch \
+				sch/gTAG-psu.sch \
+				sch/gTAG-ucont.sch \
+				sht/copyleft.sym \
+				sht/gTAG-consio.sym \
+				sht/gTAG-jtagio.sym \
+				sht/gTAG-psu.sym \
+				sht/gTAG-ucont.sym \
+				sym/7414-gt.sym \
+				sym/CY7C64603-52NC-gt.sym \
+				sym/MAX882-gt.sym \
+				sym/SN75240PW-gt.sym
 
 EXTRA_DIST = ChangeLog-1.0 $(example_DATA)
 
-MOSTLYCLEANFILES = gschem.log *~
-CLEANFILES = gschem.log *~
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = gschem.log *~ Makefile.in
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+DISTCLEANFILES       = *.log *~
+MAINTAINERCLEANFILES = *.log *~ core Makefile.in
+
