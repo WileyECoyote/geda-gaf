@@ -270,7 +270,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
         temp = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
 
         /* nope net attribute not found */
-        if ( (!temp) && (!is_graphical) ) {
+        if ((!temp) && (!is_graphical)) {
           net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
           fprintf(stderr,
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
@@ -410,6 +410,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
   /* pins are not allowed to have the netname attribute attached to them */
   if (object->type != OBJ_PIN) {
+
     /* Ignore netname attributes on buses */
     if (object->type == OBJ_NET)
       temp = o_attrib_search_object_attribs_by_name (object, "netname", 0);
@@ -419,9 +420,12 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
       s_hierarchy_create_netname(pr_current, temp,
                                  hierarchy_tag);
       GEDA_FREE(temp);
-    } else if (object->type == OBJ_NET) {
+    }
+    else if (object->type == OBJ_NET) {
+
       /* search for the old label= attribute on nets */
       temp = o_attrib_search_object_attribs_by_name (object, "label", 0);
+
       if (temp) {
         printf(_("WARNING: Found label=%s. label= is deprecated, please use netname=\n"), temp);
         new_net->net_name =
@@ -450,6 +454,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
     /* net= new */
     netattrib_pinnum = s_netattrib_connected_string_get_pinnum (nets->connected_to);
+
     if (netattrib_pinnum != NULL && type == PIN_NET_NODE) {
 
 #if DEBUG
@@ -463,6 +468,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
       GEDA_FREE(nets->connected_to);
       nets->connected_to = NULL;
     }
+
 #if DEBUG
     printf("traverse connected_to: %s\n", new_net->connected_to);
 #endif
@@ -482,6 +488,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
   }
 
   cl_current = object->conn_list;
+
   while (cl_current != NULL) {
 
     c_current = (CONN *) cl_current->data;

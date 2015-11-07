@@ -148,8 +148,6 @@ void main_prog(void *closure, int argc, char *argv[])
   int   i;
   int   argv_index;
   char *cwd;
-  char *str;
-  char *filename;
 
   GedaToplevel *pr_current;
 
@@ -235,6 +233,7 @@ void main_prog(void *closure, int argc, char *argv[])
   while (argv[i] != NULL) {
 
     GError *err = NULL;
+    char   *filename;
 
     if (f_get_is_path_absolute(argv[i])) {
       /* Path is already absolute so no need to do any concat of cwd */
@@ -265,10 +264,10 @@ void main_prog(void *closure, int argc, char *argv[])
     GEDA_FREE (filename);
   }
 
-  /* Change back to the directory where we started.  This is done */
-  /* since gnetlist is a command line utility and will deposit its output */
-  /* in the current directory.  Having the output go to a different */
-  /* directory will confuse the user (confused me, at first). */
+  /* Change back to the directory where we started.  This is done since
+   * gnetlist is a command line utility and will deposit its output in
+   * the current directory. Having the output go to a different directory
+   * will confuse the user (confused me, at first). */
   if (chdir (cwd)) {
     fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
              cwd, strerror (errno));
@@ -285,7 +284,8 @@ void main_prog(void *closure, int argc, char *argv[])
 
   if (guile_proc) {
 
-    SCM s_backend_path;
+    SCM   s_backend_path;
+    char *str;
 
     /* Search for backend scm file in load path */
     str = u_string_sprintf("gnet-%s.scm", guile_proc);
@@ -330,6 +330,9 @@ void main_prog(void *closure, int argc, char *argv[])
   scm_primitive_load_path (scm_from_utf8_string ("gnetlist-post.scm"));
 
   if (guile_proc) {
+
+    char *str;
+
     /* check size here hack */
     str = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
     scm_c_eval_string (str);

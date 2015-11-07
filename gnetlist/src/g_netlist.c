@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -49,8 +50,6 @@ SCM g_get_packages(SCM level)
 
   NETLIST *nl_current = NULL;
 
-  /*SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-packages");*/
-
   /* build a hash table */
   ht = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -58,15 +57,14 @@ SCM g_get_packages(SCM level)
   {
 
     if (nl_current->component_uref != NULL) {
+
       /* add component_uref in the hash table */
       /* uniqueness of component_uref is guaranteed by the hashtable */
-
       if (g_hash_table_lookup (ht, nl_current->component_uref) == NULL) {
         g_hash_table_insert (ht,
                              nl_current->component_uref,
                              nl_current->component_uref);
-        list = scm_cons (scm_from_utf8_string (nl_current->component_uref),
-                         list);
+        list = scm_cons(scm_from_utf8_string (nl_current->component_uref), list);
       }
     }
   }
@@ -93,8 +91,6 @@ SCM g_get_non_unique_packages(SCM scm_level)
 
   NETLIST *nl_current = NULL;
 
-  //SCM_ASSERT(scm_is_string (scm_level), scm_level, SCM_ARG1, "gnetlist:get-non-unique-packages");
-
   for (nl_current = netlist_head; nl_current != NULL; nl_current = nl_current->next)
   {
     if (nl_current->component_uref != NULL) {
@@ -119,11 +115,11 @@ SCM g_get_non_unique_packages(SCM scm_level)
  */
 SCM g_get_pins(SCM scm_uref)
 {
-  char *uref;
   SCM list = SCM_EOL;
-  NETLIST *nl_current;
-  CPINLIST *pl_current;
 
+  NETLIST  *nl_current;
+  CPINLIST *pl_current;
+  char     *uref;
   SCM_ASSERT(scm_is_string (scm_uref), scm_uref, SCM_ARG1, "gnetlist:get-pins");
 
   uref = scm_to_utf8_string (scm_uref);
@@ -136,13 +132,15 @@ SCM g_get_pins(SCM scm_uref)
   while (nl_current != NULL) {
 
     if (nl_current->component_uref) {
+
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
         pl_current = nl_current->cpins;
+
         while (pl_current != NULL) {
+
           if (pl_current->pin_number) {
-            list = scm_cons (scm_from_utf8_string (pl_current->pin_number),
-                             list);
+            list = scm_cons (scm_from_utf8_string (pl_current->pin_number), list);
           }
           pl_current = pl_current->next;
         }
@@ -190,16 +188,20 @@ SCM g_get_all_nets(SCM scm_level)
       if (pl_current->net_name) {
 
         net_name = pl_current->net_name;
+
         /* filter off unconnected pins */
         if (strncmp(net_name, "unconnected_pin", 15) != 0) {
+
           /*printf("Got net: `%s'\n",net_name); */
-          /* add the net name to the list */
+
 #if DEBUG
           printf("Got net: `%s'\n", net_name);
-  printf("pin %s\n", pl_current->pin_number);
+          printf("pin %s\n", pl_current->pin_number);
 #endif
-  list = scm_cons (scm_from_utf8_string (net_name),
-                   list);
+
+          /* add the net name to the list */
+          list = scm_cons (scm_from_utf8_string (net_name),
+                           list);
         }
       }
       pl_current = pl_current->next;
@@ -244,6 +246,7 @@ SCM g_get_all_unique_nets(SCM scm_level)
     pl_current = nl_current->cpins;
 
     while (pl_current != NULL) {
+
       if (pl_current->net_name) {
 
         net_name = pl_current->net_name;

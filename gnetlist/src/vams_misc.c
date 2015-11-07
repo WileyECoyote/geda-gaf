@@ -48,9 +48,13 @@ SCM vams_get_attribs_list (Object *object)
 
   /* search outside the symbol (attached attributes only) */
   a_iter = o_current->attribs;
+
   while(a_iter != NULL) {
+
     a_current = a_iter->data;
+
     if (a_current->text && a_current->text->string) {
+
       val = o_attrib_get_name_value (a_current, &found_name, NULL);
 
       if (val) {
@@ -90,8 +94,7 @@ SCM vams_get_package_attributes(SCM scm_uref)
   /* here is where you make it multi page aware */
   nl_current = netlist_head;
 
-  /* search for the first instance */
-  /* through the entire list */
+  /* search for the first instance through the entire list */
   while(nl_current != NULL) {
 
     if (nl_current->component_uref &&

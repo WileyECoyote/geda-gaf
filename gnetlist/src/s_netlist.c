@@ -44,6 +44,7 @@ NETLIST *s_netlist_return_tail(NETLIST * head)
   NETLIST *ret_struct = NULL;
 
   nl_current = head;
+
   while (nl_current != NULL) {	/* goto end of list */
     ret_struct = nl_current;
     nl_current = nl_current->next;
@@ -66,6 +67,7 @@ NETLIST *s_netlist_return_head(NETLIST * tail)
   NETLIST *ret_struct = NULL;
 
   nl_current = tail;
+
   while (nl_current != NULL) {	/* goto end of list */
     ret_struct = nl_current;
     nl_current = nl_current->prev;
@@ -86,11 +88,11 @@ NETLIST *s_netlist_add(NETLIST * ptr)
   new_node = (NETLIST *) GEDA_MEM_ALLOC(sizeof(NETLIST));
 
   /* setup node information */
-  new_node->nlid = 0;
-  new_node->cpins = NULL;
-  new_node->component_uref = NULL;
-  new_node->object_ptr = NULL;
-  new_node->hierarchy_tag = NULL;
+  new_node->nlid                = 0;
+  new_node->cpins               = NULL;
+  new_node->component_uref      = NULL;
+  new_node->object_ptr          = NULL;
+  new_node->hierarchy_tag       = NULL;
   new_node->composite_component = FALSE;
 
   /* Setup link list stuff */
@@ -99,7 +101,8 @@ NETLIST *s_netlist_add(NETLIST * ptr)
   if (ptr == NULL) {
     new_node->prev = NULL;	/* setup previous link */
     return (new_node);
-  } else {
+  }
+  else {
     new_node->prev = ptr;	/* setup previous link */
     ptr->next = new_node;
     return (ptr->next);
@@ -167,9 +170,13 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   /* this pass gives all nets a name, whether specified or creates a */
   /* name */
   nl_current = head;
+
   while (nl_current != NULL) {
+
     if (nl_current->cpins) {
+
       pl_current = nl_current->cpins;
+
       while (pl_current != NULL) {
 
         if (pl_current->plid != -1) {
@@ -185,6 +192,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
           /* only name nets of components which */
           /* have a uref */
           if (nl_current->component_uref) {
+
             pl_current->net_name =
             s_net_name(pr_current,
                        head,
@@ -195,6 +203,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
             /* put this name also in the first
              * node of the nets linked list */
             if (pl_current->net_name && pl_current->nets) {
+
               if (pl_current->nets->next) {
                 pl_current->nets->next->net_name =
                 u_string_strdup (pl_current->net_name);
@@ -217,13 +226,16 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   s_rename_all(pr_current, head);
 
   verbose_done();
+
   if (verbose_mode) {
     printf("- Resolving hierarchy:\n");
   }
   s_hierarchy_post_process(pr_current, head);
 
   verbose_done();
+
   if (pr_current->hierarchy_uref_mangle == FALSE) {
+
     if (verbose_mode) {
       printf("- Removing refdes mangling:\n");
     }
@@ -243,10 +255,10 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
                                 NETLIST *unnamed_netlist)
 {
 
-  NETLIST *nl_current;
+  NETLIST  *nl_current;
   CPINLIST *pl_current;
-  NET *n_current;
-  char *net_name;
+  NET      *n_current;
+  char     *net_name;
 
   if (verbose_mode) {
     printf("\n- Staring post processing\n");
@@ -256,9 +268,13 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
   /* this pass gives all nets a name, whether specified or creates a */
   /* name */
   nl_current = unnamed_netlist;
+
   while (nl_current != NULL) {
+
     if (nl_current->cpins) {
+
       pl_current = nl_current->cpins;
+
       while (pl_current != NULL) {
 
         if (pl_current->plid != -1) {
@@ -266,9 +282,12 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
         }
 
         if (pl_current->plid != -1 && pl_current->nets) {
+
           verbose_print("n");
           net_name = NULL;
+
           n_current = pl_current->nets;
+
           while (n_current != NULL) {
             GEDA_FREE (n_current->net_name);
             n_current->net_name = s_netlist_netname_of_netid(pr_current,
@@ -303,9 +322,9 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
                                   NETLIST *netlist_head,
                                   int net_id)
 {
-  NETLIST *nl_current;
+  NETLIST  *nl_current;
   CPINLIST *pl_current;
-  NET *n_current;
+  NET      *n_current;
 
   nl_current = netlist_head;
 
@@ -313,11 +332,17 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
    * of individual pins on each, looking for the net identifier
    */
   while (nl_current != NULL) {
+
     pl_current = nl_current->cpins;
+
     while (pl_current != NULL) {
+
       if (pl_current->net_name) {
+
         n_current = pl_current->nets;
+
         while (n_current != NULL) {
+
           if (n_current->nid == net_id) {
             return (u_string_strdup(n_current->net_name));
           }

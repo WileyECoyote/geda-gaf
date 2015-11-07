@@ -357,9 +357,6 @@ SCM g_get_renamed_nets(SCM scm_level)
   SCM outerlist = SCM_EOL;
   SET * temp_set;
   RENAME * temp_rename;
-  //char *level;
-
-  //level = scm_to_utf8_string (scm_level);
 
   for (temp_set = first_set; temp_set; temp_set = temp_set->next_set)
   {
@@ -372,6 +369,5 @@ SCM g_get_renamed_nets(SCM scm_level)
     }
   }
 
-  //free (level);
   return (outerlist);
 }
