@@ -545,6 +545,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_place.c */
          void    s_place_free_place_list         (GedaToplevel *toplevel);
+         GList  *s_place_get_place_list          (GedaToplevel *toplevel);
          void    s_place_set_place_list          (GedaToplevel *toplevel, GList *new_place_list );
 
 /* s_slib.c */

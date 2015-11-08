@@ -53,6 +53,36 @@ void s_place_free_place_list(GedaToplevel *toplevel)
   }
 }
 
+/*! \brief Get Place List
+ *  \par Function Description
+ *   This functions can be used to both check and get a pointer to the
+ *   current place list. If \a toplevel and toplevel->page_current are
+ *   valid, page_current->place_list is returned, which could be NULL.
+ *   If \a toplevel or toplevel->page_current are not valid then NULL
+ *   is returned.
+ *
+ *  \param [in] toplevel pointer to GedaToplevel object
+ *
+ *  \return list or NULL if there was an error or no list.
+ */
+GList *s_place_get_place_list(GedaToplevel *toplevel)
+{
+  GList *list;
+
+  Page *page = geda_toplevel_get_current_page (toplevel);
+
+  if (page) {
+
+    list = page->place_list;
+
+  }
+  else {
+    list = NULL;
+  }
+
+  return list;
+}
+
 /*! \brief Set Place List
  *  \par Function Description
  *   This functions can be used to either set or clear the place list
