@@ -235,10 +235,24 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Create a refdes relative to Hierarchy
+/*! \brief Create a refdes relative to Hierarchy
  *  \par Function Description
+ *  Creates a string composed of \a hierarchy_tag and \a basename
+ *  separated by the separator found in the toplevel variable
+ *  hierarchy_uref_separator, with the order determined by the
+ *  toplevel variable hierarchy_uref_order, provided both arguments
+ *  are supplied, if \a hierarchy_tag is NULL a copy of \a basename
+ *  is returned, if \a basename is NULL, the NULL is returned.
  *
+ *  \param [in] pr_current    Current GedaToplevel structure; toplevel,
+ *  \param [in] basename      Is the value of refdes=,
+ *  \param [in] hierarchy_tag netlist->hierarchy_tag or NULL.
+ *
+ *  \return Character string hierarchy reference.
+ *
+ *  \note Caller must release the returned character string.
+ *
+ *  \sa g_rc_hierarchy_uref_separator g_rc_hierarchy_uref_mangle i_vars_set
  */
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
                               char *hierarchy_tag)

@@ -83,7 +83,7 @@ void s_netattrib_check_connected_string (const char *str)
  * things to do here :
  * write the net alias function
  *
- * \note GEDA_FREE returned string
+ * \note caller should GEDA_FREE returned string
  */
 char *s_netattrib_extract_netname(char *value)
 {

@@ -166,6 +166,9 @@ void s_traverse_start(GedaToplevel * pr_current)
  *  \brief
  *  \par Function Description
  *
+ *  \param [in] pr_current    Current GedaToplevel structure; toplevel,
+ *  \param [in] obj_list      The string with variables to expand
+ *  \param [in] hierarchy_tag The string with variables to expand
  */
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarchy_tag)
