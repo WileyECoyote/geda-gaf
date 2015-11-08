@@ -230,6 +230,7 @@ DEFINE_I_CALLBACK(cancel)
 
   }
 
+  /* Reset the action event handler */
   i_event_cancel_action_handler (w_current);
 
   if (w_current->primary_selection) {
@@ -241,10 +242,8 @@ DEFINE_I_CALLBACK(cancel)
     o_select_unselect_all (w_current);
   }
 
-  if (Current_Page->place_list) {
-    s_object_release_objects (Current_Page->place_list);
-    Current_Page->place_list = NULL;
-  }
+  /* Check and release objects in the toplevel place list */
+  s_place_free_place_list(w_current->toplevel);
 
   /* Clear the key guile command-sequence */
   g_keys_reset (w_current);

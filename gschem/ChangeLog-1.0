@@ -1,3 +1,20 @@
+2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_callbacks.c: Replace if -> s_object_release_objects with
+      s_place_free_place_list in function i_callback_cancel.
+
+    * src/object/o_buffer.c: Replace s_object_release_objects, set NULL and
+      o_list_copy_all with s_place_set_place_list in o_buffer_paste_start().
+
+    * src/object/o_move.c: Call s_place_free_place_list instead of if ->list,
+      release and set list NULL in function o_move_cancel.
+
+    * src/object/o_place.c: Call s_place_get_place_list to actually get the
+      list to check the length in function o_place_start.
+
+    * src/object/o_text.c: Use s_place_free_place_list to simply function
+      o_text_prepare_place, and use macro, ugh, Current_PlaceList.
+
 2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Convert toggle-visibilty, view-show-hidden and

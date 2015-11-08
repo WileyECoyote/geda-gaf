@@ -50,9 +50,11 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
   bool result;
 
-  if (Current_Page->place_list) {
+  GList *list = s_place_get_place_list(w_current->toplevel);
 
-    int count = g_list_length(Current_Page->place_list);
+  if (list) {
+
+    int count = g_list_length(list);
 
     if (count > 0) {
 

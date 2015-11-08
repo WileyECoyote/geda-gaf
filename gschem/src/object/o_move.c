@@ -310,10 +310,8 @@ void o_move_cancel (GschemToplevel *w_current)
 
   w_current->stretch_list = NULL;
 
-  if (Current_Page->place_list) {
-    g_list_free(Current_Page->place_list);
-    Current_Page->place_list = NULL;
-  }
+  s_place_free_place_list(w_current->toplevel);
+
   o_undo_callback(w_current, UNDO_ACTION);
 }
 

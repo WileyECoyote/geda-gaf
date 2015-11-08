@@ -158,17 +158,12 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
 
       w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-      /* remove the old place list if it exists */
-      s_object_release_objects(Current_Page->place_list);
-
-      Current_Page->place_list = NULL;
-
-      Current_PlaceList = o_list_copy_all (object_buffer[buf_num],
-                                           Current_PlaceList);
+      /* Remove old place list and set from buffer content */
+      s_place_set_place_list (w_current->toplevel, object_buffer[buf_num]);
 
 #if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
       int dint;
-      dint = g_list_length(Current_Page->place_list);
+      dint = g_list_length(Current_PlaceList);
       printf("%s: buffers has %d objects\n", __func__, dint);
 #endif
 
