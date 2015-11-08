@@ -217,37 +217,39 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
 
       verbose_print(" C");
 
-      /* look for special tag */
+      /* look for special graphical tag */
       temp = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
 
-      if (g_strcmp0 (temp, "1") == 0) {
-        /* traverse graphical elements, but adding them to the
-         *   graphical netlist */
+      if (temp) {
 
-        netlist = s_netlist_return_tail(graphical_netlist_head);
-        is_graphical = TRUE;
+        if (g_strcmp0 (temp, "1") == 0) {
 
+          /* traverse graphical elements, and add to the graphical netlist */
+          netlist = s_netlist_return_tail (graphical_netlist_head);
+          is_graphical = TRUE;
+
+        }
+        GEDA_FREE(temp);
       }
-      GEDA_FREE(temp);
 
-      netlist = s_netlist_add(netlist);
+      netlist = s_netlist_add (netlist);
       netlist->nlid = o_current->sid;
 
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
         if (u_string_stricmp(temp_uref,"none") == 0) {
-          GEDA_FREE(temp_uref);
-          temp_uref = NULL;
+          GEDA_FREE(temp_uref);          /* Release and set to NULL */
         }
       }
 
       if (temp_uref) {
         netlist->component_uref =
-        s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
+        s_hierarchy_create_uref (pr_current, temp_uref, hierarchy_tag);
         GEDA_FREE(temp_uref);
       }
       else {
+
         if (hierarchy_tag) {
           netlist->component_uref = u_string_strdup (hierarchy_tag);
         }
@@ -465,8 +467,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
                                   nets->connected_to,
                                   hierarchy_tag);
       nets->net_name_has_priority = TRUE;
-      GEDA_FREE(nets->connected_to);
-      nets->connected_to = NULL;
+      GEDA_FREE(nets->connected_to);     /* Release and set to NULL */
     }
 
 #if DEBUG
@@ -474,8 +475,9 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 #endif
 
     /* Terminate if we hit a pin which isn't the one we started with */
-    if (!starting)
+    if (!starting) {
       return nets;
+    }
   }
 
   /*printf(_("Found net %s\n", object->name/0)); */

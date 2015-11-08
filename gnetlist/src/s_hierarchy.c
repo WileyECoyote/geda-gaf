@@ -68,10 +68,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
   if (graphical) {
     /* Do not bother traversing the hierarchy if the symbol has an */
     /* graphical attribute attached to it. */
-    if (attrib) {
-      GEDA_FREE(attrib);
-      attrib = NULL;
-    }
+    GEDA_FREE(attrib);  /* Release memory and set attrib = NULL */
   }
 
   while (attrib) {
@@ -171,7 +168,6 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
       /* has an graphical attribute attached to it. */
       if (attrib) {
         GEDA_FREE(attrib);
-        attrib = NULL;
       }
     }
   }

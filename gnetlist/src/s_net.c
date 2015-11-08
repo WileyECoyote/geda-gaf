@@ -176,7 +176,6 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   if (temp_uref) {
     if (u_string_stricmp(temp_uref,"none") == 0) {
        GEDA_FREE(temp_uref);
-       temp_uref = NULL;
     }
   }
 

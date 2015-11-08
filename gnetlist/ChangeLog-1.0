@@ -1,3 +1,7 @@
+2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Removed redundant setting of variable to NULL when using GEDA_FREE macro.
+
 2015-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Revise function g_graphical_objs_in_net_with_attrib_get_attrib
