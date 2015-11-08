@@ -1,3 +1,19 @@
+2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Eliminate unnecessary global variable; output_filename.
+
+    * include/globals.h: Remove extern output_filename.
+
+    * include/prototype.h: Add output_filename argument to parse_commandline.
+
+    * src/globals.c: Remove output_filename.
+
+    * src/parsecmd.c: Add parse_commandline argument and revise to issue warning if
+      -o options was used twice.
+
+    * src/gnetlist.c: Add variable and pass address to parse_commandline and allocate
+      default if not set, free before exiting.
+
 2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Removed redundant setting of variable to NULL when using GEDA_FREE macro.

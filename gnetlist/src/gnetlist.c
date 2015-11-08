@@ -148,7 +148,7 @@ void main_prog(void *closure, int argc, char *argv[])
   int   i;
   int   argv_index;
   char *cwd;
-
+  char *output_filename;
   GedaToplevel *pr_current;
 
 #if ENABLE_NLS
@@ -161,10 +161,16 @@ void main_prog(void *closure, int argc, char *argv[])
 
 #endif
 
-  /* set default output filename */
-  output_filename = u_string_strdup("output.net");
+  output_filename = NULL;
 
-  argv_index = parse_commandline(argc, argv);
+  argv_index = parse_commandline(argc, argv, &output_filename);
+
+  if (!output_filename) {
+
+    /* was not specified so set default output filename */
+    output_filename = u_string_strdup("output.net");
+  }
+
   cwd = g_get_current_dir();
 
   scm_set_program_arguments (argc, argv, NULL);
@@ -348,6 +354,8 @@ void main_prog(void *closure, int argc, char *argv[])
   }
 
   gnetlist_quit();
+
+  GEDA_FREE(output_filename);
 
   scm_dynwind_end();
 }

@@ -138,7 +138,7 @@ catch_handler (void *data, SCM tag, SCM throw_args)
  *
  * \return index into \a argv of first non-option argument.
  */
-int parse_commandline (int argc, char *argv[])
+int parse_commandline (int argc, char *argv[], char **output_filename)
 {
   int ch;
   int backend_flag  = FALSE;
@@ -158,7 +158,6 @@ int parse_commandline (int argc, char *argv[])
 #else
 
   while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
-  {
 
 #endif
       switch (ch) {
@@ -215,8 +214,11 @@ int parse_commandline (int argc, char *argv[])
           break;
 
         case 'o':
-          GEDA_FREE(output_filename);
-          output_filename = u_string_strdup(optarg);
+           if (*output_filename) {
+             fprintf(stderr, _("WARNING: output already specified <%s>\n"), *output_filename);
+             g_free(*output_filename);
+           }
+          *output_filename = u_string_strdup(optarg);
           break;
 
         case 'O':
