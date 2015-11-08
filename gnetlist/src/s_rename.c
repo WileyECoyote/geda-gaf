@@ -36,19 +36,19 @@
 #include <geda_debug.h>
 
 typedef struct {
-    void * next;
-    char * src;
-    char * dest;
+    void *next;
+    char *src;
+    char *dest;
 } RENAME;
 
 typedef struct {
-    void * next_set;
-    RENAME * first_rename;
-    RENAME * last_rename;
+    void   *next_set;
+    RENAME *first_rename;
+    RENAME *last_rename;
 } SET;
 
-static SET * first_set = NULL;
-static SET * last_set = NULL;
+static SET *first_set = NULL;
+static SET *last_set = NULL;
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -69,10 +69,11 @@ void s_rename_init(void)
  */
 void s_rename_destroy_all(void)
 {
-  RENAME * temp;
-  void * to_free;
+  RENAME *temp;
+  void   *to_free;
 
   while (first_set) {
+
     for (temp = first_set->first_rename; temp;) {
       GEDA_FREE(temp->src);
       GEDA_FREE(temp->dest);
@@ -80,6 +81,7 @@ void s_rename_destroy_all(void)
       temp = temp->next;
       GEDA_FREE(to_free);
     }
+
     to_free = first_set;
     first_set = first_set->next_set;
     GEDA_FREE(to_free);
@@ -94,10 +96,11 @@ void s_rename_destroy_all(void)
  */
 void s_rename_next_set(void)
 {
-  SET * new_set;
+  SET *new_set;
 
   new_set = GEDA_MEM_ALLOC(sizeof(SET));
   memset(new_set,0,sizeof(SET));
+
   if (first_set) {
     last_set->next_set = new_set;
     last_set = new_set;
@@ -114,8 +117,9 @@ void s_rename_next_set(void)
  */
 void s_rename_print(void)
 {
-  SET * temp_set;
-  RENAME * temp_rename;
+  RENAME *temp_rename;
+  SET    *temp_set;
+
   int i;
 
   for (i = 0, temp_set = first_set; temp_set;
@@ -138,10 +142,12 @@ void s_rename_print(void)
  */
 int s_rename_search(char *src, char *dest, int quiet_flag)
 {
-  RENAME * temp;
+  RENAME *temp;
 
   if (last_set) {
+
     for (temp = last_set->first_rename; temp; temp = temp->next) {
+
       if (strcmp(src, temp->src) == 0) {
         return (TRUE);
       }
@@ -162,7 +168,7 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
   return (FALSE);
 }
 
-/*  \todo Finish function documentation!!!
+/*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
@@ -197,11 +203,11 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
  */
 void s_rename_add(char *src, char *dest)
 {
-  int flag;
-  RENAME * last;
-  RENAME * temp;
-  RENAME * new_rename;
-  SET * new_set;
+  int     flag;
+  RENAME *last;
+  RENAME *temp;
+  RENAME *new_rename;
+  SET    *new_set;
 
   if (src == NULL || dest == NULL) {
     return;
@@ -213,6 +219,7 @@ void s_rename_add(char *src, char *dest)
 
     /* If found follow the original behaviour, limiting the operation to the current end-of-list */
     last = last_set->last_rename;
+
     for (temp = last_set->first_rename; ; temp = temp->next) {
 
       if ((strcmp(dest, temp->src) == 0) && (strcmp(src, temp->dest) != 0))
@@ -283,22 +290,22 @@ void s_rename_add(char *src, char *dest)
  */
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {
-  NETLIST *nl_current = NULL;
+  NETLIST  *nl_current = NULL;
   CPINLIST *pl_current;
 
   nl_current = netlist_head;
 
-  while (nl_current != NULL)
-  {
-    if (nl_current->cpins)
-    {
+  while (nl_current != NULL) {
+
+    if (nl_current->cpins) {
+
       pl_current = nl_current->cpins;
-      while (pl_current != NULL)
-      {
-        if (pl_current->net_name != NULL)
-        {
-          if (strcmp(pl_current->net_name, src) == 0)
-          {
+
+      while (pl_current != NULL) {
+
+        if (pl_current->net_name != NULL) {
+
+          if (strcmp(pl_current->net_name, src) == 0) {
             pl_current->net_name = u_string_strdup(dest);
           }
         }
@@ -314,18 +321,17 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
  *  \par Function Description
  *
  */
-void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
+void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head)
 {
-  RENAME * temp;
+  RENAME *temp;
 
 #if DEBUG
   s_rename_print();
 #endif
 
-  if (last_set)
-  {
-    for (temp = last_set->first_rename; temp; temp = temp->next)
-    {
+  if (last_set) {
+
+    for (temp = last_set->first_rename; temp; temp = temp->next) {
       verbose_print("R");
       s_rename_all_lowlevel(netlist_head, temp->src, temp->dest);
     }
@@ -353,10 +359,11 @@ void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
  */
 SCM g_get_renamed_nets(SCM scm_level)
 {
-  SCM pairlist = SCM_EOL;
+  SCM pairlist  = SCM_EOL;
   SCM outerlist = SCM_EOL;
-  SET * temp_set;
-  RENAME * temp_rename;
+
+  RENAME *temp_rename;
+  SET    *temp_set;
 
   for (temp_set = first_set; temp_set; temp_set = temp_set->next_set)
   {

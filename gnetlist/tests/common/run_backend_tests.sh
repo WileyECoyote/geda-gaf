@@ -324,4 +324,3 @@ if test $pass -ne $tot ; then
 fi
 
 exit $rc
-

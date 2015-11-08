@@ -289,11 +289,12 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
           n_current = pl_current->nets;
 
           while (n_current != NULL) {
+
             GEDA_FREE (n_current->net_name);
+
             n_current->net_name = s_netlist_netname_of_netid(pr_current,
                                                              named_netlist,
                                                              n_current->nid);
-
             if (n_current->net_name != NULL) {
               net_name = n_current->net_name;
             }

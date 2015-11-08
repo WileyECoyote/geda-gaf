@@ -74,7 +74,8 @@ void i_vars_set(GedaToplevel * pr_current)
   if (pr_current->hierarchy_uref_mangle == FALSE) {
     if (pr_current->hierarchy_uref_separator) {
       strcpy(pr_current->hierarchy_uref_separator, "/");
-    } else {
+    }
+    else {
       pr_current->hierarchy_uref_separator = u_string_strdup("/");
     }
   }

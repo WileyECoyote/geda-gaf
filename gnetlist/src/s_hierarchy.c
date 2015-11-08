@@ -106,7 +106,9 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
 
       }
       else {
+
         page_control = child_page->page_control;
+
         s_page_goto (child_page);
 
         loaded_flag = TRUE;
@@ -264,7 +266,8 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
 
             break;
         }
-      } else {
+      }
+      else {
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
             return_value =
@@ -277,13 +280,16 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
 
         }
       }
-    } else {
+    }
+    else {
       return_value = NULL;
     }
-  } else {
+  }
+  else {
     if (basename) {
       return_value = u_string_strdup (basename);
-    } else {
+    }
+    else {
       return_value = NULL;
     }
   }

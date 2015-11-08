@@ -187,6 +187,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
     string = u_string_sprintf("%s %s", uref, pinnum);
   }
   else {
+
     if (pinnum) {
       string = s_netattrib_pinnum_get_connected_string (pinnum);
 
@@ -473,7 +474,8 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
       if (hierarchy_tag) {
         string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
         GEDA_FREE (temp);
-      } else {
+      }
+      else {
         string = temp;
       }
     }

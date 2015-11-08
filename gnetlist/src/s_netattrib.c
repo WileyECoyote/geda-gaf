@@ -135,7 +135,6 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
     return;
   }
 
-
   net_name = s_netattrib_extract_netname(value);
 
   /* skip over first : */
