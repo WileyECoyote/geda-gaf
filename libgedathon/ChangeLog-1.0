@@ -1,3 +1,11 @@
+2015-11-07  Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/dual-opamp.py: Add description to symbol and revise coordinates
+      of attributes; gsymcheck now prefers description attribute be present,
+      change device=OPAMP, add value=LF353 attribute.
+
+    * tests/lpfilter.sch: Regenerate would be "golden" output.
+
 2015-10-31  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_is_page_modified to set status

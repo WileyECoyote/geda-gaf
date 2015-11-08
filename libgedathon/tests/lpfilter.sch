@@ -1,4 +1,4 @@
-v 20150823 2
+v 20151031 2
 C 1000 1000 0 0 0 title-B.sym
 {
 T 1900 2800 5 10 0 0 0 0 1
@@ -8,22 +8,26 @@ footprint=none
 }
 C 7700 7300 1 0 0 dual-opamp-py.sym
 {
-T 8375 8100 5 8 0 0 0 0 1
-device=LF353
-T 7700 9050 5 8 0 0 0 0 1
+T 7700 9400 5 8 0 0 0 0 1
+device=OPAMP
+T 8500 8400 5 8 0 0 0 0 1
 footprint=DIP8
+T 8500 8200 5 8 0 0 0 0 1
+value=LF353
 T 8500 8050 5 8 1 1 0 0 1
 refdes=U1
 }
 C 12500 7100 1 0 0 dual-opamp-py.sym
 {
-T 13175 7900 5 8 0 0 0 0 1
-device=LF353
-T 12500 8850 5 8 0 0 0 0 1
+T 12500 9200 5 8 0 0 0 0 1
+device=OPAMP
+T 13300 8200 5 8 0 0 0 0 1
 footprint=DIP8
+T 13300 8000 5 8 0 0 0 0 1
+value=LF353
 T 13300 7850 5 8 1 1 0 0 1
 refdes=U1
-T 12500 8250 5 8 0 0 0 0 1
+T 12500 8400 5 8 0 0 0 0 1
 slot=2
 }
 C 3000 7700 1 0 0 capacitor-py.sym

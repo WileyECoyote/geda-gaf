@@ -17,25 +17,31 @@ filename = sym_path + "/dual-opamp-py.sym"
 opamp = geda.new_page(filename, True)
 
 # Create and add standard symbol attributes
-attribute = geda.new_attrib("author", "Python", 0, 1900)
+attribute = geda.new_attrib("author", "Python", 0, 2300)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("device", "LF353", 675, 800)
+attribute = geda.new_attrib("device", "OPAMP", 0, 2100)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("numslots", "2", 0, 1600)
+attribute = geda.new_attrib("numslots", "2", 0, 1900)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("slotdef", "1:1,2,3,4,8", 0, 1450)
+attribute = geda.new_attrib("slotdef", "1:1,2,3,4,8", 0, 1700)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("slotdef", "2:5,6,7,4,8", 0, 1300)
+attribute = geda.new_attrib("slotdef", "2:5,6,7,4,8", 0, 1500)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("slot", "1", 0, 1150)
+attribute = geda.new_attrib("slot", "1", 0, 1300)
 geda.add_object(opamp, attribute)
 
-attribute = geda.new_attrib("footprint", "DIP8", 0, 1750)
+descr = geda.new_attrib("description", "Dual Operational Amplifier", 800, 1300)
+geda.add_object(opamp, descr)
+
+attribute = geda.new_attrib("footprint", "DIP8", 800, 1100)
+geda.add_object(opamp, attribute)
+
+attribute = geda.new_attrib("value", "LF353", 800, 900)
 geda.add_object(opamp, attribute)
 
 # Create and add the lines that form the opamp symbol

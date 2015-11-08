@@ -2,7 +2,6 @@
 
 let result=0;
 
-
    if [ -d "../../scripts" ] ; then
      path2scripts="../../scripts"
    elif [ -d "../scripts" ] ; then
