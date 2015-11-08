@@ -1,3 +1,11 @@
+2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Add ADD_WARN_LOCATION to append to the list of
+      warning messages without incrementing the warning count. This
+      conflists with idea to use the length of the list to rather than
+      using a counter. Change the messages to help use locate errors
+      to use the new macro.
+
 2015-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Add a local pointer to the page so that

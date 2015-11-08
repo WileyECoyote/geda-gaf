@@ -4,10 +4,13 @@ Warning: Found unknown pineq= attribute: [pineq=2]
 Warning: Found obsolete uref= attribute: [uref=U?]
 Warning: Missing pinlabel= attribute
 Warning: Missing pintype= attribute
+Warning: Check pin sequence=<3>
 Warning: Missing pinlabel= attribute
 Warning: Missing pintype= attribute
+Warning: Check pin number=<2>
 Warning: Missing pinlabel= attribute
 Warning: Missing pintype= attribute
+Warning: Check pin number=<1>
 Warning: Missing footprint= attribute
 Warning: Missing refdes= attribute
 ERROR: Missing device= attribute

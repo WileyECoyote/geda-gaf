@@ -39,6 +39,7 @@
 #define ADD_INFO_MESSAGE(msg)  s_current->info_messages = g_list_append(s_current->info_messages, message);
 #define ADD_WARN_MESSAGE(msg)  s_current->warning_messages = g_list_append(s_current->warning_messages, message); \
                                s_current->warning_count++;
+#define ADD_WARN_LOCATION(msg) s_current->warning_messages = g_list_append(s_current->warning_messages, message); \
 
 /* Function prototypes */
 static int  s_check_symbol(SYMCHECK *s_current, const GList *obj_list);
@@ -1577,14 +1578,14 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
         pin = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", 0);
         if (pin) {
           message = u_string_sprintf (_("Check pin number=<%s>\n"), pin);
-          ADD_WARN_MESSAGE(message);
+          ADD_WARN_LOCATION(message);
           GEDA_FREE(pin);
         }
         else {
           pin = o_attrib_search_object_attribs_by_name (o_current, "pinseq", 0);
           if (pin) {
             message = u_string_sprintf (_("Check pin sequence=<%s>\n"), pin);
-            ADD_WARN_MESSAGE(message);
+            ADD_WARN_LOCATION(message);
             GEDA_FREE(pin);
           }
         }
