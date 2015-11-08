@@ -512,8 +512,8 @@ gschem_page_view_invalidate_all (GschemPageView *view)
 
 /*! \brief Schedule redraw of the given object
  *
- *  \param [in,out] view   The Gschem page view to redraw
- *  \param [in]     object The object to redraw
+ *  \param [in,out] w_current The Gschem page view to redraw
+ *  \param [in]     object    The object to redraw
  */
 void
 gschem_page_view_invalidate_object (GschemToplevel *w_current, Object *object)
@@ -555,7 +555,7 @@ gschem_page_view_invalidate_object (GschemToplevel *w_current, Object *object)
 
 /*! \brief Schedule redraw of the given rectange
  *
- *  \param [in,out] view   The Gschem page view to redraw
+ *  \param [in,out] w_current The Gschem page view to redraw
  *  \param [in]     left
  *  \param [in]     top
  *  \param [in]     right
@@ -597,7 +597,7 @@ gschem_page_view_invalidate_screen_rect (GschemToplevel *w_current, int left, in
 
 /*! \brief Schedule redraw of the given rectange
  *
- *  \param [in,out] view   The Gschem page view to redraw
+ *  \param [in,out] w_current The Gschem page view to redraw
  *  \param [in]     left
  *  \param [in]     top
  *  \param [in]     right
@@ -691,13 +691,13 @@ gschem_page_view_new_with_page (Page *page)
 
 /*! \brief Pan the view on the given world coordinate using given zoom factor
  *
- *  \param [in,out] page_view This GschemPageView
+ *  \param [in,out] view      This GschemPageView
  *  \param [in]     w_x       The world x coordinate of the new center
  *  \param [in]     w_y       The world y coordinate of the new center
- *  \param [in]     relativ_zoom_factor  The zoom factor
+ *  \param [in]     rel_zoom  The Relative Zoom Factor
  */
 void
-gschem_page_view_pan_general (GschemPageView *view, int w_x, int w_y, double relativ_zoom_factor)
+gschem_page_view_pan_general (GschemPageView *view, int w_x, int w_y, double rel_zoom)
 {
   GschemPageGeometry *geometry = NULL;
 
@@ -709,7 +709,7 @@ gschem_page_view_pan_general (GschemPageView *view, int w_x, int w_y, double rel
   /* make mouse to the new world-center;
      attention: there are information looses because of type cast in mil_x */
 
-  gschem_page_geometry_pan_general (geometry, w_x, w_y, relativ_zoom_factor, 0);
+  gschem_page_geometry_pan_general (geometry, w_x, w_y, rel_zoom, 0);
 
   g_signal_emit_by_name (view, "update-grid-info");
   gschem_page_view_update_scroll_adjustments (view);
@@ -719,9 +719,9 @@ gschem_page_view_pan_general (GschemPageView *view, int w_x, int w_y, double rel
 
 /*! \brief Center the view on the given world coordinate
  *
- *  \param [in,out] page_view This GschemPageView
- *  \param [in]     w_x       The world x coordinate of the new center
- *  \param [in]     w_y       The world y coordinate of the new center
+ *  \param [in,out] view This GschemPageView
+ *  \param [in]     w_x  The world x coordinate of the new center
+ *  \param [in]     w_y  The world y coordinate of the new center
  */
 void
 gschem_page_view_pan (GschemPageView *view, int w_x, int w_y)
@@ -805,7 +805,6 @@ void gschem_page_view_pan_start (GschemPageView *view, int x, int y)
  *  w_current. Then it replaces pan_x and pan_y with the new
  *  coordinates.
  *
- *  \param [in,out] view      This GschemPageView
  *  \param [in]     w_current The GschemToplevel
  *  \param [in]     x         The new screen x coordinate
  *  \param [in]     y         The new screen y coordinate
@@ -947,7 +946,7 @@ gschem_page_view_set_page (GschemPageView *view, Page *page)
 
 /*! \brief Set the vertical scroll adjustment for this view
  *
- *  \param [in,out] view The view
+ *  \param [in,out] view        The view
  *  \param [in]     vadjustment The vertical scroll adjustment
  */
 void
