@@ -2265,9 +2265,9 @@ COMMAND (do_draw_before)
 
     GList *object_list;
 
-    o_redraw_cleanstates(w_current);
+    o_redraw_cleanstates (w_current);
 
-    gschem_toplevel_free_primary(w_current);
+    gschem_toplevel_free_primary (w_current);
 
     object_list = geda_list_get_glist (Current_Selection);
 
@@ -2275,7 +2275,7 @@ COMMAND (do_draw_before)
 
     i_status_show_msg(w_current, "Which objects");
 
-    o_select_connect_selector(w_current, o_page_draw_before);
+    o_select_connect_selector (w_current, o_page_draw_before);
 
   }
   else {
@@ -2309,17 +2309,17 @@ COMMAND (do_draw_last)
 {
   BEGIN_NO_ACTION(do_draw_last);
 
-  if (o_select_is_selection(w_current)) {
+  if (o_select_is_selection (w_current)) {
 
     GList *object_list = geda_list_get_glist (Current_Selection);
 
-    o_redraw_cleanstates(w_current);
+    o_redraw_cleanstates (w_current);
 
-    o_page_draw_last(w_current, object_list);
+    o_page_draw_last (w_current, object_list);
 
   }
   else {
-    msg_need_select_1st(w_current);
+    msg_need_select_1st (w_current);
   }
   EXIT_COMMAND(do_draw_last);
 }
@@ -2351,7 +2351,7 @@ COMMAND (do_page_first)
 
   if (w_current->enforce_hierarchy) {
 
-    iter = g_list_find( geda_list_get_glist(toplevel->pages), p_current);
+    iter = g_list_find (geda_list_get_glist(toplevel->pages), p_current);
     iter = g_list_previous(iter);
 
     if (iter != NULL) {
@@ -2359,7 +2359,7 @@ COMMAND (do_page_first)
       Page  *p_prev = p_first = iter->data;
 
       while (p_prev) {
-        p_prev = s_hierarchy_find_prev_page(toplevel->pages, p_prev);
+        p_prev = s_hierarchy_find_prev_page (toplevel->pages, p_prev);
         if (p_prev) {
           p_first = p_prev;
         }
@@ -2367,17 +2367,17 @@ COMMAND (do_page_first)
     }
     else {
 
-      iter = geda_toplevel_get_pages(toplevel);
+      iter = geda_toplevel_get_pages (toplevel);
       p_first = iter->data;
 
     }
   }
   else {
-    iter = geda_toplevel_get_pages(toplevel);
+    iter = geda_toplevel_get_pages (toplevel);
     p_first = iter->data;
   }
 
-  if (p_first != NULL || p_first != p_current) {
+  if (p_first != NULL && p_first != p_current) {
     x_window_set_current_page (w_current, p_first);
   }
 
@@ -2399,7 +2399,7 @@ COMMAND (do_page_prev)
   p_old = geda_toplevel_get_current_page (toplevel);
   p_new = geda_toplevel_get_page_up (toplevel);
 
-  if (p_new != NULL || p_new != p_old) {
+  if (p_new != NULL && p_new != p_old) {
     x_window_set_current_page (w_current, p_new);
   }
 }
@@ -2420,7 +2420,7 @@ COMMAND (do_page_next)
   p_old = geda_toplevel_get_current_page (toplevel);
   p_new = geda_toplevel_get_page_down (toplevel);
 
-  if (p_new != NULL || p_new != p_old) {
+  if (p_new != NULL && p_new != p_old) {
     x_window_set_current_page (w_current, p_new);
   }
 }
@@ -2438,21 +2438,21 @@ COMMAND (do_page_up)
   Page *page_current;
   Page *p_new;
 
-  page_current = geda_toplevel_get_current_page(toplevel);
+  page_current = geda_toplevel_get_current_page (toplevel);
 
   if (page_current != NULL) {
 
     if (w_current->enforce_hierarchy) {
 
-      p_new = s_hierarchy_find_prev_page(toplevel->pages, page_current);
+      p_new = s_hierarchy_find_prev_page (toplevel->pages, page_current);
 
     }
     else {
 
-      p_new = geda_toplevel_get_page_up(toplevel);
+      p_new = geda_toplevel_get_page_up (toplevel);
     }
 
-    if (p_new != NULL || p_new != page_current) {
+    if (p_new != NULL && p_new != page_current) {
       x_window_set_current_page (w_current, p_new);
     }
   }
@@ -2471,7 +2471,7 @@ COMMAND (do_page_down)
   Page *current_page;
   Page *p_new;
 
-  current_page = geda_toplevel_get_current_page(toplevel);
+  current_page = geda_toplevel_get_current_page (toplevel);
 
   if (current_page != NULL) {
 
@@ -2484,7 +2484,7 @@ COMMAND (do_page_down)
       p_new = geda_toplevel_get_page_down(toplevel);
     }
 
-    if (p_new != NULL || p_new != current_page) {
+    if (p_new != NULL && p_new != current_page) {
       x_window_set_current_page (w_current, p_new);
     }
   }
@@ -2531,7 +2531,7 @@ COMMAND (do_page_last)
     p_last = iter->data;
   }
 
-  if (p_last != NULL || p_last != current_page) {
+  if (p_last != NULL && p_last != current_page) {
     x_window_set_current_page (w_current, p_last);
   }
 }
