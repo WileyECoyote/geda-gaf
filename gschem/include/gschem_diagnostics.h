@@ -1,4 +1,4 @@
-/* -*- i_diagnostics.h -*-
+/* -*- gschem_diagnostics.h -*-
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
