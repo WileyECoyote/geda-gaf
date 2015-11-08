@@ -1,3 +1,8 @@
+2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_diagnostics.h: Add new header to facilitate implementation
+      of performance test.
+
 2015-11-02 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * etc/system-gschemrc.scm: WEH: Modified per commit to Master branch by
