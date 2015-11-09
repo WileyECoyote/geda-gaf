@@ -25,6 +25,10 @@
 
           set scm_return_value to "pwr" if return_pwr && not return_value
 
+   ** src/s_netlist.c: Add local pointer "net_name" in s_netlist_post_process,
+      make sure free pl_current->nets->next->net_name before over-writing the
+      pointer with returned from s_net_name via net_name, add some DOxygen info.
+
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * Eliminate unnecessary global variable; output_filename.

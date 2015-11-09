@@ -178,11 +178,15 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Post Traversal Processing to rename nets
  *  \par Function Description
  *
+ *  \param [in] pr_current GedaToplevel structure; toplevel,
+ *  \param [in] head       Pointer to Global netlist in globals.c
+ *
+ *   \sa s_traverse_start
  */
-void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
+void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
@@ -194,8 +198,8 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
     printf("- Naming nets:\n");
   }
 
-  /* this pass gives all nets a name, whether specified or creates a */
-  /* name */
+  /* this pass gives all nets a name, whether specified or
+   * creates a name */
   nl_current = head;
 
   while (nl_current != NULL) {
@@ -216,24 +220,22 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
 
           verbose_print("n");
 
-          /* only name nets of components which */
-          /* have a uref */
+          /* only name nets of components which have a uref */
           if (nl_current->component_uref) {
 
-            pl_current->net_name =
-            s_net_name(pr_current,
-                       head,
-                       pl_current->nets,
-                       nl_current->hierarchy_tag,
-                       pl_current->node_type);
+            char *net_name;
 
-            /* put this name also in the first
-             * node of the nets linked list */
+            net_name = s_net_name(pr_current, head, pl_current->nets,
+                                              nl_current->hierarchy_tag,
+                                              pl_current->node_type);
+
+            pl_current->net_name = net_name;
+            /* also put this name in the first node of the nets linked list */
             if (pl_current->net_name && pl_current->nets) {
 
               if (pl_current->nets->next) {
-                pl_current->nets->next->net_name =
-                u_string_strdup (pl_current->net_name);
+                GEDA_FREE(pl_current->nets->next->net_name);
+                pl_current->nets->next->net_name = u_string_strdup (net_name);
               }
             }
           }
@@ -246,6 +248,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   }
 
   verbose_done();
+
   if (verbose_mode) {
     printf("- Renaming nets:\n");
   }
@@ -257,6 +260,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   if (verbose_mode) {
     printf("- Resolving hierarchy:\n");
   }
+
   s_hierarchy_post_process(pr_current, head);
 
   verbose_done();
