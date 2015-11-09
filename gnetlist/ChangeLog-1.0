@@ -3,7 +3,7 @@
     * Eliminate hierarchy recurrsion loop
 
     * gnetlist/src/s_traverse.c: Include <geda_diagnostics.h> and add start and
-      stop macros in function s_traverse_sheet.
+      stop macros in function s_traverse_sheet, rename variable "temp" to "value".
 
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -179,7 +179,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
 {
   NETLIST *netlist;
   char    *net_name;
-  char    *temp;
+  char    *value;
   char    *temp_uref;
   bool     is_graphical;
   bool     is_hierarchy;
@@ -192,9 +192,9 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
   START_GEDA_PERFORMANCE
 #endif
 
+  err          = NULL;
   is_graphical = FALSE;
   is_hierarchy = TRUE;
-  err          = NULL;
 
   cfg          = eda_config_get_context_for_file (NULL);
   is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
@@ -230,18 +230,25 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
       verbose_print(" C");
 
       /* look for special graphical tag */
-      temp = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
+      value = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
 
-      if (temp) {
+      if (value) {
 
-        if (g_strcmp0 (temp, "1") == 0) {
+        if (g_strcmp0 (value, "1") == 0) {
 
           /* traverse graphical elements, and add to the graphical netlist */
           netlist = s_netlist_return_tail (graphical_netlist_head);
           is_graphical = TRUE;
+        }
+        GEDA_FREE(value);
+      }
 
         }
-        GEDA_FREE(temp);
+      }
+        value = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
+
+        /* nope net attribute not found */
+        if ((!value) && (!is_graphical)) {
   STOP_GEDA_PERFORMANCE;
       }
 
