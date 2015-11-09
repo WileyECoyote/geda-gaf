@@ -118,11 +118,9 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
 
         netlist->composite_component = TRUE;
 
-        /* can't do the following, don't know why... HACK TODO */
-        /*netlist->hierarchy_tag = u_basic_strdup (netlist->component_uref);*/
-        s_traverse_sheet (pr_current,
-                          s_page_get_objects (pr_current->page_current),
-                          netlist->component_uref);
+        netlist->hierarchy_tag = u_string_strdup (netlist->component_uref);
+
+        s_traverse_hierarchy_sheet (pr_current, netlist);
 
         verbose_print("^");
       }

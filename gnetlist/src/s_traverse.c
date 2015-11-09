@@ -175,7 +175,7 @@ void s_traverse_start(GedaToplevel * pr_current)
  *  \param [in] hierarchy_tag The string with variables to expand
  */
 void
-s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarchy_tag)
+s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 {
   NETLIST *netlist;
   char    *net_name;
@@ -243,13 +243,133 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
         GEDA_FREE(value);
       }
 
+      netlist = s_netlist_add (netlist);
+      netlist->nlid = o_current->sid;
+
+      temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
+
+      if (temp_uref) {
+        if (u_string_stricmp(temp_uref,"none") == 0) {
+          GEDA_FREE(temp_uref);          /* Release and set to NULL */
         }
       }
+
+      if (temp_uref) {
+        netlist->component_uref =
+        s_hierarchy_create_uref (pr_current, temp_uref, NULL);
+        GEDA_FREE(temp_uref);
+      }
+      else {
+
+          netlist->component_uref = NULL;
+      }
+
+      netlist->object_ptr = o_current;
+
+      if (!netlist->component_uref) {
+
+        /* search object for net attribute, noting that symbol may
+         * not be a normal component but a power or gnd symbol */
         value = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
 
         /* nope net attribute not found */
         if ((!value) && (!is_graphical)) {
+
+          net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+
+          fprintf(stderr,
+         _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
+            o_current->complex->filename, net_name);
+
+          netlist->component_uref = u_string_strdup("U?");
+        }
+        else {
+
+#if DEBUG
+          printf("found a power symbol <%s>\n", value);
+#endif
+          /* it's a power or some other special symbol */
+          GEDA_FREE(value);
+        }
+      }
+
+      netlist->cpins = s_traverse_component (pr_current, o_current, NULL);
+
+      /* Deal with the net attribute */
+      s_netattrib_handle (pr_current, o_current, netlist, NULL);
+
+      /* Conditionally traverse any underlying schematics */
+      if (is_hierarchy) {
+        s_hierarchy_traverse (pr_current, o_current, netlist);
+      }
+    }
+  }
+
+  verbose_done();
+
   STOP_GEDA_PERFORMANCE;
+}
+
+void
+s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
+{
+  char    *net_name;
+  char    *value;
+  char    *temp_uref;
+  bool     is_graphical;
+  bool     is_hierarchy;
+  const GList *iter;
+  GError      *err;
+  EdaConfig   *cfg;
+
+  err          = NULL;
+  is_graphical = FALSE;
+  is_hierarchy = TRUE;
+
+  cfg          = eda_config_get_context_for_file (NULL);
+  is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
+
+  if (err != NULL) {
+    is_hierarchy = TRUE;
+    g_clear_error (&err);
+  }
+
+  const GList *obj_list = s_page_get_objects (pr_current->page_current);
+  char *hierarchy_tag = netlist->hierarchy_tag;
+
+  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+
+    Object *o_current = iter->data;
+
+    netlist = s_netlist_return_tail (netlist_head);
+
+    if (o_current->type == OBJ_PLACEHOLDER) {
+      printf(_("WARNING: Found a placeholder/missing component, is symbol file missing? [%s]\n"),
+                o_current->complex->filename);
+    }
+
+    if (o_current->type == OBJ_COMPLEX) {
+
+      is_graphical = FALSE;
+
+#if DEBUG
+      printf("starting NEW component\n\n");
+#endif
+
+      verbose_print(" C");
+
+      /* look for special graphical tag */
+      value = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
+
+      if (value) {
+
+        if (g_strcmp0 (value, "1") == 0) {
+
+          /* traverse graphical elements, and add to the graphical netlist */
+          netlist = s_netlist_return_tail (graphical_netlist_head);
+          is_graphical = TRUE;
+        }
+        GEDA_FREE(value);
       }
 
       netlist = s_netlist_add (netlist);
@@ -286,28 +406,28 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
 
       if (!netlist->component_uref) {
 
-        /* search of net attribute */
-        /* maybe symbol is not a component */
-        /* but a power / gnd symbol */
-        temp = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
+        /* search object for net attribute, noting that symbol may
+         * not be a normal component but a power or gnd symbol */
+        value = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
 
         /* nope net attribute not found */
-        if ((!temp) && (!is_graphical)) {
+        if ((!value) && (!is_graphical)) {
           net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
           fprintf(stderr,
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
             o_current->complex->filename, net_name);
 
           netlist->component_uref = u_string_strdup("U?");
-        } else {
+        }
+        else {
+
 #if DEBUG
           printf("yeah... found a power symbol\n");
 #endif
           /* it's a power or some other special symbol */
           netlist->component_uref = NULL;
-          GEDA_FREE(temp);
+          GEDA_FREE(value);
         }
-
       }
 
       netlist->cpins =

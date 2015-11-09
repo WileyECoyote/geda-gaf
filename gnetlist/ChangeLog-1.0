@@ -1,9 +1,15 @@
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Eliminate hierarchy recurrsion loop
+    * Eliminate toplevel hierarchy recursive loop
 
     * gnetlist/src/s_traverse.c: Include <geda_diagnostics.h> and add start and
       stop macros in function s_traverse_sheet, rename variable "temp" to "value".
+      Add function s_traverse_hierarchy_sheet and call from s_hierarchy_traverse,
+      which is called from s_traverse_sheet instead of s_hierarchy_traverse->
+      s_hierarchy_traverse->s_hierarchy_traverse.
+
+    * src/s_hierarchy.c: Call s_traverse_hierarchy_sheet instead s_hierarchy_traverse
+      as noted above.
 
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
