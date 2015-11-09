@@ -25,10 +25,14 @@
  *
  */
 
+//#define PERFORMANCE 1
+
 #include <config.h>
 #include "gnetlist.h"
 #include <gettext.h>
+
 #include <geda_debug.h>
+#include <geda_diagnostics.h>
 
 /*! Tracks which Objects have been visited so far, and how many times.
  *
@@ -183,6 +187,11 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
   GError      *err;
   EdaConfig   *cfg;
 
+#if PERFORMANCE
+  printf("%s processing <%s>\n",__func__, pr_current->page_current->filename);
+  START_GEDA_PERFORMANCE
+#endif
+
   is_graphical = FALSE;
   is_hierarchy = TRUE;
   err          = NULL;
@@ -233,6 +242,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list, char *hierarc
 
         }
         GEDA_FREE(temp);
+  STOP_GEDA_PERFORMANCE;
       }
 
       netlist = s_netlist_add (netlist);
