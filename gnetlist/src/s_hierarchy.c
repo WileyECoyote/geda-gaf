@@ -659,9 +659,9 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
         if (n_current->connected_to) {
           verbose_print("U");
           sscanf(n_current->connected_to, "%s %s", uref, pin);
-          new_uref =
-          s_hierarchy_return_baseuref(pr_current, uref);
+          new_uref = s_hierarchy_return_baseuref(pr_current, uref);
           new_connected_to = u_string_sprintf("%s %s", new_uref, pin);
+          GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
           n_current->connected_to = new_connected_to;
         }

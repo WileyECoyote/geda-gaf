@@ -9,7 +9,8 @@
       s_hierarchy_traverse->s_hierarchy_traverse.
 
     * src/s_hierarchy.c: Call s_traverse_hierarchy_sheet instead s_hierarchy_traverse
-      as noted above.
+      as noted above. Release memory allocated by s_hierarchy_return_baseuref in
+      s_hierarchy_remove_uref_mangling; pointed to by variable = new_uref.
 
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
