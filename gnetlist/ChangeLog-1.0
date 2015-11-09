@@ -1,6 +1,6 @@
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * Eliminate toplevel hierarchy recursive loop
+    * Eliminate toplevel hierarchy recursive loop, fix potential memory leaks
 
     * gnetlist/src/s_traverse.c: Include <geda_diagnostics.h> and add start and
       stop macros in function s_traverse_sheet, rename variable "temp" to "value".
@@ -8,9 +8,22 @@
       which is called from s_traverse_sheet instead of s_hierarchy_traverse->
       s_hierarchy_traverse->s_hierarchy_traverse.
 
-    * src/s_hierarchy.c: Call s_traverse_hierarchy_sheet instead s_hierarchy_traverse
+   ** src/s_hierarchy.c: Call s_traverse_hierarchy_sheet instead s_hierarchy_traverse
       as noted above. Release memory allocated by s_hierarchy_return_baseuref in
       s_hierarchy_remove_uref_mangling; pointed to by variable = new_uref.
+
+   ** src/g_netlist.c: Revise function g_get_attribute_by_pinnumber:
+
+          Reposition debug directives inside the if (return_value)
+
+          Add "done = TRUE;" inside the preceeding if to ensure that
+          o_attrib_search_object_attribs_by_name is not called twice.
+
+          Add boolean return_pwr and set true instead of 'return_value = "pwr";'
+
+          Edit conditional at exit to free return_value after setting scm_value
+
+          set scm_return_value to "pwr" if return_pwr && not return_value
 
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 

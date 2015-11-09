@@ -734,7 +734,8 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
   char *pin;
   char *wanted_attrib;
   char *return_value = NULL;
-  int   done = FALSE;
+  bool  return_pwr   = FALSE;
+  bool  done         = FALSE;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinnumber");
@@ -775,11 +776,15 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
           /* only look for the first occurance of wanted_attrib */
           return_value = o_attrib_search_object_attribs_by_name (pin_object,
                                                                  wanted_attrib, 0);
-#if DEBUG
+
           if (return_value) {
+
+            done = TRUE;
+#if DEBUG
             printf("GOT IT: %s\n", return_value);
-          }
 #endif
+          }
+
         }
         else if (strcmp("pintype", wanted_attrib) == 0) {
 
@@ -789,10 +794,10 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
             if (pinobject) {
 
-              return_value = "pwr";
+              return_pwr = TRUE;
 #if DEBUG
 
-              printf("Supplied pintype 'pwr' for artificial pin '%s' of '%s'\n",
+              printf("pintype 'pwr' for artificial pin '%s' of '%s'\n",
                      pin, uref);
 #endif
             }
@@ -807,9 +812,15 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
   if (return_value) {
     scm_return_value = scm_from_utf8_string (return_value);
+    GEDA_FREE(return_value);
   }
   else {
-    scm_return_value = scm_from_utf8_string ("unknown");
+    if (return_pwr) {
+      scm_return_value = scm_from_utf8_string ("pwr");
+    }
+    else {
+      scm_return_value = scm_from_utf8_string ("unknown");
+    }
   }
 
   return (scm_return_value);
