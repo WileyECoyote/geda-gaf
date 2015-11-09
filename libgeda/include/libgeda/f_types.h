@@ -14,7 +14,7 @@ typedef int (*ObjectBoundsFunc)(Object *);
  *  \brief Type of callback function for calculating text bounds */
 typedef int(*RenderedBoundsFunc)(void *, Object *, int *, int *, int *, int *);
 
-/*! \typedef
+/*! \typedef ChangeNotifyFunc
  *  \brief Type of callback function for object damage notification */
 typedef int(*ChangeNotifyFunc)(void *, Object *);
 
