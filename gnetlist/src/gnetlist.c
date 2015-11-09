@@ -78,7 +78,7 @@ gnetlist_backends (GedaToplevel *pr_current)
   /* Look up the current Guile %load-path */
   s_load_path = scm_variable_ref (scm_c_lookup ("%load-path"));
 
-  for ( ; s_load_path != SCM_EOL; s_load_path = scm_cdr (s_load_path)) {
+  while (s_load_path != SCM_EOL) {
 
     SCM    s_dir_name = scm_car (s_load_path);
     char  *dir_name;
@@ -101,6 +101,7 @@ gnetlist_backends (GedaToplevel *pr_current)
     free (dir_name);
 
     while (1) {
+
       char *name;
 
       dentry = readdir (dptr);
@@ -121,6 +122,8 @@ gnetlist_backends (GedaToplevel *pr_current)
 
     /* Close directory */
     closedir (dptr);
+
+    s_load_path = scm_cdr (s_load_path);
   }
 
   /* Sort the list of backends */

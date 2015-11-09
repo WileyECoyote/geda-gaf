@@ -11,8 +11,15 @@
     * src/parsecmd.c: Add parse_commandline argument and revise to issue warning if
       -o options was used twice.
 
+    * src/s_net.c: Reorganized modules putting functions in alphabetical order.
+
     * src/gnetlist.c: Add variable and pass address to parse_commandline and allocate
-      default if not set, free before exiting.
+      default if not set, free before exiting. Convert For loop in gnetlist_backends
+      to a While loop.
+
+    * src/s_cpinlist.c: Reorganized modules putting functions in alphabetical order.
+
+    * src/s_net.c: Reorganized modules putting functions in alphabetical order.
 
     * src/s_netattrib.c: Release old old_cpin->nets->connected_to before reassigning
       in function s_netattrib_create_pins and change cpinlist_tail, netlist_tail,

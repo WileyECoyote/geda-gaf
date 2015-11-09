@@ -35,50 +35,6 @@
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * hack rename this to be s_return_tail
- * update object_tail or any list of that matter
- */
-NETLIST *s_netlist_return_tail(NETLIST * head)
-{
-  NETLIST *nl_current = NULL;
-  NETLIST *ret_struct = NULL;
-
-  nl_current = head;
-
-  while (nl_current != NULL) {	/* goto end of list */
-    ret_struct = nl_current;
-    nl_current = nl_current->next;
-  }
-
-  return (ret_struct);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- * hack rename this to be s_return_head
- * update object_tail or any list of that matter
- */
-
-NETLIST *s_netlist_return_head(NETLIST * tail)
-{
-  NETLIST *nl_current = NULL;
-  NETLIST *ret_struct = NULL;
-
-  nl_current = tail;
-
-  while (nl_current != NULL) {	/* goto end of list */
-    ret_struct = nl_current;
-    nl_current = nl_current->prev;
-  }
-
-  return (ret_struct);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
  *  \returns new node
  */
 NETLIST *s_netlist_add(NETLIST * ptr)
@@ -109,45 +65,116 @@ NETLIST *s_netlist_add(NETLIST * ptr)
   }
 }
 
-/*! \brief Print Net List
+/*! \todo Finish function documentation!!!
+ *  \brief
  *  \par Function Description
- *   Prints the net-list pointed to by \a nl_current
+ *
  */
-void s_netlist_print(NETLIST * nl_current)
+void s_netlist_name_named_nets (GedaToplevel *pr_current,
+                                NETLIST *named_netlist,
+                                NETLIST *unnamed_netlist)
 {
-  NETLIST *nl_iter = NULL;
 
-  nl_iter = nl_current;
+  NETLIST  *nl_current;
+  CPINLIST *pl_current;
+  NET      *n_current;
+  char     *net_name;
 
-  if (nl_iter == NULL) {
-    return;
+  if (verbose_mode) {
+    printf("\n- Staring post processing\n");
+    printf("- Naming nets of graphical objects:\n");
   }
 
-  while (nl_iter != NULL) {
+  /* this pass gives all nets a name, whether specified or creates a */
+  /* name */
+  nl_current = unnamed_netlist;
 
-    if (nl_iter->nlid != -1) {
+  while (nl_current != NULL) {
 
-      if (nl_iter->component_uref) {
-        printf("component %s \n", nl_iter->component_uref);
+    if (nl_current->cpins) {
+
+      pl_current = nl_current->cpins;
+
+      while (pl_current != NULL) {
+
+        if (pl_current->plid != -1) {
+          verbose_print("p");
+        }
+
+        if (pl_current->plid != -1 && pl_current->nets) {
+
+          verbose_print("n");
+          net_name = NULL;
+
+          n_current = pl_current->nets;
+
+          while (n_current != NULL) {
+
+            GEDA_FREE (n_current->net_name);
+
+            n_current->net_name = s_netlist_netname_of_netid(pr_current,
+                                                             named_netlist,
+                                                             n_current->nid);
+            if (n_current->net_name != NULL) {
+              net_name = n_current->net_name;
+            }
+            n_current = n_current->next;
+          }
+          if (net_name != NULL) {
+            pl_current->net_name = u_string_strdup(net_name);
+          }
+        }
+        pl_current = pl_current->next;
       }
-      else {
-        printf("component SPECIAL \n");
-      }
-
-      if (nl_iter->hierarchy_tag) {
-        printf("Hierarchy tag: %s\n", nl_iter->hierarchy_tag);
-      }
-
-      if (nl_iter->cpins) {
-        s_cpinlist_print(nl_iter->cpins);
-      }
-
-      printf("\n");
     }
-
-    nl_iter = nl_iter->next;
+    nl_current = nl_current->next;
   }
-  printf("\n");
+
+  verbose_done();
+
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
+                                  NETLIST      *netlist_head,
+                                  int           net_id)
+{
+  NETLIST  *nl_current;
+  CPINLIST *pl_current;
+  NET      *n_current;
+
+  nl_current = netlist_head;
+
+  /* walk through the list of components, and through the list
+   * of individual pins on each, looking for the net identifier
+   */
+  while (nl_current != NULL) {
+
+    pl_current = nl_current->cpins;
+
+    while (pl_current != NULL) {
+
+      if (pl_current->net_name) {
+
+        n_current = pl_current->nets;
+
+        while (n_current != NULL) {
+
+          if (n_current->nid == net_id) {
+            return (u_string_strdup(n_current->net_name));
+          }
+          n_current = n_current->next;
+        }
+      }
+      pl_current = pl_current->next;
+    }
+    nl_current = nl_current->next;
+  }
+  return NULL;
 }
 
 /*! \todo Finish function documentation!!!
@@ -157,7 +184,7 @@ void s_netlist_print(NETLIST * nl_current)
  */
 void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
 {
-  NETLIST *nl_current;
+  NETLIST  *nl_current;
   CPINLIST *pl_current;
 
   nl_current = head;
@@ -245,114 +272,87 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
   verbose_done();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Print Net List
  *  \par Function Description
- *
+ *   Prints the net-list pointed to by \a nl_current
  */
-void s_netlist_name_named_nets (GedaToplevel *pr_current,
-                                NETLIST *named_netlist,
-                                NETLIST *unnamed_netlist)
+void s_netlist_print(NETLIST *nl_current)
 {
+  NETLIST *nl_iter = NULL;
 
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-  NET      *n_current;
-  char     *net_name;
+  nl_iter = nl_current;
 
-  if (verbose_mode) {
-    printf("\n- Staring post processing\n");
-    printf("- Naming nets of graphical objects:\n");
+  if (nl_iter == NULL) {
+    return;
   }
 
-  /* this pass gives all nets a name, whether specified or creates a */
-  /* name */
-  nl_current = unnamed_netlist;
+  while (nl_iter != NULL) {
 
-  while (nl_current != NULL) {
+    if (nl_iter->nlid != -1) {
 
-    if (nl_current->cpins) {
-
-      pl_current = nl_current->cpins;
-
-      while (pl_current != NULL) {
-
-        if (pl_current->plid != -1) {
-          verbose_print("p");
-        }
-
-        if (pl_current->plid != -1 && pl_current->nets) {
-
-          verbose_print("n");
-          net_name = NULL;
-
-          n_current = pl_current->nets;
-
-          while (n_current != NULL) {
-
-            GEDA_FREE (n_current->net_name);
-
-            n_current->net_name = s_netlist_netname_of_netid(pr_current,
-                                                             named_netlist,
-                                                             n_current->nid);
-            if (n_current->net_name != NULL) {
-              net_name = n_current->net_name;
-            }
-            n_current = n_current->next;
-          }
-          if (net_name != NULL) {
-            pl_current->net_name = u_string_strdup(net_name);
-          }
-        }
-        pl_current = pl_current->next;
+      if (nl_iter->component_uref) {
+        printf("component %s \n", nl_iter->component_uref);
       }
+      else {
+        printf("component SPECIAL \n");
+      }
+
+      if (nl_iter->hierarchy_tag) {
+        printf("Hierarchy tag: %s\n", nl_iter->hierarchy_tag);
+      }
+
+      if (nl_iter->cpins) {
+        s_cpinlist_print(nl_iter->cpins);
+      }
+
+      printf("\n");
     }
-    nl_current = nl_current->next;
+
+    nl_iter = nl_iter->next;
   }
-
-  verbose_done();
-
+  printf("\n");
 }
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
+ * hack rename this to be s_return_head
+ * update object_tail or any list of that matter
  */
-char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
-                                  NETLIST *netlist_head,
-                                  int net_id)
+
+NETLIST *s_netlist_return_head(NETLIST *tail)
 {
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-  NET      *n_current;
+  NETLIST *nl_current = NULL;
+  NETLIST *ret_struct = NULL;
 
-  nl_current = netlist_head;
+  nl_current = tail;
 
-  /* walk through the list of components, and through the list
-   * of individual pins on each, looking for the net identifier
-   */
-  while (nl_current != NULL) {
+  while (nl_current != NULL) {  /* goto end of list */
+    ret_struct = nl_current;
+    nl_current = nl_current->prev;
+  }
 
-    pl_current = nl_current->cpins;
+  return (ret_struct);
+}
 
-    while (pl_current != NULL) {
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ * hack rename this to be s_return_tail
+ * update object_tail or any list of that matter
+ */
+NETLIST *s_netlist_return_tail(NETLIST * head)
+{
+  NETLIST *nl_current = NULL;
+  NETLIST *ret_struct = NULL;
 
-      if (pl_current->net_name) {
+  nl_current = head;
 
-        n_current = pl_current->nets;
-
-        while (n_current != NULL) {
-
-          if (n_current->nid == net_id) {
-            return (u_string_strdup(n_current->net_name));
-          }
-          n_current = n_current->next;
-        }
-      }
-      pl_current = pl_current->next;
-    }
+  while (nl_current != NULL) {  /* goto end of list */
+    ret_struct = nl_current;
     nl_current = nl_current->next;
   }
-  return NULL;
+
+  return (ret_struct);
 }

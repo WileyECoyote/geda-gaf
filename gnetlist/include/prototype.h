@@ -52,10 +52,10 @@ void    usage(char *cmd);
 int     parse_commandline(int argc, char *argv[], char **output_filename);
 
 /* s_cpinlist.c */
-CPINLIST *s_cpinlist_return_tail(CPINLIST *head);
-CPINLIST *s_cpinlist_return_head(CPINLIST *tail);
 CPINLIST *s_cpinlist_add(CPINLIST *ptr);
 void      s_cpinlist_print(CPINLIST *ptr);
+CPINLIST *s_cpinlist_return_head(CPINLIST *tail);
+CPINLIST *s_cpinlist_return_tail(CPINLIST *head);
 CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number);
 
 /* s_hierarchy.c */
@@ -76,12 +76,12 @@ void verbose_done(void);
 void verbose_reset_index(void);
 
 /* s_net.c */
-NET  *s_net_return_tail(NET *head);
-NET  *s_net_return_head(NET *tail);
 NET  *s_net_add(NET *ptr);
+int   s_net_find(NET *net_head, NET *node);
 void  s_net_print(NET *ptr);
 char *s_net_return_connected_string(GedaToplevel *pr_current, Object *object, char *hierarchy_tag);
-int   s_net_find(NET *net_head, NET *node);
+NET  *s_net_return_head(NET *tail);
+NET  *s_net_return_tail(NET *head);
 char *s_net_name_search(GedaToplevel *pr_current, NET *net_head);
 char *s_net_name(GedaToplevel *pr_current, NETLIST *netlist_head, NET *net_head, char *hierarchy_tag, int type);
 
@@ -96,15 +96,14 @@ char *s_netattrib_net_search(Object *o_current, const char *wanted_pin);
 char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_current, char *pinnumber, char *hierarchy_tag);
 
 /* s_netlist.c */
-NETLIST *s_netlist_return_tail(NETLIST *head);
+NETLIST *s_netlist_add(NETLIST *netlist);
+void     s_netlist_name_named_nets (GedaToplevel *pr_current, NETLIST *named_netlist, NETLIST *unnamed_netlist);
+char    *s_netlist_netname_of_netid (GedaToplevel *pr_current, NETLIST *netlist_head, int net_id);
+void     s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head);
+void     s_netlist_print(NETLIST *netlist);
 NETLIST *s_netlist_return_head(NETLIST *tail);
-NETLIST *s_netlist_add(NETLIST *ptr);
-void s_netlist_print(NETLIST *ptr);
-void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head);
-void s_netlist_name_named_nets (GedaToplevel *pr_current, NETLIST *named_netlist,
-                                                      NETLIST *unnamed_netlist);
-char *s_netlist_netname_of_netid (GedaToplevel *pr_current, NETLIST *netlist_head,
-                                                        int net_id);
+NETLIST *s_netlist_return_tail(NETLIST *head);
+
 /* s_rename.c */
 void s_rename_init(void);
 void s_rename_destroy_all(void);

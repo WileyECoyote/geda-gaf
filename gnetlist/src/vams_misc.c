@@ -91,7 +91,7 @@ SCM vams_get_package_attributes(SCM scm_uref)
 
   uref = scm_to_utf8_string (scm_uref);
 
-  /* here is where you make it multi page aware */
+  /* here is where we make it multi page aware */
   nl_current = netlist_head;
 
   /* search for the first instance through the entire list */

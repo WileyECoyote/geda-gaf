@@ -29,46 +29,6 @@
 #include "gnetlist.h"
 #include <geda_debug.h>
 
-/*! \brief Return last record in a linked list
- *  \par Function Description
- *  hack rename this to be s_return_tail
- *  update object_tail or any list of that matter
- */
-CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
-{
-  CPINLIST *pl_current = NULL;
-  CPINLIST *ret_struct = NULL;
-
-  pl_current = head;
-
-  while (pl_current != NULL) {	/* goto end of list */
-    ret_struct = pl_current;
-    pl_current = pl_current->next;
-  }
-
-  return (ret_struct);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *  hack rename this to be s_return_head
- *  update object_tail or any list of that matter
- */
-CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
-{
-  CPINLIST *pl_current = NULL;
-  CPINLIST *ret_struct = NULL;
-
-  pl_current = tail;
-  while (pl_current != NULL) {	/* goto end of list */
-    ret_struct = pl_current;
-    pl_current = pl_current->prev;
-  }
-
-  return (ret_struct);
-}
-
 /*! \brief Add a Pin List record to Pin List
  *  \par Function Description
  *   Allocates and initializes a CPINLIST record struct. The
@@ -79,7 +39,7 @@ CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
  *
  *  \returns new node
  */
-CPINLIST *s_cpinlist_add(CPINLIST * ptr)
+CPINLIST *s_cpinlist_add(CPINLIST *ptr)
 {
   CPINLIST *new_node;
 
@@ -156,6 +116,45 @@ void s_cpinlist_print(CPINLIST *ptr)
 
     pl_current = pl_current->next;
   }
+}
+
+/*! \brief Return first node in a Pin list
+ *  \par Function Description
+ *  hack rename this to be s_return_head
+ *  update object_head or any list of that matter
+ */
+CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
+{
+  CPINLIST *pl_current = NULL;
+  CPINLIST *ret_struct = NULL;
+
+  pl_current = tail;
+  while (pl_current != NULL) {  /* goto end of list */
+    ret_struct = pl_current;
+    pl_current = pl_current->prev;
+  }
+
+  return (ret_struct);
+}
+
+/*! \brief Return last record in a linked list
+ *  \par Function Description
+ *  hack rename this to be s_return_tail
+ *  update object_tail or any list of that matter
+ */
+CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
+{
+  CPINLIST *pl_current = NULL;
+  CPINLIST *ret_struct = NULL;
+
+  pl_current = head;
+
+  while (pl_current != NULL) {  /* goto end of list */
+    ret_struct = pl_current;
+    pl_current = pl_current->next;
+  }
+
+  return (ret_struct);
 }
 
 /*! \brief Search or Pin Number in List of Pins

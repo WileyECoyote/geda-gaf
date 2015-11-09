@@ -41,48 +41,6 @@ static int unnamed_pin_counter = 1;
  *  \brief
  *  \par Function Description
  *
- * hack rename this to be s_return_tail
- * update object_tail or any list of that matter
- */
-NET *s_net_return_tail(NET * head)
-{
-  NET *n_current = NULL;
-  NET *ret_struct = NULL;
-
-  n_current = head;
-  while (n_current != NULL) {	/* goto end of list */
-    ret_struct = n_current;
-    n_current = n_current->next;
-  }
-
-  return (ret_struct);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- * hack rename this to be s_return_head
- * update object_tail or any list of that matter
- */
-NET *s_net_return_head(NET * tail)
-{
-  NET *n_current = NULL;
-  NET *ret_struct = NULL;
-
-  n_current = tail;
-  while (n_current != NULL) {	/* goto end of list */
-    ret_struct = n_current;
-    n_current = n_current->prev;
-  }
-
-  return (ret_struct);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
  */
 NET *s_net_add(NET * ptr)
 {
@@ -103,11 +61,32 @@ NET *s_net_add(NET * ptr)
   if (ptr == NULL) {
     new_node->prev = NULL;	/* setup previous link */
     return (new_node);
-  } else {
+  }
+  else {
     new_node->prev = ptr;	/* setup previous link */
     ptr->next = new_node;
     return (ptr->next);
   }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+int s_net_find(NET * net_head, NET * node)
+{
+  NET *n_current;
+
+  n_current = net_head;
+  while (n_current != NULL) {
+    if (n_current->nid == node->nid) {
+      return (TRUE);
+    }
+
+    n_current = n_current->next;
+  }
+  return (FALSE);
 }
 
 /*! \todo Finish function documentation!!!
@@ -217,20 +196,42 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
  *  \brief
  *  \par Function Description
  *
+ * hack rename this to be s_return_head
+ * update object_tail or any list of that matter
  */
-int s_net_find(NET * net_head, NET * node)
+NET *s_net_return_head(NET * tail)
 {
-  NET *n_current;
+  NET *n_current = NULL;
+  NET *ret_struct = NULL;
 
-  n_current = net_head;
-  while (n_current != NULL) {
-    if (n_current->nid == node->nid) {
-      return (TRUE);
-    }
+  n_current = tail;
+  while (n_current != NULL) {   /* goto end of list */
+    ret_struct = n_current;
+    n_current = n_current->prev;
+  }
 
+  return (ret_struct);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * hack rename this to be s_return_tail
+ * update object_tail or any list of that matter
+ */
+NET *s_net_return_tail(NET * head)
+{
+  NET *n_current = NULL;
+  NET *ret_struct = NULL;
+
+  n_current = head;
+  while (n_current != NULL) {   /* goto end of list */
+    ret_struct = n_current;
     n_current = n_current->next;
   }
-  return (FALSE);
+
+  return (ret_struct);
 }
 
 /*! \todo Finish function documentation!!!
