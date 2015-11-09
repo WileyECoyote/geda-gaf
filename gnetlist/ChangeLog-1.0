@@ -14,6 +14,10 @@
     * src/gnetlist.c: Add variable and pass address to parse_commandline and allocate
       default if not set, free before exiting.
 
+    * src/s_netattrib.c: Release old old_cpin->nets->connected_to before reassigning
+      in function s_netattrib_create_pins and change cpinlist_tail, netlist_tail,
+      old_cpin, connected_to, and new_cpin to respective local scopes.
+
 2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Removed redundant setting of variable to NULL when using GEDA_FREE macro.
