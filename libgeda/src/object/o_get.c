@@ -429,6 +429,9 @@ int o_get_num_text_lines(const char *string)
  *  \param [in] object Object whose attributes are to be searched
  *  \param [in] name   The name of the attribute to search for
  *
+ *  \note Does not search attributes floating attributes, only attributes
+ *        directly attached, i.e. object->attribs.
+ *
  *  \return If objects is valid and has an attribute with a matching \a name
  *          then the value of the attribute is returned , otherwise NULL.
  */

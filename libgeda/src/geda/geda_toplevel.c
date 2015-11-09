@@ -495,10 +495,11 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 
 /*! \brief Add Page list of pages of <B>toplevel</B>.
  *  \par Function Description
- *  Increases the reference count on the GedaPage object by one and
+ *  Increases reference count on the GedaPage object by one and
  *  adds \a new_page to the page list referenced by \a toplevel
  *
  *  \param toplevel  The GedaToplevel object.
+ *  \param new_page  A GedaPage object.
  */
 void geda_toplevel_add_page (GedaToplevel *toplevel, Page *new_page)
 {
@@ -560,7 +561,14 @@ Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
   return found_page;
 }
 
-/* Page Down is the next page in toplevel->pages list or NULL */
+/*! \brief Get the Next page in GedaToplevel
+*   \par Function Description
+*   This function returns a pointer to the next page in the \a toplevel
+*   list of pages, toplevel->pages, or NULL if the current page in the
+*   toplevel is the last page in the list or the current page is not set.
+*
+*   \param [in,out] toplevel This toplevel
+*/
 Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 {
   GList *iter;
@@ -573,11 +581,11 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
 
   iter = g_list_find(list, toplevel->page_current);
 
-  if (iter) {
+  if (iter != NULL) {
 
     iter = iter->next;
 
-    if (iter) {
+    if (iter != NULL) {
       page = (Page*)iter->data;
     }
     else {
@@ -591,7 +599,14 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
   return page;
 }
 
-/* Page Up is the previous page in toplevel->pages list or NULL */
+/*! \brief Get the Page Up in GedaToplevel
+*   \par Function Description
+*   This function returns a pointer to the previous page in the \a toplevel
+*   list of pages, toplevel->pages, or NULL if the current page in the
+*   toplevel is the first page in the list or the current page is not set.
+*
+*   \param [in,out] toplevel This toplevel
+*/
 Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 {
   GList *iter;
@@ -604,19 +619,19 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 
   iter = g_list_find(list, toplevel->page_current);
 
-  if (iter) {
+  if (iter != NULL) {
 
     iter = iter->prev;
 
-    if (iter) {
+    if (iter != NULL) {
       page = (Page*)iter->data;
     }
     else {
-      page  = NULL;
+      page = NULL;
     }
   }
   else {
-    page  = NULL;
+    page = NULL;
   }
 
   return page;

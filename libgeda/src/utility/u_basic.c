@@ -44,6 +44,7 @@
  *  bad variable names in the returned string.
  *
  *  \param [in] string The string with variables to expand.
+ *
  *  \return A newly-allocated string with variables expanded or NULL
  *  if input string was NULL.
  */

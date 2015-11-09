@@ -58,11 +58,11 @@
  *  The name argument is used for debugging, and should be set to a
  *  meaningful string (e.g. the name of the file the data is from).
  *
- *  \param [in,out] toplevel     Current GedaToplevel structure.
- *  \param [in]     object_list  Object list to read data to.
- *  \param [in]     buffer       Memory buffer to read from.
- *  \param [in]     size         Size of the buffer.
- *  \param [in]     name         Name to describe the data.
+ *  \param [in,out] toplevel     Current GedaToplevel structure,
+ *  \param [in]     object_list  Object list to read data to,
+ *  \param [in]     buffer       Memory buffer to read from,
+ *  \param [in]     size         Size of the buffer,
+ *  \param [in]     name         Name to describe the data,
  *  \param [in,out] err          GError structure for error reporting.
  *
  *  \return GList of objects if successful read, or NULL on error.
@@ -669,9 +669,9 @@ void o_translate_object (Object *object, int dx, int dy)
  *  This function takes a list of lines and scales them
  *  by the values of x_scale and y_scale.
  *
- *  \param [in,out]  list  The list with lines to scale.
- *  \param [in]   x_scale  The x scale value for the lines.
- *  \param [in]   y_scale  The y scale value for the lines.
+ *  \param [in,out] list     The list with lines to scale.
+ *  \param [in]     x_scale  The x scale value for the lines.
+ *  \param [in]     y_scale  The y scale value for the lines.
  *
  */
 void o_scale (GList *list, int x_scale, int y_scale)

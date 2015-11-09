@@ -620,6 +620,7 @@ o_attrib_string_get_name_value (const char *string,
 
   prev_char = g_utf8_find_prev_char (string, ptr);
   next_char = g_utf8_find_next_char (ptr, NULL);
+
   if (prev_char == NULL || *prev_char == ' ' ||
       next_char == NULL || *next_char == ' ' || *next_char == '\0' ) {
     return FALSE;
@@ -887,16 +888,16 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
                                                    name, counter);
 }
 
-/*! \brief Search attributes of object by name.
+/*! \brief Search attributes of object by name
  *  \par Function Description
- *  Search for attribute by name.
+ *  Search for attribute by name. The search includes attributes directly
+ *  attached and inherited attributes. Counter is the n'th occurance of the
+ *  attribute, and starts searching from zero. Zero is the first occurance
+ *  of an attribute.
  *
- *  Counter is the n'th occurance of the attribute, and starts searching
- *  from zero.  Zero is the first occurance of an attribute.
- *
- *  \param [in] object   Object who's attributes to search.
- *  \param [in] name     Character string with attribute name to search for.
- *  \param [in] counter  Which occurance to return.
+ *  \param [in] object  Object who's attributes to search,
+ *  \param [in] name    Character string with attribute name to search for,
+ *  \param [in] counter Which occurance to return.
  *
  *  \return Character string with attribute value, NULL otherwise.
  *
@@ -906,7 +907,7 @@ char *o_attrib_search_object_attribs_by_name (const Object *object,
                                               const char   *name,
                                                     int     counter)
 {
-  char *result;
+  char  *result;
   GList *attributes;
 
   attributes = o_attrib_return_attribs (object);
