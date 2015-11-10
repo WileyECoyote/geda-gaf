@@ -4,9 +4,11 @@
       1 instead of zero because a netname cannot be zero lenght, eliminate early
       return and free the string if was malformed. Add comments with example.
       Add Doxygen comments for defines PIN_NET_PREFIX and PIN_NET_PREFIX and add
-      Doxygen comments for function:
+      Doxygen comments for functions:
 
           * s_netattrib_connected_string_get_pinnum
+          * s_netattrib_extract_netname
+          * s_netattrib_create_pins
 
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 

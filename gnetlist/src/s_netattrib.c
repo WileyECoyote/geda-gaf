@@ -119,14 +119,30 @@ char *s_netattrib_extract_netname(char *value)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Create pins for Net Attributes
  *  \par Function Description
- *  if this function creates a cpinlist list, it will not have a head node
+ *  Symbols with net attributes, for example, net=VCC:14, normally do not
+ *  have an actual pin defined. This routine creates these virtual pins
+ *  after checking that a real pin does not exist. If a pin is defined
+ *  then a notice is issued and the existing pin information replaced
+ *  using the net name found in the net attribute.
+ *
+ *  \param [in]     pr_current    Current GedaToplevel structure; toplevel,
+ *  \param [in]     o_current     Complex, presumably with a least one pin
+ *  \param [in,out] netlist       The net list
+ *  \param [in]     value         Is value of net attribute, like GND:4
+ *  \param [in]     hierarchy_tag refdes of symbol with source or NULL
+ *
+ * \note 1 The hierarchy_tag is the string before renaming occurs, and the
+ *         tag may be replaced later, for eample here tag could be S1 and
+ *         this might get changed to another tag, like S4, later.
+ *
+ * \note 2 If this function creates a cpinlist list, it will not have a head
+ *         node.
  */
 void
-s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
-                        NETLIST * netlist, char *value, char *hierarchy_tag)
+s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
+                        NETLIST *netlist, char *value, char *hierarchy_tag)
 {
   char *char_ptr;
   char *current_pin;
