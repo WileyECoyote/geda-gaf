@@ -30,10 +30,10 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/* Used by the connected string functions */
+/*! \def PIN_NET_PREFIX Used by the connected string functions */
 #define PIN_NET_PREFIX "__netattrib_power_pin "
 
-/* used by the extract functions below */
+/*! \def DELIMITERS used by search and extract functions below */
 #define DELIMITERS ",; "
 
 /*! \todo Finish function documentation!!!

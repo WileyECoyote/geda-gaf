@@ -3,6 +3,7 @@
     * src/s_netattrib.c: Tweek function s_netattrib_extract_netname; start index
       1 instead of zero because a netname cannot be zero lenght, eliminate early
       return and free the string if was malformed. Add comments with example.
+      Add Doxygen comments for defines PIN_NET_PREFIX and PIN_NET_PREFIX.
 
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
