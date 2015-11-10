@@ -29,6 +29,13 @@
       make sure free pl_current->nets->next->net_name before over-writing the
       pointer with returned from s_net_name via net_name, add some DOxygen info.
 
+   ** src/s_net.c: Revise s_net_name_search to allocate storage when assigning
+      each pointer net_name rather than storing the same pointer, added notes
+      in code regarding why this was done.
+
+   ** src/s_rename.c: Release net_name before renaming in s_rename_all_lowlevel,
+      added notes regarding freeing pointers to net names.
+
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * Eliminate unnecessary global variable; output_filename.

@@ -238,6 +238,7 @@ NET *s_net_return_tail(NET * head)
  *  \brief
  *  \par Function Description
  *
+ *  \sa s_netlist_post_process s_net_name
  */
 char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 {
@@ -257,7 +258,13 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 
       if (name == NULL) {
 
-        name = n_current->net_name;
+        /* Note a copy is made here because s_netlist_post_process will
+         * assign to pin and nets and when s_rename_all_lowlevel frees
+         * the strings each pointer must be unique, otherwise, only the
+         * first encounter will is renamed as s_rename_all_lowlevel will
+         * not find the other instances */
+        s_rename_all
+        name = u_string_strdup (n_current->net_name);
 
       }
       else if (strcmp(name, n_current->net_name) != 0) {
@@ -279,16 +286,14 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
           if (n_current->net_name_has_priority) {
 
 #if DEBUG
-            fprintf(stderr, "Net is now called: [%s]\n",
-                    n_current->net_name);
+            fprintf(stderr, "Net is now called: [%s]\n", n_current->net_name);
 
             /* this show how to rename nets */
-            printf("\nRENAME all nets: %s -> %s\n", name,
-                   n_current->net_name);
+            printf("\nRENAME all nets: %s -> %s\n", name, n_current->net_name);
 #endif
             s_rename_add(name, n_current->net_name);
-
-            name = n_current->net_name;
+            GEDA_FREE(name);
+            name = u_string_strdup (n_current->net_name);
 
           }
           else {
@@ -301,14 +306,15 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 
             /* do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
-            if (!s_rename_search
-              (name, n_current->net_name, TRUE)) {
+            if (!s_rename_search (name, n_current->net_name, TRUE)) {
+
               fprintf(stderr,
-                    _("Found duplicate net name, renaming [%s] to [%s]\n"),
+                      _("Found duplicate net name, renaming [%s] to [%s]\n"),
                       name, n_current->net_name);
-              s_rename_add(name, n_current->net_name);
-            name = n_current->net_name;
-              }
+                      s_rename_add(name, n_current->net_name);
+              GEDA_FREE(name);
+              name = u_string_strdup (n_current->net_name); /* See note above */
+            }
           }
 
         }
@@ -339,15 +345,15 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 #endif
             /* do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
-            if (!s_rename_search
-              (name, n_current->net_name, TRUE)) {
+            if (!s_rename_search (name, n_current->net_name, TRUE)) {
               fprintf(stderr,
                       _("Found duplicate net name, renaming [%s] to [%s]\n"),
                       name, n_current->net_name);
 
               s_rename_add(name, n_current->net_name);
-            name = n_current->net_name;
-              }
+              GEDA_FREE(name);
+              name = u_string_strdup (n_current->net_name); /* See note above */
+            }
           }
 
 #if DEBUG
@@ -363,7 +369,8 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 
   if (name) {
     return (name);
-  } else {
+  }
+  else {
     return (NULL);
   }
 }
@@ -414,12 +421,10 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
             found = s_net_find(n_start->next, net_head->next);
 
             if (found) {
-              net_name =
-              s_net_name_search(pr_current, n_start);
+              net_name = s_net_name_search(pr_current, n_start);
               if (net_name) {
                 return (net_name);
               }
-
             }
           }
         }
@@ -440,9 +445,9 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
   /* which is just a place holder */
   /* and the head node shows up here */
 
-  if (net_head->nid == -1 &&
-    net_head->prev == NULL &&
-    net_head->next == NULL)
+  if (net_head->nid  == -1 &&
+      net_head->prev == NULL &&
+      net_head->next == NULL)
   {
     string = u_string_sprintf("unconnected_pin-%d", unnamed_pin_counter++);
 
@@ -471,7 +476,9 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
       string = u_string_sprintf("%d", (*unnamed_counter)++);
     }
     else {
+
       temp = u_string_sprintf ("%s%d", unnamed_string, (*unnamed_counter)++);
+
       if (hierarchy_tag) {
         string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
         GEDA_FREE (temp);
@@ -480,7 +487,6 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
         string = temp;
       }
     }
-
   }
   else {
     fprintf(stderr, _("Increase number of unnamed nets (s_net.c)\n"));

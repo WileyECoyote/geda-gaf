@@ -287,6 +287,15 @@ void s_rename_add(char *src, char *dest)
  *  \brief
  *  \par Function Description
  *
+ * TODO consider revising to a two pass appoarch, with the first pass
+ *      only detecting and collecting the pins and then renaming after
+ *      all pins have been identified. The reason for this is that each
+ *      pin net_name must be allocated seperately so that the strings
+ *      are not freed everywhere on the first encounter in the single
+ *      pass approach. Previously the strings were not freed in this
+ *      routine prior to re-assignment and the last reference to the
+ *      pointer were lost after the routine so the memory could not be
+ *      freed later.
  */
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {
@@ -306,6 +315,8 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
         if (pl_current->net_name != NULL) {
 
           if (strcmp(pl_current->net_name, src) == 0) {
+
+            GEDA_FREE(pl_current->net_name);
             pl_current->net_name = u_string_strdup(dest);
           }
         }
