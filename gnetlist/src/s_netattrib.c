@@ -76,19 +76,23 @@ void s_netattrib_check_connected_string (const char *str)
            exit (1);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get the Net Name from a Net Attribute
  *  \par Function Description
+ *   Replaces the colon in a copy of the netname with a NULL,
+ *   truncating the pin number portion of the string.
+ *
+ *  example:
+ *            SCI_RX:1 returns SCI_RX
+ *
+ * \note caller should GEDA_FREE returned string
  *
  * things to do here :
  * write the net alias function
- *
- * \note caller should GEDA_FREE returned string
  */
 char *s_netattrib_extract_netname(char *value)
 {
-  char *return_value = NULL;
-  int i = 0;
+  char *return_value;
+  int i = 1;
 
   /* a bit larger than needed ... */
   return_value = u_string_strdup (value);
@@ -100,10 +104,12 @@ char *s_netattrib_extract_netname(char *value)
 
   if (value[i] != ':') {
     fprintf(stderr, _("Found malformed net attribute\n"));
-    return (u_string_strdup ("unknown"));
+    GEDA_FREE(return_value);
+    return_value = u_string_strdup ("unknown");
   }
-
-  return_value[i] = '\0';
+  else {
+    return_value[i] = '\0'; /* Replace colon with NULL */
+  }
 
   return (return_value);
 

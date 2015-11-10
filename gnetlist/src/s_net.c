@@ -164,12 +164,13 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
 
   if (uref && pinnum) {
     string = u_string_sprintf("%s %s", uref, pinnum);
+
   }
   else {
 
     if (pinnum) {
-      string = s_netattrib_pinnum_get_connected_string (pinnum);
 
+      string = s_netattrib_pinnum_get_connected_string (pinnum);
       //s_netattrib_check_connected_string (string);
     }
     else {
@@ -263,7 +264,6 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
          * the strings each pointer must be unique, otherwise, only the
          * first encounter will is renamed as s_rename_all_lowlevel will
          * not find the other instances */
-        s_rename_all
         name = u_string_strdup (n_current->net_name);
 
       }

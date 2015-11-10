@@ -1,3 +1,9 @@
+2015-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Tweek function s_netattrib_extract_netname; start index
+      1 instead of zero because a netname cannot be zero lenght, eliminate early
+      return and free the string if was malformed. Add comments with example.
+
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * Eliminate toplevel hierarchy recursive loop, fix potential memory leaks
