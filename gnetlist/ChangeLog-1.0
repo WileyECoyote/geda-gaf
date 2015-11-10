@@ -3,6 +3,10 @@
     * src/s_netattrib.c: Tweek function s_netattrib_extract_netname; start index
       1 instead of zero because a netname cannot be zero lenght, eliminate early
       return and free the string if was malformed. Add comments with example.
+      Eliminate reallocation of the string for new_cpin->nets->connected_to in
+      function s_netattrib_create_pins and move local char 8connected_in to the
+      DEBUG compile, adding the pointer to the debug message.
+
       Add Doxygen comments for defines PIN_NET_PREFIX and PIN_NET_PREFIX and add
       Doxygen comments for functions:
 

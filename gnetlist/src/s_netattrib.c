@@ -172,7 +172,6 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
     if (netlist->component_uref) {
 
       CPINLIST *old_cpin;
-      char     *connected_to;
 
       old_cpin = s_cpinlist_search_pin(netlist_tail->cpins, current_pin);
 
@@ -189,17 +188,15 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
           old_cpin->nets->net_name =
           s_hierarchy_create_netattrib(pr_current, net_name, hierarchy_tag);
 
-          old_cpin->nets->net_name_has_priority = TRUE;
-
           GEDA_FREE(old_cpin->nets->connected_to);
 
-          connected_to = u_string_sprintf("%s %s", netlist->component_uref, current_pin);
+          old_cpin->nets->connected_to =
+          u_string_sprintf("%s %s", netlist->component_uref, current_pin);
 
-          old_cpin->nets->connected_to = u_string_strdup(connected_to);
+          old_cpin->nets->net_name_has_priority = TRUE;
 
           old_cpin->nets->nid = o_current->sid;
 
-          GEDA_FREE(connected_to);
         }
         else {
           BUG_MSG("Check old_cpin->nets");
@@ -221,20 +218,18 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
         new_cpin->nets->net_name =
         s_hierarchy_create_netattrib(pr_current, net_name, hierarchy_tag);
 
-        connected_to = u_string_sprintf("%s %s",netlist->component_uref, current_pin);
-
-        new_cpin->nets->connected_to = u_string_strdup(connected_to);
+        new_cpin->nets->connected_to =
+        u_string_sprintf("%s %s", netlist->component_uref, current_pin);
 
         new_cpin->nets->nid = o_current->sid;
 
 #if DEBUG
-        printf("Finished creating: %s\n", connected_to);
+        char *connected_to = new_cpin->nets->connected_to;
+        printf("Finished creating: %s, %p\n", connected_to, connected_to);
         printf("netname: %s %s\n", new_cpin->nets->net_name, hierarchy_tag);
 #endif
 
-        GEDA_FREE(connected_to);
       }
-
     }
     /* else { no uref, which means this is a special component } */
 
