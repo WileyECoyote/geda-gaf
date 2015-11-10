@@ -9,6 +9,7 @@
           * s_netattrib_connected_string_get_pinnum
           * s_netattrib_extract_netname
           * s_netattrib_create_pins
+          * s_netattrib_handle
 
 2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
 

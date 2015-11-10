@@ -243,22 +243,24 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
   GEDA_FREE(net_name);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Process Net Attributes
  *  \par Function Description
- *
+ *  Searches \a o_current for inherited and attached net
+ *  attributes and calls s_netattrib_create_pins for each
+ *  attribute that is found.
  */
 void
-s_netattrib_handle (GedaToplevel * pr_current, Object * o_current,
-                    NETLIST * netlist, char *hierarchy_tag)
+s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
+                    NETLIST *netlist, char *hierarchy_tag)
 {
   char *value;
   int   counter;
 
-  /* for now just look inside the component */
+  /* Look inside the component */
   for (counter = 0; ;) {
-    value = o_attrib_search_inherited_attribs_by_name (o_current,
-                                                       "net", counter);
+
+    value = o_attrib_search_inherited_attribs_by_name (o_current, "net",
+                                                       counter);
     if (value == NULL)
       break;
 
@@ -267,12 +269,14 @@ s_netattrib_handle (GedaToplevel * pr_current, Object * o_current,
     s_netattrib_create_pins (pr_current, o_current,
                              netlist, value, hierarchy_tag);
     GEDA_FREE (value);
+
   }
 
-  /* now look outside the component */
+  /* Look outside the component */
   for (counter = 0; ;) {
-    value = o_attrib_search_attached_attribs_by_name (o_current,
-                                                      "net", counter);
+
+    value = o_attrib_search_attached_attribs_by_name (o_current, "net",
+                                                      counter);
     if (value == NULL)
       break;
 
