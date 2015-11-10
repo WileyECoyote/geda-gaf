@@ -46,10 +46,14 @@ char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
   return u_string_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get the Pin Number of connected Net Attribute string
  *  \par Function Description
+ *  This function returns the pin number as a string of a connected
+ *  net attribute. If \a str does not begin with the PIN_NET_PREFIX
+ *  NULL is returned:
  *
+ *  example 1:  __netattrib_power_pin 1    returns "1"
+ *  example 2:  S2/C20 2                   returns NULL
  */
 const char *s_netattrib_connected_string_get_pinnum (const char *str)
 {
