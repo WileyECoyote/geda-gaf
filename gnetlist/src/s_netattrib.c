@@ -215,6 +215,9 @@ s_netattrib_create_pins(GedaToplevel *pr_current, Object *o_current,
         new_cpin->nets       = s_net_add(NULL);
 
         new_cpin->nets->net_name_has_priority = TRUE;
+
+        GEDA_FREE(new_cpin->nets->net_name);
+
         new_cpin->nets->net_name =
         s_hierarchy_create_netattrib(pr_current, net_name, hierarchy_tag);
 
