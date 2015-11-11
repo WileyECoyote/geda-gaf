@@ -1,5 +1,8 @@
 2015-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gnetlist.c: Tweak "would-be" main line code; Defer checking and setting
+      the default output file name and getting the cwd directory.
+
     * src/s_netattrib.c: Tweek function s_netattrib_extract_netname; start index
       1 instead of zero because a netname cannot be zero lenght, eliminate early
       return and free the string if was malformed. Add comments with example.

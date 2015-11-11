@@ -168,14 +168,6 @@ void main_prog(void *closure, int argc, char *argv[])
 
   argv_index = parse_commandline(argc, argv, &output_filename);
 
-  if (!output_filename) {
-
-    /* was not specified so set default output filename */
-    output_filename = u_string_strdup("output.net");
-  }
-
-  cwd = g_get_current_dir();
-
   scm_set_program_arguments (argc, argv, NULL);
 
   /* this is a kludge to make sure that spice mode gets set. Is Hacked by SDB
@@ -233,9 +225,17 @@ void main_prog(void *closure, int argc, char *argv[])
     exit (0);
   }
 
+  if (!output_filename) {
+
+    /* was not specified so set default output filename */
+    output_filename = u_string_strdup("output.net");
+  }
+
   /* Evaluate the first set of Scheme expressions before we load any
    * schematic files */
   scm_eval (pre_backend_list, scm_current_module ());
+
+  cwd = g_get_current_dir();
 
   i = argv_index;
 
