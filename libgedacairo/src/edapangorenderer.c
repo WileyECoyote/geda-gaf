@@ -313,7 +313,7 @@ eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
                                                 EdaPangoRendererPrivate);
 }
 
-/*! \brief Function to retrieve EdaPangoRenderer's Type identifier.
+/*! \brief Retrieve EdaPangoRenderer's Type identifier.
  *
  *  \par Function Description
  *  Function to retrieve a #EdaPangoRenderer Type identifier. When
@@ -354,17 +354,31 @@ GedaType eda_pango_renderer_get_type (void)
   return eda_pango_renderer_type;
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
 {
   return g_object_new (EDA_TYPE_PANGO_RENDERER, "cairo-context", cr, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
 {
   g_object_set (G_OBJECT (renderer), "cairo-context", cr, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 void
 eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 {
@@ -383,7 +397,11 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 }
 
 /* ---------------------------------------- */
-
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 static PangoAttribute *
 eda_pango_attr_overbar_copy (const PangoAttribute *attr)
 {
@@ -391,6 +409,11 @@ eda_pango_attr_overbar_copy (const PangoAttribute *attr)
   return eda_pango_attr_overbar_new (a->overbar);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 static bool
 eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
                                 const PangoAttribute *attr2)
@@ -400,6 +423,11 @@ eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
   return (a1->overbar == a2->overbar);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 PangoAttrClass *
 eda_pango_attr_overbar_get_class ()
 {
@@ -415,8 +443,12 @@ eda_pango_attr_overbar_get_class ()
   return &klass;
 }
 
-PangoAttribute *
-eda_pango_attr_overbar_new (bool overbar)
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
+PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
 {
   EdaPangoAttrOverbar *result = g_new (EdaPangoAttrOverbar, 1);
   result->attr.klass = eda_pango_attr_overbar_get_class ();
@@ -424,12 +456,21 @@ eda_pango_attr_overbar_new (bool overbar)
   return (PangoAttribute *) result;
 }
 
-bool
-eda_is_pango_attr_overbar (PangoAttribute *attr)
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
+bool eda_is_pango_attr_overbar (PangoAttribute *attr)
 {
   return attr->klass->type == eda_pango_attr_overbar_get_class()->type;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Hierarchy Post Process
+ *  \par Function Description
+ *
+ */
 bool
 eda_pango_parse_overbars (const char *overbar_text,  int    length,
                           PangoAttrList **attr_list, char **text)

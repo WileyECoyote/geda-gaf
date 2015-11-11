@@ -685,7 +685,8 @@ eda_renderer_draw_complex (EdaRenderer *renderer, Object *object)
   eda_renderer_draw_list (renderer, object->complex->prim_objs);
 }
 
-static void eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -701,7 +702,8 @@ static void eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
                                                          object->line_options->line_space);
 }
 
-static void eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -716,7 +718,8 @@ static void eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
                     -1, -1);
 }
 
-static void eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -731,7 +734,8 @@ static void eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
                     -1, -1);
 }
 
-static void eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
 
@@ -746,7 +750,8 @@ static void eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
                     -1, -1);
 }
 
-static void eda_renderer_draw_box (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_box (EdaRenderer *renderer, Object *object)
 {
   int fill_solid = FALSE;
 
@@ -768,7 +773,8 @@ static void eda_renderer_draw_box (EdaRenderer *renderer, Object *object)
                     object->line_options->line_length, object->line_options->line_space);
 }
 
-static void eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
 {
   eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                  object->line_options->line_width,
@@ -786,7 +792,8 @@ static void eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
                     object->line_options->line_space);
 }
 
-static void eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
+static void
+eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
 {
   int fill_solid = FALSE;
 
@@ -807,8 +814,7 @@ static void eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
                     object->line_options->line_length, object->line_options->line_space);
 }
 
-static void
-eda_renderer_draw_path (EdaRenderer *renderer, Object *object)
+static void eda_renderer_draw_path (EdaRenderer *renderer, Object *object)
 {
   int fill_solid = FALSE;
 
@@ -2006,6 +2012,10 @@ GedaType eda_renderer_get_type (void)
  * MISCELLANEOUS (CREATION, DESTRUCTION, ACCESSORS)
  * ================================================================ */
 
+/*! \brief Get a New EdaRenderer Object
+ *  \par Function Description
+ *  Creates and returns a new EdaRenderer instance
+ */
 EdaRenderer *
 eda_renderer_new (cairo_t *cr, PangoContext *pc)
 {
@@ -2015,6 +2025,10 @@ eda_renderer_new (cairo_t *cr, PangoContext *pc)
                        NULL);
 }
 
+/*! \brief Destroy a EdaRenderer Object
+ *  \par Function Description
+ *  Decrements the reference of \a renderer
+ */
 void
 eda_renderer_destroy (EdaRenderer *renderer)
 {
@@ -2026,6 +2040,10 @@ eda_renderer_destroy (EdaRenderer *renderer)
   }
 }
 
+/*! \brief Get the active EdaRenderer Cairo Context
+ *  \par Function Description
+ *  Function to retrieve the current Cairo Context.
+ */
 cairo_t *
 eda_renderer_get_cairo_context (EdaRenderer *renderer)
 {
@@ -2035,12 +2053,20 @@ eda_renderer_get_cairo_context (EdaRenderer *renderer)
   return cr;
 }
 
+/*! \brief Get the EdaRenderer Hinting Enabled Property
+ *  \par Function Description
+ *  Function to retrieve the current hinting property.
+ */
 bool eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
   return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);
 }
 
+/*! \brief Get the current EdaRenderer Color Map Array
+ *  \par Function Description
+ *  Function to retrieve the current color-map Array.
+ */
 GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
 {
   GArray *map = NULL;
@@ -2048,6 +2074,11 @@ GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
   g_object_get (G_OBJECT (renderer), "color-map", &map, NULL);
   return map;
 }
+
+/*! \brief Set the EdaRenderer Color Map Array
+ *  \par Function Description
+ *  Sets the color-map Array.
+ */
 void
 eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
 {
@@ -2055,16 +2086,29 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
   g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
 }
 
+/*! \brief Get the current EdaRenderer Font Name Property
+ *  \par Function Description
+ *  Function to retrieve the current font-name property.
+ */
 const char *eda_renderer_get_font_name(EdaRenderer *renderer)
 {
   return (renderer->priv->font_name);
 }
+
+/*! \brief Set the EdaRenderer Font Name Property
+ *  \par Function Description
+ *  Sets the font-name property.
+ */
 void eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
 {
   GEDA_FREE(renderer->priv->font_name);
   renderer->priv->font_name = u_string_strdup (font_name);
 }
 
+/*! \brief Set EdaRenderer Flags
+ *  \par Function Description
+ *  Function to set the EdaRenderer flags.
+ */
 bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
 {
   if (EDA_IS_RENDERER (renderer))
@@ -2073,6 +2117,11 @@ bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
     return FALSE;
   return TRUE;
 }
+
+/*! \brief Is EdaRenderer Flag Set
+ *  \par Function Description
+ *  Function to check whether a flag bit is set.
+ */
 bool eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
 {
   if (EDA_IS_RENDERER (renderer))
@@ -2081,43 +2130,81 @@ bool eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
     return FALSE;
   return TRUE;
 }
+
+/*! \brief Get the current EdaRenderer Flags
+ *  \par Function Description
+ *  Function to retrieve the current EdaRenderer Flags
+ */
 int eda_renderer_get_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return renderer->priv->flags;
 }
+
+/*! \brief Get the active EdaRenderer Cairo Flags
+ *  \par Function Description
+ *  Function to retrieve the current Cairo Flags.
+ */
 int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
   return EDA_RENDERER_CAIRO_FLAGS (renderer);
 }
 
+/*! \brief Get the current EdaRenderer Override Color Index Property
+ *  \par Function Description
+ *  Function to retrieve the current override-color property.
+ */
 int eda_renderer_get_override_color_index (EdaRenderer *renderer)
 {
   return renderer->priv->override_color;
 }
+
+/*! \brief Set the EdaRenderer Override Color Index Property
+ *  \par Function Description
+ *  Sets the override-color property.
+ */
 void
 eda_renderer_set_override_color_index (EdaRenderer *renderer, int color_index)
 {
   renderer->priv->override_color = color_index;
 }
+
+/*! \brief Get the current EdaRenderer Grip Size Property
+ *  \par Function Description
+ *  Function to retrieve the current grip-size property.
+ */
 double eda_renderer_get_grips_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_GRIP_SIZE;
 }
+
+/*! \brief Set the EdaRenderer Grip Size Property
+ *  \par Function Description
+ *  Sets the grip-size property.
+ */
 void eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "grip-size", new_size, NULL);
 }
 
+/*! \brief Get the current EdaRenderer Grip Stroke Color Property
+ *  \par Function Description
+ *  Function to retrieve the current grips-stroke-color property.
+ */
 const
 GdkColor *eda_renderer_get_grips_stroke_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_GRIP_STROKE_COLOR;
 }
+
+/*! \brief Set the EdaRenderer Grip Stroke Color Property
+ *  \par Function Description
+ *  Sets the grips-stroke-color property.
+ */
 void
 eda_renderer_set_grips_stroke_color (EdaRenderer *renderer, GdkColor* color)
 {
@@ -2128,6 +2215,11 @@ eda_renderer_set_grips_stroke_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_GRIP_STROKE_COLOR.green = color->green;
   EDAR_GRIP_STROKE_COLOR.blue  = color->blue;
 }
+
+/*! \brief Get the current EdaRenderer Grips Fill Color Property
+ *  \par Function Description
+ *  Function to retrieve the current grips-fill-color property.
+ */
 const
 GdkColor *eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
 {
@@ -2135,6 +2227,10 @@ GdkColor *eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_GRIP_FILL_COLOR;
 }
 
+/*! \brief Set the EdaRenderer Grips Fill Color Property
+ *  \par Function Description
+ *  Sets the grips-fill-color property.
+ */
 void
 eda_renderer_set_grips_fill_color (EdaRenderer *renderer, GdkColor* color)
 {
@@ -2146,12 +2242,21 @@ eda_renderer_set_grips_fill_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_GRIP_FILL_COLOR.blue  = color->blue;
 }
 
+/*! \brief Get the current EdaRenderer Junction Color Property
+ *  \par Function Description
+ *  Function to retrieve the current junction-color property.
+ */
 const
 GdkColor *eda_renderer_get_junction_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_JUNCTION_COLOR;
 }
+
+/*! \brief Set the EdaRenderer Junction Color Property
+ *  \par Function Description
+ *  Sets the junction-color property.
+ */
 void
 eda_renderer_set_junction_color (EdaRenderer *renderer, GdkColor* color)
 {
@@ -2162,34 +2267,62 @@ eda_renderer_set_junction_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_JUNCTION_COLOR.green = color->green;
   EDAR_JUNCTION_COLOR.blue  = color->blue;
 }
+
+/*! \brief Get the current EdaRenderer Junction Size Property
+ *  \par Function Description
+ *  Function to retrieve the current junction-size property.
+ */
 int eda_renderer_get_junction_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_JUNCTION_SIZE;
 }
+
+/*! \brief Set the EdaRenderer Junction Size Property
+ *  \par Function Description
+ *  Sets the junction-size property.
+ */
 void eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "junction-size", new_size, NULL);
 }
 
+/*! \brief Get the current EdaRenderer Marker Threshold Property
+ *  \par Function Description
+ *  Function to retrieve the current text-marker-threshold property.
+ */
 double eda_renderer_get_marker_threshold (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_MARKER_THRESHOLD;
 }
+
+/*! \brief Set the EdaRenderer Marker Threshold Property
+ *  \par Function Description
+ *  Sets the text-marker-threshold property.
+ */
 void eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "text-marker-threshold", threshold, NULL);
 }
 
+/*! \brief Get the current EdaRenderer Net Endpoint Color Property
+ *  \par Function Description
+ *  Function to retrieve the current net-endpoint-color property.
+ */
 const
 GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
   return (const GdkColor*) &EDAR_NET_ENDPOINT_COLOR;
 }
+
+/*! \brief Set the EdaRenderer Net Endpoint Color Property
+ *  \par Function Description
+ *  Sets the net-endpoint-color property.
+ */
 void
 eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
 {
@@ -2201,6 +2334,10 @@ eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_NET_ENDPOINT_COLOR.blue  = color->blue;
 }
 
+/*! \brief Get the current EdaRenderer Text Marker Color Property
+ *  \par Function Description
+ *  Function to retrieve the current text marker color property.
+ */
 const
 GdkColor *eda_renderer_get_text_marker_color (EdaRenderer *renderer)
 {
@@ -2208,6 +2345,10 @@ GdkColor *eda_renderer_get_text_marker_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_TEXT_MARKER_COLOR;
 }
 
+/*! \brief Set the EdaRenderer Text Marker Color Property
+ *  \par Function Description
+ *  Sets the text marker color property.
+ */
 void
 eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
 {
@@ -2218,11 +2359,21 @@ eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_TEXT_MARKER_COLOR.green = color->green;
   EDAR_TEXT_MARKER_COLOR.blue  = color->blue;
 }
+
+/*! \brief Get the current EdaRenderer Text Marker Size Property
+ *  \par Function Description
+ *  Function to retrieve the current text-marker-size property.
+ */
 int eda_renderer_get_text_marker_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return EDAR_TEXT_MARKER_SIZE;
 }
+
+/*! \brief Set the EdaRenderer Text Marker Size Property
+ *  \par Function Description
+ *  Sets the text-marker-size property.
+ */
 void eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
