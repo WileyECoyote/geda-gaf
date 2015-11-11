@@ -126,8 +126,7 @@ void s_traverse_init(void)
 
   /* Initialise the hashtable which contains the visit
    *      count. N.b. no free functions are required. */
-  visit_table = g_hash_table_new (g_direct_hash,
-                                  g_direct_equal);
+  visit_table = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
 /*! \brief Traverse Netlist
@@ -150,7 +149,7 @@ void s_traverse_start(GedaToplevel * pr_current)
     /* only traverse pages which are toplevel, ie not underneath */
     if (p_current->page_control == 0) {
       pr_current->page_current = p_current;
-      s_traverse_sheet (pr_current, s_page_get_objects (p_current), NULL);
+      s_traverse_sheet (pr_current, s_page_get_objects (p_current));
     }
   }
 
@@ -172,7 +171,6 @@ void s_traverse_start(GedaToplevel * pr_current)
  *
  *  \param [in] pr_current    Current GedaToplevel structure; toplevel,
  *  \param [in] obj_list      The string with variables to expand
- *  \param [in] hierarchy_tag The string with variables to expand
  */
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
@@ -260,7 +258,6 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
         GEDA_FREE(temp_uref);
       }
       else {
-
           netlist->component_uref = NULL;
       }
 
@@ -412,7 +409,9 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 
         /* nope net attribute not found */
         if ((!value) && (!is_graphical)) {
+
           net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+
           fprintf(stderr,
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
             o_current->complex->filename, net_name);
@@ -467,8 +466,9 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     cpins->plid = -1;
   }
 
-  for (iter = component->complex->prim_objs; iter != NULL;
-       iter = g_list_next (iter))
+  for (iter  = component->complex->prim_objs;
+       iter != NULL;
+       iter  = g_list_next (iter))
   {
     Object *o_current = iter->data;
 
@@ -534,12 +534,12 @@ static int connection_type (Object *object)
  *
  */
 NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
-                     Object   *object, char *hierarchy_tag, int type)
+                     Object *object, char *hierarchy_tag, int type)
 {
   NET   *new_net;
   CONN  *c_current;
   GList *cl_current;
-  char  *temp                   = NULL;
+
   const  char *netattrib_pinnum = NULL;
 
   visit (object);
@@ -553,6 +553,8 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
   /* pins are not allowed to have the netname attribute attached to them */
   if (object->type != OBJ_PIN) {
+
+    char *temp = NULL;
 
     /* Ignore netname attributes on buses */
     if (object->type == OBJ_NET) {
@@ -607,16 +609,18 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 #if DEBUG
       printf("%s: going to find netname %s \n", __func__, nets->connected_to);
 #endif
-      nets->net_name =
-      s_netattrib_return_netname (pr_current, object,
-                                  nets->connected_to,
-                                  hierarchy_tag);
+
+      nets->net_name = s_netattrib_return_netname (pr_current, object,
+                                                   nets->connected_to,
+                                                   hierarchy_tag);
       nets->net_name_has_priority = TRUE;
+
       GEDA_FREE(nets->connected_to);     /* Release and set to NULL */
     }
 
 #if DEBUG
-    printf("traverse connected_to: %s\n", new_net->connected_to);
+    printf("traverse connected_to: %s, ", new_net->connected_to);
+    printf("<%p>\n", new_net->connected_to);
 #endif
 
     /* Terminate if we hit a pin which isn't the one we started with */

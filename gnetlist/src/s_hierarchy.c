@@ -267,14 +267,14 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
           case (APPEND):
             return_value =
             u_string_concat (hierarchy_tag,
-                         pr_current->hierarchy_uref_separator,
-                         basename, NULL);
+                             pr_current->hierarchy_uref_separator,
+                             basename, NULL);
             break;
           case (PREPEND):
             return_value =
             u_string_concat (basename,
-                         pr_current->hierarchy_uref_separator,
-                         hierarchy_tag, NULL);
+                             pr_current->hierarchy_uref_separator,
+                             hierarchy_tag, NULL);
 
             break;
         }
@@ -282,12 +282,10 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
       else {
         switch (pr_current->hierarchy_uref_order) {
           case (APPEND):
-            return_value =
-            u_string_concat (hierarchy_tag, basename, NULL);
+            return_value = u_string_concat (hierarchy_tag, basename, NULL);
             break;
           case (PREPEND):
-            return_value =
-            u_string_concat (basename, hierarchy_tag, NULL);
+            return_value = u_string_concat (basename, hierarchy_tag, NULL);
             break;
 
         }
@@ -357,11 +355,11 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
           s_rename_add(pl_current->net_name, new_name);
 
 #if DEBUG
-          printf("Going to remove %s\n",
-          nl_current->component_uref);
+          char *u_ref = nl_current->component_uref;
+          printf("Going to remove %s,%p\n", u_ref, u_ref);
 #endif
 
-          s_hierarchy_remove_urefconn(head, nl_current-> component_uref);
+          s_hierarchy_remove_urefconn(head, nl_current->component_uref);
           did_work = TRUE;
         }
       }
@@ -422,14 +420,12 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 #endif
               /* get source net name, all nets are named already */
               source_net_name =
-              s_net_name_search(pr_current,
-                                pl_current->nets);
+              s_net_name_search(pr_current, pl_current->nets);
 #if DEBUG
 
               printf("name: %s\n", source_net_name);
-              printf("Searching for: %s/%s\n",
-              nl_current->component_uref,
-              pl_current->pin_label);
+              printf("Searching for: %s/%s\n", nl_current->component_uref,
+                                               pl_current->pin_label);
 #endif
 
               did_work =
@@ -472,8 +468,7 @@ void s_hierarchy_remove_compsite_all(NETLIST *head)
     if (nl_current->composite_component) {
 
       if (nl_current->component_uref != NULL) {
-        s_hierarchy_remove_urefconn(head,
-                                    nl_current->component_uref);
+        s_hierarchy_remove_urefconn(head, nl_current->component_uref);
       }
     }
     nl_current = nl_current->next;
@@ -509,36 +504,36 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
           case (APPEND):
             return_value =
             u_string_concat (hierarchy_tag,
-                         pr_current->hierarchy_netname_separator,
-                         basename, NULL);
+                             pr_current->hierarchy_netname_separator,
+                             basename, NULL);
 
             break;
 
           case (PREPEND):
             return_value =
             u_string_concat (basename,
-                         pr_current->hierarchy_netname_separator,
-                         hierarchy_tag, NULL);
+                             pr_current->hierarchy_netname_separator,
+                             hierarchy_tag, NULL);
 
             break;
 
         }
-      } else {
+      }
+      else {
         switch (pr_current->hierarchy_netname_order) {
           case (APPEND):
 
-            return_value =
-            u_string_concat (hierarchy_tag, basename, NULL);
+            return_value = u_string_concat (hierarchy_tag, basename, NULL);
             break;
-          case (PREPEND):
-            return_value =
-            u_string_concat (basename, hierarchy_tag, NULL);
 
+          case (PREPEND):
+            return_value = u_string_concat (basename, hierarchy_tag, NULL);
             break;
         }
 
       }
-    } else {
+    }
+    else {
       return_value = NULL;
     }
   }
@@ -642,8 +637,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
     if (nl_current->component_uref) {
       verbose_print("u");
       new_uref =
-      s_hierarchy_return_baseuref(pr_current,
-                                  nl_current->component_uref);
+      s_hierarchy_return_baseuref(pr_current, nl_current->component_uref);
       GEDA_FREE(nl_current->component_uref);
       nl_current->component_uref = new_uref;
     }

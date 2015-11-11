@@ -318,6 +318,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 
             GEDA_FREE(pl_current->net_name);
             pl_current->net_name = u_string_strdup(dest);
+
           }
         }
         pl_current = pl_current->next;

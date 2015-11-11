@@ -291,7 +291,7 @@ s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
  *  \par Function Description
  *
  */
-char *s_netattrib_net_search (Object * o_current, const char *wanted_pin)
+char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 {
   char *value             = NULL;
   char *char_ptr          = NULL;
@@ -378,7 +378,7 @@ char *s_netattrib_net_search (Object * o_current, const char *wanted_pin)
  *  \par Function Description
  *
  */
-char *s_netattrib_return_netname(GedaToplevel * pr_current, Object * o_current,
+char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_current,
                                  char *pinnumber, char *hierarchy_tag)
 {
   const char *current_pin;
