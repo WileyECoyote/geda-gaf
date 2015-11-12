@@ -154,6 +154,8 @@ void main_prog(void *closure, int argc, char *argv[])
   char *output_filename;
   GedaToplevel *pr_current;
 
+  u_program_mem_set_vtable();
+
 #if ENABLE_NLS
 
   setlocale (LC_ALL, "");

@@ -1,3 +1,7 @@
+2015-11-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gnetlist.c: Add call to u_program_mem_set_vtable in function main_prog.
+
 2015-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Tweak "would-be" main line code; Defer checking and setting
