@@ -265,6 +265,7 @@ void main_prog(void *closure, int argc, char *argv[])
       fprintf (stderr, _("load failed [%s]: %s\n"), filename, err->message);
       g_error_free (err);
       GEDA_FREE (filename);
+      GEDA_FREE(output_filename);
       exit(2);
     }
 
@@ -282,9 +283,10 @@ void main_prog(void *closure, int argc, char *argv[])
   if (chdir (cwd)) {
     fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
              cwd, strerror (errno));
+    GEDA_FREE(cwd);
+    GEDA_FREE(output_filename);
     exit(1);
   }
-  /* free(cwd); - Defered; see below */
 
 #if DEBUG
   s_page_print_all(pr_current);
@@ -310,6 +312,8 @@ void main_prog(void *closure, int argc, char *argv[])
       fprintf (stderr,
              _("\nRun `%s --list-backends' for a full list of available backends.\n"),
                argv[0]);
+      GEDA_FREE(cwd);
+      GEDA_FREE(output_filename);
       exit (1);
     }
 
@@ -332,6 +336,8 @@ void main_prog(void *closure, int argc, char *argv[])
       /* Error occured with chdir */
       fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
       cwd, strerror (errno));
+      GEDA_FREE(cwd);
+      GEDA_FREE(output_filename);
       exit(1);
     }
   }

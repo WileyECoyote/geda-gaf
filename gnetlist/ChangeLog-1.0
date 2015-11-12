@@ -1,6 +1,7 @@
 2015-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gnetlist.c: Add call to u_program_mem_set_vtable in function main_prog.
+    * src/gnetlist.c: Add call to u_program_mem_set_vtable in function main_prog
+      and free output_filename if error exiting.
 
 2015-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
