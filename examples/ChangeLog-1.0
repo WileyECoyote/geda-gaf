@@ -1,3 +1,8 @@
+2015-11-11  Wiley E. Hill <wileyhill@gmail.com>
+
+    * sch/gTAG-psu.sch: Clean-up drawing; adjust attribute positions
+      visibility, add net names gtag_input_power and MAX882_LBI.
+
 2015-11-06  Wiley E. Hill <wileyhill@gmail.com>
 
     * Updated all files to the latest gEDA/gaf version and cleaned
