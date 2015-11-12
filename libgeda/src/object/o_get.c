@@ -249,7 +249,7 @@ bool o_get_is_valid_attribute (Object *object)
 
   if (GEDA_IS_TEXT(object)) {
 
-    if (object->text->string) {
+    if (object->text && object->text->string) {
 
       const char *ptr, *string;
 
@@ -443,10 +443,14 @@ const char *o_get_object_attrib_value (Object *object, const char *name)
   if (GEDA_IS_OBJECT(object)) {
 
     if (object->attribs) {
+
       attrib = o_attrib_find_attrib_by_name (object->attribs, name, 0);
-      if (GEDA_IS_TEXT(attrib)) {
-        value  = attrib->text->string;
-        while (value && *(value - 1) != ASCII_EQUAL_SIGN) value++;
+
+      if (o_get_is_valid_attribute(attrib)) {
+
+         value  = attrib->text->string + 2;
+         while (value && *(value - 1) != ASCII_EQUAL_SIGN) value++;
+
       }
       else {
         value = NULL;
