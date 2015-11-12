@@ -32,7 +32,7 @@ void x_dialog_guile_response(GtkWidget *ThisDialog, int response,
     textentry = GEDA_OBJECT_GET_DATA(ThisDialog, "textentry");
     string = GetEntryText( textentry );
     if (strlen(string) != 0) {
-      u_log_message("WTF?\n");
+      u_log_message("%s?\n", __func__);
     }
     break;
   default:
@@ -138,7 +138,6 @@ x_guile_dialog_path_list (SCM s_load_path)
 void x_guile_dialog (GschemToplevel *w_current)
 {
   GtkWidget  *ThisDialog;
-  //GtkWidget  *label;
   GtkWidget  *hbox;
   GtkWidget  *vbox;
 
@@ -176,8 +175,6 @@ void x_guile_dialog (GschemToplevel *w_current)
 
   vbox = GTK_DIALOG(ThisDialog)->vbox;
 
-  //gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, FALSE, 0);
-
   SCM s_load_path;
   SCM s_load_path_var;
 
@@ -186,14 +183,12 @@ void x_guile_dialog (GschemToplevel *w_current)
 
   hbox = x_guile_dialog_path_list(s_load_path);
 
-  //gtk_container_add (GTK_CONTAINER (vbox), hbox);
-
   gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 
   gtk_widget_show_all (ThisDialog);
 
   if (gtk_dialog_run (GTK_DIALOG (ThisDialog)) == GEDA_RESPONSE_ACCEPT) {
-    printf("update the damn guile path if modified");
+    printf("update the guile path if modified");
   };
 
   gtk_widget_destroy(ThisDialog);
