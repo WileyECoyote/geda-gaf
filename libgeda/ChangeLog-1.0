@@ -4,6 +4,11 @@
       NULL the internal list pointer after calling u_glist_free_full so
       the finalizer does not attempt to free the list again.
 
+    * src/geda/geda_list.c: Check self and pointer to internal list and
+      do not call g_list_free if NULL pointers in geda_list_finalize,
+      added reminder to comment that the geda_list_free_full macros
+      sets the to list->glist NULL.
+
 2015-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Revise function o_get_object_attrib_value to

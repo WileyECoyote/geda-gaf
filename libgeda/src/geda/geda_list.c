@@ -70,11 +70,16 @@ static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
  *  allocated data, and then chain up to the parent's finalize handler.
  *
  *  \param [in] object  The GObject being finalized.
+ *
+ *  \note Macro geda_list_free_full sets list->glist to NULL
  */
 static void geda_list_finalize(GObject *object)
 {
   GedaList *list = GEDA_LIST(object);
-  g_list_free(list->glist);
+
+  if (list && list->glist) {
+    g_list_free(list->glist);
+  }
 
   G_OBJECT_CLASS(geda_list_parent_class)->finalize(object);
 }
