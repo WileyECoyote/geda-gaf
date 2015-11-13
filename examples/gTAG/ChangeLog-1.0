@@ -1,5 +1,8 @@
 2015-11-12  Wiley E. Hill <wileyhill@gmail.com>
 
+    * sch/gTAG-jtagio.sch: Add net names for jtag signals between the
+      connectors and io buffers.
+
     * sch/gTAG-ucont.sch: Update footprint for conn4 (delete attached
       footprint).
 
