@@ -71,7 +71,7 @@ void      geda_list_add_unique              ( GedaList *list, void  *item );
 bool      geda_list_add_unique_string       ( GedaList *list, char  *text );
 GList    *geda_list_copy_glist              ( GedaList *list );
 void     *geda_list_find                    ( GedaList *list, void *item );
-int       geda_glist_is_homogeneous_objects ( GList *list);
+int       geda_glist_is_homogeneous_objects ( GList    *list);
 bool      geda_list_is_in_list              ( GedaList *list, void *item );
 void      geda_list_remove                  ( GedaList *list, void *item );
 
@@ -82,7 +82,7 @@ void      geda_list_remove_all              ( GedaList *list );
 //#define geda_list_get_glist(list) (list->glist)
 
 #define geda_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
-#define geda_list_free_full(list) u_glist_free_full(list->glist, g_free)
+#define geda_list_free_full(list) u_glist_free_full(list->glist, g_free); list->glist = NULL;
 #define geda_list_length(list) g_list_length(list->glist)
 
 #define Place_List    toplevel->page_current->place_list
