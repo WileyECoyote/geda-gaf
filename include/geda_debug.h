@@ -27,6 +27,8 @@
 #ifndef __GEDA_DEBUG__
 #  define __GEDA_DEBUG__
 
+#define EMBED_BREAKPOINT  asm volatile ("int3;")
+
 #define SET_DEBUG_DND_EVENTS  0
 #define SET_DEBUG_EVENTS      0
 #define SET_DEBUG_GRID        0

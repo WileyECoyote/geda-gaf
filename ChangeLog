@@ -1,3 +1,8 @@
+2015-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_debug.h: Add EMBED_BREAKPOINT macro to facility debugging
+      of geda-gaf apps.
+
 2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_diagnostics.h: Add new header to facilitate implementation
