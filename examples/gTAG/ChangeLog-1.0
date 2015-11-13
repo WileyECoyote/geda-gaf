@@ -3,6 +3,9 @@
     * sch/gTAG-ucont.sch: Update footprint for conn4 (delete attached
       footprint).
 
+    * sch/gTAG-psu.sch: Replace zero ohm resistors R30 and R31 with
+      1N5817 Schottky diodes, adjust attribute positions and visibilities.
+
 2015-11-11  Wiley E. Hill <wileyhill@gmail.com>
 
     * sch/gTAG-psu.sch: Clean-up drawing; adjust attribute positions

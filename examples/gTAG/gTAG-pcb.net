@@ -1,34 +1,34 @@
 MAX882_LBI	R32-2 R33-1 U30-8 
-gtag_input_power	R32-1 R31-1 C30-1 U30-5 R30-1 C31-1 U30-7 
-unnamed_net59	U40-8 
-unnamed_net58	U40-6 
-usb_power	R30-2 CONN2-1 
-unnamed_net54	U20-12 
-unnamed_net53	U20-13 
-unnamed_net52	CONN4-8 
-unnamed_net51	CONN4-6 U20-10 
-unnamed_net50	CONN4-5 U20-8 
-unnamed_net49	CONN4-4 U20-6 
-unnamed_net48	CONN4-3 U20-4 
-unnamed_net46	CONN4-2 U20-1 
-jtag_power	R31-2 R23-1 R22-1 R21-1 R20-1 C20-2 U20-14 CONN4-1 
-unnamed_net40	U1-20 
-unnamed_net39	CONN1-10 U1-37 
-unnamed_net38	CONN1-9 U1-41 
-unnamed_net37	R16-2 U1-10 
-unnamed_net36	R14-2 U1-42 
-unnamed_net35	CONN1-8 U1-51 
-unnamed_net34	CONN1-7 U1-50 
-unnamed_net33	CONN1-6 U1-49 
-unnamed_net27	CONN1-20 U1-36 
-unnamed_net26	CONN1-19 U1-35 
-unnamed_net25	CONN1-18 U1-34 
-unnamed_net24	CONN1-17 U1-33 
-unnamed_net23	CONN1-16 U1-32 
-unnamed_net22	CONN1-15 U1-31 
-unnamed_net21	CONN1-14 U1-30 
-unnamed_net20	CONN1-13 U1-29 
+gtag_input_power	D1-1 R32-1 D2-1 C30-1 U30-5 C31-1 U30-7 
+unnamed_net54	U40-8 
+unnamed_net53	U40-6 
+usb_power	D1-2 CONN2-1 
+unnamed_net49	U20-12 
+unnamed_net48	U20-13 
+unnamed_net47	CONN4-8 
+CON_TRST	CONN4-6 U20-10 
+CON_TCK	CONN4-5 U20-8 
+CON_TMS	CONN4-4 U20-6 
+CON_TDO	CONN4-3 U20-4 
+CON_TDI	CONN4-2 U20-1 
+jtag_power	D2-2 R23-1 R22-1 R21-1 R20-1 C20-2 U20-14 CONN4-1 
+unnamed_net40	CONN1-8 U1-51 
+unnamed_net39	CONN1-7 U1-50 
+unnamed_net38	CONN1-6 U1-49 
+unnamed_net32	R14-2 U1-42 
+unnamed_net31	CONN1-9 U1-41 
+unnamed_net30	CONN1-10 U1-37 
+unnamed_net29	CONN1-20 U1-36 
+unnamed_net28	CONN1-19 U1-35 
+unnamed_net27	CONN1-18 U1-34 
+unnamed_net26	CONN1-17 U1-33 
+unnamed_net25	CONN1-16 U1-32 
+unnamed_net24	CONN1-15 U1-31 
+unnamed_net23	CONN1-14 U1-30 
+unnamed_net22	CONN1-13 U1-29 
+unnamed_net20	U1-20 
 unnamed_net19	U1-12 
+unnamed_net18	R16-2 U1-10 
 unnamed_net17	U1-4 R8-1 
 unnamed_net16	U1-38 R7-1 
 unnamed_net15	U1-24 R3-1 
