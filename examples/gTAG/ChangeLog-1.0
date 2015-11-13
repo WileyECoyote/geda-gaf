@@ -6,6 +6,12 @@
     * sch/gTAG-psu.sch: Replace zero ohm resistors R30 and R31 with
       1N5817 Schottky diodes, adjust attribute positions and visibilities.
 
+    * bom/gTAG.bom: Regenerated the BOM.
+
+    * sym/CY7C64603-52NC-gt.sym: Resequenced pins in the file, change
+      pin number 43 to pintype=in, even though is an io pin in order to
+      suppress warning (the only warning) from DRC2.
+
 2015-11-11  Wiley E. Hill <wileyhill@gmail.com>
 
     * sch/gTAG-psu.sch: Clean-up drawing; adjust attribute positions

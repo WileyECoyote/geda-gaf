@@ -1,4 +1,4 @@
-v 20150401 2
+v 20151031 2
 B 300 300 1500 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 300 1800 0 1800 1 0 1
 {
@@ -92,13 +92,13 @@ T 300 2150 9 10 1 0 0 0 1
 MAX882
 T 1800 2150 8 10 1 1 0 6 1
 refdes=U?
-T 300 2550 5 10 0 1 0 0 1
+T 300 2750 5 10 0 1 0 0 1
 device=MAX882
 T 300 2350 8 10 0 1 0 0 1
 footprint=SO8
-T 300 2750 5 10 0 1 0 0 1
+T 300 2950 5 10 0 1 0 0 1
 description=FIXED/ADJ,LDO REGULATOR, 200mA
-T 300 2950 5 10 0 0 0 0 1
+T 300 2550 5 10 0 0 0 0 1
 symversion=0.1
 T 300 3150 5 10 0 1 0 0 1
 documentation=datasheets.maximintegrated.com/en/ds/MAX882-MAX884.pdf
