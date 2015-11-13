@@ -49,14 +49,14 @@ static GObjectClass *geda_arc_parent_class = NULL;
 
 /*! \brief Geda Arc Bounds
  *  \par Function Description
- *  This function calculates the smallest rectangle the arc can be drawn into.
- *  The <B>Object</B> pointed by object is assumed to be an arc.
- *  The <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B> pointed integers define
- *  this rectangle at the end of the function. It is expressed in world units.
- *  The process is divided into two steps : the first step is to calculate the
- *  coordinates of the two ends of the arc and the coordinates of the center.
- *  They forms a first rectangle but (depending on the start angle and the
- *  sweep of the arc) not the right.
+ *  This function calculates the smallest rectangle the arc can be drawn
+ *  into. The <B>Object</B> pointed by object is assumed to be an arc.
+ *  The <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B> pointed
+ *  integers define this rectangle at the end of the function. The arc is
+ *  expressed in world units. The process is divided into two steps : the
+ *  first step is to calculate the coordinates of the two ends of the arc
+ *  and the coordinates of the center. They forms a first rectangle but
+ * (depending on the start angle and the sweep of the arc) not the right.
  *
  *  \param [in]  object
  */
@@ -90,8 +90,8 @@ geda_arc_bounds(Object *object)
   top    = (y1 < y2) ? ((y1 < y3) ? y1 : y3) : ((y2 < y3) ? y2 : y3);
 
   /*! \note
-   *  The previous rectangle is extended to the final one
-   *  by checking whether the arc is over a main axis (vertical or horizontal).
+   *  The previous rectangle is extended to the final one by checking
+   *  whether the arc is over a main axis (vertical or horizontal).
    *  If so, the rectangle is extended in these directions.
    *
    *  In the mirror mode, the sweep angle is negativ. To get a
@@ -285,6 +285,7 @@ Object *geda_arc_new (void)
  */
 bool is_a_geda_arc_object (Arc *arc)
 {
-  return GEDA_IS_OBJECT(arc) && (GEDA_TYPE_ARC == (arc->head_marker & arc->tail_marker));
+  return GEDA_IS_OBJECT(arc) &&
+        (GEDA_TYPE_ARC == (arc->head_marker & arc->tail_marker));
 }
 /** @} endgroup geda-arc-object */

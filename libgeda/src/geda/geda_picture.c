@@ -227,6 +227,7 @@ Object *geda_picture_new (void)
  */
 bool is_a_geda_picture_object (Picture *pic)
 {
-  return GEDA_IS_OBJECT(pic) && (GEDA_TYPE_PICTURE == (pic->head_marker & pic->tail_marker));
+  return GEDA_IS_OBJECT(pic) &&
+        (GEDA_TYPE_PICTURE == (pic->head_marker & pic->tail_marker));
 }
 /** @} endgroup geda-picture-object */

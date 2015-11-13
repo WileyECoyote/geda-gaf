@@ -205,6 +205,7 @@ Object *geda_net_new (void)
  */
 bool is_a_geda_net_object (Net *net)
 {
-  return GEDA_IS_OBJECT(net) && (GEDA_TYPE_NET == (net->head_marker & net->tail_marker));
+  return GEDA_IS_OBJECT(net) &&
+        (GEDA_TYPE_NET == (net->head_marker & net->tail_marker));
 }
 /** @} endgroup geda-net-object */

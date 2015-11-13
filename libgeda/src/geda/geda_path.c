@@ -267,6 +267,7 @@ Object *geda_path_new (void)
  */
 bool is_a_geda_path_object (Path *path)
 {
-  return GEDA_IS_OBJECT(path) && (GEDA_TYPE_PATH == (path->head_marker & path->tail_marker));
+  return GEDA_IS_OBJECT(path) &&
+        (GEDA_TYPE_PATH == (path->head_marker & path->tail_marker));
 }
 /** @} endgroup geda-path-object */

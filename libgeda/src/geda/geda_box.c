@@ -35,11 +35,11 @@ static GObjectClass *geda_box_parent_class = NULL;
 /*! \brief Get Box bounding rectangle in WORLD coordinates.
  *
  *  \par Function Description
- *  This function sets the <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B>
+ *  Sets the <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B>
  *  parameters to the boundings of the box object described in <B>*box</B>
  *  in world units.
  *
- *  \param [in]  object     Box Object to read coordinates from.
+ *  \param [in]  object  Box Object to read coordinates from.
  */
 int
 geda_box_bounds(Object *object)
@@ -213,5 +213,6 @@ Object *geda_box_new (void)
  */
 bool is_a_geda_box_object (Box *box)
 {
-  return GEDA_IS_OBJECT(box) && (GEDA_TYPE_BOX == (box->head_marker & box->tail_marker));
+  return GEDA_IS_OBJECT(box) &&
+        (GEDA_TYPE_BOX == (box->head_marker & box->tail_marker));
 }

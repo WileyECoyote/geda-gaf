@@ -286,6 +286,7 @@ Object *geda_text_new (void)
  */
 bool is_a_geda_text_object (Text *txt)
 {
-  return GEDA_IS_OBJECT(txt) && (GEDA_TYPE_TEXT == (txt->head_marker & txt->tail_marker));
+  return GEDA_IS_OBJECT(txt) &&
+        (GEDA_TYPE_TEXT == (txt->head_marker & txt->tail_marker));
 }
 /** @} endgroup geda-text-object */

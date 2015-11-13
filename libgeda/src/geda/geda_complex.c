@@ -52,7 +52,7 @@ static GObjectClass *geda_complex_parent_class = NULL;
  *
  *  \par Given a list of objects, calculates the bounds coordinates.
  *
- *  \param [in]  object  The complex object whose bounds are to be determined.
+ *  \param [in]  object The complex object whose bounds are to be determined.
 
  *  \return If any bounds were found for the list of objects
  *  \retval 0 No bounds were found
@@ -277,5 +277,6 @@ Object *geda_complex_new (void)
  */
 bool is_a_geda_complex_object (Complex *cpx)
 {
-  return GEDA_IS_OBJECT(cpx) && (GEDA_TYPE_COMPLEX == (cpx->head_marker & cpx->tail_marker));
+  return GEDA_IS_OBJECT(cpx) &&
+        (GEDA_TYPE_COMPLEX == (cpx->head_marker & cpx->tail_marker));
 }
