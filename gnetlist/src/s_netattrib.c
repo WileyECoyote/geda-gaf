@@ -286,8 +286,6 @@ s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
  *  \par Function Description
  *
  */
@@ -295,18 +293,19 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 {
   char *value             = NULL;
   char *char_ptr          = NULL;
-  char *net_name          = NULL;
   char *start_of_pinlist  = NULL;
   char *return_value      = NULL;
   const char *current_pin = NULL;
   int   counter;
 
-  if (o_current == NULL ||
-      o_current->complex == NULL)
+  if (o_current == NULL || o_current->complex == NULL)
     return NULL;
 
   /* for now just look inside the component */
   for (counter = 0; ;) {
+
+    char *net_name;
+
     value = o_attrib_search_inherited_attribs_by_name (o_current,
                                                        "net", counter);
     if (value == NULL)
@@ -315,6 +314,7 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
     counter++;
 
     char_ptr = strchr (value, ':');
+
     if (char_ptr == NULL) {
       fprintf (stderr,
      _("Got an invalid net= attrib [net=%s]\nMissing : in net= attrib\n"),
@@ -325,8 +325,16 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 
     net_name = s_netattrib_extract_netname (value);
 
+    /* Check if net attribute malformed */
+    if (!net_name) {
+      GEDA_FREE (value);
+      break;
+    }
+
     start_of_pinlist = char_ptr + 1;
+
     current_pin = strtok (start_of_pinlist, DELIMITERS);
+
     while (current_pin && !return_value) {
       if (strcmp (current_pin, wanted_pin) == 0) {
         return_value = net_name;
@@ -339,6 +347,9 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 
   /* now look outside the component */
   for (counter = 0; ;) {
+
+    char *net_name;
+
     value = o_attrib_search_attached_attribs_by_name (o_current,
                                                       "net", counter);
     if (value == NULL)
@@ -357,9 +368,17 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 
     net_name = s_netattrib_extract_netname (value);
 
+    if (!net_name) {
+      GEDA_FREE (value);
+      break;
+    }
+
     start_of_pinlist = char_ptr + 1;
+
     current_pin = strtok (start_of_pinlist, DELIMITERS);
+
     while (current_pin) {
+
       if (strcmp (current_pin, wanted_pin) == 0) {
         GEDA_FREE (return_value);
         return net_name;

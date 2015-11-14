@@ -1,3 +1,12 @@
+2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Revise function s_netattrib_net_search to check for a
+      NULL return from s_netattrib_extract_netname, make net_name a local to
+      each of the For loops, not sure what the For loops really do since there
+      should only be one attribute having the given pinnumber and having TWO
+      does not generate an error using the DRC2 backend but does generate and
+      error if two get shorted as a results of having two net= attributes.
+
 2015-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Add call to u_program_mem_set_vtable in function main_prog
