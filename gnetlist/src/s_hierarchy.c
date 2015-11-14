@@ -380,8 +380,6 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
   NETLIST  *nl_current;
   CPINLIST *pl_current;
 
-  char *source_net_name = NULL;
-  int   did_work = FALSE;
 
   s_rename_next_set();
 
@@ -414,28 +412,34 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
             }
             else if (pl_current->plid != -1) {
 
+              bool  result;
+              char *source_net_name;
+
 #if DEBUG
               printf("# L: %s %s\n", pl_current->pin_number,
               pl_current->pin_label);
 #endif
+
               /* get source net name, all nets are named already */
-              source_net_name =
-              s_net_name_search(pr_current, pl_current->nets);
+              source_net_name = s_net_name_search(pr_current, pl_current->nets);
+
 #if DEBUG
 
               printf("name: %s\n", source_net_name);
               printf("Searching for: %s/%s\n", nl_current->component_uref,
                                                pl_current->pin_label);
 #endif
+              result = s_hierarchy_setup_rename(pr_current, head,
+                                                nl_current->component_uref,
+                                                pl_current->pin_label,
+                                                source_net_name,
+                                                removed);
 
-              did_work =
-              s_hierarchy_setup_rename(pr_current, head,
-                                       nl_current->component_uref,
-                                       pl_current->pin_label,
-                                       source_net_name);
-              if (!did_work) {
+              GEDA_FREE(source_net_name); /* s_rename_add made a copy */
+
+              if (!result) {
                 fprintf(stderr,
-                        "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
+                       "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
                         pl_current->pin_label,
                         nl_current->component_uref);
 

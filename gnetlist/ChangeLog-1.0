@@ -1,5 +1,10 @@
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_hierarchy.c: Free source_net_name in s_hierarchy_post_process after
+      return from s_hierarchy_setup_rename.
+
+2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/s_netattrib.c: Revise function s_netattrib_net_search to check for a
       NULL return from s_netattrib_extract_netname, make net_name a local to
       each of the For loops, not sure what the For loops really do since there
