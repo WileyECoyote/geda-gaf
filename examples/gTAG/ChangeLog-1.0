@@ -5,6 +5,27 @@
 
     * gTAG/sch/gTAG-psu.sch: Change Schottkys to dash 1, with DO-41 feet.
 
+    * gTAG/sch/gTAG-consio.sch: Name unnamed nets; GTAG_PROT_A, GTAG_PROT_B,
+      which gnetlist ignores because they was connecting a graphical NC to
+      a NC PIN, still gnetlist should NOT report these as unamed_xx!
+
+    * gTAG/sch/gTAG-ucont.sch: Name unnamed nets:
+
+               * GTAG_NDISCON
+               * GTAG_SCL
+               * GTAG_SDA
+               * GTAG_RDY2
+               * GTAG_RDY4
+               * GTAG_RDY5
+               * GTAG_USBDM
+               * GTAG_USBDP
+               * GTAG_PB[0-7]
+               * GTAG_RESV4
+               * GTAG_XCLKSEL
+               * GTAG_XSEL
+               * GTAG_WAKEUP
+               * GTAG_MEM_A0
+
 2015-11-12  Wiley E. Hill <wileyhill@gmail.com>
 
     * sch/gTAG-jtagio.sch: Add net names for jtag signals between the
