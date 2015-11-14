@@ -23,6 +23,7 @@ example_DATA =  attribs \
 				sht/gTAG-jtagio.sym \
 				sht/gTAG-psu.sym \
 				sht/gTAG-ucont.sym \
+				sym/24C64-gt.sym \
 				sym/7414-gt.sym \
 				sym/CY7C64603-52NC-gt.sym \
 				sym/MAX882-gt.sym \

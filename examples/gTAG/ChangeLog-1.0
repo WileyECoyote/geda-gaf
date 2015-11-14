@@ -1,3 +1,8 @@
+2015-11-13  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sym/24C64-gt.sym: Use local symbols for EEPROM, none of the
+      geda-gaf exmples have net= defined in a local symbol.
+
 2015-11-12  Wiley E. Hill <wileyhill@gmail.com>
 
     * sch/gTAG-jtagio.sch: Add net names for jtag signals between the
