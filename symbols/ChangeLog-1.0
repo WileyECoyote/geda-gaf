@@ -1,3 +1,23 @@
+2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add 6 symbols EEPROM, serial 2 wire
+
+        * atmel/AT24C32-1.sym (EEPROM,4096 x 8,serial 2 wire,SOIC8)
+
+        * atmel/AT24C32-2.sym (EEPROM,4096 x 8,serial 2 wire,TSSOP8
+
+        * atmel/AT24C64-3.sym (EEPROM,8192 x 8,serial 2 wire,DIP8)
+
+        * atmel/AT24C64-1.sym (EEPROM,8192 x 8,serial 2 wire,SOIC8)
+
+        * atmel/AT24C64-2.sym (EEPROM,8192 x 8,serial 2 wire,TSSOP8)
+
+        * atmel/AT24C64-3.sym (EEPROM,8192 x 8,serial 2 wire,DIP8)
+
+2015-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TSB41AB1-1.sym: Add symbol symbol Link-Layer Controller, IEEE1394
+
 2015-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TSB41AB1-1.sym: Add symbol Link-Layer Controller,IEEE1394
