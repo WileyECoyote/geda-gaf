@@ -397,23 +397,24 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
  *  \par Function Description
  *
  */
-char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_current,
+char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_pin,
                                  char *pinnumber, char *hierarchy_tag)
 {
-  const char *current_pin;
-  char *netname;
-  char *temp_netname;
+  const char *pin_num;
+        char *netname;
+        char *temp_netname;
 
-  current_pin = s_netattrib_connected_string_get_pinnum (pinnumber);
-  if (current_pin == NULL) return NULL;
+  pin_num = s_netattrib_connected_string_get_pinnum (pinnumber);
+
+  if (pin_num == NULL) return NULL;
 
   /* use hierarchy tag here to make this net uniq */
-  temp_netname = s_netattrib_net_search(o_current->parent_object,
-                                        current_pin);
+  temp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
 
   netname =
-  s_hierarchy_create_netattrib(pr_current, temp_netname,
-                               hierarchy_tag);
+  s_hierarchy_create_netattrib(pr_current, temp_netname, hierarchy_tag);
+
+  GEDA_FREE (temp_netname);
 
 #if DEBUG
   printf("netname: %s\n", netname);

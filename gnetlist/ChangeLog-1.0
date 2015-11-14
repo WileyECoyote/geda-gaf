@@ -7,6 +7,8 @@
       does not generate an error using the DRC2 backend but does generate and
       error if two get shorted as a results of having two net= attributes.
 
+      Release temp_netname in s_netattrib_return_netname.
+
 2015-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Add call to u_program_mem_set_vtable in function main_prog
