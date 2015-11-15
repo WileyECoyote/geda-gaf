@@ -55,9 +55,9 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
+
     attrib = o_attrib_search_inherited_attribs_by_name (o_current,
                                                         "source", count);
-
     looking_inside = TRUE;
 #if DEBUG
     printf("going to look inside now\n");
@@ -65,9 +65,12 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
   }
 
   graphical = s_hierarchy_graphical_search(o_current, count);
+
   if (graphical) {
-    /* Do not bother traversing the hierarchy if the symbol has an */
-    /* graphical attribute attached to it. */
+
+    /* Do not bother traversing the hierarchy if symbol has a */
+    /* graphical attribute attached to it. WEH: Is this really
+     * the right thing to do? */
     GEDA_FREE(attrib);  /* Release memory and set attrib = NULL */
   }
 
@@ -86,17 +89,17 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
       /* guts here */
       /* guts for a single filename */
       p_current = pr_current->page_current;
+
 #if DEBUG
       printf("Going down %s\n", current_filename);
 #endif
       GError *err = NULL;
-      child_page =
-      s_hierarchy_down_schematic_single(pr_current,
-                                        current_filename,
-                                        pr_current->page_current,
-                                        page_control,
-                                        HIERARCHY_FORCE_LOAD,
-                                        &err);
+      child_page = s_hierarchy_down_schematic_single(pr_current,
+                                                     current_filename,
+                                                     pr_current->page_current,
+                                                     page_control,
+                                                     HIERARCHY_FORCE_LOAD,
+                                                     &err);
 
       if (child_page == NULL) {
         fprintf(stderr, _("ERROR: Failed to load subcircuit '%s': %s\n"),
@@ -141,29 +144,34 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
     /* continue looking outside first */
     if (!looking_inside) {
       attrib =
-      o_attrib_search_attached_attribs_by_name (o_current, "source",
-                                                count);
+      o_attrib_search_attached_attribs_by_name (o_current, "source", count);
     }
 
     /* Did not find anything outside, so now look inside symbol */
     if (!looking_inside && attrib == NULL && !loaded_flag) {
+
       looking_inside = TRUE;
+
 #if DEBUG
       printf("switching to go to look inside\n");
 #endif
+
     }
 
     if (looking_inside) {
+
 #if DEBUG
       printf("looking inside\n");
 #endif
+
       attrib =
-      o_attrib_search_inherited_attribs_by_name (o_current,
-                                                 "source", count);
+      o_attrib_search_inherited_attribs_by_name (o_current, "source", count);
     }
 
     graphical = s_hierarchy_graphical_search(o_current, count);
+
     if (graphical) {
+
       /* Do not bother looking further in the hierarchy if the symbol */
       /* has an graphical attribute attached to it. */
       if (attrib) {
@@ -177,14 +185,17 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
  *  \par Function Description
  *   Remove stuff from netlist connected to \a uref_disable
  */
-void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
+GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
   NET      *n_current;
+  GList    *removed;
+
   char uref[80], pin[10];
 
   nl_current = head;
+  removed    = NULL;
 
   while (nl_current != NULL) {
 
@@ -203,14 +214,14 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 #if DEBUG
           printf("  looking at : %s %s\n", uref, pin);
 #endif
+
           if (strcmp(uref_disable, uref) == 0) {
+
 #if DEBUG
-            printf("conn disabling %s\n",
-            n_current->connected_to);
+            printf("conn disabling %s\n", n_current->connected_to);
 #endif
-            /* can't do frees, since some names are links */
-            /*      GEDA_FREE(n_current->connected_to);*/
-            n_current->connected_to = NULL;
+
+            GEDA_FREE(n_current->connected_to);
           }
         }
         n_current = n_current->next;
@@ -220,17 +231,27 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
     }
 
     if (nl_current->component_uref) {
+
       if (strcmp(nl_current->component_uref, uref_disable) == 0) {
+
 #if DEBUG
-        printf("refdes disabling: %s\n", nl_current->component_uref);
+        printf("refdes disabling, %s\n", nl_current->component_uref);
+        printf(" %p\n", nl_current->component_uref);
 #endif
+
+        /* Save pointers to free later */
+        if (!g_list_find(removed, nl_current->component_uref)) {
+          removed = g_list_prepend(removed, nl_current->component_uref);
+        }
+
         /* can't do frees, since some names are links */
-        /*free(nl_current->component_uref); */
         nl_current->component_uref = NULL;
       }
     }
     nl_current = nl_current->next;
   }
+
+  return g_list_reverse(removed);
 }
 
 /*! \brief Create a refdes relative to Hierarchy
@@ -248,7 +269,7 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
  *
  *  \return Character string hierarchy reference.
  *
- *  \note Caller must release the returned character string.
+ *  \note Caller should release the returned character string.
  *
  *  \sa g_rc_hierarchy_uref_separator g_rc_hierarchy_uref_mangle i_vars_set
  */
@@ -313,13 +334,12 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
  */
 static int
 s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
-                         char *label, char *new_name)
+                         char *label, char *new_name, GedaList *removed)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
-
-  char *wanted_uref = NULL;
-  int   did_work = FALSE;
+  char     *wanted_uref = NULL;
+  bool      success     = FALSE;
 
   /* this is questionable, because I'm not sure if it's exactly the */
   /* same as the #if 0'ed out line */
@@ -343,6 +363,9 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
 
         if (nl_current->cpins) {
 
+          GList *tmp_list;
+          char  *component_uref;
+
           /* skip over head of special io symbol */
           pl_current = nl_current->cpins->next;
 
@@ -354,20 +377,29 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
 
           s_rename_add(pl_current->net_name, new_name);
 
+          component_uref = nl_current->component_uref;
+
 #if DEBUG
-          char *u_ref = nl_current->component_uref;
-          printf("Going to remove %s,%p\n", u_ref, u_ref);
+          printf("Going to remove, %s,%p\n", component_uref, component_uref);
 #endif
 
-          s_hierarchy_remove_urefconn(head, nl_current->component_uref);
-          did_work = TRUE;
+          tmp_list = s_hierarchy_remove_urefconn(head, component_uref);
+
+          if (tmp_list) { /* Add list to master list and free list */
+             geda_list_add_glist_unique(removed, tmp_list);
+             g_list_free (tmp_list);
+          }
+
+          success = TRUE;
         }
       }
     }
     nl_current = nl_current->next;
   }
 
-  return (did_work);
+  GEDA_FREE(wanted_uref);
+
+  return (success); /* Maybe should be geda_list_length(removed); */
 }
 
 /*! \todo Finish function documentation!!!
@@ -379,11 +411,13 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
-
+  GedaList *removed;
 
   s_rename_next_set();
 
   nl_current = head;
+
+  removed = geda_list_new();
 
   while (nl_current != NULL) {
 
@@ -453,7 +487,13 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
   }
 
   s_rename_all(pr_current, head);
-  s_hierarchy_remove_compsite_all(head);
+
+  s_hierarchy_remove_compsite_all(head, removed);
+
+  geda_list_free_full(removed);
+
+  g_object_unref(removed);
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -461,7 +501,7 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
  *  \par Function Description
  *
  */
-void s_hierarchy_remove_compsite_all(NETLIST *head)
+void s_hierarchy_remove_compsite_all(NETLIST *head, GedaList *removed)
 {
   NETLIST *nl_current;
 
@@ -472,12 +512,25 @@ void s_hierarchy_remove_compsite_all(NETLIST *head)
     if (nl_current->composite_component) {
 
       if (nl_current->component_uref != NULL) {
-        s_hierarchy_remove_urefconn(head, nl_current->component_uref);
+
+        GList *tmp_list;
+        char  *u_ref = nl_current->component_uref;
+
+#if DEBUG
+        printf("Going to remove, %s, %p\n", u_ref, u_ref);
+#endif
+
+        tmp_list = s_hierarchy_remove_urefconn(head, u_ref);
+
+        if (tmp_list) { /* Add list to master list and free list */
+
+          geda_list_add_glist_unique(removed, tmp_list);
+          g_list_free (tmp_list);
+        }
       }
     }
     nl_current = nl_current->next;
   }
-
 }
 
 /*! \todo Finish function documentation!!!
@@ -564,17 +617,22 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
   char *return_value = NULL;
 
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
+
     if (basename) {
       return (u_string_strdup (basename));
-    } else {
+    }
+    else {
       return (NULL);
     }
+
   }
 
   if (hierarchy_tag) {
+
     if (basename) {
 
       if (pr_current->hierarchy_netattrib_separator) {
+
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
@@ -592,6 +650,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
         }
       }
       else {
+
         switch (pr_current->hierarchy_netattrib_order) {
           case (APPEND):
             return_value =
@@ -609,9 +668,11 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
     }
   }
   else {
+
     if (basename) {
       return_value = u_string_strdup (basename);
-    } else {
+    }
+    else {
       return_value = NULL;
     }
   }
@@ -623,6 +684,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
  *  \brief Hierarchy Remove Mangling from Reference
  *  \par Function Description
  *
+ *  \note Caller should release the returned character string.
  */
 void
 s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
@@ -658,7 +720,7 @@ s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
           verbose_print("U");
           sscanf(n_current->connected_to, "%s %s", uref, pin);
           new_uref = s_hierarchy_return_baseuref(pr_current, uref);
-          new_connected_to = u_string_sprintf("%s %s", new_uref, pin);
+          new_connected_to = u_string_sprintf("%s %s", new_uref, pin, NULL);
           GEDA_FREE(new_uref);
           GEDA_FREE(n_current->connected_to);
           n_current->connected_to = new_connected_to;
