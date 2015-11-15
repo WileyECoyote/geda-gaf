@@ -553,7 +553,7 @@
       (let* ((netname (car all-nets))
         (directives (gnetlist:graphical-net-objs-attrib
                      netname
-                     "DRC_Directive"
+                     "device=DRC_Directive"
                      "value")))
         (begin
           ; Only check nets with a NoConnection directive
@@ -600,7 +600,7 @@
       (if (not (null? all-nets))
           (let* ((netname (car all-nets))
                  (directives (gnetlist:graphical-net-objs-attrib
-                              netname "DRC_Directive" "value")))
+                              netname "device=DRC_Directive" "value")))
             (begin
               ; If one of the directives is NoConnection,
               ; then it shouldn't be checked.
@@ -810,7 +810,7 @@
 
 ;;
 ;; Check pintype of the pins connected to every net in the design.
-;;
+;; TODO: This might be less than ideal.
 ;; all-nets: (net1 net2 net3), for example
 (define drc2:check-pintypes-of-nets
   (lambda (all-nets)
@@ -824,7 +824,7 @@
                        (pintype-count (drc2:count-pintypes-of-net pintypes))
                        (directives (gnetlist:graphical-net-objs-attrib
                                     netname
-                                    "DRC_Directive"
+                                    "device=DRC_Directive"
                                     "value"))
                        )
                 ; If some directives are defined, then it shouldn't be checked.

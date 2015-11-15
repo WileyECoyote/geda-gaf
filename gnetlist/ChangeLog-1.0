@@ -61,6 +61,9 @@
 
     * src/: Add/Edit Doxygen comments.
 
+    * scheme/gnet-drc2.scm: Revert DRC_Directive back to device=DRC_Directive,
+      Ttemporarily.
+
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Revise function s_netattrib_net_search to check for a
