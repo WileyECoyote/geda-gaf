@@ -17,8 +17,8 @@
 
     * src/g_netlist.c: Revise gnetlist_quit to call s_netlist_destroy_or_report twice,
       one with the regular netlist and graphical, pass a pointer to a list to collect
-      a list of pointers to strings to  be freed and destroying structures related to
-      both list.
+      a list of pointers to strings to be freed and destroying structures related to
+      both list. Call s_page_delete_list on the toplevel before releasing toplevel.
 
     * src/s_netlist.c: Add function s_netlist_destroy_or_report to traverse netlist
       and release allocations or add pointers to list, calls s_cpinlist_destroy_or_

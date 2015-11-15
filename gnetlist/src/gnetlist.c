@@ -365,7 +365,9 @@ void main_prog(void *closure, int argc, char *argv[])
 
     /* check size here hack */
     str = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
+
     scm_c_eval_string (str);
+
     GEDA_FREE (str);
     /* gh_eval_str_with_stack_saving_handler (input_str); */
   }
@@ -377,11 +379,15 @@ void main_prog(void *closure, int argc, char *argv[])
     printf(_("Either specify a backend to execute or interactive mode!\n"));
   }
 
+  scm_dynwind_end();
+
+  s_page_delete_list(pr_current);
+
+  s_toplevel_release (pr_current);
+
   gnetlist_quit();
 
   GEDA_FREE(output_filename);
-
-  scm_dynwind_end();
 }
 
 /*! \brief Main executable entrance point.
