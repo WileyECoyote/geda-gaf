@@ -39,7 +39,7 @@
  * The keys of the table are the Object pointers, and the visit count
  * is stored directly in the value pointers.
  */
-static GHashTable *visit_table = NULL;
+static GHashTable *visit_table;
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -100,7 +100,7 @@ s_traverse_clear_all_visited (const GList *obj_list)
  *  Initializes netlist_head list, and for some awkwardly displays a
  *  legend if Verbose mode.
  */
-void s_traverse_init(void)
+static void s_traverse_init(void)
 {
   netlist_head = s_netlist_add(NULL);
   netlist_head->nlid = -1;	/* head node */
@@ -123,10 +123,6 @@ void s_traverse_init(void)
     printf(_("------------------------------------------------------\n\n"));
 
   }
-
-  /* Initialise the hashtable which contains the visit
-   *      count. N.b. no free functions are required. */
-  visit_table = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
 /*! \brief Traverse Netlist
@@ -135,10 +131,16 @@ void s_traverse_init(void)
  *  a second list of graphical entities. Prints the net-list
  *  when verbose mode.
  */
-void s_traverse_start(GedaToplevel * pr_current)
+void s_traverse_process(GedaToplevel *pr_current)
 {
   GList *iter;
   Page  *p_current;
+
+  s_traverse_init();
+
+  /* Initialise the hashtable which contains the visit
+   *      count. N.b. no free functions are required. */
+  visit_table = g_hash_table_new (g_direct_hash, g_direct_equal);
 
   for (iter  = geda_list_get_glist (pr_current->pages);
        iter != NULL;
@@ -163,6 +165,9 @@ void s_traverse_start(GedaToplevel * pr_current)
     printf (_("\nInternal netlist representation:\n\n"));
     s_netlist_print (netlist_head);
   }
+
+  g_hash_table_destroy(visit_table);
+  visit_table = NULL;
 }
 
 /*! \todo Finish function documentation!!!

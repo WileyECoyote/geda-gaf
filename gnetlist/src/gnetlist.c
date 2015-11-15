@@ -339,9 +339,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   if (g_slist_length(input_files) > 0) {
 
-    s_traverse_init();
-
-    s_traverse_start(pr_current);
+    s_traverse_process (pr_current);
 
     /* Change back to the directory where we started AGAIN.  This is done */
     /* because the s_traverse functions can change the Current Working Directory. */

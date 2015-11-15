@@ -112,16 +112,16 @@ void s_rename_init(void);
 void s_rename_destroy_all(void);
 void s_rename_next_set(void);
 void s_rename_print(void);
-int s_rename_search(char *src, char *dest, int quiet_flag);
+int  s_rename_search(char *src, char *dest, int quiet_flag);
 void s_rename_add(char *src, char *dest);
 void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest);
 void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head);
-SCM g_get_renamed_nets(SCM scm_level);
+SCM  g_get_renamed_nets(SCM scm_level);
 
 /* s_traverse.c */
-void s_traverse_init(void);
-void s_traverse_start(GedaToplevel *pr_current);
-void s_traverse_sheet(GedaToplevel *pr_current, const GList *obj_list, char *hierarchy_tag);
+void s_traverse_process(GedaToplevel *pr_current);
+void s_traverse_sheet(GedaToplevel *pr_current, const GList *obj_list);
+void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist);
 CPINLIST *s_traverse_component(GedaToplevel *pr_current, Object *component, char *hierarchy_tag);
 NET *s_traverse_net(GedaToplevel *pr_current, NET *nets, int starting, Object *object, char *hierarchy_tag, int type);
 
