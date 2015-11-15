@@ -32,7 +32,7 @@
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ *  \ingroup (gnetlist-SCM-API)
  */
 SCM vams_get_attribs_list (Object *object)
 {

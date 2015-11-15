@@ -90,9 +90,9 @@ void g_register_funcs(void)
 
 }
 
-/*! \brief SCM API terminated program
+/*! \brief SCM API terminate program
  *  \par Function Description
- *  Scheme
+ *  Scheme API function to terminate gnetlist.
  */
 SCM g_quit(void)
 {

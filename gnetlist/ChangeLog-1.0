@@ -59,6 +59,8 @@
       release the default string used to setting the in top-level if not encoun-
       tered while processing the rc file.
 
+    * src/: Add/Edit Doxygen comments.
+
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Revise function s_netattrib_net_search to check for a

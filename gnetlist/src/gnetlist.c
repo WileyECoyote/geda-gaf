@@ -341,8 +341,9 @@ void main_prog(void *closure, int argc, char *argv[])
 
     s_traverse_process (pr_current);
 
-    /* Change back to the directory where we started AGAIN.  This is done */
-    /* because the s_traverse functions can change the Current Working Directory. */
+    /* Change back to the directory where we started AGAIN. This is done
+     * because the call to s_page_goto in s_hierarchy_traverse could have
+     * changed the current working directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
       fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
@@ -359,14 +360,15 @@ void main_prog(void *closure, int argc, char *argv[])
 
   if (guile_proc) {
 
-    char *str;
+    char *eval;
 
     /* check size here hack */
-    str = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
+    eval = u_string_sprintf ("(%s \"%s\")", guile_proc, output_filename);
 
-    scm_c_eval_string (str);
+    /* Execute the back-end passing the name of the output file */
+    scm_c_eval_string (eval);
 
-    GEDA_FREE (str);
+    GEDA_FREE (eval);
     /* gh_eval_str_with_stack_saving_handler (input_str); */
   }
   else if (interactive_mode) {

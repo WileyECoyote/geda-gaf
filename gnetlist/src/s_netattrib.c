@@ -92,6 +92,10 @@ void s_netattrib_check_connected_string (const char *str)
  *
  * things to do here :
  * write the net alias function
+ *
+ * \todo Actually validate the value and report errors, just about any
+ *       string that is passed to this routine is accepted, including
+ *       "GND::1".
  */
 char *s_netattrib_extract_netname(char *value)
 {
@@ -286,8 +290,17 @@ s_netattrib_handle (GedaToplevel *pr_current, Object *o_current,
   }
 }
 
+/*! \brief Search Net Attributes given a Pin Number and return Net Name
  *  \par Function Description
+ *  An object can have multiple net= attributes, either attached or
+ *  floating. This function searches complex object types for the
+ *  net=netname:x attribute with an x==wanted_pin, and if found
+ *  returns the net-name portion of the attribute as extracted by
+ *  s_netattrib_extract_netname function.
  *
+ *  \sa s_netattrib_extract_netname
+ *
+  * \note caller should GEDA_FREE returned string
  */
 char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 {
@@ -394,7 +407,7 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Get net-name associated with an Object's pin
  *  \par Function Description
  *
  */
@@ -409,7 +422,7 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_pin,
 
   if (pin_num == NULL) return NULL;
 
-  /* use hierarchy tag here to make this net uniq */
+  /* use hierarchy tag here to make this net unique */
   temp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
 
   netname =

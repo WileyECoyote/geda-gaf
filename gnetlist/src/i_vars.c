@@ -141,6 +141,11 @@ i_vars_init_gnetlist_defaults(void)
   eda_config_set_integer (cfg, "gnetlist", "net-naming-priority", NETATTRIB_ATTRIBUTE);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void i_vars_finalize (void)
 {
   GEDA_FREE(default_hierarchy_netname_separator);

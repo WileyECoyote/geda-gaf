@@ -184,7 +184,7 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   g_return_if_fail(new_rename != NULL);
 
   new_rename->next = NULL;
-  new_rename->src = u_string_strdup(src);
+  new_rename->src  = u_string_strdup(src);
   new_rename->dest = u_string_strdup(dest);
 
   if (last_set->first_rename == NULL) {
@@ -217,7 +217,8 @@ void s_rename_add(char *src, char *dest)
 
   if (flag) {
 
-    /* If found follow the original behaviour, limiting the operation to the current end-of-list */
+    /* If found follow the original behavior, limiting the operation
+     * to the current end-of-list */
     last = last_set->last_rename;
 
     for (temp = last_set->first_rename; ; temp = temp->next) {
@@ -295,7 +296,7 @@ void s_rename_add(char *src, char *dest)
  *      pass approach. Previously the strings were not freed in this
  *      routine prior to re-assignment and the last reference to the
  *      pointer were lost after the routine so the memory could not be
- *      freed later.
+ *      freed later, WEH.
  */
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {

@@ -135,6 +135,7 @@ catch_handler (void *data, SCM tag, SCM throw_args)
  *
  * \param argc Number of command-line arguments.
  * \param argv Array of command-line arguments.
+ * \param output_filename
  *
  * \return index into \a argv of first non-option argument.
  */

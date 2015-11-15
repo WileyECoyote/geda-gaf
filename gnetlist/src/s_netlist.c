@@ -32,12 +32,17 @@
 /* used by the extract functions below */
 #define DELIMITERS ",; "
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add a NETLIST record to NETLIST List
  *  \par Function Description
+ *   Allocates and initializes a NETLIST record structure. The record
+ *   is appended to the NETLIST List pointed to by \a ptr by adding
+ *   links to the previous record if \a ptr is not NULL. If \a ptr is
+ *   NULL then the ->prev member is set to NULL to indicate this is
+ *   the first record.
+ *
  *  \returns new node
  */
-NETLIST *s_netlist_add(NETLIST * ptr)
+NETLIST *s_netlist_add(NETLIST *ptr)
 {
   NETLIST *new_node;
 
@@ -65,15 +70,21 @@ NETLIST *s_netlist_add(NETLIST * ptr)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Release memory for NETLIST Record Structures
  *  \par Function Description
+ *   Iterates \a netlist and calls s_cpinlist_destroy_or_report for each
+ *   found CPINLIST, frees internal strings for the component_uref and
+ *   the and hierarchy_tag, and releases each NETLIST structure.
  *
+ *  \param [in]  netlist  Either the regular or the graphical net list.
+ *  \param [out] strings  List to be appended with the pointers of all
+ *                        net-names encountered (but not removed).
  */
-void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *string_list)
+void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
 {
   NETLIST  *nl_iter;
 
+  /* Get a pointer to the first record */
   nl_iter = s_netlist_return_head(netlist);
 
   while (nl_iter != NULL) {
@@ -84,7 +95,7 @@ void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *string_list)
     GEDA_FREE(nl_current->hierarchy_tag);
 
     if (nl_current->cpins) {
-      s_cpinlist_destroy_or_report(nl_current->cpins, string_list);
+      s_cpinlist_destroy_or_report(nl_current->cpins, strings);
       nl_current->cpins = NULL;
     }
 

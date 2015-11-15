@@ -37,12 +37,17 @@ static int unnamed_pin_counter = 1;
 #define MAX_UNNAMED_NETS 99999999
 #define MAX_UNNAMED_PINS 99999999
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add a NET record to NET List
  *  \par Function Description
+ *   Allocates and initializes a NET record structure. The record
+ *   is appended to the NET List given by \a ptr by adding links
+ *   to the previous record if \a ptr is not NULL.
  *
+ *  \note \a ptr can be NULL.
+ *
+ *  \returns new node
  */
-NET *s_net_add(NET * ptr)
+NET *s_net_add(NET *ptr)
 {
   NET *new_node;
 
@@ -69,12 +74,18 @@ NET *s_net_add(NET * ptr)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Release memory for a Net Record Structure
  *  \par Function Description
+ *   Frees internal strings for the pin label and the connected_to
+ *   and adds the pointer to net_name to \a list before releasing
+ *   the NET structure for each NET in the linked list pointed to
+ *   by \a ptr.
  *
+ *  \param [in]  ptr   Pointer to linked list of NET structures.
+ *  \param [out] list  List to be appended with the pointers of
+ *                     net-names encountered (but not removed).
  */
-void s_net_destroy_or_report(NET *ptr, GedaList *string_list)
+void s_net_destroy_or_report(NET *ptr, GedaList *list)
 {
   NET *iter;
 
@@ -87,24 +98,25 @@ void s_net_destroy_or_report(NET *ptr, GedaList *string_list)
     GEDA_FREE(node->pin_label);
     GEDA_FREE(node->connected_to);
 
-    geda_list_add_unique (string_list, node->net_name);
+    geda_list_add_unique (list, node->net_name);
 
     iter = node->next;
     GEDA_FREE(node);
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Find a NET given the node Id
  *  \par Function Description
- *
+ *   Called by s_net_name
  */
-int s_net_find(NET * net_head, NET * node)
+int s_net_find(NET *net_head, NET *node)
 {
   NET *n_current;
 
   n_current = net_head;
+
   while (n_current != NULL) {
+
     if (n_current->nid == node->nid) {
       return (TRUE);
     }
@@ -153,7 +165,9 @@ void s_net_print(NET * ptr)
  *  \brief
  *  \par Function Description
  *
- * object being a pin
+ *  \param [in] pr_current    GedaToplevel toplevel structure;
+ *  \param [in] object        Is a Pin object
+ *  \param [in] hierarchy_tag hierarchy tag string
  */
 char *s_net_return_connected_string(GedaToplevel *pr_current,
                                     Object       *object,
@@ -264,9 +278,12 @@ NET *s_net_return_tail(NET * head)
  *  \brief
  *  \par Function Description
  *
+ *  \param [in] pr_current   GedaToplevel toplevel structure;
+ *  \param [in] net_head     Pointer to first netlist record structure
+ *
  *  \sa s_netlist_post_process s_net_name
  */
-char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
+char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 {
   NET       *n_current;
   EdaConfig *cfg;
@@ -404,9 +421,14 @@ char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
  *  \brief
  *  \par Function Description
  *
+ *  \param [in] pr_current    GedaToplevel toplevel structure;
+ *  \param [in] netlist_head  Pointer to first netlist record structure
+ *  \param [in] net_head      Pointer to first net record structure
+ *  \param [in] hierarchy_tag hierarchy tag string
+ *  \param [in] node_type     The type of node
  */
-char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
-                  NET * net_head, char *hierarchy_tag, int node_type)
+char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
+                  NET *net_head, char *hierarchy_tag, int node_type)
 {
 
   NET      *n_start;
@@ -444,7 +466,6 @@ char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
           n_start = pl_current->nets;
           if (n_start->next && net_head->next) {
             found = s_net_find(n_start->next, net_head->next);
-
             if (found) {
               net_name = s_net_name_search(pr_current, n_start);
               if (net_name) {

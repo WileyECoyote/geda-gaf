@@ -31,8 +31,8 @@
 
 /*! \brief Add a Pin List record to Pin List
  *  \par Function Description
- *   Allocates and initializes a CPINLIST record struct. The
- *   record is appended the Pin List given by \a ptr and links
+ *   Allocates and initializes a CPINLIST record structure. The
+ *   record is appended to the Pin List given by \a ptr and links
  *   the previous record.
  *
  *  \note \a ptr can be NULL.
@@ -67,16 +67,22 @@ CPINLIST *s_cpinlist_add(CPINLIST *ptr)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Release memory for CPINLIST Record Structures
  *  \par Function Description
+ *   Iterates \a pinlist and calls s_net_destroy_or_report for each
+ *   found NET, frees internal strings for the pin label and the pin
+ *   number and adds the net_name pointer to \a list before releasing
+ *   the CPINLIST structure.
  *
+ *  \param [in]  pinlist  Pointer to linked list of CPINLIST structures.
+ *  \param [out] list     List to be appended with the pointers of all
+ *                        net-names encountered (but not removed).
  */
-void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *string_list)
+void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *list)
 {
   CPINLIST *pl_iter;
 
-  /* Create a new array */
+  /* Get a pointer to the first record */
   pl_iter = s_cpinlist_return_head(pinlist);
 
   while (pl_iter != NULL) {
@@ -84,20 +90,19 @@ void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *string_list)
     CPINLIST *pl_current = pl_iter;
 
     if (pl_current->nets) {
-      s_net_destroy_or_report (pl_current->nets, string_list); /* Pass list to net_freer*/
+      s_net_destroy_or_report (pl_current->nets, list);
       pl_current->nets = NULL;
     }
 
     GEDA_FREE(pl_current->pin_number);
     GEDA_FREE(pl_current->pin_label);
 
-    geda_list_add_unique (string_list, pl_current->net_name);
+    geda_list_add_unique (list, pl_current->net_name);
 
     pl_iter = pl_current->next;
     GEDA_FREE(pl_current);
   }
 }
-
 
 /*! \brief Netlister: Print list of Pins
  *  \par Function Description

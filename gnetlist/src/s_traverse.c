@@ -60,8 +60,9 @@ bool returns_true (void * key, void * value, void * user_data)
 static
 inline int is_visited(Object *obj)
 {
-  void * val;
-  void * orig_key;
+  void *val;
+  void *orig_key;
+
   bool exist = g_hash_table_lookup_extended (visit_table,
                                              obj,
                                              &orig_key,
@@ -69,14 +70,16 @@ inline int is_visited(Object *obj)
   return exist ? GPOINTER_TO_INT(val) : 0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Increment the current visit count
  *  \par Function Description
- *  Increment the current visit count for a particular Object..
+ *  Increment the current visit count for a particular Object.
+ *
+ *  \note g_hash_table_replace() adds the pointer to the table if
+ *        the \a object is not found in the table.
  */
 static inline int visit(Object *obj)
 {
-  void * val = GINT_TO_POINTER(is_visited (obj) + 1);
+  void *val = GINT_TO_POINTER(is_visited (obj) + 1);
   g_hash_table_replace (visit_table, obj, val);
   return GPOINTER_TO_INT (val);
 }
@@ -97,8 +100,8 @@ s_traverse_clear_all_visited (const GList *obj_list)
 /*! \todo Finish function documentation!!!
  *  \brief Initialize Traverse Module
  *  \par Function Description
- *  Initializes netlist_head list, and for some awkwardly displays a
- *  legend if Verbose mode.
+ *  Initializes netlist_head list, and for some awkwardly displays
+ *  a legend if Verbose mode.
  */
 static void s_traverse_init(void)
 {
@@ -171,11 +174,11 @@ void s_traverse_process(GedaToplevel *pr_current)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Traverse Toplevel Sheet
  *  \par Function Description
  *
- *  \param [in] pr_current    Current GedaToplevel structure; toplevel,
- *  \param [in] obj_list      The string with variables to expand
+ *  \param [in] pr_current  Current GedaToplevel structure; toplevel,
+ *  \param [in] obj_list    List of all object on This sheet
  */
 void
 s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
@@ -312,6 +315,14 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   STOP_GEDA_PERFORMANCE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief Traverse a Hierarchy Sheet
+ *  \par Function Description
+ *   Called from s_hierarchy_traverse, possibly recursively.
+ *
+ *  \param [in] pr_current Current GedaToplevel structure; toplevel,
+ *  \param [in] netlist      List of all object on This sheet
+ */
 void
 s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 {
@@ -374,7 +385,7 @@ s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
         GEDA_FREE(value);
       }
 
-      netlist = s_netlist_add (netlist);
+      netlist       = s_netlist_add (netlist);
       netlist->nlid = o_current->sid;
 
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
@@ -481,6 +492,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     if (o_current->type != OBJ_PIN)
       continue;
 
+    /* and apparently we dont't bus type pins */
     if (o_current->pin->node_type != PIN_NET_NODE)
       continue;
 
@@ -495,17 +507,16 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     cpins->pin_label =
       o_attrib_search_object_attribs_by_name (o_current, "pinlabel", 0);
 
-    /* head nets node */
-    /* is this really need */
+    /* head nets node, is this really needed? */
     nets_head = nets = s_net_add(NULL);
     nets->nid = -1;
 
     /* This avoids us adding an unnamed net for an unconnected pin */
     if (o_current->conn_list != NULL) {
 
-      /* result of s_traverse_net() is not used, explicitly cast function value (void) */
-      s_traverse_net (pr_current, nets, TRUE,
-                             o_current, hierarchy_tag, cpins->node_type);
+      /* result of s_traverse_net() is not used, implicitly cast function value (void) */
+      s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
+
       s_traverse_clear_all_visited (s_page_get_objects (pr_current->page_current));
     }
 
@@ -566,18 +577,18 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
       temp = o_attrib_search_object_attribs_by_name (object, "netname", 0);
     }
 
-    if (temp) {
+    if (temp) { /* If a net WITH a "netname" attribute */
 
       new_net->net_name = s_hierarchy_create_netname(pr_current, temp,
                                                      hierarchy_tag);
       GEDA_FREE(temp);
     }
-    else if (object->type == OBJ_NET) {
+    else if (object->type == OBJ_NET) { /* If net WITHOUT a "netname" */
 
       /* search for the old label= attribute on nets */
       temp = o_attrib_search_object_attribs_by_name (object, "label", 0);
 
-      if (temp) {
+      if (temp) { /* Accept the attribute here but issue notice */
 
         printf(_("WARNING: Found label=%s. label= is deprecated, please use netname=\n"), temp);
 
@@ -586,12 +597,13 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
         GEDA_FREE(temp);
       }
     }
-  }
+
 #if DEBUG
   printf("inside traverse: %s, new_net->net_name=%s\n", object->name, new_net->net_name);
 #endif
 
-  if (object->type == OBJ_PIN) {
+  }
+  else { /* Is a Pin object */
 
     char *temp;
 
@@ -634,10 +646,10 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     }
   }
 
-  /*printf(_("Found net %s\n", object->name/0)); */
+  /* printf(_("Found net %s\n", object->name/0)); */
   verbose_print("n");
 
-  /* this is not perfect yet and won't detect a loop... */
+  /* This is not perfect yet and won't detect a loop... */
   if (is_visited(object) > 100) {
     fprintf(stderr, _("Found a possible net/pin infinite connection\n"));
     exit(-1);
@@ -647,17 +659,19 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
   while (cl_current != NULL) {
 
+    Object *next_object;
+
     c_current = (CONN *) cl_current->data;
 
-    if (c_current->other_object != NULL) {
+    next_object = c_current->other_object;
 
-      if (!is_visited(c_current->other_object) &&
-        c_current->other_object != object)
-      {
+    if (next_object != NULL) {
+
+      if (!is_visited(next_object) && next_object != object) {
+
         nets = s_traverse_net (pr_current, nets, FALSE,
-                               c_current->other_object, hierarchy_tag, type);
+                               next_object, hierarchy_tag, type);
       }
-
     }
     cl_current = g_list_next(cl_current);
   }
