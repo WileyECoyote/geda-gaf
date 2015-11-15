@@ -55,6 +55,10 @@
       call g_hash_table_destroy before leaving s_traverse_process. Move visit_table
       to uninitialize segment.
 
+    * src/i_vars.c: Add function i_vars_finalize and call from gnetlist_quit to
+      release the default string used to setting the in top-level if not encoun-
+      tered while processing the rc file.
+
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Revise function s_netattrib_net_search to check for a

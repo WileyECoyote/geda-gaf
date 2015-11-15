@@ -35,19 +35,19 @@
 #define DEFAULT_UNNAMED_NETNAME "unnamed_net"
 #define DEFAULT_UNNAMED_BUSNAME "unnamed_bus"
 
-int default_net_naming_priority = NETATTRIB_ATTRIBUTE;
-int default_hierarchy_traversal = TRUE;
-int default_hierarchy_uref_mangle = TRUE;
-int default_hierarchy_netname_mangle = TRUE;
-int default_hierarchy_netattrib_mangle = TRUE;
-int default_hierarchy_netattrib_order = APPEND;
-int default_hierarchy_netname_order = APPEND;
-int default_hierarchy_uref_order = APPEND;
-char *default_hierarchy_netname_separator = NULL;
+int   default_net_naming_priority           = NETATTRIB_ATTRIBUTE;
+int   default_hierarchy_traversal           = TRUE;
+int   default_hierarchy_uref_mangle         = TRUE;
+int   default_hierarchy_netname_mangle      = TRUE;
+int   default_hierarchy_netattrib_mangle    = TRUE;
+int   default_hierarchy_netattrib_order     = APPEND;
+int   default_hierarchy_netname_order       = APPEND;
+int   default_hierarchy_uref_order          = APPEND;
+char *default_hierarchy_netname_separator   = NULL;
 char *default_hierarchy_netattrib_separator = NULL;
-char *default_hierarchy_uref_separator = NULL;
-char *default_unnamed_netname = NULL;
-char *default_unnamed_busname = NULL;
+char *default_hierarchy_uref_separator      = NULL;
+char *default_unnamed_netname               = NULL;
+char *default_unnamed_busname               = NULL;
 
 /*! \brief Set Variables from Defaults after reading RC
  *  \par Function Description
@@ -57,19 +57,18 @@ char *default_unnamed_busname = NULL;
  */
 void i_vars_set(GedaToplevel * pr_current)
 {
+  /* initialize the toplevels varibles */
   i_vars_libgeda_set(pr_current);
 
-  pr_current->net_naming_priority = default_net_naming_priority;
-  pr_current->hierarchy_traversal = default_hierarchy_traversal;
-  pr_current->hierarchy_uref_mangle = default_hierarchy_uref_mangle;
-  pr_current->hierarchy_netname_mangle =
-  default_hierarchy_netname_mangle;
-  pr_current->hierarchy_netattrib_mangle =
-  default_hierarchy_netattrib_mangle;
-  pr_current->hierarchy_netattrib_order =
-  default_hierarchy_netattrib_order;
-  pr_current->hierarchy_netname_order = default_hierarchy_netname_order;
-  pr_current->hierarchy_uref_order = default_hierarchy_uref_order;
+  /* set non-strings to default values*/
+  pr_current->net_naming_priority        = default_net_naming_priority;
+  pr_current->hierarchy_traversal        = default_hierarchy_traversal;
+  pr_current->hierarchy_uref_mangle      = default_hierarchy_uref_mangle;
+  pr_current->hierarchy_netname_mangle   = default_hierarchy_netname_mangle;
+  pr_current->hierarchy_netattrib_mangle = default_hierarchy_netattrib_mangle;
+  pr_current->hierarchy_netattrib_order  = default_hierarchy_netattrib_order;
+  pr_current->hierarchy_netname_order    = default_hierarchy_netname_order;
+  pr_current->hierarchy_uref_order       = default_hierarchy_uref_order;
 
   if (pr_current->hierarchy_uref_mangle == FALSE) {
     if (pr_current->hierarchy_uref_separator) {
@@ -84,6 +83,7 @@ void i_vars_set(GedaToplevel * pr_current)
     default_hierarchy_netname_separator =
     u_string_strdup (DEFAULT_HIERARCHY_NETNAME_SEPARATOR);
   }
+
   if (!default_hierarchy_netattrib_separator) {
     default_hierarchy_netattrib_separator =
     u_string_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
@@ -103,13 +103,17 @@ void i_vars_set(GedaToplevel * pr_current)
 
   INIT_STR(pr_current, hierarchy_netname_separator,
            default_hierarchy_netname_separator);
+
   INIT_STR(pr_current, hierarchy_netattrib_separator,
            default_hierarchy_netattrib_separator);
+
   INIT_STR(pr_current, hierarchy_uref_separator,
            default_hierarchy_uref_separator);
 
   INIT_STR(pr_current, unnamed_netname, default_unnamed_netname);
+
   INIT_STR(pr_current, unnamed_busname, default_unnamed_busname);
+
 }
 
 /*! \brief Setup gnetlist default configuration.
@@ -136,3 +140,13 @@ i_vars_init_gnetlist_defaults(void)
   /* By default, net= attributes beats netname= attributes. */
   eda_config_set_integer (cfg, "gnetlist", "net-naming-priority", NETATTRIB_ATTRIBUTE);
 }
+
+void i_vars_finalize (void)
+{
+  GEDA_FREE(default_hierarchy_netname_separator);
+  GEDA_FREE(default_hierarchy_netattrib_separator);
+  GEDA_FREE(default_hierarchy_uref_separator);
+  GEDA_FREE(default_unnamed_netname);
+  GEDA_FREE(default_unnamed_busname);
+}
+

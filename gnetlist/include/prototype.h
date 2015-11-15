@@ -46,7 +46,7 @@ int  main(int argc, char *argv[]);
 /* i_vars.c */
 void i_vars_set(GedaToplevel *pr_current);
 void i_vars_init_gnetlist_defaults (void);
-
+void i_vars_finalize (void);
 /* parsecmd.c */
 void    usage(char *cmd);
 int     parse_commandline(int argc, char *argv[], char **output_filename);
