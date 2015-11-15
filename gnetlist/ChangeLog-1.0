@@ -1,3 +1,12 @@
+2015-11-15 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit a7d58b6871c74dfe6b60da11d616b28aade84fd7: Add
+      backend tests for verbose mode.
+
+      While this significantly increases the time of 'make check', one more gnetlist
+      option is now tested. Affects-bug: lp-1497659.
+
 2015-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * Gnetlist Meet GedaList
@@ -62,7 +71,16 @@
     * src/: Add/Edit Doxygen comments.
 
     * scheme/gnet-drc2.scm: Revert DRC_Directive back to device=DRC_Directive,
-      Ttemporarily.
+      temporarily.
+
+      LEAK SUMMARY: (AFTER -- See 2015-11-06, all test pass, not regenerated)
+         definitely lost: 0 bytes in 0 blocks
+         indirectly lost: 0 bytes in 0 blocks
+           possibly lost: 272,972 bytes in 7,766 blocks
+         still reachable: 3,909,929 bytes in 6,730 blocks
+              suppressed: 30,671 bytes in 783 blocks
+
+      ERROR SUMMARY: 49 errors from 43 contexts (suppressed: 93842 from 170)
 
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -182,6 +200,15 @@
       Revise function g_get_all_unique_nets simlar to above; eliminate variable "list"
       and remove conditional check for wanted_net_name since SCM_ASSERT scm_is_string
       would already handle this situation. Eliminate variables "x" and "is_member".
+
+      LEAK SUMMARY: (BEFORE)
+         definitely lost: 7,207 bytes in 1,497 blocks
+         indirectly lost: 0 bytes in 0 blocks
+           possibly lost: 362,844 bytes in 10,334 blocks
+         still reachable: 5,116,764 bytes in 34,196 blocks
+              suppressed: 11,431 bytes in 245 blocks
+
+      ERROR SUMMARY: 255 errors from 137 contexts (suppressed: 93686 from 98)
 
 2015-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
