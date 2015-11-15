@@ -1,7 +1,11 @@
-2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
+2015-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_hierarchy.c: Free source_net_name in s_hierarchy_post_process after
       return from s_hierarchy_setup_rename.
+
+    * src/s_netattrib.c: Free string (value) o_attrib_search_attached_attribs_by_name
+      in second For loop of s_netattrib_net_search if a floating net is found with the
+      given pin number.
 
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -381,6 +381,7 @@ char *s_netattrib_net_search (Object *o_current, const char *wanted_pin)
 
       if (strcmp (current_pin, wanted_pin) == 0) {
         GEDA_FREE (return_value);
+        GEDA_FREE (value);
         return net_name;
       }
       current_pin = strtok (NULL, DELIMITERS);
