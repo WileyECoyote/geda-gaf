@@ -43,21 +43,34 @@
 
 /*! \brief Quite gnetlist
  *  \par Function Description
- *  This function is called before exiting gnetlist and serves to
- *  release various resources allocated by the program.
+ *  This function is called before exiting gnetlist and serves
+ *  to release various resources allocated by the program.
  */
 void gnetlist_quit(void)
 {
-    libgeda_release();
+  GedaList *string_list;
 
-    s_rename_destroy_all();
+  string_list = geda_list_new();
 
-    /* o_text_freeallfonts(); */
+  s_netlist_destroy_or_report(graphical_netlist_head, string_list);
 
-    /* Free GSList *backend_params */
-    g_slist_free (backend_params);
+  s_netlist_destroy_or_report(netlist_head, string_list);
 
-    g_slist_free (input_files);
+  geda_list_free_full(string_list);
+
+  g_object_unref(string_list);
+
+  s_rename_destroy_all();
+
+  libgeda_release();
+
+  i_vars_finalize();
+
+  /* Free GSList *backend_params */
+  g_slist_free (backend_params);
+
+  g_slist_free (input_files);
+
 }
 
 /*! \brief Print a list of available backends.

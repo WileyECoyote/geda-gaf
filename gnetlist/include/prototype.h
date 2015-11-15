@@ -53,22 +53,23 @@ int     parse_commandline(int argc, char *argv[], char **output_filename);
 
 /* s_cpinlist.c */
 CPINLIST *s_cpinlist_add(CPINLIST *ptr);
+void      s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *list);
 void      s_cpinlist_print(CPINLIST *ptr);
 CPINLIST *s_cpinlist_return_head(CPINLIST *tail);
 CPINLIST *s_cpinlist_return_tail(CPINLIST *head);
 CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number);
 
 /* s_hierarchy.c */
-void  s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current, NETLIST *netlist);
-void  s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head);
-void  s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable);
-void  s_hierarchy_remove_compsite_all(NETLIST *head);
-char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
-char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
-char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
-void  s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head);
-char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref);
-int   s_hierarchy_graphical_search(Object* o_current, int count);
+void   s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current, NETLIST *netlist);
+void   s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head);
+GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable);
+void   s_hierarchy_remove_compsite_all(NETLIST *head, GedaList *removed);
+char  *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
+char  *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
+char  *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
+void   s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head);
+char  *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref);
+int    s_hierarchy_graphical_search(Object* o_current, int count);
 
 /* s_misc.c */
 void verbose_print(char *string);
@@ -77,6 +78,7 @@ void verbose_reset_index(void);
 
 /* s_net.c */
 NET  *s_net_add(NET *ptr);
+void  s_net_destroy_or_report(NET *ptr, GedaList *list);
 int   s_net_find(NET *net_head, NET *node);
 void  s_net_print(NET *ptr);
 char *s_net_return_connected_string(GedaToplevel *pr_current, Object *object, char *hierarchy_tag);
@@ -97,6 +99,7 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current, Object *o_current, ch
 
 /* s_netlist.c */
 NETLIST *s_netlist_add(NETLIST *netlist);
+void     s_netlist_destroy_or_report(NETLIST *netlist, GedaList *list);
 void     s_netlist_name_named_nets (GedaToplevel *pr_current, NETLIST *named_netlist, NETLIST *unnamed_netlist);
 char    *s_netlist_netname_of_netid (GedaToplevel *pr_current, NETLIST *netlist_head, int net_id);
 void     s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head);

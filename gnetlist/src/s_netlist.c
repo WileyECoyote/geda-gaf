@@ -70,6 +70,34 @@ NETLIST *s_netlist_add(NETLIST * ptr)
  *  \par Function Description
  *
  */
+void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *string_list)
+{
+  NETLIST  *nl_iter;
+
+  nl_iter = s_netlist_return_head(netlist);
+
+  while (nl_iter != NULL) {
+
+    NETLIST *nl_current = nl_iter;
+
+    GEDA_FREE(nl_current->component_uref);
+    GEDA_FREE(nl_current->hierarchy_tag);
+
+    if (nl_current->cpins) {
+      s_cpinlist_destroy_or_report(nl_current->cpins, string_list);
+      nl_current->cpins = NULL;
+    }
+
+    nl_iter = nl_current->next;
+    GEDA_FREE(nl_current);
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void s_netlist_name_named_nets (GedaToplevel *pr_current,
                                 NETLIST *named_netlist,
                                 NETLIST *unnamed_netlist)
@@ -230,12 +258,14 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
                                               pl_current->node_type);
 
             pl_current->net_name = net_name;
+
             /* also put this name in the first node of the nets linked list */
             if (pl_current->net_name && pl_current->nets) {
 
               if (pl_current->nets->next) {
                 GEDA_FREE(pl_current->nets->next->net_name);
                 pl_current->nets->next->net_name = u_string_strdup (net_name);
+
               }
             }
           }

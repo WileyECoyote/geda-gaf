@@ -74,6 +74,31 @@ NET *s_net_add(NET * ptr)
  *  \par Function Description
  *
  */
+void s_net_destroy_or_report(NET *ptr, GedaList *string_list)
+{
+  NET *iter;
+
+  iter = s_net_return_head(ptr);
+
+  while(iter != NULL) {
+
+    NET *node = iter;
+
+    GEDA_FREE(node->pin_label);
+    GEDA_FREE(node->connected_to);
+
+    geda_list_add_unique (string_list, node->net_name);
+
+    iter = node->next;
+    GEDA_FREE(node);
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int s_net_find(NET * net_head, NET * node)
 {
   NET *n_current;

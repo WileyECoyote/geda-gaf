@@ -1,11 +1,36 @@
 2015-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Gnetlist Meet GedaList
+
     * src/s_hierarchy.c: Free source_net_name in s_hierarchy_post_process after
       return from s_hierarchy_setup_rename.
 
     * src/s_netattrib.c: Free string (value) o_attrib_search_attached_attribs_by_name
       in second For loop of s_netattrib_net_search if a floating net is found with the
-      given pin number.
+      given pin number. Excellent, now all we need to do is...
+
+    * include/prototype.h: Add declarations for new functions
+
+              * s_cpinlist_destroy_or_report
+              * s_net_destroy_or_report
+              * s_netlist_destroy_or_report
+
+    * src/g_netlist.c: Revise gnetlist_quit to call s_netlist_destroy_or_report twice,
+      one with the regular netlist and graphical, pass a pointer to a list to collect
+      a list of pointers to strings to  be freed and destroying structures related to
+      both list.
+
+    * src/s_netlist.c: Add function s_netlist_destroy_or_report to traverse netlist
+      and release allocations or add pointers to list, calls s_cpinlist_destroy_or_
+      report to traverse the pin list.
+
+    * src/s_cpinlist.c: Add function s_cpinlist_destroy_or_report, similar to the
+      s_netlist_destroy_or_report, call s_net_destroy_or_report for each net, aka
+      connected pin.
+
+    * src/s_net.c : Add function s_net_destroy_or_report, similar to the preceeding
+      two functions; frees pin_labels and connected_to and adds net_name to the given
+      list.
 
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 

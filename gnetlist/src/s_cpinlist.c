@@ -67,6 +67,38 @@ CPINLIST *s_cpinlist_add(CPINLIST *ptr)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *string_list)
+{
+  CPINLIST *pl_iter;
+
+  /* Create a new array */
+  pl_iter = s_cpinlist_return_head(pinlist);
+
+  while (pl_iter != NULL) {
+
+    CPINLIST *pl_current = pl_iter;
+
+    if (pl_current->nets) {
+      s_net_destroy_or_report (pl_current->nets, string_list); /* Pass list to net_freer*/
+      pl_current->nets = NULL;
+    }
+
+    GEDA_FREE(pl_current->pin_number);
+    GEDA_FREE(pl_current->pin_label);
+
+    geda_list_add_unique (string_list, pl_current->net_name);
+
+    pl_iter = pl_current->next;
+    GEDA_FREE(pl_current);
+  }
+}
+
+
 /*! \brief Netlister: Print list of Pins
  *  \par Function Description
  *  Used by s_netlist_print().
