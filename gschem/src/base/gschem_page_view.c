@@ -27,7 +27,7 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkmarshal.h>
-
+#include <math.h>
 #include <geda_debug.h>
 
 #define INVALIDATE_MARGIN 1
@@ -810,9 +810,12 @@ void gschem_page_view_pan_start (GschemPageView *view, int x, int y)
  *  \param [in]     y         The new screen y coordinate
  */
 void
-gschem_page_view_pan_motion (GschemPageView *view, GschemToplevel *w_current, int x, int y)
+gschem_page_view_pan_motion (GschemToplevel *w_current, int x, int y)
 {
+  GschemPageView *view;
   int pdiff_x, pdiff_y;
+
+  view = GSCHEM_PAGE_VIEW(w_current->drawing_area);
 
   if (view->doing_pan) {
     pdiff_x = x - view->pan_x;
@@ -1049,7 +1052,6 @@ int
 gschem_page_view_SCREENabs(GschemPageView *view, int val)
 {
   double f0,f1,f;
-  double i;
   int j;
   GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
 
@@ -1060,12 +1062,11 @@ gschem_page_view_SCREENabs(GschemPageView *view, int val)
   f0 = gschem_page_geometry_get_viewport_left  (geometry);
   f1 = gschem_page_geometry_get_viewport_right (geometry);
   f = gschem_page_view_get_page_geometry (view)->screen_width / (f1 - f0);
-  i = f * (double)(val);
 
-#ifdef HAS_RINT
-  j = rint(i);
+#ifdef HAVE_LRINT
+  j = lrint(f * (double)(val));
 #else
-  j = i;
+  j = (f * (double)(val)) + 0.5;
 #endif
 
   return(j);
@@ -1157,20 +1158,21 @@ gschem_page_view_update_vadjustment (GschemPageView *view)
  *  Get absolute WORLD coordinate.
  *
  *  \param [in,out] view The view
- *  \param [in]     val        The coordinate to convert.
+ *  \param [in]     val  The coordinate to convert.
+ *
  *  \return The converted WORLD coordinate.
  */
 int
-gschem_page_view_WORLDabs(GschemPageView *page_view, int val)
+gschem_page_view_WORLDabs(GschemPageView *view, int val)
 {
   GtkAllocation allocation;
   double fw0,fw1,fw,fval;
   double i;
   int j;
 
-  GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (page_view);
+  GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
 
-  gtk_widget_get_allocation (GTK_WIDGET(page_view), &allocation);
+  gtk_widget_get_allocation (GTK_WIDGET(view), &allocation);
 
   fw1 = geometry->viewport_right;
   fw0 = geometry->viewport_left;

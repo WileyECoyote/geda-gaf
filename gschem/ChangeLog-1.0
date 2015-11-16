@@ -1,5 +1,12 @@
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_page_view.h: Change first argument gschem_page_view_pan_
+      start from GschemPageView to GschemToplevel.
+
+    * src/base/gschem_page_view.c: include math.h, update first argument to
+      gschem_page_view_pan_start function. Revise function gschem_page_view_
+      SCREENabs to eliminate double i, changing rint to lrint.
+
     * src/object/o_break.c: Conditionally compile to use hypot instead of
       sqrt in funtion o_break_path.
 
