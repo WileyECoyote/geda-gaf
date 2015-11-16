@@ -34,7 +34,7 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <math.h>             /* need for sqrt */
+#include <math.h>             /* need for sqrt/hypot */
 
 #include <geda_debug.h>
 
@@ -430,47 +430,55 @@ Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
     }
 
   /* figure where pin ends are */
-  if(bubble) /* is there a bubble? */
-    { /* yes there is a bubble */
+  if (bubble) { /* if there is a bubble? */
 
-      /* compute a unit vector */
-      dx = x2-x1;
-      dy = y2-y1;
-      denom = sqrt( dx*dx + dy*dy);
-      if(denom < 1e-6)
-	{
-	  fprintf(stderr, "Error: Length of pin too small in %s()\n",
-		  __func__);
-	  return 1;
-	}
+    /* compute a unit vector */
+    dx = x2-x1;
+    dy = y2-y1;
 
-      x = dx / denom;
-      y = dy / denom;
+#if HAVE_HYPOT
 
-      /* figure center of bubble */
-      bx = x1 + x * br;
-      by = y1 + y * br;
+    denom = hypot (dx, dy);
 
-      /* figure location of first line end */
-      px1 = x1 + x * 2 * br;
-      py1 = y1 + y * 2 * br;
+#else
 
-      px2 = x2;
-      py2 = y2;
+    denom = sqrt ((dx * dx) + (dy * dy));
 
+#endif
 
-      /* draw the bubble */
-      fprintf(fp, "V %d %d %d %d\n",
-	      (int) bx, (int) by, br, CYAN);
+    if (denom < 1e-6) {
 
+      fprintf(stderr, "Error: Length of pin too small in %s()\n", __func__);
+      return 1;
     }
-  else
-    { /* no bubble, nothing special to do */
 
-      px1 = x1; py1 = y1;
-      px2 = x2; py2 = y2;
+    x = dx / denom;
+    y = dy / denom;
 
-    }
+    /* figure center of bubble */
+    bx = x1 + x * br;
+    by = y1 + y * br;
+
+    /* figure location of first line end */
+    px1 = x1 + x * 2 * br;
+    py1 = y1 + y * 2 * br;
+
+    px2 = x2;
+    py2 = y2;
+
+
+    /* draw the bubble */
+    fprintf(fp, "V %d %d %d %d\n",
+            (int) bx, (int) by, br, CYAN);
+
+  }
+  else {
+
+    /* no bubble, nothing special to do */
+    px1 = x1; py1 = y1;
+    px2 = x2; py2 = y2;
+
+  }
 
   /* draw the pin */
   fprintf(fp, "P %d %d %d %d %d\n",

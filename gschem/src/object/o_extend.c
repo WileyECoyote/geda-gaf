@@ -1140,7 +1140,11 @@ static bool o_extend_can_path_bound(Object *boundary,
             int x2   = intersect.x;
             int y2   = intersect.y;
 
+#if HAVE_HYPOT
+            distance = hypot((x1-x2), (y1-y2));
+#else
             distance = sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2));
+#endif
 
             if (distance != G_MAXDOUBLE && distance < shortest) {
               answer   = TRUE;
@@ -1405,8 +1409,11 @@ static bool o_extend_can_circle_bound(Object  *boundary,
       answer = FALSE;
 
       /* recall X2,Y2 is the "hot" point */
+#if HAVE_HYPOT
+      dist1 = hypot((x2-pt1.x), (y2-pt1.y));
+#else
       dist1 = sqrt((x2-pt1.x) * (x2-pt1.x) + (y2-pt1.y) * (y2-pt1.y));
-
+#endif
       /* Calculate second intercept */
 
 #ifdef HAVE_LRINT
@@ -1469,7 +1476,11 @@ static bool o_extend_can_circle_bound(Object  *boundary,
 #endif
 
       /* Get distance to second intercept */
+#if HAVE_HYPOT
+      dist2 = hypot((x2-pt2.x), (y2-pt2.y));
+#else
       dist2 = sqrt((x2-pt2.x) * (x2-pt2.x) + (y2-pt2.y) * (y2-pt2.y));
+#endif
 
       if (dist1 < dist2) {
 

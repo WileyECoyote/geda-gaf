@@ -66,14 +66,27 @@ double m_box_shortest_distance (Box *box, int x, int y, int solid)
 
   if (dx < 0) {
     if (dy < 0) {
+
+#if HAVE_HYPOT
+
+      shortest_distance = hypot(dx, dy);
+
+#else
+
       shortest_distance = sqrt ((dx * dx) + (dy * dy));
-    } else {
+
+#endif
+
+    }
+    else {
       shortest_distance = fabs (dx);
     }
-  } else {
+  }
+  else {
     if (dy < 0) {
       shortest_distance = fabs (dy);
-    } else {
+    }
+    else {
       shortest_distance = min (dx, dy);
     }
   }

@@ -1247,30 +1247,38 @@ do_arc(FILE *fp)
   xo  = xop + x1;
   yo  = yop + y1;
 
+#if HAVE_HYPOT
 
-  radius = sqrt(xop*xop + yop*yop);
+  radius = hypot(xop, yop);
+
+#else
+
+  radius = sqrt((xop * xop) + (yop * yop));
+
+#endif
 
   /* calculate start and end angles */
-  to_rad = 180.0/atan2(0,-1);
-  start_angle = atan2(y1-yo, x1-xo) * to_rad;
-  arc_sweep = atan2(y3-yo, x3-xo) * to_rad;
+  to_rad      = 180.0/atan2(0,-1);
 
-  if(start_angle > arc_sweep)
-    {
+  start_angle = atan2(y1-yo, x1-xo) * to_rad;
+
+  arc_sweep   = atan2(y3-yo, x3-xo) * to_rad;
+
+  if(start_angle > arc_sweep) {
+
       gstart = arc_sweep;
       sweep_angle = start_angle - arc_sweep;
-    }
-  else
-    {
+  }
+  else {
+
       gstart = start_angle;
       sweep_angle = arc_sweep - start_angle;
-    }
+  }
 
   /* arc_sweep   =
    * arc_sweep   = int(atan2(y1-yo, x1-xo) * to_rad) % 360;
    * start_angle = int(atan2(y3-yo, x3-xo) * to_rad) % 360;
    */
-
 
   arc_object((int)xo,(int)yo, (unsigned int)radius,
            (int)gstart,(int)sweep_angle, color, &linestyle);
@@ -1296,14 +1304,15 @@ do_label(FILE *fp)
 
   if(fscanf(fp, "%d %d %u %d %d %d %d %d", &x, &y, &size, &angle, &origin,
             &global, &visibility, &overbar) != 8)
-    {
+  {
       fprintf(stderr,"Error: Invalid label record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
-    }
+  }
 
   x *= scale;
   y *= scale;
+
   color = ATTRIBUTE_COLOR;
   show_name_value = 0;
 
@@ -1313,8 +1322,7 @@ do_label(FILE *fp)
   /* if ViewDraw showed the label with an overbar, append a '~' to the */
   /* beginning of the name.  gEDA does not support overbars, so the '~' lets */
   /* the designer know he's dealing with an active low signal */
-  if (overbar)
-  {
+  if (overbar) {
     length = strlen(text2);
     text2[length + 1] = 0;
     for (i = length; i > 0; i--)
@@ -1327,38 +1335,39 @@ do_label(FILE *fp)
   get_style(fp, &color, &linestyle, &fillstyle);
 
   /* if we are inside a pin definition, mangle the pin name */
-  if(net_attributes == 1) /* a netname on a net is its netname */
-    {
+  if(net_attributes == 1)  { /* a netname on a net is its netname */
+
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "netname=%s", text2);
 #else
       sprintf(text, "netname=%s", text2);
 #endif
       show_name_value = 1;
-    }
+  }
+  else if(complex_attributes == 1) {/* a label on a complex is its designator */
 
-  else if(complex_attributes == 1) /* a label on a complex is its designator */
-    {
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "refdes=%s", text2);
 #else
       sprintf(text, "refdes=%s", text2);
 #endif
       show_name_value = 1;
-    }
-  else if(pin_attributes == 1)  /* a label on a pin is it's pinname */
-    {
+  }
+  else if(pin_attributes == 1) { /* a label on a pin is it's pinname */
+
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "pinlabel=%s", text2);
 #else
       sprintf(text, "pinlabel=%s", text2);
 #endif
       show_name_value = 1;
-    }
-  else
+  }
+  else {
     strcpy(text,text2);     /* don't need to do anything, just copy */
+  }
 
   begin_attach();
+
   text_object(x, y, color, size, visibility, show_name_value, angle, text, \
             origin);
 }
@@ -1369,9 +1378,9 @@ do_net_start(FILE *fp)
 {
   reset_attributes();
 
-  int scrap = fscanf(fp,"%*d\n");  /* just dispose of the net instance number */
-  scrap = scrap;
-  reading_net = 1;
+  int scrap     = fscanf(fp,"%*d\n");  /* just dispose of the net instance number */
+  scrap         = scrap;
+  reading_net   = 1;
   segment_count = 1;
 }
 
@@ -1389,21 +1398,21 @@ do_net_node(FILE *fp)
    *  J #X #Y #SEGNUM  - Net segment
    */
 
-  if(segment_count > MAX_NODES)
-    {
+  if(segment_count > MAX_NODES) {
+
       fprintf(stderr,"Error: too many nodes on a net at record #%d, "
             "in %s(), try increasing\n"
             "\tMAX_NODES\n", records_processed, __func__);
       exit(1); /* this is fatal */
-    }
+  }
 
   /* get the current info */
-  if(fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2)
-    {
+  if(fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2) {
+
       fprintf(stderr,"Error: Invalid net node record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
-    }
+  }
 
   x *= scale;
   y *= scale;
@@ -1426,18 +1435,18 @@ do_net_segment(FILE *fp)
    *  S #N1 #N2            - Net connectivity, Node N1 is connected to N2
    */
 
-  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2)
-    {
+  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
+
       fprintf(stderr,"Error: Invalid net segment record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
-    }
+  }
 
   color = NET_COLOR;
 
   /* output a geda net segment */
   net_segment(net_nodes_x[n1], net_nodes_y[n1],
-            net_nodes_x[n2], net_nodes_y[n2], color);
+              net_nodes_x[n2], net_nodes_y[n2], color);
 
   /* there could be attributes to follow */
   add_attributes = 1;   /* add attributes */
@@ -1457,12 +1466,12 @@ do_net_segment_bus(FILE *fp)
    *  B #N1 #N2            - Net connectivity, Node N1 is bussed to N2
    */
 
-  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2)
-    {
+  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
+
       fprintf(stderr,"Error: Invalid bus segment record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
-    }
+  }
 
   color = BUS_COLOR;
 
@@ -1471,7 +1480,7 @@ do_net_segment_bus(FILE *fp)
 
   /* output a geda bus segment */
   bus_segment(net_nodes_x[n1], net_nodes_y[n1],
-            net_nodes_x[n2], net_nodes_y[n2], color, ripperdir);
+              net_nodes_x[n2], net_nodes_y[n2], color, ripperdir);
 
   /* there could be attributes to follow */
   add_attributes = 1;   /* add attributes */
@@ -1509,17 +1518,19 @@ do_instance(FILE *fp)
                   text, &extension, &x, &y, &orientation, &scale_factor);
   /* find library and symbol name */
   index = strindex(text, ':');
-  if (index > 0 || text[0] == ':')
-  {
+
+  if (index > 0 || text[0] == ':') {
     text[index] = 0;
     strcpy(lib, text);
     strcpy(name, &text[index+1]);
   }
-  else
+  else {
     strcpy(name, text);
+  }
+
   /* Check for input errors */
-  if (result < 6)
-  {
+  if (result < 6) {
+
     fprintf(stderr,"Error: Invalid instance record #%d in %s()\n"
             "lib:'%s', name:'%s'\n"
             "extension:%d, x:%d, y:%d\n",
@@ -1540,9 +1551,11 @@ do_instance(FILE *fp)
   strtolower(name);
 
   /* replace dashes in the name with underscores */
-  for (i = strlen(name) - 1; i >= 0; i--)
-    if (name[i] == '-')
+  for (i = strlen(name) - 1; i >= 0; i--) {
+    if (name[i] == '-') {
       name[i] = '_';
+    }
+  }
 
   /* produce proper file name: */
 #ifdef HAVE_SNPRINTF
@@ -1571,31 +1584,31 @@ set_orientation(int *angle, int *mirror, int orientation)
 {
   switch (orientation) {
   case 0:  /* 0 rotation, 0 mirror */
-    *angle = 0;
+    *angle  = 0;
     *mirror = 0;
     break;
   case 1:  /* 90 rotation, 0 mirror */
-    *angle = 90;
+    *angle  = 90;
     *mirror = 0;
     break;
   case 2:  /* 180 rotation, 0 mirror */
-    *angle = 180;
+    *angle  = 180;
     *mirror = 0;
     break;
   case 3:  /* 270 rotation, 0 mirror */
-    *angle = 270;
+    *angle  = 270;
     *mirror = 0;
     break;
   case 4:  /* 180 rotation, 1 mirror */
-    *angle = 0;
+    *angle  = 0;
     *mirror = 1;
     break;
   case 5:  /* 90 rotation, 1 mirror */
-    *angle = 270;
+    *angle  = 270;
     *mirror = 1;
     break;
   case 6:  /* 0 rotation, 1 mirror */
-    *angle = 180;
+    *angle  = 180;
     *mirror = 1;
   case 7:  /* 270 rotation, 1 mirror */
     *angle = 90;
@@ -1689,15 +1702,15 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   /* if the origin is one of the middle ones
    * fix the x coordinate
    */
-  if( (origin == 4) || (origin == 5) || (origin == 6) )
-    {
-      x -= textlen / 2;
-    }
+  if( (origin == 4) || (origin == 5) || (origin == 6) ) {
 
-  if( (origin == 7) || (origin == 8) || (origin == 9) )
-    {
+      x -= textlen / 2;
+  }
+
+  if( (origin == 7) || (origin == 8) || (origin == 9) ) {
+
       x -= textlen;
-    }
+  }
 #endif
 
   /* Translate ViewDraw text rotation to gEDA text angle
@@ -1764,10 +1777,10 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
   /* make a copy of the attribute to work with */
   strncpy(tmpName, name, MAX_TEXTLEN-1);
   tmpName[MAX_TEXTLEN-1] = 0;   /* terminate in case strncpy doesnt */
-  if (value == NULL)
+  if (value == NULL) {
     tmpValue[0] = 0;   /* no value with ViewDraw attribute */
-  else
-  {
+  }
+  else {
     strncpy(tmpValue, value, MAX_TEXTLEN-1);
     tmpValue[MAX_TEXTLEN-1] = 0;   /* terminate in case strncpy doesnt */
   }
@@ -1776,42 +1789,43 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
    * and translate or print approprate message
    */
   done = 0;
-  for(i=0; (i<nTranslations) && !done; i++)
-    {
+
+  for(i=0; (i<nTranslations) && !done; i++) {
 
 #ifdef DEBUG
       printf("Comparing `%s' to `%s' in %s()\n",tmpName,
            translations[i].origName,__func__);
 #endif
 
-      if(strcmp(tmpName,translations[i].origName) == 0) /* match? */
-      switch(translations[i].action)
-        {
-        case REPLACE_NAME:
-          strncpy(tmpName, translations[i].newName, MAX_TEXTLEN-1);
-          done = 1;
-          break;
+      if(strcmp(tmpName,translations[i].origName) == 0) {/* match? */
 
-        case KILL:
-          fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
-                " from record #%d\n",
-                tmpName, tmpValue,x,y,records_processed);
-          done = 1;
-          return;
+        switch(translations[i].action) {
+          case REPLACE_NAME:
+            strncpy(tmpName, translations[i].newName, MAX_TEXTLEN-1);
+            done = 1;
+            break;
 
-        case WARN_USER:
-          fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
-                "at record #%d, found during conversion\n"
-                "\tpassing it through unchanged\n",
-                tmpName,tmpValue,x,y,records_processed);
-          done = 1;
-          break;
-        default:
-          fprintf(stderr,"Error: Unknown action code for attribute\n"
-                "`%s=%s' at record #%d in %s()\n",
-                tmpName,tmpValue,records_processed,__func__);
-          exit(1);
+          case KILL:
+            fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
+            " from record #%d\n",
+            tmpName, tmpValue,x,y,records_processed);
+            done = 1;
+            return;
+
+          case WARN_USER:
+            fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
+            "at record #%d, found during conversion\n"
+            "\tpassing it through unchanged\n",
+            tmpName,tmpValue,x,y,records_processed);
+            done = 1;
+            break;
+          default:
+            fprintf(stderr,"Error: Unknown action code for attribute\n"
+            "`%s=%s' at record #%d in %s()\n",
+                    tmpName,tmpValue,records_processed,__func__);
+            exit(1);
         }
+      }
     }
 
   /* if attribute name was not replaced/dropped, convert to lowercase */
@@ -1826,23 +1840,26 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
 
   /* If we are changing a ViewDraw HETERO attribute to a split attribute, */
   /* format the new value correctly */
-  if (strcmp(tmpName, "split") == 0)
-  {
+  if (strcmp(tmpName, "split") == 0) {
+
     strcpy(text2, tmpValue);
     strtolower(text2);
     j = 0;
     length = strlen(text2);
-    for (i = 0; i < length; i++)
-    {
+
+    for (i = 0; i < length; i++) {
+
       /* Drop parentheses */
-      if (text2[i] != '(' && text2[i] != ')')
-      {
+      if (text2[i] != '(' && text2[i] != ')') {
+
         /* Convert dashes to underscores */
-        if (text2[i] == '-')
+        if (text2[i] == '-') {
           tmpValue[j++] = '_';
-        /* insert gEDA symbol file extension before comma */
-        else if (text2[i] == ',')
-        {
+        }
+        else if (text2[i] == ',') {
+
+          /* insert gEDA symbol file extension before comma */
+
 #ifdef HAVE_SNPRINTF
           snprintf(&tmpValue[j], MAX_TEXTLEN, "-1.sch,");
 #else
@@ -1850,8 +1867,9 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
 #endif
           j += 7;
         }
-        else
+        else {
           tmpValue[j++] = text2[i];
+        }
       }
     }
     /* append gEDA symbol file extension to the end */
@@ -1863,8 +1881,8 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
   }
 
   /* If we have an NC attribute with no value, convert to netname=NC */
-  if (strcmp(tmpName, "nc") == 0 && tmpValue[0] == 0)
-  {
+  if (strcmp(tmpName, "nc") == 0 && tmpValue[0] == 0) {
+
 #ifdef HAVE_SNPRINTF
     snprintf(tmpName, MAX_TEXTLEN, "netname");
     snprintf(tmpValue, MAX_TEXTLEN, "NC");
@@ -1990,10 +2008,9 @@ reset_attributes(void)
   /* if we are inside of some kind of attribute attachment
    * terminate it, but only if we output the begin_attach.
    */
-  if((add_attributes == 1) && (attach_pending == 0))
-    {
+  if((add_attributes == 1) && (attach_pending == 0)) {
       end_attach();
-    }
+  }
 
   attach_pending = 0;    /* keep track of whether the last object */
                          /* read may have attachments pending. */
@@ -2021,20 +2038,19 @@ get_continued_string(char *buf, size_t buffer_size, FILE *fp)
 
   /* read in the text */
   ptr = fgets(buf, buffer_size, fp);
+
   if (ptr != NULL) {
     records_processed++;
     /* nuke trailing CR/NL, if there */
     text_len=strlen(buf);
 
-    while (buf[text_len-1] == '\n' || buf[text_len-1] == '\r')
-    {
+    while (buf[text_len-1] == '\n' || buf[text_len-1] == '\r') {
       buf[text_len-1] = 0;
       text_len--;
     }
 
     /* check for continuation chars */
-    while((c = getc(fp)) == '+')
-    {
+    while((c = getc(fp)) == '+') {
       c = getc(fp);                         /* suck in space */
       buf = fgets(&buf[text_len], MAX_TEXTLEN-text_len,fp);  /* read in next chunk */
       records_processed++;
@@ -2049,9 +2065,10 @@ get_continued_string(char *buf, size_t buffer_size, FILE *fp)
 
     ungetc(c,fp);   /* push back last char, obviously wasn't a + */
   }
-  #ifdef DEBUG
+
+#ifdef DEBUG
   printf("Buffer:'%s' in %s()\n",buf,__func__);
-  #endif
+#endif
 
   return 0;
 }
@@ -2065,8 +2082,9 @@ int get_style(FILE *fp, unsigned int *colour,
   unsigned int vdfillstyle, vdlinestyle;
 
   c = getc(fp);
-  if(c == 'Q') /* do we have a modifier? */
-    {
+
+  if(c == 'Q') { /* do we have a modifier? */
+
       if(fscanf(fp,"%u %u %u\n", colour, &vdfillstyle, &vdlinestyle) != 3)
       {
         fprintf(stderr,"Error: Invalid modifier record #%d in %s()\n",
@@ -2075,8 +2093,8 @@ int get_style(FILE *fp, unsigned int *colour,
       }
 
       /* re-map colour into a geda colour */
-      if(*colour > 15)
-      {
+      if(*colour > 15) {
+
         fprintf(stderr,"Error: Invalid colour number %u in record #%d, "
               "in %s()\n",
               *colour,records_processed, __func__);
@@ -2085,18 +2103,19 @@ int get_style(FILE *fp, unsigned int *colour,
       *colour = colormap[*colour];
 
       /* re-map vdfillstyle to gEDA FillStyle */
-      if (vdfillstyle > 25)
-      {
+      if (vdfillstyle > 25) {
+
         fprintf(stderr,"Warning: Invalid fill style %u in record #%d, "
                 "in %s().  Assuming \"Hollow\" fill style.\n",
                 vdfillstyle,records_processed, __func__);
         vdfillstyle = 0;
       }
+
       memcpy(fillstyle, &fillmap[vdfillstyle], sizeof(struct FillStyle));
 
       /* re-map vdlinestyle to gEDA LineStyle */
-      if (vdlinestyle > 7)
-      {
+      if (vdlinestyle > 7) {
+
         fprintf(stderr,"Warning: Invalid line style %u in record #%d, "
                 "in %s().  Assuming \"Solid\" line style.\n",
                 vdlinestyle,records_processed, __func__);
@@ -2105,9 +2124,10 @@ int get_style(FILE *fp, unsigned int *colour,
       memcpy(linestyle, &linemap[vdlinestyle], sizeof(struct LineStyle));
 
       records_processed++;
-    }
-  else
+  }
+  else {
     ungetc(c,fp); /* false alarm */
+  }
 
   return 0;
 }
@@ -2122,9 +2142,11 @@ strindex(char *s, char c)
   char *p;
   unsigned int i;
 
-  for(p=s, i=0; *p; p++,i++)
-    if(*p == c)
+  for(p=s, i=0; *p; p++,i++) {
+    if(*p == c) {
       return i;
+    }
+  }
 
   return 0;
 }
@@ -2139,9 +2161,11 @@ strrindex(char *s, char c)
   unsigned int i, loc;
 
   loc = 0;
-  for(p=s, i=0; *p; p++, i++)
-    if(*p == c)
+  for(p=s, i=0; *p; p++, i++) {
+    if(*p == c) {
       loc = i;
+    }
+  }
 
   return loc;
 }
@@ -2152,7 +2176,7 @@ strtolower(char *s)
 {
   char *p;
 
-  for(p=s; *p; p++)
+  for(p = s; *p; p++) {
     *p = tolower((int) *p);
-
+  }
 }

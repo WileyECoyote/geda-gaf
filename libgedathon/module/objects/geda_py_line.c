@@ -238,7 +238,11 @@ static PyObject* Line_length(PyObject *self)
   LineObject *line = (LineObject*)self;
   int result;
 
+#if HAVE_HYPOT
+  result = hypot((line->x[0]-line->x[1]), (line->y[0]-line->y[1]));
+#else
   result = sqrt(pow(line->x[0]-line->x[1],2)+pow(line->y[0]-line->y[1],2));
+#endif
 
   return Py_BuildValue("i", result);
 }

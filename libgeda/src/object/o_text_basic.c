@@ -62,7 +62,7 @@
 
 #include <geda_standard.h>
 
-#include <math.h>          /* sqrt */
+#include <math.h>          /* sqrt/hypot */
 
 #include "libgeda_priv.h"
 
@@ -801,7 +801,12 @@ double o_text_shortest_distance (Object *object,
   dx = min (dx, 0);
   dy = min (dy, 0);
 
+#if HAVE_HYPOT
+  return hypot (dx, dy);
+#else
   return sqrt ((dx * dx) + (dy * dy));
+#endif
+
 }
 
 /*! \brief Return font size of a text object in postscript points.

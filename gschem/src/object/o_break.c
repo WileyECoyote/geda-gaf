@@ -670,8 +670,13 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
         int Px    = previous.x;
         int Py    = previous.y;
 
+#if HAVE_HYPOT
+        distance1 = hypot((point1.x-Px), (point1.y-Py));
+        distance2 = hypot((point2.x-Px), (point2.y-Py));
+#else
         distance1 = sqrt((point1.x-Px) * (point1.x-Px) + (point1.y-Py) * (point1.y-Py));
         distance2 = sqrt((point2.x-Px) * (point2.x-Px) + (point2.y-Py) * (point2.y-Py));
+#endif
 
         /* The point farthest from the previous is the starting point */
         if (distance2 > distance1) {

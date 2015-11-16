@@ -641,7 +641,12 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
 
   dx = (double) (x2 - x1);
   dy = (double) (y2 - y1);
-  l = sqrt((dx * dx) + (dy * dy));
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
+  l = sqrt ((dx * dx) + (dy * dy));
+#endif
 
   dx1 = (dx * space) / l;
   dy1 = (dy * space) / l;
@@ -718,7 +723,12 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
    */
   dx = (double) (x2 - x1);
   dy = (double) (y2 - y1);
-  l = sqrt((dx * dx) + (dy * dy));
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
+  l = sqrt ((dx * dx) + (dy * dy));
+#endif
 
   dx1 = (dx * length) / l;
   dy1 = (dy * length) / l;
@@ -819,7 +829,12 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
    */
   dx = (double) (x2 - x1);
   dy = (double) (y2 - y1);
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
   l = sqrt((dx * dx) + (dy * dy));
+#endif
 
   dx1 = (dx * length) / l;
   dy1 = (dy * length) / l;
@@ -952,7 +967,12 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
    */
   dx = (double) (x2 - x1);
   dy = (double) (y2 - y1);
+
+#if HAVE_HYPOT
+  l = hypot (dx, dy);
+#else
   l = sqrt((dx * dx) + (dy * dy));
+#endif
 
   dx1 = (dx * length) / l;
   dy1 = (dy * length) / l;
@@ -1410,7 +1430,11 @@ double o_line_length(Object *object)
   dx = object->line->x[0]-object->line->x[1];
   dy = object->line->y[0]-object->line->y[1];
 
+#if HAVE_HYPOT
+  length = hypot (dx, dy);
+#else
   length = sqrt((dx*dx) + (dy*dy));
+#endif
 
   return(length);
 }

@@ -1,3 +1,7 @@
+2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Conditionally replace sqrt with hypot function.
+
 2015-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c:Remove first argument, pr_current, from

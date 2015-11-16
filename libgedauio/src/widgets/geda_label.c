@@ -521,7 +521,12 @@ geda_label_update_layout_width (GedaLabel *label)
           x0 = dy ? y0 * dx / dy : G_MAXDOUBLE;
         }
 
+#if HAVE_HYPOT
+        length = 2 * hypot (x0, y0);
+#else
         length = 2 * sqrt (x0 * x0 + y0 * y0);
+#endif
+
         pango_layout_set_width (label->layout, rint (length * PANGO_SCALE));
         pango_layout_get_pixel_size (label->layout, NULL, &cy);
 
@@ -537,7 +542,11 @@ geda_label_update_layout_width (GedaLabel *label)
           y0 = -x0 * dy/dx;
         }
 
+#if HAVE_HYPOT
+        length = length - hypot (x0, y0) * 2;
+#else
         length = length - sqrt (x0 * x0 + y0 * y0) * 2;
+#endif
         pango_layout_set_width (label->layout, rint (length * PANGO_SCALE));
       }
     }

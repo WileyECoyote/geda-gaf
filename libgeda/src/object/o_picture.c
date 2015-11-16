@@ -1240,7 +1240,12 @@ o_picture_shortest_distance (Object *object, int x, int y, int force_solid)
   dx = min (dx, 0);
   dy = min (dy, 0);
 
+#if HAVE_HYPOT
+  return hypot (dx, dy);
+#else
   return sqrt ((dx * dx) + (dy * dy));
+#endif
+
 }
 
 /*! \brief Get the raw image data from a picture object

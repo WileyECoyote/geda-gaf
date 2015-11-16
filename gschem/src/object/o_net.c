@@ -135,8 +135,13 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
         min_x = o_current->line->x[o_current->pin->whichend];
         min_y = o_current->line->y[o_current->pin->whichend];
 
-        min_dist = sqrt((double) (w_x - min_x)*(w_x - min_x)
-                 + (double) (w_y - min_y)*(w_y - min_y));
+#if HAVE_HYPOT
+        min_dist = hypot(w_x - min_x, w_y - min_y);
+#else
+       min_dist = sqrt((double) (w_x - min_x) * (w_x - min_x)
+                     + (double) (w_y - min_y) * (w_y - min_y));
+#endif
+
         weight = min_dist / MAGNETIC_PIN_WEIGHT;
       }
       else if (o_current->type == OBJ_NET || o_current->type == OBJ_BUS)
@@ -148,10 +153,16 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
         x2 = o_current->line->x[1];
         y2 = o_current->line->y[1];
         /* endpoint tests */
-        dist1 = sqrt((double) (w_x - x1)*(w_x - x1)
-        + (double) (w_y - y1)*(w_y - y1));
-        dist2 = sqrt((double) (w_x - x2)*(w_x - x2)
-        + (double) (w_y - y2)*(w_y - y2));
+
+#if HAVE_HYPOT
+        dist1 = hypot((double) (w_x - x1), (w_y - y1));
+        dist2 = hypot((double) (w_x - x2), (w_y - y2));
+#else
+        dist1 = sqrt((double) (w_x - x1) * (w_x - x1)
+                   + (double) (w_y - y1) * (w_y - y1));
+        dist2 = sqrt((double) (w_x - x2) * (w_x - x2)
+                   + (double) (w_y - y2) * (w_y - y2));
+#endif
         if (dist1 < dist2) {
           min_x = x1;
           min_y = y1;

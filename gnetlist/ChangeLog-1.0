@@ -1,3 +1,8 @@
+2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/mk_verilog_syms.c:: Conditionally compile to use hypot instead of
+      sqrt in funtion Pin.
+
 2015-11-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch

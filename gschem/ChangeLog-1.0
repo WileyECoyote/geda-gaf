@@ -1,3 +1,14 @@
+2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_break.c: Conditionally compile to use hypot instead of
+      sqrt in funtion o_break_path.
+
+    * src/object/o_extend.c: Conditionally compile to use hypot instead of
+      sqrt in funtions o_extend_can_path_bound and o_extend_can_circle_bound.
+
+    * src/object/o_net.c: Conditionally compile to use hypot instead of
+      sqrt in funtion o_net_find_magnetic.
+
 2015-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_callbacks.c: Replace if -> s_object_release_objects with

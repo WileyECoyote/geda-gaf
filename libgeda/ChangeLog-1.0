@@ -1,3 +1,27 @@
+2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_basic.c: Conditionally compile to use hypot instead of
+      sqrt in funtion m_degrees_to_radians.
+
+    * src/math/m_box.c: Conditionally compile to use hypot instead of
+      sqrt in funtion m_box_shortest_distance.
+
+    * src/math/m_circle.c: Conditionally compile to use hypot instead of
+      sqrt in funtion m_circle_shortest_distance.
+
+    * src/object/o_arc_basic.c: Conditionally compile to use hypot instead of
+      sqrt in funtions o_arc_get_nearest_point and o_arc_shortest_distance.
+
+    * src/object/o_line_basic.c: Conditionally compile to use hypot instead of
+      sqrt in funtions o_line_print_dotted, o_line_print_dashed, o_line_print_
+      center, o_line_print_phantom, and o_line_length.
+
+    * src/object/o_picture.c: Conditionally compile to use hypot instead of
+      sqrt in funtion o_picture_shortest_distance.
+
+    * src/object/o_picture.c: Conditionally compile to use hypot instead of
+      sqrt in funtion o_text_shortest_distance.
+
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_list.h: Revise macro geda_list_free_full to

@@ -556,7 +556,11 @@ o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         dx = sx - x;
         dy = sy - y;
 
+#if HAVE_HYPOT
+        distance_to_end0 = hypot (dx, dy);
+#else
         distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
+#endif
 
         ex = arc->x + r * cos (end_angle);
         ey = arc->y + r * sin (end_angle);
@@ -564,7 +568,11 @@ o_arc_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         dx = ex - x;
         dy = ey - y;
 
+#if HAVE_HYPOT
+        distance_to_end1 = hypot (dx, dy);
+#else
         distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
+#endif
 
         if (distance_to_end0 < distance_to_end1) {
           *nx = sx;
@@ -1249,6 +1257,7 @@ double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
   radius = ((double)object->arc->width) / 2.0;
 
   if (o_arc_within_sweep (object->arc, x, y)) {
+
     double distance_to_center;
     double dx;
     double dy;
@@ -1256,12 +1265,17 @@ double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
     dx = ((double)x) - ((double)object->arc->x);
     dy = ((double)y) - ((double)object->arc->y);
 
+#if HAVE_HYPOT
+    distance_to_center = hypot (dx, dy);
+#else
     distance_to_center = sqrt ((dx * dx) + (dy * dy));
+#endif
 
     shortest_distance = fabs (distance_to_center - radius);
 
   }
   else {
+
     double angle;
     double distance_to_end0;
     double distance_to_end1;
@@ -1272,14 +1286,22 @@ double o_arc_shortest_distance (Object *object, int x, int y, int force_solid)
     dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
     dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
 
+#if HAVE_HYPOT
+    distance_to_end0 = hypot (dx, dy);
+#else
     distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
+#endif
 
     angle += M_PI * ((double)object->arc->arc_sweep) / 180;
 
     dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
     dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
 
+#if HAVE_HYPOT
+    distance_to_end1 = hypot (dx, dy);
+#else
     distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
+#endif
 
     shortest_distance = min (distance_to_end0, distance_to_end1);
   }
@@ -1328,4 +1350,3 @@ o_arc_within_sweep(Arc *arc, int x, int y)
 
   return (angle < a1);
 }
-
