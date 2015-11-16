@@ -1,7 +1,12 @@
-2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-16  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgeda.c: Pass argc and argv to libgeda_init, add function
       parse_args.
+
+    * include/libgeda/prototype.h: Add declaration for u_string_strsize.
+
+    * src/utility/u_string.c: Remove static keyword from u_string_strsize,
+      move u_string_strsize in file.
 
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 

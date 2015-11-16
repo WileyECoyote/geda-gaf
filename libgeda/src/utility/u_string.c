@@ -388,38 +388,6 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
   qsort(strings, strings_len, sizeof(char*), cstring_cmp);
 }
 
-/*! \brief  Get the formated size of a string
- *  \par Function Description
- *  Returns the number of bytes needed to hold the string formed
- *  after substituting variable arguments into the format specifier.
- */
-static int u_string_strsize (const char *format, va_list args)
-{
-  int size;
-
-#if defined(HAVE_VSNPRINTF)
-
-  size = vsnprintf (0, 0, format, args);
-
-#elif (HAVE_VASPRINTF)
-
-  size = vasprintf (0, 0, format, args);
-
-#else
-
-  char *string;
-
-  va_list args2;
-  va_copy(args2, args);
-  string = (char*)GEDA_MEM_ALLOC(4 * USS_BUFFER_SIZE);
-  size = vsprintf(string, format, args2);
-  GEDA_FREE(string);
-
-#endif
-
-  return size;
-}
-
 /*! \brief  Get formated string using printf like specifiers
  *  \par Function Description
  *  \returns a newly allocated string that is the result of
@@ -568,6 +536,38 @@ bool u_string_strequal(const char *str1, const char *str2) /* WEH: Maybe should 
 {
   while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
   return ((*str1 == '\0') && (*str2 == '\0'));
+}
+
+/*! \brief  Get the formated size of a string
+ *  \par Function Description
+ *  Returns the number of bytes needed to hold the string formed
+ *  after substituting variable arguments into the format specifier.
+ */
+int u_string_strsize (const char *format, va_list args)
+{
+  int size;
+
+#if defined(HAVE_VSNPRINTF)
+
+  size = vsnprintf (0, 0, format, args);
+
+#elif (HAVE_VASPRINTF)
+
+  size = vasprintf (0, 0, format, args);
+
+#else
+
+  char *string;
+
+  va_list args2;
+  va_copy(args2, args);
+  string = (char*)GEDA_MEM_ALLOC(4 * USS_BUFFER_SIZE);
+  size = vsprintf(string, format, args2);
+  GEDA_FREE(string);
+
+#endif
+
+  return size;
 }
 
 /*! \brief strstr_rep for c
