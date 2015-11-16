@@ -418,7 +418,11 @@ PyGeda_update_complex_butes(Object *object, GedaObject *py_object )
       if (GEDA_IS_TEXT(capsule->object)) {
         Object *attrib = capsule->object;
         butes  = g_list_append(butes, attrib);
+
+#if DEBUG
         fprintf(stderr, "PyGeda_update_complex_butes: adding %s\n", attrib->text->string);
+#endif
+
       }
       else {
         fprintf(stderr, "PyGeda_update_complex_butes: invalid capsule contents\n");

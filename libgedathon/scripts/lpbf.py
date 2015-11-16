@@ -96,9 +96,17 @@ AddSource(lpbf, "gnd-1", 12100, 3700)
 AddSource(lpbf, "gnd-1",  7300, 3700)
 AddSource(lpbf, "gnd-1", 14400, 8400)
 
-#Add input and output symbols from library
-AddSource(lpbf, "in-1",   2300, 7800)
-AddSource(lpbf, "out-1", 15600, 7400)
+#Add input and output symbols from library, both of which have a
+#refdes=pinlabel attribute, so we will set to "Vin" and "Vout"
+input=AddSource(lpbf, "in-1",   2300, 7800)
+
+# 3rd argument is False because we do not need the attribute returned
+geda.set_attrib(input, "refdes", "Vin", False)
+geda.refresh_attribs(input)
+
+output=AddSource(lpbf, "out-1", 15600, 7400)
+geda.set_attrib(output, "refdes", "Vout", False)
+geda.refresh_attribs(output)
 
 AddNet(lpbf, 12200,  5500, 12200,  7300)
 AddNet(lpbf, 12200,  7300, 12500,  7300)

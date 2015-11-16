@@ -17,7 +17,7 @@ do_remove_module () {
       rm -rf geda
    fi
 }
-    
+
 do_err_exit () {
    echo "$1"
    do_remove_module

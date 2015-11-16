@@ -282,13 +282,13 @@ device=GROUND_NODE
 }
 C 2300 7800 1 0 0 in-1.sym
 {
-T 2400 8600 5 10 0 0 0 0 1
-symversion=0.3
-T 2400 8400 5 10 0 0 0 0 1
+T 2400 8450 5 10 0 0 0 0 1
+symversion=0.4
+T 2400 8250 5 10 0 0 0 0 1
 device=none
-T 2400 8050 5 10 1 1 0 0 1
-refdes=pinlabel
-T 3100 8200 5 10 0 0 0 0 1
+T 2200 7850 5 10 1 1 0 6 1
+refdes=Vin
+T 2850 7850 5 10 0 1 0 8 1
 footprint=none
 }
 C 15600 7400 1 0 0 out-1.sym
@@ -298,7 +298,7 @@ symversion=0.4
 T 16200 7650 5 10 0 1 0 0 1
 device=OUTPUT
 T 15600 7650 5 8 1 1 0 0 1
-refdes=pinlabel
+refdes=Vout
 T 16200 7500 5 10 0 0 0 0 1
 footprint=none
 }

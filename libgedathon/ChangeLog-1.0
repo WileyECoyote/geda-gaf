@@ -1,5 +1,13 @@
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 
+    * scripts/lpbf.py: Retain reference to input and output symbols and
+      set the the refdes=pinlabel attribute to Vin and Vout respectively
+      and refresh the the symbols.
+
+    * tests/lpfilter.sch: Regenerate would be "golden" output.
+
+    * src/update_objects.c: Wrap stray debug print in preprocessor conditional.
+
     * module/objects/geda_py_line.c: Conditionally compile to use hypot
       instead of sqrt function.
 
