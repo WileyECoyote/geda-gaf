@@ -161,25 +161,26 @@ void m_hatch_box(Box *box, int angle, int pitch, GArray *lines)
  */
 void m_hatch_circle(Circle *circle, int angle, int pitch, GArray *lines)
 {
-  int      radius;
-  int      sweep_y;
+  int       radius;
+  int       sweep_y;
   TRANSFORM transform;
 
-  g_return_if_fail(circle != NULL);
-  g_return_if_fail(lines != NULL);
+  g_return_if_fail (circle != NULL);
+  g_return_if_fail (lines  != NULL);
 
   m_transform_init      (&transform);
   m_transform_rotate    (&transform, angle);
   m_transform_scale     (&transform, 0.01);
-  m_transform_translate (&transform, circle->center_x, circle->center_y );
+  m_transform_translate (&transform, circle->center_x, circle->center_y);
 
-  radius = 100 * circle->radius;
+  radius  = 100 * circle->radius;
   sweep_y = calculate_initial_sweep(100 * pitch, -radius, radius);
 
-  while ( sweep_y < radius ) {
+  while (sweep_y < radius) {
 
     LINE line;
 
+    /* Note the hypot func cannot be used here! */
     int x = round(sqrt((radius * radius) - (sweep_y * sweep_y)));
 
     line.x[0] = -x;

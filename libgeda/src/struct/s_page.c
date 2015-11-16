@@ -422,7 +422,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
   }
 }
 
-/*! \brief Deletes the list of pages of <B>toplevel</B>.
+/*! \brief Deletes the list of pages in <B>toplevel</B>.
  *  \par Function Description
  *  Deletes the list of pages of <B>toplevel</B>.
  *  This function should only be called when you are finishing up.
