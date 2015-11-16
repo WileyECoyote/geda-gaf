@@ -83,7 +83,7 @@ BEGIN_DECLS
          void    i_vars_libgeda_freenames        (void);
 
 /* libgeda.c */
-         void    libgeda_init                    (void);
+         void    libgeda_init                    (int argc, char **argv);
          void    libgeda_release                 (void);
 
 /* m_basic.c */
@@ -620,7 +620,11 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_log_init                      (const char *app_prefix);
          void    u_log_close                     (void);
          char   *u_log_read                      (void);
+          int    u_log_get_log_time              (void);
+         void    u_log_set_log_time              (int mode);
          void    u_log_set_update_func           (LogUpdateFunc func);
+         void    u_log_qmessage                  (const char *format, ...);
+         void    u_log_vmessage                  (const char *format, ...);
 
 /* u_string.c */
          char   *u_string_concat                 (const char *string1, ...)  GEDA_WARN_UNUSED_RESULT;

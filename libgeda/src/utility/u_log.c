@@ -57,9 +57,21 @@ static int is_logging = FALSE; /* Variable to controls whether logging is enable
 static void u_log_handler (const char *log_domain, GLogLevelFlags log_level,
                            const char *message, void *user_data);
 
-static int logfile_fd = -1;
+static int  logfile_fd = -1;
+static int log_time   =  1;
 
 static unsigned int log_handler_id;
+
+
+int u_log_get_log_time(void)
+{
+  return log_time;
+}
+
+void u_log_set_log_time(int mode)
+{
+  log_time = mode;
+}
 
 /*! \brief Write a message to the current log file.
  *  \par Function Description
@@ -90,21 +102,27 @@ static void u_log_handler (const char    *log_domain,
 
   g_return_if_fail (logfile_fd != -1);
 
-  time (&nowt);
-  nowtm = localtime (&nowt);
+  if (log_time) {
 
-  if(strftime(buffer,LOG_WRITE_BUFFER_SIZE,"[%H:%M:%S]", nowtm) == 0) {
-    perror("Could not format time string");
-    status = write (logfile_fd, message, strlen (message));
+    time (&nowt);
+    nowtm = localtime (&nowt);
+
+    if (strftime(buffer,LOG_WRITE_BUFFER_SIZE,"[%H:%M:%S]", nowtm) == 0) {
+      status = write (logfile_fd, message, strlen (message));
+    }
+    else {
+
+      log_entry = strcat(buffer, " ");
+      len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
+
+      log_entry = strncat(buffer, message, len);
+
+      status = write (logfile_fd, log_entry, strlen (log_entry));
+    }
   }
   else {
 
-    log_entry = strcat(buffer, " ");
-    len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
-
-    log_entry = strncat(buffer, message, len);
-
-    status = write (logfile_fd, log_entry, strlen (log_entry));
+    status = write (logfile_fd, message, strlen (message));
   }
 
   if (status == -1) {
@@ -124,8 +142,8 @@ static void u_log_handler (const char    *log_domain,
 
 /*! \brief Initialize libgeda logging feature.
  *  \par Function Description
- *  This function opens the file <B>filename</B> to log to and registers the
- *  handler to redirect log message to this file.
+ *  This function opens the file <B>filename</B> to log to and registers
+ *  the handler to redirect log message to this file.
  *
  *  \param [in] prefix  Character string with file name prefix to log to.
  */

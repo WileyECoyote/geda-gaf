@@ -44,6 +44,7 @@ SCM      g_rc_log_directory                  (SCM path);
 SCM      g_rc_scheme_directory               (SCM path);
 
 SCM      g_rc_check_symbol_version           (SCM mode);
+SCM      g_rc_log_time                       (SCM mode);
 SCM      g_rc_make_backup_files              (SCM mode);
 SCM      g_rc_postscript_prolog              (SCM scmsymname);
 SCM      g_rc_print_color_map                (SCM scm_map);

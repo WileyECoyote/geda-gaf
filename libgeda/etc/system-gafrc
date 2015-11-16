@@ -109,6 +109,15 @@
 ;
 ;(log-directory "./logs")
 
+;; Location for writing log files
+;
+; The log-time keyword specifies whether to prefix the current time of day
+; to log entries when writing to log files. The default is enabled, meaning
+; log entries are to be prefixed with the current time of day. This keyword
+; can be used in local gafrc files but note that this is a global settings.
+;
+;(log-time "disable")
+(log-time "enable")
 
 ; make-backup-files
 ;

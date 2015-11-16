@@ -990,6 +990,39 @@ SCM g_rc_check_symbol_version(SCM mode)
                     2);
 }
 
+/*! \brief Handles the log-time SCM keyword
+ *  \par Function Description
+ *  The log-time keyword specifies whether to prefix the current
+ *  time of day to log entries when writing to log files.
+ *
+ *  \param [in] mode string "enabled" or "disabled"
+ *
+ *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ *
+ *  \sa u_log_init
+ */
+SCM g_rc_log_time(SCM mode)
+{
+  SCM_ASSERT (scm_is_string (mode), mode, SCM_ARG1, "log-time");
+
+  SCM ret_val;
+
+  int prefix_time;
+
+  static const vstbl_entry mode_table[] = {
+    {TRUE , "enable" },
+    {FALSE, "disable"},
+  };
+
+  ret_val = g_rc_parse_mode(mode, "log-time", &prefix_time, mode_table, 2);
+
+  if (scm_is_true(ret_val)) {
+    u_log_set_log_time(prefix_time);
+  }
+
+  return ret_val;
+}
+
 /*! \brief Enable the creation of backup files when saving
  *  \par Function Description
  *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration

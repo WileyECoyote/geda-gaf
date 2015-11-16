@@ -62,6 +62,7 @@ static struct gsubr_t rc_func_table[] = {
   { "scheme-directory",           1, 0, 0, g_rc_scheme_directory },
 
   { "check-symbol-version",       1, 0, 0, g_rc_check_symbol_version },
+  { "log-time",                   1, 0, 0, g_rc_log_time },
   { "postscript-prolog",          1, 0, 0, g_rc_postscript_prolog },
   { "make-backup-files",          1, 0, 0, g_rc_make_backup_files },
   { "print-color-map",            0, 1, 0, g_rc_print_color_map },

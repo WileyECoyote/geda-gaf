@@ -1,5 +1,9 @@
 2015-11-16  Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gafrc: Add g_rc_log_time to handler "log-time".
+
+    * src/guile/g_register.c: Register g_rc_log_time as "log-time".
+
     * src/libgeda.c: Pass argc and argv to libgeda_init, add function
       parse_args.
 
@@ -9,7 +13,10 @@
       move u_string_strsize in file.
 
     * src/utility/u_log.c: Add functions u_log_qmessage and u_log_vmessage,
-      abd Doxygen group "Libgeda-Logging-Utilities".
+      abd Doxygen group "Libgeda-Logging-Utilities". Add getter/setters
+      functions u_log_get_log_time and u_log_set_log_time with local static
+      integer log_time. Revise function u_log_handler to only prefix the
+      time to the log message if log_time is set.
 
     * src/guile/g_rc_parse.c:Replace u_log_message with u_log_vmessage in
       function g_rc_parse_file.
