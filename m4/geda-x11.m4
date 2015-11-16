@@ -23,6 +23,7 @@ AC_DEFUN([AX_CHECK_X11],
 [
   AC_PREREQ([2.52])dnl
   AC_REQUIRE([AX_HOST])dnl
+  AC_REQUIRE([AC_PATH_X])dnl
 
   AC_MSG_CHECKING(whether to build X11 bindings)
 

@@ -1,142 +1,151 @@
+2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-std-checks.m4: Add check for hypot function.
+
+    * geda-debug.m4: Correct file name in file header.
+
+    * geda-x11.m4: Add AC_REQUIRE([AC_PATH_X]) in AX_CHECK_X11.
+
 2015-09-19  gettextize  <bug-gnu-gettext@gnu.org>
 
-	* gettext.m4: Upgrade to gettext-0.18.1.
-	* iconv.m4: Upgrade to gettext-0.18.1.
-	* lib-ld.m4: Upgrade to gettext-0.18.1.
-	* lib-link.m4: Upgrade to gettext-0.18.1.
-	* lib-prefix.m4: Upgrade to gettext-0.18.1.
-	* nls.m4: Upgrade to gettext-0.18.1.
-	* po.m4: Upgrade to gettext-0.18.1.
-	* progtest.m4: Upgrade to gettext-0.18.1.
-	* codeset.m4: Upgrade to gettext-0.18.1.
-	* glibc2.m4: Upgrade to gettext-0.18.1.
-	* glibc21.m4: Upgrade to gettext-0.18.1.
-	* intdiv0.m4: Upgrade to gettext-0.18.1.
-	* intl.m4: Upgrade to gettext-0.18.1.
-	* intldir.m4: Upgrade to gettext-0.18.1.
-	* intlmacosx.m4: New file, from gettext-0.18.1.
-	* intmax.m4: Upgrade to gettext-0.18.1.
-	* inttypes_h.m4: Upgrade to gettext-0.18.1.
-	* inttypes-pri.m4: Upgrade to gettext-0.18.1.
-	* lcmessage.m4: Upgrade to gettext-0.18.1.
-	* lock.m4: Upgrade to gettext-0.18.1.
-	* longlong.m4: Upgrade to gettext-0.18.1.
-	* printf-posix.m4: Upgrade to gettext-0.18.1.
-	* size_max.m4: Upgrade to gettext-0.18.1.
-	* stdint_h.m4: Upgrade to gettext-0.18.1.
-	* threadlib.m4: New file, from gettext-0.18.1.
-	* uintmax_t.m4: Upgrade to gettext-0.18.1.
-	* visibility.m4: Upgrade to gettext-0.18.1.
-	* wchar_t.m4: Upgrade to gettext-0.18.1.
-	* wint_t.m4: Upgrade to gettext-0.18.1.
-	* xsize.m4: Upgrade to gettext-0.18.1.
+    * gettext.m4: Upgrade to gettext-0.18.1.
+    * iconv.m4: Upgrade to gettext-0.18.1.
+    * lib-ld.m4: Upgrade to gettext-0.18.1.
+    * lib-link.m4: Upgrade to gettext-0.18.1.
+    * lib-prefix.m4: Upgrade to gettext-0.18.1.
+    * nls.m4: Upgrade to gettext-0.18.1.
+    * po.m4: Upgrade to gettext-0.18.1.
+    * progtest.m4: Upgrade to gettext-0.18.1.
+    * codeset.m4: Upgrade to gettext-0.18.1.
+    * glibc2.m4: Upgrade to gettext-0.18.1.
+    * glibc21.m4: Upgrade to gettext-0.18.1.
+    * intdiv0.m4: Upgrade to gettext-0.18.1.
+    * intl.m4: Upgrade to gettext-0.18.1.
+    * intldir.m4: Upgrade to gettext-0.18.1.
+    * intlmacosx.m4: New file, from gettext-0.18.1.
+    * intmax.m4: Upgrade to gettext-0.18.1.
+    * inttypes_h.m4: Upgrade to gettext-0.18.1.
+    * inttypes-pri.m4: Upgrade to gettext-0.18.1.
+    * lcmessage.m4: Upgrade to gettext-0.18.1.
+    * lock.m4: Upgrade to gettext-0.18.1.
+    * longlong.m4: Upgrade to gettext-0.18.1.
+    * printf-posix.m4: Upgrade to gettext-0.18.1.
+    * size_max.m4: Upgrade to gettext-0.18.1.
+    * stdint_h.m4: Upgrade to gettext-0.18.1.
+    * threadlib.m4: New file, from gettext-0.18.1.
+    * uintmax_t.m4: Upgrade to gettext-0.18.1.
+    * visibility.m4: Upgrade to gettext-0.18.1.
+    * wchar_t.m4: Upgrade to gettext-0.18.1.
+    * wint_t.m4: Upgrade to gettext-0.18.1.
+    * xsize.m4: Upgrade to gettext-0.18.1.
 
 2015-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda_snprintf.m4: New file; Add macros to actually test vsnprintf and vnprintf before
-          declaring victory, as opposed to just checking for existence of the library functions.
+    * geda_snprintf.m4: New file; Add macros to actually test vsnprintf and vnprintf before
+      declaring victory, as opposed to just checking for existence of the library functions.
 
 2015-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-std-checks.m4: Check for functions vsnprintf and vasprintf.
+    * geda-std-checks.m4: Check for functions vsnprintf and vasprintf.
 
 2015-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-std-checks.m4: Use check lib for rint instead of check function
+    * geda-std-checks.m4: Use check lib for rint instead of check function
 
 2015-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-x11.m4: Can not stop autoconf from making assumptions about X11, redo Xft
-          flags
+    * geda-x11.m4: Can not stop autoconf from making assumptions about X11, redo Xft
+      flags
 
-        * autogen.sh: Stop patch from making noise
+    * autogen.sh: Stop patch from making noise
 
 2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
-      * m4/geda-x11.m4: Revised FreeType with enable option, defaulting
-        to off, at least for now. After optimization, the free-type font
-        extension server is still too slow, roughly halve the performence
-        of Cairo and the default XFont server. Still work in progress.
+    * geda-x11.m4: Revised FreeType with enable option, defaulting
+      to off, at least for now. After optimization, the free-type font
+      extension server is still too slow, roughly halve the performence
+      of Cairo and the default XFont server. Still work in progress.
 
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-std-checks.m4: Add check header float.h in AX_GEDA_MATH, add checks
-         for function strchr and strcspn in AX_GEDA_STR_FUNCS, add check for function
-         atexit in AX_GEDA_MISC
+    * geda-std-checks.m4: Add check header float.h in AX_GEDA_MATH, add checks
+      for function strchr and strcspn in AX_GEDA_STR_FUNCS, add check for function
+      atexit in AX_GEDA_MISC
 
-        * m4/geda-libgedauio.m4: Rename libgedawidgets to libgedauio
+    * geda-libgedauio.m4: Rename libgedawidgets to libgedauio
 
-        * m4/geda-x11.m4: New file to check to set X11 and Xft flags
+    * geda-x11.m4: New file to check to set X11 and Xft flags
 
 2014-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-stroke.m4: 2 Corrections:LIBSTROKE_CPPFLAGS to LIBSTROKE_CFLAGS in
-          AC_SUBST and value in AC_DEFINE.
+    * geda-stroke.m4: 2 Corrections:LIBSTROKE_CPPFLAGS to LIBSTROKE_CFLAGS in
+      AC_SUBST and value in AC_DEFINE.
 
-        * m4/geda-debug.m4: New file with content NOT relocated from existing file. The
-          name should be self explanatory.
+    * geda-debug.m4: New file with content NOT relocated from existing file. The
+      name should be self explanatory.
 
 2014-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/geda-libgeda.m4: Moved out-of-place general checks to geda-std-checks.m4
+    * geda-libgeda.m4: Moved out-of-place general checks to geda-std-checks.m4
 
 2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/*: Add new files: as-ac-expand.m4, geda-directories.m4
-          geda-python.m4, removed file geda-data-dirs.m4 with functionality relocated
-          to geda-directories.m4
+    * Add new files: as-ac-expand.m4, geda-directories.m4
+      geda-python.m4, removed file geda-data-dirs.m4 with functionality relocated
+      to geda-directories.m4
 
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * m4/*: Add new files: geda-automake-options.m4, geda-libgedathon.m4,
-          geda-python.m4
+    * Add new files: geda-automake-options.m4, geda-libgedathon.m4,
+      geda-python.m4
 
 2013-01-24 Wiley E Hill  <wileyhill@gmail.com>
 
-        * m4/geda-gtk.m4: Add new mcro file and relocate modules checks for GTK and
-          GDK bixbuf from configure.ac to new file, Added module check for GTHREAD
-          because main-line included reference to HAVE_GTHREAD, which was not ever
-          getting done because HAVE_GTHREAD was not in config.h
+    * geda-gtk.m4: Add new mcro file and relocate modules checks for GTK and
+      GDK bixbuf from configure.ac to new file, Added module check for GTHREAD
+      because main-line included reference to HAVE_GTHREAD, which was not ever
+      getting done because HAVE_GTHREAD was not in config.h
 
-        * m4/geda-uri-viewer.m4: Revised so that SHOW_URI_COMMAND would be defined
-          regardless of the out-come of SHOW_URI_GIO.
+    * geda-uri-viewer.m4: Revised so that SHOW_URI_COMMAND would be defined
+      regardless of the out-come of SHOW_URI_GIO.
 
 2013-01-06 Wiley E Hill  <wileyhill@gmail.com>
 
-        * m4/* REMARK: Added checks for functions to pacify autoscan, any sane
-          compiler and standard libs will supply these functions.
+    * * REMARK: Added checks for functions to pacify autoscan, any sane
+      compiler and standard libs will supply these functions.
 
-        * m4/geda-std-checks.m4: New file, Relocate misc check from configure.ac
-          and added additional checks.
+    * geda-std-checks.m4: New file, Relocate misc check from configure.ac
+      and added additional checks.
 
-        * m4/geda-gattrib.m4: Added Added AC_CHECK_FUNCS([memset]) which is also
-          used by other compilation units. Technically, should disable module and
-          continue with building.
+    * geda-gattrib.m4: Added Added AC_CHECK_FUNCS([memset]) which is also
+      used by other compilation units. Technically, should disable module and
+      continue with building.
 
-        * m4/geda-libgeda.m4: Added checks for functions; memmove, size_t, sqrt,
-          and AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK, relocated AC_HEADER_SYS_WAI
-          chown, strerror strstr, getlogin
-        * m4/geda-pango.m4: Added AC_CHECK_FUNCS([floor]), which is used by
-          edapangorenderer.c.
+    * geda-libgeda.m4: Added checks for functions; memmove, size_t, sqrt,
+      and AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK, relocated AC_HEADER_SYS_WAI
+      chown, strerror strstr, getlogin
+    * geda-pango.m4: Added AC_CHECK_FUNCS([floor]), which is used by
+      edapangorenderer.c.
 
-        * m4/intl.m4: Upgraded to serial 17 (gettext-0.18), and then added
-          checks for functions strchr __argz_count __argz_next __argz_stringify])
+    * intl.m4: Upgraded to serial 17 (gettext-0.18), and then added
+      checks for functions strchr __argz_count __argz_next __argz_stringify])
 
 2012-12-25 Wiley E Hill  <wileyhill@gmail.com>
 
-        * m4/geda-guile.m4: General review, updated Copyright information
-        * m4/geda-cairo.m4: Updated Copyright information, added CAIRO_PKG
-                            corrected footer.
-        * m4/geda-cairo.m4: Updated Copyright information, corrected
-                            description.
-        * m4/geda-pango.m4: New file.
+    * geda-guile.m4: General review, updated Copyright information
+
+    * geda-cairo.m4: Updated Copyright information, added CAIRO_PKG
+      corrected footer.
+
+    * geda-cairo.m4: Updated Copyright information, corrected description.
+
+    * geda-pango.m4: New file.
 
 2012-10-18 Wiley E Hill  <wileyhill@gmail.com>
 
-	* m4/ChangeLog: Add this file!
+    * ChangeLog: Add this file!
 
-        * m4/symbols-dirs.m4: Added new script to dynamically obtain a list
-          of all subdirectories 1 level below the symbols directory so that
-          autoconf can substitution the list during re-configuration. This
-          well help to facilitate maintenance of the symbol libraries.
-
+    * symbols-dirs.m4: Added new script to dynamically obtain a list
+      of all subdirectories 1 level below the symbols directory so that
+      autoconf can substitution the list during re-configuration. This
+      well help to facilitate maintenance of the symbol libraries.

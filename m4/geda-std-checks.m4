@@ -3,7 +3,7 @@
 
 dnl gEDA Prebuild checks for Library Headers and Functions
 dnl
-dnl Copyright (C) 2013-2014  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2015  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ m4_define([AX_GEDA_TYPES],
 
   AC_TYPE_SIZE_T
   AC_TYPE_SSIZE_T       dnl scheme_object.c
-  AC_TYPE_MODE_T      dnl Used in gschem/src/o_misc.c
+  AC_TYPE_MODE_T        dnl Used in gschem/src/o_misc.c
 
   AC_CHECK_TYPES([ptrdiff_t])
 
@@ -71,9 +71,11 @@ m4_define([AX_GEDA_MATH],
 
   AC_CHECK_HEADERS([float.h])
 
+  AC_CHECK_FUNCS([hypot])              dnl is not ANSI C
   AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
   AC_CHECK_FUNCS([floor])              dnl used by pango
   AC_CHECK_FUNCS([sqrt])
+
 
   []dnl
 ])dnl AX_GEDA_MATH

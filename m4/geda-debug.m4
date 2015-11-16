@@ -1,4 +1,4 @@
-# geda-dmalloc.m4                                        -*-Autoconf-*-
+# geda-debug.m4                                        -*-Autoconf-*-
 # serial 1.0
 
 dnl gEDA Prebuild checks for Library Headers and Functions
@@ -128,7 +128,3 @@ AC_DEFUN([AX_CHECK_DEBUGGING],
 
   []dnl
 ])dnl AX_CHECK_DEBUGGING
-
-
-
-
