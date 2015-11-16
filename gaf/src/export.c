@@ -175,7 +175,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 
   gtk_init_check (&argc, &argv);
 
-  libgeda_init ();
+  libgeda_init (argc, argv);
 
   scm_dynwind_begin (0);
   toplevel = geda_toplevel_new ();

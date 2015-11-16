@@ -750,7 +750,7 @@ static void main2(void *closure, int argc, char *argv[])
 
     print_settings = print_settings_new();
 
-    libgeda_init();
+    libgeda_init(argc, argv);
 
     rc_config_init();
     rc_config_set_print_settings(print_settings);

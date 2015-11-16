@@ -304,7 +304,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   gtk_init(&argc, &argv);
 
   /* Initialize gEDA stuff */
-  libgeda_init();
+  libgeda_init(argc, argv);
 
   verbose_mode = FALSE;
   quiet_mode   = FALSE;

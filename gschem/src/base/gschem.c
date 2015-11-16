@@ -281,7 +281,7 @@ static void gschem( int argc, char *argv[])
 
   argv_index = gschem_parse_commandline(argc, argv);
 
-  libgeda_init();
+  libgeda_init(argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
     printf("This is the MINGW32 port.\n");
@@ -339,6 +339,7 @@ static void gschem( int argc, char *argv[])
    * Note that the log system is not initialized yet so any messages
    * will go to the console or null */
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
+
   if (scm_is_false (scm_tmp)) {
     u_log_message (_("Unable to locate scheme initialization file \"gschem.scm\"\n"));
   }

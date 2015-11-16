@@ -195,7 +195,7 @@ void main_prog(void *closure, int argc, char *argv[])
     }
   }
 
-  libgeda_init();
+  libgeda_init(argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
     printf( "This is the MINGW32 port.\n\n");

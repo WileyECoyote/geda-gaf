@@ -71,7 +71,7 @@ main_prog(void *closure, int argc, char *argv[])
 
     cwd = g_get_current_dir();
 
-    libgeda_init();
+    libgeda_init(argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
       fprintf(stderr, "This is the MINGW32 port.\n");

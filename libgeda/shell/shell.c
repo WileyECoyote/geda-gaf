@@ -198,7 +198,7 @@ shell_main (void *data, int argc, char **argv)
   run_lst = scm_reverse_x (run_lst, SCM_UNDEFINED);
 
   /* Initialise libgeda */
-  libgeda_init ();
+  libgeda_init (argc, argv);
   scm_dynwind_begin (0);
   toplevel = geda_toplevel_new ();
   edascm_dynwind_toplevel (toplevel);

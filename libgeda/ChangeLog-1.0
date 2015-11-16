@@ -1,5 +1,10 @@
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgeda.c: Pass argc and argv to libgeda_init, add function
+      parse_args.
+
+2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
+
     * src/math/m_basic.c: Conditionally compile to use hypot instead of
       sqrt in funtion m_degrees_to_radians.
 

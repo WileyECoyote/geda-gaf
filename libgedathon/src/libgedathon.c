@@ -880,7 +880,7 @@ void initialize( API_FunctionTable* user_table)
   const char *promote_list[] = {  /* always-promote-attributes */
   "footprint", "device", "value", "model-name", NULL};
 
-  libgeda_init();
+  libgeda_init(0, NULL);
   toplevel = geda_toplevel_new();
   toplevel->open_flags = 0;
   setup_source_library();

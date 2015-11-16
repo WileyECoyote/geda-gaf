@@ -84,7 +84,7 @@ cmd_config_impl (void *data, int argc, char **argv)
   cfg = NULL;
   project_store_path = NULL;
 
-  libgeda_init ();
+  libgeda_init (argc, argv);
 
   /* Parse command-line arguments */
   while ((c = getopt_long (argc, argv, config_short_options,

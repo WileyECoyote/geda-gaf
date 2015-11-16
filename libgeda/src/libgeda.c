@@ -40,6 +40,48 @@
 #include "libgeda_priv.h"
 #include "libgeda/libgedaguile.h"
 
+int libgeda_quiet_mode;
+int libgeda_verbose_mode;
+
+/*! \brief libgeda Parse command-line options.
+ * \par Function Description
+ * Parse command line options
+ *
+ * \param argc Number of command-line arguments.
+ * \param argv Array of command-line arguments.
+ */
+static void parse_args (int argc, char **argv)
+{
+  char *opt;
+  int i;
+
+  libgeda_quiet_mode   = FALSE;
+  libgeda_verbose_mode = FALSE;
+
+  for (i = 1; i < argc; ++i) {
+
+    opt = argv[i];
+
+    if (*opt == '-') {
+
+      ++opt;
+
+      if (*opt == '-') {
+        ++opt;
+      }
+
+      if (!strcmp (opt, "quiet") || !strcmp (opt, "q")) {
+        libgeda_quiet_mode=TRUE;
+        continue;
+      }
+      else if (!strcmp (opt, "verbose") || !strcmp (opt, "v")) {
+        libgeda_verbose_mode++;
+        continue;
+      }
+    }
+  }
+}
+
 /*! \brief Perform Guile runtime initialization of libgeda library.
  *  \par Function Description
  *  This function is called internally by libgeda_init using the
@@ -71,7 +113,7 @@ static void *libgeda_guile_init(void *lame)
  *  the client is in guile mode.
  *
  */
-void libgeda_init(void)
+void libgeda_init(int argc, char **argv)
 {
   int lame;
   const char *env_path;
@@ -82,8 +124,11 @@ void libgeda_init(void)
   bind_textdomain_codeset(LIBGEDA_GETTEXT_DOMAIN, "UTF-8");
 #endif
 
+  parse_args(argc, argv);
+
   /* Check environment for location to write logs */
   env_path = getenv ("GEDALOGS");
+
   if (env_path != NULL) {
     char *path = u_string_sprintf ("%s", env_path);
     if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
