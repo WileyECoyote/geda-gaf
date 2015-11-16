@@ -1,3 +1,14 @@
+2015-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_globals.h: Rename file globals.h->gschem_globals.h
+      because Doxygen tags reference libgeda, which also has a globals.h
+      and this confuses Doxygen (but not the compiler).
+
+    * include/gschem.h: Update file name for gschem_globals.h and resequenced
+      to include gschem_globals earlier, #2 (not that this matters, but is
+      alphabetical).
+
+
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Change first argument gschem_page_view_pan_

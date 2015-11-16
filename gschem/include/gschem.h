@@ -15,6 +15,7 @@
 
 /* gschem headers */
 #include "gschem_event.h"
+#include "gschem_globals.h"
 #include "gschem_idefines.h"       /* integer defines */
 #include "gschem_sdefines.h"       /* string defines  */
 #include "gschem_toplevel.h"
@@ -29,5 +30,4 @@
 #include "x_preview.h"
 #include "x_status_bar.h"
 
-#include "globals.h"
 #include "prototype.h"

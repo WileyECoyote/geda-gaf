@@ -23,8 +23,7 @@
  *
  */
 /*!
- * \file globals.h
- *
+ * \file gschem_globals.h
  * \brief Gschem global variables and type definitions
  */
 
