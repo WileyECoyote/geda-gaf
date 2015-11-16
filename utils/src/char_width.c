@@ -5,9 +5,7 @@
 #include <string.h>
 #endif
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define CHAR_POINTS 2
 

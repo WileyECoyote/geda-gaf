@@ -97,10 +97,9 @@ PRE,1,dot,B,1
 
 #include <ctype.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
+/* TODO: gnetlist/utils/mk_verilog_syms.c */
 #define BLACK		0
 #define WHITE		1
 #define RED		2
@@ -110,7 +109,7 @@ PRE,1,dot,B,1
 #define CYAN		6
 #define GREY		7
 
-#define MAX_FIELDS      10
+#define MAX_FIELDS   10
 
 #define L_SIDE	0
 #define R_SIDE	1
