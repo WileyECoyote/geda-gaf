@@ -33,6 +33,13 @@
 
 #include <geda_debug.h>
 
+extern int libgeda_quiet_mode;
+extern int libgeda_verbose_mode;
+
+/** \defgroup Libgeda-Logging-Utilities Libgeda Logging Utilities
+ *    @{
+ */
+
 /*! Default setting for log update callback function. */
 static void (*x_log_update_func)() = NULL;
 
@@ -310,3 +317,62 @@ char *u_log_read (void)
 
   return g_string_free (contents, FALSE);
 }
+
+/*! \brief Write Message to Log if Not Quiet Mode
+ *  \par Function Description
+ *  This is a utlitity function to write a formatted message to
+ *  the log handler if quiet mode is not set.
+ */
+void u_log_qmessage(const char *format, ...)
+{
+  if (!libgeda_quiet_mode) {
+
+    va_list args;
+    char   *buffer;
+    int     size;
+
+    va_start (args, format);
+    size = u_string_strsize(format, args);
+    va_end (args);
+
+    buffer = malloc(size);
+
+    va_start (args, format);
+    vsnprintf (buffer, size, format, args);
+    va_end (args);
+
+    u_log_message("%s", buffer);
+
+    if (buffer) free(buffer);
+  }
+}
+
+/*! \brief Write Message to Log if Verbose Mode
+ *  \par Function Description
+ *  This is a utlitity function to write a formatted message to
+ *  the log handler if verbose mode was set.
+ */
+void u_log_vmessage(const char *format, ...)
+{
+  if (libgeda_verbose_mode) {
+
+    va_list args;
+    char   *buffer;
+    int     size;
+
+    va_start (args, format);
+    size = u_string_strsize(format, args);
+    va_end (args);
+
+    buffer = malloc(size);
+
+    va_start (args, format);
+    vsnprintf (buffer, size, format, args);
+    va_end (args);
+
+    u_log_message("%s", buffer);
+
+    if (buffer) free(buffer);
+  }
+}
+/** @} endgroup Libgeda-Logging-Utilities */

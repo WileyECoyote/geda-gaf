@@ -8,6 +8,9 @@
     * src/utility/u_string.c: Remove static keyword from u_string_strsize,
       move u_string_strsize in file.
 
+    * src/utility/u_log.c: Add functions u_log_qmessage and u_log_vmessage,
+      abd Doxygen group "Libgeda-Logging-Utilities".
+
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Conditionally compile to use hypot instead of
