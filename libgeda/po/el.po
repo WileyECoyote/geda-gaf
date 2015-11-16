@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-10-24 23:59-0500\n"
+"POT-Creation-Date: 2015-11-15 20:57-0600\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -103,7 +103,7 @@ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:97
+#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:110
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
@@ -113,55 +113,55 @@ msgstr ""
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:363
+#: libgeda/src/file/f_basic.c:370
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
 
-#: libgeda/src/file/f_basic.c:364
+#: libgeda/src/file/f_basic.c:371
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
 
-#: libgeda/src/file/f_basic.c:365
+#: libgeda/src/file/f_basic.c:372
 #, c-format
 msgid "File %s is read-only"
 msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
 
-#: libgeda/src/file/f_basic.c:367
+#: libgeda/src/file/f_basic.c:374
 #, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:368
+#: libgeda/src/file/f_basic.c:375
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s\n"
 msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
 
-#: libgeda/src/file/f_basic.c:667
+#: libgeda/src/file/f_basic.c:675
 #, fuzzy, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
 
-#: libgeda/src/file/f_basic.c:679
+#: libgeda/src/file/f_basic.c:687
 #, fuzzy, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr "s_page_delete: Αδυναμία διαγραφής αντιγράφου ασφαλείας %s."
 
-#: libgeda/src/file/f_file.c:76
+#: libgeda/src/file/f_file.c:74
 msgid "File error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:80
+#: libgeda/src/file/f_file.c:79
 msgid "File lock error"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:81
+#: libgeda/src/file/f_file.c:80
 #, c-format
-msgid "%s: attempting to lock/unlock file \"%s\"\n"
+msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:328
+#: libgeda/src/file/f_file.c:325
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -299,75 +299,75 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:388
+#: libgeda/src/geda/geda_object.c:389
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:389
+#: libgeda/src/geda/geda_object.c:390
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:398
+#: libgeda/src/geda/geda_object.c:399
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:399
+#: libgeda/src/geda/geda_object.c:400
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:406
+#: libgeda/src/geda/geda_object.c:407
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:407
+#: libgeda/src/geda/geda_object.c:408
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:413
+#: libgeda/src/geda/geda_object.c:414
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:414
+#: libgeda/src/geda/geda_object.c:415
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:419
+#: libgeda/src/geda/geda_object.c:420
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:420
+#: libgeda/src/geda/geda_object.c:421
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:426
+#: libgeda/src/geda/geda_object.c:427
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:427
+#: libgeda/src/geda/geda_object.c:428
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:433
+#: libgeda/src/geda/geda_object.c:434
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:434
+#: libgeda/src/geda/geda_object.c:435
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:441
+#: libgeda/src/geda/geda_object.c:442
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:442
+#: libgeda/src/geda/geda_object.c:443
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:450
+#: libgeda/src/geda/geda_object.c:451
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:451
+#: libgeda/src/geda/geda_object.c:452
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1022,7 +1022,7 @@ msgstr ""
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1722
+#: libgeda/src/object/o_picture.c:1729
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
@@ -1283,22 +1283,22 @@ msgstr ""
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:449
+#: libgeda/src/struct/s_clib.c:435
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:455
+#: libgeda/src/struct/s_clib.c:441
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:459
+#: libgeda/src/struct/s_clib.c:445
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:460
+#: libgeda/src/struct/s_clib.c:446
 #, c-format
 msgid ""
 "Error output was:\n"
@@ -1307,36 +1307,36 @@ msgstr ""
 "Η έξοδος σφάλματος ήταν:\n"
 "%s\n"
 
-#: libgeda/src/struct/s_clib.c:548
+#: libgeda/src/struct/s_clib.c:534
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr "Η ονομασία βιβλιοθήκης [%s] χρησιμοποιείται ήδη.  Χρήση [%s].\n"
 
-#: libgeda/src/struct/s_clib.c:677
+#: libgeda/src/struct/s_clib.c:667
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:686
+#: libgeda/src/struct/s_clib.c:676
 #, fuzzy, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:784
+#: libgeda/src/struct/s_clib.c:774
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:792
+#: libgeda/src/struct/s_clib.c:782
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1047 libgeda/src/struct/s_clib.c:1094
+#: libgeda/src/struct/s_clib.c:1041 libgeda/src/struct/s_clib.c:1088
 msgid "Cannot add library: name not specified\n"
 msgstr "Αδυναμία προσθήκης βιβλιοθήκης: το όνομα δεν έχει οριστεί\n"
 
-#: libgeda/src/struct/s_clib.c:1054
+#: libgeda/src/struct/s_clib.c:1048
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
@@ -1344,37 +1344,37 @@ msgstr ""
 "Δεν είναι δυνατή η προσθήκη της βιβλιοθήκης [%s]: πρέπει να καθοριστούν οι "
 "εντολές 'list' και 'get'.\n"
 
-#: libgeda/src/struct/s_clib.c:1103
+#: libgeda/src/struct/s_clib.c:1097
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1229
+#: libgeda/src/struct/s_clib.c:1223
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Αποτυχία φορτώματος του συμβόλου από το αρχείο [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1290
+#: libgeda/src/struct/s_clib.c:1284
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Αποτυχία φορτώματος των δεδομένων συμβόλου [%s] από την πηγή [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:1512
+#: libgeda/src/struct/s_clib.c:1506
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Το στοιχείο [%s] δε βρέθηκε στη βιβλιοθήκη στοιχείων\n"
 
-#: libgeda/src/struct/s_clib.c:1519
+#: libgeda/src/struct/s_clib.c:1513
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Βρέθηκαν περισσότερα από ένα στοιχεία με το όνομα [%s]\n"
 
-#: libgeda/src/struct/s_color.c:303
+#: libgeda/src/struct/s_color.c:310
 #, fuzzy, c-format
 msgid "Error loading %s, %s\n"
 msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
 
-#: libgeda/src/struct/s_color.c:360
+#: libgeda/src/struct/s_color.c:367
 #, c-format
 msgid "Color index out of range"
 msgstr ""
@@ -1396,34 +1396,34 @@ msgstr "Δεν υπάρχουν σχεδιαγράμματα πάνω από τ�
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/struct/s_page.c:274
+#: libgeda/src/struct/s_page.c:272
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:654 libgeda/src/struct/s_page.c:692
+#: libgeda/src/struct/s_page.c:657 libgeda/src/struct/s_page.c:699
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Αποθηκεύτηκε [%s]\n"
 
-#: libgeda/src/struct/s_page.c:660 libgeda/src/struct/s_page.c:697
+#: libgeda/src/struct/s_page.c:663 libgeda/src/struct/s_page.c:706
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "ΔΕΝ αποθηκεύτηκε [%s]\n"
 
-#: libgeda/src/struct/s_slot.c:168
+#: libgeda/src/struct/s_slot.c:172
 #, fuzzy, c-format
 msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
 msgstr "Δε βρέθηκε γνώρισμα slotdef=#:#,#,#...\n"
 
-#: libgeda/src/struct/s_slot.c:175
+#: libgeda/src/struct/s_slot.c:179
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:190
+#: libgeda/src/struct/s_slot.c:194
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr "Δε βρέθηκε κατάλληλο γνώρισμα slotdef=#:#,#,#...\n"
 
-#: libgeda/src/struct/s_slot.c:221
+#: libgeda/src/struct/s_slot.c:229
 msgid "component missing pinseq= attribute\n"
 msgstr "Λείπει το γνώρισμα pinseq= από το στοιχείο\n"
 
