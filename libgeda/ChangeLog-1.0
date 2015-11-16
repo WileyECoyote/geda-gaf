@@ -11,6 +11,9 @@
     * src/utility/u_log.c: Add functions u_log_qmessage and u_log_vmessage,
       abd Doxygen group "Libgeda-Logging-Utilities".
 
+    * src/guile/g_rc_parse.c:Replace u_log_message with u_log_vmessage in
+      function g_rc_parse_file.
+
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Conditionally compile to use hypot instead of

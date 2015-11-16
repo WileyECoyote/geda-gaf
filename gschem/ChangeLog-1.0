@@ -8,6 +8,8 @@
       to include gschem_globals earlier, #2 (not that this matters, but is
       alphabetical).
 
+    * src/base/gschem.c:Replace q_log_message with u_log_vmessage for logging
+      scheme initialization file.
 
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 

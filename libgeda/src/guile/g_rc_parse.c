@@ -264,8 +264,9 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       scm_dynwind_end ();
 
       if (status) {
-        /*TODO: This is rude noise with out option to suppress */
-        u_log_message (_("libgeda: Loaded RC file [%s]\n"), name_norm);
+        /* Typically apps need to read the rc file to know if logging is
+         * is enabled or not, so verbose mode is used here */
+        u_log_vmessage (_("libgeda: Loaded RC file [%s]\n"), name_norm);
       }
       else {
 

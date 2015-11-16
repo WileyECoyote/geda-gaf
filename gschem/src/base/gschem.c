@@ -346,7 +346,7 @@ static void gschem( int argc, char *argv[])
   else {
     input_str = scm_to_utf8_string (scm_tmp);
     if (g_read_scheme_file(input_str, NULL)) {
-      q_log_message(_("Read scheme initialization file [%s]\n"), input_str);
+      u_log_vmessage(_("Read scheme initialization file [%s]\n"), input_str);
     }
     else {
       u_log_message(_("Failed to read initialization scheme file [%s]\n"), input_str);
