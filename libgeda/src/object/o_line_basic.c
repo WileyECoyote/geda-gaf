@@ -361,9 +361,9 @@ void o_line_rotate( Object *object, int center_x, int center_y, int angle)
     return;
 
   /* angle must be positive */
-  if(angle < 0) angle = -angle;
+  if (angle < 0) angle = -angle;
   /* angle must be 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
+  if ((angle % 90) != 0) return;
 
   /*
    * The center of rotation (<B>center_x</B>,<B>center_y</B>)
@@ -493,9 +493,9 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *            styles, and eliminated hard-coded integer values.
    */
   line_width = o_current->line_options->line_width;
-  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+  if (line_width < MIN_LINE_WIDTH_THRESHOLD)
     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
-    if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+    if (line_width < MIN_LINE_WIDTH_THRESHOLD)
       line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
     length = o_current->line_options->line_length;
@@ -531,7 +531,7 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
       break;
   }
 
-  if((length == 0) || (space == 0)) {
+  if ((length == 0) || (space == 0)) {
     length = -1; space = -1;
     outl_func = o_line_print_solid;
   }
@@ -653,10 +653,10 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
 
   d = 0;
   xa = x1; ya = y1;
+
   while(d < l) {
 
-    fprintf(fp,"[%d %d] ",
-            (int)xa, (int)ya);
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
     d = d + space;
     xa = xa + dx1;
     ya = ya + dy1;
@@ -681,7 +681,7 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
  *  The function sets the color in which the line will be printed and
  *  the width of the line - that is the width of the dashes.
  *
- *  \param [in] toplevel     The GedaToplevel object.
+ *  \param [in] toplevel      The GedaToplevel object.
  *  \param [in] fp            FILE pointer to Postscript document.
  *  \param [in] x1            Upper x coordinate.
  *  \param [in] y1            Upper y coordinate.
@@ -736,39 +736,41 @@ void o_line_print_dashed(GedaToplevel *toplevel, FILE *fp,
   dx2 = (dx * space) / l;
   dy2 = (dy * space) / l;
 
-  d = 0;
+  d  = 0;
   xa = x1; ya = y1;
+
   while((d + length + space) < l) {
-    d = d + length;
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
 
-    fprintf(fp, "[%d %d %d %d] ",
-            (int) xa, (int) ya,
-            (int) xb, (int) yb);
+    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
   }
+
   /*
    * When the above condition is no more satisfied, then it is not possible
    * to print a dash of length <B>length</B>. However it may be possible to
    * print the complete dash or a shorter one.
    */
 
-  if((d + length) < l) {
-    d = d + length;
+  if ((d + length) < l) {
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
-  } else {
+  }
+  else {
+
     xb = x2;
     yb = y2;
   }
 
-  fprintf(fp, "[%d %d %d %d] ",
-          (int) xa, (int) ya,
-          (int) xb, (int) yb);
+  fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
@@ -842,24 +844,24 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
   dx2 = (dx * space) / l;
   dy2 = (dy * space) / l;
 
-  d = 0;
+  d  = 0;
   xa = x1; ya = y1;
+
   while((d + length + 2 * space) < l) {
-    d = d + length;
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
 
-    fprintf(fp, "[%d %d %d %d] ",
-            (int) xa, (int) ya,
-            (int) xb, (int) yb);
+    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
 
-    fprintf(fp,"[%d %d] ",(int) xa, (int) ya);
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
 
-    d = d + space;
+    d  = d + space;
     xa = xa + dx2;
     ya = ya + dy2;
   }
@@ -874,40 +876,39 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
    * </DL>
    */
 
-  if((d + length + space) < l) {
-    d = d + length;
+  if ((d + length + space) < l) {
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
 
-    fprintf(fp, "[%d %d %d %d] ",
-            (int) xa, (int) ya,
-            (int) xb, (int) yb);
+    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
 
-    fprintf(fp,"[%d %d] ",(int) xa, (int) ya);
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
 
-  } else {
-    if(d + length < l) {
+  }
+  else {
+
+    if (d + length < l) {
       xb = xa + dx1;
       yb = ya + dy1;
-    } else {
+    }
+    else {
       xb = x2;
       yb = y2;
     }
 
-    fprintf(fp, "[%d %d %d %d] ",
-            (int) xa, (int) ya,
-            (int) xb, (int) yb);
+    fprintf(fp, "[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
   }
 
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 
-  /*
-   * A dot is represented by a filled circle. Position of the circle is
+  /* A dot is represented by a filled circle. Position of the circle is
    * (<B>xa</B>, <B>ya</B>) and its radius by the <B>line_width</B> parameter.
    */
 }
@@ -980,33 +981,34 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
   dx2 = (dx * space) / l;
   dy2 = (dy * space) / l;
 
-  d = 0;
+  d  = 0;
   xa = x1; ya = y1;
+
   while((d + length + 3 * space) < l) {
-    d = d + length;
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
 
-    fprintf(fp,"[%d %d %d %d] ",
-            (int) xa, (int)ya,
-            (int) xb, (int)yb);
+    fprintf(fp,"[%d %d %d %d] ", (int) xa, (int)ya, (int) xb, (int)yb);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
 
     fprintf(fp,"[%d %d] ",(int) xa, (int) ya);
 
-    d = d + space;
+    d  = d + space;
     xa = xa + dx2;
     ya = ya + dy2;
 
     fprintf(fp,"[%d %d] ",(int) xa, (int) ya);
 
-    d = d + space;
+    d  = d + space;
     xa = xa + dx2;
     ya = ya + dy2;
   }
+
   /*
    * When the above condition is no more satisfied, then it is not possible
    * to print a complete set of dash-dot-dot.
@@ -1019,48 +1021,51 @@ void o_line_print_phantom(GedaToplevel *toplevel, FILE *fp,
    * </DL>
    */
 
-  if((d + length + 2 * space) < l) {
-    d = d + length;
+  if ((d + length + 2 * space) < l) {
+
+    d  = d + length;
     xb = xa + dx1;
     yb = ya + dy1;
 
-    fprintf(fp,"[%d %d %d %d] ",
-            (int) xa, (int)ya,
-            (int) xb, (int)yb);
+    fprintf(fp,"[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
 
-    fprintf(fp,"[%d %d] ",(int) xa, (int)ya);
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
 
-    d = d + space;
+    d  = d + space;
     xa = xb + dx2;
     ya = yb + dy2;
 
-    fprintf(fp,"[%d %d] ",(int) xa, (int)ya);
+    fprintf(fp,"[%d %d] ", (int) xa, (int) ya);
 
-  } else {
-    if(d + length + space < l) {
-      d = d + length;
+  }
+  else {
+
+    if (d + length + space < l) {
+
+      d  = d + length;
       xb = xa + dx1;
       yb = ya + dy1;
 
-      fprintf(fp,"[%d %d %d %d] ",
-              (int) xa, (int)ya,
-              (int) xb, (int)yb);
+      fprintf(fp,"[%d %d %d %d] ", (int) xa, (int) ya, (int) xb, (int) yb);
 
-      d = d + space;
+      d  = d + space;
       xa = xb + dx2;
       ya = yb + dy2;
 
-      fprintf(fp,"[%d %d] ",(int) xa, (int)ya);
+      fprintf(fp,"[%d %d] ",(int) xa, (int) ya);
 
-    } else {
-      if(d + length < l) {
+    }
+    else {
+
+      if (d + length < l) {
         xb = xa + dx1;
         yb = ya + dy1;
-      } else {
+      }
+      else {
         xb = x2;
         yb = y2;
       }

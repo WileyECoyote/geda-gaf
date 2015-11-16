@@ -910,7 +910,7 @@ const char *o_text_get_string (Object *obj)
 void o_text_set_rendered_bounds_func (Object *object,
                                       RenderedBoundsFunc func,
                                       void *user_data) {
-  g_return_if_fail(GEDA_IS_TEXT(object));
+  g_return_if_fail (GEDA_IS_TEXT(object));
   Text *text = GEDA_TEXT(object);
   text->rendered_text_bounds_func = func;
   text->rendered_text_bounds_data = user_data;
@@ -925,7 +925,7 @@ void o_text_set_rendered_bounds_func (Object *object,
  */
 void o_text_set_string (Object *object, const char *new_string)
 {
-  g_return_if_fail(GEDA_IS_TEXT(object));
+  g_return_if_fail (GEDA_IS_TEXT(object));
   g_return_if_fail (new_string != NULL);
 
   GEDA_FREE (object->text->string);

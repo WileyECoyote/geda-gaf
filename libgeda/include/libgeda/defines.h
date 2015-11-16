@@ -66,11 +66,11 @@
 #define DEFAULT_POSTSCRIPT_PROLOG  "prolog.ps"
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
-/*! \def INIT_STR(w, name, str) */
-#define INIT_STR(w, name, str) {                                        \
-        if((w)->name) g_free((w)->name);                                \
-        (w)->name = g_strdup(((default_ ## name) != NULL) ?             \
-                             (default_ ## name) : (str));               \
+/*! \def INIT_STR(t, name, str) */
+#define INIT_STR(t, name, str) {                               \
+        if((t)->name) g_free((t)->name);                       \
+        (t)->name = g_strdup(((default_ ## name) != NULL) ?    \
+                              (default_ ## name) : (str));     \
 }
 
 #define GEDA_FREE(ptr) do { g_free(ptr); (ptr) = NULL; } while (0);

@@ -359,11 +359,12 @@ eda_cairo_arc (cairo_t *cr, int flags,
 
   WORLDtoSCREEN (cr, x - radius, y + radius, &x1, &y1);
   WORLDtoSCREEN (cr, x + radius, y - radius, &x2, &y2);
-  s_width = screen_width (cr, width);
-  offset = ((s_width % 2) == 0) ? 0 : 0.5;
 
-  s_x = (double)(x1 + x2) / 2.;
-  s_y = (double)(y1 + y2) / 2.;
+  s_width  = screen_width (cr, width);
+  offset   = ((s_width % 2) == 0) ? 0 : 0.5;
+
+  s_x      = (double)(x1 + x2) / 2.;
+  s_y      = (double)(y1 + y2) / 2.;
   s_radius = (double)(y2 - y1) / 2.;
 
   cairo_device_to_user (cr, &s_x, &s_y);

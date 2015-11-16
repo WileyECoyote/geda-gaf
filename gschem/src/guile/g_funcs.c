@@ -130,19 +130,24 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
     if (strcmp (flag, "may_exist") == 0) {
       c_flags |= FSB_MAY_EXIST;
 
-    } else if (strcmp (flag, "must_exist") == 0) {
+    }
+    else if (strcmp (flag, "must_exist") == 0) {
       c_flags |= FSB_MUST_EXIST;
 
-    } else if (strcmp (flag, "must_not_exist") == 0) {
+    }
+    else if (strcmp (flag, "must_not_exist") == 0) {
       c_flags |= FSB_SHOULD_NOT_EXIST;
 
-    } else if (strcmp (flag, "save") == 0) {
+    }
+    else if (strcmp (flag, "save") == 0) {
       c_flags |= FSB_SAVE;
 
-    } else if (strcmp (flag, "open") == 0) {
+    }
+    else if (strcmp (flag, "open") == 0) {
       c_flags |= FSB_LOAD;
 
-    } else {
+    }
+    else {
       free(flag);
       scm_wrong_type_arg ("gschem-filesel", SCM_ARG3, scm_flag);
     }
@@ -186,7 +191,8 @@ SCM g_funcs_png_image(SCM scm_filename)
                       Image_All,
                       0,          /* Don't use print colors */
                       0 );        /* Dont invert bw only */
-  } else  {
+  }
+  else  {
     filename = scm_to_utf8_string (scm_filename);
     x_image_lowlevel (w_current, filename,
                       w_current->image_width,

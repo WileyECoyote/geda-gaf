@@ -332,12 +332,17 @@ static void s_path_arc (RSVGParsePathCtx * ctx,
      The arc fits a unit-radius circle in this space.
    */
   d = (x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0);
+
   sfactor_sq = 1.0 / d - 0.25;
+
   if (sfactor_sq < 0)
     sfactor_sq = 0;
+
   sfactor = sqrt (sfactor_sq);
+
   if (sweep_flag == large_arc_flag)
     sfactor = -sfactor;
+
   xc = 0.5 * (x0 + x1) - sfactor * (y1 - y0);
   yc = 0.5 * (y0 + y1) + sfactor * (x1 - x0);
   /* (xc, yc) is center of the circle. */
@@ -346,6 +351,7 @@ static void s_path_arc (RSVGParsePathCtx * ctx,
   th1 = atan2 (y1 - yc, x1 - xc);
 
   th_arc = th1 - th0;
+
   if (th_arc < 0 && sweep_flag)
     th_arc += 2 * M_PI;
   else if (th_arc > 0 && !sweep_flag)
@@ -379,7 +385,8 @@ static void s_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
            precondition) */
         ctx->params[i] = ctx->cpx;
     }
-  } else {
+  }
+  else {
     for (i = ctx->param; i < n_params; i++)
       ctx->params[i] = 0.0;
   }

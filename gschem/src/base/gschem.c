@@ -23,7 +23,7 @@
 
 #include <X11/Xlib.h>
 /* Xlib defines Complex to be a numeric of value 0 and this does
- * interfere with Libgeda's definition of complex, so we will undefine
+ * interfere with Libgeda's definition of Complex, so we will undefine
  * X11's seemly trivial definition: */
 #ifdef Complex
 #undef Complex

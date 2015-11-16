@@ -119,13 +119,14 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   objectlists = s_tile_get_objectlists(toplevel->page_current, x1, y1, x2, y2);
 
   for (iter1 = objectlists; iter1 != NULL; NEXT(iter1)) {
+
     for (iter2 = (GList*) iter1->data; iter2 != NULL; NEXT(iter2)) {
 
       int left, top, right, bottom;
       o_current = (Object*) iter2->data;
 
       if (!o_get_bounds(o_current, &left, &top, &right, &bottom) ||
-        !visible (w_current, left, top, right, bottom))
+          !visible (w_current, left, top, right, bottom))
       {
         continue; /* skip invisible objects */
       }

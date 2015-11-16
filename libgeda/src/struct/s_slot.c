@@ -128,15 +128,18 @@ void s_slot_update_object (Object *object)
 {
   Object *o_pin_object;
   Object *o_pinnum_attrib;
-  GList *attributes;
+  GList  *attributes;
+
   char *string;
   char *slotdef;
   char *pinseq;
+  char *current_pin;  /* text from slotdef= to be made into pinnumber= */
+  char *cptr;         /* char pointer pointing to pinnumbers in slotdef=#:#,#,# string */
+
   int slot;
   int slot_string;
   int pin_counter;    /* Internal pin counter private to this fcn. */
-  char* current_pin;  /* text from slotdef= to be made into pinnumber= */
-  char* cptr;         /* char pointer pointing to pinnumbers in slotdef=#:#,#,# string */
+
 
   /* For this particular graphic object (component instantiation) */
   /* get the slot number as a string */
@@ -162,6 +165,7 @@ void s_slot_update_object (Object *object)
   slotdef = s_slot_search_slotdef (object, slot);
 
   if (slotdef == NULL) {
+
     if (slot_string) /* only an error if there's a slot string */
 
       /* Note: slot_string is base Zero, tell user about missing slotdef */
@@ -194,15 +198,19 @@ void s_slot_update_object (Object *object)
 
   /* loop on all pins found in slotdef= attribute */
   pin_counter = 1;  /* internal pin_counter */
+
   /* get current pinnumber= from slotdef= attrib */
   current_pin = strtok (cptr, DELIMITERS);
+
   while (current_pin != NULL) {
+
     /* get pin on this component with pinseq == pin_counter */
     pinseq = u_string_sprintf ("%d", pin_counter);
     o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinseq);
     GEDA_FREE (pinseq);
 
     if (o_pin_object != NULL) {
+
       /* Now rename pinnumber= attrib on this part with value found */
       /* in slotdef attribute  */
       attributes = o_attrib_return_attribs (o_pin_object);

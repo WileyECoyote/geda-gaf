@@ -423,7 +423,8 @@ static int u_string_strsize (const char *format, va_list args)
 /*! \brief  Get formated string using printf like specifiers
  *  \par Function Description
  *  \returns a newly allocated string that is the result of
- *  the substitution of the variable arguments into \a format.
+ *   the substitution of the variable arguments into \a format.
+ *
  *  \remarks returned string must be freed using GEDA_FREE.
  */
 char *u_string_sprintf (const char *format, ...)

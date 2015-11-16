@@ -308,8 +308,8 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 
   object->weak_refs                  = NULL;
 
-  object->head_marker                = GEDA_TYPE_OBJECT;
-  object->tail_marker                = object->head_marker;
+  object->s_net_destroy_or_report                = GEDA_TYPE_OBJECT;
+  object->tail_marker                = object->s_net_destroy_or_report;
 
   /* Call hooks */
   g_list_foreach (new_object_hooks, call_new_object_hook, object);
@@ -327,8 +327,9 @@ static void geda_object_finalize(GObject *gobject)
   Object *object = GEDA_OBJECT(gobject);
   GList *iter;
 
-  if (object->name)
+  if (object->name) {
     GEDA_FREE(object->name);
+  }
 
   /* Should already be done */
   if (object->conn_list) {
@@ -347,8 +348,8 @@ static void geda_object_finalize(GObject *gobject)
       g_free (iter->data);
     }
     g_list_free (object->weak_refs);
+    object->weak_refs = NULL;
   }
-  object->weak_refs = NULL;
 
   /* The object is no longer a GedaObject */
   object->head_marker = 0;

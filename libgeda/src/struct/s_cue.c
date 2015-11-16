@@ -204,9 +204,10 @@ static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
 
   fprintf (fp, "gsave\n");
 
-  /* We compute a transformation so that the arrowhead is aligned with
-   * the net segment. */
+  /* We compute a transformation so that the arrowhead is aligned
+   * with the net segment. */
   double len = hypot (dx, dy);
+
   if (len != 0) {
     double c = dx / len;
     double s = dy / len;
