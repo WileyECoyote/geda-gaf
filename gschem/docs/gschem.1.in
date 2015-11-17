@@ -23,6 +23,9 @@ can also be used for editing symbols for use in schematics.
 .SH OPTIONS
 .PP
 .TP 8
+\fB\-a\fR, \fB\--render-adaptor=DRV\fR
+Specify which render adaptor to use, Cario or X11.
+.TP 8
 \fB\-c\fR, \fB\--config-file\fR=\fIFILE\fR
 Specify an additional configuration file. Normally \fBgschem\fR
 searches for the system configuration file, then
@@ -44,6 +47,11 @@ Run gschem in single task mode.
 \fB\-n\fR, \fB\--no-auto\fR
 No auto load last document. This over-rides the current auto-load-last configuration setting.
 .TP 8
+\fB\-o\fR, \fB\--output\fR=\fIFILE\fR
+Specify a filename for PostScript output. This command line argument is useful when
+running \fBgschem\fR from a shell script and with a Scheme script. The filename can
+be changed through the print dialog box.
+.TP 8
 \fB\-q\fR, \fB\--quiet\fR
 Quiet mode. Turn off some warnings/notes/messages.
 .TP 8
@@ -52,20 +60,9 @@ Specify a Scheme script to be executed at startup.
 .TP 8
 \fB\-s\fR, \fB\--start NAME\fR
 Startup using the named session. This over-rides the current auto-load-last configuration setting.
-\fB\-s\fR, \fB\--title-block NAME\fR
-Start a new drawing using the specified title-block.
-\fB\-u\fR, \fB\--undo-dir DIR\fR
-Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
-determine the location of a system temporary directory. This option maybe used to specify
-the directory. In any event, if the undo-type is configured as "disk", the location must be
-read-writable or the Undo system will automatically switch to type "memory". For undo-type
-"disk" a tmpfs or ramfs is recommended for systems using SDD`s in order to help reduce
-"burn-out".
 .TP 8
-\fB\-o\fR, \fB\--output\fR=\fIFILE\fR
-Specify a filename for PostScript output. This command line argument is useful when
-running \fBgschem\fR from a shell script and with a Scheme script. The filename can
-be changed through the print dialog box.
+\fB\-t\fR, \fB\--title-block NAME\fR
+Start a new drawing using the specified title-block.
 .TP 8
 \fB\-p\fR, \fB\--place\fR
 Automatically place the window. This may be useful if running \fBgschem\fR
@@ -76,6 +73,14 @@ Print \fBgschem\fR version information.
 .TP 8
 \fB\-v\fR, \fB\--verbose\fR
 Verbose mode. Output all diagnostic information.
+.TP 8
+\fB\-u\fR, \fB\--undo-dir DIR\fR
+Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
+determine the location of a system temporary directory. This option maybe used to specify
+the directory. In any event, if the undo-type is configured as "disk", the location must be
+read-writable or the Undo system will automatically switch to type "memory". For undo-type
+"disk" a tmpfs or ramfs is recommended for systems using SDD`s in order to help reduce
+"burn-out".
 .TP 8
 \fB\-x\fR \fIEXPR\fR
 Specify a Scheme expression to be evaluated at startup.
