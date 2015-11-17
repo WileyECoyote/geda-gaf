@@ -87,11 +87,13 @@ static void log_message (Console *console, const char *message, const char *styl
 void q_log_message(const char *format, ...)
 {
   if(!quiet_mode) {
+
     char *buffer;
+
     buffer = malloc(MESSAGE_BUFFER_SIZE);
     va_list args;
     va_start (args, format);
-    vsnprintf ( buffer, MESSAGE_BUFFER_SIZE, format, args);
+      vsnprintf (buffer, MESSAGE_BUFFER_SIZE, format, args);
     va_end (args);
     u_log_message("%s", buffer);
     if (buffer) free(buffer);
@@ -101,11 +103,13 @@ void q_log_message(const char *format, ...)
 void v_log_message(const char *format, ...)
 {
   if(verbose_mode) {
+
     char *buffer;
+
     buffer = malloc(MESSAGE_BUFFER_SIZE);
     va_list args;
     va_start (args, format);
-    vsnprintf ( buffer, MESSAGE_BUFFER_SIZE, format, args);
+      vsnprintf (buffer, MESSAGE_BUFFER_SIZE, format, args);
     va_end (args);
     u_log_message("gschem: %s", buffer);
     if (buffer) free(buffer);

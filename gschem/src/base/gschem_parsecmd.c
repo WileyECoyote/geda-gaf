@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:g:h:mno:pqr:s:t:vVx:"
+#define GETOPT_OPTIONS "a:c:g:hmno:pqr:s:t:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;

@@ -378,8 +378,9 @@ static void gschem( int argc, char *argv[])
     u_log_message(_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
                      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
   }
-  else
+  else {
     v_log_message("Logging system is disabled");
+  }
 
   /*! \internal End Setup Log & Console Systems > */
 

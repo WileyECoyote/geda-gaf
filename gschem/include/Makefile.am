@@ -3,9 +3,9 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_HEADERS = \
-		globals.h                   \
-		gschem_dialog.h             \
 		gschem.h                    \
+		gschem_globals.h            \
+		gschem_dialog.h             \
 		gschem_event.h              \
 		gschem_idefines.h           \
 		gschem_macros.h             \
