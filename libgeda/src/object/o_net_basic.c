@@ -221,6 +221,7 @@ void o_net_mirror(Object *object, int center_x, int center_y)
 void o_net_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
                  int origin_x, int origin_y)
 {
+  int cap_style;
   int net_width;
   int x1, y1;
   int x2, y2;
@@ -240,7 +241,9 @@ void o_net_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   x2 = o_current->line->x[1] - origin_x,
   y2 = o_current->line->y[1] - origin_y;
 
-  fprintf(fp, "%d %d %d %d %d %d line\n", x1,y1,x2,y2,net_width,toplevel->print_output_capstyle);
+  cap_style = toplevel->print_output_capstyle;
+
+  fprintf(fp, "%d %d %d %d %d %d line\n", x1,y1,x2,y2,net_width,cap_style);
 }
 
 /*! \brief rotate a net object around a centerpoint

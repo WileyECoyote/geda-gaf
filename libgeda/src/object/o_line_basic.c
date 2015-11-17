@@ -281,8 +281,8 @@ char *o_line_save(Object *object)
   int line_width, line_space, line_length;
   char *buf;
   Line *line;
-  LINE_END   line_end;
-  LINE_TYPE  line_type;
+  LINE_END  line_end;
+  LINE_TYPE line_type;
 
   g_return_val_if_fail(GEDA_IS_LINE(object), NULL);
 
@@ -323,6 +323,7 @@ char *o_line_save(Object *object)
 void o_line_translate( Object *object, int dx, int dy)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
+
   Line *line = GEDA_LINE(object);
 
   /* Update world coords */
@@ -355,6 +356,7 @@ void o_line_rotate( Object *object, int center_x, int center_y, int angle)
   Line *line;
 
   g_return_if_fail(GEDA_IS_LINE(object));
+
   line = GEDA_LINE(object);
 
   if (angle == 0)
@@ -462,6 +464,7 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   int color;
   int capstyle;
   int line_width, length, space;
+
   void (*outl_func)() = NULL;
 
   if (o_current == NULL) {
@@ -493,6 +496,7 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *            styles, and eliminated hard-coded integer values.
    */
   line_width = o_current->line_options->line_width;
+
   if (line_width < MIN_LINE_WIDTH_THRESHOLD)
     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
     if (line_width < MIN_LINE_WIDTH_THRESHOLD)
@@ -575,8 +579,7 @@ void o_line_print_solid(GedaToplevel *toplevel, FILE *fp,
 {
   f_print_set_color(toplevel, fp, color);
 
-  fprintf(fp,"%d %d %d %d %d %d line\n",
-    x1,y1,x2,y2, line_width, capstyle);
+  fprintf(fp,"%d %d %d %d %d %d line\n", x1,y1,x2,y2, line_width, capstyle);
 }
 
 /*! \brief Print a dotted line to Postscript document.
@@ -664,7 +667,6 @@ void o_line_print_dotted(GedaToplevel *toplevel, FILE *fp,
 
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
-
 
 /*! \brief Print a dashed line to Postscript document.
  *  \par Function Description
@@ -865,6 +867,7 @@ void o_line_print_center(GedaToplevel *toplevel, FILE *fp,
     xa = xa + dx2;
     ya = ya + dy2;
   }
+
   /*
    * When the above condition is no more satisfied, then it is not possible
    * to print a dash of length <B>length</B>.

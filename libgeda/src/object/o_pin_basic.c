@@ -271,6 +271,7 @@ void
 o_pin_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
             int origin_x, int origin_y)
 {
+  int cap_style;
   int pin_width;
   int x1, y1;
   int x2, y2;
@@ -293,8 +294,9 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   if(pin_width < MIN_LINE_WIDTH_THRESHOLD)
      pin_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
-  fprintf(fp, "%d %d %d %d %d %d pin\n",
-              x1,y1,x2,y2,pin_width,toplevel->print_output_capstyle);
+  cap_style = toplevel->print_output_capstyle;
+
+  fprintf(fp, "%d %d %d %d %d %d pin\n", x1,y1,x2,y2,pin_width,cap_style);
 
 }
 

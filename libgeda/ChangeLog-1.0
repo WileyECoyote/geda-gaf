@@ -1,3 +1,13 @@
+2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * share/prolog.ps: define bus and pin.
+
+    * src/object/o_line_basic.c: Minor cleaning/reformating.
+
+    * src/object/o_net_basic.c: Add varible cap_style to shorten line.
+
+    * src/object/o_pin_basic.c: Add varible cap_style to shorten line.
+
 2015-11-16  Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gafrc: Add g_rc_log_time to handler "log-time".

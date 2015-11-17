@@ -1,6 +1,18 @@
 % Prolog for gEDA, define all the functions needed for rendering
 % schematics on Postscript devices
 
+% Draw a bus, aka line, from the second coordinate to the first
+% x2 y2 x1 y1 width capstyle line -
+/bus {
+    setlinecap
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
 
 % Draw a line from the second coordinate to the first
 % x2 y2 x1 y1 width capstyle line -
@@ -15,6 +27,18 @@
     stroke
 } bind def
 
+% Draw a pin, aka line, from the second coordinate to the first
+% x2 y2 x1 y1 width capstyle line -
+/pin {
+    setlinecap
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
 
 % Draw a dot
 % x y r dot -
@@ -55,7 +79,7 @@
     setlinecap
     dup 2.0 div /width exch def
     setlinewidth
-    /r exch def  
+    /r exch def
     /y exch def
     /x exch def
     { aload length 1 gt
@@ -94,21 +118,21 @@
     setlinewidth
     moveto
     exch dup 0 rlineto	 % w h, h w w 0      -- Draw bottom line
-    exch 0 exch rlineto	 % h w, w h 0, w 0 h -- Draw right line 
+    exch 0 exch rlineto	 % h w, w h 0, w 0 h -- Draw right line
     neg 0 rlineto	 % w, -w 0           -- Draw Top line
     closepath		 % finish and draw it
     stroke
-} bind def			     
+} bind def
 
 % Draw a filled box
 % width height x y fbox -
 /fbox {
     moveto
-    exch dup 0 rlineto	
-    exch 0 exch rlineto	
-    neg 0 rlineto		
-    closepath			
-    fill			
+    exch dup 0 rlineto
+    exch 0 exch rlineto
+    neg 0 rlineto
+    closepath
+    fill
 } bind def
 
 % Font reincoding utilities
@@ -224,7 +248,7 @@
 		% toggle drawing overbars
 		0.0 0.0 % make it like it never happened...
 	    } {
-		% otherwise measure the character 
+		% otherwise measure the character
 		(\\ ) dup 1 4 -1 roll put % count a \ and the character
 		stringwidth
 	    } ifelse
@@ -337,7 +361,7 @@
     show
 } bind def
 
-% 
+%
 % hcenter rjustify vcenter vjustify spacing [(line1) (line2) ... ] rot x y size text -
 /stringw 0.0 def
 /stringh 0.0 def
@@ -352,7 +376,7 @@
     /drawoverbar false def      % start by not drawing overbars
 
     dup /fontsize exch def  % save font size for corrections later
-    % do font selection 
+    % do font selection
     /gEDAFont findfont
     exch scalefont
     setfont
@@ -366,14 +390,14 @@
     /spacing exch def
     % do we have more than 1 string to render?
     stringcount 1 eq {
-	/stringtxt strings aload pop def		% get the string 
+	/stringtxt strings aload pop def		% get the string
 	/stringw stringtxt mystringwidth pop neg def	% get the -width
 	/stringh stringtxt stringheight exch pop neg def% get the -height
 
 	% First do vertical calculations
-	% hcenter rjustify vcenter vjustify 
+	% hcenter rjustify vcenter vjustify
 	% vertical justification
-	{ 0 stringh rmoveto } if 
+	{ 0 stringh rmoveto } if
 	% vertical center
 	{ 0 stringh 0.3571425 mul rmoveto } if  % not 0.5, so that
 						% it looks nicer
@@ -403,13 +427,13 @@
 	    } ifelse
 	} forall
 	/stringw stringw neg def 	% get the -width
-	
+
 	% First do vertical calculations
-	% hcenter rjustify vcenter vjustify 
+	% hcenter rjustify vcenter vjustify
 	% vertical justification
-	{ 0 stringh fontsize add rmoveto } if 
+	{ 0 stringh fontsize add rmoveto } if
 	% vertical center
-	{ 0 stringh 0.5 mul rmoveto } if 
+	{ 0 stringh 0.5 mul rmoveto } if
 	% Then do horizontal calculations
 	% right justify
 	{ stringw 0 rmoveto } if
