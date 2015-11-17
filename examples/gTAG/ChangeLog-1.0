@@ -1,3 +1,7 @@
+2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/.sch increase font sizes and regenerated .ps files.
+
 2015-11-13  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sym/24C64-gt.sym: Use local symbols for EEPROM, none of the

@@ -3,10 +3,10 @@ C 40200 42900 0 0 0 title-A2.sym
 C 45400 53600 1 0 0 in-1.sym
 {
 T 45500 54200 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 45500 53550 5 10 0 1 0 0 1
 footprint=none
-T 45300 53650 5 10 1 1 0 6 1
+T 45300 53650 5 14 1 1 0 6 1
 refdes=tdo_ttl
 T 45500 54000 5 10 0 1 0 0 1
 device=INPUT
@@ -14,10 +14,10 @@ device=INPUT
 C 45400 51800 1 0 0 in-1.sym
 {
 T 45500 52400 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 45500 51750 5 10 0 1 0 0 1
 footprint=none
-T 45300 51850 5 10 1 1 0 6 1
+T 45300 51850 5 14 1 1 0 6 1
 refdes=tms_ttl
 T 45500 52200 5 10 0 1 0 0 1
 device=INPUT
@@ -25,10 +25,10 @@ device=INPUT
 C 45400 50100 1 0 0 in-1.sym
 {
 T 45500 50700 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 45500 50050 5 10 0 1 0 0 1
 footprint=none
-T 45300 50150 5 10 1 1 0 6 1
+T 45300 50150 5 14 1 1 0 6 1
 refdes=tck_ttl
 T 45500 50500 5 10 0 1 0 0 1
 device=INPUT
@@ -36,10 +36,10 @@ device=INPUT
 C 45400 48400 1 0 0 in-1.sym
 {
 T 45500 49000 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 45500 48350 5 10 0 1 0 0 1
 footprint=none
-T 45300 48450 5 10 1 1 0 6 1
+T 45300 48450 5 14 1 1 0 6 1
 refdes=trst_ttl
 T 45500 48800 5 10 0 1 0 0 1
 device=INPUT
@@ -47,10 +47,10 @@ device=INPUT
 C 45400 56000 1 0 0 in-1.sym
 {
 T 45500 56600 5 10 0 0 0 0 1
-symversion=0.3
+symversion=0.4
 T 45550 55900 5 10 0 1 0 0 1
 footprint=none
-T 45300 56050 5 10 1 1 0 6 1
+T 45300 56050 5 14 1 1 0 6 1
 refdes=jtag_power
 T 45500 56400 5 10 0 1 0 0 1
 device=INPUT
@@ -148,7 +148,7 @@ T 46000 55650 5 10 0 0 0 6 1
 symversion=0.4
 T 46000 55150 5 10 0 1 0 6 1
 footprint=none
-T 44900 55300 5 8 1 1 0 0 1
+T 45300 55200 5 14 1 1 0 6 1
 refdes=tdi_ttl
 T 44700 55450 5 10 0 1 0 0 1
 device=OUTPUT
@@ -261,7 +261,7 @@ T 58900 58300 5 10 0 0 0 0 1
 footprint=none
 T 58900 58000 5 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
-T 59100 57600 5 10 1 1 0 0 1
+T 59100 57600 5 12 0 1 0 0 1
 net=jtag_power:1
 }
 C 47500 56700 1 90 0 resistor-2.sym

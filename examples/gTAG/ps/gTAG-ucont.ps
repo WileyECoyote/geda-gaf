@@ -1,7000 +1,2295 @@
-%!
-/inch {72 mul} def
+%!PS-Adobe-3.0
+%%Creator: gEDA gschem 2.1.0.6-20150703-f15363fe-737-g52d9915
+%%CreationDate: Tue Nov 17 01:36:46 2015
+%%Title: /home/wiley/Projects/geda-gaf/examples/gTAG/sch/gTAG-ucont.sch
+%%Author: (null)
+%%BoundingBox: 0 0 612 792
+%%Orientation: Landscape
+%%Pages: 1
+%%Endcomments
+%%BeginProlog
+% Prolog for gEDA, define all the functions needed for rendering
+% schematics on Postscript devices
 
-/mils
-{
-1000 div inch
-} def
+% Draw a bus, aka line, from the second coordinate to the first
+% x2 y2 x1 y1 width capstyle line -
+/bus {
+    setlinecap
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
 
-/setcoords
-{
-8269 mils 0 translate
-90 rotate
-0.449193 0.449193 scale
-} def
+% Draw a line from the second coordinate to the first
+% x2 y2 x1 y1 width capstyle line -
+/line {
+    setlinecap
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
 
+% Draw a pin, aka line, from the second coordinate to the first
+% x2 y2 x1 y1 width capstyle line -
+/pin {
+    setlinecap
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
+
+% Draw a dot
+% x y r dot -
+/dot {
+    0 360 arc fill
+} bind def
+
+% Draw a dot-dashed line, a bunch of lined segments,
+% if the array element only has length two, draw a dot.
+% [ [x2 y2 x1 y1] [x4 y4 x3 y3] [x5 y5] ... ] width capstyle dashed -
+/width 0 def
+/dashed {
+    setlinecap
+    dup 2.0 div /width exch def
+    setlinewidth
+    % pop off each line segment and draw it as a dot or as a line
+    {
+	aload length 2 gt
+	{ moveto lineto stroke}
+	{ width dot } ifelse
+    } forall
+} bind def
+
+% Draw an arc segment
+% x y r ang1 ang2 width capstyle darc -
+/darc {
+    setlinecap
+    setlinewidth
+    arc stroke
+} bind def
+
+% Draw a series of arc segment bits, if the array element only has a single
+% element in it, draw a dot.
+% [ [sa1 ea1] [sa2 ea2] ... ] x y r width capstyle dashedarc -
+/x 0 def
+/y 0 def
+/dashedarc {
+    setlinecap
+    dup 2.0 div /width exch def
+    setlinewidth
+    /r exch def
+    /y exch def
+    /x exch def
+    { aload length 1 gt
+	{
+	    % this element had two angles in it
+	    % extract start and stop angles
+	    x y r   % drop x y and r onto stack
+		    % at this point we have: sa ea x y r
+		    % we need                      x y r sa ea
+		    % so..
+	    5 -2 roll
+	    % and add it to the current path, and draw it
+	    arc stroke
+	} {
+	    % this element only had one angle in it, place a
+	    % filled dot at the appropriate place
+	    % compute center point of the arc using the angle
+	    % that is on the top of the stack
+	    dup   		% angle angle
+	    cos r mul x add 	% angle x
+	    exch		% x angle
+	    sin r mul y add	% x y
+	    width		% x y width/2
+	    dot			% draw the dot
+	} ifelse
+    } forall
+
+    % Now draw it
+    stroke
+} bind def
+
+% Draw a box
+% width height x y linethickness capstyle box -
 /box {
-exch dup 0 rlineto
-exch 0 exch rlineto
-neg 0 rlineto
-closepath
-stroke
-} def
+    setlinecap
+    setlinewidth
+    moveto
+    exch dup 0 rlineto	 % w h, h w w 0      -- Draw bottom line
+    exch 0 exch rlineto	 % h w, w h 0, w 0 h -- Draw right line
+    neg 0 rlineto	 % w, -w 0           -- Draw Top line
+    closepath		 % finish and draw it
+    stroke
+} bind def
+
+% Draw a filled box
+% width height x y fbox -
 /fbox {
-exch dup 0 rlineto
-exch 0 exch rlineto
-neg 0 rlineto
-closepath
-fill
-} def
-
-
-setcoords
-
-2 setlinecap
-
-% Translate origin to the right place...
--42399 mils -37546 mils translate
-
+    moveto
+    exch dup 0 rlineto
+    exch 0 exch rlineto
+    neg 0 rlineto
+    closepath
+    fill
+} bind def
+
+% Font reincoding utilities
+
+% ISOLatin1Encoding, extended with remaining uncoded glyphs
+/ISOLatin1Extended [
+    /.notdef /Lslash /lslash /OE /oe /Scaron /scaron /Zcaron /zcaron
+    /Ydieresis /trademark /bullet /dagger /daggerdbl /ellipsis /emdash
+    /endash /fi /fl /florin /fraction /guilsinglleft /guilsinglright
+    /perthousand /quotedblbase /quotedblleft /quotedblright
+    /quotesinglbase /quotesingle /.notdef /.notdef /.notdef /space
+    /exclam /quotedbl /numbersign /dollar /percent /ampersand
+    /quoteright /parenleft /parenright /asterisk /plus /comma /minus
+    /period /slash /zero /one /two /three /four /five /six /seven /eight
+    /nine /colon /semicolon /less /equal /greater /question /at /A /B /C
+    /D /E /F /G /H /I /J /K /L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z
+    /bracketleft /backslash /bracketright /asciicircum /underscore
+    /quoteleft /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o /p /q /r /s
+    /t /u /v /w /x /y /z /braceleft /bar /braceright /asciitilde
+    /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+    /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+    /.notdef /.notdef /.notdef /dotlessi /grave /acute /circumflex
+    /tilde /macron /breve /dotaccent /dieresis /.notdef /ring /cedilla
+    /.notdef /hungarumlaut /ogonek /caron /space /exclamdown /cent
+    /sterling /currency /yen /brokenbar /section /dieresis /copyright
+    /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron
+    /degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph
+    /periodcentered /cedilla /onesuperior /ordmasculine /guillemotright
+    /onequarter /onehalf /threequarters /questiondown /Agrave /Aacute
+    /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla /Egrave /Eacute
+    /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis /Eth
+    /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply
+    /Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn
+    /germandbls /agrave /aacute /acircumflex /atilde /adieresis /aring
+    /ae /ccedilla /egrave /eacute /ecircumflex /edieresis /igrave
+    /iacute /icircumflex /idieresis /eth /ntilde /ograve /oacute
+    /ocircumflex /otilde /odieresis /divide /oslash /ugrave /uacute
+    /ucircumflex /udieresis /yacute /thorn /ydieresis
+] def
+
+% `new-font-name' `encoding-vector' `old-font-name' RE -
+/RE {
+    findfont
+    dup maxlength dict begin {
+        1 index /FID ne { def } { pop pop } ifelse
+    } forall
+    /Encoding exch def
+    dup /FontName exch def
+    currentdict end definefont pop
+} bind def
+
+% Text handling functions, select the font and scale it, then we need
+% only to apply the appropriate transformations to get the text
+% justified into the right spots.  The bad thing here is that we don't
+% do any kerning, so the output may look a bit strange.
+
+% compute the height of one character and return lly and ury
+% (char) charheight lly ury
+/charheight {
+    gsave			% push graphics state
+	newpath			% clear current path
+	0 0 moveto		% Set current point
+	false charpath		% get path
+	flattenpath		% flatten path
+	pathbbox		% stack = llx lly urx ury
+	exch pop		% stack = llx lly ury
+	3 -1 roll pop		% stack = lly ury
+    grestore			% pop graphics state
+} bind def
+
+% compute the height of a string, one character at a time
+% (string) stringheight lly ury
+/lly 0.0 def
+/ury 0.0 def
+
+/stringheight {
+    /lly 0.0 def			% initial value of heightmin
+    /ury 0.0 def			% initial value of heightmax
+    {				% work through string
+	( ) dup 0 4 -1 roll put	% create one character string
+	charheight		% measure it's height
+	dup ury gt {		% if ury gt heightmax
+	    /ury exch def	% update with new value
+	} {
+	    pop			% else discard ury
+	} ifelse
+	dup lly lt {		% if lly lt heightmin
+	    /lly exch def	% update with new value
+	} {
+	    pop			% else discard lly
+	} ifelse
+    } forall
+    lly ury			% Return the results
+} bind def
+
+% calculate the string width taking into account the escapes.
+/mystrx 0.0 def
+/mystry 0.0 def
+/mystresc false def
+
+/mystringwidth {
+    /mystrx 0.0 def
+    /mystry 0.0 def
+    /mystresc false def
+    {				% work through string
+	% did we process the escape character last?
+	mystresc {
+	    % last character was escape
+	    % handle the escape
+	    % is it an _ = 95?
+	    dup 95 eq {
+		pop  % we don't need the character anymore
+		% toggle drawing overbars
+		0.0 0.0 % make it like it never happened...
+	    } {
+		% otherwise measure the character
+		(\\ ) dup 1 4 -1 roll put % count a \ and the character
+		stringwidth
+	    } ifelse
+	    % and reset the flag
+	    /mystresc false def
+	} {
+	    % last character was not escape
+	    % is this escape
+	    dup 92 eq {
+		% yes, escape character, set flag
+		/mystresc true def
+		pop % drop character
+		0.0 0.0 % make like this character has no width and height
+	    } {
+		( ) dup 0 4 -1 roll put	% create one character string
+		stringwidth		% measure it's height/width
+	    } ifelse
+	} ifelse
+	% accumulate x and y movements
+	mystry add /mystry exch def
+	mystrx add /mystrx exch def
+    } forall
+    mystrx mystry % drop results on stack
+} bind def
+
+% Render a string with overbars
+%
+/escaped false def
+/drawoverbar false def
+/fontsize 0.0 def
+
+%string1 string2 append -
+/append {
+    2 copy length exch length add % find new length
+    string dup % string1 string2 string string
+    4 2 roll % string string string1 string2
+    2 index 0 3 index
+    % string string string1 string2 string 0 string1
+    putinterval % string string string1 string2
+    exch length exch putinterval
+} bind def
+
+% If drawoverbar is set, draw a line of the same length as the given string
+% string overbarshowline -
+/overbarshowline {
+    % print overbar if necessary
+    stringwidth pop 0
+    drawoverbar {
+        rlineto
+        gsave stroke grestore
+    } {
+        rmoveto
+    } ifelse
+} bind def
+
+% Draws overbars for the given string, then shows the string itself
+% string overbarshow
+/overbarshow {
+    /overbarshowacc () def
+    /overbarshowtxt () def
+
+    gsave
+    fontsize 10.0 div setlinewidth
+    0 fontsize rmoveto  % move to (0,overbarheight)
+
+    {				% work through string
+	escaped {
+	    % the last character was the escape
+	    % handle the escape
+	    % is it an _ = 95?
+	    dup 95 eq {
+		pop  % we don't need the character anymore
+                overbarshowacc overbarshowline
+                % toggle drawing overbars
+		/drawoverbar drawoverbar not def
+
+                % Append the contents off the accumulator to the text
+                % string we're eventually going to show
+                /overbarshowtxt overbarshowtxt overbarshowacc append def
+
+                % clear accumulator
+                /overbarshowacc () def
+	    } {
+                % add to accumulator
+                (\\ ) dup 1 4 -1 roll put
+                overbarshowacc exch append
+                /overbarshowacc exch def
+	    } ifelse
+	    % and reset the flag
+	    /escaped false def
+	} {
+	    % check for escape character \ = 92
+	    dup 92 eq {
+		% yes, escape character, set flag
+		/escaped true def
+		pop % drop character
+	    } {
+                % add to accumulator
+                ( ) dup 0 4 -1 roll put
+                overbarshowacc exch append
+                /overbarshowacc exch def
+	    } ifelse
+	} ifelse
+    } forall
+    % Catch any leftovers
+    overbarshowacc overbarshowline
+    overbarshowtxt overbarshowacc append
+
+    grestore
+    show
+} bind def
+
+%
+% hcenter rjustify vcenter vjustify spacing [(line1) (line2) ... ] rot x y size text -
+/stringw 0.0 def
+/stringh 0.0 def
+/spacing 0.0 def
+/strings [ ] def
+/stringtxt ( ) def
+/stringcount 0 def
+/rot 0.0 def
+
+/text {
+    gsave	        % save state for later
+    /drawoverbar false def      % start by not drawing overbars
+
+    dup /fontsize exch def  % save font size for corrections later
+    % do font selection
+    /gEDAFont findfont
+    exch scalefont
+    setfont
+
+    % set up coordinates
+    translate           % move origin to given point
+    rotate		% rotate so that text is drawn
+    0 0 moveto
+    dup length /stringcount exch def			% Get number of strings
+    /strings exch def     				% save strings
+    /spacing exch def
+    % do we have more than 1 string to render?
+    stringcount 1 eq {
+	/stringtxt strings aload pop def		% get the string
+	/stringw stringtxt mystringwidth pop neg def	% get the -width
+	/stringh stringtxt stringheight exch pop neg def% get the -height
+
+	% First do vertical calculations
+	% hcenter rjustify vcenter vjustify
+	% vertical justification
+	{ 0 stringh rmoveto } if
+	% vertical center
+	{ 0 stringh 0.3571425 mul rmoveto } if  % not 0.5, so that
+						% it looks nicer
+	% Then do horizontal calculations
+	% right justify
+	{ stringw 0 rmoveto } if
+	% center
+	{ stringw 2.0 div 0 rmoveto } if
+	% Draw the text
+	stringtxt overbarshow
+    } {
+	% More than one line, compute bounding box for the text
+
+	% vertical height, don't use the actual hieght of the characters
+	% assume that the user wants to make the baselines line up with two
+	% text boxes placed side by side
+	/stringh stringcount spacing mul neg def
+	% Now figure out horizontal size, this amounts to keeping track
+	% of the longest string
+	/stringw 0.0 def
+	strings {
+	    mystringwidth pop
+	    dup stringw gt {
+		/stringw exch def
+	    } {
+		pop
+	    } ifelse
+	} forall
+	/stringw stringw neg def 	% get the -width
+
+	% First do vertical calculations
+	% hcenter rjustify vcenter vjustify
+	% vertical justification
+	{ 0 stringh fontsize add rmoveto } if
+	% vertical center
+	{ 0 stringh 0.5 mul rmoveto } if
+	% Then do horizontal calculations
+	% right justify
+	{ stringw 0 rmoveto } if
+	% center
+	{ stringw 2.0 div 0 rmoveto } if
+	% now move up to the first line and begin rendering
+	0 stringcount 1 sub spacing mul rmoveto
+	strings {
+	    gsave		% Save starting point
+	    overbarshow		% render the text
+	    grestore
+	    0 spacing neg rmoveto
+	} forall
+    } ifelse
+    grestore 	% Restore old state
+} bind def
+
+
+%%EndProlog
+%%Page: 1 1
+/gEDAFont ISOLatin1Extended /Helvetica RE
+0.072000 0.072000 scale
+7790 499 translate 90 rotate
+0.429185 0.429185 scale
+-43700 -38500 translate
+gsave
+43700 38500 67000 38500 10 0 line
+67000 38500 67000 55000 10 0 line
+67000 55000 43700 55000 10 0 line
+43700 55000 43700 38500 10 0 line
+62900 39100 62900 38500 10 0 line
+gsave
+false false false false 161.777776 [(FILE:) ] 0 59500 38900 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(REVISION:) ] 0 63000 38900 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(DRAWN BY: ) ] 0 63000 38600 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(PAGE) ] 0 59500 38600 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(OF) ] 0 61200 38600 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(TITLE) ] 0 59500 39200 144.444443 text
+grestore
+59400 38500 67000 38500 10 0 line
+67000 38500 67000 39900 10 0 line
+67000 39900 59400 39900 10 0 line
+59400 39900 59400 38500 10 0 line
+59400 39100 67000 39100 10 0 line
+grestore
+gsave
+47100 42600 47400 42600 30 2 pin
+gsave
+false false false false 161.777776 [(5) ] 0 47200 42650 144.444443 text
+grestore
+gsave
+false true false false 161.777776 [(SDA) ] 0 47050 42600 144.444443 text
+grestore
+46100 43200 46400 43200 30 2 pin
+gsave
+false true false false 161.777776 [(1) ] 0 46300 43250 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(A0) ] 0 46450 43200 144.444443 text
+grestore
+46100 42800 46400 42800 30 2 pin
+gsave
+false true false false 161.777776 [(3) ] 0 46300 42850 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(A2) ] 0 46450 42800 144.444443 text
+grestore
+47100 42800 47400 42800 30 2 pin
+gsave
+false false false false 161.777776 [(6) ] 0 47200 42850 144.444443 text
+grestore
+gsave
+false true false false 161.777776 [(SCL) ] 0 47050 42800 144.444443 text
+grestore
+46100 43000 46400 43000 30 2 pin
+gsave
+false true false false 161.777776 [(2) ] 0 46300 43050 144.444443 text
+grestore
+gsave
+false false false false 161.777776 [(A1) ] 0 46450 43000 144.444443 text
+grestore
+47100 43000 47400 43000 30 2 pin
+gsave
+false false false false 161.777776 [(7) ] 0 47200 43050 144.444443 text
+grestore
+gsave
+false true false false 161.777776 [(WP) ] 0 47050 43000 144.444443 text
+grestore
+46400 42500 47100 42500 10 0 line
+47100 42500 47100 43400 10 0 line
+47100 43400 46400 43400 10 0 line
+46400 43400 46400 42500 10 0 line
+grestore
+gsave
+false false false false 161.777776 [(24C64) ] 0 46400 43450 144.444443 text
+grestore
+gsave
+false false false false 202.222224 [(U2) ] 0 46400 43600 180.555557 text
+grestore
+gsave
+46900 48350 47100 48350 10 0 line
+47100 48350 47100 48550 10 0 line
+47100 48550 46900 48550 10 0 line
+46900 48550 46900 48350 10 0 line
+47140 48590 46865 48590 10 0 line
+47140 48310 46865 48310 10 0 line
+47000 48800 47000 48600 30 2 pin
+47000 48300 47000 48100 30 2 pin
+grestore
+gsave
+false false false false 202.222224 [(X1) ] 0 47200 48500 180.555557 text
+grestore
+gsave
+false false false false 202.222224 [(12MHz) ] 0 47150 48300 180.555557 text
+grestore
+gsave
+45900 48150 46100 48150 10 0 line
+46100 48150 46100 48750 10 0 line
+46100 48750 45900 48750 10 0 line
+45900 48750 45900 48150 10 0 line
+46000 48000 46000 48200 30 2 pin
+46000 48900 46000 48700 30 2 pin
+grestore
+gsave
+false false false false 202.222224 [(R17) ] 0 46200 48500 180.555557 text
+grestore
+gsave
+false false false false 202.222224 [(1M) ] 0 46200 48300 180.555557 text
+grestore
+gsave
+45000 48000 45000 48200 30 2 pin
+45000 48900 45000 48700 30 2 pin
+44800 48400 45200 48400 10 0 line
+44800 48500 45200 48500 10 0 line
+45000 48700 45000 48500 10 0 line
+45000 48400 45000 48200 10 0 line
+grestore
+gsave
+false false false false 202.222224 [(C4) ] 0 45200 48600 180.555557 text
+grestore
+gsave
+false false false false 202.222224 [(30p) ] 0 45200 48200 180.555557 text
+grestore
+gsave
+46000 46700 46000 46900 30 2 pin
+46000 47600 46000 47400 30 2 pin
+45800 47100 46200 47100 10 0 line
+45800 47200 46200 47200 10 0 line
+46000 47400 46000 47200 10 0 line
+46000 47100 46000 46900 10 0 line
+grestore
 gsave
+false false false false 202.222224 [(C5) ] 0 46200 47300 180.555557 text
+grestore
 gsave
+false false false false 202.222224 [(30p) ] 0 46200 46900 180.555557 text
+grestore
+46000 47600 46000 48000 15 2 line
+46000 49100 46000 48900 15 2 line
+50900 49100 45000 49100 15 2 line
+46000 47800 50900 47800 15 2 line
 gsave
-newpath
-43700 mils 38500 mils moveto
-67000 mils 38500 mils lineto
-stroke
+46000 46300 46000 46500 30 2 pin
+45900 46300 46100 46300 10 0 line
+45955 46250 46045 46250 10 0 line
+45980 46210 46020 46210 10 0 line
 grestore
 gsave
-newpath
-67000 mils 38500 mils moveto
-67000 mils 55000 mils lineto
-stroke
+45000 47600 45000 47800 30 2 pin
+44900 47600 45100 47600 10 0 line
+44955 47550 45045 47550 10 0 line
+44980 47510 45020 47510 10 0 line
 grestore
+47000 48800 47000 49100 15 2 line
+47000 47800 47000 48100 15 2 line
+45000 47800 45000 48000 15 2 line
+45000 48900 45000 49100 15 2 line
+46000 46700 46000 46500 15 2 line
 gsave
-newpath
-67000 mils 55000 mils moveto
-43700 mils 55000 mils lineto
-stroke
+51900 40000 51900 40200 30 2 pin
+51800 40000 52000 40000 10 0 line
+51855 39950 51945 39950 10 0 line
+51880 39910 51920 39910 10 0 line
 grestore
 gsave
-newpath
-43700 mils 55000 mils moveto
-43700 mils 38500 mils lineto
-stroke
+59000 40500 59000 40700 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 58825 40750 144.444443 text
 grestore
+58850 40700 59150 40700 15 0 line
 grestore
-
-
 gsave
-newpath
-62900 mils 39100 mils moveto
-62900 mils 38500 mils lineto
-stroke
+57750 39700 58350 39700 10 0 line
+58350 39700 58350 39900 10 0 line
+58350 39900 57750 39900 10 0 line
+57750 39900 57750 39700 10 0 line
+58500 39800 58300 39800 30 2 pin
+57600 39800 57800 39800 30 2 pin
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59500 mils 38900 mils moveto
-(FILE:) show
+false false false false 202.222224 [(R13) ] 0 57800 40000 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-63000 mils 38900 mils moveto
-(REVISION:) show
+false false false false 202.222224 [(10k) ] 0 57900 39500 180.555557 text
 grestore
-
+56100 40900 56100 40500 15 2 line
+51900 40200 51900 40900 15 2 line
+52600 40500 52600 40900 15 2 line
+53000 40500 53000 40900 15 2 line
+53400 40500 53400 40900 15 2 line
+53800 40500 53800 40900 15 2 line
+54200 40500 54200 40900 15 2 line
+54600 40500 54600 40900 15 2 line
+55300 40500 55300 40900 15 2 line
+55700 40500 55700 40900 15 2 line
+56500 40900 56500 39800 15 2 line
+56900 40900 56900 40500 15 2 line
+58500 39800 59000 39800 15 2 line
+59000 39800 59000 40500 15 2 line
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-63000 mils 38600 mils moveto
-(DRAWN BY: ) show
+46300 50500 46500 50500 30 2 pin
+46000 50500 45900 50600 10 0 line
+46000 50500 45900 50400 10 0 line
+46300 50500 46000 50500 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59500 mils 38600 mils moveto
-(PAGE) show
+false true false false 283.111104 [(usb_io+) ] 0 45850 50450 252.777771 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-61200 mils 38600 mils moveto
-(OF) show
+46300 49700 46500 49700 30 2 pin
+46000 49700 45900 49800 10 0 line
+46000 49700 45900 49600 10 0 line
+46300 49700 46000 49700 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59500 mils 39200 mils moveto
-(TITLE) show
+false true false false 283.111104 [(usb_io-) ] 0 45850 49650 252.777771 text
 grestore
-
-gsave
 gsave
-newpath
-59400 mils 38500 mils moveto
-67000 mils 38500 mils lineto
-stroke
+47450 51200 48050 51200 10 0 line
+48050 51200 48050 51400 10 0 line
+48050 51400 47450 51400 10 0 line
+47450 51400 47450 51200 10 0 line
+48200 51300 48000 51300 30 2 pin
+47300 51300 47500 51300 30 2 pin
 grestore
 gsave
-newpath
-67000 mils 38500 mils moveto
-67000 mils 39900 mils lineto
-stroke
+false false false false 202.222224 [(R2) ] 0 47500 51500 180.555557 text
 grestore
 gsave
-newpath
-67000 mils 39900 mils moveto
-59400 mils 39900 mils lineto
-stroke
+false false false false 202.222224 [(1.5k) ] 0 47600 51000 180.555557 text
 grestore
+48200 51300 50900 51300 15 2 line
 gsave
-newpath
-59400 mils 39900 mils moveto
-59400 mils 38500 mils lineto
-stroke
+53100 53800 53100 54000 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 52925 54050 144.444443 text
 grestore
+52950 54000 53250 54000 15 0 line
 grestore
-
+53100 53400 53100 53800 15 2 line
+53100 53600 54300 53600 15 2 line
+54300 53600 54300 53400 15 2 line
+53900 53400 53900 53600 15 2 line
+53500 53400 53500 53600 15 2 line
 gsave
-newpath
-59400 mils 39100 mils moveto
-67000 mils 39100 mils lineto
-stroke
+49000 43450 49200 43450 10 0 line
+49200 43450 49200 44050 10 0 line
+49200 44050 49000 44050 10 0 line
+49000 44050 49000 43450 10 0 line
+49100 44200 49100 44000 30 2 pin
+49100 43300 49100 43500 30 2 pin
 grestore
-
+gsave
+false false false false 202.222224 [(R12) ] 0 49300 43800 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-47000 mils 42700 mils moveto
-47300 mils 42700 mils lineto
-stroke
-1 setlinewidth
-
+false false false false 202.222224 [(1k) ] 0 49300 43600 180.555557 text
+grestore
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47050 mils 42750 mils moveto
-(5) show
+48200 43450 48400 43450 10 0 line
+48400 43450 48400 44050 10 0 line
+48400 44050 48200 44050 10 0 line
+48200 44050 48200 43450 10 0 line
+48300 44200 48300 44000 30 2 pin
+48300 43300 48300 43500 30 2 pin
 grestore
-
-newpath
-1.5 setlinewidth
-46000 mils 43300 mils moveto
-46300 mils 43300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46200 mils 43350 mils moveto
-(1) show
+false true false false 202.222224 [(R11) ] 0 48100 43800 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46400 mils 43300 mils moveto
-(A0) show
+false true false false 202.222224 [(1k) ] 0 48100 43600 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46400 mils 43100 mils moveto
-(A1) show
+48700 44700 48700 44900 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 48525 44950 144.444443 text
 grestore
-
+48550 44900 48850 44900 15 0 line
+grestore
+48300 44200 48300 44400 15 2 line
+48300 44400 49100 44400 15 2 line
+49100 44400 49100 44200 15 2 line
+48700 44700 48700 44400 15 2 line
+47400 42800 49900 42800 15 2 line
+48300 43300 48300 42800 15 2 line
+49100 43300 49100 42600 15 2 line
+49900 42800 49900 43300 15 2 line
+49900 43300 50900 43300 15 2 line
+48800 42600 50900 42600 15 2 line
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46400 mils 42900 mils moveto
-(A2) show
+46000 42300 46000 42500 30 2 pin
+45900 42300 46100 42300 10 0 line
+45955 42250 46045 42250 10 0 line
+45980 42210 46020 42210 10 0 line
 grestore
-
+46100 43000 46000 43000 15 2 line
+46000 43000 46000 42500 15 2 line
+46100 42800 46000 42800 15 2 line
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46700 mils 42700 mils moveto
-(SDA) show
+47300 44750 47500 44750 10 0 line
+47500 44750 47500 45350 10 0 line
+47500 45350 47300 45350 10 0 line
+47300 45350 47300 44750 10 0 line
+47400 45500 47400 45300 30 2 pin
+47400 44600 47400 44800 30 2 pin
 grestore
-
-newpath
-1.5 setlinewidth
-46000 mils 42900 mils moveto
-46300 mils 42900 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46150 mils 42950 mils moveto
-(3) show
+false false false false 202.222224 [(R6) ] 0 47600 45200 180.555557 text
 grestore
-
-newpath
-1.5 setlinewidth
-47000 mils 42900 mils moveto
-47300 mils 42900 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47050 mils 42950 mils moveto
-(6) show
+false false false false 202.222224 [(0) ] 0 47600 45000 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46750 mils 43100 mils moveto
-(n/c) show
+49500 46000 49500 46200 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 49325 46250 144.444443 text
 grestore
-
-
-newpath
-1.5 setlinewidth
-46000 mils 43100 mils moveto
-46300 mils 43100 mils lineto
-stroke
-1 setlinewidth
-
+49350 46200 49650 46200 15 0 line
+grestore
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46150 mils 43150 mils moveto
-(2) show
+59200 52750 59400 52750 10 0 line
+59400 52750 59400 53350 10 0 line
+59400 53350 59200 53350 10 0 line
+59200 53350 59200 52750 10 0 line
+59300 53500 59300 53300 30 2 pin
+59300 52600 59300 52800 30 2 pin
 grestore
-
-newpath
-1.5 setlinewidth
-47000 mils 43100 mils moveto
-47300 mils 43100 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47050 mils 43150 mils moveto
-(7) show
+false true false false 202.222224 [(R15) ] 0 59100 53050 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46300 mils 43550 mils moveto
-(24Cxx) show
+false true false false 202.222224 [(10k) ] 0 59100 52850 180.555557 text
 grestore
-
 gsave
+59300 53800 59300 54000 30 2 pin
 gsave
-newpath
-46300 mils 42600 mils moveto
-47000 mils 42600 mils lineto
-stroke
+false false false false 161.777776 [(+3.3V) ] 0 59125 54050 144.444443 text
 grestore
-gsave
-newpath
-47000 mils 42600 mils moveto
-47000 mils 43500 mils lineto
-stroke
+59150 54000 59450 54000 15 0 line
 grestore
+58600 51900 60100 51900 15 2 line
+58600 51500 59300 51500 15 2 line
 gsave
-newpath
-47000 mils 43500 mils moveto
-46300 mils 43500 mils lineto
-stroke
+47450 50400 48050 50400 10 0 line
+48050 50400 48050 50600 10 0 line
+48050 50600 47450 50600 10 0 line
+47450 50600 47450 50400 10 0 line
+48200 50500 48000 50500 30 2 pin
+47300 50500 47500 50500 30 2 pin
 grestore
 gsave
-newpath
-46300 mils 43500 mils moveto
-46300 mils 42600 mils lineto
-stroke
+false false false false 202.222224 [(R4) ] 0 47500 50700 180.555557 text
 grestore
+gsave
+false false false false 202.222224 [(22) ] 0 47600 50200 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-46700 mils 42900 mils moveto
-(SCL) show
+47450 49600 48050 49600 10 0 line
+48050 49600 48050 49800 10 0 line
+48050 49800 47450 49800 10 0 line
+47450 49800 47450 49600 10 0 line
+48200 49700 48000 49700 30 2 pin
+47300 49700 47500 49700 30 2 pin
 grestore
-
-
+gsave
+false false false false 202.222224 [(R3) ] 0 47500 49900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47000 mils 43600 mils moveto
-(U2) show
+false false false false 202.222224 [(22) ] 0 47600 49400 180.555557 text
 grestore
-
-
+46500 50500 47300 50500 15 2 line
+46500 49700 47300 49700 15 2 line
+48200 49700 50900 49700 15 2 line
+48200 50500 50900 50500 15 2 line
+47300 51300 46900 51300 15 2 line
+46900 51300 46900 50500 15 2 line
+58600 46400 63500 46400 15 2 line
+58600 46000 63500 46000 15 2 line
+58600 45600 63500 45600 15 2 line
+58600 45200 63500 45200 15 2 line
+58600 44800 63500 44800 15 2 line
+61500 44400 58600 44400 15 2 line
+58600 44000 61900 44000 15 2 line
+62300 43600 58600 43600 15 2 line
+58600 48000 59500 48000 15 2 line
+59900 48400 58600 48400 15 2 line
+58600 48800 60300 48800 15 2 line
+58600 49200 60700 49200 15 2 line
+58600 49600 61100 49600 15 2 line
+58600 50000 61500 50000 15 2 line
+58600 50400 61900 50400 15 2 line
+62300 50800 58600 50800 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46300 mils 42300 mils moveto
-(net=+3.3V:8) show
+47300 46050 47500 46050 10 0 line
+47500 46050 47500 46650 10 0 line
+47500 46650 47300 46650 10 0 line
+47300 46650 47300 46050 10 0 line
+47400 46800 47400 46600 30 2 pin
+47400 45900 47400 46100 30 2 pin
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46300 mils 42100 mils moveto
-(net=GND:4) show
+false false false false 202.222224 [(R5) ] 0 47600 46500 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-55000 mils 53300 mils moveto
-55200 mils 53300 mils lineto
-stroke
-1 setlinewidth
-
+false false false false 202.222224 [(0) ] 0 47600 46300 180.555557 text
+grestore
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55050 mils 53350 mils moveto
-(1) show
+false false false false 202.222224 [(DNP) ] 0 47850 46500 180.555557 text
 grestore
-
-newpath
-1.5 setlinewidth
-55500 mils 53300 mils moveto
-55700 mils 53300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55550 mils 53350 mils moveto
-(2) show
+49850 45600 50450 45600 10 0 line
+50450 45600 50450 45800 10 0 line
+50450 45800 49850 45800 10 0 line
+49850 45800 49850 45600 10 0 line
+50600 45700 50400 45700 30 2 pin
+49700 45700 49900 45700 30 2 pin
 grestore
-
 gsave
+false false false false 202.222224 [(R7) ] 0 49900 45900 180.555557 text
+grestore
 gsave
-newpath
-55250 mils 53200 mils moveto
-55450 mils 53200 mils lineto
-stroke
+false false false false 202.222224 [(10k) ] 0 50000 45400 180.555557 text
 grestore
 gsave
-newpath
-55450 mils 53200 mils moveto
-55450 mils 53400 mils lineto
-stroke
+49850 44400 50450 44400 10 0 line
+50450 44400 50450 44600 10 0 line
+50450 44600 49850 44600 10 0 line
+49850 44600 49850 44400 10 0 line
+50600 44500 50400 44500 30 2 pin
+49700 44500 49900 44500 30 2 pin
 grestore
 gsave
-newpath
-55450 mils 53400 mils moveto
-55250 mils 53400 mils lineto
-stroke
+false false false false 202.222224 [(R8) ] 0 49900 44700 180.555557 text
 grestore
 gsave
-newpath
-55250 mils 53400 mils moveto
-55250 mils 53200 mils lineto
-stroke
+false false false false 202.222224 [(10k) ] 0 50000 44200 180.555557 text
 grestore
+gsave
+50000 52800 50000 53000 30 2 pin
+50000 53700 50000 53500 30 2 pin
+49800 53200 50200 53200 10 0 line
+49800 53300 50200 53300 10 0 line
+50000 53500 50000 53300 10 0 line
+50000 53200 50000 53000 10 0 line
 grestore
-
-
 gsave
-newpath
-55200 mils 53440 mils moveto
-55200 mils 53160 mils lineto
-stroke
+false false false false 202.222224 [(C3) ] 0 50200 53350 180.555557 text
 grestore
-
 gsave
-newpath
-55500 mils 53440 mils moveto
-55500 mils 53160 mils lineto
-stroke
+false false false false 202.222224 [(100n) ] 0 50100 53000 180.555557 text
 grestore
-
+gsave
+49000 53700 49000 53500 30 2 pin
+gsave
+false true false false 161.777776 [(1) ] 270 49050 53550 144.444443 text
 grestore
-
+49000 52800 49000 53000 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55200 mils 53500 mils moveto
-(X1) show
+false true false false 161.777776 [(2) ] 270 49050 52850 144.444443 text
 grestore
-
+49200 53300 48800 53300 10 0 line
+49000 53000 49000 53200 10 0 line
+49000 53300 49000 53500 10 0 line
+49000 52500 700 75 105 10 0 darc
+49200 53425 49100 53425 10 0 line
+49150 53475 49150 53375 10 0 line
+grestore
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55100 mils 53000 mils moveto
-(12MHz) show
+false false false false 202.222224 [(C2) ] 0 49250 53300 180.555557 text
 grestore
-
-
 gsave
-newpath
-1.5 setlinewidth
-55800 mils 54200 mils moveto
-55650 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-54900 mils 54200 mils moveto
-55052 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
+false false false false 202.222224 [(2.2u) ] 0 49250 53100 180.555557 text
+grestore
+50900 52600 50750 52600 15 2 line
+50750 52600 50750 54300 15 2 line
 gsave
+50750 54300 50750 54500 30 2 pin
 gsave
-newpath
-55050 mils 54100 mils moveto
-55650 mils 54100 mils lineto
-stroke
+false false false false 161.777776 [(+3.3V) ] 0 50575 54550 144.444443 text
+grestore
+50600 54500 50900 54500 15 0 line
 grestore
+50750 54000 49000 54000 15 2 line
+49000 54000 49000 53700 15 2 line
+50000 53700 50000 54000 15 2 line
+49000 52800 49000 52600 15 2 line
+49000 52600 50000 52600 15 2 line
+50000 52600 50000 52800 15 2 line
+49500 52500 49500 52600 15 2 line
+46500 52600 48500 52600 15 2 line
+48500 52600 48500 51900 15 2 line
+48500 51900 50900 51900 15 2 line
 gsave
-newpath
-55650 mils 54100 mils moveto
-55650 mils 54300 mils lineto
-stroke
+49500 52300 49500 52500 30 2 pin
+49400 52300 49600 52300 10 0 line
+49455 52250 49545 52250 10 0 line
+49480 52210 49520 52210 10 0 line
 grestore
 gsave
-newpath
-55650 mils 54300 mils moveto
-55050 mils 54300 mils lineto
-stroke
+false false false false 202.222224 [($Revision$) ] 0 63900 38900 180.555557 text
 grestore
 gsave
-newpath
-55050 mils 54300 mils moveto
-55050 mils 54100 mils lineto
-stroke
+false false false false 202.222224 [(Stefan Petersen \(spe@stacken.kth.se\)) ] 0 63900 38600 180.555557 text
 grestore
+gsave
+false false false false 202.222224 [(5) ] 0 61600 38600 180.555557 text
 grestore
-
-
+gsave
+false false false false 404.444448 [(gTAG - uController) ] 0 61400 39400 361.111115 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55100 mils 54400 mils moveto
-(R17) show
+false false false false 202.222224 [(2) ] 0 60000 38600 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55200 mils 53900 mils moveto
-(1M) show
+false false false false 202.222224 [(gTAG-ucont.sch) ] 0 60000 38900 180.555557 text
 grestore
-
-
 gsave
-newpath
-1.5 setlinewidth
-53900 mils 54200 mils moveto
-54100 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-54800 mils 54200 mils moveto
-54600 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
 gsave
-newpath
-54300 mils 54400 mils moveto
-54300 mils 54000 mils lineto
-stroke
+true false true false 606.666689 [(CY7C64603-52NC) ] 0 54600 47600 541.666687 text
 grestore
-
+51200 41200 58300 41200 10 0 line
+58300 41200 58300 53100 10 0 line
+58300 53100 51200 53100 10 0 line
+51200 53100 51200 41200 10 0 line
+53100 53100 53100 53400 30 2 pin
 gsave
-newpath
-54400 mils 54400 mils moveto
-54400 mils 54000 mils lineto
-stroke
+false false false false 161.777776 [(1) ] 90 53000 53200 144.444443 text
 grestore
-
 gsave
-newpath
-54600 mils 54200 mils moveto
-54400 mils 54200 mils lineto
-stroke
+false true false false 202.222224 [(VCC1) ] 90 53100 53050 180.555557 text
 grestore
-
+51200 43300 50900 43300 30 2 pin
 gsave
-newpath
-54300 mils 54200 mils moveto
-54100 mils 54200 mils lineto
-stroke
+false true false false 161.777776 [(2) ] 0 51100 43400 144.444443 text
 grestore
-
-
-
-
-
+gsave
+false false false false 202.222224 [(SCL) ] 0 51300 43300 180.555557 text
 grestore
-
+51200 42600 50900 42600 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54100 mils 54500 mils moveto
-(C4) show
+false true false false 161.777776 [(3) ] 0 51100 42700 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54200 mils 53800 mils moveto
-(30p) show
+false false false false 202.222224 [(SDA) ] 0 51300 42600 180.555557 text
 grestore
-
-
+51200 44500 50900 44500 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-55900 mils 54200 mils moveto
-56100 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-56800 mils 54200 mils moveto
-56600 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(4) ] 0 51100 44600 144.444443 text
+grestore
 gsave
-newpath
-56300 mils 54400 mils moveto
-56300 mils 54000 mils lineto
-stroke
+false false false false 202.222224 [(WAKEUP#) ] 0 51300 44500 180.555557 text
 grestore
-
+51200 52600 50900 52600 30 2 pin
 gsave
-newpath
-56400 mils 54400 mils moveto
-56400 mils 54000 mils lineto
-stroke
+false true false false 161.777776 [(5) ] 0 51100 52700 144.444443 text
 grestore
-
 gsave
-newpath
-56600 mils 54200 mils moveto
-56400 mils 54200 mils lineto
-stroke
+false false false false 202.222224 [(AVCC) ] 0 51300 52600 180.555557 text
 grestore
-
+51900 41200 51900 40900 30 2 pin
 gsave
-newpath
-56300 mils 54200 mils moveto
-56100 mils 54200 mils lineto
-stroke
+false true false false 161.777776 [(8) ] 90 51800 41100 144.444443 text
 grestore
-
-
-
-
-
+gsave
+false false false false 202.222224 [(AGND) ] 90 51900 41300 180.555557 text
 grestore
-
+55300 41200 55300 40900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56100 mils 54500 mils moveto
-(C5) show
+false true false false 161.777776 [(9) ] 90 55200 41100 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56200 mils 53800 mils moveto
-(30p) show
+false false false false 202.222224 [(RESERVED1) ] 90 55300 41300 180.555557 text
 grestore
-
-
+58600 51900 58300 51900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-55800 mils 54200 mils moveto
-55900 mils 54200 mils lineto
-stroke
-newpath
-55800 mils 54200 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(10) ] 0 58400 52000 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-54800 mils 54200 mils moveto
-54900 mils 54200 mils lineto
-stroke
-newpath
-54900 mils 54200 mils
-3 
-0 360 arc
-fill
+false true false false 202.222224 [(PA4/RDY4) ] 0 58200 51900 180.555557 text
 grestore
-
+58600 51500 58300 51500 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-55000 mils 53300 mils moveto
-54900 mils 53300 mils lineto
-stroke
-newpath
-54900 mils 53300 mils
-3 
-0 360 arc
-fill
+false false false false 161.777776 [(11) ] 0 58400 51600 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-55700 mils 53300 mils moveto
-55800 mils 53300 mils lineto
-stroke
-newpath
-55800 mils 53300 mils
-3 
-0 360 arc
-fill
+false true false false 202.222224 [(PA5/RDY5) ] 0 58200 51500 180.555557 text
 grestore
-
+51200 45100 50900 45100 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-56900 mils 53900 mils moveto
-56900 mils 54100 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(12) ] 0 51100 45200 144.444443 text
+grestore
 gsave
-newpath
-56800 mils 53900 mils moveto
-57000 mils 53900 mils lineto
-stroke
+false false false false 202.222224 [(CLKOUT) ] 0 51300 45100 180.555557 text
 grestore
-
+52600 41200 52600 40900 30 2 pin
 gsave
-newpath
-56855 mils 53850 mils moveto
-56945 mils 53850 mils lineto
-stroke
+false true false false 161.777776 [(13) ] 90 52500 41100 144.444443 text
 grestore
-
 gsave
-newpath
-56880 mils 53810 mils moveto
-56920 mils 53810 mils lineto
-stroke
+false false false false 202.222224 [(GND1) ] 90 52600 41300 180.555557 text
 grestore
-
-
+53500 53100 53500 53400 30 2 pin
+gsave
+false false false false 161.777776 [(14) ] 90 53400 53200 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-53800 mils 53900 mils moveto
-53800 mils 54100 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 202.222224 [(VCC2) ] 90 53500 53050 180.555557 text
+grestore
+55700 41200 55700 40900 30 2 pin
 gsave
-newpath
-53700 mils 53900 mils moveto
-53900 mils 53900 mils lineto
-stroke
+false true false false 161.777776 [(15) ] 90 55600 41100 144.444443 text
 grestore
-
 gsave
-newpath
-53755 mils 53850 mils moveto
-53845 mils 53850 mils lineto
-stroke
+false false false false 202.222224 [(RESERVED2) ] 90 55700 41300 180.555557 text
 grestore
-
+51200 47100 50900 47100 30 2 pin
 gsave
-newpath
-53780 mils 53810 mils moveto
-53820 mils 53810 mils lineto
-stroke
+false true false false 161.777776 [(16) ] 0 51100 47200 144.444443 text
 grestore
-
-
+gsave
+false false false false 202.222224 [(XCLKSEL) ] 0 51300 47100 180.555557 text
 grestore
-
+56100 41200 56100 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-54900 mils 52800 mils moveto
-54900 mils 54200 mils lineto
-stroke
-newpath
-54900 mils 54200 mils
-3 
-0 360 arc
-fill
+false true false false 161.777776 [(17) ] 90 56000 41100 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-55800 mils 52800 mils moveto
-55800 mils 54200 mils lineto
-stroke
-newpath
-55800 mils 54200 mils
-3 
-0 360 arc
-fill
+false false false false 202.222224 [(RESERVED3) ] 90 56100 41300 180.555557 text
 grestore
-
+51200 51300 50900 51300 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-53800 mils 54100 mils moveto
-53800 mils 54200 mils lineto
-stroke
+false true false false 161.777776 [(18) ] 0 51100 51400 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-53800 mils 54200 mils moveto
-53900 mils 54200 mils lineto
-stroke
+false false false false 202.222224 [(DISCON#) ] 0 51300 51300 180.555557 text
 grestore
-
+56500 41200 56500 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-56800 mils 54200 mils moveto
-56900 mils 54200 mils lineto
-stroke
+false true false false 161.777776 [(19) ] 90 56400 41100 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-56900 mils 54200 mils moveto
-56900 mils 54100 mils lineto
-stroke
+false false false false 202.222224 [(RESERVED4) ] 90 56500 41300 180.555557 text
 grestore
-
+57700 41200 57700 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-51400 mils 39400 mils moveto
-51400 mils 39600 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-51300 mils 39400 mils moveto
-51500 mils 39400 mils lineto
-stroke
+false true false false 161.777776 [(20) ] 90 57600 41100 144.444443 text
 grestore
-
 gsave
-newpath
-51355 mils 39350 mils moveto
-51445 mils 39350 mils lineto
-stroke
+false false false false 202.222224 [(RESERVED5) ] 90 57700 41300 180.555557 text
 grestore
-
+53000 41200 53000 40900 30 2 pin
 gsave
-newpath
-51380 mils 39310 mils moveto
-51420 mils 39310 mils lineto
-stroke
+false true false false 161.777776 [(21) ] 90 52900 41100 144.444443 text
 grestore
-
-
+gsave
+false false false false 202.222224 [(GND2) ] 90 53000 41300 180.555557 text
 grestore
-
+56900 41200 56900 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-59000 mils 39900 mils moveto
-59000 mils 40100 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(22) ] 90 56800 41100 144.444443 text
+grestore
 gsave
-newpath
-58850 mils 40100 mils moveto
-59150 mils 40100 mils lineto
-stroke
+false false false false 202.222224 [(RESERVED6) ] 90 56900 41300 180.555557 text
 grestore
-
+57300 41200 57300 40900 30 2 pin
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-58875 mils 40150 mils moveto
-(+3.3V) show
+false true false false 161.777776 [(23) ] 90 57200 41100 144.444443 text
 grestore
-
-
+gsave
+false false false false 202.222224 [(RESERVED7) ] 90 57300 41300 180.555557 text
 grestore
-
+51200 50500 50900 50500 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-58100 mils 39200 mils moveto
-57950 mils 39200 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-57200 mils 39200 mils moveto
-57352 mils 39200 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(24) ] 0 51100 50600 144.444443 text
+grestore
 gsave
+false false false false 202.222224 [(USBD-) ] 0 51300 50500 180.555557 text
+grestore
+51200 49700 50900 49700 30 2 pin
 gsave
-newpath
-57350 mils 39100 mils moveto
-57950 mils 39100 mils lineto
-stroke
+false true false false 161.777776 [(25) ] 0 51100 49800 144.444443 text
 grestore
 gsave
-newpath
-57950 mils 39100 mils moveto
-57950 mils 39300 mils lineto
-stroke
+false false false false 202.222224 [(USBD+) ] 0 51300 49700 180.555557 text
 grestore
+53400 41200 53400 40900 30 2 pin
 gsave
-newpath
-57950 mils 39300 mils moveto
-57350 mils 39300 mils lineto
-stroke
+false true false false 161.777776 [(26) ] 90 53300 41100 144.444443 text
 grestore
 gsave
-newpath
-57350 mils 39300 mils moveto
-57350 mils 39100 mils lineto
-stroke
+false false false false 202.222224 [(GND3) ] 90 53400 41300 180.555557 text
 grestore
+53900 53100 53900 53400 30 2 pin
+gsave
+false false false false 161.777776 [(27) ] 90 53800 53200 144.444443 text
 grestore
-
-
+gsave
+false true false false 202.222224 [(VCC3) ] 90 53900 53050 180.555557 text
 grestore
-
+51200 51900 50900 51900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57400 mils 39400 mils moveto
-(R13) show
+false true false false 161.777776 [(28) ] 0 51100 52000 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57500 mils 38900 mils moveto
-(10k) show
+false false false false 202.222224 [(RESET#) ] 0 51300 51900 180.555557 text
 grestore
-
-
+58600 50800 58300 50800 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-55600 mils 40300 mils moveto
-55600 mils 39900 mils lineto
-stroke
-newpath
-55600 mils 39900 mils
-3 
-0 360 arc
-fill
+false false false false 161.777776 [(29) ] 0 58400 50900 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-51400 mils 39600 mils moveto
-51400 mils 40300 mils lineto
-stroke
+false true false false 202.222224 [(PB0) ] 0 58200 50800 180.555557 text
 grestore
-
+58600 50400 58300 50400 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-52100 mils 39900 mils moveto
-52100 mils 40300 mils lineto
-stroke
-newpath
-52100 mils 39900 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(30) ] 0 58400 50500 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-52500 mils 39900 mils moveto
-52500 mils 40300 mils lineto
-stroke
-newpath
-52500 mils 39900 mils
-3
-0 360 arc
-fill
+false true false false 202.222224 [(PB1) ] 0 58200 50400 180.555557 text
 grestore
-
+58600 50000 58300 50000 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-52900 mils 39900 mils moveto
-52900 mils 40300 mils lineto
-stroke
-newpath
-52900 mils 39900 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(31) ] 0 58400 50100 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-53300 mils 39900 mils moveto
-53300 mils 40300 mils lineto
-stroke
-newpath
-53300 mils 39900 mils
-3
-0 360 arc
-fill
+false true false false 202.222224 [(PB2) ] 0 58200 50000 180.555557 text
 grestore
-
+58600 49600 58300 49600 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-53700 mils 39900 mils moveto
-53700 mils 40300 mils lineto
-stroke
-newpath
-53700 mils 39900 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(32) ] 0 58400 49700 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-54100 mils 39900 mils moveto
-54100 mils 40300 mils lineto
-stroke
-newpath
-54100 mils 39900 mils
-3
-0 360 arc
-fill
+false true false false 202.222224 [(PB3) ] 0 58200 49600 180.555557 text
 grestore
-
+58600 49200 58300 49200 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-54800 mils 39900 mils moveto
-54800 mils 40300 mils lineto
-stroke
-newpath
-54800 mils 39900 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(33) ] 0 58400 49300 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-55200 mils 39900 mils moveto
-55200 mils 40300 mils lineto
-stroke
-newpath
-55200 mils 39900 mils
-3
-0 360 arc
-fill
+false true false false 202.222224 [(PB4) ] 0 58200 49200 180.555557 text
 grestore
-
+58600 48800 58300 48800 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-56000 mils 40300 mils moveto
-56000 mils 39200 mils lineto
-stroke
+false false false false 161.777776 [(34) ] 0 58400 48900 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-56800 mils 40300 mils moveto
-56800 mils 39900 mils lineto
-stroke
-newpath
-56800 mils 39900 mils
-3 
-0 360 arc
-fill
+false true false false 202.222224 [(PB5) ] 0 58200 48800 180.555557 text
 grestore
-
+58600 48400 58300 48400 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-58100 mils 39200 mils moveto
-59000 mils 39200 mils lineto
-stroke
+false false false false 161.777776 [(35) ] 0 58400 48500 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-59000 mils 39200 mils moveto
-59000 mils 39900 mils lineto
-stroke
+false true false false 202.222224 [(PB6) ] 0 58200 48400 180.555557 text
 grestore
-
+58600 48000 58300 48000 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-45900 mils 49400 mils moveto
-46100 mils 49400 mils lineto
-stroke
-1 setlinewidth
-
-
+false false false false 161.777776 [(36) ] 0 58400 48100 144.444443 text
+grestore
 gsave
-newpath
-45600 mils 49400 mils moveto
-45500 mils 49500 mils lineto
-stroke
+false true false false 202.222224 [(PB7) ] 0 58200 48000 180.555557 text
 grestore
-
+58600 42600 58300 42600 30 2 pin
 gsave
-newpath
-45600 mils 49400 mils moveto
-45500 mils 49300 mils lineto
-stroke
+false false false false 161.777776 [(37) ] 0 58400 42700 144.444443 text
 grestore
-
 gsave
-newpath
-45900 mils 49400 mils moveto
-45600 mils 49400 mils lineto
-stroke
+false true false false 202.222224 [(CTL2) ] 0 58200 42600 180.555557 text
 grestore
-
-
-
+51200 45700 50900 45700 30 2 pin
+gsave
+false true false false 161.777776 [(38) ] 0 51100 45800 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-45500 mils 49600 mils moveto
-(usb_io+) show
+false false false false 202.222224 [(XCLK) ] 0 51300 45700 180.555557 text
 grestore
-
+53800 41200 53800 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-45900 mils 50200 mils moveto
-46100 mils 50200 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(39) ] 90 53700 41100 144.444443 text
+grestore
 gsave
-newpath
-45600 mils 50200 mils moveto
-45500 mils 50300 mils lineto
-stroke
+false false false false 202.222224 [(GND4) ] 90 53800 41300 180.555557 text
 grestore
-
+54300 53100 54300 53400 30 2 pin
 gsave
-newpath
-45600 mils 50200 mils moveto
-45500 mils 50100 mils lineto
-stroke
+false false false false 161.777776 [(40) ] 90 54200 53200 144.444443 text
 grestore
-
 gsave
-newpath
-45900 mils 50200 mils moveto
-45600 mils 50200 mils lineto
-stroke
+false true false false 202.222224 [(VCC4) ] 90 54300 53050 180.555557 text
 grestore
-
-
-
+58600 43000 58300 43000 30 2 pin
+gsave
+false false false false 161.777776 [(41) ] 0 58400 43100 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-45500 mils 50400 mils moveto
-(usb_io-) show
+false true false false 202.222224 [(CTL0) ] 0 58200 43000 180.555557 text
 grestore
-
+58600 52300 58300 52300 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-47600 mils 51000 mils moveto
-47450 mils 51000 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-46700 mils 51000 mils moveto
-46852 mils 51000 mils lineto
-stroke
-1 setlinewidth
-
-
+false false false false 161.777776 [(42) ] 0 58400 52400 144.444443 text
+grestore
 gsave
+false true false false 202.222224 [(RDY2) ] 0 58200 52300 180.555557 text
+grestore
+58600 46400 58300 46400 30 2 pin
 gsave
-newpath
-46850 mils 50900 mils moveto
-47450 mils 50900 mils lineto
-stroke
+false false false false 161.777776 [(43) ] 0 58400 46500 144.444443 text
 grestore
 gsave
-newpath
-47450 mils 50900 mils moveto
-47450 mils 51100 mils lineto
-stroke
+false true false false 202.222224 [(PC0) ] 0 58200 46400 180.555557 text
 grestore
+58600 46000 58300 46000 30 2 pin
 gsave
-newpath
-47450 mils 51100 mils moveto
-46850 mils 51100 mils lineto
-stroke
+false false false false 161.777776 [(44) ] 0 58400 46100 144.444443 text
 grestore
 gsave
-newpath
-46850 mils 51100 mils moveto
-46850 mils 50900 mils lineto
-stroke
+false true false false 202.222224 [(PC1) ] 0 58200 46000 180.555557 text
 grestore
+58600 45600 58300 45600 30 2 pin
+gsave
+false false false false 161.777776 [(45) ] 0 58400 45700 144.444443 text
 grestore
-
-
+gsave
+false true false false 202.222224 [(PC2) ] 0 58200 45600 180.555557 text
 grestore
-
+58600 45200 58300 45200 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46900 mils 51200 mils moveto
-(R2) show
+false false false false 161.777776 [(46) ] 0 58400 45300 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47000 mils 50700 mils moveto
-(1.5k) show
+false true false false 202.222224 [(PC3) ] 0 58200 45200 180.555557 text
 grestore
-
-
+54200 41200 54200 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-47600 mils 51000 mils moveto
-50400 mils 51000 mils lineto
-stroke
+false true false false 161.777776 [(47) ] 90 54100 41100 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-52600 mils 53000 mils moveto
-52600 mils 53200 mils lineto
-stroke
-1 setlinewidth
-
-
+false false false false 202.222224 [(GND5) ] 90 54200 41300 180.555557 text
+grestore
+58600 44800 58300 44800 30 2 pin
 gsave
-newpath
-52450 mils 53200 mils moveto
-52750 mils 53200 mils lineto
-stroke
+false false false false 161.777776 [(48) ] 0 58400 44900 144.444443 text
 grestore
-
 gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-52475 mils 53250 mils moveto
-(+3.3V) show
+false true false false 202.222224 [(PC4) ] 0 58200 44800 180.555557 text
 grestore
-
-
+58600 44400 58300 44400 30 2 pin
+gsave
+false false false false 161.777776 [(49) ] 0 58400 44500 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-52600 mils 52800 mils moveto
-52600 mils 53000 mils lineto
-stroke
+false true false false 202.222224 [(PC5) ] 0 58200 44400 180.555557 text
 grestore
-
+58600 44000 58300 44000 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-52600 mils 52900 mils moveto
-53800 mils 52900 mils lineto
-stroke
-newpath
-52600 mils 52900 mils
-3
-0 360 arc
-fill
+false false false false 161.777776 [(50) ] 0 58400 44100 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-53800 mils 52900 mils moveto
-53800 mils 52800 mils lineto
-stroke
+false true false false 202.222224 [(PC6) ] 0 58200 44000 180.555557 text
 grestore
-
+58600 43600 58300 43600 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-53400 mils 52800 mils moveto
-53400 mils 52900 mils lineto
-stroke
-newpath
-53400 mils 52900 mils
-3 
-0 360 arc
-fill
+false false false false 161.777776 [(51) ] 0 58400 43700 144.444443 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-53000 mils 52800 mils moveto
-53000 mils 52900 mils lineto
-stroke
-newpath
-53000 mils 52900 mils
-3 
-0 360 arc
-fill
+false true false false 202.222224 [(PC7) ] 0 58200 43600 180.555557 text
 grestore
-
+54600 41200 54600 40900 30 2 pin
 gsave
-newpath
-1.5 setlinewidth
-48500 mils 44100 mils moveto
-48500 mils 43950 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-48500 mils 43200 mils moveto
-48500 mils 43352 mils lineto
-stroke
-1 setlinewidth
-
-
+false true false false 161.777776 [(52) ] 90 54500 41100 144.444443 text
+grestore
 gsave
+false false false false 202.222224 [(GND6) ] 90 54600 41300 180.555557 text
+grestore
+51200 49100 50900 49100 30 2 pin
 gsave
-newpath
-48400 mils 43350 mils moveto
-48600 mils 43350 mils lineto
-stroke
+false true false false 161.777776 [(7) ] 0 51100 49200 144.444443 text
 grestore
 gsave
-newpath
-48600 mils 43350 mils moveto
-48600 mils 43950 mils lineto
-stroke
+false false false false 202.222224 [(XOUT) ] 0 51300 49100 180.555557 text
 grestore
+51200 47800 50900 47800 30 2 pin
 gsave
-newpath
-48600 mils 43950 mils moveto
-48400 mils 43950 mils lineto
-stroke
+false true false false 161.777776 [(6) ] 0 51100 47900 144.444443 text
 grestore
 gsave
-newpath
-48400 mils 43950 mils moveto
-48400 mils 43350 mils lineto
-stroke
+false false false false 202.222224 [(XIN) ] 0 51300 47800 180.555557 text
 grestore
 grestore
-
-
+gsave
+false false false false 202.222224 [(PQFP52_10X10_52) ] 0 53800 47100 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-48300 mils 43400 mils moveto
-90 rotate
-(R12) show
+false false false false 202.222224 [(U1) ] 0 51200 53200 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-48800 mils 43500 mils moveto
-90 rotate
-(1k) show
+false false false false 323.555552 [(USB Microcontroller) ] 0 53400 46800 288.888885 text
 grestore
-
-
+51900 40500 57300 40500 15 2 line
+57300 40900 57300 40500 15 2 line
+56500 39800 57600 39800 15 2 line
 gsave
-newpath
-1.5 setlinewidth
-47700 mils 44100 mils moveto
-47700 mils 43950 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-47700 mils 43200 mils moveto
-47700 mils 43352 mils lineto
-stroke
-1 setlinewidth
-
-
+63700 44800 63500 44800 30 2 pin
+64000 44800 64100 44900 10 0 line
+64000 44800 64100 44700 10 0 line
+63700 44800 64000 44800 10 0 line
+grestore
 gsave
+false false true false 283.111104 [(tdo_ttl) ] 0 64150 44800 252.777771 text
+grestore
 gsave
-newpath
-47600 mils 43350 mils moveto
-47800 mils 43350 mils lineto
-stroke
+63500 46400 63700 46400 30 2 pin
+64100 46400 63700 46400 10 1 line
+64100 46400 64000 46500 10 0 line
+64100 46400 64000 46300 10 0 line
 grestore
 gsave
-newpath
-47800 mils 43350 mils moveto
-47800 mils 43950 mils lineto
-stroke
+false false true false 283.111104 [(tdi_ttl) ] 0 64150 46000 252.777771 text
 grestore
 gsave
-newpath
-47800 mils 43950 mils moveto
-47600 mils 43950 mils lineto
-stroke
+63500 46000 63700 46000 30 2 pin
+64100 46000 63700 46000 10 1 line
+64100 46000 64000 46100 10 0 line
+64100 46000 64000 45900 10 0 line
 grestore
 gsave
-newpath
-47600 mils 43950 mils moveto
-47600 mils 43350 mils lineto
-stroke
+false false true false 283.111104 [(tms_ttl) ] 0 64150 46400 252.777771 text
 grestore
+gsave
+63500 45600 63700 45600 30 2 pin
+64100 45600 63700 45600 10 1 line
+64100 45600 64000 45700 10 0 line
+64100 45600 64000 45500 10 0 line
 grestore
-
-
+gsave
+false false true false 283.111104 [(tck_ttl) ] 0 64150 45600 252.777771 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47500 mils 43400 mils moveto
-90 rotate
-(R11) show
+63500 45200 63700 45200 30 2 pin
+64100 45200 63700 45200 10 1 line
+64100 45200 64000 45300 10 0 line
+64100 45200 64000 45100 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-48000 mils 43500 mils moveto
-90 rotate
-(1k) show
+false false true false 283.111104 [(trst_ttl) ] 0 64150 45200 252.777771 text
 grestore
-
-
 gsave
-newpath
-1.5 setlinewidth
-48100 mils 44500 mils moveto
-48100 mils 44700 mils lineto
-stroke
-1 setlinewidth
-
-
+60100 53800 60100 54000 30 2 pin
 gsave
-newpath
-47950 mils 44700 mils moveto
-48250 mils 44700 mils lineto
-stroke
+false false false false 161.777776 [(+3.3V) ] 0 59925 54050 144.444443 text
 grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47975 mils 44750 mils moveto
-(+3.3V) show
+59950 54000 60250 54000 15 0 line
 grestore
-
-
+gsave
+60000 52750 60200 52750 10 0 line
+60200 52750 60200 53350 10 0 line
+60200 53350 60000 53350 10 0 line
+60000 53350 60000 52750 10 0 line
+60100 53500 60100 53300 30 2 pin
+60100 52600 60100 52800 30 2 pin
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-47700 mils 44100 mils moveto
-47700 mils 44300 mils lineto
-stroke
+false false false false 202.222224 [(R16) ] 0 60300 53100 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-47700 mils 44300 mils moveto
-48500 mils 44300 mils lineto
-stroke
+false false false false 202.222224 [(10k) ] 0 60300 52900 180.555557 text
 grestore
-
+58600 52300 61100 52300 15 2 line
 gsave
-newpath
-1.5 setlinewidth
-48500 mils 44300 mils moveto
-48500 mils 44100 mils lineto
-stroke
+61250 52200 61850 52200 10 0 line
+61850 52200 61850 52400 10 0 line
+61850 52400 61250 52400 10 0 line
+61250 52400 61250 52200 10 0 line
+62000 52300 61800 52300 30 2 pin
+61100 52300 61300 52300 30 2 pin
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-48100 mils 44500 mils moveto
-48100 mils 44300 mils lineto
-stroke
-newpath
-48100 mils 44300 mils
-3 
-0 360 arc
-fill
+false false false false 202.222224 [(R14) ] 0 61300 52500 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-47300 mils 42900 mils moveto
-49400 mils 42900 mils lineto
-stroke
+false false false false 202.222224 [(10k) ] 0 61400 52000 180.555557 text
 grestore
-
+60100 51900 60100 52600 15 2 line
+59300 51500 59300 52600 15 2 line
+59300 53800 59300 53500 15 2 line
+60100 53800 60100 53500 15 2 line
+48700 45700 47400 45700 15 2 line
 gsave
-newpath
-1.5 setlinewidth
-47700 mils 43200 mils moveto
-47700 mils 42900 mils lineto
-stroke
-newpath
-47700 mils 42900 mils
-3 
-0 360 arc
-fill
+47400 47000 47400 47200 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 47225 47250 144.444443 text
 grestore
-
+47250 47200 47550 47200 15 0 line
+grestore
 gsave
-newpath
-1.5 setlinewidth
-48500 mils 43200 mils moveto
-48500 mils 42700 mils lineto
-stroke
-newpath
-48500 mils 42700 mils
-3 
-0 360 arc
-fill
+47400 44200 47400 44400 30 2 pin
+47300 44200 47500 44200 10 0 line
+47355 44150 47445 44150 10 0 line
+47380 44110 47420 44110 10 0 line
 grestore
-
+50600 45700 50900 45700 15 2 line
+50600 44500 50900 44500 15 2 line
+49500 46000 49500 44500 15 2 line
+49500 44500 49700 44500 15 2 line
+49700 45700 49500 45700 15 2 line
+47400 45500 47400 45900 15 2 line
+47400 47000 47400 46800 15 2 line
+47400 44600 47400 44400 15 2 line
 gsave
-newpath
-1.5 setlinewidth
-49400 mils 42900 mils moveto
-49400 mils 43200 mils lineto
-stroke
+44900 42250 45100 42250 10 0 line
+45100 42250 45100 42850 10 0 line
+45100 42850 44900 42850 10 0 line
+44900 42850 44900 42250 10 0 line
+45000 43000 45000 42800 30 2 pin
+45000 42100 45000 42300 30 2 pin
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-49400 mils 43200 mils moveto
-50400 mils 43200 mils lineto
-stroke
+false false false false 202.222224 [(R10) ] 0 45200 42700 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-49600 mils 42700 mils moveto
-49600 mils 42800 mils lineto
-stroke
+false false false false 202.222224 [(0) ] 0 45200 42500 180.555557 text
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-49600 mils 42800 mils moveto
-50400 mils 42800 mils lineto
-stroke
+44900 43550 45100 43550 10 0 line
+45100 43550 45100 44150 10 0 line
+45100 44150 44900 44150 10 0 line
+44900 44150 44900 43550 10 0 line
+45000 44300 45000 44100 30 2 pin
+45000 43400 45000 43600 30 2 pin
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-45900 mils 42500 mils moveto
-45900 mils 42700 mils lineto
-stroke
-1 setlinewidth
-
-
+false false false false 202.222224 [(R9) ] 0 45200 44000 180.555557 text
+grestore
 gsave
-newpath
-45800 mils 42500 mils moveto
-46000 mils 42500 mils lineto
-stroke
+false false false false 202.222224 [(0) ] 0 45200 43800 180.555557 text
 grestore
-
 gsave
-newpath
-45855 mils 42450 mils moveto
-45945 mils 42450 mils lineto
-stroke
+false false false false 202.222224 [(DNP) ] 0 45500 44000 180.555557 text
 grestore
-
 gsave
-newpath
-45880 mils 42410 mils moveto
-45920 mils 42410 mils lineto
-stroke
+45000 44500 45000 44700 30 2 pin
+gsave
+false false false false 161.777776 [(+3.3V) ] 0 44825 44750 144.444443 text
 grestore
-
-
+44850 44700 45150 44700 15 0 line
 grestore
-
 gsave
-newpath
-1.5 setlinewidth
-46000 mils 43100 mils moveto
-45900 mils 43100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45900 mils 43100 mils moveto
-45900 mils 42700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-46000 mils 42900 mils moveto
-45900 mils 42900 mils lineto
-stroke
-newpath
-45900 mils 42900 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47300 mils 45400 mils moveto
-47300 mils 45250 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-47300 mils 44500 mils moveto
-47300 mils 44652 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-47200 mils 44650 mils moveto
-47400 mils 44650 mils lineto
-stroke
-grestore
-gsave
-newpath
-47400 mils 44650 mils moveto
-47400 mils 45250 mils lineto
-stroke
-grestore
-gsave
-newpath
-47400 mils 45250 mils moveto
-47200 mils 45250 mils lineto
-stroke
-grestore
-gsave
-newpath
-47200 mils 45250 mils moveto
-47200 mils 44650 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47100 mils 44700 mils moveto
-90 rotate
-(R6) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47600 mils 44900 mils moveto
-90 rotate
-(0) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-49200 mils 45100 mils moveto
-49200 mils 45300 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-49050 mils 45300 mils moveto
-49350 mils 45300 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-49075 mils 45350 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58800 mils 52900 mils moveto
-58800 mils 52750 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-58800 mils 52000 mils moveto
-58800 mils 52152 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-58700 mils 52150 mils moveto
-58900 mils 52150 mils lineto
-stroke
-grestore
-gsave
-newpath
-58900 mils 52150 mils moveto
-58900 mils 52750 mils lineto
-stroke
-grestore
-gsave
-newpath
-58900 mils 52750 mils moveto
-58700 mils 52750 mils lineto
-stroke
-grestore
-gsave
-newpath
-58700 mils 52750 mils moveto
-58700 mils 52150 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-58600 mils 52200 mils moveto
-90 rotate
-(R15) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-59100 mils 52300 mils moveto
-90 rotate
-(10k) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-58800 mils 53100 mils moveto
-58800 mils 53300 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-58650 mils 53300 mils moveto
-58950 mils 53300 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-58675 mils 53350 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 51300 mils moveto
-59600 mils 51300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 50900 mils moveto
-58800 mils 50900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47600 mils 49400 mils moveto
-47450 mils 49400 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-46700 mils 49400 mils moveto
-46852 mils 49400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-46850 mils 49300 mils moveto
-47450 mils 49300 mils lineto
-stroke
-grestore
-gsave
-newpath
-47450 mils 49300 mils moveto
-47450 mils 49500 mils lineto
-stroke
-grestore
-gsave
-newpath
-47450 mils 49500 mils moveto
-46850 mils 49500 mils lineto
-stroke
-grestore
-gsave
-newpath
-46850 mils 49500 mils moveto
-46850 mils 49300 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46900 mils 49600 mils moveto
-(R4) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47000 mils 49100 mils moveto
-(22) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-47600 mils 50200 mils moveto
-47450 mils 50200 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-46700 mils 50200 mils moveto
-46852 mils 50200 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-46850 mils 50100 mils moveto
-47450 mils 50100 mils lineto
-stroke
-grestore
-gsave
-newpath
-47450 mils 50100 mils moveto
-47450 mils 50300 mils lineto
-stroke
-grestore
-gsave
-newpath
-47450 mils 50300 mils moveto
-46850 mils 50300 mils lineto
-stroke
-grestore
-gsave
-newpath
-46850 mils 50300 mils moveto
-46850 mils 50100 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46900 mils 50400 mils moveto
-(R3) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47000 mils 49900 mils moveto
-(22) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-46100 mils 49400 mils moveto
-46700 mils 49400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-46100 mils 50200 mils moveto
-46700 mils 50200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47600 mils 50200 mils moveto
-47900 mils 50200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47900 mils 50200 mils moveto
-47900 mils 50000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47900 mils 50000 mils moveto
-50400 mils 50000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47600 mils 49400 mils moveto
-47900 mils 49400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47900 mils 49400 mils moveto
-47900 mils 49600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47900 mils 49600 mils moveto
-50400 mils 49600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-46700 mils 51000 mils moveto
-46500 mils 51000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-46500 mils 51000 mils moveto
-46500 mils 49400 mils lineto
-stroke
-newpath
-46500 mils 49400 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59400 mils 45800 mils moveto
-58100 mils 45800 mils lineto
-stroke
-newpath
-59400 mils 45800 mils
-3
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 45400 mils moveto
-59800 mils 45400 mils lineto
-stroke
-newpath
-59800 mils 45400 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-60200 mils 45000 mils moveto
-58100 mils 45000 mils lineto
-stroke
-newpath
-60200 mils 45000 mils
-3
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-60600 mils 44600 mils moveto
-58100 mils 44600 mils lineto
-stroke
-newpath
-60600 mils 44600 mils
-3
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 44200 mils moveto
-61000 mils 44200 mils lineto
-stroke
-newpath
-61000 mils 44200 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61400 mils 43800 mils moveto
-58100 mils 43800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 43400 mils moveto
-61800 mils 43400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62200 mils 43000 mils moveto
-58100 mils 43000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59800 mils 47800 mils moveto
-58100 mils 47800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 48200 mils moveto
-60200 mils 48200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 48600 mils moveto
-60600 mils 48600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 49000 mils moveto
-61000 mils 49000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 49400 mils moveto
-61400 mils 49400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 49800 mils moveto
-61800 mils 49800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62200 mils 50200 mils moveto
-58100 mils 50200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47300 mils 46700 mils moveto
-47300 mils 46550 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-47300 mils 45800 mils moveto
-47300 mils 45952 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-47200 mils 45950 mils moveto
-47400 mils 45950 mils lineto
-stroke
-grestore
-gsave
-newpath
-47400 mils 45950 mils moveto
-47400 mils 46550 mils lineto
-stroke
-grestore
-gsave
-newpath
-47400 mils 46550 mils moveto
-47200 mils 46550 mils lineto
-stroke
-grestore
-gsave
-newpath
-47200 mils 46550 mils moveto
-47200 mils 45950 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47100 mils 46000 mils moveto
-90 rotate
-(R5) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47600 mils 46200 mils moveto
-90 rotate
-(0) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47500 mils 46000 mils moveto
-(do not mount) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-50200 mils 45000 mils moveto
-50050 mils 45000 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-49300 mils 45000 mils moveto
-49452 mils 45000 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-49450 mils 44900 mils moveto
-50050 mils 44900 mils lineto
-stroke
-grestore
-gsave
-newpath
-50050 mils 44900 mils moveto
-50050 mils 45100 mils lineto
-stroke
-grestore
-gsave
-newpath
-50050 mils 45100 mils moveto
-49450 mils 45100 mils lineto
-stroke
-grestore
-gsave
-newpath
-49450 mils 45100 mils moveto
-49450 mils 44900 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49500 mils 45200 mils moveto
-(R7) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49600 mils 44700 mils moveto
-(10k) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-50200 mils 43800 mils moveto
-50050 mils 43800 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-49300 mils 43800 mils moveto
-49452 mils 43800 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-49450 mils 43700 mils moveto
-50050 mils 43700 mils lineto
-stroke
-grestore
-gsave
-newpath
-50050 mils 43700 mils moveto
-50050 mils 43900 mils lineto
-stroke
-grestore
-gsave
-newpath
-50050 mils 43900 mils moveto
-49450 mils 43900 mils lineto
-stroke
-grestore
-gsave
-newpath
-49450 mils 43900 mils moveto
-49450 mils 43700 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49500 mils 44000 mils moveto
-(R8) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49600 mils 43500 mils moveto
-(10k) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-49700 mils 52200 mils moveto
-49700 mils 52400 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-49700 mils 53100 mils moveto
-49700 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-49500 mils 52600 mils moveto
-49900 mils 52600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-49500 mils 52700 mils moveto
-49900 mils 52700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-49700 mils 52900 mils moveto
-49700 mils 52700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-49700 mils 52600 mils moveto
-49700 mils 52400 mils lineto
-stroke
-grestore
-
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49400 mils 52500 mils moveto
-90 rotate
-(C3) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50100 mils 52400 mils moveto
-90 rotate
-(100n) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-48700 mils 53100 mils moveto
-48700 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-48700 mils 52200 mils moveto
-48700 mils 52400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-48900 mils 52700 mils moveto
-48500 mils 52700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-48700 mils 52400 mils moveto
-48700 mils 52600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-48700 mils 52700 mils moveto
-48700 mils 52900 mils lineto
-stroke
-grestore
-
-
-gsave
-1 mils setlinewidth
-newpath
-48700 mils 51900 mils
-700 mils
-75 105 arc
-stroke
-grestore
-
-gsave
-newpath
-48900 mils 52811 mils moveto
-48800 mils 52811 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-48849 mils 52760 mils moveto
-48849 mils 52860 mils lineto
-stroke
-grestore
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-48400 mils 52500 mils moveto
-90 rotate
-(C2) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-49100 mils 52500 mils moveto
-90 rotate
-(2.2u) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-50400 mils 51600 mils moveto
-50300 mils 51600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50300 mils 51600 mils moveto
-50300 mils 53600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50300 mils 53600 mils moveto
-50300 mils 53800 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-50150 mils 53800 mils moveto
-50450 mils 53800 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-50175 mils 53850 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50300 mils 53400 mils moveto
-48700 mils 53400 mils lineto
-stroke
-newpath
-50300 mils 53400 mils
-3
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48700 mils 53400 mils moveto
-48700 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49700 mils 53100 mils moveto
-49700 mils 53400 mils lineto
-stroke
-newpath
-49700 mils 53400 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48700 mils 52200 mils moveto
-48700 mils 52100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48700 mils 52100 mils moveto
-49700 mils 52100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49700 mils 52100 mils moveto
-49700 mils 52200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49200 mils 52000 mils moveto
-49200 mils 52100 mils lineto
-stroke
-newpath
-49200 mils 52100 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47500 mils 53000 mils moveto
-48000 mils 53000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48000 mils 53000 mils moveto
-48000 mils 50600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48000 mils 50600 mils moveto
-50400 mils 50600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49200 mils 51800 mils moveto
-49200 mils 52000 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-49100 mils 51800 mils moveto
-49300 mils 51800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-49155 mils 51750 mils moveto
-49245 mils 51750 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-49180 mils 51710 mils moveto
-49220 mils 51710 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63900 mils 38900 mils moveto
-($Revision$) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63900 mils 38600 mils moveto
-(Stefan Petersen \(spe@stacken.kth.se\)) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-61600 mils 38600 mils moveto
-(5) show
-grestore
-
-gsave
-/Helvetica findfont
-28.000000 scalefont
-setfont
-
-61400 mils 39400 mils moveto
-(gTAG - uController) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-60000 mils 38600 mils moveto
-(2) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-60000 mils 38900 mils moveto
-(gTAG-ucont.sch) show
-grestore
-
-gsave
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 51600 mils moveto
-(AVCC) show
-grestore
-
-gsave
-gsave
-newpath
-50700 mils 40600 mils moveto
-57800 mils 40600 mils lineto
-stroke
-grestore
-gsave
-newpath
-57800 mils 40600 mils moveto
-57800 mils 52500 mils lineto
-stroke
-grestore
-gsave
-newpath
-57800 mils 52500 mils moveto
-50700 mils 52500 mils lineto
-stroke
-grestore
-gsave
-newpath
-50700 mils 52500 mils moveto
-50700 mils 40600 mils lineto
-stroke
-grestore
-grestore
-
-
-newpath
-1.5 setlinewidth
-50700 mils 51600 mils moveto
-50400 mils 51600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50500 mils 51600 mils moveto
-(5) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 51000 mils moveto
-50400 mils 51000 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (18) stringwidth pop
--1 mul add
-51100 mils
-moveto
-(18) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 50000 mils moveto
-50400 mils 50000 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (24) stringwidth pop
--1 mul add
-50100 mils
-moveto
-(24) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 50600 mils moveto
-50400 mils 50600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (28) stringwidth pop
--1 mul add
-50700 mils
-moveto
-(28) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 49600 mils moveto
-50400 mils 49600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (25) stringwidth pop
--1 mul add
-49700 mils
-moveto
-(25) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 45600 mils moveto
-(XCLKSEL) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 45000 mils moveto
-(XCLK) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 44400 mils moveto
-(CLKOUT) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 43800 mils moveto
-(WAKEUP#) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 43200 mils moveto
-(SCL) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 42800 mils moveto
-(SDA) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 45600 mils moveto
-50400 mils 45600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (16) stringwidth pop
--1 mul add
-45700 mils
-moveto
-(16) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 45000 mils moveto
-50400 mils 45000 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (38) stringwidth pop
--1 mul add
-45100 mils
-moveto
-(38) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 43200 mils moveto
-50400 mils 43200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (2) stringwidth pop
--1 mul add
-43300 mils
-moveto
-(2) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 51000 mils moveto
-(DISCON#) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 50600 mils moveto
-(RESET#) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 50000 mils moveto
-(USBD-) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50800 mils 49600 mils moveto
-(USBD+) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 44400 mils moveto
-50400 mils 44400 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (12) stringwidth pop
--1 mul add
-44500 mils
-moveto
-(12) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 43800 mils moveto
-50400 mils 43800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (4) stringwidth pop
--1 mul add
-43900 mils
-moveto
-(4) show
-grestore
-
-newpath
-1.5 setlinewidth
-50700 mils 42800 mils moveto
-50400 mils 42800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50600 mils (3) stringwidth pop
--1 mul add
-42900 mils
-moveto
-(3) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 50200 mils moveto
-57800 mils 50200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 50300 mils moveto
-(29) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 49800 mils moveto
-57800 mils 49800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 49900 mils moveto
-(30) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 49400 mils moveto
-57800 mils 49400 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 49500 mils moveto
-(31) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 49000 mils moveto
-57800 mils 49000 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 49100 mils moveto
-(32) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 48600 mils moveto
-57800 mils 48600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 48700 mils moveto
-(33) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 48200 mils moveto
-57800 mils 48200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 48300 mils moveto
-(34) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 47800 mils moveto
-57800 mils 47800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 47900 mils moveto
-(35) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 47400 mils moveto
-57800 mils 47400 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 47500 mils moveto
-(36) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 45800 mils moveto
-57800 mils 45800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 45900 mils moveto
-(43) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 45400 mils moveto
-57800 mils 45400 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 45500 mils moveto
-(44) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 45000 mils moveto
-57800 mils 45000 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 45100 mils moveto
-(45) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 44600 mils moveto
-57800 mils 44600 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 44700 mils moveto
-(46) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 44200 mils moveto
-57800 mils 44200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 44300 mils moveto
-(48) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 43800 mils moveto
-57800 mils 43800 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 43900 mils moveto
-(49) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 43400 mils moveto
-57800 mils 43400 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 43500 mils moveto
-(50) show
+45000 41800 45000 42000 30 2 pin
+44900 41800 45100 41800 10 0 line
+44955 41750 45045 41750 10 0 line
+44980 41710 45020 41710 10 0 line
 grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 43000 mils moveto
-57800 mils 43000 mils lineto
-stroke
-1 setlinewidth
-
+45000 43000 45000 43400 15 2 line
+45000 44500 45000 44300 15 2 line
+45000 42100 45000 42000 15 2 line
+46100 43200 45000 43200 15 2 line
+59500 46400 59500 46500 15 2 line
+59900 46000 59900 46500 15 2 line
+60300 45600 60300 46500 15 2 line
+60700 45200 60700 46500 15 2 line
+61100 44800 61100 46500 15 2 line
+61500 44400 61500 46500 15 2 line
+61900 44000 61900 46500 15 2 line
+62300 43600 62300 46500 15 2 line
+59500 48000 59500 47900 15 2 line
+59900 48400 59900 47900 15 2 line
+60300 48800 60300 47900 15 2 line
+60700 49200 60700 47900 15 2 line
+61100 49600 61100 47900 15 2 line
+61500 47900 61500 50000 15 2 line
+61900 50400 61900 47900 15 2 line
+62300 50800 62300 47900 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 43100 mils moveto
-(51) show
+62300 51900 62300 52100 30 2 pin
+62200 51900 62400 51900 10 0 line
+62255 51850 62345 51850 10 0 line
+62280 51810 62320 51810 10 0 line
 grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 51700 mils moveto
-57800 mils 51700 mils lineto
-stroke
-1 setlinewidth
-
+58600 43000 62700 43000 15 2 line
+62700 43000 62700 46500 15 2 line
+58600 42600 63100 42600 15 2 line
+63100 42600 63100 46500 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 51800 mils moveto
-(42) show
-grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 51300 mils moveto
-57800 mils 51300 mils lineto
-stroke
-1 setlinewidth
-
+62700 48300 62700 48500 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 51400 mils moveto
-(10) show
+false false false false 161.777776 [(+3.3V) ] 0 62525 48550 144.444443 text
 grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB0) stringwidth pop
--1 mul add
-50200 mils
-moveto
-(PB0) show
+62550 48500 62850 48500 15 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB1) stringwidth pop
--1 mul add
-49800 mils
-moveto
-(PB1) show
+63700 47700 63700 47900 30 2 pin
+63600 47700 63800 47700 10 0 line
+63655 47650 63745 47650 10 0 line
+63680 47610 63720 47610 10 0 line
 grestore
-
+63100 47900 63100 48100 15 2 line
+63700 47900 63700 48100 15 2 line
+63700 48100 63100 48100 15 2 line
+62700 48300 62700 47900 15 2 line
+62000 52300 62300 52300 15 2 line
+62300 52300 62300 52100 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB2) stringwidth pop
--1 mul add
-49400 mils
-moveto
-(PB2) show
+62900 52500 62900 52700 30 2 pin
+62900 53400 62900 53200 30 2 pin
+62700 52900 63100 52900 10 0 line
+62700 53000 63100 53000 10 0 line
+62900 53200 62900 53000 10 0 line
+62900 52900 62900 52700 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB3) stringwidth pop
--1 mul add
-49000 mils
-moveto
-(PB3) show
+false false false false 202.222224 [(C6) ] 0 63150 52900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB4) stringwidth pop
--1 mul add
-48600 mils
-moveto
-(PB4) show
+false false false false 202.222224 [(100n) ] 0 63150 52700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB5) stringwidth pop
--1 mul add
-48200 mils
-moveto
-(PB5) show
+63900 52500 63900 52700 30 2 pin
+63900 53400 63900 53200 30 2 pin
+63700 52900 64100 52900 10 0 line
+63700 53000 64100 53000 10 0 line
+63900 53200 63900 53000 10 0 line
+63900 52900 63900 52700 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB6) stringwidth pop
--1 mul add
-47800 mils
-moveto
-(PB6) show
+false false false false 202.222224 [(C7) ] 0 64150 52900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PB7) stringwidth pop
--1 mul add
-47400 mils
-moveto
-(PB7) show
+false false false false 202.222224 [(100n) ] 0 64150 52700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC1) stringwidth pop
--1 mul add
-45400 mils
-moveto
-(PC1) show
+64900 52500 64900 52700 30 2 pin
+64900 53400 64900 53200 30 2 pin
+64700 52900 65100 52900 10 0 line
+64700 53000 65100 53000 10 0 line
+64900 53200 64900 53000 10 0 line
+64900 52900 64900 52700 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC2) stringwidth pop
--1 mul add
-45000 mils
-moveto
-(PC2) show
+false false false false 202.222224 [(C8) ] 0 65150 52900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC3) stringwidth pop
--1 mul add
-44600 mils
-moveto
-(PC3) show
+false false false false 202.222224 [(100n) ] 0 65150 52700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC4) stringwidth pop
--1 mul add
-44200 mils
-moveto
-(PC4) show
+65900 52500 65900 52700 30 2 pin
+65900 53400 65900 53200 30 2 pin
+65700 52900 66100 52900 10 0 line
+65700 53000 66100 53000 10 0 line
+65900 53200 65900 53000 10 0 line
+65900 52900 65900 52700 10 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC5) stringwidth pop
--1 mul add
-43800 mils
-moveto
-(PC5) show
+false false false false 202.222224 [(C9) ] 0 66150 52900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC6) stringwidth pop
--1 mul add
-43400 mils
-moveto
-(PC6) show
+false false false false 202.222224 [(100n) ] 0 66150 52700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC7) stringwidth pop
--1 mul add
-43000 mils
-moveto
-(PC7) show
-grestore
-
+62900 53800 62900 54000 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PC0) stringwidth pop
--1 mul add
-45800 mils
-moveto
-(PC0) show
+false false false false 161.777776 [(+3.3V) ] 0 62725 54050 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 50900 mils moveto
-57800 mils 50900 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 51000 mils moveto
-(11) show
+62750 54000 63050 54000 15 0 line
 grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 42400 mils moveto
-57800 mils 42400 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 42500 mils moveto
-(41) show
+62900 51900 62900 52100 30 2 pin
+62800 51900 63000 51900 10 0 line
+62855 51850 62945 51850 10 0 line
+62880 51810 62920 51810 10 0 line
 grestore
-
-newpath
-1.5 setlinewidth
-58100 mils 42000 mils moveto
-57800 mils 42000 mils lineto
-stroke
-1 setlinewidth
-
+62900 52300 65900 52300 15 2 line
+65900 52300 65900 52500 15 2 line
+62900 53600 65900 53600 15 2 line
+65900 53600 65900 53400 15 2 line
+62900 53400 62900 53800 15 2 line
+62900 52100 62900 52500 15 2 line
+63900 52300 63900 52500 15 2 line
+64900 52300 64900 52500 15 2 line
+63900 53400 63900 53600 15 2 line
+64900 53400 64900 53600 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57900 mils 42100 mils moveto
-(37) show
+false false false false 303.333345 [(Place one near each VCC pin for U1) ] 0 62300 51400 270.833344 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (RDY2) stringwidth pop
--1 mul add
-51700 mils
-moveto
-(RDY2) show
-grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PA4/RDY4) stringwidth pop
--1 mul add
-51300 mils
-moveto
-(PA4/RDY4) show
+false false false false 202.222224 [(This schematic is free software; you can redistribute it and/or modify) ] 0 44000 40900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (PA5/RDY5) stringwidth pop
--1 mul add
-50900 mils
-moveto
-(PA5/RDY5) show
+false false false false 202.222224 [( it under the terms of the GNU General Public License as published by) ] 0 44000 40700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (CTL0) stringwidth pop
--1 mul add
-42400 mils
-moveto
-(CTL0) show
+false false false false 202.222224 [(the Free Software Foundation; either version 2 of the License, or) ] 0 44000 40500 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57700 mils (CTL2) stringwidth pop
--1 mul add
-42000 mils
-moveto
-(CTL2) show
+false false false false 202.222224 [(\(at your option\) any later version.) ] 0 44000 40300 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-42.000000 scalefont
-setfont
-
-54100 mils (CY7C64603-52NC) stringwidth pop
-.5 mul -1 mul add
-47000 mils
-30.000000
-.5 mul -1 mul add moveto
-(CY7C64603-52NC) show
+false false false false 202.222224 [(This schematic is distributed in the hope that it will be useful,) ] 0 44000 40000 180.555557 text
 grestore
-
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54800 mils 40700 mils moveto
-90 rotate
-(RESERVED1) show
+false false false false 202.222224 [(but WITHOUT ANY WARRANTY; without even the implied warranty of) ] 0 44000 39800 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55200 mils 40700 mils moveto
-90 rotate
-(RESERVED2) show
+false false false false 202.222224 [(MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the) ] 0 44000 39600 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55600 mils 40700 mils moveto
-90 rotate
-(RESERVED3) show
+false false false false 202.222224 [(GNU General Public License for more details.) ] 0 44000 39300 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56000 mils 40700 mils moveto
-90 rotate
-(RESERVED4) show
+false false false false 202.222224 [(You should have received a copy of the GNU General Public License) ] 0 44000 39100 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56400 mils 40700 mils moveto
-90 rotate
-(RESERVED5) show
+false false false false 202.222224 [(along with this program; if not, write to the Free Software) ] 0 44000 38900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56800 mils 40700 mils moveto
-90 rotate
-(RESERVED6) show
+false false false false 202.222224 [(Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA) ] 0 44000 38700 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57200 mils 40700 mils moveto
-90 rotate
-(RESERVED7) show
+false false false false 202.222224 [(\(C\) 2001 Stefan Petersen \(spe@stacken.kth.se\)) ] 0 44000 41300 180.555557 text
 grestore
-
-newpath
-1.5 setlinewidth
-56800 mils 40600 mils moveto
-56800 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56700 mils
-40500 mils
-(22) stringwidth pop
-1 mul sub moveto
-90 rotate
-(22) show
 grestore
-
-newpath
-1.5 setlinewidth
-57200 mils 40600 mils moveto
-57200 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-57100 mils
-40500 mils
-(23) stringwidth pop
-1 mul sub moveto
-90 rotate
-(23) show
-grestore
-
-newpath
-1.5 setlinewidth
-56400 mils 40600 mils moveto
-56400 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+48200 42600 50 0 360 10 0 darc
+48500 42600 50 0 360 10 0 darc
+48100 42500 48600 42500 10 0 line
+48600 42500 48600 42700 10 0 line
+48600 42700 48100 42700 10 0 line
+48100 42700 48100 42500 10 0 line
+47900 42600 48100 42600 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-56300 mils
-40500 mils
-(20) stringwidth pop
-1 mul sub moveto
-90 rotate
-(20) show
+false false false false 161.777776 [(2) ] 90 48050 42650 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-56000 mils 40600 mils moveto
-56000 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+48800 42600 48600 42600 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55900 mils
-40500 mils
-(19) stringwidth pop
-1 mul sub moveto
-90 rotate
-(19) show
+false false false false 161.777776 [(1) ] 90 48750 42650 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-55600 mils 40600 mils moveto
-55600 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55500 mils
-40500 mils
-(17) stringwidth pop
-1 mul sub moveto
-90 rotate
-(17) show
 grestore
-
-newpath
-1.5 setlinewidth
-55200 mils 40600 mils moveto
-55200 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55100 mils
-40500 mils
-(15) stringwidth pop
-1 mul sub moveto
-90 rotate
-(15) show
+false false false false 202.222224 [(J1) ] 0 48200 42300 180.555557 text
 grestore
-
-newpath
-1.5 setlinewidth
-54800 mils 40600 mils moveto
-54800 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+47900 42600 47400 42600 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54700 mils
-40500 mils
-(9) stringwidth pop
-1 mul sub moveto
-90 rotate
-(9) show
+46300 52600 46500 52600 30 2 pin
+46000 52600 45900 52700 10 0 line
+46000 52600 45900 52500 10 0 line
+46300 52600 46000 52600 10 0 line
 grestore
-
-newpath
-1.5 setlinewidth
-54100 mils 40600 mils moveto
-54100 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54000 mils
-40500 mils
-(52) stringwidth pop
-1 mul sub moveto
-90 rotate
-(52) show
+false true false false 283.111104 [(reset#) ] 0 45850 52550 252.777771 text
 grestore
-
-newpath
-1.5 setlinewidth
-53700 mils 40600 mils moveto
-53700 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53600 mils
-40500 mils
-(47) stringwidth pop
-1 mul sub moveto
-90 rotate
-(47) show
-grestore
-
-newpath
-1.5 setlinewidth
-53300 mils 40600 mils moveto
-53300 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+59900 46500 59900 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53200 mils
-40500 mils
-(39) stringwidth pop
-1 mul sub moveto
-90 rotate
-(39) show
+false false false false 161.777776 [(2) ] 90 59850 46600 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-52900 mils 40600 mils moveto
-52900 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+60300 46500 60300 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52800 mils
-40500 mils
-(26) stringwidth pop
-1 mul sub moveto
-90 rotate
-(26) show
+false false false false 161.777776 [(3) ] 90 60250 46600 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-52500 mils 40600 mils moveto
-52500 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+60700 46500 60700 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils
-40500 mils
-(21) stringwidth pop
-1 mul sub moveto
-90 rotate
-(21) show
+false false false false 161.777776 [(4) ] 90 60650 46600 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-52100 mils 40600 mils moveto
-52100 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+59500 46500 59500 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52000 mils
-40500 mils
-(13) stringwidth pop
-1 mul sub moveto
-90 rotate
-(13) show
+false false false false 161.777776 [(1) ] 90 59450 46650 144.444443 text
 grestore
-
+61100 46500 61100 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52100 mils 40700 mils moveto
-90 rotate
-(GND1) show
+false false false false 161.777776 [(5) ] 90 61050 46600 144.444443 text
 grestore
-
+60100 46800 60100 47600 15 0 line
+60500 46800 60500 47600 15 0 line
+59700 46800 59700 47600 15 0 line
+60900 46800 60900 47600 15 0 line
+63100 46500 63100 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52500 mils 40700 mils moveto
-90 rotate
-(GND2) show
+false false false false 161.777776 [(10) ] 90 63050 46600 144.444443 text
 grestore
-
+62700 46500 62700 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52900 mils 40700 mils moveto
-90 rotate
-(GND3) show
+false false false false 161.777776 [(9) ] 90 62650 46600 144.444443 text
 grestore
-
+62300 46500 62300 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53300 mils 40700 mils moveto
-90 rotate
-(GND4) show
+false false false false 161.777776 [(8) ] 90 62250 46600 144.444443 text
 grestore
-
+61900 46500 61900 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53700 mils 40700 mils moveto
-90 rotate
-(GND5) show
+false false false false 161.777776 [(7) ] 90 61850 46600 144.444443 text
 grestore
-
+61500 46500 61500 46800 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54100 mils 40700 mils moveto
-90 rotate
-(GND6) show
+false false false false 161.777776 [(6) ] 90 61450 46600 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-51400 mils 40600 mils moveto
-51400 mils 40300 mils lineto
-stroke
-1 setlinewidth
-
+60300 47600 60300 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-51300 mils
-40500 mils
-(8) stringwidth pop
-1 mul sub moveto
-90 rotate
-(8) show
+false false false false 161.777776 [(18) ] 90 60250 47750 144.444443 text
 grestore
-
+59500 47600 59500 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-51400 mils 40700 mils moveto
-90 rotate
-(AGND) show
+false false false false 161.777776 [(20) ] 90 59450 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-52600 mils 52500 mils moveto
-52600 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+60700 47600 60700 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52500 mils 52600 mils moveto
-90 rotate
-(1) show
+false false false false 161.777776 [(17) ] 90 60650 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-53000 mils 52500 mils moveto
-53000 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+59900 47600 59900 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52900 mils 52600 mils moveto
-90 rotate
-(14) show
+false false false false 161.777776 [(19) ] 90 59850 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-53400 mils 52500 mils moveto
-53400 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+61100 47600 61100 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53300 mils 52600 mils moveto
-90 rotate
-(27) show
+false false false false 161.777776 [(16) ] 90 61050 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-54900 mils 52500 mils moveto
-54900 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+62100 46800 62100 47600 15 0 line
+62500 46800 62500 47600 15 0 line
+61700 46800 61700 47600 15 0 line
+62900 46800 62900 47600 15 0 line
+61500 47600 61500 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54800 mils 52600 mils moveto
-90 rotate
-(7) show
+false false false false 161.777776 [(15) ] 90 61450 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-55800 mils 52500 mils moveto
-55800 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+61900 47600 61900 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55700 mils 52600 mils moveto
-90 rotate
-(6) show
+false false false false 161.777776 [(14) ] 90 61850 47750 144.444443 text
 grestore
-
+62300 47600 62300 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-54900 mils
-52400 mils
-(XOUT) stringwidth pop
-1 mul sub moveto
-90 rotate
-(XOUT) show
+false false false false 161.777776 [(13) ] 90 62250 47750 144.444443 text
 grestore
-
+62700 47600 62700 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-55800 mils
-52400 mils
-(XIN) stringwidth pop
-1 mul sub moveto
-90 rotate
-(XIN) show
+false false false false 161.777776 [(12) ] 90 62650 47750 144.444443 text
 grestore
-
-newpath
-1.5 setlinewidth
-53800 mils 52500 mils moveto
-53800 mils 52800 mils lineto
-stroke
-1 setlinewidth
-
+63100 47600 63100 47900 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53700 mils 52600 mils moveto
-90 rotate
-(40) show
+false false false false 161.777776 [(11) ] 90 63050 47750 144.444443 text
 grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52600 mils
-52400 mils
-(VCC1) stringwidth pop
-1 mul sub moveto
-90 rotate
-(VCC1) show
+59300 46800 63300 46800 15 0 line
+63300 46800 63300 47600 15 0 line
+63300 47600 59300 47600 15 0 line
+59300 47600 59300 46800 15 0 line
+61300 46800 61300 47600 15 0 line
+59300 47200 63300 47200 15 0 line
+60700 47000 50 0 360 10 0 darc
+60700 46950 60700 46800 15 0 line
+61100 47000 50 0 360 10 0 darc
+61100 46950 61100 46800 15 0 line
+61500 47000 50 0 360 10 0 darc
+61500 46950 61500 46800 15 0 line
+61900 47000 50 0 360 10 0 darc
+61900 46950 61900 46800 15 0 line
+62300 47000 50 0 360 10 0 darc
+62300 46950 62300 46800 15 0 line
+62700 47000 50 0 360 10 0 darc
+62700 46950 62700 46800 15 0 line
+63100 47000 50 0 360 10 0 darc
+63100 46950 63100 46800 15 0 line
+63100 47400 50 0 360 10 0 darc
+63100 47450 63100 47600 15 0 line
+62700 47400 50 0 360 10 0 darc
+62700 47450 62700 47600 15 0 line
+62300 47400 50 0 360 10 0 darc
+62300 47450 62300 47600 15 0 line
+61900 47400 50 0 360 10 0 darc
+61900 47450 61900 47600 15 0 line
+60700 47400 50 0 360 10 0 darc
+60700 47450 60700 47600 15 0 line
+61100 47400 50 0 360 10 0 darc
+61100 47450 61100 47600 15 0 line
+61500 47400 50 0 360 10 0 darc
+61500 47450 61500 47600 15 0 line
+60300 47000 50 0 360 10 0 darc
+60300 46950 60300 46800 15 0 line
+60300 47400 50 0 360 10 0 darc
+60300 47450 60300 47600 15 0 line
+59900 47000 50 0 360 10 0 darc
+59900 46950 59900 46800 15 0 line
+59900 47400 50 0 360 10 0 darc
+59900 47450 59900 47600 15 0 line
+59500 47000 50 0 360 10 0 darc
+59500 46950 59500 46800 15 0 line
+59500 47400 50 0 360 10 0 darc
+59500 47450 59500 47600 15 0 line
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53000 mils
-52400 mils
-(VCC2) stringwidth pop
-1 mul sub moveto
-90 rotate
-(VCC2) show
+false true false false 202.222224 [(CONN1) ] 0 59250 46900 180.555557 text
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53400 mils
-52400 mils
-(VCC3) stringwidth pop
-1 mul sub moveto
-90 rotate
-(VCC3) show
-grestore
-
+47875 43100 47725 42900 10 0 line
+47725 43100 47875 42900 10 0 line
+47600 43000 47800 43000 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-53800 mils
-52400 mils
-(VCC4) stringwidth pop
-1 mul sub moveto
-90 rotate
-(VCC4) show
+false false true false 202.222224 [(NC) ] 0 47900 43000 180.555557 text
 grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 46400 mils moveto
-(INCOMPLETE SYMBOL) show
 grestore
-
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 46100 mils moveto
-(Missing is:) show
-grestore
-
+50475 45200 50325 45000 10 0 line
+50325 45200 50475 45000 10 0 line
+50600 45100 50400 45100 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 45900 mils moveto
-(* label on pins) show
+false true true false 202.222224 [(NC) ] 0 50300 45100 180.555557 text
 grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 45600 mils moveto
-(Errors are:) show
 grestore
-
+50600 45100 50900 45100 15 2 line
+47600 43000 47400 43000 15 2 line
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 45400 mils moveto
-(* Wrong pin number size) show
-grestore
-
+57800 40625 57600 40775 10 0 line
+57800 40775 57600 40625 10 0 line
+57700 40900 57700 40700 30 2 pin
 gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-52400 mils 45200 mils moveto
-(* Distance from pin to pin number \(currently 100 pt\)) show
+true false false true 202.222224 [(NC) ] 0 57700 40600 180.555557 text
 grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-50700 mils 52600 mils moveto
-(U1) show
 grestore
-
-gsave
-newpath
-1.5 setlinewidth
-54100 mils 39900 mils moveto
-51400 mils 39900 mils lineto
-stroke
+50900 47100 48700 47100 15 2 line
+48700 47100 48700 45700 15 2 line
 newpath
-54100 mils 39900 mils
-3
+46000 47800
+25
 0 360 arc
 fill
 newpath
-51400 mils 39900 mils
-3 
-0 360 arc
-fill
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-57200 mils 40300 mils moveto
-57200 mils 39900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-55600 mils 39900 mils moveto
-54100 mils 39900 mils lineto
-stroke
-newpath
-55600 mils 39900 mils
-3
+46000 49100
+25
 0 360 arc
 fill
 newpath
-54100 mils 39900 mils
-3 
+46000 49100
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-57200 mils 39900 mils moveto
-55600 mils 39900 mils lineto
-stroke
-newpath
-55600 mils 39900 mils
-3 
+47000 49100
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-56000 mils 39200 mils moveto
-57200 mils 39200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63600 mils 44200 mils moveto
-63400 mils 44200 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63900 mils 44200 mils moveto
-64000 mils 44300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63900 mils 44200 mils moveto
-64000 mils 44100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63600 mils 44200 mils moveto
-63900 mils 44200 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63800 mils (tdo_ttl) stringwidth pop
--1 mul add
-44300 mils
-moveto
-(tdo_ttl) show
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63400 mils 45800 mils moveto
-63600 mils 45800 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63600 mils 45800 mils moveto
-64000 mils 45800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45800 mils moveto
-63900 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45800 mils moveto
-63900 mils 45700 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63400 mils 45900 mils moveto
-(tdi_ttl) show
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63400 mils 45400 mils moveto
-63600 mils 45400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63600 mils 45400 mils moveto
-64000 mils 45400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45400 mils moveto
-63900 mils 45500 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45400 mils moveto
-63900 mils 45300 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63300 mils 45500 mils moveto
-(tms_ttl) show
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63400 mils 45000 mils moveto
-63600 mils 45000 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63600 mils 45000 mils moveto
-64000 mils 45000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45000 mils moveto
-63900 mils 45100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 45000 mils moveto
-63900 mils 44900 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63300 mils 45100 mils moveto
-(tck_ttl) show
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63400 mils 44600 mils moveto
-63600 mils 44600 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63600 mils 44600 mils moveto
-64000 mils 44600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 44600 mils moveto
-63900 mils 44700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 44600 mils moveto
-63900 mils 44500 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63300 mils 44700 mils moveto
-(trst_ttl) show
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59600 mils 53100 mils moveto
-59600 mils 53300 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-59450 mils 53300 mils moveto
-59750 mils 53300 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59475 mils 53350 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59600 mils 52900 mils moveto
-59600 mils 52750 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-59600 mils 52000 mils moveto
-59600 mils 52152 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-59500 mils 52150 mils moveto
-59700 mils 52150 mils lineto
-stroke
-grestore
-gsave
-newpath
-59700 mils 52150 mils moveto
-59700 mils 52750 mils lineto
-stroke
-grestore
-gsave
-newpath
-59700 mils 52750 mils moveto
-59500 mils 52750 mils lineto
-stroke
-grestore
-gsave
-newpath
-59500 mils 52750 mils moveto
-59500 mils 52150 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-59400 mils 52200 mils moveto
-90 rotate
-(R16) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-59900 mils 52300 mils moveto
-90 rotate
-(10k) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 51700 mils moveto
-60800 mils 51700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61700 mils 51700 mils moveto
-61550 mils 51700 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-60800 mils 51700 mils moveto
-60952 mils 51700 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-60950 mils 51600 mils moveto
-61550 mils 51600 mils lineto
-stroke
-grestore
-gsave
-newpath
-61550 mils 51600 mils moveto
-61550 mils 51800 mils lineto
-stroke
-grestore
-gsave
-newpath
-61550 mils 51800 mils moveto
-60950 mils 51800 mils lineto
-stroke
-grestore
-gsave
-newpath
-60950 mils 51800 mils moveto
-60950 mils 51600 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-61000 mils 51900 mils moveto
-(R14) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-61100 mils 51400 mils moveto
-(10k) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-59600 mils 51300 mils moveto
-59600 mils 52000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58800 mils 50900 mils moveto
-58800 mils 52000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58800 mils 53100 mils moveto
-58800 mils 52900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59600 mils 53100 mils moveto
-59600 mils 52900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50400 mils 45600 mils moveto
-47300 mils 45600 mils lineto
-stroke
-newpath
-47300 mils 45600 mils
-3 
+46000 47800
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-47300 mils 46800 mils moveto
-47300 mils 47000 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-47150 mils 47000 mils moveto
-47450 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47175 mils 47050 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47300 mils 44200 mils moveto
-47300 mils 44400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-47200 mils 44200 mils moveto
-47400 mils 44200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-47255 mils 44150 mils moveto
-47345 mils 44150 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-47280 mils 44110 mils moveto
-47320 mils 44110 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50200 mils 45000 mils moveto
-50400 mils 45000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-50200 mils 43800 mils moveto
-50400 mils 43800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49200 mils 45100 mils moveto
-49200 mils 43800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49200 mils 43800 mils moveto
-49300 mils 43800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-49300 mils 45000 mils moveto
-49200 mils 45000 mils lineto
-stroke
-newpath
-49200 mils 45000 mils
-3 
+47000 47800
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-47300 mils 45400 mils moveto
-47300 mils 45800 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47300 mils 46800 mils moveto
-47300 mils 46700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-47300 mils 44500 mils moveto
-47300 mils 44400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 43100 mils moveto
-45000 mils 42950 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-45000 mils 42200 mils moveto
-45000 mils 42352 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-44900 mils 42350 mils moveto
-45100 mils 42350 mils lineto
-stroke
-grestore
-gsave
-newpath
-45100 mils 42350 mils moveto
-45100 mils 42950 mils lineto
-stroke
-grestore
-gsave
-newpath
-45100 mils 42950 mils moveto
-44900 mils 42950 mils lineto
-stroke
-grestore
-gsave
-newpath
-44900 mils 42950 mils moveto
-44900 mils 42350 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44800 mils 42400 mils moveto
-90 rotate
-(R10) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-45300 mils 42600 mils moveto
-90 rotate
-(0) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 44400 mils moveto
-45000 mils 44250 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-45000 mils 43500 mils moveto
-45000 mils 43652 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-gsave
-newpath
-44900 mils 43650 mils moveto
-45100 mils 43650 mils lineto
-stroke
-grestore
-gsave
-newpath
-45100 mils 43650 mils moveto
-45100 mils 44250 mils lineto
-stroke
-grestore
-gsave
-newpath
-45100 mils 44250 mils moveto
-44900 mils 44250 mils lineto
-stroke
-grestore
-gsave
-newpath
-44900 mils 44250 mils moveto
-44900 mils 43650 mils lineto
-stroke
-grestore
-grestore
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44800 mils 43700 mils moveto
-90 rotate
-(R9) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-45300 mils 43900 mils moveto
-90 rotate
-(0) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-45200 mils 43700 mils moveto
-(do not mount) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 44500 mils moveto
-45000 mils 44700 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-44850 mils 44700 mils moveto
-45150 mils 44700 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-44875 mils 44750 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 41900 mils moveto
-45000 mils 42100 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-44900 mils 41900 mils moveto
-45100 mils 41900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-44955 mils 41850 mils moveto
-45045 mils 41850 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-44980 mils 41810 mils moveto
-45020 mils 41810 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 43100 mils moveto
-45000 mils 43500 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 44500 mils moveto
-45000 mils 44400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-45000 mils 42200 mils moveto
-45000 mils 42100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-46000 mils 43300 mils moveto
-45000 mils 43300 mils lineto
-stroke
-newpath
-45000 mils 43300 mils
-3 
+47000 49100
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63400 mils 45800 mils moveto
-59400 mils 45800 mils lineto
-stroke
-newpath
-59400 mils 45800 mils
-3 
+47000 47800
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63400 mils 45400 mils moveto
-59800 mils 45400 mils lineto
-stroke
-newpath
-59800 mils 45400 mils
-3 
+56100 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63400 mils 45000 mils moveto
-60200 mils 45000 mils lineto
-stroke
-newpath
-60200 mils 45000 mils
-3 
+51900 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63400 mils 44600 mils moveto
-60600 mils 44600 mils lineto
-stroke
-newpath
-60600 mils 44600 mils
-3 
+52600 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63400 mils 44200 mils moveto
-61000 mils 44200 mils lineto
-stroke
-newpath
-61000 mils 44200 mils
-3 
+53000 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-58100 mils 47400 mils moveto
-59400 mils 47400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59800 mils 45900 mils moveto
-59800 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59750 mils 46000 mils moveto
-90 rotate
-(2) show
-grestore
-
-newpath
-1.5 setlinewidth
-60200 mils 45900 mils moveto
-60200 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60150 mils 46000 mils moveto
-90 rotate
-(3) show
-grestore
-
-newpath
-1.5 setlinewidth
-60600 mils 45900 mils moveto
-60600 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60550 mils 46000 mils moveto
-90 rotate
-(4) show
-grestore
-
-newpath
-1.5 setlinewidth
-59400 mils 45900 mils moveto
-59400 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59350 mils 46050 mils moveto
-90 rotate
-(1) show
-grestore
-
-newpath
-1.5 setlinewidth
-61000 mils 45900 mils moveto
-61000 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60950 mils 46000 mils moveto
-90 rotate
-(5) show
-grestore
-
-gsave
-newpath
-60000 mils 46200 mils moveto
-60000 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-60400 mils 46200 mils moveto
-60400 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-59600 mils 46200 mils moveto
-59600 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-60800 mils 46200 mils moveto
-60800 mils 47000 mils lineto
-stroke
-grestore
-
-
-newpath
-1.5 setlinewidth
-63000 mils 45900 mils moveto
-63000 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62950 mils 46000 mils moveto
-90 rotate
-(10) show
-grestore
-
-newpath
-1.5 setlinewidth
-62600 mils 45900 mils moveto
-62600 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62550 mils 46000 mils moveto
-90 rotate
-(9) show
-grestore
-
-newpath
-1.5 setlinewidth
-62200 mils 45900 mils moveto
-62200 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62150 mils 46000 mils moveto
-90 rotate
-(8) show
-grestore
-
-newpath
-1.5 setlinewidth
-61800 mils 45900 mils moveto
-61800 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-61750 mils 46000 mils moveto
-90 rotate
-(7) show
-grestore
-
-newpath
-1.5 setlinewidth
-61400 mils 45900 mils moveto
-61400 mils 46200 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-61350 mils 46000 mils moveto
-90 rotate
-(6) show
-grestore
-
-
-newpath
-1.5 setlinewidth
-60200 mils 47000 mils moveto
-60200 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60150 mils 47150 mils moveto
-90 rotate
-(18) show
-grestore
-
-newpath
-1.5 setlinewidth
-59400 mils 47000 mils moveto
-59400 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59350 mils 47150 mils moveto
-90 rotate
-(20) show
-grestore
-
-newpath
-1.5 setlinewidth
-60600 mils 47000 mils moveto
-60600 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60550 mils 47150 mils moveto
-90 rotate
-(17) show
-grestore
-
-newpath
-1.5 setlinewidth
-59800 mils 47000 mils moveto
-59800 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-59750 mils 47150 mils moveto
-90 rotate
-(19) show
-grestore
-
-newpath
-1.5 setlinewidth
-61000 mils 47000 mils moveto
-61000 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-60950 mils 47150 mils moveto
-90 rotate
-(16) show
-grestore
-
-gsave
-newpath
-62000 mils 46200 mils moveto
-62000 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-62400 mils 46200 mils moveto
-62400 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-61600 mils 46200 mils moveto
-61600 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-62800 mils 46200 mils moveto
-62800 mils 47000 mils lineto
-stroke
-grestore
-
-newpath
-1.5 setlinewidth
-61400 mils 47000 mils moveto
-61400 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-61350 mils 47150 mils moveto
-90 rotate
-(15) show
-grestore
-
-newpath
-1.5 setlinewidth
-61800 mils 47000 mils moveto
-61800 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-61750 mils 47150 mils moveto
-90 rotate
-(14) show
-grestore
-
-newpath
-1.5 setlinewidth
-62200 mils 47000 mils moveto
-62200 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62150 mils 47150 mils moveto
-90 rotate
-(13) show
-grestore
-
-newpath
-1.5 setlinewidth
-62600 mils 47000 mils moveto
-62600 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62550 mils 47150 mils moveto
-90 rotate
-(12) show
-grestore
-
-newpath
-1.5 setlinewidth
-63000 mils 47000 mils moveto
-63000 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62950 mils 47150 mils moveto
-90 rotate
-(11) show
-grestore
-
-gsave
-gsave
-newpath
-59200 mils 46200 mils moveto
-63200 mils 46200 mils lineto
-stroke
-grestore
-gsave
-newpath
-63200 mils 46200 mils moveto
-63200 mils 47000 mils lineto
-stroke
-grestore
-gsave
-newpath
-63200 mils 47000 mils moveto
-59200 mils 47000 mils lineto
-stroke
-grestore
-gsave
-newpath
-59200 mils 47000 mils moveto
-59200 mils 46200 mils lineto
-stroke
-grestore
-grestore
-
-gsave
-newpath
-61200 mils 46200 mils moveto
-61200 mils 47000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-59200 mils 46600 mils moveto
-63200 mils 46600 mils lineto
-stroke
-grestore
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-59100 mils 46300 mils moveto
-90 rotate
-(CONN1) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-59400 mils 45800 mils moveto
-59400 mils 45900 mils lineto
-stroke
-newpath
-59400 mils 45800 mils
-3
+53400 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-59800 mils 45400 mils moveto
-59800 mils 45900 mils lineto
-stroke
-newpath
-59800 mils 45400 mils
-3
+53800 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-60200 mils 45000 mils moveto
-60200 mils 45900 mils lineto
-stroke
-newpath
-60200 mils 45000 mils
-3
+54200 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-60600 mils 44600 mils moveto
-60600 mils 45900 mils lineto
-stroke
-newpath
-60600 mils 44600 mils
-3
+54600 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-61000 mils 44200 mils moveto
-61000 mils 45900 mils lineto
-stroke
-newpath
-61000 mils 44200 mils
-3
+55300 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-61400 mils 43800 mils moveto
-61400 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61800 mils 43400 mils moveto
-61800 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62200 mils 43000 mils moveto
-62200 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59400 mils 47400 mils moveto
-59400 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-59800 mils 47800 mils moveto
-59800 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-60200 mils 48200 mils moveto
-60200 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-60600 mils 48600 mils moveto
-60600 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61000 mils 49000 mils moveto
-61000 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61400 mils 47300 mils moveto
-61400 mils 49400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61800 mils 49800 mils moveto
-61800 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62200 mils 50200 mils moveto
-62200 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62000 mils 51400 mils moveto
-62000 mils 51600 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-61900 mils 51400 mils moveto
-62100 mils 51400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-61955 mils 51350 mils moveto
-62045 mils 51350 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-61980 mils 51310 mils moveto
-62020 mils 51310 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 42400 mils moveto
-62600 mils 42400 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62600 mils 42400 mils moveto
-62600 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-58100 mils 42000 mils moveto
-63000 mils 42000 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 42000 mils moveto
-63000 mils 45900 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62600 mils 47700 mils moveto
-62600 mils 47900 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-62450 mils 47900 mils moveto
-62750 mils 47900 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62475 mils 47950 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63600 mils 47100 mils moveto
-63600 mils 47300 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63500 mils 47100 mils moveto
-63700 mils 47100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63555 mils 47050 mils moveto
-63645 mils 47050 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63580 mils 47010 mils moveto
-63620 mils 47010 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 47300 mils moveto
-63000 mils 47500 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63600 mils 47300 mils moveto
-63600 mils 47500 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63600 mils 47500 mils moveto
-63000 mils 47500 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62600 mils 47700 mils moveto
-62600 mils 47300 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-61700 mils 51700 mils moveto
-62000 mils 51700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-62000 mils 51700 mils moveto
-62000 mils 51600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 52700 mils moveto
-63000 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-63000 mils 53600 mils moveto
-63000 mils 53400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-62800 mils 53100 mils moveto
-63200 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-62800 mils 53200 mils moveto
-63200 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63000 mils 53400 mils moveto
-63000 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63000 mils 53100 mils moveto
-63000 mils 52900 mils lineto
-stroke
-grestore
-
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-62700 mils 52900 mils moveto
-90 rotate
-(C6) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63400 mils 52900 mils moveto
-90 rotate
-(100n) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-64000 mils 52700 mils moveto
-64000 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-64000 mils 53600 mils moveto
-64000 mils 53400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-63800 mils 53100 mils moveto
-64200 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-63800 mils 53200 mils moveto
-64200 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 53400 mils moveto
-64000 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64000 mils 53100 mils moveto
-64000 mils 52900 mils lineto
-stroke
-grestore
-
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-63700 mils 52900 mils moveto
-90 rotate
-(C7) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-64400 mils 52900 mils moveto
-90 rotate
-(100n) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-65000 mils 52700 mils moveto
-65000 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-65000 mils 53600 mils moveto
-65000 mils 53400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-64800 mils 53100 mils moveto
-65200 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-64800 mils 53200 mils moveto
-65200 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-65000 mils 53400 mils moveto
-65000 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-65000 mils 53100 mils moveto
-65000 mils 52900 mils lineto
-stroke
-grestore
-
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-64700 mils 52900 mils moveto
-90 rotate
-(C8) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-65400 mils 52900 mils moveto
-90 rotate
-(100n) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-66000 mils 52700 mils moveto
-66000 mils 52900 mils lineto
-stroke
-1 setlinewidth
-
-
-newpath
-1.5 setlinewidth
-66000 mils 53600 mils moveto
-66000 mils 53400 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-65800 mils 53100 mils moveto
-66200 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-65800 mils 53200 mils moveto
-66200 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-66000 mils 53400 mils moveto
-66000 mils 53200 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-66000 mils 53100 mils moveto
-66000 mils 52900 mils lineto
-stroke
-grestore
-
-
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-65700 mils 52900 mils moveto
-90 rotate
-(C9) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-66400 mils 52900 mils moveto
-90 rotate
-(100n) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 54000 mils moveto
-63000 mils 54200 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-62850 mils 54200 mils moveto
-63150 mils 54200 mils lineto
-stroke
-grestore
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-62875 mils 54250 mils moveto
-(+3.3V) show
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 52100 mils moveto
-63000 mils 52300 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
-newpath
-62900 mils 52100 mils moveto
-63100 mils 52100 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-62955 mils 52050 mils moveto
-63045 mils 52050 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-62980 mils 52010 mils moveto
-63020 mils 52010 mils lineto
-stroke
-grestore
-
-
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 52500 mils moveto
-66000 mils 52500 mils lineto
-stroke
-newpath
-63000 mils 52500 mils
-3
+55700 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-66000 mils 52500 mils moveto
-66000 mils 52700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 53800 mils moveto
-66000 mils 53800 mils lineto
-stroke
-newpath
-63000 mils 53800 mils
-3
+56900 40500
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-66000 mils 53800 mils moveto
-66000 mils 53600 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-63000 mils 54000 mils moveto
-63000 mils 53800 mils lineto
-stroke
-newpath
-63000 mils 53800 mils
-3 
+53100 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63000 mils 53800 mils moveto
-63000 mils 53600 mils lineto
-stroke
-newpath
-63000 mils 53800 mils
-3
+53100 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63000 mils 52300 mils moveto
-63000 mils 52500 mils lineto
-stroke
-newpath
-63000 mils 52500 mils
-3 
+53900 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-63000 mils 52500 mils moveto
-63000 mils 52700 mils lineto
-stroke
-newpath
-63000 mils 52500 mils
-3
+53500 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-64000 mils 52500 mils moveto
-64000 mils 52700 mils lineto
-stroke
-newpath
-64000 mils 52500 mils
-3
+53900 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-65000 mils 52500 mils moveto
-65000 mils 52700 mils lineto
-stroke
-newpath
-65000 mils 52500 mils
-3
+53500 53600
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-64000 mils 53600 mils moveto
-64000 mils 53800 mils lineto
-stroke
-newpath
-64000 mils 53800 mils
-3 
+48700 44400
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-65000 mils 53600 mils moveto
-65000 mils 53800 mils lineto
-stroke
-newpath
-65000 mils 53800 mils
-3 
+48700 44400
+25
 0 360 arc
 fill
-grestore
-
-gsave
-/Helvetica findfont
-21.000000 scalefont
-setfont
-
-62400 mils 51600 mils moveto
-(Place one near each VCC pin for U1) show
-grestore
-
-gsave
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 41000 mils moveto
-(This schematic is free software; you can redistribute it and/or modify) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 40800 mils moveto
-( it under the terms of the GNU General Public License as published by) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 40600 mils moveto
-(the Free Software Foundation; either version 2 of the License, or) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 40400 mils moveto
-(\(at your option\) any later version.) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 40100 mils moveto
-(This schematic is distributed in the hope that it will be useful,) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 39900 mils moveto
-(but WITHOUT ANY WARRANTY; without even the implied warranty of) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 39700 mils moveto
-(MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 39400 mils moveto
-(GNU General Public License for more details.) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 39200 mils moveto
-(You should have received a copy of the GNU General Public License) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 39000 mils moveto
-(along with this program; if not, write to the Free Software) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 38800 mils moveto
-(Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA) show
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-44000 mils 41400 mils moveto
-(\(C\) 2001 Stefan Petersen \(spe@stacken.kth.se\)) show
-grestore
-
-
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-47400 mils 42700 mils moveto
-47600 mils 42700 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-47550 mils 42750 mils moveto
-90 rotate
-(2) show
-grestore
-
-newpath
-1.5 setlinewidth
-48400 mils 42700 mils moveto
-48200 mils 42700 mils lineto
-stroke
-1 setlinewidth
-
-gsave
-/Helvetica findfont
-11.200000 scalefont
-setfont
-
-48350 mils 42750 mils moveto
-90 rotate
-(1) show
-grestore
-
-gsave
-newpath
-47700 mils 42700 mils
-50 mils
-0 360 arc
-stroke
-grestore
-
-gsave
-newpath
-48100 mils 42700 mils
-50 mils
-0 360 arc
-stroke
-grestore
-
-gsave
-gsave
-newpath
-47600 mils 42600 mils moveto
-48200 mils 42600 mils lineto
-stroke
-grestore
-gsave
-newpath
-48200 mils 42600 mils moveto
-48200 mils 42800 mils lineto
-stroke
-grestore
-gsave
-newpath
-48200 mils 42800 mils moveto
-47600 mils 42800 mils lineto
-stroke
-grestore
-gsave
-newpath
-47600 mils 42800 mils moveto
-47600 mils 42600 mils lineto
-stroke
-grestore
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-47800 mils 42400 mils moveto
-(J1) show
-grestore
-
-
-gsave
-newpath
-1.5 setlinewidth
-47400 mils 42700 mils moveto
-47300 mils 42700 mils lineto
-stroke
-grestore
-
-gsave
-newpath
-1.5 setlinewidth
-48400 mils 42700 mils moveto
-48500 mils 42700 mils lineto
-stroke
-newpath
-48500 mils 42700 mils
-3 
+48300 42800
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-48500 mils 42700 mils moveto
-49600 mils 42700 mils lineto
-stroke
-newpath
-48500 mils 42700 mils
-3
+48300 42800
+25
 0 360 arc
 fill
-grestore
-
-gsave
 newpath
-1.5 setlinewidth
-47300 mils 53000 mils moveto
-47500 mils 53000 mils lineto
-stroke
-1 setlinewidth
-
-
-gsave
+49100 42600
+25
+0 360 arc
+fill
 newpath
-47000 mils 53000 mils moveto
-46900 mils 53100 mils lineto
-stroke
-grestore
-
-gsave
+49100 42600
+25
+0 360 arc
+fill
 newpath
-47000 mils 53000 mils moveto
-46900 mils 52900 mils lineto
-stroke
-grestore
-
-gsave
+46000 42800
+25
+0 360 arc
+fill
 newpath
-47300 mils 53000 mils moveto
-47000 mils 53000 mils lineto
-stroke
-grestore
-
-
-
-grestore
-
-gsave
-/Helvetica findfont
-14.000000 scalefont
-setfont
-
-46900 mils 53200 mils moveto
-(reset#) show
-grestore
-
-
+46000 42800
+25
+0 360 arc
+fill
+newpath
+46900 50500
+25
+0 360 arc
+fill
+newpath
+46900 50500
+25
+0 360 arc
+fill
+newpath
+59500 46400
+25
+0 360 arc
+fill
+newpath
+59900 46000
+25
+0 360 arc
+fill
+newpath
+60300 45600
+25
+0 360 arc
+fill
+newpath
+60700 45200
+25
+0 360 arc
+fill
+newpath
+61100 44800
+25
+0 360 arc
+fill
+newpath
+50750 54000
+25
+0 360 arc
+fill
+newpath
+50750 54000
+25
+0 360 arc
+fill
+newpath
+50000 54000
+25
+0 360 arc
+fill
+newpath
+50000 54000
+25
+0 360 arc
+fill
+newpath
+49500 52600
+25
+0 360 arc
+fill
+newpath
+49500 52600
+25
+0 360 arc
+fill
+newpath
+56100 40500
+25
+0 360 arc
+fill
+newpath
+51900 40500
+25
+0 360 arc
+fill
+newpath
+52600 40500
+25
+0 360 arc
+fill
+newpath
+53000 40500
+25
+0 360 arc
+fill
+newpath
+53400 40500
+25
+0 360 arc
+fill
+newpath
+53800 40500
+25
+0 360 arc
+fill
+newpath
+54200 40500
+25
+0 360 arc
+fill
+newpath
+54600 40500
+25
+0 360 arc
+fill
+newpath
+55300 40500
+25
+0 360 arc
+fill
+newpath
+55700 40500
+25
+0 360 arc
+fill
+newpath
+56900 40500
+25
+0 360 arc
+fill
+newpath
+47400 45700
+25
+0 360 arc
+fill
+newpath
+49500 45700
+25
+0 360 arc
+fill
+newpath
+49500 45700
+25
+0 360 arc
+fill
+newpath
+47400 45700
+25
+0 360 arc
+fill
+newpath
+45000 43200
+25
+0 360 arc
+fill
+newpath
+45000 43200
+25
+0 360 arc
+fill
+newpath
+59500 46400
+25
+0 360 arc
+fill
+newpath
+59900 46000
+25
+0 360 arc
+fill
+newpath
+60300 45600
+25
+0 360 arc
+fill
+newpath
+60700 45200
+25
+0 360 arc
+fill
+newpath
+61100 44800
+25
+0 360 arc
+fill
+newpath
+62900 52300
+25
+0 360 arc
+fill
+newpath
+63900 52300
+25
+0 360 arc
+fill
+newpath
+64900 52300
+25
+0 360 arc
+fill
+newpath
+62900 53600
+25
+0 360 arc
+fill
+newpath
+63900 53600
+25
+0 360 arc
+fill
+newpath
+64900 53600
+25
+0 360 arc
+fill
+newpath
+62900 53600
+25
+0 360 arc
+fill
+newpath
+62900 52300
+25
+0 360 arc
+fill
+newpath
+63900 52300
+25
+0 360 arc
+fill
+newpath
+64900 52300
+25
+0 360 arc
+fill
+newpath
+63900 53600
+25
+0 360 arc
+fill
+newpath
+64900 53600
+25
+0 360 arc
+fill
 showpage
+%%End

@@ -1,3 +1,7 @@
+2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/.sch increase font sizes and regenerated .ps files.
+
 2015-11-12  Wiley E. Hill <wileyhill@gmail.com>
 
     * sch/gTAG-jtagio.sch: Add net names for jtag signals between the
