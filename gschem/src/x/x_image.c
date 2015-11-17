@@ -454,8 +454,10 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
     x_image_write_eps(w_current, filename);
   }
   else {
-    if (strcmp(filetype, "pdf") == 0)
+
+    if (strcmp(filetype, "pdf") == 0) {
       x_print_export_pdf (w_current, filename);
+    }
     else {
 
       pixbuf = x_image_get_pixbuf(w_current, extent, use_print_map, invert_color_bw);
@@ -489,7 +491,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
                           filename, width, height);
           }
         }
-        GEDA_FREE(filetype);
+
         if (pixbuf != NULL) {
           GEDA_UNREF(pixbuf);
         }
@@ -851,9 +853,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     filename = geda_file_chooser_get_entry_text(ThisDialog);
 
     /* Call low-level to do the work */
-    x_image_lowlevel(w_current, filename, width, height, image_type, image_extents,
-                     use_print_map, invert_color_bw);
+    x_image_lowlevel(w_current, filename, width, height, image_type,
+                     image_extents, use_print_map, invert_color_bw);
 
+    GEDA_FREE(image_type);
     GEDA_FREE(filename);
   }
 

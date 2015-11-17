@@ -7,6 +7,10 @@
       success and revise message for failure replacing the function name
       with "Error".
 
+    * src/x/x_image.c: Free "filetype" in function x_image_setup instead of
+      x_image_lowlevel because this results in an error when x_image_lowlevel
+      is called from function g_funcs_png_image.
+
     * src/x/x_print.c: Replace "Gtk" macro GetComboBoxActive with function
       geda_combo_box_get_active to eliminate Gtk noise.
 
