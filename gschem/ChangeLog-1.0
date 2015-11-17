@@ -1,5 +1,8 @@
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_parsecmd.c: Change command line option "L" to "g" and
+      add long option "guile" for passing extra path to search on start-up.
+
     * src/x/x_image.c: Added log message in function x_image_write_eps for
       success and revise message for failure replacing the function name
       with "Error".

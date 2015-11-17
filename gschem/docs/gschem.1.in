@@ -34,12 +34,11 @@ current working directory. This option allows the user to specify an
 additional rc file which is read after all the other rc files have
 been are read.
 .TP 8
+\fB\-g\fR, \fB\--guile DIR\fR
+Prepend \fIDIR\fR to the Guile search path before configurations are loaded.
+.TP 8
 \fB\-h\fR, \fB\--help\fR
 Print a help message.
-.TP 8
-\fB\-L\fR \fIDIRECTORY\fR
-Prepend \fIDIRECTORY\fR to the list of directories to be searched for
-Scheme files before configuration are loaded.
 .TP 8
 \fB\-m\fR, \fB\--safe-mode\fR
 Run gschem in single task mode.

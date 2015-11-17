@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:hL:mno:pqr:s:t:vVx:"
+#define GETOPT_OPTIONS "a:c:g:h:mno:pqr:s:t:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -44,6 +44,7 @@ struct option long_options[] =
   {
     {"render-adaptor", 1, 0, 'a'},
     {"config-file",    1, 0, 'c'},
+    {"guile",          1, 0, 'g'},
     {"help",           0, 0, 'h'},
     {"safe-mode",      0, 0, 'm'},
     {"no-auto",        0, 0, 'n'},
@@ -89,23 +90,23 @@ usage(char *cmd)
     "schematic.\n"
     "\n"
     "Options:\n"
-    "  -a, --render-adaptor=DRV Specify which render adaptor to use, Cario or X11.\n"
-    "  -c, --config-file=FILE   Additional configuration file to load.\n"
-    "  -h, --help               Help; this message.\n"
-    "  -L DIR                   Add DIR to Scheme search path (pre-config).\n"
-    "  -m, --safe-mode          Safe Mode.\n"
-    "  -n, --no-auto            No auto load last document.\n"
-    "  -o, --output=FILE        Output filename (for printing).\n"
-    "  -p, --place              Automatically place the window.\n"
-    "  -q, --quiet              Quiet mode.\n"
-    "  -r, --run FILE           Scheme script to run at startup.\n"
-    "  -s, --start <name>       Startup using the given session name.\n"
-    "  -t, --title-block FILE   Start a new drawing using the specified title-block.\n"
-    "  -u, --undo-dir DIR       Specify a temporary directory for Undo files.\n"
-    "  -v, --verbose            Verbose mode.\n"
-    "  -V, --version            Show version information.\n"
-    "  -x EXPR                  Scheme expression to run at startup.\n"
-    "  --                       Treat all remaining arguments as filenames.\n"
+    "  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or X11.\n"
+    "  -c, --config-file <FILE>   Additional configuration file to load.\n"
+    "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+    "  -h, --help                 Help; this message.\n"
+    "  -m, --safe-mode            Safe Mode.\n"
+    "  -n, --no-auto              No auto load last document.\n"
+    "  -o, --output <FILE>        Output filename (for printing).\n"
+    "  -p, --place                Automatically place the window.\n"
+    "  -q, --quiet                Quiet mode.\n"
+    "  -r, --run <FILE>           Scheme script to run at startup.\n"
+    "  -s, --start <name>         Startup using the given session name.\n"
+    "  -t, --title-block <FILE>   Start a new drawing using the specified title-block.\n"
+    "  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+    "  -v, --verbose              Verbose mode.\n"
+    "  -V, --version              Show version information.\n"
+    "  -x (EXPR)                  Scheme expression to run at startup.\n"
+    "  --                         Treat all remaining arguments as filenames.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
     "gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
@@ -186,11 +187,7 @@ gschem_parse_commandline(int argc, char *argv[])
         rc_filename = u_string_strdup (optarg);
         break;
 
-      case 'h':
-        usage(argv[0]);
-        break;
-
-      case 'L':
+      case 'g':
         /* Argument is a directory to add to the Scheme load path.
          * Add the necessary expression to be evaluated before rc file
          * loading. */
@@ -201,6 +198,10 @@ gschem_parse_commandline(int argc, char *argv[])
                                             scm_from_locale_string (optarg),
                                             sym_load_path)),
                     s_pre_load_expr);
+        break;
+
+      case 'h':
+        usage(argv[0]);
         break;
 
       case 'm':
