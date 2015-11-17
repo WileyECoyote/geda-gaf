@@ -7,6 +7,9 @@
       success and revise message for failure replacing the function name
       with "Error".
 
+    * src/x/x_print.c: Replace "Gtk" macro GetComboBoxActive with function
+      geda_combo_box_get_active to eliminate Gtk noise.
+
 2015-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.1.in: Add missing option -a and -L and add missing paragraph

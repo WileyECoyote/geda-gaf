@@ -512,7 +512,7 @@ static void print_dialog_get_property (GObject * object,
       return;
 
     case PROP_PAPERSIZE:
-      g_value_set_int (value, GetComboBoxActive(dialog->papercbox));
+      g_value_set_int (value, geda_combo_box_get_active(dialog->papercbox));
       return;
 
     case PROP_ORIENTATION:
