@@ -339,14 +339,20 @@ static void log_message (Console *console, const char *message, const char *styl
   if (g_utf8_validate (message, -1, NULL)) {
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter, message, -1,
                                               "plain", style, NULL);
-  } else {
+  }
+  else {
     /* If UTF-8 wasn't valid (due to a system locale encoded filename or
      * other string being included by mistake), log a warning, and print
      * the original message to stderr, where it may be partly intelligible */
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter,
       _("** Invalid UTF-8 in log message. See stderr or gschem.log.\n"),
                                               -1, "plain", style, NULL);
-    fprintf (stderr, "%s", message);
+    if(verbose_mode) {
+      fprintf (stderr, "gschem: %s", message);
+    }
+    else {
+      fprintf (stderr, "%s", message);
+    }
   }
 
   mark = gtk_text_buffer_create_mark(buffer, NULL, &iter, FALSE);
