@@ -353,8 +353,12 @@ static void log_message (Console *console, const char *message, const char *styl
 /*!
  *  \brief Add a message to the Console Window
  *  \par Function Description
- *  Add a message to the Console window.
- *  Calls log_message() to do the actual logging.
+ *  This is notify function for the logging systems, the actual logging
+ *  is performed by libgeda. This function was registered as a callback
+ *  to echo messages to the Console window. This function sets the style
+ *  based on the \a log_level flag and calls log_message() to do display
+ *  the actual \a message.
+ *
  *  \param [in] log_domain
  *  \param [in] log_level The severity of the message
  *  \param [in] message   The message to be displayed

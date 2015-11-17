@@ -308,8 +308,8 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 
   object->weak_refs                  = NULL;
 
-  object->s_net_destroy_or_report                = GEDA_TYPE_OBJECT;
-  object->tail_marker                = object->s_net_destroy_or_report;
+  object->head_marker                = GEDA_TYPE_OBJECT;
+  object->tail_marker                = object->head_marker;
 
   /* Call hooks */
   g_list_foreach (new_object_hooks, call_new_object_hook, object);
@@ -362,11 +362,12 @@ static void geda_object_finalize(GObject *gobject)
 
 /*! \brief GedaType class initializer for Object
  *  \par Function Description
- *  GedaType class initializer for Object. We override our parents
- *  virtual class methods as needed and register our GObject signals.
+ *  GedaType class initializer for #Object, registers GObject
+ *  signals and over-rides parent virtual class methods as
+ *  needed.
  *
- *  \param [in]  g_class       The Object we are initialising
- *  \param [in]  class_data    (unused)
+ *  \param [in] g_class     The Object we are initializing
+ *  \param [in] class_data  (unused)
  */
 static void geda_object_class_init(void *g_class, void *class_data)
 {

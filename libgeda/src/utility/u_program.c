@@ -65,11 +65,11 @@ static void inline traceback(void)  /* "static" means don't export the symbol...
 /*! \brief Wrapper for Backtrace Utilitity
  *
  *  \par Function Description
- *  This is a utlitity function function that calls the traceback
- * function to show the call sequence. The function servers as a
- * as a built-in debugging tool that can be used by application
- * of library functions after detecting an incorrect parameter as
- * means to locate errent routines.
+ *  This is a utlitity function that calls the traceback function
+ * to show the call sequence. The function servers as a as a built
+ * in debugging tool that can be used by application* of library
+ * functions after detecting an incorrect parameter as means to
+ * locate errent routines.
  *
  */
 void u_program_backtrace(void)

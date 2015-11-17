@@ -29,9 +29,8 @@
  *
  */
 /*!
- * \file x_toolbar.h
- *
- * \brief header for the toolbar module
+ * \file x_toolbars.h
+ * \brief header file for the toolbar module
  */
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
@@ -219,6 +218,3 @@ typedef struct {
 #define TBTS_TOOLS_UPDATE       "Reload Component from library"
 
 #endif /* __X_TOOLBARS_H__ */
-
-
-

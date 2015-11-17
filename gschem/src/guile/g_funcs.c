@@ -93,7 +93,10 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
 
 /*! \brief SCM API terminate program
  *  \par Function Description
- *  Scheme
+ *  Scheme API function to terminate gschem without saving any
+ *  open documents.
+ *
+ *  Should this be g_funcs_abort
  */
 SCM g_funcs_exit(void)
 {

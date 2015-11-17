@@ -32,7 +32,7 @@ static void process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **er
 /*! \brief Process a Scheme error into the log and/or a GError
  * \par Function Description
  * Process a captured Guile exception with the given \a s_key and \a
- * s_args, and optionally the stack trace \a s_stack.  The stack trace
+ * s_args, and optionally the stack trace \a s_stack. The stack trace
  * and source location are logged, and if a GError return location \a
  * err is provided, it is populated with an informative error message.
  */
@@ -161,8 +161,6 @@ SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
                         &stack                         /* pre data */
                         );
 
-
-
   scm_remember_upto_here_2 (body_data, stack);
   return result;
 }
@@ -290,7 +288,6 @@ SCM g_scm_c_eval_string_protected (const char *str) {
   s_str = scm_from_utf8_string (str);
   return g_scm_eval_string_protected (s_str);
 }
-
 
 /*!
  * \brief Load a Scheme file, catching and logging errors.

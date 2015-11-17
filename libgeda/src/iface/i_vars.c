@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 #include <config.h>
 #include <stdio.h>
@@ -37,7 +38,7 @@ int   default_attribute_promotion        = TRUE;
 int   default_promote_invisible          = FALSE;
 int   default_keep_invisible             = TRUE;
 
-int   default_check_symbol_version      = TRUE;
+int   default_check_symbol_version       = TRUE;
 int   default_component_style            = RC_NIL;
 int   default_enable_style_zero          = TRUE;
 
@@ -73,9 +74,10 @@ int   default_fill_angle1      = 45;
 int   default_fill_pitch2      = 50;
 int   default_fill_angle2      = 135;
 
-/*! \brief Initialize variables in GedaToplevel object
+/*! \brief Initialize variables in a GedaToplevel object
  *  \par Function Description
- *  This function will initialize variables to default values.
+ *  This function will initialize variables to default values,
+ *  which may have been assigned values by RC handlers.
  *
  *  \param [out] toplevel  The GedaToplevel object to be updated.
  *

@@ -57,17 +57,29 @@ static int is_logging = FALSE; /* Variable to controls whether logging is enable
 static void u_log_handler (const char *log_domain, GLogLevelFlags log_level,
                            const char *message, void *user_data);
 
-static int  logfile_fd = -1;
+static int logfile_fd = -1;
 static int log_time   =  1;
 
 static unsigned int log_handler_id;
 
-
+/*! \brief Get whether log entries are prefixed with the Time Of Day
+ *  \par Function Description
+ *  Getter function for the static module integer log_time.
+ *
+ *  \returns the current log-time setting.
+ *  \todo Add Scheme API
+ */
 int u_log_get_log_time(void)
 {
   return log_time;
 }
 
+/*! \brief Set whether log entries are prefixed with the Time Of Day
+ *  \par Function Description
+ *  Setter function for the static module integer log_time.
+ *
+ *  \param [in] mode If 0 entries will not be prefixed with the TOD
+ */
 void u_log_set_log_time(int mode)
 {
   log_time = mode;
@@ -107,17 +119,16 @@ static void u_log_handler (const char    *log_domain,
     time (&nowt);
     nowtm = localtime (&nowt);
 
-    if (strftime(buffer,LOG_WRITE_BUFFER_SIZE,"[%H:%M:%S]", nowtm) == 0) {
+    if (strftime(buffer,LOG_WRITE_BUFFER_SIZE,"[%H:%M:%S]", nowtm) == 0)
+    {
       status = write (logfile_fd, message, strlen (message));
     }
-    else {
-
+    else
+    {
       log_entry = strcat(buffer, " ");
-      len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
-
+      len       = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
       log_entry = strncat(buffer, message, len);
-
-      status = write (logfile_fd, log_entry, strlen (log_entry));
+      status    = write (logfile_fd, log_entry, strlen (log_entry));
     }
   }
   else {
@@ -130,6 +141,7 @@ static void u_log_handler (const char    *log_domain,
   }
 
   if ((status == -1) || (log_level & PRINT_LOG_LEVELS)) {
+
     /* If messages are serious or writing to file failed, call the
      * default handler to write to the console. */
     g_log_default_handler (log_domain, log_level, message, NULL);
@@ -177,6 +189,7 @@ void u_log_init (const char *prefix)
   full_prefix = u_string_sprintf ("%s-%04i%02i%02i-", prefix,
                                   nowtm->tm_year + 1900, nowtm->tm_mon + 1,
                                   nowtm->tm_mday);
+
   full_prefix_len = strlen (full_prefix);
 
   /* Find/create the directory where we are going to put the logs.
@@ -187,7 +200,10 @@ void u_log_init (const char *prefix)
     dir_path = default_log_directory;
   }
   else {
-    const char *user_dir = f_path_user_config();
+
+    const char *user_dir;
+
+    user_dir = f_path_user_config();
     dir_path = g_build_filename(user_dir, "logs", NULL);
   }
 
@@ -242,8 +258,10 @@ void u_log_init (const char *prefix)
 
     }
     else {
-      /* It's okay to use the logging functions from here, because
-       * there's already a default handler. */
+
+      /* It's okay to use the logging functions from here,
+       * because there's already a default handler.
+       */
       if (errno == EEXIST) {
         fprintf(stderr, "Could not create unique log filename in %s\n",
                 dir_path);
@@ -266,12 +284,12 @@ void u_log_init (const char *prefix)
 
 /*! \brief Terminates the logging of messages.
  *  \par Function Description
- *  This function deregisters the handler for redirection to the log file
- *  and closes it.
+ *  This function de-registers the handler for redirection to the log
+ *  file and closes it. Subsequent messages are lost after the close.
  */
 void u_log_close (void)
 {
-  is_logging = FALSE; /* subsequent messages are lost after the close */
+  is_logging = FALSE;
 
   if (logfile_fd == -1) {
     return;
@@ -305,7 +323,6 @@ void u_log_set_update_func (LogUpdateFunc func)
  *  This function reads the current log file and returns its contents.
  *
  *  \return Character string with current log's contents.
- *
  */
 char *u_log_read (void)
 {

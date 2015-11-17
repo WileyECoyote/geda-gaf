@@ -27,8 +27,7 @@
  *
  */
 /*!
- * \file globals.h
- *
+ * \file x_window.h
  * \brief header for the GschemMainWindow interface module
  */
 

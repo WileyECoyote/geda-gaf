@@ -929,7 +929,6 @@ SCM g_rc_log_directory(SCM path)
   return SCM_BOOL_T;
 }
 
-
 /*! \brief Add a directory to the Guile load path.
  *  \par Function Description
  *  Prepends \a s_path to the Guile system '%load-path', after
@@ -1047,7 +1046,7 @@ SCM g_rc_make_backup_files(SCM mode)
 
 /*! \brief Handles the postsript-prolog SCM keyword.
  *  \par Function Description
- *  The value of the log-directory keyword specifies the file name
+ *  The value of the postscript-prolog keyword specifies the file name
  *  of the postscript prolog  file.
  *
  *  \param [in] scmsymname prolog file name.
