@@ -1,3 +1,9 @@
+2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_image.c: Added log message in function x_image_write_eps for
+      success and revise message for failure replacing the function name
+      with "Error".
+
 2015-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.1.in: Add missing option -a and -L and add missing paragraph

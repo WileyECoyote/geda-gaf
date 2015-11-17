@@ -333,7 +333,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
  *  \return nothing
  */
 static
-void x_image_write_eps(GschemToplevel *w_current, const char* filename)
+void x_image_write_eps(GschemToplevel *w_current, const char*filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   int result;
@@ -351,9 +351,12 @@ void x_image_write_eps(GschemToplevel *w_current, const char* filename)
   toplevel->print_output_type = EXTENTS_NOMARGINS;
   result = f_print_file (toplevel, toplevel->page_current, filename);
   if (result) {
-    u_log_message(_("x_image_write_eps: Unable to write eps file %s.\n"), filename);
+    u_log_message(_("Error: Unable to write eps file %s.\n"), filename);
   }
-
+  else {
+    u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"),
+                    filename, toplevel->paper_width, toplevel->paper_height);
+  }
   toplevel->paper_width  = w;
   toplevel->paper_height = h;
   toplevel->print_orientation = orientation;
@@ -478,10 +481,12 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
         }
         else {
           if (toplevel->image_color == TRUE) {
-            u_log_message(_("Wrote color image to [%s] [%d x %d]\n"), filename, width, height);
+            u_log_message(_("Wrote color image to [%s] [%d x %d]\n"),
+                          filename, width, height);
           }
           else {
-            u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"), filename, width, height);
+            u_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"),
+                          filename, width, height);
           }
         }
         GEDA_FREE(filetype);
