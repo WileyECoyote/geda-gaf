@@ -23,8 +23,8 @@
 #include "version.h"
 #include <geda_debug.h>
 
-/* Colon after character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:hL:mno:p:qr:s:t:vVx:"
+/* Colon after a character means the argument expects a parameter strings */
+#define GETOPT_OPTIONS "a:c:hL:mno:pqr:s:t:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -301,4 +301,3 @@ gschem_parse_commandline(int argc, char *argv[])
 
   return(optind);
 }
-

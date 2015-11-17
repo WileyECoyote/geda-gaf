@@ -11,6 +11,10 @@
     * src/base/gschem.c:Replace q_log_message with u_log_vmessage for logging
       scheme initialization file.
 
+    * src/base/gschem_parsecmd.c: Removed errent colon after the GETOPT_OPTIONS
+      "p", the place option does not take an argument and remove extra blank
+      line from end of file.
+
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_page_view.h: Change first argument gschem_page_view_pan_
