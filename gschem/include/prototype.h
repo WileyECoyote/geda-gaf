@@ -816,8 +816,8 @@ void       x_icons_initialize               (void);
 void       x_image_init                     (void);
 
 void       x_image_lowlevel                 (GschemToplevel *w_current, const char* filename,
-                                             int desired_width, int desired_height, char *filetype,
-                                             ImageExtent extent,
+                                             int desired_width, int desired_height,
+                                             const char *filetype, ImageExtent extent,
                                              bool use_print_map, bool invert_color_bw );
 
 void       x_image_setup                    (GschemToplevel *w_current, IMAGE_TYPES default_type);

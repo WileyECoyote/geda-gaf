@@ -1,5 +1,8 @@
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype.h: Change 5th argument to x_image_lowlevelfiletype
+      to a pointer to const char.
+
     * src/base/gschem_parsecmd.c: Change command line option "L" to "g" and
       add long option "guile" for passing extra path to search on start-up.
 
@@ -9,7 +12,8 @@
 
     * src/x/x_image.c: Free "filetype" in function x_image_setup instead of
       x_image_lowlevel because this results in an error when x_image_lowlevel
-      is called from function g_funcs_png_image.
+      is called from function g_funcs_png_image. Change definition for x_image
+      _lowlevelfiletype to make 5th argument, filetype, const char pointer.
 
     * src/x/x_print.c: Replace "Gtk" macro GetComboBoxActive with function
       geda_combo_box_get_active to eliminate Gtk noise.

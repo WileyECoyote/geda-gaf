@@ -395,8 +395,8 @@ void x_image_init (void)
  *  \return nothing
  *
  */
-void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
-    int desired_width, int desired_height, char *filetype, ImageExtent extent,
+void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
+    int desired_width, int desired_height, const char *filetype, ImageExtent extent,
     bool use_print_map, bool invert_color_bw )
 {
   GedaToplevel *toplevel = w_current->toplevel;
