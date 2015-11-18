@@ -52,6 +52,10 @@
  * WEH | 03/03/14 |  Revised g_rc_parse_gtkrc() to include log messages using
  *                |  v_log_message and q_log_message
  *
+ * ------------------------------------------------------------------
+ * WEH | 11/18/15 |  Revised error messages in check_and_convert_scm_integer
+ *                |  because non-RC Scheme code can execute routines in this
+ *                |  module and the message were misleading.
  */
 
 #include <config.h>
@@ -114,22 +118,22 @@ void g_rc_parse_gtkrc()
 #define ICHECK(value, min, max, default, var_name) \
         check_and_convert_scm_integer( value, min, max, default, var_name)
 int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
-                                   int default_value, char* keyword) {
+                                   int default_value, char *keyword) {
 
   int val;
 
   int above() {
     fprintf (stderr, _("Bad Value [%d], check %s entry in rc file\n"), val, keyword);
-    fprintf (stderr, _("Continuing with maximum value=[%d]\n"), max_value);
+    fprintf (stderr, _("or Scheme, continuing with maximum value=[%d]\n"), max_value);
     return max_value; /* maximum value */
   }
   int below() {
     fprintf (stderr, _("Bad Value [%d], check %s entry in rc file\n"), val, keyword);
-    fprintf (stderr, _("Continuing with minimum value=[%d]\n"), min_value);
+    fprintf (stderr, _("or Scheme, continuing with minimum value=[%d]\n"), min_value);
     return min_value;   /* minimum value */
   }
   int the_default() {
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), default_value);
+    fprintf (stderr, _("or Scheme, continuing with default value=[%d]\n"), default_value);
     return default_value; /* default value*/
   }
 
@@ -232,8 +236,9 @@ SCM g_rc_display_color_map (SCM scm_map)
 
 /*! \brief This function processes the display-outline-color-map RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the display-outline-color-map RC entry.
+ *   C function to dynamically convert lisp variable while
+ *   processing configuration data for the display-outline-color-map
+ *   RC entry.
  *
  */
 SCM g_rc_display_outline_color_map (SCM scm_map)
