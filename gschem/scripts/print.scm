@@ -3,7 +3,7 @@
 ;; This file may be used to print gschem schematics from the
 ;; command line.  Typical usage is:
 ;;
-;;   gschem -p -o mysch.ps -s /path/to/this/file/print.scm mysch.sch
+;;   gschem -p -o mysch.ps -r /path/to/this/file/print.scm mysch.sch
 ;;
 ;; The schematic in "mysch.sch" will be printed to the file "mysch.ps"
 
@@ -16,15 +16,6 @@
 (gschem-use-rc-values)
 
 ; filename is specified on the command line
-(gschem-pdf "dummyfilename")
-
-(format (current-error-port)
-"WARNING: Exporting with 'print.scm' is deprecated.  Also, it now
-outputs PDF rather than PostScript, which is probably not what you
-want.
-
-Please use `gaf export' instead.  See `man gaf' for details.
-
-")
+(gschem-pdf "output.pdf")
 
 (gschem-exit)

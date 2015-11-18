@@ -9,7 +9,7 @@
 
 if [ $# -ne 1 ]
 then
-	echo "usage: makeimages path_to_libary" 
+	echo "usage: makeimages path_to_libary"
 	exit 1
 fi
 
@@ -20,17 +20,17 @@ echo Creating $basedir
 
 if [ -e $basedir ]
 then
-	echo Removing old $basedir 
+	echo Removing old $basedir
 	rm -rf $basedir/*
-else 
+else
 	mkdir $basedir
 fi
 
-# do basic html stuff 
+# do basic html stuff
 echo "<HTML> <HEAD> <TITLE> gEDA: $basedir library symbols </TITLE> </HEAD>" > ${basedir}/index.html
 echo "<BODY BGCOLOR=\"#000000\" TEXT=\"#FFFFFF\" LINK=\"#00FF00\" VLINK=\"#00DDDD\">" >> ${basedir}/index.html
 echo "" >> ${basedir}/index.html
-echo "<font face=\"arial,helvetica\">" >> ${basedir}/index.html 
+echo "<font face=\"arial,helvetica\">" >> ${basedir}/index.html
 echo "" >> ${basedir}/index.html
 echo "<CENTER><H1>$basedir library</H1></CENTER>" >> ${basedir}/index.html
 echo "" >> ${basedir}/index.html
@@ -39,7 +39,7 @@ echo "" >> ${basedir}/index.html
 echo "<HTML> <HEAD> <TITLE> gEDA: $basedir library symbols </TITLE> </HEAD>" > ${basedir}/small.html
 echo "<BODY BGCOLOR=\"#000000\" TEXT=\"#FFFFFF\" LINK=\"#00FF00\" VLINK=\"#00DDDD\">" >> ${basedir}/small.html
 echo "" >> ${basedir}/small.html
-echo "<font face=\"arial,helvetica\">" >> ${basedir}/small.html 
+echo "<font face=\"arial,helvetica\">" >> ${basedir}/small.html
 echo "" >> ${basedir}/small.html
 echo "<CENTER><H1>$basedir library</H1></CENTER>" >> ${basedir}/small.html
 echo "" >> ${basedir}/small.html
@@ -56,19 +56,19 @@ do
 	symname=`basename $i .sym`
 	echo $i $symname ${basedir}/${symname}.ps
 
-	# Create a copy of the .sym for the directory (refenced by the per 
-	# symbol .html page 
-	cp -f $i $basedir 
+	# Create a copy of the .sym for the directory (refenced by the per
+	# symbol .html page
+	cp -f $i $basedir
 
 	# First create postscript file using gschem and print.scm
 	gschem  -o ${basedir}/${symname}.ps \
 		-s print.scm \
 		-p \
-		$i 
+		$i
 
 	# Then take postscript file and create thumbnail ppm
 	# GNU ghostscript:
-	# use this if you have Aladdin 5.50 ghostscript: 
+	# use this if you have Aladdin 5.50 ghostscript:
 	#gs -q -dTextAlphaBits=4 -dGraphicsAlphaBits=4 \
 	gs -q \
 		-dNOPAUSE -sOutputFile=${basedir}/${symname}_tn.png \
@@ -83,15 +83,15 @@ do
 		-r5 -sDEVICE=png16 \
 		${basedir}/${symname}.ps quit.ps
 
-	# Then take original postscript file and convert to png16 
-	# GNU ghostscript: 
-	# use this if you have Aladdin 5.50 ghostscript: 
+	# Then take original postscript file and convert to png16
+	# GNU ghostscript:
+	# use this if you have Aladdin 5.50 ghostscript:
 	#gs -q -dTextAlphaBits=4 -dGraphicsAlphaBits=4 \
 	gs -q -r100 \
 		-dNOPAUSE -sOutputFile=${basedir}/${symname}.png \
 		-sDEVICE=png16 \
 		${basedir}/${symname}.ps quit.ps
-	
+
 	# Add entry to index.html
 	echo "<IMG SRC=\"./${symname}_tn.png\">" >> ${basedir}/index.html
 	echo "<H3><A HREF=\"./${symname}.sym\">${symname}.sym</A>" >> ${basedir}/index.html
@@ -107,7 +107,7 @@ do
 	echo "<HTML> <HEAD> <TITLE> gEDA: $basedir/$symname symbol </TITLE> </HEAD>" > ${basedir}/$symname.html
 	echo "<BODY BGCOLOR=\"#000000\" TEXT=\"#FFFFFF\" LINK=\"#00FF00\" VLINK=\"#00DDDD\">" >> ${basedir}/$symname.html
 	echo "" >> ${basedir}/$symname.html
-	echo "<font face=\"arial,helvetica\">" >> ${basedir}/${symname}.html 
+	echo "<font face=\"arial,helvetica\">" >> ${basedir}/${symname}.html
 	echo "" >> ${basedir}/$symname.html
 	echo "<CENTER><H1>$basedir/$symname library</H1></CENTER>" >> ${basedir}/$symname.html
 	echo "" >> ${basedir}/$symname.html
@@ -126,7 +126,7 @@ do
 
 	# Added text link to small.html (added after everything is done)
 	echo "<A HREF=\"$symname.html\">$symname</A>" >> ${basedir}/textlist.html
-	
+
 	rm -f ${basedir}/*.ppm
 
 done

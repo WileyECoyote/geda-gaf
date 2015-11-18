@@ -3,7 +3,7 @@
 ;; This file may be used to produce png files from gschem schematics from the
 ;; command line.  Typical usage is:
 ;;
-;;   gschem -p -o mysch.png -s /path/to/this/file/image.scm mysch.sch
+;;   gschem -p -o mysch.png -r /path/to/this/file/image.scm mysch.sch
 ;;
 ;; The schematic in "mysch.sch" will be exported to the file "mysch.png"
 
@@ -16,13 +16,6 @@
 (gschem-use-rc-values)
 
 ; filename is specified on the command line
-(gschem-png-image "dummyfilename")
-
-(format (current-error-port)
-"WARNING: Exporting images with 'image.scm' is deprecated.
-
-Please use `gaf export' instead.  See `man gaf' for details.
-
-")
+(gschem-png-image "output.png")
 
 (gschem-exit)
