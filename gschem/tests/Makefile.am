@@ -18,14 +18,14 @@ EXTRA_DIST = \
 	geda_fonts.sch \
 	letters_1.sch \
 	missing.sch \
+	multiline1.sch \
 	multiline2.sch \
 	multiline3.sch \
 	multiline4.sch \
-	multiline.sch \
 	net_selection.sch \
 	nets.sch \
+	oldsym1.sym \
 	oldsym2.sym \
-	oldsym.sym \
 	pins.sch \
 	radio_1.sch \
 	rotation.sch \
@@ -40,7 +40,7 @@ EXTRA_DIST = \
 	versionsym_minor2.sym \
 	versionsym_minor.sym
 
-MOSTLYCLEANFILES =	*.log *~
-CLEANFILES = 		*.log *~
-DISTCLEANFILES = 	*.log core FILE *~
-MAINTAINERCLEANFILES = 	*.log *~ Makefile.in
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+DISTCLEANFILES       = *.log *~ core FILE
+MAINTAINERCLEANFILES = *.log *~ Makefile.in

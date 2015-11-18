@@ -8,6 +8,14 @@
 
     * tests/gafrc:  Remove quotes from function "current-working-directory"
 
+    * multiline1.sch: Rename file multiline -> multiline1
+
+    * oldsym1.sym: Rename file oldsym -> oldsym1
+
+    * tests/agile-vfo-block_1.sch: Replace spdt.sym with switch_spst-1.sym.
+
+    * tests/all_1.sch: Capiltized LM, AM and IDT in symbol names.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Change 5th argument to x_image_lowlevelfiletype
