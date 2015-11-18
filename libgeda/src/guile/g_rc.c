@@ -77,6 +77,7 @@ SCM g_rc_component_groups(SCM stringlist)
 
   return SCM_BOOL_T;
 }
+
 /*! \brief
  *  \par Function Description
  *
@@ -101,6 +102,7 @@ SCM g_rc_component_library(SCM path, SCM name)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
+
   directory = u_expand_env_variable (temp);
   scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
@@ -115,7 +117,34 @@ SCM g_rc_component_library(SCM path, SCM name)
 
     /* Check if path is absolute */
     if (f_get_is_path_absolute (directory)) {
-      s_clib_add_directory (directory, namestr);
+
+      /* This should not freed */
+      char *name = f_get_basename(directory);
+
+      /* Check if scheme passed a zero length string */
+      if (!strlen(namestr)) {
+
+        name = u_string_concat("Local/", name, NULL);
+
+        s_clib_add_directory (directory, name);
+
+        GEDA_FREE(name);
+      }
+      else {
+
+        /* Check if scheme passed the child dir with a leading slash */
+        if (strcmp (namestr + 1, name) == 0 ) {
+
+          name = u_string_concat("Local/", name, NULL);
+
+          s_clib_add_directory (directory, name);
+
+          GEDA_FREE(name);
+        }
+        else {
+          s_clib_add_directory (directory, namestr);
+        }
+      }
     }
     else {
 

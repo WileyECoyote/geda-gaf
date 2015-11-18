@@ -1,3 +1,13 @@
+2015-11-18  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Deal with component-library-search without
+      optional augment, which results in component-library passing
+      either a zero length string or a sub-directory name without
+      the path but prefixed with separator to s_clib_add_directory.
+      Neither is good and both seem to upset s_clib_add_directory.
+      Revise g_rc_component_library to substitute  "Local/sub-dir"
+      for both these situations.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * share/prolog.ps: define bus and pin.
