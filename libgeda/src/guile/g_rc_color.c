@@ -41,7 +41,12 @@
 /*!
  * \brief Color Map to Scheme
  * \par Function Description
- * \todo Finish Documentation
+ *  This is a helper for "get" color map Scheme API handlers;
+ *  display-color-map, print-color-map, outline-color-map.
+ *  assimilates a list of pairs of integer color indexes
+ *  and the string hex representation of the color for the
+ *  corresponding index in \a map.
+ *
  * \returns list of color (index . string) pairs
  */
 SCM g_rc_color_map_to_scm (const COLOR *map)

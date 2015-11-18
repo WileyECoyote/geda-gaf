@@ -52,7 +52,8 @@
  *
  *  \retval char* to all of the string as a new allocation.
  *  \remarks Caller should GEDA_FREE returned pointer.
- *  \warning the last argument MUST be NULL!
+ *
+ *  \warning **** the last argument MUST be NULL! ****
  */
 char *u_string_concat (const char *string1, ...)
 {
