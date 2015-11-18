@@ -6,6 +6,8 @@
     * scripts/print.scm: Update command-line option from -s to -r, remove
       deprecation warning to use gaf, change dummyfilename to output.pdf.
 
+    * tests/gafrc:  Remove quotes from function "current-working-directory"
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Change 5th argument to x_image_lowlevelfiletype
