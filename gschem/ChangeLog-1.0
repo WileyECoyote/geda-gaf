@@ -1,3 +1,13 @@
+2015-11-19  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revamp i_cmd_do_print; scope variables since all
+      are used in the else clause of first conditional, remove unnecessary
+      initialization of variables, utilize f_get_filename_ext and replace
+      g_str_has_suffix with ordinary strncmp, remove strlen("literal") and
+      hard code the constant = 4, utilize SCHEMATIC_FILE_DOT_SUFFIX and add
+      clause to also check for SYMBOL_FILE_DOT_SUFFIX and remove if found,
+      move freeing of ps_filename inside the else.
+
 2015-11-18  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_idefines.h: Add defines for miniumn image sizes.

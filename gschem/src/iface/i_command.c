@@ -959,40 +959,49 @@ COMMAND (do_print) {
 
   BEGIN_COMMAND(do_print);
 
-  char *base;
-  char *filename;
-  char *ps_filename;
-  Page *p_current;
-
-  base        = NULL;
-  ps_filename = NULL;
-  p_current   = gschem_toplevel_get_current_page(w_current);
-  filename    = p_current->filename;
-
-  /* get the base file name */
-  if (g_str_has_suffix(filename, ".sch")) {
-
-    /* the filename ends with ".sch", remove it */
-    base = g_strndup(filename, strlen(filename) - strlen(".sch"));
-  }
-  else {
-
-    /* the filename does not end with .sch */
-    base = u_string_strdup (filename);
-  }
-
-  /* add ".ps" tp the base filename */
-  ps_filename = u_string_concat (base, ".ps", NULL);
-  GEDA_FREE(base);
-
   if (output_filename) {
     x_print_setup(w_current, output_filename);
   }
   else {
+
+    const char *extension;
+          char *base;
+          char *filename;
+          char *ps_filename;
+          Page *p_current;
+
+    p_current = gschem_toplevel_get_current_page(w_current);
+    filename  = p_current->filename;
+
+    extension = f_get_filename_ext(filename);
+
+    /* get the base file name */
+    if (strncmp(extension, SCHEMATIC_FILE_DOT_SUFFIX, 4)) {
+
+      /* the filename ends with ".sch", remove it */
+      base = g_strndup(filename, strlen(filename) - 4);
+    }
+    else if (strncmp(extension, SYMBOL_FILE_DOT_SUFFIX, 4)) {
+
+      /* the filename ends with ".sch", remove it */
+      base = g_strndup(filename, strlen(filename) - 4);
+    }
+    else {
+
+      /* the filename does not end with .sch */
+      base = u_string_strdup (filename);
+    }
+
+    /* add ".ps" to the base filename */
+    ps_filename = u_string_concat (base, ".ps", NULL);
+
+    GEDA_FREE(base);
+
     x_print_setup(w_current, ps_filename);
+
+    GEDA_FREE(ps_filename);
   }
 
-  GEDA_FREE(ps_filename);
   EXIT_COMMAND(do_print);
 }
 
