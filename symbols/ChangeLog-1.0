@@ -1,3 +1,21 @@
+2015-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/capacitor/capacitor-variable-1.sym: documentation=https:
+      //en.wikipedia.org/wiki/Variable_capacitor.
+
+    * passive/capacitor/capacitor-variable-2.sym: documentation=https:
+      //en.wikipedia.org/wiki/Variable_capacitor.
+
+    * io/io-1.sym: Tweak attribute position;
+
+    * logic/SN/SN65176B-1.sym: Tweak attribute positions.
+
+    * transistor/npn-smt/2N2222A_npn_40V_1P_SOT-23-1.sym: Fix pin sequence
+
+    * vishay/DG2731-1.sym: Tweak attribute positions, color, visibilities.
+
+    * vishay/DG2731-2.sym: Tweak attribute positions, color, visibilities.
+
 2015-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * Add 6 symbols EEPROM, serial 2 wire
