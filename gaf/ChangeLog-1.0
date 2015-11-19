@@ -1,3 +1,8 @@
+2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/export.c: Remove g_assert's for str and arg in static inline
+      export_command_line__utf8_check.
+
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * Code Enhancement: Improve BUILD System Maintainence.
