@@ -968,20 +968,25 @@ export_config (void)
 
   /* Parse dpi */
   dval = eda_config_get_double (cfg, "export", "dpi", &err);
+
   if (err == NULL) {
     settings.dpi = dval;
-  } else {
+  }
+  else {
     g_clear_error (&err);
   }
 
   bval = eda_config_get_boolean (cfg, "export", "monochrome", &err);
+
   if (err == NULL) {
     settings.color = !bval;
-  } else {
+  }
+  else {
     g_clear_error (&err);
   }
 
   str = eda_config_get_string (cfg, "export", "font", NULL);
+
   if (str != NULL) {
     GEDA_FREE (settings.font);
     settings.font = str;
@@ -992,18 +997,18 @@ export_config (void)
 
 static struct option export_long_options[] = {
   {"no-color", 0, NULL, 2},
-  {"align", 1, NULL, 'a'},
-  {"color", 0, NULL, 'c'},
-  {"dpi", 1, NULL, 'd'},
-  {"format", 1, NULL, 'f'},
-  {"font", 1, NULL, 'F'},
-  {"help", 0, NULL, 'h'},
-  {"layout", 0, NULL, 'l'},
-  {"margins", 1, NULL, 'm'},
-  {"output", 1, NULL, 'o'},
-  {"paper", 1, NULL, 'p'},
-  {"size", 1, NULL, 's'},
-  {"scale", 1, NULL, 'k'},
+  {"align",    1, NULL, 'a'},
+  {"color",    0, NULL, 'c'},
+  {"dpi",      1, NULL, 'd'},
+  {"format",   1, NULL, 'f'},
+  {"font",     1, NULL, 'F'},
+  {"help",     0, NULL, 'h'},
+  {"layout",   1, NULL, 'l'},
+  {"margins",  1, NULL, 'm'},
+  {"output",   1, NULL, 'o'},
+  {"paper",    1, NULL, 'p'},
+  {"size",     1, NULL, 's'},
+  {"scale",    1, NULL, 'k'},
   {NULL, 0, NULL, 0},
 };
 
