@@ -1643,13 +1643,13 @@ SCM g_rc_image_size(SCM width, SCM height)
 {
   /* yes this is legit, we are casting the resulting double to an int */
 
-  default_image_width = ICHECK(width, MIN_PAPER_DIMENSION, -1,
-                         DEFAULT_PAPER_WIDTH,
-                         "image_size");
+  default_image_width = ICHECK(width, MIN_IMAGE_WIDTH, -1,
+                                      DEFAULT_IMAGE_WIDTH,
+                                     "image_size");
 
-  default_image_height = ICHECK(height, MIN_PAPER_DIMENSION, -1,
-                         DEFAULT_PAPER_HEIGHT,
-                         "image_size");
+  default_image_height = ICHECK(height, MIN_IMAGE_HEIGHT, -1,
+                                        DEFAULT_IMAGE_HEIGHT,
+                                       "image_size");
 
   return SCM_BOOL_T;
 }

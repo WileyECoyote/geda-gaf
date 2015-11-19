@@ -1,5 +1,7 @@
 2015-11-18  Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_idefines.h: Add defines for miniumn image sizes.
+
     * scripts/image.scm: Update command-line option from -s to -r, remove
       deprecation warning to use gaf, change dummyfilename to output.png.
 
@@ -14,7 +16,8 @@
 
     * src/guile/g_rc.c: Revise error messages in check_and_convert_scm_integer
       because non-RC Scheme code can invoke routines within the module and the
-      messages were mis-leading.
+      messages were mis-leading. Replace defined constants for printing with
+      newly defined constants for image, see above.
 
     * tests/agile-vfo-block_1.sch: Replace spdt.sym with switch_spst-1.sym.
 

@@ -48,9 +48,11 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /*-------- Color & Image Stuff ------- */
 
 /* For default_image_width  */
+#define MIN_IMAGE_WIDTH         160 /* For error trapping*/
 #define DEFAULT_IMAGE_WIDTH     800
 
 /* For default_image_height  */
+#define MIN_IMAGE_HEIGHT        120 /* For error trapping*/
 #define DEFAULT_IMAGE_HEIGHT    600
 
 /*--------- Display Category --------- */
