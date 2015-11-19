@@ -118,22 +118,15 @@ SCM g_rc_component_library(SCM path, SCM name)
     /* Check if path is absolute */
     if (f_get_is_path_absolute (directory)) {
 
-      /* This should not freed */
-      char *name = f_get_basename(directory);
+      /* Check if scheme passed a NULL */
+      if (namestr) {
 
-      /* Check if scheme passed a zero length string */
-      if (!strlen(namestr)) {
+        /* This should not freed */
+        char *name = f_get_basename(directory);
 
-        name = u_string_concat("Local/", name, NULL);
-
-        s_clib_add_directory (directory, name);
-
-        GEDA_FREE(name);
-      }
-      else {
-
-        /* Check if scheme passed the child dir with a leading slash */
-        if (strcmp (namestr + 1, name) == 0 ) {
+        /* Check if scheme passed a zero length string,
+         * aka a pointer to a NULL */
+        if (!strlen(namestr)) {
 
           name = u_string_concat("Local/", name, NULL);
 
@@ -142,8 +135,23 @@ SCM g_rc_component_library(SCM path, SCM name)
           GEDA_FREE(name);
         }
         else {
-          s_clib_add_directory (directory, namestr);
+
+          /* Check if scheme passed child dir with a leading slash */
+          if (strcmp (namestr + 1, name) == 0 ) {
+
+            name = u_string_concat("Local/", name, NULL);
+
+            s_clib_add_directory (directory, name);
+
+            GEDA_FREE(name);
+          }
+          else {
+            s_clib_add_directory (directory, namestr);
+          }
         }
+      }
+      else {
+        s_clib_add_directory (directory, NULL);
       }
     }
     else {
