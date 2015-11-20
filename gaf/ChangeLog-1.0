@@ -1,11 +1,14 @@
 2015-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gaf.1.in: Document short option for "no-rcfiles", and long options
-      for "load" and "scheme".
+      for "load" and "scheme". Change short option "c" to "e" and add long
+      option "eval", change short option "L" to "p" and add long option "path".
 
     * gaf/src/gaf.c: Add short option for no-rcfiles as "n".
 
     * gaf/src/shell.c: Add long option for "l" as "load", and "s" as "scheme".
+      Change short option "c" to "e" and add long option "eval", change short
+      option "L" to "p" and add long option "path".
 
 2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
