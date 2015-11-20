@@ -40,13 +40,13 @@
 
 #include "builtins.h"
 
-#define short_options "+hV"
+#define short_options "+hnV"
 
 static struct option long_options[] =
   {
     {"help", 0, NULL, 'h'},
+    {"no-rcfiles", 0, NULL, 'n'},
     {"version", 0, NULL, 'V'},
-    {"no-rcfiles", 0, NULL, 2},
     {NULL, 0, NULL, 0},
   };
 
@@ -70,13 +70,13 @@ usage (void)
   printf (_("Usage: gaf [OPTION...] COMMAND [ARGS ...]\n\n"
             "gEDA/gaf command-line utility.\n\n"
             "General options:\n"
-            "  --no-rcfiles   inhibit loading of 'gafrc' files\n"
-            "  -h, --help     display usage information and exit\n"
-            "  -V, --version  display version information and exit\n\n"
+            "  -n, --no-rcfiles  inhibit loading of 'gafrc' files\n"
+            "  -h, --help        display usage information and exit\n"
+            "  -V, --version     display version information and exit\n\n"
             "Commonly-used commands (type `gaf <cmd> --help' for usage):\n"
-            "  shell          Scheme REPL for interactive gEDA data processing\n"
-            "  config         Edit gEDA configuration\n"
-            "  export         Export gEDA files in various image formats.\n\n"
+            "  shell             Scheme REPL for interactive gEDA data processing\n"
+            "  config            Edit gEDA configuration\n"
+            "  export            Export gEDA files in various image formats.\n\n"
             "Please report bugs to %s.\n"),
              PACKAGE_BUGREPORT);
   exit (0);
@@ -123,15 +123,15 @@ main (int argc, char **argv)
        * dealt with by getopt_long(). */
       break;
 
-    case 2: /* --no-rcfiles */
-      g_setenv ("GAF_INHIBIT_RCFILES", "1", 1);
-      break;
-
     case 'V':
       version ();
 
     case 'h':
       usage ();
+
+    case 'n':
+      g_setenv ("GAF_INHIBIT_RCFILES", "1", 1);
+      break;
 
     case '?':
       /* getopt_long already printed an error message */

@@ -1,3 +1,9 @@
+2015-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gaf.1.in: Document short option for
+
+    * gaf/src/gaf.c: Add short option for no-rcfiles as "n".
+
 2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/export.c: Remove g_assert's for str and arg in static inline

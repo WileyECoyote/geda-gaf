@@ -27,8 +27,8 @@ data.
 
 .SH "GENERAL OPTIONS"
 .TP 8
-\fB--no-rcfiles\fR
-Prevent `gafrc' Scheme initialisation files from being loaded.
+\fB-n\fR, \fB--no-rcfiles\fR
+Prevent `gafrc' Scheme initialization files from being loaded.
 .TP 8
 \fB-h\fR, \fB--help\fR
 Print a help message.
