@@ -259,16 +259,16 @@ geda_handle_box_class_init(void *g_class, void *class_data)
                                                          FALSE,
                                                          G_PARAM_READABLE));
 
-  widget_class->map = geda_handle_box_map;
-  widget_class->unmap = geda_handle_box_unmap;
-  widget_class->realize = geda_handle_box_realize;
-  widget_class->unrealize = geda_handle_box_unrealize;
-  widget_class->style_set = geda_handle_box_style_set;
-  widget_class->size_request = geda_handle_box_size_request;
-  widget_class->size_allocate = geda_handle_box_size_allocate;
-  widget_class->expose_event = geda_handle_box_expose;
+  widget_class->map                = geda_handle_box_map;
+  widget_class->unmap              = geda_handle_box_unmap;
+  widget_class->realize            = geda_handle_box_realize;
+  widget_class->unrealize          = geda_handle_box_unrealize;
+  widget_class->style_set          = geda_handle_box_style_set;
+  widget_class->size_request       = geda_handle_box_size_request;
+  widget_class->size_allocate      = geda_handle_box_size_allocate;
+  widget_class->expose_event       = geda_handle_box_expose;
   widget_class->button_press_event = geda_handle_box_button_press;
-  widget_class->delete_event = geda_handle_box_delete_event;
+  widget_class->delete_event       = geda_handle_box_delete_event;
 
   container_class->add = geda_handle_box_add;
   container_class->remove = geda_handle_box_remove;
@@ -336,7 +336,7 @@ geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
   handle_box->dock_orientation    = GTK_ORIENTATION_HORIZONTAL;
 }
 
-/*! \brief Function to retrieve GedaHandleBox's Type identifier.
+/*! \brief Retrieve GedaHandleBox's Type identifier.
  *
  *  \par Function Description
  *  Function to retrieve a #GedaHandleBox Type identifier. When
@@ -439,11 +439,14 @@ geda_handle_box_get_property (GObject        *object,
   }
 }
 
+/*! \brief Get a New GedaHandleBox Object
+ *  \par Function Description
+ *  Creates and returns a new GedaHandleBox instance
+ */
 GtkWidget* geda_handle_box_new (void)
 {
   return g_object_new (GEDA_TYPE_HANDLE_BOX, NULL);
 }
-
 
 static void geda_handle_box_map (GtkWidget *widget)
 {
@@ -480,8 +483,8 @@ static void geda_handle_box_unmap (GtkWidget *widget)
   handlebox = GEDA_HANDLE_BOX (widget);
 
   gdk_window_hide (widget->window);
-  if (handlebox->float_window_mapped)
-    {
+
+  if (handlebox->float_window_mapped) {
       gdk_window_hide (handlebox->float_window);
       handlebox->float_window_mapped = FALSE;
     }
@@ -508,6 +511,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   attributes.event_mask = (gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK);
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+
   gdk_window_set_user_data (widget->window, widget);
 
   attributes.x = 0;
@@ -523,7 +527,9 @@ static void geda_handle_box_realize (GtkWidget *widget)
                             GDK_BUTTON_RELEASE_MASK);
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   handlebox->bin_window = gdk_window_new (widget->window, &attributes, attributes_mask);
+
   gdk_window_set_user_data (handlebox->bin_window, widget);
+
   if (GTK_BIN (handlebox)->child)
     gtk_widget_set_parent_window (GTK_BIN (handlebox)->child, handlebox->bin_window);
 
@@ -580,36 +586,36 @@ geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
 
   if (gtk_widget_get_realized (widget) &&
-      gtk_widget_get_has_window (widget))
-    {
-      gtk_style_set_background (widget->style, widget->window,
-				widget->state);
-      gtk_style_set_background (widget->style, handlebox->bin_window, widget->state);
-      gtk_style_set_background (widget->style, handlebox->float_window, widget->state);
-    }
+    gtk_widget_get_has_window (widget))
+  {
+    gtk_style_set_background (widget->style, widget->window, widget->state);
+    gtk_style_set_background (widget->style, handlebox->bin_window, widget->state);
+    gtk_style_set_background (widget->style, handlebox->float_window, widget->state);
+  }
 }
 
 static int effective_handle_position (GedaHandleBox *handlebox)
 {
   int handle_position;
 
-  if (gtk_widget_get_direction (GTK_WIDGET (handlebox)) == GTK_TEXT_DIR_LTR)
+  if (gtk_widget_get_direction (GTK_WIDGET (handlebox)) == GTK_TEXT_DIR_LTR) {
     handle_position = handlebox->handle_position;
-  else
+  }
+  else {
+
+    switch (handlebox->handle_position)
     {
-      switch (handlebox->handle_position)
-	{
-	case GTK_POS_LEFT:
-          handle_position = GTK_POS_RIGHT;
-          break;
-	case GTK_POS_RIGHT:
-          handle_position = GTK_POS_LEFT;
-          break;
-	default:
-          handle_position = handlebox->handle_position;
-          break;
-	}
+      case GTK_POS_LEFT:
+        handle_position = GTK_POS_RIGHT;
+        break;
+      case GTK_POS_RIGHT:
+        handle_position = GTK_POS_LEFT;
+        break;
+      default:
+        handle_position = handlebox->handle_position;
+        break;
     }
+  }
 
   return handle_position;
 }
@@ -628,8 +634,7 @@ geda_handle_box_size_request (GtkWidget      *widget,
 
   handle_position = effective_handle_position (handlebox);
 
-  if (handle_position == GTK_POS_LEFT ||
-    handle_position == GTK_POS_RIGHT)
+  if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
   {
     requisition->width = DRAG_HANDLE_SIZE;
     requisition->height = 0;
@@ -643,47 +648,51 @@ geda_handle_box_size_request (GtkWidget      *widget,
   /* if our child is not visible, we still request its size, since we
    * won't have any useful hint for our size otherwise.
    */
-  if (bin->child)
+  if (bin->child) {
     gtk_widget_size_request (bin->child, &child_requisition);
-  else
-  {
-    child_requisition.width = 0;
+  }
+  else {
+    child_requisition.width  = 0;
     child_requisition.height = 0;
   }
 
-  if (handlebox->child_detached)
-  {
+  if (handlebox->child_detached) {
+
     /* FIXME: This doesn't work currently */
-    if (!handlebox->shrink_on_detach)
-    {
-      if (handle_position == GTK_POS_LEFT ||
-        handle_position == GTK_POS_RIGHT)
+    if (!handlebox->shrink_on_detach) {
+
+      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+      {
         requisition->height += child_requisition.height;
+      }
       else
+      {
         requisition->width += child_requisition.width;
+      }
     }
-    else
-    {
-      if (handle_position == GTK_POS_LEFT ||
-        handle_position == GTK_POS_RIGHT)
+    else {
+
+      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+      {
         requisition->height += widget->style->ythickness;
+      }
       else
+      {
         requisition->width += widget->style->xthickness;
+      }
     }
   }
-  else
-  {
-    requisition->width += GTK_CONTAINER (widget)->border_width * 2;
+  else {
+
+    requisition->width  += GTK_CONTAINER (widget)->border_width * 2;
     requisition->height += GTK_CONTAINER (widget)->border_width * 2;
 
-    if (bin->child)
-    {
-      requisition->width += child_requisition.width;
+    if (bin->child) {
+      requisition->width  += child_requisition.width;
       requisition->height += child_requisition.height;
     }
-    else
-    {
-      requisition->width += CHILDLESS_SIZE;
+    else {
+      requisition->width  += CHILDLESS_SIZE;
       requisition->height += CHILDLESS_SIZE;
     }
   }
@@ -703,10 +712,10 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
   handle_position = effective_handle_position (handlebox);
 
-  if (bin->child)
+  if (bin->child) {
     gtk_widget_get_child_requisition (bin->child, &child_requisition);
-  else
-  {
+  }
+  else {
     child_requisition.width = 0;
     child_requisition.height = 0;
   }
@@ -721,8 +730,8 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
                             widget->allocation.height);
 
 
-    if (bin->child && gtk_widget_get_visible (bin->child))
-    {
+    if (bin->child && gtk_widget_get_visible (bin->child)){
+
       GtkAllocation child_allocation;
       unsigned int border_width;
 
@@ -730,13 +739,16 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 
       child_allocation.x = border_width;
       child_allocation.y = border_width;
-      if (handle_position == GTK_POS_LEFT)
-        child_allocation.x += DRAG_HANDLE_SIZE;
-      else if (handle_position == GTK_POS_TOP)
-        child_allocation.y += DRAG_HANDLE_SIZE;
 
-      if (handlebox->child_detached)
-      {
+      if (handle_position == GTK_POS_LEFT) {
+        child_allocation.x += DRAG_HANDLE_SIZE;
+      }
+      else if (handle_position == GTK_POS_TOP) {
+        child_allocation.y += DRAG_HANDLE_SIZE;
+      }
+
+      if (handlebox->child_detached) {
+
         unsigned int float_width;
         unsigned int float_height;
 
@@ -798,8 +810,8 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
   widget = GTK_WIDGET (handlebox);
 
   handle_position = effective_handle_position (handlebox);
-  if (handle_position == GTK_POS_LEFT ||
-    handle_position == GTK_POS_RIGHT)
+
+  if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
   {
     x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - DRAG_HANDLE_SIZE;
     y = 0;
@@ -852,20 +864,36 @@ draw_textured_frame (GtkWidget *widget, GdkWindow *window, GdkRectangle *rect,
                     orientation);
 }
 
+/*! \brief Sets the Shadow Type of a GedaHandleBox
+ *
+ *  \par Function Description
+ *  Sets the type of shadow to be drawn around the border of the handle box.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] type       Enumerated ShadowType:
+ *
+ *  <DL>
+ *    <DT>GTK_SHADOW_NONE</DT>
+ *    <DT>GTK_SHADOW_IN</DT>
+ *    <DT>GTK_SHADOW_OUT</DT>
+ *    <DT>GTK_SHADOW_ETCHED_IN</DT>
+ *    <DT>GTK_SHADOW_ETCHED_OUT</DT>
+ *  </DL>
+ */
 void
 geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 
-  if ((GtkShadowType) handle_box->shadow_type != type)
-    {
-      handle_box->shadow_type = type;
-      g_object_notify (G_OBJECT (handle_box), "shadow-type");
-      gtk_widget_queue_resize (GTK_WIDGET (handle_box));
-    }
+  if ((GtkShadowType) handle_box->shadow_type != type) {
+
+    handle_box->shadow_type = type;
+    g_object_notify (G_OBJECT (handle_box), "shadow-type");
+    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
+  }
 }
 
-/*! \brief geda_handle_box_get_shadow_type
+/*! \brief Get the Shadow Type of a GedaHandleBox
  *
  *  \par Function Description
  *
@@ -884,18 +912,33 @@ geda_handle_box_get_shadow_type (GedaHandleBox *handle_box)
   return handle_box->shadow_type;
 }
 
+/*! \brief Sets the Handle Position of a GedaHandleBox
+ *
+ *  \par Function Description
+ * Sets the side of the handlebox where the handle is drawn.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] position   Side of the handlebox where the handle should
+ *                        be drawn.
+ *
+ *  <DL>
+ *    <DT>GTK_POS_LEFT</DT>
+ *    <DT>GTK_POS_RIGHT</DT>
+ *    <DT>GTK_POS_TOP</DT>
+ *    <DT>GTK_POS_BOTTOM</DT>
+ *  </DL>
+ */
 void
-geda_handle_box_set_handle_position  (GedaHandleBox    *handle_box,
+geda_handle_box_set_handle_position (GedaHandleBox   *handle_box,
                                      GtkPositionType  position)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 
-  if ((GtkPositionType) handle_box->handle_position != position)
-    {
-      handle_box->handle_position = position;
-      g_object_notify (G_OBJECT (handle_box), "handle-position");
-      gtk_widget_queue_resize (GTK_WIDGET (handle_box));
-    }
+  if ((GtkPositionType) handle_box->handle_position != position) {
+    handle_box->handle_position = position;
+    g_object_notify (G_OBJECT (handle_box), "handle-position");
+    gtk_widget_queue_resize (GTK_WIDGET (handle_box));
+  }
 }
 
 /*! \brief geda_handle_box_get_handle_position
@@ -905,7 +948,7 @@ geda_handle_box_set_handle_position  (GedaHandleBox    *handle_box,
  * Gets the handle position of the handle box. See
  * geda_handle_box_set_handle_position().
  *
- * \param [in] handle_box    The #GedaHandleBox object
+ * \param [in] handle_box The #GedaHandleBox object
  *
  * Return value: the current handle position.
  */
@@ -917,14 +960,35 @@ geda_handle_box_get_handle_position (GedaHandleBox *handle_box)
   return handle_box->handle_position;
 }
 
+/*! \brief Sets the snap edge of a GedaHandleBox
+ *
+ *  \par Function Description
+ * The snap edge is the edge of the detached child that must be aligned with
+ * the corresponding edge of the "ghost" left behind when the child was detached
+ * to reattach the torn-off window. Usually, the snap edge should be chosen so
+ * that it stays in the same place on the screen when the handlebox is torn off.
+ * If the snap edge is not set, then an appropriate value will be guessed from
+ * the handle position. If the handle position is %GTK_POS_RIGHT or %GTK_POS_LEFT,
+ * then the snap edge will be %GTK_POS_TOP, otherwise it will be %GTK_POS_LEFT.
+ *
+ * \param [in] handle_box The #GedaHandleBox object
+ * \param [in] edge       Enumerated GtkPositionType, can be:
+ *
+ *  <DL>
+ *    <DT>GTK_POS_LEFT</DT>
+ *    <DT>GTK_POS_RIGHT</DT>
+ *    <DT>GTK_POS_TOP</DT>
+ *    <DT>GTK_POS_BOTTOM</DT>
+ *  </DL>
+ */
 void
-geda_handle_box_set_snap_edge        (GedaHandleBox    *handle_box,
-                                     GtkPositionType  edge)
+geda_handle_box_set_snap_edge (GedaHandleBox   *handle_box,
+                               GtkPositionType  edge)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 
-  if (handle_box->snap_edge != edge)
-    {
+  if (handle_box->snap_edge != edge) {
+
       handle_box->snap_edge = edge;
 
       g_object_freeze_notify (G_OBJECT (handle_box));
@@ -974,7 +1038,7 @@ geda_handle_box_get_child_detached (GedaHandleBox *handle_box)
 }
 
 static void
-geda_handle_box_paint (GtkWidget      *widget, GdkEventExpose *event, GdkRectangle   *area)
+geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event, GdkRectangle *area)
 {
   GtkBin *bin;
   GedaHandleBox *handlebox;
@@ -997,74 +1061,76 @@ geda_handle_box_paint (GtkWidget      *widget, GdkEventExpose *event, GdkRectang
   gdk_window_get_size(handlebox->bin_window, &width, &height);
 #endif
 
-  if (!event)
+  if (!event) {
     gtk_paint_box (widget->style,
                    handlebox->bin_window,
                    gtk_widget_get_state (widget),
                    handlebox->shadow_type,
                    area, widget, "handlebox_bin",
                    0, 0, -1, -1);
-    else
-      gtk_paint_box (widget->style,
-                     handlebox->bin_window,
-                     gtk_widget_get_state (widget),
-                     handlebox->shadow_type,
-                     &event->area, widget, "handlebox_bin",
-                     0, 0, -1, -1);
+  }
+  else {
+    gtk_paint_box (widget->style,
+                   handlebox->bin_window,
+                   gtk_widget_get_state (widget),
+                   handlebox->shadow_type,
+                   &event->area, widget, "handlebox_bin",
+                   0, 0, -1, -1);
+  }
 
-      /* We currently draw the handle _above_ the relief of the handlebox.
-       * it could also be drawn on the same level...
-       *
-       *	 handlebox->handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
-       *	 handlebox->handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
-       *	 width,
-       *	 height);*/
+  /* We currently draw the handle _above_ the relief of the handlebox.
+   * it could also be drawn on the same level...
+   *
+   *	 handlebox->handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
+   *	 handlebox->handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
+   *	 width,
+   *	 height);*/
 
-      switch (handle_position)
-      {
-        case GTK_POS_LEFT:
-          rect.x = 0;
-          rect.y = 0;
-          rect.width = DRAG_HANDLE_SIZE;
-          rect.height = height;
-          handle_orientation = GTK_ORIENTATION_VERTICAL;
-          break;
-        case GTK_POS_RIGHT:
-          rect.x = width - DRAG_HANDLE_SIZE;
-          rect.y = 0;
-          rect.width = DRAG_HANDLE_SIZE;
-          rect.height = height;
-          handle_orientation = GTK_ORIENTATION_VERTICAL;
-          break;
-        case GTK_POS_TOP:
-          rect.x = 0;
-          rect.y = 0;
-          rect.width = width;
-          rect.height = DRAG_HANDLE_SIZE;
-          handle_orientation = GTK_ORIENTATION_HORIZONTAL;
-          break;
-        case GTK_POS_BOTTOM:
-          rect.x = 0;
-          rect.y = height - DRAG_HANDLE_SIZE;
-          rect.width = width;
-          rect.height = DRAG_HANDLE_SIZE;
-          handle_orientation = GTK_ORIENTATION_HORIZONTAL;
-          break;
-        default:
-          BUG_IMSG ("unhandler case <%d>", handle_position);
-          break;
-      }
+  switch (handle_position)
+  {
+    case GTK_POS_LEFT:
+      rect.x = 0;
+      rect.y = 0;
+      rect.width = DRAG_HANDLE_SIZE;
+      rect.height = height;
+      handle_orientation = GTK_ORIENTATION_VERTICAL;
+      break;
+    case GTK_POS_RIGHT:
+      rect.x = width - DRAG_HANDLE_SIZE;
+      rect.y = 0;
+      rect.width = DRAG_HANDLE_SIZE;
+      rect.height = height;
+      handle_orientation = GTK_ORIENTATION_VERTICAL;
+      break;
+    case GTK_POS_TOP:
+      rect.x = 0;
+      rect.y = 0;
+      rect.width = width;
+      rect.height = DRAG_HANDLE_SIZE;
+      handle_orientation = GTK_ORIENTATION_HORIZONTAL;
+      break;
+    case GTK_POS_BOTTOM:
+      rect.x = 0;
+      rect.y = height - DRAG_HANDLE_SIZE;
+      rect.width = width;
+      rect.height = DRAG_HANDLE_SIZE;
+      handle_orientation = GTK_ORIENTATION_HORIZONTAL;
+      break;
+    default:
+      BUG_IMSG ("unhandler case <%d>", handle_position);
+      break;
+  }
 
-      if (gdk_rectangle_intersect (event ? &event->area : area, &rect, &dest)) {
-        draw_textured_frame (widget, handlebox->bin_window, &rect,
-                             GTK_SHADOW_OUT,
-                             event ? &event->area : area,
-                             handle_orientation);
-      }
+  if (gdk_rectangle_intersect (event ? &event->area : area, &rect, &dest)) {
+    draw_textured_frame (widget, handlebox->bin_window, &rect,
+                         GTK_SHADOW_OUT,
+                         event ? &event->area : area,
+                         handle_orientation);
+  }
 
-      if (bin->child && gtk_widget_get_visible (bin->child)) {
-        GTK_WIDGET_CLASS (geda_handle_box_parent_class)->expose_event (widget, event);
-      }
+  if (bin->child && gtk_widget_get_visible (bin->child)) {
+    GTK_WIDGET_CLASS (geda_handle_box_parent_class)->expose_event (widget, event);
+  }
 }
 
 static bool
@@ -1072,12 +1138,12 @@ geda_handle_box_expose (GtkWidget      *widget, GdkEventExpose *event)
 {
   GedaHandleBox *handlebox;
 
-  if (gtk_widget_is_drawable (widget))
-  {
+  if (gtk_widget_is_drawable (widget)) {
+
     handlebox = GEDA_HANDLE_BOX (widget);
 
-    if (event->window == widget->window)
-    {
+    if (event->window == widget->window) {
+
       if (handlebox->child_detached)
         geda_handle_box_draw_ghost (handlebox);
     }
@@ -1092,25 +1158,25 @@ static GtkWidget *geda_handle_box_get_invisible (void)
 {
   static GtkWidget *handle_box_invisible = NULL;
 
-  if (!handle_box_invisible)
-    {
-      handle_box_invisible = gtk_invisible_new ();
-      gtk_widget_show (handle_box_invisible);
-    }
+  if (!handle_box_invisible) {
+
+    handle_box_invisible = gtk_invisible_new ();
+    gtk_widget_show (handle_box_invisible);
+  }
 
   return handle_box_invisible;
 }
 
+/* Callback for grab event */
 static bool
 geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *handlebox)
 {
   bool event_handled = FALSE;
 
-  switch (event->type)
-  {
+  switch (event->type) {
+
     case GDK_BUTTON_RELEASE:
-      if (handlebox->in_drag)		/* sanity check */
-      {
+      if (handlebox->in_drag) { /* sanity check */
         geda_handle_box_end_drag (handlebox, event->button.time);
         event_handled = TRUE;
       }
@@ -1134,6 +1200,7 @@ geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *ha
   return event_handled;
 }
 
+/* Callback for mouse button press event */
 static bool
 geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 {
@@ -1160,11 +1227,10 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 
       child = GTK_BIN (handlebox)->child;
 
-      if (child)
-      {
+      if (child) {
 
-        switch (handle_position)
-        {
+        switch (handle_position) {
+
           case GTK_POS_LEFT:
             in_handle = event->x < DRAG_HANDLE_SIZE;
             break;
@@ -1172,24 +1238,25 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
             in_handle = event->y < DRAG_HANDLE_SIZE;
             break;
           case GTK_POS_RIGHT:
-            in_handle = event->x > 2 * GTK_CONTAINER (handlebox)->border_width + child->allocation.width;
+            in_handle = event->x > 2 * GTK_CONTAINER(handlebox)->border_width +
+                                                      child->allocation.width;
             break;
           case GTK_POS_BOTTOM:
-            in_handle = event->y > 2 * GTK_CONTAINER (handlebox)->border_width + child->allocation.height;
+            in_handle = event->y > 2 * GTK_CONTAINER(handlebox)->border_width +
+                                                      child->allocation.height;
             break;
           default:
             in_handle = FALSE;
             break;
         }
       }
-      else
-      {
+      else {
+
         in_handle = FALSE;
         event_handled = TRUE;
       }
 
-      if (in_handle)
-      {
+      if (in_handle) {
 
         GedaHandleBoxPrivate *private = geda_handle_box_get_private (handlebox);
         GtkWidget *invisible = geda_handle_box_get_invisible ();
@@ -1220,8 +1287,8 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
         handlebox->deskoff_x = desk_x - root_x;
         handlebox->deskoff_y = desk_y - root_y;
 
-        if (gdk_window_is_viewable (widget->window))
-        {
+        if (gdk_window_is_viewable (widget->window)) {
+
           gdk_window_get_origin (widget->window, &root_x, &root_y);
 
 #if (HAVE_GDK_WINDOW_GET_WIDTH)
@@ -1236,24 +1303,27 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
           handlebox->attach_allocation.width = width;
           handlebox->attach_allocation.height = height;
         }
-        else
-        {
+        else {
+
           handlebox->attach_allocation.x = -1;
           handlebox->attach_allocation.y = -1;
           handlebox->attach_allocation.width = 0;
           handlebox->attach_allocation.height = 0;
         }
+
         handlebox->in_drag = TRUE;
+
         fleur = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                             GDK_FLEUR);
+
         if (gdk_pointer_grab (invisible->window,
-          FALSE,
-          (GDK_BUTTON1_MOTION_MASK |
-          GDK_POINTER_MOTION_HINT_MASK |
-          GDK_BUTTON_RELEASE_MASK),
-          NULL,
-          fleur,
-          event->time) != 0)
+                              FALSE,
+                             (GDK_BUTTON1_MOTION_MASK |
+                              GDK_POINTER_MOTION_HINT_MASK |
+                              GDK_BUTTON_RELEASE_MASK),
+                              NULL,
+                              fleur,
+                              event->time) != 0)
         {
           handlebox->in_drag = FALSE;
         }
@@ -1276,26 +1346,33 @@ static bool
 geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 {
   GedaHandleBox *handlebox = GEDA_HANDLE_BOX (widget);
+  GdkGeometry    geometry;
+  GdkScreen     *screen;
+  GdkScreen     *pointer_screen;
+
   int new_x, new_y;
   int snap_edge;
-  bool is_snapped = FALSE;
+
   int handle_position;
-  GdkGeometry geometry;
-  GdkScreen *screen, *pointer_screen;
+  bool is_snapped = FALSE;
+
 
   if (!handlebox->in_drag)
     return FALSE;
+
   handle_position = effective_handle_position (handlebox);
 
   /* Calculate the attachment point on the float, if the float were detached */
   new_x = 0;
   new_y = 0;
   screen = gtk_widget_get_screen (widget);
+
   gdk_display_get_pointer (gdk_screen_get_display (screen),
                            &pointer_screen,
                            &new_x, &new_y, NULL);
-  if (pointer_screen != screen)
-  {
+
+  if (pointer_screen != screen) {
+
     GedaHandleBoxPrivate *private = geda_handle_box_get_private (handlebox);
 
     new_x = private->orig_x;
@@ -1306,14 +1383,15 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
   new_y += handlebox->float_allocation.y;
 
   snap_edge = handlebox->snap_edge;
+
   if (snap_edge == -1)
     snap_edge = (handle_position == GTK_POS_LEFT ||
     handle_position == GTK_POS_RIGHT) ?
     GTK_POS_TOP : GTK_POS_LEFT;
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
-    switch (snap_edge)
-    {
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
+
+    switch (snap_edge) {
       case GTK_POS_LEFT:
         snap_edge = GTK_POS_RIGHT;
         break;
@@ -1323,154 +1401,154 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       default:
         break;
     }
+  }
 
-    /* First, check if the snapped edge is aligned */
-    switch (snap_edge)
-    {
+  /* First, check if the snapped edge is aligned */
+  switch (snap_edge)
+  {
+    case GTK_POS_TOP:
+      is_snapped = abs (handlebox->attach_allocation.y - new_y) < TOLERANCE;
+      break;
+    case GTK_POS_BOTTOM:
+      is_snapped = abs (handlebox->attach_allocation.y + (int)handlebox->attach_allocation.height -
+      new_y - (int)handlebox->float_allocation.height) < TOLERANCE;
+      break;
+    case GTK_POS_LEFT:
+      is_snapped = abs (handlebox->attach_allocation.x - new_x) < TOLERANCE;
+      break;
+    case GTK_POS_RIGHT:
+      is_snapped = abs (handlebox->attach_allocation.x + (int)handlebox->attach_allocation.width -
+      new_x - (int)handlebox->float_allocation.width) < TOLERANCE;
+      break;
+  }
+
+  /* Next, check if coordinates in the other direction are sufficiently aligned */
+  if (is_snapped) {
+
+    int float_pos1  = 0;	/* Initialize to suppress warnings */
+    int float_pos2  = 0;
+    int attach_pos1 = 0;
+    int attach_pos2 = 0;
+
+    switch (snap_edge) {
+
       case GTK_POS_TOP:
-        is_snapped = abs (handlebox->attach_allocation.y - new_y) < TOLERANCE;
-        break;
       case GTK_POS_BOTTOM:
-        is_snapped = abs (handlebox->attach_allocation.y + (int)handlebox->attach_allocation.height -
-        new_y - (int)handlebox->float_allocation.height) < TOLERANCE;
+        attach_pos1 = handlebox->attach_allocation.x;
+        attach_pos2 = handlebox->attach_allocation.x + handlebox->attach_allocation.width;
+        float_pos1 = new_x;
+        float_pos2 = new_x + handlebox->float_allocation.width;
         break;
       case GTK_POS_LEFT:
-        is_snapped = abs (handlebox->attach_allocation.x - new_x) < TOLERANCE;
+      case GTK_POS_RIGHT:
+        attach_pos1 = handlebox->attach_allocation.y;
+        attach_pos2 = handlebox->attach_allocation.y + handlebox->attach_allocation.height;
+        float_pos1 = new_y;
+        float_pos2 = new_y + handlebox->float_allocation.height;
+        break;
+    }
+
+    is_snapped = ((attach_pos1 - TOLERANCE < float_pos1) && (attach_pos2 + TOLERANCE > float_pos2)) ||
+                 ((float_pos1  - TOLERANCE < attach_pos1) && (float_pos2  + TOLERANCE > attach_pos2));
+  }
+
+  if (is_snapped) {
+
+    if (handlebox->child_detached) {
+      handlebox->child_detached = FALSE;
+      gdk_window_hide (handlebox->float_window);
+      gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
+      handlebox->float_window_mapped = FALSE;
+      g_signal_emit (handlebox, handle_box_signals[SIGNAL_CHILD_ATTACHED],
+                     0, GTK_BIN (handlebox)->child);
+      gtk_widget_queue_resize (widget);
+    }
+  }
+  else {
+
+    int width, height;
+
+#if (HAVE_GDK_WINDOW_GET_WIDTH)
+    width  = gdk_window_get_width (handlebox->float_window);
+    height = gdk_window_get_height (handlebox->float_window);
+#else
+    gdk_window_get_size(handlebox->float_window, &width, &height);
+#endif
+
+    new_x += handlebox->deskoff_x;
+    new_y += handlebox->deskoff_y;
+
+    switch (handle_position) {
+
+      case GTK_POS_LEFT:
+        new_y += ((int)handlebox->float_allocation.height - height) / 2;
         break;
       case GTK_POS_RIGHT:
-        is_snapped = abs (handlebox->attach_allocation.x + (int)handlebox->attach_allocation.width -
-        new_x - (int)handlebox->float_allocation.width) < TOLERANCE;
+        new_x += (int)handlebox->float_allocation.width - width;
+        new_y += ((int)handlebox->float_allocation.height - height) / 2;
+        break;
+      case GTK_POS_TOP:
+        new_x += ((int)handlebox->float_allocation.width - width) / 2;
+        break;
+      case GTK_POS_BOTTOM:
+        new_x += ((int)handlebox->float_allocation.width - width) / 2;
+        new_y += (int)handlebox->float_allocation.height - height;
         break;
     }
 
-    /* Next, check if coordinates in the other direction are sufficiently aligned */
-    if (is_snapped)
-    {
-      int float_pos1  = 0;	/* Initialize to suppress warnings */
-      int float_pos2  = 0;
-      int attach_pos1 = 0;
-      int attach_pos2 = 0;
-
-      switch (snap_edge)
-      {
-        case GTK_POS_TOP:
-        case GTK_POS_BOTTOM:
-          attach_pos1 = handlebox->attach_allocation.x;
-          attach_pos2 = handlebox->attach_allocation.x + handlebox->attach_allocation.width;
-          float_pos1 = new_x;
-          float_pos2 = new_x + handlebox->float_allocation.width;
-          break;
-        case GTK_POS_LEFT:
-        case GTK_POS_RIGHT:
-          attach_pos1 = handlebox->attach_allocation.y;
-          attach_pos2 = handlebox->attach_allocation.y + handlebox->attach_allocation.height;
-          float_pos1 = new_y;
-          float_pos2 = new_y + handlebox->float_allocation.height;
-          break;
-      }
-
-      is_snapped = ((attach_pos1 - TOLERANCE < float_pos1) &&
-      (attach_pos2 + TOLERANCE > float_pos2)) ||
-      ((float_pos1  - TOLERANCE < attach_pos1) &&
-      (float_pos2  + TOLERANCE > attach_pos2));
-    }
-
-    if (is_snapped) {
-      if (handlebox->child_detached) {
-        handlebox->child_detached = FALSE;
-        gdk_window_hide (handlebox->float_window);
-        gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
-        handlebox->float_window_mapped = FALSE;
-        g_signal_emit (handlebox, handle_box_signals[SIGNAL_CHILD_ATTACHED],
-                       0, GTK_BIN (handlebox)->child);
-        gtk_widget_queue_resize (widget);
-      }
+    if (handlebox->child_detached) {
+      gdk_window_move (handlebox->float_window, new_x, new_y);
+      gdk_window_raise (handlebox->float_window);
     }
     else {
 
-      int width, height;
+      int width;
+      int height;
+      GtkRequisition child_requisition;
 
-#if (HAVE_GDK_WINDOW_GET_WIDTH)
-      width  = gdk_window_get_width (handlebox->float_window);
-      height = gdk_window_get_height (handlebox->float_window);
-#else
-      gdk_window_get_size(handlebox->float_window, &width, &height);
-#endif
+      handlebox->child_detached = TRUE;
 
-      new_x += handlebox->deskoff_x;
-      new_y += handlebox->deskoff_y;
-
-      switch (handle_position)
-      {
-        case GTK_POS_LEFT:
-          new_y += ((int)handlebox->float_allocation.height - height) / 2;
-          break;
-        case GTK_POS_RIGHT:
-          new_x += (int)handlebox->float_allocation.width - width;
-          new_y += ((int)handlebox->float_allocation.height - height) / 2;
-          break;
-        case GTK_POS_TOP:
-          new_x += ((int)handlebox->float_allocation.width - width) / 2;
-          break;
-        case GTK_POS_BOTTOM:
-          new_x += ((int)handlebox->float_allocation.width - width) / 2;
-          new_y += (int)handlebox->float_allocation.height - height;
-          break;
+      if (GTK_BIN (handlebox)->child) {
+        gtk_widget_get_child_requisition (GTK_BIN (handlebox)->child, &child_requisition);
+      }
+      else {
+        child_requisition.width  = 0;
+        child_requisition.height = 0;
       }
 
-      if (handlebox->child_detached)
-      {
-        gdk_window_move (handlebox->float_window, new_x, new_y);
-        gdk_window_raise (handlebox->float_window);
-      }
+      width = child_requisition.width + 2 * GTK_CONTAINER (handlebox)->border_width;
+      height = child_requisition.height + 2 * GTK_CONTAINER (handlebox)->border_width;
+
+      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+        width += DRAG_HANDLE_SIZE;
       else
-      {
-        int width;
-        int height;
-        GtkRequisition child_requisition;
+        height += DRAG_HANDLE_SIZE;
 
-        handlebox->child_detached = TRUE;
+      gdk_window_move_resize (handlebox->float_window, new_x, new_y, width, height);
+      gdk_window_reparent (handlebox->bin_window, handlebox->float_window, 0, 0);
+      gdk_window_set_geometry_hints (handlebox->float_window, &geometry, GDK_HINT_POS);
+      gdk_window_show (handlebox->float_window);
+      handlebox->float_window_mapped = TRUE;
 
-        if (GTK_BIN (handlebox)->child)
-          gtk_widget_get_child_requisition (GTK_BIN (handlebox)->child, &child_requisition);
-        else
-        {
-          child_requisition.width = 0;
-          child_requisition.height = 0;
-        }
+#if	0
+      /* this extra move is necessary if we use decorations, or our
+       * window manager insists on decorations.
+       */
+      gdk_display_sync (gtk_widget_get_display (widget));
+      gdk_window_move (handlebox->float_window, new_x, new_y);
+      gdk_display_sync (gtk_widget_get_display (widget));
+#endif	/* 0 */
+      g_signal_emit (handlebox,
+                     handle_box_signals[SIGNAL_CHILD_DETACHED],
+                     0,
+                     GTK_BIN (handlebox)->child);
+      geda_handle_box_draw_ghost (handlebox);
 
-        width = child_requisition.width + 2 * GTK_CONTAINER (handlebox)->border_width;
-        height = child_requisition.height + 2 * GTK_CONTAINER (handlebox)->border_width;
-
-        if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
-          width += DRAG_HANDLE_SIZE;
-        else
-          height += DRAG_HANDLE_SIZE;
-
-        gdk_window_move_resize (handlebox->float_window, new_x, new_y, width, height);
-        gdk_window_reparent (handlebox->bin_window, handlebox->float_window, 0, 0);
-        gdk_window_set_geometry_hints (handlebox->float_window, &geometry, GDK_HINT_POS);
-        gdk_window_show (handlebox->float_window);
-        handlebox->float_window_mapped = TRUE;
-        #if	0
-        /* this extra move is necessary if we use decorations, or our
-         * window manager insists on decorations.
-         */
-        gdk_display_sync (gtk_widget_get_display (widget));
-        gdk_window_move (handlebox->float_window, new_x, new_y);
-        gdk_display_sync (gtk_widget_get_display (widget));
-        #endif	/* 0 */
-        g_signal_emit (handlebox,
-                       handle_box_signals[SIGNAL_CHILD_DETACHED],
-                       0,
-                       GTK_BIN (handlebox)->child);
-        geda_handle_box_draw_ghost (handlebox);
-
-        gtk_widget_queue_resize (widget);
-      }
+      gtk_widget_queue_resize (widget);
     }
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
 void geda_handle_box_dock (GedaHandleBox *handlebox) {
@@ -1515,11 +1593,12 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
 {
   GtkWidget *widget = GTK_WIDGET (handlebox);
 
-  if (handlebox->child_detached)
-  {
+  if (handlebox->child_detached) {
+
     handlebox->child_detached = FALSE;
-    if (gtk_widget_get_realized (widget))
-    {
+
+    if (gtk_widget_get_realized (widget)) {
+
       gdk_window_hide (handlebox->float_window);
       gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
 
@@ -1532,12 +1611,15 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
     }
     handlebox->float_window_mapped = FALSE;
   }
-  if (handlebox->in_drag)
+
+  if (handlebox->in_drag) {
     geda_handle_box_end_drag (handlebox, GDK_CURRENT_TIME);
+  }
 
   gtk_widget_queue_resize (GTK_WIDGET (handlebox));
 }
 
+/* Removes the grab from handlebox and disconnects the grab handler */
 static void
 geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
 {
