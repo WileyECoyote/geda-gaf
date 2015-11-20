@@ -450,12 +450,12 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
                       page_center_top - (page_height / 2),
                       page_center_top + (page_height / 2));
 
-  if (strcmp(filetype, "eps") == 0) { /*WK - catch EPS export case*/
+  if (strncmp(filetype, "eps", 3) == 0) { /*WK - catch EPS export case*/
     x_image_write_eps(w_current, filename);
   }
   else {
 
-    if (strcmp(filetype, "pdf") == 0) {
+    if (strncmp(filetype, "pdf", 3) == 0) {
       x_print_export_pdf (w_current, filename);
     }
     else {
