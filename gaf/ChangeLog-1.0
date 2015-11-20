@@ -3,8 +3,9 @@
     * src/export.c: Remove g_assert's for str and arg in static inline
       export_command_line__utf8_check.
 
-   ** src/export.c:  Fix arg count for layout option "l" in structure
-      export_long_options, layout requires a parameter is used.
+   ** src/export.c: Fix arg count for layout option "l" in structure
+      export_long_options, layout requires a parameter is used. Replaced
+      g_strcmp0 and strcmp with strncmp.
 
 2015-10-15 Vladimir Zhbanov <vzhbanov@gmail.com>
 

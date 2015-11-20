@@ -215,7 +215,7 @@ cmd_export_impl (void *data, int argc, char **argv)
   tmp = g_utf8_strdown ((settings.format == NULL) ? out_suffix : settings.format, -1);
 
   for (i = 0; formats[i].name != NULL; i++) {
-    if (strcmp (tmp, formats[i].alias) == 0) {
+    if (strncmp (tmp, formats[i].alias, sizeof(formats[i].alias)) == 0) {
       exporter = &formats[i];
       break;
     }
@@ -756,18 +756,18 @@ export_parse_dist (const char *dist)
 
   if (errno != 0) return -1;
 
-  if (g_strcmp0 (unit, "in") == 0) {
-    mult = 72.0;
-  } else if (g_strcmp0 (unit, "cm") == 0) {
-    mult = 72.0 / 2.54;
-  } else if (g_strcmp0 (unit, "mm") == 0) {
-    mult = 72.0 / 25.4;
-  } else if (g_strcmp0 (unit, "pc") == 0) { /* Picas */
-    mult = 12.0;
-  } else if (g_strcmp0 (unit, "px") == 0) {
-    mult = 72.0 / settings.dpi;
-  } else if (g_strcmp0 (unit, "pt") == 0 || unit[0] == 0) {
+  if (!unit || unit[0] == 0 || strncmp (unit, "pt", 2) == 0) {
     mult = 1.0;
+  } else if (strncmp (unit, "in", 2) == 0) {
+    mult = 72.0;
+  } else if (strncmp (unit, "cm", 2) == 0) {
+    mult = 72.0 / 2.54;
+  } else if (strncmp (unit, "mm", 2) == 0) {
+    mult = 72.0 / 25.4;
+  } else if (strncmp (unit, "pc", 2) == 0) { /* Picas */
+    mult = 12.0;
+  } else if (strncmp (unit, "px", 2) == 0) {
+    mult = 72.0 / settings.dpi;
   } else {
     return -1; /* Indicate that parsing unit failed */
   }
@@ -811,15 +811,16 @@ export_parse_align (const char *align)
 static bool
 export_parse_layout (const char *layout)
 {
-  if (g_strcmp0 (layout, "landscape") == 0) {
-    settings.layout = ORIENTATION_LANDSCAPE;
-  } else if (g_strcmp0 (layout, "portrait") == 0) {
-    settings.layout = ORIENTATION_PORTRAIT;
-  } else if (g_strcmp0 (layout, "auto") == 0
-             || layout == NULL
-             || layout[0] == 0) {
+  if (!layout || layout[0] == 0 || strncmp (layout, "auto", 4) == 0) {
     settings.layout = ORIENTATION_AUTO;
-  } else {
+  }
+  else if (strncmp (layout, "landscape", 9) == 0) {
+    settings.layout = ORIENTATION_LANDSCAPE;
+  }
+  else if (strncmp (layout, "portrait", 8) == 0) {
+    settings.layout = ORIENTATION_PORTRAIT;
+  }
+  else {
     return FALSE;
   }
   return TRUE;
@@ -837,8 +838,12 @@ export_parse_margins (const char *margins)
   char **dists;
 
   /* Automatic margins case */
-  if (g_strcmp0 (margins, "auto") == 0 || margins[0] == 0) {
-    for (n = 0; n < 4; n++) settings.margins[n] = -1;
+  if (!margins || margins[0] == 0 || strncmp (margins, "auto", 4) == 0) {
+
+    for (n = 0; n < 4; n++) {
+      settings.margins[n] = -1;
+    }
+
     return TRUE;
   }
 
@@ -913,7 +918,7 @@ export_parse_size (const char *size)
   char **dists;
 
   /* Automatic size case */
-  if (g_strcmp0 (size, "auto") == 0 || size[0] == 0) {
+  if (!size || size[0] == 0 || strncmp (size, "auto", 4) == 0 ) {
     settings.size[0] = settings.size[1] = -1;
     return TRUE;
   }
@@ -1066,21 +1071,21 @@ export_usage (void)
 "\n"
 "Export gEDA files in various image formats.\n"
 "\n"
-"  -f, --format=TYPE      output format (normally autodetected)\n"
-"  -o, --output=OUTPUT    output filename\n"
-"  -p, --paper=NAME       select paper size by name\n"
+"  -f, --format=TYPE        output format (normally autodetected)\n"
+"  -o, --output=OUTPUT      output filename\n"
+"  -p, --paper=NAME         select paper size by name\n"
 "  -s, --size=WIDTH;HEIGHT  specify exact paper size\n"
-"  -k, --scale=FACTOR     specify output scale factor\n"
-"  -l, --layout=ORIENT    page orientation\n"
+"  -k, --scale=FACTOR       specify output scale factor\n"
+"  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
 "  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"
 "                           set page margins\n"
 "  -a, --align=HALIGN;VALIGN\n"
 "                           set alignment of drawing within page\n"
-"  -d, --dpi=DPI          pixels-per-inch for raster outputs\n"
-"  -c, --color            enable color output\n"
-"  --no-color             disable color output\n"
-"  -F, --font=NAME        set font family for printing text\n"
-"  -h, --help     display usage information and exit\n"
+"  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
+"  -c, --color              enable color output\n"
+"  --no-color               disable color output\n"
+"  -F, --font=NAME          set font family for printing text\n"
+"  -h, --help               display usage information and exit\n"
 "\n"
 "Please report bugs to %s.\n"),
           PACKAGE_BUGREPORT);
