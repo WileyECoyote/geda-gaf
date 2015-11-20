@@ -317,26 +317,28 @@ static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* i
   GdkPixmap *pixmap;
   GdkBitmap *mask;
 
-  GdkWindow *window=w_current->main_window->window;
+  GdkWindow *window = w_current->main_window->window;
   GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
 
   char *filename= f_get_bitmap_filespec (TB_ICON_NAME(item->ButtonId));
 
   /* 1ST Try custom icon */
   if(access(filename, R_OK) == 0) {
+
     pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+
     if (pixmap != NULL) {
       wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
     }
   }
+
   if (wpixmap == NULL) { /* Try Falling back to Stock icon */
-    wpixmap = gtk_image_new_from_stock(item->stock_id,
-                                       TB_SMALL_ICON);
+    wpixmap = gtk_image_new_from_stock(item->stock_id, TB_SMALL_ICON);
   }
+
   if (wpixmap == NULL) {
      u_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", filename);
-     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
-                                        TB_SMALL_ICON);
+     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE, TB_SMALL_ICON);
   }
 
   GEDA_FREE(filename);
@@ -1093,7 +1095,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
  *  \par
  *  Note that this section relies heavily on MACROS defined in
  *  geda_toolbars.h in order to reduce coding errors and to help
- *  clarify the "subject" of the algorythms, rather then obsuring
+ *  clarify the "subject" of the algorithms, rather then obsuring
  *  the intent in >10k lines of gtk_xxx's.
  *
  *  \param [in] w_current  Gschem toplevel object.
