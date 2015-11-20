@@ -65,7 +65,7 @@ usage (int exit_status)
 "  -V, --version       Show version information.\n"
 "  --                  stop scanning arguments; run interactively\n"
 "\n"
-"Options -c, -s and -- switches stop argument processing, and pass all\n"
+"Options -e, -s and -- switches stop argument processing, and pass all\n"
 "remaining arguments as the value of (command-line).\n"
 "\n"
 "\n"

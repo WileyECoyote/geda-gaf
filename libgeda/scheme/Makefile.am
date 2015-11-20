@@ -12,9 +12,9 @@ check-am: update-gaf-tool
 # already on the system can't interfere with the test process.
 
 # The new commanline tool uses --no-rcfiles
-#GAF_SHELL = $(top_builddir)/gaf/src/.libs/gaf --no-rcfiles shell
+GAF_SHELL = $(top_builddir)/gaf/src/.libs/gaf --no-rcfiles shell
 
-GAF_SHELL = $(builddir)/../shell/geda-shell -i
+#GAF_SHELL = $(builddir)/../shell/geda-shell -i
 
 TEST_EXTENSIONS  = .scm
 SCM_LOG_COMPILER = $(GAF_SHELL)
