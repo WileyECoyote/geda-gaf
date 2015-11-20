@@ -39,8 +39,11 @@
 
 static struct option shell_long_options[] =
   {
+    {"help",   0, NULL, 'h'},
     {"help", 0, NULL, 'h'},
     {NULL, 0, NULL, 0},
+    {"load",   1, NULL, 'l'},
+    {"scheme", 1, NULL, 's'},
   };
 
 static void
@@ -50,16 +53,16 @@ shell_usage (void)
 "\n"
 "Shell for interactive processing of gEDA data using Scheme.\n"
 "\n"
-"  -s FILE        load Scheme source code from FILE, and exit\n"
 "  -c EXPR        evaluate Scheme expression EXPR, and exit\n"
-"  --             stop scanning arguments; run interactively\n"
+"  -h, --help          display usage information and exit\n"
+"  -l, --load <FILE>   load Scheme source code from FILE\n"
+"  -s, --scheme <FILE> load Scheme source code from FILE, and exit\n"
+"  --                  stop scanning arguments; run interactively\n"
 "\n"
 "The above switches stop argument processing, and pass all\n"
 "remaining arguments as the value of (command-line).\n"
 "\n"
 "  -L DIRECTORY   add DIRECTORY to the front of the Scheme load path\n"
-"  -l FILE        load Scheme source code from FILE\n"
-"  -h, --help     display usage information and exit\n"
 "\n"
 "Please report bugs to %s.\n"),
 PACKAGE_BUGREPORT);

@@ -160,21 +160,20 @@ processing of schematic and symbol files.  It is designed to be used
 with the gEDA Scheme API.
 
 .TP 8
-\fB-s\fR \fIFILE\fR
-Evaluate Scheme source code from \fIFILE\fR, and exit.
-.TP 8
-\fB-c\fR \fIEXPR\fR
 Evaluate the Scheme expression \fIEXPR\fR, and exit.
 .TP 8
-\fB--\fR
-Stop scanning arguments; run interactively.
+\fB\-l\fR, \fB\--load \fIFILE\fR
+Evaluate Scheme source code from \fIFILE\fR.
 .TP 8
 \fB-L\fR \fIDIRECTORY\fR
 Prepend \fIDIRECTORY\fR to the list of directories to be searched for
 Scheme files.
 .TP 8
-\fB-l\fR \fIFILE\fR
-Evaluate Scheme source code from \fIFILE\fR.
+\fB-s\fR \fB\--scheme \fIFILE\fR
+Evaluate Scheme source code from \fIFILE\fR, and exit.
+.TP 8
+\fB--\fR
+Stop scanning arguments; run interactively.
 
 .PP
 The \fB-s\fR, \fB-c\fR and \fB--\fR switches stop argument processing
