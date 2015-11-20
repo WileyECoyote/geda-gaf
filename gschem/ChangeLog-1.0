@@ -8,6 +8,12 @@
       clause to also check for SYMBOL_FILE_DOT_SUFFIX and remove if found,
       move freeing of ps_filename inside the else.
 
+    * src/guile/g_funcs.c: Add functions g_funcs_common_image, g_funcs_bmp_image,
+       g_funcs_jpeg_image, and g_funcs_tiff_image.
+
+    * src/guile/g_register.c: register functions g_funcs_bmp_image g_funcs_
+      jpeg_image, and g_funcs_tiff_image.
+
 2015-11-18  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_idefines.h: Add defines for miniumn image sizes.

@@ -33,6 +33,59 @@
  *  This module contains routines for general Scheme API functions
  *  to dialogs and options under the file menu.
  */
+static
+SCM  g_funcs_common_image(SCM scm_filename, const char *func, const char *type)
+{
+  SCM_ASSERT (scm_is_string (scm_filename), scm_filename, SCM_ARG1, func);
+
+  GschemToplevel *w_current = g_current_window ();
+
+  int use_color = 0;
+  int invert    = 0;
+
+  if (w_current) {
+
+    if (output_filename) {
+
+      x_image_lowlevel (w_current, output_filename,
+                        w_current->image_width,
+                        w_current->image_height,
+                        type,
+                        Image_All,
+                        use_color,   /* Don't use print colors */
+                        invert);     /* Dont invert bw only */
+    }
+    else  {
+
+      char *filename;
+
+      filename = scm_to_utf8_string (scm_filename);
+
+      x_image_lowlevel (w_current, filename,
+                        w_current->image_width,
+                        w_current->image_height,
+                        type,
+                        Image_All,
+                        use_color,
+                        invert);
+      free(filename);
+    }
+
+    return SCM_BOOL_T;
+  }
+  else {
+    return SCM_BOOL_F;
+  }
+}
+
+/*! \brief SCM API Export BMP image
+ *  \par Function Description
+ *   Scheme API to export the current document as a BMP image.
+ */
+SCM g_funcs_bmp_image(SCM scm_filename)
+{
+  return g_funcs_common_image (scm_filename, "gschem-bmp-image", "bmp");
+}
 
 /*! \brief SCM API Yes No Confirmation Dialog
  *  \par Function Description
@@ -100,7 +153,6 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
  */
 SCM g_funcs_exit(void)
 {
-  fprintf (stderr, "<g_funcs_exit> Scheme terminated program");
   exit(0);
 }
 
@@ -172,42 +224,13 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   return v;
 }
 
-/*! \brief SCM API Export PNG image
+/*! \brief SCM API Export JPEG image
  *  \par Function Description
- *   Scheme API to export the current document as a PNG image.
+ *   Scheme API to write the current document as a JPEG image.
  */
-SCM g_funcs_png_image(SCM scm_filename)
+SCM g_funcs_jpeg_image(SCM scm_filename)
 {
-  char *filename;
-  GschemToplevel *w_current;
-
-  SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
-              SCM_ARG1, "gschem-png-image");
-
-  w_current = g_current_window ();
-
-  if (output_filename) {
-    x_image_lowlevel (w_current, output_filename,
-                      w_current->image_width,
-                      w_current->image_height,
-                      "png",
-                      Image_All,
-                      0,          /* Don't use print colors */
-                      0 );        /* Dont invert bw only */
-  }
-  else  {
-    filename = scm_to_utf8_string (scm_filename);
-    x_image_lowlevel (w_current, filename,
-                      w_current->image_width,
-                      w_current->image_height,
-                      "png",
-                      Image_All,
-                      0,
-                      0 );
-    free(filename);
-  }
-
-  return SCM_BOOL_T;
+  return g_funcs_common_image (scm_filename, "gschem-jpeg-image", "jpeg");
 }
 
 /*! \brief SCM API Write to log
@@ -256,9 +279,11 @@ SCM g_funcs_pdf (SCM scm_filename)
   char           *filename;
   GschemToplevel *w_current;
 
-  SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
-              SCM_ARG1, "gschem-pdf");
+  SCM_ASSERT (scm_is_string (scm_filename), scm_filename, SCM_ARG1,
+              "gschem-pdf");
+
   w_current= g_current_window ();
+
   if (output_filename) {
     status = x_print_export_pdf (w_current, output_filename);
   }
@@ -269,6 +294,15 @@ SCM g_funcs_pdf (SCM scm_filename)
   }
 
   return (status ? SCM_BOOL_T : SCM_BOOL_F);
+}
+
+/*! \brief SCM API Export PNG image
+ *  \par Function Description
+ *   Scheme API to write the current document as a PNG image.
+ */
+SCM g_funcs_png_image(SCM scm_filename)
+{
+  return g_funcs_common_image (scm_filename, "gschem-png-image", "png");
 }
 
 /*! \brief SCM API Export Postscript image
@@ -332,21 +366,6 @@ SCM g_funcs_print(SCM scm_filename)
   return SCM_BOOL_T;
 }
 
-/*! \brief Scheme API Set Top Level Variables
- *  \par Function Description
- *  This functions calls i_vars_set and this will reset the value of
- *  top-level variables to the current "defaults", which can be set
- *  individually using scheme. Some variables may not be set if the
- *  "default" is set to RC_NIL = -1, in which case the value assigned
- *  by configuration will be retain, if default is a non RC_NIL value
- *  the current "default" will over-ride values set during configuration.
- */
-SCM g_funcs_use_rc_values(void)
-{
-  i_vars_set(g_current_window ());
-  return SCM_BOOL_T;
-}
-
 /*! \brief Scheme API Save the Current File
  *  \par Function Description
  *  This function accomplishes the same effect as using the builtin
@@ -401,4 +420,28 @@ SCM g_funcs_save_file(void)
   }
 
   return (status ? SCM_BOOL_T : SCM_BOOL_F);
+}
+
+/*! \brief SCM API Export TIFF image
+ *  \par Function Description
+ *   Scheme API to write the current document as a TIFF image.
+ */
+SCM g_funcs_tiff_image(SCM scm_filename)
+{
+  return g_funcs_common_image (scm_filename, "gschem-tiff-image", "tiff");
+}
+
+/*! \brief Scheme API Set Top Level Variables
+ *  \par Function Description
+ *  This functions calls i_vars_set and this will reset the value of
+ *  top-level variables to the current "defaults", which can be set
+ *  individually using scheme. Some variables may not be set if the
+ *  "default" is set to RC_NIL = -1, in which case the value assigned
+ *  by configuration will be retain, if default is a non RC_NIL value
+ *  the current "default" will over-ride values set during configuration.
+ */
+SCM g_funcs_use_rc_values(void)
+{
+  i_vars_set(g_current_window ());
+  return SCM_BOOL_T;
 }

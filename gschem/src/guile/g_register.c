@@ -176,20 +176,22 @@ static struct gsubr_t gschem_rc_funcs[] = {
 };
 
 static struct gsubr_t gschem_g_funcs[] = {
-  /* general guile functions */
+  /* general guile functions and image writers */
+  { "gschem-bmp-image",          1, 0, 0, g_funcs_bmp_image },
   { "gschem-confirm",            1, 0, 0, g_funcs_confirm },
   { "gschem-confirm-cancel",     1, 0, 0, g_funcs_confirm_cancel },
   { "gschem-exit",               0, 0, 0, g_funcs_exit },
   { "gschem-filesel",            2, 0, 1, g_funcs_filesel },
-  { "gschem-png-image",          1, 0, 0, g_funcs_png_image },
+  { "gschem-jpeg-image",         1, 0, 0, g_funcs_jpeg_image },
   { "gschem-log",                1, 0, 0, g_funcs_log },
   { "gschem-msg",                1, 0, 0, g_funcs_msg },
   { "gschem-pdf",                1, 0, 0, g_funcs_pdf },
+  { "gschem-png-image",          1, 0, 0, g_funcs_png_image },
   { "gschem-postscript",         1, 0, 0, g_funcs_postscript },
   { "gschem-print",              1, 0, 0, g_funcs_print },
   { "gschem-use-rc-values",      0, 0, 0, g_funcs_use_rc_values },
   { "gschem-save-file",          0, 0, 0, g_funcs_save_file },
-
+  { "gschem-tiff-image",         1, 0, 0, g_funcs_tiff_image },
   { NULL,                        0, 0, 0, NULL }
 };
 
