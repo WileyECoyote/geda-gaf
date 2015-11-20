@@ -291,8 +291,11 @@ cmd_export_impl (void *data, int argc, char **argv)
      * are black. */
     COLOR white = {~0, ~0, ~0, ~0, TRUE};
     COLOR black = {0, 0, 0, ~0, TRUE};
+
     for (i = 0; i < MAX_COLORS; i++) {
+
       COLOR *c = &g_array_index (color_map, COLOR, i);
+
       if (!c->enabled) continue;
 
       if (c->a == 0) {
@@ -337,12 +340,16 @@ export_text_rendered_bounds (void *user_data, Object *object,
 {
   int result;
   int t, l, r, b;
+
   EdaRenderer *renderer = EDA_RENDERER (user_data);
+
   result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+
  *left   = lrint (min (l,r));
  *top    = lrint (min (t, b));
  *right  = lrint (max (l, r));
  *bottom = lrint (max (t, b));
+
   return result;
 }
 
@@ -440,7 +447,8 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
       extents->width = p_width;
       extents->height = p_height;
     }
-  } else {
+  }
+  else {
     /* get extents from drawing */
 
     extents->width = w_width * settings.scale; /* in points */
@@ -659,7 +667,9 @@ export_draw_svg_page (cairo_t *cr)
 
     /* Sort objects */
     for (iter = contents; iter != NULL; iter = g_list_next (iter)) {
+
       Object *object = iter->data;
+
       if (object->type == OBJ_COMPLEX) {
         complexes = g_list_prepend(complexes, object);
       }
@@ -773,15 +783,21 @@ export_parse_align (const char *align)
   char **args;
 
   /* Automatic alignment case */
-  if (g_strcmp0 (align, "auto") == 0 || align[0] == 0) {
+  if (!align || align[0] == 0 || strncmp (align, "auto", 4) == 0 ) {
     settings.align[0] = settings.align[1] = 0.5;
     return TRUE;
   }
 
   args = g_strsplit_set (align, ":; ", 2);
+
   for (n = 0; args[n] != NULL; n++) {
+
     double d = strtod (args[n], NULL);
-    if (d < 0 || d > 1) return FALSE;
+
+    if (d < 0 || d > 1) {
+      return FALSE;
+    }
+
     settings.align[n] = d;
   }
   g_strfreev (args);
@@ -820,8 +836,6 @@ export_parse_margins (const char *margins)
   int n;
   char **dists;
 
-  g_assert (margins != NULL);
-
   /* Automatic margins case */
   if (g_strcmp0 (margins, "auto") == 0 || margins[0] == 0) {
     for (n = 0; n < 4; n++) settings.margins[n] = -1;
@@ -829,9 +843,15 @@ export_parse_margins (const char *margins)
   }
 
   dists = g_strsplit_set (margins, ":; ", 4);
+
   for (n = 0; dists[n] != NULL; n++) {
+
     double d = export_parse_dist (dists[n]);
-    if (d < 0) return FALSE;
+
+    if (d < 0) {
+      return FALSE;
+    }
+
     settings.margins[n] = d;
   }
   g_strfreev (dists);
@@ -840,16 +860,21 @@ export_parse_margins (const char *margins)
     /* If only one value is specified, it applies to all four sides. */
     settings.margins[3] = settings.margins[2]
       = settings.margins[1] = settings.margins[0];
-  } else if (n == 2) {
+  }
+  else if (n == 2) {
+
     /* If two values are specified, the first applies to the
        top/bottom, and the second to left/right. */
     settings.margins[2] = settings.margins[0];
     settings.margins[3] = settings.margins[1];
-  } else if (n == 3) {
+  }
+  else if (n == 3) {
+
     /* If three values are specified, the first applies to the top,
        the second to left/right, and the third to the bottom. */
     settings.margins[3] = settings.margins[1];
-  } else if (n != 4) {
+  }
+  else if (n != 4) {
     return FALSE; /* Must correctly specify 1-4 distances + units */
   }
 
@@ -862,13 +887,20 @@ export_parse_paper (const char *paper)
 {
   GtkPaperSize *paper_size = gtk_paper_size_new (paper);
 
-  if (paper_size == NULL) return FALSE;
+  if (paper_size == NULL) {
+    return FALSE;
+  }
 
-  if (settings.paper != NULL) gtk_paper_size_free (settings.paper);
+  if (settings.paper != NULL) {
+    gtk_paper_size_free (settings.paper);
+  }
+
   settings.paper = paper_size;
+
   /* Must reset size setting to invalid or it will override paper
    * setting */
   settings.size[0] = settings.size[1] = -1;
+
   return TRUE;
 }
 
@@ -887,13 +919,23 @@ export_parse_size (const char *size)
   }
 
   dists = g_strsplit_set (size, ":; ", 2);
+
   for (n = 0; dists[n] != NULL; n++) {
+
     double d = export_parse_dist (dists[n]);
-    if (d < 0) return FALSE;
+
+    if (d < 0) {
+      return FALSE;
+    }
+
     settings.size[n] = d;
   }
+
   g_strfreev (dists);
-  if (n != 2) return FALSE;
+
+  if (n != 2) {
+    return FALSE;
+  }
 
   return TRUE;
 }
@@ -904,8 +946,13 @@ static bool
 export_parse_scale (const char *scale)
 {
   double d = export_parse_dist (scale);
-  if (d <= 0) return FALSE;
+
+  if (d <= 0) {
+    return FALSE;
+  }
+
   settings.scale = d/100;
+
   return TRUE;
 }
 
@@ -914,10 +961,10 @@ static void
 export_config (void)
 {
   EdaConfig *cfg = eda_config_get_context_for_file (NULL);
-  char *str;
+  char   *str;
   double *lst;
-  double dval;
-  double bval;
+  double  dval;
+  double  bval;
   gsize n;
   GError *err = NULL;
 

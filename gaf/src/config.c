@@ -38,10 +38,10 @@
 
 static struct option config_long_options[] =
   {
-    {"help", 0, NULL, 'h'},
+    {"help",    0, NULL, 'h'},
     {"project", 2, NULL, 'p'},
-    {"system", 0, NULL, 's'},
-    {"user", 0, NULL, 'u'},
+    {"system",  0, NULL, 's'},
+    {"user",    0, NULL, 'u'},
   };
 
 static void
@@ -157,7 +157,9 @@ cmd_config_impl (void *data, int argc, char **argv)
 
   /* Attempt to load the file, and all its parents */
   for (parent = cfg; parent != NULL; parent = eda_config_get_parent (parent)) {
+
     GError *err = NULL;
+
     if (eda_config_is_loaded (parent) ||
         eda_config_get_filename (parent) == NULL) continue;
 
