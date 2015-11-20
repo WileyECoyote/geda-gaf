@@ -1,3 +1,7 @@
+2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TSB41AB1PHP-1.sym: Add symbol symbol Link-Layer Controller, IEEE1394
+
 2015-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/capacitor/capacitor-variable-1.sym: documentation=https:
