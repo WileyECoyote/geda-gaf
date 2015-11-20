@@ -1,6 +1,6 @@
 /*
  * geda-shell: Batch processing for gEDA
- * Copyright (C) 2010-2014 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2010-2015 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,32 +28,49 @@
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 
-#define GETOPT_OPTIONS "s:c:L:l:qhV"
+#ifdef HAVE_GETOPT_H
+#include <getopt.h>
+#endif
+
+#define GETOPT_OPTIONS "e:hil:p:s:V"
+
+#ifdef HAVE_GETOPT_LONG
+static struct option long_options[] =
+  {
+    {"eval",    1, NULL, 'e'},
+    {"help",    0, NULL, 'h'},
+    {"inhibit", 0, NULL, 'i'},
+    {"load",    1, NULL, 'l'},
+    {"path",    1, NULL, 'p'},
+    {"scheme",  1, NULL, 's'},
+    {"version", 0, NULL, 'V'},
+    {NULL,      0, NULL, 0},
+  };
+#endif
 
 /* Print help info and exit with exit_status */
 static void
 usage (int exit_status)
 {
-  printf(
-"Usage: geda-shell OPTION ...\n"
+  printf ("Usage: gaf shell [OPTION ...]\n"
 "\n"
-"Shell for interactive processing of gEDA data\n"
+"Shell for interactive processing of gEDA data using Scheme.\n"
 "\n"
-"  -s FILE        load Scheme source code from FILE, and exit\n"
-"  -c EXPR        evaluate Scheme expression EXPR, and exit\n"
-"  --             stop scanning arguments; run interactively\n"
+"  -e, --eval (EXPR)   evaluate Scheme expression EXPR, and exit\n"
+"  -h, --help          display usage information and exit\n"
+"  -i, --inhibit       Inhibit loading RC files.\n"
+"  -l, --load <FILE>   load Scheme source code from FILE\n"
+"  -p, --path <DIR>    add DIR to the front of the Guile load path\n"
+"  -s, --scheme <FILE> load Scheme source code from FILE, and exit\n"
+"  -V, --version       Show version information.\n"
+"  --                  stop scanning arguments; run interactively\n"
 "\n"
-"The above switches stop argument processing, and pass all\n"
+"Options -c, -s and -- switches stop argument processing, and pass all\n"
 "remaining arguments as the value of (command-line).\n"
 "\n"
-"  -L DIRECTORY   add DIRECTORY to the front of the module load path\n"
-"  -l FILE        load Scheme source code from FILE\n"
-"  -q             inhibit loading of gafrc files\n"
-"  -h             display this message and exit\n"
-"  -V             display version information and exit\n"
 "\n"
-"Please report bugs to geda-bug@seul.org\n"
-  );
+"Please report bugs to %s.\n",
+PACKAGE_BUGREPORT);
   exit (exit_status);
 }
 
@@ -102,23 +119,36 @@ shell_main (void *data, int argc, char **argv)
 
   /* Parse command-line arguments */
   opterr = 0;
+
+#ifdef HAVE_GETOPT_LONG
+  while ((c = getopt_long (argc, argv, GETOPT_OPTIONS,
+                           long_options, NULL)) != -1) {
+#else
   while ((c = getopt (argc, argv, GETOPT_OPTIONS)) != -1) {
+
+#endif
+
     switch (c) {
-      case 's':
-        /* Construct an application of LOAD to the script name */
-        run_lst = scm_cons (scm_list_2 (sym_load,
-                                        scm_from_locale_string (optarg)),
-                            run_lst);
-        interactive = 0;
-        goto endoptloop;
-      case 'c':
+      case 'e':
         /* We need to evaluate an expression */
         run_lst = scm_cons (scm_list_2 (sym_eval_string,
                                         scm_from_locale_string (optarg)),
                             run_lst);
         interactive = 0;
         goto endoptloop;
-      case 'L':
+      case 'h':
+        usage (0);
+      case 'i':
+        inhibit_rc = 1;
+        break;
+
+      case 'l':
+        /* Same as -s, pretty much */
+        run_lst = scm_cons (scm_list_2 (sym_load,
+                                        scm_from_locale_string (optarg)),
+                            run_lst);
+        break;
+      case 'p':
         /* Add argument to %load-path */
         setup_lst = scm_cons (scm_list_3 (sym_set_x,
                                           sym_load_path,
@@ -127,17 +157,13 @@ shell_main (void *data, int argc, char **argv)
                                                       sym_load_path)),
                               setup_lst);
         break;
-      case 'l':
-        /* Same as -s, pretty much */
+      case 's':
+        /* Construct an application of LOAD to the script name */
         run_lst = scm_cons (scm_list_2 (sym_load,
                                         scm_from_locale_string (optarg)),
                             run_lst);
-        break;
-      case 'q':
-        inhibit_rc = 1;
-        break;
-      case 'h':
-        usage (0);
+        interactive = 0;
+        goto endoptloop;
       case 'V':
         version();
       case '?':
@@ -145,10 +171,12 @@ shell_main (void *data, int argc, char **argv)
           fprintf (stderr,
                    "ERROR: -%c option requires an argument.\n\n", optopt);
           usage (1);
-        } else if (isprint (optopt)) {
+        }
+        else if (isprint (optopt)) {
           fprintf (stderr, "ERROR: Unknown option -%c\n\n", optopt);
           usage (1);
-        } else {
+        }
+        else {
           fprintf (stderr,
                    "ERROR: Unknown option character `\\x%x'.\n\n", optopt);
           usage (1);
@@ -197,17 +225,17 @@ shell_main (void *data, int argc, char **argv)
   setup_lst = scm_reverse_x (setup_lst, SCM_UNDEFINED);
   run_lst = scm_reverse_x (run_lst, SCM_UNDEFINED);
 
-  /* Initialise libgeda */
-  libgeda_init (argc, argv);
-  scm_dynwind_begin (0);
-  toplevel = geda_toplevel_new ();
-  edascm_dynwind_toplevel (toplevel);
-
   /* First run the setup list */
   if (setup_lst != SCM_EOL) {
     setup_lst = scm_cons (sym_begin, setup_lst);
     scm_eval_x (setup_lst, scm_current_module ());
   }
+
+  /* Initialise libgeda */
+  libgeda_init (argc, argv);
+  scm_dynwind_begin (0);
+  toplevel = geda_toplevel_new ();
+  edascm_dynwind_toplevel (toplevel);
 
   /* Load rc files, unless command-line over-ride */
   if (!inhibit_rc) {

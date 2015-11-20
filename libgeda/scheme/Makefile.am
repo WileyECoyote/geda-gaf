@@ -14,12 +14,12 @@ check-am: update-gaf-tool
 # The new commanline tool uses --no-rcfiles
 #GAF_SHELL = $(top_builddir)/gaf/src/.libs/gaf --no-rcfiles shell
 
-GAF_SHELL = $(builddir)/../shell/geda-shell -q
+GAF_SHELL = $(builddir)/../shell/geda-shell -i
 
 TEST_EXTENSIONS  = .scm
 SCM_LOG_COMPILER = $(GAF_SHELL)
-AM_SCM_LOG_FLAGS = -L $(srcdir) -L $(builddir) \
-	-c '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
+AM_SCM_LOG_FLAGS = -p $(srcdir) -p $(builddir) \
+	-e '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
 
 TESTS = unit-tests/t0001-geda-conf-lib.scm \
 		unit-tests/t0100-object-line.scm \
