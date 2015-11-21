@@ -151,9 +151,17 @@ SCM g_funcs_confirm_cancel(SCM scm_msg)
  *
  *  Should this be g_funcs_abort
  */
-SCM g_funcs_exit(void)
+SCM g_funcs_exit(SCM status)
 {
-  exit(0);
+  int status_code;
+
+  if (scm_is_integer (status)) {
+    status_code = scm_to_int(status);
+  }
+  else {
+    status_code = 0;
+  }
+  exit(status_code);
 }
 
 /*! \brief SCM API File Select Dialog
