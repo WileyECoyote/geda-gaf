@@ -51,6 +51,7 @@ bitmapdata_DATA   = \
 			geda-design3.png                   \
 			geda-design4.png                   \
 			geda-display.png                   \
+			geda-display-color.png             \
 			geda-draft.png                     \
 			geda-film-roll.png                 \
 			geda-grid-dot.png                  \
