@@ -1422,48 +1422,29 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_set_border_width (GTK_CONTAINER  (Edit_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER  (w_current->edit_handlebox), Edit_Toolbar);
 
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_copy);
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_multi_copy);
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_move);
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_mirror);
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_rotate);
-
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_copy,  LOCAL_PIX, GEDA_COPY_BITMAP,    x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_multi_copy, LOCAL_PIX, GEDA_MULTI_BITMAP,   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_move,       LOCAL_PIX, GEDA_MOVE_BITMAP,    x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_mirror,     LOCAL_PIX, GEDA_MIRROR_BITMAP,  x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_rotate,     LOCAL_PIX, GEDA_ROTATE_BITMAP,  x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_copy);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_multi_copy);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_move);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_mirror);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_rotate);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_butes);
-//  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_color);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_butes, LOCAL_STK, INDENT,              x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_color, LOCAL_PIX, GEDA_DISPLAY_COLOR_BITMAP, x_toolbars_execute,  w_current);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_butes);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_color);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
 
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_text);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_slot);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_pin);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_line);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_fill);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_arc);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_translate);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_lock);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_unlock);
-  //GSCHEM_TOOLBAR_BUTTON( Edit, etb_update);
-
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_text,  LOCAL_STK, EDIT,                   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_slot,  LOCAL_FAC, NULL,                   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_pin,   LOCAL_FAC, NULL,                   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_line,  LOCAL_PIX, GEDA_LINE_TYPE_BITMAP,  x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_fill,  LOCAL_STR, NULL,                   x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_arc,   LOCAL_FAC, NULL,                   x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_translate,  LOCAL_PIX, GEDA_TRANSLATE_BITMAP,  x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_lock,       LOCAL_PIX, GEDA_LOCK_BITMAP,       x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_unlock,     LOCAL_PIX, GEDA_UNLOCK_BITMAP,     x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_update,     LOCAL_STK, REFRESH,                x_toolbars_execute, w_current);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_text);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_slot);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_pin);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_line);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_fill);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_edit_arc);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_translate);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_lock);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_unlock);
+  GSCHEM_TOOLBAR_BUTTON( Edit, etb_update);
 
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
