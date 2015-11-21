@@ -1448,7 +1448,9 @@ static bool multiattrib_callback_value_key_pressed(GtkWidget   *widget,
   bool retval = FALSE;
 
   if ((event->keyval == GDK_Return || event->keyval == GDK_KP_Enter) ||
-      (event->keyval == GDK_Tab    || event->keyval == GDK_KP_Tab)) {
+      (event->keyval == GDK_Tab    || event->keyval == GDK_KP_Tab)   ||
+      (event->keyval == GDK_ISO_Left_Tab))
+  {
     /* Control modifier activated? */
     if (event->state & GDK_CONTROL_MASK) {
       /* yes the modifier in event structure and let event propagate */
@@ -2009,6 +2011,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, /* GtkFrame */
                                     "shadow", GTK_SHADOW_NONE,
                                     NULL));
+
   ThisDialog->frame_attributes = frame;
 
   /*   - create the model for the treeview with pointer to attributes */
@@ -2172,7 +2175,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   scrolled_win = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
                                            /* GtkScrolledWindow */
                                            "hscrollbar-policy",
-                                           GTK_POLICY_NEVER,
+                                           GTK_POLICY_AUTOMATIC,
                                            "vscrollbar-policy",
                                            GTK_POLICY_AUTOMATIC,
                                            "shadow-type",
@@ -2181,9 +2184,17 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   /*! \todo: Forcing the size request is a horrible band-aid and
    *  should be replaced by a better heuristic. */
-  textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW,
+  /*textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW,
                                        "height-request", 50,
-                                       NULL));
+                                       NULL));*/
+  const char *textview_tip;
+
+  textview_tip  = _("Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab");
+
+  textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW, NULL));
+
+  gtk_widget_set_tooltip_text (GTK_WIDGET (textview), textview_tip);
+
   g_signal_connect (textview,
                     "key_press_event",
                     G_CALLBACK (multiattrib_callback_value_key_pressed),

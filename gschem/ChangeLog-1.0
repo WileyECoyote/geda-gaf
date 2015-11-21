@@ -1,3 +1,17 @@
+2015-11-21 Sergey Alyoshin <alyoshin.s@gmail.com>
+
+    * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 79d6da9e2dec05716570ae9b99ba65f5ddec5bbc:
+      multiattrib Value textview improvements:
+
+        * Move focus backward to Name from Value textview with Shift+Tab
+        * Add tooltip for Value textview about adding new line and Tab
+        * Allow horizontal scrollbar for Value textview to prevent dialog
+          window to expand more than display size.
+
+    * src/x/x_multiattrib.c: Implmentented enhanchments per commit reference
+      above.
+
 2015-11-20  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_icons.c:Add geda-display-color to IDS_GEDA_ICONS group.
