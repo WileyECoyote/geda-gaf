@@ -104,6 +104,7 @@ bitmapdata_DATA   = \
 			geda_switch_64x48_on.png           \
 			geda-text-editor.png               \
 			geda-tools.png                     \
+			geda-translate.png                 \
 			geda-verilog-blue.png              \
 			geda-verilog-grn.png               \
 			geda-undo.png                      \
