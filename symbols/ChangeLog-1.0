@@ -1,12 +1,31 @@
 2015-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-clib.scm: Add manufacture Cypress with 3 symbols:
+    * geda-clib.scm: Add manufacture Cypress.
 
-    * cypress/CY7C64603-52NC-1.sym: Add symbol USB Micro-controller.
+    * cypress/: Add 3 USB Micro-controller symbols:
 
-    * cypress/CY7C64713-56LT-1.sym: Add symbol USB Micro-controller.
+        * cypress/CY7C64603-52NC-1.sym: PQFP52_10X10_52.
+        * cypress/CY7C64713-56LT-1.sym: QFN-56-8-EP.
+        * cypress/CY7C64713-56PV-1.sym: SSOP56W.
 
-    * cypress/CY7C64713-56PV-1.sym: Add symbol USB Micro-controller.
+    * graphic/flow-chart: Add 16 basic flow chart symbols:
+
+        * graphic/flow-chart/BEGIN.sym
+        * graphic/flow-chart/CALL.sym
+        * graphic/flow-chart/DATA.sym
+        * graphic/flow-chart/DIRECT.sym
+        * graphic/flow-chart/DISPLAY.sym
+        * graphic/flow-chart/END.sym
+        * graphic/flow-chart/ENDSUB.sym
+        * graphic/flow-chart/GOTO.sym
+        * graphic/flow-chart/IF_YENS.sym
+        * graphic/flow-chart/IF_YENW.sym
+        * graphic/flow-chart/IF_YSNW.sym
+        * graphic/flow-chart/LABEL.sym
+        * graphic/flow-chart/PREP.sym
+        * graphic/flow-chart/PROC.sym
+        * graphic/flow-chart/STORE.sym
+        * graphic/flow-chart/TASK.sym
 
 2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
 

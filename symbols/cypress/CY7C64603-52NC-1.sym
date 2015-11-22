@@ -578,7 +578,7 @@ pinlabel=VCC4
 T 3450 12100 5 10 0 1 90 8 1
 pintype=pwr
 }
-T 1600 6300 8 10 1 1 0 0 1
+T 2800 6300 8 10 1 1 0 0 1
 footprint=PQFP52_10X10_52
 T 4800 6300 5 8 0 0 0 0 1
 symversion=0.2
@@ -586,5 +586,3 @@ T 1500 8200 5 10 0 1 0 0 1
 documentation=http://www.cypress.com/file/125331/download
 T 2500 5900 9 16 1 1 0 0 1
 description=USB Microcontroller
-L 7500 10900 7500 10500 3 0 0 0 100 100
-L 100 7100 100 4700 3 0 0 0 100 100

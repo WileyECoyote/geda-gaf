@@ -299,6 +299,7 @@
                      ("micro/PIC"    "Standard/PIC Microcontrollers")
                   ("tube"            "Vacuum tubes")
                   ("graphic"         "Graphical symbols")
+                     ("graphic/flow-chart" "Standard/Flow Chart")
                   ("asic"            "ASIC Components")
                   ("misc"            "Misc. unsorted symbols")
                   ("titleblock"      "Standard/titleblock")

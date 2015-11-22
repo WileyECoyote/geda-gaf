@@ -1,6 +1,8 @@
 v 20151031 2
 T 1500 8000 5 10 0 0 0 0 1
 device=CY7C64713
+T 300 12300 8 10 1 1 0 0 1
+refdes=U?
 B 300 300 7100 11900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 300 9500 0 9500 1 0 1
 {
@@ -321,10 +323,6 @@ pinlabel=CTL1
 T 7300 1500 5 10 0 1 0 8 1
 pintype=out
 }
-T 3700 6700 9 30 1 1 0 4 1
-value=CY7C64713
-T 300 12300 8 10 1 1 0 0 1
-refdes=U?
 P 4400 300 4400 0 1 0 1
 {
 T 4350 100 5 8 1 1 0 6 1
@@ -446,14 +444,6 @@ pinlabel=VCC
 T 2450 12100 5 10 0 1 90 8 1
 pintype=pwr
 }
-T 3700 5800 8 10 1 1 0 3 1
-footprint=SSOP56W
-T 2300 7000 5 8 0 0 0 0 1
-symversion=0.2
-T 1500 8200 5 10 0 1 0 0 1
-documentation=http://www.cypress.com/file/125331/download
-T 3700 6100 9 16 1 1 0 3 1
-description=USB Microcontroller
 P 1400 300 1400 0 1 0 1
 {
 T 1350 100 5 8 0 1 0 6 1
@@ -630,3 +620,13 @@ pinlabel=VCC
 T 4450 12100 5 10 0 1 90 8 1
 pintype=pwr
 }
+T 3700 5800 8 10 1 1 0 3 1
+footprint=SSOP56W
+T 2300 7000 5 8 0 0 0 0 1
+symversion=0.2
+T 1500 8200 5 10 0 1 0 0 1
+documentation=http://www.cypress.com/file/125331/download
+T 3700 6100 9 16 1 1 0 3 1
+description=USB Microcontroller
+T 3700 6700 9 30 1 1 0 4 1
+value=CY7C64713

@@ -1,0 +1,39 @@
+v 20151031 2
+H 3 0 0 0 100 100 0 0 45 50 135 50 5
+M 0,200
+L 200,1500
+L 2300,1500
+L 2100,200
+z
+P 1100 1500 1100 1700 1 0 1
+{
+T 1000 1600 5 8 0 1 0 4 1
+pinnumber=1
+T 1000 1600 5 8 0 1 0 4 1
+pinseq=1
+T 1100 1400 5 8 0 1 0 4 1
+pinlabel=DSEG
+T 1150 1600 5 8 0 1 0 1 1
+pintype=in
+}
+P 1100 200 1100 0 1 0 1
+{
+T 1000 100 5 8 0 1 0 4 1
+pinnumber=2
+T 1000 100 5 8 0 1 0 4 1
+pinseq=2
+T 1100 300 5 8 0 1 0 4 1
+pinlabel=ENDSEG
+T 1150 100 5 8 0 1 0 1 1
+pintype=out
+}
+T 100 100 9 10 0 1 0 1 1
+device=DATA
+T 1400 100 9 10 0 1 0 1 1
+footprint=none
+T 1100 800 9 20 1 1 0 3 1
+value=DATA
+T 2300 1600 9 10 0 1 0 7 1
+refdes=STEP-?
+T 200 1600 9 10 0 1 0 1 1
+description=Data I/O
