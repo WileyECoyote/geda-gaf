@@ -200,6 +200,7 @@
                   ("arduino"         "Manufacturers/Arduino")
                   ("atmel"           "Manufacturers/Atmel")
                   ("cirrus"          "Manufacturers/Cirrus Logic")
+                  ("cypress"         "Manufacturers/Cypress")
                   ("dallas"          "Manufacturers/Dallas Semiconductor")
                   ("dec"             "Manufacturers/DEC")
                   ("epson"           "Manufacturers/Epson")

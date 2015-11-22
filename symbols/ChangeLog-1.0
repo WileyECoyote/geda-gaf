@@ -1,3 +1,13 @@
+2015-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm: Add manufacture Cypress with 3 symbols:
+
+    * cypress/CY7C64603-52NC-1.sym: Add symbol USB Micro-controller.
+
+    * cypress/CY7C64713-56LT-1.sym: Add symbol USB Micro-controller.
+
+    * cypress/CY7C64713-56PV-1.sym: Add symbol USB Micro-controller.
+
 2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TSB41AB1PHP-1.sym: Add symbol symbol Link-Layer Controller, IEEE1394
