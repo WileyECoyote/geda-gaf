@@ -6,6 +6,12 @@
     * src/x/x_toolbars.c: Switch left "edit" toolbar to temporary GSCHEM_
       TOOLBAR_BUTTON macro.
 
+    * tests/gafrc: Replace current-working-directory with cwd and getenv "PWD"
+      with getcwd, that later so that the the sch files requiring other local
+      files can be opened in a GUI file manager, in which case the environment
+      PWD typically points to the HOME directory and not the directory where
+      the sch files are located.
+
 2015-11-21 Sergey Alyoshin <alyoshin.s@gmail.com>
 
     * tests/common/run_backend_tests.sh: WEH: Modified per commit to Master branch
