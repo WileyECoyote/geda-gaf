@@ -49,35 +49,35 @@ $outfname="$fname.fix";
 open(OUTNET,">$outfname") or die "Can't open $outfname: $!\n";
 
 # parse netlist
-while($line = <NETLIST>) {
+while ($line = <NETLIST>) {
   $file_line++;
   #==========================
-  if( $state == $st_scan ) {
-    if( $line =~ /^P/) { 
-      $state = $st_pin_start; 
+  if ( $state == $st_scan ) {
+    if( $line =~ /^P/) {
+      $state = $st_pin_start;
       if($vverbose){print "Pin start...\n";}
     }
-    elsif( $line =~ /^numslots=/) { 
+    elsif ( $line =~ /^numslots=/) {
       $found_numslots_attr = 1;
     }
-    elsif( $line =~ /^device=/) { 
+    elsif( $line =~ /^device=/) {
       $found_device_attr = 1;
     }
-    elsif( $line =~ /^footprint=/) { 
+    elsif( $line =~ /^footprint=/) {
       $found_footprint_attr = 1;
     }
     print OUTNET $line;
   }
   #==========================
-  elsif( $state == $st_pin_start ) {
-    if( $line =~ /^{/) {
+  elsif ( $state == $st_pin_start ) {
+    if ( $line =~ /^{/) {
       $state = $st_pin_body;
       $found_pinnumber_attr = 0;
       $found_pinseq_attr    = 0;
       $found_pintype_attr   = 0;
       $found_pinlabel_attr  = 0;
       print OUTNET $line;
-    } 
+    }
     else {
       print STDERR "*** ERROR: No pin left bracket found at line $file_line\n";
       exit(-1);
@@ -92,54 +92,89 @@ while($line = <NETLIST>) {
       $pin_num =~ s/\n//;
       $pin_num =~ s/^pinnumber=//;
       $pinnumber_attr_line = $prev_line;
-      if($vverbose){print "  pinnumber attribute found ($pin_num)\n";}
+      if ($vverbose) {
+        print "  pinnumber attribute found ($pin_num)\n";
+      }
     }
     #----------------------
     elsif( $line =~ /^pinseq/) {
       $found_pinseq_attr = 1;
-      if($vverbose){print "  Pinseq attribute found\n";}
+      $pinseq_attr_line = $prev_line;
+      if($vverbose) {
+        print "  Pinseq attribute found\n";
+      }
       $seqcnt++;
-      if($vverbose){print "  Renumbering attr pinseq=$seqcnt\n";}
+      if($vverbose) {
+        print "  Renumbering attr pinseq=$seqcnt\n";
+      }
       print OUTNET "pinseq=$seqcnt\n";
       $skip_line_out++;
     }
     #----------------------
     elsif( $line =~ /^pintype/) {
       $found_pintype_attr = 1;
-      if($vverbose){print "  pintype attribute found\n";}
+      $pintype_attr_line = $prev_line;
+      if($vverbose) {
+        print "  pintype attribute found\n";
+      }
     }
     #----------------------
     elsif( $line =~ /^pinlabel/) {
       $found_pinlabel_attr = 1;
-      if($vverbose){print "  pinlabel attribute found\n";}
+      $pinlabel_attr_line = $prev_line;
+      if($vverbose) {
+        print "  pinlabel attribute found\n";
+      }
     }
     #----------------------
     elsif( $line =~ /^}/) {
       $state = $st_scan;
       if( $found_pinnumber_attr == 0 ) {
         print "*** WARNING: no pinum attribute found at line $file_line\n";
+        if( $found_pinseq_attr == 1 ) {
+          $pin_attr_line = $pinseq_attr_line;
+        }
+        elsif( $found_pintype_attr == 1 ) {
+          $pin_attr_line = $pintype_attr_line;
+        }
+        elsif( $found_pinlabel_attr == 1 ) {
+          $pin_attr_line = $pinlabel_attr_line;
+        }
       }
+      else {
+        $pin_attr_line = $pinnumber_attr_line;
+      }
+
       if( $found_pinseq_attr == 0 ) {
-	$seqcnt++;
-	if($verbose){print "  Pin $pin_num: Adding attr pinseq=$seqcnt\n";}
-	print OUTNET $pinnumber_attr_line;
-	print OUTNET "pinseq=$seqcnt\n";
+	    $seqcnt++;
+	    if($verbose) {
+          print "  Pin $pin_num: Adding attr pinseq=$seqcnt\n";
+        }
+        print OUTNET $pin_attr_line;
+        print OUTNET "pinseq=$seqcnt\n";
       }
       if( $found_pintype_attr == 0 ) {
-	if($verbose){print "  Pin $pin_num: Adding attr pintype=io\n";}
-	print OUTNET $pinnumber_attr_line;
-	print OUTNET "pintype=io\n";
+        if($verbose) {
+          print "  Pin $pin_num: Adding attr pintype=io\n";
+        }
+        print OUTNET $pin_attr_line;
+        print OUTNET "pintype=io\n";
       }
       if( $found_pinlabel_attr == 0 ) {
-	if($verbose){print "  Pin $pin_num: Adding attr pinlabel=n_a\n";}
-	print OUTNET $pinnumber_attr_line;
-	print OUTNET "pinlabel=n_a\n";
+        if($verbose) {
+          print "  Pin $pin_num: Adding attr pinlabel=n_a\n";
+        }
+        print OUTNET $pin_attr_line;
+	    print OUTNET "pinlabel=n_a\n";
       }
-      if($vverbose){print "Pin end...\n";}
+      if($vverbose) {
+        print "Pin end...\n";
+      }
     }
     if( $skip_line_out ) {
       $skip_line_out = 0;
-    } else {
+    }
+    else {
       print OUTNET $line;
     }
     $prev_line = $line;		# Save line for next pass
