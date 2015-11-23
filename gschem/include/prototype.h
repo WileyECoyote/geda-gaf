@@ -23,7 +23,7 @@ void  g_init_attrib ();
 SCM   g_funcs_bmp_image      (SCM filename);
 SCM   g_funcs_confirm        (SCM msg);
 SCM   g_funcs_confirm_cancel (SCM msg);
-SCM   g_funcs_exit           (void);
+SCM   g_funcs_exit           (SCM status);
 SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
 SCM   g_funcs_jpeg_image     (SCM filename);
 SCM   g_funcs_log            (SCM msg);
