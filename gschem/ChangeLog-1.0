@@ -28,6 +28,8 @@
     * tests/LOG_DIFF: Add ANSI escape sequence for red and green and output
       colorized pass/fail results.
 
+    * tests/inputs/missing_symbols.sch: Rename missing.sch missing_symbols.sch.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.
