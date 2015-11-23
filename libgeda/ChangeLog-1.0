@@ -1,3 +1,10 @@
+2015-11-23  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Handle embedded relative picture filenames
+      better when f_file_normalize_name returns NULL in o_picture_read,
+      which occurs when the name of an embedded picture does not have
+      a path.
+
 2015-11-19  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Handle case namestr is NULL when the directory

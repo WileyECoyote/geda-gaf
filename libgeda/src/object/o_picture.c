@@ -384,7 +384,6 @@ o_picture_read (const char  *first_line,
 
   }
 
-
   tmpstr = u_string_strdup(s_textbuffer_next_line(tb));
   tmpstr = u_string_remove_last_nl(tmpstr);
 
@@ -395,15 +394,27 @@ o_picture_read (const char  *first_line,
   }
   else {
 
+    GError *err = NULL;
+
     /* Handle relative filenames, which will not work with UNDODISK.
      * File names in schematics would not normally be relative but
      * could happen if someone edited the file */
-    filename = f_file_normalize_name (tmpstr, NULL);
-    GEDA_FREE (tmpstr);
+    filename = f_file_normalize_name (tmpstr, &err);
+
+    if (err) {
+      if (!embedded) {
+        u_log_message (_("Error: %s %s\n"), tmpstr, err->message);
+      }
+      g_error_free (err);
+      filename = tmpstr;
+    }
+    else {
+      GEDA_FREE (tmpstr);
+    }
   }
 
   /* Handle empty filenames */
-  if (strlen (filename) == 0) {
+  if (filename && strlen (filename) == 0) {
     u_log_message (_("Image filename is missing."));
     GEDA_FREE (filename);
   }
