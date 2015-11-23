@@ -180,7 +180,7 @@ static struct gsubr_t gschem_g_funcs[] = {
   { "gschem-bmp-image",          1, 0, 0, g_funcs_bmp_image },
   { "gschem-confirm",            1, 0, 0, g_funcs_confirm },
   { "gschem-confirm-cancel",     1, 0, 0, g_funcs_confirm_cancel },
-  { "gschem-exit",               0, 0, 0, g_funcs_exit },
+  { "gschem-exit",               0, 1, 0, g_funcs_exit },
   { "gschem-filesel",            2, 0, 1, g_funcs_filesel },
   { "gschem-jpeg-image",         1, 0, 0, g_funcs_jpeg_image },
   { "gschem-log",                1, 0, 0, g_funcs_log },

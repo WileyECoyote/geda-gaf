@@ -1,0 +1,28 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+			sort/agile-vfo-block_1.sch \
+			sort/alignment.sch \
+			sort/all_1.sch \
+			sort/all_74_1.sch \
+			sort/arc.sch \
+			sort/attributes.sch \
+			sort/autonumber.sch \
+			sort/buses.sch \
+			sort/embedded_1.sch \
+			sort/fill_test.sch \
+			sort/geda_fonts.sch \
+			sort/letters_1.sch \
+			sort/multiline1.sch \
+			sort/multiline2.sch \
+			sort/multiline3.sch \
+			sort/multiline4.sch \
+			sort/nets.sch \
+			sort/pins.sch \
+			sort/radio_1.sch \
+			sort/rotation.sch \
+			sort/states_1.sch \
+			sort/type_test.sch \
+			sort/versionsym1.sch \
+			sort/versionsym2.sch \
+			sort/versionsym3.sch

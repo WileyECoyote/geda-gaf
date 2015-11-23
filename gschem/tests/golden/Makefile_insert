@@ -1,0 +1,6 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+			golden/missing.log
+
+

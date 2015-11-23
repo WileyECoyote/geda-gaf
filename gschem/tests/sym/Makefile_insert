@@ -1,0 +1,12 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+			sym/oldsym1.sym \
+			sym/oldsym2.sym \
+			sym/osc-xtal2.sym
+			sym/versionsym_basic.sym \
+			sym/versionsym_invalid.sym \
+			sym/versionsym_major.sym \
+			sym/versionsym_minor2.sym \
+			sym/versionsym_minor.sym
+

@@ -1,4 +1,14 @@
 (define cwd (getcwd))
 
-(component-library cwd)
-(source-library  cwd)
+(define syms (string-join (list cwd "sym")  separator))
+(define logs (string-join (list cwd "logs")  separator))
+(define src  (string-join (list cwd "src")  separator))
+
+(log-time "disable")
+(log-directory logs)
+
+(component-library-search syms "Local/Tests")
+;(component-library syms)
+
+(source-library  src)
+

@@ -1,0 +1,51 @@
+gschem tests
+
+To run all test manually
+
+Either:
+
+make check
+
+OR
+
+./runtest.sh . .
+
+To regenerate all tests:
+
+./runtest.sh -r . .
+
+To run a specific test
+
+./runtest.sh <filename> (with or without the extension)
+
+The file must exist in the inputs folder.
+
+To regenerate a specific test:
+
+./runtest.sh -r <filename> (with or without the extension)
+
+The runtest.sh scripts extracts the value of the TEST= attribute
+from each input file, which can have multible such attributes.
+the value is the name of the shell script in the tests directory
+to run. The relative file name of the inputs is passed as an
+argument to the "value" script, aka ${src_dir}/inputs/file.sch
+
+runtest.sh sets four environment varibles:
+
+	1.) TEST_APP is the qualified path for gschem program
+
+	2.) "TESTDIR" the "run" directory, ${build_dir}/run)
+
+    3.) "regenerating" set if golden outputs are to be recreated
+
+    4.) "verbosity" set if verbose mode
+
+The "logs" directory is created if the directory does not exist.
+The "logs" directory is emptied if the directory does exist.
+The "logs" directory is not removed at completion.
+The "run"  directory is created if the directory does not exist.
+The "run"  directory is emptied before each script is ran.
+The "run"  directory is removed at completion.
+
+
+

@@ -1,3 +1,32 @@
+2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
+
+    * Code Enhancement: Improve BUILD Integrity.
+
+    * tests/: Revamp directory structure and setup foundation for a tests system
+      for gschem. Only completes one test so far, but its a start.
+
+    * tests/gafrc: Replace file, disable log-time to facilitate comparing of log
+      data, set log-directory to local folder for tests.
+
+    * tests/Makefile.am: Include Makefile_insert files to alleivate having to
+      modify configure.ac in order to add or remove tests.
+
+    * tests/Makefile_insert: This is a special file for the files in inputs/
+      subdirectory but can not be in the subdirectory because all contents of
+      the inputs is considered to be a input for test. Could workaround this
+      but is probably the better to leave in the tests folder than to add
+      some like "TEST=nop" to the include file.
+
+    * tests/IMAGE_DIFF: New file is place holdering for a script to capture
+      and compare images during gschem tests.
+
+    * tests/LOG_DIFF: New file is shell a script to compare log file data
+      during gschem tests.
+
+    * doc/tests.sch: A new schematic file that uses new flow chart symbols,
+      is suppose to represent the code flow for new tests systems, at least
+      as implemented in bash.
+
 2015-11-21  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_funcs.c Scheme API function gschem-exit has been enhanced

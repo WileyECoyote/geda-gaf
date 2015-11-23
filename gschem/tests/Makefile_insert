@@ -1,0 +1,9 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+	     inputs/bus_endpoint_to_net.sch \
+	     inputs/missing.sch \
+	     inputs/net_endpoint_to_bus.sch \
+	     inputs/net_selection.sch
+
+

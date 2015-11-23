@@ -1,0 +1,57 @@
+#!/bin/sh
+
+rundir=${TESTDIR}
+
+input=$1
+
+result=0;
+
+if test -f $input ; then
+  
+  # get the base name of the test file without the directory
+  filename=$(basename $input)
+
+  # get the base name of the test file without the extension
+  filebase=$(basename $input .${input##*.})
+
+  cp $input $rundir/
+
+  cd $rundir/
+
+  $TEST_APP -p -x "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+
+  # get the latest file in the log directory
+  newlog=$(ls -Art ../logs | tail -n 1)
+
+  if [ -z "$newlog" ] ; then
+    echo "Error: Was the log file created in the right place?"
+    exit 1;
+  fi
+  testlog="${filebase}.log"
+
+  # remove the version line and write to run directory
+  grep -v "version" ../logs/$newlog > temp && mv temp ${testlog}
+
+  cd ..
+
+  goldenlog=golden/${filebase}.log
+
+  if test $regenerating ; then
+    test $verbosity && echo "Regenerating ${goldenlog}"
+    cp "run/${testlog}" ${goldenlog}
+    result=$?;
+  elif test -f $goldenlog ; then
+    test $verbosity && echo "Comparing run/${testlog} to ${goldenlog}..."
+    diff "run/${testlog}" "${goldenlog}"
+    result=$?
+  else
+    echo "$goldenlog Does not exist, try regenerating the test reference"
+    result=1;
+  fi
+
+else
+  result=1;
+fi
+
+exit $result
+

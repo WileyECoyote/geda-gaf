@@ -1,0 +1,8 @@
+## Makefile.am fragment included by tests/Makefile.am.
+
+EXTRA_DIST += \
+			src/autonumber_sub1.sch \
+			src/autonumber_sub2.sch \
+			src/autonumber_sub_sub1.sch
+
+
