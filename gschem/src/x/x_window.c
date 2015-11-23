@@ -363,6 +363,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
   i_window_set_cursor(w_current, pointer_id);
 
+  gtk_window_deiconify ((GtkWindow*)MainWindow);
 }
 
 /*! \todo Finish function documentation!!!
@@ -557,6 +558,11 @@ void x_window_create_main(GschemToplevel *w_current)
 
   gtk_box_pack_start (GTK_BOX (main_box), w_current->status_bar, FALSE, FALSE, 0);
   g_object_set (w_current->status_bar, "visible", TRUE, NULL);
+
+  /* Iconize the main window until after the size and position have been
+   * restored, otherwise the main window visibly changes sizes and this
+   * does not look so good */
+  gtk_window_iconify ((GtkWindow*)MainWindow);
 
   gtk_widget_show(MainWindow);
 
