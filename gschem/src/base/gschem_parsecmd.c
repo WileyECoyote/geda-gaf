@@ -24,13 +24,14 @@
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:g:hmno:pqr:s:t:vVx:"
+#define GETOPT_OPTIONS "a:c:g:hmno:pqr:s:t:vVx:z"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
 extern int   optind;
 #endif
 
+int   iconify_main_window;
 int   override_autoload;
 char *start_session;
 char *comline_tblock;
@@ -57,6 +58,7 @@ struct option long_options[] =
     {"title-block",    1, 0, 't'},
     {"undo-dir",       1, 0, 'u'},
     {"verbose",        0, 0, 'v'},
+    {"minimized",      0, 0, 'z'},
     {0, 0, 0, 0}
   };
 #endif
@@ -106,6 +108,7 @@ usage(char *cmd)
     "  -v, --verbose              Verbose mode.\n"
     "  -V, --version              Show version information.\n"
     "  -x (EXPR)                  Scheme expression to run at startup.\n"
+    "  -z, --minimized            Hide the main window, used for scripting\n"
     "  --                         Treat all remaining arguments as filenames.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
@@ -157,6 +160,7 @@ gschem_parse_commandline(int argc, char *argv[])
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
   override_autoload   = FALSE;
+  iconify_main_window    = FALSE;
   start_session       = NULL;
   comline_tblock      = NULL;
 
@@ -283,6 +287,10 @@ gschem_parse_commandline(int argc, char *argv[])
         s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
                            scm_from_locale_string (optarg)),
                            s_post_load_expr);
+        break;
+
+      case 'z':
+        iconify_main_window = 1;
         break;
 
       default:

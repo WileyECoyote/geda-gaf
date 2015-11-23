@@ -5,6 +5,19 @@
       x_window_create_main right before gtk_widget_show and then call
       gtk_window_deiconify before exiting x_window_restore_settings.
 
+    * docs/gschem.1.in: Document new command-line option "-z, --minimized"
+
+    * src/base/gschem_parsecmd.c: Add command-line option "-z, --minimized"
+      and public varible iconify_main_window.
+
+    * src/base/gschem.c: Revise function gschem to not call x_console_open
+      if iconify_main_window is set.
+
+    * src/x/x_window.c: Revise function x_window_restore_settings to not call
+      gtk_window_deiconify if iconify_main_window is set. This leaves the
+      main window minimized on the task bar and make things a bit less flashy
+      when running tests.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.

@@ -18,7 +18,7 @@ if test -f $input ; then
 
   cd $rundir/
 
-  $TEST_APP -p -x "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+  $TEST_APP -p -z -x "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
 
   # get the latest file in the log directory
   newlog=$(ls -Art ../logs | tail -n 1)

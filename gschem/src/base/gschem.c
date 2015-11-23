@@ -43,6 +43,7 @@
 extern SCM s_pre_load_expr;
 extern SCM s_post_load_expr;
 
+extern int   iconify_main_window;
 extern int   override_autoload;
 extern char *start_session;
 extern char *comline_tblock;
@@ -370,7 +371,7 @@ static void gschem( int argc, char *argv[])
     u_log_init ("gschem");
 
     /* see if open up console/log window on startup  */
-    if (console_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
+    if (!iconify_main_window && console_window == MAP_ON_STARTUP) {
       x_console_open (w_current);
     }
 

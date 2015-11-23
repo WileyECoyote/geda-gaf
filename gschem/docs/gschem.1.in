@@ -84,6 +84,11 @@ read-writable or the Undo system will automatically switch to type "memory". For
 \fB\-x\fR \fIEXPR\fR
 Specify a Scheme expression to be evaluated at startup.
 .TP 8
+\fB\-z\fR, \fB\--minimized\fR
+Start with the main window minimized. If this option is given the main window will start
+iconized and the console window will not be launched at start-up even if the console-window
+keyword is set to "enabled".
+.TP 8
 \fB\--\fR
 Treat all remaining arguments as schematic or symbol filenames. Use
 this if you have a schematic or symbol filename which begins with `-'.

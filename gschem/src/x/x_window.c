@@ -37,6 +37,8 @@
 #include <geda_dialog_controls.h>
 #include <geda_file_chooser.h>  /* Need for group and key defines */
 
+extern int iconify_main_window;
+
 /** \defgroup main-window Main Window Module
  *  @{ \par
 */
@@ -363,7 +365,9 @@ void x_window_restore_settings(GschemToplevel *w_current)
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
   i_window_set_cursor(w_current, pointer_id);
 
-  gtk_window_deiconify ((GtkWindow*)MainWindow);
+  if (!iconify_main_window) {
+    gtk_window_deiconify ((GtkWindow*)MainWindow);
+  }
 }
 
 /*! \todo Finish function documentation!!!
