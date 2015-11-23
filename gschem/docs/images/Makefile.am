@@ -2,7 +2,9 @@ sch_images  = \
 		array_dialog.sch \
 		break.sch \
 		break_box.sch \
-		paths.sch projections.sch \
+		buffers.sch \
+		paths.sch \
+		projections.sch \
 		projections2.sch
 
 EXTRA_DIST = $(sch_images)

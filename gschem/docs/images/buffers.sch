@@ -1,6 +1,6 @@
-v 20150315 2
+v 20151031 2
 C 40000 40000 0 0 0 title-bordered-A2.sym
-T 56300 40900 9 20 1 0 0 0 1
+T 56300 41000 9 28 1 0 0 0 1
 gschem place buffers
 T 56300 40600 9 10 1 0 0 0 1
 gschem_buffers.sch

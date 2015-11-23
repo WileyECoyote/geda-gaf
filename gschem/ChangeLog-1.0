@@ -7,6 +7,13 @@
 
     * docs/gschem.1.in: Document new command-line option "-z, --minimized"
 
+    * docs/images/buffers.sch: Rename file gschem_buffers.sch to buffers.sch
+      and relocated from examples to docs/images. Although the diagram was a
+      good example of diagramming in gschem, the content relates to program
+      documentation and did not fit "examples".
+
+    * examples: Minor tweeks, update  diode-1.sym and in-1.sym version.
+
     * src/base/gschem_parsecmd.c: Add command-line option "-z, --minimized"
       and public varible iconify_main_window.
 
