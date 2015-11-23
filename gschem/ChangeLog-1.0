@@ -18,6 +18,9 @@
       main window minimized on the task bar and make things a bit less flashy
       when running tests.
 
+    * tests/LOG_DIFF: Add ANSI escape sequence for red and green and output
+      colorized pass/fail results.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.

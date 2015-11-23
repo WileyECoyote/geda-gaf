@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# -- For Colorization ---
+RED='\033[0;40;;31m'
+GREEN='\033[0;40;;32m'
+NORMAL='\033[00m'
+
 rundir=${TESTDIR}
 
 input=$1
@@ -7,7 +12,7 @@ input=$1
 result=0;
 
 if test -f $input ; then
-  
+
   # get the base name of the test file without the directory
   filename=$(basename $input)
 
@@ -44,6 +49,11 @@ if test -f $input ; then
     test $verbosity && echo "Comparing run/${testlog} to ${goldenlog}..."
     diff "run/${testlog}" "${goldenlog}"
     result=$?
+    if [ $result -eq 0 ]; then
+       echo $GREEN"PASSED:$NORMAL" $filebase; \
+    else
+       echo $RED"FAILED:$NORMAL" $filebase; \
+    fi
   else
     echo "$goldenlog Does not exist, try regenerating the test reference"
     result=1;
