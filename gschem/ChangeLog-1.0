@@ -30,6 +30,9 @@
 
     * tests/inputs/missing_symbols.sch: Rename missing.sch missing_symbols.sch.
 
+    * tests/inputs/versionsym?.sch: Add TEST=LOG_DIFF attribute, clean-up and
+      relocate to files from the sort subdirectory.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.

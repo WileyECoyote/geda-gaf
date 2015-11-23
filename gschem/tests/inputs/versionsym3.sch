@@ -64,3 +64,5 @@ T 41100 62200 9 10 1 0 0 0 1
 This is the first unknown component
 T 44400 61100 9 10 1 0 0 0 1
 This is the second unknown component
+T 44000 55000 8 10 0 0 0 0 1
+TEST=LOG_DIFF

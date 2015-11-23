@@ -8,7 +8,7 @@ blah=1.0 only inside
 }
 C 69700 52400 1 0 0 versionsym_basic.sym
 {
-T 71000 53100 5 10 1 1 0 0 1
+T 71000 53300 5 10 1 1 0 0 1
 blah=equal inside and outside
 T 70000 53300 5 10 1 1 0 0 1
 refdes=U2
@@ -21,16 +21,16 @@ T 69500 55300 5 10 1 1 0 0 1
 blah=outside younger
 T 68400 55600 5 10 1 1 0 0 1
 refdes=U3
-T 69400 55400 5 10 0 0 0 0 1
+T 69400 55500 5 10 0 0 0 0 1
 symversion=0.5
 }
 C 71600 54900 1 0 0 versionsym_basic.sym
 {
-T 72600 55000 5 10 1 1 0 0 1
+T 72500 55000 5 10 1 1 0 0 1
 blah=outside older
 T 71900 55800 5 10 1 1 0 0 1
 refdes=U4
-T 72900 55600 5 10 0 0 0 0 1
+T 72200 55800 5 10 0 0 0 0 1
 symversion=26.0
 }
 C 71700 56400 1 0 0 7400-1.sym
@@ -55,7 +55,7 @@ T 75100 52500 5 10 1 1 0 0 1
 blah=parse outside error
 T 75400 53600 5 10 1 1 0 0 1
 refdes=U7
-T 76400 53400 5 10 0 0 0 0 1
+T 75400 52300 5 10 0 0 0 0 1
 symversion=asdf
 }
 C 75100 54200 1 0 0 versionsym_invalid.sym
@@ -64,7 +64,7 @@ T 75000 54000 5 10 1 1 0 0 1
 blah=parse inside error
 T 75400 55100 5 10 1 1 0 0 1
 refdes=U8
-T 76400 54900 5 10 0 0 0 0 1
+T 75400 55300 5 10 0 0 0 0 1
 symversion=!!!-1.0
 }
 B 67800 52100 5400 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -236,13 +236,15 @@ T 74900 56800 9 10 1 0 0 0 1
 local
 ]
 {
-T 75900 57100 5 10 1 1 0 0 1
+T 75800 57200 5 10 1 1 0 0 1
 blah=outside younger
 T 74800 57400 5 10 1 1 0 0 1
 refdes=U3
-T 75800 57200 5 10 0 0 0 0 1
+T 75900 56800 5 10 0 0 0 0 1
 symversion=0.5
 }
 B 74100 56100 3400 3200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 74200 59100 9 10 1 0 0 0 1
 newer library (embedded; ignored)
+T 67700 57600 8 10 0 0 0 0 1
+TEST=LOG_DIFF

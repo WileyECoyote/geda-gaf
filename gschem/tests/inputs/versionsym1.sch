@@ -139,3 +139,5 @@ N 47800 72000 49200 72000 4
 C 44000 60400 0 0 0 title-D.sym
 T 44700 81400 9 40 1 0 0 0 1
 This schematic intentionally broken
+T 70500 61600 8 10 0 0 0 0 1
+TEST=LOG_DIFF
