@@ -12,7 +12,7 @@ BUILDDIR=$(builddir)
 SRCDIR=$(srcdir)
 
 tests:
-	fail=0 ; \
+	@fail=0 ; \
 	pass=0 ; \
 	for file in $(SRCDIR)/symbols/*.sym; do \
 	  base=`basename $$file`; \

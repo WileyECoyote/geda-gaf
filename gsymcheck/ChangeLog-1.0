@@ -1,3 +1,7 @@
+2015-11-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Turn off echoing of shell in makefile.
+
 2015-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Add ADD_WARN_LOCATION to append to the list of
