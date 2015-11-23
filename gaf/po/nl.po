@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-08-25 08:47-0500\n"
+"POT-Creation-Date: 2015-11-22 21:36-0600\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -18,21 +18,21 @@ msgstr ""
 "X-Poedit-Country: NETHERLANDS\n"
 
 #: gaf/src/gaf.c:70
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
 "\n"
 "gEDA/gaf command-line utility.\n"
 "\n"
 "General options:\n"
-"  --no-rcfiles   inhibit loading of 'gafrc' files\n"
-"  -h, --help     display usage information and exit\n"
-"  -V, --version  display version information and exit\n"
+"  -n, --no-rcfiles  inhibit loading of 'gafrc' files\n"
+"  -h, --help        display usage information and exit\n"
+"  -V, --version     display version information and exit\n"
 "\n"
 "Commonly-used commands (type `gaf <cmd> --help' for usage):\n"
-"  shell          Scheme REPL for interactive gEDA data processing\n"
-"  config         Edit gEDA configuration\n"
-"  export         Export gEDA files in various image formats.\n"
+"  shell             Scheme REPL for interactive gEDA data processing\n"
+"  config            Edit gEDA configuration\n"
+"  export            Export gEDA files in various image formats.\n"
 "\n"
 "Please report bugs to %s.\n"
 msgstr ""
@@ -152,17 +152,17 @@ msgstr ""
 msgid "ERROR: You may only specify a single configuration store.\n"
 msgstr "FOUT: U mag alleen een enkele configuratie opslag specificeren.\n"
 
-#: gaf/src/config.c:166
+#: gaf/src/config.c:168
 #, c-format
 msgid "WARNING: Could not load '%s': %s.\n"
 msgstr "WAARSCHUWING: Kan '%s': %s niet laden.\n"
 
-#: gaf/src/config.c:177
+#: gaf/src/config.c:179
 #, c-format
 msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr "FOUT: U moet beide configuratie groep en sleutel specificeren.\n"
 
-#: gaf/src/config.c:192 gaf/src/config.c:209 gaf/src/export.c:355
+#: gaf/src/config.c:194 gaf/src/config.c:211 gaf/src/export.c:362
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr "FOUT: %s.\n"
@@ -211,28 +211,28 @@ msgstr "FOUT: Faalde om '%s': %s te laden\n"
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "Faalde om bestandenmap te wijzigen naar '%s': %s\n"
 
-#: gaf/src/export.c:1013
-#, c-format
+#: gaf/src/export.c:1070
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
 "Export gEDA files in various image formats.\n"
 "\n"
-"  -f, --format=TYPE      output format (normally autodetected)\n"
-"  -o, --output=OUTPUT    output filename\n"
-"  -p, --paper=NAME       select paper size by name\n"
+"  -f, --format=TYPE        output format (normally autodetected)\n"
+"  -o, --output=OUTPUT      output filename\n"
+"  -p, --paper=NAME         select paper size by name\n"
 "  -s, --size=WIDTH;HEIGHT  specify exact paper size\n"
-"  -k, --scale=FACTOR     specify output scale factor\n"
-"  -l, --layout=ORIENT    page orientation\n"
+"  -k, --scale=FACTOR       specify output scale factor\n"
+"  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
 "  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"
 "                           set page margins\n"
 "  -a, --align=HALIGN;VALIGN\n"
 "                           set alignment of drawing within page\n"
-"  -d, --dpi=DPI          pixels-per-inch for raster outputs\n"
-"  -c, --color            enable color output\n"
-"  --no-color             disable color output\n"
-"  -F, --font=NAME        set font family for printing text\n"
-"  -h, --help     display usage information and exit\n"
+"  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
+"  -c, --color              enable color output\n"
+"  --no-color               disable color output\n"
+"  -F, --font=NAME          set font family for printing text\n"
+"  -h, --help               display usage information and exit\n"
 "\n"
 "Please report bugs to %s.\n"
 msgstr ""
@@ -258,33 +258,33 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/export.c:1192
+#: gaf/src/export.c:1255
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "FOUT: U moet tenminste een invoer bestandsnaam specificeren.\n"
 
-#: gaf/src/export.c:1201
+#: gaf/src/export.c:1264
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "FOUT: U moet een uitvoer bestandnaam specificeren.\n"
 
-#: gaf/src/shell.c:49
-#, c-format
+#: gaf/src/shell.c:53
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
 "\n"
 "Shell for interactive processing of gEDA data using Scheme.\n"
 "\n"
-"  -s FILE        load Scheme source code from FILE, and exit\n"
-"  -c EXPR        evaluate Scheme expression EXPR, and exit\n"
-"  --             stop scanning arguments; run interactively\n"
+"  -e, --eval <EXPR>   evaluate Scheme expression EXPR, and exit\n"
+"  -h, --help          display usage information and exit\n"
+"  -l, --load <FILE>   load Scheme source code from FILE\n"
+"  -p, --path <DIR>    add DIR to the front of the Guile load path\n"
+"  -s, --scheme <FILE> load Scheme source code from FILE, and exit\n"
+"  --                  stop scanning arguments; run interactively\n"
 "\n"
-"The above switches stop argument processing, and pass all\n"
+"The switch -e and -s stop argument processing, and pass all\n"
 "remaining arguments as the value of (command-line).\n"
 "\n"
-"  -L DIRECTORY   add DIRECTORY to the front of the Scheme load path\n"
-"  -l FILE        load Scheme source code from FILE\n"
-"  -h, --help     display usage information and exit\n"
 "\n"
 "Please report bugs to %s.\n"
 msgstr ""
@@ -306,7 +306,7 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/shell.c:105
+#: gaf/src/shell.c:136
 #, c-format
 msgid ""
 "\n"

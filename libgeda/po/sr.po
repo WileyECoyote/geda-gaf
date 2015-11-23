@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-15 20:57-0600\n"
+"POT-Creation-Date: 2015-11-22 21:36-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -299,75 +299,75 @@ msgstr ""
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:389
+#: libgeda/src/geda/geda_object.c:390
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:390
+#: libgeda/src/geda/geda_object.c:391
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:399
+#: libgeda/src/geda/geda_object.c:400
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:400
+#: libgeda/src/geda/geda_object.c:401
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:407
+#: libgeda/src/geda/geda_object.c:408
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:408
+#: libgeda/src/geda/geda_object.c:409
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:414
+#: libgeda/src/geda/geda_object.c:415
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:415
+#: libgeda/src/geda/geda_object.c:416
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:420
+#: libgeda/src/geda/geda_object.c:421
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:421
+#: libgeda/src/geda/geda_object.c:422
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:427
+#: libgeda/src/geda/geda_object.c:428
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:428
+#: libgeda/src/geda/geda_object.c:429
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:434
+#: libgeda/src/geda/geda_object.c:435
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:435
+#: libgeda/src/geda/geda_object.c:436
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:442
+#: libgeda/src/geda/geda_object.c:443
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:443
+#: libgeda/src/geda/geda_object.c:444
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:451
+#: libgeda/src/geda/geda_object.c:452
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:452
+#: libgeda/src/geda/geda_object.c:453
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -433,139 +433,139 @@ msgid ""
 "Backtrace:\n"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:313
+#: libgeda/src/guile/g_evaluate.c:310
 msgid "changed"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:314
+#: libgeda/src/guile/g_evaluate.c:311
 msgid "restore"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:316
+#: libgeda/src/guile/g_evaluate.c:313
 #, c-format
 msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:274
+#: libgeda/src/guile/g_rc.c:311
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:324 libgeda/src/guile/g_rc.c:334
+#: libgeda/src/guile/g_rc.c:361 libgeda/src/guile/g_rc.c:371
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:435
+#: libgeda/src/guile/g_rc.c:472
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:436 libgeda/src/guile/g_rc.c:442
-#: libgeda/src/guile/g_rc.c:472 libgeda/src/guile/g_rc.c:478
-#: libgeda/src/guile/g_rc.c:510 libgeda/src/guile/g_rc.c:516
-#: libgeda/src/guile/g_rc.c:549 libgeda/src/guile/g_rc.c:555
-#: libgeda/src/guile/g_rc.c:580 libgeda/src/guile/g_rc.c:604
-#: libgeda/src/guile/g_rc.c:628 libgeda/src/guile/g_rc.c:653
-#: libgeda/src/guile/g_rc.c:678 libgeda/src/guile/g_rc.c:703
-#: libgeda/src/guile/g_rc.c:728 libgeda/src/guile/g_rc.c:753
+#: libgeda/src/guile/g_rc.c:473 libgeda/src/guile/g_rc.c:479
+#: libgeda/src/guile/g_rc.c:509 libgeda/src/guile/g_rc.c:515
+#: libgeda/src/guile/g_rc.c:547 libgeda/src/guile/g_rc.c:553
+#: libgeda/src/guile/g_rc.c:586 libgeda/src/guile/g_rc.c:592
+#: libgeda/src/guile/g_rc.c:617 libgeda/src/guile/g_rc.c:641
+#: libgeda/src/guile/g_rc.c:665 libgeda/src/guile/g_rc.c:690
+#: libgeda/src/guile/g_rc.c:715 libgeda/src/guile/g_rc.c:740
+#: libgeda/src/guile/g_rc.c:765 libgeda/src/guile/g_rc.c:790
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:441
+#: libgeda/src/guile/g_rc.c:478
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:471
+#: libgeda/src/guile/g_rc.c:508
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:477
+#: libgeda/src/guile/g_rc.c:514
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:509
+#: libgeda/src/guile/g_rc.c:546
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:515
+#: libgeda/src/guile/g_rc.c:552
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:548
+#: libgeda/src/guile/g_rc.c:585
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:554
+#: libgeda/src/guile/g_rc.c:591
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:579
+#: libgeda/src/guile/g_rc.c:616
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:603
+#: libgeda/src/guile/g_rc.c:640
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:627
+#: libgeda/src/guile/g_rc.c:664
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:652
+#: libgeda/src/guile/g_rc.c:689
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:677
+#: libgeda/src/guile/g_rc.c:714
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:702
+#: libgeda/src/guile/g_rc.c:739
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:727
+#: libgeda/src/guile/g_rc.c:764
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:752
+#: libgeda/src/guile/g_rc.c:789
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:805
+#: libgeda/src/guile/g_rc.c:842
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:885 libgeda/src/guile/g_rc.c:921
+#: libgeda/src/guile/g_rc.c:922 libgeda/src/guile/g_rc.c:958
 #, c-format
 msgid "Path invalid[%s], %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_color.c:98
+#: libgeda/src/guile/g_rc_color.c:103
 msgid "Color map entry must be a two-element list"
 msgstr "Унос мапе боје мора бити списак два елемента"
 
-#: libgeda/src/guile/g_rc_color.c:106
+#: libgeda/src/guile/g_rc_color.c:111
 msgid "Index in color map entry must be an integer"
 msgstr "Индекс у уносу мапе боје мора бити цео број"
 
-#: libgeda/src/guile/g_rc_color.c:131
+#: libgeda/src/guile/g_rc_color.c:136
 msgid "Value in color map entry must be #f or a string"
 msgstr "Вредност у уносу мапе боје мора бити „#f“ или ниска"
 
@@ -588,21 +588,21 @@ msgstr ""
 msgid "Error accessing configuration %s, %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:268
+#: libgeda/src/guile/g_rc_parse.c:269
 #, fuzzy, c-format
 msgid "libgeda: Loaded RC file [%s]\n"
 msgstr "Није успела наредба библиотеке (%s)\n"
 
-#: libgeda/src/guile/g_rc_parse.c:424
+#: libgeda/src/guile/g_rc_parse.c:425
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:437 libgeda/src/guile/g_rc_parse.c:438
+#: libgeda/src/guile/g_rc_parse.c:438 libgeda/src/guile/g_rc_parse.c:439
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:444
+#: libgeda/src/guile/g_rc_parse.c:445
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
@@ -1444,7 +1444,7 @@ msgstr ""
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
-#: libgeda/src/utility/u_log.c:173
+#: libgeda/src/utility/u_log.c:214
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Не могу да сачувам датотеку резервног примерка: %s."
