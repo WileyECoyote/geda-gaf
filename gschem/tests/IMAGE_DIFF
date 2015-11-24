@@ -1,6 +1,82 @@
 #!/bin/sh
 
-echo "going to do a IMAGE_DIFF using $1"
+IMAGE_SCRIPT=../../scripts/image.scm
 
-exit 0
+# -- For Colorization ---
+RED='\033[0;40;;31m'
+GREEN='\033[0;40;;32m'
+NORMAL='\033[00m'
+
+rundir=${TESTDIR}
+
+input=$1
+
+result=0;
+
+if test -f $input ; then
+
+  # get the base name of the test file without the directory
+  filename=$(basename $input)
+
+  # get the base name of the test file without the extension
+  filebase=$(basename $input .${input##*.})
+
+  cp $input $rundir/
+
+  cd $rundir/
+
+  if ! test -f $IMAGE_SCRIPT ; then
+    echo "Error: scheme file \"$IMAGE_SCRIPT\" was not detected"
+    exit 1;
+  fi
+
+  newpng="${filebase}.png"
+
+  $TEST_APP -pzo $newpng -r $IMAGE_SCRIPT $filename
+
+  if [ ! -f "$newpng" ] ; then
+    echo "Error: image file \"$newpng\" was not generated"
+    exit 1;
+  fi
+
+  cd ..
+
+  # Get the latest file in the log directory
+  testlog=$(ls -Art logs | tail -n 1)
+
+  if [ -z "$testlog" ] ; then
+    echo "Error: Was the log file created in the right place?"
+    exit 1;
+  fi
+
+  pnglog="${filebase}.log"
+
+  # Rename the log file in the log subdirectory
+  mv logs/$testlog logs/${pnglog}
+
+  goldenpng=golden/${filebase}.png
+
+  if test $regenerating ; then
+    test $verbosity && echo "Regenerating ${goldenpng}"
+    cp "run/${newpng}" ${goldenpng}
+    result=$?;
+  elif test -f $goldenpng ; then
+    test $verbosity && echo "Comparing run/${newpng} to ${goldenpng}..."
+    diff "run/${newpng}" "${goldenpng}"
+    result=$?
+    if [ $result -eq 0 ]; then
+       echo $GREEN"PASSED:$NORMAL" $filebase; \
+    else
+       echo $RED"FAILED:$NORMAL" $filebase; \
+    fi
+  else
+    echo "$goldenpng Does not exist, try regenerating the test reference"
+    result=1;
+  fi
+
+else
+  result=1;
+fi
+
+exit $result
 

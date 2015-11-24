@@ -2,8 +2,10 @@
 
 EXTRA_DIST += \
 	     inputs/bus_endpoint_to_net.sch \
-	     inputs/missing.sch \
+	     inputs/missing_symbols \
 	     inputs/net_endpoint_to_bus.sch \
-	     inputs/net_selection.sch
-
+	     inputs/net_selection.sch \
+	     inputs/versionsym1.sch \
+	     inputs/versionsym2.sch \
+	     inputs/versionsym3.sch
 

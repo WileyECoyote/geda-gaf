@@ -39,6 +39,11 @@
       from the input diectory when batch processing because these
       were reported as failures, added comments.
 
+    * tests/IMAGE_DIFF: Add new script, similar to LOG_DIFF, but tweaked for
+      image files. Use image.scm script to insure uniform geometry, but is
+      still a skeleton; using DIFF for image comparison will no doubt be to
+      sensitive, need something more image oriented.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.

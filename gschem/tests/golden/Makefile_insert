@@ -1,6 +1,10 @@
 ## Makefile.am fragment included by tests/Makefile.am.
 
 EXTRA_DIST += \
-			golden/missing.log
-
-
+			golden/bus_endpoint_to_net.png
+			golden/missing_symbols.log
+			golden/net_endpoint_to_bus.png
+			golden/net_selection.png
+			golden/versionsym1.log
+			golden/versionsym2.log
+			golden/versionsym3.log
