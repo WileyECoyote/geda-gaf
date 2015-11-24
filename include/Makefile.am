@@ -9,6 +9,7 @@ noinst_HEADERS  = \
 					geda.h \
 					geda_bitmaps.h \
 					geda_debug.h \
+					geda_diagnostics.h \
 					geda_dialog_controls.h \
 					geda_enum.h \
 					geda_gui_funcs.h \
