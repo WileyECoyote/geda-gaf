@@ -1,3 +1,8 @@
+2015-11-24  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/LOG_DIFF: Rename log files in the local log directory to match
+      the name of the test file.
+
 2015-11-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Iconize the main window until after the size and

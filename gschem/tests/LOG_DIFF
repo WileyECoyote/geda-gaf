@@ -23,9 +23,9 @@ if test -f $input ; then
 
   cd $rundir/
 
-  $TEST_APP -p -z -x "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+  $TEST_APP -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
 
-  # get the latest file in the log directory
+  # Get the latest file in the log directory
   newlog=$(ls -Art ../logs | tail -n 1)
 
   if [ -z "$newlog" ] ; then
@@ -34,10 +34,13 @@ if test -f $input ; then
   fi
   testlog="${filebase}.log"
 
-  # remove the version line and write to run directory
+  # Remove the version line and write to run directory
   grep -v "version" ../logs/$newlog > temp && mv temp ${testlog}
 
   cd ..
+
+  # Rename the log file in the log subdirectory
+  mv logs/$newlog logs/$testlog
 
   goldenlog=golden/${filebase}.log
 
