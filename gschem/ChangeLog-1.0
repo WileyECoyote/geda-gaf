@@ -33,6 +33,12 @@
     * tests/inputs/versionsym?.sch: Add TEST=LOG_DIFF attribute, clean-up and
       relocate to files from the sort subdirectory.
 
+    * tests/runtest.sh: Add -d, --debug option, when enabled the
+      run directory is not emptied in between each test not removed
+      when testing is complete. Added removing of *~ backup files
+      from the input diectory when batch processing because these
+      were reported as failures, added comments.
+
 2015-11-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * Code Enhancement: Improve BUILD Integrity.

@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.0.1
+VER=0.0.3
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -17,6 +17,7 @@ APPLICATION=""
 BUILDDIR="."
 SRCDIR="."
 
+DEBUG=false
 REGENERATE=false
 VERBOSE=false
 
@@ -57,7 +58,7 @@ do_setup_environment()
 
    TESTDIR=${RUNDIR}
    export TESTDIR
-   
+
    export TEST_APP=${APPLICATION}
 
    if $REGENERATE ; then
@@ -86,7 +87,13 @@ do_process_input()
   # Exexute each of the "values" passing the file name
 
   for TEST in ${TESTS[@]} ; do
-    test "-d ${RUNDIR}/ & -f ${RUNDIR}/*" && rm -rf ${RUNDIR}/*
+
+    if ! $DEBUG ; then
+      # Empty out the run directory in between each test
+      test "-d ${RUNDIR}/ && -f ${RUNDIR}/*" && rm -rf ${RUNDIR}/*
+    fi
+
+    # Check if "TEST" is executable and Run test
     if [[ -x "$TEST" ]] ; then
       (./${TEST} ${file})
       if [ $? -ne 0 ] ; then
@@ -105,8 +112,9 @@ do_process_input()
 
 # ---------------- Process Command-Line Arguments  ----------------
 #
-# Too much to do, to mess around here, just get it done!
+# Too much to do to mess around here, just get it done!
 if [ "$#" -eq 0 ] ; then show_help ; exit $ERR_BAD_ARGS ; fi
+if [ "$1" = "-d" ] || [ "$1" = "--debug" ] ; then DEBUG=true ; shift ; fi
 if [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then show_help ; exit 0 ; fi
 if [ "$1" = "-r" ] || [ "$1" = "--regen" ] ; then REGENERATE=true ; shift ; fi
 if [ "$1" = "-v" ] || [ "$1" = "--verbose" ] ; then VERBOSE=true ; shift ; fi
@@ -130,6 +138,8 @@ elif [ "$#" -eq 2 ] ; then
   SRCDIR=$2
 fi
 
+test $DEBUG && vecho "Debugging mode is active"
+
 INPUTDIR="${SRCDIR}/inputs"
 RUNDIR="${BUILDDIR}/run"
 
@@ -150,8 +160,12 @@ if test ! -d $INPUTDIR ; then
 fi
 
 # --------------------- Get test input files --------------------
-
+#
+# If BASE_NAME is nil then not single test mode
+#
 if [ -z "$BASE_NAME" ] ; then
+  # Remove any old files from the input directory
+  rm -f $INPUTDIR/*~
   INPUTS=$INPUTDIR/*
 fi
 
@@ -176,8 +190,10 @@ else
   echo "TOTALTEST=$TOTALTEST PASSCOUNT=$PASSCOUNT FAILCOUNT=$FAILCOUNT"
 fi
 
-# clean up
-rm -rf ${RUNDIR}
+# Clean up if not debugging
+if ! $DEBUG ; then
+  rm -rf ${RUNDIR}
+fi
 
 exit $FAILCOUNT
 
