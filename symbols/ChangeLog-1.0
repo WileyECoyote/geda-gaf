@@ -1,3 +1,10 @@
+2015-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tube/12AX7-1.sym: Change footprint from "EIA 9A" pin out to
+      B9A, clean attributes.
+
+    * tube/gas-disch-tube-1.sym: Change refdes U?->V?.
+
 2015-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add manufacture Cypress.
