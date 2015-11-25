@@ -3,8 +3,8 @@
 #
 # NOTE: built from gschemdoc.sh
 #
-# Present as relevant documentation as possible wrt a component
-# The strategy is built into separate cases so that may be re-arranged easily
+# Present as relevant of documentation as possible with regard to a component
+# The strategy is built into separate cases so they may be re-arranged easily
 #
 # arguments are:
 #    1: "documentation" attribute, which can be a filename or an URL
@@ -47,7 +47,7 @@ fi
 symbolbase=`echo "$4" | sed s/-[0-9]\\.sym//`
 
 #
-#  display file vith PDF viewer if file exists, it is a pdf file and we have a reader
+#  display pdf file using viewer if PDF viewer and file exists
 #
 view_file_if_pdf()
 {
@@ -86,7 +86,7 @@ view_file_browser()
 	else
 		file=$1
 	fi
-	
+
 	if test "${browser}" != "no" ; then
 		echo "Found ${browser}"
 		echo "Using browser and file: $file"
@@ -136,7 +136,7 @@ lookup_manual()
 #
 #  Display a wiki page
 #
-#  Tries a local page first; if it doesn't exist, falls back to wiki on gEDA 
+#  Tries a local page first; if it doesn't exist, falls back to wiki on gEDA
 #  website.
 lookup_wiki()
 {
@@ -158,10 +158,10 @@ lookup_wiki()
     fi
 
     if test "${browser}" != "no" ; then
-	
+
 #       # Commented out, since the online wiki and the user version
 #       # may not be the same.
-#  
+#
 # 	echo "Found ${browser}"
 # 	echo "Using browser and URL: $LIVEURL"
 # 	# NOTE: Mozilla and Netscape does not seem to support
