@@ -245,7 +245,9 @@ void u_log_init (const char *prefix)
       ++last_exist_logn);
       logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);
 
-      if (logfile_fd == -1 && (errno != EEXIST)) break;
+      if (logfile_fd == -1 && (errno != EEXIST)) {
+        break;
+      }
     }
 
     if (logfile_fd != -1) {
