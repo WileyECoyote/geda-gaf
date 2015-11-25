@@ -1,7 +1,13 @@
 gsch2pcb Changelog
 ------------------
-1.10.2
+1.10.3
 ---------
+
+2015-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Change argument name for function load_project
+      from "path" to "filename", add ~/etc/gsch2pcb onto list of directory
+      to check for "extra" settings. Add some Doxygen comments.
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 

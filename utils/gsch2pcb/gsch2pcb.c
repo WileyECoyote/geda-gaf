@@ -1391,18 +1391,22 @@ parse_config (char *config, char *arg)
   return result;
 }
 
+/*! \brief gsch2pcb load a project file
+ *  \par Function Description
+ *   Attempts to load project file \a filename.
+ */
 static void
-load_project (char *path)
+load_project (char *filename)
 {
   FILE *f;
   char *s, buf[1024], config[32], arg[768];
 
-  f = fopen (path, "r");
+  f = fopen (filename, "r");
 
   if (!f)
     return;
   if (verbose)
-    printf ("Reading project file: %s\n", path);
+    printf ("Reading project file: %s\n", filename);
 
   while (fgets (buf, sizeof (buf), f)) {
 
@@ -1421,10 +1425,16 @@ load_project (char *path)
   fclose (f);
 }
 
+/*! \brief gsch2pcb load extra project files
+ *  \par Function Description
+ *  This function calls load_project in an attempt to load global
+ *  "gsch2pcb" files.
+ */
 static void
 load_extra_project_files (void)
 {
   const char *config_dir;
+  const char *home_dir;
   char *path;
   static _Bool  done = FALSE;
 
@@ -1433,6 +1443,13 @@ load_extra_project_files (void)
 
   load_project ("/etc/gsch2pcb");
   load_project ("/usr/local/etc/gsch2pcb");
+
+  home_dir = get_home_dir();
+
+  path =  u_string_concat(home_dir, DIR_SEPARATOR_S, "/etc/gsch2pcb", NULL);
+
+  load_project (path);
+  GEDA_FREE (path);
 
   config_dir = f_path_user_config();
 
@@ -1548,9 +1565,13 @@ get_args (int argc, char **argv)
     arg = argv[i + 1];
 
     if (*opt == '-') {
+
       ++opt;
-      if (*opt == '-')
+
+      if (*opt == '-') {
         ++opt;
+      }
+
       if (!strcmp (opt, "version") || !strcmp (opt, "V")) {
         printf ("gsch2pcb %s\n", GSC2PCB_VERSION);
         exit (0);
@@ -1569,8 +1590,9 @@ get_args (int argc, char **argv)
         i++;
         continue;
       }
-      else if (!strcmp (opt, "help") || !strcmp (opt, "h"))
+      else if (!strcmp (opt, "help") || !strcmp (opt, "h")) {
         usage ();
+      }
       else if (i < argc &&
               ((r = parse_config (opt, (i < argc - 1) ? arg : NULL)) >= 0))
         {
@@ -1590,6 +1612,13 @@ get_args (int argc, char **argv)
   }
 }
 
+/*! \brief gsch2pcb main executable entrance point.
+ *  \par Function Description
+ *  This is the main function for gsch2pcb.
+ *
+ * \param argc Number of command line arguments
+ * \param argv Command line arguments
+ */
 int main (int argc, char **argv)
 {
   char *pcb_file_name,  *pcb_new_file_name, *bak_file_name,
