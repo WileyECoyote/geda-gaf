@@ -8,7 +8,7 @@
 #           schematic files and reporting the results. The script can
 #           be invoked from the Makefile or from the command-line.
 
-VER=0.0.3
+VER=0.0.8
 
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
@@ -16,6 +16,7 @@ ERR_BAD_ARGS=65
 APPLICATION=""
 BUILDDIR="."
 SRCDIR="."
+ERRDIR=mismatched
 
 DEBUG=false
 REGENERATE=false
@@ -26,19 +27,11 @@ PASSCOUNT=0
 FAILCOUNT=0
 
 PROGRAM="gschem"
+. ./TEST_FUNCS
 
 # Show command line usage
 show_help (){
    echo Usage:   `basename $0` '[-h] || [[-r || --regen] -v || --verbose] (no dir) input'
-}
-
-vecho()
-{
-   if [[ ! $1 = "" ]] ; then
-     if $VERBOSE ; then
-      echo $1
-     fi
-   fi
 }
 
 do_setup_environment()
@@ -54,6 +47,12 @@ do_setup_environment()
 	  echo "Failed to create directory ${RUNDIR} with appropriate permissions"
 	  echo "mkdir returned $rc"
 	  exit 1
+   fi
+
+   if $DEBUG ; then
+     export "debugging=true";
+   else
+     unset "debugging"
    fi
 
    TESTDIR=${RUNDIR}
@@ -138,7 +137,15 @@ elif [ "$#" -eq 2 ] ; then
   SRCDIR=$2
 fi
 
-test $DEBUG && vecho "Debugging mode is active"
+if $DEBUG ; then
+  vecho "Debugging mode is active"
+fi
+
+# Clean up remnants
+if [ -d $ERRDIR ] ; then
+  vecho "Removing remnants: ${ERRDIR}"
+  rm -rf ${ERRDIR}
+fi
 
 INPUTDIR="${SRCDIR}/inputs"
 RUNDIR="${BUILDDIR}/run"
@@ -193,6 +200,8 @@ fi
 # Clean up if not debugging
 if ! $DEBUG ; then
   rm -rf ${RUNDIR}
+else
+  image_func_config
 fi
 
 exit $FAILCOUNT

@@ -11,6 +11,8 @@ rundir=${TESTDIR}
 
 input=$1
 
+. ./TEST_FUNCS
+
 result=0;
 
 if test -f $input ; then
@@ -62,7 +64,7 @@ if test -f $input ; then
     result=$?;
   elif test -f $goldenpng ; then
     test $verbosity && echo "Comparing run/${newpng} to ${goldenpng}..."
-    diff "run/${newpng}" "${goldenpng}"
+    compare_image $filebase "run/${newpng}" "${goldenpng}"
     result=$?
     if [ $result -eq 0 ]; then
        echo $GREEN"PASSED:$NORMAL" $filebase; \

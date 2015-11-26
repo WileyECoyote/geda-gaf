@@ -1,0 +1,162 @@
+#!/bin/sh
+
+#-------------------------------------------------------------------
+#
+# debug print out
+#
+
+decho() {
+    if test $debugging ; then
+	cat <<EOF
+$*
+EOF
+    fi
+}
+
+#-------------------------------------------------------------------
+#
+# Verbose Message
+#
+vecho()
+{
+   if [[ ! $1 = "" ]] ; then
+     if $VERBOSE ; then
+      echo $1
+     fi
+   fi
+}
+
+#-------------------------------------------------------------------
+#
+# set up various tools
+#
+
+# some system tools
+AWK=${AWK:-awk}
+
+# various ImageMagick tools
+IM_ANIMATE=${IM_ANIMATE:-animate}
+IM_COMPARE=${IM_COMPARE:-compare}
+IM_COMPOSITE=${IM_COMPOSITE:-composite}
+IM_CONVERT=${IM_CONVERT:-convert}
+IM_DISPLAY=${IM_DISPLAY:-display}
+IM_MONTAGE=${IM_MONTAGE:-montage}
+
+# golden directories
+#INDIR=${INDIR:-${srcdir}/inputs}
+#REFDIR=${REFDIR:-${srcdir}/golden}
+
+ERRDIR=mismatched
+
+#-------------------------------------------------------------------
+#
+# config summary
+#
+
+image_func_config () {
+
+cat << EOF
+
+AWK                 ${AWK}
+
+ImageMagick Tools:
+
+IM_ANIMATE          ${IM_ANIMATE}
+IM_COMPARE          ${IM_COMPARE}
+IM_COMPOSITE        ${IM_COMPOSITE}
+IM_CONVERT          ${IM_CONVERT}
+IM_DISPLAY          ${IM_DISPLAY}
+IM_MONTAGE          ${IM_MONTAGE}
+
+EOF
+}
+
+#-------------------------------------------------------------------
+#
+# utility functions for comparison
+#
+
+# Usage:
+#  check_exist "test_name" "f1" "f2"
+#
+# Makes sure that f1 and f2 both exist.  If not, mark the current
+# test as skipped and give an error message
+#
+check_exist() {
+    local func="$1"
+    local f1="$2"
+    local f2="$3"
+
+    if test ! -f "$f1" ; then
+	  echo "$0:  ${func}(): $f1 does not exist"
+	  test_skipped=yes
+	  return 1
+    fi
+
+    if test ! -f "$f2" ; then
+	  echo "$0:  ${func}(): $f2 does not exist"
+	  test_skipped=yes
+	return 1
+    fi
+    return 0
+}
+
+#-------------------------------------------------------------------
+#
+# ASCII file comparison routines
+#
+
+# Usage:
+#   run_diff "f1" "f2"
+#
+run_diff() {
+    local f1="$1"
+    local f2="$2"
+    diff -U 2 $f1 $f2
+    if test $? -ne 0 ; then return 1 ; fi
+    return 0
+}
+
+#-------------------------------------------------------------------
+#
+# GIF/JPEG/PNG comparison routines
+#
+# compare_image
+#
+compare_image() {
+    local tn="$1"
+    local f1="$2"
+    local f2="$3"
+    local result=0;
+
+    local mismatch=${ERRDIR}/$tn
+
+    check_exist "compare_image" "$f1" "$f2" || return 1
+
+    # now see if the image files are the same
+    decho "${IM_COMPARE} -metric MAE ${f1} ${f2}  null:"
+    same=`${IM_COMPARE} -metric MAE ${f1} ${f2}  null: 2>&1 | \
+          ${AWK} '{if($1 == 0){print "yes"} else {print "no"}}'`
+    decho "compare_image():  same = $same"
+
+    if test "$same" != yes ; then
+	  test_failed=yes
+      result=1
+	  test $verbosity && echo "FAILED:  \"$tn\" See ${mismatch}"
+	  mkdir -p ${mismatch}
+	  ${IM_COMPARE} ${f1} ${f2} ${mismatch}/compare.png
+	  ${IM_COMPOSITE} ${f1} ${f2} -compose difference ${mismatch}/composite.png
+	  ${IM_CONVERT} ${f1} ${f2} -compose difference -composite -colorspace gray ${mismatch}/gray.png
+      cp ${f1} ${mismatch}/animate1.${f1#*.}
+      cp ${f2} ${mismatch}/animate2.${f2#*.}
+	  cat > ${mismatch}/animate.sh << EOF
+#!/bin/sh
+${IM_CONVERT} -label "%f" animate1.${f1#*.} animate2.${f2#*.} miff:- | \
+${IM_MONTAGE} - -geometry +0+0 -tile 1x1 miff:- | \
+${IM_ANIMATE} -delay 0.5 -loop 0 -
+EOF
+	  chmod a+x ${mismatch}/animate.sh
+    fi
+  return $result;
+}
+

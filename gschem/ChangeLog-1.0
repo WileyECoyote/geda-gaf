@@ -1,4 +1,14 @@
-2015-11-24  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-25  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/TEST_FUNCS: Add file for common routines for test modules.
+
+    * tests/IMAGE_DIFF: Include TEST_FUNCS and use compare_image instead of
+      just a diff.
+
+    * tests/runtest.sh: Add ERRDIR, include TEST_FUNCS, remove function vecho,
+      which was relocated to TEST_FUNCS.
+
+2015-11-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/LOG_DIFF: Rename log files in the local log directory to match
       the name of the test file.
