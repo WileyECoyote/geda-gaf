@@ -1,3 +1,10 @@
+2015-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * micro/ACE1202-1.sym: Remove NET= attributes, adjust attribute positions.
+
+    * micro/ACE1202-2.sym: New symbol derived from dash one with NET= pins
+      removed and remaining pins relocated.
+
 2015-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * tube/12AX7-1.sym: Change footprint from "EIA 9A" pin out to
