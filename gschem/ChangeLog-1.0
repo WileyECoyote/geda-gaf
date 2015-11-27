@@ -1,3 +1,8 @@
+2015-11-26  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/inputs/bus_ripper_1.sch: Rename busses.sch to bus_ripper_1.sch
+      and use as input for TEST=IMAGE_DIFF.
+
 2015-11-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/TEST_FUNCS: Add file for common routines for test modules.
