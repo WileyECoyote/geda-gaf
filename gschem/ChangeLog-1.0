@@ -3,6 +3,10 @@
     * tests/inputs/bus_ripper_1.sch: Rename busses.sch to bus_ripper_1.sch
       and use as input for TEST=IMAGE_DIFF.
 
+    * src/iface/i_status.c: Revise function i_status_idle_update_sensitivities
+      to enable "attach attribute" in menu is any object and test selected not
+      just complexes in function.
+
 2015-11-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/TEST_FUNCS: Add file for common routines for test modules.

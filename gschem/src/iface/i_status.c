@@ -521,7 +521,8 @@ static bool selected_at_least_one_pin_object(GList *list)
  *  path NOT the displayed menu text, therefore these strings
  *  should NOT be internationalized
  *
- * TODO: Fix this ludicrousness
+ * TODO: Fix this ludicrousness, maybe bit flags embedded in each
+ *       object.
  */
 static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 {
@@ -827,7 +828,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_popup_sensitivity(w_current, "Copy to Clipboard", FALSE);
   }
 
-  if (complex_selected && text_selected) {
+  if (any_object && text_selected) {
     x_menus_sensitivity(w_current, "Attri_butes/_Attach", TRUE);
   }
   else {
