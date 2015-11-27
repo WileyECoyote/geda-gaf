@@ -1,3 +1,8 @@
+2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/battery/BQ24725A-1.sym: Add symbol 1-4 Cell Li+ Battery SMBus Charge
+      Controller.
+
 2015-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74/7404-?.sym: Remove duplicate symbols dash 5 and dash 6, rename
