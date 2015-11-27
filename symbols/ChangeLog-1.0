@@ -1,3 +1,8 @@
+2015-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74/7404-?.sym: Remove duplicate symbols dash 5 and dash 6, rename
+      dash 3a to dash 4.
+
 2015-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * micro/ACE1202-1.sym: Remove NET= attributes, adjust attribute positions.
