@@ -47,7 +47,6 @@
  */
 bool f_has_active_autosave (const char *filename, GError **err)
 {
-  GFileError g_errcode = 0;
   bool  result         = FALSE;
   int   file_err       = 0;
   int   save_errno     = 0;
@@ -84,8 +83,13 @@ bool f_has_active_autosave (const char *filename, GError **err)
         result = TRUE;
       }
       else {
+
         if (file_err) {
+
+          GFileError g_errcode;
+
           g_errcode = g_file_error_from_errno (file_err);
+
           g_set_error (err, G_FILE_ERROR, g_errcode,
                        _("Failed to stat [%s]: %s"),
                        auto_filename, strerror (file_err));
@@ -139,8 +143,6 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   char    load_backup_file   = 0;
   int     opened             = FALSE;
   int     flags;
-
-  unsigned int mem_needed;
 
   const char *log_auto_back;
   const char *log_undetemine;
@@ -231,6 +233,8 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
     }
 
     if (active_backup) {
+
+      unsigned int mem_needed;
 
       mem_needed = strlen(log_auto_back) + strlen(backup_filename);
 
