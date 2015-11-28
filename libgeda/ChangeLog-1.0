@@ -1,3 +1,8 @@
+2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Try eliminating g_file_error_from_errno and just
+      set with saved ernno.
+
 2015-11-27  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Revise function f_has_active_autosave reducing

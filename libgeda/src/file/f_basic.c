@@ -86,11 +86,7 @@ bool f_has_active_autosave (const char *filename, GError **err)
 
         if (file_err) {
 
-          GFileError g_errcode;
-
-          g_errcode = g_file_error_from_errno (file_err);
-
-          g_set_error (err, G_FILE_ERROR, g_errcode,
+           g_set_error (err, G_FILE_ERROR, file_err,
                        _("Failed to stat [%s]: %s"),
                        auto_filename, strerror (file_err));
                        result = TRUE;
@@ -394,6 +390,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
     errno = 0;
     access(filename, W_OK);
+
     if (errno == EACCES) {
       g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM, err_read_only, filename);
       result = 0;
