@@ -153,7 +153,7 @@ int f_file_copy(const char *source, const char *target)
 
           nwritten = write(output, ptr_out, nread);
 
-          if (nwritten >= 0) {
+          if (nwritten) {
             nread -= nwritten;
             ptr_out += nwritten;
           }
@@ -243,9 +243,7 @@ int f_file_cmp_mod_time (const char *filename, time_t ref_time)
  */
 char *f_file_follow_symlinks (const char *filename, GError **err)
 {
-  char *followed_filename = NULL;
-  int link_count = 0;
-  GError *tmp_err = NULL;
+  char *followed_filename;
 
   if (filename == NULL) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
@@ -268,10 +266,13 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
 
 #else
 
+  int link_count = 0;
+
   while (link_count < MAX_LINK_LEVEL) {
 
-    struct stat st;
-    char *linkname = NULL;
+    char   *linkname;
+    GError *tmp_err;
+    struct  stat st;
 
     if (lstat (followed_filename, &st) != 0) {
       /* We could not access the file, so perhaps it does not
@@ -288,6 +289,7 @@ char *f_file_follow_symlinks (const char *filename, GError **err)
 
     link_count++;
 
+    tmp_err  = NULL;
     linkname = g_file_read_link (followed_filename, &tmp_err);
 
     if (linkname == NULL) {

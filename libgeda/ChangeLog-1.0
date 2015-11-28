@@ -4,7 +4,10 @@
       scope of f_file_copy and mem_needed.
 
     * src/file/f_file.c: Revise function f_has_active_autosave reducing
-      scope of nread and nwritten.
+      scope of nread and nwritten. Revise f_file_follow_symlinks to not
+      define link_count if __MINGW32__ amd delay initialization of tmp_
+      err until inside the while loop, no need to check nwritten less
+      than zero - is unsigned.
 
 2015-11-23  Wiley E. Hill <wileyhill@gmail.com>
 
