@@ -1,3 +1,8 @@
+2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
+      to the macro in libgeda/defines.h
+
 2015-11-26  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/inputs/bus_ripper_1.sch: Rename busses.sch to bus_ripper_1.sch

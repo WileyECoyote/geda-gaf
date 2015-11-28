@@ -69,5 +69,6 @@ SCM g_rc_sort_components(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("sort-components", default_sort_components, 2);
+  RETURN_G_RC_MODE("sort-components",
+            default_sort_components, mode_table);
 }

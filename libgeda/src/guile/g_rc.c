@@ -26,9 +26,11 @@
 
 #include <config.h>
 #include <stdio.h>
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
+
 #include "libgeda_priv.h"
 
 /**   \defgroup Libgeda-RC-Handlers Libgeda RC Handlers
@@ -455,20 +457,25 @@ SCM g_rc_reset_source_library(void)
 SCM g_rc_bus_style(SCM mode)
 {
   if(scm_is_string(mode)) {
-   static const vstbl_entry mode_table[] = {
+
+    static const vstbl_entry mode_table[] = {
      {STYLE_NONE , RC_STR_STYLE_NONE  },
      {STYLE_THIN , RC_STR_STYLE_THIN  },
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
 
-   RETURN_G_RC_MODE("bus-style", default_bus_style, 3);
+   RETURN_G_RC_MODE("bus-style", default_bus_style, mode_table);
+
   }
   else {
+
     int val;
+
     if (scm_is_integer(mode)) {
-      int val;
+
       val = scm_to_int (mode);
-      if((val < STYLE_NONE) || (val > STYLE_THICK)) {
+
+      if(val < STYLE_NONE || val > STYLE_THICK) {
         fprintf (stderr, _("Bad value [%d], check bus-style entry in rc file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_BUS_STYLE);
         val = DEFAULT_BUS_STYLE;
@@ -483,6 +490,7 @@ SCM g_rc_bus_style(SCM mode)
   }
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the line-style RC entry.
  *  \par Function Description
  *       C function to construct lisp algorithms to dynamically process
@@ -493,18 +501,25 @@ SCM g_rc_bus_style(SCM mode)
 SCM g_rc_line_style(SCM mode)
 {
   if(scm_is_string(mode)) {
-   static const vstbl_entry mode_table[] = {
+
+    static const vstbl_entry mode_table[] = {
      {STYLE_NONE , RC_STR_STYLE_NONE  },
      {STYLE_THIN , RC_STR_STYLE_THIN  },
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
-   RETURN_G_RC_MODE("line-style", default_line_style, 3);
+
+   RETURN_G_RC_MODE("line-style", default_line_style, mode_table);
+
   }
   else {
+
     int val;
+
     if (scm_is_integer(mode)) {
+
       val = scm_to_int (mode);
-      if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
+
+      if (val < STYLE_NONE || val > STYLE_THICK) {
         fprintf (stderr, _("Bad value [%d], check line-style entry in rc file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_LINE_STYLE);
         val = DEFAULT_LINE_STYLE;
@@ -530,19 +545,25 @@ SCM g_rc_line_style(SCM mode)
 SCM g_rc_net_style(SCM mode)
 {
   if(scm_is_string(mode)) {
-   static const vstbl_entry mode_table[] = {
-     {STYLE_NONE , RC_STR_STYLE_NONE  },
-     {STYLE_THIN , RC_STR_STYLE_THIN  },
-     {STYLE_THICK, RC_STR_STYLE_THICK }
-   };
 
-  RETURN_G_RC_MODE("net-style", default_net_style, 3);
+    static const vstbl_entry mode_table[] = {
+      {STYLE_NONE , RC_STR_STYLE_NONE  },
+      {STYLE_THIN , RC_STR_STYLE_THIN  },
+      {STYLE_THICK, RC_STR_STYLE_THICK }
+    };
+
+    RETURN_G_RC_MODE("net-style", default_net_style, mode_table);
+
   }
   else {
+
     int val;
+
     if (scm_is_integer(mode)) {
+
       val = scm_to_int (mode);
-      if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
+
+      if (val < STYLE_NONE || val > STYLE_THICK) {
         fprintf (stderr, _("Bad value [%d], check net-style entry in rc file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_NET_STYLE);
         val = DEFAULT_LINE_STYLE;
@@ -569,18 +590,24 @@ SCM g_rc_net_style(SCM mode)
 SCM g_rc_pin_style(SCM mode)
 {
   if(scm_is_string(mode)) {
-   static const vstbl_entry mode_table[] = {
-     {STYLE_NONE , RC_STR_STYLE_NONE  },
-     {STYLE_THIN , RC_STR_STYLE_THIN  },
-     {STYLE_THICK, RC_STR_STYLE_THICK }
-   };
 
-  RETURN_G_RC_MODE("pin-style", default_pin_style, 3);
+    static const vstbl_entry mode_table[] = {
+      {STYLE_NONE , RC_STR_STYLE_NONE  },
+      {STYLE_THIN , RC_STR_STYLE_THIN  },
+      {STYLE_THICK, RC_STR_STYLE_THICK }
+    };
+
+    RETURN_G_RC_MODE("pin-style", default_pin_style, mode_table);
+
   }
   else {
+
     int val;
+
     if (scm_is_integer(mode)) {
+
       val = scm_to_int (mode);
+
       if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
         fprintf (stderr, _("Bad value [%d], check pin-style entry in rc file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_PIN_STYLE);
@@ -596,6 +623,7 @@ SCM g_rc_pin_style(SCM mode)
   }
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the thick-bus-width RC entry.
  *  \par Function Description
  *       C function to construct lisp algorithms to dynamically process
@@ -607,7 +635,9 @@ SCM g_rc_thick_bus_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_BUS_WIDTH; /* default */
     }
@@ -617,7 +647,9 @@ SCM g_rc_thick_bus_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_BUS_WIDTH);
     val = DEFAULT_THICK_BUS_WIDTH;
   }
+
   default_thick_bus_width = val;
+
   return SCM_BOOL_T;
 }
 
@@ -631,7 +663,9 @@ SCM g_rc_thick_line_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_LINE_WIDTH; /* default */
     }
@@ -641,7 +675,9 @@ SCM g_rc_thick_line_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_LINE_WIDTH);
     val = DEFAULT_THICK_LINE_WIDTH;
   }
+
   default_thick_line_width = val;
+
   return SCM_BOOL_T;
 }
 
@@ -655,7 +691,9 @@ SCM g_rc_thick_net_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_NET_WIDTH; /* default */
     }
@@ -665,6 +703,7 @@ SCM g_rc_thick_net_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_NET_WIDTH);
     val = DEFAULT_THICK_NET_WIDTH;
   }
+
   default_thick_net_width = val;
 
   return SCM_BOOL_T;
@@ -680,7 +719,9 @@ SCM g_rc_thick_pin_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_PIN_WIDTH; /* default */
     }
@@ -690,6 +731,7 @@ SCM g_rc_thick_pin_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_PIN_WIDTH);
     val = DEFAULT_THICK_PIN_WIDTH;
   }
+
   default_thick_pin_width = val;
 
   return SCM_BOOL_T;
@@ -705,7 +747,9 @@ SCM g_rc_thin_bus_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_BUS_WIDTH; /* default */
     }
@@ -715,6 +759,7 @@ SCM g_rc_thin_bus_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_BUS_WIDTH);
     val = DEFAULT_THIN_BUS_WIDTH;
   }
+
   default_thin_bus_width = val;
 
   return SCM_BOOL_T;
@@ -730,7 +775,9 @@ SCM g_rc_thin_line_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_LINE_WIDTH; /* default */
     }
@@ -740,6 +787,7 @@ SCM g_rc_thin_line_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_LINE_WIDTH);
     val = DEFAULT_THIN_LINE_WIDTH;
   }
+
   default_thin_line_width = val;
 
   return SCM_BOOL_T;
@@ -755,7 +803,9 @@ SCM g_rc_thin_net_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_NET_WIDTH; /* default */
     }
@@ -765,6 +815,7 @@ SCM g_rc_thin_net_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_NET_WIDTH);
     val = DEFAULT_THIN_NET_WIDTH;
   }
+
   default_thin_net_width = val;
 
   return SCM_BOOL_T;
@@ -780,7 +831,9 @@ SCM g_rc_thin_pin_width (SCM width)
   int val;
 
   if (scm_is_integer(width)) {
+
     val = scm_to_int (width);
+
     if (val < 0) {
       val = MIN_PIN_WIDTH; /* default */
     }
@@ -790,6 +843,7 @@ SCM g_rc_thin_pin_width (SCM width)
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_PIN_WIDTH);
     val = DEFAULT_THIN_PIN_WIDTH;
   }
+
   default_thin_pin_width = val;
 
   return SCM_BOOL_T;
@@ -869,8 +923,7 @@ SCM g_rc_attribute_promotion(SCM mode)
   };
 
   RETURN_G_RC_MODE("attribute-promotion",
-                    default_attribute_promotion,
-                    2);
+                    default_attribute_promotion, mode_table);
 }
 
 /*! \brief Handles the keep-invisible SCM keyword.
@@ -889,9 +942,7 @@ SCM g_rc_keep_invisible(SCM mode)
     {FALSE, "disabled"},
   };
 
-  RETURN_G_RC_MODE("keep-invisible",
-                   default_keep_invisible,
-                   2);
+  RETURN_G_RC_MODE("keep-invisible", default_keep_invisible, mode_table);
 }
 
 /*! \brief Handles the bitmap-directory SCM keyword.
@@ -1022,8 +1073,7 @@ SCM g_rc_check_symbol_version(SCM mode)
   };
 
   RETURN_G_RC_MODE("check-symbol-version",
-                    default_check_symbol_version,
-                    2);
+                    default_check_symbol_version, mode_table);
 }
 
 /*! \brief Handles the log-time SCM keyword
@@ -1077,8 +1127,7 @@ SCM g_rc_make_backup_files(SCM mode)
   };
 
   RETURN_G_RC_MODE("make-backup-files",
-                    default_make_backup_files,
-                    2);
+                    default_make_backup_files, mode_table);
 }
 
 /*! \brief Handles the postsript-prolog SCM keyword.
@@ -1152,8 +1201,7 @@ SCM g_rc_promote_invisible(SCM mode)
   };
 
   RETURN_G_RC_MODE("promote-invisible",
-                   default_promote_invisible,
-                   2);
+                    default_promote_invisible, mode_table);
 }
 
 /*! \brief Handles the untitled-name SCM keyword.
@@ -1199,8 +1247,7 @@ SCM g_rc_show_full_path(SCM mode)
   };
 
   RETURN_G_RC_MODE("show-full-path",
-                   default_show_full_path,
-                   2);
+                    default_show_full_path, mode_table);
 }
 
 /** @} endgroup Libgeda-RC-Handlers */

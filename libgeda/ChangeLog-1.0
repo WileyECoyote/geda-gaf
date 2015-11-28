@@ -1,7 +1,14 @@
 2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/defines.h: Revise macro RETURN_G_RC_MODE to accept
+      mode table as third parameter instead of size and use sizeof to
+      derived the number of table entries.
+
     * src/file/f_basic.c: Try eliminating g_file_error_from_errno and just
       set with saved ernno.
+
+    * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
+      to the macro in libgeda/defines.h
 
 2015-11-27  Wiley E. Hill <wileyhill@gmail.com>
 
