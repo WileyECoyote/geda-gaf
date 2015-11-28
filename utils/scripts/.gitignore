@@ -2,6 +2,7 @@ Makefile
 Makefile.in
 garchive
 garchive.py
+gcheck-library
 geda-install
 geda-install.sh
 geda-install-bin
