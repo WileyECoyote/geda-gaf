@@ -7,6 +7,12 @@
     * src/file/f_basic.c: Try eliminating g_file_error_from_errno and just
       set with saved ernno.
 
+    * src/file/f_get.c: Revise function f_get_dir_list_files reducing
+      scope of save_errno and function get_contents_regfile reducing
+      scope of save_errno and bytes_read, zero errno before starting
+      read loop. Revise function f_get_file_contents reducing scope of
+      save_errno and zero errno before call to fopen.
+
     * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
       to the macro in libgeda/defines.h
 

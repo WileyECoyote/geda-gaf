@@ -292,24 +292,25 @@ static bool
 get_contents_stdio (const char *filename, FILE *f, char **contents,
                     size_t     *length,   GError        **err)
 {
-  bool   ret_val         = FALSE;
+  bool   ret_val = FALSE;
+  char  *str     = NULL;
+  char  *tmp;
 
   char   buf[DISK_BUFFER_SIZE];
-  char  *str             = NULL;
-  char  *tmp;
-  int    save_errno;
+
   size_t bytes;
   size_t total_bytes     = 0;
   size_t total_allocated = 0;
 
-  while (!feof (f))
-  {
+  while (!feof (f)) {
+
+    int save_errno;
 
     bytes = fread (buf, 1, sizeof (buf), f);
     save_errno = errno;
 
-    while ((total_bytes + bytes + 1) > total_allocated)
-    {
+    while ((total_bytes + bytes + 1) > total_allocated) {
+
       if (str)
         total_allocated *= 2;
       else
@@ -385,13 +386,12 @@ get_contents_regfile (const char   *filename,
 {
   bool   ret_val = FALSE;
   char  *buf;
-  int    save_errno;
 
-  unsigned long int bytes_read;
   unsigned long int alloc_size;
   unsigned long int size;
 
   size = (unsigned long int)stat_buf->st_size;
+
   alloc_size = size + 1;
 
   buf = g_try_malloc (alloc_size);
@@ -404,10 +404,14 @@ get_contents_regfile (const char   *filename,
                  filename);
   }
   else {
-    bytes_read = 0;
 
-    while (bytes_read < size)
-    {
+    unsigned long int bytes_read;
+
+    bytes_read = 0;
+    errno      = 0;
+
+    while (bytes_read < size) {
+
       gssize rc;
 
       rc = read (fd, buf + bytes_read, size - bytes_read);
@@ -415,9 +419,11 @@ get_contents_regfile (const char   *filename,
       if (rc < 0) {
 
         if (errno != EINTR) {
-          save_errno = errno;
 
-          g_free (buf);
+          int save_errno = errno;
+
+          g_free (buf); /* This could modify errno */
+
           g_set_error (err, G_FILE_ERROR, save_errno,
                      _("Failed to read from file '%s': %s"),
                         filename,
@@ -426,10 +432,12 @@ get_contents_regfile (const char   *filename,
                        goto error;
         }
       }
-      else if (rc == 0)
+      else if (rc == 0) {
         break;
-      else
+      }
+      else {
         bytes_read += rc;
+      }
     }
 
     buf[bytes_read] = '\0';
@@ -463,11 +471,11 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 
   FILE *f;
 
-  int save_errno;
   bool retval = FALSE;
 
-
   if ( filename != NULL && contents != NULL) {
+
+    errno = 0;
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 
@@ -490,6 +498,8 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 #if defined (OS_LINUX)
 
     else if (fstat (fd, &stat_buf) < 0) {
+
+      int save_errno;
 
       save_errno = errno;
 
