@@ -1,4 +1,18 @@
 v 20150101 2
+T 300 4550 8 10 1 1 0 0 1
+device=6A259
+T 300 4750 8 10 0 0 0 0 1
+footprint=DIP20
+T 300 4950 8 10 0 0 0 0 1
+description=Peripheral / Power Logic 8-Bit Addressable Latch
+T 300 5550 8 10 0 0 0 0 1
+numslots=0
+T 300 5150 8 10 0 0 0 0 1
+net=VCC:17
+T 300 5350 8 10 0 0 0 0 1
+net=GND:4
+T 300 5750 8 10 0 0 0 0 1
+documentation=http://focus.ti.com/docs/prod/folders/print/tpic6a259.html
 P 1700 3800 2000 3800 1 0 1
 {
 T 1800 3850 5 8 1 1 0 0 1
@@ -160,20 +174,6 @@ pinlabel=Q7
 T 1650 1700 5 8 0 1 0 8 1
 pintype=out
 }
-T 300 4550 8 10 1 1 0 0 1
-device=6A259DIP
-T 300 4750 8 10 0 0 0 0 1
-footprint=DIP20
-T 300 4950 8 10 0 0 0 0 1
-description=Peripheral / Power Logic 8-Bit Addressable Latch
-T 300 5550 8 10 0 0 0 0 1
-numslots=0
-T 300 5150 8 10 0 0 0 0 1
-net=VCC:17
-T 300 5350 8 10 0 0 0 0 1
-net=GND:4
-T 300 5750 8 10 0 0 0 0 1
-documentation=http://focus.ti.com/docs/prod/folders/print/tpic6a259.html
 P 1700 1100 2000 1100 1 0 1
 {
 T 1800 1150 5 8 1 1 0 0 1

@@ -7,6 +7,9 @@
 
     * allegro/A3967-2.sym: Rename file; 3967-2.sym -> A3967-2.sym
 
+    * allegro/6A259-1.sym: Remove "DIP" from device= attribute and adjust attribute
+      locations.
+
 2015-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74/7404-?.sym: Remove duplicate symbols dash 5 and dash 6, rename
