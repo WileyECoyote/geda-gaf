@@ -66,8 +66,6 @@ int f_file_copy(const char *source, const char *target)
   int output = -1;
   int status;
 
-  unsigned long int nread;
-
   char *buffer;
   char *ptr_out;
 
@@ -125,6 +123,8 @@ int f_file_copy(const char *source, const char *target)
     }
     else {
 
+        unsigned long int nread;
+
 #if defined(OS_LINUX)
 
       /* Lock the input file, to prevent processes from writting to
@@ -146,9 +146,10 @@ int f_file_copy(const char *source, const char *target)
       while (nread = read(input, buffer, DISK_BUFFER_SIZE), nread > 0)
       {
         ptr_out = buffer;
-        size_t nwritten;
 
         do {
+
+          size_t nwritten;
 
           nwritten = write(output, ptr_out, nread);
 

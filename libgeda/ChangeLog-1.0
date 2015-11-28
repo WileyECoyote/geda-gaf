@@ -1,7 +1,10 @@
 2015-11-27  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Revise function f_has_active_autosave reducing
-      scope of g_errcode and mem_needed.
+      scope of f_file_copy and mem_needed.
+
+    * src/file/f_file.c: Revise function f_has_active_autosave reducing
+      scope of nread and nwritten.
 
 2015-11-23  Wiley E. Hill <wileyhill@gmail.com>
 
