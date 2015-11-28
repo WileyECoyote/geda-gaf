@@ -1,16 +1,16 @@
-v 20150101 2
+v 20151122 2
 B 300 0 2000 4900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 5750 8 10 1 1 0 0 1
+T 300 5400 5 10 0 1 0 0 1
 device=A3967SLB
 T 2300 5000 8 10 1 1 0 6 1
 refdes=U?
-T 400 5550 8 10 0 0 0 0 1
+T 300 5200 5 10 0 1 0 0 1
 footprint=SOIC-127P-1047L1-24N
-T 300 6350 8 10 0 0 0 0 1
+T 300 6200 5 10 0 1 0 0 1
 documentation=http://www.allegro.com
-T 300 6550 8 10 0 0 0 0 1
+T 300 5600 5 10 0 1 0 0 1
 description=microstepping driver with translator
-T 300 6750 8 10 0 0 0 0 1
+T 300 6000 5 10 0 0 0 0 1
 numslots=0
 P 2600 3200 2300 3200 1 0 0
 {
@@ -276,7 +276,7 @@ pinlabel=VBB2
 T 400 4500 9 8 0 1 0 0 1
 pintype=pwr
 }
-T 400 5000 9 10 1 0 0 0 1
-A3967SLB
-T 400 6000 8 10 0 0 0 0 1
-symversion=1.0
+T 300 5000 9 10 1 1 0 0 1
+value=A3967SLB
+T 300 5800 5 10 0 0 0 0 1
+symversion=0.2
