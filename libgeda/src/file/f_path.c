@@ -428,8 +428,7 @@ int f_path_create(const char *path, mode_t mode)
 char*
 f_path_get_dirname (const char *filepath)
 {
-  register char         *path;
-  register unsigned int  len;
+  register char *path;
 
   if (filepath == NULL) {
     path = NULL;
@@ -438,6 +437,8 @@ f_path_get_dirname (const char *filepath)
     path = u_string_strdup(filepath);
   }
   else {
+
+    register unsigned int  len;
 
     path = strrchr (filepath, G_DIR_SEPARATOR);
 

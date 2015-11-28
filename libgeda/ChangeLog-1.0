@@ -13,6 +13,9 @@
       read loop. Revise function f_get_file_contents reducing scope of
       save_errno and zero errno before call to fopen.
 
+    * src/file/f_path.c: Revise function f_path_create reducing scope of
+      len.
+
     * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
       to the macro in libgeda/defines.h
 
