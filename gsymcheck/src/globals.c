@@ -38,3 +38,4 @@ volatile int log_destiny=STDOUT_TTY;
 int verbose_mode=0;
 int interactive_mode=0;
 int quiet_mode=0;
+int suppress_mode=0;

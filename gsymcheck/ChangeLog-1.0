@@ -1,3 +1,27 @@
+2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Move extra output of carriage return before calling
+      s_check_all after the call and revise conditional.
+
+    * gsymcheck/src/globals.c: Add global integer suppress_mode.
+
+    * gsymcheck/src/parsecmd.c: Add option "-u -suppress" to suppress output
+      of "No errors found".
+
+    * src/s_check.c: Revise reporting of error and warning counts so that "No
+      Warnings found" is printed if verbose mode, and No Errors found" is not
+      printed if suppress_mode is set unless verbose more is active.
+      Conditionally print "Checking" message in s_check_all since the result
+      is not yet known, output "File:" message instead in s_check_symbol when
+      appropreiate, i.e. when not verbose mode and there are errors or warnings.
+
+    * docs/gsymcheck.1.in: Document new "-u -suppress" option.
+
+    * tests/output: Regenerated test outputs, most of which either did not have
+      the "No Warnings found" even though the verbose option is used for tests,
+      or the output message had an extra space at the end of the messages. The
+      new outputs do not contain the extra spaces.
+
 2015-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Turn off echoing of shell in makefile.

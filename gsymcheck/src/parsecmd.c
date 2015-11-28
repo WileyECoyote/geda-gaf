@@ -33,7 +33,7 @@
 #include "../include/prototype.h"
 #include "../include/gettext.h"
 
-#define OPTIONS "qvh"
+#define OPTIONS "hquv"
 
 #ifndef OPTARG_IN_UNISTD
   extern char *optarg;
@@ -47,9 +47,10 @@
 #ifdef HAVE_GETOPT_LONG
 struct option long_options[] =
   {
-    {"help",    0, 0, 'h'},
-    {"quiet",   0, 0, 'q'},
-    {"verbose", 0, 0, 'v'}
+    {"help",     0, 0, 'h'},
+    {"quiet",    0, 0, 'q'},
+    {"suppress", 0, 0, 'u'},
+    {"verbose",  0, 0, 'v'}
   };
 #endif
 
@@ -64,9 +65,11 @@ void
 usage(char *cmd)
 {
   printf(_(
+    "\n"
     "Usage: %s [OPTIONS] filename1 ... filenameN\n"
     "  -h, --help        Print usage\n"
     "  -q, --quiet       Quiet mode\n"
+    "  -u, --suppress    Suppress \"No errors found\" when no errors\n"
     "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
     "                    Use this to get the actual symbol error messages\n"
     "\nfilename1 ... filenameN are the symbols to check\n"
@@ -101,12 +104,20 @@ int parse_commandline(int argc, char *argv[])
 #endif
     switch (ch) {
 
-      case 'v':
-        verbose_mode++;
+      case 'h':
+        usage(argv[0]);
         break;
 
       case 'q':
         quiet_mode=TRUE;
+        break;
+
+      case 'u':
+        suppress_mode=TRUE;
+        break;
+
+      case 'v':
+        verbose_mode++;
         break;
 
 #if 0
@@ -114,10 +125,6 @@ int parse_commandline(int argc, char *argv[])
         printf("f arg: %s\n", optarg);
         break;
 #endif
-
-      case 'h':
-        usage(argv[0]);
-        break;
 
       case '?':
       default:

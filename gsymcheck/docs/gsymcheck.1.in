@@ -4,8 +4,9 @@ gsymcheck \- gEDA/gaf Symbol Checker
 .SH SYNOPSIS
 .B gsymcheck
 .RB [ \-h ]
-.RB [ \-v ]
 .RB [ \-q ]
+.RB [ \-u ]
+.RB [ \-v ]
 .I symbol1
 .RI [... symbolN ]
 .SH DESCRIPTION
@@ -58,6 +59,10 @@ Verbose mode 2.  This mode will show all error, warning, and info messages (opti
 Usage summary /
 .B gsymcheck
 help
+.TP 8
+.BR \-u ", " \-\-suppress
+Suppress mode on.  Suppresses outputting "No errors found" when no are errors but warnings are issued.
+Specifying Verbose mode over-rides this option. (optional)
 .TP 8
 .IR symbol1 " [..." symbolN ]
 At least one symbol file must be specified.

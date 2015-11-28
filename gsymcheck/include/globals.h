@@ -31,8 +31,7 @@ extern volatile int logging;
 extern volatile int log_destiny;
 
 /* gnetlist specific stuff */
-extern int verbose_mode;
 extern int interactive_mode;
 extern int quiet_mode;
-
-
+extern int suppress_mode;
+extern int verbose_mode;

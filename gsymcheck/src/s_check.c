@@ -101,21 +101,23 @@ int s_check_all(GedaToplevel *toplevel)
 
       if (obj_list) {
 
-        if (!quiet_mode) {
-          u_log_message(_("Checking: %s\n"), page->filename);
+        if (verbose_mode && !quiet_mode) {
+          u_log_message(_("\nChecking: %s\n"), page->filename);
         }
 
         s_current->filename = page->filename;
 
         result = s_check_symbol (s_current, obj_list);
 
-        if (!quiet_mode) {
-          u_log_message("\n");
-        }
-
         total =  total + result;
       }
       s_symstruct_reset (s_current);
+    }
+
+    /* If there were no findings and not verbose then nothing was logged */
+    if (!total && !verbose_mode && !quiet_mode) {
+      /* If not quiet mode then tell user */
+      u_log_message(_("No errors or warnings were detected.\n"));
     }
 
     s_symstruct_free (s_current);
@@ -197,44 +199,68 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
   /* now report the info/warnings/errors to the user */
   if (!quiet_mode) {
 
-    /* Print out messages stored in the structure */
+    /* If not verbose mode then the file name was not printed,
+     * so if there were any findings, print the file now...*/
+    if (!verbose_mode && (errors > 0 || warnings > 0)) {
+      u_log_message(_("File: %s\n"), s_current->filename);
+    }
+
+    /* Print out warning messages stored in the structure */
     s_symstruct_print(s_current);
 
-    if (warnings > 0) {
+    if (warnings == 0) {
 
-      u_log_message(_("%d warnings found "), warnings);
+      if (verbose_mode) {
+        u_log_message(_("No warnings found\n"));
+      }
+    }
+    else {
+
+      if (warnings == 1) {
+        u_log_message(_("1 warning found"));
+      }
+      else {
+        u_log_message(_("%d warnings found"), warnings);
+      }
 
       if (verbose_mode < 2) {
-        u_log_message(_("(use -vv to view details)\n"));
-      } else {
+        u_log_message(_(" (use -vv to view details)\n"));
+      }
+      else {
         u_log_message("\n");
       }
     }
 
+    /* Print out error messages stored in the structure */
     if (errors == 0) {
-      u_log_message(_("No errors found\n"));
+
+      if (verbose_mode || warnings > 0) {
+
+        if (!suppress_mode) {
+          u_log_message(_("No errors found\n"));
+        }
+
+        if (warnings && !verbose_mode) {
+          u_log_message("\n");
+        }
+      }
     }
-    else if (errors == 1) {
+    else {
 
-      u_log_message(_("1 ERROR found "));
+      if (errors == 1) {
 
-      if (verbose_mode < 1) {
-        u_log_message(_("(use -v to view details)\n"));
+        u_log_message(_("1 ERROR found"));
       }
       else {
-        u_log_message("\n");
+        u_log_message(_("%d ERRORS found"), errors);
       }
-    }
-    else if (errors > 1) {
-
-      u_log_message(_("%d ERRORS found "), errors);
 
       if (verbose_mode < 1) {
-        u_log_message(_("(use -v to view details)\n"));
+        u_log_message(_(" (use -v to view details)\n"));
       }
-      else {
-        u_log_message("\n");
-      }
+
+      u_log_message("\n");
+
     }
   }
 
@@ -852,7 +878,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   /* Check for all pins that are in both lists and print a message.
    *     Sometimes this is useful and sometimes it's an error. */
 
-  cur = net_numbers;
+  cur  = net_numbers;
   cur2 = pin_numbers;
 
   while (cur != NULL && cur2 != NULL) {
@@ -860,6 +886,7 @@ static void s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
     i = strcmp((char*)cur->data, (char*)cur2->data);
 
     if (i == 0) {
+
       if (!quiet_mode && verbose_mode > 0) {
 
         u_log_message(_("Notice: net attribute using defined pin number [%s]\n"),

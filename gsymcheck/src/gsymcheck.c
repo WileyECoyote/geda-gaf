@@ -130,11 +130,11 @@ static void main_prog(void *closure, int argc, char *argv[])
   s_page_print_all(pr_current);
 #endif
 
-  if (!quiet_mode) {
+  exit_status = s_check_all(pr_current);
+
+  if (!exit_status  && !quiet_mode && !verbose_mode) {
     u_log_message("\n");
   }
-
-  exit_status = s_check_all(pr_current);
 
   s_page_delete_list(pr_current);
 
