@@ -48,8 +48,8 @@ int main(int argc, char **argv)
   int  len;
   int  result;
 
-  if( argc != 2 )
-  {
+  if (argc != 2) {
+
     fprintf( stderr, "Usage:\n %s <megafile>\n\n"
     "Where <megafile> is the name of a viewlogic megafile\n"
     "whithout any extensions.  The file <megafile>.lib and \n"
@@ -63,8 +63,8 @@ int main(int argc, char **argv)
   strcat(name,".lib");
   megafile = fopen(name, "r");
 
-  if( megafile == NULL )
-  {
+  if (megafile == NULL) {
+
 
 #ifdef HAVE_ERRNO_H
     fprintf(stderr, "Error: unable to open magefile `%s' for reading: %s\n",
@@ -79,15 +79,19 @@ int main(int argc, char **argv)
 
   /* create a subdir to hold the exploded files */
 #ifdef __MINGW32__
+
   mkdir(argv[1]);
+
 #else
+
   mkdir(argv[1], 0777); /* try to be friendly */
+
 #endif
 
   /* read each table entry and extract the file from the megafile */
-  while(!feof(megafile))
-  {
-    if(fread(buffer, RECLEN, 1, megafile) == 0) break;  /* end of file? */
+  while (!feof(megafile)) {
+
+    if (fread(buffer, RECLEN, 1, megafile) == 0) break;  /* end of file? */
 
       /* null terminate buffer */
       buffer[RECLEN+1] = 0;
@@ -108,38 +112,54 @@ int main(int argc, char **argv)
 
     /* copy the file into the buffer */
     result = fread (extracted_file, len, 1, megafile);
+
     if (result != 1) {
+
       fclose(megafile);
+
 #ifdef HAVE_ERRNO_H
+
       fprintf(stderr, "Error read `%s': %s\n", name, strerror (errno));
       exit (errno);
+
 #else
+
       fprintf(stderr, "Error read `%s'\n", name);
       exit (3);
+
 #endif
 
     }
+
     /* open up a file to dump in */
     strcpy(output_name, argv[1]);
     strcat(output_name, "/");
     strcat(output_name, name);
+
     output = fopen(output_name,"wb");
 
     if (output == NULL) {
+
       fclose(megafile);
+
 #ifdef HAVE_ERRNO_H
+
       fprintf(stderr, "Error: unable to open file `%s' for writing: %s\n",
               name, strerror (errno));
       exit (errno);
+
 #else
       fprintf(stderr, "Error: unable to open file `%s' for writing\n", name);
 #endif
 
       exit (3);
     }
+
     /* dump to the file */
     fwrite(extracted_file, len, 1, output);
     fclose(output);
+    free (extracted_file);
+    extracted_file = NULL;
 
     /* and get the ^Z */
     fgetc(megafile);
@@ -150,4 +170,3 @@ int main(int argc, char **argv)
 
   return 0;
 }
-

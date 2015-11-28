@@ -1,3 +1,7 @@
+2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/smash_megafile.c: Free extracted_file.
+
 2015-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Change argument name for function load_project
