@@ -9,6 +9,13 @@
           * tube/35Z5GT-1.sym
           * tube/50L6GT-1.sym
 
+    * national/LM4871M-1.sym: Rename symbol file using upper case characters.
+
+    * national/PC16550D-1.sym: Rename symbol file using upper case characters.
+
+    * tube/gas-discharge-tube-1.sym: Rename symbol file gas-disch-tube to gas-
+      discharge-tube to coincide with the value of if the device attribute.
+
 2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/battery/BQ24725A-1.sym: Add symbol 1-4 Cell Li+ Battery SMBus Charge
