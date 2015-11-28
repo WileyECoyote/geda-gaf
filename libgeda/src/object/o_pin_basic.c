@@ -706,7 +706,6 @@ void o_pin_set_attributes(Object *object, const char *label_str,
                                           PIN_MECH    m_type,
                                           PIN_NODE    n_type)
 {
-
   if (object != NULL && object->type == OBJ_PIN) {
 
     Pin *pin = object->pin;
@@ -721,7 +720,6 @@ void o_pin_set_attributes(Object *object, const char *label_str,
     if (number && geda_pin_set_number(pin, number)) {
       bute = o_attrib_first_attrib_by_name (object, "pinnumber");
       if(bute != NULL) {
-
         o_attrib_set_value(bute, "pinnumber",  number);
         o_text_recreate(bute);
       }
@@ -736,6 +734,7 @@ void o_pin_set_attributes(Object *object, const char *label_str,
 
     /* pin sequence */
     char *str_seq = u_string_sprintf ("%d", sequence);
+
     if (geda_pin_set_sequence(pin, str_seq)) {
       bute = o_attrib_first_attrib_by_name (object, "pinseq");
       if(bute !=NULL) {
@@ -777,9 +776,16 @@ void o_pin_set_attributes(Object *object, const char *label_str,
       if (pin->electrical == NULL || (strcmp(pin->electrical, electrical) != 0))
         geda_pin_set_electrical(pin, electrical);
       bute = o_attrib_first_attrib_by_name (object, "pintype");
-      if(bute !=NULL) {
+      if (bute !=NULL) {
         o_attrib_set_value(bute, "pintype", (char*)electrical);
         o_text_recreate(bute);
+      }
+      else {
+        bute = o_pin_create_elect_attrib (NULL, object, electrical, -1, -1);
+        if (bute && object->page) {
+          s_page_append_object(object->page, bute);
+          bute->page = object->page;
+        }
       }
     }
 
@@ -791,6 +797,13 @@ void o_pin_set_attributes(Object *object, const char *label_str,
       if(bute !=NULL) {
         o_attrib_set_value(bute, "mechtype", (char*)mechanical);
         o_text_recreate(bute);
+      }
+      else {
+        bute = o_pin_create_mech_attrib (NULL, object, mechanical, -1, -1);
+        if (bute && object->page) {
+          s_page_append_object(object->page, bute);
+          bute->page = object->page;
+        }
       }
     }
     s_conn_update_linear_object (object);

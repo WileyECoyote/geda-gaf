@@ -19,6 +19,10 @@
     * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
       to the macro in libgeda/defines.h
 
+    * src/object/o_pin_basic.c: Fix o_pin_set_attributes; create missing
+      pintype (electrical) and mechtype (mechanical) when attributes do
+      not exist.
+
 2015-11-27  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Revise function f_has_active_autosave reducing
