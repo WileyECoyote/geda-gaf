@@ -1,3 +1,14 @@
+2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tube/: Fix device attributes, add missing attributes as needed and
+      adjust attribute alignments:
+
+          * tube/12AX7-1.sym
+          * tube/12SK7-1.sym
+          * tube/12SQ7-1.sym
+          * tube/35Z5GT-1.sym
+          * tube/50L6GT-1.sym
+
 2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/battery/BQ24725A-1.sym: Add symbol 1-4 Cell Li+ Battery SMBus Charge
