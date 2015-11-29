@@ -300,23 +300,38 @@ void *geda_list_find(GedaList *list, void *item)
   return g_list_find(list->glist, item);
 }
 
-
+/*! \brief Are all Objects in a GedaList the same type
+ *
+ *  \par Function Description
+ *  Iterates \a list comparing the type of objects to the first
+ *  object. Returns FALSE if the first element was not a valid
+ *  Object or any objects thereafter were not of the same type.
+ *
+ *  \param [in] list Pointer to the GedaList
+ *
+ *  \return TRUE if all elements are objects of the same type
+ */
 int geda_glist_is_homogeneous_objects (GList *list)
 {
-  GList  *o_iter;
-  Object *object;
-  int     otype;
   bool    answer;
+  Object *object;
+  GList  *o_iter;
 
   o_iter = list;
   object = (Object *)o_iter->data;
+
   if (object) {
+
+    int otype;
+
     answer = TRUE;
     otype  = object->type;
     o_iter = g_list_next (o_iter);
 
     while (o_iter != NULL) {
+
       object = (Object *)o_iter->data;
+
       if (object->type != otype) {
         answer = FALSE;
         break;
@@ -324,8 +339,10 @@ int geda_glist_is_homogeneous_objects (GList *list)
       o_iter = g_list_next (o_iter);
     }
   }
-  else
+  else {
     answer = FALSE;
+  }
+
   return answer;
 }
 
@@ -377,5 +394,17 @@ void geda_list_remove_all(GedaList *list)
   g_list_free(list->glist);
   list->glist = NULL;
   g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
+}
+
+/*! \brief Reduce reference count of given GedaList by one.
+ *
+ *  \par Function Description
+ *   Calls g_object_unref GedaList \a list.
+ *
+ *  \param [in] list Pointer to the GedaList
+ */
+void geda_list_unref (GedaList *list)
+{
+    g_object_unref(list);
 }
 /** @} endgroup geda-list-object */

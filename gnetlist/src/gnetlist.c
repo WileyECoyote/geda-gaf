@@ -58,7 +58,7 @@ void gnetlist_quit(void)
 
   geda_list_free_full(string_list);
 
-  g_object_unref(string_list);
+  geda_list_unref (string_list);
 
   s_rename_destroy_all();
 

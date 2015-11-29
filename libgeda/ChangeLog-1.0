@@ -1,3 +1,12 @@
+2015-11-29  Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_list.h: Add declaration for geda_list_unref.
+
+    * src/geda/geda_list.c: Revise function geda_glist_is_homogeneous_objects
+      reducing scope of otype, add Doxygen comment block, add function
+      geda_list_unref, seems silly but gnetlist linkage is twisted and
+      does not build on some platforms, testing this as temp work-around.
+
 2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Revise macro RETURN_G_RC_MODE to accept
