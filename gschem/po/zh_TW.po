@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-22 21:36-0600\n"
+"POT-Creation-Date: 2015-11-28 20:05-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:232
+#: gschem/src/base/gschem.c:233
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:307
+#: gschem/src/base/gschem.c:308
 msgid ""
 "You must set the GEDADATA environment variable!\n"
 "\n"
@@ -31,31 +31,31 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:344
+#: gschem/src/base/gschem.c:345
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:349
+#: gschem/src/base/gschem.c:350
 #, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:352
+#: gschem/src/base/gschem.c:353
 #, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:378
+#: gschem/src/base/gschem.c:379
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem 版本 %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:418
+#: gschem/src/base/gschem.c:419
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:506
+#: gschem/src/base/gschem.c:507
 msgid "Exiting normal"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:86
+#: gschem/src/base/gschem_parsecmd.c:88
 #, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
@@ -112,13 +112,14 @@ msgid ""
 "  -v, --verbose              Verbose mode.\n"
 "  -V, --version              Show version information.\n"
 "  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
 "  --                         Treat all remaining arguments as filenames.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf homepage: <http://www.geda-project.org/>\n"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:126
+#: gschem/src/base/gschem_parsecmd.c:129
 #, c-format
 msgid ""
 "gEDA %s (g%.7s)\n"
@@ -326,59 +327,59 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file.\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:744
+#: gschem/src/guile/g_rc.c:737
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:749
+#: gschem/src/guile/g_rc.c:742
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:750 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2041
+#: gschem/src/guile/g_rc.c:743 gschem/src/guile/g_rc.c:1252
+#: gschem/src/guile/g_rc.c:1404 gschem/src/guile/g_rc.c:1998
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:838
+#: gschem/src/guile/g_rc.c:827
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1246
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1251
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1403
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2035
+#: gschem/src/guile/g_rc.c:1992
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2040
+#: gschem/src/guile/g_rc.c:1997
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2086
+#: gschem/src/guile/g_rc.c:2042
 #, c-format
 msgid "Invalid zoomfactor [%d] passed to %s\n"
 msgstr ""
@@ -3338,69 +3339,69 @@ msgstr ""
 msgid "Could not save Toolbar configuration to %s\n"
 msgstr "無法讀取圖片: %s"
 
-#: gschem/src/x/x_window.c:100
+#: gschem/src/x/x_window.c:102
 msgid "Could not allocate gc, w_current is NULL\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:111
+#: gschem/src/x/x_window.c:113
 msgid "Could not allocate gc, is window?\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:114
+#: gschem/src/x/x_window.c:116
 msgid "Could not create a Cairo context, is window drawable?\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:121
+#: gschem/src/x/x_window.c:123
 msgid "Could not allocate gc, w_current->window is not a valid Window\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:194
+#: gschem/src/x/x_window.c:196
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:317
+#: gschem/src/x/x_window.c:319
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:747
+#: gschem/src/x/x_window.c:757
 #, fuzzy, c-format
 msgid "Loading \"%s\"\n"
 msgstr "關閉 [%s]\n"
 
-#: gschem/src/x/x_window.c:844
+#: gschem/src/x/x_window.c:854
 #, c-format
 msgid "New file [%s]\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1091
+#: gschem/src/x/x_window.c:1101
 #, fuzzy, c-format
 msgid "Could NOT save page [%s]:\n"
 msgstr "無法儲存備份檔 [%s]\n"
 
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1103
 msgid "Error while trying to save"
 msgstr "儲存檔案時發生錯誤"
 
-#: gschem/src/x/x_window.c:1106
+#: gschem/src/x/x_window.c:1116
 #, fuzzy, c-format
 msgid "Saved as [%s] Okay\n"
 msgstr "另存為 [%s]\n"
 
-#: gschem/src/x/x_window.c:1109
+#: gschem/src/x/x_window.c:1119
 #, fuzzy, c-format
 msgid "Saved [%s] Okay\n"
 msgstr "儲存 [%s]\n"
 
-#: gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:1122
 msgid "Saved"
 msgstr "儲存"
 
-#: gschem/src/x/x_window.c:1210
+#: gschem/src/x/x_window.c:1220
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1210
+#: gschem/src/x/x_window.c:1220
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "關閉 [%s]\n"

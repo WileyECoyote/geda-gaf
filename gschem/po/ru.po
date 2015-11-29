@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-22 21:36-0600\n"
+"POT-Creation-Date: 2015-11-28 20:05-0600\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -22,12 +22,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gschem/src/base/gschem.c:232
+#: gschem/src/base/gschem.c:233
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:307
+#: gschem/src/base/gschem.c:308
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -40,26 +40,26 @@ msgstr ""
 "gschem не может найти свои файлы данных. Необходимо задать\n"
 "их местоположение в переменной окружения GEDADATA.\n"
 
-#: gschem/src/base/gschem.c:344
+#: gschem/src/base/gschem.c:345
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:349
+#: gschem/src/base/gschem.c:350
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Чтение scm-файла инициализации «%s»\n"
 
-#: gschem/src/base/gschem.c:352
+#: gschem/src/base/gschem.c:353
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Не удалось прочесть scm-файл инициализации «%s»\n"
 
-#: gschem/src/base/gschem.c:378
+#: gschem/src/base/gschem.c:379
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem версии %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:418
+#: gschem/src/base/gschem.c:419
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -67,7 +67,7 @@ msgstr ""
 "\n"
 "В журнале gschem может быть больше информации.\n"
 
-#: gschem/src/base/gschem.c:506
+#: gschem/src/base/gschem.c:507
 msgid "Exiting normal"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr "Макрос:"
 msgid "Evaluate"
 msgstr "Выполнить"
 
-#: gschem/src/base/gschem_parsecmd.c:86
+#: gschem/src/base/gschem_parsecmd.c:88
 #, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
@@ -125,6 +125,7 @@ msgid ""
 "  -v, --verbose              Verbose mode.\n"
 "  -V, --version              Show version information.\n"
 "  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
 "  --                         Treat all remaining arguments as filenames.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
@@ -153,7 +154,7 @@ msgstr ""
 "Отчёты об ошибках отправляйте по адресу <https://bugs.launchpad.net/geda>\n"
 "Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
 
-#: gschem/src/base/gschem_parsecmd.c:126
+#: gschem/src/base/gschem_parsecmd.c:129
 #, fuzzy, c-format
 msgid ""
 "gEDA %s (g%.7s)\n"
@@ -373,59 +374,59 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file.\n"
 msgstr "Удостоверьтесь, что у вас последняя версия файла настроек.\n"
 
-#: gschem/src/guile/g_rc.c:744
+#: gschem/src/guile/g_rc.c:737
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:749
+#: gschem/src/guile/g_rc.c:742
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:750 gschem/src/guile/g_rc.c:1272
-#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2041
+#: gschem/src/guile/g_rc.c:743 gschem/src/guile/g_rc.c:1252
+#: gschem/src/guile/g_rc.c:1404 gschem/src/guile/g_rc.c:1998
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:838
+#: gschem/src/guile/g_rc.c:827
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1246
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1271
+#: gschem/src/guile/g_rc.c:1251
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1423
+#: gschem/src/guile/g_rc.c:1398
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1428
+#: gschem/src/guile/g_rc.c:1403
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2035
+#: gschem/src/guile/g_rc.c:1992
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2040
+#: gschem/src/guile/g_rc.c:1997
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2086
+#: gschem/src/guile/g_rc.c:2042
 #, fuzzy, c-format
 msgid "Invalid zoomfactor [%d] passed to %s\n"
 msgstr "text-size (размер текста по умолчанию): недопустимое значение «%d»\n"
@@ -3585,7 +3586,7 @@ msgstr "Невозможно выделить цвет контура %i!\n"
 # как речь идёт о резервировании поля в colormap.
 # %s разместил по-другому, потому что будет выдаваться, например, "чёрный
 # цвет".
-#: gschem/src/x/x_window.c:100
+#: gschem/src/x/x_window.c:102
 #, fuzzy
 msgid "Could not allocate gc, w_current is NULL\n"
 msgstr "Не удалось выделить %s цвет!\n"
@@ -3594,66 +3595,66 @@ msgstr "Не удалось выделить %s цвет!\n"
 # как речь идёт о резервировании поля в colormap.
 # %s разместил по-другому, потому что будет выдаваться, например, "чёрный
 # цвет".
-#: gschem/src/x/x_window.c:111
+#: gschem/src/x/x_window.c:113
 #, fuzzy
 msgid "Could not allocate gc, is window?\n"
 msgstr "Не удалось выделить %s цвет!\n"
 
-#: gschem/src/x/x_window.c:114
+#: gschem/src/x/x_window.c:116
 msgid "Could not create a Cairo context, is window drawable?\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:121
+#: gschem/src/x/x_window.c:123
 msgid "Could not allocate gc, w_current->window is not a valid Window\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:194
+#: gschem/src/x/x_window.c:196
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:317
+#: gschem/src/x/x_window.c:319
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:747
+#: gschem/src/x/x_window.c:757
 #, fuzzy, c-format
 msgid "Loading \"%s\"\n"
 msgstr "Закрытие «%s»\n"
 
-#: gschem/src/x/x_window.c:844
+#: gschem/src/x/x_window.c:854
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Новый файл «%s»\n"
 
-#: gschem/src/x/x_window.c:1091
+#: gschem/src/x/x_window.c:1101
 #, fuzzy, c-format
 msgid "Could NOT save page [%s]:\n"
 msgstr "Не удалось сохранить страницу «%s»\n"
 
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1103
 msgid "Error while trying to save"
 msgstr "Ошибка при попытке сохранения"
 
-#: gschem/src/x/x_window.c:1106
+#: gschem/src/x/x_window.c:1116
 #, fuzzy, c-format
 msgid "Saved as [%s] Okay\n"
 msgstr "Файл сохранён под именем «%s»\n"
 
-#: gschem/src/x/x_window.c:1109
+#: gschem/src/x/x_window.c:1119
 #, fuzzy, c-format
 msgid "Saved [%s] Okay\n"
 msgstr "Файл «%s» сохранён\n"
 
-#: gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:1122
 msgid "Saved"
 msgstr "Файл сохранён"
 
-#: gschem/src/x/x_window.c:1210
+#: gschem/src/x/x_window.c:1220
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Закрытие «%s» без сохранения изменений\n"
 
-#: gschem/src/x/x_window.c:1210
+#: gschem/src/x/x_window.c:1220
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Закрытие «%s»\n"
