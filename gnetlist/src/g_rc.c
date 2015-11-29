@@ -19,8 +19,8 @@
  */
 
 #include <config.h>
-#include "version.h"
-#include "gnetlist.h"
+#include <version.h>
+#include <gnetlist.h>
 #include "../include/i_vars.h"
 #include <geda_debug.h>
 

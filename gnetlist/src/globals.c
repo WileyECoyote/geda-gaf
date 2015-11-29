@@ -26,7 +26,7 @@
  */
 
 #include <config.h>
-#include "gnetlist.h"
+#include <gnetlist.h>
 #include <geda_debug.h>
 
 /* TODO rc_filename should be changable via parse_commandline

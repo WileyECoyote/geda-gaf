@@ -26,7 +26,7 @@
  */
 
 #include <config.h>
-#include "version.h"
+#include <version.h>
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
@@ -34,7 +34,7 @@
 
 #include <dirent.h>
 
-#include "gnetlist.h"
+#include <gnetlist.h>
 #include <libgeda/libgedaguile.h>
 
 #include <locale.h>

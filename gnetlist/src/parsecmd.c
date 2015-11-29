@@ -28,8 +28,8 @@
 #define WITHOUT_GDK_PIX_BUFFER 1
 
 #include <config.h>
-#include "version.h"
-#include "gnetlist.h"
+#include <version.h>
+#include <gnetlist.h>
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>

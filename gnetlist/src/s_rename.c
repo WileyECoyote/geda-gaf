@@ -31,7 +31,7 @@
   */
 
 #include <config.h>
-#include "gnetlist.h"
+#include <gnetlist.h>
 #include <gettext.h>
 #include <geda_debug.h>
 

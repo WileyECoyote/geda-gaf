@@ -26,7 +26,7 @@
  */
 
 #include <config.h>
-#include "gnetlist.h"
+#include <gnetlist.h>
 #include <geda_debug.h>
 
 #define DEFAULT_HIERARCHY_NETNAME_SEPARATOR "/"

@@ -1,5 +1,10 @@
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/: Replace include quotes with less than greater than brackets because
+      lint reported these quotes were not acceptable.
+
+2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/gnetlist.c: Replace geda_list_unref with geda_list_unref.
 
     * src/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes to the

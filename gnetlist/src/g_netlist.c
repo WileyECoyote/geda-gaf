@@ -20,7 +20,7 @@
  */
 
 #include <config.h>
-#include "gnetlist.h"
+#include <gnetlist.h>
 #include <libgeda/libgedaguile.h>
 #include <gettext.h>
 #include <geda_debug.h>
