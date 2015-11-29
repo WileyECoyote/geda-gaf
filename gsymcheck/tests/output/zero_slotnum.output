@@ -1,4 +1,4 @@
-ERROR: Found a zero slot in slotdef=0:4,5,6
-ERROR: Malformed slotdef= (the format is #:#,#,#,...)
-No warnings found
-2 ERRORS found
+Error: Found a zero slot in slotdef=0:4,5,6
+Error: Malformed slotdef= (the format is #:#,#,#,...)
+No warnings detected
+2 errors found

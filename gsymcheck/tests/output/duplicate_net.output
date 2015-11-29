@@ -1,5 +1,5 @@
 Notice: net attribute using defined pin number [1]
-ERROR: Found duplicate pin in net= attributes [5]
-ERROR: Found duplicate pin in net= attributes [6]
-No warnings found
-2 ERRORS found
+Error: Found duplicate pin in net= attributes [5]
+Error: Found duplicate pin in net= attributes [6]
+No warnings detected
+2 errors found

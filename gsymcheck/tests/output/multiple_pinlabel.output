@@ -1,3 +1,3 @@
-ERROR: Found multiple pinlabel=extra attributes
-No warnings found
-1 ERROR found
+Error: Found multiple pinlabel=extra attributes
+No warnings detected
+1 error found

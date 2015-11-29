@@ -11,4 +11,4 @@ Warning: Found text with a trailing '': consider to escape it with '\\' [pinlabe
 Warning: Missing footprint= attribute
 Warning: Missing refdes= attribute
 12 warnings found
-No errors found
+No errors detected

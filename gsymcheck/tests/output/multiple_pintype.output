@@ -1,3 +1,3 @@
-ERROR: Found multiple pintype=out attributes
-No warnings found
-1 ERROR found
+Error: Found multiple pintype=out attributes
+No warnings detected
+1 error found

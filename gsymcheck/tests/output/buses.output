@@ -1,3 +1,3 @@
-ERROR: Found a bus inside a symbol
-No warnings found
-1 ERROR found
+Error: Found a bus inside a symbol
+No warnings detected
+1 error found

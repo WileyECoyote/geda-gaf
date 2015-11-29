@@ -1,4 +1,4 @@
-ERROR: Found duplicate pinseq=1 attribute in the symbol
-ERROR: Found duplicate pinseq=1 attribute in the symbol
-No warnings found
-2 ERRORS found
+Error: Found duplicate pinseq=1 attribute in the symbol
+Error: Found duplicate pinseq=1 attribute in the symbol
+No warnings detected
+2 errors found

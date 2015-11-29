@@ -211,7 +211,7 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
     if (warnings == 0) {
 
       if (verbose_mode) {
-        u_log_message(_("No warnings found\n"));
+        u_log_message(_("No warnings detected\n"));
       }
     }
     else {
@@ -237,7 +237,7 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
       if (verbose_mode || warnings > 0) {
 
         if (!suppress_mode) {
-          u_log_message(_("No errors found\n"));
+          u_log_message(_("No errors detected\n"));
         }
 
         if (warnings && !verbose_mode) {
@@ -249,10 +249,10 @@ s_check_symbol (SYMCHECK *s_current, const GList *obj_list)
 
       if (errors == 1) {
 
-        u_log_message(_("1 ERROR found"));
+        u_log_message(_("1 error found"));
       }
       else {
-        u_log_message(_("%d ERRORS found"), errors);
+        u_log_message(_("%d errors found"), errors);
       }
 
       if (verbose_mode < 1) {

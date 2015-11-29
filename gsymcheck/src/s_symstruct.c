@@ -104,7 +104,7 @@ void s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found error: %s\n", msg); */
       if (msg && verbose_mode) {
-        u_log_message("ERROR: %s", msg);
+        u_log_message("Error: %s", msg);
       }
 
       NEXT(list);

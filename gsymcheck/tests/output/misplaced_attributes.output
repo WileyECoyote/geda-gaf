@@ -1,13 +1,13 @@
 Warning: Found obsolete label= attribute: [label=2]
 Warning: Found unknown xxxxx= attribute: [xxxxx=out]
-ERROR: Found incorrectly attached attribute: [footprint=2]
-ERROR: Found forbidden type= attribute: [type=out]
-ERROR: Found misplaced pin attribute: [pintype=io]
-ERROR: Found misplaced pin attribute: [pinlabel=attached to box]
-ERROR: Found incorrectly attached attribute: [comment=attached to circle]
-ERROR: Found misplaced pin attribute: [pinlabel=not attached]
-ERROR: Found misplaced pin attribute: [pinseq=3]
-ERROR: Found misplaced pin attribute: [pinnumber=3]
-ERROR: Found misplaced pin attribute: [pintype=io]
+Error: Found incorrectly attached attribute: [footprint=2]
+Error: Found forbidden type= attribute: [type=out]
+Error: Found misplaced pin attribute: [pintype=io]
+Error: Found misplaced pin attribute: [pinlabel=attached to box]
+Error: Found incorrectly attached attribute: [comment=attached to circle]
+Error: Found misplaced pin attribute: [pinlabel=not attached]
+Error: Found misplaced pin attribute: [pinseq=3]
+Error: Found misplaced pin attribute: [pinnumber=3]
+Error: Found misplaced pin attribute: [pintype=io]
 2 warnings found
-9 ERRORS found
+9 errors found

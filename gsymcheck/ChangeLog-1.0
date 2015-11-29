@@ -1,3 +1,9 @@
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_symstruct.c: Use consistence case when printing messages;
+      change "ERROR:" to "Error:" to match "Warning:" in function
+      s_symstruct_print.
+
 2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gsymcheck.c: Move extra output of carriage return before calling

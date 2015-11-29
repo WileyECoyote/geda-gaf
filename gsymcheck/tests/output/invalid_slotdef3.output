@@ -1,3 +1,3 @@
-ERROR: Not enough pins in slotdef=4:12,13
-No warnings found
-1 ERROR found
+Error: Not enough pins in slotdef=4:12,13
+No warnings detected
+1 error found

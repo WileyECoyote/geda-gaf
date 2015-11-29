@@ -1,4 +1,4 @@
-ERROR: Invalid slotdef=a: attributes
-ERROR: Malformed slotdef= (the format is #:#,#,#,...)
-No warnings found
-2 ERRORS found
+Error: Invalid slotdef=a: attributes
+Error: Malformed slotdef= (the format is #:#,#,#,...)
+No warnings detected
+2 errors found

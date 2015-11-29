@@ -1,5 +1,5 @@
-ERROR: Found a net inside a symbol
-ERROR: Found a connection inside a symbol
-ERROR: Found a connection inside a symbol
-No warnings found
-3 ERRORS found
+Error: Found a net inside a symbol
+Error: Found a connection inside a symbol
+Error: Found a connection inside a symbol
+No warnings detected
+3 errors found

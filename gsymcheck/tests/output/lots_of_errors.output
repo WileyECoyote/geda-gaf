@@ -13,13 +13,13 @@ Warning: Missing pintype= attribute
 Warning: Check pin number=<1>
 Warning: Missing footprint= attribute
 Warning: Missing refdes= attribute
-ERROR: Missing device= attribute
-ERROR: Missing pinnumber= attribute
-ERROR: Missing pinseq= attribute
-ERROR: Too many pins in slotdef=1:1,2,3,5,6
-ERROR: Not enough pins in slotdef=2:4,5
-ERROR: Slot 8 is larger then the maximum number (5) of slots
-ERROR: Invalid slotdef=a attributes
-ERROR: Malformed slotdef= (the format is #:#,#,#,...)
+Error: Missing device= attribute
+Error: Missing pinnumber= attribute
+Error: Missing pinseq= attribute
+Error: Too many pins in slotdef=1:1,2,3,5,6
+Error: Not enough pins in slotdef=2:4,5
+Error: Slot 8 is larger then the maximum number (5) of slots
+Error: Invalid slotdef=a attributes
+Error: Malformed slotdef= (the format is #:#,#,#,...)
 12 warnings found
-8 ERRORS found
+8 errors found
