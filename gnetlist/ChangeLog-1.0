@@ -1,3 +1,10 @@
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/netattrib.sch Update F1 symbol version.
+
+    * tests/common/inputs: Regenerate test input for recently update logic
+      symbols 7400 and 7404.
+
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Replace include quotes with less than greater than brackets because

@@ -11,6 +11,9 @@ BEGIN
 -- Architecture statement part
  
   F1 : ENTITY FUSE
+	GENERIC MAP (
+			symversion => 0.2, 
+			device => FUSE)
 	PORT MAP (	1 => one,
 			2 => OPEN);
  
