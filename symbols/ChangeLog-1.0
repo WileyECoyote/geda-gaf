@@ -1,3 +1,102 @@
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * IEC417/: Regenerate 93 symbols, add description and documentation
+      attributes:
+
+          * IEC417/ac-ac.sym
+          * IEC417/ac-dc.sym
+          * IEC417/adc.sym
+          * IEC417/aerial.sym
+          * IEC417/amp.sym
+          * IEC417/amp-bidir.sym
+          * IEC417/amp-diff.sym
+          * IEC417/amp-step.sym
+          * IEC417/amp-trim.sym
+          * IEC417/amp-var.sym
+          * IEC417/arrow.sym
+          * IEC417/atten.sym
+          * IEC417/atten-step.sym
+          * IEC417/atten-trim.sym
+          * IEC417/atten-var.sym
+          * IEC417/bandpass.sym
+          * IEC417/bandpass-step.sym
+          * IEC417/bandpass-trim.sym
+          * IEC417/bandpass-var.sym
+          * IEC417/bandstop.sym
+          * IEC417/bandstop-step.sym
+          * IEC417/bandstop-trim.sym
+          * IEC417/bandstop-var.sym
+          * IEC417/block.sym
+          * IEC417/block-convert.sym
+          * IEC417/chassis.sym
+          * IEC417/circulator.sym
+          * IEC417/combine-2.sym
+          * IEC417/combine-3.sym
+          * IEC417/combine-4.sym
+          * IEC417/common.sym
+          * IEC417/con2.sym
+          * IEC417/con-coaxial.sym
+          * IEC417/corrector.sym
+          * IEC417/coupler.sym
+          * IEC417/coupler-dual.sym
+          * IEC417/dac.sym
+          * IEC417/dc-ac.sym
+          * IEC417/dc-dc.sym
+          * IEC417/decrypt.sym
+          * IEC417/delay.sym
+          * IEC417/delay-step.sym
+          * IEC417/delay-trim.sym
+          * IEC417/delay-var.sym
+          * IEC417/demodulator.sym
+          * IEC417/detector.sym
+          * IEC417/diplexer.sym
+          * IEC417/divide-by-N.sym
+          * IEC417/down-converter.sym
+          * IEC417/dpst-noblock.sym
+          * IEC417/encrypt.sym
+          * IEC417/ground.sym
+          * IEC417/highpass.sym
+          * IEC417/highpass-step.sym
+          * IEC417/highpass-trim.sym
+          * IEC417/highpass-var.sym
+          * IEC417/hybrid.sym
+          * IEC417/input.sym
+          * IEC417/input-output.sym
+          * IEC417/io.sym
+          * IEC417/isolator.sym
+          * IEC417/limiter.sym
+          * IEC417/logic.sym
+          * IEC417/lowpass.sym
+          * IEC417/lowpass-step.sym
+          * IEC417/lowpass-trim.sym
+          * IEC417/lowpass-var.sym
+          * IEC417/mixer.sym
+          * IEC417/mixer-ansi.sym
+          * IEC417/mixer-din.sym
+          * IEC417/modem.sym
+          * IEC417/modulator.sym
+          * IEC417/osc.sym
+          * IEC417/osc-step.sym
+          * IEC417/osc-trim.sym
+          * IEC417/osc-var.sym
+          * IEC417/output.sym
+          * IEC417/pad.sym
+          * IEC417/phase-detector.sym
+          * IEC417/process.sym
+          * IEC417/pulse.sym
+          * IEC417/pulse-step.sym
+          * IEC417/pulse-trim.sym
+          * IEC417/pulse-var.sym
+          * IEC417/sampler.sym
+          * IEC417/split-2.sym
+          * IEC417/split-3.sym
+          * IEC417/split-4.sym
+          * IEC417/square-up.sym
+          * IEC417/switch-5port.sym
+          * IEC417/termination.sym
+          * IEC417/transformer.sym
+          * IEC417/up-converter.sym
+
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * tube/: Fix device attributes, add missing attributes as needed and

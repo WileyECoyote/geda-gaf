@@ -1,7 +1,16 @@
-v 20140728 2
+v 20151122 2
+L 400 200 300 250 3 0 2 0 -1 -1
+L 400 200 300 150 3 0 2 0 -1 -1
+L 400 200 200 200 3 0 0 0 -1 -1
 V 400 200 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-L 400 200 300 250 3 0 0 0 -1 -1
-L 400 200 300 150 3 0 0 0 -1 -1
+T 200 1100 9 10 0 0 0 0 1
+numslots=0
+T 200 700 9 10 0 0 0 0 1
+device=none
+T 200 900 9 10 0 0 0 0 1
+footprint=unknown
+T 200 500 8 10 0 1 0 0 1
+refdes=unknown
 P 0 200 200 200 1 0 0
 {
 T 70 253 5 10 0 1 0 0 1
@@ -13,12 +22,7 @@ pintype=in
 T 70 3 5 10 0 1 0 0 1
 pinlabel=in
 }
-L 400 200 200 200 3 0 0 0 -1 -1
-T 0 900 9 10 0 0 0 0 1
-numslots=0
-T 0 500 9 10 0 0 0 0 1
-device=none
-T 0 700 9 10 0 0 0 0 1
-footprint=unknown
-T 650 300 8 10 0 1 0 0 1
-refdes=unknown
+T 200 1500 5 10 0 1 0 0 1
+documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+T 200 1300 5 10 0 1 0 0 1
+description=Input

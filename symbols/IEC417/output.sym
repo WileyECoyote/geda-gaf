@@ -1,4 +1,4 @@
-v 20140728 2
+v 20151122 2
 V 200 200 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 600 200 500 250 3 0 0 0 -1 -1
 L 600 200 500 150 3 0 0 0 -1 -1
@@ -14,11 +14,15 @@ T 450 25 5 10 0 1 0 0 1
 pinlabel=out
 }
 L 400 200 200 200 3 0 0 0 -1 -1
-T 0 650 9 10 0 0 0 0 1
+T 0 1100 9 10 0 0 0 0 1
 numslots=0
-T 0 500 9 10 0 0 0 0 1
+T 0 700 9 10 0 0 0 0 1
 device=none
-T 0 800 9 10 0 0 0 0 1
+T 0 900 9 10 0 0 0 0 1
 footprint=unknown
-T 600 300 8 10 0 1 0 0 1
+T 0 500 8 10 0 1 0 0 1
 refdes=unknown
+T 0 1500 5 10 0 1 0 0 1
+documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+T 0 1300 5 10 0 1 0 0 1
+description=Output

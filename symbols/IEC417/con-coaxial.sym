@@ -1,4 +1,4 @@
-v 20140728 2
+v 20151122 2
 V 100 100 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 100 100 300 100 1 0 1
 {
@@ -6,17 +6,21 @@ T 50 250 5 10 0 1 0 0 1
 pinnumber=1
 T 50 250 5 10 0 1 0 0 1
 pinseq=1
-T 150 50 5 10 0 1 0 0 1
+T 350 50 5 10 0 1 0 2 1
 pintype=pas
-T 350 50 5 10 0 1 0 0 1
+T 200 200 5 10 0 1 0 0 1
 pinlabel=none
 }
-T 200 650 9 10 0 0 0 0 1
+T 200 800 9 10 0 0 0 0 1
 numslots=0
-T 200 500 9 10 0 0 0 0 1
+T 200 650 9 10 0 0 0 0 1
 device=none
-T 200 350 9 10 0 0 0 0 1
+T 200 500 9 10 0 0 0 0 1
 footprint=none
-T 200 200 8 10 0 1 0 0 1
+T 200 350 8 10 0 1 0 0 1
 refdes=unknown
 A 100 100 100 30 300 3 0 0 0 100 100
+T 200 1150 5 10 0 1 0 0 1
+documentation=http://www.ddpp.com/DDPP3_pdf/IEEEsyms.pdf
+T 200 950 5 10 0 1 0 0 1
+description=Coaxial Connector
