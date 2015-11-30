@@ -1,3 +1,9 @@
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Replace g_list_free_full with u_glist_free_full
+      in main function and this allows building on systems with less than
+      glib-2.28.
+
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/smash_megafile.c: Free extracted_file.

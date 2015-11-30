@@ -3,11 +3,21 @@ gsch2pcb Changelog
 1.10.3
 ---------
 
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Replace g_list_free_full with u_glist_free_full
+      in main function and this allows building on systems with less than
+      glib-2.28.
+
 2015-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Change argument name for function load_project
       from "path" to "filename", add ~/etc/gsch2pcb onto list of directory
       to check for "extra" settings. Add some Doxygen comments.
+
+------------------
+1.10.2
+---------
 
 2015-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
