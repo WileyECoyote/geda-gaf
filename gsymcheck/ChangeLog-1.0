@@ -1,7 +1,12 @@
-2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+2015-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_rc.c: Change include "version.h" to include <version.h> because
       lint reported the quotes were not acceptable.
+
+    * src/s_check.c: Revise function s_check_all reducing scope of "result"
+      and function s_check_list_has_item reducing scope of "index" and "match"
+      moving both inside the for loop where match will be set to NULL with
+      each iteration of the outer loop.
 
     * src/globals.c: Change include "globals.h" to include <globals.h> because
       lint reported the quotes were not acceptable.

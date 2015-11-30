@@ -93,13 +93,13 @@ int s_check_all(GedaToplevel *toplevel)
 
       GList *obj_list;
       Page  *page;
-      int    result;
 
-      result   = 0;
       page     = (Page*)iter->data;
       obj_list = s_page_get_objects (page);
 
       if (obj_list) {
+
+        int result  = 0;
 
         if (verbose_mode && !quiet_mode) {
           u_log_message(_("\nChecking: %s\n"), page->filename);
@@ -284,10 +284,9 @@ static bool s_check_list_has_item(char **list , const char *item)
 
 static bool s_check_is_known_device (const char *device)
 {
-  bool strict = FALSE;
-  bool known;
-  int  index;
-  char *known_devices[] = {
+  bool  strict = FALSE;
+  bool  known;
+  char *known_devices[] = { "none",
                             "RESISTOR",
                             "CAPACITOR",
                             "POLARIZED_CAPACITOR",
@@ -308,9 +307,12 @@ static bool s_check_is_known_device (const char *device)
                             NULL};
 
   if (u_string_strncmpi(device, "SPICE", 5) == 0)
-        return TRUE;
+    return TRUE;
 
   if (!strict) {
+
+    int  index;
+
     for (index = 0; known_devices[index] != NULL; index++) {
       if (u_string_stricmp(device, known_devices[index]) == 0)
         return TRUE;
@@ -1353,14 +1355,13 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
           char *cmp;
           char *pin;
-          int   match;
 
           /* Get the number of one pin */
           pin = u_string_split(pinlist[i], ',', n);
 
           if (pin && *pin) {
 
-            match = FALSE;
+            int match = FALSE;
 
             for (j = i - 1; j >= 0 && !match; j--) {
               for (m = 1; m <= s_current->numpins && !match; m++) {
