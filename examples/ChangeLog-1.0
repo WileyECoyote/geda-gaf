@@ -9,6 +9,9 @@
 
     * lightning_detector/sym/.gitignore: remove file, not needed.
 
+    * lightning_detector/lightning.sch: Update in-1.sym, add attribure nobom
+      to io symbols, is in bad shape.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/.sch increase font sizes and regenerated .ps files.
