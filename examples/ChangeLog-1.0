@@ -1,3 +1,8 @@
+2015-11-30  Wiley E. Hill <wileyhill@gmail.com>
+
+    * lightning_detector/bom: Update Terry's script: Change "uref" to
+      "refdes" and corresponding char count=7.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/.sch increase font sizes and regenerated .ps files.
