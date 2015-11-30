@@ -5,6 +5,9 @@
     * tests/common/inputs: Regenerate test input for recently update logic
       symbols 7400 and 7404.
 
+    * src/s_hierarchy.c: Replace geda_list_unref with geda_list_unref, this
+      was missed in 11/28/15.
+
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Replace include quotes with less than greater than brackets because

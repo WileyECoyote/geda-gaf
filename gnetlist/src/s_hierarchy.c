@@ -508,7 +508,7 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 
   geda_list_free_full(removed);
 
-  g_object_unref(removed);
+  geda_list_unref(removed);
 
 }
 
