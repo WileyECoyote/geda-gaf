@@ -1,5 +1,13 @@
 2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/g_rc.c: Change include "version.h" to include <version.h> because
+      lint reported the quotes were not acceptable.
+
+    * src/globals.c: Change include "globals.h" to include <globals.h> because
+      lint reported the quotes were not acceptable.
+
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/s_symstruct.c: Use consistence case when printing messages;
       change "ERROR:" to "Error:" to match "Warning:" in function
       s_symstruct_print.

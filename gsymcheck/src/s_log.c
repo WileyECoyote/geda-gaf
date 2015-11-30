@@ -26,8 +26,7 @@
 
 #include <config.h>
 #include <libgeda/libgeda.h>
-#include "globals.h"
-
+#include <globals.h>
 
 void s_log_update (const char *log_domain, GLogLevelFlags log_level,
                    const char *buf)

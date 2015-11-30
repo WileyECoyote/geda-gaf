@@ -24,7 +24,7 @@
  * MA 02111-1301 USA
  */
 
-#include "version.h"
+#include <version.h>
 
 #include <libgeda/libgeda.h>
 #include "../include/globals.h"
