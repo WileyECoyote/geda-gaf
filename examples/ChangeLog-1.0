@@ -3,6 +3,12 @@
     * lightning_detector/bom: Update Terry's script: Change "uref" to
       "refdes" and corresponding char count=7.
 
+    * lightning_detector/sym/2N4401.sym: Add pin type and label attributes.
+
+    * lightning_detector/sym/2N4403.sym: Add pin type and label attributes.
+
+    * lightning_detector/sym/.gitignore: remove file, not needed.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/.sch increase font sizes and regenerated .ps files.
