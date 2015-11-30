@@ -1,3 +1,7 @@
+2015-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * IEC417/spst-noblock.sym: Add symbol for basic switch.
+
 2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * IEC417/: Regenerate 93 symbols, add description and documentation
