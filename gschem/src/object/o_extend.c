@@ -404,8 +404,8 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   int    cx, cy, r;
   double dx, dy;
   double A, B, C, D;
-  double b; // = b;                        /* Shutup lame compiler */
-  double m; // = m;
+  double b;
+  double m;
 
   POINT pt1;
   POINT pt2;
