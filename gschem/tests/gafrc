@@ -1,7 +1,7 @@
 (define cwd (getcwd))
 
 (define syms (string-join (list cwd "sym")  separator))
-(define logs (string-join (list cwd "logs")  separator))
+(define logs (string-join (list cwd "logs") separator))
 (define src  (string-join (list cwd "src")  separator))
 
 (log-time "disable")

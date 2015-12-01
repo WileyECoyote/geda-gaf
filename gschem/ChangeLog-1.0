@@ -1,3 +1,22 @@
+2015-12-01  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/runtest.sh: Major revisions to tests script in order to run the
+      test from static build directory. A slightly different tactic is used
+      compared to gnetlist or gsymcheck, which do not utilize icon. Rather
+      than relying on environment variables or redirecting to an existing
+      directory using a command-line option, the test attempts to create
+      a mini-installation directory under the gEDA tests directory either
+      by creating soft links to the relevant files or coping (scheme) the
+      files. Both the GEDADATARC and GEDADATA are set to tests/gEDA using
+      the fully qualified path.
+      The guile path is appended using GUILE_LOAD_PATH as oppose to using
+      the -g option, which still could be used by individual test procedures
+      and LD_LIBRARY_PATH is used for the path to libraries because gschem
+      accesses more libraries.
+      More work to create the "temporary installation" will likely be required
+      as the tests for gschem expand but this seems to work for the current
+      compilation.
+
 2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes
