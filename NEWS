@@ -7,7 +7,7 @@ Copyright (C) 1998-2015 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
+Notable changes in gEDA/gaf gEDA 2.1.1.0 - 12/25/15 Rampage Edition
 
 * Improvements were made to both the build system and source code to ensure
   gEDA-GAF builds more reliably on 64 bit platforms. Testing was performed
@@ -34,6 +34,8 @@ Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
   binding string. User can enable or disable viewing the action column and
   the setting is retained bewteen session.
 
+* The Slot Editor Dialog now displays the total number of slots per component.
+
 * Additional preferences variables have been incorperated in new configuration
   system allow retention of changes using preferences dialog:
 
@@ -52,6 +54,18 @@ Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
   preference setting.
 
 * A new command line options has been provide to specify a title-block at startup.
+
+* The command line option to add a directory to the Guile path now has a long option.
+  The "-L" option has been replaced with "-g" or "--guile".
+
+* New Scheme API have been added:
+
+      gschem-bmp-image
+      gschem-jpeg-image
+      gschem-tiff-image
+
+* Scheme API function gschem-exit has been enhanced to allow routine to optionally
+  pass an exit code
 
 * New bitmaps have been added;
 
@@ -78,8 +92,6 @@ Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
 * The menu toolbar radio togglers in Gschem are now set at startup when the tool-bar
   styles are uniform.
 
-* The Slot Editor Dialog now displays the total number of slots per component.
-
 * Symbols file can now be checked directly in Gschem with gsymcheck using the
   "Check Symbol' option under the tools menu. An options dialog allows users
   to view the log when errors or warnings have been detected.
@@ -101,10 +113,30 @@ Notable changes in gEDA/gaf gEDA 2.1.0.11 - 10/31/15 Rampage Edition
 * gschem no longer has to be restarted to enable auto-save when enabled from
   preference dialog.
 
+* gschem --output <filename> has been fixed.
+
 * Icon states on the pop-up menu in gschem are now displayed start-up if
   the setting is enabled.
 
 * libgeda no longer makes backups of empty files.
+
+* libgeda has improved handling of embedded picture filenames without a path
+  in the name.
+
+* libgeda now automatically create pin type attributes when value are set and
+  the attributes did not previously exist.
+
+* Gtk no longer writes errors messages to the console when the "print" button
+  is click on the Print Dialog.
+
+* The Scheme function component-library-search without an optional prefix now
+  results in the symbols being listed on the "Local" tab of the component select
+  dialog.
+
+* The command-line option for the layout now works correctly with the gaf utility.
+
+* gsymfix has been improved to add missing pin attributes if any attribute is
+  present not just the label.
 
 Notable changes in gEDA/gaf 2.1.0.0 - 04/01/15 Rampage Edition
 

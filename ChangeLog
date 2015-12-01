@@ -1,3 +1,9 @@
+2015-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * NEWS: Update news
+
+    * configure.ac: Bump versions gEDA 2.1.0.13 - 12/25/15 Rampage Edition
+
 2015-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_debug.h: Add EMBED_BREAKPOINT macro to facility debugging
