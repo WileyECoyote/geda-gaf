@@ -256,20 +256,6 @@ AC_CONFIG_FILES([Makefile
                  libgedacairo/include/Makefile
                  libgedacairo/src/Makefile
 
-                 libgedacolor/Makefile
-                 libgedacolor/libgedacolor.pc
-                 libgedacolor/po/Makefile.in
-                 libgedacolor/docs/Makefile
-                 libgedacolor/include/Makefile
-                 libgedacolor/etc/Makefile
-                 libgedacolor/scheme/Makefile
-                 libgedacolor/src/guile/Makefile
-                 libgedacolor/src/object/Makefile
-                 libgedacolor/src/struct/Makefile
-                 libgedacolor/src/utility/Makefile
-                 libgedacolor/src/x/Makefile
-                 libgedacolor/src/Makefile
-
                  libgedadraw/Makefile
                  libgedadraw/libgedadraw.pc
                  libgedadraw/docs/Makefile
