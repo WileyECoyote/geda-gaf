@@ -12,6 +12,8 @@
     * lightning_detector/lightning.sch: Update in-1.sym, add attribure nobom
       to io symbols, is in bad shape.
 
+    * RF_Amp/sym/Q_Model.sym: Add pin type and label attributes.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/.sch increase font sizes and regenerated .ps files.
