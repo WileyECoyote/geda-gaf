@@ -100,12 +100,12 @@ show_help (){
   # from gschem/do not get sort into subdirectories
   if [ -d $SRCDIR/../../bitmaps ] ; then
      cd $SRCDIR/../../bitmaps
-     ln -s $PWD/*.png $GEDADATARC/bitmap/
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
+     ln -s $PWD/*.png $GEDADATARC/bitmap/ 2>/dev/null
+     ln -s $PWD/*.xpm $GEDADATARC/bitmap/ 2>/dev/null
      cd $GEDADATARC/bitmap/
-     mv *24x24.* 24x24/
-     mv *26x26.* 26x26/
-     mv *28x28.* 28x28/
+     mv *24x24.* 24x24/ &>/dev/null
+     mv *26x26.* 26x26/ &>/dev/null
+     mv *28x28.* 28x28/ &>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find toplevel bitmaps"
@@ -114,8 +114,8 @@ show_help (){
 
   if [ -d $SRCDIR/../bitmap ] ; then
      cd $SRCDIR/../bitmap
-     ln -s $PWD/*.png $GEDADATARC/bitmap/
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
+     ln -s $PWD/*.png $GEDADATARC/bitmap/ 2>/dev/null
+     ln -s $PWD/*.xpm $GEDADATARC/bitmap/ 2>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem bitmaps"
@@ -125,8 +125,8 @@ show_help (){
   # Make links to rc files
   if [ -d $SRCDIR/../etc ] ; then
      cd $SRCDIR/../etc
-     ln -s $PWD/gschem-* $GEDADATARC/
-     ln -s $PWD/system-gschemrc $GEDADATARC/
+     ln -s $PWD/gschem-* $GEDADATARC/ 2>/dev/null
+     ln -s $PWD/system-gschemrc $GEDADATARC/ 2>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem etc directory"
@@ -135,8 +135,8 @@ show_help (){
 
   if [ -d $SRCDIR/../../libgeda/etc ] ; then
      cd $SRCDIR/../../libgeda/etc
-     ln -s $PWD/print-* $GEDADATARC/
-     ln -s $PWD/system-gafrc $GEDADATARC/
+     ln -s $PWD/print-* $GEDADATARC/ 2>/dev/null
+     ln -s $PWD/system-gafrc $GEDADATARC/ 2>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find libgeda etc directory"
@@ -169,9 +169,9 @@ show_help (){
    export SYMDIR=$PWD
    vecho "SYMDIR=$SYMDIR"
    cd $GEDADATARC/gafrc.d/
-   ln -s $SYMDIR/geda-clib.scm geda-clib.scm
+   ln -s $SYMDIR/geda-clib.scm geda-clib.scm 2>/dev/null
    cd ..
-   ln -s $SYMDIR sym
+   ln -s $SYMDIR sym 2>/dev/null
    cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find symbols directory"
@@ -180,9 +180,9 @@ show_help (){
 
   if [ -d $SRCDIR/../data ] ; then
      cd $SRCDIR/../data
-     ln -s $PWD/*22.png $GEDADATARC/icons/hicolor/22x22/actions/
+     ln -s $PWD/*22.png $GEDADATARC/icons/hicolor/22x22/actions/ 2>/dev/null
      cd  $GEDADATARC/icons/hicolor/22x22/actions/
-     for i in *.png ; do mv "$i" "${i/-22.png/.png}" ; done
+     for i in *.png ; do mv "$i" "${i/-22.png/.png}" &>/dev/null ; done
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find toplevel bitmaps"

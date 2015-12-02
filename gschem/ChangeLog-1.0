@@ -2,6 +2,10 @@
 
     * tests/.gitignore: Ignore the gEDA directories.
 
+    * tests/runtest.sh: Redirect mv and ln errors so that the can be run
+      repeated with the --debug option without all of the "file exist"
+      error messages.
+
 2015-12-01  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/runtest.sh: Major revisions to tests script in order to run the
