@@ -1,3 +1,10 @@
+2015-12-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gaf.1.in: Document WIDTH/HEIGHT comma option.
+
+    * src/export.c: Add comma as a valid WIDTH,HEIGHT delimiters for command
+      line option --size.
+
 2015-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gaf.1.in: Document short option for "no-rcfiles", and long options

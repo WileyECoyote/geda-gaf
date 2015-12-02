@@ -923,7 +923,7 @@ export_parse_size (const char *size)
     return TRUE;
   }
 
-  dists = g_strsplit_set (size, ":; ", 2);
+  dists = g_strsplit_set (size, ":;, ", 2);
 
   for (n = 0; dists[n] != NULL; n++) {
 
@@ -1074,7 +1074,7 @@ export_usage (void)
 "  -f, --format=TYPE        output format (normally autodetected)\n"
 "  -o, --output=OUTPUT      output filename\n"
 "  -p, --paper=NAME         select paper size by name\n"
-"  -s, --size=WIDTH;HEIGHT  specify exact paper size\n"
+"  -s, --size \"WIDTH;HEIGHT\"specify exact paper size\n"
 "  -k, --scale=FACTOR       specify output scale factor\n"
 "  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
 "  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"

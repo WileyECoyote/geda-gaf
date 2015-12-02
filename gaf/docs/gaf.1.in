@@ -42,9 +42,9 @@ Print \fBgaf\fR version information.
 
 .B gaf export
 can export schematic and symbol files in a variety of image formats
-for printing or further processing.  It currently supports single-page
-PNG, SVG and EPS output, and multi-page PS and PDF output.  It accepts
-a variety of options for controlling how the output is formatted.
+for printing or further processing. Export currently supports single-page
+PNG, SVG and EPS output, and multi-page PS and PDF output. The following
+options can be used to control how the output is formatted.
 
 .TP 8
 \fB-o\fR, \fB--output\fR=\fIFILE\fR
@@ -66,8 +66,10 @@ layout is used, the orientation that best fits the drawing will be
 used.
 .TP 8
 \fB-s\fR, \fB--size\fR=(\fBauto\fR | \fIWIDTH\fR:\fIHEIGHT\fR)
-Size the output with specific dimensions.  If the size is `auto',
-select the size that best fits the drawing.
+Size the output with specific dimensions. If the size is `auto', select the size
+that best fits the drawing. A comma, semi-colon, or space can also be used to
+separate the \fIWIDTH\fR and \fIHEIGHT\fR but parenthesis will likely be required
+if a semi colon or a space is used as the separator.
 .TP 8
 \fB-k\fR, \fB--scale\fR=\fIFACTOR\fR
 Set the output scale \fIFACTOR\fR. This is a distance identical with 100
