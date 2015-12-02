@@ -4,7 +4,8 @@
 
     * tests/runtest.sh: Redirect mv and ln errors so that the can be run
       repeated with the --debug option without all of the "file exist"
-      error messages.
+      error messages. Add export GUILE_AUTO_COMPILE=0 just in case it is
+      not already in the system/bashrc file.
 
 2015-12-01  Wiley E. Hill <wileyhill@gmail.com>
 

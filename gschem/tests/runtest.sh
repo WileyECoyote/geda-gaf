@@ -196,6 +196,8 @@ show_help (){
 {
   local CWDSAVE=$PWD
 
+  export GUILE_AUTO_COMPILE=0
+
   if [ -d $BUILDDIR/../scheme ] ; then
    cd $BUILDDIR/../scheme
    export GUILE_LOAD_PATH=$PWD:$GUILE_LOAD_PATH
