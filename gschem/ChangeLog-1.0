@@ -1,3 +1,7 @@
+2015-12-02  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/.gitignore: Ignore the gEDA directories.
+
 2015-12-01  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/runtest.sh: Major revisions to tests script in order to run the
