@@ -1,5 +1,11 @@
 2015-12-03 Vladimir Zhbanov <vzhbanov@gmail.com>
 
+    * src/base/gschem_page_view.c: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit   8f473e5a75f7ed383128e6ed886e004270c0821f:
+      gschem: Factor undo code out of gschem_page_view.c.
+
+2015-12-03 Vladimir Zhbanov <vzhbanov@gmail.com>
+
     * src/base/gschem_page_view.c: Improve screen absolute size calculation.
 
     * docs/Makefile.am: WEH: Modified per commit to Master branch by Vladimir
