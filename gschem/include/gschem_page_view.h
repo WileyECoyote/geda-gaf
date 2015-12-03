@@ -120,7 +120,7 @@ void
 gschem_page_view_pan_start(GschemPageView *page_view, int x, int y);
 
 void
-gschem_page_view_pan_motion(GschemToplevel *w_current, int x, int y);
+gschem_page_view_pan_motion (GschemPageView *view, int mousepan_gain, int x, int y);
 
 void
 gschem_page_view_pan_end(GschemPageView *page_view, GschemToplevel *w_current);
@@ -153,4 +153,4 @@ void
 gschem_page_view_zoom_extents (GschemPageView *view, const GList *list);
 
 void
-gschem_page_view_zoom_text (GschemPageView *view, Object *object, GschemToplevel *w_current);
+gschem_page_view_zoom_text (GschemPageView *view, Object *object);

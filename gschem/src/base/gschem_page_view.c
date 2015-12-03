@@ -1040,15 +1040,21 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
 }
 
 
-/*! \brief Get absolute SCREEN coordinate.
+/*! \brief Get absolute SCREEN value
  *
- *  A temporary function until a GschemToplevel is not required for coordinate
- *  conversions. See the function SCREENabs.
- */
+ * \par Function Description
+ *  Converts WORLD value \a val to absolute SCREEN value.
+ *
+ * \param [in] view This GschemPageView
+ * \param [in] val The value to convert
+ *
+ * \return converted value in SCREEN pixels
+*/
 int
 gschem_page_view_SCREENabs(GschemPageView *view, int val)
 {
-  double f0,f1,f;
+  double f0,f1;
+  double i;
   int j;
   GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
 
@@ -1058,12 +1064,12 @@ gschem_page_view_SCREENabs(GschemPageView *view, int val)
 
   f0 = gschem_page_geometry_get_viewport_left  (geometry);
   f1 = gschem_page_geometry_get_viewport_right (geometry);
-  f = gschem_page_view_get_page_geometry (view)->screen_width / (f1 - f0);
+  i  = (double)(geometry->screen_width) * (double)(val) / (f1 - f0);
 
 #ifdef HAVE_LRINT
-  j = lrint(f * (double)(val));
+  j = lrint(i);
 #else
-  j = (f * (double)(val)) + 0.5;
+  j = i + 0.5;
 #endif
 
   return(j);
@@ -1187,7 +1193,6 @@ gschem_page_view_WORLDabs(GschemPageView *view, int val)
 }
 
 
-
 /*! \brief
  *
  */
@@ -1201,7 +1206,6 @@ remove_page_weak_reference (Page *page, void *geometry, GschemPageView *view)
 
   geda_page_weak_unref (page, (NotifyFunction) page_deleted, view);
 }
-
 
 
 /*! \brief
@@ -1218,7 +1222,6 @@ page_deleted (Page *page, GschemPageView *view)
 }
 
 
-
 /*! \brief Signal handler for setting the scroll adjustments
  *
  *  Sent from the GtkScrolledWindow to set the adjustments for the
@@ -1230,7 +1233,6 @@ set_scroll_adjustments (GschemPageView *view, GtkAdjustment *hadjustment, GtkAdj
   gschem_page_view_set_hadjustment (view, hadjustment);
   gschem_page_view_set_vadjustment (view, vadjustment);
 }
-
 
 
 /*! \brief Signal handler for a vertical scroll adjustment change
@@ -1268,11 +1270,9 @@ vadjustment_value_changed (GtkAdjustment *vadjustment, GschemPageView *view)
 }
 
 
-
 /*! \brief Transform WORLD coordinates to SCREEN coordinates
  *
- *  A temporary function until a GschemToplevel is not required for coordinate
- *  conversions. See the function WORLDtoSCREEN.
+ *  \sa gschem_page_geometry_pix_x gschem_page_geometry_pix_y
  */
 void
 gschem_page_view_WORLDtoSCREEN (GschemPageView *view, int x, int y, int *px, int *py)
@@ -1284,7 +1284,6 @@ gschem_page_view_WORLDtoSCREEN (GschemPageView *view, int x, int y, int *px, int
   *px = gschem_page_geometry_pix_x (geometry, x);
   *py = gschem_page_geometry_pix_y (geometry, y);
 }
-
 
 
 /*! \brief Zoom the view to the extents of a set of objects
@@ -1364,5 +1363,4 @@ gschem_page_view_zoom_text (GschemPageView *view, Object *object)
 
     gschem_page_view_invalidate_all (view);
   }
-
 }
