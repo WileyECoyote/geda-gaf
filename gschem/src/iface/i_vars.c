@@ -368,10 +368,17 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 
   v_log_message("Restoring user settings\n");
 
-  tmp_str = i_var_get_global_config_string (cfg, "default-font-name");
-  if (tmp_str != NULL) {
-    eda_renderer_set_font_name(CairoRenderer, tmp_str);
-    GEDA_FREE (tmp_str);
+  if (comline_font) { /* If font-family was specified on command line */
+    eda_renderer_set_font_name(CairoRenderer, comline_font);
+  }
+  else {
+
+    tmp_str = i_var_get_global_config_string (cfg, "default-font-name");
+
+    if (tmp_str != NULL) {
+      eda_renderer_set_font_name(CairoRenderer, tmp_str);
+      GEDA_FREE (tmp_str);
+    }
   }
 
   /* Image Related */
@@ -726,6 +733,7 @@ void i_vars_set(GschemToplevel *w_current)
  */
 void i_vars_freenames()
 {
+  GEDA_FREE(comline_font);
   GEDA_FREE(default_print_command);
   GEDA_FREE(default_bus_ripper_symname);
 }
@@ -737,7 +745,6 @@ void i_vars_freenames()
  */
 void i_vars_init(GschemToplevel *w_current)
 {
-
   EdaConfig  *cfg   = eda_config_get_default_context ();
   const char *group = IVAR_CONFIG_GROUP;
 

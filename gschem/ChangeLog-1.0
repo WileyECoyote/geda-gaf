@@ -2,10 +2,12 @@
 
     * src/globals.c: Relocate global variable from parsecmd.c.
 
-    * src/base/gschem_parsecmd.c: Remove global variables from module.
+    * src/base/gschem_parsecmd.c: Remove global variables from module, add
+      not font family name commandline option, "-f, --font".
 
     * src/iface/i_vars.c: Revise string config error message and use qlog
-      instead of fprintf.
+      instead of fprintf. Set renderer font to command line specified value
+      if present.
 
     * tests/.gitignore: Ignore the gEDA directories.
 

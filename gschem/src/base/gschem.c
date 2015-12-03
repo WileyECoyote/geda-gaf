@@ -43,11 +43,6 @@
 extern SCM s_pre_load_expr;
 extern SCM s_post_load_expr;
 
-extern int   iconify_main_window;
-extern int   override_autoload;
-extern char *start_session;
-extern char *comline_tblock;
-
 typedef struct {
   void (*func)(void*);
   void* arg;

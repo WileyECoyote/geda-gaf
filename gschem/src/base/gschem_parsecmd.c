@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:g:hmno:pqr:s:t:vVx:z"
+#define GETOPT_OPTIONS "a:c:f:g:hmno:pqr:s:t:vVx:z"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -40,6 +40,7 @@ struct option long_options[] =
   {
     {"render-adaptor", 1, 0, 'a'},
     {"config-file",    1, 0, 'c'},
+    {"font",           1, 0, 'f'},
     {"guile",          1, 0, 'g'},
     {"help",           0, 0, 'h'},
     {"safe-mode",      0, 0, 'm'},
@@ -90,6 +91,7 @@ usage(char *cmd)
     "  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or X11.\n"
     "  -c, --config-file <FILE>   Additional configuration file to load.\n"
     "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+    "  -f, --font <NAME>          set font family name\n"
     "  -h, --help                 Help; this message.\n"
     "  -m, --safe-mode            Safe Mode.\n"
     "  -n, --no-auto              No auto load last document.\n"
@@ -155,8 +157,9 @@ gschem_parse_commandline(int argc, char *argv[])
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
   override_autoload   = FALSE;
-  iconify_main_window    = FALSE;
+  iconify_main_window = FALSE;
   start_session       = NULL;
+  comline_font        = NULL;
   comline_tblock      = NULL;
 
 #ifdef HAVE_GETOPT_LONG
@@ -184,6 +187,10 @@ gschem_parse_commandline(int argc, char *argv[])
 
       case 'c':
         rc_filename = u_string_strdup (optarg);
+        break;
+
+      case 'f':
+        comline_font = u_string_strdup (optarg);
         break;
 
       case 'g':

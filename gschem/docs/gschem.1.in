@@ -34,6 +34,9 @@ current working directory. This option allows the user to specify an
 additional rc file which is read after all the other rc files have
 been are read.
 .TP 8
+\fB\-f\fR, \fB\--font NAME\fR
+Set font family name to \fINAME\fR.
+.TP 8
 \fB\-g\fR, \fB\--guile DIR\fR
 Prepend \fIDIR\fR to the Guile search path before configurations are loaded.
 .TP 8

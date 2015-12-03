@@ -46,6 +46,7 @@ int  quiet_mode           = FALSE;
 int  run_mode             = 0;
 int  verbose_mode         = FALSE;
 char *start_session;
+char *comline_font;
 char *comline_tblock;
 char *output_filename = NULL;
 char *rc_filename     = NULL;
