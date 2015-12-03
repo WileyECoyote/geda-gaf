@@ -1,7 +1,15 @@
 2015-12-03  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/sort/net_selection.sch: Pull back schematic from testing until
-      issues resolved with coorlation of rendered images.
+      issues resolved with correlation of rendered images.
+
+    * tests/inputs: Make text invisible because hieroglyphics are not drawn
+      consistently on different machines, even when using the same font and
+      this is justifiable since these tests are not about glyphs:
+
+              * tests/inputs/bus_endpoint_to_net.sch
+              * tests/inputs/bus_ripper_1.sch
+              * tests/inputs/net_endpoint_to_bus.sch
 
 2015-12-03 Vladimir Zhbanov <vzhbanov@gmail.com>
 
