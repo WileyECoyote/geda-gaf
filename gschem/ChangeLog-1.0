@@ -16,6 +16,9 @@
       error messages. Add export GUILE_AUTO_COMPILE=0 just in case it is
       not already in the system/bashrc file.
 
+    * tests/IMAGE_DIFF: Utilize new command-line font option in gschem in
+      an attempt to standardize test between machines.
+
 2015-12-01  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/runtest.sh: Major revisions to tests script in order to run the

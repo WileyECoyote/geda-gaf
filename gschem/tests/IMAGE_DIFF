@@ -1,6 +1,7 @@
 #!/bin/sh
 
 IMAGE_SCRIPT=../../scripts/image.scm
+DEFAULT_FONT_NAME="Arial"
 
 # -- For Colorization ---
 RED='\033[0;40;;31m'
@@ -34,7 +35,7 @@ if test -f $input ; then
 
   newpng="${filebase}.png"
 
-  $TEST_APP -pzo $newpng -r $IMAGE_SCRIPT $filename
+  $TEST_APP -npz -f $DEFAULT_FONT_NAME -o $newpng -r $IMAGE_SCRIPT $filename
 
   if [ ! -f "$newpng" ] ; then
     echo "Error: image file \"$newpng\" was not generated"
