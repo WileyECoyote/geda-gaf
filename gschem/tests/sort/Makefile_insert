@@ -17,6 +17,7 @@ EXTRA_DIST += \
 			sort/multiline3.sch \
 			sort/multiline4.sch \
 			sort/nets.sch \
+			sort/net_selection.png
 			sort/pins.sch \
 			sort/radio_1.sch \
 			sort/rotation.sch \
