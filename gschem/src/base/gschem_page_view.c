@@ -1325,39 +1325,44 @@ gschem_page_view_zoom_extents (GschemPageView *view, const GList *objects)
  *
  *  \param [in] view      This GschemPageView
  *  \param [in] object    The text object
- *  \param [in] w_current The GschemToplevel
  */
 void
-gschem_page_view_zoom_text (GschemPageView *view, Object *object, GschemToplevel *w_current)
+gschem_page_view_zoom_text (GschemPageView *view, Object *object)
 {
-  int success;
   int x[2];
   int y[2];
+  int viewport_center_x, viewport_center_y, viewport_width, viewport_height;
+  double k;
+
+  g_return_if_fail (view != NULL);
+  GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
+  g_return_if_fail (geometry != NULL);
 
   g_return_if_fail (object != NULL);
   g_return_if_fail (object->page != NULL);
   g_return_if_fail (object->page->toplevel != NULL);
   g_return_if_fail (object->text != NULL);
 
-  success = o_get_bounds (object, &x[0], &y[0], &x[1], &y[1]);
+  if (o_get_bounds (object, &x[0], &y[0], &x[1], &y[1])) {
 
-  if (success) {
-
-    int text_screen_height;
-
-    i_zoom_world (w_current, ZOOM_FULL_DIRECTIVE,DONTCARE, I_PAN_DONT_REDRAW);
-
-    text_screen_height = gschem_page_view_SCREENabs (view, y[1] - y[0]);
-
-    /* this code will zoom/pan till the text screen height is about */
+    /* Here we are trying to make the text screen height to be about */
     /* 50 pixels high, perhaps a future enhancement will be to make */
     /* this number configurable */
-    while (text_screen_height < 50) {
-      i_zoom_world (w_current, ZOOM_IN_DIRECTIVE, DONTCARE, I_PAN_DONT_REDRAW);
-      text_screen_height = gschem_page_view_SCREENabs (view, y[1] - y[0]);
-    }
+    viewport_center_x = (x[1] + x[0]) / 2;
+    viewport_center_y = (y[1] + y[0]) / 2;
+    k = ((y[1] - y[0]) / 50);
+    viewport_height = geometry->screen_height * k;
+    viewport_width  = geometry->screen_width  * k;
 
-    gschem_page_view_pan (view, object->text->x, object->text->y);
+    gschem_page_geometry_set_values (geometry,
+                                     geometry->screen_width,
+                                     geometry->screen_height,
+                                     viewport_center_x - viewport_width / 2,
+                                     viewport_center_y - viewport_height / 2,
+                                     viewport_center_x + viewport_width / 2,
+                                     viewport_center_y + viewport_height / 2);
+
+    gschem_page_view_invalidate_all (view);
   }
 
 }
