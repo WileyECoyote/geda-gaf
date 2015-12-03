@@ -31,11 +31,6 @@ extern char *optarg;
 extern int   optind;
 #endif
 
-int   iconify_main_window;
-int   override_autoload;
-char *start_session;
-char *comline_tblock;
-
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif

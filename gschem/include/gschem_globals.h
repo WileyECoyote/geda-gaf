@@ -47,6 +47,7 @@ extern int run_mode;
 extern int quiet_mode;
 extern int verbose_mode;
 
+extern char *comline_tblock;
 extern char *output_filename;
 extern char *rc_filename;
 extern char *tmp_directory;

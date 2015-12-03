@@ -1,5 +1,9 @@
 2015-12-02  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/globals.c: Relocate global variable from parsecmd.c.
+
+    * src/base/gschem_parsecmd.c: Remove global variables from module.
+
     * src/iface/i_vars.c: Revise string config error message and use qlog
       instead of fprintf.
 
