@@ -25,13 +25,14 @@
 
 ;; Define your favorite git client here
 ;(define tools:gitclient "git-cola")
+;(define tools:gitclient "gitg")
 ;(define tools:gitclient "gitk")
 (define tools:gitclient "git gui")
 
 ;; Define your preffer BOM backend here
 ;(define tools:bom "bom")
-(define tools:bom "bom2")
-;(define tools:bom "partslist1")
+;(define tools:bom "bom2")
+(define tools:bom "partslist1")
 ;(define tools:bom "partslist2")
 ;(define tools:bom "partslist3")
 
