@@ -3,6 +3,17 @@
     * tests/sort/net_selection.sch: Pull back schematic from testing until
       issues resolved with correlation of rendered images.
 
+    * tests/IMAGE_DIFF: Enable the X11 renderer for image tests because the
+      drawing of end caps behavior in Cairo is inconsistence between versions
+      and libgedadraw will always be consistence for testing gschem since the
+      library is a member of the same source tree. (end caps were not drawn as
+      expected and inconsistencies were observed using libcairo 1.13.0~2010204
+      (64 bit) or libcairo 1.12.2-3 (32 bit), for example CAIRO_LINE_CAP_BUTT
+      works in 1.13 but only on one end of a line with 1.12, and CAIRO_LINE_
+      CAP_SQUARE yielded the correct result on only one end using both versions
+      but was opposite end points between versions, only CAIRO_LINE_CAP_ROUND
+      was consistently wrong, rounding only one of the line in both versions.
+
     * tests/inputs: Make text invisible because hieroglyphics are not drawn
       consistently on different machines, even when using the same font and
       this is justifiable since these tests are not about glyphs:

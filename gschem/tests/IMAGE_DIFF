@@ -35,7 +35,7 @@ if test -f $input ; then
 
   newpng="${filebase}.png"
 
-  $TEST_APP -npz -f $DEFAULT_FONT_NAME -o $newpng -r $IMAGE_SCRIPT $filename
+  $TEST_APP -npz -a X11 -f $DEFAULT_FONT_NAME -o $newpng -r $IMAGE_SCRIPT $filename
 
   if [ ! -f "$newpng" ] ; then
     echo "Error: image file \"$newpng\" was not generated"
