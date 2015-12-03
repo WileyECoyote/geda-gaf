@@ -193,8 +193,9 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
   const char *group = IVAR_CONFIG_GROUP;
 
   tmpstr = eda_config_get_string (cfg, group, key, &err);
+
   if (err != NULL) {
-    fprintf(stderr, "Error retrieving user configuration: '%s'", err->message);
+    u_log_qmessage("%s\n", err->message);
     g_clear_error (&err);
   }
 

@@ -1,5 +1,8 @@
 2015-12-02  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_vars.c: Revise string config error message and use qlog
+      instead of fprintf.
+
     * tests/.gitignore: Ignore the gEDA directories.
 
     * tests/runtest.sh: Redirect mv and ln errors so that the can be run
