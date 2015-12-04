@@ -91,7 +91,8 @@ EDA_SCM_DEFINE (os_platform, "%platform", 0, 0, 0,
 EDA_SCM_DEFINE (os_sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
                "Return a list of search directories for system configuration.")
 {
-  SCM dir = scm_from_locale_string (f_path_sys_config ());
+  const char *path = f_path_sys_config();
+  SCM dir = scm_from_locale_string (path);
   return scm_list_1 (dir);
 }
 
@@ -110,7 +111,8 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
 {
   /* f_path_sys_data() returns a raw environment string, so assume
    * it's in the current locale's encoding. */
-  SCM dir = scm_from_locale_string (f_path_sys_data ());
+  const char *path = f_path_sys_data();
+  SCM dir = scm_from_locale_string (path);
   return scm_list_1 (dir);
 }
 
@@ -127,7 +129,8 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
 EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
                "Return a list of search directories for user configuration.")
 {
-  SCM dir = scm_from_locale_string (f_path_user_config());
+  const char *path = f_path_user_config();
+  SCM dir = scm_from_locale_string (path);
   return scm_list_1 (dir);
 }
 
@@ -136,7 +139,7 @@ EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
  * \par Function Description
  *  Returns a list of directories to be searched for user data.
  *
- * \note gEDA stores user data in the same sirectory as user config
+ * \note gEDA stores user data in the same directory as user config
  *
  * \note Scheme API: Implements the %user-data-dir procedure in the
  * (geda core os) module.
@@ -146,7 +149,8 @@ EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
 EDA_SCM_DEFINE (os_user_data_dir, "%user-data-dir", 0, 0, 0, (),
                 "Return a list of search directories for user data.")
 {
-  SCM dir = scm_from_locale_string (f_path_user_config());
+  const char *path = f_path_user_config();
+  SCM dir = scm_from_locale_string (path);
   return scm_list_1 (dir);
 }
 
