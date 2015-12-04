@@ -30,6 +30,10 @@
 #include <math.h>
 #include <geda_debug.h>
 
+/** \defgroup Gschem-Page-View Gschem Page View
+ *  @{ \brief This module defines the #GschemPageView class
+*/
+
 #define INVALIDATE_MARGIN 1
 
 enum
@@ -1365,3 +1369,5 @@ gschem_page_view_zoom_text (GschemPageView *view, Object *object)
     gschem_page_view_invalidate_all (view);
   }
 }
+
+/** @} endgroup Gschem-Page-View */

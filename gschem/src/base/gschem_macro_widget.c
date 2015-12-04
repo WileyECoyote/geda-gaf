@@ -41,6 +41,11 @@
 #include "gschem.h"
 #include "geda_widgets.h"
 
+
+/** \defgroup Gschem-Macro-Widget Gschem Macro Widget
+ *  @{ \brief This module defines the #GschemMacroWidget class
+*/
+
 enum
 {
   PROP_0,
@@ -456,3 +461,5 @@ set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
+
+/** @} endgroup Gschem-Macro-Widget */

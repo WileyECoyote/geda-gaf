@@ -1,5 +1,20 @@
 2015-12-03  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_page_geometry.c: Add Doxygen grouping for module as
+      Gschem-Page-Geometry.
+
+    * src/base/gschem_page_view.c: Add Doxygen grouping for module as
+      Gschem-Page-View.
+
+    * src/base/gschem_toplevel.c: Add Doxygen grouping for module as
+      Gschem-Page-View.
+
+    * src/base/gschem_macro_widget.c: Add Doxygen grouping for module as
+      Gschem-Macro-Widget.
+
+    * src/base/gschem_main_window.c: Add Doxygen grouping for module as
+      Gschem-Window-Window.
+
     * tests/sort/net_selection.sch: Pull back schematic from testing until
       issues resolved with correlation of rendered images.
 

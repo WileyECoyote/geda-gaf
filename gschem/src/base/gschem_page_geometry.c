@@ -29,10 +29,12 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+/** \defgroup Gschem-Page-Geometry Gschem Status geometry
+ *  @{ \brief This module defines the #GschemPageGeometry class
+*/
+
 static void
 update_constants (GschemPageGeometry *geometry);
-
-
 
 /*! \brief Copy a page geometry
  *
@@ -45,8 +47,6 @@ gschem_page_geometry_copy (GschemPageGeometry *geometry)
   return (GschemPageGeometry*) g_memdup (geometry, sizeof (GschemPageGeometry));
 }
 
-
-
 /*! \brief Free a page geometry
  *
  *  \param [in] geometry The page geometry to free
@@ -56,8 +56,6 @@ gschem_page_geometry_free (GschemPageGeometry *geometry)
 {
   GEDA_FREE (geometry);
 }
-
-
 
 /*! \brief Get the screen height in pixels.
  *
@@ -72,8 +70,6 @@ gschem_page_geometry_get_screen_height (GschemPageGeometry *geometry)
   return geometry->screen_height;
 }
 
-
-
 /*! \brief Get the screen width in pixels.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -86,8 +82,6 @@ gschem_page_geometry_get_screen_width (GschemPageGeometry *geometry)
 
   return geometry->screen_width;
 }
-
-
 
 /*! \brief Get/register the GschemPageGeometry type.
  *
@@ -107,8 +101,6 @@ gschem_page_geometry_get_type ()
   return type;
 }
 
-
-
 /*! \brief Get the bottom edge of the viewport in world coordinates.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -121,8 +113,6 @@ gschem_page_geometry_get_viewport_bottom (GschemPageGeometry *geometry)
 
   return geometry->viewport_bottom;
 }
-
-
 
 /*! \brief Get the left edge of the viewport in world coordinates.
  *
@@ -137,8 +127,6 @@ gschem_page_geometry_get_viewport_left (GschemPageGeometry *geometry)
   return geometry->viewport_left;
 }
 
-
-
 /*! \brief Get the right edge of the viewport in world coordinates.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -151,8 +139,6 @@ gschem_page_geometry_get_viewport_right (GschemPageGeometry *geometry)
 
   return geometry->viewport_right;
 }
-
-
 
 /*! \brief Get the top edge of the viewport in world coordinates.
  *
@@ -167,8 +153,6 @@ gschem_page_geometry_get_viewport_top (GschemPageGeometry *geometry)
   return geometry->viewport_top;
 }
 
-
-
 /*! \brief Get the top edge of the world in world coordinates.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -181,8 +165,6 @@ gschem_page_geometry_get_world_bottom (GschemPageGeometry *geometry)
 
   return geometry->world_top;
 }
-
-
 
 /*! \brief Get the top edge of the world in world coordinates.
  *
@@ -197,8 +179,6 @@ gschem_page_geometry_get_world_left (GschemPageGeometry *geometry)
   return geometry->world_top;
 }
 
-
-
 /*! \brief Get the top edge of the world in world coordinates.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -211,8 +191,6 @@ gschem_page_geometry_get_world_right (GschemPageGeometry *geometry)
 
   return geometry->world_top;
 }
-
-
 
 /*! \brief Get the world to screen transformation matrix.
  *
@@ -239,8 +217,6 @@ gschem_page_geometry_get_world_to_screen_matrix (GschemPageGeometry *geometry)
   return &(geometry->world_to_screen_matrix);
 }
 
-
-
 /*! \brief Get the top edge of the world in world coordinates.
  *
  *  \param [in] geometry The GschemPageGeometry
@@ -254,8 +230,6 @@ gschem_page_geometry_get_world_top (GschemPageGeometry *geometry)
 
   return geometry->world_top;
 }
-
-
 
 /*! \brief Convert a x coordinate to mils.
  *  \par Function Description
@@ -360,8 +334,6 @@ gschem_page_geometry_new_with_values (int screen_width,
 
   return geometry;
 }
-
-
 
 /*! \brief Pan and zoom the viewport
  *
@@ -468,8 +440,6 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
   }
 }
 
-
-
 /*! \brief Convert a x coordinate to pixels.
  *
  *  \param [in] geometry The page geometry
@@ -504,8 +474,6 @@ gschem_page_geometry_pix_x (GschemPageGeometry *geometry, int value)
 
   return(j);
 }
-
-
 
 /*! \brief Convert a y coordinate to pixels.
  *
@@ -542,8 +510,6 @@ gschem_page_geometry_pix_y (GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-
-
 /*! \brief Set the screen height in pixels
  *
  *  \param [in,out] geometry      The GschemPageGeometry
@@ -560,8 +526,6 @@ gschem_page_geometry_set_screen_height (GschemPageGeometry *geometry, int screen
   geometry->world_to_screen_calculated = FALSE;
 }
 
-
-
 /*! \brief Set the screen width in pixels
  *
  *  \param [in,out] geometry     The GschemPageGeometry
@@ -577,8 +541,6 @@ gschem_page_geometry_set_screen_width (GschemPageGeometry *geometry, int screen_
   update_constants (geometry);
   geometry->world_to_screen_calculated = FALSE;
 }
-
-
 
 /*! \brief Get page geometry for this view
  *
@@ -619,8 +581,6 @@ gschem_page_geometry_set_values (GschemPageGeometry *geometry,
   geometry->world_to_screen_calculated = FALSE;
 }
 
-
-
 /*! \brief Set the bottom edge of the viewport in world coordinates
  *
  *  \param [in,out] geometry The GschemPageGeometry
@@ -636,8 +596,6 @@ gschem_page_geometry_set_viewport_bottom (GschemPageGeometry *geometry, int view
   update_constants (geometry);
   geometry->world_to_screen_calculated = FALSE;
 }
-
-
 
 /*! \brief Set the left edge of the viewport in world coordinates
  *
@@ -655,8 +613,6 @@ gschem_page_geometry_set_viewport_left (GschemPageGeometry *geometry, int viewpo
   geometry->world_to_screen_calculated = FALSE;
 }
 
-
-
 /*! \brief Set the right edge of the viewport in world coordinates
  *
  *  \param [in,out] geometry The GschemPageGeometry
@@ -673,8 +629,6 @@ gschem_page_geometry_set_viewport_right (GschemPageGeometry *geometry, int viewp
   geometry->world_to_screen_calculated = FALSE;
 }
 
-
-
 /*! \brief Set the top edge of the viewport in world coordinates
  *
  *  \param [in,out] geometry The GschemPageGeometry
@@ -690,8 +644,6 @@ gschem_page_geometry_set_viewport_top (GschemPageGeometry *geometry, int viewpor
   update_constants (geometry);
   geometry->world_to_screen_calculated = FALSE;
 }
-
-
 
 /*! \brief Zoom the viewport to the extents of the given objects
  *
@@ -742,15 +694,13 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
                                     relativ_zoom_factor,
                                     pan_flags);
 
-  /*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
-   *  this will redraw rubberband lines after zooming
-   *  removed!, it has side effects in the preview of the part dialog
-   *  need to find another way to trigger x_event_motion() (Werner)
-   */
-  /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
+/*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
+ *  this will redraw rubberband lines after zooming
+ *  removed!, it has side effects in the preview of the part dialog
+ *  need to find another way to trigger x_event_motion() (Werner)
+ */
+ /* i_pan_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
 }
-
-
 
 /*! \brief Update the constants (coefficients) for calculations
  *
@@ -773,3 +723,5 @@ update_constants (GschemPageGeometry *geometry)
   /* mil_y */
   geometry->to_world_y_constant = (double)(geometry->viewport_bottom - geometry->viewport_top) / (double)geometry->screen_height;
 }
+
+/** @} endgroup Gschem-Page-Geometry */

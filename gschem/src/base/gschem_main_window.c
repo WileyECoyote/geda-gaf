@@ -21,15 +21,19 @@
 /*!
  * \file gschem_main_window.c
  *
- * \brief
+ * \brief The Main Window Widget
  */
 
 #include <gschem.h>
 #include <gdk/gdkkeysyms.h>
 #include <geda_debug.h>
 
+/** \defgroup Gschem-Window-Window Gschem Macro Window
+ *  @{ \brief This module defines the #GschemMainWindow class
+*/
+
 static void
-get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec);
+get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec);
 
 static void
 gschem_main_window_class_init (GschemMainWindowClass *klass);
@@ -38,8 +42,7 @@ static void
 gschem_main_window_instance_init (GschemMainWindow *window);
 
 static void
-set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *pspec);
-
+set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec);
 
 
 /*! \brief Get a property
@@ -50,7 +53,7 @@ set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *
  *  \param [in]     pspec
  */
 static void
-get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
+get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec *pspec)
 {
   //GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
 
@@ -59,7 +62,6 @@ get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
 
 
 /*! \brief Initialize GschemMainWindow class
@@ -72,7 +74,6 @@ gschem_main_window_class_init (GschemMainWindowClass *klass)
   G_OBJECT_CLASS (klass)->get_property = get_property;
   G_OBJECT_CLASS (klass)->set_property = set_property;
 }
-
 
 
 /*! \brief Get/register GschemSelection type.
@@ -112,7 +113,6 @@ gschem_main_window_instance_init (GschemMainWindow *window)
 }
 
 
-
 /*! \brief Create a new instanceof the GschemMainWindow
  *
  *  \return A new instanceof the GschemMainWindow
@@ -126,7 +126,6 @@ gschem_main_window_new ()
 }
 
 
-
 /*! \brief Set a property
  *
  *  \param [in,out] object
@@ -135,7 +134,7 @@ gschem_main_window_new ()
  *  \param [in]     pspec
  */
 static void
-set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *pspec)
+set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
 {
   //GschemMainWindow *window = GSCHEM_MAIN_WINDOW (object);
 
@@ -144,3 +143,5 @@ set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
+
+/** @} endgroup Gschem-Page-Window */

@@ -24,6 +24,11 @@
  * Contributing Author: Wiley Edward Hill
  * Date Contributed: November, 4, 2013
  */
+/*!
+ * \file gschem_toplevel.c
+ *
+ * \brief Top-Level data structure for the Gschem Application
+ */
 
 #include <glib-object.h>
 
@@ -31,6 +36,10 @@
 #include "gschem_toplevel.h"
 
 #include <geda_debug.h>
+
+/** \defgroup Gschem-Top-Level Gschem Top Level
+ *  @{ \brief This module defines the #GschemToplevel class
+*/
 
 static GObjectClass *gschem_toplevel_parent_class = NULL;
 
@@ -471,3 +480,5 @@ bool gschem_toplevel_set_current_page (GschemToplevel *w_current, Page *page)
   }
   return result;
 }
+
+/** @} endgroup Gschem-Top-Level */

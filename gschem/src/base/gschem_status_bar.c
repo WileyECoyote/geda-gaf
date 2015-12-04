@@ -23,9 +23,6 @@
  *
  * \brief A widget for the "status bar" at the bottom of the window
  *
- * \todo This module provides for height adjusment of the widget but is
- *       not implemented, maybe gtk_widget_class_install_style_property
- *       and gtk_widget_style_get.
  */
 
 #include <config.h>
