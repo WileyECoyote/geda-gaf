@@ -215,7 +215,8 @@ cmd_export_impl (void *data, int argc, char **argv)
   tmp = g_utf8_strdown ((settings.format == NULL) ? out_suffix : settings.format, -1);
 
   for (i = 0; formats[i].name != NULL; i++) {
-    if (strncmp (tmp, formats[i].alias, sizeof(formats[i].alias)) == 0) {
+    int n = sizeof(formats[i].alias);
+    if (strncmp (tmp, formats[i].alias, n) == 0) {
       exporter = &formats[i];
       break;
     }

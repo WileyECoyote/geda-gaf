@@ -1,3 +1,9 @@
+2015-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/export.c: Add intermediate variable to strncmp for sizeof() to in
+      order to suppress annoying obnoxious gcc warning in function cmd_export
+      _impl.
+
 2015-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gaf.1.in: Document WIDTH/HEIGHT comma option.
