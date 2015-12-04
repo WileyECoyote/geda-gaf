@@ -1,6 +1,6 @@
 ## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
-##
-## Process this file with automake to produce Makefile.in
+## This file is processed by automake to produce Makefile.in, after which
+## The configure script generates the actual Makefile from the Makefile.in.
 
 noinst_HEADERS = \
 		gschem.h                    \
