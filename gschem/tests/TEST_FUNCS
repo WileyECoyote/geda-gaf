@@ -143,7 +143,7 @@ compare_image() {
 	  test_failed=yes
       result=1
 	  test $verbosity && echo "FAILED:  \"$tn\" See ${mismatch}"
-	  mkdir -p ${mismatch}
+	  mkdir -p -m 777 ${mismatch}
 	  ${IM_COMPARE} ${f1} ${f2} ${mismatch}/compare.png
 	  ${IM_COMPOSITE} ${f1} ${f2} -compose difference ${mismatch}/composite.png
 	  ${IM_CONVERT} ${f1} ${f2} -compose difference -composite -colorspace gray ${mismatch}/gray.png
