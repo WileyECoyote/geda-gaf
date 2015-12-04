@@ -1,5 +1,10 @@
 2015-12-04  Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/LOG_DIFF: Use quite mode for tests to suppress output about non
+      existence config groups when running from distro check.
+
+    * tests/IMAGE_DIFF: Use quite mode for tests.
+
     * src/x/x_window.c: Revise string config error message and use qlog
       instead of fprintf in function x_window_restore_settings, this
       error typically occurs on first run, which might also be distro

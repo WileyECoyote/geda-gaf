@@ -23,7 +23,7 @@ if test -f $input ; then
 
   cd $rundir/
 
-  $TEST_APP -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
+  $TEST_APP -q -pzx "(gschem-log \"Running Log Diff Tests\")(gschem-exit)" $filename
 
   # Get the latest file in the log directory
   newlog=$(ls -Art ../logs | tail -n 1)
