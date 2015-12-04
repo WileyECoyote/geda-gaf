@@ -1,3 +1,10 @@
+2015-12-04  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Revise string config error message and use qlog
+      instead of fprintf in function x_window_restore_settings, this
+      error typically occurs on first run, which might also be distro
+      check and the output interferes with tests.
+
 2015-12-03  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_geometry.c: Add Doxygen grouping for module as
