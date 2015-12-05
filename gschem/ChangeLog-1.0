@@ -1,3 +1,11 @@
+2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/runtest.sh: Add schematic file suffix, for now only test with
+      .sch files. Removing saving OLD_LD_PATH, the environment is restored
+      after the test are ran.
+
+    * tests/sort/Makefile_insert: fix file extension net_selection.sch.
+
 2015-12-04  Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/LOG_DIFF: Use quite mode for tests to suppress output about non

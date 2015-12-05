@@ -38,8 +38,6 @@ show_help (){
 
 01_setup_path2libraries()
 {
-   test -z "$LD_LIBRARY_PATH" && OLD_LD_PATH=$LD_LIBRARY_PATH
-
    mkdir -m 0775 -p "libs"
 
    LIBS=$(ls ../../libgeda*/src/.libs/*.so*)
@@ -297,7 +295,7 @@ if [ "$1" = "-v" ] || [ "$1" = "--verbose" ] ; then VERBOSE=true ; shift ; fi
 if [ "$#" -lt 1 ] ; then show_help ; exit $ERR_BAD_ARGS ; fi
 if [ "$#" -eq 1 ] ; then
   # Must be manual test mode
-  INPUTS=${SRCDIR}/inputs/$1*
+  INPUTS=${SRCDIR}/inputs/$1.sch
   if [ -f ${INPUTS} ] ; then
     BASE_NAME=`basename $INPUTS`
     if $REGENERATE ; then
