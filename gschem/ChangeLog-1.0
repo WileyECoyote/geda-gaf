@@ -1,5 +1,8 @@
 2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_color.c: Declare err_allocate_s1 and err_allocate_s1i1 as
+      pointers to constants.
+
     * tests/runtest.sh: Add schematic file suffix, for now only test with
       .sch files. Removing saving OLD_LD_PATH, the environment is restored
       after the test are ran.
