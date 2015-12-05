@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-28 20:05-0600\n"
+"POT-Creation-Date: 2015-12-04 12:22-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gschem/src/base/gschem.c:233
+#: gschem/src/base/gschem.c:228
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:308
+#: gschem/src/base/gschem.c:303
 #, fuzzy
 msgid ""
 "You must set the GEDADATA environment variable!\n"
@@ -36,26 +36,26 @@ msgstr ""
 "gschem kan geen lokatie vinden van de data bestanden. Je moet de GEDADATA\n"
 "omgevingsvariablele naar de juiste lokatie laten wijzen.\n"
 
-#: gschem/src/base/gschem.c:345
+#: gschem/src/base/gschem.c:340
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:350
+#: gschem/src/base/gschem.c:345
 #, fuzzy, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr "Lees init scm bestand [%s]\n"
 
-#: gschem/src/base/gschem.c:353
+#: gschem/src/base/gschem.c:348
 #, fuzzy, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr "Fout bij het lezen van het init scm bestand [%s]\n"
 
-#: gschem/src/base/gschem.c:379
+#: gschem/src/base/gschem.c:374
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem versie %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:419
+#: gschem/src/base/gschem.c:414
 #, fuzzy, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
@@ -63,7 +63,7 @@ msgstr ""
 "\n"
 "Het gschem log kan meer informatie bevatten.\n"
 
-#: gschem/src/base/gschem.c:507
+#: gschem/src/base/gschem.c:502
 msgid "Exiting normal"
 msgstr ""
 
@@ -85,16 +85,16 @@ msgstr "onbetiteld"
 msgid "Dialog window title"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:207
+#: gschem/src/base/gschem_macro_widget.c:212
 msgid "Macro:"
 msgstr ""
 
-#: gschem/src/base/gschem_macro_widget.c:322
+#: gschem/src/base/gschem_macro_widget.c:327
 #, fuzzy
 msgid "Evaluate"
 msgstr "Evalueer:"
 
-#: gschem/src/base/gschem_parsecmd.c:88
+#: gschem/src/base/gschem_parsecmd.c:84
 #, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
@@ -108,6 +108,7 @@ msgid ""
 "X11.\n"
 "  -c, --config-file <FILE>   Additional configuration file to load.\n"
 "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
 "  -h, --help                 Help; this message.\n"
 "  -m, --safe-mode            Safe Mode.\n"
 "  -n, --no-auto              No auto load last document.\n"
@@ -152,7 +153,7 @@ msgstr ""
 "Rapporteer fouten aan <https://bugs.launchpad.net/geda>\n"
 "gEDA/gaf startpagina: <http://www.geda-project.org/>\n"
 
-#: gschem/src/base/gschem_parsecmd.c:129
+#: gschem/src/base/gschem_parsecmd.c:126
 #, fuzzy, c-format
 msgid ""
 "gEDA %s (g%.7s)\n"
@@ -169,154 +170,154 @@ msgstr ""
 "bijgevoegd in de gEDA distributie.\n"
 "Er is GEEN GARANTIE, voor zover de wet dit toelaat.\n"
 
-#: gschem/src/base/gschem_status_bar.c:513
+#: gschem/src/base/gschem_status_bar.c:510
 #, fuzzy
 msgid "Coordinates Mode"
 msgstr "Component Mode"
 
-#: gschem/src/base/gschem_status_bar.c:514
+#: gschem/src/base/gschem_status_bar.c:511
 msgid "Sets the Format Mode used to display coordinates on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:523
+#: gschem/src/base/gschem_status_bar.c:520
 #, fuzzy
 msgid "Grid Mode"
 msgstr "Boog Mode"
 
-#: gschem/src/base/gschem_status_bar.c:524
+#: gschem/src/base/gschem_status_bar.c:521
 msgid "Sets the Gride Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:533
+#: gschem/src/base/gschem_status_bar.c:530
 #, fuzzy
 msgid "Grid Size"
 msgstr "Rasterpunt"
 
-#: gschem/src/base/gschem_status_bar.c:534
+#: gschem/src/base/gschem_status_bar.c:531
 msgid "Sets the Grid Size to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:543
+#: gschem/src/base/gschem_status_bar.c:540
 #, fuzzy
 msgid "height"
 msgstr "Breedte x Hoogte"
 
-#: gschem/src/base/gschem_status_bar.c:544
+#: gschem/src/base/gschem_status_bar.c:541
 msgid "Sets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:553
+#: gschem/src/base/gschem_status_bar.c:550
 #, fuzzy
 msgid "Left Button Text"
 msgstr "Van links naar rechts"
 
-#: gschem/src/base/gschem_status_bar.c:554
+#: gschem/src/base/gschem_status_bar.c:551
 msgid "Set the string for the Left Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:560
+#: gschem/src/base/gschem_status_bar.c:557
 #, fuzzy
 msgid "Middle Button Text"
 msgstr "Midden Links"
 
-#: gschem/src/base/gschem_status_bar.c:561
+#: gschem/src/base/gschem_status_bar.c:558
 msgid "Set the string for the Middle Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:567
+#: gschem/src/base/gschem_status_bar.c:564
 #, fuzzy
 msgid "Right Button Text"
 msgstr "Van rechts naar links"
 
-#: gschem/src/base/gschem_status_bar.c:568
+#: gschem/src/base/gschem_status_bar.c:565
 msgid "Set the string for the Right Button Text"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:574
+#: gschem/src/base/gschem_status_bar.c:571
 #, fuzzy
 msgid "Snap Mode"
 msgstr "Schakel Snap Modus"
 
-#: gschem/src/base/gschem_status_bar.c:575
+#: gschem/src/base/gschem_status_bar.c:572
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:584 gschem/src/x/x_dialog.c:531
+#: gschem/src/base/gschem_status_bar.c:581 gschem/src/x/x_dialog.c:531
 msgid "Snap Size"
 msgstr "Snap Grootte"
 
-#: gschem/src/base/gschem_status_bar.c:585
+#: gschem/src/base/gschem_status_bar.c:582
 msgid "Sets the Size Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:594
+#: gschem/src/base/gschem_status_bar.c:591
 #, fuzzy
 msgid "Status Text"
 msgstr "Status"
 
-#: gschem/src/base/gschem_status_bar.c:595
+#: gschem/src/base/gschem_status_bar.c:592
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:601
-#: gschem/src/base/gschem_status_bar.c:602
+#: gschem/src/base/gschem_status_bar.c:598
+#: gschem/src/base/gschem_status_bar.c:599
 #, fuzzy
 msgid "Status State"
 msgstr "Status"
 
-#: gschem/src/base/gschem_status_bar.c:615
+#: gschem/src/base/gschem_status_bar.c:612
 #, fuzzy
 msgid "Status Bar Height"
 msgstr "Status"
 
-#: gschem/src/base/gschem_status_bar.c:616
+#: gschem/src/base/gschem_status_bar.c:613
 msgid "Sets or gets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1096
+#: gschem/src/base/gschem_status_bar.c:1093
 msgid "Coordinate display, right click for format options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1097
+#: gschem/src/base/gschem_status_bar.c:1094
 msgid "Left pointer button assignment"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1098
+#: gschem/src/base/gschem_status_bar.c:1095
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1099
+#: gschem/src/base/gschem_status_bar.c:1096
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1100
+#: gschem/src/base/gschem_status_bar.c:1097
 msgid "Indicates the current snap,grid units or states"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1101
+#: gschem/src/base/gschem_status_bar.c:1098
 msgid "Indicates the current command state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1102
+#: gschem/src/base/gschem_status_bar.c:1099
 msgid "Gschem status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1789
+#: gschem/src/base/gschem_status_bar.c:1786
 #, fuzzy
 msgid "Grid"
 msgstr "Boog Mode"
 
-#: gschem/src/base/gschem_status_bar.c:1795
-#: gschem/src/base/gschem_status_bar.c:1816
+#: gschem/src/base/gschem_status_bar.c:1792
+#: gschem/src/base/gschem_status_bar.c:1813
 msgid "OFF"
 msgstr "UIT"
 
-#: gschem/src/base/gschem_status_bar.c:1808
+#: gschem/src/base/gschem_status_bar.c:1805
 #, fuzzy
 msgid "Error"
 msgstr "Spiegel"
 
-#: gschem/src/base/gschem_status_bar.c:1820
+#: gschem/src/base/gschem_status_bar.c:1817
 msgid "NONE"
 msgstr "GEEN"
 
@@ -912,7 +913,7 @@ msgstr "Snap Aan"
 msgid "Resnap Active"
 msgstr "Hersnappen Aktief"
 
-#: gschem/src/iface/i_vars.c:782
+#: gschem/src/iface/i_vars.c:790
 #, fuzzy, c-format
 msgid "Failed to save user configuration to '%s': %s."
 msgstr "Faalde bij het afdalen in '%s': %s\n"

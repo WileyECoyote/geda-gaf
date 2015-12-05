@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-22 21:36-0600\n"
+"POT-Creation-Date: 2015-12-04 12:21-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -164,7 +164,7 @@ msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr ""
 "ERRORE: si deve specificare sia il gruppo di configurazione che la chiave.\n"
 
-#: gaf/src/config.c:194 gaf/src/config.c:211 gaf/src/export.c:362
+#: gaf/src/config.c:194 gaf/src/config.c:211 gaf/src/export.c:363
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr "ERRORE: %s.\n"
@@ -188,35 +188,35 @@ msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile ricavare il formato di uscita dal nome del file \"%s\".\n"
 
-#: gaf/src/export.c:228
+#: gaf/src/export.c:229
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile trovare il formato supportato per il file di nome \"%s"
 "\".\n"
 
-#: gaf/src/export.c:234
+#: gaf/src/export.c:235
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr "ERRORE: formato di uscita \"%s\" non supportato.\n"
 
-#: gaf/src/export.c:246
+#: gaf/src/export.c:247
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 "ERRORE: il formato di uscita selezionato non supporta le pagine multiple\n"
 
-#: gaf/src/export.c:261
+#: gaf/src/export.c:262
 #, c-format
 msgid "ERROR: Failed to load '%s': %s\n"
 msgstr "ERRORE: fallito il caricamento di \"%s\": %s\n"
 
-#: gaf/src/export.c:268
+#: gaf/src/export.c:269
 #, c-format
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ERRORE: fallito il cambiamento di cartella a \"%s\": %s\n"
 
-#: gaf/src/export.c:1070
+#: gaf/src/export.c:1071
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -226,7 +226,7 @@ msgid ""
 "  -f, --format=TYPE        output format (normally autodetected)\n"
 "  -o, --output=OUTPUT      output filename\n"
 "  -p, --paper=NAME         select paper size by name\n"
-"  -s, --size=WIDTH;HEIGHT  specify exact paper size\n"
+"  -s, --size \"WIDTH;HEIGHT\"specify exact paper size\n"
 "  -k, --scale=FACTOR       specify output scale factor\n"
 "  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
 "  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"
@@ -263,12 +263,12 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1255
+#: gaf/src/export.c:1256
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1264
+#: gaf/src/export.c:1265
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
