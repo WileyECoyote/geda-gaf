@@ -1,5 +1,8 @@
 2015-12-04  Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/defines.h: Remove defines for stats, geda_stat.h
+      defines a more comprehensive list.
+
     * scheme/scheme_os.c: Revise API functions to use a const char* rather
       than the pointer on the stack returned from f_path_xxx, the later
       fails unit tests on older systems (Centrino with guile 1.8.7), the

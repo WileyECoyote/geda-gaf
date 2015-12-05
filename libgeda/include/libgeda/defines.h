@@ -280,23 +280,6 @@
 /* Backup filename creation string */
 #define AUTOSAVE_BACKUP_FILENAME_STRING "#%s#"
 
-/* These permission bits are absent on MinGW */
-#ifndef S_IWGRP
-# define S_IWGRP 0
-#endif
-#ifndef S_IWOTH
-# define S_IWOTH 0
-#endif
-#ifndef S_IXGRP
-# define S_IXGRP 0
-#endif
-#ifndef S_IXOTH
-# define S_IXOTH 0
-#endif
-#ifndef S_IRWXG
-# define S_IRWXG 0
-#endif
-
 /*! \def RETURN_G_RC_MODE(rc, var, mt)
  *  \brief Utility Macro used by the rc loading mechanism
  *  \note The 1st argument to g_rc_parse_mode is not passed to the macro, RC
