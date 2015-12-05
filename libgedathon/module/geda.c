@@ -84,14 +84,16 @@ static struct {
 
 /*! \brief Add Libgedathon suffix
  *  \par Function Description
- *  This is function adds the extension characters of the filename to a
- *  preset string that was statically allocated with enough space for these
- *  additional bytes.
+ *  This is function adds the extension characters of the filename to
+ *  the preset string that was statically allocated with enough space
+ *  for these additional bytes.
  */
 static const char *suffix_installed_library(const char *ext)
 {
   char *ptr;
+
   libgedapath = installed_library_path;
+
   if (ext != NULL) {
     if (!strstr (installed_library_path, ext)) {
       ptr = installed_library_path;
@@ -104,36 +106,38 @@ static const char *suffix_installed_library(const char *ext)
   return libgedapath;
 }
 
-/*! \brief Find Libgedathon on a Window system
+/*! \brief Find Libgedathon on a MS Windows system
  *  \par Function Description
- *  This is a tempory function intended to locate libgedathon.so on
- *  linux system. At this time, the function returns the "installed"
- *  location of the library.
+ *  This function returns the installed location of the library.
  *
  * \return [out] string file name of the library including the extension.
  */
 #ifdef OS_WIN32_NATIVE
 static const char *find_library(void) {
+
   suffix_installed_library(".dll");
-  if(libgedapath == NULL)
+
+  if (libgedapath == NULL)
     libgedapath = LIB_LOCATION_ERROR;
+
   return libgedapath;
 }
 #endif
 
 /*! \brief Find Libgedathon on a Linux system
  *  \par Function Description
- *  This is a tempory function intended to locate libgedathon.so on
- *  linux system. At this time, the function returns the "installed"
- *  location of the library.
+ *  This function returns the installed location of the library.
  *
  * \return [out] string file name of the library including the extension.
  */
 #ifdef OS_LINUX
 static const char *find_library(void) {
+
   suffix_installed_library(".so");
-  if(libgedapath == NULL)
+
+  if (libgedapath == NULL)
     libgedapath = LIB_LOCATION_ERROR;
+
   return libgedapath;
 }
 #endif
@@ -141,24 +145,33 @@ static const char *find_library(void) {
 /*! \brief Open Libgedathon
  *  \par Function Description
  *  This is function attempts to establish a dynamic link to Libgedathon.
- *  This unconvientional for nix's but the primary method used on Windows
- *  systems. Upon success, the static unions initializer and closer are
- *  assigned functional address "values". Otherwise the unions are set to
- *  NULL pointers.
+ *  This is unconvientional for nix's but the primary method used on MS
+ *  Windows systems. Upon success, static initializer and closer unions
+ *  are assigned functional address "values". Otherwise the unions are
+ *  set to NULL pointers.
  *
  * \return [out] True if successful, otherwise False.
  */
 static int open_library (void)
 {
   int result;
+
 #ifdef OS_WIN32_NATIVE
+
+  /* Attempt to load using LD_LIBRARY_PATH or system */
   libgedathon = LoadLibrary("libgedathon.dll");
+
   if (libgedathon == NULL) {
+
+    /* Attempt to load using installed location */
     libgedathon = LoadLibrary(find_library());
   }
+
   if (libgedathon != NULL) {
+
     /* is long* (LPFNDLLFUNC1) */
     initializer.obj = GetProcAddress(libgedathon, "initialize");
+
     if (initializer.obj != NULL) {
       result = 1;
       closer.obj = FreeLibrary;
@@ -172,14 +185,22 @@ static int open_library (void)
     }
   }
   else
+
 #elif defined OS_LINUX
+
+  /* Attempt to load using LD_LIBRARY_PATH or system */
   libgedathon = dlopen("libgedathon.so", RTLD_LAZY);
+
   if (libgedathon == NULL) {
+
+    /* Attempt to load using installed location */
     libgedathon = dlopen(find_library(), RTLD_LAZY);
+
     if (libgedathon == NULL) {
       fprintf(stderr, "Error dlopen: %s\n", dlerror());
     }
   }
+
   if (libgedathon != NULL) {
 
     initializer.obj = dlsym(libgedathon, "initialize");
@@ -197,6 +218,7 @@ static int open_library (void)
     }
   }
   else
+
 #endif
   {
     fprintf(stderr, "Error Could not load library:libgedathon\n");

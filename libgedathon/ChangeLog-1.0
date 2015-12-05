@@ -1,3 +1,17 @@
+2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgedathon/module/geda.c: Revise comments.
+
+    * tests/Makefile.am: Add update-gsymcheck to insure gsymcheck is built
+      before running test and uninstall-hook to insure the geda module
+      directory is removed from distro checks.
+
+    * tests/run_tests.sh: Add functions do_exit_no_symchecker, do_get_symbol_
+      checker and do_export_path2libraries along with variables to locate
+      built libraries and gsymcheck. New scheme utilizes LD_LIBRARY_PATH to
+      locate libraries, including libgedathon with dlopen and this allows
+      tests to be performed in the source using built binaries.
+
 2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/lpbf.py: Retain reference to input and output symbols and
