@@ -1,4 +1,7 @@
-## Process this file with automake to produce Makefile.in
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+## This file is processed by automake to produce Makefile.in, after which
+## The configure script generates the actual Makefile from the Makefile.in.
+
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
@@ -43,4 +46,3 @@ MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~
 DISTCLEANFILES       = *.log      core FILE *~
 MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
-
