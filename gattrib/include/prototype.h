@@ -211,8 +211,8 @@ void  x_dialog_about_dialog();
 void  x_dialog_export_file();
 
 
-char *x_dialog_get_search_text(char* prompt);
-void  x_dialog_find_value(char* prompt, SearchRecord *Search);
+char *x_dialog_get_search_text(const char *prompt);
+//void  x_dialog_find_value(char *prompt, SearchRecord *Search);
 void  x_dialog_search_replace(SearchRecord *Search, const char *find_text);
 
 /* ------------- x_find.c ------------- */

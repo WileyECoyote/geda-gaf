@@ -425,7 +425,7 @@ void x_dialog_export_file()
  *  This function creates the get text dialog and returns a pointer
  *  to the string or NULL is the user canceled.
  */
-char *x_dialog_get_search_text(char *prompt)
+char *x_dialog_get_search_text(const char *prompt)
 {
   GtkDialog *dialog    = NULL;
   GtkWidget *textentry = NULL;
