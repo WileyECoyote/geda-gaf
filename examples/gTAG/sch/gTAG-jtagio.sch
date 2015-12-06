@@ -157,10 +157,10 @@ C 58500 50500 1 0 1 connector8-1.sym
 {
 T 58000 53100 5 10 1 1 0 0 1
 refdes=CONN4
-T 57800 53300 5 10 0 1 0 0 1
-footprint=conn_jtag
 T 57800 53500 5 10 0 0 0 0 1
 device=CONNECTOR_8
+T 57800 53300 5 10 0 1 0 0 1
+footprint=CONN_JTAG
 }
 N 54200 51900 57500 51900 4
 {
@@ -197,10 +197,10 @@ N 55600 51300 55600 48500 4
 N 55600 48500 54200 48500 4
 C 56100 50200 1 0 0 gnd-1.sym
 {
-T 56300 50200 5 10 0 1 0 0 1
-footprint=none
 T 56300 50000 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 56300 50200 5 10 0 1 0 0 1
+footprint=none
 }
 N 57500 51000 56200 51000 4
 N 56200 51000 56200 50500 4
@@ -237,10 +237,10 @@ T 59300 56700 5 10 1 1 0 0 1
 refdes=C20
 T 59300 56500 5 10 1 1 0 0 1
 value=100n
-T 59300 56300 5 10 0 1 0 0 1
-footprint=SM1206
 T 59300 56900 5 10 0 1 0 0 1
 device=CAPACITOR
+T 59300 56300 5 10 0 1 0 0 1
+footprint=SM1206
 T 59300 57100 5 10 0 0 0 0 1
 symversion=0.1
 }
@@ -248,54 +248,54 @@ N 59000 57200 59000 57600 4
 N 59000 55900 59000 56300 4
 C 58900 55600 1 0 0 gnd-1.sym
 {
-T 59100 55950 5 10 0 1 0 0 1
-footprint=none
 T 59100 55600 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 59100 55950 5 10 0 1 0 0 1
+footprint=none
 }
 T 57200 55200 9 15 1 0 0 0 1
 Place near the VCC pin for U20
 C 58800 57600 1 0 0 5V-plus-1.sym
 {
-T 58900 58300 5 10 0 0 0 0 1
-footprint=none
 T 58900 58000 5 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 59100 57600 5 12 0 1 0 0 1
 net=jtag_power:1
+T 58900 58300 5 10 0 0 0 0 1
+footprint=none
 }
 C 47500 56700 1 90 0 resistor-2.sym
 {
 T 47200 56900 5 10 1 1 90 0 1
 refdes=R20
+T 47900 57050 5 10 0 0 0 0 1
+device=RESISTOR
 T 47700 57000 5 10 1 1 90 0 1
 value=10k
 T 47400 56900 5 10 0 1 0 0 1
 footprint=SM0805
-T 47900 57050 5 10 0 0 0 0 1
-device=RESISTOR
 }
 C 48800 56700 1 90 0 resistor-2.sym
 {
 T 48500 56900 5 10 1 1 90 0 1
 refdes=R21
+T 49200 57050 5 10 0 0 0 0 1
+device=RESISTOR
 T 49000 57000 5 10 1 1 90 0 1
 value=10k
 T 48700 57100 5 10 0 1 0 0 1
 footprint=SM0805
-T 49200 57050 5 10 0 0 0 0 1
-device=RESISTOR
 }
 C 50100 56700 1 90 0 resistor-2.sym
 {
 T 49800 56900 5 10 1 1 90 0 1
 refdes=R22
+T 50500 57050 5 10 0 0 0 0 1
+device=RESISTOR
 T 50300 57000 5 10 1 1 90 0 1
 value=10k
 T 50100 57100 5 10 0 1 0 0 1
 footprint=SM0805
-T 50500 57050 5 10 0 0 0 0 1
-device=RESISTOR
 }
 C 51500 56700 1 90 0 resistor-2.sym
 {
@@ -323,30 +323,30 @@ net=jtag_power:1
 }
 C 48500 57800 1 0 0 5V-plus-1.sym
 {
-T 48600 58500 5 10 0 0 0 0 1
-footprint=none
 T 48600 58200 5 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 48800 57800 5 10 0 1 0 0 1
 net=jtag_power:1
+T 48600 58500 5 10 0 0 0 0 1
+footprint=none
 }
 C 49800 57800 1 0 0 5V-plus-1.sym
 {
-T 49900 58500 5 10 0 0 0 0 1
-footprint=none
 T 49900 58200 5 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 50100 57800 5 10 0 1 0 0 1
 net=jtag_power:1
+T 49900 58500 5 10 0 0 0 0 1
+footprint=none
 }
 C 51200 57800 1 0 0 5V-plus-1.sym
 {
-T 51300 58500 5 10 0 0 0 0 1
-footprint=none
 T 51300 58200 5 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 51500 57800 5 10 0 1 0 0 1
 net=jtag_power:1
+T 51300 58500 5 10 0 0 0 0 1
+footprint=none
 }
 N 47400 57800 47400 57600 4
 N 48700 57800 48700 57600 4
@@ -360,20 +360,20 @@ symversion=0.2
 N 57500 50700 57200 50700 4
 C 53000 46000 1 0 0 7414-gt.sym
 {
-T 52900 49250 5 10 0 0 0 0 1
-symversion=1.0
 T 53600 46800 5 10 1 1 0 0 1
 refdes=U20
+T 53300 46000 5 10 1 1 0 0 1
+device=7414
 T 53000 46000 5 10 1 1 0 0 1
 slot=6
+T 52900 49250 5 10 0 0 0 0 1
+symversion=1.0
 T 52800 45800 5 10 0 0 0 0 1
 net=jtag_power:14
 T 53100 45600 5 10 0 0 0 0 1
 net=GND:7
 T 53800 46200 5 10 0 1 0 0 1
 footprint=SO14
-T 53300 46000 5 10 1 1 0 0 1
-device=7414
 }
 C 54400 46400 1 0 0 nc-right-2.sym
 {

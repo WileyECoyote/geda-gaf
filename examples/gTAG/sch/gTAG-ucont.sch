@@ -665,8 +665,6 @@ C 48800 42500 1 90 0 jumper-1.sym
 {
 T 48200 42300 5 10 1 1 0 0 1
 refdes=J1
-T 48400 42150 5 8 0 1 0 0 1
-footprint=JUMPER2
 T 48400 42300 5 8 0 1 0 0 1
 device=JUMPER
 }

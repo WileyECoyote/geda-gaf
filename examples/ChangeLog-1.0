@@ -4,6 +4,13 @@
       footprint from DIP8 to TSSOP8, was the only thru-hole IC, now all are
       SMD.
 
+    * gTAG/sch/gTAG-jtagio.sch: Update foot-print for CONN4 from conn_jtag
+      to CONN_JTAG, which should maybe should be called CONN_JTAG-8.
+
+    * gTAG/sch/gTAG-ucont.sch: Remove foot-print attribute for J1 so the
+      foot-print in the symbol is used, effectively updating the foot-print
+      from JUMPER2 to JUMPER-2.
+
 2015-11-30  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/bom: Update Terry's script: Change "uref" to
