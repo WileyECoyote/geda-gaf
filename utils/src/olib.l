@@ -102,7 +102,6 @@ static struct vector_def part_vectors[100];   /* draw list */
 
 static int vector_found;
 
-
 /* type of pin */
 static char *pintypestr[] = {
   "???",
@@ -133,11 +132,8 @@ static char *edapintype[] = {
  /* pin definition database */
 static struct pin_def pinlist[200];
 
-
 /* generic counter */
 static int ii;
-
-
 
 /* strip filename-aware chars from part name,
  * leave only '.' '-' or '_' and changes space
@@ -147,14 +143,14 @@ char *strip_invalid(char *str)
   char *p;
 
   p = buff;
-  while (*str)
-  {
-    if (isalnum((int) *str) || strchr("-_. ",*str))
-    {
+  while (*str) {
+
+    if (isalnum((int) *str) || strchr("-_. ",*str)) {
+
       if (*str == ' ')
-	*p = '_';
+        *p = '_';
       else
-	*p = *str;
+        *p = *str;
       p++;
     }
     str++;
@@ -171,16 +167,18 @@ char *strip_quotes(char *str)
 
   p = buff;
   str++;
-  while (*str != '\'')
-  {
+
+  while (*str != '\'') {
+
     *p = *str;
-    p++;
-    str++;
+     p++;
+     str++;
   }
+
   *p = 0;
+
   return buff;
 }
-
 
 
 /* symbol write function in gEDA .sym format */
@@ -479,40 +477,39 @@ PIN_ID		[TBLR][0-9]{1,4}
   {
     case 'L':
       /* line */
-      if (paramcount != 4)
-      {
+      if (paramcount != 4) {
 	fprintf(stderr,"LINE: wrong parameters number: %d\n",paramcount);
 	BEGIN(vector_list);
       }
       break;
     case 'V':
       /* circle */
-      if (paramcount != 3)
-      {
+      if (paramcount != 3) {
+
 	fprintf(stderr,"CIRCLE: wrong parameters number: %d\n",paramcount);
 	BEGIN(vector_list);
       }
       break;
     case 'A':
       /* arc */
-      if (paramcount != 7)
-      {
+      if (paramcount != 7) {
+
 	fprintf(stderr,"ARC: wrong parameters number: %d\n",paramcount);
 	BEGIN(vector_list);
       }
       break;
     case 'f':
       /* fill (ignored) */
-      if (paramcount != 2)
-      {
+      if (paramcount != 2) {
+
 	fprintf(stderr,"FILL: wrong parameters number: %d\n",paramcount);
 	BEGIN(vector_list);
       }
       break;
     case 'T':
       /* text */
-      if (paramcount != 4)
-      {
+      if (paramcount != 4) {
+
 	fprintf(stderr,"TEXT: wrong parameters number: %d\n",paramcount);
 	BEGIN(vector_list);
       }
@@ -520,14 +517,14 @@ PIN_ID		[TBLR][0-9]{1,4}
   }
   vector_count++;
   BEGIN(vector_list);
- }
+}
 
 
 <vector_list>^END {
   /* end of vector list */
   BEGIN(pin_list);
   fprintf(stderr,"Found: END of VECTOR list\n");
- }
+}
 
 
 %{
@@ -606,21 +603,22 @@ PIN_ID		[TBLR][0-9]{1,4}
 %}
 
 <pin_list>^{PIN_ID} {
+
   /* trovato un pin */
   pinlist[pincount].pos = yytext[0];    /* pin side */
   pinlist[pincount].num = atoi(yytext+1);	/* gets pin number */
   pinlist[pincount].flags = 0;
   pinlist[pincount].type = 0;
   fprintf(stderr,"Found pin ID: %c-%d (%s)\n",pinlist[pincount].pos,pinlist[pincount].num,yytext);
-  if (partspp == 0)   /* handling of parts without pin number */
-  {
+
+  if (partspp == 0)  {  /* handling of parts without pin number */
     /* assign number to a unnumbered pin from the pin count */
     pinlist[pincount].pin = pincount + 1;
     BEGIN(pindata);
   }
   else
     BEGIN(pinrealnum);
- }
+}
 
 
 <pin_list>^{IDENT} {
@@ -670,99 +668,86 @@ PIN_ID		[TBLR][0-9]{1,4}
   /* SHORT flag found, short terminal */
   pinlist[pincount].flags |= PIN_SHORTFLAG;
   fprintf(stderr,"Found SHORT flag\n");
- }
-
+}
 
 <pindata>IN {
   /* pin type IN */
   pinlist[pincount].type = PIN_TYPE_IN;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type IN\n");
- }
-
+}
 
 <pindata>OUT {
   /* pin type OUT */
   pinlist[pincount].type = PIN_TYPE_OUT;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type OUT\n");
- }
-
+}
 
 <pindata>PWR {
   /* pin type PWR */
   pinlist[pincount].type = PIN_TYPE_PWR;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type PWR\n");
- }
-
+}
 
 <pindata>OC {
   /* pin type OC */
   pinlist[pincount].type = PIN_TYPE_OC;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type OC\n");
- }
-
+}
 
 <pindata>OE {
   /* pin type OE */
   pinlist[pincount].type = PIN_TYPE_OE;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type OE\n");
- }
-
+}
 
 <pindata>PAS {
   /* pin type PAS */
   pinlist[pincount].type = PIN_TYPE_PAS;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type PAS\n");
- }
-
+}
 
 <pindata>hiZ {
   /* pin type hiZ */
   pinlist[pincount].type = PIN_TYPE_HIZ;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type hiZ\n");
- }
-
+}
 
 <pindata>"I/O" {
   /* pin type I/O */
   pinlist[pincount].type = PIN_TYPE_IO;
   BEGIN(waitnamestart);
   fprintf(stderr,"Pin type I/O\n");
- }
-
+}
 
 <waitnamestart>"'" {
   /* found initial quote */
   ii = 0;
   BEGIN(in_name);
- }
-
+}
 
 <in_name>'' {
   /* found a ' in pin name */
   pinlist[pincount].name[ii++] = '\'';
- }
-
+}
 
 <in_name>[^"'"\n] {
   /* get a char from the pin symbolic name */
   pinlist[pincount].name[ii++] = *yytext;
- }
-
+}
 
 <in_name>"'" {
   /* all ok, waiting for new pin definition */
   pinlist[pincount].name[ii] = 0;
   fprintf(stderr,"Pin label: %s\n",pinlist[pincount].name);
   BEGIN(waitpinend);
- }
-
+}
 
 <waitpinend>\n {
   /* ok, found a newline, pin definition ends */
@@ -771,8 +756,7 @@ PIN_ID		[TBLR][0-9]{1,4}
     pinlist[pincount].name);
   pincount++;
   BEGIN(pin_list);
- }
-
+}
 
 %{
   /*
@@ -786,9 +770,7 @@ PIN_ID		[TBLR][0-9]{1,4}
 
 [ \t\n\r]    { /* ignored, the \r char is for "DOS" ASCII files */ }
 
-
 %%
-
 
 void usage(void)
 {
@@ -814,7 +796,6 @@ int yywrap()
   return 1;
 }
 
-
 int main (int argc, char *argv[])
 {
 
@@ -823,6 +804,7 @@ int main (int argc, char *argv[])
   int	i;
 
   strcpy(sym_version,EDA_VERSION_NEW);	  /* handle new gEDA version by default */
+
   use_old_version = 0;	      /* old version flag */
   pin_name_hidden = 0;	      /* hides pin name on VECTOR drawed symbols */
   opterr = 0;	/* do NOT print default error message for getopt */
@@ -830,45 +812,52 @@ int main (int argc, char *argv[])
   do {
 
     i = getopt(argc,argv,"hon");
+
     switch (i)
     {
       case 'h':
-	usage();
-	exit(0);
+        usage();
+        exit(0);
       case 'o':
-	strcpy(sym_version,EDA_VERSION_OLD);
-	fprintf(stderr,"Use old (%s) format.\n",sym_version);
-	use_old_version = -1;
-	break;
+        strcpy(sym_version,EDA_VERSION_OLD);
+        fprintf(stderr,"Use old (%s) format.\n",sym_version);
+        use_old_version = -1;
+        break;
       case 'n':
-	pin_name_hidden = -1;
-	break;
+        pin_name_hidden = -1;
+        break;
       case '?':
-	fprintf(stderr,"Unknown or illegal option :%c\n",(char)optopt);
-	usage();
-	exit(1);
+        fprintf(stderr,"Unknown or illegal option :%c\n",(char)optopt);
+        usage();
+        exit(1);
       case ':':
-	fprintf(stderr,"Parameter wrong for option: %c\n",(char)optopt);
-	usage();
-	exit(1);
+        fprintf(stderr,"Parameter wrong for option: %c\n",(char)optopt);
+        usage();
+        exit(1);
     }
   }
+
   while (i != -1);
-  if ((argc - optind) != 2)
-  {
+
+  if ((argc - optind) != 2) {
     fprintf(stderr,"Library name and prefix are mandatory.\n");
     usage();
     return 1;
   }
+
   strcpy(fnlib,argv[optind]);
-  if (!(flib = fopen(fnlib,"r")))
-  {
+
+  if (!(flib = fopen(fnlib,"r"))) {
+
     perror("lib file");
     return 1;
   }
+
   strcpy(sym_prefix,argv[optind+1]);
+
   yyin = flib;
   yylex();
+
   fclose(flib);
   return 0;
 }
