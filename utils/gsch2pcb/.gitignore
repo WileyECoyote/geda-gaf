@@ -1,0 +1,8 @@
+Makefile
+Makefile.in
+.deps
+.libs
+gsch2pcb
+gsch2pcb.exe
+*.o
+*~
