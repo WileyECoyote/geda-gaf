@@ -1,3 +1,9 @@
+2015-12-06  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch/gTAG-consio.sch: Add value=SN75240PWR to U40 and changed the
+      footprint from DIP8 to TSSOP8, was the only thru-hole IC, now all are
+      SMD.
+
 2015-11-30  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/bom: Update Terry's script: Change "uref" to
