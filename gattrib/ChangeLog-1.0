@@ -2,6 +2,8 @@
 
     * src/x_dialog.c: Declare argument to x_dialog_get_search_text constant.
 
+    * src/x_window.c: Replace fprintf with u_log_qmessage.
+
 2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * gattrib/src/g_rc.c: Revise parameters to RETURN_G_RC_MODE per changes

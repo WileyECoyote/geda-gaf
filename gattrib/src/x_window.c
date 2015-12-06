@@ -201,7 +201,7 @@ void x_window_restore_settings(GtkWidget *MainWindow)
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
 
   if (err != NULL) {
-    fprintf(stderr, "Error retrieving user configuration: '%s'\n", err->message);
+    u_log_qmessage("%s\n", err->message);
     g_clear_error (&err);
     xy_error = TRUE;
   }
