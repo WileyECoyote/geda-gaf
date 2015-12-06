@@ -363,7 +363,8 @@ void main_prog(void *closure, int argc, char *argv[])
 
     char *path;
 
-    path = f_path_get_dirname(output_filename);
+    errno = 0;
+    path  = f_path_get_dirname(output_filename);
 
     /* Check if a path was included in the output file name */
     if (strlen(path) > 1) {
@@ -425,11 +426,17 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   GEDA_FREE(cwd);
 
-  if (access(output_filename, W_OK) == NO_ERROR) {
-     fprintf(stderr,"access said 0\n");
-  }
-  else {
-    fprintf(stderr,"access said: %s\n", strerror (errno));
+  errno = 0;
+
+  if (access(output_filename, W_OK) == -1) {
+
+    if (errno != ENOENT) {
+      fprintf(stderr,"ERROR: Could not create <%s>: %s\n", output_filename,
+              strerror (errno));
+      GEDA_FREE(output_filename);
+      exit(2);
+
+    }
   }
 
   /* Run post-traverse code. */

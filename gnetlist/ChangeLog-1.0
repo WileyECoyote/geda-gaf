@@ -2,7 +2,9 @@
 
    ** gnetlist/src/gnetlist.c: Check output_filename for an included path and
       if found, check for existence of the path, attempt to create if the path
-      does not exist and abort if output_filename can not be written.
+      does not exist and abort if output_filename can not be written. Also
+      make sure errno is re-initialized to 0 before checks for path and after
+      the checks for path since the system only sets to zero once per thread.
 
 2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
