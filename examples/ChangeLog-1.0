@@ -7,6 +7,8 @@
     * gTAG/sch/gTAG-jtagio.sch: Update foot-print for CONN4 from conn_jtag
       to CONN_JTAG, which should maybe should be called CONN_JTAG-8.
 
+    * gTAG/sch/gTAG-psu.sch: Reposition attributes to improve appearance.
+
     * gTAG/sch/gTAG-ucont.sch: Remove foot-print attribute for J1 so the
       foot-print in the symbol is used, effectively updating the foot-print
       from JUMPER2 to JUMPER-2.
