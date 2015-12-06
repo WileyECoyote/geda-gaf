@@ -34,6 +34,7 @@
 
 #include <dirent.h>
 
+#include <geda_stat.h>
 #include <gnetlist.h>
 #include <libgeda/libgedaguile.h>
 
@@ -165,6 +166,7 @@ void main_prog(void *closure, int argc, char *argv[])
   int   argv_index;
   char *cwd;
   char *output_filename;
+  bool  defaulted_filename;
   GedaToplevel *pr_current;
 
   u_program_mem_set_vtable();
@@ -241,9 +243,12 @@ void main_prog(void *closure, int argc, char *argv[])
   }
 
   if (!output_filename) {
-
     /* was not specified so set default output filename */
     output_filename = u_string_strdup("output.net");
+    defaulted_filename = TRUE;
+  }
+  else {
+    defaulted_filename = FALSE;
   }
 
   /* Evaluate the first set of Scheme expressions before we load any
@@ -353,7 +358,79 @@ void main_prog(void *closure, int argc, char *argv[])
       exit(1);
     }
   }
+
+  if (!defaulted_filename) {
+
+    char *path;
+
+    path = f_path_get_dirname(output_filename);
+
+    /* Check if a path was included in the output file name */
+    if (strlen(path) > 1) {
+
+      if (!f_get_is_path_absolute(path)) {
+
+        char   *name_norm;
+        GError *err = NULL;
+
+        name_norm = f_file_normalize_name (path, &err);
+
+        GEDA_FREE(name_norm); /* Did not need, checking for error */
+
+        if (err) {
+
+          if (g_error_matches (err, G_FILE_ERROR, G_FILE_ERROR_NOENT)) {
+
+            g_clear_error (&err);
+
+            /* attempt to create the directories */
+            if (f_path_create (path, S_IRWXU | S_IRWXG)) {
+              fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
+                      strerror(errno));
+              GEDA_FREE(path);
+              GEDA_FREE(cwd);
+              GEDA_FREE(output_filename);
+              exit(2);
+            }
+          }
+          else {
+            fprintf (stderr, _("ERROR: file [%s:] %s\n"), output_filename,
+                     strerror (errno));
+            GEDA_FREE(path);
+            GEDA_FREE(cwd);
+            GEDA_FREE(output_filename);
+            exit(2);
+          }
+        }
+      }
+      else {
+
+        /* path is absolute, so check it */
+        if (!g_file_test(path, G_FILE_TEST_IS_DIR)) {
+
+          /* Does not exist so attempt to create the path */
+          if (f_path_create (path, S_IRWXU | S_IRWXG)) {
+            fprintf(stderr, "Path \"%s\": is not accessible: %s\n", path,
+                    strerror(errno));
+            GEDA_FREE(path);
+            GEDA_FREE(cwd);
+            GEDA_FREE(output_filename);
+            exit(2);
+          }
+        }
+      }
+    }
+
+    GEDA_FREE(path);
+  }
   GEDA_FREE(cwd);
+
+  if (access(output_filename, W_OK) == NO_ERROR) {
+     fprintf(stderr,"access said 0\n");
+  }
+  else {
+    fprintf(stderr,"access said: %s\n", strerror (errno));
+  }
 
   /* Run post-traverse code. */
   scm_primitive_load_path (scm_from_utf8_string ("gnetlist-post.scm"));

@@ -1,3 +1,9 @@
+2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+   ** gnetlist/src/gnetlist.c: Check output_filename for an included path and
+      if found, check for existence of the path, attempt to create if the path
+      does not exist and abort if output_filename can not be written.
+
 2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/netattrib.sch Update F1 symbol version.
