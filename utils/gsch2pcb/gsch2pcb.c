@@ -449,8 +449,7 @@ PcbElement *
 pcb_element_line_parse (char * line)
 {
   PcbElement *el;
-  char *s, *t, close_char;
-  int state = 0, elcount = 0;
+  char *s, *t;
 
   if (strncmp (line, "Element", 7) == 0) {
 
@@ -471,6 +470,11 @@ pcb_element_line_parse (char * line)
       }
 
       if (el) {
+
+        char close_char;
+
+        int  state      = 0;
+        int  elcount    = 0;
 
         el->res_char    = el->hi_res_format ? '[' : '(';
         close_char      = el->hi_res_format ? ']' : ')';

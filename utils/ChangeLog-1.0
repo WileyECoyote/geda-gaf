@@ -7,6 +7,9 @@
       when running gsch2pcb is ran on an existing PCB project and elements
       were added or replaced. Bumped internal version to 1.11.
 
+      Reduce scope of char *close_char, and integers state and elcount in
+      function pcb_element_line_parse().
+
 2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Replace g_list_free_full with u_glist_free_full
