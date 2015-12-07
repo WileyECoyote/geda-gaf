@@ -1,3 +1,10 @@
+2015-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Change "Found a cpinlist head with a netname"
+      discovery message, aka pin defined with pinnumber matching net=
+      attribute, to respect quiet mode setting, I just couldn't take it
+      any longer.
+
 2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
    ** gnetlist/src/gnetlist.c: Check output_filename for an included path and
