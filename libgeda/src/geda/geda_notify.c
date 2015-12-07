@@ -260,18 +260,20 @@ GList *geda_notify_list_copy_glist (GedaNotifyList *list)
 
 int geda_notify_list_in_list (GedaNotifyList *list, void *func)
 {
-  change_notify *entry;
-  int     count;
-  int     index;
-  bool    answer;
+  bool answer;
 
   answer = FALSE;
 
   if (GEDA_IS_NOTIFY_LIST(list)) {
 
+    int count;
+    int index;
+
     count = g_list_length(list->glist);
 
     for ( index = 0; index < count; index++) {
+
+      change_notify *entry;
 
       entry = (change_notify *)g_list_nth_data(list->glist, index);
 
