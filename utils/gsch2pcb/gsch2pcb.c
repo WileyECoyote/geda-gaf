@@ -29,7 +29,7 @@
 
 #include <ctype.h>
 
-#define GSC2PCB_VERSION "1.10"
+#define GSC2PCB_VERSION "1.11"
 
 #define DEFAULT_PCB_INC    "pcb.inc"
 
@@ -528,7 +528,7 @@ pcb_element_line_parse (char * line)
 }
 
 static void
-pcb_element_free (PcbElement * el)
+pcb_element_free (PcbElement *el)
 {
   if (el) {
     GEDA_FREE (el->flags);
@@ -1070,17 +1070,21 @@ update_element_descriptions (char * pcb_file, char * bak)
     if (el->changed_description)
       ++n_fixed;
   }
+
   if (!pcb_element_list || n_fixed == 0) {
     fprintf (stderr, "Could not find any elements to fix.\n");
     return;
   }
+
   if ((f_in = fopen (pcb_file, "r")) == NULL)
     return;
   tmp = u_string_concat (pcb_file, ".tmp", NULL);
+
   if ((f_out = fopen (tmp, "wb")) == NULL) {
     fclose (f_in);
     return;
   }
+
   while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
     for (s = buf; *s == ' ' || *s == '\t'; ++s);
     if ((el = pcb_element_line_parse (s)) != NULL
@@ -1096,10 +1100,13 @@ update_element_descriptions (char * pcb_file, char * bak)
       printf ("%s: updating element Description: %s -> %s\n",
               el->refdes, el->description, el_exists->changed_description);
       el_exists->still_exists = TRUE;
-    } else
+    }
+    else {
       fputs (buf, f_out);
+    }
     pcb_element_free (el);
   }
+
   fclose (f_in);
   fclose (f_out);
 
@@ -1831,11 +1838,27 @@ int main (int argc, char **argv)
 
   GEDA_FREE (sch_basename);
 
-  if (schematics)
+  if (schematics) {
     u_glist_free_full(schematics, g_free);
+  }
 
-  if (pcb_element_list)
+  if (pcb_element_list) {
+
+    if (g_list_length(pcb_element_list)) {
+
+      /* This only occurs when running gsch2pcb with an existing
+       * PCB project and elements were added or replaced */
+
+      GList *list;
+
+      /* Free all allocated PcbElement structures in list */
+      for (list = pcb_element_list; list; list = g_list_next (list)) {
+        pcb_element_free(list->data);
+      }
+    }
+
     g_list_free(pcb_element_list);
+  }
 
   f_path_free();
 

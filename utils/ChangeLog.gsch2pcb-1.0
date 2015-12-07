@@ -1,5 +1,16 @@
 gsch2pcb Changelog
 ------------------
+1.11
+---------
+
+2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Free allocated PcbElement structures in global
+      pcb_element_list before exiting main. This only seems to be necessary
+      when running gsch2pcb is ran on an existing PCB project and elements
+      were added or replaced.
+
+------------------
 1.10.3
 ---------
 
