@@ -13,6 +13,8 @@ gsch2pcb Changelog
       Reduce scope of char *close_char, and integers state and elcount in
       function pcb_element_line_parse().
 
+      Removed unused definition of ElementMap structure.
+
 ------------------
 1.10.3
 ---------
