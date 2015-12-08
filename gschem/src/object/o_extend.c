@@ -262,12 +262,14 @@ static Object *o_extend_get_bounder_of_two_linears (Object *object1,
 {
   Object *bounder;
   POINT   point;
-  bool    has_slope1;
-  bool    has_slope2;
-  bool    included1;
-  bool    included2;
+
 
   if (o_line_get_intersection(object1, object2, &point)) {
+
+    bool has_slope1;
+    bool has_slope2;
+    bool included1;
+    bool included2;
 
     has_slope1 = o_get_has_slope(object1);
     has_slope2 = o_get_has_slope(object2);
@@ -453,7 +455,6 @@ static bool o_extend_can_arc_bound(Object  *boundary,
   }
   else {                          /* maybe, if not already crossing */
 
-    double dist1, dist2;
     double tmp_x, tmp_y;
 
     if (dx == 0) { /* Vertical = special, find y first*/
@@ -490,6 +491,8 @@ static bool o_extend_can_arc_bound(Object  *boundary,
 #endif
 
     if (D > 0) { /* Does the projectile intersect the circle twice? */
+
+      double dist1, dist2;
 
       answer = FALSE;
 
@@ -1120,7 +1123,6 @@ static bool o_extend_can_path_bound(Object *boundary,
     while (i < points->len) {
 
       POINT  intersect;
-      double distance;
       Line   line;
 
       line.x[0] = vertex.x;
@@ -1136,6 +1138,8 @@ static bool o_extend_can_path_bound(Object *boundary,
         if (!m_line_includes_point(projectile->line, &intersect)) {
 
           if (m_line_includes_point(&line, &intersect)) {
+
+            double distance;
 
             int x2   = intersect.x;
             int y2   = intersect.y;
@@ -1341,7 +1345,6 @@ static bool o_extend_can_circle_bound(Object  *boundary,
   }
   else {                           /* maybe, if not already crossing */
 
-    double dist1, dist2;
     POINT pt1;
     POINT pt2;
 
@@ -1405,6 +1408,8 @@ static bool o_extend_can_circle_bound(Object  *boundary,
 #endif
 
     if (D > 0) { /* Does the projectile intersect the circle twice? */
+
+      double dist1, dist2;
 
       answer = FALSE;
 
@@ -1710,7 +1715,7 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
     GList *projectiles;      /* list of objects that can be projected */
 
     int count_bounders;      /* length of the list bounders    */
-    int count_nonlinears;    /* length of the list nonlinears  */
+
     int count_projectiles;   /* length of the list projectiles */
 
     int most_hits;           /* index of record with the most hits */
@@ -1729,6 +1734,8 @@ Object *o_extend_get_bounder (GList *list, const POINT *point)
 
     /* This is a question of logistics more than mathmatics */
     if (count_bounders - count_projectiles > 0) {
+
+      int count_nonlinears;    /* length of the list nonlinears  */
 
       /* Get the list of objects that can not be projected */
       nonlinears       = o_extend_get_nonlinear(list);
@@ -1958,14 +1965,14 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
   GList  *iter;
   Object *target;
   bool    ret_val;
-  char    direction;
-  double  shortest;
-
-  int which_end;
-  int x;
-  int y;
 
   if (o_extend_is_valid_projectile (projectile)) {
+
+    double shortest;
+    char   direction;
+    int    which_end;
+    int    x;
+    int    y;
 
     ret_val = 2;
 
@@ -1981,7 +1988,6 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
 
     while (iter) {
 
-      int     closest_end;
       double  distance;
       Object *bounder;
 
@@ -1989,11 +1995,14 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
 
       if (bounder != projectile && o_extend_is_valid_bounder(bounder)) {
 
+        int closest_end;
+
         closest_end = o_extend_get_closest_end(projectile, bounder);
 
         if (which_end == closest_end) {
 
-          if (o_extend_can_hit_target(projectile, bounder, which_end, direction, &distance))
+          if (o_extend_can_hit_target(projectile, bounder, which_end,
+                                                  direction, &distance))
           {
             if (distance != G_MAXDOUBLE && distance < shortest) {
               target   = bounder;
@@ -2009,7 +2018,7 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
     if (target != NULL) {
       POINT point;
 
-      if (o_extend_can_bound (target, projectile, which_end, direction, &point))
+      if (o_extend_can_bound(target, projectile, which_end, direction, &point))
       {
         projectile->line->x[which_end] = point.x;
         projectile->line->y[which_end] = point.y;
@@ -2035,16 +2044,16 @@ int o_extend_blind (GschemToplevel *w_current, Object *projectile)
 
 int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
 {
-  int result;
   int status;
   GList *iter;
 
-  result = status = 0;
+  status = 0;
 
   for(iter = projectiles; iter; iter = iter->next) {
+
     Object *projectile = iter->data;
-    result = o_extend_blind(w_current, projectile);
-    if (result == 3) {
+
+    if (o_extend_blind(w_current, projectile) == 3) {
       status++;
     }
   }
@@ -2070,12 +2079,13 @@ int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
  */
 int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  int result;
   int status;
 
   Object *o_current = o_find_get_hit (w_current, w_x, w_y);
 
   if (o_current != NULL) {
+
+    int result;
 
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
@@ -2135,15 +2145,16 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
  */
 int o_extend_end (GschemToplevel *w_current, int x, int y)
 {
-  GList  *object_list;
-  Object *projectile;
-  Object *bounder;
-  int     count;
   int     status;
-
   Object *o_current = o_find_get_hit (w_current, x, y);
 
   if (o_current != NULL) {
+
+    GList  *object_list;
+    Object *bounder;
+    Object *projectile;
+
+    int count;
 
     object_list = geda_list_get_glist (Current_Selection);
     count       = g_list_length(object_list);
@@ -2183,7 +2194,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
       /* Can only get here if o_extend_selection returned false to
        * o_extend_interrogate because the current selection did not
-       * have a bounder (but the selection must have contain multible
+       * have a bounder (but the selection must have contain multiple
        * objects or o_extend_selection would not have been called.)
        * Therefore, o_current must be a bounder or we do nothing */
       if (o_extend_is_valid_bounder (o_current)) {
@@ -2219,14 +2230,14 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
 /*! \brief Project Selected objects
  *  \par Function Description
- *   Called when multible objects were selected when Project mode was
+ *   Called when multiple objects were selected when Project mode was
  *   initiated. Uses the object returned by o_extend_get_bounder as
  *   the boundary object and attempts to project all other objects to
  *   the boundary using o_extend_object if there was only one other
- *   object, or o_extend_object_list is there were more then three
- *   objects were selected. If the current selection does not contain
- *   a bounder, that is, a boundary for the other objects in current
- *   selection then the state is undeteminate and the function returns
+ *   object, or o_extend_object_list if ther were more than one other
+ *   object selected. If the current selection does not contain a
+ *   bounder, that is, a boundary for the other objects in the current
+ *   selection then the state is indeterminate and the function returns
  *   true to indicate that o_extend_end needs to be called after the
  *   user selects another object.
  *

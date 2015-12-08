@@ -1,3 +1,8 @@
+2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Reduce scope of many variables, eliminate variable
+      "result" in function o_extend_blind, revise comments o_extend_selection.
+
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Change underscore to hyphen in
