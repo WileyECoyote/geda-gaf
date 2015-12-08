@@ -3,6 +3,8 @@
     * scheme/gschem/gschem-tools-menu.scm: Change underscore to hyphen in
       appendages to filename; -gsymcheck.log, -bom.csv, -drc2, and -geda.net.
 
+    * src/base/gschem.c: Reduce scope of integer i in function load_documents.
+
 2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_color.c: Declare err_allocate_s1 and err_allocate_s1i1 as

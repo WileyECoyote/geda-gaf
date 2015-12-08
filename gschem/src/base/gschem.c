@@ -124,7 +124,6 @@ static void gschem_quit(void)
 static
 void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
-  int   i;
   int   load_last     = FALSE;
   int   page_loaded   = FALSE;
   char *cwd           = NULL;
@@ -148,6 +147,8 @@ void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *a
     GEDA_FREE(comline_tblock);
   }
   else {
+
+    int   i;
 
     /* Load any file listed on command-line */
     for (i = argv_index; i < argc; i++) {
