@@ -353,12 +353,11 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
   /* see libgeda/include/defines.h for flags */
   /*if the borders should be ignored always, remove, outcomment or changes
     the flags in the function-calls*/
-  /*	flags |= I_PAN_IGNORE_BORDERS;
-   */
+  /*	flags |= I_PAN_IGNORE_BORDERS; */
   /* think it's better that the zoomfactor is defined as pix/mills
      this will be the same as w_current->page_current->to_screen_x/y_constant*/
-  int zoom_max = 5;
-  int diff;
+
+
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
   g_return_if_fail (geometry != NULL);
@@ -387,6 +386,9 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
     zoom_new = zoom_min;
   }
   else {
+
+    int zoom_max = MAX_ZOOM_FACTOR;
+
     zoom_new = zoom_old * relativ_zoom_factor;
     zoom_new = zoom_new > zoom_max ? zoom_max : zoom_new;
     if (!(flags & I_PAN_IGNORE_BORDERS)) {
@@ -402,6 +404,9 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
 
   /* and put it back to the borders */
   if (!(flags & I_PAN_IGNORE_BORDERS)) {
+
+    int diff;
+
     /* check right border */
     if (geometry->viewport_right > geometry->world_right) {
       geometry->viewport_left += geometry->world_right - geometry->viewport_right;

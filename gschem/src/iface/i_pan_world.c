@@ -74,8 +74,6 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
   /* think it's better that the zoomfactor is defined as pix/mills
    *    this will be the same as w_current->page_current->to_screen_x/y_constant*/
-  int zoom_max = 5;
-  int diff;
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
 #if DEBUG
@@ -102,6 +100,9 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
     zoom_new = zoom_min;
   }
   else {
+
+    int zoom_max = MAX_ZOOM_FACTOR;
+
     zoom_new = zoom_old * relative_zoom_factor;
     zoom_new = zoom_new > zoom_max ? zoom_max : zoom_new;
     if (!(flags & I_PAN_IGNORE_BORDERS)) {
@@ -121,6 +122,9 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
   /* and put it back to the borders */
   if (!(flags & I_PAN_IGNORE_BORDERS)) {
+
+    int diff;
+
     /* check right border */
     if (toplevel->page_current->right > w_current->world_right) {
       toplevel->page_current->left += w_current->world_right -

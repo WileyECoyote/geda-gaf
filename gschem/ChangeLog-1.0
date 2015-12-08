@@ -3,7 +3,18 @@
     * scheme/gschem/gschem-tools-menu.scm: Change underscore to hyphen in
       appendages to filename; -gsymcheck.log, -bom.csv, -drc2, and -geda.net.
 
+    * include/gschem_idefines.h: New define MAX_ZOOM_FACTOR with value = 6,
+      (my eyes arent as good as they used to be).
+
     * src/base/gschem.c: Reduce scope of integer i in function load_documents.
+
+    * src/base/gschem_page_geometry.c: Reduce scope of diff and zoom_max in
+      function gschem_page_geometry_pan_general. Set zoom_max with new define
+      MAX_ZOOM_FACTOR rather than imbedding important integer in code.
+
+    * src/iface/i_pan_world.c: Reduce scope of diff and zoom_max, the same as
+      in gschem_page_geometry_pan_general. Set zoom_max with new define MAX_
+      ZOOM_FACTOR rather than imbedding such an important integer in code.
 
 2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
 
