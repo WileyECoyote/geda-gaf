@@ -29,7 +29,7 @@
 ;(define tools:gitclient "gitk")
 (define tools:gitclient "git gui")
 
-;; Define your preffer BOM backend here
+;; Define your preferred BOM backend here
 ;(define tools:bom "bom")
 ;(define tools:bom "bom2")
 (define tools:bom "partslist1")
@@ -112,7 +112,7 @@
 
 ;; ----------------- tools:check-symbol ----------------------------
 (define (tools:check-symbol)
-  (let  ((fout (string-append (tools:ifname) "_gsymcheck.log")))
+  (let  ((fout (string-append (tools:ifname) "-gsymcheck.log")))
     (if (tools:check-file "sym")
       (if (not (equal? 0
           (status:exit-val (system (string-append "gsymcheck -vv " (tools:ifpath) " >" fout)))))
@@ -144,7 +144,7 @@
 
 ;; ----------------- tools:run-drc2 ----------------------------
 (define (tools:run-drc2)
-  (let	((fout   (string-append (tools:ifbase) "_drc2.txt")))
+  (let	((fout   (string-append (tools:ifbase) "-drc2.txt")))
     (if (tools:check-file "sch")
       (begin
         (system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
@@ -163,7 +163,7 @@
 
 ;; ----------------- tools:run-bom ----------------------------
 (define (tools:run-bom)
-  (let  ((fout   (string-append (tools:ifbase) "_bom.csv")))
+  (let  ((fout   (string-append (tools:ifbase) "-bom.csv")))
     (if (tools:check-file "sch")
       (begin
         (system (string-append "gnetlist -g " tools:bom " -o " fout " " (tools:ifpath)))
@@ -176,7 +176,7 @@
 
 ;; ----------------- tools:geda-netlist -------------------------------
 (define (tools:geda-netlist)
-    (tools:sch-netlist-0 "geda" ".geda.net"))
+    (tools:sch-netlist-0 "geda" "-geda.net"))
 
 ;; ----------------- tools:spice-sdb-netlist --------------------------
 (define (tools:spice-sdb-netlist)
