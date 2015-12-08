@@ -53,12 +53,15 @@ SCM g_rc_color_map_to_scm (const COLOR *map)
 {
   SCM result = SCM_EOL;
   int i;
+
   for (i = MAX_COLORS - 1; i >= 0; i--) {
+
     SCM color_val = SCM_BOOL_F;
+
     if (map[i].enabled) {
-      COLOR c = map[i];
+      COLOR c    = map[i];
       char *rgba = u_color_rgba_encode (c.r, c.g, c.b, c.a);
-      color_val = scm_from_utf8_string (rgba);
+      color_val  = scm_from_utf8_string (rgba);
       g_free (rgba);
     }
     result = scm_cons (scm_list_2 (scm_from_int (i), color_val), result);
@@ -155,6 +158,7 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
     /* Get next element in map */
     curr = scm_cdr (curr);
   }
+
   scm_remember_upto_here_2 (wrong_type_arg_sym, proc_name);
 }
 

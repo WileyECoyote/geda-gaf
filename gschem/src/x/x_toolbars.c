@@ -323,7 +323,7 @@ static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* i
   char *filename= f_get_bitmap_filespec (TB_ICON_NAME(item->ButtonId));
 
   /* 1ST Try custom icon */
-  if(access(filename, R_OK) == 0) {
+  if (access(filename, R_OK) == 0) {
 
     pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
 
@@ -358,7 +358,9 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 
   /* 1ST Try custom icon */
   if(access(filename, R_OK) == 0) {
+
     pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+
     if (pixmap != NULL) {
       wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
     }
@@ -1012,7 +1014,7 @@ On_Dock_ToolBar(GedaHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseBut
 /*! @brief Toolbar On Float Handler to Show the Close Button */
 static void
 On_Float_ToolBar(GedaHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
-  geda_handle_box_set_shadow_type ( handlebox, GTK_SHADOW_ETCHED_IN );
+  geda_handle_box_set_shadow_type (handlebox, GTK_SHADOW_ETCHED_IN);
   gtk_widget_show (CloseButton);
 }
 
@@ -1808,8 +1810,8 @@ x_toolbars_activate_select (GschemToplevel *w_current)
 /*! \brief Set The Grid Radio
  *  \par Function Description
  *  This function should be called after construction of the main
- *  window to the correct button is pressed in for the grid_mode
- *  or anytime after the grid mode is changed programmatically.
+ *  window to insure the correct button is pressed in for the grid
+ *  _mode or anytime the grid mode is changed programmatically.
  *
  *  \param [in] w_current pointer to top-level data structure
  */

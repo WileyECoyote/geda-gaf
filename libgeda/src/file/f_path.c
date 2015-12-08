@@ -417,9 +417,9 @@ int f_path_create(const char *path, mode_t mode)
  *
  *  \par Function Description
  *   Returns directory portion of \a filepath. If \a filepath is
- * a directory a copy of \a filepath is returned. If \a filepath
- * has no directory components "." is returned. The returned
- * string should be freed when no longer needed.
+ *  a directory a copy of \a filepath is returned. If \a filepath
+ *  has no directory components "." is returned. The returned
+ *  string should be freed when no longer needed.
  *
  *  \param [in] filepath The filepath to search.
  *

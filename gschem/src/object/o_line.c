@@ -30,8 +30,8 @@
 
 /*! \brief Draw line from GschemToplevel object.
  *  \par Function Description
- *  This function draws a line with an exclusive or function over the sheet.
- *  The color of the box is <B>SELECT_COLOR</B>. The line is
+ *  This function draws a line with an exclusive or function over the
+ *  sheet. The color of the line is <B>SELECT_COLOR</B>. The line is
  *  described by the two points (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
  *

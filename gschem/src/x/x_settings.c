@@ -898,7 +898,8 @@ KEYWORD (component_dialog_attributes) {
       add_default_list = TRUE;
       show_all = TRUE;
     }
-  } else { /* is NULL so filtering is disabled */
+  }
+  else { /* is NULL so filtering is disabled */
     add_default_list = TRUE;
   }
 
@@ -938,8 +939,7 @@ KEYWORD (component_dialog_attributes) {
         while ( ASCII_NUL != *ptr++) { if ( *ptr == ASCII_CP) ++pc; } /* count close parenthesis   */
         while ( po > pc ) {                                          /* while count does not match */
           ptr = fgets(ptr_first_char, RC_INPUT_BUFFER_SIZE, input);  /* read in the next line  */
-          //ptr = ptr_first_char;                                    /* set point to beginning  */
-          while ( ASCII_NUL != *ptr++) {                          /* search the entire string */
+          while ( ASCII_NUL != *ptr++) {                             /* search the entire string */
             if ( *ptr == ASCII_CP) ++pc; }  /* while counting close parenthesis */
         }
         /* old list is gone, write a new one */

@@ -278,9 +278,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
     else { /* Can not access name_norm for reading */
 
       if(err != NULL) {
-        g_set_error(err, G_FILE_ERROR,
-                    g_file_error_from_errno (errno),
-                    "accessing file %s", name_norm);
+        g_set_error(err, G_FILE_ERROR, errno, "accessing file %s", name_norm);
       }
       else {
         fprintf(stderr, err_access, name_norm, strerror(errno));

@@ -358,7 +358,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         }
       }
 
-      if(changed_something) {
+      if (changed_something) {
         o_pin_set_attributes (object, olabel_str, onumber_str, osequence, oetype, omtype, ontype);
       }
 

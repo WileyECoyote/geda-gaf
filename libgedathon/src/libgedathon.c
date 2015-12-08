@@ -144,7 +144,7 @@ PyGeda_append_2_pylist(PyObject *pylist, Object *object) {
   PyObject *list;
   PyObject *capsule;
 
-  if ( pylist == NULL) {
+  if (pylist == NULL) {
     list = PyList_New(0);
   }
   else {
@@ -884,7 +884,7 @@ void initialize( API_FunctionTable* user_table)
   toplevel = geda_toplevel_new();
   toplevel->open_flags = 0;
   setup_source_library();
-  if(toplevel->always_promote_attributes == NULL ) {
+  if (toplevel->always_promote_attributes == NULL ) {
     for ( i = 0; promote_list[i]; i++) {
      apa_list = g_list_prepend(apa_list, u_string_strdup(promote_list[i]));
     }
@@ -1221,7 +1221,7 @@ PyGeda_open_page( const char *filename )
   /* Recover by switching back to Old or a create blank */
   inline void resolve_2_recover( const char *name ) {
     /* There was an error, try go back to old page */
-    if ( old_current != NULL ) {
+    if (old_current != NULL ) {
       s_page_goto (old_current);
     }
     else { /* There was error and no previous page */
@@ -1238,11 +1238,11 @@ PyGeda_open_page( const char *filename )
 
     old_current = toplevel->page_current; /* save fallback point */
 
-    if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
+    if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
       /* An existing filename was passed, see if already loaded */
 
       page = s_page_search (toplevel, filename);
-      if ( page == NULL ) {
+      if (page == NULL ) {
         GError *err = NULL;
         /* Problem: f_open needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
@@ -1280,8 +1280,8 @@ PyGeda_open_page( const char *filename )
          * don't know if base name is okay. Break down filespec and try
          * to sort out the problem:
          */
-        if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+        if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
+          if (f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             page = empty_page(filename);
             errno = NO_ERROR;
           }
@@ -1291,7 +1291,7 @@ PyGeda_open_page( const char *filename )
           }
         }
 
-        if( errno != NO_ERROR) {
+        if (errno != NO_ERROR) {
           const char   *homedir = g_getenv ("HOME"); /* does not allocate */
           if (!homedir) homedir = g_get_home_dir (); /* does not allocate */
             path = strcpy(&strbuff[0], homedir);
@@ -1344,7 +1344,7 @@ PyGeda_close_page(int pid)
       /* no up in hierarchy, choice is prev, next, new page */
       iter = g_list_find( geda_list_get_glist(toplevel->pages), page);
 
-      if ( g_list_previous( iter ) ) {
+      if (g_list_previous( iter ) ) {
         new_current = (Page *)g_list_previous( iter )->data;
       }
       else if (g_list_next (iter)) {
@@ -1403,7 +1403,7 @@ PyGeda_new_page( const char *filename, int over_write)
   char *command;
 
   if (filename) {
-    if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
+    if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
       if (toplevel->make_backup_files && !over_write) {
         command = u_string_concat("mv ", filename, " ", filename, ".bak", NULL);
       }
@@ -1464,7 +1464,7 @@ PyGeda_save_page( int pid )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
-    if ( !f_save (toplevel, page, page->filename, &err)) {
+    if (!f_save (toplevel, page, page->filename, &err)) {
       fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
       g_clear_error (&err);
       status++;
@@ -1518,7 +1518,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
   Page   *page   = NULL;
   int     status = 0;
 
-  if ( PyList_Check(py_page_list)) {
+  if (PyList_Check(py_page_list)) {
 
     int i;
     int count = (int) PyList_GET_SIZE(py_page_list);
@@ -1543,7 +1543,7 @@ PyGeda_save_all_pages( PyObject *py_page_list )
   while (iter) {
     page = iter->data;
     if (page && (GEDA_IS_PAGE(page))) {
-      if ( !f_save (toplevel, page, page->filename, &err)) {
+      if (!f_save (toplevel, page, page->filename, &err)) {
         fprintf(stderr, "Failed to save file <%s> Error: %s\n", page->filename, err->message);
         g_clear_error (&err);
         status++;
@@ -1588,7 +1588,7 @@ PyGeda_get_bounds( int pid, int sid )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if( sid < 0) {
+  if ( sid < 0) {
     list = s_page_get_objects(page);
     if (o_get_bounds_list (list, &left, &top, &right, &bottom)) {
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
@@ -1700,7 +1700,7 @@ PyGeda_get_objects( int pid, int sid )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if( sid < 0) {
+  if ( sid < 0) {
     list = s_page_get_objects (page);
   }
   else {
@@ -1771,7 +1771,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
             o_pin_realize_attributes(toplevel, parent);
           }
         }
-        if(parent->type == OBJ_COMPLEX) {
+        if (parent->type == OBJ_COMPLEX) {
             GList  *butes = parent->attribs;
             while (butes != NULL) {
               object = (Object *)butes->data;
@@ -1954,7 +1954,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     }
   }
   if (dest_list) {
-    if ( dx != -1 && dy != -1) {
+    if (dx != -1 && dy != -1) {
       o_list_translate(dest_list, dx, dy);
     }
 
@@ -2054,13 +2054,13 @@ PyGeda_delete_object( PyObject *py_object )
   Page       *page;
   const char *name;
 
-  if ( pid >= 0 ) {
+  if (pid >= 0 ) {
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
       if (GEDA_IS_OBJECT(object)) {
         name = PyString_AsString(geda_object->name);
-        if( strcmp(object->name, name) == 0){
+        if ( strcmp(object->name, name) == 0){
           s_page_remove_object(page, object);
         }
       }
@@ -2134,7 +2134,7 @@ PyGeda_sync_object( PyObject *py_object )
 
   Page       *page;
 
-  if ( pid >= 0 ) {
+  if (pid >= 0 ) {
     page   = geda_toplevel_get_page_by_id(toplevel, pid);
     if (GEDA_IS_PAGE(page)) {
       object = geda_page_get_object(page, sid);
@@ -2250,7 +2250,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
 
   object = o_bus_new(color, x1, y1, x2, y2, 0);
 
-  if(busname) { /* then create a text attribute for netname */
+  if (busname) { /* then create a text attribute for netname */
     Object *net_attrib;
     object->bus->bus_name  = u_string_strdup(busname);
     net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
@@ -2418,7 +2418,7 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   object = o_net_new(color, x1, y1, x2, y2);
 
   /* Set in the gobject so the memory will be freed later */
-  if(netname) { /* then create a text attribute for netname */
+  if (netname) { /* then create a text attribute for netname */
     Object *net_attrib;
     object->net->net_name  = u_string_strdup(netname);
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
@@ -2549,7 +2549,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
 
   object = o_pin_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
 
-  if(label)
+  if (label)
     object->pin->label = u_string_strdup(label);
   else
     object->pin->label = u_string_strdup("unknown");
@@ -2586,7 +2586,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
     }
   }
 
-  if(number)
+  if (number)
     object->pin->number = u_string_strdup(number);
   else
     object->pin->number = u_string_strdup("");
@@ -2724,7 +2724,7 @@ PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
   PyObject   *py_data     = NULL;
 
   /* Get a pointer to the parent object */
-  if(pid < 0) {
+  if (pid < 0) {
     parent = get_floating_object(sid);
   }
   else {
@@ -2734,9 +2734,9 @@ PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
 
   if (GEDA_IS_OBJECT(parent)) {
     attrib = o_attrib_find_attrib_by_name (parent->attribs, name, 0);
-    if(attrib){
+    if (attrib){
 #if DEBUG
-      if(attrib->page == NULL && page != NULL) {
+      if (attrib->page == NULL && page != NULL) {
         fprintf(stderr, "PyGeda_get_attrib: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
                 attrib->name, parent->name, parent->complex->filename, pid);
         attrib->page = page;
@@ -2747,9 +2747,9 @@ PyObject *PyGeda_get_attrib( PyObject *py_object, const char *name)
     else {
       GList *all_butes = o_attrib_return_attribs(parent);
       attrib = o_attrib_find_attrib_by_name (all_butes, name, 0);
-      if(attrib){
+      if (attrib){
 #if DEBUG
-        if(attrib->page == NULL && page != NULL) {
+        if (attrib->page == NULL && page != NULL) {
           fprintf(stderr, "PyGeda_get_attrib: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
                   attrib->name, parent->name, parent->complex->filename, pid);
           attrib->page = page;
@@ -2788,7 +2788,7 @@ PyGeda_get_attribs( PyObject *py_object )
   GList      *iter;
 
   /* Get pointer to the parent object */
-  if(pid < 0) {
+  if (pid < 0) {
     parent = get_floating_object(sid);
   }
   else {
@@ -2798,13 +2798,13 @@ PyGeda_get_attribs( PyObject *py_object )
 
   if (GEDA_IS_OBJECT(parent)) {
     attribs = parent->attribs;
-    if(attribs){
+    if (attribs){
       iter = g_list_first(attribs);
       output_list = PyList_New(0);
       while(iter != NULL) {
         Object *object = GEDA_OBJECT(iter->data);
 #if DEBUG
-        if(object->page == NULL && page != NULL) {
+        if (object->page == NULL && page != NULL) {
           fprintf(stderr, "PyGeda_get_attribs: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
                   object->name, parent->name, parent->complex->filename, pid);
         }
@@ -2856,7 +2856,7 @@ PyObject *PyGeda_set_attrib( PyObject *py_complex, PyObject *py_attrib,
     sid = geda_attrib->sid;
   }
   if (sid != -1) {
-    if(pid < 0) {
+    if (pid < 0) {
       object = get_floating_object(sid);
     }
     else {
@@ -2998,7 +2998,7 @@ PyGeda_get_network( int pid, int sid, int filter )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if( sid >= 0) {
+  if ( sid >= 0) {
 
     object = s_page_get_object(page, sid);
 
