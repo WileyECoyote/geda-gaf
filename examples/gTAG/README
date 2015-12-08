@@ -45,3 +45,4 @@ The distribution of the schematics of gTAG should consist of:
   - commonrc - contains common declarations for both gschem and gnetlist
   - gnetlistrc - gnetlist specific and and calls commonrc
   - gschemrc   - gschem specific and and calls commonrc
+

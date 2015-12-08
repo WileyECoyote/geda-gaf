@@ -1,3 +1,46 @@
+2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
+
+    *gTAG/sht/: Update sheet symbols in gTAG example; add missing attributes
+     for pin types, refdes, device, footprint, and description as needed to
+     comply with gsymcheck:
+
+          * gTAG/sht/copyleft.sym
+          * gTAG/sht/gTAG-consio.sym
+          * gTAG/sht/gTAG-jtagio.sym
+          * gTAG/sht/gTAG-psu.sym
+          * gTAG/sht/gTAG-ucont.sym
+
+2015-12-06  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/sch/gTAG-consio.sch: Add value=SN75240PWR to U40 and changed the
+      footprint from DIP8 to TSSOP8, was the only thru-hole IC, now all are
+      SMD.
+
+    * gTAG/sch/gTAG-jtagio.sch: Update foot-print for CONN4 from conn_jtag
+      to CONN_JTAG, which should maybe should be called CONN_JTAG-8.
+
+    * gTAG/sch/gTAG-psu.sch: Reposition attributes to improve appearance.
+
+    * gTAG/sch/gTAG-ucont.sch: Remove foot-print attribute for J1 so the
+      foot-print in the symbol is used, effectively updating the foot-print
+      from JUMPER2 to JUMPER-2.
+
+2015-11-30  Wiley E. Hill <wileyhill@gmail.com>
+
+    * lightning_detector/bom: Update Terry's script: Change "uref" to
+      "refdes" and corresponding char count=7.
+
+    * lightning_detector/sym/2N4401.sym: Add pin type and label attributes.
+
+    * lightning_detector/sym/2N4403.sym: Add pin type and label attributes.
+
+    * lightning_detector/sym/.gitignore: remove file, not needed.
+
+    * lightning_detector/lightning.sch: Update in-1.sym, add attribure nobom
+      to io symbols, is in bad shape.
+
+    * RF_Amp/sym/Q_Model.sym: Add pin type and label attributes.
+
 2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/.sch increase font sizes and regenerated .ps files.

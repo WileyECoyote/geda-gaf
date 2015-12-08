@@ -51,6 +51,8 @@ netname=usb_io-
 }
 C 54100 58000 1 0 0 gTAG-ucont.sym
 {
+T 55085 60100 5 10 1 1 0 0 1
+description=USB Controller
 T 54400 60100 5 10 1 1 0 0 1
 refdes=S1
 T 54900 57700 5 14 1 1 0 0 1
