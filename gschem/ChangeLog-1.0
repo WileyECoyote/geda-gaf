@@ -3,6 +3,19 @@
     * src/object/o_extend.c: Reduce scope of many variables, eliminate variable
       "result" in function o_extend_blind, revise comments o_extend_selection.
 
+    * gschem/src/guile/g_funcs.c: Reduce scope of integers use_color and invert
+      in function g_funcs_common_image.
+
+    * src/guile/g_keys.c: Reduce scope of integer caps in g_keys_dump_keymap.
+
+    * src/object/o_arc.c: Reduce scope of integers diff_x, diff_y, angle_deg
+      in funcion o_arc_invalidate_rubber.
+
+    * src/object/o_attrib.c: Reduce scope of offset in o_attrib_add_attrib.
+
+    * src/object/o_edit.c: Reduce scope of diff_x and diff_y in function
+      o_line_invalidate_rubber.
+
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Change underscore to hyphen in

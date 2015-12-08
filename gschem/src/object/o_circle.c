@@ -175,12 +175,12 @@ void o_circle_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_circle_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  int diff_x, diff_y;
-
   if (w_current->inside_action == 0) {
     BUG_MSG("Not inside action");
   }
   else {
+
+    int diff_x, diff_y;
 
     /* erase the previous temporary circle if it is visible */
     if (w_current->rubber_visible)

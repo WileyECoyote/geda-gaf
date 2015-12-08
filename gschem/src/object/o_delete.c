@@ -61,9 +61,11 @@ void o_delete_selected (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel   = w_current->toplevel;
   SELECTION    *selection  = Top_Selection;
-  unsigned int  locked_num = 0;
+
 
   if (o_select_is_selection (w_current)) {
+
+    unsigned int locked_num = 0;
 
     GList *to_remove = g_list_copy (geda_list_get_glist (selection));
     GList *iter      = to_remove;

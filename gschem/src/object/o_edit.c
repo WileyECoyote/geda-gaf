@@ -1023,11 +1023,14 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
 
   while (iter) {
 
-    int cur_x, cur_y, dx, dy;
+    int cur_x, cur_y;
 
     Object *object = (Object *)iter->data;
 
     if (o_get_position(object, &cur_x, &cur_y)) {
+
+      int dx, dy;
+
       dx = snap_grid (w_current, cur_x) - cur_x;
       dy = snap_grid (w_current, cur_y) - cur_y;
 

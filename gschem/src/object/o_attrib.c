@@ -270,7 +270,6 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   int angle;
   int color;
   int left, right, top, bottom;
-  int offset;
 
   Object *new_obj;
 
@@ -285,6 +284,8 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
   /* creating a toplevel or unattached attribute */
   if (parent) {
+
+    int offset;
 
     color = ATTRIBUTE_COLOR;
 

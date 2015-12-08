@@ -183,8 +183,6 @@ void o_bus_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  int diff_x, diff_y;
-
   if (w_current->inside_action == 0) {
     BUG_MSG("Not inside action");
   }
@@ -198,12 +196,16 @@ void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
 
     /* If you press the control key then you can draw non-ortho bus */
     if (!w_current->CONTROLKEY) {
+
+      int diff_x, diff_y;
+
       diff_x = abs(w_current->second_wx - w_current->first_wx);
       diff_y = abs(w_current->second_wy - w_current->first_wy);
 
       if (diff_x >= diff_y) {
         w_current->second_wy = w_current->first_wy;
-      } else {
+      }
+      else {
         w_current->second_wx = w_current->first_wx;
       }
     }

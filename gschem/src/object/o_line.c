@@ -155,8 +155,6 @@ void o_line_invalidate_rubber (GschemToplevel *w_current)
  */
 void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  int diff_x, diff_y;
-
   if (w_current->inside_action) {
 
     if (w_current->rubber_visible)
@@ -173,6 +171,8 @@ void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
 
     /* if the control key was pressed then draw ortho lines */
     if (w_current->CONTROLKEY) {
+
+      int diff_x, diff_y;
 
       diff_x = abs(w_current->second_wx - w_current->first_wx);
       diff_y = abs(w_current->second_wy - w_current->first_wy);

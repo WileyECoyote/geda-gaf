@@ -40,10 +40,10 @@ SCM  g_funcs_common_image(SCM scm_filename, const char *func, const char *type)
 
   GschemToplevel *w_current = g_current_window ();
 
-  int use_color = 0;
-  int invert    = 0;
-
   if (w_current) {
+
+    int use_color = 0;
+    int invert    = 0;
 
     if (output_filename) {
 

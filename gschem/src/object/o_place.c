@@ -226,11 +226,12 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  int diff_x, diff_y;
   int left,     top,   bottom,   right;
   int s_left, s_top, s_bottom, s_right;
 
   if (toplevel->page_current->place_list != NULL) {
+
+    int diff_x, diff_y;
 
     /* If drawing is true, then don't worry about the previous drawing
      * method and movement constraints, use with the current settings */

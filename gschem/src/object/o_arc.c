@@ -223,15 +223,15 @@ void o_arc_invalidate_rubber (GschemToplevel *w_current)
 void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   int grip = w_current->which_grip;
-  int diff_x, diff_y, angle_deg;
+  int diff_x, diff_y;
 
   /* erase the previous temporary arc */
   if (w_current->rubber_visible)
     o_arc_invalidate_rubber (w_current);
 
   if (grip == ARC_RADIUS) {
-    /*
-     * The radius is taken as the largest distance on the x and y
+
+    /* The radius is taken as the largest distance on the x and y
      * axis between the center of the arc and the mouse position.
      */
     diff_x = abs(w_current->first_wx - snap_grid (w_current, w_x));
@@ -240,6 +240,8 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
     w_current->distance = max(diff_x, diff_y);
   }
   else if ((grip == ARC_START_ANGLE) || (grip == ARC_END_ANGLE)) {
+
+    int angle_deg;
 
     /* compute the angle */
     diff_x = w_x - w_current->first_wx;
@@ -254,7 +256,8 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
 
     case ARC_END_ANGLE:
       w_current->second_wy = (((angle_deg + 360) % 360) -
-                              w_current->second_wx + 360) % 360;
+      w_current->second_wx + 360) % 360;
+
       if (w_current->which_object->arc->arc_sweep < 0)
         w_current->second_wy = w_current->second_wy - 360;
       if (w_current->second_wy == 0)

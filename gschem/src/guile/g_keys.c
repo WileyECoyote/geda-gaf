@@ -449,7 +449,7 @@ GArray *g_keys_dump_keymap (void)
 int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 {
   SCM s_retval, s_key, s_expr;
-  unsigned int key, mods, upper, lower, caps;
+  unsigned int key, mods, upper, lower;
   GdkDisplay *display;
   GdkKeymap *keymap;
   GdkModifierType consumed_modifiers;
@@ -473,7 +473,11 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
   /* Handle Caps Lock. The idea is to obtain the same keybindings
    * whether Caps Lock is enabled or not. */
   if (upper != lower) {
+
+    int caps;
+
     caps = gdk_keymap_get_caps_lock_state (keymap);
+
     if ((caps && (key == lower)) || (!caps && (key == upper))) {
       mods |= GDK_SHIFT_MASK;
     }
