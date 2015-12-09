@@ -1,13 +1,21 @@
 v 20151204 2
 C 52500 58200 0 0 0 title-A4.sym
-T 57400 59000 9 10 1 0 0 0 1
-LIGHTNING DETECTOR
-T 61100 58300 9 12 1 0 0 0 1
-techman@dingoblue.net.au
+{
+T 57400 59000 9 10 1 1 0 0 1
+sheet-title=LIGHTNING DETECTOR
+T 61000 58300 9 12 1 1 0 0 1
+sheet-drawnby=techman@dingoblue.net.au
 T 61000 58600 9 10 1 0 0 0 1
-1.01
-T 57200 58600 9 10 1 0 0 0 1
-lightning.sch
+0.1.5
+T 57200 58600 9 10 1 1 0 0 1
+sheet-filename=lightning.sch
+T 56600 59400 8 10 1 1 0 0 1
+sheet-drawncomment=PRELIMINARY ENGINEERING
+T 57400 58300 9 10 1 1 0 0 1
+sheet-number=1
+T 58900 58300 9 10 1 1 0 0 1
+sheet-pagetot=1
+}
 C 53300 60300 1 90 0 inductor-1.sym
 {
 T 53000 60800 5 10 1 1 0 6 1

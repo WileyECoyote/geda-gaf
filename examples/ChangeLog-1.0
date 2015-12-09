@@ -2,7 +2,9 @@
 
     * lightning_detector/lightning.sch: Major cleaning; adjust attribute
       positions visibilities, add missing foot print to coincide with
-      patterns in PCB file.
+      patterns in PCB file. Revise title block test moving floating text
+      to attribute of the title block, add sheet number, total sheets,
+      and comment=PRELIMINARY ENGINEERING.
 
     * lightning_detector/lightning-bom.csv: Updade, notice the footprints,
       which renamed the file; lightning_bom.csv->lightning-bom.csv.
