@@ -1,5 +1,13 @@
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
 
+    * lightning_detector/lightning.sch: Major cleaning; adjust attribute
+      positions visibilities, add missing foot print to coincide with
+      patterns in PCB file.
+
+    * lightning_detector/sym/: Swap pin 1 and 3, JEDEC TO-92 pin is emitter.
+
+2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
+
     * gTAG/test: Add tests for example to insure changes in software or
       library symbols have not impacted the example. Tries to keep test
       as simple as possible, but...
