@@ -1,8 +1,8 @@
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
-    *gTAG/sht/: Update sheet symbols in gTAG example; add missing attributes
-     for pin types, refdes, device, footprint, and description as needed to
-     comply with gsymcheck:
+    * gTAG/sht/: Update sheet symbols in gTAG example; add missing attributes
+      for pin types, refdes, device, footprint, and description as needed to
+      comply with gsymcheck:
 
           * gTAG/sht/copyleft.sym
           * gTAG/sht/gTAG-consio.sym

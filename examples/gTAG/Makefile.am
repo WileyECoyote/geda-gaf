@@ -5,10 +5,11 @@ example_DATA =  attribs \
 				gafrc \
 				gnetlistrc \
 				gTAG.sch \
+				gTAG-drc2.txt \
 				gTAG-pcb.net \
 				README \
 				bom/gTAG.bom \
-				bom/gTAG_bom.csv \
+				bom/gTAG-bom.csv \
 				ps/gTAG.ps \
 				ps/gTAG-consio.ps \
 				ps/gTAG-jtagio.ps \
