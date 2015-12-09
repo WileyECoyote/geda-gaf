@@ -1,4 +1,4 @@
-2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/lightning.sch: Major cleaning; adjust attribute
       positions visibilities, add missing foot print to coincide with
@@ -9,6 +9,10 @@
 
     * lightning_detector/lightning-drc2.txt: Regenerated, which renamed the
       file; lightning_drc2.txt->lightning-drc2.txt.
+
+    * lightning_detector/lightning.pcb: Redue layout with footprints using
+      old layout as staring point. Tried to make minimal change but bourns
+      pot required pushing some components around, mostly the same.
 
     * lightning_detector/sym/: Swap pin 1 and 3, JEDEC TO-92 pin is emitter.
 
