@@ -56,7 +56,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_IMAGE_HEIGHT    600
 
 /*--------- Display Category --------- */
-
+#define MAX_ZOOM_FACTOR         6
 #define ZOOM_EXTENTS_PADDING_PX 5
 
 /* For Grid */

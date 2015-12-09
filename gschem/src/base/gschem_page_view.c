@@ -28,6 +28,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkmarshal.h>
 #include <math.h>
+
 #include <geda_debug.h>
 
 /** \defgroup Gschem-Page-View Gschem Page View
@@ -816,9 +817,10 @@ void gschem_page_view_pan_start (GschemPageView *view, int x, int y)
 void
 gschem_page_view_pan_motion (GschemPageView *view, int mousepan_gain, int x, int y)
 {
-  int pdiff_x, pdiff_y;
-
   if (view->doing_pan) {
+
+    int pdiff_x, pdiff_y;
+
     pdiff_x = x - view->pan_x;
     pdiff_y = y - view->pan_y;
 
@@ -852,6 +854,7 @@ gschem_page_view_pan_end (GschemPageView *view)
     gschem_page_view_invalidate_all (view);
 
     view->doing_pan = FALSE;
+
     return TRUE;
   }
   else {
@@ -908,6 +911,7 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
   view->hadjustment = hadjustment;
 
   if (view->hadjustment != NULL) {
+
     g_object_ref (view->hadjustment);
 
     g_signal_connect (G_OBJECT (view->hadjustment),
@@ -963,7 +967,6 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
     g_signal_handlers_disconnect_by_func (G_OBJECT (view->vadjustment),
                                           G_CALLBACK (vadjustment_value_changed),
                                           view);
-
     g_object_unref (view->vadjustment);
   }
 
@@ -1044,7 +1047,6 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
   }
 }
 
-
 /*! \brief Get absolute SCREEN value
  *
  * \par Function Description
@@ -1079,9 +1081,6 @@ gschem_page_view_SCREENabs(GschemPageView *view, int val)
 
   return(j);
 }
-
-
-#include <math.h>
 
 /*! \brief Update the horizontal scroll adjustment
  */
@@ -1250,14 +1249,15 @@ vadjustment_value_changed (GtkAdjustment *vadjustment, GschemPageView *view)
     g_return_if_fail (view != NULL);
 
     if (view->vadjustment != NULL) {
-      int current_bottom;
-      int new_bottom;
 
       g_return_if_fail (view->vadjustment == vadjustment);
 
       GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
 
       if (geometry != NULL) {
+
+        int current_bottom;
+        int new_bottom;
 
         current_bottom = geometry->viewport_bottom;
         new_bottom = geometry->world_bottom - (int) vadjustment->value;
@@ -1335,11 +1335,11 @@ gschem_page_view_zoom_text (GschemPageView *view, Object *object)
 {
   int x[2];
   int y[2];
-  int viewport_center_x, viewport_center_y, viewport_width, viewport_height;
-  double k;
 
   g_return_if_fail (view != NULL);
+
   GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
+
   g_return_if_fail (geometry != NULL);
 
   g_return_if_fail (object != NULL);
@@ -1348,6 +1348,9 @@ gschem_page_view_zoom_text (GschemPageView *view, Object *object)
   g_return_if_fail (object->text != NULL);
 
   if (o_get_bounds (object, &x[0], &y[0], &x[1], &y[1])) {
+
+    int viewport_center_x, viewport_center_y, viewport_width, viewport_height;
+    double k;
 
     /* Here we are trying to make the text screen height to be about */
     /* 50 pixels high, perhaps a future enhancement will be to make */

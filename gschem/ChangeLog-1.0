@@ -6,6 +6,10 @@
     * gschem/src/guile/g_funcs.c: Reduce scope of integers use_color and invert
       in function g_funcs_common_image.
 
+    * src/base/gschem_page_view.c: Reduce scope of pdiff_x, pdiff_y, new_bottom
+      current_bottom, viewport_center_x, viewport_center_y, viewport_width, k,
+      and viewport_heigh. Remove extraneous include math.h.
+
     * src/guile/g_keys.c: Reduce scope of integer caps in g_keys_dump_keymap.
 
     * src/object/o_arc.c: Reduce scope of integers diff_x, diff_y, angle_deg
@@ -13,8 +17,22 @@
 
     * src/object/o_attrib.c: Reduce scope of offset in o_attrib_add_attrib.
 
+    * src/object/o_bus.c: Reduce scope of integers diff_x and  diff_y in
+      funcion o_bus_motion.
+
+    * src/object/o_circle.c: Reduce scope of integers diff_x and  diff_y in
+      funcion o_circle_motion.
+
+    * src/object/o_delete.c: Reduce scope of integer locked_num in o_delete.
+
+    * src/object/o_line.c: Reduce scope of integers diff_x and  diff_y in
+      funcion o_line_motion.
+
     * src/object/o_edit.c: Reduce scope of diff_x and diff_y in function
-      o_line_invalidate_rubber.
+      o_edit_snap.
+
+    * src/object/o_place.c: Reduce scope of diff_x and diff_y in function
+      o_place_motion.
 
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
