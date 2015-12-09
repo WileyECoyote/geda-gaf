@@ -17,10 +17,7 @@ tests:
 
 tester:
 	mv $(srcdir)/tmp/lpfilter.sch $(BUILDDIR)/lpfilter.sch
-	rm -f  $(BUILDDIR)/tmp/sym/*
-	rm -rf $(BUILDDIR)/tmp/sym
-	rm -r  $(BUILDDIR)/tmp/*
-	rm -r  $(BUILDDIR)/tmp
+	rm -rf $(BUILDDIR)/tmp
 
 update-gsymcheck:
 	(cd $(top_builddir)/gsymcheck/src && $(MAKE) $(AM_MAKEFLAGS) all);
@@ -29,6 +26,9 @@ uninstall-hook:
 	@(test -d geda && rm -rf geda) || : ;
 
 .PHONY: update-gsymcheck
+
+clean-local:
+	test -d tmp && rm -rf tmp || : ;
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

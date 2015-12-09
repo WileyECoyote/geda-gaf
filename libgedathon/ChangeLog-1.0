@@ -1,3 +1,9 @@
+2015-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/Makefile.am: Add clean local to remove tmp directory if
+      was stranded during an aborted test run or debugging. Simply
+      removal when regenerating the reference.
+
 2015-12-05  Wiley E. Hill <wileyhill@gmail.com>
 
     * libgedathon/module/geda.c: Revise comments.
