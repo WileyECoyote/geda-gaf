@@ -45,6 +45,9 @@ dist-hook: tests.list backends.list
 	  done; \
 	done;
 
+clean-local:
+	test -d run && rm -rf run || : ;
+
 MOSTLYCLEANFILES     = core *.log FILE *.ps *~
 CLEANFILES           = core *.log FILE *.ps *~
 DISTCLEANFILES       = core *.log FILE *.ps *~

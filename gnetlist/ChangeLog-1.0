@@ -1,3 +1,8 @@
+2015-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/Makefile.am: Add clean local to remove run directory if
+      was stranded during an aborted test run.
+
 2015-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Change "Found a cpinlist head with a netname"
