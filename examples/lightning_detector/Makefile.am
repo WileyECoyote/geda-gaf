@@ -6,6 +6,7 @@ nobase_example_DATA = \
 		lightning_detector.pcb \
 		lightning_detector.sch \
 		lightning_detector.sch.bom  \
+		revision-history.txt \
 		sym/2N4401.sym sym/2N4403.sym
 
 EXTRA_DIST = $(nobase_example_DATA)
