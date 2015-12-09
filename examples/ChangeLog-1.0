@@ -16,6 +16,9 @@
 
     * lightning_detector/sym/: Swap pin 1 and 3, JEDEC TO-92 pin is emitter.
 
+    * lightning_detector/: Rename files to match example directory name, i.e.
+      lightning->lightning_detector.
+
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/test: Add tests for example to insure changes in software or
