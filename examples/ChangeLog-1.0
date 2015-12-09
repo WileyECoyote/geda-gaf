@@ -4,6 +4,12 @@
       positions visibilities, add missing foot print to coincide with
       patterns in PCB file.
 
+    * lightning_detector/lightning-bom.csv: Updade, notice the footprints,
+      which renamed the file; lightning_bom.csv->lightning-bom.csv.
+
+    * lightning_detector/lightning-drc2.txt: Regenerated, which renamed the
+      file; lightning_drc2.txt->lightning-drc2.txt.
+
     * lightning_detector/sym/: Swap pin 1 and 3, JEDEC TO-92 pin is emitter.
 
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
