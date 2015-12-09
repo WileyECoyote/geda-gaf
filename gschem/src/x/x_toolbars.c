@@ -400,6 +400,14 @@ static void x_toolbars_execute(GtkWidget* widget, GschemToplevel* w_current)
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
 }
 
+/*! \brief Preload Toolbar Button Icons
+ *
+ *  \par Function Description
+ *  This function iterates over the ToolbarStrings structure, calling
+ *  x_icons_get_action_icon with the action field, saving the returned
+ *  pointer to the icon field, failing that, either get_pixmap or a gtk
+ *  stock is sought based on iflag.
+ */
 static void x_toolbars_load_icons( GschemToplevel* w_current)
 {
 
