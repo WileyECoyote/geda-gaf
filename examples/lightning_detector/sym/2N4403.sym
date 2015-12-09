@@ -1,4 +1,4 @@
-v 20091004 2
+v 20151204 2
 V 600 500 300 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 L 300 500 500 500 3 0 0 0 -1 -1
 L 500 700 500 300 3 0 0 0 -1 -1
@@ -18,7 +18,7 @@ pinseq=1
 T 750 850 5 8 1 1 0 1 1
 pinlabel=C
 T 750 1000 5 8 0 1 0 2 1
-pintype=pas
+pintype=oc
 }
 P 700 300 700 0 1 0 1
 {
@@ -29,7 +29,7 @@ pinseq=3
 T 650 100 5 8 1 1 0 7 1
 pinlabel=E
 T 750 0 5 8 0 1 0 2 1
-pintype=pas
+pintype=oe
 }
 P 300 500 0 500 1 0 1
 {
@@ -39,6 +39,16 @@ T 200 600 5 10 0 1 0 6 1
 pinseq=2
 T 200 400 5 8 1 1 0 7 1
 pinlabel=B
-T 0 450 5 8 0 1 0 8 1
-pintype=pas
+T 100 450 5 8 0 1 0 8 1
+pintype=in
 }
+T 1094 1200 5 10 1 1 0 0 1
+value=2N4403
+T 1094 1400 9 10 0 1 0 0 1
+footprint=TO-92
+T 1094 1600 5 10 0 1 0 0 1
+device=PNP_TRANSISTOR
+T 1094 1800 5 10 0 1 0 0 1
+device=PNP Transistor,TO-92,40V,600mA
+T 1094 1000 8 10 1 1 0 0 1
+refdes=Q?

@@ -16,7 +16,11 @@
       fail distcheck if modifications to the source electrically altered the
       netlist of the example.
 
-2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
+    * lightning_detector/sym/: Add missing attributes for pin types, refdes,
+      device, footprint, and description as needed to comply with gsymcheck:
+
+          * lightning_detector/sym/2N4401.sym
+          * lightning_detector/sym/2N4403.sym
 
     * gTAG/gTAG-drc2.txt: Rename file replacing underscore with hyphen.
 
