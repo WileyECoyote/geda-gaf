@@ -1,3 +1,5 @@
+SUBDIRS = tests
+
 exampledir = $(docdir)/examples/gTAG/
 
 example_DATA =  attribs \
@@ -6,6 +8,7 @@ example_DATA =  attribs \
 				gnetlistrc \
 				gTAG.sch \
 				gTAG-drc2.txt \
+				gTAG-geda.net \
 				gTAG-pcb.net \
 				README \
 				bom/gTAG.bom \
@@ -31,6 +34,9 @@ example_DATA =  attribs \
 				sym/SN75240PW-gt.sym
 
 EXTRA_DIST = ChangeLog-1.0 $(example_DATA)
+
+clean-local:
+	test -d gEDA && rm -rf gEDA || : ;
 
 MOSTLYCLEANFILES     = *.log *~
 CLEANFILES           = *.log *~

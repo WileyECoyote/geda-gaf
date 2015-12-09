@@ -1,5 +1,23 @@
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
 
+    * gTAG/test: Add tests for example to insure changes in software or
+      library symbols have not impacted the example. Tries to keep test
+      as simple as possible, but...
+
+    * gTAG/tests/Makefile.am: Mostly minimal automake file.
+
+    * gTAG/tests/runtest.sh: Shell script to setup mini-install environment
+      for gnetlist, gsymcheck, and libgeda and check all of the symbols
+      found in the example directory are pass and gsymcheck and the schematic
+      passes drc2. The GEDA net list is extracted and compared to a reference
+      in the test subdirectory.
+
+    * gTAG/tests/gTAG-geda.net: The reference net list file, the intent is to
+      fail distcheck if modifications to the source electrically altered the
+      netlist of the example.
+
+2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
+
     * gTAG/gTAG-drc2.txt: Rename file replacing underscore with hyphen.
 
     * bom/gTAG-bom.csv: Rename file replacing underscore with hyphen.

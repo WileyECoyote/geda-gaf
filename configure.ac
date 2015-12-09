@@ -404,6 +404,7 @@ AC_CONFIG_FILES([Makefile
 
                  examples/Makefile
                  examples/gTAG/Makefile
+                 examples/gTAG/tests/Makefile
                  examples/lightning_detector/Makefile
                  examples/RF_Amp/Makefile
                  examples/RF_Amp/model/Makefile
