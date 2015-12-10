@@ -15,7 +15,7 @@ EXTRA_DIST    = $(nobase_example_DATA) \
 		tests/lightning_detector-geda.net \
 		tests/runtest.sh
 
-RUN_TESTS     =	/tests/runtest.sh
+RUN_TESTS     =	tests/runtest.sh
 
 check_SCRIPTS = tests
 

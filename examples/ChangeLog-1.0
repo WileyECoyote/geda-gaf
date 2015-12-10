@@ -1,3 +1,13 @@
+2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/Makefile.am: Revised like the new scheme used for lightening
+      detector, i.e without a Makefile in the tests subdirectory and more
+      significantly a reference int configure.ac.
+
+    * gTAG/tests/Makefile.am: Remove file.
+
+    * gTAG/tests/runtest.sh: remove step up to example, aka "cd .."
+
 2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/Makefile.am: Add test, similar to the test added

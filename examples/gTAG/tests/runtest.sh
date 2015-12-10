@@ -54,7 +54,6 @@ else
 fi
 
 cd $SRCDIR
-cd ..
 
 SRCDIR=$PWD
 
