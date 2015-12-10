@@ -33,7 +33,7 @@
 #endif
 #include <dirent.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 #include <geda_debug.h>
 

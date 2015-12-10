@@ -31,7 +31,7 @@
 #include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /**   \defgroup Libgeda-RC-Handlers Libgeda RC Handlers
  *  @{\par

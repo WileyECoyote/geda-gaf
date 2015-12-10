@@ -40,7 +40,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 static GObjectClass *geda_path_parent_class = NULL;
 

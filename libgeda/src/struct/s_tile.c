@@ -27,7 +27,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include <geda_debug.h>
 
 /*! \file s_tile.c

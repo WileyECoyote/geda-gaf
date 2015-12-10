@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Queries the bounds of a complex object
  *

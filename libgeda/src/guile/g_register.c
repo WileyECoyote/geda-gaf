@@ -21,7 +21,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief */
 static struct gsubr_t rc_func_table[] = {

@@ -1,3 +1,7 @@
+2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>.
+
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise function geda_notify_list_copy_glist reducing

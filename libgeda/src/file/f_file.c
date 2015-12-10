@@ -42,7 +42,7 @@
 # include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! /comment: The functions in f_basic.c are mostly application
  *  specific so this file was created for basic non-application

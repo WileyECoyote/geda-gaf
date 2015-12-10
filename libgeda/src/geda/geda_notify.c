@@ -46,7 +46,7 @@
 #include <config.h>
 
 #include <glib-object.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 static GObjectClass *geda_notify_list_parent_class = NULL;
 

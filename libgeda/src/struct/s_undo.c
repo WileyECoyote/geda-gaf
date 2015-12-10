@@ -20,7 +20,7 @@
  */
 
 #include <geda_standard.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Returns the Last Undo Record given some Record
  *  \par Function Description

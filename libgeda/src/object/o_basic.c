@@ -45,8 +45,8 @@
 
 #include <config.h>
 #include <stdio.h>
-#include "ascii.h"
-#include "libgeda_priv.h"
+#include <ascii.h>
+#include <libgeda_priv.h>
 
 /*! \brief Read a memory buffer
  *  \par Function Description

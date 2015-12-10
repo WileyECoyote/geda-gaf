@@ -26,7 +26,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 static int  o_bus_consolidate_segments (Object *object) __attribute__((unused));
 static void o_bus_consolidate_lowlevel (Object *object,  Object *del_object, int orient) __attribute__((unused));

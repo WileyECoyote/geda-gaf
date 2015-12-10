@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include "geda_text.h"
 
 bool o_get_has_slope (Object *object)

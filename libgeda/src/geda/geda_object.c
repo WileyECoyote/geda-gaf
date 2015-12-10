@@ -41,7 +41,7 @@
 
 #include <config.h>
 #include <ascii.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 enum {
   OBJECT_TYPE = 1,

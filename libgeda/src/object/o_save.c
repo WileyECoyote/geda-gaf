@@ -30,7 +30,7 @@
 #include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Do autosave on all pages that are marked.
  *  \par Function Description

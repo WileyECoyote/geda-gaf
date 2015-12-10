@@ -23,7 +23,7 @@
 #include <config.h>
 #include <stdio.h>
 #include <math.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 #include <geda_debug.h>
 

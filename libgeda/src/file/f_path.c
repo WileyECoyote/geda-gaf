@@ -31,7 +31,7 @@
 #  include <io.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 #ifdef OS_WIN32
 #  ifndef STRICT

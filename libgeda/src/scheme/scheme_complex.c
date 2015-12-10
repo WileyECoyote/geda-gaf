@@ -25,7 +25,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include "libgedaguile_priv.h"
 
 /*! \brief Create a new complex object.

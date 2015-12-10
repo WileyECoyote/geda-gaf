@@ -29,7 +29,7 @@
 #include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Check if a file has an active autosave file
  *  \par Function Description

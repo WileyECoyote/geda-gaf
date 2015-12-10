@@ -26,7 +26,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Create and add circle Object to list.
  *  \par Function Description

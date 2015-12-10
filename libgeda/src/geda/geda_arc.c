@@ -42,7 +42,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include <math.h>
 
 static GObjectClass *geda_arc_parent_class = NULL;

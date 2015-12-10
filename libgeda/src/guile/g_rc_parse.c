@@ -31,7 +31,7 @@
 #include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include "libgedaguile.h"
 
 static SCM scheme_rc_config_fluid = SCM_UNDEFINED;

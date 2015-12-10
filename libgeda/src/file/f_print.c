@@ -24,11 +24,11 @@
  */
 
 #include <config.h>
-#include "version.h"
+#include <version.h>
 
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Hashtable storing mapping between character and
  *         postscript glyph name

@@ -37,7 +37,7 @@
 #include <stdlib.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include "libgeda/libgedaguile.h"
 
 int libgeda_quiet_mode;

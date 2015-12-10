@@ -31,7 +31,7 @@
 #include <stdio.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Create a picture object.
  *

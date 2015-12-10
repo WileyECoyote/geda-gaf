@@ -23,7 +23,7 @@
 #include <time.h>
 #include <math.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Convert Degrees to Radian
  *  \par Function Description

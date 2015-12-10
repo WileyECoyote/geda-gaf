@@ -27,7 +27,7 @@
 #include <ctype.h>         /* isdigit */
 
 #include <geda_struct.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 static
 GedaRefDes StdRefDes[] = {

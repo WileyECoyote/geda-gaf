@@ -28,7 +28,7 @@
 #include <string.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Create a new managed text buffer.
  *

@@ -18,7 +18,7 @@
  */
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*!
  * \file s_weakref.c

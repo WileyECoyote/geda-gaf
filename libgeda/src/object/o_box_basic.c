@@ -27,7 +27,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Create a Box Object
  *  \par Function Description

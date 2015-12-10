@@ -64,7 +64,7 @@
 
 #include <math.h>          /* sqrt/hypot */
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Scale factor between legacy gschem font units and postscript points.
  *

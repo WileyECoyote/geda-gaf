@@ -61,7 +61,7 @@
 #include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 
 /* Called just before adding an Object from a Page.

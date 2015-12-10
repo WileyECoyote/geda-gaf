@@ -129,7 +129,7 @@
 
 #include <dirent.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include <libgeda/g_struct.h>
 
 /* Constant definitions

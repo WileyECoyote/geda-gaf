@@ -41,7 +41,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 static GObjectClass *geda_line_parent_class = NULL;
 

@@ -20,7 +20,7 @@
  */
 
 #include <geda_standard.h>
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include <geda_debug.h>
 
 /*! \file s_conn.c

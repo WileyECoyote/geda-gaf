@@ -21,7 +21,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*!
  *  \brief Create an Empty Object

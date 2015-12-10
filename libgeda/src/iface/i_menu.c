@@ -22,7 +22,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief */
 struct st_menu {

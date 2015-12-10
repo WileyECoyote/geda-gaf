@@ -31,7 +31,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Add change notification handlers to a GedaToplevel.
  * \par Function Description

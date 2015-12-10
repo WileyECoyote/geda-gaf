@@ -28,7 +28,7 @@
  *
  */
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief Free Place List
  *  \par

@@ -62,7 +62,7 @@
 
 #include <config.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 #include "libgedaguile_priv.h"
 
 scm_t_bits geda_smob_tag;

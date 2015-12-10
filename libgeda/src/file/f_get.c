@@ -40,8 +40,8 @@
 # include <errno.h>
 #endif
 
-#include "libgeda_priv.h"
-#include "version.h"
+#include <libgeda_priv.h>
+#include <version.h>
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN

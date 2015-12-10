@@ -27,7 +27,7 @@
 
 #include <stdio.h>
 
-#include "libgeda_priv.h"
+#include <libgeda_priv.h>
 
 /*! \brief embed an object into a schematic
  *  \par Function Description
