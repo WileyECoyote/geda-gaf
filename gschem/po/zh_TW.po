@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-04 12:22-0600\n"
+"POT-Creation-Date: 2015-12-08 15:00-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: gschem/src/base/gschem.c:228
+#: gschem/src/base/gschem.c:229
 #, c-format
 msgid "An error was encountered loading requested session %s\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:303
+#: gschem/src/base/gschem.c:304
 msgid ""
 "You must set the GEDADATA environment variable!\n"
 "\n"
@@ -31,31 +31,31 @@ msgid ""
 "environment variable points to the correct location.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:340
+#: gschem/src/base/gschem.c:341
 msgid "Unable to locate scheme initialization file \"gschem.scm\"\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:345
+#: gschem/src/base/gschem.c:346
 #, c-format
 msgid "Read scheme initialization file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:348
+#: gschem/src/base/gschem.c:349
 #, c-format
 msgid "Failed to read initialization scheme file [%s]\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:374
+#: gschem/src/base/gschem.c:375
 #, c-format
 msgid "gEDA/gschem version %s%s.%s\n"
 msgstr "gEDA/gschem 版本 %s%s.%s\n"
 
-#: gschem/src/base/gschem.c:414
+#: gschem/src/base/gschem.c:415
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 
-#: gschem/src/base/gschem.c:502
+#: gschem/src/base/gschem.c:503
 msgid "Exiting normal"
 msgstr ""
 
@@ -231,50 +231,50 @@ msgstr "編輯文字"
 msgid "Sets or gets the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1093
+#: gschem/src/base/gschem_status_bar.c:1094
 msgid "Coordinate display, right click for format options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1094
+#: gschem/src/base/gschem_status_bar.c:1095
 msgid "Left pointer button assignment"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1095
+#: gschem/src/base/gschem_status_bar.c:1096
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1096
+#: gschem/src/base/gschem_status_bar.c:1097
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1097
+#: gschem/src/base/gschem_status_bar.c:1098
 msgid "Indicates the current snap,grid units or states"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1098
+#: gschem/src/base/gschem_status_bar.c:1099
 msgid "Indicates the current command state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1099
+#: gschem/src/base/gschem_status_bar.c:1100
 msgid "Gschem status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1786
+#: gschem/src/base/gschem_status_bar.c:1791
 #, fuzzy
 msgid "Grid"
 msgstr "弧線模式"
 
-#: gschem/src/base/gschem_status_bar.c:1792
-#: gschem/src/base/gschem_status_bar.c:1813
+#: gschem/src/base/gschem_status_bar.c:1797
+#: gschem/src/base/gschem_status_bar.c:1818
 msgid "OFF"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1805
+#: gschem/src/base/gschem_status_bar.c:1810
 #, fuzzy
 msgid "Error"
 msgstr "水平鏡射"
 
-#: gschem/src/base/gschem_status_bar.c:1817
+#: gschem/src/base/gschem_status_bar.c:1822
 msgid "NONE"
 msgstr ""
 
@@ -399,211 +399,211 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:352
+#: gschem/src/iface/i_command.c:354
 #, c-format
 msgid "Processing Action <%s>, at index %d\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:453
+#: gschem/src/iface/i_command.c:455
 #, c-format
 msgid "Cannot %s while inside and action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:690 gschem/src/iface/i_command.c:2578
+#: gschem/src/iface/i_command.c:692 gschem/src/iface/i_command.c:2583
 #, c-format
 msgid "New page created [%s]\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:730
+#: gschem/src/iface/i_command.c:732
 #, c-format
 msgid "New Window created [%s]\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:926
+#: gschem/src/iface/i_command.c:928
 msgid "Failed to Save All"
 msgstr "儲存全部失敗"
 
-#: gschem/src/iface/i_command.c:929 gschem/src/iface/i_command.c:946
+#: gschem/src/iface/i_command.c:931 gschem/src/iface/i_command.c:948
 msgid "Saved All"
 msgstr "儲存全部"
 
-#: gschem/src/iface/i_command.c:943
+#: gschem/src/iface/i_command.c:945
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1013 gschem/src/x/x_image.c:473
+#: gschem/src/iface/i_command.c:1015 gschem/src/x/x_image.c:473
 #, fuzzy
 msgid "Write Image"
 msgstr "匯出成圖片"
 
-#: gschem/src/iface/i_command.c:1029
+#: gschem/src/iface/i_command.c:1031
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1095
+#: gschem/src/iface/i_command.c:1097
 msgid "Close all canceled\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1104 gschem/src/iface/i_sessions.c:184
+#: gschem/src/iface/i_command.c:1106 gschem/src/iface/i_sessions.c:184
 #, fuzzy
 msgid "Closing all documents\n"
 msgstr "關閉檔案"
 
-#: gschem/src/iface/i_command.c:1127
+#: gschem/src/iface/i_command.c:1129
 msgid "gschem: starting shut-down\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1141
+#: gschem/src/iface/i_command.c:1143
 msgid "Symbol is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1165
+#: gschem/src/iface/i_command.c:1167
 msgid "Picture is not embeded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1297
+#: gschem/src/iface/i_command.c:1299
 msgid "Empty buffer"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1560
+#: gschem/src/iface/i_command.c:1562
 #, fuzzy
 msgid "Offset Mode"
 msgstr "文字模式"
 
-#: gschem/src/iface/i_command.c:1561
+#: gschem/src/iface/i_command.c:1563
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2085
+#: gschem/src/iface/i_command.c:2087
 #, fuzzy
 msgid "Zoom Magnification"
 msgstr "放大檢視"
 
-#: gschem/src/iface/i_command.c:2085
+#: gschem/src/iface/i_command.c:2087
 msgid "Specify new zoom:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2132
+#: gschem/src/iface/i_command.c:2137
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2690
+#: gschem/src/iface/i_command.c:2695
 #, c-format
 msgid "Searching for source [%s]\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2724
+#: gschem/src/iface/i_command.c:2729
 #, fuzzy
 msgid "Failed to descend into"
 msgstr "無法讀取圖片: %s"
 
-#: gschem/src/iface/i_command.c:2733
+#: gschem/src/iface/i_command.c:2738
 msgid "Hierarchy Error"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2809
+#: gschem/src/iface/i_command.c:2814
 #, c-format
 msgid "Searching for symbol [%s]\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2816
+#: gschem/src/iface/i_command.c:2821
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2863
+#: gschem/src/iface/i_command.c:2868
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3369
+#: gschem/src/iface/i_command.c:3374
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3740
+#: gschem/src/iface/i_command.c:3745
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3741
+#: gschem/src/iface/i_command.c:3746
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3747
+#: gschem/src/iface/i_command.c:3752
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3748
+#: gschem/src/iface/i_command.c:3753
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3918
+#: gschem/src/iface/i_command.c:3923
 msgid "Grid OFF\n"
 msgstr "關閉網格\n"
 
-#: gschem/src/iface/i_command.c:3919
+#: gschem/src/iface/i_command.c:3924
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3920
+#: gschem/src/iface/i_command.c:3925
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3999
+#: gschem/src/iface/i_command.c:4004
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4004
+#: gschem/src/iface/i_command.c:4009
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4008
+#: gschem/src/iface/i_command.c:4013
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4025
+#: gschem/src/iface/i_command.c:4030
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4029
+#: gschem/src/iface/i_command.c:4034
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4054
+#: gschem/src/iface/i_command.c:4059
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4057
+#: gschem/src/iface/i_command.c:4062
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4068
+#: gschem/src/iface/i_command.c:4073
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4071
+#: gschem/src/iface/i_command.c:4076
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4089
+#: gschem/src/iface/i_command.c:4094
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4092
+#: gschem/src/iface/i_command.c:4097
 msgid "On"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4094
+#: gschem/src/iface/i_command.c:4099
 #, c-format
 msgid "Drag-Can-Move is now %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4148 gschem/src/iface/i_command.c:4174
-#: gschem/src/iface/i_command.c:4191 gschem/src/iface/i_command.c:4208
+#: gschem/src/iface/i_command.c:4153 gschem/src/iface/i_command.c:4181
+#: gschem/src/iface/i_command.c:4201 gschem/src/iface/i_command.c:4221
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4301
+#: gschem/src/iface/i_command.c:4315
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -612,111 +612,111 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:247
+#: gschem/src/iface/i_sessions.c:251
 #, fuzzy, c-format
 msgid "Could not open session file \"%s\"\n"
 msgstr "無法儲存備份檔 [%s]\n"
 
-#: gschem/src/iface/i_sessions.c:255
+#: gschem/src/iface/i_sessions.c:259
 #, c-format
 msgid "file: <%s> is not accessible\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:311
+#: gschem/src/iface/i_sessions.c:315
 #, c-format
 msgid "Warning relative file names detected in session \"%s\"\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:318
+#: gschem/src/iface/i_sessions.c:322
 #, c-format
 msgid "Session %s, opening %d of %d documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:328
+#: gschem/src/iface/i_sessions.c:332
 #, c-format
 msgid "Session \"%s\" did not contain any accessible documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:799
+#: gschem/src/iface/i_sessions.c:808
 #, c-format
 msgid "Removing session: %s"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:824
+#: gschem/src/iface/i_sessions.c:833
 #, fuzzy, c-format
 msgid "%s: Failed to remove session: %s"
 msgstr "無法讀取圖片: %s"
 
-#: gschem/src/iface/i_sessions.c:827
+#: gschem/src/iface/i_sessions.c:836
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:874
+#: gschem/src/iface/i_sessions.c:883
 #, c-format
 msgid "session %s created with %d documents.\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:881
+#: gschem/src/iface/i_sessions.c:890
 #, c-format
 msgid "An error occurred attemting to create session %s: %s."
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:887 gschem/src/iface/i_sessions.c:1056
+#: gschem/src/iface/i_sessions.c:896 gschem/src/iface/i_sessions.c:1065
 msgid "<b>Session Error</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:887
+#: gschem/src/iface/i_sessions.c:896
 msgid "Creation failed"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:930
+#: gschem/src/iface/i_sessions.c:939
 #, c-format
 msgid "Opened session %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:978
+#: gschem/src/iface/i_sessions.c:987
 #, c-format
 msgid "Renaming session %s to renamed %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1003
+#: gschem/src/iface/i_sessions.c:1012
 #, fuzzy, c-format
 msgid "%s: Failed to rename session: %s"
 msgstr "無法讀取圖片: %s"
 
-#: gschem/src/iface/i_sessions.c:1006
+#: gschem/src/iface/i_sessions.c:1015
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1037
+#: gschem/src/iface/i_sessions.c:1046
 #, c-format
 msgid "Created session %s with %d documents.\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1045
+#: gschem/src/iface/i_sessions.c:1054
 #, c-format
 msgid "Saved %d documents to session %s\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1051
+#: gschem/src/iface/i_sessions.c:1060
 #, c-format
 msgid "An error occurred attempting to save session %s: %s."
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1056
+#: gschem/src/iface/i_sessions.c:1065
 #, fuzzy
 msgid "Save session failed"
 msgstr "儲存檔案"
 
-#: gschem/src/iface/i_sessions.c:1143
+#: gschem/src/iface/i_sessions.c:1152
 msgid "Show Sessions at startup is now ENABLED.\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1146
+#: gschem/src/iface/i_sessions.c:1155
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1213
+#: gschem/src/iface/i_sessions.c:1222
 msgid "Session system initialized!\n"
 msgstr ""
 
@@ -893,7 +893,7 @@ msgstr ""
 msgid "Recovery: undo last action\n"
 msgstr "復原上一次操作"
 
-#: gschem/src/iface/i_zoom_world.c:262
+#: gschem/src/iface/i_zoom_world.c:267
 #, fuzzy
 msgid "Zoom too small! Cannot zoom further.\n"
 msgstr "已經縮到最小了，無法再縮小囉！\n"
@@ -903,7 +903,7 @@ msgstr "已經縮到最小了，無法再縮小囉！\n"
 msgid "Translating schematic [%d %d]\n"
 msgstr ""
 
-#: gschem/src/object/o_delete.c:85
+#: gschem/src/object/o_delete.c:87
 #, fuzzy, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
@@ -928,17 +928,17 @@ msgstr "隱藏的文字現在已經可以看見\n"
 msgid "Hidden text is now invisible\n"
 msgstr "隱藏的文字現在無法看見\n"
 
-#: gschem/src/object/o_edit.c:1103 gschem/src/x/x_edit_cprop.c:364
+#: gschem/src/object/o_edit.c:1106 gschem/src/x/x_edit_cprop.c:364
 #, c-format
 msgid "Could not find symbol [%s] in library. Update failed.\n"
 msgstr ""
 
-#: gschem/src/object/o_edit.c:1108
+#: gschem/src/object/o_edit.c:1111
 #, c-format
 msgid "Updating symbol [%s]\n"
 msgstr ""
 
-#: gschem/src/object/o_move.c:490
+#: gschem/src/object/o_move.c:492
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -946,11 +946,11 @@ msgstr ""
 msgid "Warning: Starting net off grid coordinate\n"
 msgstr ""
 
-#: gschem/src/object/o_net.c:482
+#: gschem/src/object/o_net.c:485
 msgid "Warning: Ending net off grid coordinate\n"
 msgstr ""
 
-#: gschem/src/object/o_net.c:1075
+#: gschem/src/object/o_net.c:1086
 #, c-format
 msgid "Bus ripper symbol [%s] was not found in any component library\n"
 msgstr ""
@@ -982,28 +982,28 @@ msgstr ""
 msgid "When checked the image size will be exported"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:606
+#: gschem/src/object/o_picture.c:607
 #, c-format
 msgid "Error: %s."
 msgstr ""
 
-#: gschem/src/object/o_picture.c:610
+#: gschem/src/object/o_picture.c:611
 #, c-format
 msgid ""
 "Error: %s\n"
 "%s."
 msgstr ""
 
-#: gschem/src/object/o_picture.c:611
+#: gschem/src/object/o_picture.c:612
 msgid "An unknown error occurred"
 msgstr ""
 
-#: gschem/src/object/o_picture.c:614
+#: gschem/src/object/o_picture.c:615
 #, fuzzy
 msgid "<b>Failed to load picture</b>"
 msgstr "無法讀取圖片: %s"
 
-#: gschem/src/object/o_picture.c:615
+#: gschem/src/object/o_picture.c:616
 msgid "Load failed"
 msgstr ""
 
