@@ -1,0 +1,60 @@
+START header
+
+gEDA's netlist format
+Created specifically for testing of gnetlist
+
+END header
+
+START components
+
+A1 device=INPUT
+bat(0v) device=INPUT
+bat(+3v) device=INPUT
+lamp(2) device=OUTPUT
+lamp(1) device=OUTPUT
+C5 device=CAPACITOR
+C3 device=CAPACITOR
+C2 device=CAPACITOR
+C1 device=CAPACITOR
+Q4 device=NPN_TRANSISTOR
+Q3 device=NPN_TRANSISTOR
+Q2 device=PNP_TRANSISTOR
+Q1 device=NPN_TRANSISTOR
+D1 device=DIODE
+C6 device=POLARIZED_CAPACITOR
+R4 device=VARIABLE_RESISTOR
+R6 device=RESISTOR
+R5 device=RESISTOR
+R3 device=RESISTOR
+R7 device=RESISTOR
+R2 device=RESISTOR
+R1 device=RESISTOR
+C4 device=POLARIZED_CAPACITOR
+L2 device=INDUCTOR
+L1 device=INDUCTOR
+
+END components
+
+START renamed-nets
+
+
+END renamed-nets
+
+START nets
+
+unnamed_net13 : lamp(2) 1, Q4 3 
+unnamed_net12 : Q3 2, C5 1, R5 2 
+unnamed_net11 : Q2 3, R5 1 
+unnamed_net10 : C3 2, Q2 2, R4 1, R3 2 
+unnamed_net9 : D1 2, R4 3, Q3 3, R4 2, lamp(1) 1, R7 1 
+unnamed_net8 : bat(+3v) 1, C6 1, R7 2, R2 1 
+unnamed_net7 : Q1 3, C3 1, R2 2, R1 2 
+unnamed_net6 : C2 2, Q1 2, R1 1 
+unnamed_net5 : Q4 2, C5 2, Q3 1, R6 2, R3 1, C4 2 
+unnamed_net4 : Q2 1, D1 1, C4 1 
+unnamed_net3 : A1 1, L2 2 
+unnamed_net2 : C2 1, C1 1, L2 1, L1 2 
+unnamed_net1 : bat(0v) 1, C6 2, Q4 1, Q1 1, R6 1, C1 2, L1 1 
+
+END nets
+

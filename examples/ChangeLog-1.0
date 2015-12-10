@@ -1,5 +1,9 @@
 2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
+    * lightning_detector/Makefile.am: Add test, similar to the test added
+      to gTAG but this implementation does not require modification to
+      configure.ac.
+
     * lightning_detector/lightning.sch: Major cleaning; adjust attribute
       positions visibilities, add missing foot print to coincide with
       patterns in PCB file. Revise title block test moving floating text
@@ -20,6 +24,16 @@
 
     * lightning_detector/: Rename files to match example directory name, i.e.
       lightning->lightning_detector.
+
+    * lightning_detector/tests/runtest.sh: Shell script to setup mini-install
+      environment for gnetlist, gsymcheck, and libgeda and check all of the
+      symbols found in the example directory are pass and gsymcheck and the
+      schematic passes drc2. The GEDA net list is extracted and compared to
+      a reference in the test subdirectory.
+
+    * lightning_detector/tests/lightning_detector-geda.net: The reference net
+      list file, the intent is to fail distcheck if modifications to the source
+      electrically altered the netlist of the example.
 
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
 

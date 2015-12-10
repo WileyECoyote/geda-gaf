@@ -51,6 +51,6 @@ footprint=TO-92
 T 1094 1600 5 10 0 1 0 0 1
 device=PNP_TRANSISTOR
 T 1094 1800 5 10 0 1 0 0 1
-device=PNP Transistor,TO-92,40V,600mA
+description=PNP Transistor,TO-92,40V,600mA
 T 1094 1000 8 10 1 1 0 0 1
 refdes=Q?

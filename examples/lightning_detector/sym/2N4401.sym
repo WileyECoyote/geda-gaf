@@ -51,6 +51,6 @@ footprint=TO-92
 T 994 1600 5 10 0 1 0 0 1
 device=NPN_TRANSISTOR
 T 994 1800 5 10 0 1 0 0 1
-device=NPN Transistor,TO-92,40V,600mA
+description=NPN Transistor,TO-92,40V,600mA
 T 994 1000 8 10 1 1 0 0 1
 refdes=Q?
