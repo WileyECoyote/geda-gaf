@@ -1,6 +1,8 @@
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>.
+    * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>,
+      include "config.h" with <config.h> and include "version.h" with include
+      <version.h>, hope is not a bad thing Johnny.
 
 2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
 

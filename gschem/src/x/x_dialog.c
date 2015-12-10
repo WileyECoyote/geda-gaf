@@ -28,10 +28,10 @@
 
 #include <ctype.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
-#include "version.h"
-#include "x_dialog.h"
+#include <version.h>
+#include <x_dialog.h>
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>

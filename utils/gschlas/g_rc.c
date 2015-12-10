@@ -28,9 +28,9 @@
  * MA 02110-1301 USA
  */
 
-#include "common.h"
+#include <common.h>
 
-#include "version.h"
+#include <version.h>
 
 /*! \brief Test the version of gschlas and gEDA/gaf
  *  \par Function Description

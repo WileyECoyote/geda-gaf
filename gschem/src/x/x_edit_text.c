@@ -29,7 +29,6 @@
 #include <gdk/gdk.h>
 
 #include "gschem.h"
-#include "version.h"
 #include "x_dialog.h"
 
 #include <geda_dialog_controls.h>

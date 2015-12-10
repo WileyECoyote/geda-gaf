@@ -26,7 +26,7 @@
 
 #include <config.h>
 #include <ansi.h>
-#include "version.h"
+#include <version.h>
 
 #include "gattrib.h"
 

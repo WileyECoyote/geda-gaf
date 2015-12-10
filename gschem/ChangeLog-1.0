@@ -1,3 +1,14 @@
+2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Replace quoted includes with brackets; "gschem.h",
+      "version.h", and "x_dialog.h".
+
+    * src/x/x_edit_pin.c: Replace quoted includes with brackets; "gschem.h",
+      and "x_dialog.h", remove include "version.h".
+
+    * src/x/x_edit_text.c: Replace quoted includes with brackets; "gschem.h",
+      and "x_dialog.h", remove include "version.h".
+
 2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Reduce scope of length in _idle_update_sensitivities

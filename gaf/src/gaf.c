@@ -24,7 +24,7 @@
 #  include <config.h>
 #endif
 
-#include "version.h"
+#include <version.h>
 
 #include <unistd.h>
 #include <stdlib.h>

@@ -23,7 +23,7 @@
 
 #include <geda_standard.h>
 
-#include "version.h"
+#include <version.h>
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
@@ -31,8 +31,7 @@
 
 #include <errno.h>
 
-#include "grenum.h"
-/*#define DEBUG*/
+#include <grenum.h>
 
 int main(int argc, char *argv[])
 	{

@@ -26,7 +26,7 @@
 
 #include "gattrib.h"
 #include "g_rc.h"
-#include "version.h"
+#include <version.h>
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
 #include <geda_debug.h>
 

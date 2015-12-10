@@ -28,7 +28,7 @@
  */
 
 #include <gattrib.h>
-#include "version.h"
+#include <version.h>
 #include "geda_dialog_controls.h"
 #include "geda_widgets.h"
 #include "gattrib_dialog.h"
