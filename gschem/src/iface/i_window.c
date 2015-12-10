@@ -360,10 +360,13 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
 void i_window_show_attributes (GschemToplevel *w_current, int scope)
 {
   GList *object_list;
-  bool   show_status;
 
   if (!w_current->inside_action) {
+
+    bool show_status;
+
     object_list = NULL;
+
     if (o_select_is_selection (w_current)) {
       SELECTION *selection = Current_Selection;
       object_list =  geda_list_get_glist (selection);

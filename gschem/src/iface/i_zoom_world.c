@@ -63,7 +63,6 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
   GedaToplevel *toplevel = w_current->toplevel;
   double world_pan_center_x, world_pan_center_y, relative_zoom_factor = - 1;
   int start_x, start_y;
-  double top, bottom, right, left;
 
   /* NB: w_current->zoom_gain is a percentage increase */
   switch(dir) {
@@ -95,6 +94,9 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
       world_pan_center_y = start_y;
     }
     else {
+
+      double top, bottom, right, left;
+
       left = ((toplevel->page_current->left - start_x)
               * (1/relative_zoom_factor) + start_x);
       right = ((toplevel->page_current->right - start_x)
@@ -103,6 +105,7 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
              * (1/relative_zoom_factor) + start_y);
       bottom = ((toplevel->page_current->bottom - start_y)
                 * (1/relative_zoom_factor) + start_y);
+
       world_pan_center_x = (right + left) / 2;
       world_pan_center_y = (top + bottom) / 2;
     }
@@ -215,7 +218,7 @@ void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, in
                            EID_ACTION_ORIGIN  specified_from)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  double top, bottom, right, left;
+
   double zoom_old, relative_zoom_factor;
   double world_pan_center_x, world_pan_center_y;
 
@@ -227,6 +230,8 @@ void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, in
     world_pan_center_y = y;
   }
   else {
+
+    double top, bottom, right, left;
 
     top    = toplevel->page_current->top;
     bottom = toplevel->page_current->bottom;
@@ -393,32 +398,40 @@ void correct_aspect(GschemToplevel *w_current)
 
   /* Make sure aspect ratio is correct */
   if (fabs(new_aspect - toplevel->page_current->coord_aspectratio)) {
+
     /* sign was > */
     if (new_aspect > toplevel->page_current->coord_aspectratio) {
+
 #if DEBUG
       printf("%s: new larger then coord\n", __func_);
-      printf("%s: implies that height is too large\n", __func_,);
+      printf("%s: implies that height is too large\n", __func_);
 #endif
+
       /* calculate neccesary padding on Y */
       toplevel->page_current->bottom =
         toplevel->page_current->top +
         GET_PAGE_WIDTH(toplevel) /
         toplevel->page_current->coord_aspectratio;
 
-    } else {
+    }
+    else {
+
 #if DEBUG
       printf("%s: new smaller then coord\n",__func_);
       printf("%s: implies that width is too small\n",__func_);
 #endif
+
       /* calculate necessary padding on X */
       toplevel->page_current->right =
         toplevel->page_current->left +
         GET_PAGE_HEIGHT(toplevel) *
         toplevel->page_current->coord_aspectratio;
     }
+
 #if DEBUG
     printf("%s: invalid aspectratio corrected\n",__func_);
 #endif
+
   }
 
   new_aspect = GET_PAGE_ASPECT_RATIO(toplevel);

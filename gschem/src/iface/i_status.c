@@ -570,7 +570,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     char *buffer;
     char  menu_string[48];
-    int   index, length;
+    int   index;
 
     for (index = 0; index < 48; index++)
        menu_string[index] = '0';
@@ -578,6 +578,8 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     buffer_menu = x_menu_get_buffer_menu (w_current);
 
     if (buffer_menu)  {
+
+      int length;
 
       buffer    = strcpy(&menu_string[0], buffer_menu);
 

@@ -1,3 +1,12 @@
+2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Reduce scope of length in _idle_update_sensitivities
+
+    * src/iface/i_window.c: Reduce scope of show_status in _show_attributes.
+
+    * src/iface/i_zoom_world.c: Reduce scope of top, bottom, right, and left in
+      function i_zoom_world and i_zoom_world_specify.
+
 2015-12-08  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_extend.c: Reduce scope of many variables, eliminate variable
