@@ -1,3 +1,8 @@
+2015-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gschlas/gschlas.c: Reduce scope of integer i in main_prog and
+      rename as index, i->index.
+
 2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/Makefile.am: Remove GUILE_CFLAGS from CLAGS.

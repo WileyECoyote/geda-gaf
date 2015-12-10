@@ -59,7 +59,6 @@ void gschlas_quit(void)
 void
 main_prog(void *closure, int argc, char *argv[])
 {
-  int i;
   int argv_index;
   char *cwd;
 
@@ -68,6 +67,8 @@ main_prog(void *closure, int argc, char *argv[])
   argv_index = parse_commandline(argc, argv);
 
   if (embed_mode + unembed_mode == 1) {
+
+    int index;
 
     cwd = g_get_current_dir();
 
@@ -89,24 +90,26 @@ main_prog(void *closure, int argc, char *argv[])
     g_rc_parse (argv[0], "gschlasrc", NULL);
 
     pr_current = geda_toplevel_new ();
+
     i_vars_set(pr_current);
 
     /* create log file right away even if logging is enabled */
     u_log_init ("gschlas");
 
-    i = argv_index;
-    while (argv[i] != NULL) {
+    index = argv_index;
+
+    while (argv[index] != NULL) {
 
       char       *filename;
       GError     *err = NULL;
 
-      if (f_get_is_path_absolute(argv[i])) {
+      if (f_get_is_path_absolute(argv[index])) {
 
         /* Path is already absolute so no need to do any concat of cwd */
-        filename = u_string_strdup (argv[i]);
+        filename = u_string_strdup (argv[index]);
       }
       else {
-        filename = g_build_filename (cwd, argv[i], NULL);
+        filename = g_build_filename (cwd, argv[index], NULL);
       }
 
       s_page_goto (s_page_new (pr_current, filename));
@@ -123,7 +126,7 @@ main_prog(void *closure, int argc, char *argv[])
         g_message ("Loaded file [%s]\n", filename);
       }
 
-      i++;
+      index++;
       GEDA_FREE (filename);
     }
 
