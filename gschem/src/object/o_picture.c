@@ -217,8 +217,6 @@ o_picture_exchange (GschemToplevel *w_current,
                     Object         *o_current,
                     GError        **error)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   bool result = TRUE;
 
   if (o_current) {
@@ -236,6 +234,7 @@ o_picture_exchange (GschemToplevel *w_current,
   }
   else {
 
+    GedaToplevel *toplevel = w_current->toplevel;
     GList *iter;
 
     for (iter = geda_list_get_glist (Top_Selection); iter != NULL; NEXT(iter))
@@ -304,6 +303,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   /* Get count of picture objects in selection set */
   count = 0;
   iter  = geda_list_get_glist (Top_Selection);
+
   while(iter != NULL) {
     Object *obj = (Object *) iter->data;
     if (obj->type == OBJ_PICTURE) {
@@ -564,8 +564,6 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
   GError    *error = NULL;
   GdkPixbuf *pixbuf;
 
-  int height;
-  int width;
   int result;
 
   /* Make sure any old pixbuf info is release */
@@ -587,6 +585,9 @@ o_picture_set_pixbuf(GschemToplevel *w_current, char *filename)
   pixbuf = gdk_pixbuf_new_from_file (filename, &error);
 
   if (pixbuf) {
+
+    int height;
+    int width;
 
     w_current->current_pixbuf  = pixbuf;
     w_current->pixbuf_filename = (char *) u_string_strdup(filename);

@@ -39,11 +39,8 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
                                 int  *max_x, int *max_y)
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
-  EdaRenderer    *renderer;
-  cairo_t        *cr;
-  cairo_matrix_t  render_mtx;
 
-  int result, render_flags = 0;
+  int result;
   int t = 0;
   int l = 0;
   int r = 0;
@@ -55,6 +52,12 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   if (o_get_is_visible(o_current)) {
 
     if (w_current->render_adaptor == CAIRO_ADAPTOR) {
+
+      EdaRenderer    *renderer;
+      cairo_t        *cr;
+      cairo_matrix_t  render_mtx;
+
+      int render_flags = 0;
 
       cr = gdk_cairo_create (w_current->drawable);
 

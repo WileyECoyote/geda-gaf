@@ -299,15 +299,11 @@ o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  bool          close_path;
-  bool          end_path;
-  bool          start_path;
   bool          result;
   GedaToplevel *toplevel;
   PATH_SECTION *section;
   PATH_SECTION *prev_section;
   Path         *path;
-  int           x1, y1, x2, y2;
 
   if (w_current == NULL || w_current->toplevel == NULL) {
     BUG_MSG ("invalid pointer to top level");
@@ -322,6 +318,11 @@ void o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     result = FALSE;
   }
   else {
+
+    bool close_path;
+    bool end_path;
+    bool start_path;
+    int  x1, y1, x2, y2;
 
     o_path_invalidate_rubber (w_current);
 

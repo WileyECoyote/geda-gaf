@@ -124,9 +124,7 @@ o_invalidate_rectangle (GschemToplevel *w_current,
                         int x1, int y1, int x2, int y2)
 {
   GdkRectangle rect;
-  int grip_half_size;
-  int cue_half_size;
-  int bloat;
+
 
 #if DEBUG
   fprintf(stderr, "%s x1 %d, y1 %d, x2 %d, y2 %d\n", __func__, x1, y1, x2, y2);
@@ -134,6 +132,10 @@ o_invalidate_rectangle (GschemToplevel *w_current,
 
   /* Ensure we only invalidate GdkWindows - probably wasting time here */
   if (GDK_IS_WINDOW( w_current->window )) {
+
+    int grip_half_size;
+    int cue_half_size;
+    int bloat;
 
     grip_half_size = w_current->grip_size / 2;
     //grip_half_size = o_grips_half_size (w_current, NULL);

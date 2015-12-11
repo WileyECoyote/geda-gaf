@@ -1,5 +1,20 @@
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_invalidate.c: Reduce scope of bloat, grip_half_size,
+      and cue_half_size
+
+    * src/object/o_move.c: Reduce scope of dx1, dx2, dy1, and dy2.
+
+    * src/object/o_net.c: Reduce scope of cr, flags, size, w_magnetic_halfsize,
+      horizontal, quadrant.
+
+    * src/object/o_path.c: Reduce scope  of close_path, end_path;, start_path,
+      x1, y1, x2, and y2.
+
+    * src/object/o_picture.c: Reduce scope of toplevel, height, and width.
+
+    * src/object/o_text.c: Reduce scope of renderer, cr and render_mtx.
+
     * src/x/x_dialog.c: Replace quoted includes with brackets; "gschem.h",
       "version.h", and "x_dialog.h".
 

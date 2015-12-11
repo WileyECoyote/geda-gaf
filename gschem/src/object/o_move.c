@@ -323,7 +323,7 @@ void o_move_cancel (GschemToplevel *w_current)
 void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
   GList *s_iter;
-  int dx1, dx2, dy1, dy2;
+
   int x1, y1, x2, y2;
 
   o_place_invalidate_rubber (w_current, drawing);
@@ -332,6 +332,8 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
 
     for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
     {
+      int dx1, dx2, dy1, dy2;
+
       STRETCH *s_current = s_iter->data;
       Object  *object    = s_current->object;
 

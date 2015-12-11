@@ -321,15 +321,18 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
   Object *o_current;
 
   int *current_rules;
-  /* badness values       {OVERWRITE, ORTHO, CONTINUE} */
-  const int pin_rules[] = {100, 50, 0};
-  const int bus_rules[] = {90, 0, 40};
-  const int net_rules[] = {80, 30, 0};
 
   objectlists = s_tile_get_objectlists(toplevel->page_current, wx, wy, wx, wy);
 
   for (iter1 = objectlists; iter1 != NULL; iter1 = g_list_next(iter1)) {
+
     for (iter2 = (GList*) iter1->data; iter2 != NULL; iter2 = g_list_next(iter2)) {
+
+      /* badness values       {OVERWRITE, ORTHO, CONTINUE} */
+      const int pin_rules[] = {100, 50, 0};
+      const int bus_rules[] = {90, 0, 40};
+      const int net_rules[] = {80, 30, 0};
+
       o_current = (Object*) iter2->data;
 
       if ((orientation = o_net_orientation(o_current)) == NEITHER)
@@ -560,21 +563,22 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
  */
 void o_net_draw_rubber(GschemToplevel *w_current )
 {
-  int size = 0;
-  int w_magnetic_halfsize;
-
-  size = o_style_get_net_width(w_current->toplevel);
-
-  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
+  cairo_t *cr       = eda_renderer_get_cairo_context (CairoRenderer);
   GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
-  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
+  int flags         = eda_renderer_get_cairo_flags (CairoRenderer);
+  int size          = o_style_get_net_width (w_current->toplevel);
 
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
 
   if (w_current->magnetic_net_mode) {
+
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
+
+      int w_magnetic_halfsize;
+
       w_magnetic_halfsize = max (4 * size,
                                  WORLDabs (w_current, MAGNETIC_HALFSIZE));
+
       eda_cairo_arc (cr, flags, size,
                      w_current->magnetic_wx, w_current->magnetic_wy,
                      w_magnetic_halfsize, 0, 360);
@@ -600,18 +604,20 @@ void o_net_draw_rubber(GschemToplevel *w_current )
  */
 void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  int ortho, horizontal, quadrant;
-
   if (w_current->inside_action) {
+
+    int ortho;
 
     /* Orthognal mode enabled when Control Key is NOT pressed or
      *    if we are using magnetic mode */
     ortho = !w_current->CONTROLKEY || w_current->magnetic_net_mode;
 
     if (w_current->rubber_visible)
+
       o_net_invalidate_rubber (w_current);
 
     if (w_current->magnetic_net_mode) {
+
       if (w_current->CONTROLKEY) {
         /* set the magnetic marker position to current xy if the
          *    controlkey is pressed. Thus the net will not connect to
@@ -632,8 +638,11 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
       w_current->third_wx = w_current->second_wx;
       w_current->third_wy = w_current->second_wy;
     }
-    /* If you press the control key then you can draw non-ortho nets */
     else {
+
+      /* If control key pressed then draw non-ortho nets */
+
+      int horizontal, quadrant;
 
       if (w_current->second_wy > w_current->first_wy) {
         quadrant = w_current->second_wx > w_current->first_wx ? QUADRANT1 :
@@ -679,7 +688,7 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
 void o_net_invalidate_rubber (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  int size = 0, magnetic_halfsize;
+  int size = 0;
   int bloat;
   int magnetic_x, magnetic_y;
   int first_x, first_y, second_x, second_y, third_x, third_y;
@@ -701,6 +710,8 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   if (w_current->magnetic_net_mode) {
 
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
+
+      int magnetic_halfsize;
 
       magnetic_halfsize = max (4 * size, MAGNETIC_HALFSIZE);
 
