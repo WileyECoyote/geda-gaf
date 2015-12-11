@@ -11,6 +11,9 @@
       Selection with Current_Selection with intermediate variable and
       let compiler optimize out.
 
+    * tests/runtest.sh: Make links instead of copies of scheme files
+      during testing.
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_invalidate.c: Reduce scope of bloat, grip_half_size,

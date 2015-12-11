@@ -144,8 +144,8 @@ show_help (){
   # Copy RC files
   if [ -d $SRCDIR/../scheme ] ; then
      cd $SRCDIR/../scheme
-     cp -n $PWD/*.scm $GEDADATARC/scheme/
-     cp -n $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/
+     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
+     ln -s $PWD/gschem/*.scm $GEDADATARC/scheme/gschem/ 2>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem scheme"
@@ -154,8 +154,8 @@ show_help (){
 
   if [ -d $SRCDIR/../../libgeda/scheme ] ; then
      cd $SRCDIR/../../libgeda/scheme
-     cp -n $PWD/*.scm $GEDADATARC/scheme/
-     cp -n $PWD/geda/*.scm $GEDADATARC/scheme/geda/
+     ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
+     ln -s $PWD/geda/*.scm $GEDADATARC/scheme/geda/ 2>/dev/null
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find libgeda scheme directory"
