@@ -18,8 +18,8 @@
 
 #define NO_IMPORT_PYGOBJECT
 
-#include "geda_py_struct.h"
-#include "geda_py_color.h"
+#include <geda_py_struct.h>
+#include <geda_py_color.h>
 
 static PyObject *
 Color_new(PyTypeObject *type, PyObject *args, PyObject *kwds)

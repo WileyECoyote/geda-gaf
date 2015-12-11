@@ -1,3 +1,7 @@
+2015-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_*.c: Replace quoted includes with brackets.
+
 2015-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/Makefile.am: Add clean local to remove tmp directory if

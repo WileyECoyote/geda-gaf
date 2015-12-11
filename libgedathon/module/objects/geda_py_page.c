@@ -26,13 +26,14 @@
  *  Date Contributed: November, 17, 2013
  */
 #include <Python.h>
-#include "structmember.h"
+#include <structmember.h>
 
-#include "geda.h"
-#include "geda_python.h"
-#include "geda_py_struct.h"
-#include "geda_py_page.h"
-#include "geda_py_docs.h"
+#include <geda.h>
+#include <geda_python.h>
+#include <geda_py_struct.h>
+#include <geda_py_page.h>
+#include <geda_py_docs.h>
+#include <geda_py_docs.h>
 
 static PyObject* page_module;
 static PyObject* geda_module;

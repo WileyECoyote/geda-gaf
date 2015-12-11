@@ -29,12 +29,12 @@
 #include <Python.h>
 #include <structmember.h>
 
-#include "geda.h"
-#include "geda_python.h"
-#include "geda_py_struct.h"
-#include "geda_py_object.h"
-#include "geda_py_color.h"
-#include "geda_py_docs.h"
+#include <geda.h>
+#include <geda_python.h>
+#include <geda_py_struct.h>
+#include <geda_py_object.h>
+#include <geda_py_color.h>
+#include <geda_py_docs.h>
 
 static PyObject* arc_module;
 static PyObject* geda_module;
