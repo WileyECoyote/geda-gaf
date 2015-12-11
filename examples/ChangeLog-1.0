@@ -8,6 +8,18 @@
 
     * gTAG/tests/runtest.sh: remove step up to example, aka "cd .."
 
+    * RF_Amp/sym/BJT_Model.sym: Add footprint and description attributes,
+      resequence pins in file, add pin labels and type=pas.
+
+    * RF_Amp/sym/Q_Model.sym: Drop _subcircuit from device, use as foot
+      print instead, resequence pins in file, add pin labels and type=pas.
+
+    * RF_Amp/sym/spice-subcircuit-IO-1.sym: Add -subcircuit to device text
+      so in filename, add footprint and description attributes.
+
+    * RF_Amp/sym/spice-subcircuit-LL-1.sym: Add footprint and description
+      attributes.
+
 2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/Makefile.am: Add test, similar to the test added

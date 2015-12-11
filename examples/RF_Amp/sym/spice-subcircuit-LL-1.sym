@@ -1,6 +1,6 @@
-v 20031011 1
+v 20151204 2
 B 0 300 2200 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 100 300 9 10 0 1 0 0 1
+T 100 700 9 10 0 1 0 0 1
 device=spice-subcircuit-LL
 T 100 400 9 10 1 1 0 0 1
 refdes=A?
@@ -8,3 +8,7 @@ T 600 400 9 10 1 0 0 0 1
 SPICE .SUBCKT
 T 100 100 8 10 1 1 0 0 1
 model-name=?
+T 100 900 9 10 0 1 0 0 1
+description=spice subcircuit LL
+T 1700 700 9 10 0 1 0 0 1
+footprint=none
