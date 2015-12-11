@@ -180,8 +180,6 @@ void o_move_end_lowlevel (GschemToplevel *w_current,
  */
 void o_move_end(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   Object *object = o_select_return_first_object(w_current);
 
   if (!object) {
@@ -190,9 +188,12 @@ void o_move_end(GschemToplevel *w_current)
   }
   else {
 
+    GedaToplevel *toplevel = w_current->toplevel;
+
     Object *sub_object;
     GList  *iter;
-    GList  *selection_list = NULL;
+    GList  *selection_iter;
+    GList  *selection_list;
     GList  *rubbernet_objects = NULL;
     int diff_x, diff_y;
 
@@ -222,11 +223,11 @@ void o_move_end(GschemToplevel *w_current)
       stretch->object->dont_redraw = FALSE;
     }
 
-    selection_list = Current_Selection->glist;
+    selection_iter = selection_list = geda_list_get_glist(Top_Selection);
 
-    while (selection_list != NULL) {
+    while (selection_iter != NULL) {
 
-      object = (Object *) selection_list->data;
+      object = (Object *) selection_iter->data;
 
       if (object == NULL) {
         BUG_MSG("NULL object!");
@@ -253,14 +254,14 @@ void o_move_end(GschemToplevel *w_current)
       else{
         o_move_end_lowlevel (w_current, object, diff_x, diff_y);
       }
-      NEXT(selection_list);
+      NEXT(selection_iter);
     }
 
     /* Remove the undo saved in o_move_start */
     o_undo_remove_last_undo(w_current);
 
     /* Draw the objects that were moved */
-    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
+    o_invalidate_list (w_current, selection_list);
 
     /* Draw the connected nets/buses that were also changed */
     o_invalidate_list (w_current, rubbernet_objects);
@@ -369,8 +370,7 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
  */
 void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  GList *selection = geda_list_get_glist(Top_Selection);
+  GList *selection = geda_list_get_glist(Current_Selection);
 
   /* realign the object if we are in resnap mode */
   if (selection != NULL && w_current->snap == SNAP_RESNAP) {
@@ -499,28 +499,19 @@ int o_move_return_whichone(Object * object, int x, int y)
  *  \par Function Description
  *
  */
+static
 void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList *cl_current;
-  CONN *c_current;
+  GList  *cl_current;
+  CONN   *c_current;
   Object *other;
   int whichone;
 
-  if (!object)
-  return;
-
-  if (object->type != OBJ_NET &&
-      object->type != OBJ_PIN &&
-      object->type != OBJ_BUS) {
-    BUG_MSG("Non-linear object in o_move_check_endpoint\n");
-    return;
-  }
-
   for (cl_current = object->conn_list; cl_current != NULL; NEXT(cl_current))
   {
-    c_current = (CONN *) cl_current->data;
-    other = c_current->other_object;
+    c_current = (CONN*)cl_current->data;
+    other     = c_current->other_object;
 
     if (other == NULL)
       continue;
@@ -584,13 +575,12 @@ void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
  */
 void o_move_prep_rubberband(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   GList *s_current;
   Object *object;
   Object *o_current;
   GList *iter;
 
-  for (s_current = geda_list_get_glist (Top_Selection);
+  for (s_current = geda_list_get_glist (Current_Selection);
        s_current != NULL; NEXT(s_current)) {
     object = s_current->data;
 
@@ -692,13 +682,14 @@ void o_move_end_rubberband (GschemToplevel *w_current,
 static
 bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   int status = FALSE;
   GList *s_iter;
 
   g_return_val_if_fail (w_current->stretch_list == NULL, FALSE);
 
   if (o_select_is_selection (w_current)) {
+
+    GList *selection_list;
 
     /* Save the current state. When rotating the selection when
      * moving, we have to come back to here */
@@ -709,7 +700,9 @@ bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
 
-    o_invalidate_list (w_current, geda_list_get_glist (Top_Selection));
+    selection_list = geda_list_get_glist (Current_Selection);
+
+    o_invalidate_list (w_current, selection_list);
 
     if (w_current->netconn_rubberband) {
 

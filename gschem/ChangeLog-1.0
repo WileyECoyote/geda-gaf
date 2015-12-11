@@ -2,6 +2,15 @@
 
     * src/xxx/xxx*.C: replace quoted includes with brackets.
 
+    * src/object/o_move.c: Revise function o_move_end reducing scope of
+      toplevel, add selection_iter to eliminate double ->->->-> to the
+      same address. Remove toplevel in o_move_motion and replace Top_
+      Selection with Current_Selection. Declare o_move_check_endpoint
+      static and eliminate needless checks for NULL pointers and BUG
+      message Remove toplevel in o_move_check_endpoint and replace Top_
+      Selection with Current_Selection with intermediate variable and
+      let compiler optimize out.
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_invalidate.c: Reduce scope of bloat, grip_half_size,

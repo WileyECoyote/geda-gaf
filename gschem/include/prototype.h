@@ -523,7 +523,7 @@ void       o_line_start                 (GschemToplevel *w_current, int x, int y
 
 /* o_move.c */
 void       o_move_cancel                (GschemToplevel *w_current);
-void       o_move_check_endpoint        (GschemToplevel *w_current, Object *object);
+//void       o_move_check_endpoint        (GschemToplevel *w_current, Object *object);
 void       o_move_draw_rubber           (GschemToplevel *w_current, int drawing);
 void       o_move_end                   (GschemToplevel *w_current);
 void       o_move_end_lowlevel          (GschemToplevel *w_current, Object *object, int diff_x, int diff_y);
