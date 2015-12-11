@@ -1,12 +1,33 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+## This file is processed by automake to produce Makefile.in, after which
+## The configure script generates the actual Makefile from the Makefile.in.
 
-SUBDIRS = model sym
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
-exampledir = $(docdir)/examples/RF_Amp/
+SUBDIRS       = model sym
 
-example_DATA = 5980-2396E.pdf MSA-2643.cir MSA-2643.sch \
-	Q1.cir Q1.sch Q2.cir Q2.sch README Simulation.cmd gafrc
+exampledir    = $(docdir)/examples/RF_Amp/
 
-EXTRA_DIST = $(example_DATA)
+SRCDIR        = $(srcdir)
+
+example_DATA  = 5980-2396E.pdf MSA-2643.cir MSA-2643.sch \
+		Q1.cir Q1.sch Q2.cir Q2.sch README Simulation.cmd gafrc
+
+EXTRA_DATA    = tests/MSA-2643-geda.net
+
+RUN_TESTS     = tests/runtest.sh
+
+EXTRA_DIST    = $(example_DATA) $(RUN_TESTS) $(EXTRA_DATA)
+
+check_SCRIPTS = tests
+
+tests:
+	@$(SRCDIR)/${RUN_TESTS} "MSA-2643" $(SRCDIR)
+
+clean-local:
+	test -d gEDA && rm -rf gEDA || : ;
+
+.PHONY: tests
 
 MOSTLYCLEANFILES = gschem.log *~
 CLEANFILES = gschem.log *~

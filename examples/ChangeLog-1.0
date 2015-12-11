@@ -1,3 +1,12 @@
+2015-12-11  Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG/Makefile.am: Add test like lightening_detector and gTAG.
+
+    * RF_Amp/tests/MSA-2643-geda.net:The reference net list file.
+
+    * RF_Amp/tests/runtest.sh:Shell script to run test, is identical to
+      scripts in lightening_detector and gTAG subdirectories.
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/Makefile.am: Revised like the new scheme used for lightening

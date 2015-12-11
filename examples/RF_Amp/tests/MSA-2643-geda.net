@@ -1,0 +1,57 @@
+START header
+
+gEDA's netlist format
+Created specifically for testing of gnetlist
+
+END header
+
+START components
+
+Cpara2 device=CAPACITOR
+Cpara1 device=CAPACITOR
+L7 device=INDUCTOR
+L1 device=INDUCTOR
+L6 device=INDUCTOR
+L4 device=INDUCTOR
+A1 device=include
+Cin device=CAPACITOR
+Cout device=CAPACITOR
+Rc device=RESISTOR
+Lc device=INDUCTOR
+RL device=RESISTOR
+Rth_in device=RESISTOR
+Vin device=vac
+Vpwr device=VOLTAGE_SOURCE
+C1 device=CAPACITOR
+X2 device=NPN_TRANSISTOR_subcircuit
+X1 device=NPN_TRANSISTOR_subcircuit
+R4 device=RESISTOR
+R3 device=RESISTOR
+R2 device=RESISTOR
+R1 device=RESISTOR
+
+END components
+
+START renamed-nets
+
+
+END renamed-nets
+
+START nets
+
+unnamed_net9 : Cpara1 2, L1 1, Cin 2 
+unnamed_net8 : Cpara2 2, L7 2, Cout 1, Lc 2 
+unnamed_net7 : Rc 2, Lc 1 
+Vout : Cout 2, RL 2 
+Vin : Cin 1, Rth_in 2 
+Vsource : Rth_in 1, Vin 1 
+GND : Cpara2 1, L6 2, Cpara1 1, L4 1, RL 1, Vin 2, Vpwr 2 
+unnamed_net6 : Rc 1, Vpwr 1 
+unnamed_net5 : C1 2, X2 1, R4 2 
+unnamed_net4 : X2 2, X1 1, R3 2 
+unnamed_net3 : L6 1, C1 1, R4 1, L4 2, R3 1, R2 1 
+unnamed_net2 : L7 1, X2 3, X1 3, R1 2 
+unnamed_net1 : L1 2, X1 2, R2 2, R1 1 
+
+END nets
+
