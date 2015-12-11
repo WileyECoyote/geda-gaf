@@ -20,6 +20,8 @@
     * RF_Amp/sym/spice-subcircuit-LL-1.sym: Add footprint and description
       attributes.
 
+    * RF_Amp/MSA-2643-drc2.txt; Rename file replacing underscore with hyphen.
+
 2015-12-09  Wiley E. Hill <wileyhill@gmail.com>
 
     * lightning_detector/Makefile.am: Add test, similar to the test added
