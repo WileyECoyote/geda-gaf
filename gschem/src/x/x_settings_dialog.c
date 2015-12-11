@@ -152,7 +152,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
 #include "gschem_dialog.h"              /* Definition the base Dialog Class */
 

@@ -38,7 +38,7 @@
 
 #include "gettext.h"
 
-#include "gschem.h"
+#include <gschem.h>
 #include "geda_widgets.h"
 
 

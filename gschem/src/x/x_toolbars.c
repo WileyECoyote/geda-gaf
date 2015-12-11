@@ -32,8 +32,8 @@
 
 #include <gtk/gtk.h>
 
-#include "gschem.h"           /* include gschem specific headers  */
-#include "x_menus.h"
+#include <gschem.h>           /* include gschem specific headers  */
+#include <x_menus.h>
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
 #define DEFAULT_TOOLBAR_STYLE TOOLBAR_SHOW_ICONS         /* default style */

@@ -20,7 +20,7 @@
  */
 
 #include <gschem.h>
-#include "version.h"
+#include <version.h>
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */

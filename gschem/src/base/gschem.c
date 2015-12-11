@@ -19,7 +19,7 @@
  * MA 02110-1301 USA
  */
 #include <gschem.h>
-#include "version.h"
+#include <version.h>
 
 #include <X11/Xlib.h>
 /* Xlib defines Complex to be a numeric of value 0 and this does

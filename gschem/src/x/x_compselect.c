@@ -29,7 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <ctype.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
 #include "gschem_dialog.h"              /* Definition of base Dialog Class */

@@ -31,7 +31,7 @@
  * \brief Extend/Project Operations Implementatiom Module
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include <math.h>
 
 /** \defgroup Extend-Operations Extend Operations

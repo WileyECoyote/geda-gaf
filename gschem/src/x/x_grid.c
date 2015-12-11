@@ -28,7 +28,7 @@
 
 #include <math.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include <geda_debug.h>
 
 #include <X11/Xlib.h>

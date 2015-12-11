@@ -25,7 +25,7 @@
  * \brief A dialog box for editing Slot Attributes.
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 
 #include <geda_dialog_controls.h>

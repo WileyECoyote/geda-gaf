@@ -29,9 +29,9 @@
  * \brief A dialog box for creating arrays.
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
-#include "x_window.h"
+#include <x_window.h>
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>

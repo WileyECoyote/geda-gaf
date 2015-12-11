@@ -26,8 +26,8 @@
  * \brief Main Window Auxiliary Module for Event Handlers
  */
 
-#include "gschem.h"
-#include "x_window.h"
+#include <gschem.h>
+#include <x_window.h>
 
 #include <gdk/gdkkeysyms.h>
 

@@ -25,7 +25,7 @@
  * \brief Module for miscellaneous functions
  */
 
-#include "gschem.h"
+#include <gschem.h>
 
 #ifdef OS_WIN32
 #  ifndef STRICT

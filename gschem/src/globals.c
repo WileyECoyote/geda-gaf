@@ -24,7 +24,7 @@
 #include <config.h>
 #include <stdio.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
 /* Our Process ID as reported by getpid, set by o_undo_init */
 int prog_pid = 0;

@@ -37,7 +37,7 @@
  *   effect the file.
  */
 
-#include "gschem.h"
+#include <gschem.h>
 
 /** \defgroup Draw-Order-Internal Draw-Order Module Helper Functions
  *  @{

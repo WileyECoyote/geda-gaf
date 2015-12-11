@@ -31,7 +31,7 @@
  * \brief Break Operations Implementatiom Module
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include <math.h>
 
 /** \defgroup Break-Operations Break Operations

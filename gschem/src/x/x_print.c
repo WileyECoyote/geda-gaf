@@ -30,7 +30,7 @@
 
 #include <math.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 
 #include <cairo-pdf.h>

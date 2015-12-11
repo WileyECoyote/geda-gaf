@@ -28,12 +28,12 @@
  * \brief Main Window Auxiliary Module for Menus, including Context
  */
 
-#include "gschem.h"
+#include <gschem.h>
 
 #include <geda_stat.h>
 #include <geda_widgets.h>
 
-#include "x_menus.h"
+#include <x_menus.h>
 #include "i_actions.h"
 
 #include <geda_debug.h>

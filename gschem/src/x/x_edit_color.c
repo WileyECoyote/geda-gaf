@@ -27,7 +27,7 @@
  * \brief A dialog box for editing object color property.
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 
 #include <geda_widgets.h>

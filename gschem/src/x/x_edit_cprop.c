@@ -29,7 +29,7 @@
  * \brief A dialog box for viewing and edit component properties.
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>

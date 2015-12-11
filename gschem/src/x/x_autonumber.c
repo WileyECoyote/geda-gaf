@@ -30,7 +30,7 @@
 
 #include <ctype.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include <gdk/gdkkeysyms.h>
 
 #include "x_dialog.h"

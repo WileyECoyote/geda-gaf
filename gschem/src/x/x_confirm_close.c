@@ -26,7 +26,7 @@
  * \brief Confirm-Exit-Dialog Class Definition and Implementatiom Module
  */
 
-#include "gschem.h"
+#include <gschem.h>
 
 #include <geda_debug.h>
 

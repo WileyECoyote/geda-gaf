@@ -24,8 +24,8 @@
  * 02110-1301 USA
  */
 
-#include "gschem.h"
-#include "x_window.h"
+#include <gschem.h>
+#include <x_window.h>
 
 #include <geda_debug.h>
 

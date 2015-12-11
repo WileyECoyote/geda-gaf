@@ -57,7 +57,7 @@
 #include <errno.h>
 #include <ctype.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 #include "geda_dialog_controls.h"
 

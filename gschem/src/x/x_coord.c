@@ -29,7 +29,7 @@
 
 #include <ctype.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include "x_dialog.h"
 #include "x_dnd.h"
 

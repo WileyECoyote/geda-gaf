@@ -28,7 +28,7 @@
 
 #include <config.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include "i_actions.h"
 #include "x_dialog.h"
 

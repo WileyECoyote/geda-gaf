@@ -25,7 +25,7 @@
  * \brief Module to provide System Clipboard suppport
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include <geda_debug.h>
 
 #define CLIP_TYPE_SCHEMATIC 1

@@ -29,7 +29,7 @@
  *
  */
 
-#include "gschem.h"
+#include <gschem.h>
 #include <geda_debug.h>
 
 COLOR display_colors[MAX_COLORS];

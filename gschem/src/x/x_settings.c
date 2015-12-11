@@ -88,10 +88,10 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
 #include "gschem_xdefines.h"
-#include "x_menus.h"                    /* MenuToggleItem enumeration */
+#include <x_menus.h>                    /* MenuToggleItem enumeration */
 #include "x_settings.h"
 
 #include "keywords.h"

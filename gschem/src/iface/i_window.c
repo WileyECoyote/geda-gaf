@@ -25,7 +25,7 @@
 
 #include <gschem.h>
 #include <gschem_dialog.h>
-#include "x_window.h"
+#include <x_window.h>
 
 #include <geda_debug.h>
 

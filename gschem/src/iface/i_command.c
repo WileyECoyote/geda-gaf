@@ -32,7 +32,7 @@
 #include <gschem.h>
 
 #include "i_command.h"
-#include "x_menus.h"
+#include <x_menus.h>
 
 #include <geda_dialogs.h>
 #include <geda_help.h>

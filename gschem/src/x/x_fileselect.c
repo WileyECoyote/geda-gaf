@@ -28,7 +28,7 @@
 
 #include "config.h"
 #include <geda_stat.h>
-#include "gschem.h"
+#include <gschem.h>
 #include <geda_gui_funcs.h>
 #include <geda_file_chooser.h>
 #include <geda_image_chooser.h>
