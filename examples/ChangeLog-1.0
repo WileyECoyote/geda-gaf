@@ -7,6 +7,10 @@
     * RF_Amp/tests/runtest.sh:Shell script to run test, is identical to
       scripts in lightening_detector and gTAG subdirectories.
 
+    * TwoStageAmp/sym/transistor.sym: add missing attributes for pin types,
+      pin labels, and footprint as needed to comply with gsymcheck. Change
+      Generic_Transistor to description=General Purpose NPN Transistor.
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/Makefile.am: Revised like the new scheme used for lightening
