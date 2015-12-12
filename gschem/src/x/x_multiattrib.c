@@ -29,7 +29,7 @@
 #include <config.h>
 
 #include <gschem.h>
-#include "x_dialog.h"
+#include <x_dialog.h>
 #include <geda_widgets.h>
 
 #include <gdk/gdkkeysyms.h>

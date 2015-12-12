@@ -58,8 +58,8 @@
 #include <ctype.h>
 
 #include <gschem.h>
-#include "x_dialog.h"
-#include "geda_dialog_controls.h"
+#include <x_dialog.h>
+#include <geda_dialog_controls.h>
 
 #include <geda_entry.h>
 #include <geda_debug.h>

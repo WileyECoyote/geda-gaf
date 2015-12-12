@@ -27,7 +27,7 @@
  * \brief Main Window Auxiliary Module for Toolbars
  */
 
-#include "config.h"
+#include <config.h>
 #include <geda_stat.h>
 
 #include <gtk/gtk.h>
@@ -47,8 +47,8 @@
 #include <geda_handlebox.h>
 #include <geda_toolbars.h>
 
-#include "x_toolbars.h"
-#include "i_actions.h"
+#include <x_toolbars.h>
+#include <i_actions.h>
 
 #include <geda_debug.h>
 

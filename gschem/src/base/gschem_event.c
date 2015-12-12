@@ -34,7 +34,7 @@
 #include <gtk/gtk.h>
 
 #include <geda_types.h>
-#include "gschem_event.h"
+#include <gschem_event.h>
 
 static GObjectClass *gschem_event_parent_class = NULL;
 

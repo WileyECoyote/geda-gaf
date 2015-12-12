@@ -34,7 +34,7 @@
  *  @{ \memberof Systemic-Dialogs
 */
 
-#include "x_confirm_close.h"
+#include <x_confirm_close.h>
 
 static void     confirm_close_dialog_class_init   (ConfirmCloseDialogClass *klass);
 static void     confirm_close_dialog_init         (ConfirmCloseDialog      *self);

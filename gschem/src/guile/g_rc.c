@@ -59,7 +59,7 @@
  */
 
 #include <config.h>
-#include "version.h"
+#include <version.h>
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
 #endif
@@ -71,8 +71,8 @@
 
 #include <ctype.h>
 
-#include "gschem.h"
-#include "ascii.h"
+#include <gschem.h>
+#include <ascii.h>
 
 /*! \brief Loads gtk rc files for pararsing
  *

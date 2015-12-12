@@ -36,10 +36,10 @@
 #include <math.h>
 #endif
 
-#include "gettext.h"
+#include <gettext.h>
 
 #include <gschem.h>
-#include "geda_widgets.h"
+#include <geda_widgets.h>
 
 
 /** \defgroup Gschem-Macro-Widget Gschem Macro Widget

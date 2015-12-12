@@ -32,7 +32,7 @@
  */
 
 #include <gschem.h>
-#include "x_dialog.h"
+#include <x_dialog.h>
 
 #include <geda_dialogs.h>
 

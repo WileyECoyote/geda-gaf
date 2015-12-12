@@ -26,7 +26,7 @@
 
 #include <gschem.h>
 
-#include "i_actions.h"
+#include <i_actions.h>
 
 #include <geda_debug.h>
 

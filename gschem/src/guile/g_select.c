@@ -24,7 +24,7 @@
  */
 #include <config.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
 SCM_SYMBOL (object_state_sym, "object-state");
 

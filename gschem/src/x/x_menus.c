@@ -34,7 +34,7 @@
 #include <geda_widgets.h>
 
 #include <x_menus.h>
-#include "i_actions.h"
+#include <i_actions.h>
 
 #include <geda_debug.h>
 

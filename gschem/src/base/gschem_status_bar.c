@@ -38,7 +38,7 @@
 #include <math.h>
 
 #include <gschem.h>
-#include "geda_widgets.h"
+#include <geda_widgets.h>
 
 /** \defgroup Gschem-Status-Bar Gschem Status Bar
  *  @{ \brief This module defines the #GschemStatusBar class

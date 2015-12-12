@@ -153,8 +153,8 @@
 #include <gtk/gtk.h>
 
 #include <gschem.h>
-#include "gschem_xdefines.h"            /* Define dialog default internal spacing */
-#include "gschem_dialog.h"              /* Definition the base Dialog Class */
+#include <gschem_xdefines.h>            /* Define dialog default internal spacing */
+#include <gschem_dialog.h>              /* Definition the base Dialog Class */
 
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */

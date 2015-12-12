@@ -56,7 +56,7 @@
 
 #include <gschem.h>
 #include <x_window.h>
-#include "x_dnd.h"
+#include <x_dnd.h>
 
 #include <geda_debug.h>
 

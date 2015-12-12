@@ -31,7 +31,7 @@
 
 #include <gschem.h>
 
-#include "i_command.h"
+#include <i_command.h>
 #include <x_menus.h>
 
 #include <geda_dialogs.h>
@@ -109,7 +109,7 @@ static struct {
 } command_struc[COMMAND_COUNT] = {
  [ cmd_unknown ] = { "unknown", 0, 0, 0, 0, 0, {0, 0}, 0, 0, 0},
 
- #include "i_command.h"
+ #include <i_command.h>
 };
 
 #define CMD(symbol)cmd_##symbol
@@ -256,7 +256,6 @@ const char *i_command_get_action_icon (const char *command)
 {
   const char *icon_id = NULL;
   static int  icache  = 1;
-  int  index;
 
   /* Hack for buffer */
   if (strstr(command, "buffer-copy") != 0) {
@@ -269,6 +268,9 @@ const char *i_command_get_action_icon (const char *command)
     icon_id = command_struc[cmd_do_paste_clip].icon_id;
   }
   else {
+
+    int  index;
+
     for (index = icache; index < LAST_ACTION; index++) {
 
       if (u_string_strequal(command_struc[index].name, command)) {
@@ -2106,7 +2108,6 @@ COMMAND (do_documentation)
   char *attrib_doc = NULL;
   Object *object = NULL;
   GError *error = NULL;
-  bool result;
 
   object = o_select_return_first_object(w_current);
   if (object != NULL) {
@@ -2116,10 +2117,14 @@ COMMAND (do_documentation)
       /* look for "documentation" */
       attrib_doc = o_attrib_search_object_attribs_by_name (object, "documentation", 0);
       if (attrib_doc) {
-        //g_type_init();
+
+        bool result;
+
         //result = x_show_uri (w_current, attrib_doc, &error);
+
         /* Use this instead until debian-gnome work out thier iceweasel issue */
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
+
         if (!result) {
           u_log_message("error: %s", error->message);
           g_error_free (error);
@@ -4136,16 +4141,17 @@ COMMAND (do_show_settings)
 COMMAND (do_show_manual)
 {
   BEGIN_COMMAND(do_show_manual);
-  bool result;
+
   char *pathname = NULL;
 
   pathname = g_build_filename (f_path_sys_doc (), "wiki",
                                HELP_GSCHEM_GUIDE_HTML, NULL);
-
   if (pathname) {
-    result = x_show_uri (pathname);
-    if (!result) {
+
+    if (!x_show_uri (pathname)) {
+
       u_log_message(_("Check: path \"%s\"\n"), pathname);
+
     }
     GEDA_FREE(pathname);
   }
@@ -4164,14 +4170,16 @@ COMMAND (do_show_hotkeys)
 COMMAND (do_show_faq)
 {
   BEGIN_COMMAND(do_show_faq);
-  bool result;
+
   char *pathname = NULL;
   pathname = g_build_filename (f_path_sys_doc (), "wiki",
                                HELP_GSCHEM_FAQ_HTML, NULL);
   if (pathname) {
-    result = x_show_uri (pathname);
-    if (!result) {
+
+    if (!x_show_uri (pathname)) {
+
       u_log_message(_("Check: path \"%s\"\n"), pathname);
+
     }
     GEDA_FREE(pathname);
   }
@@ -4182,13 +4190,16 @@ COMMAND (do_show_faq)
 COMMAND (do_show_geda)
 {
   BEGIN_COMMAND(do_show_geda);
-  bool result;
+
   char *pathname = NULL;
-  pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_GEDA_DOC_HTML, NULL);
+  pathname = g_build_filename (f_path_sys_doc (), "wiki",
+                               HELP_GEDA_DOC_HTML, NULL);
   if (pathname) {
-    result = x_show_uri (pathname);
-    if (!result) {
+
+    if (!x_show_uri (pathname)) {
+
       u_log_message(_("Check: path \"%s\"\n"), pathname);
+
     }
     GEDA_FREE(pathname);
   }
@@ -4199,13 +4210,16 @@ COMMAND (do_show_geda)
 COMMAND (do_show_wiki)
 {
   BEGIN_COMMAND(do_show_wiki);
-  bool result;
+
   char *pathname = NULL;
   pathname = g_build_filename (f_path_sys_doc (), "wiki", HELP_GEDA_WIKI_HTML, NULL);
+
   if (pathname) {
-    result = x_show_uri (pathname);
-    if (!result) {
+
+    if (!x_show_uri (pathname)) {
+
       u_log_message(_("Check: path \"%s\"\n"), pathname);
+
     }
     GEDA_FREE(pathname);
   }

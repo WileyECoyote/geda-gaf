@@ -90,11 +90,11 @@
 
 #include <gschem.h>
 
-#include "gschem_xdefines.h"
+#include <gschem_xdefines.h>
 #include <x_menus.h>                    /* MenuToggleItem enumeration */
-#include "x_settings.h"
+#include <x_settings.h>
 
-#include "keywords.h"
+#include <keywords.h>
 
 #include <geda_debug.h>
 
@@ -132,7 +132,7 @@ struct {
    char *strBuffer;
 } keyword_struc[KEYWORD_COUNT] = {
  [ kw_unknown ] = { "unknown", 0, 0, 0 },
-#include "keywords.h"
+#include <keywords.h>
 };
 
 #define KEY_FUNC(symbol)keyword_struc[kw_##symbol].func

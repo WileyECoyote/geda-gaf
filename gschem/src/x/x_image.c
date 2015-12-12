@@ -30,7 +30,7 @@
 #include <errno.h>
 
 #include <gschem.h>
-#include "x_dialog.h"
+#include <x_dialog.h>
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>

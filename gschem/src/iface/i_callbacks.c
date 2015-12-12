@@ -27,7 +27,7 @@
 #include <geda_debug.h>
 
 #define I_DO_DECLARE
-#include "i_command.h"
+#include <i_command.h>
 
 #include <geda_debug.h>
 

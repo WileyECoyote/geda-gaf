@@ -31,14 +31,14 @@
 
 #include <gschem.h>
 
-#include "gschem_xdefines.h"            /* Define dialog default internal spacing */
-#include "gschem_dialog.h"              /* Definition of base Dialog Class */
+#include <gschem_xdefines.h>            /* Define dialog default internal spacing */
+#include <gschem_dialog.h>              /* Definition of base Dialog Class */
 
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
 
-#include "x_preview.h"
-#include "x_compselect.h"
+#include <x_preview.h>
+#include <x_compselect.h>
 
 #include <geda_debug.h>
 
