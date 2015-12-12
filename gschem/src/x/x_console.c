@@ -191,10 +191,11 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
     v_log_message(_("Command interface: engaged using (%s)"), describe_level[mode]);
   }
   else {
-#endif
     v_log_message(_("Command interface: engaged using (%s)"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
   }
+#endif
+
 }
 
 /*! ====================== Console Dialog-Handlers ==================== */

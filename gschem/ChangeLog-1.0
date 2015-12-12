@@ -11,7 +11,10 @@
       Selection with Current_Selection with intermediate variable and
       let compiler optimize out.
 
-    * tests/runtest.sh: Make links instead of copies of scheme files
+    * gschem/src/x/x_console.c: Move bracket inside conditional directive
+      to fix build without GTHREAD.
+
+    * tests/runtest.sh: Make links of scheme files instead of copies.
       during testing.
 
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
