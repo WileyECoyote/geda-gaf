@@ -513,7 +513,7 @@ bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 
       /* The discriminant can not be negative */
 
-#ifdef HAVE_LRINT
+#if HAVE_LRINT
 
       if (dx == 0) {      /* Vertical = special, find y first*/
 
@@ -564,7 +564,7 @@ bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
       }
       else {             /* For all non-vertical line */
 
-        double x;
+        double tmp_x;
 
         if (x > cx) {     /* Use positive root */
 

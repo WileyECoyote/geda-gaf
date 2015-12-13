@@ -2,6 +2,9 @@
 
     * src/: libgeda/src: Reduce scope of variables,
 
+    * src/object/o_circle_basic.c: Fix wrong variable for builds without
+      rint in function o_circle_get_nearest_point.
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>,
