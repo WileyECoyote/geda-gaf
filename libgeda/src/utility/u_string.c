@@ -289,10 +289,8 @@ bool u_string_isalnum (const char *str)
  */
 int u_string_parse_xy(const char *string, int *x, int *y)
 {
-  char *buffer;
   char *x_str, *y_str;
   int   icomma;
-  int   index;
   int   valid;
 
   icomma = -1;
@@ -302,9 +300,12 @@ int u_string_parse_xy(const char *string, int *x, int *y)
 
   if (string) {
 
-    int length = strlen(string);
+    char *buffer;
+    int   index;
+    int   length;
 
     buffer = u_string_strdup(string);
+    length = strlen(string);
 
     for (index = 0; index < length; index++) {
 
@@ -339,8 +340,9 @@ int u_string_parse_xy(const char *string, int *x, int *y)
     }
 
     if (x_str && y_str) {
-      if (icomma >= 0)
+      if (icomma >= 0) {
         buffer[icomma] = '\0';
+      }
       *x = atoi(x_str);
       *y = atoi(y_str);
       valid = 1;
@@ -695,13 +697,13 @@ int u_string_strncmpi(const char *str1, const char *str2, int n)
  */
 char *u_string_strsubst(char *source, char *old_str, char *new_str)
 {
-  char *temp   = NULL;
-  int position = -1;
-  unsigned int length;
-  unsigned int i, j, k;
-  unsigned int size;
-
   if (source && old_str) {
+
+    char *temp   = NULL;
+    int position = -1;
+
+    unsigned int length;
+    unsigned int size;
 
     length   = strlen (old_str);
     size     = strlen (source)- length + strlen (new_str) + 1;
@@ -710,26 +712,39 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
 
     if (temp) { /* If memory was allocated */
 
+      unsigned int i;
+
       memset(temp, 0, size); /* initialize new memory */
 
       /* Getting starting position for replacement */
-      for(i = 0; source[i] && ( position == -1 ); ++i)
-        for(j = i,k = 0; source[j] == old_str[k]; j++, k++)
-          if(!old_str[k+1]) position = i;
+      for (i = 0; source[i] && ( position == -1 ); ++i) {
+
+        unsigned int j, k;
+
+        for (j = i, k = 0; source[j] == old_str[k]; j++, k++)
+
+          if (!old_str[k+1])
+            position = i;
 
           /* Start replacing */
-          if (position!=-1) {               /* if we found position   */
-            for (j = 0; j < position; j++)      /* copy the prefix        */
+          if (position!=-1) {                    /* if we found position   */
+
+            for (j = 0; j < position; j++)       /* copy the prefix        */
               temp[j] = source[j];
-            for(i = 0; new_str[i]; i++, j++)  /* add the new string and */
+
+            for (i = 0; new_str[i]; i++, j++)    /* add the new string and */
               temp[j] = new_str[i];
-            for(k = position + length; source[k]; k++, j++) /* remainder of source */
+
+            for (k = position + length; source[k]; k++, j++) /* remainder of source */
               temp[j] = source[k];
+
             temp[j] = '\0';                      /* then add terminator  */
-            for(i = 0; (source[i] = temp[i]); i++);  /* write back to source */
+
+            for (i = 0; (source[i] = temp[i]); i++);  /* write back to source */
           }
           free(temp);
           return source;
+      }
     }
     else {
       fprintf(stderr, "u_string_strsubst: Memory allocation error\n");
@@ -758,13 +773,14 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  */
 char *u_string_strisubst(char *source, char *old_str, char *new_str)
 {
-  unsigned int length;
-  unsigned int size;
   char *temp;
   char *ptr1;
   char *ptr2;
 
   if (source && old_str) {
+
+    unsigned int length;
+    unsigned int size;
 
     length = strlen(old_str);
 
