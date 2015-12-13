@@ -455,15 +455,11 @@ void o_circle_translate(Object *object, int dx, int dy)
 bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
-  int     x1, y1, x2, y2;
-  int     cx, cy, r;
-  double  dx, dy;
-  double  A, B, C, D;
 
-  volatile double  b;
-  volatile double  m;
 
   if (GEDA_IS_CIRCLE(object)) {
+
+    int cx, cy;
 
     cx = object->circle->center_x;
     cy = object->circle->center_y;
@@ -474,6 +470,13 @@ bool o_circle_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
       result = FALSE;
     }
     else {
+
+      int     x1, y1, x2, y2;
+      double  dx, dy, r;
+      double  A, B, C, D;
+
+      volatile double  b;
+      volatile double  m;
 
       r  = object->circle->radius;
 
@@ -641,7 +644,6 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   int x, y, radius;
   int color;
   int circle_width, capstyle, length, space;
-  int fill_width, angle1, pitch1, angle2, pitch2;
   void (*outl_func)() = NULL;
   void (*fill_func)() = NULL;
 
@@ -673,10 +675,13 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    */
 
   circle_width = o_current->line_options->line_width;
+
   if(circle_width < MIN_LINE_WIDTH_THRESHOLD)
      circle_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+
   if(circle_width < MIN_LINE_WIDTH_THRESHOLD)
      circle_width = MIN_LINE_WIDTH_THRESHOLD;         /* if STYLE_NONE  */
+
   length       = o_current->line_options->line_length;
   space        = o_current->line_options->line_space;
 
@@ -734,6 +739,9 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    * each of these functions are set to -1 or any passive value.
    */
   if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
+
+    int fill_width, angle1, pitch1, angle2, pitch2;
+
     fill_width = o_current->fill_options->fill_width;
     angle1     = o_current->fill_options->fill_angle1;
     pitch1     = o_current->fill_options->fill_pitch1;

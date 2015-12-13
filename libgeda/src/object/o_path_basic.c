@@ -561,13 +561,18 @@ bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
   /* Internal function to check if a point is near an endpoint and move
    * the point if the point is within a reasonably short distance */
   void check_endpoints(int *pt, int end1, int end2) {
+
     int delta;
+
     delta = abs(*pt - end1);
+
     if (delta < NEAR_DISTANCE) { /* If near 1st endpoint*/
       *pt = end1;
        return;
     }
+
     delta = abs(*pt - end2);
+
     if (delta < NEAR_DISTANCE) { /* If near 2nd endpoint*/
       *pt = end2;
     }
@@ -669,8 +674,8 @@ bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
       }
       else { /* Segment is on non-zero angle*/
 
-        double dx, dy, ix, iy;
-        double m1, m2, b1, b2;
+        double dx, dy;
+        double m1, b1;
         double off;
 
         POINT  point;
@@ -684,6 +689,9 @@ bool o_path_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         off = abs(m1 * x + b1 - y);
 
         if (off) {
+
+          double ix, iy;
+          double m2, b2;
 
           m2  = -1 / m1;
           b2  = y - (m2 * x);
@@ -1122,7 +1130,6 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
                   int origin_x, int origin_y)
 {
   int line_width, length, space;
-  int fill_width, angle1, pitch1, angle2, pitch2;
   DRAW_FUNC outl_func = NULL;
   FILL_FUNC fill_func = NULL;
 
@@ -1208,6 +1215,9 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *  of these functions are set to -1 or any passive value.
    */
   if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
+
+    int fill_width, angle1, pitch1, angle2, pitch2;
+
     fill_width = o_current->fill_options->fill_width;
     angle1     = o_current->fill_options->fill_angle1;
     pitch1     = o_current->fill_options->fill_pitch1;

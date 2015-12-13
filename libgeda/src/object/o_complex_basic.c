@@ -989,9 +989,6 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
   int inside_present   = FALSE;
   int outside_present  = FALSE;
 
-  double inside_major, inside_minor;
-  double outside_major, outside_minor;
-
   const char *schematic;
   const char *refdes;
   const char *match;
@@ -1128,6 +1125,10 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
          ((inside_present && outside_present) &&
           (inside_value > outside_value)))
       {
+
+        double inside_major, inside_minor;
+        double outside_major, outside_minor;
+
         u_log_message(warn_msg, match, refdes);
         u_log_message(clash_msg, schematic, object->complex->filename, older);
 

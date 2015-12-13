@@ -801,10 +801,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
   char **keys;
   char **Vals;
 
-  int  argc;
   int  ecode;
-  int  is_writable;
-  int  i;
 
   bool result;
 
@@ -819,6 +816,10 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
       result = FALSE;
     }
     else {
+
+      int  argc;
+      int  is_writable;
+      int  i;
 
       keys = NULL;
       Vals = NULL;
@@ -836,6 +837,7 @@ o_picture_real_export_pixbuf (GdkPixbuf  *pixbuf,
       va_end(varcnt);
 
       argc = argc / 2;  /* variable arguments must be pairs */
+
       if (argc > 0) {   /* allocate storage collect pairs */
 
         /* allocate memory for both arrays */

@@ -620,33 +620,45 @@ bool o_pin_get_attributes(Object *object, const char **label,
                                           PIN_NODE    *n_type)
 {
   bool        result;
-  GList      *a_iter;
-  Object     *a_current;
-  const char *str;
-  char       *ptr;
   char       *pinnumber_str = NULL;
   char       *pinseq_str    = NULL;
   const char *pinlabel_str  = NULL;
   char       *pintype_str   = NULL;
   char       *mechtype_str  = NULL;
-  int         length;
 
   result = (object->type == OBJ_PIN) ? TRUE : FALSE;
 
   if (result) {
 
+    GList      *a_iter;
+
    *n_type = object->pin->node_type;    /* Update client's node type */
 
     a_iter = object->attribs;    /* Prime loop with Pin's attributes */
+
     while (a_iter != NULL) {
+
+      Object     *a_current;
+      const char *str;
+
       a_current = a_iter->data;
-      str = a_current->text->string; /* get pointer attribute's text */
+      str       = a_current->text->string; /* get pointer attribute's text */
+
       if (str) {
+
+        char *ptr;
+
         ptr = (char*) str;
+
         while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
-        if ( *ptr == ASCII_EQUAL_SIGN ) {
-          length = ptr - str;            /* is pointer offset to "=" */
-          ptr++;            /* pointer offset to first char of value */
+
+          if ( *ptr == ASCII_EQUAL_SIGN ) {
+
+          int length;
+
+          length = ptr - str;    /* is pointer offset to "=" */
+          ptr++;                 /* pointer offset to first char of value */
+
           if(strncmp(str, "pinnumber", length) == 0 ) {
             pinnumber_str = ptr;
            *number = pinnumber_str;
@@ -1184,7 +1196,6 @@ Object* o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object,
         char *text;
         char  s_val[6];
 
-  int     value;
   int     align = -1;
   int     offset;
   int     size;
@@ -1252,8 +1263,13 @@ Object* o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object,
   if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
 
   if (number == NULL) {
+
     if (object->pin->number == NULL) {
+
       if(GEDA_IS_COMPLEX(object->parent_object)) {
+
+        int value;
+
         value = g_list_length(object->parent_object->complex->pin_objs);
         u_string_int2str(value, s_val, 10);
         str_num = &s_val[0];

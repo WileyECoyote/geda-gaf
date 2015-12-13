@@ -193,13 +193,13 @@ void o_box_modify(Object *object, int x, int y, int whichone)
   }
 
   /* need to update the upper left and lower right corners */
-  if(object->box->upper_x > object->box->lower_x) {
+  if (object->box->upper_x > object->box->lower_x) {
     tmp                  = object->box->upper_x;
     object->box->upper_x = object->box->lower_x;
     object->box->lower_x = tmp;
   }
 
-  if(object->box->upper_y < object->box->lower_y) {
+  if (object->box->upper_y < object->box->lower_y) {
     tmp                  = object->box->upper_y;
     object->box->upper_y = object->box->lower_y;
     object->box->lower_y = tmp;
@@ -482,9 +482,9 @@ void o_box_rotate(Object *object, int center_x, int center_y, int angle)
    */
 
   /* angle must be positive */
-  if(angle < 0) angle = -angle;
+  if (angle < 0) angle = -angle;
   /* angle must be a 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
+  if ((angle % 90) != 0) return;
 
   /*! \note
    *  The center of rotation (<B>center_x</B>, <B>center_y</B>) is
@@ -568,8 +568,6 @@ bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
     Line *closest;
     Line  segments[4];
 
-    double dl, dr, dt, db;
-
     box    = object->box;
     result = FALSE;
 
@@ -615,6 +613,8 @@ bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
       *nx = x;
     }
     else { /* point is inside the box */
+
+      double dl, dr, dt, db;
 
       /* Left Side */
       segments[0].x[0] = left;
@@ -767,7 +767,6 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   int x, y, width, height;
   int color;
   int line_width, capstyle, length, space;
-  int fill_width, angle1, pitch1, angle2, pitch2;
   void (*outl_func)() = NULL;
   void (*fill_func)() = NULL;
   Box  *box;
@@ -807,13 +806,15 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    */
 
   line_width = o_current->line_options->line_width;
-  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
-    line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
-    if(line_width < MIN_LINE_WIDTH_THRESHOLD)
-      line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
-    length = o_current->line_options->line_length;
-    space  = o_current->line_options->line_space;
+  if (line_width < MIN_LINE_WIDTH_THRESHOLD)
+    line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+
+  if (line_width < MIN_LINE_WIDTH_THRESHOLD)
+    line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
+
+  length = o_current->line_options->line_length;
+  space  = o_current->line_options->line_space;
 
   switch(o_current->line_options->line_type) {
     case(TYPE_SOLID):
@@ -845,7 +846,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
       break;
   }
 
-  if((length == 0) || (space == 0)) {
+  if ((length == 0) || (space == 0)) {
     length = -1; space  = -1;
     outl_func = o_box_print_solid;
   }
@@ -869,7 +870,10 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *  In such a case, the box is printed filled. Unused parameters for each of
    *  these functions are set to -1 or any passive value.
    */
-  if(box->fill_options.fill_type != FILLING_HOLLOW) {
+  if (box->fill_options.fill_type != FILLING_HOLLOW) {
+
+    int fill_width, angle1, pitch1, angle2, pitch2;
+
     fill_width = box->fill_options.fill_width;
     angle1     = box->fill_options.fill_angle1;
     pitch1     = box->fill_options.fill_pitch1;
@@ -906,7 +910,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 
     }
 
-    if((pitch1 <= 0) || (pitch2 <= 0)) {
+    if ((pitch1 <= 0) || (pitch2 <= 0)) {
       angle1 = -1; pitch1 = 1;
       angle2 = -1; pitch2 = 1;
       fill_func = o_box_print_filled;
