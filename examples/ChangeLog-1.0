@@ -1,3 +1,9 @@
+2015-12-12  Wiley E. Hill <wileyhill@gmail.com>
+
+    * xxx/tests/runtest.sh: Fall back to #!/bin/bash to eschew dash on
+      Debian and directives. Unfortunately must sacrifice time to test
+      because distributor running amuck.
+
 2015-12-11  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/Makefile.am: Add test like lightening_detector and gTAG.

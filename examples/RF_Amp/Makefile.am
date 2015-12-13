@@ -10,10 +10,11 @@ exampledir    = $(docdir)/examples/RF_Amp/
 
 SRCDIR        = $(srcdir)
 
-example_DATA  = 5980-2396E.pdf MSA-2643.cir MSA-2643.sch \
-		Q1.cir Q1.sch Q2.cir Q2.sch README Simulation.cmd gafrc
+example_DATA  = 5980-2396E.pdf gafrc MSA-2643.cir MSA-2643.sch \
+                Q1.cir Q1.sch Q2.cir Q2.sch README Simulation.cmd \
+                bom/MSA-2643-bom.csv
 
-EXTRA_DATA    = tests/MSA-2643-geda.net
+EXTRA_DATA    = tests/MSA-2643-bom.csv tests/MSA-2643-geda.net
 
 RUN_TESTS     = tests/runtest.sh
 
@@ -29,8 +30,8 @@ clean-local:
 
 .PHONY: tests
 
-MOSTLYCLEANFILES = gschem.log *~
-CLEANFILES = gschem.log *~
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = gschem.log *~ Makefile.in
+MOSTLYCLEANFILES     = *.log tests/*~ *~
+CLEANFILES           = *.log tests/*~ *~ model/*~ sym/*~
+DISTCLEANFILES       = *.log tests/*~ *~ model/*~ sym/*~
+MAINTAINERCLEANFILES = *.log tests/*~ *~ model/*~ sym/*~ core Makefile.in
 
