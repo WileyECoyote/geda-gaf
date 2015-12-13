@@ -39,7 +39,7 @@ example_DATA     =  attribs \
 		   sym/MAX882-gt.sym \
 		   sym/SN75240PW-gt.sym
 
-EXTRA_DATA    = tests/gTAG-geda.net
+EXTRA_DATA    = tests/gTAG-bom.csv tests/gTAG-geda.net
 
 RUN_TESTS     = tests/runtest.sh
 
@@ -55,8 +55,8 @@ clean-local:
 
 .PHONY: tests
 
-MOSTLYCLEANFILES     = *.log *~
-CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~
-MAINTAINERCLEANFILES = *.log *~ core Makefile.in
+MOSTLYCLEANFILES     = *.log tests/*~ *~
+CLEANFILES           = *.log tests/*~ *~ sch/*~ sht/*~ sym/*~
+DISTCLEANFILES       = *.log tests/*~ *~ sch/*~ sht/*~ sym/*~
+MAINTAINERCLEANFILES = *.log tests/*~ *~ sch/*~ sht/*~ sym/*~ core Makefile.in
 

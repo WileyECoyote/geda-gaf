@@ -1,0 +1,32 @@
+# PcbXY Version 1.0
+# Date: Sat 12 Dec 2015 08:05:45 AM GMT UTC
+# Author: Wiley Edward Hill
+# Title: (unknown) - PCB X-Y
+# RefDes, Description, Value, X, Y, rotation, top/bottom
+# X,Y in mil.  rotation in degrees.
+# --------------------------------------------
+C3,"ACY-600","0.01uF",1750.00,2675.00,180,top
+Q4,"TO-92","2N4401",875.00,3725.00,270,top
+Q1,"TO-92","2N4401",1225.00,3725.00,270,top
+C6,"ACY-600P","1uF",2000.00,2425.00,0,top
+R6,"AXIAL_LAY-500","2.7k",1200.00,3375.00,180,top
+R5,"AXIAL_LAY-500","2.2K",500.00,3000.00,90,top
+R3,"R-025","22k",1325.00,2575.00,270,top
+R7,"AXIAL_LAY-500","47R",1225.00,3100.00,0,top
+R2,"AXIAL_LAY-500","3.9k",1950.00,2925.00,0,top
+C4,"ACY-600P","100uF",1150.00,2925.00,0,top
+Q3,"TO-92","2N4401",650.00,3500.00,270,top
+Q2,"TO-92","2N4403",450.00,2475.00,270,top
+L1,"AXIAL_LAY-800","10mH",2000.00,3725.00,0,top
+C1,"ACY-600","680pf",2175.00,3500.00,180,top
+C2,"ACY-600","0.01uF",2175.00,3325.00,180,top
+C5,"ACY-600","5nF",1025.00,3250.00,0,top
+D1,"AXIAL_LAY-500","1N914",675.00,2850.00,90,top
+R4,"POT__BOURNS_3386P","20k",991.67,2525.00,180,top
+L2,"AXIAL_LAY-800","10mH",2650.00,3100.00,270,top
+A1,"PAD150","unknown",2825.00,2700.00,0,top
+bat(0v),"PAD150","unknown",2300.00,2225.00,0,top
+bat(+3v),"PAD150","unknown",1700.00,2225.00,0,top
+lamp(2),"PAD150","unknown",175.00,3350.00,0,top
+lamp(1),"PAD150","unknown",175.00,2800.00,0,top
+R1,"AXIAL_LAY-500","180k",2075.00,3150.00,180,top

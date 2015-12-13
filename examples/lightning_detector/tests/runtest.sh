@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # gEDA - GPL Electronic Design Automation
 #
@@ -41,7 +41,7 @@
 #           list is extracted and compared to a reference in the test
 #           subdirectory.
 #
-VER=0.0.1
+VER=0.0.3
 
 schematic=$1
 
@@ -59,6 +59,9 @@ SRCDIR=$PWD
 
 test $VERBOSE && echo "Checking example ${schematic}"
 
+# ---------------------- Configuration constants -------------------
+
+BOMBACKEND="partslist1"
 TMPGEDADIR="gEDA"
 
 RPATH2LIBGEDA=$SRCDIR/../../libgeda/src/.libs
@@ -71,6 +74,8 @@ SYMCHECKER=
 CHECKNET=gnetlist
 PATH2CHECKNET=../../gnetlist/src
 NETLISTER=
+
+# ----------------------- Functions constants ----------------------
 
 # error exit handler when gnetlist is not found
 do_exit_no_netlister ()
@@ -178,7 +183,7 @@ do_setup_geda_environment ()
   mkdir -m 0777 -p scheme/gnetlist
   mkdir -m 0777 -p gafrc.d
 
-  test $VERBOSE && "GEDADATARC=$GEDADATARC"
+  test $VERBOSE && echo "GEDADATARC=$GEDADATARC"
 
   cd $CWDSAVE
 
@@ -228,7 +233,7 @@ do_setup_geda_environment ()
   if [ -d $SRCDIR/../../symbols ] ; then
    cd $SRCDIR/../../symbols
    export SYMDIR=$PWD
-   test $VERBOSE && "SYMDIR=$SYMDIR"
+   test $VERBOSE && echo "SYMDIR=$SYMDIR"
    cd $GEDADATARC/gafrc.d/
    ln -s $SYMDIR/geda-clib.scm geda-clib.scm 2>/dev/null
    cd ..
@@ -245,9 +250,11 @@ do_setup_geda_environment ()
 # Search example directory for sym files and gsymcheck all found
 do_check_symbols ()
 {
-  symbols=$(find . -type f -iname "*.sym" -print0 | xargs -0)
+  found=$(find . -type f -iname "*.sym" -print0 | xargs -0)
 
-  for sym in "$symbols"; do
+  IFS=' ' read -a symbols <<< "$found"
+
+  for sym in ${symbols[@]}; do
 
     test $VERBOSE && echo -n "Checking ${sym} ..."
     $SYMCHECKER -q ${sym}
@@ -257,8 +264,11 @@ do_check_symbols ()
     fi
     test $VERBOSE && echo "passed"
   done
+
   return 0;
 }
+
+# ------------------------------- Begin ----------------------------
 
 if [ -z "${schematic}" ] ; then
   echo "Schematic not specified"
@@ -275,6 +285,13 @@ if [ ! -f "tests/${schematic}-geda.net" ] ; then
   exit 1;
 fi
 
+if [ ! -f "tests/${schematic}-bom.csv" ] ; then
+  echo "Reference is missing: tests/${schematic}-bom.csv"
+  exit 1;
+fi
+
+test -z $DEBUG || set -x
+
 do_export_path2libraries
 do_setup_geda_environment
 
@@ -288,10 +305,19 @@ do_check_symbols
 ${NETLISTER} -q -g drc2 -o "${schematic}-drc2.txt" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
+${NETLISTER} -q -g ${BOMBACKEND} -o "bom/${schematic}-bom.csv" "${schematic}.sch"
+test $? -eq 0 || exit 1;
+
 ${NETLISTER} -q -g geda -o "${schematic}-geda.net" "${schematic}.sch"
-test -f "${schematic}-geda.net" || exit 1;
+test $? -eq 0 || exit 1;
 
 # Clean up if not debugging
-test ! -z $DEBUG || rm -rf gEDA
+test ! -z $DEBUG || rm -rf gEDA #&& rm -f "${schematic}-drc2.txt" || : ;
 
+test -f "bom/${schematic}-bom.csv" || exit 1;
+
+diff "tests/${schematic}-bom.csv" "bom/${schematic}-bom.csv"
+test $? -eq 0 || exit 1;
+
+test -f "${schematic}-geda.net" || exit 1;
 diff "tests/${schematic}-geda.net" "${schematic}-geda.net"
