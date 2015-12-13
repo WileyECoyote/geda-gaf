@@ -25,8 +25,8 @@
 
 #include <config.h>
 
-#include "o_types.h"
-#include "geda_colors.h"
+#include <o_types.h>
+#include <geda_colors.h>
 
 #include <geda_debug.h>
 

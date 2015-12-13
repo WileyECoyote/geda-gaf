@@ -35,7 +35,7 @@
  *  Modified the name of the functions and some variables
  */
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
 #include <ctype.h>

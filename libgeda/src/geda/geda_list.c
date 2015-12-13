@@ -35,7 +35,7 @@
 #include <glib-object.h>
 
 #include <libgeda_priv.h>
-#include "geda_list.h"
+#include <geda_list.h>
 
 enum {
   CHANGED,

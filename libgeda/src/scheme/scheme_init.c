@@ -25,7 +25,7 @@
 #include <config.h>
 
 #include <libgeda_priv.h>
-#include "libgedaguile_priv.h"
+#include <libgedaguile_priv.h>
 
 /*! Non-zero if the Scheme API has been initialised. */
 static volatile GedaType init_called = 0;

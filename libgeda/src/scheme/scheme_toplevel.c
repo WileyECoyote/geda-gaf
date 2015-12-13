@@ -26,7 +26,7 @@
 #include <config.h>
 
 #include <libgeda_priv.h>
-#include "libgedaguile_priv.h"
+#include <libgedaguile_priv.h>
 
 static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
 

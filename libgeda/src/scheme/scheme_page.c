@@ -28,7 +28,7 @@
 #include <config.h>
 
 #include <libgeda_priv.h>
-#include "libgedaguile_priv.h"
+#include <libgedaguile_priv.h>
 
 SCM_SYMBOL (edascm_string_format_sym , "string-format");
 

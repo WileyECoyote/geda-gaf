@@ -26,7 +26,7 @@
 #include <config.h>
 
 #include <libgeda_priv.h>
-#include "libgedaguile_priv.h"
+#include <libgedaguile_priv.h>
 
 SCM_SYMBOL (lambda_sym, "lambda");
 SCM_SYMBOL (args_sym,   "args");

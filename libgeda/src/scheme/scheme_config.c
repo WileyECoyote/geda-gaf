@@ -26,7 +26,7 @@
 #include <config.h>
 
 #include <libgeda_priv.h>
-#include "libgedaguile_priv.h"
+#include <libgedaguile_priv.h>
 
 SCM_SYMBOL (system_error_sym,     "system-error");
 SCM_SYMBOL (config_error_sym,     "config-error");
