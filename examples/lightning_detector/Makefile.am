@@ -14,7 +14,7 @@ example_DATA = \
 		lightning_detector.pcb \
 		lightning_detector.sch \
 		revision-history.txt \
-		schbom schbom.readme gafrc \
+		schbom schbom.readme \
 		bom/lightning_detector.sch.bom  \
 		bom/lightning_detector-bom.csv \
 		sym/2N4401.sym \

@@ -1,3 +1,24 @@
+2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
+
+    * xxx/tests/runtest.sh: Add a bom comparisions for tests and
+      create bom subdirectories for generated bom output files.
+
+    * xxx/.gitignore: Add ignore xxx-drc2.txt and xxx-geda.net.
+
+    * gTAG: Generate bom2 for test comparision for tests.
+
+    * lightning_detector: Generate partslist1 comparision for tests.
+
+    * lightning_detector/schbom: Rename file so as to not interfer with
+      bom subdirectory.
+
+    * lightning_detector/schbom.readme: Rename file to match the script
+      that was renamed.
+
+    * RF_Amp: Generate partslist1 comparision for tests.
+
+    * TwoStageAmp/TwoStageAmp.sch: Cleanup schematic drawing.
+
 2015-12-12  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Fall back to #!/bin/bash to eschew dash on
