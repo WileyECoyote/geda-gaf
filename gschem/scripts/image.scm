@@ -12,6 +12,8 @@
 (image-color "enabled")
 ;(image-color "disabled")
 
+(anti-aliasing "subpixel")
+
 ; You need call this after you call any rc file function
 (gschem-use-rc-values)
 
