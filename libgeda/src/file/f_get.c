@@ -533,6 +533,17 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 #endif
       retval = get_contents_stdio (filename, f, contents, length, err);
     }
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+    fclose (f);
+
+#else
+
+    close (fd);
+
+#endif
+
   }
 
   return retval;
