@@ -1,3 +1,8 @@
+2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_array.c: Fixed reversed reading of x-y entries in
+      function x_dialog_array_edit_ok.
+
 2015-12-11  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/xxx/xxx*.C: replace quoted includes with brackets.

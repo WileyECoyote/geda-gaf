@@ -486,8 +486,8 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
       if (x_pitch || y_pitch) {
 
-        int x_size  = atoi(GetEntryText( dialog_data->y_size_entry ));
-        int y_size  = atoi(GetEntryText( dialog_data->x_size_entry ));
+        int x_size  = atoi(GetEntryText( dialog_data->x_size_entry ));
+        int y_size  = atoi(GetEntryText( dialog_data->y_size_entry ));
 
         if (x_pitch && y_pitch ) {             /* Both True */
 
