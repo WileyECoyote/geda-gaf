@@ -1042,11 +1042,12 @@ static GschemStatusBarBuffers*
 gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 {
   unsigned int nbytes = sizeof(GschemStatusBarBuffers);
-  unsigned long int dest;
 
   GschemStatusBarBuffers *buffers = GEDA_MEM_ALLOC(nbytes);
 
   if (buffers) {
+
+    unsigned long int dest;
 
     /* zero-out the newly allocated memory */
     unsigned char *ptr = (unsigned char*)buffers;
@@ -1554,9 +1555,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
   inline char *get_coordinates_text(unsigned mode) {
 
     char  *string;
-    int    degrees;
     int    index;
-    int    length;
     double radians;
 
     index = 0;
@@ -1564,6 +1563,9 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     /* Check if vector format and valid first abscissa */
     if ((mode & COORD_FORMAT_V180  ||
          mode & COORD_FORMAT_V360) && x0 != -0) {
+
+      int    degrees;
+      int    length;
 
       /* Get the magnitude*/
       length = m_line_length(x0, y0, x1, y1);
@@ -1573,12 +1575,15 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
       degrees = radians * 180.0 / M_PI;
 
       if (mode & COORD_FORMAT_V360) {
+
         if (degrees < 0) {
           degrees = degrees + 360;
         }
+
         index = COORD_FORMAT_V360;
       }
       else {
+
         index = COORD_FORMAT_V180;
       }
 
