@@ -32,7 +32,8 @@
 #include <cairo.h>
 #include <pango/pangocairo.h>
 #include <geda.h>
-#include "edapangorenderer.h"
+
+#include "../include/edapangorenderer.h"
 
 /* We don't use gettext */
 #define _(x) (x)

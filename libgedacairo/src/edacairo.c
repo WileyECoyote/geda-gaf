@@ -38,7 +38,7 @@
 #include <geda.h>
 #include <libgeda/s_struct.h>
 
-#include "edacairo.h"
+#include "../include/edacairo.h"
 
 /* We don't use gettext */
 #define _(x) (x)
@@ -570,11 +570,15 @@ static inline void
 eda_cairo_path_hint (cairo_t *cr, int flags,
                      double *x, double *y, int width)
 {
-  double offset;
   if (flags & EDA_CAIRO_ENABLE_HINTS) {
+
+    double offset;
+
     cairo_user_to_device (cr, x, y);
+
     offset = ((width % 2) == 0) ? 0 : 0.5;
-    *x += offset; *y += offset;
+    *x    += offset; *y += offset;
+
     cairo_device_to_user (cr, x, y);
   }
 }

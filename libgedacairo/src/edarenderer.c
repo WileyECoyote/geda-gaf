@@ -35,10 +35,9 @@
 
 #include <libgeda/libgeda.h>
 
-#include "edarenderer.h"
-
-#include "edacairo.h"
-#include "edapangorenderer.h"
+#include "../include/edacairo.h"
+#include "../include/edarenderer.h"
+#include "../include/edapangorenderer.h"
 
 /* We do not use gettext */
 #define _(x) (x)
@@ -634,10 +633,6 @@ eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
 static int
 eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
 {
-  GArray *fill_lines;
-  LINE   *line;
-  int     fill_width;
-  int     index;
   bool    result;
 
   g_return_val_if_fail ((object->type == OBJ_ARC    ||
@@ -650,6 +645,11 @@ eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
   if (object->fill_options->fill_type != FILLING_HOLLOW) {
 
     if (object->fill_options->fill_type != FILL_SOLID) {
+
+      GArray *fill_lines;
+      LINE   *line;
+      int     fill_width;
+      int     index;
 
       fill_lines = m_hatch_object(object);
       fill_width = object->fill_options->fill_width;
@@ -836,7 +836,6 @@ static void eda_renderer_draw_path (EdaRenderer *renderer, Object *object)
 static void
 eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
 {
-  double x, y;
   double dummy = 0;
   double marker_dist = EDAR_TEXT_MARKER_SIZE;
 
@@ -889,6 +888,8 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
       cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
 
       if (marker_dist > EDAR_MARKER_THRESHOLD) {
+
+        double x, y;
 
         gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
