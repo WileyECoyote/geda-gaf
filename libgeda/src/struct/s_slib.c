@@ -293,9 +293,9 @@ char *s_slib_search_for_file (const char *basename)
  */
 int s_slib_search_for_dirname(const char *dir_name)
 {
-  int i;
-
   if (dir_name) {
+
+    int i;
 
     for (i = 0; i < slib_index; i++) {
       if (strcmp(slib[i].dir_name, dir_name) == 0) {

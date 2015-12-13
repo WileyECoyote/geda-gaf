@@ -656,10 +656,10 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  */
 void o_text_rotate(Object *object, int center_x, int center_y, int angle)
 {
-  int x, y;
-  int newx, newy;
-
   if (GEDA_IS_TEXT(object)) {
+
+    int newx, newy;
+    int x, y;
 
     object->text->angle = ( object->text->angle + angle ) % 360;
 

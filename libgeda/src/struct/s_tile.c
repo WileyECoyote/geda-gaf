@@ -118,11 +118,10 @@ s_tile_add_linear_object (Object *object)
   TILE *tile_current;
   Page *p_current;
   GList *found;
-  int i, j;
+  int j;
   int v, w;
   double x1, y1, x2, y2;
   double bottom;
-  double m, b;
   double x_size, y_size;
   double x, y;
   int start, end;
@@ -150,6 +149,9 @@ s_tile_add_linear_object (Object *object)
   bottom = x2 - x1;
 
   if (bottom != 0.0) {
+
+    int i;
+    double m, b;
 
     m = (double) (y2 - y1) / bottom;
     b = y1 - m * x1;
@@ -216,8 +218,10 @@ s_tile_add_linear_object (Object *object)
     }
 
     if (m != 0.0) {
+
       start = min((int) y1, (int) y2);
-      end = max((int) y1, (int) y2);
+      end   = max((int) y1, (int) y2);
+
       for (j = start; j <= end; j++) {
         y = j;
         x = (y - b) / m;

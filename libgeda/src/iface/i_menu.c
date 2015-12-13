@@ -76,7 +76,6 @@ SCM i_menu_return_entry(int index, char **menu_name)
 int i_menu_add_entry(char *menu_name, SCM menu_items)
 {
   int index;
-  int found;
   SCM new_list;
   SCM old_list;
 
@@ -88,7 +87,7 @@ int i_menu_add_entry(char *menu_name, SCM menu_items)
   }
   else {
 
-    found = FALSE;
+    int found = FALSE;
 
     for (index = 0; index < menu_index; index++) {
 

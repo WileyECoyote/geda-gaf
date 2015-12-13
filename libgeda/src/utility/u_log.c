@@ -106,8 +106,7 @@ static void u_log_handler (const char    *log_domain,
                            void          *user_data)
 {
   char    buffer[LOG_WRITE_BUFFER_SIZE];
-  char   *log_entry;
-  int     len;
+
   int     status;
   struct  tm *nowtm;
   time_t  nowt;
@@ -125,6 +124,9 @@ static void u_log_handler (const char    *log_domain,
     }
     else
     {
+      char *log_entry;
+      int   len;
+
       log_entry = strcat(buffer, " ");
       len       = LOG_WRITE_BUFFER_SIZE - strlen (log_entry) - 1;
       log_entry = strncat(buffer, message, len);
@@ -162,17 +164,13 @@ static void u_log_handler (const char    *log_domain,
 void u_log_init (const char *prefix)
 {
   /* FIXME we assume that the prefix is in the filesystem encoding. */
-  GSList    *files           = NULL;
-  char      *dir_path        = NULL;
-  char      *filename        = NULL;
-  char      *full_prefix     = NULL;
-  size_t     full_prefix_len = 0;
-  struct     tm *nowtm;
-  time_t     nowt;
-
-  int last_exist_logn;
-  int logcount;
-  int i;
+  GSList *files           = NULL;
+  char   *dir_path        = NULL;
+  char   *filename        = NULL;
+  char   *full_prefix     = NULL;
+  size_t  full_prefix_len = 0;
+  struct  tm *nowtm;
+  time_t  nowt;
 
   /* Somebody called for initialization, therefore */
   is_logging = TRUE;
@@ -217,12 +215,15 @@ void u_log_init (const char *prefix)
   else {
 
     GSList *iter;
+    int     index;
+    int     last_exist_logn;
+    int     logcount;
 
     last_exist_logn = 0;
 
     files = f_get_dir_list_files(dir_path, "log");
 
-    for ( iter = files; iter != NULL; iter = iter->next) {
+    for (iter = files; iter != NULL; iter = iter->next) {
 
       const char *file = iter->data;
       int n;
@@ -233,13 +234,14 @@ void u_log_init (const char *prefix)
     }
 
     logcount = g_slist_length (files);
-    logcount = logcount;                 /* stub */
+    logcount = logcount;
+
     u_gslist_free_full (files, g_free);
     files = NULL;
 
     /* Now try and create a new file. When we fail, increment the number. */
-    i = 0;
-    while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > i++)) {
+    index = 0;
+    while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > index++)) {
       filename = u_string_sprintf ("%s%s%s%i.log", dir_path,
                                   DIR_SEPARATOR_S, full_prefix,
       ++last_exist_logn);

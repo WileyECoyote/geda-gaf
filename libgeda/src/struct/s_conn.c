@@ -359,7 +359,6 @@ void s_conn_update_linear_object (Object *object)
   Object *found;
   Object *other_object;
   Object *other_complex;
-  int j, k;
 
   /* There is no point in looking for objects not on a page
    * since the tile system does not add pageless objects */
@@ -376,6 +375,8 @@ void s_conn_update_linear_object (Object *object)
 
       for (object_list = t_current->objects; object_list != NULL; NEXT(object_list))
       {
+        int k;
+
         other_object = object_list->data;
 
         /* Don't connect object to itself */
@@ -412,6 +413,8 @@ void s_conn_update_linear_object (Object *object)
 
         /* Check both end points of the other object */
         for (k = 0; k < 2; k++) {
+
+          int j;
 
           /* If the other object is a pin, only check the correct end */
           if (other_object->type == OBJ_PIN && other_object->pin->whichend != k)

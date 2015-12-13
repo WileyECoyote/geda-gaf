@@ -255,12 +255,10 @@ int m_line_length (int x1, int y1, int x2, int y2)
  */
 double m_line_shortest_distance (Line *line, int x, int y)
 {
-  double cx, cy;
   double dx, dy;
-  double dx0, dy0;
   double lx0, ly0;
   double ldx, ldy;
-  double t;
+
 
   g_return_val_if_fail (line != NULL, G_MAXDOUBLE);
 
@@ -276,6 +274,10 @@ double m_line_shortest_distance (Line *line, int x, int y)
 
   }
   else {
+
+    double cx, cy;
+    double dx0, dy0;
+    double t;
 
     /* calculate parametric value of perpendicular intersection */
     dx0 = ldx * (x - lx0);

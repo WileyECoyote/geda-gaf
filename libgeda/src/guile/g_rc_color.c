@@ -91,7 +91,6 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
     char *rgba;
     COLOR c = {0x00, 0x00, 0x00, FALSE};
     int i;
-    bool result;
 
     SCM scm_entry;
     SCM s;
@@ -125,15 +124,20 @@ g_rc_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
       fprintf (stderr, "Color map index out of bounds: %i\n", i);
     }
     else {
+
       /* If color value is #F, disable color */
       s = scm_cadr (scm_entry);
+
       if (scm_is_false (s)) {
         map[i].enabled = FALSE;
       }
       else {
 
+        bool result;
+
         /* Otherwise, we require a string */
         s = scm_cadr (scm_entry);
+
         if (!scm_is_string (s)) {
           scm_error_scm (wrong_type_arg_sym, proc_name,
                          scm_from_utf8_string (_("Value in color map entry must be #f or a string")),

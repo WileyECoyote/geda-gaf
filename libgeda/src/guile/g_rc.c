@@ -863,9 +863,9 @@ SCM g_rc_thin_pin_width (SCM width)
 SCM g_rc_always_promote_attributes(SCM attrlist)
 {
   GList *list=NULL;
-  int length, i;
-  char *attr;
+  char  *attr;
   char **attr2;
+  int i;
 
   g_list_foreach(default_always_promote_attributes, (GFunc)g_free, NULL);
   g_list_free(default_always_promote_attributes);
@@ -886,11 +886,18 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
     g_strfreev(attr2);
   }
   else {
+
+    int length;
+
     SCM_ASSERT(scm_list_p(attrlist), attrlist, SCM_ARG1, "always-promote-attributes");
+
     length = scm_ilength(attrlist);
+
     /* convert the scm list into a GList */
     for (i=0; i < length; i++) {
+
       char *temp;
+
       SCM_ASSERT(scm_is_string(scm_list_ref(attrlist, scm_from_int(i))),
                  scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
                _("always-promote-attribute: list element is not a string"));

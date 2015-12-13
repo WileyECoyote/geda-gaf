@@ -1,3 +1,7 @@
+2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/: libgeda/src: Reduce scope of variables,
+
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>,

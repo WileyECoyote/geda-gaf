@@ -519,11 +519,11 @@ const char *s_page_get_file_extension (Page *page)
 bool s_page_goto (Page *page)
 {
   bool  success;
-  int   sav_err;
 
   if (GEDA_IS_PAGE(page)) {
 
     char *target_dirname;
+    int   sav_err;
 
     sav_err = 0;
 
@@ -1006,7 +1006,6 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
 {
   GList *iter;
   GList *list = NULL;
-  int i;
 
   if (GEDA_IS_PAGE(page)) {
 
@@ -1016,6 +1015,8 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
       int left, top, right, bottom;
 
       if (o_get_bounds (object, &left, &top, &right, &bottom)) {
+
+        int i;
 
         for (i = 0; i < n_rects; i++) {
 
