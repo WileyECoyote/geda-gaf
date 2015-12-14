@@ -2,6 +2,15 @@
 
     * include/keywords.h: Fix some typos.
 
+    * src/iface/i_sessions.c: Reduce scope of variable read in function
+      i_sessions_get_file_list, eliminate variable result. Reduce scope
+      of index and id in function i_sessions_attach_submenu, and read in
+      function i_sessions_get_count, num_sessions in i_sessions_load_data
+      and variables index and record in function i_sessions_destroy_sessions.
+
+    * src/x/x_preview.c: Reduce scope of variables left, top, right, bottom,
+      width, and height in function preview_callback_button_press
+
     * include/x_settings.h: Increase table rc_7_strings_t to account for
       and extra NULL as a precaution, add missing commas for RC_ANTI_
       ALIASING_STRINGS.

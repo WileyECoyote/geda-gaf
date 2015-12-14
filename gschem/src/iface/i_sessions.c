@@ -218,20 +218,24 @@ static GSList *i_sessions_get_file_list(Session *record)
   char   *fname  = NULL;
   char   *sfile  = record->session_file;
   size_t  len    = 0;
-  ssize_t read;
-  int     result;
 
   /* Check if the file exists */
   fp = fopen((char *) sfile, "r");
 
   if (fp) {
+
+    ssize_t read;
+
     while ((read = getline(&fname, &len, fp)) != -1) {
+
       char *ptr = advance2char(&fname[0]);
+
       if (read > 3 && *ptr != ASCII_NUMBER_SIGN) {
+
         u_string_remove_last_nl(fname);
+
         /* Could check file extension here */
-        result = access(fname, R_OK );
-        if (result == 0) {
+        if (access(fname, R_OK ) == 0) {
           files = g_slist_append(files, u_string_strdup(fname));
         }
         else {
@@ -542,8 +546,6 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
   GtkWidget *sessions_menu_item;
   GtkWidget *sessions_submenu;
   GtkWidget *menubar;
-  int        index;
-  unsigned long id;
 
   menubar = x_menu_get_main_menu(w_current);
 
@@ -553,12 +555,18 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
     if(sessions_menu_item != NULL) {
 
+      int index;
+
       /* disconnect all unblocked signals */
       while(1) {
+
+        unsigned long id;
+
         id = g_signal_handler_find(sessions_menu_item, G_SIGNAL_MATCH_UNBLOCKED,
                                    0, 0, NULL, NULL, NULL);
         if(id == 0)
           break;
+
         g_signal_handler_disconnect(sessions_menu_item, id);
       }
 
@@ -577,9 +585,9 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
         g_object_set (tmp, "visible", TRUE, NULL);
 
         g_signal_connect_data (GTK_OBJECT(tmp), "activate",
-                              (GCallback) session_menu_item_clicked,
+                               (GCallback) session_menu_item_clicked,
                                menu_data,
-                              (GClosureNotify) session_free_menu_data,
+                               (GClosureNotify) session_free_menu_data,
                                0);
         gtk_menu_append(GTK_MENU(sessions_submenu), tmp);
       }
@@ -650,23 +658,24 @@ static int i_sessions_get_count(const char *session_file)
   char   *line = NULL;
   int     lc   = 0;
   size_t  len  = 0;
-  ssize_t read;
+
   FILE   *fp;
 
   fp = fopen (session_file, "r");
 
   if (fp) {
+
+    ssize_t read;
+
     while ((read = getline(&line, &len, fp)) != -1) {
+
       char *ptr = advance2char(&line[0]);
+
       if (read > 3 && *ptr != ASCII_NUMBER_SIGN) {
-        //errno = 0;
-        //access(ptr, F_OK | R_OK);
-        //if (!errno) {
-          ++lc;
-        //}
+        ++lc;
       }
     }
-    //errno = 0;
+
     free(line);
     fclose(fp);
   }
@@ -691,8 +700,6 @@ static void i_sessions_load_data(void)
   char    *path;
   char    *file;
   char    *tmpname;
-  int      num_sessions;
-
   Session  record;
 
   sessions = NULL;   /* The main array, global to this module */
@@ -710,6 +717,8 @@ static void i_sessions_load_data(void)
     session_files = f_get_dir_list_files(path, SESSIONS_FILE_SUFFIX);
 
     if (session_files) {
+
+      int num_sessions;
 
       num_sessions = g_slist_length(session_files);
 
@@ -753,22 +762,22 @@ static void i_sessions_load_data(void)
  */
 static void i_sessions_destroy_sessions(void)
 {
-  Session *record;
-  int      index;
-
   if (sessions != NULL) {
 
-  for(index=0; index < sessions->len; index++) {
+    int      index;
+    Session *record;
 
-    record = &g_array_index(sessions, Session, index);
+    for(index=0; index < sessions->len; index++) {
 
-    if (record != NULL) {
-      GEDA_FREE(record->session_file);
-      GEDA_FREE(record->session_name);
+      record = &g_array_index(sessions, Session, index);
+
+      if (record != NULL) {
+        GEDA_FREE(record->session_file);
+        GEDA_FREE(record->session_name);
+      }
     }
-  }
 
-  g_array_free (sessions, TRUE);
+    g_array_free (sessions, TRUE);
   }
 }
 

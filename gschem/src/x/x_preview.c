@@ -226,10 +226,8 @@ preview_callback_button_press (GtkWidget      *widget,
 static void
 preview_update (Preview *preview)
 {
-  GschemToplevel *preview_window  = preview->preview_window;
-  GedaToplevel  *preview_toplevel = preview_window->toplevel;
-  int left, top, right, bottom;
-  int width, height;
+  GschemToplevel *preview_window   = preview->preview_window;
+  GedaToplevel   *preview_toplevel = preview_window->toplevel;
   GError *err         = NULL;
   GList  *object_list = NULL;
   Object *text;
@@ -243,7 +241,10 @@ preview_update (Preview *preview)
 
   if (preview->active) {
 
+    int left, top, right, bottom;
+
     if (preview->filename != NULL) {
+
       /* open up file in current page */
       if (!f_open(preview_toplevel, preview_toplevel->page_current, preview->filename, &err))
       {
@@ -271,7 +272,11 @@ preview_update (Preview *preview)
     }
 
     object_list = (GList*)s_page_get_objects (preview_toplevel->page_current);
+
     if (o_get_bounds_list (object_list, &left, &top, &right, &bottom)) {
+
+      int width, height;
+
       /* Clamp the canvas size to the extents of the page being previewed */
       width  = right - left;
       height = bottom - top;
