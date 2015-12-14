@@ -6,6 +6,8 @@
     * src/object/o_box_basic.c: Fix comparisons in o_box_get_nearest_point;
       point outside in quads 1 or 4, corners and inside left.
 
+    * src/struct/s_cue.c: Remove unused is_bus and g_return_if_fail, cleanup.
+
 2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: libgeda/src: Reduce scope of variables,

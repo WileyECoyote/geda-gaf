@@ -52,33 +52,23 @@
 void s_cue_get_locations(const GList *objects, GArray *junctions,
                                                GArray *unconnected)
 {
-  const GList *iter = objects;
-  Object *object;
-  POINT point;
+  const GList  *iter;
+        Object *object;
+        POINT   point;
 
   void add_end_cues (Object *object, int end)
   {
-    int x = object->line->x[end], y = object->line->y[end];
     int conn_count = 0;
-    int conn_type = CONN_ENDPOINT;
-    int is_bus = FALSE;
+    int conn_type  = CONN_ENDPOINT;
+    int x          = object->line->x[end], y = object->line->y[end];
     GList *iter;
 
-    /* We should never be at the unconnectable end of a pin */
-    g_return_if_fail ((object->type != OBJ_PIN) || (object->pin->whichend == end));
-
-    /* Check whether the current object is a bus or bus pin */
-    is_bus = ((object->type == OBJ_BUS) || ((object->type == OBJ_PIN)
-    && (object->pin->node_type == PIN_BUS_NODE)));
-
     for (iter = object->conn_list; iter != NULL; iter = iter->next) {
-      CONN *conn = (CONN *) iter->data;
-      if ((conn->x != x) || (conn->y != y)) continue;
 
-      /* Check whether the connected object is a bus or bus pin */
-      is_bus |= ((conn->other_object->type == OBJ_BUS)
-             || ((conn->other_object->type == OBJ_PIN)
-             && (conn->other_object->pin->node_type == PIN_BUS_NODE)));
+      CONN *conn = (CONN *) iter->data;
+
+      if ((conn->x != x) || (conn->y != y))
+        continue;
 
       if (conn->type == CONN_MIDPOINT) {
         /* If it's a mid-line connection, we can stop already. */
@@ -119,10 +109,12 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
     }
   }
 
-  void add_mid_cues (Object *object)
-  {
+  void add_mid_cues (Object *object) {
+
     if (junctions) {
+
       GList *iter;
+
       for (iter = object->conn_list; iter != NULL; iter = iter->next) {
         CONN *conn = (CONN *) iter->data;
         if (conn->type == CONN_MIDPOINT) {
@@ -133,6 +125,8 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
       }
     }
   }
+
+  iter = objects;
 
   while (iter != NULL) {
     object = iter->data;
