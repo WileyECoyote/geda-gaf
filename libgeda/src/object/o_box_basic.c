@@ -604,11 +604,11 @@ bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
         *ny = y;
       }
     }
-    else if (top >= y) {
+    else if (y >= top) {
       *ny = top;
       *nx = x;
     }
-    else if (y >= bottom) {
+    else if (bottom >= y) {
       *ny = bottom;
       *nx = x;
     }
@@ -650,34 +650,35 @@ bool o_box_get_nearest_point (Object *object, int x, int y, int *nx, int *ny)
 
       /* Check for corners */
 
-      if (db == dl) {                              /* bottom left */
+      if (db == dl) {                       /* bottom left */
         *ny = bottom;
         *nx = left;
       }
-      else if (left > x && dt == dl) {             /* top left */
+      else if (dt == dl) {                  /* top left */
         *ny = top;
         *nx = left;
       }
-      if (x > right && db == dr) {                 /* bottom right */
+
+      if (db == dr) {                       /* bottom right */
         *ny = bottom;
         *nx = right;
       }
-      else if (x > right && dt == dr) {            /* top right */
+      else if (dt == dr) {                  /* top right */
         *ny = top;
         *nx = right;
       }
       else {
 
-        if (dl < db && dl < dt && dl < db) {       /* left */
+        if (dl < db && dl < dt) {           /* left */
           closest = &segments[0];
         }
-        else if (dr < db && dr < dt) {             /* right */
+        else if (dr < db && dr < dt) {      /* right */
           closest = &segments[1];
         }
-        else if (db > dt) {                        /* top */
+        else if (db > dt) {                 /* top */
           closest = &segments[2];
         }
-        else {                                     /* bottom */
+        else {                              /* bottom */
           closest = &segments[3];
         }
 
