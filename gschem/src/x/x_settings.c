@@ -170,12 +170,13 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
       BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
-  GtkWidget  *notebook;
-  EdaConfig  *cfg;
-  const char *group;
-  int         note_tab;
-
   if (w_current->save_ui_settings) {
+
+    GtkWidget  *notebook;
+    EdaConfig  *cfg;
+    const char *group;
+    int         note_tab;
+
     notebook = GEDA_OBJECT_GET_DATA(Dialog, "notebook");
     note_tab = gtk_notebook_get_current_page (GTK_NOTEBOOK(notebook));
     cfg      = eda_config_get_user_context();
@@ -374,8 +375,6 @@ bool get_titleblock_list(char **Buffer) {
         char  TitleBlockPath[MAX_PATH];
         char  tmpbuff[MAX_FILENAME];
 
-  int         namelen;
-  int         i, index =0;
 
   DIR        *dirp;
   struct      dirent *ent;
@@ -386,21 +385,26 @@ bool get_titleblock_list(char **Buffer) {
   dirp = opendir (TitleBlockPath);
   if (dirp != NULL)
   {
-     /* get all the files within directory */
-     while ((ent = readdir (dirp)) != NULL)
-     {
-       suffix = f_get_filename_ext(ent->d_name);
-       if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
-       {
-          strcpy(tmpbuff, basename(ent->d_name));
-          namelen = strlen( tmpbuff) - 4; /* substract the extension */
-          for (i = namelen; i < MAX_FILENAME - namelen; i++) {
-               tmpbuff[i] = '\0';
-          }
-          strcpy (Buffer[index++], tmpbuff);
-       }
-     }
-     closedir (dirp);
+    int index =0;
+
+    /* get all the files within directory */
+    while ((ent = readdir (dirp)) != NULL)
+    {
+      suffix = f_get_filename_ext(ent->d_name);
+      if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+      {
+        int namelen;
+        int i;
+
+        strcpy(tmpbuff, basename(ent->d_name));
+        namelen = strlen( tmpbuff) - 4; /* substract the extension */
+        for (i = namelen; i < MAX_FILENAME - namelen; i++) {
+          tmpbuff[i] = '\0';
+        }
+        strcpy (Buffer[index++], tmpbuff);
+      }
+    }
+    closedir (dirp);
   }
   else { /* could not open directory */
       u_log_message(_("Failed to open [%s]: %s\n"), TitleBlockPath, strerror(errno));
@@ -497,10 +501,6 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   char keyword[MAX_KEYWORD]; /* Buffer containing potential keyword */
   char strbuffer[RC_INPUT_BUFFER_SIZE];	/* Read Buffer */
 
-  int lc;                    /* Line counter */
-  int j;                     /* Index for enumerated keywords */
-  int khandle;               /* Index of handler for found keyword */
-  int last=0;                /* Index of the handler called previously */
   int result;                /* Our exit code */
 
   /* Build path for user config file */
@@ -526,46 +526,58 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
     u_log_message(_("File open for read-only error: \"%s\", %s\n"), inputfile, strerror( errno ));
     result = errno;
   }
-  else
-    if (( output = fopen (outputfile, "w" )) == NULL)
-    {
+  else if (( output = fopen (outputfile, "w" )) == NULL) {
       u_log_message(_("Error, opening output \"%s\", %s\n"), inputfile, strerror( errno ));
       fclose(input);
       result = -1;
-    }
-    else
-    {
-      lc = 1;
-      while (fgets(strbuffer, sizeof(strbuffer), input)) {
-        if ((result = (process_rc_buffer (strbuffer, keyword)) == LINE_FEED)) {
+  }
+  else {
+
+    int khandle;               /* Index of handler for found keyword */
+    int last;                  /* Index of the handler called previously */
+    int lc;                    /* Line counter */
+
+    last = 0;
+    lc   = 1;
+
+    while (fgets(strbuffer, sizeof(strbuffer), input)) {
+
+      if ((result = (process_rc_buffer (strbuffer, keyword)) == LINE_FEED)) {
+        fputs(strbuffer, output);
+      }
+      else {                   /* found a keyword */
+
+        int j;                 /* Index for enumerated keywords */
+
+
+        khandle = kw_unknown;
+
+        for (j = 0; j < KEYWORD_COUNT; j++) {               /* for all our keywords */
+          if (!strcmp (keyword, keyword_struc[j].name)) {   /* see if match input keyword */
+            khandle = j;
+            break;
+          }
+        }     /* next j */
+
+        if(khandle) {
+
+          if ((khandle != last) || (kw_integer(khandle) != 0)) {
+            /* if was not the same as the last one read  */
+            last = khandle;            /* remember this keyword index */
+            keyword_struc[khandle].strBuffer = strbuffer; /* provide handler ptr to raw input buffer */
+            keyword_struc[khandle].func(w_current, input, output);  /* call handler */
+          }
+        }
+        else { /* same as last keyword */
           fputs(strbuffer, output);
         }
-        else { /* found a keyword */
-          khandle = kw_unknown;
-          for (j = 0; j < KEYWORD_COUNT; j++) {               /* for all our keywords */
-            if (!strcmp (keyword, keyword_struc[j].name)) {   /* see if match input keyword */
-              khandle = j;
-              break;
-            }
-          }     /* next j */
-          if(khandle) {
-            if ( (khandle != last) || (kw_integer(khandle) != 0) )
-            { /* if was not the same as the last one read  */
-                last = khandle;            /* remember this keyword index */
-                keyword_struc[khandle].strBuffer = strbuffer; /* provide handler ptr to raw input buffer */
-                keyword_struc[khandle].func(w_current, input, output);  /* call handler */
-            }
-          }
-          else { /* same as last keyword */
-            fputs(strbuffer, output);
-          }
-        }
-        ++lc;
       }
-      fclose(input);
-      fclose(output);
-      result = EXIT_SUCCESS;
+      ++lc;
     }
+    fclose(input);
+    fclose(output);
+    result = EXIT_SUCCESS;
+  }
   if (result == EXIT_SUCCESS) {
     if ((result = remove(inputfile)) == 0) {
       result = rename(outputfile, inputfile);

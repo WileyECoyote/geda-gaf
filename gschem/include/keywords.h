@@ -76,7 +76,6 @@
      KEYWORD ( define_in_rc )
      KEYWORD ( load_in_rc )
      KEYWORD ( render_adaptor)
-
      KEYWORD ( action_color )
      KEYWORD ( anti_aliasing )
      KEYWORD ( draw_grips )
@@ -438,7 +437,7 @@ enum {
 /*\remark
  * Use this Macro to write local var with selection of 3 strings without quotes
  * @param[in] variable   string variable within the rc_options structure
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_NQ_ROUT(variable) \
   int state = rc_options.variable; \
@@ -485,14 +484,14 @@ enum {
   strcpy(output_buffer, (state == WhichOne) ? "(" : ";("); \
   strcat(output_buffer, KEY_NAME(variable)); /* keyword_struc[kw_xxx_xxxx].name) */ \
   strcat(output_buffer, " \""); \
-  strcat(output_buffer, member); /* struct of 4 strings */\
+  strcat(output_buffer, member); /* struct of 7 strings */\
   strcat(output_buffer, "\")\n"); \
   fputs(output_buffer, output);
 
 /*\remark
  * Use this Macro to write Global var with selection of 2 strings
  * @param[in] variable   string variable within scope of macro expansion
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_G2OUT(variable) \
   int state = variable; \
@@ -502,7 +501,7 @@ enum {
 /*\remark
  * Use this Macro to write w_current var with selection of 2 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W2OUT(variable) \
   int state = w_current->variable; \
@@ -512,7 +511,7 @@ enum {
 /*\remark
  * Use this Macro to write global var with selection of 3 strings
  * @param[in] variable   string variable within scope of macro expansion
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_G3OUT(variable) \
   int state = variable; \
@@ -523,7 +522,7 @@ enum {
 /*\remark
  * Use this Macro to write w_current var with selection of 3 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W3OUT(variable) \
   int state = w_current->variable; \
@@ -534,7 +533,7 @@ enum {
 /*\remark
  * Use this Macro to write toplevel var with selection of 3 strings
  * @param[in] variable   toplevel string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_T3OUT(variable) \
   int state = w_current->toplevel->variable; \
@@ -545,7 +544,7 @@ enum {
 /*\remark
  * Use this Macro to write w_current var with selection of 4 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W4OUT(variable) \
   int state = w_current->variable; \
@@ -558,7 +557,7 @@ enum {
 /*\remark
  * Use this Macro to write w_current var with selection of 5 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W5OUT(variable) \
   int state = w_current->variable; \
@@ -566,12 +565,12 @@ enum {
   RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
   RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
   RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.four)
+  RC_STRING_TABLE_OUT(variable, 4, string_table.four)
 
 /*\remark
  * Use this Macro to write w_current var with selection of 6 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W6OUT(variable) \
   int state = w_current->variable; \
@@ -579,13 +578,13 @@ enum {
   RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
   RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
   RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.four) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.five)
+  RC_STRING_TABLE_OUT(variable, 4, string_table.four) \
+  RC_STRING_TABLE_OUT(variable, 5, string_table.five)
 
 /*\remark
  * Use this Macro to write w_current var with selection of 7 strings
  * @param[in] variable   w_current string variable
- *\attention Associated strings are asuume to be in string_table structure
+ *\attention Associated strings are assume to be in string_table structure
  */
 #define RC_STRING_TABLE_W7OUT(variable) \
   int state = w_current->variable; \
@@ -593,9 +592,9 @@ enum {
   RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
   RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
   RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.four) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.five) \
-  RC_STRING_TABLE_OUT(variable, 3, string_table.six)
+  RC_STRING_TABLE_OUT(variable, 4, string_table.four) \
+  RC_STRING_TABLE_OUT(variable, 5, string_table.five) \
+  RC_STRING_TABLE_OUT(variable, 6, string_table.six)
 
 /** @} END Group KEYWORD_RC_MAC_STRINGS */
 /** @} END Group KEYWORD_RC_MACROS */

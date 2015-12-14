@@ -77,6 +77,7 @@ struct rc_7_strings_t
    const char *four;
    const char *five;
    const char *six;
+   const char *seven;
 };
 
 /* The following defines are for saving settings to an RC file, this is
@@ -86,9 +87,9 @@ struct rc_7_strings_t
  */
 #define RC_BOOL_STRINGS(WhichOne) ((WhichOne) ? RC_STR_ENABLED : RC_STR_DISABLED)
 #define RC_RENDER_ADAPTOR_STRINGS struct rc_7_strings_t string_table = {RC_RENDERER_OPTION_CAIRO, RC_RENDERER_OPTION_X11, NULL, NULL};
-#define RC_ANTI_ALIASING_STRINGS struct rc_7_strings_t string_table = {RC_STR_ANTIALIAS_DEFAULT, RC_STR_ANTIALIAS_NONE \
-                                                                       RC_STR_ANTIALIAS_GRAY, RC_STR_ANTIALIAS_SUBPIXEL \
-                                                                       RC_STR_ANTIALIAS_FAST, RC_STR_ANTIALIAS_GOOD \
+#define RC_ANTI_ALIASING_STRINGS struct rc_7_strings_t string_table = {RC_STR_ANTIALIAS_DEFAULT, RC_STR_ANTIALIAS_NONE, \
+                                                                       RC_STR_ANTIALIAS_GRAY, RC_STR_ANTIALIAS_SUBPIXEL, \
+                                                                       RC_STR_ANTIALIAS_FAST, RC_STR_ANTIALIAS_GOOD, \
                                                                        RC_STR_ANTIALIAS_BEST, NULL};
 #define RC_GRID_MODE_STRINGS struct rc_7_strings_t string_table = {RC_STR_NONE, RC_STR_DOTS, RC_STR_MESH, NULL};
 #define RC_DOTS_GRID_MODE_STRINGS struct rc_7_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};

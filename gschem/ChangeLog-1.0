@@ -1,3 +1,16 @@
+2015-12-14  Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/keywords.h: Fix some typos.
+
+    * include/x_settings.h: Increase table rc_7_strings_t to account for
+      and extra NULL as a precaution, add missing commas for RC_ANTI_
+      ALIASING_STRINGS.
+
+    * src/x/x_settings.c: Reduce scope of variables notebook, cfg, group,
+      and note_tab in function notebook. Reduce scope of variables namelen,
+      i, index in function get_titleblock_list. Reduce scope of variables
+      lc, j, khandle and last in function generate_rc.
+
 2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Fixed reversed reading of x-y entries in
