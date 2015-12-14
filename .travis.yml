@@ -5,10 +5,9 @@ language: c
 
 # Before setting up the source tree, install necessary development
 # headers
-before_install: >
-
-  #sudo apt-get update
-  sudo apt-get install -y libgtk2.0-dev autopoint libgettextpo-dev libstroke0-dev guile-2.0-dev flex bison groff texinfo python2.7-dev
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libgtk2.0-dev autopoint libgettextpo-dev libstroke0-dev guile-2.0-dev flex bison groff texinfo python2.7-dev
 
 # Set up the source tree by fetching Linux-specific prebuilt objects
 install: ./autogen.sh && ./configure --disable-update-xdg-database
