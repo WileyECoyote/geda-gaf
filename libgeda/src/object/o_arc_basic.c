@@ -760,8 +760,7 @@ void o_arc_print_solid(GedaToplevel *toplevel, FILE *fp,
   }
 
   fprintf(fp, "%d %d %d %d %d %d %d darc\n",
-          x,y, radius, angle1, angle1 + angle2,
-          arc_width, capstyle);
+          x,y, radius, angle1, angle1 + angle2, arc_width, capstyle);
 
 }
 
@@ -827,8 +826,7 @@ void o_arc_print_dotted(GedaToplevel *toplevel, FILE *fp,
   }
   da = (int) ((space * 180) / (M_PI * ((double) radius)));
 
-	/* If da or db too small for arc to be displayed as dotted,
-           draw a solid arc */
+  /* If da is too small to display arc as dotted, draw a solid arc */
   if (da <= 0) {
     o_arc_print_solid(toplevel, fp,
                       x, y, radius,
@@ -841,24 +839,24 @@ void o_arc_print_dotted(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"[");
   d = angle1;
   while (d < (angle2 + angle1)) {
-    /*xa = ((double) x) + ((double) radius) * cos(d * M_PI / 180);
-    ya = ((double) y) + ((double) radius) * sin(d * M_PI / 180);
-    */
+    /*  xa = ((double) x) + ((double) radius) * cos(d * M_PI / 180);
+     *  ya = ((double) y) + ((double) radius) * sin(d * M_PI / 180);
+     */
     fprintf(fp,"[%d] ",d);
 
     d = d + da;
   }
   fprintf(fp,"] %d %d %d %d %d dashedarc %% dotted\n",
-    x,y, radius, arc_width, capstyle);
+          x,y, radius, arc_width, capstyle);
 }
 
 /*! \brief
  *  \par Function Description
- *  This function prints an arc when a dashed line type is required.
- *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
- *  in <B>radius</B> and the start and end angles of the arc on the circle.
- *  The postscript file is defined by the file pointer <B>fp</B>.
- *  The parameter <B>arc_width</B> specifies the diameter of the dots of the printed line.
+ *  This function prints an arc when a dashed line type is required. The arc
+ *  is defined by its center in <B>x</B> and <B>y</B>, its radius in <B>radius</B>
+ *  and the start and end angles of the arc on the circle. The postscript file
+ *  is defined by the file pointer <B>fp</B>. The parameter <B>arc_width</B> specifies
+ *  the diameter of the dots of the printed line.
  *
  *  A negative value for <B>space</B> or <B>length</B> leads to an endless loop.
  *
@@ -912,11 +910,11 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
     angle1 = angle1 + angle2;
     angle2 = -angle2;
   }
+
   da = (int) ((length * 180) / (M_PI * ((double) radius)));
   db = (int) ((space  * 180) / (M_PI * ((double) radius)));
 
-  /* If da or db too small for arc to be displayed as dotted,
-   *          draw a solid arc */
+  /* If da or db too small for arc to be displayed as dotted, draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
     o_arc_print_solid(toplevel, fp,
                       x, y, radius,
@@ -938,19 +936,14 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
     d = d + db;
   }
   /*! \note
-   *  When the above condition is no more satisfied, then it is not
-   *  possible to print a dash of length <B>length</B> and the following <B>space</B>.
+   *  When the above condition is no more satisfied, then it is not possible
+   *  to print a dash of length <B>length</B> and the following <B>space</B>.
    *  However it may be possible to print the complete dash or a shorter one.
    */
 
-  if ((d + da) < (angle1 + angle2)) {
-    a1 = d;
-  } else {
-    a1 = d;
-  }
+  a1 = d;
 
-  fprintf(fp,"[%d %d] ",
-          a1, a1+da);
+  fprintf(fp,"[%d %d] ", a1, a1 + da);
 
 
   fprintf(fp,"] %d %d %d %d %d dashedarc %% dashed\n",
@@ -960,11 +953,12 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
 
 /*! \brief
  *  \par Function Description
- *  This function prints an arc when a centered line type is required.
- *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius in
+ *  This function prints an arc when a centered line type is required. The
+ *  arc is defined by its center in <B>x</B> and <B>y</B>, its radius in
  *  <B>radius</B> and the start and end angles of the arc on the circle.
- *  The postscript file is defined by the file pointer <B>fp</B>.
- *  The parameter <B>arc_width</B> specifies the diameter of the dots and the width of the dashes of the printed line.
+ *  The postscript file is defined by the file pointer <B>fp</B>. The
+ *  <B>arc_width</B> parameter specifies the diameter of the dots and the
+ *  width of the dashes of the printed line.
  *
  *  A negative value for <B>space</B> or <B>length</B> leads to an endless loop.
  *
@@ -973,7 +967,7 @@ void o_arc_print_dashed(GedaToplevel *toplevel, FILE *fp,
  *  The function sets the color in which the line will be printed with.
  *
  *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to postscript document.
+ *  \param [in] fp        FILE pointer to postscript document.
  *  \param [in] x
  *  \param [in] y
  *  \param [in] radius
@@ -1006,10 +1000,10 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
    *
    *  As <B>da</B> (resp. <B>db</B>) is rounded as an integer, it can take a null
    *  value which will make the function enter an endless loop. In such a case,
-   *  the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable should never
-   *  be negative except if <B>space</B> (resp. <B>length</B>) is negative.
+   *  the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable should
+   *  never be negative except if <B>space</B> (resp. <B>length</B>) is negative.
    *
-   *  It prints as many sets of dash-dot as possible.
+   *  Print as many sets of dash-dot as possible.
    */
 
   /* Inverting angle2 if < 0 and changing angle1 accordingly */
@@ -1022,7 +1016,7 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
   da = (int) ((length * 180) / (M_PI * ((double) radius)));
   db = (int) ((space  * 180) / (M_PI * ((double) radius)));
 
-  /* If da or db too small to be displayed, draw an arc */
+  /* If either da or db are too small to be displayed, draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
     o_arc_print_solid(toplevel, fp,
                       x, y, radius,
@@ -1040,31 +1034,25 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
     fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
 
     d = d + db;
-    /*
-     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
-     *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
+    /*  xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+     *  ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
      */
     fprintf(fp,"[%d] ",d);
     d = d + db;
   }
+
   /*! \note
-   *  When the above condition is no more satisfied, then it is not
-   *  possible to print a dash of length <B>length</B>. However two cases are possible :
+   *  When the above condition is no longer satisfied, then it is not
+   *  possible to print a dash of length <B>length</B>. However two cases
+   *  are possible:
    *  <DL>
    *      <DT>*</DT><DD>it is possible to print the dash and the dot
    *      <DT>*</DT><DD>it is possible to print the dash or a part of the original dash
    *  </DL>
    */
 
-  if ((d + da) < (angle1 + angle2)) {
-    a1 = d;
-
-    d = d + da;
-  } else {
-    a1 = d;
-
-    d = d + da;
-  }
+  a1 = d;
+  d  = d + da;
 
   fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
 
@@ -1083,8 +1071,8 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
 }
 
 /*! \note
- *  A dot is represented by a filled circle. Position of the circle is (<B>xa</B>, <B>ya</B>)
- *  and its radius is the <B>arc_width</B> parameter.
+ *  A dot is represented by a filled circle. Position of the circle is (<B>xa</B>,
+ *  <B>ya</B>) and its radius is the <B>arc_width</B> parameter.
  */
 
 /*! \brief
@@ -1093,7 +1081,8 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
  *  The arc is defined by its center in <B>x</B> and <B>y</B>, its radius
  *  in <B>radius</B> and the start and end angles of the arc on the circle.
  *  The postscript file is defined by the file pointer <B>fp</B>.
- *  The parameter <B>arc_width</B> specifies the diameter of the dots and the width of the dashes of the printed line.
+ *  The parameter <B>arc_width</B> specifies the diameter of the dots and
+ *  the width of the dashes of the printed line.
  *
  *  A negative value for <B>space</B> or <B>length</B> leads to an endless loop.
  *
@@ -1102,7 +1091,7 @@ void o_arc_print_center(GedaToplevel *toplevel, FILE *fp,
  * The function sets the color in which the line will be printed with.
  *
  *  \param [in] toplevel  The GedaToplevel object.
- *  \param [in] fp         FILE pointer to postscript document.
+ *  \param [in] fp        FILE pointer to postscript document.
  *  \param [in] x
  *  \param [in] y
  *  \param [in] radius
@@ -1133,12 +1122,12 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
    *  Starting from <B>angle1</B> - the start angle - the dashes are printed
    *  along the arc by increments of these new angles.
    *
-   *  As <B>da</B> (resp. <B>db</B>) is rounded as an integer, it can take a
-   *  null value which will make the function enter an endless loop. In such
-   *  a case, the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable
-   *  should never be negative except if <B>space</B> (resp. <B>length</B>) is negative.
+   *  As <B>da</B> (resp. <B>db</B>) is rounded as an integer, it can take a null
+   *  value which will make the function enter an endless loop. In such a case,
+   *  the arc is printed solid. The <B>da</B> (resp. <B>db</B>) variable should
+   *  never be negative except if <B>space</B> (resp. <B>length</B>) is negative.
    *
-   *  It prints as many sets of dash-dot-dot as possible.
+   *  Prints as many sets of dash-dot-dot as possible.
    */
 
   /* Inverting angle2 if < 0 and changing angle1 accordingly */
@@ -1147,11 +1136,12 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
     angle1 = angle1 + angle2;
     angle2 = -angle2;
   }
+
   da = (int) ((length * 180) / (((double) radius) * M_PI));
   db = (int) ((space  * 180) / (((double) radius) * M_PI));
 
-  /* If da or db too small for arc to be displayed as dotted,
-   *    draw a solid arc */
+  /* If either da or db are too small for arc to be displayed as dotted,
+   * then draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
     o_arc_print_solid(toplevel, fp,
                       x, y, radius,
@@ -1171,16 +1161,14 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
     fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
 
     d = d + db;
-    /*
-     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+    /*     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
      *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
      */
     fprintf(fp,"[%d] ",d);
 
     d = d + db;
 
-    /*
-     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+    /*     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
      *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
      */
     fprintf(fp,"[%d] ",d);
@@ -1189,7 +1177,7 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
   }
 
   /*! \note
-   *  When the above condition is no more satisfied, then it is not
+   *  When the above condition is no longer satisfied, then it is not
    *  possible to print a dash of length <B>length</B>.
    *  However three cases are possible :
    *  <DL>
@@ -1199,13 +1187,8 @@ void o_arc_print_phantom(GedaToplevel *toplevel, FILE *fp,
    *  </DL>
    */
 
-  if ((d + da) < (angle1 + angle2)) {
-    a1 = d;
-    d = d + da;
-  } else {
-    a1 = d;
-    d = d + da;
-  }
+  a1 = d;
+  d  = d + da;
 
   fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
 
