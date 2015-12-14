@@ -508,6 +508,13 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
     buffer = s_clib_symbol_get_data (clib);
   }
 
+  new_obj->selectable = selectable;
+
+  complex->angle = angle;
+  complex->mirror = mirror;
+  complex->x = x;
+  complex->y = y;
+
   if (clib == NULL || buffer == NULL) {
     new_obj->type = OBJ_PLACEHOLDER;
     return create_placeholder(toplevel, complex, x, y, angle, mirror);
@@ -515,13 +522,6 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   else {
 
     GError * err = NULL;
-
-    new_obj->selectable = selectable;
-
-    complex->angle = angle;
-    complex->mirror = mirror;
-    complex->x = x;
-    complex->y = y;
 
     /* add connections till translated */
     complex->prim_objs = o_read_buffer (toplevel, NULL, buffer, -1, complex->filename, &err);
@@ -534,11 +534,6 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
       return create_placeholder(toplevel, complex, x, y, angle, mirror);
     }
     else {
-
-      /* Mirror children if required
-      if (mirror) {
-        o_list_mirror (complex->prim_objs, 0, 0);
-      }*/
 
       /* Mirror, rotate and translate children */
       if (mirror) { /* children if required */
@@ -556,8 +551,6 @@ Object *o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
           o_translate_object(sub_object, x, y);
         }
       }
-      //o_list_rotate (complex->prim_objs, 0, 0, angle);
-      //o_list_translate (complex->prim_objs, x, y);
     }
 
     GEDA_FREE (buffer);

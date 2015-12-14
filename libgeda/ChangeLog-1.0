@@ -2,10 +2,16 @@
 
     * src/: libgeda/src: Reduce scope of variables,
 
-    * src/file/f_get.c: Close file in function f_get_file_contents.
+    * src/file/f_get.c: Close file in function f_get_file_contents, change
+      of OS_LINUX to !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__).
 
     * src/object/o_circle_basic.c: Fix wrong variable for builds without
       rint in function o_circle_get_nearest_point.
+
+    * src/object/o_complex_basic.c: Set properties of complex before conditional
+      call to create_placeholder so that if the file is saved with the place-
+      holder and the reference to the complex later corrected the complex will
+      be in the same location in the schematic.
 
 2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
 

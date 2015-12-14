@@ -495,7 +495,7 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
                  _("Failed to open file '%s': %s"), filename, strerror (errno));
     }
 
-#if defined (OS_LINUX)
+#if !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__)
 
     else if (fstat (fd, &stat_buf) < 0) {
 
@@ -534,14 +534,8 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
       retval = get_contents_stdio (filename, f, contents, length, err);
     }
 
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    fclose (f);
-
-#else
-
-    close (fd);
-
+#if !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__)
+  close (fd);
 #endif
 
   }
