@@ -153,10 +153,11 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief gschem Zoom to Extents of a list of Objects
  *  \par Function Description
- *
+ *   This function zooms to the bounds of the objects in \a list.
+ *   if the list NULL the function calls i_zoom_world_box to after
+ *   setting top-level coordinates to default values.
  */
 void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan_flags)
 {
@@ -166,7 +167,11 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
   double world_pan_center_x,world_pan_center_y;
 
   if (list == NULL) {
-    return;
+    w_current->first_wx  = 500;
+    w_current->first_wy  = 500;
+    w_current->second_wx = 32000;
+    w_current->second_wy = 20000;
+    return i_zoom_world_box(w_current, I_PAN_REDRAW);
   }
 
   if (!o_get_bounds_list (list,&lleft, &ltop, &lright, &lbottom)) {

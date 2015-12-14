@@ -3,6 +3,12 @@
     * src/x/x_edit_array.c: Fixed reversed reading of x-y entries in
       function x_dialog_array_edit_ok.
 
+    * src/iface/i_zoom_world.c: Revise function i_zoom_world_extents to
+      set top-level coordinates and call i_zoom_world_box if the list is
+      NULL rather than just returning and this sets the zoom to a reason-
+      able level when there are no objects, such as when starting a new
+      schematic. Add Doxygen comments.
+
 2015-12-11  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/xxx/xxx*.C: replace quoted includes with brackets.
