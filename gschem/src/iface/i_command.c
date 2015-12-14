@@ -2875,8 +2875,8 @@ COMMAND (do_hierarchy_up)
       answer = x_confirm_close_changed_page (w_current, child);
     }
     if (answer == TRUE) {
-      x_window_set_current_page(w_current, up_page);
       x_window_close_page (w_current, child);
+      x_window_set_current_page(w_current, up_page);
     }
   }
 }

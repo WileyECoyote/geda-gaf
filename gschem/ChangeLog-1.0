@@ -1,3 +1,9 @@
+2015-12-14 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/iface/i_command.c: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit a72267fdb5a12ce05d1f4f3a692485014f131b13:
+      gschem: Fix sequence of opening/closing pages for hierarchy->up.
+
 2015-12-14  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/keywords.h: Fix some typos.
