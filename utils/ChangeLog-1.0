@@ -1,3 +1,9 @@
+2015-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/Makefile.am: Define WITHOUT_GUILE in gsch2pcb.c, which
+      includes libgeda.h, which includes libguile.h, which gsch2pcb
+      does not use, yet.
+
 2015-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/src/grenum.c: Reformat; change indentations.
