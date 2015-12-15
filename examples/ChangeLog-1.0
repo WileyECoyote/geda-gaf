@@ -7,6 +7,24 @@
 
     * TwoStageAmp/sym/transistor.sym: Fix pin off grid error.
 
+    * TwoStageAmp/Makefile.am: Revise similar to other examples to run
+      tests on example schematic to insure example "works" properly.
+
+    * TwoStageAmp/tests: Add unit-test for example using bom backend:
+
+          * TwoStageAmp/bom/TwoStageAmp-bom.csv: added subdirectory with
+            output from tests, this is not required for the test as the
+            file will be generated during the test, but this also a used
+            as part of the example and is uninstalled during distchecks.
+
+          * TwoStageAmp/tests/TwoStageAmp-bom.csv: Reference bom file
+
+          * TwoStageAmp/tests/TwoStageAmp-geda.net: Reference netlist
+
+          * TwoStageAmp/tests/runtest.sh: Script to run comparison tests.
+
+
+
 2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add a bom comparisions for tests and
