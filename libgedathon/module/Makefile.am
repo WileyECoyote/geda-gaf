@@ -54,7 +54,3 @@ MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
-
-# Unfortunately, in order to test libtool thoroughly, we need access
-# to its private directory.
-#objdir = `sed -n -e 's/^objdir=\"\(.*\)\"$$/\1/p' ./libtool`
