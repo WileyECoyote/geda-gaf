@@ -1,5 +1,10 @@
 2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/TwoStageAmp/model: Rename subdirectory; models->model
+      for consistency with RF_Amp example.
+
+2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
+
     * xxx/tests/runtest.sh: Add a bom comparisions for tests and
       create bom subdirectories for generated bom output files.
 
