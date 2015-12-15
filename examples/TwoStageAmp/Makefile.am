@@ -1,9 +1,13 @@
 exampledir = $(docdir)/examples/TwoStageAmp/
 
 nobase_example_DATA = \
-	Simulation.cmd TwoStageAmp.sch spice.netlist gafrc \
-	models/2N3904.mod \
-	sym/transistor.sym
+		attribs \
+		gafrc \
+		Simulation.cmd \
+		TwoStageAmp.sch \
+		spice.netlist \
+		model/2N3904.mod \
+		sym/transistor.sym
 
 EXTRA_DIST = $(nobase_example_DATA)
 
