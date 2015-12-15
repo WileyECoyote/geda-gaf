@@ -1,3 +1,8 @@
+2015-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_*.c: Reduce scope of long_val and new_value
+      variables in Xxx_set_int.
+
 2015-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Replace quoted includes with brackets.

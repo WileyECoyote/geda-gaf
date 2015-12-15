@@ -162,9 +162,7 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   char *str;
   int   index;
   int   result;
-  int   new_value;
   int  *old_value;
-  long  long_val;
 
   if (py_value == NULL) {
     PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
@@ -182,6 +180,9 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   };
 
   if (str) {
+
+    long long_val;
+    int  new_value;
 
     if (strcmp(name, "mirror") != 0) {
       if (!PyInt_Check(py_value)) {

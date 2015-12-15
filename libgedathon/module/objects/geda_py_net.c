@@ -172,9 +172,7 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   char *str;
   int   index;
   int   result;
-  int   new_value;
   int  *old_value;
-  long  long_val;
 
   if (py_value == NULL) {
     PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
@@ -199,12 +197,17 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
 
   if (str) {
+
+    long long_val;
+    int  new_value;
+
     if (!PyInt_Check(py_value)) {
       PyErr_Format(PyExc_TypeError, "The %s attribute must be an integer value", name);
       return -1;
     }
 
     long_val = PyInt_AsLong(py_value);
+
     if ((long_val == -1) && PyErr_Occurred()) {
       return -1;
     }
