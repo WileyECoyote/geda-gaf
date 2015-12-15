@@ -1,4 +1,4 @@
-v 20151031 2
+v 20151204 2
 C 44300 51500 0 0 0 title-A2.sym
 N 52800 59800 54100 59800 4
 {
@@ -37,8 +37,6 @@ N 60100 62300 60100 60300 4
 T 60200 61200 5 14 1 1 0 0 1
 netname=usb_power
 }
-T 50500 57100 9 14 1 0 0 0 1
-JTAG (IEEE1149.1) consist of tdi, tdo, tck, tms, (trst)
 N 57300 59100 58600 59100 4
 {
 T 57500 59200 5 14 1 1 0 0 1
@@ -57,8 +55,6 @@ T 54400 60100 5 10 1 1 0 0 1
 refdes=S1
 T 54900 57700 5 14 1 1 0 0 1
 source=gTAG-ucont.sch
-T 55400 59200 5 10 0 1 0 0 1
-device=none
 }
 C 49900 58000 1 0 0 gTAG-jtagio.sym
 {
@@ -66,8 +62,8 @@ T 49900 60100 5 10 1 1 0 0 1
 refdes=S2
 T 50300 57700 5 14 1 1 0 0 1
 source=gTAG-jtagio.sch
-T 50500 59400 5 10 0 1 0 0 1
-device=none
+T 51000 59000 5 10 1 1 0 3 1
+description=JTAG Interface
 }
 C 58600 58000 1 0 0 gTAG-consio.sym
 {
@@ -75,8 +71,8 @@ T 58900 60100 5 10 1 1 0 0 1
 refdes=S3
 T 59300 57700 5 14 1 1 0 0 1
 source=gTAG-consio.sch
-T 59900 59400 5 10 0 1 0 0 1
-device=none
+T 60200 59057 5 10 1 1 0 3 1
+description=Console IO
 }
 C 53900 61700 1 0 0 gTAG-psu.sym
 {
@@ -84,9 +80,19 @@ T 54200 63600 5 10 1 1 0 0 1
 refdes=S4
 T 54800 61400 5 14 1 1 0 0 1
 source=gTAG-psu.sch
-T 55000 63100 5 10 0 1 0 0 1
-device=none
+T 55500 63100 5 10 1 1 0 3 1
+description=Power Supply Unit
 }
+N 57300 59800 57400 59800 4
+N 57400 59800 57400 61900 4
+{
+T 57500 60900 5 14 1 1 0 0 1
+netname=pon_reset#
+}
+C 44600 51700 1 0 0 copyleft.sym
+N 57400 61900 57100 61900 4
+T 50500 57100 9 14 1 0 0 0 1
+JTAG (IEEE1149.1) consist of tdi, tdo, tck, tms, (trst)
 T 62200 51600 9 10 1 0 0 0 1
 5
 T 60700 51600 9 10 1 0 0 0 1
@@ -101,15 +107,3 @@ T 64500 51600 9 10 1 0 0 0 1
 Stefan Petersen (spe@stacken.kth.se)
 T 64500 51900 9 10 1 0 0 0 1
 $Revision$
-C 44600 51700 1 0 0 copyleft.sym
-{
-T 46900 54900 5 10 0 0 0 0 1
-device=none
-}
-N 57300 59800 57400 59800 4
-N 57400 59800 57400 61900 4
-{
-T 57500 60900 5 14 1 1 0 0 1
-netname=pon_reset#
-}
-N 57400 61900 57100 61900 4

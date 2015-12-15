@@ -23,7 +23,10 @@
 
           * TwoStageAmp/tests/runtest.sh: Script to run comparison tests.
 
-
+    * xxx/tests/runtest.sh: Fix distcheck using BUILDDIR instead of the
+      src_dir for libraries and geda/core/gettext.scm. Not sure why the
+      previous version seem to work for countless distchecks and then
+      start failing, but seems to be correct now.
 
 2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
 

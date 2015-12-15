@@ -41,7 +41,7 @@
 #           list is extracted and compared to a reference in the test
 #           subdirectory.
 #
-VER=0.0.3
+VER=0.0.4
 
 schematic=$1
 
@@ -64,8 +64,8 @@ test $VERBOSE && echo "Checking example ${schematic}"
 BOMBACKEND="partslist1"
 TMPGEDADIR="gEDA"
 
-RPATH2LIBGEDA=$SRCDIR/../../libgeda/src/.libs
-RPATH2LIBCAIRO=$SRCDIR/../../libgedacairo/src/.libs
+RPATH2LIBGEDA=$BUILDDIR/../../libgeda/src/.libs
+RPATH2LIBCAIRO=$BUILDDIR/../../libgedacairo/src/.libs
 
 CHECKSYM=gsymcheck
 PATH2CHECKSYM=../../gsymcheck/src
@@ -168,7 +168,7 @@ do_setup_geda_environment ()
   mkdir -m 0777 -p ${TMPGEDADIR}
   rc=$?
   if test $rc -ne 0 ; then
-     echo "Failed to create directory ${TMPGEDADIR} with check permissions"
+     echo "Failed to create directory ${TMPGEDADIR}, check permissions"
      echo "mkdir returned $rc"
      exit 1
   fi
@@ -207,7 +207,7 @@ do_setup_geda_environment ()
     exit 0
   fi
 
-  # Make links to scheme files
+  # Make links to gnetlist scheme files in the source directory
   if [ -d $SRCDIR/../../gnetlist/scheme ] ; then
      cd $SRCDIR/../../gnetlist/scheme
      ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
@@ -218,14 +218,24 @@ do_setup_geda_environment ()
     exit 0
   fi
 
+  # Make links to gnetlist scheme files in the source directory
   if [ -d $SRCDIR/../../libgeda/scheme ] ; then
      cd $SRCDIR/../../libgeda/scheme
      ln -s $PWD/*.scm $GEDADATARC/scheme/ 2>/dev/null
      ln -s $PWD/geda/*.scm $GEDADATARC/scheme/geda/ 2>/dev/null
+     cd $CWDSAVE
+  else
+    echo "Error: not in the right place, cannot find libgeda scheme src directory"
+    exit 0
+  fi
+
+  # Make links to gnetlist scheme files in the build directory
+  if [ -d $BUILDDIR/../../libgeda/scheme ] ; then
+     cd $BUILDDIR/../../libgeda/scheme
      ln -s $PWD/geda/core/*.scm $GEDADATARC/scheme/geda/core/ 2>/dev/null
      cd $CWDSAVE
   else
-    echo "Error: not in the right place, cannot find libgeda scheme directory"
+    echo "Error: not in the right place, cannot find libgeda scheme build directory"
     exit 0
   fi
 
