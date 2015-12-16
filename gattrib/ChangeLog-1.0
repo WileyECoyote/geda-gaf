@@ -1,3 +1,8 @@
+2015-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/i_basic.c: Eliminated variable result, use return value on
+      stack.
+
 2015-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Declare argument to x_dialog_get_search_text constant.

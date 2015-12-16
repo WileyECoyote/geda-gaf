@@ -200,16 +200,13 @@ static bool i_basic_show_uri (const char *uri)
  */
 void i_show_wiki_help(const char *html_file)
 {
-  bool result;
   char *pathname = NULL;
 
   pathname = g_build_filename (f_path_sys_doc (), "wiki", html_file, NULL);
 
   if (pathname) {
 
-    result = i_basic_show_uri (pathname);
-
-    if (!result) {
+    if (!i_basic_show_uri (pathname)) {
       u_log_message(_("Check: path \"%s\"\n"), pathname);
     }
 
