@@ -6,7 +6,7 @@
 #REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
 #DEBUGGING           = --debug --verbose
 
-AUTOMAKE_OPTIONS         = $(GEDA_AUTO_MAKE_OPTIONS)
+#AUTOMAKE_OPTIONS         = 1.6 subdir-objects
 
 INC_GEDA                 = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                = -I$(srcdir)/../../include

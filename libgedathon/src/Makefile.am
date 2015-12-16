@@ -11,8 +11,6 @@
 
 #DEBUGGING               = --debug --verbose
 
-AUTOMAKE_OPTIONS         = $(GEDA_AUTO_MAKE_OPTIONS)
-
 INC_GEDA                 = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                = -I$(srcdir)/../include
 INC_LIBGEDA              = -I$(top_srcdir)/libgeda/include

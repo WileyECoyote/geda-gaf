@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+AUTOMAKE_OPTIONS = 1.6 subdir-objects
 
 LIB_GTKSHEET = gtksheet
 

@@ -6,8 +6,6 @@
 #REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
 #DEBUGGING           = --debug --verbose
 
-AUTOMAKE_OPTIONS     = $(GEDA_AUTO_MAKE_OPTIONS)
-
 LIB_OBJECTS          = objects
 SUBDIRS              = $(LIB_OBJECTS)
 

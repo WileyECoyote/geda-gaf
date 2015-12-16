@@ -2,8 +2,6 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
-
 EXTRA_DIST= \
 			allnew.sch \
 			allold.sch \

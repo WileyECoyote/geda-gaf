@@ -2,8 +2,6 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
-
 SUBDIRS= inputs outputs
 
 AM_TESTS_ENVIRONMENT= PERL=${PERL} top_srcdir=${srcdir}/../..

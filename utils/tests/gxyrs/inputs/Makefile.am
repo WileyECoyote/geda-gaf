@@ -2,8 +2,6 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
-
 EXTRA_DIST= \
 			do_nothing.pl \
 			pcb_example1.xy \
