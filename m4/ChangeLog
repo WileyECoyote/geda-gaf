@@ -1,3 +1,9 @@
+2015-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-automake-options.m4: Remove version and subdir-objects from
+      AM_INIT_AUTOMAKE; no can do dirstamps, and with objects in the
+      source directories likely to delete something important one day.
+
 2015-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-automake-options.m4: Revamp to eliminate AUTOMAKE_OPTIONS,

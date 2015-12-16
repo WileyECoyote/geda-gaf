@@ -26,8 +26,8 @@ AC_DEFUN([AX_INIT_AUTOMAKE],
   AM_INIT_AUTOMAKE(
     m4_esyscmd([
 
-      GEDA_NEW_AM_OPTS="1.11 subdir-objects parallel-tests color-tests"
-      GEDA_OLD_AM_OPTS="1.6 subdir-objects serial-tests"
+      GEDA_NEW_AM_OPTS="parallel-tests color-tests"
+      GEDA_OLD_AM_OPTS="serial-tests"
 
       am_version=$(automake --version | { read ver && echo ${ver#*) }; })
 

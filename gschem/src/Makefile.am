@@ -5,7 +5,7 @@
 # This is used for debugging the local build not the source
 #DEBUGGING = --debug --verbose
 
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+#AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include

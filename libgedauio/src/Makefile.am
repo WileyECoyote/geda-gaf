@@ -4,7 +4,7 @@
 
 #DEBUGGING                   = --debug --verbose
 
-AUTOMAKE_OPTIONS             = $(GEDA_AUTO_MAKE_OPTIONS)
+#AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include
@@ -52,10 +52,10 @@ else
 	@echo '--enable-doxygen switch in the top of the source tree and try again'
 endif
 
-MOSTLYCLEANFILES           = *.log core FILE dialogs/*~ widgets/*~ *~
-CLEANFILES                 = *.log core FILE dialogs/*~ widgets/*~ *~
-DISTCLEANFILES             = *.log core FILE dialogs/*~ widgets/*~ *~
-MAINTAINERCLEANFILES       = *.log core FILE dialogs/*~ widgets/*~ *~ Makefile.in
+MOSTLYCLEANFILES           = *.log core FILE dialogs/*~ functions/*~ widgets/*~ *~
+CLEANFILES                 = *.log core FILE dialogs/*~ functions/*~ widgets/*~ *~
+DISTCLEANFILES             = *.log core FILE dialogs/*~ functions/*~ widgets/*~ *~
+MAINTAINERCLEANFILES       = *.log core FILE dialogs/*~ functions/*~ widgets/*~ *~ Makefile.in
 
 # Unfortunately, in order to test libtool thoroughly, we need access
 # to its private directory.
