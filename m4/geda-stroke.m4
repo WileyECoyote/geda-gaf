@@ -27,7 +27,7 @@ dnl               How long has Gschem used libstrokes? Amazingly, strokes has wo
 dnl               these years, even without pkg-config! Breaking the cardinal rule "if it
 dnl               ain't broke", just this one time.
 dnl               also changed test "X$HAVE_LIBSTROKE" != "Xyes" to 1 in AC_DEFINE, tired
-dnl               seeing this in config.h
+dnl               of seeing this in config.h
 
 # Check whether we should use libstroke, and if so if libraries are available.
 AC_DEFUN([AX_OPTION_STROKE],
