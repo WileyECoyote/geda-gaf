@@ -133,7 +133,7 @@ void s_sheet_data_add_master_pin_attrib_list_items(const GList *obj_list);
 STRING_LIST *s_string_list_new();
 STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list);
 void s_string_list_free(STRING_LIST *strlist);
-void s_string_list_add_item(STRING_LIST *list, int *count, char *item);
+void s_string_list_add_item(STRING_LIST *list, int *count, const char *item);
 void s_string_list_delete_item(STRING_LIST **list, int *count, char *item);
 void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item);
 int  s_string_list_in_list(STRING_LIST *list, char *item);

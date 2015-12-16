@@ -118,7 +118,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
  * \param [in,out] count total count on input, is updated if \a item added
  * \param [in]     item  pointer to string to be added
  */
-void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
+void s_string_list_add_item(STRING_LIST *list, int *count, const char *item) {
 
   STRING_LIST *prev;
   STRING_LIST *local_list;
@@ -278,15 +278,18 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
  * \param pos       integer index where string is to be inserted into the list
  * \param item      pointer to string to be added
  */
-void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item) {
+void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
+{
     STRING_LIST *new_list;
-    int index;
+
     char *str;
     int count = 0;
 
     if (pos == *old_count) /* if just appending */
       s_string_list_add_item(list, old_count, item);
     else {
+
+      int index;
 
       new_list = s_string_list_new();
 

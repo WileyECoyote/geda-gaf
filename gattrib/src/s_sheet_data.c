@@ -123,37 +123,59 @@ bool s_sheet_data_reset(PageDataSet *PageData)
  *                           string list
  *
  */
-static void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name) {
+static void
+s_sheet_data_add_comp(PageDataSet *PageData, const char *component_str_name)
+{
   s_string_list_add_item(PageData->master_comp_list_head,
-                       &(PageData->comp_count),
+                         &(PageData->comp_count),
                          component_str_name);
 }
-static void s_sheet_data_add_comp_attrib(PageDataSet *PageData, char *comp_attrib_str_name) {
+static void
+s_sheet_data_add_comp_attrib(PageDataSet *PageData,
+                             const char *comp_attrib_str_name)
+{
   s_string_list_add_item(PageData->master_comp_attrib_list_head,
-                       &(PageData->comp_attrib_count),
+                         &(PageData->comp_attrib_count),
                          comp_attrib_str_name);
-}
-static void s_sheet_data_attached_attrib(PageDataSet *PageData, char *comp_attrib_str_name) {
-  s_string_list_add_item(PageData->attached_attrib,
-                       &(PageData->attached_attrib_count),
-                         comp_attrib_str_name);
-}
-static void s_sheet_data_add_net(PageDataSet *PageData, char *net_str_name) {
-  s_string_list_add_item(PageData->master_net_list_head,
-                       &(PageData->net_count), net_str_name);
-}
-static void s_sheet_data_add_net_attrib(PageDataSet *PageData, char *net_attrib_str_name) {
-  s_string_list_add_item(PageData->master_net_attrib_list_head,
-                       &(PageData->net_attrib_count),net_attrib_str_name);
 }
 
-static void s_sheet_data_add_pin(PageDataSet *PageData, char *pin_str_name) {
-  s_string_list_add_item (PageData->master_pin_list_head, &(PageData->pin_count), pin_str_name);
+static void
+s_sheet_data_attached_attrib(PageDataSet *PageData,
+                             const char *comp_attrib_str_name)
+{
+  s_string_list_add_item(PageData->attached_attrib,
+                         &(PageData->attached_attrib_count),
+                         comp_attrib_str_name);
 }
-static void s_sheet_data_add_pin_attrib(PageDataSet *PageData, char *pin_attrib_str_name) {
+
+static void
+s_sheet_data_add_net(PageDataSet *PageData, const char *net_str_name)
+{
+  s_string_list_add_item(PageData->master_net_list_head,
+                         &(PageData->net_count), net_str_name);
+}
+
+static void s_sheet_data_add_net_attrib(PageDataSet *PageData,
+                                        const char *net_attrib_str_name)
+{
+  s_string_list_add_item(PageData->master_net_attrib_list_head,
+                         &(PageData->net_attrib_count),net_attrib_str_name);
+}
+
+static void
+s_sheet_data_add_pin(PageDataSet *PageData, const char *pin_str_name)
+{
+  s_string_list_add_item (PageData->master_pin_list_head,
+                          &(PageData->pin_count), pin_str_name);
+}
+static void
+s_sheet_data_add_pin_attrib(PageDataSet *PageData,
+                            const char *pin_attrib_str_name)
+{
   s_string_list_add_item(PageData->master_pin_attrib_list_head,
-                       &(PageData->pin_attrib_count), pin_attrib_str_name);
+                         &(PageData->pin_attrib_count), pin_attrib_str_name);
 }
+
 /*------------------------------------------------------------------*/
 /*!
  * \brief Fill a SHEET_DATA struct with Template Data and load tables.
@@ -162,16 +184,18 @@ static void s_sheet_data_add_pin_attrib(PageDataSet *PageData, char *pin_attrib_
  */
 void s_sheet_data_load_blank(PageDataSet *PageData)
 {
-  char *comp_attrib[]= { "device",  "footprint", "value",
-                         "description", "symversion" };
-  int blank;
-  char tmp_str[5];
-  char none[6];
-  char *str;
+  const char *comp_attrib[]= { "device",  "footprint", "value",
+                               "description", "symversion" };
 
   if (PageData != NULL) {
-    for (blank=0; blank<5; blank++) {
-      str = u_string_int2str(blank, tmp_str, 10);
+
+    char tmp_str[5];
+    char none[6];
+    int blank;
+
+    for (blank = 0; blank < 5; blank++) {
+
+      char *str = u_string_int2str(blank, tmp_str, 10);
 
       s_sheet_data_add_comp (PageData, str);
       s_sheet_data_add_comp_attrib(PageData, comp_attrib[blank]);

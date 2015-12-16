@@ -3,6 +3,15 @@
     * gattrib/src/i_basic.c: Eliminated variable result, use return value on
       stack.
 
+    * src/s_string_list.c: Make item argument to s_string_list_add_item a
+      constant. Reduce scope of variable index in s_string_list_insert.
+
+    * src/s_sheet_data.c: Make 2nd argument to s_sheet_data_add_comp,
+      s_sheet_data_add_comp_attrib, s_sheet_data_attached_attrib,
+      s_sheet_data_add_net, s_sheet_data_add_net_attrib s_sheet_data_
+      add_pin, and s_sheet_data_add_pin_attrib a constant. Reduce scope
+      of of variables in function s_sheet_data_load_blank.
+
 2015-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Declare argument to x_dialog_get_search_text constant.
