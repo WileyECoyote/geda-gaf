@@ -1,14 +1,15 @@
 
-BUILDDIR=$(top_builddir)/libgedathon/tests
-SRCDIR=$(srcdir)
+BUILDDIR      = $(top_builddir)/libgedathon/tests
 
-RUN_TESTS= run_tests.sh
+SRCDIR        = $(srcdir)
 
-check_SCRIPTS= ${RUN_TESTS}
+RUN_TESTS     = run_tests.sh
 
-TESTS= ${RUN_TESTS}
+check_SCRIPTS = ${RUN_TESTS}
 
-EXTRA_DIST= ${RUN_TESTS} lpfilter.sch README.txt
+TESTS         = ${RUN_TESTS}
+
+EXTRA_DIST    = ${RUN_TESTS} lpfilter.sch README.txt
 
 check-am: update-gsymcheck
 

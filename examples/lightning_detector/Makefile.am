@@ -2,8 +2,6 @@
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
-
 exampledir   = $(docdir)/examples/lightning_detector/
 
 SRCDIR       = $(srcdir)
