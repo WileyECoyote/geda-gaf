@@ -157,7 +157,8 @@ void x_dialog_delete_attrib()
 
   /* First verify that exactly one column is selected.  */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet = GTK_SHEET(sheets[cur_page]);
+  sheet    = GTK_SHEET(sheets[cur_page]);
+
   if (sheet == NULL) {
     return;
   }
@@ -431,7 +432,6 @@ char *x_dialog_get_search_text(const char *prompt)
   GtkWidget *textentry = NULL;
   char      *text      = NULL;
   char      *title;
-  int r;
 
   if (dialog != NULL) {
 
@@ -454,6 +454,7 @@ char *x_dialog_get_search_text(const char *prompt)
     GtkWidget *label;
     GtkWidget *vbox;
     char      *real_prompt;
+    int        response;
 
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
@@ -485,10 +486,11 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_grab_focus(textentry);
     gtk_widget_show_all(GTK_WIDGET(dialog));
 
-    r = gtk_dialog_run ((GtkDialog*)dialog);
+    response = gtk_dialog_run ((GtkDialog*)dialog);
 
-    if (r ==  GEDA_RESPONSE_ACCEPT)
+    if (response ==  GEDA_RESPONSE_ACCEPT)
       text = u_string_strdup( GetEntryText(textentry) );
+
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
 

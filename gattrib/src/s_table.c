@@ -98,7 +98,7 @@ TABLE **s_table_new( int rows, int cols)
  */
 TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 {
-  int x, y;
+  int y;
   TABLE **new_table;
 
   void init_new_record(col) {
@@ -126,6 +126,9 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
      init_new_record(Xt);
   }
   else {
+
+    int x;
+
     for (x = Xt; x > Xa; x--) {
       for (y = 0; y < rows; y++) {
         table[x][y].row = table[x-1][y].row;
@@ -650,8 +653,6 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 bool s_table_remove_attribute(TABLE **table, int X) {
   bool result = FALSE;
   int Y;
-  int Xi;
-
   void free_column(X) {
     for (Y = 0; Y < sheet_head->comp_count; Y++) {
       free_if (row_name)
@@ -668,6 +669,9 @@ bool s_table_remove_attribute(TABLE **table, int X) {
     GEDA_FREE( table[X - 1] );
   }
   else {
+
+    int Xi;
+
     for (Xi = X; Xi < col_count - 1; Xi++) {
       for (Y = 0; Y < sheet_head->comp_count; Y++) {
         table[Xi][Y].row = table[Xi + 1][Y].row;
@@ -685,6 +689,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
   }
   return TRUE;
 }
+
 #undef data_table
 #undef free_if
 #undef col_count

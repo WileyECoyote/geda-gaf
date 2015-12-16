@@ -10,7 +10,15 @@
       s_sheet_data_add_comp_attrib, s_sheet_data_attached_attrib,
       s_sheet_data_add_net, s_sheet_data_add_net_attrib s_sheet_data_
       add_pin, and s_sheet_data_add_pin_attrib a constant. Reduce scope
-      of of variables in function s_sheet_data_load_blank.
+      of variables in function s_sheet_data_load_blank.
+
+    * src/: Reduce scope of variables in modules:
+
+            * src/s_rename.c
+            * src/s_table.c
+            * src/s_toplevel.c
+            * src/x_dialog.c
+            * src/x_find.c
 
 2015-12-05 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -264,27 +264,32 @@ void x_find_replace_attrib_value()
  */
 void x_find_attribute()
 {
-  GtkSheet *sheet;
-  bool found = FALSE;
-  int cur_page;
-  int count;
-  int i;
-
   char *text = x_dialog_get_search_text(_("Attribute"));
 
   if (text) {
+
+    GtkSheet *sheet;
+    bool found;
+    int  cur_page;
+    int  count;
+    int  i;
+
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-    sheet = sheets[cur_page];
-    found = FALSE;
-    count = sheet->maxcol;
+    sheet    = sheets[cur_page];
+    found    = FALSE;
+    count    = sheet->maxcol;
+
     for( i = 0; i <= count; i++) {
+
       if (strcmp(sheet->column[i]->title, text) == 0) {
         found = TRUE;
         gtk_sheet_select_column(sheet,i);
         break;
       }
     }
-    if (!found) x_find_notify_not_found(text);
+
+    if (!found)
+      x_find_notify_not_found(text);
     GEDA_FREE(text);
   }
 }
@@ -296,20 +301,23 @@ void x_find_attribute()
  */
 void x_find_refdes()
 {
-  GtkSheet *sheet;
-  bool found=FALSE;
-  int cur_page;
-  int count;
-  int i;
-
   char *text = x_dialog_get_search_text(_("Designator"));
 
   if (text) {
+
+    GtkSheet *sheet;
+    bool found;
+    int  cur_page;
+    int  count;
+    int  i;
+
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-    sheet = sheets[cur_page];
-    found = FALSE;
-    count = sheet->maxrow;
+    sheet    = sheets[cur_page];
+    found    = FALSE;
+    count    = sheet->maxrow;
+
     for( i = 0; i <= count; i++) {
+
       if (strcmp(sheet->row[i].name, text) == 0) {
         found = TRUE;
         gtk_sheet_select_row(sheet,i);

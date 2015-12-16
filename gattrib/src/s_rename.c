@@ -45,18 +45,19 @@ static int cur_set = 0;
 
 /*! \brief Initialize the renaming data space
  *
- * Initialise the renaming data space by setting all the pair pointers
- * to NULL.
+ * Initializee the renaming data space by setting all the pair
+ * pointers to NULL.
  */
 void s_rename_init(void)
 {
     int i, j;
 
     for (i = 0; i < MAX_SETS; i++) {
-	for (j = 0; j < MAX_RENAME; j++) {
-	    rename_pairs[i][j].src = NULL;
-	    rename_pairs[i][j].dest = NULL;
-	}
+
+      for (j = 0; j < MAX_RENAME; j++) {
+        rename_pairs[i][j].src = NULL;
+        rename_pairs[i][j].dest = NULL;
+      }
     }
     rename_counter = 0;
     cur_set = 0;
@@ -64,7 +65,7 @@ void s_rename_init(void)
 
 /*! \brief Free all data referred to by the rename pairs
  *
- * Runs through the rename pairs and calls GEDA_FREE() on the non-NULL
+ * Loops rename pairs and calls GEDA_FREE() on the non-NULL
  * entries, then sets the entry to NULL.
  */
 void s_rename_destroy_all(void)
@@ -72,6 +73,7 @@ void s_rename_destroy_all(void)
   int i, j;
 
   for (i = 0; i < MAX_SETS; i++) {
+
     for (j = 0; j < MAX_RENAME; j++) {
 
       if (rename_pairs[i][j].src) {
@@ -106,18 +108,18 @@ void s_rename_next_set(void)
  */
 void s_rename_print(void)
 {
-    int i,j;
+    int i, j;
 
     for (i = 0; i < MAX_SETS; i++) {
-	for (j = 0; j < MAX_RENAME; j++) {
-	    if (rename_pairs[i][j].src) {
-		printf(_("%d) Source: _%s_"), i, rename_pairs[i][j].src);
-	    }
+      for (j = 0; j < MAX_RENAME; j++) {
+        if (rename_pairs[i][j].src) {
+          printf(_("%d) Source: _%s_"), i, rename_pairs[i][j].src);
+        }
 
-	    if (rename_pairs[i][j].dest) {
-		printf(_(" -> Dest: _%s_\n"), rename_pairs[i][j].dest);
-	    }
-	}
+        if (rename_pairs[i][j].dest) {
+          printf(_(" -> Dest: _%s_\n"), rename_pairs[i][j].dest);
+        }
+      }
     }
 }
 
@@ -169,7 +171,6 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
 void s_rename_add(char *src, char *dest)
 {
   int flag;
-  int i;
 
   if (src == NULL || dest == NULL) {
     return;
@@ -178,10 +179,14 @@ void s_rename_add(char *src, char *dest)
   flag = s_rename_search(src, dest, FALSE);
 
   if (flag) {
-    // Rename_counter may be incremented within this loop, so it cannot
-    // be used in the loop exit condition.  Just iterate over the number
-    // of renames that were in the list at the start of the loop.
-    int orig_rename_counter = rename_counter;
+
+    int i, orig_rename_counter;
+
+    /* Rename_counter may be incremented within this loop, so it cannot
+     * be used in the loop exit condition.  Just iterate over the number
+     * of renames that were in the list at the start of the loop. */
+    orig_rename_counter = rename_counter;
+
     for (i = 0; i < orig_rename_counter; i++) {
       if (rename_pairs[cur_set][i].src
         && rename_pairs[cur_set][i].dest)

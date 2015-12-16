@@ -179,22 +179,23 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
  */
 void s_toplevel_add_new_attrib(int column_location) {
 
-  int cur_tab;                 /* current page in notebook  */
-
   char *new_attrib_name;
-  GtkSheet *sheet;
+
 
   new_attrib_name = x_dialog_new_attrib();
 
   if (new_attrib_name) { /* user di NOT cancel or close window with no value in entry */
 
+    GtkSheet *sheet;
+    int       cur_tab;   /* current page in notebook  */
+
     cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-    sheet = sheets[cur_tab];
+    sheet   = sheets[cur_tab];
 
     if(column_location < 0) column_location = sheet->maxcol + 1;
 
     switch (cur_tab) {
-      case Components:  /* component attribute sheet */
+      case Components:   /* component attribute sheet */
 
         if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
           strcpy(msg_buffer, "Can not add \"");
