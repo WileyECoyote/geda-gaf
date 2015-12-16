@@ -30,16 +30,8 @@ AC_CONFIG_HEADERS([config.h])
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-# The current configuration builds with Automake 1.9, but Distro checks
-# are performed using Automake 1.11,
-# use update-alternatives --config automake to switch on debian systems
-# to generate with Automake 1.9 use:
-#AM_INIT_AUTOMAKE
-
-# to generate with Automake 1.11 use:
-AM_INIT_AUTOMAKE([parallel-tests color-tests])
-
-AX_SET_AM_OPTIONS
+# Initialize automake
+AX_INIT_AUTOMAKE
 
 AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 

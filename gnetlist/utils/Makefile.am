@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+AUTOMAKE_OPTIONS        = 1.6 subdir-objects
 
 INC_GEDA                = -I$(top_srcdir) -I$(top_srcdir)/include
 INC_LIBGEDA             = -I$(top_srcdir)/libgeda/include

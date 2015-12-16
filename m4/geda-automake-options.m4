@@ -19,30 +19,25 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
-AC_DEFUN([AX_SET_AM_OPTIONS],
+AC_DEFUN([AX_INIT_AUTOMAKE],
 [
   AC_PREREQ([2.50])dnl
 
-  m4_ifdef([GEDA_AUTOMAKE_OPTIONS], [m4_undefine([GEDA_AUTOMAKE_OPTIONS])])
-  m4_ifdef([GEDA_AM_TEST_OPTIONS], [m4_undefine([GEDA_AM_TEST_OPTIONS])])
+  AM_INIT_AUTOMAKE(
+    m4_esyscmd([
 
-  m4_ifdef([AM_SILENT_RULES], ver_flag=yes, ver_flag=no)
+      GEDA_NEW_AM_OPTS="1.11 subdir-objects parallel-tests color-tests"
+      GEDA_OLD_AM_OPTS="1.6 subdir-objects serial-tests"
 
-dnl 'serial-tests' option disables support for parallel testsuites present
-dnl  in recent versions of Automake. Use AM_SILENT_RULES to detect if the
-dnl  Automake version >= 1.11 and enable for supporting Automake's.
+      am_version=$(automake --version | { read ver && echo ${ver#*) }; })
 
-  if test "x$ver_flag" = "xyes"; then
-    GEDA_AUTOMAKE_OPTIONS="1.11 subdir-objects"
-    GEDA_AM_TEST_OPTIONS="parallel-tests color-tests"
-    AC_SUBST([GEDA_AM_TEST_OPTIONS])
-  else
-    GEDA_AUTOMAKE_OPTIONS= "1.6 subdir-objects"
-  fi
-
-  AC_SUBST([GEDA_AUTOMAKE_OPTIONS])
+      case $am_version in
+        1.1[1-9]*|[2-9]*) echo $GEDA_NEW_AM_OPTS ;;
+                       *) echo $GEDA_OLD_AM_OPTS ;;
+      esac])
+  )
 
   m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])dnl # make --enable-silent-rules the default.
 
   []dnl
-])dnl
+])

@@ -1,6 +1,8 @@
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
 noinst_PROGRAMS  = geda-shell
+
 AM_CFLAGS        =-I$(top_srcdir)/include
+
 BUILT_SOURCES    = shell.x
 
 EXTRA_DIST       = $(BUILT_SOURCES)

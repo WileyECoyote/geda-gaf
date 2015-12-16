@@ -1,3 +1,9 @@
+2015-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-automake-options.m4: Revamp to eliminate AUTOMAKE_OPTIONS,
+      relocate AM_INIT_AUTOMAKE from configure.ac to AX_INIT_AUTOMAKE
+      and set options using M4 macro.
+
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-std-checks.m4: Add check for hypot function.

@@ -1,3 +1,8 @@
+2015-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Remove AM_INIT_AUTOMAKE cruft use AX_INIT_AUTOMAKE,
+      revise Makefile.am's accordingly.
+
 2015-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump versions gEDA 2.1.0.14 - 12/04/15 Rampage Edition
