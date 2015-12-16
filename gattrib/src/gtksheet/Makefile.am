@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 ## This Makefile.am created for gattrib by WEH 10.26.2012
-AUTOMAKE_OPTIONS = 1.7 subdir-objects
+AUTOMAKE_OPTIONS = 1.6 subdir-objects
 
 GTKSHEET_LOCAL   =  -I$(srcdir)/../../include/gtksheet
 

@@ -1,5 +1,8 @@
 2015-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Makefile.am: Change AUTOMAKE_OPTIONS automake version to 1.6 to match
+      other units.
+
     * gattrib/src/i_basic.c: Eliminated variable result, use return value on
       stack.
 
