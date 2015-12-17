@@ -28,7 +28,7 @@
 #include <ansi.h>
 #include <version.h>
 
-#include "gattrib.h"
+#include <gattrib.h>
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>

@@ -20,7 +20,7 @@
  */
 
 #include <gattrib.h>
-#include "gattrib_dialog.h"
+#include <gattrib_dialog.h>
 
 #include <geda_marshal.h>
 #include <geda_stat.h>

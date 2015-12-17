@@ -35,11 +35,11 @@
 #include <gattrib.h>
 
 #include <gtk/gtk.h>
-#include "gtksheet.h"
+#include <gtksheet.h>
 
-#include "geda_gui_funcs.h"
-#include "geda_widgets.h"
-#include "geda_debug.h"
+#include <geda_gui_funcs.h>
+#include <geda_widgets.h>
+#include <geda_debug.h>
 
 #define COLUMN_MIN_WIDTH 10
 

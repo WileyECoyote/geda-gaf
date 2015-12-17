@@ -99,8 +99,8 @@
  *
  */
 #define GLIB_DISABLE_DEPRECATION_WARNINGS
-#include <config.h>
-#include <version.h>
+#include "../../config.h"
+#include "../../version.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>

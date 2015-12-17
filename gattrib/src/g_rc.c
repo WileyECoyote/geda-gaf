@@ -24,9 +24,10 @@
  * contains a function to test the version number of the program.
  */
 
-#include "gattrib.h"
-#include "g_rc.h"
-#include <version.h>
+#include "../../version.h"
+
+#include <gattrib.h>
+#include "../include/g_rc.h"
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
 #include <geda_debug.h>
 

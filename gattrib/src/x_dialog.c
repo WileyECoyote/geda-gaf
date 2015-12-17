@@ -27,11 +27,12 @@
  * Functions used to display dialog boxes.
  */
 
+#include "../../version.h"
+
 #include <gattrib.h>
-#include <version.h>
-#include "geda_dialog_controls.h"
-#include "geda_widgets.h"
-#include "gattrib_dialog.h"
+#include <geda_dialog_controls.h>
+#include <geda_widgets.h>
+#include <gattrib_dialog.h>
 #include <geda_debug.h>
 
 /***************** Start of generic message dialog box *******************/
