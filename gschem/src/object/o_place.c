@@ -94,14 +94,13 @@ bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 void
 o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_objects, Hooker id)
 {
-  GedaToplevel *toplevel       = w_current->toplevel;
-  GList        *object_list    = NULL;
-  GList        *connected_list = NULL;
-  GList        *iter;
-  Page         *p_current;
-
   if (w_current->inside_action) {
 
+    GedaToplevel *toplevel       = w_current->toplevel;
+    GList        *object_list    = NULL;
+    GList        *connected_list = NULL;
+    GList        *iter;
+    Page         *p_current;
     int w_diff_x, w_diff_y;
 
     /* Turn off flag */

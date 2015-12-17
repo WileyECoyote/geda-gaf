@@ -811,8 +811,7 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
 {
   GtkPageSetup *setup = gtk_page_setup_new ();
   GtkPaperSize *papersize;
-  int status, wx_min, wy_min, wx_max, wy_max;
-  EdaConfig *cfg;
+  EdaConfig    *cfg;
   char *paper, *orientation;
 
   /* Get configuration values */
@@ -834,8 +833,10 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
   else if (g_strcmp0 (orientation, "portrait") == 0) {
     gtk_page_setup_set_orientation (setup, GTK_PAGE_ORIENTATION_PORTRAIT);
   }
-  else if (orientation == NULL
-             || g_strcmp0 (orientation, "auto") == 0) {
+  else if (orientation == NULL || g_strcmp0 (orientation, "auto") == 0) {
+
+    int status, wx_min, wy_min, wx_max, wy_max;
+
     /* Automatically choose the orientation that fits best */
     status = o_get_bounds_list (s_page_get_objects (page),
                                 &wx_min, &wy_min, &wx_max, &wy_max);

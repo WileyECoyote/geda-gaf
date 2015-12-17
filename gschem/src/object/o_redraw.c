@@ -140,7 +140,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   int cue_half_size;
   int grip_half_size;
   int render_flags;
-  int zoom;
 
   int x       = rectangle->x;
   int y       = rectangle->y;
@@ -195,7 +194,9 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
                  |   EDA_RENDERER_FLAG_PICTURE_OUTLINE);
   }
   else {
-    zoom = toplevel->page_current->to_world_x_constant;
+
+    int zoom = toplevel->page_current->to_world_x_constant;
+
     if ((zoom > w_current->text_display_zoomfactor) &&
       (w_current->text_feedback != ALWAYS_FEEDBACK))
       render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);

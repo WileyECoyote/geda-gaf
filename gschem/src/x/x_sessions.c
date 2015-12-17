@@ -75,7 +75,7 @@ static void session_tree_update (GtkWidget *dialog)
   GtkTreeView   *treeview;
   GtkTreeIter    iter;
   GtkTreeModel  *model;
-  int            index;
+
 
   treeview = GEDA_OBJECT_GET_DATA (dialog, "tree-view");
   model    = gtk_tree_view_get_model (treeview);
@@ -85,9 +85,11 @@ static void session_tree_update (GtkWidget *dialog)
 
   if (i_sessions_is_enabled()) { /* if session data exist */
 
+    int index;
+
     sessions = i_sessions_get_sessions();
 
-    for(index = 0; index < sessions->len; index++) {
+    for (index = 0; index < sessions->len; index++) {
 
       record = &g_array_index(sessions, Session, index);
 

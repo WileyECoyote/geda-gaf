@@ -61,7 +61,9 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
                                              EID_PAN_DIRECTIVES pan_flags)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  double world_pan_center_x, world_pan_center_y, relative_zoom_factor = - 1;
+  double world_pan_center_x;
+  double world_pan_center_y;
+  double relative_zoom_factor;
   int start_x, start_y;
 
   /* NB: w_current->zoom_gain is a percentage increase */
@@ -76,6 +78,7 @@ void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
 
   case(ZOOM_FULL_DIRECTIVE):
     /* indicate the zoom full with a negative zoomfactor */
+  default:
     relative_zoom_factor = -1;
     break;
   }
