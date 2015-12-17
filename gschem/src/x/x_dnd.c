@@ -161,12 +161,13 @@ static const GschemDndDataDef dnd_data_defs[] =
 };
 
 /* Begin Data type Specific Sub-Handlers */
-const char*
+static const char*
 x_dnd_send_string_nil (GschemToplevel *w_current, Object *object)
 {
   return (DND_NIL);
 }
-const char*
+
+static const char*
 x_dnd_send_string_object (GschemToplevel *w_current, Object *object)
 {
   const char *string_1;
@@ -191,50 +192,52 @@ x_dnd_send_string_object (GschemToplevel *w_current, Object *object)
 /******************* Shape Catagory Data Helpers *******************/
 static char dnd_string_data_name[10];
 
-const char *x_dnd_string_data_name(char* name)
+static const char *x_dnd_string_data_name(char *name)
 {
-
   int  index;
+
   for (index = 0; index < sizeof(dnd_string_data_name); index++) {
     if (*name == '.')
       break;
     dnd_string_data_name[index] = *name++;
   }
-  dnd_string_data_name[index] = '\0'; /* replace period with NULL*/
+
+  if (index < sizeof(dnd_string_data_name))
+    dnd_string_data_name[index] = '\0'; /* replace period with NULL*/
+
   return &dnd_string_data_name[0];
 }
-
-char *x_dnd_string_data_arc_properties(Arc *arc)
+static char *x_dnd_string_data_arc_properties(Arc *arc)
 {
   return
   u_string_sprintf("center=(%d,%d), radius=%d, angle=%d",
              arc->x, arc->y, arc->width, arc->start_angle);
 }
-char *x_dnd_string_data_circle_properties(Circle *circle)
+static char *x_dnd_string_data_circle_properties(Circle *circle)
 {
   return
   u_string_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
-char *x_dnd_string_data_line_properties(Line *line)
+static char *x_dnd_string_data_line_properties(Line *line)
 {
   return
   u_string_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
-char *x_dnd_string_data_path_properties(Path *path)
+static char *x_dnd_string_data_path_properties(Path *path)
 {
   return
   u_string_sprintf("sections=%d",path->num_sections);
 }
-char *x_dnd_string_data_box_properties(Box *box)
+static char *x_dnd_string_data_box_properties(Box *box)
 {
   return
   u_string_sprintf("upper point (%d,%d), lower point (%d,%d)",
                   box->upper_x, box->upper_y, box->lower_x, box->lower_y);
 }
 
-const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
+static const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
 {
   const char *string;
   const char *name;
@@ -242,6 +245,7 @@ const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
         char *properties;
 
   name   = x_dnd_string_data_name(object->name);
+
   common = u_string_sprintf("line width=%d, dash=%d",
                            object->line_options->line_width,
                            object->line_options->line_space);
@@ -275,7 +279,7 @@ const char *x_dnd_send_string_shape (GschemToplevel *w_current, Object *object)
   return string;
 }
 
-const char*
+static const char*
 x_dnd_send_string_signal (GschemToplevel *w_current, Object *object)
 {
   const char *string;
@@ -296,7 +300,8 @@ x_dnd_send_string_signal (GschemToplevel *w_current, Object *object)
   if (netname != NULL) GEDA_FREE(netname);
   return string;
 }
-const char*
+
+static const char*
 x_dnd_send_string_text (GschemToplevel *w_current, Object *object)
 {
   const char *string;
@@ -373,20 +378,21 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
  *  symbols will be loaded as a new page and that maybe what the
  *  user wants.
 */
-bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const char *filename, int where)
+static bool
+x_dnd_receive_string_sym (GschemToplevel *w_current, int x, int y,
+                          const char *filename, int where)
 {
-  bool        result;
-  char       *symbolfile;
-  char       *path;
+  bool  result;
+  Page  *page;
+  char  *path;
 
-  const       CLibSymbol *symbol = NULL;
-  Page       *page;
-  Object     *object;
-
-  page = Current_Page;
+  page = gschem_toplevel_get_current_page(w_current);
   path = f_path_get_dirname(filename);
 
-  if (s_clib_source_path_exist(path)) {
+  if (page && s_clib_source_path_exist(path)) {
+
+    const  CLibSymbol *symbol;
+    char  *symbolfile;
 
     symbolfile = g_path_get_basename (filename);
     symbol     = s_clib_get_symbol_by_name(symbolfile);
@@ -395,6 +401,8 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
     if (symbol) {
 
       if(where == DROPPED_ON_COORD) {
+
+        Object *object;
 
         w_current->second_wx = x;
         w_current->second_wy = y;
@@ -437,31 +445,30 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
 bool
 x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string, int where)
 {
-  GList *files;
-  Page  *page;
-
-  bool  load_as_page;   /* Could be either .sch or .sym */
   bool  result;
-
-  const char *leader   = DND_FILE_LEADER;
-  char       *filename;
-  char       *buffer;
-
-  int   tail;
-  int   index, count;
-  int   len;
 
   result = FALSE;
 
   if (string) {
 
+    GList *files;
+    Page  *page;
+
+    bool  load_as_page;   /* Could be either .sch or .sym */
+
+    const char *leader   = DND_FILE_LEADER;
+    char       *filename;
+    char       *buffer;
+
+    int   tail;
+    int   index, count;
+    int   len;
+
     load_as_page   = FALSE;
     result         = TRUE;
     files          = NULL;
-
-    len = strlen(string);
-
-    buffer = u_string_strdup (string);
+    len            = strlen(string);
+    buffer         = u_string_strdup (string);
 
     /* Replace line feeds and carriage returns with nulls */
     for(tail = 0; tail < len; tail++) {
@@ -598,17 +605,13 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
  * it needs to finish the operation by calling gtk_drag_finish, which will emit
  * the "data-delete" signal if told to.
 */
-void
+static void
 x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
                                       GtkSelectionData *selection_data,
                                       unsigned int      target_type,
                                       unsigned int      time,
                                       GschemToplevel   *w_current)
 {
-  const GschemDndDataDef  *datadef;
-  const unsigned char     *buffer;
-  const char              *string;
-
   bool  dnd_success = FALSE;
   bool  delete_data = FALSE;
 
@@ -621,6 +624,11 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
   if ((selection_data != NULL) &&
     (gtk_selection_data_get_length(selection_data) >= 0))
   {
+
+    const GschemDndDataDef  *datadef;
+    const unsigned char     *buffer;
+    const char              *string;
+
 /*
     Seems context->suggested_action is useless, is always
     GDK_ACTION_MOVE regardless of source or buttons.
@@ -692,7 +700,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
  *
  *  Called when the drag leaves the destination.
  */
-void x_dnd_drag_leave
+static void x_dnd_drag_leave
 (GtkWidget *widget, GdkDragContext *context, guint time, GschemToplevel *w_current)
 {
   const char *name = gtk_widget_get_name (widget);
@@ -708,15 +716,17 @@ void x_dnd_drag_leave
  *  Called when a drag is over the destination.
  *
  * \return FALSE if the operation should continue
+ * \todo Set icon
  */
-/* Emitted  */
-bool x_dnd_drag_motion
+/* Emitted /
+static bool x_dnd_drag_motion
 (GtkWidget *widget, GdkDragContext *context, int x, int y, guint t, GschemToplevel *w_current)
 {
   // Fancy stuff here. This signal spams the console something horrible.
   //const char *name = gtk_widget_get_name (widget);
   return  FALSE;
 }
+*/
 /*
 static void
 drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint time)
@@ -731,7 +741,6 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint t
 }
 */
 
-
 /*! \brief When Drag gets Dropped on the Drawing Area
  *
  *  \par Function Description
@@ -742,15 +751,11 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint t
  *
  *  \return TRUE if the operation should continue, otherwise FALSE
  */
-bool x_dnd_drag_drop
+static bool x_dnd_drag_drop
 (GtkWidget *widget, GdkDragContext *context, int x, int y, guint time, GschemToplevel *w_current)
 {
-  bool            is_valid_drop_site;
-  GtkTargetEntry *target_entry;
-  GdkAtom         target_type;
-  GList          *targets;
-  GList          *iter;
-  int             index;
+  bool   is_valid_drop_site;
+  GList *targets;
 
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
@@ -766,14 +771,21 @@ bool x_dnd_drag_drop
   /* If the source offers a target */
   if (targets) {
 
+    GtkTargetEntry *target_entry;
+    GdkAtom         target_type;
+
+    int index = dnd_ntargets - 1;
+
     //targets = gdk_drag_context_list_targets(context);
 
     /* Set what we really want! */
     target_type = GDK_POINTER_TO_ATOM (&dnd_target_list[DND_TARGET_OBJECTS]);
 
-    index  = dnd_ntargets - 1;
     /* For each of our targets, look backwards to see if we find a match */
     for (target_entry = &dnd_target_list[index]; index > -1 ; index--) {
+
+      GList *iter;
+
       for (iter = targets; iter != NULL; iter = g_list_next (iter)) {
         target_type = GDK_POINTER_TO_ATOM(iter->data);
         if (!strcasecmp (target_entry->target, gdk_atom_name(target_type))) {
@@ -831,7 +843,7 @@ bool x_dnd_drag_drop
  * via X properties, is only capable of storing data in blocks of 8, 16, or
  * 32 bit units.
  */
-void x_dnd_drag_data_get
+static void x_dnd_drag_data_get
 (GtkWidget *widget, GdkDragContext *context, GtkSelectionData *selection_data,
                     unsigned int target_type, unsigned int time, GschemToplevel *w_current)
 {
@@ -893,7 +905,7 @@ void x_dnd_drag_data_get
 
 /* Emitted after "drag-data-received" is handled, and gtk_drag_finish is called
  * with the "delete" parameter set to TRUE (when DnD is GDK_ACTION_MOVE). */
-void x_dnd_drag_delete
+static void x_dnd_drag_delete
 (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
 #if DEBUG  || DEBUG_DND_EVENTS
@@ -904,7 +916,7 @@ void x_dnd_drag_delete
 }
 
 /* Emitted when DnD begins. This is often used to present custom graphics. */
-void
+static void
 x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
 #if DEBUG  || DEBUG_DND_EVENTS
@@ -926,8 +938,8 @@ x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_
  *  cancel the Move action so the object gets put back where it was before
  *  the D&D operation.
  */
-void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
-                                        GschemToplevel *w_current)
+static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
+                                               GschemToplevel *w_current)
 {
 
 #if DEBUG  || DEBUG_DND_EVENTS
@@ -999,8 +1011,6 @@ void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
 static bool
 x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *w_current)
 {
-  GdkDragContext *context;
-
   /* Only interested in the pointer leaving the drawing area while
    * button 1 was down and we are doing something */
   if ((event->state & GDK_BUTTON1_MASK) && w_current->inside_action) {
@@ -1008,7 +1018,8 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
     w_current->dnd_save_state = 0;
 
 #if DEBUG  || DEBUG_DND_EVENTS
-    printf ("<%s> %s: ia=%d, state=%d\n", __func__, gtk_widget_get_name (widget), w_current->inside_action, w_current->event_state);
+    printf ("<%s> %s: ia=%d, state=%d\n", __func__, gtk_widget_get_name (widget),
+            w_current->inside_action, w_current->event_state);
 #endif
 
     switch (w_current->event_state) {
@@ -1027,6 +1038,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
 
     if (w_current->event_state == STARTDND) {
 
+      GdkDragContext *context;
       GtkTargetList  *target_list;
 
       target_list    = gtk_target_list_new (dnd_target_list, dnd_ntargets);

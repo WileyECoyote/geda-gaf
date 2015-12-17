@@ -6,6 +6,10 @@
       o_select_get_count, o_select_is_selection and o_select_motion, the
       later no so much. Reduce scope of variables, reformat, edit comments.
 
+    * src/x/x_dnd.c: Revise function x_dnd_string_data_name to check index
+      after the for loop, make qualifying function static and reduce scope
+      of variables.
+
 2015-12-16 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/guile/g_window.c:: WEH: Modified per commit to Master branch
