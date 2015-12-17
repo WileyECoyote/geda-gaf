@@ -1,3 +1,11 @@
+2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_select.c: Revise module to eliminate Top_Selection
+      macro. Replace wrapper o_select_return_first_object with new version
+      that actually calls o_selection_get_first_object. Simplify functions
+      o_select_get_count, o_select_is_selection and o_select_motion, the
+      later no so much. Reduce scope of variables, reformat, edit comments.
+
 2015-12-16 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/guile/g_window.c:: WEH: Modified per commit to Master branch
