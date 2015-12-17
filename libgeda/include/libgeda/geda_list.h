@@ -80,7 +80,6 @@ void      geda_list_unref                   ( GedaList *list );
 void      geda_list_remove_all              ( GedaList *list );
 
 /*const GList *geda_list_get_glist( GedaList *list ); */
-//#define geda_list_get_glist(list) (list->glist)
 
 #define geda_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
 #define geda_list_free_full(list) u_glist_free_full(list->glist, g_free); list->glist = NULL;

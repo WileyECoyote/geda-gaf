@@ -50,7 +50,7 @@ static GObjectClass *geda_arc_parent_class = NULL;
 /*! \brief Geda Arc Bounds
  *  \par Function Description
  *  This function calculates the smallest rectangle the arc can be drawn
- *  into. The <B>Object</B> pointed by object is assumed to be an arc.
+ *  into. The <B>Object</B> pointed by \a object is assumed to be an arc.
  *  The <B>left</B>, <B>top</B>, <B>right</B> and <B>bottom</B> pointed
  *  integers define this rectangle at the end of the function. The arc is
  *  expressed in world units. The process is divided into two steps : the
@@ -102,7 +102,9 @@ geda_arc_bounds(Object *object)
     start_angle = (start_angle + arc_sweep + 360) % 360;
     arc_sweep   = -arc_sweep;
   }
+
   angle = ((int) (start_angle / 90)) * 90;
+
   for(i = 0; i < 4; i++) {
     angle = angle + 90;
     if(angle < start_angle + arc_sweep) {

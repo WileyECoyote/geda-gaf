@@ -110,6 +110,7 @@ struct _GedaToplevel {
 
   /* either TRUE or FALSE (color or no color) */
   int image_color;
+
   /* either TRUE or FALSE (Blk on Wht or Wht on Blk) */
   int invert_images;
 

@@ -58,11 +58,8 @@ void x_window_setup (GschemToplevel *w_current)
   /* Initialize the autosave callback */
   s_page_autosave_init(toplevel);
 
-  /* setup world */
-  //w_current->world_left = -45;
-  //w_current->world_top  = -45;
-
-  /* init_right and _bottom are set before this function is called */
+  /* setup world, init_right and _bottom were set in i_vars.c
+   * before this function is called */
   toplevel->width          = w_current->world_right;
   toplevel->height         = w_current->world_bottom;
 
@@ -777,10 +774,11 @@ static bool x_window_idle_thread_post_load_file (void *filename)
  *
  *  \param [in] w_current The toplevel environment.
  *  \param [in] filename The name of the file to open or NULL for a blank page.
+ *
  *  \returns A pointer on the new page.
  *
  *  \note When we want a new string allocated we use the glib file utilities,
- *  When we don't want to deal with freeing we our local buffer and glibc.
+ *  when we don't want to deal with freeing we use our local buffer and glibc.
  *
  */
 Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
