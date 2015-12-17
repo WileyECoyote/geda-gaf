@@ -1,3 +1,14 @@
+2015-12-16 Vladimir Zhbanov <vzhbanov@gmail.com>
+
+    * src/guile/g_window.c:: WEH: Modified per commit to Master branch
+      by Vladimir Zhbanov, commit 43517aba280f91ee2ac1b6c67cd43cd496ca8aed:
+      gschem: Fix close-page! in GUI.
+      In gschem the close-page! procedure defined in the (geda page)
+      module was overridden in order to carry out all necessary GUI clean
+      up before exiting. However, this did not work due to a typo in its
+      lowlevel Scheme function name, which caused segfaults by using it,
+      e.g., as GUI macro. Now it segfaults not so often :)
+
 2015-12-14 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/iface/i_command.c: WEH: Modified per commit to Master branch

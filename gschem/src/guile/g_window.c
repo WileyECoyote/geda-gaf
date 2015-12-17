@@ -210,25 +210,16 @@ SCM_DEFINE (override_close_page_x, "%close-page!", 1, 0, 0,
             (SCM page_s), "Close a page.")
 {
   GschemToplevel *w_current;
+  Page *page;
+
   /* Ensure that the argument is a page smob */
   SCM_ASSERT (edascm_is_page (page_s), page_s,
               SCM_ARG1, s_override_close_page_x);
 
   w_current = g_current_window ();
-  GedaToplevel *toplevel = w_current->toplevel;
-  Page *page = edascm_to_page (page_s);
+  page      = edascm_to_page (page_s);
 
-  /* If page is not the current page, switch pages, then switch back
-   * after closing page. */
-  Page *curr_page = toplevel->page_current;
-  int reset_page = (page != curr_page);
-  if (reset_page)
-    x_window_set_current_page (w_current, page);
-
-  x_window_close_page (w_current, w_current->toplevel->page_current);
-
-  if (reset_page)
-    x_window_set_current_page (w_current, curr_page);
+  x_window_close_page (w_current, page);
 
   return SCM_UNDEFINED;
 }
@@ -321,7 +312,7 @@ init_module_gschem_core_window ()
     SCM geda_page_module = scm_c_resolve_module ("geda core page");
     SCM close_page_proc =
       scm_variable_ref (scm_c_lookup (s_override_close_page_x));
-    scm_c_module_define (geda_page_module, "close-page!", close_page_proc);
+    scm_c_module_define (geda_page_module, "%close-page!", close_page_proc);
   }
 }
 
