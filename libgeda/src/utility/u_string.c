@@ -566,6 +566,7 @@ int u_string_strsize (const char *format, va_list args)
   va_copy(args2, args);
   string = (char*)GEDA_MEM_ALLOC(4 * USS_BUFFER_SIZE);
   size = vsprintf(string, format, args2);
+  va_end(args2);
   GEDA_FREE(string);
 
 #endif
@@ -798,17 +799,18 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
       /* get pointer to the end of the old string in the source */
       ptr2 = ptr1 + length; /* pointing to the old last char */
 
-      if (*ptr2) /* if there are characters after the old string */
+      if (*ptr2) {/* if there are characters after the old string */
         strcpy(temp, ptr2); /* save them in the temp buffer */
+      }
 
-        /* copy the new string to the source starting add the old position*/
-        strcpy(ptr1, new_str); /* This also terminated the string for us */
+      /* copy the new string to the source starting add the old position*/
+      strcpy(ptr1, new_str); /* This also terminated the string for us */
 
-        /* If there was as suffix, then add it */
-        if (strlen (temp))
-          strcat(ptr1, temp);
+      /* If there was as suffix, then add it */
+      if (strlen (temp))
+        strcat(ptr1, temp);
 
-        free(temp);
+      free(temp);
       return source;
     }
     else {

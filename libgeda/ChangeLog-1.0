@@ -2,6 +2,9 @@
 
     * object/o_selection.c: Add function o_selection_get_first_object.
 
+    * src/utility/u_string.c: Add missing va_end to close args2 in function
+      u_string_strsize.
+
 2015-12-14  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Remove conditionals where duplicate branches
