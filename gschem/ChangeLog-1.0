@@ -1,5 +1,10 @@
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_sessions.c: Change for loop to while loop in i_sessions_
+      destroy_sessions, remove double setting if count in i_sessions_create,
+      and reduce scope of variables in module. Eliminate variables filename
+      and toplevel in function i_sessions_save.
+
     * src/object/o_select.c: Revise module to eliminate Top_Selection
       macro. Replace wrapper o_select_return_first_object with new version
       that actually calls o_selection_get_first_object. Simplify functions

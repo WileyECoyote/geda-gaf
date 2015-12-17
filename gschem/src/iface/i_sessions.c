@@ -104,14 +104,18 @@ static Session *i_session_get_record(const char *name)
  *
  *  \param record Pointer to the session record to be removed
  */
-static int i_sessions_remove_session (Session *record) {
+static int i_sessions_remove_session (Session *record)
+{
+  int found;
+  int index;
 
-  Session *session = NULL;
-  int      found   = FALSE;
-  int      index;
+  found = FALSE;
 
-  for(index = 0; index < sessions->len; index++) {
+  for (index = 0; index < sessions->len; index++) {
 
+    Session *session;
+
+    session = NULL;
     session = &g_array_index(sessions, Session, index);
 
     if (strcmp(record->session_name, session->session_name) == 0) {
@@ -143,7 +147,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 {
   GList *iter;
   GList *pages;
-  Page  *p_current;
+
   bool   can_close  = TRUE;
   bool   close_all;
 
@@ -184,10 +188,11 @@ static bool i_session_close_all (GschemToplevel *w_current)
     v_log_message(_("Closing all documents\n"));
 
     /* Loop through all the pages */
-    for ( iter = pages; iter != NULL; NEXT(iter))
-    {
+    for ( iter = pages; iter != NULL; NEXT(iter)) {
+
       /* get ptr to a page */
-      p_current = (Page*)iter->data;
+      Page  *p_current = (Page*)iter->data;
+
       if (p_current->filename) {
         x_window_close_page (w_current, p_current);
       }
@@ -290,7 +295,6 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
 
     GSList *iter;
     Page   *blank;
-    char   *filename;
     int     exist_count;
     int     missing_path;
 
@@ -300,11 +304,16 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
     missing_path = 0;
 
     while (iter) {
-      exist_count++;
+
+      char *filename;
+
       filename = iter->data;
+      exist_count++;
+
       if (!f_get_is_path_absolute(filename)) {
         missing_path++;
       }
+
       if (x_window_open_page(w_current, filename)) {
         load_count++;
       }
@@ -366,13 +375,11 @@ static int i_session_load_session(GschemToplevel *w_current, Session *record)
 static int
 i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
 {
-  FILE    *fp;
-  GList   *iter;
-  Page    *page;
-
-  char    *filename;
-  char    *session_file;
-  int      count = 0;
+  FILE  *fp;
+  Page  *page;
+  char  *filename;
+  char  *session_file;
+  int    count;
 
   Session  record;
 
@@ -382,7 +389,6 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
                                   SESSIONS_DIRECTORY,
                                   filename,
                                   NULL);
-
   GEDA_FREE(filename);
 
   fp = fopen (session_file, "w");
@@ -391,8 +397,10 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
 
     GedaToplevel *toplevel = w_current->toplevel;
 
+    GList *iter;
+
     count = 0;
-    iter = geda_toplevel_get_pages(toplevel);
+    iter  = geda_toplevel_get_pages(toplevel);
 
     /* Loop through all the pages looking for unsaved pages */
     while (iter) {
@@ -427,6 +435,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
                  session_file, strerror(errno));
 
     GEDA_FREE(session_file);
+    count = 0;
   }
   return count;
 }
@@ -444,37 +453,32 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
  */
 static int i_sessions_save(GschemToplevel *w_current, GError *err)
 {
-  FILE    *fp;
-  GList   *iter;
-  Page    *page;
-  Session *record;
-  char    *filename;
-  char    *session_file;
-  int      count;
+  int count;
 
   count = 0;
 
   if (w_current->session_name != NULL) {
 
-    record = i_session_get_record(w_current->session_name);
+    FILE    *fp;
+    Session *record;
+    char    *session_file;
 
+    record = i_session_get_record(w_current->session_name);
     session_file = record->session_file; /* do not free, belongs to the record */
 
     fp = fopen (session_file, "w");
 
     if (fp) {
 
-      GedaToplevel *toplevel = w_current->toplevel;
-
-      iter = geda_toplevel_get_pages(toplevel);
+      GList *iter = geda_toplevel_get_pages(w_current->toplevel);
 
       /* Loop through all the pages looking for unsaved pages */
       while (iter) {
 
         /* get ptr to a page */
-        page     = (Page*)iter->data;
-        filename = page->filename;
-        fprintf(fp, "%s\n", filename);
+         Page *page = (Page*)iter->data;
+
+        fprintf(fp, "%s\n", page->filename);
         ++count;
         NEXT(iter);
       }
@@ -542,19 +546,19 @@ static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
  */
 static void i_sessions_attach_submenu(GschemToplevel *w_current)
 {
-  GtkWidget *tmp;
-  GtkWidget *sessions_menu_item;
-  GtkWidget *sessions_submenu;
   GtkWidget *menubar;
 
   menubar = x_menu_get_main_menu(w_current);
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
+    GtkWidget *sessions_menu_item;
+
     sessions_menu_item = GEDA_OBJECT_GET_DATA(menubar, SESSIONS_RESTORE_SUBMENU);
 
-    if(sessions_menu_item != NULL) {
+    if (sessions_menu_item != NULL) {
 
+      GtkWidget *sessions_submenu;
       int index;
 
       /* disconnect all unblocked signals */
@@ -572,16 +576,21 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
       sessions_submenu = gtk_menu_new();
 
-      for(index=0; index < sessions->len; index++) {
+      for (index=0; index < sessions->len; index++) {
 
-        Session *record = &g_array_index(sessions, Session, index);
+        SessionMenuData *menu_data;
+        Session         *record;
+        GtkWidget       *tmp;
 
-        SessionMenuData *menu_data = GEDA_MEM_ALLOC (sizeof(SessionMenuData));
+        record    = &g_array_index(sessions, Session, index);
+
+        menu_data = GEDA_MEM_ALLOC (sizeof(SessionMenuData));
 
         menu_data->session   = record;
         menu_data->w_current = w_current;
 
         tmp = gtk_menu_item_new_with_label((char *)record->session_name);
+
         g_object_set (tmp, "visible", TRUE, NULL);
 
         g_signal_connect_data (GTK_OBJECT(tmp), "activate",
@@ -611,15 +620,17 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
  */
 static void update_sessions_menus(GschemToplevel *w_current)
 {
-   GtkWidget        *menubar;
-   GtkWidget        *menu_item;
-   GtkWidget        *submenu;
-   GList            *iter;
+   GList *iter;
 
-   for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
+   for (iter = global_window_list; iter != NULL; iter = g_list_next (iter))
+   {
+      GtkWidget *menubar;
+      GtkWidget *menu_item;
+      GtkWidget *submenu;
 
       w_current = (GschemToplevel *)iter->data;
-      menubar = x_menu_get_main_menu(w_current);
+      menubar   = x_menu_get_main_menu(w_current);
+
       if (menubar == NULL)
         continue;
 
@@ -694,13 +705,8 @@ static int i_sessions_get_count(const char *session_file)
  */
 static void i_sessions_load_data(void)
 {
-  GSList  *session_files;
-  GSList  *iter;
-  char     buffer[MAX_FILE];
-  char    *path;
-  char    *file;
-  char    *tmpname;
-  Session  record;
+  GSList *session_files;
+  char   *path;
 
   sessions = NULL;   /* The main array, global to this module */
 
@@ -718,7 +724,8 @@ static void i_sessions_load_data(void)
 
     if (session_files) {
 
-      int num_sessions;
+      GSList *iter;
+      int     num_sessions;
 
       num_sessions = g_slist_length(session_files);
 
@@ -727,6 +734,12 @@ static void i_sessions_load_data(void)
       for (iter = session_files; iter; iter = g_slist_next(iter)) {
 
         if (iter->data) {
+
+          char  buffer[MAX_FILE];
+          char *file;
+          char *tmpname;
+
+          Session  record;
 
           /* Copy filename from list to the buffer AND set file pointer */
           file = strcpy (&buffer[0], iter->data);
@@ -764,10 +777,11 @@ static void i_sessions_destroy_sessions(void)
 {
   if (sessions != NULL) {
 
-    int      index;
-    Session *record;
+    int index = 0;
 
-    for(index=0; index < sessions->len; index++) {
+    while (index < sessions->len) {
+
+      Session *record;
 
       record = &g_array_index(sessions, Session, index);
 
@@ -775,6 +789,7 @@ static void i_sessions_destroy_sessions(void)
         GEDA_FREE(record->session_file);
         GEDA_FREE(record->session_name);
       }
+      index++;
     }
 
     g_array_free (sessions, TRUE);
@@ -872,9 +887,8 @@ int i_sessions_export_session(const char *name, const char *filename)
  */
 int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 {
-  GError *err   = NULL;
-  int     count = -1;
-  char   *msg;
+  GError *err = NULL;
+  int     count;
 
   count = i_sessions_create(w_current, name, &err);
 
@@ -886,6 +900,8 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
 
   }
   else {
+
+    char *msg;
 
     msg = u_string_sprintf ( _("An error occurred attemting to create session %s: %s."),
                          name, err->message);
