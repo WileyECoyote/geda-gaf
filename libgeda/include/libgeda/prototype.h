@@ -380,6 +380,7 @@ unsigned char   *o_picture_get_rgb_data          (Object *object) GEDA_WARN_UNUS
 /* o_selection.c */
     SELECTION   *o_selection_new                 (void);
          void    o_selection_add                 (SELECTION *selection, Object *o_selected);
+       Object   *o_selection_get_first_object    (SELECTION *selection);
          void    o_selection_print_all           (const SELECTION *selection);
           int    o_selection_remove              (SELECTION *selection, Object *o_selected);
           int    o_selection_select              (Object *object);

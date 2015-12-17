@@ -1,3 +1,7 @@
+2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
+
+    * object/o_selection.c: Add function o_selection_get_first_object.
+
 2015-12-14  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Remove conditionals where duplicate branches

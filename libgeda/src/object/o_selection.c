@@ -53,6 +53,24 @@ void o_selection_add (SELECTION *selection, Object *o_selected)
   }
 }
 
+/*! \brief Get the first object in selection list
+ *
+ *  \par Function Description
+ *  Returns the first data referenced in the glist associated
+ *  with the selection or NULL if the list is empty.
+ *
+ *  \param [in] selection  Pointer to the selection list
+ *
+ *  \returns The first Object or NULL if there is no selection
+ */
+Object *o_selection_get_first_object(SELECTION *selection)
+{
+  if (!geda_list_get_glist(selection))
+    return NULL;
+
+  return (Object*)g_list_first(geda_list_get_glist(selection))->data;
+}
+
 /*! \brief Removes the given object from the selection list
  *
  *  \par Function Description
