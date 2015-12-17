@@ -54,13 +54,13 @@
 
 #define __GTKEXTRA_H_INSIDE__
 
-#include "gtkcompat.h"
-#include "gtkitementry.h"
-#include "gtkdatatextview.h"
-#include "gtksheet.h"
-#include "gtkdataformat.h"
-#include "gtksheet-marshal.h"
-#include "gtksheettypebuiltins.h"
+#include <gtksheet/gtkcompat.h>
+#include <gtksheet/gtkitementry.h>
+#include <gtksheet/gtkdatatextview.h>
+#include <gtksheet/gtksheet.h>
+#include <gtksheet/gtkdataformat.h>
+#include <gtksheet/gtksheet-marshal.h>
+#include <gtksheet/gtksheettypebuiltins.h>
 
 #undef GTK_SHEET_DEBUG
 

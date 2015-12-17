@@ -25,9 +25,9 @@
 
 #define __GTKEXTRA_H_INSIDE__
 
-#include "gtkcompat.h"
-#include "gtkdatatextview.h"
-#include "gtkdataformat.h"
+#include <gtksheet/gtkcompat.h>
+#include <gtksheet/gtkdatatextview.h>
+#include <gtksheet/gtkdataformat.h>
 
 /**
  * SECTION: gtkdatatextview

@@ -85,5 +85,4 @@
 
 #endif
 
-
 #endif /* GTK_SHEET_COMPAT_H */

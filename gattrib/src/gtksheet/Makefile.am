@@ -2,7 +2,7 @@
 ## This Makefile.am created for gattrib by WEH 10.26.2012
 AUTOMAKE_OPTIONS = 1.6 subdir-objects
 
-GTKSHEET_LOCAL   =  -I$(srcdir)/../../include/gtksheet
+GTKSHEET_LOCAL   =  -I$(srcdir)/../../include
 
 AM_LDFLAGS = -version-info $(LIBGTKSHEET_SO_VERSION)    \
 	     -export-dynamic                            \
@@ -13,13 +13,13 @@ AM_LDFLAGS = -version-info $(LIBGTKSHEET_SO_VERSION)    \
 noinst_LIBRARIES = libgtksheet.a
 
 libgtksheet_a_SOURCES = \
-						gtkdataformat.c    \
-						gtkdatatextview.c  \
-						gtkitementry.c	   \
-						gtksheet.c         \
-						gtksheetcolumn.c   \
-						gtksheet-marshal.c \
-						gtksheettypebuiltins.c
+			gtkdataformat.c    \
+			gtkdatatextview.c  \
+			gtkitementry.c	   \
+			gtksheet.c         \
+			gtksheetcolumn.c   \
+			gtksheet-marshal.c \
+			gtksheettypebuiltins.c
 
 gtksheet_extra_sources = gtksheet-marshal.list
 

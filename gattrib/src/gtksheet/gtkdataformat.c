@@ -26,8 +26,8 @@
 
 #define __GTKEXTRA_H_INSIDE__
 
-#include "gtkcompat.h"
-#include "gtkdataformat.h"
+#include <gtksheet/gtkcompat.h>
+#include <gtksheet/gtkdataformat.h>
 
 #ifdef DEBUG
 #  define GTK_DATA_FORMAT_DEBUG  0  /* define to activate debug output */

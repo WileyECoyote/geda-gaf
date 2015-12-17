@@ -45,8 +45,8 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
-#include "gtkcompat.h"
-#include "gtkitementry.h"
+#include <gtksheet/gtkcompat.h>
+#include <gtksheet/gtkitementry.h>
 
 #define MIN_ENTRY_WIDTH  150
 #define DRAW_TIMEOUT     20

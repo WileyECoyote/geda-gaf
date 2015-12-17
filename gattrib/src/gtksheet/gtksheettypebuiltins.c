@@ -7,7 +7,7 @@
 #include <gdk/gdk.h>
 #include <glib.h>
 
-#include "gtksheet.h"
+#include <gtksheet/gtksheet.h>
 
 /* enumerations from "gtksheet.h" */
 GType

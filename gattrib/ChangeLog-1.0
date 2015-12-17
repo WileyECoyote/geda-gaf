@@ -1,3 +1,8 @@
+2015-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/Makefile.am: Remove gtksheet from include path so that
+      gtksheet include must use gtksheet as a prefix for inclusion.
+
 2015-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Change AUTOMAKE_OPTIONS automake version to 1.6 to match
