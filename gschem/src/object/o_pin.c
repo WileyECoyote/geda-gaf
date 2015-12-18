@@ -69,10 +69,9 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  Object *new_obj;
   int     color;
 
-  w_current->second_wy = w_x;
+  w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
   i_status_action_stop(w_current);
@@ -88,14 +87,17 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
 
   /* don't allow zero length pins */
   if ((w_current->first_wx - w_current->second_wx) ||
-    (w_current->first_wy - w_current->second_wy))
+      (w_current->first_wy - w_current->second_wy))
   {
+    Object *new_obj;
+
     new_obj = o_pin_new(color,
                         w_current->first_wx, w_current->first_wy,
                         w_current->second_wx, w_current->second_wy,
                         PIN_NET_NODE, 0);
 
-    new_obj->line_options->line_width = o_style_get_pin_width(toplevel, PIN_NET_NODE);
+    new_obj->line_options->line_width =
+    o_style_get_pin_width(toplevel, PIN_NET_NODE);
 
     s_page_append_object (toplevel->page_current, new_obj);
 
