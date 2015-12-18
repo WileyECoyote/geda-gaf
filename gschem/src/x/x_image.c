@@ -1033,9 +1033,6 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   WORLDtoSCREEN (new_w_current, toplevel->page_current->bottom,
                                 toplevel->page_current->top,  &s_bottom, &s_top);
 
-  size_x = s_left - s_right;
-  size_y = s_bottom - s_top;
-
   size_x = new_w_current->image_width;
   size_y = new_w_current->image_height;
 
