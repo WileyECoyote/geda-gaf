@@ -134,11 +134,9 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 {
   GSList *formats;
   GSList *list;
-  char   *name;
-  char   *descr;
-  int i=0, default_index=-1;
+  int     default_index=-1;
 
-  GtkWidget   *combo = geda_combo_box_text_new();
+  GtkWidget *combo = geda_combo_box_text_new();
 
   /* If we were told use last, and last is NOT set */
   if (default_type == last_image) {
@@ -148,11 +146,16 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   formats = gdk_pixbuf_get_formats ();
   list    = formats;
 
-  if(list) {
+  if (list) {
+
+    int i = 0;
 
     while (list) {
 
       if (gdk_pixbuf_format_is_writable (list->data)) {
+
+        char *descr;
+        char *name;
 
         /* Get the format description and add it to the menu */
         descr = gdk_pixbuf_format_get_description(list->data);
@@ -207,12 +210,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
  */
 static char *x_image_get_type_from_description(char *descr) {
 
-  GSList *formats;
-  GSList *list;
-  char   *ptr_descr;
-  char   *ret_val;
-
-  ret_val = NULL;
+  char *ret_val = NULL;
 
   if (descr != NULL) {
 
@@ -223,11 +221,21 @@ static char *x_image_get_type_from_description(char *descr) {
       ret_val = u_string_strdup("pdf");
     }
     else {
+
+      GSList *formats;
+      GSList *list;
+
       formats = gdk_pixbuf_get_formats ();
-      list = formats;
+      list    = formats;
+
       if(list) {
+
         while (formats) {
+
+          char *ptr_descr;
+
           ptr_descr = gdk_pixbuf_format_get_description (formats->data);
+
           if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
             ret_val = gdk_pixbuf_format_get_name(formats->data);
             GEDA_FREE(ptr_descr);
@@ -648,9 +656,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GtkWidget *invert_bw;
 
   char *cwd;
-  char *image_type_descr;
-  char *filename;
-  char *image_type;
+
   int   width              = w_current->image_width;
   int   height             = w_current->image_height;
   bool  image_color_save   = w_current->toplevel->image_color;
@@ -813,7 +819,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   if (gtk_dialog_run((GtkDialog*)ThisDialog) == GEDA_RESPONSE_ACCEPT) {
 
+    char *filename;
     char *image_size;
+    char *image_type;
+    char *image_type_descr;
 
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: Dialog GEDA_RESPONSE_ACCEPT \n", __func__);
@@ -934,9 +943,7 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
  */
 static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 {
-  unsigned char *pixels, *p;
-  int width, height, rowstride, n_channels;
-  int i, j;
+  int n_channels;
 
   n_channels = gdk_pixbuf_get_n_channels (pixbuf);
 
@@ -944,6 +951,9 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
       (gdk_pixbuf_get_colorspace(pixbuf) == GDK_COLORSPACE_RGB) &&
       (gdk_pixbuf_get_bits_per_sample(pixbuf) == 8))
   {
+    unsigned char *pixels, *p;
+    int width, height, rowstride;
+    int i, j;
 
     width  = gdk_pixbuf_get_width (pixbuf);
     height = gdk_pixbuf_get_height (pixbuf);

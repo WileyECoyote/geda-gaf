@@ -2,7 +2,7 @@
 
     * src/iface/i_callbacks.c: Remove group File Menu Callback Functions.
 
-    * src/x/x_image.c: Major revision as follows:
+    * src/x/x_image.c: Major revisions as follows:
 
         * Replace geda_file_chooser with geda_image chooser, prepending the
           extra widget instead of setting the extra widget, and use function
@@ -10,12 +10,16 @@
           entry_text so that the full pathname is retrieved, the old method
           was not allowing images to be saved to subdirectories other than
           the current directory. The image chooser dialog has a preview widget
-          that can be handy when over-writting images.
+          that can be handy when over-writing images, add some comments.
 
         * free new_w_current or toplevel if needed before error return in
 
         * Remove double setting of size_x and size_y in x_image_get_pixbuf,
           the second was correct so generate image files were correct sizes.
+
+        * Remove and revise debug code x_image_lowlevel.
+
+        * Reduce scope of variable through-out module.
 
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 
