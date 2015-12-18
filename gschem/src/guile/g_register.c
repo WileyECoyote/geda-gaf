@@ -274,12 +274,13 @@ create_hook (const char *name, int n_args)
 void g_register_funcs (void)
 {
   struct gsubr_t *func[4] = { gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, gschem_buffer_funcs};
-  struct gsubr_t *grp;
   static GList   *action_list;
 
   int j;
   for(j = 0; j < 4; j++) {
-    grp = func[j];
+
+    struct gsubr_t *grp = func[j];
+
     while (grp->name != NULL) {
       scm_c_define_gsubr (grp->name, grp->req, grp->opt, grp->rst, grp->func);
       grp++;

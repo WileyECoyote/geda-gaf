@@ -283,9 +283,8 @@ SCM g_funcs_msg(SCM scm_msg)
  */
 SCM g_funcs_pdf (SCM scm_filename)
 {
-  bool            status;
-  char           *filename;
   GschemToplevel *w_current;
+  bool status;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename, SCM_ARG1,
               "gschem-pdf");
@@ -296,6 +295,9 @@ SCM g_funcs_pdf (SCM scm_filename)
     status = x_print_export_pdf (w_current, output_filename);
   }
   else  {
+
+    char *filename;
+
     filename = scm_to_utf8_string(scm_filename);
     status   = x_print_export_pdf (w_current, filename);
     free(filename);
@@ -320,7 +322,6 @@ SCM g_funcs_png_image(SCM scm_filename)
  */
 SCM g_funcs_postscript(SCM scm_filename)
 {
-  char *filename;
   GedaToplevel *toplevel;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
@@ -333,7 +334,11 @@ SCM g_funcs_postscript(SCM scm_filename)
       return SCM_BOOL_F;
   }
   else  {
+
+    char *filename;
+
     filename = scm_to_utf8_string(scm_filename);
+
     if (f_print_file (toplevel, toplevel->page_current, filename)) {
       free(filename);
       return SCM_BOOL_F;
@@ -350,7 +355,6 @@ SCM g_funcs_postscript(SCM scm_filename)
  */
 SCM g_funcs_print(SCM scm_filename)
 {
-  char *filename;
   GedaToplevel *toplevel = edascm_c_current_toplevel();
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
@@ -361,6 +365,8 @@ SCM g_funcs_print(SCM scm_filename)
       return SCM_BOOL_F;
   }
   else  {
+
+    char *filename;
 
     filename = scm_to_utf8_string(scm_filename);
 

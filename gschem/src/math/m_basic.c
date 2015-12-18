@@ -404,7 +404,7 @@ int WORLDclip_change (GschemToplevel *w_current,
   POINT tmp_point;
   POINT point1, point2;
   float slope;
-  int in1, in2, done;
+  int done;
   int visible;
   int w_l, w_t, w_r, w_b;
 
@@ -422,6 +422,9 @@ int WORLDclip_change (GschemToplevel *w_current,
   visible = FALSE;
 
   do {
+
+    int in1, in2;
+
     WORLDencode_halfspace (w_current, &point1, &half1);
     WORLDencode_halfspace (w_current, &point2, &half2);
 
@@ -534,7 +537,7 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
   POINT tmp_point;
   POINT point1, point2;
   float slope;
-  int in1, in2, done;
+  int done;
   int visible;
   int w_l, w_t, w_r, w_b;
 
@@ -554,6 +557,9 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
   visible = FALSE;
 
   do {
+
+    int in1, in2;
+
     WORLDencode_halfspace (w_current, &point1, &half1);
     WORLDencode_halfspace (w_current, &point2, &half2);
 

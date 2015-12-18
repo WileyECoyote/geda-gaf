@@ -247,11 +247,11 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
     case GEDA_RESPONSE_DELETE_EVENT:
 
       if (GTK_WIDGET (dialog) == w_current->cswindow) {
-        if(ThisDialog->style_menu_widgets) {
+        if (ThisDialog->style_menu_widgets) {
           g_slist_free(ThisDialog->style_menu_widgets);
         }
         /* gtk_widget_destroy(tree_view_popup_menu); */
-        if(GTK_IS_DIALOG(dialog)) {
+        if (GTK_IS_DIALOG(dialog)) {
           gtk_widget_destroy (GTK_WIDGET (dialog));
         }
       }
@@ -318,7 +318,7 @@ void x_compselect_open (GschemToplevel *w_current)
 
   GTK_EDITITABLE(ActiveDialog->entry_filter);
 
-  if (strcmp ( GetEntryText (ActiveDialog->entry_filter), "") != 0) {
+  if (strcmp (GetEntryText (ActiveDialog->entry_filter), "") != 0) {
     gtk_widget_grab_focus ((GtkWidget*) ActiveDialog->entry_filter);
   }
 }
@@ -555,7 +555,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
 
   bool  ret;
 
-  if(!IS_COMPSELECT (data)) {
+  if (!IS_COMPSELECT (data)) {
     BUG_MSG("Dialog->NULL");
     return FALSE;
   }
@@ -654,13 +654,15 @@ static void tree_open_rows (GtkTreeView *tree_view, bool expand_all)
   GtkTreeModel     *model = NULL;
   GtkTreeIter       iter;
   GtkTreeSelection *selection;
-  GtkTreePath      *path;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
 
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
-    path = gtk_tree_model_get_path ( model, &iter);
+
+    GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
+
     gtk_tree_view_expand_row (tree_view, path, expand_all);
+
     gtk_tree_path_free(path);
   }
 }
@@ -710,16 +712,19 @@ static void close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
   GtkTreeModel     *model = NULL;
   GtkTreeIter       iter;
   GtkTreeSelection *selection;
-  GtkTreePath      *path;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
+
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
-    path = gtk_tree_model_get_path ( model, &iter);
+
+    GtkTreePath *path = gtk_tree_model_get_path (model, &iter);
 
     if (is_symbol_record(model, &iter)) {
       gtk_tree_path_up (path);
     }
+
     gtk_tree_view_collapse_row (tree_view, path);
+
     gtk_tree_path_free(path);
   }
 }
@@ -745,10 +750,9 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
   GtkTreeIter        iter;
   GtkTreeViewColumn *column;
 
-  GList  *listiter, *o_iter, *o_attrlist, *filter_list;
+  GList *o_iter, *o_attrlist, *filter_list;
 
   char   *name, *value;
-  Object *o_current;
 
   model = (GtkListStore*) gtk_tree_view_get_model (compselect->attrtreeview);
 
@@ -778,10 +782,14 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
   filter_list = GSCHEM_DIALOG (compselect)->w_current->component_select_attrlist;
 
   if (filter_list != NULL && strcmp (filter_list->data, "*") == 0) {
+
     /* display all attributes in alphabetical order */
     o_attrlist = g_list_sort (o_attrlist, (GCompareFunc) sort_object_text);
+
     for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-      o_current = o_iter->data;
+
+      Object *o_current = o_iter->data;
+
       o_attrib_get_name_value (o_current, &name, &value);
       gtk_list_store_append (model, &iter);
       gtk_list_store_set (model, &iter, 0, name, 1, value, -1);
@@ -791,12 +799,14 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
   }
   else {
 
+    GList  *listiter;
+
     /* display only attribute that are in the filter list */
     for (listiter = filter_list; listiter != NULL; NEXT(listiter)) {
 
       for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
 
-        o_current = o_iter->data;
+        Object *o_current = o_iter->data;
 
         if (o_attrib_get_name_value (o_current, &name, &value)) {
 
@@ -833,7 +843,6 @@ static void
 cs_callback_tree_selection_changed (GtkTreeSelection *selection,
                                     void             *user_data)
 {
-  GtkTreeView  *view;
   GtkTreeModel *model;
   GtkTreeIter   iter;
   Compselect   *compselect = (Compselect*)user_data;
@@ -848,10 +857,12 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
 
     if (is_symbol) {
 
+      GtkTreeView  *view;
+
       /* get pointer to tree that triggered signal */
       view = gtk_tree_selection_get_tree_view (selection);
 
-      if ( view == compselect->inusetreeview ) {
+      if (view == compselect->inusetreeview) {
         gtk_tree_model_get (model, &iter, IU_DATA_COLUMN, &sym, -1);
       }
       else {
@@ -908,7 +919,7 @@ static void cs_apply_filter_tree_view (Compselect  *Dialog,
                                        GtkTreeView *view)
 {
 
-  if(view != Dialog->inusetreeview) {
+  if (view != Dialog->inusetreeview) {
 
     GtkTreeModel *model;
 
@@ -918,7 +929,7 @@ static void cs_apply_filter_tree_view (Compselect  *Dialog,
       gtk_tree_model_filter_refilter ((GtkTreeModelFilter*) model);
     }
 
-    if ( Dialog->applying_filter) {
+    if (Dialog->applying_filter) {
       gtk_tree_view_expand_all (view);
     }
   }
@@ -949,7 +960,7 @@ static bool compselect_filter_timeout (void *data)
 
   view = get_active_tree_view (Dialog);
 
-  if (strcmp ( GetEntryText(Dialog->entry_filter), "") != 0) {
+  if (strcmp (GetEntryText(Dialog->entry_filter), "") != 0) {
     /* filter text not-empty */
     /* Set Flag before applying filter */
     Dialog->applying_filter = TRUE;
@@ -1044,7 +1055,7 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
     }
     else {
 
-      if(widget == ShowGroupsSwitch) {
+      if (widget == ShowGroupsSwitch) {
 
         ThisDialog->show_groups = GET_SWITCH_STATE(ShowGroupsSwitch);
 
@@ -1059,7 +1070,7 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
       }
       else {
 
-        if(widget == SubGroupsSwitch) {
+        if (widget == SubGroupsSwitch) {
           ThisDialog->subgroups = GET_SWITCH_STATE(SubGroupsSwitch);
         }
       }
@@ -1078,7 +1089,7 @@ cs_callback_switch_toggled(GtkWidget *widget, GschemDialog *Dialog)
  */
 static void gtk_set_item_active(GtkWidget *widget, bool state) {
 
-  if ( GTK_IS_OBJECT(widget)) {
+  if (GTK_IS_OBJECT(widget)) {
 
     unsigned long handler;
     GObject      *object;
@@ -1086,10 +1097,10 @@ static void gtk_set_item_active(GtkWidget *widget, bool state) {
     object  = G_OBJECT(widget);
     handler = (unsigned long) GEDA_OBJECT_GET_DATA(object, "handler");
 
-    if( handler) {
-      g_signal_handler_block( object, handler);       /* disable signal */
+    if (handler) {
+      g_signal_handler_block (object, handler);       /* disable signal */
       g_object_set (object, "active", state, NULL);   /* set the value */
-      g_signal_handler_unblock( object, handler);     /* re-enable signal */
+      g_signal_handler_unblock (object, handler);     /* re-enable signal */
     }
     else { /* No handler ID so just set without blocking */
       g_object_set (object, "active", state, NULL);   /* set the value */
@@ -1113,7 +1124,7 @@ static void gtk_set_item_active(GtkWidget *widget, bool state) {
  *  \param [in] compselect  The component selection dialog.
  */
 static void
-compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
+compselect_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
 {
   GSList *iter;
   int state;
@@ -1123,9 +1134,9 @@ compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
   g_object_get (G_OBJECT (button), "active", &state, NULL);
 
   /* Determine which button was toggled */
-  index = g_slist_index(compselect->style_menu_widgets, button );
+  index = g_slist_index(compselect->style_menu_widgets, button);
 
-  if ( index == COMPSELECT_STYLE_NONE && state) {
+  if (index == COMPSELECT_STYLE_NONE && state) {
 
     /* The "None" box was checked so un-check all the check boxes, except
      * NONE, the second assignment of iter causes the first element to be
@@ -1138,7 +1149,7 @@ compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
   }
   else {
 
-    if ( index == 9 && state) { /* The "All" box was pressed check */
+    if (index == 9 && state) { /* The "All" box was pressed check */
 
       /* Un-check the check "none" box */
       gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
@@ -1157,7 +1168,7 @@ compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
        /* decrement index because 0 was resolved above */
        --index;
 
-       if ( state ) {
+       if (state) {
          mask = mask << index; /* bit shift left */
          compselect->style_flag = compselect->style_flag + mask;
        }
@@ -1194,12 +1205,12 @@ compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
  *  \param [in] compselect  The component selection dialog.
  */
 static void
-compselect_popup_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
+compselect_popup_toggle_style(GtkCheckMenuItem *button, Compselect *compselect)
 {
   int  i;
   GtkCheckMenuItem *real_butt;
 
-  i = GPOINTER_TO_INT (GEDA_OBJECT_GET_DATA(button, "index"));
+  i = (int)(long)GEDA_OBJECT_GET_DATA(button, "index");
   real_butt = g_slist_nth_data(compselect->style_menu_widgets, i);
 
   gtk_check_menu_item_set_active(real_butt, gtk_check_menu_item_get_active(button));
@@ -1226,10 +1237,10 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
   GtkWidget *menuitem;
   int menu_choice;
 
-  menuitem = gtk_menu_get_active ( GTK_MENU
+  menuitem = gtk_menu_get_active (GTK_MENU
             (gtk_option_menu_get_menu (GTK_OPTION_MENU (optionmenu))));
 
-  menu_choice = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(menuitem, "behaviors"));
+  menu_choice = (int)(long)GEDA_OBJECT_GET_DATA(menuitem, "behaviors");
 
   switch(menu_choice) {
     case COMPSELECT_BEHAVIOR_REFERENCE:
@@ -1298,8 +1309,6 @@ static GtkTreeModel* create_inuse_tree_model (Compselect *compselect)
 GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
                         DialogTabs data_set)
 {
-  CLibSource *source;
-
   GList *all_sources;
   GList *selected_sources;
   GList *src_iter;
@@ -1311,9 +1320,9 @@ GList *get_tree_sources(GschemToplevel *w_current, Compselect *compselect,
   selected_sources = NULL;
 
   /* Loop through all sources and look for source for this group */
-  for (src_iter = all_sources; src_iter != NULL; src_iter = g_list_next (src_iter)) {
+  for (src_iter = all_sources; src_iter; src_iter = src_iter->next) {
 
-    source =  src_iter->data; /* Retrieve a single source */
+    CLibSource *source = src_iter->data; /* Retrieve a single source */
 
     /* Check if this source belongs in this group, i.e view TAB */
     if (source->category != NULL &&
@@ -1339,26 +1348,31 @@ static bool filter_check_style(Compselect *compselect, const char *sym_name)
 {
   const    char *ptr;
   unsigned char  code[2];
-  unsigned int   mask = 1;
-  int flag;
 
   bool result;
-  result = TRUE;
+
+  result  = TRUE;
   code[1] = ASCII_NUL;
+  ptr     = sym_name;                 /* set pointer to address of 1st char */
 
-  ptr = sym_name;                     /* set pointer to address of 1st char */
-
-  while ( *ptr != ASCII_NUL) ptr++;   /* increment to the end of string */
+  while (*ptr != ASCII_NUL) ptr++;    /* increment to the end of string */
 
   ptr = ptr - 6;                      /* decrement to where dash should be */
 
-  if ( *ptr == ASCII_HYPHEN_MINUS ){  /* and if it's a dash then */
+  if (*ptr == ASCII_HYPHEN_MINUS) {   /* and if it's a dash then */
+
+    int flag;
+
     ++ptr;                            /* increment to the number */
     code[0] = *ptr;                   /* retrieve the char value */
-    flag = code[0] & 0x0F;            /* convert askii to number */
-    if ( flag > 0  && flag < 9) {     /* only consider 1 to 8    */
-      mask = mask << ( flag - 1 );              /* raise by power of 2 */
-      if ( !(compselect->style_flag & mask)) {  /* and compare */
+    flag    = code[0] & 0x0F;         /* convert askii to number */
+
+    if (flag > 0  && flag < 9) {      /* only consider 1 to 8    */
+
+      unsigned int mask = 1;
+
+      mask = mask << (flag - 1);                /* raise by power of 2 */
+      if (!(compselect->style_flag & mask)) {   /* and compare */
         result = FALSE;
       }
     }
@@ -1411,7 +1425,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
   store = (GtkTreeStore*)gtk_tree_store_new (NUM_LV_COLUMNS,
                                              G_TYPE_BOOLEAN,
                                              G_TYPE_POINTER,
-                                             G_TYPE_STRING );
+                                             G_TYPE_STRING);
 
   /* populate component store */
   sources = get_tree_sources (w_current, compselect, data_set);
@@ -1426,20 +1440,20 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
 
   for (src_iter = sources; src_iter != NULL; NEXT (src_iter)) {
 
-    source    =  src_iter->data;
-    symlist   = source->symbols;
-    sym_count = g_list_length(symlist);
-
-    at_boundary  = (g_ascii_strcasecmp (previous_grp, source->group) == 0);
+    source       = src_iter->data;
+    symlist      = source->symbols;
+    sym_count    = g_list_length (symlist);
+    at_boundary  = g_ascii_strcasecmp (previous_grp, source->group) == 0;
 
     if ((compselect->show_groups == FALSE) &&
-        (u_glist_find_string(group_names, source->group) > -1 )) {
+        (u_glist_find_string(group_names, source->group) > -1)) {
       bypassing  = TRUE;
     }
 
     if (!bypassing) {
+
       /* Might eliminate 1 of these, they alway seemed to occur in pairs */
-      if ( at_boundary) {
+      if (at_boundary) {
         /* At the start of a new group, either add it */
         if (compselect->subgroups == TRUE) {
           gtk_tree_store_append (store, &tree_iter, &parent);
@@ -1494,7 +1508,7 @@ load_symbols: /* It Works! */
           continue;
       }
 
-      if ( MASK != COMPSELECT_STYLE_ALL ) {
+      if (MASK != COMPSELECT_STYLE_ALL) {
         if (!filter_check_style(compselect, sym_name))
           continue;
       }
@@ -1572,7 +1586,7 @@ compselect_refresh_tree_views (Compselect *compselect)
 
     GtkTreeSelection *selection;
 
-    GEDA_UNREF (gtk_tree_view_get_model ( tree_view ));
+    GEDA_UNREF (gtk_tree_view_get_model (tree_view));
 
     model = create_lib_tree_model (compselect, data_set);
 
@@ -1713,7 +1727,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     /* Get the first iter in the list */
     valid = gtk_tree_model_get_iter_first (model, &iter);
 
-    if (gp_src_name ) { /* 1st Look for Grand Parent */
+    if (gp_src_name) { /* 1st Look for Grand Parent */
 
       while (valid) {
 
@@ -1745,7 +1759,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
     valid = (iter.stamp != 0 ? TRUE : FALSE);
 
-    if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
+    if (!valid) valid = gtk_tree_model_get_iter_first (model, &iter);
 
     while (valid) {                               /* Look for Parent */
 
@@ -1830,7 +1844,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
             const char *ptr_sym_name = s_clib_symbol_get_name(symbol);
 
             if (strstr(ptr_sym_name, short_name) == 0) {
-              path = gtk_tree_model_get_path ( model, &iter);
+              path = gtk_tree_model_get_path (model, &iter);
               gtk_tree_view_expand_to_path(tree_view, path);
               gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
               gtk_tree_path_free(path);
@@ -1920,7 +1934,7 @@ compselect_callback_collapse_all(GtkButton *button, void *user_data)
   Compselect  *compselect = COMPSELECT (user_data);
   GtkTreeView *view       = get_active_tree_view (compselect);
 
-  if(GTK_IS_TREE_VIEW(view))
+  if (GTK_IS_TREE_VIEW(view))
     gtk_tree_view_collapse_all (view);
   else
     BUG_MSG("bad TreeView");
@@ -1941,7 +1955,7 @@ compselect_callback_expand_all(GtkButton *button, void *user_data)
   Compselect  *compselect = COMPSELECT (user_data);
   GtkTreeView *view       = get_active_tree_view (compselect);
 
-  if(GTK_IS_TREE_VIEW(view))
+  if (GTK_IS_TREE_VIEW(view))
     gtk_tree_view_expand_all (view);
   else
     BUG_MSG("bad TreeView");
@@ -1985,7 +1999,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
                          unsigned int        page_num, Compselect *Dialog)
 {
   Dialog->active_tab = page_num;
-  if( Dialog->applying_filter)
+  if (Dialog->applying_filter)
     cs_apply_filter_tree_view (Dialog, get_active_tree_view(Dialog));
 
   if (page_num == IN_USE_TAB)
@@ -2011,7 +2025,7 @@ static GtkWidget* create_inuse_treeview (Compselect *compselect)
 
   /* vertical box for component selection and search entry */
   GTK_NEW_vBOX(inuse, FALSE, DEFAULT_DIALOG_SPACING);
-  gtk_container_set_border_width( GTK_CONTAINER(inuse_vbox),
+  gtk_container_set_border_width(GTK_CONTAINER(inuse_vbox),
                                   DIALOG_BORDER_WIDTH);
 
   /* Create a scrolled window to accomodate the treeview */
@@ -2064,7 +2078,7 @@ static GtkWidget* create_inuse_treeview (Compselect *compselect)
   compselect->inusetreeview = GTK_TREE_VIEW (treeview);
 
   /* Add the scrolled window for directories to the vertical box */
-  PACK_BOX ( inuse_vbox, scrolled_win, TRUE, TRUE, 0);
+  PACK_BOX (inuse_vbox, scrolled_win, TRUE, TRUE, 0);
 
   /* -- refresh button area -- */
   hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
@@ -2094,7 +2108,7 @@ static GtkWidget* create_inuse_treeview (Compselect *compselect)
                     compselect);
 
   /* Add the refresh button area to the vertical box */
-  PACK_BOX( inuse_vbox, hbox, FALSE, FALSE, 0);
+  PACK_BOX(inuse_vbox, hbox, FALSE, FALSE, 0);
 
   return inuse_vbox;
 }
@@ -2170,7 +2184,7 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandFolder]));
   if (!is_symbol) {
-    gtk_widget_set_tooltip_text ( menuitem, _(popup_tips[ExpandFolder]));
+    gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandFolder]));
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
@@ -2185,7 +2199,7 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandAll]));
   if (!is_symbol) {
-    gtk_widget_set_tooltip_text ( menuitem, _(popup_tips[ExpandAll]));
+    gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ExpandAll]));
     gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
     gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
     g_signal_connect(GTK_OBJECT(menuitem),"activate",
@@ -2200,7 +2214,7 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   /* The Close Menu Option */
   menuitem = gtk_menu_item_new_with_label(_(popup_items[CloseFolder]));
-  gtk_widget_set_tooltip_text ( menuitem, _(popup_tips[CloseFolder]));
+  gtk_widget_set_tooltip_text (menuitem, _(popup_tips[CloseFolder]));
   gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
   gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
   g_signal_connect(GTK_OBJECT(menuitem),"activate",
@@ -2228,12 +2242,8 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   /* The Styles submenu */
 
-  GSList     *iter2;             /* Use to index the "main" styles menu */
-  const char *label;             /* Ptr to label of the "main" style widget */
-  bool        active;            /* state of the "main" style widget */
-  GtkCheckMenuItem *check_item;  /* Ptr to "main" style widget */
-  unsigned long handler;         /* Signal handler of this submenu item */
-  int index;                     /* Use by callback to index "main" widget */
+  GSList *iter2;             /* Use to index the "main" styles menu */
+  int     index;             /* Use by callback to index "main" widget */
 
   /* Note: the handler is not used for the popup menu widgets */
   menuitem = gtk_menu_item_new_with_label(_(popup_items[StylesMenu]));
@@ -2243,20 +2253,30 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
   gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 
   index = 0;
+
   for (iter2 = compselect->style_menu_widgets; iter2 != NULL; iter2 = g_slist_next (iter2)) {
+
+    GtkCheckMenuItem *check_item;  /* Ptr to "main" style widget */
+
+    bool           active;   /* state of the "main" style widget */
+    unsigned long  handler;  /* Signal handler of this submenu item */
+    const char    *label;    /* Ptr to label of the "main" style widget */
+
     check_item = iter2->data;
-    label      = gtk_menu_item_get_label ( GTK_MENU_ITEM(check_item) );
+    label      = gtk_menu_item_get_label (GTK_MENU_ITEM(check_item));
     active     = gtk_check_menu_item_get_active (check_item);
     menuitem   = gtk_check_menu_item_new_with_mnemonic (label);
-    gtk_check_menu_item_set_active( GTK_CHECK_MENU_ITEM(menuitem), active);
-    gtk_check_menu_item_set_draw_as_radio( (GtkCheckMenuItem*) menuitem, FALSE);
+
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(menuitem), active);
+    gtk_check_menu_item_set_draw_as_radio((GtkCheckMenuItem*) menuitem, FALSE);
     gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+
     handler = g_signal_connect (menuitem, "toggled",
                                 G_CALLBACK (compselect_popup_toggle_style),
                                 compselect);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)handler, "handler");
-    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER(index), "index");
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)index, "index");
     index++;
   }
 
@@ -2301,7 +2321,7 @@ void
 compselect_view_popup_menu (GtkWidget *treeview, GdkEventButton *event, Compselect *compselect)
 {
 
-  if ( GTK_IS_MENU(tree_view_popup_menu)) {
+  if (GTK_IS_MENU(tree_view_popup_menu)) {
     gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
     tree_view_popup_menu = NULL;
   }
@@ -2335,7 +2355,7 @@ compselect_view_onButtonPressed (GtkWidget *treeview, GdkEventButton *event,
     if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3)
     {
 
-      compselect_view_popup_menu( treeview, event, compselect);
+      compselect_view_popup_menu(treeview, event, compselect);
 
       return TRUE; /* we handled this */
     }
@@ -2401,12 +2421,12 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
   gtk_tree_view_set_tooltip_column(treeview, LVC_TOOLTIP_TEXT);
 
   /* insert a column to treeview for library/symbol name */
-  renderer = GTK_CELL_RENDERER ( g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
                                                /* GtkCellRendererText */
                                                "editable", FALSE,
                                                NULL));
 
-  column = GTK_TREE_VIEW_COLUMN ( g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
                                                 /* GtkTreeViewColumn */
                                                 "title", _("Components"),
                                                 NULL));
@@ -2417,7 +2437,7 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
                                            lib_treeview_set_cell_data,
                                            NULL, NULL);
 
-  gtk_tree_view_set_search_column( (GtkTreeView*) treeview, LVC_ROW_DATA);
+  gtk_tree_view_set_search_column((GtkTreeView*) treeview, LVC_ROW_DATA);
   gtk_tree_view_set_search_equal_func ((GtkTreeView*) treeview,
                                        SearchTreeView,
                                        NULL,
@@ -2429,7 +2449,7 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
   gtk_container_add (GTK_CONTAINER (scrolled_win), GTK_WIDGET (treeview));
 
   /* Add the scrolled window for directories to the vertical box */
-  PACK_BOX( view_vbox, scrolled_win, TRUE, TRUE, 0);
+  PACK_BOX(view_vbox, scrolled_win, TRUE, TRUE, 0);
 
   g_signal_connect (treeview,
                     "row-activated",
@@ -2546,7 +2566,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                     NULL));
 
   /* Add the search label to the filter area */
-  PACK_BOX( hbox, label, FALSE, FALSE, 0);
+  PACK_BOX(hbox, label, FALSE, FALSE, 0);
 
   /* create the text entry for filter in components */
   entry = GTK_WIDGET (g_object_new (GTK_TYPE_ENTRY,
@@ -2555,7 +2575,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                     NULL));
 
   /* Add the filter entry to the filter area */
-  PACK_BOX( hbox, entry,TRUE, TRUE, 0);
+  PACK_BOX(hbox, entry,TRUE, TRUE, 0);
 
   /* set filter entry of compselect */
   compselect->entry_filter = GTK_ENTRY (entry);
@@ -2578,7 +2598,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                                GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the clear button to the filter area */
-  PACK_BOX( hbox, clear_butt, FALSE, FALSE, 0);
+  PACK_BOX(hbox, clear_butt, FALSE, FALSE, 0);
 
   /* Save a pointer to the clear button in compselect */
   compselect->button_clear = GTK_BUTTON (clear_butt);
@@ -2598,7 +2618,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                             GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the refresh button to the filter area */
-  PACK_BOX( hbox, refresh_butt, FALSE, FALSE, 0);
+  PACK_BOX(hbox, refresh_butt, FALSE, FALSE, 0);
 
    /* create the collapse button */
   collapse_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
@@ -2615,7 +2635,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                     GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the collapse button to the filter area */
-  PACK_BOX( hbox, collapse_butt, FALSE, FALSE, 0);
+  PACK_BOX(hbox, collapse_butt, FALSE, FALSE, 0);
 
     /* create the expand  button */
   expand_butt = GTK_WIDGET (g_object_new (GTK_TYPE_BUTTON,
@@ -2632,7 +2652,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                     GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the expand button to the filter area */
-  PACK_BOX( hbox, expand_butt, FALSE, FALSE, 0);
+  PACK_BOX(hbox, expand_butt, FALSE, FALSE, 0);
 
   /* -- Setup the Callbacks for the Entry Area */
   g_signal_connect (entry,
@@ -2664,14 +2684,12 @@ static GtkWidget *create_filter_area (Compselect *compselect)
 }
 
 /*! \brief Create the style menu for the menu button in the Action Area */
-static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
+static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog)
 {
-  GtkMenu      *menu;
-  GtkWidget    *menuitem;
-  GSList       *widget_list;
-  unsigned long handler;
-  bool          state;
-  int           i;
+  GtkMenu   *menu;
+  GtkWidget *menuitem;
+  GSList    *widget_list;
+  int        i;
 
   struct styles {
     char *str;
@@ -2692,12 +2710,15 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
 
   menu  = GTK_MENU (gtk_menu_new ());
 
-  for (i = 0; i < sizeof (types) / sizeof ( struct styles ); i++) {
+  for (i = 0; i < sizeof (types) / sizeof (struct styles); i++) {
+
+    unsigned long handler;
+    bool state;
 
     menuitem = gtk_check_menu_item_new_with_mnemonic (_(types[i].str));
-    gtk_menu_append ( menu, menuitem);
+    gtk_menu_append (menu, menuitem);
 
-    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER (types[i].style), "style");
+    GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)types[i].style, "style");
 
     /* Maybe shouldn't bother since this will be over-riden
      * when dialog is restored */
@@ -2734,7 +2755,7 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
  *  This function creates and returns a <B>GtkComboBox</B> for
  *  selecting the behavior when a component is added to the sheet.
  */
-static GtkWidget *create_behaviors_menu ( )
+static GtkWidget *create_behaviors_menu (void)
 {
   GtkWidget *menu;
   GSList    *group;
@@ -2752,7 +2773,7 @@ static GtkWidget *create_behaviors_menu ( )
   menu  = gtk_menu_new ();
   group = NULL;
 
-  for (i = 0; i < sizeof (types) / sizeof ( struct behaviors ); i++) {
+  for (i = 0; i < sizeof (types) / sizeof (struct behaviors); i++) {
     GtkWidget *menuitem;
 
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
@@ -2900,24 +2921,27 @@ static void compselect_geometry_restore (GschemDialog *dialog,
 
   tmp_int = eda_config_get_integer (cfg, IDS_COMP_SELECT, "hpaned", NULL);
   if (tmp_int > 0)
-    gtk_paned_set_position ( GTK_PANED ( ThisDialog->hpaned), tmp_int);
+    gtk_paned_set_position (GTK_PANED (ThisDialog->hpaned), tmp_int);
 
   tmp_int = eda_config_get_integer (cfg, IDS_COMP_SELECT, "vpaned", NULL);
   if (tmp_int > 0)
-    gtk_paned_set_position ( GTK_PANED ( ThisDialog->vpaned), tmp_int);
+    gtk_paned_set_position (GTK_PANED (ThisDialog->vpaned), tmp_int);
 
   tmp_int = eda_config_get_integer (cfg, IDS_COMP_SELECT, "source-tab", NULL);
   if (tmp_int >= 0)
-    gtk_notebook_set_current_page ( ThisDialog->notebook, tmp_int);
+    gtk_notebook_set_current_page (ThisDialog->notebook, tmp_int);
 
   int i;
-  bool state;
-  GtkWidget *menuitem;
 
   /* skip over "None" & set active if bit is set */
   for (i = 1; i < G_N_ELEMENTS(types) ; i++) {
+
+    GtkWidget *menuitem;
+    bool state;
+
     menuitem = g_slist_nth_data(compselect->style_menu_widgets ,i);
-    state = ((MASK & types[i]) == types[i]);
+    state    = ((MASK & types[i]) == types[i]);
+
     gtk_set_item_active(menuitem, state);
   }
 
@@ -3082,7 +3106,7 @@ static void compselect_get_property (GObject     *object,
         }
       case PROP_BEHAVIOR:
         menuitem = gtk_menu_get_active (GTK_MENU (gtk_option_menu_get_menu(compselect->behavior_menu)));
-        g_value_set_enum (value, GPOINTER_TO_INT (GEDA_OBJECT_GET_DATA (menuitem, "behaviors")));
+        g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
         break;
       case PROP_HIDDEN:
         g_value_set_boolean (value, compselect->hidden);
@@ -3124,7 +3148,7 @@ compselect_class_init (void *class, void *class_data)
   compselect_class->refresh   = compselect_on_refresh_tree_views;
 
   params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
-  g_object_class_install_property ( object_class, PROP_SYMBOL, params);
+  g_object_class_install_property (object_class, PROP_SYMBOL, params);
 
   params = g_param_spec_enum ("behavior", "", "",
                               COMPSELECT_TYPE_BEHAVIOR,
@@ -3178,13 +3202,13 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
 
   /* ---- style Menu ---- */
-  stylemenu = geda_menu_button_new(NULL, _("Rescan") );
+  stylemenu = geda_menu_button_new(NULL, _("Rescan"));
 
-  if ( GEDA_IS_MENU_BUTTON (stylemenu)) {
+  if (GEDA_IS_MENU_BUTTON (stylemenu)) {
 
     compselect->menu = compselect_create_styles_menu (ThisDialog);
 
-    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu );
+    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu);
 
     geda_menu_button_set_tooltip_text(stylemenu, _("Rescan component libraries"));
 
@@ -3201,7 +3225,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
     ThisDialog->style_menu = stylemenu;
 
    /* Add the combobox to the horizontal action box */
-    PACK_BOX( action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
+    PACK_BOX(action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
 
   }
   else
@@ -3211,7 +3235,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
   /* Create and Save a pointer to the behavior menu widget */
   optionmenu = gtk_option_menu_new ();
 
-  if ( GTK_IS_OPTION_MENU ( optionmenu )) {
+  if (GTK_IS_OPTION_MENU (optionmenu)) {
      gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
                               create_behaviors_menu ());
 
@@ -3226,7 +3250,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
      ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
 
      /* Add the combobox to the horizontal action box */
-    PACK_BOX( action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
+    PACK_BOX(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
 
   }
   else
@@ -3235,7 +3259,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
   ContinueSwitch = NULL;
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), action_hbox, Continue, 5, mode);
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), action_hbox, Continue, 5, mode);
 
   /* Setup callback for Switch widgets */
   GEDA_CALLBACK_SWITCH (Continue, cs_callback_switch_toggled, ThisDialog)
@@ -3286,7 +3310,7 @@ compselect_constructor (GType type,
   GObject         *object;
   Compselect      *ThisDialog;
 
-  GtkWidget *hpaned, *vpaned, *notebook, *attributes;
+  GtkWidget *hpaned, *vpaned, *notebook;
   GtkWidget *notebook_tab  = NULL;
   GtkWidget *preview       = NULL;
   GtkWidget *alignment     = NULL;
@@ -3368,12 +3392,12 @@ compselect_constructor (GType type,
   notebook_tab = create_treeview_box (ThisDialog, &ThisDialog->localtreeview, LOCAL_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[LOCAL_TAB]));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), notebook_tab, label);
-  PACK_BOX( left_vbox, notebook, TRUE, TRUE, 0);
+  PACK_BOX(left_vbox, notebook, TRUE, TRUE, 0);
 
-  ThisDialog->filter_hbox = create_filter_area ( ThisDialog );
+  ThisDialog->filter_hbox = create_filter_area (ThisDialog);
   gtk_widget_show_all (ThisDialog->filter_hbox);
 
-  PACK_BOX( left_vbox, ThisDialog->filter_hbox, FALSE, FALSE, 0);
+  PACK_BOX(left_vbox, ThisDialog->filter_hbox, FALSE, FALSE, 0);
 
   gtk_paned_pack1 (GTK_PANED (hpaned), left_vbox, TRUE, FALSE);
 
@@ -3409,6 +3433,9 @@ compselect_constructor (GType type,
     ThisDialog->attrtreeview = NULL;
   }
   else {
+
+    GtkWidget *attributes;
+
     frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
                                       /* GtkFrame */
                                       "label", _("Attributes"),
@@ -3421,7 +3448,7 @@ compselect_constructor (GType type,
   gtk_paned_pack2 (GTK_PANED (hpaned), vpaned, FALSE, FALSE);
 
   /* Add the hpaned to the dialog vbox */
-  PACK_BOX( main_vbox, hpaned, TRUE, TRUE, 0)
+  PACK_BOX(main_vbox, hpaned, TRUE, TRUE, 0)
 
   gtk_widget_show_all (hpaned);
 
@@ -3429,9 +3456,9 @@ compselect_constructor (GType type,
   GTK_NEW_hBOX(opts, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
-  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
+  EDA_SWITCH((GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
 
   /* Setup callback for Switch widgets */
   GEDA_CALLBACK_SWITCH (SortLibrary, cs_callback_switch_toggled, ThisDialog)
@@ -3439,7 +3466,7 @@ compselect_constructor (GType type,
   GEDA_CALLBACK_SWITCH (SubGroups,   cs_callback_switch_toggled, ThisDialog)
 
   /* Add the horizontal options box to the main vertical box */
-  PACK_BOX( main_vbox, opts_hbox, FALSE, FALSE, 0)
+  PACK_BOX(main_vbox, opts_hbox, FALSE, FALSE, 0)
 
   int mode = w_current->continue_component_place;
 

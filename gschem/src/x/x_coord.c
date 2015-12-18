@@ -81,10 +81,8 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
                                      GschemToplevel   *w_current)
 {
   GedaToplevel *toplevel;
-  GtkWidget    *Dialog;
   GtkWidget    *world_entry;
   GError       *err;
-  char         *buffer;
 
   bool dnd_success           = FALSE;
   bool delete_selection_data = FALSE;
@@ -99,8 +97,13 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
   err = NULL;
 
   /* Deal with what we are given from source */
-  if((selection_data != NULL) && (gtk_selection_data_get_length(selection_data) >= 0))
+  if ((selection_data != NULL) &&
+      (gtk_selection_data_get_length(selection_data) >= 0))
   {
+
+    GtkWidget *Dialog;
+    char      *buffer;
+
     if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
@@ -124,7 +127,9 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
       case DND_TARGET_STRING:
       case DND_TARGET_PLAIN_TEXT:
       case DND_TARGET_UTF8_STRING:
+
         buffer = (char *)gtk_selection_data_get_text(selection_data);
+
         if (buffer) {
           /* don't free(buffer) here! leave pointer for our entry to sort */
           object_buffer[DND_BUFFER] = g_list_prepend(object_buffer[DND_BUFFER], buffer);
@@ -135,6 +140,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         break;
 
       case DND_TARGET_OBJECTS:
+
         buffer =  (char *)gtk_selection_data_get_data(selection_data);
 
         /* Copy received objects to the Drag&Drop buffer */
@@ -346,33 +352,34 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int x, int y)
 
 static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 {
-  GschemToplevel *w_current;
-  GedaToplevel   *toplevel;
-
   const char *str;
-  int   x, y;
 
-  bool  do_delete;
-  bool  valid;
-
-  valid  = FALSE;
-  str    = NULL;
-  str    = GetEntryText(entry);
+  str = GetEntryText(entry);
 
   if (str) {
 
+    int x, y;
+
     if (u_string_parse_xy(str, &x, &y)) {
 
+      GschemToplevel *w_current;
+      GedaToplevel   *toplevel;
+
       w_current = Dialog->w_current;
-      toplevel = w_current->toplevel;
+      toplevel  = w_current->toplevel;
 
       /* If we were not in an action then just set the pointer to X,Y location */
       if (!w_current->inside_action) {
         i_window_set_pointer_position (w_current, x, y);
         w_current->first_wx = x;
         w_current->first_wy = y;
-      } /* is there something in the Drag&Drop buffer? */
+      }
       else if (object_buffer[DND_BUFFER] != NULL) {
+
+        /* there is something in the Drag&Drop buffer */
+
+        bool do_delete;
+        bool valid;
 
         do_delete = TRUE;
         valid     = FALSE; /* so we can fall thru default without error msg */
@@ -439,18 +446,19 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
 {
   GtkWidget *ThisDialog;
-  GtkWidget *vbox;
-  GtkWidget *frame;
-  GtkWidget *screen_entry;
-  GtkWidget *world_entry;
-  GdkColor   bg_color;
-  char      *world_name;
 
   unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
   ThisDialog = w_current->cowindow;
 
   if (!ThisDialog) {
+
+    GtkWidget *vbox;
+    GtkWidget *frame;
+    GtkWidget *screen_entry;
+    GtkWidget *world_entry;
+    GdkColor   bg_color;
+    char      *world_name;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Coordinates"),
                          GTK_WINDOW(w_current->main_window),

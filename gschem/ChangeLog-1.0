@@ -21,6 +21,16 @@
 
         * Reduce scope of variable through-out module.
 
+    * src/: Reduce scope of variables in modules:
+
+            * src/guile/g_funcs.c
+            * src/guile/g_rc.c
+            * src/guile/g_register.c
+            * src/iface/i_diagnostics.c
+            * src/math/m_basic.c
+            * src/x/x_compselect.c
+            * src/x/x_coord.c
+
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Change for loop to while loop in i_sessions_

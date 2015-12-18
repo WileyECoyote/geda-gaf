@@ -166,7 +166,6 @@ SCM g_rc_gschem_version(SCM scm_version)
   SCM ret;
   char *version;
   SCM rc_filename;
-  char *sourcefile;
 
   SCM_ASSERT (scm_is_string (scm_version), scm_version,
               SCM_ARG1, "gschem-version");
@@ -176,6 +175,8 @@ SCM g_rc_gschem_version(SCM scm_version)
   scm_dynwind_free (version);
 
   if (g_ascii_strcasecmp (version, PACKAGE_DATE_VERSION) != 0) {
+
+    char *sourcefile;
 
     sourcefile  = NULL;
     rc_filename = g_rc_rc_filename ();
@@ -1076,7 +1077,6 @@ SCM g_rc_attribute_placement_grid(SCM offset)
 SCM g_rc_component_dialog_attributes(SCM stringlist)
 {
   GList *list=NULL;
-  char  *attr;
   int    length, i;
 
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
@@ -1092,6 +1092,8 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
 
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {
+
+    char  *attr;
     char *str;
     SCM elem = scm_list_ref(stringlist, scm_from_int(i));
 
