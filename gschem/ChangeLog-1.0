@@ -2,6 +2,8 @@
 
     * src/iface/i_callbacks.c: Remove group File Menu Callback Functions.
 
+    * src/x/x_coord.c: Pass string to interpreter in x_console_eval_command.
+
     * src/x/x_image.c: Major revisions as follows:
 
         * Replace geda_file_chooser with geda_image chooser, prepending the

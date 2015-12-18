@@ -445,13 +445,11 @@ GedaType console_get_type ()
 
 void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
 {
-  char *command;
-  char *command_echo;
-  char *ptr;
-
   GschemToplevel *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
 
-  char  command_line[MAX_COMMAND_LENGTH];
+  char *ptr;
+
+  char command_line[MAX_COMMAND_LENGTH];
 
   char *get_str_token(char* cl) {
     char *e_ptr, *s_ptr;
@@ -463,12 +461,24 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
   }
 
   ptr = strcpy (command_line, GetEntryText(entry));
-  while ( *ptr == ASCII_SPACE) ++ptr;
+
+  while (*ptr == ASCII_SPACE) ++ptr;
   if (ptr != command_line)
     ptr = strcpy(command_line, ptr);
-  if ( *ptr == ASCII_OP)
-    u_log_message("is scm \"%s\"\n", command_line );
+
+  if (*ptr == ASCII_OP) {
+    SCM interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
+                                 scm_from_utf8_string(command_line));
+    scm_dynwind_begin (0);
+    g_dynwind_window (w_current);
+    g_scm_eval_protected(interpreter, SCM_UNDEFINED);
+    scm_dynwind_end ();
+  }
   else {
+
+    char *command;
+    char *command_echo;
+
     command = get_str_token(command_line);
     command_echo = u_string_concat(command_line, "\n", NULL);
     x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
