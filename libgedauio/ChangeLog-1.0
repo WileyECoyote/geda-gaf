@@ -1,3 +1,8 @@
+2015-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/dialogs/geda_image_chooser.c: Add function geda_image_chooser
+       _prepend_extra.
+
 2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_label.c: Conditionally compile to use hypot

@@ -1378,7 +1378,7 @@ void
 geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
 {
   if (GEDA_IMAGE_CHOOSER(dialog)) {
-    GedaImageChooser* chooser = (GedaImageChooser*)dialog;
+    GedaImageChooser *chooser = (GedaImageChooser*)dialog;
     gtk_container_add (GTK_CONTAINER (chooser->extra), child);
   }
   else {
@@ -1386,6 +1386,45 @@ geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
   }
 }
 
+void
+geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
+{
+  if (GEDA_IMAGE_CHOOSER(dialog)) {
+
+    GedaImageChooser *chooser;
+    GtkContainer     *container;
+    GList *children;
+    GList *iter;
+
+    chooser   = (GedaImageChooser*)dialog;
+    container = GTK_CONTAINER (chooser->extra);
+
+    children  = gtk_container_get_children (container);
+
+    for (iter = children; iter; iter = iter->next) {
+
+      GtkWidget *widget = iter->data;
+
+      g_object_ref(widget);
+
+      gtk_container_remove (container, widget);
+    }
+
+    gtk_container_add (container, child);
+
+    for (iter = children; iter; iter = iter->next) {
+
+      GtkWidget *widget = iter->data;
+
+      gtk_container_add (container, widget);
+
+      g_object_unref(widget);
+    }
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaImageChooser");
+  }
+}
 /* The extra widget is the hbox containing the enable preview check button */
 GtkWidget*
 geda_image_chooser_get_extra_widget(GtkWidget *chooser)

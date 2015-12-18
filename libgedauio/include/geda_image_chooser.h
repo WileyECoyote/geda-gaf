@@ -137,6 +137,8 @@ void          geda_image_chooser_set_current_folder (GtkWidget *chooser, const c
 void          geda_image_chooser_set_current_name   (GtkWidget *chooser, const char *folder);
 
 void          geda_image_chooser_append_extra       (GtkWidget *chooser, GtkWidget *widget);
+void          geda_image_chooser_prepend_extra      (GtkWidget *dialog, GtkWidget *widget);
+
 GtkWidget    *geda_image_chooser_get_extra_widget   (GtkWidget *chooser);
 void          geda_image_chooser_set_extra_widget   (GtkWidget *chooser, GtkWidget *extra);
 
