@@ -70,7 +70,7 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-static char *x_image_sizes[] = {"320x240", "640x480", "800x600", "1200x768",
+static char *x_image_sizes[] = {"320x240",  "640x480",   "800x600", "1200x768",
                                 "1280x960", "1600x1200", "3200x2400", NULL};
 
 const char *ImageTypeStrings[] = { "ico", "bmp", "tiff", "jpeg", "png", "eps", "pdf" };
@@ -379,7 +379,7 @@ void x_image_init (void)
   widget_list     = NULL;
 }
 
-/*! \brief Write the Image file, with the desired options.
+/*! \brief Write the Image file using specified options.
  *  \par Function Description
  *  This function writes the image file, with the options set in
  *  the dialog by the user.
@@ -402,7 +402,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
   GedaToplevel *toplevel = w_current->toplevel;
 
 #if DEBUG_IMAGING
-  fprintf(stderr, "%s: begin\n", __func__);
+  fprintf(stderr, "%s: begin filename=<%s>\n", __func__, filename);
 #endif
 
   float prop;
@@ -414,15 +414,19 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
   GdkPixbuf *pixbuf;
   GError    *err = NULL;
 
+  /* Save desired image size to toplevel */
   w_current->image_width  = width  = desired_width;
   w_current->image_height = height = desired_height;
 
+  /* Save the current screen size */
   save_width  = w_current->screen_width;
   save_height = w_current->screen_height;
 
+  /* Set the screen size to the desired image size */
   w_current->screen_width  = width;
   w_current->screen_height = height;
 
+  /* Save the page geometry */
   save_page_left   = toplevel->page_current->left;
   save_page_right  = toplevel->page_current->right;
   save_page_top    = toplevel->page_current->top;
@@ -502,6 +506,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
     }
   }
 
+  /* Restore screen and page geometries */
   w_current->screen_width = save_width;
   w_current->screen_height = save_height;
 
@@ -510,7 +515,6 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
                                                          save_page_right,
                                                          save_page_top,
                                                          save_page_bottom);
-
   o_invalidate_all (w_current);
 
 #if DEBUG_IMAGING
@@ -646,7 +650,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   char *cwd;
   char *image_type_descr;
   char *filename;
-  char *image_size;
   char *image_type;
   int   width              = w_current->image_width;
   int   height             = w_current->image_height;
@@ -657,14 +660,12 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: begin\n", __func__);
 #endif
+
   /* de-select everything first */
   o_select_unselect_all( w_current );
-#if DEBUG_IMAGING
-  fprintf(stderr, "%s: back o_select_unselect_all\n", __func__);
-#endif
 
   /* Create the dialog */
-  ThisDialog = geda_file_chooser_dialog_new_full (_("Write image..."),
+  ThisDialog = geda_image_chooser_dialog_new_full (_("Write image..."),
                                             GTK_WINDOW(w_current->main_window),
                                             FILE_CHOOSER_ACTION_SAVE,
                                             GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
@@ -782,10 +783,12 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   gtk_widget_show_all(vbox3); /* set every widget in container visible */
 
-  geda_file_chooser_set_extra_widget (ThisDialog, hbox);
+  geda_image_chooser_prepend_extra (ThisDialog, hbox);
+  g_object_set (hbox, "visible", TRUE, NULL);
 
   /* Setup the GtkFileChooser options */
   g_object_set (ThisDialog, "select-multiple", FALSE,
+
 #if ((GTK_MAJOR_VERSION > 2) || ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION >=8)))
      /* only in GTK 2.8 */  "do-overwrite-confirmation", TRUE,
 #endif
@@ -810,13 +813,16 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   if (gtk_dialog_run((GtkDialog*)ThisDialog) == GEDA_RESPONSE_ACCEPT) {
 
+    char *image_size;
+
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: Dialog GEDA_RESPONSE_ACCEPT \n", __func__);
 #endif
 
     /* Retrieve values from the dialog controls */
-    image_size = GetGedaComboActiveText (size_);
+    image_size      = GetGedaComboActiveText (size_);
     last_image_size = geda_combo_widget_get_active(size_Combo);
+
     sscanf(image_size, "%ix%i", &width, &height);
     GEDA_FREE(image_size);
 
@@ -850,7 +856,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
       invert_color_bw = FALSE;
     }
 
-    filename = geda_file_chooser_get_entry_text(ThisDialog);
+    /* Retrieve the filename from the dialog */
+    filename = geda_image_chooser_get_filename(ThisDialog);
 
     /* Call low-level to do the work */
     x_image_lowlevel(w_current, filename, width, height, image_type,
