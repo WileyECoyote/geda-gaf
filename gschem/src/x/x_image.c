@@ -1000,11 +1000,15 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   new_w_current = malloc(sizeof(GschemToplevel));
   toplevel      = malloc(sizeof(GedaToplevel));
 
-  if ( !new_w_current || !toplevel) {
+  if (!new_w_current || !toplevel) {
     char *errmsg = strerror(errno);
     fprintf(stderr, "%s: could not allocate memory resources: %s\n",__func__, errmsg);
     error_dialog("Could not allocate memory resources; %s, maybe you should try saving next",
                   errmsg);
+    if (new_w_current)
+      free (new_w_current);
+    if (toplevel)
+      free (toplevel);
     return NULL;
   }
 

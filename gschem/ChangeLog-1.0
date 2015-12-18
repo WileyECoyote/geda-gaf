@@ -2,6 +2,9 @@
 
     * src/iface/i_callbacks.c: Remove group File Menu Callback Functions.
 
+    * src/x/x_image.c: free new_w_current or toplevel if needed before error
+      return, remove double setting of size_x and size_y in x_image_get_pixbuf.
+
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Change for loop to while loop in i_sessions_
