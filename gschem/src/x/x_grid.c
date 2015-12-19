@@ -150,7 +150,7 @@ draw_dots (GschemToplevel *w_current,
 {
   int i, j;
   int dot_x, dot_y;
-  int next_coarse_x, next_coarse_y;
+  int next_coarse_y;
   int coarse_incr = incr * coarse_mult;
 
   double dot_size = w_current->grid_size_factor;
@@ -161,10 +161,13 @@ draw_dots (GschemToplevel *w_current,
   y_start -= (y_start % incr);
 
   if (coarse_incr == 0) {
-    next_coarse_x = x_start - 1; /* Ensures we never hit this when looping */
+    //next_coarse_x = x_start - 1; Ensures we never hit this when looping
     next_coarse_y = y_start - 1; /* Ensures we never hit this when looping */
   }
   else {
+
+    int next_coarse_x;
+
     next_coarse_x = x_start - (x_start % coarse_incr);
     next_coarse_y = y_start - (y_start % coarse_incr);
     if (next_coarse_x < x_start) next_coarse_x += coarse_incr;
@@ -178,13 +181,7 @@ draw_dots (GschemToplevel *w_current,
     if (i < p_current->left)
       continue;
 
-    /* Skip columns drawn in the coarser grid */
-    /*if (i == next_coarse_x) {
-      next_coarse_x += coarse_incr;
-      continue;
-    }*/
-
-    for(j = y_start; j <= y_end; j = j + incr) {
+    for (j = y_start; j <= y_end; j = j + incr) {
 
       if (j < p_current->top)
         continue;

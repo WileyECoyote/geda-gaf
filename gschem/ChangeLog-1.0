@@ -5,6 +5,9 @@
 
     * src/x/x_draw.cpp: Eliminate results variable in x_draw_get_font_list.
 
+    * src/x/x_grid.c: Remove next_coarse_x from course increments, is not
+      used so there is no point to calculate value.
+
     * src/xxx/xxx.c: Fix cut-paste "second_wy = w_x", should have been
       second_wx = w_x in modules:
 
