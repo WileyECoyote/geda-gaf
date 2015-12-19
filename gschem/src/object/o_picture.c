@@ -239,7 +239,7 @@ o_picture_exchange (GschemToplevel *w_current,
     GList *list;
     GList *iter;
 
-    list = o_select_get_list_selected(w_current, OBJ_PICTURE);
+    list = o_select_get_list_selected (w_current, OBJ_PICTURE);
 
     for (iter = list; iter != NULL; NEXT(iter)) {
 

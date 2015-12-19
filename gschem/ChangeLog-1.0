@@ -1,5 +1,8 @@
 2015-12-19  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_picture.c: Utilize o_select_get_list_selected instead of
+      iterating selection looking for pictures.
+
     * src/x/x_dialog.c: Replace geda_list_get_glist(Current_Selection) with
       gschem_dialog_get_selected in function x_dialog_edit_arc_angle_apply.
 
