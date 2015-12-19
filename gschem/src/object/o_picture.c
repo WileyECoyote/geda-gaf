@@ -74,7 +74,7 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   int picture_left,  picture_top;
   int picture_width, picture_height;
 
-  w_current->second_wy = w_x;
+  w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
   i_status_action_stop(w_current);
@@ -235,26 +235,22 @@ o_picture_exchange (GschemToplevel *w_current,
   else {
 
     GedaToplevel *toplevel = w_current->toplevel;
+
+    GList *list;
     GList *iter;
 
-    for (iter = geda_list_get_glist (Top_Selection); iter != NULL; NEXT(iter))
-    {
+    list = o_select_get_list_selected(w_current, OBJ_PICTURE);
+
+    for (iter = list; iter != NULL; NEXT(iter)) {
+
       Object *object = (Object *) iter->data;
 
-      if (!object) {
-        BUG_MSG("Found NULL in Selection list\n");
-        return FALSE;
+      if (o_picture_set_from_file (object, filename, error)) {
+        o_invalidate_object (w_current, object); /* Draw new picture */
       }
-
-      if (object->type == OBJ_PICTURE) {
-
-        if (o_picture_set_from_file (object, filename, error)) {
-          o_invalidate_object (w_current, object); /* Draw new picture */
-        }
-        else {
-          result = FALSE;
-          break;
-        }
+      else {
+        result = FALSE;
+        break;
       }
     }
   }

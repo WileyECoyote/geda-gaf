@@ -3,6 +3,14 @@
     * src/x/x_dialog.c: Replace geda_list_get_glist(Current_Selection) with
       gschem_dialog_get_selected in function x_dialog_edit_arc_angle_apply.
 
+    * src/xxx/xxx.c: Fix cut-paste "second_wy = w_x", should have been
+      second_wx = w_x in modules:
+
+            * src/object/o_arc.c
+            * src/object/o_circle.c
+            * src/object/o_picture.c
+            * src/x/x_edit_array.c
+
 2015-12-18  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_callbacks.c: Remove group File Menu Callback Functions.

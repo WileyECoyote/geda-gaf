@@ -88,7 +88,7 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
  */
 static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
-  w_current->second_wy = w_x;
+  w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
   i_status_action_stop(w_current);
