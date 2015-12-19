@@ -797,19 +797,20 @@ static void
 x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 {
   GtkWidget *spin_entry;
-  GList     *s_current   = NULL;
-  Object    *object      = NULL;
-  int        modified    = 0;;
+  GList     *s_current;
+  int        modified;
   int        radius;
   int        start_angle;
   int        sweep_angle;
 
-  if (w_current->event_state == ARCMODE) {
-    s_current   = NULL;
+  if (w_current->event_state != ARCMODE) {
+    s_current = gschem_dialog_get_selected ((GschemDialog*)Dialog);
   }
   else {
-    s_current = geda_list_get_glist( Current_Selection );
+    s_current   = NULL;
   }
+
+  modified    = 0;
 
   /* Get ptr to the spinner widgets */
   spin_entry  = GEDA_OBJECT_GET_DATA(Dialog,"radius");
