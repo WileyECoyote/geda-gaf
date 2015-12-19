@@ -407,8 +407,6 @@ x_draw_get_font_list(const char *pattern)
 
   GArray     *font_list;
 
-  bool result;
-
   if (pattern == NULL) {
     pattern = default_pattern;
   }
@@ -416,8 +414,8 @@ x_draw_get_font_list(const char *pattern)
   font_list = g_array_sized_new (FALSE, FALSE, sizeof(char *), 256);
 
   if (font_list) {
-    result = RenderAdaptor->geda_draw_get_font_list (pattern, font_list);
-    if (!result) {
+
+    if (!RenderAdaptor->geda_draw_get_font_list (pattern, font_list)) {
       font_list = NULL;
     }
   }

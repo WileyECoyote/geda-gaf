@@ -3,6 +3,8 @@
     * src/x/x_dialog.c: Replace geda_list_get_glist(Current_Selection) with
       gschem_dialog_get_selected in function x_dialog_edit_arc_angle_apply.
 
+    * src/x/x_draw.cpp: Eliminate results variable in x_draw_get_font_list.
+
     * src/xxx/xxx.c: Fix cut-paste "second_wy = w_x", should have been
       second_wx = w_x in modules:
 
