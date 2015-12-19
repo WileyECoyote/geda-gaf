@@ -1389,7 +1389,6 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 
   GtkAction *action;
   GtkWidget *menubar;
-  GtkWidget *menu_item;
   char      *menu_path;
 
   menu_path  = toggler_data->menu_path;
@@ -1398,7 +1397,7 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 
   if (menubar != NULL) {
 
-    menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+    GtkWidget *menu_item  = GEDA_OBJECT_GET_DATA (menubar, menu_path);
 
      if (menu_item != NULL) {
 
@@ -1525,27 +1524,28 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
  */
 static void x_menu_update_recent_files(void)
 {
-   GschemToplevel *w_current;
-   GtkWidget *submenu, *recent_menu_item;
    GList *iter;
-   MenuData *menu_data;
 
    for (iter = global_window_list; iter != NULL; iter = g_list_next (iter)) {
 
-      w_current = (GschemToplevel*) iter->data;
-      menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
-      if (MENU_BAR == NULL)
-        continue;
+     GschemToplevel *w_current;
+    GtkWidget *submenu, *recent_menu_item;
+     MenuData *menu_data;
 
-      recent_menu_item =
-        GEDA_OBJECT_GET_DATA (MENU_BAR,
-                                          "_File/Open Recen_t");
-      if(recent_menu_item == NULL)
-         return;
+     w_current = (GschemToplevel*) iter->data;
+     menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
+     if (MENU_BAR == NULL)
+       continue;
 
-      submenu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(recent_menu_item));
-      gtk_widget_destroy(submenu);
-      x_menu_attach_recent_submenu(w_current);
+     recent_menu_item =
+     GEDA_OBJECT_GET_DATA (MENU_BAR,
+                           "_File/Open Recen_t");
+     if(recent_menu_item == NULL)
+       return;
+
+     submenu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(recent_menu_item));
+     gtk_widget_destroy(submenu);
+     x_menu_attach_recent_submenu(w_current);
    }
 }
 
@@ -1756,10 +1756,8 @@ static bool x_menu_recent_button_released (GtkMenuItem    *menu_item,
  */
 void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 {
-   unsigned long id;
    GtkWidget *item;
    GtkWidget *recent_menu_item, *recent_submenu;
-   GtkWidget *label;
    GList     *iter;
    MenuData  *menu_data;
    bool       show_menu_tips;
@@ -1772,11 +1770,14 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
    /* disconnect all unblocked signals */
    while(1) {
-      id = g_signal_handler_find(recent_menu_item, G_SIGNAL_MATCH_UNBLOCKED,
-            0, 0, NULL, NULL, NULL);
-      if(id == 0)
-         break;
-      g_signal_handler_disconnect(recent_menu_item, id);
+
+     unsigned long id;
+
+     id = g_signal_handler_find(recent_menu_item, G_SIGNAL_MATCH_UNBLOCKED,
+                                0, 0, NULL, NULL, NULL);
+     if(id == 0)
+       break;
+     g_signal_handler_disconnect(recent_menu_item, id);
    }
 
    g_object_get (recent_menu_item, "has-tooltip", &show_menu_tips, NULL);
@@ -1818,22 +1819,25 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    }
 
    if(recent_files != NULL) {
-      /* Append the 'Clear' menu item to the submenu */
-      GtkWidget *alignment = gtk_alignment_new(0.5, 0, 0, 0);
 
-      item = gtk_menu_item_new();
+     GtkWidget *label;
 
-      label = geda_label_new(_("Clear"));
-      gtk_container_add(GTK_CONTAINER(alignment), label);
+     /* Append the 'Clear' menu item to the submenu */
+     GtkWidget *alignment = gtk_alignment_new(0.5, 0, 0, 0);
 
-      gtk_container_add(GTK_CONTAINER(item), alignment);
+     item = gtk_menu_item_new();
 
-      GEDA_SIGNAL_CONNECT(item, "activate",
-                          x_menu_clear_recent_file_list, NULL);
+     label = geda_label_new(_("Clear"));
+     gtk_container_add(GTK_CONTAINER(alignment), label);
+
+     gtk_container_add(GTK_CONTAINER(item), alignment);
+
+     GEDA_SIGNAL_CONNECT(item, "activate",
+                         x_menu_clear_recent_file_list, NULL);
 
 
-      gtk_menu_append(GTK_MENU(recent_submenu), gtk_separator_menu_item_new());
-      gtk_menu_append(GTK_MENU(recent_submenu), item);
+     gtk_menu_append(GTK_MENU(recent_submenu), gtk_separator_menu_item_new());
+     gtk_menu_append(GTK_MENU(recent_submenu), item);
    }
 
    gtk_widget_show_all(recent_submenu);

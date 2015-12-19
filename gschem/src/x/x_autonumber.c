@@ -373,6 +373,7 @@ static int freeslot_compare(const void *a, const void *b)
 {
   AUTONUMBER_SLOT *aa, *bb;
   int res;
+
   aa = (AUTONUMBER_SLOT *) a;  bb = (AUTONUMBER_SLOT *) b;
 
   if ((res = strcmp(aa->symbolname, bb->symbolname)) != 0)
@@ -381,16 +382,20 @@ static int freeslot_compare(const void *a, const void *b)
   /* aa->symbolname == bb->symbolname */
   if (aa->number == 0 || bb->number == 0)
     return 0;
+
   if (aa->number > bb->number)
     return 1;
+
   if (aa->number < bb->number)
     return -1;
 
   /* aa->number == bb->number */
   if (aa->slotnr == 0 || bb->slotnr == 0)
     return 0;
+
   if (aa->slotnr > bb->slotnr)
     return 1;
+
   if (aa->slotnr < bb->slotnr)
     return -1;
 
@@ -403,12 +408,14 @@ static int freeslot_compare(const void *a, const void *b)
  *  elements. This function is is only used for debugging purposes.
  */
 void freeslot_print(GList *list) {
+
   GList *item;
-  AUTONUMBER_SLOT *fs;
 
   printf("freeslot_print(): symname, number, slot\n");
+
   for (item = list; item != NULL; item = g_list_next(item)) {
-    fs = item ->data;
+
+    AUTONUMBER_SLOT *fs = item ->data;
     printf("  %s, %d, %d\n",fs->symbolname, fs->number, fs->slotnr);
   }
 }
@@ -628,12 +635,10 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 {
   AUTONUMBER_SLOT *freeslot;
 
-  Object *o_parent = NULL;
+  Object *o_parent;
   GList  *freeslot_item;
   GList  *item;
-  char   *numslot_str;
-
-  int new_number, numslots, i;
+  int     new_number;
 
   new_number = autotext->startnum;
 
@@ -665,7 +670,9 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   /* get a new number */
   item = autotext->used_numbers;
+
   while (1) {
+
     while (item != NULL && GPOINTER_TO_INT(item->data) < new_number)
       item = g_list_next(item);
 
@@ -685,15 +692,26 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   /* 3. is o_current a slotted object ? */
   if ((autotext->slotting) && o_parent != NULL) {
+
+    char *numslot_str;
+    int   numslots;
+
     numslot_str =
     o_attrib_search_object_attribs_by_name (o_parent, "numslots", 0);
+
     if (numslot_str != NULL) {
+
       sscanf(numslot_str," %d",&numslots);
       GEDA_FREE(numslot_str);
+
       if (numslots > 0) {
+
+        int i;
+
         /* Yes! -> new number and slot=1; add the other slots to the database */
         *slot = 1;
-        for (i=2; i <=numslots; i++) {
+
+        for (i = 2; i <=numslots; i++) {
           freeslot = g_new(AUTONUMBER_SLOT,1);
           freeslot->symbolname = o_parent->complex->filename;
           freeslot->number = new_number;
@@ -717,8 +735,8 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
  */
 static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
 {
-  Object *o_parent, *o_slot;
-  char *str;
+  Object *o_slot;
+  char   *str;
 
   /* allocate memory for the search string*/
   str = malloc(strlen(autotext->current_searchtext) + 2); /* allocate space */
@@ -733,8 +751,10 @@ static void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_curre
 
   /* if slotting is active then remove the slot attribute */
   if (autotext->slotting) {
+
     /* get the slot attribute */
-    o_parent = o_current->attached_to;
+    Object *o_parent = o_current->attached_to;
+
     if (o_parent != NULL) { /* Does child->parent_object->child make sense?*/
       /* \remark s_slot_search_slot updates o_slot variable */
       g_free (s_slot_search_slot (o_parent, &o_slot));
@@ -1020,12 +1040,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 static void autonumber_sortorder_create(GschemToplevel *w_current)
 {
   GtkListStore    *store;
-  GtkTreeIter      iter;
   GtkCellRenderer *renderer;
-  GdkPixbuf       *pixbuf;
-  GError          *error=NULL;
-  char            *path;
-
   int i;
 
   char *filenames[] = { "gschem_diagonal.png",
@@ -1046,7 +1061,15 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
 
   store = gtk_list_store_new(2, G_TYPE_STRING, GDK_TYPE_PIXBUF);
 
-  for (i=0; filenames[i] != NULL; i++) {
+  for (i = 0; filenames[i] != NULL; i++) {
+
+    GError    *error;
+    GdkPixbuf *pixbuf;
+    char      *path;
+
+    GtkTreeIter iter;
+
+    error  = NULL;
     path   = f_get_bitmap_filespec(filenames[i]);
     pixbuf = gdk_pixbuf_new_from_file(path, &error);
     gtk_list_store_append(store, &iter);
@@ -1055,6 +1078,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
   }
 
   geda_combo_box_set_model(GEDA_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
+
   renderer = gtk_cell_renderer_text_new ();
 
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, TRUE);

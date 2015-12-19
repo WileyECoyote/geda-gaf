@@ -312,14 +312,14 @@ x_draw_complex (GschemToplevel *w_current)
 extern "C" void
 x_draw_object (GschemToplevel *w_current, Object *o_current)
 {
-  void (*draw_func)(GschemToplevel *w_current);
-
   g_return_if_fail (o_current != NULL);
 
   if(w_current->render_adaptor == CAIRO_ADAPTOR) {
     eda_renderer_draw (CairoRenderer, o_current);
   }
   else {
+
+    void (*draw_func)(GschemToplevel *w_current);
 
     switch (o_current->type) {
       case OBJ_LINE:        draw_func = x_draw_line;    break;

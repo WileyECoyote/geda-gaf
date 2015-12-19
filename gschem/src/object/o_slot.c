@@ -97,11 +97,12 @@ void o_slot_start (GschemToplevel *w_current, Object *object)
 void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-  char *slot_value;
-  char *numslots_value;
+
+  char   *slot_value;
+  char   *numslots_value;
   Object *o_slot;
-  char *value = NULL;
+  char   *value = NULL;
+
   int numslots;
   int new_slot_number;
   int status;
@@ -139,8 +140,7 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
     return;
   }
 
-  /* first see if slot attribute already exists outside
-   * complex */
+  /* first see if slot attribute already exists outside complex */
   slot_value = s_slot_search_slot (object, &o_slot);
   GEDA_FREE (slot_value);
 
@@ -148,12 +148,12 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
     o_text_set_string (o_slot, string);
   }
   else {
-    /* here you need to do the add the slot
-       attribute since it doesn't exist */
-    new_obj = o_text_new (ATTRIBUTE_COLOR,
-                          object->complex->x, object->complex->y,
-                          LOWER_LEFT, 0, /* zero is angle */
-                          10, INVISIBLE, SHOW_NAME_VALUE, string);
+
+    /* Add the slot attribute since it does not exist */
+    Object *new_obj = o_text_new (ATTRIBUTE_COLOR,
+                                  object->complex->x, object->complex->y,
+                                  LOWER_LEFT, 0, /* zero is angle */
+                                  10, INVISIBLE, SHOW_NAME_VALUE, string);
 
     s_page_append_object (toplevel->page_current, new_obj);
 

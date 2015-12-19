@@ -93,13 +93,13 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
 static void
 x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *countentry;
-  GtkWidget *textentry;
-  char *slot_count = NULL;
-  char *slot_value = NULL;
-
   if (object != NULL) {
+
+    GtkWidget *ThisDialog;
+    GtkWidget *countentry;
+    GtkWidget *textentry;
+    char *slot_count = NULL;
+    char *slot_value = NULL;
 
     if (object->type == OBJ_COMPLEX) {
       slot_count = o_attrib_search_object_attribs_by_name (object, "numslots", 0);

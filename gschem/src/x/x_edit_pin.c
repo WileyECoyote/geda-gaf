@@ -600,28 +600,26 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
 static void
 xd_pin_type_update_selection (GschemToplevel *w_current, Object *object)
 {
-  GschemDialog *Dialog;
-
-  int sequence;
-
-  const char *label;
-  const char *number;
-
-  PIN_ELECT      elect_type;
-  PIN_MECH       mech_type;
-  PIN_NODE       node_type;
-  pin_type_data *pin_data;
-
-  /* Initialize variables */
-  label      = NULL;
-  sequence   = -1;
-  elect_type = PIN_ELECT_PAS;
-  node_type  = PIN_NET_NODE;
-
-    /* Get ptr to the Dialog window */
-  Dialog    = GSCHEM_DIALOG (w_current->ptwindow);
+  /* Get ptr to the Dialog window */
+  GschemDialog *Dialog = GSCHEM_DIALOG (w_current->ptwindow);
 
   if (object != NULL && object->type == OBJ_PIN) {
+
+    int sequence;
+
+    const char *label;
+    const char *number;
+
+    PIN_ELECT      elect_type;
+    PIN_MECH       mech_type;
+    PIN_NODE       node_type;
+    pin_type_data *pin_data;
+
+    /* Initialize variables */
+    label      = NULL;
+    sequence   = -1;
+    elect_type = PIN_ELECT_PAS;
+    node_type  = PIN_NET_NODE;
 
     xd_edit_pin_set_sensitivity ( Dialog );
 

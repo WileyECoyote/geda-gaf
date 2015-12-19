@@ -95,7 +95,6 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
 static void x_dialog_ca_update_selection (GschemToplevel *w_current,
                                           Object         *object)
 {
-  GschemDialog *dog;
   GtkWidget    *dialog;
   array_data   *dialog_data;
 
@@ -105,12 +104,11 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
 
   if (o_select_is_selection(w_current)) {
 
-    char s_val[10];
+    GschemDialog *dog;
+    char  s_val[10];
     char *str;
-
-    int left, right, top, bottom;
-    int dx, dy;
-    int count;
+    int   left, right, top, bottom;
+    int   count;
 
     dog   = (GschemDialog*)dialog;
 
@@ -121,6 +119,8 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
 
     if (o_get_bounds_list (Current_Selection->glist, &left, &top, &right, &bottom))
     {
+      int dx, dy;
+
       dx = right - left;
       dy = bottom - top;
       str = u_string_int2str(dx, s_val, 10);
@@ -138,7 +138,6 @@ static void post_response_row (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
-  char        s_val[6];
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
@@ -146,6 +145,8 @@ static void post_response_row (GschemToplevel *w_current)
 
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
+
+    char s_val[6]; /* For integer 2 string conversion */
 
     int diff_y = abs(w_current->second_wy - w_current->first_wy);
 
@@ -160,7 +161,7 @@ static void post_response_row_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
-  char        s_val[6];
+
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
@@ -168,6 +169,8 @@ static void post_response_row_col (GschemToplevel *w_current)
 
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
+
+    char s_val[6]; /* For integer 2 string conversion */
 
     int diff_x = abs(w_current->second_wx - w_current->first_wx);
     int diff_y = abs(w_current->second_wy - w_current->first_wy);
@@ -188,7 +191,7 @@ static void post_response_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
-  char        s_val[6];
+
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
@@ -197,9 +200,12 @@ static void post_response_col (GschemToplevel *w_current)
   /* if user supplied two points */
   if (w_current->second_wx != -0) {
 
-    int diff_x = abs(w_current->second_wx - w_current->first_wx);
+    int   diff_x;
+    char *x_str;
+    char  s_val[6];
 
-    char *x_str = u_string_int2str(diff_x, s_val, 10);
+    diff_x = abs(w_current->second_wx - w_current->first_wx);
+    x_str  = u_string_int2str(diff_x, s_val, 10);
 
     SetEntryText(dialog_data->col_off_entry, x_str);
   }
@@ -479,12 +485,14 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
       const char *x_msg = _("X pitch distence is less than extents\n");
       const char *y_msg = _("Y pitch distence is less than extents\n");
 
-      const char *mess  = NULL;
+
 
       int x_pitch = atoi(GetEntryText( dialog_data->col_off_entry ));
       int y_pitch = atoi(GetEntryText( dialog_data->row_off_entry ));
 
       if (x_pitch || y_pitch) {
+
+        const char *mess = NULL;
 
         int x_size  = atoi(GetEntryText( dialog_data->x_size_entry ));
         int y_size  = atoi(GetEntryText( dialog_data->y_size_entry ));
@@ -827,8 +835,6 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   GtkWidget *col_butt;
   GtkWidget *row_col_butt;
 
-  GList      *focus_chain; /* Aka Tab Order */
-
   array_data *dialog_data;
 
   const char *cnt_sel_tip    = "Indicates total number of objects currently selected";
@@ -840,6 +846,7 @@ GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
   const char *col_off_tip    = "Horizontal pitch of array, negative is to left";
 
   void x_dialog_array_edit_set_focus_chain(void) {
+    GList *focus_chain; /* Aka Tab Order */
     focus_chain = NULL;
     focus_chain = g_list_append (focus_chain, select_butt);
     focus_chain = g_list_append (focus_chain, deselect_butt);

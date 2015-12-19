@@ -62,17 +62,16 @@ typedef enum
 static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
                                                    Object         *object)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *widget;
-  char      *name = NULL;
-  char      *val  = NULL;
+  GtkWidget *ThisDialog = w_current->aewindow;
 
-  ThisDialog = w_current->aewindow;
+  char *name = NULL;
+  char *val  = NULL;
 
   if (object != NULL && object->type == OBJ_TEXT) {
 
+    GtkWidget *widget = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
+
     /* Update the visibility button widget*/
-    widget = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
     if (object->visibility != VISIBLE) {
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), FALSE);
     }
@@ -337,44 +336,43 @@ GtkWidget *x_attrib_option_menu_new()
 static
 void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
 {
-  AtkObject  *atk_name_obj;
-  AtkObject  *atk_value_obj;
-
-  GtkWidget  *ThisDialog;
-  GtkWidget  *vbox, *label, *table, *alignment;
-  GtkWidget  *name_label, *value_label;
-  GtkWidget  *show_options;
-  GtkWidget  *attrib_combo_box_entry;
-  GtkWidget  *attrib_combo_entry;
-  GtkWidget  *value_entry;
-  GtkWidget  *visbutton;
-
-  GList      *focus_chain; /* Aka Tab Order */
-
-  GtkEntryCompletion *attrib_combo_entry_completion;
-  GtkResponseType     response;
-  GschemDialogFlags   dialog_flags;
-
-  /* gschem specific */
-  char       *string = NULL;
-  int i;
-
-  const char *name_label_text;
-  const char *name_label_text_add;
-  const char *name_label_text_edit;
-
-  const char *name_entry_tip;
-  const char *name_list_tip;
-  const char *name_list_add_tip;
-  const char *name_list_edit_tip;
-  const char *value_entry_tip;
-  const char *value_entry_add_tip;
-  const char *value_entry_edit_tip;
-  const char *visibility_tip;
-
-  ThisDialog = w_current->aewindow;
+  GtkWidget  *ThisDialog = w_current->aewindow;
 
   if (!ThisDialog) {
+
+    AtkObject  *atk_name_obj;
+    AtkObject  *atk_value_obj;
+
+    GtkWidget  *vbox, *label, *table, *alignment;
+    GtkWidget  *name_label, *value_label;
+    GtkWidget  *show_options;
+    GtkWidget  *attrib_combo_box_entry;
+    GtkWidget  *attrib_combo_entry;
+    GtkWidget  *value_entry;
+    GtkWidget  *visbutton;
+
+    GList      *focus_chain; /* Aka Tab Order */
+
+    GtkEntryCompletion *attrib_combo_entry_completion;
+    GtkResponseType     response;
+    GschemDialogFlags   dialog_flags;
+
+    /* gschem specific */
+    char       *string = NULL;
+    int i;
+
+    const char *name_label_text;
+    const char *name_label_text_add;
+    const char *name_label_text_edit;
+
+    const char *name_entry_tip;
+    const char *name_list_tip;
+    const char *name_list_add_tip;
+    const char *name_list_edit_tip;
+    const char *value_entry_tip;
+    const char *value_entry_add_tip;
+    const char *value_entry_edit_tip;
+    const char *visibility_tip;
 
     name_entry_tip       = _("Enter or type an attribute name"); /* common */
     name_label_text_add  = _("<b>Add Attribute</b>");

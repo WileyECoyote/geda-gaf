@@ -29,9 +29,22 @@
             * src/guile/g_rc.c
             * src/guile/g_register.c
             * src/iface/i_diagnostics.c
+            * src/x/x_edit_slot.c
             * src/math/m_basic.c
+            * src/x/x_autonumber.c
             * src/x/x_compselect.c
             * src/x/x_coord.c
+            * src/x/x_dialog.c
+            * src/x/x_draw.cpp
+            * src/x/x_edit_array.c
+            * src/x/x_edit_attrib.c
+            * src/x/x_edit_color.c
+            * src/x/x_edit_cprop.c
+            * src/x/x_edit_pin.c
+            * src/x/x_edit_slot.c
+            * src/x/x_edit_text.c
+            * src/x/x_event.c
+            * src/x/x_menus.c
 
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 

@@ -47,7 +47,6 @@ static void
 path_rubber_bbox (GschemToplevel *w_current, Path *path,
                   int *min_x, int *max_y, int *max_x, int *min_y)
 {
-  int x1, y1, x2, y2, x3, y3;
   int new_x, new_y, whichone;
   int grip_no = 0;
   int i;
@@ -68,6 +67,8 @@ path_rubber_bbox (GschemToplevel *w_current, Path *path,
   whichone = w_current->which_grip;
 
   for (i = 0; i <  path->num_sections; i++) {
+
+    int x1, y1, x2, y2, x3, y3;
     PATH_SECTION *section = &path->sections[i];
 
     x1 = section->x1; y1 = section->y1;

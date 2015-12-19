@@ -232,13 +232,10 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
                                unsigned int    time,
                                GschemToplevel *w_current)
 {
-  bool            is_valid_drop_site;
-  GtkTargetEntry *target_entry;
-  GdkAtom         target_type;
-  GList          *targets;
-  GList          *iter;
-  int             index;
-  unsigned int    dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
+  GList *targets;
+  bool   is_valid_drop_site;
+
+  unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
@@ -254,6 +251,10 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
   /* If the source offers a target */
   if (targets) {
 
+    GtkTargetEntry *target_entry;
+    GdkAtom target_type;
+    int     index;
+
     /* Set what we really want! */
     target_type = GDK_POINTER_TO_ATOM (&dnd_target_list[DND_TARGET_OBJECTS]);
 
@@ -261,7 +262,11 @@ bool x_dialog_coord_drag_drop (GtkWidget      *widget,
 
     /* For each of our targets, look backwards to see if we find a match */
     for (target_entry = &dnd_target_list[index]; index > -1 ; index--) {
+
+      GList *iter;
+
       target_entry = &dnd_target_list[index];
+
       for (iter = targets; iter != NULL; iter = g_list_next (iter)) {
         target_type = GDK_POINTER_TO_ATOM(iter->data);
         if (!strcasecmp (target_entry->target, gdk_atom_name(target_type))) {

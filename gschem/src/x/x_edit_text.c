@@ -394,58 +394,58 @@ widget_value_modified (GtkWidget *widget, void * user_data)
  */
 void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
 {
-  AtkObject *atk_text_obj;
-  AtkObject *atk_align_obj;
-  AtkObject *atk_color_obj;
-  AtkObject *atk_font_obj;
-  AtkObject *atk_rotate_obj;
-
-  GtkWidget *ThisDialog;
-  GtkWidget *text_label;
-  GtkWidget *color_label;
-  GtkWidget *font_label;
-  GtkWidget *align_label;
-  GtkWidget *rotate_label;
-  GtkWidget *label;
-
-  GtkWidget *table;
-  GtkWidget *vbox;
-  GtkWidget *optionmenu;
-  GtkWidget *combobox;
-  GtkWidget *viewport1;
-  GtkWidget *textentry;
-  GtkWidget *font_button;
-  GtkWidget *alignment;
-  GtkWidget *RotationSpin;
-  GtkWidget *scrolled_window;
-
-  GtkListStore    *align_menu_model;
-  GtkCellRenderer *cell;
-
-  const char *font_name;
-
-  const char *text_entry_tip;
-  const char *text_align_tip;
-  const char *color_menu_tip;
-  const char *font_button_tip;
-  const char *rotation_tip;
-
-  text_entry_tip    = _TOOLTIP(TheText);
-  text_align_tip    = _TOOLTIP(TextAlign);
-  color_menu_tip    = _TOOLTIP(TextColor);
-  font_button_tip   = _TOOLTIP(TextFont);
-  rotation_tip      = _TOOLTIP(Rotation);
-
-  ThisDialog = w_current->tewindow;
+  GtkWidget *ThisDialog = w_current->tewindow;
 
   if (!ThisDialog) {
+
+    AtkObject *atk_text_obj;
+    AtkObject *atk_align_obj;
+    AtkObject *atk_color_obj;
+    AtkObject *atk_font_obj;
+    AtkObject *atk_rotate_obj;
+
+    GtkWidget *text_label;
+    GtkWidget *color_label;
+    GtkWidget *font_label;
+    GtkWidget *align_label;
+    GtkWidget *rotate_label;
+    GtkWidget *label;
+
+    GtkWidget *table;
+    GtkWidget *vbox;
+    GtkWidget *optionmenu;
+    GtkWidget *combobox;
+    GtkWidget *viewport1;
+    GtkWidget *textentry;
+    GtkWidget *font_button;
+    GtkWidget *alignment;
+    GtkWidget *RotationSpin;
+    GtkWidget *scrolled_window;
+
+    GtkListStore    *align_menu_model;
+    GtkCellRenderer *cell;
+
+    const char *font_name;
+
+    const char *text_entry_tip;
+    const char *text_align_tip;
+    const char *color_menu_tip;
+    const char *font_button_tip;
+    const char *rotation_tip;
+
+    text_entry_tip    = _TOOLTIP(TheText);
+    text_align_tip    = _TOOLTIP(TextAlign);
+    color_menu_tip    = _TOOLTIP(TextColor);
+    font_button_tip   = _TOOLTIP(TextFont);
+    rotation_tip      = _TOOLTIP(Rotation);
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit Text Properties"),
-                                       GTK_WINDOW(w_current->main_window),
-        /* nonmodal Editing Dialog */              GSCHEM_MODELESS_DIALOG,
-                                                   IDS_TEXT_EDIT, w_current,
-                                     GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
-                                     GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
-                                                                     NULL);
+                                                GTK_WINDOW(w_current->main_window),
+                                                /* nonmodal Editing Dialog */              GSCHEM_MODELESS_DIALOG,
+                                                IDS_TEXT_EDIT, w_current,
+                                                GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                                GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
+                                                NULL);
 
     /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
@@ -463,7 +463,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     /* Alignment Widget - Not Text Alignment property */
     alignment = gtk_alignment_new(0, 0, 1, 1);
     gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
-                                DIALOG_INDENTATION, 0);
+                              DIALOG_INDENTATION, 0);
     gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
 
     /* Viewport Widget to hold the editing buffer window */
@@ -533,14 +533,14 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     font_name = eda_renderer_get_font_name (CairoRenderer);
     font_button = geda_font_button_new_with_font (font_name);
     geda_font_button_set_title((GedaFontButton*)font_button,
-                                 "Select font and size");
+                               "Select font and size");
     gtk_widget_set_tooltip_text (GTK_WIDGET(font_button), font_button_tip);
     g_object_set (font_button, "use-font",   TRUE,
-                               "show-style", FALSE, NULL);
+                  "show-style", FALSE, NULL);
 
     gtk_table_attach (GTK_TABLE (table), font_button, 1, 2, 2, 3,
-                     (GtkAttachOptions) ( GTK_FILL),
-                     (GtkAttachOptions) (0), 0, 0);
+                      (GtkAttachOptions) ( GTK_FILL),
+                      (GtkAttachOptions) (0), 0, 0);
 
     /* Text Rotation Label */
     rotate_label=geda_aligned_mnemonic_label_new(_LABEL(Rotation), 0,0);
@@ -549,8 +549,8 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     GEDA_NUMERIC_SPIN(Rotation, 0, 0, 359);
     gtk_widget_set_tooltip_text (GTK_WIDGET(RotationSpin), rotation_tip);
     gtk_table_attach (GTK_TABLE (table), RotationSpin, 1, 2, 3, 4,
-                     (GtkAttachOptions) ( GTK_FILL),
-                     (GtkAttachOptions) (0), 0, 0);
+                      (GtkAttachOptions) ( GTK_FILL),
+                      (GtkAttachOptions) (0), 0, 0);
 
     g_signal_connect (G_OBJECT (font_button), "font-set",
                       G_CALLBACK (widget_value_modified),

@@ -328,7 +328,6 @@ bool x_event_button_released (GtkWidget      *widget,
                               GdkEventButton *event,
                               GschemToplevel *w_current)
 {
-  Object *object;
   int unsnapped_wx, unsnapped_wy;
 
 #if DEBUG_EVENTS
@@ -344,6 +343,8 @@ bool x_event_button_released (GtkWidget      *widget,
                              &unsnapped_wx, &unsnapped_wy);
 
   if (event->button == 1) {
+
+    Object *object;
 
     /* Switch statement to evaluate state transitions */
 
@@ -491,14 +492,6 @@ bool x_event_configure (GtkWidget         *widget,
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  GList *iter;
-  GList *pages;
-  Page  *old_page_current, *p_current;
-  int    old_screen_width,  old_screen_height;
-  int    new_screen_width,  new_screen_height;
-
-  double relative_zoom_factor = 1.0;
-
   if (toplevel == NULL) {
     BUG_MSG ("toplevel == NULL");
     return FALSE;
@@ -506,6 +499,13 @@ bool x_event_configure (GtkWidget         *widget,
 
   /* if the current page has been setup */
   if (toplevel->page_current != NULL) {
+
+    GList *iter;
+    GList *pages;
+    Page  *old_page_current, *p_current;
+    int    old_screen_width,  old_screen_height;
+    int    new_screen_width,  new_screen_height;
+    double relative_zoom_factor = 1.0;
 
     old_screen_width  = w_current->screen_width;
     old_screen_height = w_current->screen_height;
@@ -773,7 +773,6 @@ bool x_event_motion (GtkWidget      *widget,
                      GdkEventMotion *event,
                      GschemToplevel *w_current)
 {
-  int skip_event = 0;
   int unsnapped_wx, unsnapped_wy;
   int w_x, w_y;
 
@@ -800,13 +799,16 @@ bool x_event_motion (GtkWidget      *widget,
    * gdk event queue (Werner) but only skip the event if is the same
    * event and no buttons or modifier keys changed*/
   if ((test_event = gdk_event_get()) != NULL) {
-    if (test_event->type == GDK_MOTION_NOTIFY
-      && ((GdkEventMotion *) test_event)->state == event->state) {
-        skip_event = 1;
+
+    int skip_event = 0;
+
+    if (test_event->type == GDK_MOTION_NOTIFY &&
+      ((GdkEventMotion *) test_event)->state == event->state) {
+        skip_event++;
       }
       gdk_event_put(test_event); /* put it back in front of the queue */
       gdk_event_free(test_event);
-    if (skip_event == 1) {
+    if (skip_event) {
       return 0;
     }
   }
@@ -1017,12 +1019,13 @@ void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  int current_left;
-  int new_left;
-
   g_return_if_fail (w_current != NULL);
 
   if (w_current->scrollbars) {
+
+    int current_left;
+    int new_left;
+
     current_left = toplevel->page_current->left;
     new_left     = (int) adjust->value;
 
@@ -1044,12 +1047,13 @@ void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-  int current_bottom;
-  int new_bottom;
-
   g_return_if_fail (w_current != NULL);
 
   if (w_current->scrollbars) {
+
+    int current_bottom;
+    int new_bottom;
+
     current_bottom = toplevel->page_current->bottom;
     new_bottom     = w_current->world_bottom - (int) adjust->value;
 

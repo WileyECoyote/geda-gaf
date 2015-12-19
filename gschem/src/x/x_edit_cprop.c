@@ -104,10 +104,9 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
 
   if (new_value != NULL && strlen(new_value) !=0 ) {
 
-    GList     *all_butes;
-    GList     *attribs;
-    Object    *a_current;
-    char      *o_value;
+    GList  *attribs;
+    Object *a_current;
+    char   *o_value;
 
     if (object) {
 
@@ -140,6 +139,8 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       }
     }
     else {
+
+      GList *all_butes;
 
       if (object) {
         /* Not attached, check all attributes */
@@ -195,10 +196,11 @@ static bool x_dialog_ep_revise_elect_attribs(GschemToplevel *w_current,
                                              property_data  *properties,
                                              Object         *object)
 {
-  const char *str_val;
-  bool        result = 0;
+  bool result = 0;
 
   if (GetToggleState(properties->electrical_cb)) {
+
+    const char *str_val;
 
     str_val  = GetEntryText ( properties->refdes_entry );
     result   = x_dialog_ep_check_update_attribs (w_current, object, "refdes", str_val);
@@ -302,7 +304,7 @@ static bool x_dialog_ep_check_symver_attribs (GschemToplevel *w_current,
                                               property_data  *properties,
                                               Object         *object)
 {
-  bool result = FALSE;
+  bool result;
   const char *str_val;
 
   /* get the name from the text entries of the dialog */
@@ -454,7 +456,7 @@ static void x_dialog_edit_properties_ok(GtkWidget     *dialog,
                                              properties,
                                              o_current))
         {
-          changed++;
+          changed = TRUE;
         }
       }
     }
@@ -500,26 +502,25 @@ static void x_dialog_ep_refdes_update_entry (GtkWidget *widget,
                                              GtkWidget *dialog)
 {
   property_data *properties;
-
   Object *o_current;
-  properties =GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
 
-  o_current  =GEDA_OBJECT_GET_DATA (dialog, "object");
+  properties = GEDA_OBJECT_GET_DATA (dialog, IDS_PROP_EDIT);
+
+  o_current  = GEDA_OBJECT_GET_DATA (dialog, "object");
 
   if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
 
-    Object     *attrib;
-    const char *str_val;
-    const char *curr_ref;
-          char *new_text;
-
-    attrib = o_attrib_first_attrib_by_name (o_current, "refdes");
+    Object *attrib = o_attrib_first_attrib_by_name (o_current, "refdes");
 
     if (attrib) {
 
-      curr_ref = u_refdes_return_numeric (attrib->text->string);
+      const char *curr_ref = u_refdes_return_numeric (attrib->text->string);
 
       if (curr_ref) {
+
+        const char *str_val;
+        char *new_text;
+
         str_val = GetEntryText ( properties->refdes_entry );
         new_text = u_string_concat(str_val, curr_ref, NULL);
         g_signal_handler_block(widget,properties->ref_handler);
@@ -564,20 +565,26 @@ static void x_dialog_ep_version_cb (GtkWidget *check_butt, void *data)
   property_data *properties = data;
   bool           state      = GetToggleState(check_butt);
   const char    *str_val    = GetEntryText(properties->version_entry);
-  const char    *dash       = "-";
-
-  char *str = NULL;
 
   if (strlen(str_val)) {
+
+    char *str;
+
     if (!state && (str_val[0] != '-')) {
+      const char *dash = "-";
       str = u_string_concat(&dash[0], str_val,NULL);
     }
     else if (state && (str_val[0] == '-')) {
       str = u_string_strdup(&str_val[1]);
     }
+    else{
+      str = NULL;
+    }
 
-    SetEntryText (properties->version_entry, str);
-    GEDA_FREE(str);
+    if (str) {
+      SetEntryText (properties->version_entry, str);
+      GEDA_FREE(str);
+    }
   }
 }
 
@@ -599,7 +606,7 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   Object    *a_current;
   char      *filename;
   char      *value;
-  int        pin_count;
+
   void      (*set_entry)(const char *name, GtkWidget *entry);
 
   void entry_page_setter(const char *name, GtkWidget *entry) {
@@ -719,6 +726,8 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
   }
   else { /* This is a Non-Graphical object */
 
+    int        pin_count;
+
     if (!GetToggleState(properties->electrical_cb)) {
       SetToggleState(properties->electrical_cb, TRUE);
     }
@@ -745,7 +754,9 @@ static void x_dialog_ep_component_change(GschemToplevel *w_current,
     }
 
     a_current = o_attrib_find_attrib_by_name (all_butes, "pins", 0);
+
     if (a_current) {
+
       if (o_attrib_get_name_value (a_current, NULL, &value)) {
         pin_count = atoi(value);
         SetSpinValue(properties->pins_spin, pin_count);
@@ -879,8 +890,6 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
   GedaComboBoxText *combo = (GedaComboBoxText*) widget;
   const GedaRefDes *designators;
 
-  const char *ref;
-  const char *descr;
   int   index;
 
   switch ( type ) {
@@ -902,6 +911,10 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *widget, int type)
 
   index = 0;
   while (designators[index].designator) {
+
+    const char *ref;
+    const char *descr;
+
     ref = designators[index].designator;
     descr = designators[index].description;
     geda_combo_box_text_list_append(combo, ref, descr);
@@ -1118,7 +1131,6 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
 
   property_data *properties;
 
-  const char *symbol_tip     = "Symbol file name";
   const char *device_tip     = "device identifier";
   const char *author_tip     = "The symbols author";
   const char *version_tip    = "version of symbol";
@@ -1411,6 +1423,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   atk_obj = atk_widget_linked_label_new (symbol_label, properties->symbol_entry);
 
   if ( atk_obj ) {
+    const char *symbol_tip     = "Symbol file name";
     atk_object_set_name        ( atk_obj,   _("File name entry of component symbol"));
     atk_object_set_description ( atk_obj,      symbol_tip );
   }

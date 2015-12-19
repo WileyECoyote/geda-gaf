@@ -269,7 +269,6 @@ void set_bulb_off( GtkWidget *widget) {
 
 void bulb_group_set_active(GSList *RadioGroupList, int value)
 {
-  GtkToggleButton *button;
   int length;
   int index;
   unsigned int pos = (unsigned int)(long)value;
@@ -283,23 +282,29 @@ void bulb_group_set_active(GSList *RadioGroupList, int value)
    * confuses gtk */
   index = (length - 1) - pos;
 
-  if (index < 0 || index >= length) {
-
-     return;
-  } /* should not to happen */
+  if (index < 0 || index >= length) { /* should not to happen */
+    return;
+  }
 
   for (j = 0; j < length; j++) {
-     button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, j));
-     if (button == NULL) return;
-     if ( j == index) {
-       if (gtk_toggle_button_get_active (button) == FALSE) {
-           gtk_toggle_button_set_active (button, TRUE);
-       }
-           set_bulb_on(GTK_WIDGET(button));
-     }
-     else {
-       set_bulb_off(GTK_WIDGET(button));
-     }
+
+    GtkToggleButton *button;
+
+    button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, j));
+
+    if (button == NULL)
+      return;
+
+    if ( j == index) {
+
+      if (gtk_toggle_button_get_active (button) == FALSE) {
+        gtk_toggle_button_set_active (button, TRUE);
+      }
+      set_bulb_on(GTK_WIDGET(button));
+    }
+    else {
+      set_bulb_off(GTK_WIDGET(button));
+    }
   }
 
   return;
@@ -321,16 +326,18 @@ void bulb_group_set_active(GSList *RadioGroupList, int value)
  */
 void select_all_text_in_textview(GtkTextView *textview)
 {
-  GtkTextBuffer *textbuffer;
-  GtkTextIter start, end;
-
   if (GTK_IS_TEXT_VIEW(textview)) {
+
+    GtkTextBuffer *textbuffer;
+    GtkTextIter start, end;
+
     textbuffer = gtk_text_view_get_buffer(textview);
     gtk_text_buffer_get_bounds (textbuffer, &start, &end);
     gtk_text_buffer_select_range(textbuffer, &start, &end);
   }
-  else
+  else {
     BUG_MSG("parameter is not a textview widget");
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -521,13 +528,14 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
  */
 void snap_size_dialog (GschemToplevel *w_current)
 {
-  GtkWidget *label = NULL;
-  GtkWidget *vbox;
+  GtkWidget *Dialog = w_current->sswindow;
   GtkWidget *snap_size;
-  GtkWidget *Dialog;
 
-  Dialog = w_current->sswindow;
   if (!Dialog) {
+
+    GtkWidget *label;
+    GtkWidget *vbox;
+
     Dialog = gschem_dialog_new_with_buttons(_("Snap Size"),
                                             GTK_WINDOW(w_current->main_window),
                                             GTK_DIALOG_MODAL,
@@ -631,13 +639,15 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
  */
 void text_size_dialog (GschemToplevel *w_current)
 {
-  GtkWidget *label = NULL;
-  GtkWidget *vbox;
+  GtkWidget *Dialog = w_current->tswindow;
   GtkWidget *text_size;
-  GtkWidget *Dialog;
 
-  Dialog = w_current->tswindow;
   if (!Dialog ) {
+
+    GtkWidget *label;
+    GtkWidget *vbox;
+    GtkWidget *text_size;
+
     Dialog = gschem_dialog_new_with_buttons(_("Text Size"),
                                             GTK_WINDOW(w_current->main_window),
                                             GTK_DIALOG_MODAL,
@@ -722,15 +732,16 @@ static char text_buffer[256] = "refdes=R";
 /* Local function used in this module to load the text_buffer */
 static void set_text_buffer(const char *string)
 {
-  int length;
-
   if (string != NULL) {
+
+    int length;
+
     memset(text_buffer, 0, sizeof(text_buffer)-1);
+
     length = strlen(string);
+
     memcpy(text_buffer, string, length);
     text_buffer[length] = '\0';
-    //strncpy (text_buffer, string, sizeof(text_buffer)-1);
-    //text_buffer[sizeof(text_buffer)-1] = '\0';
   }
   else {
     memset(text_buffer, 0, sizeof(text_buffer)-1);
@@ -812,7 +823,8 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 
     while (s_current != NULL) {
 
-      object = (Object *) s_current->data;
+      Object *object = (Object *) s_current->data;
+
       if (object == NULL) {
         BUG_MSG("NULL object");
       }
@@ -856,15 +868,15 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
-  case GEDA_RESPONSE_REJECT:
-  case GEDA_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy(Dialog);
-    break;
-  case GEDA_RESPONSE_ACCEPT:
-    x_dialog_edit_arc_angle_apply(Dialog, w_current);
-    break;
-  default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    case GEDA_RESPONSE_REJECT:
+    case GEDA_RESPONSE_DELETE_EVENT:
+      gtk_widget_destroy(Dialog);
+      break;
+    case GEDA_RESPONSE_ACCEPT:
+      x_dialog_edit_arc_angle_apply(Dialog, w_current);
+      break;
+    default:
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 
@@ -884,14 +896,14 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
  */
 void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
 {
-  GtkWidget *label = NULL;
-  GtkWidget *vbox;
-  GtkWidget *alignment, *table;
-  GtkWidget *radius, *spin_start, *spin_sweep;
-
   GtkWidget *Dialog = w_current->aawindow;
 
   if (!Dialog) {
+
+    GtkWidget *label = NULL;
+    GtkWidget *vbox;
+    GtkWidget *alignment, *table;
+    GtkWidget *radius, *spin_start, *spin_sweep;
 
     Dialog = gschem_dialog_new_with_buttons(_("Arc Parameters"),
                                             GTK_WINDOW(w_current->main_window),
@@ -965,7 +977,6 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
     gtk_widget_show_all (Dialog);
     w_current->aawindow = Dialog;
   }
-
   else {  /* dialog already created */
     gtk_window_present (GTK_WINDOW(Dialog));
   }
@@ -1214,14 +1225,13 @@ static bool selection_get_fill_type(GList *selection,
                                     int *pitch2, int *angle2)
 {
   GList *iter;
-  Object *object;
   bool found = FALSE;
   OBJECT_FILLING otype;
   int owidth, opitch1, oangle1, opitch2, oangle2;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    object = (Object *) iter->data;
+    Object *object = (Object *) iter->data;
 
     if (o_get_fill_options(object, &otype, &owidth, &opitch1, &oangle1, &opitch2, &oangle2))
     {
@@ -1393,7 +1403,6 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   GedaToplevel   *toplevel  = w_current->toplevel;
 
   GList *selection, *iter;
-  Object *object;
   const char *width_str, *angle1_str, *pitch1_str, *angle2_str, *pitch2_str;
 
   OBJECT_FILLING type;
@@ -1444,7 +1453,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    object = (Object *) iter->data;
+    Object *object = (Object *) iter->data;
 
     if (!o_get_fill_options(object, &otype, &owidth,
                             &opitch1, &oangle1, &opitch2, &oangle2))
@@ -1537,9 +1546,7 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
                                      Object *object)
 {
   GtkWidget *Dialog;
-  GList *selection;
-  OBJECT_FILLING type=FILLING_VOID;
-  int width=0, pitch1=0, angle1=0, pitch2=0, angle2=0;
+
   fill_type_data *fill_data;
 
   /* Get ptr to the data structure */
@@ -1548,7 +1555,11 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
 
   if (o_select_is_selection(w_current)) {
 
-    selection = geda_list_get_glist(Current_Selection);
+    OBJECT_FILLING type = FILLING_VOID;
+
+    int width=0, pitch1=0, angle1=0, pitch2=0, angle2=0;
+
+    GList *selection = geda_list_get_glist(Current_Selection);
 
     if (selection_get_fill_type (selection, &type, &width,
                                  &pitch1, &angle1, &pitch2, &angle2))
@@ -1971,9 +1982,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
   GedaToplevel   *toplevel  = w_current->toplevel;
 
-  GList  *selection, *iter;
-  Object *object;
-
+  GList      *selection, *iter;
   const char *width_str, *length_str, *space_str;
 
   LINE_TYPE  type;
@@ -2032,7 +2041,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
-    object = (Object *) iter->data;
+     Object *object = (Object *) iter->data;
 
     if (! o_get_line_options(object,  &oend,    &otype,
                              &owidth, &olength, &ospace))
@@ -2118,7 +2127,6 @@ x_dialog_line_type_update_selection (GschemToplevel *w_current,
                                      Object         *object)
 {
   GtkWidget *Dialog;
-  GList     *selection;
 
   LINE_END   end  = END_NONE;
   LINE_TYPE  type = TYPE_SOLID;
@@ -2134,7 +2142,7 @@ x_dialog_line_type_update_selection (GschemToplevel *w_current,
 
   if (o_select_is_selection(w_current)) {
 
-    selection = geda_list_get_glist(Current_Selection);
+    GList *selection = geda_list_get_glist(Current_Selection);
 
     if (selection_get_line_type(selection, &end, &type, &width, &length, &space))
     {
@@ -2309,7 +2317,6 @@ Page *forget_page;
 void x_dialog_find_text_response(GtkWidget *Dialog, int response,
                                  GschemToplevel *w_current)
 {
-  //GschemToplevel *w_current = GSCHEM_DIALOG (Dialog)->w_current;
   GedaToplevel   *toplevel  = w_current->toplevel;
 
   GtkWidget  *textentry;
@@ -2379,7 +2386,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
           }
         }
       }
-      start_find = FALSE;
+      //start_find = FALSE;
       break;
     case GEDA_RESPONSE_REJECT:
     case GEDA_RESPONSE_DELETE_EVENT:
@@ -2421,22 +2428,18 @@ static void x_dialog_find_text_on_descend (GtkWidget *check_butt, GtkWidget *cb)
 void x_dialog_find_text(GschemToplevel *w_current)
 {
   GtkWidget  *ThisDialog;
-  GtkWidget  *vbox;
-  GtkWidget  *alignment;
-  GtkWidget  *checkascent;
-  GtkWidget  *checkdescend;
-  GtkWidget  *checkhidden;
   GtkWidget  *textentry;
-  GtkWidget  *label  = NULL;
-  Object     *object = NULL;
-  const char *string;
+  Object     *object;
 
   remember_page = NULL;
   forget_page   = NULL;
 
   if ((object = o_select_return_first_object(w_current)) != NULL) {
+
     if (object->type == OBJ_TEXT) {
-      string = o_text_get_string (object);
+
+      const char *string = o_text_get_string (object);
+
       set_text_buffer(string);
     }
   }
@@ -2447,6 +2450,13 @@ void x_dialog_find_text(GschemToplevel *w_current)
     ThisDialog = w_current->ftwindow;
   }
   else {
+
+    GtkWidget  *vbox;
+    GtkWidget  *alignment;
+    GtkWidget  *checkascent;
+    GtkWidget  *checkdescend;
+    GtkWidget  *checkhidden;
+    GtkWidget  *label;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Find Text"),
                             GTK_WINDOW(w_current->main_window),
@@ -2567,13 +2577,14 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_hide_text(GschemToplevel * w_current)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *label = NULL;
+  GtkWidget *ThisDialog = w_current->htwindow;
   GtkWidget *textentry;
-  GtkWidget *vbox;
 
-  ThisDialog = w_current->htwindow;
   if (!ThisDialog) {
+
+    GtkWidget *label = NULL;
+    GtkWidget *vbox;
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Hide Text"),
                             GTK_WINDOW(w_current->main_window),
       /* nonmodal Editing Dialog */     GSCHEM_MODELESS_DIALOG,
@@ -2675,20 +2686,21 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_show_text(GschemToplevel * w_current)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *label = NULL;
+  GtkWidget *ThisDialog = w_current->stwindow;
   GtkWidget *textentry;
-  GtkWidget *vbox;
 
-  ThisDialog = w_current->stwindow;
   if (!ThisDialog) {
+
+    GtkWidget *label;
+    GtkWidget *vbox;
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Show Text"),
                             GTK_WINDOW(w_current->main_window),
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                       IDS_SHOW_TEXT, w_current,
                           GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
                           GTK_STOCK_APPLY, GEDA_RESPONSE_ACCEPT,
-                                                                      NULL);
+                                                          NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
@@ -2743,20 +2755,21 @@ void x_dialog_show_text(GschemToplevel * w_current)
  */
 void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 {
-  char          *string = NULL;
-  char          *tmp    = NULL;
   GtkWidget     *tientry;
   GtkTextBuffer *textbuffer;
   GtkTextIter    start, end;
+  char          *string;
 
-  tientry = GEDA_OBJECT_GET_DATA(Dialog, IDS_TEXT_INPUT);
-
+  tientry    = GEDA_OBJECT_GET_DATA(Dialog, IDS_TEXT_INPUT);
   textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(tientry));
 
   gtk_text_buffer_get_bounds (textbuffer, &start, &end);
+
   string =  gtk_text_iter_get_text (&start, &end);
 
   if (string[0] != '\0' ) {
+
+    char *tmp;
 
     switch(w_current->text_case) {
       case(LOWER_CASE):
@@ -2769,7 +2782,7 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 
       case(BOTH_CASES):
       default:
-        /* do nothing */
+        tmp = NULL;
         break;
     }
 
@@ -2812,17 +2825,18 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_text_input (GschemToplevel *w_current)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *label = NULL;
-  GtkWidget *tientry = NULL;
-  GtkWidget *vbox;
-  GtkWidget *viewport1 = NULL;
-  GtkWidget *scrolled_window = NULL;
-  PangoTabArray *tab_array;
-  int real_tab_width;
+  GtkWidget *ThisDialog = w_current->tiwindow;
+  GtkWidget *tientry;
 
-  ThisDialog = w_current->tiwindow;
   if (!ThisDialog) { /* dialog not created yet */
+
+    GtkWidget *label;
+    GtkWidget *viewport1;
+    GtkWidget *scrolled_window;
+    GtkWidget *vbox;
+
+    PangoTabArray *tab_array;
+    int real_tab_width;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Text Entry..."),
                                 GTK_WINDOW(w_current->main_window),
@@ -2947,13 +2961,14 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_translate (GschemToplevel *w_current)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *label;
-  GtkWidget *textentry;
-  GtkWidget *vbox;
+  GtkWidget *ThisDialog = w_current->trwindow;
 
-  ThisDialog = w_current->trwindow;
   if (!ThisDialog) {
+
+    GtkWidget *label;
+    GtkWidget *textentry;
+    GtkWidget *vbox;
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Translate"),
                             GTK_WINDOW(w_current->main_window),
                                               GTK_DIALOG_MODAL,
@@ -3141,9 +3156,6 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
     GtkWidget *vbox,  *scrolled_win;
     GtkListStore      *key_store, *store;
-    GtkWidget         *treeview;
-    GtkCellRenderer   *renderer;
-    GtkTreeViewColumn *column;
     bool               show_bind;
 
     EdaConfig *cfg = eda_config_get_user_context ();
@@ -3177,6 +3189,10 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     GtkTreeIter iter;
 
     if (gtk_tree_model_get_iter_first ((GtkTreeModel*)key_store, &iter)) {
+
+      GtkWidget         *treeview;
+      GtkCellRenderer   *renderer;
+      GtkTreeViewColumn *column;
 
       do {
         GtkTreeIter iter2;
@@ -3289,7 +3305,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                         w_current);
 
 
-      GtkWidget *ShowBindingSwitch;
+      GtkWidget *ShowBindingSwitch  GEDA_UNUSED;
       GtkWidget *action_area;        /* GtkButtonBox to be removed */
       GtkWidget *action_hbox;        /* Replacement container */
       GtkWidget *alignment;
@@ -3314,7 +3330,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       ShowBindingSwitch = NULL;
 
       /* Create a new Toggle Switch widget */
-      EDA_SWITCH( (GTK_WIDGET(ThisDialog)), switch_vbox, ShowBinding, 0, show_bind);
+      EDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, ShowBinding, 0, show_bind);
       gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
       /* Setup callback for Toggle Switch widget */
@@ -3654,11 +3670,12 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
  */
 int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 {
-  GtkWidget* message_box;
-
   /* validate the new attribute */
   if (!o_attrib_string_get_name_value (attribute, NULL, NULL)) {
-      message_box = gtk_message_dialog_new_with_markup (parent,
+
+    GtkWidget* message_box;
+
+    message_box = gtk_message_dialog_new_with_markup (parent,
                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR,
                                   GTK_BUTTONS_CLOSE,
@@ -3795,7 +3812,6 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 {
   GtkWidget   *dialog;
   char        *folder;
-  char        *seed;
   char        *title;
   char        *result    = NULL;
   static char *path      = NULL;
@@ -3845,12 +3861,16 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
   if (templ && *templ) {
     if (flags & FSB_SAVE)  {
       gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), templ);
-    } else {
+    }
+    else {
       gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), templ);
     }
   }
 
   if (shortcuts && *shortcuts) {
+
+    char *seed;
+
     printf ("shortcuts = \"%s\"\n", shortcuts);
     folder = u_string_strdup (shortcuts);
     seed = folder;
@@ -3859,14 +3879,13 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
                                             folder, NULL);
       seed = NULL;
     }
-
     GEDA_FREE (folder);
   }
 
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GEDA_RESPONSE_OK) {
     result = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    //folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
   }
+
   gtk_widget_destroy (dialog);
 
   GEDA_FREE (title);
@@ -3890,9 +3909,9 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
  */
 void x_dialog_show_message (const char *msg, IDE_MESSAGE_TYPE context, const char *title)
 {
-  GtkWidget *dialog;
-
   if (msg) {
+
+      GtkWidget *dialog;
 
       dialog = gtk_message_dialog_new (NULL,
                                        GTK_DIALOG_MODAL |
@@ -3901,12 +3920,10 @@ void x_dialog_show_message (const char *msg, IDE_MESSAGE_TYPE context, const cha
                                        GTK_BUTTONS_OK,
                                        "%s", msg);
 
-    if(title) {
+    if(title)
       gtk_window_set_title(GTK_WINDOW(dialog), _(title));
-    }
     else
       gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
-
 
     gtk_dialog_run (GTK_DIALOG (dialog));
 
@@ -3940,17 +3957,14 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
                          "secondary-use-markup", msg_2_has_markup,
                          "buttons",              GTK_BUTTONS_OK,
                          NULL);
-  if(title) {
+  if (title)
     gtk_window_set_title(GTK_WINDOW(dialog), _(title));
-  }
   else
     gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
-
 
   gtk_dialog_run (GTK_DIALOG (dialog));
 
   gtk_widget_destroy (dialog);
-
 }
 
 /******************* End of General message dialogs **********************/

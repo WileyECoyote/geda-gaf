@@ -75,13 +75,13 @@ x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
   Object *object    = NULL;
   int     color_index;
 
-  GedaComboBox *ColorCombo;
-  GtkTreeIter   iter;
-  GValue        value = {0, };
-
   s_current = geda_list_get_glist( Current_Selection );
 
   if(s_current != NULL) {
+
+    GedaComboBox *ColorCombo;
+    GtkTreeIter   iter;
+    GValue        value = {0, };
 
     /* Get ptr to the Combo widget */
     ColorCombo = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_COLOR_EDIT);
@@ -139,10 +139,7 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_edit_color (GschemToplevel *w_current)
 {
-  GtkWidget *Dialog;
-  GtkWidget *optionmenu;
-  GtkWidget *label;
-  GtkWidget *vbox;
+  GtkWidget *Dialog = w_current->clwindow;
 
   Object *object;
   int color_index;
@@ -154,9 +151,12 @@ void x_dialog_edit_color (GschemToplevel *w_current)
   else
     color_index = ATTRIBUTE_COLOR;
 
-  Dialog = w_current->clwindow;
-
   if (!Dialog) {
+
+    GtkWidget *optionmenu;
+    GtkWidget *label;
+    GtkWidget *vbox;
+
     Dialog = gschem_dialog_new_with_buttons(_("Color Edit"),
                                             GTK_WINDOW(w_current->main_window),
            /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
