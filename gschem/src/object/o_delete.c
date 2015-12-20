@@ -60,7 +60,7 @@ void o_delete (GschemToplevel *w_current, Object *object)
 void o_delete_selected (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel   = w_current->toplevel;
-  SELECTION    *selection  = Top_Selection;
+  SELECTION    *selection  = toplevel->page_current->selection_list;
 
 
   if (o_select_is_selection (w_current)) {

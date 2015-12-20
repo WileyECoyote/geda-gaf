@@ -205,7 +205,7 @@ g_hook_new_proxy_by_name (const char *name)
 /* Anonymous Static Mutex */
 static union
 {
-  void* p;
+  void *p;
   unsigned int i[2];
 } i_lock_is_busy;
 

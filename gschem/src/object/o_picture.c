@@ -298,7 +298,7 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 
   /* Get count of picture objects in selection set */
   count = 0;
-  iter  = geda_list_get_glist (Top_Selection);
+  iter  = geda_list_get_glist (toplevel->page_current->selection_list);
 
   while(iter != NULL) {
     Object *obj = (Object *) iter->data;

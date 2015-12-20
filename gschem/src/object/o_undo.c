@@ -132,9 +132,11 @@ void o_undo_init(GschemToplevel *w_current)
 void o_undo_finalize(void)
 {
   int i;
-  char *filename;
 
   for (i = 0 ; i < undo_file_index; i++) {
+
+    char *filename;
+
     filename = u_string_sprintf(UNDO_FILE_PATTERN, tmp_path,
                                 DIR_SEPARATOR, prog_pid, i);
     unlink(filename);
@@ -193,11 +195,10 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
   GedaToplevel *toplevel     = w_current->toplevel;
   GError       *err          = NULL;
-  char         *filename     = NULL;
+
   Page         *p_current;
   UNDO         *u_current;
   UNDO         *u_current_next;
-  int           levels;
 
   const char *file_err_msg;
   const char *sys_err_msg;
@@ -220,6 +221,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     BUG_MSG("Could not get current page");
   }
   else {
+
+    char *filename = NULL;
+    int levels;
 
     if (flag == UNDO_ALL) {
 
@@ -271,9 +275,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     p_current->undo_tos = p_current->undo_current;
 
     if (w_current->undo_type == UNDO_DISK) {
-      p_current->undo_tos = s_undo_add_disk(flag,
-                                               filename,
-                                               p_current);
+      p_current->undo_tos = s_undo_add_disk (flag, filename, p_current);
     }
     else if (w_current->undo_type == UNDO_MEMORY) {
       p_current->undo_tos = s_undo_add_memory(flag, p_current);
@@ -512,7 +514,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   /* Clear the selection list, o_select_unselect_all is not used
    * here because all of the objects are soon to be wiped-out */
-  geda_list_remove_all(Top_Selection);
+  geda_list_remove_all(toplevel->page_current->selection_list);
 
   if ((w_current->undo_type == UNDO_DISK && u_current->filename) ||
       (w_current->undo_type == UNDO_MEMORY && u_current->object_list))

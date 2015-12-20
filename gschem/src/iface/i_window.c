@@ -217,7 +217,7 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     /* Clear the selection list Note the we do not use o_select_unselect_all
      * here because all of the object are soon to be wiped-out */
-    geda_list_remove_all(Top_Selection);
+    geda_list_remove_all(toplevel->page_current->selection_list);
 
     s_place_free_place_list (toplevel);
 
