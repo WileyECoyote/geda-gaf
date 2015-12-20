@@ -1,4 +1,6 @@
-/* -*- C header file: toolbars.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: toolbars.h
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -16,8 +18,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 /* ------------------------------------------------------------------
  * WEH | 05/02/15 | Modify ToolbarStringData structure; remove members

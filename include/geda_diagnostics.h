@@ -1,4 +1,6 @@
-/* -*- geda_diagnostics.h -*-
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
+/*
+ * File: geda_diagnostics.h
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
