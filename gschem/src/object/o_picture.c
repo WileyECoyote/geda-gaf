@@ -234,8 +234,6 @@ o_picture_exchange (GschemToplevel *w_current,
   }
   else {
 
-    GedaToplevel *toplevel = w_current->toplevel;
-
     GList *list;
     GList *iter;
 
