@@ -97,7 +97,7 @@ void o_copy_multiple_end(GschemToplevel *w_current)
 static
 bool o_copy_real_start(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel *toplevel = gschem_toplevel_get_geda_toplevel(w_current);
 
   int status = FALSE;
 
@@ -109,7 +109,12 @@ bool o_copy_real_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (o_select_is_selection(w_current)) {
 
-    GList *s_current = geda_list_get_glist(Top_Selection);
+    Page  *page;
+    GList *s_current;
+
+    page      = gschem_toplevel_get_current_page(w_current);
+    s_current = geda_list_get_glist(page->selection_list);
+
     s_place_set_place_list(toplevel, s_current);
 
     status = o_place_start(w_current, w_x, w_y);
