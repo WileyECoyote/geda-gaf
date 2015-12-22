@@ -3,6 +3,11 @@
     * src/object/o_copy.c: Revise function o_copy_real_start to eliminate
       Top_Selection; use gschem_toplevel_get_current_page.
 
+    * docs/dialogs/: Add dialog two more images:
+
+          * docs/dialogs/pin_dialog.png
+          * docs/dialogs/slot_dialog.png
+
 2015-12-19  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Utilize o_select_get_list_selected instead of
