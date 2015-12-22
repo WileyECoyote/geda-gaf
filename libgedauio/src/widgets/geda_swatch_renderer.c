@@ -65,13 +65,13 @@ enum
 
 static void
 get_property (GObject    *object,
-              guint      param_id,
+              unsigned int      param_id,
               GValue     *value,
               GParamSpec *pspec);
 
 static void
 set_property (GObject      *object,
-              guint        param_id,
+              unsigned int        param_id,
               const GValue *value,
               GParamSpec   *pspec);
 
@@ -95,7 +95,7 @@ render (GtkCellRenderer      *cell,
  */
 static void
 get_property (GObject    *object,
-              guint      param_id,
+              unsigned int      param_id,
               GValue     *value,
               GParamSpec *pspec)
 {

@@ -444,7 +444,7 @@ notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widge
 /*! \brief Set a gobject property
  */
 static void
-set_property (GObject *object, guint param_id, const GValue *value, GParamSpec *pspec)
+set_property (GObject *object, unsigned int param_id, const GValue *value, GParamSpec *pspec)
 {
   GtkWidget *widget = (GtkWidget*)GSCHEM_MACRO_WIDGET (object);
 

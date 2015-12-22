@@ -466,7 +466,7 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
  *  \param [out] value        The GValue in which to return the value of the property
  *  \param [in]  pspec        A GParamSpec describing the property being got
  */
-static void gschem_dialog_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
+static void gschem_dialog_get_property (GObject *object, unsigned int property_id, GValue *value, GParamSpec *pspec)
 {
   GschemDialog *Dialog = GSCHEM_DIALOG (object);
 
