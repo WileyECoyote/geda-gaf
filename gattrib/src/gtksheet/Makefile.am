@@ -23,12 +23,9 @@ libgtksheet_a_SOURCES = \
 
 gtksheet_extra_sources = gtksheet-marshal.list
 
-#libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL) -gtoggle
 libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL)
 
 libgtksheet_a_CFLAGS   = $(GLIB_CFLAGS) $(GTK_CFLAGS)
-
-# $(GCC_CFLAGS) $(AM_CFLAGS) $(GTHREAD_CFLAGS) $(MINGW_CFLAGS)
 
 EXTRA_LIBRARIES = libgtksheet.a
 
