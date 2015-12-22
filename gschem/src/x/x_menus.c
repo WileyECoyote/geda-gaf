@@ -285,11 +285,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   GedaAction   *action;
   GtkWidget    *image;
   GtkWidget    *menu_item;
-  GtkWidget    *root_menu;
   GtkWidget    *menu;
-
-  int scm_items_len;
-  int scm_item_len;
 
   SCM scm_items;
   SCM scm_item;
@@ -299,7 +295,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   SCM scm_item_stock;
   SCM scm_index;
 
-  char  *buf;
   char  *menu_name;
   char  *dummy = NULL;
 
@@ -438,6 +433,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   inline GtkWidget *get_menu_item_from_scheme (SCM scm_items, int index ) {
 
     GtkWidget *menu_item;
+    char      *buf;
+    int        scm_item_len;
 
     scm_dynwind_begin(0);
 
@@ -660,6 +657,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   /* Loop through all top-level menu container */
   for (i = 0 ; i < i_menu_return_num(); i++) {
 
+    GtkWidget *root_menu = NULL;
+    int scm_items_len;
+
     scm_items = i_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
@@ -678,13 +678,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);
+
     for (j = 0 ; j < scm_items_len; j++) {
       menu_item = get_menu_item_from_scheme(scm_items, j);
       gtk_container_add (GTK_CONTAINER(menu), menu_item);
       g_object_set (menu_item, "visible", TRUE, NULL);
     }
-
-    root_menu = NULL;
 
     if (strstr(menu_name, "/")) {
       root_menu = GEDA_OBJECT_GET_DATA (MENU_BAR, menu_name);
@@ -1139,7 +1138,6 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
  */
 void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
-  GtkWidget *item=NULL;
   GtkWidget *menubar;
   static int sensitivity_errors = 0;
 
@@ -1151,7 +1149,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 
   if (GTK_IS_MENU_BAR(menubar)) {
 
-    item = GEDA_OBJECT_GET_DATA (menubar, buf);
+    GtkWidget *item = GEDA_OBJECT_GET_DATA (menubar, buf);
 
     if (item && GTK_IS_MENU_ITEM(item)) {
       gtk_widget_set_sensitive(GTK_WIDGET(item), flag);
@@ -1183,8 +1181,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 void x_menus_popup_sensitivity (GschemToplevel *w_current,
                                 const char *name, int flag)
 {
-  GtkWidget *menu_item;
-  MenuData  *menu_data;
+  MenuData *menu_data;
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
@@ -1192,6 +1189,8 @@ void x_menus_popup_sensitivity (GschemToplevel *w_current,
     fprintf(stderr, _("Popup menu widget doesn't exist!\n"));
   }
   else {
+
+    GtkWidget *menu_item;
 
     menu_item = (GtkWidget*) g_hash_table_lookup (POPUP_HASH_TABLE, name);
 
@@ -1387,7 +1386,6 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
 {
   GschemToplevel *w_current;
 
-  GtkAction *action;
   GtkWidget *menubar;
   char      *menu_path;
 
@@ -1402,7 +1400,7 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
      if (menu_item != NULL) {
 
        /* Get action for this item so we can block the signal */
-       action = gtk_widget_get_action(menu_item);
+       GtkAction *action = gtk_widget_get_action(menu_item);
 
        if (action != NULL) {
          g_signal_handler_block(action, toggler_data->handler);

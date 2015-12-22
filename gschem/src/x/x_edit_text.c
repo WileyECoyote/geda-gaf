@@ -86,11 +86,6 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
   GtkTextBuffer *textbuffer;
 
   char *string;
-  int   text_align;
-  int   text_color;
-  int   text_size;
-  int   text_angle;
-  int   num_selected;
 
   bool match_string = TRUE;
   bool match_align  = TRUE;
@@ -101,13 +96,15 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
   GdkColor gray; //   { 0, 0x8888, 0x8888, 0x8888 };
   gdk_color_parse("gray", &gray);
 
-  /* Lookup table for translating between alignment values and the combo
-     box list indices, index is alignment value, value is list index */
-  int alignment_lookup[] = {6, 3, 0, 7, 4, 1, 8, 5, 2};
-
   ThisDialog = w_current->tewindow;
 
   if (object != NULL && object->type == OBJ_TEXT) {
+
+    int num_selected;
+    int text_align;
+    int text_angle;
+    int text_color;
+    int text_size;
 
     string      = object->text->string;
     text_align  = object->text->alignment;
@@ -148,6 +145,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     {
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
       if (GTK_IS_TEXT_VIEW (widget)) {
+
         textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
 
         if (match_string)
@@ -189,6 +187,11 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     { /* Text Alignment */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextAlign));
       if (match_align) {
+
+        /* Lookup table for translating between alignment values and the combo
+         * box list indices, index is alignment value, value is list index */
+        int alignment_lookup[] = {6, 3, 0, 7, 4, 1, 8, 5, 2};
+
         geda_combo_widget_set_active(widget, alignment_lookup[text_align]);
       }
       else {
@@ -267,7 +270,7 @@ static GtkListStore *create_menu_alignment (GschemToplevel *w_current)
 void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 {
   GtkWidget     *ThisDialog;
-  GtkTextBuffer *textbuffer;
+
   GtkTextIter    start, end;
   GtkTreeIter    iter;
   GtkTreeModel  *model;
@@ -296,6 +299,8 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
 
   /* text string entry will only show up if one object is selected */
   {
+    GtkTextBuffer *textbuffer;
+
     widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
     textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(widget));
     gtk_text_buffer_get_bounds (textbuffer, &start, &end);

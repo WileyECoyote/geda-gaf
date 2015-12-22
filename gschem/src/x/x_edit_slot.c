@@ -151,15 +151,14 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, Object *object)
 void
 x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *slot)
 {
-  GtkWidget *ThisDialog;
-  GtkWidget *label = NULL;
-  GtkWidget *textentry;
-  GtkWidget *textslots;
-  GtkWidget *vbox;
-
-  ThisDialog = w_current->sewindow;
+  GtkWidget *ThisDialog = w_current->sewindow;
 
   if (!ThisDialog) {
+
+    GtkWidget *label = NULL;
+    GtkWidget *textentry;
+    GtkWidget *textslots;
+    GtkWidget *vbox;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Edit slot number"),
                                    GTK_WINDOW(w_current->main_window),

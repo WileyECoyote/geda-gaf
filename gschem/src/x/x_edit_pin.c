@@ -249,7 +249,6 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   bool    set_elect_type     = FALSE;
   bool    auto_sequence      = FALSE;
   bool    changed_something  = FALSE;
-  int     auto_number;
   int     num_selected;
 
   PIN_NODE  ntype, ontype;  /* bus, net*/
@@ -368,6 +367,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   }
   else { /* More than 1 pin is selected */
 
+    int  auto_number;
     char s_val[10];
 
     set_node_type  = GET_SWITCH_STATE(pin_data->set_node_type);

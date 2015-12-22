@@ -71,11 +71,7 @@ x_dialog_color_update_selection (GschemToplevel *w_current, Object *object)
 static void
 x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
 {
-  GList  *s_current = NULL;
-  Object *object    = NULL;
-  int     color_index;
-
-  s_current = geda_list_get_glist( Current_Selection );
+  GList  *s_current = geda_list_get_glist( Current_Selection );
 
   if(s_current != NULL) {
 
@@ -89,12 +85,14 @@ x_dialog_edit_color_apply(GtkWidget *ThisDialog, GschemToplevel *w_current)
     /* Retrieve the current index from the tree model in the widget */
     if (geda_combo_box_get_active_iter(ColorCombo, &iter)) {
 
+      int color_index;
+
       gtk_tree_model_get_value(geda_combo_box_get_model(ColorCombo), &iter, 1, &value);
       color_index = g_value_get_int (&value);
 
       while(s_current != NULL) {
 
-        object = (Object *) s_current->data;
+        Object *object = (Object *) s_current->data;
 
         if (object == NULL) {
           fprintf(stderr, _("ERROR: NULL object in x_dialog_edit_color_apply!\n"));
