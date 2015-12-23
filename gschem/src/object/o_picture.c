@@ -285,7 +285,6 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   char *filename;
 
   int   count;
-  bool  result;
 
   if (o_current && o_current->type == OBJ_PICTURE) {
     oldfilename = o_picture_get_filename(o_current);
@@ -375,15 +374,15 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   if (filename) {
 
     /* Actually update the pictures */
-    result = o_picture_exchange (w_current, filename, o_current, &err);
+    if (!o_picture_exchange (w_current, filename, o_current, &err)) {
 
-    if (!result) {
+      const char *message = err->message;
 
       /* Log the error */
-      u_log_message( _("%s: Failed to replace picture: %s"), __func__, err->message);
+      u_log_message( _("%s: Failed to replace picture: %s"), __func__, message);
 
       /* inform the user */
-      pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );
+      pango_error_dialog ( _("<b>Failed to replace picture</b>"), message);
 
       /* clear error */
       g_error_free(err);

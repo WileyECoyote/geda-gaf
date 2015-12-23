@@ -1,3 +1,9 @@
+2015-12-22  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Eliminate result variable and use return
+      value on stacked in conditional in function o_picture_exchange_file
+      and separate pointer to error messages to pull in line lengths.
+
 2015-12-21  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_copy.c: Revise function o_copy_real_start to eliminate
