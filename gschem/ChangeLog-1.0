@@ -1,5 +1,8 @@
 2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Change icons for scale-up-snap-size, scale-
+      down-snap-size, and options-snap-size to syncronize with toolbar.
+
     * src/object/o_picture.c: Reduce scope of new_obj in o_picture_end.
       Revise o_picture_exchange to retain state of update_all by saving
       and restoring to window config group, changing the static bool used
@@ -9,6 +12,9 @@
     * src/x/x_confirm_close.c: Simplify case save in function x_confirm_
       close_changed_page; don`t worry if page is the current page - that
       is handled in x_window_save_page.
+
+    * src/x/x_toolbars.c: Switch snap-up, snap-down and options-snap-size
+      to temporary GSCHEM_TOOLBAR_BUTTON macro.
 
 2015-12-22  Wiley E. Hill <wileyhill@gmail.com>
 

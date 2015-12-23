@@ -1967,9 +1967,11 @@
 (map-icon "geda-bed"                   "tools-unembed")
 
 (map-icon "gtk-jump-to"                "options-cycle-grid")
-(map-icon "gtk-media-previous"         "scale-up-snap-size")
-(map-icon "gtk-media-next"             "scale-down-snap-size")
-(map-icon "gtk-media-rewind"           "options-snap-size")
+
+(map-icon "gtk-goto-top"               "scale-up-snap-size")
+(map-icon "gtk-goto-bottom"            "scale-down-snap-size")
+(map-icon "geda-magnet"                "options-snap-size")
+
 ;(map-icon #f                          "options-show-text-size")
 ;(map-icon "gaf-tools"                  "options-show-settings")
 (map-icon "geda-tools"                 "options-show-settings")
@@ -2271,10 +2273,10 @@
 ;;
 ;;      menu item name                    menu action             menu icon name             Menu Item Tooltip
 ;;
-     `( (,(N_ "Cycle _grid styles")       options-cycle-grid       "gtk-jump-to"        ,(N_ "Toggle grid between Dot, Mesh and Off"))
-        (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       "gtk-media-previous" ,(N_ "Increase the snap size"))
-        (,(N_ "Scale _down Grid Spacing") scale-down-snap-size     "gtk-media-next"     ,(N_ "Increase the snap size"))
-        (,(N_ "S_nap Grid Spacing...")    options-snap-size        "gtk-media-rewind"   ,(N_ "Adjust snap size"))
+     `( (,(N_ "Cycle _grid styles")       options-cycle-grid       #f ,(N_ "Toggle grid between Dot, Mesh and Off"))
+        (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       #f ,(N_ "Increase the snap size"))
+        (,(N_ "Scale _down Grid Spacing") scale-down-snap-size     #f ,(N_ "Increase the snap size"))
+        (,(N_ "S_nap Grid Spacing...")    options-snap-size        #f ,(N_ "Adjust snap size"))
 
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
