@@ -1,3 +1,17 @@
+2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74A/74ACT573-1.sym: Add symbol 8-bit D-type latch with tristate
+      outputs.
+
+    * logic/74H/74HC11-1.sym: Add symbol 3 AND gates with 3 inputs.
+
+    * logic/74H/74HC174-1.sym: Add symbol Hex D-type flip-flops
+
+2015-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/: Tweak logic symbols to have a smoother more round appearance,
+      think I got most of em.
+
 2015-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * IEC417/spst-noblock.sym: Add symbol for basic switch.
