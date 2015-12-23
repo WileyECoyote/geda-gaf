@@ -69,7 +69,6 @@ void
 o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object       *new_obj;
 
   int picture_left,  picture_top;
   int picture_width, picture_height;
@@ -90,7 +89,9 @@ o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   /* pictures with null width and height are not allowed */
   if ((picture_width != 0) && (picture_height != 0)) {
 
-    /* create the new picture object */
+    Object *new_obj;
+
+    /* Create a new picture object */
     new_obj = o_picture_new(NULL, 0, w_current->pixbuf_filename,
                             picture_left, picture_top,
                             picture_left + picture_width,
@@ -277,14 +278,10 @@ void
 o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
-  GError       *err       = NULL;
   GList        *iter;
   const char   *oldfilename;
-  static bool   update_all = FALSE;
-
-  char *filename;
-
-  int   count;
+  char         *filename;
+  int           count;
 
   if (o_current && o_current->type == OBJ_PICTURE) {
     oldfilename = o_picture_get_filename(o_current);
@@ -298,7 +295,9 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   iter  = geda_list_get_glist (toplevel->page_current->selection_list);
 
   while(iter != NULL) {
+
     Object *obj = (Object *) iter->data;
+
     if (obj->type == OBJ_PICTURE) {
       count++;
     }
@@ -310,8 +309,14 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   }
   else { /* Use a custom image chooser */
 
-    GtkWidget  *dialog;
-    GtkWidget  *cb_all;
+    EdaConfig *cfg;
+    GtkWidget *cb_all;
+    GtkWidget *dialog;
+    bool       update_all;
+
+    cfg  = eda_config_get_user_context ();
+
+    i_var_restore_window_boolean(cfg, "update-all-pitures", &update_all, FALSE);
 
     dialog = geda_image_chooser_new (w_current->main_window,
                                      IMAGE_CHOOSER_ACTION_OPEN);
@@ -327,8 +332,8 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
 
       char *filepath = f_path_get_dirname (oldfilename);
 
-      if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
-      {
+      if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
+
         errno = 0;
         access(filepath, R_OK);
         if (!errno) {
@@ -362,7 +367,12 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
     }
 
     /* Save the check-box state even if the user canceled the dialog */
-    update_all = gtk_toggle_button_get_active ((GtkToggleButton*)cb_all);
+    if (gtk_toggle_button_get_active ((GtkToggleButton*)cb_all) != update_all)
+    {
+      update_all = !update_all;
+      eda_config_set_boolean (cfg, WINDOW_CONFIG_GROUP,
+                              "update-all-pitures", update_all);
+    }
 
     gtk_widget_destroy (dialog);
 
@@ -372,6 +382,8 @@ o_picture_exchange_file (GschemToplevel *w_current, Object *o_current)
   }
 
   if (filename) {
+
+    GError *err = NULL;
 
     /* Actually update the pictures */
     if (!o_picture_exchange (w_current, filename, o_current, &err)) {

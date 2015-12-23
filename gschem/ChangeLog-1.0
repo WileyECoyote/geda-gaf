@@ -1,3 +1,11 @@
+2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture.c: Reduce scope of new_obj in o_picture_end.
+      Revise o_picture_exchange to retain state of update_all by saving
+      and restoring to window config group, changing the static bool used
+      to retain on a per session basis to non-static and resude scope of
+      variable err.
+
 2015-12-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Eliminate result variable and use return
