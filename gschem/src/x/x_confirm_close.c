@@ -665,46 +665,34 @@ GedaType confirm_close_dialog_get_type (void)
 bool
 x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
 {
-  GtkWidget *dialog;
-  Page      *keep_page;
+  GtkDialog *dialog;
   bool       result;
 
   g_return_val_if_fail (geda_page_get_changed(page) > 0, TRUE);
 
   result = FALSE;
 
-  dialog = GTK_WIDGET (g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
-                                     "unsaved-page", page,
-                                     NULL));
+  dialog = g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
+                         "unsaved-page", page, NULL);
 
-  /* set default response signal. This is usually triggered by the "Return" key */
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_YES);
+  /* set default response signal, usually triggered by the "Return" key */
+  gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_YES);
 
-  switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+  switch (gtk_dialog_run (dialog)) {
 
-      case GEDA_RESPONSE_NO:
-        /* close the page, discard changes */
+      case GEDA_RESPONSE_NO:      /* close the page, discard changes */
+
         result = TRUE;
         break;
 
-      case GEDA_RESPONSE_YES:
-        /* action selected: save */
-        keep_page = w_current->toplevel->page_current;
-        s_page_goto (page);
-        x_window_save_page (w_current,
-                            w_current->toplevel->page_current,
-                            w_current->toplevel->page_current->filename);
-
-        if (geda_page_get_changed(page) > 0) {
-          if (keep_page != page)
-            s_page_goto (keep_page);
-            result = TRUE;
-        }
+      case GEDA_RESPONSE_YES:     /* action selected: save */
+        x_window_save_page (w_current, page, page->filename);
+        result = TRUE;
         break;
 
-      case GEDA_RESPONSE_CANCEL:
+      case GEDA_RESPONSE_CANCEL:  /* action selected: cancel */
 
-        /* action selected: cancel */
+
         /* fall through */
       default:
         /* Hit when the user breaks out of the dialog with the escape key
@@ -712,7 +700,7 @@ x_confirm_close_changed_page (GschemToplevel *w_current, Page *page)
         /* nothing to do */
         break;
   }
-  gtk_widget_destroy (dialog);
+  gtk_widget_destroy (GTK_WIDGET(dialog));
 
   return result;
 }

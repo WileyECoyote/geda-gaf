@@ -6,6 +6,10 @@
       to retain on a per session basis to non-static and resude scope of
       variable err.
 
+    * src/x/x_confirm_close.c: Simplify case save in function x_confirm_
+      close_changed_page; don`t worry if page is the current page - that
+      is handled in x_window_save_page.
+
 2015-12-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Eliminate result variable and use return
