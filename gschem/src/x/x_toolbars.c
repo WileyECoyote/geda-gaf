@@ -1592,14 +1592,12 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(GripSnap_Toolbar));
 
+  GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_set);
   GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_up);
   GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_down);
-  GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_set);
 
-  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_off);
-  //GSCHEM_TOOLBAR_BUTTON(GripSnap, etb_snap_on);
-  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_off,    LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
-  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_on,     LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
+  GSCHEM_TOOLBAR_BUTTON_FUNC(GripSnap, etb_snap_off, x_toolbars_snap_toggle);
+  GSCHEM_TOOLBAR_BUTTON_FUNC(GripSnap, etb_snap_on, x_toolbars_snap_toggle);
 
   g_object_set (GripSnap_Toolbar, "visible", TRUE, NULL);
 

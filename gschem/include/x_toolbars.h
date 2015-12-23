@@ -51,7 +51,16 @@
    _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_ICON_NAME (name)), x_toolbars_execute, w_current) \
    GEDA_OBJECT_SET_DATA (name##_button, (void*)TB_ACTION(name), "action"); \
    GEDA_TOOLBAR_BUTTON_ATK(bar##_Toolbar, name##_button, TB_TOOLTIP (name), TB_ACTION(name)) \
-   g_object_set (name##_button, "visible", TRUE, NULL); \
+   g_object_set (name##_button, "visible", TRUE, NULL);
+
+   /*! \brief ToolBar Macro with GSCHEM_TOPLEVEL *w_current call-back data */
+#define GSCHEM_TOOLBAR_BUTTON_FUNC( bar, name, func) \
+   GtkWidget *name##_button __attribute__ ((unused)); /* maybe mv comment for tb devel */ \
+   GEDA_TOOLBAR_BUTTON(bar##_Toolbar, TB_ICON_IMAGE(name), name##_button, \
+   _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_ICON_NAME (name)), func, w_current) \
+   GEDA_OBJECT_SET_DATA (name##_button, (void*)TB_ACTION(name), "action"); \
+   GEDA_TOOLBAR_BUTTON_ATK(bar##_Toolbar, name##_button, TB_TOOLTIP (name), TB_ACTION(name)) \
+   g_object_set (name##_button, "visible", TRUE, NULL);
 
 typedef enum { tb_Add,  tb_Attribute, tb_Edit,      tb_Grid_Snap,
                tb_Page, tb_Select,    tb_Standard,  tb_Zoom
