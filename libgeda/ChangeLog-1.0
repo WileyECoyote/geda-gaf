@@ -1,3 +1,9 @@
+2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_page.c: Simplify function s_page_is_symbol_file, eliminated
+      variable is_symbol and return result of str comparison. Reduce scope of
+      variables in module. Edit Doxygen comments.
+
 2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * object/o_selection.c: Add function o_selection_get_first_object.

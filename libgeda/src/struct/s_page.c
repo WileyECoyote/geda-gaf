@@ -151,10 +151,9 @@ s_page_new_common(Page *page)
 
 /*! \brief create a new page object
  *  \par Function Description
- *  Creates a new page and add it to <B>toplevel</B>'s list of pages.
- *  The #Page structure is initializes and the <B>filename</B> is set
- *  to \a <B>filename</B>. <B>toplevel</B>'s current page is not
- *  changed by this function.
+ *  Creates a new page and adds the page to <B>toplevel</B>'s list of pages.
+ *  Initializes the <B>filename</B> to given value \a <B>filename</B>. The
+ *  <B>toplevel</B>'s current page is not changed by this function.
  */
 Page *s_page_new (GedaToplevel *toplevel, const char *filename)
 {
@@ -296,6 +295,7 @@ int s_page_autosave (GedaToplevel *toplevel)
   }
   return toplevel->auto_save_interval;
 }
+
 /*! \brief Check if CHANGED flag is set for any page in list.
  *  \par Function Description
  *  This function checks the CHANGED flag for all pages in the <B>list</B>
@@ -308,11 +308,11 @@ int s_page_autosave (GedaToplevel *toplevel)
 bool s_page_check_changed (PageList *list)
 {
   const GList *iter;
-  Page *p_current;
 
   for ( iter = geda_list_get_glist(list); iter != NULL; NEXT(iter))
   {
-    p_current = (Page *)iter->data;
+    Page *p_current = iter->data;
+
     if (p_current->CHANGED) {
       return TRUE;
     }
@@ -330,11 +330,10 @@ bool s_page_check_changed (PageList *list)
 void s_page_clear_changed (PageList *list)
 {
   const GList *iter;
-  Page *p_current;
 
-  for ( iter = geda_list_get_glist(list); iter != NULL; NEXT(iter))
+  for (iter = geda_list_get_glist(list); iter != NULL; NEXT(iter))
   {
-    p_current = (Page *)iter->data;
+    Page *p_current = iter->data;
     p_current->CHANGED = 0;
   }
 }
@@ -432,14 +431,15 @@ void s_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 void s_page_delete_list (GedaToplevel *toplevel)
 {
   GList *list_copy, *iter;
-  Page *page;
 
   /* s_page_delete removes items from the page list, so make a copy */
   list_copy = g_list_copy (geda_toplevel_get_pages (toplevel));
 
   for (iter = list_copy; iter != NULL; NEXT(iter)) {
 
-    if (GEDA_IS_PAGE (page = (Page *)iter->data)) {
+    Page *page = iter->data;
+
+    if (GEDA_IS_PAGE (page)) {
 
       o_notify_change_remove_all(page);
 
@@ -523,9 +523,10 @@ bool s_page_goto (Page *page)
   if (GEDA_IS_PAGE(page)) {
 
     char *target_dirname;
-    int   sav_err;
 
-    sav_err = 0;
+#ifdef HAVE_ERRNO_H
+    int   sav_err = 0;
+#endif
 
     target_dirname = f_path_get_dirname(page->filename);
 
@@ -565,7 +566,7 @@ bool s_page_goto (Page *page)
 /*! \brief Get is Page a Symbol file.
  *
  * \par Function Description
- * Returns true if the filename assocaited with page ends in ".sym"!
+ * Returns true if the filename associated with page ends in ".sym"!
  *
  * \param [in] page Pointer to a Page data structure.
  *
@@ -573,16 +574,19 @@ bool s_page_goto (Page *page)
  *
  */
 bool s_page_is_symbol_file (Page *page) {
-  const char *ext;
-  bool isSymbol = FALSE;
+
   if (page != NULL) {
+
+    const char *ext;
+
     if ((ext = s_page_get_file_extension(page)) != NULL) {
-      if (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
-        isSymbol = TRUE;
-      }
+
+      return (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0);
+
     }
   }
-  return isSymbol;
+
+  return FALSE;
 }
 
 /*! \brief Print full GedaToplevel structure.
@@ -595,11 +599,10 @@ bool s_page_is_symbol_file (Page *page) {
 void s_page_print_all (GedaToplevel *toplevel)
 {
   const GList *iter;
-  Page *page;
 
-  for ( iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
+  for (iter = geda_toplevel_get_pages(toplevel); iter; iter = iter->next)
   {
-    page = (Page *)iter->data;
+    Page *page = (Page *)iter->data;
     printf ("FILENAME: %s\n", page->filename);
     print_struct_forw (page->_object_list);
   }
@@ -777,7 +780,7 @@ Page *s_page_search_by_page_id (PageList *list, int pid)
  *  function to be defined. If the function is not defined the renderer for
  *  the Toplevel will be used instead, if a Toplevel renderer is defined.
  *
- *  \param [in] page      The Page to associate this function with to render text.
+ *  \param [in] page      Page to associate the render text function.
  *  \param [in] func      Function to use.
  *  \param [in] user_data User data to be passed to the function.
  */
@@ -838,13 +841,13 @@ void s_page_append_list (Page *page, GList *obj_list)
   if (GEDA_IS_PAGE(page)) {
 
     GList  *iter;
-    Object *object;
 
     page->_object_list = g_list_concat (page->_object_list, obj_list);
 
     for (iter = obj_list; iter != NULL; iter = iter->next) {
 
-      object = iter->data;
+      Object *object = iter->data;
+
       object_added (page, object);
     }
   }
@@ -1004,10 +1007,11 @@ GList *s_page_get_objects (Page *page)
 GList*
 s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
 {
-  GList *iter;
   GList *list = NULL;
 
   if (GEDA_IS_PAGE(page)) {
+
+    GList *iter;
 
     for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
 
@@ -1023,9 +1027,10 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
           if (right  >= rects[i].lower_x &&
               left   <= rects[i].upper_x &&
               top    <= rects[i].upper_y &&
-              bottom >= rects[i].lower_y) {
-              list = g_list_prepend (list, object);
-              break;
+              bottom >= rects[i].lower_y)
+          {
+            list = g_list_prepend (list, object);
+            break;
           }
         }
       }
