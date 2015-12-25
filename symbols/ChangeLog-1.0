@@ -1,6 +1,12 @@
-2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
+2015-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST CMOS analog switch
+    * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST SWITCH,ANALOG,CMOS,SSOP16,0°C to +70°C
+
+    * maxium/: Add 3 symbols QUAD SPST SWITCH,ANALOG,CMOS,0°C to +70°C
+  
+          * maxim/MAX4661-1.sym SSOP16
+          * maxim/MAX4661-2.sym SO16W
+          * maxim/MAX4661-3.sym PDIP16
 
 2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
