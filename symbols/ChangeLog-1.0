@@ -1,7 +1,7 @@
 2015-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-clib.scm: Add group onsemi/schottky, rename linear/regulate
-      linear/regulator.
+    * geda-clib.scm: Add group onsemi/schottky, as Manufacturers/Schottky,
+      add group onsemi/regulator, rename linear/regulate linear/regulator.
 
     * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST SWITCH,ANALOG,CMOS,
       SSOP16, 0°C to +70°C

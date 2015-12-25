@@ -231,6 +231,7 @@
                   ("onsemi"          "Manufacturers/ON Semiconductor")
                      ("onsemi/diodes"                  "Manufacturers/Diodes")
                      ("onsemi/ldo"                     "Manufacturers/Low-Dropout Regulators")
+                     ("onsemi/regulator"               "Manufacturers/Linear Regulators")
                      ("onsemi/schottky"                "Manufacturers/Schottky")
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
