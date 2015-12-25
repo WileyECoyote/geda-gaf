@@ -14,6 +14,13 @@
           * maxim/MAX4662-5.sym -40°C to +85°C, SO16W
           * maxim/MAX4662-6.sym -40°C to +85°C, PDIP16
 
+    * Add 4 fixed negative 15 Volt regulators:
+
+          * onsemi/regulator/MC7915A-1.sym
+          * onsemi/regulator/MC7915A-2.sym
+          * onsemi/regulator/MC7915B-1.sym
+          * onsemi/regulator/MC7915B-2.sym
+
 2015-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add group onsemi/schottky, as Manufacturers/Schottky,
@@ -35,8 +42,8 @@
 
     * onsemi/schottky/NSR05F40NX-1.sym: Change value attribute color
 
-    * Add 4 fixed negative 12 regulators:   
-          
+    * Add 4 fixed negative 12 regulators:
+
           * onsemi/regulator/MC7912A-1.sym
           * onsemi/regulator/MC7912A-2.sym
           * onsemi/regulator/MC7912B-1.sym
