@@ -1,7 +1,16 @@
 Makefile
 Makefile.in
-.deps
 gsymcheck
 gsymcheck.exe
+.deps
+.libs
+*-swp
+*.swp
+*.bak
 *.o
+*.x
 *~
+stash/
+stash/*
+TAGS
+

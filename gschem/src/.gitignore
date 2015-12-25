@@ -1,8 +1,9 @@
-.deps
 Makefile
 Makefile.in
 gschem
 gschem.exe
+.deps
+.libs
 *-swp
 *.swp
 *.bak
