@@ -1,5 +1,9 @@
 2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST CMOS analog switch
+
+2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * logic/74A/74ACT573-1.sym: Add symbol 8-bit D-type latch with tristate
       outputs.
 
