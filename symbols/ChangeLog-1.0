@@ -15,9 +15,17 @@
           * maxim/MAX4661-5.sym -40°C to +85°C, SO16W
           * maxim/MAX4661-6.sym -40°C to +85°C, PDIP16
 
-          *onsemi/schottky/NSR02F30MX-1.sym: Change value attribute color
+    * onsemi/schottky/NSR02F30MX-1.sym: Change value attribute color
 
-          *onsemi/schottky/NSR05F40NX-1.sym: Change value attribute color
+    * onsemi/schottky/NSR05F40NX-1.sym: Change value attribute color
+
+    * Add 4 fixed negative 12 regulators:   
+          
+          * onsemi/regulator/MC7912A-1.sym
+          * onsemi/regulator/MC7912A-2.sym
+          * onsemi/regulator/MC7912B-1.sym
+          * onsemi/regulator/MC7912B-2.sym
+
 
 2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
