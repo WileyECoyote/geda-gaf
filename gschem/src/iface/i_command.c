@@ -148,6 +148,7 @@ static void set_last_command(int value)
     last_command = value;
   g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
+
 static int get_last_command()
 {
   int ret_val;
@@ -186,6 +187,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
     }
     else /* USE_WORKER_THREAD */ {
       gschem_threads_enter();
+      scm_init_guile ();
       command_struc[i].func(command_struc[i].w_current);
       gschem_threads_leave();
     }

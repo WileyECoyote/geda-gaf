@@ -362,7 +362,7 @@ enum {
  #define COMMAND(action, rstr, flags, func) extern void i_cmd_##func(GschemToplevel *w_current);
 #endif  /* I_DO_DECLARE */
 
-#include "i_actions.h" /* Note: We need to resolve action strings on this pass */
+#include "i_actions.h" /* Note: Need to resolve action strings on this pass */
 
 /*! \note #1 set aflag = 0 for a worker thread or aflag = 1 to run in Gtk
  *           main-loop thread, i.e. if guile is to be called use 1, else use

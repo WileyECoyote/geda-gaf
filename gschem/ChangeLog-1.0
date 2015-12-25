@@ -1,3 +1,9 @@
+2015-12-24  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Initialize guile using scm_init_guile in function
+      i_command_router for worker threads, this seems to fix all the threading
+      issues with guile 2.0.
+
 2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change icons for scale-up-snap-size, scale-
