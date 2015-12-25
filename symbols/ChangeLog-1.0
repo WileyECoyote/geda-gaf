@@ -1,8 +1,10 @@
 2015-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-clib.scm: Add group onsemi/schottky, as Manufacturers/Schottky.
+    * geda-clib.scm: Add group onsemi/schottky, rename linear/regulate
+      linear/regulator.
 
-    * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST SWITCH,ANALOG,CMOS,SSOP16,0°C to +70°C
+    * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST SWITCH,ANALOG,CMOS,
+      SSOP16, 0°C to +70°C
 
     * maxium/: Add 6 symbols QUAD SPST SWITCH,ANALOG,CMOS:
   
@@ -12,6 +14,10 @@
           * maxim/MAX4661-4.sym -40°C to +85°C, SSOP16
           * maxim/MAX4661-5.sym -40°C to +85°C, SO16W
           * maxim/MAX4661-6.sym -40°C to +85°C, PDIP16
+
+          *onsemi/schottky/NSR02F30MX-1.sym: Change value attribute color
+
+          *onsemi/schottky/NSR05F40NX-1.sym: Change value attribute color
 
 2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
