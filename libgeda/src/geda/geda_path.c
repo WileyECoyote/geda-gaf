@@ -214,7 +214,7 @@ static void geda_path_class_init(void *g_class, void *class_data)
  */
 GedaType geda_path_get_type (void)
 {
-  static GedaType geda_path_type = 0;
+  static volatile GedaType geda_path_type = 0;
 
   if (g_once_init_enter (&geda_path_type)) {
 

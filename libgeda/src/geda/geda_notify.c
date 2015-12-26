@@ -116,7 +116,7 @@ static void geda_notify_list_class_init(void *class, void *class_data)
  */
 GedaType geda_notify_list_get_type (void)
 {
-  static GedaType geda_notify_list_type = 0;
+  static volatile GedaType geda_notify_list_type = 0;
 
   if (g_once_init_enter (&geda_notify_list_type)) {
 

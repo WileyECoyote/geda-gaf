@@ -128,7 +128,7 @@ static void geda_list_class_init(void *g_class, void *g_class_data)
  */
 GedaType geda_list_get_type (void)
 {
-  static GedaType geda_list_type = 0;
+  static volatile GedaType geda_list_type = 0;
 
   if (g_once_init_enter (&geda_list_type)) {
 

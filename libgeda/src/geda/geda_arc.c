@@ -231,7 +231,7 @@ static void geda_arc_class_init(void *g_class, void *class_data)
  */
 GedaType geda_arc_get_type (void)
 {
-  static GedaType geda_arc_type = 0;
+  static volatile GedaType geda_arc_type = 0;
 
   if (g_once_init_enter (&geda_arc_type)) {
 

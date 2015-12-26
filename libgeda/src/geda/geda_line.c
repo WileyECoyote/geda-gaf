@@ -165,7 +165,7 @@ static void geda_line_class_init(void *class, void *class_data)
  */
 GedaType geda_line_get_type (void)
 {
-  static GedaType geda_line_type = 0;
+  static volatile GedaType geda_line_type = 0;
 
   if (g_once_init_enter (&geda_line_type)) {
 

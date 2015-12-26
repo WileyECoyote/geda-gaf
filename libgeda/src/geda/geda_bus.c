@@ -136,7 +136,7 @@ static void geda_bus_class_init(void *g_class, void *class_data)
  */
 GedaType geda_bus_get_type (void)
 {
-  static GedaType geda_bus_type = 0;
+  static volatile GedaType geda_bus_type = 0;
 
   if (g_once_init_enter (&geda_bus_type)) {
 

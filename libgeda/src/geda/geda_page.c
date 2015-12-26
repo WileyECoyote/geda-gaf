@@ -326,7 +326,7 @@ static void geda_page_class_init(void *class, void *class_data)
  */
 GedaType geda_page_get_type (void)
 {
-  static GedaType geda_page_type = 0;
+  static volatile GedaType geda_page_type = 0;
 
   if (g_once_init_enter (&geda_page_type)) {
 

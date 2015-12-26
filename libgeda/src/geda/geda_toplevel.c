@@ -293,7 +293,7 @@ static void geda_toplevel_class_init (void *class, void *class_data)
  */
 GedaType geda_toplevel_get_type (void)
 {
-  static GedaType geda_toplevel_type = 0;
+  static volatile GedaType geda_toplevel_type = 0;
 
   if (g_once_init_enter (&geda_toplevel_type)) {
 

@@ -152,7 +152,7 @@ static void geda_net_class_init(void *g_class, void *class_data)
  */
 GedaType geda_net_get_type (void)
 {
-  static GedaType geda_net_type = 0;
+  static volatile GedaType geda_net_type = 0;
 
   if (g_once_init_enter (&geda_net_type)) {
 

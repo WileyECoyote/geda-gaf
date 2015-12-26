@@ -1,7 +1,7 @@
 2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_xxx.h: Change head and tail markers from unsigned
-      int to type GedaType.
+      int to type GedaType:
 
           * include/libgeda/geda_arc.h
           * include/libgeda/geda_box.h
@@ -19,6 +19,26 @@
           * include/libgeda/geda_text.h
           * include/libgeda/geda_toplevel.h
 
+    * src/geda/geda_arc.c: Declare GedaType types volatile:
+
+          * src/geda/geda_arc.c
+          * src/geda/geda_box.c
+          * src/geda/geda_bus.c
+          * src/geda/geda_circle.c
+          * src/geda/geda_complex.c
+          * src/geda/geda_config.c
+          * src/geda/geda_errors.c
+          * src/geda/geda_line.c
+          * src/geda/geda_list.c
+          * src/geda/geda_net.c
+          * src/geda/geda_notify.c
+          * src/geda/geda_object.c
+          * src/geda/geda_page.c
+          * src/geda/geda_path.c
+          * src/geda/geda_picture.c
+          * src/geda/geda_pin.c
+          * src/geda/geda_text.c
+          * src/geda/geda_toplevel.c
 
 2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
 

@@ -296,7 +296,7 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
  */
 GedaType eda_config_get_type (void)
 {
-  static GedaType eda_config_type = 0;
+  static volatile GedaType eda_config_type = 0;
 
   if (g_once_init_enter (&eda_config_type)) {
 
