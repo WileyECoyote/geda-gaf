@@ -95,43 +95,6 @@ static GObjectClass *gschem_page_view_parent_class = NULL;
  *  more recent version of GTK+, this function will no longer be needed.
  *  TODO: Use libgedauio
  */
-static void
-cclosure_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
-                                      GValue       *return_value G_GNUC_UNUSED,
-                                      unsigned int  n_param_values,
-                                      const GValue *param_values,
-                                      void         *invocation_hint G_GNUC_UNUSED,
-                                      void         *marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void *data1,
-                                                    void *arg_1,
-                                                    void *arg_2,
-                                                    void *data2);
-
-  register GMarshalFunc_VOID__OBJECT_OBJECT callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register void *data1;
-  register void *data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure)) {
-    data1 = closure->data;
-    data2 = g_value_peek_pointer (param_values + 0);
-  }
-  else {
-    data1 = g_value_peek_pointer (param_values + 0);
-    data2 = closure->data;
-  }
-
-  callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_value_get_object (param_values + 1),
-            g_value_get_object (param_values + 2),
-            data2);
-}
-
 
 
 /*! \brief Dispose of the object
@@ -170,7 +133,6 @@ dispose (GObject *object)
 }
 
 
-
 /*! \brief Event handler for window realized
  */
 static void
@@ -188,7 +150,6 @@ event_realize(GtkWidget *widget, void *unused)
 }
 
 
-
 /*! \brief Event handler for window unrealized
  */
 static void
@@ -203,7 +164,6 @@ event_unrealize(GtkWidget *widget, void *unused)
     view->gc = NULL;
   }
 }
-
 
 
 /*! \brief Finalize object
@@ -223,7 +183,6 @@ finalize (GObject *object)
   g_return_if_fail (gschem_page_view_parent_class != NULL);
   gschem_page_view_parent_class->finalize (object);
 }
-
 
 
 /*! \brief Get a property
@@ -259,7 +218,6 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
-
 
 
 /*! \brief Initialize GschemPageView class
@@ -315,7 +273,7 @@ gschem_page_view_class_init (GschemPageViewClass *klass)
     0,
     NULL,
     NULL,
-    cclosure_marshal_VOID__OBJECT_OBJECT,
+    geda_marshal_VOID__OBJECT_OBJECT,
     G_TYPE_NONE,
     2,
     GTK_TYPE_ADJUSTMENT,
@@ -334,7 +292,6 @@ gschem_page_view_class_init (GschemPageViewClass *klass)
 }
 
 
-
 /*! \brief Get a graphics context for this view
  *
  *  \param [in] view The view
@@ -347,7 +304,6 @@ gschem_page_view_get_gc (GschemPageView *view)
 
   return view->gc;
 }
-
 
 
 /*! \brief Get the horizontal adjustment for this view
@@ -364,7 +320,6 @@ gschem_page_view_get_hadjustment (GschemPageView *view)
 }
 
 
-
 /*! \brief Get page for this view
  *
  *  \param [in] view The view
@@ -377,7 +332,6 @@ gschem_page_view_get_page (GschemPageView *view)
 
   return view->page;
 }
-
 
 
 /*! \brief Get page geometry for this view
@@ -450,7 +404,6 @@ gschem_page_view_get_page_geometry (GschemPageView *view)
 }
 
 
-
 /*! \brief Get/register GschemPageView type.
  */
 GType
@@ -478,7 +431,6 @@ gschem_page_view_get_type ()
 }
 
 
-
 /*! \brief Get the vertical adjustment for this view
  *
  *  \param [in] view The view
@@ -491,7 +443,6 @@ gschem_page_view_get_vadjustment (GschemPageView *view)
 
   return view->vadjustment;
 }
-
 
 
 /*! \brief Schedule redraw for the entire window

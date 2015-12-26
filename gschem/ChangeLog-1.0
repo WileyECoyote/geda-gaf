@@ -1,3 +1,8 @@
+2015-12-26  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT
+      with geda_marshal_VOID__OBJECT_OBJECT,.
+
 2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Initialize guile using scm_init_guile in function
