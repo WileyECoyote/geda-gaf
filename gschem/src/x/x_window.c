@@ -410,7 +410,6 @@ void x_window_create_main(GschemToplevel *w_current)
 
   GtkWidget *main_box     = NULL;
   GtkWidget *menubar      = NULL;
-  GtkWidget *handlebox    = NULL;
 
   /* used to signify that the window isn't mapped yet */
   w_current->window       = NULL;
@@ -445,6 +444,9 @@ void x_window_create_main(GschemToplevel *w_current)
   if (GTK_IS_MENU_BAR(menubar = x_menu_setup_ui (w_current))) {
 
     if (w_current->handleboxes) {
+
+      GtkWidget *handlebox;
+
       handlebox = gtk_handle_box_new ();
       gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
       gtk_container_add (GTK_CONTAINER (handlebox), menubar);
@@ -739,13 +741,16 @@ void x_window_close(GschemToplevel *w_current)
  */
 void x_window_close_all(GschemToplevel *w_current)
 {
-  GschemToplevel *current;
+
   GList *list_copy, *iter;
 
   iter = list_copy = g_list_copy (global_window_list);
   while (iter != NULL ) {
-    current = (GschemToplevel *)iter->data;
+
+   GschemToplevel *current = (GschemToplevel *)iter->data;
+
     iter = g_list_next (iter);
+
     x_window_close (current);
   }
   g_list_free (list_copy);
@@ -792,9 +797,7 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
   Page *old_current, *page;
   char  untitled[] = "untitled";
   char  strbuff[MAX_PATH];
-  char *path;
   char *ptr;
-  int   file_err;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
@@ -910,6 +913,10 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
       }
     }
     else {  /* File name specified but does not exist, check path */
+
+      char *path;
+      int   file_err;
+
       errno = 0;
       access (filename,  W_OK && F_OK);
       file_err = errno;                        /* save file error */
@@ -1150,8 +1157,7 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
 void x_window_close_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Page *new_current = NULL;
-  GList *iter;
+
 
   g_return_if_fail (toplevel != NULL);
 
@@ -1162,8 +1168,12 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
     }
     else {
 
-      Page *current_page;
-      bool  deleted_current;
+      GList *iter;
+      Page  *current_page;
+      Page  *new_current;
+      bool   deleted_current;
+
+      new_current = NULL;
 
       /* If we're closing whilst inside an action, re-wind the
        * page contents back to their state before we started */
@@ -1250,11 +1260,13 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
  */
 void x_window_update_title(GschemToplevel *w_current)
 {
-  const char *filename     = NULL;
-  char       *print_string = NULL;
-  Page       *current_page = gschem_toplevel_get_current_page(w_current);
+
+  Page *current_page = gschem_toplevel_get_current_page(w_current);
 
   if (current_page && w_current->main_window) {
+
+    const char *filename;
+    char *print_string;
 
     if (w_current->toplevel) {
 
