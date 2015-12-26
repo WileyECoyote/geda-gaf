@@ -43,10 +43,11 @@ extern int iconify_main_window;
  *  @{ \par
 */
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Setup the Graphical User Interface
  *  \par Function Description
- *
+ *  This function is the top-level constructor for the GUI, the function
+ *  calls various lower level functions to actually create sub-components
+ *  of the graphical interface.
  */
 void x_window_setup (GschemToplevel *w_current)
 {
@@ -367,10 +368,11 @@ void x_window_restore_settings(GschemToplevel *w_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief Macro Widget Invoke Macro Response Callback
  *  \par Function Description
- *
+ *  Called to handle the response emitted from the Macro Widget, if the
+ *  response is GEDA_RESPONSE_OK the macro string is evaluated.
  */
 static void x_window_invoke_macro (GtkWidget      *widget, int response,
                                    GschemToplevel *w_current)
@@ -661,10 +663,10 @@ void x_window_close_all_dialogs(GschemToplevel *w_current)
   x_console_close();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief Close A Window
  *  \par Function Description
- *
+ *  Close the current window, in effect the GUI.
  */
 void x_window_close(GschemToplevel *w_current)
 {
@@ -728,10 +730,12 @@ void x_window_close(GschemToplevel *w_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*!
+ *  \brief Close All Windows
  *  \par Function Description
- *
+ *  Wrapper for x_window_close function. Currently the option to
+ *  open a new window is not enabled by default so normally there
+ *  is only one window.
  */
 void x_window_close_all(GschemToplevel *w_current)
 {
@@ -990,17 +994,12 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
   if (gschem_toplevel_set_current_page (w_current, page)) {
-
     o_redraw_cleanstates (w_current);
-
     s_page_goto (page);
-
     i_window_on_page_changed(w_current);
-
     x_hscrollbar_update (w_current);
     x_vscrollbar_update (w_current);
     o_invalidate_all (w_current);
-
     v_log_message("Set page <%s> active.", f_get_basename(page->filename));
   }
 }
