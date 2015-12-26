@@ -6,13 +6,19 @@
     * maxim/MAX4662-2.sym: Replace symbol; QUAD SPST SWITCH,ANALOG,CMOS,
       SSOP16, 0°C to +70°C
 
-    * maxium/: Add 5 symbols QUAD SPST SWITCH,ANALOG,CMOS:
+    * maxium/: Add 11 symbols QUAD SPST SWITCH,ANALOG,CMOS:
 
           * maxim/MAX4662-1.sym   0°C to +70°C, SSOP16
           * maxim/MAX4662-3.sym   0°C to +70°C, PDIP16
           * maxim/MAX4662-4.sym -40°C to +85°C, SSOP16
           * maxim/MAX4662-5.sym -40°C to +85°C, SO16W
           * maxim/MAX4662-6.sym -40°C to +85°C, PDIP16
+          * maxim/MAX4663-1.sym   0°C to +70°C, SSOP16
+          * maxim/MAX4663-2.sym   0°C to +70°C, SO16W
+          * maxim/MAX4663-3.sym   0°C to +70°C, PDIP16
+          * maxim/MAX4663-4.sym -40°C to +85°C, SSOP16
+          * maxim/MAX4663-5.sym -40°C to +85°C, SO16W
+          * maxim/MAX4663-6.sym -40°C to +85°C, PDIP16
 
     * Add 4 fixed negative 15 Volt regulators:
 
