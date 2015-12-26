@@ -27,6 +27,43 @@
           * onsemi/regulator/MC7915B-1.sym
           * onsemi/regulator/MC7915B-2.sym
 
+    * tube/:Add 34 symbols for some additional vacuum tubes:
+
+          * tube/3AV6-1.sym
+          * tube/6AK6-1.sym
+          * tube/6AV6-1.sym
+          * tube/6C4-1.sym
+          * tube/6E8G-1.sym
+          * tube/6SA7-1.sym
+          * tube/6TE8-1.sym
+          * tube/6TE8GT-1.sym
+          * tube/12AF6-1.sym
+          * tube/12AT7-1.sym
+          * tube/12AT7A-1.sym
+          * tube/12AU7-1.sym
+          * tube/12AU7A-1.sym
+          * tube/12AV6-1.sym
+          * tube/12AX7A-1.sym
+          * tube/12BA6-1.sym
+          * tube/12BA6A-1.sym
+          * tube/12BA7-1.sym
+          * tube/12BE6-1.sym
+          * tube/12BE6A-1.sym
+          * tube/12SA7-1.sym
+          * tube/12SA7G-1.sym
+          * tube/12SA7GT-1.sym
+          * tube/50L6G-1.sym
+          * tube/5814A-1.sym
+          * tube/CV133-1.sym
+          * tube/CV852-1.sym
+          * tube/E82CC-1.sym
+          * tube/E182CC-1.sym
+          * tube/EC90-1.sym
+          * tube/ECC81-1.sym
+          * tube/ECC82-1.sym
+          * tube/ECH35-1.sym
+          * tube/L77-1.sym
+
 2015-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add group onsemi/schottky, as Manufacturers/Schottky,
