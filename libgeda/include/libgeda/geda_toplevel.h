@@ -60,7 +60,7 @@ struct _GedaToplevel {
   /* This is the GObject parent and has nothing to do with LibGeda */
   GObject parent;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   int    open_flags;              /* Control flags for the f_open function. Indexed by FOpenFlags */
   char  *untitled_name;           /* untitled sch basename */
@@ -197,7 +197,7 @@ struct _GedaToplevel {
 
   GList   *weak_refs;             /* Weak references */
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 /* geda_toplevel.c */

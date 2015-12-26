@@ -58,7 +58,7 @@ struct _GedaText {
 
   Object parent_instance;
 
-  unsigned int head_marker;  /* Marker to identify this structure type */
+  GedaType head_marker;  /* Marker to identify this structure type */
 
   int x;                     /* world origin */
   int y;
@@ -77,13 +77,13 @@ struct _GedaText {
   RenderedBoundsFunc rendered_text_bounds_func;
   void *rendered_text_bounds_data;
 
-  unsigned int tail_marker;  /* structure type signature */
+  GedaType tail_marker;  /* structure type signature */
 };
 
 GedaType     geda_text_get_type        (void) GEDA_CONST;
 bool         is_a_geda_text_object     (Text *object);
 
-Object *geda_text_new             (void);
+Object      *geda_text_new             (void);
 
 END_DECLS
 #endif /* __GEDA_TEXT_H__ */

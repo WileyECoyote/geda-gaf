@@ -1,3 +1,25 @@
+2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_xxx.h: Change head and tail markers from unsigned
+      int to type GedaType.
+
+          * include/libgeda/geda_arc.h
+          * include/libgeda/geda_box.h
+          * include/libgeda/geda_bus.h
+          * include/libgeda/geda_circle.h
+          * include/libgeda/geda_complex.h
+          * include/libgeda/geda_line.h
+          * include/libgeda/geda_net.h
+          * include/libgeda/geda_notify.h
+          * include/libgeda/geda_object.h
+          * include/libgeda/geda_page.h
+          * include/libgeda/geda_path.h
+          * include/libgeda/geda_picture.h
+          * include/libgeda/geda_pin.h
+          * include/libgeda/geda_text.h
+          * include/libgeda/geda_toplevel.h
+
+
 2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Simplify function s_page_is_symbol_file, eliminated

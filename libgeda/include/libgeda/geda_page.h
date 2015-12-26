@@ -60,7 +60,7 @@ struct _GedaPage {
 
   GObject parent;
 
-  unsigned int head_marker;            /* structure type signature */
+  GedaType head_marker;            /* structure type signature */
 
   GedaToplevel *toplevel;
 
@@ -128,7 +128,7 @@ struct _GedaPage {
 
   GList *weak_refs;               /* Weak references */
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType  geda_page_get_type             (void) GEDA_CONST;

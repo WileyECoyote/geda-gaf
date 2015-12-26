@@ -55,14 +55,14 @@ struct _GedaLineClass {
 struct _GedaLine {
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   int x[2];
   int y[2];
 
   LINE_OPTIONS  line_options;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType geda_line_get_type       (void) GEDA_CONST;

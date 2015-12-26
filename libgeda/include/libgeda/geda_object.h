@@ -60,7 +60,7 @@ struct _GedaObject {
 
   GObject parent;
 
-  unsigned int head_marker;            /* structure type signature */
+  GedaType head_marker;            /* structure type signature */
 
   char    type;                        /* Basic information */
   int     sid;                         /* sequence id ?? */
@@ -121,7 +121,7 @@ struct _GedaObject {
 
   GList   *weak_refs;             /* Weak references */
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType      geda_object_get_type           (void) GEDA_CONST;

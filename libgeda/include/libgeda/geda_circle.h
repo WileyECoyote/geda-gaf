@@ -53,7 +53,7 @@ struct _GedaCircle {
 
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   int center_x;
   int center_y;
@@ -61,7 +61,8 @@ struct _GedaCircle {
 
   FILL_OPTIONS fill_options;
   LINE_OPTIONS line_options;
-  unsigned int tail_marker;       /* structure type signature */
+ 
+  GedaType tail_marker;       /* structure type signature */
 };
 
 BEGIN_DECLS

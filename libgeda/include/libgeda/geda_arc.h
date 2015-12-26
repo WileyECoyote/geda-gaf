@@ -52,7 +52,7 @@ struct _GedaArcClass {
 struct _GedaArc {
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   int       x;
   int       y;
@@ -66,7 +66,7 @@ struct _GedaArc {
   FILL_OPTIONS  fill_options;
   LINE_OPTIONS  line_options;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 BEGIN_DECLS

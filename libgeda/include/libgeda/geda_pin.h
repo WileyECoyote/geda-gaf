@@ -54,7 +54,7 @@ struct _GedaPin {
 
   Line parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   char       *number;
   int         sequence;
@@ -70,7 +70,7 @@ struct _GedaPin {
 
   int        *line_width;
 
-  unsigned int tail_marker;  /* structure type signature */
+  GedaType tail_marker;  /* structure type signature */
 };
 
 GedaType     geda_pin_get_type           (void) GEDA_CONST;

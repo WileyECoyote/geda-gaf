@@ -58,7 +58,7 @@ struct _GedaPicture {
 
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   GdkPixbuf     *pixbuf;
   char          *file_content;
@@ -77,7 +77,7 @@ struct _GedaPicture {
   int    lower_x;
   int    lower_y;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType     geda_picture_get_type     (void) GEDA_CONST;

@@ -54,7 +54,7 @@ struct _GedaBusClass {
 struct _GedaBus {
   Line parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   int  *line_width;
 
@@ -64,7 +64,7 @@ struct _GedaBus {
 
   char *bus_name;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType geda_bus_get_type        (void) GEDA_CONST;

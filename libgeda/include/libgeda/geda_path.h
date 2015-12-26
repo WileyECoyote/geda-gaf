@@ -55,7 +55,7 @@ struct _GedaPath {
 
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   PATH_SECTION *sections;         /* Bezier path segments  */
 
@@ -65,7 +65,7 @@ struct _GedaPath {
   FILL_OPTIONS fill_options;
   LINE_OPTIONS line_options;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 };
 
 GedaType     geda_path_get_type        (void) GEDA_CONST;

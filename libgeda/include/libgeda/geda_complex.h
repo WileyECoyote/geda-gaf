@@ -56,7 +56,7 @@ struct _GedaComplex {
 
   Object  parent_instance;
 
-  unsigned int head_marker;  /* structure type signature */
+  GedaType head_marker;  /* structure type signature */
 
   char   *filename;          /* Component Library Symbol name */
   bool    is_embedded;       /* is embedded component? */
@@ -70,7 +70,7 @@ struct _GedaComplex {
 
   GList *pin_objs;           /* A list of pins belonging to this complex */
   GList *prim_objs;          /* Primitive objects which make up the complex */
-  unsigned int tail_marker;  /* structure type signature */
+  GedaType tail_marker;  /* structure type signature */
 };
 
 GedaType geda_complex_get_type    (void) GEDA_CONST;

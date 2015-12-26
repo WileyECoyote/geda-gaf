@@ -56,7 +56,7 @@ struct _GedaBox {
 
   Object parent_instance;
 
-  unsigned int head_marker;       /* structure type signature */
+  GedaType head_marker;       /* structure type signature */
 
   /* upper is considered the origin */
   int          upper_x;
@@ -67,7 +67,7 @@ struct _GedaBox {
   LINE_OPTIONS line_options;
   FILL_OPTIONS fill_options;
 
-  unsigned int tail_marker;       /* structure type signature */
+  GedaType tail_marker;       /* structure type signature */
 
 };
 
