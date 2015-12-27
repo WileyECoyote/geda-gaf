@@ -104,12 +104,16 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
     stroke_record (x, y);
 
     if (stroke_points->len < STROKE_MAX_POINTS) {
+
+      GdkGC      *gc;
       StrokePoint point = { x, y };
 
       g_array_append_val (stroke_points, point);
 
-      gdk_gc_set_foreground (w_current->gc, x_color_get_color_from_index (STROKE_COLOR));
-      gdk_draw_point (w_current->window, w_current->gc, x, y);
+      gc = gschem_page_view_get_gc(w_current->drawing_area);
+
+      gdk_gc_set_foreground (gc, x_color_get_color_from_index (STROKE_COLOR));
+      gdk_draw_point (w_current->window, gc, x, y);
     }
   }
 
