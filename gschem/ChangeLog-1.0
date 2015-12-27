@@ -1,5 +1,11 @@
 2015-12-27  Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_icons.c: Add bitmaps:
+
+        * geda-name-tag
+        * geda-name-value
+        * geda-value
+
     * src/x/x_menus.c: remove setting handler when connecting open_item,
       save_item and quit_item for the fallback menu, remove unessacary
       initializing buffer_menu and menus_broken to NULL, change GtkContainer
