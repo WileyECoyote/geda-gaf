@@ -12,6 +12,9 @@
       *menu to GtkMenuShell and rename menu_shell. Make sensitivity_errors
       static to the module.
 
+    * src/x/x_toolbars.c: Switch remaining TOOLBAR_GEDA_BUTTON toolbar items
+      to GSCHEM_TOOLBAR_BUTTON macro.
+
 2015-12-26  Wiley E. Hill <wileyhill@gmail.com>
 
     * Cbase/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT

@@ -228,17 +228,17 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_EDIT_UNLOCK,        "Private",        TB_ICON_BITMAP, NULL},
 
   /* Attribute Toolbar */
-  { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                 TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private",                 TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_VALUE),       "Value",      TBTS_ATTRIB_VALUE,        GEDA_MAP(VALUE),          TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,        "Private",                 TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,        "Private",                 TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES),    TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "show-hidden",             TB_ICON_BITMAP, NULL},
-  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "show-inherited",          TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE), TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private",                 TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private",                 TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private",                   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_VALUE),       "Value",      TBTS_ATTRIB_VALUE,        GEDA_MAP(VALUE),            TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,         "show-name",                TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,         GEDA_MAP(NAME_VALUE),       TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES),      TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "show-hidden",               TB_ICON_BITMAP, NULL},
+  { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "show-inherited",            TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE),   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private",                   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,         GEDA_MAP(LOCATE_REFERENCE), TB_ICON_BITMAP, NULL},
 
   { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue.png",   TB_ICON_BITMAP, NULL},
   { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,     GEDA_MAP(TRANSLATE),      TB_ICON_BITMAP, NULL},
@@ -311,7 +311,7 @@ static char *popup_tips[]={  "Dock",
  * \param item Name of the stock icon ("new", "open", etc.)
  *
  */
-static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* item )
+GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* item )
 {
   GtkWidget *wpixmap = NULL;
   GdkPixmap *pixmap;
@@ -345,6 +345,7 @@ static GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* i
 
   return wpixmap;
 }
+
 static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 {
   GtkWidget *wpixmap = NULL;
@@ -888,28 +889,27 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
 static GtkWidget *build_menu(GtkWidget *widget)
 {
   GtkWidget   *menu;
-  GtkWidget   *item;
   GtkTooltips *tooltips;
 
   bool is_floating;
   int  orientation;
   int  style;
-  int i;
-
-  tooltips = gtk_tooltips_new ();
+  int  i;
 
   ActiveToolBar.handlebox = GEDA_HANDLE_BOX (widget);
-  ActiveToolBar.toolbar   = (GtkToolbar*) gtk_bin_get_child(GTK_BIN(ActiveToolBar.handlebox));
+  ActiveToolBar.toolbar   = (GtkToolbar*)gtk_bin_get_child(GTK_BIN(ActiveToolBar.handlebox));
 
   is_floating = !geda_handle_box_get_child_detached (ActiveToolBar.handlebox);
   orientation =  gtk_toolbar_get_orientation(ActiveToolBar.toolbar);
   style       =  gtk_toolbar_get_style(ActiveToolBar.toolbar);
-
-  menu=gtk_menu_new();
+  tooltips    =  gtk_tooltips_new ();
+  menu        =  gtk_menu_new();
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
-    item = gtk_menu_item_new_with_label(_(popup_items[i]));
+    GtkWidget  *item;
+
+    item      = gtk_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
@@ -980,25 +980,26 @@ static GtkWidget *build_menu(GtkWidget *widget)
 static int
 On_mouse_button_press(GtkWidget *widget, GdkEventButton *event, GschemToplevel *w_current)
 {
-    GdkModifierType mods;
-    GtkWidget *handlebox = GTK_WIDGET(widget);
+  GdkModifierType mods;
+  GtkWidget *handlebox = GTK_WIDGET(widget);
 
-    gdk_window_get_pointer (gtk_widget_get_window(handlebox), NULL, NULL, &mods);
+  gdk_window_get_pointer (gtk_widget_get_window(handlebox), NULL, NULL, &mods);
 
-    if (mods & GDK_BUTTON3_MASK)
-    {
-        if (popup_menu)
-        {
-            gtk_object_destroy(GTK_OBJECT(popup_menu));
-            popup_menu = NULL;
-        }
+  if (mods & GDK_BUTTON3_MASK) {
 
-        popup_menu = build_menu(handlebox);
-        /* Tell GTK to do the menu we just created */
-        gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
-                       event->button, event->time);
+    if (popup_menu) {
+
+      gtk_object_destroy(GTK_OBJECT(popup_menu));
+      popup_menu = NULL;
     }
-    return (FALSE);
+
+    popup_menu = build_menu(handlebox);
+
+    /* Tell GTK to do the menu we just created */
+    gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+                   event->button, event->time);
+  }
+  return (FALSE);
 }
 
 /*! @brief Toolbar Close Button Handler */
@@ -1006,9 +1007,11 @@ static void
 On_Close_Handlebar(GtkWidget *CloseButton, GschemToplevel *w_current)
 {
   GtkWidget *container;
+
   container = gtk_widget_get_parent(CloseButton);
   container = gtk_widget_get_parent(container);
   container = gtk_widget_get_parent(container);
+
   do_Hide_HandleBox((GedaHandleBox*) container);
 }
 
@@ -1038,8 +1041,8 @@ On_Float_ToolBar(GedaHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseBu
  *  \param [in] ToolBar    Toolbar object
  */
 static void
-x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget *ToolBar) {
-
+x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget *ToolBar)
+{
   GtkWidget *CloseButton;
   GtkWidget *fixed;
   GtkWidget *alignment;
@@ -1059,6 +1062,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
   gtk_widget_set_size_request(CloseButton, 16, 16);
   gtk_button_set_relief(GTK_BUTTON (CloseButton), GTK_RELIEF_NONE);
   gtk_button_set_focus_on_click(GTK_BUTTON (CloseButton), FALSE);
+
   style = gtk_widget_get_style(CloseButton);
   style->bg[GTK_STATE_PRELIGHT] = style->bg[GTK_STATE_NORMAL];
   gtk_widget_set_style(CloseButton, style);
@@ -1523,41 +1527,38 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   gtk_container_add              (GTK_CONTAINER  (w_current->attribute_handlebox), Attribute_Toolbar);
 
   /* Add Attribute Button to Toolbar */
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_attach);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_detach);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_value);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_name);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_both);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_attach);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_detach);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_value);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_name);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_both);
 
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_attach,     LOCAL_PIX, GAF_PROMOTE_BITMAP,  x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_detach,     LOCAL_PIX, GAF_DEMOTE_BITMAP,   x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_value, LOCAL_PIX, GEDA_VALUE_BITMAP,   x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_name,  LOCAL_PIX, GEDA_NAME_TAG_BITMAP,    x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_both,  LOCAL_PIX, GEDA_NAME_VALUE_BITMAP,  x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_attach,     LOCAL_PIX, GAF_PROMOTE_BITMAP,  x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_detach,     LOCAL_PIX, GAF_DEMOTE_BITMAP,   x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_value, LOCAL_PIX, GEDA_VALUE_BITMAP,   x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_name,  LOCAL_PIX, GEDA_NAME_TAG_BITMAP,    x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_both,  LOCAL_PIX, GEDA_NAME_VALUE_BITMAP,  x_toolbars_execute,  w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_visibilty);
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_hidden);
 
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_visibilty,  LOCAL_PIX, GEDA_EYE_GLASSES_BITMAP,         x_toolbars_execute,  w_current);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_hidden,    THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
 
   GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_inherited);
-  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_inherited, THEME, FIND_AND_REPLACE,                x_toolbars_execute, w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_find_text);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_hide_text);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_specific);
-  //GSCHEM_TOOLBAR_BUTTON(Attribute, etb_auto_number);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_find_text);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_hide_text);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_specific);
+  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_auto_number);
 
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_STR, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
+  //TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_STR, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
 
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_attach     ));
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_detach     ));
@@ -1922,6 +1923,7 @@ x_toolbars_update(GschemToplevel *w_current)
       target = (GtkToggleButton*) bar_widgets->toolbar_none;
       break;
   }
+
   if(GTK_IS_TOGGLE_BUTTON(target)) {
     /* if button is not active then action was not initiated by the toolbar */
     if (!target->active) {
