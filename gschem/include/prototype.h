@@ -929,7 +929,6 @@ void       x_toolbars_update                (GschemToplevel *w_current);
 /* x_window.c */
 void       x_window_setup                   (GschemToplevel *w_current);
 bool       x_window_setup_gc                (GschemToplevel *w_current);
-void       x_window_free_gc                 (GschemToplevel *w_current);
 void       x_window_restore_settings        (GschemToplevel *w_current);
 void       x_window_save_settings           (GschemToplevel *w_current);
 void       x_window_create_main             (GschemToplevel *w_current);

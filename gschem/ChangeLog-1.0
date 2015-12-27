@@ -1,7 +1,11 @@
 2015-12-26  Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/base/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT
+    * Cbase/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT
       with geda_marshal_VOID__OBJECT_OBJECT,.
+
+    * include/gschem_toplevel.h: Remove GdkGC.
+
+    * src/base/gschem_toplevel.c: Remove initializing w_current->gc.
 
 2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
 

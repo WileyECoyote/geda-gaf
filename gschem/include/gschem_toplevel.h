@@ -134,7 +134,6 @@ struct _GschemToplevel {
   char      *pixbuf_filename;
 
   /* ------------------  Drawing surfaces  ---------------- */
-  GdkGC       *gc;                      /* graphics context */
   GdkWindow   *window;                  /* drawing_area's X drawable */
   GdkPixmap   *drawable;                /* drawable to paint onto */
   cairo_t     *cr;                      /* Cairo surface */

@@ -103,14 +103,9 @@ bool x_window_setup_gc(GschemToplevel *w_current)
 
     if ((w_current->window) && GDK_IS_WINDOW(w_current->window)) {
 
-      w_current->gc  = gdk_gc_new(w_current->window);
-      //w_current->xgc = GDK_GC_XGC (w_current->gc);
       w_current->cr  = gdk_cairo_create(w_current->drawing_area->window);
 
-      if (w_current->gc == NULL) {
-        g_critical(_("Could not allocate gc, is window?\n"));
-      }
-      else if (w_current->cr == NULL) {
+      if (w_current->cr == NULL) {
         g_critical(_("Could not create a Cairo context, is window drawable?\n"));
       }
       else {
@@ -710,8 +705,6 @@ void x_window_close(GschemToplevel *w_current)
   }
 
   x_toolbars_free_window(w_current);
-
-  x_window_free_gc(w_current);
 
   /* Clear Guile smob weak ref */
   if (w_current->smob != SCM_UNDEFINED) {

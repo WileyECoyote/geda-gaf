@@ -108,9 +108,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->pixbuf_filename    = NULL;
   w_current->pixbuf_wh_ratio    = 0;
 
-  /* ---------------- graphics context stuff --------------- */
-  w_current->gc                 = NULL;
-
   /* ------------------- Drawing surfaces ------------------ */
   w_current->window             = NULL;
   w_current->drawable           = NULL;
