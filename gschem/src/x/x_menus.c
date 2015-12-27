@@ -358,9 +358,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F O");                                        /* Accelerator string */
 
     GtkWidget *open_item = geda_action_create_menu_item (GEDA_ACTION(action));
-    handler = g_signal_connect (G_OBJECT(action), "activate",
-                                G_CALLBACK(x_menu_execute),
-                                w_current);
+    g_signal_connect (G_OBJECT(action), "activate",
+                      G_CALLBACK(x_menu_execute),  w_current);
 
     /* Create a Save menu items */
     action = geda_action_new ("file-save",                                   /* Action name */
@@ -370,9 +369,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F S");                                        /* Accelerator string */
 
     GtkWidget *save_item = geda_action_create_menu_item (GEDA_ACTION(action));
-    handler = g_signal_connect (G_OBJECT(action), "activate",
-                                G_CALLBACK(x_menu_execute),
-                                w_current);
+    g_signal_connect (G_OBJECT(action), "activate",
+                      G_CALLBACK(x_menu_execute), w_current);
 
     action = geda_action_new ("file-quit",                                   /* Action name */
                               "_Quit",                                       /* Text */
@@ -381,9 +379,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
                               "F S");                                        /* Accelerator string */
 
     GtkWidget *quit_item = geda_action_create_menu_item (GEDA_ACTION(action));
-    handler = g_signal_connect (G_OBJECT(action), "activate",
-                                G_CALLBACK(x_menu_execute),
-                                w_current);
+    g_signal_connect (G_OBJECT(action), "activate",
+                      G_CALLBACK(x_menu_execute), w_current);
 
     /* Add basic items to the file menu */
     gtk_container_add (GTK_CONTAINER (file_menu), open_item);
@@ -647,8 +644,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   show_pop_tips    = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
   show_recent_path = eda_config_get_boolean (cfg, group, "show-recent-path", NULL);
 
-  buffer_menu  = FALSE;
-  menus_broken = FALSE;
   toggler_data = NULL;
 
   scm_dynwind_begin (0);
@@ -731,7 +726,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
   if (menu_item != NULL) {
 
-    GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (menu_item));
+    GtkMenuShell *menu_shell = GTK_MENU_SHELL(gtk_widget_get_parent (menu_item));
     GtkWidget    *toggle_menu;
 
     if (w_current->toolbars == TRUE) {
@@ -822,56 +817,59 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           else {
             if (w_current->toolbars_mode == TOOLBAR_SHOW_HORIZ ) {
               g_object_set (G_OBJECT(tb_hori_bulb),  "active", TRUE,  NULL);
-            } } } }
+            }
+          }
+        }
+      }
 
-            setup_radio((GtkCheckMenuItem*)tb_icons_bulb, x_toolbar_icons_only);
-            setup_radio((GtkCheckMenuItem*)tb_text_bulb,  x_toolbar_text_only);
-            setup_radio((GtkCheckMenuItem*)tb_vert_bulb,  x_toolbar_display_both);
-            setup_radio((GtkCheckMenuItem*)tb_hori_bulb,  x_toolbar_display_horiz);
+      setup_radio((GtkCheckMenuItem*)tb_icons_bulb, x_toolbar_icons_only);
+      setup_radio((GtkCheckMenuItem*)tb_text_bulb,  x_toolbar_text_only);
+      setup_radio((GtkCheckMenuItem*)tb_vert_bulb,  x_toolbar_display_both);
+      setup_radio((GtkCheckMenuItem*)tb_hori_bulb,  x_toolbar_display_horiz);
 
-            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_icons_bulb, OPT_BAR_ICON_MENU_PATH);
-            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_text_bulb,  OPT_BAR_TEXT_MENU_PATH);
-            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_vert_bulb,  OPT_BAR_VERT_MENU_PATH);
-            GEDA_OBJECT_SET_DATA(MENU_BAR, tb_hori_bulb,  OPT_BAR_HOZI_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, tb_icons_bulb, OPT_BAR_ICON_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, tb_text_bulb,  OPT_BAR_TEXT_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, tb_vert_bulb,  OPT_BAR_VERT_MENU_PATH);
+      GEDA_OBJECT_SET_DATA(MENU_BAR, tb_hori_bulb,  OPT_BAR_HOZI_MENU_PATH);
 
-            gtk_container_add (GTK_CONTAINER (toggle_menu), tb_icons_bulb);
-            gtk_container_add (GTK_CONTAINER (toggle_menu), tb_text_bulb);
-            gtk_container_add (GTK_CONTAINER (toggle_menu), tb_vert_bulb);
-            gtk_container_add (GTK_CONTAINER (toggle_menu), tb_hori_bulb);
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_icons_bulb);
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_text_bulb);
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_vert_bulb);
+      gtk_container_add (GTK_CONTAINER (toggle_menu), tb_hori_bulb);
 
-            gtk_widget_set_tooltip_text(tb_icons_bulb, _("Display Icons on the toolbar"));
-            gtk_widget_set_tooltip_text(tb_text_bulb,  _("Display Text on the toolbar"));
-            gtk_widget_set_tooltip_text(tb_vert_bulb,  _("Display Icons and Text vertically on the toolbar"));
-            gtk_widget_set_tooltip_text(tb_hori_bulb,  _("Display Icons and Text horizontally on the toolbar"));
+      gtk_widget_set_tooltip_text(tb_icons_bulb, _("Display Icons on the toolbar"));
+      gtk_widget_set_tooltip_text(tb_text_bulb,  _("Display Text on the toolbar"));
+      gtk_widget_set_tooltip_text(tb_vert_bulb,  _("Display Icons and Text vertically on the toolbar"));
+      gtk_widget_set_tooltip_text(tb_hori_bulb,  _("Display Icons and Text horizontally on the toolbar"));
 
-            gtk_menu_shell_prepend((GtkMenuShell*)menu, menu_item);
+      gtk_menu_shell_prepend(menu_shell, menu_item);
 
-            g_signal_connect (G_OBJECT(stdbar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(stdbar_toggle), "toggled",
                                        G_CALLBACK(x_window_standard_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(selbar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(selbar_toggle), "toggled",
                                        G_CALLBACK(x_window_select_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(pagebar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(pagebar_toggle), "toggled",
                                        G_CALLBACK(x_window_page_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(addbar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(addbar_toggle), "toggled",
                                        G_CALLBACK(x_window_add_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(zoombar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(zoombar_toggle), "toggled",
                                        G_CALLBACK(x_window_zoom_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(editbar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(editbar_toggle), "toggled",
                                        G_CALLBACK(x_window_edit_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(attribar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(attribar_toggle), "toggled",
                                        G_CALLBACK(x_window_attribute_toolbar_toggle),
                                        w_current);
-            g_signal_connect (G_OBJECT(gridbar_toggle), "toggled",
+      g_signal_connect (G_OBJECT(gridbar_toggle), "toggled",
                                        G_CALLBACK(x_window_gridsnap_toolbar_toggle),
                                        w_current);
 
-            gtk_widget_show_all(menu_item);
+      gtk_widget_show_all(menu_item);
     }
 
     /* Menu Options */
@@ -911,7 +909,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_set_tooltip_text(menu_popcons_toggle, _("Toggle visibility of main context menu icons"));
     gtk_widget_set_tooltip_text(menu_poptips_toggle, _("Toggle main context menu tooltips"));
 
-    gtk_menu_shell_prepend((GtkMenuShell*)menu, menu_item);
+    gtk_menu_shell_prepend(menu_shell, menu_item);
 
     g_signal_connect (G_OBJECT(menu_icons_toggle), "toggled",
                       G_CALLBACK(x_menu_toggle_icons),
@@ -923,8 +921,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     gtk_widget_show_all(menu_item);
   }
-  else
+  else {
     fprintf(stderr, "No Menu!\n");
+  }
 
   ui_list = g_slist_append(ui_list, menu_data);
   w_current->ui_index = g_slist_length(ui_list) -1;
@@ -1132,6 +1131,8 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
  *         main menu.
  */
 
+static int sensitivity_errors = 0;
+
 /*! \brief Set Sensitivity of Main Menu Item
  *  \par Function Description
  *  This function is called from i_basic to set the senitivity of menu items!
@@ -1139,7 +1140,6 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
 void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
   GtkWidget *menubar;
-  static int sensitivity_errors = 0;
 
   if (!buf) {
     return;
@@ -1156,6 +1156,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
       /* item = pointer to menu widget -- don't free here */
     }
     else {
+
       if (verbose_mode) {
         u_log_message(_("Tried to set the sensitivity on non-existent menu item '%s'\n"), buf);
       }

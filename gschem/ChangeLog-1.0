@@ -1,3 +1,11 @@
+2015-12-27  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: remove setting handler when connecting open_item,
+      save_item and quit_item for the fallback menu, remove unessacary
+      initializing buffer_menu and menus_broken to NULL, change GtkContainer
+      *menu to GtkMenuShell and rename menu_shell. Make sensitivity_errors
+      static to the module.
+
 2015-12-26  Wiley E. Hill <wileyhill@gmail.com>
 
     * Cbase/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT
