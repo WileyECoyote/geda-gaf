@@ -1,3 +1,9 @@
+2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Remove unnecessary initialization of variables
+      "object" in function PyGeda_add_object and "point" in function
+       get_cue_locations_lowlevel.
+
 2015-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Reduce scope of long_val and new_value

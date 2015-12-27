@@ -1794,7 +1794,6 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
             GedaCapsule *py_capsule;
 
             py_capsule = (GedaCapsule*)PyList_GET_ITEM(py_list, i);
-            object     = NULL;
             object     = retrieve_floating_object(py_capsule->sid);
 
             if (object) {
@@ -3098,7 +3097,6 @@ get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
   }
 
   for (index = 0; index<results->len; index++) {
-    point   = NULL;
     point   = &g_array_index(results, POINT, index);
     py_pair = Py_BuildValue("ii", point->x, point->y);
     PyList_Append(py_list, py_pair);
