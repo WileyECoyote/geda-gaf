@@ -315,7 +315,7 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
 {
   g_return_if_fail (o_current != NULL);
 
-  if(w_current->render_adaptor == CAIRO_ADAPTOR) {
+  if (w_current->render_adaptor == CAIRO_ADAPTOR) {
     eda_renderer_draw (CairoRenderer, o_current);
   }
   else {

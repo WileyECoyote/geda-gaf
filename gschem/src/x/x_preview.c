@@ -115,7 +115,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
   preview_window->drawable = preview_window->window;
 
-  x_window_setup_gc (preview_window);
+  x_window_setup_context (preview_window);
 
   preview_page = s_page_new_with_notify (preview_toplevel, "unknown");
   x_window_setup_page(preview_window, preview_page,
@@ -617,7 +617,7 @@ preview_finalize (GObject *self)
 
     GEDA_UNREF (preview_window->drawing_area);
     preview_window->drawing_area = NULL;
-    x_window_free_gc (preview_window);
+    //x_window_free_gc (preview_window);
     GEDA_UNREF (preview_window);
     preview->preview_window = NULL;
   }

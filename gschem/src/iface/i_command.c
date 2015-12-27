@@ -2492,11 +2492,9 @@ COMMAND (do_page_down)
   if (current_page != NULL) {
 
     if (w_current->enforce_hierarchy) {
-
       p_new = s_hierarchy_find_next_page(toplevel->pages, current_page);
     }
     else {
-
       p_new = geda_toplevel_get_page_down(toplevel);
     }
 
@@ -2675,9 +2673,11 @@ COMMAND (do_down_schematic)
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
-    attrib =
-      o_attrib_search_inherited_attribs_by_name (object, "source", count);
+
+    attrib = o_attrib_search_inherited_attribs_by_name (object, "source", count);
+
     looking_inside = TRUE;
+
 #if DEBUG
     printf("going to look inside now\n");
 #endif
@@ -2705,10 +2705,11 @@ COMMAND (do_down_schematic)
 
       /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
       if (child != NULL) {
+
         x_window_setup_page(w_current, child, w_current->world_left,
-                                              w_current->world_right,
-                                              w_current->world_top,
-                                              w_current->world_bottom);
+                            w_current->world_right,
+                            w_current->world_top,
+                            w_current->world_bottom);
         s_page_goto (child);
         i_zoom_world_extents(w_current,
                              s_page_get_objects (child),
@@ -2716,8 +2717,8 @@ COMMAND (do_down_schematic)
         o_undo_savestate(w_current, UNDO_ALL);
         s_page_goto (parent);
         o_notify_change_add (child,
-                            (ChangeNotifyFunc) o_invalidate_object,
-                            (ChangeNotifyFunc) o_invalidate_object, w_current);
+                             (ChangeNotifyFunc) o_invalidate_object,
+                             (ChangeNotifyFunc) o_invalidate_object, w_current);
       }
 
       /* save the first page */
@@ -2740,7 +2741,6 @@ COMMAND (do_down_schematic)
                                   secondary, _("Hierarchy Error"));
         GEDA_FREE (secondary);
         g_error_free (err);
-
       }
       else {
         /* this only signifies that we tried */
@@ -2761,7 +2761,7 @@ COMMAND (do_down_schematic)
     /* continue looking outside first */
     if (!looking_inside) {
       attrib =
-        o_attrib_search_attached_attribs_by_name (object, "source", count);
+      o_attrib_search_attached_attribs_by_name (object, "source", count);
     }
 
     /* okay we were looking outside and didn't find anything,

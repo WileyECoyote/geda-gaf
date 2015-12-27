@@ -601,13 +601,14 @@ int x_event_expose (GtkWidget      *widget,
 
     save_cr = w_current->cr;
 
-    gdk_window_begin_paint_region(widget->window, event->region );
+    gdk_window_begin_paint_region(widget->window, event->region);
 
-    w_current->cr = gdk_cairo_create( widget->window );
+    w_current->cr = gdk_cairo_create(widget->window);
 
     cairo_set_antialias(w_current->cr, w_current->anti_aliasing);
 
     gdk_cairo_rectangle (w_current->cr, &(event->area));
+
     cairo_clip (w_current->cr);
 
     x_grid_repaint_background (w_current, &(event->area));

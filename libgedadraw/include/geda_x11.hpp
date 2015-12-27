@@ -136,8 +136,8 @@ public:
   XColor        color;
   Colormap      colormap;
 
-  EdaX11Render(const char *font_name, int size);
- ~EdaX11Render();
+  EdaX11Render (const char *font_name, int size);
+ ~EdaX11Render ();
 
   void geda_x11_draw_set_surface     (cairo_t *cr, double scale_factor);
   void geda_x11_draw_set_color       (unsigned short red, unsigned short green, unsigned short blue);
