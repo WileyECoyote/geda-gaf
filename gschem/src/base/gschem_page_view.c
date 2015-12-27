@@ -291,16 +291,17 @@ gschem_page_view_class_init (GschemPageViewClass *klass)
     0);
 }
 
-
 /*! \brief Get a graphics context for this view
  *
  *  \param [in] view The view
  *  \return The graphics context, or NULL if the window is not realized
  */
 GdkGC*
-gschem_page_view_get_gc (GschemPageView *view)
+gschem_page_view_get_gc (GschemToplevel *w_current)
 {
-  g_return_val_if_fail (view != NULL, NULL);
+  g_return_val_if_fail (w_current != NULL, NULL);
+
+  GschemPageView *view = (GschemPageView*)w_current->drawing_area;
 
   return view->gc;
 }

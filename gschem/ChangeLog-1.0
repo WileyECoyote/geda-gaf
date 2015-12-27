@@ -3,6 +3,9 @@
     * Cbase/gschem_page_view.c: Replace cclosure_marshal_VOID__OBJECT_OBJECT
       with geda_marshal_VOID__OBJECT_OBJECT,.
 
+    * include/gschem_page_view.h: change argument to function gschem_page_view_get_gc
+      from GschemPageView * to GschemToplevel *.
+
     * include/gschem_toplevel.h: Remove GdkGC.
 
     * src/base/gschem_toplevel.c: Remove initializing w_current->gc.

@@ -70,9 +70,8 @@ struct _GschemPageView
 };
 
 
-
 GdkGC*
-gschem_page_view_get_gc (GschemPageView *view);
+gschem_page_view_get_gc (GschemToplevel *w_current);
 
 GtkAdjustment*
 gschem_page_view_get_hadjustment (GschemPageView *view);
