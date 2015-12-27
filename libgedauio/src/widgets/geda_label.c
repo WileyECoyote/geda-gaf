@@ -363,8 +363,8 @@ static int get_label_char_width (GedaLabel *label)
   char_pixels = MAX (char_width, digit_width);
   pango_font_metrics_unref (metrics);
 
-  if (label->width_chars < 0)
-  {
+  if (label->width_chars < 0) {
+
     PangoRectangle rect;
 
     pango_layout_set_width (label->layout, -1);
@@ -373,8 +373,8 @@ static int get_label_char_width (GedaLabel *label)
     w = char_pixels * MAX (label->max_width_chars, 3);
     w = MIN (rect.width, w);
   }
-  else
-  {
+  else {
+
     /* enforce minimum width for ellipsized labels at ~3 chars */
     w = char_pixels * MAX (label->width_chars, 3);
   }
@@ -385,7 +385,8 @@ static int get_label_char_width (GedaLabel *label)
 /* called by: geda_label_size_request
  *            geda_label_ensure_layout
  */
-GtkWidgetAuxInfo* geda_widget_get_aux_info (GtkWidget *widget, bool create)
+static inline GtkWidgetAuxInfo*
+geda_widget_get_aux_info (GtkWidget *widget, bool create)
 {
   GtkWidgetAuxInfo *aux_info;
 
@@ -395,17 +396,19 @@ GtkWidgetAuxInfo* geda_widget_get_aux_info (GtkWidget *widget, bool create)
 
     aux_info = malloc (sizeof(GtkWidgetAuxInfo));
 
-    aux_info->width = -1;
+    aux_info->width  = -1;
     aux_info->height = -1;
-    aux_info->x = 0;
-    aux_info->y = 0;
-    aux_info->x_set = FALSE;
-    aux_info->y_set = FALSE;
+    aux_info->x      = 0;
+    aux_info->y      = 0;
+    aux_info->x_set  = FALSE;
+    aux_info->y_set  = FALSE;
+
     g_object_set_qdata (G_OBJECT (widget), quark_aux_info, aux_info);
   }
 
   return aux_info;
 }
+
 static void
 geda_label_style_set (GtkWidget *widget,  GtkStyle  *previous_style)
 {
@@ -1923,8 +1926,7 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
     GtkWidget *menu_shell;
 
-    menu_shell = gtk_widget_get_ancestor (widget,
-                                          GTK_TYPE_MENU_SHELL);
+    menu_shell = gtk_widget_get_ancestor (widget, GTK_TYPE_MENU_SHELL);
 
     if (menu_shell) {
       mnemonic_menu = menu_shell;
@@ -1943,6 +1945,7 @@ static void
 label_shortcut_setting_apply (GedaLabel *label)
 {
   geda_label_recalculate (label);
+
   if (GTK_IS_ACCEL_LABEL (label))
     gtk_accel_label_refetch (GTK_ACCEL_LABEL (label));
 }
@@ -2933,13 +2936,14 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 
   label->priv->pattern_set = FALSE;
 
-  if (pattern)
-    {
+  if (pattern) {
+
       geda_label_set_pattern_internal (label, pattern, FALSE);
       label->priv->pattern_set = TRUE;
-    }
-  else
+  }
+  else {
     geda_label_recalculate (label);
+  }
 
   geda_label_clear_layout (label);
 
@@ -2986,17 +2990,18 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
   g_return_if_fail (GEDA_IS_LABEL (label));
   g_return_if_fail (jtype >= GTK_JUSTIFY_LEFT && jtype <= GTK_JUSTIFY_FILL);
 
-  if ((GtkJustification) label->priv->jtype != jtype)
-    {
-      label->priv->jtype = jtype;
+  if ((GtkJustification) label->priv->jtype != jtype) {
 
-      /* No real need to be this drastic, but easier than duplicating the code */
-      geda_label_clear_layout (label);
+    label->priv->jtype = jtype;
 
-      g_object_notify (G_OBJECT (label), "justify");
+    /* No real need to be this drastic, but easier than duplicating the code */
+    geda_label_clear_layout (label);
 
-      gtk_widget_queue_resize (GTK_WIDGET (label));
-    }
+    g_object_notify (G_OBJECT (label), "justify");
+
+    gtk_widget_queue_resize (GTK_WIDGET (label));
+
+  }
 }
 void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
 {
@@ -3307,39 +3312,40 @@ geda_label_clear_layout (GedaLabel *label)
   }
 }
 
+/* If word wrapping is on, then the height requisition can depend
+ * on:
+ *   - Any width set on the widget via gtk_widget_set_size_request().
+ *   - The padding of the widget (xpad, set by gtk_misc_set_padding)
+ *
+ * Instead of trying to detect changes to these quantities, if we
+ * are wrapping, we just rewrap for each size request. Since size
+ * requisitions are cached by the GTK+ core, this is not expensive.
+ */
+
 static void
 geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaLabel *label;
+  GedaLabel *label = GEDA_LABEL (widget);
+
   int width, height;
-  PangoRectangle logical_rect;
-  GtkWidgetAuxInfo *aux_info;
 
-  /* If word wrapping is on, then the height requisition can depend
-   * on:
-   *   - Any width set on the widget via gtk_widget_set_size_request().
-   *   - The padding of the widget (xpad, set by gtk_misc_set_padding)
-   *
-   * Instead of trying to detect changes to these quantities, if we
-   * are wrapping, we just rewrap for each size request. Since size
-   * requisitions are cached by the GTK+ core, this is not expensive.
-   */
-  label = GEDA_LABEL (widget);
-
-  if (label->priv->wrap_mode)
+  if (label->priv->wrap_mode) {
     geda_label_clear_layout (label);
+  }
 
   geda_label_ensure_layout (label);
 
   width  = label->misc.xpad * 2;
   height = label->misc.ypad * 2;
 
-  aux_info = geda_widget_get_aux_info (widget, FALSE);
-
   if (label->priv->have_transform) {
-    PangoRectangle rect;
-    PangoContext *context = pango_layout_get_context (label->layout);
-    const PangoMatrix *matrix = pango_context_get_matrix (context);
+
+    PangoRectangle     rect;
+    PangoContext      *context;
+    const PangoMatrix *matrix;
+
+    context = pango_layout_get_context (label->layout);
+    matrix  = pango_context_get_matrix (context);
 
     pango_layout_get_extents (label->layout, NULL, &rect);
     pango_matrix_transform_rectangle (matrix, &rect);
@@ -3347,47 +3353,60 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
     requisition->width = width + rect.width;
     requisition->height = height + rect.height;
-
-    return;
   }
-  else
+  else {
+
+    GtkWidgetAuxInfo *aux_info;
+    PangoRectangle    logical_rect;
+
+    aux_info = geda_widget_get_aux_info (widget, FALSE);
+
     pango_layout_get_extents (label->layout, NULL, &logical_rect);
 
-  if ((label->priv->wrap_mode || label->priv->ellipsize ||
-       label->width_chars > 0 || label->max_width_chars > 0) &&
-       aux_info && aux_info->width > 0) {
-    width += aux_info->width;
+    if ((label->priv->wrap_mode || label->priv->ellipsize ||
+         label->width_chars > 0 || label->max_width_chars > 0) &&
+         aux_info && aux_info->width > 0)
+    {
+      width += aux_info->width;
     }
     else if (label->priv->ellipsize ||
              label->width_chars > 0 ||
-             label->max_width_chars > 0) {
+             label->max_width_chars > 0)
+    {
       width += PANGO_PIXELS (get_label_char_width (label));
     }
-  else
-    width += PANGO_PIXELS (logical_rect.width);
+    else {
+      width += PANGO_PIXELS (logical_rect.width);
+    }
 
-  if (label->priv->single_line_mode) {
-    PangoContext *context;
-    PangoFontMetrics *metrics;
-    int ascent, descent;
+    free(aux_info);
+    aux_info = NULL;
 
-    context = pango_layout_get_context (label->layout);
-    metrics = pango_context_get_metrics (context,
-                                         widget->style->font_desc,
-                                         pango_context_get_language (context));
+    if (label->priv->single_line_mode) {
 
-    ascent  = pango_font_metrics_get_ascent (metrics);
-    descent = pango_font_metrics_get_descent (metrics);
-    pango_font_metrics_unref (metrics);
+      PangoContext     *context;
+      PangoFontMetrics *metrics;
 
-    height += PANGO_PIXELS (ascent + descent);
+      int ascent, descent;
+
+      context = pango_layout_get_context (label->layout);
+      metrics = pango_context_get_metrics (context,
+                                           widget->style->font_desc,
+                                           pango_context_get_language (context));
+
+      ascent  = pango_font_metrics_get_ascent (metrics);
+      descent = pango_font_metrics_get_descent (metrics);
+      pango_font_metrics_unref (metrics);
+
+      height += PANGO_PIXELS (ascent + descent);
+    }
+    else {
+      height += PANGO_PIXELS (logical_rect.height);
+    }
+
+    requisition->width  = width;
+    requisition->height = height;
   }
-  else
-    height += PANGO_PIXELS (logical_rect.height);
-
-  requisition->width = width;
-  requisition->height = height;
-  free(aux_info);
 }
 
 static void

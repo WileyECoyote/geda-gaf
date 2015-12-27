@@ -1,3 +1,10 @@
+2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/widgets/geda_label.c: Fix potential resource leak in function
+       geda_label_size_request; aux_info, make geda_widget_get_aux_info
+       static inline. Perform general cleaning/reformatting to improve
+       readability.
+
 2015-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/dialogs/geda_image_chooser.c: Add function geda_image_chooser
