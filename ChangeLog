@@ -1,3 +1,11 @@
+2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/geda-name-tag.png: New graphics image file.
+
+    * bitmaps/geda-name-value.png: New graphics image file.
+
+    * bitmaps/geda-value.png: New graphics image file.
+
 2015-12-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Remove AM_INIT_AUTOMAKE cruft use AX_INIT_AUTOMAKE,

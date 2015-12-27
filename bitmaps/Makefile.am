@@ -69,6 +69,8 @@ bitmapdata_DATA   = \
 			geda-molecule.png                  \
 			geda-move.png                      \
 			geda-multi.png                     \
+			geda-name-tag.png                  \
+			geda-name-value.png                \
 			geda-nand.png                      \
 			geda-nand3.png                     \
 			geda-net.png                       \
@@ -105,11 +107,12 @@ bitmapdata_DATA   = \
 			geda-text-editor.png               \
 			geda-tools.png                     \
 			geda-translate.png                 \
-			geda-verilog-blue.png              \
-			geda-verilog-grn.png               \
 			geda-undo.png                      \
 			geda-unlock.png                    \
 			geda-unselect-all.png              \
+			geda-value.png                     \
+			geda-verilog-blue.png              \
+			geda-verilog-grn.png               \
 			geda_warning.png                   \
 			geda-wave.png                      \
 			geda-waves.png                     \
