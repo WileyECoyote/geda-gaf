@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="48"
+   width="48"
+   version="1.0"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="geda-prompt.svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1141"
+     inkscape:window-height="632"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="6.9532167"
+     inkscape:cx="28.471245"
+     inkscape:cy="20.165529"
+     inkscape:window-x="65"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <rect
+     x="0"
+     y="0"
+     width="60"
+     height="60"
+     style="fill:none;display:none"
+     id="rect1306" />
+  <g
+     id="g2998">
+    <rect
+       id="rect2386"
+       style="fill:none"
+       rx="0"
+       ry="0.16787"
+       height="48"
+       width="48"
+       y="0"
+       x="0" />
+    <rect
+       id="rect3158"
+       ry="3.9179001"
+       height="40"
+       width="40"
+       y="4"
+       x="4" />
+    <rect
+       id="rect3162"
+       style="fill:#ffffff"
+       ry="2.9179001"
+       height="32"
+       width="32"
+       y="8"
+       x="8" />
+    <rect
+       id="rect3170"
+       ry="1.6548361"
+       height="4.1370902"
+       width="12.719091"
+       y="32.862911"
+       x="26" />
+    <path
+       id="path3172"
+       style="fill:none;stroke:#000000;stroke-width:6.39083242;stroke-linecap:round;stroke-linejoin:round"
+       d="m 14.195416,12.45614 8.609168,10.674222 -8.609168,10.674222"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

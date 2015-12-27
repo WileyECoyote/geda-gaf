@@ -54,11 +54,14 @@ bitmapdata_DATA   = \
 			geda-display-color.png             \
 			geda-draft.png                     \
 			geda-film-roll.png                 \
+			geda-find.png                      \
 			geda-grid-dot.png                  \
 			geda-grid-mesh.png                 \
 			geda-icprint.png                   \
 			geda-inbed.png                     \
 			geda-inspect-grn.png               \
+			geda-invisible.png                 \
+			geda-lightning.png                 \
 			geda-line.png                      \
 			geda-line-type.png                 \
 			geda-lock.png                      \
@@ -84,6 +87,7 @@ bitmapdata_DATA   = \
 			geda-plot.png                      \
 			geda-probe.png                     \
 			geda-probe2.png                    \
+			geda-prompt.png                    \
 			geda-redo.png                      \
 			geda-rotate.png                    \
 			geda-save-image.png                \
@@ -184,7 +188,7 @@ bitmapdata_22_DATA = \
 					 geda_design4_22x22.png             \
 					 geda_display_22x22.png             \
 					 geda_display_color_22x22.xpm       \
-					 geda_draft_16x16.png               \
+					 geda_draft_22x22.png               \
 					 geda_eye_glasses_22x16.png         \
 					 geda_grid_dot_22x22.png            \
 					 geda_grid_mesh_22x22.png           \
@@ -354,7 +358,7 @@ bitmapdata_26_DATA = \
 					 geda_grid_mesh_26x26.png           \
 					 geda_line_26x26.xpm                \
 					 geda_line_type_26x26.png           \
-					 geda_locate_reference_26x26.xpm	   \
+					 geda_locate_reference_26x26.xpm    \
 					 geda_lock_26x26.png                \
 					 geda_magnet_26x26.png              \
 					 geda_mesh_26x26.png                \

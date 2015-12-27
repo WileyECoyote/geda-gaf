@@ -1,10 +1,15 @@
 2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * bitmaps/geda-name-tag.png: New graphics image file.
+    * bitmaps/: New graphics image files:
 
-    * bitmaps/geda-name-value.png: New graphics image file.
-
-    * bitmaps/geda-value.png: New graphics image file.
+    * bitmaps/geda-name-tag.png
+    * bitmaps/geda-name-value.png
+    * bitmaps/geda-value.png
+    * bitmaps/geda-find.png
+    * bitmaps/geda-invisible.png
+    * bitmaps/geda-lightning.png
+    * bitmaps/geda-prompt.png
+    * bitmaps/geda-wave2.png
 
 2015-12-15 Wiley E. Hill <wileyhill@gmail.com>
 

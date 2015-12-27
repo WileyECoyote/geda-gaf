@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="48"
+   width="48"
+   version="1.0"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="geda-wave.svg">
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1087"
+     inkscape:window-height="737"
+     id="namedview11"
+     showgrid="false"
+     inkscape:zoom="9.8333333"
+     inkscape:cx="27.187325"
+     inkscape:cy="27.723344"
+     inkscape:window-x="65"
+     inkscape:window-y="34"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <rect
+     x="0"
+     y="0"
+     width="60"
+     height="60"
+     style="fill:none;display:none"
+     id="rect1306" />
+  <rect
+     x="0"
+     y="0"
+     width="48"
+     height="48"
+     ry="0.16787"
+     rx="0"
+     style="fill:none"
+     id="rect2386" />
+  <g
+     id="geda-wave"
+     inkscape:label="geda-wave2"
+     inkscape:export-filename="../geda-wave2.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
+    <rect
+       id="rect3158"
+       ry="3.9179001"
+       height="40"
+       width="40"
+       y="4"
+       x="4" />
+    <rect
+       id="rect3162"
+       style="fill:#ffffff"
+       ry="2.9179001"
+       height="32"
+       width="32"
+       y="8"
+       x="8" />
+    <path
+       id="path7691"
+       style="fill:none;stroke:#008000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 11.20268,26.476546 h 6.097968 l 4.065312,8.049587 7.114296,-21.848877 5.081639,13.79929 h 3.048984"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
