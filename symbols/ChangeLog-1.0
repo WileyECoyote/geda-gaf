@@ -7,6 +7,13 @@
           * onsemi/regulator/MC7905B-1.sym
           * onsemi/regulator/MC7905B-2.sym
 
+    * onsemi/regulator/: Add 4 fixed negative 6 Volt regulators:
+
+          * onsemi/regulator/MC7908A-1.sym
+          * onsemi/regulator/MC7908A-2.sym
+          * onsemi/regulator/MC7908B-1.sym
+          * onsemi/regulator/MC7908B-2.sym
+
 2015-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add group onsemi/schottky, as Manufacturers/Schottky,
