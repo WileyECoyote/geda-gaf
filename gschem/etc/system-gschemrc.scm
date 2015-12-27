@@ -1636,6 +1636,7 @@
 (map-keys "F R"        "page-revert")
 (map-keys "F I"        "file-write-image")
 (map-keys "F T"        "file-run-script")
+(map-keys "F <Shift>R" "file-repl")
 (map-keys "<Shift>C A" "file-close-all")
 (map-keys "F Q"        "file-quit")
 
@@ -2016,6 +2017,7 @@
      `( (,(N_ "_New")              file-new             "gtk-new"             ,(N_ "Create a new empty file" ))
         (,(N_ "_Open...")          file-open            "gtk-open"            ,(N_ "Open an existing schematic or symbol file"))
         (,(N_ "Open Recen_t")      #f                   "geda-open-recent"    ,(N_ "Open recently accessed schematic or symbol files"))
+       ;(,(N_ "New Window")        file-new-window      "window-new"          ,(N_ "Create a new window"))
 
         ("SEPARATOR"               #f                   #f)
         (,(N_ "_Save")             file-save            "gtk-save"            ,(N_ "Save the current document"))
@@ -2261,6 +2263,7 @@
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Invoke Macro")             tools-invoke-macro     "gtk-execute"      ,(N_ "Invoke a macro"))
         (,(N_ "G_uile Path...")           tools-guile-path       "guile-logo"       ,(N_ "View or manage guile path"))
+        (,(N_ "REPL...")                  tools-repl             "gtk-execute"      ,(N_ "open a REPL"))
 
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))

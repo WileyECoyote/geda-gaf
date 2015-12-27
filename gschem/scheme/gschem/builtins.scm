@@ -24,6 +24,7 @@
   #:use-module (gschem core builtins)
   #:use-module (gschem action)
   #:use-module (gschem gschemdoc)
+  #:use-module (gschem repl)
   #:use-module (gschem selection)
   #:use-module (gschem window)
   #:use-module (srfi srfi-1))
@@ -318,6 +319,9 @@
 
 (define-action-public (&tools-invoke-macro #:label (_ "Invoke Macro"))
   (%tools-invoke-macro))
+
+(define-action-public (&tools-repl #:label (_ "Terminal REPL") #:icon "gtk-execute")
+ (%tools-repl))
 
 (define-action-public (&tools-translate #:label (_ "Translate Symbol"))
   (%tools-translate))

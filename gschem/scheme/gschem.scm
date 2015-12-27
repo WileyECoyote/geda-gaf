@@ -19,6 +19,7 @@
 ;;; MA 02111-1301 USA.
 
 (use-modules (gschem keymap)
+             (gschem repl)
              (gschem selection)
              (gschem window)
              (gschem gschemdoc)
@@ -164,6 +165,10 @@ found, shows a dialog with an error message."
      (gschem-msg (string-append
                   "Could not show documentation for selected component:\n\n"
                   (apply format #f msg args))))))
+
+(define (tools-repl)
+  (start-repl-in-background-terminal)
+)
 
 (define (zoom-sw)
   (show-wiki "geda:documentation")

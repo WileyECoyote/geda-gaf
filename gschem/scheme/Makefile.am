@@ -21,6 +21,7 @@ nobase_dist_scmdata_DATA = \
 			gschem/gschemdoc.scm \
 			gschem/hook.scm \
 			gschem/keymap.scm \
+			gschem/repl.scm \
 			gschem/selection.scm \
 			gschem/util.scm \
 			gschem/window.scm \
