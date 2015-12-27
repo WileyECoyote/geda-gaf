@@ -93,7 +93,7 @@ void x_window_setup (GschemToplevel *w_current)
  *  with the GdKWindow'ed Drawing Area for later use by low level
  *  drawing routines, but not libgedacairo.
  */
-bool x_window_setup_gc(GschemToplevel *w_current)
+bool x_window_setup_context(GschemToplevel *w_current)
 {
   bool result = FALSE;
   if (!w_current) {
@@ -119,15 +119,17 @@ bool x_window_setup_gc(GschemToplevel *w_current)
   return result;
 }
 
+
 /*! \brief Free the Graphic Context
  *  \par Function Description
  *  We don't actually free the graphic context, we just
  *  dereference here, which result in it's destruction.
- */
+
 void x_window_free_gc(GschemToplevel *w_current)
 {
   g_object_unref(w_current->gc);
 }
+ */
 
 /*! \brief Create the Drawing Area
  *  \par Function Description
@@ -594,7 +596,7 @@ void x_window_create_main(GschemToplevel *w_current)
   /* Not sure why we need two pointer to GdkWindow */
   w_current->window = DrawingArea->window;
   w_current->drawable = w_current->window;
-  x_window_setup_gc(w_current);
+  x_window_setup_context(w_current);
 }
 
 /*! \brief Close All Edit Dialogs

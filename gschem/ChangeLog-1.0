@@ -12,6 +12,8 @@
 
     * src/x/x_stroke.c: Call gschem_page_view_get_gc in x_stroke_record.
 
+    * src/x/x_window.c: Rename function x_window_setup_gc to x_window_setup_context.
+
 2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Initialize guile using scm_init_guile in function
