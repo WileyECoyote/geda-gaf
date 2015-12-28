@@ -38,6 +38,9 @@ PROGRAM3="curl"
 OPT=""
 FINAL_ARGUMENT="${@: -1}"
 
+# directory names to be excluded when checking geda-clib.scm
+EXCLUDE='! -name doc ! -name src ! -name model'
+
 ERR_FILE_NOT_FOUND=2
 ERR_BAD_ARGS=65
 
@@ -105,10 +108,12 @@ do_Assimilate_Arguments(){
           --all | -a) FILTER="*"                                      ;;
          --clip | -c) CHECK_CLIB=true                                 ;;
          --docs | -d) have_curl                                       ;;
+     --suppress | -s) OPT+=" -u "                                     ;;
     -n | --no_report) REPORT=false                                    ;;
        -r | --report) do_report_only                                  ;;
     	           *) case $PREVIOUS_ARGUMENT in
        --filter | -f) FILTER="$Arg"                                   ;;
+
                    *)                                                 ;;
                       esac                                            ;;
       esac
@@ -118,8 +123,8 @@ do_Assimilate_Arguments(){
 
 do_report_stats() {
   if [ -d $1 ] ; then
-    count=(`ls $1/$FILTER -1 | grep -v ^l | wc -l`)
-    echo "FINAL_ARGUMENT:$1    Symbols:$count"
+    count=(`ls $1/$FILTER -1 2>/dev/null | grep -v ^l | wc -l`)
+    echo "Count:$1    Symbols:$count"
   fi
   return $count;
 }
@@ -175,9 +180,13 @@ do_check_all_containers () {
   SRC_DIRS=(`find * -maxdepth 0 -type d -printf "%f "`)
   if [[ ! $exist = "" ]] ; then
     for subdir in "${SRC_DIRS[@]}" ; do
-      $PROGRAM1 $OPT $subdir/$FILTER
-      if [ $? -ne 0 ] ; then
-        result=1;
+      if [ "$(ls -A $subdir/$FILTER 2>/dev/null)" ] ; then
+        $PROGRAM1 $OPT $subdir/$FILTER
+        if [ $? -ne 0 ] ; then
+          result=1;
+        fi
+      else
+        echo "$subdir/$FILTER has no symbol files"
       fi
       if $REPORT ; then
         do_report_stats $subdir
@@ -204,7 +213,7 @@ do_check_clib_references () {
 
   cd "$symdir"
 
-  SYM_DIRS=(`find * -maxdepth 1 -type d ! -name doc -printf "%f "`)
+  SYM_DIRS=(`find * -maxdepth 1 -type d $EXCLUDE -printf "%f "`)
 
   for subdir in "${SYM_DIRS[@]}" ; do
     vecho "Checking reference to $subdir"
@@ -272,14 +281,18 @@ else
         do_report_stats $FINAL_ARGUMENT
       fi
       $PROGRAM1 $OPT $FINAL_ARGUMENT/${FILTER}
+      result=$?
     fi
     if $CHECK_DOCS ; then
        do_check_docs $FINAL_ARGUMENT
+       if [ $? -ne 0 ] ; then
+         result=1;
+       fi
     fi
   else
     vecho "Looking in all containers for $FILTER"
     do_check_all_containers
   fi
 fi
-exit
 
+exit $result
