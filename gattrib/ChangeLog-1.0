@@ -1,6 +1,7 @@
 2015-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Simplify illogical conditional.
+    * src/gtksheet/gtksheet.c: Simplify illogical conditional. Remove
+      redundent check of sheet in function _gtk_sheet_update_extent.
 
     * src/gtksheet/gtkdataformat.c: Reduce scope of char c in function
       insert_thousands_seps.
