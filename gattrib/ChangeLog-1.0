@@ -8,7 +8,8 @@
 
     * src/gtksheet/gtkitementry.c: Reduce scope of text in function gtk_
       item_entry_get_cursor_locations. Reduce scope of line and widget in
-      function gtk_item_entry_draw_text.
+      function gtk_item_entry_draw_text. Eliminate unused variable editable
+      in function gtk_item_entry_realize.
 
 2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
