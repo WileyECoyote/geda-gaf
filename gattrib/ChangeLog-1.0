@@ -11,6 +11,9 @@
       function gtk_item_entry_draw_text. Eliminate unused variable editable
       in function gtk_item_entry_realize.
 
+    * src/listsort.c: check list & tail are not NULL before referencing in
+      function listsort, reduce scope of nmerges and oldhead.
+
 2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Remove unnecessary initialization of dir1
