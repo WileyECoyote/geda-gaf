@@ -1,3 +1,8 @@
+2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Remove unnecessary initialization of dir1
+      in function gtk_item_entry_draw_cursor.
+
 2015-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/Makefile.am: Remove gtksheet from include path so that
