@@ -61,35 +61,35 @@
 
 static char *insert_thousands_seps(const char *cp)
 {
-    static char buf[MAX_NUM_STRLEN];
-    char *radix_cp, c;
-    int pos;
-    struct lconv *lc = localeconv();
-    char *radix_c = (lc && lc->decimal_point) ?
-	lc->decimal_point : DEFAULT_DECIMAL_POINT;
-    char *thousands_c = (lc && lc->thousands_sep) ?
-	lc->thousands_sep : DEFAULT_THOUSANDS_SEP;
-    int thousands_len = strlen(thousands_c);
+  static char buf[MAX_NUM_STRLEN];
+  char *radix_cp;
+  int pos;
+  struct lconv *lc  = localeconv();
+  char *radix_c     = (lc && lc->decimal_point) ? lc->decimal_point : DEFAULT_DECIMAL_POINT;
+  char *thousands_c = (lc && lc->thousands_sep) ? lc->thousands_sep : DEFAULT_THOUSANDS_SEP;
+  int thousands_len = strlen(thousands_c);
 
-    radix_cp = strstr(cp, radix_c);
-    if (radix_cp)
-        pos = radix_cp - cp;
-    else
-        pos = strlen(cp);
+  radix_cp = strstr(cp, radix_c);
+  if (radix_cp)
+    pos = radix_cp - cp;
+  else
+    pos = strlen(cp);
 
-    for(radix_cp=buf;;) { /* copy inserting thousands_c on the fly */
+  for(radix_cp=buf;;) { /* copy inserting thousands_c on the fly */
 
-        if (!*cp)
-          break;
+    char c;
 
-        c = *radix_cp++ = *cp++;
-        --pos;
-        if ((pos > 0) && !(pos % 3) && (c != '-') && (c != '+')) {
-            strcpy(radix_cp, thousands_c);
-            radix_cp += thousands_len;
-        }
+    if (!*cp)
+      break;
+
+    c = *radix_cp++ = *cp++;
+    --pos;
+    if ((pos > 0) && !(pos % 3) && (c != '-') && (c != '+')) {
+      strcpy(radix_cp, thousands_c);
+      radix_cp += thousands_len;
     }
-    *radix_cp++ = '\0';
+  }
+  *radix_cp++ = '\0';
     return(buf);
 }
 

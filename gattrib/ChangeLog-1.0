@@ -1,7 +1,14 @@
 2015-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtkdataformat.c: Reduce scope of char c in function
+      insert_thousands_seps.
+
     * src/gtksheet/gtksheetcolumn.c: Eliminate unused variable act_row in
       function gtk_sheet_column_set_visibility.
+
+    * src/gtksheet/gtkitementry.c: Reduce scope of text in function gtk_
+      item_entry_get_cursor_locations. Reduce scope of line and widget in
+      function gtk_item_entry_draw_text.
 
 2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
 

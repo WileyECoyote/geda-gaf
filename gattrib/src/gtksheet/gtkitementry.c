@@ -156,9 +156,9 @@ static void         gtk_item_entry_set_positions(GtkEntry       *entry,
     int            selection_bound);
 static void         gtk_item_entry_draw_text(GtkEntry       *entry);
 static void         gtk_item_entry_draw_cursor(GtkEntry       *entry,
-    CursorType      type);
+                                               CursorType      type);
 static PangoLayout *gtk_item_entry_ensure_layout(GtkEntry       *entry,
-    gboolean        include_preedit);
+                                                 gboolean        include_preedit);
 static void         gtk_item_entry_queue_draw(GtkEntry       *entry);
 #if GTK_CHECK_VERSION(2,21,0) == 0
 static void         gtk_entry_reset_im_context(GtkEntry       *entry);
@@ -345,14 +345,15 @@ gtk_item_entry_realize(GtkWidget *widget)
     attributes.colormap = gtk_widget_get_colormap(widget);
     attributes.event_mask = gtk_widget_get_events(widget);
     attributes.event_mask |= (GDK_EXPOSURE_MASK |
-	    GDK_BUTTON_PRESS_MASK |
-	    GDK_BUTTON_RELEASE_MASK |
-	    GDK_BUTTON1_MOTION_MASK |
-	    GDK_BUTTON3_MOTION_MASK |
-	    GDK_POINTER_MOTION_HINT_MASK |
-	    GDK_POINTER_MOTION_MASK |
-	    GDK_ENTER_NOTIFY_MASK |
-	    GDK_LEAVE_NOTIFY_MASK);
+                              GDK_BUTTON_PRESS_MASK |
+                              GDK_BUTTON_RELEASE_MASK |
+                              GDK_BUTTON1_MOTION_MASK |
+                              GDK_BUTTON3_MOTION_MASK |
+                              GDK_POINTER_MOTION_HINT_MASK |
+                              GDK_POINTER_MOTION_MASK |
+                              GDK_ENTER_NOTIFY_MASK |
+                              GDK_LEAVE_NOTIFY_MASK);
+
     attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
 
     gtk_widget_set_window(widget,
@@ -388,9 +389,7 @@ gtk_item_entry_realize(GtkWidget *widget)
 }
 
 static void
-_item_entry_get_borders(GtkEntry *entry,
-    int     *xborder,
-    int     *yborder)
+_item_entry_get_borders(GtkEntry *entry, int *xborder, int *yborder)
 {
     GtkWidget *widget = GTK_WIDGET(entry);
     int focus_width;
@@ -1606,91 +1605,94 @@ _item_entry_get_layout_position(GtkEntry *entry,
 static void
 gtk_item_entry_draw_text(GtkEntry *entry)
 {
+  if (!entry->visible && entry->invisible_char == 0)
+    return;
+
+  if (gtk_widget_is_drawable(GTK_WIDGET(entry))) {
+
     GtkWidget *widget;
-    PangoLayoutLine *line;
 
-    if (!entry->visible && entry->invisible_char == 0)
-	return;
+    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
+    int area_width, area_height;
 
-    if (gtk_widget_is_drawable(GTK_WIDGET(entry)))
+    int x, y;
+    int start_pos, end_pos;
+
+    widget = GTK_WIDGET(entry);
+
+    _item_entry_get_layout_position(entry, &x, &y);
+
+    _item_entry_get_text_area_size(entry, NULL, NULL, &area_width, &area_height);
+
+
+    gdk_draw_layout(entry->text_area,
+                    gtk_widget_get_style(widget)->text_gc[gtk_widget_get_state(widget)],
+                    x, y,
+                    layout);
+
+
+    if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start_pos, &end_pos))
     {
-	PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
-	int area_width, area_height;
 
-	int x, y;
-	int start_pos, end_pos;
+      int *ranges;
+      int n_ranges, i;
 
-	widget = GTK_WIDGET(entry);
+      PangoLayoutLine *line;
+      PangoRectangle logical_rect;
 
-	_item_entry_get_layout_position(entry, &x, &y);
+      const char *text = pango_layout_get_text(layout);
+      int start_index = g_utf8_offset_to_pointer(text, start_pos) - text;
+      int end_index = g_utf8_offset_to_pointer(text, end_pos) - text;
+      GdkRegion *clip_region = gdk_region_new();
+      GdkGC *text_gc;
+      GdkGC *selection_gc;
 
-	_item_entry_get_text_area_size(entry, NULL, NULL, &area_width, &area_height);
+      line = pango_layout_get_lines(layout)->data;
 
+      pango_layout_line_get_x_ranges(line, start_index, end_index, &ranges, &n_ranges);
 
-	gdk_draw_layout(entry->text_area,
-	    gtk_widget_get_style(widget)->text_gc[gtk_widget_get_state(widget)],
-	    x, y,
-	    layout);
+      pango_layout_get_extents(layout, NULL, &logical_rect);
 
+      if (gtk_widget_has_focus(GTK_WIDGET(entry))) {
 
-	if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start_pos, &end_pos))
-	{
-	    int *ranges;
-	    int n_ranges, i;
-	    PangoRectangle logical_rect;
-	    const char *text = pango_layout_get_text(layout);
-	    int start_index = g_utf8_offset_to_pointer(text, start_pos) - text;
-	    int end_index = g_utf8_offset_to_pointer(text, end_pos) - text;
-	    GdkRegion *clip_region = gdk_region_new();
-	    GdkGC *text_gc;
-	    GdkGC *selection_gc;
+        selection_gc =
+        gtk_widget_get_style(widget)->base_gc[GTK_STATE_SELECTED];
+        text_gc =
+        gtk_widget_get_style(widget)->text_gc[GTK_STATE_SELECTED];
+      }
+      else {
 
-	    line = pango_layout_get_lines(layout)->data;
+        selection_gc =
+        gtk_widget_get_style(widget)->base_gc[GTK_STATE_ACTIVE];
+        text_gc =
+        gtk_widget_get_style(widget)->text_gc[GTK_STATE_ACTIVE];
+      }
 
-	    pango_layout_line_get_x_ranges(line, start_index, end_index, &ranges, &n_ranges);
+      for (i = 0; i < n_ranges; i++) {
 
-	    pango_layout_get_extents(layout, NULL, &logical_rect);
+        GdkRectangle rect;
 
-	    if (gtk_widget_has_focus(GTK_WIDGET(entry)))
-	    {
-		selection_gc =
-		    gtk_widget_get_style(widget)->base_gc[GTK_STATE_SELECTED];
-		text_gc =
-		    gtk_widget_get_style(widget)->text_gc[GTK_STATE_SELECTED];
-	    }
-	    else
-	    {
-		selection_gc =
-		    gtk_widget_get_style(widget)->base_gc[GTK_STATE_ACTIVE];
-		text_gc =
-		    gtk_widget_get_style(widget)->text_gc[GTK_STATE_ACTIVE];
-	    }
+        rect.x = INNER_BORDER - entry->scroll_offset + ranges[2 * i] / PANGO_SCALE;
+        rect.y = y;
+        rect.width = (ranges[2 * i + 1] - ranges[2 * i]) / PANGO_SCALE;
+        rect.height = logical_rect.height / PANGO_SCALE;
 
-	    for (i = 0; i < n_ranges; i++)
-	    {
-		GdkRectangle rect;
+        gdk_draw_rectangle(entry->text_area, selection_gc, TRUE,
+                           rect.x, rect.y, rect.width, rect.height);
 
-		rect.x = INNER_BORDER - entry->scroll_offset + ranges[2 * i] / PANGO_SCALE;
-		rect.y = y;
-		rect.width = (ranges[2 * i + 1] - ranges[2 * i]) / PANGO_SCALE;
-		rect.height = logical_rect.height / PANGO_SCALE;
+        gdk_region_union_with_rect(clip_region, &rect);
+      }
 
-		gdk_draw_rectangle(entry->text_area, selection_gc, TRUE,
-		    rect.x, rect.y, rect.width, rect.height);
+      gdk_gc_set_clip_region(text_gc, clip_region);
+      gdk_draw_layout(entry->text_area, text_gc,
+                      x, y,
+                      layout);
+      gdk_gc_set_clip_region(text_gc, NULL);
 
-		gdk_region_union_with_rect(clip_region, &rect);
-	    }
-
-	    gdk_gc_set_clip_region(text_gc, clip_region);
-	    gdk_draw_layout(entry->text_area, text_gc,
-		x, y,
-		layout);
-	    gdk_gc_set_clip_region(text_gc, NULL);
-
-	    gdk_region_destroy(clip_region);
-	    g_free(ranges);
-	}
+      gdk_region_destroy(clip_region);
+      g_free(ranges);
     }
+  }
 }
 
 /*
@@ -1954,34 +1956,37 @@ gtk_entry_reset_im_context(GtkEntry *entry)
 
 static void
 gtk_item_entry_get_cursor_locations(GtkEntry   *entry,
-    CursorType  type,
-    int       *strong_x,
-    int       *weak_x)
+                                    CursorType  type,
+                                    int        *strong_x,
+                                    int        *weak_x)
 {
-    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
+  PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
+
+  PangoRectangle strong_pos, weak_pos;
+  int index;
+
+  if (type == CURSOR_STANDARD) {
+
     const char *text;
-    PangoRectangle strong_pos, weak_pos;
-    int index;
 
-    if (type == CURSOR_STANDARD)
-    {
-	text = pango_layout_get_text(layout);
-	index = g_utf8_offset_to_pointer(text, entry->current_pos + entry->preedit_cursor) - text;
-    }
-    else /* type == CURSOR_DND */
-    {
-	index = g_utf8_offset_to_pointer(entry->text, entry->dnd_position) - entry->text;
-	if (entry->dnd_position > entry->current_pos)
-	    index += entry->preedit_length;
-    }
+    text  = pango_layout_get_text(layout);
+    index = g_utf8_offset_to_pointer(text, entry->current_pos + entry->preedit_cursor) - text;
+  }
+  else { /* type == CURSOR_DND */
 
-    pango_layout_get_cursor_pos(layout, index, &strong_pos, &weak_pos);
+    index = g_utf8_offset_to_pointer(entry->text, entry->dnd_position) - entry->text;
 
-    if (strong_x)
-	*strong_x = strong_pos.x / PANGO_SCALE;
+    if (entry->dnd_position > entry->current_pos)
+      index += entry->preedit_length;
+  }
 
-    if (weak_x)
-	*weak_x = weak_pos.x / PANGO_SCALE;
+  pango_layout_get_cursor_pos(layout, index, &strong_pos, &weak_pos);
+
+  if (strong_x)
+    *strong_x = strong_pos.x / PANGO_SCALE;
+
+  if (weak_x)
+    *weak_x = weak_pos.x / PANGO_SCALE;
 }
 
 static void
