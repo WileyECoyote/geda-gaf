@@ -230,5 +230,6 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
     /* Otherwise repeat, merging lists twice the size */
     insize *= 2;
   }
+  return NULL; /* unlikely */
 }
 

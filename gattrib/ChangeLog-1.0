@@ -17,6 +17,12 @@
     * src/listsort.c: check list & tail are not NULL before referencing in
       function listsort, reduce scope of nmerges and oldhead.
 
+    * src/s_string_list.c: Check for NULL return from listsort in functions
+      s_string_list_get_data_at_index, s_string_list_sort_master_comp_attrib
+      _list and s_string_list_sort_master_pin_list. Check case next_item !=
+      NULL in else clause in function s_string_list_delete_item. Reduce scope
+      of variables.
+
     * src/x_toolbars.c: Include geda_toolbars.h and geda_debug.h relative to
       ../../include/ so preprocessor does not complain about uninitialized
       variables and scanners do not complain about not using the exact same
