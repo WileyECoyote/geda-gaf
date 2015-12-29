@@ -1782,7 +1782,8 @@ void
 gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
 {
     GtkSheetColumn *colobj;
-    int act_row, act_col;
+    //int act_row;
+    int act_col;
 
     g_return_if_fail(sheet != NULL);
     g_return_if_fail(GTK_IS_SHEET(sheet));
@@ -1792,7 +1793,7 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     colobj = COLPTR(sheet, col);
     if (GTK_SHEET_COLUMN_IS_VISIBLE(colobj) == visible) return;
 
-    act_row = sheet->active_cell.row;
+    //act_row = sheet->active_cell.row;
     act_col = sheet->active_cell.col;
 
     if (act_col == col)   /* hide active column -> disable active cell */
@@ -1816,9 +1817,8 @@ gtk_sheet_column_set_visibility(GtkSheet *sheet, int col, int visible)
     /* the following is a hack, to get rid of:
        ? Gtk - gtk_widget_realize: assertion `GTK_WIDGET_ANCHORED (widget) || GTK_IS_INVISIBLE (widget)' failed
        */
-    if (!gtk_widget_get_visible(GTK_WIDGET(colobj)))
-    {
-        gtk_widget_unparent(GTK_WIDGET(colobj));
+    if (!gtk_widget_get_visible(GTK_WIDGET(colobj))) {
+      gtk_widget_unparent(GTK_WIDGET(colobj));
     }
 
     GTK_SHEET_COLUMN_SET_VISIBLE(colobj, visible);
