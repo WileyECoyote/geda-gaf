@@ -45,10 +45,11 @@ struct _GtkMenuItemPrivate
 
   unsigned int timer;
 
-  char  *accel_path;
+  char        *accel_path;
 
-  GtkAction *action;
-  GtkActionHelper *action_helper;
+  GtkAction   *action;
+  //GtkActionHelper *action_helper;
+  void        *action_helper;
 
   unsigned int show_submenu_indicator : 1;
   unsigned int submenu_placement      : 1;
