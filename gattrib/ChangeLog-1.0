@@ -3,6 +3,9 @@
     * src/gtksheet/gtkitementry.c: Remove unnecessary initialization of dir1
       in function gtk_item_entry_draw_cursor.
 
+    * src/gtksheet/gtkdataformat.c: Revise remove_thousands_seps to call
+      strlen after checking src is not NULL.
+
 2015-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/Makefile.am: Remove gtksheet from include path so that
