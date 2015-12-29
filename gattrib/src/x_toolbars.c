@@ -22,8 +22,8 @@
 
 #include <gtk/gtk.h>
 
-#include <geda_toolbars.h>
-#include <geda_debug.h>
+#include "../../include/geda_toolbars.h"
+#include "../../include/geda_debug.h"
 
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
@@ -250,16 +250,6 @@ void x_toolbars_init(GtkWidget *parent_container) {
   TOOLBAR_STD_BUTTON(Attribute, name_value, PIX, GEDA_NAME_VALUE_BITMAP, callBack_AttributeBar0);
 
   gtk_widget_show (Attribute_Toolbar);
-
-  open_button=open_button;
-  save_button=save_button;
-  save_as_button=save_as_button;
-  cut_button=cut_button;
-  copy_button=copy_button;
-  paste_button=paste_button;
-
-  find_button=find_button;
-  replace_button=replace_button;
 
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, attribute_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, designator_button);

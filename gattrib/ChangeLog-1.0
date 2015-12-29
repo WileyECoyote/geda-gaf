@@ -14,6 +14,11 @@
     * src/listsort.c: check list & tail are not NULL before referencing in
       function listsort, reduce scope of nmerges and oldhead.
 
+    * src/x_toolbars.c: Include geda_toolbars.h and geda_debug.h relative to
+      ../../include/ so preprocessor does not complain about uninitialized
+      variables and scanners do not complain about not using the exact same
+      variables, the variables are used in macros.
+
 2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Remove unnecessary initialization of dir1
