@@ -1,3 +1,9 @@
+2015-12-30  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_stroke.c: Fix strokes gc broken by commit
+      1249f670d54814df0bd8bfb9136e39b2b3d90052 which changed the argument
+      to gschem_page_view_get_gc function.
+
 2015-12-28  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Eliminate boolean variables "show" in menu
