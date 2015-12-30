@@ -1,5 +1,8 @@
 2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/common/tests.list: Remove "-g spice-sdb", and gafrc from the aux
+      files field, gafrc is in always-copy-list.
+
     * tests/gnetlistrc.orig: Update linear/regulate->linear/regulator.
 
     * tests/common/inputs/gafrc: Update linear/regulate->linear/regulator.
