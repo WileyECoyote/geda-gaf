@@ -1,3 +1,9 @@
+2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/gnetlistrc.orig: Update linear/regulate->linear/regulator.
+
+    * tests/common/inputs/gafrc: Update linear/regulate->linear/regulator.
+
 2015-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/Makefile.am: Add clean local to remove run directory if

@@ -6,6 +6,6 @@
 (map (lambda (x) (component-library (string-join (list "${SYMDIR}/" x) "")))
      '( "connector/plug" "diode/full-bridge" "emechanic/switch" "logic/74"
         "passive/electrolytic" "passive/resistor" "passive/protection"
-        "passive/transformer"  "linear/regulate"  "memory" "misc"
+        "passive/transformer"  "linear/regulator"  "memory" "misc"
         "simulation/spice" "simulation/cascade"
         "source" "titleblock"))
