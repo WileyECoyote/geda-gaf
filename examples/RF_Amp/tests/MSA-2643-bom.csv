@@ -17,8 +17,6 @@ R4	RESISTOR	5	0402	1
 Rc	RESISTOR	50	0402	1
 RL	RESISTOR	50	0402	1
 Rth_in	RESISTOR	50	0402	1
-Vin	vac	dc 0 ac 1	none	1
-Vpwr	VOLTAGE_SOURCE	DC 5V	none	1
 X1	NPN_TRANSISTOR_subcircuit	unknown	subcircuit	1
 X2	NPN_TRANSISTOR_subcircuit	unknown	subcircuit	1
 .END
