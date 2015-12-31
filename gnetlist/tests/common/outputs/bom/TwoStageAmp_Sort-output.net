@@ -11,8 +11,6 @@ C1	C1	2.2uF	CAPACITOR
 A3	A3	.options TEMP=25	directive	
 A2	A2	unknown	include	
 A1	A1	unknown	model	
-VCC	VCC	DC 15V	VOLTAGE_SOURCE	
-Vinput	Vinput	DC 1.6V AC 10MV SIN(0 1MV 1KHZ)	vsin	
 CE1	CE1	1pF	CAPACITOR	
 Cout	Cout	2.2uF	CAPACITOR	
 RL	RL	100K	RESISTOR	

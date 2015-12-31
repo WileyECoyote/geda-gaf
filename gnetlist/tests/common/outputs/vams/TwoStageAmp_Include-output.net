@@ -105,6 +105,7 @@ BEGIN
  
   VCC : ENTITY VOLTAGE_SOURCE
 	GENERIC MAP (
+			nobom => 1, 
 			footprint => none, 
 			device => VOLTAGE_SOURCE, 
 			value => DC 15V)
@@ -113,6 +114,7 @@ BEGIN
  
   Vinput : ENTITY vsin
 	GENERIC MAP (
+			nobom => 1, 
 			footprint => none, 
 			device => vsin, 
 			value => DC 1.6V AC 10MV SIN(0 1MV 1KHZ))

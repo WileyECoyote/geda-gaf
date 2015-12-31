@@ -15,6 +15,9 @@
           * scheme/gnet-partslist3.scm
           * scheme/partslist-common.scm
 
+    * scheme/partslist-common.scm: Tweak get-parts-table to exclude packages
+      with an attribute nobom=1.
+
     * tests/common/run_backend_tests.sh: Revert setting debug if DEBUG_TESTS
       set in environment. Revise to fail if the output file was not generated
       so that the skip clause is reached if there is no reference file and
@@ -38,6 +41,11 @@
           * bom2/JD_Sort-output.net
           * bom2/TwoStageAmp_Include-output.net
           * bom2/TwoStageAmp_Sort-output.net
+
+    * tests/common/inputs/TwoStageAmp.sch: Add attribute nobom=1 to refdes
+      Vinput and VCC.
+
+    * tests/common/outputs: Regenerated outputs after revising TwoStageAmp.
 
 2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
 

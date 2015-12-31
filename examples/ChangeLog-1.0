@@ -1,3 +1,7 @@
+2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
+
+    * lightning_detector/tests/lightning_detector-bom.csv: Updated file.
+
 2015-12-15  Wiley E. Hill <wileyhill@gmail.com>
 
     * TwoStageAmp/attribs: Add attribute file for bom back-ends.

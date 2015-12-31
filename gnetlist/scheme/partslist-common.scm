@@ -25,7 +25,8 @@
   (if (null? packages)
      '()
       (let ((package (car packages)))
-        (if (string=? (get-device package) "include")
+        (if (or (string=? (get-device package) "include")
+                (string=? "1" (get-package-attribute package "nobom")))
             (get-parts-table (cdr packages))
             (cons (list package
                (get-device package)
