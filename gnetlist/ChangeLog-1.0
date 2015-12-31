@@ -1,5 +1,12 @@
 2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gnetlist/backend-getopt.scm: Add function option-warning and use in
+      place of option-error if the option is not known to the backend so
+      that the bom and bom2 backends do not error-out when each would other
+      wise produce normal output. Only bom and bom2 utilize backend-getopt,
+      and these still function correctly with the proper arguments and
+      this help to reduce scheme backtraces on the console.
+
     * tests/common/run_backend_tests.sh: Revert setting debug if DEBUG_TESTS
       set in environment. Revise to fail if the output file was not generated
       so that the skip clause is reached if there is no reference file and
