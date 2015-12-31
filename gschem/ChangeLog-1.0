@@ -1,3 +1,9 @@
+2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Replace for loop with while loops in functions
+      do_home_attributes, do_show_value, do_show_name, do_show_both, and
+      do_toggle_visibility, reduce scope of variables and revise comments.
+
 2015-12-30  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_stroke.c: Fix strokes gc broken by commit
@@ -180,7 +186,7 @@
 
 2015-12-16 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * src/guile/g_window.c:: WEH: Modified per commit to Master branch
+    * src/guile/g_window.c: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 43517aba280f91ee2ac1b6c67cd43cd496ca8aed:
       gschem: Fix close-page! in GUI.
       In gschem the close-page! procedure defined in the (geda page)

@@ -148,7 +148,6 @@ static void set_last_command(int value)
     last_command = value;
   g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
-
 static int get_last_command()
 {
   int ret_val;
@@ -187,7 +186,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
     }
     else /* USE_WORKER_THREAD */ {
       gschem_threads_enter();
-      scm_init_guile ();
+      scm_init_guile();
       command_struc[i].func(command_struc[i].w_current);
       gschem_threads_leave();
     }
@@ -808,22 +807,20 @@ open_command_idle_notify (void *data)
  *  is assigned to clean up details, mainly to release memory
  *  allocated by x_fileselect_list.
  *
- *  This is a worker thread that spawns main-loop threads, the
- *  main reason for this is that, eventually libgeda will be
- *  called and guile will be used to process gafrc files and
- *  these guile routines need to be ran in the main context.
- *  As a bonus, our multi-document load performance increased
- *  dramatically, compared to the old sequential loading.
+ *  This is a worker thread that spawns main-loop threads, and
+ *  this dramatically increases multi-document load performance
+ *  compared to the old sequential loading.
  */
 COMMAND (do_open) {
   BEGIN_W_COMMAND(do_open);
 
-  GSList       *files;
-  gschem_task  *task;
-  IdleTaskData *packet;
-  int           count = 0;
+  GSList *files;
 
-  if ( NULL != (files = x_fileselect_list (w_current))) {
+  if (NULL != (files = x_fileselect_list (w_current))) {
+
+    gschem_task  *task;
+    IdleTaskData *packet;
+    int count = 0;
 
     w_current->toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
 
@@ -2107,20 +2104,21 @@ COMMAND (do_documentation)
 {
   BEGIN_W_COMMAND(do_documentation);
 
-  char *attrib_doc = NULL;
-  Object *object = NULL;
-  GError *error = NULL;
+  Object *object = o_select_return_first_object(w_current);
 
-  object = o_select_return_first_object(w_current);
   if (object != NULL) {
     /* only allow going into symbols */
     if (object->type == OBJ_COMPLEX) {
 
+      char *attrib_doc;
+
       /* look for "documentation" */
       attrib_doc = o_attrib_search_object_attribs_by_name (object, "documentation", 0);
+
       if (attrib_doc) {
 
-        bool result;
+        GError *error = NULL;
+        bool    result;
 
         //result = x_show_uri (w_current, attrib_doc, &error);
 
@@ -2452,11 +2450,12 @@ COMMAND (do_page_up)
   GedaToplevel *toplevel = w_current->toplevel;
 
   Page *page_current;
-  Page *p_new;
 
   page_current = geda_toplevel_get_current_page (toplevel);
 
   if (page_current != NULL) {
+
+    Page *p_new;
 
     if (w_current->enforce_hierarchy) {
 
@@ -2485,16 +2484,19 @@ COMMAND (do_page_down)
   GedaToplevel *toplevel = w_current->toplevel;
 
   Page *current_page;
-  Page *p_new;
 
   current_page = geda_toplevel_get_current_page (toplevel);
 
   if (current_page != NULL) {
 
+    Page *p_new;
+
     if (w_current->enforce_hierarchy) {
+
       p_new = s_hierarchy_find_next_page(toplevel->pages, current_page);
     }
     else {
+
       p_new = geda_toplevel_get_page_down(toplevel);
     }
 
@@ -2656,11 +2658,9 @@ COMMAND (do_down_schematic)
   bool    looking_inside   = FALSE;
 
   char   *attrib           = NULL;
-  char   *current_filename = NULL;
 
   int     count            = 0;
   int     page_control     = 0;
-  int     pcount           = 0;
 
   object = o_select_return_first_object(w_current);
 
@@ -2673,11 +2673,9 @@ COMMAND (do_down_schematic)
 
   /* if above is null, then look inside symbol */
   if (attrib == NULL) {
-
-    attrib = o_attrib_search_inherited_attribs_by_name (object, "source", count);
-
+    attrib =
+      o_attrib_search_inherited_attribs_by_name (object, "source", count);
     looking_inside = TRUE;
-
 #if DEBUG
     printf("going to look inside now\n");
 #endif
@@ -2686,8 +2684,8 @@ COMMAND (do_down_schematic)
   while (attrib) {
 
     /* look for source=filename,filename, ... */
-    pcount = 0;
-    current_filename = u_string_split(attrib, ',', pcount);
+    int   pcount = 0;
+    char *current_filename = u_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while(current_filename != NULL) {
@@ -2705,11 +2703,10 @@ COMMAND (do_down_schematic)
 
       /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
       if (child != NULL) {
-
         x_window_setup_page(w_current, child, w_current->world_left,
-                            w_current->world_right,
-                            w_current->world_top,
-                            w_current->world_bottom);
+                                              w_current->world_right,
+                                              w_current->world_top,
+                                              w_current->world_bottom);
         s_page_goto (child);
         i_zoom_world_extents(w_current,
                              s_page_get_objects (child),
@@ -2717,8 +2714,8 @@ COMMAND (do_down_schematic)
         o_undo_savestate(w_current, UNDO_ALL);
         s_page_goto (parent);
         o_notify_change_add (child,
-                             (ChangeNotifyFunc) o_invalidate_object,
-                             (ChangeNotifyFunc) o_invalidate_object, w_current);
+                            (ChangeNotifyFunc) o_invalidate_object,
+                            (ChangeNotifyFunc) o_invalidate_object, w_current);
       }
 
       /* save the first page */
@@ -2741,6 +2738,7 @@ COMMAND (do_down_schematic)
                                   secondary, _("Hierarchy Error"));
         GEDA_FREE (secondary);
         g_error_free (err);
+
       }
       else {
         /* this only signifies that we tried */
@@ -2761,7 +2759,7 @@ COMMAND (do_down_schematic)
     /* continue looking outside first */
     if (!looking_inside) {
       attrib =
-      o_attrib_search_attached_attribs_by_name (object, "source", count);
+        o_attrib_search_attached_attribs_by_name (object, "source", count);
     }
 
     /* okay we were looking outside and didn't find anything,
@@ -3415,12 +3413,14 @@ COMMAND (do_detach)
   BEGIN_NO_ACTION(do_detach);
 
   GList *s_current;
-  Object *o_current;
   GList *detached_attribs = NULL;
 
   s_current = geda_list_get_glist(Current_Selection);
+
   while (s_current != NULL) {
-    o_current = (Object *) s_current->data;
+
+    Object *o_current = (Object *) s_current->data;
+
     if (o_current) {
       if (o_current->attribs) {
         detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
@@ -3466,9 +3466,10 @@ COMMAND (do_home_attributes)
 
     bool       modified  = FALSE;
     SELECTION *selection = Current_Selection;
-    GList     *s_current;
 
-    for (s_current = geda_list_get_glist (selection); s_current != NULL; NEXT(s_current)) {
+    GList *s_current = geda_list_get_glist (selection);
+
+    while (s_current) {
 
       Object *object = (Object*)s_current->data;
 
@@ -3482,6 +3483,8 @@ COMMAND (do_home_attributes)
           modified = TRUE;
         }
       }
+
+      NEXT(s_current);
     }
 
     if (modified) {
@@ -3510,18 +3513,20 @@ COMMAND (do_show_value)
   /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_show_value);
 
-
   if (o_select_is_selection (w_current)) {
-    SELECTION *selection = Current_Selection;
-    GList *s_current;
 
-    for (s_current = geda_list_get_glist (selection);
-         s_current != NULL;
-    NEXT(s_current)) {
+    SELECTION *selection = Current_Selection;
+
+    GList *s_current = geda_list_get_glist (selection);
+
+    while (s_current) {
+
       Object *object = (Object*)s_current->data;
+
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_VALUE);
       }
+      NEXT(s_current);
     }
 
     o_undo_savestate (w_current, UNDO_ALL);
@@ -3543,16 +3548,19 @@ COMMAND (do_show_name)
   BEGIN_NO_ACTION(do_show_name);
 
   if (o_select_is_selection (w_current)) {
-    SELECTION *selection = Current_Selection;
-    GList *s_current;
 
-    for (s_current = geda_list_get_glist (selection);
-         s_current != NULL;
-    NEXT(s_current)) {
+    SELECTION *selection = Current_Selection;
+
+    GList *s_current = geda_list_get_glist (selection);
+
+    while (s_current) {
+
       Object *object = (Object*)s_current->data;
+
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME);
       }
+      NEXT(s_current);
     }
 
     o_undo_savestate (w_current, UNDO_ALL);
@@ -3574,16 +3582,19 @@ COMMAND (do_show_both)
   BEGIN_NO_ACTION(do_show_both);
 
   if (o_select_is_selection (w_current)) {
-    SELECTION *selection = Current_Selection;
-    GList *s_current;
 
-    for (s_current = geda_list_get_glist (selection);
-         s_current != NULL;
-    NEXT(s_current)) {
+    SELECTION *selection = Current_Selection;
+
+    GList *s_current = geda_list_get_glist (selection);
+
+    while (s_current) {
+
       Object *object = (Object*)s_current->data;
+
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME_VALUE);
       }
+      NEXT(s_current);
     }
 
     o_undo_savestate (w_current, UNDO_ALL);
@@ -3601,15 +3612,17 @@ COMMAND (do_toggle_visibility)
   if (o_select_is_selection (w_current)) {
 
     SELECTION *selection = Current_Selection;
-    GList *s_current;
 
-    for (s_current = geda_list_get_glist (selection);
-         s_current != NULL;
-    NEXT(s_current)) {
+    GList *s_current = geda_list_get_glist (selection);
+
+    while (s_current) {
+
       Object *object = (Object*)s_current->data;
+
       if (object->type == OBJ_TEXT) {
         o_attrib_toggle_visibility (w_current, object);
       }
+      NEXT(s_current);
     }
 
     o_undo_savestate (w_current, UNDO_ALL);
@@ -3657,6 +3670,7 @@ COMMAND (do_attributes)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_attributes);
+
   if (!w_current->inside_action)  {  /* Don't execute this inside an action */
     x_multiattrib_open(w_current);
   }
@@ -3671,6 +3685,7 @@ COMMAND (do_autonumber)
 {
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_autonumber);
+
   if (!w_current->inside_action)  {  /* Don't execute this inside an action */
     autonumber_text_dialog(w_current);
   }
@@ -3720,7 +3735,9 @@ COMMAND (do_show_coordinates)
 COMMAND (do_macro)
 {
   BEGIN_W_COMMAND(do_macro);
+
   GtkWidget *widget = w_current->macro_widget;
+
   if (gtk_widget_get_visible (widget)) {
     gtk_widget_hide(widget);
   }
@@ -3764,7 +3781,6 @@ COMMAND (do_translate)
 COMMAND (do_embed)
 {
   BEGIN_W_COMMAND(do_embed);
-  Object *o_current;
 
   /* anything selected ? */
   if (o_select_is_selection(w_current)) {
@@ -3772,7 +3788,9 @@ COMMAND (do_embed)
     GList *s_current = geda_list_get_glist(Current_Selection);
 
     while (s_current != NULL) {
-      o_current = (Object *) s_current->data;
+
+      Object *o_current = (Object *) s_current->data;
+
       if(o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
@@ -3795,7 +3813,6 @@ COMMAND (do_embed)
 COMMAND (do_unembed)
 {
   BEGIN_W_COMMAND(do_unembed);
-  Object *o_current;
 
   /* anything selected ? */
   if (o_select_is_selection(w_current)) {
@@ -3804,7 +3821,9 @@ COMMAND (do_unembed)
       geda_list_get_glist(Current_Selection);
 
     while (s_current != NULL) {
-      o_current = (Object *) s_current->data;
+
+      Object *o_current = (Object *) s_current->data;
+
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
@@ -3828,12 +3847,13 @@ COMMAND (do_update)
 {
   BEGIN_W_COMMAND(do_update);
 
-  GedaToplevel *toplevel = w_current->toplevel;
-  GList *selection;
-  GList *selected_components = NULL;
-  GList *iter;
-
   if (o_select_is_selection(w_current)) {
+
+    GedaToplevel *toplevel = w_current->toplevel;
+
+    GList *selection;
+    GList *selected_components = NULL;
+    GList *iter;
 
     /* Updating components modifies the selection. Therefore, create a
      * new list of only the Complex Object from the current selection,
