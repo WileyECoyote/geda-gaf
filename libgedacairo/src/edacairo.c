@@ -327,11 +327,11 @@ do_arc (cairo_t *cr, double x, double y, double radius,
 {
   cairo_new_sub_path (cr);
 
-  if (start_angle < start_angle + arc_sweep) {
+  if (arc_sweep > 0) {
     cairo_arc (cr, x, y, radius, start_angle * (M_PI / 180.),
                    (start_angle + arc_sweep) * (M_PI / 180.));
   }
- else {
+  else {
     cairo_arc_negative (cr, x, y, radius, start_angle * (M_PI / 180.),
                             (start_angle + arc_sweep) * (M_PI / 180.));
   }
