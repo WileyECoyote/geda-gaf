@@ -14,6 +14,23 @@
       backend parameters for the spice routines because bom and bom2 use the
       backend-getopt routines.
 
+    * tests/common/outputs: Add outputs:
+
+          * bom/JD_Include_nomunge-output.net
+          * bom/JD_Include-output.net
+          * bom/JD_nomunge-output.net
+          * bom/JD_Sort_nomunge-output.net
+          * bom/JD_Sort-output.net
+          * bom/TwoStageAmp_Include-output.net
+          * bom/TwoStageAmp_Sort-output.net
+          * bom2/JD_Include_nomunge-output.net
+          * bom2/JD_Include-output.net
+          * bom2/JD_nomunge-output.net
+          * bom2/JD_Sort_nomunge-output.net
+          * bom2/JD_Sort-output.net
+          * bom2/TwoStageAmp_Include-output.net
+          * bom2/TwoStageAmp_Sort-output.net
+
 2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/run_backend_tests.sh: Set debug if DEBUG_TESTS set in
