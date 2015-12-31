@@ -37,12 +37,7 @@ $0 --regen new_test spice-sdb
 EOF
 }
 
-# Check if DEBUG_TESTS set in environment
-if $DEBUG_TESTS ; then
-  debug=yes
-else
-  debug=no
-fi
+debug=no
 
 while test -n "$1"
 do
@@ -128,7 +123,6 @@ fail=0
 pass=0
 skip=0
 tot=0
-
 
 if test -z "$1" ; then
     # Read the test.list file and extract the names of all the tests to be execute.
@@ -291,35 +285,36 @@ for t in $all_tests ; do
         bad=1
     elif test -f ${ref} ; then
 
-        sed '/gnetlist -g/d' ${ref} > ${out}.tmp1
-        sed '/gnetlist -g/d' ${out} > ${out}.tmp2
-        sed '/gnetlist -g/d' ${std} > ${out}.tmp3
-        sed '/gnetlist -g/d' ${vrb} > ${out}.tmp4
-
-        # Hack to help with allegro backend
-        # Device files are ignored as yet
-        if test "X$backend" = "Xallegro" ; then
-            sed '/gnetlist -g/d' ${std} | sed '/^\$END$/ q' > ${out}.tmp3
-        fi
-
-        if ! diff -w ${out}.tmp1 ${out}.tmp2 >/dev/null; then
-            echo "FAILED: Wrong plain output. See diff -w ${ref} ${out}"
-            bad=1
-        elif ! diff -w ${out}.tmp1 ${out}.tmp3 >/dev/null; then
-            echo "FAILED: Wrong stdout output. See diff -w ${ref} ${std}"
-            bad=1
-        elif ! diff -w ${out}.tmp1 ${out}.tmp4 >/dev/null; then
-            echo "FAILED: Wrong verbose output. See diff -w ${ref} ${vrb}"
+        if test ! -f $out ; then
+            echo "FAILED: ${out} file was not generated"
             bad=1
         else
-            echo "PASS"
-            good=1
-        fi
 
-    elif test ! -f $out ; then
-        # No output file, but this is expected since there was no reference file
-        echo "PASS"
-        good=1
+            sed '/gnetlist -g/d' ${ref} > ${out}.tmp1
+            sed '/gnetlist -g/d' ${out} > ${out}.tmp2
+            sed '/gnetlist -g/d' ${std} > ${out}.tmp3
+            sed '/gnetlist -g/d' ${vrb} > ${out}.tmp4
+
+            # Hack to help with allegro backend
+            # Device files are ignored as yet
+            if test "X$backend" = "Xallegro" ; then
+                sed '/gnetlist -g/d' ${std} | sed '/^\$END$/ q' > ${out}.tmp3
+            fi
+
+            if ! diff -w ${out}.tmp1 ${out}.tmp2 >/dev/null; then
+                echo "FAILED: Wrong plain output. See diff -w ${ref} ${out}"
+                bad=1
+            elif ! diff -w ${out}.tmp1 ${out}.tmp3 >/dev/null; then
+                echo "FAILED: Wrong stdout output. See diff -w ${ref} ${std}"
+                bad=1
+            elif ! diff -w ${out}.tmp1 ${out}.tmp4 >/dev/null; then
+                echo "FAILED: Wrong verbose output. See diff -w ${ref} ${vrb}"
+                bad=1
+            else
+                echo "PASS"
+                good=1
+            fi
+        fi
     else
         echo "No reference file.  Skipping"
         soso=1
@@ -344,4 +339,4 @@ if test $pass -ne $tot ; then
 
 fi
 
-exit $rc
+exit $fail

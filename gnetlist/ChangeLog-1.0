@@ -1,3 +1,12 @@
+2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/run_backend_tests.sh: Revert setting debug if DEBUG_TESTS
+      set in environment. Revise to fail if the output file was not generated
+      so that the skip clause is reached if there is no reference file and
+      return the fail count not total-pass since bom and bom2 fail when passed
+      backend parameters for the spice routines because bom and bom2 use the
+      backend-getopt routines.
+
 2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/run_backend_tests.sh: Set debug if DEBUG_TESTS set in
