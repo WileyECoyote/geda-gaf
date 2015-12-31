@@ -2,7 +2,8 @@
 
     * tests/common/run_backend_tests.sh: Set debug if DEBUG_TESTS set in
       environment, update/revise comments. Fix incorrect variable names:
-      GEDATADA->GEDADATA, GEDATADARC->GEDADATARC.
+      GEDATADA->GEDADATA, GEDATADARC->GEDADATARC. Include test conditions
+      in output, there are not any but seems like it belongs in the output.
 
     * tests/common/tests.list: Remove "-g spice-sdb", and gafrc from the aux
       files field, gafrc is in always-copy-list.

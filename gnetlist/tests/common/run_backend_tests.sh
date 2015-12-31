@@ -190,6 +190,7 @@ for t in $all_tests ; do
     echo "Schematics to copy   = $schematics"
     echo "Args to copy         = $args"
     echo "Always copying       = $always_copy"
+    echo "Test conditions      = \"$condition\""
     echo "Expected return code = \"$code\""
     if test "X$condition" != "X" ; then
         eval "ctest=\`echo \$$condition\`"
