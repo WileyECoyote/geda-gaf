@@ -1,3 +1,10 @@
+2015-12-30 Edward Hennessy <ehennes@sbcglobal.net>
+
+    * src/geda/geda_line.c: WEH: Modified per commit to Master branch
+      by Edward Hennessy, commit 77f19a427937f1c11ea840459b979f2b651f8fde:
+      libgeda: fix line bounds computation
+      Wide lines could cause leftover pixels with existing line calculation.
+
 2015-12-29  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_init.c: Add directive to not call scm_setlocale

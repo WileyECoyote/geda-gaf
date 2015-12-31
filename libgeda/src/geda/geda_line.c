@@ -40,7 +40,7 @@
  */
 
 #include <config.h>
-
+#include <math.h>
 #include <libgeda_priv.h>
 
 static GObjectClass *geda_line_parent_class = NULL;
@@ -55,17 +55,17 @@ static GObjectClass *geda_line_parent_class = NULL;
 int
 geda_line_bounds(Object *object)
 {
-  int halfwidth;
+  int expand;
 
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
-  halfwidth = object->line_options->line_width / 2;
+  expand =  ceil (0.5 * G_SQRT2 * object->line_options->line_width);
 
   /* This isn't strictly correct, but a 1st order approximation */
-  object->left   = min( object->line->x[0], object->line->x[1] ) - halfwidth;
-  object->right  = max( object->line->x[0], object->line->x[1] ) + halfwidth;
-  object->top    = min( object->line->y[0], object->line->y[1] ) - halfwidth;
-  object->bottom = max( object->line->y[0], object->line->y[1] ) + halfwidth;
+  object->left   = min( object->line->x[0], object->line->x[1] ) - expand;
+  object->right  = max( object->line->x[0], object->line->x[1] ) + expand;
+  object->top    = min( object->line->y[0], object->line->y[1] ) - expand;
+  object->bottom = max( object->line->y[0], object->line->y[1] ) + expand;
 
   return TRUE;
 }
