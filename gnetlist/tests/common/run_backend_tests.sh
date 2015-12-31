@@ -37,38 +37,44 @@ $0 --regen new_test spice-sdb
 EOF
 }
 
-debug=no
+# Check if DEBUG_TESTS set in environment
+if $DEBUG_TESTS ; then
+  debug=yes
+else
+  debug=no
+fi
+
 while test -n "$1"
 do
     case "$1"
     in
 
     -d|--debug)
-	debug=yes
-	shift
-	;;
+        debug=yes
+        shift
+        ;;
 
     -h|--help)
-	usage
-	exit 0
-	;;
+        usage
+        exit 0
+        ;;
 
     -r|--regen)
-	# regenerate the 'golden' output files.  Use this with caution.
-	# In particular, all differences should be noted and understood.
-	regen=yes
-	shift
-	;;
+        # regenerate the 'golden' output files.  Use this with caution.
+        # In particular, all differences should be noted and understood.
+        regen=yes
+        shift
+        ;;
 
     -*)
-	echo "unknown option: $1"
-	usage
-	exit 1
-	;;
+        echo "unknown option: $1"
+        usage
+        exit 1
+        ;;
 
     *)
-	break
-	;;
+        break
+        ;;
 
     esac
 done
