@@ -1,7 +1,7 @@
 2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/run_backend_tests.sh: Set debug if DEBUG_TESTS set in
-      environment.
+      environment, update/revise comments.
 
     * tests/common/tests.list: Remove "-g spice-sdb", and gafrc from the aux
       files field, gafrc is in always-copy-list.
