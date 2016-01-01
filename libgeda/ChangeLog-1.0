@@ -1,3 +1,7 @@
+2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_toplevel.c: Add precondition check to toplevel fluid.
+
 2015-12-30 Edward Hennessy <ehennes@sbcglobal.net>
 
     * src/geda/geda_line.c: WEH: Modified per commit to Master branch
@@ -5,19 +9,19 @@
       libgeda: fix line bounds computation
       Wide lines could cause leftover pixels with existing line calculation.
 
-2015-12-29  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_init.c: Add directive to not call scm_setlocale
       unless ENABLE_NLS is defined.
 
-2015-12-26  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_notify.c: Add function o_notify_lookup and check force
       existing data in o_notify_change_add, fix comment where referencing
       toplevel instead of a Page object, add Doxygen comments for function
       o_notify_change_remove_all.
 
-2015-12-25  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_xxx.h: Change head and tail markers from unsigned
       int to type GedaType:
@@ -59,20 +63,20 @@
           * src/geda/geda_text.c
           * src/geda/geda_toplevel.c
 
-2015-12-23  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Simplify function s_page_is_symbol_file, eliminated
       variable is_symbol and return result of str comparison. Reduce scope of
       variables in module. Edit Doxygen comments.
 
-2015-12-17  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * object/o_selection.c: Add function o_selection_get_first_object.
 
     * src/utility/u_string.c: Add missing va_end to close args2 in function
       u_string_strsize.
 
-2015-12-14  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Remove conditionals where duplicate branches
       for if and else, revise comments.
@@ -82,7 +86,7 @@
 
     * src/struct/s_cue.c: Remove unused is_bus and g_return_if_fail, cleanup.
 
-2015-12-13  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: libgeda/src: Reduce scope of variables,
 
@@ -97,18 +101,18 @@
       holder and the reference to the complex later corrected the complex will
       be in the same location in the schematic.
 
-2015-12-10  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Replace include "libgeda_priv.h" with include <libgeda_priv.h>,
       include "config.h" with <config.h> and include "version.h" with include
       <version.h>, hope is not a bad thing Johnny.
 
-2015-12-07  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise function geda_notify_list_copy_glist reducing
       scope of integers count and index, and pointer entry.
 
-2015-12-04  Wiley E. Hill <wileyhill@gmail.com>
+2015-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove defines for stats, geda_stat.h
       defines a more comprehensive list.
@@ -118,7 +122,7 @@
       fails unit tests on older systems (Centrino with guile 1.8.7), the
       former does not.
 
-2015-11-29  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_list.h: Add declaration for geda_list_unref.
 
@@ -127,7 +131,7 @@
       geda_list_unref, seems silly but gnetlist linkage is twisted and
       does not build on some platforms, testing this as temp work-around.
 
-2015-11-28  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Revise macro RETURN_G_RC_MODE to accept
       mode table as third parameter instead of size and use sizeof to
@@ -155,7 +159,7 @@
     * src/struct/s_slib.c: Replace g_slist_free_full with u_gslist_free_full
       in function s_slib_print_dirs, g_slist_free_full breaks glib-2.24.
 
-2015-11-27  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_basic.c: Revise function f_has_active_autosave reducing
       scope of f_file_copy and mem_needed.
@@ -166,14 +170,14 @@
       err until inside the while loop, no need to check nwritten less
       than zero - is unsigned.
 
-2015-11-23  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture.c: Handle embedded relative picture filenames
       better when f_file_normalize_name returns NULL in o_picture_read,
       which occurs when the name of an embedded picture does not have
       a path.
 
-2015-11-19  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Handle case namestr is NULL when the directory
       path is absolute in g_rc_component_library.
@@ -181,7 +185,7 @@
     * shell/shell.c: Conditionally compile with long options, change
       option arguments.
 
-2015-11-18  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Deal with component-library-search without
       optional augment, which results in component-library passing
@@ -191,7 +195,7 @@
       Revise g_rc_component_library to substitute  "Local/sub-dir"
       for both these situations.
 
-2015-11-17  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * share/prolog.ps: define bus and pin.
 
@@ -201,7 +205,7 @@
 
     * src/object/o_pin_basic.c: Add varible cap_style to shorten line.
 
-2015-11-16  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gafrc: Add g_rc_log_time to handler "log-time".
 
@@ -224,7 +228,7 @@
     * src/guile/g_rc_parse.c:Replace u_log_message with u_log_vmessage in
       function g_rc_parse_file.
 
-2015-11-15  Wiley E. Hill <wileyhill@gmail.com>
+2015-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Conditionally compile to use hypot instead of
       sqrt in funtion m_degrees_to_radians.

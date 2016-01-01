@@ -46,8 +46,8 @@ static SCM scheme_toplevel_fluid = SCM_UNDEFINED;
 void
 edascm_dynwind_toplevel (GedaToplevel *toplevel)
 {
+  g_return_if_fail(GEDA_IS_TOPLEVEL(toplevel));
   SCM s_toplevel = edascm_from_toplevel (toplevel);
-
   scm_dynwind_fluid (scheme_toplevel_fluid, s_toplevel);
 }
 
