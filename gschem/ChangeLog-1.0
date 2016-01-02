@@ -2,6 +2,10 @@
 
     * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
 
+    * src/iface/i_status.c: Reduce scope of variables.
+
+    * src/object/o_attrib.c: Reduce scope of variables.
+
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Replace for loop with while loops in functions

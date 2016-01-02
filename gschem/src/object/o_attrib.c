@@ -51,17 +51,16 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
                                    SELECTION      *selection,
                                    Object         *object)
 {
-  Object *a_current;
-  GList  *a_iter;
-  GList  *objects_added;
-
   if (selection) {
+
+    GList  *a_iter;
+    GList  *objects_added;
 
     objects_added = NULL;
 
     for (a_iter = object->attribs; a_iter; NEXT(a_iter)) {
 
-      a_current = a_iter->data;
+      Object *a_current = a_iter->data;
 
       /* make sure object isn't selected already */
       if (!a_current->selected) {
