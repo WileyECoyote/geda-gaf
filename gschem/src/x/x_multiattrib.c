@@ -1350,24 +1350,26 @@ multiattrib_callback_popup_promote (GtkMenuItem *menuitem, void *user_data)
   GtkTreeModel   *model;
   GtkTreeIter     iter;
   GedaList       *attr_list;
+  Page           *page;
+  SELECTION      *selection;
 
-  if (!gtk_tree_selection_get_selected (
-    gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
+  if (gtk_tree_selection_get_selected (
+      gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
   {
-    /* nothing selected, nothing to do */
-    return;
+    gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
+
+    multiattrib_action_promote_attributes (ThisDialog,
+                                           geda_list_get_glist (attr_list));
+
+    w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+    page      = gschem_toplevel_get_current_page (w_current);
+    selection = s_page_get_selection (page);
+
+    /* update the treeview contents */
+    g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);
+
+    GEDA_UNREF (attr_list);
   }
-
-  gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
-
-  multiattrib_action_promote_attributes (ThisDialog, geda_list_get_glist (attr_list));
-
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
-
-  /* update the treeview contents */
-  g_object_set (G_OBJECT (ThisDialog), "object_list", Current_Selection, NULL);
-
-  GEDA_UNREF (attr_list);
 }
 
 /*! \brief  Multi-attribute Dialog Display Popup Do Delete Attributes
