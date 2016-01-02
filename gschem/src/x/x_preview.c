@@ -435,7 +435,7 @@ preview_instance_init (Preview *preview)
   GschemToplevel *preview_window;
 
   preview_window             = gschem_toplevel_new ();
-  preview_window->toplevel   = s_toplevel_new ();
+  preview_window->toplevel   = geda_toplevel_new ();
 
   s_toplevel_set_rendered_bounds_func (preview_window->toplevel,
                                        o_text_get_rendered_bounds,

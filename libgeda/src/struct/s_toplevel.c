@@ -23,22 +23,6 @@
 
 #include <libgeda_priv.h>
 
-/*!
- *  \brief Create a TOPLEVEL object
- *  \par Function Description
- *  Create and return an empty TOPLEVEL object with sensible defaults
- *  for its properties.
- *
- *  \returns the newly created TOPLEVEL.
- *
- *  \todo rethink block below that is set in gschem but used in libgeda.
- */
-GedaToplevel *s_toplevel_new (void)
-{
-  GedaToplevel *toplevel = geda_toplevel_new();
-  return toplevel;
-}
-
 /*! \brief Get a list of symbols in-use.
  *  \par Function Description
  *

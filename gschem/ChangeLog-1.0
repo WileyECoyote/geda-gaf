@@ -1,3 +1,7 @@
+2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
+
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Replace for loop with while loops in functions
