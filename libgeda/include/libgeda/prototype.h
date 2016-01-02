@@ -508,6 +508,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          Page   *s_page_get_current              (GedaToplevel *toplevel);
          bool    s_page_set_current              (GedaToplevel *toplevel, Page *page);
    const char   *s_page_get_file_extension       (Page *page);
+    SELECTION   *s_page_get_selection            (Page *page);
          bool    s_page_goto                     (Page *page);
          bool    s_page_is_symbol_file           (Page *page);
          void    s_page_print_all                (GedaToplevel *toplevel);
@@ -623,8 +624,9 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
           int    u_log_get_log_time              (void);
          void    u_log_set_log_time              (int mode);
          void    u_log_set_update_func           (LogUpdateFunc func);
-         void    u_log_qmessage                  (const char *format, ...);
-         void    u_log_vmessage                  (const char *format, ...);
+         void    geda_utility_log_quite          (const char *format, ...);
+         void    geda_utility_log_verbose        (const char *format, ...);
+         void    geda_utility_log_system         (const char *format, ...);
 
 /* u_string.c */
          char   *u_string_concat                 (const char *string1, ...)  GEDA_WARN_UNUSED_RESULT;

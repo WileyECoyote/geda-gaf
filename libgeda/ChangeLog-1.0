@@ -3,6 +3,8 @@
     * struct/s_toplevel.c: Remove function s_toplevel_new, is replaced by
       geda_toplevel_new in the geda_toplevel module.
 
+    * src/struct/s_page.c: Add function s_page_get_selection.
+
 2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_toplevel.c: Add precondition check to toplevel fluid.
