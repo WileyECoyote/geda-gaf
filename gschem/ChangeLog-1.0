@@ -1,5 +1,7 @@
 2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_page_view.c: Remove used property.
+
     * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
 
     * src/iface/i_status.c: Reduce scope of variables.
