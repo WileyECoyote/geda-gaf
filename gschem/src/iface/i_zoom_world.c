@@ -442,9 +442,8 @@ void correct_aspect(GschemToplevel *w_current)
 
   }
 
-  new_aspect = GET_PAGE_ASPECT_RATIO(toplevel);
-
 #if DEBUG
+  new_aspect = GET_PAGE_ASPECT_RATIO(toplevel);
   printf("%s: final %f\n",__func_, new_aspect);
 #endif
 }

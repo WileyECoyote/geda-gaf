@@ -2,11 +2,15 @@
 
     * src/base/gschem_page_view.c: Remove used property.
 
-    * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
-
     * src/iface/i_status.c: Reduce scope of variables.
 
+    * src/iface/i_zoom_world.c: In function correct_aspect, move setting
+      of new_aspect again into if DEBUG conditional since the variable
+      is not otherwise used again.
+
     * src/object/o_attrib.c: Reduce scope of variables.
+
+    * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
 
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
 
