@@ -349,7 +349,6 @@ static int i_event_adder_released(GtkWidget      *widget,
         }
       }
     }
-    //else if (event->button == 3) {}
   }
   else {
     BUG_MSG("w_current->event_state != action->state");
@@ -506,7 +505,6 @@ static int i_event_paster_released(GtkWidget      *widget,
         }
       }
     }
-    //else if (event->button == 3) {}
   }
   else {
     BUG_IMSG("action->state != w_current->event_state",w_current->event_state);

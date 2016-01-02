@@ -685,7 +685,6 @@ bool x_event_key (GtkWidget      *widget,
 {
   bool retval      = FALSE;
   int  control_key = 0;
-  //int  shift_key   = 0;
   int  pressed;
   int  wx, wy;
 
@@ -708,7 +707,6 @@ bool x_event_key (GtkWidget      *widget,
 
     case GDK_Shift_L:
     case GDK_Shift_R:
-      //shift_key = 1;
       w_current->SHIFTKEY = pressed;
       break;
 

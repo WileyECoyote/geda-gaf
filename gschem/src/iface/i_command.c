@@ -1876,8 +1876,8 @@ COMMAND (do_select_last)
     Object *object = w_current->which_object;
 
     if (GEDA_IS_OBJECT(w_current->which_object)) {
+
       if (!object->selected) {
-        //o_select_add_object(w_current, object);
         o_select_object(w_current, object, SINGLE, 0);
       }
     }

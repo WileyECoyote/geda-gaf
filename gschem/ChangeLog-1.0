@@ -10,6 +10,8 @@
 
     * src/object/o_attrib.c: Reduce scope of variables.
 
+    * src/object/o_grips.c: Reduce scope of variables.
+
     * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
 
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>

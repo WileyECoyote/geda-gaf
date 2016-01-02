@@ -1019,9 +1019,9 @@ void o_break_snap_object(GschemToplevel *w_current, Object *object)
 
   point.x = w_current->second_wx;
   point.y = w_current->second_wy;
-//fprintf(stderr, "%s 2nd: x=%d, y=%d\n", __func__, point.x, point.y);
+
   if (o_get_nearest_point(object, point.x, point.y, &x, &y)) {
-//fprintf(stderr, "%s returned 2 x=%d, y=%d\n", __func__, x, y);
+
     dist    = m_distance(x, y, point.x, point.y);
     w_slack = WORLDabs (w_current, w_current->select_slack_pixels) / 3;
 
@@ -1030,7 +1030,6 @@ void o_break_snap_object(GschemToplevel *w_current, Object *object)
       w_current->second_wy = y;
     }
   }
-//fprintf(stderr, "%s exit 2 dist=%f x=%d, y=%d\n", __func__, dist, w_current->second_wx, w_current->second_wy);
 }
 
 /*! \brief Determine if an Object can bound a given Projectile

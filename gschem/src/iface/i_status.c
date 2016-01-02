@@ -568,7 +568,6 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     static bool  last_state = TRUE;
     const  char *buffer_menu;
 
-
     char  menu_string[48];
     int   index;
 
@@ -582,9 +581,9 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       char *buffer;
       int   length;
 
-      buffer    = strcpy(&menu_string[0], buffer_menu);
-
+      buffer = strcpy(&menu_string[0], buffer_menu);
       length = strlen(buffer);
+
       menu_string[length++] = '/';
       menu_string[length]   = '\0';
 
@@ -815,11 +814,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Select/Lock", FALSE);
     x_menus_sensitivity(w_current, "_Select/Unlock", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Edit",          FALSE);
-    //x_menus_popup_sensitivity(w_current, "Object...",     FALSE);
-    //x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
-    //x_menus_popup_sensitivity(w_current, "Pin type...", FALSE);
-
+    x_menus_popup_sensitivity(w_current, "Edit",   FALSE);
     x_menus_popup_sensitivity(w_current, "Delete", FALSE);
     x_menus_popup_sensitivity(w_current, "Copy",   FALSE);
     x_menus_popup_sensitivity(w_current, "MCopy",  FALSE);

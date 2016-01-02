@@ -287,9 +287,8 @@ Object*
 o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object   *object=NULL;
-  Object   *found=NULL;
-  GList    *s_current;
+  Object *found=NULL;
+  GList  *s_current;
 
   int size;
   int w_size;
@@ -303,12 +302,15 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
   w_size = WORLDabs (w_current, size );
 
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
+
   while (s_current != NULL) {
-    object = (Object *) s_current->data;
+
+    Object *object = (Object*)s_current->data;
+
     if (object) {
       /* get the dynamic size of the grip */
       //size = o_grips_half_size(w_current, object);
-      //w_size = WORLDabs (w_current, size );
+
       switch(object->type) {
         case(OBJ_ARC):
           /* check the grips of the arc object */

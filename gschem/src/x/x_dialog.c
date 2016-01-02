@@ -2387,7 +2387,6 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
           }
         }
       }
-      //start_find = FALSE;
       break;
     case GEDA_RESPONSE_REJECT:
     case GEDA_RESPONSE_DELETE_EVENT:
