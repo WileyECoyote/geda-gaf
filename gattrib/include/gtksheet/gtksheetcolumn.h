@@ -46,7 +46,7 @@ struct _GtkSheetColumn
     char *title;
 
     int width;
-    guint16 requisition;
+    unsigned short requisition;
     int left_xpixel;   /* left edge of the column*/
     int max_extent_width;  /* := max(Cell.extent.width) */
 

@@ -40,8 +40,8 @@ struct _GtkMenuItemPrivate
   GtkWidget *submenu;
   GdkWindow *event_window;
 
-  unsigned int16 toggle_size;
-  unsigned int16 accelerator_width;
+  unsigned short toggle_size;
+  unsigned short accelerator_width;
 
   unsigned int timer;
 
