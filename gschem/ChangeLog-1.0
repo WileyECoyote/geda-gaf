@@ -19,6 +19,9 @@
 
     * src/base/gschem_page_view.c: Remove used property.
 
+    * src/iface/i_window.c: Revise i_window_show_attributes to eliminate
+      macros; Current_Selection, Current_Page, and Current_PlaceList.
+
     * src/iface/i_status.c: Reduce scope of variables.
 
     * src/iface/i_zoom_world.c: In function correct_aspect, move setting

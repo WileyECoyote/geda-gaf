@@ -565,9 +565,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
   void set_sensitivity_for_buffers (bool state) {
 
-    static bool  last_state = TRUE;
-    const  char *buffer_menu;
-
+    const char *buffer_menu;
     char  menu_string[48];
     int   index;
 
@@ -578,8 +576,10 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     if (buffer_menu)  {
 
-      char *buffer;
-      int   length;
+      static bool last_state = TRUE;
+
+      char  *buffer;
+      int    length;
 
       buffer = strcpy(&menu_string[0], buffer_menu);
       length = strlen(buffer);

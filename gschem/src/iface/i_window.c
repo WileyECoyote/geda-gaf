@@ -359,23 +359,28 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
  */
 void i_window_show_attributes (GschemToplevel *w_current, int scope)
 {
-  GList *object_list;
-
   if (!w_current->inside_action) {
 
-    bool show_status;
+    GList *object_list;
+    Page  *p_current;
+    bool   show_status;
 
     object_list = NULL;
+    p_current   = gschem_toplevel_get_current_page(w_current);
 
     if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      object_list =  geda_list_get_glist (selection);
+
+      SELECTION *selection;
+
+      selection   = s_page_get_selection (p_current);
+      object_list = geda_list_get_glist (selection);
       show_status = FALSE;
     }
     else {
-      object_list =  s_page_get_objects (Current_Page);
+      object_list = s_page_get_objects (p_current);
       show_status = TRUE;
     }
+
     if (object_list) {
       if(o_edit_show_hidden (w_current, object_list, scope)) {
         o_undo_savestate (w_current, UNDO_ALL);
@@ -386,8 +391,11 @@ void i_window_show_attributes (GschemToplevel *w_current, int scope)
     }
   }
   else if (o_select_is_selection (w_current)) {
-    if (Current_PlaceList) {
-      o_edit_show_hidden (w_current, Current_PlaceList, scope);
+
+    GList *place_list = s_place_get_place_list(w_current->toplevel);
+
+    if (place_list) {
+      o_edit_show_hidden (w_current, place_list, scope);
     }
   }
 }
