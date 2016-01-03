@@ -144,6 +144,8 @@ enum {
  *                | used the NULL passed from geda_handle_box_expose, removed
  *                | function draw_textured_frame. Revise/edit Doxygen comments.
  *                | Reduce scope of variables in geda_handle_box_button_press.
+ *                | Add call gtk_container_propagate_expose in geda_handle_box
+ *                | _expose so internals are painted properly.
 */
 static void geda_handle_box_set_property  (GObject        *object,
                                            unsigned int    param_id,
@@ -1129,13 +1131,15 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 static bool
 geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 {
-  GedaHandleBox *handlebox;
-
   if (gtk_widget_is_drawable (widget)) {
 
-    handlebox = GEDA_HANDLE_BOX (widget);
+    GtkWidget *child;
 
     if (event->window == widget->window) {
+
+      GedaHandleBox *handlebox;
+
+      handlebox = GEDA_HANDLE_BOX (widget);
 
       if (handlebox->child_detached) {
         geda_handle_box_draw_ghost (handlebox);
@@ -1144,6 +1148,10 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
     else {
       geda_handle_box_paint (widget, event);
     }
+
+    child = GTK_BIN (widget)->child;
+
+    gtk_container_propagate_expose (GTK_CONTAINER (widget), child, event);
   }
 
   return TRUE;

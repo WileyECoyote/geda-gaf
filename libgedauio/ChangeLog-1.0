@@ -2,7 +2,9 @@
 
     * src/widgets/geda_handlebox.c: Simply geda_handle_box_paint, remove
       function draw_textured_frame. Revise/edit Doxygen comments. Reduce
-      scope of variables in geda_handle_box_button_press.
+      scope of variables in geda_handle_box_button_press. Add call gtk_
+      container_propagate_expose in geda_handle_box_expose so internals
+      are painted properly.
 
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
