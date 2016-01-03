@@ -2,7 +2,11 @@
 
     * src/x/x_multiattrib.c: Revise module to eliminate Current_Selection
       macro in x_multiattrib_open and ma_callback_toggled_show_name, reduce
-      scope of variables.
+      scope of variables. Revise x_multiattrib_close to clear the liststore
+      before destroying the dialog, unreference buffer before exiting multi-
+      line_text_editing_done, reversed conditional inherited->!inherited, in
+      multiattrib_callback_key_pressed so attr_list gets unreferenced, and
+      free objects_needing_add in multi-attrib_action_copy_attribute_to_all.
 
 2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
 

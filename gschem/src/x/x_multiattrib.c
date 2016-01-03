@@ -142,7 +142,19 @@ void x_multiattrib_open (GschemToplevel *w_current)
 void x_multiattrib_close (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
+
+    Multiattrib  *ThisDialog;
+    GtkListStore *liststore;
+
+    ThisDialog = MULTIATTRIB(w_current->mawindow);
+    liststore  = (GtkListStore*)gtk_tree_view_get_model (ThisDialog->treeview);
+
+    gtk_list_store_clear (liststore);
+
+    g_object_unref(liststore);
+
     gtk_widget_destroy (w_current->mawindow);
+
     w_current->mawindow = NULL;
   }
 }
@@ -357,7 +369,7 @@ static void cellrenderermultilinetext_class_init   (CellRendererMultiLineTextCla
  *
  */
 static void multiline_text_editing_done(GtkCellEditable *cell_editable,
-                                                   void            *user_data)
+                                                   void *user_data)
 {
   CellRendererMultiLineText *cell = CELL_RENDERER_MULTI_LINE_TEXT (user_data);
   GtkTextBuffer             *buffer;
@@ -367,28 +379,29 @@ static void multiline_text_editing_done(GtkCellEditable *cell_editable,
   const char                *path;
 
   if (cell->focus_out_id > 0) {
-    g_signal_handler_disconnect (cell_editable,
-                                 cell->focus_out_id);
+    g_signal_handler_disconnect (cell_editable, cell->focus_out_id);
     cell->focus_out_id = 0;
-  }
-
-  if (CELL_TEXT_VIEW (cell_editable)->editing_canceled) {
-    g_signal_emit_by_name (cell, "editing-canceled");
-    return;
   }
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (cell_editable));
 
-  gtk_text_buffer_get_start_iter (buffer, &start);
-  gtk_text_buffer_get_end_iter   (buffer, &end);
-  new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
+  if (CELL_TEXT_VIEW (cell_editable)->editing_canceled) {
+    g_signal_emit_by_name (cell, "editing-canceled");
+  }
+  else {
 
-  path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
+    gtk_text_buffer_get_start_iter (buffer, &start);
+    gtk_text_buffer_get_end_iter   (buffer, &end);
+    new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
-  g_signal_emit_by_name (cell, "edited", path, new_text);
+    path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
 
-  GEDA_FREE (new_text);
+    g_signal_emit_by_name (cell, "edited", path, new_text);
 
+    GEDA_FREE (new_text);
+  }
+
+  g_object_unref(buffer);
 }
 
 /*! \todo Finish function documentation
@@ -726,6 +739,8 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
                            object);
     }
   }
+
+  g_list_free (objects_needing_add);
 
   o_undo_savestate (w_current, UNDO_ALL);
 }
@@ -1248,13 +1263,13 @@ static bool multiattrib_callback_key_pressed(GtkWidget   *widget,
                         -1);
 
     /* We can't delete inherited attribtes */
-    if (inherited)
-      return FALSE;
+    if (!inherited) {
 
-    multiattrib_action_delete_attributes (ThisDialog,
-                                          geda_list_get_glist (attr_list));
-    /* update the treeview contents */
-    multiattrib_update (ThisDialog);
+      multiattrib_action_delete_attributes (ThisDialog,
+                                            geda_list_get_glist (attr_list));
+      /* update the treeview contents */
+      multiattrib_update (ThisDialog);
+    }
 
     GEDA_UNREF (attr_list);
   }
@@ -1904,8 +1919,9 @@ disconnect_object_list (Multiattrib *ThisDialog)
 static void
 multiattrib_finalize (GObject *object)
 {
-  Multiattrib *ThisDialog = MULTIATTRIB(object);
+  Multiattrib  *ThisDialog = MULTIATTRIB(object);
 
+  /* Clear the existing list of attributes */
   disconnect_object_list (ThisDialog);
 
   G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
@@ -2084,6 +2100,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     ThisDialog);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   struct {
@@ -2231,6 +2248,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   /* Save the GTK_STATE_NORMAL color so we can work around GtkTextView's
    * stubborn refusal to draw with GTK_STATE_INSENSITIVE later on */
   style = gtk_widget_get_style (textview);
+
   ThisDialog->value_normal_text_color = style->text[ GTK_STATE_NORMAL ];
 
   /* Save this one so we can pick it as a sensible color to show the
@@ -2256,6 +2274,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                      "label", _("Visible"),
                                      "active", TRUE,
                                      NULL));
+
   ThisDialog->button_visible = GTK_CHECK_BUTTON (button);
   SetWidgetTip( button, _("Enable or disable attribute visibility"));
   gtk_table_attach (GTK_TABLE (table), button,
@@ -2287,7 +2306,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), frame, FALSE, TRUE, 5);
 
   gtk_widget_show_all (frame);
-
 
   /* now add the close button to the action area */
   gtk_dialog_add_button (GTK_DIALOG (ThisDialog),
