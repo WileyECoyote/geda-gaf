@@ -1,9 +1,9 @@
 # geda-gtk.m4              -*-Autoconf-*-
-# serial 1.2
+# serial 1.3
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
-dnl Copyright (C) 2013  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2015  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -57,6 +57,21 @@ AC_DEFUN([AX_CHECK_GTK],
          fi
         ]
   )
+
+  save_CFLAGS="$CFLAGS"
+  save_LIBS="$LIBS"
+
+  CFLAGS="$CFLAGS $GTK_CFLAGS"
+  CPPFLAGS="$CPPFLAGS $GTK_CFLAGS"
+  LIBS="$LIBS $GTK_LIBS"
+
+  AC_CHECK_HEADERS([gdk/gdkkeysyms-compat.h])
+
+  AC_CHECK_FUNCS([gtk_show_uri gdk_window_get_width])
+
+  CFLAGS="$save_CFLAGS"
+  LIBS="$save_LIBS"
+
   []dnl
 ])dnl AX_CHECK_GTK
 
