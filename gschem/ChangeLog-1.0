@@ -11,6 +11,10 @@
       multiattrib_callback_key_pressed so attr_list gets unreferenced, and
       free objects_needing_add in multi-attrib_action_copy_attribute_to_all.
 
+    * src/x/x_toolbars.c: Simplify conditional in x_toolbars_execute, reduce
+      scope of variables, rename etb_insert_pic->etb_add_pic for consistency
+      with other adders, clean formatting.
+
 2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_view.c: Remove used property.

@@ -101,7 +101,7 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_none, etb_select_all, etb_select_invert, etb_add_component,
                 etb_add_net, etb_add_bus, etb_add_attribute, etb_add_text,
                 etb_add_line, etb_add_box, etb_add_circle, etb_add_arc,
-                etb_add_path, etb_add_pin, etb_insert_pic,
+                etb_add_path, etb_add_pin, etb_add_pic,
                 etb_first_page, etb_prev_page, etb_next_page, etb_up_page,
                 etb_down_page, etb_last_page, etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
@@ -358,7 +358,7 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
   char *filename = f_get_bitmap_filespec (name);
 
   /* 1ST Try custom icon */
-  if(access(filename, R_OK) == 0) {
+  if (access(filename, R_OK) == 0) {
 
     pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
 
@@ -390,14 +390,15 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
  * buttons, the function retrieves the action from the button widget
  * and pass the action to i_command_process.
  */
-static void x_toolbars_execute(GtkWidget* widget, GschemToplevel* w_current)
+static void x_toolbars_execute(GtkWidget *widget, GschemToplevel *w_current)
 {
-  char* action;
+  char *action;
 
   action = GEDA_OBJECT_GET_DATA(widget, "action");
 #if DEBUG_TOOLBARS
   fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
 #endif
+
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
 }
 
@@ -409,7 +410,7 @@ static void x_toolbars_execute(GtkWidget* widget, GschemToplevel* w_current)
  *  pointer to the icon field, failing that, either get_pixmap or a gtk
  *  stock is sought based on iflag.
  */
-static void x_toolbars_load_icons( GschemToplevel* w_current)
+static void x_toolbars_load_icons( GschemToplevel *w_current)
 {
 
   ToolbarStringData *tb_data;
@@ -460,13 +461,13 @@ static void x_toolbars_load_icons( GschemToplevel* w_current)
   }
 }
 
-static void x_toolbars_turn_off_radio(RadioMenuData* radio_data) {
+static void x_toolbars_turn_off_radio(RadioMenuData *radio_data) {
   g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
   g_object_set  ( G_OBJECT ( radio_data->widget), "active", FALSE, NULL);
   g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
 }
 
-static void x_toolbars_turn_on_radio(RadioMenuData* radio_data) {
+static void x_toolbars_turn_on_radio(RadioMenuData *radio_data) {
   g_signal_handler_block   ( radio_data->widget,   radio_data->handler);
   g_object_set  ( G_OBJECT ( radio_data->widget), "active", TRUE, NULL);
   g_signal_handler_unblock ( radio_data->widget,   radio_data->handler);
@@ -479,20 +480,17 @@ static void x_toolbars_turn_on_radio(RadioMenuData* radio_data) {
  *  the function retrieves the action from the button widget
  *  and passes the action to i_command_process.
  */
-static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel* w_current)
+static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel *w_current)
 {
-  char* action;
-
-  action = GEDA_OBJECT_GET_DATA(button, "action");
+  char *action = GEDA_OBJECT_GET_DATA(button, "action");
 
 #if DEBUG_TOOLBARS
-  fprintf(stderr, "x_toolbars_execute_radio: action=%s\n",action);
+  fprintf(stderr, "x_toolbars_execute_radio: action=%s\n", action);
 #endif
 
-  if (strcmp(action, "none") != 0)
-    if (button->active) {
-      i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
-    }
+  if ((strcmp(action, "none") != 0) && (button->active)) {
+    i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
+  }
 }
 
 /*! \brief Toolbar Toggler Button Callback
@@ -503,10 +501,10 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GschemToplevel* w
  *  the snap-widget before passing the action from the button widget
  *  to i_command_process().
  */
-static void x_toolbars_snap_toggle(GtkWidget* widget, GschemToplevel* w_current)
+static void x_toolbars_snap_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  char*      action;
-  GtkWidget* button;
+  char      *action;
+  GtkWidget *button;
 
   action = GEDA_OBJECT_GET_DATA(widget, "action");
   button = GEDA_OBJECT_GET_DATA(widget, "snap-widget");
@@ -533,11 +531,12 @@ x_toolbars_save_state(GschemToplevel *w_current)
   char *data, *filename;
   GKeyFile    *key_file = NULL;
 
-  void SaveBarProperties(GtkWidget * handlebox) {
+  void SaveBarProperties(GtkWidget *handlebox) {
+
+    const char *group_name;
     int   bar_id;
     int   visible;
     int   style;
-    const char *group_name;
 
     bar_id     = GET_TOOLBAR_ID(handlebox);
     group_name = IDS_Toolbar_Names[bar_id];
@@ -584,7 +583,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
   else
     key_file = g_key_file_new();
 
-  if(key_file) {
+  if (key_file) {
     SaveAllBars();
     data = g_key_file_to_data(key_file, NULL, NULL);
     g_file_set_contents(filename, data, -1, NULL);
@@ -613,7 +612,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   GKeyFile   *key_file = NULL;
   int         global_style;
 
-  void RestoreBarProperties(GtkWidget * handlebox) {
+  void RestoreBarProperties(GtkWidget *handlebox) {
     int bar_id;
     int visible;
     int style;
@@ -621,11 +620,11 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     bar_id = GET_TOOLBAR_ID(handlebox);
     group_name = IDS_Toolbar_Names[bar_id];
 
-    if(key_file) {
+    if (key_file) {
 
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
 
-      if(!err) {
+      if (!err) {
         gtk_widget_set_visible(handlebox, visible);
         x_menu_set_toolbar_toggle(w_current, bar_id, visible);
       }
@@ -636,7 +635,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
       style = g_key_file_get_integer (key_file, group_name, "style", &err);
 
-      if(!err) {
+      if (!err) {
         gtk_toolbar_set_style(GTK_TOOLBAR (GTK_BIN (handlebox)->child), style);
         if (visible) {
           global_style += style;
@@ -656,7 +655,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   }
 
   void RestoreAllBars() {
-    if(key_file) {
+    if (key_file) {
       v_log_message("Retrieving toolbar geometry\n");
       RestoreBarProperties(w_current->add_handlebox);
       RestoreBarProperties(w_current->attribute_handlebox);
@@ -673,11 +672,13 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
   filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
-  if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
+  if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
     if (access(filename, R_OK) == 0) {
+
       key_file = g_key_file_new();
-      if(g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
+
+      if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {
         RestoreAllBars();
         v_log_message("Toolbar configuration restored from %s\n", filename);
       }
@@ -709,7 +710,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
     v_log_message("Toolbar configuration <%s> not found!\n", filename);
   }
 
-  if(key_file) g_key_file_free(key_file);
+  if (key_file) g_key_file_free(key_file);
   GEDA_FREE(filename);
 }
 
@@ -720,7 +721,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
  * based on settings establish during gschem boot-up. The function also
  * sets the visibility of the Close buttons on all the handleboxes.
  * The Main window did a Show All and that revealed all the buttons on
- * handleboxes that should be hidden if bar is docked. Rather than setting
+ *handleboxes that should be hidden if bar is docked. Rather than setting
  * each widget individually when creating the main window, it's easier to
  * "fix" this by having this routine emit a signal to each handlebox.
  *
@@ -738,6 +739,7 @@ x_toolbars_finialize (GschemToplevel *w_current) {
       x_toolbars_restore_state(w_current);
     }
     else { /* use rc value */
+
       lambda (GtkWidget *bar) {
         gtk_toolbar_set_style (GTK_TOOLBAR (bar), TOOLBAR_STYLE);
         return FALSE;
@@ -759,7 +761,6 @@ x_toolbars_finialize (GschemToplevel *w_current) {
   gtk_widget_hide(bar_widgets->toolbar_none);
 
   x_toolbars_update(w_current);
-
 }
 
 /*! \brief Free Window Specific Toolbar Widgets
@@ -776,7 +777,7 @@ x_toolbars_free_window(GschemToplevel *w_current)
 
   lambda (GtkWidget *bar)
   {
-    gtk_widget_destroy(bar);
+    gtk_widget_destroy (bar);
     return FALSE;
   }
   mapcar(TheToolBars);
@@ -829,7 +830,6 @@ static void do_Hide_HandleBox(GedaHandleBox *handlebox)
   else
     BUG_MSG("container is not a handlebox");
 }
-
 
 /*! \brief Callback Handler for Popup Mouse Context Menu
  *
@@ -1301,7 +1301,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
   /*                    bar, var,              grp,              name,            data */
-  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(pic),    NULL,             etb_insert_pic,  w_current);
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(pic),    NULL,             etb_add_pic,     w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(line),   BarRadio(pic),    etb_add_line,    w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(path),   BarRadio(line),   etb_add_path,    w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(arc),    BarRadio(path),   etb_add_arc,     w_current);
@@ -1474,7 +1474,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   HAVE_PIN_LIST     = g_slist_append (HAVE_PIN_LIST,   TB_BUTTON ( etb_edit_pin  ));
   CAN_ELINE_LIST    = g_slist_append (CAN_ELINE_LIST,  TB_BUTTON ( etb_edit_line ));
-  CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST, TB_BUTTON ( etb_edit_fill ));
+  CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
 
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
@@ -1483,8 +1483,8 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   g_object_set (Edit_Toolbar, "visible", TRUE, NULL);
 
-  SET_TOOLBAR_ID        (w_current->edit_handlebox, tb_Edit);
-  SET_TOOLBAR_WC        (w_current->edit_handlebox, w_current);
+  SET_TOOLBAR_ID (w_current->edit_handlebox, tb_Edit);
+  SET_TOOLBAR_WC (w_current->edit_handlebox, w_current);
 
   x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar );
   TheToolBars = g_slist_append ( TheToolBars, Edit_Toolbar);
@@ -1503,8 +1503,8 @@ void
 x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 {
 
-  GtkWidget *Attribute_Toolbar;
-  GtkWidget *GripSnap_Toolbar;
+  GtkWidget      *Attribute_Toolbar;
+  GtkWidget      *GripSnap_Toolbar;
   ToolBarWidgets *bar_widgets;
 
   /* Each toolbar created MUST be added to this single-link list: */
@@ -1541,12 +1541,10 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
-  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_visibilty);
-  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_hidden);
-
+  GSCHEM_TOOLBAR_BUTTON (Attribute, etb_visibilty);
+  GSCHEM_TOOLBAR_BUTTON (Attribute, etb_show_hidden);
   GSCHEM_TOOLBAR_BUTTON (Attribute, etb_view_nets);
-
-  GSCHEM_TOOLBAR_BUTTON(Attribute, etb_show_inherited);
+  GSCHEM_TOOLBAR_BUTTON (Attribute, etb_show_inherited);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Attribute_Toolbar));
 
@@ -1616,7 +1614,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   SET_TOOLBAR_WC       (w_current->grid_snap_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->grid_snap_handlebox, GripSnap_Toolbar );
 
-  TheToolBars = g_slist_append ( TheToolBars, GripSnap_Toolbar);
+  TheToolBars = g_slist_append (TheToolBars, GripSnap_Toolbar);
 }
 
 /*! \brief Set Sensitivity of Toolbar Buttons
@@ -1822,10 +1820,11 @@ x_toolbars_activate_select (GschemToplevel *w_current)
 void
 x_toolbars_set_grid_radio (GschemToplevel *w_current)
 {
-  ToolBarWidgets  *bar_widgets;
-  GtkToggleButton *target = NULL;
-
   if (w_current->toolbars) {
+
+    ToolBarWidgets  *bar_widgets;
+    GtkToggleButton *target = NULL;
+
     bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
     switch(w_current->grid_mode) {
@@ -1841,7 +1840,8 @@ x_toolbars_set_grid_radio (GschemToplevel *w_current)
       default:
         break;
     }
-    if(GTK_IS_TOGGLE_BUTTON(target)) {
+
+    if (GTK_IS_TOGGLE_BUTTON(target)) {
       /* if button is not active then action was not initiated by the toolbar */
       if (!target->active) {
         g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
@@ -1880,7 +1880,7 @@ x_toolbars_update(GschemToplevel *w_current)
   GtkToggleButton *target;
 
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
-  target      = NULL;
+  target = NULL;
 
   switch(w_current->event_state) {
     case(NONE):
@@ -1920,11 +1920,11 @@ x_toolbars_update(GschemToplevel *w_current)
       target = (GtkToggleButton*) bar_widgets->toolbar_arc;
       break;
     default:
-      target = (GtkToggleButton*) bar_widgets->toolbar_none;
+      target = (GtkToggleButton*)bar_widgets->toolbar_none;
       break;
   }
 
-  if(GTK_IS_TOGGLE_BUTTON(target)) {
+  if (GTK_IS_TOGGLE_BUTTON(target)) {
     /* if button is not active then action was not initiated by the toolbar */
     if (!target->active) {
       g_signal_handlers_block_by_func (target, HideFromDoxygen, w_current);
@@ -1933,4 +1933,5 @@ x_toolbars_update(GschemToplevel *w_current)
     }
   }
 }
+
 /** @} endgroup toolbars-module */
