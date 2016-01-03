@@ -6692,6 +6692,17 @@ bool geda_combo_widget_get_has_entry (GtkWidget *combo_box) {
   return FALSE;
 }
 
+GtkWidget *geda_combo_widget_get_entry (GtkWidget *combo_box) {
+  if (GEDA_IS_COMBO_BOX (combo_box)) {
+    if (((GedaComboBox*)combo_box)->priv->has_entry)
+      return gtk_bin_get_child(GTK_BIN(combo_box));
+  }
+  else {
+    BUG_MSG ("Operative is not a GedaComboBox");
+  }
+  return NULL;
+}
+
 int geda_combo_widget_get_entry_text_column (GtkWidget *combo_box) {
   if (GEDA_IS_COMBO_BOX (combo_box))
     return ((GedaComboBox*)combo_box)->priv->text_column;
