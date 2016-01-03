@@ -2,9 +2,12 @@
 ## Process this file with automake to produce Makefile.in
 #
 
-#DEBUGGING                   = --debug --verbose
+#DEBUGGING                    = --debug --verbose
 
 #AUTOMAKE_OPTIONS             = 1.6 subdir-objects
+
+
+SUBDIRS                      = dialogs
 
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include

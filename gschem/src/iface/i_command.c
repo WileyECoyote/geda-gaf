@@ -218,7 +218,7 @@ void i_command_engage(GschemToplevel *w_current)
   CommandPool = g_thread_pool_new ((void*)i_command_router, w_current,
                                     MAX_THREADS, FALSE, &err);
 
-  if(err != NULL) {
+  if (err != NULL) {
     fprintf (stderr, "Error: failed to create thread pool: %s\n", err->message);
     g_error_free (err);
     is_engaged = FALSE;   /* Fallback to single thread "safe" mode if no pool */
@@ -234,7 +234,7 @@ void i_command_engage(GschemToplevel *w_current)
 /*! Disable multitasking mode */
 void i_command_disengage(bool immediate, bool wait_return)
 {
-  if(CommandPool) {
+  if (CommandPool) {
     g_thread_pool_free(CommandPool, immediate, wait_return);
   }
   is_engaged = FALSE;
@@ -422,8 +422,8 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 #endif
 
       /* Either push task to cache of actions, or do in-line */
-      if(is_engaged && !(command_struc[i].aflag & USE_INLINE_MODE))
-        g_thread_pool_push (CommandPool,command_struc[i].name, NULL);
+      if (is_engaged && !(command_struc[i].aflag & USE_INLINE_MODE))
+        g_thread_pool_push (CommandPool, command_struc[i].name, NULL);
       else
         command_struc[i].func(w_current);
       break;
@@ -464,7 +464,7 @@ static inline void null_err(char *var)
   u_log_message("internal error, i_command: variable <%s> can not be NULL\n", var);
 }
 
-#define NOT_NULL(symbol) if(!symbol) return null_err(#symbol)
+#define NOT_NULL(symbol) if (!symbol) return null_err(#symbol)
 
 static inline void BlockThread (int index)
 {
@@ -511,7 +511,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
                                NO_ACTION(efunc); \
                                BEGIN_COMMAND(efunc);
 
-#define EXIT_COMMAND(efunc) if(arg) { GEDA_FREE(arg); \
+#define EXIT_COMMAND(efunc) if (arg) { GEDA_FREE(arg); \
                                       g_strfreev ( argv);} \
                             CMD_STATUS(efunc) = 0;
 
@@ -1040,7 +1040,7 @@ COMMAND (do_run_script) {
   char* filename = NULL;
   gschem_threads_enter();
   filename = x_dialog_select_file("Execute Script...", filename, FSB_LOAD);
-  if(filename != NULL) { /* if user did not cancel */
+  if (filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
   }
@@ -3791,7 +3791,7 @@ COMMAND (do_embed)
 
       Object *o_current = (Object *) s_current->data;
 
-      if(o_current != NULL) {
+      if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
              (o_current->type == OBJ_PICTURE)) {
           o_embed (w_current->toplevel, o_current);
