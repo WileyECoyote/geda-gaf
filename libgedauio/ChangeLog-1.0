@@ -2,6 +2,9 @@
 
     * src/widgets/geda_combobox.c: Add function geda_combo_widget_get_entry.
 
+    * src/widgets/geda_label.c: Conditionally try gtk_show_uri and if fails
+      try g_app_info_launch_default_for_uri in geda_label_activate_link.
+
 2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
      * include/Makefile.am: Remove reference geda_actionhelper.h.

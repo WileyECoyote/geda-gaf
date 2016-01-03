@@ -1,5 +1,8 @@
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_misc.c: Conditionally try gtk_show_uri, fix other conditional
+      directives in x_show_uri, maybe.
+
     * src/x/x_multiattrib.c: Revise module to eliminate Current_Selection
       macro in x_multiattrib_open and ma_callback_toggled_show_name, reduce
       scope of variables. Revise x_multiattrib_close to clear the liststore

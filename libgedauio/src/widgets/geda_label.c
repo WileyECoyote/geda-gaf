@@ -216,34 +216,34 @@ static bool geda_label_motion                (GtkWidget        *widget,
 static bool geda_label_leave_notify          (GtkWidget        *widget,
                                               GdkEventCrossing *event);
 
-static void geda_label_grab_focus            (GtkWidget      *widget);
+static void geda_label_grab_focus            (GtkWidget       *widget);
 
-static bool geda_label_query_tooltip         (GtkWidget      *widget,
-                                              int             x,
-                                              int             y,
-                                              bool            keyboard_tip,
-                                              GtkTooltip     *tooltip);
+static bool geda_label_query_tooltip         (GtkWidget       *widget,
+                                              int              x,
+                                              int              y,
+                                              bool             keyboard_tip,
+                                              GtkTooltip      *tooltip);
 
 static void geda_label_set_text_internal          (GedaLabel  *label,
-                                                   char      *str);
+                                                   char       *str);
 static void geda_label_set_label_internal         (GedaLabel  *label,
-                                                   char      *str);
+                                                   char       *str);
 static void geda_label_set_use_markup_internal    (GedaLabel  *label,
-                                                   bool       val);
+                                                   bool        val);
 static void geda_label_set_use_underline_internal (GedaLabel  *label,
-                                                   bool       val);
+                                                   bool        val);
 static void geda_label_set_uline_text_internal    (GedaLabel  *label,
-                                             const char      *str);
+                                             const char       *str);
 static void geda_label_set_pattern_internal       (GedaLabel  *label,
-                                             const char      *pattern,
-                                                   bool       is_mnemonic);
+                                             const char       *pattern,
+                                                   bool        is_mnemonic);
 static void geda_label_set_markup_internal        (GedaLabel  *label,
-                                             const char      *str,
-                                                   bool       with_uline);
+                                             const char       *str,
+                                                   bool        with_uline);
 static void geda_label_recalculate                (GedaLabel  *label);
-static void geda_label_screen_changed             (GtkWidget *widget,
-                                                   GdkScreen *old_screen);
-static bool geda_label_popup_menu                 (GtkWidget *widget);
+static void geda_label_screen_changed             (GtkWidget  *widget,
+                                                   GdkScreen  *old_screen);
+static bool geda_label_popup_menu                 (GtkWidget  *widget);
 static void geda_label_create_window              (GedaLabel  *label);
 static void geda_label_destroy_window             (GedaLabel  *label);
 static bool geda_label_ensure_select_info         (GedaLabel  *label);
@@ -252,8 +252,8 @@ static void geda_label_update_cursor              (GedaLabel  *label);
 static void geda_label_clear_layout               (GedaLabel  *label);
 static void geda_label_ensure_layout              (GedaLabel  *label);
 static void geda_label_select_region_index        (GedaLabel  *label,
-                                                   int        anchor_index,
-                                                   int        end_index);
+                                                   int         anchor_index,
+                                                   int         end_index);
 
 static bool geda_label_mnemonic_activate          (GtkWidget         *widget,
                                                    bool               group_cycling);
@@ -271,13 +271,13 @@ static bool geda_label_buildable_custom_tag_start (GtkBuildable      *buildable,
                                                    GObject           *child,
                                                    const char        *tagname,
                                                    GMarkupParser     *parser,
-                                                   void *          *data);
+                                                   void             **data);
 
 static void geda_label_buildable_custom_finished  (GtkBuildable      *buildable,
                                                    GtkBuilder        *builder,
                                                    GObject           *child,
                                                    const char        *tagname,
-                                                   void *           user_data);
+                                                   void              *user_data);
 
 static void connect_mnemonics_visible_notify      (GedaLabel         *label);
 static bool separate_uline_pattern                (const char        *str,
@@ -301,16 +301,16 @@ static int geda_label_move_backward_word          (GedaLabel        *label,
                                                    int              start);
 
 /* For links: */
-static void geda_label_clear_links                (GedaLabel    *label);
-static bool geda_label_activate_link              (GedaLabel    *label,
-                                                  const char   *uri);
+static void geda_label_clear_links                (GedaLabel     *label);
+static bool geda_label_activate_link              (GedaLabel     *label,
+                                                   const char    *uri);
 
 static void geda_label_activate_current_link      (GedaLabel     *label);
 static GedaLabelLink *geda_label_get_current_link (GedaLabel     *label);
 
-static void geda_label_get_link_colors            (GtkWidget    *widget,
-                                                   GdkColor     *link_color,
-                                                   GdkColor     *visited_link_color);
+static void geda_label_get_link_colors            (GtkWidget     *widget,
+                                                   GdkColor      *link_color,
+                                                   GdkColor      *visited_link_color);
 
 static void emit_activate_link                    (GedaLabel     *label,
                                                    GedaLabelLink *link);
@@ -5968,14 +5968,29 @@ static bool
 geda_label_activate_link (GedaLabel *label, const char *uri)
 {
   GtkWidget *widget = GTK_WIDGET (label);
-  GError *error = NULL;
+  GError    *error = NULL;
+  bool       result;
 
-  if (!gtk_show_uri (gtk_widget_get_screen (widget),
-                     uri, gtk_get_current_event_time (), &error))
-    {
+#if HAVE_GTK_SHOW_URI
+
+  result = gtk_show_uri (gtk_widget_get_screen (widget), uri,
+                         gtk_get_current_event_time (), &error);
+
+  if (!result) {
+    g_error_free (error);
+    result = g_app_info_launch_default_for_uri(uri, NULL, &error);
+  }
+
+#else
+
+  result = g_app_info_launch_default_for_uri(uri, NULL, &error);
+
+#endif
+
+  if (!result) {
       fprintf(stderr, "Unable to show '%s': %s", uri, error->message);
       g_error_free (error);
-    }
+  }
 
   return TRUE;
 }
