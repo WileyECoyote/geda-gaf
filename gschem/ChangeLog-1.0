@@ -1,5 +1,8 @@
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_preview.h: Rename header file to match module; x_preview
+      ->gschem_preview.
+
     * src/base/gschem_preview.c: Relocate module from x_preview.c.
 
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>

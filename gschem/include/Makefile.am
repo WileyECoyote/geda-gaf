@@ -13,6 +13,7 @@ noinst_HEADERS = \
 		gschem_main_window.h        \
 		gschem_page_geometry.h      \
 		gschem_page_view.h          \
+		gschem_preview.h            \
 		gschem_sdefines.h           \
 		gschem_status_bar.h         \
 		gschem_struct.h             \
@@ -32,7 +33,6 @@ noinst_HEADERS = \
 		x_menus.h                   \
 		x_multiattrib.h             \
 		x_pagesel.h                 \
-		x_preview.h                 \
 		x_print.h                   \
 		x_settings_dialog.h         \
 		x_settings.h                \

@@ -6,6 +6,7 @@ gschem/src/base/gschem_main_window.c
 gschem/src/base/gschem_page_geometry.c
 gschem/src/base/gschem_page_view.c
 gschem/src/base/gschem_parsecmd.c
+gschem/src/base/gschem_preview.c
 gschem/src/base/gschem_status_bar.c
 gschem/src/base/gschem_toplevel.c
 
@@ -85,7 +86,6 @@ gschem/src/x/x_menus.c
 gschem/src/x/x_misc.c
 gschem/src/x/x_multiattrib.c
 gschem/src/x/x_pagesel.c
-gschem/src/x/x_preview.c
 gschem/src/x/x_print.c
 gschem/src/x/x_rc.c
 gschem/src/x/x_scroll.c

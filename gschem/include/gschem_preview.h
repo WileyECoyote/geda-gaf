@@ -1,15 +1,16 @@
 /* C header -*- indent-tabs-mode: t; c-basic-offset: 2 tab-width: 2 -*- */
-/* "$Id include/x_preview.h $"
+/* "$Id include/gschem_preview.h $"
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2015 Ales Hvezda
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,11 +24,11 @@
  *
  */
 /*!
- * \file x_preview.h
+ * \file gschem_preview.h
  *
  * \brief header for the Preview Widget interface module
  */
-/*! \class Preview x_preview.h "x_preview.h"
+/*! \class Preview gschem_preview.h "gschem_preview.h"
  *  \brief Preview Widget Interface
  */
 
