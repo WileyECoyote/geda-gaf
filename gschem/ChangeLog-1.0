@@ -1,5 +1,8 @@
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * base/gschem_main_window.c: Add functions gschem_main_window_get_style
+      and gschem_main_window_get_window.
+
     * src/x/x_compselect.c: Simplify logic in create_lib_tree_model, clean
       indentations/spacing.
 

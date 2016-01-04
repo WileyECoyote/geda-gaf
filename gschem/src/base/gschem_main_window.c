@@ -101,7 +101,6 @@ GedaType gschem_main_window_get_type (void)
   return type;
 }
 
-
 /*! \brief Initialize GschemSelection instance -NOP
  *
  *  \param [in,out] window
@@ -111,7 +110,6 @@ gschem_main_window_instance_init (GschemMainWindow *window)
 {
 
 }
-
 
 /*! \brief Create a new instanceof the GschemMainWindow
  *
@@ -124,7 +122,6 @@ gschem_main_window_new ()
                                            "type", GTK_WINDOW_TOPLEVEL,
                                            NULL));
 }
-
 
 /*! \brief Set a property
  *
@@ -143,5 +140,33 @@ set_property (GObject *object, unsigned int param_id, const GValue *value, GPara
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
   }
 }
+
+GdkWindow *gschem_main_window_get_window (GtkWidget *main_window)
+{
+  if (GSCHEM_IS_MAIN_WINDOW(main_window)) {
+
+#if GTK_MAJOR_VERSION < 3
+    return main_window->window;
+#else
+    return gtk_widget_get_window (main_window);
+#endif
+
+  }
+
+  return NULL;
+}
+
+#if GTK_MAJOR_VERSION < 3
+
+GtkStyle *gschem_main_window_get_style (GtkWidget *main_window)
+{
+  if (GSCHEM_IS_MAIN_WINDOW(main_window)) {
+    return main_window->style;
+  }
+
+  return NULL;
+}
+
+#endif
 
 /** @} endgroup Gschem-Page-Window */

@@ -34,7 +34,7 @@
 
 #define GSCHEM_TYPE_MAIN_WINDOW           (gschem_main_window_get_type())
 #define GSCHEM_MAIN_WINDOW(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_MAIN_WINDOW, GschemMainWindow))
-#define GSCHEM_MAIN_WINDOW_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass), GSCHEM_TYPE_MAIN_WINDOW, GschemMainWindowClass))
+#define GSCHEM_MAIN_WINDOW_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), GSCHEM_TYPE_MAIN_WINDOW, GschemMainWindowClass))
 #define GSCHEM_IS_MAIN_WINDOW(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_MAIN_WINDOW))
 #define GSCHEM_MAIN_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GSCHEM_TYPE_MAIN_WINDOW, GschemMainWindowClass))
 
@@ -51,8 +51,13 @@ struct _GschemMainWindow
   GtkWindow parent;
 };
 
-GedaType
-gschem_main_window_get_type();
+GedaType           gschem_main_window_get_type   (void);
+GschemMainWindow  *gschem_main_window_new        (void);
 
-GschemMainWindow*
-gschem_main_window_new ();
+GdkWindow         *gschem_main_window_get_window (GtkWidget *main_window);
+
+#if GTK_MAJOR_VERSION < 3
+
+GtkStyle          *gschem_main_window_get_style  (GtkWidget *main_window);
+
+#endif
