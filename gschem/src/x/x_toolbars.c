@@ -483,9 +483,8 @@ static void x_toolbars_snap_toggle(GtkWidget *widget, GschemToplevel *w_current)
 void
 x_toolbars_save_state(GschemToplevel *w_current)
 {
-
-  char *data, *filename;
-  GKeyFile    *key_file = NULL;
+  char     *filename;
+  GKeyFile *key_file = NULL;
 
   void SaveBarProperties(GtkWidget *handlebox) {
 
@@ -531,8 +530,8 @@ x_toolbars_save_state(GschemToplevel *w_current)
   }
 
   v_log_message(_("Saving Toolbar configuration..."));
-  filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
+  filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
   if (!g_file_test (filename, G_FILE_TEST_EXISTS))
     setup_new_keyfile (filename);
@@ -540,11 +539,18 @@ x_toolbars_save_state(GschemToplevel *w_current)
     key_file = g_key_file_new();
 
   if (key_file) {
+
+    char *data;
+
     SaveAllBars();
+
     data = g_key_file_to_data(key_file, NULL, NULL);
+
     g_file_set_contents(filename, data, -1, NULL);
-    GEDA_FREE(data);
+
     v_log_message("data saved to %s\n", filename);
+
+    GEDA_FREE(data);
     g_key_file_free(key_file);
   }
   else {
@@ -562,23 +568,26 @@ x_toolbars_save_state(GschemToplevel *w_current)
 void
 x_toolbars_restore_state(GschemToplevel *w_current) {
 
-  char       *filename;
-  const char *group_name;
-  GError     *err = NULL;
-  GKeyFile   *key_file = NULL;
-  int         global_style;
+  GError   *err;
+  GKeyFile *key_file;
+  char     *filename;
+  int       global_style;
 
   void RestoreBarProperties(GtkWidget *handlebox) {
 
-    int bar_id;
-    int visible;
-    int style;
+    const char *group_name;
+    int         bar_id;
 
-    bar_id = GET_TOOLBAR_ID(handlebox);
+    bar_id     = GET_TOOLBAR_ID(handlebox);
     group_name = IDS_Toolbar_Names[bar_id];
 
     if (key_file) {
 
+
+      int     style;
+      int     visible;
+
+      err     = NULL;
       visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
 
       if (!err) {
@@ -627,6 +636,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   }
 
   global_style = 0;
+  key_file     = NULL;
 
   filename = g_build_filename(f_path_user_config (), TOOLBAR_CONFIG_STORE, NULL);
 
@@ -634,6 +644,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 
     if (access(filename, R_OK) == 0) {
 
+      err      = NULL;
       key_file = g_key_file_new();
 
       if (g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err)) {

@@ -10,7 +10,7 @@
       get_pixmap to check filename returned from from f_get_bitmap_filespec
       before check access, use accessors gschem_main_window_get_style and
       gschem_main_window_get_window, use conditionally use gtk_image_new_
-      from_file if Gtk3.
+      from_file if Gtk3, reduce scope of variables.
 
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
