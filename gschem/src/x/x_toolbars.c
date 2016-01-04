@@ -288,64 +288,6 @@ static char *popup_tips[]={  "Dock",
                              "Display the icons and text side-by-side"
 };
 
-/*! \brief Creates a new Bitmap Image
- *
- * If for some reason our bitmap can not be found this function falls
- * back to the stock GTK icon bitmaps provided in the distribution.
- * This is the opposite of the predecessor function which used the stock
- * icon as the primary and our bitmap as the backup! This function is
- * used in combination with the TOOLBAR_xxx_BUTTON macros that use the
- * LOCAL_ALT option. When LOCAL_ALT options is used the primary icon is
- * the forth string in the ToolbarStrings, the secondary is will be GTK
- * _STK_ and the next macro parameter, for example:
- *
- * ex.:TOOLBAR_GEDA_BUTTON( Standard, new, LOCAL_ALT, NEW, callback, data);
- *                                     ^       ^       ^
- *                  enumerated index __|       |       |
- *                                             |       |
- *                         use this function __|       |
- *                                                     |
- *             if file not found then use GTK_STOCK_ __|
- *
- * \param w_current
- * \param item Name of the stock icon ("new", "open", etc.)
- *
- */
-GtkWidget *get_stock_alt_pixmap(GschemToplevel *w_current, ToolbarItem* item )
-{
-  GtkWidget *wpixmap = NULL;
-  GdkPixmap *pixmap;
-  GdkBitmap *mask;
-
-  GdkWindow *window = w_current->main_window->window;
-  GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
-
-  char *filename= f_get_bitmap_filespec (TB_ICON_NAME(item->ButtonId));
-
-  /* 1ST Try custom icon */
-  if (access(filename, R_OK) == 0) {
-
-    pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
-
-    if (pixmap != NULL) {
-      wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
-    }
-  }
-
-  if (wpixmap == NULL) { /* Try Falling back to Stock icon */
-    wpixmap = gtk_image_new_from_stock(item->stock_id, TB_SMALL_ICON);
-  }
-
-  if (wpixmap == NULL) {
-     u_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", filename);
-     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE, TB_SMALL_ICON);
-  }
-
-  GEDA_FREE(filename);
-
-  return wpixmap;
-}
-
 static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 {
   GtkWidget *wpixmap = NULL;
@@ -613,6 +555,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
   int         global_style;
 
   void RestoreBarProperties(GtkWidget *handlebox) {
+
     int bar_id;
     int visible;
     int style;
@@ -649,8 +592,9 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
         g_clear_error (&err);
       }
     }
-    else
+    else {
       u_log_message("Error, Toolbar configuration key file, %s\n", group_name);
+    }
 
   }
 

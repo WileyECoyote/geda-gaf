@@ -3,6 +3,8 @@
     * src/x/x_compselect.c: Simplify logic in create_lib_tree_model, clean
       indentations/spacing.
 
+    * src/x/x_toolbars.c: Remove function get_stock_alt_pixmap.
+
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_misc.c: Conditionally try gtk_show_uri, fix other conditional
