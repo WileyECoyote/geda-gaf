@@ -1,3 +1,7 @@
+2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_preview.c: Relocate module from x_preview.c.
+
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * base/gschem_main_window.c: Add functions gschem_main_window_get_style

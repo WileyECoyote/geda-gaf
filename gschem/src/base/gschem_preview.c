@@ -1,4 +1,6 @@
-/* -*- C x_preview.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- C indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * File: gschem_preview.c
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
@@ -22,7 +24,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 /*!
- * \file x_preview.c
+ * \file gschem_preview.c
  * \brief Preview Widget used in dialog boxes
  */
 
@@ -43,18 +45,18 @@ enum {
 
 static GObjectClass *preview_parent_class = NULL;
 
-static void preview_class_init   (PreviewClass   *class);
-static void preview_instance_init         (Preview        *preview);
-static void preview_set_property (GObject        *object,
-                                  unsigned int    property_id,
-                                  const GValue   *value,
-                                  GParamSpec     *pspec);
-static void preview_get_property (GObject        *object,
-                                  unsigned int    property_id,
-                                  GValue         *value,
-                                  GParamSpec     *pspec);
-static void preview_dispose      (GObject        *self);
-static void preview_finalize     (GObject        *self);
+static void preview_class_init    (PreviewClass   *class);
+static void preview_instance_init (Preview        *preview);
+static void preview_set_property  (GObject        *object,
+                                   unsigned int    property_id,
+                                   const GValue   *value,
+                                   GParamSpec     *pspec);
+static void preview_get_property  (GObject        *object,
+                                   unsigned int    property_id,
+                                   GValue         *value,
+                                   GParamSpec     *pspec);
+static void preview_dispose       (GObject        *self);
+static void preview_finalize      (GObject        *self);
 
 /*! \brief get the filename for the current page
  */
