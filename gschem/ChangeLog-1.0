@@ -1,3 +1,8 @@
+2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Simplify logic in create_lib_tree_model, clean
+      indentations/spacing.
+
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_misc.c: Conditionally try gtk_show_uri, fix other conditional
