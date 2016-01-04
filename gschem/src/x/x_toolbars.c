@@ -299,28 +299,32 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 
   char *filename = f_get_bitmap_filespec (name);
 
-  /* 1ST Try custom icon */
-  if (access(filename, R_OK) == 0) {
+  /* First check for custom icon */
+  if (filename) {
 
-    pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+    if (access(filename, R_OK) == 0) {
 
-    if (pixmap != NULL) {
-      wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
+      pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+
+      if (pixmap != NULL) {
+        wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
+      }
     }
+
+    GEDA_FREE(filename);
   }
-  if (wpixmap == NULL) { /* Try Falling back to Stock icon */
+
+  if (wpixmap == NULL) { /* Try falling back to Stock icon */
     wpixmap = gtk_image_new_from_stock(name, TB_SMALL_ICON);
   }
 
   if (wpixmap == NULL) {
-     u_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", filename);
+     v_log_message("get_stock_alt_pixmap: image file not found: \"%s\".\n", name);
      wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
   }
   else {
     gtk_image_set_pixel_size((GtkImage*)wpixmap, TB_SMALL_ICON);
   }
-
-  GEDA_FREE(filename);
 
   return wpixmap;
 }

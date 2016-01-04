@@ -3,7 +3,9 @@
     * src/x/x_compselect.c: Simplify logic in create_lib_tree_model, clean
       indentations/spacing.
 
-    * src/x/x_toolbars.c: Remove function get_stock_alt_pixmap.
+    * src/x/x_toolbars.c: Removed get_stock_alt_pixmap, revised function
+      get_pixmap to check filename returned from from f_get_bitmap_filespec
+      before check access.
 
 2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
