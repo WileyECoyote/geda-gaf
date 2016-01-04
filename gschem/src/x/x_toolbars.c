@@ -291,11 +291,6 @@ static char *popup_tips[]={  "Dock",
 static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 {
   GtkWidget *wpixmap = NULL;
-  GdkPixmap *pixmap;
-  GdkBitmap *mask;
-
-  GdkWindow *window=w_current->main_window->window;
-  GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
 
   char *filename = f_get_bitmap_filespec (name);
 
@@ -304,11 +299,26 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 
     if (access(filename, R_OK) == 0) {
 
-      pixmap = gdk_pixmap_create_from_xpm (window, &mask, background, filename);
+#if GTK_MAJOR_VERSION < 3
+
+      GdkColor  *bg_color;
+      GdkBitmap *mask;
+      GdkPixmap *pixmap;
+      GtkStyle  *style;
+      GdkWindow *window;
+
+      window   = gschem_main_window_get_window (w_current->main_window);
+      style    = gschem_main_window_get_style (w_current->main_window);
+      bg_color = &style->bg[GTK_STATE_NORMAL];
+      pixmap   = gdk_pixmap_create_from_xpm (window, &mask, bg_color, filename);
 
       if (pixmap != NULL) {
         wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
       }
+#else
+      wpixmap = gtk_image_new_from_file(filename);
+#endif
+
     }
 
     GEDA_FREE(filename);
