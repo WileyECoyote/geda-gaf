@@ -24,8 +24,9 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 /*!
- * \file gschem_preview.c
- * \brief Preview Widget used in dialog boxes
+ *  \brief A widget for viewing a symbol or schematic
+ *  \par
+ *   Typically used in dialog boxes
  */
 
 #include <config.h>
@@ -37,7 +38,7 @@
 #define OVER_ZOOM_FACTOR 0.1
 
 enum {
-  PROP_FILENAME=1,
+  PROP_FILENAME = 1, /* Not zero */
   PROP_BUFFER,
   PROP_ACTIVE,
   PROP_LARGE,
@@ -45,8 +46,6 @@ enum {
 
 static GObjectClass *preview_parent_class = NULL;
 
-static void preview_class_init    (PreviewClass   *class);
-static void preview_instance_init (Preview        *preview);
 static void preview_set_property  (GObject        *object,
                                    unsigned int    property_id,
                                    const GValue   *value,
@@ -57,11 +56,15 @@ static void preview_get_property  (GObject        *object,
                                    GParamSpec     *pspec);
 static void preview_dispose       (GObject        *self);
 static void preview_finalize      (GObject        *self);
+static void preview_class_init    (void           *g_class,
+                                   void           *class_data);
+static void preview_instance_init (GTypeInstance  *instance,
+                                   void           *class);
 
 /*! \brief get the filename for the current page
  */
 static char*
-preview_get_filename (Preview *preview)
+preview_get_filename (GschemPreview *preview)
 {
  Page *page = preview->preview_window->toplevel->page_current;
 
@@ -83,13 +86,14 @@ preview_get_filename (Preview *preview)
  *
  *  \param [in] preview_window  A GschemToplevel object.
  */
-void preview_invalidate (GschemToplevel *preview_window)
+static void
+preview_invalidate (GschemToplevel *preview_window)
 {
   if (preview_window && GDK_IS_WINDOW(preview_window->window))
     gdk_window_invalidate_rect (preview_window->window, NULL, FALSE);
 }
 
-/*! \brief Completes initialitation of the widget after realization.
+/*! \brief Completes initialization of the widget after realization.
  *  \par Function Description
  *  This function terminates the initialization of preview's GschemToplevel
  *  and GedaToplevel environments after the widget has been realized.
@@ -102,29 +106,31 @@ void preview_invalidate (GschemToplevel *preview_window)
 static void
 preview_callback_realize (GtkWidget *widget, void *user_data)
 {
-  Preview *preview = PREVIEW (widget);
-  GschemToplevel *preview_window = preview->preview_window;
-  GedaToplevel *preview_toplevel = preview_window->toplevel;
-  Page *preview_page;
+  GschemPreview  *preview;
+  GschemToplevel *preview_window;
+  GedaToplevel   *preview_toplevel;
+  Page           *preview_page;
 
+  preview                = GSCHEM_PREVIEW(widget);
+  preview_window         = preview->preview_window;
+  preview_toplevel       = preview_window->toplevel;
   preview_window->window = preview_window->drawing_area->window;
+
   gtk_widget_grab_focus (preview_window->drawing_area);
 
   preview_window->screen_width  = preview_window->drawing_area->allocation.width;
   preview_window->screen_height = preview_window->drawing_area->allocation.height;
-  preview_window->screen_width  = preview_window->screen_width;
-  preview_window->screen_height = preview_window->screen_height;
-
-  preview_window->drawable = preview_window->window;
+  preview_window->drawable      = preview_window->window;
 
   x_window_setup_context (preview_window);
 
   preview_page = s_page_new_with_notify (preview_toplevel, "unknown");
-  x_window_setup_page(preview_window, preview_page,
-                      preview_window->world_left,
-                      preview_window->world_right,
-                      preview_window->world_top,
-                      preview_window->world_bottom);
+
+  x_window_setup_page (preview_window, preview_page,
+                       preview_window->world_left,
+                       preview_window->world_right,
+                       preview_window->world_top,
+                       preview_window->world_bottom);
   o_notify_change_add (preview_page,
                       (ChangeNotifyFunc) preview_invalidate,
                       (ChangeNotifyFunc) preview_invalidate,
@@ -133,8 +139,8 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
   s_page_goto (preview_page);
 
   i_zoom_world_extents(preview_window,
-                 s_page_get_objects (preview_page),
-                 I_PAN_DONT_REDRAW);
+                       s_page_get_objects (preview_page),
+                       I_PAN_DONT_REDRAW);
 
   preview_invalidate (preview_window);
 }
@@ -146,6 +152,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
  *  \param [in] widget    The preview widget.
  *  \param [in] event     The event structure.
  *  \param [in] user_data Unused user data.
+ *
  *  \returns FALSE to propagate the event further.
  */
 static bool
@@ -153,11 +160,13 @@ preview_callback_expose (GtkWidget      *widget,
                          GdkEventExpose *event,
                          void           *user_data)
 {
-  Preview *preview = PREVIEW (widget);
-  GschemToplevel *preview_window = preview->preview_window;
-  cairo_t *save_cr;
+  GschemPreview  *preview;
+  GschemToplevel *preview_window;
+  cairo_t        *save_cr;
 
-  save_cr = preview_window->cr;
+  preview            = GSCHEM_PREVIEW(widget);
+  preview_window     = preview->preview_window;
+  save_cr            = preview_window->cr;
 
   preview_window->cr = gdk_cairo_create (widget->window);
 
@@ -174,13 +183,13 @@ preview_callback_expose (GtkWidget      *widget,
 
 /*! \brief Handles the press on a mouse button.
  *  \par Function Description
- *  It handles the user inputs.
- *
- *  Three action are available: zoom in, pan and zoom out on preview display.
+ *  This function handles the user inputs. Three action are
+ *  available: zoom in, pan and zoom out on preview display.
  *
  *  \param [in] widget    The preview widget.
  *  \param [in] event     The event structure.
  *  \param [in] user_data Unused user data.
+ *
  *  \returns FALSE to propagate the event further.
  */
 static bool
@@ -188,18 +197,22 @@ preview_callback_button_press (GtkWidget      *widget,
                                GdkEventButton *event,
                                void           *user_data)
 {
-  Preview *preview = PREVIEW (widget);
-  GschemToplevel *preview_window = preview->preview_window;
+  GschemPreview  *preview;
+  GschemToplevel *preview_window;
   int wx, wy;
+
+  preview = GSCHEM_PREVIEW(widget);
 
   if (!preview->active) {
     return TRUE;
   }
 
+  preview_window = preview->preview_window;
+
   switch (event->button) {
     case 1: /* left mouse button: zoom in */
       i_zoom_world (preview_window, ZOOM_IN_DIRECTIVE, ID_ORIGIN_MOUSE,
-              I_PAN_DONT_REDRAW);
+                    I_PAN_DONT_REDRAW);
       preview_invalidate (preview_window);
       break;
     case 2: /* middle mouse button: pan */
@@ -209,7 +222,7 @@ preview_callback_button_press (GtkWidget      *widget,
       break;
     case 3: /* right mouse button: zoom out */
       i_zoom_world (preview_window, ZOOM_OUT_DIRECTIVE, ID_ORIGIN_MOUSE,
-              I_PAN_DONT_REDRAW);
+                    I_PAN_DONT_REDRAW);
       preview_invalidate (preview_window);
       break;
   }
@@ -220,60 +233,69 @@ preview_callback_button_press (GtkWidget      *widget,
 /*! \brief Updates the preview widget.
  *  \par Function Description
  *  This function updates the preview: if the preview is active and a
- *  filename has been given, it opens the file and displays
- *  the contents. Otherwise the display will be a blank page.
+ *  filename has been given, it opens the file and displays the contents.
+ *  Otherwise the display will be a blank page.
  *
  *  \param [in] preview The preview widget.
  */
 static void
-preview_update (Preview *preview)
+preview_update (GschemPreview *preview)
 {
   GschemToplevel *preview_window   = preview->preview_window;
   GedaToplevel   *preview_toplevel = preview_window->toplevel;
-  GError *err         = NULL;
-  GList  *object_list = NULL;
-  Object *text;
+  Page           *p_current;
 
-  if (preview_toplevel->page_current == NULL) {
+  p_current =  preview_toplevel->page_current;
+
+  if (p_current == NULL) {
     return;
   }
 
   /* delete everything on the our page object */
-  s_page_delete_objects(preview_toplevel->page_current);
+  s_page_delete_objects(p_current);
 
   if (preview->active) {
+
+    GError *err;
+    GList  *object_list = NULL;
+    Object *text;
 
     int left, top, right, bottom;
 
     if (preview->filename != NULL) {
 
+      err = NULL;
+
       /* open up file in current page */
-      if (!f_open(preview_toplevel, preview_toplevel->page_current, preview->filename, &err))
+      if (!f_open(preview_toplevel, p_current, preview->filename, &err))
       {
         text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
-        s_page_append_object (preview_toplevel->page_current, text);
+        s_page_append_object (p_current, text);
         g_error_free(err);
       }
     }
 
     if (preview->buffer != NULL) {
+
       err = NULL;
+
       /* Load the data buffer */
-      object_list = o_read_buffer (preview_toplevel, NULL, preview->buffer, -1, _("Preview Buffer"), &err);
+      object_list = o_read_buffer (preview_toplevel, NULL, preview->buffer,
+                                   -1, _("Preview Buffer"), &err);
 
       if (err == NULL) {
-        s_page_append_list (preview_toplevel->page_current, object_list);
+        s_page_append_list (p_current, object_list);
       }
       else {
         text = o_text_new(2, 100, 100, LOWER_MIDDLE, 0, 10, VISIBLE,
                           SHOW_NAME_VALUE, err->message);
-        s_page_append_object (preview_toplevel->page_current, text);
+        s_page_append_object (p_current, text);
         g_error_free(err);
       }
     }
 
-    object_list = (GList*)s_page_get_objects (preview_toplevel->page_current);
+    object_list = (GList*)s_page_get_objects (p_current);
 
     if (o_get_bounds_list (object_list, &left, &top, &right, &bottom)) {
 
@@ -290,93 +312,11 @@ preview_update (Preview *preview)
   }
 
   /* display current page (possibly empty) */
-  i_zoom_world_extents (preview_window,
-                  s_page_get_objects (preview_toplevel->page_current),
-                  I_PAN_DONT_REDRAW);
+  i_zoom_world_extents (preview_window, s_page_get_objects (p_current),
+                        I_PAN_DONT_REDRAW);
 
   preview_invalidate(preview_window);
 
-}
-
-/*! \brief Function to retrieve PreviewClass's Type identifier.
- *
- *  \par Function Description
- *  Function to retrieve PreviewClass's Type identifier. On the first call,
- *  this registers the pagesel in the GedaTypesystem.  Subsequently
- *  the functions returns the saved value from its first execution.
- *
- *  \return the Type identifier associated with PreviewClass.
- */
-GedaType
-preview_get_type ()
-{
-  static GedaType preview_type = 0;
-
-  if (!preview_type) {
-
-    static const GTypeInfo preview_info = {
-      sizeof(PreviewClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
-      (GClassInitFunc) preview_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
-      sizeof(Preview),
-      0,    /* n_preallocs */
-      (GInstanceInitFunc) preview_instance_init
-    };
-
-    preview_type = g_type_register_static (GTK_TYPE_DRAWING_AREA,
-                                           "Preview",
-                                           &preview_info, 0);
-  }
-
-  return preview_type;
-}
-
-static void
-preview_class_init (PreviewClass *class)
-{
-  GObjectClass *gobject_class = G_OBJECT_CLASS (class);
-
-  preview_parent_class        = g_type_class_peek_parent (class);
-
-  gobject_class->set_property = preview_set_property;
-  gobject_class->get_property = preview_get_property;
-  gobject_class->dispose      = preview_dispose;
-  gobject_class->finalize     = preview_finalize;
-
-  g_object_class_install_property (
-    gobject_class, PROP_FILENAME,
-    g_param_spec_string ("filename",
-                         "",
-                         "",
-                         NULL,
-                         G_PARAM_READWRITE));
-
-  g_object_class_install_property (
-    gobject_class, PROP_BUFFER,
-    g_param_spec_string ("buffer",
-                         "",
-                         "",
-                         NULL,
-                         G_PARAM_WRITABLE));
-
-  g_object_class_install_property(
-    gobject_class, PROP_ACTIVE,
-    g_param_spec_boolean ("active",
-                          "",
-                          "",
-                          FALSE,
-                          G_PARAM_READWRITE));
-
-  g_object_class_install_property(
-    gobject_class, PROP_LARGE,
-    g_param_spec_boolean ("large-size",
-                          "",
-                          "",
-                          FALSE,
-                          G_PARAM_WRITABLE));
 }
 
 static bool
@@ -385,7 +325,7 @@ preview_event_configure (GtkWidget         *widget,
                          void              *user_data)
 {
   bool retval;
-  GschemToplevel *preview_window = PREVIEW (widget)->preview_window;
+  GschemToplevel *preview_window = GSCHEM_PREVIEW(widget)->preview_window;
 
   retval = x_event_configure (widget, event, preview_window);
   return retval;
@@ -397,14 +337,14 @@ preview_event_scroll (GtkWidget *widget,
                       GdkEventScroll *event,
                       GschemToplevel *w_current)
 {
-  if (!PREVIEW (widget)->active) {
+  if (!GSCHEM_PREVIEW(widget)->active) {
     return TRUE;
   }
-  return x_event_scroll (widget, event, PREVIEW (widget)->preview_window);
+  return x_event_scroll(widget, event, GSCHEM_PREVIEW(widget)->preview_window);
 }
 
 static void
-preview_set_xy (Preview *preview, int x, int y)
+preview_set_xy (GschemPreview *preview, int x, int y)
 {
   GschemToplevel *preview_window = preview->preview_window;
 
@@ -420,8 +360,212 @@ preview_set_xy (Preview *preview, int x, int y)
 }
 
 static void
-preview_instance_init (Preview *preview)
+preview_resize (GschemPreview *preview, bool large)
 {
+  int x;
+  int y;
+
+  if (large) {
+    x = 320;
+    y = 240;
+  }
+  else {
+    x = 160;
+    y = 120;
+  }
+
+  preview_set_xy (preview, x, y);
+}
+
+static void
+preview_set_property (GObject *object, unsigned int property_id,
+                      const GValue *value, GParamSpec *pspec)
+{
+  GschemPreview  *preview        = GSCHEM_PREVIEW (object);
+  GschemToplevel *preview_window = preview->preview_window;
+
+  if (preview_window == NULL) {
+    BUG_MSG ("preview_window = NULL");
+    return;
+  }
+
+  switch(property_id) {
+      case PROP_FILENAME:
+        if (preview->buffer != NULL) {
+          GEDA_FREE (preview->buffer);
+          preview->buffer = NULL;
+          g_object_notify (object, "buffer");
+        }
+        GEDA_FREE (preview->filename);
+        preview->filename = u_string_strdup (g_value_get_string (value));
+        break;
+
+      case PROP_BUFFER:
+        if (preview->filename != NULL) {
+          GEDA_FREE (preview->filename);
+          preview->filename = NULL;
+          g_object_notify (object, "filename");
+        }
+        GEDA_FREE (preview->buffer);
+        preview->buffer = u_string_strdup (g_value_get_string (value));
+        break;
+
+      case PROP_ACTIVE:
+        preview->active = g_value_get_boolean (value);
+        preview_update (preview);
+        break;
+      case PROP_LARGE:
+        preview_resize (preview, g_value_get_boolean (value));
+        preview_update (preview);
+        break;
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
+preview_get_property (GObject     *object,
+                      unsigned int property_id,
+                      GValue      *value,
+                      GParamSpec  *pspec)
+{
+  GschemPreview *preview = GSCHEM_PREVIEW (object);
+
+  switch(property_id) {
+      case PROP_FILENAME:
+        g_value_set_string (value, preview_get_filename (preview));
+        break;
+      case PROP_ACTIVE:
+        g_value_set_boolean (value, preview->active);
+        break;
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+
+}
+
+/*! \brief Dispose of the preview widget.
+ *  \par Function Description
+ *  This function removes the change notify handlers for the
+ *  page \a Object used for the preview widget so that when the
+ *  Page is deleted in the finalizer, the callback does not get
+ *  called to repaint a not nonextant window.
+ *
+ *  \param [in] self The preview widget.
+ */
+static void
+preview_dispose  (GObject *self)
+{
+  GschemPreview  *preview = GSCHEM_PREVIEW (self);
+  GschemToplevel *preview_window = preview->preview_window;
+
+
+  if (preview_window != NULL) {
+
+    GedaToplevel *toplevel = preview_window->toplevel;
+
+    if (GEDA_IS_PAGE(toplevel->page_current)) {
+      o_notify_change_remove (toplevel->page_current,
+                             (ChangeNotifyFunc) preview_invalidate,
+                             (ChangeNotifyFunc) preview_invalidate,
+                              preview_window);
+    }
+  }
+}
+
+static void
+preview_finalize (GObject *self)
+{
+  GschemPreview  *preview        = GSCHEM_PREVIEW (self);
+  GschemToplevel *preview_window = preview->preview_window;
+
+  if (preview_window != NULL) {
+
+    GedaToplevel *toplevel = preview_window->toplevel;
+
+    if (toplevel) {
+      s_page_delete (toplevel, toplevel->page_current, FALSE);
+      GEDA_UNREF (preview_window->toplevel);
+      preview_window->toplevel = NULL;
+    }
+
+    GEDA_UNREF (preview_window->drawing_area);
+    preview_window->drawing_area = NULL;
+
+    GEDA_UNREF (preview_window);
+    preview->preview_window = NULL;
+  }
+
+  G_OBJECT_CLASS (preview_parent_class)->dispose (self);
+}
+
+/*! \brief Type class initializer for GschemPreview
+ *
+ *  \par Function Description
+ *  Type class initializer GschemPreview. We override parents virtual
+ *   class methods as needed and register GObject signals.
+ *
+ *  \param [in]  g_class     The GschemPreviewClass we are initialising
+ *  \param [in]  class_data  GschemPreview structure associated with the class
+ */
+static void preview_class_init (void *g_class, void *class_data)
+{
+  GschemPreviewClass *class         = (GschemPreviewClass*)g_class;
+  GObjectClass       *gobject_class = G_OBJECT_CLASS(class);
+
+  preview_parent_class         = g_type_class_peek_parent (class);
+
+  gobject_class->set_property  = preview_set_property;
+  gobject_class->get_property  = preview_get_property;
+  gobject_class->dispose       = preview_dispose;
+  gobject_class->finalize      = preview_finalize;
+
+  g_object_class_install_property (
+    gobject_class, PROP_FILENAME,
+    g_param_spec_string ("filename",
+                         "Filename",
+                         "",
+                         NULL,
+                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (
+    gobject_class, PROP_BUFFER,
+    g_param_spec_string ("buffer",
+                         "Buffer",
+                         "",
+                         NULL,
+                         G_PARAM_WRITABLE));
+
+  g_object_class_install_property(
+    gobject_class, PROP_ACTIVE,
+    g_param_spec_boolean ("active",
+                          "Active",
+                          "",
+                          FALSE,
+                          G_PARAM_READWRITE));
+
+  g_object_class_install_property(
+    gobject_class, PROP_LARGE,
+    g_param_spec_boolean ("large-size",
+                          "Large size",
+                          "",
+                          FALSE,
+                          G_PARAM_WRITABLE));
+}
+
+/*! \brief Type instance initializer for GschemPreview Widget
+ *
+ *  \par Function Description
+ *  Type instance initializer for GschemPreview, initializes a new empty
+ *  GschemPreview object by setting pointers to NULL and numbers to zero.
+ *
+ *  \param [in] instance The Preview structure being initialized,
+ *  \param [in] class    The Preview class we are initializing.
+ */
+static void preview_instance_init(GTypeInstance *instance, void *class)
+{
+  GschemPreview *preview = (GschemPreview*)instance;
+
   struct event_reg_t {
     char *detailed_signal;
     GCallback c_handler;
@@ -483,147 +627,49 @@ preview_instance_init (Preview *preview)
   }
 }
 
-static void
-preview_resize (Preview *preview, bool large)
-{
-  int x;
-  int y;
-
-  if (large) {
-    x = 320;
-    y = 240;
-  }
-  else {
-    x = 160;
-    y = 120;
-  }
-
-  preview_set_xy (preview, x, y);
-}
-
-static void
-preview_set_property (GObject *object, unsigned int property_id,
-                      const GValue *value, GParamSpec *pspec)
-{
-  GschemToplevel *preview_window;
-  Preview *preview;
-
-  preview          = PREVIEW (object);
-  preview_window   = preview->preview_window;
-
-  if (preview_window == NULL) {
-    BUG_MSG ("preview_window = NULL");
-    return;
-  }
-
-  switch(property_id) {
-      case PROP_FILENAME:
-        if (preview->buffer != NULL) {
-          GEDA_FREE (preview->buffer);
-          preview->buffer = NULL;
-          g_object_notify (object, "buffer");
-        }
-        GEDA_FREE (preview->filename);
-        preview->filename = u_string_strdup (g_value_get_string (value));
-        //preview_update (preview);
-        break;
-
-      case PROP_BUFFER:
-        if (preview->filename != NULL) {
-          GEDA_FREE (preview->filename);
-          preview->filename = NULL;
-          g_object_notify (object, "filename");
-        }
-        GEDA_FREE (preview->buffer);
-        preview->buffer = u_string_strdup (g_value_get_string (value));
-        //preview_update (preview);
-        break;
-
-      case PROP_ACTIVE:
-        preview->active = g_value_get_boolean (value);
-        preview_update (preview);
-        break;
-      case PROP_LARGE:
-        preview_resize (preview, g_value_get_boolean (value));
-        preview_update (preview);
-        break;
-      default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
-
-static void
-preview_get_property (GObject     *object,
-                      unsigned int property_id,
-                      GValue      *value,
-                      GParamSpec  *pspec)
-{
-  Preview *preview = PREVIEW (object);
-
-  switch(property_id) {
-      case PROP_FILENAME:
-        g_value_set_string (value, preview_get_filename (preview));
-        break;
-      case PROP_ACTIVE:
-        g_value_set_boolean (value, preview->active);
-        break;
-      default:
-        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-
-}
-
-/*! \brief Dispose of the preview widget.
+/*! \brief Function to retrieve PreviewClass's Type identifier.
  *  \par Function Description
- *  This function removes the change notify handlers for the
- *  page \a Object used for the preview widget so that when the
- *  Page is deleted in the finalizer, the callback does not get
- *  called to repaint a not nonextant window.
+ *  Function to retrieve PreviewClass's Type identifier. On the first call,
+ *  this registers the pagesel in the GedaTypesystem.  Subsequently
+ *  the functions returns the saved value from its first execution.
  *
- *  \param [in] self The preview widget.
+ *  \returns the Type identifier associated with PreviewClass.
  */
-static void
-preview_dispose  (GObject *self)
+GedaType
+gschem_preview_get_type (void)
 {
-  Preview *preview = PREVIEW (self);
-  GschemToplevel *preview_window = preview->preview_window;
-  GedaToplevel   *toplevel;
+  static volatile GedaType preview_type = 0;
 
-  if (preview_window != NULL) {
-    toplevel = preview_window->toplevel;
-    if (GEDA_IS_PAGE(toplevel->page_current)) {
-      o_notify_change_remove (toplevel->page_current,
-                             (ChangeNotifyFunc) preview_invalidate,
-                             (ChangeNotifyFunc) preview_invalidate,
-                              preview_window);
-    }
+  if (g_once_init_enter (&preview_type)) {
+
+    static const GTypeInfo info = {
+      sizeof(GschemPreviewClass),
+      NULL,                  /* base_init           */
+      NULL,                  /* base_finalize       */
+      preview_class_init,    /* (GClassInitFunc)    */
+      NULL,                  /* class_finalize      */
+      NULL,                  /* class_data          */
+      sizeof(GschemPreview),
+      0,                     /* n_preallocs         */
+      preview_instance_init  /* (GInstanceInitFunc) */
+    };
+
+    const char *string;
+    GedaType    type;
+
+    string = g_intern_static_string ("Preview");
+    type   = g_type_register_static (GTK_TYPE_DRAWING_AREA,
+                                     string, &info, 0);
+
+    g_once_init_leave (&preview_type, type);
   }
+
+  return preview_type;
 }
 
-static void
-preview_finalize (GObject *self)
+/*! \brief create a new preview widget
+ */
+GtkWidget *gschem_preview_new (void)
 {
-  Preview *preview = PREVIEW (self);
-  GschemToplevel *preview_window = preview->preview_window;
-  GedaToplevel   *toplevel;
-
-  if (preview_window != NULL) {
-
-    toplevel = preview_window->toplevel;
-
-    if (toplevel) {
-      s_page_delete (toplevel, toplevel->page_current, FALSE);
-      GEDA_UNREF (preview_window->toplevel);
-      preview_window->toplevel = NULL;
-    }
-
-    GEDA_UNREF (preview_window->drawing_area);
-    preview_window->drawing_area = NULL;
-    //x_window_free_gc (preview_window);
-    GEDA_UNREF (preview_window);
-    preview->preview_window = NULL;
-  }
-
-  G_OBJECT_CLASS (preview_parent_class)->dispose (self);
-
+  return GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW, NULL));
 }

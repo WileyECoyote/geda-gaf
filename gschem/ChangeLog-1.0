@@ -1,9 +1,13 @@
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_preview.h: Rename header file to match module; x_preview
-      ->gschem_preview.
+      ->gschem_preview. Rename class to match module name, add declaration for
+      function gschem_preview_new.
 
-    * src/base/gschem_preview.c: Relocate module from x_preview.c.
+    * src/base/gschem_preview.c: Relocate module from x_preview.c. Rename class
+      to match module name, add function gschem_preview_new. Add/edit comments,
+      remove redundent setting of screen_height and screen_width, redue type
+      identifier, GClassInitFunc and GInstanceInitFunc functions.
 
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
