@@ -8,6 +8,8 @@
       * src/base/gschem_page_view.c: function gschem_page_view_WORLDabs,
       * src/iface/i_window.c: function i_window_set_viewport_size.
 
+    * src/base/gschem_page_view.c: Remove redundant check of view object.
+
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_preview.h: Rename header file to match module; x_preview
