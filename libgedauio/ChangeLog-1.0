@@ -1,7 +1,10 @@
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_widgets.h: Replace brackets <> with parentheses "",
-      add include geda_completion.h and geda_swatch_renderer.h
+      add include geda_completion.h and geda_swatch_renderer.h.
+
+    * include/geda_uio.h: Add an "all-in-one" header file, inclusion of
+      this file will include all libgedauio headers except geda_keysyms.h.
 
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
