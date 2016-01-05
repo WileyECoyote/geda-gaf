@@ -81,10 +81,15 @@
 /*! \def geda_get_widget_allocation Get Pointer to Allocation */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation);
 
+#define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition);
+
 #else
 
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
+
+#  define geda_get_widget_requisition(w) \
+  ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 
 #endif
 
