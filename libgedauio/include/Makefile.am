@@ -18,6 +18,7 @@ libgedauio_HEADERS = \
 			geda_file_chooser.h      \
 			geda_font_button.h       \
 			geda_font_dialog.h       \
+			geda_gtk_compat.h        \
 			geda_handlebox.h         \
 			geda_image_chooser.h     \
 			geda_imagemenuitem.h     \
