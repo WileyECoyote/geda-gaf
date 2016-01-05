@@ -372,11 +372,7 @@ static void multiline_text_editing_done(GtkCellEditable *cell_editable,
                                                    void *user_data)
 {
   CellRendererMultiLineText *cell = CELL_RENDERER_MULTI_LINE_TEXT (user_data);
-  GtkTextBuffer             *buffer;
-  GtkTextIter                start;
-  GtkTextIter                end;
-  char                      *new_text;
-  const char                *path;
+  GtkTextBuffer *buffer;
 
   if (cell->focus_out_id > 0) {
     g_signal_handler_disconnect (cell_editable, cell->focus_out_id);
@@ -389,6 +385,11 @@ static void multiline_text_editing_done(GtkCellEditable *cell_editable,
     g_signal_emit_by_name (cell, "editing-canceled");
   }
   else {
+
+    GtkTextIter start;
+    GtkTextIter end;
+    char       *new_text;
+    const char *path;
 
     gtk_text_buffer_get_start_iter (buffer, &start);
     gtk_text_buffer_get_end_iter   (buffer, &end);

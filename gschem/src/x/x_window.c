@@ -785,33 +785,39 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled() {
+
     char  s_val[3];
     char *tmp;
     char *str;
 
     inline void unique_untitled () {
+
       /* Get DIR in buffer */
       ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
+
       /* Append a seperator onto the end of DIR */
-      while ( *ptr != '\0') ++ptr; /* advance to end of string */
-        *ptr = DIR_SEPARATOR;     /* add separator */
-        ++ptr;                       /* advance over separator */
-        *ptr = '\0';                /* Add new NULL */
+      while ( *ptr != '\0') {
+        ++ptr; /* advance to end of string */
+      }
 
-        /* Append default name from config */
-        if (toplevel->untitled_name) {
-          str = strcat  ( str, toplevel->untitled_name );
-        }
-        else {
-          str = &untitled[0];
-        }
+       *ptr = DIR_SEPARATOR;     /* add separator */
+      ++ptr;                     /* advance over separator */
+       *ptr = '\0';              /* Add new NULL */
 
-        /* Converted and append an integer to the string */
-        tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
-        str = strcat  ( str, tmp );
+      /* Append default name from config */
+      if (toplevel->untitled_name) {
+        str = strcat  ( str, toplevel->untitled_name );
+      }
+      else {
+        str = &untitled[0];
+      }
 
-        /* Append our file extension */
-        str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
+      /* Converted and append an integer to the string */
+      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
+      str = strcat  ( str, tmp );
+
+      /* Append our file extension */
+      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
     }
 
     memset(&strbuff[0], '\0', sizeof(strbuff));
