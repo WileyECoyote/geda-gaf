@@ -337,7 +337,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
   return promoted;
 }
 
-/*! \brief Delete or hide promotable from the passed Object
+/*! \brief Delete or hide promotable attributes from the passed Object
  *
  *  \par Function Description
  *  Deletes or hides promotable attributes from \a Object. This is used
@@ -353,7 +353,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
  *  \param [in] object   The complex object being altered.
  */
 static void
-o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object *object)
+o_complex_remove_promotable (GedaToplevel *toplevel, Object *object)
 {
   GList *promotable, *iter;
 
@@ -692,7 +692,7 @@ Object *o_complex_read (GedaToplevel *toplevel,
 
     /* Delete or hide attributes eligible for promotion inside the complex */
     if (new_obj) {
-      o_complex_remove_promotable_attribs (toplevel, new_obj);
+      o_complex_remove_promotable (toplevel, new_obj);
     }
   }
 
