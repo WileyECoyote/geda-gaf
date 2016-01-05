@@ -47,7 +47,7 @@
 #include <geda.h>
 
 #include <gtk/gtkaccellabel.h>
-
+#include "geda_gtk_compat.h"
 #include "geda_accel_label.h"
 
 #include <geda_debug.h>
@@ -225,14 +225,13 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
 
   if (gtk_widget_is_drawable (widget)) {
 
-    unsigned int     ac_width;
-
-    GtkAllocation    allocation;
+    unsigned int   ac_width;
+    GtkAllocation *allocation;
 
     ac_width   = geda_accel_label_get_accel_width (accel_label);
-    allocation = widget->allocation;
+    allocation = geda_get_widget_allocation (widget);
 
-    if (allocation.width >= widget->requisition.width + ac_width) {
+    if (allocation->width >= widget->requisition.width + ac_width) {
 
       GtkTextDirection  direction;
       PangoLayout      *label_layout;
@@ -249,10 +248,10 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
       direction    = gtk_widget_get_direction (widget);
 
       if (direction == GTK_TEXT_DIR_RTL) {
-        allocation.x += ac_width;
+        allocation->x += ac_width;
       }
 
-      allocation.width -= ac_width;
+      allocation->width -= ac_width;
 
       if (gtk_label_get_ellipsize (label)) {
         int width = pango_layout_get_width (label_layout);
@@ -264,10 +263,10 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
       }
 
       if (direction == GTK_TEXT_DIR_RTL) {
-        allocation.x -= ac_width;
+        allocation->x -= ac_width;
       }
 
-      allocation.width += ac_width;
+      allocation->width += ac_width;
 
       if (gtk_label_get_ellipsize (label)) {
         int width = pango_layout_get_width (label_layout);
@@ -275,10 +274,10 @@ geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *event)
       }
 
       if (direction == GTK_TEXT_DIR_RTL) {
-        x = allocation.x + misc->xpad;
+        x = allocation->x + misc->xpad;
       }
       else {
-        x = allocation.x + allocation.width - misc->xpad - ac_width;
+        x = allocation->x + allocation->width - misc->xpad - ac_width;
       }
 
       gtk_label_get_layout_offsets (GTK_LABEL (accel_label), NULL, &y);
@@ -310,17 +309,18 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 {
   GtkAccelLabel   *accel_label;
   unsigned int     ac_width;
-  GtkAllocation    allocation;
+  GtkAllocation   *allocation;
   GtkRequisition   requisition;
 
   accel_label = GTK_ACCEL_LABEL (widget);
 
   ac_width    = geda_accel_label_get_accel_width (accel_label);
 
-  gtk_widget_get_allocation (widget, &allocation);
+  allocation  = geda_get_widget_allocation (widget);
+
   gtk_widget_get_preferred_size (widget, NULL, &requisition);
 
-  if (allocation.width >= requisition.width + ac_width) {
+  if (allocation->width >= requisition.width + ac_width) {
 
       GtkMisc         *misc;
       GtkTextDirection direction;
@@ -352,14 +352,15 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
         pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
       }
 
-      allocation.width -= ac_width;
+      allocation->width -= ac_width;
+
       gtk_widget_set_allocation (widget, &allocation);
 
       if (GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw) {
         GTK_WIDGET_CLASS (gtk_accel_label_parent_class)->draw (widget, cr);
       }
 
-      allocation.width += ac_width;
+      allocation->width += ac_width;
       gtk_widget_set_allocation (widget, &allocation);
 
       if (gtk_label_get_ellipsize (label)) {
@@ -384,7 +385,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
       accel_layout = gtk_widget_create_pango_layout (widget, string);
 
-      //y += get_first_baseline (label_layout) - get_first_baseline (accel_layout) - allocation.y;
+      //y += get_first_baseline (label_layout) - get_first_baseline (accel_layout) - allocation->y;
       y += get_first_baseline (label_layout) - get_first_baseline (accel_layout);
 
       gtk_style_context_save (context);

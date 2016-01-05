@@ -1,3 +1,20 @@
+2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c:Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in functions geda_accel_
+      label_expose_event AND geda_accel_label_draw.
+
+    * src/widgets/geda_bulb.c: Include geda_gtk_compat.h, utilize libgedauio
+      macro geda_get_widget_allocation in get_coordinates.
+
+    * src/widgets/geda_combobox.c: Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
+      size_allocate, adjust indentions.
+
+    * src/widgets/geda_imagemenuitem.c: Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
+      size_allocate, adjust indentions.
+
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add header with preprocessor directives
