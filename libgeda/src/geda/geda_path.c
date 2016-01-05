@@ -115,8 +115,7 @@ geda_path_bounds (Object *object)
  *
  *  \par Function Description
  *  GedaType instance initializer for Path, initializes a new empty
- *  Path object by setting pointers to NULL and numbers to zero,
- *  the path PID variable is set to the next path index.
+ *  Path object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Path structure being initialized,
  *  \param [in] g_class  The Path class we are initializing.

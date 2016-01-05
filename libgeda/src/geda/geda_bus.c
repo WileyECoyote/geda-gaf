@@ -49,8 +49,7 @@ static GObjectClass *geda_bus_parent_class = NULL;
  *
  *  \par Function Description
  *  Type instance initializer for Bus, initializes a new empty
- *  Bus object by setting pointers to NULL and numbers to zero,
- *  the bus PID variable is set to the next bus index.
+ *  Bus object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Bus structure being initialized,
  *  \param [in] g_class  The Bus class we are initializing.

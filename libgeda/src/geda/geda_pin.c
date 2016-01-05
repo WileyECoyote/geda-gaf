@@ -130,8 +130,7 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
  *
  *  \par Function Description
  *  GedaType instance initializer for Pin, initializes a new empty
- *  Pin object by setting pointers to NULL and numbers to zero,
- *  the pin PID variable is set to the next pin index.
+ *  Pin object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Pin structure being initialized,
  *  \param [in] g_class  The Pin class we are initializing.

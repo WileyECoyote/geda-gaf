@@ -74,8 +74,7 @@ geda_line_bounds(Object *object)
  *
  *  \par Function Description
  *  GedaType instance initializer for Line, initializes a new empty
- *  Line object by setting pointers to NULL and numbers to zero,
- *  the line PID variable is set to the next line index.
+ *  Line object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Line structure being initialized,
  *  \param [in] g_class  The Line class we are initializing.

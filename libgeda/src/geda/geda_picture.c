@@ -70,8 +70,7 @@ geda_picture_bounds(Object *object)
  *
  *  \par Function Description
  *  GedaType instance initializer for Picture, initializes a new empty
- *  Picture object by setting pointers to NULL and numbers to zero,
- *  the picture PID variable is set to the next picture index.
+ *  Picture object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Picture structure being initialized,
  *  \param [in]  g_class The Picture class we are initializing.

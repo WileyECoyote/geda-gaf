@@ -63,8 +63,7 @@ geda_box_bounds(Object *object)
  *
  *  \par Function Description
  *  Type instance initializer for Box, initializes a new empty
- *  Box object by setting pointers to NULL and numbers to zero,
- *  the box PID variable is set to the next box index.
+ *  Box object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Box structure being initialized,
  *  \param [in]  g_class The Box class we are initializing.

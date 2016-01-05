@@ -122,8 +122,7 @@ int geda_complex_bounds(Object *object)
  *
  *  \par Function Description
  *  GedaType instance initializer for Complex, initializes a new empty
- *  Complex object by setting pointers to NULL and numbers to zero,
- *  the complex PID variable is set to the next complex index.
+ *  Complex object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Complex structure being initialized,
  *  \param [in] g_class  The Complex class we are initializing.

@@ -324,9 +324,10 @@ GedaType geda_toplevel_get_type (void)
 /*! \brief Returns a pointer to a new GedaToplevel object.
  *
  *  \par Function Description
- *  Returns a pointer to a new GedaToplevel object.
+ *  Create and return an empty TOPLEVEL object with sensible
+ *  default properties.
  *
- *  \return pointer to the new GedaToplevel object.
+ *  \returns pointer to the new GedaToplevel object.
  */
 GedaToplevel *geda_toplevel_new (void) {
   return g_object_new(GEDA_TYPE_TOPLEVEL, NULL);
