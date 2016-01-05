@@ -1,3 +1,8 @@
+2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_widgets.h: Replace brackets <> with parentheses "",
+      add include geda_completion.h and geda_swatch_renderer.h
+
 2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Simply geda_handle_box_paint, remove
