@@ -5801,8 +5801,7 @@ popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
   GtkRequisition req;
   GdkScreen     *screen;
 
-  label  = GEDA_LABEL (data);
-  widget = GTK_WIDGET (label);
+  widget = GTK_WIDGET (data); /* = GEDA_LABEL (data) */
 
   g_return_if_fail (gtk_widget_get_realized (widget));
 

@@ -21,6 +21,8 @@
       libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
       size_allocate, adjust indentions.
 
+    * src/widgets/geda_label.c: Eliminate label in popup_position_func.
+
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add header with preprocessor directives
