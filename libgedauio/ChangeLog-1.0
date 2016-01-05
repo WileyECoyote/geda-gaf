@@ -1,5 +1,9 @@
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_dialog.c: Remove unnecessary initialization of
+      variable new_desc in function geda_font_dialog_set_font_name and reduce
+      scope of family, face, and new_desc.
+
     * src/widgets/geda_accel_label.c:Include geda_gtk_compat.h, utilize
       libgedauio macro geda_get_widget_allocation in functions geda_accel_
       label_expose_event AND geda_accel_label_draw.
