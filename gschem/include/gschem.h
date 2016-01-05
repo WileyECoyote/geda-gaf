@@ -11,6 +11,7 @@
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 
+#include <geda_gtk_compat.h>
 #include <geda_uio_functions.h>
 
 /* gschem headers */

@@ -326,11 +326,14 @@ void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
  */
 void i_window_set_viewport_size(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel  *toplevel = w_current->toplevel;
+  GtkAllocation *allocation;
+
+  allocation = geda_get_widget_allocation(DrawingArea);
 
   /* of the actual win window (drawing_area) */
-  w_current->screen_width  = DrawingArea->allocation.width;
-  w_current->screen_height = DrawingArea->allocation.height;
+  w_current->screen_width  = allocation->width;
+  w_current->screen_height = allocation->height;
 
 #if DEBUG_EVENTS
   printf("manual: %d %d\n", w_current->screen_width, w_current->screen_height);

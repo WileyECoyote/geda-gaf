@@ -1123,18 +1123,18 @@ gschem_page_view_update_vadjustment (GschemPageView *view)
 int
 gschem_page_view_WORLDabs(GschemPageView *view, int val)
 {
-  GtkAllocation allocation;
+  GtkAllocation *allocation;
   double fw0,fw1,fw,fval;
   double i;
   int j;
 
   GschemPageGeometry *geometry = gschem_page_view_get_page_geometry (view);
 
-  gtk_widget_get_allocation (GTK_WIDGET(view), &allocation);
+  allocation = geda_get_widget_allocation (view);
 
   fw1 = geometry->viewport_right;
   fw0 = geometry->viewport_left;
-  fw  = allocation.width;
+  fw  = allocation->width;
   fval = val;
   i = fval * (fw1 - fw0) / fw;
 

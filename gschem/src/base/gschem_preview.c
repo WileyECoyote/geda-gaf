@@ -32,7 +32,6 @@
 #include <config.h>
 
 #include <gschem.h>
-
 #include <geda_debug.h>
 
 #define OVER_ZOOM_FACTOR 0.1
@@ -106,6 +105,7 @@ preview_invalidate (GschemToplevel *preview_window)
 static void
 preview_callback_realize (GtkWidget *widget, void *user_data)
 {
+  GtkAllocation  *allocation;
   GschemPreview  *preview;
   GschemToplevel *preview_window;
   GedaToplevel   *preview_toplevel;
@@ -118,8 +118,10 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
   gtk_widget_grab_focus (preview_window->drawing_area);
 
-  preview_window->screen_width  = preview_window->drawing_area->allocation.width;
-  preview_window->screen_height = preview_window->drawing_area->allocation.height;
+  allocation = geda_get_widget_allocation(preview_window->drawing_area);
+
+  preview_window->screen_width  = allocation->width;
+  preview_window->screen_height = allocation->height;
   preview_window->drawable      = preview_window->window;
 
   x_window_setup_context (preview_window);

@@ -1,3 +1,13 @@
+2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem.h: Add include geda_gtk_compat.h.
+
+    * Utilize libgedauio function macro geda_get_widget_allocation in:
+
+      * src/base/gschem_preview.c: function preview_callback_realize,
+      * src/base/gschem_page_view.c: function gschem_page_view_WORLDabs,
+      * src/iface/i_window.c: function i_window_set_viewport_size.
+
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_preview.h: Rename header file to match module; x_preview
