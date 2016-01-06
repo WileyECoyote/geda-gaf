@@ -2,6 +2,7 @@
 
     * src/widgets/geda_combobox.c: Implement geda_get_child_widget instead
       of xxx-child, reduce scope of variables. Remove mysterious BONUS_PADDING.
+      Revert conditionally getting root window, looks funky.
 
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 

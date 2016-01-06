@@ -1838,10 +1838,10 @@ geda_combo_box_menu_position_below (GtkMenu  *menu,
     sx += allocation->x;
     sy += allocation->y;
   }
-  else {
-    window = geda_get_widget_window (child);
-    gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
-  }
+
+  window = geda_get_widget_window (child);
+  gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
+
   if (GTK_SHADOW_NONE != combo_box->priv->shadow_type) {
     sx -= GTK_WIDGET (combo_box)->style->xthickness;
   }
@@ -2029,12 +2029,9 @@ geda_combo_box_list_position (GedaComboBox *combo_box,
     *x += allocation->x;
     *y += allocation->y;
   }
-  else {
-    window = geda_get_widget_window (widget);
-    gdk_window_get_root_coords (window, *x, *y, x, y);
-  }
 
-  window = gtk_widget_get_window (widget);
+  window = geda_get_widget_window (widget);
+  gdk_window_get_root_coords (window, *x, *y, x, y);
 
   *width = allocation->width;
 
