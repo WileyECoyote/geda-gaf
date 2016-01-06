@@ -2630,7 +2630,7 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
   GedaComboBoxPrivate *priv = combo_box->priv;
   int shadow_width, shadow_height;
   int focus_width, focus_pad;
-  GtkAllocation child;
+  GtkAllocation child_alloc;
   GtkRequisition req;
   bool is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
@@ -2670,57 +2670,57 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       xthickness   = priv->button->style->xthickness;
       ythickness   = priv->button->style->ythickness;
 
-      child.x      = allocation->x;
-      child.y      = allocation->y;
-      width        = allocation->width;
-      child.height = allocation->height;
+      child_alloc.x      = allocation->x;
+      child_alloc.y      = allocation->y;
+      width              = allocation->width;
+      child_alloc.height = allocation->height;
 
       if (!priv->is_cell_renderer) {
 
-        child.x      += border_width + xthickness + focus_width + focus_pad;
-        child.y      += border_width + ythickness + focus_width + focus_pad;
-        width        -= 2 * (child.x - allocation->x);
-        child.height -= 2 * (child.y - allocation->y);
+        child_alloc.x      += border_width + xthickness + focus_width + focus_pad;
+        child_alloc.y      += border_width + ythickness + focus_width + focus_pad;
+        width              -= 2 * (child_alloc.x - allocation->x);
+        child_alloc.height -= 2 * (child_alloc.y - allocation->y);
       }
 
 
       /* handle the children */
       gtk_widget_size_request (priv->arrow, &req);
-      child.width = req.width;
+      child_alloc.width = req.width;
 
       if (!is_rtl) {
-        child.x += width - req.width;
+        child_alloc.x += width - req.width;
       }
 
-      child.width  = MAX (1, child.width);
-      child.height = MAX (1, child.height);
-      gtk_widget_size_allocate (priv->arrow, &child);
+      child_alloc.width  = MAX (1, child_alloc.width);
+      child_alloc.height = MAX (1, child_alloc.height);
+      gtk_widget_size_allocate (priv->arrow, &child_alloc);
 
       if (is_rtl) {
-        child.x += req.width;
+        child_alloc.x += req.width;
       }
 
       gtk_widget_size_request (priv->separator, &req);
-      child.width = req.width;
+      child_alloc.width = req.width;
 
       if (!is_rtl) {
-        child.x -= req.width;
+        child_alloc.x -= req.width;
       }
 
-      child.width  = MAX (1, child.width);
-      child.height = MAX (1, child.height);
-      gtk_widget_size_allocate (priv->separator, &child);
+      child_alloc.width  = MAX (1, child_alloc.width);
+      child_alloc.height = MAX (1, child_alloc.height);
+      gtk_widget_size_allocate (priv->separator, &child_alloc);
 
       int offset = border_width + xthickness + focus_width + focus_pad;
 
       if (is_rtl) {
-        child.x    += req.width;
-        child.width = allocation->x + allocation->width - child.x - offset;
+        child_alloc.x    += req.width;
+        child_alloc.width = allocation->x + allocation->width - child_alloc.x - offset;
       }
       else {
-        child.width  = child.x;
-        child.x      = allocation->x + offset;
-        child.width -= child.x;
+        child_alloc.width  = child_alloc.x;
+        child_alloc.x      = allocation->x + offset;
+        child_alloc.width -= child_alloc.x;
       }
 
       if (gtk_widget_get_visible (priv->popup_widget)) {
@@ -2743,24 +2743,24 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
         }
       }
 
-      child.width  = MAX (1, child.width);
-      child.height = MAX (1, child.height);
-      gtk_widget_size_allocate (GTK_BIN (widget)->child, &child);
+      child_alloc.width  = MAX (1, child_alloc.width);
+      child_alloc.height = MAX (1, child_alloc.height);
+      gtk_widget_size_allocate (GTK_BIN (widget)->child_alloc, &child_alloc);
     }
     else {
 
       GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON
 
       if (is_rtl)
-        child.x = allocation->x + req.width + shadow_width;
+        child_alloc.x = allocation->x + req.width + shadow_width;
       else
-        child.x = allocation->x + shadow_width;
+        child_alloc.x = allocation->x + shadow_width;
 
-      child.y      = allocation->y + shadow_height;
-      child.width  = allocation->width - req.width - 2 * shadow_width;
-      child.width  = MAX (1, child.width);
-      child.height = MAX (1, child.height);
-      gtk_widget_size_allocate (GTK_BIN (widget)->child, &child);
+      child_alloc.y      = allocation->y + shadow_height;
+      child_alloc.width  = allocation->width - req.width - 2 * shadow_width;
+      child_alloc.width  = MAX (1, child_alloc.width);
+      child_alloc.height = MAX (1, child_alloc.height);
+      gtk_widget_size_allocate (GTK_BIN (widget)->child, &child_alloc);
     }
   }
   else {
@@ -2776,23 +2776,23 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
 
     /* frame */
     if (is_rtl) {
-      child.x = allocation->x + req.width;
+      child_alloc.x = allocation->x + req.width;
     }
     else {
-      child.x = allocation->x;
+      child_alloc.x = allocation->x;
     }
 
-    child.y      = allocation->y;
-    child.width  = allocation->width - req.width;
-    child.height = allocation->height;
+    child_alloc.y      = allocation->y;
+    child_alloc.width  = allocation->width - req.width;
+    child_alloc.height = allocation->height;
 
     if (priv->cell_view_frame) {
 
-      child.x     += delta_x;
-      child.y     += delta_y;
-      child.width  = MAX (1, child.width - delta_x * 2);
-      child.height = MAX (1, child.height - delta_y * 2);
-      gtk_widget_size_allocate (priv->cell_view_frame, &child);
+      child_alloc.x     += delta_x;
+      child_alloc.y     += delta_y;
+      child_alloc.width  = MAX (1, child_alloc.width - delta_x * 2);
+      child_alloc.height = MAX (1, child_alloc.height - delta_y * 2);
+      gtk_widget_size_allocate (priv->cell_view_frame, &child_alloc);
 
       /* the widget */
       if (priv->has_frame) {
@@ -2802,18 +2802,18 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
         delta_y = GTK_CONTAINER (priv->cell_view_frame)->border_width +
                   GTK_WIDGET (priv->cell_view_frame)->style->ythickness;
 
-        child.x      += delta_x;
-        child.y      += delta_y;
-        child.width  -= delta_x * 2;
-        child.height -= delta_y * 2;
+        child_alloc.x      += delta_x;
+        child_alloc.y      += delta_y;
+        child_alloc.width  -= delta_x * 2;
+        child_alloc.height -= delta_y * 2;
       }
     }
     else {
 
-      child.x      += delta_x;
-      child.y      += delta_y;
-      child.width  -= delta_x * 2;
-      child.height -= delta_y * 2;
+      child_alloc.x      += delta_x;
+      child_alloc.y      += delta_y;
+      child_alloc.width  -= delta_x * 2;
+      child_alloc.height -= delta_y * 2;
     }
 
     if (gtk_widget_get_visible (priv->popup_window)) {
@@ -2825,10 +2825,10 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
     }
 
 
-    child.width  = MAX (1, child.width);
-    child.height = MAX (1, child.height);
+    child_alloc.width  = MAX (1, child_alloc.width);
+    child_alloc.height = MAX (1, child_alloc.height);
 
-    gtk_widget_size_allocate (GTK_BIN (combo_box)->child, &child);
+    gtk_widget_size_allocate (GTK_BIN (combo_box)->child, &child_alloc);
   }
 }
 

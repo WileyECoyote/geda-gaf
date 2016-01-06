@@ -3,7 +3,8 @@
     * src/widgets/geda_combobox.c: Implement geda_get_child_widget instead
       of xxx-child, reduce scope of variables. Remove mysterious BONUS_PADDING.
       Revert conditionally getting root window, looks funky. Define function
-      geda_combo_box_remeasure inline.
+      geda_combo_box_remeasure inline. Rename child allocation child_alloc
+      instead of child in geda_combo_box_size_allocate, confuses me.
 
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
