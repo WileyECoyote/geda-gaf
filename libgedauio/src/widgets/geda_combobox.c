@@ -2433,42 +2433,56 @@ geda_combo_box_calc_requested_width (GedaComboBox *combo_box,
   return req.width + padding;
 }
 
-static void
+static inline void
 geda_combo_box_remeasure (GedaComboBox *combo_box)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
-  GtkTreeIter iter;
+  GtkTreeIter  iter;
   GtkTreePath *path;
+  int width, height;
 
   if (!priv->model ||
-    !gtk_tree_model_get_iter_first (priv->model, &iter))
+      !gtk_tree_model_get_iter_first (priv->model, &iter))
     return;
 
-  priv->width = 0;
-  priv->height = 0;
+  width  = 0;
+  height = 0;
 
   path = gtk_tree_path_new_from_indices (0, -1);
 
   do {
+
     GtkRequisition req;
 
     if (priv->cell_view) {
-      gtk_cell_view_get_size_of_row (GTK_CELL_VIEW (priv->cell_view),
-                                     path, &req);
+
+      GtkCellView *cell_view = GTK_CELL_VIEW (priv->cell_view);
+
+      gtk_cell_view_get_size_of_row (cell_view, path, &req);
+
     }
     else {
-      req.width = 0;
+      req.width  = 0;
       req.height = 0;
     }
 
-    priv->width = MAX (priv->width, req.width);
-    priv->height = MAX (priv->height, req.height);
+    width  = MAX (width, req.width);
+    height = MAX (height, req.height);
 
     gtk_tree_path_next (path);
 
   } while (gtk_tree_model_iter_next (priv->model, &iter));
 
   gtk_tree_path_free (path);
+
+  priv->width  = width;
+  priv->height = height;
+
+#if DEBUG
+  fprintf(stderr, "%p request tree-view width=%d, height=%d\n",
+          __func__, width, height);
+#endif
+
 }
 
 static void
