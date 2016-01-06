@@ -78,14 +78,26 @@
 
 #endif
 
+/*! \def gtk_widget_get_allocated_height Not in Gtk < 3 */
+#define gtk_widget_get_allocated_height(widget) (((GtkWidget *) (widget))->allocation.height)
+
+/*! \def gtk_widget_get_allocated_width Not in Gtk < 3 */
+#define gtk_widget_get_allocated_width(widget)  (((GtkWidget *) (widget))->allocation.width)
+
+/*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
+#define geda_get_child_widget(w) GTK_BIN(w)->child
+
 /*! \def geda_get_widget_allocation Get Pointer to Allocation */
-#define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation);
+#define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
 
-#define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition);
+#define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
-#define geda_get_widget_window(w) GTK_WIDGET(w)->window;
+#define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
-#else
+#else /* GTK >= 3 */
+
+/*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
+#define geda_get_child_widget(w) gtk_bin_get_child (GTK_BIN(w))
 
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
@@ -93,7 +105,37 @@
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 
-#define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w);
+#define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
+
+/* Gtk[VH]Box */
+#   define geda_compat_box_new(orientation, homogeneous, spacing) \
+        g_object_new(GTK_TYPE_BOX, \
+                     "orientation", (orientation), \
+                     "homogeneous", (homogeneous), \
+                     "spacing", (spacing), \
+                     NULL)
+
+#   define gtk_vbox_new(homogeneous, spacing) \
+        geda_compat_box_new(GTK_ORIENTATION_VERTICAL, (homogeneous), (spacing))
+
+#   define gtk_hbox_new(homogeneous, spacing) \
+        geda_compat_box_new(GTK_ORIENTATION_HORIZONTAL, (homogeneous), (spacing))
+
+/* Gtk[VH]ButtonBox */
+#   define gtk_vbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_VERTICAL)
+#   define gtk_hbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL)
+
+/* Gtk[VH]Separator */
+#   define gtk_vseparator_new() gtk_separator_new(GTK_ORIENTATION_VERTICAL)
+#   define gtk_hseparator_new() gtk_separator_new(GTK_ORIENTATION_HORIZONTAL)
+
+/* Gtk[VH]Paned */
+#   define gtk_vpaned_new() gtk_paned_new(GTK_ORIENTATION_VERTICAL)
+#   define gtk_hpaned_new() gtk_paned_new(GTK_ORIENTATION_HORIZONTAL)
+
+/* Gtk[VH]Scrollbar */
+#   define gtk_vscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
+#   define gtk_hscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
 #endif
 
