@@ -1817,6 +1817,7 @@ geda_combo_box_menu_position_below (GtkMenu  *menu,
   GdkRectangle    monitor;
   GtkRequisition  req;
   GdkScreen      *screen;
+  GdkWindow      *window;
   int monitor_num;
   int sx, sy;
 
@@ -1832,9 +1833,10 @@ geda_combo_box_menu_position_below (GtkMenu  *menu,
     sx += allocation->x;
     sy += allocation->y;
   }
-
-  gdk_window_get_root_coords (child->window, sx, sy, &sx, &sy);
-
+  else {
+    window = geda_get_widget_window (child);
+    gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
+  }
   if (GTK_SHADOW_NONE != combo_box->priv->shadow_type) {
     sx -= GTK_WIDGET (combo_box)->style->xthickness;
   }
@@ -1850,9 +1852,10 @@ geda_combo_box_menu_position_below (GtkMenu  *menu,
 
   *y = sy;
 
-  screen = gtk_widget_get_screen (GTK_WIDGET (combo_box));
-  monitor_num = gdk_screen_get_monitor_at_window (screen,
-                                                  GTK_WIDGET (combo_box)->window);
+  screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
+  window      = gtk_widget_get_window (GTK_WIDGET (combo_box));
+  monitor_num = gdk_screen_get_monitor_at_window (screen, window);
+
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
   if (*x < monitor.x) {
@@ -2003,25 +2006,30 @@ geda_combo_box_list_position (GedaComboBox *combo_box,
   GedaComboBoxPrivate *priv = combo_box->priv;
   GtkAllocation       *allocation;
   GtkPolicyType        hpolicy, vpolicy;
-  GdkScreen           *screen;
-  GdkRectangle         monitor;
   GtkRequisition       popup_req;
+  GdkRectangle         monitor;
+  GdkScreen           *screen;
+  GdkWindow           *window;
   int                  monitor_num;
 
-  /* under windows, the drop down list is as wide as the combo box itself.
-   *    see bug #340204 */
-  GtkWidget *sample = GTK_WIDGET (combo_box);
+  /* under windows, the drop down list is as wide as the combo box
+   * itself. see bug #340204 */
+  GtkWidget *widget = GTK_WIDGET (combo_box);
 
   *x = *y = 0;
 
-  allocation = geda_get_widget_allocation (sample);
+  allocation = geda_get_widget_allocation (widget);
 
-  if (!gtk_widget_get_has_window (sample)) {
+  if (!gtk_widget_get_has_window (widget)) {
     *x += allocation->x;
     *y += allocation->y;
   }
+  else {
+    window = geda_get_widget_window (widget);
+    gdk_window_get_root_coords (window, *x, *y, x, y);
+  }
 
-  gdk_window_get_root_coords (sample->window, *x, *y, x, y);
+  window = gtk_widget_get_window (widget);
 
   *width = allocation->width;
 
@@ -2039,9 +2047,8 @@ geda_combo_box_list_position (GedaComboBox *combo_box,
 
   *height = popup_req.height;
 
-  screen = gtk_widget_get_screen (GTK_WIDGET (combo_box));
-  monitor_num = gdk_screen_get_monitor_at_window (screen,
-                                                  GTK_WIDGET (combo_box)->window);
+  screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
+  monitor_num = gdk_screen_get_monitor_at_window (screen, window);
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
   if (*x < monitor.x) {
@@ -2527,7 +2534,7 @@ geda_combo_box_size_request (GtkWidget      *widget,
     /* list mode */
     GtkRequisition button_req, frame_req;
 
-    /* sample + frame */
+    /* widget + frame */
     *requisition = bin_req;
 
     requisition->width += 2 * focus_width;
@@ -2664,18 +2671,15 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       child.height = MAX (1, child.height);
       gtk_widget_size_allocate (priv->separator, &child);
 
-      if (is_rtl) {
+      int offset = border_width + xthickness + focus_width + focus_pad;
 
-        child.x += req.width;
-        child.width = allocation->x + allocation->width
-        - (border_width + xthickness + focus_width + focus_pad)
-        - child.x;
+      if (is_rtl) {
+        child.x    += req.width;
+        child.width = allocation->x + allocation->width - child.x - offset;
       }
       else {
-
-        child.width = child.x;
-        child.x = allocation->x
-        + border_width + xthickness + focus_width + focus_pad;
+        child.width  = child.x;
+        child.x      = allocation->x + offset;
         child.width -= child.x;
       }
 
@@ -2750,7 +2754,7 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       child.height = MAX (1, child.height - delta_y * 2);
       gtk_widget_size_allocate (priv->cell_view_frame, &child);
 
-      /* the sample */
+      /* the widget */
       if (priv->has_frame) {
 
         delta_x = GTK_CONTAINER (priv->cell_view_frame)->border_width +
@@ -4231,7 +4235,7 @@ geda_combo_box_list_setup (GedaComboBox *combo_box)
     gtk_tree_path_free (path);
   }
 
-  /* set sample/popup widgets */
+  /* set widget/popup widgets */
   geda_combo_box_set_popup_widget (combo_box, priv->tree_view);
 
   g_signal_connect (priv->tree_view, "key-press-event",
@@ -4518,21 +4522,24 @@ geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int y)
 {
   GtkWidget *tree_view = combo_box->priv->tree_view;
   GtkAdjustment *adj;
+  GtkAllocation *allocation;
   double value;
 
   adj = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (combo_box->priv->scrolled_window));
 
+  allocation = geda_get_widget_allocation (tree_view);
+
   if (adj && adj->upper - adj->lower > adj->page_size) {
 
-    if (x <= tree_view->allocation.x && adj->lower < adj->value) {
+    if (x <= allocation->x && adj->lower < adj->value) {
 
-      value = adj->value - (tree_view->allocation.x - x + 1);
+      value = adj->value - (allocation->x - x + 1);
       gtk_adjustment_set_value (adj, CLAMP (value, adj->lower, adj->upper - adj->page_size));
     }
-    else if (x >= tree_view->allocation.x + tree_view->allocation.width &&
+    else if (x >= allocation->x + allocation->width &&
              adj->upper - adj->page_size > adj->value)
     {
-      value = adj->value + (x - tree_view->allocation.x - tree_view->allocation.width + 1);
+      value = adj->value + (x - allocation->x - allocation->width + 1);
       gtk_adjustment_set_value (adj, CLAMP (value, 0.0, adj->upper - adj->page_size));
     }
   }
@@ -4541,15 +4548,15 @@ geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int y)
 
   if (adj && adj->upper - adj->lower > adj->page_size) {
 
-    if (y <= tree_view->allocation.y && adj->lower < adj->value) {
+    if (y <= allocation->y && adj->lower < adj->value) {
 
-      value = adj->value - (tree_view->allocation.y - y + 1);
+      value = adj->value - (allocation->y - y + 1);
       gtk_adjustment_set_value (adj, CLAMP (value, adj->lower, adj->upper - adj->page_size));
     }
-    else if (y >= tree_view->allocation.height &&
+    else if (y >= allocation->height &&
              adj->upper - adj->page_size > adj->value)
     {
-      value = adj->value + (y - tree_view->allocation.height + 1);
+      value = adj->value + (y - allocation->height + 1);
       gtk_adjustment_set_value (adj, CLAMP (value, 0.0, adj->upper - adj->page_size));
     }
   }

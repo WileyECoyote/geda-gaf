@@ -1,6 +1,7 @@
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macros geda_get_widget_requisition.
+    * include/geda_gtk_compat.h: Add macros geda_get_widget_requisition and
+      geda_get_widget_window.
 
     * src/widgets/geda_font_dialog.c: Remove unnecessary initialization of
       variable new_desc in function geda_font_dialog_set_font_name and reduce
@@ -15,7 +16,8 @@
 
     * src/widgets/geda_combobox.c: Include geda_gtk_compat.h, utilize
       libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
-      size_allocate, adjust indentions.
+      size_allocate, adjust indentions. Refactor using offset in function
+      geda_combo_box_size_allocate.
 
     * src/widgets/geda_imagemenuitem.c: Include geda_gtk_compat.h, utilize
       libgedauio macro geda_get_widget_allocation in geda_image_menu_item_

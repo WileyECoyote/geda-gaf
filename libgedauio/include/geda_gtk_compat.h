@@ -83,13 +83,17 @@
 
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition);
 
+#define geda_get_widget_window(w) GTK_WIDGET(w)->window;
+
 #else
 
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
 
-#  define geda_get_widget_requisition(w) \
+#define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
+
+#define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w);
 
 #endif
 
