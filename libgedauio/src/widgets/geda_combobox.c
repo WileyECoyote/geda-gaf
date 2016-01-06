@@ -207,7 +207,7 @@ enum {
 
 static unsigned int combo_box_signals[LAST_SIGNAL] = {0,};
 
-#define BONUS_PADDING 4
+//#define BONUS_PADDING 20
 #define SCROLL_TIME  100
 
 /* common */
@@ -2415,15 +2415,17 @@ geda_combo_box_calc_requested_width (GedaComboBox *combo_box,
   int padding;
   GtkRequisition req;
 
-  if (priv->cell_view)
+  if (priv->cell_view) {
     gtk_widget_style_get (priv->cell_view,
                           "focus-line-width", &padding,
                           NULL);
-  else
+  }
+  else {
     padding = 0;
+  }
 
   /* add some pixels for good measure */
-  padding += BONUS_PADDING;
+  //padding += BONUS_PADDING;
 
   if (priv->cell_view)
     gtk_cell_view_get_size_of_row (GTK_CELL_VIEW (priv->cell_view),

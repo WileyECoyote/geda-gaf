@@ -1,7 +1,7 @@
 2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Implement geda_get_child_widget instead
-      of xxx-child, reduce scope of variables.
+      of xxx-child, reduce scope of variables. Remove mysterious BONUS_PADDING.
 
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
