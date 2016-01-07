@@ -100,26 +100,26 @@ struct _Compselect {
 
   GschemDialog parent_instance;
 
-  GtkWidget    *hpaned, *vpaned;
-  GtkWidget    *filter_hbox;
+  GtkWidget     *hpaned, *vpaned;
+  GtkWidget     *filter_hbox;
 
-  GtkTreeView  *attrtreeview;
+  GtkTreeView   *attrtreeview;
 
-  GtkTreeView  *inusetreeview;
-  GtkTreeView  *stdtreeview;
-  GtkTreeView  *mantreeview;
-  GtkTreeView  *simtreeview;
-  GtkTreeView  *localtreeview;
+  GtkTreeView   *inusetreeview;
+  GtkTreeView   *stdtreeview;
+  GtkTreeView   *mantreeview;
+  GtkTreeView   *simtreeview;
+  GtkTreeView   *localtreeview;
 
-  GtkNotebook  *notebook;
-  Preview      *preview;
-  GtkEntry     *entry_filter;
-  GtkButton    *button_clear;
-  unsigned int  filter_timeout;
-  bool          applying_filter;
+  GtkNotebook   *notebook;
+  GschemPreview *preview;
+  GtkEntry      *entry_filter;
+  GtkButton     *button_clear;
+  unsigned int   filter_timeout;
+  bool           applying_filter;
 
-  GtkTooltips  *tooltips;
-  bool          show_tips;
+  GtkTooltips   *tooltips;
+  bool           show_tips;
 
   GtkOptionMenu  *behavior_menu;
 

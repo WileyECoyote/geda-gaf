@@ -1,3 +1,10 @@
+2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Update GschemPreview widget references, revise
+      compselect_class_init to use gtk_vpaned_new and gtk_hpaned_new instead
+      of g_object_new GTK_TYPE_VPANED/GTK_TYPE_HPANED because the former are
+      macro that will compile when Gtk >= 3. Reduce scope of variables.
+
 2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_window.c: Fix BUG; ptwindow, ltwindow and sewindow, crossed.

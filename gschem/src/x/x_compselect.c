@@ -3134,7 +3134,7 @@ compselect_class_init (void *class, void *class_data)
   GParamSpec *params;
 
   CompselectClass   *compselect_class    = (CompselectClass*)class;
-  GObjectClass      *object_class        = G_OBJECT_CLASS (class);
+  GObjectClass      *object_class        =  G_OBJECT_CLASS (class);
   GschemDialogClass *gschem_dialog_class = (GschemDialogClass*)class;
   GtkWidgetClass    *widget_class        = (GtkWidgetClass*)class;
 
@@ -3360,14 +3360,13 @@ compselect_constructor (GType                  type,
   ThisDialog->localtreeview = NULL;
 
   /* vertical pane containing preview and attributes */
-  vpaned = GTK_WIDGET (g_object_new (GTK_TYPE_VPANED, NULL));
-  ThisDialog->vpaned = vpaned;
+  vpaned = gtk_vpaned_new ();
 
   /* horizontal pane containing selection and preview */
-  hpaned = GTK_WIDGET (g_object_new (GTK_TYPE_HPANED,
-                                    /* GtkContainer */
-                                    "border-width", 5,
-                                     NULL));
+  hpaned = gtk_hpaned_new ();
+  g_object_set(hpaned, "border-width", 5, NULL);
+
+  ThisDialog->vpaned = vpaned;
   ThisDialog->hpaned = hpaned;
 
   /* Create a vertical box to hold the notebook and the filter area */
@@ -3421,7 +3420,7 @@ compselect_constructor (GType                  type,
                                         "yalign",         0.5,
                                         NULL));
 
-  preview = GTK_WIDGET (g_object_new (TYPE_PREVIEW,
+  preview = GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW,
                                       /* Preview */
                                       "active", FALSE,
                                       NULL));
@@ -3430,7 +3429,7 @@ compselect_constructor (GType                  type,
   gtk_container_add (GTK_CONTAINER (frame), alignment);
 
   /* save pointer to preview frame widget in compselect */
-  ThisDialog->preview = PREVIEW (preview);
+  ThisDialog->preview = GSCHEM_PREVIEW (preview);
 
   gtk_paned_pack1 (GTK_PANED (vpaned), frame, FALSE, FALSE);
 
