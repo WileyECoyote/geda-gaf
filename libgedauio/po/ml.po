@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-28 12:43-0600\n"
+"POT-Creation-Date: 2016-01-07 00:33-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -91,7 +91,7 @@ msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:693
-#: libgedauio/src/widgets/geda_label.c:925
+#: libgedauio/src/widgets/geda_label.c:927
 msgid "Attributes"
 msgstr ""
 
@@ -282,219 +282,219 @@ msgstr ""
 msgid "_Select"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
-#: libgedauio/src/widgets/geda_handlebox.c:214
 #: libgedauio/src/widgets/geda_handlebox.c:223
+#: libgedauio/src/widgets/geda_handlebox.c:232
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:232
+#: libgedauio/src/widgets/geda_handlebox.c:241
 msgid "Position of the handle relative to the child widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:241
+#: libgedauio/src/widgets/geda_handlebox.c:250
 msgid ""
 "Side of the handlebox that's lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:250
+#: libgedauio/src/widgets/geda_handlebox.c:259
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:258
+#: libgedauio/src/widgets/geda_handlebox.c:267
 msgid ""
 "A boolean value indicating whether the handlebox's child is attached or "
 "detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:815
+#: libgedauio/src/widgets/geda_label.c:817
 msgid "move-cursor"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:835
+#: libgedauio/src/widgets/geda_label.c:837
 msgid "copy-clipboard"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:856
+#: libgedauio/src/widgets/geda_label.c:858
 msgid "populate-popup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:918
-#: libgedauio/src/widgets/geda_label.c:1414
+#: libgedauio/src/widgets/geda_label.c:920
+#: libgedauio/src/widgets/geda_label.c:1416
 #: libgedauio/src/widgets/geda_menu_button.c:1057
 msgid "Label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:919
+#: libgedauio/src/widgets/geda_label.c:921
 msgid "The text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:926
+#: libgedauio/src/widgets/geda_label.c:928
 msgid "A list of style attributes to apply to the text of the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:932
+#: libgedauio/src/widgets/geda_label.c:934
 msgid "Use markup"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:933
+#: libgedauio/src/widgets/geda_label.c:935
 msgid "The text of the label includes XML markup. See pango_parse_markup()"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:939
+#: libgedauio/src/widgets/geda_label.c:941
 msgid "Use underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:940
+#: libgedauio/src/widgets/geda_label.c:942
 msgid ""
 "If set, underline in text indicates the next character is mnemonic for "
 "accelerator key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:945
+#: libgedauio/src/widgets/geda_label.c:947
 msgid "Justification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:946
+#: libgedauio/src/widgets/geda_label.c:948
 msgid ""
 "The alignment of the lines in the text of the label relative to each other. "
 "This does NOT affect the alignment of the label within its allocation. See "
 "GtkMisc::xalign for that"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:953
+#: libgedauio/src/widgets/geda_label.c:955
 msgid "Pattern"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:954
+#: libgedauio/src/widgets/geda_label.c:956
 msgid ""
 "A string with _ characters in positions correspond to characters in the text "
 "to underline"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:960
+#: libgedauio/src/widgets/geda_label.c:962
 #, fuzzy
 msgid "Line wrap"
 msgstr "രേഖ"
 
-#: libgedauio/src/widgets/geda_label.c:961
+#: libgedauio/src/widgets/geda_label.c:963
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:975
+#: libgedauio/src/widgets/geda_label.c:977
 msgid "Line wrap mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:976
+#: libgedauio/src/widgets/geda_label.c:978
 msgid "If wrap is set, controls how linewrapping is done"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:983
+#: libgedauio/src/widgets/geda_label.c:985
 #, fuzzy
 msgid "Selectable"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
-#: libgedauio/src/widgets/geda_label.c:984
+#: libgedauio/src/widgets/geda_label.c:986
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:990
+#: libgedauio/src/widgets/geda_label.c:992
 msgid "Mnemonic key"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:991
+#: libgedauio/src/widgets/geda_label.c:993
 msgid "The mnemonic accelerator key for this label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:999
+#: libgedauio/src/widgets/geda_label.c:1001
 msgid "Mnemonic widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1000
+#: libgedauio/src/widgets/geda_label.c:1002
 msgid "The widget to be activated when the label's mnemonic key is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1007
+#: libgedauio/src/widgets/geda_label.c:1009
 msgid "Cursor Position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1008
+#: libgedauio/src/widgets/geda_label.c:1010
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1016
+#: libgedauio/src/widgets/geda_label.c:1018
 #, fuzzy
 msgid "Selection Bound"
 msgstr "പ്രവര്‍ത്തന രീതി നിര്‍ണയിക്കുക"
 
-#: libgedauio/src/widgets/geda_label.c:1017
+#: libgedauio/src/widgets/geda_label.c:1019
 msgid ""
 "The position of the opposite end of the selection from the cursor in chars"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1041
+#: libgedauio/src/widgets/geda_label.c:1043
 msgid "Ellipsize"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1042
+#: libgedauio/src/widgets/geda_label.c:1044
 msgid "The preferred place to break the string, if ellipes needed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1060
+#: libgedauio/src/widgets/geda_label.c:1062
 msgid "Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1061
+#: libgedauio/src/widgets/geda_label.c:1063
 msgid "The desired width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1079
+#: libgedauio/src/widgets/geda_label.c:1081
 msgid "Single Line Mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1080
+#: libgedauio/src/widgets/geda_label.c:1082
 msgid "Whether the label is in single line mode"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1095
+#: libgedauio/src/widgets/geda_label.c:1097
 msgid "Angle"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1096
+#: libgedauio/src/widgets/geda_label.c:1098
 msgid "Angle at which the label is rotated"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1115
+#: libgedauio/src/widgets/geda_label.c:1117
 msgid "Maximum Width In Characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1116
+#: libgedauio/src/widgets/geda_label.c:1118
 msgid "The desired maximum width of the label, in characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1132
+#: libgedauio/src/widgets/geda_label.c:1134
 msgid "Track visited links"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1133
+#: libgedauio/src/widgets/geda_label.c:1135
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:1941
+#: libgedauio/src/widgets/geda_label.c:1943
 msgid "gtk-mnemonic-menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5772
+#: libgedauio/src/widgets/geda_label.c:5785
 msgid "gtk-signal"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5894
+#: libgedauio/src/widgets/geda_label.c:5910
 msgid "_Open Link"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5906
+#: libgedauio/src/widgets/geda_label.c:5922
 msgid "Copy _Link Address"
 msgstr ""
 

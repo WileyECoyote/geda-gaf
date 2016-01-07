@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-04 12:21-0600\n"
+"POT-Creation-Date: 2015-12-31 02:05-0600\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -258,12 +258,12 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/export.c:1256
+#: gaf/src/export.c:1258
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "FOUT: U moet tenminste een invoer bestandsnaam specificeren.\n"
 
-#: gaf/src/export.c:1265
+#: gaf/src/export.c:1267
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "FOUT: U moet een uitvoer bestandnaam specificeren.\n"

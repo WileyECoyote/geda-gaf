@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-04 12:21-0600\n"
+"POT-Creation-Date: 2015-12-31 02:05-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -263,12 +263,12 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1256
+#: gaf/src/export.c:1258
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1265
+#: gaf/src/export.c:1267
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-15 20:57-0600\n"
+"POT-Creation-Date: 2015-12-31 02:05-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Couldn not find file [%s]\n"
 msgstr ""
 
-#: gattrib/src/g_rc.c:50
+#: gattrib/src/g_rc.c:51
 #, c-format
 msgid ""
 "You are running gEDA/gaf version [%s%s.%s],\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
-#: gattrib/src/i_basic.c:213
+#: gattrib/src/i_basic.c:210
 #, c-format
 msgid "Check: path \"%s\"\n"
 msgstr ""
@@ -104,22 +104,22 @@ msgid ""
 "or non-net!\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:96
+#: gattrib/src/s_rename.c:98
 #, c-format
 msgid "Increase number of rename_pair sets in s_net.c\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:114
+#: gattrib/src/s_rename.c:116
 #, c-format
 msgid "%d) Source: _%s_"
 msgstr ""
 
-#: gattrib/src/s_rename.c:118
+#: gattrib/src/s_rename.c:120
 #, c-format
 msgid " -> Dest: _%s_\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:149
+#: gattrib/src/s_rename.c:151
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -128,100 +128,100 @@ msgid ""
 "This warning is okay if you have multiple levels of hierarchy!\n"
 msgstr ""
 
-#: gattrib/src/s_rename.c:214
+#: gattrib/src/s_rename.c:219
 #, c-format
 msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:221
+#: gattrib/src/s_sheet_data.c:245
 #, c-format
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:284
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:399
+#: gattrib/src/s_sheet_data.c:423
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:434
+#: gattrib/src/s_sheet_data.c:458
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
 "pinnumber.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:490
+#: gattrib/src/s_sheet_data.c:514
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:128
+#: gattrib/src/s_string_list.c:130
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:193
+#: gattrib/src/s_string_list.c:195
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:265
+#: gattrib/src/s_string_list.c:271
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr ""
 
-#: gattrib/src/s_table.c:540
+#: gattrib/src/s_table.c:543
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:487
+#: gattrib/src/s_toplevel.c:488
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
 "the master list!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:516
+#: gattrib/src/s_toplevel.c:517
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:842
+#: gattrib/src/s_toplevel.c:843
 #, c-format
 msgid ""
 "In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
 "missing!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:880
+#: gattrib/src/s_toplevel.c:881
 #, c-format
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:110
+#: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:119
+#: gattrib/src/x_dialog.c:120
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:177
+#: gattrib/src/x_dialog.c:179
 msgid "Are you sure you want to delete this attribute?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:179
+#: gattrib/src/x_dialog.c:181
 msgid "Delete attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:203
+#: gattrib/src/x_dialog.c:205
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -232,31 +232,31 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:216
+#: gattrib/src/x_dialog.c:218
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:245
+#: gattrib/src/x_dialog.c:247
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:246
+#: gattrib/src/x_dialog.c:248
 msgid "<big><b>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:246
+#: gattrib/src/x_dialog.c:248
 msgid "</b></big>"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:248
+#: gattrib/src/x_dialog.c:250
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:258
+#: gattrib/src/x_dialog.c:260
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:316
+#: gattrib/src/x_dialog.c:318
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -270,15 +270,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:324
+#: gattrib/src/x_dialog.c:326
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:350
+#: gattrib/src/x_dialog.c:352
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:365
+#: gattrib/src/x_dialog.c:367
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -292,47 +292,47 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:375
+#: gattrib/src/x_dialog.c:377
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:392
+#: gattrib/src/x_dialog.c:394
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:442
+#: gattrib/src/x_dialog.c:443
 msgid "Find "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:471
+#: gattrib/src/x_dialog.c:473
 msgid "Enter "
 msgstr ""
 
-#: gattrib/src/x_dialog.c:817
+#: gattrib/src/x_dialog.c:820
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:819
+#: gattrib/src/x_dialog.c:822
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:825
+#: gattrib/src/x_dialog.c:828
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:827
+#: gattrib/src/x_dialog.c:830
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:833
+#: gattrib/src/x_dialog.c:836
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:835
+#: gattrib/src/x_dialog.c:838
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:840
+#: gattrib/src/x_dialog.c:843
 msgid "Find next"
 msgstr ""
 
@@ -370,12 +370,12 @@ msgstr ""
 msgid "Open..."
 msgstr ""
 
-#: gattrib/src/x_find.c:273
+#: gattrib/src/x_find.c:267
 #, fuzzy
 msgid "Attribute"
 msgstr "gEDA attribútumszerkesztő"
 
-#: gattrib/src/x_find.c:305
+#: gattrib/src/x_find.c:304
 msgid "Designator"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-11-28 20:04-0600\n"
+"POT-Creation-Date: 2016-01-06 21:57-0600\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -371,59 +371,59 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:304
+#: libgeda/src/geda/geda_pin.c:303
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:305
+#: libgeda/src/geda/geda_pin.c:304
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:311
+#: libgeda/src/geda/geda_pin.c:310
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:312
+#: libgeda/src/geda/geda_pin.c:311
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:318
+#: libgeda/src/geda/geda_pin.c:317
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:319
+#: libgeda/src/geda/geda_pin.c:318
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:325
+#: libgeda/src/geda/geda_pin.c:324
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:326
+#: libgeda/src/geda/geda_pin.c:325
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:332
+#: libgeda/src/geda/geda_pin.c:331
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:333
+#: libgeda/src/geda/geda_pin.c:332
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:339
+#: libgeda/src/geda/geda_pin.c:338
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:340
+#: libgeda/src/geda/geda_pin.c:339
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:346
+#: libgeda/src/geda/geda_pin.c:345
 msgid "Whichend"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:347
+#: libgeda/src/geda/geda_pin.c:346
 msgid "Which end of the pin gets connected"
 msgstr ""
 
@@ -788,84 +788,84 @@ msgstr ""
 "Το στοιχείο δε βρέθηκε:\n"
 " %s"
 
-#: libgeda/src/object/o_complex_basic.c:658
+#: libgeda/src/object/o_complex_basic.c:651
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:671
+#: libgeda/src/object/o_complex_basic.c:664
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr "Βρέθηκε στοιχείο με μη έγκυρη περιστροφή [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:672 libgeda/src/object/o_picture.c:381
+#: libgeda/src/object/o_complex_basic.c:665 libgeda/src/object/o_picture.c:381
 msgid "Setting angle to 0\n"
 msgstr "Ρύθμιση γωνίας σε 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:684
+#: libgeda/src/object/o_complex_basic.c:677
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Βρέθηκε στοιχείο με μη έγκυρη σημαία καθρεπτισμού [ %c %d %d %d %d %d %s ]\n"
 
-#: libgeda/src/object/o_complex_basic.c:685
+#: libgeda/src/object/o_complex_basic.c:678
 msgid "Setting mirror to 0\n"
 msgstr "Ρύθμιση καθρεπτισμού σε 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:1009
+#: libgeda/src/object/o_complex_basic.c:999
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1010
+#: libgeda/src/object/o_complex_basic.c:1000
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1011
+#: libgeda/src/object/o_complex_basic.c:1001
 msgid "oddity"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1012
+#: libgeda/src/object/o_complex_basic.c:1002
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1013
+#: libgeda/src/object/o_complex_basic.c:1003
 msgid "parse error"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1015
+#: libgeda/src/object/o_complex_basic.c:1005
 #, c-format
 msgid "\t<%s> Instantiated symbol <%s> is %s than the version in library\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1016
+#: libgeda/src/object/o_complex_basic.c:1006
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1017
+#: libgeda/src/object/o_complex_basic.c:1007
 #, c-format
 msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1018
+#: libgeda/src/object/o_complex_basic.c:1008
 msgid "\tCould not parse symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1019
+#: libgeda/src/object/o_complex_basic.c:1009
 #, c-format
 msgid "WARNING: Symbol version %s on refdes %s:\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1043
+#: libgeda/src/object/o_complex_basic.c:1033
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1096
+#: libgeda/src/object/o_complex_basic.c:1086
 #, c-format
 msgid "\tCould not parse attached symversion=%s\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1118
+#: libgeda/src/object/o_complex_basic.c:1108
 #, c-format
 msgid ""
 "\tsymversion=%s attached to instantiated symbol, but version not found "
@@ -989,45 +989,45 @@ msgstr "Επιστροφή στο φόρτωμα αρχείου. Η εικόνα
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "ΣΦΑΛΜΑ: o_picture_save: αδυναμία κωδικοποίησης εικόνας.\n"
 
-#: libgeda/src/object/o_picture.c:902
+#: libgeda/src/object/o_picture.c:904
 #, c-format
 msgid "Can not export to type %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:914
+#: libgeda/src/object/o_picture.c:916
 #, fuzzy, c-format
 msgid "Failed to export [%s]: %s\n"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/object/o_picture.c:1150
+#: libgeda/src/object/o_picture.c:1152
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1151
+#: libgeda/src/object/o_picture.c:1153
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1160
+#: libgeda/src/object/o_picture.c:1162
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1196
+#: libgeda/src/object/o_picture.c:1198
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1198
+#: libgeda/src/object/o_picture.c:1200
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1207
+#: libgeda/src/object/o_picture.c:1209
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:1740
+#: libgeda/src/object/o_picture.c:1742
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
@@ -1401,16 +1401,16 @@ msgstr "Δεν υπάρχουν σχεδιαγράμματα πάνω από τ�
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/struct/s_page.c:272
+#: libgeda/src/struct/s_page.c:271
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:657 libgeda/src/struct/s_page.c:699
+#: libgeda/src/struct/s_page.c:677 libgeda/src/struct/s_page.c:719
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Αποθηκεύτηκε [%s]\n"
 
-#: libgeda/src/struct/s_page.c:663 libgeda/src/struct/s_page.c:706
+#: libgeda/src/struct/s_page.c:683 libgeda/src/struct/s_page.c:726
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "ΔΕΝ αποθηκεύτηκε [%s]\n"
@@ -1432,7 +1432,7 @@ msgstr "Δε βρέθηκε κατάλληλο γνώρισμα slotdef=#:#,#,#.
 msgid "component missing pinseq= attribute\n"
 msgstr "Λείπει το γνώρισμα pinseq= από το στοιχείο\n"
 
-#: libgeda/src/utility/u_log.c:214
+#: libgeda/src/utility/u_log.c:213
 #, fuzzy, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
