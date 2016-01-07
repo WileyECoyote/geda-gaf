@@ -1,3 +1,10 @@
+2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pmosfet-0: Revise PMOS transistor; change end-type=none
+      to round or squared to improve appearance, redo pinseq attributes
+      and reposition attributes accordingly. Change solid arrows, paths,
+      to be slightly smaller.
+
 2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD633JN-1.sym: Revise attributes.
