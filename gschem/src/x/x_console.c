@@ -248,9 +248,9 @@ void x_console_open (GschemToplevel *w_current)
 
     /* make it read the content of the current log file */
     /* and add its contents to the dialog */
-    contents = u_log_read ();
+    contents = geda_utility_log_read ();
 
-    /* u_log_read can return NULL if the log file cannot be written to */
+    /* geda_utility_log_read can return NULL if the log file cannot be written to */
     if (contents == NULL) {
       return;
     }
@@ -258,7 +258,7 @@ void x_console_open (GschemToplevel *w_current)
     log_message (CONSOLE (console_dialog), contents, "old");
     GEDA_FREE (contents);
 
-    u_log_set_update_func(x_log_message);
+    geda_utility_set_update_func(x_log_message);
 
     if ( auto_place_mode ) {
       gtk_widget_set_uposition ( console_dialog, 10, 10);
@@ -284,7 +284,7 @@ void x_console_close ()
   if (console_dialog) {
     if (IS_CONSOLE (console_dialog)) {
       gtk_widget_destroy (console_dialog);
-      u_log_set_update_func(NULL);
+      geda_utility_set_update_func(NULL);
       console_dialog = NULL;
     }
     else

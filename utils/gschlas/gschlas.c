@@ -94,7 +94,7 @@ main_prog(void *closure, int argc, char *argv[])
     i_vars_set(pr_current);
 
     /* create log file right away even if logging is enabled */
-    u_log_init ("gschlas");
+    geda_utility_log_init ("gschlas");
 
     index = argv_index;
 

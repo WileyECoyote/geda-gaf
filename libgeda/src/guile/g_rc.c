@@ -997,7 +997,7 @@ SCM g_rc_bitmap_directory(SCM path)
  *
  *  \returns SCM_BOOL_T on success, SCM_BOOL_F if path is invalid.
  *
- *  \sa u_log_init
+ *  \sa geda_utility_log_init
  */
 SCM g_rc_log_directory(SCM path)
 {
@@ -1092,7 +1092,7 @@ SCM g_rc_check_symbol_version(SCM mode)
  *
  *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
  *
- *  \sa u_log_init
+ *  \sa geda_utility_log_init
  */
 SCM g_rc_log_time(SCM mode)
 {
@@ -1110,7 +1110,7 @@ SCM g_rc_log_time(SCM mode)
   ret_val = g_rc_parse_mode(mode, "log-time", &prefix_time, mode_table, 2);
 
   if (scm_is_true(ret_val)) {
-    u_log_set_log_time(prefix_time);
+    geda_utility_log_set_log_time(prefix_time);
   }
 
   return ret_val;

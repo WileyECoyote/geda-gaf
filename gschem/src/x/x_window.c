@@ -305,7 +305,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
   if (err != NULL) {
-    u_log_vmessage("%s\n", err->message);
+    geda_utility_log_verbose("%s\n", err->message);
     g_clear_error (&err);
     xy_error = TRUE;
   }
@@ -688,7 +688,7 @@ void x_window_close(GschemToplevel *w_current)
     }
 
     /* close the log file */
-    u_log_close ();
+    geda_utility_log_close ();
 
     /* free the buffers */
     o_buffer_free (w_current); /* w_current not used */
@@ -907,9 +907,11 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 
       errno = 0;
       access (filename,  W_OK && F_OK);
-      file_err = errno;                        /* save file error */
-      path = strcpy (&strbuff[0], filename);
-      path = dirname(path);                    /* f_path_get_dirname make copy */
+
+      file_err = errno;                     /* save file error */
+      path     = strcpy (&strbuff[0], filename);
+      path     = dirname(path);             /* f_path_get_dirname make copy */
+
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
         q_log_message("Creating new file \"%s\"\n", filename);
@@ -953,8 +955,8 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Damage notifications should invalidate the object on screen */
   o_notify_change_add (page,
-                       (ChangeNotifyFunc) o_invalidate_object,
-                       (ChangeNotifyFunc) o_invalidate_object, w_current);
+                      (ChangeNotifyFunc) o_invalidate_object,
+                      (ChangeNotifyFunc) o_invalidate_object, w_current);
 
   i_zoom_world_extents (w_current,
                         s_page_get_objects (toplevel->page_current),
@@ -1011,7 +1013,7 @@ void x_window_set_current_page (GschemToplevel *w_current, Page *page)
  *  \param [in]     ymax       The maximum y coordinate for the page.
  */
 void x_window_setup_page(GschemToplevel *w_current, Page *page,
-                       int xmin, int xmax, int ymin, int ymax)
+                         int xmin, int xmax, int ymin, int ymax)
 {
   double fs,f0,f1;
   double fw0,fw1,fw;
@@ -1279,9 +1281,9 @@ void x_window_update_title(GschemToplevel *w_current)
     if (geda_page_get_changed(current_page) > 0) {
 
       if (w_current->session_name != NULL) {
-        print_string = u_string_sprintf("*%s: %s - gschem",
-        w_current->session_name,
-        filename);
+        print_string = u_string_sprintf ("*%s: %s - gschem",
+                                         w_current->session_name,
+                                         filename);
       }
       else {
         print_string = u_string_sprintf("*%s - gschem", filename);

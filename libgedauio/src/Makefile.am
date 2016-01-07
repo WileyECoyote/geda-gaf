@@ -6,8 +6,9 @@
 
 #AUTOMAKE_OPTIONS             = 1.6 subdir-objects
 
+LIB_FILE_DIALOG              = dialogs/fileselector
 
-SUBDIRS                      = dialogs
+#SUBDIRS                      = dialogs
 
 INC_GEDA                     = -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL                    = -I$(srcdir)/../include
@@ -41,7 +42,8 @@ libgedauio_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 
 libgedauio_la_DEPENDENCIES   = $(top_builddir)/libgeda/src/libgeda.la
 
-libgedauio_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la
+libgedauio_la_LIBADD         = $(top_builddir)/libgeda/src/libgeda.la \
+			      $(LIB_FILE_DIALOG)/libfileselector
 
 LIBTOOL                      = @LIBTOOL@ --silent
 

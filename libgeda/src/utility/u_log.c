@@ -28,6 +28,7 @@
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
+#include <syslog.h>
 
 #include <libgeda_priv.h>
 
@@ -69,7 +70,7 @@ static unsigned int log_handler_id;
  *  \returns the current log-time setting.
  *  \todo Add Scheme API
  */
-int u_log_get_log_time(void)
+int geda_utility_log_get_log_time(void)
 {
   return log_time;
 }
@@ -80,7 +81,7 @@ int u_log_get_log_time(void)
  *
  *  \param [in] mode If 0 entries will not be prefixed with the TOD
  */
-void u_log_set_log_time(int mode)
+void geda_utility_log_set_log_time(int mode)
 {
   log_time = mode;
 }
@@ -161,7 +162,7 @@ static void u_log_handler (const char    *log_domain,
  *
  *  \param [in] prefix  Character string with file name prefix to log to.
  */
-void u_log_init (const char *prefix)
+void geda_utility_log_init (const char *prefix)
 {
   /* FIXME we assume that the prefix is in the filesystem encoding. */
   GSList *files           = NULL;
@@ -176,7 +177,7 @@ void u_log_init (const char *prefix)
   is_logging = TRUE;
 
   if (logfile_fd != -1) {
-    BUG_MSG ("u_log_init: Log already initialised.");
+    BUG_MSG ("Log already initialized.");
     return;
   }
 
@@ -291,7 +292,7 @@ void u_log_init (const char *prefix)
  *  This function de-registers the handler for redirection to the log
  *  file and closes it. Subsequent messages are lost after the close.
  */
-void u_log_close (void)
+void geda_utility_log_close (void)
 {
   is_logging = FALSE;
 
@@ -317,7 +318,7 @@ void u_log_close (void)
  *
  *  \param [in] func Pointer to callback function
  */
-void u_log_set_update_func (LogUpdateFunc func)
+void geda_utility_set_update_func (LogUpdateFunc func)
 {
     x_log_update_func = func;
 }
@@ -328,7 +329,7 @@ void u_log_set_update_func (LogUpdateFunc func)
  *
  *  \return Character string with current log's contents.
  */
-char *u_log_read (void)
+char *geda_utility_log_read (void)
 {
   bool tmp;
 
@@ -362,7 +363,7 @@ char *u_log_read (void)
  *  This is a utlitity function to write a formatted message to
  *  the log handler if quiet mode is not set.
  */
-void u_log_qmessage(const char *format, ...)
+void geda_utility_log_quite(const char *format, ...)
 {
   if (!libgeda_quiet_mode) {
 
@@ -371,7 +372,7 @@ void u_log_qmessage(const char *format, ...)
     int     size;
 
     va_start (args, format);
-    size = u_string_strsize(format, args);
+    size = u_string_strsize(format, args) + 1;
     va_end (args);
 
     buffer = malloc(size);
@@ -391,7 +392,7 @@ void u_log_qmessage(const char *format, ...)
  *  This is a utlitity function to write a formatted message to
  *  the log handler if verbose mode was set.
  */
-void u_log_vmessage(const char *format, ...)
+void geda_utility_log_verbose(const char *format, ...)
 {
   if (libgeda_verbose_mode) {
 
@@ -400,7 +401,7 @@ void u_log_vmessage(const char *format, ...)
     int     size;
 
     va_start (args, format);
-    size = u_string_strsize(format, args);
+    size = u_string_strsize(format, args) + 1;
     va_end (args);
 
     buffer = malloc(size);
@@ -414,4 +415,35 @@ void u_log_vmessage(const char *format, ...)
     if (buffer) free(buffer);
   }
 }
+
+void
+geda_utility_log_system(const char *format, ...)
+{
+  va_list args;
+  char   *buffer;
+  int     size;
+  int     options;
+
+  va_start (args, format);
+  size = u_string_strsize(format, args) + 1;
+  va_end (args);
+
+  buffer = malloc(size);
+
+  va_start (args, format);
+  vsnprintf (buffer, size, format, args);
+  va_end (args);
+
+  options = LOG_CONS | LOG_PID | LOG_NDELAY;
+
+  openlog ("geda", options, LOG_INFO);
+
+  syslog (LOG_INFO, "%s", buffer);
+
+  closelog ();
+
+  if (buffer) free(buffer);
+
+}
+
 /** @} endgroup Libgeda-Logging-Utilities */

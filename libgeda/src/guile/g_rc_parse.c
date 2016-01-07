@@ -266,7 +266,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       if (status) {
         /* Typically apps need to read the rc file to know if logging is
          * is enabled or not, so verbose mode is used here */
-        u_log_vmessage (_("libgeda: Loaded RC file [%s]\n"), name_norm);
+        geda_utility_log_verbose (_("libgeda: Loaded RC file [%s]\n"), name_norm);
       }
       else {
 
