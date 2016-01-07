@@ -122,6 +122,7 @@
                      ("linear/mcontrol"         "Standard/Motor Control")
                      ("linear/mosdrive"         "Standard/MOS Gate Drivers")
                      ("linear/motion"           "Standard/Motion Sensors")
+                     ("linear/reference"        "Standard/Linear Reference")
                      ("linear/regulator"        "Standard/Linear Regulators")
                      ("linear/switchreg"        "Standard/Switching Regulators")
                      ("linear/powmon"           "Standard/Power Monitors")

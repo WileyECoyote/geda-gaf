@@ -1,0 +1,61 @@
+v 20151230 2
+T 1650 1500 8 10 1 1 0 0 1
+refdes=U?
+T 1650 1700 5 10 0 0 0 0 1
+device=TL431A
+T 1650 1900 5 10 0 1 0 0 1
+description=Precision Programmable Reference,1%,–40°C to 85°C
+T 1650 2100 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/TL431
+L 1100 1100 800 600 3 0 1 0 -1 -1
+L 1400 600 800 600 3 0 1 0 -1 -1
+L 1400 600 1100 1100 3 0 1 0 -1 -1
+L 800 1200 800 1100 3 0 1 0 -1 -1
+L 1400 1100 800 1100 3 0 1 0 -1 -1
+L 1400 1100 1400 1000 3 0 1 0 -1 -1
+L 1100 1500 1100 1100 3 0 1 0 -1 -1
+L 1100 600 1100 300 3 0 1 0 -1 -1
+L 600 800 900 800 4 0 0 0 100 100
+P 1100 1800 1100 1500 1 0 0
+{
+T 1000 1600 5 10 0 1 90 6 1
+pintype=pas
+T 1200 1500 5 10 1 1 180 6 1
+pinlabel=K
+T 1195 1650 5 10 1 1 0 0 1
+pinnumber=3
+T 1000 1650 5 10 0 1 0 6 1
+pinseq=1
+}
+P 1100 0 1100 300 1 0 0
+{
+T 1000 500 5 10 0 1 90 6 1
+pintype=pas
+T 1200 250 5 10 1 1 0 0 1
+pinlabel=A
+T 1195 50 5 10 1 1 0 0 1
+pinnumber=2
+T 1000 50 5 10 0 1 0 6 1
+pinseq=2
+}
+P 300 800 600 800 1 0 0
+{
+T 550 600 5 10 0 1 0 0 1
+pintype=in
+T 850 850 5 10 1 1 0 6 1
+pinlabel=REF
+T 455 845 5 10 1 1 0 6 1
+pinnumber=1
+T 450 600 5 10 0 1 0 6 1
+pinseq=3
+}
+T 1650 1100 9 10 0 1 0 0 1
+footprint=SOT89
+T 1650 1300 9 10 1 1 0 0 1
+value=TL431AQ
+T 1650 2700 5 10 0 0 0 0 1
+author=Piotr Wiszowaty pwiszowaty458@gmail.com
+T 1650 2500 5 10 0 0 0 0 1
+use-license=unlimited
+T 1650 2300 5 10 0 0 0 0 1
+dist-license=GPL 2

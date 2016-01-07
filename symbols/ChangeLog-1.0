@@ -1,5 +1,16 @@
 2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Add group linear/reference.
+
+    * linear/reference/: Add 6 symbols; Precision Programmable Reference:
+
+          * linear/reference/TL431-1.sym
+          * linear/reference/TL431-2.sym
+          * linear/reference/TL431A-1.sym
+          * linear/reference/TL431A-2.sym
+          * linear/reference/TL431B-1.sym
+          * linear/reference/TL431B-2.sym
+
     * transistor/pmosfet-0: Revise PMOS transistor; change end-type=none
       to round or squared to improve appearance, redo pinseq attributes
       and reposition attributes accordingly. Change solid arrows, paths,
