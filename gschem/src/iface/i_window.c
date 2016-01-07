@@ -60,11 +60,11 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
                                                   Current_Selection, NULL);
   }
   if (w_current->ptwindow != NULL) { /* Pin Type Tracks */
-    g_object_set (G_OBJECT (w_current->ltwindow), DIALOG_SELECTION_DATA,
+    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
                                                   Current_Selection, NULL);
   }
   if (w_current->sewindow != NULL) { /* Slot Edit Tracks */
-    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
+    g_object_set (G_OBJECT (w_current->sewindow), DIALOG_SELECTION_DATA,
                                                   Current_Selection, NULL);
   }
   if (w_current->tewindow != NULL) { /* Text Edit Tracks */

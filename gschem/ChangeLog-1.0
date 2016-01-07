@@ -1,3 +1,7 @@
+2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_window.c: Fix BUG; ptwindow, ltwindow and sewindow, crossed.
+
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem.h: Add include geda_gtk_compat.h.
