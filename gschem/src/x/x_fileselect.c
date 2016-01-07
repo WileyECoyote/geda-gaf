@@ -57,9 +57,9 @@ static void
 x_fileselect_callback_update_preview (GtkFileChooser *chooser,
                                       void           *user_data)
 {
-  Preview *preview          = PREVIEW (user_data);
-  char    *preview_filename = NULL;
-  char    *filename;
+  GschemPreview *preview = GSCHEM_PREVIEW(user_data);
+  char *preview_filename = NULL;
+  char *filename;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
 
@@ -86,7 +86,7 @@ static void
 x_fileselect_callback_update_size (GtkToggleButton *button,
                                    void            *user_data)
 {
-  Preview *preview = PREVIEW (user_data);
+  GschemPreview *preview = GSCHEM_PREVIEW(user_data);
   int state = GetToggleState(button);
   g_object_set (preview, "large-size", state, NULL);
 }
@@ -132,7 +132,7 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
                                         "yalign", 0.5,
                                         NULL));
 
-  preview = GTK_WIDGET (g_object_new (TYPE_PREVIEW,
+  preview = GTK_WIDGET (g_object_new (GSCHEM_TYPE_PREVIEW,
                                       /*"active", TRUE,*/
                                       NULL));
 
@@ -242,17 +242,16 @@ x_fileselect_list(GschemToplevel *w_current)
 void
 x_fileselect_save (GschemToplevel *w_current)
 {
-  GedaToplevel  *toplevel = w_current->toplevel;
-  GtkWidget     *dialog;
-  GtkWidget     *hbox;
-  GtkWidget     *cb_add_ext;
-
-  bool       auto_ext;
-  char      *cwd = NULL;
+  GedaToplevel *toplevel = w_current->toplevel;
+  GtkWidget    *dialog;
+  GtkWidget    *hbox;
+  GtkWidget    *cb_add_ext;
+  bool          auto_ext;
 
   EdaConfig *cfg = eda_config_get_user_context ();
 
-  auto_ext = eda_config_get_boolean (cfg, IVAR_CONFIG_GROUP, "auto-file-suffix", NULL);
+  auto_ext =
+  eda_config_get_boolean (cfg, IVAR_CONFIG_GROUP, "auto-file-suffix", NULL);
 
   dialog = geda_file_chooser_new (w_current->main_window,
                                   FILE_CHOOSER_ACTION_SAVE);
@@ -271,8 +270,11 @@ x_fileselect_save (GschemToplevel *w_current)
     geda_file_chooser_set_filename (dialog, toplevel->page_current->filename);
   }
   else {
-    cwd = g_get_current_dir ();
-    /* force save in current working dir */
+
+    /* force save in current working directory */
+
+    char *cwd = g_get_current_dir ();
+
     geda_file_chooser_set_current_folder (dialog, cwd);
     GEDA_FREE (cwd);
     geda_file_chooser_set_current_name (dialog, toplevel->untitled_name);
@@ -295,7 +297,6 @@ x_fileselect_save (GschemToplevel *w_current)
     char *filename;
     char *filebase;
     char *tmpname;
-    int   index;
 
     filename = geda_file_chooser_get_filename (dialog);
     filebase = basename(filename);
@@ -304,7 +305,9 @@ x_fileselect_save (GschemToplevel *w_current)
 
     if (auto_ext && (filebase != NULL)) {
       if (!f_get_filename_ext(filebase)) {
-        index = geda_file_chooser_get_filter(dialog);
+
+        int index = geda_file_chooser_get_filter(dialog);
+
         if (index == FILTER_SCHEMATIC)
           tmpname = u_string_concat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
         else
