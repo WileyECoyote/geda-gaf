@@ -2502,11 +2502,14 @@ geda_combo_box_size_request (GtkWidget      *widget,
   GedaComboBox *combo_box   = GEDA_COMBO_BOX (widget);
   GedaComboBoxPrivate *priv = combo_box->priv;
 
+  child = geda_get_child_widget(widget);
+
   /* common */
-  gtk_widget_size_request (GTK_BIN (widget)->child, &bin_req);
+  gtk_widget_size_request (child, &bin_req);
+
   geda_combo_box_remeasure (combo_box);
 
-  bin_req.width  = MAX (bin_req.width, priv->width);
+  bin_req.width  = MAX (bin_req.width,  priv->width);
   bin_req.height = MAX (bin_req.height, priv->height);
 
   gtk_widget_style_get (GTK_WIDGET (widget),
@@ -2515,7 +2518,7 @@ geda_combo_box_size_request (GtkWidget      *widget,
                         "arrow-size", &arrow_size,
                         NULL);
 
-  child     = geda_get_child_widget(widget);
+
   font_desc = child->style->font_desc;
   context   = gtk_widget_get_pango_context (widget);
   metrics   = pango_context_get_metrics (context, font_desc,
@@ -2540,11 +2543,12 @@ geda_combo_box_size_request (GtkWidget      *widget,
       int border_width, xthickness, ythickness;
 
       gtk_widget_size_request (priv->button, &button_req);
-      border_width = GTK_CONTAINER (combo_box)->border_width;
-      xthickness = priv->button->style->xthickness;
-      ythickness = priv->button->style->ythickness;
 
-      bin_req.width = MAX (bin_req.width, priv->width);
+      border_width   = GTK_CONTAINER (combo_box)->border_width;
+      xthickness     = priv->button->style->xthickness;
+      ythickness     = priv->button->style->ythickness;
+
+      bin_req.width  = MAX (bin_req.width, priv->width);
       bin_req.height = MAX (bin_req.height, priv->height);
 
       gtk_widget_size_request (priv->separator, &sep_req);
@@ -2582,14 +2586,15 @@ geda_combo_box_size_request (GtkWidget      *widget,
     if (priv->cell_view_frame) {
 
       gtk_widget_size_request (priv->cell_view_frame, &frame_req);
-      if (priv->has_frame)
-      {
+
+      if (priv->has_frame){
+
         requisition->width += 2 *
-        (GTK_CONTAINER (priv->cell_view_frame)->border_width +
-        GTK_WIDGET (priv->cell_view_frame)->style->xthickness);
+          (GTK_CONTAINER (priv->cell_view_frame)->border_width +
+           GTK_WIDGET (priv->cell_view_frame)->style->xthickness);
         requisition->height += 2 *
-        (GTK_CONTAINER (priv->cell_view_frame)->border_width +
-        GTK_WIDGET (priv->cell_view_frame)->style->ythickness);
+          (GTK_CONTAINER (priv->cell_view_frame)->border_width +
+           GTK_WIDGET (priv->cell_view_frame)->style->ythickness);
       }
     }
 
@@ -2607,32 +2612,36 @@ geda_combo_box_size_request (GtkWidget      *widget,
 }
 
 #define GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON 					\
-  gtk_widget_size_request (combo_box->priv->button, &req); 			\
-  										\
-  if (is_rtl) 									\
-    child.x = allocation->x + shadow_width;					\
+  gtk_widget_size_request (combo_box->priv->button, &req); 	\
+  if (is_rtl) 									            \
+    child_alloc.x = allocation->x + shadow_width;				\
   else										\
-    child.x = allocation->x + allocation->width - req.width - shadow_width;	\
+    child_alloc.x = allocation->x + allocation->width - req.width - shadow_width;	\
     										\
-  child.y = allocation->y + shadow_height;					\
-  child.width = req.width;							\
-  child.height = allocation->height - 2 * shadow_height;			\
-  child.width = MAX (1, child.width);						\
-  child.height = MAX (1, child.height);						\
+  child_alloc.y = allocation->y + shadow_height;					\
+  child_alloc.width = req.width;							\
+  child_alloc.height = allocation->height - 2 * shadow_height;	\
+  child_alloc.width = MAX (1, child_alloc.width);					\
+  child_alloc.height = MAX (1, child_alloc.height);				\
   										\
-  gtk_widget_size_allocate (combo_box->priv->button, &child);
+  gtk_widget_size_allocate (combo_box->priv->button, &child_alloc);
 
 static void
 geda_combo_box_size_allocate (GtkWidget     *widget,
                               GtkAllocation *allocation)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
-  GedaComboBoxPrivate *priv = combo_box->priv;
-  int shadow_width, shadow_height;
-  int focus_width, focus_pad;
-  GtkAllocation child_alloc;
-  GtkRequisition req;
-  bool is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
+  GedaComboBox        *combo_box  = GEDA_COMBO_BOX (widget);
+  GedaComboBoxPrivate *priv       = combo_box->priv;
+  GtkAllocation        child_alloc;
+  GtkRequisition       req;
+  int shadow_width;
+  int shadow_height;
+  int focus_width;
+  int focus_pad;
+
+  bool is_rtl;
+
+  is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
   widget->allocation = *allocation;
 
@@ -2745,7 +2754,7 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
 
       child_alloc.width  = MAX (1, child_alloc.width);
       child_alloc.height = MAX (1, child_alloc.height);
-      gtk_widget_size_allocate (GTK_BIN (widget)->child_alloc, &child_alloc);
+      gtk_widget_size_allocate (geda_get_child_widget (widget), &child_alloc);
     }
     else {
 
@@ -2760,7 +2769,7 @@ geda_combo_box_size_allocate (GtkWidget     *widget,
       child_alloc.width  = allocation->width - req.width - 2 * shadow_width;
       child_alloc.width  = MAX (1, child_alloc.width);
       child_alloc.height = MAX (1, child_alloc.height);
-      gtk_widget_size_allocate (GTK_BIN (widget)->child, &child_alloc);
+      gtk_widget_size_allocate (geda_get_child_widget (widget), &child_alloc);
     }
   }
   else {
@@ -2917,6 +2926,7 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
 {
   GedaComboBox        *combo_box = GEDA_COMBO_BOX (widget);
   GedaComboBoxPrivate *priv      = combo_box->priv;
+  GtkWidget           *child;
 
   if (gtk_widget_is_drawable (widget) &&
       GTK_SHADOW_NONE != priv->shadow_type)
@@ -2940,8 +2950,9 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
                                     priv->cell_view_frame, event);
   }
 
-  gtk_container_propagate_expose (GTK_CONTAINER (widget),
-                                  GTK_BIN (widget)->child, event);
+  child = geda_get_child_widget(widget);
+
+  gtk_container_propagate_expose (GTK_CONTAINER (widget), child, event);
 
   return FALSE;
 }
@@ -3213,31 +3224,33 @@ static void
 geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
 {
   GedaComboBoxPrivate *priv = combo_box->priv;
+  GtkWidget *child;
   GtkWidget *menu;
+
+  child = geda_get_child_widget(combo_box);
 
   if (priv->cell_view) {
 
-      priv->button = gtk_toggle_button_new ();
-      gtk_button_set_focus_on_click (GTK_BUTTON (priv->button),
-                                     priv->focus_on_click);
+    priv->button = gtk_toggle_button_new ();
+    gtk_button_set_focus_on_click (GTK_BUTTON (priv->button),
+                                   priv->focus_on_click);
 
-      g_signal_connect (priv->button, "toggled",
-                        G_CALLBACK (geda_combo_box_button_toggled), combo_box);
+    g_signal_connect (priv->button, "toggled",
+                      G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
-      gtk_widget_set_parent (priv->button,
-                             GTK_BIN (combo_box)->child->parent);
+    gtk_widget_set_parent (priv->button, child->parent);
 
-      priv->box = gtk_hbox_new (FALSE, 0);
-      gtk_container_add (GTK_CONTAINER (priv->button), priv->box);
+    priv->box = gtk_hbox_new (FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (priv->button), priv->box);
 
-      priv->separator = gtk_vseparator_new ();
-      gtk_container_add (GTK_CONTAINER (priv->box), priv->separator);
+    priv->separator = gtk_vseparator_new ();
+    gtk_container_add (GTK_CONTAINER (priv->box), priv->separator);
 
-      priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
-      gtk_container_add (GTK_CONTAINER (priv->box), priv->arrow);
+    priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+    gtk_container_add (GTK_CONTAINER (priv->box), priv->arrow);
 
-      gtk_widget_show_all (priv->button);
-    }
+    gtk_widget_show_all (priv->button);
+  }
   else {
 
       priv->button = gtk_toggle_button_new ();
@@ -3247,8 +3260,7 @@ geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_children)
       g_signal_connect (priv->button, "toggled",
                         G_CALLBACK (geda_combo_box_button_toggled), combo_box);
 
-      gtk_widget_set_parent (priv->button,
-                             GTK_BIN (combo_box)->child->parent);
+      gtk_widget_set_parent (priv->button, child->parent);
 
       priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
       gtk_container_add (GTK_CONTAINER (priv->button), priv->arrow);
