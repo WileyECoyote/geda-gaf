@@ -6,6 +6,8 @@
       geda_combo_box_remeasure inline. Rename child allocation child_alloc
       instead of child in geda_combo_box_size_allocate, confuses me.
 
+    * src/widgets/geda_label.c: Implement new macros from geda_gtk_compat.h.
+
 2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros geda_get_widget_requisition and

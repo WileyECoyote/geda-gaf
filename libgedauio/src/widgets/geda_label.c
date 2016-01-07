@@ -4757,7 +4757,7 @@ geda_label_create_window (GedaLabel *label)
     }
 
     priv->select_info->window =
-    gdk_window_new (gtk_widget_get_window (widget), &attributes, attributes_mask);
+    gdk_window_new (geda_get_widget_window (widget), &attributes, attributes_mask);
 
     gdk_window_set_user_data (priv->select_info->window, widget);
   }
@@ -4772,13 +4772,18 @@ geda_label_destroy_window (GedaLabel *label)
     BUG_MSG ("select_info = NULL");
   }
   else {
+
+    GdkWindow *window;
+
     info = label->priv->select_info;
 
-    if (info->window == NULL)
+    window = geda_get_widget_window(info);
+
+    if (window == NULL)
       return;
 
-    gdk_window_set_user_data (info->window, NULL);
-    gdk_window_destroy (info->window);
+    gdk_window_set_user_data (window, NULL);
+    gdk_window_destroy (window);
     info->window = NULL;
   }
 }
@@ -4797,8 +4802,14 @@ geda_label_ensure_select_info (GedaLabel *label)
     if (gtk_widget_get_realized (GTK_WIDGET (label)))
       geda_label_create_window (label);
 
-    if (gtk_widget_get_mapped (GTK_WIDGET (label)))
-      gdk_window_show (priv->select_info->window);
+    if (gtk_widget_get_mapped (GTK_WIDGET (label))) {
+
+      GdkWindow *window;
+
+      window = geda_get_widget_window(priv->select_info);
+
+      gdk_window_show (window);
+    }
   }
 
   return ( priv->select_info ? TRUE : FALSE );
@@ -4807,10 +4818,10 @@ geda_label_ensure_select_info (GedaLabel *label)
 static void
 geda_label_clear_select_info (GedaLabel *label)
 {
-  if ( label->priv->select_info != NULL) {
+  if (label->priv->select_info != NULL) {
 
     if (!label->priv->select_info->selectable &&
-      !label->priv->select_info->links)
+        !label->priv->select_info->links)
     {
       geda_label_destroy_window (label);
       g_free (label->priv->select_info);
@@ -4892,7 +4903,7 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
 }
 void geda_label_widget_set_selectable (GtkWidget *widget, bool setting)
 {
-  geda_label_set_selectable ((GedaLabel*) widget, setting);
+  geda_label_set_selectable ((GedaLabel*)widget, setting);
 }
 
 /************************** Angle Property ************************/
@@ -4915,7 +4926,7 @@ double geda_label_get_angle  (GedaLabel *label)
 }
 double geda_label_widget_get_angle (GtkWidget *widget)
 {
-  return geda_label_get_angle ((GedaLabel*) widget);
+  return geda_label_get_angle ((GedaLabel*)widget);
 }
 
 /*! \brief geda_label_set_angle
@@ -5800,14 +5811,15 @@ popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
   GtkWidget     *widget;
   GtkRequisition req;
   GdkScreen     *screen;
+  GdkWindow     *window;
 
   widget = GTK_WIDGET (data); /* = GEDA_LABEL (data) */
 
   g_return_if_fail (gtk_widget_get_realized (widget));
 
   allocation = geda_get_widget_allocation (widget);
-  screen = gtk_widget_get_screen (widget);
-  gdk_window_get_origin (widget->window, x, y);
+  screen     = gtk_widget_get_screen (widget);
+  window     = geda_get_widget_window (widget);
 
   gdk_window_get_origin (window, x, y);
 
