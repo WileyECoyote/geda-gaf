@@ -503,6 +503,23 @@ const char *s_page_get_file_extension (Page *page)
   return NULL;
 }
 
+/*! \brief Get the Current Selection for a given Page
+ *  \par Function Description
+ *  Returns the selection GedaList member given the Page
+ *  object or NULL if \a page is not a GedaPage object.
+ *
+ *  \param page Pointer to a Geda Page object
+ *
+ *  \returns Pointer to selection GedaList of the page
+ */
+SELECTION *s_page_get_selection (Page *page)
+{
+  if (GEDA_IS_PAGE(page)) {
+    return page->selection_list;
+  }
+  return NULL;
+}
+
 /*! \brief Changes set current page in toplevel and change directory
  *  \par Function Description
  *

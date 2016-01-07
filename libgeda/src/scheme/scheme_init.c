@@ -38,7 +38,11 @@ static volatile GedaType init_called = 0;
  */
 static void *edascm_init_impl (void *data)
 {
+#if ENABLE_NLS
+
   scm_setlocale(scm_variable_ref(scm_c_lookup("LC_ALL")), scm_from_locale_string(""));
+
+#endif
 
   edascm_init_smob ();
   edascm_init_toplevel ();

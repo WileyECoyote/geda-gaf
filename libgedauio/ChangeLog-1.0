@@ -1,3 +1,75 @@
+2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Implement geda_get_child_widget instead
+      of xxx-child, reduce scope of variables. Remove mysterious BONUS_PADDING.
+      Revert conditionally getting root window, looks funky. Define function
+      geda_combo_box_remeasure inline. Rename child allocation child_alloc
+      instead of child in geda_combo_box_size_allocate, confuses me.
+
+2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add macros geda_get_widget_requisition and
+      geda_get_widget_window.
+
+    * src/widgets/geda_font_dialog.c: Remove unnecessary initialization of
+      variable new_desc in function geda_font_dialog_set_font_name and reduce
+      scope of family, face, and new_desc.
+
+    * src/widgets/geda_accel_label.c:Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in functions geda_accel_
+      label_expose_event AND geda_accel_label_draw.
+
+    * src/widgets/geda_bulb.c: Include geda_gtk_compat.h, utilize libgedauio
+      macro geda_get_widget_allocation in get_coordinates.
+
+    * src/widgets/geda_combobox.c: Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
+      size_allocate, adjust indentions. Refactor using offset in function
+      geda_combo_box_size_allocate.
+
+    * src/widgets/geda_imagemenuitem.c: Include geda_gtk_compat.h, utilize
+      libgedauio macro geda_get_widget_allocation in geda_image_menu_item_
+      size_allocate, adjust indentions.
+
+    * src/widgets/geda_label.c: Eliminate label in popup_position_func.
+
+2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add header with preprocessor directives
+      to mitigate between gtk versions and geda code.
+
+2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_widgets.h: Replace brackets <> with parentheses "",
+      add include geda_completion.h and geda_swatch_renderer.h.
+
+    * include/geda_uio.h: Add an "all-in-one" header file, inclusion of
+      this file will include all libgedauio headers except geda_keysyms.h.
+
+2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Simply geda_handle_box_paint, remove
+      function draw_textured_frame. Revise/edit Doxygen comments. Reduce
+      scope of variables in geda_handle_box_button_press. Add call gtk_
+      container_propagate_expose in geda_handle_box_expose so internals
+      are painted properly.
+
+2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Add function geda_combo_widget_get_entry.
+
+    * src/widgets/geda_label.c: Conditionally try gtk_show_uri and if fails
+      try g_app_info_launch_default_for_uri in geda_label_activate_link.
+
+2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+     * include/Makefile.am: Remove reference geda_actionhelper.h.
+
+     * include/geda_actionhelper.h: Remove file.
+
+     * include/geda_menuitemprivate.h: Replace reference to GtkActionHelper
+       pointer with void pointer.
+
 2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/widgets/geda_label.c: Fix potential resource leak in function

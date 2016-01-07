@@ -1,5 +1,5 @@
 #  ifdef HAVE_CONFIG_H
-#    include "config.h"
+#    include "../../config.h"
 #  endif
 
 /* System headers which gschem headers rely on */
@@ -11,6 +11,7 @@
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 
+#include <geda_gtk_compat.h>
 #include <geda_uio_functions.h>
 
 /* gschem headers */
@@ -24,10 +25,10 @@
 #include "gschem_types.h"
 #include "gschem_page_geometry.h"
 #include "gschem_page_view.h"
+#include "gschem_preview.h"
 #include "gschem_macro_widget.h"
 #include "gschem_main_window.h"
 #include "i_vars.h"                /* declarations of structures */
-#include "x_preview.h"
 #include "x_status_bar.h"
 
 #include "prototype.h"

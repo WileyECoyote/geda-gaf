@@ -1,3 +1,66 @@
+2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/backend-getopt.scm: Add function option-warning and use in
+      place of option-error if the option is not known to the backend so
+      that the bom and bom2 backends do not error-out when each would other
+      wise produce normal output. Only bom and bom2 utilize backend-getopt,
+      and these still function correctly with the proper arguments and
+      this help to reduce scheme backtraces on the console.
+
+    * scheme/: Change marge-sort-* to merge-sort-*, it was either that or
+      marge-simpson, maybe lost in translation?, in files:
+
+          * scheme/gnet-partslist1.scm
+          * scheme/gnet-partslist2.scm
+          * scheme/gnet-partslist3.scm
+          * scheme/partslist-common.scm
+
+    * scheme/partslist-common.scm: Tweak get-parts-table to exclude packages
+      with an attribute nobom=1.
+
+    * tests/common/run_backend_tests.sh: Revert setting debug if DEBUG_TESTS
+      set in environment. Revise to fail if the output file was not generated
+      so that the skip clause is reached if there is no reference file and
+      return the fail count not total-pass since bom and bom2 fail when passed
+      backend parameters for the spice routines because bom and bom2 use the
+      backend-getopt routines.
+
+    * tests/common/outputs: Add outputs:
+
+          * bom/JD_Include_nomunge-output.net
+          * bom/JD_Include-output.net
+          * bom/JD_nomunge-output.net
+          * bom/JD_Sort_nomunge-output.net
+          * bom/JD_Sort-output.net
+          * bom/TwoStageAmp_Include-output.net
+          * bom/TwoStageAmp_Sort-output.net
+          * bom2/JD_Include_nomunge-output.net
+          * bom2/JD_Include-output.net
+          * bom2/JD_nomunge-output.net
+          * bom2/JD_Sort_nomunge-output.net
+          * bom2/JD_Sort-output.net
+          * bom2/TwoStageAmp_Include-output.net
+          * bom2/TwoStageAmp_Sort-output.net
+
+    * tests/common/inputs/TwoStageAmp.sch: Add attribute nobom=1 to refdes
+      Vinput and VCC.
+
+    * tests/common/outputs: Regenerated outputs after revising TwoStageAmp.
+
+2015-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/run_backend_tests.sh: Set debug if DEBUG_TESTS set in
+      environment, update/revise comments. Fix incorrect variable names:
+      GEDATADA->GEDADATA, GEDATADARC->GEDADATARC. Include test conditions
+      in output, there are not any but seems like it belongs in the output.
+
+    * tests/common/tests.list: Remove "-g spice-sdb", and gafrc from the aux
+      files field, gafrc is in always-copy-list.
+
+    * tests/gnetlistrc.orig: Update linear/regulate->linear/regulator.
+
+    * tests/common/inputs/gafrc: Update linear/regulate->linear/regulator.
+
 2015-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/Makefile.am: Add clean local to remove run directory if

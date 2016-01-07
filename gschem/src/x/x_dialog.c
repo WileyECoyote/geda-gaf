@@ -6,12 +6,12 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This library is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
@@ -2387,7 +2387,6 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
           }
         }
       }
-      //start_find = FALSE;
       break;
     case GEDA_RESPONSE_REJECT:
     case GEDA_RESPONSE_DELETE_EVENT:

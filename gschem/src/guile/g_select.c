@@ -112,7 +112,6 @@ SCM_DEFINE (deselect_object_x, "%deselect-object!", 1, 0, 0,
   SCM_ASSERT (edascm_is_object (obj_s), obj_s,
               SCM_ARG1, s_deselect_object_x);
 
-  //GedaToplevel *toplevel = edascm_c_current_toplevel ();
   Object *obj = edascm_to_object (obj_s);
   Page *page = geda_object_get_page (obj);
   if ((page == NULL) || (obj->parent_object != NULL)) {

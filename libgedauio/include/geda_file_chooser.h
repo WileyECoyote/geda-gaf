@@ -6,7 +6,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 2014-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014-2016 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This Library is free software; you can redistribute it and or
  * modify it under the terms of the GNU General Public License as
@@ -30,7 +30,7 @@
 #ifndef __GEDA_FILE_CHOOSER_H__
 #define __GEDA_FILE_CHOOSER_H__
 
-#include <geda_uio_macros.h>  /* For convenience of includer, not geda_file_chooser.c */
+#include "geda_uio_macros.h"  /* For convenience of includer, not geda_file_chooser.c */
 
 #define FILE_CHOOSER_CONFIG_GROUP  "file-chooser"
 #define FILE_CHOOSER_CONFIG_FILTER "filter"

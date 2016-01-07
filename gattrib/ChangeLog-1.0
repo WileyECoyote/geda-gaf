@@ -1,3 +1,41 @@
+2015-12-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Simplify illogical conditional. Remove
+      redundent check of sheet in function _gtk_sheet_update_extent.
+
+    * src/gtksheet/gtkdataformat.c: Reduce scope of char c in function
+      insert_thousands_seps.
+
+    * src/gtksheet/gtksheetcolumn.c: Eliminate unused variable act_row in
+      function gtk_sheet_column_set_visibility.
+
+    * src/gtksheet/gtkitementry.c: Reduce scope of text in function gtk_
+      item_entry_get_cursor_locations. Reduce scope of line and widget in
+      function gtk_item_entry_draw_text. Eliminate unused variable editable
+      in function gtk_item_entry_realize.
+
+    * src/listsort.c: check list & tail are not NULL before referencing in
+      function listsort, reduce scope of nmerges and oldhead.
+
+    * src/s_string_list.c: Check for NULL return from listsort in functions
+      s_string_list_get_data_at_index, s_string_list_sort_master_comp_attrib
+      _list and s_string_list_sort_master_pin_list. Check case next_item !=
+      NULL in else clause in function s_string_list_delete_item. Reduce scope
+      of variables.
+
+    * src/x_toolbars.c: Include geda_toolbars.h and geda_debug.h relative to
+      ../../include/ so preprocessor does not complain about uninitialized
+      variables and scanners do not complain about not using the exact same
+      variables, the variables are used in macros.
+
+2015-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Remove unnecessary initialization of dir1
+      in function gtk_item_entry_draw_cursor.
+
+    * src/gtksheet/gtkdataformat.c: Revise remove_thousands_seps to call
+      strlen after checking src is not NULL.
+
 2015-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/Makefile.am: Remove gtksheet from include path so that

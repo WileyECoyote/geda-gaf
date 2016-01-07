@@ -241,15 +241,10 @@ void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
 int snap_grid(GschemToplevel *w_current, int input)
 {
   int p, m, n;
-  //int sign;
 
   if (w_current->snap == SNAP_OFF || w_current->snap_size <= 0) {
     return(input);
   }
-
-  /* this code was inspired from killustrator, it's much simpler than mine */
-  //sign = input < 0 ? -1 : 1;
-  //value = abs(input);
 
   /* WEH: This is equivalent to signed value = abs(input) but gets a
    *      sign mask instead of getting the sign using a conditional */
@@ -280,7 +275,6 @@ int snap_grid(GschemToplevel *w_current, int input)
   n ^= sign;
   n -= sign;                        /* add one if value was negative */
 
-  //return(sign*n);
   return n;
 }
 

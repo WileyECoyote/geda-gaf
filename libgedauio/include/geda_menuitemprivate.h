@@ -40,15 +40,16 @@ struct _GtkMenuItemPrivate
   GtkWidget *submenu;
   GdkWindow *event_window;
 
-  unsigned int16 toggle_size;
-  unsigned int16 accelerator_width;
+  unsigned short toggle_size;
+  unsigned short accelerator_width;
 
   unsigned int timer;
 
-  char  *accel_path;
+  char        *accel_path;
 
-  GtkAction *action;
-  GtkActionHelper *action_helper;
+  GtkAction   *action;
+  //GtkActionHelper *action_helper;
+  void        *action_helper;
 
   unsigned int show_submenu_indicator : 1;
   unsigned int submenu_placement      : 1;

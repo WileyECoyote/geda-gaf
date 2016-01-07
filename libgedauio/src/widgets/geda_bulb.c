@@ -36,6 +36,7 @@
 
 #include <gtk/gtk.h>
 
+#include "geda_gtk_compat.h"
 #include "geda_bulb.h"
 #include "geda_marshal.h"
 
@@ -236,11 +237,12 @@ static void geda_bulb_finalize (GObject *object)
 static void
 get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
 {
-  GtkAllocation allocation;
+  GtkAllocation *allocation;
 
-  gtk_widget_get_allocation (widget, &allocation);
-  *x = allocation.x + allocation.width / 2;
-  *y = allocation.y + allocation.height / 2;
+  allocation = geda_get_widget_allocation (widget);
+
+  *x = allocation->x + allocation->width / 2;
+  *y = allocation->y + allocation->height / 2;
 
   gtk_widget_translate_coordinates (widget, reference, *x, *y, x, y);
 }

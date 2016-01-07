@@ -135,8 +135,7 @@ geda_text_bounds(Object *o_current)
  *
  *  \par Function Description
  *  GedaType instance initializer for Text, initializes a new empty
- *  Text object by setting pointers to NULL and numbers to zero,
- *  the text PID variable is set to the next text index.
+ *  Text object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Text structure being initialized,
  *  \param [in] g_class  The Text class we are initializing.

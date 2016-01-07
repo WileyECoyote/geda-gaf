@@ -275,7 +275,6 @@ AC_CONFIG_FILES([Makefile
                  libgedauio/docs/images/Makefile
                  libgedauio/include/Makefile
                  libgedauio/src/dialogs/Makefile
-                 libgedauio/src/widgets/Makefile
                  libgedauio/src/Makefile
 
                  gaf/Makefile

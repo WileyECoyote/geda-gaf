@@ -34,6 +34,7 @@
 
 #include <geda.h>
 #include <geda_standard.h>
+#include "geda_gtk_compat.h"
 #include "geda_imagemenuitem.h"
 
 #include <gtk/gtk.h>
@@ -495,10 +496,10 @@ geda_image_menu_item_size_request (GtkWidget      *widget,
 
 static void
 geda_image_menu_item_size_allocate (GtkWidget     *widget,
-                                    GtkAllocation *allocation)
+                                    GtkAllocation *allocated)
 {
   GedaImageMenuItem *image_menu_item;
-  GtkPackDirection pack_dir;
+  GtkPackDirection   pack_dir;
 
   if (GTK_IS_MENU_BAR (widget->parent)) {
     pack_dir = gtk_menu_bar_get_child_pack_direction (GTK_MENU_BAR (widget->parent));
@@ -509,24 +510,27 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
   image_menu_item = GEDA_IMAGE_MENU_ITEM (widget);
 
-  GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->size_allocate (widget, allocation);
+  GTK_WIDGET_CLASS (geda_image_menu_item_parent_class)->size_allocate (widget, allocated);
 
   if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
   {
+    GtkAllocation  *allocation;
+    GtkRequisition  child_requisition;
+    GtkAllocation   child_allocation;
+    unsigned int    horizontal_padding;
+    unsigned int    toggle_spacing;
     int x, y, offset;
-    GtkRequisition child_requisition;
-    GtkAllocation child_allocation;
-    unsigned int horizontal_padding, toggle_spacing;
 
     gtk_widget_style_get (widget,
                           "horizontal-padding", &horizontal_padding,
-                          "toggle-spacing", &toggle_spacing,
+                          "toggle-spacing",     &toggle_spacing,
                           NULL);
+
+    allocation = geda_get_widget_allocation (widget);
 
     /* Man this is lame hardcoding action, but I can't
      * come up with a solution that's really better.
      */
-
     gtk_widget_get_child_requisition (image_menu_item->image,
                                       &child_requisition);
 
@@ -534,43 +538,51 @@ geda_image_menu_item_size_allocate (GtkWidget     *widget,
         pack_dir == GTK_PACK_DIRECTION_RTL)
     {
       offset = GTK_CONTAINER (image_menu_item)->border_width +
-      widget->style->xthickness;
+                                                widget->style->xthickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
-        (pack_dir == GTK_PACK_DIRECTION_LTR))
-        x = offset + horizontal_padding +
-        (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-        toggle_spacing - child_requisition.width) / 2;
+          (pack_dir == GTK_PACK_DIRECTION_LTR))
+      {
+        x = offset + horizontal_padding + (GTK_MENU_ITEM (image_menu_item)->
+            toggle_size - toggle_spacing - child_requisition.width) / 2;
+      }
       else
-        x = widget->allocation.width - offset - horizontal_padding -
-        GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
-        (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-        toggle_spacing - child_requisition.width) / 2;
-
-      y = (widget->allocation.height - child_requisition.height) / 2;
+      {
+        x = allocation->width - offset - horizontal_padding -
+            GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
+           (GTK_MENU_ITEM (image_menu_item)->toggle_size - toggle_spacing -
+            child_requisition.width) / 2;
+      }
+      y = (allocation->height - child_requisition.height) / 2;
     }
     else {
+
       offset = GTK_CONTAINER (image_menu_item)->border_width +
-      widget->style->ythickness;
+               widget->style->ythickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
-        (pack_dir == GTK_PACK_DIRECTION_TTB))
+          (pack_dir == GTK_PACK_DIRECTION_TTB))
+      {
         y = offset + horizontal_padding +
-        (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-        toggle_spacing - child_requisition.height) / 2;
+            (GTK_MENU_ITEM (image_menu_item)->toggle_size -
+                                              toggle_spacing -
+                                              child_requisition.height) / 2;
+      }
       else
-        y = widget->allocation.height - offset - horizontal_padding -
-        GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
-        (GTK_MENU_ITEM (image_menu_item)->toggle_size -
-        toggle_spacing - child_requisition.height) / 2;
-
-      x = (widget->allocation.width - child_requisition.width) / 2;
+      {
+        y = allocation->height - offset - horizontal_padding -
+            GTK_MENU_ITEM (image_menu_item)->toggle_size + toggle_spacing +
+           (GTK_MENU_ITEM (image_menu_item)->toggle_size -
+                                             toggle_spacing -
+                                             child_requisition.height) / 2;
+      }
+      x = (allocation->width - child_requisition.width) / 2;
     }
 
-    child_allocation.width = child_requisition.width;
+    child_allocation.width  = child_requisition.width;
     child_allocation.height = child_requisition.height;
-    child_allocation.x = widget->allocation.x + MAX (x, 0);
-    child_allocation.y = widget->allocation.y + MAX (y, 0);
+    child_allocation.x      = allocation->x + MAX (x, 0);
+    child_allocation.y      = allocation->y + MAX (y, 0);
 
     gtk_widget_size_allocate (image_menu_item->image, &child_allocation);
   }

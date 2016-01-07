@@ -1,3 +1,14 @@
+2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
+
+    * xxx/tests/runtest.sh: Revise abstract to include note regarding
+      regenerating the reference files, bump version =0.0.5.
+
+    * lightning_detector/tests/lightning_detector-bom.csv: Updated file.
+
+    * RF_Amp/MSA-2643.sch: Add attribute nobom=1 to refdes Vpwr and Vin.
+
+    * RF_Amp/bom/MSA-2643-bom.csv: Updated file.
+
 2015-12-15  Wiley E. Hill <wileyhill@gmail.com>
 
     * TwoStageAmp/attribs: Add attribute file for bom back-ends.

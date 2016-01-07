@@ -57,6 +57,7 @@
 #include <geda.h>
 #include <geda_standard.h>
 
+
 #include <glib.h>
 #include <glib-object.h>
 
@@ -64,7 +65,7 @@
 
 #include <gtk/gtk.h>
 
-
+#include "geda_gtk_compat.h"
 #include "geda_label.h"
 #include "geda_imagemenuitem.h"
 
@@ -216,34 +217,34 @@ static bool geda_label_motion                (GtkWidget        *widget,
 static bool geda_label_leave_notify          (GtkWidget        *widget,
                                               GdkEventCrossing *event);
 
-static void geda_label_grab_focus            (GtkWidget      *widget);
+static void geda_label_grab_focus            (GtkWidget       *widget);
 
-static bool geda_label_query_tooltip         (GtkWidget      *widget,
-                                              int             x,
-                                              int             y,
-                                              bool            keyboard_tip,
-                                              GtkTooltip     *tooltip);
+static bool geda_label_query_tooltip         (GtkWidget       *widget,
+                                              int              x,
+                                              int              y,
+                                              bool             keyboard_tip,
+                                              GtkTooltip      *tooltip);
 
 static void geda_label_set_text_internal          (GedaLabel  *label,
-                                                   char      *str);
+                                                   char       *str);
 static void geda_label_set_label_internal         (GedaLabel  *label,
-                                                   char      *str);
+                                                   char       *str);
 static void geda_label_set_use_markup_internal    (GedaLabel  *label,
-                                                   bool       val);
+                                                   bool        val);
 static void geda_label_set_use_underline_internal (GedaLabel  *label,
-                                                   bool       val);
+                                                   bool        val);
 static void geda_label_set_uline_text_internal    (GedaLabel  *label,
-                                             const char      *str);
+                                             const char       *str);
 static void geda_label_set_pattern_internal       (GedaLabel  *label,
-                                             const char      *pattern,
-                                                   bool       is_mnemonic);
+                                             const char       *pattern,
+                                                   bool        is_mnemonic);
 static void geda_label_set_markup_internal        (GedaLabel  *label,
-                                             const char      *str,
-                                                   bool       with_uline);
+                                             const char       *str,
+                                                   bool        with_uline);
 static void geda_label_recalculate                (GedaLabel  *label);
-static void geda_label_screen_changed             (GtkWidget *widget,
-                                                   GdkScreen *old_screen);
-static bool geda_label_popup_menu                 (GtkWidget *widget);
+static void geda_label_screen_changed             (GtkWidget  *widget,
+                                                   GdkScreen  *old_screen);
+static bool geda_label_popup_menu                 (GtkWidget  *widget);
 static void geda_label_create_window              (GedaLabel  *label);
 static void geda_label_destroy_window             (GedaLabel  *label);
 static bool geda_label_ensure_select_info         (GedaLabel  *label);
@@ -252,8 +253,8 @@ static void geda_label_update_cursor              (GedaLabel  *label);
 static void geda_label_clear_layout               (GedaLabel  *label);
 static void geda_label_ensure_layout              (GedaLabel  *label);
 static void geda_label_select_region_index        (GedaLabel  *label,
-                                                   int        anchor_index,
-                                                   int        end_index);
+                                                   int         anchor_index,
+                                                   int         end_index);
 
 static bool geda_label_mnemonic_activate          (GtkWidget         *widget,
                                                    bool               group_cycling);
@@ -271,13 +272,13 @@ static bool geda_label_buildable_custom_tag_start (GtkBuildable      *buildable,
                                                    GObject           *child,
                                                    const char        *tagname,
                                                    GMarkupParser     *parser,
-                                                   void *          *data);
+                                                   void             **data);
 
 static void geda_label_buildable_custom_finished  (GtkBuildable      *buildable,
                                                    GtkBuilder        *builder,
                                                    GObject           *child,
                                                    const char        *tagname,
-                                                   void *           user_data);
+                                                   void              *user_data);
 
 static void connect_mnemonics_visible_notify      (GedaLabel         *label);
 static bool separate_uline_pattern                (const char        *str,
@@ -301,16 +302,16 @@ static int geda_label_move_backward_word          (GedaLabel        *label,
                                                    int              start);
 
 /* For links: */
-static void geda_label_clear_links                (GedaLabel    *label);
-static bool geda_label_activate_link              (GedaLabel    *label,
-                                                  const char   *uri);
+static void geda_label_clear_links                (GedaLabel     *label);
+static bool geda_label_activate_link              (GedaLabel     *label,
+                                                   const char    *uri);
 
 static void geda_label_activate_current_link      (GedaLabel     *label);
 static GedaLabelLink *geda_label_get_current_link (GedaLabel     *label);
 
-static void geda_label_get_link_colors            (GtkWidget    *widget,
-                                                   GdkColor     *link_color,
-                                                   GdkColor     *visited_link_color);
+static void geda_label_get_link_colors            (GtkWidget     *widget,
+                                                   GdkColor      *link_color,
+                                                   GdkColor      *visited_link_color);
 
 static void emit_activate_link                    (GedaLabel     *label,
                                                    GedaLabelLink *link);
@@ -480,17 +481,18 @@ geda_label_update_layout_width (GedaLabel *label)
   }
 
   if (priv->ellipsize || priv->wrap) {
-    GtkBorder border;
+
+    GtkAllocation *allocation;
+    GtkBorder      border;
     PangoRectangle logical;
-    GtkAllocation allocation;
     int width, height;
 
     geda_misc_get_padding_and_border (GTK_MISC (label), &border);
 
-    gtk_widget_get_allocation (widget, &allocation);
+    allocation = geda_get_widget_allocation (widget);
 
-    width  = allocation.width  - border.left - border.right;
-    height = allocation.height - border.top  - border.bottom;
+    width  = allocation->width - border.left - border.right;
+    height = allocation->height - border.top  - border.bottom;
 
     if (priv->have_transform) {
       PangoContext *context = gtk_widget_get_pango_context (widget);
@@ -3490,8 +3492,9 @@ geda_label_state_changed (GtkWidget   *widget, GtkStateType prev_state)
 static void
 get_layout_location (GedaLabel *label, int *xp, int *yp)
 {
-  GtkMisc          *misc;
-  GtkWidget        *widget;
+  GtkAllocation *allocation;
+  GtkMisc       *misc;
+  GtkWidget     *widget;
 
   float xalign;
   int req_width, x, y;
@@ -3520,12 +3523,14 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
   else
     req_width = widget->requisition.width;
 
-  x = floor (widget->allocation.x + (int)misc->xpad + xalign * (widget->allocation.width - req_width));
+  allocation = geda_get_widget_allocation (widget);
+
+  x = floor (allocation->x + (int)misc->xpad + xalign * (allocation->width - req_width));
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
-    x = MAX (x, widget->allocation.x + misc->xpad);
+    x = MAX (x, allocation->x + misc->xpad);
   else
-    x = MIN (x, widget->allocation.x + widget->allocation.width - misc->xpad);
+    x = MIN (x, allocation->x + allocation->width - misc->xpad);
   x -= logical.x;
 
   /* bgo#315462 - For single-line labels, *do* align the requisition with
@@ -3542,11 +3547,11 @@ get_layout_location (GedaLabel *label, int *xp, int *yp)
    *   middle".  You want to read the first line, at least, to get some context.
    */
   if (pango_layout_get_line_count (label->layout) == 1)
-    y = floor (widget->allocation.y + (int)misc->ypad
-    + (widget->allocation.height - widget->requisition.height) * misc->yalign);
+    y = floor (allocation->y + (int)misc->ypad
+    + (allocation->height - widget->requisition.height) * misc->yalign);
   else
-    y = floor (widget->allocation.y + (int)misc->ypad
-    + MAX (((widget->allocation.height - widget->requisition.height) * misc->yalign),
+    y = floor (allocation->y + (int)misc->ypad
+    + MAX (((allocation->height - widget->requisition.height) * misc->yalign),
            0));
 
     if (xp)
@@ -4012,24 +4017,21 @@ static void geda_label_unmap (GtkWidget *widget)
 
 static void window_to_layout_coords (GedaLabel *label, int *x, int *y)
 {
-  GtkAllocation allocation;
+  GtkAllocation *allocation;
   int lx, ly;
-  GtkWidget *widget;
-
-  widget = GTK_WIDGET (label);
 
   /* get layout location in widget->window coords */
   get_layout_location (label, &lx, &ly);
 
-  gtk_widget_get_allocation (widget, &allocation);
+  allocation = geda_get_widget_allocation (label);
 
   if (x) {
-     *x += allocation.x; /* go to widget->window */
+     *x += allocation->x; /* go to widget->window */
      *x -= lx;                   /* go to layout */
   }
 
   if (y) {
-     *y += allocation.y; /* go to widget->window */
+     *y += allocation->y; /* go to widget->window */
      *y -= ly;                   /* go to layout */
   }
 }
@@ -4712,10 +4714,10 @@ static void
 geda_label_create_window (GedaLabel *label)
 {
   GedaLabelPrivate *priv;
-  GtkAllocation  allocation;
-  GtkWidget     *widget;
-  GdkWindowAttr  attributes;
-  int            attributes_mask;
+  GtkAllocation    *allocation;
+  GtkWidget        *widget;
+  GdkWindowAttr     attributes;
+  int               attributes_mask;
 
   priv   = label->priv;
 
@@ -4729,12 +4731,12 @@ geda_label_create_window (GedaLabel *label)
 
     widget = GTK_WIDGET (label);
 
-    gtk_widget_get_allocation (widget, &allocation);
+    allocation = geda_get_widget_allocation (label);
 
-    attributes.x                 = allocation.x;
-    attributes.y                 = allocation.y;
-    attributes.width             = allocation.width;
-    attributes.height            = allocation.height;
+    attributes.x                 = allocation->x;
+    attributes.y                 = allocation->y;
+    attributes.width             = allocation->width;
+    attributes.height            = allocation->height;
     attributes.window_type       = GDK_WINDOW_CHILD;
     attributes.wclass            = GDK_INPUT_ONLY;
     attributes.override_redirect = TRUE;
@@ -5794,26 +5796,28 @@ popup_menu_detach (GtkWidget *attach_widget, GtkMenu *menu)
 static void
 popup_position_func (GtkMenu *menu, int *x, int *y, bool *push_in, void *data)
 {
-  GedaLabel *label;
-  GtkWidget *widget;
+  GtkAllocation *allocation;
+  GtkWidget     *widget;
   GtkRequisition req;
-  GdkScreen *screen;
+  GdkScreen     *screen;
 
-  label  = GEDA_LABEL (data);
-  widget = GTK_WIDGET (label);
+  widget = GTK_WIDGET (data); /* = GEDA_LABEL (data) */
 
   g_return_if_fail (gtk_widget_get_realized (widget));
 
+  allocation = geda_get_widget_allocation (widget);
   screen = gtk_widget_get_screen (widget);
   gdk_window_get_origin (widget->window, x, y);
 
-  *x += widget->allocation.x;
-  *y += widget->allocation.y;
+  gdk_window_get_origin (window, x, y);
+
+  *x += allocation->x;
+  *y += allocation->y;
 
   gtk_widget_size_request (GTK_WIDGET (menu), &req);
 
-  *x += widget->allocation.width / 2;
-  *y += widget->allocation.height;
+  *x += allocation->width / 2;
+  *y += allocation->height;
 
   *x = CLAMP (*x, 0, MAX (0, gdk_screen_get_width (screen) - req.width));
   *y = CLAMP (*y, 0, MAX (0, gdk_screen_get_height (screen) - req.height));
@@ -5968,14 +5972,29 @@ static bool
 geda_label_activate_link (GedaLabel *label, const char *uri)
 {
   GtkWidget *widget = GTK_WIDGET (label);
-  GError *error = NULL;
+  GError    *error = NULL;
+  bool       result;
 
-  if (!gtk_show_uri (gtk_widget_get_screen (widget),
-                     uri, gtk_get_current_event_time (), &error))
-    {
+#if HAVE_GTK_SHOW_URI
+
+  result = gtk_show_uri (gtk_widget_get_screen (widget), uri,
+                         gtk_get_current_event_time (), &error);
+
+  if (!result) {
+    g_error_free (error);
+    result = g_app_info_launch_default_for_uri(uri, NULL, &error);
+  }
+
+#else
+
+  result = g_app_info_launch_default_for_uri(uri, NULL, &error);
+
+#endif
+
+  if (!result) {
       fprintf(stderr, "Unable to show '%s': %s", uri, error->message);
       g_error_free (error);
-    }
+  }
 
   return TRUE;
 }

@@ -169,8 +169,8 @@ struct _GtkSheetChild
     int  attached_to_cell;
     int  floating;
     int row, col;
-    guint16 xpadding;
-    guint16 ypadding;
+    unsigned short xpadding;
+    unsigned short ypadding;
     int  xexpand;
     int  yexpand;
     int  xshrink;

@@ -58,11 +58,6 @@ static bool show_uri__win32 (const char *uri, GError **error)
   int status;
   char *msg = NULL;
 
-  if (uri == NULL) {
-    BUG_MSG ("uri == NULL");
-    return FALSE;
-  }
-
   status =
     (int) ShellExecute (NULL, /* window handle */
                         "open",
@@ -104,7 +99,7 @@ static bool show_uri__win32 (const char *uri, GError **error)
  * platform.
  *
  * Depending on the way gEDA was configured, this may occur by one of
- * the following three methods:
+ * the following methods:
  *
  * Calling gtk_show_uri() to use the GIO library (default on Linux)
  * Calling the ShellExecute() Windows API call (default on Windows)
@@ -117,55 +112,70 @@ static bool show_uri__win32 (const char *uri, GError **error)
 bool
 x_show_uri (const char *uri)
 {
-  GError *error = NULL;
+  GError *error;
 
-#if defined (OS_WIN32) && !defined (OS_CYGWIN)
-
-  return show_uri__win32 (uri, error);
-
-#elif defined (SHOW_URI_GIO)
-
-  GdkScreen *screen;
-  int result;
-
-  if(uri == NULL) {
+  if (uri == NULL) {
     return FALSE;
   }
 
-  screen = gdk_screen_get_default ();
-  result = gtk_show_uri (screen, uri, GDK_CURRENT_TIME, &error);
-  if (!result) {
+  error = NULL;
+
+#if defined (OS_WIN32) && !defined (OS_CYGWIN)
+
+  if (!show_uri__win32 (uri, error)) {
+    if (verbose_mode) {
+      u_log_message("Failed to open <%s>, %s\n", uri, error->message);
+    }
+    g_error_free (error);
+    error = NULL;
+  }
+  else {
+    return TRUE;
+  }
+
+#else
+
+#if HAVE_GTK_SHOW_URI
+
+  GdkScreen *screen = gdk_screen_get_default ();
+
+  if (!gtk_show_uri (screen, uri, GDK_CURRENT_TIME, &error)) {
     if (verbose_mode) {
       u_log_message("gtk Failed to open <%s>, %s\n", uri, error->message);
     }
     g_error_free (error);
     error = NULL;
   }
-  else
-    return result;
+  else {
+    return TRUE;
+  }
 
-  result = g_app_info_launch_default_for_uri(uri, NULL, &error);
-  if (!result) {
+#endif /* HAVE_GTK_SHOW_URI */
+
+  if (!g_app_info_launch_default_for_uri(uri, NULL, &error)) {
     if (verbose_mode) {
       u_log_message("glib Failed to open <%s>, %s\n", uri, error->message);
     }
     g_error_free (error);
     error = NULL;
   }
-  else
-    return result;
+  else {
+    return TRUE;
+  }
+
+#endif /* else (OS_WIN32) ! defined */
+
+#if defined (SHOW_URI_GIO)
 
   if (verbose_mode) {
     u_log_message("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
   }
 
-#endif
-
   bool spawn_status;
   char *argv[3];
 
   argv[0] = SHOW_URI_COMMAND;
-  argv[1] = (char *) uri;
+  argv[1] = (char*) uri;
   argv[2] = NULL; /* Null-terminated */
 
   /* Windows use another function so we don't need to worry about *pid */
@@ -179,6 +189,8 @@ x_show_uri (const char *uri)
                                &error);
 
   if (!spawn_status) return FALSE;
+
+#endif /* SHOW_URI_GIO */
 
   return TRUE;
 }

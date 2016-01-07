@@ -6,10 +6,10 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -104,12 +104,19 @@ multiattrib_callback_response (GtkDialog *dialog,
 void x_multiattrib_open (GschemToplevel *w_current)
 {
   if ( w_current->mawindow == NULL ) {
+
+    Page      *page;
+    SELECTION *selection;
+
+    page      = gschem_toplevel_get_current_page (w_current);
+    selection = s_page_get_selection (page);
+
     w_current->mawindow =
        GTK_WIDGET (g_object_new (TYPE_MULTIATTRIB,
-                                "parent", w_current->main_window,
-                                "settings-name", IDS_MULTI_ATTRBI,
+                                "parent",          w_current->main_window,
+                                "settings-name",   IDS_MULTI_ATTRBI,
                                 "gschem-toplevel", w_current,
-                                "object_list", Current_Selection,
+                                "object_list",     selection,
                                 NULL));
 
     g_signal_connect (w_current->mawindow,
@@ -135,7 +142,19 @@ void x_multiattrib_open (GschemToplevel *w_current)
 void x_multiattrib_close (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
+
+    Multiattrib  *ThisDialog;
+    GtkListStore *liststore;
+
+    ThisDialog = MULTIATTRIB(w_current->mawindow);
+    liststore  = (GtkListStore*)gtk_tree_view_get_model (ThisDialog->treeview);
+
+    gtk_list_store_clear (liststore);
+
+    g_object_unref(liststore);
+
     gtk_widget_destroy (w_current->mawindow);
+
     w_current->mawindow = NULL;
   }
 }
@@ -154,7 +173,7 @@ x_multiattrib_update (GschemToplevel *w_current)
 {
   if (w_current->mawindow != NULL) {
     g_object_set (G_OBJECT (w_current->mawindow), "object_list",
-                  Current_Selection, NULL);
+                  w_current->toplevel->page_current->selection_list, NULL);
   }
 }
 
@@ -350,38 +369,40 @@ static void cellrenderermultilinetext_class_init   (CellRendererMultiLineTextCla
  *
  */
 static void multiline_text_editing_done(GtkCellEditable *cell_editable,
-                                                   void            *user_data)
+                                                   void *user_data)
 {
   CellRendererMultiLineText *cell = CELL_RENDERER_MULTI_LINE_TEXT (user_data);
-  GtkTextBuffer             *buffer;
-  GtkTextIter                start;
-  GtkTextIter                end;
-  char                      *new_text;
-  const char                *path;
+  GtkTextBuffer *buffer;
 
   if (cell->focus_out_id > 0) {
-    g_signal_handler_disconnect (cell_editable,
-                                 cell->focus_out_id);
+    g_signal_handler_disconnect (cell_editable, cell->focus_out_id);
     cell->focus_out_id = 0;
-  }
-
-  if (CELL_TEXT_VIEW (cell_editable)->editing_canceled) {
-    g_signal_emit_by_name (cell, "editing-canceled");
-    return;
   }
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (cell_editable));
 
-  gtk_text_buffer_get_start_iter (buffer, &start);
-  gtk_text_buffer_get_end_iter   (buffer, &end);
-  new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
+  if (CELL_TEXT_VIEW (cell_editable)->editing_canceled) {
+    g_signal_emit_by_name (cell, "editing-canceled");
+  }
+  else {
 
-  path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
+    GtkTextIter start;
+    GtkTextIter end;
+    char       *new_text;
+    const char *path;
 
-  g_signal_emit_by_name (cell, "edited", path, new_text);
+    gtk_text_buffer_get_start_iter (buffer, &start);
+    gtk_text_buffer_get_end_iter   (buffer, &end);
+    new_text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
-  GEDA_FREE (new_text);
+    path = GEDA_OBJECT_GET_DATA(cell_editable, CELL_RENDERER_MULTI_LINE_TEXT_PATH);
 
+    g_signal_emit_by_name (cell, "edited", path, new_text);
+
+    GEDA_FREE (new_text);
+  }
+
+  g_object_unref(buffer);
 }
 
 /*! \todo Finish function documentation
@@ -555,7 +576,6 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
                                              int          show_name_value)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
-  Object         *object;
   GList          *iter;
   char           *newtext;
 
@@ -566,10 +586,11 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
     return;
   }
 
-  for (iter = geda_list_get_glist (ThisDialog->object_list);
+  for (iter  = geda_list_get_glist (ThisDialog->object_list);
        iter != NULL;
-       iter = g_list_next (iter)) {
-    object = (Object *)iter->data;
+       iter  = g_list_next (iter)) {
+
+    Object *object = (Object *)iter->data;
 
     if (is_multiattrib_object (object)) {
 
@@ -689,18 +710,18 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
 
   GList  *iter;
   GList  *objects_needing_add;
-  Object *parent;
   int     visibility;
 
   objects_needing_add = g_list_copy (geda_list_get_glist (ThisDialog->object_list));
 
   /* Remove objects which already have this attribute from the list */
   for (iter = attr_list; iter != NULL; NEXT(iter)) {
-    parent = ((Object *)iter->data)->attached_to;
+    Object *parent = ((Object*)iter->data)->attached_to;
     objects_needing_add = g_list_remove (objects_needing_add, parent);
   }
 
   for (iter = objects_needing_add; iter != NULL; NEXT(iter)) {
+
     Object *object = iter->data;
 
     if (is_multiattrib_object (object)) {
@@ -719,6 +740,8 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
                            object);
     }
   }
+
+  g_list_free (objects_needing_add);
 
   o_undo_savestate (w_current, UNDO_ALL);
 }
@@ -877,28 +900,30 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
                                     char                *new_name,
                                     void                *user_data)
 {
-  Multiattrib    *ThisDialog = (Multiattrib*)user_data;
+  GschemToplevel *w_current;
+  Multiattrib    *ThisDialog;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
   GedaList       *attr_list;
   GList          *a_iter;
-  Object         *o_attrib;
-  GschemToplevel *w_current;
   char           *newtext;
   char           *value;
-  const char     *warning;
-  int             visibility;
 
-  model = gtk_tree_view_get_model (ThisDialog->treeview);
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+  ThisDialog = user_data;
+  model      = gtk_tree_view_get_model (ThisDialog->treeview);
 
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
   }
 
   if (*new_name == '\0') {
+
+    const char *warning;
+
     warning = _("Attribute name must not be empty. Please set a name.");
+
     titled_warning_dialog(_("Multi-Attribute Editor"), "%s", warning);
+
     return;
   }
 
@@ -915,17 +940,19 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
     return;
   }
 
+  w_current  = GSCHEM_DIALOG (ThisDialog)->w_current;
+
   a_iter = geda_list_get_glist (attr_list);
+
   while (a_iter != NULL) {
 
-    o_attrib = a_iter->data;
+    Object *o_attrib = a_iter->data;
 
-    visibility = o_get_is_visible (o_attrib)
-                 ? VISIBLE : INVISIBLE;
+    int visibility = o_get_is_visible (o_attrib) ? VISIBLE : INVISIBLE;
 
     /* actually modifies the attribute */
-    o_text_change (w_current, o_attrib,
-                   newtext, visibility, o_attrib->show_name_value);
+    o_text_change (w_current, o_attrib, newtext, visibility,
+                              o_attrib->show_name_value);
     NEXT (a_iter);
   };
 
@@ -948,21 +975,18 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
                                      char                *new_value,
                                      void                *user_data)
 {
-  Multiattrib    *ThisDialog = (Multiattrib*)user_data;
-  GschemToplevel *w_current;
+  Multiattrib    *ThisDialog;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-  GedaList       *attr_list;
-  GList          *a_iter;
-  Object         *o_attrib;
 
-  char           *name;
-  char           *newtext;
-  char           *old_value;
-
-  model     = gtk_tree_view_get_model (ThisDialog->treeview);
+  ThisDialog = user_data;
+  model      = gtk_tree_view_get_model (ThisDialog->treeview);
 
   if (gtk_tree_model_get_iter_from_string (model, &iter, path)) {
+
+    GedaList *attr_list;
+    char     *name;
+    char     *old_value;
 
     gtk_tree_model_get (model, &iter,
                         COLUMN_NAME, &name,
@@ -973,21 +997,24 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
     /* If the edit didn't change anything, don't adjust any attributes */
     if (strcmp (old_value, new_value) != 0) {
 
-      newtext = u_string_sprintf ("%s=%s", name, new_value);
+      char *newtext = u_string_sprintf ("%s=%s", name, new_value);
 
       if (x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext)) {
 
+        GschemToplevel *w_current;
+
         w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
 
-        a_iter = geda_list_get_glist (attr_list);
+        GList *a_iter = geda_list_get_glist (attr_list);
 
         while (a_iter != NULL) {
 
-          o_attrib = (Object *)a_iter->data;
+          Object *o_attrib = (Object*)a_iter->data;
 
           /* actually modifies the attribute */
           o_text_change (w_current, o_attrib,
-                         newtext, o_attrib->visibility, o_attrib->show_name_value);
+                         newtext,   o_attrib->visibility,
+                                    o_attrib->show_name_value);
           NEXT (a_iter);
         };
 
@@ -1017,7 +1044,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
                                         char                  *path,
                                         void                  *user_data)
 {
-  Multiattrib    *ThisDialog = (Multiattrib*)user_data;
+  Multiattrib    *ThisDialog;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
   GschemToplevel *w_current;
@@ -1025,28 +1052,29 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
   GedaList       *attr_list;
   GList          *a_iter;
 
-  model     = gtk_tree_view_get_model (ThisDialog->treeview);
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+  ThisDialog = user_data;
+  model      = gtk_tree_view_get_model (ThisDialog->treeview);
 
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
   }
 
-  gtk_tree_model_get (model, &iter,
-                      COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
-                      -1);
+  w_current  = GSCHEM_DIALOG (ThisDialog)->w_current;
+
+  gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
 
   new_visibility = !gtk_cell_renderer_toggle_get_active (cell_renderer);
 
   a_iter = geda_list_get_glist (attr_list);
+
   while (a_iter != NULL) {
 
     Object *o_attrib = (Object *)a_iter->data;
 
     /* Modify the attribute */
-    o_invalidate_object     (w_current, o_attrib);
+    o_invalidate_object (w_current, o_attrib);
     o_set_visibility (o_attrib, new_visibility ? VISIBLE : INVISIBLE);
-    o_text_recreate  (o_attrib);
+    o_text_recreate (o_attrib);
 
     NEXT (a_iter);
   };
@@ -1074,12 +1102,12 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
   Multiattrib    *ThisDialog = (Multiattrib*)user_data;
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-
   GschemToplevel *w_current;
   GedaList       *attr_list;
   GList          *a_iter;
+  Page           *page;
+  SELECTION      *selection;
   bool            new_name_visibility;
-  bool            value_visible;
   int             new_snv;
 
   model     = gtk_tree_view_get_model (ThisDialog->treeview);
@@ -1089,24 +1117,29 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
     return;
   }
 
-  gtk_tree_model_get (model, &iter,
-                      COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
-                      -1);
+  gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
 
   new_name_visibility = !gtk_cell_renderer_toggle_get_active (cell_renderer);
 
   a_iter = geda_list_get_glist (attr_list);
+
   while (a_iter != NULL) {
 
-    Object *o_attrib = (Object *)a_iter->data;
-    value_visible    = snv_shows_value (o_attrib->show_name_value);
+    Object *o_attrib   = (Object*)a_iter->data;
 
     /* If we switch off the name visibility, but the value was not
      * previously visible, make it visible now */
-    if (new_name_visibility)
+    if (new_name_visibility) {
+
+      bool value_visible;
+
+      value_visible = snv_shows_value (o_attrib->show_name_value);
+
       new_snv = value_visible ? SHOW_NAME_VALUE : SHOW_NAME;
-    else
+    }
+    else {
       new_snv = SHOW_VALUE;
+    }
 
     o_invalidate_object (w_current, o_attrib);
 
@@ -1117,9 +1150,12 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
     NEXT (a_iter);
   };
 
+  page      = gschem_toplevel_get_current_page (w_current);
+  selection = s_page_get_selection (page);
+
   /* Request update of display for this row, recomputing the whole model
    * as the consistency for the show value column may be affected above */
-  g_object_set (G_OBJECT (ThisDialog), "object_list", Current_Selection, NULL);
+  g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);
 
   o_undo_savestate (w_current, UNDO_ALL);
 
@@ -1135,21 +1171,17 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
                                char                  *path,
                                void                  *user_data)
 {
-  Multiattrib    *ThisDialog = (Multiattrib*)user_data;
+  Multiattrib    *ThisDialog;
   GschemToplevel *w_current;
-
   GtkTreeModel   *model;
   GtkTreeIter     iter;
-
   GedaList       *attr_list;
   GList          *a_iter;
-
   bool            new_value_visibility;
-  bool            name_visible;
-  int             new_snv;
 
-  model     = gtk_tree_view_get_model (ThisDialog->treeview);
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+  ThisDialog = user_data;
+  w_current  = GSCHEM_DIALOG (ThisDialog)->w_current;
+  model      = gtk_tree_view_get_model (ThisDialog->treeview);
 
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
@@ -1161,24 +1193,26 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
     return;
   }
 
-  gtk_tree_model_get (model, &iter,
-                      COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
-                      -1);
+  gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
 
   new_value_visibility = !gtk_cell_renderer_toggle_get_active (cell_renderer);
 
   a_iter = geda_list_get_glist (attr_list);
+
   while (a_iter != NULL) {
 
-    Object *o_attrib = (Object *)a_iter->data;
+    Object *o_attrib = (Object*)a_iter->data;
+    int     new_snv;
 
-    name_visible = snv_shows_name (o_attrib->show_name_value);
-
-    /* If we switch off the name visibility, but the value was not previously visible, make it so now */
-    if (new_value_visibility)
+    /* If we switch off the name visibility, but the value was not
+     * previously visible, make it so now */
+    if (new_value_visibility) {
+      bool name_visible = snv_shows_name (o_attrib->show_name_value);
       new_snv = name_visible ? SHOW_NAME_VALUE : SHOW_VALUE;
-    else
+    }
+    else {
       new_snv = SHOW_NAME;
+    }
 
     o_invalidate_object (w_current, o_attrib);
 
@@ -1206,15 +1240,16 @@ static bool multiattrib_callback_key_pressed(GtkWidget   *widget,
                                              GdkEventKey *event,
                                              void        *user_data)
 {
-  Multiattrib  *ThisDialog = (Multiattrib*)user_data;
-  GtkTreeModel *model;
-  GtkTreeIter   iter;
-  GedaList     *attr_list;
-  int           inherited;
-
   if (event->state == 0 && (event->keyval == GDK_Delete ||
-    event->keyval == GDK_KP_Delete))
+      event->keyval == GDK_KP_Delete))
   {
+
+    Multiattrib  *ThisDialog = (Multiattrib*)user_data;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    GedaList     *attr_list;
+    int           inherited;
+
     /* delete the currently selected attribute */
     if (!gtk_tree_selection_get_selected (
       gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
@@ -1229,13 +1264,13 @@ static bool multiattrib_callback_key_pressed(GtkWidget   *widget,
                         -1);
 
     /* We can't delete inherited attribtes */
-    if (inherited)
-      return FALSE;
+    if (!inherited) {
 
-    multiattrib_action_delete_attributes (ThisDialog,
-                                          geda_list_get_glist (attr_list));
-    /* update the treeview contents */
-    multiattrib_update (ThisDialog);
+      multiattrib_action_delete_attributes (ThisDialog,
+                                            geda_list_get_glist (attr_list));
+      /* update the treeview contents */
+      multiattrib_update (ThisDialog);
+    }
 
     GEDA_UNREF (attr_list);
   }
@@ -1346,28 +1381,33 @@ static void
 multiattrib_callback_popup_promote (GtkMenuItem *menuitem, void *user_data)
 {
   Multiattrib    *ThisDialog = user_data;
-  GschemToplevel *w_current;
+
   GtkTreeModel   *model;
   GtkTreeIter     iter;
   GedaList       *attr_list;
 
-  if (!gtk_tree_selection_get_selected (
-    gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
+
+  if (gtk_tree_selection_get_selected (
+      gtk_tree_view_get_selection (ThisDialog->treeview), &model, &iter))
   {
-    /* nothing selected, nothing to do */
-    return;
+    GschemToplevel *w_current;
+    Page           *page;
+    SELECTION      *selection;
+
+    gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
+
+    multiattrib_action_promote_attributes (ThisDialog,
+                                           geda_list_get_glist (attr_list));
+
+    w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
+    page      = gschem_toplevel_get_current_page (w_current);
+    selection = s_page_get_selection (page);
+
+    /* update the treeview contents */
+    g_object_set (G_OBJECT (ThisDialog), "object_list", selection, NULL);
+
+    GEDA_UNREF (attr_list);
   }
-
-  gtk_tree_model_get (model, &iter, COLUMN_ATTRIBUTE_GEDALIST, &attr_list, -1);
-
-  multiattrib_action_promote_attributes (ThisDialog, geda_list_get_glist (attr_list));
-
-  w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
-
-  /* update the treeview contents */
-  g_object_set (G_OBJECT (ThisDialog), "object_list", Current_Selection, NULL);
-
-  GEDA_UNREF (attr_list);
 }
 
 /*! \brief  Multi-attribute Dialog Display Popup Do Delete Attributes
@@ -1880,8 +1920,9 @@ disconnect_object_list (Multiattrib *ThisDialog)
 static void
 multiattrib_finalize (GObject *object)
 {
-  Multiattrib *ThisDialog = MULTIATTRIB(object);
+  Multiattrib  *ThisDialog = MULTIATTRIB(object);
 
+  /* Clear the existing list of attributes */
   disconnect_object_list (ThisDialog);
 
   G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
@@ -2060,6 +2101,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     ThisDialog);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   struct {
@@ -2207,6 +2249,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   /* Save the GTK_STATE_NORMAL color so we can work around GtkTextView's
    * stubborn refusal to draw with GTK_STATE_INSENSITIVE later on */
   style = gtk_widget_get_style (textview);
+
   ThisDialog->value_normal_text_color = style->text[ GTK_STATE_NORMAL ];
 
   /* Save this one so we can pick it as a sensible color to show the
@@ -2232,6 +2275,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                      "label", _("Visible"),
                                      "active", TRUE,
                                      NULL));
+
   ThisDialog->button_visible = GTK_CHECK_BUTTON (button);
   SetWidgetTip( button, _("Enable or disable attribute visibility"));
   gtk_table_attach (GTK_TABLE (table), button,
@@ -2263,7 +2307,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), frame, FALSE, TRUE, 5);
 
   gtk_widget_show_all (frame);
-
 
   /* now add the close button to the action area */
   gtk_dialog_add_button (GTK_DIALOG (ThisDialog),

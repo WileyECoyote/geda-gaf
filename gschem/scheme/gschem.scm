@@ -19,7 +19,6 @@
 ;;; MA 02111-1301 USA.
 
 (use-modules (gschem keymap)
-             (gschem repl)
              (gschem selection)
              (gschem window)
              (gschem gschemdoc)

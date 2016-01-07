@@ -13,6 +13,7 @@ gschem_SOURCES += \
 		base/gschem_page_geometry.c \
 		base/gschem_page_view.c \
 		base/gschem_parsecmd.c \
+		base/gschem_preview.c \
 		base/gschem_status_bar.c \
 		base/gschem_toplevel.c
 

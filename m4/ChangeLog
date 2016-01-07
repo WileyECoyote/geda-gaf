@@ -1,3 +1,8 @@
+2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gtk.m4: Add check for gdkkeysyms-compat.h header and functions
+      gtk_show_uri and gdk_window_get_width.
+
 2015-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-automake-options.m4: Remove version and subdir-objects from

@@ -1,3 +1,100 @@
+2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_window.c: Fix BUG; ptwindow, ltwindow and sewindow, crossed.
+
+2016-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem.h: Add include geda_gtk_compat.h.
+
+    * Utilize libgedauio function macro geda_get_widget_allocation in:
+
+      * src/base/gschem_preview.c: function preview_callback_realize,
+      * src/base/gschem_page_view.c: function gschem_page_view_WORLDabs,
+      * src/iface/i_window.c: function i_window_set_viewport_size.
+
+    * src/base/gschem_page_view.c: Remove redundant check of view object.
+
+2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_preview.h: Rename header file to match module; x_preview
+      ->gschem_preview. Rename class to match module name, add declaration for
+      function gschem_preview_new.
+
+    * src/base/gschem_preview.c: Relocate module from x_preview.c. Rename class
+      to match module name, add function gschem_preview_new. Add/edit comments,
+      remove redundent setting of screen_height and screen_width, redue type
+      identifier, GClassInitFunc and GInstanceInitFunc functions.
+
+2016-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * base/gschem_main_window.c: Add functions gschem_main_window_get_style
+      and gschem_main_window_get_window.
+
+    * src/x/x_compselect.c: Simplify logic in create_lib_tree_model, clean
+      indentations/spacing.
+
+    * src/x/x_toolbars.c: Removed get_stock_alt_pixmap, revised function
+      get_pixmap to check filename returned from from f_get_bitmap_filespec
+      before check access, use accessors gschem_main_window_get_style and
+      gschem_main_window_get_window, use conditionally use gtk_image_new_
+      from_file if Gtk3, reduce scope of variables.
+
+2016-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_misc.c: Conditionally try gtk_show_uri, fix other conditional
+      directives in x_show_uri, maybe.
+
+    * src/x/x_multiattrib.c: Revise module to eliminate Current_Selection
+      macro in x_multiattrib_open and ma_callback_toggled_show_name, reduce
+      scope of variables. Revise x_multiattrib_close to clear the liststore
+      before destroying the dialog, unreference buffer before exiting multi-
+      line_text_editing_done, reversed conditional inherited->!inherited, in
+      multiattrib_callback_key_pressed so attr_list gets unreferenced, and
+      free objects_needing_add in multi-attrib_action_copy_attribute_to_all.
+
+    * src/x/x_toolbars.c: Simplify conditional in x_toolbars_execute, reduce
+      scope of variables, rename etb_insert_pic->etb_add_pic for consistency
+      with other adders, clean formatting.
+
+2016-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_page_view.c: Remove used property.
+
+    * src/iface/i_window.c: Revise i_window_show_attributes to eliminate
+      macros; Current_Selection, Current_Page, and Current_PlaceList.
+
+    * src/iface/i_status.c: Reduce scope of variables.
+
+    * src/iface/i_zoom_world.c: In function correct_aspect, move setting
+      of new_aspect again into if DEBUG conditional since the variable
+      is not otherwise used again.
+
+    * src/object/o_attrib.c: Reduce scope of variables.
+
+    * src/object/o_grips.c: Reduce scope of variables.
+
+    * src/x/x_multiattrib.c: Revise function multiattrib_callback_popup_
+      promote to eliminate Current_Selection macro.
+
+    * src/x/x_preview.c: Replace s_toplevel_new with geda_toplevel_new.
+
+2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Replace for loop with while loops in functions
+      do_home_attributes, do_show_value, do_show_name, do_show_both, and
+      do_toggle_visibility, reduce scope of variables and revise comments.
+
+2015-12-30  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_stroke.c: Fix strokes gc broken by commit
+      1249f670d54814df0bd8bfb9136e39b2b3d90052 which changed the argument
+      to gschem_page_view_get_gc function.
+
+2015-12-28  Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_window.c: Eliminate boolean variables "show" in menu
+      toolbar toggle items callbacks.
+
 2015-12-27  Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_icons.c: Add bitmaps:
@@ -169,7 +266,7 @@
 
 2015-12-16 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * src/guile/g_window.c:: WEH: Modified per commit to Master branch
+    * src/guile/g_window.c: WEH: Modified per commit to Master branch
       by Vladimir Zhbanov, commit 43517aba280f91ee2ac1b6c67cd43cd496ca8aed:
       gschem: Fix close-page! in GUI.
       In gschem the close-page! procedure defined in the (geda page)

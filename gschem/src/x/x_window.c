@@ -6,12 +6,12 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This library is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
@@ -119,18 +119,6 @@ bool x_window_setup_context(GschemToplevel *w_current)
   return result;
 }
 
-
-/*! \brief Free the Graphic Context
- *  \par Function Description
- *  We don't actually free the graphic context, we just
- *  dereference here, which result in it's destruction.
-
-void x_window_free_gc(GschemToplevel *w_current)
-{
-  g_object_unref(w_current->gc);
-}
- */
-
 /*! \brief Create the Drawing Area
  *  \par Function Description
  *  the routine create and setup the drawing area widget, the widget is
@@ -143,9 +131,8 @@ void x_window_free_gc(GschemToplevel *w_current)
 static
 void x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 {
-  /* drawing next */
-  //DrawingArea = gtk_drawing_area_new ();
   DrawingArea = GTK_WIDGET (gschem_page_view_new ());
+
   GTK_WIDGET_UNSET_FLAGS (DrawingArea, GTK_DOUBLE_BUFFERED);
   /* Set the size here. Be sure that it has an aspect ratio of 1.333
 * We could calculate this based on root window size, but for now
@@ -423,10 +410,10 @@ void x_window_create_main(GschemToplevel *w_current)
    * (generating a pdf of all schematics for example) we want to
    * override this.  Hence "auto_place_mode".
    */
-  if( auto_place_mode )
+  if (auto_place_mode)
     gtk_widget_set_uposition (MainWindow, 10, 10);
 
-  /* this should work fine */
+  /* delete_event is sent of close with the X in the window */
   g_signal_connect (G_OBJECT (MainWindow), "delete_event",
                     G_CALLBACK (i_callback_close_wm),
                     w_current);
@@ -681,13 +668,14 @@ void x_window_close(GschemToplevel *w_current)
   /* last chance to save possible unsaved pages */
   if (!x_confirm_close_window (w_current)) {
     v_log_message("Close Window canceled\n");
-    /* user cancelled the close */
+    /* user canceled the close */
     return;
   }
   x_clipboard_finish (w_current);
 
   /* stuff that has to be done before we free w_current */
   if (g_list_length (global_window_list) == 1) {
+
     /* no more windows after this one, remember to quit */
     last_window = TRUE;
     if(w_current->save_ui_settings == TRUE) {
@@ -788,43 +776,48 @@ static bool x_window_idle_thread_post_load_file (void *filename)
 Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-
   Page *old_current, *page;
-  char  untitled[] = "untitled";
   char  strbuff[MAX_PATH];
+  char  untitled[] = "untitled";
   char *ptr;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled() {
+
     char  s_val[3];
     char *tmp;
     char *str;
 
     inline void unique_untitled () {
+
       /* Get DIR in buffer */
       ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
+
       /* Append a seperator onto the end of DIR */
-      while ( *ptr != '\0') ++ptr; /* advance to end of string */
-        *ptr = DIR_SEPARATOR;     /* add separator */
-        ++ptr;                       /* advance over separator */
-        *ptr = '\0';                /* Add new NULL */
+      while ( *ptr != '\0') {
+        ++ptr; /* advance to end of string */
+      }
 
-        /* Append default name from config */
-        if (toplevel->untitled_name) {
-          str = strcat  ( str, toplevel->untitled_name );
-        }
-        else {
-          str = &untitled[0];
-        }
+       *ptr = DIR_SEPARATOR;     /* add separator */
+      ++ptr;                     /* advance over separator */
+       *ptr = '\0';              /* Add new NULL */
 
-        /* Converted and append an integer to the string */
-        tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
-        str = strcat  ( str, tmp );
+      /* Append default name from config */
+      if (toplevel->untitled_name) {
+        str = strcat  ( str, toplevel->untitled_name );
+      }
+      else {
+        str = &untitled[0];
+      }
 
-        /* Append our file extension */
-        str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
+      /* Converted and append an integer to the string */
+      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
+      str = strcat  ( str, tmp );
+
+      /* Append our file extension */
+      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
     }
 
     memset(&strbuff[0], '\0', sizeof(strbuff));
@@ -1318,95 +1311,94 @@ void x_window_update_title(GschemToplevel *w_current)
 /*!
  * \brief View toogle Add toolbar
  * \par Function Description
- *      This function toggles the visibility of the Add toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Add toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar.
  */
-void x_window_add_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->add_handlebox);
   else
     gtk_widget_hide(w_current->add_handlebox);
 }
+
 /*!
  * \brief View toogle Attribute toolbar
  * \par Function Description
- *      This function toggles the visibility of the Attribute toobar.
- * Note: the function actually toggles visibility of the handlebox
- * containing the toolbar.
+ *  This function toggles the visibility of the Attribute toobar.
+ *  Note: the function actually toggles visibility of the handlebox
+ *  containing the toolbar.
  */
-void x_window_attribute_toolbar_toggle(GtkWidget *widget,
-                                       GschemToplevel *w_current)
+void
+x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->attribute_handlebox);
   else
     gtk_widget_hide(w_current->attribute_handlebox);
 }
+
 /*!
  * \brief View toogle Grid/Snap toolbar
  * \par Function Description
- *      This function toggles the visibility of the Grid/Snap toobar.
+ * This function toggles the visibility of the Grid/Snap toobar.
  * Note: the function actually toggles visibility of the handlebox
  * containing the toolbar.
  */
-void x_window_gridsnap_toolbar_toggle(GtkWidget *widget,
-                                       GschemToplevel *w_current)
+void
+x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->grid_snap_handlebox);
   else
     gtk_widget_hide(w_current->grid_snap_handlebox);
 }
+
 /*!
  * \brief View toogle Edit toolbar
  * \par Function Description
- *      This function toggles the visibility of the Edit toobar.
+ * This function toggles the visibility of the Edit toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void x_window_edit_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->edit_handlebox);
   else
     gtk_widget_hide(w_current->edit_handlebox);
 }
+
 /*!
  * \brief View toogle Page toolbar
  * \par Function Description
- *      This function toggles the visibility of the Page toobar.
+ * This function toggles the visibility of the Page toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void x_window_page_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->page_handlebox);
   else
     gtk_widget_hide(w_current->page_handlebox);
 }
+
 /*!
  * \brief View toogle standard toolbar
  * \par Function Description
- *      This function toggles the visibility of the Standard toobar.
+ * This function toggles the visibility of the Standard toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void x_window_standard_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->standard_handlebox);
   else
     gtk_widget_hide(w_current->standard_handlebox);
@@ -1415,31 +1407,30 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget,
 /*!
  * \brief View toogle selection toolbar
  * \par Function Description
- *      This function toggles the visibility of the Select toobar.
+ * This function toggles the visibility of the Select toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void x_window_select_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->select_handlebox);
   else
     gtk_widget_hide(w_current->select_handlebox);
 }
+
 /*!
  * \brief View toogle Zoom toolbar
  * \par Function Description
- *      This function toggles the visibility of the Zoom toobar.
+ * This function toggles the visibility of the Zoom toobar.
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar
  */
-void x_window_zoom_toolbar_toggle(GtkWidget *widget,
-                                      GschemToplevel *w_current)
+void
+x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
-  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-  if(show)
+  if (gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->zoom_handlebox);
   else
     gtk_widget_hide(w_current->zoom_handlebox);

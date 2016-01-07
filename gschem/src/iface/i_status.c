@@ -396,10 +396,10 @@ static void clipboard_usable_cb (int usable, void *userdata)
  */
 static bool hatchable_object_selected(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_BOX || obj->type == OBJ_CIRCLE ||
         obj->type == OBJ_ARC || obj->type == OBJ_PATH)
     {
@@ -417,10 +417,10 @@ static bool hatchable_object_selected(GList *list)
  */
 static bool linetype_object_selected(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_LINE   || obj->type == OBJ_BOX ||
         obj->type == OBJ_CIRCLE || obj->type == OBJ_ARC ||
         obj->type == OBJ_PATH)
@@ -439,10 +439,10 @@ static bool linetype_object_selected(GList *list)
  */
 static bool selected_at_least_one_text_object(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_TEXT) {
       return TRUE;
     }
@@ -458,10 +458,10 @@ static bool selected_at_least_one_text_object(GList *list)
  */
 static bool selected_complex_object(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_COMPLEX) {
       return TRUE;
     }
@@ -477,10 +477,10 @@ static bool selected_complex_object(GList *list)
  */
 static bool selected_at_least_one_pic_object(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_PICTURE) {
       return TRUE;
     }
@@ -496,10 +496,10 @@ static bool selected_at_least_one_pic_object(GList *list)
  */
 static bool selected_at_least_one_pin_object(GList *list)
 {
-  Object *obj;
-
   while(list != NULL) {
-    obj = (Object *) list->data;
+
+    Object *obj = (Object*)list->data;
+
     if (obj->type == OBJ_PIN) {
       return TRUE;
     }
@@ -565,10 +565,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
   void set_sensitivity_for_buffers (bool state) {
 
-    static bool  last_state = TRUE;
-    const  char *buffer_menu;
-
-    char *buffer;
+    const char *buffer_menu;
     char  menu_string[48];
     int   index;
 
@@ -579,11 +576,14 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     if (buffer_menu)  {
 
-      int length;
+      static bool last_state = TRUE;
 
-      buffer    = strcpy(&menu_string[0], buffer_menu);
+      char  *buffer;
+      int    length;
 
+      buffer = strcpy(&menu_string[0], buffer_menu);
       length = strlen(buffer);
+
       menu_string[length++] = '/';
       menu_string[length]   = '\0';
 
@@ -814,11 +814,7 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Select/Lock", FALSE);
     x_menus_sensitivity(w_current, "_Select/Unlock", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Edit",          FALSE);
-    //x_menus_popup_sensitivity(w_current, "Object...",     FALSE);
-    //x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
-    //x_menus_popup_sensitivity(w_current, "Pin type...", FALSE);
-
+    x_menus_popup_sensitivity(w_current, "Edit",   FALSE);
     x_menus_popup_sensitivity(w_current, "Delete", FALSE);
     x_menus_popup_sensitivity(w_current, "Copy",   FALSE);
     x_menus_popup_sensitivity(w_current, "MCopy",  FALSE);

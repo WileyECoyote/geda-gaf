@@ -48,8 +48,7 @@ static GObjectClass *geda_net_parent_class = NULL;
  *
  *  \par Function Description
  *  GedaType instance initializer for Net, initializes a new empty
- *  Net object by setting pointers to NULL and numbers to zero,
- *  the net PID variable is set to the next net index.
+ *  Net object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Net structure being initialized,
  *  \param [in] g_class  The Net class we are initializing.

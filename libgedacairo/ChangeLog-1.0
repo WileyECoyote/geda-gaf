@@ -1,3 +1,9 @@
+2015-12-30 Edward Hennessy <ehennes@sbcglobal.net>
+
+    * src/edacairo.c: WEH: Modified per commit to Master branch
+      by Edward Hennessy, commit 13e519513a7a5e0e831265057ae8757384044d99:
+      libgedacairo: simplify inequality in arc drawing.
+
 2015-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
      * README: Revise text reducing personnel pronouns and jargon.

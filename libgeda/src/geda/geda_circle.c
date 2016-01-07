@@ -76,8 +76,7 @@ geda_circle_bounds(Object *object)
  *
  *  \par Function Description
  *  Type instance initializer for Circle, initializes a new empty
- *  Circle object by setting pointers to NULL and numbers to zero,
- *  the circle PID variable is set to the next circle index.
+ *  Circle object by setting pointers to NULL and numbers to zero.
  *
  *  \param [in] instance The Circle structure being initialized,
  *  \param [in] class    The Circle class we are initializing.

@@ -54,15 +54,13 @@ STRING_LIST *s_string_list_new() {
   return local_string_list;
 }
 
-void s_string_list_free(STRING_LIST *strlist) {
-
-  char *data;
-
+void s_string_list_free(STRING_LIST *strlist)
+{
   if (strlist != NULL) {
 
     while (strlist != NULL) {
 
-      data = strlist->data;
+      char *data = strlist->data;
 
       if (data != NULL) {
         GEDA_FREE(data);
@@ -83,11 +81,11 @@ void s_string_list_free(STRING_LIST *strlist) {
  * \param old_string_list pointer to the STRING_LIST to be duplicated
  * \returns a pointer to the duplicate STRING_LIST
  */
-STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
+STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
+{
 
   STRING_LIST *new_string_list;
   STRING_LIST *local_string_list;
-  char *data;
   int count;
 
   new_string_list = s_string_list_new();
@@ -99,9 +97,13 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
   local_string_list = old_string_list;
 
   while (local_string_list != NULL) {
-    data = u_string_strdup(local_string_list->data);
+
+    char *data = u_string_strdup(local_string_list->data);
+
     s_string_list_add_item(new_string_list, &count, data);
+
     GEDA_FREE(data);
+
     local_string_list = local_string_list->next;
   }
 
@@ -118,11 +120,11 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
  * \param [in,out] count total count on input, is updated if \a item added
  * \param [in]     item  pointer to string to be added
  */
-void s_string_list_add_item(STRING_LIST *list, int *count, const char *item) {
+void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
+{
 
   STRING_LIST *prev;
   STRING_LIST *local_list;
-  char        *trial_item = NULL;
 
   if (list == NULL) {
     fprintf(stderr, _("In s_string_list_add_item, tried to add to a NULL list.\n"));
@@ -144,7 +146,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item) {
   prev = list;
   while (list != NULL) {
 
-    trial_item = u_string_strdup(list->data);
+    char *trial_item = u_string_strdup(list->data);
 
     if (strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
@@ -181,12 +183,12 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item) {
  * \param count pointer to count of items in list
  * \param item item to remove from list
  */
-void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
+void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
+{
 
   STRING_LIST *list_item;
   STRING_LIST *next_item = NULL;
   STRING_LIST *prev_item = NULL;
-  char        *trial_item = NULL;
 
   /* First check to see if list is empty.  If empty, spew error and return */
   if ( (*list)->data == NULL) {
@@ -200,8 +202,10 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 
   /* Now loop through list looking for item */
   list_item = (*list);
+
   while (list_item != NULL) {
-    trial_item = u_string_strdup(list_item->data);
+
+    char *trial_item = u_string_strdup(list_item->data);
 
 #ifdef DEBUG
     printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
@@ -233,8 +237,10 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
     }
     else {
       /* normal case of element in middle of list */
+      if (next_item != NULL) {
+        next_item->prev = prev_item;
+      }
       prev_item->next = next_item;
-      next_item->prev = prev_item;
     }
 
 #ifdef DEBUG
@@ -280,15 +286,17 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
  */
 void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
 {
-    STRING_LIST *new_list;
-
-    char *str;
     int count = 0;
 
-    if (pos == *old_count) /* if just appending */
+    if (pos == *old_count) {
+
+      /* if just appending */
       s_string_list_add_item(list, old_count, item);
+    }
     else {
 
+      STRING_LIST *new_list;
+      char *str;
       int index;
 
       new_list = s_string_list_new();
@@ -306,7 +314,8 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
       }
 
       s_string_list_free(list);
-      *list = *new_list;
+
+      *list      = *new_list;
       *old_count = count;
     }
 }
@@ -320,8 +329,8 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
  * \param item string to search for
  * \returns 0 if absent, 1 if present
  */
-int s_string_list_in_list(STRING_LIST *list, char *item) {
-
+int s_string_list_in_list(STRING_LIST *list, char *item)
+{
   /* First check to see if list is empty.  If empty, return
    * 0 automatically.  (I probably don't need to handle this
    * separately.)  */
@@ -389,7 +398,6 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 void s_string_list_sort_master_comp_list() {
 
   STRING_LIST *local_list, *iter;
-  int i;
 
   /* Sort the list */
   local_list = sheet_head->master_comp_list_head;
@@ -400,30 +408,34 @@ void s_string_list_sort_master_comp_list() {
 
   local_list = listsort(local_list, 0, 1);
 
-  i = 0;
+  if (local_list) {
 
-  /* Reset the order of the individual items in the list. */
-  while (local_list != NULL) {  /* make sure item is not null */
+    int i = 0;
 
-    local_list->pos = i;
+    /* Reset the order of the individual items in the list. */
+    while (local_list != NULL) {  /* make sure item is not null */
 
-    if (local_list->next != NULL) {
-      i++;
-      local_list = local_list->next;
+      local_list->pos = i;
+
+      if (local_list->next != NULL) {
+        i++;
+        local_list = local_list->next;
+      }
+      else {
+        break; /* leave loop *before* iterating to NULL EOL marker */
+      }
     }
-    else {
-      break; /* leave loop *before* iterating to NULL EOL marker */
+
+    if (local_list) {
+      /* Now go to first item in local list and reassign list head to
+       * the new first element */
+      while (local_list->prev) {
+        local_list = local_list->prev;
+      }
+
+      sheet_head->master_comp_list_head = local_list;
     }
   }
-
-  /* Now go to first item in local list and reassign list head to
-   * the new first element */
-  while (local_list->prev) {
-    local_list = local_list->prev;
-  }
-
-  sheet_head->master_comp_list_head = local_list;
-
   return;
 }
 
@@ -468,8 +480,6 @@ void s_string_list_sort_master_comp_attrib_list() {
    */
   for (iter = local_list; iter; iter = iter->next) {
 
-    int i;
-
     iter->pos = DEFAULT_ATTRIB_POS;
 
     for (i = 0; i < NUM_CERTAINS; i++) {
@@ -486,17 +496,20 @@ void s_string_list_sort_master_comp_attrib_list() {
   }
 
   local_list = listsort(local_list, 0, 1);
-  sheet_head->master_comp_attrib_list_head = local_list;
 
-  /* After sorting, reset the order of the individual items in list. */
-  i = 0;
-  while (local_list) {
+  if (local_list) {
 
-    local_list->pos = i;
-    i++;
-    local_list = local_list->next;
+    sheet_head->master_comp_attrib_list_head = local_list;
+
+    /* After sorting, reset the order of the individual items in list. */
+    i = 0;
+    while (local_list) {
+
+      local_list->pos = i;
+      i++;
+      local_list = local_list->next;
+    }
   }
-
   return;
 }
 
@@ -561,38 +574,47 @@ void s_string_list_sort_master_net_attrib_list() {
  *
  * Right now it does nothing other than fill in the "position".
  */
-void s_string_list_sort_master_pin_list() {
-  int i = 0;
+void s_string_list_sort_master_pin_list()
+{
   STRING_LIST *local_list, *iter;
 
-  /* Here's where we do the sort.  The sort is done using a fcn found on the web. */
+  /* Here's where we do the sort. The sort is done using a fcn found on the web. */
   local_list = sheet_head->master_pin_list_head;
+
   for (iter = local_list; iter; iter=iter->next)
     iter->pos = 0;
+
   local_list = listsort(local_list, 0, 1);
 
-  /* Do this after sorting is done.  This resets the order of the individual items
-   * in the list.  */
-  while (local_list != NULL) {  /* make sure item is not null */
+  if (local_list) {
 
-    local_list->pos = i;
+    int i = 0;
 
-    if (local_list->next != NULL) {
-      i++;
-      local_list = local_list->next;
+    /* Do this after sorting is done.  This resets the order of the individual
+     * items in the list.  */
+    while (local_list) {  /* make sure item is not null */
+
+      local_list->pos = i;
+
+      if (local_list->next != NULL) {
+        i++;
+        local_list = local_list->next;
+      }
+      else {
+        break;  /* leave loop *before* iterating to NULL EOL marker */
+      }
     }
-    else {
-      break;                    /* leave loop *before* iterating to NULL EOL marker */
+
+    if (local_list) {
+
+      /* After assign list head to new first element */
+      while (local_list->prev) {
+        local_list = local_list->prev;
+      }
+
+      sheet_head->master_pin_list_head = local_list;
     }
   }
-
-  /* After assign list head to new first element */
-  while (local_list->prev) {
-    local_list = local_list->prev;
-  }
-
-  sheet_head->master_pin_list_head = local_list;
-
   return;
 }
 

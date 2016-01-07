@@ -60,11 +60,11 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
                                                   Current_Selection, NULL);
   }
   if (w_current->ptwindow != NULL) { /* Pin Type Tracks */
-    g_object_set (G_OBJECT (w_current->ltwindow), DIALOG_SELECTION_DATA,
+    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
                                                   Current_Selection, NULL);
   }
   if (w_current->sewindow != NULL) { /* Slot Edit Tracks */
-    g_object_set (G_OBJECT (w_current->ptwindow), DIALOG_SELECTION_DATA,
+    g_object_set (G_OBJECT (w_current->sewindow), DIALOG_SELECTION_DATA,
                                                   Current_Selection, NULL);
   }
   if (w_current->tewindow != NULL) { /* Text Edit Tracks */
@@ -326,11 +326,14 @@ void i_window_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
  */
 void i_window_set_viewport_size(GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel  *toplevel = w_current->toplevel;
+  GtkAllocation *allocation;
+
+  allocation = geda_get_widget_allocation(DrawingArea);
 
   /* of the actual win window (drawing_area) */
-  w_current->screen_width  = DrawingArea->allocation.width;
-  w_current->screen_height = DrawingArea->allocation.height;
+  w_current->screen_width  = allocation->width;
+  w_current->screen_height = allocation->height;
 
 #if DEBUG_EVENTS
   printf("manual: %d %d\n", w_current->screen_width, w_current->screen_height);
@@ -359,23 +362,28 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
  */
 void i_window_show_attributes (GschemToplevel *w_current, int scope)
 {
-  GList *object_list;
-
   if (!w_current->inside_action) {
 
-    bool show_status;
+    GList *object_list;
+    Page  *p_current;
+    bool   show_status;
 
     object_list = NULL;
+    p_current   = gschem_toplevel_get_current_page(w_current);
 
     if (o_select_is_selection (w_current)) {
-      SELECTION *selection = Current_Selection;
-      object_list =  geda_list_get_glist (selection);
+
+      SELECTION *selection;
+
+      selection   = s_page_get_selection (p_current);
+      object_list = geda_list_get_glist (selection);
       show_status = FALSE;
     }
     else {
-      object_list =  s_page_get_objects (Current_Page);
+      object_list = s_page_get_objects (p_current);
       show_status = TRUE;
     }
+
     if (object_list) {
       if(o_edit_show_hidden (w_current, object_list, scope)) {
         o_undo_savestate (w_current, UNDO_ALL);
@@ -386,8 +394,11 @@ void i_window_show_attributes (GschemToplevel *w_current, int scope)
     }
   }
   else if (o_select_is_selection (w_current)) {
-    if (Current_PlaceList) {
-      o_edit_show_hidden (w_current, Current_PlaceList, scope);
+
+    GList *place_list = s_place_get_place_list(w_current->toplevel);
+
+    if (place_list) {
+      o_edit_show_hidden (w_current, place_list, scope);
     }
   }
 }

@@ -6,12 +6,12 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This library is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details..
@@ -37,7 +37,6 @@
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
 
-#include <x_preview.h>
 #include <x_compselect.h>
 
 #include <geda_debug.h>
@@ -1399,10 +1398,10 @@ static bool filter_check_style(Compselect *compselect, const char *sym_name)
  * but this implementation only looks for 1 slash.
  *
  */
-static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
-                                            DialogTabs data_set)
+static GtkTreeModel *create_lib_tree_model (Compselect *compselect,
+                                            DialogTabs  data_set)
 {
-  GschemToplevel *w_current;
+  GschemToplevel  *w_current;
   GtkTreeModel    *model;
   GtkTreeStore    *store;
   GtkTreeIter      parent;
@@ -1433,8 +1432,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
   group_names = w_current->toplevel->component_groups;
 
     /* Set flag for "special" folders */
-  bypassing   = (data_set == LOCAL_TAB);
-  bypassing  |= (data_set == SIM_TAB);
+  bypassing   = (data_set == LOCAL_TAB) || (data_set == SIM_TAB);
 
   previous_grp = "";
 
@@ -1996,16 +1994,19 @@ static void on_okay_butt_clicked(GtkButton *button, void *user_data)
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
-                         unsigned int        page_num, Compselect *Dialog)
+                         unsigned int page_num, Compselect      *dialog)
 {
-  Dialog->active_tab = page_num;
-  if (Dialog->applying_filter)
-    cs_apply_filter_tree_view (Dialog, get_active_tree_view(Dialog));
+  dialog->active_tab = page_num;
+
+  if (dialog->applying_filter)
+    cs_apply_filter_tree_view (dialog, get_active_tree_view(dialog));
 
   if (page_num == IN_USE_TAB)
-    compselect_refresh_inuse_view (NULL, Dialog);
+    compselect_refresh_inuse_view (NULL, dialog);
+
   return;
 }
+
 /*! \brief Creates the treeview for the "In Use" view.
  * \par Function Description
  * This function create a new Treeview Widget Assembly. The assembly
@@ -2013,9 +2014,9 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
  *
  * \returns vBox widget Assembly
  */
-static GtkWidget* create_inuse_treeview (Compselect *compselect)
+static GtkWidget *create_inuse_treeview (Compselect *compselect)
 {
-  GtkWidget *scrolled_win, *treeview, *hbox, *button;
+  GtkWidget         *scrolled_win, *treeview, *hbox, *button;
   GtkTreeModel      *model;
   GtkTreeSelection  *selection;
   GtkCellRenderer   *renderer;
@@ -2317,10 +2318,10 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
  *  \param [in] event      Mouse Button event record
  *  \param [in] compselect Pointer to This dialog
  */
-void
-compselect_view_popup_menu (GtkWidget *treeview, GdkEventButton *event, Compselect *compselect)
+void compselect_view_popup_menu (GtkWidget      *treeview,
+                                 GdkEventButton *event,
+                                 Compselect     *compselect)
 {
-
   if (GTK_IS_MENU(tree_view_popup_menu)) {
     gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
     tree_view_popup_menu = NULL;
@@ -2348,8 +2349,9 @@ compselect_view_popup_menu (GtkWidget *treeview, GdkEventButton *event, Compsele
  *  \param [in] compselect Pointer to This dialog
  */
 bool
-compselect_view_onButtonPressed (GtkWidget *treeview, GdkEventButton *event,
-                                 Compselect *compselect)
+compselect_view_onButtonPressed (GtkWidget      *treeview,
+                                 GdkEventButton *event,
+                                 Compselect     *compselect)
 {
     /* single click with the right mouse button? */
     if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3)
@@ -2437,13 +2439,14 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
                                            lib_treeview_set_cell_data,
                                            NULL, NULL);
 
-  gtk_tree_view_set_search_column((GtkTreeView*) treeview, LVC_ROW_DATA);
+  gtk_tree_view_set_search_column((GtkTreeView*)treeview, LVC_ROW_DATA);
+
   gtk_tree_view_set_search_equal_func ((GtkTreeView*) treeview,
                                        SearchTreeView,
                                        NULL,
                                        NULL);
 
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_append_column (GTK_TREE_VIEW(treeview), column);
 
   /* Add the treeview to the scrolled window */
   gtk_container_add (GTK_CONTAINER (scrolled_win), GTK_WIDGET (treeview));
@@ -2457,7 +2460,7 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
                     compselect);
 
   /* connect callback to selection */
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(treeview));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   g_signal_connect (selection,
@@ -2481,9 +2484,10 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
  */
 static GtkWidget *create_attributes_treeview (Compselect *compselect)
 {
-  GtkWidget *attrtreeview, *scrolled_win;
-  GtkListStore *model;
-  GtkCellRenderer *renderer;
+  GtkWidget         *attrtreeview;
+  GtkWidget         *scrolled_win;
+  GtkListStore      *model;
+  GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
 
   model = gtk_list_store_new (NUM_ATTRIBUTE_COLUMNS,
@@ -2896,11 +2900,11 @@ static void compselect_geometry_save (GschemDialog *dialog,
  *  \param [in] group_name Group name in the key file to store the data under.
  */
 static void compselect_geometry_restore (GschemDialog *dialog,
-                                         EdaConfig *cfg,
-                                         char *group_name)
+                                         EdaConfig    *cfg,
+                                         char         *group_name)
 {
-  Compselect  *ThisDialog;
-  int          tmp_int;
+  Compselect *ThisDialog;
+  int         tmp_int;
 
   ThisDialog = COMPSELECT (dialog);
 
@@ -2962,7 +2966,7 @@ static void compselect_geometry_restore (GschemDialog *dialog,
 static void compselect_settings_restore (Compselect *Dialog)
 {
 
-  EdaConfig *cfg = eda_config_get_user_context ();
+  EdaConfig *cfg      = eda_config_get_user_context ();
 
   Dialog->style_flag  = eda_config_get_integer (cfg, IDS_COMP_SELECT, "style", NULL);
   Dialog->show_groups = eda_config_get_boolean (cfg, IDS_COMP_SELECT, "groups", NULL);
@@ -2981,6 +2985,7 @@ static void compselect_style_set (GtkWidget *widget, GtkStyle *previous)
   int ifocus;
 
   gtk_widget_style_get (widget, "focus-filter", &ifocus, NULL);
+
   if (ifocus) {
     gtk_widget_grab_focus (GTK_WIDGET (ThisDialog->entry_filter));
   }
@@ -3302,8 +3307,8 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
  *  \param [in] construct_params       Inital g_object property values
  */
 static GObject*
-compselect_constructor (GType type,
-                        unsigned int n_construct_properties,
+compselect_constructor (GType                  type,
+                        unsigned int           n_construct_properties,
                         GObjectConstructParam *construct_params)
 {
   GschemToplevel  *w_current;
@@ -3406,6 +3411,7 @@ compselect_constructor (GType type,
                                     /* GtkFrame */
                                     "label", _("Preview"),
                                     NULL));
+
   alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
                                         /* GtkAlignment */
                                         "border-width", 5,
@@ -3414,6 +3420,7 @@ compselect_constructor (GType type,
                                         "xalign",         0.5,
                                         "yalign",         0.5,
                                         NULL));
+
   preview = GTK_WIDGET (g_object_new (TYPE_PREVIEW,
                                       /* Preview */
                                       "active", FALSE,
@@ -3440,7 +3447,9 @@ compselect_constructor (GType type,
                                       /* GtkFrame */
                                       "label", _("Attributes"),
                                       NULL));
+
     attributes = create_attributes_treeview (ThisDialog);
+
     gtk_paned_pack2 (GTK_PANED (vpaned), frame, FALSE, FALSE);
     gtk_container_add (GTK_CONTAINER (frame), attributes);
   }

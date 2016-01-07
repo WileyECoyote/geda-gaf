@@ -8,10 +8,10 @@
  * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
  * Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -1578,17 +1578,17 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
   if (current < 0) { /* If we did not find exact match, try harder */
 
-    const char *needle;
-    const char *haystack;
     char *reduced;
 
-    index = 0;
-
+    index   = 0;
     reduced = x_draw_strip_font_provider(cur_font);
 
     if (reduced) {
 
       for (iter = geda_list_get_glist(font_list); iter; iter = iter->next) {
+
+        const char *needle;
+        const char *haystack;
 
         pfont = iter->data;
 
@@ -2265,13 +2265,11 @@ create_settings_dialog (GschemToplevel *w_current)
   GtkWidget *MainDialogVBox;
   GtkWidget *notebook;
 
-  GtkWidget *IncreaseAttributeButt;
-  GtkWidget *DecreaseAttributeButt;
-
   GtkWidget *dialog_action_area;
   GtkWidget *CancelButt;
   GtkWidget *SaveButt;
   GtkWidget *OkayButt;
+
 /*
   PangoFontDescription *FontDescription;
   FontDescription = pango_font_description_from_string("Monospace");
@@ -2539,6 +2537,8 @@ create_settings_dialog (GschemToplevel *w_current)
            GTK_VIEW_TREE (AttributesListWindow, PotentialAttributes, View1Data, str, 180, -1);
              gtk_tree_view_set_enable_search (GTK_TREE_VIEW (PotentialAttributesView), TRUE);
            HSECTION(AttributeListing_vbox, VerticalListControls);
+             GtkWidget *IncreaseAttributeButt;
+             GtkWidget *DecreaseAttributeButt;
              GTK_STD_BUTTON (VerticalListControls_hbox, IncreaseAttribute)
              GTK_STD_BUTTON (VerticalListControls_hbox, DecreaseAttribute)
            VZSECTION (AttributeLists_hbox, HorizontalListControls, 115, 200);

@@ -38,37 +38,38 @@ EOF
 }
 
 debug=no
+
 while test -n "$1"
 do
     case "$1"
     in
 
     -d|--debug)
-	debug=yes
-	shift
-	;;
+        debug=yes
+        shift
+        ;;
 
     -h|--help)
-	usage
-	exit 0
-	;;
+        usage
+        exit 0
+        ;;
 
     -r|--regen)
-	# regenerate the 'golden' output files.  Use this with caution.
-	# In particular, all differences should be noted and understood.
-	regen=yes
-	shift
-	;;
+        # regenerate the 'golden' output files.  Use this with caution.
+        # In particular, all differences should be noted and understood.
+        regen=yes
+        shift
+        ;;
 
     -*)
-	echo "unknown option: $1"
-	usage
-	exit 1
-	;;
+        echo "unknown option: $1"
+        usage
+        exit 1
+        ;;
 
     *)
-	break
-	;;
+        break
+        ;;
 
     esac
 done
@@ -123,17 +124,17 @@ pass=0
 skip=0
 tot=0
 
-# here's where we look at the test.list file and extract the names of all
-# the tests we want to run.
 if test -z "$1" ; then
+    # Read the test.list file and extract the names of all the tests to be execute.
     all_tests=`awk 'BEGIN{FS="|"} /^#/{next} /^[ \t]*$/{next} {print $1}' $TESTLIST | sed 's; ;;g'`
 else
+    # Run tests specified on the command line
     all_tests=$*
 fi
 echo All tests = $all_tests
 
 # here's where we look at always-copy.list file and extract the names of all
-# the extra files we want to copy for every test
+# the extra files we need to copy for every test
 always_copy=`cat $ALWAYSCOPYLIST | sed '/^#/d'`
 
 cat << EOF
@@ -143,8 +144,8 @@ srcdir:     $srcdir
 INPUT_DIR:  ${INPUT_DIR}
 GOLDEN_DIR: ${GOLDEN_DIR}
 GNETLIST:   ${GNETLIST}
-GEDADATA:   ${GEDATADA}
-GEDADATARC: ${GEDATADARC}
+GEDADATA:   ${GEDADATA}
+GEDADATARC: ${GEDADATARC}
 SCMDIR:     ${SCMDIR}
 GEDASCMDIR: ${GEDASCMDIR}
 GEDABUILTSCMDIR: ${GEDABUILTSCMDIR}
@@ -176,13 +177,14 @@ for t in $all_tests ; do
         code=0
     fi
     if test "X$code" = "X" ; then
-	code=0
+        code=0
     fi
 
     echo "--------- Begin Run Test ---------"
     echo "Schematics to copy   = $schematics"
     echo "Args to copy         = $args"
     echo "Always copying       = $always_copy"
+    echo "Test conditions      = \"$condition\""
     echo "Expected return code = \"$code\""
     if test "X$condition" != "X" ; then
         eval "ctest=\`echo \$$condition\`"
@@ -190,7 +192,7 @@ for t in $all_tests ; do
             echo "Running test because $condition = yes"
         else
             echo "Skipping test because $condition = $ctest"
-	    continue
+            continue
         fi
     fi
 
@@ -198,37 +200,35 @@ for t in $all_tests ; do
 
     # create temporary run directory and required subdirs
     if test ! -d $rundir ; then
-	mkdir -p $rundir
-	mkdir -p $rundir/sym
-	mkdir -p $rundir/models
+        mkdir -p $rundir
+        mkdir -p $rundir/sym
+        mkdir -p $rundir/models
     fi
 
-    # Create the files needed
-    # Note that we need to include not only the .sch files,
-    # but also the contents of the sym and model directories.
+    # Copy schematics, auxfiles, and files in the always copy list
     if test ! -z "$schematics" ; then
-	echo "Copying over schematics to run dir"
-	for f in $schematics ; do
-	    echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
-	    cp ${INPUT_DIR}/${f} ${rundir}/${f}
-	    chmod 644 ${rundir}/${f}
-	done
+        echo "Copying over schematics to run dir"
+        for f in $schematics ; do
+            echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
+            cp ${INPUT_DIR}/${f} ${rundir}/${f}
+            chmod 644 ${rundir}/${f}
+        done
     fi
     if test ! -z "$auxfiles" ; then
-	echo "Copying over aux files to run dir"
-	for f in $auxfiles ; do
-	    echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
-	    cp ${INPUT_DIR}/${f} ${rundir}/${f}
-	    chmod 644 ${rundir}/${f}
-	done
+        echo "Copying over aux files to run dir"
+        for f in $auxfiles ; do
+            echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
+            cp ${INPUT_DIR}/${f} ${rundir}/${f}
+            chmod 644 ${rundir}/${f}
+        done
     fi
     if test ! -z "$always_copy" ; then
-	echo "Copying over always copied files to run dir"
-	for f in $always_copy ; do
-	    echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
-	    cp ${INPUT_DIR}/${f} ${rundir}/${f}
-	    chmod 644 ${rundir}/${f}
-	done
+        echo "Copying over always copied files to run dir"
+        for f in $always_copy ; do
+            echo "cp ${INPUT_DIR}/${f} ${rundir}/${f}"
+            cp ${INPUT_DIR}/${f} ${rundir}/${f}
+            chmod 644 ${rundir}/${f}
+        done
     fi
 
     # run gnetlist -g $backend
@@ -242,11 +242,12 @@ for t in $all_tests ; do
     ${GNETLIST} -g $backend -v -o verbose.net $args $schematics
     rc3=$?
 
-    # OK, now check results of run.
+    # Zero counters.
     good=0
     bad=0
     soso=0
 
+    # Check the results of run.
     ref=${GOLDEN_DIR}/${t}-output.net
     out=${rundir}/output.net
     std=${rundir}/stdout.net
@@ -255,8 +256,8 @@ for t in $all_tests ; do
     # Hack to help with vams backend
     if [ -f ${rundir}/default_entity_arc.net ]; then
       mv ${rundir}/default_entity_arc.net $out
-      # vams intentionally outputs data into several files, so checking it with
-      # the option '-o verbose.net' is not valid.
+      # vams intentionally outputs data into several files, so checking
+      # with the option '-o verbose.net' is not valid.
       cp $out $vrb
     fi
 
@@ -270,52 +271,53 @@ for t in $all_tests ; do
             rm ${ref}
         fi
 
-	echo "$rc1" > $refcode
-	echo "Regenerated ${ref}"
+        echo "$rc1" > $refcode
+        echo "Regenerated ${ref}"
         good=1
     elif test $rc1 -ne $code ; then
-	echo "FAILED:  gnetlist -g $backend returned $rc1 which did not match the expected $code"
-	bad=1
+        echo "FAILED:  gnetlist -g $backend returned $rc1 which did not match the expected $code"
+        bad=1
     elif test $rc2 -ne $code ; then
-	echo "FAILED:  gnetlist -g $backend -o - returned $rc2 which did not match the expected $code"
-	bad=1
+        echo "FAILED:  gnetlist -g $backend -o - returned $rc2 which did not match the expected $code"
+        bad=1
     elif test $rc3 -ne $code ; then
-    echo "FAILED: gnetlist -g $backend -v returned $rc3 which did not match the expected $code"
-    bad=1
+        echo "FAILED:  gnetlist -g $backend -v returned $rc3 which did not match the expected $code"
+        bad=1
     elif test -f ${ref} ; then
 
-    sed '/gnetlist -g/d' ${ref} > ${out}.tmp1
-    sed '/gnetlist -g/d' ${out} > ${out}.tmp2
-    sed '/gnetlist -g/d' ${std} > ${out}.tmp3
-    sed '/gnetlist -g/d' ${vrb} > ${out}.tmp4
+        if test ! -f $out ; then
+            echo "FAILED: ${out} file was not generated"
+            bad=1
+        else
 
-    # Hack to help with allegro backend
-    # Device files are ignored as yet
-    if test "X$backend" = "Xallegro" ; then
-        sed '/gnetlist -g/d' ${std} | sed '/^\$END$/ q' > ${out}.tmp3
-    fi
+            sed '/gnetlist -g/d' ${ref} > ${out}.tmp1
+            sed '/gnetlist -g/d' ${out} > ${out}.tmp2
+            sed '/gnetlist -g/d' ${std} > ${out}.tmp3
+            sed '/gnetlist -g/d' ${vrb} > ${out}.tmp4
 
-    if ! diff -w ${out}.tmp1 ${out}.tmp2 >/dev/null; then
-      echo "FAILED: Wrong plain output. See diff -w ${ref} ${out}"
-      bad=1
-    elif ! diff -w ${out}.tmp1 ${out}.tmp3 >/dev/null; then
-      echo "FAILED: Wrong stdout output. See diff -w ${ref} ${std}"
-      bad=1
-    elif ! diff -w ${out}.tmp1 ${out}.tmp4 >/dev/null; then
-      echo "FAILED: Wrong verbose output. See diff -w ${ref} ${vrb}"
-      bad=1
+            # Hack to help with allegro backend
+            # Device files are ignored as yet
+            if test "X$backend" = "Xallegro" ; then
+                sed '/gnetlist -g/d' ${std} | sed '/^\$END$/ q' > ${out}.tmp3
+            fi
+
+            if ! diff -w ${out}.tmp1 ${out}.tmp2 >/dev/null; then
+                echo "FAILED: Wrong plain output. See diff -w ${ref} ${out}"
+                bad=1
+            elif ! diff -w ${out}.tmp1 ${out}.tmp3 >/dev/null; then
+                echo "FAILED: Wrong stdout output. See diff -w ${ref} ${std}"
+                bad=1
+            elif ! diff -w ${out}.tmp1 ${out}.tmp4 >/dev/null; then
+                echo "FAILED: Wrong verbose output. See diff -w ${ref} ${vrb}"
+                bad=1
+            else
+                echo "PASS"
+                good=1
+            fi
+        fi
     else
-      echo "PASS"
-      good=1
-	fi
-
-    elif test ! -f $out ; then
-	# No output file, but this is expected since there was no reference file
-    echo "PASS"
-	good=1
-    else
-	echo "No reference file.  Skipping"
-	soso=1
+        echo "No reference file.  Skipping"
+        soso=1
     fi
 
     pass=`expr $pass + $good`
@@ -337,4 +339,4 @@ if test $pass -ne $tot ; then
 
 fi
 
-exit $rc
+exit $fail

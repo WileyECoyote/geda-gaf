@@ -1798,10 +1798,6 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (fontname, FALSE);
 
-  PangoFontFamily      *family;
-  PangoFontFace        *face;
-  PangoFontDescription *new_desc;
-
   bool result;
 
   if (!gtk_widget_has_screen (GTK_WIDGET (dialog))) {
@@ -1809,9 +1805,12 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
   }
   else {
 
+    PangoFontFamily      *family;
+    PangoFontFace        *face;
+    PangoFontDescription *new_desc;
+
     family   = NULL;
     face     = NULL;
-    new_desc = NULL;
 
     new_desc = pango_font_description_from_string (fontname);
 

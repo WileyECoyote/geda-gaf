@@ -22,8 +22,8 @@ SUBDIRS = vhdl
 EXTRA_DIST = README commonrc gnetlistrc gschemrc gschemrc.orig \
 	$(sch_files) $(sym_files)
 
-MOSTLYCLEANFILES =  core *.log FILE *.ps *~
-CLEANFILES = core *.log FILE *.ps *~
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = core *.log FILE *.ps *~
+CLEANFILES           = core *.log FILE *.ps *~
+DISTCLEANFILES       = core *.log FILE *.ps *~
 MAINTAINERCLEANFILES = core *.log FILE *.ps *~ Makefile.in
 

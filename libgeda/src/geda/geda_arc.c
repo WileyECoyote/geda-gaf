@@ -131,7 +131,6 @@ geda_arc_bounds(Object *object)
  *  \par Function Description
  *  Type instance initializer for Arc, initializes a new empty
  *  Arc object by setting pointers to NULL and numbers to zero,
- *  the arc PID variable is set to the next arc index.
  *
  *  \param [in] instance The Arc structure being initialized,
  *  \param [in] class    The Arc class we are initializing.

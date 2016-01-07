@@ -6,7 +6,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com"
  *
  * This Library is free software; you can redistribute it and or
  * modify it under the terms of the GNU General Public License as
@@ -21,28 +21,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA <http://www.gnu.org/licenses/>.
+ * 02110-1301 USA <http://www.gnu.org/licenses/".
  *
  * Date: December 26, 2012
- * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com"
  */
 #ifndef __GEDA_WIDGETS_H__
 #define __GEDA_WIDGETS_H__
 
-#include <geda_bulb.h>
-#include <geda_combobox.h>
-#include <geda_comboboxtext.h>
-#include <geda_entry.h>
-#include <geda_font_dialog.h>
-#include <geda_handlebox.h>
-#include <geda_imagemenuitem.h>
-#include <geda_label.h>
-#include <geda_menu_button.h>
-#include <geda_accel_label.h>
-#include <geda_action.h>
-#include <geda_font_button.h>
-#include <geda_toggle_action.h>
-#include <geda_tree_view.h>
-#include <geda_tree.h>
+#include "geda_accel_label.h"
+#include "geda_action.h"
+#include "geda_bulb.h"
+#include "geda_combobox.h"
+#include "geda_comboboxtext.h"
+#include "geda_completion.h"
+#include "geda_entry.h"
+#include "geda_font_button.h"
+#include "geda_font_dialog.h"
+#include "geda_handlebox.h"
+#include "geda_imagemenuitem.h"
+#include "geda_label.h"
+#include "geda_menu_button.h"
+#include "geda_swatch_renderer.h"
+#include "geda_toggle_action.h"
+#include "geda_tree_view.h"
+#include "geda_tree.h"
 
 #endif /* __GEDA_WIDGETS_H__ */

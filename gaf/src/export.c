@@ -1098,17 +1098,19 @@ export_usage (void)
 static inline char*
 export_command_line__utf8_check (char *str, char *arg)
 {
-  GError *err = NULL;
-  char   *result;
-
   if (str != NULL) {
 
-    result = g_locale_to_utf8 (str, -1, NULL, NULL, &err);
+    GError *err  = NULL;
+
+    char *result = g_locale_to_utf8 (str, -1, NULL, NULL, &err);
 
     if (result == NULL) {
 
       fprintf (stderr, bad_arg_msg, optarg, arg);
       fprintf (stderr, see_help_msg);
+
+      g_clear_error (&err);
+
       exit (1);
     }
 

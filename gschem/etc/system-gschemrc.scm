@@ -1636,7 +1636,6 @@
 (map-keys "F R"        "page-revert")
 (map-keys "F I"        "file-write-image")
 (map-keys "F T"        "file-run-script")
-(map-keys "F <Shift>R" "file-repl")
 (map-keys "<Shift>C A" "file-close-all")
 (map-keys "F Q"        "file-quit")
 
@@ -1702,6 +1701,7 @@
 (map-keys "T E"            "tools-embed")
 (map-keys "T U"            "tools-unembed")
 (map-keys "T P"            "tools_update")
+;(map-keys "T <Shift>R"     "tools-repl")
 
 (map-keys "U"             "edit-undo")
 (map-keys "<Shift>U"      "edit-undo")
@@ -2266,7 +2266,7 @@
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Invoke Macro")             tools-invoke-macro     "gtk-execute"      ,(N_ "Invoke a macro"))
         (,(N_ "G_uile Path...")           tools-guile-path       "guile-logo"       ,(N_ "View or manage guile path"))
-        (,(N_ "REPL...")                  tools-repl             "gtk-execute"      ,(N_ "open a REPL"))
+        ;;(,(N_ "REPL...")                  tools-repl             "gtk-execute"      ,(N_ "open a REPL"))
 
         ("SEPARATOR"                      #f                     #f)
         (,(N_ "Embed Component/Picture")   tools-embed           "geda-inbed"       ,(N_ "Embed a component or image object"))

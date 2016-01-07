@@ -113,6 +113,9 @@ specified, `#f'.  OPTIONS must be the result of a call to
   "Raise an error due to a bad option."
   (scm-error 'option-error "backend-getopt" message args #f))
 
+(define (option-warning message . args)
+  "Issue a Warning due to a invalid option."
+  (format (current-error-port) message args) #f)
 
 (define (split-arg arg)
   "Split an `-O' argument into name and value.  The name is assumed to
@@ -147,26 +150,26 @@ property wasn't present in SPEC."
 returning the value to be returned to the user code."
   (let ((spec (opt-spec name grammar)))
     ; Is this a valid argument?
-    (or spec
-        (option-error "Unrecognized backend option '~A'." name))
-
-    ; Check that a value was provided, if one was required, or vice
-    ; versa.
-    (case (opt-property spec 'value #f)
-      ((optional) #t)
-      ((#f) (and value (option-error
+    (if spec
+       (begin
+        ; Check that a value was provided, if one was required, or vice
+        ; versa.
+          (case (opt-property spec 'value #f)
+            ((optional) #t)
+            ((#f) (and value (option-error
                      "Backend option '~A' doesn't allow an argument." name)))
-      (else (or value (option-error
+            (else (or value (option-error
                      "Backend option '~A' requires an argument." name))))
 
-    ; If a value-verification predicate was provided, use it to verify
-    ; the value.
-    (let ((pred? (opt-property spec 'predicate #f)))
-      (and pred? value
-           (or (pred? value)
-               (option-error
-                "Invalid argument '~A' to backend option '~A'."
-                value name))))
-
+          ; If a value-verification predicate was provided, use it to verify
+          ; the value.
+          (let ((pred? (opt-property spec 'predicate #f)))
+            (and pred? value
+                 (or (pred? value)
+                  (option-error
+                   "Invalid argument '~A' to backend option '~A'."
+                   value name)))))
+        (option-warning "Warning unrecognized backend option '~A'~%." name)
+    )
     ; If a value was provided, return it, otherwise #t.
     (or value #t)))

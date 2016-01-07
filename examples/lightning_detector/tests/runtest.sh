@@ -38,10 +38,12 @@
 #           gsymcheck returns an error the test fails.
 #           Testing continues if all of the symbols pass, by running
 #           gnetlist drc2 on the example file and then the GEDA net
-#           list is extracted and compared to a reference in the test
-#           subdirectory.
+#           list and BOM are extracted and compared to reference files
+#           in the test subdirectory. To regenerate the bom or net
+#           reference file just copy the generated file into the tests
+#           subdirectory after ensuring the results are correct.
 #
-VER=0.0.4
+VER=0.0.5
 
 schematic=$1
 

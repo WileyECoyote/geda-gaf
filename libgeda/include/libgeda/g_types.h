@@ -30,7 +30,10 @@
 #ifndef _G_TYPES_H_INCL
 #define _G_TYPES_H_INCL
 
+/*! \brief Geda TopLevel Data Structure */
 typedef struct _GedaToplevel     GedaToplevel;
+
+/*! \brief Geda Page Data Structure */
 typedef struct _GedaPage         Page;
 
 /* Object types */

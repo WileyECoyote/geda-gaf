@@ -26,7 +26,7 @@
 ;
 ; Specifies which netname has priority if a net is found with two names.
 ; If this variable is set to "netattrib" then any netname specified with the
-; net= attribute is used as the netname.  Likewise if this variable is set to
+; net= attribute is used as the netname. Likewise if this variable is set to
 ; "netname" then any netname conflict is resolved using the netname= value.
 ;
 (net-naming-priority "netattrib")
@@ -52,13 +52,12 @@
 
 ; hierarchy-netname-mangle string
 ;
-; Controls if net names are mangled to make them uniq when traversing
+; Controls if net names are mangled to make them unique when traversing
 ; down into the hierarchy.  If this is disabled then the net names are not
 ; changed and it is the user's responsibility to make sure they are unique.
-; If you disable this, you really are taking your netlist's life into your
-; own hands.  This basically has the effect of making all same named nets
-; in the entire hierarchy be electrically connected. This option is provided
-; for advanced user.
+; This basically has the effect of making all same named nets in the entire
+; hierarchy be electrically connected. It is recommeneded that this option
+; not be disabled. This option is provided for advanced user.
 ;
 (hierarchy-netname-mangle "enabled")
 ;(hierarchy-netname-mangle "disabled")
@@ -66,10 +65,10 @@
 ; hierarchy-netattrib-mangle string
 ;
 ; Controls if net created by using the net= attribute are renamed to make
-; them uniq when traversing down into the hierarchy.  If this is disabled
-; then the net= created nets are not changed.  This feature is handy to have
+; them unique when traversing down into the hierarchy. If this is disabled
+; then the net= created nets are not changed. This feature is handy to have
 ; global nets which spawn the entire hierarchy (like power or ground nets).
-; Please make sure you know what you are doing.
+; Make sure you know what you are doing if you disable this option.
 ;
 (hierarchy-netattrib-mangle "enabled")
 ;(hierarchy-netattrib-mangle "disabled")
@@ -80,7 +79,7 @@
 ; for all urefs.  This string can also be "" (empty) to specify that no
 ; chars should be used.  This keyword is ignored if hierarchy-uref-mangle
 ; is disabled (though a default "/" is used in this case, and then all the
-; internal mangling is removed so it is not seen by the user).  This keyword
+; internal mangling is removed so it is not seen by the user). This keyword
 ; is used in conjunction with the respective hierarchy-*-order keyword.
 ;
 (hierarchy-uref-separator "/")

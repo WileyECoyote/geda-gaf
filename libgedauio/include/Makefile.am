@@ -9,7 +9,6 @@ noinst_HEADERS     = geda_file_filter.h
 libgedauio_HEADERS = \
 			geda_accel_label.h       \
 			geda_action.h            \
-			geda_actionhelper.h      \
 			geda_accumulate.h        \
 			geda_bulb.h              \
 			geda_combobox.h          \
@@ -19,6 +18,7 @@ libgedauio_HEADERS = \
 			geda_file_chooser.h      \
 			geda_font_button.h       \
 			geda_font_dialog.h       \
+			geda_gtk_compat.h        \
 			geda_handlebox.h         \
 			geda_image_chooser.h     \
 			geda_imagemenuitem.h     \
@@ -31,8 +31,9 @@ libgedauio_HEADERS = \
 			geda_threads.h           \
 			geda_toggle_action.h     \
 			geda_tree_view.h         \
-			geda_tree.h             \
+			geda_tree.h              \
 			geda_dialogs.h           \
+			geda_uio.h               \
 			geda_uio_functions.h     \
 			geda_uio_macros.h        \
 			geda_widgets.h

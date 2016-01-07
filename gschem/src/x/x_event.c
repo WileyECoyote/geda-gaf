@@ -6,12 +6,12 @@
  * Copyright (C) 1998-2015 Ales Hvezda
  * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
  *
- * This library is free software; you can redistribute it and/or
+ * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
@@ -685,7 +685,6 @@ bool x_event_key (GtkWidget      *widget,
 {
   bool retval      = FALSE;
   int  control_key = 0;
-  //int  shift_key   = 0;
   int  pressed;
   int  wx, wy;
 
@@ -708,7 +707,6 @@ bool x_event_key (GtkWidget      *widget,
 
     case GDK_Shift_L:
     case GDK_Shift_R:
-      //shift_key = 1;
       w_current->SHIFTKEY = pressed;
       break;
 
