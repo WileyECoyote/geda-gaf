@@ -618,12 +618,12 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
          void    u_gslist_free_strings           (void *data);
 
 /* u_log.c */
-         void    u_log_init                      (const char *app_prefix);
-         void    u_log_close                     (void);
-         char   *u_log_read                      (void);
-          int    u_log_get_log_time              (void);
-         void    u_log_set_log_time              (int mode);
-         void    u_log_set_update_func           (LogUpdateFunc func);
+         void    geda_utility_log_init           (const char *app_prefix);
+         void    geda_utility_log_close          (void);
+         char   *geda_utility_log_read           (void);
+          int    geda_utility_log_get_log_time   (void);
+         void    geda_utility_log_set_log_time   (int mode);
+         void    geda_utility_set_update_func    (LogUpdateFunc func);
          void    geda_utility_log_quite          (const char *format, ...);
          void    geda_utility_log_verbose        (const char *format, ...);
          void    geda_utility_log_system         (const char *format, ...);

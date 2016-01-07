@@ -220,7 +220,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* create log file right away */
   /* WEH: even if logging is not enabled */
-  u_log_init ("gnetlist");
+  geda_utility_log_init ("gnetlist");
 
   u_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
                 PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);

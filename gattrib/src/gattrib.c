@@ -320,7 +320,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   g_rc_parse (argv[0], "gattribrc", NULL);
 
   /* ----------  create log file right away ---------- */
-  u_log_init ("gattrib");
+  geda_utility_log_init ("gattrib");
   u_log_message("gEDA/gattrib version %s%s.%s\n", PREPEND_VERSION_STRING,
                                                   PACKAGE_DOTTED_VERSION,
                                                   PACKAGE_DATE_VERSION);

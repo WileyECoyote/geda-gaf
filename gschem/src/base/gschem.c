@@ -343,7 +343,7 @@ static void gschem( int argc, char *argv[])
   else {
     input_str = scm_to_utf8_string (scm_tmp);
     if (g_read_scheme_file(input_str, NULL)) {
-      u_log_vmessage(_("Read scheme initialization file [%s]\n"), input_str);
+      geda_utility_log_verbose(_("Read scheme initialization file [%s]\n"), input_str);
     }
     else {
       u_log_message(_("Failed to read initialization scheme file [%s]\n"), input_str);
@@ -364,7 +364,7 @@ static void gschem( int argc, char *argv[])
 
   if (logging == TRUE) {
 
-    u_log_init ("gschem");
+    geda_utility_log_init ("gschem");
 
     /* see if open up console/log window on startup  */
     if (!iconify_main_window && console_window == MAP_ON_STARTUP) {
@@ -502,7 +502,6 @@ static void main_prog(void *closure, int argc, char *argv[])
     gschem_quit();
     v_log_message(_("Exiting normal"));
   }
-
 }
 
 /*! \brief Main executable entrance point.

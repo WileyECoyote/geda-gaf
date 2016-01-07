@@ -757,7 +757,7 @@ static void main2(void *closure, int argc, char *argv[])
 
     g_rc_parse(argv[0], "gsch2pdfrc", NULL);
 
-    u_log_init ("gsch2pdf");
+    geda_utility_log_init ("gsch2pdf");
 
     current = geda_toplevel_new();
     i_vars_libgeda_set(current);

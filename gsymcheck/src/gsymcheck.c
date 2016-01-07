@@ -77,8 +77,8 @@ static void main_prog(void *closure, int argc, char *argv[])
   g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
   /* create log file right away even if logging is enabled */
-  u_log_set_update_func(s_log_update);
-  u_log_init ("gsymcheck");
+  geda_utility_set_update_func(s_log_update);
+  geda_utility_log_init ("gsymcheck");
 
   pr_current = geda_toplevel_new ();
   i_vars_set(pr_current);

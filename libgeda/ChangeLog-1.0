@@ -1,3 +1,7 @@
+2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Rename functions with geda_utility_log prefix.
+
 2016-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex_basic.c: Rename function o_complex_remove_promotable_attribs

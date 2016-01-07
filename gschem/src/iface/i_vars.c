@@ -195,7 +195,7 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
   tmpstr = eda_config_get_string (cfg, group, key, &err);
 
   if (err != NULL) {
-    u_log_qmessage("%s\n", err->message);
+    geda_utility_log_quite("%s\n", err->message);
     g_clear_error (&err);
   }
 
