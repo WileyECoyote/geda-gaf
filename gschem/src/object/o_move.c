@@ -375,13 +375,15 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
   /* realign the object if we are in resnap mode */
   if (selection != NULL && w_current->snap == SNAP_RESNAP) {
 
-    GList  *s_current;
     Object *object;
 
     int object_x, object_y;
     bool resnap = FALSE;
 
     if (g_list_length(selection) > 1) {
+
+      GList  *s_current;
+
       /* find an object that is not attached to any other object */
       for (s_current = selection; s_current != NULL; NEXT(s_current)) {
         if (((Object *) s_current->data)->attached_to == NULL) {
@@ -445,16 +447,20 @@ o_move_draw_rubber (GschemToplevel *w_current, int drawing)
 
   for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
   {
-    STRETCH *s_current = s_iter->data;
-    Object *object = s_current->object;
-    int whichone = s_current->whichone;
+    STRETCH *s_current;
+    Object  *object;
+    int      whichone;
+
+    s_current = s_iter->data;
+    object    = s_current->object;
+    whichone  = s_current->whichone;
 
     /* We can only stretch nets and buses */
     switch (object->type) {
       case OBJ_NET:
       case OBJ_BUS:
         break;
-    default:
+      default:
       continue;
     }
 
@@ -505,11 +511,13 @@ void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
   GedaToplevel *toplevel = w_current->toplevel;
   GList  *cl_current;
   CONN   *c_current;
-  Object *other;
+
   int whichone;
 
   for (cl_current = object->conn_list; cl_current != NULL; NEXT(cl_current))
   {
+    Object *other;
+
     c_current = (CONN*)cl_current->data;
     other     = c_current->other_object;
 

@@ -1,3 +1,8 @@
+2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_move.c: Reduce scope of s_current in o_move_motion, and
+      nad other Object in o_move_check_endpoint.
+
 2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Update GschemPreview widget references, revise
