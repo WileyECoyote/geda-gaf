@@ -1016,22 +1016,21 @@ bool x_event_scroll (GtkWidget      *widget,
  */
 void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   g_return_if_fail (w_current != NULL);
 
   if (w_current->scrollbars) {
 
+    GedaToplevel *toplevel;
     int current_left;
     int new_left;
 
+    toplevel     = w_current->toplevel;
     current_left = toplevel->page_current->left;
     new_left     = (int) adjust->value;
 
-    toplevel->page_current->left = new_left;
+    toplevel->page_current->left  = new_left;
     toplevel->page_current->right =
-    toplevel->page_current->right -
-    (current_left - new_left);
+    toplevel->page_current->right - (current_left - new_left);
 
     o_invalidate_all (w_current);
   }
@@ -1044,22 +1043,22 @@ void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
  */
 void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   g_return_if_fail (w_current != NULL);
 
   if (w_current->scrollbars) {
 
+    GedaToplevel *toplevel;
+
     int current_bottom;
     int new_bottom;
 
+    toplevel       = w_current->toplevel;
     current_bottom = toplevel->page_current->bottom;
     new_bottom     = w_current->world_bottom - (int) adjust->value;
 
     toplevel->page_current->bottom = new_bottom;
-    toplevel->page_current->top =
-    toplevel->page_current->top -
-    (current_bottom - new_bottom);
+    toplevel->page_current->top    =
+    toplevel->page_current->top - (current_bottom - new_bottom);
 
 #if DEBUG_EVENTS
     printf("vrange %f %f\n",  adjust->lower, adjust->upper);

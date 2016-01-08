@@ -362,7 +362,7 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 {
   EdaConfig    *cfg      = eda_config_get_user_context ();
   GedaToplevel *toplevel = w_current->toplevel;
-  char         *tmp_str;
+
   const char   *group;
   const char   *key;
 
@@ -372,6 +372,8 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
     eda_renderer_set_font_name(CairoRenderer, comline_font);
   }
   else {
+
+    char *tmp_str;
 
     tmp_str = i_var_get_global_config_string (cfg, "default-font-name");
 
