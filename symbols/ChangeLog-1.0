@@ -16,6 +16,9 @@
       and reposition attributes accordingly. Change solid arrows, paths,
       to be slightly smaller.
 
+    * atmel/AT24C-1.sym: Tweak attributes; add description and documentation
+      attributes.
+
     * nmosfet-0/mosfet-with-diode-1.sym: Revise symbol, use path for body
       diode, use pin numbers not letters, fix pin-seq, use end-type=round
       and squared to improve appearance.

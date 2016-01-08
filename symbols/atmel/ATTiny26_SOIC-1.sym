@@ -2,7 +2,7 @@ v 20150101 2
 T 3800 4100 8 10 1 1 0 6 1
 refdes=U?
 T 400 4250 5 10 0 0 0 0 1
-device=ATtiny28_TQFP
+device=ATtiny26
 T 400 4450 5 10 0 0 0 0 1
 footprint=TQFP
 T 400 4650 5 10 0 0 0 0 1
@@ -10,7 +10,7 @@ net=VCC:4,18
 T 400 4850 5 10 0 0 0 0 1
 net=GND:5,21
 T 400 5050 5 10 0 0 0 0 1
-description=8-bit RISC micro controller (Atmel)
+description=Atmel 8-bit RISC micro controller
 P 1400 100 1400 400 1 0 0
 {
 T 1450 200 5 8 1 1 0 0 1
