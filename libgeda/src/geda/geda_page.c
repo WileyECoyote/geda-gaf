@@ -161,13 +161,14 @@ void
 geda_page_remove_all_objects(Page *page)
 {
     GList *iter;
-    Object *object;
 
     g_return_if_fail(GEDA_IS_PAGE(page));
 
     while ((iter = g_list_last(page->_object_list))) {
-      object = GEDA_OBJECT(iter->data);
-      if (object) {
+
+      Object *object = GEDA_OBJECT(iter->data);
+
+    if (object) {
         GEDA_UNREF (object);
       }
     }
@@ -406,7 +407,7 @@ void geda_page_unref(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     if (page->toplevel) {
-      g_object_unref ((GObject*)page->toplevel);
+      geda_toplevel_unref (page->toplevel);
       page->toplevel = NULL;
     }
     g_object_unref ((GObject*)page);
@@ -537,7 +538,6 @@ void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_PAGE(page));
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
-
   page->toplevel =  g_object_ref (toplevel);
 }
 

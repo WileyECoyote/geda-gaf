@@ -5,6 +5,9 @@
       until  after the page have been deleted since the pages are holding
       a reference to the toplevel.
 
+    * src/geda/geda_page.c: Call geda_toplevel_unref instead of g_object_unref,
+      reduce scope of objects in geda_page_remove_all_objects.
+
     * src/struct/s_toplevel.c: Add (maybe return) code block removed from
       geda_toplevel to call s_page_delete_list and unreference the top
       level list of pages in s_toplevel_release.
