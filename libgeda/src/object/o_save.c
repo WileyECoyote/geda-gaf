@@ -373,3 +373,4 @@ o_save (const GList *object_list, const char *filename, GError **err)
   GEDA_FREE (path);
   return result;
 }
+

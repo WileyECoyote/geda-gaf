@@ -628,3 +628,4 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
 
 /******************* End of Text Edit dialog box ************************/
 /** @} end group Edit-Text-Dialog */
+
