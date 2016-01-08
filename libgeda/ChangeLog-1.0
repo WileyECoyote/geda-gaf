@@ -8,6 +8,12 @@
     * src/geda/geda_page.c: Call geda_toplevel_unref instead of g_object_unref,
       reduce scope of objects in geda_page_remove_all_objects.
 
+    * src/object/o_save.c: Eliminate saving and restoring the current page and
+      do not set the page being saved as the current page, remove variable psave,
+      and calls to s_page_goto, reduce scope of variables and pass p_current as
+      argument to s_page_get_objects, which is an argument to o_save in function
+      o_save_auto_backup.
+
     * src/struct/s_toplevel.c: Add (maybe return) code block removed from
       geda_toplevel to call s_page_delete_list and unreference the top
       level list of pages in s_toplevel_release.

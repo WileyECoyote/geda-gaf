@@ -41,26 +41,17 @@
  */
 void o_save_auto_backup(GedaToplevel *toplevel)
 {
-  GError   *err;
-  GList    *iter;
-  Page     *p_save, *p_current;
-  char     *backup_filename;
-  char     *real_filename;
-  char     *only_filename;
-  char     *dirname;
-  mode_t    saved_umask;
-  mode_t    mask;
-  struct    stat st;
-  int       count;
+  GList *iter;
+  int    count;
 
   count = 0;
 
-  /* save current page */
-  p_save = toplevel->page_current;
-
   for (iter = geda_toplevel_get_pages(toplevel); iter != NULL; NEXT(iter))
   {
-    p_current = (Page *)iter->data;
+    Page *p_current;
+    char *real_filename;
+
+    p_current = (Page*)iter->data;
 
     if (p_current->do_autosave_backup == 0) {
       continue;
@@ -70,10 +61,6 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
       count++;
 
-      /* make p_current the current page of toplevel */
-      toplevel->page_current = p_current;
-      s_page_goto (p_current);
-
       /* Get the real filename and file permissions */
       real_filename = f_file_follow_symlinks (p_current->filename, NULL);
 
@@ -82,6 +69,14 @@ void o_save_auto_backup(GedaToplevel *toplevel)
                        __func__, p_current->filename);
       }
       else {
+
+        GError *err;
+        char   *dirname;
+        char   *only_filename;
+        char   *backup_filename;
+        mode_t  saved_umask;
+        mode_t  mask;
+        struct  stat st;
 
         /* Get the directory in which the real filename lives */
         dirname         = f_path_get_dirname (real_filename);
@@ -135,8 +130,8 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
 
-        if (o_save (s_page_get_objects (toplevel->page_current), backup_filename, &err))
-        {
+        if (o_save (s_page_get_objects (p_current), backup_filename, &err)) {
+
           u_log_message (_("Automatic backup file saved [%s]\n"), backup_filename);
 
           p_current->ops_since_last_backup = 0;
@@ -162,12 +157,6 @@ void o_save_auto_backup(GedaToplevel *toplevel)
         GEDA_FREE (backup_filename);
       }
     }
-  }
-
-  /* Restore current page if any backups were performed */
-  if (count) {
-    toplevel->page_current = p_save;
-    s_page_goto (p_current);
   }
 }
 
@@ -199,7 +188,8 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
   iter = object_list;
 
   while ( iter != NULL ) {
-    o_current = (Object *)iter->data;
+
+    o_current = (Object*)iter->data;
 
     if (save_attribs || o_current->attached_to == NULL) {
 
