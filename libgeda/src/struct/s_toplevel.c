@@ -54,6 +54,12 @@ GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
 void
 s_toplevel_release (GedaToplevel *toplevel)
 {
+  /* Delete all pages */
+  s_page_delete_list (toplevel);
+
+  /* Delete the page list */
+  GEDA_UNREF (toplevel->pages);
+
   geda_toplevel_weakref_notify (toplevel);
   geda_toplevel_unref (toplevel);
 }

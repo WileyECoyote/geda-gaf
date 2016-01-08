@@ -102,7 +102,6 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
 static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaToplevel *toplevel           = (GedaToplevel*)instance;
-
   toplevel->open_flags             = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
   toplevel->untitled_name          = NULL;
   toplevel->num_untitled           = 0;
@@ -224,12 +223,6 @@ static void geda_toplevel_finalize(GObject *object)
   GEDA_FREE(toplevel->hierarchy_netattrib_separator);
   GEDA_FREE(toplevel->unnamed_netname);
   GEDA_FREE(toplevel->unnamed_busname);
-
-  /* Delete all pages */
-  s_page_delete_list (toplevel);
-
-  /* Delete the page list */
-  GEDA_UNREF (toplevel->pages);
 
   if (toplevel->always_promote_attributes != NULL) {
     g_list_foreach(toplevel->always_promote_attributes, (GFunc) g_free, NULL);
