@@ -102,8 +102,6 @@ s_object_release(Object *o_current)
 
     geda_object_weakref_notify(o_current);
     geda_object_unref(o_current);
-
-    o_current = NULL; /* misc clean up */
   }
 }
 
@@ -114,15 +112,15 @@ s_object_release(Object *o_current)
 void
 s_object_release_objects(GList *list)
 {
-  Object *o_current = NULL;
-  GList  *ptr;
-
-  ptr = g_list_last(list);
+  GList *ptr = g_list_last(list);
 
   /* do the delete backwards */
-  while(ptr != NULL) {
-    o_current = GEDA_OBJECT(ptr->data);
+  while (ptr != NULL) {
+
+    Object *o_current = GEDA_OBJECT(ptr->data);
+
     s_object_release(o_current);
+
     ptr = g_list_previous (ptr);
   }
 

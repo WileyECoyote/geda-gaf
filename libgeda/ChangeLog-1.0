@@ -14,6 +14,9 @@
       argument to s_page_get_objects, which is an argument to o_save in function
       o_save_auto_backup.
 
+    * src/struct/s_object.c: Remove unnecessary setting of o_current to NULL in
+      s_object_release, reduce scope of o_current and unnecessary initialization.
+
     * src/struct/s_toplevel.c: Add (maybe return) code block removed from
       geda_toplevel to call s_page_delete_list and unreference the top
       level list of pages in s_toplevel_release.
