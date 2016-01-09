@@ -1,3 +1,20 @@
+2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_xxx.c: Reduce scope of variables in modules:
+
+          * src/struct/s_basic.c,
+          * src/struct/s_clib.c,
+          * src/struct/s_color.c,
+          * src/struct/s_conn.c,
+          * src/struct/s_encoding.c,
+          * src/struct/s_hierarchy.c,
+          * src/struct/s_path.c,
+          * src/struct/s_tile.c.
+
+    * src/struct/s_slot.c: Replace u_string_sprintf with u_string_int2str
+      s_slot_update_object. Replace header and reduce scope of variables
+      in module.
+
 2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Remove call to s_page_delete_list in

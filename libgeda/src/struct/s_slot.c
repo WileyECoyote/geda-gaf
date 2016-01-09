@@ -1,25 +1,31 @@
-/* gEDA - GPL Electronic Design Automation
- * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/*
+ * File: s_tile.c
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * gEDA - GPL Electronic Design Automation
+ * libgeda - gEDA's Library
  *
- * This program is distributed in the hope that it will be useful,
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
 /*! \file s_slot.c
- *  \brief utility functions for slotted components
+ *  \brief Utility functions for slotted components
  */
 
 #include <config.h>
@@ -34,7 +40,7 @@
 
 #include <geda_debug.h>
 
-/*! Basic string splitting delimiters */
+/*! Basic string splitting delimiters used with strtok */
 #define DELIMITERS ",; "
 
 
@@ -126,13 +132,11 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
  */
 void s_slot_update_object (Object *object)
 {
-  Object *o_pin_object;
   Object *o_pinnum_attrib;
   GList  *attributes;
 
   char *string;
   char *slotdef;
-  char *pinseq;
   char *current_pin;  /* text from slotdef= to be made into pinnumber= */
   char *cptr;         /* char pointer pointing to pinnumbers in slotdef=#:#,#,# string */
 
@@ -204,10 +208,13 @@ void s_slot_update_object (Object *object)
 
   while (current_pin != NULL) {
 
-    /* get pin on this component with pinseq == pin_counter */
-    pinseq = u_string_sprintf ("%d", pin_counter);
-    o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinseq);
-    GEDA_FREE (pinseq);
+    Object *o_pin_object;
+    char   *pinstr;       /* used as pointer to tmp_str[0] & pinnumber= */
+    char    tmp_str[5];
+
+    /* Get pin on this component with pinseq == pin_counter */
+    pinstr       = u_string_int2str(pin_counter, tmp_str, 10);
+    o_pin_object = o_complex_find_pin_by_attribute (object, "pinseq", pinstr);
 
     if (o_pin_object != NULL) {
 
@@ -218,9 +225,9 @@ void s_slot_update_object (Object *object)
       g_list_free (attributes);
 
       if (o_pinnum_attrib != NULL) {
-        char *tmp_str = u_string_sprintf ("pinnumber=%s", current_pin);
-        o_text_set_string (o_pinnum_attrib, tmp_str);
-        GEDA_FREE(tmp_str);
+        pinstr = u_string_sprintf ("pinnumber=%s", current_pin);
+        o_text_set_string (o_pinnum_attrib, pinstr);
+        GEDA_FREE(pinstr);
       }
 
       pin_counter++;
