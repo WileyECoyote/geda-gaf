@@ -1,5 +1,10 @@
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
 
+    * xxx/tests/runtest.sh: Add regenerate feature to create the reference
+      files, skips checking the symbols when regenerating, revise abstract.
+
+2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
+
     * xxx/tests/runtest.sh: Revise abstract to include note regarding
       regenerating the reference files, bump version =0.0.5.
 

@@ -39,11 +39,14 @@
 #           Testing continues if all of the symbols pass, by running
 #           gnetlist drc2 on the example file and then the GEDA net
 #           list and BOM are extracted and compared to reference files
-#           in the test subdirectory. To regenerate the bom or net
-#           reference file just copy the generated file into the tests
-#           subdirectory after ensuring the results are correct.
+#           in the test subdirectory. After regenerating  verify that
+#           the generated BOM and NET results are correct.
 #
-VER=0.0.5
+VER=0.0.6
+
+REGENERATE=false
+
+if [ "$1" = "-r" ] || [ "$1" = "--regen" ] ; then REGENERATE=true ; shift ; fi
 
 schematic=$1
 
@@ -59,7 +62,11 @@ cd $SRCDIR
 
 SRCDIR=$PWD
 
-test $VERBOSE && echo "Checking example ${schematic}"
+if $REGENERATE ; then
+   test $VERBOSE && echo "Regenerating outpout for example ${schematic}"
+else
+   test $VERBOSE && echo "Checking example ${schematic}"
+fi
 
 # ---------------------- Configuration constants -------------------
 
@@ -292,14 +299,16 @@ if [ ! -f ${schematic}.sch ] ; then
   exit 1;
 fi
 
-if [ ! -f "tests/${schematic}-geda.net" ] ; then
-  echo "Reference is missing: tests/${schematic}-geda.net"
-  exit 1;
-fi
+if ! $REGENERATE ; then
+  if [ ! -f "tests/${schematic}-geda.net" ] ; then
+    echo "Reference is missing: tests/${schematic}-geda.net"
+    exit 1;
+  fi
 
-if [ ! -f "tests/${schematic}-bom.csv" ] ; then
-  echo "Reference is missing: tests/${schematic}-bom.csv"
-  exit 1;
+  if [ ! -f "tests/${schematic}-bom.csv" ] ; then
+    echo "Reference is missing: tests/${schematic}-bom.csv"
+    exit 1;
+  fi
 fi
 
 test -z $DEBUG || set -x
@@ -309,6 +318,13 @@ do_setup_geda_environment
 
 do_get_symbol_checker
 do_get_netlister
+
+if $REGENERATE ; then
+    ${NETLISTER} -q -g ${BOMBACKEND} -o "tests/${schematic}-bom.csv" "${schematic}.sch"
+    ${NETLISTER} -q -g geda -o "tests/${schematic}-geda.net" "${schematic}.sch"
+    echo "Done!"
+    exit 0;
+fi
 
 echo "Checking ${schematic}.sch"
 
