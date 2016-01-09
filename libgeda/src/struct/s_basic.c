@@ -53,13 +53,15 @@
  */
 void print_struct_forw (GList *list)
 {
-  Object *o_current=NULL;
   GList *iter;
 
   iter = list;
   printf("Printing ...\n");
+
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
+
+    Object *o_current = (Object *)iter->data;
+
     printf("Name: %s\n", o_current->name);
     printf("Type: %d\n", o_current->type);
     printf("Sid: %d\n", o_current->sid);

@@ -352,21 +352,23 @@ void s_tile_add_object (Object *object)
  */
 void s_tile_remove_object(Object *object)
 {
-  GList *iter;
   GList *tl_current;
 
   /* Correctly deal with compound objects */
   if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-    for (iter = object->complex->prim_objs;
+
+    GList *iter;
+
+    for (iter  = object->complex->prim_objs;
          iter != NULL;
-         iter = g_list_next (iter)) {
+         iter  = g_list_next (iter)) {
       s_tile_remove_object (iter->data);
     }
   }
 
-  for (tl_current = object->tiles;
+  for (tl_current  = object->tiles;
        tl_current != NULL;
-       tl_current = g_list_next (tl_current)) {
+       tl_current  = g_list_next (tl_current)) {
     TILE *tile_current = (TILE*)tl_current->data;
 
     /* remove object from the list of objects for this tile */

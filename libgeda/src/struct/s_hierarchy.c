@@ -69,7 +69,6 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
 {
   char *string;
   Page *found = NULL;
-  Page *forbear;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((filename != NULL), NULL);
@@ -97,7 +96,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   }
 
   switch (flag) {
-  case HIERARCHY_NORMAL_LOAD:
+    case HIERARCHY_NORMAL_LOAD:
     {
       char *filename = f_file_normalize_name (string, NULL);
 
@@ -105,26 +104,33 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
       GEDA_FREE (filename);
 
       if (found) {
+
+        Page *forbear;
+
         /* check whether this page is in the parents list */
-        for (forbear = parent;
+        for (forbear  = parent;
              forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
-             forbear = s_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
+             forbear  = s_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
              {
                ; /* void */
              }
-        if (forbear != NULL && found->pid == forbear->pid) {
 
-          g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
-                       _("Hierarchy contains a circular dependency."));
-          return NULL;  /* error signal */
-        }
-        s_page_goto (found);
-        if (page_control != 0) {
-          found->page_control = page_control;
-        }
-        found->hierarchy_up = parent->pid;
-        GEDA_FREE (string);
-        return found;
+             if (forbear != NULL && found->pid == forbear->pid) {
+
+               g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
+                            _("Hierarchy contains a circular dependency."));
+                            return NULL;  /* error signal */
+             }
+
+             s_page_goto (found);
+
+             if (page_control != 0) {
+               found->page_control = page_control;
+             }
+
+             found->hierarchy_up = parent->pid;
+             GEDA_FREE (string);
+             return found;
       }
 
       found = s_page_new_with_notify (toplevel, string);
@@ -133,15 +139,15 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
     }
     break;
 
-  case HIERARCHY_FORCE_LOAD:
+    case HIERARCHY_FORCE_LOAD:
     {
       found = s_page_new_with_notify (toplevel, string);
       f_open (toplevel, found, found->filename, NULL);
     }
     break;
 
-  default:
-    g_return_val_if_reached (NULL);
+    default:
+      g_return_val_if_reached (NULL);
   }
 
   if (page_control == 0) {
@@ -244,7 +250,6 @@ s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 GList *
 s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 {
-  Object *o_current;
   Page *child_page;
   char *filename = NULL;
   static GList *pages = NULL;
@@ -271,8 +276,9 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
   /* walk throught the page objects and search for underlaying schematics */
   for (iter = s_page_get_objects (p_current);
        iter != NULL ;
-       iter = g_list_next (iter)) {
-    o_current = (Object *)iter->data;
+       iter = g_list_next (iter))
+  {
+    Object *o_current = (Object *)iter->data;
 
     /* only complex things like symbols can contain attributes */
     if (o_current->type != OBJ_COMPLEX) continue;

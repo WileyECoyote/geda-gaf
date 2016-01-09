@@ -166,32 +166,35 @@ void s_path_art_finish (Path * path)
 
   num_sections = path->num_sections++;
 
-  if (num_sections == path->num_sections_max)
+  if (num_sections == path->num_sections_max) {
     path->sections = g_realloc (path->sections, (path->num_sections_max <<= 1) * sizeof (PATH_SECTION));
+  }
+
   path->sections[num_sections].code = PATH_END;
 }
 
 Path *s_path_copy_modify (Path *path, int dx, int dy,
                           int new_x, int new_y, int whichone)
 {
-  Path *new_path;
-  char *path_string;
+  Path   *new_path;
   Object *object;
-
-  int x1, y1, x2, y2, x3, y3;
-  int i;
-  int grip_no = 0;
+  char   *path_string;
+  int     grip_no;
+  int     i;
 
   g_return_val_if_fail(GEDA_IS_PATH(path), NULL);
-  object = GEDA_OBJECT(path);
 
+  object                     = GEDA_OBJECT(path);
   path_string                = s_path_string_from_path (path);
   new_path                   = (Path*)o_path_new (object->color, path_string);
   new_path->sections         = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
   new_path->num_sections     = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 
-  for (i = 0; i <  path->num_sections; i++) {
+  for (grip_no = 0, i = 0; i <  path->num_sections; i++) {
+
+    int x1, y1, x2, y2, x3, y3;
+
     PATH_SECTION *section     = &path->sections[i];
     PATH_SECTION *new_section = &new_path->sections[i];
 
@@ -552,23 +555,23 @@ static void s_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
 
 static void s_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
 {
-  bool in_num        = FALSE;
-  bool in_frac       = FALSE;
-  bool in_exp        = FALSE;
-  bool exp_wait_sign = FALSE;
-
-  char c       = 0;
-
-  int sign     = 0;
-  int exp      = 0;
-  int exp_sign = 0;
-
-  double frac  = 0.0;
-  double val   = 0.0;
   int i;
 
   for (i = 0;; i++) {
-    c = data[i];
+
+    bool in_num        = FALSE;
+    bool in_frac       = FALSE;
+    bool in_exp        = FALSE;
+    bool exp_wait_sign = FALSE;
+
+    int sign     = 0;
+    int exp      = 0;
+    int exp_sign = 0;
+
+    double frac  = 0.0;
+    double val   = 0.0;
+    char   c     = data[i];
+
     if (c >= '0' && c <= '9') {
       /* digit */
       if (in_num) {
@@ -742,14 +745,14 @@ Path *s_path_parse (const char *path_str)
 
 char *s_path_string_from_path (const Path *path)
 {
-  PATH_SECTION *section;
-  GString      *path_string;
+  GString *path_string;
   int i;
 
   path_string = g_string_new ("");
 
   for (i = 0; i < path->num_sections; i++) {
-    section = &path->sections[i];
+
+    PATH_SECTION *section = &path->sections[i];
 
     if (i > 0)
       g_string_append_c (path_string, '\n');
