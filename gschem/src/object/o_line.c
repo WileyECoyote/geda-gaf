@@ -68,9 +68,6 @@ void o_line_draw_rubber (GschemToplevel *w_current)
  */
 void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-
   /* Don't bother.. the real object is invalidated, its in the same place */
   i_status_action_stop(w_current);
 
@@ -80,6 +77,9 @@ void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
   if ((w_current->first_wx - w_current->second_wx) ||
       (w_current->first_wy - w_current->second_wy))
   {
+    GedaToplevel *toplevel = w_current->toplevel;
+    Object       *new_obj;
+
     /* create the line object and draw it */
     new_obj = o_line_new (GRAPHIC_COLOR,
                           w_current->first_wx, w_current->first_wy,

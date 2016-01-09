@@ -100,11 +100,8 @@ void o_box_draw_rubber (GschemToplevel *w_current)
  */
 static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object       *new_obj;
-
   int  box_width, box_height;
-  int  box_left, box_top;
+  int  box_left,  box_top;
 
   i_status_action_stop(w_current);
   w_current->rubber_visible = FALSE;
@@ -129,6 +126,9 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
     w_current->second_wy = (-1);
   }
   else {
+
+    GedaToplevel *toplevel = w_current->toplevel;
+    Object       *new_obj;
 
     /* create the object */
     new_obj = o_box_new (GRAPHIC_COLOR,

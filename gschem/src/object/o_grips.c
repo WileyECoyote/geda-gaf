@@ -540,12 +540,12 @@ Object*
 o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
                                  int x, int y, int size, int *whichone)
 {
-  PATH_SECTION *section;
   int i;
   int grip_no = 0;
 
   for (i = 0; i <  o_current->path->num_sections; i++) {
-    section = &o_current->path->sections[i];
+
+    PATH_SECTION *section = &o_current->path->sections[i];
 
     switch (section->code) {
     case PATH_CURVETO:
@@ -1077,7 +1077,6 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (CairoRenderer->draw_grips == TRUE) {
 
-    void  (*func) (GschemToplevel*, Object*, int, int);
     Object *object;
     int whichone;
 
@@ -1088,6 +1087,8 @@ bool o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
       result = FALSE;
     }
     else {
+
+      void  (*func) (GschemToplevel*, Object*, int, int);
 
       w_current->which_grip   = whichone;
       w_current->which_object = object;
@@ -1514,8 +1515,6 @@ o_grips_end(GschemToplevel *w_current)
 {
   Object *object;
 
-  int modified;
-
   object = w_current->which_object;
 
   if (!object) {
@@ -1523,7 +1522,8 @@ o_grips_end(GschemToplevel *w_current)
     i_status_set_state(w_current, SELECT);
   }
   else {
-    modified = TRUE;
+
+    int modified = TRUE;
 
     switch(object->type) {
 

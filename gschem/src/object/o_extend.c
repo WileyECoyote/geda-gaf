@@ -1573,14 +1573,16 @@ static bool o_extend_can_hit_target(Object *projectile,
                                     double *distance)
 {
   bool   answer;
-  Line  *line;
   POINT  point;
 
   answer = o_extend_can_bound(target, projectile, which_end, direction, &point);
 
   if (answer) {
-     line     = projectile->line;
-    *distance = m_distance(line->x[which_end], line->y[which_end], point.x, point.y);
+
+    Line  *line;
+
+    line     = projectile->line;
+   *distance = m_distance(line->x[which_end], line->y[which_end], point.x, point.y);
   }
 
   return answer; /* In theory, there's a chance */
@@ -1962,17 +1964,17 @@ int o_extend_object_list (GschemToplevel *w_current, Object *bounder, GList *pro
  */
 int o_extend_blind (GschemToplevel *w_current, Object *projectile)
 {
-  GList  *iter;
-  Object *target;
   bool    ret_val;
 
   if (o_extend_is_valid_projectile (projectile)) {
 
-    double shortest;
-    char   direction;
-    int    which_end;
-    int    x;
-    int    y;
+    GList  *iter;
+    Object *target;
+    double  shortest;
+    char    direction;
+    int     which_end;
+    int     x;
+    int     y;
 
     ret_val = 2;
 
@@ -2152,7 +2154,6 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
     GList  *object_list;
     Object *bounder;
-    Object *projectile;
 
     int count;
 
@@ -2164,6 +2165,8 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
     w_current->second_wy     = y;
 
     if (count == 1) {
+
+      Object *projectile;
 
       if (o_extend_is_valid_projectile(o_current)) {
 
@@ -2246,7 +2249,6 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 bool o_extend_selection (GschemToplevel *w_current, int count)
 {
   GList  *object_list;
-  Object *projectile;
   Object *bounder;
   int     status;
 
@@ -2256,6 +2258,8 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
   if (bounder) {
 
     if (count == 2) {
+
+      Object *projectile;
 
       if (g_list_nth_data(object_list,1) != bounder) {
         projectile = g_list_nth_data(object_list,1);

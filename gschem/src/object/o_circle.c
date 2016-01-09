@@ -83,9 +83,6 @@ void o_circle_draw_rubber (GschemToplevel *w_current)
  */
 void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-
   w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
@@ -94,6 +91,9 @@ void o_circle_end(GschemToplevel *w_current, int w_x, int w_y)
 
   /* circle with null radius are not allowed */
   if (w_current->distance != 0) { /* cancel the object creation */
+
+    GedaToplevel *toplevel = w_current->toplevel;
+    Object       *new_obj;
 
     /* create the object */
     new_obj = o_circle_new (GRAPHIC_COLOR,

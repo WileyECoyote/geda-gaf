@@ -567,7 +567,6 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
    * to the second point */
   void checkpoint (POINT *point, int *segment, int *node, Line *line) {
 
-    bool  do_snap;
     int   i;
     POINT vertex;
     POINT snapped;
@@ -585,6 +584,7 @@ static bool o_break_path(GschemToplevel *w_current, Object *object)
 
     for(i = 1; i < points->len; i++) {
 
+      bool  do_snap;
       POINT tmp;  /* Point to check, is point possibly adjusted for snap */
 
       line->x[0] = vertex.x;
@@ -1076,7 +1076,6 @@ static bool o_break_object(GschemToplevel *w_current, Object *object)
 int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   GList  *object_list;
-  Object *o_current;
 
   bool breakable;
   int  count;
@@ -1087,7 +1086,9 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
   count = g_list_length(object_list);
 
   if (count == 0) {
-    o_current = o_find_get_hit (w_current, w_x, w_y);
+
+    Object *o_current = o_find_get_hit (w_current, w_x, w_y);
+
     if (o_current) {
       if (o_break_is_breakable(o_current)) {
         breakable = TRUE;
@@ -1105,7 +1106,7 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
     }
   }
   else if (count == 1) {
-    o_current = object_list->data;
+    //o_current = object_list->data;
     breakable = TRUE;
   }
   else {

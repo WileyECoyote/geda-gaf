@@ -198,7 +198,6 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
                 int text_color, int text_size, int rotate)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *object;
   GList  *s_current;
   bool    changed_something;
   bool    invalidated;
@@ -210,7 +209,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
 
   while(s_current != NULL) {
 
-    object = (Object *) s_current->data;
+    Object *object = (Object*) s_current->data;
 
     if (object) {
 

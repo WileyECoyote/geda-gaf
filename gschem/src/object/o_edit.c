@@ -1137,13 +1137,14 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
     Object *attr_new = iter->data;
 
     char *name;
-    char *old_value;
     char *new_value;
 
     if (attr_new->type != OBJ_TEXT) {
       BUG_MSG("type is not OBJ_TEXT");
     }
     else {
+
+      char *old_value;
 
       o_attrib_get_name_value (attr_new, &name, &new_value);
 

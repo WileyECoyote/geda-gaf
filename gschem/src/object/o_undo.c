@@ -66,7 +66,6 @@ void o_undo_init(GschemToplevel *w_current)
   const char *msg_cl_tmp;
   const char *msg_not_rw;
   const char *msg_use_mem;
-  const char *tmp_tmp;
 
   msg_cl_tmp  = _("Undo: using tmp directory specified on command-line: <%s>\n");
   msg_not_rw  = _("Directory: %s is not read/writable, check permissions.\n");
@@ -85,6 +84,8 @@ void o_undo_init(GschemToplevel *w_current)
     v_log_message(msg_cl_tmp, tmp_path);
   }
   else {
+
+    const char *tmp_tmp;
 
     tmp_path = NULL;
     tmp_tmp = getenv("TMP");
