@@ -1,3 +1,8 @@
+2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/nmosfet-0: Revise NMOS transistor; fix pinseq, revise
+      attribute positions accordingly.
+
 2016-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add group linear/reference.

@@ -1,11 +1,11 @@
-v 20151204 2
+v 20151230 2
 T 900 800 8 10 1 1 0 0 1
 refdes=Q?
-T 900 1400 5 10 0 0 0 0 1
+T 900 1600 5 10 0 0 0 0 1
 author=AutoTron
 T 900 1000 5 10 0 0 0 0 1
 device=NMOS_TRANSISTOR
-T 900 1200 9 10 0 0 0 0 1
+T 900 1400 9 10 0 0 0 0 1
 numslots=0
 L 400 700 400 300 3 0 0 0 -1 -1
 L 600 640 440 640 3 0 1 0 -1 -1
@@ -75,3 +75,5 @@ T 900 400 9 10 0 0 0 0 1
 footprint=unknown
 T 900 600 9 10 0 1 0 0 1
 value=COMPONENT_VALUE
+T 900 1200 5 10 0 1 0 0 1
+description=N-Channel MOSFET with Diode

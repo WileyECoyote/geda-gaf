@@ -1,7 +1,7 @@
-v 20131031 2
-T 700 400 5 8 0 0 0 0 1
-device=PART_NUMBER
-T -100 1300 5 8 0 0 0 0 1
+v 20151204 2
+T 700 400 5 8 0 1 0 0 1
+device=NMOS_TRANSISTOR
+T 700 1300 5 8 0 0 0 0 1
 description=Basic N-MOS transistor
 L 300 600 300 200 3 0 0 0 -1 -1
 L 200 600 200 200 3 0 0 0 -1 -1
@@ -42,29 +42,27 @@ pintype=io
 }
 T 700 600 8 10 1 1 0 0 1
 refdes=Q?
-T -100 1000 8 8 0 0 0 0 1
+T 700 1000 8 8 0 0 0 0 1
 spice-type=M
-T -100 1150 8 8 0 0 0 0 1
+T 700 1150 8 8 0 0 0 0 1
 comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
-T 800 1000 8 8 0 1 0 0 1
-net=VDD:D
 T 700 800 5 8 0 0 0 0 1
 footprint=unknown
 T 700 200 9 6 0 0 0 0 1
 value=w=1u
 T 700 300 9 6 0 0 0 0 1
 value=l=.35u
-T 700 50 5 8 0 0 0 0 1
+T 700 50 5 8 0 1 0 0 1
 value=COMPONENT_VALUE
-T -100 1450 9 8 0 0 0 0 1
+T 700 1450 9 8 0 0 0 0 1
 documentation=http://www.wikipedia.org/wiki/MOSFET
-T -100 1600 5 8 0 0 0 0 1
+T 700 1600 5 8 0 0 0 0 1
 numslots=0
-T -100 1750 5 8 0 0 0 0 1
+T 700 1750 5 8 0 0 0 0 1
 symversion=0.3
-T -100 1900 5 8 0 0 0 0 1
+T 700 1900 5 8 0 0 0 0 1
 use-license=unrestricted
-T -100 2050 5 8 0 0 0 0 1
+T 700 2050 5 8 0 0 0 0 1
 dist-license=GPL3
-T -100 2200 5 8 0 0 0 0 1
+T 700 2200 5 8 0 0 0 0 1
 author=AutoTron
