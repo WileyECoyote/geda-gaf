@@ -1,28 +1,36 @@
 v 20151204 2
+T 700 600 8 10 1 1 0 0 1
+refdes=Q?
 T 700 400 5 8 0 1 0 0 1
 device=NMOS_TRANSISTOR
 T 700 1300 5 8 0 0 0 0 1
 description=Basic N-MOS transistor
+T 700 800 5 8 0 0 0 0 1
+footprint=WB SOT23
+T 700 50 5 8 0 1 0 0 1
+value=COMPONENT_VALUE
+T 700 1450 9 8 0 0 0 0 1
+documentation=http://www.wikipedia.org/wiki/MOSFET
 L 300 600 300 200 3 0 0 0 -1 -1
 L 200 600 200 200 3 0 0 0 -1 -1
-L 300 600 500 600 3 0 0 0 -1 -1
-L 300 200 500 200 3 0 0 0 -1 -1
+L 300 600 500 600 3 0 1 0 -1 -1
+L 300 200 500 200 3 0 1 0 -1 -1
 P 0 400 200 400 1 0 0
 {
-T 0 525 5 8 0 1 0 0 1
+T 0 525 9 8 0 1 0 0 1
 pinnumber=G
 T 0 525 5 8 0 1 0 0 1
 pinlabel=G
 T 0 225 5 8 0 1 0 0 1
 pinseq=1
-T -100 400 5 6 0 1 0 0 1
+T 100 350 5 6 0 1 0 2 1
 pintype=in
 }
 P 500 600 500 800 1 0 1
 {
 T 600 700 5 8 0 1 0 0 1
 pinnumber=2
-T 300 700 5 8 0 1 0 0 1
+T 300 700 9 8 0 1 0 0 1
 pinlabel=D
 T 600 700 5 8 0 1 0 0 1
 pinseq=2
@@ -33,36 +41,28 @@ P 500 200 500 0 1 0 1
 {
 T 600 100 5 8 0 1 0 0 1
 pinnumber=3
-T 300 0 5 8 0 1 0 0 1
+T 300 0 9 8 0 1 0 0 1
 pinlabel=S
 T 600 100 5 8 0 1 0 0 1
 pinseq=3
 T 500 0 5 6 0 1 0 0 1
 pintype=io
 }
-T 700 600 8 10 1 1 0 0 1
-refdes=Q?
-T 700 1000 8 8 0 0 0 0 1
-spice-type=M
-T 700 1150 8 8 0 0 0 0 1
-comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
-T 700 800 5 8 0 0 0 0 1
-footprint=unknown
-T 700 200 9 6 0 0 0 0 1
-value=w=1u
-T 700 300 9 6 0 0 0 0 1
-value=l=.35u
-T 700 50 5 8 0 1 0 0 1
-value=COMPONENT_VALUE
-T 700 1450 9 8 0 0 0 0 1
-documentation=http://www.wikipedia.org/wiki/MOSFET
 T 700 1600 5 8 0 0 0 0 1
 numslots=0
-T 700 1750 5 8 0 0 0 0 1
-symversion=0.3
+T 700 2200 5 8 0 0 0 0 1
+author=AutoTron
 T 700 1900 5 8 0 0 0 0 1
 use-license=unrestricted
 T 700 2050 5 8 0 0 0 0 1
 dist-license=GPL3
-T 700 2200 5 8 0 0 0 0 1
-author=AutoTron
+T 700 1000 8 8 0 0 0 0 1
+spice-type=M
+T 700 1150 8 8 0 0 0 0 1
+comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
+T 700 200 9 6 0 0 0 0 1
+value=w=1u
+T 700 300 9 6 0 0 0 0 1
+value=l=.35u
+T 700 1750 5 8 0 0 0 0 1
+symversion=0.4

@@ -1,4 +1,31 @@
 v 20151204 2
+T 800 700 8 10 1 1 0 0 1
+refdes=Q?
+T 800 900 5 10 1 1 0 0 1
+device=NMOS_TRANSISTOR
+T 800 1450 5 8 0 0 0 0 1
+numslots=0
+T 800 1100 5 10 0 0 0 0 1
+description=N channel MOS transistor
+T 800 300 9 10 0 0 0 0 1
+footprint=unknown
+T 800 500 5 10 0 1 0 0 1
+value=COMPONENT_VALUE
+T 800 1300 9 8 0 0 0 0 1
+documentation=http://www.wikipedia.org/wiki/MOSFET
+L 300 200 300 600 3 0 1 0 -1 -1
+L 500 400 450 400 3 0 1 0 -1 -1
+L 500 210 500 400 3 0 0 0 -1 -1
+L 350 135 350 285 3 10 0 0 -1 -1
+L 350 340 350 460 3 10 0 0 -1 -1
+L 350 515 350 665 3 10 0 0 -1 -1
+V 400 401 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
+M 365,400
+L 450,440
+L 450,360
+L 365,400
+z
 L 300 200 200 200 3 0 1 0 -1 -1
 P 0 200 200 200 1 0 0
 {
@@ -35,19 +62,6 @@ pinseq=3
 T 650 0 5 5 0 1 0 0 1
 pintype=pas
 }
-L 300 200 300 600 3 0 1 0 -1 -1
-L 450 400 500 400 3 0 0 0 -1 -1
-L 500 210 500 400 3 0 0 0 -1 -1
-L 350 135 350 285 3 10 0 0 -1 -1
-L 350 340 350 460 3 10 0 0 -1 -1
-L 350 515 350 665 3 10 0 0 -1 -1
-V 400 401 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
-M 350,400
-L 450,440
-L 450,360
-L 350,400
-z
 T 800 2050 5 8 0 0 0 0 1
 author=AutoTron
 T 800 1900 5 8 0 0 0 0 1
@@ -56,17 +70,3 @@ T 800 1750 5 8 0 0 0 0 1
 use-license=unrestricted
 T 800 1600 5 8 0 0 0 0 1
 symversion=0.4
-T 800 900 5 10 1 1 0 0 1
-device=NMOS_TRANSISTOR
-T 800 1450 5 8 0 0 0 0 1
-numslots=0
-T 800 1100 5 10 0 0 0 0 1
-description=N channel MOS transistor
-T 800 700 8 10 1 1 0 0 1
-refdes=Q?
-T 800 300 9 10 0 0 0 0 1
-footprint=unknown
-T 800 500 5 10 0 1 0 0 1
-value=COMPONENT_VALUE
-T 800 1300 9 8 0 0 0 0 1
-documentation=http://www.wikipedia.org/wiki/MOSFET
