@@ -35,7 +35,7 @@ static union
 {
   void *p;
   unsigned int i[2];
-} clip_got_answer_lock;
+} clip_got_answer_lock = {NULL};
 
 static bool got_answer;
 

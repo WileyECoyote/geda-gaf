@@ -6,6 +6,16 @@
       the action area was not getting redrawn when the dialog was reduced
       in sized.
 
+    * src/xxx/xxx.c: Initialize anonymous mutex to appease code analyzer:
+
+      * src/iface/i_command.c: union i_lock_last_command,
+
+      * src/iface/i_threads.c: union gschem_threads_mutex,
+
+      * src/guile/g_hook.c: union i_lock_is_busy,
+
+      * src/x/x_clipboard.c: union clip_got_answer_lock.
+
 2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_cmd_do_select, aka select action

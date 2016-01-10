@@ -207,7 +207,7 @@ static union
 {
   void *p;
   unsigned int i[2];
-} i_lock_is_busy;
+} i_lock_is_busy = {NULL};
 
 static int is_busy = 0;
 

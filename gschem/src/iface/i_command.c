@@ -134,9 +134,9 @@ static struct {
 /* Anonymous Static Mutex */
 static union
 {
-  void* p;
+  void *p;
   unsigned int i[2];
-} i_lock_last_command;
+} i_lock_last_command = {NULL}; /* initialize to appease code analyzers */
 
 static GThreadPool  *CommandPool     = NULL;
 static int           is_engaged      = -1;
