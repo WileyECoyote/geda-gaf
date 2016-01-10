@@ -1,3 +1,11 @@
+2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Add virtual over-ride for widget size_request,
+      compselect_size_request to redraw the hpaned when the dialog is re-
+      sized because the area under the preview and vpaned and a portion of
+      the action area was not getting redrawn when the dialog was reduced
+      in sized.
+
 2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_cmd_do_select, aka select action

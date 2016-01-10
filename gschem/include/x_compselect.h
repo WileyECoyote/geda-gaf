@@ -104,7 +104,6 @@ struct _Compselect {
   GtkWidget     *filter_hbox;
 
   GtkTreeView   *attrtreeview;
-
   GtkTreeView   *inusetreeview;
   GtkTreeView   *stdtreeview;
   GtkTreeView   *mantreeview;

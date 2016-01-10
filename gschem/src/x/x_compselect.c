@@ -2978,6 +2978,18 @@ static void compselect_settings_restore (Compselect *Dialog)
 
 #undef MASK
 
+static void
+compselect_size_request (GtkWidget *widget, GtkRequisition *requisition)
+{
+  if (gtk_widget_is_drawable(widget)) {
+
+    Compselect *compselect = (Compselect*)widget;
+
+    gtk_widget_queue_draw(compselect->hpaned);
+  }
+  GTK_WIDGET_CLASS(compselect_parent_class)->size_request(widget, requisition);
+}
+
 static void compselect_style_set (GtkWidget *widget, GtkStyle *previous)
 {
   Compselect *ThisDialog = COMPSELECT (widget);
@@ -3146,6 +3158,7 @@ compselect_class_init (void *class, void *class_data)
   object_class->set_property  = compselect_set_property;
   object_class->get_property  = compselect_get_property;
 
+  widget_class->size_request  = compselect_size_request;
   widget_class->style_set     = compselect_style_set;
 
   compselect_parent_class     = g_type_class_peek_parent (class);
