@@ -1,3 +1,9 @@
+2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/nmosfet-0: Beautify NMOS transistors; change end-type=none
+      to round and or square to improve appearance, resequence data in file
+      and tweak features.
+
 2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-0: Revise NMOS transistor; fix pinseq, revise
@@ -17,7 +23,7 @@
           * linear/reference/TL431B-2.sym
 
     * transistor/pmosfet-0: Revise PMOS transistor; change end-type=none
-      to round or squared to improve appearance, redo pinseq attributes
+      to round or square to improve appearance, redo pinseq attributes
       and reposition attributes accordingly. Change solid arrows, paths,
       to be slightly smaller.
 
