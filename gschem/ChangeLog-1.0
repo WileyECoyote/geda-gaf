@@ -4,7 +4,7 @@
       compselect_size_request to redraw the hpaned when the dialog is re-
       sized because the area under the preview and vpaned and a portion of
       the action area was not getting redrawn when the dialog was reduced
-      in sized.
+      in sized. Remove and discard stock action area.
 
     * src/xxx/xxx.c: Initialize anonymous mutex to appease code analyzer:
 

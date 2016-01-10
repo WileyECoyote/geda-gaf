@@ -3217,7 +3217,7 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
   GedaMenuButton *stylemenu = NULL;
 
   /* Create a Horizontal Box for everything to go into */
-  NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
+  action_hbox = gtk_hbox_new(FALSE, 0);
 
   /* ---- style Menu ---- */
   stylemenu = geda_menu_button_new(NULL, _("Rescan"));
@@ -3246,8 +3246,9 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
     PACK_BOX(action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
 
   }
-  else
+  else {
     ThisDialog->style_menu = NULL;
+  }
 
   /* ---- behavior Menu ---- */
   /* Create and Save a pointer to the behavior menu widget */
@@ -3271,8 +3272,9 @@ create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
     PACK_BOX(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
 
   }
-  else
+  else {
     ThisDialog->behavior_menu = NULL;
+  }
 
   ContinueSwitch = NULL;
 
@@ -3324,9 +3326,9 @@ compselect_constructor (GType                  type,
                         unsigned int           n_construct_properties,
                         GObjectConstructParam *construct_params)
 {
-  GschemToplevel  *w_current;
-  GObject         *object;
-  Compselect      *ThisDialog;
+  GschemToplevel *w_current;
+  GObject        *object;
+  Compselect     *ThisDialog;
 
   GtkWidget *hpaned, *vpaned, *notebook;
   GtkWidget *notebook_tab  = NULL;
@@ -3426,7 +3428,7 @@ compselect_constructor (GType                  type,
 
   alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
                                         /* GtkAlignment */
-                                        "border-width", 5,
+                                        "border-width",   5,
                                         "xscale",         1.0,
                                         "yscale",         1.0,
                                         "xalign",         0.5,
@@ -3491,13 +3493,21 @@ compselect_constructor (GType                  type,
 
   int mode = w_current->continue_component_place;
 
-  action_area = create_action_area (compselect, (GtkWidget*) main_vbox, mode);
+  /* Remove Gtk action area from the dialog and don't re-use it */
+  action_area = GTK_DIALOG(ThisDialog)->action_area;
+  gtk_container_remove(GTK_CONTAINER(main_vbox),GTK_WIDGET(action_area));
+
+  action_area = create_action_area (compselect, (GtkWidget*)main_vbox, mode);
+  gtk_box_pack_end (GTK_BOX (main_vbox), action_area, FALSE, FALSE, 0);
+
+  /* Replace the action_area with the new container */
+  GTK_DIALOG(ThisDialog)->action_area = action_area;
 
   gtk_widget_show_all (action_area);
 
   g_signal_connect ((void*) notebook, "switch-page",
-                    G_CALLBACK (on_notebook_switch_page),
-                    ThisDialog);
+                     G_CALLBACK (on_notebook_switch_page),
+                     ThisDialog);
   return object;
 }
 
