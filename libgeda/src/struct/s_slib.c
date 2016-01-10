@@ -1,24 +1,33 @@
-/* gEDA - GPL Electronic Design Automation
- * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/*
+ * File: s_slib.c
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * gEDA - GPL Electronic Design Automation
+ * libgeda - gEDA's Library
  *
- * This program is distributed in the hope that it will be useful,
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
-/*! slib stands for source (project/schematic/hdl/model source) library */
+
+/*! \file s_slib.c
+ *  \brief Manage Source Library directories data
+ *   slib stands for source (project/schematic/hdl/model source) library
+ */
 
 #include <config.h>
 
@@ -64,11 +73,11 @@ static struct st_slib slib[MAX_SLIBS];
 int s_slib_add_entry(const char *new_path)
 {
   if (new_path == NULL) {
-    return(-1);
+    return (-1);
   }
 
   if (slib_index >= MAX_SLIBS) {
-    return(-1);
+    return (-1);
   }
 
   if (!s_slib_search_for_dirname(new_path)) {
@@ -76,7 +85,7 @@ int s_slib_add_entry(const char *new_path)
     slib_index++;
   }
 
-  return(slib_index);
+  return (slib_index);
 }
 
 /*! \brief Release Source Library resources
@@ -110,22 +119,23 @@ char *s_slib_get_basename(const char *rawname)
 {
   char *return_filename;
   int i;
-  int done=0;
+  int done;
   int lastchar;
-  int valid=0;
   int len;
-  int seen_underscore=0;
+  int seen_underscore;
+  int valid;
 
   if (!rawname)
-    return(NULL);
+    return (NULL);
 
   len = strlen(rawname) + 1;
 
   return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
 
-  i = 0;
+  i = done = seen_underscore = valid = 0;
+
   /* first get everything up to the leading dot */
-  while(rawname[i] != '\0' && rawname[i] != '.') {
+  while (rawname[i] != '\0' && rawname[i] != '.') {
     return_filename[i] = rawname[i];
     i++;
   }
@@ -135,7 +145,7 @@ char *s_slib_get_basename(const char *rawname)
   /* skip null terminator */
   i--;
 
-  lastchar=i;
+  lastchar = i;
 
   /* this is a quick and dirty state machine to */
   /* go back and strip off any _#'s */
@@ -144,7 +154,8 @@ char *s_slib_get_basename(const char *rawname)
 
     /* first we need to check to see if we have seen the first '_' */
     /* if we have then we already removing chars, continue with that */
-    if ( seen_underscore ) {
+    if (seen_underscore) {
+
       if (return_filename[i] == '_') {
         done = 1;
       }
@@ -156,9 +167,10 @@ char *s_slib_get_basename(const char *rawname)
 
       /* first make sure char is a number */
       if (isdigit((int) return_filename[i])) {
-        valid=1;
+        valid = 1;
       }
       else if (return_filename[i] == '_' && valid) {
+
         /* yes it is okay to delete the chars */
         seen_underscore=1;
         /* incremented, since it is then */
@@ -167,7 +179,7 @@ char *s_slib_get_basename(const char *rawname)
       }
       else {
         valid = 0;
-        done = 1;
+        done  = 1;
       }
     }
 
@@ -175,7 +187,7 @@ char *s_slib_get_basename(const char *rawname)
   }
 
   /* be sure to GEDA_FREE this somewhere */
-  return(return_filename);
+  return (return_filename);
 }
 
 /*! \brief Get the Component Library directory at the Given index
@@ -190,9 +202,9 @@ char *s_slib_get_basename(const char *rawname)
 char *s_slib_get_dir(int index)
 {
   if (slib[index].dir_name != NULL)
-    return(slib[index].dir_name);
+    return (slib[index].dir_name);
   else
-    return(NULL);
+    return (NULL);
 }
 
 /*! \brief Initialize the Source Library
@@ -217,7 +229,7 @@ void s_slib_print(void)
   int i;
 
   for (i = 0; i < slib_index; i++) {
-    printf("%s\n", slib[i].dir_name);
+    printf ("%s\n", slib[i].dir_name);
   }
 }
 
@@ -234,15 +246,18 @@ void s_slib_print_dirs(void)
   i = 0;
   directory = s_slib_get_dir(i);
 
-  while(directory != NULL) {
+  while (directory != NULL) {
 
     printf("Opened %s\n", directory);
 
-    GSList *files = f_get_dir_list_files(directory, NULL);
+    GSList *files = f_get_dir_list_files (directory, NULL);
 
-    while(files) {
+    while (files) {
+
       char *file = files->data;
+
       printf("file: %s\n", file);
+
       files = files->next;
     }
 
@@ -279,10 +294,10 @@ char *s_slib_search_for_file (const char *basename)
     GEDA_FREE(file_path);
     GEDA_FREE(slib_path);
 
-    return(full_path);
+    return (full_path);
   }
   else {
-    return(NULL);
+    return (NULL);
   }
 }
 
@@ -299,11 +314,11 @@ int s_slib_search_for_dirname(const char *dir_name)
 
     for (i = 0; i < slib_index; i++) {
       if (strcmp(slib[i].dir_name, dir_name) == 0) {
-        return(1);
+        return (1);
       }
     }
   }
-  return(0);
+  return (0);
 }
 
 /*! \brief Search Source Library Directories for a File name
@@ -316,15 +331,14 @@ int s_slib_search_for_dirname(const char *dir_name)
  */
 char *s_slib_search_dirs(const char *basename)
 {
-  DIR  *ptr       = NULL;
-  char *slib_path = NULL;
-  int   i;
-
-  struct dirent *dptr;
+  int i;
 
   /* Search slib paths backwards */
   for (i = slib_index - 1 ; i >= 0; i--) {
-    /* for (i = 0 ; i < slib_index; i++) {*/
+
+    DIR  *ptr;
+
+    struct dirent *dptr;
 
 #if DEBUG
     printf("searching: %d %s\n", i, slib[i].dir_name);
@@ -334,37 +348,36 @@ char *s_slib_search_dirs(const char *basename)
 
     g_return_val_if_fail ((ptr != NULL), NULL);
 
-    dptr = readdir(ptr);
+    dptr = readdir (ptr);
 
-    while(dptr != NULL) {
+    while (dptr != NULL) {
 
       /* Note: readdir returns both the "." and ".." entries, the former
        * ia a problem because the dot is likely in file name as .sch */
       if (dptr->d_name[1] != '\0') {
 
         /* Do a substring comp for a match */
-        if (strstr(dptr->d_name, basename) != 0)  {
+        if (strstr (dptr->d_name, basename) != 0)  {
 
-          slib_path = u_string_strdup (slib[i].dir_name);
+          char *slib_path = u_string_strdup (slib[i].dir_name);
 
           if (ptr) {
-            closedir(ptr);
-            ptr = NULL;
+            closedir (ptr);
           }
 
-          return(slib_path);
+          return (slib_path);
         }
       }
       dptr = readdir(ptr);
     }
 
     if (ptr) {
-      closedir(ptr);
+      closedir (ptr);
       ptr = NULL;
     }
   }
 
-  return(NULL);
+  return (NULL);
 }
 
 /*! \brief Check is Path exist and is not in the search path.
@@ -377,14 +390,8 @@ char *s_slib_search_dirs(const char *basename)
  */
 int s_slib_unique_dir_exist(const char *path)
 {
-  int result;
-
   if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
-    result = !s_slib_search_for_dirname(path);
+    return !(s_slib_search_for_dirname(path));
   }
-  else {
-    result = 0;
-  }
-
-  return result;
+  return 0;
 }

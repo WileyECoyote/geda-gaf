@@ -12,14 +12,18 @@
           * src/struct/s_tile.c.
 
     * src/struct/s_cue.c: Remove inclusion of ctype.h, and conditional for
-      inclusion of stdlib.h. Switch the switch statement with a single case
-      to if in functions s_cue_output_lowlevel and s_cue_output_lowlevel.
+      inclusion of stdlib.h. Change the switch statement with only one case
+      to an if in functions s_cue_output_lowlevel and s_cue_output_lowlevel.
       Replace header, add Doxygen comments and reduce scope of variables in
       modules.
 
     * src/struct/s_slot.c: Replace u_string_sprintf with u_string_int2str
       s_slot_update_object. Replace header and reduce scope of variables
       in module.
+
+    * src/struct/s_slib.c: Eliminate unnecessary setting of variables ptr and
+      slib_path to NULL in function s_slib_search_for_dirname Replace header
+      and reduce scope of variables in module.
 
 2016-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
