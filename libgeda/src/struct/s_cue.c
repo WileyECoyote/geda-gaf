@@ -1,33 +1,35 @@
-/* gEDA - GPL Electronic Design Automation
- * libgeda - gEDA's library
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
+/*
+ * File: s_cue.c
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * gEDA - GPL Electronic Design Automation
+ * libgeda - gEDA's Library
  *
- * This program is distributed in the hope that it will be useful,
+ * Copyright (C) 1998-2016 Ales Hvezda
+ * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  */
 #include <config.h>
 
 #include <stdio.h>
-#include <ctype.h>
-#ifdef HAVE_STDLIB_H
 #include <stdlib.h>
-#endif
-#include <math.h>
-#include <libgeda_priv.h>
+#include <math.h>                /* hypot function */
 
+#include <libgeda_priv.h>
 #include <geda_debug.h>
 
 /*! \brief Get Locations for Junctions and Unconnected Cues
@@ -53,11 +55,10 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
                                                GArray *unconnected)
 {
   const GList  *iter;
-        Object *object;
         POINT   point;
 
-  void add_end_cues (Object *object, int end)
-  {
+  void add_end_cues (Object *object, int end) {
+
     int conn_count = 0;
     int conn_type  = CONN_ENDPOINT;
     int x          = object->line->x[end], y = object->line->y[end];
@@ -129,7 +130,9 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
   iter = objects;
 
   while (iter != NULL) {
-    object = iter->data;
+
+    Object *object = iter->data;
+
     if (object->type == OBJ_NET || object->type == OBJ_BUS) {
       add_mid_cues (object);
       add_end_cues (object, 0);
@@ -138,14 +141,15 @@ void s_cue_get_locations(const GList *objects, GArray *junctions,
     else if (object->type == OBJ_PIN) {
       add_end_cues (object, object->pin->whichend);
     }
+
     iter = iter->next;
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Write Fill-Box Cue to Postscript file
  *  \par Function Description
- *
+ *   Write postscript instructions to \a fp to draw an unconnected
+ *   end-point, aka a small box, at the given coordinates.
  */
 static void s_cue_postscript_fillbox(GedaToplevel *toplevel, FILE *fp,
                                      int x, int y)
@@ -162,10 +166,10 @@ static void s_cue_postscript_fillbox(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp, "%d %d %d %d fbox\n", offset2, offset2, x-offset, y-offset);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Write Junction to Postscript file
  *  \par Function Description
- *
+ *   Write postscript instructions to \a fp to draw a junction,
+ *   aka a small circle, at the given coordinates.
  */
 static void s_cue_postscript_junction (GedaToplevel *toplevel, FILE *fp,
                                        int x, int y, int bus_involved)
@@ -174,7 +178,8 @@ static void s_cue_postscript_junction (GedaToplevel *toplevel, FILE *fp,
 
   if (bus_involved) {
     offset2 = JUNCTION_CUE_SIZE_BUS;
-  } else {
+  }
+  else {
     offset2 = JUNCTION_CUE_SIZE_NET;
   }
 
@@ -187,7 +192,10 @@ static void s_cue_postscript_junction (GedaToplevel *toplevel, FILE *fp,
   fprintf(fp, "fill\n");
 }
 
-/*! \brief Draw an arrow at the end of a net.
+/*! \brief  Write Arrow to Postscript file
+ *  \par Function Description
+ *   Write postscript instructions to \a fp to draw an arrow,
+ *   at given the coordinates, normally at the end of a net.
  */
 static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
                                     int x, int y, int dx, int dy)
@@ -206,7 +214,8 @@ static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
     double c = dx / len;
     double s = dy / len;
     fprintf (fp, "[ %.2f %.2f %.2f %.2f %d %d ] concat\n", c, -s, s, c, x, y);
-  } else {
+  }
+  else {
     fprintf (fp, "%d %d translate\n", x, y); /* Translate to centre point of the arrow */
   }
 
@@ -221,10 +230,10 @@ static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Low-level Write Cue to Postscript file
  *  \par Function Description
- *
+ *   Wrapper for s_cue_postscript_arrow, s_cue_postscript_fillbox
+ *   and s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel(GedaToplevel *toplevel,
                                   Object       *object,
@@ -233,33 +242,30 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
                                   int           output_type)
 {
   GList *cl_current;
-  CONN  *conn;
 
-  int x, y;
-  int type;
+  int x            = object->line->x[whichone];
+  int y            = object->line->y[whichone];
+  int type         = CONN_ENDPOINT;
   int count        = 0;
   int done         = FALSE;
   int bus_involved = FALSE;
 
-  x = object->line->x[whichone];
-  y = object->line->y[whichone];
-
-  type = CONN_ENDPOINT;
-
   if (object->type == OBJ_BUS ||
-       (object->type == OBJ_PIN && object->pin->node_type == PIN_BUS_NODE))
+     (object->type == OBJ_PIN && object->pin->node_type == PIN_BUS_NODE))
     bus_involved = TRUE;
 
   cl_current = object->conn_list;
+
   while (cl_current != NULL && !done) {
-    conn = (CONN *) cl_current->data;
+
+    CONN *conn = (CONN *) cl_current->data;
 
     if (conn->x == x && conn->y == y) {
 
       if (conn->other_object &&
-           (conn->other_object->type == OBJ_BUS ||
-             (conn->other_object->type == OBJ_PIN &&
-              conn->other_object->pin->node_type == PIN_BUS_NODE)))
+         (conn->other_object->type == OBJ_BUS ||
+         (conn->other_object->type == OBJ_PIN &&
+          conn->other_object->pin->node_type == PIN_BUS_NODE)))
         bus_involved=TRUE;
 
       switch (conn->type) {
@@ -269,8 +275,8 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
           break;
 
         case (CONN_MIDPOINT):
-          type = CONN_MIDPOINT;
-          done = TRUE;
+          type  = CONN_MIDPOINT;
+          done  = TRUE;
           count = 0;
           break;
       }
@@ -283,38 +289,35 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
   printf("type: %d count: %d\n", type, count);
 #endif
 
-  switch (type) {
-
-    case (CONN_ENDPOINT):
-      if (object->type == OBJ_NET || object->type == OBJ_PIN) {
-        if (count < 1) {        /* Didn't find anything connected there */
-          if ((object->type == OBJ_NET) && o_net_is_fully_connected (object))
-          {
-            /* Probably connected, so draw friendly arrowhead. The
-             * additional parameters are needed to allow the arrowhead
-             * to be pointed in the direction of the net. */
-            if (output_type == POSTSCRIPT) {
-              s_cue_postscript_arrow (toplevel, fp, x, y,
-                                      object->line->x[whichone] - object->line->x[!whichone],
-                                      object->line->y[whichone] - object->line->y[!whichone]);
-            }
-          } else {
-            s_cue_postscript_fillbox (toplevel, fp, x, y);
+  if (type == CONN_ENDPOINT) {
+    if (object->type == OBJ_NET || object->type == OBJ_PIN) {
+      if (count < 1) {        /* Didn't find anything connected there */
+        if ((object->type == OBJ_NET) && o_net_is_fully_connected (object))
+        {
+          /* Probably connected, so draw friendly arrowhead. The
+           * additional parameters are needed to allow the arrowhead
+           * to be pointed in the direction of the net. */
+          if (output_type == POSTSCRIPT) {
+            s_cue_postscript_arrow (toplevel, fp, x, y,
+                                    object->line->x[whichone] - object->line->x[!whichone],
+                                    object->line->y[whichone] - object->line->y[!whichone]);
           }
-        } else if (count >= 2) {
-          if (output_type == POSTSCRIPT)
-            s_cue_postscript_junction (toplevel, fp, x, y, bus_involved);
+        }
+        else {
+          s_cue_postscript_fillbox (toplevel, fp, x, y);
         }
       }
-      break;
+      else if (count >= 2) {
+        if (output_type == POSTSCRIPT)
+          s_cue_postscript_junction (toplevel, fp, x, y, bus_involved);
+      }
+    }
   }
-
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Low-level Write Mid-Point Cue to Postscript file
  *  \par Function Description
- *
+ *   Wrapper for s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
                                             Object       *object,
@@ -323,31 +326,29 @@ static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
 {
   GList *cl_current;
   CONN  *conn;
-  int x, y;
-  int bus_involved = FALSE;
+  int    x, y;
+  int    bus_involved = FALSE;
 
   if (object->type == OBJ_BUS)
     bus_involved = TRUE;
 
   cl_current = object->conn_list;
+
   while (cl_current != NULL) {
     conn = (CONN *) cl_current->data;
 
-    switch (conn->type) {
-      case (CONN_MIDPOINT):
+    if  (conn->type == CONN_MIDPOINT) {
 
-        x = conn->x;
-        y = conn->y;
+      x = conn->x;
+      y = conn->y;
 
-        if (conn->other_object && conn->other_object->type == OBJ_BUS)
-          bus_involved = TRUE;
+      if (conn->other_object && conn->other_object->type == OBJ_BUS)
+        bus_involved = TRUE;
 
-        if (output_type == POSTSCRIPT) {
-          s_cue_postscript_junction (toplevel, fp, x, y, bus_involved);
-        }
-        break;
+      if (output_type == POSTSCRIPT) {
+        s_cue_postscript_junction (toplevel, fp, x, y, bus_involved);
+      }
     }
-
 
     cl_current = g_list_next(cl_current);
   }
@@ -391,20 +392,19 @@ void s_cue_output_single(GedaToplevel *toplevel,
   s_cue_output_lowlevel_midpoints(toplevel, object, fp, type);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Write All Cues to Postscript file
  *  \par Function Description
- *
+ *   Wrapper for s_cue_output_single and s_cue_output_all.
  */
 void
 s_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
 {
-  Object      *o_current;
-  const GList *iter;
+  const GList *iter = obj_list;
 
-  iter = obj_list;
   while (iter != NULL) {
-    o_current = (Object *)iter->data;
+
+    Object *o_current = (Object*)iter->data;
+
     switch (o_current->type) {
       case (OBJ_NET):
       case (OBJ_BUS):
