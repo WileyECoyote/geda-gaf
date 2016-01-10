@@ -308,13 +308,11 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                       int           show_name_value,
                                       Object       *object)
 {
-  int world_x = -1, world_y = -1;
-  int color;
-  int left, right, top, bottom;
   Object *o_current;
   Object *new_obj;
-
-  color = DETACHED_ATTRIBUTE_COLOR;
+  int color;
+  int left, right, top, bottom;
+  int world_x = -1, world_y = -1;
 
   o_current = object;
 
@@ -335,7 +333,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
       break;
 
     default:
-      fprintf(stderr, _("In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex or non-net!\n"));
+      fprintf(stderr, _("%s: trying to add attrib to non-complex or non-net!\n"), __func__);
       return FALSE;
     }
   }
@@ -356,7 +354,6 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   printf("===  In s_object_attrib_add_attrib_in_object, about to attach new text attrib with properties:\n");
   printf("     color = %d\n", color);
   printf("     text_string = %s \n", text_string);
- // printf("     text_size = %d \n", toplevel->text_size);
   printf("     visibility = %d \n", visibility);
   printf("     show_name_value = %d \n", show_name_value);
 #endif
@@ -371,7 +368,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   /* now toplevel->page_current->object_tail contains new text item */
 
   /* now attach the attribute to the object (if o_current is not NULL) */
-  /* remember that o_current contains the object to get the attribute */
+  /* note that o_current contains the object to get the attribute */
   if (o_current) {
     o_attrib_attach (o_current, new_obj, FALSE);
   }
