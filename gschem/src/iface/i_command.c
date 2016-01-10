@@ -172,12 +172,14 @@ static
 void i_command_router(char* command, GschemToplevel *w_current)
 {
   int accelerator;
-  int i;
-  gschem_task *task;
 
   inline void route(int i) {
+
     /* see note #1 in i_command.h */
     if ((command_struc[i].aflag & ActionTaskMask) == USE_MAIN_LOOP) {
+
+      gschem_task *task;
+
       task = g_new( gschem_task, 1);
       task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
@@ -199,6 +201,9 @@ void i_command_router(char* command, GschemToplevel *w_current)
     route(accelerator);
   }
   else {
+
+    int i;
+
     for (i = 1; i < COMMAND_COUNT; i++) {
       if (u_string_strequal(command_struc[i].name, command)) {
         route(i);
@@ -818,13 +823,15 @@ COMMAND (do_open) {
 
   if (NULL != (files = x_fileselect_list (w_current))) {
 
-    gschem_task  *task;
     IdleTaskData *packet;
     int count = 0;
 
     w_current->toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
 
     lambda (void *filename) {
+
+      gschem_task  *task;
+
       task          = g_new(gschem_task, 1);
       task->func.F2 = (void*)x_window_open_page;
       task->arg1    = command_struc[cmd_do_open].w_current;
@@ -1814,8 +1821,13 @@ COMMAND (do_unlock)
 COMMAND (do_select)
 {
   BEGIN_W_COMMAND(do_select);
-  if (!o_invalidate_rubber (w_current)) {
-    i_callback_cancel(w_current, 0, NULL);
+
+  /* If inside action get rid of any rubber and put everything
+   * back where it belongs, for example stretched nets */
+  if (w_current->inside_action){
+    if (!o_invalidate_rubber (w_current)) {
+      i_callback_cancel(w_current, 0, NULL);
+    }
   }
 
   o_redraw_cleanstates(w_current);
@@ -1846,8 +1858,8 @@ COMMAND (do_select_all)
 COMMAND (do_select_invert)
 {
   BEGIN_W_COMMAND(do_select_invert);
-  GedaToplevel *toplevel = w_current->toplevel;
-  SELECTION *selection = toplevel->page_current->selection_list;
+  GedaToplevel *toplevel  = w_current->toplevel;
+  SELECTION    *selection = toplevel->page_current->selection_list;
 
   GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);

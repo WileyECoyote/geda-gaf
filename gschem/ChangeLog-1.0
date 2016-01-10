@@ -1,5 +1,11 @@
 2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Revise i_cmd_do_select, aka select action
+      to conditionally call o_invalidate_rubber and consequentiently
+      i_callback_cancel if inside an action and this allows objects to
+      remain selected when switching from "deselect" and "select" modes.
+      Reduce scope of task in inline route method of i_command_router.
+
     * src/object/o_xxx.c: Reduce scope of variables:
 
       * src/object/o_box.c: new_obj and toplevel in o_box_end,
