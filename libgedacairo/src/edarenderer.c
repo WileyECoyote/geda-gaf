@@ -1469,7 +1469,7 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, Object *object)
 static void
 eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y, double width)
 {
-  double radius = width / 2;
+  double radius = width / 2.0;
 /*
   if (!eda_renderer_is_drawable_color (renderer, EDAR_JUNCTION_COLOR, 1)) {
     return;

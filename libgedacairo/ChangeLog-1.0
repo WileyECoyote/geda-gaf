@@ -1,3 +1,9 @@
+2016-01-09 Edward Hennessy <ehennes@sbcglobal.net>
+
+    * src/edacairo.c: WEH: Modified per commit to Master branch by
+      Edward Hennessy, commit 35146248317d334aaac0decd270f8dddbcd07786:
+      libgeda: divide by floating point to fix coverity warning.
+
 2015-12-30 Edward Hennessy <ehennes@sbcglobal.net>
 
     * src/edacairo.c: WEH: Modified per commit to Master branch
