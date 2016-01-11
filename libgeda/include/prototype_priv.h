@@ -257,7 +257,6 @@ CONN    *s_conn_return_new             (Object *other_object, int type, int x, i
 int      s_conn_uniq                   (GList  *conn_list, CONN *input_conn);
 int      s_conn_remove_other           (Object *other_object, Object *to_remove);
 Object  *s_conn_check_midpoint         (Object *o_current, int x, int y);
-void     s_conn_print                  (GList  *conn_list);
 void     s_conn_init                   (void);
 
 /* s_encoding.c */

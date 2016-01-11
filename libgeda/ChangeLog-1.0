@@ -1,5 +1,13 @@
 2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/prototype_priv.h: Remove s_conn_print entry, was moved
+      to prototype.h because is used in debugging routines in gschem.
+
+    * include/libgeda_priv.h: Remove inclusion of papersizes.h.
+
+    * include/gtkextratypesbuiltins.h: Remove file, not sure how that
+      got in there.
+
     * include/libgeda/geda_arc.h: Define GedaArcType in header file,
       remove __cplusplus macros.
 
