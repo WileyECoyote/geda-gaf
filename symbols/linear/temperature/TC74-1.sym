@@ -1,4 +1,4 @@
-v 20140330 2
+v 20151230 2
 B 300 200 1100 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 800 1600 800 1300 1 0 0
 {
@@ -44,15 +44,15 @@ pinnumber=4
 T -200 300 5 10 0 0 180 0 1
 pinseq=4
 }
-T 295 0 8 10 1 1 0 0 1
+T 1600 1400 8 10 1 1 0 0 1
 refdes=U?
-T 995 -2 8 10 1 1 0 0 1
+T 1600 1600 8 10 1 1 0 0 1
 device=TC74
-T -5 -4 8 10 0 1 0 0 1
+T 1600 1800 8 10 0 1 0 0 1
 footprint=TO220_5
-T -990 3260 5 10 0 0 0 0 1
+T 1600 1200 5 10 0 0 0 0 1
 author=Brad Ackerman <brad@facefault.org>
-T -990 2860 5 10 0 0 0 0 1
+T 1600 800 5 10 0 0 0 0 1
 documentation=http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en010749
-T -990 3060 5 10 0 0 0 0 1
+T 1600 1000 5 10 0 0 0 0 1
 description=I2C temperature sensor
