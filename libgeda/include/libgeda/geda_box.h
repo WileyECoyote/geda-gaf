@@ -36,6 +36,12 @@
 #ifndef __GEDA_BOX_H__
 #define __GEDA_BOX_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaBoxType unsigned long
+#else
+# define GedaBoxType unsigned int
+#endif
+
 #define GEDA_TYPE_BOX            (geda_box_get_type())
 #define GEDA_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BOX, Box))
 #define GEDA_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BOX, BoxClass))
@@ -71,12 +77,18 @@ struct _GedaBox {
 
 };
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType geda_box_get_type        (void);
 bool     is_a_geda_box_object     (Box *object);
 Object  *geda_box_new             (void);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#undef GedaBoxType
 
 #endif /* __GEDA_BOX_H__ */

@@ -3,6 +3,9 @@
     * include/libgeda/geda_arc.h: Define GedaArcType in header file,
       remove __cplusplus macros.
 
+    * include/libgeda/geda_box.h: Define GedaArcType in header file,
+      remove __cplusplus macros.
+
 2016-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_xxx.c: Reduce scope of variables in modules:
