@@ -502,10 +502,23 @@ void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
  * \param [in,out] page          Page to weak-reference.
  * \param [in] weak_pointer_loc  Memory address of a pointer.
  */
-void geda_page_remove_weak_ptr (Page *page, void *weak_pointer_loc)
+void geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
 {
   if (GEDA_IS_PAGE(page) && weak_pointer_loc !=NULL) {
     g_object_remove_weak_pointer ((GObject*)page, weak_pointer_loc);
+  }
+}
+
+void geda_page_feeze_notify(Page *page)
+{
+  if (GEDA_IS_PAGE(page)) {
+    geda_notify_list_freeze(page->change_notify_funcs);
+  }
+}
+void geda_page_thaw_notify(Page *page)
+{
+  if (GEDA_IS_PAGE(page)) {
+    geda_notify_list_thaw(page->change_notify_funcs);
   }
 }
 
@@ -516,7 +529,7 @@ void geda_page_remove_weak_ptr (Page *page, void *weak_pointer_loc)
  * \param [in,out] page     A valid Page object.
  * \param [in]     newname  New string name for page filename.
  */
-int geda_page_rename (Page *page, const char *newname)
+int geda_page_rename(Page *page, const char *newname)
 {
   bool result = FALSE;
 
