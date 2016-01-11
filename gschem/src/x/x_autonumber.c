@@ -41,6 +41,14 @@
 #define ThisDialog autonumber_text
 #define Switch_Responder switch_responder
 
+#if defined(__LP64__) || defined(_LP64)
+# define INT_TO_POINTER(u) ((void*)(long)(u))
+# define POINTER_TO_INT(u) ((int)(void*)(u))
+#else
+# define INT_TO_POINTER(u) ((void*)(int)(u))
+# define POINTER_TO_INT(u) ((int)(void*)(u))
+#endif
+
 /** \defgroup Auto-Number-Dialog Auto Number Dialog
  *  @{
  *  \ingroup (Standard-Dialogs Editing-Dialogs)
@@ -606,7 +614,7 @@ static void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *auto
       }
       /* put number into the used list */
       autotext->used_numbers = g_list_insert_sorted(autotext->used_numbers,
-                                                    GINT_TO_POINTER(number),
+                                                    INT_TO_POINTER(number),
                                                     (GCompareFunc) autonumber_sort_numbers);
     }
   }
@@ -687,7 +695,7 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
 
   /* insert the new number to the used list */
   autotext->used_numbers = g_list_insert_sorted(autotext->used_numbers,
-                                                GINT_TO_POINTER(new_number),
+                                                INT_TO_POINTER(new_number),
                                                 (GCompareFunc) autonumber_sort_numbers);
 
   /* 3. is o_current a slotted object ? */
@@ -1553,7 +1561,7 @@ GtkWidget* autonumber_create_scope_menu (GschemToplevel *w_current)
     menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
-    GEDA_OBJECT_SET_DATA(menuitem, GINT_TO_POINTER (types[i].scope), "scope_menu");
+    GEDA_OBJECT_SET_DATA(menuitem, INT_TO_POINTER (types[i].scope), "scope_menu");
     gtk_widget_show (menuitem);
   }
 

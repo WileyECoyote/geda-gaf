@@ -1,3 +1,13 @@
+2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_status_bar.c: Okay I was wrong, glib changed the
+      definition of glong on x64, not sure why there needs to be more
+      than 4294967295U signals, sounds more like another glib blunder,
+      define UINT_TO_POINTER in the module.
+
+     * src/x/x_autonumber.c: Define INT_TO_POINTER and POINTER_TO_INT
+       in the module.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Replace pointless macros:

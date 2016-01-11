@@ -40,6 +40,12 @@
 #include <gschem.h>
 #include <geda_widgets.h>
 
+#if defined(__LP64__) || defined(_LP64)
+# define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))
+#else
+# define UINT_TO_POINTER(u) ((void*)(unsigned int)(u))
+#endif
+
 /** \defgroup Gschem-Status-Bar Gschem Status Bar
  *  @{ \brief This module defines the #GschemStatusBar class
 */
@@ -199,7 +205,7 @@ static void coord_display_options_popup (GtkWidget      *event_box,
 
     g_signal_connect (GTK_OBJECT(popup_item), "activate",
                      (GCallback)coord_options_popup_clicked,
-                      (void*)(unsigned int)(entry.signal));
+                      UINT_TO_POINTER(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 

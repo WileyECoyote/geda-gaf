@@ -1097,6 +1097,12 @@ geda_image_menu_item_setting_changed (GtkSettings *settings)
   g_list_free (list);
 }
 
+#if defined(__LP64__) || defined(_LP64)
+# define UINT_TO_POINTER(u) ((void*)(unsigned long)(u))
+#else
+# define UINT_TO_POINTER(u) ((void*)(unsigned int)(u))
+#endif
+
 static void
 geda_image_menu_item_screen_changed (GtkWidget *widget,
                                      GdkScreen *previous_screen)
@@ -1121,7 +1127,7 @@ geda_image_menu_item_screen_changed (GtkWidget *widget,
                     G_CALLBACK (geda_image_menu_item_setting_changed), NULL);
   g_object_set_data (G_OBJECT (settings),
                      _("gtk-image-menu-item-connection"),
-                                       (void*)(unsigned int)(show_image_connection));
+                                       UINT_TO_POINTER(show_image_connection));
 
   show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
 }
