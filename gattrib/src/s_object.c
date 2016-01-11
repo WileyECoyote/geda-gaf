@@ -63,17 +63,17 @@
  */
 void
 s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                    Object *o_current,
-                                    char *new_attrib_name,
-                                    char *new_attrib_value,
-                                    int visibility,
-                                    int show_name_value)
+                                    Object       *o_current,
+                                    char         *new_attrib_name,
+                                    char         *new_attrib_value,
+                                    int           visibility,
+                                    int           show_name_value)
 {
-  char *name_value_pair;
-
-
   /* One last sanity check, then add attrib */
   if (strlen(new_attrib_value) != 0) {
+
+    char *name_value_pair;
+
     name_value_pair = u_string_concat(new_attrib_name, "=",
                                       new_attrib_value, NULL);
     s_object_attrib_add_attrib_in_object (toplevel,
@@ -87,20 +87,18 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 
 }
 
-
 /*------------------------------------------------------------------*/
 /*!
  * \todo This needs to be filled in.
  */
 void
 s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                   Object *o_current,
-                                   char *new_attrib_name,
-                                   char *new_attrib_value)
+                                   Object       *o_current,
+                                   char         *new_attrib_name,
+                                   char         *new_attrib_value)
 {
   /* TBD */
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Add a new attribute to an pin Object
@@ -125,16 +123,18 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
  */
 void
 s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
-                                   Object *o_current,
-                                   char *new_attrib_name,
-                                   char *new_attrib_value)
+                                   Object       *o_current,
+                                   char         *new_attrib_name,
+                                   char         *new_attrib_value)
 {
-  char *name_value_pair;
-
   /* One last sanity check */
   if (strlen(new_attrib_value) != 0) {
+
+    char *name_value_pair;
+
     name_value_pair = u_string_concat(new_attrib_name, "=",
                                       new_attrib_value, NULL);
+
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           INVISIBLE,
@@ -161,24 +161,23 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
  *  \param show_name_value  set visibility of attribute name and value
  */
 void
-s_object_replace_attrib_in_object(GedaToplevel *toplevel, Object *o_current,
-                                  char *new_attrib_name,
-                                  char *new_attrib_value,
-                                  int visibility,
-                                  int show_name_value)
+s_object_replace_attrib_in_object(GedaToplevel *toplevel,
+                                  Object       *o_current,
+                                  char         *new_attrib_name,
+                                  char         *new_attrib_value,
+                                  int           visibility,
+                                  int           show_name_value)
 {
   GList *a_iter;
-  Object *a_current;
-  char *old_attrib_text;
-  char *old_attrib_name;
-  char *new_attrib_text;
-
+  char  *old_attrib_text;
+  char  *old_attrib_name;
+  char  *new_attrib_text;
 
   a_iter = o_current->attribs;
 
   while (a_iter != NULL) {
 
-    a_current = a_iter->data;
+    Object *a_current = a_iter->data;
 
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
 
@@ -210,13 +209,13 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel, Object *o_current,
     } /* if (a_current . . . . */
 
     a_iter = g_list_next (a_iter);
-  } /* while */
+  } /* wend */
 
   /* if we get here, it's because we have failed to find the attrib on the component.
    * This is an error condition. */
   fprintf(stderr,
-          _("In s_object_replace_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
-            new_attrib_name);
+          _("%s, we have failed to find the attrib %s on the component. Exiting...\n"),
+            __func__, new_attrib_name);
 
   return;
 }
@@ -262,7 +261,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
         /* We've found the attrib.  Delete it and then return. */
 
 #ifdef DEBUG
-        printf("In s_object_release_attrib_in_object, removing attrib with name = %s\n", old_attrib_name);
+        printf("%s: removing attrib with name = %s\n", __func__, old_attrib_name);
 #endif
 
         attribute_object = a_current;
@@ -351,7 +350,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   /* first create text item */
 #if DEBUG
-  printf("===  In s_object_attrib_add_attrib_in_object, about to attach new text attrib with properties:\n");
+  printf("===  %s: about to attach new text attrib with properties:\n", __func__);
   printf("     color = %d\n", color);
   printf("     text_string = %s \n", text_string);
   printf("     visibility = %d \n", visibility);
@@ -411,10 +410,11 @@ int s_object_has_sym_file(Object *object)
   char *filename;
 
   filename = object->complex->filename;
+
   if (filename != NULL) {
 
 #ifdef DEBUG
-    printf("In s_object_has_sym_file, object has sym file = %s.\n", filename);
+    printf("%s: object has sym file = %s.\n", __func__, filename);
 #endif
 
     return 0;
@@ -422,7 +422,7 @@ int s_object_has_sym_file(Object *object)
   else {
 
 #ifdef DEBUG
-    printf("In s_object_has_sym_file, found object with no attached symbol file.\n");
+    printf("%s:, found object with no attached symbol file.\n", __func__);
 #endif
 
     return 1;

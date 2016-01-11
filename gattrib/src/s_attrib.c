@@ -44,22 +44,25 @@
 int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 {
   STRING_LIST *local_list_item;
-  char *local_name;
 
   for (local_list_item = name_value_list;
        local_list_item != NULL;
-       local_list_item = local_list_item->next) {
+       local_list_item = local_list_item->next)
+  {
+    char *local_name;
 
     if (local_list_item->data == NULL)
       continue;
 
     local_name = u_string_split(local_list_item->data, '=', 0);
+
     if (strcmp(local_name, name) == 0) {
       GEDA_FREE (local_name);
       return TRUE;
     }
     GEDA_FREE (local_name);
   }
+
   return FALSE;
 }
 
@@ -77,26 +80,33 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
  */
 char *s_attrib_get_refdes(Object *object)
 {
-  char *temp_uref;
-  char *numslots;
-  char *slot_value;
   Object *slot_text_object;
+  char   *slot_value;
+  char   *temp_uref;
+
 
   /*------ Try to get the refdes -----*/
   temp_uref = o_attrib_search_object_attribs_by_name (object, "refdes", 0);
+
   if (temp_uref) {
 
-  /*------- Now append .slot to refdes if part is slotted -------- */
-  /* Find out if this is a multislotted component */
+    char   *numslots;
+
+    /*------- Now append .slot to refdes if part is slotted -------- */
+    /* Check if this is a multislotted component */
     numslots = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
+
     if (numslots != NULL) {
+
       slot_value = s_slot_search_slot (object, &slot_text_object);
+
       if (slot_value != 0)
         temp_uref = u_string_concat(temp_uref, ".", slot_value, NULL);
     }
   }
-  else
+  else {
     return NULL;
-  return temp_uref;
+  }
 
+  return temp_uref;
 }

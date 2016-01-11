@@ -1,3 +1,13 @@
+2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Reduce scope of variables in module, use __func__
+      preprocessor define to reduce line length, revise comments.
+
+    * src/s_attrib.c: Reduce scope of variables in module, revise comments.
+
+    * src/s_toplevel.c: Reduce scope of variables in module, use __func__
+      preprocessor define to reduce line length, revise comments.
+
 2016-01-10 Vladimir Zhbanov <vzhbanov@gmail.com>
 
     * src/s_object.c: WEH: Modified per commit to Master branch by Sergey
