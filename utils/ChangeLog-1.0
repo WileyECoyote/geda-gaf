@@ -1,3 +1,12 @@
+2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: include config.h.
+
+    * src/gmk_sym.c: include config.h.
+
+    * src/sarlacc_schem.c: include config.h, remove include include errno.h
+      because is already included by geda_standard.h.
+
 2015-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/Makefile.am: Define WITHOUT_GUILE in gsch2pcb.c, which

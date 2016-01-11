@@ -119,4 +119,3 @@ print_settings_set_paper_width(PrintSettings *settings, double width);
 
 void
 print_settings_set_print_orientation(PrintSettings *settings, PrintOrientation orientation);
-

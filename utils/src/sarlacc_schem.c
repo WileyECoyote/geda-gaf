@@ -20,13 +20,13 @@
 
 /*   This program will convert an ORCAD SDT IV file to geda format */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <geda_standard.h>
 
 #include <fcntl.h>
-
-#ifdef HAVE_ERRNO_H
-#include <errno.h>
-#endif
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
