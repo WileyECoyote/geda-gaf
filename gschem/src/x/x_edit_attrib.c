@@ -503,7 +503,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
       gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
     }
 
-    GEDA_OBJECT_SET_DATA(ThisDialog, GINT_TO_POINTER(flag), "mode_flag");
+    GEDA_OBJECT_SET_DATA(ThisDialog, (void*)(long)(flag), "mode_flag");
 
     /* load the combo's tree with our list of attributes names */
     i = 0;

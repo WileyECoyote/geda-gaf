@@ -105,7 +105,7 @@ geda_image_chooser_setup_filters (GtkFileChooser *filechooser)
       const char *ext = data->pattern[i];
       gtk_file_filter_add_pattern (filter, ext);
     }
-    g_object_set_data( G_OBJECT(filter), "id", GINT_TO_POINTER(data->id));
+    g_object_set_data( G_OBJECT(filter), "id", (void*)(long)(data->id));
     gtk_file_chooser_add_filter (filechooser, filter);
   }
 }

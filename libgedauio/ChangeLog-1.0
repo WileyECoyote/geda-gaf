@@ -1,3 +1,20 @@
+2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Replace pointless macros:
+
+      * GPOINTER_TO_INT with (int)(long)
+      * GINT_TO_POINTER with (void*)(long)
+      * GUINT_TO_POINTER with (void*)(unsigned int)
+
+      in modules:
+
+          * src/dialogs/geda_file_chooser.c
+          * src/dialogs/geda_image_chooser.c
+          * src/widgets/geda_combobox.c
+          * src/widgets/geda_entry.c
+          * src/widgets/geda_label.c
+          * src/widgets/geda_imagemenuitem.c
+
 2016-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Implement geda_get_child_widget instead

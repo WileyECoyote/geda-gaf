@@ -1,5 +1,19 @@
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Replace pointless macros:
+
+      * GPOINTER_TO_INT with (int)(long)
+      * GINT_TO_POINTER with (void*)(long)
+      * GUINT_TO_POINTER with (void*)(unsigned int)
+
+      in modules:
+
+          * src/base/gschem_status_bar.c
+          * src/x/x_dialog.c
+          * src/x/x_edit_attrib.c
+          * src/x/x_edit_pin.c
+          * src/x/x_settings_dialog.c
+
     * src/x/x_compselect.c: Add virtual over-ride for widget size_request,
       compselect_size_request to redraw the hpaned when the dialog is re-
       sized because the area under the preview and vpaned and a portion of

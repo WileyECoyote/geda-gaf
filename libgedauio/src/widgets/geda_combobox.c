@@ -3215,7 +3215,7 @@ geda_combo_box_sync_cells (GedaComboBox  *combo_box,
       gtk_cell_layout_add_attribute (cell_layout,
                                      info->cell,
                                      j->data,
-                                     GPOINTER_TO_INT (j->next->data));
+                                     (int)(long) (j->next->data));
     }
   }
 }
@@ -4980,7 +4980,7 @@ geda_combo_box_cell_layout_add_attribute (GtkCellLayout   *layout,
 
   if (info != NULL) {
 
-    info->attributes = g_slist_prepend (info->attributes, GINT_TO_POINTER (column));
+    info->attributes = g_slist_prepend (info->attributes, (void*)(long) (column));
     info->attributes = g_slist_prepend (info->attributes, g_strdup (attribute));
 
     if (combo_box->priv->cell_view) {

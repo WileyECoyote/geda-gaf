@@ -1121,7 +1121,7 @@ geda_image_menu_item_screen_changed (GtkWidget *widget,
                     G_CALLBACK (geda_image_menu_item_setting_changed), NULL);
   g_object_set_data (G_OBJECT (settings),
                      _("gtk-image-menu-item-connection"),
-                                       GUINT_TO_POINTER (show_image_connection));
+                                       (void*)(unsigned int)(show_image_connection));
 
   show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
 }

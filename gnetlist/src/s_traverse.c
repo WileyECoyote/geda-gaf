@@ -67,7 +67,7 @@ inline int is_visited(Object *obj)
                                              obj,
                                              &orig_key,
                                              &val);
-  return exist ? GPOINTER_TO_INT(val) : 0;
+  return exist ? (int)(long)(val) : 0;
 }
 
 /*! \brief Increment the current visit count
@@ -79,9 +79,9 @@ inline int is_visited(Object *obj)
  */
 static inline int visit(Object *obj)
 {
-  void *val = GINT_TO_POINTER(is_visited (obj) + 1);
+  void *val = (void*)(long)(is_visited (obj) + 1);
   g_hash_table_replace (visit_table, obj, val);
-  return GPOINTER_TO_INT (val);
+  return (int)(long) (val);
 }
 
 /*! \todo Finish function documentation!!!

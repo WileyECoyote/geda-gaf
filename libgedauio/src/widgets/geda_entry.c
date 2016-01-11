@@ -1211,11 +1211,11 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
     gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
     item = geda_image_menu_item_new_with_label (_("On"));
-    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (1));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
     gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 
     item = geda_image_menu_item_new_with_label (_("Off"));
-    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (2));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
     gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 
     gtk_widget_show_all (submenu);
@@ -1232,7 +1232,7 @@ geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *data)
 static void
 popup_menu_callback (GtkMenuItem *item, void    *data)
 {
-  int menu_option = GPOINTER_TO_INT (data);
+  int menu_option = (int)(long) (data);
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
 

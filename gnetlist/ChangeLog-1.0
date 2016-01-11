@@ -1,3 +1,10 @@
+2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Replace macros:
+
+          * GINT_TO_POINTER with (void*)(long)
+          * GPOINTER_TO_INT with (int)(long)
+
 2015-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/backend-getopt.scm: Add function option-warning and use in

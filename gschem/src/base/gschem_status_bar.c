@@ -199,7 +199,7 @@ static void coord_display_options_popup (GtkWidget      *event_box,
 
     g_signal_connect (GTK_OBJECT(popup_item), "activate",
                      (GCallback)coord_options_popup_clicked,
-                      GUINT_TO_POINTER(entry.signal));
+                      (void*)(unsigned int)(entry.signal));
 
     GEDA_OBJECT_SET_DATA (popup_item, user_data, "status-bar");
 

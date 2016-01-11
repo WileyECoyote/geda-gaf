@@ -417,7 +417,7 @@ typedef struct
 
 #define GTK_ICALLBACK(name, signal, function, data) \
         g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), \
-                          GUINT_TO_POINTER (data));
+                          (void*)(unsigned int)(data));
 
 #define GTK_ICALLBACK_COMBO(name) \
         GTK_ICALLBACK (name##Combo, "changed", Combo_Responder, name)

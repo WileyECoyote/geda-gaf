@@ -2005,7 +2005,7 @@ static void
 label_mnemonics_visible_traverse_container (GtkWidget *widget,
                                             void *   data)
 {
-  bool mnemonics_visible = GPOINTER_TO_INT (data);
+  bool mnemonics_visible = (int)(long) (data);
 
   _geda_label_mnemonics_visible_apply_recursively (widget, mnemonics_visible);
 }
@@ -2019,7 +2019,7 @@ _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
   else if (GTK_IS_CONTAINER (widget))
     gtk_container_forall (GTK_CONTAINER (widget),
                           label_mnemonics_visible_traverse_container,
-                          GINT_TO_POINTER (mnemonics_visible));
+                          (void*)(long) (mnemonics_visible));
 }
 
 static void
@@ -2033,7 +2033,7 @@ label_mnemonics_visible_changed (GtkWindow  *window,
 
   gtk_container_forall (GTK_CONTAINER (window),
                         label_mnemonics_visible_traverse_container,
-                        GINT_TO_POINTER (mnemonics_visible));
+                        (void*)(long) (mnemonics_visible));
 }
 
 static void
@@ -4411,7 +4411,7 @@ connect_mnemonics_visible_notify (GedaLabel *label)
                       label);
     g_object_set_data (G_OBJECT (toplevel),
                        "gtk-label-mnemonics-visible-connected",
-                       GINT_TO_POINTER (1));
+                       (void*)(long) (1));
   }
 }
 

@@ -118,7 +118,7 @@ static GtkWidget *create_menu_pin_electricals ( void )
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER (types[i].electrical),
+                         (void*)(long) (types[i].electrical),
                          WIDGET(PinElectrical));
     gtk_widget_show (menuitem);
   }
@@ -152,7 +152,7 @@ static GtkWidget *create_menu_pin_type ( void )
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER (types[i].type),
+                         (void*)(long) (types[i].type),
                          WIDGET(PinNodeType));
     gtk_widget_show (menuitem);
   }
@@ -268,7 +268,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   if (!o_select_is_selection(w_current))
     return;
 
-  ntype = GPOINTER_TO_INT(
+  ntype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
@@ -280,7 +280,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
     return;
   }
 
-  etype = GPOINTER_TO_INT(
+  etype = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (

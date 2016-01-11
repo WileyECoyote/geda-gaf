@@ -1167,14 +1167,17 @@ static void
 color_button_popup_menu_callback (GtkMenuItem *item, void * data)
 {
   bool restore_default_color;
-  int  color_index;
-  GtkColorButton *button;
 
   restore_default_color = (int)(long)data;
 
   if (restore_default_color) {
-    color_index = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(item, "color-index"));
+
+    int color_index;
+    GtkColorButton *button;
+
+    color_index = (int)(long)(GEDA_OBJECT_GET_DATA(item, "color-index"));
     button      = GEDA_OBJECT_GET_DATA(item, "color-button");
+
     gtk_color_button_set_color(button, x_color_get_color_from_index(color_index));
   }
 
@@ -1206,19 +1209,19 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 
   item = gtk_image_menu_item_new_with_label (_("Restore default"));
 
-  GEDA_OBJECT_SET_DATA(item, GINT_TO_POINTER(index), "color-index");
+  GEDA_OBJECT_SET_DATA(item, (void*)(long)(index), "color-index");
 
   GEDA_OBJECT_SET_DATA(item, button, "color-button");
 
   g_signal_connect (G_OBJECT (item), "activate",
-                    G_CALLBACK (color_button_popup_menu_callback), GINT_TO_POINTER (1));
+                    G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (1));
 
   gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
 
   item = gtk_image_menu_item_new_with_label (_("Cancel"));
 
   g_signal_connect (G_OBJECT (item), "activate",
-                    G_CALLBACK (color_button_popup_menu_callback), GINT_TO_POINTER (0));
+                    G_CALLBACK (color_button_popup_menu_callback), (void*)(long) (0));
 
   gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
 

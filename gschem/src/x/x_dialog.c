@@ -1198,7 +1198,7 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
     group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
     gtk_menu_append (GTK_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER (types[i].type), "filltype");
+                         (void*)(long) (types[i].type), "filltype");
     gtk_widget_show (menuitem);
   }
 
@@ -1358,7 +1358,7 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
     GTK_MENU (gtk_option_menu_get_menu (
                 GTK_OPTION_MENU (fill_data->fill_type))));
 
-  type = GPOINTER_TO_INT(
+  type = (int)(long)(
     GEDA_OBJECT_GET_DATA (menuitem, "filltype"));
 
   switch(type) {
@@ -1427,7 +1427,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   angle2_str = GetEntryText ( fill_data->angle2_entry );
   pitch2_str = GetEntryText ( fill_data->pitch2_entry );
 
-  type = GPOINTER_TO_INT(
+  type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
@@ -1762,7 +1762,7 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER (types[i].end), "endtype");
+                         (void*)(long) (types[i].end), "endtype");
     gtk_widget_show (menuitem);
   }
 
@@ -1803,7 +1803,7 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
 
     gtk_menu_append (GTK_MENU (menu), menuitem);
     GEDA_OBJECT_SET_DATA(menuitem,
-                         GINT_TO_POINTER (types[i].type), "linetype");
+                         (void*)(long) (types[i].type), "linetype");
     gtk_widget_show (menuitem);
   }
 
@@ -1944,7 +1944,7 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
     GTK_MENU (gtk_option_menu_get_menu (
                 GTK_OPTION_MENU (line_data->line_type))));
 
-  type = GPOINTER_TO_INT(GEDA_OBJECT_GET_DATA(menuitem, "linetype"));
+  type = (int)(long)(GEDA_OBJECT_GET_DATA(menuitem, "linetype"));
 
   switch(type) {
       case(TYPE_SOLID):
@@ -2007,7 +2007,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   length_str  = GetEntryText ( line_data->length_entry );
   space_str   = GetEntryText ( line_data->space_entry );
 
-  type = GPOINTER_TO_INT(
+  type = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
@@ -2018,7 +2018,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     type = LEAVE_ALONE;
   }
 
-  end = GPOINTER_TO_INT(
+  end = (int)(long)(
     GEDA_OBJECT_GET_DATA (
         gtk_menu_get_active (
           GTK_MENU (gtk_option_menu_get_menu (
