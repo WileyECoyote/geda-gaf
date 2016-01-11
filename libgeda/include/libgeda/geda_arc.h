@@ -36,6 +36,12 @@
 #ifndef __GEDA_ARC_H__
 #define __GEDA_ARC_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaArcType unsigned long
+#else
+# define GedaArcType unsigned int
+#endif
+
 #define GEDA_TYPE_ARC            (geda_arc_get_type())
 #define GEDA_ARC(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_ARC, Arc))
 #define GEDA_ARC_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_ARC, ArcClass))
@@ -52,7 +58,7 @@ struct _GedaArcClass {
 struct _GedaArc {
   Object parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
+  GedaArcType head_marker;       /* structure type signature */
 
   int       x;
   int       y;
@@ -66,16 +72,22 @@ struct _GedaArc {
   FILL_OPTIONS  fill_options;
   LINE_OPTIONS  line_options;
 
-  GedaType tail_marker;       /* structure type signature */
+  GedaArcType tail_marker;       /* structure type signature */
 };
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-GedaType       geda_arc_get_type        (void);
+GedaArcType    geda_arc_get_type        (void);
 bool           is_a_geda_arc_object     (Arc *object);
 
 Object        *geda_arc_new             (void);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#undef GedaArcType
 
 #endif /* __GEDA_ARC_H__ */
