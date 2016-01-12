@@ -231,13 +231,13 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private",                   TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_DETACH),      "Demote",     TBTS_ATTRIB_DETACH,      "Private",                   TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_VALUE),       "Value",      TBTS_ATTRIB_VALUE,        GEDA_MAP(VALUE),            TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,         "show-name",                TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_NAME),        "Name",       TBTS_ATTRIB_NAME,        "show-name",                 TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_BOTH),        "Both",       TBTS_ATTRIB_BOTH,         GEDA_MAP(NAME_VALUE),       TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_VISIBILITY),  "Visible",    TBTS_ATTRIB_VISIBILITY,   GEDA_MAP(EYE_GLASSES),      TB_ICON_BITMAP, NULL},
   { ACTION(VIEW_HIDDEN),        "Hidden",     TBTS_VIEW_HIDDEN,        "show-hidden",               TB_ICON_BITMAP, NULL},
   { ACTION(VIEW_INHERITED),     "Inherited",  TBTS_VIEW_INHERITED,     "show-inherited",            TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE),   TB_ICON_BITMAP, NULL},
-  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private",                   TB_ICON_BITMAP, NULL},
+  { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "geda-invisible",            TB_ICON_BITMAP, NULL},
   { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,         GEDA_MAP(LOCATE_REFERENCE), TB_ICON_BITMAP, NULL},
 
   { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue.png",   TB_ICON_BITMAP, NULL},
@@ -342,7 +342,7 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
 /*! \brief Toolbar Button Callback
  *
  *  \par Function Description
- *  This function handles callbacks for all non-toogle type toolbar
+ *  This function handles callbacks for all non-toggle type toolbar
  * buttons, the function retrieves the action from the button widget
  * and pass the action to i_command_process.
  */
@@ -352,7 +352,7 @@ static void x_toolbars_execute(GtkWidget *widget, GschemToplevel *w_current)
 
   action = GEDA_OBJECT_GET_DATA(widget, "action");
 #if DEBUG_TOOLBARS
-  fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
+  fprintf(stderr, "%s: action=%s\n", __func__, action);
 #endif
 
   i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
@@ -744,8 +744,7 @@ x_toolbars_free_window(GschemToplevel *w_current)
 
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  lambda (GtkWidget *bar)
-  {
+  lambda (GtkWidget *bar) {
     gtk_widget_destroy (bar);
     return FALSE;
   }
