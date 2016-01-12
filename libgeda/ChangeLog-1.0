@@ -11,7 +11,10 @@
     * include/libgeda/geda_arc.h: Define GedaArcType in header file,
       remove __cplusplus macros.
 
-    * include/libgeda/geda_box.h: Define GedaArcType in header file,
+    * include/libgeda/geda_box.h: Define GedaBoxType in header file,
+      remove __cplusplus macros.
+
+    * include/libgeda/geda_bus.h: Define GedaBusType in header file,
       remove __cplusplus macros.
 
     * src/geda/geda_page.c: Add functions geda_page_feeze_notify and

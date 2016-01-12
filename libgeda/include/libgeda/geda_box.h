@@ -81,9 +81,9 @@ struct _GedaBox {
 extern "C" {
 #endif
 
-GedaType geda_box_get_type        (void);
-bool     is_a_geda_box_object     (Box *object);
-Object  *geda_box_new             (void);
+GedaBoxType geda_box_get_type     (void);
+bool        is_a_geda_box_object  (Box *object);
+Object     *geda_box_new          (void);
 
 #ifdef __cplusplus
 }

@@ -79,10 +79,10 @@ struct _GedaArc {
 extern "C" {
 #endif
 
-GedaArcType    geda_arc_get_type        (void);
-bool           is_a_geda_arc_object     (Arc *object);
+GedaArcType    geda_arc_get_type       (void);
+bool           is_a_geda_arc_object    (Arc *object);
 
-Object        *geda_arc_new             (void);
+Object        *geda_arc_new            (void);
 
 #ifdef __cplusplus
 }
