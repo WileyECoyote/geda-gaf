@@ -147,7 +147,7 @@ if [ -f "$MODULE" ] ; then
          echo "Failed dual-opamp-py.sym, see gsymcheck -v tmp/sym/dual-opamp-py.sym"
          ((result++))
        fi
-       answer=$(diff "lpfilter.sch" "tmp/lpfilter.sch")
+       answer=$(diff <(tail -n +2 "lpfilter.sch") <(tail -n +2 "tmp/lpfilter.sch"))
        if [ ! -z "$answer" ] ; then
          echo "Failed diff, lpfilter.sch and tmp/lpfilter.sch are suppose to be the exactly the same"
          echo "check $answer";

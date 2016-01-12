@@ -1,3 +1,8 @@
+2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/run_tests.sh: Revised test to skip the first line, the file
+      version, when comparing the reference to the output.
+
 2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Remove unnecessary initialization of variables
