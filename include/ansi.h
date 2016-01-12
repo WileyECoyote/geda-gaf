@@ -4,36 +4,45 @@
  *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2015 Wiley Edward Hill
+ * Copyright (C) 2015-2016 Wiley Edward Hill
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This software is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * along with this software; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: March, 01, 2015
  */
-/*
+/*!
+ * \file ansi.h
+ * \brief Define ANSI Constants
+ * \par
+ *  This file defines constants used in ANSI escape sequences, which can
+ *  be used to add color and other attributes to output data for terminals.
+ *
+ *  Example:
+ *
  *     printf("%sred%s\n", FG_RED, RESET);
  *
  *     or better:
  *
  *     printf("The quick " FG_RED "red" RESET " fox jumped over the " FG_YELLOW "yellow" RESET " dog\n");
+ *
  */
 #pragma once
-#ifndef ANSI_COLORS_H
-#define ANSI_COLORS_H
+#ifndef GEDA_ANSI_H
+#define GEDA_ANSI_H
 
 #define ATT_ALL_OFF     "\x1B[0m"   /* All attributes off (can be omitted ) */
 #define ATT_BOLD        "\x1B[1m"   /* Bold, appears bright */
@@ -95,4 +104,5 @@
 #define ATT_OBAR_OFF    "\x1B[55m"  /* Not Over-lined */
 
 #define RESET           "\033[0m"
-#endif
+
+#endif /* GEDA_ANSI_H */
