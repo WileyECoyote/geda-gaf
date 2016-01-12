@@ -1,3 +1,8 @@
+2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_circle.h: Define GedaCircleType in header file,
+      remove __cplusplus macros.
+
 2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype_priv.h: Remove s_conn_print entry, was moved
