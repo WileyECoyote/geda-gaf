@@ -8,6 +8,12 @@
      * src/x/x_autonumber.c: Define INT_TO_POINTER and POINTER_TO_INT
        in the module.
 
+     * src/x/x_window.c:Call geda_page_feeze_notify before s_page_delete
+       in x_window_close_page, reduce scope of variables in x_window_open
+       _page::generate_untitled, and generate_untitled::unique_untitled,
+       move conditional for >untitled_name before loop, and translate
+       DEFAULT_UNTITLED_NAME as fall-back, add comments.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Replace pointless macros:

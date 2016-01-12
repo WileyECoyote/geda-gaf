@@ -186,7 +186,7 @@ void x_window_save_settings(GschemToplevel *w_current)
   /* Save the Window Geometry data */
   eda_config_set_integer (cfg, win_group, "window-x-position", x);
   eda_config_set_integer (cfg, win_group, "window-y-position", y);
-  eda_config_set_integer (cfg, win_group, "window-width",      width );
+  eda_config_set_integer (cfg, win_group, "window-width",      width);
   eda_config_set_integer (cfg, win_group, "window-height",     height);
 
   /* All settings from here down are restored by i_vars_recall_user_settings */
@@ -773,30 +773,31 @@ static bool x_window_idle_thread_post_load_file (void *filename)
  *  when we don't want to deal with freeing we use our local buffer and glibc.
  *
  */
-Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
+Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page *old_current, *page;
   char  strbuff[MAX_PATH];
-  char  untitled[] = "untitled";
   char *ptr;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
   /* Generate unique untitled filename if none was specified */
-  char *generate_untitled() {
+  char *generate_untitled(void) {
 
-    char  s_val[3];
-    char *tmp;
     char *str;
+    char *untitled;
 
-    inline void unique_untitled () {
+    inline void unique_untitled(void) {
+
+      char *tmp;
+      char  s_val[3];
 
       /* Get DIR in buffer */
-      ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
+      ptr = str = getcwd (&strbuff[0], MAX_PATH - 1);
 
       /* Append a seperator onto the end of DIR */
-      while ( *ptr != '\0') {
+      while (*ptr != '\0') {
         ++ptr; /* advance to end of string */
       }
 
@@ -804,31 +805,37 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
       ++ptr;                     /* advance over separator */
        *ptr = '\0';              /* Add new NULL */
 
-      /* Append default name from config */
-      if (toplevel->untitled_name) {
-        str = strcat  ( str, toplevel->untitled_name );
-      }
-      else {
-        str = &untitled[0];
-      }
+      /* Append untitled-name */
+      str = strcat (str, untitled);
 
       /* Converted and append an integer to the string */
-      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
-      str = strcat  ( str, tmp );
+      tmp = u_string_int2str (++toplevel->num_untitled, &s_val[0], 10);
+
+      str = strcat (str, tmp);
 
       /* Append our file extension */
-      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
+      str = strcat (str, SCHEMATIC_FILE_DOT_SUFFIX);
+    }
+
+    /* Get untitled-name prior to looping */
+    if (!toplevel->untitled_name) {
+      untitled = _(DEFAULT_UNTITLED_NAME); /* Set to fall-back name */
+    }
+    else {
+      untitled = toplevel->untitled_name;  /* Set to string from config */
     }
 
     memset(&strbuff[0], '\0', sizeof(strbuff));
     unique_untitled ();
-    while ( g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
+    while (g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
     return str;
   }
 
   /* Create an empty page with optional filename */
-  inline Page* new_page( const char *fname ) {
+  inline Page* new_page(const char *fname) {
+
     page = s_page_new_with_notify (toplevel, fname);
+
     x_window_setup_page(w_current, page, w_current->world_left,
                         w_current->world_right,
                         w_current->world_top,
@@ -838,10 +845,14 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
   }
 
   /* Create an empty page with optional filename */
-  inline Page* empty_page( const char *name ) {
-    char     *fname;
-    fname = u_string_strdup ( name ? name : generate_untitled() );
+  inline Page* empty_page(const char *name) {
+
+    char *fname;
+
+    fname = u_string_strdup (name ? name : generate_untitled());
+
     new_page(fname);
+
     /* Hack: There is no page so status bar did not get updated */
     i_status_update_grid_info (w_current);
     v_log_message (_("New file [%s]\n"), fname);
@@ -850,9 +861,9 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
   }
 
   /* Recover by switching back to Old or a create blank */
-  inline void resolve_2_recover( const char *name ) {
+  inline void resolve_2_recover(const char *name ) {
     /* There was an error, try go back to old page */
-    if ( old_current != NULL ) {
+    if (old_current != NULL ) {
       s_page_goto (old_current);
     }
     else { /* There was error and no previous page */
@@ -875,17 +886,18 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
       if (page == NULL) {
 
         GError *err = NULL;
+
         /* Problem: f_open needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
          * occurs then we have to delete this page but s_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
         page = new_page(filename);
-        /* Try to load the file */
 
+        /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           fprintf(stderr, "Error loading file:%s\n", err->message);
-          u_log_message( "Failed to load file:%s\n", err->message);
+          u_log_message ("Failed to load file:%s\n", err->message);
           g_error_free (err);
           s_page_delete (toplevel, page, FALSE); /* FALSE for now */
           resolve_2_recover(NULL);
@@ -914,17 +926,20 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
 
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
+
         q_log_message("Creating new file \"%s\"\n", filename);
+
         /* Filespec may not exist but user has authority to create */
         page = empty_page(filename);
       }
       else { /* Houston, we have problem */
+
         /* Filename was specified but path error, so we still
          * don't know if base name is okay. Break down filespec and try
          * to sort out the problem:
          */
-        if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+        if (errno == ENOENT) { /* 100% sure file_err == ENOENT */
+          if (f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             u_log_message("Path \"%s\": did not exist\n, successfully created\n", path);
             page = empty_page(filename);
             errno = NO_ERROR;
@@ -934,20 +949,33 @@ Page* x_window_open_page (GschemToplevel *w_current, const char *filename)
           }
         }
 
-        if( errno != NO_ERROR) {
-          const char   *homedir = g_getenv ("HOME"); /* does not allocate */
-          if (!homedir) homedir = g_get_home_dir (); /* does not allocate */
-            path = strcpy(&strbuff[0], homedir);
-          ptr  = (char*) filename;
-          while ( *ptr != '\0') ++ptr;      /* advance to end of argument */
-            while ( *ptr != DIR_SEPARATOR) --ptr;  /* backup to separator */
-              path = strcat(path, ptr);
-            /* set Flag for file-save to use file-saveas */
-            w_current->force_save_as = TRUE;
-#if DEBUG
-            perror(stderr, "filename:%s\n path:%s\n", path, filename);
+        if (errno != NO_ERROR) {
+
+          const char *home_dir;
+
+#ifdef OS_LINUX
+
+          home_dir = g_getenv ("HOME");  /* does not allocate */
+
+          if (!home_dir)
+            home_dir = g_get_home_dir (); /* does not allocate */
+#else
+          home_dir = (char*)g_get_home_dir ();
 #endif
-            resolve_2_recover(path);
+          path = strcpy(&strbuff[0], home_dir);
+
+          ptr  = (char*)filename;
+
+          while (*ptr != '\0') ++ptr;      /* advance to end of argument */
+            while (*ptr != DIR_SEPARATOR) --ptr;  /* backup to separator */
+              path = strcat(path, ptr);
+
+          /* set Flag for file-save to use file-saveas */
+          w_current->force_save_as = TRUE;
+#if DEBUG
+          perror(stderr, "filename:%s\n path:%s\n", path, filename);
+#endif
+          resolve_2_recover(path);
         }
       }
     }
@@ -1158,7 +1186,6 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
     }
     else {
 
-      GList *iter;
       Page  *current_page;
       Page  *new_current;
       bool   deleted_current;
@@ -1184,13 +1211,13 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         if (new_current == NULL) {
 
           /* no up in hierarchy, choice is prev, next, new page */
-          iter = geda_toplevel_get_page(toplevel, page);
+          GList *iter = geda_toplevel_get_page(toplevel, page);
 
           if (g_list_previous(iter)) {
             new_current = (Page*)g_list_previous (iter)->data;
           }
           else if (g_list_next(iter)) {
-            new_current = (Page *)g_list_next( iter )->data;
+            new_current = (Page*)g_list_next( iter )->data;
           }
           else {
             /* need to add a new untitled page */
@@ -1218,15 +1245,16 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         page->filename);
       }
 
+      geda_page_feeze_notify(page); /* don't bother with thawing */
+
       /* remove page from toplevel list of page and free */
       s_page_delete (toplevel, page, TRUE);
-
 
       /* Switch to a different page if we just removed the current */
       if (deleted_current) {
 
         /* Create a new page if there wasn't another to switch to */
-        if (new_current == NULL) {
+        if (!GEDA_IS_PAGE(new_current)) {
           new_current = x_window_open_page (w_current, NULL);
         }
 
