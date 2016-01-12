@@ -174,7 +174,7 @@ do_setup_geda_environment ()
   local CWDSAVE=$PWD
 
   # create temporary gEDA directory and required subdirs
-  mkdir -m 0777 -p ${TMPGEDADIR}
+  mkdir -m 777 -p ${TMPGEDADIR}
   rc=$?
   if test $rc -ne 0 ; then
      echo "Failed to create directory ${TMPGEDADIR}, check permissions"
@@ -187,10 +187,10 @@ do_setup_geda_environment ()
   export GEDADATA=$PWD
 
   # Make all subdirectories under the gEDA directory
-  mkdir -m 0777 -p bitmap
-  mkdir -m 0777 -p scheme/geda/core
-  mkdir -m 0777 -p scheme/gnetlist
-  mkdir -m 0777 -p gafrc.d
+  mkdir -m 777 -p bitmap
+  mkdir -m 777 -p scheme/geda/core
+  mkdir -m 777 -p scheme/gnetlist
+  mkdir -m 777 -p gafrc.d
 
   test $VERBOSE && echo "GEDADATARC=$GEDADATARC"
 

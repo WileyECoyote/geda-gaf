@@ -1,3 +1,8 @@
+2016-01-12  Wiley E. Hill <wileyhill@gmail.com>
+
+    * xxx/tests/runtest.sh:Change mkdir -m 0777 to -m 777, for some reason
+      0777 worked yesterday, but not today; platform erratica?
+
 2015-12-31  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add regenerate feature to create the reference
