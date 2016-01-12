@@ -1,3 +1,8 @@
+2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Remove duplicate inclusion of config.h, already
+      included in gattrib.h.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Reduce scope of variables in module, use __func__
