@@ -1226,7 +1226,7 @@ static inline const char *get_home_dir(void) {
 
 #else
 
-  home = (char*) g_get_home_dir ();
+  home_dir = (char*) g_get_home_dir ();
 
 #endif
 

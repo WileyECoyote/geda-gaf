@@ -1,8 +1,15 @@
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Fix variable name for non Linux builds;
+      home -> get_home_dir.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: include config.h.
 
     * src/gmk_sym.c: include config.h.
+
+    * src/grenum.c: include config.h.
 
     * src/sarlacc_schem.c: include config.h, remove include include errno.h
       because is already included by geda_standard.h.
