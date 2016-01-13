@@ -1,3 +1,7 @@
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * irf/IRF7509-1.sym: Add symbol; dual N and P Channel MOSFET.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature: Fix attribute positions:
