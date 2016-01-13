@@ -191,7 +191,6 @@ static void coord_display_options_popup (GtkWidget      *event_box,
                                          void           *user_data)
 {
   GtkWidget *menu;
-  GtkWidget *popup_item;
   int i;
 
   /* create the context menu */
@@ -201,7 +200,7 @@ static void coord_display_options_popup (GtkWidget      *event_box,
 
     StatusPopupEntry entry = coord_popup_items[i];
 
-    popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
 
     g_signal_connect (GTK_OBJECT(popup_item), "activate",
                      (GCallback)coord_options_popup_clicked,
@@ -261,7 +260,6 @@ static void middle_button_options_popup (GtkWidget      *event_box,
                                          void           *user_data)
 {
   GtkWidget *menu;
-  GtkWidget *popup_item;
   int i;
 
   /* create the context menu */
@@ -271,7 +269,7 @@ static void middle_button_options_popup (GtkWidget      *event_box,
 
     StatusPopupEntry entry = middle_popup_items[i];
 
-    popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
 
     g_signal_connect (popup_item, "activate",
                       (GCallback)status_options_popup_clicked,
@@ -331,7 +329,6 @@ static void third_button_options_popup (GtkWidget      *event_box,
                                         void           *user_data)
 {
   GtkWidget *menu;
-  GtkWidget *popup_item;
   int i;
 
   /* create the context menu */
@@ -341,7 +338,7 @@ static void third_button_options_popup (GtkWidget      *event_box,
 
     StatusPopupEntry entry = third_popup_items[i];
 
-    popup_item = gtk_menu_item_new_with_label (entry.text);
+    GtkWidget *popup_item = gtk_menu_item_new_with_label (entry.text);
 
     g_signal_connect(popup_item, "activate",
                      (GCallback)status_options_popup_clicked,
@@ -1082,7 +1079,7 @@ gschem_status_bar_setup_buffers (GschemStatusBar *widget)
 static void
 gschem_status_bar_instance_init (GschemStatusBar *widget)
 {
-  EdaConfig  *cfg = eda_config_get_user_context ();
+  EdaConfig  *cfg;
 
   GtkWidget  *coord_event;
   GtkWidget  *middle_event;
@@ -1233,40 +1230,28 @@ gschem_status_bar_set_coord_mode (GtkWidget *widget, int mode)
 {
   GschemStatusBar *gsb;
 
-  EdaConfig  *cfg = eda_config_get_user_context ();
-  const char *grp = WIDGET_CONFIG_GROUP;
-  const char *key = "status-coord-mode";
-
   inline unsigned get_coord_mode(int new_mode) {
     gsb->coord_mode &= ~COORD_FORMAT_VECTOR; /* Clear off any old vector bits */
     return ((new_mode & COORD_FORMAT_V180) || (new_mode & COORD_FORMAT_V360))
-            ? gsb->coord_mode |= new_mode : new_mode;
+                                            ? gsb->coord_mode |= new_mode : new_mode;
   }
 
-#if defined (G_DISABLE_ASSERT)
-  gsb = GSCHEM_STATUS_BAR(widget)
-  gsb->coord_mode = get_coord_mode(mode);
-  if (coord_mode < COORD_FORMAT_X) {
-    eda_config_set_integer (cfg, grp, key, gsb->coord_mode);
-  }
-#else
+  if (GSCHEM_IS_STATUS_BAR(widget)) {
 
-  if (widget == NULL) {
-    BUG_MSG("widget is NULL");
+    gsb = (GschemStatusBar*)widget;
+    gsb->coord_mode = get_coord_mode(mode);
+
+    if (mode < COORD_FORMAT_X) {
+
+      EdaConfig  *cfg = eda_config_get_user_context ();
+      const char *grp = WIDGET_CONFIG_GROUP;
+      const char *key = "status-coord-mode";
+      eda_config_set_integer (cfg, grp, key, gsb->coord_mode);
+    }
   }
   else {
-    if (GSCHEM_IS_STATUS_BAR(widget)) {
-      gsb = (GschemStatusBar*)widget;
-      gsb->coord_mode = get_coord_mode(mode);
-      if (mode < COORD_FORMAT_X) {
-        eda_config_set_integer (cfg, grp, key, gsb->coord_mode);
-      }
-    }
-    else {
-      BUG_MSG("widget is not a GschemStatusBar");
-    }
+    BUG_MSG("widget is not a GschemStatusBar");
   }
-#endif
 }
 
 /*! \brief Set the grid mode displayed on the status bar
@@ -1562,7 +1547,6 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
 
     char  *string;
     int    index;
-    double radians;
 
     index = 0;
 
@@ -1570,6 +1554,7 @@ gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x1, in
     if ((mode & COORD_FORMAT_V180  ||
          mode & COORD_FORMAT_V360) && x0 != -0) {
 
+      double radians;
       int    degrees;
       int    length;
 

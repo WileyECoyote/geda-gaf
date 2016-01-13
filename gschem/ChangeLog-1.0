@@ -1,3 +1,8 @@
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * base/gschem_status_bar.c: Remove setting cfg = eda_config_get_user
+      _context twice. Reduce scope of variables.
+
 2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_parsecmd.c: Use 'primitive-load' instead of 'load'.
