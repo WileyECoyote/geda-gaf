@@ -24,6 +24,10 @@
  * Date Contributed: April, 06, 2014
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <geda_standard.h>
 
 #include <glib.h>

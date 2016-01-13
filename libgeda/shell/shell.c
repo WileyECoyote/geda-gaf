@@ -22,6 +22,10 @@
 
 #define WITHOUT_GDK_PIX_BUFFER 1
 
+#ifdef HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <geda_standard.h>
 #include <version.h>
 #include <ctype.h>

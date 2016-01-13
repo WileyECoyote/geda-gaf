@@ -22,6 +22,10 @@
  * Contributing Author: Wiley Edward Hill
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <geda_standard.h>
 #include <ctype.h>
 

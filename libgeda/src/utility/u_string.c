@@ -22,6 +22,10 @@
  * Contributing Author: Wiley Edward Hill
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <geda_standard.h>
 #include <ctype.h>
 
@@ -758,8 +762,8 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  *  \par Function Description
  *  This function replaces the first occurrence of str1 with str2
  *  in the source. This version dynamically allocates temporary storage
- *  and uses pointer returned from the previously defined u_string_istr to
- *  get the first position of old_str in the source. The Caller is
+ *  and uses pointer returned from the previously defined u_string_istr
+ *  to get the first position of old_str in the source. The Caller is
  *  responsible for insuring source is sufficiently large enough to
  *  hold the new string, ie original - old + new + 1.
  *
@@ -768,15 +772,15 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  *  \param [in] new_str is the replacement for old_str
  *
  *  \retval char* source (the orginal pointer) or NULL if old_str
- *  was not not found in the source string or if there was a error
+ *  was not found in the source string or if there was a error
  *  allocating memory.
  *
  */
 char *u_string_strisubst(char *source, char *old_str, char *new_str)
 {
-  char *temp;
   char *ptr1;
   char *ptr2;
+  char *temp;
 
   if (source && old_str) {
 
@@ -787,20 +791,23 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
 
     size = strlen (source) - length + 1;
 
-    temp = malloc(size);   /* assume all of the old is prefixed */
+    temp = malloc(size);     /* assume all of the old is prefixed */
 
-    if (temp) { /* If memory was allocated */
+    if (temp) {              /* If memory was allocated */
 
       memset(temp, 0, size); /* initialize new memory */
 
       /* Get pointer to the old string */
-      if (!(ptr1 = (char*)u_string_istr(source, old_str))) return NULL;
+      if (!(ptr1 = (char*)u_string_istr(source, old_str))) {
+        free(temp);
+        return NULL;
+      }
 
       /* get pointer to the end of the old string in the source */
-      ptr2 = ptr1 + length; /* pointing to the old last char */
+      ptr2 = ptr1 + length;  /* pointing to the old last char */
 
       if (*ptr2) {/* if there are characters after the old string */
-        strcpy(temp, ptr2); /* save them in the temp buffer */
+        strcpy(temp, ptr2);  /* save them in the temp buffer */
       }
 
       /* copy the new string to the source starting add the old position*/

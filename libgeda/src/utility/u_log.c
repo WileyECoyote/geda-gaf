@@ -19,6 +19,10 @@
  * MA 02110-1301 USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../config.h"
+#endif
+
 #include <geda_standard.h>
 
 #ifdef HAVE_FCNTL_H
