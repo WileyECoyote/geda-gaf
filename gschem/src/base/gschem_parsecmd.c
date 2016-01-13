@@ -146,8 +146,9 @@ version ()
 int
 gschem_parse_commandline(int argc, char *argv[])
 {
-  char *str;
-  int   ch;
+  GError *err;
+  char   *str;
+  int     ch;
 
   SCM sym_begin       = scm_from_utf8_symbol ("begin");
   SCM sym_cons        = scm_from_utf8_symbol ("cons");
@@ -232,11 +233,20 @@ gschem_parse_commandline(int argc, char *argv[])
 
       case 'r':
         /* Argument is filename of a Scheme script to be run on gschem
-         * load.  Add the necessary expression to be evaluated after
-         * loading. */
-        s_post_load_expr = scm_cons (scm_list_2 (sym_load,
-                           scm_from_locale_string (optarg)),
-                           s_post_load_expr);
+         * load. Validate the file and add the necessary expression to
+         * be evaluated after loading. */
+        err = NULL;
+        str = f_file_normalize_name (optarg, &err);
+        if (str == NULL) {
+          u_log_message(_("error parsing: <%s>: %s\n"), optarg, err->message);
+          g_clear_error(&err);
+        }
+        else {
+          s_post_load_expr = scm_cons (scm_list_2 (sym_load,
+                                                   scm_from_locale_string (str)),
+                                       s_post_load_expr);
+          GEDA_FREE(str);
+        }
         break;
 
       case 's':
