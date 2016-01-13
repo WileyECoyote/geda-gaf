@@ -1,3 +1,7 @@
+2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_parsecmd.c: Use 'primitive-load' instead of 'load'.
+
 2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Okay I was wrong, glib changed the

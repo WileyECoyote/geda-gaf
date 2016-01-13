@@ -152,7 +152,7 @@ gschem_parse_commandline(int argc, char *argv[])
   SCM sym_begin       = scm_from_utf8_symbol ("begin");
   SCM sym_cons        = scm_from_utf8_symbol ("cons");
   SCM sym_set_x       = scm_from_utf8_symbol ("set!");
-  SCM sym_load        = scm_from_utf8_symbol ("load");
+  SCM sym_load        = scm_from_utf8_symbol ("primitive-load");
   SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
