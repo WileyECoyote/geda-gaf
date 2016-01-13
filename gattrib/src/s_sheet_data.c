@@ -83,13 +83,15 @@ SHEET_DATA *s_sheet_data_new()
 /*------------------------------------------------------------------*/
 /*!
  * \brief Frees a SHEET_DATA struct and all of it's contents.
- *  \par Function Description
+ * \par Function Description
  * Creates an initialised but empty SHEET_DATA struct.
+ *
  * \returns a pointer to a SHEET_DATA struct.
  */
 bool s_sheet_data_reset(PageDataSet *PageData)
 {
   if (PageData != NULL) {
+
     s_string_list_free(PageData->master_comp_list_head);
     s_string_list_free(PageData->master_comp_attrib_list_head);
     s_string_list_free(PageData->attached_attrib);
@@ -101,10 +103,10 @@ bool s_sheet_data_reset(PageDataSet *PageData)
     s_string_list_free(PageData->master_pin_attrib_list_head);
 
     free(PageData);
-    PageData = NULL;
   }
-  else
+  else {
     return FALSE;
+  }
   return TRUE;
 }
 
@@ -141,7 +143,7 @@ s_sheet_data_add_comp_attrib(PageDataSet *PageData,
 
 static void
 s_sheet_data_attached_attrib(PageDataSet *PageData,
-                             const char *comp_attrib_str_name)
+                             const char  *comp_attrib_str_name)
 {
   s_string_list_add_item(PageData->attached_attrib,
                          &(PageData->attached_attrib_count),
@@ -184,14 +186,13 @@ s_sheet_data_add_pin_attrib(PageDataSet *PageData,
  */
 void s_sheet_data_load_blank(PageDataSet *PageData)
 {
-  const char *comp_attrib[]= { "device",  "footprint", "value",
-                               "description", "symversion" };
-
   if (PageData != NULL) {
 
+    const char *comp_attrib[]= { "device",  "footprint", "value",
+                                 "description", "symversion" };
     char tmp_str[5];
     char none[6];
-    int blank;
+    int  blank;
 
     for (blank = 0; blank < 5; blank++) {
 
@@ -203,11 +204,13 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
 
       strcpy(none, "none");
       s_sheet_data_add_net(PageData, strcat(none, str));
+
       strcpy(none, "node");
       s_sheet_data_add_net_attrib(PageData, strcat(none, str));
 
       s_sheet_data_add_pin(PageData, str);
     }
+
     s_sheet_data_add_pin_attrib(PageData, "pinseq");
     s_sheet_data_add_pin_attrib(PageData, "pintype");
     s_sheet_data_add_pin_attrib(PageData, "pinlabel");

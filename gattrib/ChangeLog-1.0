@@ -1,3 +1,9 @@
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_sheet_data.c: Removed pointless setting of stack pointer
+      PageData to NULL before exiting s_sheet_data_reset. Reduce scope
+      of comp_attrib in s_sheet_data_load_blank.
+
 2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Remove duplicate inclusion of config.h, already
