@@ -41,6 +41,7 @@
  *
  */
 void s_toplevel_close(PageDataSet *PageData) {
+
   s_table_destroy(PageData->component_table, PageData->comp_count, PageData->comp_attrib_count);
   s_table_destroy(PageData->net_table, PageData->net_count, PageData->net_attrib_count);
   s_table_destroy(PageData->pin_table , PageData->pin_count, PageData->pin_attrib_count);
@@ -183,7 +184,7 @@ void s_toplevel_add_new_attrib(int column_location) {
 
   char *new_attrib_name = x_dialog_new_attrib();
 
-  if (new_attrib_name) { /* user di NOT cancel or close window with no value in entry */
+  if (new_attrib_name) { /* user did NOT cancel or close window with no value in entry */
 
     GtkSheet *sheet;
     int       cur_tab;   /* current page in notebook  */
