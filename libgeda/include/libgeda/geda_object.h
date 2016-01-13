@@ -128,7 +128,7 @@ GedaType      geda_object_get_type           (void) GEDA_CONST;
 bool          is_a_geda_object               (const void *object);
 
 Object       *geda_object_new                (int type, char const *name);
-void         *geda_object_ref                (Object *object);
+Object       *geda_object_ref                (Object *object);
 void          geda_object_unref              (Object *object);
 void          geda_object_weakref_notify     (Object *object);
 void          geda_object_weak_ref           (Object *object, WeakNotifyFunc notify_func, void *user_data);

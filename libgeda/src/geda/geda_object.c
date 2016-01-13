@@ -562,7 +562,7 @@ bool is_a_geda_object (const void *object)
  *
  * \sa geda_object_unref
  */
-void *geda_object_ref(Object *object)
+Object *geda_object_ref(Object *object)
 {
   g_return_val_if_fail (GEDA_IS_OBJECT(object), NULL);
   return g_object_ref ((GObject*)object);

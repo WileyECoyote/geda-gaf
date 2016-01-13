@@ -3,6 +3,10 @@
     * include/libgeda/geda_circle.h: Define GedaCircleType in header file,
       remove __cplusplus macros.
 
+    * include/libgeda/geda_object.h: Declare geda_object_ref returns an Object.
+
+    * src/geda/geda_object.c:Change geda_object_ref return type to Object*.
+
 2016-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype_priv.h: Remove s_conn_print entry, was moved
