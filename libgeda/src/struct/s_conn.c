@@ -87,12 +87,11 @@ CONN *s_conn_return_new(Object * other_object, int type, int x, int y,
 int s_conn_uniq(GList * conn_list, CONN * input_conn)
 {
   GList *c_current;
+  CONN *conn;
 
   c_current = conn_list;
-
   while (c_current != NULL) {
-
-    CONN *conn = (CONN*)c_current->data;
+    conn = (CONN *) c_current->data;
 
     if (conn->other_object == input_conn->other_object &&
         conn->x == input_conn->x && conn->y == input_conn->y &&
@@ -119,50 +118,49 @@ int s_conn_uniq(GList * conn_list, CONN * input_conn)
  */
 int s_conn_remove_other (Object *other_object, Object *to_remove)
 {
-  GList *c_current = NULL;
+    GList *c_current = NULL;
+    CONN *conn = NULL;
 
-  o_notify_emit_pre_change (other_object);
+    o_notify_emit_pre_change (other_object);
 
-  c_current = other_object->conn_list;
-
-  while (c_current != NULL) {
-
-    CONN *conn = c_current->data;
+    c_current = other_object->conn_list;
+    while (c_current != NULL) {
+    conn = (CONN *) c_current->data;
 
     if (conn->other_object == to_remove) {
-      other_object->conn_list =
-      g_list_remove(other_object->conn_list, conn);
+        other_object->conn_list =
+        g_list_remove(other_object->conn_list, conn);
 
 #if DEBUG_CONNS
-      printf("Found other_object in remove_other\n");
-      printf("Freeing other: %s %d %d\n", conn->other_object->name,
-             conn->x, conn->y);
+        printf("Found other_object in remove_other\n");
+        printf("Freeing other: %s %d %d\n", conn->other_object->name,
+           conn->x, conn->y);
 #endif
 
-      /* Do not write modify c_current like this, since this will cause */
-      /* very nasty data corruption and upset glib's memory slice */
-      /* allocator. */
-      /* c_current->data = NULL;   Do not comment in */
+        /* Do not write modify c_current like this, since this will cause */
+        /* very nasty data corruption and upset glib's memory slice */
+        /* allocator. */
+        /* c_current->data = NULL;   Do not comment in */
 
-      GEDA_FREE(conn);
+        GEDA_FREE(conn);
 
 #if 0 /* this does not work right */
-      if (other_object->type == OBJ_BUS &&
-        other_object->conn_list == NULL) {
-        other_object->bus_ripper_direction = 0;
-        }
+            if (other_object->type == OBJ_BUS &&
+                other_object->conn_list == NULL) {
+              other_object->bus_ripper_direction = 0;
+            }
 #endif
         s_conn_emit_conns_changed (other_object);
 
-      return (TRUE);
+        return (TRUE);
     }
 
     c_current = g_list_next(c_current);
-  }
+    }
 
-  o_notify_emit_change (other_object);
+    o_notify_emit_change (other_object);
 
-  return (FALSE);
+    return (FALSE);
 }
 
 /*! \brief removes a GList of Objects from the connection system
@@ -175,12 +173,11 @@ int s_conn_remove_other (Object *other_object, Object *to_remove)
  */
 static void s_conn_remove_glist (GList *obj_list)
 {
+  Object *o_current;
   GList *iter;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-
-    Object *o_current = iter->data;
-
+    o_current = iter->data;
     s_conn_remove_object (o_current);
   }
 }
@@ -196,16 +193,15 @@ static void s_conn_remove_glist (GList *obj_list)
 void s_conn_remove_object (Object *to_remove)
 {
   GList *c_iter;
-  int    changed = FALSE;
+  CONN *conn;
+  int changed = FALSE;
 
   switch (to_remove->type) {
     case OBJ_PIN:
     case OBJ_NET:
     case OBJ_BUS:
       for (c_iter = to_remove->conn_list; c_iter != NULL; NEXT(c_iter)) {
-
-        CONN *conn = c_iter->data;
-
+        conn = c_iter->data;
         s_conn_freeze_hooks (conn->other_object);
         /* keep calling this till it returns false (all refs removed) */
         /* there is NO body to this while loop */
@@ -303,12 +299,11 @@ Object *s_conn_check_midpoint(Object *o_current, int x, int y)
  */
 void s_conn_update_glist (GList *obj_list)
 {
+  Object *o_current;
   GList *iter;
 
-  for (iter = obj_list; iter != NULL; iter = iter->next) {
-
-    Object *o_current = iter->data;
-
+  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+    o_current = iter->data;
     s_conn_update_object (o_current);
   }
 }
@@ -357,17 +352,17 @@ static void add_connection (Object *object, Object *other_object,
  */
 void s_conn_update_linear_object (Object *object)
 {
+  TILE   *t_current;
+  GList  *tl_current;
+  GList  *object_list;
+  Object *complex;
+  Object *found;
+  Object *other_object;
+  Object *other_complex;
+
   /* There is no point in looking for objects not on a page
    * since the tile system does not add pageless objects */
   if (geda_object_get_page (object)) {
-
-    TILE   *t_current;
-    GList  *tl_current;
-    GList  *object_list;
-    Object *complex;
-    Object *found;
-    Object *other_object;
-    Object *other_complex;
 
     complex = o_get_parent (object);
 
@@ -558,14 +553,14 @@ void s_conn_update_object (Object *object)
  */
 void s_conn_print(GList * conn_list)
 {
-  GList *cl_current = conn_list;
+  CONN *conn;
+  GList *cl_current;
 
   printf("\nStarting s_conn_print\n");
-
+  cl_current = conn_list;
   while (cl_current != NULL) {
 
-    CONN  *conn = (CONN *) cl_current->data;
-
+    conn = (CONN *) cl_current->data;
     printf("-----------------------------------\n");
     printf("other object: %s\n", conn->other_object->name);
     printf("type: %d\n", conn->type);
@@ -591,15 +586,16 @@ void s_conn_print(GList * conn_list)
  */
 int s_conn_net_search(Object* new_net, int whichone, GList * conn_list)
 {
-  GList *cl_current = conn_list;
+  CONN *conn;
+  GList *cl_current;
 
+  cl_current = conn_list;
   while (cl_current != NULL) {
 
-    CONN  *conn = (CONN *) cl_current->data;
-
+    conn = (CONN *) cl_current->data;
     if (conn != NULL && conn->whichone == whichone &&
         conn->x == new_net->line->x[whichone] &&
-        conn->y == new_net->line->y[whichone])
+    conn->y == new_net->line->y[whichone])
     {
        return TRUE;
     }
@@ -627,15 +623,14 @@ int s_conn_net_search(Object* new_net, int whichone, GList * conn_list)
  */
 static GList *s_conn_return_glist_others (GList *input_list, GList *obj_list)
 {
-  GList *iter;
   GList *return_list;
+  GList *iter;
+  Object *o_current;
 
   return_list = input_list;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-
-    Object *o_current = iter->data;
-
+    o_current = iter->data;
     return_list = s_conn_return_others (return_list, o_current);
   }
 
@@ -703,7 +698,7 @@ typedef struct {
  * \a func will be called each time a connection is modified, with
  * the affected object and the given \a user_data.
  *
- * \param page    #Page structure to add handlers to.
+ * \param page     #Page structure to add handlers to.
  * \param func     Function to be called when changes are made.
  * \param data     User data to be passed to callback functions.
  *
@@ -721,6 +716,7 @@ s_conn_append_conns_changed_hook (Page *page, ConnsChangedFunc func, void *data)
   page->conns_changed_hooks =
     g_list_append (page->conns_changed_hooks, new_hook);
 }
+
 
 static void call_conns_changed_hook (void *data, void *user_data)
 {

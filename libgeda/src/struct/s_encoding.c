@@ -87,6 +87,7 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
   unsigned char input[3];
   unsigned char output[4];
   unsigned int  ocnt;
+  unsigned int  i;
 
   if (srclen == 0)
     return NULL;	/* FIX: Or return ""? */
@@ -102,9 +103,8 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
   /* bulk encoding */
   dstpos = 0;
   ocnt = 0;
-
-  while (srclen >= 3) {
-
+  while (srclen >= 3)
+  {
     /*
      * Convert 3 bytes of src to 4 bytes of output
      *
@@ -141,15 +141,11 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
   }
 
   /* Now worry about padding with remaining 1 or 2 bytes */
-  if (srclen != 0) {
-
-    unsigned int  i;
-
+  if (srclen != 0)
+  {
     input[0] = input[1] = input[2] = '\0';
-
-    for (i = 0; i < srclen; i++) {
+    for (i = 0; i < srclen; i++)
       input[i] = *src++;
-    }
 
     output[0] = (input[0] >> 2);
     output[1] = ((input[0] & 0x03) << 4) +
