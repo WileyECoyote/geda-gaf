@@ -27,6 +27,7 @@
 
 #define WITHOUT_GDK_PIX_BUFFER 1
 
+#include <geda_standard.h>
 #include <libgeda/libgeda.h>
 
 #include "utils.h"

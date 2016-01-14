@@ -50,6 +50,7 @@
  */
 
 #include <gschem.h>
+#include <geda_standard.h>
 #include <geda_stat.h>
 #include <geda_debug.h>
 

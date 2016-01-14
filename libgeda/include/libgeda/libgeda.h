@@ -27,7 +27,6 @@
 #ifndef LIBGEDA_H
 #define LIBGEDA_H
 
-#include <geda_standard.h>
 #include <geda.h>
 
 #include <glib.h>

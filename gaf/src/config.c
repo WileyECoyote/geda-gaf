@@ -22,12 +22,12 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
+
 #include <version.h>
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
-#include <getopt.h>
+#include <geda_standard.h>
+
+#include <getopt.h>     /* This module requires getopt.h */
 
 /* Gettext translation */
 #include "gettext.h"

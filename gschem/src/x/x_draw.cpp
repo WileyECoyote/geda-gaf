@@ -39,7 +39,7 @@
 
 #include <gschem.h>
 #include <geda_draw.h>
-
+#include <geda_standard.h>
 #include <geda_debug.h>
 
 //#include <valgrind/callgrind.h>

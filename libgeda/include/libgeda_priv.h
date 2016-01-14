@@ -9,6 +9,7 @@
 #include <glib/gstdio.h>
 
 #include <geda.h>
+#include <geda_standard.h>
 
 /* Public libgeda headers */
 #include <defines.h>

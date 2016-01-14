@@ -24,10 +24,10 @@
 #endif
 #include <version.h>
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include <geda_standard.h>
+
 #include <getopt.h>
+
 #include <math.h>
 #include <errno.h>
 

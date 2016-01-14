@@ -24,7 +24,6 @@
  * MA 02111-1301 USA
  */
 
-
 #include <libgeda/libgeda.h>
 
 void i_vars_set(GedaToplevel * pr_current)
