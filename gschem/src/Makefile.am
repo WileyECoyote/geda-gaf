@@ -88,5 +88,3 @@ MOSTLYCLEANFILES     = *.log core FILE *~ ./*/*~
 CLEANFILES           = *.log core FILE *~ ./*/*~ $(BUILT_SOURCES)
 DISTCLEANFILES       = *.log core FILE *~ ./*/*~
 MAINTAINERCLEANFILES = *.log core FILE *~ ./*/*~ Makefile.in
-
-

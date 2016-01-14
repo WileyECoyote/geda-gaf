@@ -10,9 +10,9 @@ AM_LDFLAGS = -version-info $(LIBGTKSHEET_SO_VERSION)    \
 	     $(no_undefined)                            \
 	     $(GTK_LIBS)
 
-noinst_LIBRARIES = libgtksheet.a
+noinst_LIBRARIES       = libgtksheet.a
 
-libgtksheet_a_SOURCES = \
+libgtksheet_a_SOURCES  = \
 			gtkdataformat.c    \
 			gtkdatatextview.c  \
 			gtkitementry.c	   \
@@ -27,7 +27,7 @@ libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL)
 
 libgtksheet_a_CFLAGS   = $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
-EXTRA_LIBRARIES = libgtksheet.a
+EXTRA_LIBRARIES        = libgtksheet.a
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~ *.a
