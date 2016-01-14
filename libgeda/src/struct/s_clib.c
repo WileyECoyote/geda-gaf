@@ -331,7 +331,7 @@ void s_clib_free (void)
     GList *iter;
 
     for (iter = clib_sources; iter != NULL;  NEXT(iter)) {
-      free_source((CLibSource*) iter->data);
+      free_source((CLibSource*)iter->data);
     }
     g_list_free (clib_sources);
     clib_sources = NULL;
@@ -479,11 +479,12 @@ static char *run_source_command (const char *command)
  */
 GList *s_clib_get_sources (const bool sorted)
 {
-  GList *l = g_list_copy(clib_sources);
+  GList *list = g_list_copy(clib_sources);
+
   if (sorted) {
-    l = g_list_sort (l, (GCompareFunc) compare_source_name);
+    list = g_list_sort (list, (GCompareFunc) compare_source_name);
   }
-  return l;
+  return list;
 }
 
 /*! \brief Find any symbols within a source with a given name.
@@ -499,13 +500,12 @@ GList *s_clib_get_sources (const bool sorted)
 static CLibSymbol *source_has_symbol (const CLibSource *source,
                                       const char *name)
 {
-  GList *symlist;
-  CLibSymbol *symbol;
+  GList      *symlist;
 
   for (symlist = g_list_first(source->symbols); symlist != NULL;
        symlist = g_list_next(symlist)) {
 
-    symbol = (CLibSymbol *) symlist->data;
+    CLibSymbol *symbol = (CLibSymbol*) symlist->data;
 
     if (strcmp (symbol->name, name) == 0) return symbol;
   }
@@ -524,7 +524,7 @@ static CLibSymbol *source_has_symbol (const CLibSource *source,
 static char *get_unique_source_name (const char *name)
 {
   char *newname = NULL;
-  int i = 0;
+  int   i = 0;
 
   if (s_clib_get_source_by_name (name) == NULL) {
     return u_string_strdup (name);
@@ -556,13 +556,13 @@ static char *get_unique_source_name (const char *name)
 bool s_clib_source_name_exist (const char *name)
 {
   GList *sourcelist;
-  CLibSource *source;
 
   bool result = FALSE;
 
   for (sourcelist = clib_sources; sourcelist != NULL;  NEXT(sourcelist))
   {
-    source = (CLibSource *) sourcelist->data;
+    CLibSource *source = (CLibSource*)sourcelist->data;
+
     if (strcmp (source->name, name) == 0) {
       result = TRUE;
       break;
@@ -585,13 +585,13 @@ bool s_clib_source_name_exist (const char *name)
 bool s_clib_source_path_exist (const char *path)
 {
   GList *sourcelist;
-  CLibSource *source;
 
   bool result = FALSE;
 
   for (sourcelist = clib_sources; sourcelist != NULL;  NEXT(sourcelist))
   {
-    source = (CLibSource *) sourcelist->data;
+    CLibSource *source = (CLibSource*)sourcelist->data;
+
     if (strcmp (source->directory, path) == 0) {
       result = TRUE;
       break;
@@ -611,13 +611,8 @@ bool s_clib_source_path_exist (const char *path)
  */
 static void refresh_directory (CLibSource *source)
 {
-  CLibSymbol *symbol;
-  const char *suffix;
-        char *tail;
-        char  tmpname[MAX_PATH];
-
-  DIR    *dirp;
-  struct dirent *entry;
+  DIR *dirp;
+  char tmpname[MAX_PATH];
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_DIR);
@@ -631,6 +626,10 @@ static void refresh_directory (CLibSource *source)
   dirp = opendir (source->directory);
 
   if (dirp != NULL) {
+
+    const  char   *suffix;
+           char   *tail;
+    struct dirent *entry;
 
     strcpy(tmpname, source->directory);
     tail = &tmpname[0];
@@ -655,11 +654,12 @@ static void refresh_directory (CLibSource *source)
 
         suffix = f_get_filename_ext(entry->d_name);
 
-        if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
+        if (suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
 
           /* skip filenames that we already know about. */
           if (source_has_symbol (source, entry->d_name) == NULL) {
 
+            CLibSymbol *symbol;
           /* Create and add new symbol record */
           symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
           symbol->source = source;
@@ -698,11 +698,10 @@ static void refresh_directory (CLibSource *source)
  */
 static void refresh_command (CLibSource *source)
 {
-  char       *cmdout;
   TextBuffer *tb;
-  const char *line;
   CLibSymbol *symbol;
-  char       *name;
+  char       *cmdout;
+
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_CMD);
@@ -721,7 +720,12 @@ static void refresh_command (CLibSource *source)
   tb = s_textbuffer_new (cmdout, -1);
 
   while (1) {
+
+    const char *line;
+          char *name;
+
     line = s_textbuffer_next_line (tb);
+
     if (line == NULL) break;
     if (line[0] == '.') continue;  /* TODO is this sane? */
 
@@ -760,10 +764,7 @@ static void refresh_command (CLibSource *source)
  */
 static void refresh_scm (CLibSource *source)
 {
-  CLibSymbol *symbol;
-  char       *tmp;
-  SCM         symlist;
-  SCM         symname;
+  SCM symlist;
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_SCM);
@@ -782,12 +783,18 @@ static void refresh_scm (CLibSource *source)
   }
 
   while (symlist != SCM_EOL) {
-    symname = SCM_CAR (symlist);
+
+    SCM symname = SCM_CAR (symlist);
+
     if (!scm_is_string (symname)) {
       u_log_message (_("Non-string symbol name while scanning library [%s]\n"),
                      source->name);
     }
     else {
+
+      CLibSymbol *symbol;
+      char       *tmp;
+
       symbol         = GEDA_MEM_ALLOC0 (sizeof (CLibSymbol));
       symbol->source = source;
 
@@ -818,12 +825,11 @@ static void refresh_scm (CLibSource *source)
  */
 void s_clib_refresh (void)
 {
-  CLibSource *source;
-  GList      *sourcelist;
+  GList *sourcelist;
 
   for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist)) {
 
-    source = (CLibSource *) sourcelist->data;
+    CLibSource *source = (CLibSource*)sourcelist->data;
 
     switch (source->type) {
       case CLIB_DIR:
@@ -853,19 +859,16 @@ void s_clib_refresh (void)
  */
 const CLibSource *s_clib_get_source_by_name (const char *name)
 {
-  CLibSource *source;
-  GList      *sourcelist;
+  GList *sourcelist;
 
   g_return_val_if_fail (name != NULL, NULL);
 
   for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist))
   {
-    source = (CLibSource *) sourcelist->data;
+    CLibSource *source = (CLibSource*)sourcelist->data;
 
-    if (name) {
-      if (strcmp (source->name, name) == 0) {
-        return source;
-      }
+    if (name && strcmp (source->name, name) == 0) {
+      return source;
     }
     else {
       BUG_MSG("NULL name in source list\n");
@@ -899,15 +902,12 @@ const CLibSource *s_clib_add_directory (const char *directory,
   char *tmpstr;
   char *category;
   char *group;
-  const char *str;
-
-  char  buffer[MAX_FILE];
   char *pbuff;
-
   char *ptr_dir1;
   char *ptr_dir2;
   char *ptr_dir3;
   char *ptr;
+  char  buffer[MAX_FILE];
 
   if (directory == NULL) {
     return NULL;
@@ -941,16 +941,16 @@ const CLibSource *s_clib_add_directory (const char *directory,
   /* get 3rd level dir */
   ptr_dir3 =  basename (pbuff);
 
-  if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
+  if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
     group = u_string_strdup(ptr_dir2);
   }
   else {
-    if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
+    if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
       group = u_string_strdup(ptr_dir1);
     }
     else {
-      if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
-         if ( name != NULL )  {
+      if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
+         if (name != NULL )  {
            group = u_string_strdup(basename(name));
          }
          else {
@@ -964,7 +964,12 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
 
   if (name != NULL) {
-    int count = 0;
+
+    const char *str;
+          int   count;
+
+    count = 0;
+
     for( str = name; *str != '\0'; str++) {
       if (*str == DIR_SEPARATOR) ++count;
     }
@@ -989,7 +994,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
 
 /*
-  if ( source_name_exist(tmpstr) ) {
+  if (source_name_exist(tmpstr) ) {
     unique_name = u_string_concat(category, "-", tmpstr, NULL);
     GEDA_FREE (tmpstr);
     tmpstr = unique_name;
@@ -1398,16 +1403,11 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
  */
 GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
 {
-  GPatternSpec *globpattern = NULL;
-
-  GList *result;
-  GList *sourcelist;
-  GList *symlist;
-
+  GList      *result;
+  GList      *sourcelist;
+  GList      *symlist;
   CLibSource *source;
-  CLibSymbol *symbol;
-
-  char *key;
+  char       *key;
 
   if (pattern == NULL) return NULL;
 
@@ -1437,6 +1437,8 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   }
   else {
 
+    GPatternSpec *globpattern = NULL;
+
     if (mode == CLIB_GLOB) {
       globpattern = g_pattern_spec_new(pattern);
     }
@@ -1444,12 +1446,12 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
     /* Search each source */
     for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist)) {
 
-      source = (CLibSource *) sourcelist->data;
+      source = (CLibSource*)sourcelist->data;
 
       /* Loop through each symbol in the source */
       for (symlist = source->symbols; symlist != NULL; NEXT(symlist)) {
 
-        symbol = (CLibSymbol *) symlist->data;
+        CLibSymbol *symbol = (CLibSymbol*)symlist->data;
 
         switch (mode) { /* TODO Eliminate this switch*/
           case CLIB_EXACT:
@@ -1575,12 +1577,11 @@ GList *s_clib_get_symbols (const GedaToplevel *toplevel)
   CLibSymbol  *sym = NULL;
   const GList *p_iter;
   const GList *o_iter;
-        Page  *page;
 
   for ( p_iter = geda_toplevel_get_pages(toplevel); p_iter != NULL; NEXT(p_iter))
   {
 
-    page = (Page*)p_iter->data;
+    Page *page = (Page*)p_iter->data;
 
     for (o_iter = s_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
 

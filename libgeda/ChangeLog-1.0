@@ -1,3 +1,11 @@
+2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Reduce scope of variables in modules:
+
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_print.c: Define UINT_TO_POINTER in the module.
+
 2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_circle.h: Define GedaCircleType in header file,
