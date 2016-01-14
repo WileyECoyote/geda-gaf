@@ -1,3 +1,7 @@
+2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem_status_bar.c: Declare GschemStatusBar type volatile.
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * base/gschem_status_bar.c: Remove setting cfg = eda_config_get_user

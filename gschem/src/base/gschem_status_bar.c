@@ -998,7 +998,7 @@ gschem_status_bar_get_status_text (GtkWidget *widget)
 GedaType
 gschem_status_bar_get_type (void)
 {
-  static GedaType type = 0;
+  static volatile GedaType type = 0;
 
   if (type == 0) {
     static const GTypeInfo info = {
