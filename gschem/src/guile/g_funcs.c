@@ -408,8 +408,7 @@ SCM g_funcs_save_file(void)
       if(p_current->filename == NULL)
         w_current->force_save_as = TRUE;
 
-      if (strstr(p_current->filename,
-                w_current->toplevel->untitled_name))
+      if (strstr(p_current->filename, w_current->toplevel->untitled_name))
       {
         w_current->force_save_as = TRUE;
       }
@@ -418,9 +417,7 @@ SCM g_funcs_save_file(void)
         x_fileselect_save (w_current);
       }
       else {
-        x_window_save_page (w_current,
-                            p_current,
-                            p_current->filename);
+        x_window_save_page (w_current, p_current, p_current->filename);
       }
       status = TRUE;
     }
