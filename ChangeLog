@@ -1,3 +1,8 @@
+2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_standard.h: Change HAVE_CONFIG_H conditional for to only
+      wrap config.h, with brackets instead of parentheses, add cooments.
+
 2015-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/: New graphics image files:
