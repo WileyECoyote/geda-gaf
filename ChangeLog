@@ -1,5 +1,7 @@
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/ascii.h: Rename wrapper ASCII_H -> GEDA_ASCII_H.
+
     * include/geda_standard.h: Change HAVE_CONFIG_H conditional for to only
       wrap config.h, with brackets instead of parentheses, add cooments.
 

@@ -25,8 +25,8 @@
  *  Date Contributed: June, 23, 2012
  */
 #pragma once
-#ifndef ASCII_H
-#define ASCII_H
+#ifndef GEDA_ASCII_H
+#define GEDA_ASCII_H
 
 /* ASCII control codes */
 #define ASCII_NUL       0x0      /* Null char */
@@ -186,8 +186,7 @@
 #define ASCII_TILDE                         0x7E
 #define ASCII_DELETE                        0x7F
 
-#define FORWARD_SLASH        ASCII_SOLIDUS
+#define FORWARD_SLASH  ASCII_SOLIDUS
 #define BACKSLASH      ASCII_REVERSE_SOLIDUS
-#endif
 
-
+#endif /* GEDA_ASCII_H */
