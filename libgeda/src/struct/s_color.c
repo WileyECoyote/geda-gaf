@@ -258,7 +258,6 @@ GArray *s_color_get_standard_names(void)
 char *
 s_color_get_colorname(int index, GArray *cmap, GError **err)
 {
-  COLOR *color;
   int limit;
 
   if (cmap) {                       /* Find end of cmap */
@@ -279,6 +278,8 @@ s_color_get_colorname(int index, GArray *cmap, GError **err)
 
   }
   else {
+
+    COLOR *color;
 
     if (cmap) {                       /* Find end of cmap */
       color = &g_array_index (cmap, COLOR, index);
