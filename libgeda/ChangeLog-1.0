@@ -10,6 +10,9 @@
       unlock_input and geda_utility_log_system adding variable allo_err
       in f_file_copy.
 
+    * src/object/o_line_basic.c: Replace g_return_val_if_fail with the
+      more helpful GEDA_IS_LINE/else BUG_MSG in o_line_length.
+
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Reduce scope of variables in modules:

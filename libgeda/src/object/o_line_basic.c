@@ -1433,7 +1433,7 @@ double o_line_length(Object *object)
   double length;
   double dx, dy;
 
-  g_return_val_if_fail(GEDA_IS_LINE(object), 0.0);
+  if (GEDA_IS_LINE(object)) {
 
   dx = object->line->x[0]-object->line->x[1];
   dy = object->line->y[0]-object->line->y[1];
@@ -1444,7 +1444,12 @@ double o_line_length(Object *object)
   length = sqrt((dx*dx) + (dy*dy));
 #endif
 
-  return(length);
+  }
+  else {
+    BUG_MSG("Invalid GEDA Line Object");
+    length = 0.0;
+  }
+  return (length);
 }
 
 /*! \brief Calculates the distance between the given point and the closest
