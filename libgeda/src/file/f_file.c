@@ -92,9 +92,8 @@ int f_file_copy(const char *source, const char *target)
 
 #endif
 
-  int error_exit (const char *msg, int TheError ) {
+  int inline error_exit (const char *msg, int TheError ) {
     u_log_message(log_3SQ2, msg, source, strerror(TheError));
-    if (buffer >  0) free(buffer);
     if (input  >= 0) close(input);
     if (output >= 0) close(output);
     errno = TheError;
@@ -130,6 +129,7 @@ int f_file_copy(const char *source, const char *target)
       /* Lock the input file, to prevent processes from writting to
        * file until we are done */
       if (flock(input, LOCK_EX) == -1) {
+        free(buffer);
         return error_exit(err_lock, errno);
       }
 
@@ -140,6 +140,7 @@ int f_file_copy(const char *source, const char *target)
       if (output < 0) {
         status  = errno;
         unlock_file(input);
+        free(buffer);
         return error_exit(err_file, status);
       };
 
@@ -160,6 +161,7 @@ int f_file_copy(const char *source, const char *target)
           else if (errno != EINTR) {
             status = errno;
             unlock_file(input);
+            free(buffer);
             return error_exit(err_file, status);
           }
         } while (nread > 0);
@@ -170,6 +172,7 @@ int f_file_copy(const char *source, const char *target)
           status = errno;
           unlock_file(input);
           output = -1;
+          free(buffer);
           return error_exit(err_file, status);
         }
       }

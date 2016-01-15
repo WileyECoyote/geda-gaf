@@ -1,3 +1,8 @@
+2016-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Free buffer before call to error_exit rather
+      then in error_exit so simple code analyzers do not get confused.
+
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Reduce scope of variables in modules:
