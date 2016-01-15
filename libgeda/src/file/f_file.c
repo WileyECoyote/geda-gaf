@@ -69,6 +69,7 @@ int f_file_copy(const char *source, const char *target)
   char *buffer;
   char *ptr_out;
 
+  const char *allo_err = _("%s: Memory Allocation Error!\n");
   const char *err_file = _("File error");
   const char *log_3SQ2 = "%s: \"%s\", %s\n";
 
@@ -80,7 +81,7 @@ int f_file_copy(const char *source, const char *target)
   void unlock_input(int input) {
     /* Unlock the input file */
     if (flock(input, LOCK_UN) == -1) {
-      fprintf(stderr, err_sys, err_file, source);
+      geda_utility_log_system(stderr, err_sys, err_file, source);
     }
   }
 
@@ -104,7 +105,7 @@ int f_file_copy(const char *source, const char *target)
   buffer = malloc(DISK_BUFFER_SIZE);
 
   if(!buffer) {
-    fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
+    geda_utility_log_system(stderr, allo_err, __func__);
     status = -1;
   }
   else if(access(source, R_OK) != 0) { /* Check to see if input is readable */
@@ -220,7 +221,7 @@ int f_file_cmp_mod_time (const char *filename, time_t ref_time)
       result =  -1;
     }
     else {
-      fprintf (stderr, "%s: %s\n", __func__, strerror(errno));
+      geda_utility_log_system (stderr, "%s: %s\n", __func__, strerror(errno));
       result = -1;
     }
   }

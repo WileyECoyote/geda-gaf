@@ -5,6 +5,10 @@
 
     * src/file/f_file.c: Free buffer before call to error_exit rather
       then in error_exit so simple code analyzers do not get confused.
+      Direct message for system errors to system log utilizing function
+      geda_utility_log_system instead of fprintf in functions f_file_copy,
+      unlock_input and geda_utility_log_system adding variable allo_err
+      in f_file_copy.
 
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
