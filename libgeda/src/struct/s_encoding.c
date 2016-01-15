@@ -79,22 +79,22 @@ static unsigned char s_encoding_Base64_rank[256] = {
  *  \return Caller owned buffer containing base64 representation.
  */
 char*
-s_encoding_base64_encode (char* src, unsigned int srclen,
-                          unsigned int* dstlenp, _Bool strict)
+s_encoding_base64_encode (char *src, unsigned int srclen,
+                          unsigned int *dstlenp, _Bool strict)
 {
-  char* dst;
+  char         *dst;
   unsigned int  dstpos;
   unsigned char input[3];
   unsigned char output[4];
   unsigned int  ocnt;
-  unsigned int  i;
 
   if (srclen == 0)
     return NULL;	/* FIX: Or return ""? */
 
-    /* Calculate required length of dst.  4 bytes of dst are needed for
-     *    every 3 bytes of src. */
-    *dstlenp = (((srclen + 2) / 3) * 4)+5;
+  /* Calculate required length of dst.  4 bytes of dst are needed for
+   *    every 3 bytes of src. */
+   *dstlenp = (((srclen + 2) / 3) * 4)+5;
+
   if (strict)
     *dstlenp += (*dstlenp / 72);	/* Handle trailing \n */
 
@@ -103,8 +103,9 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
   /* bulk encoding */
   dstpos = 0;
   ocnt = 0;
-  while (srclen >= 3)
-  {
+
+  while (srclen >= 3) {
+
     /*
      * Convert 3 bytes of src to 4 bytes of output
      *
@@ -141,9 +142,12 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
   }
 
   /* Now worry about padding with remaining 1 or 2 bytes */
-  if (srclen != 0)
-  {
+  if (srclen != 0) {
+
+    unsigned int  i;
+
     input[0] = input[1] = input[2] = '\0';
+
     for (i = 0; i < srclen; i++)
       input[i] = *src++;
 
@@ -190,7 +194,7 @@ s_encoding_base64_encode (char* src, unsigned int srclen,
  *          of that buffer.
  */
 char *
-s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
+s_encoding_base64_decode (char *src, unsigned int srclen, unsigned int *dstlenp)
 {
 
   char *dst;
@@ -207,12 +211,14 @@ s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
   dst = g_new(char, srclen+1);
   *dstlenp = srclen+1;
 
-  while (srclen > 0)
-  {
+  while (srclen > 0) {
+
     srclen--;
     ch = *src++;
+
     if (ch == s_encoding_Pad64)
       break;
+
     if (s_encoding_Base64_rank[ch]==255) /* Skip any non-base64 anywhere */
       continue;
 
@@ -249,25 +255,25 @@ s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
    * We are done decoding Base-64 chars.  Let's see if we ended
    * on a byte boundary, and/or with erroneous trailing characters.
    */
-  if (ch == s_encoding_Pad64)           /* We got a pad char. */
-  {
+  if (ch == s_encoding_Pad64) {         /* We got a pad char. */
+
     switch (state)
     {
       case 0:             /* Invalid = in first position */
       case 1:             /* Invalid = in second position */
         return NULL;
       case 2:             /* Valid, means one byte of info */
+
         /* Skip any number of spaces. */
-        while (srclen > 0)
-        {
+        while (srclen > 0) {
           srclen--;
           ch = *src++;
           if (ch == s_encoding_Pad64) break;
           if (s_encoding_Base64_rank[ch] != 255) break;
         }
+
         /* Make sure there is another trailing = sign. */
-        if (ch != s_encoding_Pad64)
-        {
+        if (ch != s_encoding_Pad64) {
           g_free(dst);
           *dstlenp = 0;
           return NULL;
@@ -278,12 +284,10 @@ s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
            * We know this char is an =.  Is there anything but
            * whitespace after it?
            */
-          while (srclen > 0)
-          {
+          while (srclen > 0) {
             srclen--;
             ch = *src++;
-            if (s_encoding_Base64_rank[ch] != 255)
-            {
+            if (s_encoding_Base64_rank[ch] != 255) {
               g_free(dst);
               *dstlenp = 0;
               return NULL;
@@ -295,8 +299,7 @@ s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
            * zeros.  If we don't check them, they become a
            * subliminal channel.
            */
-          if (res != 0)
-          {
+          if (res != 0) {
             g_free(dst);
             *dstlenp = 0;
             return NULL;
@@ -304,19 +307,20 @@ s_encoding_base64_decode (char* src, unsigned int srclen, unsigned int* dstlenp)
         default:
           break;
     }
-  } else
-  {
+  }
+  else {
+
     /*
      * We ended by seeing the end of the string.  Make sure we
      * have no partial bytes lying around.
      */
-    if (state != 0)
-    {
+    if (state != 0) {
       g_free(dst);
       *dstlenp = 0;
       return NULL;
     }
   }
+
   dst[dstidx]=0;
   *dstlenp = dstidx;
   return dst;
