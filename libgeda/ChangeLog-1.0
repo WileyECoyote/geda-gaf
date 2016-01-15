@@ -1,5 +1,8 @@
 2016-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_complex.h: Define GedaComplexType in header
+      file, remove __cplusplus macros.
+
     * src/file/f_file.c: Free buffer before call to error_exit rather
       then in error_exit so simple code analyzers do not get confused.
 
