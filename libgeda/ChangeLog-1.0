@@ -3,12 +3,19 @@
     * include/libgeda/geda_complex.h: Define GedaComplexType in header
       file, remove __cplusplus macros.
 
+    * src/file/f_basic.c: Move stat structure allocate with non Windows
+      code block, reduce scope of backup_filename in f_remove_backup_file.
+
+    * src/file/f_get.c: Moved setting of pointer to pointer after the check
+      of the pointer in f_get_file_contents, rename "f" to "file" and add
+      some comments. Reduce scope of variabls in f_get_autosave_filename
+      f_get_dir_list_files, and f_get_bitmap_filespec.
+
     * src/file/f_file.c: Free buffer before call to error_exit rather
       then in error_exit so simple code analyzers do not get confused.
       Direct message for system errors to system log utilizing function
       geda_utility_log_system instead of fprintf in functions f_file_copy,
-      unlock_input and geda_utility_log_system adding variable allo_err
-      in f_file_copy.
+      unlock_input and geda_utility_log_system.
 
     * src/object/o_line_basic.c: Replace g_return_val_if_fail with the
       more helpful GEDA_IS_LINE/else BUG_MSG in o_line_length.

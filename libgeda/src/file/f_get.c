@@ -57,20 +57,24 @@
  *  \par Function description
  *  Returns the expected autosave filename for the \a filename passed.
  *
- *  \warning The result should be freed when no longer needed.
+ *  \remarks Returned allocation should be freed when no longer needed.
  *
  *  \param [in] filename The filename to create an autosave filename for.
  *  \return A newly allocated string buffer.
  */
 char *f_get_autosave_filename (const char *filename)
 {
-  char       *autosave_name, *path_spec, *new_basename;
-  const char *old_basename;
+  char *autosave_name;
 
   if (filename == NULL) {
     autosave_name = NULL;
   }
   else {
+
+   const char *old_basename;
+         char *new_basename;
+         char *path_spec;
+
     old_basename  = f_get_basename(filename);
     path_spec     = f_path_get_dirname(filename);
     new_basename  = u_string_sprintf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
@@ -115,14 +119,12 @@ char *f_get_basename(const char *path)
  */
 char *f_get_bitmap_filespec (const char *filename)
 {
-  const char *base;
-  const char *seperator;
-  const char *directory;
-  const char *subfolder;
-
   char *filespec;
 
   if (filename) {
+
+    const char *directory;
+    const char *seperator;
 
     /* initialize variables */
     directory = default_bitmap_directory;
@@ -141,6 +143,10 @@ char *f_get_bitmap_filespec (const char *filename)
     }
 
     if (!filespec) {
+
+      const char *base;
+      const char *subfolder;
+
       base      = f_path_sys_data();
       subfolder = "bitmap";
       filespec  = u_string_concat (base, seperator, subfolder,
@@ -251,24 +257,28 @@ char *f_get_data_filespec (const char *filename)
 GSList *f_get_dir_list_files(char *path, char *filter)
 {
         GSList *files = NULL;
-        char   *filename;
   const char   *real_filter;
-  const char   *suffix;
-
-  DIR        *dirp;
-  struct      dirent *ent;
+        DIR    *dirp;
 
   real_filter = filter;
 
   if (*real_filter == 0x2E ) real_filter++; /* skip over Period  */
 
   dirp = opendir (path);
+
   if (dirp != NULL) {
+
+    struct      dirent *ent;
 
     /* get all the files within directory */
     while ((ent = readdir (dirp)) != NULL) {
+
+      char   *filename;
+
       if (real_filter) {
-        suffix = f_get_filename_ext(ent->d_name);
+
+        const char *suffix = f_get_filename_ext(ent->d_name);
+
         if ( suffix && strcmp (suffix, real_filter) == 0) {
           filename = u_string_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
@@ -462,30 +472,31 @@ error:
 bool
 f_get_file_contents(const char *filename, char **contents, size_t *length, GError **err)
 {
-  *contents = NULL;
+  bool retval = FALSE; /* Assume failure */
 
-  if (length)
-    *length = 0;
+  if (filename != NULL && contents != NULL) {
 
-  struct stat stat_buf;
+    FILE *file;
 
-  FILE *f;
+    if (length)
+      *length = 0;      /* Assume zero bytes will be read */
 
-  bool retval = FALSE;
-
-  if ( filename != NULL && contents != NULL) {
-
-    errno = 0;
+   *contents = NULL;    /* Null caller's pointer */
+    errno    = 0;       /* Ensure error is reset */
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 
-    f = fopen (filename, "rb");
-    if (f == NULL)
+    file = fopen (filename, "rb");
+    if (file == NULL)
 
 #else
 
     int fd;
+
+    struct stat stat_buf;
+
     fd = open (filename, O_RDONLY|O_BINARY);
+
     if (fd < 0)
 
 #endif
@@ -519,9 +530,9 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
     else {
 
       fsync(fd);
-      f = fdopen (fd, "r");
+      file = fdopen (fd, "r");
 
-      if (f == NULL) {
+      if (file == NULL) {
 
         g_set_error (err, G_FILE_ERROR, errno,
                    _("Failed to open file '%s': fdopen() failed: %s"),
@@ -531,7 +542,7 @@ f_get_file_contents(const char *filename, char **contents, size_t *length, GErro
 #else
     else {
 #endif
-      retval = get_contents_stdio (filename, f, contents, length, err);
+      retval = get_contents_stdio (filename, file, contents, length, err);
     }
 
 #if !defined (OS_WIN32_NATIVE) && !defined(__MINGW32__)
