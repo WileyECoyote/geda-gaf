@@ -485,50 +485,59 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 static void
 export_draw_page (Page *page)
 {
-  const GList *contents;
-  GList *iter;
-  cairo_t *cr;
-
-  cr = eda_renderer_get_cairo_context (renderer);
-
-  /* For the remote chance the backend will support... */
-  cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
-
   if (page == NULL) {
+
     const GList *pages = geda_list_get_glist (toplevel->pages);
-    g_assert (pages != NULL && pages->data != NULL);
-    page = (Page *) pages->data;
+
+    if (pages) {
+      page = (Page*)pages->data;
+    }
   }
 
-  /* Draw background */
-  eda_cairo_set_source_color (cr, OUTPUT_BACKGROUND_COLOR,
-                              eda_renderer_get_color_map (renderer));
-  cairo_paint (cr);
+  if (page) {
 
-  /* Draw objects & cues */
-  contents = s_page_get_objects (page);
+    const GList *contents;
+    GList *iter;
+    cairo_t *cr;
 
-  for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
-    eda_renderer_draw (renderer, (Object *) iter->data);
+    cr = eda_renderer_get_cairo_context (renderer);
 
-  for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
-    eda_renderer_draw_cues (renderer, (Object *) iter->data);
+    /* For the remote chance the backend will support... */
+    cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
+
+    /* Draw background */
+    eda_cairo_set_source_color (cr, OUTPUT_BACKGROUND_COLOR,
+                                eda_renderer_get_color_map (renderer));
+    cairo_paint (cr);
+
+    /* Draw objects & cues */
+    contents = s_page_get_objects (page);
+
+    for (iter = (GList*) contents; iter != NULL; iter = g_list_next (iter))
+      eda_renderer_draw (renderer, (Object*)iter->data);
+
+    for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
+      eda_renderer_draw_cues (renderer, (Object*)iter->data);
+  }
+  else {
+    fprintf(stderr,"%s, no page to export\n",__func__);
+  }
 }
 
 static void
 export_png (void)
 {
-  cairo_surface_t *surface;
-  cairo_t *cr;
-  cairo_matrix_t mtx;
+  cairo_surface_t  *surface;
+  cairo_t          *cr;
+  cairo_matrix_t    mtx;
   cairo_rectangle_t extents;
-  cairo_status_t status;
+  cairo_status_t    status;
   double scale;
 
   /* Create a dummy context to permit calculating extents taking text
    * into account. */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 0, 0);
-  cr = cairo_create (surface);
+  cr      = cairo_create (surface);
   cairo_surface_destroy (surface);
 
   g_object_set (renderer,
@@ -543,7 +552,7 @@ export_png (void)
   /* Create a rendering surface of the correct size.  'extents' is
    * measured in points, so we need to use the DPI setting to
    * transform to pixels. */
-  scale = settings.dpi / 72.0;
+  scale   = settings.dpi / 72.0;
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
                                         (int) ceil (extents.width * scale),
                                         (int) ceil (extents.height * scale));
@@ -562,6 +571,7 @@ export_png (void)
 
   /* Save to file */
   status = cairo_surface_write_to_png (surface, settings.outfile);
+
   export_cairo_check_error (status);
   cairo_surface_destroy(surface);
   cairo_destroy (cr);
@@ -571,16 +581,17 @@ export_png (void)
 static void
 export_postscript (bool is_eps)
 {
-  cairo_surface_t *surface;
+  cairo_surface_t  *surface;
   cairo_rectangle_t extents;
-  cairo_matrix_t mtx;
-  cairo_t *cr;
-  GList *iter;
+  cairo_matrix_t    mtx;
+  cairo_t          *cr;
+  GList            *iter;
 
   /* Create a surface. To begin with, we don't know the size. */
   surface = cairo_ps_surface_create (settings.outfile, 1, 1);
   cairo_ps_surface_set_eps (surface, is_eps);
   cr = cairo_create (surface);
+
   g_object_set (renderer, "cairo-context", cr, NULL);
 
   for (iter = geda_list_get_glist (toplevel->pages);
@@ -1248,7 +1259,7 @@ export_command_line (int argc, char * const *argv)
       exit (1);
       break;
     default:
-      g_assert_not_reached ();
+      BUG_IMSG("Bad Option", c);
     }
   }
 
