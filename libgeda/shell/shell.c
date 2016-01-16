@@ -186,7 +186,7 @@ shell_main (void *data, int argc, char **argv)
           usage (1);
         }
       default:
-        g_assert_not_reached ();
+        BUG_MSG ("Option not handled");
     }
   }
 
