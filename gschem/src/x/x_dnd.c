@@ -859,7 +859,8 @@ static void x_dnd_drag_data_get
   printf ("<%s> %s:", __func__, name);
 #endif
 
-  g_assert (selection_data != NULL);
+  if (!selection_data)
+    return;
 
   switch (target_type)
   {
