@@ -143,7 +143,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
     break;
 
     default:
-      BUG_MSG("Invalid flag"):
+      BUG_IMSG("Invalid flag <%d>", flag);
       return NULL;
   }
 
