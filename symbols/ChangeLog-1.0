@@ -1,5 +1,16 @@
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * simulation/spice/idc-1.sym: Replace file with version in source/,
+      tweak object order; move lines before pins, use round end-type on
+      direction arrow to improve appearance.
+
+    * source/current-1.sym: Use round end-type on direction arrow to
+      improve appearance
+
+    * source/idc-1.sym: Relocate to simulation/spice.
+
+2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * irf/IRF7509-1.sym: Add symbol; dual N and P Channel MOSFET.
 
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
