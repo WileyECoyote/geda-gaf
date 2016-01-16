@@ -353,10 +353,11 @@ i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int i
 }
 
 /*! \brief Recall User Settings
- *  \par  This section retrieves the values of configuration settings from
- *  the new configuration system and assigns the values to the cooresponding
- *  top-level variables. Note that this is done after the "old" system, so
- *  the RC values will be ignored.
+ *  \par
+ *  This functions retrieves the values of configuration settings from the
+ *  new configuration system and assigns the values to the corresponding top
+ *  level variables. Note that this is done after the "old" system, so the
+ *  RC values will be ignored.
  */
 void i_vars_recall_user_settings(GschemToplevel *w_current)
 {
