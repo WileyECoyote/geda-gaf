@@ -247,7 +247,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
       message = malloc(mem_needed + 100);
 
-      if(!message) {
+      if(!message) { /* Should this be translated? */
         fprintf(stderr, _("%s: Memory Allocation Error!\n"), __func__);
       }
       else {
@@ -666,7 +666,6 @@ error:
  */
 void f_remove_backup_file (const char *filename)
 {
-  char *backup_filename;
   char *real_filename;
 
   /* Get the real filename and file permissions */
@@ -678,7 +677,7 @@ void f_remove_backup_file (const char *filename)
   }
   else {
 
-    backup_filename = f_get_autosave_filename (real_filename);
+    char *backup_filename = f_get_autosave_filename (real_filename);
 
     /* Delete the backup file */
     if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
