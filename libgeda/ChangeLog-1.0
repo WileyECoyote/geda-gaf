@@ -8,7 +8,7 @@
 
     * src/file/f_get.c: Moved setting of pointer to pointer after the check
       of the pointer in f_get_file_contents, rename "f" to "file" and add
-      some comments. Reduce scope of variabls in f_get_autosave_filename
+      some comments. Reduce scope of variables in f_get_autosave_filename
       f_get_dir_list_files, and f_get_bitmap_filespec.
 
     * src/file/f_file.c: Free buffer before call to error_exit rather
@@ -21,6 +21,10 @@
       more helpful GEDA_IS_LINE/else BUG_MSG in o_line_length.
 
     * src/struct/s_color.c: Reduce scope of color in s_color_get_colorname.
+
+    * src/struct/s_conn.c: Reduce scope of variables in module, Eliminate
+      unnecessary initialization o_current to NULL in s_conn_remove_other,
+      replace header.
 
     * src/struct/s_encoding.c: Reduce scope of "i" in s_encoding_base64_encode
       and reformat code blocks and line spacing to improve readability.
