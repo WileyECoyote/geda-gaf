@@ -69,7 +69,6 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
 {
   char *string;
   Page *found = NULL;
-  Page *forbear;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((filename != NULL), NULL);
@@ -97,7 +96,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
   }
 
   switch (flag) {
-  case HIERARCHY_NORMAL_LOAD:
+    case HIERARCHY_NORMAL_LOAD:
     {
       char *filename = f_file_normalize_name (string, NULL);
 
@@ -105,6 +104,9 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
       GEDA_FREE (filename);
 
       if (found) {
+
+        Page *forbear;
+
         /* check whether this page is in the parents list */
         for (forbear = parent;
              forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
@@ -112,19 +114,19 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
              {
                ; /* void */
              }
-        if (forbear != NULL && found->pid == forbear->pid) {
+             if (forbear != NULL && found->pid == forbear->pid) {
 
-          g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
-                       _("Hierarchy contains a circular dependency."));
-          return NULL;  /* error signal */
-        }
-        s_page_goto (found);
-        if (page_control != 0) {
-          found->page_control = page_control;
-        }
-        found->hierarchy_up = parent->pid;
-        GEDA_FREE (string);
-        return found;
+               g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
+                            _("Hierarchy contains a circular dependency."));
+                            return NULL;  /* error signal */
+             }
+             s_page_goto (found);
+             if (page_control != 0) {
+               found->page_control = page_control;
+             }
+             found->hierarchy_up = parent->pid;
+             GEDA_FREE (string);
+             return found;
       }
 
       found = s_page_new_with_notify (toplevel, string);
@@ -133,15 +135,16 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
     }
     break;
 
-  case HIERARCHY_FORCE_LOAD:
+    case HIERARCHY_FORCE_LOAD:
     {
       found = s_page_new_with_notify (toplevel, string);
       f_open (toplevel, found, found->filename, NULL);
     }
     break;
 
-  default:
-    g_return_val_if_reached (NULL);
+    default:
+      BUG_MSG("Invalid flag"):
+      return NULL;
   }
 
   if (page_control == 0) {
@@ -171,8 +174,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
   char *filename;
 
   filename = s_clib_symbol_get_filename (symbol);
-
-  page = s_page_search (toplevel, filename);
+  page     = s_page_search (toplevel, filename);
 
   if (page) {
     /* change link to parent page since we can come here from
@@ -194,6 +196,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
     page_control_counter++;
     page->page_control = page_control_counter;
   }
+
   return page;
 }
 
@@ -244,11 +247,9 @@ s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 GList *
 s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 {
-  Object *o_current;
-  Page *child_page;
-  char *filename = NULL;
+
   static GList *pages = NULL;
-  const GList *iter;
+  const  GList *iter;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((p_current != NULL), NULL);
@@ -260,59 +261,72 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 
   /* preorder traversing */
   if (!(flags & HIERARCHY_POSTORDER)) {
+
     /* check whether we already visited this page */
-    if ((flags & HIERARCHY_NODUPS)
-        && (g_list_find (pages, p_current) != NULL)) {
+    if ((flags & HIERARCHY_NODUPS) &&
+        (g_list_find (pages, p_current) != NULL))
+    {
       return pages;  /* drop the page subtree */
-      }
+    }
     pages = g_list_append (pages, p_current);
   }
 
   /* walk throught the page objects and search for underlaying schematics */
-  for (iter = s_page_get_objects (p_current);
+  for (iter  = s_page_get_objects (p_current);
        iter != NULL ;
-       iter = g_list_next (iter)) {
-    o_current = (Object *)iter->data;
+  iter  = g_list_next (iter)) {
 
-    /* only complex things like symbols can contain attributes */
-    if (o_current->type != OBJ_COMPLEX) continue;
+    GError *err;
+    Page   *child_page;
+    Object *o_current;
+    char   *filename;
 
+    o_current = (Object*)iter->data;
+
+    /* only complex symbols can contain attributes */
+    if (o_current->type != OBJ_COMPLEX)
+      continue;
+
+    /* Look outside symbol */
     filename =
-      o_attrib_search_attached_attribs_by_name (o_current, "source", 0);
+    o_attrib_search_attached_attribs_by_name (o_current, "source", 0);
 
-    /* if above is NULL, then look inside symbol */
+    /* If not outside, then look inside symbol */
     if (filename == NULL) {
       filename =
-        o_attrib_search_inherited_attribs_by_name (o_current, "source", 0);
+      o_attrib_search_inherited_attribs_by_name (o_current, "source", 0);
     }
 
-    if (filename == NULL) continue;
+    /* If no source attribute found then next component */
+    if (filename == NULL)
+      continue;
 
-    /* we got a schematic source attribute
-       lets load the page and dive into it */
-    GError *err = NULL;
+    err = NULL;
+
+    /* we got a schematic source attribute, load the page and dive into it */
     child_page =
-      s_hierarchy_down_schematic_single (toplevel, filename, p_current, 0,
-                                         HIERARCHY_NORMAL_LOAD, &err);
+    s_hierarchy_down_schematic_single (toplevel, filename, p_current, 0,
+                                       HIERARCHY_NORMAL_LOAD, &err);
     if (child_page != NULL) {
       /* call the recursive function */
       s_hierarchy_traverse_pages (toplevel, child_page,
                                   flags | HIERARCHY_INNERLOOP);
-    } else {
+    }
+    else {
       u_log_message (_("Failed to descend hierarchy into '%s': %s\n"),
                      filename, err->message);
       g_error_free (err);
     }
 
     GEDA_FREE (filename);
-    filename = NULL;
   }
 
   /* postorder traversing */
   if (flags & HIERARCHY_POSTORDER) {
     /* check whether we already visited this page */
-    if ((flags & HIERARCHY_NODUPS)
-        && (g_list_find (pages, p_current) != NULL)) {
+    if ((flags & HIERARCHY_NODUPS) &&
+        (g_list_find (pages, p_current) != NULL))
+    {
       return pages;  /* don't append it */
     }
     pages = g_list_append (pages, p_current);

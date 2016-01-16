@@ -25,6 +25,11 @@
     * src/struct/s_encoding.c: Reduce scope of "i" in s_encoding_base64_encode
       and reformat code blocks and line spacing to improve readability.
 
+    * src/struct/s_hierarchy.c: Eliminate unnecessary initialization and
+      redundant setting of filename to NULL in s_hierarchy_traverse_pages.
+      Reduce scope of forbear page in s_hierarchy_down_schematic_single and
+      replace g_return_val_if_reached with more helpful BUG_MSG macro.
+
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Reduce scope of variables in modules:
