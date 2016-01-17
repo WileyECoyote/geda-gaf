@@ -1,14 +1,14 @@
-v 20150401 2
+v 20151230 2
 V 600 700 349 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 400 200 800 200 3 0 0 0 -1 -1
 L 600 850 600 1200 3 0 0 0 -1 -1
 L 600 850 450 850 3 0 2 0 -1 -1
 L 600 700 600 200 3 0 2 0 -1 -1
 L 600 550 450 550 3 0 2 0 -1 -1
-L 450 700 525 750 3 0 2 0 -1 -1
-L 525 750 525 650 3 0 2 0 -1 -1
-L 525 650 450 700 3 0 2 0 -1 -1
-L 600 700 525 700 3 0 2 0 -1 -1
+L 450 700 550 750 3 0 2 0 -1 -1
+L 550 750 550 650 3 0 2 0 -1 -1
+L 550 650 450 700 3 0 2 0 -1 -1
+L 600 700 550 700 3 0 2 0 -1 -1
 L 400 900 400 500 3 0 0 0 -1 -1
 L 400 700 200 700 3 0 0 0 -1 -1
 L 750 950 600 950 3 0 2 0 -1 -1
@@ -111,25 +111,25 @@ pinseq=8
 T 1100 1200 5 6 0 1 0 0 1
 pintype=pas
 }
-T 1325 650 8 10 1 1 0 6 1
+T 1300 900 8 10 1 1 0 0 1
 refdes=Q?
-T 1100 900 9 10 1 0 0 0 1
-AO4420A
-T 1300 1300 5 10 0 1 0 0 1
-device=AO4420A
+T 1300 700 9 10 1 1 0 0 1
+value=AO4420A
 T 1300 1100 5 10 0 1 0 0 1
+device=NMOS_TRANSISTOR
+T 1300 500 5 10 0 1 0 0 1
 footprint=SO8
-T 1300 2300 5 10 0 0 0 0 1
-author=Anton Dubniak <twister@tfsoft.org.ua>
-T 1300 1700 5 10 0 1 0 0 1
-documentation=http://www.aosmd.com/pdfs/datasheet/AO4420A.pdf
-T 1300 1500 5 10 0 1 0 0 1
-description=AO4420A N-channel MOSFET (AOS)
 T 1300 2100 5 10 0 0 0 0 1
-dist-license=GPL
+author=Anton Dubniak <twister@tfsoft.org.ua>
+T 1300 1500 5 10 0 1 0 0 1
+documentation=http://www.aosmd.com/pdfs/datasheet/AO4420A.pdf
+T 1300 1300 5 10 0 1 0 0 1
+description=AO4420A N-channel MOSFET (AOS)
 T 1300 1900 5 10 0 0 0 0 1
+dist-license=GPL
+T 1300 1700 5 10 0 0 0 0 1
 use-license=unlimited
-T 1000 400 9 10 0 0 0 0 1
+T 1300 300 9 10 0 0 0 0 1
 numslots=0
-T 1000 300 5 8 0 0 0 0 1
-symversion=0.2
+T 1300 100 5 8 0 0 0 0 1
+symversion=0.4

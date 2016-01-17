@@ -1,20 +1,4 @@
-v 20150401 2
-T 800 600 8 10 1 1 0 0 1
-refdes=Q?
-T 0 1750 5 8 0 0 0 0 1
-symversion=0.3
-T 800 400 5 10 1 1 0 0 1
-device=2N6782
-T 0 1600 5 8 0 0 0 0 1
-numslots=0
-T 0 1300 5 8 0 1 0 0 1
-description=MOSFET,N CHANNEL, ENHANCED,100V,3.5A
-T 800 800 9 8 0 1 0 0 1
-footprint=TO-39
-T 0 1450 9 8 0 1 0 0 1
-documentation=http://www.wikipedia.org/wiki/MOSFET
-T 700 200 5 8 0 1 0 0 1
-value=15W
+v 20151230 2
 L 300 200 300 600 3 10 2 0 -1 -1
 L 500 400 450 400 3 0 2 0 -1 -1
 L 500 400 500 210 3 0 2 0 -1 -1
@@ -64,19 +48,29 @@ pinseq=3
 T 600 0 5 5 0 1 0 0 1
 pintype=pas
 }
-T 0 2200 5 8 0 0 0 0 1
-author=AutoTron
-T 0 2050 5 8 0 0 0 0 1
-dist-license=GPL3
-T 0 1900 5 8 0 0 0 0 1
-use-license=unrestricted
-T 0 1150 8 8 0 1 0 0 1
+T 800 700 8 10 1 1 0 0 1
+refdes=Q?
+T 800 500 5 10 1 1 0 0 1
+value=2N6786
+T 800 300 9 10 0 1 0 0 1
+footprint=TO-39
+T 800 1700 5 10 0 0 0 0 1
+symversion=0.3
+T 800 900 5 10 0 1 0 0 1
+description=MOSFET,N CHANNEL,ENHANCED,400V,1.25A
+T 800 1100 5 10 0 1 0 0 1
+device=NMOS_TRANSISTOR
+T 800 1500 5 10 0 0 0 0 1
+numslots=0
+T 800 1300 9 10 0 1 0 0 1
+documentation=http://www.wikipedia.org/wiki/MOSFET
+T 800 100 8 10 0 1 0 0 1
 comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
-T 0 1000 8 8 0 0 0 0 1
-spice-type=M
-T 900 1000 8 8 0 0 0 0 1
-net=VDD:D
-T 800 0 9 6 0 0 0 0 1
-value=w=1u
-T 800 100 9 6 0 0 0 0 1
-value=l=.35u
+T 1800 1500 9 10 0 0 0 0 1
+comment=value=w=1u,l=.35u
+T 800 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 800 2100 5 10 0 0 0 0 1
+dist-license=GPL3
+T 800 1900 5 10 0 0 0 0 1
+use-license=unrestricted

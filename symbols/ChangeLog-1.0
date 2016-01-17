@@ -1,3 +1,17 @@
+2016-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * nmosfet-e/2N675?_60V_12A_TO3-[1-3].sym: Rename file using Volt_Amps_Pkg
+      suffix, fix device=NMOS_TRANSISTOR attribute.
+
+    * nmosfet-e/2N678[2,4,6]_100V_3.5A_TO39-1.sym: Rename file using Volt_Amps
+      _Pkg suffix, fix device=NMOS_TRANSISTOR attribute.
+
+    * nmosfet-e/2N678[2,4,6]_100V_3.5A_TO205AF-[2,3].sym: Rename file using
+      Volt_Amps_Pkg suffix, fix device=NMOS_TRANSISTOR attribute.
+
+    * nmosfet-e/AO4420A_30V_14.7A_SO8-1.sym: Rename file using Volt_Amps_Pkg
+      suffix, fix device=NMOS_TRANSISTOR attribute.
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/idc-1.sym: Replace file with version in source/,
