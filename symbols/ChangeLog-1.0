@@ -12,6 +12,20 @@
     * nmosfet-e/AO4420A_30V_14.7A_SO8-1.sym: Rename file using Volt_Amps_Pkg
       suffix, fix device=NMOS_TRANSISTOR attribute.
 
+    * nmosfet-e/2N6755: Add alternate versions of 2N675[5,6] nmosfet, just to
+      complete the set.
+
+            * nmosfet-e/2N6755_60V_12A_TO3-4.sym
+            * nmosfet-e/2N6755_60V_12A_TO3-5.sym
+            * nmosfet-e/2N6755_60V_12A_TO3-6.sym
+            * nmosfet-e/2N6755_60V_12A_TO3-7.sym
+            * nmosfet-e/2N6755_60V_12A_TO3-8.sym
+            * nmosfet-e/2N6756_60V_12A_TO3-4.sym
+            * nmosfet-e/2N6756_60V_12A_TO3-5.sym
+            * nmosfet-e/2N6756_60V_12A_TO3-6.sym
+            * nmosfet-e/2N6756_60V_12A_TO3-7.sym
+            * nmosfet-e/2N6756_60V_12A_TO3-8.sym
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/idc-1.sym: Replace file with version in source/,
