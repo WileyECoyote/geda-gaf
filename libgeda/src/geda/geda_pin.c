@@ -430,6 +430,17 @@ geda_pin_get_electrical(Pin *pin)
   return pin->electrical;
 }
 
+/*! \brief Set Pin Electrical String
+ *  \par Function Description
+ *  Sets the electrical description property for \a pin to the value
+ *  \a electrical, this function looks for the \a electical in the
+ *  e_strings structure above and updates the elect_type, formally
+ *  pin-type, property to the index of the found strings as returned
+ *  by geda_pin_lookup_etype.
+ *
+ * \param [in,out] pin        A valid Pin object.
+ * \param [in]     electrical String, member of e_strings.
+ */
 bool geda_pin_set_electrical(Pin *pin, const char *electrical)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
@@ -437,7 +448,7 @@ bool geda_pin_set_electrical(Pin *pin, const char *electrical)
   bool      changed = FALSE;
   PIN_ELECT current_type;
 
-  if ( electrical != NULL ) {
+  if (electrical != NULL) {
 
     if (pin->electrical) {
       if (strcmp(pin->electrical, electrical) != 0) {
@@ -457,7 +468,7 @@ bool geda_pin_set_electrical(Pin *pin, const char *electrical)
 
       /* Update the code if discrepant */
       if (current_type != pin->elect_type)
-        current_type = pin->elect_type;
+        pin->elect_type = current_type;
     }
   }
   return changed;
@@ -508,6 +519,17 @@ geda_pin_get_mechanical(Pin *pin)
   return pin->mechanical;
 }
 
+/*! \brief Set Pin Mechanical String
+ *  \par Function Description
+ *  Sets the mechanical description property for \a pin to the value
+ *  \a mechanical, this function looks for the \a mechanical in the
+ *  e_strings structure above and updates the elect_type, formally
+ *  pin-type, property to the index of the found strings as returned
+ *  by geda_pin_lookup_mtype.
+ *
+ * \param [in,out] pin        A valid Pin object.
+ * \param [in]     mechanical String, member of m_strings.
+ */
 bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
@@ -535,7 +557,7 @@ bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
 
       /* Update the code if discrepant */
       if (current_type != pin->mech_type)
-        current_type = pin->mech_type;
+        pin->mech_type = current_type;
     }
   }
 
@@ -572,7 +594,6 @@ bool geda_pin_set_sequence(Pin *pin, const char *sequence)
   const char *ptr     = sequence;
         bool  changed = FALSE;
         bool  valid   = TRUE;
-        int   ivalue;
 
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
@@ -585,7 +606,9 @@ bool geda_pin_set_sequence(Pin *pin, const char *sequence)
   }
 
   if (valid) {
-    ivalue = atoi(sequence);
+
+    int ivalue = atoi(sequence);
+
     if ( ivalue != pin->sequence ) {
       pin->sequence = ivalue;
       changed = TRUE;
