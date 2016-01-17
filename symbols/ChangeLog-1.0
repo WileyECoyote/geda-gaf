@@ -26,6 +26,17 @@
             * nmosfet-e/2N6756_60V_12A_TO3-7.sym
             * nmosfet-e/2N6756_60V_12A_TO3-8.sym
 
+    * nmosfet-e/2N72*: Add 8 symbols; N-Channel enhanced mode MOSFETs:
+
+            * nmosfet-e/2N7218_100V_28A_TO254-1.sym
+            * nmosfet-e/2N7219_200V_18A_TO254-1.sym
+            * nmosfet-e/2N7221_400V_10A_TO254-1.sym
+            * nmosfet-e/2N7222_500V_8A_TO254-1.sym
+            * nmosfet-e/2N7224_100V_34A_TO254-1.sym
+            * nmosfet-e/2N7225_200V_27.4A_TO254-1.sym
+            * nmosfet-e/2N7227_400V_14A_TO254-1.sym
+            * nmosfet-e/2N7228_500V_12A_TO254-1.sym
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/idc-1.sym: Replace file with version in source/,
