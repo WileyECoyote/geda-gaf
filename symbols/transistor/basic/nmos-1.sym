@@ -53,7 +53,7 @@ refdes=Q?
 T 0 1750 5 8 0 0 0 0 1
 symversion=0.3
 T 800 400 5 10 1 1 0 0 1
-device=PART_NUMBER
+device=NMOS_TRANSISTOR
 T 0 1600 5 8 0 0 0 0 1
 numslots=0
 T 0 1300 5 8 0 1 0 0 1
