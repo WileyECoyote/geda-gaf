@@ -658,26 +658,40 @@ eda_config_get_context_for_file (const char *path)
 {
   static volatile GedaType initialized  = 0;
   static GHashTable *local_contexts = NULL;
-  char  *root;
-  char  *file = NULL;
-  char  *ptr  = NULL;
-  char   dir[PATH_MAX];
+
+  char *ptr;
+  char  dir[PATH_MAX];
 
   EdaConfig  *config = NULL;
 
   /* Initialise global state */
   if (g_once_init_enter (&initialized)) {
     local_contexts = g_hash_table_new_full (g_str_hash,
-                                            (GEqualFunc) strhashcmp,
+                                           (GEqualFunc) strhashcmp,
                                             NULL,
                                             NULL);
     g_once_init_leave (&initialized, 1);
   }
 
-  /* Got realpath? */
+#if HAVE_REALPATH
+
   ptr = realpath(path, &dir[0]);
 
+#else
+
+  if (g_path_is_absolute(path)) {
+    strncpy(&dir[0], path, PATH_MAX);
+  }
+  else {
+    ptr = NULL;
+  }
+
+#endif
+
   if (ptr != NULL) {
+
+    char *file;
+    char *root;
 
     /* Find the project root, and the corresponding configuration filename. */
     if (!g_file_test (ptr, G_FILE_TEST_IS_DIR)) {
@@ -935,12 +949,7 @@ eda_config_is_loaded (EdaConfig *cfg)
 bool
 eda_config_save (EdaConfig *cfg, GError **error)
 {
-  bool  status = FALSE;
-  char *dir;
-  char *data;
-  char *filename;
-  char *scratch;
-  FILE *fp;
+  bool status = FALSE;
 
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
 
@@ -957,6 +966,10 @@ eda_config_save (EdaConfig *cfg, GError **error)
   }
   else {
 
+    char *dir;
+    char *filename;
+    char *scratch;
+
     filename = cfg->priv->filename;
     scratch  = u_string_strdup(filename);
 
@@ -964,6 +977,8 @@ eda_config_save (EdaConfig *cfg, GError **error)
     dir = dirname (scratch);
 
     if (dir != NULL) {
+
+      FILE *fp;
 
       errno = 0;
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
@@ -987,7 +1002,9 @@ eda_config_save (EdaConfig *cfg, GError **error)
       }
 
       if (!errno && status) {
-        data = g_key_file_to_data(cfg->priv->keyfile, NULL, NULL);
+
+        char *data = g_key_file_to_data(cfg->priv->keyfile, NULL, NULL);
+
         fprintf(fp, "%s", data);
         fclose(fp);
         GEDA_FREE(data);
