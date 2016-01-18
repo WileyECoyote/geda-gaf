@@ -21,16 +21,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
+/* ------------------------------------------------------------------
+ * WEH | 10/16/13 | Relocated defines from gschem.
+ * ------------------------------------------------------------------
+ * WEH | 08/05/15 | Relocated defines from libgeda.
+*/
 /** \file geda_sdefines.h
  *
- *  \brief Global String Defines
- *   W.E.Hill Oct 16, 2013 relocated "these" defines from gschem, and
- *   on August 05, 2015 from libgeda, so all gaf's can reference.
+ *  \brief Global gEDA String Defines
  *
  *   \defgroup geda-global-strings Global String Constants
- * @{\par This group defines global string constants
- *   \ingroup (geda-globals)
+ * @{\ingroup (geda-globals)
+ *   \par
+ *    This group defines global string constants used in the gEDA suite.
  */
+
+#ifndef GEDA_STR_DEFINES_H
+#define GEDA_STR_DEFINES_H
 
 #define DEFAULT_FONT_NAME          "Arial"
 
@@ -51,20 +58,20 @@
 #define SYMBOL_FILTER              "*.sym"
 
 /*!
- *  \def IMAGE_FILTER_PNG           File extension for Portable Network Graphics files
- *  \def IMAGE_FILTER_JPG           File extension for Joint Photographic Experts Group files
- *  \def IMAGE_FILTER_JPEG          File extension for Joint Photographic Experts Group files
- *  \def IMAGE_FILTER_GIF           File extension for Graphics Interchange File Format
- *  \def IMAGE_FILTER_BMP           File extension for Windows raw bitmap files
- *  \def IMAGE_FILTER_ICO           File extension for Icon image files
- *  \def IMAGE_FILTER_TIF           File extension for Tagged Image File Format
- *  \def IMAGE_FILTER_TIFF          File extension for Tagged Image File Format
- *  \def IMAGE_FILTER_XPM           File extension for X Windows Pixel Map files
- *  \def IMAGE_FILTER_PNM           File extension for Portable anymap format
- *  \def IMAGE_FILTER_PBM           File extension for Portable bitmap format
- *  \def IMAGE_FILTER_PPM           File extension for Portable pixmap format
- *  \def IMAGE_FILTER_PGM           File extension for Portable graymap format
- *  \def IMAGE_FILTER_RAS           File extension for Raster Image Files
+ *  \def IMAGE_FILTER_PNG    File extension for Portable Network Graphics files
+ *  \def IMAGE_FILTER_JPG    File extension for Joint Photographic Experts Group files
+ *  \def IMAGE_FILTER_JPEG   File extension for Joint Photographic Experts Group files
+ *  \def IMAGE_FILTER_GIF    File extension for Graphics Interchange File Format
+ *  \def IMAGE_FILTER_BMP    File extension for Windows raw bitmap files
+ *  \def IMAGE_FILTER_ICO    File extension for Icon image files
+ *  \def IMAGE_FILTER_TIF    File extension for Tagged Image File Format
+ *  \def IMAGE_FILTER_TIFF   File extension for Tagged Image File Format
+ *  \def IMAGE_FILTER_XPM    File extension for X Windows Pixel Map files
+ *  \def IMAGE_FILTER_PNM    File extension for Portable anymap format
+ *  \def IMAGE_FILTER_PBM    File extension for Portable bitmap format
+ *  \def IMAGE_FILTER_PPM    File extension for Portable pixmap format
+ *  \def IMAGE_FILTER_PGM    File extension for Portable graymap format
+ *  \def IMAGE_FILTER_RAS    File extension for Raster Image Files
  */
 
 #define IMAGE_FILTER_PNG           "*.png"
@@ -83,3 +90,5 @@
 #define IMAGE_FILTER_RAS           "*.ras"
 
 /** @} endgroup geda-global-strings */
+
+#endif /* GEDA_STR_DEFINES_H */
