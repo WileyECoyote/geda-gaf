@@ -58,21 +58,14 @@
  *                |  module and the message were misleading.
  */
 
-#include <config.h>
-#include <version.h>
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
 #endif
-#include <stdio.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#include <ctype.h>
 
 #include <gschem.h>
 #include <ascii.h>
+
+#include <version.h>
 
 /*! \brief Loads gtk rc files for pararsing
  *
