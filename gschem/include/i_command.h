@@ -179,6 +179,7 @@ enum ActionFlag
         COMMAND ( do_page_new )
         COMMAND ( do_page_print )
         COMMAND ( do_page_revert )
+        COMMAND ( do_page_revert_all )
         COMMAND ( do_page_close )
         COMMAND ( do_page_discard )
 
@@ -488,6 +489,7 @@ enum {
      COMMAND ( PAGE_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
      COMMAND ( PAGE_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
      COMMAND ( PAGE_REVERT,         "revert",           USE_WORKER_THREAD,      do_page_revert)
+     COMMAND ( PAGE_REVERT_ALL,     "revert all",       USE_WORKER_THREAD,      do_page_revert_all)
      COMMAND ( PAGE_CLOSE,          "close",            USE_WORKER_THREAD,      do_page_close)
      COMMAND ( PAGE_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
 

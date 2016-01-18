@@ -1634,6 +1634,7 @@
 (map-keys "F M"        "file-save-modified")
 (map-keys "F P"        "file-print")
 (map-keys "F R"        "page-revert")
+(map-keys "F V"        "page-revert-all")
 (map-keys "F I"        "file-write-image")
 (map-keys "F T"        "file-run-script")
 (map-keys "<Shift>C A" "file-close-all")
@@ -1904,6 +1905,7 @@
 (map-icon "gtk-new"                    "page-new")
 (map-icon "gtk-print"                  "page-print")
 (map-icon "gtk-revert-to-saved"        "page-revert")
+(map-icon "gtk-revert-to-saved"        "page-revert-all")
 (map-icon "gtk-close"                  "page-close")
 (map-icon "gtk-discard"                "page-discard" )
 (map-icon "gtk-sort-ascending"         "page-draw-before")
@@ -2028,6 +2030,7 @@
         (,(N_ "Save All")          file-save-all        "gtk-save"            ,(N_ "Save all open documents"))
         (,(N_ "Save Modified")     file-save-modified   "gtk-save"            ,(N_ "Save all modified documents"))
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
+        (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload the all documents"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))

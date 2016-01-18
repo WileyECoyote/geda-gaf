@@ -209,6 +209,9 @@
 (define-action-public (&page-revert #:label (_ "Revert Changes") #:icon "gtk-revert-to-saved")
   (%page-revert))
 
+(define-action-public (&page-revert #:label (_ "Revert Changes") #:icon "gtk-revert-to-saved")
+  (%page-revert-all))
+
 (define-action-public (&page-manager #:label (_ "Page Manager"))
   (%page-manager))
 

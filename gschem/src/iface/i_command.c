@@ -836,7 +836,7 @@ COMMAND (do_open) {
       task->func.F2 = (void*)x_window_open_page;
       task->arg1    = command_struc[cmd_do_open].w_current;
       task->arg2    = filename;
-      geda_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+      geda_main_context_invoke (NULL, (void*)i_command_dispatch, task);
       count++;
       return FALSE;
     }
@@ -1085,7 +1085,7 @@ COMMAND (do_close_all) {
   pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
 
   /* Loop through all the pages looking for unsaved pages */
-  for ( iter = pages; iter != NULL; NEXT(iter)) {
+  for (iter = pages; iter != NULL; NEXT(iter)) {
 
     /* get ptr to a page */
     p_current = (Page*)iter->data;
@@ -2617,6 +2617,164 @@ COMMAND (do_page_revert)
   i_window_revert_page(w_current);
 
   EXIT_COMMAND(do_page_revert);
+}
+
+/** @brief i_cmd_do_page_revert_all in i_command_Command_Functions */
+COMMAND (do_page_revert_all)
+{
+  BEGIN_W_COMMAND(do_page_revert_all);
+
+  GedaToplevel *toplevel;
+  GList        *iter;
+  GList        *pages;
+  bool          revert;
+  bool          unsaved = FALSE;
+
+  void revert_command_idle_notify (void *data) {
+
+    IdleTaskData *packet = data;
+    GSList       *files  = packet->data;
+    char         *last_file;
+    Page         *page;
+
+    last_file = g_slist_nth_data (files, CMD_INTEGER(do_page_revert_all));
+
+    page = s_page_search(packet->w_current->toplevel, last_file);
+
+    if (GEDA_IS_PAGE(page)) {
+      x_window_set_current_page (packet->w_current, page);
+      g_hook_run_page (packet->w_current, OPEN_PAGE_HOOK, page);
+    }
+
+    GSource *source;
+    source = g_main_context_find_source_by_id (NULL, packet->source_id);
+    if (source) {
+      g_source_destroy (source);
+    }
+
+    /* free the list of filenames */
+    g_slist_foreach (files, (GFunc)g_free, NULL);
+
+    /* free the list that held pointers to filenames */
+    g_slist_free (files);
+
+    /* free the IdleTaskData structure */
+    GEDA_FREE(data);
+  }
+
+  toplevel = gschem_toplevel_get_geda_toplevel(w_current);
+
+  /* Check if any page are modified */
+  pages = geda_toplevel_get_pages(toplevel);
+
+  for (iter = pages; iter; iter = iter->next) {
+
+    Page *page = iter->data;
+
+    if (geda_page_get_changed(page)) {
+      unsaved = TRUE;
+      break;       /* Atl east one page changed, no need to continue looking */
+    }
+  }
+
+  /* Get confirmation if any pages are modified */
+  if (unsaved) {
+
+    const char *question = _("Confirm revert ALL documents");
+    int response;
+
+    response = x_dialog_confirmation(question, GEDA_MESSAGE_WARNING, FALSE);
+
+    if (response == GEDA_RESPONSE_YES) {
+      revert = TRUE;
+    }
+    else {
+      revert = FALSE;
+    }
+  }
+  else {
+    revert = TRUE;
+  }
+
+  if (revert) {
+
+    GSList *files;
+    Page   *p_current;
+    char   *c_filename;
+    int     index;
+
+    /* Cancel in-progress move actions */
+    if (w_current->inside_action &&
+      (w_current->event_state == MOVEMODE ||
+      w_current->event_state == DRAGMOVE)) {
+      o_move_cancel (w_current);
+    }
+
+    /* Close dialogs that maybe tracking the selection */
+    x_window_close_edit_dialogs(w_current);
+
+    /* Retain the filename of the current page */
+    p_current  = gschem_toplevel_get_current_page (w_current);
+    c_filename = p_current->filename;
+    files      = NULL;
+    index      = 0;
+
+    /* Loop through all the pages and get file names */
+    for (iter = pages; iter; iter = iter->next) {
+
+      /* Get ptr to page in list */
+      Page *page = (Page*)iter->data;
+
+      /* Copy the filename to the list */
+      files = g_slist_append(files, u_string_strdup(page->filename));
+
+      if (!strncmp(page->filename, c_filename, strlen(c_filename))) {
+        CMD_INTEGER(do_page_revert_all) = index;
+      }
+
+      geda_page_feeze_notify(page); /* don't bother with thawing */
+
+      /* remove the page from toplevel list of page and free */
+      s_page_delete (toplevel, page, FALSE);
+      index++;
+    }
+
+    /* Reload the list of files */
+    if (files) {
+
+      IdleTaskData *packet;
+      int count = 0;
+
+      toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
+
+      lambda (void *filename) {
+
+        gschem_task  *task;
+
+        task          = g_new(gschem_task, 1);
+        task->func.F2 = (void*)x_window_open_page;
+        task->arg1    = command_struc[cmd_do_page_revert_all].w_current;
+        task->arg2    = filename;
+        geda_main_context_invoke (NULL, (void*)i_command_dispatch, task);
+        count++;
+        return FALSE;
+      }
+      mapcar(files);
+
+      packet            = g_new(IdleTaskData, 1);
+      packet->w_current = command_struc[cmd_do_page_revert_all].w_current;
+      packet->data      = files;
+      packet->retry     = FALSE;
+      packet->source_id = g_idle_add_full (G_PRIORITY_LOW + (10 * count),
+                                           open_command_idle_callback,
+                                           packet,
+                                           revert_command_idle_notify);
+    }
+  }
+
+  /* Note files strings are freed by revert_command_idle_notify */
+
+  EXIT_COMMAND(do_page_revert_all);
 }
 
 /** @brief i_cmd_do_page_close in i_command_Command_Functions */

@@ -145,6 +145,7 @@
 #define PAGE_NEW         page-new
 #define PAGE_PRINT       page-print
 #define PAGE_REVERT      page-revert
+#define PAGE_REVERT_ALL  page-revert-all
 #define PAGE_CLOSE       page-close
 #define PAGE_DISCARD     page-discard
 #define DOWN_SCHEMATIC   hierarchy-down-schematic

@@ -1,5 +1,21 @@
 2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Code Enhancement: New feature - gschem revert all.
+
+    * etc/system-gschemrc.scm: Add new action page-revert-all, with hot
+      keys "F V" and map-icon.
+
+    * include/i_actions.h: define PAGE_REVERT_ALL.
+
+    * include/i_command.h: Setup entry for action PAGE_REVERT_ALL in
+      function table.
+
+    * src/iface/i_command.c: Add new function i_cmd_do_page_revert_all
+      to reload load all pages, request confirmation if any opened page
+      has been modified.
+
+2016-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * gschem_status_bar.c: Declare GschemStatusBar type volatile.
 
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
