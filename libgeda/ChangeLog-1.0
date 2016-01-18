@@ -1,3 +1,10 @@
+2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Eliminate unnecessary initialization temp to
+      NULL and redundent initialization position to -1 in u_string_strsubst,
+      reduce scope of variables in u_string_strisubst, u_string_strstr_rep,
+      and u_string_sprintf, replace header.
+
 2016-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Check for HAVE_REALPATH and attempt a hack
@@ -8,7 +15,7 @@
       in functions geda_pin_set_mechanical and geda_pin_set_electrical, add
       add Doxygen comments. Reduce scope of ivalue in geda_pin_set_sequence.
 
-    * src/geda/geda_complex.c: Reduce scope of left,  top,  right,  bottom in
+    * src/geda/geda_complex.c: Reduce scope of left, top, right, bottom in
       geda_complex_bounds.
 
     * src/geda/geda_list.c: Reduce scope of str in geda_list_add_unique_string.
@@ -39,7 +46,7 @@
 
     * src/struct/s_color.c: Reduce scope of color in s_color_get_colorname.
 
-    * src/struct/s_conn.c: Reduce scope of variables in module, Eliminate
+    * src/struct/s_conn.c: Reduce scope of variables in module, eliminate
       unnecessary initialization o_current to NULL in s_conn_remove_other,
       replace header.
 

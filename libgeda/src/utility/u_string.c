@@ -1,22 +1,23 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012-2016 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2016 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
  *
  * Date: November, 17, 2012
  * Contributing Author: Wiley Edward Hill
@@ -404,9 +405,7 @@ void u_string_sort_array( char *strings[], size_t strings_size) {
  */
 char *u_string_sprintf (const char *format, ...)
 {
-  char  local_buffer[USS_BUFFER_SIZE];
   char *buffer;
-
   int   size;
 
   va_list args;
@@ -428,6 +427,8 @@ char *u_string_sprintf (const char *format, ...)
   va_start (args, format);
 
   if (size < USS_BUFFER_SIZE) {
+
+    char local_buffer[USS_BUFFER_SIZE];
 
     vsprintf (&local_buffer[0], format, args);
 
@@ -590,18 +591,17 @@ int u_string_strsize (const char *format, va_list args)
  */
 char *u_string_strstr_rep(char *original, const char *old, const char *new)
 {
-  char *str;
   char *temp;
 
   void do_replace(char *s_ptr, const char *old, const char *new) {
 
     unsigned int lenOld = strlen(old);
     unsigned int lenNew = strlen(new);
-    char *ptr;
 
-    while (*s_ptr)
-    {
-      ptr = strstr(s_ptr, old);
+    while (*s_ptr) {
+
+      char *ptr = strstr(s_ptr, old);
+
       if (ptr) {
         strcpy(temp, ptr + lenOld);
         *ptr = '\0';
@@ -618,7 +618,7 @@ char *u_string_strstr_rep(char *original, const char *old, const char *new)
     return(NULL);
 
   while(strstr(original, old)) {
-    str = original;
+    char *str = original;
     do_replace(str, old, new);
   }
   free(temp);
@@ -704,8 +704,8 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
 {
   if (source && old_str) {
 
-    char *temp   = NULL;
-    int position = -1;
+    char *temp;
+    int   position;
 
     unsigned int length;
     unsigned int size;
@@ -778,14 +778,13 @@ char *u_string_strsubst(char *source, char *old_str, char *new_str)
  */
 char *u_string_strisubst(char *source, char *old_str, char *new_str)
 {
-  char *ptr1;
-  char *ptr2;
-  char *temp;
-
   if (source && old_str) {
 
     unsigned int length;
     unsigned int size;
+
+    char *ptr1;
+    char *temp;
 
     length = strlen(old_str);
 
@@ -794,6 +793,8 @@ char *u_string_strisubst(char *source, char *old_str, char *new_str)
     temp = malloc(size);     /* assume all of the old is prefixed */
 
     if (temp) {              /* If memory was allocated */
+
+      char *ptr2;
 
       memset(temp, 0, size); /* initialize new memory */
 
