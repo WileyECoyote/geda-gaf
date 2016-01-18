@@ -119,7 +119,7 @@ bool o_get_fill_options(Object *object,
   bool answer;
 
   if (GEDA_IS_CIRCLE(object) || GEDA_IS_ARC(object)    ||
-    GEDA_IS_BOX(object)    || GEDA_IS_PATH(object))
+      GEDA_IS_BOX(object)    || GEDA_IS_PATH(object))
   {
 
     *type   = object->fill_options->fill_type;

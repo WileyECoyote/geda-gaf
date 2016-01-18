@@ -97,8 +97,8 @@ value_copy_scm (const GValue *src, GValue *dest) {
  *   collect_values is not required for assignment to value.
  *
  *   "It should be noted, that it is generally a bad idea to follow
- *   the G_VALUE_NOCOPY_CONTENTS hint for reference counted types. Due
- *   to reentrancy requirements and reference count assertions
+ *   the G_VALUE_NOCOPY_CONTENTS hint for reference counted types.
+ *   Due to reentrancy requirements and reference count assertions
  *   performed by the signal emission code, reference counts should
  *   always be incremented for reference counted contents stored in
  *   the value->data array."
