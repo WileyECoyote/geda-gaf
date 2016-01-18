@@ -502,7 +502,7 @@ bool x_event_configure (GtkWidget         *widget,
 
     GList *iter;
     GList *pages;
-    Page  *old_page_current, *p_current;
+    Page  *old_page_current;
     int    old_screen_width,  old_screen_height;
     int    new_screen_width,  new_screen_height;
     double relative_zoom_factor = 1.0;
@@ -556,14 +556,16 @@ bool x_event_configure (GtkWidget         *widget,
     for (iter = pages; iter != NULL; iter  = iter->next) {
 
       double cx, cy;
-      p_current = (Page*)iter->data;
+
+      Page  *p_current = (Page*)iter->data;
 
       /* doing this the aspect ratio is kept when changing (hw)*/
       cx = ((double)(p_current->left + p_current->right))  / 2;
       cy = ((double)(p_current->top  + p_current->bottom)) / 2;
-      s_page_goto (p_current);
-      i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
 
+      s_page_goto (p_current);
+
+      i_pan_world_general (w_current, cx, cy, relative_zoom_factor, I_PAN_DONT_REDRAW);
     }
 
     /* restore current page to saved value */
