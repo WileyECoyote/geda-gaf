@@ -37,6 +37,54 @@
             * nmosfet-e/2N7227_400V_14A_TO254-1.sym
             * nmosfet-e/2N7228_500V_12A_TO254-1.sym
 
+    * diode/schottky/: Revise Schottky diodes; make anode sequence 1 in file
+      and pinseq attribute, tweak attribute positions keeping cathode as pin
+      number one:
+
+            * diode/schottky/1N5711-1.sym
+            * diode/schottky/1N5711-2.sym
+            * diode/schottky/1N5711-3.sym
+            * diode/schottky/1N5711-4.sym
+            * diode/schottky/1N5712-1.sym
+            * diode/schottky/1N5712-2.sym
+            * diode/schottky/1N5712-3.sym
+            * diode/schottky/1N5712-4.sym
+            * diode/schottky/1N5817-1.sym
+            * diode/schottky/1N5817-2.sym
+            * diode/schottky/1N5817-3.sym
+            * diode/schottky/1N5817-4.sym
+            * diode/schottky/1N5818-1.sym
+            * diode/schottky/1N5818-2.sym
+            * diode/schottky/1N5818-3.sym
+            * diode/schottky/1N5818-4.sym
+            * diode/schottky/1N5819-1.sym
+            * diode/schottky/1N5819-2.sym
+            * diode/schottky/1N5819-3.sym
+            * diode/schottky/1N5819-4.sym
+            * diode/schottky/1N5823-1.sym
+            * diode/schottky/1N5823-2.sym
+            * diode/schottky/1N5823-4.sym
+            * diode/schottky/1N5824-1.sym
+            * diode/schottky/1N5824-2.sym
+            * diode/schottky/1N5824-4.sym
+            * diode/schottky/1N5825-1.sym
+            * diode/schottky/1N5825-2.sym
+            * diode/schottky/1N5825-4.sym
+            * diode/schottky/B230LA-1.sym
+            * diode/schottky/B230LA-2.sym
+            * diode/schottky/B240A-1.sym
+            * diode/schottky/B240A-2.sym
+            * diode/schottky/BAT85-1.sym
+            * diode/schottky/BAT85-2.sym
+            * diode/schottky/BAT85-3.sym
+            * diode/schottky/BAT85-4.sym
+            * diode/schottky/MBR540-1.sym
+            * diode/schottky/MBR540-2.sym
+            * diode/schottky/schottky-1.sym
+            * diode/schottky/schottky-2.sym
+            * diode/schottky/schottky-3.sym
+            * diode/schottky/schottky-4.sym
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/idc-1.sym: Replace file with version in source/,
