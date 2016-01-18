@@ -26,10 +26,10 @@
 /*!
  * \file gschem_preview.h
  *
- * \brief header for the Preview Widget interface module
- */
-/*! \class Preview gschem_preview.h "gschem_preview.h"
- *  \brief Preview Widget Interface
+ * \brief header for the GschemPreview Widget interface module
+ *
+ * \class GschemPreview gschem_preview.h "gschem_preview.h"
+ * \brief Preview Widget Interface
  */
 
 #ifndef __GSCHEM_PREVIEW_H__
