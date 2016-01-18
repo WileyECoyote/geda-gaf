@@ -64,7 +64,6 @@ int geda_complex_bounds(Object *object)
   Object      *sub_object;
   ObjectClass *object_class;
 
-  int left,  top,  right,  bottom;
   int result = 0;
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(object), FALSE);
@@ -86,7 +85,9 @@ int geda_complex_bounds(Object *object)
 
   }
 
-  if(result) {
+  if (result) {
+
+    int left,  top,  right,  bottom;
 
     left   = sub_object->left;
     top    = sub_object->top;

@@ -325,7 +325,6 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
 static void geda_object_finalize(GObject *gobject)
 {
   Object *object = GEDA_OBJECT(gobject);
-  GList *iter;
 
   if (object->name) {
     GEDA_FREE(object->name);
@@ -343,6 +342,8 @@ static void geda_object_finalize(GObject *gobject)
   }
 
   if (object->weak_refs) {
+
+    GList *iter;
 
     for (iter = object->weak_refs; iter != NULL; iter = g_list_next (iter)) {
       g_free (iter->data);

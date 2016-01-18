@@ -8,6 +8,13 @@
       in functions geda_pin_set_mechanical and geda_pin_set_electrical, add
       add Doxygen comments. Reduce scope of ivalue in geda_pin_set_sequence.
 
+    * src/geda/geda_complex.c: Reduce scope of left,  top,  right,  bottom in
+      geda_complex_bounds.
+
+    * src/geda/geda_list.c: Reduce scope of str in geda_list_add_unique_string.
+
+    * src/geda/geda_object.c: Reduce scope of iter in geda_object_finalize.
+
 2016-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_complex.h: Define GedaComplexType in header

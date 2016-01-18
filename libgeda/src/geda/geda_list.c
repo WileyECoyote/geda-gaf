@@ -247,14 +247,13 @@ void geda_list_add_unique (GedaList *list, void *item)
 bool geda_list_add_unique_string (GedaList *list, char  *text)
 {
   GList *iter;
-  char  *str;
   bool   found;
 
   found = FALSE;
 
   for (iter = g_list_first(list->glist); iter; iter = iter->next) {
 
-    str = iter->data;
+    char *str = iter->data;
 
     if (str != NULL && isalpha (str[0])) {
       if (strcmp(text, str) == 0) {
