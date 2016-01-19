@@ -1,3 +1,12 @@
+2016-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .travis.yml: Revise to include "after_failure" clause to assists in
+      debugging libgedathon test failures on Travis workers because the
+      failures could not be duplicated on similarly configured machines.
+
+    * travis-after-failure.sh: debugging script to display results of logs
+      from failing tests relative to the top of the tree.
+
 2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda.h: Include "geda_standard.h", this actually fixes gcc
