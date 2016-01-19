@@ -7,8 +7,6 @@
     * travis-after-failure.sh: debugging script to display results of logs
       from failing tests relative to the top of the tree.
 
-    * include/geda_enum.h: Revise header, edit comments, adjust indentations.
-
 2016-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_sdefines.h: Redo Doxygen comments, adjust indentations.
