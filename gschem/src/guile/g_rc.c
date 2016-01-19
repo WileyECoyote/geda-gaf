@@ -66,6 +66,7 @@
 #include <ascii.h>
 
 #include <version.h>
+#include <errno.h>
 
 /*! \brief Loads gtk rc files for pararsing
  *

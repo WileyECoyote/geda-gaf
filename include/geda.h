@@ -37,6 +37,8 @@
  * @{\par This contains constants used through-out the gEDA suite
  */
 
+#include "geda_standard.h"
+
 #include <missing.h>
 
 #include <geda_system.h>
