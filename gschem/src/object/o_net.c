@@ -741,31 +741,33 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
 /*! \todo Finish function documentation!!!
  *  \brief Add Buss Ripper
  *  \par Function Description
- *  \returns TRUE if something was added, otherwise FALSE
+ *
  */
-int o_net_add_busrippers(GschemToplevel *w_current,
-                         Object         *net_obj,
-                         GList          *prev_conn_objects)
+int o_net_add_busrippers(GschemToplevel *w_current, Object *net_obj,
+                         GList *prev_conn_objects)
 
 {
-  CONN   *found_conn  = NULL;
-  GList  *cl_current;
-  double  distance1, distance2;
-  double  length;
+  GedaToplevel *toplevel = w_current->toplevel;
+  Object *new_obj;
   int color;
+  Bus    *bus_object  = NULL;
+  CONN   *found_conn  = NULL;
+  GList  *cl_current  = NULL;
+  Line   *line_object = NULL;
+  Object *ukn_object  = NULL;
   int done;
   int otherone;
+  BUS_RIPPER rippers[2];
   int ripper_count = 0;
+  int i;
+  double length;
   int sign;
+  double distance1, distance2;
   int first, second;
   int made_changes = FALSE;
   const int ripper_size = w_current->bus_ripper_size;
   int complex_angle = 0;
-  BUS_RIPPER rippers[2];
-
-  if (!GEDA_IS_LINE(net_obj)) {
-    return(FALSE);
-  }
+  const CLibSymbol *rippersym = NULL;
 
   length = o_line_length(net_obj);
 
@@ -779,22 +781,19 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
   if (w_current->override_net_color == -1) {
     color = NET_COLOR;
-  }
-  else {
+  } else {
     color = w_current->override_net_color;
   }
 
   /* check for a bus connection and draw rippers if so */
   cl_current = prev_conn_objects;
-
   while (cl_current != NULL) {
 
-    Object *ukn_object = GEDA_OBJECT(cl_current->data);
+    ukn_object = GEDA_OBJECT(cl_current->data);
 
     if (ukn_object->type == OBJ_BUS) {
-
-      Bus  *bus_object  = (Bus*)ukn_object;
-      Line *line_object = (Line*)bus_object;
+      bus_object  = (Bus*)ukn_object;
+      line_object = (Line*)bus_object;
 
       /* yes, using the net routine is okay */
       int bus_orientation = o_net_orientation(ukn_object);
@@ -805,7 +804,6 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       done = FALSE;
 
       while (cl_current2 != NULL && !done) {
-
         CONN *tmp_conn = (CONN *) cl_current2->data;
 
         if (tmp_conn && tmp_conn->other_object &&
@@ -934,6 +932,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
             /* printf("done\n"); */
           made_changes++;
         }
+
+
       }
       else if (bus_orientation == VERTICAL && net_orientation == HORIZONTAL) {
 
@@ -963,6 +963,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           bus_object->bus_ripper_direction = sign;
         }
         /* printf("ver sign: %d\n", sign); */
+
 
         if (net_obj->line->x[otherone] < line_object->x[0]) {
           /* new net is to the left of the bus */
@@ -1050,10 +1051,6 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
   if (made_changes) {
 
-    GedaToplevel     *toplevel  = w_current->toplevel;
-    const CLibSymbol *rippersym = NULL;
-    int   i;
-
     s_conn_remove_object (net_obj);
 
     if (w_current->bus_ripper_type == COMP_BUS_RIPPER) {
@@ -1069,9 +1066,6 @@ int o_net_add_busrippers(GschemToplevel *w_current,
     }
 
     for (i = 0; i < ripper_count; i++) {
-
-      Object *new_obj;
-
       if (w_current->bus_ripper_type == NET_BUS_RIPPER) {
         new_obj = o_net_new(color,rippers[i].x[0], rippers[i].y[0],
                             rippers[i].x[1], rippers[i].y[1]);

@@ -1,4 +1,4 @@
-2016-01-19 Wiley E. Hill <wileyhill@gmail.com>
+2016-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * .travis.yml: Revise to include "after_failure" clause to assists in
       debugging libgedathon test failures on Travis workers because the
