@@ -1,3 +1,8 @@
+2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/smash_megafile.c: Define WITHOUT_GUILE before including libgeda.h
+      because module does not incorporate guile.
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Fix variable name for non Linux builds;
