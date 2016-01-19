@@ -2,9 +2,14 @@
 
     * include/gschem_preview.h: Update file Doxygen comments.
 
-    * src/guile/g_rc.c: Remove inclusion of config.h, stat.h, and ctypes.
+    * src/guile/g_rc.c: Remove inclusion of config.h, stat.h, and ctypes,
+      add include <errno.h>.
+
+    * src/object/o_picture.c: include <errno.h>.
 
     * src/x/x_event.c: Reduce scope of p_current x_event_configure.
+
+    * src/x/x_fileselect.c: include <errno.h>.
 
 2016-01-17 Wiley E. Hill <wileyhill@gmail.com>
 

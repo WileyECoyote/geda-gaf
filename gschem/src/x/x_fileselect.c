@@ -33,6 +33,7 @@
 #include <geda_file_chooser.h>
 #include <geda_image_chooser.h>
 #include <geda_debug.h>
+#include <errno.h>
 
 /** \defgroup File-Dialogs File System Dialogs
  *  @{
@@ -396,8 +397,9 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
   if (filename) {
 
     char *filepath = f_path_get_dirname (filename);
-    if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR))
-    {
+
+    if (filepath && g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
+
       errno = 0;
       access(filepath, R_OK);
       if (!errno) {

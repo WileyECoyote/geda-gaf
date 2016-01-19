@@ -41,6 +41,7 @@
  */
 
 #include <math.h>
+#include <errno.h>
 
 #include <gschem.h>
 #include <geda_image_chooser.h>
