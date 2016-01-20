@@ -1,4 +1,16 @@
-2016-01-19 Wiley E. Hill <wileyhill@gmail.com>
+2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+
+    * transistor/nmosfet-0/nmosfet-enh-gds-[1-8].sym: Tweak attributes:
+
+            * transistor/nmosfet-0/nmosfet-enh-gds-1.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-2.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-3.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-4.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-5.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-6.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-7.sym
+            * transistor/nmosfet-0/nmosfet-enh-gds-8.sym
 
     * emechanic/meter/ammeter-2.sym: Add a second amp-meter/voltage source
       with vertical orientation.
