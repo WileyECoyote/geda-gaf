@@ -27,7 +27,7 @@ do_export_module () {
 
 do_remove_module () {
 
-   if [ -d geda ] ; then
+   if test -d geda ; then
       rm -rf geda
    fi
 }
@@ -47,7 +47,7 @@ do_exit_no_symchecker ()
 
 do_get_symbol_checker ()
 {
-   if [ -x $PATH2CHECKSYM/$CHECKSYM ] ; then
+   if test -x $PATH2CHECKSYM/$CHECKSYM ; then
        SYMCHECKER=$PATH2CHECKSYM/$CHECKSYM
    else
        SYMCHECKER=$(which "${CHECKSYM}")
@@ -64,33 +64,33 @@ do_export_path2libraries()
    local PATH2LIBTHON
 
    # Libgeda
-   if [ -d $RPATH2LIBGEDA ] ; then
+   if test -d ${RPATH2LIBGEDA} ; then
       cd $RPATH2LIBGEDA
       PATH2LIBGEDA=$PWD
       cd $CWDSAVE
    else
-      echo "Error: not in the right place, cannot find libgeda"
-      exit 0
+      echo "Error: not in the right place, cannot find libgeda: $db"
+      exit 1
    fi
 
    # Libgedacairo
-   if [ -d $RPATH2LIBCAIRO ] ; then
+   if test -d ${RPATH2LIBCAIRO} ; then
       cd $RPATH2LIBCAIRO
       PATH2LIBCAIRO=$PWD
       cd $CWDSAVE
    else
       echo "Error: not in the right place, cannot find libgedacairo"
-      exit 0
+      exit 1
    fi
 
    # Libgedathon
-   if [ -d $RPATH2LIBTHON ] ; then
+   if test -d ${RPATH2LIBTHON} ; then
       cd $RPATH2LIBTHON
       PATH2LIBTHON=$PWD
       cd $CWDSAVE
    else
       echo "Error: not in the right place, cannot find libgedathon"
-      exit 0
+      exit 1
    fi
 
    export LD_LIBRARY_PATH=$PATH2LIBGEDA:$PATH2LIBCAIRO:$PATH2LIBTHON:$LD_LIBRARY_PATH
@@ -118,14 +118,14 @@ do_setup_geda_environment ()
   fi
 }
 
-if [ -d "../scripts" ] ; then
+if test -d  "../scripts" ; then
    path2scripts="../scripts"
 else
    echo " cannot check <libgedathon>, directory containing scripts is missing"
    exit 1;
 fi
 
-if [ -f "$MODULE" ] ; then
+if test -f "$MODULE" ; then
 
    do_get_symbol_checker
 
@@ -138,42 +138,42 @@ if [ -f "$MODULE" ] ; then
    # Makefile in ../scripts/ would have aborted "make check" before reaching
    # the tests/ directory
 
-   if [ ! -f "${path2scripts}/capacitor.py" ] ; then
+   if test ! -f "${path2scripts}/capacitor.py" ; then
      do_err_exit " can not check <libgedathon>, because capacitor.py is not in $path2scripts/"
-   elif [ ! -f "${path2scripts}/dual-opamp.py" ] ; then
+   elif test ! -f "${path2scripts}/dual-opamp.py" ; then
      do_err_exit " can not check <libgedathon>, because dual-opamp.py is not in $path2scripts/"
-   elif [ ! -f "${path2scripts}/lpbf.py" ] ; then
+   elif test ! -f "${path2scripts}/lpbf.py" ; then
      do_err_exit " can not check <libgedathon>, because lpbf.py is not in $path2scripts/"
-   elif [ ! -f "${path2scripts}/resistor.py" ] ; then
+   elif test ! -f "${path2scripts}/resistor.py" ; then
      do_err_exit " can not check <libgedathon>, because resistor.py is not in $path2scripts/"
-   elif [ ! -f "lpfilter.sch" ] ; then
+   elif test ! -f "lpfilter.sch" ; then
      do_err_exit " can not check <libgedathon>, because lpfilter.sch is not in $PWD/"
    else
 
      $path2scripts/lpbf.py
 
-     if [ ! -f "tmp/lpfilter.sch" ] ; then
+     if test ! -f "tmp/lpfilter.sch" ; then
        do_err_exit "<lpbf.py> did not produce tmp/lpfilter.sch"
      else
 
        # Check that each of the symbol files are compliant
        answer=$($SYMCHECKER -q tmp/sym/capacitor-py.sym)
-       if [ $? -ne 0 ] ; then
+       if test $? -ne 0 ; then
          echo "Failed capacitor-py.sym, see gsymcheck -v tmp/sym/capacitor-py.sym"
          ((result++))
        fi
        answer=$($SYMCHECKER -q tmp/sym/resistor-py.sym)
-       if [ $? -ne 0 ] ; then
+       if test $? -ne 0 ; then
          echo "Failed resistor-py.sym, see gsymcheck -v tmp/sym/resistor-py.sym"
          ((result++))
        fi
        answer=$($SYMCHECKER -q tmp/sym/dual-opamp-py.sym)
-       if [ $? -ne 0 ] ; then
+       if test $? -ne 0 ; then
          echo "Failed dual-opamp-py.sym, see gsymcheck -v tmp/sym/dual-opamp-py.sym"
          ((result++))
        fi
        answer=$(diff <(tail -n +2 "lpfilter.sch") <(tail -n +2 "tmp/lpfilter.sch"))
-       if [ ! -z "$answer" ] ; then
+       if test ! -z "$answer" ; then
          echo "Failed diff, lpfilter.sch and tmp/lpfilter.sch are suppose to be the exactly the same"
          echo "check $answer";
          ((result++))
@@ -187,6 +187,9 @@ else
    echo  "Module not in $MODULE"
    exit 1;
 fi
+
+# Clean up if not debugging
+test $DEBUG || rm -rf sym
 
 echo "Completed tests for libgedathon!"
 exit $result;

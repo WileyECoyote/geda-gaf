@@ -1,7 +1,10 @@
 2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/run_tests.sh: Implement function do_setup_geda_environment in
-      order for libraries to locate the source symbol tree.
+      order for libraries to locate the source symbol tree. Replace brackets
+      with more Bourne like syntax while attempting to replace Bash but was
+      unable to get sh to use redirection of tails as inputs to diff so leave
+      for Bash, probably more me and not sh.
 
 2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
