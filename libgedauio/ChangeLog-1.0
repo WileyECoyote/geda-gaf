@@ -1,3 +1,9 @@
+2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_image_chooser.c: add conditional to skip updating the
+      preview widget if previews are not enabled. Reduce scope of variables.
+      Eliminate preview variable in function chooser_update_preview.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * Replace pointless macros:

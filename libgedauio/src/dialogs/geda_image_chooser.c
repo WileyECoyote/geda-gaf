@@ -96,13 +96,17 @@ static GedaFileFilterDataDef filter_data[] = {
 static void
 geda_image_chooser_setup_filters (GtkFileChooser *filechooser)
 {
-  GtkFileFilter         *filter;
   GedaFileFilterDataDef *data;
-  int i;
 
   for (data = filter_data; data->name != NULL; data++) {
-    filter = gtk_file_filter_new ();
+
+    GtkFileFilter *filter;
+    int i;
+
+    filter = gtk_file_filter_new();
+
     gtk_file_filter_set_name(filter, data->name);
+
     for (i = 0; data->pattern[i] != '\0'; i++) {
       const char *ext = data->pattern[i];
       gtk_file_filter_add_pattern (filter, ext);
@@ -211,17 +215,17 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
   GedaImageChooser *chooser = user_data;
   GtkImage         *preview = GTK_IMAGE (chooser->preview);
   GError           *err     = NULL;
-  GdkPixbuf        *pixbuf;
   char             *filename;
-  int               size;
   static int        old_size = -1;
 
   filename = gtk_file_chooser_get_preview_filename (GTK_FILE_CHOOSER(chooser));
 
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 
-    size = chooser->preview_size = (int) gtk_adjustment_get_value(adjustment);
+    GdkPixbuf *pixbuf;
+    int        size;
 
+    size   = chooser->preview_size = (int) gtk_adjustment_get_value(adjustment);
     pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
 
     if (err != NULL) {
@@ -235,6 +239,7 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
         gtk_image_set_from_pixbuf (preview, pixbuf);
 
         if (old_size < 0) old_size = ((GtkWidget*)preview)->allocation.width;
+
         if (size < old_size) {
           if (!chooser->mouse_down) {
             gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
@@ -272,29 +277,41 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
  *  \param [in] user_data ImageChooser preview, aka GtkImage, widget
  */
 static void
-chooser_update_preview (GtkFileChooser *chooser, void *user_data)
+chooser_update_preview (GtkFileChooser *widget, void *user_data)
 {
-  GtkImage   *preview = GTK_IMAGE (user_data);
-  GError     *err     = NULL;
-  GdkPixbuf  *pixbuf;
-  char       *filename;
-  int         size;
+  GedaImageChooser *chooser = GEDA_IMAGE_CHOOSER(widget);
 
-  filename = gtk_file_chooser_get_preview_filename (chooser);
+  GdkPixbuf        *pixbuf;
+  char             *filename;
 
-  if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+  /* preview_enabled is used to by-pass updates instead of disconnecting
+   * the signal handler because of flaws in gobject/gsignal.c one@2580,
+   * which issues unnecessary noise claiming the handler is not connected.
+   * Another solution would be to not use buggy gobject signals and just
+   * call this function directly when the treeview selection changes.
+   */
+  if (chooser->preview_enabled) {
 
-    size   = (GEDA_IMAGE_CHOOSER(chooser))->preview_size;
+    filename = gtk_file_chooser_get_preview_filename (widget);
 
-    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
+    if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 
-    if (err != NULL) {
-      fprintf(stderr, "<%s> file error: %s\n", filename, strerror( errno ));
-      g_clear_error (&err);
-    }
-    else { /* update preview */
-      gtk_image_set_from_pixbuf (preview, pixbuf);
-      gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
+      GError *err;
+      int     size;
+
+      size   = chooser->preview_size;
+      pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
+      err    = NULL;
+
+      if (err != NULL) {
+        /* silently clear the error, got no pic and don't care what happened */
+        g_clear_error (&err);
+      }
+      else { /* update preview */
+
+        gtk_image_set_from_pixbuf (GTK_IMAGE(user_data), pixbuf);
+        gtk_widget_set_size_request (GTK_WIDGET(user_data), size, -1);
+      }
     }
   }
 }
@@ -386,7 +403,6 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
 static GtkWidget *build_menu(GedaImageChooser *chooser)
 {
   GtkWidget   *menu;
-  GtkWidget   *item;
   GtkTooltips *tooltips;
 
   int i;
@@ -396,7 +412,7 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++) {
 
-    item = gtk_menu_item_new_with_label(_(popup_items[i]));
+    GtkWidget *item = gtk_menu_item_new_with_label(_(popup_items[i]));
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
     g_object_set_data(G_OBJECT(item), "chooser", chooser);
@@ -1118,11 +1134,6 @@ geda_image_chooser_new (GtkWidget *parent,
                         ImageChooserAction chooser_action)
 {
   GtkWidget        *widget;
-  GtkDialog        *dialog;
-  GedaImageChooser *chooser;
-
-  const char *second_button_text;
-  const char *title = NULL;
 
   widget = g_object_new (geda_image_chooser_get_type(),
                          "action", chooser_action,
@@ -1131,6 +1142,12 @@ geda_image_chooser_new (GtkWidget *parent,
                          NULL);
 
   if ( G_IS_OBJECT(widget)) {
+
+     GtkDialog        *dialog;
+     GedaImageChooser *chooser;
+
+     const char *second_button_text;
+     const char *title = NULL;
 
     chooser = (GedaImageChooser*)widget;
     dialog  = (GtkDialog*)widget;
@@ -1202,7 +1219,7 @@ geda_image_chooser_dialog_new_valist (const char        *title,
 {
   GtkWidget  *result;
   const char *button_text = first_button_text;
-  int         response_id;
+
 
   result = g_object_new (geda_image_chooser_get_type(),
                          "title", title,
@@ -1214,7 +1231,9 @@ geda_image_chooser_dialog_new_valist (const char        *title,
   }
 
   while (button_text) {
-      response_id = va_arg (varargs, gint);
+
+      int response_id = va_arg (varargs, int);
+
       gtk_dialog_add_button (GTK_DIALOG (result), button_text, response_id);
       button_text = va_arg (varargs, const char *);
   }
@@ -1274,14 +1293,11 @@ GtkEntry *geda_image_chooser_get_entry (GtkWidget *widget)
 char*
 geda_image_chooser_get_entry_text(GtkWidget *despicable)
 {
-  char       *name;
-  GtkEntry   *entry;
-
-  name = NULL;
+  char *name = NULL;
 
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
-    entry = geda_image_chooser_get_entry(despicable);
+    GtkEntry *entry = geda_image_chooser_get_entry(despicable);
 
     if (GTK_IS_ENTRY(entry)) {
 
