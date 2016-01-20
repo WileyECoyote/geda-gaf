@@ -14,7 +14,7 @@ before_install: >
     guile-2.0-dev flex bison groff texinfo python2.7-dev
 
 # Set up the source tree by fetching Linux-specific prebuilt objects
-install: ./autogen.sh && ./configure --disable-update-xdg-database
+install: ./autogen.sh && ./configure --disable-update-xdg-database -with-x=yes
 
 after_failure: ./travis-after-failure.sh
 
