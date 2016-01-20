@@ -1,3 +1,8 @@
+2016-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/meter/ammeter-2.sym: Add a second amp-meter/voltage source
+      with vertical orientation.
+
 2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/subsheet-1.sym: Rename file with dash 1 suffix, there is a -2 version.
