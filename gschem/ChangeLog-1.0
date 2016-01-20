@@ -3,6 +3,9 @@
     * src/object/o_net.c: Eliminate some unnecessary initialization,
       reduce scope of variables.
 
+    * src/x/x_image.c: Replace reminent file_chooser_xxx with geda_
+      image_chooser_xxx.
+
 2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_preview.h: Update file Doxygen comments.

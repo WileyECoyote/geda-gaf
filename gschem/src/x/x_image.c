@@ -293,7 +293,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
                                          GTK_TYPE_FILE_CHOOSER);
 
   /* Try and get the previous file name. If none, revert to the page filename */
-  old_filename = geda_file_chooser_get_entry_text (file_chooser);
+  old_filename = geda_image_chooser_get_entry_text (file_chooser);
 
   /* If no previous name, then revert to the page filename */
   if (old_filename == NULL) {
@@ -318,7 +318,7 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
 
   /* Set the new filename */
   if (file_chooser) {
-    geda_file_chooser_set_current_name (file_chooser, file_name);
+    geda_image_chooser_set_current_name (file_chooser, file_name);
   }
   else {
     u_log_message("%s: No parent file chooser found!.\n", __func__);
@@ -468,7 +468,9 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
   else {
 
     if (strncmp(filetype, "pdf", 3) == 0) {
-      x_print_export_pdf (w_current, filename);
+      if (x_print_export_pdf (w_current, filename)) {
+        u_log_message(_("Generated PDF file [%s]\n"), filename);
+      }
     }
     else {
 
@@ -681,7 +683,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
 
-  geda_file_chooser_set_current_folder (dialog, cwd);
+  geda_image_chooser_set_current_folder (dialog, cwd);
 
   GEDA_FREE (cwd);
 
