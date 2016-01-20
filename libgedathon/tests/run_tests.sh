@@ -2,11 +2,15 @@
 
 let result=0;
 
-SRCDIR=$srcdir
+if test -z ${srcdir} ; then
+  SRCDIR="."
+else
+  SRCDIR=$srcdir
+fi
 
 MODULE="../module/.libs/geda.so"
 
-RPATH2LIBGEDA=$SRCDIR/../../libgeda/src/.libs
+RPATH2LIBGEDA=${SRCDIR}/../../libgeda/src/.libs
 RPATH2LIBCAIRO=$SRCDIR/../../libgedacairo/src/.libs
 RPATH2LIBTHON=$SRCDIR/../src/.libs
 
@@ -94,6 +98,26 @@ do_export_path2libraries()
    test $VERBOSE && echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 }
 
+do_setup_geda_environment ()
+{
+  local CWDSAVE=$PWD
+
+  export GEDADATA=$PWD
+
+  test $VERBOSE && echo  "GEDADATA=GEDADATA"
+
+  if test -d ${SRCDIR}/../../symbols ; then
+   cd ${SRCDIR}/../../symbols
+   SYMDIR=$PWD
+   cd $CWDSAVE
+   ln -s -T $SYMDIR sym 2>/dev/null
+   cd $CWDSAVE
+  else
+    echo "Error: not in the right place, cannot find symbols directory:${SRCDIR}/../../symbols"
+    exit 1
+  fi
+}
+
 if [ -d "../scripts" ] ; then
    path2scripts="../scripts"
 else
@@ -107,6 +131,7 @@ if [ -f "$MODULE" ] ; then
 
    do_export_module
    do_export_path2libraries
+   do_setup_geda_environment
 
    # Testing for the existence of the scripts is really only applicable when
    # "make check" is invoked directly from the tests/ directory, otherwise the

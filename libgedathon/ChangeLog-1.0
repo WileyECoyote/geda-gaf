@@ -1,3 +1,8 @@
+2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/run_tests.sh: Implement function do_setup_geda_environment in
+      order for libraries to locate the source symbol tree.
+
 2016-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/run_tests.sh: Revised test to skip the first line, the file

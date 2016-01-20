@@ -832,7 +832,7 @@ static void setup_source_library (void)
       {
         name = namelist[n]->d_name;
         char *fullpath = g_build_filename (data_path, name, NULL);
-        s_clib_add_directory(fullpath,name );
+        s_clib_add_directory(fullpath,name);
         i = scandir(fullpath, &nestedlist, NULL, alphasort);
         if (i > 0) {
           while (i--) {
