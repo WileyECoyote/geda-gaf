@@ -188,7 +188,7 @@ s_tile_add_linear_object (Object *object)
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
           return;
         }
-        /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
+
         tile_current = &p_current->world_tiles[v][w];
         found = g_list_find(tile_current->objects, object);
 
@@ -205,7 +205,7 @@ s_tile_add_linear_object (Object *object)
         if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
           return;
         }
-        /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
+
         tile_current = &p_current->world_tiles[v][w];
         found = g_list_find(tile_current->objects, object);
 
@@ -231,7 +231,7 @@ s_tile_add_linear_object (Object *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
+
           tile_current = &p_current->world_tiles[v][w];
           found = g_list_find(tile_current->objects, object);
 
@@ -247,7 +247,7 @@ s_tile_add_linear_object (Object *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /* g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
+
           tile_current = &p_current->world_tiles[v][w];
           found = g_list_find(tile_current->objects, object);
 
@@ -265,7 +265,7 @@ s_tile_add_linear_object (Object *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
+
           tile_current = &p_current->world_tiles[v][w];
           found = g_list_find(tile_current->objects, object);
 
@@ -294,8 +294,7 @@ s_tile_add_linear_object (Object *object)
       if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
         return;
       }
-      /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y &&
-        v >= 0 && w >= 0);*/
+
       tile_current = &p_current->world_tiles[v][w];
       found = g_list_find(tile_current->objects, object);
 
@@ -352,21 +351,23 @@ void s_tile_add_object (Object *object)
  */
 void s_tile_remove_object(Object *object)
 {
-  GList *iter;
   GList *tl_current;
 
   /* Correctly deal with compound objects */
   if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-    for (iter = object->complex->prim_objs;
+
+    GList *iter;
+
+    for (iter  = object->complex->prim_objs;
          iter != NULL;
-         iter = g_list_next (iter)) {
+         iter  = g_list_next (iter)) {
       s_tile_remove_object (iter->data);
     }
   }
 
-  for (tl_current = object->tiles;
+  for (tl_current  = object->tiles;
        tl_current != NULL;
-       tl_current = g_list_next (tl_current)) {
+       tl_current  = g_list_next (tl_current)) {
     TILE *tile_current = (TILE*)tl_current->data;
 
     /* remove object from the list of objects for this tile */

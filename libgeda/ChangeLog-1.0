@@ -1,3 +1,8 @@
+2016-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_tile.c: Remove commented asserts, reduce scope of iter
+      in s_tile_add_linear_object.
+
 2016-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Eliminate unnecessary initialization temp to
