@@ -529,10 +529,16 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
   /* If the keystroke was not part of a prefix, start a timer to clear
    * the status bar display. */
   if (w_current->keyaccel_ssid) {
+
+    GSource *timer;
+
     /* Cancel any existing timers that haven't fired yet. */
-    GSource *timer =
-    g_main_context_find_source_by_id (NULL, w_current->keyaccel_ssid);
-    g_source_destroy (timer);
+    timer = g_main_context_find_source_by_id (NULL, w_current->keyaccel_ssid);
+
+    if (timer) {
+      g_source_destroy (timer);
+    }
+
     w_current->keyaccel_ssid = 0;
   }
 
