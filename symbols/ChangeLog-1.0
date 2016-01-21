@@ -1,5 +1,18 @@
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-[1-8].sym: Add
+      symbol BSS138B dual NMOS.
+
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-1.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-2.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-3.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-4.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-5.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-6.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-7.sym
+            * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-8.sym
+
+
     * passive/capacitor/capacitor-1.sym: Revert delete the symversion.
 
 2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
