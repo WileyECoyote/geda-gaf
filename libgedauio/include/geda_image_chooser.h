@@ -90,7 +90,7 @@ struct _GedaImageChooser {
   GtkWidget            *preview_chechbox;
   GtkWidget            *filter_button;
            int          filter_index;
-  unsigned int          handler;
+  unsigned long         handler;
            int          default_preview_size;
            int          max_preview_size;
            int          min_preview_size;

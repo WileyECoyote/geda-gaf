@@ -1,3 +1,8 @@
+2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_image_chooser.h: Change _GedaImageChooser::handler from
+      unsigned int to unsigned long.
+
 2016-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_image_chooser.c: add conditional to skip updating the
