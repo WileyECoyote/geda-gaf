@@ -35,6 +35,12 @@
 #ifndef __GEDA_PIN_H__
 #define __GEDA_PIN_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaPinType unsigned long
+#else
+# define GedaPinType unsigned int
+#endif
+
 #define GEDA_TYPE_PIN            (geda_pin_get_type())
 #define GEDA_PIN(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PIN, Pin))
 #define GEDA_PIN_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PIN, PinClass))
@@ -42,7 +48,9 @@
 #define GEDA_IS_PIN_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PIN))
 #define GEDA_PIN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PIN, PinClass))
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct _GedaPinClass PinClass;
 
@@ -54,7 +62,7 @@ struct _GedaPin {
 
   Line parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
+  GedaPinType head_marker;   /* structure type signature */
 
   char       *number;
   int         sequence;
@@ -70,10 +78,10 @@ struct _GedaPin {
 
   int        *line_width;
 
-  GedaType tail_marker;  /* structure type signature */
+  GedaPinType tail_marker;  /* structure type signature */
 };
 
-GedaType     geda_pin_get_type           (void) GEDA_CONST;
+GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
 bool         is_a_geda_pin_object        (Pin *object);
 
 Object     *geda_pin_new                 (void);
@@ -92,5 +100,10 @@ const char *geda_pin_lookup_estring   (PIN_ELECT   e_type);
 PIN_MECH    geda_pin_lookup_mtype     (const char *m_str);
 const char *geda_pin_lookup_mstring   (PIN_MECH    m_type);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#undef GedaCircleType
+
 #endif /* __GEDA_PIN_H__ */
