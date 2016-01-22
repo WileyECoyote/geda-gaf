@@ -6,9 +6,11 @@ SUFFIXES = .py
 PYdir	             = $(TARGET_DIR)
 
 ## ftest.py gtest.py
-PY_SCRIPTS 	     	 = capacitor.py dual-opamp.py lpbf.py resistor.py \
+PY_SCRIPTS 	    = capacitor.py dual-opamp.py lpbf.py resistor.py \
 			   gsym-attribute.py gsym-set-font-size.py \
 			   gsym-set-visibility.py geda-snap-grid.py
+
+EXTRA_DIST	    = $(PY_SCRIPTS)
 
 #enble this for distcheck
 distcheck:
