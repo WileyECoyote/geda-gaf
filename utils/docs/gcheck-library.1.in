@@ -34,7 +34,7 @@ Directives affecting the mode and operation of the gcheck-library utility.
 file search pattern is changed from *.sym to *'.
 .IP "-c, --clip"
 Performs advanced checks on geda-clib.scm. This directive is not intended for regular users. When enabled, symbol files are
-not checked, instead, gcheck-library will perform checked related to geda-clib.scm in two stages. The first check is for the
+not checked, instead, gcheck-library will perform checks related to geda-clib.scm in two stages. The first check is for the
 syntax of geda-clib.scm. The gaf utility's shell feature is utilized to load the file in guile, this is a pass or fail check.
 The results are reported. The second stage checks for references to the names of symbol folders in geda-clib.scm, which
 uses the "component-library" function to load the main library, so any folder names reported as being unreferenced will not
