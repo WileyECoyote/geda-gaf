@@ -4,6 +4,8 @@
       capacitor.py, dual-opamp.py so that run_tests can pass the BUILDDIR for
       distchecks.
 
+    * tests/run_tests.sh: Extension revisions in order to pass distcheck;
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/Makefile.am: Add EXTRA_DIST.
