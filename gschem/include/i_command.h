@@ -261,7 +261,7 @@ enum ActionFlag
         COMMAND ( do_show_manual )
         COMMAND ( do_show_hotkeys )
         COMMAND ( do_show_faq )
-        COMMAND ( do_show_geda)
+        COMMAND ( do_show_geda )
         COMMAND ( do_show_wiki )
         COMMAND ( do_show_about )
 
@@ -441,8 +441,8 @@ enum {
      COMMAND ( EDIT_COMPONENT,      "edit ponents",     USE_WORKER_THREAD,      do_edit_ponent)
      COMMAND ( EDIT_TEXT,           "edit text",        USE_WORKER_THREAD,      do_edit_text)
      COMMAND ( EDIT_SLOT,           "edit slot",        USE_WORKER_THREAD,      do_edit_slot)
-     COMMAND ( EDIT_ARC,            "edit arc",         USE_WORKER_THREAD,      do_edit_arc )
      COMMAND ( EDIT_COLOR,          "edit color",       USE_WORKER_THREAD,      do_edit_color)
+     COMMAND ( EDIT_ARC,            "edit arc",         USE_WORKER_THREAD,      do_edit_arc )
      COMMAND ( EDIT_PIN,            "pin type",         USE_WORKER_THREAD,      do_pintype)
      COMMAND ( EDIT_LINE,           "line type",        USE_WORKER_THREAD,      do_linetype)
      COMMAND ( EDIT_FILL,           "fill type",        USE_WORKER_THREAD,      do_filltype)
