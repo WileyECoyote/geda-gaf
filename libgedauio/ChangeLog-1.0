@@ -1,3 +1,7 @@
+2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Reduce scope of variables in modules.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_image_chooser.h: Change _GedaImageChooser::handler from

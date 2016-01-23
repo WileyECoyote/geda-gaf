@@ -186,7 +186,6 @@ static void geda_bulb_finalize (GObject *object)
 {
   GtkWidget *old_group_singleton = NULL;
   GedaBulb  *bulb                = GEDA_BULB (object);
-  GedaBulb  *tmp_button;
   GSList    *tmp_list;
   bool was_in_group;
 
@@ -200,6 +199,8 @@ static void geda_bulb_finalize (GObject *object)
   tmp_list = bulb->group;
 
   while (tmp_list) {
+
+    GedaBulb  *tmp_button;
 
     tmp_button = tmp_list->data;
     tmp_list   = tmp_list->next;
@@ -532,30 +533,26 @@ button_get_props (GtkCheckButton *check_button, int *indicator_size,
 static void
 geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 {
-  GtkAllocation   *allocation;
-  GtkWidget       *widget;
-  GtkWidget       *child;
-  GedaBulb        *bulb;
-  GtkButton       *button;
-  GtkToggleButton *toggle_button;
-  GtkStateType     state_type;
-
-  int  x, y;
-  int  border_width;
-  int  indicator_size;
-  int  indicator_spacing;
-
-  int  focus_width;
-  int  focus_pad;
-  int  pullback;
-
-  bool interior_focus;
-
-  cairo_t *cr;
-
-  widget = GTK_WIDGET (check_button);
+  GtkWidget *widget = GTK_WIDGET (check_button);
 
   if (gtk_widget_is_drawable (widget)) {
+
+    GtkAllocation   *allocation;
+    GtkWidget       *child;
+    GedaBulb        *bulb;
+    GtkButton       *button;
+    GtkToggleButton *toggle_button;
+    GtkStateType     state_type;
+
+    int  x, y;
+    int  border_width;
+    int  indicator_size;
+    int  indicator_spacing;
+    int  focus_width;
+    int  focus_pad;
+
+    bool interior_focus;
+    cairo_t *cr;
 
     /* ----------------- Setup Auxiliary Pointers ----------------- */
 
@@ -582,7 +579,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
 
       /* get the amount to pull back from the right edge */
-      pullback = indicator_spacing + bulb->width + ( 2 * border_width);
+      int pullback = indicator_spacing + bulb->width + ( 2 * border_width);
 
       /* X RTL position = right edge - pullback = left + width - pullback */
       x = allocation->x + allocation->width - pullback;
@@ -613,29 +610,29 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     else
       state_type = GTK_STATE_NORMAL;
 
-    if (bulb->show_butt)
-    if (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT) {
+    if (bulb->show_butt) {
+      if (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT) {
 
-      GdkRectangle restrict_area;
-      GdkRectangle new_area;
+        GdkRectangle restrict_area;
+        GdkRectangle new_area;
 
-      restrict_area.x      = allocation->x + border_width;
-      restrict_area.y      = allocation->y + border_width;
+        restrict_area.x      = allocation->x + border_width;
+        restrict_area.y      = allocation->y + border_width;
 
-      restrict_area.width  = allocation->width - (2 * border_width);
-      restrict_area.height = allocation->height - (2 * border_width);
+        restrict_area.width  = allocation->width - (2 * border_width);
+        restrict_area.height = allocation->height - (2 * border_width);
 
-    /* ----------------- Draw Backing Button Area ----------------- */
-      if (gdk_rectangle_intersect (area, &restrict_area, &new_area)) {
+        /* ----------------- Draw Backing Button Area ----------------- */
+        if (gdk_rectangle_intersect (area, &restrict_area, &new_area)) {
 
-        gtk_paint_flat_box (widget->style, widget->window, GTK_STATE_PRELIGHT,
-                            GTK_SHADOW_ETCHED_OUT,
-                            area, widget, "checkbutton",
-                            new_area.x, new_area.y,
-                            new_area.width, new_area.height);
+          gtk_paint_flat_box (widget->style, widget->window, GTK_STATE_PRELIGHT,
+                              GTK_SHADOW_ETCHED_OUT,
+                              area, widget, "checkbutton",
+                              new_area.x, new_area.y,
+                              new_area.width, new_area.height);
+        }
       }
     }
-
     /* ----------------- Draw the Indicator Bulb ------------------ */
 
     cr = gdk_cairo_create( widget->window );
@@ -1279,7 +1276,7 @@ geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
  *
  */
 int geda_bulb_group_get_active_index (GSList *group_list) {
-  GtkToggleButton *button;
+
   int length;
   int index;
   int active = -1;
@@ -1287,12 +1284,18 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
   length = g_slist_length (group_list);
 
   for (index = 0; index < length; index++) {
-     button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
-     if (button == NULL) return -1;
-     if (gtk_toggle_button_get_active (button) == TRUE) {
-        active = index;
-        break;
-     }
+
+    GtkToggleButton *button;
+
+    button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
+
+    if (button == NULL)
+      return -1;
+
+    if (gtk_toggle_button_get_active (button) == TRUE) {
+      active = index;
+      break;
+    }
   }
   /* new buttons are *prepended* to the list, so buttons added first
    * in the last positions in the list and using glist reverse
@@ -1358,7 +1361,6 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
 void
 geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
 {
-  GtkToggleButton *button;
   int length;
   int target;
   int index;
@@ -1372,7 +1374,11 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
   target = (length - 1) - pos;
 
   for (index = 0; index < length; ++index) {
+
+    GtkToggleButton *button;
+
     button = GTK_TOGGLE_BUTTON (g_slist_nth_data (group_list, index));
+
     if (button != NULL) {
       button->active = index == target;
       gtk_widget_queue_draw(GTK_WIDGET (button));
