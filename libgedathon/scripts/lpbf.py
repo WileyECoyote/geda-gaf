@@ -2,23 +2,28 @@
 
 ############################################################################
 
-import os
+import os, sys
 from geda import geda
 from geda.functions import *
 
 # Get & Save the current working directory
-directory = os.getcwd()
+if len(sys.argv) > 1:
+     directory = sys.argv[1]
+     if not os.path.exists(directory):
+          directory = os.getcwd()
+else:
+     directory = os.getcwd()
 
 # Set directory and file name relative to the cwd
 sym_dir   = directory + "/tmp/sym"
 filename  = directory + "/tmp/lpfilter.sch"
 
 # if tmp directory does not exist then create the directory
-if not os.path.exists("tmp"):
-    os.makedirs("tmp")
+if not os.path.exists(directory + "/tmp"):
+    os.makedirs(directory + "/tmp")
 
 # Make the tmp directory the current directory
-os.chdir("tmp")
+os.chdir(directory + "/tmp")
 
 # if sym directory does not exist then create the directory
 if not os.path.exists("sym"):
@@ -72,7 +77,7 @@ AddCapacitor(lpbf, 14600, 7300, "1uF")
 
 # Add the bypass cap's
 AddCapacitor(lpbf,  8900, 5200, ".01uF", 0, 270)
-AddCapacitor(lpbf, 14300, 9800, ".01uF", 0, 270) 
+AddCapacitor(lpbf, 14300, 9800, ".01uF", 0, 270)
 
 # Add filter resistors
 AddResistor(lpbf, 4300,  7800, "560")

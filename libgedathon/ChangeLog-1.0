@@ -1,3 +1,9 @@
+2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/lpbf.py: Revise to accept and use an argument as directory like
+      capacitor.py, dual-opamp.py so that run_tests can pass the BUILDDIR for
+      distchecks.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/Makefile.am: Add EXTRA_DIST.
