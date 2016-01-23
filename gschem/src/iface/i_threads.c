@@ -50,11 +50,7 @@
 static volatile GedaType init_called = 0;
 
 /* Anonymous Static GMutex, seems more portable then GSTATIC_MUTEXT*/
-static union
-{
-  void *p;
-  unsigned int i[2];
-} gschem_threads_mutex = {NULL};
+static GedaMutex (gschem_threads_mutex);
 
 static void (*gschem_threads_lock)(void) = NULL;
 static void (*gschem_threads_unlock)(void) = NULL;

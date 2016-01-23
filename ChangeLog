@@ -1,3 +1,11 @@
+2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_macros.h: Add macro GedaMutex, which when defined in code,
+      code analyzer report is not initialized but can not be initialized
+      with older version of glib (know to seg-fault with glib-2.24), but can
+      be initialized to 0, or not, with at least glib-2.32. Using the Macro
+      seem to make everybody happy.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_enum.h: Revise header, edit comments, adjust indentations.

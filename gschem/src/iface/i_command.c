@@ -132,11 +132,7 @@ static struct {
   u_log_message("current value of <%s> is <%d>\n", #name, CMD_INTEGER(name));
 
 /* Anonymous Static Mutex */
-static union
-{
-  void *p;
-  unsigned int i[2];
-} i_lock_last_command = {NULL}; /* initialize to appease code analyzers */
+static GedaMutex (i_lock_last_command);
 
 static GThreadPool  *CommandPool     = NULL;
 static int           is_engaged      = -1;

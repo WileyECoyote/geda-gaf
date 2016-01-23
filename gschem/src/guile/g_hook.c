@@ -203,11 +203,7 @@ g_hook_new_proxy_by_name (const char *name)
 }
 
 /* Anonymous Static Mutex */
-static union
-{
-  void *p;
-  unsigned int i[2];
-} i_lock_is_busy = {NULL};
+static GedaMutex (i_lock_is_busy);
 
 static int is_busy = 0;
 

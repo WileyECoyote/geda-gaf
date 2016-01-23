@@ -1,3 +1,16 @@
+2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/xxx/xxx.c: Implement static anonymous mutexes, initialized
+      to 0 on 02/20/16 to appease code analyzer, using a macro instead:
+
+      * src/iface/i_command.c: union i_lock_last_command,
+
+      * src/iface/i_threads.c: union gschem_threads_mutex,
+
+      * src/guile/g_hook.c: union i_lock_is_busy,
+
+      * src/x/x_clipboard.c: union clip_got_answer_lock.
+
 2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: fix reversed function table entries: do_edit_arc
@@ -128,8 +141,8 @@
       * src/object/o_break.c: do_snap in o_break_path,
       * src/object/o_circle.c: new_obj and toplevel in o_circle_draw_rubber,
       * src/object/o_edit.c: old_value in o_edit_update_component,
-      * src/object/o_extend.c: line o_extend_can_hit_targetm
-                               projectile in o_extend_end,
+      * src/object/o_extend.c: line o_extend_can_hit_target_projectile
+                               in o_extend_end,
       * src/object/o_grips.c: section in o_grips_search_path_world,
       * src/object/o_line.c: new_obj and toplevel in o_line_draw_rubber,
       * src/object/o_text.c: object in o_text_edit,

@@ -31,11 +31,7 @@
 #define CLIP_TYPE_SCHEMATIC 1
 
 /* Anonymous Static Mutex */
-static union
-{
-  void *p;
-  unsigned int i[2];
-} clip_got_answer_lock = {NULL};
+static GedaMutex (clip_got_answer_lock);
 
 static bool got_answer;
 

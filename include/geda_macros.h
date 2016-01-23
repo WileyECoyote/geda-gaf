@@ -83,6 +83,16 @@
 #define GEDA_WARN_UNUSED_RESULT
 #endif /* __GNUC__ */
 
+/*! \def GedaMutex
+ * Macro to define an anonymous mutex, GStaticMutex < 2.32
+ * cannot be initialized to NULL.
+ */
+#define GedaMutex(lv) \
+  union { \
+    void *p; \
+    unsigned int i[2]; \
+  } lv;
+
 /*! \def GCC_DIAGNOSTIC_AWARE
  *  \brief Used to suppress some warnings in some header and implementation files.
  *  \par
