@@ -1,6 +1,12 @@
 2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_uio_macros.h: Rename function gtk_image_chooser_set_preview
+      _active with geda_image_chooser_set_preview_active.
+
     * src/widgets/geda_bulb.c: Reduce scope of variables in modules.
+
+    * geda_image_chooser.c: Rename function gtk_image_chooser_set_preview_active
+      geda_image_chooser_set_preview_active.
 
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 

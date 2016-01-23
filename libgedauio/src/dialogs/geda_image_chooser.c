@@ -1470,7 +1470,7 @@ geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
-void gtk_image_chooser_set_preview_active (GtkWidget *widget, bool state)
+void geda_image_chooser_set_preview_active (GtkWidget *widget, bool state)
 {
   if (GEDA_IS_IMAGE_CHOOSER(widget)) {
     GedaImageChooser *chooser = (GedaImageChooser*)widget;

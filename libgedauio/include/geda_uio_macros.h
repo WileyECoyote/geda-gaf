@@ -37,10 +37,10 @@
          gtk_file_chooser_get_preview_widget_active (GTK_FILE_CHOOSER(c))
 
 /* Note must include geda_image_chooser.h for this to work, but not the other way
- * around, GedaFileChooser can also just use  GtkFileChooser version */
+ * around, GedaFileChooser can also just use GtkFileChooser version */
 #define  geda_chooser_set_preview_widget_active(c, v) \
          if (GEDA_IS_IMAGE_CHOOSER(c)) \
-           gtk_image_chooser_set_preview_active (GTK_WIDGET(c), v); \
+           geda_image_chooser_set_preview_active (GTK_WIDGET(c), v); \
          else \
            gtk_file_chooser_set_preview_widget_active (GTK_FILE_CHOOSER(c), v);
 
