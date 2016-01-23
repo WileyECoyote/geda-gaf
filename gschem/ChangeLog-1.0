@@ -3,6 +3,8 @@
     * include/i_command.h: fix reversed function table entries: do_edit_arc
       and do_edit_color.
 
+    * src/iface/i_vars.c: Declare i_vars_recall_user_settings static.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_keys.c: Revise g_keys_execute to conditionally call

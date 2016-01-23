@@ -359,7 +359,8 @@ i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int i
  *  level variables. Note that this is done after the "old" system, so the
  *  RC values will be ignored.
  */
-void i_vars_recall_user_settings(GschemToplevel *w_current)
+static void
+i_vars_recall_user_settings(GschemToplevel *w_current)
 {
   EdaConfig    *cfg      = eda_config_get_user_context ();
   GedaToplevel *toplevel = w_current->toplevel;
