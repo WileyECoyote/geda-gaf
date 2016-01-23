@@ -1,7 +1,5 @@
 Makefile
 Makefile.in
-.deps
-.libs
 gsch2pdf
 gsch2pdf.exe
 *.o
