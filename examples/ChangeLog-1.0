@@ -1,3 +1,9 @@
+2016-01-22  Wiley E. Hill <wileyhill@gmail.com>
+
+    * xxx/tests/runtest.sh: Add cd ${BUILDDIR} in do_setup_geda_environment,
+      resequence calling order and prefix genetlist outputs with ${BUILDDIR}/
+      bump version to 0.0.7.
+
 2016-01-12  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh:Change mkdir -m 0777 to -m 777, for some reason

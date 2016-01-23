@@ -39,10 +39,10 @@
 #           Testing continues if all of the symbols pass, by running
 #           gnetlist drc2 on the example file and then the GEDA net
 #           list and BOM are extracted and compared to reference files
-#           in the test subdirectory. After regenerating  verify that
+#           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.0.6
+VER=0.0.7
 
 REGENERATE=false
 
@@ -172,6 +172,8 @@ do_export_path2libraries()
 do_setup_geda_environment ()
 {
   local CWDSAVE=$PWD
+
+  cd ${BUILDDIR};
 
   # create temporary gEDA directory and required subdirs
   mkdir -m 777 -p ${TMPGEDADIR}
@@ -314,10 +316,10 @@ fi
 test -z $DEBUG || set -x
 
 do_export_path2libraries
-do_setup_geda_environment
-
 do_get_symbol_checker
 do_get_netlister
+
+do_setup_geda_environment
 
 if $REGENERATE ; then
     ${NETLISTER} -q -g ${BOMBACKEND} -o "tests/${schematic}-bom.csv" "${schematic}.sch"
@@ -330,22 +332,23 @@ echo "Checking ${schematic}.sch"
 
 do_check_symbols
 
-${NETLISTER} -q -g drc2 -o "${schematic}-drc2.txt" "${schematic}.sch"
+${NETLISTER} -q -g drc2 -o "${BUILDDIR}/${schematic}-drc2.txt" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
-${NETLISTER} -q -g ${BOMBACKEND} -o "bom/${schematic}-bom.csv" "${schematic}.sch"
+# Note the next line exploits gnetlist ability to implicitly mkdir bom
+${NETLISTER} -q -g ${BOMBACKEND} -o "${BUILDDIR}/bom/${schematic}-bom.csv" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
-${NETLISTER} -q -g geda -o "${schematic}-geda.net" "${schematic}.sch"
+${NETLISTER} -q -g geda -o "${BUILDDIR}/${schematic}-geda.net" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
 # Clean up if not debugging
 test ! -z $DEBUG || rm -rf gEDA #&& rm -f "${schematic}-drc2.txt" || : ;
 
-test -f "bom/${schematic}-bom.csv" || exit 1;
+test -f "${BUILDDIR}/bom/${schematic}-bom.csv" || exit 1;
 
-diff "tests/${schematic}-bom.csv" "bom/${schematic}-bom.csv"
+diff "tests/${schematic}-bom.csv" "${BUILDDIR}/bom/${schematic}-bom.csv"
 test $? -eq 0 || exit 1;
 
-test -f "${schematic}-geda.net" || exit 1;
-diff "tests/${schematic}-geda.net" "${schematic}-geda.net"
+test -f "${BUILDDIR}/${schematic}-geda.net" || exit 1;
+diff "tests/${schematic}-geda.net" "${BUILDDIR}/${schematic}-geda.net"
