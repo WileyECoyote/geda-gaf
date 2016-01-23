@@ -299,9 +299,9 @@ chooser_update_preview (GtkFileChooser *widget, void *user_data)
       GError *err;
       int     size;
 
+      err    = NULL;
       size   = chooser->preview_size;
       pixbuf = gdk_pixbuf_new_from_file_at_size (filename, size, size, &err);
-      err    = NULL;
 
       if (err != NULL) {
         /* silently clear the error, got no pic and don't care what happened */
