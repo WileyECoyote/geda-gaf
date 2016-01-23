@@ -1,7 +1,5 @@
 Makefile
 Makefile.in
-.deps
-.libs
 *.la
 *.lo
 *.o
@@ -10,4 +8,3 @@ Makefile.in
 *#
 *.swp
 *-swp
-

@@ -23,5 +23,7 @@ configure.scan
 *.swp
 *-swp
 *~
+.deps/
+.libs/
 libgedacolor
 libgedacon

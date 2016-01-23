@@ -1,5 +1,3 @@
-.deps
-.libs
 *.la
 *.lo
 libgedathon.pc
