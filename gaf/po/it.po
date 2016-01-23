@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-31 02:05-0600\n"
+"POT-Creation-Date: 2016-01-20 07:48-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -216,7 +216,7 @@ msgstr "ERRORE: fallito il caricamento di \"%s\": %s\n"
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ERRORE: fallito il cambiamento di cartella a \"%s\": %s\n"
 
-#: gaf/src/export.c:1071
+#: gaf/src/export.c:1082
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -263,17 +263,17 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1258
+#: gaf/src/export.c:1269
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1267
+#: gaf/src/export.c:1278
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
 
-#: gaf/src/shell.c:53
+#: gaf/src/shell.c:52
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -312,7 +312,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/shell.c:136
+#: gaf/src/shell.c:135
 #, c-format
 msgid ""
 "\n"

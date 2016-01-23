@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-31 02:05-0600\n"
+"POT-Creation-Date: 2016-01-12 01:04-0600\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gattrib/src/parsecmd.c:63
+#: gattrib/src/parsecmd.c:62
 #, c-format
 msgid ""
 "\n"
@@ -90,18 +90,14 @@ msgstr ""
 msgid " DONE\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:218
+#: gattrib/src/s_object.c:217
 #, c-format
-msgid ""
-"In s_object_replace_attrib_in_object, we have failed to find the attrib %s "
-"on the component.  Exiting . . .\n"
+msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
 msgstr ""
 
-#: gattrib/src/s_object.c:338
+#: gattrib/src/s_object.c:335
 #, c-format
-msgid ""
-"In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex "
-"or non-net!\n"
+msgid "%s: trying to add attrib to non-complex or non-net!\n"
 msgstr ""
 
 #: gattrib/src/s_rename.c:98
@@ -133,29 +129,29 @@ msgstr ""
 msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:248
 #, c-format
 msgid "Starting master comp list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:311
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:423
+#: gattrib/src/s_sheet_data.c:426
 #, c-format
 msgid "- Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:458
+#: gattrib/src/s_sheet_data.c:461
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
 "pinnumber.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:514
+#: gattrib/src/s_sheet_data.c:517
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr ""
@@ -182,27 +178,17 @@ msgstr ""
 
 #: gattrib/src/s_toplevel.c:488
 #, c-format
-msgid ""
-"In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
-"the master list!\n"
+msgid "%s: did not find the refdes in the master list!\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:517
+#: gattrib/src/s_toplevel.c:524 gattrib/src/s_toplevel.c:887
 #, c-format
-msgid ""
-"In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
+msgid "%s: count != i!  Exiting . . . .\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:843
+#: gattrib/src/s_toplevel.c:847
 #, c-format
-msgid ""
-"In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
-"missing!\n"
-msgstr ""
-
-#: gattrib/src/s_toplevel.c:881
-#, c-format
-msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
+msgid "%s: either refdes or pinnumber of object missing!\n"
 msgstr ""
 
 #: gattrib/src/x_dialog.c:111

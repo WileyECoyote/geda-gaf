@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gaf_ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-31 02:05-0600\n"
+"POT-Creation-Date: 2016-01-20 07:48-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -214,7 +214,7 @@ msgstr "ОШИБКА: не удалось загрузить «%s»: %s.\n"
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "ОШИБКА: Не удалось изменить каталог на «%s»: %s.\n"
 
-#: gaf/src/export.c:1071
+#: gaf/src/export.c:1082
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -265,17 +265,17 @@ msgstr ""
 "\n"
 "Отчёты об ошибках отправляйте по адресу %s.\n"
 
-#: gaf/src/export.c:1258
+#: gaf/src/export.c:1269
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ОШИБКА: необходимо задать имя хотя бы одного входного файла.\n"
 
-#: gaf/src/export.c:1267
+#: gaf/src/export.c:1278
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ОШИБКА: необходимо задать имя выходного файла.\n"
 
-#: gaf/src/shell.c:53
+#: gaf/src/shell.c:52
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -315,7 +315,7 @@ msgstr ""
 "\n"
 "Отчёты об ошибках отправляйте по адресу %s.\n"
 
-#: gaf/src/shell.c:136
+#: gaf/src/shell.c:135
 #, c-format
 msgid ""
 "\n"

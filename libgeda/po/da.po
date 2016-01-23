@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2016-01-06 21:57-0600\n"
+"POT-Creation-Date: 2016-01-20 07:47-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:108
+#: libgeda/src/file/f_basic.c:251 libgeda/src/file/f_file.c:107
 #, c-format
 msgid "%s: Memory Allocation Error!\n"
 msgstr ""
@@ -126,12 +126,12 @@ msgstr ""
 msgid "Can not create backup file: %s: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:676
+#: libgeda/src/file/f_basic.c:675
 #, c-format
 msgid "%s: Can not get the real filename of %s."
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:688
+#: libgeda/src/file/f_basic.c:687
 #, c-format
 msgid "%s: Unable to delete backup file %s."
 msgstr ""
@@ -149,104 +149,104 @@ msgstr ""
 msgid "%s: attempting to unlock file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:328
+#: libgeda/src/file/f_file.c:331
 #, c-format
 msgid "%s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:285
+#: libgeda/src/file/f_get.c:295
 #, c-format
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:324
+#: libgeda/src/file/f_get.c:334
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:335
+#: libgeda/src/file/f_get.c:345
 #, c-format
 msgid "Error reading file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:346
+#: libgeda/src/file/f_get.c:356
 #, c-format
 msgid "File \"%s\" is too large"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:402
+#: libgeda/src/file/f_get.c:412
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:428
+#: libgeda/src/file/f_get.c:438
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:495
+#: libgeda/src/file/f_get.c:506
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:509
+#: libgeda/src/file/f_get.c:520
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:527
+#: libgeda/src/file/f_get.c:538
 #, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:128
+#: libgeda/src/file/f_print.c:134
 msgid "Unable to get time of day in f_print_header()\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:175
+#: libgeda/src/file/f_print.c:181
 #, c-format
 msgid "f_print_header: Unable to locate prolog file [%s]\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:180
+#: libgeda/src/file/f_print.c:186
 #, c-format
 msgid "f_print_header: using prolog file [%s]\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:186
+#: libgeda/src/file/f_print.c:192
 #, c-format
 msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:198
+#: libgeda/src/file/f_print.c:204
 #, c-format
 msgid "f_print_header: Error while writing prolog \"%s\" \n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:204
+#: libgeda/src/file/f_print.c:210
 #, c-format
 msgid "f_print_header: Error reading prolog file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:209
+#: libgeda/src/file/f_print.c:215
 msgid "f_print_header: Error writing postscript output file\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:223
+#: libgeda/src/file/f_print.c:229
 msgid "Giving up on printing\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:397
+#: libgeda/src/file/f_print.c:395
 #, c-format
 msgid "Could not open [%s] for printing\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:431
+#: libgeda/src/file/f_print.c:432
 #, c-format
 msgid "Could not execute command [%s] for printing\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:702
+#: libgeda/src/file/f_print.c:717
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr ""
 
@@ -258,104 +258,104 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:833 libgeda/src/geda/geda_config.c:952
+#: libgeda/src/geda/geda_config.c:847 libgeda/src/geda/geda_config.c:961
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:973
+#: libgeda/src/geda/geda_config.c:988
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1015
+#: libgeda/src/geda/geda_config.c:1032
 #, c-format
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1331
+#: libgeda/src/geda/geda_config.c:1348
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1395
+#: libgeda/src/geda/geda_config.c:1412
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1409
+#: libgeda/src/geda/geda_config.c:1426
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:390
+#: libgeda/src/geda/geda_object.c:391
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:391
+#: libgeda/src/geda/geda_object.c:392
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:400
+#: libgeda/src/geda/geda_object.c:401
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:401
+#: libgeda/src/geda/geda_object.c:402
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:408
+#: libgeda/src/geda/geda_object.c:409
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:409
+#: libgeda/src/geda/geda_object.c:410
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:415
+#: libgeda/src/geda/geda_object.c:416
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:416
+#: libgeda/src/geda/geda_object.c:417
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:421
+#: libgeda/src/geda/geda_object.c:422
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:422
+#: libgeda/src/geda/geda_object.c:423
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:428
+#: libgeda/src/geda/geda_object.c:429
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:429
+#: libgeda/src/geda/geda_object.c:430
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:435
+#: libgeda/src/geda/geda_object.c:436
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:436
+#: libgeda/src/geda/geda_object.c:437
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:443
+#: libgeda/src/geda/geda_object.c:444
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:444
+#: libgeda/src/geda/geda_object.c:445
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:452
+#: libgeda/src/geda/geda_object.c:453
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:453
+#: libgeda/src/geda/geda_object.c:454
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1017,37 +1017,37 @@ msgstr ""
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:81
+#: libgeda/src/object/o_save.c:68
 #, c-format
 msgid "%s: Can't get real filename of %s."
 msgstr ""
 
-#: libgeda/src/object/o_save.c:132
+#: libgeda/src/object/o_save.c:127
 #, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:140
+#: libgeda/src/object/o_save.c:135
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:152
+#: libgeda/src/object/o_save.c:147
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:158
+#: libgeda/src/object/o_save.c:153
 #, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:273
+#: libgeda/src/object/o_save.c:263
 #, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:353
+#: libgeda/src/object/o_save.c:343
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""
@@ -1252,111 +1252,111 @@ msgstr ""
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:435
+#: libgeda/src/struct/s_clib.c:440
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:441
+#: libgeda/src/struct/s_clib.c:446
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:445
+#: libgeda/src/struct/s_clib.c:450
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:446
+#: libgeda/src/struct/s_clib.c:451
 #, c-format
 msgid ""
 "Error output was:\n"
 "%s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:534
+#: libgeda/src/struct/s_clib.c:539
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:667
+#: libgeda/src/struct/s_clib.c:672
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:676
+#: libgeda/src/struct/s_clib.c:681
 #, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:774
+#: libgeda/src/struct/s_clib.c:780
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:782
+#: libgeda/src/struct/s_clib.c:790
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1041 libgeda/src/struct/s_clib.c:1088
+#: libgeda/src/struct/s_clib.c:1051 libgeda/src/struct/s_clib.c:1098
 msgid "Cannot add library: name not specified\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1048
+#: libgeda/src/struct/s_clib.c:1058
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1097
+#: libgeda/src/struct/s_clib.c:1107
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1223
+#: libgeda/src/struct/s_clib.c:1233
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1284
+#: libgeda/src/struct/s_clib.c:1294
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1506
+#: libgeda/src/struct/s_clib.c:1513
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1513
+#: libgeda/src/struct/s_clib.c:1520
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_color.c:310
+#: libgeda/src/struct/s_color.c:311
 #, c-format
 msgid "Error loading %s, %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_color.c:367
+#: libgeda/src/struct/s_color.c:368
 #, c-format
 msgid "Color index out of range"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:95
+#: libgeda/src/struct/s_hierarchy.c:94
 msgid "Schematic not found in source library."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:118
+#: libgeda/src/struct/s_hierarchy.c:120
 msgid "Hierarchy contains a circular dependency."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:220
+#: libgeda/src/struct/s_hierarchy.c:223
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:302
+#: libgeda/src/struct/s_hierarchy.c:316
 #, c-format
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr ""
@@ -1375,24 +1375,24 @@ msgstr ""
 msgid "Could NOT save [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:172
+#: libgeda/src/struct/s_slot.c:176
 #, c-format
 msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:179
+#: libgeda/src/struct/s_slot.c:183
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:194
+#: libgeda/src/struct/s_slot.c:198
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:229
+#: libgeda/src/struct/s_slot.c:236
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
-#: libgeda/src/utility/u_log.c:213
+#: libgeda/src/utility/u_log.c:217
 #, c-format
 msgid "Could not create log directory %s: %s\n"
 msgstr ""

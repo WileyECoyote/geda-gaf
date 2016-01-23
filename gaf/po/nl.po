@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-31 02:05-0600\n"
+"POT-Creation-Date: 2016-01-20 07:48-0600\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -211,7 +211,7 @@ msgstr "FOUT: Faalde om '%s': %s te laden\n"
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr "Faalde om bestandenmap te wijzigen naar '%s': %s\n"
 
-#: gaf/src/export.c:1071
+#: gaf/src/export.c:1082
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -258,17 +258,17 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/export.c:1258
+#: gaf/src/export.c:1269
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "FOUT: U moet tenminste een invoer bestandsnaam specificeren.\n"
 
-#: gaf/src/export.c:1267
+#: gaf/src/export.c:1278
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "FOUT: U moet een uitvoer bestandnaam specificeren.\n"
 
-#: gaf/src/shell.c:53
+#: gaf/src/shell.c:52
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -306,7 +306,7 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/shell.c:136
+#: gaf/src/shell.c:135
 #, c-format
 msgid ""
 "\n"

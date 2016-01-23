@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2015-12-31 02:05-0600\n"
+"POT-Creation-Date: 2016-01-12 01:04-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Check: path \"%s\"\n"
 msgstr ""
 
-#: gattrib/src/parsecmd.c:63
+#: gattrib/src/parsecmd.c:62
 #, c-format
 msgid ""
 "\n"
@@ -97,20 +97,16 @@ msgstr ""
 msgid " DONE\n"
 msgstr " GEDAAN\n"
 
-#: gattrib/src/s_object.c:218
-#, c-format
-msgid ""
-"In s_object_replace_attrib_in_object, we have failed to find the attrib %s "
-"on the component.  Exiting . . .\n"
+#: gattrib/src/s_object.c:217
+#, fuzzy, c-format
+msgid "%s, we have failed to find the attrib %s on the component. Exiting...\n"
 msgstr ""
-"In s_object_replace_attrib_in_object, is gefaald om attrib %s te vinden in "
-"de component.  Afsluiten . . .\n"
+"In s_object_remove_attrib_in_object, is gefaald om attrib %s in de component "
+"te vinden.  Afsluiten . . .\n"
 
-#: gattrib/src/s_object.c:338
-#, c-format
-msgid ""
-"In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex "
-"or non-net!\n"
+#: gattrib/src/s_object.c:335
+#, fuzzy, c-format
+msgid "%s: trying to add attrib to non-complex or non-net!\n"
 msgstr ""
 "In s_object_attrib_add_attrib_in_object, geprobeerd om attrib toe te voegen "
 "aan een non-complex of niet-net!\n"
@@ -148,22 +144,22 @@ msgstr ""
 msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in s_rename.c\n"
 
-#: gattrib/src/s_sheet_data.c:245
+#: gattrib/src/s_sheet_data.c:248
 #, fuzzy, c-format
 msgid "Starting master comp list creation.\n"
 msgstr "- Start het aanmaken van de hoofdcomponentenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:311
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:423
+#: gattrib/src/s_sheet_data.c:426
 #, fuzzy, c-format
 msgid "- Creating master pin list.\n"
 msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:458
+#: gattrib/src/s_sheet_data.c:461
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
@@ -172,7 +168,7 @@ msgstr ""
 "In s_sheet_data_add_master_pin_list_items, is een component pen zonder "
 "pennummer gevonden.\n"
 
-#: gattrib/src/s_sheet_data.c:514
+#: gattrib/src/s_sheet_data.c:517
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
@@ -201,36 +197,24 @@ msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
 
 #: gattrib/src/s_toplevel.c:488
-#, c-format
-msgid ""
-"In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
-"the master list!\n"
+#, fuzzy, c-format
+msgid "%s: did not find the refdes in the master list!\n"
 msgstr ""
-"In s_toplevel_get_component_attribs_in_sheet, geen refdes gevonden in de "
+"In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
 "hoofdlijst!\n"
 
-#: gattrib/src/s_toplevel.c:517
-#, c-format
-msgid ""
-"In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
+#: gattrib/src/s_toplevel.c:524 gattrib/src/s_toplevel.c:887
+#, fuzzy, c-format
+msgid "%s: count != i!  Exiting . . . .\n"
 msgstr ""
-"In s_toplevel_get_component_attribs_in_sheet, count != i!  "
-"Afsluiten . . . .\n"
+"In s_toplevel_get_pin_attribs_in_sheet, count != i!  Afsluiten . . . .\n"
 
-#: gattrib/src/s_toplevel.c:843
-#, c-format
-msgid ""
-"In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
-"missing!\n"
+#: gattrib/src/s_toplevel.c:847
+#, fuzzy, c-format
+msgid "%s: either refdes or pinnumber of object missing!\n"
 msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, ofwel een refdes of een pennummer "
 "van het object ontbreken!\n"
-
-#: gattrib/src/s_toplevel.c:881
-#, c-format
-msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, count != i!  Afsluiten . . . .\n"
 
 #: gattrib/src/x_dialog.c:111
 msgid "Add new attribute"
@@ -453,6 +437,27 @@ msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 
 #~ msgid ""
+#~ "In s_object_replace_attrib_in_object, we have failed to find the attrib "
+#~ "%s on the component.  Exiting . . .\n"
+#~ msgstr ""
+#~ "In s_object_replace_attrib_in_object, is gefaald om attrib %s te vinden "
+#~ "in de component.  Afsluiten . . .\n"
+
+#~ msgid ""
+#~ "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes "
+#~ "in the master list!\n"
+#~ msgstr ""
+#~ "In s_toplevel_get_component_attribs_in_sheet, geen refdes gevonden in de "
+#~ "hoofdlijst!\n"
+
+#~ msgid ""
+#~ "In s_toplevel_get_component_attribs_in_sheet, count != i!  "
+#~ "Exiting . . . .\n"
+#~ msgstr ""
+#~ "In s_toplevel_get_component_attribs_in_sheet, count != i!  "
+#~ "Afsluiten . . . .\n"
+
+#~ msgid ""
 #~ "\n"
 #~ "Gattrib:  The gEDA project's attribute editor.\n"
 #~ "Presents schematic attributes in easy-to-edit spreadsheet format.\n"
@@ -541,13 +546,6 @@ msgstr ""
 #~ "refdes=\n"
 
 #~ msgid ""
-#~ "In s_object_remove_attrib_in_object, we have failed to find the attrib %s "
-#~ "on the component.  Exiting . . .\n"
-#~ msgstr ""
-#~ "In s_object_remove_attrib_in_object, is gefaald om attrib %s in de "
-#~ "component te vinden.  Afsluiten . . .\n"
-
-#~ msgid ""
 #~ "In s_table_create_attrib_pair, we didn't find the row name in the row "
 #~ "list!\n"
 #~ msgstr ""
@@ -576,13 +574,6 @@ msgstr ""
 
 #~ msgid "In s_toplevel_delete_attrib_col, can't get attrib name\n"
 #~ msgstr "In s_toplevel_delete_attrib_col, kan geen attrib naam krijgen\n"
-
-#~ msgid ""
-#~ "In s_toplevel_get_pin_attribs_in_sheet, we didn't find the refdes:pin in "
-#~ "the master list!\n"
-#~ msgstr ""
-#~ "In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
-#~ "hoofdlijst!\n"
 
 #~ msgid "Saved As [%s]\n"
 #~ msgstr "Opgeslagen Als [%s]\n"
