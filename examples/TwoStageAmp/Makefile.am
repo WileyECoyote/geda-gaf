@@ -16,11 +16,12 @@ nobase_example_DATA = \
 		bom/TwoStageAmp-bom.csv \
 		sym/transistor.sym
 
-EXTRA_DATA    = tests/TwoStageAmp-bom.csv tests/TwoStageAmp-geda.net
-
-RUN_TESTS     = tests/runtest.sh
+EXTRA_DATA    = tests/TwoStageAmp-bom.csv tests/TwoStageAmp-geda.net \
+                bom/TwoStageAmp-bom.csv
 
 EXTRA_DIST    = $(nobase_example_DATA) $(RUN_TESTS) $(EXTRA_DATA)
+
+RUN_TESTS     = tests/runtest.sh
 
 check_SCRIPTS = tests
 

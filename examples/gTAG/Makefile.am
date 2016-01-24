@@ -11,7 +11,6 @@ example_DATA     =  attribs \
 		   gafrc \
 		   gnetlistrc \
 		   gTAG.sch \
-		   gTAG-drc2.txt \
 		   gTAG-geda.net \
 		   gTAG-pcb.net \
 		   README \
@@ -37,11 +36,11 @@ example_DATA     =  attribs \
 		   sym/MAX882-gt.sym \
 		   sym/SN75240PW-gt.sym
 
-EXTRA_DATA    = tests/gTAG-bom.csv tests/gTAG-geda.net
-
-RUN_TESTS     = tests/runtest.sh
+EXTRA_DATA    = tests/gTAG-bom.csv tests/gTAG-geda.net bom/gTAG-bom.csv
 
 EXTRA_DIST    = ChangeLog-1.0 $(example_DATA) $(RUN_TESTS) $(EXTRA_DATA)
+
+RUN_TESTS     = tests/runtest.sh
 
 check_SCRIPTS = tests
 

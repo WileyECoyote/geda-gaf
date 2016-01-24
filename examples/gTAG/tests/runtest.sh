@@ -42,11 +42,14 @@
 #           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.0.7
+VER=0.0.8
 
 REGENERATE=false
+DISTVBUILD=false
 
 if [ "$1" = "-r" ] || [ "$1" = "--regen" ] ; then REGENERATE=true ; shift ; fi
+
+if test ! -f ../../README ; then DISTVBUILD=true ; fi
 
 schematic=$1
 
@@ -289,6 +292,18 @@ do_check_symbols ()
   return 0;
 }
 
+do_clean_up ()
+{
+  # Remove gEDA directory if not debugging
+  test ! -z $DEBUG || rm -rf gEDA || : ;
+
+  if $DISTVBUILD ; then
+    rm -f "${BUILDDIR}/bom/${schematic}-bom.csv"
+    rm -f "${BUILDDIR}/${schematic}-drc2.txt"
+    rm -f "${BUILDDIR}/${schematic}-geda.net"
+  fi;
+}
+
 # ------------------------------- Begin ----------------------------
 
 if [ -z "${schematic}" ] ; then
@@ -316,10 +331,10 @@ fi
 test -z $DEBUG || set -x
 
 do_export_path2libraries
+do_setup_geda_environment
+
 do_get_symbol_checker
 do_get_netlister
-
-do_setup_geda_environment
 
 if $REGENERATE ; then
     ${NETLISTER} -q -g ${BOMBACKEND} -o "tests/${schematic}-bom.csv" "${schematic}.sch"
@@ -342,9 +357,6 @@ test $? -eq 0 || exit 1;
 ${NETLISTER} -q -g geda -o "${BUILDDIR}/${schematic}-geda.net" "${schematic}.sch"
 test $? -eq 0 || exit 1;
 
-# Clean up if not debugging
-test ! -z $DEBUG || rm -rf gEDA #&& rm -f "${schematic}-drc2.txt" || : ;
-
 test -f "${BUILDDIR}/bom/${schematic}-bom.csv" || exit 1;
 
 diff "tests/${schematic}-bom.csv" "${BUILDDIR}/bom/${schematic}-bom.csv"
@@ -352,3 +364,8 @@ test $? -eq 0 || exit 1;
 
 test -f "${BUILDDIR}/${schematic}-geda.net" || exit 1;
 diff "tests/${schematic}-geda.net" "${BUILDDIR}/${schematic}-geda.net"
+result=$?;
+
+do_clean_up
+
+exit $result;

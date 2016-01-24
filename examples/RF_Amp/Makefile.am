@@ -12,11 +12,12 @@ example_DATA  = 5980-2396E.pdf gafrc MSA-2643.cir MSA-2643.sch \
                 Q1.cir Q1.sch Q2.cir Q2.sch README Simulation.cmd \
                 bom/MSA-2643-bom.csv
 
-EXTRA_DATA    = tests/MSA-2643-bom.csv tests/MSA-2643-geda.net
-
-RUN_TESTS     = tests/runtest.sh
+EXTRA_DATA    = tests/MSA-2643-bom.csv tests/MSA-2643-geda.net \
+                bom/MSA-2643-bom.csv
 
 EXTRA_DIST    = $(example_DATA) $(RUN_TESTS) $(EXTRA_DATA)
+
+RUN_TESTS     = tests/runtest.sh
 
 check_SCRIPTS = tests
 

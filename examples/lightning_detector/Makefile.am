@@ -19,6 +19,7 @@ example_DATA = \
 		sym/2N4403.sym
 
 EXTRA_DIST    = $(example_DATA) \
+		bom/lightning_detector-bom.csv \
 		tests/lightning_detector-bom.csv \
 		tests/lightning_detector-geda.net \
 		tests/runtest.sh
