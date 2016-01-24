@@ -161,17 +161,14 @@ draw_dots (GschemToplevel *w_current,
   y_start -= (y_start % incr);
 
   if (coarse_incr == 0) {
-    //next_coarse_x = x_start - 1; Ensures we never hit this when looping
     next_coarse_y = y_start - 1; /* Ensures we never hit this when looping */
   }
   else {
 
-    int next_coarse_x;
-
-    next_coarse_x = x_start - (x_start % coarse_incr);
     next_coarse_y = y_start - (y_start % coarse_incr);
-    if (next_coarse_x < x_start) next_coarse_x += coarse_incr;
-    if (next_coarse_y < y_start) next_coarse_y += coarse_incr;
+
+    if (next_coarse_y < y_start)
+      next_coarse_y += coarse_incr;
   }
 
   for (i = x_start; i <= x_end; i = i + incr) {

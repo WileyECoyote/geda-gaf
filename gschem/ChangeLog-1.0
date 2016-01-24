@@ -11,6 +11,8 @@
 
       * src/x/x_clipboard.c: union clip_got_answer_lock.
 
+    * src/x/x_grid.c:Remove unused variable next_coarse_x.
+
 2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: fix reversed function table entries: do_edit_arc
