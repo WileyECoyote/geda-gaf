@@ -165,7 +165,7 @@ static bool i_command_dispatch(gschem_task *task)
 }
 
 static
-void i_command_router(char* command, GschemToplevel *w_current)
+void i_command_router(char *command, GschemToplevel *w_current)
 {
   int accelerator;
 
@@ -200,6 +200,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
 
     int i;
 
+    /* TODO: Add debug and find out if this is ever executed */
     for (i = 1; i < COMMAND_COUNT; i++) {
       if (u_string_strequal(command_struc[i].name, command)) {
         route(i);
@@ -627,6 +628,7 @@ COMMAND (do_debug)
   printf("%s", msg);
 
   p_current->CHANGED = old_page_state;
+
 #else
   printf("Performance_diagnostic is not enable, must recompile\n");
 #endif
@@ -649,11 +651,11 @@ COMMAND (do_debug)
  *      circumstances this does not happen.
  */
 
-/** \defgroup i_command_Action_Functions Action Handler Function
- *  @{ \remark Yes, repeat is a command, not just an action
- */
+/** \defgroup i_command_Action_Functions Action Handler Function */
 
-/** @brief i_cmd_do_repeat_last in i_command_Command_Handlers */
+/** @brief i_cmd_do_repeat_last in i_command_Command_Handlers
+ *  @remark Yes, repeat is a command, not just an action
+ */
 COMMAND (do_repeat_last)
 {
   BEGIN_NO_ARGUMENT(do_repeat_last);
@@ -702,9 +704,8 @@ COMMAND (do_file_new)
  *  @brief i_cmd_do_file_new_window in i_command_Option_Actions
  *
  *  \par Function Description
- *  This is an Action handler function for the File New Window.
- *  action. This function creates a new toplevel window.
- *
+ *  Action handler function for the File New Window action. This
+ *  function creates a new toplevel window.
  */
 COMMAND (do_file_new_window)
 {
@@ -740,11 +741,11 @@ COMMAND (do_file_new_window)
  *    \ingroup (i_command_File_Actions)
  */
 /* This does not do anything productive, is a delay, the destroy
- * notifier; open_command_idle_notify, does all the work.
- * This is a low priority main-loop task, instigated after higher
- * priority main-loop task were delegated to opening files. If
- * the loader is not done by the time this function is called,
- * we give it a second chance, after that we destroy our source.
+ * notifier; open_command_idle_notify, does all the work. This is
+ * a low priority main-loop task, instigated after higher priority
+ * main-loop task were delegated to opening files. If the loader is
+ * not done by the time this function is called, we give the task
+ * more time and after a second interval we destroy our source.
  */
 static bool
 open_command_idle_callback (void *data)
@@ -788,6 +789,7 @@ open_command_idle_notify (void *data)
   GSource *source;
   source = g_main_context_find_source_by_id (NULL, packet->source_id);
   if (source) {
+    /* TODO: Does this happen everytime? */
     g_source_destroy (source);
   }
 
