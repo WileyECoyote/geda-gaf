@@ -1,3 +1,8 @@
+2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/run_tests.sh: Add function do_remove_scripts and DISTVBUILD as
+      flag to remove scripts copied during distcheck.
+
 2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/lpbf.py: Revise to accept and use an argument as directory like

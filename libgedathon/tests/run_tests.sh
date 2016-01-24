@@ -2,6 +2,8 @@
 
 let result=0;
 
+DISTVBUILD=false
+
 BUILDDIR=$PWD;
 
 if test -z ${srcdir} ; then
@@ -50,7 +52,6 @@ do_export_module () {
 }
 
 do_remove_module () {
-
    if test -d geda ; then
       rm -rf geda
    fi
@@ -130,12 +131,19 @@ do_setup_scripts ()
   if test -d  ${SRCDIR}/../scripts ; then
    if test ! -f ${BUILDDIR}/../scripts/capacitor.py ; then
       cp ${SRCDIR}/../scripts/*.py ${BUILDDIR}/../scripts/
+      DISTVBUILD=true;
    fi
    path2scripts=../scripts
   else
      echo " cannot check <libgedathon>, directory containing scripts is missing"
      exit 1;
   fi
+}
+
+do_remove_scripts () {
+  if $DISTVBUILD ; then
+    rm -f ${BUILDDIR}/../scripts/*.py
+  fi;
 }
 
 if test -f "$MODULE" ; then
@@ -198,6 +206,7 @@ if test -f "$MODULE" ; then
    fi
 
    do_remove_module
+   do_remove_scripts
 
 else
    echo  "Module not in $MODULE"
