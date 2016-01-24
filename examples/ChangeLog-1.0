@@ -7,6 +7,8 @@
 
     * RF_Amp/MSA-2643-drc2.text: Remove file.
 
+    * TwoStageAmp/TwoStageAmp.sch: Update model directory name -- without s.
+
 2016-01-22  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add cd ${BUILDDIR} in do_setup_geda_environment,

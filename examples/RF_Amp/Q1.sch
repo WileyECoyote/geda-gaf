@@ -6,7 +6,7 @@ refdes=Q1
 T 65400 52000 5 10 0 1 0 0 1
 model-name=BJTM1_Q1
 T 66200 52000 5 10 1 1 0 0 1
-file=model/BJTM1_Q1.mod
+file=models/BJTM1_Q1.mod
 T 66300 52700 5 10 0 0 0 0 1
 device=NPN_TRANSISTOR
 }
@@ -23,7 +23,7 @@ refdes=D1
 T 63400 53800 5 10 0 1 0 0 1
 model-name=DIODEM1_Q1
 T 62500 53600 5 10 1 1 0 0 1
-file=model/DiodeM1_Q1.mod
+file=models/DiodeM1_Q1.mod
 T 63800 54400 5 10 0 0 0 0 1
 device=DIODE
 }
@@ -40,7 +40,7 @@ refdes=D2
 T 64300 52000 5 10 0 1 0 0 1
 model-name=DIODEM2_Q1
 T 63600 50700 5 10 1 1 0 0 1
-file=model/DiodeM2_Q1.mod
+file=models/DiodeM2_Q1.mod
 T 64700 52600 5 10 0 0 0 0 1
 device=DIODE
 }

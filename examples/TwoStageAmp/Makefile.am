@@ -12,7 +12,7 @@ nobase_example_DATA = \
 		Simulation.cmd \
 		TwoStageAmp.sch \
 		spice.netlist \
-		model/2N3904.mod \
+		models/2N3904.mod \
 		bom/TwoStageAmp-bom.csv \
 		sym/transistor.sym
 

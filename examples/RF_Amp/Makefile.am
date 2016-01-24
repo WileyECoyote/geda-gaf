@@ -2,7 +2,7 @@
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
-SUBDIRS       = model sym
+SUBDIRS       = models sym
 
 exampledir    = $(docdir)/examples/RF_Amp/
 
@@ -30,7 +30,7 @@ clean-local:
 .PHONY: tests
 
 MOSTLYCLEANFILES     = *.log tests/*~ *~
-CLEANFILES           = *.log tests/*~ *~ model/*~ sym/*~
-DISTCLEANFILES       = *.log tests/*~ *~ model/*~ sym/*~
-MAINTAINERCLEANFILES = *.log tests/*~ *~ model/*~ sym/*~ core Makefile.in
+CLEANFILES           = *.log tests/*~ *~ models/*~ sym/*~
+DISTCLEANFILES       = *.log tests/*~ *~ models/*~ sym/*~
+MAINTAINERCLEANFILES = *.log tests/*~ *~ models/*~ sym/*~ core Makefile.in
 
