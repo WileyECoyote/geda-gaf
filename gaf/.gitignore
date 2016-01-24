@@ -1,7 +1,5 @@
 *.o
 *.x
-.deps
-.libs
 gaf
 gaf.1
 gaf.html
