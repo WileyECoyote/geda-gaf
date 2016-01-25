@@ -1,6 +1,9 @@
 2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_edit_text.c: reduce scope of variables.
+    * src/x/x_edit_text.c: Reduce scope of variables.
+
+    * src/x/x_settings.c: Include keywords.h using relative reference,
+      reduce scope of variables, revise/edit comments.
 
 2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
 

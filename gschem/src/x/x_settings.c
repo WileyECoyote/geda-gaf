@@ -94,7 +94,7 @@
 #include <x_menus.h>                    /* MenuToggleItem enumeration */
 #include <x_settings.h>
 
-#include <keywords.h>
+#include <../include/keywords.h>
 
 #include <geda_debug.h>
 
@@ -289,16 +289,19 @@ void x_settings_save_settings(GschemToplevel *w_current)
 }
 
 /** @brief function change_default_titleblock in GatherSettings */
-bool x_settings_set_scm_int(char *symbol_name, int value ) {
-
-  char s_val[5];
-  char buffer[128];
-  char *str;
-  char *strbuff;
-
+bool x_settings_set_scm_int(char *symbol_name, int value )
+{
   if (symbol_name) {
+
+    char  s_val[5];
+    char  buffer[128];
+    char *str;
+    char *strbuff;
+
+    /* Get string representation of the integer */
     strbuff = &buffer[0];
-    str = u_string_int2str(value, s_val, 10); /* convert the integer to a string */
+    str     = u_string_int2str(value, s_val, 10);
+
     strcpy(strbuff, "(define ");
     strcat(strbuff, symbol_name );
     strcat(strbuff, " " );
@@ -331,31 +334,35 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
 */
 int get_titleblock_cnt(void) {
 
-        char     TitleBlockPath[MAX_PATH];
-  const char    *suffix;
-  int            count = 0;
-  DIR           *dirp;
-  struct dirent *ent;
+  char TitleBlockPath[MAX_PATH];
+  int  count = 0;
+  DIR *dirp;
 
   strcpy (TitleBlockPath, f_path_sys_data());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
 
-
   dirp = opendir (TitleBlockPath);
-  if (dirp != NULL)
-  {
+
+  if (dirp != NULL) {
+
+     struct dirent *ent;
+
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL) {
-       suffix = f_get_filename_ext(ent->d_name);
-       if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
+
+       const char *suffix = f_get_filename_ext(ent->d_name);
+
+       if (suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
          count++;
        }
      }
      closedir (dirp);
-  } else
-  { /* could not open directory */
-     u_log_message(_("get_titleblock_cnt: error opening: %s\n"), TitleBlockPath);
-     count--; /* decement to -1 */
+  }
+  else {
+
+    /* Could not open directory */
+    u_log_message(_("%s: error opening: %s\n"), __func__, TitleBlockPath);
+    count--; /* decrement to -1 */
   }
   return count;
 }
@@ -370,34 +377,34 @@ int get_titleblock_cnt(void) {
 */
 bool get_titleblock_list(char **Buffer) {
 
-  bool        result = TRUE;
-  const char *suffix;
-        char  TitleBlockPath[MAX_PATH];
-        char  tmpbuff[MAX_FILENAME];
-
-
-  DIR        *dirp;
-  struct      dirent *ent;
+  bool result;
+  char TitleBlockPath[MAX_PATH];
+  DIR *dirp;
 
   strcpy (TitleBlockPath, f_path_sys_data());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
 
-  dirp = opendir (TitleBlockPath);
-  if (dirp != NULL)
-  {
+  dirp   = opendir (TitleBlockPath);
+
+  if (dirp != NULL) {
+
+    struct dirent *ent;
     int index =0;
 
     /* get all the files within directory */
-    while ((ent = readdir (dirp)) != NULL)
-    {
-      suffix = f_get_filename_ext(ent->d_name);
-      if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
-      {
-        int namelen;
-        int i;
+    while ((ent = readdir (dirp)) != NULL) {
 
-        strcpy(tmpbuff, basename(ent->d_name));
-        namelen = strlen( tmpbuff) - 4; /* substract the extension */
+      const char *suffix = f_get_filename_ext(ent->d_name);
+
+      if (suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+      {
+        char tmpbuff[MAX_FILENAME];
+        int  namelen;
+        int  i;
+
+        strcpy (tmpbuff, basename(ent->d_name));
+        namelen = strlen (tmpbuff) - 4; /* substract the extension */
+
         for (i = namelen; i < MAX_FILENAME - namelen; i++) {
           tmpbuff[i] = '\0';
         }
@@ -405,10 +412,11 @@ bool get_titleblock_list(char **Buffer) {
       }
     }
     closedir (dirp);
+    result = TRUE;
   }
   else { /* could not open directory */
-      u_log_message(_("Failed to open [%s]: %s\n"), TitleBlockPath, strerror(errno));
-      result = FALSE;
+    u_log_message(_("Failed to open [%s]: %s\n"), TitleBlockPath, strerror(errno));
+    result = FALSE;
   }
 
   return result;
@@ -428,9 +436,10 @@ bool get_titleblock_list(char **Buffer) {
  * \par Function Description
  *      Pre-parser to check input line read in from template rc file. This
  *      function performs an inital interrogation of lines read in from a
- *      file. If a keyword format is detected then the string is copied to
- *      the supplied address and returns SUBSTITUTE. Otherwise LINE_FEED
- *      is returned to indicate the line should be written back out.
+ *      file. If \a keyword format is detected then the string is copied to
+ *      the supplied address \a strbuffer and returns SUBSTITUTE. Otherwise
+ *      LINE_FEED is returned to indicate the line should be written back
+ *      out.
  */
 
 static int process_rc_buffer(char *strbuffer, char *keyword) {
@@ -438,7 +447,6 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
   char *s_ptr;
   char *e_ptr;
 
-  int token_len;
   s_ptr = strbuffer;
 
   if ( *s_ptr == ASCII_CR)        /* if blank line then just write it back out */
@@ -455,6 +463,8 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
 
   if (( *s_ptr == '(')  || (( *s_ptr == ';') && ( *e_ptr == '('))) /* if begin active or commented keyword */
   {
+    int token_len;
+
     if (( *s_ptr == ';') && ( *e_ptr == '(')) {                  /* if commented keyword advance start ptr */
       s_ptr = ++e_ptr;
     }
@@ -462,7 +472,9 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
       s_ptr++;
     }
     /* advance end ptr to end of keyword */
-    while (( *e_ptr != SPACE) && ( *e_ptr != ASCII_CR) && ( *e_ptr != ASCII_NUL)) { ++e_ptr; }
+    while (( *e_ptr != SPACE) && ( *e_ptr != ASCII_CR) && ( *e_ptr != ASCII_NUL))
+      { ++e_ptr; }
+
     token_len = e_ptr - s_ptr;
 
     strncpy(keyword, s_ptr, token_len);   /* extract the key-word string from the buffer */
@@ -492,7 +504,7 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
 int generate_rc(GschemToplevel *w_current, const char *rcname)
 {
   char *inputfile;           /* Name of the input file */
-  char *templatefile;                   /* Name of the Template file */
+
   char *outputfile;          /* Name of the output file */
 
   FILE* input;               /* Input file handle */
@@ -508,9 +520,12 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
 
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
+
+    char *templatefile;      /* Name of the Template file */
+
     /* Copy the template user config file to user's folder */
     templatefile = u_string_concat (f_path_sys_config (), DIR_SEPARATOR_S,
-                             "user-", rcname, NULL);
+                                   "user-", rcname, NULL);
     result = f_file_copy(templatefile, inputfile);
   }
 
@@ -542,7 +557,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
 
     while (fgets(strbuffer, sizeof(strbuffer), input)) {
 
-      if ((result = (process_rc_buffer (strbuffer, keyword)) == LINE_FEED)) {
+      if ((result = process_rc_buffer (strbuffer, keyword)) == LINE_FEED) {
         fputs(strbuffer, output);
       }
       else {                   /* found a keyword */
@@ -599,8 +614,8 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
  */
 static bool is_enabled(const char* ptr) {
   /* Check if this entry is commented out */
-  while ( *ptr == SPACE)  { ++ptr; }
-  if ( *ptr == ASCII_OP)
+  while (*ptr == SPACE)  { ++ptr; }
+  if (*ptr == ASCII_OP)
     return TRUE;
   return FALSE;
 }
@@ -675,13 +690,16 @@ KEYWORD (load_in_rc) {
 /** @brief function do_kw_define_in_rc in Settings-Keyword-Handlers */
 KEYWORD (define_in_rc) {
 
-  char Terminator[]= LineTerminator;
   char *ptr;
   ptr = KEY_BUFFER(load_in_rc);     /* get our pointer to the input buffer */
   strcpy (output_buffer, ptr );     /* Assume that were are not changing   */
 
   if (rc_options.titleblock_index == -1) {
+
     if (strstr(ptr, "define default-titleblock" ) != NULL) {
+
+      char Terminator[]= LineTerminator;
+
       /* could do this: ptr = u_string_scm2c( "default-titleblock" ) */
       strcpy (output_buffer, "(define default-titleblock \""); /* add a new semi-colon*/
       strcat (output_buffer, rc_options.titleblock_fname );
@@ -805,14 +823,18 @@ KEYWORD (warp_cursor) {
 
 /** @brief function do_kw_window_size in Settings-Keyword-Handlers */
 KEYWORD (window_size) {
-  char *strings[] = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650,
-                     RC_STR_WINDOW_W950H712, RC_STR_WINDOW_W1100H825};
-  int i;
 
-  if(rc_options.custom_window_size == 1)
+  if(rc_options.custom_window_size == 1) {
      fputs(KEY_BUFFER(window_size), output);
+  }
   else {
-    for( i = 0; i < 4; i++) {
+
+    int i;
+
+    char *strings[] = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650,
+                       RC_STR_WINDOW_W950H712, RC_STR_WINDOW_W1100H825};
+
+    for (i = 0; i < 4; i++) {
       strcpy(output_buffer, (rc_options.window_size == i) ? "(" : ";(");
       strcat(output_buffer, strings[i]);
       strcat(output_buffer, "\n");
@@ -886,15 +908,11 @@ KEYWORD (component_dialog_attributes) {
   static int list_length;
   bool flushed = FALSE;
 
-  char Terminator[]= LineTerminator;
-
   char *ptr_first_char;
   char *ptr;
   int show_all = FALSE;
   int add_default_list = FALSE;
   int index =0;
-  int po =0;                  /* counter for parenthesis open */
-  int pc =0;                  /* counter for parenthesis close */
 
   void cat_some_attribs ( int start, int stop ) {
     for (index = start; index < stop; index++) {
@@ -916,14 +934,18 @@ KEYWORD (component_dialog_attributes) {
   }
 
   ptr_first_char = KEY_BUFFER(component_dialog_attributes);
-  while ( *ptr_first_char == SPACE)  { ++ptr_first_char; } /* next char, nothing else since we were called */
+  while (*ptr_first_char == SPACE)  { ++ptr_first_char; } /* next char, nothing else since we were called */
 
   ptr = ptr_first_char;
-  while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_APO )) { ptr++; } /* find apostrophe? */
+  while ((*ptr != ASCII_NUL ) && (*ptr != ASCII_APO )) { ptr++; } /* find apostrophe? */
 
-  if ( *ptr == ASCII_APO ) {
+  if (*ptr == ASCII_APO ) {
+
+    char Terminator[]= LineTerminator;
+
     ptr++; ptr++;
-    if ( *ptr == ASCII_CP ) {                     /* if is entry for None */
+
+    if (*ptr == ASCII_CP ) {                     /* if is entry for None */
       if (FilterList == NULL)                     /* and still is None */
         strcpy (ptr_first_char, "(");
       else
@@ -933,9 +955,12 @@ KEYWORD (component_dialog_attributes) {
       fputs(ptr_first_char, output);
     }
     else {
-      while ( *ptr == SPACE)  { ++ptr; }
+
+      while (*ptr == SPACE)  { ++ptr; }
+
       ++ptr;
-      if ( *ptr == '*' ) {                        /* if entry for ALL */
+
+      if (*ptr == '*' ) {                        /* if entry for ALL */
         if (show_all)                             /* and set to All   */
           strcpy (ptr_first_char, "(");
         else
@@ -945,17 +970,24 @@ KEYWORD (component_dialog_attributes) {
         fputs(ptr_first_char, output);
       }
       else {
+
+        int po = 0;                  /* counter for parenthesis open */
+        int pc = 0;                  /* counter for parenthesis close */
+
         ptr = ptr_first_char;
-        while ( ASCII_NUL != *ptr++) { if ( *ptr == ASCII_OP) ++po; } /* count opening parenthesis */
+
+        while ( ASCII_NUL != *ptr++) { if (*ptr == ASCII_OP) ++po; } /* count opening parenthesis */
         ptr = ptr_first_char;
-        while ( ASCII_NUL != *ptr++) { if ( *ptr == ASCII_CP) ++pc; } /* count close parenthesis   */
+        while ( ASCII_NUL != *ptr++) { if (*ptr == ASCII_CP) ++pc; } /* count close parenthesis   */
         while ( po > pc ) {                                          /* while count does not match */
           ptr = fgets(ptr_first_char, RC_INPUT_BUFFER_SIZE, input);  /* read in the next line  */
           while ( ASCII_NUL != *ptr++) {                             /* search the entire string */
-            if ( *ptr == ASCII_CP) ++pc; }  /* while counting close parenthesis */
+            if (*ptr == ASCII_CP) ++pc; }  /* while counting close parenthesis */
         }
+
         /* old list is gone, write a new one */
         ptr = ptr_first_char;
+
         if (add_default_list) {
            /* Write "commented-out" default attribute filter list to the RC file */
             strcpy ( ptr, ";(component-dialog-attributes '(");
@@ -981,13 +1013,18 @@ KEYWORD (component_dialog_attributes) {
             fputs(ptr, output);
         }
         else {
-           /* Write the active attribute filter list to the RC file */
+
+          /* Write the active attribute filter list to the RC file */
           if (FilterList != NULL) {
+
             strcpy ( ptr, "(component-dialog-attributes '(");
+
             for (index = 0; index < list_length; index++) {
+
               strcat ( ptr,  "\"");
               strcat ( ptr,  g_list_nth_data(FilterList, index));
               strcat ( ptr,  "\"");          /* don't add space here */
+
               if (strlen (ptr) > 66 ) {
 
                 if (index == list_length ) { /* if is the end of the list   */
@@ -1004,6 +1041,7 @@ KEYWORD (component_dialog_attributes) {
               }
               strcat ( ptr,  " ");           /* put space between members */
             }
+
             if ( !flushed ) {                /* if did not close out then */
               strcat ( ptr,  "))");          /* add final parenthesis and */
               strcat ( ptr, Terminator);     /* a new sequence and then   */
@@ -1297,18 +1335,22 @@ KEYWORD ( undo_preserve ) {
 
 /** @brief function do_kw_attribute_name in Settings-Keyword-Handlers */
 KEYWORD ( attribute_name ) {
+
   int count;
   int i;
   char *ptrBuffer;
-  char *ptr;
 
   count = s_attrib_count();
 
   ptrBuffer = KEY_BUFFER(attribute_name);
+
   for (i = 0; i < count; i++) {
+
     /* set pointer to beginning of ptrBuffer if sucessful */
-    ptr = fgets(ptrBuffer, RC_INPUT_BUFFER_SIZE, input);   /* read in the next line  */
-    while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_OP )) { ptr++; } ptr++;
+    char *ptr = fgets(ptrBuffer, RC_INPUT_BUFFER_SIZE, input);   /* read in the next line  */
+
+    while ((*ptr != ASCII_NUL ) && (*ptr != ASCII_OP )) { ptr++; } ptr++;
+
     if (!strncmp (ptr, KEY_NAME(attribute_name), strlen(KEY_NAME(attribute_name))))  /* see if match our keyword */
       break; /* should not do this as long as count in RC file = count in memory */
   }
