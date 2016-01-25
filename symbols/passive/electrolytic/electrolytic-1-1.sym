@@ -1,13 +1,5 @@
-v 20150315 2
-T 400 1700 5 10 0 0 0 0 1
-author=AutoTron
-T 400 1550 5 10 0 0 0 0 1
-dist-license=GPL3
-T 400 1400 5 10 0 0 0 0 1
-use-license=unlimited
-T 400 1250 5 10 0 0 0 0 1
-numslots=0
-T 400 1100 5 10 0 0 0 0 1
+v 20151230 2
+T 500 900 5 10 0 0 0 0 1
 symversion=0.2
 T 1000 100 9 10 0 1 0 0 1
 footprint=SMD_POLAR-60-30
@@ -47,6 +39,13 @@ L 400 600 300 600 3 12 2 0 -1 -1
 L 350 550 350 650 3 12 2 0 -1 -1
 T 500 500 8 10 1 1 0 0 1
 refdes=C?
-T 500 900 5 10 0 0 0 0 1
-description=electrolytic capacitor,1uF,?V,SM0402
-
+T 500 1100 5 10 0 1 0 0 1
+description=capacitor,electrolytic,1uF,?V,SM0402
+T 500 1900 5 10 0 0 0 0 1
+author=AutoTron
+T 500 1700 5 10 0 0 0 0 1
+dist-license=GPL3
+T 500 1500 5 10 0 0 0 0 1
+use-license=unlimited
+T 500 1300 5 10 0 0 0 0 1
+numslots=0
