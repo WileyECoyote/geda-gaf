@@ -19,15 +19,17 @@ EXTRA_DIST    = $(example_DATA) $(RUN_TESTS) $(EXTRA_DATA)
 
 RUN_TESTS     = tests/runtest.sh
 
-check_SCRIPTS = tests
+check_SCRIPTS = $(SRCDIR)/${RUN_TESTS}
 
-tests:
-	@$(SRCDIR)/${RUN_TESTS} "MSA-2643" $(SRCDIR)
+TESTS         = ${RUN_TESTS}
+
+regen:
+	@$(SRCDIR)/${RUN_TESTS} --regen
 
 clean-local:
 	test -d gEDA && rm -rf gEDA || : ;
 
-.PHONY: tests
+.PHONY: regen
 
 MOSTLYCLEANFILES     = *.log tests/*~ *~
 CLEANFILES           = *.log tests/*~ *~ models/*~ sym/*~

@@ -6,6 +6,9 @@
       name for the schematic argument if the schematic argument is not
       passed to the script.
 
+    * xxx/Makefile.am: Revise automake files to use TESTS rule and add rule
+      for regen.
+
 2016-01-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add DISTVBUILD and set if ../../README does not

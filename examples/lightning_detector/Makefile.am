@@ -24,14 +24,19 @@ EXTRA_DIST    = $(example_DATA) \
 		tests/lightning_detector-geda.net \
 		tests/runtest.sh
 
-RUN_TESTS     =	tests/runtest.sh
+RUN_TESTS     = tests/runtest.sh
 
-check_SCRIPTS = tests
+check_SCRIPTS = $(SRCDIR)/${RUN_TESTS}
 
-tests:
-	@$(SRCDIR)/${RUN_TESTS} "lightning_detector" $(SRCDIR)
+TESTS         = ${RUN_TESTS}
 
-.PHONY: tests
+regen:
+	@$(SRCDIR)/${RUN_TESTS} --regen
+
+clean-local:
+	test -d gEDA && rm -rf gEDA || : ;
+
+.PHONY: regen
 
 MOSTLYCLEANFILES     = *.log tests/*~ *~
 CLEANFILES           = *.log tests/*~ *~ sym/*~
