@@ -532,15 +532,15 @@ int u_string_stristr ( const char *haystack, const char *needle)
 
 /*! \brief Check for equal strings
  *  \par Function Description
- *  This function compares to strings and returns true if
- *  they are equal or fals if they are not.
+ *  This function compares two strings and returns TRUE if
+ *  they are equal or FALSE if they are not.
  *
  *  \param [in] str1 is the string to be search
  *  \param [in] str2 is the string to search for
  *
  *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
-bool u_string_strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */
+bool u_string_strequal(const char *str1, const char *str2)
 {
   while ((*str1 == *str2) && (*str1 != '\0')) { str1++; str2++; }
   return ((*str1 == '\0') && (*str2 == '\0'));
