@@ -76,6 +76,10 @@
 
     * transistor/njfet-thru: Combine njfet-1 and njfet-2.
 
+    * transistor/pjfet-thru: Combine pjfet-1 and pjfet-2.
+
+    * symbols/geda-clib.scm: Update njfet-thru pjfet-thru mergers.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-[1-8].sym: Add

@@ -172,12 +172,10 @@
                      ("transistor/igbt"          "Standard/Insulated Gate BiPolar")
 
                      ("transistor/njfet-0"      "Standard/N-Channel FET" 0)
-                     ("transistor/njfet-1"      "Standard/N-Channel FET 1")
-                     ("transistor/njfet-2"      "Standard/N-Channel FET 2")
+                     ("transistor/njfet-thru"   "Standard/N-FET Thru-Hole")
                      ("transistor/njfet-diff"   "Standard/N-FET Differential Pair")
                      ("transistor/pjfet-0"      "Standard/P-Channel FET" 0)
-                     ("transistor/pjfet-1"      "Standard/P-Channel FET 1")
-                     ("transistor/pjfet-2"      "Standard/P-Channel FET 2")
+                     ("transistor/pjfet-thru"   "Standard/P-FET Thru-Hole")
 
                      ("transistor/darl-bjt"     "Standard/Darlingtons")
                      ("transistor/darl-npn"     "Standard/NPN Darlington")
