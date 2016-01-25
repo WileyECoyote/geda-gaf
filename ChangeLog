@@ -1,3 +1,7 @@
+2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Bump mutation to 2.1.0.15, 20151230.
+
 2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_macros.h: Add macro GedaMutex, which when defined in code,

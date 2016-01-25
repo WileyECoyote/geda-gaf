@@ -10,7 +10,7 @@ dnl directory.
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [1])
 m4_define([geda_micro_version],   [0])
-m4_define([geda_mutation],        [14])
+m4_define([geda_mutation],        [15])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -39,10 +39,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20151204])
+AX_GIT_VERSION([20151230])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20151204])
+AC_SUBST([CHANGELOG_BASE], [1.0-20151230])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -192,7 +192,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([51:2:0])
+AX_LIBGEDA([51:3:0])
 
 # Set up libgedadraw with the correct ld version number
 AX_LIBGEDADRAW([0:3:0])
@@ -204,7 +204,7 @@ AX_LIBGEDACAIRO([1:6:1])
 AX_LIBGEDATHON([0:7:0])
 
 # Set up libgedauio with the correct ld version number
-AX_LIBGEDAUIO([0:7:0])
+AX_LIBGEDAUIO([0:8:0])
 
 #####################################################################
 # Generate output
@@ -397,7 +397,7 @@ AC_CONFIG_FILES([Makefile
                  examples/gTAG/Makefile
                  examples/lightning_detector/Makefile
                  examples/RF_Amp/Makefile
-                 examples/RF_Amp/model/Makefile
+                 examples/RF_Amp/models/Makefile
                  examples/RF_Amp/sym/Makefile
                  examples/TwoStageAmp/Makefile
 ])
