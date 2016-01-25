@@ -42,7 +42,7 @@
 #           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.0.8
+VER=0.0.9
 
 REGENERATE=false
 DISTVBUILD=false
@@ -51,9 +51,13 @@ if [ "$1" = "-r" ] || [ "$1" = "--regen" ] ; then REGENERATE=true ; shift ; fi
 
 if test ! -f ../../README ; then DISTVBUILD=true ; fi
 
-schematic=$1
-
 BUILDDIR=$PWD
+
+if [ -z $1 ] ; then
+  schematic=${PWD##*/}
+else
+  schematic=$1
+fi
 
 if [ -z $2 ] ; then
   SRCDIR=.
@@ -64,12 +68,6 @@ fi
 cd $SRCDIR
 
 SRCDIR=$PWD
-
-if $REGENERATE ; then
-   test $VERBOSE && echo "Regenerating outpout for example ${schematic}"
-else
-   test $VERBOSE && echo "Checking example ${schematic}"
-fi
 
 # ---------------------- Configuration constants -------------------
 
@@ -326,6 +324,12 @@ if ! $REGENERATE ; then
     echo "Reference is missing: tests/${schematic}-bom.csv"
     exit 1;
   fi
+fi
+
+if $REGENERATE ; then
+   test $VERBOSE && echo "Regenerating outpout for example ${schematic}"
+else
+   test $VERBOSE && echo "Checking example ${schematic}"
 fi
 
 test -z $DEBUG || set -x

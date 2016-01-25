@@ -2,6 +2,10 @@
 
     * examples/MSA-2643: Rename example directory: RF_Amp->MSA-2643
 
+    * xxx/tests/runtest.sh: Revise scripts to use the parent directory
+      name for the schematic argument if the schematic argument is not
+      passed to the script.
+
 2016-01-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add DISTVBUILD and set if ../../README does not
