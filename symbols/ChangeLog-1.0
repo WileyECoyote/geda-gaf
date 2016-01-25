@@ -1,3 +1,81 @@
+2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/njfet-1: Add case to file names:
+
+            * transistor/njfet-1/2N3970_njfet_40V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N3971_njfet_40V_25mA_TO18-1.sym
+            * transistor/njfet-1/2N3972_njfet_40V_5mA_TO18-1.sym
+            * transistor/njfet-1/2N4091_njfet_40V_30mA_TO18-1.sym
+            * transistor/njfet-1/2N4092_njfet_40V_15mA_TO18-1.sym
+            * transistor/njfet-1/2N4093_njfet_40V_8mA_TO18-1.sym
+            * transistor/njfet-1/2N4391_njfet_40V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N4392_njfet_40V_25mA_TO18-1.sym
+            * transistor/njfet-1/2N4393_njfet_40V_5mA_TO18-1.sym
+            * transistor/njfet-1/2N4856A_njfet_40V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N4856_njfet_40V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N4857A_njfet_40V_20mA_TO18-1.sym
+            * transistor/njfet-1/2N4857_njfet_40V_20mA_TO18-1.sym
+            * transistor/njfet-1/2N4858A_njfet_40V_8mA_TO18-1.sym
+            * transistor/njfet-1/2N4858_njfet_40V_8mA_TO18-1.sym
+            * transistor/njfet-1/2N4859A_njfet_30V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N4859_njfet_30V_50mA_TO18-1.sym
+            * transistor/njfet-1/2N4860A_njfet_30V_20mA_TO18-1.sym
+            * transistor/njfet-1/2N4860_njfet_30V_20mA_TO18-1.sym
+            * transistor/njfet-1/2N4861A_njfet_30V_8mA_TO18-1.sym
+            * transistor/njfet-1/2N4861_njfet_30V_8mA_TO18-1.sym
+            * transistor/njfet-1/2N5555_njfet_25V_15mA_TO18-1.sym
+            * transistor/njfet-1/PN4091_njfet_40V_30mA_TO92-1.sym
+            * transistor/njfet-1/PN4092_njfet_40V_15mA_TO92-1.sym
+            * transistor/njfet-1/PN4093_njfet_40V_8mA_TO92-1.sym
+            * transistor/njfet-1/PN4391_njfet_40V_50mA_TO92-1.sym
+            * transistor/njfet-1/PN4392_njfet_40V_25mA_TO92-1.sym
+            * transistor/njfet-1/PN4393_njfet_40V_5mA_TO92-1.sym
+
+    * transistor/njfet-1: Add case to file names:
+
+            * transistor/njfet-2/2N3970_njfet_40V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N3971_njfet_40V_25mA_TO18-2.sym
+            * transistor/njfet-2/2N3972_njfet_40V_5mA_TO18-2.sym
+            * transistor/njfet-2/2N4091_njfet_40V_30mA_TO18-2.sym
+            * transistor/njfet-2/2N4092_njfet_40V_25mA_TO18-2.sym
+            * transistor/njfet-2/2N4093_njfet_40V_8mA_TO18-2.sym
+            * transistor/njfet-2/2N4391_njfet_40V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N4392_njfet_40V_25mA_TO18-2.sym
+            * transistor/njfet-2/2N4393_njfet_40V_5mA_TO18-2.sym
+            * transistor/njfet-2/2N4856A_njfet_40V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N4856_njfet_40V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N4857A_njfet_40V_20mA_TO18-2.sym
+            * transistor/njfet-2/2N4857_njfet_40V_20mA_TO18-2.sym
+            * transistor/njfet-2/2N4858A_njfet_40V_8mA_TO18-2.sym
+            * transistor/njfet-2/2N4858_njfet_40V_8mA_TO18-2.sym
+            * transistor/njfet-2/2N4859A_njfet_30V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N4859_njfet_30V_50mA_TO18-2.sym
+            * transistor/njfet-2/2N4860A_njfet_30V_20mA_TO18-2.sym
+            * transistor/njfet-2/2N4860_njfet_30V_20mA_TO18-2.sym
+            * transistor/njfet-2/2N4861A_njfet_30V_8mA_TO18-2.sym
+            * transistor/njfet-2/2N4861_njfet_30V_8mA_TO18-2.sym
+            * transistor/njfet-2/2N5555_njfet_25V_25mA_TO18-2.sym
+            * transistor/njfet-2/PN4091_njfet_40V_30mA_TO92-2.sym
+            * transistor/njfet-2/PN4092_njfet_40V_25mA_TO92-2.sym
+            * transistor/njfet-2/PN4093_njfet_40V_8mA_TO92-2.sym
+            * transistor/njfet-2/PN4391_njfet_40V_50mA_TO92-2.sym
+            * transistor/njfet-2/PN4392_njfet_40V_25mA_TO92-2.sym
+            * transistor/njfet-2/PN4393_njfet_40V_5mA_TO92-2.sym
+
+    * transistor/pjfet-1: Add case to file names:
+
+            * transistor/pjfet-1/2N5114_pjfet_30V_30mA_TO18-1.sym
+            * transistor/pjfet-1/2N5115_pjfet_30V_15mA_TO18-1.sym
+            * transistor/pjfet-1/2N5116_pjfet_30V_5mA_TO18-1.sym
+
+    * transistor/pjfet-2: Add case to file names:
+
+            * transistor/pjfet-2/2N5114_pjfet_30V_30mA_TO18-2.sym
+            * transistor/pjfet-2/2N5115_pjfet_30V_15mA_TO18-2.sym
+            * transistor/pjfet-2/2N5116_pjfet_30V_5mA_TO18-2.sym
+
+    * transistor/njfet-thru: Combine njfet-1 and njfet-2.
+
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-e/BSS138BKS_60V_0.32A_SOT363-[1-8].sym: Add
