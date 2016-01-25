@@ -396,9 +396,9 @@ AC_CONFIG_FILES([Makefile
                  examples/Makefile
                  examples/gTAG/Makefile
                  examples/lightning_detector/Makefile
-                 examples/RF_Amp/Makefile
-                 examples/RF_Amp/models/Makefile
-                 examples/RF_Amp/sym/Makefile
+                 examples/MSA-2643/Makefile
+                 examples/MSA-2643/models/Makefile
+                 examples/MSA-2643/sym/Makefile
                  examples/TwoStageAmp/Makefile
 ])
 AC_OUTPUT

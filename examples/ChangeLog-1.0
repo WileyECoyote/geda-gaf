@@ -1,3 +1,7 @@
+2016-01-25  Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/MSA-2643: Rename example directory: RF_Amp->MSA-2643
+
 2016-01-23  Wiley E. Hill <wileyhill@gmail.com>
 
     * xxx/tests/runtest.sh: Add DISTVBUILD and set if ../../README does not
@@ -5,9 +9,11 @@
       then used in new function do_clean_up to remove extraneous files that
       are generated during the tests, bump version to 0.0.8.
 
-    * RF_Amp/MSA-2643-drc2.text: Remove file.
+    * /MSA-2643-drc2.text: Remove file.
 
-    * TwoStageAmp/TwoStageAmp.sch: Update model directory name -- without s.
+    * RF_Amp/models: Update model directory name.
+
+    * TwoStageAmp/models: Update model directory name.
 
 2016-01-22  Wiley E. Hill <wileyhill@gmail.com>
 

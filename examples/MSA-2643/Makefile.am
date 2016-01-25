@@ -4,7 +4,7 @@
 
 SUBDIRS       = models sym
 
-exampledir    = $(docdir)/examples/RF_Amp/
+exampledir    = $(docdir)/examples/MSA-2643/
 
 SRCDIR        = $(srcdir)
 

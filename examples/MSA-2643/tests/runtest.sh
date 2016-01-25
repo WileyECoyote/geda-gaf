@@ -55,6 +55,12 @@ schematic=$1
 
 BUILDDIR=$PWD
 
+if [ -z $1 ] ; then
+  schematic=.
+else
+  schematic=$1
+fi
+
 if [ -z $2 ] ; then
   SRCDIR=.
 else
