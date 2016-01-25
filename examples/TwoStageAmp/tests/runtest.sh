@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # gEDA - GPL Electronic Design Automation
 #
@@ -59,13 +59,17 @@ else
   schematic=$1
 fi
 
-if [ -z $2 ] ; then
-  SRCDIR=.
+if [ -z ${srcdir} ] ; then
+  if [ -z $2 ] ; then
+    SRCDIR=.
+  else
+    SRCDIR=$2
+  fi
 else
-  SRCDIR=$2
+  SRCDIR=${srcdir}
 fi
 
-cd $SRCDIR
+cd ${SRCDIR}
 
 SRCDIR=$PWD
 
@@ -272,14 +276,10 @@ do_setup_geda_environment ()
 # Search example directory for sym files and gsymcheck all found
 do_check_symbols ()
 {
-  found=$(find . -type f -iname "*.sym" -print0 | xargs -0)
-
-  IFS=' ' read -a symbols <<< "$found"
-
-  for sym in ${symbols[@]}; do
-
+  find . -type f -iname '*.sym' -printf '%p\n' | xargs -0 | while IFS=' ' read sym;
+  do
+    test -z "$sym" && continue;
     test $VERBOSE && echo -n "Checking ${sym} ..."
-    $SYMCHECKER -q ${sym}
     if [ $? -ne 0 ] ; then
       echo "Failed ${sym}, see gsymcheck -v ${sym}"
       exit 1;

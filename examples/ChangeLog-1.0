@@ -2,12 +2,31 @@
 
     * examples/MSA-2643: Rename example directory: RF_Amp->MSA-2643
 
-    * xxx/tests/runtest.sh: Revise scripts to use the parent directory
-      name for the schematic argument if the schematic argument is not
-      passed to the script.
-
     * xxx/Makefile.am: Revise automake files to use TESTS rule and add rule
       for regen.
+
+    * xxx/tests/runtest.sh: Revised to use the parent directory name
+      for the schematic argument if the schematic argument is not passed
+      to the script. Replaced function do_check_symbols with Bourne
+      compatible algorithms and set use sh, which might be dash, and this
+      reduced time to test. Results for make check in examples (gTAG, MSA-
+      2643, lightning_detector, and TwoStageAmp)show significant reduction
+      in time to test, all units in seconds:
+
+      Before
+                    Run 1   Run 2   Run 3   Average
+            ---------------------------------------
+            real    10.859  9.748   9.778   10.128
+            user    8.116   7.548   7.624   7.763
+            sys     1.484   1.44    1.412   1.445
+
+      After
+                    Run 1   Run 2   Run 3   Average
+            ---------------------------------------
+            real    4.41    4.398   4.298   4.369
+            user    3.3     3.392   3.312   3.335
+            sys     0.656   0.544   0.608   0.603
+
 
 2016-01-23  Wiley E. Hill <wileyhill@gmail.com>
 
