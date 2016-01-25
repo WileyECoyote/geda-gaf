@@ -1,3 +1,7 @@
+2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_edit_text.c: reduce scope of variables.
+
 2016-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/xxx/xxx.c: Implement static anonymous mutexes, initialized

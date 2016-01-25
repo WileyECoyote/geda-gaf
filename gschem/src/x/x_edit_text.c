@@ -81,24 +81,23 @@ static WidgetStringData DialogStrings[] = {
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
                                                  Object         *object)
 {
-  GtkWidget     *ThisDialog;
-  GtkWidget     *widget;
-  GtkTextBuffer *textbuffer;
-
-  char *string;
-
-  bool match_string = TRUE;
-  bool match_align  = TRUE;
-  bool match_color  = TRUE;
-  bool match_size   = TRUE;
-  bool match_angle  = TRUE;
-
-  GdkColor gray; //   { 0, 0x8888, 0x8888, 0x8888 };
-  gdk_color_parse("gray", &gray);
-
-  ThisDialog = w_current->tewindow;
-
   if (object != NULL && object->type == OBJ_TEXT) {
+
+    GtkWidget     *ThisDialog;
+    GtkWidget     *widget;
+
+    char *string;
+
+    bool match_string = TRUE;
+    bool match_align  = TRUE;
+    bool match_color  = TRUE;
+    bool match_size   = TRUE;
+    bool match_angle  = TRUE;
+
+    GdkColor gray; //   { 0, 0x8888, 0x8888, 0x8888 };
+    gdk_color_parse("gray", &gray);
+
+    ThisDialog = w_current->tewindow;
 
     int num_selected;
     int text_align;
@@ -144,7 +143,10 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     /* Grey non matching values */
     {
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
+
       if (GTK_IS_TEXT_VIEW (widget)) {
+
+        GtkTextBuffer *textbuffer;
 
         textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
 
@@ -349,7 +351,7 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, Object *object)
       text_angle = -1;
   }
 
-  fontname = fontname;
+  fontname = fontname; /* stub */
   o_text_edit_end(w_current, string, text_align, text_color, text_size, text_angle);
   GEDA_FREE(string);
 }
