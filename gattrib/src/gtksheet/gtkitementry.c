@@ -862,157 +862,167 @@ _item_entry_get_buffer(GtkEntry *entry)
     return priv->buffer;
 }
 
-#endif //GTK_TYPE_ENTRY_BUFFER
+#endif /* GTK_TYPE_ENTRY_BUFFER */
 
-/* Default signal handlers
- */
+/* Default signal handlers */
+
 static void
 gtk_item_entry_real_insert_text(GtkEditable *editable,
-    const char *new_text,
-    int         new_text_length,
-    int        *position)
+                                const char  *new_text,
+                                int          new_text_length,
+                                int         *position)
 {
-    int n_chars;
+  int n_chars;
+  int text_length;
 
 #ifndef GTK_TYPE_ENTRY_BUFFER
-    GtkItemEntry *ientry = GTK_ITEM_ENTRY(editable);
+  GtkItemEntry *ientry = GTK_ITEM_ENTRY(editable);
 #endif
-    GtkEntry *entry = GTK_ENTRY(editable);
 
-    if (new_text_length < 0)
-	new_text_length = strlen(new_text);
+  GtkEntry *entry = GTK_ENTRY(editable);
 
-    n_chars = g_utf8_strlen(new_text, new_text_length);
-    if (entry->text_max_length > 0 && n_chars + entry->text_length > entry->text_max_length)
-    {
-	gdk_beep();
-	n_chars = entry->text_max_length - entry->text_length;
-	new_text_length = g_utf8_offset_to_pointer(new_text, n_chars) - new_text;
-    }
+  if (new_text_length < 0) {
+    text_length = strlen(new_text);
+  }
+  else {
+    text_length = new_text_length;
+  }
 
-#if GTK_ITEM_ENTRY_DEBUG_TEXT>0
-    g_debug("gtk_item_entry_real_insert_text: n_chars %d %d", n_chars, *position);
-#endif
+  n_chars = g_utf8_strlen(new_text, text_length);
+
+  if (entry->text_max_length > 0 && n_chars + entry->text_length > entry->text_max_length)
+  {
+    gdk_beep();
+    n_chars = entry->text_max_length - entry->text_length;
+    text_length = g_utf8_offset_to_pointer(new_text, n_chars) - new_text;
+  }
 
 #ifdef GTK_TYPE_ENTRY_BUFFER
 
-    {
-	guint n_bytes_inserted;
-	GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+  GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
 
-	n_bytes_inserted  = gtk_entry_buffer_insert_text(buffer, *position, new_text, n_chars);
-
-#if GTK_ITEM_ENTRY_DEBUG_TEXT>0
-	g_debug("gtk_item_entry_real_insert_text: GTK_TYPE_ENTRY_BUFFER n_chars %d %d", n_chars, *position);
-#endif
-    }
+  gtk_entry_buffer_insert_text(buffer, *position, new_text, n_chars);
 
 #else
 
-    if (new_text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
+  if (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
+  {
+    while (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
     {
-	while (new_text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
-	{
-	    if (ientry->item_text_size == 0)
-		ientry->item_text_size = MIN_SIZE;
-	    else
-	    {
-		if (2 * (guint)ientry->item_text_size < MAX_SIZE &&
-		    2 * (guint)ientry->item_text_size > ientry->item_text_size)
-		    ientry->item_text_size *= 2;
-		else
-		{
-		    ientry->item_text_size = MAX_SIZE;
-		    if (new_text_length > (int)ientry->item_text_size - (int)ientry->item_n_bytes - 1)
-		    {
-			new_text_length = (int)ientry->item_text_size - (int)ientry->item_n_bytes - 1;
-			new_text_length = g_utf8_find_prev_char(new_text, new_text + new_text_length + 1) - new_text;
-			n_chars = g_utf8_strlen(new_text, new_text_length);
-		    }
-		    break;
-		}
-	    }
-	}
+      if (ientry->item_text_size == 0) {
+        ientry->item_text_size = MIN_SIZE;
+      }
+      else {
 
-	entry->text = g_realloc(entry->text, ientry->item_text_size);
+        if (2 * (guint)ientry->item_text_size < MAX_SIZE &&
+            2 * (guint)ientry->item_text_size > ientry->item_text_size)
+        {
+          ientry->item_text_size *= 2;
+        }
+        else
+        {
+          ientry->item_text_size = MAX_SIZE;
+          if (text_length > (int)ientry->item_text_size - (int)ientry->item_n_bytes - 1)
+          {
+            text_length = (int)ientry->item_text_size - (int)ientry->item_n_bytes - 1;
+            text_length = g_utf8_find_prev_char(new_text, new_text + text_length + 1) - new_text;
+            n_chars = g_utf8_strlen(new_text, text_length);
+          }
+          break;
+        }
+      }
     }
 
-    int index;
-    index = g_utf8_offset_to_pointer(entry->text, *position) - entry->text;
+    entry->text = g_realloc(entry->text, ientry->item_text_size);
+  }
 
-    g_memmove(entry->text + index + new_text_length, entry->text + index, ientry->item_n_bytes - index);
-    memcpy(entry->text + index, new_text, new_text_length);
+  int index;
+  index = g_utf8_offset_to_pointer(entry->text, *position) - entry->text;
 
-    if (new_text_length + *position > ientry->item_n_bytes)
-	ientry->item_n_bytes = new_text_length + *position;
+  g_memmove(entry->text + index + text_length, entry->text + index, ientry->item_n_bytes - index);
+  memcpy(entry->text + index, new_text, text_length);
 
-    /* NUL terminate for safety and convenience */
-    entry->text[ientry->item_n_bytes] = '\0';
+  if (text_length + *position > ientry->item_n_bytes)
+    ientry->item_n_bytes = text_length + *position;
 
-    entry->text_length = strlen(entry->text);
+  /* NUL terminate for safety and convenience */
+  entry->text[ientry->item_n_bytes] = '\0';
 
-    if (entry->current_pos > *position)
-	entry->current_pos += n_chars;
+  entry->text_length = strlen(entry->text);
 
-    if (entry->selection_bound > *position)
-	entry->selection_bound += n_chars;
-#endif //GTK_TYPE_ENTRY_BUFFER
+  if (entry->current_pos > *position)
+    entry->current_pos += n_chars;
+
+  if (entry->selection_bound > *position)
+    entry->selection_bound += n_chars;
+
+#endif /* GTK_TYPE_ENTRY_BUFFER */
 
 #if GTK_ITEM_ENTRY_DEBUG_TEXT>0
-    g_debug("gtk_item_entry_real_insert_text: n_chars %d %d", n_chars, *position);
+  g_debug("gtk_item_entry_real_insert_text: n_chars %d %d", n_chars, *position);
 #endif
 
-    *position += n_chars;
+  *position += n_chars;
+
+  gtk_item_entry_recompute(entry);
+
+  g_signal_emit_by_name(editable, "changed");
+  g_object_notify(G_OBJECT(editable), "text");
+}
+
+static void
+gtk_item_entry_real_delete_text(GtkEditable *editable,
+                                int          start_pos,
+                                int          end_pos)
+{
+  GtkEntry *entry = GTK_ENTRY(editable);
+
+  if (start_pos < 0) {
+    start_pos = 0;
+  }
+
+  if (end_pos < 0 || end_pos > entry->text_length)
+    end_pos = entry->text_length;
+
+  if (start_pos < end_pos) {
+
+#ifdef GTK_TYPE_ENTRY_BUFFER
+
+    GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+    gtk_entry_buffer_delete_text(buffer, start_pos, end_pos - start_pos);
+
+#else
+
+    GtkItemEntry *ientry;
+    int           start_index;
+    int           end_index;
+
+    ientry      = GTK_ITEM_ENTRY(editable);
+    start_index = g_utf8_offset_to_pointer(entry->text, start_pos) - entry->text;
+    end_index   = g_utf8_offset_to_pointer(entry->text, end_pos) - entry->text;
+
+    g_memmove(entry->text + start_index, entry->text + end_index, ientry->item_n_bytes + 1 - end_index);
+
+    ientry->item_n_bytes -= (end_index - start_index);
+    entry->text_length   -= (end_pos - start_pos);
+
+    if (entry->current_pos > start_pos)
+      entry->current_pos -= MIN(entry->current_pos, end_pos) - start_pos;
+
+    if (entry->selection_bound > start_pos) {
+      entry->selection_bound -= MIN(entry->selection_bound, end_pos) - start_pos;
+    }
+
+#endif /* GTK_TYPE_ENTRY_BUFFER */
+
+    /* We might have deleted the selection */
+    gtk_item_entry_update_primary_selection(entry);
 
     gtk_item_entry_recompute(entry);
 
     g_signal_emit_by_name(editable, "changed");
     g_object_notify(G_OBJECT(editable), "text");
-}
-
-static void
-gtk_item_entry_real_delete_text(GtkEditable *editable,
-    int         start_pos,
-    int         end_pos)
-{
-    GtkEntry *entry = GTK_ENTRY(editable);
-
-    if (start_pos < 0)
-	start_pos = 0;
-    if (end_pos < 0 || end_pos > entry->text_length)
-	end_pos = entry->text_length;
-
-    if (start_pos < end_pos)
-    {
-#ifdef GTK_TYPE_ENTRY_BUFFER
-	GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
-	gtk_entry_buffer_delete_text(buffer, start_pos, end_pos - start_pos);
-#else
-	GtkItemEntry *ientry = GTK_ITEM_ENTRY(editable);
-	int start_index = g_utf8_offset_to_pointer(entry->text, start_pos) - entry->text;
-	int end_index = g_utf8_offset_to_pointer(entry->text, end_pos) - entry->text;
-
-	g_memmove(entry->text + start_index, entry->text + end_index, ientry->item_n_bytes + 1 - end_index);
-	ientry->item_n_bytes -= (end_index - start_index);
-	entry->text_length -= (end_pos - start_pos);
-
-	if (entry->current_pos > start_pos)
-	    entry->current_pos -= MIN(entry->current_pos, end_pos) - start_pos;
-
-	if (entry->selection_bound > start_pos)
-	    entry->selection_bound -= MIN(entry->selection_bound, end_pos) - start_pos;
-#endif // GTK_TYPE_ENTRY_BUFFER
-
-
-	/* We might have deleted the selection
-	 */
-	gtk_item_entry_update_primary_selection(entry);
-
-	gtk_item_entry_recompute(entry);
-
-	g_signal_emit_by_name(editable, "changed");
-	g_object_notify(G_OBJECT(editable), "text");
-    }
+  }
 }
 
 /* Compute the X position for an offset that corresponds to the "more important
@@ -1807,59 +1817,62 @@ _item_entry_draw_insertion_cursor(GtkWidget *widget,
     GtkTextDirection direction,
     gboolean draw_arrow)
 {
-    int stem_width;
-    int arrow_width;
+  int stem_width;
+  int arrow_width;
+  int i;
+  float cursor_aspect_ratio;
+  int offset;
+
+  g_return_if_fail(direction != GTK_TEXT_DIR_NONE);
+
+  gtk_widget_style_get(widget, "cursor-aspect-ratio", &cursor_aspect_ratio, NULL);
+
+  stem_width = location->height * cursor_aspect_ratio + 1;
+  arrow_width = stem_width + 1;
+
+  /* put (stem_width % 2) on the proper side of the cursor */
+  if (direction == GTK_TEXT_DIR_LTR)
+    offset = stem_width / 2;
+  else
+    offset = stem_width - stem_width / 2;
+
+  for (i = 0; i < stem_width; i++)  {
+    gdk_draw_line (drawable, gc, location->x + i - offset, location->y,
+                                 location->x + i - offset, location->y +
+                                 + location->height - 1);
+  }
+
+  if (draw_arrow) {
+
     int x, y;
-    int i;
-    gfloat cursor_aspect_ratio;
-    int offset;
 
-    g_return_if_fail(direction != GTK_TEXT_DIR_NONE);
+    if (direction == GTK_TEXT_DIR_RTL) {
 
-    gtk_widget_style_get(widget, "cursor-aspect-ratio", &cursor_aspect_ratio, NULL);
+      x = location->x - offset - 1;
+      y = location->y + location->height - arrow_width * 2 - arrow_width + 1;
 
-    stem_width = location->height * cursor_aspect_ratio + 1;
-    arrow_width = stem_width + 1;
-
-    /* put (stem_width % 2) on the proper side of the cursor */
-    if (direction == GTK_TEXT_DIR_LTR)
-	offset = stem_width / 2;
-    else
-	offset = stem_width - stem_width / 2;
-
-    for (i = 0; i < stem_width; i++) gdk_draw_line(drawable, gc,
-	    location->x + i - offset, location->y,
-	    location->x + i - offset, location->y + location->height - 1);
-
-    if (draw_arrow)
-    {
-	if (direction == GTK_TEXT_DIR_RTL)
-	{
-	    x = location->x - offset - 1;
-	    y = location->y + location->height - arrow_width * 2 - arrow_width + 1;
-
-	    for (i = 0; i < arrow_width; i++)
-	    {
-		gdk_draw_line(drawable, gc,
-		    x, y + i + 1,
-		    x, y + 2 * arrow_width - i - 1);
-		x--;
-	    }
-	}
-	else if (direction == GTK_TEXT_DIR_LTR)
-	{
-	    x = location->x + stem_width - offset;
-	    y = location->y + location->height - arrow_width * 2 - arrow_width + 1;
-
-	    for (i = 0; i < arrow_width; i++)
-	    {
-		gdk_draw_line(drawable, gc,
-		    x, y + i + 1,
-		    x, y + 2 * arrow_width - i - 1);
-		x++;
-	    }
-	}
+      for (i = 0; i < arrow_width; i++)
+      {
+        gdk_draw_line(drawable, gc,
+                      x, y + i + 1,
+                      x, y + 2 * arrow_width - i - 1);
+        x--;
+      }
     }
+    else if (direction == GTK_TEXT_DIR_LTR) {
+
+      x = location->x + stem_width - offset;
+      y = location->y + location->height - arrow_width * 2 - arrow_width + 1;
+
+      for (i = 0; i < arrow_width; i++)
+      {
+        gdk_draw_line(drawable, gc,
+                      x, y + i + 1,
+                      x, y + 2 * arrow_width - i - 1);
+        x++;
+      }
+    }
+  }
 }
 
 static void
@@ -1992,139 +2005,138 @@ gtk_item_entry_get_cursor_locations(GtkEntry   *entry,
 static void
 gtk_item_entry_adjust_scroll(GtkEntry *entry)
 {
-    int min_offset, max_offset;
-    int text_area_width;
-    int strong_x, weak_x;
-    PangoLayout *layout;
-    PangoLayoutLine *line;
-    PangoRectangle logical_rect;
-    GtkItemEntry *item_entry;
-    int text_width;
+  int text_area_width;
+  int strong_x, weak_x;
+  PangoLayout *layout;
+  PangoLayoutLine *line;
+  PangoRectangle logical_rect;
+  GtkItemEntry *item_entry;
+  int text_width;
 
-    if (!gtk_widget_get_realized(GTK_WIDGET(entry)))
-	return;
+  if (!gtk_widget_get_realized(GTK_WIDGET(entry)))
+    return;
 
-    item_entry = GTK_ITEM_ENTRY(entry);
+  item_entry = GTK_ITEM_ENTRY(entry);
 
-    gdk_window_get_size(entry->text_area, &text_area_width, NULL);
-    text_area_width -= 2 * INNER_BORDER;
+  gdk_window_get_size(entry->text_area, &text_area_width, NULL);
+  text_area_width -= 2 * INNER_BORDER;
 
-    layout = gtk_item_entry_ensure_layout(entry, TRUE);
-    line = pango_layout_get_lines(layout)->data;
+  layout = gtk_item_entry_ensure_layout(entry, TRUE);
+  line = pango_layout_get_lines(layout)->data;
 
-    pango_layout_line_get_extents(line, NULL, &logical_rect);
-    text_width = logical_rect.width / PANGO_SCALE + 2; /* 2 for cursor */
+  pango_layout_line_get_extents(line, NULL, &logical_rect);
+  text_width = logical_rect.width / PANGO_SCALE + 2; /* 2 for cursor */
 
-    gtk_item_entry_get_cursor_locations(entry, CURSOR_STANDARD, &strong_x, &weak_x);
+  gtk_item_entry_get_cursor_locations(entry, CURSOR_STANDARD, &strong_x, &weak_x);
 
-    /* Display as much text as we can */
+  /* Display as much text as we can */
 
-    if (gtk_widget_get_direction(GTK_WIDGET(entry)) == GTK_TEXT_DIR_LTR)
+  if (gtk_widget_get_direction(GTK_WIDGET(entry)) == GTK_TEXT_DIR_LTR)
+  {
+    entry->scroll_offset = 0;
+    switch(item_entry->justification)
     {
-	entry->scroll_offset = 0;
-	switch(item_entry->justification)
-	{
 
-	    case GTK_JUSTIFY_FILL:
-	    case GTK_JUSTIFY_LEFT:
+      case GTK_JUSTIFY_FILL:
+      case GTK_JUSTIFY_LEFT:
 
-/* LEFT JUSTIFICATION */
+        /* LEFT JUSTIFICATION */
 
-		strong_x -= entry->scroll_offset;
-		if (strong_x < 0)
-		    entry->scroll_offset += strong_x;
-		else if (strong_x > text_area_width)
-		{
-		    if (item_entry->text_max_size != 0 &&
-			text_area_width + 2 <= item_entry->text_max_size)
-		    {
-			GtkAllocation allocation;
-			gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
-			allocation.width += text_width - text_area_width;
-			entry->scroll_offset = 0;
-			gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
-		    }
-		    else
-		    {
-			entry->scroll_offset += (strong_x - text_area_width) + 1;
-		    }
-		}
+        strong_x -= entry->scroll_offset;
+        if (strong_x < 0) {
+          entry->scroll_offset += strong_x;
+        }
+        else if (strong_x > text_area_width) {
 
-		break;
+          if (item_entry->text_max_size != 0 &&
+            text_area_width + 2 <= item_entry->text_max_size)
+          {
+            GtkAllocation allocation;
+            gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
+            allocation.width += text_width - text_area_width;
+            entry->scroll_offset = 0;
+            gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
+          }
+          else
+          {
+            entry->scroll_offset += (strong_x - text_area_width) + 1;
+          }
+        }
 
-	    case GTK_JUSTIFY_RIGHT:
+        break;
 
-		/* RIGHT JUSTIFICATION FOR NUMBERS */
-		if (entry->text)
-		{
+      case GTK_JUSTIFY_RIGHT:
 
-		    entry->scroll_offset =  -(text_area_width - text_width) + 1;
-		    if (entry->scroll_offset > 0)
-		    {
-			if (item_entry->text_max_size != 0 &&
-			    text_area_width + 2 <= item_entry->text_max_size)
-			{
-			    GtkAllocation allocation;
-			    gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
-			    allocation.x -= text_width - text_area_width;
-			    allocation.width += text_width - text_area_width;
-			    entry->scroll_offset = 0;
-			    gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
-			}
-			else
-			{
-			    entry->scroll_offset = -(text_area_width - strong_x) + 1;
-			    if (entry->scroll_offset < 0)
-				entry->scroll_offset = 0;
-			}
-		    }
-		}
-		else
-		    entry->scroll_offset = 0;
+        /* RIGHT JUSTIFICATION FOR NUMBERS */
+        if (entry->text) {
 
-		break;
-	    case GTK_JUSTIFY_CENTER:
+          entry->scroll_offset =  -(text_area_width - text_width) + 1;
+          if (entry->scroll_offset > 0) {
 
-		if (entry->text)
-		{
+            if (item_entry->text_max_size != 0 &&
+              text_area_width + 2 <= item_entry->text_max_size)
+            {
+              GtkAllocation allocation;
+              gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
+              allocation.x -= text_width - text_area_width;
+              allocation.width += text_width - text_area_width;
+              entry->scroll_offset = 0;
+              gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
+            }
+            else
+            {
+              entry->scroll_offset = -(text_area_width - strong_x) + 1;
+              if (entry->scroll_offset < 0)
+                entry->scroll_offset = 0;
+            }
+          }
+        }
+        else
+          entry->scroll_offset = 0;
 
-		    entry->scroll_offset =  -(text_area_width - text_width) / 2;
-		    if (entry->scroll_offset > 0)
-		    {
-			if (item_entry->text_max_size != 0 &&
-			    text_area_width + 1 <= item_entry->text_max_size)
-			{
-			    GtkAllocation allocation;
-			    gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
-			    allocation.x += (text_area_width / 2 - text_width / 2);
-			    allocation.width += text_width - text_area_width;
-			    entry->scroll_offset = 0;
-			    gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
-			}
-			else
-			{
-			    entry->scroll_offset = -(text_area_width - strong_x) + 1;
-			    if (entry->scroll_offset < 0)
-				entry->scroll_offset = 0;
-			}
-		    }
-		}
-		else
-		    entry->scroll_offset = 0;
+        break;
+      case GTK_JUSTIFY_CENTER:
 
-		break;
+        if (entry->text) {
 
-	}
+          entry->scroll_offset =  -(text_area_width - text_width) / 2;
+
+          if (entry->scroll_offset > 0) {
+
+            if (item_entry->text_max_size != 0 &&
+              text_area_width + 1 <= item_entry->text_max_size)
+            {
+              GtkAllocation allocation;
+              gtk_widget_get_allocation(GTK_WIDGET(entry), &allocation);
+              allocation.x += (text_area_width / 2 - text_width / 2);
+              allocation.width += text_width - text_area_width;
+              entry->scroll_offset = 0;
+              gtk_item_entry_size_allocate(GTK_WIDGET(entry), &allocation);
+            }
+            else
+            {
+              entry->scroll_offset = -(text_area_width - strong_x) + 1;
+              if (entry->scroll_offset < 0)
+                entry->scroll_offset = 0;
+            }
+          }
+        }
+        else  {
+          entry->scroll_offset = 0;
+        }
+        break;
 
     }
-    else
-    {
-	max_offset = text_width - text_area_width;
-	min_offset = MIN(0, max_offset);
-	entry->scroll_offset = CLAMP(entry->scroll_offset, min_offset, max_offset);
-    }
+  }
+  else {
 
-    g_object_notify(G_OBJECT(entry), "scroll_offset");
+    int max_offset = text_width - text_area_width;
+    int min_offset = MIN(0, max_offset);
+
+    entry->scroll_offset = CLAMP(entry->scroll_offset, min_offset, max_offset);
+  }
+
+  g_object_notify(G_OBJECT(entry), "scroll_offset");
 }
 
 static int

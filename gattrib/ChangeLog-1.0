@@ -3,6 +3,11 @@
     * src/gtksheet/gtksheet.c: Eliminate variable veto; just use return
       value on stack in gtk_sheet_select_range.
 
+    * src/gtksheet/gtkitementry.c: Reduce scope of variable in functions
+      _item_entry_draw_insertion_cursor and gtk_item_entry_adjust_scroll.
+      Eliminate unused variable n_bytes_inserted and remove debug code
+      in messy function gtk_item_entry_real_insert_text.
+
     * include/Makefile.am: Reluctantly add gettext.h,
 
     * src/gattrib.c: Remove redundent inclusion of gettext.h, which is
