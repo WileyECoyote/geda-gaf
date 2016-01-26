@@ -1,7 +1,9 @@
 2016-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Eliminate variable veto; just use return
-      value on stack in gtk_sheet_select_range.
+      value on stack in gtk_sheet_select_range. Comment out insane code,
+      more variables assigned values that are not used, and assignments.
+      Reformat code.
 
     * src/gtksheet/gtkitementry.c: Reduce scope of variable in functions
       _item_entry_draw_insertion_cursor and gtk_item_entry_adjust_scroll.
