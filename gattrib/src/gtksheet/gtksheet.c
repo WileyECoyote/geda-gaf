@@ -9696,26 +9696,25 @@ gtk_sheet_select_range(GtkSheet *sheet, const GtkSheetRange *range)
     g_return_if_fail(sheet != NULL);
 
     if (!range)
-	range = &sheet->range;
+      range = &sheet->range;
 
     new_range = *range;
 
     if (new_range.row0 < 0 || new_range.rowi < 0)
-	return;
+      return;
     if (new_range.col0 < 0 || new_range.coli < 0)
-	return;
+      return;
 
-    if (sheet->state != GTK_SHEET_NORMAL)
-    {
-	/* this will clear sheet->range */
-	gtk_sheet_real_unselect_range(sheet, NULL);
+    if (sheet->state != GTK_SHEET_NORMAL) {
+
+      /* this will clear sheet->range */
+      gtk_sheet_real_unselect_range(sheet, NULL);
     }
-    else
-    {
-	int veto = TRUE;
-	veto = gtk_sheet_deactivate_cell(sheet);
-	if (!veto)
-	    return;
+    else {
+
+        /* veto */
+        if (!gtk_sheet_deactivate_cell(sheet))
+          return;
     }
 
     sheet->range.row0 = new_range.row0;

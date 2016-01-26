@@ -1,5 +1,8 @@
 2016-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gtksheet/gtksheet.c: Eliminate variable veto; just use return
+      value on stack in gtk_sheet_select_range.
+
     * include/Makefile.am: Reluctantly add gettext.h,
 
     * src/gattrib.c: Remove redundent inclusion of gettext.h, which is
