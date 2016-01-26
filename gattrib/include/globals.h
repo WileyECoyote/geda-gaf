@@ -69,6 +69,7 @@
 
 /* i18n */
 #include "gettext.h"
+
 #ifdef ENABLE_NLS
 # ifdef gettext_noop
 #  define N_(String) gettext_noop (String)

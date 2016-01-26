@@ -8,7 +8,8 @@ noinst_HEADERS =  gtksheet.h \
 		 g_rc.h \
 		 prototype.h \
 		 i_vars.h \
-		 struct.h
+		 struct.h \
+		 gettext.h
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

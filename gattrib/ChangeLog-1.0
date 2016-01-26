@@ -1,3 +1,10 @@
+2016-01-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/Makefile.am: Reluctantly add gettext.h,
+
+    * src/gattrib.c: Remove redundent inclusion of gettext.h, which is
+      included by include/globals.h
+
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Removed pointless setting of stack pointer

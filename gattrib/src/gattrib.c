@@ -124,7 +124,6 @@
 #endif
 
 #include <locale.h>
-#include "gettext.h"
 
 /*------------------------------------------------------------------
  * Gattrib specific includes -- stuff dealing with gattrib data structs.
