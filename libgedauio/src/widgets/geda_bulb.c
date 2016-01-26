@@ -187,11 +187,10 @@ static void geda_bulb_finalize (GObject *object)
   GtkWidget *old_group_singleton = NULL;
   GedaBulb  *bulb                = GEDA_BULB (object);
   GSList    *tmp_list;
-  bool was_in_group;
+  bool       was_in_group;
 
   was_in_group = bulb->group && bulb->group->next;
-
-  bulb->group = g_slist_remove (bulb->group, bulb);
+  bulb->group  = g_slist_remove (bulb->group, bulb);
 
   if (bulb->group && !bulb->group->next)
     old_group_singleton = bulb->group->data;
@@ -230,7 +229,7 @@ static void geda_bulb_finalize (GObject *object)
    */
   if (pix_buff_ref_count == 0)  {
     off_pixbuf = NULL;
-    on_pixbuf = NULL;
+    on_pixbuf  = NULL;
   }
   G_OBJECT_CLASS (geda_bulb_parent_class)->finalize (object);
 }
@@ -384,6 +383,7 @@ geda_bulb_focus (GtkWidget         *widget,
        */
 
       tmp_slist = bulb->group;
+
       while (tmp_slist) {
 
         if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (tmp_slist->data)))
@@ -425,7 +425,6 @@ geda_bulb_clicked (GtkButton *button)
   GtkToggleButton *toggle_button = GTK_TOGGLE_BUTTON (button);
   GtkToggleButton *tmp_button;
   GtkStateType     new_state;
-
   GSList          *tmp_list;
   int toggled;
   bool depressed;
@@ -466,6 +465,7 @@ geda_bulb_clicked (GtkButton *button)
     toggle_button->active = !toggle_button->active;
 
     tmp_list = bulb->group;
+
     while (tmp_list) {
 
       tmp_button = tmp_list->data;
@@ -556,7 +556,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 
     /* ----------------- Setup Auxiliary Pointers ----------------- */
 
-    allocation    = &widget->allocation;
+    allocation    = geda_get_widget_allocation(widget);
     bulb          = GEDA_BULB (check_button);
     button        = GTK_BUTTON (check_button);
     toggle_button = GTK_TOGGLE_BUTTON (check_button);
@@ -1318,10 +1318,11 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
 void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
 {
   GtkToggleButton *button;
-  int length;
-  int index;
-  unsigned pos = (unsigned int)(long)which_bulb;
+  int      length;
+  int      index;
+  unsigned pos;
 
+  pos    = (unsigned int)(long)which_bulb;
   length = g_slist_length (group_list);
 
   /* new buttons are *prepended* to the list, so buttons added as
@@ -1364,8 +1365,9 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
   int length;
   int target;
   int index;
-  int pos = (unsigned int)(long)which_bulb;
+  int pos;
 
+  pos    = (unsigned int)(long)which_bulb;
   length = g_slist_length (group_list);
 
   /* new buttons are *prepended* to the list, so buttons added as

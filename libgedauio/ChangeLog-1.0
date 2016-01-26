@@ -1,3 +1,6 @@
+    * src/widgets/geda_bulb.c: Replace reference to widget->allocation
+      with geda_get_widget_allocation.
+
 2016-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_uio_macros.h: Rename function gtk_image_chooser_set_preview
