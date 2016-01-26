@@ -13,7 +13,12 @@
     * include/Makefile.am: Reluctantly add gettext.h,
 
     * src/gattrib.c: Remove redundent inclusion of gettext.h, which is
-      included by include/globals.h
+      included by include/globals.h.
+
+    * src/s_attrib.c :resolve potential resouce leak in function s_attrib
+      _get_refdes; temp_uref was not released be reassigning pointer if a
+      slot value was found, reduce scope of slot_text_object and slot_value
+      in the same function.
 
 2016-01-13 Wiley E. Hill <wileyhill@gmail.com>
 

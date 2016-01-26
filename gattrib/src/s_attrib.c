@@ -80,10 +80,7 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
  */
 char *s_attrib_get_refdes(Object *object)
 {
-  Object *slot_text_object;
-  char   *slot_value;
-  char   *temp_uref;
-
+  char *temp_uref;
 
   /*------ Try to get the refdes -----*/
   temp_uref = o_attrib_search_object_attribs_by_name (object, "refdes", 0);
@@ -98,10 +95,17 @@ char *s_attrib_get_refdes(Object *object)
 
     if (numslots != NULL) {
 
-      slot_value = s_slot_search_slot (object, &slot_text_object);
+      Object *slot_text_object;
+      char   *slot_value = s_slot_search_slot (object, &slot_text_object);
 
-      if (slot_value != 0)
-        temp_uref = u_string_concat(temp_uref, ".", slot_value, NULL);
+      if (slot_value != 0) {
+
+        char *suffixed;
+
+        suffixed = u_string_concat(temp_uref, ".", slot_value, NULL);
+        GEDA_FREE (temp_uref);
+        temp_uref = suffixed;
+      }
     }
   }
   else {
