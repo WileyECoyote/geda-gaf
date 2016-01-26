@@ -64,15 +64,20 @@ process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err) {
     scm_display_backtrace (s_stack, s_port, SCM_BOOL_F, SCM_BOOL_F);
   }
 
-  s_location = SCM_BOOL_F;
-
-#ifdef HAVE_SCM_DISPLAY_ERROR_STACK
-  s_location = s_stack;
-#endif /* HAVE_SCM_DISPLAY_ERROR_STACK */
 #ifdef HAVE_SCM_DISPLAY_ERROR_FRAME
+
   s_location =
     scm_is_true (s_stack) ? scm_stack_ref (s_stack, SCM_INUM0) : SCM_BOOL_F;
-#endif /* HAVE_SCM_DISPLAY_ERROR_FRAME */
+
+#elif defined HAVE_SCM_DISPLAY_ERROR_STACK
+
+  s_location = s_stack;
+
+#else
+
+  s_location = SCM_BOOL_F;
+
+#endif
 
   scm_display_error (s_location, s_port, s_subr,
                      s_message, s_message_args, s_rest);
@@ -302,10 +307,7 @@ SCM g_scm_c_eval_string_protected (const char *str) {
 bool g_read_scheme_file (const char *filename, GError **err)
 {
   struct g_read_scheme_file_data_t data;
-
-  bool  result;
-  char *file_directory = NULL;
-  char *saved_cwd      = NULL;
+  bool   result;
 
   const char *msg_change  = _("changed");
   const char *msg_restore = _("restore");
@@ -316,6 +318,8 @@ bool g_read_scheme_file (const char *filename, GError **err)
     result = FALSE;
   }
   else {
+
+    char *file_directory;
 
     data.stack = SCM_BOOL_F;
     data.filename = scm_from_utf8_string (filename);
@@ -329,7 +333,8 @@ bool g_read_scheme_file (const char *filename, GError **err)
     }
     else {
 
-      bool dir_okay;
+      char *saved_cwd;
+      bool  dir_okay;
 
       dir_okay  = TRUE;
       result    = FALSE;
