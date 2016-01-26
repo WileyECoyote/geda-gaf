@@ -1,5 +1,10 @@
 2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda//geda_line.c: Define GedaCircleType in header file,
+      remove __cplusplus macros.
+
+2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_evaluate.c: Revised conditional directives so that
       s_location is only assigned a value one time in process_error_stack.
       Reduce scope of variables.

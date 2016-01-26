@@ -36,6 +36,12 @@
 #ifndef __GEDA_LINE_H__
 #define __GEDA_LINE_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaLineType unsigned long
+#else
+# define GedaLineType unsigned int
+#endif
+
 #define GEDA_TYPE_LINE            (geda_line_get_type())
 #define GEDA_LINE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_LINE, Line))
 #define GEDA_LINE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_LINE, LineClass))
@@ -43,7 +49,9 @@
 #define GEDA_IS_LINE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LINE))
 #define GEDA_LINE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LINE, LineClass))
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct _GedaLineClass LineClass;
 
@@ -55,20 +63,25 @@ struct _GedaLineClass {
 struct _GedaLine {
   Object parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
+  GedaLineType head_marker;       /* structure type signature */
 
   int x[2];
   int y[2];
 
   LINE_OPTIONS  line_options;
 
-  GedaType tail_marker;       /* structure type signature */
+  GedaLineType tail_marker;       /* structure type signature */
 };
 
-GedaType geda_line_get_type       (void) GEDA_CONST;
-bool     is_a_geda_line_object    (Line *object);
+GedaLineType geda_line_get_type       (void) GEDA_CONST;
+bool         is_a_geda_line_object    (Line *object);
 
-Object  *geda_line_new            (void);
+Object      *geda_line_new            (void);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#undef GedaLineType
+
 #endif /* __GEDA_LINE_H__ */
