@@ -3,6 +3,10 @@
     * src/object/o_arc_basic.c: Eliminate setting object->arc->y to
       object->arc->y in function o_arc_mirror.
 
+    * src/object/o_attrib.c: Check pointers before referencing offset
+      in functions o_attrib_detach, attribute, and o_attrib_detach_all,
+      object, remove g_list_next, reduce scope of variables.
+
 2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda//geda_line.c: Define GedaCircleType in header file,

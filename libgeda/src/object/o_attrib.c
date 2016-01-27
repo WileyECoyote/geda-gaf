@@ -158,7 +158,7 @@ o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
 {
   const GList *iter;
 
-  for (iter = attr_list; iter != NULL; iter = g_list_next (iter))
+  for (iter = attr_list; iter != NULL; iter = iter->next)
     o_attrib_attach (object, iter->data, set_color);
 }
 
@@ -174,13 +174,14 @@ o_attrib_attach_list (Object *object, const GList *attr_list, int set_color)
  */
 void o_attrib_detach(Object *attribute)
 {
-  Page   *page;
-  Object *parent;
+  if (attribute && attribute->attached_to != NULL) {
 
-  if(attribute->attached_to != NULL) {
+    Page   *page;
+    Object *parent;
 
     parent = attribute->attached_to;
     attribute->attached_to = NULL;
+
     o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
     o_attrib_emit_attribs_changed (attribute);
 
@@ -203,16 +204,17 @@ void o_attrib_detach(Object *attribute)
  */
 void o_attrib_detach_all(Object *object)
 {
-  Object *attribute;
-  GList  *a_iter;
-  Page   *page;
+  if (object && object->attribs != NULL) {
 
-  if (object->attribs != NULL) {
+    GList *a_iter;
+    Page  *page;
 
     o_attrib_freeze_hooks (object);
 
     for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
-      attribute = a_iter->data;
+
+      Object *attribute = a_iter->data;
+
       attribute->attached_to = NULL;
       o_set_color (attribute, DETACHED_ATTRIBUTE_COLOR);
       o_attrib_emit_attribs_changed (object);
@@ -397,19 +399,19 @@ Object *o_attrib_new_attached(Object *parent, const char *name,
 void
 o_attrib_print(const GList *attributes)
 {
-  const Object *attribute;
-  const GList  *a_iter;
-
-  a_iter = attributes;
+  const GList *a_iter = attributes;
 
   while (a_iter != NULL) {
-    attribute = a_iter->data;
+
+    const Object *attribute = a_iter->data;
+
     printf("Attribute points to: %s\n", attribute->name);
+
     if (attribute->text) {
       printf("\tText is: %s\n", attribute->text->string);
     }
 
-    a_iter = g_list_next (a_iter);
+    a_iter = a_iter->next;
   }
 }
 
@@ -425,11 +427,10 @@ o_attrib_print(const GList *attributes)
 void
 o_attrib_remove(GList **list, Object *remove)
 {
-  Object *attached_to;
-
   if (remove != NULL) {
 
-    attached_to = remove->attached_to;
+    Object *attached_to = remove->attached_to;
+
     remove->attached_to = NULL;
 
     *list = g_list_remove (*list, remove);
@@ -698,11 +699,11 @@ GList*
 o_attrib_find_floating_attribs (const GList *list)
 {
   GList *floating_attributes = NULL;
-  const GList *iter;
-  Object *o_current;
+  const  GList *iter;
 
-  for (iter = list; iter != NULL; iter = g_list_next (iter)) {
-    o_current = iter->data;
+  for (iter = list; iter != NULL; iter = iter->next) {
+
+    Object *o_current = iter->data;
 
     /* Skip non text objects, attached attributes and text which doesn't
      * constitute a valid attributes (e.g. general text placed on the page)
@@ -733,14 +734,13 @@ o_attrib_find_floating_attribs (const GList *list)
 Object*
 o_attrib_find_attrib_by_name (const GList *list, const char *name, int count)
 {
-  Object *attribute;
   const GList *iter;
   char *found_name;
-  int internal_counter = 0;
+  int   internal_counter = 0;
 
-  for (iter = list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = list; iter != NULL; iter = iter->next) {
 
-    attribute = iter->data;
+    Object *attribute = iter->data;
 
     g_return_val_if_fail (attribute->type == OBJ_TEXT, NULL);
 
@@ -901,7 +901,7 @@ o_attrib_search_inherited_attribs_by_name (const Object *object,
  *
  *  \return Character string with attribute value, NULL otherwise.
  *
- *  \note Caller must release the returned character string.
+ *  \note Caller should release the returned character string.
  */
 char *o_attrib_search_object_attribs_by_name (const Object *object,
                                               const char   *name,
@@ -932,19 +932,18 @@ char *o_attrib_search_object_attribs_by_name (const Object *object,
  *
  *  \return A GList of attributes belinging to the passed object.
  */
-GList * o_attrib_return_attribs (const Object *object)
+GList *o_attrib_return_attribs (const Object *object)
 {
-  Object *attribute;
-  GList  *attribs = NULL;
-  GList  *inherited_attribs;
   GList  *a_iter;
+  GList  *attribs = NULL;
 
   g_return_val_if_fail (object != NULL, NULL);
 
   /* Directly attached attributes */
-  for (a_iter = object->attribs; a_iter != NULL;
-       a_iter = g_list_next (a_iter))
+  for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
   {
+     Object *attribute;
+
      if ((attribute = a_iter->data) != NULL) {
       if (attribute->type != OBJ_TEXT)
         continue;
@@ -960,10 +959,9 @@ GList * o_attrib_return_attribs (const Object *object)
   attribs = g_list_reverse (attribs);
 
   /* Inherited attributes (inside complex objects) */
-  if (object->type == OBJ_COMPLEX ||
-      object->type == OBJ_PLACEHOLDER) {
-
-    inherited_attribs =
+  if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
+  {
+    GList *inherited_attribs =
       o_attrib_find_floating_attribs (object->complex->prim_objs);
 
     attribs = g_list_concat (attribs, inherited_attribs);
