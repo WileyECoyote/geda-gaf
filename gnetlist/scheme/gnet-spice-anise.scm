@@ -946,11 +946,11 @@
   (lambda (package)
     (debug-spew (string-append "Found independent voltage source.  Refdes = " package "\n"))
 
-            ;; first write out refdes and attached nets
+    ;; first write out refdes and attached nets
     (spice-anise:write-component-no-value package)
 
-            ;; next write voltage value, if any.  Note that if the
-            ;; voltage value is not assigned, then it will write "unknown"
+    ;; next write voltage value, if any.  Note that if the
+    ;; voltage value is not assigned, then it will write "unknown"
     (let ((value (get-package-attribute package "value")))
                 (display value)
     )
@@ -967,13 +967,13 @@
 (define spice-anise:write-independent-current-source
   (lambda (package)
 
-        (debug-spew (string-append "Found independent current source.  Refdes = " package "\n"))
+    (debug-spew (string-append "Found independent current source.  Refdes = " package "\n"))
 
-            ;; first write out refdes and attached nets
+    ;; first write out refdes and attached nets
     (spice-anise:write-component-no-value package)
 
-            ;; next write current value, if any.  Note that if the
-            ;; current value is not assigned, then it will write "unknown"
+    ;; next write current value, if any.  Note that if the
+    ;; current value is not assigned, then it will write "unknown"
     (let ((value (get-package-attribute package "value")))
                 (display value)
     )
@@ -1152,7 +1152,7 @@
 ;;----------------------------------------------------------
 (define spice-anise:write-directive
   (lambda (package)
-             ;; Collect variables used in creating spice code
+        ;; Collect variables used in creating spice code
         (let ((value (get-package-attribute package "value"))
               (file (get-package-attribute package "file"))
              )   ;; end of local assignments
@@ -1182,9 +1182,9 @@
 
 
 ;;----------------------------------------------------------
-;; Include a file using an .INCLUDE directive
+;; Include a file using an .INCLUDE block
 ;; Changed on 6.12.2005: to embed the contents of the file,
-;; you must call gnetlist with the -e flag set.
+;; you can call gnetlist with the -e flag set.
 ;;----------------------------------------------------------
 (define spice-anise:write-include
   (lambda (package)
@@ -1193,14 +1193,14 @@
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (member "embed_mode" (get-backend-arguments))
+        (if (member "embed_mode" (get-backend-arguments))
               (begin
                 (spice:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
               (begin
                 (display (string-append ".INCLUDE " file "\n"))   ;; -e not found: just print out .INCLUDE card
                 (debug-spew "placing .include directive string into netlist.\n"))
-          )
+        )
         (debug-spew "silently skip \"unknown\" file.\n")
        )
 )))
@@ -1252,7 +1252,8 @@
              ;; model file exists
            ( (not (or (string=? model-file "unknown") ))
              (debug-spew (string-append "found model-file for " package "\n"))
-             ;; (spice:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
+             ;; don't write it out -- this is handled after the second pass.
+             ;; (spice:insert-text-file model-file)
            )
 
           )  ;; close of cond
@@ -1412,10 +1413,11 @@
 
 
 ;;----------------------------------------------------------------------
-;; create-file-info-list: This takes as argument the list of packages (refdesses).
-;;   It runs through the package list, and for each gets the attributes.  If there is a
-;;   "FILE" attribute, it gets the file info & uses it to build the
-;;   file-info-list.  When done, it returns the file-info-list.
+;; create-file-info-list: This takes as argument the list of packages, aka
+;; reference designators, runs through the package list, and for each gets
+;; the attributes. If there is a "FILE" attribute, it gets the file info &
+;; uses it to build the file-info-list and returns the file-info-list when
+;; done.
 ;;----------------------------------------------------------------------
 (define spice-anise:create-file-info-list
   (lambda (package-list file-info-list)
@@ -1478,13 +1480,14 @@
 )
 
 
-;;  in-file-info-list? -- helper function.  Returns #t if file is already in file-info-list, otherwise #f
-;;  assumes file-info-list of form: ((model1 file1 file-type1)  (model2 file2 file-type2) . . . .)
+;; in-file-info-list? -- helper function.  Returns #t if file is already in
+;; file-info-list, otherwise #f. The file-info-list must be in the form:
+;; ((model1 file1 file-type1)  (model2 file2 file-type2) . . . .)
 (define spice-anise:in-file-info-list?
   (lambda (model-file file-info-list)
     (if (null? file-info-list)
         (begin
-          #f                                            ;; return #f if file-info-list itself is empty.
+          #f                                          ;; return #f if file-info-list itself is empty.
         )
         (let ((list-element (car file-info-list)) )   ;; otherwise process list-element
           (if (null? list-element)
@@ -1597,7 +1600,8 @@
             )
           )
 
-      ;; Otherwise it's a regular schematic.  Write out command line followed by comments in file header.
+      ;; Otherwise it's a regular schematic; write out command line followed
+      ;; by comments in file header.
           (begin
             (debug-spew "found normal type schematic")
             (display (string-append "* " (get-command-line) "\n"))
@@ -1628,9 +1632,9 @@
       (debug-spew "Done processing items in model file list.\n")
 
 ;;
-;; Now write out netlist as before.  But don't write file contents out.
-;; **** Modified by kh to sort list of packages so Spice directives, etc. (A?) are output last,
-;; **** and in increasing order.
+;; Now write out netlist as before. But don't write file contents out.
+;; Modified by kh to sort list of packages so Spice directives, etc.
+;; (A?) are output last and in increasing order.
 ;;
       (debug-spew "Make second pass through design and write out a SPICE card for each component found.\n")
       (display "*============== Begin SPICE netlist of main design ============\n")
