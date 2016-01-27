@@ -1,3 +1,8 @@
+2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc_basic.c: Eliminate setting object->arc->y to
+      object->arc->y in function o_arc_mirror.
+
 2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda//geda_line.c: Define GedaCircleType in header file,

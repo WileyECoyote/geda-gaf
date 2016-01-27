@@ -348,7 +348,7 @@ o_arc_mirror(Object *object, int center_x, int center_y)
 
   /* get center, and mirror it (vertical mirror) */
   object->arc->x = -object->arc->x;
-  object->arc->y =  object->arc->y;
+  // object->arc->y =  object->arc->y;
 
   /* apply mirror to angles (vertical mirror) */
   object->arc->start_angle = (180 - object->arc->start_angle) % 360;
