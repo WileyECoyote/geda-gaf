@@ -182,6 +182,10 @@
 (define (tools:spice-sdb-netlist)
     (tools:sch-netlist-0 "spice-sdb" ".cir"))
 
+;; ----------------- tools:spice-anise-netlist ------------------------
+(define (tools:spice-anise-netlist)
+    (tools:sch-netlist-0 "spice-anise" ".cir"))
+
 ;; ----------------- tools:spice-noqsi-netlist ------------------------
 (define (tools:spice-noqsi-netlist)
     (tools:sch-netlist-0 "spice-noqsi" ".cir"))
@@ -221,8 +225,7 @@
 
     ("SEPARATOR"                #f                     #f)
     ("gEDA netlist"         tools:geda-netlist         "gschem-net")
-    ("Spice-sdb netlist"    tools:spice-sdb-netlist    "geda-wave")
-    ("Spice-noqsi netlist"  tools:spice-noqsi-netlist  "geda-waves")
+    ("S_pice netlist"           #f                     "geda-wave"          "Generate spice netlists")
     ("SEPARATOR"                #f                     #f)
     ("VHDL netlist"         tools:vhdl-sch-netlist     "geda-simulate")
     ("Verilog netlist"      tools:verilog-netlist      "geda-verilog-blue")
@@ -241,7 +244,19 @@
   )
 )
 
+(define tools:spice-items
+;;
+;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
+;;
+  '(
+    ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave")
+    ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
+    ("NoSqi netlist"        tools:spice-noqsi-netlist  "geda-sinx")
+  )
+)
+
 (add-menu "_Tools" tools:menu-items)
 (add-menu "_Tools/_Symbols" tools:symbol-items)
+(add-menu "_Tools/S_pice netlist" tools:spice-items)
 
 ;; ==================================================================
