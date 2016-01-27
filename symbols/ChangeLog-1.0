@@ -1,3 +1,42 @@
+2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/sziklai-bjt/pnp-npn-sziklai-1.sym: Add symbol; Sziklai
+      PNP-NPN pair.
+
+2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps: Add symbols OP07; Precision,Low Noise Operational
+      amplifiers:
+
+            * linear/opamps/OP07CJ-1.sym
+            * linear/opamps/OP07CP-1.sym
+            * linear/opamps/OP07CS-1.sym
+            * linear/opamps/OP07EP-1.sym
+
+    * linear/opamps: Add symbols OP27; Precision,Low Noise Operational
+      amplifiers:
+
+            * linear/opamps/OP27ACJ-1.sym
+            * linear/opamps/OP27ACP-1.sym
+            * linear/opamps/OP27ACS-1.sym
+            * linear/opamps/OP27AEP-1.sym
+            * linear/opamps/OP27CJ-1.sym
+            * linear/opamps/OP27CP-1.sym
+            * linear/opamps/OP27CS-1.sym
+            * linear/opamps/OP27EP-1.sym
+
+    * linear/opamps: Add symbols OP37; Precision,Low Noise Operational
+      amplifiers:
+
+            * linear/opamps/OP37ACJ-1.sym
+            * linear/opamps/OP37ACP-1.sym
+            * linear/opamps/OP37ACS-1.sym
+            * linear/opamps/OP37AEP-1.sym
+            * linear/opamps/OP37CJ-1.sym
+            * linear/opamps/OP37CP-1.sym
+            * linear/opamps/OP37CS-1.sym
+            * linear/opamps/OP37EP-1.sym
+
 2016-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/njfet-1: Add case to file names:
@@ -79,6 +118,40 @@
     * transistor/pjfet-thru: Combine pjfet-1 and pjfet-2.
 
     * symbols/geda-clib.scm: Update njfet-thru pjfet-thru mergers.
+
+    * passive/electrolytic: Revise attribute positions; put symversion under
+      description since symversion is always promoted and the default is to
+      not promote descriptions, set description to show-value only.
+
+            * passive/electrolytic/electrolytic-1-1.sym
+            * passive/electrolytic/electrolytic-1-2.sym
+            * passive/electrolytic/electrolytic-1-3.sym
+            * passive/electrolytic/electrolytic-1-4.sym
+            * passive/electrolytic/electrolytic-1-5.sym
+            * passive/electrolytic/electrolytic-1-6.sym
+            * passive/electrolytic/electrolytic-1-8.sym
+            * passive/electrolytic/electrolytic-1-10.sym
+            * passive/electrolytic/electrolytic-1-22.sym
+            * passive/electrolytic/electrolytic-1-33.sym
+            * passive/electrolytic/electrolytic-1-47.sym
+            * passive/electrolytic/electrolytic-1-56.sym
+            * passive/electrolytic/electrolytic-1-68.sym
+            * passive/electrolytic/electrolytic-1-82.sym
+            * passive/electrolytic/electrolytic-2.sym
+            * passive/electrolytic/electrolytic-2-1.sym
+            * passive/electrolytic/electrolytic-2-2.sym
+            * passive/electrolytic/electrolytic-2-3.sym
+            * passive/electrolytic/electrolytic-2-4.sym
+            * passive/electrolytic/electrolytic-2-5.sym
+            * passive/electrolytic/electrolytic-2-6.sym
+            * passive/electrolytic/electrolytic-2-8.sym
+            * passive/electrolytic/electrolytic-2-10.sym
+            * passive/electrolytic/electrolytic-2-22.sym
+            * passive/electrolytic/electrolytic-2-33.sym
+            * passive/electrolytic/electrolytic-2-47.sym
+            * passive/electrolytic/electrolytic-2-56.sym
+            * passive/electrolytic/electrolytic-2-68.sym
+            * passive/electrolytic/electrolytic-2-82.sym
 
 2016-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
