@@ -1,3 +1,9 @@
+2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschem-tools-menu.scm: A menu option to use the orginal
+      spice back-end, "spice", with icon geda-spectrum on the spice fly-out
+      sub-menu.
+
 2016-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Move spice netlist menu options

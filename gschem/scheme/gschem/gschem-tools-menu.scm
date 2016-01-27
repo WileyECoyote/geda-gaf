@@ -37,6 +37,7 @@
 ;(define tools:bom "partslist3")
 
 ;; Define a spice back-end Options
+(define spice-back-end "spice")
 (define sdb-back-end   "spice-sdb -O sort_mode")
 (define anise-back-end "spice-anise -O include_mode -O sort_mode -O embed_mode")
 (define noqsi-back-end "spice-noqsi")
@@ -183,6 +184,10 @@
 (define (tools:geda-netlist)
     (tools:sch-netlist-0 "geda" "-geda.net"))
 
+;; ------------------- tools:spice-netlist ----------------------------
+(define (tools:spice-netlist)
+    (tools:sch-netlist-0 spice-back-end ".cir"))
+
 ;; ----------------- tools:spice-sdb-netlist --------------------------
 (define (tools:spice-sdb-netlist)
     (tools:sch-netlist-0 sdb-back-end ".cir"))
@@ -254,6 +259,7 @@
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
   '(
+    ("Spice netlist"        tools:spice-netlist        "geda-spectrum")
     ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave")
     ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
     ("NoSqi netlist"        tools:spice-noqsi-netlist  "geda-sinx")
