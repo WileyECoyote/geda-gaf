@@ -36,6 +36,11 @@
 ;(define tools:bom "partslist2")
 ;(define tools:bom "partslist3")
 
+;; Define a spice back-end Options
+(define sdb-back-end   "spice-sdb -O sort_mode")
+(define anise-back-end "spice-anise -O include_mode -O sort_mode -O embed_mode")
+(define noqsi-back-end "spice-noqsi")
+
 ;; ======================== Utilities code  ========================
 ;; Get the current input schematic/sym filepath when called
 (define (tools:ifpath) (get-selected-filename))
@@ -180,15 +185,15 @@
 
 ;; ----------------- tools:spice-sdb-netlist --------------------------
 (define (tools:spice-sdb-netlist)
-    (tools:sch-netlist-0 "spice-sdb" ".cir"))
+    (tools:sch-netlist-0 sdb-back-end ".cir"))
 
 ;; ----------------- tools:spice-anise-netlist ------------------------
 (define (tools:spice-anise-netlist)
-    (tools:sch-netlist-0 "spice-anise" ".cir"))
+    (tools:sch-netlist-0 anise-back-end ".cir"))
 
 ;; ----------------- tools:spice-noqsi-netlist ------------------------
 (define (tools:spice-noqsi-netlist)
-    (tools:sch-netlist-0 "spice-noqsi" ".cir"))
+    (tools:sch-netlist-0 noqsi-back-end ".cir"))
 
 ;; ----------------- tools:verilog-netlist ----------------------------
 (define (tools:verilog-netlist)
