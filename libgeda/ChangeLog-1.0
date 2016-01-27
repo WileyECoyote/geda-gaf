@@ -7,6 +7,9 @@
       in functions o_attrib_detach, attribute, and o_attrib_detach_all,
       object, remove g_list_next, reduce scope of variables.
 
+    * src/iface/i_vars.c: Remove redundant assignment of default_line_end
+      and default_line_width.
+
 2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda//geda_line.c: Define GedaCircleType in header file,

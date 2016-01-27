@@ -110,8 +110,6 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
   toplevel->thin_pin_width        = default_thin_pin_width;
 
   toplevel->default_line_end      = default_line_end;
-  toplevel->default_line_end      = default_line_end;
-  toplevel->default_line_width    = default_line_width;
   toplevel->default_line_width    = default_line_width;
   toplevel->default_line_space    = default_line_space;
 
