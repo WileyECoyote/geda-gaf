@@ -1,3 +1,7 @@
+2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Replace g_debug with fprintf to stderr.
+
 2016-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Eliminate variable veto; just use return
