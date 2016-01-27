@@ -1,5 +1,9 @@
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * transistor/sziklai-bjt/npn-pnp-sziklai-1.sym: Revamp symbol using
+      correct transistor polarities, replace attributes, add documentation
+      link to wiki.
+
     * transistor/sziklai-bjt/pnp-npn-sziklai-1.sym: Add symbol; Sziklai
       PNP-NPN pair.
 
