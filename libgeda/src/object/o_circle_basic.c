@@ -351,7 +351,6 @@ void o_circle_mirror(Object *object, int center_x, int center_y)
 
   /* mirror the center of the circle */
   object->circle->center_x = -object->circle->center_x;
-  object->circle->center_y =  object->circle->center_y;
 
   /* translate back in position */
   object->circle->center_x += center_x;
@@ -645,7 +644,6 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   int color;
   int circle_width, capstyle, length, space;
   void (*outl_func)() = NULL;
-  void (*fill_func)() = NULL;
 
   g_return_if_fail(GEDA_IS_CIRCLE(o_current));
 
@@ -740,6 +738,8 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    */
   if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
 
+    void (*fill_func)();
+
     int fill_width, angle1, pitch1, angle2, pitch2;
 
     fill_width = o_current->fill_options->fill_width;
@@ -773,7 +773,8 @@ void o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
         break;
 
       case(FILLING_HOLLOW):
-        /* nop */
+      default:
+        fill_func = NULL;
         break;
     }
 

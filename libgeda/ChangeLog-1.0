@@ -10,6 +10,11 @@
     * src/iface/i_vars.c: Remove redundant assignment of default_line_end
       and default_line_width.
 
+    * src/object/o_circle_basic.c: Reduce scope and unnecessary initialization
+      of fill-func in o_circle_print, set NULL in default case. Removed setting
+      of o_circle_mirror to itself in function o_circle_mirror just in case the
+      compiler does not remove.
+
 2016-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda//geda_line.c: Define GedaCircleType in header file,
