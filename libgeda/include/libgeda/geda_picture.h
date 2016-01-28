@@ -46,8 +46,6 @@
 #define GdkPixbuf void
 #endif
 
-BEGIN_DECLS
-
 typedef struct _GedaPictureClass PictureClass;
 
 struct _GedaPictureClass {
@@ -80,12 +78,18 @@ struct _GedaPicture {
   GedaType tail_marker;       /* structure type signature */
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType     geda_picture_get_type     (void) GEDA_CONST;
 bool         is_a_geda_picture_object  (Picture *object);
 
 Object      *geda_picture_new          (void);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #ifndef GDK_PIXBUF_H
 #undef GdkPixbuf

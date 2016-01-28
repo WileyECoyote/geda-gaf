@@ -42,8 +42,6 @@
 #define GEDA_IS_OBJECT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_OBJECT))
 #define GEDA_OBJECT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_OBJECT, ObjectClass))
 
-BEGIN_DECLS
-
 typedef struct _GedaObjectClass ObjectClass;
 
 struct _GedaObjectClass {
@@ -124,6 +122,10 @@ struct _GedaObject {
   GedaType tail_marker;       /* structure type signature */
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType      geda_object_get_type           (void) GEDA_CONST;
 bool          is_a_geda_object               (const void *object);
 
@@ -140,6 +142,8 @@ int           geda_object_bounds             (Object *object);
 Page         *geda_object_get_page           (Object *object);
 int           geda_object_get_filltype       (Object *object);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_OBJECT_H__ */

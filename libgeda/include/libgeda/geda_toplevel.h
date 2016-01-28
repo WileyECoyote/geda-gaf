@@ -47,8 +47,6 @@
 #define GEDA_IS_TOPLEVEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_TOPLEVEL))
 #define GEDA_TOPLEVEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_TOPLEVEL, GedaToplevelClass))
 
-BEGIN_DECLS
-
 typedef struct _GedaToplevelClass GedaToplevelClass;
 
 struct _GedaToplevelClass {
@@ -200,6 +198,10 @@ struct _GedaToplevel {
   GedaType tail_marker;       /* structure type signature */
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* geda_toplevel.c */
 GedaType      geda_toplevel_get_type         (void) GEDA_CONST;
 GedaToplevel *geda_toplevel_new              (void);
@@ -220,7 +222,9 @@ Page         *geda_toplevel_get_page_up      (GedaToplevel *toplevel);
 void          geda_toplevel_remove_page      (GedaToplevel *toplevel, Page *page);
 bool          geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #define geda_toplevel_get_pages(top) geda_list_get_glist (top->pages)
 #define geda_toplevel_get_page(top,p) g_list_find(geda_toplevel_get_pages(top), p)

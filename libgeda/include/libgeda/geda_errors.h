@@ -23,8 +23,6 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
-BEGIN_DECLS
-
 /*! Domain for GErrors originating in libgeda. */
 #define EDA_ERROR eda_error_quark ()
 
@@ -40,6 +38,11 @@ typedef enum {
   EDA_ERROR_NULL_POINTER,
 } EdaError;
 
-GQuark eda_error_quark (void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+        GQuark eda_error_quark (void);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */

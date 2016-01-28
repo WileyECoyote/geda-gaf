@@ -42,8 +42,6 @@
 #define GEDA_IS_NET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_NET))
 #define GEDA_NET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NET, NetClass))
 
-BEGIN_DECLS
-
 typedef struct _GedaNetClass NetClass;
 
 struct _GedaNetClass {
@@ -77,10 +75,16 @@ struct _GedaNet {
   GedaType tail_marker;       /* structure type signature */
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType  geda_net_get_type      (void) GEDA_CONST;
 bool    is_a_geda_net_object     (Net *object);
 
 Object *geda_net_new             (void);
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
-END_DECLS
 #endif /* __GEDA_NET_H__ */

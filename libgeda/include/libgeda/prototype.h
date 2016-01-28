@@ -1,6 +1,8 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
 
-BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* f_basic.c */
          bool    f_has_active_autosave           (const char   *filename, GError **err);
@@ -663,4 +665,6 @@ const GedaRefDes *u_refdes_get_ieee_designators     (void);
          void     u_refdes_reset                    (Object *object);
          char    *u_refdes_return_numeric           (void *text);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */

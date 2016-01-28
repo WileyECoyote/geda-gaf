@@ -29,8 +29,6 @@
 #ifndef __GEDA_NOTIFY_H__
 #define __GEDA_NOTIFY_H__
 
-BEGIN_DECLS
-
 typedef struct st_change_notify change_notify;
 
 /*------------------------------------------------------------------
@@ -64,6 +62,10 @@ struct _GedaNotifyListClass {
   GObjectClass parent;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType  geda_notify_list_get_type                (void) GEDA_CONST;
 
 GedaNotifyList *geda_notify_list_new               (void);
@@ -81,9 +83,10 @@ void      geda_notify_list_remove                  (GedaNotifyList *list, void *
 /*void geda_notify_list_remove_glist(GedaNotifyList *list, GList *items); */ /* Undemanded as yet */
 void      geda_notify_list_remove_all              (GedaNotifyList *list);
 
-
 #define geda_notify_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_NOTIFY_H__ */

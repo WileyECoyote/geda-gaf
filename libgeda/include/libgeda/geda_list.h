@@ -45,8 +45,6 @@
 #define GEDA_IS_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_LIST))
 #define GEDA_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_LIST, GedaListClass))
 
-BEGIN_DECLS
-
 typedef struct _GedaList      GedaList;
 typedef struct _GedaListClass GedaListClass;
 
@@ -58,6 +56,10 @@ struct _GedaList {
 struct _GedaListClass {
   GObjectClass parent;
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 GedaType  geda_list_get_type (void) GEDA_CONST;
 
@@ -88,7 +90,9 @@ void      geda_list_remove_all              ( GedaList *list );
 #define Place_List    toplevel->page_current->place_list
 #define Top_Selection toplevel->page_current->selection_list
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* __GEDA_LIST_H__ */
 

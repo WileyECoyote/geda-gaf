@@ -48,8 +48,6 @@
 #define GEDA_IS_PAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PAGE))
 #define GEDA_PAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PAGE, PageClass))
 
-BEGIN_DECLS
-
 typedef struct _GedaPageClass PageClass;
 
 struct _GedaPageClass {
@@ -131,6 +129,10 @@ struct _GedaPage {
   GedaType tail_marker;       /* structure type signature */
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 GedaType  geda_page_get_type             (void) GEDA_CONST;
 bool      is_a_geda_page                 (Page *page);
 void      geda_page_debug_print          (Page *page);
@@ -161,5 +163,7 @@ void      geda_page_set_changed          (Page *page, int changed);
 GList    *geda_page_get_place_list       (Page *page)GEDA_WARN_UNUSED_RESULT;
 void      geda_page_set_place_list       (Page *page, GList *object_list);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 #endif /* __GEDA_PAGE_H__ */
