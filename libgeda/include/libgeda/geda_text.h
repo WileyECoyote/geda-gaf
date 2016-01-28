@@ -39,6 +39,12 @@
 #ifndef __GEDA_TEXT_H__
 #define __GEDA_TEXT_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaTextType unsigned long
+#else
+# define GedaTextType unsigned int
+#endif
+
 #define GEDA_TYPE_TEXT            (geda_text_get_type())
 #define GEDA_TEXT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_TEXT, Text))
 #define GEDA_TEXT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_TEXT, TextClass))
@@ -56,8 +62,6 @@ struct _GedaText {
 
   Object parent_instance;
 
-  GedaType head_marker;  /* Marker to identify this structure type */
-
   int x;                     /* world origin */
   int y;
 
@@ -74,15 +78,13 @@ struct _GedaText {
   /* Callback function for calculating text bounds */
   RenderedBoundsFunc rendered_text_bounds_func;
   void *rendered_text_bounds_data;
-
-  GedaType tail_marker;  /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType     geda_text_get_type        (void) GEDA_CONST;
+GedaTextType geda_text_get_type        (void) GEDA_CONST;
 bool         is_a_geda_text_object     (Text *object);
 
 Object      *geda_text_new             (void);

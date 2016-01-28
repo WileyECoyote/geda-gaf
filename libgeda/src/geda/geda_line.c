@@ -97,9 +97,6 @@ static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
 
   object->line                    = line;
   object->line_options            = &line->line_options;
-
-  line->head_marker               = GEDA_TYPE_LINE;
-  line->tail_marker               = line->head_marker;
 }
 
 static void
@@ -115,11 +112,10 @@ geda_line_dispose(GObject *object)
  */
 static void geda_line_finalize(GObject *object)
 {
-  Line *line = GEDA_LINE(object);
+  Object *obj  = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaLine */
-  line->head_marker = 1;
-  line->tail_marker = 0;
+  obj->line    = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_line_parent_class)->finalize(object);
@@ -155,14 +151,14 @@ static void geda_line_class_init(void *class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Line Type identifier. When first called,
- *  the function registers a #Line in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Line and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Line in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Line and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Line.
+ *  \return GedaObjectType identifier associated with Line.
  */
-GedaType geda_line_get_type (void)
+GedaObjectType geda_line_get_type (void)
 {
   static volatile GedaType geda_line_type = 0;
 
@@ -217,7 +213,13 @@ Object *geda_line_new (void)
  */
 bool is_a_geda_line_object (Line *lin)
 {
-  return GEDA_IS_OBJECT(lin) &&
-        (GEDA_TYPE_LINE == (lin->head_marker & lin->tail_marker));
+ if (GEDA_IS_OBJECT (lin)) {
+   Object *obj = (Object*)lin;
+   return (obj->type == OBJ_LINE || obj->type == OBJ_NET ||
+           obj->type == OBJ_PIN  || obj->type == OBJ_BUS);
+ }
+
+ return FALSE;
+
 }
 /** @} endgroup geda-line-object */

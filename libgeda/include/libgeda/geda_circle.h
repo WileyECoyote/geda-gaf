@@ -36,12 +36,6 @@
 #ifndef __GEDA_CIRCLE_H__
 #define __GEDA_CIRCLE_H__
 
-#if defined(__LP64__) || defined(_LP64)
-# define GedaCircleType unsigned long
-#else
-# define GedaCircleType unsigned int
-#endif
-
 #define GEDA_TYPE_CIRCLE            (geda_circle_get_type())
 #define GEDA_CIRCLE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_CIRCLE, Circle))
 #define GEDA_CIRCLE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_CIRCLE, CircleClass))
@@ -59,30 +53,24 @@ struct _GedaCircle {
 
   Object parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
-
   int center_x;
   int center_y;
   int radius;
 
   FILL_OPTIONS fill_options;
   LINE_OPTIONS line_options;
-
-  GedaType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaCircleType geda_circle_get_type     (void);
+GedaObjectType geda_circle_get_type     (void);
 bool           is_a_geda_circle_object  (Circle *object);
 Object        *geda_circle_new          (void);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#undef GedaCircleType
 
 #endif /* __GEDA_CIRCLE_H__ */

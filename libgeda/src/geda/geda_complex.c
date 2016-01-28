@@ -146,9 +146,6 @@ static void geda_complex_instance_init(GTypeInstance *instance, void *g_class)
   complex->prim_objs    = NULL;
 
   object->complex       = complex;
-
-  complex->head_marker  = GEDA_TYPE_COMPLEX;
-  complex->tail_marker  = complex->head_marker;
 }
 
 static void
@@ -166,6 +163,7 @@ geda_complex_dispose(GObject *object)
 static void geda_complex_finalize(GObject *object)
 {
   Complex *complex = GEDA_COMPLEX(object);
+  Object  *obj     = GEDA_OBJECT(object);
 
   if (complex->filename)
     GEDA_FREE(complex->filename);
@@ -181,8 +179,7 @@ static void geda_complex_finalize(GObject *object)
   complex->prim_objs = NULL;
 
   /* The object is no longer a GedaComplex */
-  complex->head_marker = 1;
-  complex->tail_marker = 0;
+  obj->complex = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_complex_parent_class)->finalize(object);
@@ -215,16 +212,16 @@ static void geda_complex_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Complex Type identifier. When first called,
- *  the function registers a #Complex in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Complex and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Complex in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Complex and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Complex.
+ *  \return GedaObjectType identifier associated with Complex.
  */
-GedaType geda_complex_get_type (void)
+GedaObjectType geda_complex_get_type (void)
 {
-  static volatile GedaType geda_complex_type = 0;
+  static volatile GedaObjectType geda_complex_type = 0;
 
   if (g_once_init_enter (&geda_complex_type)) {
 
@@ -240,8 +237,8 @@ GedaType geda_complex_get_type (void)
       geda_complex_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Complex");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -277,6 +274,5 @@ Object *geda_complex_new (void)
  */
 bool is_a_geda_complex_object (Complex *cpx)
 {
-  return GEDA_IS_OBJECT(cpx) &&
-        (GEDA_TYPE_COMPLEX == (cpx->head_marker & cpx->tail_marker));
+  return GEDA_IS_OBJECT(cpx) && (((Object*)cpx)->type == OBJ_COMPLEX);
 }

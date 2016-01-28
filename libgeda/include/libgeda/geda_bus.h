@@ -36,12 +36,6 @@
 #ifndef __GEDA_BUS_H__
 #define __GEDA_BUS_H__
 
-#if defined(__LP64__) || defined(_LP64)
-# define GedaBusType unsigned long
-#else
-# define GedaBusType unsigned int
-#endif
-
 #define GEDA_TYPE_BUS            (geda_bus_get_type())
 #define GEDA_BUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_BUS, Bus))
 #define GEDA_BUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_BUS, BusClass))
@@ -56,9 +50,8 @@ struct _GedaBusClass {
 };
 
 struct _GedaBus {
-  Line parent_instance;
 
-  GedaBusType head_marker;     /* structure type signature */
+  Line parent_instance;
 
   int  *line_width;
 
@@ -67,23 +60,19 @@ struct _GedaBus {
   int   bus_ripper_direction;
 
   char *bus_name;
-
-  GedaBusType tail_marker;     /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaBusType geda_bus_get_type     (void) GEDA_CONST;
-bool        is_a_geda_bus_object  (Bus *object);
+GedaObjectType geda_bus_get_type     (void) GEDA_CONST;
+bool           is_a_geda_bus_object  (Bus *object);
 
-Object     *geda_bus_new          (void);
+Object        *geda_bus_new          (void);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#undef GedaBusType
 
 #endif /* __GEDA_BUS_H__ */

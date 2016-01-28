@@ -37,12 +37,6 @@
 #ifndef __GEDA_COMPLEX_H__
 #define __GEDA_COMPLEX_H__
 
-#if defined(__LP64__) || defined(_LP64)
-# define GedaComplexType unsigned long
-#else
-# define GedaComplexType unsigned int
-#endif
-
 #define GEDA_TYPE_COMPLEX            (geda_complex_get_type())
 #define GEDA_COMPLEX(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_COMPLEX, Complex))
 #define GEDA_COMPLEX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_COMPLEX, ComplexClass))
@@ -64,8 +58,6 @@ struct _GedaComplex {
 
   Object  parent_instance;     /* Pointer to _GedaObject */
 
-  GedaComplexType head_marker; /* structure type signature */
-
   char   *filename;            /* Component Library Symbol name */
   bool    is_embedded;         /* is embedded component? */
 
@@ -78,18 +70,15 @@ struct _GedaComplex {
 
   GList *pin_objs;             /* A list of pins belonging to this complex */
   GList *prim_objs;            /* Primitive objects which make up the complex */
-  GedaComplexType tail_marker; /* structure type signature */
 };
 
-GedaType geda_complex_get_type    (void) GEDA_CONST;
-bool     is_a_geda_complex_object (Complex *object);
+GedaObjectType geda_complex_get_type    (void) GEDA_CONST;
+bool           is_a_geda_complex_object (Complex *object);
 
-Object  *geda_complex_new         (void);
+Object        *geda_complex_new         (void);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#undef GedaComplexType
 
 #endif /* __GEDA_COMPLEX_H__ */

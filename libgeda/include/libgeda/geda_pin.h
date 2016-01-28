@@ -62,8 +62,6 @@ struct _GedaPin {
 
   Line parent_instance;
 
-  GedaPinType head_marker;   /* structure type signature */
-
   char       *number;
   int         sequence;
   int         whichend;      /* either 0 or 1 */
@@ -77,8 +75,6 @@ struct _GedaPin {
   char       *mechanical;
 
   int        *line_width;
-
-  GedaPinType tail_marker;  /* structure type signature */
 };
 
 GedaPinType  geda_pin_get_type           (void) GEDA_CONST;
@@ -103,7 +99,5 @@ const char *geda_pin_lookup_mstring   (PIN_MECH    m_type);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#undef GedaCircleType
 
 #endif /* __GEDA_PIN_H__ */

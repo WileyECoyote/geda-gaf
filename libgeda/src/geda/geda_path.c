@@ -58,8 +58,6 @@ static GObjectClass *geda_path_parent_class = NULL;
 int
 geda_path_bounds (Object *object)
 {
-  PATH_SECTION *section;
-  int halfwidth;
   int i;
   int found_bound = FALSE;
   int left   = 0;
@@ -71,7 +69,9 @@ geda_path_bounds (Object *object)
 
   /* Find the bounds of the path region */
   for (i = 0; i < object->path->num_sections; i++) {
-    section = &object->path->sections[i];
+
+    PATH_SECTION *section = &object->path->sections[i];
+
     switch (section->code) {
       case PATH_CURVETO:
         /* Bezier curves with this construction of control points will lie
@@ -101,8 +101,10 @@ geda_path_bounds (Object *object)
   }
 
   if (found_bound) {
+
     /* This isn't strictly correct, but a 1st order approximation */
-    halfwidth = object->line_options->line_width / 2;
+    int halfwidth = object->line_options->line_width / 2;
+
     object->left   = left   - halfwidth;
     object->top    = top    - halfwidth;
     object->right  = right  + halfwidth;
@@ -145,9 +147,6 @@ static void geda_path_instance_init(GTypeInstance *instance, void *g_class)
   object->path                    = path;
   object->fill_options            = &path->fill_options;
   object->line_options            = &path->line_options;
-
-  path->head_marker               = GEDA_TYPE_PATH;
-  path->tail_marker               = path->head_marker;
 }
 
 static void
@@ -164,14 +163,14 @@ geda_path_dispose(GObject *object)
  */
 static void geda_path_finalize(GObject *object)
 {
-  Path *path = GEDA_PATH(object);
+  Path   *path = GEDA_PATH(object);
+  Object *obj  = GEDA_OBJECT(object);
 
   if (path->sections)
     GEDA_FREE(path->sections);
 
   /* The object is no longer a GedaPath */
-  path->head_marker = 1;
-  path->tail_marker = 0;
+  obj->path    = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS( geda_path_parent_class )->finalize(object);
@@ -204,14 +203,14 @@ static void geda_path_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Path Type identifier. When first called,
- *  the function registers a #Path in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Path and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Path in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Path and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Path.
+ *  \return GedaObjectType identifier associated with Path.
  */
-GedaType geda_path_get_type (void)
+GedaObjectType geda_path_get_type (void)
 {
   static volatile GedaType geda_path_type = 0;
 
@@ -229,8 +228,8 @@ GedaType geda_path_get_type (void)
       geda_path_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Path");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -266,7 +265,6 @@ Object *geda_path_new (void)
  */
 bool is_a_geda_path_object (Path *path)
 {
-  return GEDA_IS_OBJECT(path) &&
-        (GEDA_TYPE_PATH == (path->head_marker & path->tail_marker));
+  return GEDA_IS_OBJECT(path) && (((Object*)path)->type == OBJ_PATH);
 }
 /** @} endgroup geda-path-object */

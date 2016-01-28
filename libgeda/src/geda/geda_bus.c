@@ -66,9 +66,6 @@ static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
 
   object->bus                = bus;
   bus->line_width            = &line->line_options.line_width;
-
-  bus->head_marker           = GEDA_TYPE_BUS;
-  bus->tail_marker           = bus->head_marker;
 }
 
 static void
@@ -88,14 +85,14 @@ geda_bus_dispose(GObject *object)
  */
 static void geda_bus_finalize(GObject *object)
 {
-  Bus *bus = GEDA_BUS(object);
+  Bus    *bus = GEDA_BUS(object);
+  Object *obj = GEDA_OBJECT(object);
 
   if (bus->bus_name)
     GEDA_FREE(bus->bus_name);
 
   /* The object is no longer a GedaBus */
-  bus->head_marker = 1;
-  bus->tail_marker = 0;
+  obj->bus = NULL;
 
   /* Finialize the parent GedaLine Class */
   GEDA_LINE_CLASS(geda_bus_parent_class)->finalize(object);
@@ -119,23 +116,22 @@ static void geda_bus_class_init(void *g_class, void *class_data)
 
   gobject_class->dispose       = geda_bus_dispose;
   gobject_class->finalize      = geda_bus_finalize;
-
 }
 
 /*! \brief Function to retrieve Bus's Type identifier.
  *
  *  \par Function Description
  *  Function to retrieve a #Bus Type identifier. When first called,
- *  the function registers a #Bus in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Bus and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #Bus in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Bus and returns
+ *  the unsigned integer value. The retained value is returned on
+ *  all Subsequent calls.
  *
- *  \return GedaType identifier associated with Bus.
+ *  \return GedaObjectType identifier associated with Bus.
  */
-GedaType geda_bus_get_type (void)
+GedaObjectType geda_bus_get_type (void)
 {
-  static volatile GedaType geda_bus_type = 0;
+  static volatile GedaObjectType geda_bus_type = 0;
 
   if (g_once_init_enter (&geda_bus_type)) {
 
@@ -151,8 +147,8 @@ GedaType geda_bus_get_type (void)
       geda_bus_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char     *string;
+    GedaObjectType  type;
 
     string = g_intern_static_string ("Bus");
     type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
@@ -188,7 +184,6 @@ Object *geda_bus_new (void)
  */
 bool is_a_geda_bus_object (Bus *bus)
 {
-  return GEDA_IS_OBJECT(bus) &&
-        (GEDA_TYPE_BUS == (bus->head_marker & bus->tail_marker));
+  return GEDA_IS_OBJECT(bus) && (((Object*)bus)->type == OBJ_BUS);
 }
 /** @} endgroup geda-bus-object */

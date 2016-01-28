@@ -157,9 +157,6 @@ static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
   pin->line_width   = &line->line_options.line_width;
 
   line->line_options.line_width   = default_thick_pin_width;
-
-  pin->head_marker                = GEDA_TYPE_PIN;
-  pin->tail_marker                = pin->head_marker;
 }
 
 static void
@@ -254,7 +251,8 @@ geda_pin_dispose(GObject *object)
  */
 static void geda_pin_finalize(GObject *object)
 {
-  Pin *pin = GEDA_PIN(object);
+  Pin    *pin = GEDA_PIN(object);
+  Object *obj = GEDA_OBJECT(object);
 
   if (pin->electrical) {
     GEDA_FREE(pin->electrical);
@@ -269,8 +267,7 @@ static void geda_pin_finalize(GObject *object)
   GEDA_FREE(pin->number);
 
   /* The object is no longer a GedaPin */
-  pin->head_marker = 1;
-  pin->tail_marker = 0;
+  obj->pin = NULL;
 
   /* Finialize the parent GedaLine Class */
   GEDA_LINE_CLASS(geda_pin_parent_class)->finalize(object);
@@ -357,16 +354,16 @@ static void geda_pin_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Pin Type identifier. When first called,
- *  the function registers a #Pin in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Pin and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Pin in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Pin and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Pin.
+ *  \return GedaObjectType identifier associated with Pin.
  */
-GedaType geda_pin_get_type (void)
+GedaObjectType geda_pin_get_type (void)
 {
-  static volatile GedaType geda_pin_type = 0;
+  static volatile GedaObjectType geda_pin_type = 0;
 
   if (g_once_init_enter (&geda_pin_type)) {
 
@@ -382,8 +379,8 @@ GedaType geda_pin_get_type (void)
       geda_pin_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Pin");
     type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
@@ -419,8 +416,7 @@ Object *geda_pin_new (void)
  */
 bool is_a_geda_pin_object (Pin *pin)
 {
-  return GEDA_IS_OBJECT(pin) &&
-        (GEDA_TYPE_PIN == (pin->head_marker & pin->tail_marker));
+  return GEDA_IS_OBJECT(pin) && (((Object*)pin)->type == OBJ_PIN);
 }
 
 const char*

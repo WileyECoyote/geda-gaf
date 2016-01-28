@@ -361,11 +361,11 @@ static void geda_object_finalize(GObject *gobject)
   /* Return to the child's finalizer */
 }
 
-/*! \brief GedaType class initializer for Object
+/*! \brief GedaObjectType class initializer for Object
  *  \par Function Description
- *  GedaType class initializer for #Object, registers GObject
- *  signals and over-rides parent virtual class methods as
- *  needed.
+ *  GedaObjectType class initializer for #Object, registers
+ *  GObject signals and over-rides parent virtual class methods
+ *  as needed.
  *
  *  \param [in] g_class     The Object we are initializing
  *  \param [in] class_data  (unused)
@@ -464,16 +464,16 @@ static void geda_object_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Object Type identifier. When first called,
- *  the function registers a #Object in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Object and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Object in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Object and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Object.
+ *  \return GedaObjectType identifier associated with Object.
  */
-GedaType geda_object_get_type (void)
+GedaObjectType geda_object_get_type (void)
 {
-  static volatile GedaType geda_object_type = 0;
+  static volatile GedaObjectType geda_object_type = 0;
 
   if (g_once_init_enter (&geda_object_type)) {
 
@@ -489,8 +489,8 @@ GedaType geda_object_get_type (void)
       geda_object_instance_init      /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Object");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
@@ -537,7 +537,7 @@ Object *geda_object_new (int type, char const *name)
  */
 bool is_a_geda_object (const void *object)
 {
-  bool answer;
+  bool  answer;
   const Object *obj = object;
 
   if ((unsigned long)obj > 0x7FFFE) {

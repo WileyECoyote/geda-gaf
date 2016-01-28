@@ -35,6 +35,12 @@
 #ifndef __GEDA_PICTURE_H__
 #define __GEDA_PICTURE_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaPicType unsigned long
+#else
+# define GedaPicType unsigned int
+#endif
+
 #define GEDA_TYPE_PICTURE            (geda_picture_get_type())
 #define GEDA_PICTURE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PICTURE, Picture))
 #define GEDA_PICTURE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PICTURE, PictureClass))
@@ -56,8 +62,6 @@ struct _GedaPicture {
 
   Object parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
-
   GdkPixbuf     *pixbuf;
   char          *file_content;
   unsigned int   file_length;
@@ -74,15 +78,13 @@ struct _GedaPicture {
   int    upper_y;
   int    lower_x;
   int    lower_y;
-
-  GedaType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType     geda_picture_get_type     (void) GEDA_CONST;
+GedaPicType  geda_picture_get_type     (void) GEDA_CONST;
 bool         is_a_geda_picture_object  (Picture *object);
 
 Object      *geda_picture_new          (void);

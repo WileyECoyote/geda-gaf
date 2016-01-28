@@ -94,9 +94,6 @@ static void geda_box_instance_init(GTypeInstance *instance, void *g_class)
   object->box                     = box;
   object->fill_options            = &box->fill_options;
   object->line_options            = &box->line_options;
-
-  box->head_marker                = GEDA_TYPE_BOX;
-  box->tail_marker                = box->head_marker;
 }
 
 static void
@@ -113,11 +110,10 @@ geda_box_dispose(GObject *object)
  */
 static void geda_box_finalize(GObject *object)
 {
-  Box *box = GEDA_BOX(object);
+  Object *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaBox */
-  box->head_marker = 1;
-  box->tail_marker = 0;
+  obj->box    = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_box_parent_class)->finalize(object);
@@ -150,16 +146,16 @@ static void geda_box_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Box Type identifier. When first called,
- *  the function registers a #Box in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Box and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #Box in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Box and returns
+ *  the unsigned integer value. The retained value is returned on
+ *  all Subsequent calls.
  *
- *  \return GedaType identifier associated with Box.
+ *  \return GedaObjectType identifier associated with Box.
  */
-GedaType geda_box_get_type (void)
+GedaObjectType geda_box_get_type (void)
 {
-  static volatile GedaType geda_box_type = 0;
+  static volatile GedaObjectType geda_box_type = 0;
 
   if (g_once_init_enter (&geda_box_type)) {
 
@@ -175,8 +171,8 @@ GedaType geda_box_get_type (void)
       geda_box_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Box");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -212,6 +208,5 @@ Object *geda_box_new (void)
  */
 bool is_a_geda_box_object (Box *box)
 {
-  return GEDA_IS_OBJECT(box) &&
-        (GEDA_TYPE_BOX == (box->head_marker & box->tail_marker));
+  return GEDA_IS_OBJECT(box) && (((Object*)box)->type == OBJ_BOX);
 }

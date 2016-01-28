@@ -35,6 +35,12 @@
 #ifndef __GEDA_OBJECT_H__
 #define __GEDA_OBJECT_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaObjectType unsigned long
+#else
+# define GedaObjectType unsigned int
+#endif
+
 #define GEDA_TYPE_OBJECT            (geda_object_get_type())
 #define GEDA_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_OBJECT, Object))
 #define GEDA_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_OBJECT, ObjectClass))
@@ -58,7 +64,7 @@ struct _GedaObject {
 
   GObject parent;
 
-  GedaType head_marker;            /* structure type signature */
+  GedaObjectType head_marker;          /* structure type signature */
 
   char    type;                        /* Basic information */
   int     sid;                         /* sequence id ?? */
@@ -119,15 +125,15 @@ struct _GedaObject {
 
   GList   *weak_refs;             /* Weak references */
 
-  GedaType tail_marker;       /* structure type signature */
+  GedaObjectType tail_marker;     /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType      geda_object_get_type           (void) GEDA_CONST;
-bool          is_a_geda_object               (const void *object);
+GedaObjectType geda_object_get_type          (void) GEDA_CONST;
+bool           is_a_geda_object              (const void *object);
 
 Object       *geda_object_new                (int type, char const *name);
 Object       *geda_object_ref                (Object *object);

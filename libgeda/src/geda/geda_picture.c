@@ -97,9 +97,6 @@ static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
   picture->lower_y      = 0;
 
   object->picture       = picture;
-
-  picture->head_marker  = GEDA_TYPE_PICTURE;
-  picture->tail_marker  = picture->head_marker;
 }
 
 static void
@@ -124,14 +121,15 @@ geda_picture_dispose(GObject *object)
 static void geda_picture_finalize(GObject *object)
 {
   Picture *pic = GEDA_PICTURE(object);
+  Object  *obj = GEDA_OBJECT(object);
+
   if (pic->file_content) {
     GEDA_FREE(pic->file_content);
     pic->file_content = NULL;
   }
 
   /* The object is no longer a GedaPicture */
-  pic->head_marker = 1;
-  pic->tail_marker = 0;
+  obj->picture = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_picture_parent_class)->finalize(object);
@@ -164,16 +162,16 @@ static void geda_picture_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Picture Type identifier. When first called,
- *  the function registers a #Picture in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Picture and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Picture in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Picture and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Picture.
+ *  \return GedaObjectType identifier associated with Picture.
  */
-GedaType geda_picture_get_type (void)
+GedaObjectType geda_picture_get_type (void)
 {
-  static GedaType geda_picture_type = 0;
+  static GedaObjectType geda_picture_type = 0;
 
   if (g_once_init_enter (&geda_picture_type)) {
 
@@ -189,8 +187,8 @@ GedaType geda_picture_get_type (void)
       geda_picture_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Picture");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -226,7 +224,6 @@ Object *geda_picture_new (void)
  */
 bool is_a_geda_picture_object (Picture *pic)
 {
-  return GEDA_IS_OBJECT(pic) &&
-        (GEDA_TYPE_PICTURE == (pic->head_marker & pic->tail_marker));
+  return GEDA_IS_OBJECT(pic) && (((Object*)pic)->type == OBJ_PICTURE);
 }
 /** @} endgroup geda-picture-object */

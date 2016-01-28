@@ -165,9 +165,6 @@ static void geda_arc_instance_init(GTypeInstance *instance, void *class)
   object->arc                     = arc;
   object->fill_options            = &arc->fill_options;
   object->line_options            = &arc->line_options;
-
-  arc->head_marker                = GEDA_TYPE_ARC;
-  arc->tail_marker                = arc->head_marker;
 }
 
 static void
@@ -184,11 +181,10 @@ geda_arc_dispose(GObject *object)
  */
 static void geda_arc_finalize(GObject *object)
 {
-  Arc *arc = GEDA_ARC(object);
+  Object *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaArc */
-  arc->head_marker = 1;
-  arc->tail_marker = 0;
+  obj->arc    = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_arc_parent_class)->finalize(object);
@@ -221,16 +217,16 @@ static void geda_arc_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Arc Type identifier. When first called,
- *  the function registers a #Arc in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Arc and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #Arc in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Arc and returns
+ *  the unsigned integer value. The retained value is returned on
+ *  all Subsequent calls.
  *
- *  \return GedaType identifier associated with Arc.
+ *  \return GedaObjectType identifier associated with Arc.
  */
-GedaType geda_arc_get_type (void)
+GedaObjectType geda_arc_get_type (void)
 {
-  static volatile GedaType geda_arc_type = 0;
+  static volatile GedaObjectType geda_arc_type = 0;
 
   if (g_once_init_enter (&geda_arc_type)) {
 
@@ -246,8 +242,8 @@ GedaType geda_arc_get_type (void)
       geda_arc_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Arc");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -274,9 +270,6 @@ Object *geda_arc_new (void)
   return GEDA_OBJECT(arc);
 }
 
-#define ARC_MARKER(target) (unsigned int)(arc + offsetof(Arc, target))
-#define ARC_MARKERS (ARC_MARKER(head_marker) & ARC_MARKER(tail_marker))
-
 /*! \brief Determine if object is a Geda Arc Object.
  *
  *  \par Function Description
@@ -286,7 +279,6 @@ Object *geda_arc_new (void)
  */
 bool is_a_geda_arc_object (Arc *arc)
 {
-  return GEDA_IS_OBJECT(arc) &&
-        (GEDA_TYPE_ARC == (arc->head_marker & arc->tail_marker));
+  return GEDA_IS_OBJECT(arc) && (((Object*)arc)->type == OBJ_ARC);
 }
 /** @} endgroup geda-arc-object */

@@ -161,9 +161,6 @@ static void geda_text_instance_init(GTypeInstance *instance, void *g_class)
 
   object->text                     = text;
   object->visibility               = INVISIBLE;
-
-  text->head_marker                = GEDA_TYPE_TEXT;
-  text->tail_marker                = text->head_marker;
 }
 
 static void
@@ -186,11 +183,10 @@ geda_text_dispose(GObject *object)
  */
 static void geda_text_finalize(GObject *object)
 {
-  Text *text = GEDA_TEXT(object);
+  Object *obj  = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaText */
-  text->head_marker = 1;
-  text->tail_marker = 0;
+  obj->text    = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_text_parent_class)->finalize(object);
@@ -223,16 +219,16 @@ static void geda_text_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Text Type identifier. When first called,
- *  the function registers a #Text in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Text and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #Text in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Text and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with Text.
+ *  \return GedaObjectType identifier associated with Text.
  */
-GedaType geda_text_get_type (void)
+GedaObjectType geda_text_get_type (void)
 {
-  static volatile GedaType geda_text_type = 0;
+  static volatile GedaObjectType geda_text_type = 0;
 
   if (g_once_init_enter (&geda_text_type)) {
 
@@ -248,8 +244,8 @@ GedaType geda_text_get_type (void)
       geda_text_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Text");
     type   = g_type_register_static (GEDA_TYPE_OBJECT, string, &info, 0);
@@ -285,7 +281,6 @@ Object *geda_text_new (void)
  */
 bool is_a_geda_text_object (Text *txt)
 {
-  return GEDA_IS_OBJECT(txt) &&
-        (GEDA_TYPE_TEXT == (txt->head_marker & txt->tail_marker));
+  return GEDA_IS_OBJECT(txt) && (((Object*)txt)->type == OBJ_TEXT);
 }
 /** @} endgroup geda-text-object */

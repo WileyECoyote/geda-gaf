@@ -106,9 +106,6 @@ static void geda_circle_instance_init(GTypeInstance *instance, void *class)
   object->circle                    = circle;
   object->fill_options              = &circle->fill_options;
   object->line_options              = &circle->line_options;
-
-  circle->head_marker               = GEDA_TYPE_CIRCLE;
-  circle->tail_marker               = circle->head_marker;
 }
 
 static void
@@ -124,11 +121,10 @@ geda_circle_dispose(GObject *object)
  */
 static void geda_circle_finalize(GObject *object)
 {
-  Circle *circle = GEDA_CIRCLE(object);
+  Object *obj = GEDA_OBJECT(object);
 
   /* The object is no longer a GedaCircle */
-  circle->head_marker = 1;
-  circle->tail_marker = 0;
+  obj->circle = NULL;
 
   /* Finialize the parent GedaObject Class */
   GEDA_OBJECT_CLASS(geda_circle_parent_class)->finalize(object);
@@ -223,7 +219,6 @@ Object *geda_circle_new (void)
  */
 bool is_a_geda_circle_object (Circle *cir)
 {
-  return GEDA_IS_OBJECT(cir) &&
-        (GEDA_TYPE_CIRCLE == (cir->head_marker & cir->tail_marker));
+  return GEDA_IS_OBJECT(cir) && (((Object*)cir)->type == OBJ_CIRCLE);
 }
 /** @} endgroup geda-circle-object */

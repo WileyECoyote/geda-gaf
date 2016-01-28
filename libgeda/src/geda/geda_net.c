@@ -77,9 +77,6 @@ static void geda_net_instance_init(GTypeInstance *instance, void *g_class)
   object->net                = net;
 
   net->line_width            = &line->line_options.line_width;
-
-  net->head_marker           = GEDA_TYPE_NET;
-  net->tail_marker           = net->head_marker;
 }
 
 static void
@@ -98,7 +95,8 @@ geda_net_dispose(GObject *object)
  */
 static void geda_net_finalize(GObject *object)
 {
-  Net *net = GEDA_NET(object);
+  Net    *net = GEDA_NET(object);
+  Object *obj = GEDA_OBJECT(object);
 
   if(net->net_name)
     g_free(net->net_name);
@@ -110,8 +108,7 @@ static void geda_net_finalize(GObject *object)
     g_free(net->connected_to);
 
   /* The object is no longer a GedaNet */
-  net->head_marker = 1;
-  net->tail_marker = 0;
+  obj->net = NULL;
 
   /* Finialize the parent GedaLine Class */
   GEDA_LINE_CLASS(geda_net_parent_class)->finalize(object);
@@ -142,16 +139,16 @@ static void geda_net_class_init(void *g_class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Net Type identifier. When first called,
- *  the function registers a #Net in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Net and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #Net in the GedaObjectType system to
+ *  obtain an identifier that uniquely itentifies a Net and returns
+ *  the unsigned integer value. The retained value is returned on
+ *  all Subsequent calls.
  *
- *  \return GedaType identifier associated with Net.
+ *  \return GedaObjectType identifier associated with Net.
  */
-GedaType geda_net_get_type (void)
+GedaObjectType geda_net_get_type (void)
 {
-  static volatile GedaType geda_net_type = 0;
+  static volatile GedaObjectType geda_net_type = 0;
 
   if (g_once_init_enter (&geda_net_type)) {
 
@@ -167,8 +164,8 @@ GedaType geda_net_get_type (void)
       geda_net_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaObjectType type;
 
     string = g_intern_static_string ("Net");
     type   = g_type_register_static (GEDA_TYPE_LINE, string, &info, 0);
@@ -204,7 +201,6 @@ Object *geda_net_new (void)
  */
 bool is_a_geda_net_object (Net *net)
 {
-  return GEDA_IS_OBJECT(net) &&
-        (GEDA_TYPE_NET == (net->head_marker & net->tail_marker));
+  return GEDA_IS_OBJECT(net) && (((Object*)net)->type == OBJ_NET);
 }
 /** @} endgroup geda-net-object */

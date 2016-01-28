@@ -49,9 +49,8 @@ struct _GedaNetClass {
 };
 
 struct _GedaNet {
-  Line parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
+  Line parent_instance;
 
   int  *line_width;
 
@@ -71,18 +70,17 @@ struct _GedaNet {
 
   Net  *prev;
   Net  *next;
-
-  GedaType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType  geda_net_get_type      (void) GEDA_CONST;
-bool    is_a_geda_net_object     (Net *object);
+GedaObjectType geda_net_get_type      (void) GEDA_CONST;
+bool           is_a_geda_net_object   (Net *object);
 
-Object *geda_net_new             (void);
+Object        *geda_net_new           (void);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

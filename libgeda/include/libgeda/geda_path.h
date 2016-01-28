@@ -36,6 +36,12 @@
 #ifndef __GEDA_PATH_H__
 #define __GEDA_PATH_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaPathType unsigned long
+#else
+# define GedaPathType unsigned int
+#endif
+
 #define GEDA_TYPE_PATH            (geda_path_get_type())
 #define GEDA_PATH(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PATH, Path))
 #define GEDA_PATH_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_PATH, PathClass))
@@ -53,8 +59,6 @@ struct _GedaPath {
 
   Object parent_instance;
 
-  GedaType head_marker;       /* structure type signature */
-
   PATH_SECTION *sections;         /* Bezier path segments  */
 
   int num_sections;
@@ -62,15 +66,13 @@ struct _GedaPath {
 
   FILL_OPTIONS fill_options;
   LINE_OPTIONS line_options;
-
-  GedaType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType     geda_path_get_type        (void) GEDA_CONST;
+GedaPathType geda_path_get_type        (void) GEDA_CONST;
 bool         is_a_geda_path_object     (Path *object);
 
 Object      *geda_path_new             (void);
