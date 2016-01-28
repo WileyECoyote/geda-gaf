@@ -54,6 +54,7 @@ static
 void x_status_bar_set_middle_action(GtkWidget *status_bar, void *data)
 {
   GschemToplevel *w_current = data;
+
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     w_current->middle_button = MOUSE_MIDDLE_ACTION;
     x_status_bar_update_middle_mouse(w_current, NULL);
@@ -191,7 +192,7 @@ static void x_status_bar_set_third_pan(GtkWidget *status_bar, void *data)
  */
 void x_status_bar_update_grid_label (GschemToplevel *w_current)
 {
-  if ( GSCHEM_IS_STATUS_BAR(StatusBar) ) {
+  if (GSCHEM_IS_STATUS_BAR(StatusBar)) {
 
     int do_update;
     int grid_mode = w_current->grid_mode;
@@ -205,7 +206,7 @@ void x_status_bar_update_grid_label (GschemToplevel *w_current)
                 (StatusBar->snap_mode - snap_mode) +
                 (StatusBar->snap_size - snap_size);
 
-    if ( do_update ) {
+    if (do_update) {
       StatusBar->grid_mode = grid_mode;
       StatusBar->grid_size = grid_size;
       StatusBar->snap_mode = snap_mode;
@@ -235,18 +236,19 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
   if (!StatusBar->middle_label)
     return;
 
-  if ( w_current->middle_button != MOUSE_MIDDLE_REPEAT ) {
-    if ( w_current->middle_button != previous_setting ) {
+  if (w_current->middle_button != MOUSE_MIDDLE_REPEAT) {
+
+    if (w_current->middle_button != previous_setting) {
       switch(w_current->middle_button) {
         /* remove this case eventually and make it a null case */
-        case( MOUSE_MIDDLE_ACTION ):
-          geda_label_widget_set_text(StatusBar->middle_label, _( RC_STR_MID_ACTION ));
+        case (MOUSE_MIDDLE_ACTION):
+          geda_label_widget_set_text(StatusBar->middle_label, _(RC_STR_MID_ACTION));
           previous_setting = MOUSE_MIDDLE_ACTION;
           break;
 
 #ifdef HAVE_LIBSTROKE
-        case( MOUSE_MIDDLE_STROKE ):
-          geda_label_widget_set_text(StatusBar->middle_label, _( RC_STR_MID_STROKE ));
+        case (MOUSE_MIDDLE_STROKE):
+          geda_label_widget_set_text(StatusBar->middle_label, _(RC_STR_MID_STROKE));
           previous_setting = MOUSE_MIDDLE_STROKE;
           break;
 #else
@@ -254,14 +256,14 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
         /* Note: We encounter this case if the user set the middle mouse to "stroke"
          * either via an RC-script or the Preferences dialog but source was not
          * compiled on a machine with libstrokes */
-        case( MOUSE_MIDDLE_STROKE ):
+        case (MOUSE_MIDDLE_STROKE):
           geda_label_widget_set_text(StatusBar->middle_label, _("none"));
           previous_setting = MOUSE_MIDDLE_STROKE;
           break;
 #endif
 
-        case( MOUSE_MIDDLE_PAN ):
-          geda_label_widget_set_text(StatusBar->middle_label, _( RC_STR_MID_MOUSEPAN ));
+        case (MOUSE_MIDDLE_PAN):
+          geda_label_widget_set_text(StatusBar->middle_label, _(RC_STR_MID_MOUSEPAN));
           previous_setting = MOUSE_MIDDLE_PAN;
           break;
 
@@ -280,7 +282,7 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
     else {
       strcat (string, _("none"));
     }
-    geda_label_widget_set_text(StatusBar->middle_label, string );
+    geda_label_widget_set_text(StatusBar->middle_label, string);
     previous_setting = MOUSE_MIDDLE_REPEAT;
   }
 }
@@ -298,7 +300,7 @@ void x_status_bar_update_third_mouse (GschemToplevel *w_current)
 
   if (StatusBar->right_label) {
 
-    if ( w_current->third_button != previous_setting ) {
+    if (w_current->third_button != previous_setting) {
 
       if (w_current->third_button == POPUP_ENABLED) {
         geda_label_widget_set_text(StatusBar->right_label, _("Menu/Cancel"));
@@ -332,26 +334,26 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
   switch(w_current->middle_button) {
 
     /* remove this case eventually and make it a null case */
-    case( MOUSE_MIDDLE_ACTION ):
-      middle_mouse_text = _( RC_STR_MID_ACTION );
+    case (MOUSE_MIDDLE_ACTION):
+      middle_mouse_text = _(RC_STR_MID_ACTION);
       break;
 
 #ifdef HAVE_LIBSTROKE
-    case( MOUSE_MIDDLE_STROKE ):
-      middle_mouse_text = _( RC_STR_MID_STROKE );
+    case (MOUSE_MIDDLE_STROKE):
+      middle_mouse_text = _(RC_STR_MID_STROKE);
       break;
 #else
       /* remove this case eventually and make it a null case */
-    case( MOUSE_MIDDLE_STROKE ):
+    case (MOUSE_MIDDLE_STROKE):
       middle_mouse_text = _("none");
       break;
 #endif
-    case( MOUSE_MIDDLE_REPEAT ):
+    case (MOUSE_MIDDLE_REPEAT):
       middle_mouse_text = _("Repeat/none");
       break;
 
-    case( MOUSE_MIDDLE_PAN ):
-      middle_mouse_text = _( RC_STR_MID_MOUSEPAN );
+    case (MOUSE_MIDDLE_PAN):
+      middle_mouse_text = _(RC_STR_MID_MOUSEPAN);
       break;
 
     default:
