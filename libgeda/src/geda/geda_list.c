@@ -42,7 +42,7 @@ enum {
   LAST_SIGNAL
 };
 
-static unsigned int geda_list_signals[ LAST_SIGNAL ] = { 0 };
+static unsigned int  geda_list_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *geda_list_parent_class = NULL;
 
 
@@ -119,16 +119,16 @@ static void geda_list_class_init(void *g_class, void *g_class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #GedaList Type identifier. When first called,
- *  the function registers a #GedaList in the GedaType system to obtain
- *  an identifier that uniquely itentifies a GedaList and returns the
- *  unsigned integer value. The retained value is returned on all
+ *  the function registers a #GedaList in the GedaListType system to
+ *  obtain an identifier that uniquely itentifies a GedaList and returns
+ *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaList.
+ *  \return GedaListType identifier associated with GedaList.
  */
-GedaType geda_list_get_type (void)
+GedaListType geda_list_get_type (void)
 {
-  static volatile GedaType geda_list_type = 0;
+  static volatile GedaListType geda_list_type = 0;
 
   if (g_once_init_enter (&geda_list_type)) {
 
@@ -144,8 +144,8 @@ GedaType geda_list_get_type (void)
       geda_list_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char  *string;
+    GedaListType type;
 
     string = g_intern_static_string ("GedaList");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);

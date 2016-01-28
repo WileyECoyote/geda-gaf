@@ -39,7 +39,13 @@
 #ifndef __GEDA_PAGE_H__
 #define __GEDA_PAGE_H__
 
-#define IS_ACTIVE_PAGE(page) page == page->toplevel->page_current
+#define IS_ACTIVE_PAGE(page) GEDA_IS_PAGE(page) && page == page->toplevel->page_current
+
+#if defined(__LP64__) || defined(_LP64)
+# define GedaPageType unsigned long
+#else
+# define GedaPageType unsigned int
+#endif
 
 #define GEDA_TYPE_PAGE            (geda_page_get_type())
 #define GEDA_PAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_PAGE, Page))
@@ -58,7 +64,7 @@ struct _GedaPage {
 
   GObject parent;
 
-  GedaType head_marker;            /* structure type signature */
+  GedaPageType head_marker;            /* structure type signature */
 
   GedaToplevel *toplevel;
 
@@ -126,16 +132,16 @@ struct _GedaPage {
 
   GList *weak_refs;               /* Weak references */
 
-  GedaType tail_marker;       /* structure type signature */
+  GedaPageType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-GedaType  geda_page_get_type             (void) GEDA_CONST;
-bool      is_a_geda_page                 (Page *page);
-void      geda_page_debug_print          (Page *page);
+GedaPageType geda_page_get_type          (void) GEDA_CONST;
+bool         is_a_geda_page              (Page *page);
+void         geda_page_debug_print       (Page *page);
 
 Page     *geda_page_new                  (void);
 Page     *geda_page_new_with_notify      (void);

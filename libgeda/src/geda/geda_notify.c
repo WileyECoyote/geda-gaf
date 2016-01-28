@@ -107,16 +107,16 @@ static void geda_notify_list_class_init(void *class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #GedaNotifyList Type identifier. When first called,
- *  the function registers a #GedaNotifyList in the GedaType system to obtain
- *  an identifier that uniquely itentifies a GedaNotifyList and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #GedaNotifyList in the GedaNotifyType system to
+ *  obtain an identifier that uniquely itentifies a GedaNotifyList and returns
+ *  the unsigned integer value. The retained value is returned on subsequent
+ *  calls.
  *
- *  \return GedaType identifier associated with GedaNotifyList.
+ *  \return GedaNotifyType identifier associated with GedaNotifyList.
  */
-GedaType geda_notify_list_get_type (void)
+GedaNotifyType geda_notify_list_get_type (void)
 {
-  static volatile GedaType geda_notify_list_type = 0;
+  static volatile GedaNotifyType geda_notify_list_type = 0;
 
   if (g_once_init_enter (&geda_notify_list_type)) {
 
@@ -132,8 +132,8 @@ GedaType geda_notify_list_get_type (void)
       geda_notify_list_instance_init /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaNotifyType type;
 
     string = g_intern_static_string ("GedaNotifyList");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);

@@ -1,3 +1,35 @@
+2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/xxx.h: remove __cplusplus macros, except geda_object.h
+      because git gui complaining about a corrupt patch.
+
+    * include/libgeda/geda_sub-objects.h: Remove head_marker and tail_markers
+      and redue type system for derived objects because glib is not working
+      reliably with second level inheritance, which was not suppose to work
+      with gobjects system in the first place, but was mostly worked, failed
+      occasionally. Replace object local types with GedaObjectType, which
+      would not be needed if glib had not decided to use different fundamental
+      types for identifiers between 64 and 32 bit systems.
+
+    * src/geda/geda_sub-objects.c: Implement new previously described typing
+      scheme in GedaObject and derivatives.
+
+    * Define local types:
+
+          * include/libgeda/geda_config.h
+          * include/libgeda/geda_list.h
+          * include/libgeda/geda_notify.h
+          * include/libgeda/geda_page.h
+          * include/libgeda/geda_toplevel.h
+
+    * Implement new local types and update comments:
+
+          * src/geda/geda_config.c
+          * src/geda/geda_list.c
+          * src/geda/geda_notify.c
+          * src/geda/geda_page.c
+          * src/geda/geda_toplevel.c
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Eliminate setting object->arc->y to

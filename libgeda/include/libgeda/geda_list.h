@@ -38,6 +38,12 @@
 #ifndef __GEDA_LIST_H__
 #define __GEDA_LIST_H__
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaListType unsigned long
+#else
+# define GedaListType unsigned int
+#endif
+
 #define GEDA_TYPE_LIST            (geda_list_get_type())
 #define GEDA_LIST(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_LIST, GedaList))
 #define GEDA_LIST_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_LIST, GedaListClass))
@@ -61,7 +67,7 @@ struct _GedaListClass {
 extern "C" {
 #endif
 
-GedaType  geda_list_get_type (void) GEDA_CONST;
+GedaListType  geda_list_get_type (void) GEDA_CONST;
 
 /* It would be nice to add const qualifiers to some of these, but GLib
  * is buggy in this respect, and doesn't have const where necessary. */

@@ -41,13 +41,18 @@ struct st_change_notify {
   void *user_data;
 };
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaNotifyType unsigned long
+#else
+# define GedaNotifyType unsigned int
+#endif
+
 #define GEDA_TYPE_NOTIFY_LIST            (geda_notify_list_get_type())
 #define GEDA_NOTIFY_LIST(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_NOTIFY_LIST, GedaNotifyList))
 #define GEDA_NOTIFY_LIST_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_NOTIFY_LIST, GedaNotifyListClass))
 #define GEDA_IS_NOTIFY_LIST(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), GEDA_TYPE_NOTIFY_LIST))
 #define GEDA_IS_NOTIFY_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_NOTIFY_LIST))
 #define GEDA_NOTIFY_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_NOTIFY_LIST, GedaNotifyListClass))
-
 
 typedef struct _GedaNotifyList      GedaNotifyList;
 typedef struct _GedaNotifyListClass GedaNotifyListClass;
@@ -66,7 +71,7 @@ struct _GedaNotifyListClass {
 extern "C" {
 #endif
 
-GedaType  geda_notify_list_get_type                (void) GEDA_CONST;
+GedaNotifyType  geda_notify_list_get_type          (void) GEDA_CONST;
 
 GedaNotifyList *geda_notify_list_new               (void);
 

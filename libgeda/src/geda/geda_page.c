@@ -302,7 +302,8 @@ static void geda_page_finalize(GObject *object)
  *  \param [in,out] class       A PageClass Object
  *  \param [in]     class_data  A Page data structure
  */
-static void geda_page_class_init(void *class, void *class_data)
+static void
+geda_page_class_init(void *class, void *class_data)
 {
   PageClass    *page_class   = GEDA_PAGE_CLASS(class);
   GObjectClass *object_class = G_OBJECT_CLASS(page_class);
@@ -318,16 +319,16 @@ static void geda_page_class_init(void *class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #Page Type identifier. When first called,
- *  the function registers a #Page in the GedaType system to obtain
- *  an identifier that uniquely itentifies a Page and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #Page in the GedaPageType system to
+ *  obtain an identifier that uniquely itentifies a Page and returns
+ *  the unsigned integer value. The retained value is returned on all
+ *  subsequent calls.
  *
- *  \return GedaType identifier associated with Page.
+ *  \return GedaPageType identifier associated with Page.
  */
-GedaType geda_page_get_type (void)
+GedaPageType geda_page_get_type (void)
 {
-  static volatile GedaType geda_page_type = 0;
+  static volatile GedaPageType geda_page_type = 0;
 
   if (g_once_init_enter (&geda_page_type)) {
 
@@ -343,8 +344,8 @@ GedaType geda_page_get_type (void)
       geda_page_instance_init        /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char  *string;
+    GedaPageType type;
 
     string = g_intern_static_string ("Page");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);

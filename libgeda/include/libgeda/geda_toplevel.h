@@ -40,6 +40,12 @@
 #ifndef _LIBGEDA_TOPLEVEL_H
 #define _LIBGEDA_TOPLEVEL_H
 
+#if defined(__LP64__) || defined(_LP64)
+# define GedaTopType unsigned long
+#else
+# define GedaTopType unsigned int
+#endif
+
 #define GEDA_TYPE_TOPLEVEL            (geda_toplevel_get_type())
 #define GEDA_TOPLEVEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GEDA_TYPE_TOPLEVEL, GedaToplevel))
 #define GEDA_TOPLEVEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GEDA_TYPE_TOPLEVEL, GedaToplevelClass))
@@ -58,7 +64,7 @@ struct _GedaToplevel {
   /* This is the GObject parent and has nothing to do with LibGeda */
   GObject parent;
 
-  GedaType head_marker;       /* structure type signature */
+  GedaTopType head_marker;       /* structure type signature */
 
   int    open_flags;              /* Control flags for the f_open function. Indexed by FOpenFlags */
   char  *untitled_name;           /* untitled sch basename */
@@ -195,7 +201,7 @@ struct _GedaToplevel {
 
   GList   *weak_refs;             /* Weak references */
 
-  GedaType tail_marker;       /* structure type signature */
+  GedaTopType tail_marker;       /* structure type signature */
 };
 
 #ifdef __cplusplus
@@ -203,7 +209,7 @@ extern "C" {
 #endif
 
 /* geda_toplevel.c */
-GedaType      geda_toplevel_get_type         (void) GEDA_CONST;
+GedaTopType   geda_toplevel_get_type         (void) GEDA_CONST;
 GedaToplevel *geda_toplevel_new              (void);
 
 bool          is_a_geda_toplevel             (GedaToplevel *toplevel);

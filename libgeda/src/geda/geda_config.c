@@ -18,7 +18,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 /* 02/27/14 WEH Revamp: Eliminate GFile due to unnecessary dependencies,
- *          and assumes the installed target allow vfs, which mine does
+ *          and assumes the installed target allows vfs, which mine does
  *          not and so had to fix (or break) depending on ones point of
  *          view.
  *
@@ -50,15 +50,15 @@ enum _EdaConfigPropertyId {
 struct _EdaConfigPrivate
 {
   /* Accessed via properties */
-  EdaConfig *parent;
+  EdaConfig    *parent;
   unsigned long parent_handler_id;
-  bool trusted;
-  char *filename;
+  bool          trusted;
+  char         *filename;
 
   /* Other private data */
-  GKeyFile *keyfile;
-  bool loaded;
-  bool changed;
+  GKeyFile     *keyfile;
+  bool          loaded;
+  bool          changed;
 };
 
 static void eda_config_dispose (GObject *object);
@@ -285,18 +285,18 @@ eda_config_instance_init(GTypeInstance *instance, void *class)
   config->RC_list                 = NULL;
 }
 
-/*! \brief Retrieve EdaConfig GedaType identifier.
+/*! \brief Retrieve EdaConfig GedaConfigType identifier.
  *
  *  \par Function Description
- *  Function to retrieve EdaConfig GedaType identifier. Upon first call,
- *  this registers the EdaConfig in the Type system. The saved value from
- *  the first execution is returned on subsequent calls.
+ *  Function to retrieve EdaConfig GedaConfigType identifier. Upon first
+ *  call, this registers the EdaConfig in the Type system. The value
+ *  retained from the first execution is returned on subsequent calls.
  *
- *  \return the GedaType identifier associated with EdaConfig.
+ *  \return the GedaConfigType identifier associated with EdaConfig.
  */
-GedaType eda_config_get_type (void)
+GedaConfigType eda_config_get_type (void)
 {
-  static volatile GedaType eda_config_type = 0;
+  static volatile GedaConfigType eda_config_type = 0;
 
   if (g_once_init_enter (&eda_config_type)) {
 
@@ -312,8 +312,8 @@ GedaType eda_config_get_type (void)
       eda_config_instance_init   /* (GInstanceInitFunc) */
     };
 
-    const char *string;
-    GedaType    type;
+    const char    *string;
+    GedaConfigType type;
 
     string = g_intern_static_string ("EdaConfig");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
@@ -680,7 +680,7 @@ eda_config_get_context_for_file (const char *path)
 #else
 
   if (g_path_is_absolute(path)) {
-    strncpy(&dir[0], path, PATH_MAX);
+    ptr = strncpy(&dir[0], path, PATH_MAX);
   }
   else {
     ptr = NULL;

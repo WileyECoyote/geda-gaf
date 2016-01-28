@@ -111,8 +111,6 @@
  * eda_config_get_context_for_path().
  */
 
-BEGIN_DECLS
-
 /*! Domain for errors relating to EdaConfig operations. */
 #define EDA_CONFIG_ERROR eda_config_error_quark ()
 
@@ -128,6 +126,11 @@ typedef enum {
 GQuark eda_config_error_quark (void);
 
 /* ---------------------------------------------------------------- */
+#if defined(__LP64__) || defined(_LP64)
+# define GedaConfigType unsigned long
+#else
+# define GedaConfigType unsigned int
+#endif
 
 #define EDA_TYPE_CONFIG (eda_config_get_type ())
 #define EDA_CONFIG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDA_TYPE_CONFIG, EdaConfig))
@@ -159,7 +162,11 @@ struct _EdaConfig
   GList *RC_list;            /* List of RC files which have been read in. */
 };
 
-GedaType eda_config_get_type (void) GEDA_CONST;
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+GedaConfigType eda_config_get_type (void) GEDA_CONST;
 
 /* ---------------------------------------------------------------- */
 
@@ -216,6 +223,8 @@ void eda_config_set_boolean_list     (EdaConfig *cfg, const char *group, const c
 void eda_config_set_int_list         (EdaConfig *cfg, const char *group, const char *key, int list[],    size_t length);
 void eda_config_set_double_list      (EdaConfig *cfg, const char *group, const char *key, double list[], size_t length);
 
-END_DECLS
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* !__EDA_CONFIG_H__ */

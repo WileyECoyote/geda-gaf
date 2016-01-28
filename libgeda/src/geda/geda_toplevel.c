@@ -99,7 +99,8 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
  *  \param [in]  instance  The GedaToplevel being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
  */
-static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
+static void
+geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaToplevel *toplevel           = (GedaToplevel*)instance;
   toplevel->open_flags             = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
@@ -264,7 +265,8 @@ static void geda_toplevel_finalize(GObject *object)
  *  \param [in]  class       The GedaToplevel we are initializing
  *  \param [in]  class_data  (unused)
  */
-static void geda_toplevel_class_init (void *class, void *class_data)
+static void
+geda_toplevel_class_init (void *class, void *class_data)
 {
   GedaToplevelClass *klass    = GEDA_TOPLEVEL_CLASS(class);
   GObjectClass *gobject_class = G_OBJECT_CLASS(klass);
@@ -277,16 +279,16 @@ static void geda_toplevel_class_init (void *class, void *class_data)
  *
  *  \par Function Description
  *  Function to retrieve a #GedaToplevel Type identifier. When first called,
- *  the function registers a #GedaToplevel in the GedaType system to obtain
- *  an identifier that uniquely itentifies a GedaToplevel and returns the
- *  unsigned integer value. The retained value is returned on all
- *  Subsequent calls.
+ *  the function registers a #GedaToplevel in the GedaTopType system to
+ *  obtain an identifier that uniquely itentifies a GedaToplevel and returns
+ *  the unsigned integer value. The retained value is returned on all
+ *  subsequent calls.
  *
- *  \return GedaType identifier associated with GedaToplevel.
+ *  \return GedaTopType identifier associated with GedaToplevel.
  */
-GedaType geda_toplevel_get_type (void)
+GedaTopType geda_toplevel_get_type (void)
 {
-  static volatile GedaType geda_toplevel_type = 0;
+  static volatile GedaTopType geda_toplevel_type = 0;
 
   if (g_once_init_enter (&geda_toplevel_type)) {
 
@@ -303,7 +305,7 @@ GedaType geda_toplevel_get_type (void)
     };
 
     const char *string;
-    GedaType    type;
+    GedaTopType type;
 
     string = g_intern_static_string ("GedaToplevel");
     type   = g_type_register_static (G_TYPE_OBJECT, string, &info, 0);
