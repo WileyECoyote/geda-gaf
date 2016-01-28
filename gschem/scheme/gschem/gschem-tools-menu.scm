@@ -20,8 +20,9 @@
 ;; =================================================================
 ;; Define your favorite editor here
 ;(define tools:editor "emacs")
-;(define tools:editor "kwrite")
 (define tools:editor "gedit")
+;(define tools:editor "kwrite")
+;(define tools:editor "xfwrite")
 
 ;; Define your favorite git client here
 ;(define tools:gitclient "git-cola")
