@@ -1,3 +1,9 @@
+2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/spice-common.scm: Remove the word "model" from delineator lines
+      and rename argument model-filename to filename in spice:insert-text-file,
+      the function does not know what the data is that is being included.
+
 2016-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Replace macros:

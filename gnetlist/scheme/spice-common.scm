@@ -29,18 +29,18 @@
 ;;--------------------------------------------------------------------------
 ;; Given a filename, open the file, get the contents, and dump the contents
 ;; into the current outpout port, aka spice file.
-;; Calling form is "(insert-text-file model-filename)"
-;; The function opens model-filename, but assumes that output-file is stdout
+;; Calling form is "(insert-text-file filename)"
+;; The function opens filename, but assumes that output-file is stdout
 ;;
 ;; This function can be to include spice models referenced in schematic files
 ;; into the netlist.  Note that it doesn't check the correctness of the spice
 ;; code in the file -- you're on your own!
 ;;---------------------------------------------------------------------------
 (define spice:insert-text-file
-  (lambda (model-filename)
-    (if (file-exists? model-filename)
-    (let ((model-file (open-input-file model-filename)) )
-      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n"))
+  (lambda (filename)
+    (if (file-exists? filename)
+    (let ((model-file (open-input-file filename)) )
+      (display (string-append "*vvvvvvvv  Included SPICE from " filename " vvvvvvvv\n"))
       (let while ((model-line (read-line model-file)))
           (if (not (eof-object? model-line))
                    (begin
@@ -50,10 +50,10 @@
           ) ;; end of if
         )  ;; end of inner let
         (close-port model-file)
-        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n*\n"))
+        (display (string-append "*^^^^^^^^  End of included SPICE from " filename " ^^^^^^^^\n*\n"))
      ) ;; end of outer let
     (begin
-      (message (string-append "ERROR: File '" model-filename "' not found.\n"))
+      (message (string-append "ERROR: File '" filename "' not found.\n"))
       (primitive-exit 1))
     )
   )
