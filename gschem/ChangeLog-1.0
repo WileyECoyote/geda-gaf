@@ -3,6 +3,8 @@
     * scheme/gschem/gschem-tools-menu.scm: Add tools:editor "xfwrite" to
       list of editor options, gedit is going down hill.
 
+    * src/x/x_settings_dialog.c: Reduce scope of variables.
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: A menu option to use the orginal

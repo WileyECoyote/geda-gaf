@@ -155,10 +155,10 @@
 #include <gschem.h>
 #include <gschem_xdefines.h>            /* Define dialog default internal spacing */
 #include <gschem_dialog.h>              /* Definition the base Dialog Class */
-
-#include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
-#include <geda_debug.h>
+
+#include "../../include/geda_dialog_controls.h" /* Macros for Dialogs */
+#include "../../include/geda_debug.h"
 
 /** \defgroup Preferences-Dialog Preferences Dialog
  *  @{
@@ -177,14 +177,18 @@
 
 /* Could call this one gtkless_radio_group_get_active */
 int gtk_radio_group_get_active(GSList *RadioGroupList) {
-  GtkToggleButton *button;
-  int length;
-  int index;
-  int active = -1;
 
+  int active;
+  int index;
+  int length;
+
+  active = -1;
   length = g_slist_length (RadioGroupList);
 
   for (index = 0; index < length; index++) {
+
+     GtkToggleButton *button;
+
      button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, index));
      if (button == NULL) return -1;
      if (gtk_toggle_button_get_active (button) == TRUE) {
@@ -801,16 +805,17 @@ static int GetAttributeFilterMode(GschemToplevel *w_current) {
  *       or modified the old list based on the Dialog settings
  */
 static int SaveAttributeFilterList(GschemToplevel *w_current) {
-   GtkTreeModel *store = NULL;
-   GtkTreeIter iter;
 
-   char *str_new   = NULL;
-   char *str_old   = NULL;
-   int index       = 0;
-   int list_length = 0;
-   int next        = 0;
+  GtkTreeModel *store = NULL;
+  GtkTreeIter iter;
 
-   switch (gtk_radio_group_get_active(DialogListAttributesRadioGroup)) {
+  char *str_new   = NULL;
+  char *str_old   = NULL;
+  int index       = 0;
+  int list_length = 0;
+  int next        = 0;
+
+  switch (gtk_radio_group_get_active(DialogListAttributesRadioGroup)) {
      case 0:   /* ALL */
        g_list_free(View2Data);
        View2Data = g_list_append(NULL, "*");
@@ -826,8 +831,9 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
        next = gtk_tree_model_get_iter_first (store, &iter);
 
        list_length = g_list_length(View2Data);
-       while (next)
-       {
+
+       while (next) {
+
          /* Walk through the list, reading each row. */
          gtk_tree_model_get (store, &iter, 0, &str_new, -1);
          if (index < list_length) {
@@ -854,10 +860,11 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
        break;
      default:
        BUG_MSG("DialogListAttributesRadioGroup returned bad ID\n");
-   }
+  }
+
   /* Don't GEDA_FREE (str_new) here because it's pointing
    * at a string somewhere and referenced in the glist */
-   return index;
+  return index;
 }
 
 /*! \brief Preferences Dialog Save list on all attibutes in left Viewtree
@@ -869,25 +876,27 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
  *       list.
  */
 static int SavePotentialAttributes(GschemToplevel *w_current) {
+
   GtkTreeModel *store;
   GtkTreeIter iter;
   char *str_new;
   int next;
 
-    s_attrib_init();
+  s_attrib_init();
 
-    store = gtk_tree_view_get_model (GTK_TREE_VIEW(PotentialAttributesView));
+  store = gtk_tree_view_get_model (GTK_TREE_VIEW(PotentialAttributesView));
 
-    /* Get the first iter in the list */
-    next = gtk_tree_model_get_iter_first (store, &iter);
-    while (next)
-    {
+  /* Get the first iter in the list */
+  next = gtk_tree_model_get_iter_first (store, &iter);
+
+  while (next) {
+
     /* Walk through the list, reading each row. */
-      gtk_tree_model_get (store, &iter, 0, &str_new, -1);
-      s_attrib_add_entry(str_new);
-      next = gtk_tree_model_iter_next (store, &iter);
-    }
-    return 0;
+    gtk_tree_model_get (store, &iter, 0, &str_new, -1);
+    s_attrib_add_entry(str_new);
+    next = gtk_tree_model_iter_next (store, &iter);
+  }
+  return 0;
 }
 
 /*! \brief Preferences Dialog add_selected_attribute Helper
@@ -917,6 +926,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
     GEDA_FREE(attribute); /* gtk_tree_model_get made copies of strings */
     return answer; /* stop walking the store if found, else call us with next row */
   }
+
   store = GTK_LIST_STORE(gtk_tree_view_get_model (GTK_TREE_VIEW(list)));
   gtk_tree_model_foreach(GTK_TREE_MODEL(store), foreach_func, NULL);
 
@@ -929,16 +939,19 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
  */
 static void increment_selected_attribute( void ){
 
+  GtkTreeIter       iter1;
+  GtkTreeModel     *model;
   GtkTreeSelection *selection;
-  GtkTreeModel *model;
-  GtkTreeIter iter1;
-  GtkTreeIter *iter2=NULL;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(PotentialAttributesView));
-  if (gtk_tree_selection_get_selected( selection, &model, &iter1)) {
-    iter2 = gtk_tree_iter_copy (&iter1);
-    if (geda_tree_model_iter_previous (model, iter2))
-    gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
+
+  if (gtk_tree_selection_get_selected (selection, &model, &iter1)) {
+
+    GtkTreeIter *iter2 = gtk_tree_iter_copy (&iter1);
+
+    if (geda_tree_model_iter_previous (model, iter2)) {
+      gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
+    }
   }
 }
 
@@ -946,20 +959,22 @@ static void increment_selected_attribute( void ){
  *  \par Function Description: This is a Group 2 support function use to
  *       move an attribute down in the Potential (left) Treeview list.
 */
-static void decrement_selected_attribute( void ){
+static void decrement_selected_attribute( void ) {
 
+  GtkTreeIter       iter1;
+  GtkTreeModel     *model;
   GtkTreeSelection *selection;
-  GtkTreeModel *model;
-  GtkTreeIter iter1;
-  GtkTreeIter *iter2=NULL;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(PotentialAttributesView));
-  if (gtk_tree_selection_get_selected( selection, &model, &iter1)) {
-    iter2 = gtk_tree_iter_copy (&iter1);
-    if (gtk_tree_model_iter_next (model, iter2))
-    gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
-  }
 
+  if (gtk_tree_selection_get_selected (selection, &model, &iter1)) {
+
+    GtkTreeIter *iter2 = gtk_tree_iter_copy (&iter1);
+
+    if (gtk_tree_model_iter_next (model, iter2)) {
+      gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
+    }
+  }
 }
 
 /*! \brief Preferences Dialog Add selected attribute up in the list
@@ -970,31 +985,41 @@ static void decrement_selected_attribute( void ){
  *       of the filter list if there is no selection.
  */
 static void add_selected_attribute( void ) {
+
   GtkTreeSelection *l_selection;
-  GtkTreeSelection *r_selection;
-  GtkListStore *l_store;
-  GtkListStore *r_store;
-  GtkTreeIter l_iter;
-  GtkTreeIter r_iter;
-  GtkTreeIter n_iter;
-  char *value;
+  GtkListStore     *l_store;
+  GtkTreeIter       l_iter;
 
   /* Get selection for the Left list */
   l_selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(PotentialAttributesView));
-  if (gtk_tree_selection_get_selected( l_selection, (GtkTreeModel**) &l_store, &l_iter)) {
+
+  if (gtk_tree_selection_get_selected( l_selection, (GtkTreeModel**) &l_store, &l_iter))
+  {
+    char *value;
+
     /* If a row was selected then l_selection, l_model, and l_iter were set so
        retrieve source string */
     gtk_tree_model_get(GTK_TREE_MODEL(l_store), &l_iter, 0, &value,  -1);
+
     if (is_not_in_list((GtkTreeView*) SelectedAttributesView, value)) { /* if not already in r list */
+
+      GtkTreeSelection *r_selection;
+      GtkListStore     *r_store;
+      GtkTreeIter       r_iter;
+      GtkTreeIter       n_iter;
 
       /* check if there is a selection in right list */
       r_selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(SelectedAttributesView));
 
       /* if there was a selection then r_iter set else GTK set r_iter to NULL */
       if (gtk_tree_selection_get_selected( r_selection, (GtkTreeModel**) &r_store, &r_iter))
+      {
         /* if r_iter = NULL then is suppose to be appended to end but doens't seem to work */
         gtk_list_store_insert_before(r_store, &n_iter, &r_iter);
-      else { /* so do this instead */
+      }
+      else
+      {
+        /* so do this instead */
         r_store = GTK_LIST_STORE(gtk_tree_view_get_model (GTK_TREE_VIEW (SelectedAttributesView)));
         gtk_list_store_append(r_store, &n_iter);
       }
@@ -1243,19 +1268,22 @@ static void default_color_button_popup (GtkColorButton *button, GdkEventButton *
 static
 bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control)
 {
-
   bool resolved = FALSE;
 
   if (GTK_IS_COLOR_BUTTON(widget)) {
 
     int WhatHappend = event->type;
     int WhichButt   = (int)(long)Control;
-    int color_index = -1;
 
-    if (event->button == 3) /* only interest in right button down */
+    if (event->button == 3) { /* only interest in right button down */
+
       if (WhatHappend == GDK_BUTTON_PRESS) {
-       resolved = TRUE;
-       switch ( WhichButt ) {
+
+        int color_index = -1;
+
+        resolved = TRUE;
+
+        switch ( WhichButt ) {
          case GripStrokeColor:
            color_index = SELECT_COLOR;
            break;
@@ -1279,9 +1307,10 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
            break;
          default:
             BUG_IMSG( "Unknown button Id", WhichButt);
-      } /* End Switch */
-      if(color_index != -1) {
-        default_color_button_popup((GtkColorButton *)widget, event, color_index);
+        } /* End Switch */
+        if(color_index != -1) {
+          default_color_button_popup((GtkColorButton *)widget, event, color_index);
+        }
       }
     }
   }
@@ -1362,13 +1391,11 @@ void combo_responder(GtkWidget *widget, void * data)
  *  \param[in] titleblock  ptr to name of current default titleblock.
  */
 static
-int setup_titleblock_combo( char *titleblock ){
+int setup_titleblock_combo( char *titleblock ) {
 
-  int i;
-  int pos = -1;
-
-  int number_of_buffers;
   char **strBuffer;
+  int    number_of_buffers;
+  int    pos = -1;
 
   /* Add option to disable automatic addition of a title-block */
   LOAD_GEDA_TEXT_COMBO (TitleBlock, "None");
@@ -1376,8 +1403,13 @@ int setup_titleblock_combo( char *titleblock ){
   number_of_buffers = get_titleblock_cnt(); /* get count of files */
 
   strBuffer = malloc(number_of_buffers * sizeof(char *));
+
   if (strBuffer) {
-     for (i=0; i<number_of_buffers; i++) {
+
+    int i;
+
+
+    for (i=0; i<number_of_buffers; i++) {
        strBuffer[i] = malloc( MAX_FILENAME ); /* be 64 */
      }
 
@@ -1440,10 +1472,9 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
   GedaList   *font_list;
   GList      *iter;
   const char *pfont;
-
-  int current;
-  int index;
-  int n_families;
+  int         current;
+  int         index;
+  int         n_families;
 
   font_list = geda_list_new();
 
@@ -1473,16 +1504,18 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
     GArray *fonts;
     char    strBuffer[256];
-    char   *ptr;
+
 
     fonts = x_draw_get_font_list(NULL);
 
     if (fonts) {
+
       /* Index thru all fonts strings in the array */
       for(index = 0; index < fonts->len; index++) {
 
         char *family   = NULL;
         char *provider = NULL;
+        char *ptr;
         int   pos, length;
 
         pfont = g_array_index (fonts, char*, index);
@@ -1497,7 +1530,9 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
         pos = 0;
 
         if (strBuffer[0] == ASCII_MINUS) {
+
           provider = ++ptr;
+
           if (islower(strBuffer[1])) {
             strBuffer[1] = strBuffer[1] ^ 0x20;
           }
