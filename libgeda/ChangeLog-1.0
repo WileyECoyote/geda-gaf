@@ -30,6 +30,11 @@
           * src/geda/geda_page.c
           * src/geda/geda_toplevel.c
 
+   ** src/object/o_complex_basic.c: Check for valid utf8 text in conditional
+      for inside symversion in function o_complex_check_symbol_version, other
+      was the conditional is pointless since inside must point to something.
+      Reduce scope of symversion in o_complex_is_eligible_attribute.
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_basic.c: Eliminate setting object->arc->y to

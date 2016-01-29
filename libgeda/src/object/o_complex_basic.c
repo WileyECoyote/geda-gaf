@@ -83,13 +83,14 @@ o_complex_get_position (int *x, int *y, Object *object)
 static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, Object *object)
 {
   char *name = NULL;
-  const char *symversion = "symversion=";
+
   bool  answer = FALSE;
 
   if (GEDA_IS_TOPLEVEL(toplevel))  {
 
     if (GEDA_IS_TEXT(object))  {
 
+      const char *symversion = "symversion=";
       int promotableAttribute = FALSE;
 
       if(object->text->string == NULL) {
@@ -773,11 +774,11 @@ Object *o_complex_copy(Object *o_current)
 
   for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
 
-    Object *child = (Object*) iter->data;
+    Object *child = (Object*)iter->data;
 
     if (GEDA_IS_OBJECT(child)) {
       child->parent_object = o_new;
-      if(GEDA_IS_PIN(child)) {
+      if (GEDA_IS_PIN(child)) {
         pins = g_list_append(pins, child);
       }
     }
@@ -1060,7 +1061,7 @@ void o_complex_check_symbol_version(GedaToplevel *toplevel, Object* object)
 
       u_log_message(warn_msg, parse, refdes);
 
-      if (inside) {
+      if (g_utf8_validate(inside, -1, NULL)) {
 
         u_log_message("\t%s symversion=%s\n", parse_msg, inside);
       }
