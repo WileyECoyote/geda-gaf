@@ -1,3 +1,16 @@
+2016-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * irf/IRFM140_*: Add 8 NMOS transistors:
+
+            * irf/IRFM140_100V_28A_TO254-1.sym
+            * irf/IRFM150_100V_34A_TO254-1.sym
+            * irf/IRFM240_200V_18A_TO254-1.sym
+            * irf/IRFM250_200V_27.4A_TO254-1.sym
+            * irf/IRFM340_400V_10A_TO254-1.sym
+            * irf/IRFM350_400V_14A_TO254-1.sym
+            * irf/IRFM440_500V_8A_TO254-1.sym
+            * irf/IRFM450_500V_12A_TO254-1.sym
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/sziklai-bjt/npn-pnp-sziklai-1.sym: Revamp symbol using
