@@ -1,3 +1,8 @@
+2016-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/gattrib.c: Reduce scope of variables, clean, adjust
+      indentation.
+
 2016-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Replace g_debug with fprintf to stderr.

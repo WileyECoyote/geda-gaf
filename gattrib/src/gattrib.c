@@ -139,8 +139,6 @@ typedef struct {
 
 static GList *exit_functions = NULL;
 
-//static GList *search_history=NULL;
-
 /*! \brief Register a function to be called on program exit
  *
  *  \par Function Description
@@ -196,16 +194,21 @@ void gattrib_save_user_config (void)
 int gattrib_quit(int return_code)
 {
   GList *list;
-  geda_atexit_struct *p;
 
   /* Call all registered functions in order */
   list = exit_functions;
+
   while(list != NULL) {
-    p = (geda_atexit_struct *) list->data;
+
+    geda_atexit_struct *p;
+
+    p = list->data;
     p->func(p->arg);
     GEDA_FREE(p);
+
     list = g_list_next(list);
   }
+
   g_list_free(exit_functions);
 
   if (search_history) g_list_free(search_history);
