@@ -1,5 +1,9 @@
 2016-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice.scm: Add function write-prologue and write-model,
+      spice-sdb, should probably be in common spice. Iterate refdes in two
+      passes and include model files, almost makes old spice usable.
+
     * scheme/spice-common.scm: Remove the word "model" from delineator lines
       and rename argument model-filename to filename in spice:insert-text-file,
       the function does not know what the data is that is being included.

@@ -26,9 +26,11 @@
 ;; SPICE netlist backend written by S. Gieltjes starts here
 ;;
 
+;; The following is needed to make guile 1.8.x happy.
+(use-modules (ice-9 rdelim))
+
 ;; Common functions for the `spice' and `spice-sdb' backends
 (load-from-path "spice-common.scm")
-
 
 ;;  write mos transistor
 ;;
@@ -53,6 +55,47 @@
     (display (string-append package " " (spice:component-value package) "\n"))))
 
 
+;;----------------------------------------------------------
+;; Include a spice model (instantiated as a model box on the schematic)
+;;  Two types of model can be included:
+;;  1.  An embedded model, which is a one- or multi-line string held in the attribute "model".
+;;      In this case, the following attributes are mandatory:
+;;      --  model (i.e. list of parameter=value strings)
+;;      --  model-name
+;;      --  type
+;;      In this case, the function creates and formats the correct spice model line(s).
+;;  2.  A model held in a file whose name is held in the attribute "file"
+;;      In this case, the following attribute are mandatory:
+;;      --  file (i.e. list of parameter=value strings)
+;;      In this case, the function just opens the file and dumps the contents
+;;      into the netlist.
+;;----------------------------------------------------------
+(define spice:write-model
+  (lambda (package)
+             ;; Collect variables used in creating spice code
+        (let ((model-name (get-package-attribute package "model-name"))
+              (model-file (get-package-attribute package "file"))
+              (model (get-package-attribute package "model"))
+              (type (get-package-attribute package "type"))
+             )   ;; end of local assignments
+
+          ;; Now, depending upon what combination of model, model-file, and model-name
+          ;; exist (as described above) write out lines into spice netlist.
+          (cond
+             ;; one model and model name exist
+           ( (not (or (string=? model "unknown") (string=? model-name "unknown")))
+             (display (string-append ".MODEL " model-name " " type " (" model ")\n")) )
+
+             ;; model file exists
+           ( (not (or (string=? model-file "unknown") ))
+             (spice:insert-text-file model-file)   ;; don't write it out -- it's handled after the second pass.
+           )
+
+          )  ;; close of cond
+        ) ;; close of let
+    ) ;; close of lambda
+) ;; close of define
+
 ;;
 ;; write the refdes, the net name connected to pin# and the component value. No extra attributes.
 ;;
@@ -64,6 +107,19 @@
         ;; write component value, if components have a label "value=#"
         ;; what if a component has no value label, currently unknown is written
     (display (spice:component-value package))))
+
+
+;;
+;; Looks for device labels to be written before the netlist body,
+;; Currently, only device=model is supported.
+;;
+(define spice:write-prologue
+  (lambda (ls)
+     (if (not (null? ls))
+      (let ((package (car ls)))                           ;; search for model device labels
+        (if (string=? (get-device package) "model")
+            (spice:write-model package))
+        (spice:write-prologue (cdr ls)) ))))
 
 
 ;;
@@ -91,6 +147,8 @@
               (spice:write-mos-transistor package))
           ( (string=? (get-device package) "include")
               (spice:write-include package))
+          ( (string=? (get-device package) "model")
+              'nothing)                                  ;; Was handled by write-prologue
           ( else (spice:write-one-component package)
                (newline)))
         (spice:write-netlist (cdr ls)) ))))
@@ -116,6 +174,7 @@
 (define (spice output-filename)
   (set-current-output-port (output-port output-filename))
   (spice:write-top-header)
+  (spice:write-prologue netlist:packages)
   (spice:write-netlist netlist:packages)
   (spice:write-bottom-footer)
   (close-output-port (current-output-port)))
