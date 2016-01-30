@@ -1,3 +1,7 @@
+2016-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Remove GDK_LIBS from AM_LDFLAGS.
+
 2016-01-09 Edward Hennessy <ehennes@sbcglobal.net>
 
     * src/edacairo.c: WEH: Modified per commit to Master branch by
